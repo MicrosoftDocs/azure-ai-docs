@@ -1,6 +1,6 @@
 ---
-title: Azure Machine Learning Workbench execution configuration files
-description: This document details the configuration settings for Azure ML Workbench experiment execution.
+title: Azure Machine Learning Experimentation Service configuration files
+description: This document details the configuration settings for Azure ML Experimentation Service.
 services: machine-learning
 author: gokhanuluderya-msft
 ms.author: gokhanu
@@ -9,12 +9,12 @@ ms.reviewer: garyericson, jasonwhowell, mldocs
 ms.service: machine-learning
 ms.workload: data-services
 ms.topic: article
-ms.date: 09/17/2017
+ms.date: 09/28/2017
 ---
 
-# Azure Machine Learning Workbench execution configuration files
+# Azure Machine Learning Experimentation Service configuration files
 
-When you submit a script for Azure Machine Learning (Azure ML) Workbench, the behavior of the execution is controlled by files in the **aml_config** folder. This folder is under your project folder root. It is important to understand the contents of these files in order to achieve the desired outcome for your execution in an optimal way.
+When you run a script in Azure Machine Learning (Azure ML) Workbench, the behavior of the execution is controlled by files in the **aml_config** folder. This folder is under your project folder root. It is important to understand the contents of these files in order to achieve the desired outcome for your execution in an optimal way.
 
 Following are the relevant files under this folder:
 - conda_dependencies.yml
@@ -30,7 +30,7 @@ Following are the relevant files under this folder:
 ## conda_dependencies.yml
 This file is a [conda environment file](https://conda.io/docs/using/envs.html#create-environment-file-by-hand) that specifies the Python runtime version and packages that your code depends on. When Azure ML Workbench executes a script in a Docker container or HDInsight cluster, it creates a [conda environment](https://conda.io/docs/using/envs.html) for your script to run. 
 
-In this file, you specify Python packages that your script needs for execution. Azure ML Workbench execution service creates the conda environment in the Docker image according to your list of dependencies. The packages list here must be reachable by the execution engine. For that reason, packages need to be listed in channels such as:
+In this file, you specify Python packages that your script needs for execution. Azure ML  Experimentation Service creates the conda environment in the Docker image according to your list of dependencies. The packages list here must be reachable by the execution engine. For that reason, packages need to be listed in channels such as:
 
 * [continuum.io](https://anaconda.org/conda-forge/repo)
 * [PyPI](https://pypi.python.org/pypi)
@@ -107,12 +107,12 @@ packages:
 ## Run configuration
 To specify a particular run configuration, a pair of files is needed. They are typically generated using a CLI command. But you can also clone exiting ones, rename them, and edit them.
 
-```shell
+```azurecli
 # create a compute target pointing to a VM via SSH
 $ az ml computetarget attach -n <compute target name> -a <IP address or FQDN of VM> -u <username> -w <password> --type remotedocker
 
 # create a compute context pointing to an HDI cluster head-node via SSH
-$ az ml computetarget attach -n <compute target name> -a <IP address or FQDN of HDI cluster> -u <username> -w <password> -type cluster
+$ az ml computetarget attach -n <compute target name> -a <IP address or FQDN of HDI cluster> -u <username> -w <password> --type cluster
 ```
 
 This command creates a pair of files based on the compute target specified. Let's say you named your compute target _foo_. This command generates _foo.compute_ and _foo.runconfig_ in your **aml_config** folder.
@@ -120,8 +120,8 @@ This command creates a pair of files based on the compute target specified. Let'
 >[!NOTE]
 > _local_ or _docker_ names for the run configuration files are arbitrary. Azure ML Workbench adds these two run configurations when you create a blank project for your convenience. You can rename "<run configuration name>.runconfig" files that come with the project template, or create new ones with any name you want.
 
-### <compute target name>.compute
-_<compute target name>.compute_ file specifies connection and configuration information for the compute target. It is a list of name-value pairs. Follwing are the supported settings.
+### \<compute target name>.compute
+_\<compute target name>.compute_ file specifies connection and configuration information for the compute target. It is a list of name-value pairs. Follwing are the supported settings.
 
 **type**: Type of the compute environment. Supported values are:
   - local
@@ -129,7 +129,7 @@ _<compute target name>.compute_ file specifies connection and configuration info
   - remotedocker
   - cluster
 
-**baseDockerImage**: The Docker image used to run the Python/PySpark script. The default value is _microsoft/mmlspark:plus-0.7.dev7_2.gcfbc920_. We also support one other image: _microsoft/mmlspark:plus-gpu-0.7.dev7_2.gcfbc920_, which gives you GPU access to the host machine (if GPU is present).
+**baseDockerImage**: The Docker image used to run the Python/PySpark script. The default value is _microsoft/mmlspark:plus-0.7.91_. We also support one other image: _microsoft/mmlspark:plus-gpu-0.7.91_, which gives you GPU access to the host machine (if GPU is present).
 
 **address**: The IP address, or FQDN (fully qualified domain name) of the virtual machine, or HDInsight cluster head-node.
 
@@ -139,12 +139,12 @@ _<compute target name>.compute_ file specifies connection and configuration info
 
 **sharedVolumes**: Flag to signal that execution engine should use Docker shared volume feature to ship project files back and forth. Having this flag turned on can speed up execution since Docker can access projects directly without the need to copy them. It is best to set _false_ if the Docker engine is running on Windows since volume sharing for Docker on Windows can be flaky. Set it to _true_ if it is running on macOS or Linux.
 
-**nvidiaDocker**: This flag, when set to _true_, tells the Azure ML Workbench execution service to use _nvidia-docker_ command, as opposed to the regular _docker_ command, to launch the Docker image. The _nvidia-docker_ engine allows the Docker container to access GPU hardware.  setting is required if you want to run GPU execution in the Docker container. Only Linux host supports _nvidia-docker_. For example, Linux-based DSVM in Azure ships with _nvidia-docker_. _nvidia-docker_ as of now is not supported on Windows.
+**nvidiaDocker**: This flag, when set to _true_, tells the Azure ML Experimentation Service to use _nvidia-docker_ command, as opposed to the regular _docker_ command, to launch the Docker image. The _nvidia-docker_ engine allows the Docker container to access GPU hardware. The setting is required if you want to run GPU execution in the Docker container. Only Linux host supports _nvidia-docker_. For example, Linux-based DSVM in Azure ships with _nvidia-docker_. _nvidia-docker_ as of now is not supported on Windows.
 
 **nativeSharedDirectory**: This property specifies the base directory (For example: _~/.azureml/share/_) where files can be saved in order to be shared across runs on the same compute target. If this setting is used when running on a Docker container, _sharedVolumes_ must be set to true. Otherwise, execution fails.
 
-### <run configuration name>.runconfig
-_<run configuration name>.runconfig_ specifies the Azure ML Workbench execution behavior. It specifies runconfiguration behavior such as tracking run history or what compute target to use along with many others. The names of the run configuration files are used to populate the execution context dropdown in the Azure ML Workbench desktop application.
+### \<run configuration name>.runconfig
+_\<run configuration name>.runconfig_ specifies the Azure ML experiment execution behavior. You can configure execution behaviors such as tracking run history, or what compute target to use along with many others. The names of the run configuration files are used to populate the execution context dropdown in the Azure ML Workbench desktop application.
 
 **ArgumentVector**: This section specifies the script to be run as part of this execution and the parameters for the script. For example, if you have the following snippet in your "<run configuration name>.runconfig" file 
 
@@ -177,9 +177,9 @@ print(os.environ.get("EXAMPLE_ENV_VAR1"))
 
 **SparkDependenciesFile**: This property points to the file that specifies the Spark dependencies in the **aml_config** folder. It is set to _null_ by default and it points to the default **spark_dependencies.yml** file.
 
-**PrepareEnvironment**: This property, when set to _true_, tells the execution service to prepare the conda environment based on the conda dependencies specified as part of your initial run. This property is effective only when you execute against a Docker environment. This setting has no effect if you are running against a _local_ environment. 
+**PrepareEnvironment**: This property, when set to _true_, tells the Experimentation Service to prepare the conda environment based on the conda dependencies specified as part of your initial run. This property is effective only when you execute against a Docker environment. This setting has no effect if you are running against a _local_ environment. 
 
-**TrackedRun**: This flag signals the execution service whether or not to track the run in Azure ML Workbench run history infrastructure. The default value is _true_. 
+**TrackedRun**: This flag signals the Experimentation Service whether or not to track the run in Azure ML Workbench run history infrastructure. The default value is _true_. 
 
 **UseSampling**: _UseSampling_ specifies whether the active sample datasets for data sources are used for the run. If set to _false_, data sources ingest and use the full data read from the data store. If set to _true_, active samples are used. Users can use the **DataSourceSettings" to specify which specific sample datasets to use if they want to override the active sample. 
 
@@ -206,3 +206,5 @@ Based on the substitution above, the following code sample now reads from "myrem
 ```
 df = datasource.load_datasource('mylocal.dsource')
 ```
+## Next steps
+Learn more about [Experimentation Service configuration](experimentation-service-configuration.md).
