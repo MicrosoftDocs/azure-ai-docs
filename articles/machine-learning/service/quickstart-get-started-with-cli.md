@@ -1,5 +1,5 @@
 ﻿---
-title: Installation Quickstart with Azure Machine Learning CLI | Microsoft Docs
+title: Get started with Azure Machine Learning using the CLI extension | Microsoft Docs
 description: In this quickstart, you will learn how to get started with Azure Machine Learning Services using the Azure Machine Learning CLI extension.
 services: machine-learning
 ms.service: machine-learning
@@ -10,7 +10,7 @@ ms.author: roastala
 ms.reviewer: sgilley
 ms.date: 7/27/2018
 ---
-# Quickstart: Get started with Azure Machine Learning's CLI extension
+# Quickstart: Get started with Azure Machine Learning using the CLI extension
 
 In this quickstart, you'll use a machine learning CLI extension to get started with [Azure Machine Learning Services](overview-what-is-azure-ml.md).
 
@@ -22,7 +22,7 @@ Using the CLI, you'll learn how to:
 1. View the run history.
 
 > [!NOTE]
-> For your convenience, the following resources are added automatically to your workspace when regionally available: [Azure Container Registry](https://azure.microsoft.com/en-us/services/container-registry/), [Azure storage](https://azure.microsoft.com/en-us/services/storage/), [Azure Application Insights](https://azure.microsoft.com/en-us/services/application-insights/), and [Azure Key Vault](https://azure.microsoft.com/en-us/services/key-vault/).
+> For your convenience, the following Azure resources are added automatically to your workspace when regionally available:  [container registry](https://azure.microsoft.com/en-us/services/container-registry/), [storage](https://azure.microsoft.com/en-us/services/storage/), [application insights](https://azure.microsoft.com/en-us/services/application-insights/), and [key vault](https://azure.microsoft.com/en-us/services/key-vault/).
 
 The resources you create can be used as prerequisites to other Azure Machine Learning tutorials and how-to articles.
 
@@ -68,7 +68,7 @@ Create a resource group to hold your workspace.
    + The region is `eastus2`. You can use any [available region](https://azure.microsoft.com/global-infrastructure/services/) close to your data.  
 
    ```azurecli
-   az group create --name myrg --location eastus2
+   az group create -n my_resource_group -l eastus2
    ```
 
 ## Create a workspace and attach a project
@@ -77,11 +77,11 @@ In the command-line window, create an Azure Machine Learning Workspace under the
 
 
    In this quickstart:
-   + The workspace name is `myws`.
-   + The resource group name is `myrg`
+   + The workspace name is `my_workspace`.
+   + The resource group name is `my_resource_group`
 
    ```azurecli
-   az ml workspace create --name myws --group myrg
+   az ml workspace create -n my_workspace -g my_resource_group
    ```
 
 In the command-line window, create a folder on your local machine for your Azure Machine Learning project.
@@ -94,34 +94,42 @@ In the command-line window, create a folder on your local machine for your Azure
 Attach the folder as a project to the workspace. The `--history` argument specifies a name for the run history file that captures the metrics for each run.
 
    ```azurecli
-   az ml project attach --history myhistory -w myws
+   az ml project attach --history my_history -w my_workspace -g my_resource_group
    ```
 
 ## Run scripts and view output
 
-In your local project directory, create a script and name it `helloworld.py`.
+In your local project directory, create a script and name it `pi.py`.
 
 Copy the following code into that script:
+    
    ```python
-
-   # Log metric values
-   run = Run.start_logging(workspace = myws, history_name = "myhistory")
-   run.log("A single value",1.23)
-   run.log_list("A list of values",[1,2,3,4,5])
- 
-   # Save an output artifact, such as model or data file  
-   with open("myOutputFile.txt","w") as f:
-       f.write("My results")
-       run.upload_file(name="results",path_or_stream="myOutputFile.txt")
- 
-   run.complete()
-   print(helpers.get_run_history_url(run))
+   import random, math
+   from azureml.core import Run
+    
+   run = Run.get_submitted_run()
+    
+   pi_counter = 0
+   n_iter = 100000
+   run.log("Number of iterations",n_iter)
+    
+   for i in range(1,n_iter):
+       x = random.random()
+       y = random.random()
+       if x*x + y*y < 1.0:
+           pi_counter += 1
+       pi_value = 4.0*pi_counter / i
+       if i%10000==0:
+           error = math.pi-pi_value
+           print(i, pi_value, error)
+           run.log_row("Pi estimate",iteration=i,pi_value=pi_value)
+           run.log_row("Error",iteration=i,error=error)
    ```
 
 Run the script on your local computer.
 
    ```azurecli
-   az ml run submit -c local helloworld.py
+   az ml run submit -c local pi.py
    ```
 
    This command runs the code and outputs a web link to your console. Copy-paste the link into your web browser.
