@@ -2,11 +2,11 @@
 title: Built-in policy definitions for Azure Cognitive Search
 description: Lists Azure Policy built-in policy definitions for Azure Cognitive Search. These built-in policy definitions provide common approaches to managing your Azure resources.
 ms.date: 07/10/2020
-ms.topic: sample
+ms.topic: reference
 author: HeidiSteen
 ms.author: heidist
 ms.service: search
-ms.custom: subject-policy-samples
+ms.custom: subject-policy-reference
 ---
 # Azure Policy built-in definitions for Azure Cognitive Search
 
@@ -20,7 +20,7 @@ the link in the **Version** column to view the source on the
 
 ## Azure Cognitive Search
 
-[!INCLUDE [azure-policy-samples-rp-search](../../includes/policy/samples/byrp/microsoft.search.md)]
+[!INCLUDE [azure-policy-reference-rp-search](../../includes/policy/reference/byrp/microsoft.search.md)]
 
 ## Next steps
 
