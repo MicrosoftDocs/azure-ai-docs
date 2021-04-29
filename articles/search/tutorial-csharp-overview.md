@@ -1,23 +1,23 @@
 ---
-title: "JavaScript tutorial: Search integration overview"
+title: ".NET tutorial: Search integration overview"
 titleSuffix: Azure Cognitive Search
-description: Technical overview and setup for adding search to a website and deploying to Azure Static Web App. 
+description: Technical overview and setup for adding search to a website and deploying to Azure Static Web App with .NET. 
 manager: nitinme
 author: diberry
 ms.author: diberry
 ms.service: cognitive-search
 ms.topic: tutorial
-ms.date: 03/18/2021
-ms.custom: devx-track-js
-ms.devlang: javascript
+ms.date: 04/23/2021
+ms.custom: devx-track-csharp
+ms.devlang: dotnet
 ---
 
-# 1 - Overview of adding search to a website
+# 1 - Overview of adding search to a website with .NET
 
 This tutorial builds a website to search through a catalog of books then deploys the website to an Azure Static Web App. 
 
 The application is available: 
-* [Sample](https://github.com/Azure-Samples/azure-search-javascript-samples/tree/master/search-website)
+* [Sample](https://github.com/azure-samples/azure-search-dotnet-samples/tree/master/search-website)
 * [Demo website - aka.ms/azs-good-books](https://aka.ms/azs-good-books)
 
 ## What does the sample do? 
@@ -34,37 +34,32 @@ The search experience includes:
 
 ## How is the sample organized?
 
-The [sample](https://github.com/Azure-Samples/azure-search-javascript-samples/tree/master/search-website) includes the following:
+The [sample](https://github.com/Azure-Samples/azure-search-dotnet-samples/tree/master/search-website) includes the following:
 
 |App|Purpose|GitHub<br>Repository<br>Location|
 |--|--|--|
-|Client|React app (presentation layer) to display books, with search. It calls the Azure Function app. |[/search-website/src](https://github.com/Azure-Samples/azure-search-javascript-samples/tree/master/search-website/src)|
-|Server|Azure Function app (business layer) - calls the Azure Cognitive Search API using JavaScript SDK |[/search-website/api](https://github.com/Azure-Samples/azure-search-javascript-samples/tree/master/search-website/src)|
-|Bulk insert|JavaScript file to create the index and add documents to it.|[/search-website/bulk-insert](https://github.com/Azure-Samples/azure-search-javascript-samples/tree/master/search-website/bulk-insert)|
+|Client|React app (presentation layer) to display books, with search. It calls the Azure Function app. |[/search-website/src](https://github.com/Azure-Samples/azure-search-dotnet-samples/tree/master/search-website/src)|
+|Server|Azure .NET Function app (business layer) - calls the Azure Cognitive Search API using .NET SDK |[/search-website/api](https://github.com/Azure-Samples/azure-search-dotnet-samples/tree/master/search-website/api)|
+|Bulk insert|.NET file to create the index and add documents to it.|[/search-website/bulk-insert](https://github.com/Azure-Samples/azure-search-dotnet-samples/tree/master/search-website/bulk-insert)|
 
 ## Set up your development environment
 
 Install the following for your local development environment. 
 
-- [Node.js 12 or 14](https://nodejs.org/en/download)
-    - If you have a different version of Node.js installed on your local computer, consider using [Node Version Manager](https://github.com/nvm-sh/nvm) (nvm) or a Docker container.  
+- [.NET 3](https://dotnet.microsoft.com/download/dotnet/5.0)  
 - [Git](https://git-scm.com/downloads)
 - [Visual Studio Code](https://code.visualstudio.com/) and the following extensions
     - [Azure Resources](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azureresourcegroups)
     - [Azure Cognitive Search 0.2.0+](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azurecognitivesearch)
     - [Azure Static Web App](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azurestaticwebapps) 
 - Optional:
-    - This tutorial doesn't run the Azure Function API locally but if you intend to run it locally, you need to install [azure-functions-core-tools](../azure-functions/functions-run-local.md?tabs=linux%2ccsharp%2cbash) globally with the following bash command: 
-    
-    ```bash
-    npm install -g azure-functions-core-tools
-    ```
+    - This tutorial doesn't run the Azure Function API locally but if you intend to run it locally, you need to install [azure-functions-core-tools](/azure/azure-functions/functions-run-local?tabs=linux%2Ccsharp%2Cbash#install-the-azure-functions-core-tools).
 
 ## Fork and clone the search sample with git
 
 Forking the sample repository is critical to be able to deploy the Static Web App. The web apps determine the build actions and deployment content based on your own GitHub fork location. Code execution in the Static Web App is remote, with Azure Static Web Apps reading from the code in your forked sample.
 
-1. On GitHub, fork the [sample repository](https://github.com/Azure-Samples/azure-search-javascript-samples). 
+1. On GitHub, fork the [sample repository](https://github.com/Azure-Samples/azure-search-dotnet-samples). 
 
     Complete the fork process in your web browser with your GitHub account. This tutorial uses your fork as part of the deployment to an Azure Static Web App. 
 
@@ -73,7 +68,7 @@ Forking the sample repository is critical to be able to deploy the Static Web Ap
     Replace `YOUR-GITHUB-ALIAS` with your GitHub alias. 
 
     ```bash
-    git clone https://github.com/YOUR-GITHUB-ALIAS/azure-search-javascript-samples
+    git clone https://github.com/YOUR-GITHUB-ALIAS/azure-search-dotnet-samples
     ```
 
 1. In Visual Studio Code, open your local folder of the cloned repository. The remaining tasks are accomplished from Visual Studio Code, unless specified.
@@ -92,5 +87,5 @@ Forking the sample repository is critical to be able to deploy the Static Web Ap
 
 ## Next steps
 
-* [Create a Search Index and load with documents](tutorial-javascript-create-load-index.md)
-* [Deploy your Static Web App](tutorial-javascript-deploy-static-web-app.md)
+* [Create a Search Index and load with documents](tutorial-csharp-create-load-index.md)
+* [Deploy your Static Web App](tutorial-csharp-deploy-static-web-app.md)
