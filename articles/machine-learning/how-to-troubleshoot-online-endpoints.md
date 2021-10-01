@@ -98,6 +98,14 @@ A possible mitigation is to check if there are unused deployments that can be de
 
 The specified VM Size failed to provision due to a lack of Azure Machine Learning capacity. Retry later or try deploying to a different region.
 
+### ERR_1102: No more role assignments
+
+Delete some unused role assignments in this subscription. You can check all role assignments in the Azure portal in the Access Control menu.
+
+### ERR_1103: Endpoint quota reached
+
+Delete some unused endpoints in this subscription.
+
 ### ERR_1200: Unable to download user container image
 
 During deployment creation after the compute provisioning, Azure tries to pull the user container image from the workspace private Azure Container Registry (ACR). There could be two possible issues.
@@ -168,6 +176,14 @@ To get the exact reason for an error, run:
 az ml endpoint get-logs
 ```
 
+### ERR_2101: Kubernetes unschedulable
+
+The requested CPU or memory can't be satisfied. Please adjust your request or the cluster.
+
+### ERR_2102: Resources requests invalid
+
+Requests for resources must be less than or equal to limits. If you don't set limits, we set default values when you attach your compute to an Azure Machine Learning workspace. You can check limits in the Azure portal or by using the `az ml compute show` command.
+
 ### ERR_2200: User container has crashed\terminated
 
 To run the `score.py` provided as part of the deployment, Azure creates a container that includes all the resources that the `score.py` needs, and runs the scoring script on that container.  The error in this scenario is that this container is crashing when running, which means scoring couldn't happen. This error happens when:
@@ -176,6 +192,7 @@ To run the `score.py` provided as part of the deployment, Azure creates a contai
     - A package that was  imported but is not in the conda environment
     - A syntax error
     - A failure in the `init()` method
+- If `get-logs` isn't producing any logs, it usually means that the container has failed to start. To debug this issue, try [deploying locally](https://github.com/MicrosoftDocs/azure-docs/blob/master/articles/machine-learning/how-to-troubleshoot-online-endpoints.md#deploy-locally) instead.
 - Readiness or liveness probes are not set up correctly.
 - There's an error in the environment setup of the container, such as a missing dependency.
 
