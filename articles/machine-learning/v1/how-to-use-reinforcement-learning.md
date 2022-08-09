@@ -5,16 +5,16 @@ description: Learn how to use Azure Machine Learning reinforcement learning (pre
 services: machine-learning
 ms.service: machine-learning
 ms.subservice: core
-ms.author: larryfr
-author: Blackmist
-ms.date: 10/21/2021
+ms.author: wenxwei
+author: wenxwei
+ms.date: 08/05/2022
 ms.topic: how-to
 ms.custom: devx-track-python, contperf-fy21q2, sdkv1, event-tier1-build-2022
 ---
 
 # Reinforcement learning (preview) with Azure Machine Learning
 
-[!INCLUDE [sdk v1](../../includes/machine-learning-sdk-v1.md)]
+[!INCLUDE [sdk v1](../../../includes/machine-learning-sdk-v1.md)]
 
 > [!WARNING]
 > Azure Machine Learning reinforcement learning via the [`azureml.contrib.train.rl`](/python/api/azureml-contrib-reinforcementlearning/azureml.contrib.train.rl) package will no longer be supported after June 2022. We recommend customers use the [Ray on Azure Machine Learning library](https://github.com/microsoft/ray-on-aml) for reinforcement learning experiments with Azure Machine Learning. For an example, see the notebook [Reinforcement Learning in Azure Machine Learning - Pong problem](https://github.com/Azure/MachineLearningNotebooks/blob/master/how-to-use-azureml/reinforcement-learning/atari-on-distributed-compute/pong_rllib.ipynb).
@@ -26,7 +26,7 @@ In this article you learn how to:
 > * Set up an experiment
 > * Define head and worker nodes
 > * Create an RL estimator
-> * Submit an experiment to start a run
+> * Submit an experiment to start a job
 > * View results
 
 This article is based on the [RLlib Pong example](https://aka.ms/azureml-rl-pong) that can be found in the Azure Machine Learning notebook [GitHub repository](https://github.com/Azure/MachineLearningNotebooks/blob/master/how-to-use-azureml/reinforcement-learning/README.md).
@@ -37,7 +37,7 @@ Run this code in either of these environments. We recommend you try Azure Machin
 
  - Azure Machine Learning compute instance
 
-     - Learn how to clone sample notebooks in [Tutorial: Train and deploy a model](tutorial-train-deploy-notebook.md).
+     - Learn how to clone sample notebooks in [Tutorial: Train and deploy a model](../tutorial-train-deploy-notebook.md).
          - Clone the **how-to-use-azureml** folder instead of **tutorials**
      - Run the virtual network setup notebook located at `/how-to-use-azureml/reinforcement-learning/setup/devenv_setup.ipynb` to open network ports used for distributed reinforcement learning.
      - Run the sample notebook `/how-to-use-azureml/reinforcement-learning/atari-on-distributed-compute/pong_rllib.ipynb`
@@ -46,7 +46,7 @@ Run this code in either of these environments. We recommend you try Azure Machin
 
     - Install the [Azure Machine Learning SDK](/python/api/overview/azure/ml/install).
     - Install the [Azure Machine Learning RL SDK](/python/api/azureml-contrib-reinforcementlearning/): `pip install --upgrade azureml-contrib-reinforcementlearning`
-    - Create a [workspace configuration file](how-to-configure-environment.md#workspace).
+    - Create a [workspace configuration file](../how-to-configure-environment.md#workspace).
     - Run the virtual network to open network ports used for distributed reinforcement learning.
 
 
@@ -94,7 +94,7 @@ from azureml.contrib.train.rl import WorkerConfiguration
 
 ### Initialize a workspace
 
-Initialize a [workspace](concept-workspace.md) object from the `config.json` file created in the [prerequisites section](#prerequisites). If you are executing this code in an Azure Machine Learning Compute Instance, the configuration file has already been created for you.
+Initialize a [workspace](../concept-workspace.md) object from the `config.json` file created in the [prerequisites section](#prerequisites). If you are executing this code in an Azure Machine Learning Compute Instance, the configuration file has already been created for you.
 
 ```Python
 ws = Workspace.from_config()
@@ -102,7 +102,7 @@ ws = Workspace.from_config()
 
 ### Create a reinforcement learning experiment
 
-Create an [experiment](/python/api/azureml-core/azureml.core.experiment.experiment) to track your reinforcement learning run. In Azure Machine Learning, experiments are logical collections of related trials to organize run logs, history, outputs, and more.
+Create an [experiment](/python/api/azureml-core/azureml.core.experiment.experiment) to track your reinforcement learning job. In Azure Machine Learning, experiments are logical collections of related trials to organize job logs, history, outputs, and more.
 
 ```python
 experiment_name='rllib-pong-multi-node'
@@ -128,7 +128,7 @@ This example uses separate compute targets for the Ray head and workers nodes. T
 
 You can use a GPU-equipped head cluster to improve deep learning performance. The head node trains the neural network that the agent uses to make decisions. The head node also collects data points from the worker nodes to train the neural network.
 
-The head compute uses a single [`STANDARD_NC6` virtual machine](../virtual-machines/nc-series.md) (VM). It has 6 virtual CPUs to distribute work across.
+The head compute uses a single [`STANDARD_NC6` virtual machine](../../virtual-machines/nc-series.md) (VM). It has 6 virtual CPUs to distribute work across.
 
 
 ```python
@@ -166,11 +166,11 @@ else:
     print(head_compute_target.get_status().serialize())
 ```
 
-[!INCLUDE [low-pri-note](../../includes/machine-learning-low-pri-vm.md)]
+[!INCLUDE [low-pri-note](../../../includes/machine-learning-low-pri-vm.md)]
 
 ### Worker computing cluster
 
-This example uses four [`STANDARD_D2_V2` VMs](../virtual-machines/nc-series.md) for the worker compute target. Each worker node has 2 available CPUs for a total of 8 available CPUs.
+This example uses four [`STANDARD_D2_V2` VMs](../../virtual-machines/nc-series.md) for the worker compute target. Each worker node has 2 available CPUs for a total of 8 available CPUs.
 
 GPUs aren't necessary for the worker nodes since they aren't performing deep learning. The workers run the game simulations and collect data.
 
@@ -212,7 +212,7 @@ else:
 
 Use the [ReinforcementLearningEstimator](/python/api/azureml-contrib-reinforcementlearning/azureml.contrib.train.rl.reinforcementlearningestimator) to submit a training job to Azure Machine Learning.
 
-Azure Machine Learning uses estimator classes to encapsulate run configuration information. This lets you specify how to configure a script execution. 
+Azure Machine Learning uses estimator classes to encapsulate job configuration information. This lets you specify how to configure a script execution. 
 
 ### Define a worker configuration
 
@@ -245,7 +245,7 @@ The entry script `pong_rllib.py` accepts a list of parameters that defines how t
 
 Specifying the correct `num_workers` makes the most out of your parallelization efforts. Set the number of workers to the same as the number of available CPUs. For this example, you can use the following calculation:
 
-The head node is a [Standard_NC6](../virtual-machines/nc-series.md) with 6 vCPUs. The worker cluster is 4 [Standard_D2_V2 VMs](../cloud-services/cloud-services-sizes-specs.md#dv2-series) with 2 CPUs each, for a total of 8 CPUs. However, you must subtract 1 CPU from the worker count since 1 must be dedicated to the head node role.
+The head node is a [Standard_NC6](../../virtual-machines/nc-series.md) with 6 vCPUs. The worker cluster is 4 [Standard_D2_V2 VMs](../../cloud-services/cloud-services-sizes-specs.md#dv2-series) with 2 CPUs each, for a total of 8 CPUs. However, you must subtract 1 CPU from the worker count since 1 must be dedicated to the head node role.
 
 6 CPUs + 8 CPUs - 1 head CPU = 13 simultaneous workers. Azure Machine Learning uses head and worker clusters to distinguish compute resources. However, Ray does not distinguish between head and workers, and all CPUs are available as worker threads.
 
@@ -312,7 +312,7 @@ rl_estimator = ReinforcementLearningEstimator(
     cluster_coordination_timeout_seconds=3600,
     
     # Maximum time for the whole Ray job to run
-    # This will cut off the run after an hour
+    # This will cut off the job after an hour
     max_run_duration_seconds=3600,
     
     # Allow the docker container Ray runs in to make full use
@@ -396,7 +396,7 @@ def on_train_result(info):
         value=info["result"]["episodes_total"])
 ```
 
-## Submit a run
+## Submit a job
 
 [Run](/python/api/azureml-core/azureml.core.run%28class%29) handles the run history of in-progress or complete jobs. 
 
@@ -408,7 +408,7 @@ run = exp.submit(config=rl_estimator)
 
 ## Monitor and view results
 
-Use the Azure Machine Learning Jupyter widget to see the status of your runs in real time. The widget shows two child runs: one for head and one for workers. 
+Use the Azure Machine Learning Jupyter widget to see the status of your jobs in real time. The widget shows two child jobs: one for head and one for workers. 
 
 ```python
 from azureml.widgets import RunDetails
@@ -418,15 +418,15 @@ run.wait_for_completion()
 ```
 
 1. Wait for the widget to load.
-1. Select the head run in the list of runs.
+1. Select the head job in the list of jobs.
 
-Select **Click here to see the run in Azure Machine Learning studio** for additional run information in the studio. You can access this information while the run is in progress or after it completes.
+Select **Click here to see the job in Azure Machine Learning studio** for additional job information in the studio. You can access this information while the job is in progress or after it completes.
 
-![Line graph showing how run details widget](./media/how-to-use-reinforcement-learning/pong-run-details-widget.png)
+![Line graph showing how job details widget](./media/how-to-use-reinforcement-learning/pong-run-details-widget.png)
 
 The **episode_reward_mean** plot shows the mean number of points scored per training epoch. You can see that the training agent initially performed poorly, losing its matches without scoring a single point (shown by a reward_mean of -21). Within 100 iterations, the training agent learned to beat the computer opponent by an average of 18 points.
 
-If you browse logs of the child run, you can see the evaluation results recorded in driver_log.txt file. You may need to wait several minutes before these metrics become available on the Run page.
+If you browse logs of the child job, you can see the evaluation results recorded in driver_log.txt file. You may need to wait several minutes before these metrics become available on the Job page.
 
 In short work, you have learned to configure multiple compute resources to train a reinforcement learning agent to play Pong very well against a computer opponent.
 

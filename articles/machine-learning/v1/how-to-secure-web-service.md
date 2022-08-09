@@ -7,14 +7,14 @@ ms.service: machine-learning
 ms.subservice: enterprise-readiness
 ms.author: jhirono
 author: jhirono
-ms.date: 10/21/2021
+ms.date: 07/28/2022
 ms.topic: how-to
 ms.custom: cliv1, sdkv1, event-tier1-build-2022
 ---
 
 # Use TLS to secure a web service through Azure Machine Learning
 
-[!INCLUDE [sdk v1](../../includes/machine-learning-sdk-v1.md)]
+[!INCLUDE [sdk v1](../../../includes/machine-learning-sdk-v1.md)]
 
 This article shows you how to secure a web service that's deployed through Azure Machine Learning.
 
@@ -47,7 +47,7 @@ This is the general process to secure a web service:
 > [!IMPORTANT]
 > If you're deploying to Azure Kubernetes Service (AKS), you can purchase your own certificate or use a certificate that's provided by Microsoft. If you use a certificate from Microsoft, you don't need to get a domain name or TLS/SSL certificate. For more information, see the [Enable TLS and deploy](#enable) section of this article.
 
-There are slight differences when you secure s across [deployment targets](how-to-deploy-and-where.md).
+There are slight differences when you secure across [deployment targets](how-to-deploy-and-where.md).
 
 ## Get a domain name
 
@@ -70,7 +70,7 @@ When you request a certificate, you must provide the FQDN of the address that yo
 
 ## <a id="enable"></a> Enable TLS and deploy
 
-**For AKS deployment**, you can enable TLS termination when you [create or attach an AKS cluster](how-to-create-attach-kubernetes.md) in AML workspace. At AKS model deployment time, you can disable TLS termination with deployment configuration object, otherwise all AKS model deployment by default will have TLS termination enabled at AKS cluster create or attach time.
+**For AKS deployment**, you can enable TLS termination when you [create or attach an AKS cluster](how-to-create-attach-kubernetes.md) in AzureML workspace. At AKS model deployment time, you can disable TLS termination with deployment configuration object, otherwise all AKS model deployment by default will have TLS termination enabled at AKS cluster create or attach time.
 
 For ACI deployment, you can enable TLS termination at model deployment time with deployment configuration object.
 
@@ -80,7 +80,7 @@ For ACI deployment, you can enable TLS termination at model deployment time with
   > [!NOTE]
   > The information in this section also applies when you deploy a secure web service for the designer. If you aren't familiar with using the Python SDK, see [What is the Azure Machine Learning SDK for Python?](/python/api/overview/azure/ml/intro).
 
-When you [create or attach an AKS cluster](how-to-create-attach-kubernetes.md) in AML workspace, you can enable TLS termination with **[AksCompute.provisioning_configuration()](/python/api/azureml-core/azureml.core.compute.akscompute#provisioning-configuration-agent-count-none--vm-size-none--ssl-cname-none--ssl-cert-pem-file-none--ssl-key-pem-file-none--location-none--vnet-resourcegroup-name-none--vnet-name-none--subnet-name-none--service-cidr-none--dns-service-ip-none--docker-bridge-cidr-none--cluster-purpose-none--load-balancer-type-none--load-balancer-subnet-none-)** and **[AksCompute.attach_configuration()](/python/api/azureml-core/azureml.core.compute.akscompute#attach-configuration-resource-group-none--cluster-name-none--resource-id-none--cluster-purpose-none-)** configuration objects. Both methods return a configuration object that has an **enable_ssl** method, and you can use **enable_ssl** method to enable TLS.
+When you [create or attach an AKS cluster](how-to-create-attach-kubernetes.md) in AzureML workspace, you can enable TLS termination with **[AksCompute.provisioning_configuration()](/python/api/azureml-core/azureml.core.compute.akscompute#provisioning-configuration-agent-count-none--vm-size-none--ssl-cname-none--ssl-cert-pem-file-none--ssl-key-pem-file-none--location-none--vnet-resourcegroup-name-none--vnet-name-none--subnet-name-none--service-cidr-none--dns-service-ip-none--docker-bridge-cidr-none--cluster-purpose-none--load-balancer-type-none--load-balancer-subnet-none-)** and **[AksCompute.attach_configuration()](/python/api/azureml-core/azureml.core.compute.akscompute#attach-configuration-resource-group-none--cluster-name-none--resource-id-none--cluster-purpose-none-)** configuration objects. Both methods return a configuration object that has an **enable_ssl** method, and you can use **enable_ssl** method to enable TLS.
 
 You can enable TLS either with Microsoft certificate or a custom certificate purchased from CA. 
 
@@ -160,7 +160,7 @@ You can follow following steps to update DNS record for your custom domain name:
 
     There can be a delay of minutes or hours before clients can resolve the domain name, depending on the registrar and the "time to live" (TTL) that's configured for the domain name.
 
-For more information on DNS resolution with Azure Machine Learning, see [How to use your workspace with a custom DNS server](how-to-custom-dns.md).
+For more information on DNS resolution with Azure Machine Learning, see [How to use your workspace with a custom DNS server](../how-to-custom-dns.md).
 ## Update the TLS/SSL certificate
 
 TLS/SSL certificates expire and must be renewed. Typically this happens every year. Use the information in the following sections to update and renew your certificate for models deployed to Azure Kubernetes Service:
@@ -191,7 +191,7 @@ aks_target.update(update_config)
 
 **Use the CLI**
 
-[!INCLUDE [cli v1](../../includes/machine-learning-cli-v1.md)]
+[!INCLUDE [cli v1](../../../includes/machine-learning-cli-v1.md)]
 
 ```azurecli
 az ml computetarget update aks -g "myresourcegroup" -w "myresourceworkspace" -n "myaks" --ssl-leaf-domain-label "myaks" --ssl-overwrite-domain True --ssl-renew
@@ -233,7 +233,7 @@ If the certificate was originally generated by a certificate authority, use the 
 
     **Use the CLI**
 
-    [!INCLUDE [cli v1](../../includes/machine-learning-cli-v1.md)]
+    [!INCLUDE [cli v1](../../../includes/machine-learning-cli-v1.md)]
 
     ```azurecli
     az ml computetarget update aks -g "myresourcegroup" -w "myresourceworkspace" -n "myaks" --ssl-cname "myaks"--ssl-cert-file "cert.pem" --ssl-key-file "key.pem"
@@ -264,6 +264,6 @@ aks_target.update(update_config)
 
 ## Next steps
 Learn how to:
-+ [Consume a machine learning model deployed as a web service](how-to-consume-web-service.md)
-+ [Virtual network isolation and privacy overview](how-to-network-security-overview.md)
-+ [How to use your workspace with a custom DNS server](how-to-custom-dns.md)
++ [Consume a machine learning model deployed as a web service](../how-to-consume-web-service.md)
++ [Virtual network isolation and privacy overview](../how-to-network-security-overview.md)
++ [How to use your workspace with a custom DNS server](../how-to-custom-dns.md)
