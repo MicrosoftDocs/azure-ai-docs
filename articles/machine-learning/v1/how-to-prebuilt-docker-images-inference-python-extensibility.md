@@ -7,7 +7,7 @@ ms.service: machine-learning
 ms.subservice: mlops
 ms.author: sehan
 author: dem108
-ms.date: 10/21/2021
+ms.date: 08/15/2022
 ms.topic: how-to
 ms.reviewer: larryfr
 ms.custom: deploy, docker, prebuilt, sdkv1, event-tier1-build-2022
@@ -15,9 +15,9 @@ ms.custom: deploy, docker, prebuilt, sdkv1, event-tier1-build-2022
 
 # Python package extensibility for prebuilt Docker images (preview)
 
-[!INCLUDE [sdk v1](../../includes/machine-learning-sdk-v1.md)]
+[!INCLUDE [sdk v1](../../../includes/machine-learning-sdk-v1.md)]
 
-The [prebuilt Docker images for model inference](concept-prebuilt-docker-images-inference.md) contain packages for popular machine learning frameworks. There are two methods that can be used to add Python packages __without rebuilding the Docker image__:
+The [prebuilt Docker images for model inference](../concept-prebuilt-docker-images-inference.md) contain packages for popular machine learning frameworks. There are two methods that can be used to add Python packages __without rebuilding the Docker image__:
 
 * [Dynamic installation](#dynamic): This approach uses a [requirements](https://pip.pypa.io/en/stable/cli/pip_install/#requirements-file-format) file to automatically restore Python packages when the Docker container boots.
 
@@ -32,8 +32,8 @@ The [prebuilt Docker images for model inference](concept-prebuilt-docker-images-
 
 ## Prerequisites
 
-* An Azure Machine Learning workspace. For a tutorial on creating a workspace, see [Get started with Azure Machine Learning](quickstart-create-resources.md).
-* Familiarity with using Azure Machine Learning [environments](how-to-use-environments.md).
+* An Azure Machine Learning workspace. For a tutorial on creating a workspace, see [Get started with Azure Machine Learning](../quickstart-create-resources.md).
+* Familiarity with using Azure Machine Learning [environments](../how-to-use-environments.md).
 * Familiarity with [Where and how to deploy models](how-to-deploy-and-where.md) with Azure Machine Learning.
 
 <a id="dynamic"></a>
@@ -46,7 +46,7 @@ To extend your prebuilt docker container image through a requirements.txt, follo
 
 1. Create a `requirements.txt` file alongside your `score.py` script.
 2. Add **all** of your required packages to the `requirements.txt` file.
-3. Set the `AZUREML_EXTRA_REQUIREMENTS_TXT` environment variable in your Azure Machine Learning [environment](how-to-use-environments.md) to the location of `requirements.txt` file.
+3. Set the `AZUREML_EXTRA_REQUIREMENTS_TXT` environment variable in your Azure Machine Learning [environment](../how-to-use-environments.md) to the location of `requirements.txt` file.
 
 Once deployed, the packages will automatically be restored for your score script.
 
@@ -152,7 +152,7 @@ Here are some things that may cause this problem:
     | Solution  | Create a `requirements.txt` that installs the specified packages when the container starts. | Create a local Python environment with all of the dependencies. Mount this directory into container at runtime. |
     | Package Installation           | No extra installation (assuming pip already installed)                                                                                                          | Virtual environment or conda environment installation.                                                                                   |
     | Virtual environment Setup              | No extra setup of virtual environment required, as users can pull the current local user environment with pip freeze as needed to create the `requirements.txt`. | Need to set up a clean virtual environment, may take extra steps depending on the current user local environment.                        |
-    | [Debugging](how-to-inference-server-http.md)                 | Easy to set up and debug server, since dependencies are clearly listed. | Unclean virtual environment could cause problems when debugging of server. For example, it may not be clear if errors come from the environment or user code. |
+    | [Debugging](../how-to-inference-server-http.md)                 | Easy to set up and debug server, since dependencies are clearly listed. | Unclean virtual environment could cause problems when debugging of server. For example, it may not be clear if errors come from the environment or user code. |
     | Consistency during scaling out | Not consistent as dependent on external PyPi packages and users pinning their dependencies. These external downloads could be flaky.                                 | Relies solely on user environment, so no consistency issues.                                                                             |
 
 * Why are my `requirements.txt` and mounted dependencies directory not found in the container?
@@ -176,7 +176,7 @@ Here are some things that may cause this problem:
 ### 2021-07-26
 
 * `AZUREML_EXTRA_REQUIREMENTS_TXT` and `AZUREML_EXTRA_PYTHON_LIB_PATH` are now always relative to the directory of the score script.
-For example, if the both the requirements.txt and score script is in **my_folder**, then `AZUREML_EXTRA_REQUIREMENTS_TXT` will need to be set to requirements.txt. No longer will `AZUREML_EXTRA_REQUIREMENTS_TXT` be set to **my_folder/requirements.txt**.
+For example, if both the requirements.txt and score script is in **my_folder**, then `AZUREML_EXTRA_REQUIREMENTS_TXT` will need to be set to requirements.txt. No longer will `AZUREML_EXTRA_REQUIREMENTS_TXT` be set to **my_folder/requirements.txt**.
 
 ## Next steps
 
