@@ -8,7 +8,9 @@ ms.author: sgilley
 manager: cgronlund
 ms.custom: "include file"
 ms.topic: "include"
-ms.date: 12/04/2018
+ms.date: 08/24/2020
 ---
 
-Learn how to run notebooks by following the article [Use Jupyter notebooks to explore this service](/azure/machine-learning/samples-notebooks).
+> [!NOTE]
+> Azure Machine Learning compute clusters support only **one system-assigned identity** or **multiple user-assigned identities**, not both concurrently.
+> 
