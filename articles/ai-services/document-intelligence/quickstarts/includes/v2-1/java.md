@@ -1,5 +1,5 @@
 ---
-title: "Get started: Document Intelligence client library for Java v2.1"
+title: "Get started: Document Intelligence (formerly Form Recognizer) client library for Java v2.1"
 description: Use the Document Intelligence SDK for Java to create a forms processing app that extracts key/value pairs and table data from your custom documents.
 author: laujan
 manager: nitinme
@@ -119,7 +119,7 @@ Extract text, selection marks, text styles, and table structures, along with the
 
 > [!div class="checklist"]
 >
-> * For this example, you'll need a **form document file at a URI**. You can use our [sample form document](https://raw.githubusercontent.com/Azure-Samples/cognitive-services-REST-api-samples/master/curl/form-recognizer/sample-layout.pdf) for this quickstart.
+> * For this example, you'll need a **document file at a URI**. You can use our [sample document](https://raw.githubusercontent.com/Azure-Samples/cognitive-services-REST-api-samples/master/curl/form-recognizer/sample-layout.pdf) for this quickstart.
 > * To analyze a given file at a URI, you'll use the `beginRecognizeContentFromUrl` method.
 > * We've added the file URI value to the `formUrl` variable in the main method.
 
