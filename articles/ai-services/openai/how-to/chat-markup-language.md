@@ -6,24 +6,27 @@ author: mrbullwinkle #dereklegenzoff
 ms.author: mbullwin #delegenz
 ms.service: azure-ai-openai
 ms.topic: include
-ms.date: 05/15/2023
+ms.date: 04/05/2024
 manager: nitinme
 keywords: ChatGPT
 ---
 
-## Working with the Chat models
+# Chat Markup Language ChatML (Preview)
 
 > [!IMPORTANT]
-> Using GPT-35-Turbo models with the completion endpoint remains in preview. Due to the potential for changes to the underlying ChatML syntax, we strongly recommend using the Chat Completion API/endpoint. The Chat Completion API is the recommended method of interacting with the GPT-35-Turbo models. The Chat Completion API is also the only way to access the GPT-4 models.
+> Using GPT-3.5-Turbo models with the completion endpoint as described in this article remains in preview and is only possible with `gpt-35-turbo` version (0301) which is [slated for retirement as early as June 13th, 2024](../concepts/model-retirements.md#current-models). We strongly recommend using the [GA Chat Completion API/endpoint](./chatgpt.md). The Chat Completion API is the recommended method of interacting with the GPT-3.5-Turbo models. The Chat Completion API is also the only way to access the GPT-4 models.
 
-The following code snippet shows the most basic way to use the GPT-35-Turbo models with ChatML. If this is your first time using these models programmatically we recommend starting with our [GPT-35-Turbo & GPT-4 Quickstart](../chatgpt-quickstart.md).
+The following code snippet shows the most basic way to use the GPT-3.5-Turbo models with ChatML. If this is your first time using these models programmatically we recommend starting with our [GPT-35-Turbo & GPT-4 Quickstart](../chatgpt-quickstart.md).
+
+> [!NOTE]  
+> In the Azure OpenAI documentation we refer to GPT-3.5-Turbo, and GPT-35-Turbo interchangeably. The official name of the model on OpenAI is `gpt-3.5-turbo`, but for Azure OpenAI due to Azure specific character constraints the underlying model name is `gpt-35-turbo`.
 
 ```python
 import os
 import openai
 openai.api_type = "azure"
 openai.api_base = "https://{your-resource-name}.openai.azure.com/"
-openai.api_version = "2023-05-15"
+openai.api_version = "2024-02-01"
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
 response = openai.Completion.create(
@@ -40,7 +43,7 @@ print(response['choices'][0]['text'])
 > [!NOTE]  
 > The following parameters aren't available with the gpt-35-turbo model: `logprobs`, `best_of`, and `echo`. If you set any of these parameters, you'll get an error.
 
-The `<|im_end|>` token indicates the end of a message. We recommend including `<|im_end|>` token as a stop sequence to ensure that the model stops generating text when it reaches the end of the message. You can read more about the special tokens in the [Chat Markup Language (ChatML)](#chatml) section.
+The `<|im_end|>` token indicates the end of a message. When using ChatML it is recommended to include `<|im_end|>` token as a stop sequence to ensure that the model stops generating text when it reaches the end of the message. 
 
 Consider setting `max_tokens` to a slightly higher value than normal such as 300 or 500. This ensures that the model doesn't stop generating text before it reaches the end of the message.
 
@@ -52,8 +55,6 @@ Consider setting `max_tokens` to a slightly higher value than normal such as 300
 Unlike previous GPT-3 and GPT-3.5 models, the `gpt-35-turbo` model as well as the `gpt-4` and `gpt-4-32k` models will continue to be updated. When creating a [deployment](../how-to/create-resource.md#deploy-a-model) of these models, you'll also need to specify a model version.
 
 You can find the model retirement dates for these models on our [models](../concepts/models.md) page.
-
-<a id="chatml"></a>
 
 ## Working with Chat Markup Language (ChatML)
 
@@ -220,7 +221,7 @@ import os
 import openai
 openai.api_type = "azure"
 openai.api_base = "https://{your-resource-name}.openai.azure.com/" #This corresponds to your Azure OpenAI resource's endpoint value
-openai.api_version = "2023-05-15" 
+openai.api_version = "2024-02-01" 
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
 # defining a function to create the prompt from the system message and the conversation messages
