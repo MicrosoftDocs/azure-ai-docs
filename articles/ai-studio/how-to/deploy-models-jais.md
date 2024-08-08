@@ -1,26 +1,27 @@
 ---
-title: How to use Jamba-Instruct chat models with Azure AI Studio
+title: How to use Jais chat models with Azure AI Studio
 titleSuffix: Azure AI Studio
-description: Learn how to use Jamba-Instruct chat models with Azure AI Studio.
+description: Learn how to use Jais chat models with Azure AI Studio.
 ms.service: azure-ai-studio
 manager: scottpolly
 ms.topic: how-to
 ms.date: 08/08/2024
-ms.reviewer: tgokal
-reviewer: tgokal
+ms.reviewer: haelhamm
+reviewer: hazemelh 
 ms.author: ssalgado
 author: ssalgadodev
 ms.custom: references_regions, generated
 zone_pivot_groups: azure-ai-model-catalog-samples-chat
 ---
 
-# How to use Jamba-Instruct chat models
+# How to use Jais chat models
 
-In this article, you learn about Jamba-Instruct chat models and how to use them.
-The Jamba-Instruct model is AI21's production-grade Mamba-based large language model (LLM) which uses AI21's hybrid Mamba-Transformer architecture. It's an instruction-tuned version of AI21's hybrid structured state space model (SSM) transformer Jamba model. The Jamba-Instruct model is built for reliable commercial use with respect to quality and performance.
+In this article, you learn about Jais chat models and how to use them.
+JAIS 30b Chat is an autoregressive bi-lingual LLM for **Arabic** & **English**. The tuned versions use supervised fine-tuning (SFT). The model is fine-tuned with both Arabic and English prompt-response pairs. The fine-tuning datasets included a wide range of instructional data across various domains. The model covers a wide range of common tasks including question answering, code generation, and reasoning over textual content. To enhance performance in Arabic, the Core42 team developed an in-house Arabic dataset and translated some open-source English instructions into Arabic.
 
-> [!TIP]
-> See our announcements of AI21's Jamba-Instruct model available now on Azure AI Model Catalog through [AI21's blog](https://aka.ms/ai21-jamba-instruct-blog) and [Microsoft Tech Community Blog](https://aka.ms/ai21-jamba-instruct-announcement).
+* **Context length:** JAIS supports a context length of 8K.
+* **Input:** Model input is text only.
+* **Output:** Model generates text only.
 
 
 
@@ -30,18 +31,18 @@ The Jamba-Instruct model is AI21's production-grade Mamba-based large language m
 
 You can learn more about the models in their respective model card:
 
-* [AI21-Jamba-Instruct](https://aka.ms/azureai/landing/AI21-Jamba-Instruct)
+* [jais-30b-chat](https://aka.ms/azureai/landing/jais-30b-chat)
 
 
 ## Prerequisites
 
-To use Jamba-Instruct chat models with Azure AI Studio, you need the following prerequisites:
+To use Jais chat models with Azure AI Studio, you need the following prerequisites:
 
 ### A model deployment
 
 **Deployment to serverless APIs**
 
-Jamba-Instruct chat models can be deployed to serverless API endpoints with pay-as-you-go billing. This kind of deployment provides a way to consume models as an API without hosting them on your subscription, while keeping the enterprise security and compliance that organizations need. 
+Jais chat models can be deployed to serverless API endpoints with pay-as-you-go billing. This kind of deployment provides a way to consume models as an API without hosting them on your subscription, while keeping the enterprise security and compliance that organizations need. 
 
 Deployment to a serverless API endpoint doesn't require quota from your subscription. If your model isn't deployed already, use the Azure AI Studio, Azure Machine Learning SDK for Python, the Azure CLI, or ARM templates to [deploy the model as a serverless API](deploy-models-serverless.md).
 
@@ -69,7 +70,7 @@ Read more about the [Azure AI inference package and reference](https://aka.ms/az
 In this section, you use the [Azure AI model inference API](https://aka.ms/azureai/modelinference) with a chat completions model for chat.
 
 > [!TIP]
-> The [Azure AI model inference API](https://aka.ms/azureai/modelinference) allows you to talk with most models deployed in Azure AI Studio with the same code and structure, including Jamba-Instruct chat models.
+> The [Azure AI model inference API](https://aka.ms/azureai/modelinference) allows you to talk with most models deployed in Azure AI Studio with the same code and structure, including Jais chat models.
 
 ### Create a client to consume the model
 
@@ -106,9 +107,9 @@ print("Model provider name:", model_info.model_provider)
 ```
 
 ```console
-Model name: AI21-Jamba-Instruct
+Model name: jais-30b-chat
 Model type: chat-completions
-Model provider name: AI21
+Model provider name: G42
 ```
 
 ### Create a chat completion request
@@ -140,7 +141,7 @@ print("\tCompletion tokens:", response.usage.completion_tokens)
 
 ```console
 Response: As of now, it's estimated that there are about 7,000 languages spoken around the world. However, this number can vary as some languages become extinct and new ones develop. It's also important to note that the number of speakers can greatly vary between languages, with some having millions of speakers and others only a few hundred.
-Model: AI21-Jamba-Instruct
+Model: jais-30b-chat
 Usage: 
   Prompt tokens: 19
   Total tokens: 91
@@ -216,7 +217,7 @@ response = client.complete(
 ```
 
 > [!WARNING]
-> Jamba doesn't support JSON output formatting (`response_format = { "type": "json_object" }`). You can always prompt the model to generate JSON outputs. However, such outputs are not guaranteed to be valid JSON.
+> Jais doesn't support JSON output formatting (`response_format = { "type": "json_object" }`). You can always prompt the model to generate JSON outputs. However, such outputs are not guaranteed to be valid JSON.
 
 If you want to pass a parameter that isn't in the list of supported parameters, you can pass it to the underlying model using *extra parameters*. See [Pass extra parameters to the model](#pass-extra-parameters-to-the-model).
 
@@ -281,18 +282,18 @@ except HttpResponseError as ex:
 
 You can learn more about the models in their respective model card:
 
-* [AI21-Jamba-Instruct](https://aka.ms/azureai/landing/AI21-Jamba-Instruct)
+* [jais-30b-chat](https://aka.ms/azureai/landing/jais-30b-chat)
 
 
 ## Prerequisites
 
-To use Jamba-Instruct chat models with Azure AI Studio, you need the following prerequisites:
+To use Jais chat models with Azure AI Studio, you need the following prerequisites:
 
 ### A model deployment
 
 **Deployment to serverless APIs**
 
-Jamba-Instruct chat models can be deployed to serverless API endpoints with pay-as-you-go billing. This kind of deployment provides a way to consume models as an API without hosting them on your subscription, while keeping the enterprise security and compliance that organizations need. 
+Jais chat models can be deployed to serverless API endpoints with pay-as-you-go billing. This kind of deployment provides a way to consume models as an API without hosting them on your subscription, while keeping the enterprise security and compliance that organizations need. 
 
 Deployment to a serverless API endpoint doesn't require quota from your subscription. If your model isn't deployed already, use the Azure AI Studio, Azure Machine Learning SDK for Python, the Azure CLI, or ARM templates to [deploy the model as a serverless API](deploy-models-serverless.md).
 
@@ -318,7 +319,7 @@ npm install @azure-rest/ai-inference
 In this section, you use the [Azure AI model inference API](https://aka.ms/azureai/modelinference) with a chat completions model for chat.
 
 > [!TIP]
-> The [Azure AI model inference API](https://aka.ms/azureai/modelinference) allows you to talk with most models deployed in Azure AI Studio with the same code and structure, including Jamba-Instruct chat models.
+> The [Azure AI model inference API](https://aka.ms/azureai/modelinference) allows you to talk with most models deployed in Azure AI Studio with the same code and structure, including Jais chat models.
 
 ### Create a client to consume the model
 
@@ -355,9 +356,9 @@ console.log("Model provider name: ", model_info.body.model_provider_name)
 ```
 
 ```console
-Model name: AI21-Jamba-Instruct
+Model name: jais-30b-chat
 Model type: chat-completions
-Model provider name: AI21
+Model provider name: G42
 ```
 
 ### Create a chat completion request
@@ -395,7 +396,7 @@ console.log("\tCompletion tokens:", response.body.usage.completion_tokens);
 
 ```console
 Response: As of now, it's estimated that there are about 7,000 languages spoken around the world. However, this number can vary as some languages become extinct and new ones develop. It's also important to note that the number of speakers can greatly vary between languages, with some having millions of speakers and others only a few hundred.
-Model: AI21-Jamba-Instruct
+Model: jais-30b-chat
 Usage: 
   Prompt tokens: 19
   Total tokens: 91
@@ -477,7 +478,7 @@ var response = await client.path("/chat/completions").post({
 ```
 
 > [!WARNING]
-> Jamba doesn't support JSON output formatting (`response_format = { "type": "json_object" }`). You can always prompt the model to generate JSON outputs. However, such outputs are not guaranteed to be valid JSON.
+> Jais doesn't support JSON output formatting (`response_format = { "type": "json_object" }`). You can always prompt the model to generate JSON outputs. However, such outputs are not guaranteed to be valid JSON.
 
 If you want to pass a parameter that isn't in the list of supported parameters, you can pass it to the underlying model using *extra parameters*. See [Pass extra parameters to the model](#pass-extra-parameters-to-the-model).
 
@@ -553,18 +554,18 @@ catch (error) {
 
 You can learn more about the models in their respective model card:
 
-* [AI21-Jamba-Instruct](https://aka.ms/azureai/landing/AI21-Jamba-Instruct)
+* [jais-30b-chat](https://aka.ms/azureai/landing/jais-30b-chat)
 
 
 ## Prerequisites
 
-To use Jamba-Instruct chat models with Azure AI Studio, you need the following prerequisites:
+To use Jais chat models with Azure AI Studio, you need the following prerequisites:
 
 ### A model deployment
 
 **Deployment to serverless APIs**
 
-Jamba-Instruct chat models can be deployed to serverless API endpoints with pay-as-you-go billing. This kind of deployment provides a way to consume models as an API without hosting them on your subscription, while keeping the enterprise security and compliance that organizations need. 
+Jais chat models can be deployed to serverless API endpoints with pay-as-you-go billing. This kind of deployment provides a way to consume models as an API without hosting them on your subscription, while keeping the enterprise security and compliance that organizations need. 
 
 Deployment to a serverless API endpoint doesn't require quota from your subscription. If your model isn't deployed already, use the Azure AI Studio, Azure Machine Learning SDK for Python, the Azure CLI, or ARM templates to [deploy the model as a serverless API](deploy-models-serverless.md).
 
@@ -613,7 +614,7 @@ using System.Reflection;
 In this section, you use the [Azure AI model inference API](https://aka.ms/azureai/modelinference) with a chat completions model for chat.
 
 > [!TIP]
-> The [Azure AI model inference API](https://aka.ms/azureai/modelinference) allows you to talk with most models deployed in Azure AI Studio with the same code and structure, including Jamba-Instruct chat models.
+> The [Azure AI model inference API](https://aka.ms/azureai/modelinference) allows you to talk with most models deployed in Azure AI Studio with the same code and structure, including Jais chat models.
 
 ### Create a client to consume the model
 
@@ -646,9 +647,9 @@ Console.WriteLine($"Model provider name: {modelInfo.Value.ModelProviderName}");
 ```
 
 ```console
-Model name: AI21-Jamba-Instruct
+Model name: jais-30b-chat
 Model type: chat-completions
-Model provider name: AI21
+Model provider name: G42
 ```
 
 ### Create a chat completion request
@@ -681,7 +682,7 @@ Console.WriteLine($"\tCompletion tokens: {response.Value.Usage.CompletionTokens}
 
 ```console
 Response: As of now, it's estimated that there are about 7,000 languages spoken around the world. However, this number can vary as some languages become extinct and new ones develop. It's also important to note that the number of speakers can greatly vary between languages, with some having millions of speakers and others only a few hundred.
-Model: AI21-Jamba-Instruct
+Model: jais-30b-chat
 Usage: 
   Prompt tokens: 19
   Total tokens: 91
@@ -768,7 +769,7 @@ Console.WriteLine($"Response: {response.Value.Choices[0].Message.Content}");
 ```
 
 > [!WARNING]
-> Jamba doesn't support JSON output formatting (`response_format = { "type": "json_object" }`). You can always prompt the model to generate JSON outputs. However, such outputs are not guaranteed to be valid JSON.
+> Jais doesn't support JSON output formatting (`response_format = { "type": "json_object" }`). You can always prompt the model to generate JSON outputs. However, such outputs are not guaranteed to be valid JSON.
 
 If you want to pass a parameter that isn't in the list of supported parameters, you can pass it to the underlying model using *extra parameters*. See [Pass extra parameters to the model](#pass-extra-parameters-to-the-model).
 
@@ -841,18 +842,18 @@ catch (RequestFailedException ex)
 
 You can learn more about the models in their respective model card:
 
-* [AI21-Jamba-Instruct](https://aka.ms/azureai/landing/AI21-Jamba-Instruct)
+* [jais-30b-chat](https://aka.ms/azureai/landing/jais-30b-chat)
 
 
 ## Prerequisites
 
-To use Jamba-Instruct chat models with Azure AI Studio, you need the following prerequisites:
+To use Jais chat models with Azure AI Studio, you need the following prerequisites:
 
 ### A model deployment
 
 **Deployment to serverless APIs**
 
-Jamba-Instruct chat models can be deployed to serverless API endpoints with pay-as-you-go billing. This kind of deployment provides a way to consume models as an API without hosting them on your subscription, while keeping the enterprise security and compliance that organizations need. 
+Jais chat models can be deployed to serverless API endpoints with pay-as-you-go billing. This kind of deployment provides a way to consume models as an API without hosting them on your subscription, while keeping the enterprise security and compliance that organizations need. 
 
 Deployment to a serverless API endpoint doesn't require quota from your subscription. If your model isn't deployed already, use the Azure AI Studio, Azure Machine Learning SDK for Python, the Azure CLI, or ARM templates to [deploy the model as a serverless API](deploy-models-serverless.md).
 
@@ -871,7 +872,7 @@ Models deployed with the [Azure AI model inference API](https://aka.ms/azureai/m
 In this section, you use the [Azure AI model inference API](https://aka.ms/azureai/modelinference) with a chat completions model for chat.
 
 > [!TIP]
-> The [Azure AI model inference API](https://aka.ms/azureai/modelinference) allows you to talk with most models deployed in Azure AI Studio with the same code and structure, including Jamba-Instruct chat models.
+> The [Azure AI model inference API](https://aka.ms/azureai/modelinference) allows you to talk with most models deployed in Azure AI Studio with the same code and structure, including Jais chat models.
 
 ### Create a client to consume the model
 
@@ -893,9 +894,9 @@ The response is as follows:
 
 ```json
 {
-    "model_name": "AI21-Jamba-Instruct",
+    "model_name": "jais-30b-chat",
     "model_type": "chat-completions",
-    "model_provider_name": "AI21"
+    "model_provider_name": "G42"
 }
 ```
 
@@ -926,7 +927,7 @@ The response is as follows, where you can see the model's usage statistics:
     "id": "0a1234b5de6789f01gh2i345j6789klm",
     "object": "chat.completion",
     "created": 1718726686,
-    "model": "AI21-Jamba-Instruct",
+    "model": "jais-30b-chat",
     "choices": [
         {
             "index": 0,
@@ -983,7 +984,7 @@ You can visualize how streaming generates content:
     "id": "23b54589eba14564ad8a2e6978775a39",
     "object": "chat.completion.chunk",
     "created": 1718726371,
-    "model": "AI21-Jamba-Instruct",
+    "model": "jais-30b-chat",
     "choices": [
         {
             "index": 0,
@@ -1006,7 +1007,7 @@ The last message in the stream has `finish_reason` set, indicating the reason fo
     "id": "23b54589eba14564ad8a2e6978775a39",
     "object": "chat.completion.chunk",
     "created": 1718726371,
-    "model": "AI21-Jamba-Instruct",
+    "model": "jais-30b-chat",
     "choices": [
         {
             "index": 0,
@@ -1057,7 +1058,7 @@ Explore other parameters that you can specify in the inference client. For a ful
     "id": "0a1234b5de6789f01gh2i345j6789klm",
     "object": "chat.completion",
     "created": 1718726686,
-    "model": "AI21-Jamba-Instruct",
+    "model": "jais-30b-chat",
     "choices": [
         {
             "index": 0,
@@ -1079,7 +1080,7 @@ Explore other parameters that you can specify in the inference client. For a ful
 ```
 
 > [!WARNING]
-> Jamba doesn't support JSON output formatting (`response_format = { "type": "json_object" }`). You can always prompt the model to generate JSON outputs. However, such outputs are not guaranteed to be valid JSON.
+> Jais doesn't support JSON output formatting (`response_format = { "type": "json_object" }`). You can always prompt the model to generate JSON outputs. However, such outputs are not guaranteed to be valid JSON.
 
 If you want to pass a parameter that isn't in the list of supported parameters, you can pass it to the underlying model using *extra parameters*. See [Pass extra parameters to the model](#pass-extra-parameters-to-the-model).
 
@@ -1156,18 +1157,18 @@ The following example shows how to handle events when the model detects harmful 
 
 ## More inference examples
 
-For more examples of how to use Jamba, see the following examples and tutorials:
+For more examples of how to use Jais, see the following examples and tutorials:
 
 | Description                               | Language          | Sample                                                          |
 |-------------------------------------------|-------------------|-----------------------------------------------------------------|
 | Azure AI Inference package for JavaScript | JavaScript        | [Link](https://aka.ms/azsdk/azure-ai-inference/javascript/samples)  |
 | Azure AI Inference package for Python     | Python            | [Link](https://aka.ms/azsdk/azure-ai-inference/python/samples)  |
 
-## Cost and quota considerations for Jamba family of models deployed as serverless API endpoints
+## Cost and quota considerations for Jais family of models deployed as serverless API endpoints
 
 Quota is managed per deployment. Each deployment has a rate limit of 200,000 tokens per minute and 1,000 API requests per minute. However, we currently limit one deployment per model per project. Contact Microsoft Azure Support if the current rate limits aren't sufficient for your scenarios.
 
-Jamba models deployed as a serverless API are offered by AI21 through the Azure Marketplace and integrated with Azure AI Studio for use. You can find the Azure Marketplace pricing when deploying the model.
+Jais models deployed as a serverless API are offered by G42 through the Azure Marketplace and integrated with Azure AI Studio for use. You can find the Azure Marketplace pricing when deploying the model.
 
 Each time a project subscribes to a given offer from the Azure Marketplace, a new resource is created to track the costs associated with its consumption. The same resource is used to track costs associated with inference; however, multiple meters are available to track each scenario independently.
 

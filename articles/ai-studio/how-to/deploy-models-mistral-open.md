@@ -1,52 +1,94 @@
 ---
-title: How to use Jamba-Instruct chat models with Azure AI Studio
+title: How to use Mistral-7B and Mixtral chat models with Azure AI Studio
 titleSuffix: Azure AI Studio
-description: Learn how to use Jamba-Instruct chat models with Azure AI Studio.
+description: Learn how to use Mistral-7B and Mixtral chat models with Azure AI Studio.
 ms.service: azure-ai-studio
 manager: scottpolly
 ms.topic: how-to
 ms.date: 08/08/2024
-ms.reviewer: tgokal
-reviewer: tgokal
-ms.author: ssalgado
-author: ssalgadodev
+ms.reviewer: kritifaujdar
+reviewer: fkriti
+ms.author: mopeakande
+author: msakande
 ms.custom: references_regions, generated
 zone_pivot_groups: azure-ai-model-catalog-samples-chat
 ---
 
-# How to use Jamba-Instruct chat models
+# How to use Mistral-7B and Mixtral chat models
 
-In this article, you learn about Jamba-Instruct chat models and how to use them.
-The Jamba-Instruct model is AI21's production-grade Mamba-based large language model (LLM) which uses AI21's hybrid Mamba-Transformer architecture. It's an instruction-tuned version of AI21's hybrid structured state space model (SSM) transformer Jamba model. The Jamba-Instruct model is built for reliable commercial use with respect to quality and performance.
-
-> [!TIP]
-> See our announcements of AI21's Jamba-Instruct model available now on Azure AI Model Catalog through [AI21's blog](https://aka.ms/ai21-jamba-instruct-blog) and [Microsoft Tech Community Blog](https://aka.ms/ai21-jamba-instruct-announcement).
-
+In this article, you learn about Mistral-7B and Mixtral chat models and how to use them.
+Mistral AI offers two categories of models. Premium models including [Mistral Large and Mistral Small](deploy-models-mistral.md), available as serverless APIs with pay-as-you-go token-based billing. Open models including [Mistral Nemo](deploy-models-mistral-nemo.md), [Mixtral-8x7B-Instruct-v01, Mixtral-8x7B-v01, Mistral-7B-Instruct-v01, and Mistral-7B-v01](deploy-models-mistral-open.md); available to also download and run on self-hosted managed endpoints.
 
 
 ::: zone pivot="programming-language-python"
 
+## Mistral-7B and Mixtral chat models
+
+The Mistral-7B and Mixtral chat models include the following models:
+
+# [Mistral-7B-Instruct](#tab/mistral-7b-instruct)
+
+The Mistral-7B-Instruct Large Language Model (LLM) is an instruct, fine-tuned version of the Mistral-7B, a transformer model with the following architecture choices:
+
+* Grouped-Query Attention
+* Sliding-Window Attention
+* Byte-fallback BPE tokenizer
 
 
-You can learn more about the models in their respective model card:
+The following models are available:
 
-* [AI21-Jamba-Instruct](https://aka.ms/azureai/landing/AI21-Jamba-Instruct)
+* [mistralai-Mistral-7B-Instruct-v01](https://aka.ms/azureai/landing/mistralai-Mistral-7B-Instruct-v01)
+* [mistralai-Mistral-7B-Instruct-v02](https://aka.ms/azureai/landing/mistralai-Mistral-7B-Instruct-v02)
 
+
+# [Mixtral-8x7B-Instruct](#tab/mistral-8x7B-instruct)
+
+The Mixtral-8x7B Large Language Model (LLM) is a pretrained generative Sparse Mixture of Experts. The Mixtral-8x7B outperforms Llama 2 70B on most benchmarks with 6x faster inference.
+
+Mixtral-8x7B-v0.1 is a decoder-only model with eight distinct groups or the "experts". At every layer, for every token, a router network chooses two of these experts to process the token and combine their output additively. Mixtral has 46.7B total parameters but only uses 12.9B parameters per token with this technique; therefore, the model can perform with the same speed and cost as a 12.9B model.
+
+
+The following models are available:
+
+* [mistralai-Mixtral-8x7B-Instruct-v01](https://aka.ms/azureai/landing/mistralai-Mixtral-8x7B-Instruct-v01)
+
+
+# [Mixtral-8x22B-Instruct](#tab/mistral-8x22b-instruct)
+
+The Mixtral-8x22B-Instruct-v0.1 Large Language Model (LLM) is an instruct, fine-tuned version of the Mixtral-8x22B-v0.1. The model is a sparse Mixture-of-Experts (SMoE) model that uses only 39B active parameters out of 141B, offering unparalleled cost efficiency for its size.
+
+Mixtral 8x22B comes with the following strengths:
+
+* Fluent in English, French, Italian, German, and Spanish
+* Strong mathematics and coding capabilities
+* Natively capable of function calling; along with the constrained output mode implemented on la Plateforme, this enables application development and tech stack modernization at scale
+* Pprecise information recall from large documents, due to its 64K tokens context window
+
+
+The following models are available:
+
+* [mistralai-Mixtral-8x22B-Instruct-v0-1](https://aka.ms/azureai/landing/mistralai-Mixtral-8x22B-Instruct-v0-1)
+
+
+---
+
+> [!TIP]
+> Additionally, MistralAI supports the use of a tailored API for use with specific features of the model. To use the model-provider specific API, check [MistralAI documentation](https://docs.mistral.ai/) or see the [inference examples](#more-inference-examples) section to code examples.
 
 ## Prerequisites
 
-To use Jamba-Instruct chat models with Azure AI Studio, you need the following prerequisites:
+To use Mistral-7B and Mixtral chat models with Azure AI Studio, you need the following prerequisites:
 
 ### A model deployment
 
-**Deployment to serverless APIs**
+**Deployment to a self-hosted managed compute**
 
-Jamba-Instruct chat models can be deployed to serverless API endpoints with pay-as-you-go billing. This kind of deployment provides a way to consume models as an API without hosting them on your subscription, while keeping the enterprise security and compliance that organizations need. 
+Mistral-7B and Mixtral chat models can be deployed to our self-hosted managed inference solution, which allows you to customize and control all the details about how the model is served.
 
-Deployment to a serverless API endpoint doesn't require quota from your subscription. If your model isn't deployed already, use the Azure AI Studio, Azure Machine Learning SDK for Python, the Azure CLI, or ARM templates to [deploy the model as a serverless API](deploy-models-serverless.md).
+For deployment to a self-hosted managed compute, you must have enough quota in your subscription. If you don't have enough quota available, you can use our temporary quota access by selecting the option **I want to use shared quota and I acknowledge that this endpoint will be deleted in 168 hours.**
 
 > [!div class="nextstepaction"]
-> [Deploy the model to serverless API endpoints](deploy-models-serverless.md)
+> [Deploy the model to managed compute](../concepts/deployments-overview.md)
 
 ### The inference package installed
 
@@ -69,7 +111,7 @@ Read more about the [Azure AI inference package and reference](https://aka.ms/az
 In this section, you use the [Azure AI model inference API](https://aka.ms/azureai/modelinference) with a chat completions model for chat.
 
 > [!TIP]
-> The [Azure AI model inference API](https://aka.ms/azureai/modelinference) allows you to talk with most models deployed in Azure AI Studio with the same code and structure, including Jamba-Instruct chat models.
+> The [Azure AI model inference API](https://aka.ms/azureai/modelinference) allows you to talk with most models deployed in Azure AI Studio with the same code and structure, including Mistral-7B and Mixtral chat models.
 
 ### Create a client to consume the model
 
@@ -84,6 +126,20 @@ from azure.core.credentials import AzureKeyCredential
 client = ChatCompletionsClient(
     endpoint=os.environ["AZURE_INFERENCE_ENDPOINT"],
     credential=AzureKeyCredential(os.environ["AZURE_INFERENCE_CREDENTIAL"]),
+)
+```
+
+When you deploy the model to a self-hosted online endpoint with **Microsoft Entra ID** support, you can use the following code snippet to create a client.
+
+
+```python
+import os
+from azure.ai.inference import ChatCompletionsClient
+from azure.identity import DefaultAzureCredential
+
+client = ChatCompletionsClient(
+    endpoint=os.environ["AZURE_INFERENCE_ENDPOINT"],
+    credential=DefaultAzureCredential(),
 )
 ```
 
@@ -106,9 +162,9 @@ print("Model provider name:", model_info.model_provider)
 ```
 
 ```console
-Model name: AI21-Jamba-Instruct
+Model name: mistralai-Mistral-7B-Instruct-v01
 Model type: chat-completions
-Model provider name: AI21
+Model provider name: MistralAI
 ```
 
 ### Create a chat completion request
@@ -126,6 +182,9 @@ response = client.complete(
 )
 ```
 
+> [!NOTE]
+> mistralai-Mistral-7B-Instruct-v01, mistralai-Mistral-7B-Instruct-v02 and mistralai-Mixtral-8x22B-Instruct-v0-1 don't support system messages (`role="system"`). When you use the Azure AI model inference API, system messages are translated to user messages, which is the closest capability available. This translation is offered for convenience, but it's important for you to verify that the model is following the instructions in the system message with the right level of confidence.
+
 The response is as follows, where you can see the model's usage statistics:
 
 
@@ -140,7 +199,7 @@ print("\tCompletion tokens:", response.usage.completion_tokens)
 
 ```console
 Response: As of now, it's estimated that there are about 7,000 languages spoken around the world. However, this number can vary as some languages become extinct and new ones develop. It's also important to note that the number of speakers can greatly vary between languages, with some having millions of speakers and others only a few hundred.
-Model: AI21-Jamba-Instruct
+Model: mistralai-Mistral-7B-Instruct-v01
 Usage: 
   Prompt tokens: 19
   Total tokens: 91
@@ -216,7 +275,7 @@ response = client.complete(
 ```
 
 > [!WARNING]
-> Jamba doesn't support JSON output formatting (`response_format = { "type": "json_object" }`). You can always prompt the model to generate JSON outputs. However, such outputs are not guaranteed to be valid JSON.
+> Mistral doesn't support JSON output formatting (`response_format = { "type": "json_object" }`). You can always prompt the model to generate JSON outputs. However, such outputs are not guaranteed to be valid JSON.
 
 If you want to pass a parameter that isn't in the list of supported parameters, you can pass it to the underlying model using *extra parameters*. See [Pass extra parameters to the model](#pass-extra-parameters-to-the-model).
 
@@ -239,65 +298,88 @@ response = client.complete(
 )
 ```
 
-### Apply content safety
+The following extra parameters can be passed to Mistral-7B and Mixtral chat models:
 
-The Azure AI model inference API supports [Azure AI content safety](https://aka.ms/azureaicontentsafety). When you use deployments with Azure AI content safety turned on, inputs and outputs pass through an ensemble of classification models aimed at detecting and preventing the output of harmful content. The content filtering system detects and takes action on specific categories of potentially harmful content in both input prompts and output completions.
+| Name           | Description           | Type            |
+| -------------- | --------------------- | --------------- |
+| `logit_bias` | Accepts a JSON object that maps tokens (specified by their token ID in the tokenizer) to an associated bias value from -100 to 100. Mathematically, the bias is added to the logits generated by the model prior to sampling. The exact effect will vary per model, but values between -1 and 1 should decrease or increase likelihood of selection; values like -100 or 100 should result in a ban or exclusive selection of the relevant token. | `float` |
+| `logprobs` | Whether to return log probabilities of the output tokens or not. If true, returns the log probabilities of each output token returned in the `content` of `message`. | `int` |
+| `top_logprobs` | An integer between 0 and 20 specifying the number of most likely tokens to return at each token position, each with an associated log probability. `logprobs` must be set to `true` if this parameter is used. | `float` |
+| `n` | How many chat completion choices to generate for each input message. Note that you will be charged based on the number of generated tokens across all of the choices. | `int` |
 
-The following example shows how to handle events when the model detects harmful content in the input prompt and content safety is enabled.
-
-
-```python
-from azure.ai.inference.models import AssistantMessage, UserMessage, SystemMessage
-
-try:
-    response = client.complete(
-        messages=[
-            SystemMessage(content="You are an AI assistant that helps people find information."),
-            UserMessage(content="Chopping tomatoes and cutting them into cubes or wedges are great ways to practice your knife skills."),
-        ]
-    )
-
-    print(response.choices[0].message.content)
-
-except HttpResponseError as ex:
-    if ex.status_code == 400:
-        response = ex.response.json()
-        if isinstance(response, dict) and "error" in response:
-            print(f"Your request triggered an {response['error']['code']} error:\n\t {response['error']['message']}")
-        else:
-            raise
-    raise
-```
-
-> [!TIP]
-> To learn more about how you can configure and control Azure AI content safety settings, check the [Azure AI content safety documentation](https://aka.ms/azureaicontentsafety).
 
 ::: zone-end
 
 
 ::: zone pivot="programming-language-javascript"
 
+## Mistral-7B and Mixtral chat models
+
+The Mistral-7B and Mixtral chat models include the following models:
+
+# [Mistral-7B-Instruct](#tab/mistral-7b-instruct)
+
+The Mistral-7B-Instruct Large Language Model (LLM) is an instruct, fine-tuned version of the Mistral-7B, a transformer model with the following architecture choices:
+
+* Grouped-Query Attention
+* Sliding-Window Attention
+* Byte-fallback BPE tokenizer
 
 
-You can learn more about the models in their respective model card:
+The following models are available:
 
-* [AI21-Jamba-Instruct](https://aka.ms/azureai/landing/AI21-Jamba-Instruct)
+* [mistralai-Mistral-7B-Instruct-v01](https://aka.ms/azureai/landing/mistralai-Mistral-7B-Instruct-v01)
+* [mistralai-Mistral-7B-Instruct-v02](https://aka.ms/azureai/landing/mistralai-Mistral-7B-Instruct-v02)
 
+
+# [Mixtral-8x7B-Instruct](#tab/mistral-8x7B-instruct)
+
+The Mixtral-8x7B Large Language Model (LLM) is a pretrained generative Sparse Mixture of Experts. The Mixtral-8x7B outperforms Llama 2 70B on most benchmarks with 6x faster inference.
+
+Mixtral-8x7B-v0.1 is a decoder-only model with eight distinct groups or the "experts". At every layer, for every token, a router network chooses two of these experts to process the token and combine their output additively. Mixtral has 46.7B total parameters but only uses 12.9B parameters per token with this technique; therefore, the model can perform with the same speed and cost as a 12.9B model.
+
+
+The following models are available:
+
+* [mistralai-Mixtral-8x7B-Instruct-v01](https://aka.ms/azureai/landing/mistralai-Mixtral-8x7B-Instruct-v01)
+
+
+# [Mixtral-8x22B-Instruct](#tab/mistral-8x22b-instruct)
+
+The Mixtral-8x22B-Instruct-v0.1 Large Language Model (LLM) is an instruct, fine-tuned version of the Mixtral-8x22B-v0.1. The model is a sparse Mixture-of-Experts (SMoE) model that uses only 39B active parameters out of 141B, offering unparalleled cost efficiency for its size.
+
+Mixtral 8x22B comes with the following strengths:
+
+* Fluent in English, French, Italian, German, and Spanish
+* Strong mathematics and coding capabilities
+* Natively capable of function calling; along with the constrained output mode implemented on la Plateforme, this enables application development and tech stack modernization at scale
+* Pprecise information recall from large documents, due to its 64K tokens context window
+
+
+The following models are available:
+
+* [mistralai-Mixtral-8x22B-Instruct-v0-1](https://aka.ms/azureai/landing/mistralai-Mixtral-8x22B-Instruct-v0-1)
+
+
+---
+
+> [!TIP]
+> Additionally, MistralAI supports the use of a tailored API for use with specific features of the model. To use the model-provider specific API, check [MistralAI documentation](https://docs.mistral.ai/) or see the [inference examples](#more-inference-examples) section to code examples.
 
 ## Prerequisites
 
-To use Jamba-Instruct chat models with Azure AI Studio, you need the following prerequisites:
+To use Mistral-7B and Mixtral chat models with Azure AI Studio, you need the following prerequisites:
 
 ### A model deployment
 
-**Deployment to serverless APIs**
+**Deployment to a self-hosted managed compute**
 
-Jamba-Instruct chat models can be deployed to serverless API endpoints with pay-as-you-go billing. This kind of deployment provides a way to consume models as an API without hosting them on your subscription, while keeping the enterprise security and compliance that organizations need. 
+Mistral-7B and Mixtral chat models can be deployed to our self-hosted managed inference solution, which allows you to customize and control all the details about how the model is served.
 
-Deployment to a serverless API endpoint doesn't require quota from your subscription. If your model isn't deployed already, use the Azure AI Studio, Azure Machine Learning SDK for Python, the Azure CLI, or ARM templates to [deploy the model as a serverless API](deploy-models-serverless.md).
+For deployment to a self-hosted managed compute, you must have enough quota in your subscription. If you don't have enough quota available, you can use our temporary quota access by selecting the option **I want to use shared quota and I acknowledge that this endpoint will be deleted in 168 hours.**
 
 > [!div class="nextstepaction"]
-> [Deploy the model to serverless API endpoints](deploy-models-serverless.md)
+> [Deploy the model to managed compute](../concepts/deployments-overview.md)
 
 ### The inference package installed
 
@@ -318,7 +400,7 @@ npm install @azure-rest/ai-inference
 In this section, you use the [Azure AI model inference API](https://aka.ms/azureai/modelinference) with a chat completions model for chat.
 
 > [!TIP]
-> The [Azure AI model inference API](https://aka.ms/azureai/modelinference) allows you to talk with most models deployed in Azure AI Studio with the same code and structure, including Jamba-Instruct chat models.
+> The [Azure AI model inference API](https://aka.ms/azureai/modelinference) allows you to talk with most models deployed in Azure AI Studio with the same code and structure, including Mistral-7B and Mixtral chat models.
 
 ### Create a client to consume the model
 
@@ -333,6 +415,20 @@ import { AzureKeyCredential } from "@azure/core-auth";
 const client = new ModelClient(
     process.env.AZURE_INFERENCE_ENDPOINT, 
     new AzureKeyCredential(process.env.AZURE_INFERENCE_CREDENTIAL)
+);
+```
+
+When you deploy the model to a self-hosted online endpoint with **Microsoft Entra ID** support, you can use the following code snippet to create a client.
+
+
+```javascript
+import ModelClient from "@azure-rest/ai-inference";
+import { isUnexpected } from "@azure-rest/ai-inference";
+import { DefaultAzureCredential }  from "@azure/identity";
+
+const client = new ModelClient(
+    process.env.AZURE_INFERENCE_ENDPOINT, 
+    new DefaultAzureCredential()
 );
 ```
 
@@ -355,9 +451,9 @@ console.log("Model provider name: ", model_info.body.model_provider_name)
 ```
 
 ```console
-Model name: AI21-Jamba-Instruct
+Model name: mistralai-Mistral-7B-Instruct-v01
 Model type: chat-completions
-Model provider name: AI21
+Model provider name: MistralAI
 ```
 
 ### Create a chat completion request
@@ -377,6 +473,9 @@ var response = await client.path("/chat/completions").post({
 });
 ```
 
+> [!NOTE]
+> mistralai-Mistral-7B-Instruct-v01, mistralai-Mistral-7B-Instruct-v02 and mistralai-Mixtral-8x22B-Instruct-v0-1 don't support system messages (`role="system"`). When you use the Azure AI model inference API, system messages are translated to user messages, which is the closest capability available. This translation is offered for convenience, but it's important for you to verify that the model is following the instructions in the system message with the right level of confidence.
+
 The response is as follows, where you can see the model's usage statistics:
 
 
@@ -395,7 +494,7 @@ console.log("\tCompletion tokens:", response.body.usage.completion_tokens);
 
 ```console
 Response: As of now, it's estimated that there are about 7,000 languages spoken around the world. However, this number can vary as some languages become extinct and new ones develop. It's also important to note that the number of speakers can greatly vary between languages, with some having millions of speakers and others only a few hundred.
-Model: AI21-Jamba-Instruct
+Model: mistralai-Mistral-7B-Instruct-v01
 Usage: 
   Prompt tokens: 19
   Total tokens: 91
@@ -477,7 +576,7 @@ var response = await client.path("/chat/completions").post({
 ```
 
 > [!WARNING]
-> Jamba doesn't support JSON output formatting (`response_format = { "type": "json_object" }`). You can always prompt the model to generate JSON outputs. However, such outputs are not guaranteed to be valid JSON.
+> Mistral doesn't support JSON output formatting (`response_format = { "type": "json_object" }`). You can always prompt the model to generate JSON outputs. However, such outputs are not guaranteed to be valid JSON.
 
 If you want to pass a parameter that isn't in the list of supported parameters, you can pass it to the underlying model using *extra parameters*. See [Pass extra parameters to the model](#pass-extra-parameters-to-the-model).
 
@@ -505,71 +604,88 @@ var response = await client.path("/chat/completions").post({
 });
 ```
 
-### Apply content safety
+The following extra parameters can be passed to Mistral-7B and Mixtral chat models:
 
-The Azure AI model inference API supports [Azure AI content safety](https://aka.ms/azureaicontentsafety). When you use deployments with Azure AI content safety turned on, inputs and outputs pass through an ensemble of classification models aimed at detecting and preventing the output of harmful content. The content filtering system detects and takes action on specific categories of potentially harmful content in both input prompts and output completions.
+| Name           | Description           | Type            |
+| -------------- | --------------------- | --------------- |
+| `logit_bias` | Accepts a JSON object that maps tokens (specified by their token ID in the tokenizer) to an associated bias value from -100 to 100. Mathematically, the bias is added to the logits generated by the model prior to sampling. The exact effect will vary per model, but values between -1 and 1 should decrease or increase likelihood of selection; values like -100 or 100 should result in a ban or exclusive selection of the relevant token. | `float` |
+| `logprobs` | Whether to return log probabilities of the output tokens or not. If true, returns the log probabilities of each output token returned in the `content` of `message`. | `int` |
+| `top_logprobs` | An integer between 0 and 20 specifying the number of most likely tokens to return at each token position, each with an associated log probability. `logprobs` must be set to `true` if this parameter is used. | `float` |
+| `n` | How many chat completion choices to generate for each input message. Note that you will be charged based on the number of generated tokens across all of the choices. | `int` |
 
-The following example shows how to handle events when the model detects harmful content in the input prompt and content safety is enabled.
-
-
-```javascript
-try {
-    var messages = [
-        { role: "system", content: "You are an AI assistant that helps people find information." },
-        { role: "user", content: "Chopping tomatoes and cutting them into cubes or wedges are great ways to practice your knife skills." },
-    ];
-
-    var response = await client.path("/chat/completions").post({
-        body: {
-            messages: messages,
-        }
-    });
-
-    console.log(response.body.choices[0].message.content);
-}
-catch (error) {
-    if (error.status_code == 400) {
-        var response = JSON.parse(error.response._content);
-        if (response.error) {
-            console.log(`Your request triggered an ${response.error.code} error:\n\t ${response.error.message}`);
-        }
-        else
-        {
-            throw error;
-        }
-    }
-}
-```
-
-> [!TIP]
-> To learn more about how you can configure and control Azure AI content safety settings, check the [Azure AI content safety documentation](https://aka.ms/azureaicontentsafety).
 
 ::: zone-end
 
 
 ::: zone pivot="programming-language-csharp"
 
+## Mistral-7B and Mixtral chat models
+
+The Mistral-7B and Mixtral chat models include the following models:
+
+# [Mistral-7B-Instruct](#tab/mistral-7b-instruct)
+
+The Mistral-7B-Instruct Large Language Model (LLM) is an instruct, fine-tuned version of the Mistral-7B, a transformer model with the following architecture choices:
+
+* Grouped-Query Attention
+* Sliding-Window Attention
+* Byte-fallback BPE tokenizer
 
 
-You can learn more about the models in their respective model card:
+The following models are available:
 
-* [AI21-Jamba-Instruct](https://aka.ms/azureai/landing/AI21-Jamba-Instruct)
+* [mistralai-Mistral-7B-Instruct-v01](https://aka.ms/azureai/landing/mistralai-Mistral-7B-Instruct-v01)
+* [mistralai-Mistral-7B-Instruct-v02](https://aka.ms/azureai/landing/mistralai-Mistral-7B-Instruct-v02)
 
+
+# [Mixtral-8x7B-Instruct](#tab/mistral-8x7B-instruct)
+
+The Mixtral-8x7B Large Language Model (LLM) is a pretrained generative Sparse Mixture of Experts. The Mixtral-8x7B outperforms Llama 2 70B on most benchmarks with 6x faster inference.
+
+Mixtral-8x7B-v0.1 is a decoder-only model with eight distinct groups or the "experts". At every layer, for every token, a router network chooses two of these experts to process the token and combine their output additively. Mixtral has 46.7B total parameters but only uses 12.9B parameters per token with this technique; therefore, the model can perform with the same speed and cost as a 12.9B model.
+
+
+The following models are available:
+
+* [mistralai-Mixtral-8x7B-Instruct-v01](https://aka.ms/azureai/landing/mistralai-Mixtral-8x7B-Instruct-v01)
+
+
+# [Mixtral-8x22B-Instruct](#tab/mistral-8x22b-instruct)
+
+The Mixtral-8x22B-Instruct-v0.1 Large Language Model (LLM) is an instruct, fine-tuned version of the Mixtral-8x22B-v0.1. The model is a sparse Mixture-of-Experts (SMoE) model that uses only 39B active parameters out of 141B, offering unparalleled cost efficiency for its size.
+
+Mixtral 8x22B comes with the following strengths:
+
+* Fluent in English, French, Italian, German, and Spanish
+* Strong mathematics and coding capabilities
+* Natively capable of function calling; along with the constrained output mode implemented on la Plateforme, this enables application development and tech stack modernization at scale
+* Pprecise information recall from large documents, due to its 64K tokens context window
+
+
+The following models are available:
+
+* [mistralai-Mixtral-8x22B-Instruct-v0-1](https://aka.ms/azureai/landing/mistralai-Mixtral-8x22B-Instruct-v0-1)
+
+
+---
+
+> [!TIP]
+> Additionally, MistralAI supports the use of a tailored API for use with specific features of the model. To use the model-provider specific API, check [MistralAI documentation](https://docs.mistral.ai/) or see the [inference examples](#more-inference-examples) section to code examples.
 
 ## Prerequisites
 
-To use Jamba-Instruct chat models with Azure AI Studio, you need the following prerequisites:
+To use Mistral-7B and Mixtral chat models with Azure AI Studio, you need the following prerequisites:
 
 ### A model deployment
 
-**Deployment to serverless APIs**
+**Deployment to a self-hosted managed compute**
 
-Jamba-Instruct chat models can be deployed to serverless API endpoints with pay-as-you-go billing. This kind of deployment provides a way to consume models as an API without hosting them on your subscription, while keeping the enterprise security and compliance that organizations need. 
+Mistral-7B and Mixtral chat models can be deployed to our self-hosted managed inference solution, which allows you to customize and control all the details about how the model is served.
 
-Deployment to a serverless API endpoint doesn't require quota from your subscription. If your model isn't deployed already, use the Azure AI Studio, Azure Machine Learning SDK for Python, the Azure CLI, or ARM templates to [deploy the model as a serverless API](deploy-models-serverless.md).
+For deployment to a self-hosted managed compute, you must have enough quota in your subscription. If you don't have enough quota available, you can use our temporary quota access by selecting the option **I want to use shared quota and I acknowledge that this endpoint will be deleted in 168 hours.**
 
 > [!div class="nextstepaction"]
-> [Deploy the model to serverless API endpoints](deploy-models-serverless.md)
+> [Deploy the model to managed compute](../concepts/deployments-overview.md)
 
 ### The inference package installed
 
@@ -613,7 +729,7 @@ using System.Reflection;
 In this section, you use the [Azure AI model inference API](https://aka.ms/azureai/modelinference) with a chat completions model for chat.
 
 > [!TIP]
-> The [Azure AI model inference API](https://aka.ms/azureai/modelinference) allows you to talk with most models deployed in Azure AI Studio with the same code and structure, including Jamba-Instruct chat models.
+> The [Azure AI model inference API](https://aka.ms/azureai/modelinference) allows you to talk with most models deployed in Azure AI Studio with the same code and structure, including Mistral-7B and Mixtral chat models.
 
 ### Create a client to consume the model
 
@@ -624,6 +740,16 @@ First, create the client to consume the model. The following code uses an endpoi
 ChatCompletionsClient client = new ChatCompletionsClient(
     new Uri(Environment.GetEnvironmentVariable("AZURE_INFERENCE_ENDPOINT")),
     new AzureKeyCredential(Environment.GetEnvironmentVariable("AZURE_INFERENCE_CREDENTIAL"))
+);
+```
+
+When you deploy the model to a self-hosted online endpoint with **Microsoft Entra ID** support, you can use the following code snippet to create a client.
+
+
+```csharp
+client = new ChatCompletionsClient(
+    new Uri(Environment.GetEnvironmentVariable("AZURE_INFERENCE_ENDPOINT")),
+    new DefaultAzureCredential(includeInteractiveCredentials: true)
 );
 ```
 
@@ -646,9 +772,9 @@ Console.WriteLine($"Model provider name: {modelInfo.Value.ModelProviderName}");
 ```
 
 ```console
-Model name: AI21-Jamba-Instruct
+Model name: mistralai-Mistral-7B-Instruct-v01
 Model type: chat-completions
-Model provider name: AI21
+Model provider name: MistralAI
 ```
 
 ### Create a chat completion request
@@ -667,6 +793,9 @@ ChatCompletionsOptions requestOptions = new ChatCompletionsOptions()
 Response<ChatCompletions> response = client.Complete(requestOptions);
 ```
 
+> [!NOTE]
+> mistralai-Mistral-7B-Instruct-v01, mistralai-Mistral-7B-Instruct-v02 and mistralai-Mixtral-8x22B-Instruct-v0-1 don't support system messages (`role="system"`). When you use the Azure AI model inference API, system messages are translated to user messages, which is the closest capability available. This translation is offered for convenience, but it's important for you to verify that the model is following the instructions in the system message with the right level of confidence.
+
 The response is as follows, where you can see the model's usage statistics:
 
 
@@ -681,7 +810,7 @@ Console.WriteLine($"\tCompletion tokens: {response.Value.Usage.CompletionTokens}
 
 ```console
 Response: As of now, it's estimated that there are about 7,000 languages spoken around the world. However, this number can vary as some languages become extinct and new ones develop. It's also important to note that the number of speakers can greatly vary between languages, with some having millions of speakers and others only a few hundred.
-Model: AI21-Jamba-Instruct
+Model: mistralai-Mistral-7B-Instruct-v01
 Usage: 
   Prompt tokens: 19
   Total tokens: 91
@@ -768,7 +897,7 @@ Console.WriteLine($"Response: {response.Value.Choices[0].Message.Content}");
 ```
 
 > [!WARNING]
-> Jamba doesn't support JSON output formatting (`response_format = { "type": "json_object" }`). You can always prompt the model to generate JSON outputs. However, such outputs are not guaranteed to be valid JSON.
+> Mistral doesn't support JSON output formatting (`response_format = { "type": "json_object" }`). You can always prompt the model to generate JSON outputs. However, such outputs are not guaranteed to be valid JSON.
 
 If you want to pass a parameter that isn't in the list of supported parameters, you can pass it to the underlying model using *extra parameters*. See [Pass extra parameters to the model](#pass-extra-parameters-to-the-model).
 
@@ -793,71 +922,88 @@ response = client.Complete(requestOptions, extraParams: ExtraParameters.PassThro
 Console.WriteLine($"Response: {response.Value.Choices[0].Message.Content}");
 ```
 
-### Apply content safety
+The following extra parameters can be passed to Mistral-7B and Mixtral chat models:
 
-The Azure AI model inference API supports [Azure AI content safety](https://aka.ms/azureaicontentsafety). When you use deployments with Azure AI content safety turned on, inputs and outputs pass through an ensemble of classification models aimed at detecting and preventing the output of harmful content. The content filtering system detects and takes action on specific categories of potentially harmful content in both input prompts and output completions.
+| Name           | Description           | Type            |
+| -------------- | --------------------- | --------------- |
+| `logit_bias` | Accepts a JSON object that maps tokens (specified by their token ID in the tokenizer) to an associated bias value from -100 to 100. Mathematically, the bias is added to the logits generated by the model prior to sampling. The exact effect will vary per model, but values between -1 and 1 should decrease or increase likelihood of selection; values like -100 or 100 should result in a ban or exclusive selection of the relevant token. | `float` |
+| `logprobs` | Whether to return log probabilities of the output tokens or not. If true, returns the log probabilities of each output token returned in the `content` of `message`. | `int` |
+| `top_logprobs` | An integer between 0 and 20 specifying the number of most likely tokens to return at each token position, each with an associated log probability. `logprobs` must be set to `true` if this parameter is used. | `float` |
+| `n` | How many chat completion choices to generate for each input message. Note that you will be charged based on the number of generated tokens across all of the choices. | `int` |
 
-The following example shows how to handle events when the model detects harmful content in the input prompt and content safety is enabled.
-
-
-```csharp
-try
-{
-    requestOptions = new ChatCompletionsOptions()
-    {
-        Messages = {
-            new ChatRequestSystemMessage("You are an AI assistant that helps people find information."),
-            new ChatRequestUserMessage(
-                "Chopping tomatoes and cutting them into cubes or wedges are great ways to practice your knife skills."
-            ),
-        },
-    };
-
-    response = client.Complete(requestOptions);
-    Console.WriteLine(response.Value.Choices[0].Message.Content);
-}
-catch (RequestFailedException ex)
-{
-    if (ex.ErrorCode == "content_filter")
-    {
-        Console.WriteLine($"Your query has trigger Azure Content Safeaty: {ex.Message}");
-    }
-    else
-    {
-        throw;
-    }
-}
-```
-
-> [!TIP]
-> To learn more about how you can configure and control Azure AI content safety settings, check the [Azure AI content safety documentation](https://aka.ms/azureaicontentsafety).
 
 ::: zone-end
 
 
 ::: zone pivot="programming-language-rest"
 
+## Mistral-7B and Mixtral chat models
+
+The Mistral-7B and Mixtral chat models include the following models:
+
+# [Mistral-7B-Instruct](#tab/mistral-7b-instruct)
+
+The Mistral-7B-Instruct Large Language Model (LLM) is an instruct, fine-tuned version of the Mistral-7B, a transformer model with the following architecture choices:
+
+* Grouped-Query Attention
+* Sliding-Window Attention
+* Byte-fallback BPE tokenizer
 
 
-You can learn more about the models in their respective model card:
+The following models are available:
 
-* [AI21-Jamba-Instruct](https://aka.ms/azureai/landing/AI21-Jamba-Instruct)
+* [mistralai-Mistral-7B-Instruct-v01](https://aka.ms/azureai/landing/mistralai-Mistral-7B-Instruct-v01)
+* [mistralai-Mistral-7B-Instruct-v02](https://aka.ms/azureai/landing/mistralai-Mistral-7B-Instruct-v02)
 
+
+# [Mixtral-8x7B-Instruct](#tab/mistral-8x7B-instruct)
+
+The Mixtral-8x7B Large Language Model (LLM) is a pretrained generative Sparse Mixture of Experts. The Mixtral-8x7B outperforms Llama 2 70B on most benchmarks with 6x faster inference.
+
+Mixtral-8x7B-v0.1 is a decoder-only model with eight distinct groups or the "experts". At every layer, for every token, a router network chooses two of these experts to process the token and combine their output additively. Mixtral has 46.7B total parameters but only uses 12.9B parameters per token with this technique; therefore, the model can perform with the same speed and cost as a 12.9B model.
+
+
+The following models are available:
+
+* [mistralai-Mixtral-8x7B-Instruct-v01](https://aka.ms/azureai/landing/mistralai-Mixtral-8x7B-Instruct-v01)
+
+
+# [Mixtral-8x22B-Instruct](#tab/mistral-8x22b-instruct)
+
+The Mixtral-8x22B-Instruct-v0.1 Large Language Model (LLM) is an instruct, fine-tuned version of the Mixtral-8x22B-v0.1. The model is a sparse Mixture-of-Experts (SMoE) model that uses only 39B active parameters out of 141B, offering unparalleled cost efficiency for its size.
+
+Mixtral 8x22B comes with the following strengths:
+
+* Fluent in English, French, Italian, German, and Spanish
+* Strong mathematics and coding capabilities
+* Natively capable of function calling; along with the constrained output mode implemented on la Plateforme, this enables application development and tech stack modernization at scale
+* Pprecise information recall from large documents, due to its 64K tokens context window
+
+
+The following models are available:
+
+* [mistralai-Mixtral-8x22B-Instruct-v0-1](https://aka.ms/azureai/landing/mistralai-Mixtral-8x22B-Instruct-v0-1)
+
+
+---
+
+> [!TIP]
+> Additionally, MistralAI supports the use of a tailored API for use with specific features of the model. To use the model-provider specific API, check [MistralAI documentation](https://docs.mistral.ai/) or see the [inference examples](#more-inference-examples) section to code examples.
 
 ## Prerequisites
 
-To use Jamba-Instruct chat models with Azure AI Studio, you need the following prerequisites:
+To use Mistral-7B and Mixtral chat models with Azure AI Studio, you need the following prerequisites:
 
 ### A model deployment
 
-**Deployment to serverless APIs**
+**Deployment to a self-hosted managed compute**
 
-Jamba-Instruct chat models can be deployed to serverless API endpoints with pay-as-you-go billing. This kind of deployment provides a way to consume models as an API without hosting them on your subscription, while keeping the enterprise security and compliance that organizations need. 
+Mistral-7B and Mixtral chat models can be deployed to our self-hosted managed inference solution, which allows you to customize and control all the details about how the model is served.
 
-Deployment to a serverless API endpoint doesn't require quota from your subscription. If your model isn't deployed already, use the Azure AI Studio, Azure Machine Learning SDK for Python, the Azure CLI, or ARM templates to [deploy the model as a serverless API](deploy-models-serverless.md).
+For deployment to a self-hosted managed compute, you must have enough quota in your subscription. If you don't have enough quota available, you can use our temporary quota access by selecting the option **I want to use shared quota and I acknowledge that this endpoint will be deleted in 168 hours.**
 
 > [!div class="nextstepaction"]
-> [Deploy the model to serverless API endpoints](deploy-models-serverless.md)
+> [Deploy the model to managed compute](../concepts/deployments-overview.md)
 
 ### A REST client
 
@@ -871,11 +1017,13 @@ Models deployed with the [Azure AI model inference API](https://aka.ms/azureai/m
 In this section, you use the [Azure AI model inference API](https://aka.ms/azureai/modelinference) with a chat completions model for chat.
 
 > [!TIP]
-> The [Azure AI model inference API](https://aka.ms/azureai/modelinference) allows you to talk with most models deployed in Azure AI Studio with the same code and structure, including Jamba-Instruct chat models.
+> The [Azure AI model inference API](https://aka.ms/azureai/modelinference) allows you to talk with most models deployed in Azure AI Studio with the same code and structure, including Mistral-7B and Mixtral chat models.
 
 ### Create a client to consume the model
 
 First, create the client to consume the model. The following code uses an endpoint URL and key that are stored in environment variables.
+
+When you deploy the model to a self-hosted online endpoint with **Microsoft Entra ID** support, you can use the following code snippet to create a client.
 
 ### Get the model's capabilities
 
@@ -893,9 +1041,9 @@ The response is as follows:
 
 ```json
 {
-    "model_name": "AI21-Jamba-Instruct",
+    "model_name": "mistralai-Mistral-7B-Instruct-v01",
     "model_type": "chat-completions",
-    "model_provider_name": "AI21"
+    "model_provider_name": "MistralAI"
 }
 ```
 
@@ -918,6 +1066,9 @@ The following example shows how you can create a basic chat completions request 
 }
 ```
 
+> [!NOTE]
+> mistralai-Mistral-7B-Instruct-v01, mistralai-Mistral-7B-Instruct-v02 and mistralai-Mixtral-8x22B-Instruct-v0-1 don't support system messages (`role="system"`). When you use the Azure AI model inference API, system messages are translated to user messages, which is the closest capability available. This translation is offered for convenience, but it's important for you to verify that the model is following the instructions in the system message with the right level of confidence.
+
 The response is as follows, where you can see the model's usage statistics:
 
 
@@ -926,7 +1077,7 @@ The response is as follows, where you can see the model's usage statistics:
     "id": "0a1234b5de6789f01gh2i345j6789klm",
     "object": "chat.completion",
     "created": 1718726686,
-    "model": "AI21-Jamba-Instruct",
+    "model": "mistralai-Mistral-7B-Instruct-v01",
     "choices": [
         {
             "index": 0,
@@ -983,7 +1134,7 @@ You can visualize how streaming generates content:
     "id": "23b54589eba14564ad8a2e6978775a39",
     "object": "chat.completion.chunk",
     "created": 1718726371,
-    "model": "AI21-Jamba-Instruct",
+    "model": "mistralai-Mistral-7B-Instruct-v01",
     "choices": [
         {
             "index": 0,
@@ -1006,7 +1157,7 @@ The last message in the stream has `finish_reason` set, indicating the reason fo
     "id": "23b54589eba14564ad8a2e6978775a39",
     "object": "chat.completion.chunk",
     "created": 1718726371,
-    "model": "AI21-Jamba-Instruct",
+    "model": "mistralai-Mistral-7B-Instruct-v01",
     "choices": [
         {
             "index": 0,
@@ -1057,7 +1208,7 @@ Explore other parameters that you can specify in the inference client. For a ful
     "id": "0a1234b5de6789f01gh2i345j6789klm",
     "object": "chat.completion",
     "created": 1718726686,
-    "model": "AI21-Jamba-Instruct",
+    "model": "mistralai-Mistral-7B-Instruct-v01",
     "choices": [
         {
             "index": 0,
@@ -1079,7 +1230,7 @@ Explore other parameters that you can specify in the inference client. For a ful
 ```
 
 > [!WARNING]
-> Jamba doesn't support JSON output formatting (`response_format = { "type": "json_object" }`). You can always prompt the model to generate JSON outputs. However, such outputs are not guaranteed to be valid JSON.
+> Mistral doesn't support JSON output formatting (`response_format = { "type": "json_object" }`). You can always prompt the model to generate JSON outputs. However, such outputs are not guaranteed to be valid JSON.
 
 If you want to pass a parameter that isn't in the list of supported parameters, you can pass it to the underlying model using *extra parameters*. See [Pass extra parameters to the model](#pass-extra-parameters-to-the-model).
 
@@ -1114,64 +1265,39 @@ extra-parameters: pass-through
 }
 ```
 
-### Apply content safety
+The following extra parameters can be passed to Mistral-7B and Mixtral chat models:
 
-The Azure AI model inference API supports [Azure AI content safety](https://aka.ms/azureaicontentsafety). When you use deployments with Azure AI content safety turned on, inputs and outputs pass through an ensemble of classification models aimed at detecting and preventing the output of harmful content. The content filtering system detects and takes action on specific categories of potentially harmful content in both input prompts and output completions.
+| Name           | Description           | Type            |
+| -------------- | --------------------- | --------------- |
+| `logit_bias` | Accepts a JSON object that maps tokens (specified by their token ID in the tokenizer) to an associated bias value from -100 to 100. Mathematically, the bias is added to the logits generated by the model prior to sampling. The exact effect will vary per model, but values between -1 and 1 should decrease or increase likelihood of selection; values like -100 or 100 should result in a ban or exclusive selection of the relevant token. | `float` |
+| `logprobs` | Whether to return log probabilities of the output tokens or not. If true, returns the log probabilities of each output token returned in the `content` of `message`. | `int` |
+| `top_logprobs` | An integer between 0 and 20 specifying the number of most likely tokens to return at each token position, each with an associated log probability. `logprobs` must be set to `true` if this parameter is used. | `float` |
+| `n` | How many chat completion choices to generate for each input message. Note that you will be charged based on the number of generated tokens across all of the choices. | `int` |
 
-The following example shows how to handle events when the model detects harmful content in the input prompt and content safety is enabled.
-
-
-```json
-{
-    "messages": [
-        {
-            "role": "system",
-            "content": "You are an AI assistant that helps people find information."
-        },
-                {
-            "role": "user",
-            "content": "Chopping tomatoes and cutting them into cubes or wedges are great ways to practice your knife skills."
-        }
-    ]
-}
-```
-
-
-```json
-{
-    "error": {
-        "message": "The response was filtered due to the prompt triggering Microsoft's content management policy. Please modify your prompt and retry.",
-        "type": null,
-        "param": "prompt",
-        "code": "content_filter",
-        "status": 400
-    }
-}
-```
-
-> [!TIP]
-> To learn more about how you can configure and control Azure AI content safety settings, check the [Azure AI content safety documentation](https://aka.ms/azureaicontentsafety).
 
 ::: zone-end
 
 ## More inference examples
 
-For more examples of how to use Jamba, see the following examples and tutorials:
+For more examples of how to use Mistral, see the following examples and tutorials:
 
 | Description                               | Language          | Sample                                                          |
 |-------------------------------------------|-------------------|-----------------------------------------------------------------|
+| CURL request                              | Bash              | [Link](https://aka.ms/mistral-large/webrequests-sample)         |
 | Azure AI Inference package for JavaScript | JavaScript        | [Link](https://aka.ms/azsdk/azure-ai-inference/javascript/samples)  |
 | Azure AI Inference package for Python     | Python            | [Link](https://aka.ms/azsdk/azure-ai-inference/python/samples)  |
+| Python web requests                       | Python            | [Link](https://aka.ms/mistral-large/webrequests-sample)         |
+| OpenAI SDK (experimental)                 | Python            | [Link](https://aka.ms/mistral-large/openaisdk)                  |
+| LangChain                                 | Python            | [Link](https://aka.ms/mistral-large/langchain-sample)           |
+| Mistral AI                                | Python            | [Link](https://aka.ms/mistral-large/mistralai-sample)           |
+| LiteLLM                                   | Python            | [Link](https://aka.ms/mistral-large/litellm-sample)             | 
 
-## Cost and quota considerations for Jamba family of models deployed as serverless API endpoints
 
-Quota is managed per deployment. Each deployment has a rate limit of 200,000 tokens per minute and 1,000 API requests per minute. However, we currently limit one deployment per model per project. Contact Microsoft Azure Support if the current rate limits aren't sufficient for your scenarios.
+## Cost and quota considerations for Mistral family of models deployed to managed compute
 
-Jamba models deployed as a serverless API are offered by AI21 through the Azure Marketplace and integrated with Azure AI Studio for use. You can find the Azure Marketplace pricing when deploying the model.
+Mistral models deployed to managed compute are billed based on core hours of the associated compute instance. The cost of the compute instance is determined by the size of the instance, the number of instances running, and the run duration.
 
-Each time a project subscribes to a given offer from the Azure Marketplace, a new resource is created to track the costs associated with its consumption. The same resource is used to track costs associated with inference; however, multiple meters are available to track each scenario independently.
-
-For more information on how to track costs, see [Monitor costs for models offered through the Azure Marketplace](costs-plan-manage.md#monitor-costs-for-models-offered-through-the-azure-marketplace).
+It is a good practice to start with a low number of instances and scale up as needed. You can monitor the cost of the compute instance in the Azure portal.
 
 ## Related content
 
