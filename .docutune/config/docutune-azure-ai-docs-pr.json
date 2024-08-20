@@ -1,0 +1,9 @@
+{
+    "BaseConfiguration": "docutune-default.json",
+    "Docsets": [],
+    "MetadataDelimiter": "\"",
+    "Exclude": [],
+    "PreloadTOCFiles": [],
+    "TermFiles": [],
+    "ApplyPolicies": []
+}
