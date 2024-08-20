@@ -1,5 +1,10 @@
 {
-  "Docsets": [],
+  "Docsets": [
+    {
+      "DocsetName": "azure-ai",
+      "BuildSourceFolder": "."
+    }
+  ],
   "MetadataDelimiter": "\"",
   "Exclude": [],
   "PreloadTOCFiles": [],
