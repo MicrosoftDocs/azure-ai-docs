@@ -16,6 +16,8 @@
   "notification_subscribers": [],
   "sync_notification_subscribers": [],
   "branches_to_filter": [],
+  "git_repository_url_open_to_public_contributors": "https://github.com/MicrosoftDocs/azure-ai-docs",
+  "git_repository_branch_open_to_public_contributors": "main",
   "need_preview_pull_request": true,
   "dependent_repositories": [
     {
@@ -25,5 +27,6 @@
       "branch_mapping": {}
     }
   ],
-  "branch_target_mapping": {}
+  "branch_target_mapping": {},
+  "targets": {}
 }
