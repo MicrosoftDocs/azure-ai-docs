@@ -29,7 +29,7 @@ Microsoft and a community of partners created ONNX as an open standard for repre
 ONNX Runtime is used in high-scale Microsoft services such as Bing, Office, and Azure AI. Although performance gains depend on many factors, these Microsoft services report an __average 2x performance gain on CPU__. In addition to Azure Machine Learning services, ONNX Runtime also runs in other products that support Machine Learning workloads, including:
 
 - __Windows__: The runtime is built into Windows as part of [Windows Machine Learning](/windows/ai/windows-ml/) and runs on hundreds of millions of devices. 
-- __Azure SQL product family__: Run native scoring on data in [Azure SQL Edge](../azure-sql-edge/onnx-overview.md) and [Azure SQL Managed Instance](/azure/azure-sql/managed-instance/machine-learning-services-overview).
+- __Azure SQL product family__: Run native scoring on data in [Azure SQL Edge](/azure/azure-sql-edge/onnx-overview) and [Azure SQL Managed Instance](/azure/azure-sql/managed-instance/machine-learning-services-overview).
 - __ML.NET__: [Run ONNX models in ML.NET](/dotnet/machine-learning/tutorials/object-detection-onnx).
 
 :::image type="content" source="media/concept-onnx/onnx.png" alt-text="ONNX flow diagram showing training, converters, and deployment." lightbox="media/concept-onnx/onnx.png":::
@@ -41,7 +41,7 @@ You can obtain ONNX models in several ways:
 - Train a new ONNX model in Azure Machine Learning (as described in the [examples](#examples) section of this article) or by using [automated machine learning capabilities](concept-automated-ml.md#automl--onnx).
 - Convert an existing model from another format to ONNX as shown in these [tutorials](https://github.com/onnx/tutorials).
 - Get a pretrained ONNX model from the [ONNX Model Zoo](https://github.com/onnx/models).
-- Generate a customized ONNX model from [Azure AI Custom Vision service](../ai-services/custom-vision-service/index.yml).
+- Generate a customized ONNX model from [Azure AI Custom Vision service](/azure/ai-services/custom-vision-service/).
 
 Many models, including image classification, object detection, and text processing models can be represented as ONNX models. If you run into an issue with a model that can't be converted successfully, file a GitHub issue in the repository of the converter that you used. You can continue using your existing model format until the issue is addressed.
 

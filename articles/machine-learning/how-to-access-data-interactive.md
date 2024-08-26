@@ -679,7 +679,7 @@ You can also take subsets of large data with these operations:
 
 ## Downloading data using the `azcopy` utility
 
-Use the `azcopy` utility to download the data to the local SSD of your host (local machine, cloud VM, Azure Machine Learning Compute Instance, etc.), into the local filesystem. The `azcopy` utility, which is preinstalled on an Azure Machine Learning compute instance, handles the data download. If you **don't** use an Azure Machine Learning compute instance or a Data Science Virtual Machine (DSVM), you might need to install `azcopy`. For more information, visit [azcopy](../storage/common/storage-ref-azcopy.md).
+Use the `azcopy` utility to download the data to the local SSD of your host (local machine, cloud VM, Azure Machine Learning Compute Instance, etc.), into the local filesystem. The `azcopy` utility, which is preinstalled on an Azure Machine Learning compute instance, handles the data download. If you **don't** use an Azure Machine Learning compute instance or a Data Science Virtual Machine (DSVM), you might need to install `azcopy`. For more information, visit [azcopy](/azure/storage/common/storage-ref-azcopy).
 
 > [!CAUTION]
 > We don't recommend data downloads into the `/home/azureuser/cloudfiles/code` location on a compute instance. This location is designed to store notebook and code artifacts, **not** data. Reading data from this location will incur significant performance overhead when training. Instead, we recommend data storage in the `home/azureuser`, which is the local SSD of the compute node.

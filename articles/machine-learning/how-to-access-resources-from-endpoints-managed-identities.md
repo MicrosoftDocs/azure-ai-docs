@@ -20,7 +20,7 @@ ms.custom: devplatv2, cliv2
 
 Learn how to access Azure resources from your scoring script with an online endpoint and either a system-assigned managed identity or a user-assigned managed identity. 
 
-Both managed endpoints and Kubernetes endpoints allow Azure Machine Learning to manage the burden of provisioning your compute resource and deploying your machine learning model. Typically your model needs to access Azure resources such as the Azure Container Registry or your blob storage for inferencing; with a managed identity, you can access these resources without needing to manage credentials in your code. [Learn more about managed identities](../active-directory/managed-identities-azure-resources/overview.md).
+Both managed endpoints and Kubernetes endpoints allow Azure Machine Learning to manage the burden of provisioning your compute resource and deploying your machine learning model. Typically your model needs to access Azure resources such as the Azure Container Registry or your blob storage for inferencing; with a managed identity, you can access these resources without needing to manage credentials in your code. [Learn more about managed identities](/azure/active-directory/managed-identities-azure-resources/overview).
 
 This guide assumes you don't have a managed identity, a storage account, or an online endpoint. If you already have these components, skip to the [Give access permission to the managed identity](#give-access-permission-to-the-managed-identity) section. 
 

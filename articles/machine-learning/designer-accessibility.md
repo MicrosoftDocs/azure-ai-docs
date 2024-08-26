@@ -15,7 +15,7 @@ ms.custom: designer
 
 # Use a keyboard to use Azure Machine Learning designer
 
-Learn how to use a keyboard and screen reader to use Azure Machine Learning designer. For a list of keyboard shortcuts that work everywhere in the Azure portal, see [Keyboard shortcuts in the Azure portal](../azure-portal/azure-portal-keyboard-shortcuts.md)
+Learn how to use a keyboard and screen reader to use Azure Machine Learning designer. For a list of keyboard shortcuts that work everywhere in the Azure portal, see [Keyboard shortcuts in the Azure portal](/azure/azure-portal/azure-portal-keyboard-shortcuts)
 
 This workflow has been tested with [Narrator](https://support.microsoft.com/help/22798/windows-10-complete-guide-to-narrator) and [JAWS](https://www.freedomscientific.com/products/software/jaws/), but it should work with other standard screen readers.
 
@@ -81,5 +81,5 @@ Use the following shortcuts with the access key. For more information on access 
 
 ## Next steps
 
-- [Turn on high contrast or change theme](../azure-portal/set-preferences.md#choose-a-theme-or-enable-high-contrast)
+- [Turn on high contrast or change theme](/azure/azure-portal/set-preferences#choose-a-theme-or-enable-high-contrast)
 - [Accessibility related tools at Microsoft](https://www.microsoft.com/accessibility)

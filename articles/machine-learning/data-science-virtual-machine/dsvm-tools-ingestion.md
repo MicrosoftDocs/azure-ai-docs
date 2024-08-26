@@ -38,7 +38,7 @@ The DSVM offers these data movement tools:
 | Supported DSVM versions | Windows |
 | Typical uses | Copy files to Azure Blob storage<br>Copy blobs between accounts |
 | How to use / run it? | Open a command prompt, and type `azcopy` to get help. |
-| Links to samples | [AzCopy on Windows](../../storage/common/storage-use-azcopy-v10.md) |
+| Links to samples | [AzCopy on Windows](/azure/storage/common/storage-use-azcopy-v10) |
 
 ## Azure Cosmos DB Data Migration tool
 

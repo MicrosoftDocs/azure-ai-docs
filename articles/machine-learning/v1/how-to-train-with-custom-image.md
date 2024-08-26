@@ -30,7 +30,7 @@ Run the code on either of these environments:
 * Your own Jupyter Notebook server:
   * Create a [workspace configuration file](../how-to-configure-environment.md#local-and-dsvm-only-create-a-workspace-configuration-file).
   * Install the [Azure Machine Learning SDK](/python/api/overview/azure/ml/install). 
-  * Create an [Azure container registry](../../container-registry/index.yml) or other Docker registry that's available on the internet.
+  * Create an [Azure container registry](/azure/container-registry/) or other Docker registry that's available on the internet.
 
 ## Set up a training experiment
 

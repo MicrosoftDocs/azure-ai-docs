@@ -21,7 +21,7 @@ ms.custom: UpdateFrequency5, data4ml, synapse-azureml, sdkv1
 > [!WARNING]
 > The Azure Synapse Analytics integration with Azure Machine Learning, available in Python SDK v1, is deprecated. Users can still use Synapse workspace, registered with Azure Machine Learning, as a linked service. However, a new Synapse workspace can no longer be registered with Azure Machine Learning as a linked service. We recommend use of serverless Spark compute and attached Synapse Spark pools, available in CLI v2 and Python SDK v2. For more information, visit [https://aka.ms/aml-spark](https://aka.ms/aml-spark).
 
-In this article, you learn how to interactively perform data wrangling tasks within a dedicated Synapse session, powered by [Azure Synapse Analytics](../../synapse-analytics/overview-what-is.md), in a Jupyter notebook. These tasks rely on the [Azure Machine Learning Python SDK](/python/api/overview/azure/ml/). For more information about Azure Machine Learning pipelines, visit [How to use Apache Spark (powered by Azure Synapse Analytics) in your machine learning pipeline (preview)](how-to-use-synapsesparkstep.md). For more information about how to use Azure Synapse Analytics with a Synapse workspace, visit the [Azure Synapse Analytics get started series](../../synapse-analytics/get-started.md).
+In this article, you learn how to interactively perform data wrangling tasks within a dedicated Synapse session, powered by [Azure Synapse Analytics](/azure/synapse-analytics/overview-what-is), in a Jupyter notebook. These tasks rely on the [Azure Machine Learning Python SDK](/python/api/overview/azure/ml/). For more information about Azure Machine Learning pipelines, visit [How to use Apache Spark (powered by Azure Synapse Analytics) in your machine learning pipeline (preview)](how-to-use-synapsesparkstep.md). For more information about how to use Azure Synapse Analytics with a Synapse workspace, visit the [Azure Synapse Analytics get started series](/azure/synapse-analytics/get-started).
 
 ## Azure Machine Learning and Azure Synapse Analytics integration
 
@@ -35,9 +35,9 @@ With the Azure Synapse Analytics integration with Azure Machine Learning (previe
 
 * Install the [Azure Machine Learning Python SDK](/python/api/overview/azure/ml/install)
 
-* [Create a Synapse workspace in Azure portal](../../synapse-analytics/quickstart-create-workspace.md)
+* [Create a Synapse workspace in Azure portal](/azure/synapse-analytics/quickstart-create-workspace)
 
-* [Create an Apache Spark pool using Azure portal, web tools, or Synapse Studio](../../synapse-analytics/quickstart-create-apache-spark-pool-portal.md)
+* [Create an Apache Spark pool using Azure portal, web tools, or Synapse Studio](/azure/synapse-analytics/quickstart-create-apache-spark-pool-portal)
 
 * Install the `azureml-synapse` package (preview) with this code:
 
@@ -91,7 +91,7 @@ env.register(workspace=ws)
 To start data preparation with the Apache Spark pool in your custom environment, specify both the Apache Spark pool name and the environment to use during the Apache Spark session. You can provide your subscription ID, the machine learning workspace resource group, and the name of the machine learning workspace.
 
 >[!IMPORTANT]
-> Be sure to enable [Allow session level packages](../../synapse-analytics/spark/apache-spark-manage-session-packages.md#session-scoped-python-packages) in the linked Synapse workspace.
+> Be sure to enable [Allow session level packages](/azure/synapse-analytics/spark/apache-spark-manage-session-packages#session-scoped-python-packages) in the linked Synapse workspace.
 >
 >![enable session level packages](media/how-to-data-prep-synapse-spark-pool/enable-session-level-package.png)
 
@@ -109,7 +109,7 @@ You have two options to load data from these storage services:
 
 * Read in data from an existing [Azure Machine Learning dataset](how-to-create-register-datasets.md)
 
-To access these storage services, you need **Storage Blob Data Reader** permissions. To write data back to these storage services, you need **Storage Blob Data Contributor** permissions. [Learn more about storage permissions and roles](../../storage/blobs/assign-azure-role-data-access.md).
+To access these storage services, you need **Storage Blob Data Reader** permissions. To write data back to these storage services, you need **Storage Blob Data Contributor** permissions. [Learn more about storage permissions and roles](/azure/storage/blobs/assign-azure-role-data-access).
 
 ### Load data with Hadoop Distributed Files System (HDFS) path
 
@@ -200,7 +200,7 @@ df.show()
 
 ## Save data to storage and stop spark session
 
-Once your data exploration and preparation is complete, store your prepared data for later use in your storage account on Azure. In this code sample, the prepared data is written back to Azure Blob storage, overwriting the original `Titanic.csv` file in the `training_data` directory. To write back to storage, you need **Storage Blob Data Contributor** permissions. For more information, visit [Assign an Azure role for access to blob data](../../storage/blobs/assign-azure-role-data-access.md).
+Once your data exploration and preparation is complete, store your prepared data for later use in your storage account on Azure. In this code sample, the prepared data is written back to Azure Blob storage, overwriting the original `Titanic.csv` file in the `training_data` directory. To write back to storage, you need **Storage Blob Data Contributor** permissions. For more information, visit [Assign an Azure role for access to blob data](/azure/storage/blobs/assign-azure-role-data-access).
 
 ```python
 %% synapse

@@ -38,7 +38,7 @@ West US 2: 'https://dataset1000genomes.blob.core.windows.net/dataset'
 
 West Central US: 'https://dataset1000genomes-secondary.blob.core.windows.net/dataset'
 
-[SAS Token](../storage/common/storage-sas-overview.md): sv=2019-10-10&si=prod&sr=c&sig=9nzcxaQn0NprMPlSh4RhFQHcXedLQIcFgbERiooHEqM%3D
+[SAS Token](/azure/storage/common/storage-sas-overview): sv=2019-10-10&si=prod&sr=c&sig=9nzcxaQn0NprMPlSh4RhFQHcXedLQIcFgbERiooHEqM%3D
 
 ## Use terms
 

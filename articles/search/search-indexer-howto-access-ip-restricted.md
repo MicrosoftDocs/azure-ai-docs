@@ -20,7 +20,7 @@ On behalf of an indexer, a search service issues outbound calls to an external A
 This article explains how to find the IP address of your search service and configure an inbound IP rule on an Azure Storage account. While specific to Azure Storage, this approach also works for other Azure resources that use IP firewall rules for data access, such as Azure Cosmos DB and Azure SQL.
 
 > [!NOTE]
-> Applicable to Azure Storage only. Your storage account and your search service must be in different regions if you want to define IP firewall rules. If your setup doesn't permit this, try the [trusted service exception](search-indexer-howto-access-trusted-service-exception.md) or [resource instance rule](../storage/common/storage-network-security.md#grant-access-from-azure-resource-instances) instead.
+> Applicable to Azure Storage only. Your storage account and your search service must be in different regions if you want to define IP firewall rules. If your setup doesn't permit this, try the [trusted service exception](search-indexer-howto-access-trusted-service-exception.md) or [resource instance rule](/azure/storage/common/storage-network-security#grant-access-from-azure-resource-instances) instead.
 >
 > For private connections from indexers to any supported Azure resource, we recommend setting up a [shared private link](search-indexer-howto-access-private.md). Private connections travel the Microsoft backbone network, bypassing the public internet completely.
 
@@ -86,7 +86,7 @@ An IP address range is defined for each region that supports Azure AI Search. Sp
 
 You can get this IP address range from the `AzureCognitiveSearch` service tag.
 
-1. Use either the [discovery API](../virtual-network/service-tags-overview.md#use-the-service-tag-discovery-api) or the [downloadable JSON file](../virtual-network/service-tags-overview.md#discover-service-tags-by-using-downloadable-json-files). If the search service is the Azure Public cloud, download the [Azure Public JSON file](https://www.microsoft.com/download/details.aspx?id=56519).
+1. Use either the [discovery API](/azure/virtual-network/service-tags-overview#use-the-service-tag-discovery-api) or the [downloadable JSON file](/azure/virtual-network/service-tags-overview#discover-service-tags-by-using-downloadable-json-files). If the search service is the Azure Public cloud, download the [Azure Public JSON file](https://www.microsoft.com/download/details.aspx?id=56519).
 
 1. Open the JSON file and search for "AzureCognitiveSearch". For a search service in WestUS2, the IP addresses for the multitenant indexer execution environment are:
 
@@ -144,6 +144,6 @@ If you don't need key-based authentication, we recommend that you disable API ke
 
 ## Next Steps
 
-- [Configure Azure Storage firewalls](../storage/common/storage-network-security.md)
+- [Configure Azure Storage firewalls](/azure/storage/common/storage-network-security)
 - [Configure an IP firewall for Azure Cosmos DB](/azure/cosmos-db/how-to-configure-firewall)
 - [Configure IP firewall for Azure SQL Server](/azure/azure-sql/database/firewall-configure)

@@ -34,7 +34,7 @@ Azure AI Search makes outbound calls to other Azure PaaS resources in the follow
 
 Shared private links only work for Azure-to-Azure connections. If you're connecting to OpenAI or another external model, the connection must be over the public internet.
 
-Shared private links are for operations and data accessed through a [private endpoint](../private-link/private-endpoint-overview.md) for Azure resources or clients that run in an Azure virtual network.
+Shared private links are for operations and data accessed through a [private endpoint](/azure/private-link/private-endpoint-overview) for Azure resources or clients that run in an Azure virtual network.
 
 A shared private link is:
 
@@ -46,7 +46,7 @@ Only your search service can use the private links that it creates, and there ca
 
 Once you set up the private link, it's used automatically whenever the search service connects to that PaaS resource. You don't need to modify the connection string or alter the client you're using to issue the requests, although the device used for the connection must connect using an authorized IP in the Azure PaaS resource's firewall.
 
-There are two scenarios for using [Azure Private Link](../private-link/private-link-overview.md) and Azure AI Search together.
+There are two scenarios for using [Azure Private Link](/azure/private-link/private-link-overview) and Azure AI Search together.
 
 + Scenario one: create a shared private link when an *outbound* (indexer) connection to Azure PaaS requires a private connection.
 
@@ -103,7 +103,7 @@ You can create a shared private link for the following resources.
 
 <sup>3</sup> The `Microsoft.Sql/servers` resource type is used for connections to Azure SQL database. There's currently no support for a shared private link to Azure Synapse SQL.
 
-<sup>4</sup> The `Microsoft.Web/sites` resource type is used for App service and Azure functions. In the context of Azure AI Search, an Azure function is the more likely scenario. An Azure function is commonly used for hosting the logic of a custom skill. Azure Function has Consumption, Premium, and Dedicated [App Service hosting plans](../app-service/overview-hosting-plans.md). The [App Service Environment (ASE)](../app-service/environment/overview.md), [Azure Kubernetes Service (AKS)](/azure/aks/intro-kubernetes) and [Azure API Management](../api-management/api-management-key-concepts.md) aren't supported at this time.
+<sup>4</sup> The `Microsoft.Web/sites` resource type is used for App service and Azure functions. In the context of Azure AI Search, an Azure function is the more likely scenario. An Azure function is commonly used for hosting the logic of a custom skill. Azure Function has Consumption, Premium, and Dedicated [App Service hosting plans](/azure/app-service/overview-hosting-plans). The [App Service Environment (ASE)](/azure/app-service/environment/overview), [Azure Kubernetes Service (AKS)](/azure/aks/intro-kubernetes) and [Azure API Management](/azure/api-management/api-management-key-concepts) aren't supported at this time.
 
 <sup>5</sup> See [Create a shared private link for a SQL Managed Instance](search-indexer-how-to-access-private-sql.md) for instructions.
 
@@ -423,6 +423,6 @@ After the indexer is created successfully, it should connect to the Azure resour
 Learn more about private endpoints and other secure connection methods:
 
 + [Troubleshoot issues with shared private link resources](troubleshoot-shared-private-link-resources.md)
-+ [What are private endpoints?](../private-link/private-endpoint-overview.md)
-+ [DNS configurations needed for private endpoints](../private-link/private-endpoint-dns.md)
++ [What are private endpoints?](/azure/private-link/private-endpoint-overview)
++ [DNS configurations needed for private endpoints](/azure/private-link/private-endpoint-dns)
 + [Indexer access to content protected by Azure network security features](search-indexer-securing-resources.md)

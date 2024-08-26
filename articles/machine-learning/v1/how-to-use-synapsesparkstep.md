@@ -29,7 +29,7 @@ In this article, you learn how to use Apache Spark pools powered by Azure Synaps
 
 * [Configure your development environment](how-to-configure-environment.md) to install the Azure Machine Learning SDK, or use an [Azure Machine Learning compute instance](../concept-compute-instance.md) with the SDK already installed
 
-* Create an Azure Synapse Analytics workspace and Apache Spark pool. For more information, visit [Quickstart: Create a serverless Apache Spark pool using Synapse Studio](../../synapse-analytics/quickstart-create-apache-spark-pool-studio.md)
+* Create an Azure Synapse Analytics workspace and Apache Spark pool. For more information, visit [Quickstart: Create a serverless Apache Spark pool using Synapse Studio](/azure/synapse-analytics/quickstart-create-apache-spark-pool-studio)
 
 ## Link your Azure Machine Learning workspace and Azure Synapse Analytics workspace
 
@@ -46,7 +46,7 @@ You create and administer your Apache Spark pools in an Azure Synapse Analytics 
 > [!Important]
 > To successfully link to the Synapse workspace, you must be granted the **Owner** role of the Synapse workspace. Check your access in the [Azure portal](https://portal.azure.com/).
 >
-> The linked service will get a system-assigned managed identity (SAI) at creation time. You must assign this link service SAI the "Synapse Apache Spark administrator" role from Synapse Studio, so that it can submit the Spark job (see [How to manage Synapse RBAC role assignments in Synapse Studio](../../synapse-analytics/security/how-to-manage-synapse-rbac-role-assignments.md)).
+> The linked service will get a system-assigned managed identity (SAI) at creation time. You must assign this link service SAI the "Synapse Apache Spark administrator" role from Synapse Studio, so that it can submit the Spark job (see [How to manage Synapse RBAC role assignments in Synapse Studio](/azure/synapse-analytics/security/how-to-manage-synapse-rbac-role-assignments)).
 >
 > You must also give the user of the Azure Machine Learning workspace the "Contributor" role, from Azure portal of resource management.
 
@@ -88,7 +88,7 @@ synapse_compute=ComputeTarget.attach(
 synapse_compute.wait_for_completion()
 ```
 
-The code first configures the `SynapseCompute`. The `linked_service` argument is the `LinkedService` object you created or retrieved in the previous step. The `type` argument must be `SynapseSpark`. The `pool_name` argument in `SynapseCompute.attach_configuration()` must match that of an existing pool in your Azure Synapse Analytics workspace. For more information about creation of an Apache spark pool in the Azure Synapse Analytics workspace, visit [Quickstart: Create a serverless Apache Spark pool using Synapse Studio](../../synapse-analytics/quickstart-create-apache-spark-pool-studio.md). The `attach_config` type is `ComputeTargetAttachConfiguration`.
+The code first configures the `SynapseCompute`. The `linked_service` argument is the `LinkedService` object you created or retrieved in the previous step. The `type` argument must be `SynapseSpark`. The `pool_name` argument in `SynapseCompute.attach_configuration()` must match that of an existing pool in your Azure Synapse Analytics workspace. For more information about creation of an Apache spark pool in the Azure Synapse Analytics workspace, visit [Quickstart: Create a serverless Apache Spark pool using Synapse Studio](/azure/synapse-analytics/quickstart-create-apache-spark-pool-studio). The `attach_config` type is `ComputeTargetAttachConfiguration`.
 
 After creation of the configuration, create a machine learning `ComputeTarget` by passing in the `Workspace` and `ComputeTargetAttachConfiguration` values, and the name by which you'd like to refer to the compute within the machine learning workspace. The call to `ComputeTarget.attach()` is asynchronous, so the sample is blocked until the call completes.
 

@@ -27,7 +27,7 @@ With Azure Machine Learning and the Azure platform, you can:
 
 ## Restrict access to resources and operations
 
-[Microsoft Entra ID](../active-directory/fundamentals/active-directory-whatis.md) is the identity service provider for Azure Machine Learning. You can use it to create and manage the security objects (user, group, service principal, and managed identity) that are used to authenticate to Azure resources. Multifactor authentication (MFA) is supported if Microsoft Entra ID is configured to use it.
+[Microsoft Entra ID](/azure/active-directory/fundamentals/active-directory-whatis) is the identity service provider for Azure Machine Learning. You can use it to create and manage the security objects (user, group, service principal, and managed identity) that are used to authenticate to Azure resources. Multifactor authentication (MFA) is supported if Microsoft Entra ID is configured to use it.
 
 Here's the authentication process for Azure Machine Learning through MFA in Microsoft Entra ID:
 
@@ -37,7 +37,7 @@ Here's the authentication process for Azure Machine Learning through MFA in Micr
 
 [![Diagram that illustrates authentication in Azure Machine Learning.](media/concept-enterprise-security/authentication.png)](media/concept-enterprise-security/authentication.png#lightbox)
 
-Each workspace has an associated system-assigned [managed identity](../active-directory/managed-identities-azure-resources/overview.md) that has the same name as the workspace. This managed identity is used to securely access resources that the workspace uses. It has the following Azure role-based access control (RBAC) permissions on associated resources:
+Each workspace has an associated system-assigned [managed identity](/azure/active-directory/managed-identities-azure-resources/overview) that has the same name as the workspace. This managed identity is used to securely access resources that the workspace uses. It has the following Azure role-based access control (RBAC) permissions on associated resources:
 
 | Resource | Permissions |
 | ----- | ----- |
@@ -77,7 +77,7 @@ For more information, see the following articles:
 
 ## Provide network security and isolation
 
-To restrict network access to Azure Machine Learning resources, you can use an [Azure Machine Learning managed virtual network](how-to-managed-network.md) or an [Azure Virtual Network instance](../virtual-network/virtual-networks-overview.md). Using a virtual network reduces the attack surface for your solution and the chances of data exfiltration.
+To restrict network access to Azure Machine Learning resources, you can use an [Azure Machine Learning managed virtual network](how-to-managed-network.md) or an [Azure Virtual Network instance](/azure/virtual-network/virtual-networks-overview). Using a virtual network reduces the attack surface for your solution and the chances of data exfiltration.
 
 You don't have to choose one or the other. For example, you can use an Azure Machine Learning managed virtual network to help secure managed compute resources and an Azure Virtual Network instance for your unmanaged resources or to help secure client access to the workspace.
 
@@ -115,13 +115,13 @@ Azure Machine Learning has several inbound and outbound network dependencies. So
 
 ## Scan for vulnerabilities
 
-[Microsoft Defender for Cloud](../security-center/security-center-introduction.md) provides unified security management and advanced threat protection across hybrid cloud workloads. For Azure Machine Learning, you should enable scanning of your [Azure Container Registry](../container-registry/container-registry-intro.md) resource and AKS resources. For more information, see [Introduction to Microsoft Defender for container registries](../security-center/defender-for-container-registries-introduction.md) and [Introduction to Microsoft Defender for Kubernetes](../security-center/defender-for-kubernetes-introduction.md).
+[Microsoft Defender for Cloud](/azure/security-center/security-center-introduction) provides unified security management and advanced threat protection across hybrid cloud workloads. For Azure Machine Learning, you should enable scanning of your [Azure Container Registry](/azure/container-registry/container-registry-intro) resource and AKS resources. For more information, see [Introduction to Microsoft Defender for container registries](/azure/security-center/defender-for-container-registries-introduction) and [Introduction to Microsoft Defender for Kubernetes](/azure/security-center/defender-for-kubernetes-introduction).
 
 ## Audit and manage compliance
 
-[Azure Policy](../governance/policy/index.yml) is a governance tool that helps you ensure that Azure resources comply with your policies. You can set policies to allow or enforce specific configurations, such as whether your Azure Machine Learning workspace uses a private endpoint.
+[Azure Policy](/azure/governance/policy/) is a governance tool that helps you ensure that Azure resources comply with your policies. You can set policies to allow or enforce specific configurations, such as whether your Azure Machine Learning workspace uses a private endpoint.
 
-For more information on Azure Policy, see the [Azure Policy documentation](../governance/policy/overview.md). For more information on the policies that are specific to Azure Machine Learning, see [Audit and manage Azure Machine Learning](how-to-integrate-azure-policy.md).
+For more information on Azure Policy, see the [Azure Policy documentation](/azure/governance/policy/overview). For more information on the policies that are specific to Azure Machine Learning, see [Audit and manage Azure Machine Learning](how-to-integrate-azure-policy.md).
 
 ## Next steps
 

@@ -88,11 +88,11 @@ If your Azure resource is behind a firewall, set up [inbound rules that admit in
 
 - To obtain the IP addresses of the multitenant environments within which an indexer might run, use the `AzureCognitiveSearch` service tag. 
 
-  [Azure service tags](../virtual-network/service-tags-overview.md) have a published range of IP addresses of the multitenant environments for each region. You can find these IPs using the [discovery API](../virtual-network/service-tags-overview.md#use-the-service-tag-discovery-api) or a [downloadable JSON file](../virtual-network/service-tags-overview.md#discover-service-tags-by-using-downloadable-json-files). IP ranges are allocated by region, so check your search service region before you start.
+  [Azure service tags](/azure/virtual-network/service-tags-overview) have a published range of IP addresses of the multitenant environments for each region. You can find these IPs using the [discovery API](/azure/virtual-network/service-tags-overview#use-the-service-tag-discovery-api) or a [downloadable JSON file](/azure/virtual-network/service-tags-overview#discover-service-tags-by-using-downloadable-json-files). IP ranges are allocated by region, so check your search service region before you start.
 
 #### Setting up IP rules for Azure SQL
 
-When setting the IP rule for the multitenant environment, certain SQL data sources support a simple approach for IP address specification. Instead of enumerating all of the IP addresses in the rule, you can create a [Network Security Group rule](../virtual-network/network-security-groups-overview.md) that specifies the `AzureCognitiveSearch` service tag. 
+When setting the IP rule for the multitenant environment, certain SQL data sources support a simple approach for IP address specification. Instead of enumerating all of the IP addresses in the rule, you can create a [Network Security Group rule](/azure/virtual-network/network-security-groups-overview) that specifies the `AzureCognitiveSearch` service tag. 
 
 You can specify the service tag if your data source is either:
 
@@ -171,9 +171,9 @@ In Azure Storage, access through a firewall requires that the request originates
 
 There are two options for supporting data access using the system identity:
 
-- Configure search to run as a [trusted service](search-indexer-howto-access-trusted-service-exception.md) and use the [trusted service exception](../storage/common/storage-network-security.md#trusted-access-based-on-a-managed-identity) in Azure Storage.
+- Configure search to run as a [trusted service](search-indexer-howto-access-trusted-service-exception.md) and use the [trusted service exception](/azure/storage/common/storage-network-security#trusted-access-based-on-a-managed-identity) in Azure Storage.
 
-- Configure a [resource instance rule](../storage/common/storage-network-security.md#grant-access-from-azure-resource-instances) in Azure Storage that admits inbound requests from an Azure resource.
+- Configure a [resource instance rule](/azure/storage/common/storage-network-security#grant-access-from-azure-resource-instances) in Azure Storage that admits inbound requests from an Azure resource.
 
 The above options depend on Microsoft Entra ID for authentication, which means that the connection must be made with a Microsoft Entra login. Currently, only an Azure AI Search [system-assigned managed identity](search-howto-managed-identities-data-sources.md#create-a-system-managed-identity) is supported for same-region connections through a firewall.
 

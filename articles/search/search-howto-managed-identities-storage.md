@@ -25,7 +25,7 @@ You can use a system-assigned managed identity or a user-assigned managed identi
 + Azure AI Search, Basic tier or higher, with a [managed identity](search-howto-managed-identities-data-sources.md).
 
 > [!NOTE]
-> If storage is network-protected and in the same region as your search service, you must use a system-assigned managed identity and either one of the following network options: [connect as a trusted service](search-indexer-howto-access-trusted-service-exception.md), or [connect using the resource instance rule](../storage/common/storage-network-security.md#grant-access-from-azure-resource-instances). 
+> If storage is network-protected and in the same region as your search service, you must use a system-assigned managed identity and either one of the following network options: [connect as a trusted service](search-indexer-howto-access-trusted-service-exception.md), or [connect using the resource instance rule](/azure/storage/common/storage-network-security#grant-access-from-azure-resource-instances). 
 
 ## Create a role assignment in Azure Storage
 

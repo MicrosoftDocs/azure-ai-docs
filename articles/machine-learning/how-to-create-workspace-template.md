@@ -18,7 +18,7 @@ ms.date: 02/29/2024
 
 In this article, you learn several ways to create an Azure Machine Learning workspace using Azure Resource Manager templates. A Resource Manager template makes it easy to create resources as a single, coordinated operation. A template is a JSON document that defines the resources that are needed for a deployment. It may also specify deployment parameters. Parameters are used to provide input values when using the template.
 
-For more information, see [Deploy an application with Azure Resource Manager template](../azure-resource-manager/templates/deploy-powershell.md).
+For more information, see [Deploy an application with Azure Resource Manager template](/azure/azure-resource-manager/templates/deploy-powershell).
 
 ## Prerequisites
 
@@ -46,7 +46,7 @@ For more information, see [Deploy an application with Azure Resource Manager tem
 
 The template doesn't support multiple Azure Machine Learning workspaces deployed in the same VNet. This is because the template creates new DNS zones during deployment.
 
-If you want to create a template that deploys multiple workspaces in the same VNet, set this up manually (using the Azure Portal or CLI) and then [use the Azure portal to generate a template](../azure-resource-manager/templates/export-template-portal.md).
+If you want to create a template that deploys multiple workspaces in the same VNet, set this up manually (using the Azure Portal or CLI) and then [use the Azure portal to generate a template](/azure/azure-resource-manager/templates/export-template-portal).
 
 ## Workspace Resource Manager template
 
@@ -78,14 +78,14 @@ The example template has two **required** parameters:
 > [!TIP]
 > While the template associated with this document creates a new Azure Container Registry, you can also create a new workspace without creating a container registry. One will be created when you perform an operation that requires a container registry. For example, training or deploying a model.
 >
-> You can also reference an existing container registry or storage account in the Azure Resource Manager template, instead of creating a new one. When doing so, you must either [use a managed identity](how-to-identity-based-service-authentication.md) (preview), or [enable the admin account](../container-registry/container-registry-authentication.md#admin-account) for the container registry.
+> You can also reference an existing container registry or storage account in the Azure Resource Manager template, instead of creating a new one. When doing so, you must either [use a managed identity](how-to-identity-based-service-authentication.md) (preview), or [enable the admin account](/azure/container-registry/container-registry-authentication#admin-account) for the container registry.
 
 [!INCLUDE [machine-learning-delete-acr](includes/machine-learning-delete-acr.md)]
 
 For more information on templates, see the following articles:
 
-* [Author Azure Resource Manager templates](../azure-resource-manager/templates/syntax.md)
-* [Deploy an application with Azure Resource Manager templates](../azure-resource-manager/templates/deploy-powershell.md)
+* [Author Azure Resource Manager templates](/azure/azure-resource-manager/templates/syntax)
+* [Deploy an application with Azure Resource Manager templates](/azure/azure-resource-manager/templates/deploy-powershell)
 * [Microsoft.MachineLearningServices resource types](/azure/templates/microsoft.machinelearningservices/allversions)
 
 ## Deploy template
@@ -474,7 +474,7 @@ To deploy a workspace with existing associated resources you have to set the **v
 
 ## Use the Azure portal
 
-1. Follow the steps in [Deploy resources from custom template](../azure-resource-manager/templates/deploy-portal.md#deploy-resources-from-custom-template). When you arrive at the __Select a template__ screen, choose the **quickstarts** entry. When it appears, select the link labeled "Click here to open template repository". This link takes you to the `quickstarts` directory in the Azure quickstart templates repository.
+1. Follow the steps in [Deploy resources from custom template](/azure/azure-resource-manager/templates/deploy-portal#deploy-resources-from-custom-template). When you arrive at the __Select a template__ screen, choose the **quickstarts** entry. When it appears, select the link labeled "Click here to open template repository". This link takes you to the `quickstarts` directory in the Azure quickstart templates repository.
 1. In the list of quickstart templates, select `microsoft.machinelearningservices`. Finally, select `Deploy to Azure`.
 1. When the template appears, provide the following required information and any other parameters depending on your deployment scenario.
 
@@ -486,7 +486,7 @@ To deploy a workspace with existing associated resources you have to set the **v
 1. Select __Review + create__.
 1. In the __Review + create__ screen, agree to the listed terms and conditions and select __Create__.
 
-For more information, see [Deploy resources from custom template](../azure-resource-manager/templates/deploy-portal.md#deploy-resources-from-custom-template).
+For more information, see [Deploy resources from custom template](/azure/azure-resource-manager/templates/deploy-portal#deploy-resources-from-custom-template).
 
 ## Troubleshooting
 
@@ -589,8 +589,8 @@ To avoid this problem, we recommend one of the following approaches:
 
 ## Next steps
 
-* [Deploy resources with Resource Manager templates and Resource Manager REST API](../azure-resource-manager/templates/deploy-rest.md).
-* [Creating and deploying Azure resource groups through Visual Studio](../azure-resource-manager/templates/create-visual-studio-deployment-project.md).
+* [Deploy resources with Resource Manager templates and Resource Manager REST API](/azure/azure-resource-manager/templates/deploy-rest).
+* [Creating and deploying Azure resource groups through Visual Studio](/azure/azure-resource-manager/templates/create-visual-studio-deployment-project).
 * [For other templates related to Azure Machine Learning, see the Azure Quickstart Templates repository](https://github.com/Azure/azure-quickstart-templates).
 * [How to use workspace diagnostics](how-to-workspace-diagnostic-api.md).
 * [Move an Azure Machine Learning workspace to another subscription](how-to-move-workspace.md).

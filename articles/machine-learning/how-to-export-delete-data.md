@@ -28,7 +28,7 @@ Azure Machine Learning stores in-product data that is available for export and d
 
 In Azure Machine Learning, personal data consists of user information in job history documents.
 
-An Azure workspace relies on a **resource group** to hold the related resources for an Azure solution. When you create a workspace, you can either use an existing resource group, or you can create a new one. Visit [this resource](../azure-resource-manager/management/manage-resource-groups-portal.md) for more information about Azure resource groups.
+An Azure workspace relies on a **resource group** to hold the related resources for an Azure solution. When you create a workspace, you can either use an existing resource group, or you can create a new one. Visit [this resource](/azure/azure-resource-manager/management/manage-resource-groups-portal) for more information about Azure resource groups.
 
 ## Delete high-level resources using the portal
 
@@ -44,10 +44,10 @@ To delete these resources, select them from the list, and choose **Delete**:
 
 > [!IMPORTANT]
 > If the resource is configured for soft delete, the data won't actually delete unless you optionally select to delete the resource permanently. For more information, visit these resources:
-> * [Azure log analytics workspace](../azure-monitor/logs/delete-workspace.md)
+> * [Azure log analytics workspace](/azure/azure-monitor/logs/delete-workspace)
 > * [Azure Key Vault soft-delete](/azure/key-vault/general/soft-delete-overview)
-> * [Soft delete for blobs](../storage/blobs/soft-delete-blob-overview.md)
-> * [Soft delete in Azure Container Registry](../container-registry/container-registry-soft-delete-policy.md)
+> * [Soft delete for blobs](/azure/storage/blobs/soft-delete-blob-overview)
+> * [Soft delete in Azure Container Registry](/azure/container-registry/container-registry-soft-delete-policy)
 > * [Workspace soft-deletion](concept-soft-delete.md)
 
 :::image type="content" source="media/how-to-export-delete-data/delete-resource-group-resources.png" lightbox="media/how-to-export-delete-data/delete-resource-group-resources.png" alt-text="Screenshot of portal, with delete icon highlighted.":::

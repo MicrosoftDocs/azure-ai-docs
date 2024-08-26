@@ -13,7 +13,7 @@ ms.date: 10/31/2023
 
 # Manage access control for managed feature store
 
-This article describes how to manage access (authorization) to an Azure Machine Learning managed feature store. [Azure role-based access control (Azure RBAC)](../role-based-access-control/overview.md) manages access to Azure resources, including the ability to create new resources or use existing ones. Users in your Microsoft Entra ID are assigned specific roles, which grant access to resources. Azure provides both built-in roles and the ability to create custom roles.
+This article describes how to manage access (authorization) to an Azure Machine Learning managed feature store. [Azure role-based access control (Azure RBAC)](/azure/role-based-access-control/overview) manages access to Azure resources, including the ability to create new resources or use existing ones. Users in your Microsoft Entra ID are assigned specific roles, which grant access to resources. Azure provides both built-in roles and the ability to create custom roles.
 
 ## Identities and user types
 

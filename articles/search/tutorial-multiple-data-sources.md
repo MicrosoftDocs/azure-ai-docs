@@ -43,7 +43,7 @@ A finished version of the code in this tutorial can be found in the following pr
 ## Prerequisites
 
 + [Azure Cosmos DB for NoSQL](/azure/cosmos-db/create-cosmosdb-resources-portal)
-+ [Azure Storage](../storage/common/storage-account-create.md)
++ [Azure Storage](/azure/storage/common/storage-account-create)
 + [Visual Studio](https://visualstudio.microsoft.com/)
 + [Azure AI Search (version 11.x) NuGet package](https://www.nuget.org/packages/Azure.Search.Documents/)
 + [Azure AI Search](search-create-service-portal.md)
@@ -87,7 +87,7 @@ This sample uses two small sets of data that describe seven fictional hotels. On
 
 1. Sign in to the [Azure portal](https://portal.azure.com), navigate to your Azure storage account, select **Blobs**, and then select **+ Container**.
 
-1. [Create a blob container](../storage/blobs/storage-quickstart-blobs-portal.md) named **hotel-rooms** to store the sample hotel room JSON files. You can set the Public Access Level to any of its valid values.
+1. [Create a blob container](/azure/storage/blobs/storage-quickstart-blobs-portal) named **hotel-rooms** to store the sample hotel room JSON files. You can set the Public Access Level to any of its valid values.
 
    :::image type="content" source="media/tutorial-multiple-data-sources/blob-add-container.png" alt-text="Create a blob container" border="true":::
 

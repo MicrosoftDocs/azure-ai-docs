@@ -159,7 +159,7 @@ ml_client.begin_create_or_update(k8s_compute).result()
 
 ## Assign managed identity to the compute target
 
-A common challenge for developers is the management of secrets and credentials used to secure communication between different components of a solution. [Managed identities](../active-directory/managed-identities-azure-resources/overview.md) eliminate the need for developers to manage credentials.
+A common challenge for developers is the management of secrets and credentials used to secure communication between different components of a solution. [Managed identities](/azure/active-directory/managed-identities-azure-resources/overview) eliminate the need for developers to manage credentials.
 
 To access Azure Container Registry (ACR) for a Docker image, and a Storage Account for training data, attach Kubernetes compute with a system-assigned or user-assigned managed identity enabled.
 
@@ -177,15 +177,15 @@ To access Azure Container Registry (ACR) for a Docker image, and a Storage Accou
 
 ### Assign Azure roles to managed identity
 Azure offers a couple of ways to assign roles to a managed identity.
-- [Use Azure portal to assign roles](../role-based-access-control/role-assignments-portal.yml)
-- [Use Azure CLI to assign roles](../role-based-access-control/role-assignments-cli.md)
-- [Use Azure PowerShell to assign roles](../role-based-access-control/role-assignments-powershell.md)
+- [Use Azure portal to assign roles](/azure/role-based-access-control/role-assignments-portal)
+- [Use Azure CLI to assign roles](/azure/role-based-access-control/role-assignments-cli)
+- [Use Azure PowerShell to assign roles](/azure/role-based-access-control/role-assignments-powershell)
 
 If you're using the Azure portal to assign roles and have a **system-assigned managed identity**, **Select User**, **Group Principal** or **Service Principal**, you can search for the identity name by selecting **Select members**. The identity name needs to be formatted as: `<workspace name>/computes/<compute target name>`.
 
 If you have user-assigned managed identity, select **Managed identity** to find the target identity.
 
-You can use Managed Identity to pull images from Azure Container Registry. Grant the **AcrPull** role to the compute Managed Identity. For more information, see [Azure Container Registry roles and permissions](../container-registry/container-registry-roles.md).
+You can use Managed Identity to pull images from Azure Container Registry. Grant the **AcrPull** role to the compute Managed Identity. For more information, see [Azure Container Registry roles and permissions](/azure/container-registry/container-registry-roles).
 
 You can use a managed identity to access Azure Blob:
 - For read-only purpose, **Storage Blob Data Reader** role should be granted to the compute managed identity.

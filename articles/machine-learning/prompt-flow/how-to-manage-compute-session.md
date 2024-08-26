@@ -71,7 +71,7 @@ One flow binds to one compute session. You can start a compute session on a flow
         ```
 
         > [!TIP]
-        > The following [Azure RBAC role assignments](../../role-based-access-control/role-assignments.md) are required on your user-assigned managed identity for your Azure Machine Learning workspace to access data on the workspace-associated resources.
+        > The following [Azure RBAC role assignments](/azure/role-based-access-control/role-assignments) are required on your user-assigned managed identity for your Azure Machine Learning workspace to access data on the workspace-associated resources.
         
         |Resource|Permission|
         |---|---|

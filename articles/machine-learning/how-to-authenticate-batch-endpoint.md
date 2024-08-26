@@ -134,7 +134,7 @@ In this case, we want to execute a batch endpoint using a service principal alre
 
 # [Azure CLI](#tab/cli)
 
-1. Create a secret to use for authentication as explained at [Option 3: Create a new client secret](../active-directory/develop/howto-create-service-principal-portal.md#option-3-create-a-new-client-secret).
+1. Create a secret to use for authentication as explained at [Option 3: Create a new client secret](/azure/active-directory/develop/howto-create-service-principal-portal#option-3-create-a-new-client-secret).
 1. To authenticate using a service principal, use the following command. For more details see [Sign in with Azure CLI](/cli/azure/authenticate-azure-cli).
 
     ```azurecli
@@ -153,7 +153,7 @@ In this case, we want to execute a batch endpoint using a service principal alre
 
 # [Python](#tab/sdk)
 
-1. Create a secret to use for authentication as explained at [Option 3: Create a new client secret](../active-directory/develop/howto-create-service-principal-portal.md#option-3-create-a-new-client-secret).
+1. Create a secret to use for authentication as explained at [Option 3: Create a new client secret](/azure/active-directory/develop/howto-create-service-principal-portal#option-3-create-a-new-client-secret).
 1. To authenticate using a service principal, indicate the tenant ID, client ID and client secret of the service principal using environment variables as demonstrated:
 
     ```python
@@ -182,7 +182,7 @@ In this case, we want to execute a batch endpoint using a service principal alre
 
 # [REST](#tab/rest)
 
-1. Create a secret to use for authentication as explained at [Option 3: Create a new client secret](../active-directory/develop/howto-create-service-principal-portal.md#option-3-create-a-new-client-secret).
+1. Create a secret to use for authentication as explained at [Option 3: Create a new client secret](/azure/active-directory/develop/howto-create-service-principal-portal#option-3-create-a-new-client-secret).
 
 1. Use the login service from Azure to get an authorization token. Authorization tokens are issued to a particular scope. The resource type for Azure Machine Learning is `https://ml.azure.com`. The request would look as follows:
 
@@ -277,9 +277,9 @@ job = ml_client.batch_endpoints.invoke(
 
 You can use the REST API of Azure Machine Learning to start a batch endpoints job using a managed identity. The steps vary depending on the underlying service being used. Some examples include (but are not limited to):
 
-* [Managed identity for Azure Data Factory](../data-factory/data-factory-service-identity.md)
-* [How to use managed identities for App Service and Azure Functions](../app-service/overview-managed-identity.md).
-* [How to use managed identities for Azure resources on an Azure VM to acquire an access token](../active-directory/managed-identities-azure-resources/how-to-use-vm-token.md).
+* [Managed identity for Azure Data Factory](/azure/data-factory/data-factory-service-identity)
+* [How to use managed identities for App Service and Azure Functions](/azure/app-service/overview-managed-identity).
+* [How to use managed identities for Azure resources on an Azure VM to acquire an access token](/azure/active-directory/managed-identities-azure-resources/how-to-use-vm-token).
 
 You can also use the Azure CLI to get an authentication token for the managed identity and the pass it to the batch endpoints URI.
 
@@ -287,9 +287,9 @@ You can also use the Azure CLI to get an authentication token for the managed id
 
 ## Configure RBAC for Batch Endpoints invoke
 
-Batch Endpoints exposes a durable API consumers can use to generate jobs. The invoker request proper permission to be able to generate those jobs. You can either use one of the [built-in security roles](../role-based-access-control/built-in-roles.md) or you can create a custom role for the purposes.
+Batch Endpoints exposes a durable API consumers can use to generate jobs. The invoker request proper permission to be able to generate those jobs. You can either use one of the [built-in security roles](/azure/role-based-access-control/built-in-roles) or you can create a custom role for the purposes.
 
-To successfully invoke a batch endpoint you need the following explicit actions granted to the identity used to invoke the endpoints. See [Steps to assign an Azure role](../role-based-access-control/role-assignments-steps.md) for instructions to assign them.
+To successfully invoke a batch endpoint you need the following explicit actions granted to the identity used to invoke the endpoints. See [Steps to assign an Azure role](/azure/role-based-access-control/role-assignments-steps) for instructions to assign them.
 
 ```json
 "actions": [
@@ -345,7 +345,7 @@ Batch endpoints ensure that only authorized users are able to invoke batch deplo
 | Azure Data Lake Storage Gen1 | Not apply                       | Identity of the job + Managed identity of the compute cluster | POSIX             |
 | Azure Data Lake Storage Gen2 | Not apply                       | Identity of the job + Managed identity of the compute cluster | POSIX and RBAC    |
 
-For those items in the table where **Identity of the job + Managed identity of the compute cluster** is displayed, the managed identity of the compute cluster is used **for mounting** and configuring storage accounts. However, the identity of the job is still used to read the underlying data allowing you to achieve granular access control. That means that in order to successfully read data from storage, the managed identity of the compute cluster where the deployment is running must have at least [Storage Blob Data Reader](../role-based-access-control/built-in-roles.md#storage-blob-data-reader) access to the storage account.
+For those items in the table where **Identity of the job + Managed identity of the compute cluster** is displayed, the managed identity of the compute cluster is used **for mounting** and configuring storage accounts. However, the identity of the job is still used to read the underlying data allowing you to achieve granular access control. That means that in order to successfully read data from storage, the managed identity of the compute cluster where the deployment is running must have at least [Storage Blob Data Reader](/azure/role-based-access-control/built-in-roles#storage-blob-data-reader) access to the storage account.
 
 To configure the compute cluster for data access, follow these steps:
 

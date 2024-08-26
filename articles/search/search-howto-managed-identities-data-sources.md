@@ -21,7 +21,7 @@ ms.date: 07/25/2024
 
 You can use Microsoft Entra ID and role assignments for outbound connections from Azure AI Search to resources providing data, applied AI, or vectorization during indexing or queries. 
 
-To use roles on an outbound connection, first configure your search service to use either a [system-assigned or user-assigned managed identity](../active-directory/managed-identities-azure-resources/overview.md) as the security principle for your search service in a Microsoft Entra tenant. Once you have a managed identity, you can assign roles for authorized access. Managed identities and role assignments eliminate the need for passing secrets and credentials in a connection string or code.
+To use roles on an outbound connection, first configure your search service to use either a [system-assigned or user-assigned managed identity](/azure/active-directory/managed-identities-azure-resources/overview) as the security principle for your search service in a Microsoft Entra tenant. Once you have a managed identity, you can assign roles for authorized access. Managed identities and role assignments eliminate the need for passing secrets and credentials in a connection string or code.
 
 ## Prerequisites
 
@@ -52,7 +52,7 @@ A search service uses Azure Storage as an indexer data source and as a data sink
 
 <sup>1</sup> For connectivity between search and storage, your network security configuration imposes constraints on which type of managed identity you can use. Only a system managed identity can be used for a same-region connection to storage via the trusted service exception or resource instance rule. See [Access to a network-protected storage account](search-indexer-securing-resources.md#access-to-a-network-protected-storage-account) for details.
 
-<sup>2</sup> AI search service currently can't connect to tables on a storage account that has [shared key access turned off](../storage/common/shared-key-authorization-prevent.md).
+<sup>2</sup> AI search service currently can't connect to tables on a storage account that has [shared key access turned off](/azure/storage/common/shared-key-authorization-prevent).
 
 <sup>3</sup> Connections to Azure OpenAI or Azure AI include: [Custom skill](cognitive-search-custom-skill-interface.md), [Custom vectorizer](vector-search-vectorizer-custom-web-api.md), [Azure OpenAI embedding skill](cognitive-search-skill-azure-openai-embedding.md), [Azure OpenAI vectorizer](vector-search-how-to-configure-vectorizer.md), [AML skill](cognitive-search-aml-skill.md), [Azure AI Studio model catalog vectorizer](vector-search-vectorizer-azure-machine-learning-ai-studio-catalog.md), [Azure AI Vision multimodal embeddings skill](cognitive-search-skill-vision-vectorize.md), [Azure AI Vision vectorizer](vector-search-vectorizer-ai-services-vision.md).
 
@@ -199,7 +199,7 @@ You can use a preview Management REST API instead of the portal to assign a user
 
    + "type" is the type of identity. Valid values are "SystemAssigned", "UserAssigned", or "SystemAssigned, UserAssigned" for both. A value of "None" clears any previously assigned identities from the search service.
 
-   + "userAssignedIdentities" includes the details of the user assigned managed identity. This identity [must already exist](../active-directory/managed-identities-azure-resources/how-manage-user-assigned-managed-identities.md) before you can specify it in the Update Service request.
+   + "userAssignedIdentities" includes the details of the user assigned managed identity. This identity [must already exist](/azure/active-directory/managed-identities-azure-resources/how-manage-user-assigned-managed-identities) before you can specify it in the Update Service request.
   
 
 ---
@@ -400,7 +400,7 @@ A custom skill targets the endpoint of an Azure function or app hosting custom c
 
 If your Azure resource is behind a firewall, make sure there's an inbound rule that admits requests from your search service. 
 
-+ For same-region connections to Azure Blob Storage or Azure Data Lake Storage Gen2, use a system managed identity and the [trusted service exception](search-indexer-howto-access-trusted-service-exception.md). Optionally, you can configure a [resource instance rule](../storage/common/storage-network-security.md#grant-access-from-azure-resource-instances) to admit requests.
++ For same-region connections to Azure Blob Storage or Azure Data Lake Storage Gen2, use a system managed identity and the [trusted service exception](search-indexer-howto-access-trusted-service-exception.md). Optionally, you can configure a [resource instance rule](/azure/storage/common/storage-network-security#grant-access-from-azure-resource-instances) to admit requests.
 
 + For all other resources and connections, [configure an IP firewall rule](search-indexer-howto-access-ip-restricted.md) that admits requests from Search. See [Indexer access to content protected by Azure network security features](search-indexer-securing-resources.md) for details.
 
@@ -410,4 +410,4 @@ If your Azure resource is behind a firewall, make sure there's an inbound rule t
 + [AI enrichment overview](cognitive-search-concept-intro.md)
 + [Indexers overview](search-indexer-overview.md)
 + [Authenticate with Microsoft Entra ID](/azure/architecture/framework/security/design-identity-authentication)
-+ [About managed identities (Microsoft Entra ID)](../active-directory/managed-identities-azure-resources/overview.md)
++ [About managed identities (Microsoft Entra ID)](/azure/active-directory/managed-identities-azure-resources/overview)

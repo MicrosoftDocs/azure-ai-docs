@@ -29,9 +29,9 @@ Azure Machine Learning is composed of multiple Azure services. There are multipl
 
 [!INCLUDE [cli & sdk v2](includes/machine-learning-cli-sdk-v2-prereqs.md)]
 
-* To assign roles, the login for your Azure subscription must have the [Managed Identity Operator](../role-based-access-control/built-in-roles.md#managed-identity-operator) role, or other role that grants the required actions (such as __Owner__).
+* To assign roles, the login for your Azure subscription must have the [Managed Identity Operator](/azure/role-based-access-control/built-in-roles#managed-identity-operator) role, or other role that grants the required actions (such as __Owner__).
 
-* You must be familiar with creating and working with [Managed Identities](../active-directory/managed-identities-azure-resources/overview.md).
+* You must be familiar with creating and working with [Managed Identities](/azure/active-directory/managed-identities-azure-resources/overview).
 
 ## Workspace identity types
 
@@ -64,7 +64,7 @@ You can add a user-assigned managed identity when creating an Azure Machine Lear
 1. From the __Basics__ page, select the Azure Storage Account, Azure Container Registry, and Azure Key Vault you want to use with the workspace.
 1. From the __Identity__ page, select __User-assigned identity__ and then select the managed identity to use.
 
-The following [Azure RBAC role assignments](../role-based-access-control/role-assignments.md) are required on your user-assigned managed identity for your Azure Machine Learning workspace to access data on the workspace-associated resources.
+The following [Azure RBAC role assignments](/azure/role-based-access-control/role-assignments) are required on your user-assigned managed identity for your Azure Machine Learning workspace to access data on the workspace-associated resources.
 
 |Resource|Permission|
 |---|---|
@@ -288,7 +288,7 @@ During cluster creation or when editing compute cluster details, in the **Advanc
 
 ### Data storage
 
-When you create a datastore that uses **identity-based data access**, your Azure account ([Microsoft Entra token](../active-directory/fundamentals/active-directory-whatis.md)) is used to confirm you have permission to access the storage service. In the **identity-based data access** scenario, no authentication credentials are saved. Only the storage account information is stored in the datastore.
+When you create a datastore that uses **identity-based data access**, your Azure account ([Microsoft Entra token](/azure/active-directory/fundamentals/active-directory-whatis)) is used to confirm you have permission to access the storage service. In the **identity-based data access** scenario, no authentication credentials are saved. Only the storage account information is stored in the datastore.
 
 In contrast, datastores that use **credential-based authentication** cache connection information, like your storage account key or SAS token, in the [key vault](https://azure.microsoft.com/services/key-vault/) that's associated with the workspace. This approach has the limitation that other workspace users with sufficient permissions can retrieve those credentials, which may be a security concern for some organization.
 
@@ -299,7 +299,7 @@ There are two scenarios in which you can apply identity-based data access in Azu
 - Accessing storage services
 - Training machine learning models
 
-The identity-based access allows you to use [role-based access controls (RBAC)](../storage/blobs/assign-azure-role-data-access.md) to restrict which identities, such as users or compute resources, have access to the data. 
+The identity-based access allows you to use [role-based access controls (RBAC)](/azure/storage/blobs/assign-azure-role-data-access) to restrict which identities, such as users or compute resources, have access to the data. 
 
 ### Accessing storage services
 
@@ -323,7 +323,7 @@ Identity-based data access supports connections to **only** the following storag
 * Azure Data Lake Storage Gen1
 * Azure Data Lake Storage Gen2
 
-To access these storage services, you must have at least [Storage Blob Data Reader](../role-based-access-control/built-in-roles.md#storage-blob-data-reader) access to the storage account. Only storage account owners can [change your access level via the Azure portal](../storage/blobs/assign-azure-role-data-access.md). 
+To access these storage services, you must have at least [Storage Blob Data Reader](/azure/role-based-access-control/built-in-roles#storage-blob-data-reader) access to the storage account. Only storage account owners can [change your access level via the Azure portal](/azure/storage/blobs/assign-azure-role-data-access). 
 
 ### Access data for training jobs on compute using managed identity
 
@@ -344,7 +344,7 @@ To enable authentication with compute managed identity:
 
 Once the identity-based authentication is enabled, the compute managed identity is used by default when accessing data within your training jobs. Optionally, you can authenticate with user identity using the steps described in next section.
 
-For information on using configuring Azure RBAC for the storage, see [role-based access controls](../storage/blobs/assign-azure-role-data-access.md).
+For information on using configuring Azure RBAC for the storage, see [role-based access controls](/azure/storage/blobs/assign-azure-role-data-access).
 
 ### Access data for training jobs on compute clusters using user identity
 
@@ -474,7 +474,7 @@ When you disable the admin user for ACR, Azure Machine Learning uses a managed i
 ### Bring your own ACR
 
 If ACR admin user is disallowed by subscription policy, you should first create ACR without admin user, and then associate it with the workspace. 
-[Create ACR from Azure CLI](../container-registry/container-registry-get-started-azure-cli.md) without setting ```--admin-enabled``` argument, or from Azure portal without enabling admin user. Then, when creating Azure Machine Learning workspace, specify the Azure resource ID of the ACR. The following example demonstrates creating a new Azure Machine Learning workspace that uses an existing ACR:
+[Create ACR from Azure CLI](/azure/container-registry/container-registry-get-started-azure-cli) without setting ```--admin-enabled``` argument, or from Azure portal without enabling admin user. Then, when creating Azure Machine Learning workspace, specify the Azure resource ID of the ACR. The following example demonstrates creating a new Azure Machine Learning workspace that uses an existing ACR:
 
 [!INCLUDE [cli v2](includes/machine-learning-cli-v2.md)]
 

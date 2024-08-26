@@ -64,7 +64,7 @@ The Azure cloud provides several types of pipeline, each with a different purpos
 | Scenario | Primary persona | Azure offering | OSS offering | Canonical pipe | Strengths |
 | -------- | --------------- | -------------- | ------------ | -------------- | --------- |
 | Model orchestration (Machine learning) | Data scientist | Azure Machine Learning Pipelines | Kubeflow Pipelines | Data -> Model | Distribution, caching, code-first, reuse | 
-| Data orchestration (Data prep) | Data engineer | [Azure Data Factory pipelines](../data-factory/concepts-pipelines-activities.md) | Apache Airflow | Data -> Data | Strongly typed movement, data-centric activities |
+| Data orchestration (Data prep) | Data engineer | [Azure Data Factory pipelines](/azure/data-factory/concepts-pipelines-activities) | Apache Airflow | Data -> Data | Strongly typed movement, data-centric activities |
 | Code & app orchestration (CI/CD) | App Developer / Ops | [Azure Pipelines](https://azure.microsoft.com/services/devops/pipelines/) | Jenkins | Code + Model -> App/Service | Most open and flexible activity support, approval queues, phases with gating |
 
 ## Next steps

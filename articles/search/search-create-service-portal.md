@@ -109,7 +109,7 @@ Here's a checklist for choosing a region:
 
    Be aware that Azure AI Vision multimodal embeddings API, used for [integrated image vectorization](search-get-started-portal-image-search.md), must be accessed through an Azure AI multiservice account, but is available in a [smaller subset of regions](/azure/ai-services/computer-vision/overview-image-analysis#region-availability).
 
-1. Do you have business continuity and disaster recovery (BCDR) requirements? Such requirements dictate creating multiple search services in [regional pairs](../availability-zones/cross-region-replication-azure.md#azure-paired-regions) in [availability zones](search-reliability.md#availability-zones). For example, if you're operating in North America, you might choose East US and West US, or North Central US and South Central US, for each search service.
+1. Do you have business continuity and disaster recovery (BCDR) requirements? Such requirements dictate creating multiple search services in [regional pairs](/azure/availability-zones/cross-region-replication-azure#azure-paired-regions) in [availability zones](search-reliability.md#availability-zones). For example, if you're operating in North America, you might choose East US and West US, or North Central US and South Central US, for each search service.
 
 ## Choose a tier
 
@@ -179,7 +179,7 @@ Most customers use just one service provisioned at a tier [sufficient for expect
 
 Although most customers use just one service, service redundancy might be necessary if operational requirements include the following:
 
-+ [Business continuity and disaster recovery (BCDR)](../availability-zones/cross-region-replication-azure.md). Azure AI Search doesn't provide instant failover if there's an outage.
++ [Business continuity and disaster recovery (BCDR)](/azure/availability-zones/cross-region-replication-azure). Azure AI Search doesn't provide instant failover if there's an outage.
 
 + [Multitenant architectures](search-modeling-multitenant-saas-applications.md) sometimes call for two or more services.
 
@@ -236,4 +236,4 @@ After provisioning a service, you can continue in the portal to create your firs
 Want to optimize and save on your cloud spending?
 
 > [!div class="nextstepaction"]
-> [Start analyzing costs with Cost Management](../cost-management-billing/costs/quick-acm-cost-analysis.md?WT.mc_id=costmanagementcontent_docsacmhorizontal_-inproduct-learn)
+> [Start analyzing costs with Cost Management](/azure/cost-management-billing/costs/quick-acm-cost-analysis?WT.mc_id=costmanagementcontent_docsacmhorizontal_-inproduct-learn)

@@ -38,7 +38,7 @@ This dataset is stored in the West US 2 and West Central US Azure regions. Alloc
     
     West Central US: 'https://datasetgatkbestpractices-secondary.blob.core.windows.net/dataset'
     
-    [SAS Token](../storage/common/storage-sas-overview.md): ?sv=2020-04-08&si=prod&sr=c&sig=6SaDfKtXAIfdpO%2BkvNA%2FsTNmNij%2Byh%2F%2F%2Bf98WAUqs7I%3D
+    [SAS Token](/azure/storage/common/storage-sas-overview): ?sv=2020-04-08&si=prod&sr=c&sig=6SaDfKtXAIfdpO%2BkvNA%2FsTNmNij%2Byh%2F%2F%2Bf98WAUqs7I%3D
 
 2. datasetgatklegacybundles
 
@@ -46,7 +46,7 @@ This dataset is stored in the West US 2 and West Central US Azure regions. Alloc
     
     West Central US: 'https://datasetgatklegacybundles-secondary.blob.core.windows.net/dataset'
     
-    [SAS Token](../storage/common/storage-sas-overview.md): ?sv=2020-04-08&si=prod&sr=c&sig=xBfxOPBqHKUCszzwbNCBYF0k9osTQjKnZbEjXCW7gU0%3D
+    [SAS Token](/azure/storage/common/storage-sas-overview): ?sv=2020-04-08&si=prod&sr=c&sig=xBfxOPBqHKUCszzwbNCBYF0k9osTQjKnZbEjXCW7gU0%3D
 
 3. datasetgatktestdata
 
@@ -54,7 +54,7 @@ This dataset is stored in the West US 2 and West Central US Azure regions. Alloc
     
     West Central US: 'https://datasetgatktestdata-secondary.blob.core.windows.net/dataset'
     
-    [SAS Token](../storage/common/storage-sas-overview.md): ?sv=2020-04-08&si=prod&sr=c&sig=fzLts1Q2vKjuvR7g50vE4HteEHBxTcJbNvf%2FZCeDMO4%3D
+    [SAS Token](/azure/storage/common/storage-sas-overview): ?sv=2020-04-08&si=prod&sr=c&sig=fzLts1Q2vKjuvR7g50vE4HteEHBxTcJbNvf%2FZCeDMO4%3D
 
 4. datasetpublicbroadref
     
@@ -62,11 +62,11 @@ This dataset is stored in the West US 2 and West Central US Azure regions. Alloc
     
     West Central US: 'https://datasetpublicbroadref-secondary.blob.core.windows.net/dataset'
     
-    [SAS Token](../storage/common/storage-sas-overview.md): ?sv=2020-04-08&si=prod&sr=c&sig=DQxmjB4D1lAfOW9AxIWbXwZx6ksbwjlNkixw597JnvQ%3D
+    [SAS Token](/azure/storage/common/storage-sas-overview): ?sv=2020-04-08&si=prod&sr=c&sig=DQxmjB4D1lAfOW9AxIWbXwZx6ksbwjlNkixw597JnvQ%3D
 
     South Central US: 'https://datasetpublicbroadrefsc.blob.core.windows.net/dataset'
     
-    [SAS Token](../storage/common/storage-sas-overview.md): ?sv=2023-01-03&st=2024-02-12T19%3A56%3A11Z&se=2029-02-13T19%3A56%3A00Z&sr=c&sp=rl&sig=oGiNUGZ08PaabHVNtIiVEpJ1kcyqcL6ZadQcuN2ns%2FM%3D
+    [SAS Token](/azure/storage/common/storage-sas-overview): ?sv=2023-01-03&st=2024-02-12T19%3A56%3A11Z&se=2029-02-13T19%3A56%3A00Z&sr=c&sp=rl&sig=oGiNUGZ08PaabHVNtIiVEpJ1kcyqcL6ZadQcuN2ns%2FM%3D
 
 6. datasetbroadpublic
 
@@ -74,11 +74,11 @@ This dataset is stored in the West US 2 and West Central US Azure regions. Alloc
     
     West Central US: 'https://datasetbroadpublic-secondary.blob.core.windows.net/dataset'
     
-    [SAS Token](../storage/common/storage-sas-overview.md): ?sv=2020-04-08&si=prod&sr=c&sig=u%2Bg2Ab7WKZEGiAkwlj6nKiEeZ5wdoJb10Az7uUwis%2Fg%3D
+    [SAS Token](/azure/storage/common/storage-sas-overview): ?sv=2020-04-08&si=prod&sr=c&sig=u%2Bg2Ab7WKZEGiAkwlj6nKiEeZ5wdoJb10Az7uUwis%2Fg%3D
 
     South Central US: 'https://datasetbroadpublicsc.blob.core.windows.net/dataset'
          
-    [SAS Token](../storage/common/storage-sas-overview.md): ?sv=2023-01-03&st=2024-02-12T19%3A58%3A33Z&se=2029-02-13T19%3A58%3A00Z&sr=c&sp=rl&sig=C2lDhe1uwu%2FJnC9rbQO65G6%2BdEUQ%2Fl0VheXrlnIQVAs%3D
+    [SAS Token](/azure/storage/common/storage-sas-overview): ?sv=2023-01-03&st=2024-02-12T19%3A58%3A33Z&se=2029-02-13T19%3A58%3A00Z&sr=c&sp=rl&sig=C2lDhe1uwu%2FJnC9rbQO65G6%2BdEUQ%2Fl0VheXrlnIQVAs%3D
 
 ## Use Terms
 

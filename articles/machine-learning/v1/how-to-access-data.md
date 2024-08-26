@@ -67,10 +67,10 @@ Datastores currently support storage of connection information to the storage se
 
 | Storage&nbsp;type | Authentication&nbsp;type | [Azure&nbsp;Machine&nbsp;Learning studio](https://ml.azure.com/) | [Azure&nbsp;Machine&nbsp;Learning&nbsp; Python SDK](/python/api/overview/azure/ml/intro) |  [Azure&nbsp;Machine&nbsp;Learning CLI](reference-azure-machine-learning-cli.md) | [Azure&nbsp;Machine&nbsp;Learning&nbsp; REST API](/rest/api/azureml/) | VS Code |
 |---|---|---|---|---|---|---|
-| [Azure&nbsp;Blob&nbsp;Storage](../../storage/blobs/storage-blobs-overview.md)| Account key <br> SAS token | ✓ | ✓ | ✓ |✓ |✓|
-| [Azure&nbsp;File&nbsp;Share](../../storage/files/storage-files-introduction.md)| Account key <br> SAS token | ✓ | ✓ | ✓ |✓|✓|
-| [Azure&nbsp;Data Lake&nbsp;Storage Gen&nbsp;1](../../data-lake-store/index.yml)| Service principal| ✓ | ✓ | ✓ |✓||
-| [Azure&nbsp;Data Lake&nbsp;Storage Gen&nbsp;2](../../storage/blobs/data-lake-storage-introduction.md)| Service principal| ✓ | ✓ | ✓ |✓||
+| [Azure&nbsp;Blob&nbsp;Storage](/azure/storage/blobs/storage-blobs-overview)| Account key <br> SAS token | ✓ | ✓ | ✓ |✓ |✓|
+| [Azure&nbsp;File&nbsp;Share](/azure/storage/files/storage-files-introduction)| Account key <br> SAS token | ✓ | ✓ | ✓ |✓|✓|
+| [Azure&nbsp;Data Lake&nbsp;Storage Gen&nbsp;1](/azure/data-lake-store/)| Service principal| ✓ | ✓ | ✓ |✓||
+| [Azure&nbsp;Data Lake&nbsp;Storage Gen&nbsp;2](/azure/storage/blobs/data-lake-storage-introduction)| Service principal| ✓ | ✓ | ✓ |✓||
 | [Azure&nbsp;SQL&nbsp;Database](/azure/azure-sql/database/sql-database-paas-overview)| SQL authentication <br>Service principal| ✓ | ✓ | ✓ |✓||
 | [Azure&nbsp;PostgreSQL](/azure/postgresql/overview) | SQL authentication| ✓ | ✓ | ✓ |✓||
 | [Azure&nbsp;Database&nbsp;for&nbsp;MySQL](/azure/mysql/overview) | SQL authentication|  | ✓* | ✓* |✓*||
@@ -81,9 +81,9 @@ Datastores currently support storage of connection information to the storage se
 
 ### Storage guidance
 
-We recommend creation of a datastore for an [Azure Blob container](../../storage/blobs/storage-blobs-introduction.md). Both standard and premium storage are available for blobs. Although premium storage is more expensive, its faster throughput speeds might improve the speed of your training runs, especially if you train against a large dataset. For information about storage account costs, visit the [Azure pricing calculator](https://azure.microsoft.com/pricing/calculator/?service=machine-learning-service).
+We recommend creation of a datastore for an [Azure Blob container](/azure/storage/blobs/storage-blobs-introduction). Both standard and premium storage are available for blobs. Although premium storage is more expensive, its faster throughput speeds might improve the speed of your training runs, especially if you train against a large dataset. For information about storage account costs, visit the [Azure pricing calculator](https://azure.microsoft.com/pricing/calculator/?service=machine-learning-service).
 
-[Azure Data Lake Storage Gen2](../../storage/blobs/data-lake-storage-introduction.md) is built on top of Azure Blob storage. It's designed for enterprise big data analytics. As part of Data Lake Storage Gen2, Blob storage features a [hierarchical namespace](../../storage/blobs/data-lake-storage-namespace.md). The hierarchical namespace organizes objects/files into a hierarchy of directories for efficient data access.
+[Azure Data Lake Storage Gen2](/azure/storage/blobs/data-lake-storage-introduction) is built on top of Azure Blob storage. It's designed for enterprise big data analytics. As part of Data Lake Storage Gen2, Blob storage features a [hierarchical namespace](/azure/storage/blobs/data-lake-storage-namespace). The hierarchical namespace organizes objects/files into a hierarchy of directories for efficient data access.
 
 ## Storage access and permissions
 
@@ -94,7 +94,7 @@ To ensure you securely connect to your Azure storage service, Azure Machine Lear
 
 ### Virtual network
 
-To communicate with a storage account located behind a firewall or within a virtual network, Azure Machine Learning requires extra configuration steps. For a storage account located behind a firewall, you can [add your client's IP address to an allowlist](../../storage/common/storage-network-security.md#managing-ip-network-rules) with the Azure portal.
+To communicate with a storage account located behind a firewall or within a virtual network, Azure Machine Learning requires extra configuration steps. For a storage account located behind a firewall, you can [add your client's IP address to an allowlist](/azure/storage/common/storage-network-security#managing-ip-network-rules) with the Azure portal.
 
 Azure Machine Learning can receive requests from clients outside of the virtual network. To ensure that the entity requesting data from the service is safe, and to enable display of data in your workspace, [use a private endpoint with your workspace](../how-to-configure-private-link.md).
 
@@ -131,7 +131,7 @@ You can find account key, SAS token, and service principal information at your [
 
 ### Permissions
 
-For Azure blob container and Azure Data Lake Gen 2 storage, ensure that your authentication credentials have **Storage Blob Data Reader** access. For more information, visit [Storage Blob Data Reader](../../role-based-access-control/built-in-roles.md#storage-blob-data-reader). An account SAS token defaults to no permissions.
+For Azure blob container and Azure Data Lake Gen 2 storage, ensure that your authentication credentials have **Storage Blob Data Reader** access. For more information, visit [Storage Blob Data Reader](/azure/role-based-access-control/built-in-roles#storage-blob-data-reader). An account SAS token defaults to no permissions.
 
 * For data **read access**, your authentication credentials must have a minimum of list and read permissions for containers and objects
 
@@ -197,9 +197,9 @@ file_datastore = Datastore.register_azure_file_share(workspace=ws,
 
 ### Azure Data Lake Storage Generation 2
 
-For an Azure Data Lake Storage Generation 2 (ADLS Gen 2) datastore, use the[register_azure_data_lake_gen2()](/python/api/azureml-core/azureml.core.datastore%28class%29#azureml-core-datastore-register-azure-data-lake-gen2) method to register a credential datastore connected to an Azure Data Lake Gen 2 storage with [service principal permissions](../../active-directory/develop/howto-create-service-principal-portal.md).  
+For an Azure Data Lake Storage Generation 2 (ADLS Gen 2) datastore, use the[register_azure_data_lake_gen2()](/python/api/azureml-core/azureml.core.datastore%28class%29#azureml-core-datastore-register-azure-data-lake-gen2) method to register a credential datastore connected to an Azure Data Lake Gen 2 storage with [service principal permissions](/azure/active-directory/develop/howto-create-service-principal-portal).  
 
-To use your service principal, you must [register your application](../../active-directory/develop/app-objects-and-service-principals.md) and grant the service principal data access via either Azure role-based access control (Azure RBAC) or access control lists (ACL). For more information, visit [access control set up for ADLS Gen 2](../../storage/blobs/data-lake-storage-access-control-model.md).
+To use your service principal, you must [register your application](/azure/active-directory/develop/app-objects-and-service-principals) and grant the service principal data access via either Azure role-based access control (Azure RBAC) or access control lists (ACL). For more information, visit [access control set up for ADLS Gen 2](/azure/storage/blobs/data-lake-storage-access-control-model).
 
 This code creates and registers the `adlsgen2_datastore_name` datastore to the `ws` workspace. This datastore accesses the file system `test` in the `account_name` storage account, through use of the provided service principal credentials. Review the [storage access & permissions](#storage-access-and-permissions) section for guidance on virtual network scenarios, and where to find required authentication credentials.
 
@@ -288,7 +288,7 @@ Azure Machine Learning supports accessing data from
 - Azure SQL Database
 - Azure Database for PostgreSQL
 
-If you use unsupported storage, we recommend that you use [Azure Data Factory and these steps](../../data-factory/quickstart-hello-world-copy-data-tool.md) to move your data to supported Azure storage solutions. Moving data to supported storage can help you save data egress costs during machine learning experiments.
+If you use unsupported storage, we recommend that you use [Azure Data Factory and these steps](/azure/data-factory/quickstart-hello-world-copy-data-tool) to move your data to supported Azure storage solutions. Moving data to supported storage can help you save data egress costs during machine learning experiments.
 
 Azure Data Factory provides efficient and resilient data transfer, with more than 80 prebuilt connectors, at no extra cost. These connectors include Azure data services, on-premises data sources, Amazon S3 and Redshift, and Google BigQuery.
 

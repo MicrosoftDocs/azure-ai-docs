@@ -64,7 +64,7 @@ After you set up the encrypted connection required by Azure AI Search, connect t
 
 ## Configure the network security group
 
-It's a best practice to configure the [network security group (NSG)](../virtual-network/network-security-groups-overview.md) and corresponding Azure endpoint or Access Control List (ACL) to make your Azure VM accessible to other parties. Chances are you've done this before to allow your own application logic to connect to your SQL Azure VM. It's no different for an Azure AI Search connection to your SQL Azure VM. 
+It's a best practice to configure the [network security group (NSG)](/azure/virtual-network/network-security-groups-overview) and corresponding Azure endpoint or Access Control List (ACL) to make your Azure VM accessible to other parties. Chances are you've done this before to allow your own application logic to connect to your SQL Azure VM. It's no different for an Azure AI Search connection to your SQL Azure VM. 
 
 The following steps and links provide instructions on NSG configuration for VM deployments. Use these instructions to ACL a search service endpoint based on its IP address.
 
@@ -72,19 +72,19 @@ The following steps and links provide instructions on NSG configuration for VM d
 
 1. Add the search IP address to the IP filter list of the security group. Either one of following articles explains the steps:
 
-  + [Tutorial: Filter network traffic with a network security group using the Azure portal](../virtual-network/tutorial-filter-network-traffic.md)
+  + [Tutorial: Filter network traffic with a network security group using the Azure portal](/azure/virtual-network/tutorial-filter-network-traffic)
 
-  + [Create, change, or delete a network security group](../virtual-network/manage-network-security-group.md)
+  + [Create, change, or delete a network security group](/azure/virtual-network/manage-network-security-group)
 
 IP addressing can pose a few challenges that are easily overcome if you're aware of the issue and potential workarounds. The remaining sections provide recommendations for handling issues related to IP addresses in the ACL.
 
 ### Restrict network access to Azure AI Search
 
-We strongly recommend that you restrict the access to the IP address of your search service and the IP address range of `AzureCognitiveSearch` [service tag](../virtual-network/service-tags-overview.md#available-service-tags) in the ACL instead of making your SQL Azure VMs open to all connection requests.
+We strongly recommend that you restrict the access to the IP address of your search service and the IP address range of `AzureCognitiveSearch` [service tag](/azure/virtual-network/service-tags-overview#available-service-tags) in the ACL instead of making your SQL Azure VMs open to all connection requests.
 
 You can find out the IP address by pinging the FQDN (for example, `<your-search-service-name>.search.windows.net`) of your search service. Although it's possible for the search service IP address to change, it's unlikely that it will change. The IP address tends to be static for the lifetime of the service.
 
-You can find out the IP address range of `AzureCognitiveSearch` [service tag](../virtual-network/service-tags-overview.md#available-service-tags) by either using [Downloadable JSON files](../virtual-network/service-tags-overview.md#discover-service-tags-by-using-downloadable-json-files) or via the [Service Tag Discovery API](../virtual-network/service-tags-overview.md#use-the-service-tag-discovery-api). The IP address range is updated weekly.
+You can find out the IP address range of `AzureCognitiveSearch` [service tag](/azure/virtual-network/service-tags-overview#available-service-tags) by either using [Downloadable JSON files](/azure/virtual-network/service-tags-overview#discover-service-tags-by-using-downloadable-json-files) or via the [Service Tag Discovery API](/azure/virtual-network/service-tags-overview#use-the-service-tag-discovery-api). The IP address range is updated weekly.
 
 ### Include the Azure portal IP addresses
 

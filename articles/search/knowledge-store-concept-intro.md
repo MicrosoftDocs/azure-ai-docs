@@ -20,7 +20,7 @@ The two outputs of indexing, a search index and knowledge store, are mutually ex
 
 :::image type="content" source="media/knowledge-store-concept-intro/knowledge-store-concept-intro.svg" alt-text="Pipeline with skillset" border="false":::
 
-Physically, a knowledge store is [Azure Storage](../storage/common/storage-account-overview.md), either Azure Table Storage, Azure Blob Storage, or both. Any tool or process that can connect to Azure Storage can consume the contents of a knowledge store. There's no query support in Azure AI Search for retrieving content from a knowledge store.
+Physically, a knowledge store is [Azure Storage](/azure/storage/common/storage-account-overview), either Azure Table Storage, Azure Blob Storage, or both. Any tool or process that can connect to Azure Storage can consume the contents of a knowledge store. There's no query support in Azure AI Search for retrieving content from a knowledge store.
 
 When viewed through Azure portal, a knowledge store looks like any other collection of tables, objects, or files. The following screenshot shows a knowledge store composed of three tables. You can adopt a naming convention, such as a `kstore` prefix, to keep your content together.
 
@@ -75,7 +75,7 @@ The type of projection you specify in this structure determines the type of stor
 
 To create knowledge store, use the portal or an API. 
 
-You need [Azure Storage](../storage/index.yml), a [skillset](cognitive-search-working-with-skillsets.md), and an [indexer](search-indexer-overview.md). Because indexers require a search index, you also need to provide an index definition.
+You need [Azure Storage](/azure/storage/), a [skillset](cognitive-search-working-with-skillsets.md), and an [indexer](search-indexer-overview.md). Because indexers require a search index, you also need to provide an index definition.
 
 Go with the portal approach for the fastest route to a finished knowledge store. Or, choose the REST API for a deeper understanding of how objects are defined and related.
 
@@ -118,11 +118,11 @@ For .NET developers, use the [KnowledgeStore Class](/dotnet/api/azure.search.doc
 
 Once enriched content exists in storage, any tool or technology that connects to Azure Storage can be used to explore, analyze, or consume the contents. The following list is a start:
 
-+ [Storage Explorer](../storage/blobs/quickstart-storage-explorer.md) or Storage browser  in the Azure portal to view enriched document structure and content. Consider this as your baseline tool for viewing knowledge store contents.
++ [Storage Explorer](/azure/storage/blobs/quickstart-storage-explorer) or Storage browser  in the Azure portal to view enriched document structure and content. Consider this as your baseline tool for viewing knowledge store contents.
 
 + [Power BI](knowledge-store-connect-power-bi.md) for reporting and analysis. 
 
-+ [Azure Data Factory](../data-factory/index.yml) for further manipulation.
++ [Azure Data Factory](/azure/data-factory/) for further manipulation.
 
 ## Content lifecycle
 

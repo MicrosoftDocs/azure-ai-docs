@@ -65,7 +65,7 @@ Define the following workspace configuration in a file called *workspace.tf*:
 
 # [Private network](#tab/privateworkspace)
 
-The following configuration creates a workspace in an isolated network environment by using Azure Private Link endpoints. The template includes [private Domain Name System (DNS) zones](../dns/private-dns-privatednszone.md) to resolve domain names within the virtual network.
+The following configuration creates a workspace in an isolated network environment by using Azure Private Link endpoints. The template includes [private Domain Name System (DNS) zones](/azure/dns/private-dns-privatednszone) to resolve domain names within the virtual network.
 
 If you use private link endpoints for both Azure Container Registry and Azure Machine Learning, you can't use Container Registry tasks for building [environment](/python/api/azure-ai-ml/azure.ai.ml.entities.environment) images. Instead you must build images by using an Azure Machine Learning compute cluster.
 

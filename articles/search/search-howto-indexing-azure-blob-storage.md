@@ -23,9 +23,9 @@ Blob indexers are frequently used for both [AI enrichment](cognitive-search-conc
 
 ## Prerequisites
 
-+ [Azure Blob Storage](../storage/blobs/storage-blobs-overview.md), Standard performance (general-purpose v2).
++ [Azure Blob Storage](/azure/storage/blobs/storage-blobs-overview), Standard performance (general-purpose v2).
 
-+ [Access tiers](../storage/blobs/access-tiers-overview.md) include hot, cool, cold, and archive. Indexers can retrieve blobs on hot, cool, and cold access tiers. 
++ [Access tiers](/azure/storage/blobs/access-tiers-overview) include hot, cool, cold, and archive. Indexers can retrieve blobs on hot, cool, and cold access tiers. 
 
 + Blobs providing text content and metadata. If blobs contain binary content or unstructured text, consider adding [AI enrichment](cognitive-search-concept-intro.md) for image and natural language processing. Blob content can’t exceed the [indexer limits](search-limits-quotas-capacity.md#indexer-limits) for your search service tier.
 
@@ -97,7 +97,7 @@ Lastly, any metadata properties specific to the document format of the blobs you
 
 It's important to point out that you don't need to define fields for all of the above properties in your search index - just capture the properties you need for your application.
 
-Currently, indexing [blob index tags](../storage/blobs/storage-blob-index-how-to.md) isn't supported by this indexer. 
+Currently, indexing [blob index tags](/azure/storage/blobs/storage-blob-index-how-to) isn't supported by this indexer. 
 
 ## Define the data source
 
@@ -146,7 +146,7 @@ Indexers can connect to a blob container using the following connections.
 | Container shared access signature |
 |-----------------------------------|
 | `{ "connectionString" : "ContainerSharedAccessUri=https://<your storage account>.blob.core.windows.net/<container name>?sv=2016-05-31&sr=c&sig=<the signature>&se=<the validity end time>&sp=rl;" }` |
-| The SAS should have the list and read permissions on the container. For more information, see [Using Shared Access Signatures](../storage/common/storage-sas-overview.md). |
+| The SAS should have the list and read permissions on the container. For more information, see [Using Shared Access Signatures](/azure/storage/common/storage-sas-overview). |
 
 > [!NOTE]
 > If you use SAS credentials, you will need to update the data source credentials periodically with renewed signatures to prevent their expiration. If SAS credentials expire, the indexer will fail with an error message similar to "Credentials provided in the connection string are invalid or have expired".  
@@ -225,7 +225,7 @@ Once the index and data source have been created, you're ready to create the ind
 
    + "contentAndMetadata" specifies that all metadata and textual content extracted from the blob are indexed. This is the default value.
 
-   + "storageMetadata" specifies that only the [standard blob properties and user-specified metadata](../storage/blobs/storage-blob-container-properties-metadata.md) are indexed.
+   + "storageMetadata" specifies that only the [standard blob properties and user-specified metadata](/azure/storage/blobs/storage-blob-container-properties-metadata) are indexed.
 
    + "allMetadata" specifies that standard blob properties and any [metadata for found content types](search-blob-metadata-properties.md) are extracted from the blob content and indexed.
 

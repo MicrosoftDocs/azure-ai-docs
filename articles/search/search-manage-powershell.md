@@ -76,7 +76,7 @@ Import-Module -Name Az
 
 ### Connect to Azure with a browser sign-in token
 
-You can use your portal sign-in credentials to connect to a subscription in PowerShell. Alternatively you can [authenticate non-interactively with a service principal](../active-directory/develop/howto-authenticate-service-principal-powershell.md).
+You can use your portal sign-in credentials to connect to a subscription in PowerShell. Alternatively you can [authenticate non-interactively with a service principal](/azure/active-directory/develop/howto-authenticate-service-principal-powershell).
 
 ```azurepowershell-interactive
 Connect-AzAccount
@@ -246,7 +246,7 @@ $ipRules = @([pscustomobject]@{Value="55.5.63.73"},
 
 ### Create a service with a system assigned managed identity
 
-In some cases, such as when [using managed identity to connect to a data source](search-howto-managed-identities-storage.md), you need to turn on [system assigned managed identity](../active-directory/managed-identities-azure-resources/overview.md). This is done by adding `-IdentityType SystemAssigned` to the command.
+In some cases, such as when [using managed identity to connect to a data source](search-howto-managed-identities-storage.md), you need to turn on [system assigned managed identity](/azure/active-directory/managed-identities-azure-resources/overview). This is done by adding `-IdentityType SystemAssigned` to the command.
 
 ```azurepowershell-interactive
 New-AzSearchService -ResourceGroupName <resource-group-name> `
@@ -273,7 +273,7 @@ New-AzSearchService -ResourceGroupName <resource-group-name> `
 
 ## Create a service with a private endpoint
 
-[Private Endpoints](../private-link/private-endpoint-overview.md) for Azure AI Search allow a client on a virtual network to securely access data in a search index over a [Private Link](../private-link/private-link-overview.md). The private endpoint uses an IP address from the [virtual network address space](../virtual-network/ip-services/private-ip-addresses.md) for your search service. Network traffic between the client and the search service traverses over the virtual network and a private link on the Microsoft backbone network, eliminating exposure from the public internet. For more information, see 
+[Private Endpoints](/azure/private-link/private-endpoint-overview) for Azure AI Search allow a client on a virtual network to securely access data in a search index over a [Private Link](/azure/private-link/private-link-overview). The private endpoint uses an IP address from the [virtual network address space](/azure/virtual-network/ip-services/private-ip-addresses) for your search service. Network traffic between the client and the search service traverses over the virtual network and a private link on the Microsoft backbone network, eliminating exposure from the public internet. For more information, see 
 [Creating a private endpoint for Azure AI Search](service-create-private-endpoint.md).
 
 The following example shows how to create a search service with a private endpoint. 
@@ -351,7 +351,7 @@ New-AzPrivateDnsZoneGroup `
     -PrivateDnsZoneConfig $config
 ```
 
-For more information on creating private endpoints in PowerShell, see this [Private Link Quickstart](../private-link/create-private-endpoint-powershell.md).
+For more information on creating private endpoints in PowerShell, see this [Private Link Quickstart](/azure/private-link/create-private-endpoint-powershell).
 
 ### Manage private endpoint connections
 
@@ -438,7 +438,7 @@ Id                : /subscriptions/65a1016d-0f67-45d2-b838-b8f373d6d52e/resource
 
 Private endpoints of secured resources that are created through Azure AI Search APIs are referred to as *shared private link resources*. This is because you're "sharing" access to a resource, such as a storage account that has been integrated with the [Azure Private Link service](https://azure.microsoft.com/services/private-link/).
 
-If you're using an indexer to index data in Azure AI Search, and your data source is on a private network, you can create an outbound [private endpoint connection](../private-link/private-endpoint-overview.md) to reach the data.
+If you're using an indexer to index data in Azure AI Search, and your data source is on a private network, you can create an outbound [private endpoint connection](/azure/private-link/private-endpoint-overview) to reach the data.
 
 A full list of the Azure Resources for which you can create outbound private endpoints from Azure AI Search can be found [here](search-indexer-howto-access-private.md#group-ids) along with the related **Group ID** values.
 

@@ -900,7 +900,7 @@ Another reason you might get this error if you try to use a column containing fl
 
  This error in Azure Machine Learning occurs if the key used to access the Azure storage account is incorrect. For example, you might see this error if the Azure storage key was truncated when copied and pasted, or if the wrong key was used.  
 
- For more information about how to get the key for an Azure storage account, see [View, copy, and regenerate storage access keys](../../storage/common/storage-account-create.md).  
+ For more information about how to get the key for an Azure storage account, see [View, copy, and regenerate storage access keys](/azure/storage/common/storage-account-create).  
 
 **Resolution:**
  Revisit the component and verify that the Azure storage key is correct for the account; copy the key again from the Azure classic portal if necessary.  

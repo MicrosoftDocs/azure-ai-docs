@@ -18,7 +18,7 @@ ms.custom: devplatv2
 
 [!INCLUDE [ml v2](includes/machine-learning-dev-v2.md)]
 
-Big data requires a service that can orchestrate and operationalize processes to refine these enormous stores of raw data into actionable business insights. The [Azure Data Factory](../data-factory/introduction.md) managed cloud service handles these complex hybrid extract-transform-load (ETL), extract-load-transform (ELT), and data integration projects.
+Big data requires a service that can orchestrate and operationalize processes to refine these enormous stores of raw data into actionable business insights. The [Azure Data Factory](/azure/data-factory/introduction) managed cloud service handles these complex hybrid extract-transform-load (ETL), extract-load-transform (ELT), and data integration projects.
 
 Azure Data Factory allows you to create pipelines that can orchestrate multiple data transformations and manage them as a single unit. Batch endpoints are an excellent candidate to become a step in such processing workflow.
 
@@ -31,27 +31,27 @@ In this article, learn how to use batch endpoints in Azure Data Factory activiti
 ## Prerequisites
 
 - A model deployed as a batch endpoint. Use the *heart condition classifier* created in [Using MLflow models in batch deployments](how-to-mlflow-batch.md).
-- An Azure Data Factory resource. To create a data factory, follow the steps in [Quickstart: Create a data factory by using the Azure portal](../data-factory/quickstart-create-data-factory-portal.md).
+- An Azure Data Factory resource. To create a data factory, follow the steps in [Quickstart: Create a data factory by using the Azure portal](/azure/data-factory/quickstart-create-data-factory-portal).
 - After creating your data factory, browse to it in the Azure portal and select **Launch studio**:
 
   :::image type="content" source="./media/how-to-use-batch-adf/data-factory-home-page.png" lightbox="./media/how-to-use-batch-adf/data-factory-home-page.png" alt-text="Screenshot of the home page for the Azure Data Factory, labeled Open Azure Data Factory Studio and Launch studio highlighted.":::
 
 ## Authenticate against batch endpoints
 
-Azure Data Factory can invoke the REST APIs of batch endpoints by using the *Web Invoke* activity. Batch endpoints support Microsoft Entra ID for authorization and the request made to the APIs require a proper authentication handling. For more information, see [Web activity in Azure Data Factory and Azure Synapse Analytics](../data-factory/control-flow-web-activity.md).
+Azure Data Factory can invoke the REST APIs of batch endpoints by using the *Web Invoke* activity. Batch endpoints support Microsoft Entra ID for authorization and the request made to the APIs require a proper authentication handling. For more information, see [Web activity in Azure Data Factory and Azure Synapse Analytics](/azure/data-factory/control-flow-web-activity).
 
-You can use a service principal or a [managed identity](../active-directory/managed-identities-azure-resources/overview.md) to authenticate against batch endpoints. We recommend using a managed identity because it simplifies the use of secrets.
+You can use a service principal or a [managed identity](/azure/active-directory/managed-identities-azure-resources/overview) to authenticate against batch endpoints. We recommend using a managed identity because it simplifies the use of secrets.
 
 # [Use a managed identity](#tab/mi)
 
 You can use Azure Data Factory managed identity to communicate with batch endpoints. In this case, you only need to make sure that your Azure Data Factory resource was deployed with a managed identity.
 
-1. If you don't have an Azure Data Factory resource or it was already deployed without a managed identity, follow this procedure to create it: [System-assigned managed identity](../data-factory/data-factory-service-identity.md#system-assigned-managed-identity).
+1. If you don't have an Azure Data Factory resource or it was already deployed without a managed identity, follow this procedure to create it: [System-assigned managed identity](/azure/data-factory/data-factory-service-identity#system-assigned-managed-identity).
 
    > [!CAUTION]
    > It isn't possible to change the resource identity in Azure Data Factory after deployment. If you need to change the identity of a resource after you create it, you need to recreate the resource.
 
-1. After deployment, grant access for the managed identity of the resource you created to your Azure Machine Learning workspace. See [Grant access](../role-based-access-control/quickstart-assign-role-user-portal.md#grant-access). In this example, the service principal requires:
+1. After deployment, grant access for the managed identity of the resource you created to your Azure Machine Learning workspace. See [Grant access](/azure/role-based-access-control/quickstart-assign-role-user-portal#grant-access). In this example, the service principal requires:
 
    - Permission in the workspace to read batch deployments and perform actions over them.
    - Permissions to read/write in data stores.
@@ -59,11 +59,11 @@ You can use Azure Data Factory managed identity to communicate with batch endpoi
 
 # [Use a service principal](#tab/sp)
 
-1. Create a service principal following the procedure at [Register a Microsoft Entra app and create a service principal](../active-directory/develop/howto-create-service-principal-portal.md#register-an-application-with-azure-ad-and-create-a-service-principal).
-1. Create a secret to use for authentication as explained at [Option 3: Create a new client secret](../active-directory/develop/howto-create-service-principal-portal.md#option-3-create-a-new-client-secret).
+1. Create a service principal following the procedure at [Register a Microsoft Entra app and create a service principal](/azure/active-directory/develop/howto-create-service-principal-portal#register-an-application-with-azure-ad-and-create-a-service-principal).
+1. Create a secret to use for authentication as explained at [Option 3: Create a new client secret](/azure/active-directory/develop/howto-create-service-principal-portal#option-3-create-a-new-client-secret).
 1. Take note of the client secret **Value** that is generated. This value is only displayed once.
 1. Take note of the `client ID` and the `tenant id` in the **Overview** pane of the application.
-1. Grant access for the service principal you created to your workspace as explained at [Grant access](../role-based-access-control/quickstart-assign-role-user-portal.md#grant-access). In this example, the service principal requires:
+1. Grant access for the service principal you created to your workspace as explained at [Grant access](/azure/role-based-access-control/quickstart-assign-role-user-portal#grant-access). In this example, the service principal requires:
 
    - Permission in the workspace to read batch deployments and perform actions over them.
    - Permissions to read/write in data stores.
@@ -166,7 +166,7 @@ To create this pipeline in your existing Azure Data Factory and invoke batch end
   > Ensure that your batch endpoint has a default deployment configured before you submit a job to it. The created pipeline invokes the endpoint. A default deployment needs to be created and configured.
 
   > [!TIP]
-  > For best reusability, use the created pipeline as a template and call it from within other Azure Data Factory pipelines by using the [Execute pipeline activity](../data-factory/control-flow-execute-pipeline-activity.md). In that case, don't configure the parameters in the inner pipeline but pass them as parameters from the outer pipeline as shown in the following image:
+  > For best reusability, use the created pipeline as a template and call it from within other Azure Data Factory pipelines by using the [Execute pipeline activity](/azure/data-factory/control-flow-execute-pipeline-activity). In that case, don't configure the parameters in the inner pipeline but pass them as parameters from the outer pipeline as shown in the following image:
   >
   > :::image type="content" source="./media/how-to-use-batch-adf/pipeline-run.png" alt-text="Screenshot of the pipeline parameters expected for the resulting pipeline when invoked from another pipeline.":::
 

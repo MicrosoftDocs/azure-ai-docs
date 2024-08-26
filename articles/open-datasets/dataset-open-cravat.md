@@ -32,7 +32,7 @@ West US 2: 'https://datasetopencravat.blob.core.windows.net/dataset'
 
 West Central US: 'https://datasetopencravat-secondary.blob.core.windows.net/dataset'
 
-[SAS Token](../storage/common/storage-sas-overview.md): sv=2020-04-08&st=2021-03-11T23%3A50%3A01Z&se=2025-07-26T22%3A50%3A00Z&sr=c&sp=rl&sig=J9J9wnJOXsmEy7TFMq9wjcxjXDE%2B7KhGpCUL4elsC14%3D
+[SAS Token](/azure/storage/common/storage-sas-overview): sv=2020-04-08&st=2021-03-11T23%3A50%3A01Z&se=2025-07-26T22%3A50%3A00Z&sr=c&sp=rl&sig=J9J9wnJOXsmEy7TFMq9wjcxjXDE%2B7KhGpCUL4elsC14%3D
 
 ## Use Terms
 

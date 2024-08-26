@@ -35,10 +35,10 @@ Azure Storage, Azure Cosmos DB and Azure SQL provide a configurable firewall. Th
 
 There are two options for allowing indexers to access these resources in such an instance:
 
-* Configure an inbound rule for the IP address of your search service and the IP address range of `AzureCognitiveSearch` [service tag](../virtual-network/service-tags-overview.md#available-service-tags). Details for configuring IP address range restrictions for each data source type can be found from the following links:
+* Configure an inbound rule for the IP address of your search service and the IP address range of `AzureCognitiveSearch` [service tag](/azure/virtual-network/service-tags-overview#available-service-tags). Details for configuring IP address range restrictions for each data source type can be found from the following links:
 
-  * [Azure Storage](../storage/common/storage-network-security.md#grant-access-from-an-internet-ip-range)
-  * [Azure Cosmos DB](../storage/common/storage-network-security.md#grant-access-from-an-internet-ip-range)
+  * [Azure Storage](/azure/storage/common/storage-network-security#grant-access-from-an-internet-ip-range)
+  * [Azure Cosmos DB](/azure/storage/common/storage-network-security#grant-access-from-an-internet-ip-range)
   * [Azure SQL](/azure/azure-sql/database/firewall-configure#create-and-manage-ip-firewall-rules)
 
 * As a last resort or as a temporary measure, disable the firewall by allowing access from **All Networks**.
@@ -80,7 +80,7 @@ If the database is paused, the first sign in from your search service is expecte
 
 ## Microsoft Entra Conditional Access policies
 
-When you create a SharePoint Online indexer, there's a step requiring you to sign in to your Microsoft Entra app after providing a device code. If you receive a message that says `"Your sign-in was successful but your admin requires the device requesting access to be managed"`, the indexer is probably blocked from the SharePoint document library by a [Conditional Access](../active-directory/conditional-access/overview.md) policy.
+When you create a SharePoint Online indexer, there's a step requiring you to sign in to your Microsoft Entra app after providing a device code. If you receive a message that says `"Your sign-in was successful but your admin requires the device requesting access to be managed"`, the indexer is probably blocked from the SharePoint document library by a [Conditional Access](/azure/active-directory/conditional-access/overview) policy.
 
 To update the policy and allow indexer access to the document library:
 
@@ -117,7 +117,7 @@ To update the policy and allow indexer access to the document library:
 
     Extra IP addresses are used for requests that originate from the indexer's [multitenant execution environment](search-indexer-securing-resources.md#indexer-execution-environment). You can get this IP address range from the service tag.
 
-    The IP address ranges for the `AzureCognitiveSearch` service tag can be either obtained via the [discovery API](../virtual-network/service-tags-overview.md#use-the-service-tag-discovery-api) or the [downloadable JSON file](../virtual-network/service-tags-overview.md#discover-service-tags-by-using-downloadable-json-files).
+    The IP address ranges for the `AzureCognitiveSearch` service tag can be either obtained via the [discovery API](/azure/virtual-network/service-tags-overview#use-the-service-tag-discovery-api) or the [downloadable JSON file](/azure/virtual-network/service-tags-overview#discover-service-tags-by-using-downloadable-json-files).
 
     For this exercise, assuming the search service is the Azure Public cloud, the [Azure Public JSON file](https://www.microsoft.com/download/details.aspx?id=56519) should be downloaded.
 

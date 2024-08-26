@@ -15,7 +15,7 @@ ms.date: 01/18/2024
 
 # Make indexer connections to Azure Storage as a trusted service
 
-In Azure AI Search, indexers that access Azure blobs can use the [trusted service exception](../storage/common/storage-network-security.md#exceptions) to securely access blobs. This mechanism offers customers who are unable to grant [indexer access using IP firewall rules](search-indexer-howto-access-ip-restricted.md) a simple, secure, and free alternative for accessing data in storage accounts.
+In Azure AI Search, indexers that access Azure blobs can use the [trusted service exception](/azure/storage/common/storage-network-security#exceptions) to securely access blobs. This mechanism offers customers who are unable to grant [indexer access using IP firewall rules](search-indexer-howto-access-ip-restricted.md) a simple, secure, and free alternative for accessing data in storage accounts.
 
 > [!NOTE]
 > If Azure Storage is behind a firewall and in the same region as Azure AI Search, you won't be able to create an inbound rule that admits requests from your search service. The solution for this scenario is for search to connect as a trusted service, as described in this article.
@@ -83,4 +83,4 @@ The easiest way to test the connection is by running the Import data wizard.
 + [Azure blob indexer](search-howto-indexing-azure-blob-storage.md)
 + [ADLS Gen2 indexer](search-howto-index-azure-data-lake-storage.md)
 + [Authenticate with Microsoft Entra ID](/azure/architecture/framework/security/design-identity-authentication)
-+ [About managed identities (Microsoft Entra ID)](../active-directory/managed-identities-azure-resources/overview.md)
++ [About managed identities (Microsoft Entra ID)](/azure/active-directory/managed-identities-azure-resources/overview)

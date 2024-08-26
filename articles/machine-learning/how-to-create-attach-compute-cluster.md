@@ -25,7 +25,7 @@ Learn how to:
 
 * Create a compute cluster.
 * Lower your compute cluster cost with low priority VMs.
-* Set up a [managed identity](../active-directory/managed-identities-azure-resources/overview.md) for the cluster.
+* Set up a [managed identity](/azure/active-directory/managed-identities-azure-resources/overview) for the cluster.
 
 [!INCLUDE [serverless compute](./includes/serverless-compute.md)]
 
@@ -72,7 +72,7 @@ Compute clusters can run jobs securely in either a [managed virtual network](how
 
 * Azure Machine Learning Compute has default limits, such as the number of cores that can be allocated. For more information, see [Manage and request quotas for Azure resources](how-to-manage-quotas.md).
 
-* Azure allows you to place *locks* on resources, so that they can't be deleted or are read only. **Do not apply resource locks to the resource group that contains your workspace**. Applying a lock to the resource group that contains your workspace prevents scaling operations for Azure Machine Learning compute clusters. For more information on locking resources, see [Lock resources to prevent unexpected changes](../azure-resource-manager/management/lock-resources.md).
+* Azure allows you to place *locks* on resources, so that they can't be deleted or are read only. **Do not apply resource locks to the resource group that contains your workspace**. Applying a lock to the resource group that contains your workspace prevents scaling operations for Azure Machine Learning compute clusters. For more information on locking resources, see [Lock resources to prevent unexpected changes](/azure/azure-resource-manager/management/lock-resources).
 
 ## Create
 

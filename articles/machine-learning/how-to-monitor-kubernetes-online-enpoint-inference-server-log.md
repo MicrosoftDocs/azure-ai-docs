@@ -49,4 +49,4 @@ In AKS cluster, you can use the built-in ability to collect container logs. Foll
 
 ## Azure Arc enabled cluster
 
-In Arc Kubernetes cluster, you can reference the [Azure Monitor](../azure-monitor/index.yml) document to upload logs to **Log Analytics** from your cluster by utilizing **Azure Monitor Agent**
+In Arc Kubernetes cluster, you can reference the [Azure Monitor](/azure/azure-monitor/) document to upload logs to **Log Analytics** from your cluster by utilizing **Azure Monitor Agent**

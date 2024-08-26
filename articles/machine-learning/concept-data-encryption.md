@@ -29,7 +29,7 @@ Azure Machine Learning end-to-end projects integrate with services like Azure Bl
 
 Azure Machine Learning stores snapshots, output, and logs in the Azure Blob Storage account (default storage account) that's tied to the Azure Machine Learning workspace and your subscription. All the data stored in Azure Blob Storage is encrypted at rest with Microsoft-managed keys.
 
-For information on how to use your own keys for data stored in Azure Blob Storage, see [Azure Storage encryption with customer-managed keys in Azure Key Vault](../storage/common/customer-managed-keys-configure-key-vault.md).
+For information on how to use your own keys for data stored in Azure Blob Storage, see [Azure Storage encryption with customer-managed keys in Azure Key Vault](/azure/storage/common/customer-managed-keys-configure-key-vault).
 
 Training data is typically also stored in Azure Blob Storage so that training compute targets can access it. Azure Machine Learning doesn't manage this storage. This storage is mounted to compute targets as a remote file system.
 
@@ -43,7 +43,7 @@ For information on regenerating the access keys, see [Regenerate storage account
 
 Azure Data Lake Storage Gen2 is built on top of Azure Blob Storage and is designed for big data analytics in enterprises. Data Lake Storage Gen2 is used as a datastore for Azure Machine Learning. Like Azure Blob Storage, the data at rest is encrypted with Microsoft-managed keys.
 
-For information on how to use your own keys for data stored in Azure Data Lake Storage, see [Azure Storage encryption with customer-managed keys in Azure Key Vault](../storage/common/customer-managed-keys-configure-key-vault.md).
+For information on how to use your own keys for data stored in Azure Data Lake Storage, see [Azure Storage encryption with customer-managed keys in Azure Key Vault](/azure/storage/common/customer-managed-keys-configure-key-vault).
 
 ### Azure relational databases
 
@@ -80,7 +80,7 @@ All container images in your container registry (an instance of Azure Container 
 To use customer-managed keys to encrypt your container registry, you need to create and attach the container registry while you're provisioning the workspace. You can encrypt the default instance that's created at the time of workspace provisioning.
 
 > [!IMPORTANT]
-> Azure Machine Learning requires you to enable the admin account on your container registry. By default, this setting is disabled when you create a container registry. For information on enabling the admin account, see [Admin account](../container-registry/container-registry-authentication.md#admin-account) later in this article.
+> Azure Machine Learning requires you to enable the admin account on your container registry. By default, this setting is disabled when you create a container registry. For information on enabling the admin account, see [Admin account](/azure/container-registry/container-registry-authentication#admin-account) later in this article.
 >
 > After you create a container registry for a workspace, don't delete it. Doing so will break your Azure Machine Learning workspace.
 
@@ -146,7 +146,7 @@ For more information, see [Customer-managed keys for Azure Machine Learning](con
 
 The Azure Data Factory pipeline ingests data for use with Azure Machine Learning. Azure Data Factory encrypts data at rest, including entity definitions and any data that's cached while runs are in progress. By default, data is encrypted with a randomly generated Microsoft-managed key that's uniquely assigned to your data factory.
 
-For information on how to use customer-managed keys for encryption, see [Encrypt Azure Data Factory with customer-managed keys](../data-factory/enable-customer-managed-key.md).
+For information on how to use customer-managed keys for encryption, see [Encrypt Azure Data Factory with customer-managed keys](/azure/data-factory/enable-customer-managed-key).
 
 ### Azure Databricks
 

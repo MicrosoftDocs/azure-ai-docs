@@ -171,7 +171,7 @@ The following steps show you how to get information about a skill.
 
 ## Debug a custom skill locally
 
-Custom skills can be more challenging to debug because the code runs externally, so the debug session can't be used to debug them. This section describes how to locally debug your Custom Web API skill, debug session, Visual Studio Code and [ngrok](https://ngrok.com/docs) or [Tunnelmole](https://github.com/robbie-cahill/tunnelmole-client). This technique works with custom skills that execute in [Azure Functions](../azure-functions/functions-overview.md) or any other Web Framework that runs locally (for example, [FastAPI](https://fastapi.tiangolo.com/)).
+Custom skills can be more challenging to debug because the code runs externally, so the debug session can't be used to debug them. This section describes how to locally debug your Custom Web API skill, debug session, Visual Studio Code and [ngrok](https://ngrok.com/docs) or [Tunnelmole](https://github.com/robbie-cahill/tunnelmole-client). This technique works with custom skills that execute in [Azure Functions](/azure/azure-functions/functions-overview) or any other Web Framework that runs locally (for example, [FastAPI](https://fastapi.tiangolo.com/)).
 
 ### Get a public URL
 

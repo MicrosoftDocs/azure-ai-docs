@@ -22,7 +22,7 @@ This article supplements [**Create an indexer**](search-howto-create-indexers.md
 
 ## Prerequisites
 
-+ [Azure Table Storage](../storage/tables/table-storage-overview.md)
++ [Azure Table Storage](/azure/storage/tables/table-storage-overview)
 
 + Tables containing text. If you have binary data, consider [AI enrichment](cognitive-search-concept-intro.md) for image analysis.
 
@@ -91,7 +91,7 @@ Indexers can connect to a table using the following connections.
 | Container shared access signature |
 |-----------------------------------|
 | `{ "connectionString" : "ContainerSharedAccessUri=https://<your storage account>.blob.core.windows.net/<container name>?sv=2016-05-31&sr=c&sig=<the signature>&se=<the validity end time>&sp=rl;" }` |
-| The SAS should have the list and read permissions on the container. For more information, see [Using Shared Access Signatures](../storage/common/storage-sas-overview.md). |
+| The SAS should have the list and read permissions on the container. For more information, see [Using Shared Access Signatures](/azure/storage/common/storage-sas-overview). |
 
 > [!NOTE]
 > If you use SAS credentials, you'll need to update the data source credentials periodically with renewed signatures to prevent their expiration. When SAS credentials expire, the indexer will fail with an error message similar to "Credentials provided in the connection string are invalid or have expired".  

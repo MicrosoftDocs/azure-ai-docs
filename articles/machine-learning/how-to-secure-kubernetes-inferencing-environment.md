@@ -41,7 +41,7 @@ In a secure AKS inferencing environment, AKS cluster accesses different part of 
 
 ## How to configure a secure AKS inferencing environment
 
-To configure a secure AKS inferencing environment, you must have VNet information for AKS. [VNet](../virtual-network/quick-create-portal.md) can be created independently or during AKS cluster deployment. There are two options for AKS cluster in a VNet:
+To configure a secure AKS inferencing environment, you must have VNet information for AKS. [VNet](/azure/virtual-network/quick-create-portal) can be created independently or during AKS cluster deployment. There are two options for AKS cluster in a VNet:
   * Deploy default AKS cluster to your VNet
   * Or create private AKS cluster to your VNet
 

@@ -37,19 +37,19 @@ The deletion detection strategy should be applied from the very first indexer ru
 
 ## Native blob soft delete
 
-For this deletion detection approach, Azure AI Search depends on the [native blob soft delete](../storage/blobs/soft-delete-blob-overview.md) feature in Azure Blob Storage to determine whether blobs have transitioned to a soft deleted state. When blobs are detected in this state, a search indexer uses this information to remove the corresponding document from the index.
+For this deletion detection approach, Azure AI Search depends on the [native blob soft delete](/azure/storage/blobs/soft-delete-blob-overview) feature in Azure Blob Storage to determine whether blobs have transitioned to a soft deleted state. When blobs are detected in this state, a search indexer uses this information to remove the corresponding document from the index.
 
 ### Requirements for native soft delete
 
 + Blobs must be in an Azure Blob Storage container. The Azure AI Search native blob soft delete policy isn't supported for blobs in ADLS Gen2 or Azure Files.
 
-+ [Enable soft delete for blobs](../storage/blobs/soft-delete-blob-enable.md).
++ [Enable soft delete for blobs](/azure/storage/blobs/soft-delete-blob-enable).
 
 + Document keys for the documents in your index must be mapped to either be a blob property or blob metadata, such as "metadata_storage_path".
 
 + You must use a preview REST API such as [`2024-05-01-preview`](/rest/api/searchservice/data-sources/create?view=rest-searchservice-2024-05-01-preview&preserve-view=true), or the indexer Data Source configuration in the Azure portal, to configure support for soft delete.
 
-+ [Blob versioning](../storage/blobs/versioning-overview.md) must not be enabled in the storage account. Otherwise, native soft delete isn't supported by design.
++ [Blob versioning](/azure/storage/blobs/versioning-overview) must not be enabled in the storage account. Otherwise, native soft delete isn't supported by design.
 
 ### Configure native soft delete
 

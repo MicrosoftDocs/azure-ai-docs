@@ -17,7 +17,7 @@ monikerRange: 'azureml-api-2 || azureml-api-1'
 
 Templates provide a convenient way to create reproducible service deployments. The template defines what to create, with some information you provide when you use the template. For example, you specify a unique name for an Azure Machine Learning workspace.
 
-In this tutorial, you learn how to use a [Microsoft Bicep](../azure-resource-manager/bicep/overview.md) or [Hashicorp Terraform](https://www.terraform.io/) template to create an Azure virtual network with the following Azure resources secured behind it.
+In this tutorial, you learn how to use a [Microsoft Bicep](/azure/azure-resource-manager/bicep/overview) or [Hashicorp Terraform](https://www.terraform.io/) template to create an Azure virtual network with the following Azure resources secured behind it.
 
 * Azure Machine Learning workspace
   * Azure Machine Learning compute instance

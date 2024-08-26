@@ -671,8 +671,8 @@ The following are accepted location types:
 * Git
     * You can provide git URLs to Azure Machine Learning, but you can't use them to build images yet. Use a storage account until builds have Git support
 * Storage account
-    * See this [storage account overview](../storage/common/storage-account-overview.md)
-    * See how to [create a storage account](../storage/common/storage-account-create.md)
+    * See this [storage account overview](/azure/storage/common/storage-account-overview)
+    * See how to [create a storage account](/azure/storage/common/storage-account-create)
     
 **Resources**
 * See [DockerBuildContext Class](/python/api/azureml-core/azureml.core.environment.dockerbuildcontext)
@@ -1778,11 +1778,11 @@ This issue can happen when an attempt to access a blob in a storage account is r
 
 **Troubleshooting steps**
 
-Read the following to understand [how to authorize access to blob data in the Azure portal](../storage/blobs/authorize-data-operations-portal.md)
+Read the following to understand [how to authorize access to blob data in the Azure portal](/azure/storage/blobs/authorize-data-operations-portal)
 
-Read the following to understand [how to authorize access to data in Azure storage](../storage/common/authorize-data-access.md)
+Read the following to understand [how to authorize access to data in Azure storage](/azure/storage/common/authorize-data-access)
 
-Read the following if you're interested in [using SAS to access Azure storage resources](../storage/common/storage-sas-overview.md)
+Read the following if you're interested in [using SAS to access Azure storage resources](/azure/storage/common/storage-sas-overview)
 
 ### Horovod build
 <!--issueDescription-->
@@ -2090,7 +2090,7 @@ If you aren't using a virtual network, or if you've configured it correctly, tes
 * Get credentials for your workspace ACR from the Azure portal
 * Log in to your ACR using `docker login <myregistry.azurecr.io> -u "username" -p "password"`
 * For an image "helloworld", test pushing to your ACR by running `docker push helloworld`
-* See [Quickstart: Build and run a container image using Azure Container Registry Tasks](../container-registry/container-registry-quickstart-task-cli.md)
+* See [Quickstart: Build and run a container image using Azure Container Registry Tasks](/azure/container-registry/container-registry-quickstart-task-cli)
 
 ## *Unknown Docker command*
 ### Unknown Docker instruction

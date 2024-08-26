@@ -15,14 +15,14 @@ monikerRange: 'azureml-api-2 || azureml-api-1'
 
 # How to use your workspace with a custom DNS server
 
-When using an Azure Machine Learning workspace (including Azure AI hubs) with a private endpoint, there are [several ways to handle DNS name resolution](../private-link/private-endpoint-dns.md). By default, Azure automatically handles name resolution for your workspace and private endpoint. If you instead __use your own custom DNS server__, you must manually create DNS entries or use conditional forwarders for the workspace.
+When using an Azure Machine Learning workspace (including Azure AI hubs) with a private endpoint, there are [several ways to handle DNS name resolution](/azure/private-link/private-endpoint-dns). By default, Azure automatically handles name resolution for your workspace and private endpoint. If you instead __use your own custom DNS server__, you must manually create DNS entries or use conditional forwarders for the workspace.
 
 > [!IMPORTANT]
 > This article covers how to find the fully qualified domain names (FQDN) and IP addresses for these entries if you would like to manually register DNS records in your DNS solution. Additionally this article provides architecture recommendations for how to configure your custom DNS solution to automatically resolve FQDNs to the correct IP addresses. This article does NOT provide information on configuring the DNS records for these items. Consult the documentation for your DNS software for information on how to add records.
 
 ## Prerequisites
 
-- An Azure Virtual Network that uses [your own DNS server](../virtual-network/virtual-networks-name-resolution-for-vms-and-role-instances.md#name-resolution-that-uses-your-own-dns-server).
+- An Azure Virtual Network that uses [your own DNS server](/azure/virtual-network/virtual-networks-name-resolution-for-vms-and-role-instances#name-resolution-that-uses-your-own-dns-server).
 
 :::moniker range="azureml-api-2"
 - An Azure Machine Learning workspace with a private endpoint, including hub workspaces such as those used by Azure AI Studio. For more information, see [Create an Azure Machine Learning workspace](how-to-manage-workspace.md).
@@ -34,9 +34,9 @@ When using an Azure Machine Learning workspace (including Azure AI hubs) with a 
 - Familiarity with using [Network isolation during training & inference](./how-to-network-security-overview.md).
 :::moniker-end
 
-- Familiarity with [Azure Private Endpoint DNS zone configuration](../private-link/private-endpoint-dns.md)
+- Familiarity with [Azure Private Endpoint DNS zone configuration](/azure/private-link/private-endpoint-dns)
 
-- Familiarity with [Azure Private DNS](../dns/private-dns-privatednszone.md)
+- Familiarity with [Azure Private DNS](/azure/dns/private-dns-privatednszone)
 
 - Optionally, [Azure CLI](/cli/azure/install-azure-cli) or [Azure PowerShell](/powershell/azure/install-azure-powershell).
 
@@ -640,7 +640,7 @@ The services that your workspace relies on may also be secured using a private e
 > [!NOTE]
 > Some services have multiple private-endpoints for sub-services or features. For example, an Azure Storage Account may have individual private endpoints for Blob, File, and DFS. If you need to access both Blob and File storage, then you must enable resolution for each specific private endpoint.
 
-For more information on the services and DNS resolution, see [Azure Private Endpoint DNS configuration](../private-link/private-endpoint-dns.md).
+For more information on the services and DNS resolution, see [Azure Private Endpoint DNS configuration](/azure/private-link/private-endpoint-dns).
 
 ## Troubleshooting
 
@@ -675,4 +675,4 @@ If after running through the above steps you are unable to access the workspace 
 
 ## Related content
 
-For information on integrating Private Endpoints into your DNS configuration, see [Azure Private Endpoint DNS configuration](../private-link/private-endpoint-dns.md).
+For information on integrating Private Endpoints into your DNS configuration, see [Azure Private Endpoint DNS configuration](/azure/private-link/private-endpoint-dns).

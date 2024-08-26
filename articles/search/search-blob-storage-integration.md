@@ -78,7 +78,7 @@ The Azure blob indexer comes with configuration parameters and supports change t
 
 ### Supported access tiers
 
-Blob storage [access tiers](../storage/blobs/access-tiers-overview.md) include hot, cool, cold, and archive. Indexers can retrieve blobs on hot, cool, and cold access tiers. 
+Blob storage [access tiers](/azure/storage/blobs/access-tiers-overview) include hot, cool, cold, and archive. Indexers can retrieve blobs on hot, cool, and cold access tiers. 
 
 ### Supported content types
 
@@ -124,7 +124,7 @@ A common scenario that makes it easy to sort through blobs of any content type i
 > [!NOTE]
 > Blob Index tags are natively indexed by the Blob storage service and exposed for querying. If your blobs' key/value attributes require indexing and filtering capabilities, Blob Index tags should be leveraged instead of metadata.
 >
-> To learn more about Blob Index, see [Manage and find data on Azure Blob Storage with Blob Index](../storage/blobs/storage-manage-find-blobs.md).
+> To learn more about Blob Index, see [Manage and find data on Azure Blob Storage with Blob Index](/azure/storage/blobs/storage-manage-find-blobs).
 
 ## Search blob content in a search index 
 
@@ -138,5 +138,5 @@ A more permanent solution is to gather query inputs and present the response as 
 
 ## Next steps
 
-+ [Upload, download, and list blobs with the Azure portal (Azure Blob storage)](../storage/blobs/storage-quickstart-blobs-portal.md)
++ [Upload, download, and list blobs with the Azure portal (Azure Blob storage)](/azure/storage/blobs/storage-quickstart-blobs-portal)
 + [Set up a blob indexer (Azure AI Search)](search-howto-indexing-azure-blob-storage.md)

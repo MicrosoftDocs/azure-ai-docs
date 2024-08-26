@@ -17,7 +17,7 @@ ms.custom: UpdateFrequency5, devx-track-python, data4ml, sdkv1
 
 [!INCLUDE [sdk v1](../includes/machine-learning-sdk-v1.md)]
 
-In this article, you learn how to collect data from models deployed to web service endpoints in Azure Kubernetes Service (AKS) or Azure Container Instances (ACI). Use [Azure Application Insights](../../azure-monitor/app/app-insights-overview.md) to collect the following data from an endpoint:
+In this article, you learn how to collect data from models deployed to web service endpoints in Azure Kubernetes Service (AKS) or Azure Container Instances (ACI). Use [Azure Application Insights](/azure/azure-monitor/app/app-insights-overview) to collect the following data from an endpoint:
 * Output data
 * Responses
 * Request rates, response times, and failure rates
@@ -204,7 +204,7 @@ Azure Application Insights stores your service logs in the same resource group a
 
    [![trace data](./media/how-to-enable-app-insights/model-data-trace.png)](././media/how-to-enable-app-insights/model-data-trace.png#lightbox)
 
-For more information on how to use Azure Application Insights, see [What is Application Insights?](../../azure-monitor/app/app-insights-overview.md).
+For more information on how to use Azure Application Insights, see [What is Application Insights?](/azure/azure-monitor/app/app-insights-overview).
 
 ## Web service metadata and response data
 

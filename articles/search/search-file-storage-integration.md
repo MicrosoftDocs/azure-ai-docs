@@ -23,9 +23,9 @@ This article supplements [**Create an indexer**](search-howto-create-indexers.md
 
 ## Prerequisites
 
-+ [Azure Files](../storage/files/storage-how-to-use-files-portal.md), Transaction Optimized tier.
++ [Azure Files](/azure/storage/files/storage-how-to-use-files-portal), Transaction Optimized tier.
 
-+ An [SMB file share](../storage/files/files-smb-protocol.md) providing the source content. [NFS shares](../storage/files/files-nfs-protocol.md#support-for-azure-storage-features) are not supported.
++ An [SMB file share](/azure/storage/files/files-smb-protocol) providing the source content. [NFS shares](/azure/storage/files/files-nfs-protocol#support-for-azure-storage-features) are not supported.
 
 + Files containing text. If you have binary data, you can include [AI enrichment](cognitive-search-concept-intro.md) for image analysis.
 

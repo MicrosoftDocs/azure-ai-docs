@@ -30,7 +30,7 @@ Portal access is through [role assignments](search-security-rbac.md). By default
 If you disable API keys on a search service and use roles only, administrators must grant themselves data plane role assignments for full access to objects and data. These role assignments include Search Service Contributor, Search Index Data Contributor, and Search Index Data Reader.
 
 > [!TIP]
-> By default, any owner or administrator can create or delete services. To prevent accidental deletions, you can [lock resources](../azure-resource-manager/management/lock-resources.md).
+> By default, any owner or administrator can create or delete services. To prevent accidental deletions, you can [lock resources](/azure/azure-resource-manager/management/lock-resources).
 
 ## Azure portal at a glance
 
@@ -98,7 +98,7 @@ Some features add to the cost of running the service:
 
 ### Enable diagnostic logging
 
-[Enable diagnostic logging](monitor-azure-cognitive-search.md) to track user activity. If you skip this step, you still get [activity logs](../azure-monitor/essentials/activity-log.md)  and [platform metrics](../azure-monitor/essentials/data-platform-metrics.md#types-of-metrics) automatically, but if you want index and query usage information, you should enable diagnostic logging and choose a destination for logged operations. 
+[Enable diagnostic logging](monitor-azure-cognitive-search.md) to track user activity. If you skip this step, you still get [activity logs](/azure/azure-monitor/essentials/activity-log)  and [platform metrics](/azure/azure-monitor/essentials/data-platform-metrics#types-of-metrics) automatically, but if you want index and query usage information, you should enable diagnostic logging and choose a destination for logged operations. 
 
 We recommend Log Analytics Workspace for durable storage so that you can run system queries in the portal.
 

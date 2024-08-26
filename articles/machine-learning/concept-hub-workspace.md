@@ -35,7 +35,7 @@ The goal of hubs is to take away this bottleneck, by letting IT set up a secure,
 
 ## Interoperability between ML studio and AI studio
 
-Hubs can be used as your team's collaboration environment for both ML studio and [AI studio](../ai-studio/what-is-ai-studio.md). Use ML Studio for training and operationalizing custom machine learning models. Use AI studio as experience for building and operating AI applications responsibly.
+Hubs can be used as your team's collaboration environment for both ML studio and [AI studio](/azure/ai-studio/what-is-ai-studio). Use ML Studio for training and operationalizing custom machine learning models. Use AI studio as experience for building and operating AI applications responsibly.
 
 | Workspace Kind | ML Studio | AI Studio |
 | --- | --- | --- |
@@ -57,7 +57,7 @@ Project workspaces that are created using a hub obtain the hub's security settin
 | Connections | Project workspaces can consume shared connections created on the hub. This feature is currently only supported in [AI studio]()  |
 | Compute instance | Reuse a compute instance across all project workspaces associated to the same hub. |
 | Compute quota | Any compute quota consumed by project workspaces is deducted from the hub workspace quota balance. |
-| Storage | Associated resource for storing workspace data. Project workspaces use designated containers starting with a prefix {workspaceGUID}, and have a conditional [Azure Attribute Based Access](../role-based-access-control/conditions-overview.md) role assignment for the workspace identity for accessing these containers only. |
+| Storage | Associated resource for storing workspace data. Project workspaces use designated containers starting with a prefix {workspaceGUID}, and have a conditional [Azure Attribute Based Access](/azure/role-based-access-control/conditions-overview) role assignment for the workspace identity for accessing these containers only. |
 | Key vault | Associated resource for storing secrets created in the service, for example, when creating a connection. Project workspaces identities can only access their own secrets. |
 | Container registry | Associated resource for storing built container images when creating environments. Project workspaces images are isolated by naming convention, and can only access their own containers. |
 | Application insights | Associated resource when enabling application logging for endpoints. One application insights might be configured as default for all project workspaces. Can be overridden on project workspace-level. |
@@ -69,7 +69,7 @@ Data that is uploaded in one project workspace, is stored in isolation from data
 Once a hub is created, there are multiple ways to create a project workspace using it:
 
 1. [Using ML Studio](how-to-manage-workspace.md?tabs=mlstudio)
-1. [Using AI Studio](../ai-studio/how-to/create-projects.md)
+1. [Using AI Studio](/azure/ai-studio/how-to/create-projects)
 2. [Using Azure SDK](how-to-manage-workspace.md?tabs=python)
 4. [Using automation templates](how-to-create-workspace-template.md)
 
@@ -117,4 +117,4 @@ To learn more about setting up Azure Machine Learning, see:
 
 To learn more about hub workspace support in AI Studio, see:
 
-+ [How to configure a managed network for hubs](../ai-studio/how-to/configure-managed-network.md)
++ [How to configure a managed network for hubs](/azure/ai-studio/how-to/configure-managed-network)

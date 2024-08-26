@@ -21,7 +21,7 @@ In this quickstart guide, you learn how to perform interactive data wrangling wi
 ## Prerequisites
 - An Azure subscription; if you don't have an Azure subscription, [create a free account](https://azure.microsoft.com/free) before you start.
 - An Azure Machine Learning workspace. Visit [Create workspace resources](./quickstart-create-resources.md).
-- An Azure Data Lake Storage (ADLS) Gen 2 storage account. Visit [Create an Azure Data Lake Storage (ADLS) Gen 2 storage account](../storage/blobs/create-data-lake-storage-account.md).
+- An Azure Data Lake Storage (ADLS) Gen 2 storage account. Visit [Create an Azure Data Lake Storage (ADLS) Gen 2 storage account](/azure/storage/blobs/create-data-lake-storage-account).
 
 ## Store Azure storage account credentials as secrets in Azure Key Vault
 
@@ -105,7 +105,7 @@ assign **Reader** and **Storage Blob Data Reader** roles to the user identity of
 Once the user identity has the appropriate roles assigned, data in the Azure storage account should become accessible.
 
 > [!NOTE]
-> If an [attached Synapse Spark pool](./how-to-manage-synapse-spark-pool.md) points to a Synapse Spark pool, in an Azure Synapse workspace, that has a managed virtual network associated with it, [you should configure a managed private endpoint to a storage account](../synapse-analytics/security/connect-to-a-secure-storage-account.md) to ensure data access.
+> If an [attached Synapse Spark pool](./how-to-manage-synapse-spark-pool.md) points to a Synapse Spark pool, in an Azure Synapse workspace, that has a managed virtual network associated with it, [you should configure a managed private endpoint to a storage account](/azure/synapse-analytics/security/connect-to-a-secure-storage-account) to ensure data access.
 
 ## Ensuring resource access for Spark jobs
 

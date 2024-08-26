@@ -43,7 +43,7 @@ Microsoft Entra Conditional Access can be used to further control or restrict ac
 
 All the authentication workflows for your workspace rely on Microsoft Entra ID. If you want users to authenticate using individual accounts, they must have accounts in your Microsoft Entra ID. If you want to use service principals, they must exist in your Microsoft Entra ID. Managed identities are also a feature of Microsoft Entra ID. 
 
-For more on Microsoft Entra ID, see [What is Microsoft Entra authentication](../../active-directory/authentication/overview-authentication.md).
+For more on Microsoft Entra ID, see [What is Microsoft Entra authentication](/azure/active-directory/authentication/overview-authentication).
 
 Once you've created the Microsoft Entra accounts, see [Manage access to Azure Machine Learning workspace](../how-to-assign-roles.md) for information on granting them access to the workspace and other operations in Azure Machine Learning.
 
@@ -123,7 +123,7 @@ The easiest way to create an SP and grant access to your workspace is by using t
 
 1. To grant access to the workspace and other resources used by Azure Machine Learning, use the information in the following articles:
     * [How to assign roles and actions in Azure Machine Learning](../how-to-assign-roles.md)
-    * [How to assign roles in the CLI](../../role-based-access-control/role-assignments-cli.md)
+    * [How to assign roles in the CLI](/azure/role-based-access-control/role-assignments-cli)
 
     > [!IMPORTANT]
     > Owner access allows the service principal to do virtually any operation in your workspace. It is used in this document to demonstrate how to grant access; in a production environment Microsoft recommends granting the service principal the minimum access needed to perform the role you intend it for. For information on creating a custom role with the access needed for your scenario, see [Manage access to Azure Machine Learning workspace](../how-to-assign-roles.md).
@@ -136,11 +136,11 @@ The easiest way to create an SP and grant access to your workspace is by using t
 
 ### Managed identity with a VM
 
-1. Enable a [system-assigned managed identity for Azure resources on the VM](../../active-directory/managed-identities-azure-resources/qs-configure-portal-windows-vm.md#system-assigned-managed-identity).
+1. Enable a [system-assigned managed identity for Azure resources on the VM](/azure/active-directory/managed-identities-azure-resources/qs-configure-portal-windows-vm#system-assigned-managed-identity).
 
 1. From the [Azure portal](https://portal.azure.com), select your workspace and then select __Access Control (IAM)__.
 1. Select __Add__, __Add Role Assignment__ to open the __Add role assignment page__.
-1. Assign the following role. For detailed steps, see [Assign Azure roles using the Azure portal](../../role-based-access-control/role-assignments-portal.yml).
+1. Assign the following role. For detailed steps, see [Assign Azure roles using the Azure portal](/azure/role-based-access-control/role-assignments-portal).
 
     | Setting | Value |
     | ----- | ----- |
@@ -158,7 +158,7 @@ For more information, see [Set up managed identity for compute cluster](../how-t
 ## Use interactive authentication
 
 > [!IMPORTANT]
-> Interactive authentication uses your browser, and requires cookies (including 3rd party cookies). If you have disabled cookies, you may receive an error such as "we couldn't sign you in." This error may also occur if you have enabled [Microsoft Entra multifactor authentication](../../active-directory/authentication/concept-mfa-howitworks.md).
+> Interactive authentication uses your browser, and requires cookies (including 3rd party cookies). If you have disabled cookies, you may receive an error such as "we couldn't sign you in." This error may also occur if you have enabled [Microsoft Entra multifactor authentication](/azure/active-directory/authentication/concept-mfa-howitworks).
 
 Most examples in the documentation and samples use interactive authentication. For example, when using the SDK there are two function calls that will automatically prompt you with a UI-based authentication flow:
 
@@ -257,8 +257,8 @@ ws = Workspace(subscription_id="your-sub-id",
 
 ## Use Conditional Access
 
-As an administrator, you can enforce [Microsoft Entra Conditional Access policies](../../active-directory/conditional-access/overview.md) for users signing in to the workspace. For example, you 
-can require two-factor authentication, or allow sign in only from managed devices. To use Conditional Access for Azure Machine Learning workspaces specifically, [assign the Conditional Access policy](../../active-directory/conditional-access/concept-conditional-access-cloud-apps.md) to the app named __Azure Machine Learning__. The app ID is __0736f41a-0425-bdb5-1563eff02385__. 
+As an administrator, you can enforce [Microsoft Entra Conditional Access policies](/azure/active-directory/conditional-access/overview) for users signing in to the workspace. For example, you 
+can require two-factor authentication, or allow sign in only from managed devices. To use Conditional Access for Azure Machine Learning workspaces specifically, [assign the Conditional Access policy](/azure/active-directory/conditional-access/concept-conditional-access-cloud-apps) to the app named __Azure Machine Learning__. The app ID is __0736f41a-0425-bdb5-1563eff02385__. 
 
 ## Next steps
 

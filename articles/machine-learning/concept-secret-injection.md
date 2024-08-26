@@ -29,7 +29,7 @@ When you create an online deployment, you might want to use secrets from within 
 
 To use the secrets, you have to find a way to securely pass them to your user container that runs inside the deployment. We don't recommend that you include secrets as part of the deployment definition, since this practice would expose the secrets in the deployment definition. 
 
-A better approach is to store the secrets in secret stores and then retrieve them securely from within the deployment. However, this approach poses its own challenge: how the deployment should authenticate itself to the secret stores to retrieve secrets. Because the online deployment runs your user container using the _endpoint identity_, which is a [managed identity](/entra/identity/managed-identities-azure-resources/overview), you can use [Azure RBAC](../role-based-access-control/overview.md) to control the endpoint identity's permissions and allow the endpoint to retrieve secrets from the secret stores.
+A better approach is to store the secrets in secret stores and then retrieve them securely from within the deployment. However, this approach poses its own challenge: how the deployment should authenticate itself to the secret stores to retrieve secrets. Because the online deployment runs your user container using the _endpoint identity_, which is a [managed identity](/entra/identity/managed-identities-azure-resources/overview), you can use [Azure RBAC](/azure/role-based-access-control/overview) to control the endpoint identity's permissions and allow the endpoint to retrieve secrets from the secret stores.
 Using this approach requires you to do the following tasks:
 
 - Assign the right roles to the endpoint identity so that it can read secrets from the secret stores.
@@ -41,7 +41,7 @@ While this approach of using a managed identity is a secure way to retrieve and 
 ## Managed identity associated with the endpoint
 
 
-An online deployment runs your user container with the managed identity associated with the endpoint. This managed identity, called the _endpoint identity_, is a [Microsoft Entra ID](/entra/fundamentals/whatis) that supports [Azure RBAC](../role-based-access-control/overview.md). Therefore, you can assign Azure roles to the identity to control permissions that are required to perform operations. The endpoint identity can be either a system-assigned identity (SAI) or a user-assigned identity (UAI). You can decide which of these kinds of identities to use when you create the endpoint.
+An online deployment runs your user container with the managed identity associated with the endpoint. This managed identity, called the _endpoint identity_, is a [Microsoft Entra ID](/entra/fundamentals/whatis) that supports [Azure RBAC](/azure/role-based-access-control/overview). Therefore, you can assign Azure roles to the identity to control permissions that are required to perform operations. The endpoint identity can be either a system-assigned identity (SAI) or a user-assigned identity (UAI). You can decide which of these kinds of identities to use when you create the endpoint.
 
 - For a _system-assigned identity_, the identity is created automatically when you create the endpoint, and roles with fundamental permissions (such as the Azure Container Registry pull permission and the storage blob data reader) are automatically assigned.
 - For a _user-assigned identity_, you need to create the identity first, and then associate it with the endpoint when you create the endpoint. You're also responsible for assigning proper roles to the UAI as needed.

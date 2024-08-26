@@ -42,7 +42,7 @@ In this section, you assign permissions to the user identity that you use for in
 
 ### Use a built-in role
 
-The `AzureML Data Scientist` [built-in role](../role-based-access-control/built-in-roles.md#azureml-data-scientist) can be used to manage and use endpoints and deployments and it uses wildcards to include the following _control plane_ RBAC actions:
+The `AzureML Data Scientist` [built-in role](/azure/role-based-access-control/built-in-roles#azureml-data-scientist) can be used to manage and use endpoints and deployments and it uses wildcards to include the following _control plane_ RBAC actions:
 - `Microsoft.MachineLearningServices/workspaces/onlineEndpoints/write`
 - `Microsoft.MachineLearningServices/workspaces/onlineEndpoints/delete`
 - `Microsoft.MachineLearningServices/workspaces/onlineEndpoints/read`

@@ -151,10 +151,10 @@ For this tutorial, you create three separate storage containers in the same ADLS
 
 1. Copy the sample data required for this tutorial series into the newly created storage containers.
 
-   1. To write data to the storage containers, ensure that **Contributor** and **Storage Blob Data Contributor** roles are assigned to the user identity on the created ADLS Gen2 storage account in the Azure portal [following these steps](../role-based-access-control/role-assignments-portal.yml).
+   1. To write data to the storage containers, ensure that **Contributor** and **Storage Blob Data Contributor** roles are assigned to the user identity on the created ADLS Gen2 storage account in the Azure portal [following these steps](/azure/role-based-access-control/role-assignments-portal).
 
       > [!IMPORTANT]
-      > Once you ensure that the **Contributor** and **Storage Blob Data Contributor** roles are assigned to the user identity, wait for a few minutes after role assignment, to let permissions propagate before you proceed with the next steps. To learn more about access control, visit [role-based access control (RBAC) for Azure storage accounts](../storage/blobs/data-lake-storage-access-control-model.md#role-based-access-control-azure-rbac)
+      > Once you ensure that the **Contributor** and **Storage Blob Data Contributor** roles are assigned to the user identity, wait for a few minutes after role assignment, to let permissions propagate before you proceed with the next steps. To learn more about access control, visit [role-based access control (RBAC) for Azure storage accounts](/azure/storage/blobs/data-lake-storage-access-control-model#role-based-access-control-azure-rbac)
 
       The next code cells copy sample source data for transactions feature set used in this tutorial from a public storage account to the newly created storage account.
 
@@ -381,7 +381,7 @@ For this tutorial, you create three separate storage containers in the same ADLS
 
    [!notebook-python[] (~/azureml-examples-main/sdk/python/featurestore_sample/notebooks/sdk_and_cli/network_isolation/Network-isolation-feature-store.ipynb?name=redis-default-settings)]
 
-   You can select the Redis cache tier (basic, standard, or premium). You should choose a SKU family that is available for the selected cache tier. Visit [this documentation resource](../azure-cache-for-redis/cache-best-practices-performance.md) for more information about how selection of different tiers can impact cache performance. Visit [this documentation resource](https://azure.microsoft.com/pricing/details/cache/) for more information about pricing for different SKU tiers and families of Azure Cache for Redis.
+   You can select the Redis cache tier (basic, standard, or premium). You should choose a SKU family that is available for the selected cache tier. Visit [this documentation resource](/azure/azure-cache-for-redis/cache-best-practices-performance) for more information about how selection of different tiers can impact cache performance. Visit [this documentation resource](https://azure.microsoft.com/pricing/details/cache/) for more information about pricing for different SKU tiers and families of Azure Cache for Redis.
 
    Execute the following code cell to create an Azure Cache for Redis with premium tier, SKU family `P` and cache capacity 2. It may take approximately 5-10 minutes to provision the Redis instance.
 

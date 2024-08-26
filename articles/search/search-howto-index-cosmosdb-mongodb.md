@@ -44,7 +44,7 @@ These are the limitations of this feature:
 
 + The MongoDB attribute `$ref` is a reserved word. If you need this in your MongoDB collection, consider alternative solutions for populating an index. 
 
-As an alternative to this connector, if your scenario has any of those requirements, you could use the [Push API/SDK](search-what-is-data-import.md) or consider [Azure Data Factory](../data-factory/connector-azure-cosmos-db.md) with an [Azure AI Search index](../data-factory/connector-azure-search.md) as the sink.
+As an alternative to this connector, if your scenario has any of those requirements, you could use the [Push API/SDK](search-what-is-data-import.md) or consider [Azure Data Factory](/azure/data-factory/connector-azure-cosmos-db) with an [Azure AI Search index](/azure/data-factory/connector-azure-search) as the sink.
 
 ## Define the data source
 

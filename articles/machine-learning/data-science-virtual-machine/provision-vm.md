@@ -53,7 +53,7 @@ To create a DSVM instance:
 
 ## Access the DSVM
 
-After you create and provision the VM, follow the steps described in [Connect to your Azure-based VM](../../marketplace/azure-vm-create-using-approved-base.md). Use the admin account credentials that you configured in the **Basics** section of step 4 of creating a VM.
+After you create and provision the VM, follow the steps described in [Connect to your Azure-based VM](/azure/marketplace/azure-vm-create-using-approved-base). Use the admin account credentials that you configured in the **Basics** section of step 4 of creating a VM.
 
 You can now use the tools that are installed and configured on the VM. You can access many of these tools through **Start** menu tiles and desktop icons.
 

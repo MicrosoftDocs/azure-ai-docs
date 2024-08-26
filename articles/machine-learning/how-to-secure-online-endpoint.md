@@ -38,7 +38,7 @@ For examples that use the legacy method for network isolation, see the deploymen
 
 * You must have an Azure Resource Group, in which you (or the service principal you use) need to have `Contributor` access. You'll have such a resource group if you've configured your `ml` extension.
 
-* If you want to use a [user-assigned managed identity](../active-directory/managed-identities-azure-resources/how-manage-user-assigned-managed-identities.md?pivots=identity-mi-methods-azp) to create and manage online endpoints and online deployments, the identity should have the proper permissions. For details about the required permissions, see [Set up service authentication](./how-to-identity-based-service-authentication.md#workspace). For example, you need to assign the proper RBAC permission for Azure Key Vault on the identity.
+* If you want to use a [user-assigned managed identity](/azure/active-directory/managed-identities-azure-resources/how-manage-user-assigned-managed-identities?pivots=identity-mi-methods-azp) to create and manage online endpoints and online deployments, the identity should have the proper permissions. For details about the required permissions, see [Set up service authentication](./how-to-identity-based-service-authentication.md#workspace). For example, you need to assign the proper RBAC permission for Azure Key Vault on the identity.
 
 ### Migrate from legacy network isolation method to workspace managed virtual network
 
@@ -78,7 +78,7 @@ If you don't need to maintain computes or keep online endpoints and deployments 
 
     For more information on how to create a new workspace or to upgrade your existing workspace to use a manged virtual network, see [Configure a managed virtual network to allow internet outbound](how-to-managed-network.md#configure-a-managed-virtual-network-to-allow-internet-outbound).
 
-    When the workspace is configured with a private endpoint, the Azure Container Registry for the workspace must be configured for __Premium__ tier to allow access via the private endpoint. For more information, see [Azure Container Registry service tiers](../container-registry/container-registry-skus.md). Also, the workspace should be set with the `image_build_compute` property, as deployment creation involves building of images. See [Configure image builds](how-to-managed-network.md#configure-image-builds) for more.
+    When the workspace is configured with a private endpoint, the Azure Container Registry for the workspace must be configured for __Premium__ tier to allow access via the private endpoint. For more information, see [Azure Container Registry service tiers](/azure/container-registry/container-registry-skus). Also, the workspace should be set with the `image_build_compute` property, as deployment creation involves building of images. See [Configure image builds](how-to-managed-network.md#configure-image-builds) for more.
 
    > [!IMPORTANT]
    > When workspace managed virtual network is set up for a workspace for the first time, the network is not provisioned yet. Before proceeding to create online deployments, provision the network by following the guideline [Manually provision a managed network](how-to-managed-network.md#manually-provision-a-managed-vnet). Creating online deployments will be rejected until the managed network is provisioned.

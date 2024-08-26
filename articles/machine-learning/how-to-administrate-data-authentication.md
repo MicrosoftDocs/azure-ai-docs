@@ -28,7 +28,7 @@ Learn how to manage data access and how to authenticate in Azure Machine Learnin
 In general, credential-based data authentication involves these checks:
 * Has the user who is accessing data from the credential-based datastore been assigned a role with role-based access control (RBAC) that contains `Microsoft.MachineLearningServices/workspaces/datastores/listsecrets/action`?
     - This permission is required to retrieve credentials from the datastore for the user.
-    - Built-in roles that contain this permission already are [Contributor](../role-based-access-control/built-in-roles/general.md#contributor), Azure AI Developer, or [Azure Machine Learning Data Scientist](../role-based-access-control/built-in-roles/ai-machine-learning.md#azureml-data-scientist). Alternatively, if a custom role is applied, you need to ensure that this permission is added to that custom role.
+    - Built-in roles that contain this permission already are [Contributor](/azure/role-based-access-control/built-in-roles/general#contributor), Azure AI Developer, or [Azure Machine Learning Data Scientist](/azure/role-based-access-control/built-in-roles/ai-machine-learning#azureml-data-scientist). Alternatively, if a custom role is applied, you need to ensure that this permission is added to that custom role.
     - You must know *which* specific user is trying to access the data. It can be a real user with a user identity or a computer with compute managed identity (MSI). See the section [Scenarios and authentication options](#scenarios-and-authentication-options) to identify the identity for which you need to add permission.
 
 * Does the stored credential (service principal, account key, or shared access signature token) have access to the data resource?
@@ -46,14 +46,14 @@ In general, identity-based data authentication involves these checks:
     - For authentication based on a user identity, you must know *which* specific user tried to access the storage resource. For more information about *user* authentication, see [Authentication for Azure Machine Learning](how-to-setup-authentication.md). For more information about service-level authentication, see [Authentication between Azure Machine Learning and other services](how-to-identity-based-service-authentication.md).
 * Does this user have permission for reading?
     - Does the user identity or the compute managed identity have the necessary permissions for that storage resource? Permissions are granted by using Azure RBAC.
-    - The storage account [Reader](../role-based-access-control/built-in-roles.md#reader) reads the storage metadata.
-    - The [Storage Blob Data Reader](../role-based-access-control/built-in-roles.md#storage-blob-data-reader) reads and lists storage containers and blobs.
-    - For more information, see [Azure built-in roles for storage](../role-based-access-control/built-in-roles/storage.md).
+    - The storage account [Reader](/azure/role-based-access-control/built-in-roles#reader) reads the storage metadata.
+    - The [Storage Blob Data Reader](/azure/role-based-access-control/built-in-roles#storage-blob-data-reader) reads and lists storage containers and blobs.
+    - For more information, see [Azure built-in roles for storage](/azure/role-based-access-control/built-in-roles/storage).
 * Does this user have permission for writing?
     - Does the user identity or the compute managed identity have the necessary permissions for that storage resource? Permissions are granted by using Azure RBAC.
-    - The storage account [Reader](../role-based-access-control/built-in-roles.md#reader) reads the storage metadata.
-    - The [Storage Blob Data Contributor](../role-based-access-control/built-in-roles.md#storage-blob-data-contributor) reads, writes, and deletes Azure Storage containers and blobs.
-    - For more information, see [Azure built-in roles for storage](../role-based-access-control/built-in-roles/storage.md).
+    - The storage account [Reader](/azure/role-based-access-control/built-in-roles#reader) reads the storage metadata.
+    - The [Storage Blob Data Contributor](/azure/role-based-access-control/built-in-roles#storage-blob-data-contributor) reads, writes, and deletes Azure Storage containers and blobs.
+    - For more information, see [Azure built-in roles for storage](/azure/role-based-access-control/built-in-roles/storage).
 
 ## Other general checks for authentication
 
@@ -97,8 +97,8 @@ The following information helps you set up data authentication to access data be
 
 When you use a storage account from the studio, if you want to see Dataset Preview, you must enable **Use workspace managed identity for data preview and profiling in Azure Machine Learning studio** in the datastore setting. Then add the following Azure RBAC roles of the storage account to the workspace managed identity:
 
-* [Blob Data Reader](../role-based-access-control/built-in-roles.md#storage-blob-data-reader)
-* If the storage account uses a private endpoint to connect to the virtual network, you must grant the [Reader](../role-based-access-control/built-in-roles.md#reader) role for the storage account private endpoint to the managed identity.
+* [Blob Data Reader](/azure/role-based-access-control/built-in-roles#storage-blob-data-reader)
+* If the storage account uses a private endpoint to connect to the virtual network, you must grant the [Reader](/azure/role-based-access-control/built-in-roles#reader) role for the storage account private endpoint to the managed identity.
 
 For more information, see [Use Azure Machine Learning studio in an Azure virtual network](how-to-enable-studio-virtual-network.md).
 
@@ -106,7 +106,7 @@ The following sections explain the limitations of using a storage account, with 
 
 ### Secure communication with a storage account
 
-To secure communication between Machine Learning and storage accounts, configure the storage to [grant access to trusted Azure services](../storage/common/storage-network-security.md#grant-access-to-trusted-azure-services).
+To secure communication between Machine Learning and storage accounts, configure the storage to [grant access to trusted Azure services](/azure/storage/common/storage-network-security#grant-access-to-trusted-azure-services).
 
 ### Azure Storage firewall
 
@@ -121,14 +121,14 @@ When the workspace uses a private endpoint, and the storage account is also in t
 
 ## Azure Data Lake Storage Gen1
 
-When you use Azure Data Lake Storage Gen1 as a datastore, you can only use POSIX-style access control lists. You can assign the workspace's managed identity access to resources, like any other security principal. For more information, see [Access control in Azure Data Lake Storage Gen1](../data-lake-store/data-lake-store-access-control.md).
+When you use Azure Data Lake Storage Gen1 as a datastore, you can only use POSIX-style access control lists. You can assign the workspace's managed identity access to resources, like any other security principal. For more information, see [Access control in Azure Data Lake Storage Gen1](/azure/data-lake-store/data-lake-store-access-control).
 
 ## Azure Data Lake Storage Gen2
 
 When you use Azure Data Lake Storage Gen2 as a datastore, you can use both Azure RBAC and POSIX-style access control lists (ACLs) to control data access inside a virtual network.
 
 - **To use Azure RBAC**: Follow the steps described in [Datastore: Azure Storage account](how-to-enable-studio-virtual-network.md#datastore-azure-storage-account). Data Lake Storage Gen2 is based on Azure Storage, so the same steps apply when you use Azure RBAC.
-- **To use ACLs**: The managed identity of the workspace can be assigned access like any other security principal. For more information, see [Access control lists on files and directories](../storage/blobs/data-lake-storage-access-control.md#access-control-lists-on-files-and-directories).
+- **To use ACLs**: The managed identity of the workspace can be assigned access like any other security principal. For more information, see [Access control lists on files and directories](/azure/storage/blobs/data-lake-storage-access-control#access-control-lists-on-files-and-directories).
 
 ## Next steps
 

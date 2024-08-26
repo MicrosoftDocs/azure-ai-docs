@@ -103,7 +103,7 @@ To make the data accessible by Azure Machine Learning, you must create datasets 
 
 To create datasets from a datastore with the Python SDK:
 
-1. Verify that you have `contributor` or `owner` access to the underlying storage service of your registered Azure Machine Learning datastore. [Check your storage account permissions in the Azure portal](../../role-based-access-control/check-access.md).
+1. Verify that you have `contributor` or `owner` access to the underlying storage service of your registered Azure Machine Learning datastore. [Check your storage account permissions in the Azure portal](/azure/role-based-access-control/check-access).
 
 1. Create the dataset by referencing paths in the datastore. You can create a dataset from multiple paths in multiple datastores. There's no hard limit on the number of files or data size from which you can create a dataset.
 

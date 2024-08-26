@@ -20,7 +20,7 @@ ms.date: 08/07/2024
 
 In this article, you learn to manage resource usage in a deployment by configuring autoscaling based on metrics and schedules. The autoscale process lets you automatically run the right amount of resources to handle the load on your application. [Online endpoints](concept-endpoints.md) in Azure Machine Learning support autoscaling through integration with the autoscale feature in Azure Monitor.
 
-Azure Monitor autoscale allows you to set rules that trigger one or more autoscale actions when conditions of the rules are met. You can configure metrics-based scaling (such as CPU utilization greater than 70%), schedule-based scaling (such as scaling rules for peak business hours), or a combination of the two. For more information, see [Overview of autoscale in Microsoft Azure](../azure-monitor/autoscale/autoscale-overview.md).
+Azure Monitor autoscale allows you to set rules that trigger one or more autoscale actions when conditions of the rules are met. You can configure metrics-based scaling (such as CPU utilization greater than 70%), schedule-based scaling (such as scaling rules for peak business hours), or a combination of the two. For more information, see [Overview of autoscale in Microsoft Azure](/azure/azure-monitor/autoscale/autoscale-overview).
 
 :::image type="content" source="media/how-to-autoscale-endpoints/concept-autoscale.png" border="false" alt-text="Diagram that shows how autoscale adds and removes instances as needed.":::
 
@@ -592,6 +592,6 @@ Alternatively, you can delete a managed online endpoint directly in the [endpoin
 
 ## Related content
 
-- [Understand autoscale settings](../azure-monitor/autoscale/autoscale-understanding-settings.md)
-- [Review common autoscale patterns](../azure-monitor/autoscale/autoscale-common-scale-patterns.md)
-- [Explore best practices for autoscale](../azure-monitor/autoscale/autoscale-best-practices.md)
+- [Understand autoscale settings](/azure/azure-monitor/autoscale/autoscale-understanding-settings)
+- [Review common autoscale patterns](/azure/azure-monitor/autoscale/autoscale-common-scale-patterns)
+- [Explore best practices for autoscale](/azure/azure-monitor/autoscale/autoscale-best-practices)

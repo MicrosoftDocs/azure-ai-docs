@@ -16,7 +16,7 @@ ms.date: 11/02/2023
 
 # LLM tool
 
-The large language model (LLM) tool in prompt flow enables you to take advantage of widely used large language models like [OpenAI](https://platform.openai.com/), [Azure OpenAI Service](../../../cognitive-services/openai/overview.md), or any language model supported by the [Azure AI model inference API](https://aka.ms/azureai/modelinference) for natural language processing.
+The large language model (LLM) tool in prompt flow enables you to take advantage of widely used large language models like [OpenAI](https://platform.openai.com/), [Azure OpenAI Service](/azure/cognitive-services/openai/overview), or any language model supported by the [Azure AI model inference API](https://aka.ms/azureai/modelinference) for natural language processing.
 
 Prompt flow provides a few different large language model APIs:
 
@@ -39,7 +39,7 @@ Create OpenAI resources:
 
 - **Azure OpenAI**:
 
-    - Create Azure OpenAI resources with [these instructions](../../../ai-services/openai/how-to/create-resource.md).
+    - Create Azure OpenAI resources with [these instructions](/azure/ai-services/openai/how-to/create-resource).
 
 - **Models deployed to Serverless API endpoints**
 
@@ -60,7 +60,7 @@ Set up connections to provisioned resources in prompt flow.
   > [!TIP]
   > - To use Microsoft Entra ID auth type for Azure OpenAI connection, you need assign either the `Cognitive Services OpenAI User` or `Cognitive Services OpenAI Contributor role` to user or user assigned managed identity.
   > - Learn more about [how to specify to use user identity to submit flow run](../how-to-create-manage-runtime.md#create-an-automatic-runtime-preview-on-a-flow-page).
-  > - Learn more about [How to configure Azure OpenAI Service with managed identities](../../../ai-services/openai/how-to/managed-identity.md).
+  > - Learn more about [How to configure Azure OpenAI Service with managed identities](/azure/ai-services/openai/how-to/managed-identity).
 
 ## Inputs
 

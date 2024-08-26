@@ -16,19 +16,19 @@ ms.reviewer: jhirono
 
 When teams collaborate on Azure Machine Learning, they might face varying requirements to configure and organize resources. Machine learning teams might look for flexibility in how to organize workspaces for collaboration, or how to size compute clusters for the requirements of their use cases. In these scenarios, productivity could benefit if application teams can manage their own infrastructure.
 
-As a platform administrator, you can use policies to lay out guardrails for teams to manage their own resources. [Azure Policy](../governance/policy/index.yml) helps audit and govern resource state. This article explains how you can use audit controls and governance practices for Azure Machine Learning.
+As a platform administrator, you can use policies to lay out guardrails for teams to manage their own resources. [Azure Policy](/azure/governance/policy/) helps audit and govern resource state. This article explains how you can use audit controls and governance practices for Azure Machine Learning.
 
 ## Policies for Azure Machine Learning
 
-[Azure Policy](../governance/policy/index.yml) is a governance tool that allows you to ensure that Azure resources are compliant with your policies.
+[Azure Policy](/azure/governance/policy/) is a governance tool that allows you to ensure that Azure resources are compliant with your policies.
 
 Azure Policy provides a set of policies that you can use for common scenarios with Azure Machine Learning. You can assign these policy definitions to your existing subscription or use them as the basis to create your own custom definitions.
 
-The following table lists the built-in policies you can assign with Azure Machine Learning. For a list of all Azure built-in policies, see [Built-in policies](../governance/policy/samples/built-in-policies.md).
+The following table lists the built-in policies you can assign with Azure Machine Learning. For a list of all Azure built-in policies, see [Built-in policies](/azure/governance/policy/samples/built-in-policies).
 
 [!INCLUDE [azure-policy-reference-policies-machine-learning](../../includes/policy/reference/bycat/policies-machine-learning.md)]
 
-Policies can be set at different scopes, such as at the subscription or resource group level. For more information, see the [Azure Policy documentation](../governance/policy/overview.md).
+Policies can be set at different scopes, such as at the subscription or resource group level. For more information, see the [Azure Policy documentation](/azure/governance/policy/overview).
 
 ## Assigning built-in policies
 
@@ -38,13 +38,13 @@ To view the built-in policy definitions related to Azure Machine Learning, use t
 1. Select __Definitions__.
 1. For __Type__, select __Built-in__. For __Category__, select __Machine Learning__.
 
-From here, you can select policy definitions to view them. While viewing a definition, you can use the __Assign__ link to assign the policy to a specific scope, and configure the parameters for the policy. For more information, see [Create a policy assignment to identify non-compliant resources using Azure portal](../governance/policy/assign-policy-portal.md).
+From here, you can select policy definitions to view them. While viewing a definition, you can use the __Assign__ link to assign the policy to a specific scope, and configure the parameters for the policy. For more information, see [Create a policy assignment to identify non-compliant resources using Azure portal](/azure/governance/policy/assign-policy-portal).
 
-You can also assign policies by using [Azure PowerShell](../governance/policy/assign-policy-powershell.md), [Azure CLI](../governance/policy/assign-policy-azurecli.md), or [templates](../governance/policy/assign-policy-template.md).
+You can also assign policies by using [Azure PowerShell](/azure/governance/policy/assign-policy-powershell), [Azure CLI](/azure/governance/policy/assign-policy-azurecli), or [templates](/azure/governance/policy/assign-policy-template).
 
 ## Conditional access policies
 
-To control who can access your Azure Machine Learning workspace, use [Microsoft Entra Conditional Access](../active-directory/conditional-access/overview.md). To use Conditional Access for Azure Machine Learning workspaces, [assign the Conditional Access policy](../active-directory/conditional-access/concept-conditional-access-cloud-apps.md) to the app named __Azure Machine Learning__. The app ID is __0736f41a-0425-bdb5-1563eff02385__. 
+To control who can access your Azure Machine Learning workspace, use [Microsoft Entra Conditional Access](/azure/active-directory/conditional-access/overview). To use Conditional Access for Azure Machine Learning workspaces, [assign the Conditional Access policy](/azure/active-directory/conditional-access/concept-conditional-access-cloud-apps) to the app named __Azure Machine Learning__. The app ID is __0736f41a-0425-bdb5-1563eff02385__. 
 
 ## Enable self-service using landing zones
 
@@ -162,9 +162,9 @@ To configure this policy, set the effect parameter to __AuditIfNotExists__ or __
 
 ## Related content
 
-* [Azure Policy documentation](../governance/policy/overview.md)
+* [Azure Policy documentation](/azure/governance/policy/overview)
 * [Built-in policies for Azure Machine Learning](policy-reference.md)
-* [Working with security policies with Microsoft Defender for Cloud](../security-center/tutorial-security-policy.md)
+* [Working with security policies with Microsoft Defender for Cloud](/azure/security-center/tutorial-security-policy)
 * The [Cloud Adoption Framework scenario for data management and analytics](/azure/cloud-adoption-framework/scenarios/data-management/) outlines considerations in running data and analytics workloads in the cloud
 * [Cloud Adoption Framework data landing zones](https://github.com/Azure/data-landing-zone) provide a reference implementation for managing data and analytics workloads in Azure
 * [Learn how to use policy to integrate Azure Private Link with Azure Private DNS zones](/azure/cloud-adoption-framework/ready/azure-best-practices/private-link-and-dns-integration-at-scale)

@@ -19,7 +19,7 @@ ms.custom: UpdateFrequency5, cliv1, sdkv1, devx-track-azurecli
 [!INCLUDE [cli v1](../includes/machine-learning-cli-v1.md)]
 
 
-[Managed identities](../../active-directory/managed-identities-azure-resources/overview.md) allow you to configure your workspace with the *minimum required permissions to access resources*. 
+[Managed identities](/azure/active-directory/managed-identities-azure-resources/overview) allow you to configure your workspace with the *minimum required permissions to access resources*. 
 
 When configuring Azure Machine Learning workspace in trustworthy manner, it is important to ensure that different services associated with the workspace have the correct level of access. For example, during machine learning workflow the workspace needs access to Azure Container Registry (ACR) for Docker images, and storage accounts for training data. 
 
@@ -39,8 +39,8 @@ In this article, you'll learn how to use managed identities to:
     [!INCLUDE [cli v1 deprecation](../includes/machine-learning-cli-v1-deprecation.md)]
 
 - The [Azure Machine Learning Python SDK](/python/api/overview/azure/ml/intro).
-- To assign roles, the login for your Azure subscription must have the [Managed Identity Operator](../../role-based-access-control/built-in-roles.md#managed-identity-operator) role, or other role that grants the required actions (such as __Owner__).
-- You must be familiar with creating and working with [Managed Identities](../../active-directory/managed-identities-azure-resources/overview.md).
+- To assign roles, the login for your Azure subscription must have the [Managed Identity Operator](/azure/role-based-access-control/built-in-roles#managed-identity-operator) role, or other role that grants the required actions (such as __Owner__).
+- You must be familiar with creating and working with [Managed Identities](/azure/active-directory/managed-identities-azure-resources/overview).
 
 ## Configure managed identities
 
@@ -57,7 +57,7 @@ You can bring your own ACR with admin user disabled when you create the workspac
 
 If ACR admin user is disallowed by subscription policy, you should first create ACR without admin user, and then associate it with the workspace. Also, if you have existing ACR with admin user disabled, you can attach it to the workspace.
 
-[Create ACR from Azure CLI](../../container-registry/container-registry-get-started-azure-cli.md) without setting ```--admin-enabled``` argument, or from Azure portal without enabling admin user. Then, when creating Azure Machine Learning workspace, specify the Azure resource ID of the ACR. The following example demonstrates creating a new Azure Machine Learning workspace that uses an existing ACR:
+[Create ACR from Azure CLI](/azure/container-registry/container-registry-get-started-azure-cli) without setting ```--admin-enabled``` argument, or from Azure portal without enabling admin user. Then, when creating Azure Machine Learning workspace, specify the Azure resource ID of the ACR. The following example demonstrates creating a new Azure Machine Learning workspace that uses an existing ACR:
 
 > [!TIP]
 > To get the value for the `--container-registry` parameter, use the [az acr show](/cli/azure/acr#az-acr-show) command to show information for your ACR. The `id` field contains the resource ID for your ACR.
@@ -250,7 +250,7 @@ Once you've configured ACR without admin user as described earlier, you can acce
 
 ## Create workspace with user-assigned managed identity
 
-When creating a workspace, you can bring your own [user-assigned managed identity](../../active-directory/managed-identities-azure-resources/how-manage-user-assigned-managed-identities.md) that will be used to access the associated resources: ACR, KeyVault, Storage, and App Insights.
+When creating a workspace, you can bring your own [user-assigned managed identity](/azure/active-directory/managed-identities-azure-resources/how-manage-user-assigned-managed-identities) that will be used to access the associated resources: ACR, KeyVault, Storage, and App Insights.
 
 > [!IMPORTANT]
 > When creating workspace with user-assigned managed identity, you must create the associated resources yourself, and grant the managed identity roles on those resources. Use the [role assignment ARM template](https://github.com/Azure/azure-quickstart-templates/tree/master/quickstarts/microsoft.machinelearningservices/machine-learning-dependencies-role-assignment) to make the assignments.

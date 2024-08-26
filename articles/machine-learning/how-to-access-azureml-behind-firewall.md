@@ -29,7 +29,7 @@ The following terms and information are used throughout this article:
 * __Azure service tags__: A service tag is an easy way to specify the IP ranges used by an Azure service. For example, the `AzureMachineLearning` tag represents the IP addresses used by the Azure Machine Learning service.
 
     > [!IMPORTANT]
-    > Azure service tags are only supported by some Azure services. For a list of service tags supported with network security groups and Azure Firewall, see the [Virtual network service tags](../virtual-network/service-tags-overview.md) article.
+    > Azure service tags are only supported by some Azure services. For a list of service tags supported with network security groups and Azure Firewall, see the [Virtual network service tags](/azure/virtual-network/service-tags-overview) article.
     > 
     > If you are using a non-Azure solution such as a 3rd party firewall, download a list of [Azure IP Ranges and Service Tags](https://www.microsoft.com/download/details.aspx?id=56519). Extract the file and search for the service tag within the file. The IP addresses may change periodically.
 
@@ -66,7 +66,7 @@ __Inbound traffic__
 | `AzureMachineLearning` | Any | `VirtualNetwork` | 44224 | Inbound to compute instance/cluster. __Only needed if the instance/cluster is configured to use a public IP address__. |
 
 > [!TIP]
-> A network security group (NSG) is created by default for this traffic. For more information, see [Default security rules](../virtual-network/network-security-groups-overview.md#inbound).
+> A network security group (NSG) is created by default for this traffic. For more information, see [Default security rules](/azure/virtual-network/network-security-groups-overview#inbound).
 
 __Outbound traffic__
 
@@ -84,12 +84,12 @@ __Outbound traffic__
 | `VirtualNetwork` | 443 | Required when private endpoints are present in the virtual network or peered virtual networks. |
 
 > [!IMPORTANT]
-> If a compute instance or compute cluster is configured for no public IP, by default it can't access the internet. If it *can* still send outbound traffic to the internet, it is because of Azure [default outbound access](../virtual-network/ip-services/default-outbound-access.md#when-is-default-outbound-access-provided) and you have an NSG that allows outbound to the internet. We **don't recommend** using the default outbound access. If you need outbound access to the internet, we recommend using one of the following options instead of the default outbound access:
+> If a compute instance or compute cluster is configured for no public IP, by default it can't access the internet. If it *can* still send outbound traffic to the internet, it is because of Azure [default outbound access](/azure/virtual-network/ip-services/default-outbound-access#when-is-default-outbound-access-provided) and you have an NSG that allows outbound to the internet. We **don't recommend** using the default outbound access. If you need outbound access to the internet, we recommend using one of the following options instead of the default outbound access:
 > 
-> * __Azure Virtual Network NAT with a public IP__: For more information on using Virtual Network Nat, see the [Virtual Network NAT](../virtual-network/nat-gateway/nat-overview.md) documentation.
+> * __Azure Virtual Network NAT with a public IP__: For more information on using Virtual Network Nat, see the [Virtual Network NAT](/azure/virtual-network/nat-gateway/nat-overview) documentation.
 > * __User-defined route and firewall__: Create a user-defined route in the subnet that contains the compute. The __Next hop__ for the route should reference the private IP address of the firewall, with an address prefix of 0.0.0.0/0.
 >
-> For more information, see the [Default outbound access in Azure](../virtual-network/ip-services/default-outbound-access.md) article.
+> For more information, see the [Default outbound access in Azure](/azure/virtual-network/ip-services/default-outbound-access) article.
 
 ### Recommended configuration for training and deploying models
 
@@ -167,7 +167,7 @@ For more information on the `hbi_workspace` flag, see the [data encryption](conc
 
 [Kubernetes Cluster](./how-to-attach-kubernetes-anywhere.md) running behind an outbound proxy server or firewall needs extra egress network configuration. 
 
-* For Kubernetes with Azure Arc connection, configure the [Azure Arc network requirements](../azure-arc/kubernetes/network-requirements.md) needed by Azure Arc agents. 
+* For Kubernetes with Azure Arc connection, configure the [Azure Arc network requirements](/azure/azure-arc/kubernetes/network-requirements) needed by Azure Arc agents. 
 * For AKS cluster without Azure Arc connection, configure the [AKS extension network requirements](/azure/aks/outbound-rules-control-egress#cluster-extensions). 
 
 Besides above requirements, the following outbound URLs are also required for Azure Machine Learning,
@@ -477,7 +477,7 @@ If you haven't [secured Azure Monitor](./v1/how-to-secure-workspace-vnet.md#secu
 * `dc.services.visualstudio.com`
 * `*.in.applicationinsights.azure.com`
 
-For a list of IP addresses for these hosts, see [IP addresses used by Azure Monitor](../azure-monitor/ip-addresses.md).
+For a list of IP addresses for these hosts, see [IP addresses used by Azure Monitor](/azure/azure-monitor/ip-addresses).
 
 ## Next steps
 
@@ -497,4 +497,4 @@ This article is part of a series on securing an Azure Machine Learning workflow.
 * [Enable studio functionality](how-to-enable-studio-virtual-network.md)
 * [Use custom DNS](how-to-custom-dns.md)
 
-For more information on configuring Azure Firewall, see [Tutorial: Deploy and configure Azure Firewall using the Azure portal](../firewall/tutorial-firewall-deploy-portal.md).
+For more information on configuring Azure Firewall, see [Tutorial: Deploy and configure Azure Firewall using the Azure portal](/azure/firewall/tutorial-firewall-deploy-portal).

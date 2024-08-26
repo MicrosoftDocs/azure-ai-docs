@@ -522,10 +522,10 @@ The following table describes the different service states:
 | Healthy | The service is healthy and the endpoint is available. | Yes |
 
 > [!TIP]
-> When deploying, Docker images for compute targets are built and loaded from Azure Container Registry (ACR). By default, Azure Machine Learning creates an ACR that uses the *basic* service tier. Changing the ACR for your workspace to standard or premium tier may reduce the time it takes to build and deploy images to your compute targets. For more information, see [Azure Container Registry service tiers](../../container-registry/container-registry-skus.md).
+> When deploying, Docker images for compute targets are built and loaded from Azure Container Registry (ACR). By default, Azure Machine Learning creates an ACR that uses the *basic* service tier. Changing the ACR for your workspace to standard or premium tier may reduce the time it takes to build and deploy images to your compute targets. For more information, see [Azure Container Registry service tiers](/azure/container-registry/container-registry-skus).
 
 > [!NOTE]
-> If you are deploying a model to Azure Kubernetes Service (AKS), we advise you enable [Azure Monitor](../../azure-monitor/containers/container-insights-enable-existing-clusters.md) for that cluster. This will help you understand overall cluster health and resource usage. You might also find the following resources useful:
+> If you are deploying a model to Azure Kubernetes Service (AKS), we advise you enable [Azure Monitor](/azure/azure-monitor/containers/container-insights-enable-existing-clusters) for that cluster. This will help you understand overall cluster health and resource usage. You might also find the following resources useful:
 >
 > * [Check for Resource Health events impacting your AKS cluster](/azure/aks/aks-resource-health)
 > * [Azure Kubernetes Service Diagnostics](/azure/aks/concepts-diagnostics)

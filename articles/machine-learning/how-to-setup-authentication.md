@@ -45,7 +45,7 @@ Microsoft Entra Conditional Access can be used to further control or restrict ac
 
 All the authentication workflows for your workspace rely on Microsoft Entra ID. If you want users to authenticate using individual accounts, they must have accounts in your Microsoft Entra ID. If you want to use service principals, they must exist in your Microsoft Entra ID. Managed identities are also a feature of Microsoft Entra ID. 
 
-For more on Microsoft Entra ID, see [What is Microsoft Entra authentication](..//active-directory/authentication/overview-authentication.md).
+For more on Microsoft Entra ID, see [What is Microsoft Entra authentication](/azure/active-directory/authentication/overview-authentication).
 
 Once you create the Microsoft Entra accounts, see [Manage access to Azure Machine Learning workspace](how-to-assign-roles.md) for information on granting them access to the workspace and other operations in Azure Machine Learning.
 
@@ -179,7 +179,7 @@ The easiest way to create an SP and grant access to your workspace is by using t
 
 1. To grant access to the workspace and other resources used by Azure Machine Learning, use the information in the following articles:
     * [How to assign roles and actions in Azure Machine Learning](how-to-assign-roles.md)
-    * [How to assign roles in the CLI](../role-based-access-control/role-assignments-cli.md)
+    * [How to assign roles in the CLI](/azure/role-based-access-control/role-assignments-cli)
 
     > [!IMPORTANT]
     > Owner access allows the service principal to do virtually any operation in your workspace. It is used in this document to demonstrate how to grant access; in a production environment Microsoft recommends granting the service principal the minimum access needed to perform the role you intend it for. For information on creating a custom role with the access needed for your scenario, see [Manage access to Azure Machine Learning workspace](how-to-assign-roles.md).
@@ -192,11 +192,11 @@ The easiest way to create an SP and grant access to your workspace is by using t
 
 ### Managed identity with a VM
 
-1. Enable a [system-assigned managed identity for Azure resources on the VM](../active-directory/managed-identities-azure-resources/qs-configure-portal-windows-vm.md#system-assigned-managed-identity).
+1. Enable a [system-assigned managed identity for Azure resources on the VM](/azure/active-directory/managed-identities-azure-resources/qs-configure-portal-windows-vm#system-assigned-managed-identity).
 
 1. From the [Azure portal](https://portal.azure.com), select your workspace and then select __Access Control (IAM)__.
 1. Select __Add__, __Add Role Assignment__ to open the __Add role assignment page__.
-1. Select the role you want to assign the managed identity. For example, Reader. For detailed steps, see [Assign Azure roles using the Azure portal](../role-based-access-control/role-assignments-portal.yml).
+1. Select the role you want to assign the managed identity. For example, Reader. For detailed steps, see [Assign Azure roles using the Azure portal](/azure/role-based-access-control/role-assignments-portal).
 
 ### Managed identity with compute cluster
 
@@ -271,15 +271,15 @@ You can use a service principal for Azure CLI commands. For more information, se
 
 ---
 
-The service principal can also be used to authenticate to the Azure Machine Learning [REST API](/rest/api/azureml/). You use the Microsoft Entra ID [client credentials grant flow](../active-directory/develop/v2-oauth2-client-creds-grant-flow.md), which allow service-to-service calls for headless authentication in automated workflows. 
+The service principal can also be used to authenticate to the Azure Machine Learning [REST API](/rest/api/azureml/). You use the Microsoft Entra ID [client credentials grant flow](/azure/active-directory/develop/v2-oauth2-client-creds-grant-flow), which allow service-to-service calls for headless authentication in automated workflows. 
 
 > [!IMPORTANT]
-> If you are currently using Azure Active Directory Authentication Library (ADAL) to get credentials, we recommend that you [Migrate to the Microsoft Authentication Library (MSAL)](../active-directory/develop/msal-migration.md). ADAL support ended June 30, 2022.
+> If you are currently using Azure Active Directory Authentication Library (ADAL) to get credentials, we recommend that you [Migrate to the Microsoft Authentication Library (MSAL)](/azure/active-directory/develop/msal-migration). ADAL support ended June 30, 2022.
 
 For information and samples on authenticating with MSAL, see the following articles:
 
-* JavaScript - [How to migrate a JavaScript app from ADAL.js to MSAL.js](../active-directory/develop/msal-compare-msal-js-and-adal-js.md).
-* Node.js - [How to migrate a Node.js app from Microsoft Authentication Library to MSAL](../active-directory/develop/msal-node-migration.md).
+* JavaScript - [How to migrate a JavaScript app from ADAL.js to MSAL.js](/azure/active-directory/develop/msal-compare-msal-js-and-adal-js).
+* Node.js - [How to migrate a Node.js app from Microsoft Authentication Library to MSAL](/azure/active-directory/develop/msal-node-migration).
 * Python - [Microsoft Authentication Library to MSAL migration guide for Python](/entra/msal/python/advanced/migrate-python-adal-msal).
 
 ## Use managed identity authentication
@@ -322,7 +322,7 @@ print(ml_client)
 
 ## Use Conditional Access
 
-As an administrator, you can enforce [Microsoft Entra Conditional Access policies](../active-directory/conditional-access/overview.md) for users signing in to the workspace. For example, you 
+As an administrator, you can enforce [Microsoft Entra Conditional Access policies](/azure/active-directory/conditional-access/overview) for users signing in to the workspace. For example, you 
 can require two-factor authentication, or allow sign in only from managed devices. The following are the app IDs to use for conditional access:
 
 | Application ID | Name | Note |
@@ -360,7 +360,7 @@ Before adding the conditional access policy, verify that the application ID is l
 
 ### Add conditional access
 
-To use Conditional Access, [assign the Conditional Access policy](../active-directory/conditional-access/concept-conditional-access-cloud-apps.md) to the application ID. If the application doesn't appear in Conditional Access, use the steps in the [Check for service principal](#check-for-service-principal) section.
+To use Conditional Access, [assign the Conditional Access policy](/azure/active-directory/conditional-access/concept-conditional-access-cloud-apps) to the application ID. If the application doesn't appear in Conditional Access, use the steps in the [Check for service principal](#check-for-service-principal) section.
 
 ## Next steps
 

@@ -216,7 +216,7 @@ According to your scheduling requirements of the Azure Machine Learning-dedicate
 
 In addition to the default Azure Machine Learning inference load balancer [azureml-fe](../machine-learning/how-to-kubernetes-inference-routing-azureml-fe.md), you can also integrate other load balancers with Azure Machine Learning extension over HTTP or HTTPS. 
 
-This tutorial helps illustrate how to integrate the [Nginx Ingress Controller](https://github.com/kubernetes/ingress-nginx) or the [Azure Application Gateway](../application-gateway/overview.md).
+This tutorial helps illustrate how to integrate the [Nginx Ingress Controller](https://github.com/kubernetes/ingress-nginx) or the [Azure Application Gateway](/azure/application-gateway/overview).
 
 ### Prerequisites
 
@@ -224,8 +224,8 @@ This tutorial helps illustrate how to integrate the [Nginx Ingress Controller](h
 - For integrating with **Nginx Ingress Controller**, you need a Kubernetes cluster setup with Nginx Ingress Controller.
   - [**Create a basic controller**](/azure/aks/ingress-basic): If you're starting from scratch, refer to these instructions.
 - For integrating with **Azure Application Gateway**, you need a Kubernetes cluster setup with Azure Application Gateway Ingress Controller.
-  - [**Greenfield Deployment**](../application-gateway/tutorial-ingress-controller-add-on-new.md): If you're starting from scratch, refer to these instructions.
-  - [**Brownfield Deployment**](../application-gateway/tutorial-ingress-controller-add-on-existing.md): If you have an existing AKS cluster and Application Gateway, refer to these instructions.
+  - [**Greenfield Deployment**](/azure/application-gateway/tutorial-ingress-controller-add-on-new): If you're starting from scratch, refer to these instructions.
+  - [**Brownfield Deployment**](/azure/application-gateway/tutorial-ingress-controller-add-on-existing): If you have an existing AKS cluster and Application Gateway, refer to these instructions.
 - If you want to use HTTPS on this application, you need a x509 certificate and its private key.
 
 ### Expose services over HTTP
@@ -387,7 +387,7 @@ To use the sample deployment template, edit the parameter file with correct valu
 ```azurecli
 az deployment group create --name <ARM deployment name> --resource-group <resource group name> --template-file deployextension.json --parameters deployextension.parameters.json
 ```
-More information about how to use ARM template can be found from [ARM template doc](../azure-resource-manager/templates/overview.md)
+More information about how to use ARM template can be found from [ARM template doc](/azure/azure-resource-manager/templates/overview)
 
 
 ## AzuremML extension release note

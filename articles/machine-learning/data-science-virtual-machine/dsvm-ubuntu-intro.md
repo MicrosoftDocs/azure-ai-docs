@@ -124,7 +124,7 @@ The Ubuntu DSVM runs [JupyterHub](https://github.com/jupyterhub/jupyterhub), whi
    
       If you receive a 500 error at this stage, you probably used capital letters in your username. This issue is a known interaction between JupyterHub and the PAM authenticator it uses.
    
-      If you receive a "Can't reach this page" error, it's likely that your network security group (NSG) permissions need adjustment. In the Azure portal, find the NSG resource within your resource group. To access JupyterHub from the public internet, you must have port 8000 open. (The image shows that this VM is configured for just-in-time access, which we highly recommend. For more information, refer to [Secure your management ports with just-in time access](../../security-center/security-center-just-in-time.md).)
+      If you receive a "Can't reach this page" error, it's likely that your network security group (NSG) permissions need adjustment. In the Azure portal, find the NSG resource within your resource group. To access JupyterHub from the public internet, you must have port 8000 open. (The image shows that this VM is configured for just-in-time access, which we highly recommend. For more information, refer to [Secure your management ports with just-in time access](/azure/security-center/security-center-just-in-time).)
       >
       > :::image type="content" source="./media/dsvm-ubuntu-intro/nsg-permissions.png" alt-text="Screenshot that shows NSG configuration values." lightbox= "./media/dsvm-ubuntu-intro/nsg-permissions.png":::
 

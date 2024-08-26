@@ -201,9 +201,9 @@ After checking the [built-in metrics](#understand-the-built-in-evaluation-metric
   - Modify parameters of the flow
   - Modify the flow logic
 
-Prompt construction can be difficult. We provide a [Introduction to prompt engineering](../../cognitive-services/openai/concepts/prompt-engineering.md) to help you learn about the concept of constructing a prompt that can achieve your goal. See [prompt engineering techniques](../../cognitive-services/openai/concepts/advanced-prompt-engineering.md?pivots=programming-language-chat-completions) to learn more about how to construct a prompt that can achieve your goal.
+Prompt construction can be difficult. We provide a [Introduction to prompt engineering](/azure/cognitive-services/openai/concepts/prompt-engineering) to help you learn about the concept of constructing a prompt that can achieve your goal. See [prompt engineering techniques](/azure/cognitive-services/openai/concepts/advanced-prompt-engineering?pivots=programming-language-chat-completions) to learn more about how to construct a prompt that can achieve your goal.
 
-System message, sometimes referred to as a metaprompt or [system prompt](../../cognitive-services/openai/concepts/advanced-prompt-engineering.md?pivots=programming-language-completions#meta-prompts) that can be used to guide an AI system’s behavior and improve system performance. Read this document on [System message framework and template recommendations for Large Language Models(LLMs)](../../cognitive-services/openai/concepts/system-message.md) to learn about how to improve your flow performance with system message.
+System message, sometimes referred to as a metaprompt or [system prompt](/azure/cognitive-services/openai/concepts/advanced-prompt-engineering?pivots=programming-language-completions#meta-prompts) that can be used to guide an AI system’s behavior and improve system performance. Read this document on [System message framework and template recommendations for Large Language Models(LLMs)](/azure/cognitive-services/openai/concepts/system-message) to learn about how to improve your flow performance with system message.
 
 ## Further reading: Guidance for creating Golden Datasets used for Copilot quality assurance
 

@@ -35,15 +35,15 @@ The interface for a custom skill is specified through the [Custom Web API skill]
 "timeout": "PT230S",
 ```
 
-The URI is the HTTPS endpoint of your function or app. When setting the URI, make sure the URI is secure (HTTPS). If your code is hosted in an Azure function app, the URI should include an [API key in the header or as a URI parameter](../azure-functions/functions-bindings-http-webhook-trigger.md#api-key-authorization) to authorize the request. 
+The URI is the HTTPS endpoint of your function or app. When setting the URI, make sure the URI is secure (HTTPS). If your code is hosted in an Azure function app, the URI should include an [API key in the header or as a URI parameter](/azure/azure-functions/functions-bindings-http-webhook-trigger#api-key-authorization) to authorize the request. 
 
 If instead your function or app uses Azure managed identities and Azure roles for authentication and authorization, the custom skill can include an authentication token on the request. The following points describe the requirements for this approach:
 
 + The search service, which sends the request on the indexer's behalf, must be [configured to use a managed identity](search-howto-managed-identities-data-sources.md) (either system or user-assigned) so that the caller can be authenticated by Microsoft Entra ID.
 
-+ Your function or app must be [configured for Microsoft Entra ID](../app-service/configure-authentication-provider-aad.md).
++ Your function or app must be [configured for Microsoft Entra ID](/azure/app-service/configure-authentication-provider-aad).
 
-+ Your [custom skill definition](cognitive-search-custom-skill-web-api.md) must include an `authResourceId` property. This property takes an application (client) ID, in a [supported format](../active-directory/develop/security-best-practices-for-app-registration.md#application-id-uri): `api://<appId>`.
++ Your [custom skill definition](cognitive-search-custom-skill-web-api.md) must include an `authResourceId` property. This property takes an application (client) ID, in a [supported format](/azure/active-directory/develop/security-best-practices-for-app-registration#application-id-uri): `api://<appId>`.
 
 By default, the connection to the endpoint times out if a response isn't returned within a 30-second window (`PT30S`). The indexing pipeline is synchronous and indexing will produce a timeout error if a response isn't received in that time frame. You can increase the interval to a maximum value of 230 seconds by setting the timeout parameter (`PT230S`).
 

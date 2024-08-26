@@ -44,7 +44,7 @@ Check the Network Security Group has the correct **Inbound security rules** that
 
 You can restrict inbound access to the public endpoint by replacing the current rule (`public_endpoint_inbound`) with the following two rules:
 
-* Allowing inbound access from the `AzureCognitiveSearch` [service tag](../virtual-network/service-tags-overview.md#available-service-tags) ("SOURCE" = `AzureCognitiveSearch`, "NAME" = `cognitive_search_inbound`)
+* Allowing inbound access from the `AzureCognitiveSearch` [service tag](/azure/virtual-network/service-tags-overview#available-service-tags) ("SOURCE" = `AzureCognitiveSearch`, "NAME" = `cognitive_search_inbound`)
 
 * Allowing inbound access from the IP address of the search service, which can be obtained by pinging its fully qualified domain name (for example, `<your-search-service-name>.search.windows.net`). ("SOURCE" = `IP address`, "NAME" = `search_service_inbound`)
 

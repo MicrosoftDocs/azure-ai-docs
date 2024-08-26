@@ -394,7 +394,7 @@ Once the index and data source are created, you're ready to create the indexer. 
 
    + "contentAndMetadata" is the default. It specifies that all metadata and textual content extracted from the file are indexed.
 
-   + "storageMetadata" specifies that only the [standard file properties and user-specified metadata](../storage/blobs/storage-blob-container-properties-metadata.md) are indexed. Although the properties are documented for Azure blobs, the file properties are the same for OneLkae, except for the SAS related metadata.
+   + "storageMetadata" specifies that only the [standard file properties and user-specified metadata](/azure/storage/blobs/storage-blob-container-properties-metadata) are indexed. Although the properties are documented for Azure blobs, the file properties are the same for OneLkae, except for the SAS related metadata.
 
    + "allMetadata" specifies that standard file properties and any [metadata for found content types](search-blob-metadata-properties.md) are extracted from the file content and indexed.
 

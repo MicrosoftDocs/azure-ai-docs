@@ -106,7 +106,7 @@ Permissions for viewing and managing API keys are conveyed through [role assignm
 
 + Owner
 + Contributor
-+ [Search Service Contributor](../role-based-access-control/built-in-roles.md#search-service-contributor)
++ [Search Service Contributor](/azure/role-based-access-control/built-in-roles#search-service-contributor)
 + Administrator and co-administrator (classic)
 
 The following roles don't have access to API keys:

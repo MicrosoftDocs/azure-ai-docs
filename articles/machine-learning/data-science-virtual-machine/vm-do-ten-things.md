@@ -86,7 +86,7 @@ You have two available options to administer your Azure subscription and cloud r
 
 - Visit the [Azure portal](https://portal.azure.com) in your browser.
 
-- Use PowerShell scripts. Run Azure PowerShell from a desktop shortcut or from the **Start** menu. Visit the [Microsoft Azure PowerShell documentation](../../azure-resource-manager/management/manage-resources-powershell.md) resource for more information.
+- Use PowerShell scripts. Run Azure PowerShell from a desktop shortcut or from the **Start** menu. Visit the [Microsoft Azure PowerShell documentation](/azure/azure-resource-manager/management/manage-resources-powershell) resource for more information.
 
 ## Extend storage by using shared file systems
 
@@ -163,7 +163,7 @@ Azure Blob storage is a reliable, economical cloud storage service for both larg
 
     ```C:\Program Files (x86)\Microsoft SDKs\Azure\AzCopy\azcopy.exe```
 
-  The directory hosting azcopy.exe is already in your PATH environment variable, so you can avoid typing the full command path when you run this tool. For more information about the AzCopy tool, read the [AzCopy documentation](../../storage/common/storage-use-azcopy-v10.md).
+  The directory hosting azcopy.exe is already in your PATH environment variable, so you can avoid typing the full command path when you run this tool. For more information about the AzCopy tool, read the [AzCopy documentation](/azure/storage/common/storage-use-azcopy-v10).
 
 - Start the Azure Storage Explorer tool. You can download it from the [Storage Explorer webpage](https://storageexplorer.com/).
 
@@ -263,7 +263,7 @@ The data is read as a data frame:
 
 ### Azure Synapse Analytics and databases
 
-Azure Synapse Analytics is an elastic data "warehouse as a service," with an enterprise-class SQL Server experience. [This resource](../../synapse-analytics/sql-data-warehouse/create-data-warehouse-portal.md) describes how to provision Azure Synapse Analytics. After you provision Azure Synapse Analytics, [this walkthrough](/azure/architecture/data-science-process/sqldw-walkthrough) explains how to handle data upload, exploration, and modeling by using data within Azure Synapse Analytics.
+Azure Synapse Analytics is an elastic data "warehouse as a service," with an enterprise-class SQL Server experience. [This resource](/azure/synapse-analytics/sql-data-warehouse/create-data-warehouse-portal) describes how to provision Azure Synapse Analytics. After you provision Azure Synapse Analytics, [this walkthrough](/azure/architecture/data-science-process/sqldw-walkthrough) explains how to handle data upload, exploration, and modeling by using data within Azure Synapse Analytics.
 
 #### Azure Cosmos DB
 

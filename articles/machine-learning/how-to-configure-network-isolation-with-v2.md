@@ -122,4 +122,4 @@ az ml workspace show -g <myresourcegroup> -n <myworkspace> --query v1LegacyMode
 ## Next steps
 
 * [Use a private endpoint with Azure Machine Learning workspace](how-to-configure-private-link.md).
-* [Create private link for managing Azure resources](../azure-resource-manager/management/create-private-link-access-portal.md).
+* [Create private link for managing Azure resources](/azure/azure-resource-manager/management/create-private-link-access-portal).

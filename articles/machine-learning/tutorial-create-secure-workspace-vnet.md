@@ -74,7 +74,7 @@ To create a virtual network, use the following steps:
 
     :::image type="content" source="./media/tutorial-create-secure-workspace-vnet/create-vnet-basics.png" alt-text="Screenshot of the basic virtual network configuration form.":::
 
-1. Select __Security__. Select to __Enable Azure Bastion__. [Azure Bastion](../bastion/bastion-overview.md) provides a secure way to access the VM jump box you create inside the virtual network in a later step. Use the following values for the remaining fields:
+1. Select __Security__. Select to __Enable Azure Bastion__. [Azure Bastion](/azure/bastion/bastion-overview) provides a secure way to access the VM jump box you create inside the virtual network in a later step. Use the following values for the remaining fields:
 
     * __Bastion name__: A unique name for this Bastion instance
     * __Public IP address__: Create a new public IP address.
@@ -319,8 +319,8 @@ Azure Machine Learning studio is a web-based application that lets you easily ma
 
 > [!NOTE]
 > For more information on securing Azure Monitor and Application Insights, see the following links:
-> * [Migrate to workspace-based Application Insights resources](../azure-monitor/app/convert-classic-resource.md).
-> * [Configure your Azure Monitor private link](../azure-monitor/logs/private-link-configure.md).
+> * [Migrate to workspace-based Application Insights resources](/azure/azure-monitor/app/convert-classic-resource).
+> * [Configure your Azure Monitor private link](/azure/azure-monitor/logs/private-link-configure).
 
 1. In the [Azure portal](https://portal.azure.com), select __Home__, and then search for __Private link__. Select the __Azure Monitor Private Link Scope__ result and then select __Create__.
 1. From the __Basics__ tab, select the same __Subscription__, __Resource Group__, and __Resource group region__ as your Azure Machine Learning workspace. Enter a __Name__ for the instance, and then select __Review + Create__. To create the instance, select __Create__.
@@ -355,7 +355,7 @@ There are several ways that you can connect to the secured workspace. The steps 
 
 | Method | Description |
 | ----- | ----- |
-| [Azure VPN gateway](../vpn-gateway/vpn-gateway-about-vpngateways.md) | Connects on-premises networks to the virtual network over a private connection. Connection is made over the public internet. |
+| [Azure VPN gateway](/azure/vpn-gateway/vpn-gateway-about-vpngateways) | Connects on-premises networks to the virtual network over a private connection. Connection is made over the public internet. |
 | [ExpressRoute](https://azure.microsoft.com/services/expressroute/) | Connects on-premises networks into the cloud over a private connection. Connection is made using a connectivity provider. |
 
 > [!IMPORTANT]

@@ -22,7 +22,7 @@ Cached content is placed in Azure Storage using account information that you pro
 
 ## Prerequisites
 
-+ [Azure Storage](/azure/storage/common/storage-account-create) for storing cached enrichments. The storage account must be [general purpose v2](../storage/common/storage-account-overview.md#types-of-storage-accounts).
++ [Azure Storage](/azure/storage/common/storage-account-create) for storing cached enrichments. The storage account must be [general purpose v2](/azure/storage/common/storage-account-overview#types-of-storage-accounts).
 
 + [For blob indexing only](search-howto-indexing-azure-blob-storage.md), if you need synchronized document removal from both the cache and index when blobs are deleted from your data source, enable a [deletion policy](search-howto-index-changed-deleted-blobs.md) in the indexer. Without this policy, document deletion from the cache isn't supported.
 

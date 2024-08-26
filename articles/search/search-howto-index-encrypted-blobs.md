@@ -16,7 +16,7 @@ ms.date: 05/23/2024
 
 # Tutorial: Index and enrich encrypted blobs for full-text search in Azure AI Search
 
-This tutorial shows you how to use [Azure AI Search](search-what-is-azure-search.md) to index documents that have been previously encrypted with a customer-managed key in [Azure Blob Storage](../storage/blobs/storage-blobs-introduction.md). 
+This tutorial shows you how to use [Azure AI Search](search-what-is-azure-search.md) to index documents that have been previously encrypted with a customer-managed key in [Azure Blob Storage](/azure/storage/blobs/storage-blobs-introduction). 
 
 Normally, an indexer can't extract content from blobs that have been encrypted using the [client side encryption](/azure/storage/blobs/client-side-encryption) of the Azure Blob Storage client library because the indexer doesn't have access to the customer-managed encryption key in [Azure Key Vault](/azure/key-vault/general/overview). However, by leveraging the [DecryptBlobFile custom skill](https://github.com/Azure-Samples/azure-search-power-skills/blob/main/Utils/DecryptBlobFile), followed by the [Document Extraction skill](cognitive-search-skill-document-extraction.md), you can provide controlled access to the key to decrypt the files and then extract content from them. This unlocks the ability to index and enrich these documents without compromising the encryption status of your stored documents.
 
@@ -36,7 +36,7 @@ If you don't have an Azure subscription, open a [free account](https://azure.mic
 
 + [Azure Storage](https://azure.microsoft.com/services/storage/), Standard performance (general-purpose v2)
 
-+ Blobs encrypted with a customer-managed key. See [Tutorial: Encrypt and decrypt blobs using Azure Key Vault](../storage/blobs/storage-encrypt-decrypt-blobs-key-vault.md) if you need to create sample data.
++ Blobs encrypted with a customer-managed key. See [Tutorial: Encrypt and decrypt blobs using Azure Key Vault](/azure/storage/blobs/storage-encrypt-decrypt-blobs-key-vault) if you need to create sample data.
 
 + [Azure Key Vault](https://azure.microsoft.com/services/key-vault/) in the same subscription as Azure AI Search. The key vault must have **soft-delete** and **purge protection** enabled.
 

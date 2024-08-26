@@ -16,7 +16,7 @@ ms.custom: template-how-to, devx-track-azurecli
 
 [!INCLUDE [dev v2](includes/machine-learning-dev-v2.md)]
 
-In this article, you'll learn how to attach a [Synapse Spark Pool](../synapse-analytics/spark/apache-spark-concepts.md#spark-pools) in Azure Machine Learning. You can attach a Synapse Spark Pool in Azure Machine Learning in one of these ways:
+In this article, you'll learn how to attach a [Synapse Spark Pool](/azure/synapse-analytics/spark/apache-spark-concepts#spark-pools) in Azure Machine Learning. You can attach a Synapse Spark Pool in Azure Machine Learning in one of these ways:
 
 - Using Azure Machine Learning studio UI
 - Using Azure Machine Learning CLI
@@ -26,15 +26,15 @@ In this article, you'll learn how to attach a [Synapse Spark Pool](../synapse-an
 # [Studio UI](#tab/studio-ui)
 - An Azure subscription; if you don't have an Azure subscription, [create a free account](https://azure.microsoft.com/free) before you begin.
 - An Azure Machine Learning workspace. See [Create workspace resources](./quickstart-create-resources.md).
-- [Create an Azure Synapse Analytics workspace in Azure portal](../synapse-analytics/quickstart-create-workspace.md).
-- [Create an Apache Spark pool using the Azure portal](../synapse-analytics/quickstart-create-apache-spark-pool-portal.md).
+- [Create an Azure Synapse Analytics workspace in Azure portal](/azure/synapse-analytics/quickstart-create-workspace).
+- [Create an Apache Spark pool using the Azure portal](/azure/synapse-analytics/quickstart-create-apache-spark-pool-portal).
 
 # [CLI](#tab/cli)
 [!INCLUDE [cli v2](includes/machine-learning-cli-v2.md)]
 - An Azure subscription; if you don't have an Azure subscription, [create a free account](https://azure.microsoft.com/free) before you begin.
 - An Azure Machine Learning workspace. See [Create workspace resources](./quickstart-create-resources.md).
-- [Create an Azure Synapse Analytics workspace in Azure portal](../synapse-analytics/quickstart-create-workspace.md).
-- [Create an Apache Spark pool using the Azure portal](../synapse-analytics/quickstart-create-apache-spark-pool-portal.md).
+- [Create an Azure Synapse Analytics workspace in Azure portal](/azure/synapse-analytics/quickstart-create-workspace).
+- [Create an Apache Spark pool using the Azure portal](/azure/synapse-analytics/quickstart-create-apache-spark-pool-portal).
 - [Create an Azure Machine Learning compute instance](./concept-compute-instance.md#create).
 - [Install Azure Machine Learning CLI](./how-to-configure-cli.md?tabs=public).
 
@@ -42,8 +42,8 @@ In this article, you'll learn how to attach a [Synapse Spark Pool](../synapse-an
 [!INCLUDE [sdk v2](includes/machine-learning-sdk-v2.md)]
 - An Azure subscription; if you don't have an Azure subscription, [create a free account](https://azure.microsoft.com/free) before you begin.
 - An Azure Machine Learning workspace. See [Create workspace resources](./quickstart-create-resources.md).
-- [Create an Azure Synapse Analytics workspace in Azure portal](../synapse-analytics/quickstart-create-workspace.md).
-- [Create an Apache Spark pool using the Azure portal](../synapse-analytics/quickstart-create-apache-spark-pool-portal.md).
+- [Create an Azure Synapse Analytics workspace in Azure portal](/azure/synapse-analytics/quickstart-create-workspace).
+- [Create an Apache Spark pool using the Azure portal](/azure/synapse-analytics/quickstart-create-apache-spark-pool-portal).
 - [Configure your development environment](./how-to-configure-environment.md), or [create an Azure Machine Learning compute instance](./concept-compute-instance.md#create).
 - [Install the Azure Machine Learning SDK for Python](/python/api/overview/azure/ai-ml-readme).
 
@@ -363,7 +363,7 @@ ml_client.begin_create_or_update(synapse_comp)
 
 ## Add role assignments in Azure Synapse Analytics
 
-To ensure that the attached Synapse Spark Pool works properly, assign the [Administrator Role](../synapse-analytics/security/synapse-workspace-synapse-rbac.md#roles) to it, from the Azure Synapse Analytics studio UI. These steps show how to do it:
+To ensure that the attached Synapse Spark Pool works properly, assign the [Administrator Role](/azure/synapse-analytics/security/synapse-workspace-synapse-rbac#roles) to it, from the Azure Synapse Analytics studio UI. These steps show how to do it:
 
 1. Open your **Synapse Workspace** in Azure portal.
 
@@ -399,7 +399,7 @@ To ensure that the attached Synapse Spark Pool works properly, assign the [Admin
 
 # [Studio UI](#tab/studio-ui)
 
-You can manage the attached Synapse Spark pool from the Azure Machine Learning studio UI. Spark pool management functionality includes associated managed identity updates for an attached Synapse Spark pool. You can assign a system-assigned or a user-assigned identity while updating a Synapse Spark pool. You should [create a user-assigned managed identity](../active-directory/managed-identities-azure-resources/how-manage-user-assigned-managed-identities.md#create-a-user-assigned-managed-identity) in Azure portal, before you assign it to a Synapse Spark pool.
+You can manage the attached Synapse Spark pool from the Azure Machine Learning studio UI. Spark pool management functionality includes associated managed identity updates for an attached Synapse Spark pool. You can assign a system-assigned or a user-assigned identity while updating a Synapse Spark pool. You should [create a user-assigned managed identity](/azure/active-directory/managed-identities-azure-resources/how-manage-user-assigned-managed-identities#create-a-user-assigned-managed-identity) in Azure portal, before you assign it to a Synapse Spark pool.
 
 To update managed identity for the attached Synapse Spark pool:
 

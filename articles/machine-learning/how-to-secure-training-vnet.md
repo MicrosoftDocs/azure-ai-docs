@@ -36,7 +36,7 @@ The following table contains the differences between these configurations:
 | Configuration | With public IP | Without public IP |
 | ----- | ----- | ----- |
 | Inbound traffic | `AzureMachineLearning` service tag. | None |
-| Outbound traffic | By default, can access the public internet with no restrictions.<br>You can restrict what it accesses using a Network Security Group or firewall. | By default, can access the public network using the [default outbound access](../virtual-network/ip-services/default-outbound-access.md) provided by Azure.<br>We recommend using a Virtual Network NAT gateway or Firewall instead if you need to route outbound traffic to required resources on the internet. |
+| Outbound traffic | By default, can access the public internet with no restrictions.<br>You can restrict what it accesses using a Network Security Group or firewall. | By default, can access the public network using the [default outbound access](/azure/virtual-network/ip-services/default-outbound-access) provided by Azure.<br>We recommend using a Virtual Network NAT gateway or Firewall instead if you need to route outbound traffic to required resources on the internet. |
 | Azure networking resources | Public IP address, load balancer, network interface | None |
 
 You can also use Azure Databricks or HDInsight to train models in a virtual network.
@@ -200,13 +200,13 @@ The following configurations are in addition to those listed in the [Prerequisit
     | `*.table.core.windows.net` | TCP | 443 | Communication with Azure Table storage. |
 
 
-+ By default, a compute instance/cluster configured for no public IP doesn't have outbound access to the internet. If you *can* access the internet from it, it is because of Azure [default outbound access](../virtual-network/ip-services/default-outbound-access.md) and you have an NSG that allows outbound to the internet. However, we **don't recommend** using the default outbound access. If you need outbound access to the internet, we recommend using either a firewall and outbound rules or a NAT gateway and network service groups to allow outbound traffic instead.
++ By default, a compute instance/cluster configured for no public IP doesn't have outbound access to the internet. If you *can* access the internet from it, it is because of Azure [default outbound access](/azure/virtual-network/ip-services/default-outbound-access) and you have an NSG that allows outbound to the internet. However, we **don't recommend** using the default outbound access. If you need outbound access to the internet, we recommend using either a firewall and outbound rules or a NAT gateway and network service groups to allow outbound traffic instead.
 
     For more information on the outbound traffic that is used by Azure Machine Learning, see the following articles:
     - [Configure inbound and outbound network traffic](how-to-access-azureml-behind-firewall.md).
-    - [Azure's outbound connectivity methods](../load-balancer/load-balancer-outbound-connections.md#scenarios).
+    - [Azure's outbound connectivity methods](/azure/load-balancer/load-balancer-outbound-connections#scenarios).
 
-    For more information on service tags that can be used with Azure Firewall, see the [Virtual network service tags](../virtual-network/service-tags-overview.md) article.
+    For more information on service tags that can be used with Azure Firewall, see the [Virtual network service tags](/azure/virtual-network/service-tags-overview) article.
 
 Use the following information to create a compute instance or cluster with no public IP address:
 
@@ -347,7 +347,7 @@ The following configurations are in addition to those listed in the [Prerequisit
         > 
         > If you have another NSG at the subnet level, the rules in the subnet level NSG mustn't conflict with the rules in the automatically created NSG.
         >
-        > To learn how the NSGs filter your network traffic, see [How network security groups filter network traffic](../virtual-network/network-security-group-how-it-works.md).
+        > To learn how the NSGs filter your network traffic, see [How network security groups filter network traffic](/azure/virtual-network/network-security-group-how-it-works).
 
     * One load balancer
 
@@ -356,7 +356,7 @@ The following configurations are in addition to those listed in the [Prerequisit
     For a compute instance, these resources are kept until the instance is deleted. Stopping the instance doesn't remove the resources. 
 
     > [!IMPORTANT]
-    > These resources are limited by the subscription's [resource quotas](../azure-resource-manager/management/azure-subscription-service-limits.md). If the virtual network resource group is locked then deletion of compute cluster/instance will fail. Load balancer cannot be deleted until the compute cluster/instance is deleted. Also please ensure there is no Azure Policy assignment which prohibits creation of network security groups.
+    > These resources are limited by the subscription's [resource quotas](/azure/azure-resource-manager/management/azure-subscription-service-limits). If the virtual network resource group is locked then deletion of compute cluster/instance will fail. Load balancer cannot be deleted until the compute cluster/instance is deleted. Also please ensure there is no Azure Policy assignment which prohibits creation of network security groups.
 
 + In your VNet, allow **inbound** TCP traffic on port **44224** from the `AzureMachineLearning` service tag.
     > [!IMPORTANT]
@@ -522,7 +522,7 @@ In this section, you learn how to use a virtual machine or Azure HDInsight clust
 Create a VM or HDInsight cluster by using the Azure portal or the Azure CLI, and put the cluster in an Azure virtual network. For more information, see the following articles:
 * [Create and manage Azure virtual networks for Linux VMs](/azure/virtual-machines/linux/tutorial-virtual-network)
 
-* [Extend HDInsight using an Azure virtual network](../hdinsight/hdinsight-plan-virtual-network-deployment.md)
+* [Extend HDInsight using an Azure virtual network](/azure/hdinsight/hdinsight-plan-virtual-network-deployment)
 
 ### Configure network ports 
 
@@ -544,7 +544,7 @@ Allow Azure Machine Learning to communicate with the SSH port on the VM or clust
 
 1. Under __Action__, select __Allow__.
 
-Keep the default outbound rules for the network security group. For more information, see the default security rules in [Security groups](../virtual-network/network-security-groups-overview.md#default-security-rules).
+Keep the default outbound rules for the network security group. For more information, see the default security rules in [Security groups](/azure/virtual-network/network-security-groups-overview#default-security-rules).
 
 If you don't want to use the default outbound rules and you do want to limit the outbound access of your virtual network, see the [required public internet access](#required-public-internet-access-to-train-models) section.
 

@@ -43,7 +43,7 @@ In this article, you'll learn how to deploy a flow as a managed online endpoint 
 
 - Azure role-based access controls (Azure RBAC) are used to grant access to operations in Azure Machine Learning. To be able to deploy an endpoint in prompt flow, your user account must be assigned the **AzureML Data scientist** or role with more privileges for the **Azure Machine Learning workspace**.
   
-- Have basic understanding on managed identities. [Learn more about managed identities.](../../active-directory/managed-identities-azure-resources/overview.md)
+- Have basic understanding on managed identities. [Learn more about managed identities.](/azure/active-directory/managed-identities-azure-resources/overview)
 
 > [!NOTE]
 > Managed online endpoint only supports managed virtual network. If your workspace is in custom vnet, you need to try other deployment options, such as deploy to [Kubernetes online endpoint using CLI/SDK](./how-to-deploy-to-code.md), or [deploy to other platforms such as Docker](https://microsoft.github.io/promptflow/how-to-guides/deploy-a-flow/index.html).
@@ -114,7 +114,7 @@ The authentication method for the endpoint. Key-based authentication provides a 
 
 The endpoint needs to access Azure resources such as the Azure Container Registry or your workspace connections for inferencing. You can allow the endpoint permission to access Azure resources via giving permission to its managed identity.
 
-System-assigned identity will be autocreated after your endpoint is created, while user-assigned identity is created by user. [Learn more about managed identities.](../../active-directory/managed-identities-azure-resources/overview.md)
+System-assigned identity will be autocreated after your endpoint is created, while user-assigned identity is created by user. [Learn more about managed identities.](/azure/active-directory/managed-identities-azure-resources/overview)
 
 ##### System-assigned
 You'll notice there is an option whether *Enforce access to connection secrets (preview)*. If your flow uses connections, the endpoint needs to access connections to perform inference. The option is by default enabled, the endpoint will be granted **Azure Machine Learning Workspace Connection Secrets Reader** role to access connections automatically if you have connection secrets reader permission. If you disable this option, you need to grant this role to the system-assigned identity manually by yourself or ask help from your admin. [Learn more about how to grant permission to the endpoint identity](#grant-permissions-to-the-endpoint).
@@ -225,7 +225,7 @@ You can grant all permissions in Azure portal UI by following steps.
     > [!NOTE]
     > Azure Machine Learning Workspace Connection Secrets Reader is a built-in role which has permission to get workspace connections. 
     >
-    > If you want to use a customized role, make sure the customized role has the permission of "Microsoft.MachineLearningServices/workspaces/connections/listsecrets/action". Learn more about [how to create custom roles](../../role-based-access-control/custom-roles-portal.md#step-3-basics).
+    > If you want to use a customized role, make sure the customized role has the permission of "Microsoft.MachineLearningServices/workspaces/connections/listsecrets/action". Learn more about [how to create custom roles](/azure/role-based-access-control/custom-roles-portal#step-3-basics).
 
 1. Select **Managed identity** and select members.
     

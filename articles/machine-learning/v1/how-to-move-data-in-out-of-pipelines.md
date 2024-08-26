@@ -48,7 +48,7 @@ You need:
    ws = Workspace.from_config()
    ```
 
-- Some pre-existing data. This article briefly shows the use of an [Azure blob container](../../storage/blobs/storage-blobs-overview.md).
+- Some pre-existing data. This article briefly shows the use of an [Azure blob container](/azure/storage/blobs/storage-blobs-overview).
 
 - Optional: An existing machine learning pipeline, such as the one described in [Create and run machine learning pipelines with Azure Machine Learning SDK](./how-to-create-machine-learning-pipelines.md).
 
@@ -253,7 +253,7 @@ Azure doesn't automatically delete intermediate data written with `OutputFileDat
 > Only delete intermediate data after 30 days from the last change date of the data. Deleting the data earlier could cause the pipeline run to fail because the pipeline will assume the intermediate data exists within 30 day period for reuse.
 
 * Programmatically delete intermediate data at the end of a pipeline job, when it's no longer needed. 
-* Use blob storage with a short-term storage policy for intermediate data (see [Optimize costs by automating Azure Blob Storage access tiers](../../storage/blobs/lifecycle-management-overview.md)). This policy can only be set to a workspace's non-default datastore. Use `OutputFileDatasetConfig` to export intermediate data to another datastore that isn't the default.
+* Use blob storage with a short-term storage policy for intermediate data (see [Optimize costs by automating Azure Blob Storage access tiers](/azure/storage/blobs/lifecycle-management-overview)). This policy can only be set to a workspace's non-default datastore. Use `OutputFileDatasetConfig` to export intermediate data to another datastore that isn't the default.
   ```Python
   # Get adls gen 2 datastore already registered with the workspace
   datastore = workspace.datastores['my_adlsgen2']

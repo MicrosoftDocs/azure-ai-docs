@@ -26,7 +26,7 @@ In this article, you'll learn to enable trace, collect aggregated metrics, and u
 
 - The Azure CLI and the Azure Machine Learning extension to the Azure CLI. For more information, see [Install, set up, and use the CLI (v2)](../how-to-configure-cli.md).
 - An Azure Machine Learning workspace. If you don't have one, use the steps in the [Quickstart: Create workspace resources article](../quickstart-create-resources.md) to create one.
-- An Application Insights. Usually a machine learning workspace has a default linked Application Insights. If you want to use a new one, you can [create an Application Insights resource](../../azure-monitor/app/create-workspace-resource.md).
+- An Application Insights. Usually a machine learning workspace has a default linked Application Insights. If you want to use a new one, you can [create an Application Insights resource](/azure/azure-monitor/app/create-workspace-resource).
 - Learn [how to build and test a flow in the prompt flow](get-started-prompt-flow.md).
 - Have basic understanding on managed online endpoints. Managed online endpoints work with powerful CPU and GPU machines in Azure in a scalable, fully managed way that frees you from the overhead of setting up and managing the underlying deployment infrastructure. For more information on managed online endpoints, see [Online endpoints and deployments for real-time inference](../concept-endpoints-online.md#online-endpoints).
 - Azure role-based access controls (Azure RBAC) are used to grant access to operations in Azure Machine Learning. To perform the steps in this article, your user account must be assigned the owner or contributor role for the Azure Machine Learning workspace, or a custom role allowing "Microsoft.MachineLearningServices/workspaces/onlineEndpoints/". If you use studio to create/manage online endpoints/deployments, you need another permission "Microsoft.Resources/deployments/write" from the resource group owner. For more information, see [Manage access to an Azure Machine Learning workspace](../how-to-assign-roles.md).
@@ -68,7 +68,7 @@ Traces record specific events or the state of an application during execution. I
 
 You can view the detailed trace in the specified Application Insights. The following screenshot shows an example of an event of a deployed flow containing multiple nodes. In Application Insights -> Investigate -> Transaction search, and you can select each node to view its detailed trace. 
 
-The **Dependency** type events record calls from your deployments. The name of that event is the name of the flow folder. Learn more about [Transaction search and diagnostics in Application Insights](../../azure-monitor/app/transaction-search-and-diagnostics.md).
+The **Dependency** type events record calls from your deployments. The name of that event is the name of the flow folder. Learn more about [Transaction search and diagnostics in Application Insights](/azure/azure-monitor/app/transaction-search-and-diagnostics).
 
 :::image type="content" source="./media/how-to-enable-trace-feedback-for-deployment/tracing-app-insights.png" alt-text="Screenshot of tracing data in application insights. " lightbox = "./media/how-to-enable-trace-feedback-for-deployment/tracing-app-insights.png":::
 

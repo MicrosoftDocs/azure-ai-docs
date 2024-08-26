@@ -29,7 +29,7 @@ This dataset is stored in the East US Azure region. We recommend locating comput
 
 East US: 'https://datasetpanukbb.blob.core.windows.net/dataset'
 
-[SAS Token](../storage/common/storage-sas-overview.md): ?sp=rl&st=2023-05-17T21:26:19Z&se=2050-05-18T05:26:19Z&spr=https&sv=2022-11-02&sr=c&sig=MGvVbVHbmkGKmWmfkHzpcaJEf5G0ljLnBQy6cbrmR%2FA%3D
+[SAS Token](/azure/storage/common/storage-sas-overview): ?sp=rl&st=2023-05-17T21:26:19Z&se=2050-05-18T05:26:19Z&spr=https&sv=2022-11-02&sr=c&sig=MGvVbVHbmkGKmWmfkHzpcaJEf5G0ljLnBQy6cbrmR%2FA%3D
 
 ## Use Terms
 

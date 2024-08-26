@@ -66,7 +66,7 @@ Some [default roles](how-to-assign-roles.md#default-roles) like *AzureML Data Sc
 * **To use MLflow model registry:**
     * `Microsoft.MachineLearningServices/workspaces/models/*/*`
 
-To learn how to grant access for the service principal you created or user account to your workspace, see [Grant access](../role-based-access-control/quickstart-assign-role-user-portal.md#grant-access).
+To learn how to grant access for the service principal you created or user account to your workspace, see [Grant access](/azure/role-based-access-control/quickstart-assign-role-user-portal#grant-access).
 
 ### Troubleshooting authentication
 

@@ -16,7 +16,7 @@ monikerRange: 'azureml-api-2 || azureml-api-1'
 
 # Azure Machine Learning data exfiltration prevention
 
-<!-- Learn how to use a [Service Endpoint policy](../virtual-network/virtual-network-service-endpoint-policies-overview.md) to prevent data exfiltration from storage accounts in your Azure Virtual Network that are used by Azure Machine Learning. -->
+<!-- Learn how to use a [Service Endpoint policy](/azure/virtual-network/virtual-network-service-endpoint-policies-overview) to prevent data exfiltration from storage accounts in your Azure Virtual Network that are used by Azure Machine Learning. -->
 
 Azure Machine Learning has several inbound and outbound dependencies. Some of these dependencies can expose a data exfiltration risk by malicious agents within your organization. This document explains how to minimize data exfiltration risk by limiting inbound and outbound requirements.
 
@@ -48,7 +48,7 @@ Azure Machine Learning has several inbound and outbound dependencies. Some of th
 
 ## Why do I need to use the service endpoint policy
 
-Service endpoint policies allow you to filter egress virtual network traffic to Azure Storage accounts over service endpoint and allow data exfiltration to only specific Azure Storage accounts. Azure Machine Learning compute instance and compute cluster requires access to Microsoft-managed storage accounts for its provisioning. The Azure Machine Learning alias in service endpoint policies includes Microsoft-managed storage accounts. We use service endpoint policies with the Azure Machine Learning alias to prevent data exfiltration or control the destination storage accounts. You can learn more in [Service Endpoint policy documentation](../virtual-network/virtual-network-service-endpoint-policies-overview.md).
+Service endpoint policies allow you to filter egress virtual network traffic to Azure Storage accounts over service endpoint and allow data exfiltration to only specific Azure Storage accounts. Azure Machine Learning compute instance and compute cluster requires access to Microsoft-managed storage accounts for its provisioning. The Azure Machine Learning alias in service endpoint policies includes Microsoft-managed storage accounts. We use service endpoint policies with the Azure Machine Learning alias to prevent data exfiltration or control the destination storage accounts. You can learn more in [Service Endpoint policy documentation](/azure/virtual-network/virtual-network-service-endpoint-policies-overview).
 
 ## 1. Create the service endpoint policy
 
@@ -187,4 +187,4 @@ When using Azure Machine Learning curated environments, make sure to use the lat
 For more information, see the following articles:
 
 * [How to configure inbound and outbound network traffic](how-to-access-azureml-behind-firewall.md)
-* [Azure Batch simplified node communication](../batch/simplified-compute-node-communication.md)
+* [Azure Batch simplified node communication](/azure/batch/simplified-compute-node-communication)

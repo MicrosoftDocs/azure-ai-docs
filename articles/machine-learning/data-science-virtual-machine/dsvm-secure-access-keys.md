@@ -18,7 +18,7 @@ ms.date: 04/16/2024
 
 Cloud application code often contains credentials to authenticate to cloud services. Management and security of these credentials is a well-known challenge as we build cloud applications. Ideally, credentials should never appear on developer workstations. We should never check in credentials to source control.
 
-The [managed identities for Azure resources](../../active-directory/managed-identities-azure-resources/overview.md) feature helps solve the problem. It gives Azure services an automatically managed identity in Microsoft Entra ID. You can use this identity to authenticate to any service that supports Microsoft Entra authentication. Additionally, this identity avoids placement of any embedded credentials in your code.
+The [managed identities for Azure resources](/azure/active-directory/managed-identities-azure-resources/overview) feature helps solve the problem. It gives Azure services an automatically managed identity in Microsoft Entra ID. You can use this identity to authenticate to any service that supports Microsoft Entra authentication. Additionally, this identity avoids placement of any embedded credentials in your code.
 
 To secure credentials, use Windows Installer (MSI) in combination with [Azure Key Vault](/azure/key-vault/). Azure Key Vault is a managed Azure service that securely stores secrets and cryptographic keys. You can access a key vault by using the managed identity and then retrieve the authorized secrets and cryptographic keys from the key vault.
 

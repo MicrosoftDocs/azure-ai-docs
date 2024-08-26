@@ -354,7 +354,7 @@ Then use either cron or LogicApps expressions to define the schedule that starts
 ```
 
 * Action can have value of `Start` or `Stop`.
-* For trigger type of `Recurrence` use the same syntax as logic app, with this [recurrence schema](../logic-apps/logic-apps-workflow-actions-triggers.md#recurrence-trigger).
+* For trigger type of `Recurrence` use the same syntax as logic app, with this [recurrence schema](/azure/logic-apps/logic-apps-workflow-actions-triggers#recurrence-trigger).
 * For trigger type of `cron`, use standard cron syntax:
 
     ```cron
@@ -428,7 +428,7 @@ As an administrator, you can create a compute instance on behalf of a data scien
 
 * Studio, using the security settings in this article.
 
-* [Azure Resource Manager template](https://github.com/Azure/azure-quickstart-templates/tree/master/quickstarts/microsoft.machinelearningservices/machine-learning-compute-create-computeinstance).  For details on how to find the TenantID and ObjectID needed in this template, see [Find identity object IDs for authentication configuration](../healthcare-apis/azure-api-for-fhir/find-identity-object-ids.md).  You can also find these values in the Microsoft Entra admin center.
+* [Azure Resource Manager template](https://github.com/Azure/azure-quickstart-templates/tree/master/quickstarts/microsoft.machinelearningservices/machine-learning-compute-create-computeinstance).  For details on how to find the TenantID and ObjectID needed in this template, see [Find identity object IDs for authentication configuration](/azure/healthcare-apis/azure-api-for-fhir/find-identity-object-ids).  You can also find these values in the Microsoft Entra admin center.
 
 To further enhance security, when you create a compute instance on behalf of a data scientist and assign the instance to them, single sign-on (SSO) will be disabled during creation if the compute instance has a setup script or custom app.
 
@@ -449,7 +449,7 @@ Here are the steps assigned to user needs to take. Please note creator of comput
 
 ## Assign managed identity
 
-You can assign a system- or user-assigned [managed identity](../active-directory/managed-identities-azure-resources/overview.md) to a compute instance, to authenticate against other Azure resources such as storage. Using managed identities for authentication helps improve workspace security and management. For example, you can allow users to access training data only when logged in to a compute instance. Or use a common user-assigned managed identity to permit access to a specific storage account.
+You can assign a system- or user-assigned [managed identity](/azure/active-directory/managed-identities-azure-resources/overview) to a compute instance, to authenticate against other Azure resources such as storage. Using managed identities for authentication helps improve workspace security and management. For example, you can allow users to access training data only when logged in to a compute instance. Or use a common user-assigned managed identity to permit access to a specific storage account.
 
 > [!IMPORTANT]
 > If the compute instance is also configured for [idle shutdown](#configure-idle-shutdown), the compute instance won't shut down due to inactivity unless the managed identity has *contributor* access to the Azure Machine Learning workspace. For more information on assigning permissions, see [Manage access to Azure Machine Learning workspaces](how-to-assign-roles.md).
@@ -561,7 +561,7 @@ An example of a common use case for this is when creating a compute instance on 
 
 * REST API
 
-The data scientist you create the compute instance for needs the following be [Azure role-based access control (Azure RBAC)](../role-based-access-control/overview.md) permissions:
+The data scientist you create the compute instance for needs the following be [Azure role-based access control (Azure RBAC)](/azure/role-based-access-control/overview) permissions:
 
 * *Microsoft.MachineLearningServices/workspaces/computes/start/action*
 * *Microsoft.MachineLearningServices/workspaces/computes/stop/action*

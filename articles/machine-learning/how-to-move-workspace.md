@@ -40,7 +40,7 @@ Moving the workspace enables you to migrate the workspace and its contents as a 
 ## Prerequisites
 
 - An Azure Machine Learning workspace in the source subscription. For more information, see [Create workspace resources](quickstart-create-resources.md).
-- You must have permissions to manage resources in both source and target subscriptions. For example, Contributor or Owner role at the __subscription__ level. For more information on roles, see [Azure roles](../role-based-access-control/rbac-and-directory-admin-roles.md#azure-roles).
+- You must have permissions to manage resources in both source and target subscriptions. For example, Contributor or Owner role at the __subscription__ level. For more information on roles, see [Azure roles](/azure/role-based-access-control/rbac-and-directory-admin-roles#azure-roles).
 
     - You need permissions to __delete__ resources from the source location.
     - You need permissions to __create__ resources in the destination location.
@@ -169,4 +169,4 @@ The automated workspace move operation doesn't move nondefault datastores. Use t
 
 ## Next steps
 
-* Learn about [resource move](../azure-resource-manager/management/move-resource-group-and-subscription.md)
+* Learn about [resource move](/azure/azure-resource-manager/management/move-resource-group-and-subscription)

@@ -24,7 +24,7 @@ This article explains how to set explicit field mappings that establish the data
 
 When an [Azure AI Search indexer](search-indexer-overview.md) loads a search index, it determines the data path using source-to-destination field mappings. Implicit field mappings are internal and occur when field names and data types are compatible between the source and destination. If inputs and outputs don't match, you can define explicit *field mappings* to set up the data path, as described in this article. 
 
-Field mappings can also be used for light-weight data conversions, such as encoding or decoding, through [mapping functions](#mappingFunctions). If more processing is required, consider [Azure Data Factory](../data-factory/index.yml) to bridge the gap.
+Field mappings can also be used for light-weight data conversions, such as encoding or decoding, through [mapping functions](#mappingFunctions). If more processing is required, consider [Azure Data Factory](/azure/data-factory/) to bridge the gap.
 
 Field mappings apply to:
 

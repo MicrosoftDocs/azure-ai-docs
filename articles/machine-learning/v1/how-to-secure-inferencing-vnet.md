@@ -99,7 +99,7 @@ To add AKS in a virtual network to your workspace, use the following steps:
     To find the IP address of the scoring endpoint, look at the scoring URI for the deployed service. For information on viewing the scoring URI, see [Consume a model deployed as a web service](how-to-consume-web-service.md#connection-information).
 
    > [!IMPORTANT]
-   > Keep the default outbound rules for the NSG. For more information, see the default security rules in [Security groups](../../virtual-network/network-security-groups-overview.md#default-security-rules).
+   > Keep the default outbound rules for the NSG. For more information, see the default security rules in [Security groups](/azure/virtual-network/network-security-groups-overview#default-security-rules).
 
    :::image type="content" source="./media/how-to-secure-inferencing-vnet/aks-vnet-inbound-nsg-scoring.png" alt-text="Screenshot that shows an inbound security rule." lightbox="./media/how-to-secure-inferencing-vnet/aks-vnet-inbound-nsg-scoring.png":::
 

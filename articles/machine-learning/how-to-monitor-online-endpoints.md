@@ -36,7 +36,7 @@ In this article you learn how to:
 ## Prerequisites
 
 - Deploy an Azure Machine Learning online endpoint.
-- You must have at least [Reader access](../role-based-access-control/role-assignments-portal.yml) on the endpoint.
+- You must have at least [Reader access](/azure/role-based-access-control/role-assignments-portal) on the endpoint.
 
 ## Metrics
 
@@ -87,7 +87,7 @@ Azure Monitor allows you to create dashboards and alerts, based on metrics.
 
 #### Create dashboards and visualize queries
 
-You can create custom dashboards and visualize metrics from multiple sources in the Azure portal, including the metrics for your online endpoint. For more information on creating dashboards and visualizing queries, see [Dashboards using log data](../azure-monitor/visualize/tutorial-logs-dashboards.md) and [Dashboards using application data](../azure-monitor/app/overview-dashboard.md#create-custom-kpi-dashboards-using-application-insights).
+You can create custom dashboards and visualize metrics from multiple sources in the Azure portal, including the metrics for your online endpoint. For more information on creating dashboards and visualizing queries, see [Dashboards using log data](/azure/azure-monitor/visualize/tutorial-logs-dashboards) and [Dashboards using application data](/azure/azure-monitor/app/overview-dashboard#create-custom-kpi-dashboards-using-application-insights).
     
 #### Create alerts
 
@@ -105,7 +105,7 @@ You can also create custom alerts to notify you of important status updates to y
 
 1. Choose **Create alert rule** to finish creating your alert.
 
-For more information, see [Create Azure Monitor alert rules](../azure-monitor/alerts/alerts-create-new-alert-rule.md).
+For more information, see [Create Azure Monitor alert rules](/azure/azure-monitor/alerts/alerts-create-new-alert-rule).
 
 ### Enable autoscale based on metrics
 
@@ -156,7 +156,7 @@ There are three logs that can be enabled for online endpoints:
 ### How to enable/disable logs
 
 > [!IMPORTANT]
-> Logging uses Azure Log Analytics. If you do not currently have a Log Analytics workspace, you can create one using the steps in [Create a Log Analytics workspace in the Azure portal](../azure-monitor/logs/quick-create-workspace.md#create-a-workspace).
+> Logging uses Azure Log Analytics. If you do not currently have a Log Analytics workspace, you can create one using the steps in [Create a Log Analytics workspace in the Azure portal](/azure/azure-monitor/logs/quick-create-workspace#create-a-workspace).
 
 1. In the [Azure portal](https://portal.azure.com), go to the resource group that contains your endpoint and then select the endpoint.
 1. From the **Monitoring** section on the left of the page, select **Diagnostic settings** and then **Add settings**.
@@ -204,7 +204,7 @@ The following tables provide details on the data stored in each log:
 
 Curated environments include integration with Application Insights, and you can enable or disable this integration when you create an online deployment. Built-in metrics and logs are sent to Application Insights, and you can use the built-in features of Application Insights (such as Live metrics, Transaction search, Failures, and Performance) for further analysis.
 
-See [Application Insights overview](../azure-monitor/app/app-insights-overview.md) for more.
+See [Application Insights overview](/azure/azure-monitor/app/app-insights-overview) for more.
 
 In the studio, you can use the **Monitoring** tab on an online endpoint's page to see high-level activity monitor graphs for the managed online endpoint. To use the monitoring tab, you must select **Enable Application Insight diagnostic and data collection** when you create your endpoint.
 
@@ -214,4 +214,4 @@ In the studio, you can use the **Monitoring** tab on an online endpoint's page t
 ## Related content
 
 * Learn how to [view costs for your deployed endpoint](./how-to-view-online-endpoints-costs.md).
-* Read more about [metrics explorer](../azure-monitor/essentials/metrics-charts.md).
+* Read more about [metrics explorer](/azure/azure-monitor/essentials/metrics-charts).

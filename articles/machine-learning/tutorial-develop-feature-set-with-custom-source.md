@@ -153,7 +153,7 @@ You should be able to successfully fetch the registered feature set as a Spark d
 If you created a resource group for the tutorial, you can delete that resource group, which deletes all the resources associated with this tutorial. Otherwise, you can delete the resources individually:
 
 - To delete the feature store, open the resource group in the Azure portal, select the feature store, and delete it.
-- The user-assigned managed identity (UAI) assigned to the feature store workspace is not deleted when we delete the feature store. To delete the UAI, follow [these](../active-directory/managed-identities-azure-resources/how-manage-user-assigned-managed-identities.md) instructions.
+- The user-assigned managed identity (UAI) assigned to the feature store workspace is not deleted when we delete the feature store. To delete the UAI, follow [these](/azure/active-directory/managed-identities-azure-resources/how-manage-user-assigned-managed-identities) instructions.
 - To delete a storage account-type offline store, open the resource group in the Azure portal, select the storage that you created, and delete it.
 - To delete an Azure Cache for Redis instance, open the resource group in the Azure portal, select the instance that you created, and delete it.
 

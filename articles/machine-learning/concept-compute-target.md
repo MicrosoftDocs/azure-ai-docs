@@ -177,7 +177,7 @@ The current isolated VM offerings include:
 * Standard_NC24s_v3
 * Standard_NC24rs_v3 (RDMA capable)
 
-To learn more about isolation, see [Isolation in the Azure public cloud](../security/fundamentals/isolation-choices.md).
+To learn more about isolation, see [Isolation in the Azure public cloud](/azure/security/fundamentals/isolation-choices).
 
 ## Unmanaged compute
 

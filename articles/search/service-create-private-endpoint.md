@@ -29,7 +29,7 @@ Other Azure resources that might privately connect to Azure AI Search include Az
 
 ## Key points about private endpoints
 
-Private endpoints are provided by [Azure Private Link](../private-link/private-link-overview.md), as a separate billable service. For more information about costs, see the [pricing page](https://azure.microsoft.com/pricing/details/private-link/).
+Private endpoints are provided by [Azure Private Link](/azure/private-link/private-link-overview), as a separate billable service. For more information about costs, see the [pricing page](https://azure.microsoft.com/pricing/details/private-link/).
 
 Once a search service has a private endpoint, portal access to that service must be initiated from a browser session on a virtual machine inside the virtual network. See [this step](#portal-access-private-search-service) for details.
 
@@ -37,13 +37,13 @@ You can create a private endpoint for a search service in the Azure portal, as d
 
 ## Why use a private endpoint?
 
-[Private Endpoints](../private-link/private-endpoint-overview.md) for Azure AI Search allow a client on a virtual network to securely access data in a search index over a [Private Link](../private-link/private-link-overview.md). The private endpoint uses an IP address from the [virtual network address space](../virtual-network/ip-services/private-ip-addresses.md) for your search service. Network traffic between the client and the search service traverses over the virtual network and a private link on the Microsoft backbone network, eliminating exposure from the public internet. For a list of other PaaS services that support Private Link, check the [availability section](../private-link/private-link-overview.md#availability) in the product documentation.
+[Private Endpoints](/azure/private-link/private-endpoint-overview) for Azure AI Search allow a client on a virtual network to securely access data in a search index over a [Private Link](/azure/private-link/private-link-overview). The private endpoint uses an IP address from the [virtual network address space](/azure/virtual-network/ip-services/private-ip-addresses) for your search service. Network traffic between the client and the search service traverses over the virtual network and a private link on the Microsoft backbone network, eliminating exposure from the public internet. For a list of other PaaS services that support Private Link, check the [availability section](/azure/private-link/private-link-overview#availability) in the product documentation.
 
 Private endpoints for your search service enable you to:
 
 + Block all connections on the public endpoint for your search service.
 + Increase security for the virtual network, by enabling you to block exfiltration of data from the virtual network.
-+ Securely connect to your search service from on-premises networks that connect to the virtual network using [VPN](../vpn-gateway/vpn-gateway-about-vpngateways.md) or [ExpressRoutes](../expressroute/expressroute-locations.md) with private-peering.
++ Securely connect to your search service from on-premises networks that connect to the virtual network using [VPN](/azure/vpn-gateway/vpn-gateway-about-vpngateways) or [ExpressRoutes](/azure/expressroute/expressroute-locations) with private-peering.
 
 ## Create the virtual network
 
@@ -254,4 +254,4 @@ You can delete individual resources or the resource group to delete everything y
 
 ## Next steps
 
-In this article, you created a VM on a virtual network and a search service with a Private Endpoint. You connected to the VM from the internet and securely communicated to the search service using Private Link. To learn more about Private Endpoint, see [What is Azure Private Endpoint?](../private-link/private-endpoint-overview.md).
+In this article, you created a VM on a virtual network and a search service with a Private Endpoint. You connected to the VM from the internet and securely communicated to the search service using Private Link. To learn more about Private Endpoint, see [What is Azure Private Endpoint?](/azure/private-link/private-endpoint-overview).

@@ -22,9 +22,9 @@ For a code sample in C#, see [Index Data Lake Gen2 using Microsoft Entra ID](htt
 
 ## Prerequisites
 
-+ [ADLS Gen2](../storage/blobs/data-lake-storage-introduction.md) with [hierarchical namespace](../storage/blobs/data-lake-storage-namespace.md) enabled. ADLS Gen2 is available through Azure Storage. When setting up a storage account, you have the option of enabling [hierarchical namespace](../storage/blobs/data-lake-storage-namespace.md), organizing files into a hierarchy of directories and nested subdirectories. By enabling a hierarchical namespace, you enable ADLS Gen2.
++ [ADLS Gen2](/azure/storage/blobs/data-lake-storage-introduction) with [hierarchical namespace](/azure/storage/blobs/data-lake-storage-namespace) enabled. ADLS Gen2 is available through Azure Storage. When setting up a storage account, you have the option of enabling [hierarchical namespace](/azure/storage/blobs/data-lake-storage-namespace), organizing files into a hierarchy of directories and nested subdirectories. By enabling a hierarchical namespace, you enable ADLS Gen2.
 
-+ [Access tiers](../storage/blobs/access-tiers-overview.md) for ADLS Gen2 include hot, cool, and archive. Only hot and cool can be accessed by search indexers.
++ [Access tiers](/azure/storage/blobs/access-tiers-overview) for ADLS Gen2 include hot, cool, and archive. Only hot and cool can be accessed by search indexers.
 
 + Blobs containing text. If you have binary data, you can include [AI enrichment](cognitive-search-concept-intro.md) for image analysis. Blob content can't exceed the [indexer limits](search-limits-quotas-capacity.md#indexer-limits) for your search service tier.
 
@@ -33,7 +33,7 @@ For a code sample in C#, see [Index Data Lake Gen2 using Microsoft Entra ID](htt
 + Use a [REST client](search-get-started-rest.md) to formulate REST calls similar to the ones shown in this article.
 
 > [!NOTE]
-> ADLS Gen2 implements an [access control model](../storage/blobs/data-lake-storage-access-control.md) that supports both Azure role-based access control (Azure RBAC) and POSIX-like access control lists (ACLs) at the blob level. Azure AI Search does not support document-level permissions. All users have the same level of access to all searchable and retrievable content in the index. If document-level permissions are an application requirement, consider [security trimming](search-security-trimming-for-azure-search.md) as a potential solution.
+> ADLS Gen2 implements an [access control model](/azure/storage/blobs/data-lake-storage-access-control) that supports both Azure role-based access control (Azure RBAC) and POSIX-like access control lists (ACLs) at the blob level. Azure AI Search does not support document-level permissions. All users have the same level of access to all searchable and retrievable content in the index. If document-level permissions are an application requirement, consider [security trimming](search-security-trimming-for-azure-search.md) as a potential solution.
 
 <a name="SupportedFormats"></a>
 
@@ -211,7 +211,7 @@ Once the index and data source have been created, you're ready to create the ind
 
    + "contentAndMetadata" specifies that all metadata and textual content extracted from the blob are indexed. This is the default value.
 
-   + "storageMetadata" specifies that only the [standard blob properties and user-specified metadata](../storage/blobs/storage-blob-container-properties-metadata.md) are indexed.
+   + "storageMetadata" specifies that only the [standard blob properties and user-specified metadata](/azure/storage/blobs/storage-blob-container-properties-metadata) are indexed.
 
    + "allMetadata" specifies that standard blob properties and any [metadata for found content types](search-blob-metadata-properties.md) are extracted from the blob content and indexed.
 

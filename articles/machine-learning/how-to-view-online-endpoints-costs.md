@@ -21,12 +21,12 @@ Learn how to view costs for a managed online endpoint. Costs for your endpoints 
 > [!IMPORTANT]
 > This article only applies to viewing costs for Azure Machine Learning managed online endpoints. Managed online endpoints are different from other resources since they must use tags to track costs.
 >
-> For more information on managing and optimizing cost for Azure Machine Learning, see [Manage and optimize Azure Machine Learning costs](how-to-manage-optimize-cost.md). For more information on viewing the costs of other Azure resources, see [Quickstart: Start using Cost analysis](../cost-management-billing/costs/quick-acm-cost-analysis.md).
+> For more information on managing and optimizing cost for Azure Machine Learning, see [Manage and optimize Azure Machine Learning costs](how-to-manage-optimize-cost.md). For more information on viewing the costs of other Azure resources, see [Quickstart: Start using Cost analysis](/azure/cost-management-billing/costs/quick-acm-cost-analysis).
 
 ## Prerequisites
 
 - Deploy an Azure Machine Learning managed online endpoint.
-- Have at least [Billing Reader](../role-based-access-control/role-assignments-portal.yml) access on the subscription where the endpoint is deployed.
+- Have at least [Billing Reader](/azure/role-based-access-control/role-assignments-portal) access on the subscription where the endpoint is deployed.
 
 ## View costs
 

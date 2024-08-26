@@ -30,7 +30,7 @@ The following table contains the differences between these configurations:
 | Configuration | With public IP | Without public IP |
 | ----- | ----- | ----- |
 | Inbound traffic | `AzureMachineLearning` service tag. | None |
-| Outbound traffic | By default, can access the public internet with no restrictions.<br>You can restrict what it accesses using a Network Security Group or firewall. | By default, it can't access the internet. If it can still send outbound traffic to internet, it is because of Azure [default outbound access](../../virtual-network/ip-services/default-outbound-access.md) and you have an NSG that allows outbound to the internet. We **don't recommend** using the default outbound access.<br>If you need outbound access to the internet, we recommend using a Virtual Network NAT gateway or Firewall instead if you need to route outbound traffic to required resources on the internet. |
+| Outbound traffic | By default, can access the public internet with no restrictions.<br>You can restrict what it accesses using a Network Security Group or firewall. | By default, it can't access the internet. If it can still send outbound traffic to internet, it is because of Azure [default outbound access](/azure/virtual-network/ip-services/default-outbound-access) and you have an NSG that allows outbound to the internet. We **don't recommend** using the default outbound access.<br>If you need outbound access to the internet, we recommend using a Virtual Network NAT gateway or Firewall instead if you need to route outbound traffic to required resources on the internet. |
 | Azure networking resources | Public IP address, load balancer, network interface | None |
 
 You can also use Azure Databricks or HDInsight to train models in a virtual network.
@@ -137,7 +137,7 @@ The following configurations are in addition to those listed in the [Prerequisit
 
     For more information on the outbound traffic that is used by Azure Machine Learning, see the following articles:
     - [Configure inbound and outbound network traffic](../how-to-access-azureml-behind-firewall.md).
-    - [Azure's outbound connectivity methods](../../load-balancer/load-balancer-outbound-connections.md#scenarios).
+    - [Azure's outbound connectivity methods](/azure/load-balancer/load-balancer-outbound-connections#scenarios).
 
 Use the following information to create a compute instance or cluster with no public IP address:
 
@@ -168,7 +168,7 @@ The following configurations are in addition to those listed in the [Prerequisit
         > 
         > If you have another NSG at the subnet level, the rules in the subnet level NSG mustn't conflict with the rules in the automatically created NSG.
         >
-        > To learn how the NSGs filter your network traffic, see [How network security groups filter network traffic](../../virtual-network/network-security-group-how-it-works.md).
+        > To learn how the NSGs filter your network traffic, see [How network security groups filter network traffic](/azure/virtual-network/network-security-group-how-it-works).
 
     * One load balancer
 
@@ -177,7 +177,7 @@ The following configurations are in addition to those listed in the [Prerequisit
     For a compute instance, these resources are kept until the instance is deleted. Stopping the instance doesn't remove the resources. 
 
     > [!IMPORTANT]
-    > These resources are limited by the subscription's [resource quotas](../../azure-resource-manager/management/azure-subscription-service-limits.md). If the virtual network resource group is locked then deletion of compute cluster/instance will fail. Load balancer cannot be deleted until the compute cluster/instance is deleted. Also please ensure there is no Azure Policy assignment which prohibits creation of network security groups.
+    > These resources are limited by the subscription's [resource quotas](/azure/azure-resource-manager/management/azure-subscription-service-limits). If the virtual network resource group is locked then deletion of compute cluster/instance will fail. Load balancer cannot be deleted until the compute cluster/instance is deleted. Also please ensure there is no Azure Policy assignment which prohibits creation of network security groups.
 
 + In your VNet, allow **inbound** TCP traffic on port **44224** from the `AzureMachineLearning` service tag.
     > [!IMPORTANT]

@@ -168,7 +168,7 @@ For batch deployment to succeed, the managed identity for the compute cluster mu
 
 **Reason**: The compute cluster where the deployment is running can't mount the storage where the data asset is located. The managed identity of the compute doesn't have permissions to perform the mount.
 
-**Solution**: Ensure the managed identity associated with the compute cluster where your deployment is running has at least [Storage Blob Data Reader](../role-based-access-control/built-in-roles.md#storage-blob-data-reader) access to the storage account. Only Azure Storage account owners can [change the access level in the Azure portal](../storage/blobs/assign-azure-role-data-access.md).
+**Solution**: Ensure the managed identity associated with the compute cluster where your deployment is running has at least [Storage Blob Data Reader](/azure/role-based-access-control/built-in-roles#storage-blob-data-reader) access to the storage account. Only Azure Storage account owners can [change the access level in the Azure portal](/azure/storage/blobs/assign-azure-role-data-access).
 
 ### Dataset initialization failed, can't mount dataset
 
@@ -178,7 +178,7 @@ The batch deployment process requires mounted storage for the data asset. When t
 
 **Reason**: The compute cluster where the deployment is running can't mount the storage where the data asset is located. The managed identity of the compute doesn't have permissions to perform the mount.
 
-**Solution**: Ensure the managed identity associated with the compute cluster where your deployment is running has at least [Storage Blob Data Reader](../role-based-access-control/built-in-roles.md#storage-blob-data-reader) access to the storage account. Only Azure Storage account owners can [change the access level in the Azure portal](../storage/blobs/assign-azure-role-data-access.md).
+**Solution**: Ensure the managed identity associated with the compute cluster where your deployment is running has at least [Storage Blob Data Reader](/azure/role-based-access-control/built-in-roles#storage-blob-data-reader) access to the storage account. Only Azure Storage account owners can [change the access level in the Azure portal](/azure/storage/blobs/assign-azure-role-data-access).
 
 ### dataset_param doesn't have specified value or default value
 

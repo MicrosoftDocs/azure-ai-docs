@@ -37,7 +37,7 @@ The following diagram shows the progression of AI enrichment:
 
   :::image type="content" source="media/cognitive-search-intro/cognitive-search-enrichment-architecture.png" alt-text="Diagram of an enrichment pipeline." border="true":::
 
-**Import** is the first step. Here, the indexer connects to a data source and pulls content (documents) into the search service. [Azure Blob Storage](../storage/blobs/storage-blobs-overview.md) is the most common resource used in AI enrichment scenarios, but any supported data source can provide content.
+**Import** is the first step. Here, the indexer connects to a data source and pulls content (documents) into the search service. [Azure Blob Storage](/azure/storage/blobs/storage-blobs-overview) is the most common resource used in AI enrichment scenarios, but any supported data source can provide content.
 
 **Enrich & Index** covers most of the AI enrichment pipeline:
 
@@ -60,7 +60,7 @@ Open-source, third-party, or first-party code can be integrated into the pipelin
 
 ### Use-cases for built-in skills
 
-Built-in skills are based on the Azure AI services APIs: [Azure AI Computer Vision](../ai-services/computer-vision/index.yml) and [Language Service](../ai-services/language-service/overview.md). Unless your content input is small, expect to [attach a billable Azure AI services resource](cognitive-search-attach-cognitive-services.md) to run larger workloads.
+Built-in skills are based on the Azure AI services APIs: [Azure AI Computer Vision](/azure/ai-services/computer-vision/) and [Language Service](/azure/ai-services/language-service/overview). Unless your content input is small, expect to [attach a billable Azure AI services resource](cognitive-search-attach-cognitive-services.md) to run larger workloads.
 
 A [skillset](cognitive-search-defining-skillset.md) that's assembled using built-in skills is well suited for the following application scenarios:
 
@@ -98,7 +98,7 @@ After you've defined and loaded a [search index](search-what-is-an-index.md) or 
 
 ### Use data exploration tools on a knowledge store
 
-In Azure Storage, a [knowledge store](knowledge-store-concept-intro.md) can assume the following forms: a blob container of JSON documents, a blob container of image objects, or tables in Table Storage. You can use [Storage Explorer](../vs-azure-tools-storage-manage-with-storage-explorer.md), [Power BI](knowledge-store-connect-power-bi.md), or any app that connects to Azure Storage to access your content.
+In Azure Storage, a [knowledge store](knowledge-store-concept-intro.md) can assume the following forms: a blob container of JSON documents, a blob container of image objects, or tables in Table Storage. You can use [Storage Explorer](/azure/vs-azure-tools-storage-manage-with-storage-explorer), [Power BI](knowledge-store-connect-power-bi.md), or any app that connects to Azure Storage to access your content.
 
 + A blob container captures enriched documents in their entirety, which is useful if you're creating a feed into other processes. 
 

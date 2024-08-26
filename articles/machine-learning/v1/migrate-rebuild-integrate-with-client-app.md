@@ -57,7 +57,7 @@ Call the REST endpoint from your client application. You can use the Swagger spe
 
 ### Use Azure Data Factory
 
-You can call your Azure Machine Learning pipeline as a step in an Azure Data Factory pipeline. For more information, see [Execute Azure Machine Learning pipelines in Azure Data Factory](../../data-factory/transform-data-machine-learning-service.md).
+You can call your Azure Machine Learning pipeline as a step in an Azure Data Factory pipeline. For more information, see [Execute Azure Machine Learning pipelines in Azure Data Factory](/azure/data-factory/transform-data-machine-learning-service).
 
 ## Next steps
 

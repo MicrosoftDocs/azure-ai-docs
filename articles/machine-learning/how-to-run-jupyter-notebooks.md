@@ -341,5 +341,5 @@ Using the following keystroke shortcuts, you can more easily navigate and run co
 ## Next steps
 
 * [Run your first experiment](tutorial-1st-experiment-sdk-train.md)
-* [Backup your file storage with snapshots](../storage/files/storage-snapshots-files.md)
+* [Backup your file storage with snapshots](/azure/storage/files/storage-snapshots-files)
 * [Working in secure environments](./how-to-secure-training-vnet.md)

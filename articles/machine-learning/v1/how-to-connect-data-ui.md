@@ -196,7 +196,7 @@ You can find account key, SAS token, and service principal information at your [
   * Select **Shared access signature**
   * Complete the process to generate the SAS value
 
-* To use a [service principal](../../active-directory/develop/howto-create-service-principal-portal.md) for authentication, go to your **App registrations** and select which app you want to use.
+* To use a [service principal](/azure/active-directory/develop/howto-create-service-principal-portal) for authentication, go to your **App registrations** and select which app you want to use.
     * Its corresponding **Overview** page contains required information like tenant ID and client ID.
 
 > [!IMPORTANT]
@@ -205,7 +205,7 @@ You can find account key, SAS token, and service principal information at your [
 
 ### Permissions
 
-For Azure blob container and Azure Data Lake Gen 2 storage, ensure that your authentication credentials have **Storage Blob Data Reader** access. Learn more about [Storage Blob Data Reader](../../role-based-access-control/built-in-roles.md#storage-blob-data-reader). By default, an account SAS token has no permissions.
+For Azure blob container and Azure Data Lake Gen 2 storage, ensure that your authentication credentials have **Storage Blob Data Reader** access. Learn more about [Storage Blob Data Reader](/azure/role-based-access-control/built-in-roles#storage-blob-data-reader). By default, an account SAS token has no permissions.
 * For data **read access**, your authentication credentials must have a minimum of list and read permissions for containers and objects. 
 
 * For data **write access**, write and add permissions also are required.

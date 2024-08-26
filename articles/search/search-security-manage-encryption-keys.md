@@ -16,7 +16,7 @@ ms.custom:
 
 # Configure customer-managed keys for data encryption in Azure AI Search
 
-Azure AI Search automatically encrypts data at rest with [service-managed keys](../security/fundamentals/encryption-atrest.md#azure-encryption-at-rest-components). If more protection is needed, you can supplement default encryption with another encryption layer using keys that you create and manage in Azure Key Vault. 
+Azure AI Search automatically encrypts data at rest with [service-managed keys](/azure/security/fundamentals/encryption-atrest#azure-encryption-at-rest-components). If more protection is needed, you can supplement default encryption with another encryption layer using keys that you create and manage in Azure Key Vault. 
 
 This article walks you through the steps of setting up customer-managed key (CMK) or "bring-your-own-key" (BYOK) encryption. Here are some points to keep in mind:
 
@@ -69,7 +69,7 @@ The following tools and services are used in this scenario.
 
 + [Azure Key Vault](/azure/key-vault/general/overview), you can [create a key vault using the Azure portal](/azure/key-vault/general/quick-create-portal), [Azure CLI](/azure/key-vault/general/quick-create-cli), or [Azure PowerShell](/azure/key-vault/general/quick-create-powershell). Create the resource in the same subscription as Azure AI Search. The key vault must have **soft-delete** and **purge protection** enabled.
 
-+ [Microsoft Entra ID](../active-directory/fundamentals/active-directory-whatis.md). If you don't have one, [set up a new tenant](../active-directory/develop/quickstart-create-new-tenant.md).
++ [Microsoft Entra ID](/azure/active-directory/fundamentals/active-directory-whatis). If you don't have one, [set up a new tenant](/azure/active-directory/develop/quickstart-create-new-tenant).
 
 You should have a search client that can create the encrypted object. Into this code, you reference a key vault key and application registration information. This code could be a working app, or prototype code such as the [C# code sample DotNetHowToEncryptionUsingCMK](https://github.com/Azure-Samples/search-dotnet-getting-started/tree/master/DotNetHowToEncryptionUsingCMK).
 
@@ -162,7 +162,7 @@ You have several options for accessing the encryption key at run time. The simpl
 
 Alternatively, you can create and register a Microsoft Entra application. The search service provides the application ID on requests.
 
-A managed identity enables your search service to authenticate to Azure Key Vault without storing credentials (ApplicationID or ApplicationSecret) in code. The lifecycle of this type of managed identity is tied to the lifecycle of your search service, which can only have one managed identity. For more information about how managed identities work, see [What are managed identities for Azure resources](../active-directory/managed-identities-azure-resources/overview.md).
+A managed identity enables your search service to authenticate to Azure Key Vault without storing credentials (ApplicationID or ApplicationSecret) in code. The lifecycle of this type of managed identity is tied to the lifecycle of your search service, which can only have one managed identity. For more information about how managed identities work, see [What are managed identities for Azure resources](/azure/active-directory/managed-identities-azure-resources/overview).
 
 ### [**System-managed identity**](#tab/managed-id-sys)
 
@@ -352,7 +352,7 @@ In this section, you set the policy that defines a CMK standard for your search 
 
    :::image type="content" source="media/search-security-manage-encryption-keys/assign-policy.png" alt-text="Screenshot of assigning built-in CMK policy." border="true":::
 
-1. Set up the [policy scope](../governance/policy/concepts/scope.md). In the **Parameters** section, uncheck **Only show parameters...** and set **Effect** to [**Deny**](../governance/policy/concepts/effects.md#deny). 
+1. Set up the [policy scope](/azure/governance/policy/concepts/scope). In the **Parameters** section, uncheck **Only show parameters...** and set **Effect** to [**Deny**](/azure/governance/policy/concepts/effects#deny). 
 
    During evaluation of the request, a request that matches a deny policy definition is marked as noncompliant. Assuming the standard for your service is CMK encryption, "deny" means that requests that *don't* specify CMK encryption are noncompliant.
 
@@ -533,7 +533,7 @@ For performance reasons, the search service caches the key for up to several hou
 
 ## Next steps
 
-If you're unfamiliar with Azure security architecture, review the [Azure Security documentation](../security/index.yml), and in particular, this article:
+If you're unfamiliar with Azure security architecture, review the [Azure Security documentation](/azure/security/), and in particular, this article:
 
 > [!div class="nextstepaction"]
-> [Data encryption-at-rest](../security/fundamentals/encryption-atrest.md)
+> [Data encryption-at-rest](/azure/security/fundamentals/encryption-atrest)

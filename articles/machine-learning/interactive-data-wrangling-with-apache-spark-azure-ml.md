@@ -24,9 +24,9 @@ In this article, you'll learn how to perform data wrangling using
 ## Prerequisites
 - An Azure subscription; if you don't have an Azure subscription, [create a free account](https://azure.microsoft.com/free) before you begin.
 - An Azure Machine Learning workspace. See [Create workspace resources](./quickstart-create-resources.md).
-- An Azure Data Lake Storage (ADLS) Gen 2 storage account. See [Create an Azure Data Lake Storage (ADLS) Gen 2 storage account](../storage/blobs/create-data-lake-storage-account.md).
+- An Azure Data Lake Storage (ADLS) Gen 2 storage account. See [Create an Azure Data Lake Storage (ADLS) Gen 2 storage account](/azure/storage/blobs/create-data-lake-storage-account).
 - (Optional): An Azure Key Vault. See [Create an Azure Key Vault](/azure/key-vault/general/quick-create-portal).
-- (Optional): A Service Principal. See [Create a Service Principal](../active-directory/develop/howto-create-service-principal-portal.md).
+- (Optional): A Service Principal. See [Create a Service Principal](/azure/active-directory/develop/howto-create-service-principal-portal).
 - [(Optional): An attached Synapse Spark pool in the Azure Machine Learning workspace](./how-to-manage-synapse-spark-pool.md).
 
 Before you start your data wrangling tasks, learn about the process of storing secrets
@@ -280,7 +280,7 @@ or provide credential-less data access. Depending on the datastore type and the 
 |Azure Data Lake Storage (ADLS) Gen 2|No|Service principal|Service principal should have [appropriate role assignments](./apache-spark-environment-configuration.md#add-role-assignments-in-azure-storage-accounts) in the Azure Data Lake Storage (ADLS) Gen 2 storage account|
 |Azure Data Lake Storage (ADLS) Gen 2|Yes|User identity passthrough|User identity should have [appropriate role assignments](./apache-spark-environment-configuration.md#add-role-assignments-in-azure-storage-accounts) in the Azure Data Lake Storage (ADLS) Gen 2 storage account|
 
-<sub>__*__</sub> User identity passthrough works for credential-less datastores that point to Azure Blob storage accounts, only if [soft delete](../storage/blobs/soft-delete-blob-overview.md) is not enabled.
+<sub>__*__</sub> User identity passthrough works for credential-less datastores that point to Azure Blob storage accounts, only if [soft delete](/azure/storage/blobs/soft-delete-blob-overview) is not enabled.
 
 ## Accessing data on the default file share
 
@@ -314,6 +314,6 @@ df.to_csv(output_path, index_col="PassengerId")
 ## Next steps
 
 - [Code samples for interactive data wrangling with Apache Spark in Azure Machine Learning](https://github.com/Azure/azureml-examples/tree/main/sdk/python/data-wrangling)
-- [Optimize Apache Spark jobs in Azure Synapse Analytics](../synapse-analytics/spark/apache-spark-performance.md)
+- [Optimize Apache Spark jobs in Azure Synapse Analytics](/azure/synapse-analytics/spark/apache-spark-performance)
 - [What are Azure Machine Learning pipelines?](./concept-ml-pipelines.md)
 - [Submit Spark jobs in Azure Machine Learning](./how-to-submit-spark-jobs.md)

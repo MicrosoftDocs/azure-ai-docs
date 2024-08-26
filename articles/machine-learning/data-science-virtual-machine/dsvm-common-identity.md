@@ -18,9 +18,9 @@ On a Microsoft Azure Virtual Machine (VM), or a Data Science Virtual Machine (DS
 
 Active Directory is a popular identity provider. Azure supports it both as a cloud service and as an on-premises directory. You can use Microsoft Entra ID or on-premises Active Directory to authenticate users on a standalone DSVM, or a cluster of DSVMs, in an Azure virtual machine scale set. To do this, you join the DSVM instances to an Active Directory domain.
 
-If you already have Active Directory, you can use it as your common identity provider. If you don't have Active Directory, you can run a managed Active Directory instance on Azure through [Microsoft Entra Domain Services](../../active-directory-domain-services/index.yml).
+If you already have Active Directory, you can use it as your common identity provider. If you don't have Active Directory, you can run a managed Active Directory instance on Azure through [Microsoft Entra Domain Services](/azure/active-directory-domain-services/).
 
-The documentation for [Microsoft Entra ID](../../active-directory/index.yml) provides detailed [management instructions](../../active-directory/hybrid/whatis-hybrid-identity.md), including guidance about how to connect Microsoft Entra ID to your on-premises directory, if you have one.
+The documentation for [Microsoft Entra ID](/azure/active-directory/) provides detailed [management instructions](/azure/active-directory/hybrid/whatis-hybrid-identity), including guidance about how to connect Microsoft Entra ID to your on-premises directory, if you have one.
 
 This article describes how to set up a fully managed Active Directory domain service on Azure, using Microsoft Entra Domain Services. You can then join your DSVMs to the managed Active Directory domain. This approach allows users to access a pool of DSVMs (and other Azure resources) through a common user account and credentials.
 
@@ -40,7 +40,7 @@ Microsoft Entra Domain Services makes it simple to manage your identities. It pr
 
         :::image type="content" source="./media/add-user.png" alt-text="Screenshot showing the add user pane." lightbox="./media/add-user.png":::
     
-   1. Enter information about the user, such as **Name** and **User name**. The domain name portion of the user name must be either the initial default domain name "[domain name].onmicrosoft.com" or a verified, non-federated [custom domain name](../../active-directory/fundamentals/add-custom-domain.md) such as "contoso.com."
+   1. Enter information about the user, such as **Name** and **User name**. The domain name portion of the user name must be either the initial default domain name "[domain name].onmicrosoft.com" or a verified, non-federated [custom domain name](/azure/active-directory/fundamentals/add-custom-domain) such as "contoso.com."
     
    1. Copy or otherwise note the generated user password. You must provide this password to the user after this process is complete
     
@@ -50,14 +50,14 @@ Microsoft Entra Domain Services makes it simple to manage your identities. It pr
     
    1. Securely distribute the generated password to the new user so that the user can sign in
 
-1. Create a Microsoft Entra Domain Services instance. Visit [Enable Microsoft Entra Domain Services using the Azure portal](../../active-directory-domain-services/tutorial-create-instance.md) (the "Create an instance and configure basic settings" section) for more information. You need to update the existing user passwords in Active Directory to sync the password in Microsoft Entra Domain Services. You also need to add DNS to Microsoft Entra Domain Services, as described under "Complete the fields in the Basics window of the Azure portal to create a Microsoft Entra Domain Services instance" in that section.
+1. Create a Microsoft Entra Domain Services instance. Visit [Enable Microsoft Entra Domain Services using the Azure portal](/azure/active-directory-domain-services/tutorial-create-instance) (the "Create an instance and configure basic settings" section) for more information. You need to update the existing user passwords in Active Directory to sync the password in Microsoft Entra Domain Services. You also need to add DNS to Microsoft Entra Domain Services, as described under "Complete the fields in the Basics window of the Azure portal to create a Microsoft Entra Domain Services instance" in that section.
 
 1. In the **Create and configure the virtual network** section of the preceding step, create a separate DSVM subnet in the virtual network you created
 1. Create one or more DSVM instances in the DSVM subnet
-1. Follow the [instructions](../../active-directory-domain-services/join-ubuntu-linux-vm.md) to add the DSVM to Active Directory
+1. Follow the [instructions](/azure/active-directory-domain-services/join-ubuntu-linux-vm) to add the DSVM to Active Directory
 1. Mount an Azure Files share to host your home or notebook directory, so that your workspace can be mounted on any machine. If you need tight file-level permissions, you'll need Network File System [NFS] running on one or more VMs
 
-   1. [Create an Azure Files share](../../storage/files/storage-how-to-create-file-share.md).
+   1. [Create an Azure Files share](/azure/storage/files/storage-how-to-create-file-share).
     
    2.  Mount this share on the Linux DSVM. When you select **Connect** for the Azure Files share in your storage account in the Azure portal, the command to run in the bash shell on the Linux DSVM appears. The command looks like this:
    

@@ -17,7 +17,7 @@ monikerRange: 'azureml-api-2'
 
 The Azure Machine Learning glossary is a short dictionary of terminology for the Machine Learning platform. For general Azure terminology, see also:
 
-* [Microsoft Azure glossary: A dictionary of cloud terminology on the Azure platform](../azure-glossary-cloud-terminology.md)
+* [Microsoft Azure glossary: A dictionary of cloud terminology on the Azure platform](/azure/azure-glossary-cloud-terminology)
 * [Cloud computing terms](https://azure.microsoft.com/overview/cloud-computing-dictionary/): General industry cloud terms
 * [Azure fundamental concepts](/azure/cloud-adoption-framework/ready/considerations/fundamental-concepts): Microsoft Cloud Adoption Framework for Azure
 

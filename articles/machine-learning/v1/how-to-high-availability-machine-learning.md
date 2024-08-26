@@ -73,7 +73,7 @@ The rest of this article describes the actions you need to take to make each of 
 A multi-regional deployment relies on creation of Azure Machine Learning and other resources (infrastructure) in two Azure regions. If a regional outage occurs, you can switch to the other region. When planning on where to deploy your resources, consider:
 
 * __Regional availability__: Use regions that are close to your users. To check regional availability for Azure Machine Learning, see [Azure products by region](https://azure.microsoft.com/global-infrastructure/services/).
-* __Azure paired regions__: Paired regions coordinate platform updates and prioritize recovery efforts where needed. For more information, see [Azure paired regions](../../availability-zones/cross-region-replication-azure.md).
+* __Azure paired regions__: Paired regions coordinate platform updates and prioritize recovery efforts where needed. For more information, see [Azure paired regions](/azure/availability-zones/cross-region-replication-azure).
 * __Service availability__: Decide whether the resources used by your solution should be hot/hot, hot/warm, or hot/cold.
     
     * __Hot/hot__: Both regions are active at the same time, with one region ready to begin use immediately.
@@ -90,8 +90,8 @@ Azure Machine Learning builds on top of other services. Some services can be con
 | Machine Learning workspace | You | Create a workspace in the selected regions. |
 | Machine Learning compute | You | Create the compute resources in the selected regions. For compute resources that can dynamically scale, make sure that both regions provide sufficient compute quota for your needs. |
 | Key Vault | Microsoft | Use the same Key Vault instance with the Azure Machine Learning workspace and resources in both regions. Key Vault automatically fails over to a secondary region. For more information, see [Azure Key Vault availability and redundancy](/azure/key-vault/general/disaster-recovery-guidance).|
-| Container Registry | Microsoft | Configure the Container Registry instance to geo-replicate registries to the paired region for Azure Machine Learning. Use the same instance for both workspace instances. For more information, see [Geo-replication in Azure Container Registry](../../container-registry/container-registry-geo-replication.md). |
-| Storage Account | You | Azure Machine Learning does not support __default storage-account__ failover using geo-redundant storage (GRS), geo-zone-redundant storage (GZRS), read-access geo-redundant storage (RA-GRS), or read-access geo-zone-redundant storage (RA-GZRS). Create a separate storage account for the default storage of each workspace. </br>Create separate storage accounts or services for other data storage. For more information, see [Azure Storage redundancy](../../storage/common/storage-redundancy.md). |
+| Container Registry | Microsoft | Configure the Container Registry instance to geo-replicate registries to the paired region for Azure Machine Learning. Use the same instance for both workspace instances. For more information, see [Geo-replication in Azure Container Registry](/azure/container-registry/container-registry-geo-replication). |
+| Storage Account | You | Azure Machine Learning does not support __default storage-account__ failover using geo-redundant storage (GRS), geo-zone-redundant storage (GZRS), read-access geo-redundant storage (RA-GRS), or read-access geo-zone-redundant storage (RA-GZRS). Create a separate storage account for the default storage of each workspace. </br>Create separate storage accounts or services for other data storage. For more information, see [Azure Storage redundancy](/azure/storage/common/storage-redundancy). |
 | Application Insights | You | Create Application Insights for the workspace in both regions. To adjust the data-retention period and details, see [Data collection, retention, and storage in Application Insights](/previous-versions/azure/azure-monitor/app/data-retention-privacy#how-long-is-the-data-kept). |
 
 To enable fast recovery and restart in the secondary region, we recommend the following development practices:
@@ -111,12 +111,12 @@ __Compute resources__
 * **Azure Kubernetes Service**: See [Best practices for business continuity and disaster recovery in Azure Kubernetes Service (AKS)](/azure/aks/operator-best-practices-multi-region) and [Create an Azure Kubernetes Service (AKS) cluster that uses availability zones](/azure/aks/availability-zones). If the AKS cluster was created by using the Azure Machine Learning Studio, SDK, or CLI, cross-region high availability is not supported.
 * **Azure Databricks**: See [Regional disaster recovery for Azure Databricks clusters](/azure/databricks/scenarios/howto-regional-disaster-recovery).
 * **Container Instances**: An orchestrator is responsible for failover. See [Azure Container Instances and container orchestrators](/azure/container-instances/container-instances-orchestrator-relationship).
-* **HDInsight**: See [High availability services supported by Azure HDInsight](../../hdinsight/hdinsight-high-availability-components.md).
+* **HDInsight**: See [High availability services supported by Azure HDInsight](/azure/hdinsight/hdinsight-high-availability-components).
 
 __Data services__
 
-* **Azure Blob container / Azure Files / Data Lake Storage Gen2**: See [Azure Storage redundancy](../../storage/common/storage-redundancy.md).
-* **Data Lake Storage Gen1**: See [High availability and disaster recovery guidance for Data Lake Storage Gen1](../../data-lake-store/data-lake-store-disaster-recovery-guidance.md).
+* **Azure Blob container / Azure Files / Data Lake Storage Gen2**: See [Azure Storage redundancy](/azure/storage/common/storage-redundancy).
+* **Data Lake Storage Gen1**: See [High availability and disaster recovery guidance for Data Lake Storage Gen1](/azure/data-lake-store/data-lake-store-disaster-recovery-guidance).
 * **SQL Database**: See [High availability for Azure SQL Database and SQL Managed Instance](/azure/azure-sql/database/high-availability-sla).
 * **Azure Database for PostgreSQL**: See [High availability concepts in Azure Database for PostgreSQL - Single Server](/azure/postgresql/concepts-high-availability).
 * **Azure Database for MySQL**: See [Understand business continuity in Azure Database for MySQL](/azure/mysql/concepts-business-continuity).
@@ -188,7 +188,7 @@ The following artifacts can be exported and imported between workspaces by using
 
 > [!TIP]
 > * __Registered datasets__ cannot be downloaded or moved. This includes datasets generated by Azure Machine Learning, such as intermediate pipeline datasets. However datasets that refer to a shared file location that both workspaces can access, or where the underlying data storage is replicated, can be registered on both workspaces. Use the [az ml dataset register](/cli/azure/ml(v1)/dataset#ml-az-ml-dataset-register) to register a dataset.
-> * __Job outputs__ are stored in the default storage account associated with a workspace. While job outputs might become inaccessible from the studio UI in the case of a service outage, you can directly access the data through the storage account. For more information on working with data stored in blobs, see [Create, download, and list blobs with Azure CLI](../../storage/blobs/storage-quickstart-blobs-cli.md).
+> * __Job outputs__ are stored in the default storage account associated with a workspace. While job outputs might become inaccessible from the studio UI in the case of a service outage, you can directly access the data through the storage account. For more information on working with data stored in blobs, see [Create, download, and list blobs with Azure CLI](/azure/storage/blobs/storage-quickstart-blobs-cli).
 
 ## Recovery options
 

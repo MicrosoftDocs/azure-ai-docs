@@ -17,7 +17,7 @@ ms.date: 12/15/2023
 
 [!INCLUDE [machine-learning-dev-v2](includes/machine-learning-dev-v2.md)]
 
-This article explains the concepts of identity and permission in the context of online endpoints. We begin with a discussion of [Microsoft Entra IDs](/entra/fundamentals/whatis) that support [Azure RBAC](../role-based-access-control/overview.md). Depending on the purpose of the Microsoft Entra identity, we refer to it either as a _user identity_ or an _endpoint identity_.
+This article explains the concepts of identity and permission in the context of online endpoints. We begin with a discussion of [Microsoft Entra IDs](/entra/fundamentals/whatis) that support [Azure RBAC](/azure/role-based-access-control/overview). Depending on the purpose of the Microsoft Entra identity, we refer to it either as a _user identity_ or an _endpoint identity_.
 
 A _user identity_ is a Microsoft Entra ID that you can use to create an endpoint and its deployment(s), or use to interact with endpoints or workspaces. In other words, an identity can be considered a user identity if it's issuing requests to endpoints, deployments, or workspaces. The user identity would need proper permissions to perform control plane and data plane operations on the endpoints or workspaces.
 
@@ -108,7 +108,7 @@ For data plane operations, your user identity needs to have a proper Azure role-
 
 ## Permissions needed for endpoint identity
 
-An online deployment runs your user container with the _endpoint identity_, that is, the managed identity associated with the endpoint. The endpoint identity is a [Microsoft Entra ID](/entra/fundamentals/whatis) that supports [Azure RBAC](../role-based-access-control/overview.md). Therefore, you can assign Azure roles to the endpoint identity to control permissions that are required to perform operations. This endpoint identity can be either a system-assigned identity (SAI) or a user-assigned identity (UAI). You can decide whether to use an SAI or a UAI when you create the endpoint.
+An online deployment runs your user container with the _endpoint identity_, that is, the managed identity associated with the endpoint. The endpoint identity is a [Microsoft Entra ID](/entra/fundamentals/whatis) that supports [Azure RBAC](/azure/role-based-access-control/overview). Therefore, you can assign Azure roles to the endpoint identity to control permissions that are required to perform operations. This endpoint identity can be either a system-assigned identity (SAI) or a user-assigned identity (UAI). You can decide whether to use an SAI or a UAI when you create the endpoint.
 
 - For a _system-assigned identity_, the identity is created automatically when you create the endpoint, and roles with fundamental permissions (such as the Azure Container Registry pull permission and the storage blob data reader) are automatically assigned.
 - For a _user-assigned identity_, you need to create the identity first, and then associate it with the endpoint when you create the endpoint. You're also responsible for assigning proper roles to the UAI as needed.

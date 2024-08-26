@@ -24,7 +24,7 @@ This article shows how to add users to your data labeling project so that they c
 You need certain permission levels to follow the steps in this article. If you can't follow one of the steps because of a permissions issue, contact your administrator to request the appropriate permissions.
 
 * To add a guest user, your organization's external collaboration settings needs the correct configuration to allow you to invite guests.
-* To add a custom role, you must have `Microsoft.Authorization/roleAssignments/write` permissions for your subscription - for example, [User Access Administrator](../../articles/role-based-access-control/built-in-roles.md#user-access-administrator) or [Owner](../../articles/role-based-access-control/built-in-roles.md#owner).
+* To add a custom role, you must have `Microsoft.Authorization/roleAssignments/write` permissions for your subscription - for example, [User Access Administrator](/azure/role-based-access-control/built-in-roles#user-access-administrator) or [Owner](/azure/role-based-access-control/built-in-roles#owner).
 * To add users to your workspace, you must be an **Owner** of the workspace.
 
 ## Add custom role
@@ -35,7 +35,7 @@ There is a built-in role for data labeling, scoped only to labeling data. If you
 
 The following custom roles give other levels of access for a data labeling project. Define all the roles you want to use before moving on to add the users.
 
- To add a custom role, you must have `Microsoft.Authorization/roleAssignments/write` permissions for your subscription - for example, [User Access Administrator](../../articles/role-based-access-control/built-in-roles.md).
+ To add a custom role, you must have `Microsoft.Authorization/roleAssignments/write` permissions for your subscription - for example, [User Access Administrator](/azure/role-based-access-control/built-in-roles).
 
 1. Access the resource group for your workspace in the Azure portal. 
     1. Open your workspace in [Azure Machine Learning studio](https://ml.azure.com).

@@ -119,7 +119,7 @@ The Azure Synapse Analytics integration with Azure Machine Learning (preview) al
 
 Azure HDInsight is a popular platform for big-data analytics. The platform provides Apache Spark, which can be used to train your model.
 
-1. **Create**:  Azure Machine Learning cannot create an HDInsight cluster for you. Instead, you must create the cluster and then attach it to your Azure Machine Learning workspace. For more information, see [Create a Spark Cluster in HDInsight](../../hdinsight/spark/apache-spark-jupyter-spark-sql.md). 
+1. **Create**:  Azure Machine Learning cannot create an HDInsight cluster for you. Instead, you must create the cluster and then attach it to your Azure Machine Learning workspace. For more information, see [Create a Spark Cluster in HDInsight](/azure/hdinsight/spark/apache-spark-jupyter-spark-sql). 
 
     > [!WARNING]
     > Azure Machine Learning requires the HDInsight cluster to have a __public IP address__.
@@ -248,7 +248,7 @@ For a more detailed example, see an [example notebook](https://aka.ms/pl-databri
 
 Azure Data Lake Analytics is a big data analytics platform in the Azure cloud. It can be used as a compute target with an Azure Machine Learning pipeline.
 
-Create an Azure Data Lake Analytics account before using it. To create this resource, see the [Get started with Azure Data Lake Analytics](../../data-lake-analytics/data-lake-analytics-get-started-portal.md) document.
+Create an Azure Data Lake Analytics account before using it. To create this resource, see the [Get started with Azure Data Lake Analytics](/azure/data-lake-analytics/data-lake-analytics-get-started-portal) document.
 
 To attach Data Lake Analytics as a compute target, you must use the Azure Machine Learning SDK and provide the following information:
 
@@ -315,7 +315,7 @@ compute_target.detach()
 ```
 
 > [!WARNING]
-> Detaching a cluster **does not delete the cluster**. To delete an Azure Kubernetes Service cluster, see [Use the Azure CLI with AKS](/azure/aks/kubernetes-walkthrough#delete-the-cluster). To delete an Azure Arc-enabled Kubernetes cluster, see [Azure Arc quickstart](../../azure-arc/kubernetes/quickstart-connect-cluster.md#clean-up-resources).
+> Detaching a cluster **does not delete the cluster**. To delete an Azure Kubernetes Service cluster, see [Use the Azure CLI with AKS](/azure/aks/kubernetes-walkthrough#delete-the-cluster). To delete an Azure Arc-enabled Kubernetes cluster, see [Azure Arc quickstart](/azure/azure-arc/kubernetes/quickstart-connect-cluster#clean-up-resources).
 
 ## Notebook examples
 

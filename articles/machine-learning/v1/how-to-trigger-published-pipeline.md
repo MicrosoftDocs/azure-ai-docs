@@ -142,7 +142,7 @@ If you then run `Schedule.list(ws)` again, you should get an empty list.
 
 ## Use Azure Logic Apps for complex triggers 
 
-More complex trigger rules or behavior can be created using an [Azure Logic App](../../logic-apps/logic-apps-overview.md).
+More complex trigger rules or behavior can be created using an [Azure Logic App](/azure/logic-apps/logic-apps-overview).
 
 To use an Azure Logic App to trigger a Machine Learning pipeline, you'll need the REST endpoint for a published Machine Learning pipeline. [Create and publish your pipeline](./how-to-create-machine-learning-pipelines.md). Then find the REST endpoint of your `PublishedPipeline` by using the pipeline ID:
 
@@ -155,9 +155,9 @@ published_pipeline.endpoint
 
 ## Create a logic app in Azure
 
-Now create an [Azure Logic App](../../logic-apps/logic-apps-overview.md) instance. After your logic app is provisioned, use these steps to configure a trigger for your pipeline:
+Now create an [Azure Logic App](/azure/logic-apps/logic-apps-overview) instance. After your logic app is provisioned, use these steps to configure a trigger for your pipeline:
 
-1. [Create a system-assigned managed identity](../../logic-apps/create-managed-service-identity.md) to give the app access to your Azure Machine Learning Workspace.
+1. [Create a system-assigned managed identity](/azure/logic-apps/create-managed-service-identity) to give the app access to your Azure Machine Learning Workspace.
 
 1. Navigate to the Logic App Designer view and select the Blank Logic App template. 
     > [!div class="mx-imgBorder"]

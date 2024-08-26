@@ -74,13 +74,13 @@ When you create a new workspace, you're required to bring other Azure resources 
   >
   > Do not enable hierarchical namespace on the storage account after upgrading to general-purpose v2.
   >
-  > If you bring an existing general-purpose v1 storage account, you may [upgrade this to general-purpose v2](../storage/common/storage-account-upgrade.md) after the workspace has been created.
+  > If you bring an existing general-purpose v1 storage account, you may [upgrade this to general-purpose v2](/azure/storage/common/storage-account-upgrade) after the workspace has been created.
   
 + [Azure Container Registry (ACR)](https://azure.microsoft.com/services/container-registry/). Stores created docker containers, when you build custom environments via Azure Machine Learning. Deploying AutoML models and data profile will also trigger creation of custom environments.
 
     Workspaces *can* be created without ACR as a dependency if you do not have a need to build custom docker containers. Azure Machine Learning can read from external container registries.
 
-    ACR will automatically be provisioned when you build custom docker images. Use [Azure role-based access control (Azure RBAC)](../role-based-access-control/overview.md) to prevent customer docker containers from being built.
+    ACR will automatically be provisioned when you build custom docker images. Use [Azure role-based access control (Azure RBAC)](/azure/role-based-access-control/overview) to prevent customer docker containers from being built.
 
     > [!IMPORTANT]
     > If your subscription setting requires adding tags to resources under it, ACR created by Azure Machine Learning will fail, since we cannot set tags to ACR.

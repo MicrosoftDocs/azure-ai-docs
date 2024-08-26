@@ -38,7 +38,7 @@ Depending on your setup and scenario, RAG workflows in Azure Machine Learning ma
 
 2. Navigate to the [Azure portal](https://ms.portal.azure.com) and select **Networking** under the **Settings** tab in the left-hand menu.
 
-3. To allow your RAG workflow to communicate with [<u>private</u> Azure Cognitive Services](./../ai-services/cognitive-services-virtual-networks.md) such as Azure OpenAI or Azure AI Search during Vector Index creation, you need to define a related user outbound rule to a related resource. Select **Workspace managed outbound access** at the top of networking settings. Then select **+Add user-defined outbound rule**. Enter in a **Rule name**. Then select your resource you want to add the rule to using the **Resource name** text box.
+3. To allow your RAG workflow to communicate with [<u>private</u> Azure Cognitive Services](/azure/ai-services/cognitive-services-virtual-networks) such as Azure OpenAI or Azure AI Search during Vector Index creation, you need to define a related user outbound rule to a related resource. Select **Workspace managed outbound access** at the top of networking settings. Then select **+Add user-defined outbound rule**. Enter in a **Rule name**. Then select your resource you want to add the rule to using the **Resource name** text box.
 
    The Azure Machine Learning workspace creates a private endpoint in the related resource with autoapprove. If the status is stuck in pending, go to related resource to approve the private endpoint manually.
 
@@ -58,7 +58,7 @@ If you're using an **Allow only approved outbound** Managed Vnet workspace and a
 
    :::image type="content" source="./media/how-to-secure-rag-workflows/storage-setting-for-private-data-upload.png" alt-text="Screenshot showing the private storage settings requirements for secure data upload." lightbox="./media/how-to-secure-rag-workflows/storage-setting-for-private-data-upload.png":::
 
-    Follow this tutorial for [how to connect to a private storage](../private-link/tutorial-private-endpoint-storage-portal.md) from an Azure Virtual Machine.
+    Follow this tutorial for [how to connect to a private storage](/azure/private-link/tutorial-private-endpoint-storage-portal) from an Azure Virtual Machine.
 
 ## With BYO Custom Vnet
 
