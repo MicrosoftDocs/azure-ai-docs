@@ -3,6 +3,10 @@
     {
       "docset_name": "azure-ai",
       "build_source_folder": ".",
+      "xref_query_tags": [
+        "/dotnet",
+        "/python"
+      ],
       "build_output_subfolder": "azure-ai",
       "locale": "en-us",
       "monikers": [],
@@ -16,8 +20,6 @@
   "notification_subscribers": [],
   "sync_notification_subscribers": [],
   "branches_to_filter": [],
-  "git_repository_url_open_to_public_contributors": "https://github.com/MicrosoftDocs/azure-ai-docs",
-  "git_repository_branch_open_to_public_contributors": "main",
   "need_preview_pull_request": true,
   "dependent_repositories": [
     {
@@ -25,8 +27,94 @@
       "url": "https://github.com/Microsoft/templates.docs.msft",
       "branch": "main",
       "branch_mapping": {}
+    },
+    {
+      "path_to_root": "reusable-content",
+      "url": "https://github.com/MicrosoftDocs/reusable-content",
+      "branch": "main",
+      "branch_mapping": {}
+    },
+    {
+      "path_to_root": "cognitive-services-quickstart-code",
+      "url": "https://github.com/Azure-Samples/cognitive-services-quickstart-code",
+      "branch": "master",
+      "branch_mapping": {}
+    },
+    {
+      "path_to_root": "samples-cognitive-services-data-files",
+      "url": "https://github.com/Azure-Samples/cognitive-services-sample-data-files",
+      "branch": "master",
+      "branch_mapping": {}
+    },
+    {
+      "path_to_root": "samples-luis",
+      "url": "https://github.com/Azure-Samples/cognitive-services-language-understanding",
+      "branch": "master",
+      "branch_mapping": {}
+    },
+    {
+      "path_to_root": "samples-cogserv-containers",
+      "url": "https://github.com/Azure-Samples/cognitive-services-containers-samples",
+      "branch": "master",
+      "branch_mapping": {}
+    },
+    {
+      "path_to_root": "quickstart-templates",
+      "url": "https://github.com/Azure/azure-quickstart-templates",
+      "branch": "master",
+      "branch_mapping": {}
+    },
+    {
+      "path_to_root": "azure-dev-docs-pr",
+      "url": "https://github.com/MicrosoftDocs/azure-dev-docs-pr",
+      "branch": "main",
+      "branch_mapping": {}
+    },
+    {
+      "path_to_root": "terraform_samples",
+      "url": "https://github.com/Azure/terraform",
+      "branch": "master",
+      "branch_mapping": {}
+    },
+    {
+      "path_to_root": "AIVisualProvision",
+      "url": "https://github.com/Microsoft/AIVisualProvision",
+      "branch": "master",
+      "branch_mapping": {}
+    },
+    {
+      "path_to_root": "azure-typescript-e2e-apps",
+      "url": "https://github.com/Azure-Samples/azure-typescript-e2e-apps",
+      "branch": "main",
+      "branch_mapping": {}
+    },
+    {
+      "path_to_root": "samples-cognitive-services-speech-sdk",
+      "url": "https://github.com/Azure-Samples/cognitive-services-speech-sdk",
+      "branch": "master",
+      "branch_mapping": {}
+    },
+    {
+      "path_to_root": "cognitive-services-rest-samples",
+      "url": "https://github.com/Azure-Samples/cognitive-services-REST-api-samples",
+      "branch": "master",
+      "branch_mapping": {}
+    },
+    {
+      "path_to_root": "azureml-examples-main",
+      "url": "https://github.com/azure/azureml-examples",
+      "branch": "main",
+      "branch_mapping": {}
+    },
+    {
+      "path_to_root": "rag-data-openai-python-promptflow-main",
+      "url": "https://github.com/Azure-Samples/rag-data-openai-python-promptflow",
+      "branch": "main",
+      "branch_mapping": {}
     }
   ],
+  "git_repository_url_open_to_public_contributors": "https://github.com/MicrosoftDocs/azure-ai-docs",
+  "git_repository_branch_open_to_public_contributors": "main",
   "branch_target_mapping": {},
   "targets": {}
 }
