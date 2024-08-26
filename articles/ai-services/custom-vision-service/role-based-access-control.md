@@ -12,7 +12,7 @@ ms.author: pafarley
 
 # Azure role-based access control
 
-Custom Vision supports Azure role-based access control (Azure RBAC), an authorization system for managing individual access to Azure resources. Using Azure RBAC, you can assign different team members different levels of permissions for your Custom Vision projects. For more information on Azure RBAC, see the [Azure RBAC documentation](../../role-based-access-control/index.yml).
+Custom Vision supports Azure role-based access control (Azure RBAC), an authorization system for managing individual access to Azure resources. Using Azure RBAC, you can assign different team members different levels of permissions for your Custom Vision projects. For more information on Azure RBAC, see the [Azure RBAC documentation](/azure/role-based-access-control/).
 
 ## Add role assignment to Custom Vision resource
 
@@ -26,7 +26,7 @@ Azure RBAC can be assigned to a Custom Vision resource. To grant access to an Az
 1. On the **Members** tab, select a user, group, service principal, or managed identity.
 1. On the **Review + assign** tab, select **Review + assign** to assign the role.
 
-Within a few minutes, the target will be assigned the selected role at the selected scope. For help with these steps, see [Assign Azure roles using the Azure portal](../../role-based-access-control/role-assignments-portal.yml).
+Within a few minutes, the target will be assigned the selected role at the selected scope. For help with these steps, see [Assign Azure roles using the Azure portal](/azure/role-based-access-control/role-assignments-portal).
 
 ## Custom Vision role types
 

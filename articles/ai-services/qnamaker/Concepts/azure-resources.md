@@ -33,8 +33,8 @@ Plan to have a single QnA Maker resource hold all knowledge bases that have the 
 Typically there are three parameters you need to consider:
 
 * **The throughput you need from the service**:
-    * Select the appropriate [App Plan](https://azure.microsoft.com/pricing/details/app-service/plans/) for your App service based on your needs. You can [scale up](../../../app-service/manage-scale-up.md) or down the App.
-    * This should also influence your Azure **Cognitive Search** SKU selection, see more details [here](../../../search/search-sku-tier.md). Additionally, you may need to adjust Cognitive Search [capacity](../../../search/search-capacity-planning.md) with replicas.
+    * Select the appropriate [App Plan](https://azure.microsoft.com/pricing/details/app-service/plans/) for your App service based on your needs. You can [scale up](/azure/app-service/manage-scale-up) or down the App.
+    * This should also influence your Azure **Cognitive Search** SKU selection, see more details [here](/azure/search/search-sku-tier). Additionally, you may need to adjust Cognitive Search [capacity](/azure/search/search-capacity-planning) with replicas.
 
 * **Size and the number of knowledge bases**: Choose the appropriate [Azure search SKU](https://azure.microsoft.com/pricing/details/search/) for your scenario. Typically, you decide number of knowledge bases you need based on number of different subject domains. Once subject domain (for a single language) should be in one knowledge base.
 
@@ -70,7 +70,7 @@ The following table gives you some high-level guidelines.
 |Upgrade|Reason|
 |--|--|
 |[Upgrade](../How-to/set-up-qnamaker-service-azure.md#upgrade-qna-maker-sku) QnA Maker management SKU|You want to have more QnA pairs or document sources in your knowledge base.|
-|[Upgrade](../How-to/set-up-qnamaker-service-azure.md#upgrade-app-service) App Service SKU and check the Azure AI Search tier and [create Cognitive Search replicas](../../../search/search-capacity-planning.md)|Your knowledge base needs to serve more requests from your client app, such as a chat bot.|
+|[Upgrade](../How-to/set-up-qnamaker-service-azure.md#upgrade-app-service) App Service SKU and check the Azure AI Search tier and [create Cognitive Search replicas](/azure/search/search-capacity-planning)|Your knowledge base needs to serve more requests from your client app, such as a chat bot.|
 |[Upgrade](../How-to/set-up-qnamaker-service-azure.md#upgrade-the-azure-ai-search-service) Azure AI Search service|You plan to have many knowledge bases.|
 
 Get the latest runtime updates by [updating your App Service in the Azure portal](../how-to/configure-QnA-Maker-resources.md#get-the-latest-runtime-updates).
@@ -162,7 +162,7 @@ When you create a new knowledge base in the [QnA Maker portal](https://qnamaker.
 
 ### Cognitive Search resource
 
-The [Cognitive Search](../../../search/index.yml) resource is used to:
+The [Cognitive Search](/azure/search/) resource is used to:
 
 * Store the QnA pairs
 * Provide the initial ranking (ranker #1) of the QnA pairs at runtime
@@ -185,7 +185,7 @@ Learn [how to configure](../how-to/configure-QnA-Maker-resources.md#configure-qn
 
 ### App service and App service plan
 
-The [App service](../../../app-service/index.yml) is used by your client application to access the published knowledge bases via the runtime endpoint. App service includes the natural language processing (NLP) based second ranking layer (ranker #2) of the QnA pairs at runtime. The second ranking applies intelligent filters that can include metadata and follow-up prompts.
+The [App service](/azure/app-service/) is used by your client application to access the published knowledge bases via the runtime endpoint. App service includes the natural language processing (NLP) based second ranking layer (ranker #2) of the QnA pairs at runtime. The second ranking applies intelligent filters that can include metadata and follow-up prompts.
 
 To query the published knowledge base, all published knowledge bases use the same URL endpoint,  but specify the **knowledge base ID** within the route.
 
@@ -193,7 +193,7 @@ To query the published knowledge base, all published knowledge bases use the sam
 
 ### Application Insights
 
-[Application Insights](../../../azure-monitor/app/app-insights-overview.md) is used to collect chat logs and telemetry. Review the common [Kusto queries](../how-to/get-analytics-knowledge-base.md) for information about your service.
+[Application Insights](/azure/azure-monitor/app/app-insights-overview) is used to collect chat logs and telemetry. Review the common [Kusto queries](../how-to/get-analytics-knowledge-base.md) for information about your service.
 
 ### Share services with QnA Maker
 

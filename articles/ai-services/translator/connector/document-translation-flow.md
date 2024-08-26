@@ -75,7 +75,7 @@ Here's what you need to get started: [**Translator resource**](#translator-resou
    1. Deselect all check boxes.
    1. Make sure **Microsoft network routing** is selected.
    1. Under the **Resource instances** section, select **Microsoft.CognitiveServices/accounts** as the resource type and select your Translator resource as the instance name.
-   1. Make certain that the **Allow Azure services on the trusted services list to access this storage account** box is checked. For more information about managing exceptions, *see* [Configure Azure Storage firewalls and virtual networks](../../../storage/common/storage-network-security.md).
+   1. Make certain that the **Allow Azure services on the trusted services list to access this storage account** box is checked. For more information about managing exceptions, *see* [Configure Azure Storage firewalls and virtual networks](/azure/storage/common/storage-network-security).
 
       :::image type="content" source="../media/managed-identities/allow-trusted-services-checkbox-portal-view.png" alt-text="Screenshot: allow trusted services checkbox, portal view.":::
 

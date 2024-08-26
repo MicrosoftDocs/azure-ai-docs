@@ -30,7 +30,7 @@ With batch transcriptions, you submit the audio data, and then retrieve transcri
 
 To use the batch transcription REST API:
 
-1. [Locate audio files for batch transcription](batch-transcription-audio-data.md) - You can upload your own data or use existing audio files via public URI or [shared access signature (SAS)](../../storage/common/storage-sas-overview.md) URI. 
+1. [Locate audio files for batch transcription](batch-transcription-audio-data.md) - You can upload your own data or use existing audio files via public URI or [shared access signature (SAS)](/azure/storage/common/storage-sas-overview) URI. 
 1. [Create a batch transcription](batch-transcription-create.md) - Submit the transcription job with parameters such as the audio files, the transcription language, and the transcription model.
 1. [Get batch transcription results](batch-transcription-get.md) - Check transcription status and retrieve transcription results asynchronously. 
 

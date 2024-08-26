@@ -27,13 +27,13 @@ When you use custom speech and custom voice, Speech service might store the foll
 
 By default, your data are stored in Microsoft's storage and your subscription uses Microsoft-managed encryption keys. You also have an option to prepare your own storage account. Access to the store is managed by the Managed Identity, and Speech service can't directly access to your own data, such as speech trace data, customization training data and custom models.
 
-For more information about Managed Identity, see [What are managed identities](../../active-directory/managed-identities-azure-resources/overview.md).
+For more information about Managed Identity, see [What are managed identities](/azure/active-directory/managed-identities-azure-resources/overview).
 
 ## Bring your own storage (BYOS)
 
 Bring your own storage (BYOS) is an Azure AI technology for customers, who have high requirements for data security and privacy. The core of the technology is the ability to associate an Azure Storage account, that the user owns and fully controls with the Speech resource. The Speech resource then uses this storage account for storing different artifacts related to the user data processing, instead of storing the same artifacts within the Speech service premises as it is done in the regular case. This approach allows using all set of security features of Azure Storage account, including encrypting the data with the Customer-managed keys, using Private endpoints to access the data, etc.
 
-The Speech service doesn't currently support Customer Lockbox. However, customer data can be stored using BYOS, allowing you to achieve similar data controls to [Customer Lockbox](../../security/fundamentals/customer-lockbox-overview.md).
+The Speech service doesn't currently support Customer Lockbox. However, customer data can be stored using BYOS, allowing you to achieve similar data controls to [Customer Lockbox](/azure/security/fundamentals/customer-lockbox-overview).
 
 > [!IMPORTANT]
 > Microsoft **does not** use customer data to improve its Speech models. Additionally, if endpoint logging is disabled and no customizations are used, then no customer data is stored. 
@@ -43,4 +43,4 @@ See detailed information on using BYOS-enabled Speech resource in [this article]
 ## Next steps
 
 * [Set up the Bring your own storage (BYOS) Speech resource](bring-your-own-storage-speech-resource.md)
-* [What are managed identities](../../active-directory/managed-identities-azure-resources/overview.md).
+* [What are managed identities](/azure/active-directory/managed-identities-azure-resources/overview).

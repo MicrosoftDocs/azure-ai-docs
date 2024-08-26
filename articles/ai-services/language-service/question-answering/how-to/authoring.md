@@ -19,7 +19,7 @@ The custom question answering Authoring API is used to automate common tasks lik
 ## Prerequisites
 
 * The current version of [cURL](https://curl.haxx.se/). Several command-line switches are used in this article, which are noted in the [cURL documentation](https://curl.haxx.se/docs/manpage.html).
-* The commands in this article are designed to be executed in a Bash shell. These commands will not always work in a Windows command prompt or in PowerShell without modification. If you do not have a Bash shell installed locally, you can use the [Azure Cloud Shell's bash environment](../../../../cloud-shell/overview.md).
+* The commands in this article are designed to be executed in a Bash shell. These commands will not always work in a Windows command prompt or in PowerShell without modification. If you do not have a Bash shell installed locally, you can use the [Azure Cloud Shell's bash environment](/azure/cloud-shell/overview).
 
 ## Create a project
 

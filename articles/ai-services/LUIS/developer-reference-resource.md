@@ -127,7 +127,7 @@ Bot framework provides [several tools](https://github.com/microsoft/botbuilder-t
 ## Next steps
 
 * Learn about the common [HTTP error codes](luis-reference-response-codes.md)
-* [Reference documentation](../../index.yml) for all APIs and SDKs
+* [Reference documentation](/azure/) for all APIs and SDKs
 * [Bot framework](https://github.com/Microsoft/botbuilder-dotnet) and [Azure AI Bot Service](https://dev.botframework.com/)
 * [LUDown](https://github.com/microsoft/botbuilder-tools/blob/master/packages/Ludown)
 * [Cognitive Containers](../cognitive-services-container-support.md)

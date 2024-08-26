@@ -17,7 +17,7 @@ ms.author: jboback
 |Pricing tier     | The [pricing tier](../service-limits.md#language-resource-limits) for your resource.       |
 |Managed identity     | Make sure that the resource's managed identity setting is enabled. Otherwise, read the next section. |
 
-To use custom text classification, you'll need to [create an Azure storage account](../../../../storage/common/storage-account-create.md) if you don't have one already. 
+To use custom text classification, you'll need to [create an Azure storage account](/azure/storage/common/storage-account-create) if you don't have one already. 
 
 ## Enable identity management for your resource
 

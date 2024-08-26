@@ -832,7 +832,7 @@ The v3.1 API introduces new and updated capabilities:
 
 ## September 2021
 
-* [Azure metrics explorer advanced features](../../azure-monitor/essentials/metrics-charts.md) are available on your Document Intelligence resource overview page in the Azure portal.
+* [Azure metrics explorer advanced features](/azure/azure-monitor/essentials/metrics-charts) are available on your Document Intelligence resource overview page in the Azure portal.
 
 * Monitoring menu:
 
@@ -887,7 +887,7 @@ The v3.1 API introduces new and updated capabilities:
 
   * *See* [**Install and run Docker containers for Document Intelligence**](containers/install-run.md?branch=main&tabs=layout) and [**Configure Document Intelligence containers**](containers/configuration.md?branch=main)
 
-* Document Intelligence connector released in preview: The [**Document Intelligence connector**](/connectors/formrecognizer) integrates with  [Azure Logic Apps](../../logic-apps/logic-apps-overview.md),  [Microsoft Power Automate](/power-automate/getting-started), and [Microsoft Power Apps](/powerapps/powerapps-overview). The connector supports workflow actions and triggers to extract and analyze document data and structure from custom and prebuilt forms, invoices, receipts, business cards, and ID documents.
+* Document Intelligence connector released in preview: The [**Document Intelligence connector**](/connectors/formrecognizer) integrates with  [Azure Logic Apps](/azure/logic-apps/logic-apps-overview),  [Microsoft Power Automate](/power-automate/getting-started), and [Microsoft Power Apps](/powerapps/powerapps-overview). The connector supports workflow actions and triggers to extract and analyze document data and structure from custom and prebuilt forms, invoices, receipts, business cards, and ID documents.
 
 * Document Intelligence SDK v3.1.0 patched to v3.1.1 for C#, Java, and Python. The patch addresses invoices that don't have subline item fields detected such as a  `FormField` with `Text` but no `BoundingBox` or `Page` information.
 
@@ -1184,7 +1184,7 @@ The v3.1 API introduces new and updated capabilities:
   * **Azure Gov** - Document Intelligence is now also available in Azure Gov.
   * **Enhanced security features**:
     * **Bring your own key** - Document Intelligence automatically encrypts your data when persisted to the cloud to protect it and to help you to meet your organizational security and compliance commitments. By default, your subscription uses Microsoft-managed encryption keys. You can now also manage your subscription with your own encryption keys. [Customer-managed keys, also known as bring your own key (BYOK)](./encrypt-data-at-rest.md), offer greater flexibility to create, rotate, disable, and revoke access controls. You can also audit the encryption keys used to protect your data.
-    * **Private endpoints** – Enables you on a virtual network to [securely access data over a Private Link.](../../private-link/private-link-overview.md)
+    * **Private endpoints** – Enables you on a virtual network to [securely access data over a Private Link.](/azure/private-link/private-link-overview)
 
 ---
 

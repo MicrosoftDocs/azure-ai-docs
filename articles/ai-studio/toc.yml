@@ -310,7 +310,7 @@ items:
       - name: Configure private link
         href: how-to/configure-private-link.md
       - name: Configure custom DNS
-        href: ../machine-learning/how-to-custom-dns.md?context=/azure/ai-studio/context/context
+        href: /azure/machine-learning/how-to-custom-dns?context=/azure/ai-studio/context/context
       - name: Troubleshoot secure project connectivity
         href: how-to/troubleshoot-secure-connection-project.md
     - name: Data protection & encryption
@@ -383,7 +383,7 @@ items:
   - name: Service Level Agreement (SLA)
     href: https://azure.microsoft.com/support/legal/sla/cognitive-services/v1_1/
   - name: Azure Government
-    href: ../azure-government/compare-azure-government-global-azure.md
+    href: /azure/azure-government/compare-azure-government-global-azure
   - name: Videos
     href: https://azure.microsoft.com/resources/videos/index/?services=cognitive-services
   - name: Azure Blog

@@ -14,9 +14,9 @@ ms.author: aahi
 
 # Configure Azure AI services virtual networks
 
-Azure AI services provide a layered security model. This model enables you to secure your Azure AI services accounts to a specific subset of networks​. When network rules are configured, only applications that request data over the specified set of networks can access the account. You can limit access to your resources with *request filtering*, which allows requests that originate only from specified IP addresses, IP ranges, or from a list of subnets in [Azure Virtual Networks](../virtual-network/virtual-networks-overview.md).
+Azure AI services provide a layered security model. This model enables you to secure your Azure AI services accounts to a specific subset of networks​. When network rules are configured, only applications that request data over the specified set of networks can access the account. You can limit access to your resources with *request filtering*, which allows requests that originate only from specified IP addresses, IP ranges, or from a list of subnets in [Azure Virtual Networks](/azure/virtual-network/virtual-networks-overview).
 
-An application that accesses an Azure AI services resource when network rules are in effect requires authorization. Authorization is supported with [Microsoft Entra ID](../active-directory/fundamentals/active-directory-whatis.md) credentials or with a valid API key.
+An application that accesses an Azure AI services resource when network rules are in effect requires authorization. Authorization is supported with [Microsoft Entra ID](/azure/active-directory/fundamentals/active-directory-whatis) credentials or with a valid API key.
 
 > [!IMPORTANT]
 > Turning on firewall rules for your Azure AI services account blocks incoming requests for data by default. To allow requests through, one of the following conditions needs to be met:
@@ -174,7 +174,7 @@ You can manage default network access rules for Azure AI services resources thro
 
 You can configure Azure AI services resources to allow access from specific subnets only. The allowed subnets might belong to a virtual network in the same subscription or in a different subscription. The other subscription can belong to a different Microsoft Entra tenant. When the subnet belongs to a different subscription, the Microsoft.CognitiveServices resource provider needs to be also registered for that subscription.
 
-Enable a *service endpoint* for Azure AI services within the virtual network. The service endpoint routes traffic from the virtual network through an optimal path to the Azure AI service. For more information, see [Virtual Network service endpoints](../virtual-network/virtual-network-service-endpoints-overview.md).
+Enable a *service endpoint* for Azure AI services within the virtual network. The service endpoint routes traffic from the virtual network through an optimal path to the Azure AI service. For more information, see [Virtual Network service endpoints](/azure/virtual-network/virtual-network-service-endpoints-overview).
 
 The identities of the subnet and the virtual network are also transmitted with each request. Administrators can then configure network rules for the Azure AI services resource to allow requests from specific subnets in a virtual network. Clients granted access by these network rules must continue to meet the authorization requirements of the Azure AI services resource to access the data.
 
@@ -370,7 +370,7 @@ Currently, only IPv4 addresses are supported. Each Azure AI services resource su
 
 To grant access from your on-premises networks to your Azure AI services resource with an IP network rule, identify the internet-facing IP addresses used by your network. Contact your network administrator for help.
 
-If you use Azure ExpressRoute on-premises for Microsoft peering, you need to identify the NAT IP addresses. For more information, see [What is Azure ExpressRoute](../expressroute/expressroute-introduction.md).
+If you use Azure ExpressRoute on-premises for Microsoft peering, you need to identify the NAT IP addresses. For more information, see [What is Azure ExpressRoute](/azure/expressroute/expressroute-introduction).
 
 For Microsoft peering, the NAT IP addresses that are used are either customer provided or supplied by the service provider. To allow access to your service resources, you must allow these public IP addresses in the resource IP firewall setting.
 
@@ -502,21 +502,21 @@ You can manage IP network rules for Azure AI services resources through the Azur
 
 ## Use private endpoints
 
-You can use [private endpoints](../private-link/private-endpoint-overview.md) for your Azure AI services resources to allow clients on a virtual network to securely access data over  [Azure Private Link](../private-link/private-link-overview.md). The private endpoint uses an IP address from the virtual network address space for your Azure AI services resource. Network traffic between the clients on the virtual network and the resource traverses the virtual network and a private link on the Microsoft Azure backbone network, which eliminates exposure from the public internet.
+You can use [private endpoints](/azure/private-link/private-endpoint-overview) for your Azure AI services resources to allow clients on a virtual network to securely access data over  [Azure Private Link](/azure/private-link/private-link-overview). The private endpoint uses an IP address from the virtual network address space for your Azure AI services resource. Network traffic between the clients on the virtual network and the resource traverses the virtual network and a private link on the Microsoft Azure backbone network, which eliminates exposure from the public internet.
 
 Private endpoints for Azure AI services resources let you:
 
 - Secure your Azure AI services resource by configuring the firewall to block all connections on the public endpoint for the Azure AI service.
 - Increase security for the virtual network, by enabling you to block exfiltration of data from the virtual network.
-- Securely connect to Azure AI services resources from on-premises networks that connect to the virtual network by using [Azure VPN Gateway](../vpn-gateway/vpn-gateway-about-vpngateways.md) or [ExpressRoutes](../expressroute/expressroute-locations.md) with private-peering.
+- Securely connect to Azure AI services resources from on-premises networks that connect to the virtual network by using [Azure VPN Gateway](/azure/vpn-gateway/vpn-gateway-about-vpngateways) or [ExpressRoutes](/azure/expressroute/expressroute-locations) with private-peering.
 
 ### Understand private endpoints
 
-A private endpoint is a special network interface for an Azure resource in your [virtual network](../virtual-network/virtual-networks-overview.md). Creating a private endpoint for your Azure AI services resource provides secure connectivity between clients in your virtual network and your resource. The private endpoint is assigned an IP address from the IP address range of your virtual network. The connection between the private endpoint and the Azure AI service uses a secure private link.
+A private endpoint is a special network interface for an Azure resource in your [virtual network](/azure/virtual-network/virtual-networks-overview). Creating a private endpoint for your Azure AI services resource provides secure connectivity between clients in your virtual network and your resource. The private endpoint is assigned an IP address from the IP address range of your virtual network. The connection between the private endpoint and the Azure AI service uses a secure private link.
 
 Applications in the virtual network can connect to the service over the private endpoint seamlessly. Connections use the same connection strings and authorization mechanisms that they would use otherwise. The exception is Speech Services, which require a separate endpoint. For more information, see [Private endpoints with the Speech Services](#use-private-endpoints-with-the-speech-service) in this article. Private endpoints can be used with all protocols supported by the Azure AI services resource, including REST.
 
-Private endpoints can be created in subnets that use service endpoints. Clients in a subnet can connect to one Azure AI services resource using private endpoint, while using service endpoints to access others. For more information, see [Virtual Network service endpoints](../virtual-network/virtual-network-service-endpoints-overview.md).
+Private endpoints can be created in subnets that use service endpoints. Clients in a subnet can connect to one Azure AI services resource using private endpoint, while using service endpoints to access others. For more information, see [Virtual Network service endpoints](/azure/virtual-network/virtual-network-service-endpoints-overview).
 
 When you create a private endpoint for an Azure AI services resource in your virtual network, Azure sends a consent request for approval to the Azure AI services resource owner. If the user who requests the creation of the private endpoint is also an owner of the resource, this consent request is automatically approved.
 
@@ -526,18 +526,18 @@ Azure AI services resource owners can manage consent requests and the private en
 
 When you create a private endpoint, specify the Azure AI services resource that it connects to. For more information on creating a private endpoint, see:
 
-- [Create a private endpoint by using the Azure portal](../private-link/create-private-endpoint-portal.md)
-- [Create a private endpoint by using Azure PowerShell](../private-link/create-private-endpoint-powershell.md)
-- [Create a private endpoint by using the Azure CLI](../private-link/create-private-endpoint-cli.md)
+- [Create a private endpoint by using the Azure portal](/azure/private-link/create-private-endpoint-portal)
+- [Create a private endpoint by using Azure PowerShell](/azure/private-link/create-private-endpoint-powershell)
+- [Create a private endpoint by using the Azure CLI](/azure/private-link/create-private-endpoint-cli)
 
 ### Connect to private endpoints
 
 > [!NOTE]
-> Azure OpenAI Service uses a different private DNS zone and public DNS zone forwarder than other Azure AI services. For the correct zone and forwarder names, see [Azure services DNS zone configuration](../private-link/private-endpoint-dns.md#azure-services-dns-zone-configuration).
+> Azure OpenAI Service uses a different private DNS zone and public DNS zone forwarder than other Azure AI services. For the correct zone and forwarder names, see [Azure services DNS zone configuration](/azure/private-link/private-endpoint-dns#azure-services-dns-zone-configuration).
 
 Clients on a virtual network that use the private endpoint use the same connection string for the Azure AI services resource as clients connecting to the public endpoint. The exception is the Speech service, which requires a separate endpoint. For more information, see [Use private endpoints with the Speech service](#use-private-endpoints-with-the-speech-service) in this article. DNS resolution automatically routes the connections from the virtual network to the Azure AI services resource over a private link.
 
-By default, Azure creates a [private DNS zone](../dns/private-dns-overview.md) attached to the virtual network with the necessary updates for the private endpoints. If you use your own DNS server, you might need to make more changes to your DNS configuration. For updates that might be required for private endpoints, see [Apply DNS changes for private endpoints](#apply-dns-changes-for-private-endpoints) in this article.
+By default, Azure creates a [private DNS zone](/azure/dns/private-dns-overview) attached to the virtual network with the necessary updates for the private endpoints. If you use your own DNS server, you might need to make more changes to your DNS configuration. For updates that might be required for private endpoints, see [Apply DNS changes for private endpoints](#apply-dns-changes-for-private-endpoints) in this article.
 
 ### Use private endpoints with the Speech service
 
@@ -545,7 +545,7 @@ See [Use Speech service through a private endpoint](Speech-Service/speech-servic
 
 ### Apply DNS changes for private endpoints
 
-When you create a private endpoint, the DNS `CNAME` resource record for the Azure AI services resource is updated to an alias in a subdomain with the prefix `privatelink`. By default, Azure also creates a private DNS zone that corresponds to the `privatelink` subdomain, with the DNS A resource records for the private endpoints. For more information, see [What is Azure Private DNS](../dns/private-dns-overview.md).
+When you create a private endpoint, the DNS `CNAME` resource record for the Azure AI services resource is updated to an alias in a subdomain with the prefix `privatelink`. By default, Azure also creates a private DNS zone that corresponds to the `privatelink` subdomain, with the DNS A resource records for the private endpoints. For more information, see [What is Azure Private DNS](/azure/dns/private-dns-overview).
 
 When you resolve the endpoint URL from outside the virtual network with the private endpoint, it resolves to the public endpoint of the Azure AI services resource. When it's resolved from the virtual network hosting the private endpoint, the endpoint URL resolves to the private endpoint's IP address.
 
@@ -558,8 +558,8 @@ If you use a custom DNS server on your network, clients must be able to resolve 
 
 For more information on configuring your own DNS server to support private endpoints, see the following resources:
 
-- [Name resolution that uses your own DNS server](../virtual-network/virtual-networks-name-resolution-for-vms-and-role-instances.md#name-resolution-that-uses-your-own-dns-server)
-- [DNS configuration](../private-link/private-endpoint-overview.md#dns-configuration)
+- [Name resolution that uses your own DNS server](/azure/virtual-network/virtual-networks-name-resolution-for-vms-and-role-instances#name-resolution-that-uses-your-own-dns-server)
+- [DNS configuration](/azure/private-link/private-endpoint-overview#dns-configuration)
 
 ## Grant access to trusted Azure services for Azure OpenAI
 
@@ -627,4 +627,4 @@ For pricing details, see [Azure Private Link pricing](https://azure.microsoft.co
 ## Next steps
 
 - Explore the various [Azure AI services](./what-are-ai-services.md)
-- Learn more about [Virtual Network service endpoints](../virtual-network/virtual-network-service-endpoints-overview.md)
+- Learn more about [Virtual Network service endpoints](/azure/virtual-network/virtual-network-service-endpoints-overview)

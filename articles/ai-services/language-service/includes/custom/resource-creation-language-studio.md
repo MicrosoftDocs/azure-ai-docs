@@ -28,4 +28,4 @@ Create a Language resource with following details.
 > * Make sure to enable **Managed Identity** when you create a Language resource. 
 > * Read and confirm Responsible AI notice
 
-To use this service, you'll need to [create an Azure storage account](../../../../storage/common/storage-account-create.md) if you don't have one already. 
+To use this service, you'll need to [create an Azure storage account](/azure/storage/common/storage-account-create) if you don't have one already. 

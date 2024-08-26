@@ -47,7 +47,7 @@ The batch transcription API (and [fast transcription API](./fast-transcription-c
 
 ## Azure Blob Storage upload
 
-When audio files are located in an [Azure Blob Storage](../../storage/blobs/storage-blobs-overview.md) account, you can request transcription of individual audio files or an entire Azure Blob Storage container. You can also [write transcription results](batch-transcription-create.md#specify-a-destination-container-url) to a Blob container.
+When audio files are located in an [Azure Blob Storage](/azure/storage/blobs/storage-blobs-overview) account, you can request transcription of individual audio files or an entire Azure Blob Storage container. You can also [write transcription results](batch-transcription-create.md#specify-a-destination-container-url) to a Blob container.
 
 > [!NOTE]
 > For blob and container limits, see [batch transcription quotas and limits](speech-services-quotas-and-limits.md#batch-transcription).
@@ -122,20 +122,20 @@ Follow these steps to create a storage account and upload wav files from your lo
 
 ## Trusted Azure services security mechanism
 
-This section explains how to set up and limit access to your batch transcription source audio files in an Azure Storage account using the [trusted Azure services security mechanism](../../storage/common/storage-network-security.md#trusted-access-based-on-a-managed-identity). 
+This section explains how to set up and limit access to your batch transcription source audio files in an Azure Storage account using the [trusted Azure services security mechanism](/azure/storage/common/storage-network-security#trusted-access-based-on-a-managed-identity). 
 
 > [!NOTE]
-> With the trusted Azure services security mechanism, you need to use [Azure Blob storage](../../storage/blobs/storage-blobs-overview.md) to store audio files. Usage of [Azure Files](../../storage/files/storage-files-introduction.md) is not supported.
+> With the trusted Azure services security mechanism, you need to use [Azure Blob storage](/azure/storage/blobs/storage-blobs-overview) to store audio files. Usage of [Azure Files](/azure/storage/files/storage-files-introduction) is not supported.
 
 If you perform all actions in this section, your Storage account is configured as follows:
 - Access to all external network traffic is prohibited.
 - Access to Storage account using Storage account key is prohibited.
-- Access to Storage account blob storage using [shared access signatures (SAS)](../../storage/common/storage-sas-overview.md) is prohibited.
-- Access to the selected Speech resource is allowed using the resource [system assigned managed identity](../../active-directory/managed-identities-azure-resources/overview.md).
+- Access to Storage account blob storage using [shared access signatures (SAS)](/azure/storage/common/storage-sas-overview) is prohibited.
+- Access to the selected Speech resource is allowed using the resource [system assigned managed identity](/azure/active-directory/managed-identities-azure-resources/overview).
 
 So in effect your Storage account becomes completely "locked" and can't be used in any scenario apart from transcribing audio files that were already present by the time the new configuration was applied. You should consider this configuration as a model as far as the security of your audio data is concerned and customize it according to your needs.
 
-For example, you can allow traffic from selected public IP addresses and Azure Virtual networks. You can also set up access to your Storage account using [private endpoints](../../storage/common/storage-private-endpoints.md) (see as well [this tutorial](../../private-link/tutorial-private-endpoint-storage-portal.md)), re-enable access using Storage account key, allow access to other Azure trusted services, etc.
+For example, you can allow traffic from selected public IP addresses and Azure Virtual networks. You can also set up access to your Storage account using [private endpoints](/azure/storage/common/storage-private-endpoints) (see as well [this tutorial](/azure/private-link/tutorial-private-endpoint-storage-portal)), re-enable access using Storage account key, allow access to other Azure trusted services, etc.
 
 > [!NOTE] 
 > Using [private endpoints for Speech](speech-services-private-link.md) isn't required to secure the storage account. You can use a private endpoint for batch transcription API requests, while separately accessing the source audio files from a secure storage account, or the other way around.
@@ -172,7 +172,7 @@ Follow these steps to restrict access to the storage account.
 1. Select **Disabled** for **Allow storage account key access**
 1. Select **Save**.
 
-For more information, see [Prevent anonymous public read access to containers and blobs](../../storage/blobs/anonymous-read-access-prevent.md) and [Prevent Shared Key authorization for an Azure Storage account](../../storage/common/shared-key-authorization-prevent.md).
+For more information, see [Prevent anonymous public read access to containers and blobs](/azure/storage/blobs/anonymous-read-access-prevent) and [Prevent Shared Key authorization for an Azure Storage account](/azure/storage/common/shared-key-authorization-prevent).
 
 ### Configure Azure Storage firewall
 
@@ -197,7 +197,7 @@ Although by now the network access is permitted, the Speech resource can't yet a
 Follow these steps to assign the **Storage Blob Data Reader** role to the managed identity of your Speech resource.
 
 > [!IMPORTANT]
-> You need to be assigned the *Owner* role of the Storage account or higher scope (like Subscription) to perform the operation in the next steps. This is because only the *Owner* role can assign roles to others. See details [here](../../role-based-access-control/built-in-roles.md).
+> You need to be assigned the *Owner* role of the Storage account or higher scope (like Subscription) to perform the operation in the next steps. This is because only the *Owner* role can assign roles to others. See details [here](/azure/role-based-access-control/built-in-roles).
 
 1. Go to the [Azure portal](https://portal.azure.com/) and sign in to your Azure account.
 1. Select the Storage account.

@@ -58,7 +58,7 @@ Traffic Manager creates a new DNS access point for your endpoints. It does not a
 ### Polling uses LUIS endpoint
 Traffic Manager polls the endpoints periodically to make sure the endpoint is still available. The Traffic Manager URL polled needs to be accessible with a GET request and return a 200. The endpoint URL on the **Publish** page does this. Since each endpoint key has a different route and query string parameters, each endpoint key needs a different polling path. Each time Traffic Manager polls, it does cost a quota request. The query string parameter **q** of the LUIS endpoint is the utterance sent to LUIS. This parameter, instead of sending an utterance, is used to add Traffic Manager polling to the LUIS endpoint log as a debugging technique while getting Traffic Manager configured.
 
-Because each LUIS endpoint needs its own path, it needs its own Traffic Manager profile. In order to manage across profiles, create a [_nested_ Traffic Manager](../../traffic-manager/traffic-manager-nested-profiles.md) architecture. One parent profile points to the children profiles and manage traffic across them.
+Because each LUIS endpoint needs its own path, it needs its own Traffic Manager profile. In order to manage across profiles, create a [_nested_ Traffic Manager](/azure/traffic-manager/traffic-manager-nested-profiles) architecture. One parent profile points to the children profiles and manage traffic across them.
 
 Once the Traffic Manager is configured, remember to change the path to use the logging=false query string parameter so your log is not filling up with polling.
 
@@ -366,7 +366,7 @@ In order to manage traffic across endpoints, you need to insert a call to the Tr
 
 ## Resolving a degraded state
 
-Enable [diagnostic logs](../../traffic-manager/traffic-manager-diagnostic-logs.md) for Traffic Manager to see why endpoint status is degraded.
+Enable [diagnostic logs](/azure/traffic-manager/traffic-manager-diagnostic-logs) for Traffic Manager to see why endpoint status is degraded.
 
 ## Clean up
 Remove the two LUIS endpoint keys, the three Traffic Manager profiles, and the resource group that contained these five resources. This is done from the Azure portal. You delete the five resources from the resources list. Then delete the resource group.
@@ -379,5 +379,5 @@ Review [middleware](/azure/bot-service/bot-builder-create-middleware?tabs=csaddm
 [traffic-manager-docs]: ../../traffic-manager/index.yml
 [LUIS]: ./luis-reference-regions.md#luis-website
 [azure-storage]: https://azure.microsoft.com/services/storage/
-[routing-methods]: ../../traffic-manager/traffic-manager-routing-methods.md
-[traffic-manager-endpoints]: ../../traffic-manager/traffic-manager-endpoint-types.md
+[routing-methods]: /azure/traffic-manager/traffic-manager-routing-methods
+[traffic-manager-endpoints]: /azure/traffic-manager/traffic-manager-endpoint-types

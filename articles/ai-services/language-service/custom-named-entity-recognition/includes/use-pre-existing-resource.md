@@ -18,7 +18,7 @@ You can use an existing Language resource to get started with custom NER as long
 |Pricing tier     | Learn more about [supported pricing tiers](../service-limits.md#language-resource-limits).        |
 |Managed identity     | Make sure that the resource's managed identity setting is enabled. Otherwise, read the next section. |
 
-To use custom named entity recognition, you'll need to [create an Azure storage account](../../../../storage/common/storage-account-create.md) if you don't have one already. 
+To use custom named entity recognition, you'll need to [create an Azure storage account](/azure/storage/common/storage-account-create) if you don't have one already. 
 
 ## Enable identity management for your resource
 

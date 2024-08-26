@@ -19,7 +19,7 @@ A security bug was discovered that affects Microsoft Entra authentication for Im
 
 ## Background
 
-When you initially create your Immersive Reader resources and configure them for Microsoft Entra authentication, it's necessary to grant permissions for the Microsoft Entra application identity to access your Immersive Reader resource. This is known as a *role assignment*. The Azure role that was previously used for permissions was the [Cognitive Services User](../../role-based-access-control/built-in-roles.md#cognitive-services-user) role.
+When you initially create your Immersive Reader resources and configure them for Microsoft Entra authentication, it's necessary to grant permissions for the Microsoft Entra application identity to access your Immersive Reader resource. This is known as a *role assignment*. The Azure role that was previously used for permissions was the [Cognitive Services User](/azure/role-based-access-control/built-in-roles#cognitive-services-user) role.
 
 During a security audit, it was discovered that this Cognitive Services User role has permissions to [list keys](/rest/api/cognitiveservices/accountmanagement/accounts/list-keys). This is slightly concerning because Immersive Reader integrations involve the use of this Microsoft Entra access token in client web apps and browsers. If the access token were stolen by a bad actor or attacker, there's a concern that this access token could be used to `list keys` for your Immersive Reader resource. If an attacker could `list keys` for your resource, then they would obtain the `Subscription Key` for your resource. The `Subscription Key` for your resource is used as an authentication mechanism and is considered a secret. If an attacker had the resource's `Subscription Key`, it would allow them to make valid and authenticated API calls to your Immersive Reader resource endpoint, which could lead to Denial of Service due to the increased usage and throttling on your endpoint. It would also allow unauthorized use of your Immersive Reader resource, which would lead to increased charges on your bill.
 
@@ -49,7 +49,7 @@ You can rotate the subscription keys in the [Azure portal](https://portal.azure.
 
 ### Use Azure PowerShell to update your role assignment
 
-1. Start by opening the [Azure Cloud Shell](../../cloud-shell/overview.md). Ensure that Cloud Shell is set to PowerShell in the upper-left hand dropdown or by typing `pwsh`.
+1. Start by opening the [Azure Cloud Shell](/azure/cloud-shell/overview). Ensure that Cloud Shell is set to PowerShell in the upper-left hand dropdown or by typing `pwsh`.
 
 1. Copy and paste the following code snippet into the shell.
 

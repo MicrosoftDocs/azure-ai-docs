@@ -34,7 +34,7 @@ To get started, you need:
 
 * A [**single-service Translator resource**](https://portal.azure.com/#create/Microsoft.CognitiveServicesTextTranslation) (**not** a multi-service Azure AI services resource). If you're planning on using the Document Translation feature with [managed identity authorization](../how-to-guides/create-use-managed-identities.md), choose a geographic region such as **East US**. Select the **Standard S1 Standard Service Plan (Pay-as-you-go) or C2, C3, C4, or D3 Volume Discount Plans**.
 
-* An [**Azure Blob Storage account**](https://portal.azure.com/#create/Microsoft.StorageAccount-ARM). You'll [**create containers**](../../../../storage/blobs/storage-quickstart-blobs-portal.md#create-a-container) in your Azure Blob Storage account for your source and target files:
+* An [**Azure Blob Storage account**](https://portal.azure.com/#create/Microsoft.StorageAccount-ARM). You'll [**create containers**](/azure/storage/blobs/storage-quickstart-blobs-portal#create-a-container) in your Azure Blob Storage account for your source and target files:
 
   * **Source container**. This container is where you upload your files for translation (required).
   * **Target container**. This container is where your translated files are stored (required).

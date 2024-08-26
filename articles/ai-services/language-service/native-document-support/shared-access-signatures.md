@@ -53,8 +53,8 @@ To get started, you need the following resources:
 
 * A **standard performance** [Azure Blob Storage account](https://portal.azure.com/#create/Microsoft.StorageAccount-ARM). You also need to create containers to store and organize your files within your storage account. If you don't know how to create an Azure storage account with a storage container, follow these quickstarts:
 
-  * [Create a storage account](../../../storage/common/storage-account-create.md). When you create your storage account, select **Standard** performance in the **Instance details** > **Performance** field.
-  * [Create a container](../../../storage/blobs/storage-quickstart-blobs-portal.md#create-a-container). When you create your container, set **Public access level** to **Container** (anonymous read access for containers and files) in the **New Container** window.
+  * [Create a storage account](/azure/storage/common/storage-account-create). When you create your storage account, select **Standard** performance in the **Instance details** > **Performance** field.
+  * [Create a container](/azure/storage/blobs/storage-quickstart-blobs-portal#create-a-container). When you create your container, set **Public access level** to **Container** (anonymous read access for containers and files) in the **New Container** window.
 
 ## Create SAS tokens in the Azure portal
 

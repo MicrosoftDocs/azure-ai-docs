@@ -1022,8 +1022,8 @@ Output of this operation depends on configured `events`, for example if there's 
 
 You may want to integrate Spatial Analysis detection or events into your application. Here are a few approaches to consider: 
 
-* Use the Azure Event Hubs SDK for your chosen programming language to connect to the Azure IoT Hub endpoint and receive the events. For more information, see [Read device-to-cloud messages from the built-in endpoint](../../iot-hub/iot-hub-devguide-messages-read-builtin.md). 
-* Set up **Message Routing** on your Azure IoT Hub to send the events to other endpoints or save the events to your data storage. For more information, see [IoT Hub Message Routing](../../iot-hub/iot-hub-devguide-messages-d2c.md). 
+* Use the Azure Event Hubs SDK for your chosen programming language to connect to the Azure IoT Hub endpoint and receive the events. For more information, see [Read device-to-cloud messages from the built-in endpoint](/azure/iot-hub/iot-hub-devguide-messages-read-builtin). 
+* Set up **Message Routing** on your Azure IoT Hub to send the events to other endpoints or save the events to your data storage. For more information, see [IoT Hub Message Routing](/azure/iot-hub/iot-hub-devguide-messages-d2c). 
 * Set up an Azure Stream Analytics job to process the events in real-time as they arrive and create visualizations. 
 
 ## Deploy Spatial Analysis operations at scale (multiple cameras)

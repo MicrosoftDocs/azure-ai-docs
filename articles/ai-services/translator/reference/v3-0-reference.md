@@ -188,7 +188,7 @@ An authentication token is valid for 10 minutes. The token should be reused when
 :::image type="content" source="../media/managed-identities/resource-id-property.png" alt-text="Screenshot:Translator properties page in the Azure portal. ":::
 
 > [!IMPORTANT]
-> Assign [**Cognitive Services User**](../../../role-based-access-control/built-in-roles/ai-machine-learning.md#cognitive-services-user) role to the service principal. By assigning this role, you're granting service principal access to the Translator resource.
+> Assign [**Cognitive Services User**](/azure/role-based-access-control/built-in-roles/ai-machine-learning#cognitive-services-user) role to the service principal. By assigning this role, you're granting service principal access to the Translator resource.
 
 ### **Examples**
 
@@ -343,7 +343,7 @@ The error code is a 6-digit number combining the 3-digit HTTP status code follow
 | 503000| Service is temporarily unavailable. Retry. If the error persists, report it with date/time of error, request identifier from response header X-RequestId, and client identifier from request header X-ClientTraceId.|
 
 ## Metrics
-Metrics allow you to view the translator usage and availability information in Azure portal, under metrics section as shown in the below screenshot. For more information, see [Data and platform metrics](../../../azure-monitor/essentials/data-platform-metrics.md).
+Metrics allow you to view the translator usage and availability information in Azure portal, under metrics section as shown in the below screenshot. For more information, see [Data and platform metrics](/azure/azure-monitor/essentials/data-platform-metrics).
 
 ![Translator Metrics](../media/translatormetrics.png)
 

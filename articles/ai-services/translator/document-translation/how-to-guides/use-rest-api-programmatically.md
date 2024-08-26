@@ -86,7 +86,7 @@ Requests to the Translator service require a read-only key for authenticating ac
 
 ## Create Azure Blob Storage containers
 
-You need to  [**create containers**](../../../../storage/blobs/storage-quickstart-blobs-portal.md#create-a-container) in your [**Azure Blob Storage account**](https://portal.azure.com/#create/Microsoft.StorageAccount-ARM) for source and target files.
+You need to  [**create containers**](/azure/storage/blobs/storage-quickstart-blobs-portal#create-a-container) in your [**Azure Blob Storage account**](https://portal.azure.com/#create/Microsoft.StorageAccount-ARM) for source and target files.
 
 * **Source container**. This container is where you upload your files for translation (required).
 * **Target container**. This container is where your translated files are stored (required).
@@ -308,7 +308,7 @@ gradle init --type basic
 
 > [!IMPORTANT]
 >
-> For the code samples, you'll hard-code your Shared Access Signature (SAS) URL where indicated. Remember to remove the SAS URL from your code when you're done, and never post it publicly. For production, use a secure way of storing and accessing your credentials like [Azure Managed Identity](create-use-managed-identities.md). For more information, _see_ Azure Storage [security](../../../../storage/common/authorize-data-access.md).
+> For the code samples, you'll hard-code your Shared Access Signature (SAS) URL where indicated. Remember to remove the SAS URL from your code when you're done, and never post it publicly. For production, use a secure way of storing and accessing your credentials like [Azure Managed Identity](create-use-managed-identities.md). For more information, _see_ Azure Storage [security](/azure/storage/common/authorize-data-access).
 
 > You may need to update the following fields, depending upon the operation:
 >>>

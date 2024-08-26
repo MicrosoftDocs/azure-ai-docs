@@ -121,11 +121,11 @@ Managing Azure Reservations
 
 After a reservation is created, it is a best practice monitor it to ensure it is receiving the usage you are expecting.  This may be done via the Azure Reservation Portal or Azure Monitor.  Details on these topics and others can be found here: 
 
-* [View Azure reservation utilization](../../../cost-management-billing/reservations/reservation-utilization.md) 
-* [View Azure Reservation purchase and refund transactions](../../../cost-management-billing/reservations/view-purchase-refunds.md) 
-* [View amortized benefit costs](../../../cost-management-billing/reservations/view-amortized-costs.md) 
-* [Charge back Azure Reservation costs](../../../cost-management-billing/reservations/charge-back-usage.md)
-* [Automatically renew Azure reservations](../../../cost-management-billing/reservations/reservation-renew.md)
+* [View Azure reservation utilization](/azure/cost-management-billing/reservations/reservation-utilization) 
+* [View Azure Reservation purchase and refund transactions](/azure/cost-management-billing/reservations/view-purchase-refunds) 
+* [View amortized benefit costs](/azure/cost-management-billing/reservations/view-amortized-costs) 
+* [Charge back Azure Reservation costs](/azure/cost-management-billing/reservations/charge-back-usage)
+* [Automatically renew Azure reservations](/azure/cost-management-billing/reservations/reservation-renew)
 
 ## Next steps
 

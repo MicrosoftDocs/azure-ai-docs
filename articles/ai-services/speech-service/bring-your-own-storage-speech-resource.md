@@ -15,9 +15,9 @@ ms.author: alexeyo
 
 Bring your own storage (BYOS) is an Azure AI technology for customers, who have high requirements for data security and privacy. The core of the technology is the ability to associate an Azure Storage account, that the user owns and fully controls with the Speech resource. The Speech resource then uses this storage account for storing different artifacts related to the user data processing, instead of storing the same artifacts within the Speech service premises as it is done in the regular case. This approach allows using all set of security features of Azure Storage account, including encrypting the data with the Customer-managed keys, using Private endpoints to access the data, etc.
 
-In BYOS scenarios, all traffic between the Speech resource and the Storage account is maintained using [Azure global network](https://azure.microsoft.com/explore/global-infrastructure/global-network), in other words all communication is performed using private network, completely bypassing public internet. Speech resource in BYOS scenario is using [Azure Trusted services](../../storage/common/storage-network-security.md#grant-access-to-trusted-azure-services) mechanism to access the Storage account, relying on [System-assigned managed identities](../../active-directory/managed-identities-azure-resources/overview.md) as a method of authentication, and [Role-based access control (RBAC)](../../role-based-access-control/overview.md) as a method of authorization.
+In BYOS scenarios, all traffic between the Speech resource and the Storage account is maintained using [Azure global network](https://azure.microsoft.com/explore/global-infrastructure/global-network), in other words all communication is performed using private network, completely bypassing public internet. Speech resource in BYOS scenario is using [Azure Trusted services](/azure/storage/common/storage-network-security#grant-access-to-trusted-azure-services) mechanism to access the Storage account, relying on [System-assigned managed identities](/azure/active-directory/managed-identities-azure-resources/overview) as a method of authentication, and [Role-based access control (RBAC)](/azure/role-based-access-control/overview) as a method of authorization.
 
-There's one exception: if you use Text to speech, and your Speech resource and the associated Storage account are located in different Azure regions, then public internet is used for the operations, involving [User delegation SAS](../../storage/common/storage-sas-overview.md#user-delegation-sas). See details in [this section](#configure-storage-account-security-settings-for-text-to-speech).
+There's one exception: if you use Text to speech, and your Speech resource and the associated Storage account are located in different Azure regions, then public internet is used for the operations, involving [User delegation SAS](/azure/storage/common/storage-sas-overview#user-delegation-sas). See details in [this section](#configure-storage-account-security-settings-for-text-to-speech).
 
 BYOS can be used with several Azure AI services. For Speech, it can be used in the following scenarios:
 
@@ -71,7 +71,7 @@ This functionality isn't available through Azure portal.
 
 To check whether an Azure subscription has access to BYOS with PowerShell, we use [Get-AzProviderFeature](/powershell/module/az.resources/get-azproviderfeature) command.
 
-You can [install PowerShell locally](/powershell/azure/install-azure-powershell) or use [Azure Cloud Shell](../../cloud-shell/overview.md).
+You can [install PowerShell locally](/powershell/azure/install-azure-powershell) or use [Azure Cloud Shell](/azure/cloud-shell/overview).
 
 If you use local installation of PowerShell, connect to your Azure account using `Connect-AzAccount` command before trying the following script.
 
@@ -100,7 +100,7 @@ If you get empty response or `RegistrationState` value is `NotRegistered` then y
 
 To check whether an Azure subscription has access to BYOS with Azure CLI, we use [az feature show](/cli/azure/feature) command.
 
-You can [install Azure CLI locally](/cli/azure/install-azure-cli) or use [Azure Cloud Shell](../../cloud-shell/overview.md).
+You can [install Azure CLI locally](/cli/azure/install-azure-cli) or use [Azure Cloud Shell](/azure/cloud-shell/overview).
 
 > [!NOTE]
 > The following script doesn't use variables because variable usage differs, depending on the platform where Azure CLI runs. See information on Azure CLI variable usage in [this article](/cli/azure/azure-cli-variables).
@@ -189,7 +189,7 @@ To create a BYOS-enabled Speech resource with Azure portal, you need to access s
 
 To create a BYOS-enabled Speech resource with PowerShell, we use [New-AzCognitiveServicesAccount](/powershell/module/az.cognitiveservices/new-azcognitiveservicesaccount) command.
 
-You can [install PowerShell locally](/powershell/azure/install-azure-powershell) or use [Azure Cloud Shell](../../cloud-shell/overview.md).
+You can [install PowerShell locally](/powershell/azure/install-azure-powershell) or use [Azure Cloud Shell](/azure/cloud-shell/overview).
 
 If you use local installation of PowerShell, connect to your Azure account using `Connect-AzAccount` command before trying the following script.
 
@@ -213,7 +213,7 @@ New-AzCognitiveServicesAccount -ResourceGroupName $azureResourceGroup  -name $az
 
 To create a BYOS-enabled Speech resource with Azure CLI, we use [az cognitiveservices account create](/cli/azure/cognitiveservices/account) command.
 
-You can [install Azure CLI locally](/cli/azure/install-azure-cli) or use [Azure Cloud Shell](../../cloud-shell/overview.md).
+You can [install Azure CLI locally](/cli/azure/install-azure-cli) or use [Azure Cloud Shell](/azure/cloud-shell/overview).
 
 > [!NOTE]
 > The following script doesn't use variables because variable usage differs, depending on the platform where Azure CLI runs. See information on Azure CLI variable usage in [this article](/cli/azure/azure-cli-variables).
@@ -341,7 +341,7 @@ BYOS uses the Blob storage of a Storage account. Because of this, BYOS-enabled S
 If you used Azure portal to create your BYOS-enabled Speech resource, you can skip the rest of this subsection. Your role assignment is already done. Otherwise, follow these steps.
 
 > [!IMPORTANT]
-> You need to be assigned the *Owner* role of the Storage account or higher scope (like Subscription) to perform the operation in the next steps. This is because only the *Owner* role can assign roles to others. See details [here](../../role-based-access-control/built-in-roles.md).
+> You need to be assigned the *Owner* role of the Storage account or higher scope (like Subscription) to perform the operation in the next steps. This is because only the *Owner* role can assign roles to others. See details [here](/azure/role-based-access-control/built-in-roles).
 
 1. Go to the [Azure portal](https://portal.azure.com/) and sign in to your Azure account.
 1. Select the Storage account.
@@ -356,13 +356,13 @@ If you used Azure portal to create your BYOS-enabled Speech resource, you can sk
 
 This section describes how to set up Storage account security settings, if you intend to use BYOS-associated Storage account only for Speech to text scenarios. In case you use the BYOS-associated Storage account for Text to speech or a combination of both Speech to text and Text to speech, use [this section](#configure-storage-account-security-settings-for-text-to-speech).
 
-For Speech to text BYOS is using the [trusted Azure services security mechanism](../../storage/common/storage-network-security.md#trusted-access-based-on-a-managed-identity) to communicate with Storage account. The mechanism allows setting restricted storage account data access rules.
+For Speech to text BYOS is using the [trusted Azure services security mechanism](/azure/storage/common/storage-network-security#trusted-access-based-on-a-managed-identity) to communicate with Storage account. The mechanism allows setting restricted storage account data access rules.
 
 If you perform all actions in the section, your Storage account is in the following configuration:
 - Access to all external network traffic is prohibited.
 - Access to Storage account using Storage account key is prohibited.
-- Access to Storage account blob storage using [shared access signatures (SAS)](../../storage/common/storage-sas-overview.md) is prohibited. (Except for [User delegation SAS](../../storage/common/shared-key-authorization-prevent.md#understand-how-disallowing-shared-key-affects-sas-tokens))
-- Access to the BYOS-enabled Speech resource is allowed using the resource [system assigned managed identity](../../active-directory/managed-identities-azure-resources/overview.md).
+- Access to Storage account blob storage using [shared access signatures (SAS)](/azure/storage/common/storage-sas-overview) is prohibited. (Except for [User delegation SAS](/azure/storage/common/shared-key-authorization-prevent#understand-how-disallowing-shared-key-affects-sas-tokens))
+- Access to the BYOS-enabled Speech resource is allowed using the resource [system assigned managed identity](/azure/active-directory/managed-identities-azure-resources/overview).
 
 So in effect your Storage account becomes completely "locked" and can only be accessed by your Speech resource, which will be able to:
 - Write artifacts of your Speech data processing (see details in the [correspondent articles](#next-steps)),
@@ -370,7 +370,7 @@ So in effect your Storage account becomes completely "locked" and can only be ac
 
 You should consider this configuration as a model as far as the security of your data is concerned and customize it according to your needs.
 
-For example, you can allow traffic from selected public IP addresses and Azure Virtual networks. You can also set up access to your Storage account using [private endpoints](../../storage/common/storage-private-endpoints.md) (see as well [this tutorial](../../private-link/tutorial-private-endpoint-storage-portal.md)), re-enable access using Storage account key, allow access to other Azure trusted services, etc.
+For example, you can allow traffic from selected public IP addresses and Azure Virtual networks. You can also set up access to your Storage account using [private endpoints](/azure/storage/common/storage-private-endpoints) (see as well [this tutorial](/azure/private-link/tutorial-private-endpoint-storage-portal)), re-enable access using Storage account key, allow access to other Azure trusted services, etc.
 
 > [!NOTE] 
 > Using [private endpoints for Speech](speech-services-private-link.md) isn't required to secure the Storage account. Private endpoints for Speech secure the channels for Speech API requests, and can be used as an extra component in your solution.
@@ -384,7 +384,7 @@ For example, you can allow traffic from selected public IP addresses and Azure V
 1. Select *Disabled* for *Allow storage account key access*
 1. Select *Save*.
 
-For more information, see [Prevent anonymous public read access to containers and blobs](../../storage/blobs/anonymous-read-access-prevent.md) and [Prevent Shared Key authorization for an Azure Storage account](../../storage/common/shared-key-authorization-prevent.md).
+For more information, see [Prevent anonymous public read access to containers and blobs](/azure/storage/blobs/anonymous-read-access-prevent) and [Prevent Shared Key authorization for an Azure Storage account](/azure/storage/common/shared-key-authorization-prevent).
 
 **Configure Azure Storage firewall**
 
@@ -412,8 +412,8 @@ This section describes how to set up Storage account security settings, if you i
 If you perform all actions in the section, your Storage account is in the following configuration:
 - External network traffic is allowed.
 - Access to Storage account using Storage account key is prohibited.
-- Access to Storage account blob storage using [shared access signatures (SAS)](../../storage/common/storage-sas-overview.md) is prohibited. (Except for [User delegation SAS](../../storage/common/shared-key-authorization-prevent.md#understand-how-disallowing-shared-key-affects-sas-tokens))
-- Access to the BYOS-enabled Speech resource is allowed using the resource [system assigned managed identity](../../active-directory/managed-identities-azure-resources/overview.md) and [User delegation SAS](../../storage/common/storage-sas-overview.md#user-delegation-sas).
+- Access to Storage account blob storage using [shared access signatures (SAS)](/azure/storage/common/storage-sas-overview) is prohibited. (Except for [User delegation SAS](/azure/storage/common/shared-key-authorization-prevent#understand-how-disallowing-shared-key-affects-sas-tokens))
+- Access to the BYOS-enabled Speech resource is allowed using the resource [system assigned managed identity](/azure/active-directory/managed-identities-azure-resources/overview) and [User delegation SAS](/azure/storage/common/storage-sas-overview#user-delegation-sas).
 
 These are the most restricted security settings possible for the text to speech scenario. You can further customize them according to your needs.
 
@@ -426,11 +426,11 @@ These are the most restricted security settings possible for the text to speech 
 1. Select *Disabled* for *Allow storage account key access*
 1. Select *Save*.
 
-For more information, see [Prevent anonymous public read access to containers and blobs](../../storage/blobs/anonymous-read-access-prevent.md) and [Prevent Shared Key authorization for an Azure Storage account](../../storage/common/shared-key-authorization-prevent.md).
+For more information, see [Prevent anonymous public read access to containers and blobs](/azure/storage/blobs/anonymous-read-access-prevent) and [Prevent Shared Key authorization for an Azure Storage account](/azure/storage/common/shared-key-authorization-prevent).
 
 **Configure Azure Storage firewall**
 
-Custom neural voice uses [User delegation SAS](../../storage/common/storage-sas-overview.md#user-delegation-sas) to read the data for custom neural voice model training. It requires allowing external network traffic access to the Storage account.
+Custom neural voice uses [User delegation SAS](/azure/storage/common/storage-sas-overview#user-delegation-sas) to read the data for custom neural voice model training. It requires allowing external network traffic access to the Storage account.
 
 1. Go to the [Azure portal](https://portal.azure.com/) and sign in to your Azure account.
 1. Select the Storage account.

@@ -87,7 +87,7 @@ Usage of the `lexicon` element's attributes are described in the following table
 
 | Attribute | Description | Required or optional |
 | --------- | ---------- | ---------- |
-| `uri`     | The URI of the publicly accessible custom lexicon XML file with either the `.xml` or `.pls` file extension. Using [Azure Blob Storage](../../storage/blobs/storage-quickstart-blobs-portal.md) is recommended but not required. For more information about the custom lexicon file, see [Pronunciation Lexicon Specification (PLS) Version 1.0](https://www.w3.org/TR/pronunciation-lexicon/).| Required |
+| `uri`     | The URI of the publicly accessible custom lexicon XML file with either the `.xml` or `.pls` file extension. Using [Azure Blob Storage](/azure/storage/blobs/storage-quickstart-blobs-portal) is recommended but not required. For more information about the custom lexicon file, see [Pronunciation Lexicon Specification (PLS) Version 1.0](https://www.w3.org/TR/pronunciation-lexicon/).| Required |
 
 ### Custom lexicon examples
 

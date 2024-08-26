@@ -52,12 +52,12 @@ export SSL_CERT_FILE=/etc/pki/tls/certs/ca-bundle.crt
 
 ## Certificate revocation checks
 
-When the Speech SDK connects to the Speech service, it checks the Transport Layer Security (TLS/SSL) certificate. The Speech SDK verifies that the certificate reported by the remote endpoint is trusted and hasn't been revoked. This verification provides a layer of protection against attacks involving spoofing and other related vectors. The check is accomplished by retrieving a certificate revocation list (CRL) from a certificate authority (CA) used by Azure. A list of Azure CA download locations for updated TLS CRLs can be found in [this document](../../security/fundamentals/tls-certificate-changes.md).
+When the Speech SDK connects to the Speech service, it checks the Transport Layer Security (TLS/SSL) certificate. The Speech SDK verifies that the certificate reported by the remote endpoint is trusted and hasn't been revoked. This verification provides a layer of protection against attacks involving spoofing and other related vectors. The check is accomplished by retrieving a certificate revocation list (CRL) from a certificate authority (CA) used by Azure. A list of Azure CA download locations for updated TLS CRLs can be found in [this document](/azure/security/fundamentals/tls-certificate-changes).
 
 If a destination posing as the Speech service reports a certificate that's been revoked in a retrieved CRL, the SDK terminates the connection and reports an error via a `Canceled` event. The authenticity of a reported certificate can't be checked without an updated CRL. Therefore, the Speech SDK also treats a failure to download a CRL from an Azure CA location as an error.
 
 > [!WARNING]
-> If your solution uses proxy or firewall it should be configured to allow access to all certificate revocation list URLs used by Azure. Note that many of these URLs are outside of `microsoft.com` domain, so allowing access to `*.microsoft.com` is not enough. See [this document](../../security/fundamentals/tls-certificate-changes.md) for details. In exceptional cases you may ignore CRL failures (see [the correspondent section](#bypassing-or-ignoring-crl-failures)), but such configuration is strongly not recommended, especially for production scenarios.
+> If your solution uses proxy or firewall it should be configured to allow access to all certificate revocation list URLs used by Azure. Note that many of these URLs are outside of `microsoft.com` domain, so allowing access to `*.microsoft.com` is not enough. See [this document](/azure/security/fundamentals/tls-certificate-changes) for details. In exceptional cases you may ignore CRL failures (see [the correspondent section](#bypassing-or-ignoring-crl-failures)), but such configuration is strongly not recommended, especially for production scenarios.
 
 ### Large CRL files (>10 MB)
 

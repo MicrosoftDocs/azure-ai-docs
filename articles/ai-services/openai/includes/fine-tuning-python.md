@@ -150,7 +150,7 @@ The next step is to either choose existing prepared training data or upload new 
 - [From a local file](/rest/api/azureopenai/files/upload)
 - [Import from an Azure Blob store or other web location](/rest/api/azureopenai/files/import)
 
-For large data files, we recommend that you import from an Azure Blob  store. Large files can become unstable when uploaded through multipart forms because the requests are atomic and can't be retried or resumed. For more information about Azure Blob storage, see [What is Azure Blob storage?](../../../storage/blobs/storage-blobs-overview.md)
+For large data files, we recommend that you import from an Azure Blob  store. Large files can become unstable when uploaded through multipart forms because the requests are atomic and can't be retried or resumed. For more information about Azure Blob storage, see [What is Azure Blob storage?](/azure/storage/blobs/storage-blobs-overview)
 
 > [!NOTE]
 > Training data files must be formatted as JSONL files, encoded in UTF-8 with a byte-order mark (BOM). The file must be less than 512 MB in size.

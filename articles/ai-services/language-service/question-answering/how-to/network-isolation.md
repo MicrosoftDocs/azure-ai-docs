@@ -17,7 +17,7 @@ The steps below describe how to restrict public access to custom question answer
 
 Azure Private Endpoint is a network interface that connects you privately and securely to a service powered by Azure Private Link. Custom question answering provides you support to create private endpoints to the Azure Search Service.
 
-Private endpoints are provided by [Azure Private Link](../../../../private-link/private-link-overview.md), as a separate service. For more information about costs, see the [pricing page.](https://azure.microsoft.com/pricing/details/private-link/)
+Private endpoints are provided by [Azure Private Link](/azure/private-link/private-link-overview), as a separate service. For more information about costs, see the [pricing page.](https://azure.microsoft.com/pricing/details/private-link/)
 
 ## Steps to enable private endpoint
 

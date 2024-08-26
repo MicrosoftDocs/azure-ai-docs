@@ -60,7 +60,7 @@ To get started, you need the following resources:
     > [!TIP]
     > For more information, see [**create a Document Intelligence resource**](../create-document-intelligence-resource.md).
 
-* **An Azure storage account.** If you don't know how to create an Azure storage account, follow the [Azure Storage quickstart for Azure portal](../../../storage/blobs/storage-quickstart-blobs-portal.md). You can use the free pricing tier (F0) to try the service, and upgrade later to a paid tier for production.
+* **An Azure storage account.** If you don't know how to create an Azure storage account, follow the [Azure Storage quickstart for Azure portal](/azure/storage/blobs/storage-quickstart-blobs-portal). You can use the free pricing tier (F0) to try the service, and upgrade later to a paid tier for production.
 
 ## Create your custom models
 
@@ -342,7 +342,7 @@ Building a custom model begins with establishing your training dataset. You need
 ## Upload your training dataset
 
 You need to [upload your training data](build-a-custom-model.md?view=doc-intel-2.1.0&preserve-view=true#upload-your-training-data)
-to an Azure blob storage container. If you don't know how to create an Azure storage account with a container, *see* [Azure Storage quickstart for Azure portal](../../../storage/blobs/storage-quickstart-blobs-portal.md). You can use the free pricing tier (F0) to try the service, and upgrade later to a paid tier for production.
+to an Azure blob storage container. If you don't know how to create an Azure storage account with a container, *see* [Azure Storage quickstart for Azure portal](/azure/storage/blobs/storage-quickstart-blobs-portal). You can use the free pricing tier (F0) to try the service, and upgrade later to a paid tier for production.
 
 ## Train your custom model
 

@@ -15,9 +15,9 @@ ms.topic: how-to
 
 In this article, we show you how to set up and use VNet service endpoints with Custom Translator.
 
-Azure Virtual Network (VNet) [service endpoints](../../../../virtual-network/virtual-network-service-endpoints-overview.md) securely connect your Azure service resources to your virtual networks over an optimized route via the Azure global network. Service endpoints enable private IP addresses within your virtual network to reach the endpoint of an Azure service without the need for a public IP address on the virtual network.
+Azure Virtual Network (VNet) [service endpoints](/azure/virtual-network/virtual-network-service-endpoints-overview) securely connect your Azure service resources to your virtual networks over an optimized route via the Azure global network. Service endpoints enable private IP addresses within your virtual network to reach the endpoint of an Azure service without the need for a public IP address on the virtual network.
 
-For more information, see [Azure Virtual Network overview](../../../../virtual-network/virtual-networks-overview.md)
+For more information, see [Azure Virtual Network overview](/azure/virtual-network/virtual-networks-overview)
 
 > [!NOTE]
 > Before you start, review [how to use virtual networks with Azure AI services](../../../cognitive-services-virtual-networks.md).

@@ -25,11 +25,11 @@ LUIS provides ways to manipulate the utterance before or during the prediction. 
 
 Preprocess text for spelling corrections before you send the utterance to LUIS. Use example utterances with the correct spelling to ensure you get the correct predictions.
 
-Use [Bing Spell Check](../../cognitive-services/bing-spell-check/overview.md) to correct text before sending it to LUIS.
+Use [Bing Spell Check](/azure/cognitive-services/bing-spell-check/overview) to correct text before sending it to LUIS.
 
 ### Prior to V3 runtime
 
-LUIS uses [Bing Spell Check API V7](../../cognitive-services/bing-spell-check/overview.md) to correct spelling errors in the utterance. LUIS needs the key associated with that service. Create the key, then add the key as a querystring parameter at the [endpoint](/rest/api/luis/operation-groups).
+LUIS uses [Bing Spell Check API V7](/azure/cognitive-services/bing-spell-check/overview) to correct spelling errors in the utterance. LUIS needs the key associated with that service. Create the key, then add the key as a querystring parameter at the [endpoint](/rest/api/luis/operation-groups).
 
 The endpoint requires two params for spelling corrections to work:
 

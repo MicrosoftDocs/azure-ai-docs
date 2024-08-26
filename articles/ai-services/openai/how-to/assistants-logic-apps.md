@@ -19,7 +19,7 @@ recommendations: false
 
 [Azure Logic Apps](https://azure.microsoft.com/products/logic-apps) is an integration platform in Azure that allows you to build applications and automation workflows with low code tools enabling developer productivity and faster time to market. By using the visual designer and selecting from hundreds of prebuilt connectors, you can quickly build a workflow that integrates and manages your apps, data, services, and systems.
 
-Azure Logic Apps is fully managed by Microsoft Azure, which frees you from worrying about hosting, scaling, managing, monitoring, and maintaining solutions built with these services. When you use these capabilities to create [serverless](../../../logic-apps/logic-apps-overview.md) apps and solutions, you can just focus on the business logic and functionality. These services automatically scale to meet your needs, make automation workflows faster, and help you build robust cloud apps using little to no code.
+Azure Logic Apps is fully managed by Microsoft Azure, which frees you from worrying about hosting, scaling, managing, monitoring, and maintaining solutions built with these services. When you use these capabilities to create [serverless](/azure/logic-apps/logic-apps-overview) apps and solutions, you can just focus on the business logic and functionality. These services automatically scale to meet your needs, make automation workflows faster, and help you build robust cloud apps using little to no code.
 
 ## Function calling on Azure Logic Apps through the Assistants Playground 
 
@@ -27,8 +27,8 @@ To accelerate and simplify the creation of intelligent applications, we are now 
 
 The Assistants playground enumerates and lists all the workflows in your subscription that are eligible for function calling. Here are the requirements for these workflows:
 
-* [Consumption Logic Apps](../../../logic-apps/quickstart-create-example-consumption-workflow.md): Currently we only support consumption workflows.
-* [Request trigger](../../../connectors/connectors-native-reqres.md?tabs=consumption): Function calling requires a REST-based API. Logic Apps with a request trigger provides a REST endpoint. Therefore only workflows with a request trigger are supported for function calling.
+* [Consumption Logic Apps](/azure/logic-apps/quickstart-create-example-consumption-workflow): Currently we only support consumption workflows.
+* [Request trigger](/azure/connectors/connectors-native-reqres?tabs=consumption): Function calling requires a REST-based API. Logic Apps with a request trigger provides a REST endpoint. Therefore only workflows with a request trigger are supported for function calling.
 * Schema: The workflows you want to use for function calling should have a JSON schema describing the inputs and expected outputs. Using Logic Apps you can streamline and provide schema in the trigger, which would be automatically imported as a function definition.
 
 If you already have workflows with above three requirements, you should be able to use them in Azure OpenAI Studio  and invoke them via user prompts.
@@ -51,7 +51,7 @@ Here are the steps to create a new Logic Apps workflow for function calling.
 1. Open the Logic Apps workflow in designer. Select Development Tools + Logic app designer. This opens your empty workflow in designer. Or you select Blank Logic App from templates
 1. Now you're ready to add one more step in the workflow. A workflow always starts with a single trigger, which specifies the condition to meet before running any subsequent actions in the workflow.
 1. Your workflow is required to have a Request trigger to generate a REST endpoint, and a response action to return the response to Azure OpenAI Studio  when this workflow is invoked.
-1. Add a trigger [(Request)](../../../connectors/connectors-native-reqres.md?tabs=consumption)
+1. Add a trigger [(Request)](/azure/connectors/connectors-native-reqres?tabs=consumption)
 
     Select **Add a trigger** and then search for request trigger. Select the **When a HTTP request is received** operation.
 
@@ -77,7 +77,7 @@ Here are the steps to create a new Logic Apps workflow for function calling.
 
     :::image type="content" source="..\media\how-to\assistants\logic-apps\create-logic-app-6.png" alt-text="A screenshot showing the location property." lightbox="..\media\how-to\assistants\logic-apps\create-logic-app-6.png":::
 
-1. Configure the [response](../../../connectors/connectors-native-reqres.md#add-a-response-action). The workflow needs to return the response back to Azure OpenAI Studio. This is done using Response action.
+1. Configure the [response](/azure/connectors/connectors-native-reqres#add-a-response-action). The workflow needs to return the response back to Azure OpenAI Studio. This is done using Response action.
 
     :::image type="content" source="..\media\how-to\assistants\logic-apps\create-logic-app-7.png" alt-text="A screenshot showing the response action." lightbox="..\media\how-to\assistants\logic-apps\create-logic-app-7.png":::
 
@@ -112,7 +112,7 @@ The workflow now will be invoked by the Azure OpenAI Assistants based on the use
 
 :::image type="content" source="..\media\how-to\assistants\logic-apps\playground-weather-example.png" alt-text="A screenshot showing a weather prompt example." lightbox="..\media\how-to\assistants\logic-apps\playground-weather-example.png":::
 
-You can confirm the invocation by looking at the logs as well as your [workflow run history](../../../logic-apps/monitor-logic-apps.md?tabs=consumption.md#review-workflow-run-history).
+You can confirm the invocation by looking at the logs as well as your [workflow run history](/azure/logic-apps/monitor-logic-apps?tabs=consumption.md#review-workflow-run-history).
 
 
 :::image type="content" source="..\media\how-to\assistants\logic-apps\example-log.png" alt-text="A screenshot showing a logging example." lightbox="..\media\how-to\assistants\logic-apps\example-log.png":::
@@ -133,11 +133,11 @@ Logic Apps supports two primary types of authentications to invoke a request tri
 
 * Shared Access Signature (SAS) based authentication.
     
-    Users can obtain a callback URL containing a SAS using the [list callback URL](/rest/api/logic/workflows/list-callback-url) API. Logic Apps also supports using multiple keys and rotating them as needed. Logic Apps also supports creating SAS URLs with a specified validity period. For more information, see the [Logic Apps documentation](../../../logic-apps/logic-apps-securing-a-logic-app.md#generate-shared-access-signatures-sas).
+    Users can obtain a callback URL containing a SAS using the [list callback URL](/rest/api/logic/workflows/list-callback-url) API. Logic Apps also supports using multiple keys and rotating them as needed. Logic Apps also supports creating SAS URLs with a specified validity period. For more information, see the [Logic Apps documentation](/azure/logic-apps/logic-apps-securing-a-logic-app#generate-shared-access-signatures-sas).
 
 * Microsoft Entra ID-based OAuth base authentication policy.
 
-    Logic Apps also supports authentication trigger invocations with Microsoft Entra ID OAuth, where you can specify authentication policies to be used in validating OAuth tokens. For more information, see the [Logic Apps documentation](../../../logic-apps/logic-apps-securing-a-logic-app.md#generate-shared-access-signatures-sas).
+    Logic Apps also supports authentication trigger invocations with Microsoft Entra ID OAuth, where you can specify authentication policies to be used in validating OAuth tokens. For more information, see the [Logic Apps documentation](/azure/logic-apps/logic-apps-securing-a-logic-app#generate-shared-access-signatures-sas).
 
 When Azure OpenAI Assistants require invoking a Logic App as part of function calling, Azure OpenAI Studio  will retrieve the callback URL with the SAS to invoke the workflow. 
 

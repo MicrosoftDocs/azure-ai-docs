@@ -19,7 +19,7 @@ Managed identities for Azure resources are service principals that create a Micr
 
 * You can use managed identities to grant access to any resource that supports Microsoft Entra authentication, including your own applications. 
 
-* To grant access to an Azure resource, assign an Azure role to a managed identity using [Azure role-based access control (`Azure RBAC`)](../../../../role-based-access-control/overview.md).
+* To grant access to an Azure resource, assign an Azure role to a managed identity using [Azure role-based access control (`Azure RBAC`)](/azure/role-based-access-control/overview).
 
 * There's no added cost to use managed identities in Azure.
 
@@ -40,7 +40,7 @@ To get started, you need:
 
 * A [**single-service Translator**](https://portal.azure.com/#create/Microsoft.CognitiveServicesTextTranslation) (not a multi-service Azure AI services) resource assigned to a **geographical** region such as **West US**. For detailed steps, _see_ [Create an Azure AI services resource](../../../multi-service-resource.md).
 
-* A brief understanding of [**Azure role-based access control (`Azure RBAC`)**](../../../../role-based-access-control/role-assignments-portal.yml) using the Azure portal.
+* A brief understanding of [**Azure role-based access control (`Azure RBAC`)**](/azure/role-based-access-control/role-assignments-portal) using the Azure portal.
 
 * An [**Azure Blob Storage account**](https://portal.azure.com/#create/Microsoft.StorageAccount-ARM) in the same region as your Translator resource. You also need to create containers to store and organize your blob data within your storage account.
 
@@ -55,7 +55,7 @@ To get started, you need:
     1. Deselect all check boxes.
     1. Make sure **Microsoft network routing** is selected.
     1. Under the **Resource instances** section, select **Microsoft.CognitiveServices/accounts** as the resource type and select your Translator resource as the instance name.
-    1. Make certain that the **Allow Azure services on the trusted services list to access this storage account** box is checked. For more information about managing exceptions, _see_ [Configure Azure Storage firewalls and virtual networks](../../../../storage/common/storage-network-security.md?tabs=azure-portal#manage-exceptions).
+    1. Make certain that the **Allow Azure services on the trusted services list to access this storage account** box is checked. For more information about managing exceptions, _see_ [Configure Azure Storage firewalls and virtual networks](/azure/storage/common/storage-network-security?tabs=azure-portal#manage-exceptions).
 
         :::image type="content" source="../../media/managed-identities/allow-trusted-services-checkbox-portal-view.png" alt-text="Screenshot: allow trusted services checkbox, portal view.":::
 
@@ -95,7 +95,7 @@ You must grant the Translator resource access to your storage account before it 
 ## Grant storage account access for your Translator resource
 
 > [!IMPORTANT]
-> To assign a system-assigned managed identity role, you need **Microsoft.Authorization/roleAssignments/write** permissions, such as [**Owner**](../../../../role-based-access-control/built-in-roles.md#owner) or [**User Access Administrator**](../../../../role-based-access-control/built-in-roles.md#user-access-administrator) at the storage scope for the storage resource.
+> To assign a system-assigned managed identity role, you need **Microsoft.Authorization/roleAssignments/write** permissions, such as [**Owner**](/azure/role-based-access-control/built-in-roles#owner) or [**User Access Administrator**](/azure/role-based-access-control/built-in-roles#user-access-administrator) at the storage scope for the storage resource.
 
 1. Go to the [Azure portal](https://portal.azure.com/) and sign in to your Azure account.
 1. Select the Translator resource.
@@ -254,4 +254,4 @@ Great! You just learned how to enable and use a system-assigned managed identity
 > [Quickstart: Get started with Document Translation](../how-to-guides/use-rest-api-programmatically.md)
 
 > [!div class="nextstepaction"]
-> [Tutorial: Access Azure Storage from a web app using managed identities](../../../../app-service/scenario-secure-app-access-storage.md?bc=%2fazure%2fcognitive-services%2ftranslator%2fbreadcrumb%2ftoc.json&toc=%2fazure%2fcognitive-services%2ftranslator%2ftoc.json)
+> [Tutorial: Access Azure Storage from a web app using managed identities](/azure/app-service/scenario-secure-app-access-storage?bc=%2fazure%2fcognitive-services%2ftranslator%2fbreadcrumb%2ftoc.json&toc=%2fazure%2fcognitive-services%2ftranslator%2ftoc.json)

@@ -80,7 +80,7 @@ read
 ---
 
 > [!TIP]
-> If your subscription doesn't allow you to create an Azure AI services resource, you might need to enable the privilege of that [Azure resource provider](../azure-resource-manager/management/resource-providers-and-types.md#register-resource-provider) by using the [Azure portal](../azure-resource-manager/management/resource-providers-and-types.md#azure-portal), a [PowerShell command](../azure-resource-manager/management/resource-providers-and-types.md#azure-powershell) or an [Azure CLI command](../azure-resource-manager/management/resource-providers-and-types.md#azure-cli). If you're not the subscription owner, ask the subscription owner or someone with an admin role to complete the registration for you. Or ask for the */register/action* privileges to be granted to your account.
+> If your subscription doesn't allow you to create an Azure AI services resource, you might need to enable the privilege of that [Azure resource provider](/azure/azure-resource-manager/management/resource-providers-and-types#register-resource-provider) by using the [Azure portal](/azure/azure-resource-manager/management/resource-providers-and-types#azure-portal), a [PowerShell command](/azure/azure-resource-manager/management/resource-providers-and-types#azure-powershell) or an [Azure CLI command](/azure/azure-resource-manager/management/resource-providers-and-types#azure-cli). If you're not the subscription owner, ask the subscription owner or someone with an admin role to complete the registration for you. Or ask for the */register/action* privileges to be granted to your account.
 
 ## Review deployed resources
 

@@ -14,7 +14,7 @@ recommendations: false
 
 # Role-based access control for Azure OpenAI Service
 
-Azure OpenAI Service supports Azure role-based access control (Azure RBAC), an authorization system for managing individual access to Azure resources. Using Azure RBAC, you assign different team members different levels of permissions based on their needs for a given project. For more information, see the [Azure RBAC documentation](../../../role-based-access-control/index.yml).
+Azure OpenAI Service supports Azure role-based access control (Azure RBAC), an authorization system for managing individual access to Azure resources. Using Azure RBAC, you assign different team members different levels of permissions based on their needs for a given project. For more information, see the [Azure RBAC documentation](/azure/role-based-access-control/).
 
 ## Add role assignment to an Azure OpenAI resource
 
@@ -30,7 +30,7 @@ Azure RBAC can be assigned to an Azure OpenAI resource. To grant access to an Az
 1. On the **Members** tab, select a user, group, service principal, or managed identity.
 1. On the **Review + assign** tab, select **Review + assign** to assign the role.
 
-Within a few minutes, the target will be assigned the selected role at the selected scope. For help with these steps, see [Assign Azure roles using the Azure portal](../../../role-based-access-control/role-assignments-portal.yml).
+Within a few minutes, the target will be assigned the selected role at the selected scope. For help with these steps, see [Assign Azure roles using the Azure portal](/azure/role-based-access-control/role-assignments-portal).
 
 ## Azure OpenAI roles
 
@@ -203,5 +203,5 @@ Possible reasons why the user may **not** have permissions:
 
 ## Next steps
 
-- Learn more about [Azure-role based access control (Azure RBAC)](../../../role-based-access-control/index.yml).
-- Also check out[assign Azure roles using the Azure portal](../../../role-based-access-control/role-assignments-portal.yml).
+- Learn more about [Azure-role based access control (Azure RBAC)](/azure/role-based-access-control/).
+- Also check out[assign Azure roles using the Azure portal](/azure/role-based-access-control/role-assignments-portal).

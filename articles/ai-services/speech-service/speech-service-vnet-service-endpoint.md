@@ -12,7 +12,7 @@ ms.author: alexeyo
 
 # Use Speech service through a Virtual Network service endpoint
 
-[Azure Virtual Network](../../virtual-network/virtual-networks-overview.md) [service endpoints](../../virtual-network/virtual-network-service-endpoints-overview.md) help to provide secure and direct connectivity to Azure services over an optimized route on the Azure backbone network. Endpoints help you secure your critical Azure service resources to only your virtual networks. Service endpoints enable private IP addresses in the virtual network to reach the endpoint of an Azure service without needing a public IP address on the virtual network.
+[Azure Virtual Network](/azure/virtual-network/virtual-networks-overview) [service endpoints](/azure/virtual-network/virtual-network-service-endpoints-overview) help to provide secure and direct connectivity to Azure services over an optimized route on the Azure backbone network. Endpoints help you secure your critical Azure service resources to only your virtual networks. Service endpoints enable private IP addresses in the virtual network to reach the endpoint of an Azure service without needing a public IP address on the virtual network.
 
 This article explains how to set up and use Virtual Network service endpoints with Speech service in Azure AI services.
 
@@ -92,8 +92,8 @@ This scenario is equivalent to [using a Speech resource that has a custom domain
 ## Learn more
 
 * [Use Speech service through a private endpoint](speech-services-private-link.md)
-* [Azure Virtual Network service endpoints](../../virtual-network/virtual-network-service-endpoints-overview.md)
-* [Azure Private Link](../../private-link/private-link-overview.md)
+* [Azure Virtual Network service endpoints](/azure/virtual-network/virtual-network-service-endpoints-overview)
+* [Azure Private Link](/azure/private-link/private-link-overview)
 * [Speech SDK](speech-sdk.md)
 * [Speech to text REST API](rest-speech-to-text.md)
 * [Text to speech REST API](rest-text-to-speech.md)

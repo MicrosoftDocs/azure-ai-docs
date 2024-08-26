@@ -54,7 +54,7 @@ In this section, you'll create the following resources in the Azure portal:
 
 * Create a key vault and configure secrets and access
     1. Create a [key vault](https://portal.azure.com/#create/Microsoft.KeyVault) in the Azure portal.
-    2. Go to Key Vault > Access policies, and grant the [Azure Synapse workspace](../../../data-factory/data-factory-service-identity.md?context=%2fazure%2fsynapse-analytics%2fcontext%2fcontext&tabs=synapse-analytics) permission to read secrets from Azure Key Vault.
+    2. Go to Key Vault > Access policies, and grant the [Azure Synapse workspace](/azure/data-factory/data-factory-service-identity?context=%2fazure%2fsynapse-analytics%2fcontext%2fcontext&tabs=synapse-analytics) permission to read secrets from Azure Key Vault.
 
         ![A screenshot of granting permission to Synapse.](../media/multivariate-anomaly-detector-synapse/grant-synapse-permission.png)
 
@@ -265,7 +265,7 @@ If you have the need to run training code and inference code in separate noteboo
 
 ### About Synapse
 
-* Quick start: [Configure prerequisites for using Azure AI services in Azure Synapse Analytics](../../../synapse-analytics/machine-learning/tutorial-configure-cognitive-services-synapse.md#create-a-key-vault-and-configure-secrets-and-access).
+* Quick start: [Configure prerequisites for using Azure AI services in Azure Synapse Analytics](/azure/synapse-analytics/machine-learning/tutorial-configure-cognitive-services-synapse#create-a-key-vault-and-configure-secrets-and-access).
 * Visit [SynpaseML new website](https://microsoft.github.io/SynapseML/) for the latest docs, demos, and examples.
-* Learn more about [Synapse Analytics](../../../synapse-analytics/index.yml).
+* Learn more about [Synapse Analytics](/azure/synapse-analytics/).
 * Read about the [SynapseML v0.9.5 release](https://github.com/microsoft/SynapseML/releases/tag/v0.9.5) on GitHub.

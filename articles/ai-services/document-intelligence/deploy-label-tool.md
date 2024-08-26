@@ -145,7 +145,7 @@ az container create \
 
 ### Connect to Microsoft Entra ID for authorization
 
-We recommend that you connect your web app to Microsoft Entra ID. This connection ensures that only users with valid credentials can sign in and use your web app. Follow the instructions in [Configure your App Service app](../../app-service/configure-authentication-provider-aad.md) to connect to Microsoft Entra ID.
+We recommend that you connect your web app to Microsoft Entra ID. This connection ensures that only users with valid credentials can sign in and use your web app. Follow the instructions in [Configure your App Service app](/azure/app-service/configure-authentication-provider-aad) to connect to Microsoft Entra ID.
 
 ## Open source on GitHub
 

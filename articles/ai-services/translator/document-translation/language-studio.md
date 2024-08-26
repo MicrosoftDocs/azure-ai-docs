@@ -97,7 +97,7 @@ At least one **source document** is required. You can download our [document tra
 
 ## File location and destination
 
-Your source and target files can be located in your local environment or your Azure Blob Storage [container](../../../storage/blobs/storage-quickstart-blobs-portal.md#create-a-container). Follow the steps to select where to retrieve your source and store your target files:
+Your source and target files can be located in your local environment or your Azure Blob Storage [container](/azure/storage/blobs/storage-quickstart-blobs-portal#create-a-container). Follow the steps to select where to retrieve your source and store your target files:
 
 ### Choose a source file location
 

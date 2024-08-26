@@ -13,7 +13,7 @@ ms.custom: devx-track-azurepowershell, devx-track-azurecli
 
 # Use Speech service through a private endpoint
 
-[Azure Private Link](../../private-link/private-link-overview.md) lets you connect to services in Azure by using a [private endpoint](../../private-link/private-endpoint-overview.md). A private endpoint is a private IP address that's accessible only within a specific [virtual network](../../virtual-network/virtual-networks-overview.md) and subnet.
+[Azure Private Link](/azure/private-link/private-link-overview) lets you connect to services in Azure by using a [private endpoint](/azure/private-link/private-endpoint-overview). A private endpoint is a private IP address that's accessible only within a specific [virtual network](/azure/virtual-network/virtual-networks-overview) and subnet.
 
 This article explains how to set up and use Private Link and private endpoints with the Speech service. This article then describes how to remove private endpoints later, but still use the Speech resource.
 
@@ -39,7 +39,7 @@ This article describes the usage of the private endpoints with Speech service. U
 
 ## Turn on private endpoints
 
-We recommend using the [private DNS zone](../../dns/private-dns-overview.md) attached to the virtual network with the necessary updates for the private endpoints.
+We recommend using the [private DNS zone](/azure/dns/private-dns-overview) attached to the virtual network with the necessary updates for the private endpoints.
 You can create a private DNS zone during the provisioning process.
 If you're using your own DNS server, you might also need to change your DNS configuration.
 
@@ -48,9 +48,9 @@ Decide on a DNS strategy before you provision private endpoints for a production
 Use one of the following articles to create private endpoints.
 These articles use a web app as a sample resource to make available through private endpoints.
 
-- [Create a private endpoint by using the Azure portal](../../private-link/create-private-endpoint-portal.md)
-- [Create a private endpoint by using Azure PowerShell](../../private-link/create-private-endpoint-powershell.md)
-- [Create a private endpoint by using Azure CLI](../../private-link/create-private-endpoint-cli.md)
+- [Create a private endpoint by using the Azure portal](/azure/private-link/create-private-endpoint-portal)
+- [Create a private endpoint by using Azure PowerShell](/azure/private-link/create-private-endpoint-powershell)
+- [Create a private endpoint by using Azure CLI](/azure/private-link/create-private-endpoint-cli)
 
 Use these parameters instead of the parameters in the article that you chose:
 
@@ -414,8 +414,8 @@ For pricing details, see [Azure Private Link pricing](https://azure.microsoft.co
 ## Learn more
 
 * [Use Speech service through a Virtual Network service endpoint](speech-service-vnet-service-endpoint.md)
-* [Azure Private Link](../../private-link/private-link-overview.md)
-* [Azure VNet service endpoint](../../virtual-network/virtual-network-service-endpoints-overview.md)
+* [Azure Private Link](/azure/private-link/private-link-overview)
+* [Azure VNet service endpoint](/azure/virtual-network/virtual-network-service-endpoints-overview)
 * [Speech SDK](speech-sdk.md)
 * [Speech to text REST API](rest-speech-to-text.md)
 * [Text to speech REST API](rest-text-to-speech.md)

@@ -127,7 +127,7 @@ The authentication method for the endpoint. Key-based authentication provides a 
 
 The endpoint needs to access Azure resources such as the Azure Container Registry or your AI Studio hub connections for inferencing. You can allow the endpoint permission to access Azure resources via giving permission to its managed identity.
 
-System-assigned identity will be autocreated after your endpoint is created, while user-assigned identity is created by user. [Learn more about managed identities.](../../active-directory/managed-identities-azure-resources/overview.md)
+System-assigned identity will be autocreated after your endpoint is created, while user-assigned identity is created by user. [Learn more about managed identities.](/azure/active-directory/managed-identities-azure-resources/overview)
 
 ##### System-assigned
 
@@ -189,7 +189,7 @@ You can grant the required permissions in Azure portal UI by following steps.
     > [!NOTE]
     > The **Azure Machine Learning Workspace Connection Secrets Reader** role is a built-in role which has permission to get hub connections. 
     >
-    > If you want to use a customized role, make sure the customized role has the permission of `Microsoft.MachineLearningServices/workspaces/connections/listsecrets/action`. Learn more about [how to create custom roles](../../role-based-access-control/custom-roles-portal.md#step-3-basics).
+    > If you want to use a customized role, make sure the customized role has the permission of `Microsoft.MachineLearningServices/workspaces/connections/listsecrets/action`. Learn more about [how to create custom roles](/azure/role-based-access-control/custom-roles-portal#step-3-basics).
 
 1. Select **Managed identity** and select members.
     

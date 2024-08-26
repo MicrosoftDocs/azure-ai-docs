@@ -75,7 +75,7 @@ For an already-implemented DevOps solution for custom speech, go to the [Speech 
 
 The [Speech DevOps template repo](https://github.com/Azure-Samples/Speech-Service-DevOps-Template) provides the infrastructure and detailed guidance to:
 
-- Copy the template repository to your GitHub account, then create Azure resources and a [service principal](../../active-directory/develop/app-objects-and-service-principals.md#service-principal-object) for the GitHub Actions CI/CD workflows.
+- Copy the template repository to your GitHub account, then create Azure resources and a [service principal](/azure/active-directory/develop/app-objects-and-service-principals#service-principal-object) for the GitHub Actions CI/CD workflows.
 - Walk through the "[dev inner loop](/dotnet/architecture/containerized-lifecycle/design-develop-containerized-apps/docker-apps-inner-loop-workflow)." Update training and testing data from a feature branch, test the changes with a temporary development model, and raise a pull request to propose and review the changes.
 - When training data is updated in a pull request to *main*, train models with the GitHub Actions CI workflow.
 - Perform automated accuracy testing to establish a model's [Word Error Rate (WER)](how-to-custom-speech-evaluate-data.md#evaluate-word-error-rate-wer). Store the test results in Azure Blob.

@@ -76,7 +76,7 @@ Inputs:
 Outputs:
 - Azure Monitor
 
-The supplied Spatial Analysis Telegraf module publishes all the telemetry data emitted by the Spatial Analysis container to Azure Monitor. See the [Azure Monitor](../../azure-monitor/overview.md) for information on adding Azure Monitor to your subscription.
+The supplied Spatial Analysis Telegraf module publishes all the telemetry data emitted by the Spatial Analysis container to Azure Monitor. See the [Azure Monitor](/azure/azure-monitor/overview) for information on adding Azure Monitor to your subscription.
 
 After setting up Azure Monitor, you'll need to create credentials that enable the module to send telemetry. You can use the Azure portal to create a new Service Principal, or use the Azure CLI command below to create one.
 

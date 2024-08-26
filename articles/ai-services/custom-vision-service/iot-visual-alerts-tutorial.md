@@ -139,5 +139,5 @@ In this tutorial, you set up and ran an application that detects visual state in
 > [IoTVisualAlerts sample (GitHub)](https://github.com/Azure-Samples/Cognitive-Services-Vision-Solution-Templates/tree/master/IoTVisualAlerts)
 
 * Add an IoT Hub method to switch the app directly to the **Waiting For Trained Model** state. This way, you can train the model with images that aren't captured by the device itself and then push the new model to the device on command.
-* Follow the [Visualize real-time sensor data](../../iot-hub/iot-hub-live-data-visualization-in-power-bi.md) tutorial to create a Power BI Dashboard to visualize the IoT Hub alerts sent by the sample.
-* Follow the [IoT remote monitoring](../../iot-hub/iot-hub-monitoring-notifications-with-azure-logic-apps.md) tutorial to create a Logic App that responds to the IoT Hub alerts when visual states are detected.
+* Follow the [Visualize real-time sensor data](/azure/iot-hub/iot-hub-live-data-visualization-in-power-bi) tutorial to create a Power BI Dashboard to visualize the IoT Hub alerts sent by the sample.
+* Follow the [IoT remote monitoring](/azure/iot-hub/iot-hub-monitoring-notifications-with-azure-logic-apps) tutorial to create a Logic App that responds to the IoT Hub alerts when visual states are detected.

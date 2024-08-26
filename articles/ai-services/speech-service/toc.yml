@@ -304,7 +304,7 @@ items:
       - name: Telephony Integration
         href: call-center-telephony-integration.md
       - name: Connect Azure Communication Services with Azure AI services
-        href: ../../communication-services/concepts/call-automation/azure-communication-services-azure-cognitive-services-integration.md?context=/azure/ai-services/speech-service/context/context
+        href: /azure/communication-services/concepts/call-automation/azure-communication-services-azure-cognitive-services-integration?context=/azure/ai-services/speech-service/context/context
     - name: Gaming integration
       href: gaming-concepts.md
     - name: Language learning

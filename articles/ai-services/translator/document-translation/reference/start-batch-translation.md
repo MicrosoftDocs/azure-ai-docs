@@ -157,7 +157,7 @@ Definition for the input batch translation request.
 The following are examples of batch requests.
 
 > [!NOTE]
-> In the following examples, limited access has been granted to the contents of an Azure Storage container [using a shared access signature(SAS)](../../../../storage/common/storage-sas-overview.md) token.
+> In the following examples, limited access has been granted to the contents of an Azure Storage container [using a shared access signature(SAS)](/azure/storage/common/storage-sas-overview) token.
 
 **Translating all documents in a container**
 

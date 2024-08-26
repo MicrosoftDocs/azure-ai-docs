@@ -18,7 +18,7 @@ Follow the steps below to restrict public access to QnA Maker resources. Protect
 
 ## Restrict access to App Service (QnA runtime)
 
-You can use the ServiceTag `CognitiveServicesMangement` to restrict inbound access to App Service or ASE (App Service Environment) network security group in-bound rules. Check out more information about service tags in the [virtual network service tags article](../../../virtual-network/service-tags-overview.md). 
+You can use the ServiceTag `CognitiveServicesMangement` to restrict inbound access to App Service or ASE (App Service Environment) network security group in-bound rules. Check out more information about service tags in the [virtual network service tags article](/azure/virtual-network/service-tags-overview). 
 
 ### Regular App Service
 
@@ -50,7 +50,7 @@ The App Service Environment (ASE) can be used to host the QnA Maker App Service 
 
 1. Create a [new Azure AI Search Resource](https://portal.azure.com/#create/Microsoft.Search).
 2. Create an external ASE with App Service.
-    - Follow this [App Service quickstart](../../../app-service/environment/create-external-ase.md#create-an-ase-and-an-app-service-plan-together) for instructions. This process can take up to 1-2 hours.
+    - Follow this [App Service quickstart](/azure/app-service/environment/create-external-ase#create-an-ase-and-an-app-service-plan-together) for instructions. This process can take up to 1-2 hours.
     - Finally, you'll have an App Service endpoint that will appear similar to: `https://<app service name>.<ASE name>.p.azurewebsite.net` . 
 	- Example: `https:// mywebsite.myase.p.azurewebsite.net`  
 3. Add the following App service configurations:

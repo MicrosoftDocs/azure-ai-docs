@@ -67,12 +67,12 @@ At this point, you should have a Document Intelligence resource and a SharePoint
 
    * **Subscription**. Select your current subscription.
    * **Resource group**. The [Azure resource group](/azure/cloud-adoption-framework/govern/resource-consistency/resource-access-management#what-is-an-azure-resource-group) that contains your resource. Choose the same resource group you have for your Document Intelligence resource.
-   * **Type**. Select **Consumption**. The Consumption resource type runs in global, multi-tenant Azure Logic Apps and uses the [Consumption billing model](../../../../logic-apps/logic-apps-pricing.md#consumption-pricing).
+   * **Type**. Select **Consumption**. The Consumption resource type runs in global, multi-tenant Azure Logic Apps and uses the [Consumption billing model](/azure/logic-apps/logic-apps-pricing#consumption-pricing).
    * **Logic App name**. Enter a name for your resource. We recommend using a descriptive name, for example *YourNameLogicApp*.
    * **Publish**. Select **Workflow**.
    * **Region**. Select your local region.
    * **Enable log analytics**. For this project, select **No**.
-   * **Plan Type**. Select **Consumption**. The Consumption resource type runs in global, multi-tenant Azure Logic Apps and uses the [Consumption billing model](../../../../logic-apps/logic-apps-pricing.md#consumption-pricing).
+   * **Plan Type**. Select **Consumption**. The Consumption resource type runs in global, multi-tenant Azure Logic Apps and uses the [Consumption billing model](/azure/logic-apps/logic-apps-pricing#consumption-pricing).
    * **Zone Redundancy**. Select **disabled**.
 
 1. When you're done, you have something similar to the following image (Resource group, Logic App name, and Region may be different). After checking these values, select **Review + create** in the bottom-left corner.

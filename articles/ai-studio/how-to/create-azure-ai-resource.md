@@ -25,13 +25,13 @@ In this article, you learn how to create and manage a hub in AI Studio with the 
 
 ## Create a hub in AI Studio
 
-To create a new hub, you need either the Owner or Contributor role on the resource group or on an existing hub. If you're unable to create a hub due to permissions, reach out to your administrator. If your organization is using [Azure Policy](../../governance/policy/overview.md), don't create the resource in AI Studio. Create the hub [in the Azure portal](#create-a-secure-hub-in-the-azure-portal) instead.
+To create a new hub, you need either the Owner or Contributor role on the resource group or on an existing hub. If you're unable to create a hub due to permissions, reach out to your administrator. If your organization is using [Azure Policy](/azure/governance/policy/overview), don't create the resource in AI Studio. Create the hub [in the Azure portal](#create-a-secure-hub-in-the-azure-portal) instead.
 
 [!INCLUDE [Create Azure AI Studio hub](../includes/create-hub.md)]
 
 ## Create a secure hub in the Azure portal
 
-If your organization is using [Azure Policy](../../governance/policy/overview.md), set up a hub that meets your organization's requirements instead of using AI Studio for resource creation. 
+If your organization is using [Azure Policy](/azure/governance/policy/overview), set up a hub that meets your organization's requirements instead of using AI Studio for resource creation. 
 
 1. From the Azure portal, search for `Azure AI Studio` and create a new hub by selecting **+ New Azure AI hub**
 1. Enter your hub name, subscription, resource group, and location details.

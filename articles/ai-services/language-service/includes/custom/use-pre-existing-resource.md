@@ -16,7 +16,7 @@ ms.author: jboback
 |Pricing tier     | pricing tier for your resource.       |
 |Managed identity     | Make sure that the resource's managed identity setting is enabled. Otherwise, read the next section. |
 
-To use this service, you'll need to [create an Azure storage account](../../../../storage/common/storage-account-create.md) if you don't have one already. 
+To use this service, you'll need to [create an Azure storage account](/azure/storage/common/storage-account-create) if you don't have one already. 
 
 ## Enable identity management for your resource
 

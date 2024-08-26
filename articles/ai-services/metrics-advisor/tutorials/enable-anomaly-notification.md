@@ -76,7 +76,7 @@ There's one extra parameter of **Endpoint** that needs to be filled out, this co
 
 **Step 2:** Create a Consumption logic app resource
 
-In the [Azure portal](https://portal.azure.com), create a Consumption logic app resource with a blank workflow by following the instructions in [Create an example Consumption logic app workflow](../../../logic-apps/quickstart-create-example-consumption-workflow.md). When you see the workflow designer opens, return to this tutorial.
+In the [Azure portal](https://portal.azure.com), create a Consumption logic app resource with a blank workflow by following the instructions in [Create an example Consumption logic app workflow](/azure/logic-apps/quickstart-create-example-consumption-workflow). When you see the workflow designer opens, return to this tutorial.
 
 
 **Step 3:** Add a trigger of **When an HTTP request is received**

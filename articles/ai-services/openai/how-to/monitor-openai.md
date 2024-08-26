@@ -119,7 +119,7 @@ The query returns a sample of 100 entries and displays a subset of the available
 :::image type="content" source="../media/monitoring/log-analytics-metrics-query.png" alt-text="Screenshot that shows the Log Analytics query results for Azure Metrics data about the Azure OpenAI resource." lightbox="../media/monitoring/log-analytics-metrics-query.png":::
 
 > [!NOTE]
-> When you select **Monitoring** > **Logs** in the Azure OpenAI menu for your resource, Log Analytics opens with the query scope set to the current resource. The visible log queries include data from that specific resource only. To run a query that includes data from other resources or data from other Azure services, select **Logs** from the **Azure Monitor** menu in the Azure portal. For more information, see [Log query scope and time range in Azure Monitor Log Analytics](../../../azure-monitor/logs/scope.md) for details.
+> When you select **Monitoring** > **Logs** in the Azure OpenAI menu for your resource, Log Analytics opens with the query scope set to the current resource. The visible log queries include data from that specific resource only. To run a query that includes data from other resources or data from other Azure services, select **Logs** from the **Azure Monitor** menu in the Azure portal. For more information, see [Log query scope and time range in Azure Monitor Log Analytics](/azure/azure-monitor/logs/scope) for details.
 
 [!INCLUDE [horz-monitor-alerts](~/reusable-content/ce-skilling/azure/includes/azure-monitor/horizontals/horz-monitor-alerts.md)]
 
@@ -129,7 +129,7 @@ Every organization's alerting needs vary and can change over time. Generally, al
 
 Errors below certain thresholds can often be evaluated through regular analysis of data in Azure Monitor Logs. As you analyze your log data over time, you might discover that a certain condition doesn't occur for an expected period of time. You can track for this condition by using alerts. Sometimes the absence of an event in a log is just as important a signal as an error.
 
-Depending on what type of application you're developing with your use of Azure OpenAI, [Azure Monitor Application Insights](../../../azure-monitor/overview.md) might offer more monitoring benefits at the application layer.
+Depending on what type of application you're developing with your use of Azure OpenAI, [Azure Monitor Application Insights](/azure/azure-monitor/overview) might offer more monitoring benefits at the application layer.
 
 ### Azure OpenAI alert rules
 
@@ -141,4 +141,4 @@ You can set alerts for any metric, log entry, or activity log entry listed in th
 
 - See [Azure OpenAI monitoring data reference](../monitor-openai-reference.md) for a reference of the metrics, logs, and other important values created for Azure OpenAI.
 - See [Monitoring Azure resources with Azure Monitor](/azure/azure-monitor/essentials/monitor-azure-resource) for general details on monitoring Azure resources.
-- See [Understand log searches in Azure Monitor logs](../../../azure-monitor/logs/log-query-overview.md) about logs.
+- See [Understand log searches in Azure Monitor logs](/azure/azure-monitor/logs/log-query-overview) about logs.

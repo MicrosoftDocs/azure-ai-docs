@@ -35,11 +35,11 @@ With Azure AI services for big data you can embed continuously improving, intell
 * **UI**: N/A - Code only
 * **Subscription(s)**: Azure account + Azure AI services resources
 
-To learn more about big data for Azure AI services, see [Azure AI services in Azure Synapse Analytics](../synapse-analytics/machine-learning/overview-cognitive-services.md). 
+To learn more about big data for Azure AI services, see [Azure AI services in Azure Synapse Analytics](/azure/synapse-analytics/machine-learning/overview-cognitive-services). 
 
 ## Azure Functions and Azure Service Web Jobs
 
-[Azure Functions](../azure-functions/index.yml) and [Azure App Service Web Jobs](../app-service/index.yml) both provide code-first integration services designed for developers and are built on [Azure App Services](../app-service/index.yml). These products provide serverless infrastructure for writing code. Within that code you can make calls to our services using our client libraries and REST APIs. 
+[Azure Functions](/azure/azure-functions/) and [Azure App Service Web Jobs](/azure/app-service/) both provide code-first integration services designed for developers and are built on [Azure App Services](/azure/app-service/). These products provide serverless infrastructure for writing code. Within that code you can make calls to our services using our client libraries and REST APIs. 
 
 * **Target user(s)**: Developers and data scientists
 * **Benefits**: Serverless compute service that lets you run event-triggered code. 
@@ -48,7 +48,7 @@ To learn more about big data for Azure AI services, see [Azure AI services in Az
 
 ## Azure Logic Apps 
 
-[Azure Logic Apps](../logic-apps/index.yml) share the same workflow designer and connectors as Power Automate but provide more advanced control, including integrations with Visual Studio and DevOps. Power Automate makes it easy to integrate with your Azure AI services resources through service-specific connectors that provide a proxy or wrapper around the APIs. These are the same connectors as those available in Power Automate. 
+[Azure Logic Apps](/azure/logic-apps/) share the same workflow designer and connectors as Power Automate but provide more advanced control, including integrations with Visual Studio and DevOps. Power Automate makes it easy to integrate with your Azure AI services resources through service-specific connectors that provide a proxy or wrapper around the APIs. These are the same connectors as those available in Power Automate. 
 
 * **Target user(s)**: Developers, integrators, IT pros, DevOps
 * **Benefits**: Designer-first (declarative) development model providing advanced options and integration in a low-code solution

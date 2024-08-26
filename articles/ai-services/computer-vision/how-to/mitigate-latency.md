@@ -41,7 +41,7 @@ We recommend that you select a region that is closest to your users to minimize 
 
 ### Use Azure blob storage for remote URLs
 
-The Face service provides two ways to upload images for processing: uploading the raw byte data of the image directly in the request, or providing a URL to a remote image. Regardless of the method, the Face service needs to download the image from its source location. If the connection from the Face service to the client or the remote server is slow or poor, it affects the response time of requests. If you have an issue with latency, consider storing the image in Azure Blob Storage and passing the image URL in the request. For more implementation details, see [storing the image in Azure Premium Blob Storage](../../../storage/blobs/storage-upload-process-images.md?tabs=dotnet). An example API call:
+The Face service provides two ways to upload images for processing: uploading the raw byte data of the image directly in the request, or providing a URL to a remote image. Regardless of the method, the Face service needs to download the image from its source location. If the connection from the Face service to the client or the remote server is slow or poor, it affects the response time of requests. If you have an issue with latency, consider storing the image in Azure Blob Storage and passing the image URL in the request. For more implementation details, see [storing the image in Azure Premium Blob Storage](/azure/storage/blobs/storage-upload-process-images?tabs=dotnet). An example API call:
 
 ``` csharp
 var url = "https://<storage_account_name>.blob.core.windows.net/<container_name>/<file_name>";

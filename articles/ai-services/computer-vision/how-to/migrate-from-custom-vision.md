@@ -23,7 +23,7 @@ This guide uses Python code to take all of the training data from an existing Cu
 * An Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services/)
 * [Python 3.x](https://www.python.org/)
 * A Custom Vision resource where an existing project is stored.
-* An Azure Storage resource - [Create one](../../../storage/common/storage-account-create.md?tabs=azure-portal)
+* An Azure Storage resource - [Create one](/azure/storage/common/storage-account-create?tabs=azure-portal)
 
 #### [Jupyter Notebook](#tab/notebook)
 

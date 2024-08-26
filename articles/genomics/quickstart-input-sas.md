@@ -12,12 +12,12 @@ ms.date: 03/02/2018
 
 # Submit a workflow to Microsoft Genomics using a SAS instead of a storage account key 
 
-This article demonstrates how to submit a workflow to the Microsoft Genomics service using a config.txt file that contains [shared access signatures (SAS)](../storage/common/storage-sas-overview.md) instead of storage account keys. This feature could be useful if there are security concerns about having the storage account key visible in the config.txt file. 
+This article demonstrates how to submit a workflow to the Microsoft Genomics service using a config.txt file that contains [shared access signatures (SAS)](/azure/storage/common/storage-sas-overview) instead of storage account keys. This feature could be useful if there are security concerns about having the storage account key visible in the config.txt file. 
 
 This article assumes you have already installed and run the `msgen` client, and are familiar with how to use Azure Storage. If you have successfully submitted a workflow using the provided sample data, you are ready to proceed with this article. 
 
 ## What is a SAS?
-A [shared access signature (SAS)](../storage/common/storage-sas-overview.md) provides delegated access to resources in your storage account. With a SAS, you can grant  access to resources in your storage account, without sharing your account keys. This is the key point of using shared access signatures in your applications--a SAS is a secure way to share your storage resources without compromising your account keys.
+A [shared access signature (SAS)](/azure/storage/common/storage-sas-overview) provides delegated access to resources in your storage account. With a SAS, you can grant  access to resources in your storage account, without sharing your account keys. This is the key point of using shared access signatures in your applications--a SAS is a secure way to share your storage resources without compromising your account keys.
 
 The SAS that is submitted to Microsoft Genomics should be a [Service SAS](/rest/api/storageservices/Constructing-a-Service-SAS) that delegates access only to the blob or container where the input and output files are stored. 
 
@@ -43,16 +43,16 @@ There are two ways to create a SAS token, either using Azure Storage Explorer or
 
 ### Set up: Create a SAS using Azure Storage Explorer
 
-[Azure Storage Explorer](https://azure.microsoft.com/features/storage-explorer/) is a tool to manage resources that you have stored in Azure Storage.  You can learn more about how to use Azure Storage Explorer [here](../vs-azure-tools-storage-manage-with-storage-explorer.md).
+[Azure Storage Explorer](https://azure.microsoft.com/features/storage-explorer/) is a tool to manage resources that you have stored in Azure Storage.  You can learn more about how to use Azure Storage Explorer [here](/azure/vs-azure-tools-storage-manage-with-storage-explorer).
 
-The SAS for the input files should be scoped to the specific input file (blob). To create a SAS token, follow [these instructions](../storage/blobs/quickstart-storage-explorer.md). Once you have created the SAS, the full URL with the query string as well as the query string by itself are provided and can be copied from the screen.
+The SAS for the input files should be scoped to the specific input file (blob). To create a SAS token, follow [these instructions](/azure/storage/blobs/quickstart-storage-explorer). Once you have created the SAS, the full URL with the query string as well as the query string by itself are provided and can be copied from the screen.
 
  ![Genomics SAS Storage Explorer](./media/quickstart-input-sas/genomics-sas-storageexplorer.png "Genomics SAS Storage Explorer")
 
 
 ### Set up: Create a SAS programmatically
 
-To create a SAS using the Azure Storage SDK, refer to the existing documentation in several languages, including [.NET](../storage/common/storage-sas-overview.md), [Python](../storage/blobs/storage-quickstart-blobs-python.md), and [Node.js](../storage/blobs/storage-quickstart-blobs-nodejs.md). 
+To create a SAS using the Azure Storage SDK, refer to the existing documentation in several languages, including [.NET](/azure/storage/common/storage-sas-overview), [Python](/azure/storage/blobs/storage-quickstart-blobs-python), and [Node.js](/azure/storage/blobs/storage-quickstart-blobs-nodejs). 
 
 To create a SAS without an SDK, the SAS query string can be directly constructed, including all the information required to authenticate the SAS. These [instructions](/rest/api/storageservices/constructing-a-service-sas) detail the components of the SAS query string and how to construct it. The required SAS signature is created by generating an HMAC using the blob/container authentication information, as described by these [instructions](/rest/api/storageservices/service-sas-examples).
 

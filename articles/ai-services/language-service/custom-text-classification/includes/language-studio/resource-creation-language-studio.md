@@ -28,6 +28,6 @@ Create a Language resource with following details.
 > * Make sure to enable **Managed Identity** when you create a Language resource. 
 > * Read and confirm Responsible AI notice
 
-To use custom text classification, you'll need to connect your resource to a storage account. If you don't have one, you can  [create an Azure storage account](../../../../../storage/common/storage-account-create.md). Use the following steps to create your first project and connect your storage account.
+To use custom text classification, you'll need to connect your resource to a storage account. If you don't have one, you can  [create an Azure storage account](/azure/storage/common/storage-account-create). Use the following steps to create your first project and connect your storage account.
 
 [!INCLUDE [Language Studio project creation](create-project.md)]

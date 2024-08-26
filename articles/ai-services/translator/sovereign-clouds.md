@@ -17,7 +17,7 @@ ms.author: lajanuar
 
 |Cloud | Region identifier |
 |---|--|
-| [Azure US Government](../../azure-government/documentation-government-welcome.md)|<ul><li>`usgovarizona` (US Gov Arizona)</li><li>`usgovvirginia` (US Gov Virginia)</li></ul>|
+| [Azure US Government](/azure/azure-government/documentation-government-welcome)|<ul><li>`usgovarizona` (US Gov Arizona)</li><li>`usgovvirginia` (US Gov Virginia)</li></ul>|
 | [Microsoft Azure operated by 21Vianet](/azure/china/overview-operations) |<ul><li>`chinaeast2` (East China 2)</li><li>`chinanorth` (China North)</li></ul>|
 
 ## Azure portal endpoints
@@ -111,7 +111,7 @@ curl -X POST "https://api.cognitive.microsofttranslator.us/translate?api-version
 ```
 
 > [!div class="nextstepaction"]
-> [Azure Government: Translator text reference](../../azure-government/documentation-government-cognitiveservices.md)
+> [Azure Government: Translator text reference](/azure/azure-government/documentation-government-cognitiveservices)
 
 ### [Azure operated by 21Vianet](#tab/china)
 

@@ -44,7 +44,7 @@ In this tutorial, you learn how to:
 
   * [**Azure Functions extension**](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azurefunctions). Once it's installed, you should see the Azure logo in the left-navigation pane.
 
-  * [**Azure Functions Core Tools**](../../azure-functions/functions-run-local.md?tabs=v3%2cwindows%2ccsharp%2cportal%2cbash) version 3.x (Version 4.x isn't supported for this project).
+  * [**Azure Functions Core Tools**](/azure/azure-functions/functions-run-local?tabs=v3%2cwindows%2ccsharp%2cportal%2cbash) version 3.x (Version 4.x isn't supported for this project).
 
   * [**Python Extension**](https://marketplace.visualstudio.com/items?itemName=ms-python.python) for Visual Studio code. For more information, *see* [Getting Started with Python in VS Code](https://code.visualstudio.com/docs/python/python-tutorial)
 
@@ -56,8 +56,8 @@ In this tutorial, you learn how to:
 
 1. [Create a general-purpose v2 Azure Storage account](https://portal.azure.com/#create/Microsoft.StorageAccount-ARM) in the Azure portal. If you don't know how to create an Azure storage account with a storage container, follow these quickstarts:
 
-    * [Create a storage account](../../storage/common/storage-account-create.md). When you create your storage account, select **Standard** performance in the **Instance details** > **Performance** field.
-    * [Create a container](../../storage/blobs/storage-quickstart-blobs-portal.md#create-a-container). When you create your container, set **Public access level** to **Container** (anonymous read access for containers and files) in the **New Container** window.
+    * [Create a storage account](/azure/storage/common/storage-account-create). When you create your storage account, select **Standard** performance in the **Instance details** > **Performance** field.
+    * [Create a container](/azure/storage/blobs/storage-quickstart-blobs-portal#create-a-container). When you create your container, set **Public access level** to **Container** (anonymous read access for containers and files) in the **New Container** window.
 
 1. On the left pane, select the **Resource sharing (CORS)** tab, and remove the existing CORS policy if any exists.
 

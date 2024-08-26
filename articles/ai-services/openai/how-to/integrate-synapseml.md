@@ -28,7 +28,7 @@ This tutorial shows how to apply large language models at a distributed scale by
 
 - An Apache Spark cluster with SynapseML installed.
 
-   - Create a [serverless Apache Spark pool](../../../synapse-analytics/get-started-analyze-spark.md#create-a-serverless-apache-spark-pool).
+   - Create a [serverless Apache Spark pool](/azure/synapse-analytics/get-started-analyze-spark#create-a-serverless-apache-spark-pool).
    - To install SynapseML for your Apache Spark cluster, see [Install SynapseML](#install-synapseml).
 
 > [!NOTE]
@@ -36,7 +36,7 @@ This tutorial shows how to apply large language models at a distributed scale by
 > 
 > The Azure OpenAI SynapseML integration supports the latest models via the [OpenAIChatCompletion()](https://github.com/microsoft/SynapseML/blob/0836e40efd9c48424e91aa10c8aa3fbf0de39f31/cognitive/src/main/scala/com/microsoft/azure/synapse/ml/cognitive/openai/OpenAIChatCompletion.scala#L24) transformer.
 
-We recommend that you [create an Azure Synapse workspace](../../../synapse-analytics/get-started-create-workspace.md). However, you can also use Azure Databricks, Azure HDInsight, Spark on Kubernetes, or the Python environment with the `pyspark` package.
+We recommend that you [create an Azure Synapse workspace](/azure/synapse-analytics/get-started-create-workspace). However, you can also use Azure Databricks, Azure HDInsight, Spark on Kubernetes, or the Python environment with the `pyspark` package.
 
 ## Use example code as a notebook
 
@@ -54,7 +54,7 @@ To use the example code in this article with your Apache Spark cluster, complete
 
 You can create a new notebook in your Apache Spark platform, or you can import an existing notebook. After you have a notebook in place, you can add each snippet of example code in this article as a new cell in your notebook.
 
-- To use a notebook in Azure Synapse Analytics, see [Create, develop, and maintain Synapse notebooks in Azure Synapse Analytics](../../../synapse-analytics/spark/apache-spark-development-using-notebooks.md).
+- To use a notebook in Azure Synapse Analytics, see [Create, develop, and maintain Synapse notebooks in Azure Synapse Analytics](/azure/synapse-analytics/spark/apache-spark-development-using-notebooks).
 
 - To use a notebook in Azure Databricks, see [Manage notebooks for Azure Databricks](/azure/databricks/notebooks/notebooks-manage).
 

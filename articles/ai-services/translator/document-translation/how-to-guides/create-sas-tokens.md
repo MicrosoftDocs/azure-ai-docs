@@ -53,8 +53,8 @@ To get started, you need the following resources:
 
 * A **standard performance** [Azure Blob Storage account](https://portal.azure.com/#create/Microsoft.StorageAccount-ARM). You also need to create containers to store and organize your files within your storage account. If you don't know how to create an Azure storage account with a storage container, follow these quickstarts:
 
-  * [Create a storage account](../../../../storage/common/storage-account-create.md). When you create your storage account, select **Standard** performance in the **Instance details** > **Performance** field.
-  * [Create a container](../../../../storage/blobs/storage-quickstart-blobs-portal.md#create-a-container). When you create your container, set **Public access level** to **Container** (anonymous read access for containers and files) in the **New Container** window.
+  * [Create a storage account](/azure/storage/common/storage-account-create). When you create your storage account, select **Standard** performance in the **Instance details** > **Performance** field.
+  * [Create a container](/azure/storage/blobs/storage-quickstart-blobs-portal#create-a-container). When you create your container, set **Public access level** to **Container** (anonymous read access for containers and files) in the **New Container** window.
 
 ## Create SAS tokens in the Azure portal
 
@@ -100,9 +100,9 @@ Go to the [Azure portal](https://portal.azure.com/#home) and navigate to your co
 
 Azure Storage Explorer is a free standalone app that enables you to easily manage your Azure cloud storage resources from your desktop.
 
-* You need the [**Azure Storage Explorer**](../../../../vs-azure-tools-storage-manage-with-storage-explorer.md) app installed in your Windows, macOS, or Linux development environment.
+* You need the [**Azure Storage Explorer**](/azure/vs-azure-tools-storage-manage-with-storage-explorer) app installed in your Windows, macOS, or Linux development environment.
 
-* After the Azure Storage Explorer app is installed, [connect it to the storage account](../../../../vs-azure-tools-storage-manage-with-storage-explorer.md?tabs=windows#connect-to-a-storage-account-or-service) you're using for Document Translation. Follow these steps to create tokens for a storage container or specific blob file:
+* After the Azure Storage Explorer app is installed, [connect it to the storage account](/azure/vs-azure-tools-storage-manage-with-storage-explorer?tabs=windows#connect-to-a-storage-account-or-service) you're using for Document Translation. Follow these steps to create tokens for a storage container or specific blob file:
 
 ### [SAS tokens for storage containers](#tab/Containers)
 

@@ -170,7 +170,7 @@ There are two supported methods for authentication:
 
 * Use a [Document Intelligence API key](#use-your-api-key) with AzureKeyCredential from azure.core.credentials.
 
-* Use a [token credential from azure-identity](#use-an-azure-active-directory-azure-ad-token-credential) to authenticate with [Microsoft Entra ID](../../active-directory/fundamentals/active-directory-whatis.md).
+* Use a [token credential from azure-identity](#use-an-azure-active-directory-azure-ad-token-credential) to authenticate with [Microsoft Entra ID](/azure/active-directory/fundamentals/active-directory-whatis).
 
 #### Use your API key
 

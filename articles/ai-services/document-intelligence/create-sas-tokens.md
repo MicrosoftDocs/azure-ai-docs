@@ -60,8 +60,8 @@ To get started, you need:
 
 * A **standard performance** [Azure Blob Storage account](https://portal.azure.com/#create/Microsoft.StorageAccount-ARM). You need to create containers to store and organize your blob data within your storage account. If you don't know how to create an Azure storage account with a storage container, follow these quickstarts:
 
-  * [Create a storage account](../../storage/common/storage-account-create.md). When you create your storage account, select **Standard** performance in the **Instance details** > **Performance** field.
-  * [Create a container](../../storage/blobs/storage-quickstart-blobs-portal.md#create-a-container). When you create your container, set **Public access level** to **Container** (anonymous read access for containers and blobs) in the **New Container** window.
+  * [Create a storage account](/azure/storage/common/storage-account-create). When you create your storage account, select **Standard** performance in the **Instance details** > **Performance** field.
+  * [Create a container](/azure/storage/blobs/storage-quickstart-blobs-portal#create-a-container). When you create your container, set **Public access level** to **Container** (anonymous read access for containers and blobs) in the **New Container** window.
 
 ## Upload your documents
 
@@ -107,8 +107,8 @@ The Azure portal is a web-based console that enables you to manage your Azure su
     >
     >     :::image type="content" source="media/sas-tokens/need-permissions.png" alt-text="Screenshot that shows the lack of permissions warning.":::
     >
-    > * [Azure role-based access control](../../role-based-access-control/overview.md) (Azure RBAC) is the authorization system used to manage access to Azure resources. Azure RBAC helps you manage access and permissions for your Azure resources.
-    > * [Assign an Azure role for access to blob data](../../role-based-access-control/role-assignments-portal.yml?tabs=current) to assign a role that allows for read, write, and delete permissions for your Azure storage container. *See* [Storage Blob Data Contributor](../../role-based-access-control/built-in-roles.md#storage-blob-data-contributor).
+    > * [Azure role-based access control](/azure/role-based-access-control/overview) (Azure RBAC) is the authorization system used to manage access to Azure resources. Azure RBAC helps you manage access and permissions for your Azure resources.
+    > * [Assign an Azure role for access to blob data](/azure/role-based-access-control/role-assignments-portal?tabs=current) to assign a role that allows for read, write, and delete permissions for your Azure storage container. *See* [Storage Blob Data Contributor](/azure/role-based-access-control/built-in-roles#storage-blob-data-contributor).
 
 1. Specify the signed key **Start** and **Expiry** times.
 
@@ -136,9 +136,9 @@ Azure Storage Explorer is a free standalone app that enables you to easily manag
 
 ### Get started
 
-* You need the [**Azure Storage Explorer**](../../vs-azure-tools-storage-manage-with-storage-explorer.md) app installed in your Windows, macOS, or Linux development environment.
+* You need the [**Azure Storage Explorer**](/azure/vs-azure-tools-storage-manage-with-storage-explorer) app installed in your Windows, macOS, or Linux development environment.
 
-* After the Azure Storage Explorer app is installed, [connect it the storage account](../../vs-azure-tools-storage-manage-with-storage-explorer.md?tabs=windows#connect-to-a-storage-account-or-service) you're using for Document Intelligence.
+* After the Azure Storage Explorer app is installed, [connect it the storage account](/azure/vs-azure-tools-storage-manage-with-storage-explorer?tabs=windows#connect-to-a-storage-account-or-service) you're using for Document Intelligence.
 
 ### Create your SAS tokens
 

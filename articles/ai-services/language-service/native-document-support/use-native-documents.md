@@ -117,7 +117,7 @@ Requests to the Language service require a read-only key and custom endpoint to 
 
 ## Create Azure Blob Storage containers
 
-[**Create containers**](../../../storage/blobs/storage-quickstart-blobs-portal.md#create-a-container) in your [**Azure Blob Storage account**](https://portal.azure.com/#create/Microsoft.StorageAccount-ARM) for source and target files.
+[**Create containers**](/azure/storage/blobs/storage-quickstart-blobs-portal#create-a-container) in your [**Azure Blob Storage account**](https://portal.azure.com/#create/Microsoft.StorageAccount-ARM) for source and target files.
 
 * **Source container**. This container is where you upload your native files for analysis (required).
 * **Target container**. This container is where your analyzed files are stored (required).

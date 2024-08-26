@@ -42,7 +42,7 @@ private IConfidentialClientApplication ConfidentialClientApplication
 Next, use the following code to acquire an `AuthenticationResult`, using the authentication values you got when you [created the Immersive Reader resource](./how-to-create-immersive-reader.md).
 
 > [!IMPORTANT]
-> The [Microsoft.IdentityModel.Clients.ActiveDirectory](https://www.nuget.org/packages/Microsoft.IdentityModel.Clients.ActiveDirectory) NuGet package and Azure AD Authentication Library (ADAL) have been deprecated. No new features have been added since June 30, 2020. We strongly encourage you to upgrade. To learn more, see the [migration guide](../../active-directory/develop/msal-migration.md).
+> The [Microsoft.IdentityModel.Clients.ActiveDirectory](https://www.nuget.org/packages/Microsoft.IdentityModel.Clients.ActiveDirectory) NuGet package and Azure AD Authentication Library (ADAL) have been deprecated. No new features have been added since June 30, 2020. We strongly encourage you to upgrade. To learn more, see the [migration guide](/azure/active-directory/develop/msal-migration).
 
 
 ```csharp

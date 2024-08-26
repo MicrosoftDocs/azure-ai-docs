@@ -15,7 +15,7 @@ ms.author: alexeyo
 
 ## Azure Government (United States)
 
-Available to US government entities and their partners only. See more information about Azure Government [here](../../azure-government/documentation-government-welcome.md) and [here.](../../azure-government/compare-azure-government-global-azure.md)
+Available to US government entities and their partners only. See more information about Azure Government [here](/azure/azure-government/documentation-government-welcome) and [here.](/azure/azure-government/compare-azure-government-global-azure)
 
 - **Azure portal:**
   - [https://portal.azure.us/](https://portal.azure.us/)

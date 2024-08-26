@@ -25,7 +25,7 @@ In this article, you learn to enable tracing, collect aggregated metrics, and co
 
 - The Azure CLI and the Azure Machine Learning extension to the Azure CLI. 
 - An AI Studio project. If you don't already have a project, you can [create one here](../../how-to/create-projects.md).
-- An Application Insights. If you don't already have an Application Insights resource, you can [create one here](../../../azure-monitor/app/create-workspace-resource.md).
+- An Application Insights. If you don't already have an Application Insights resource, you can [create one here](/azure/azure-monitor/app/create-workspace-resource).
 - Azure role-based access controls are used to grant access to operations in Azure Machine Learning. To perform the steps in this article, you must have **Owner** or **Contributor** permissions on the selected resource group. For more information, see [Role-based access control in Azure AI Studio](../../concepts/rbac-ai-studio.md).
 
 ## Deploy a flow for real-time inference
@@ -66,7 +66,7 @@ Traces record specific events or the state of an application during execution. I
 
 You can view the detailed trace in the specified Application Insights. The following screenshot shows an example of an event of a deployed flow containing multiple nodes. In Application Insights -> Investigate -> Transaction search, and you can select each node to view its detailed trace. 
 
-The **Dependency** type events record calls from your deployments. The name of that event is the name of flow folder. Learn more about [Transaction search and diagnostics in Application Insights](../../../azure-monitor/app/transaction-search-and-diagnostics.md).
+The **Dependency** type events record calls from your deployments. The name of that event is the name of flow folder. Learn more about [Transaction search and diagnostics in Application Insights](/azure/azure-monitor/app/transaction-search-and-diagnostics).
 
 ## View system metrics in Application Insights
 

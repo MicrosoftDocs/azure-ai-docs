@@ -67,7 +67,7 @@ The Custom Vision portal can be used by the following web browsers:
 
 ## Backup and disaster recovery
 
-As a part of Azure, Custom Vision Service has components that are maintained across multiple regions. Service zones and regions are used by all of our services to provide continued service to our customers. For more information on zones and regions, see [Azure regions](../../availability-zones/az-overview.md). If you need additional information or have any issues, [contact support](/answers/topics/azure-custom-vision.html).
+As a part of Azure, Custom Vision Service has components that are maintained across multiple regions. Service zones and regions are used by all of our services to provide continued service to our customers. For more information on zones and regions, see [Azure regions](/azure/availability-zones/az-overview). If you need additional information or have any issues, [contact support](/answers/topics/azure-custom-vision.html).
 
 
 ## Data privacy and security

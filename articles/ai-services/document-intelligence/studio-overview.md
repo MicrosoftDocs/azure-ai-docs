@@ -72,9 +72,9 @@ Your organization can opt to disable local authentication and enforce Microsoft 
 * For more information, *see* the following guidance:
 
   * [Disable local authentication for Azure AI Services](../disable-local-auth.md).
-  * [Prevent Shared Key authorization for an Azure Storage account](../../storage/common/shared-key-authorization-prevent.md)
+  * [Prevent Shared Key authorization for an Azure Storage account](/azure/storage/common/shared-key-authorization-prevent)
 
-* **Designating role assignments**. Document Intelligence Studio basic access requires the [`Cognitive Services User`](../../role-based-access-control/built-in-roles/ai-machine-learning.md#cognitive-services-user) role. For more information, *see* [Document Intelligence role assignments](quickstarts/try-document-intelligence-studio.md#azure-role-assignments).
+* **Designating role assignments**. Document Intelligence Studio basic access requires the [`Cognitive Services User`](/azure/role-based-access-control/built-in-roles/ai-machine-learning#cognitive-services-user) role. For more information, *see* [Document Intelligence role assignments](quickstarts/try-document-intelligence-studio.md#azure-role-assignments).
 
 > [!IMPORTANT]
 >

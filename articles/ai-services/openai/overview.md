@@ -97,7 +97,7 @@ The token cost of an input image depends on two main factors: the size of the im
 
 ### Resources
 
-Azure OpenAI is a new product offering on Azure. You can get started with Azure OpenAI the same way as any other Azure product where you [create a resource](how-to/create-resource.md), or instance of the service, in your Azure Subscription. You can read more about Azure's [resource management design](../../azure-resource-manager/management/overview.md).
+Azure OpenAI is a new product offering on Azure. You can get started with Azure OpenAI the same way as any other Azure product where you [create a resource](how-to/create-resource.md), or instance of the service, in your Azure Subscription. You can read more about Azure's [resource management design](/azure/azure-resource-manager/management/overview).
 
 ### Deployments
 

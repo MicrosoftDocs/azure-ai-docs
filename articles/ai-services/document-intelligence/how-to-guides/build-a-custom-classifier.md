@@ -41,7 +41,7 @@ Follow these tips to further optimize your data set for training:
 
 ## Upload your training data
 
-Once you put together the set of forms or documents for training, you need to upload it to an Azure blob storage container. If you don't know how to create an Azure storage account with a container, follow the [Azure Storage quickstart for Azure portal](../../../storage/blobs/storage-quickstart-blobs-portal.md). You can use the free pricing tier (F0) to try the service, and upgrade later to a paid tier for production. If your dataset is organized as folders, preserve that structure as the Studio can use your folder names for labels to simplify the labeling process.
+Once you put together the set of forms or documents for training, you need to upload it to an Azure blob storage container. If you don't know how to create an Azure storage account with a container, follow the [Azure Storage quickstart for Azure portal](/azure/storage/blobs/storage-quickstart-blobs-portal). You can use the free pricing tier (F0) to try the service, and upgrade later to a paid tier for production. If your dataset is organized as folders, preserve that structure as the Studio can use your folder names for labels to simplify the labeling process.
 
 ## Create a classification project in the Document Intelligence Studio
 

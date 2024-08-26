@@ -18,7 +18,7 @@ You can also review forecasted costs and identify spending trends to identify ar
 
 ## Prerequisites
 
-Cost analysis in Cost Management supports most Azure account types, but not all of them. To view the full list of supported account types, see [Understand Cost Management data](../../../cost-management-billing/costs/understand-cost-mgt-data.md?WT.mc_id=costmanagementcontent_docsacmhorizontal_-inproduct-learn). To view cost data, you need at least read access for an Azure account. For information about assigning access to Azure Cost Management data, see [Assign access to data](../../../cost-management/assign-access-acm-data.md?WT.mc_id=costmanagementcontent_docsacmhorizontal_-inproduct-learn).
+Cost analysis in Cost Management supports most Azure account types, but not all of them. To view the full list of supported account types, see [Understand Cost Management data](/azure/cost-management-billing/costs/understand-cost-mgt-data?WT.mc_id=costmanagementcontent_docsacmhorizontal_-inproduct-learn). To view cost data, you need at least read access for an Azure account. For information about assigning access to Azure Cost Management data, see [Assign access to data](/azure/cost-management/assign-access-acm-data?WT.mc_id=costmanagementcontent_docsacmhorizontal_-inproduct-learn).
 
 ## Estimate costs before using Azure OpenAI
 
@@ -77,7 +77,7 @@ For example, a 401 error due to authentication or a 429 error due to exceeding t
 
 ## Monitor costs
 
-As you use Azure resources with Azure OpenAI, you incur costs. Azure resource usage unit costs vary by time intervals, such as seconds, minutes, hours, and days, or by unit usage, such as bytes and megabytes. As soon as Azure OpenAI use starts, costs can be incurred and you can see the costs in the [cost analysis](../../../cost-management/quick-acm-cost-analysis.md?WT.mc_id=costmanagementcontent_docsacmhorizontal_-inproduct-learn).
+As you use Azure resources with Azure OpenAI, you incur costs. Azure resource usage unit costs vary by time intervals, such as seconds, minutes, hours, and days, or by unit usage, such as bytes and megabytes. As soon as Azure OpenAI use starts, costs can be incurred and you can see the costs in the [cost analysis](/azure/cost-management/quick-acm-cost-analysis?WT.mc_id=costmanagementcontent_docsacmhorizontal_-inproduct-learn).
 
 When you use cost analysis, you view Azure OpenAI costs in graphs and tables for different time intervals. Some examples are by day, current and prior month, and year. You also view costs against budgets and forecasted costs. Switching to longer views over time can help you identify spending trends. You can see where overspending might have occurred. If you've created budgets, you can also easily see where they're exceeded.
 
@@ -117,20 +117,20 @@ If you try to add a filter by service, you find that you can't find Azure OpenAI
 
 ## Create budgets
 
-You can create [budgets](../../../cost-management-billing/costs/tutorial-acm-create-budgets.md?WT.mc_id=costmanagementcontent_docsacmhorizontal_-inproduct-learn) to manage costs and create [alerts](../../../cost-management-billing/costs/cost-mgt-alerts-monitor-usage-spending.md?WT.mc_id=costmanagementcontent_docsacmhorizontal_-inproduct-learn) that notify stakeholders of spending anomalies and overspending risks. Alerts are based on spending compared to budget and cost thresholds. You create budgets and alerts for Azure subscriptions and resource groups. They're useful as part of an overall cost monitoring strategy.
+You can create [budgets](/azure/cost-management-billing/costs/tutorial-acm-create-budgets?WT.mc_id=costmanagementcontent_docsacmhorizontal_-inproduct-learn) to manage costs and create [alerts](/azure/cost-management-billing/costs/cost-mgt-alerts-monitor-usage-spending?WT.mc_id=costmanagementcontent_docsacmhorizontal_-inproduct-learn) that notify stakeholders of spending anomalies and overspending risks. Alerts are based on spending compared to budget and cost thresholds. You create budgets and alerts for Azure subscriptions and resource groups. They're useful as part of an overall cost monitoring strategy.
 
-You can create budgets with filters for specific resources or services in Azure if you want more granularity present in your monitoring. Filters help ensure that you don't accidentally create new resources that cost you more money. For more information about the filter options available when you create a budget, see [Group and filter options](../../../cost-management-billing/costs/group-filter.md?WT.mc_id=costmanagementcontent_docsacmhorizontal_-inproduct-learn).
+You can create budgets with filters for specific resources or services in Azure if you want more granularity present in your monitoring. Filters help ensure that you don't accidentally create new resources that cost you more money. For more information about the filter options available when you create a budget, see [Group and filter options](/azure/cost-management-billing/costs/group-filter?WT.mc_id=costmanagementcontent_docsacmhorizontal_-inproduct-learn).
 
 > [!IMPORTANT]
 > While OpenAI has an option for hard limits that prevent you from going over your budget, Azure OpenAI doesn't currently provide this functionality. You can kick off automation from action groups as part of your budget notifications to take more advanced actions, but this requires additional custom development on your part.  
 
 ## Export cost data
 
-You can also [export your cost data](../../../cost-management-billing/costs/tutorial-export-acm-data.md?WT.mc_id=costmanagementcontent_docsacmhorizontal_-inproduct-learn) to a storage account, which is helpful when you need others to do extra data analysis for costs. For example, a finance team can analyze the data using Excel or Power BI. You can export your costs on a daily, weekly, or monthly schedule and set a custom date range. We recommend exporting cost data as the way to retrieve cost datasets.
+You can also [export your cost data](/azure/cost-management-billing/costs/tutorial-export-acm-data?WT.mc_id=costmanagementcontent_docsacmhorizontal_-inproduct-learn) to a storage account, which is helpful when you need others to do extra data analysis for costs. For example, a finance team can analyze the data using Excel or Power BI. You can export your costs on a daily, weekly, or monthly schedule and set a custom date range. We recommend exporting cost data as the way to retrieve cost datasets.
 
 ## Next steps
 
-- Learn [how to optimize your cloud investment with Azure Cost Management](../../../cost-management-billing/costs/cost-mgt-best-practices.md?WT.mc_id=costmanagementcontent_docsacmhorizontal_-inproduct-learn).
-- Learn more about managing costs with [cost analysis](../../../cost-management-billing/costs/quick-acm-cost-analysis.md?WT.mc_id=costmanagementcontent_docsacmhorizontal_-inproduct-learn).
-- Learn about how to [prevent unexpected costs](../../../cost-management-billing/understand/analyze-unexpected-charges.md?WT.mc_id=costmanagementcontent_docsacmhorizontal_-inproduct-learn).
+- Learn [how to optimize your cloud investment with Azure Cost Management](/azure/cost-management-billing/costs/cost-mgt-best-practices?WT.mc_id=costmanagementcontent_docsacmhorizontal_-inproduct-learn).
+- Learn more about managing costs with [cost analysis](/azure/cost-management-billing/costs/quick-acm-cost-analysis?WT.mc_id=costmanagementcontent_docsacmhorizontal_-inproduct-learn).
+- Learn about how to [prevent unexpected costs](/azure/cost-management-billing/understand/analyze-unexpected-charges?WT.mc_id=costmanagementcontent_docsacmhorizontal_-inproduct-learn).
 - Take the [Cost Management](/training/paths/control-spending-manage-bills?WT.mc_id=costmanagementcontent_docsacmhorizontal_-inproduct-learn) guided learning course.

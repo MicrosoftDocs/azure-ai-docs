@@ -32,7 +32,7 @@ The app will showcase the following scenarios:
 ## Prerequisites
 
 * Azure subscription - [create one for free](https://azure.microsoft.com/free/cognitive-services/)
-* Basic understanding of Azure IoT Edge deployment configurations, and an [Azure IoT Hub](../../iot-hub/index.yml)
+* Basic understanding of Azure IoT Edge deployment configurations, and an [Azure IoT Hub](/azure/iot-hub/)
 * A configured [host computer](spatial-analysis-container.md)
 
 ## Deploy the Spatial Analysis container

@@ -52,8 +52,8 @@ The quality of data you train your model with affects model performance greatly.
 
 As a prerequisite for creating a custom text classification project, your training data needs to be uploaded to a blob container in your storage account. You can create and upload training documents from Azure directly, or through using the Azure Storage Explorer tool. Using the Azure Storage Explorer tool allows you to upload more data quickly.  
 
-* [Create and upload documents from Azure](../../../../storage/blobs/storage-quickstart-blobs-portal.md#create-a-container)
-* [Create and upload documents using Azure Storage Explorer](../../../../vs-azure-tools-storage-explorer-blobs.md)
+* [Create and upload documents from Azure](/azure/storage/blobs/storage-quickstart-blobs-portal#create-a-container)
+* [Create and upload documents using Azure Storage Explorer](/azure/vs-azure-tools-storage-explorer-blobs)
 
 You can only use `.txt`. documents for custom text. If your data is in other format, you can use [CLUtils parse command](https://github.com/microsoft/CognitiveServicesLanguageUtilities/blob/main/CustomTextAnalytics.CLUtils/Solution/CogSLanguageUtilities.ViewLayer.CliCommands/Commands/ParseCommand/README.md) to change your file format.
 

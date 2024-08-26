@@ -83,7 +83,7 @@ Use of the shared quota pool is available for testing inferencing for Llama-2, P
 
 ## Container Instances 
 
-For more information, see [Container Instances limits](../../azure-resource-manager/management/azure-subscription-service-limits.md#container-instances-limits). 
+For more information, see [Container Instances limits](/azure/azure-resource-manager/management/azure-subscription-service-limits#container-instances-limits). 
 
 ## Storage
 

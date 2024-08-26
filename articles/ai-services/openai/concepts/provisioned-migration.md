@@ -150,7 +150,7 @@ Steps 1 and 2 are the same in all cases. The difference is whether a commitment 
 > [!NOTE] 
 > When you follow best practices, you may receive hourly charges between the time you create the deployment and increase your discount (commitment or reservation).   
 >
-> For this reason, we recommend that you be prepared to increase your discount immediately following the deployment. The prerequisites for purchasing an Azure reservations are different than for commitments, and we recommend you validate them prior to deployment if you intend to use them to discount your deployment.  For more information, see [Permissions to view and manage Azure reservations](../../../cost-management-billing/reservations/view-reservations.md) 
+> For this reason, we recommend that you be prepared to increase your discount immediately following the deployment. The prerequisites for purchasing an Azure reservations are different than for commitments, and we recommend you validate them prior to deployment if you intend to use them to discount your deployment.  For more information, see [Permissions to view and manage Azure reservations](/azure/cost-management-billing/reservations/view-reservations) 
 
 ## Mapping deployments to discounting method 
 

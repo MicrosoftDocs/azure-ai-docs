@@ -35,4 +35,4 @@ New-AzResourceGroupDeployment -Name ExampleDeployment -ResourceGroupName Example
   -TemplateParameterFile <path-to-parameters-file>
 ```
 
-See the ARM template documentation for information on [deploying templates](../../../../azure-resource-manager/templates/deploy-powershell.md#json-parameter-files) and [parameter files](../../../../azure-resource-manager/templates/parameter-files.md#parameter-file).
+See the ARM template documentation for information on [deploying templates](/azure/azure-resource-manager/templates/deploy-powershell#json-parameter-files) and [parameter files](/azure/azure-resource-manager/templates/parameter-files#parameter-file).

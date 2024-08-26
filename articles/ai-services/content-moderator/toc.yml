@@ -79,7 +79,7 @@
   - name: Azure webinar series
     href: https://info.microsoft.com/cognitive-services-content-moderator-ondemand.html
   - name: Azure Government and global Azure
-    href: ../../azure-government/compare-azure-government-global-azure.md
+    href: /azure/azure-government/compare-azure-government-global-azure
   - name: Azure updates
     href: https://azure.microsoft.com/updates/?product=cognitive-services
   - name: Compliance

@@ -223,7 +223,7 @@ When you unassign a resource, it's not deleted from Azure. It's only unlinked fr
 An Azure resource, like a LUIS resource, is owned by the subscription that contains the resource.
 
 To change the ownership of a resource, you can take one of these actions:
-* Transfer the [ownership](../../cost-management-billing/manage/billing-subscription-transfer.md) of your subscription.
+* Transfer the [ownership](/azure/cost-management-billing/manage/billing-subscription-transfer) of your subscription.
 * Export the LUIS app as a file, and then import the app on a different subscription. Export is available on the **My apps** page in the LUIS portal.
 
 ## Resource limits
@@ -304,8 +304,8 @@ An app is defined by its Azure resources, which are determined by the owner's su
 
 You can move your LUIS app. Use the following resources to help you do so by using the Azure portal or Azure CLI:
 
-* [Move a resource to a new resource group or subscription](../../azure-resource-manager/management/move-resource-group-and-subscription.md)
-* [Move a resource within the same subscription or across subscriptions](../../azure-resource-manager/management/move-limitations/app-service-move-limitations.md)
+* [Move a resource to a new resource group or subscription](/azure/azure-resource-manager/management/move-resource-group-and-subscription)
+* [Move a resource within the same subscription or across subscriptions](/azure/azure-resource-manager/management/move-limitations/app-service-move-limitations)
 
 
 ## Next steps

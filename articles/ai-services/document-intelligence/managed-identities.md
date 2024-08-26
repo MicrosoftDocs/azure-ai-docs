@@ -24,7 +24,7 @@ Managed identities for Azure resources are service principals that create a Micr
 
 * Managed identities grant access to any resource that supports Microsoft Entra authentication, including your own applications. Unlike security keys and authentication tokens, managed identities eliminate the need for developers to manage credentials.
 
-* You can grant access to an Azure resource and assign an Azure role to a managed identity using [Azure role-based access control (Azure RBAC)](../../role-based-access-control/overview.md). There's no added cost to use managed identities in Azure.
+* You can grant access to an Azure resource and assign an Azure role to a managed identity using [Azure role-based access control (Azure RBAC)](/azure/role-based-access-control/overview). There's no added cost to use managed identities in Azure.
 
 > [!IMPORTANT]
 >
@@ -34,7 +34,7 @@ Managed identities for Azure resources are service principals that create a Micr
 
 ## Private storage account access
 
- Private Azure storage account access and authentication support [managed identities for Azure resources](../../active-directory/managed-identities-azure-resources/overview.md). If you have an Azure storage account, protected by a Virtual Network (`VNet`) or firewall, Document Intelligence can't directly access your storage account data. However, once a managed identity is enabled, Document Intelligence can access your storage account using an assigned managed identity credential.
+ Private Azure storage account access and authentication support [managed identities for Azure resources](/azure/active-directory/managed-identities-azure-resources/overview). If you have an Azure storage account, protected by a Virtual Network (`VNet`) or firewall, Document Intelligence can't directly access your storage account data. However, once a managed identity is enabled, Document Intelligence can access your storage account using an assigned managed identity credential.
 
 > [!NOTE]
 >
@@ -60,10 +60,10 @@ To get started, you need:
   * In the main window, select **Allow access from selected networks**.
   :::image type="content" source="media/managed-identities/firewalls-and-virtual-networks.png" alt-text="Screenshot of Selected networks radio button selected.":::
 
-  * On the selected networks page, navigate to the **Exceptions** category and make certain that the  [**`Allow Azure services on the trusted services list to access this storage account`**](../../storage/common/storage-network-security.md?tabs=azure-portal#manage-exceptions) checkbox is enabled.
+  * On the selected networks page, navigate to the **Exceptions** category and make certain that the  [**`Allow Azure services on the trusted services list to access this storage account`**](/azure/storage/common/storage-network-security?tabs=azure-portal#manage-exceptions) checkbox is enabled.
 
     :::image type="content" source="media/managed-identities/allow-trusted-services-checkbox-portal-view.png" alt-text="Screenshot of allow trusted services checkbox, portal view":::
-* A brief understanding of [**Azure role-based access control (Azure RBAC)**](../../role-based-access-control/role-assignments-portal.yml) using the Azure portal.
+* A brief understanding of [**Azure role-based access control (Azure RBAC)**](/azure/role-based-access-control/role-assignments-portal) using the Azure portal.
 
 ## Managed identity assignments
 
@@ -79,7 +79,7 @@ In the following steps, we enable a system-assigned managed identity and grant D
 
 >[!IMPORTANT]
 >
-> To enable a system-assigned managed identity, you need **Microsoft.Authorization/roleAssignments/write** permissions, such as [**Owner**](../../role-based-access-control/built-in-roles.md#owner) or [**User Access Administrator**](../../role-based-access-control/built-in-roles.md#user-access-administrator). You can specify a scope at four levels: management group, subscription, resource group, or resource.
+> To enable a system-assigned managed identity, you need **Microsoft.Authorization/roleAssignments/write** permissions, such as [**Owner**](/azure/role-based-access-control/built-in-roles#owner) or [**User Access Administrator**](/azure/role-based-access-control/built-in-roles#user-access-administrator). You can specify a scope at four levels: management group, subscription, resource group, or resource.
 
 1. Sign in to the [Azure portal](https://portal.azure.com) using an account associated with your Azure subscription.
 

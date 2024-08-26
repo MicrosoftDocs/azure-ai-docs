@@ -52,7 +52,7 @@ Azure Logic Apps is a cloud-based platform that can be used to automate workflow
 * Integrate workflows with software as a service (SaaS) and enterprise applications.
 * Automate enterprise application integration (EAI), business-to-business (B2B), and electronic data interchange (EDI) tasks.
 
-For more information, *see* [Logic Apps Overview](../../logic-apps/logic-apps-overview.md).
+For more information, *see* [Logic Apps Overview](/azure/logic-apps/logic-apps-overview).
 
  In this tutorial, we show you how to build a Logic App connector flow to automate the following tasks:
 
@@ -110,7 +110,7 @@ Now that we created the flow, the last thing to do is to test it and make sure t
 
     :::image type="content" source="media/logic-apps-tutorial/invoice-received.png" alt-text="Screenshot of received email message.":::
 
-1. After you're done, [disable or delete your logic app](../../logic-apps/manage-logic-apps-with-azure-portal.md?tabs=consumption#disable-enable-logic-apps) so that usage stops.
+1. After you're done, [disable or delete your logic app](/azure/logic-apps/manage-logic-apps-with-azure-portal?tabs=consumption#disable-enable-logic-apps) so that usage stops.
 
    :::image type="content" source="media/logic-apps-tutorial/disable-delete.png" alt-text="Screenshot of disable and delete buttons.":::
 

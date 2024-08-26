@@ -27,7 +27,7 @@ This guide shows you how to use these REST APIs with cURL. You can also use an H
 - An Azure Custom Vision resource. If you don't have one, go to the Azure portal and [create a new Custom Vision resource](https://portal.azure.com/?microsoft_azure_marketplace_ItemHideKey=microsoft_azure_cognitiveservices_customvision#create/Microsoft.CognitiveServicesCustomVision?azure-portal=true). 
     > [!NOTE]
     > This feature doesn't support the [Azure AI services multi-service resource](../multi-service-resource.md).
-- An Azure Storage account with a blob container. Follow the [Storage quickstart](../../storage/blobs/storage-quickstart-blobs-portal.md) if you need help with this step.
+- An Azure Storage account with a blob container. Follow the [Storage quickstart](/azure/storage/blobs/storage-quickstart-blobs-portal) if you need help with this step.
 - [PowerShell version 6.0+](/powershell/scripting/install/installing-powershell-core-on-windows), or a similar command-line application.
 
 ## Set up Azure storage integration
@@ -38,7 +38,7 @@ Next, go to your storage resource in the Azure portal. Go to the **Access contro
 - If you plan to use the model backup feature, select the **Storage Blob Data Contributor** role, and add your Custom Vision training resource as a member. Select **Review + assign** to complete.
 - If you plan to use the notification queue feature, then select the **Storage Queue Data Contributor** role, and add your Custom Vision training resource as a member. Select **Review + assign** to complete.
 
-For help with role assignments, see [Assign Azure roles using the Azure portal](../../role-based-access-control/role-assignments-portal.yml).
+For help with role assignments, see [Assign Azure roles using the Azure portal](/azure/role-based-access-control/role-assignments-portal).
 
 ### Get integration URLs
 

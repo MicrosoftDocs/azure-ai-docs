@@ -39,7 +39,7 @@ This article uses a Meta Llama model deployment for illustration. However, you c
 
     # [Azure CLI](#tab/cli)
 
-    The [Azure CLI](/cli/azure/) and the [ml extension for Azure Machine Learning](../../machine-learning/how-to-configure-cli.md).
+    The [Azure CLI](/cli/azure/) and the [ml extension for Azure Machine Learning](/azure/machine-learning/how-to-configure-cli).
 
     ```azurecli
     az extension add -n ml
@@ -94,7 +94,7 @@ This article uses a Meta Llama model deployment for illustration. However, you c
 
     # [ARM](#tab/arm)
 
-    You can use any compatible web browser to [deploy ARM templates](../../azure-resource-manager/templates/deploy-portal.md) in the Microsoft Azure portal or use any of the deployment tools. This tutorial uses the [Azure CLI](/cli/azure/).
+    You can use any compatible web browser to [deploy ARM templates](/azure/azure-resource-manager/templates/deploy-portal) in the Microsoft Azure portal or use any of the deployment tools. This tutorial uses the [Azure CLI](/cli/azure/).
 
 
 ## Find your model and model ID in the model catalog

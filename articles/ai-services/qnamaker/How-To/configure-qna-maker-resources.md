@@ -46,7 +46,7 @@ QnA Maker's **App Service** resource uses the Cognitive Search resource. In orde
 
 If you create a QnA service through Azure Resource Manager templates, you can create all resources and control the App Service creation to use an existing Search service.
 
-Learn more about how to configure the App Service [Application settings](../../../app-service/configure-common.md#configure-app-settings).
+Learn more about how to configure the App Service [Application settings](/azure/app-service/configure-common#configure-app-settings).
 
 ## Get the latest runtime updates
 
@@ -86,7 +86,7 @@ In order to keep the prediction endpoint app loaded even when there is no traffi
 1. Select **Save** to save the configuration.
 1. You are asked if you want to restart the app to use the new setting. Select **Continue**.
 
-Learn more about how to configure the App Service [General settings](../../../app-service/configure-common.md#configure-general-settings).
+Learn more about how to configure the App Service [General settings](/azure/app-service/configure-common#configure-general-settings).
 
 ## Business continuity with traffic manager
 
@@ -97,16 +97,16 @@ The primary objective of the business continuity plan is to create a resilient k
 
 The high-level idea as represented above is as follows:
 
-1. Set up two parallel [QnA Maker services](set-up-qnamaker-service-azure.md) in [Azure paired regions](../../../availability-zones/cross-region-replication-azure.md).
+1. Set up two parallel [QnA Maker services](set-up-qnamaker-service-azure.md) in [Azure paired regions](/azure/availability-zones/cross-region-replication-azure).
 
-1. [Backup](../../../app-service/manage-backup.md) your primary QnA Maker App service and [restore](../../../app-service/manage-backup.md) it in the secondary setup. This will ensure that both setups work with the same hostname and keys.
+1. [Backup](/azure/app-service/manage-backup) your primary QnA Maker App service and [restore](/azure/app-service/manage-backup) it in the secondary setup. This will ensure that both setups work with the same hostname and keys.
 
 1. Keep the primary and secondary Azure search indexes in sync. Use the GitHub sample [here](https://github.com/pchoudhari/QnAMakerBackupRestore) to see how to backup-restore Azure indexes.
 
 1. Back up the Application Insights using [continuous export](/previous-versions/azure/azure-monitor/app/export-telemetry).
 
-1. Once the primary and secondary stacks have been set up, use [traffic manager](../../../traffic-manager/traffic-manager-overview.md) to configure the two endpoints and set up a routing method.
+1. Once the primary and secondary stacks have been set up, use [traffic manager](/azure/traffic-manager/traffic-manager-overview) to configure the two endpoints and set up a routing method.
 
-1. You would need to create a Transport Layer Security (TLS), previously known as Secure Sockets Layer (SSL), certificate for your traffic manager endpoint. [Bind the TLS/SSL certificate](../../../app-service/configure-ssl-bindings.md) in your App services.
+1. You would need to create a Transport Layer Security (TLS), previously known as Secure Sockets Layer (SSL), certificate for your traffic manager endpoint. [Bind the TLS/SSL certificate](/azure/app-service/configure-ssl-bindings) in your App services.
 
 1. Finally, use the traffic manager endpoint in your Bot or App.

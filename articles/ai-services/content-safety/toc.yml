@@ -97,7 +97,7 @@ items:
   - name: Support and help options
     href: ../cognitive-services-support-options.md?context=/azure/ai-services/content-safety/context/context
   - name: Azure Government and global Azure
-    href: ../../azure-government/compare-azure-government-global-azure.md
+    href: /azure/azure-government/compare-azure-government-global-azure
   - name: Azure updates
     href: https://azure.microsoft.com/updates/?product=cognitive-services
   - name: Compliance

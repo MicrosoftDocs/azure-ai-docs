@@ -46,7 +46,7 @@ You need the following to get started:
 * An Azure AI services or Document Intelligence resource. Once you have your Azure subscription, create a [single-service](https://portal.azure.com/#create/Microsoft.CognitiveServicesFormRecognizer), or [multi-service](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIServices) Document Intelligence resource in the Azure portal to get your key and endpoint. You can use the free pricing tier (`F0`) to try the service, and upgrade later to a paid tier for production.
 
     > [!TIP]
-    > Create an Azure AI services resource if you plan to access multiple Azure AI services under a single endpoint/key. For Document Intelligence access only, create a Document Intelligence resource. Please note that you'll need a single-service resource if you intend to use [Microsoft Entra authentication](../../../active-directory/authentication/overview-authentication.md).
+    > Create an Azure AI services resource if you plan to access multiple Azure AI services under a single endpoint/key. For Document Intelligence access only, create a Document Intelligence resource. Please note that you'll need a single-service resource if you intend to use [Microsoft Entra authentication](/azure/active-directory/authentication/overview-authentication).
 
 ## Create a Document Intelligence resource
 
@@ -138,7 +138,7 @@ Train a custom model to analyze and extract data from forms and documents specif
 
 * An Azure Storage blob container that contains a set of training data. Make sure all the training documents are of the same format. If you have forms in multiple formats, organize them into subfolders based on common format. For this project, you can use our [sample data set](https://github.com/Azure-Samples/cognitive-services-REST-api-samples/blob/master/curl/form-recognizer/sample_data_without_labels.zip). 
 
-* If you don't know how to create an Azure storage account with a container, follow the [Azure Storage quickstart for Azure portal](../../../storage/blobs/storage-quickstart-blobs-portal.md).
+* If you don't know how to create an Azure storage account with a container, follow the [Azure Storage quickstart for Azure portal](/azure/storage/blobs/storage-quickstart-blobs-portal).
 
 * Configure CORS
 

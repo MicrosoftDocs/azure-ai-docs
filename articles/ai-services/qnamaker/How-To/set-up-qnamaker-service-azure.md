@@ -80,7 +80,7 @@ To upgrade the QnA Maker management SKU:
 
 When your knowledge base needs to serve more requests from your client app, upgrade your App Service pricing tier.
 
-You can [scale up](../../../app-service/manage-scale-up.md) or scale out App Service.
+You can [scale up](/azure/app-service/manage-scale-up) or scale out App Service.
 
 Go to the App Service resource in the Azure portal, and select the **Scale up** or **Scale out** option as required.
 
@@ -126,7 +126,7 @@ If you delete any of the Azure resources used for your knowledge bases, the know
 
 ## Next steps
 
-Learn more about the [App service](../../../app-service/index.yml) and [Search service](../../../search/index.yml).
+Learn more about the [App service](/azure/app-service/) and [Search service](/azure/search/).
 
 > [!div class="nextstepaction"]
 > [Learn how to author with others](../index.yml)

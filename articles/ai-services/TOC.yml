@@ -65,7 +65,7 @@ items:
       - name: Azure Container Instances
         href: /azure/container-instances/container-instances-tutorial-prepare-app
       - name: Azure Container Registry
-        href: ../container-registry/container-registry-get-started-azure-cli.md
+        href: /azure/container-registry/container-registry-get-started-azure-cli
       - name: Azure Kubernetes Service (AKS)
         href: /azure/aks/tutorial-kubernetes-prepare-app
   - name: Security
@@ -138,7 +138,7 @@ items:
   - name: Service Level Agreement (SLA)
     href: https://azure.microsoft.com/support/legal/sla/cognitive-services/v1_1/
   - name: Azure Government
-    href: ../azure-government/compare-azure-government-global-azure.md
+    href: /azure/azure-government/compare-azure-government-global-azure
   - name: Videos
     href: https://azure.microsoft.com/resources/videos/index/?services=cognitive-services
   - name: Azure Blog

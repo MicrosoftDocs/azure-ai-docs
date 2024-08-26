@@ -23,7 +23,7 @@ An app owner can add contributors to apps. These contributors can modify the mod
 
 You have migrated if your LUIS authoring experience is tied to an Authoring resource on the **Manage -> Azure resources** page in the LUIS portal.
 
-In the Azure portal, find your Language Understanding (LUIS) authoring resource. It has the type `LUIS.Authoring`. In the resource's **Access Control (IAM)** page, add the role of **contributor** for the user that you want to contribute. For detailed steps, see [Assign Azure roles using the Azure portal](../../role-based-access-control/role-assignments-portal.yml).
+In the Azure portal, find your Language Understanding (LUIS) authoring resource. It has the type `LUIS.Authoring`. In the resource's **Access Control (IAM)** page, add the role of **contributor** for the user that you want to contribute. For detailed steps, see [Assign Azure roles using the Azure portal](/azure/role-based-access-control/role-assignments-portal).
 
 ## View the app as a contributor
 
@@ -41,7 +41,7 @@ If you add contributors to a LUIS app, you are specifying the exact email addres
 
 ### Microsoft Entra resources
 
-If you use [Microsoft Entra ID](../../active-directory/index.yml) (Microsoft Entra ID) in your organization, Language Understanding (LUIS) needs permission to the information about your users' access when they want to use LUIS. The resources that LUIS requires are minimal.
+If you use [Microsoft Entra ID](/azure/active-directory/) (Microsoft Entra ID) in your organization, Language Understanding (LUIS) needs permission to the information about your users' access when they want to use LUIS. The resources that LUIS requires are minimal.
 
 You see the detailed description when you attempt to sign up with an account that has admin consent or does not require admin consent, such as administrator consent:
 
@@ -65,7 +65,7 @@ If the tenant admin only wants certain users to use LUIS, there are a couple of 
 * A second solution is to use the [Microsoft Entra identity and access management API in Microsoft Graph](/graph/azuread-identity-access-management-concept-overview) to provide consent to each specific user.
 
 Learn more about Microsoft Entra users and consent:
-* [Restrict your app](../../active-directory/develop/howto-restrict-your-app-to-a-set-of-users.md) to a set of users
+* [Restrict your app](/azure/active-directory/develop/howto-restrict-your-app-to-a-set-of-users) to a set of users
 
 ## Next steps
 

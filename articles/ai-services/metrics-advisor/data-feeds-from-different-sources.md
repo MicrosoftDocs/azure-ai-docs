@@ -22,10 +22,10 @@ Use this article to find the settings and requirements for connecting different 
 | Authentication types | Description |
 | ---------------------|-------------|
 |**Basic** | You need to provide basic parameters for accessing data sources. For example, you can use a connection string or a password. Data feed admins can view these credentials. |
-| **Azure managed identity** | [Managed identities](../../active-directory/managed-identities-azure-resources/overview.md) for Azure resources is a feature of Microsoft Entra ID. It provides Azure services with an automatically managed identity in Microsoft Entra ID. You can use the identity to authenticate to any service that supports Microsoft Entra authentication.|
+| **Azure managed identity** | [Managed identities](/azure/active-directory/managed-identities-azure-resources/overview) for Azure resources is a feature of Microsoft Entra ID. It provides Azure services with an automatically managed identity in Microsoft Entra ID. You can use the identity to authenticate to any service that supports Microsoft Entra authentication.|
 | **Azure SQL connection string**| Store your Azure SQL connection string as a credential entity in Metrics Advisor, and use it directly each time you import metrics data. Only admins of the credential entity can view these credentials, but authorized viewers can create data feeds without needing to know details for the credentials. |
 | **Azure Data Lake Storage Gen2 shared key**| Store your data lake account key as a credential entity in Metrics Advisor, and use it directly each time you import metrics data. Only admins of the credential entity can view these credentials, but authorized viewers can create data feeds without needing to know details for the credentials.|
-| **Service principal**| Store your [service principal](../../active-directory/develop/app-objects-and-service-principals.md) as a credential entity in Metrics Advisor, and use it directly each time you import metrics data. Only admins of the credential entity can view the credentials, but authorized viewers can create data feeds without needing to know details for the credentials.|
+| **Service principal**| Store your [service principal](/azure/active-directory/develop/app-objects-and-service-principals) as a credential entity in Metrics Advisor, and use it directly each time you import metrics data. Only admins of the credential entity can view the credentials, but authorized viewers can create data feeds without needing to know details for the credentials.|
 | **Service principal from key vault**|Store your [service principal in a key vault](/azure-stack/user/azure-stack-key-vault-store-credentials) as a credential entity in Metrics Advisor, and use it directly each time you import metrics data. Only admins of a credential entity can view the credentials, but viewers can create data feeds without needing to know details for the credentials. |
 
 
@@ -87,11 +87,11 @@ The following sections specify the parameters required for all authentication ty
 
 * **Connection string**: There are two authentication types for Azure Blob Storage (JSON):
 
-    * **Basic**: See [Configure Azure Storage connection strings](../../storage/common/storage-configure-connection-string.md#configure-a-connection-string-for-an-azure-storage-account) for information on retrieving this string. Also, you can visit the Azure portal for your Azure Blob Storage resource, and find the connection string directly in **Settings** > **Access keys**.
+    * **Basic**: See [Configure Azure Storage connection strings](/azure/storage/common/storage-configure-connection-string#configure-a-connection-string-for-an-azure-storage-account) for information on retrieving this string. Also, you can visit the Azure portal for your Azure Blob Storage resource, and find the connection string directly in **Settings** > **Access keys**.
     
     * **Managed identity**: Managed identities for Azure resources can authorize access to blob and queue data. The feature uses Microsoft Entra credentials from applications running in Azure virtual machines (VMs), function apps, virtual machine scale sets, and other services. 
     
-        You can create a managed identity in the Azure portal for your Azure Blob Storage resource. In **Access Control (IAM)**, select **Role assignments**, and then select **Add**. A suggested role type is: **Storage Blob Data Reader**. For more details, refer to [Use managed identity to access Azure Storage](../../active-directory/managed-identities-azure-resources/tutorial-vm-windows-access-storage.md#grant-access-1).
+        You can create a managed identity in the Azure portal for your Azure Blob Storage resource. In **Access Control (IAM)**, select **Role assignments**, and then select **Add**. A suggested role type is: **Storage Blob Data Reader**. For more details, refer to [Use managed identity to access Azure Storage](/azure/active-directory/managed-identities-azure-resources/tutorial-vm-windows-access-storage#grant-access-1).
     
         ![Screenshot that shows a managed identity blob.](media/managed-identity-blob.png)
     
@@ -180,7 +180,7 @@ The following sections specify the parameters required for all authentication ty
         Data Source=<URI Server>;Initial Catalog=<Database>
         ```
 
-    * **Managed identity**: Managed identity for Azure resources can authorize access to blob and queue data. Managed identity uses Microsoft Entra credentials from applications running in Azure virtual machines, function apps, virtual machine scale sets, and other services. By using managed identity for Azure resources and Microsoft Entra authentication, you can avoid storing credentials with your applications that run in the cloud. Learn how to [authorize with a managed identity](../../storage/blobs/authorize-managed-identity.md#enable-managed-identities-on-a-vm). 
+    * **Managed identity**: Managed identity for Azure resources can authorize access to blob and queue data. Managed identity uses Microsoft Entra credentials from applications running in Azure virtual machines, function apps, virtual machine scale sets, and other services. By using managed identity for Azure resources and Microsoft Entra authentication, you can avoid storing credentials with your applications that run in the cloud. Learn how to [authorize with a managed identity](/azure/storage/blobs/authorize-managed-identity#enable-managed-identities-on-a-vm). 
     
         You can create a managed identity in the Azure portal for your Azure Data Explorer (Kusto). Select **Permissions** > **Add**. The suggested role type is: **admin / viewer**.
         
@@ -325,7 +325,7 @@ The following sections specify the parameters required for all authentication ty
     Endpoint=<Server>;SharedAccessKeyName=<SharedAccessKeyName>;SharedAccessKey=<SharedAccess Key>;EntityPath=<EntityPath>
     ```
 
-* **Consumer Group**: A [consumer group](../../event-hubs/event-hubs-features.md#consumer-groups) is a view (state, position, or offset) of an entire event hub.
+* **Consumer Group**: A [consumer group](/azure/event-hubs/event-hubs-features#consumer-groups) is a view (state, position, or offset) of an entire event hub.
 You find this on the **Consumer Groups** menu of an instance of Azure Event Hubs. A consumer group can only serve one data feed. Create a new consumer group for each data feed.
 * **Timestamp** (optional): Metrics Advisor uses the Event Hubs timestamp as the event timestamp, if the user data source doesn't contain a timestamp field. The timestamp field is optional. If no timestamp column is chosen, the service uses the enqueued time as the timestamp.
 
@@ -341,7 +341,7 @@ You find this on the **Consumer Groups** menu of an instance of Azure Event Hubs
 
 Azure Monitor Logs has the following authentication types: basic, service principal, and service principal from Key Vault.
 * **Basic**: You need to fill in **Tenant ID**, **Client ID**, **Client Secret**, and **Workspace ID**.
-   To get **Tenant ID**, **Client ID**, and **Client Secret**, see [Register app or web API](../../active-directory/develop/quickstart-register-app.md). You can find **Workspace ID** in the Azure portal.
+   To get **Tenant ID**, **Client ID**, and **Client Secret**, see [Register app or web API](/azure/active-directory/develop/quickstart-register-app). You can find **Workspace ID** in the Azure portal.
    
     ![Screenshot that shows where to find the Workspace ID in the Azure portal.](media/workspace-id.png)
     
@@ -362,7 +362,7 @@ Azure Monitor Logs has the following authentication types: basic, service princi
         
 * **Service principal from Key Vault**: Key Vault helps to safeguard cryptographic keys and secret values that cloud apps and services use. By using Key Vault, you can encrypt keys and secret values. Create a service principal first, and then store the service principal inside a key vault. For more details, see [Create a credential entity for service principal from Key Vault](how-tos/credential-entity.md#sp-from-kv). 
 
-* **Query**: Specify the query. For more information, see [Log queries in Azure Monitor](../../azure-monitor/logs/log-query-overview.md).
+* **Query**: Specify the query. For more information, see [Log queries in Azure Monitor](/azure/azure-monitor/logs/log-query-overview).
 
     Sample query:
 
@@ -385,7 +385,7 @@ Azure Monitor Logs has the following authentication types: basic, service princi
         Data Source=<Server>;Initial Catalog=<db-name>;User ID=<user-name>;Password=<password>
         ```
     
-    * <span id='jump'>**Managed identity**</span>: Managed identity for Azure resources can authorize access to blob and queue data. It does so by using Microsoft Entra credentials from applications running in Azure virtual machines, function apps, virtual machine scale sets, and other services. By using managed identity for Azure resources and Microsoft Entra authentication, you can avoid storing credentials with your applications that run in the cloud. To [enable your managed entity](../../active-directory/managed-identities-azure-resources/tutorial-windows-vm-access-sql.md), follow these steps:
+    * <span id='jump'>**Managed identity**</span>: Managed identity for Azure resources can authorize access to blob and queue data. It does so by using Microsoft Entra credentials from applications running in Azure virtual machines, function apps, virtual machine scale sets, and other services. By using managed identity for Azure resources and Microsoft Entra authentication, you can avoid storing credentials with your applications that run in the cloud. To [enable your managed entity](/azure/active-directory/managed-identities-azure-resources/tutorial-windows-vm-access-sql), follow these steps:
     1. Enabling a system-assigned managed identity is a one-click experience. In the Azure portal, for your Metrics Advisor workspace, go to **Settings** > **Identity** > **System assigned**. Then set the status as **on**. 
     
         ![Screenshot that shows how to set the status as on.](media/datafeeds/set-identity-status.png)
@@ -411,7 +411,7 @@ Azure Monitor Logs has the following authentication types: basic, service princi
         ```
     
         > [!NOTE]
-        > The `MI Name` is the managed identity name in Metrics Advisor (for service principal, it should be replaced with the service principal name). For more information, see [Authorize with a managed identity](../../storage/blobs/authorize-managed-identity.md#enable-managed-identities-on-a-vm). 
+        > The `MI Name` is the managed identity name in Metrics Advisor (for service principal, it should be replaced with the service principal name). For more information, see [Authorize with a managed identity](/azure/storage/blobs/authorize-managed-identity#enable-managed-identities-on-a-vm). 
             
         Here's an example of a connection string: 
        

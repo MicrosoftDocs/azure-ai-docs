@@ -34,7 +34,7 @@ A single language resource with the custom question answering feature enabled ca
 When you build a real app, plan sufficient resources for the size of your project and for your expected query prediction requests.
 
 A project size is controlled by the:
-* [Azure AI Search resource](../../../../search/search-limits-quotas-capacity.md) pricing tier limits
+* [Azure AI Search resource](/azure/search/search-limits-quotas-capacity) pricing tier limits
 * [Custom question answering limits](./limits.md)
 
 The project query prediction request is controlled by the web app plan and web app. Refer to [recommended settings](azure-resources.md#recommended-settings) to plan your pricing tier.
@@ -122,7 +122,7 @@ A score can change based on several factors:
 
 ### Analytics with Azure Monitor
 
-In custom question answering, telemetry is offered through the [Azure Monitor service](../../../../azure-monitor/index.yml). Use our [top queries](../how-to/analytics.md) to understand your metrics.
+In custom question answering, telemetry is offered through the [Azure Monitor service](/azure/azure-monitor/). Use our [top queries](../how-to/analytics.md) to understand your metrics.
 
 ## Development lifecycle
 

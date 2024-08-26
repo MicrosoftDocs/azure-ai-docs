@@ -34,11 +34,11 @@ If you aren't an owner, the following scope-specific permissions are required:
 
     :::image type="content" source="media/application-developer-role.png" alt-text="Screenshot of the developer built-in role description.":::
 
-For more information, see [Microsoft Entra built-in roles](../../active-directory/roles/permissions-reference.md#application-developer).
+For more information, see [Microsoft Entra built-in roles](/azure/active-directory/roles/permissions-reference#application-developer).
 
 ## Set up PowerShell resources
 
-1. Start by opening the [Azure Cloud Shell](../../cloud-shell/overview.md). Ensure that Cloud Shell is set to **PowerShell** in the upper-left hand dropdown or by typing `pwsh`.
+1. Start by opening the [Azure Cloud Shell](/azure/cloud-shell/overview). Ensure that Cloud Shell is set to **PowerShell** in the upper-left hand dropdown or by typing `pwsh`.
 
 1. Copy and paste the following code snippet into the shell.
 
@@ -199,7 +199,7 @@ For more information, see [Microsoft Entra built-in roles](../../active-director
     | ResourceGroupName |Resources are created in resource groups within subscriptions. Supply the name of an existing resource group. If the resource group doesn't already exist, a new one with this name is created. |
     | ResourceGroupLocation |If your resource group doesn't exist, you need to supply a location in which to create the group. To find a list of locations, run `az account list-locations`. Use the *name* property (without spaces) of the returned result. This parameter is optional if your resource group already exists. |
     | AADAppDisplayName |The Microsoft Entra application display name. If an existing Microsoft Entra application isn't found, a new one with this name is created. This parameter is optional if the Microsoft Entra application already exists. |
-    | AADAppIdentifierUri |The URI for the Microsoft Entra application. If an existing Microsoft Entra application isn't found, a new one with this URI is created. For example, `api://MyOrganizationImmersiveReaderAADApp`. Here we're using the default Microsoft Entra URI scheme prefix of `api://` for compatibility with the [Microsoft Entra policy of using verified domains](../../active-directory/develop/reference-breaking-changes.md#appid-uri-in-single-tenant-applications-will-require-use-of-default-scheme-or-verified-domains). |
+    | AADAppIdentifierUri |The URI for the Microsoft Entra application. If an existing Microsoft Entra application isn't found, a new one with this URI is created. For example, `api://MyOrganizationImmersiveReaderAADApp`. Here we're using the default Microsoft Entra URI scheme prefix of `api://` for compatibility with the [Microsoft Entra policy of using verified domains](/azure/active-directory/develop/reference-breaking-changes#appid-uri-in-single-tenant-applications-will-require-use-of-default-scheme-or-verified-domains). |
     | AADAppClientSecretExpiration |The date or datetime after which your Microsoft Entra Application Client Secret (password) expires (for example, '2020-12-31T11:59:59+00:00' or '2020-12-31'). This function creates a client secret for you. |
 
     To manage your Microsoft Entra application client secrets after you create this resource, visit the [Azure portal](https://portal.azure.com) and go to **Home** -> **Microsoft Entra ID** -> **App Registrations** -> (your app) `[AADAppDisplayName]` -> **Certificates and Secrets** section -> **Client Secrets** section.

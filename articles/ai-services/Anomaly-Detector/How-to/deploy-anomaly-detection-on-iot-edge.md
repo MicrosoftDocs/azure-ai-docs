@@ -21,7 +21,7 @@ Learn how to deploy the Azure AI services [Anomaly Detector](../anomaly-detector
 
 * Use an Azure subscription. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free) before you begin.
 * Install the [Azure CLI](/cli/azure/install-azure-cli).
-* An [IoT Hub](../../../iot-hub/iot-hub-create-through-portal.md) and an [IoT Edge](../../../iot-edge/quickstart-linux.md) device.
+* An [IoT Hub](/azure/iot-hub/iot-hub-create-through-portal) and an [IoT Edge](/azure/iot-edge/quickstart-linux) device.
 
 [!INCLUDE [Create an Azure AI Anomaly Detector resource](../includes/create-anomaly-detector-resource.md)]
 
@@ -54,7 +54,7 @@ Learn how to deploy the Azure AI services [Anomaly Detector](../anomaly-detector
 
 6. Select **Update**
 
-7. Select **Next: Routes** to define your route. You define all messages from all modules to go to Azure IoT Hub. To learn how to declare a route, see [Establish routes in IoT Edge](../../../iot-edge/module-composition.md?view=iotedge-2020-11&preserve-view=true).
+7. Select **Next: Routes** to define your route. You define all messages from all modules to go to Azure IoT Hub. To learn how to declare a route, see [Establish routes in IoT Edge](/azure/iot-edge/module-composition?view=iotedge-2020-11&preserve-view=true).
 
 8. Select **Next: Review + create**. You can preview the JSON file that defines all the modules that get deployed to your IoT Edge device.
     
@@ -64,7 +64,7 @@ Learn how to deploy the Azure AI services [Anomaly Detector](../anomaly-detector
 
 11. Scroll down and see the modules listed. Check that the runtime status is running for your new module. 
 
-To troubleshoot the runtime status of your IoT Edge device, consult the [troubleshooting guide](../../../iot-edge/troubleshoot.md).
+To troubleshoot the runtime status of your IoT Edge device, consult the [troubleshooting guide](/azure/iot-edge/troubleshoot).
 
 ## Test Anomaly Detector on an IoT Edge device
 

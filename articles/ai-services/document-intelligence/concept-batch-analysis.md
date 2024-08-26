@@ -52,7 +52,7 @@ Ready to get started?
 
   * You need the key and endpoint from the resource to connect your application to the Document Intelligence service. You paste your key and endpoint into the code later in the quickstart. You can find these values on the Azure portal **Keys and Endpoint** page.
 
-* An [**Azure Blob Storage account**](https://portal.azure.com/#create/Microsoft.StorageAccount-ARM). You'll [**create containers**](../../storage/blobs/storage-quickstart-blobs-portal.md#create-a-container) in your Azure Blob Storage account for your source and result files:
+* An [**Azure Blob Storage account**](https://portal.azure.com/#create/Microsoft.StorageAccount-ARM). You'll [**create containers**](/azure/storage/blobs/storage-quickstart-blobs-portal#create-a-container) in your Azure Blob Storage account for your source and result files:
 
   * **Source container**. This container is where you upload your files for analysis (required).
   * **Result container**. This container is where your processed files are stored (optional).

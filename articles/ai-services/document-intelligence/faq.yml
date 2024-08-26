@@ -39,7 +39,7 @@ sections:
 
           - [AI Builder workflows](/ai-builder/create-form-processing-model?toc=~/articles/ai-services/document-intelligence/toc.json&bc=~/articles/ai-services/document-intelligence/breadcrumb/toc.json)
 
-          - [Azure AI Search](../../search/cognitive-search-custom-skill-form.md)
+          - [Azure AI Search](/azure/search/cognitive-search-custom-skill-form)
 
           - [Azure Functions](tutorial-azure-function.md)
 
@@ -105,7 +105,7 @@ sections:
 
             - **Contributor**: You need this role to create a resource group and resources. **Contributor** or **Storage Account Contributor** role doesn't give you access to use your Document Intelligence resource or storage account if local (key-based) authentication is disabled. You still need the basic roles (**Cognitive Services User** and **Storage Data Blob Contributor**) to use the functions on Document Intelligence Studio.
 
-          For more information, see [Microsoft Entra built-in roles](../../role-based-access-control/built-in-roles.md) and the sections about Azure role assignments in the [Document Intelligence Studio quickstart](quickstarts/try-document-intelligence-studio.md).
+          For more information, see [Microsoft Entra built-in roles](/azure/role-based-access-control/built-in-roles) and the sections about Azure role assignments in the [Document Intelligence Studio quickstart](quickstarts/try-document-intelligence-studio.md).
 
       - question: |
           Can I process documents with more than two pages in Document Intelligence Studio?
@@ -327,7 +327,7 @@ sections:
 
           Document Intelligence can't access your storage account if it's protected by a virtual network or firewall.
 
-          However, private Azure storage account access and authentication support [managed identities for Azure resources](../../active-directory/managed-identities-azure-resources/overview.md). When you use a managed identity, the Document Intelligence service can access your storage account by using an assigned credential.
+          However, private Azure storage account access and authentication support [managed identities for Azure resources](/azure/active-directory/managed-identities-azure-resources/overview). When you use a managed identity, the Document Intelligence service can access your storage account by using an assigned credential.
 
           If you intend to analyze your private storage account data by using FOTT, you must deploy the tool behind the virtual network or firewall.
 
