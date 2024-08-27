@@ -7,7 +7,6 @@
           "**/*.yml"
         ],
         "exclude": [
-          "iot-edge/**",
           "ai-services/document-intelligence/**",
           "**/_themes/**",
           "**/includes/**",
@@ -45,6 +44,20 @@
           "**/includes/**",
           "**/obj/**"
         ],
+        "src": "articles/ai-services/document-intelligence",
+        "dest": "./ai-services/document-intelligence/",
+        "group": "grp-document-intelligence"
+      },
+      {
+        "files": [
+          "**/*.md",
+          "**/*.yml"
+        ],
+        "exclude": [
+          "**/_themes/**",
+          "**/includes/**",
+          "**/obj/**"
+        ],
         "src": "articles/machine-learning/v1",
         "dest": "./machine-learning",
         "group": "grp-machine-learningv1"
@@ -67,7 +80,6 @@
           "**/*.svg"
         ],
         "exclude": [
-          "iot-edge/**",
           "ai-services/document-intelligence/**",
           "**/_themes/**",
           "**/obj/**",
@@ -76,6 +88,22 @@
         ],
         "src": "articles",
         "dest": "."
+      },
+      {
+        "files": [
+          "**/*.gif",
+          "**/*.jpeg",
+          "**/*.jpg",
+          "**/*.png",
+          "**/*.svg"
+        ],
+        "exclude": [
+          "**/_themes/**",
+          "**/obj/**"
+        ],
+        "src": "articles/ai-services/document-intelligence",
+        "dest": "./ai-services/document-intelligence/",
+        "group": "grp-document-intelligence"
       },
       {
         "files": [
@@ -114,7 +142,7 @@
     ],
     "groups": {
       "grp-document-intelligence": {
-        "moniker_range": "\u003E=doc-intel-2.1.0",
+        "moniker_range": ">=doc-intel-2.1.0",
         "dest": "destdocumentintelligence"
       },
       "grp-machine-learning": {
@@ -186,9 +214,6 @@
         "v-thpra"
       ],
       "breadcrumb_path": "~/breadcrumb/azure-ai/toc.yml",
-      "_op_documentIdPathDepotMapping": {
-        "articles/iot-central/": {}
-      },
       "brand": "azure",
       "feedback_github_repo": "MicrosoftDocs/azure-docs",
       "feedback_help_link_url": "https://learn.microsoft.com/answers/tags/133/azure",
@@ -209,9 +234,24 @@
     },
     "fileMetadata": {
       "author": {
-        "articles/search/*.md": "HeidiSteen",
+        "articles/ai-studio/**/*.md": "eric-urban",
+        "articles/ai-services/**/*.md": "eric-urban",
+        "articles/ai-services/anomaly-detector/**/*.md": "mrbullwinkle",
+        "articles/ai-services/computer-vision/**/*.md": "PatrickFarley",
+        "articles/ai-services/content-moderator/**/*.md": "PatrickFarley",
+        "articles/ai-services/custom-vision-service/**/*.md": "PatrickFarley",
+        "articles/ai-services/document-intelligence/**/*.md": "laujan",
+        "articles/ai-services/luis/**/*.md": "aahill",
+        "articles/ai-services/metrics-advisor/**/*.md": "mrbullwinkle",
+        "articles/ai-services/personalizer/**/*.md": "jcodella",
+        "articles/ai-services/qnamaker/**/*.md": "jboback",
+        "articles/ai-services/openai/**/*.md": "mrbullwinkle",
+        "articles/ai-services/speech-service/**/*.md": "eric-urban",
+        "articles/ai-services/language-service/**/*.md": "aahill",
+        "articles/ai-services/translator/**/*.md": "laujan",
         "articles/open-datasets/**/*.md": "shubhirajMsft",
-        "articles/open-datasets/**/*.yml": "shubhirajMsft"
+        "articles/open-datasets/**/*.yml": "shubhirajMsft",
+        "articles/search/*.md": "HeidiSteen"
       },
       "featureFlags": {
         "articles/**/*.md": [
@@ -219,11 +259,50 @@
         ]
       },
       "feedback_product_url": {
+        "articles/ai-services/*.md": "https://feedback.azure.com/d365community/forum/09041fae-0b25-ec11-b6e6-000d3a4f0858",
+        "articles/ai-services/Anomaly-Detector/**/*.md": "https://feedback.azure.com/d365community/forum/09041fae-0b25-ec11-b6e6-000d3a4f0858?c=6c8853b4-0b25-ec11-b6e6-000d3a4f0858",
+        "articles/ai-services/Computer-vision/**/*.md": "https://feedback.azure.com/d365community/forum/09041fae-0b25-ec11-b6e6-000d3a4f0858?c=7a8853b4-0b25-ec11-b6e6-000d3a4f0858",
+        "articles/ai-services/Content-Moderator/**/*.md": "https://feedback.azure.com/d365community/forum/09041fae-0b25-ec11-b6e6-000d3a4f0858?c=6c8853b4-0b25-ec11-b6e6-000d3a4f0858",
+        "articles/ai-services/Custom-Vision-Service/**/*.md": "https://feedback.azure.com/d365community/forum/09041fae-0b25-ec11-b6e6-000d3a4f0858?c=7a8853b4-0b25-ec11-b6e6-000d3a4f0858",
+        "articles/ai-services/document-intelligence/**/*.md": "https://feedback.azure.com/d365community/forum/09041fae-0b25-ec11-b6e6-000d3a4f0858?c=7a8853b4-0b25-ec11-b6e6-000d3a4f0858",
+        "articles/ai-services/Immersive-Reader/**/*.md": "https://feedback.azure.com/d365community/forum/09041fae-0b25-ec11-b6e6-000d3a4f0858?c=449a6fba-0b25-ec11-b6e6-000d3a4f0858",
+        "articles/ai-services/LUIS/**/*.md": "https://feedback.azure.com/d365community/forum/09041fae-0b25-ec11-b6e6-000d3a4f0858",
+        "articles/ai-services/metrics-advisor/**/*.md": "https://feedback.azure.com/d365community/forum/09041fae-0b25-ec11-b6e6-000d3a4f0858?c=6c8853b4-0b25-ec11-b6e6-000d3a4f0858",
+        "articles/ai-services/QnAMaker/**/*.md": "https://feedback.azure.com/d365community/forum/09041fae-0b25-ec11-b6e6-000d3a4f0858?c=449a6fba-0b25-ec11-b6e6-000d3a4f0858",
+        "articles/ai-services/Personalizer/**/*.md": "https://feedback.azure.com/d365community/forum/09041fae-0b25-ec11-b6e6-000d3a4f0858?c=6c8853b4-0b25-ec11-b6e6-000d3a4f0858",
+        "articles/ai-services/speech-service/**/*.md": "https://feedback.azure.com/d365community/forum/09041fae-0b25-ec11-b6e6-000d3a4f0858?c=21041fae-0b25-ec11-b6e6-000d3a4f0858",
+        "articles/ai-services/language-service/**/*.md": "https://feedback.azure.com/d365community/forum/09041fae-0b25-ec11-b6e6-000d3a4f0858?c=449a6fba-0b25-ec11-b6e6-000d3a4f0858",
+        "articles/ai-services/Translator/**/*.md": "https://feedback.azure.com/d365community/forum/09041fae-0b25-ec11-b6e6-000d3a4f0858?c=449a6fba-0b25-ec11-b6e6-000d3a4f0858",
+        "articles/genomics/**/*.md": "https://feedback.azure.com/d365community/forum/79b1327d-d925-ec11-b6e6-000d3a4f06a4",
         "articles/machine-learning/**/*.md": "https://feedback.azure.com/d365community/forum/b9a0c624-ad25-ec11-b6e6-000d3a4f09d0",
         "articles/machine-learning/data-science-virtual-machine/*.md": "https://feedback.azure.com/d365community/forum/fe7451c9-7426-ec11-b6e6-000d3a4f032c",
         "articles/search/**/*.md": "https://feedback.azure.com/d365community/forum/9325d19e-0225-ec11-b6e6-000d3a4f07b8"
       },
+      "feedback_system": {
+        "articles/ai-services/Anomaly-Detector/**/*.*": "None",
+        "articles/ai-services/content-moderator/**/*.*": "None",
+        "articles/ai-services/metrics-advisor/**/*.*": "None",
+        "articles/ai-services/personalizer/**/*.*": "None",
+        "articles/ai-services/qnamaker/**/*.*": "None",
+        "articles/ai-services/LUIS/**/*.*": "None"
+      },
       "feedback_help_link_url": {
+        "articles/ai-services/**/*": "https://learn.microsoft.com/answers/tags/441/ai-services/",
+        "articles/ai-services/Anomaly-Detector/**/*": "https://learn.microsoft.com/answers/tags/81/azure-anomaly-detector/",
+        "articles/ai-services/Computer-vision/**/*": "https://learn.microsoft.com/answers/tags/127/azure-computer-vision/",
+        "articles/ai-services/Content-Moderator/**/*": "https://learn.microsoft.com/answers/tags/481/content-safety/",
+        "articles/ai-services/Custom-Vision-Service/**/*": "https://learn.microsoft.com/answers/tags/195/azure-custom-vision/",
+        "articles/ai-services/document-intelligence/**/*": "https://learn.microsoft.com/answers/tags/440/document-intelligence/",
+        "articles/ai-services/Immersive-Reader/**/*": "https://learn.microsoft.com/answers/tags/43/azure-immersive-reader/",
+        "articles/ai-services/LUIS/**/*": "https://learn.microsoft.com/answers/tags/441/ai-services",
+        "articles/ai-services/metrics-advisor/**/*": "https://learn.microsoft.com/answers/tags/149/azure-metrics-advisor/",
+        "articles/ai-services/openai/**/*": "https://learn.microsoft.com/answers/tags/387/azure-openai",
+        "articles/ai-services/QnAMaker/**/*": "https://learn.microsoft.com/answers/tags/441/ai-services/",
+        "articles/ai-services/speech-service/**/*": "https://learn.microsoft.com/answers/tags/55/azure-speech/",
+        "articles/ai-services/language-service/**/*": "https://learn.microsoft.com/answers/tags/416/language-service/",
+        "articles/ai-services/Translator/**/*": "https://learn.microsoft.com/answers/tags/132/azure-translator/",
+        "articles/ai-studio/**/*": "https://learn.microsoft.com/answers/tags/387/azure-openai",
+        "articles/genomics/**/*": "https://learn.microsoft.com/answers/tags/45/azure-genomics/",
         "articles/machine-learning/**/*": "https://learn.microsoft.com/answers/tags/75/azure-machine-learning/",
         "articles/machine-learning/data-science-virtual-machine/**/*": "https://learn.microsoft.com/answers/tags/201/azure-data-science-vm/",
         "articles/open-datasets/**/*": "https://learn.microsoft.com/answers/tags/8/azure-open-datasets/",
@@ -238,14 +317,37 @@
         ]
       },
       "manager": {
-        "articles/search/**/*.md": "nitinme"
+        "articles/search/**/*.md": "nitinme",
+        "articles/ai-studio/**/*.md": "nitinme",
+        "articles/ai-services/**/*.md": "nitinme",
+        "articles/genomics/**/*.md": "scottpolly",
+        "articles/genomics/**/*.yml": "scottpolly"
       },
       "ms.author": {
+        "articles/ai-studio/**/*.md": "eur",
+        "articles/ai-services/**/*.md": "eur",
+        "articles/ai-services/anomaly-detector/**/*.md": "mbullwin",
+        "articles/ai-services/computer-vision/**/*.md": "pafarley",
+        "articles/ai-services/content-moderator/**/*.md": "pafarley",
+        "articles/ai-services/custom-vision-service/**/*.md": "pafarley",
+        "articles/ai-services/document-intelligence/**/*.md": "lajanuar",
+        "articles/ai-services/luis/**/*.md": "aahi",
+        "articles/ai-services/metrics-advisor/**/*.md": "mbullwin",
+        "articles/ai-services/personalizer/**/*.md": "jacodel",
+        "articles/ai-services/qnamaker/**/*.md": "jboback",
+        "articles/ai-services/openai/**/*.md": "mbullwin",
+        "articles/ai-services/speech-service/**/*.md": "eur",
+        "articles/ai-services/language-service/**/*.md": "aahi",
+        "articles/ai-services/translator/**/*.md": "lajanuar",
         "articles/open-datasets/**/*.md": "samkemp",
         "articles/open-datasets/**/*.yml": "samkemp",
         "articles/search/*.md": "heidist"
       },
       "ms.collection": {
+        "articles/ai-services/**/*.md": "ce-skilling-ai-copilot",
+        "articles/ai-services/**/*.yml": "ce-skilling-ai-copilot",
+        "articles/ai-studio/**/*.md": "ce-skilling-ai-copilot",
+        "articles/ai-studio/**/*.yml": "ce-skilling-ai-copilot",
         "articles/search/**/*.md": "ce-skilling-ai-copilot",
         "articles/search/**/*.yml": "ce-skilling-ai-copilot",
         "articles/machine-learning/*.md": "ce-skilling-ai-copilot",
@@ -256,17 +358,37 @@
         "articles/machine-learning/prompt-flow/*.md": "ce-skilling-ai-copilot",
         "articles/machine-learning/v1/*.md": "ce-skilling-ai-copilot"
       },
+      "ms.custom": {
+        "articles/machine-learning/v1/*.md": "UpdateFrequency5"
+      },
+      "ms.service": {
+        "articles/ai-studio/**/*.md": "azure-ai-services",
+        "articles/ai-services/**/*.md": "azure-ai-services",
+        "articles/ai-services/speech-service/*.md": "azure-ai-speech",
+        "articles/ai-services/translator/**/*.md": "azure-ai-translator",
+        "articles/ai-services/personalizer/**/*.md": "azure-ai-personalizer",
+        "articles/ai-services/computer-vision/**/*.md": "azure-ai-vision",
+        "articles/ai-services/content-moderator/**/*.md": "azure-ai-content-moderator",
+        "articles/ai-services/language-service/**/*.md": "azure-ai-language",
+        "articles/ai-services/anomaly-detector/**/*.md": "azure-ai-anomaly-detector",
+        "articles/ai-services/custom-vision-service/**/*.md": "azure-ai-custom-vision"
+      },
       "monikerRange": {
+        "articles/ai-services/document-intelligence/**/*.md": ">=doc-intel-2.1.0",
         "articles/machine-learning/**/*.md": "azureml-api-2",
         "articles/machine-learning/v1/**/*.md": "azureml-api-1"
       },
+      "recommendations": {
+        "articles/ai-services/Translator/**/*.md": false
+      },
       "titleSuffix": {
+        "articles/ai-studio/**/*.md": "Azure AI Studio",
+        "articles/ai-services/**/*.md": "Azure AI services",
+        "articles/ai-services/LUIS/*.md": "Azure",
+        "articles/ai-services/LUIS/*.yml": "Azure",
         "articles/machine-learning/*.md": "Azure Machine Learning",
         "articles/open-datasets/**/*.md": "Azure Open Datasets",
         "articles/open-datasets/**/*.yml": "Azure Open Datasets"
-      },
-      "ms.custom": {
-        "articles/machine-learning/v1/*.md": "UpdateFrequency5"
       }
     },
     "overwrite": [],
