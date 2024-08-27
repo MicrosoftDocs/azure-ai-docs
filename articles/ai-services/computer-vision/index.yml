@@ -147,7 +147,7 @@ tools:
   summary: Get started with the Image Analysis SDK in your favorite programming language.
   items:
   - title: C#
-    imageSrc: media/index/logo_Csharp.svg
+    imageSrc: media/index/logo_csharp.svg
     url: https://aka.ms/azsdk/image-analysis/ref-docs/csharp
   - title: Node.js
     imageSrc: media/index/logo_nodejs.svg

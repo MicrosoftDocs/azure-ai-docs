@@ -146,7 +146,7 @@ For examples and details, see the [notebook for advanced forecasting scenarios](
 
 To find training and validation metric values, see [View information about jobs or runs in the studio](how-to-log-view-metrics.md#view-information-about-jobs-or-runs-in-the-studio). You can view metrics for any forecasting model trained in AutoML by going to a model from the AutoML job UI in the studio and selecting the **Metrics** tab.
 
-:::image type="content" source="media/how-to-automl-forecasting-faq/metrics_UI.png" alt-text="Screenshot that shows the metric interface for an AutoML forecasting model.":::
+:::image type="content" source="media/how-to-automl-forecasting-faq/metrics-ui.png" alt-text="Screenshot that shows the metric interface for an AutoML forecasting model.":::
 
 ## How do I debug failures with forecasting training jobs?
 
