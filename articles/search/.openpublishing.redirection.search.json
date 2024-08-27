@@ -345,6 +345,11 @@
             "source_path_from_root": "/articles/search/search-api-indexers-2015-02-28-preview.md",
             "redirect_url": "/rest/api/searchservice/indexer-operations",
             "redirect_document_id": false
+        },
+        {
+            "source_path_from_root": "/articles/search/security-baseline.md",
+            "redirect_url": "/security/benchmark/azure/baselines/cognitive-search-security-baseline",
+            "redirect_document_id": false
         }
     ]
 }

@@ -159,6 +159,12 @@
       "url": "https://github.com/Azure-Samples/azure-search-static-web-app",
       "branch": "main",
       "branch_mapping": {}
+    },
+    {
+      "path_to_root": "azure-docs-pr-policy-includes",
+      "url": "https://github.com/MicrosoftDocs/azure-docs-pr",
+      "branch": "main",
+      "branch_mapping": {}
     }
   ],
   "git_repository_url_open_to_public_contributors": "https://github.com/MicrosoftDocs/azure-ai-docs",
