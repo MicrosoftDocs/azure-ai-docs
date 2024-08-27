@@ -52,6 +52,9 @@ items:
     - name: Document Intelligence
       tocHref: /azure/ai-services/document-intelligence/
       topicHref: /azure/ai-services/document-intelligence/
+    - name: Azure AI Search
+      tocHref: /azure/search/
+      topicHref: /azure/search/
   - name: Genomics
     tocHref: /azure/genomics/
     topicHref: /azure/genomics/
