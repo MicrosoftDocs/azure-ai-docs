@@ -60,7 +60,7 @@ Before you can set up an MLOps project with Machine Learning, you need to set up
 
 1. If prompted, choose **Bash** as the environment used in the Cloud Shell. You can also change environments in the drop-down on the top navigation bar
 
-    :::image type="content" source="./media/how-to-setup-mlops-azureml/PS_CLI1_1.png" alt-text="Screenshot of the cloud shell environment dropdown.":::
+    :::image type="content" source="./media/how-to-setup-mlops-azureml/ps-cli1-1.png" alt-text="Screenshot of the cloud shell environment dropdown.":::
 
 1. Copy the following bash commands to your computer and update the **projectName**, **subscriptionId**, and **environment** variables with the values for your project. This command will also grant the **Contributor** role to the service principal in the subscription provided. This is required for GitHub Actions to properly use resources in that subscription. 
 
