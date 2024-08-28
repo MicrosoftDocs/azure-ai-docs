@@ -31,9 +31,9 @@ page lists the **compliance domains** and **security controls** for Azure AI Sea
 assign the built-ins for a **security control** individually to help make your Azure resources
 compliant with the specific standard.
 
-[!INCLUDE [azure-policy-compliancecontrols-introwarning](../../includes/policy/standards/intro-warning.md)]
+[!INCLUDE [azure-policy-compliancecontrols-introwarning](~/azure-docs-pr-policy-includes/includes/policy/standards/intro-warning.md)]
 
-[!INCLUDE [azure-policy-compliancecontrols-search](../../includes/policy/standards/byrp/microsoft.search.md)]
+[!INCLUDE [azure-policy-compliancecontrols-search](~/azure-docs-pr-policy-includes/includes/policy/standards/byrp/microsoft.search.md)]
 
 ## Next steps
 
