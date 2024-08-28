@@ -62,7 +62,7 @@ Before you can set up an MLOps project with Azure Machine Learning, you need to 
 
 1. If prompted, choose **Bash** as the environment used in the Cloud Shell. You can also change environments in the drop-down on the top navigation bar
 
-    ![Screenshot of the cloud shell environment dropdown.](./media/how-to-setup-mlops-azureml/PS_CLI1_1.png)
+    ![Screenshot of the cloud shell environment dropdown.](./media/how-to-setup-mlops-azureml/ps-cli1-1.png)
 
 1. Copy the following bash commands to your computer and update the **projectName**, **subscriptionId**, and **environment** variables with the values for your project. If you're creating both a Dev and Prod environment, you'll need to run this script once for each environment, creating a service principal for each. This command will also grant the **Contributor** role to the service principal in the subscription provided. This is required for Azure DevOps to properly use resources in that subscription. 
 
@@ -160,7 +160,7 @@ The Azure DevOps setup is successfully finished.
 
 1. Enter https://github.com/Azure/mlops-v2-ado-demo into the Clone URL field. Select import at the bottom of the page
 
-    ![Screenshot of Azure DevOps import MLOps demo repo.](./media/how-to-setup-mlops-azureml/import_repo_Git_template.png)
+    ![Screenshot of Azure DevOps import MLOps demo repo.](./media/how-to-setup-mlops-azureml/import-repo-git-template.png)
 
 1. Open the **Project settings** at the bottom of the left hand navigation pane
 

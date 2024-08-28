@@ -167,7 +167,7 @@ Azure Blob storage is a reliable, economical cloud storage service for both larg
 
 - Start the Azure Storage Explorer tool. You can download it from the [Storage Explorer webpage](https://storageexplorer.com/).
 
-    :::image type="content" source="./media/vm-do-ten-things/AzureStorageExplorer_v4.png" alt-text="Screenshot showing the Azure Storage Explorer accessing a storage account." lightbox= "./media/vm-do-ten-things/AzureStorageExplorer_v4.png":::
+    :::image type="content" source="./media/vm-do-ten-things/azurestorageexplorer-v4.png" alt-text="Screenshot showing the Azure Storage Explorer accessing a storage account." lightbox= "./media/vm-do-ten-things/azurestorageexplorer-v4.png":::
 
 #### Move data from a VM to an Azure blob: AzCopy
 
@@ -197,7 +197,7 @@ Run the AzCopy command in PowerShell or from a command prompt. These are AzCopy 
 
 After you run the AzCopy command to copy the file to an Azure blob, your file will appear in Azure Storage Explorer.
 
-:::image type="content" source="./media/vm-do-ten-things/AzCopy_run_finshed_Storage_Explorer_v3.png" alt-text="Screenshot showing the storage account, displaying the uploaded CSV file." lightbox= "./media/vm-do-ten-things/AzCopy_run_finshed_Storage_Explorer_v3.png":::
+:::image type="content" source="./media/vm-do-ten-things/azcopy-run-finshed-storage-explorer-v3.png" alt-text="Screenshot showing the storage account, displaying the uploaded CSV file." lightbox= "./media/vm-do-ten-things/azcopy-run-finshed-storage-explorer-v3.png":::
 
 #### Move data from a VM to an Azure blob: Azure Storage Explorer
 
@@ -259,7 +259,7 @@ print 'the size of the data is: %d rows and  %d columns' % df1.shape
 
 The data is read as a data frame:
 
-:::image type="content" source="./media/vm-do-ten-things/IPNB_data_readin.png" alt-text="Screenshot showing the first 10 rows of data." lightbox= "./media/vm-do-ten-things/IPNB_data_readin.png":::
+:::image type="content" source="./media/vm-do-ten-things/ipnb-data-readin.png" alt-text="Screenshot showing the first 10 rows of data." lightbox= "./media/vm-do-ten-things/ipnb-data-readin.png":::
 
 ### Azure Synapse Analytics and databases
 
