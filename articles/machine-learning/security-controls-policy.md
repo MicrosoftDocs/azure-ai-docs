@@ -19,9 +19,9 @@ page lists the **compliance domains** and **security controls** for Azure Machin
 assign the built-ins for a **security control** individually to help make your Azure resources
 compliant with the specific standard.
 
-[!INCLUDE [azure-policy-compliancecontrols-introwarning](../../includes/policy/standards/intro-warning.md)]
+[!INCLUDE [azure-policy-compliancecontrols-introwarning](~/azure-docs-pr-policy-includes/includes/policy/standards/intro-warning.md)]
 
-[!INCLUDE [azure-policy-compliancecontrols-machinelearning](../../includes/policy/standards/byrp/microsoft.machinelearningservices.md)]
+[!INCLUDE [azure-policy-compliancecontrols-machinelearning](~/azure-docs-pr-policy-includes/includes/policy/standards/byrp/microsoft.machinelearningservices.md)]
 
 ## Next steps
 
