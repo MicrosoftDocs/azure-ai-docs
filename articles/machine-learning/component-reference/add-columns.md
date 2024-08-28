@@ -14,7 +14,7 @@ ms.date: 10/22/2019
 
 # Add Columns component
 
-This article describes a component in Azure Machine Learning designer.
+This article describes a component in Azure Machine Learning designer. test edit
 
 Use this component to concatenate two datasets. You combine all columns from the two datasets that you specify as inputs to create a single dataset. If you need to concatenate more than two datasets, use several instances of **Add Columns**.
 
