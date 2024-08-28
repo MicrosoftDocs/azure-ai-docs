@@ -139,10 +139,10 @@ To understand privacy and data management, go to the [Trust Center](https://serv
 
 ## Help and support
 
-Azure AI services provide several support options to help you move forward with creating intelligent applications. Azure AI services also have a strong community of developers that can help answer your specific questions. For a full list of support options available to you, see [Azure AI services support and help options](cognitive-services-support-options.md ).
+Azure AI services provide several support options to help you move forward with creating intelligent applications. Azure AI services also have a strong community of developers that can help answer your specific questions. For a full list of support options available to you, see [Azure AI services support and help options](cognitive-services-support-options.md).
 
 ## Next steps
 
 * Learn how to [get started with Azure](https://azure.microsoft.com/get-started/)
-* [Try Azure AI services and more in Azure AI Studio?](../ai-studio/what-is-ai-studio.md)
+* [Try Azure AI services and more in Azure AI Studio](../ai-studio/what-is-ai-studio.md)
 * [Plan and manage costs for Azure AI services](plan-manage-costs.md)
