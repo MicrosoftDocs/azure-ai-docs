@@ -10,6 +10,7 @@ ms.reviewer: lebaro
 ms.author: sgilley
 author: sdgilley
 #customer intent: As a developer, I want to learn how to use the prompt flow SDK so that I can build a RAG-based copilot.
+ms.custom: [copilot-learning-hub]
 ---
 
 # Tutorial:  Part 1 - Build a RAG-based copilot with the prompt flow SDK
