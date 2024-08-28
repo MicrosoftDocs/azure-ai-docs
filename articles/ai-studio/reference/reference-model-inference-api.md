@@ -318,7 +318,7 @@ The following example shows the response for a chat completion request indicatin
 
 ```python
 import json
-from azure.ai.inference.models import SystemMessage, UserMessage, ChatCompletionsResponseFormat
+from azure.ai.inference.models import SystemMessage, UserMessage, ChatCompletionsResponseFormatJSON
 from azure.core.exceptions import HttpResponseError
 
 try:
@@ -327,7 +327,7 @@ try:
             SystemMessage(content="You are a helpful assistant."),
             UserMessage(content="How many languages are in the world?"),
         ],
-        response_format={ "type": ChatCompletionsResponseFormat.JSON_OBJECT }
+        response_format=ChatCompletionsResponseFormatJSON()
     )
 except HttpResponseError as ex:
     if ex.status_code == 422:
