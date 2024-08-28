@@ -3,7 +3,7 @@ title: 'CLI (v2) AI Services connection YAML schema'
 titleSuffix: Azure Machine Learning
 description: Reference documentation for the CLI (v2) Azure AI Services connections YAML schema.
 services: machine-learning
-ms.service: machine-learning
+ms.service: azure-machine-learning
 ms.subservice: core
 ms.custom:
   - build-2024
@@ -11,7 +11,7 @@ ms.topic: reference
 
 author: Blackmist
 ms.author: larryfr
-ms.date: 05/09/2024
+ms.date: 08/21/2024
 ms.reviewer: ambadal
 ---
 
@@ -32,7 +32,7 @@ ms.reviewer: ambadal
 | `type` | string | **Required.** The connection type. | `azure_ai_services` | `azure_ai_services` |
 | `is_shared` | boolean | `true` if the connection is shared across other projects in the hub; otherwise, `false`. | | `true` |
 | `endpoint` | string | **Required.** The URL of the endpoint. | | |
-| `api_key` | string | **Required.** The API key used to authenticate the connection. If not provided, a Microsoft Entra ID (credential-less authentication) connection is created. | | |
+| `api_key` | string | The API key used to authenticate the connection. If not provided, a Microsoft Entra ID (credential-less authentication) connection is created. | | |
 | `ai_services_resource_id` | string | **Required.** The fully qualified Azure resource ID of the Azure AI Services resource. | | |
 
 
@@ -49,7 +49,7 @@ While the `az ml connection` commands can be used to manage both Azure Machine L
 
 ## Examples
 
-Visit [this GitHub resource]() for examples. Several are shown here. These examples would be in the form of YAML files and used from the CLI. For example, `az ml connection create -f <file-name>.yaml`. 
+These examples would be in the form of YAML files and used from the CLI. For example, `az ml connection create -f <file-name>.yaml`. 
 
 ### YAML: API key
 
@@ -63,7 +63,7 @@ api_key: XXXXXXXXXXXXXXX
 ```
 
 
-### YAML: credential-less
+### YAML: Microsoft Entra ID
 
 ```yml
 #AzureAIServiceConnection.yml

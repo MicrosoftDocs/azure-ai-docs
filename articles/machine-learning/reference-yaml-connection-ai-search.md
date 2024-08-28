@@ -3,7 +3,7 @@ title: 'CLI (v2) AI Search connection YAML schema'
 titleSuffix: Azure Machine Learning
 description: Reference documentation for the CLI (v2) AI Search connections YAML schema.
 services: machine-learning
-ms.service: machine-learning
+ms.service: azure-machine-learning
 ms.subservice: core
 ms.custom:
   - build-2024
@@ -32,7 +32,7 @@ ms.reviewer: ambadal
 | `type` | string | **Required.** The connection type. | `azure_ai_search` | `azure_ai_search` |
 | `is_shared` | boolean | `true` if the connection is shared across other projects in the hub; otherwise, `false`. | | `true` |
 | `endpoint` | string | **Required.** The URL of the endpoint. | | |
-| `api_key` | string | **Required.** The API key used to authenticate the connection. If not provided, a Microsoft Entra ID (credential-less authentication) connection is created. | | |
+| `api_key` | string | The API key used to authenticate the connection. If not provided, a Microsoft Entra ID (credential-less authentication) connection is created. | | |
 
 ## Remarks
 
@@ -40,7 +40,7 @@ While the `az ml connection` commands can be used to manage both Azure Machine L
 
 ## Examples
 
-Visit [this GitHub resource]() for examples. Several are shown here. These examples would be in the form of YAML files and used from the CLI. For example, `az ml connection create -f <file-name>.yaml`. 
+These examples would be in the form of YAML files and used from the CLI. For example, `az ml connection create -f <file-name>.yaml`. 
 
 ### YAML: API key
 
@@ -54,7 +54,7 @@ endpoint: https://contoso.search.windows.net/
 api_key: XXXXXXXXXXXXXXX
 ```
 
-### YAML: credential-less
+### YAML: Microsoft Entra ID
 
 ```yml
 #AzureContentSafetyConnection.yml

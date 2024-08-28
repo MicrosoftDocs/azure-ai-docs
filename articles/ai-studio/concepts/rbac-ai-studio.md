@@ -123,7 +123,7 @@ The following table is an example of how to set up role-based access control for
 | --- | --- | ---|
 | IT admin | Owner of the hub | The IT admin can ensure the hub is set up to their enterprise standards. They can assign managers the Contributor role on the resource if they want to enable managers to make new hubs. Or they can assign managers the Azure AI Developer role on the resource to not allow for new hub creation. |
 | Managers | Contributor or Azure AI Developer on the hub | Managers can manage the hub, audit compute resources, audit connections, and create shared connections. |
-| Team lead/Lead developer | Azure AI Developer on the hub | Lead developers can create projects for their team and create shared resources (ex: compute and connections) at the hub level. After project creation, project owners can invite other members. |
+| Team lead/Lead developer | Azure AI Developer on the hub | Lead developers can create projects for their team and create shared resources (such as compute and connections) at the hub level. After project creation, project owners can invite other members. |
 | Team members/developers | Contributor or Azure AI Developer on the project | Developers can build and deploy AI models within a project and create assets that enable development such as computes and connections. |
 
 ## Access to resources created outside of the hub
@@ -213,6 +213,31 @@ If your AI Studio hub is configured with a **user-assigned managed identity**, t
 - `Microsoft.DocumentDB/databaseAccounts/write`
 
 Within the key vault, the user or service principal must have the create, get, delete, and purge access to the key through a key vault access policy. For more information, see [Azure Key Vault security](/azure/key-vault/general/security-features#controlling-access-to-key-vault-data).
+
+## Scenario: Connections using Microsoft Entra ID authentication
+
+When you create a connection that uses Microsoft Entra ID authentication, you must assign roles to your developers so they can access the resource.
+
+| Resource | Role | Description |
+|----------|------|-------------|
+| Azure AI Search | Contributor | List API-Keys to list indexes from Azure OpenAI Studio. |
+| Azure AI Search | Search Index Data Contributor | Required for indexing scenarios |
+| Azure AI services/OpenAI | Cognitive Services OpenAI Contributor | Call public ingestion API from Azure OpenAI Studio. |
+| Azure AI services/OpenAI | Cognitive Services User | List API-Keys from Azure OpenAI Studio. |
+| Azure AI services/OpenAI | Contributor | Allows for calls to the control plane. |
+
+When using Microsoft Entra ID authenticated connections in the chat playground, the services need to authorize each other to access the required resources. The admin performing the configuration needs to have the __Owner__ role on these resources to add role assignments. The following table lists the required role assignments for each resource. The __Assignee__ column refers to the system-assigned managed identity of the listed resource. The __Resource__ column refers to the resource that the assignee needs to access. For example, Azure AI OpenAI has a system-assigned managed identity that needs to be assigned the __Search Index Data Reader__ role for the Azure AI Search resource.
+
+| Role | Assignee | Resource | Description |
+|------|----------|----------|-------------|
+| Search Index Data Reader | Azure AI services/OpenAI | Azure AI Search | Inference service queries the data from the index. Only used for inference scenarios. |
+| Search Index Data Contributor | Azure AI services/OpenAI | Azure AI Search | Read-write access to content in indexes. Import, refresh, or query the documents collection of an index. Only used for ingestion and inference scenarios. |
+| Search Service Contributor | Azure AI services/OpenAI | Azure AI Search | Read-write access to object definitions (indexes, aliases, synonym maps, indexers, data sources, and skillsets). Inference service queries the index schema for auto fields mapping. Data ingestion service creates index, data sources, skill set, indexer, and queries the indexer status. |
+| Cognitive Services OpenAI Contributor | Azure AI Search | Azure AI services/OpenAI | Custom skill |
+| Cognitive Services OpenAI User | Azure OpenAI Resource for chat model | Azure OpenAI resource for embedding model | Required only if using two Azure OpenAI resources to communicate. |
+
+> [!NOTE]
+> The Cognitive Services OpenAI User role is only required if you are using two Azure OpenAI resources: one for your chat model and one for your embedding model. If this applies, enable Trusted Services AND ensure the Connection for your embedding model Azure OpenAI resource has EntraID enabled.  
 
 ## Scenario: Use an existing Azure OpenAI resource
 
