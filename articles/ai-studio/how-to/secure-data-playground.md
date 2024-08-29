@@ -191,6 +191,7 @@ User to Service Table
 | Contributor | Azure AI Search | List API-Keys to list indexes from Azure OpenAI Studio. |
 | Contributor | Azure Storage Account | List Account SAS to upload files from Azure OpenAI Studio. |
 | Contributor | The resource group or Azure subscription where the developer need to deploy the web app to | Deploy web app to the developer's Azure subscription. |
+| Storage File Data PrivilegedContributorRoleId | Azure Storage Account | Needed to Access File Share in Storage for Promptflow data |
 | Storage Blob Data Contributor | Azure Storage Account |  |
 | Search Index Data Contributor | Azure AI Search | Required for the indexing scenario |
 
