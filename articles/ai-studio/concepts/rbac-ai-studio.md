@@ -218,7 +218,7 @@ Within the key vault, the user or service principal must have the create, get, d
 
 When you create a connection that uses Microsoft Entra ID authentication, you must assign roles to your developers so they can access the resource.
 
-| Resource | Role | Description |
+| Resource connection | Role | Description |
 |----------|------|-------------|
 | Azure AI Search | Contributor | List API-Keys to list indexes from Azure OpenAI Studio. |
 | Azure AI Search | Search Index Data Contributor | Required for indexing scenarios |
