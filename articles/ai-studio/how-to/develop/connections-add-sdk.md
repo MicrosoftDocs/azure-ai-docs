@@ -7,7 +7,7 @@ ms.service: azure-ai-studio
 ms.custom:
   - build-2024
 ms.topic: how-to
-ms.date: 5/21/2024
+ms.date: 08/29/2024
 ms.reviewer: dantaylo
 ms.author: larryfr
 author: Blackmist
@@ -33,7 +33,7 @@ Connections are a way to authenticate and consume both Microsoft and other resou
 
 ## Authenticating with Microsoft Entra ID
 
-There are a variety of authentication methods for the different connection types. When using Microsoft Entra ID, in addition to creating the connection you might also need to grant Azure role-based access control permissions before the connection can be used. For more information, visit [Role-based access control](../../concepts/rbac-ai-studio.md#scenario-connections-using-microsoft-entra-id-authentication).
+There are various authentication methods for the different connection types. When you use Microsoft Entra ID, in addition to creating the connection you might also need to grant Azure role-based access control permissions before the connection can be used. For more information, visit [Role-based access control](../../concepts/rbac-ai-studio.md#scenario-connections-using-microsoft-entra-id-authentication).
 
 ## Azure OpenAI Service
 
