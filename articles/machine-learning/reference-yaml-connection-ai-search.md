@@ -32,7 +32,7 @@ ms.reviewer: ambadal
 | `type` | string | **Required.** The connection type. | `azure_ai_search` | `azure_ai_search` |
 | `is_shared` | boolean | `true` if the connection is shared across other projects in the hub; otherwise, `false`. | | `true` |
 | `endpoint` | string | **Required.** The URL of the endpoint. | | |
-| `api_key` | string | The API key used to authenticate the connection. If not provided, a Microsoft Entra ID (credential-less authentication) connection is created. | | |
+| `api_key` | string | The API key used to authenticate the connection. If not provided, the connection is authenticated via Microsoft Entra ID (credential-less authentication). | | |
 
 ## Remarks
 
