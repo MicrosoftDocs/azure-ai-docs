@@ -111,7 +111,9 @@ This section shows how to configure the various access controls needed for the r
 
 We recommend using [Microsoft Entra ID](/entra/fundamentals/whatis) instead of using API keys. In order to use this authentication, you need to set the right access controls and assign the right roles for your services. 
 
-Start in the project to find the AI Services resource:
+### Configure access for Azure AI Services/OpenAI
+
+Start in the project to find the AI Services/OpenAI resource:
 
 1. In [AI Studio](https://ai.azure.com), go to your project and select **Settings** from the left pane.
 1. Select **Connected resources**.
@@ -125,9 +127,9 @@ Specify the access control in the Azure portal:
 1. In the **Select members** pane that opens, search for the name of the user that you want to add the role assignment for. Select the user and then select **Select**.
 1. Continue through the wizard and select **Review + assign** to add the role assignment.
 
-Now go back to [AI Studio](https://ai.azure.com) **Settings** > **Connected Resources**.  This time select **Azure AI Search** in the connected resources list to open the resource details page.  Then select the Resource name again in the **Connection Details** page, which opens the resource in the Azure portal.
+### Configure access for Azure AI Search
 
-You'll do two settings in the portal for the Azure AI Search service:
+Now go back to [AI Studio](https://ai.azure.com) **Settings** > **Connected Resources**.  This time select **Azure AI Search** in the connected resources list to open the resource details page.  Then select the Resource name again in the **Connection Details** page, which opens the resource in the Azure portal.
 
 To enable role-based access control for your Azure AI Search service, follow these steps:
 
@@ -141,7 +143,7 @@ To enable role-based access control for your Azure AI Search service, follow the
 
 Next you grant your user identity (or the identity of the developer who will complete parts two and three) the **Search Index Data Contributor** and **Search Service Contributor** roles on the Azure AI Search service. These roles enable you to call the Azure AI Search service the associated user identity.
 
-In the Azure portal, assign the **Search Index Data Contributor** role to your Azure AI Search service, (using the same steps you did previously for the Azure OpenAI service):
+Still in the Azure portal for the Azure AI Search service, assign the **Search Index Data Contributor** role to your Azure AI Search service, (these are the same steps you did previously for the Azure OpenAI service):
 
 1. From the left page in the Azure portal, select **Access control (IAM)** > **+ Add** > **Add role assignment**.
 1. Search for the **Search Index Data Contributor** role and then select it. Then select **Next**.
