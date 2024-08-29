@@ -60,6 +60,7 @@ Follow these steps to create a console application and install the Speech SDK.
         }
 
         auto speechConfig = SpeechConfig::FromSubscription(speechKey, speechRegion);
+        speechConfig->SetProperty(PropertyId::SpeechServiceResponse_DiarizeIntermediateResults, "true"); 
 
         speechConfig->SetSpeechRecognitionLanguage("en-US");
 
@@ -73,6 +74,7 @@ Follow these steps to create a console application and install the Speech SDK.
         conversationTranscriber->Transcribing.Connect([](const ConversationTranscriptionEventArgs& e)
             {
                 std::cout << "TRANSCRIBING:" << e.Result->Text << std::endl;
+                std::cout << "Speaker ID=" << e.Result->SpeakerId << std::endl;
             });
 
         conversationTranscriber->Transcribed.Connect([](const ConversationTranscriptionEventArgs& e)

@@ -60,6 +60,11 @@ Follow these steps to create a new console application.
         elif evt.result.reason == speechsdk.ResultReason.NoMatch:
             print('\tNOMATCH: Speech could not be TRANSCRIBED: {}'.format(evt.result.no_match_details))
 
+    def conversation_transcriber_transcribing_cb(evt: speechsdk.SpeechRecognitionEventArgs):
+        print('TRANSCRIBING:')
+        print('\tText={}'.format(evt.result.text))
+        print('\tSpeaker ID={}'.format(evt.result.speaker_id))
+
     def conversation_transcriber_session_started_cb(evt: speechsdk.SessionEventArgs):
         print('SessionStarted event')
 
@@ -67,6 +72,7 @@ Follow these steps to create a new console application.
         # This example requires environment variables named "SPEECH_KEY" and "SPEECH_REGION"
         speech_config = speechsdk.SpeechConfig(subscription=os.environ.get('SPEECH_KEY'), region=os.environ.get('SPEECH_REGION'))
         speech_config.speech_recognition_language="en-US"
+        speech_config.set_property(property_id=speechsdk.PropertyId.SpeechServiceResponse_DiarizeIntermediateResults, value='true')
 
         audio_config = speechsdk.audio.AudioConfig(filename="katiesteve.wav")
         conversation_transcriber = speechsdk.transcription.ConversationTranscriber(speech_config=speech_config, audio_config=audio_config)
@@ -81,6 +87,7 @@ Follow these steps to create a new console application.
 
         # Connect callbacks to the events fired by the conversation transcriber
         conversation_transcriber.transcribed.connect(conversation_transcriber_transcribed_cb)
+        conversation_transcriber.transcribing.connect(conversation_transcriber_transcribing_cb)
         conversation_transcriber.session_started.connect(conversation_transcriber_session_started_cb)
         conversation_transcriber.session_stopped.connect(conversation_transcriber_session_stopped_cb)
         conversation_transcriber.canceled.connect(conversation_transcriber_recognition_canceled_cb)

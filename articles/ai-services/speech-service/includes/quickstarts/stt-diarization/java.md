@@ -88,6 +88,7 @@ Follow these steps to create a console application for conversation transcriptio
             SpeechConfig speechConfig = SpeechConfig.fromSubscription(speechKey, speechRegion);
             speechConfig.setSpeechRecognitionLanguage("en-US");
             AudioConfig audioInput = AudioConfig.fromWavFileInput("katiesteve.wav");
+            speechConfig.setProperty(PropertyId.SpeechServiceResponse_DiarizeIntermediateResults, "true");
             
             Semaphore stopRecognitionSemaphore = new Semaphore(0);
     
@@ -95,7 +96,7 @@ Follow these steps to create a console application for conversation transcriptio
             {
                 // Subscribes to events.
                 conversationTranscriber.transcribing.addEventListener((s, e) -> {
-                    System.out.println("TRANSCRIBING: Text=" + e.getResult().getText());
+                    System.out.println("TRANSCRIBING: Text=" + e.getResult().getText() + " Speaker ID=" + e.getResult().getSpeakerId() );
                 });
     
                 conversationTranscriber.transcribed.addEventListener((s, e) -> {
