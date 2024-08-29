@@ -738,5 +738,3 @@ Example of explicit recursion
 	]
 }
 ```
-
-##
