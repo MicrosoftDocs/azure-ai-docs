@@ -14,7 +14,7 @@ recommendations: false
 
 # Structured outputs
 
-Structured outputs make a model follow a [JSON Schema](https://json-schema.org/overview/what-is-jsonschema) definition that you provide as part of your chat completions API call. This is in contrast to the older [JSON mode](./json-mode.md) feature, which guaranteed valid JSON would be generated, but was unable to ensure strict adherence to the supplied schema.
+Structured outputs make a model follow a [JSON Schema](https://json-schema.org/overview/what-is-jsonschema) definition that you provide as part of your inference API call. This is in contrast to the older [JSON mode](./json-mode.md) feature, which guaranteed valid JSON would be generated, but was unable to ensure strict adherence to the supplied schema. Structured outputs is recommended for function calling, extracting structured data, and building complex multi-step workflows.
 
 ## Supported models
 
@@ -272,7 +272,10 @@ Output:
 
 ## Function calling with structured outputs
 
-Structured Outputs for function calling can be enabled with a single parameter, by supplying `strict: true`.
+Structured Outputs for function calling can be enabled with a single parameter, by supplying `strict: true`. 
+
+> [!NOTE]
+> Structured outputs is not supported with parallel function calls. When using structured outputs set `parallel_tool_calls` to `false`.
 
 # [Python (Microsoft Entra ID)](#tab/python-secure)
 
