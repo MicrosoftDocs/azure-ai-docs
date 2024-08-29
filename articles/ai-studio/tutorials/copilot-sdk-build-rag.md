@@ -137,7 +137,7 @@ Now we create our app and call the Azure OpenAI Service from code.
 
 The goal with this RAG-based application is to ground the model responses in your custom data. You use an Azure AI Search index that stores vectorized data from the embeddings model. The search index is used to retrieve relevant documents based on the user's question.
 
-If you don't have an Azure AI Search index already created, we walk through how to create one. If you already have an index to use, you can skip to the [set the search environment variables](#set-search-environment-variables) section. The search index is created on the Azure AI Search service that was either created or referenced in the previous step.
+If you don't have an Azure AI Search index already created, we walk through how to create one. If you already have an index to use, you can skip to the [set the search environment variable](#set-search-index) section. The search index is created on the Azure AI Search service that was either created or referenced in the previous step.
 
 1. Use your own data or [download the example Contoso Trek retail product data in a ZIP file](https://github.com/Azure-Samples/rag-data-openai-python-promptflow/tree/main/tutorial/data) to your local machine. Unzip the file into your **rag-tutorial** folder. This data is a collection of markdown files that represent product information. The data is structured in a way that is easy to ingest into a search index. You build a search index from this data.
 
@@ -174,7 +174,7 @@ If you don't have an Azure AI Search index already created, we walk through how 
 
 1. If you run the script again with the same index name, it creates a new version of the same index.
 
-### Set the search index environment variable
+### <a name="set-search-index"></a> Set the search index environment variable
 
 Once you have the index name you want to use (either by creating a new one, or referencing an existing one), add it to your **.env** file, like this:
 
