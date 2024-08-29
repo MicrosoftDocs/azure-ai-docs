@@ -14,7 +14,7 @@ recommendations: false
 
 # Structured outputs
 
-Structured outputs makes a model to follow a [JSON Schema](https://json-schema.org/overview/what-is-jsonschema) definition that you provide as part of your chat completions API call. This is in contrast to the older [JSON mode](./json-mode.md) feature which guaranteed valid JSON would be generated, but was unable to ensure strict adherence to the supplied schema.
+Structured outputs make a model follow a [JSON Schema](https://json-schema.org/overview/what-is-jsonschema) definition that you provide as part of your chat completions API call. This is in contrast to the older [JSON mode](./json-mode.md) feature, which guaranteed valid JSON would be generated, but was unable to ensure strict adherence to the supplied schema.
 
 ## Supported models
 
@@ -28,7 +28,7 @@ Support for JSON mode was first added in API version [`2024-08-01-preview`](http
 
 # [Python (Microsoft Entra ID)](#tab/python-secure)
 
-You can use [Pydantic](https://docs.pydantic.dev/latest/) to define object schemas in Python. Depending on what version of the [OpenAI](https://pypi.org/project/openai/) and [Pydantic libraries](https://pypi.org/project/pydantic/) you are running you may need to upgrade to a newer version. These examples were tested against `openai 1.42.0` and `pydantic 2.8.2`.
+You can use [`Pydantic`](https://docs.pydantic.dev/latest/) to define object schemas in Python. Depending on what version of the [OpenAI](https://pypi.org/project/openai/) and [`Pydantic` libraries](https://pypi.org/project/pydantic/) you're running you may need to upgrade to a newer version. These examples were tested against `openai 1.42.0` and `pydantic 2.8.2`.
 
 ```cmd
 pip install openai pydantic --upgrade
@@ -115,7 +115,7 @@ name='Science Fair' date='Friday' participants=['Alice', 'Bob']
 
 # [Python (key-based auth)](#tab/python)
 
-You can use [Pydantic](https://docs.pydantic.dev/latest/) to define object schemas in Python. Depending on what version of the [OpenAI](https://pypi.org/project/openai/) and [Pydantic libraries](https://pypi.org/project/pydantic/) you are running you may need to upgrade to a newer version. These examples were tested against `openai 1.42.0` and `pydantic 2.8.2`.
+You can use [`Pydantic`](https://docs.pydantic.dev/latest/) to define object schemas in Python. Depending on what version of the [OpenAI](https://pypi.org/project/openai/) and [`Pydantic` libraries](https://pypi.org/project/pydantic/) you're running you may need to upgrade to a newer version. These examples were tested against `openai 1.42.0` and `pydantic 2.8.2`.
 
 ```cmd
 pip install openai pydantic --upgrade
@@ -444,7 +444,7 @@ curl -X POST  https://YOUR_RESOURCE_NAME.openai.azure.com/openai/deployments/YOU
 
 ## Supported schemas and limitations
 
-Azure OpenAI structured outputs supports the same subset of the [JSON Schema](https://json-schema.org/docs) as OpenAI.
+Azure OpenAI structured outputs support the same subset of the [JSON Schema](https://json-schema.org/docs) as OpenAI.
 
 ### Supported types
 
@@ -487,7 +487,7 @@ All fields or function parameters must be included as required. In the example b
     }
 ```
 
-If needed, it is possible to emulate an optional parameter by using a union type with `null`. In this example this is achieved with the line `"type": ["string", "null"],`.
+If needed, it's possible to emulate an optional parameter by using a union type with `null`. In this example, this is achieved with the line `"type": ["string", "null"],`.
 
 ```json
 {
@@ -517,11 +517,11 @@ If needed, it is possible to emulate an optional parameter by using a union type
 
 ### Nesting depth
 
-A schema may have up to 100 object properties total, with up to 5 levels of nesting
+A schema may have up to 100 object properties total, with up to five levels of nesting
 
 ### additionalProperties: false must always be set in objects
 
-This controls if an object can have additional key value pairs that were not defined in the JSON Schema. In order to use structured outputs you must set this value to false.
+This property controls if an object can have additional key value pairs that weren't defined in the JSON Schema. In order to use structured outputs, you must set this value to false.
 
 ### Key ordering
 
