@@ -645,7 +645,7 @@ Supported example:
 
 ### Recursive schemas are supported
 
-Example using # for root recursion
+Example using # for root recursion:
 
 ```json
 {
@@ -697,7 +697,7 @@ Example using # for root recursion
     }
 ```
 
-Example of explicit recursion
+Example of explicit recursion:
 
 ```json
 {
