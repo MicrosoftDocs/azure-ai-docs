@@ -31,7 +31,7 @@ The following table summarizes the changes made in this article:
 
 ## Prerequisites
 
-Ensure that the AI Studio hub is deployed with the __Identity-based access__ setting for the Storage account. This configuration is required for the correct access control and security of your AI Studio Hub. You can verify this in two ways:
+Ensure that the AI Studio hub is deployed with the __Identity-based access__ setting for the Storage account. This configuration is required for the correct access control and security of your AI Studio Hub. You can verify this configuration using one of the following methods:
 
 - In the Azure portal, select the hub and then select __Settings__, __Properties__, and __Options__. At the bottom of the page, verify that __Storage account access type__ is set to __Identity-based access__.
 - If deploying using Azure Resource Manager or Bicep templates, include the `systemDatastoresAuthMode: 'identity'` property in your deployment template.
@@ -55,7 +55,7 @@ If you have an __existing Azure AI Studio hub__ that isn't configured to use a m
 
     :::image type="content" source="../media/how-to/secure-playground-on-your-data/select-network-isolation-configuration.png" alt-text="Screenshot of the Azure AI Studio hub settings with allow internet outbound selected.":::
 
-## Configure AI services Resource
+## Configure Azure AI services Resource
 
 Depending on your configuration, you might use an Azure AI services resource that also includes Azure OpenAI or a standalone Azure OpenAI resource. The steps in this section configure an AI services resource. The same steps apply to an Azure OpenAI resource.
 
@@ -164,40 +164,42 @@ Repeat these steps for each resource that you want to connect to using Microsoft
 
 ## Assign roles to resources and users
 
-The services need to authorize each other to access the required resources. The admin performing the configuration needs to have the __Owner__ role on these resources to add role assignments. The following table lists the required role assignments for each resource. The __Assignee__ column refers to the system-assigned managed identity of the listed resource. The __Resource__ column refers to the resource that the assignee needs to access. For example, the Azure AI Search has a system-assigned managed identity that needs to be assigned the __Storage Blob Data Contributor__ role for the Azure Storage Account.
+The services need to authorize each other to access the connected resources. The admin performing the configuration needs to have the __Owner__ role on these resources to add role assignments. The following table lists the required role assignments for each resource. The __Assignee__ column refers to the system-assigned managed identity of the listed resource. The __Resource__ column refers to the resource that the assignee needs to access. For example, the Azure AI Search has a system-assigned managed identity that needs to be assigned the __Storage Blob Data Contributor__ role for the Azure Storage Account.
 
-| Role | Assignee | Resource | Description |
-|------|----------|----------|-------------|
-| Search Index Data Reader | Azure AI services/OpenAI | Azure AI Search | Inference service queries the data from the index. Only used for inference scenarios. |
-| Search Index Data Contributor | Azure AI services/OpenAI | Azure AI Search | Read-write access to content in indexes. Import, refresh, or query the documents collection of an index. Only used for ingestion and inference scenarios. |
-| Search Service Contributor | Azure AI services/OpenAI | Azure AI Search | Read-write access to object definitions (indexes, aliases, synonym maps, indexers, data sources, and skillsets). Inference service queries the index schema for auto fields mapping. Data ingestion service creates index, data sources, skill set, indexer, and queries the indexer status. |
-| Storage Blob Data Contributor | Azure AI services/OpenAI | Azure Storage Account | Reads from the input container, and writes the preprocess result to the output container. |
-| Cognitive Services OpenAI Contributor | Azure AI Search | Azure AI services/OpenAI | Custom skill |
-| Storage Blob Data Contributor | Azure AI Search | Azure Storage Account | Reads blob and writes knowledge store. |
-| Cognitive Services OpenAI User | Azure OpenAI Resource for chat model | Azure OpenAI resource for embedding model | Required only if using two Azure OpenAI resources to communicate. |
+| Resource | Role | Assignee | Description |
+|----------|------|----------|-------------|
+| Azure AI Search | Search Index Data Contributor | Azure AI services/OpenAI | Read-write access to content in indexes. Import, refresh, or query the documents collection of an index. Only used for ingestion and inference scenarios. |
+| Azure AI Search | Search Index Data Reader | Azure AI services/OpenAI | Inference service queries the data from the index. Only used for inference scenarios. |
+| Azure AI Search | Search Service Contributor | Azure AI services/OpenAI | Read-write access to object definitions (indexes, aliases, synonym maps, indexers, data sources, and skillsets). Inference service queries the index schema for auto fields mapping. Data ingestion service creates index, data sources, skill set, indexer, and queries the indexer status. |
+| Azure AI services/OpenAI | Cognitive Services OpenAI Contributor | Azure AI Search | Custom skill |
+| Azure OpenAI Resource for chat model | Cognitive Services OpenAI User | Azure OpenAI resource for embedding model | Required only if using two Azure OpenAI resources to communicate. |
+| Azure Storage Account | Storage Blob Data Contributor | Azure AI Search | Reads blob and writes knowledge store. |
+| Azure Storage Account | Storage Blob Data Contributor | Azure AI services/OpenAI | Reads from the input container, and writes the preprocess result to the output container. |
 
 > [!NOTE]
 > The Cognitive Services OpenAI User role is only required if you are using two Azure OpenAI resources: one for your chat model and one for your embedding model. If this applies, enable Trusted Services AND ensure the Connection for your embedding model Azure OpenAI resource has EntraID enabled.  
 
-To enable your developers to use these resources to build applications, add the developers' identity with the following role assignments to the resources. 
+To enable your developers to use these resources to build applications, add the developers' identity with the following role assignments to the listed resources.
 
-User to Service Table 
-
-| Role | Resource | Description |
-|------|----------|-------------|
-| Cognitive Services OpenAI Contributor | Azure AI services/OpenAI | Call public ingestion API from Azure OpenAI Studio. |
-| Cognitive Services User | Azure AI services/OpenAI | List API-Keys from Azure OpenAI Studio. |
-| Contributor | Azure AI services/OpenAI | Allows for calls to the control plane. |
-| Contributor | Azure AI Search | List API-Keys to list indexes from Azure OpenAI Studio. |
-| Contributor | Azure Storage Account | List Account SAS to upload files from Azure OpenAI Studio. |
-| Contributor | The resource group or Azure subscription where the developer need to deploy the web app to | Deploy web app to the developer's Azure subscription. |
-| Storage File Data PrivilegedContributorRoleId | Azure Storage Account | Needed to Access File Share in Storage for Promptflow data |
-| Storage Blob Data Contributor | Azure Storage Account |  |
-| Search Index Data Contributor | Azure AI Search | Required for the indexing scenario |
+| Resource | Role | Description |
+|----------|------|-------------|
+| Azure AI Search | Contributor | List API-Keys to list indexes from Azure OpenAI Studio. |
+| Azure AI Search | Search Index Data Contributor | Required for the indexing scenario. |
+| Azure AI services/OpenAI | Cognitive Services OpenAI Contributor | Call public ingestion API from Azure OpenAI Studio. |
+| Azure AI services/OpenAI | Cognitive Services User | List API-Keys from Azure OpenAI Studio. |
+| Azure AI services/OpenAI | Contributor | Allows for calls to the control plane. |
+| Azure Storage Account | Contributor | List Account SAS to upload files from Azure OpenAI Studio. |
+| Azure Storage Account | Storage Blob Data Contributor | Needed for developers to read and write to blob storage. |
+| Azure Storage Account | Storage File Data PrivilegedContributorRoleId | Needed to Access File Share in Storage for Promptflow data. |
+| The resource group or Azure subscription where the developer need to deploy the web app to | Contributor | Deploy web app to the developer's Azure subscription. |
 
 ## Use your data in AI Studio  
 
 Now, the data you add to AI Studio is secured to the isolated network provided by your Azure AI Studio hub and project. For an example of using data, visit the [build a question and answer copilot](../tutorials/deploy-copilot-ai-studio.md) tutorial.
+
+## Deploy web apps
+
+For information on configuring web app deployments, visit the [Use Azure OpenAI on your data securely](/azure/ai-services/openai/how-to/use-your-data-securely#web-app) article.
 
 ## Limitations
 
