@@ -29,6 +29,14 @@ The following table summarizes the changes made in this article:
 | Service permissions | API Keys | Role-based access control | API keys provide full access to the service. Role-based access control provides granular access to the service. |
 | Network access | Public | Private | Using a private network prevents entities outside the private network from accessing resources secured by it. |
 
+## Prerequisites
+
+Ensure that the AI Studio hub is deployed with the __Identity-based access__ setting for the Storage account. This configuration is required for the correct access control and security of your AI Studio Hub. You can verify this in two ways:
+
+- In the Azure portal, select the hub and then select __Settings__, __Properties__, and __Options__. At the bottom of the page, verify that __Storage account access type__ is set to __Identity-based access__.
+- If deploying using Azure Resource Manager or Bicep templates, include the `systemDatastoresAuthMode: 'identity'` property in your deployment template.
+
+
 ## Configure Network Isolated AI Studio Hub
 
 If you're __creating a new Azure AI Studio hub__, use one of the following documents to create a hub with network isolation:
@@ -78,7 +86,6 @@ Depending on your configuration, you might use an Azure AI services resource tha
     ```
 
     For more information, visit the [Disable local authentication in Azure AI services](/azure/ai-services/disable-local-auth) article.
-    
 
 ## Configure Azure AI Search
 
