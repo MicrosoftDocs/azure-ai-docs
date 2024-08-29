@@ -16,7 +16,7 @@ ms.date: 11/02/2023
 
 # LLM tool
 
-The large language model (LLM) tool in prompt flow enables you to take advantage of widely used large language models like [OpenAI](https://platform.openai.com/), or [Azure OpenAI Service](../../../cognitive-services/openai/overview.md), or any language model supported by the [Azure AI model inference API](https://aka.ms/azureai/modelinference) for natural language processing.
+The large language model (LLM) tool in prompt flow enables you to take advantage of widely used large language models like [OpenAI](https://platform.openai.com/), or [Azure OpenAI Service](../../../ai-services/openai/overview.md), or any language model supported by the [Azure AI model inference API](https://aka.ms/azureai/modelinference) for natural language processing.
 
 Prompt flow provides a few different large language model APIs:
 
@@ -43,8 +43,8 @@ Create OpenAI resources:
 
 - **Models deployed to Serverless API endpoints**
 
-  - Create an endpoint with the model from the catalog you are interested [and deploy it with a serverless API endpoint](../..deploy-models-serverless.md).
-  - To use models deployed to serverless API endpoints supported by the [Azure AI model inference API](https://aka.ms/azureai/modelinference), like Mistral, Cohere, Meta Llama, or Microsoft family of models (among others), you need to [create a connection in your project to your endpoint](../../deploy-models-serverless-connect.md?#create-a-serverless-api-endpoint-connection)
+  - Create an endpoint with the model from the catalog you are interested [and deploy it with a serverless API endpoint](../../deploy-models-serverless.md).
+  - To use models deployed to serverless API endpoints supported by the [Azure AI model inference API](https://aka.ms/azureai/modelinference), like Mistral, Cohere, Meta Llama, or Microsoft family of models (among others), you need to [create a connection in your project to your endpoint](../../how-to-connect-models-serverless.md?#create-a-serverless-api-endpoint-connection)
 
 ## Connections
 
