@@ -327,9 +327,6 @@
         - name: Data preparation with Azure Synapse
           displayName: data, data prep, spark, spark pool, cluster, spark cluster,dataset, datastore
           href: ./v1/how-to-data-prep-synapse-spark-pool.md
-        - name: DevOps for data ingestion
-          displayName: data, ingestion, devops
-          href: ./v1/how-to-cicd-data-ingestion.md
         - name: Import data in the designer
           displayName: designer, data, import, dataset, datastore
           href: ./v1/how-to-designer-import-data.md

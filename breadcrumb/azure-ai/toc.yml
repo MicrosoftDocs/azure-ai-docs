@@ -26,8 +26,8 @@ items:
       tocHref: /azure/ai-services/custom-vision-service/
       topicHref: /azure/ai-services/custom-vision-service/
     - name: Language Understanding (LUIS)
-      tocHref: /azure/ai-services/LUIS/
-      topicHref: /azure/ai-services/LUIS/
+      tocHref: /azure/ai-services/luis/
+      topicHref: /azure/ai-services/luis/
     - name: QnA Maker
       tocHref: /azure/ai-services/qnamaker/
       topicHref: /azure/ai-services/qnamaker/
