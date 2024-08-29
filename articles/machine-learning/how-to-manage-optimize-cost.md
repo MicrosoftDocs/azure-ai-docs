@@ -39,7 +39,7 @@ For information on planning and monitoring costs, see [Plan to manage costs for 
 > The preview version is provided without a service level agreement. We don't recommend preview versions for production workloads. Certain features might not be supported or might have constrained capabilities.
 > For more information, see [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
 
-## Use the Azure Machine Learning compute cluster
+## <a id="use-azure-machine-learning-compute-cluster-amlcompute"></a>Use the Azure Machine Learning compute cluster
 
 With constantly changing data, you need fast and streamlined model training and retraining to maintain accurate models. However, continuous training comes at a cost, especially for deep learning models on GPUs.
 
