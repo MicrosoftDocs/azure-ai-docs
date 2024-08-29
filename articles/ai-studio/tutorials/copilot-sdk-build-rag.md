@@ -93,7 +93,7 @@ Replace the placeholders with the following values:
 
 You need two models to build a RAG-based chat app: an Azure OpenAI chat model (`gpt-3.5-turbo`) and an Azure OpenAI embedding model (`text-embedding-ada-002`). Deploy these models in your Azure AI Studio project, using this set of steps for each model.
 
-These steps deploy a model to a real-time endpoint from the AI Studio [model catalog](./model-catalog-overview.md):
+These steps deploy a model to a real-time endpoint from the AI Studio [model catalog](../how-to/model-catalog-overview.md):
 
 1. Sign in to [AI Studio](https://ai.azure.com) and go to the **Home** page.
 1. Select **Model catalog** from the left sidebar.
@@ -111,17 +111,17 @@ These steps deploy a model to a real-time endpoint from the AI Studio [model cat
  
 When you deploy the `gpt-3.5-turbo` model, find the following values in the **View Code** section, and add them to your **.env** file:
 
-    ```env
-    AZURE_OPENAI_ENDPOINT=<chat_model_endpoint_value>
-    AZURE_OPENAI_DEPLOYMENT_NAME=<chat_model_deployment_name>
-    AZURE_OPENAI_API_VERSION=<chat_model_api_version>
+```env
+AZURE_OPENAI_ENDPOINT=<chat_model_endpoint_value>
+AZURE_OPENAI_DEPLOYMENT_NAME=<chat_model_deployment_name>
+AZURE_OPENAI_API_VERSION=<chat_model_api_version>
     ```
 
 When you deploy the `text-embedding-ada-002` model, add the name to your **.env** file:
 
-    ```env
-    AZURE_OPENAI_EMBEDDING_DEPLOYMENT=<embedding_model_deployment_name>
-    ```
+```env
+AZURE_OPENAI_EMBEDDING_DEPLOYMENT=<embedding_model_deployment_name>
+```
 
 ## Install the Azure CLI and sign in 
 
@@ -202,7 +202,7 @@ The chat app implementation logic is in the **copilot.py** file. This file conta
 1. Then create a file called **copilot.py** in the **chat app_flow** folder.
 1. Add the following code to the **copilot.py** file:
 
-    :::code language="python" source="~/rag-data-openai-python-promptflow-main/tutorial/chat app_flow/copilot.py":::
+    :::code language="python" source="~/rag-data-openai-python-promptflow-main/tutorial/copilot_flow/copilot.py":::
 
 The **copilot.py** file contains two key functions: `get_documents()` and `get_chat_response()`.
 
@@ -230,7 +230,7 @@ The **chat.prompty** file is simple, and similar to the **chat.prompty** in the 
 1. Add the file **chat.prompty** in the **chat app_flow** directory. The file represents the call to the chat completion model, with the system prompt, chat history, and document context provided.
 1. Add this code to the **chat.prompty** file:
 
-    :::code language="yaml" source="~/rag-data-openai-python-promptflow-main/tutorial/chat app_flow/chat.prompty":::
+    :::code language="yaml" source="~/rag-data-openai-python-promptflow-main/tutorial/copilot_flow/chat.prompty":::
 
 ### Prompt template for chat history
 
@@ -243,7 +243,7 @@ Instead of passing only the user's query to be embedded, we need to generate a n
 1. Create the file **queryIntent.prompty** in the **chat app_flow** folder. 
 1. Enter this code for specific details about the prompt format and few-shot examples.
 
-    :::code language="yaml" source="~/rag-data-openai-python-promptflow-main/tutorial/chat app_flow/queryIntent.prompty":::
+    :::code language="yaml" source="~/rag-data-openai-python-promptflow-main/tutorial/copilot_flow/queryIntent.prompty":::
 
 The simple system message in our **queryIntent.prompty** file achieves the minimum required for the RAG solution to work with chat history.
 
@@ -251,7 +251,7 @@ The simple system message in our **queryIntent.prompty** file achieves the minim
 
 Create the file **requirements.txt** in the **chat app_flow** folder. Add this content:
 
-:::code language="txt" source="~/rag-data-openai-python-promptflow-main/tutorial/chat app_flow/requirements.txt":::
+:::code language="txt" source="~/rag-data-openai-python-promptflow-main/tutorial/copilot_flow/requirements.txt":::
 
 These packages are required for the flow to run locally and in a deployed environment.
 
@@ -263,7 +263,7 @@ This yaml specifies the entry function, which is the `get_chat_response` functio
 
 Create the file **flow.flex.yaml** in the **chat app_flow** folder. Add this content:
 
-:::code language="yaml" source="~/rag-data-openai-python-promptflow-main/tutorial/chat app_flow/flow.flex.yaml":::
+:::code language="yaml" source="~/rag-data-openai-python-promptflow-main/tutorial/copilot_flow/flow.flex.yaml":::
 
 ## Use prompt flow to test your chat app
 
@@ -272,13 +272,13 @@ Use prompt flow's testing capability to see how your chat app performs as expect
 Run the flow using this prompt flow command:
 
 ```bash
-pf flow test --flow ./chat app_flow --inputs chat_input="how much do the Trailwalker shoes cost?"
+pf flow test --flow ./copilot_flow --inputs chat_input="how much do the Trailwalker shoes cost?"
 ```
 
 Alternatively, you can run the flow interactively with the `--ui` flag. 
 
 ```bash
-pf flow test --flow ./chat app_flow --ui
+pf flow test --flow ./copilot_flow --ui
 ```
 
 When you use `--ui`, the interactive sample chat experience opens a window in your local browser. 
@@ -297,12 +297,12 @@ Because our application implements RAG, we had to add [extra logic to handle cha
 
 To test with chat history, create a file called **input_with_chat_history.json** in the **chat app_flow** folder, and paste in this content:
 
-:::code language="json" source="~/rag-data-openai-python-promptflow-main/tutorial/chat app_flow/input_with_chat_history.json":::
+:::code language="json" source="~/rag-data-openai-python-promptflow-main/tutorial/copilot_flow/input_with_chat_history.json":::
 
 To test with this file, run:
 
 ```bash
-pf flow test --flow ./chat app_flow --inputs ./chat app_flow/input_with_chat_history.json
+pf flow test --flow ./copilot_flow --inputs ./copilot_flow/input_with_chat_history.json
 ```
 
 The expected output is something like: "The Alpine Explorer Tent is priced at $350."

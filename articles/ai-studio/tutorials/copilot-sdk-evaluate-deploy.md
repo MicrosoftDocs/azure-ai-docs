@@ -27,7 +27,7 @@ In this part three, you learn how to:
 
 ## Prerequisites
 
-- You must complete [part 2 of the tutorial series](coilot-sdk-build-rag.md) to build the chat application.
+- You must complete [part 2 of the tutorial series](copilot-sdk-build-rag.md) to build the chat application.
 
 - You must have the necessary permissions to add role assignments in your Azure subscription. Granting permissions by role assignment is only allowed by the **Owner** of the specific Azure resources. You might need to ask your Azure subscription owner (who might be your IT admin) for help with endpoint access later in the tutorial.
 
@@ -259,7 +259,7 @@ To grant yourself access to the Azure AI Services resource that you're using:
 
 You might need to ask your Azure subscription owner (who might be your IT admin) for help with this section.
 
-Similar to how you assigned the **Search Index Data Contributor** [role to your Azure AI Search service](./copilot-sdk-build-rag.md#configure-access-for-the-azure-ai-search-service), you need to assign the same role for your endpoint.
+Similar to how you assigned the **Search Index Data Contributor** [role to your Azure AI Search service](./copilot-sdk-create-resources.md#configure), you need to assign the same role for your endpoint.
 
 1. In Azure AI Studio, select **Settings** and navigate to the connected **Azure AI Search** service. 
 1. Select the link to open a summary of the resource. Select the link on the summary page to open the resource in the Azure portal.

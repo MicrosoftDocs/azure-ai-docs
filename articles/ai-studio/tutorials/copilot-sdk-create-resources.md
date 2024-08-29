@@ -94,18 +94,18 @@ Otherwise, you can create an Azure AI Search service using the [Azure portal](ht
 
 ### Create an Azure AI Search connection
 
-If you already have an Azure AI Search connection in your project, you can skip to [configure access for the Azure AI Search service](#configure-access-for-the-azure-ai-search-service). Only use an existing connection if it's in the same location as your project. @@ DO WE KNOW IF THIS IS TRUE?
+If you already have an Azure AI Search connection in your project, you can skip to [configure access for the Azure AI Search service](#configure). Only use an existing connection if it's in the same location as your project.
 
 In the Azure AI Studio, check for an Azure AI Search connected resource.
 
 1. In [AI Studio](https://ai.azure.com), go to your project and select **Settings** from the left pane.
 1. In the **Connected resources** section, look to see if you have a connection of type Azure AI Search.
-1. If you have an Azure AI Search connection, verify that it is in the same location as your project. If so, you can skip ahead to [configure access for the Azure AI Search service](#configure-access-for-the-azure-ai-search-service).
+1. If you have an Azure AI Search connection, verify that it is in the same location as your project. If so, you can skip ahead to [configure access for the Azure AI Search service](#configure).
 1. Otherwise, select **New connection** and then **Azure AI Search**.
 1. Find your Azure AI Search service in the options and select **Add connection**.
 1. Continue through the wizard to create the connection. For more information about adding connections, see [this how-to guide](../how-to/connections-add.md#create-a-new-connection).
 
-## Configure access
+## <a name="configure"></a> Configure access
 
 This section shows how to configure the various access controls needed for the resources you created in the previous sections.
 
