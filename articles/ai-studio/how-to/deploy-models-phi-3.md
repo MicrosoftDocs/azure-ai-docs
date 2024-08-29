@@ -256,7 +256,7 @@ print_stream(result)
 Explore other parameters that you can specify in the inference client. For a full list of all the supported parameters and their corresponding documentation, see [Azure AI Model Inference API reference](https://aka.ms/azureai/modelinference).
 
 ```python
-from azure.ai.inference.models import ChatCompletionsResponseFormat
+from azure.ai.inference.models import ChatCompletionsResponseFormatText
 
 response = client.complete(
     messages=[
@@ -269,7 +269,7 @@ response = client.complete(
     stop=["<|endoftext|>"],
     temperature=0,
     top_p=1,
-    response_format={ "type": ChatCompletionsResponseFormat.TEXT },
+    response_format=ChatCompletionsResponseFormatText(),
 )
 ```
 

@@ -239,7 +239,7 @@ print_stream(result)
 Explore other parameters that you can specify in the inference client. For a full list of all the supported parameters and their corresponding documentation, see [Azure AI Model Inference API reference](https://aka.ms/azureai/modelinference).
 
 ```python
-from azure.ai.inference.models import ChatCompletionsResponseFormat
+from azure.ai.inference.models import ChatCompletionsResponseFormatText
 
 response = client.complete(
     messages=[
@@ -252,7 +252,7 @@ response = client.complete(
     stop=["<|endoftext|>"],
     temperature=0,
     top_p=1,
-    response_format={ "type": ChatCompletionsResponseFormat.TEXT },
+    response_format=ChatCompletionsResponseFormatText(),
 )
 ```
 
@@ -264,13 +264,15 @@ Mistral premium chat models can create JSON outputs. Set `response_format` to `j
 
 
 ```python
+from azure.ai.inference.models import ChatCompletionsResponseFormatJSON
+
 response = client.complete(
     messages=[
         SystemMessage(content="You are a helpful assistant that always generate responses in JSON format, using."
                       " the following format: { ""answer"": ""response"" }."),
         UserMessage(content="How many languages are in the world?"),
     ],
-    response_format={ "type": ChatCompletionsResponseFormat.JSON_OBJECT }
+    response_format=ChatCompletionsResponseFormatJSON()
 )
 ```
 
