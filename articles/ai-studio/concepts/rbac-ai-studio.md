@@ -222,7 +222,7 @@ When you create a connection that uses Microsoft Entra ID authentication, you mu
 |----------|------|-------------|
 | Azure AI Search | Contributor | List API-Keys to list indexes from Azure OpenAI Studio. |
 | Azure AI Search | Search Index Data Contributor | Required for indexing scenarios |
-| Azure AI services/OpenAI | Cognitive Services OpenAI Contributor | Call public ingestion API from Azure OpenAI Studio. |
+| Azure AI services/Azure OpenAI | Cognitive Services OpenAI Contributor | Call public ingestion API from Azure OpenAI Studio. |
 | Azure AI services/OpenAI | Cognitive Services User | List API-Keys from Azure OpenAI Studio. |
 | Azure AI services/OpenAI | Contributor | Allows for calls to the control plane. |
 
