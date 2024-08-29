@@ -22,7 +22,7 @@ Currently only `gpt-4o` version: `2024-08-06` supports structured outputs.
 
 ## API support
 
-Support for JSON mode was first added in API version [`2024-08-01-preview`](https://github.com/Azure/azure-rest-api-specs/blob/main/specification/cognitiveservices/data-plane/AzureOpenAI/inference/preview/2024-08-01-preview/inference.json).
+Support for structured outputs was first added in API version [`2024-08-01-preview`](https://github.com/Azure/azure-rest-api-specs/blob/main/specification/cognitiveservices/data-plane/AzureOpenAI/inference/preview/2024-08-01-preview/inference.json).
 
 ## Getting started
 
@@ -319,7 +319,7 @@ from enum import Enum
 from typing import Union
 from pydantic import BaseModel
 import openai
-from openai import OpenAI
+from openai import AzureOpenAI
 
 client = AzureOpenAI(
   azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT"), 
