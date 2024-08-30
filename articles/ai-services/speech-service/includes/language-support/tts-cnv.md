@@ -38,7 +38,7 @@ ms.author: eur
 | `es-ES` | Spanish (Spain) | Custom neural voice Pro<br/><br/>Custom neural voice lite (Preview)<br/><br/>Cross-lingual voice source and target |
 | `es-MX` | Spanish (Mexico) | Custom neural voice Pro<br/><br/>Custom neural voice lite (Preview)<br/><br/>Cross-lingual voice source and target |
 | `fi-FI` | Finnish (Finland) | Custom neural voice Pro<br/><br/>Cross-lingual voice target |
-| `fr-BE` | French (Belgium) | Custom neural voice Pro<br/> |
+| `fr-BE` | French (Belgium) | Custom neural voice Pro<br/><br/>Cross-lingual voice target |
 | `fr-CA` | French (Canada) | Custom neural voice Pro<br/><br/>Cross-lingual voice source and target  |
 | `fr-CH` | French (Switzerland) | Custom neural voice Pro<br/><br/>Cross-lingual voice target|
 | `fr-FR` | French (France) | Custom neural voice Pro<br/><br/>Custom neural voice lite (Preview)<br/><br/>Cross-lingual voice source and target |
