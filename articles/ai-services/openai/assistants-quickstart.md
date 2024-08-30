@@ -18,15 +18,9 @@ recommendations: false
 
 Azure OpenAI Assistants (Preview) allows you to create AI assistants tailored to your needs through custom instructions and augmented by advanced tools like code interpreter, and custom functions.
 
-::: zone pivot="programming-language-studio"
-
-[!INCLUDE [Azure OpenAI Studio quickstart](includes/assistants-studio.md)]
-
-::: zone-end
-
 ::: zone pivot="programming-language-ai-studio"
 
-[!INCLUDE [AI Studio (Preview)](includes/assistants-ai-studio.md)]
+[!INCLUDE [AI Studio](includes/assistants-ai-studio.md)]
 
 ::: zone-end
 
