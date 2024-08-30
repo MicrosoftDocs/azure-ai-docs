@@ -1,5 +1,5 @@
 ---
-title: Query field extraction - Document Intelligence (formerly Form Recognizer)
+title: Query field extraction - Document Intelligence 
 titleSuffix: Azure AI services
 description: Use Document Intelligence query fields to extend model schema.
 author: laujan
