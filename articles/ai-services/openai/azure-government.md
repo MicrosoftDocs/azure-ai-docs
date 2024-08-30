@@ -80,7 +80,7 @@ From the Manage Commitments view, you can do several things:
 
 | Setting | Notes |
 |---------|-------|
-| **Select a resource** | Choose the resource where you create the provisioned deployment. Once you have purchase the commitment, you are unable to use the quota on another resource until the current commitment expires. |
+| **Select a resource** | Choose the resource where you create the provisioned deployment. Once you have purchased the commitment, you are unable to use the quota on another resource until the current commitment expires. |
 | **Select a commitment type** | Select Provisioned. (Provisioned is equivalent to Provisioned Managed) |
 | **Current uncommitted provisioned quota** | The number of PTUs currently available for you to commit to this resource. | 
 | **Amount to commit (PTU)** | Choose the number of PTUs you're committing to. **This number can be increased during the commitment term, but can't be decreased**. Enter values in increments of 50 for the commitment type Provisioned. |
