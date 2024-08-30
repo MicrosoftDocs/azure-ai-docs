@@ -78,7 +78,7 @@ You need an Azure AI Search service and connection in order to create a search i
 
 ### Create an Azure AI Search service
 
-If you already have an Azure AI Search service in the same location as your project, you can skip to the [next section](#create-an-azure-ai-search-connection).
+If you already have an Azure AI Search service in the same location as your project, you can skip to the [next section](#connect).
 
 Otherwise, you can create an Azure AI Search service using the [Azure portal](https://portal.azure.com).
 
@@ -92,7 +92,7 @@ Otherwise, you can create an Azure AI Search service using the [Azure portal](ht
 1. Confirm the details of your Azure AI Search service, including estimated cost.
 1. Select **Create** to create the Azure AI Search service.
 
-### Create an Azure AI Search connection
+### <a name="connect"></a>Connect the Azure AI Search to your project
 
 If you already have an Azure AI Search connection in your project, you can skip to [configure access for the Azure AI Search service](#configure). Only use an existing connection if it's in the same location as your project.
 
@@ -117,7 +117,7 @@ Start in the project to find the AI Services/OpenAI resource:
 
 1. In [AI Studio](https://ai.azure.com), go to your project and select **Settings** from the left pane.
 1. Select **Connected resources**.
-1. For each resource, select the **AI Services** or **Azure OpenAI** in the connected resources list to open the resource details page.  Then select the Resource name again in the **Connection Details** page, which opens the resource in the Azure portal.
+1. Select the **AI Services** or **Azure OpenAI** name in the connected resources list to open the resource details page.  Then select the resource name again in the **Connection Details** page, which opens the resource in the Azure portal.
 
 Specify the access control in the Azure portal:
 
@@ -129,7 +129,7 @@ Specify the access control in the Azure portal:
 
 ### Configure access for Azure AI Search
 
-Now go back to [AI Studio](https://ai.azure.com) **Settings** > **Connected Resources**.  This time select **Azure AI Search** in the connected resources list to open the resource details page.  Then select the Resource name again in the **Connection Details** page, which opens the resource in the Azure portal.
+Now go back to [AI Studio](https://ai.azure.com) **Settings** > **Connected Resources**.  This time select the **Azure AI Search** name in the connected resources list to open the resource details page.  Then select the resource name again in the **Connection Details** page, which opens the resource in the Azure portal.
 
 To enable role-based access control for your Azure AI Search service, follow these steps:
 
@@ -139,9 +139,9 @@ To enable role-based access control for your Azure AI Search service, follow the
     :::image type="content" source="../media/tutorials/develop-rag-copilot-sdk/search-access-control.png" alt-text="Screenshot shows API Access control setting.":::
 
 > [!WARNING]
-> You can use role-based access control locally because you run `az login` later in this tutorial. But when you deploy your app in [part 2 of the tutorial](./copilot-sdk-evaluate-deploy.md), the deployment is authenticated using API keys from your Azure AI Search service. Support for Microsoft Entra ID authentication of the deployment is coming soon.
+> You can use role-based access control locally because you run `az login` later in this tutorial series. But when you deploy your app in [part 3 of the tutorial](./copilot-sdk-evaluate-deploy.md), the deployment is authenticated using API keys from your Azure AI Search service. Support for Microsoft Entra ID authentication of the deployment is coming soon. For now, you need to enable both keys and endpoints.
 
-Next you grant your user identity (or the identity of the developer who will complete parts two and three) the **Search Index Data Contributor** and **Search Service Contributor** roles on the Azure AI Search service. These roles enable you to call the Azure AI Search service the associated user identity.
+Next grant your user identity (or the identity of the developer who will complete parts two and three) the **Search Index Data Contributor** and **Search Service Contributor** roles on the Azure AI Search service. These roles enable you to call the Azure AI Search service the associated user identity.
 
 Still in the Azure portal for the Azure AI Search service, assign the **Search Index Data Contributor** role to your Azure AI Search service, (these are the same steps you did previously for the Azure OpenAI service):
 
