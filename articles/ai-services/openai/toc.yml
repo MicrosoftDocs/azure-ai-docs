@@ -23,6 +23,8 @@ items:
       href: ./supported-languages.md
     - name: Azure OpenAI FAQ
       href: faq.yml
+    - name: Azure OpenAI in Azure Government
+      href: azure-government.md
 - name: Quickstarts
   items:
     - name: Assistants (preview)
