@@ -68,7 +68,7 @@ Known values of the target and features are provided for `2023-05-01` through `2
 
 AutoML uses the new context data to update lag and other lookback features, and also to update models like ARIMA that keep an internal state. This operation *doesn't* update or refit model parameters.  
   
-## Model evaluation
+## <a name="rolling-forecast"></a>Model evaluation
 
 *Evaluation* is the process of generating predictions on a test set held-out from the training data and computing metrics from these predictions that guide model deployment decisions. Accordingly, there's an inference mode suited for model evaluation: a rolling forecast.
 
