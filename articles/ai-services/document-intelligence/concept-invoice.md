@@ -1,5 +1,5 @@
 ---
-title: Invoice data extraction – Document Intelligence (formerly Form Recognizer)
+title: Invoice data extraction – Document Intelligence 
 titleSuffix: Azure AI services
 description: Automate invoice data extraction with Document Intelligence's invoice model.
 author: laujan

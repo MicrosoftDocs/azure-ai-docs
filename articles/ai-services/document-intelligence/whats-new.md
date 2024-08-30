@@ -1,5 +1,5 @@
 ---
-title: What's new in Document Intelligence (formerly Form Recognizer)?
+title: What's new in Document Intelligence ?
 titleSuffix: Azure AI services
 description: Learn the latest updates to the Document Intelligence API.
 author: laujan

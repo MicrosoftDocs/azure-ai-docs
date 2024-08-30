@@ -1,5 +1,5 @@
 ---
-title: Document Intelligence (formerly Form Recognizer) US tax documents data extraction
+title: Document Intelligence US tax documents data extraction
 titleSuffix: Azure AI services
 description: Automate US tax document data extraction with Document Intelligence US tax document models.
 author: laujan
