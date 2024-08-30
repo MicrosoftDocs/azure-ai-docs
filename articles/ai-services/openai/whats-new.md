@@ -26,6 +26,12 @@ GPT-4o mini is now available for provisioned deployments in Canada East, East US
 
 For the latest information on model availability, see the [models page](/azure/ai-services/openai/concepts/models#provisioned-deployment-model-availability).
 
+### GPT-4o fine-tuning (Public Preview)
+
+GPT-4o fine-tuning is now available for Azure OpenAI in public preview in North Central US and Sweden Central.
+
+For more information, see our [blog post](https://techcommunity.microsoft.com/t5/ai-azure-ai-services-blog/fine-tune-gpt-4o-on-azure-openai-service/ba-p/4228693).
+
 ### New preview API release
 
 API version `2024-07-01-preview` is the latest dataplane authoring & inference API release. It replaces API version `2024-05-01-preview` and adds support for:
