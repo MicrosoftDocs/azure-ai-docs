@@ -13,7 +13,7 @@ metadata:
   ms.author: eur
   manager: nitinme
   ms.custom: ignite-2023
-  ms.date: 8/20/2024
+  ms.date: 8/30/2024
 highlightedContent:
 # itemType: architecture | concept | deploy | download | get-started | how-to-guide | learn | overview | quickstart | reference | tutorial | whats-new
   items:
@@ -57,20 +57,20 @@ productDirectory:
       summary: Speech to text, text to speech, translation, and speaker recognition
       url: ./speech-service/index.yml
     # Card
-    - title: Language
-      imageSrc: ~/reusable-content/ce-skilling/azure/media/ai-services/language.svg
-      summary: Build apps with industry-leading natural language understanding capabilities.
-      url: ./language-service/index.yml
+    - title: Document Intelligence
+      imageSrc: ~/reusable-content/ce-skilling/azure/media/ai-services/document-intelligence.svg
+      summary: Turn documents into intelligent data-driven solutions.
+      url: ./document-intelligence/index.yml
     # Card
     - title: Translator
       imageSrc: ~/reusable-content/ce-skilling/azure/media/ai-services/translator.svg
       summary: Use AI-powered translation technology to translate more than 100 in-use, at-risk, and endangered languages and dialects.
       url: ./translator/index.yml
     # Card
-    - title: Document Intelligence
-      imageSrc: ~/reusable-content/ce-skilling/azure/media/ai-services/document-intelligence.svg
-      summary: Turn documents into intelligent data-driven solutions.
-      url: ./document-intelligence/index.yml
+    - title: Language
+      imageSrc: ~/reusable-content/ce-skilling/azure/media/ai-services/language.svg
+      summary: Build apps with industry-leading natural language understanding capabilities.
+      url: ./language-service/index.yml
     # Card
     - title: Face
       imageSrc: ~/reusable-content/ce-skilling/azure/media/ai-services/face.svg
@@ -107,20 +107,20 @@ additionalContent:
               url: https://ai.azure.com/
             - text: Azure OpenAI
               url: https://oai.azure.com/
+            - text: Content Safety
+              url: https://contentsafety.cognitive.azure.com/
             - text: Speech
               url: https://speech.microsoft.com/
+            - text: Document Intelligence
+              url: https://formrecognizer.appliedai.azure.com/
+            - text: Custom Translator
+              url: https://portal.customtranslator.azure.ai/
             - text: Language
               url: https://language.cognitive.azure.com/
             - text: Vision
               url: https://portal.vision.cognitive.azure.com/
             - text: Custom Vision
               url: https://www.customvision.ai/
-            - text: Document Intelligence
-              url: https://formrecognizer.appliedai.azure.com/
-            - text: Content Safety
-              url: https://contentsafety.cognitive.azure.com/
-            - text: Custom Translator
-              url: https://portal.customtranslator.azure.ai/
         - title: Explore more AI resources
           links:
             - text: Azure Machine Learning
