@@ -16,7 +16,7 @@ author: sdgilley
 
 In this [Azure AI Studio](https://ai.azure.com) tutorial, you use the prompt flow SDK (and other libraries) to build, configure, evaluate, and deploy a chat app for your retail company called Contoso Trek. Your retail company specializes in outdoor camping gear and clothing. The chat app should answer questions about your products and services. For example, the chat app can answer questions such as "which tent is the most waterproof?" or "what is the best sleeping bag for cold weather?".
 
-This tutorial is part one of a three-part tutorial.  This part one shows you how to create and configure the resources you'll need for parts two and three of the tutorials.
+This tutorial is part one of a three-part tutorial.  This part one shows you how to create and configure the resources you'll need for parts two and three of the tutorial series.
 
 In this part one, you learn how to:
 
@@ -55,8 +55,6 @@ To create a project in [Azure AI Studio](https://ai.azure.com), follow these ste
 1. Select the hub you created in the previous step.
 1. Select an existing Azure AI services resource (including Azure OpenAI) from the dropdown or create a new one. 
 
-    :::image type="content" source="../media/how-to/projects/projects-create-resource.png" alt-text="Screenshot of the create resource page within the create project dialog." lightbox="../media/how-to/projects/projects-create-resource.png":::
-
 1. On the **Review and finish** page, you see the Azure AI services resource name and other settings to review.
 
     :::image type="content" source="../media/how-to/projects/projects-create-review-finish.png" alt-text="Screenshot of the review and finish page within the create project dialog." lightbox="../media/how-to/projects/projects-create-review-finish.png":::
@@ -69,7 +67,7 @@ Once a project is created, you can access the playground, tools, and other asset
 
 ## Create an Azure AI Search index
 
-The goal with this application is to ground the model responses in your custom data. You use an Azure AI Search index that stores vectorized data from the embeddings model. The search index is used to retrieve relevant documents based on the user's question.
+The goal with this application is to ground the model responses in your custom data. The search index is used to retrieve relevant documents based on the user's question.
 
 You need an Azure AI Search service and connection in order to create a search index.
 
@@ -151,7 +149,7 @@ Still in the Azure portal for the Azure AI Search service, assign the **Search I
 1. In the **Select members** pane that opens, search for the name of the user that you want to add the role assignment for. Select the user and then select **Select**.
 1. Continue through the wizard and select **Review + assign** to add the role assignment. 
 
-Repeat the previous steps to also add the **Search Service Contributor** role to the Azure AI Search service.
+Repeat these steps to also add the **Search Service Contributor** role to the Azure AI Search service.
 
 You're now ready to hand off the project to a developer to build the chat application.  The developer will use the prompt flow SDK to build, configure, evaluate, and deploy the chat app for your retail company called Contoso Trek.
 
