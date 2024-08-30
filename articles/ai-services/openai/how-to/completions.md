@@ -6,9 +6,9 @@ description: Learn how to generate or manipulate text, including code by using a
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: how-to
-ms.date: 08/15/2023
-author: ChrisHMSFT
-ms.author: chrhoder
+ms.date: 08/29/2024
+author: mrbullwinkle
+ms.author: mbullwin
 recommendations: false
 
 ---
@@ -16,6 +16,9 @@ recommendations: false
 # Learn how to generate or manipulate text
 
 Azure OpenAI Service provides a **completion endpoint** that can be used for a wide variety of tasks. The endpoint supplies a simple yet powerful text-in, text-out interface to any [Azure OpenAI model](../concepts/models.md). To trigger the completion, you input some text as a prompt. The model generates the completion and attempts to match your context or pattern. Suppose you provide the prompt "As Descartes said, I think, therefore" to the API. For this prompt, Azure OpenAI returns the completion endpoint " I am" with high probability.
+
+> [!IMPORTANT]
+> Unless you have a specific use case that requires the completions endpoint, we recommend instead using the [chat completions endpoint](./chatgpt.md) which allows you to take advantage of the latest models like GPT-4o, GPT-4o mini, and GPT-4 Turbo. 
 
 The best way to start exploring completions is through the playground in [Azure OpenAI Studio](https://oai.azure.com). It's a simple text box where you enter a prompt to generate a completion. You can start with a simple prompt like this one:
 

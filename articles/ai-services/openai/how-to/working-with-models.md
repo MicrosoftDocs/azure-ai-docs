@@ -4,7 +4,7 @@ titleSuffix: Azure OpenAI
 description: Learn about managing model deployment life cycle, updates, & retirement.
 ms.service: azure-ai-openai
 ms.topic: conceptual
-ms.date: 06/18/2023
+ms.date: 08/29/2024
 ms.custom: references_regions, build-2023, build-2023-dataai, devx-track-azurepowershell
 manager: nitinme
 author: mrbullwinkle #ChrisHMSFT
