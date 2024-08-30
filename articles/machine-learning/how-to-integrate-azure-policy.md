@@ -162,7 +162,7 @@ To configure this policy, set the effect parameter to __AuditIfNotExists__ or __
 
 ## Create custom definitions
 
-When you need to create custom policies for your organization, you can use the [Azure Policy definition structure](/azure/governance/policy/definition-structure) to create your own definitions. You can use the [Azure Policy Visual Studio Code extension](https://marketplace.visualstudio.com/items?itemName=AzurePolicy.azurepolicyextension) to author and test your policies.
+When you need to create custom policies for your organization, you can use the [Azure Policy definition structure](/azure/governance/policy/concepts/definition-structure-basics) to create your own definitions. You can use the [Azure Policy Visual Studio Code extension](https://marketplace.visualstudio.com/items?itemName=AzurePolicy.azurepolicyextension) to author and test your policies.
 
 To discover the policy aliases you can use in your definition, use the following Azure CLI command to list the aliases for Azure Machine Learning:
 
