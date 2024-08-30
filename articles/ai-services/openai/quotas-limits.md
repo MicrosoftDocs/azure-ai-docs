@@ -45,6 +45,7 @@ The following sections provide you with a quick guide to the default quotas and 
 | Maximum number of Provisioned throughput units per deployment | 100,000 |
 | Max files per Assistant/thread | 10,000 when using the API or AI Studio. 20 when using Azure OpenAI Studio.|
 | Max file size for Assistants & fine-tuning | 512 MB |
+| Max size for all uploaded files for Assistants |100 GB |  
 | Assistants token limit | 2,000,000 token limit |
 | GPT-4o max images per request (# of images in the messages array/conversation history) | 10 |
 | GPT-4 `vision-preview` & GPT-4 `turbo-2024-04-09` default max tokens | 16 <br><br> Increase the `max_tokens` parameter value to avoid truncated responses. GPT-4o max tokens defaults to 4096. |
