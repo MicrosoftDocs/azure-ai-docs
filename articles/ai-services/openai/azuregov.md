@@ -11,28 +11,127 @@ ms.date: 8/29/2024
 recommendations: false
 ---
 
-# Azure OpenAI service in Azure Government
+# Azure OpenAI Service and Features in Azure Government
 
 This article highlights the differences when using Azure OpenAI in Azure Government as compared to the commercial cloud offering. Learn more about the Azure OpenAI service itself in [Azure OpenAI Service documentation](/azure/ai-services/openai/).
+<br><br>
 
-## Azure OpenAI Features in Azure Government:
+## Azure OpenAI Service models
 
-|Feature|Azure OpenAI|
+Learn more about the different capabilities of each model in [Azure OpenAI Service models](/concepts/models). Model availability by region and deployment type is shown below.
+
+### Standard deployment model availability
+
+|   **Region**  | **gpt-35-turbo**, **1106** | **gpt-35-turbo**, **0125** | **gpt-4**, **1106-Preview** | **gpt-4o**, **2024-05-13** | **text-embedding-ada-002** |
+|:--------------|:--------------------------:|:--------------------------:|:---------------------------:|:--------------------------:|:--------------------------:|
+| usgovarizona  | ✅ | ✅ | ✅ | ✅ | ✅ |
+| usgovvirginia | ✅ | ✅ | ✅ | - | ✅ |
+
+### Provisioned deployment model availability
+|   **Region**  | **gpt-35-turbo**, **1106** | **gpt-35-turbo**, **0125** | **gpt-4**, **1106-Preview** | **gpt-4o**, **2024-05-13** |
+|:--------------|:--------------------------:|:--------------------------:|:---------------------------:|:--------------------------:|
+| usgovarizona  | - | ✅ | - | ✅ |
+| usgovvirginia | - | ✅ | ✅ | ✅ |
+
+<br>
+
+## Azure OpenAI Features
+
+|Feature|Description|
 |--------|--------|
-|Models available|US Gov Arizona:<br>&nbsp;&nbsp;&nbsp;GPT-4o (2024-05-13)&nbsp;&nbsp;&nbsp;GPT-4 (1106-Preview)<br>&nbsp;&nbsp;&nbsp;GPT-3.5-Turbo (0125)&nbsp;&nbsp;&nbsp;GPT-3.5-Turbo (1106)<br>&nbsp;&nbsp;&nbsp;text-embedding-ada-002 (version 2)<br><br>US Gov Virginia:<br>&nbsp;&nbsp;&nbsp;GPT-4o (2024-05-13)&nbsp;&nbsp;&nbsp;GPT-4 (1106-Preview)<br>&nbsp;&nbsp;&nbsp;GPT-3.5-Turbo (0125)<br>&nbsp;&nbsp;&nbsp;text-embedding-ada-002 (version 2)<br><br>Learn more about the different capabilities of each model in [Azure OpenAI Service models](/azure/ai-services/openai/concepts/models)|
-|Virtual network support & private link support| Yes. |
 | Connect your data | Available in US Gov Virginia and Arizona. Virtual network and private links are supported. Deployment to a web app or a copilot in Copilot Studio is not supported. |
 |Managed Identity|Yes, via Microsoft Entra ID|
+|Virtual network support & private link support| Yes. |
 |UI experience|**Azure portal** for account & resource management<br>**Azure OpenAI Studio** for model exploration|
-|Abuse Monitoring|Not all features of Abuse Monitoring are enabled for AOAI in Azure Government. You will be responsible for implementing reasonable technical and operational measures to detect and mitigate any use of the service in violation of the Product Terms. [Automated Content Classification and Filtering](/azure/ai-services/openai/concepts/content-filter) remains enabled by default for Azure Government.|
-|Data Storage|In AOAI, customer data is only stored at rest as part of our Finetuning solution. Since Finetuning is not enabled within Azure Gov, there is no customer data stored at rest in Azure Gov associated with AOAI. However, Customer Managed Keys (CMK) can still be enabled in Azure Gov to support use of the same policies in Azure Gov as in Public cloud. Note also that if Finetuning is enabled in Azure Gov in the future, any existing CMK deployment would be applied to that data at that time.|
+|Abuse Monitoring|Not all features of Abuse Monitoring are enabled for AOAI in Azure Government. You will be responsible for implementing reasonable technical and operational measures to detect and mitigate any use of the service in violation of the Product Terms. [Automated Content Classification and Filtering](/concepts/content-filter) remains enabled by default for Azure Government.|
+|Data Storage|In Azure Government, there are no AOAI features currently enabled that store customer data at rest. However, Customer Managed Keys (CMK) can still be enabled in Azure Gov to support use of the same policies in Azure Gov as in Public cloud. Note also that if AOAI features that store customer data are enabled in Azure Gov in the future, any existing CMK deployment would be applied to that data at that time. Learn more at [Azure OpenAI Data Privacy](/../legal/cognitive-services/openai/data-privacy).|
+|Compliance|View the current status of Azure OpenAI compliance in Azure Government at [Azure Government Services Audit Scope](/../azure-government/compliance/azure-services-in-fedramp-auditscope?branch=pr-en-us-76518#azure-government-services-by-audit-scope)|
+|Service Endpoints|openai.azure.us|
+|Key Portals|<ul></li><li>Azure OpenaI Studio - aoai.azure.us</li><li>Azure Portal - portal.azure.us</li></ul>|
+
+
+<br>
 
 ## Next steps
 * To request quota increases for the pay-as-you-go consumption model, apply at [https://aka.ms/AOAIGovQuota](https://aka.ms/AOAIGovQuota)
 * If modified content filters are required, apply at [https://aka.ms/AOAIGovModifyContentFilter](https://aka.ms/AOAIGovModifyContentFilter)
+> [!NOTE]
+> Provisioned Throughput Units (PTU) are different from standard quota in Azure OpenAI and are not available by default in Azure Government. To learn more about this offering contact your Microsoft Account Team.
 
-## Service Endpoints
+<br>
 
-|Service category|Service name|Azure Public|Azure Government|Notes|
-|-----------|-----------|-------|----------|----------------------|
-||Azure OpenAI Service|openai.azure.com|openai.azure.us||
+## Provisioned Deployments in Azure Government
+
+The following guide walks you through setting up a provisioned deployment with your Azure OpenAI Service resource in Azure Government. 
+
+### Prerequisites
+
+- An Azure Government subscription
+- An Azure OpenAI resource
+- Obtained Quota for a provisioned deployment and purchased a commitment
+
+### Managing Provisioned Throughput Commitments
+
+For Azure OpenAI in Azure Government, provisioned throughput deployments require pre-purchased commitments created and managed from the **Manage Commitments** view in Azure OpenAI Studio.  You can navigate to this view by selecting **Manage Commitments** from the Quota pane.
+
+From the Manage Commitments view, you can do several things:
+* Purchase new commitments or edit existing commitments.
+* Monitor all commitments in your subscription.
+* Identify and take action on commitments that might cause unexpected billing.
+
+| Setting | Notes |
+|---------|-------|
+| **Select a resource** | Choose the resource where you'll create the provisioned deployment. Once you have purchased the commitment, you will be unable to use the PTUs on another resource until the current commitment expires. |
+| **Select a commitment type** | Select Provisioned. (Provisioned is equivalent to Provisioned Managed) |
+| **Current uncommitted provisioned quota** | The number of PTUs currently available for you to commit to this resource. | 
+| **Amount to commit (PTU)** | Choose the number of PTUs you're committing to. **This number can be increased during the commitment term, but can't be decreased**. Enter values in increments of 50 for the commitment type Provisioned. |
+| **Commitment tier for current period** | The commitment period is set to one month. |
+| **Renewal settings** | Auto-renew at current PTUs <br> Auto-renew at lower PTUs <br> Do not auto-renew |
+
+> [!IMPORTANT]
+> A new commitment is billed up-front for the entire term.  If the renewal settings are set to auto-renew, then you will be billed again on each renewal date based on the renewal settings.
+
+> [!IMPORTANT]
+> When you add PTUs to a commitment, they will be billed immediately, at a pro-rated amount from the current date to the end of the existing commitment term.  Adding PTUs does not reset the commitment term.
+
+### Changing renewal settings
+
+Commitment renewal settings can be changed at any time before the expiration date of your commitment.  Reasons you might want to change the renewal settings include ending your use of provisioned throughput by setting the commitment to not auto-renew, or to decrease usage of provisioned throughput by lowering the number of PTUs that will be committed in the next period.
+
+> [!IMPORTANT]
+> If you allow a commitment to expire or decrease in size such that the deployments under the resource require more PTUs than you have in your resource commitment, you will receive hourly overage charges for any excess PTUs.  For example, a resource that has deployments that total 500 PTUs and a commitment for 300 PTUs will generate hourly overage charges for 200 PTUs.
+
+### Common Commitment Management Scenarios
+
+**Discontinue use of provisioned throughput**
+
+To end use of provisioned throughput, and prevent hourly overage charges after commitment expiration, stop any charges after the current commitments are expired, two steps must be taken:
+
+1. Set the renewal policy on all commitments to *Don't autorenew*.
+2. Delete the provisioned deployments using the quota.
+
+**Move a commitment/deployment to a new resource in the same subscription/region**
+
+It isn't possible in Azure OpenAI Studio to directly *move* a deployment or a commitment to a new resource. Instead, a new deployment needs to be created on the target resource and traffic moved to it. There will need to be a commitment purchased established on the new resource to accomplish this. Because commitments are charged up-front for a 30-day period, it's necessary to time this move with the expiration of the original commitment to minimize overlap with the new commitment and “double-billing” during the overlap.
+
+There are two approaches that can be taken to implement this transition.
+
+**Option 1: No-Overlap Switchover**
+
+This option requires some downtime, but requires no extra quota and generates no extra costs.
+
+| Steps | Notes |
+|-------|-------|
+|Set the renewal policy on the existing commitment to expire| This will prevent the commitment from renewing and generating further charges |
+|Before expiration of the existing commitment, delete its deployment | Downtime will start at this point and will last until the new deployment is created and traffic is moved. You'll minimize the duration by timing the deletion to happen as close to the expiration date/time as possible.|
+|After expiration of the existing commitment, create the commitment on the new resource|Minimize downtime by executing this and the next step as soon after expiration as possible.|
+|Create the deployment on the new resource and move traffic to it||
+
+**Option 2: Overlapped Switchover**
+
+This option has no downtime by having both existing and new deployments live at the same time. This requires having quota available to create the new deployment, and will generate extra costs for the duration of the overlapped deployments.
+
+| Steps | Notes |
+|-------|-------|
+|Set the renewal policy on the existing commitment to expire| Doing so prevents the commitment from renewing and generating further charges.|
+|Before expiration of the existing commitment:<br>1. Create the commitment on the new resource.<br>2. Create the new deployment.<br>3. Switch traffic<br>4.	Delete existing deployment| Ensure you leave enough time for all steps before the existing commitment expires, otherwise overage charges will be generated (see next section) for options. |
