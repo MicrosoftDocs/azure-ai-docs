@@ -17,7 +17,7 @@ This article highlights the differences when using Azure OpenAI in Azure Governm
 
 ## Azure OpenAI Service models
 
-Learn more about the different capabilities of each model in [Azure OpenAI Service models](concepts/models). The following sections show model availability by region and deployment type.
+Learn more about the different capabilities of each model in [Azure OpenAI Service models](/../openai/concepts/models). The following sections show model availability by region and deployment type.
 
 ### Standard deployment model availability
 
@@ -42,9 +42,9 @@ Learn more about the different capabilities of each model in [Azure OpenAI Servi
 |Managed Identity|Yes, via Microsoft Entra ID|
 |Virtual network support & private link support| Yes. |
 |UI experience|**Azure portal** for account & resource management<br>**Azure OpenAI Studio** for model exploration|
-|Abuse Monitoring|Not all features of Abuse Monitoring are enabled for AOAI in Azure Government. You are responsible for implementing reasonable technical and operational measures to detect and mitigate any use of the service in violation of the Product Terms. [Automated Content Classification and Filtering](concepts/content-filter) remains enabled by default for Azure Government.|
+|Abuse Monitoring|Not all features of Abuse Monitoring are enabled for AOAI in Azure Government. You are responsible for implementing reasonable technical and operational measures to detect and mitigate any use of the service in violation of the Product Terms. [Automated Content Classification and Filtering](/../openai/concepts/content-filter) remains enabled by default for Azure Government.|
 |Data Storage|In Azure Government, there are no AOAI features currently enabled that store customer data at rest. However, Customer Managed Keys (CMK) can still be enabled in Azure Gov to support use of the same policies in Azure Gov as in Public cloud. Note also that if AOAI features that store customer data are enabled in Azure Gov in the future, any existing CMK deployment would be applied to that data at that time. Learn more at [Azure OpenAI Data Privacy](/../legal/cognitive-services/openai/data-privacy).|
-|Compliance|View the current status of Azure OpenAI compliance in Azure Government at [Azure Government Services Audit Scope](/../../../azure-government/compliance/azure-services-in-fedramp-auditscope?branch=pr-en-us-76518#azure-government-services-by-audit-scope)|
+|Compliance|View the current status of Azure OpenAI compliance in Azure Government at [Azure Government Services Audit Scope](/azure/azure-government/compliance/azure-services-in-fedramp-auditscope?branch=pr-en-us-76518#azure-government-services-by-audit-scope)|
 |Service Endpoints|openai.azure.us|
 |Key Portals|<ul></li><li>Azure OpenaI Studio - aoai.azure.us</li><li>Azure Portal - portal.azure.us</li></ul>|
 
@@ -67,11 +67,11 @@ The following guide walks you through setting up a provisioned deployment with y
 
 - An Azure Government subscription
 - An Azure OpenAI resource
-- Obtained Quota for a provisioned deployment and purchased a commitment
+- An approved quota for a provisioned deployment and purchased a commitment
 
 ### Managing Provisioned Throughput Commitments
 
-For Azure OpenAI in Azure Government, provisioned throughput deployments require pre-purchased commitments created and managed from the **Manage Commitments** view in Azure OpenAI Studio.  You can navigate to this view by selecting **Manage Commitments** from the Quota pane.
+For Azure OpenAI in Azure Government, provisioned throughput deployments require prepurchased commitments created and managed from the **Manage Commitments** view in Azure OpenAI Studio. You can navigate to this view by selecting **Manage Commitments** from the Quota pane.
 
 From the Manage Commitments view, you can do several things:
 * Purchase new commitments or edit existing commitments.
@@ -80,12 +80,12 @@ From the Manage Commitments view, you can do several things:
 
 | Setting | Notes |
 |---------|-------|
-| **Select a resource** | Choose the resource where you create the provisioned deployment. Once you have purchase the commitment, you are unable to use the PTUs on another resource until the current commitment expires. |
+| **Select a resource** | Choose the resource where you create the provisioned deployment. Once you have purchase the commitment, you are unable to use the quota on another resource until the current commitment expires. |
 | **Select a commitment type** | Select Provisioned. (Provisioned is equivalent to Provisioned Managed) |
 | **Current uncommitted provisioned quota** | The number of PTUs currently available for you to commit to this resource. | 
 | **Amount to commit (PTU)** | Choose the number of PTUs you're committing to. **This number can be increased during the commitment term, but can't be decreased**. Enter values in increments of 50 for the commitment type Provisioned. |
 | **Commitment tier for current period** | The commitment period is set to one month. |
-| **Renewal settings** | Auto-renew at current PTUs <br> Auto-renew at lower PTUs <br> Do not auto-renew |
+| **Renewal settings** | Autorenew at current PTUs <br> Autorenew at lower PTUs <br> Do not autorenew |
 
 > [!IMPORTANT]
 > A new commitment is billed up-front for the entire term.  If the renewal settings are set to auto-renew, then you will be billed again on each renewal date based on the renewal settings.
@@ -111,7 +111,7 @@ To end use of provisioned throughput and prevent hourly overage charges after co
 
 **Move a commitment/deployment to a new resource in the same subscription/region**
 
-It isn't possible in Azure OpenAI Studio to directly *move* a deployment or a commitment to a new resource. Instead, a new deployment needs to be created on the target resource and traffic moved to it. This will require a new commitment purchase on the new resource. Because commitments are charged up-front for a 30-day period, it's necessary to time this move with the expiration of the original commitment to minimize overlap with the new commitment and “double-billing” during the overlap.
+It isn't possible in Azure OpenAI Studio to directly *move* a deployment or a commitment to a new resource. Instead, a new deployment needs to be created on the target resource and traffic moved to it. This process requires a new commitment purchase on the new resource. Because commitments are charged up-front for a 30-day period, it's necessary to time this move with the expiration of the original commitment to minimize overlap with the new commitment and “double-billing” during the overlap.
 
 There are two approaches that can be taken to implement this transition.
 
@@ -121,14 +121,14 @@ This option requires some downtime, but requires no extra quota and generates no
 
 | Steps | Notes |
 |-------|-------|
-|Set the renewal policy on the existing commitment to expire| This prevents the commitment from renewing and generating further charges |
+|Set the renewal policy on the existing commitment to expire| This action prevents the commitment from renewing and generating further charges |
 |Before expiration of the existing commitment, delete its deployment | Downtime starts at this point and will last until the new deployment is created and traffic is moved. You can minimize the duration by timing the deletion to happen as close to the expiration date/time as possible.|
 |After expiration of the existing commitment, create the commitment on the new resource|Minimize downtime by executing this step and the next step as soon after expiration as possible.|
 |Create the deployment on the new resource and move traffic to it||
 
 **Option 2: Overlapped Switchover**
 
-This option has no downtime by having both existing and new deployments live at the same time. This method also requires having quota available to create the new deployment and will generate extra costs for the duration of the overlapped deployments.
+This option has no downtime by having both existing and new deployments live at the same time. This method also requires having quota available to create the new deployment and  generates extra costs during the overlapped deployments.
 
 | Steps | Notes |
 |-------|-------|
