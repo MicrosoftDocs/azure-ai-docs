@@ -50,6 +50,9 @@ The `custom_id` is required to allow you to identify which individual batch requ
 
 `model` attribute should be set to match the name of the Global Batch deployment you wish to target for inference responses.
 
+> [!IMPORTANT]
+> The `model` attribute must be set to match the name of the Global Batch deployment you wish to target for inference responses. The **same Global Batch model deployment name must be present on each line of the batch file.** If you want to target a different deployment you must do so in a separate batch file/job.
+
 ### Create input file
 
 For this article we'll create a file named `test.jsonl` and will copy the contents from standard input code block above to the file. You will need to modify and add your global batch deployment name to each line of the file.
