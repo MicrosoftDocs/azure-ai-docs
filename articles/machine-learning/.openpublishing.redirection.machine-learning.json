@@ -4106,7 +4106,7 @@
         "redirect_document_id": true
     },
     {
-        "source_path_from_root": "/articles/machine-learning/v-fake/migrate-overview.md",
+        "source_path_from_root": "/articles/machine-learning/v1/migrate-overview.md",
         "redirect_url": "/azure/machine-learning/migrate-overview",
         "redirect_document_id": false
     },
