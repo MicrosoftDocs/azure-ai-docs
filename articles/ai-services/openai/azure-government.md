@@ -17,7 +17,7 @@ This article highlights the differences when using Azure OpenAI in Azure Governm
 
 ## Azure OpenAI Service models
 
-Learn more about the different capabilities of each model in [Azure OpenAI Service models](./concepts/models). The following sections show model availability by region and deployment type.
+Learn more about the different capabilities of each model in [Azure OpenAI Service models](./concepts/models.md). The following sections show model availability by region and deployment type.
 
 ### Standard deployment model availability
 
@@ -42,7 +42,7 @@ Learn more about the different capabilities of each model in [Azure OpenAI Servi
 |Managed Identity|Yes, via Microsoft Entra ID|
 |Virtual network support & private link support| Yes. |
 |UI experience|**Azure portal** for account & resource management<br>**Azure OpenAI Studio** for model exploration|
-|Abuse Monitoring|Not all features of Abuse Monitoring are enabled for Azure OpenAI in Azure Government. You are responsible for implementing reasonable technical and operational measures to detect and mitigate any use of the service in violation of the Product Terms. [Automated Content Classification and Filtering](./concepts/content-filter) remains enabled by default for Azure Government.|
+|Abuse Monitoring|Not all features of Abuse Monitoring are enabled for Azure OpenAI in Azure Government. You are responsible for implementing reasonable technical and operational measures to detect and mitigate any use of the service in violation of the Product Terms. [Automated Content Classification and Filtering](./concepts/content-filter.md) remains enabled by default for Azure Government.|
 |Data Storage|In Azure Government, there are no Azure OpenAI features currently enabled that store customer data at rest. However, Customer Managed Keys (CMK) can still be enabled in Azure Government to support use of the same policies in Azure Government as in Public cloud. Note also that if Azure OpenAI features that store customer data are enabled in Azure Government in the future, any existing CMK deployment would be applied to that data at that time. Learn more at [Azure OpenAI Data Privacy](/../legal/cognitive-services/openai/data-privacy).|
 |Compliance|View the current status of Azure OpenAI compliance in Azure Government at [Azure Government Services Audit Scope](/azure/azure-government/compliance/azure-services-in-fedramp-auditscope?branch=pr-en-us-76518#azure-government-services-by-audit-scope)|
 |Service Endpoints|openai.azure.us|
