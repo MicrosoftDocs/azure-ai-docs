@@ -5,19 +5,19 @@ description: Learn how to use Azure OpenAI in the Azure Government cloud.
 author: challenp
 ms.service: azure-ai-openai
 ms.topic: how-to
-ms.custom: references_regions, azuregov
+ms.custom: references_regions, azuregovernment
 ms.date: 8/29/2024
 recommendations: false
 ---
 
-# Azure OpenAI (AOAI) Service and Features in Azure Government
+# Azure OpenAI Service and Features in Azure Government
 
 This article highlights the differences when using Azure OpenAI in Azure Government as compared to the commercial cloud offering. Learn more about the Azure OpenAI Service itself in [Azure OpenAI Service documentation](/azure/ai-services/openai/).
 <br><br>
 
 ## Azure OpenAI Service models
 
-Learn more about the different capabilities of each model in [Azure OpenAI Service models](/../openai/concepts/models). The following sections show model availability by region and deployment type.
+Learn more about the different capabilities of each model in [Azure OpenAI Service models](./concepts/models). The following sections show model availability by region and deployment type.
 
 ### Standard deployment model availability
 
@@ -38,15 +38,15 @@ Learn more about the different capabilities of each model in [Azure OpenAI Servi
 
 |Feature|Description|
 |--------|--------|
-| Connect your data | Available in US Gov Virginia and Arizona. Virtual network and private links are supported. Deployment to a web app or a copilot in Copilot Studio is not supported. |
+| Connect your data | Available in USGovVirginia and USGovArizona. Virtual network and private links are supported. Deployment to a web app or a copilot in Copilot Studio is not supported. |
 |Managed Identity|Yes, via Microsoft Entra ID|
 |Virtual network support & private link support| Yes. |
 |UI experience|**Azure portal** for account & resource management<br>**Azure OpenAI Studio** for model exploration|
-|Abuse Monitoring|Not all features of Abuse Monitoring are enabled for AOAI in Azure Government. You are responsible for implementing reasonable technical and operational measures to detect and mitigate any use of the service in violation of the Product Terms. [Automated Content Classification and Filtering](/../openai/concepts/content-filter) remains enabled by default for Azure Government.|
-|Data Storage|In Azure Government, there are no AOAI features currently enabled that store customer data at rest. However, Customer Managed Keys (CMK) can still be enabled in Azure Gov to support use of the same policies in Azure Gov as in Public cloud. Note also that if AOAI features that store customer data are enabled in Azure Gov in the future, any existing CMK deployment would be applied to that data at that time. Learn more at [Azure OpenAI Data Privacy](/../legal/cognitive-services/openai/data-privacy).|
+|Abuse Monitoring|Not all features of Abuse Monitoring are enabled for Azure OpenAI in Azure Government. You are responsible for implementing reasonable technical and operational measures to detect and mitigate any use of the service in violation of the Product Terms. [Automated Content Classification and Filtering](./concepts/content-filter) remains enabled by default for Azure Government.|
+|Data Storage|In Azure Government, there are no Azure OpenAI features currently enabled that store customer data at rest. However, Customer Managed Keys (CMK) can still be enabled in Azure Government to support use of the same policies in Azure Government as in Public cloud. Note also that if Azure OpenAI features that store customer data are enabled in Azure Government in the future, any existing CMK deployment would be applied to that data at that time. Learn more at [Azure OpenAI Data Privacy](/../legal/cognitive-services/openai/data-privacy).|
 |Compliance|View the current status of Azure OpenAI compliance in Azure Government at [Azure Government Services Audit Scope](/azure/azure-government/compliance/azure-services-in-fedramp-auditscope?branch=pr-en-us-76518#azure-government-services-by-audit-scope)|
 |Service Endpoints|openai.azure.us|
-|Key Portals|<ul></li><li>Azure OpenaI Studio - aoai.azure.us</li><li>Azure Portal - portal.azure.us</li></ul>|
+|Key Portals|<ul></li><li>Azure OpenAI Studio - aoai.azure.us</li><li>Azure portal - portal.azure.us</li></ul>|
 
 
 <br>
