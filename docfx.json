@@ -71,7 +71,7 @@
           "**/_themes/**",
           "**/includes/**",
           "**/obj/**"
-        ]
+        ],
         "group": "grp-machine-learningv1",
         "src": "articles/machine-learning/v-fake",
         "dest": "./machine-learning/v1"
