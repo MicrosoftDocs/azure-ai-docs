@@ -23,9 +23,9 @@ highlightedContent:
     - title: What is Azure AI Studio?
       itemType: overview
       url: ../ai-studio/what-is-ai-studio.md
-    - title: Build your own copilot with Azure AI SDKs
-      itemType: tutorial
-      url: ../ai-studio/tutorials/copilot-sdk-build-rag.md
+    - title: Chat with Azure OpenAI models using your own data
+      itemType: quickstart
+      url: ./openai/use-your-data-quickstart.md
     - title: Responsible use of AI
       itemType: concept
       url: responsible-use-of-ai-overview.md
