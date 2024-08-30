@@ -152,6 +152,22 @@
         "src": "articles/machine-learning/v1",
         "dest": "./machine-learning/",
         "group": "grp-machine-learningv1"
+      },
+      {
+        "files": [
+          "**/*.gif",
+          "**/*.jpeg",
+          "**/*.jpg",
+          "**/*.png",
+          "**/*.svg"
+        ],
+        "exclude": [
+          "**/_themes/**",
+          "**/obj/**"
+        ],
+        "group": "grp-machine-learningv1",
+        "src": "articles/machine-learning/v-fake",
+        "dest": "./machine-learning/v1"
       }
     ],
     "groups": {
