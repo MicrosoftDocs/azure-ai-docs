@@ -19,6 +19,9 @@
         "dest": "."
       },
       {
+        "group": "grp-machine-learning",
+        "src": "articles/machine-learning",
+        "dest": "./machine-learning",
         "files": [
           "**/*.md",
           "**/*.yml"
@@ -30,25 +33,11 @@
           "**/v1/**",
           "**/v-fake/**"
         ],
-        "src": "articles/machine-learning",
-        "dest": "./machine-learning",
-        "group": "grp-machine-learning"
       },
       {
-        "files": [
-          "**/*.md",
-          "**/*.yml"
-        ],
-        "exclude": [
-          "**/_themes/**",
-          "**/includes/**",
-          "**/obj/**"
-        ],
+        "group": "grp-document-intelligence",
         "src": "articles/ai-services/document-intelligence",
         "dest": "./ai-services/document-intelligence/",
-        "group": "grp-document-intelligence"
-      },
-      {
         "files": [
           "**/*.md",
           "**/*.yml"
@@ -58,11 +47,11 @@
           "**/includes/**",
           "**/obj/**"
         ],
+      },
+      {
+        "group": "grp-machine-learningv1",
         "src": "articles/machine-learning/v1",
         "dest": "./machine-learning",
-        "group": "grp-machine-learningv1"
-      },
-      {
         "files": [
           "**/*.md",
           "**/*.yml"
@@ -71,10 +60,21 @@
           "**/_themes/**",
           "**/includes/**",
           "**/obj/**"
-        ],
+        ]
+      },
+      {
         "group": "grp-machine-learningv1",
         "src": "articles/machine-learning/v-fake",
-        "dest": "./machine-learning/v1"
+        "dest": "./machine-learning/v1",        
+        "files": [
+          "**/*.md",
+          "**/*.yml"
+        ],
+        "exclude": [
+          "**/_themes/**",
+          "**/includes/**",
+          "**/obj/**"
+        ]
       },
       {
         "files": [
@@ -104,6 +104,9 @@
         "dest": "."
       },
       {
+        "group": "grp-document-intelligence",
+        "src": "articles/ai-services/document-intelligence",
+        "dest": "./ai-services/document-intelligence/",
         "files": [
           "**/*.gif",
           "**/*.jpeg",
@@ -114,12 +117,12 @@
         "exclude": [
           "**/_themes/**",
           "**/obj/**"
-        ],
-        "src": "articles/ai-services/document-intelligence",
-        "dest": "./ai-services/document-intelligence/",
-        "group": "grp-document-intelligence"
+        ]
       },
       {
+        "group": "grp-machine-learning",
+        "src": "articles/machine-learning",
+        "dest": "./machine-learning/",
         "files": [
           "**/*.gif",
           "**/*.jpeg",
@@ -132,28 +135,12 @@
           "**/obj/**",
           "**/v1/**",
           "**/v-fake/**"
-        ],
-        "src": "articles/machine-learning",
-        "dest": "./machine-learning/",
-        "group": "grp-machine-learning"
+        ]
       },
       {
-        "files": [
-          "**/*.gif",
-          "**/*.jpeg",
-          "**/*.jpg",
-          "**/*.png",
-          "**/*.svg"
-        ],
-        "exclude": [
-          "**/_themes/**",
-          "**/obj/**"
-        ],
+        "group": "grp-machine-learningv1",
         "src": "articles/machine-learning/v1",
         "dest": "./machine-learning/",
-        "group": "grp-machine-learningv1"
-      },
-      {
         "files": [
           "**/*.gif",
           "**/*.jpeg",
@@ -164,10 +151,23 @@
         "exclude": [
           "**/_themes/**",
           "**/obj/**"
-        ],
+        ]
+      },
+      {
         "group": "grp-machine-learningv1",
         "src": "articles/machine-learning/v-fake",
-        "dest": "./machine-learning/v1"
+        "dest": "./machine-learning/v1",
+        "files": [
+          "**/*.gif",
+          "**/*.jpeg",
+          "**/*.jpg",
+          "**/*.png",
+          "**/*.svg"
+        ],
+        "exclude": [
+          "**/_themes/**",
+          "**/obj/**"
+        ]
       }
     ],
     "groups": {
