@@ -3386,6 +3386,16 @@
         "redirect_document_id": true
     },
     {
+        "source_path_from_root": "/articles/machine-learning/v-fake/migrate-overview.md",
+        "redirect_url": "/azure/machine-learning/migrate-overview",
+        "redirect_document_id": false
+    },
+    {
+        "source_path_from_root": "/articles/machine-learning/v-fake/introduction.md",
+        "redirect_url": "/azure/machine-learning/introduction",
+        "redirect_document_id": true
+    },
+    {
         "source_path_from_root": "/articles/machine-learning/classic/migrate-execute-r-script.md",
         "redirect_url": "/azure/machine-learning/migrate-execute-r-script",
         "redirect_document_id": true
