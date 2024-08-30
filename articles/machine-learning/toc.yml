@@ -735,6 +735,8 @@
               href: ./prompt-flow/tools-reference/content-safety-text-tool.md
             - name: Index Lookup tool
               href: ./prompt-flow/tools-reference/index-lookup-tool.md
+            - name: Rerank tool 
+              href: ./prompt-flow/tools-reference/rerank-tool.md
             - name: SERP API tool
               href: ./prompt-flow/tools-reference/serp-api-tool.md
             - name: Open Model LLM tool

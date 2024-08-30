@@ -7,7 +7,7 @@ author: mrbullwinkle
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: how-to
-ms.date: 04/03/2024
+ms.date: 08/29/2024
 ms.author: mbullwin
 recommendations: false
 ---

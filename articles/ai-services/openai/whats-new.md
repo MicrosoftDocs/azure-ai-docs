@@ -10,7 +10,7 @@ ms.custom:
   - ignite-2023
   - references_regions
 ms.topic: whats-new
-ms.date: 08/14/2024
+ms.date: 08/30/2024
 recommendations: false
 ---
 
@@ -19,6 +19,18 @@ recommendations: false
 This article provides a summary of the latest releases and major documentation updates for Azure OpenAI.
 
 ## August 2024
+
+### GPT-4o mini provisioned deployments
+
+GPT-4o mini is now available for provisioned deployments in Canada East, East US, East US2, North Central US, and Sweden Central.
+
+For the latest information on model availability, see the [models page](/azure/ai-services/openai/concepts/models#provisioned-deployment-model-availability).
+
+### GPT-4o fine-tuning (Public Preview)
+
+GPT-4o fine-tuning is now available for Azure OpenAI in public preview in North Central US and Sweden Central.
+
+For more information, see our [blog post](https://techcommunity.microsoft.com/t5/ai-azure-ai-services-blog/fine-tune-gpt-4o-on-azure-openai-service/ba-p/4228693).
 
 ### New preview API release
 

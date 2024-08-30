@@ -7,7 +7,7 @@ manager: nitinme
 ms.service: azure-ai-openai
 ms.custom: devx-track-python
 ms.topic: how-to
-ms.date: 01/16/2024
+ms.date: 08/29/2024
 author: mrbullwinkle
 ms.author: mbullwin
 recommendations: false
@@ -15,7 +15,6 @@ recommendations: false
 # Learn how to generate embeddings with Azure OpenAI
 
 An embedding is a special format of data representation that can be easily utilized by machine learning models and algorithms. The embedding is an information dense representation of the semantic meaning of a piece of text. Each embedding is a vector of floating point numbers, such that the distance between two embeddings in the vector space is correlated with semantic similarity between two inputs in the original format. For example, if two texts are similar, then their vector representations should also be similar. Embeddings power vector similarity search in Azure Databases such as [Azure Cosmos DB for MongoDB vCore](/azure/cosmos-db/mongodb/vcore/vector-search) , [Azure SQL Database](/azure/azure-sql/database/ai-artificial-intelligence-intelligent-applications?view=azuresql&preserve-view=true#vector-search) or [Azure Database for PostgreSQL - Flexible Server](/azure/postgresql/flexible-server/how-to-use-pgvector).
-
 
 ## How to get embeddings
 
@@ -37,13 +36,13 @@ from openai import AzureOpenAI
 
 client = AzureOpenAI(
   api_key = os.getenv("AZURE_OPENAI_API_KEY"),  
-  api_version = "2024-02-01",
+  api_version = "2024-06-01",
   azure_endpoint =os.getenv("AZURE_OPENAI_ENDPOINT") 
 )
 
 response = client.embeddings.create(
     input = "Your text string goes here",
-    model= "text-embedding-ada-002"
+    model= "text-embedding-3-large"
 )
 
 print(response.model_dump_json(indent=2))
@@ -59,7 +58,7 @@ import openai
 openai.api_type = "azure"
 openai.api_key = YOUR_API_KEY
 openai.api_base = "https://YOUR_RESOURCE_NAME.openai.azure.com"
-openai.api_version = "2024-02-01"
+openai.api_version = "2024-06-01"
 
 response = openai.Embedding.create(
     input="Your text string goes here",
@@ -83,7 +82,7 @@ OpenAIClient openAIClient = new (oaiEndpoint, credentials);
 
 EmbeddingsOptions embeddingOptions = new()
 {
-    DeploymentName = "text-embedding-ada-002",
+    DeploymentName = "text-embedding-3-large",
     Input = { "Your text string goes here" },
 };
 
