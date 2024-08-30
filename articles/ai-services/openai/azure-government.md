@@ -10,12 +10,12 @@ ms.date: 8/29/2024
 recommendations: false
 ---
 
-# Azure OpenAI Service and Features in Azure Government
+# Azure OpenAI Service and features in Azure Government
 
 This article highlights the differences when using Azure OpenAI in Azure Government as compared to the commercial cloud offering. Learn more about the Azure OpenAI Service itself in [Azure OpenAI Service documentation](/azure/ai-services/openai/).
 <br><br>
 
-## Azure OpenAI Service models
+## Azure OpenAI models
 
 Learn more about the different capabilities of each model in [Azure OpenAI Service models](./concepts/models.md). The following sections show model availability by region and deployment type.
 
@@ -26,15 +26,20 @@ Learn more about the different capabilities of each model in [Azure OpenAI Servi
 | usgovarizona  | ✅ | ✅ | ✅ | ✅ | ✅ |
 | usgovvirginia | ✅ | ✅ | ✅ | - | ✅ |
 
+To request quota increases for the pay-as-you-go consumption model, apply at [https://aka.ms/AOAIGovQuota](https://aka.ms/AOAIGovQuota)
+
 ### Provisioned deployment model availability
 |   **Region**  | **gpt-35-turbo**, **1106** | **gpt-35-turbo**, **0125** | **gpt-4**, **1106-Preview** | **gpt-4o**, **2024-05-13** |
 |:--------------|:--------------------------:|:--------------------------:|:---------------------------:|:--------------------------:|
 | usgovarizona  | - | ✅ | - | ✅ |
 | usgovvirginia | - | ✅ | ✅ | ✅ |
 
+> [!NOTE]
+> Provisioned Throughput Units (PTUs) are different from standard quota in Azure OpenAI and are not available by default in Azure Government. To learn more about this offering contact your Microsoft Account Team.
+
 <br>
 
-## Azure OpenAI Features
+## Azure OpenAI features
 
 |Feature|Description|
 |--------|--------|
@@ -42,24 +47,15 @@ Learn more about the different capabilities of each model in [Azure OpenAI Servi
 |Managed Identity|Yes, via Microsoft Entra ID|
 |Virtual network support & private link support| Yes. |
 |UI experience|**Azure portal** for account & resource management<br>**Azure OpenAI Studio** for model exploration|
-|Abuse Monitoring|Not all features of Abuse Monitoring are enabled for Azure OpenAI in Azure Government. You are responsible for implementing reasonable technical and operational measures to detect and mitigate any use of the service in violation of the Product Terms. [Automated Content Classification and Filtering](./concepts/content-filter.md) remains enabled by default for Azure Government.|
+|Abuse Monitoring|Not all features of Abuse Monitoring are enabled for Azure OpenAI in Azure Government. You are responsible for implementing reasonable technical and operational measures to detect and mitigate any use of the service in violation of the Product Terms. [Automated Content Classification and Filtering](./concepts/content-filter.md) remains enabled by default for Azure Government. If modified content filters are required, apply at [https://aka.ms/AOAIGovModifyContentFilter](https://aka.ms/AOAIGovModifyContentFilter)|
 |Data Storage|In Azure Government, there are no Azure OpenAI features currently enabled that store customer data at rest. However, Customer Managed Keys (CMK) can still be enabled in Azure Government to support use of the same policies in Azure Government as in Public cloud. Note also that if Azure OpenAI features that store customer data are enabled in Azure Government in the future, any existing CMK deployment would be applied to that data at that time. Learn more at [Azure OpenAI Data Privacy](/../legal/cognitive-services/openai/data-privacy).|
 |Compliance|View the current status of Azure OpenAI compliance in Azure Government at [Azure Government Services Audit Scope](/azure/azure-government/compliance/azure-services-in-fedramp-auditscope?branch=pr-en-us-76518#azure-government-services-by-audit-scope)|
 |Service Endpoints|openai.azure.us|
 |Key Portals|<ul></li><li>Azure OpenAI Studio - aoai.azure.us</li><li>Azure portal - portal.azure.us</li></ul>|
 
-
 <br>
 
-## Next steps
-* To request quota increases for the pay-as-you-go consumption model, apply at [https://aka.ms/AOAIGovQuota](https://aka.ms/AOAIGovQuota)
-* If modified content filters are required, apply at [https://aka.ms/AOAIGovModifyContentFilter](https://aka.ms/AOAIGovModifyContentFilter)
-> [!NOTE]
-> Provisioned Throughput Units (PTUs) are different from standard quota in Azure OpenAI and are not available by default in Azure Government. To learn more about this offering contact your Microsoft Account Team.
-
-<br>
-
-## Provisioned Deployments in Azure Government
+## Provisioned deployments in Azure Government
 
 The following guide walks you through setting up a provisioned deployment with your Azure OpenAI Service resource in Azure Government. 
 
@@ -69,7 +65,7 @@ The following guide walks you through setting up a provisioned deployment with y
 - An Azure OpenAI resource
 - An approved quota for a provisioned deployment and purchased a commitment
 
-### Managing Provisioned Throughput Commitments
+### Managing provisioned throughput commitments
 
 For Azure OpenAI in Azure Government, provisioned throughput deployments require prepurchased commitments created and managed from the **Manage Commitments** view in Azure OpenAI Studio. You can navigate to this view by selecting **Manage Commitments** from the Quota pane.
 
@@ -100,7 +96,7 @@ Commitment renewal settings can be changed at any time before the expiration dat
 > [!IMPORTANT]
 > If you allow a commitment to expire or decrease in size such that the deployments under the resource require more PTUs than you have in your resource commitment, you will receive hourly overage charges for any excess PTUs.  For example, a resource that has deployments that total 500 PTUs and a commitment for 300 PTUs will generate hourly overage charges for 200 PTUs.
 
-### Common Commitment Management Scenarios
+### Common commitment management scenarios
 
 **Discontinue use of provisioned throughput**
 
