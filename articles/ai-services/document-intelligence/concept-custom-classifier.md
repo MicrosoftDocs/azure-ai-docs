@@ -1,5 +1,5 @@
 ---
-title: Custom classification model - Document Intelligence (formerly Form Recognizer)
+title: Custom classification model - Document Intelligence 
 titleSuffix: Azure AI services
 description: Use the custom classification model to train a model to identify and split the documents you process within your application.
 author: vkurpad
