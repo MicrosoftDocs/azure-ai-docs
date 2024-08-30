@@ -1,5 +1,5 @@
 ---
-title: Health insurance card processing - Document Intelligence 
+title: Health insurance card processing - Document Intelligence (formerly Form Recognizer)
 titleSuffix: Azure AI services
 description: Data extraction and analysis extraction using the health insurance card model
 author: laujan

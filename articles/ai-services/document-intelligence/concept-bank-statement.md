@@ -1,5 +1,5 @@
 ---
-title: Bank statement US extraction model - Document Intelligence 
+title: Bank statement US extraction model - Document Intelligence (formerly Form Recognizer)
 titleSuffix: Azure AI services
 description: OCR and machine learning based bank statement US extraction in Document Intelligence extracts key data from bank statements.
 author: laujan

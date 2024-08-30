@@ -1,5 +1,5 @@
 ---
-title: Check extraction - Document Intelligence 
+title: Check extraction - Document Intelligence (formerly Form Recognizer)
 titleSuffix: Azure AI services
 description: OCR and machine learning based check extraction in Document Intelligence extracts key data from cheques.
 author: laujan
