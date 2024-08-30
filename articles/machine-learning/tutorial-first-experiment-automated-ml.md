@@ -286,12 +286,9 @@ Delete just the deployment instance from Azure Machine Learning at https:\//ml.a
 
 In this automated machine learning tutorial, you used Azure Machine Learning's automated ML interface to create and deploy a classification model. See these articles for more information and next steps:
 
-> [!div class="nextstepaction"]
-> [Consume a web service](/power-bi/connect-data/service-aml-integrate?context=azure%2fmachine-learning%2fcontext%2fml-context)
-
 + Learn more about [automated machine learning](concept-automated-ml.md).
 + For more information on classification metrics and charts, see the [Understand automated machine learning results](how-to-understand-automated-ml.md) article.
-
++ Learn more about [how to set up AutoML for NLP](how-to-auto-train-nlp-models.md).
 
 >[!NOTE]
 > This Bank Marketing dataset is made available under the [Creative Commons (CCO: Public Domain) License](https://creativecommons.org/publicdomain/zero/1.0/). Any rights in individual contents of the database are licensed under the [Database Contents License](https://creativecommons.org/publicdomain/zero/1.0/) and available on [Kaggle](https://www.kaggle.com/datasets/janiobachmann/bank-marketing-dataset). This dataset was originally available within the [UCI Machine Learning Database](https://archive.ics.uci.edu/ml/datasets/bank+marketing).<br><br>
