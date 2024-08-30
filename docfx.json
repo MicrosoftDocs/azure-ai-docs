@@ -32,7 +32,7 @@
           "**/obj/**",
           "**/v1/**",
           "**/v-fake/**"
-        ],
+        ]
       },
       {
         "group": "grp-document-intelligence",
@@ -46,7 +46,7 @@
           "**/_themes/**",
           "**/includes/**",
           "**/obj/**"
-        ],
+        ]
       },
       {
         "group": "grp-machine-learningv1",
