@@ -24,7 +24,7 @@ Prompt construction can be difficult. In practice, the prompt acts to configure 
 
 This section covers the basic concepts and elements of GPT prompts.
 
-Text prompts are how users interact with GPT models. As with all generative language models, GPT models attempt to produce the next series of words that are most likely to follow from the previous text. It's as if we're saying *What is the first thing that comes to your mind when I say `<prompt>`?*. The examples below demonstrate this behavior. Given the first words of famous content, the model is able to accurately continue the text.
+Text prompts are how users interact with GPT models. As with all generative language models, GPT models attempt to produce the next series of words that are most likely to follow from the previous text. It's as if we're saying *What is the first thing that comes to your mind when I say `<prompt>`?* The examples below demonstrate this behavior. Given the first words of famous content, the model is able to accurately continue the text.
 
 | Prompt                             |Completion |
 |------------------------------------|-----------|
