@@ -65,7 +65,7 @@ landingContent:
       - linkListType: concept
         links:
           - text: Deployment Types
-            href: ./how-to/deployment-types.md
+            url: ./how-to/deployment-types.md
           - text: Quota
             url: ./how-to/quota.md
           - text: Dynamic quota
