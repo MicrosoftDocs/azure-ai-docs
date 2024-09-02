@@ -1,5 +1,5 @@
 ---
-title: Azure AI Document Intelligence (formerly Form Recognizer) custom generative document field extraction
+title: Azure AI Document Intelligence custom generative document field extraction
 titleSuffix: Azure AI services
 description: Custom generative AI model extracts user-specified fields from documents across a wide variety of visual templates.
 author: laujan
