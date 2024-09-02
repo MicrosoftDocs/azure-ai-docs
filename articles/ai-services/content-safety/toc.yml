@@ -29,11 +29,11 @@ items:
     href: concepts/harm-categories.md
 - name: Quickstarts
   items:
-  - name: Prompt Shields (preview)
+  - name: Prompt Shields
     href: quickstart-jailbreak.md
   - name: Groundedness detection (preview)
     href: quickstart-groundedness.md
-  - name: Protected material detection (preview)
+  - name: Protected material detection
     href: quickstart-protected-material.md
   - name: Custom categories
     href: quickstart-custom-categories.md
