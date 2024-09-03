@@ -9,7 +9,7 @@ ms.topic: quickstart
 author: sdgilley
 ms.author: sgilley
 ms.reviewer: sgilley
-ms.date: 10/20/2023
+ms.date: 09/03/2024
 ms.custom:
   - sdkv2
   - build-2023
@@ -55,7 +55,7 @@ Watch this video for an overview of the steps in this quickstart.
 
 [!INCLUDE [notebook set kernel](includes/prereq-set-kernel.md)] 
 
-<!-- nbstart https://raw.githubusercontent.com/Azure/azureml-examples/sdg-serverless/tutorials/get-started-notebooks/quickstart.ipynb -->
+<!-- nbstart https://raw.githubusercontent.com/Azure/azureml-examples/main/tutorials/get-started-notebooks/quickstart.ipynb -->
 
 ## Create handle to workspace
 
@@ -78,9 +78,9 @@ from azure.identity import DefaultAzureCredential
 # authenticate
 credential = DefaultAzureCredential()
 
-SUBSCRIPTION="<SUBSCRIPTION_ID>"
-RESOURCE_GROUP="<RESOURCE_GROUP>"
-WS_NAME="<AML_WORKSPACE_NAME>"
+SUBSCRIPTION = "<SUBSCRIPTION_ID>"
+RESOURCE_GROUP = "<RESOURCE_GROUP>"
+WS_NAME = "<AML_WORKSPACE_NAME>"
 # Get a handle to the workspace
 ml_client = MLClient(
     credential=credential,
@@ -95,10 +95,10 @@ ml_client = MLClient(
 
 
 ```python
-# Verify that the handle works correctly.  
+# Verify that the handle works correctly.
 # If you ge an error here, modify your SUBSCRIPTION, RESOURCE_GROUP, and WS_NAME in the previous cell.
 ws = ml_client.workspaces.get(WS_NAME)
-print(ws.location,":", ws.resource_group)
+print(ws.location, ":", ws.resource_group)
 ```
 
 ## Create training script
@@ -238,7 +238,6 @@ You might need to select **Refresh** to see the new folder and script in your **
 Now that you have a script that can perform the desired tasks, and a compute cluster to run the script, you'll use a general purpose **command** that can run command line actions. This command line action can directly call system commands or run a script. 
 
 Here, you'll create input variables to specify the input data, split ratio, learning rate and registered model name.  The command script will:
-
 * Use an *environment* that defines software and runtime libraries needed for the training script. Azure Machine Learning provides many curated or ready-made environments, which are useful for common training and inference scenarios. You'll use one of those environments here.  In [Tutorial: Train a model in Azure Machine Learning](tutorial-train-model.md), you'll learn how to create a custom environment.
 * Configure the command line action itself - `python main.py` in this case. The inputs/outputs are accessible in the command via the `${{ ... }}` notation.
 * In this sample, we access the data from a file on the internet. 
@@ -263,7 +262,7 @@ job = command(
     ),
     code="./src/",  # location of source code
     command="python main.py --data ${{inputs.data}} --test_train_ratio ${{inputs.test_train_ratio}} --learning_rate ${{inputs.learning_rate}} --registered_model_name ${{inputs.registered_model_name}}",
-    environment="AzureML-sklearn-1.0-ubuntu20.04-py38-cpu@latest",
+    environment="azureml://registries/azureml/environments/sklearn-1.5/labels/latest",
     display_name="credit_default_prediction",
 )
 ```
