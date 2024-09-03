@@ -144,7 +144,7 @@ Basic search services have lower search unit counts.
 
 + On search services created before April 3, 2024, a basic search service can have exactly one partition and up to three replicas, for a maximum limit of three SUs. The only adjustable resource is replicas. 
 
-+ On search services created after April 3, 2024 in [supported regions](search-limits-quotas-capacity.md#supported-regions-with-higher-storage-limits), basic services can have up to three partitions and three replicas. The maximum SU limit is nine to support a full complement of partitions and replicas.
++ On search services created after April 3, 2024 in [supported regions](search-limits-quotas-capacity.md#service-limits), basic services can have up to three partitions and three replicas. The maximum SU limit is nine to support a full complement of partitions and replicas.
 
 For search services on any billable tier, regardless of creation date, you need a minimum of two replicas for high availability on queries.
 
