@@ -244,6 +244,8 @@ The following table describes the usage of the `<lang xml:lang>` element's attri
 
 > [!NOTE]
 > The `<lang xml:lang>` element is incompatible with the `prosody` and `break` elements. You can't adjust pause and prosody like pitch, contour, rate, or volume in this element.
+>
+> Non-multilingual voices don't support the `<lang xml:lang>` element by design.
 
 ### Multilingual voices with the lang element
 
