@@ -4,7 +4,7 @@ titleSuffix: Azure OpenAI
 description: Learn about the model deprecations and retirements in Azure OpenAI.
 ms.service: azure-ai-openai
 ms.topic: conceptual
-ms.date: 08/22/2024
+ms.date: 09/03/2024
 ms.custom: 
 manager: nitinme
 author: mrbullwinkle
@@ -89,17 +89,17 @@ For information on the model upgrade process, see [How to upgrade to a new model
 
 These models are currently available for use in Azure OpenAI Service.
 
-| Model | Version | Retirement date | Suggested replacement |
+| Model | Version | Retirement date | Suggested replacements |
 | ---- | ---- | ---- | --- |
-| `gpt-35-turbo` | 0301 | No earlier than November 1, 2024 | `gpt-4o-mini`  | 
-| `gpt-35-turbo`<br>`gpt-35-turbo-16k` | 0613 | November 1, 2024 | `gpt-4o-mini` |
-| `gpt-35-turbo` | 1106 | No earlier than Nov 17, 2024 | `gpt-4o-mini` |
+| `gpt-35-turbo` | 0301 | No earlier than November 1, 2024<br><br> Deployments set to [**Auto-update to default**](/azure/ai-services/openai/how-to/working-with-models?tabs=powershell#auto-update-to-default) will be automatically upgraded to version: `0125`, starting on November 15, 2024.   | `gpt-35-turbo` (0125) <br><br> `gpt-4o-mini`  |
+| `gpt-35-turbo`<br>`gpt-35-turbo-16k` | 0613 | November 1, 2024 <br><br> Deployments set to [**Auto-update to default**](/azure/ai-services/openai/how-to/working-with-models?tabs=powershell#auto-update-to-default) will be automatically upgraded to version: `0125`, starting on November 15, 2024.  | `gpt-35-turbo` (0125) <br><br> `gpt-4o-mini`|
+| `gpt-35-turbo` | 1106 | No earlier than Nov 17, 2024 <br><br> Deployments set to [**Auto-update to default**](/azure/ai-services/openai/how-to/working-with-models?tabs=powershell#auto-update-to-default) will be automatically upgraded to version: `0125`, starting on November 15, 2024. | `gpt-35-turbo` (0125) <br><br> `gpt-4o-mini` |
 | `gpt-35-turbo` | 0125 | No earlier than Feb 22, 2025 | `gpt-4o-mini` |
-| `gpt-4`<br>`gpt-4-32k` | 0314 | **Deprecation:** November 1, 2024 <br> **Retirement:** June 6, 2025 | `gpt-4o` |
-| `gpt-4`<br>`gpt-4-32k` | 0613 | **Deprecation:** November 1, 2024 <br> **Retirement:** June 6, 2025 | `gpt-4o` |
-| `gpt-4` | 1106-preview | To be upgraded to `gpt-4` Version: `turbo-2024-04-09`, starting on November 15, 2024, or later **<sup>1</sup>** | `gpt-4o`|
-| `gpt-4` | 0125-preview |To be upgraded to `gpt-4` Version: `turbo-2024-04-09`, starting on November 15, 2024, or later  **<sup>1</sup>**  | `gpt-4o` |
-| `gpt-4` | vision-preview | To be upgraded to `gpt-4` Version: `turbo-2024-04-09`, starting on November 15, 2024, or later  **<sup>1</sup>** | `gpt-4o`|
+| `gpt-4`<br>`gpt-4-32k` | 0314 | **Deprecation:** November 15, 2024 <br> **Retirement:** June 6, 2025 | `gpt-4o` |
+| `gpt-4`<br>`gpt-4-32k` | 0613 | **Deprecation:** November 15, 2024 <br> **Retirement:** June 6, 2025 | `gpt-4o` |
+| `gpt-4` | 1106-preview | To be upgraded to `gpt-4` version: `turbo-2024-04-09`, starting on November 15, 2024, or later **<sup>1</sup>** | `gpt-4o`|
+| `gpt-4` | 0125-preview |To be upgraded to `gpt-4` version: `turbo-2024-04-09`, starting on November 15, 2024, or later  **<sup>1</sup>**  | `gpt-4o` |
+| `gpt-4` | vision-preview | To be upgraded to `gpt-4` version: `turbo-2024-04-09`, starting on November 15, 2024, or later  **<sup>1</sup>** | `gpt-4o`|
 | `gpt-3.5-turbo-instruct` | 0914 | No earlier than Sep 14, 2025 |  |
 | `text-embedding-ada-002` | 2 | No earlier than April 3, 2025 | `text-embedding-3-small` or `text-embedding-3-large` |
 | `text-embedding-ada-002` | 1 | No earlier than April 3, 2025 | `text-embedding-3-small` or `text-embedding-3-large` |
@@ -110,6 +110,14 @@ These models are currently available for use in Azure OpenAI Service.
 
 > [!IMPORTANT]
 > Vision enhancements preview features including Optical Character Recognition (OCR), object grounding, video prompts will be retired and no longer available once `gpt-4` Version: `vision-preview` is upgraded to `turbo-2024-04-09`. If you are currently relying on any of these preview features, this automatic model upgrade will be a breaking change.
+
+## Default model versions
+
+| Model | Current default version | New default version | Default upgrade date |
+|---|---|---|---|
+| `gpt-35-turbo` | 0301 | 0125 | Deployments of versions `0301`, `0613`, and `1106` set to [**Auto-update to default**](/azure/ai-services/openai/how-to/working-with-models?tabs=powershell#auto-update-to-default) will be automatically upgraded to version: `0125`, starting on November 15, 2024.|
+
+
 
 ## Deprecated models
 
@@ -147,7 +155,12 @@ If you're an existing customer looking for information about these models, see [
 | code-search-babbage-code-001 | July 6, 2023 | June 14, 2024 | text-embedding-3-small |
 | code-search-babbage-text-001 | July 6, 2023 | June 14, 2024 | text-embedding-3-small |
 
+
 ## Retirement and deprecation history
+
+## September 3, 2024
+
+* Updated tables to include information on `gpt-35-turbo` default version upgrades. Deployments of versions `0301`, `0613`, and `1106` set to [**Auto-update to default**](/azure/ai-services/openai/how-to/working-with-models?tabs=powershell#auto-update-to-default) will be automatically upgraded to version: `0125`, starting on November 15, 2024.|
 
 ### August 22, 2024
 
