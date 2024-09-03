@@ -1,7 +1,7 @@
 ---
-title: "Part 1: Create resources to build a custom chat application with the prompt flow SDK"
+title: "Part 1: Create resources to build a custom chat app"
 titleSuffix: Azure AI Studio
-description:  Learn how to build a RAG-based chat app using the prompt flow SDK. This tutorial is part 1 of a 3-part tutorial series, and shows how to create the resources you'll need for parts 2 and 3.
+description:  Build a custom chat app using the prompt flow SDK. Part 1 of a 3-part tutorial series, which shows how to create the resources you'll need for parts 2 and 3.
 manager: scottpolly
 ms.service: azure-ai-studio
 ms.topic: tutorial
@@ -14,11 +14,9 @@ author: sdgilley
 
 # Tutorial:  Part 1 - Create resources for building a custom chat application with the prompt flow SDK
 
-In this [Azure AI Studio](https://ai.azure.com) tutorial, you use the prompt flow SDK (and other libraries) to build, configure, evaluate, and deploy a chat app for your retail company called Contoso Trek. Your retail company specializes in outdoor camping gear and clothing. The chat app should answer questions about your products and services. For example, the chat app can answer questions such as "which tent is the most waterproof?" or "what is the best sleeping bag for cold weather?".
+In this tutorial, you use the prompt flow SDK (and other libraries) to build, configure, evaluate, and deploy a chat app for your retail company called Contoso Trek. Your retail company specializes in outdoor camping gear and clothing. The chat app should answer questions about your products and services. For example, the chat app can answer questions such as "which tent is the most waterproof?" or "what is the best sleeping bag for cold weather?".
 
-This tutorial is part one of a three-part tutorial.  This part one shows you how to create and configure the resources you'll need for parts two and three of the tutorial series.
-
-In this part one, you learn how to:
+This tutorial is part one of a three-part tutorial.  This part one shows you how to create and configure the resources you'll need for parts two and three of the tutorial series. In this part one, you learn how to:
 
 > [!div class="checklist"]
 > - Create an Azure AI Studio hub
@@ -26,9 +24,11 @@ In this part one, you learn how to:
 > - Create an Azure AI Search index
 > - Configure access for the Azure AI Studio and Azure AI Search resources
 
+This tutorial is part one of a three-part tutorial.
+
 ## Prerequisites
 
-* A valid Azure subscription - [Create one for free](https://azure.microsoft.com/free)
+* An Azure account with an active subscription. If you don't have one, [create an account for free](https://azure.microsoft.com/free/?WT.mc_id=A261C142F).
 
 > [!IMPORTANT]
 > You must have the necessary permissions to add role assignments in your Azure subscription. Granting permissions by role assignment is only allowed by the **Owner** of the specific Azure resources. You might need to ask your Azure subscription owner (who might be your IT admin) to complete this tutorial for you.  

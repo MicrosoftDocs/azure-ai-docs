@@ -1,5 +1,5 @@
 ---
-title: "Part 2: Evaluate and deploy chat appplication with the prompt flow SDK"
+title: "Part 3: Evaluate and deploy chat app with the prompt flow SDK"
 titleSuffix: Azure AI Studio
 description: Evaluate and deploy a custom chat app with the prompt flow SDK. This tutorial is part 3 of a 3-part tutorial series.
 manager: scottpolly
@@ -12,18 +12,16 @@ author: sdgilley
 #customer intent: As a developer, I want to learn how to use the prompt flow SDK so that I can evaluate and deploy a chat app.
 ---
 
-# Tutorial: Part 2 - Evaluate and deploy a custom chat application with the prompt flow SDK
+# Tutorial: Part 3 - Evaluate and deploy a custom chat application with the prompt flow SDK
 
-In this [Azure AI Studio](https://ai.azure.com) tutorial, you use the prompt flow SDK (and other libraries) to  evaluate and deploy the chat app you built in [Part 3 of the tutorial series](copilot-sdk-build-rag.md).
-
-This tutorial is part three of a three-part tutorial.
-
-In this part three, you learn how to:
+In this tutorial, you use the prompt flow SDK (and other libraries) to  evaluate and deploy the chat app you built in [Part 2 of the tutorial series](copilot-sdk-build-rag.md). In this part three, you learn how to:
 
 > [!div class="checklist"]
 > - Evaluate the quality of chat app responses
 > - Deploy the chat app to Azure
 > - Verify the deployment
+
+This tutorial is part three of a three-part tutorial.
 
 ## Prerequisites
 
@@ -41,7 +39,7 @@ Once you run an evaluation, you can then make improvements to your logic, like i
 
 ### Set your evaluation model
 
-Choose the evaluation model you want to use. It can be the same as the chat model you deployed before. If you want a different model for evaluation, you need to deploy it, or specify it if it already exists. For example, you might be using gpt-35-turbo for your chat completions, but want to use gpt-4 for evaluation since it might perform better.
+Choose the evaluation model you want to use. It can be the same as a chat model you used to build the app. If you want a different model for evaluation, you need to deploy it, or specify it if it already exists. For example, you might be using `gpt-35-turbo` for your chat completions, but want to use `gpt-4` for evaluation since it might perform better.
 
 Add your evaluation model name in your **.env** file:
 

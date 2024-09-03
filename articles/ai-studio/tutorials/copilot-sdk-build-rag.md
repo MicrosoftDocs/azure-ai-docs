@@ -1,5 +1,5 @@
 ---
-title: "Part 1: Build a custom chat application with the prompt flow SDK"
+title: "Part 1: Build a custom chat app with the prompt flow SDK"
 titleSuffix: Azure AI Studio
 description:  Learn how to build a RAG-based chat app using the prompt flow SDK. This tutorial is part 2 of a 3-part tutorial series.
 manager: scottpolly
@@ -14,19 +14,16 @@ author: sdgilley
 
 # Tutorial:  Part 2 - Build a custom chat application with the prompt flow SDK
 
-In this [Azure AI Studio](https://ai.azure.com) tutorial, you use the prompt flow SDK (and other libraries) to build, configure, evaluate, and deploy a chat app for your retail company called Contoso Trek. Your retail company specializes in outdoor camping gear and clothing. The chat app should answer questions about your products and services. For example, the chat app can answer questions such as "which tent is the most waterproof?" or "what is the best sleeping bag for cold weather?".
+In this tutorial, you use the prompt flow SDK (and other libraries) to build, configure, evaluate, and deploy a chat app for your retail company called Contoso Trek. Your retail company specializes in outdoor camping gear and clothing. The chat app should answer questions about your products and services. For example, the chat app can answer questions such as "which tent is the most waterproof?" or "what is the best sleeping bag for cold weather?".
 
-This tutorial is part two of a three-part tutorial.
-
-This part two shows you how to enhance a basic chat application by adding [retrieval augmented generation (RAG)](../concepts/retrieval-augmented-generation.md) to ground the responses in your custom data. Retrieval Augmented Generation (RAG) is a pattern that uses your data with a large language model (LLM) to generate answers specific to your data. 
-
-In this part two, you learn how to:
+This part two shows you how to enhance a basic chat application by adding [retrieval augmented generation (RAG)](../concepts/retrieval-augmented-generation.md) to ground the responses in your custom data. Retrieval Augmented Generation (RAG) is a pattern that uses your data with a large language model (LLM) to generate answers specific to your data. In this part two, you learn how to:
 
 > [!div class="checklist"]
 > - Deploy AI models in Azure AI Studio to use in your app
 > - Develop custom RAG code
 > - Use prompt flow to test your chat app
 
+This tutorial is part two of a three-part tutorial.
 
 ## Prerequisites
 
@@ -65,7 +62,12 @@ The implementation in this tutorial uses prompt flow's flex flow, which is the c
 
 ## Set initial environment variables
 
-There's a collection of environment variables used across the different code snippets. Start the **.env** file now.  You'll add a few more values as you progress through the tutorial.
+There's a collection of environment variables used across the different code snippets. Add them all into an **.env** file.  
+
+> [!IMPORTANT]
+> If you create this in a git repository, ensure that `.env` is in your `.gitignore` file so that you don't accidentally check it into the repository.
+
+Start with these values. You'll add a few more values as you progress through the tutorial.
 
 1. Create an **.env** file into your **rag-tutorial** folder. Add these variables:
 
@@ -82,8 +84,8 @@ Replace the placeholders with the following values:
 * Find the `<your subscription id>`, `<your resource group>`, and `<your project name>` from your project view in AI Studio:
     1. In [AI Studio](https://ai.azure.com), go to your project and select **Settings** from the left pane.
     1. In the **Project properties** section, find the **Subscription ID** and **Resource group**. The **Name** field is `<your project name>`
-* For `<your Azure Search endpoint>` and `<your Azure Search connection name>`:
-    * Still in your project **Settings**, in the **Connected resources** section, select the link for the Azure AI Search service or Azure OpenAI service.
+* * Still in your project **Settings**, in the **Connected resources** section, you'll see an entry for either Azure AIServices or Azure OpenAI.  Select the name to open the **Connection Details**. The connection name appears at the top of the **Connection Details** page. Copy this name to use for `<your AIServices or Azure OpenAI connection name>`.
+* Go back to the project **Settings** page. In the **Connected resources** section, select the link for the Azure AI Search.
     * Copy the **Target** URL for `<your Azure Search endpoint>`.
     * Copy the name at the top for `<your Azure Search connection name>`. 
 
