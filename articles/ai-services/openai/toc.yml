@@ -124,6 +124,8 @@ items:
       href: ./how-to/json-mode.md
     - name: Reproducible output
       href: ./how-to/reproducible-output.md
+    - name: Structured outputs
+      href: ./how-to/structured-outputs.md
     - name: Work with code
       href: ./how-to/work-with-code.md
     - name: Use with large datasets
