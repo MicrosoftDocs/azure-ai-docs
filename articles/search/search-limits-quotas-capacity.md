@@ -91,7 +91,7 @@ Vector limits vary by service creation date and tier. To check the age of your s
 
 ### Vector limits on services created after May 17, 2024
 
-The highest vector limits are available on search services created after May 17, 2024 in a [supported region](#supported-regions-with-higher-storage-limits).
+The highest vector limits are available on search services created after May 17, 2024 in a [supported region](#service-limits).
 
 | Tier   | Storage quota (GB) | Vector quota per partition (GB) | 
 |--------|--------------------|---------------------------------|
@@ -104,7 +104,7 @@ The highest vector limits are available on search services created after May 17,
 
 ### Vector limits on services created between April 3, 2024 and May 17, 2024
 
-The following vector limits are available on search services created after April 3, 2024 in a [supported region](#supported-regions-with-higher-storage-limits).
+The following vector limits are available on search services created after April 3, 2024 in a [supported region](#service-limits).
 
 | Tier   | Storage quota (GB) | Vector quota per partition (GB) |
 |--------|--------------------|---------|
