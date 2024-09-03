@@ -222,9 +222,9 @@ Static rate request limits for operations related to an index:
 
 + List Indexes (GET /indexes): 3 per second per search unit
 + Get Index (GET /indexes/myindex): 10 per second per search unit
-+ Create Index (POST /indexes): 12 per minute per search unit
++ Create Index (POST /indexes): 12 per second per search unit
 + Create or Update Index (PUT /indexes/myindex): 6 per second per search unit
-+ Delete Index (DELETE /indexes/myindex): 12 per minute per search unit 
++ Delete Index (DELETE /indexes/myindex): 12 per second per search unit 
 
 Static rate request limits for operations related to a service:
 
