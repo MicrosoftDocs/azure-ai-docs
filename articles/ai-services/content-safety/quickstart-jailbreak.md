@@ -1,5 +1,5 @@
 ---
-title: "Quickstart: Prompt Shields (preview)"
+title: "Quickstart: Prompt Shields "
 titleSuffix: Azure AI services
 description: Learn how to detect large language model input attack risks and mitigate risk with Azure AI Content Safety.
 services: ai-services
@@ -13,9 +13,46 @@ ms.author: pafarley
 
 # Quickstart: Prompt Shields (preview)
 
-Follow this guide to use Azure AI Content Safety Prompt Shields to check your large language model (LLM) inputs for both User Prompt and Document attacks.
+## Introduction
+"Prompt Shields" in Azure AI Content Safety are specifically designed to safeguard generative AI systems from generating harmful or inappropriate content. These shields detect and mitigate risks associated with both User Prompt Attacks (malicious or harmful user-generated inputs) and Document Attacks (inputs containing harmful content embedded within documents). The use of "Prompt Shields" is crucial in environments where GenAI is employed, ensuring that AI outputs remain safe, compliant, and trustworthy.
+
+The primary objectives of the "Prompt Shields" feature for GenAI applications are:
+
+- To detect and block harmful or policy-violating user prompts that could lead to unsafe AI outputs.
+- To identify and mitigate document attacks where harmful content is embedded within user-provided documents.
+- To maintain the integrity, safety, and compliance of AI-generated content, thereby preventing misuse of GenAI systems.
 
 For more information on Prompt Shields, see the [Prompt Shields concept page](./concepts/jailbreak-detection.md). For API input limits, see the [Input requirements](./overview.md#input-requirements) section of the Overview. 
+
+
+
+
+## User Scenarios
+### 1. AI Content Creation Platforms: Detecting Harmful Prompts
+- Scenario: An AI content creation platform uses generative AI models to produce marketing copy, social media posts, and articles based on user-provided prompts. To prevent the generation of harmful or inappropriate content, the platform integrates "Prompt Shields."
+- User: Content creators, platform administrators, and compliance officers.
+- Action: The platform uses Azure AI Content Safety's "Prompt Shields" to analyze user prompts before generating content. If a prompt is detected as potentially harmful or likely to lead to policy-violating outputs (e.g., prompts asking for defamatory content or hate speech), the shield blocks the prompt and alerts the user to modify their input.
+- Outcome: The platform ensures all AI-generated content is safe, ethical, and compliant with community guidelines, enhancing user trust and protecting the platform's reputation.
+### 2. AI-Powered Chatbots: Mitigating Risk from User Prompt Attacks
+- Scenario: A customer service provider uses AI-powered chatbots for automated support. To safeguard against user prompts that could lead the AI to generate inappropriate or unsafe responses, the provider uses "Prompt Shields."
+- User: Customer service agents, chatbot developers, and compliance teams.
+- Action: The chatbot system integrates "Prompt Shields" to monitor and evaluate user inputs in real-time. If a user prompt is identified as potentially harmful or designed to exploit the AI (e.g., attempting to provoke inappropriate responses or extract sensitive information), the shield intervenes by blocking the response or redirecting the query to a human agent.
+- Outcome: The customer service provider maintains high standards of interaction safety and compliance, preventing the chatbot from generating responses that could harm users or breach policies.
+### 3. E-Learning Platforms: Preventing Inappropriate AI-Generated Educational Content
+- Scenario: An e-learning platform employs GenAI to generate personalized educational content based on student inputs and reference documents. To avoid generating inappropriate or misleading educational content, the platform utilizes "Prompt Shields."
+- User: Educators, content developers, and compliance officers.
+- Action: The platform uses "Prompt Shields" to analyze both user prompts and uploaded documents for content that could lead to unsafe or policy-violating AI outputs. If a prompt or document is detected as likely to generate inappropriate educational content, the shield blocks it and suggests alternative, safe inputs.
+- Outcome: The platform ensures that all AI-generated educational materials are appropriate and compliant with academic standards, fostering a safe and effective learning environment.
+### 4. Healthcare AI Assistants: Blocking Unsafe Prompts and Document Inputs
+- Scenario: A healthcare provider uses AI assistants to offer preliminary medical advice based on user inputs and uploaded medical documents. To ensure the AI does not generate unsafe or misleading medical advice, the provider implements "Prompt Shields."
+- User: Healthcare providers, AI developers, and compliance teams.
+Action: The AI assistant employs "Prompt Shields" to analyze patient prompts and uploaded medical documents for harmful or misleading content. If a prompt or document is identified as potentially leading to unsafe medical advice, the shield prevents the AI from generating a response and redirects the patient to a human healthcare professional.
+- Outcome: The healthcare provider ensures that AI-generated medical advice remains safe and accurate, protecting patient safety and maintaining compliance with healthcare regulations.
+### 5. Generative AI for Creative Writing: Protecting Against Prompt Manipulation
+- Scenario: A creative writing platform uses GenAI to assist writers in generating stories, poetry, and scripts based on user inputs. To prevent the generation of inappropriate or offensive content, the platform incorporates "Prompt Shields."
+- User: Writers, platform moderators, and content reviewers.
+- Action: The platform integrates "Prompt Shields" to evaluate user prompts for creative writing. If a prompt is detected as likely to produce offensive, defamatory, or otherwise inappropriate content, the shield blocks the AI from generating such content and suggests revisions to the user.
+
 
 ## Prerequisites
 
@@ -33,7 +70,7 @@ This section walks through a sample request with cURL. Paste the command below i
 1. Optionally, replace the `"userPrompt"` or `"documents"` fields in the body with your own text you'd like to analyze.
 
 ```shell
-curl --location --request POST '<endpoint>/contentsafety/text:shieldPrompt?api-version=2024-02-15-preview' \
+curl --location --request POST '<endpoint>/contentsafety/text:shieldPrompt?api-version=2024-09-01' \
 --header 'Ocp-Apim-Subscription-Key: <your_subscription_key>' \
 --header 'Content-Type: application/json' \
 --data-raw '{
@@ -48,7 +85,7 @@ The following fields must be included in the URL:
 
 | Name | Required? | Description      | Type   |
 | :-- | :-- | :----- | :----- |
-| **API Version** | Required  | This is the API version to be used. The current version is: api-version=2024-02-15-preview. Example: `<endpoint>/contentsafety/text:shieldPrompt?api-version=2024-02-15-preview` | String |
+| **API Version** | Required  | This is the API version to be used. The current version is: api-version=2024-09-01. Example: `<endpoint>/contentsafety/text:shieldPrompt?api-version=2024-09-01` | String |
 
 The parameters in the request body are defined in this table:
 
