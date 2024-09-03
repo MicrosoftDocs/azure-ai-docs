@@ -140,25 +140,31 @@ For more information, see [Language support](/azure/ai-services/content-safety/l
 
 To use the Content Safety APIs, you must create your Azure AI Content Safety resource in the supported regions. Currently, the Content Safety features are available in the following Azure regions: 
 
-|Region | Moderation APIs<br>(text and image) | Prompt Shields |  Protected material<br>detection | Groundedness<br>detection (preview) | Custom categories<br>(rapid) (preview) | Custom categories<br>(standard) | Blocklists |
-|---|---|---|---|---|---|---|--|
-| East US | ✅ | ✅| ✅ |✅ |✅ |✅|✅ |
-| East US 2 | ✅ | | | ✅ |✅ | |✅|
-| West US | | | | | ✅ | | |
-| West US 2 | ✅ | | | |✅  | |✅ |
-| Central US | ✅ | | | | | |✅ |
-| North Central US | ✅ | | | |✅ | | ✅|
-| South Central US | ✅ | | | | ✅| |✅ |
-| Canada East | ✅ | | | | ✅| | ✅|
-| Switzerland North | ✅ | | | |✅ | ✅ | ✅|
-| Sweden Central | ✅ | | |✅ |✅ | | ✅|
-| UK South | ✅ | | | | ✅| |✅ |
-| France Central | ✅ | | | |✅ | | ✅|
-| West Europe | ✅ | ✅ |✅ | |✅ | |✅ |
-| Japan East | ✅ | | | |✅ | |✅ |
-| Australia East| ✅ |  | | |✅ | ✅| ✅|
-| USGov Arizona | ✅ | | | | | | |
-| USGov Virginia | ✅ | | | | | | |
+| Region              | Moderation APIs (text and image) | Prompt Shields | Protected material detection for Text | Groundedness detection (preview) | Custom categories (rapid) (preview) | Custom categories (standard) | Blocklists |
+|---------------------|----------------------------------|----------------|--------------------------------------|-----------------------------------|------------------------------------|-------------------------------|------------|
+| East US             | ✅                                | ✅              | ✅                                    | ✅                                | ✅                                  | ✅                             | ✅          |
+| East US 2           | ✅                                |                | ✅                                    | ✅                                | ✅                                  |                               | ✅          |
+| West US             |                                  | ✅              | ✅                                    |                                   | ✅                                  |                               |            |
+| West US 2           | ✅                                | ✅              | ✅                                    |                                   | ✅                                  |                               | ✅          |
+| West US 3           | ✅                                | ✅              | ✅                                    |                                   | ✅                                  |                               | ✅          |
+| Poland Central      | ✅                                | ✅              | ✅                                    |                                   | ✅                                   |                               | ✅          |
+| South East Asia      | ✅                                |                | ✅                                    |                                   |  ✅                                  |                               | ✅          |
+| Central US          | ✅                                |                | ✅                                    |                                   | ✅                                   |                               | ✅          |
+| North Central US    | ✅                                |                | ✅                                    |                                   | ✅                                  |                               | ✅          |
+| South Central US    | ✅                                |                | ✅                                    |                                   | ✅                                  |                               | ✅          |
+| Canada East         | ✅                                | ✅              | ✅                                    |                                   | ✅                                  |                               | ✅          |
+| Switzerland North   | ✅                                | ✅              | ✅                                    |                                   | ✅                                  | ✅                             | ✅          |
+| Sweden Central      | ✅                                | ✅              | ✅                                    | ✅                                | ✅                                  |                               | ✅          |
+| UK South            | ✅                                |               | ✅                                    |                                   | ✅                                  |                               | ✅          |
+| France Central      | ✅                                | ✅              | ✅                                    |                                   | ✅                                  |                               | ✅          |
+| West Europe         | ✅                                | ✅              | ✅                                    |                                   | ✅                                  |                               | ✅          |
+| Japan East          | ✅                                | ✅              | ✅                                    |                                   | ✅                                  |                               | ✅          |
+| Australia East      | ✅                                | ✅              | ✅                                    |                                   | ✅                                  |                             | ✅          |
+| South India         | ✅                                |                | ✅                                    |                                   | ✅                                  | ✅                             | ✅          |
+| USGov Arizona       | ✅                                | ✅              | ✅                                    |                                   |                                    |                               |            |
+| USGov Virginia      | ✅                                | ✅              | ✅                                    |                                   |                                    |                               |            |
+
+
 
 Feel free to [contact us](mailto:contentsafetysupport@microsoft.com) if you need other regions for your business.
 

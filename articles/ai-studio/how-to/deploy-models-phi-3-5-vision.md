@@ -5,7 +5,7 @@ description: Learn how to use Phi-3.5 chat model with vision with Azure AI Studi
 ms.service: azure-ai-studio
 manager: scottpolly
 ms.topic: how-to
-ms.date: 08/19/2024
+ms.date: 08/29/2024
 ms.reviewer: kritifaujdar
 reviewer: fkriti
 ms.author: mopeakande
@@ -40,6 +40,15 @@ You can learn more about the models in their respective model card:
 To use Phi-3.5 chat model with vision with Azure AI Studio, you need the following prerequisites:
 
 ### A model deployment
+
+**Deployment to serverless APIs**
+
+Phi-3.5 chat model with vision can be deployed to serverless API endpoints with pay-as-you-go billing. This kind of deployment provides a way to consume models as an API without hosting them on your subscription, while keeping the enterprise security and compliance that organizations need. 
+
+Deployment to a serverless API endpoint doesn't require quota from your subscription. If your model isn't deployed already, use the Azure AI Studio, Azure Machine Learning SDK for Python, the Azure CLI, or ARM templates to [deploy the model as a serverless API](deploy-models-serverless.md).
+
+> [!div class="nextstepaction"]
+> [Deploy the model to serverless API endpoints](deploy-models-serverless.md)
 
 **Deployment to a self-hosted managed compute**
 
@@ -102,6 +111,9 @@ client = ChatCompletionsClient(
     credential=DefaultAzureCredential(),
 )
 ```
+
+> [!NOTE]
+> Currently, serverless API endpoints do not support using Microsoft Entra ID for authentication.
 
 ### Get the model's capabilities
 
@@ -215,7 +227,7 @@ print_stream(result)
 Explore other parameters that you can specify in the inference client. For a full list of all the supported parameters and their corresponding documentation, see [Azure AI Model Inference API reference](https://aka.ms/azureai/modelinference).
 
 ```python
-from azure.ai.inference.models import ChatCompletionsResponseFormatText
+from azure.ai.inference.models import ChatCompletionsResponseFormat
 
 response = client.complete(
     messages=[
@@ -228,7 +240,7 @@ response = client.complete(
     stop=["<|endoftext|>"],
     temperature=0,
     top_p=1,
-    response_format=ChatCompletionsResponseFormatText(),
+    response_format={ "type": ChatCompletionsResponseFormat.TEXT },
 )
 ```
 
@@ -265,6 +277,42 @@ The following extra parameters can be passed to Phi-3.5 chat model with vision:
 | `top_logprobs` | An integer between 0 and 20 specifying the number of most likely tokens to return at each token position, each with an associated log probability. `logprobs` must be set to `true` if this parameter is used. | `int` |
 | `n` | How many chat completion choices to generate for each input message. Note that you will be charged based on the number of generated tokens across all of the choices. | `int` |
 
+
+### Apply content safety
+
+The Azure AI model inference API supports [Azure AI content safety](https://aka.ms/azureaicontentsafety). When you use deployments with Azure AI content safety turned on, inputs and outputs pass through an ensemble of classification models aimed at detecting and preventing the output of harmful content. The content filtering system detects and takes action on specific categories of potentially harmful content in both input prompts and output completions.
+
+The following example shows how to handle events when the model detects harmful content in the input prompt and content safety is enabled.
+
+
+```python
+from azure.ai.inference.models import AssistantMessage, UserMessage, SystemMessage
+
+try:
+    response = client.complete(
+        messages=[
+            SystemMessage(content="You are an AI assistant that helps people find information."),
+            UserMessage(content="Chopping tomatoes and cutting them into cubes or wedges are great ways to practice your knife skills."),
+        ]
+    )
+
+    print(response.choices[0].message.content)
+
+except HttpResponseError as ex:
+    if ex.status_code == 400:
+        response = ex.response.json()
+        if isinstance(response, dict) and "error" in response:
+            print(f"Your request triggered an {response['error']['code']} error:\n\t {response['error']['message']}")
+        else:
+            raise
+    raise
+```
+
+> [!TIP]
+> To learn more about how you can configure and control Azure AI content safety settings, check the [Azure AI content safety documentation](https://aka.ms/azureaicontentsafety).
+
+> [!NOTE]
+> Azure AI content safety is only available for models deployed as serverless API endpoints.
 
 ## Use chat completions with images
 
@@ -361,6 +409,15 @@ To use Phi-3.5 chat model with vision with Azure AI Studio, you need the followi
 
 ### A model deployment
 
+**Deployment to serverless APIs**
+
+Phi-3.5 chat model with vision can be deployed to serverless API endpoints with pay-as-you-go billing. This kind of deployment provides a way to consume models as an API without hosting them on your subscription, while keeping the enterprise security and compliance that organizations need. 
+
+Deployment to a serverless API endpoint doesn't require quota from your subscription. If your model isn't deployed already, use the Azure AI Studio, Azure Machine Learning SDK for Python, the Azure CLI, or ARM templates to [deploy the model as a serverless API](deploy-models-serverless.md).
+
+> [!div class="nextstepaction"]
+> [Deploy the model to serverless API endpoints](deploy-models-serverless.md)
+
 **Deployment to a self-hosted managed compute**
 
 Phi-3.5 chat model with vision can be deployed to our self-hosted managed inference solution, which allows you to customize and control all the details about how the model is served.
@@ -420,6 +477,9 @@ const client = new ModelClient(
     new DefaultAzureCredential()
 );
 ```
+
+> [!NOTE]
+> Currently, serverless API endpoints do not support using Microsoft Entra ID for authentication.
 
 ### Get the model's capabilities
 
@@ -603,6 +663,48 @@ The following extra parameters can be passed to Phi-3.5 chat model with vision:
 | `n` | How many chat completion choices to generate for each input message. Note that you will be charged based on the number of generated tokens across all of the choices. | `int` |
 
 
+### Apply content safety
+
+The Azure AI model inference API supports [Azure AI content safety](https://aka.ms/azureaicontentsafety). When you use deployments with Azure AI content safety turned on, inputs and outputs pass through an ensemble of classification models aimed at detecting and preventing the output of harmful content. The content filtering system detects and takes action on specific categories of potentially harmful content in both input prompts and output completions.
+
+The following example shows how to handle events when the model detects harmful content in the input prompt and content safety is enabled.
+
+
+```javascript
+try {
+    var messages = [
+        { role: "system", content: "You are an AI assistant that helps people find information." },
+        { role: "user", content: "Chopping tomatoes and cutting them into cubes or wedges are great ways to practice your knife skills." },
+    ];
+
+    var response = await client.path("/chat/completions").post({
+        body: {
+            messages: messages,
+        }
+    });
+
+    console.log(response.body.choices[0].message.content);
+}
+catch (error) {
+    if (error.status_code == 400) {
+        var response = JSON.parse(error.response._content);
+        if (response.error) {
+            console.log(`Your request triggered an ${response.error.code} error:\n\t ${response.error.message}`);
+        }
+        else
+        {
+            throw error;
+        }
+    }
+}
+```
+
+> [!TIP]
+> To learn more about how you can configure and control Azure AI content safety settings, check the [Azure AI content safety documentation](https://aka.ms/azureaicontentsafety).
+
+> [!NOTE]
+> Azure AI content safety is only available for models deployed as serverless API endpoints.
+
 ## Use chat completions with images
 
 Phi-3.5-vision-Instruct can reason across text and images and generate text completions based on both kinds of input. In this section, you explore the capabilities of Phi-3.5-vision-Instruct for vision in a chat fashion:
@@ -704,6 +806,15 @@ To use Phi-3.5 chat model with vision with Azure AI Studio, you need the followi
 
 ### A model deployment
 
+**Deployment to serverless APIs**
+
+Phi-3.5 chat model with vision can be deployed to serverless API endpoints with pay-as-you-go billing. This kind of deployment provides a way to consume models as an API without hosting them on your subscription, while keeping the enterprise security and compliance that organizations need. 
+
+Deployment to a serverless API endpoint doesn't require quota from your subscription. If your model isn't deployed already, use the Azure AI Studio, Azure Machine Learning SDK for Python, the Azure CLI, or ARM templates to [deploy the model as a serverless API](deploy-models-serverless.md).
+
+> [!div class="nextstepaction"]
+> [Deploy the model to serverless API endpoints](deploy-models-serverless.md)
+
 **Deployment to a self-hosted managed compute**
 
 Phi-3.5 chat model with vision can be deployed to our self-hosted managed inference solution, which allows you to customize and control all the details about how the model is served.
@@ -778,6 +889,9 @@ client = new ChatCompletionsClient(
     new DefaultAzureCredential(includeInteractiveCredentials: true)
 );
 ```
+
+> [!NOTE]
+> Currently, serverless API endpoints do not support using Microsoft Entra ID for authentication.
 
 ### Get the model's capabilities
 
@@ -958,6 +1072,48 @@ The following extra parameters can be passed to Phi-3.5 chat model with vision:
 | `n` | How many chat completion choices to generate for each input message. Note that you will be charged based on the number of generated tokens across all of the choices. | `int` |
 
 
+### Apply content safety
+
+The Azure AI model inference API supports [Azure AI content safety](https://aka.ms/azureaicontentsafety). When you use deployments with Azure AI content safety turned on, inputs and outputs pass through an ensemble of classification models aimed at detecting and preventing the output of harmful content. The content filtering system detects and takes action on specific categories of potentially harmful content in both input prompts and output completions.
+
+The following example shows how to handle events when the model detects harmful content in the input prompt and content safety is enabled.
+
+
+```csharp
+try
+{
+    requestOptions = new ChatCompletionsOptions()
+    {
+        Messages = {
+            new ChatRequestSystemMessage("You are an AI assistant that helps people find information."),
+            new ChatRequestUserMessage(
+                "Chopping tomatoes and cutting them into cubes or wedges are great ways to practice your knife skills."
+            ),
+        },
+    };
+
+    response = client.Complete(requestOptions);
+    Console.WriteLine(response.Value.Choices[0].Message.Content);
+}
+catch (RequestFailedException ex)
+{
+    if (ex.ErrorCode == "content_filter")
+    {
+        Console.WriteLine($"Your query has trigger Azure Content Safety: {ex.Message}");
+    }
+    else
+    {
+        throw;
+    }
+}
+```
+
+> [!TIP]
+> To learn more about how you can configure and control Azure AI content safety settings, check the [Azure AI content safety documentation](https://aka.ms/azureaicontentsafety).
+
+> [!NOTE]
+> Azure AI content safety is only available for models deployed as serverless API endpoints.
+
 ## Use chat completions with images
 
 Phi-3.5-vision-Instruct can reason across text and images and generate text completions based on both kinds of input. In this section, you explore the capabilities of Phi-3.5-vision-Instruct for vision in a chat fashion:
@@ -1044,6 +1200,15 @@ To use Phi-3.5 chat model with vision with Azure AI Studio, you need the followi
 
 ### A model deployment
 
+**Deployment to serverless APIs**
+
+Phi-3.5 chat model with vision can be deployed to serverless API endpoints with pay-as-you-go billing. This kind of deployment provides a way to consume models as an API without hosting them on your subscription, while keeping the enterprise security and compliance that organizations need. 
+
+Deployment to a serverless API endpoint doesn't require quota from your subscription. If your model isn't deployed already, use the Azure AI Studio, Azure Machine Learning SDK for Python, the Azure CLI, or ARM templates to [deploy the model as a serverless API](deploy-models-serverless.md).
+
+> [!div class="nextstepaction"]
+> [Deploy the model to serverless API endpoints](deploy-models-serverless.md)
+
 **Deployment to a self-hosted managed compute**
 
 Phi-3.5 chat model with vision can be deployed to our self-hosted managed inference solution, which allows you to customize and control all the details about how the model is served.
@@ -1072,6 +1237,9 @@ In this section, you use the [Azure AI model inference API](https://aka.ms/azure
 First, create the client to consume the model. The following code uses an endpoint URL and key that are stored in environment variables.
 
 When you deploy the model to a self-hosted online endpoint with **Microsoft Entra ID** support, you can use the following code snippet to create a client.
+
+> [!NOTE]
+> Currently, serverless API endpoints do not support using Microsoft Entra ID for authentication.
 
 ### Get the model's capabilities
 
@@ -1323,6 +1491,47 @@ The following extra parameters can be passed to Phi-3.5 chat model with vision:
 | `n` | How many chat completion choices to generate for each input message. Note that you will be charged based on the number of generated tokens across all of the choices. | `int` |
 
 
+### Apply content safety
+
+The Azure AI model inference API supports [Azure AI content safety](https://aka.ms/azureaicontentsafety). When you use deployments with Azure AI content safety turned on, inputs and outputs pass through an ensemble of classification models aimed at detecting and preventing the output of harmful content. The content filtering system detects and takes action on specific categories of potentially harmful content in both input prompts and output completions.
+
+The following example shows how to handle events when the model detects harmful content in the input prompt and content safety is enabled.
+
+
+```json
+{
+    "messages": [
+        {
+            "role": "system",
+            "content": "You are an AI assistant that helps people find information."
+        },
+                {
+            "role": "user",
+            "content": "Chopping tomatoes and cutting them into cubes or wedges are great ways to practice your knife skills."
+        }
+    ]
+}
+```
+
+
+```json
+{
+    "error": {
+        "message": "The response was filtered due to the prompt triggering Microsoft's content management policy. Please modify your prompt and retry.",
+        "type": null,
+        "param": "prompt",
+        "code": "content_filter",
+        "status": 400
+    }
+}
+```
+
+> [!TIP]
+> To learn more about how you can configure and control Azure AI content safety settings, check the [Azure AI content safety documentation](https://aka.ms/azureaicontentsafety).
+
+> [!NOTE]
+> Azure AI content safety is only available for models deployed as serverless API endpoints.
+
 ## Use chat completions with images
 
 Phi-3.5-vision-Instruct can reason across text and images and generate text completions based on both kinds of input. In this section, you explore the capabilities of Phi-3.5-vision-Instruct for vision in a chat fashion:
@@ -1412,6 +1621,10 @@ For more examples of how to use Phi-3 family models, see the following examples 
 | LangChain                                 | Python            | [Link](https://aka.ms/phi-3/langchain-sample)           |
 | LiteLLM                                   | Python            | [Link](https://aka.ms/phi-3/litellm-sample)             | 
 
+
+## Cost and quota considerations for Phi-3 family models deployed as serverless API endpoints
+
+Quota is managed per deployment. Each deployment has a rate limit of 200,000 tokens per minute and 1,000 API requests per minute. However, we currently limit one deployment per model per project. Contact Microsoft Azure Support if the current rate limits aren't sufficient for your scenarios.
 
 ## Cost and quota considerations for Phi-3 family models deployed to managed compute
 
