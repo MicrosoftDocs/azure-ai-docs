@@ -59,7 +59,7 @@ The following limits are observed for the conversational language understanding.
 
 |Item|Lower Limit| Upper Limit |
 | --- | --- | --- |
-|Number of utterances per project | 1 | 25,000|
+|Number of utterances per project | 1 | 50,000|
 |Utterance length in characters (authoring) | 1 | 500 |
 |Utterance length in characters (prediction) | 1 | 1000 |
 |Number of intents per project | 1 | 500|
