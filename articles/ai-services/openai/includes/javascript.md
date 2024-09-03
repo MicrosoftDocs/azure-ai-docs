@@ -64,6 +64,10 @@ Your app's _package.json_ file will be updated with the dependencies.
 
 Open a command prompt where you created the new project, and create a new file named Completion.js. Copy the following code into the Completion.js file.
 
+## [**TypeScript**](#tab/typescript)
+
+## [**JavaScript**](#tab/javascript)
+
 ```javascript
 const { AzureOpenAI } = require("openai");
 
@@ -104,6 +108,8 @@ Run the script with the following command:
 node.exe Completion.js
 ```
 
+---
+
 ## Output
 
 ```output
@@ -116,6 +122,11 @@ Microsoft was founded on April 4, 1975.
 
 > [!IMPORTANT]
 > In the previous example we are demonstrating key-based authentication. Once you have tested with key-based authentication successfully, we recommend using the more secure [Microsoft Entra ID](/entra/fundamentals/whatis) for authentication which is demonstrated in the next code sample. Getting started with [Microsoft Entra ID] will require some additional [prerequisites](https://www.npmjs.com/package/@azure/identity).
+
+## [**TypeScript**](#tab/typescript)
+
+
+## [**JavaScript**](#tab/javascript)
 
 ```javascript
 const { AzureOpenAI } = require("openai");
