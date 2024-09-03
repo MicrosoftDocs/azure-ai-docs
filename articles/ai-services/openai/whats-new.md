@@ -10,7 +10,7 @@ ms.custom:
   - ignite-2023
   - references_regions
 ms.topic: whats-new
-ms.date: 08/30/2024
+ms.date: 9/03/2024
 recommendations: false
 ---
 
@@ -19,6 +19,11 @@ recommendations: false
 This article provides a summary of the latest releases and major documentation updates for Azure OpenAI.
 
 ## August 2024
+
+### GPT-4o 2024-08-06 structured outputs
+
+- Available for standard and global deployments in [all US regions and Sweden Central](./concepts/models.md#global-standard-model-availability).
+- This model adds support for [structured outputs](./how-to/structured-outputs.md) when used in conjunction with the new `2024-08-01-preview` inference API.
 
 ### GPT-4o mini provisioned deployments
 
