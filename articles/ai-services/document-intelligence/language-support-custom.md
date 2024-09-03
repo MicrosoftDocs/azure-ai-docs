@@ -1,5 +1,5 @@
 ---
-title: Language and locale support for custom models - Document Intelligence (formerly Form Recognizer)
+title: Language and locale support for custom models - Document Intelligence 
 titleSuffix: Azure AI services
 description: Document Intelligence custom model language extraction and detection support
 author: laujan

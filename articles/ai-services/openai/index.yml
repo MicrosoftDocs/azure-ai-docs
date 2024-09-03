@@ -11,7 +11,7 @@ metadata:
   ms.topic: landing-page
   author: mrbullwinkle
   ms.author: mbullwin
-  ms.date: 01/26/2024
+  ms.date: 08/31/2024
 
 # linkListType: architecture | concept | deploy | download | get-started | how-to-guide | learn | overview | quickstart | reference | tutorial | video | whats-new
 # Limits: https://review.learn.microsoft.com/help/contribute/contribute-how-to-write-landing-page?branch=main#limits
@@ -64,6 +64,8 @@ landingContent:
      linkLists:
       - linkListType: concept
         links:
+          - text: Deployment Types
+            url: ./how-to/deployment-types.md
           - text: Quota
             url: ./how-to/quota.md
           - text: Dynamic quota
@@ -90,6 +92,8 @@ landingContent:
                url: ./how-to/working-with-models.md
              - text: OpenAI versus Azure OpenAI (Python)
                url: ./how-to/switching-endpoints.yml
+             - text: Global batch
+               url: ./how-to/batch.md
              - text: Role-based access control (Azure RBAC)
                url: ./how-to/role-based-access-control.md 
              - text: GPT-3.5 Turbo & GPT-4
