@@ -9,9 +9,10 @@ ms.topic: how-to
 ms.reviewer: None
 ms.author: larryfr
 author: Blackmist
-ms.date: 03/11/2024
-ms.custom: how-to, devx-track-azurecli, devx-track-arm-template
+ms.date: 09/03/2024
+ms.custom: how-to, devx-track-azurecli, devx-track-arm-template, FY25Q1-Linter
 monikerRange: 'azureml-api-1 || azureml-api-2'
+# Customer Intent: As an admin, I want to understand what permissions I need to assign resources so my users can accomplish their tasks.
 ---
 
 # Manage access to Azure Machine Learning workspaces
@@ -190,7 +191,7 @@ The following table is a summary of Azure Machine Learning activities and the pe
 | Submitting any type of run (V2) | Not required | Not required | Owner, contributor, or custom role allowing: `/workspaces/*/read`, `/workspaces/environments/write`, `/workspaces/jobs/*`, `/workspaces/metadata/artifacts/write`, `/workspaces/metadata/codes/*/write`, `/workspaces/environments/build/action`, `/workspaces/environments/readSecrets/action` |
 | Publishing pipelines and endpoints (V1) | Not required | Not required | Owner, contributor, or custom role allowing: `/workspaces/endpoints/pipelines/*`, `/workspaces/pipelinedrafts/*`, `/workspaces/modules/*` |
 | Publishing pipelines and endpoints (V2) | Not required | Not required | Owner, contributor, or custom role allowing: `/workspaces/endpoints/pipelines/*`, `/workspaces/pipelinedrafts/*`, `/workspaces/components/*` |
-| Attach an AKS resource <sub>2</sub> | Not required | Owner or contributor on the resource group that contains AKS | 
+| Attach an AKS resource <sub>2</sub> | Not required | Owner or contributor on the resource group that contains AKS | |
 | Deploying a registered model on an AKS/ACI resource | Not required | Not required | Owner, contributor, or custom role allowing: `/workspaces/services/aks/write`, `/workspaces/services/aci/write` |
 | Scoring against a deployed AKS endpoint | Not required | Not required | Owner, contributor, or custom role allowing: `/workspaces/services/aks/score/action`, `/workspaces/services/aks/listkeys/action` (when you don't use Microsoft Entra auth) OR `/workspaces/read` (when you use token auth) |
 | Accessing storage using interactive notebooks | Not required | Not required | Owner, contributor, or custom role allowing: `/workspaces/computes/read`, `/workspaces/notebooks/samples/read`, `/workspaces/notebooks/storage/*`, `/workspaces/listStorageAccountKeys/action`, `/workspaces/listNotebookAccessToken/read`|
@@ -210,7 +211,7 @@ The following table is a summary of Azure Machine Learning activities and the pe
 
 There are certain differences between actions for V1 APIs and V2 APIs.
 
-| Asset | Action path for V1 API | Action path for V2 API
+| Asset | Action path for V1 API | Action path for V2 API |
 | ----- | ----- | ----- |
 | Dataset | Microsoft.MachineLearningServices/workspaces/datasets | Microsoft.MachineLearningServices/workspaces/datasets/versions |
 | Experiment runs and jobs | Microsoft.MachineLearningServices/workspaces/experiments | Microsoft.MachineLearningServices/workspaces/jobs |
@@ -492,7 +493,7 @@ Here are a few things to be aware of while you use Azure RBAC:
 
 - It can sometimes take up to one hour for your new role assignments to take effect over cached permissions across the stack.
 
-## Next steps
+## Related content
 
 - [Enterprise security and governance for Azure Machine Learning](concept-enterprise-security.md)
 - [Secure Azure Machine Learning workspace resources using virtual networks](how-to-network-security-overview.md)
