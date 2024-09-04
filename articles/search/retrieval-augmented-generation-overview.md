@@ -220,10 +220,6 @@ A RAG solution that includes Azure AI Search can leverage [built-in data chunkin
 
 ## How to get started
 
-+ [Use Azure AI Studio to create a search index](/azure/ai-studio/how-to/index-add).
-
-+ [Use Azure OpenAI Studio and "bring your own data"](/azure/ai-services/openai/concepts/use-your-data) to experiment with prompts on an existing search index in a playground. This step helps you decide what model to use, and shows you how well your existing index works in a RAG scenario.
-
 + [Try this RAG quickstart](search-get-started-rag.md) for a demonstration of query integration with chat models over a search index.
 
 + Start with solution accelerators:
@@ -247,10 +243,10 @@ A RAG solution that includes Azure AI Search can leverage [built-in data chunkin
 
 + [Review indexing concepts and strategies](search-what-is-an-index.md) to determine how you want to ingest and refresh data. Decide whether to use vector search, keyword search, or hybrid search. The kind of content you need to search over, and the type of queries you want to run, determines index design.
 
-+ [Review creating queries](search-query-create.md) to learn more search request syntax and requirements.
++ [Review creating queries](search-query-create.md) to learn more about search request syntax and requirements.
 
 > [!NOTE]
-> Some Azure AI Search features are intended for human interaction and aren't useful in a RAG pattern. Specifically, you can skip autocomplete and suggestions. Other features like facets and orderby might be useful, but would be uncommon in a RAG scenario.
+> Some Azure AI Search features are intended for human interaction and aren't useful in a RAG pattern. Specifically, you can skip features like autocomplete and suggestions. Other features like facets and orderby might be useful, but would be uncommon in a RAG scenario.
 
 ## See also
 
