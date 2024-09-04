@@ -86,10 +86,11 @@ The main function at the end allows you to view the evaluation result locally, a
     az login
     ```
 
-1. Install the required package:
+1. Install the required packages:
 
     ```bash
     pip install promptflow-evals
+    pip install promptflow-azure
     ```
 
 1. Now run the evaluation script:
@@ -164,7 +165,7 @@ The deployment defines a build context (Dockerfile) that relies on the `requirem
 ### Build context for the deployment (Dockerfile)
 
 The deployed environment needs a build context, so let's define a Dockerfile for the deployed environment.
-The deploy script creates an environment based on this Dockerfile. Create this **Dockerfile** in the **chat app_flow** folder:
+The deploy script creates an environment based on this Dockerfile. Create this **Dockerfile** in the **copilot_flow** folder:
 
 ```docker
 FROM mcr.microsoft.com/azureml/promptflow/promptflow-runtime:latest
@@ -176,7 +177,7 @@ RUN pip install -r requirements.txt
 
 To deploy your application to a managed endpoint in Azure, create an online endpoint, then create a deployment in that endpoint, and then route all traffic to that deployment.
 
-As part of creating the deployment, your chat app_flow folder is packaged as a model and a cloud environment is built. The endpoint is set up with Microsoft Entra ID authentication. You can update the auth mode you want in the code, or in the Azure AI Studio on the endpoint details page.
+As part of creating the deployment, your **copilot_flow** folder is packaged as a model and a cloud environment is built. The endpoint is set up with Microsoft Entra ID authentication. You can update the auth mode you want in the code, or in the Azure AI Studio on the endpoint details page.
 
 > [!IMPORTANT]
 > Deploying your application to a managed endpoint in Azure has associated compute cost based on the instance type you choose. Make sure you are aware of the associated cost and have quota for the instance type you specify. Learn more about [online endpoints](/azure/machine-learning/reference-managed-online-endpoints-vm-sku-list).

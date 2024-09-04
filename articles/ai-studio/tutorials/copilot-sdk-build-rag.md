@@ -207,7 +207,7 @@ The chat app with RAG implements the following general logic:
 The chat app implementation logic is in the **copilot.py** file. This file contains the core logic for the RAG-based chat app.
 
 1. Create a folder named **copilot_flow** in the **rag-tutorial** folder. 
-1. Then create a file called **copilot.py** in the **chat app_flow** folder.
+1. Then create a file called **copilot.py** in the **copilot_flow** folder.
 1. Add the following code to the **copilot.py** file:
 
     :::code language="python" source="~/rag-data-openai-python-promptflow-main/tutorial/copilot_flow/copilot.py":::
@@ -235,7 +235,7 @@ The `get_chat_response()` function uses two `Prompty` files to make the necessar
 
 The **chat.prompty** file is simple, and similar to the **chat.prompty** in the [quickstart](../quickstarts/get-started-code.md). The system prompt is updated to reflect our product and the prompt templates includes document context.
 
-1. Add the file **chat.prompty** in the **chat app_flow** directory. The file represents the call to the chat completion model, with the system prompt, chat history, and document context provided.
+1. Add the file **chat.prompty** in the **copilot_flow** directory. The file represents the call to the chat completion model, with the system prompt, chat history, and document context provided.
 1. Add this code to the **chat.prompty** file:
 
     :::code language="yaml" source="~/rag-data-openai-python-promptflow-main/tutorial/copilot_flow/chat.prompty":::
@@ -248,7 +248,7 @@ For instance, if the user asks the question "is it waterproof?", we need the sys
 
 Instead of passing only the user's query to be embedded, we need to generate a new search query that takes into account any chat history. We use another `Prompty` (which is another LLM call) with specific prompting to interpret the user query **intent** given chat history, and construct a search query that has the necessary context.
 
-1. Create the file **queryIntent.prompty** in the **chat app_flow** folder. 
+1. Create the file **queryIntent.prompty** in the **copilot_flow** folder. 
 1. Enter this code for specific details about the prompt format and few-shot examples.
 
     :::code language="yaml" source="~/rag-data-openai-python-promptflow-main/tutorial/copilot_flow/queryIntent.prompty":::
@@ -257,7 +257,7 @@ The simple system message in our **queryIntent.prompty** file achieves the minim
 
 ### Configure required packages
 
-Create the file **requirements.txt** in the **chat app_flow** folder. Add this content:
+Create the file **requirements.txt** in the **copilot_flow** folder. Add this content:
 
 :::code language="txt" source="~/rag-data-openai-python-promptflow-main/tutorial/copilot_flow/requirements.txt":::
 
@@ -269,7 +269,7 @@ As previously mentioned, this implementation uses prompt flow's flex flow, which
 
 This yaml specifies the entry function, which is the `get_chat_response` function defined in `copilot.py`. It also specifies the requirements the flow needs to run.
 
-Create the file **flow.flex.yaml** in the **chat app_flow** folder. Add this content:
+Create the file **flow.flex.yaml** in the **copilot_flow** folder. Add this content:
 
 :::code language="yaml" source="~/rag-data-openai-python-promptflow-main/tutorial/copilot_flow/flow.flex.yaml":::
 
@@ -303,7 +303,7 @@ In general, prompt flow and `Prompty` support chat history. If you test with the
 
 Because our application implements RAG, we had to add [extra logic to handle chat history](#prompt-template-for-chat-history) in the **queryIntent.prompty** file.
 
-To test with chat history, create a file called **input_with_chat_history.json** in the **chat app_flow** folder, and paste in this content:
+To test with chat history, create a file called **input_with_chat_history.json** in the **copilot_flow** folder, and paste in this content:
 
 :::code language="json" source="~/rag-data-openai-python-promptflow-main/tutorial/copilot_flow/input_with_chat_history.json":::
 
