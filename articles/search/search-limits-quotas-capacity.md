@@ -100,9 +100,9 @@ This table shows the progression of storage quota increases in GB over time. Vec
 |**April 3, 2024 through May 17, 2024** <sup>3</sup> | 15  | 160 | 350 | 700 | 1,000 | 2,000 |
 |**After May 17, 2024** <sup>4</sup>b| 15  | 160 | 512 | 1,024 | 2,048 | 4,096 |
 
-<sup>1</sup> Partition sizes at the time of the vector private preview.
+<sup>1</sup> Partition sizes during early preview.
 
-<sup>2</sup> No change for vector public preview.
+<sup>2</sup> No change during the later preview period.
 
 <sup>3</sup> Higher capacity storage for Basic, S1, S2, S3 in the following regions. **Americas**: Brazil South​, Canada Central​, Canada East​​, East US​, East US 2, ​Central US​, North Central US​, South Central US​, West US​, West US 2​, West US 3​, West Central US. **Europe**: France Central​. Italy North​​, North Europe​​, Norway East, Poland Central​​, Switzerland North​, Sweden Central​, UK South​, UK West​. **Middle East**:  UAE North. **Africa**: South Africa North. **Asia Pacific**: Australia East​, Australia Southeast​​, Central India, Jio India West​, East Asia, Southeast Asia​, Japan East, Japan West​, Korea Central, Korea South​.
 
@@ -119,71 +119,13 @@ This table shows the progression of vector quota increases in GB over time. The 
 |**April 3, 2024 through May 17, 2024** <sup>3</sup> | 5  | 35 | 100 | 200 | 12 | 36 |
 |**After May 17, 2024** <sup>4</sup> | 5  | 35 | 150 | 300 | 150 | 300 |
 
-<sup>1</sup> Initial vector limits for the private preview.
+<sup>1</sup> Initial vector limits during early preview.
 
-<sup>2</sup> Vector limits for public preview. Three regions didn't have the higher limits: Germany West Central, West India, Qatar Central.
+<sup>2</sup> Vector limits during the later preview period. Three regions didn't have the higher limits: Germany West Central, West India, Qatar Central.
 
-<sup>3</sup> More vector quota based on the larger partitions on supported tiers and regions.
+<sup>3</sup> Higher vector quota based on the larger partitions for supported tiers and regions.
 
-<sup>4</sup> More vector quota for more tiers and regions.
-
-### Vector limits on services created after May 17, 2024
-
-The highest vector limits are available on search services created after May 17, 2024 in a [supported region](#service-limits).
-
-| Tier   | Storage quota (GB) | Vector quota per partition (GB) | 
-|--------|--------------------|---------------------------------|
-| Basic | 15                  | 5      |
-| S1    | 160                 | 35     |
-| S2    | 512                 | 150    |
-| S3    | 1,024               | 300    |
-| L1    | 2,048               | 150    |
-| L2    | 4,096               | 300    |
-
-### Vector limits on services created between April 3, 2024 and May 17, 2024
-
-The following vector limits are available on search services created after April 3, 2024 in a [supported region](#service-limits).
-
-| Tier   | Storage quota (GB) | Vector quota per partition (GB) |
-|--------|--------------------|---------|
-| Basic | 15                  | 5       |
-| S1    | 160                 | 35      |
-| S2    | 350                 | 100     |
-| S3    | 700                 | 200     |
-| L1    | 1,000               | 12      |
-| L2    | 2,000               | 36      |
-
-Notice that L1 and L2 limits are unchanged in the April 3 rollout.
-
-### Vector limits on services created between July 1, 2023 and April 3, 2024
-
-The following limits applied to new services created between July 1 and April 3, 2024, except for the following regions, which have the original limits from before July 1, 2023:
-
-+ Germany West Central
-+ West India
-+ Qatar Central
-
-All other regions have these limits:
-
-| Tier   | Storage quota (GB) | Vector quota per partition (GB) |
-|--------|--------------------|---------------|
-| Basic | 2                  | 1              |
-| S1    | 25                 | 3              |
-| S2    | 100                | 12             |
-| S3    | 200                | 36             |
-| L1    | 1,000              | 12             |
-| L2    | 2,000              | 36             |
-
-### Vector limits on services created before July 1, 2023
-
-| Tier   | Storage quota (GB) | Vector quota per partition (GB) |
-|--------|--------------------|--------------|
-| Basic | 2                  | 0.5           |
-| S1    | 25                 | 1             |
-| S2    | 100                | 6             |
-| S3    | 200                | 12            |
-| L1    | 1,000              | 12            |
-| L2    | 2,000              | 36            |
+<sup>4</sup> Higher vector quota for more tiers and regions based on partition size updates.
 
 ## Indexer limits
 
