@@ -285,6 +285,8 @@ main().catch((err) => {
 module.exports = { main };
 ```
 
+---
+
 > [!NOTE]
 > If your receive the error: *Error occurred: OpenAIError: The `apiKey` and `azureADTokenProvider` arguments are mutually exclusive; only one can be passed at a time.* You may need to remove a pre-existing environment variable for the API key from your system. Even though the Microsoft Entra ID code sample is not explicitly referencing the API key environment variable, if one is present on the system executing this sample, this error will still be generated.
 
