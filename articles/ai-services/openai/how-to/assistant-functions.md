@@ -76,40 +76,25 @@ assistant = client.beta.assistants.create(
 > With Azure OpenAI the `model` parameter requires model deployment name. If your model deployment name is different than the underlying model name then you would adjust your code to ` "model": "{your-custom-model-deployment-name}"`.
 
 ```console
-curl https://YOUR_RESOURCE_NAME.openai.azure.com/openai/assistants?api-version=2024-02-15-preview \
+curl https://YOUR_RESOURCE_NAME.openai.azure.com/openai/assistants?api-version=2024-07-01-preview \
   -H "api-key: $AZURE_OPENAI_API_KEY" \
   -H "Content-Type: application/json" \
   -d '{
     "instructions": "You are a weather bot. Use the provided functions to answer questions.",
-    "tools": [{
+    tools=[{
       "type": "function",
-      "function": {
-        "name": "getCurrentWeather",
-        "description": "Get the weather in location",
-        "parameters": {
-          "type": "object",
-          "properties": {
-            "location": {"type": "string", "description": "The city and state e.g. San Francisco, CA"},
-            "unit": {"type": "string", "enum": ["c", "f"]}
-          },
-          "required": ["location"]
-        }
-      }	
-    },
-    {
-      "type": "function",
-      "function": {
-        "name": "getNickname",
-        "description": "Get the nickname of a city",
-        "parameters": {
-          "type": "object",
-          "properties": {
-            "location": {"type": "string", "description": "The city and state e.g. San Francisco, CA"}
-          },
-          "required": ["location"]
-        }
-      }	
-    }],
+    "function": {
+      "name": "get_weather",
+      "description": "Get the weather in location",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "location": {"type": "string", "description": "The city name, for example San Francisco"}
+        },
+        "required": ["location"]
+      }
+    }
+  }],
     "model": "gpt-4-1106-preview"
   }'
 ```
@@ -135,18 +120,10 @@ When you initiate a **Run** with a user Message that triggers the function, the 
           "id": "call_abc123",
           "type": "function",
           "function": {
-            "name": "getCurrentWeather",
+            "name": "get_weather",
             "arguments": "{\"location\":\"San Francisco\"}"
           }
         },
-        {
-          "id": "call_abc456",
-          "type": "function",
-          "function": {
-            "name": "getNickname",
-            "arguments": "{\"location\":\"Los Angeles\"}"
-          }
-        }
       ]
     }
   },
@@ -222,16 +199,13 @@ else:
 # [REST](#tab/rest)
 
 ```console
-curl https://YOUR_RESOURCE_NAME.openai.azure.com/openai/threads/thread_abc123/runs/run_123/submit_tool_outputs?api-version=2024-02-15-preview \
+curl https://YOUR_RESOURCE_NAME.openai.azure.com/openai/threads/thread_abc123/runs/run_123/submit_tool_outputs?api-version=2024-07-01-preview \
   -H "Content-Type: application/json" \
-  -H "api-key: $AZURE_OPENAI_API_KEY" \
+  -H "api-key: 851c6e0b83744d8c8fc2a07eab098376" \
   -d '{
     "tool_outputs": [{
-      "tool_call_id": "call_abc123",
-      "output": "{"temperature": "22", "unit": "celsius"}"
-    }, {
-      "tool_call_id": "call_abc456",
-      "output": "{"nickname": "LA"}"
+      "tool_call_id": "call_123",
+      "output": "{\"60 degrees F and raining\"}"
     }]
   }'
 ```
