@@ -8,7 +8,7 @@ author: HeidiSteen
 ms.author: heidist
 ms.service: cognitive-search
 ms.topic: conceptual
-ms.date: 06/13/2024
+ms.date: 09/04/2024
 ms.custom:
   - references_regions
   - build-2024
@@ -88,6 +88,44 @@ The table describes the vector index size quota per partition across the service
 Use the [GET Service Statistics](/rest/api/searchservice/get-service-statistics) to retrieve your vector index size quota or review the **Indexes** page or **Usage** tab in the Azure portal.
 
 Vector limits vary by service creation date and tier. To check the age of your search service and learn more about vector indexes, see [Vector index size and staying under limits](vector-search-index-size.md).
+
+### Storage quota (GB)
+
+This table shows the progression of storage quota increases in GB over time. Vector quota is per partition, so the increase in vector quota is bound to the increase in per-partition storage for each tier. Higher capacity partitions came online starting in April 2024.
+
+| Service creation date |Basic | S1| S2 | S3 | L1 | L2 |
+|-----------------------|------|---|----|----|----|----|
+|**Before July 1, 2023** <sup>1</sup> | 2  | 25 | 100 | 200 | 1,000 | 2,000 |
+| **July 1, 2023 through April 3, 2024** <sup>2</sup>| 2  | 25 | 100 | 200 | 1,000 | 2,000 |
+|**April 3, 2024 through May 17, 2024** <sup>3</sup> | 15  | 160 | 350 | 700 | 1,000 | 2,000 |
+|**After May 17, 2024** <sup>4</sup>b| 15  | 160 | 512 | 1,024 | 2,048 | 4,096 |
+
+<sup>1</sup> Partition sizes at the time of the vector private preview.
+
+<sup>2</sup> No change for vector public preview.
+
+<sup>3</sup> Higher capacity storage for Basic, S1, S2, S3 in the following regions. **Americas**: Brazil South​, Canada Central​, Canada East​​, East US​, East US 2, ​Central US​, North Central US​, South Central US​, West US​, West US 2​, West US 3​, West Central US. **Europe**: France Central​. Italy North​​, North Europe​​, Norway East, Poland Central​​, Switzerland North​, Sweden Central​, UK South​, UK West​. **Middle East**:  UAE North. **Africa**: South Africa North. **Asia Pacific**: Australia East​, Australia Southeast​​, Central India, Jio India West​, East Asia, Southeast Asia​, Japan East, Japan West​, Korea Central, Korea South​.
+
+<sup>4</sup> Higher capacity storage for more tiers and more regions. **Europe**: Germany North​, Germany West Central, Switzerland West​. **Azure Government**: Texas, Arizona, Virginia. **Africa**: South Africa North​. **Asia Pacific**: China North 3, China East 3.
+
+### Vector quota per partition (GB)
+
+This table shows the progression of vector quota increases in GB over time. The quota is per partition, so if you scale a new Standard (S1) service to 6 partitions, total vector quota is 35 multiplied by 6.
+
+| Service creation date |Basic | S1| S2 | S3 | L1 | L2 |
+|-----------------------|------|---|----|----|----|----|
+|**Before July 1, 2023** <sup>1</sup> | 0.5 | 1 | 6 | 12 | 12 | 36 |
+| **July 1, 2023 through April 3, 2024** <sup>2</sup>| 1  | 3 | 12 | 36 | 12 | 36 |
+|**April 3, 2024 through May 17, 2024** <sup>3</sup> | 5  | 35 | 100 | 200 | 12 | 36 |
+|**After May 17, 2024** <sup>4</sup> | 5  | 35 | 150 | 300 | 150 | 300 |
+
+<sup>1</sup> Initial vector limits for the private preview.
+
+<sup>2</sup> Vector limits for public preview. Three regions didn't have the higher limits: Germany West Central, West India, Qatar Central.
+
+<sup>3</sup> More vector quota based on the larger partitions on supported tiers and regions.
+
+<sup>4</sup> More vector quota for more tiers and regions.
 
 ### Vector limits on services created after May 17, 2024
 
