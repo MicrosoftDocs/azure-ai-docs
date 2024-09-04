@@ -40,10 +40,11 @@ Follow these steps to create a new console application.
     ```Python
     import os
     import azure.cognitiveservices.speech as speechsdk
-    
-    def recognize_from_microphone():
-        # This example requires environment variables named "SPEECH_KEY" and "SPEECH_REGION"
+
+            # This example requires environment variables named "SPEECH_KEY" and "SPEECH_REGION"
         speech_translation_config = speechsdk.translation.SpeechTranslationConfig(subscription=os.environ.get('SPEECH_KEY'), region=os.environ.get('SPEECH_REGION'))
+
+    def recognize_from_microphone():
         speech_translation_config.speech_recognition_language="en-US"
     
         to_language ="it"
