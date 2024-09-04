@@ -121,7 +121,7 @@ When you initiate a **Run** with a user Message that triggers the function, the 
           "type": "function",
           "function": {
             "name": "get_weather",
-            "arguments": "{\"location\":\"San Francisco\"}"
+            "arguments": "{\"location\":\"Seattle\"}"
           }
         },
       ]
@@ -142,22 +142,6 @@ You can then complete the **Run** by submitting the tool output from the functio
 # Example function
 def get_weather():
     return "It's 80 degrees F and slightly cloudy."
-
-# Create a thread
-thread = client.beta.threads.create()
-
-#Add a user question to the thread
-message = client.beta.threads.messages.create(
-    thread_id=thread.id,
-    role="user",
-    content="What is the weather in Seattle?"
-)
-
-run = client.beta.threads.runs.create_and_poll(
-    thread_id=thread.id,
-    assistant_id= assistant.id,
-    instructions="",
-)
 
 # Define the list to store tool outputs
 tool_outputs = []
@@ -198,6 +182,8 @@ else:
 
 # [REST](#tab/rest)
 
+in the following example, replace `output` with the output of the function you want to use.
+ 
 ```console
 curl https://YOUR_RESOURCE_NAME.openai.azure.com/openai/threads/thread_abc123/runs/run_123/submit_tool_outputs?api-version=2024-07-01-preview \
   -H "Content-Type: application/json" \
