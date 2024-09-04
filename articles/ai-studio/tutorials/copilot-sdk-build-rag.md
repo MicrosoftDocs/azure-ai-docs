@@ -115,9 +115,9 @@ When you deploy the `gpt-3.5-turbo` model, find the following values in the **Vi
 
 ```env
 AZURE_OPENAI_ENDPOINT=<chat_model_endpoint_value>
-AZURE_OPENAI_DEPLOYMENT_NAME=<chat_model_deployment_name>
-AZURE_OPENAI_API_VERSION=<chat_model_api_version>
-    ```
+AZURE_OPENAI_CHAT_DEPLOYMENT=<chat_model_deployment_name>
+AZURE_OPENAI_API_VERSION=<api_version>
+```
 
 When you deploy the `text-embedding-ada-002` model, add the name to your **.env** file:
 
@@ -134,6 +134,12 @@ Now we create our app and call the Azure OpenAI Service from code.
 ## Create a new Python environment
 
 [!INCLUDE [Install Python](../includes/install-python.md)]
+
+## Install the prompt flow SDK
+
+[Prompt flow](https://microsoft.github.io/promptflow) is a suite of development tools designed to streamline the end-to-end development cycle of LLM-based AI applications, from ideation, prototyping, testing, evaluation to production deployment and monitoring.
+
+[!INCLUDE [Install prompt flow](../includes/install-promptflow.md)]
 
 ## Create an Azure AI Search index
 

@@ -78,18 +78,7 @@ Now we create our app and call the Azure OpenAI Service from code.
 
 In this section, we use prompt flow to build our application. [Prompt flow](https://microsoft.github.io/promptflow) is a suite of development tools designed to streamline the end-to-end development cycle of LLM-based AI applications, from ideation, prototyping, testing, evaluation to production deployment and monitoring.
 
-Use pip to install the prompt flow SDK into the virtual environment that you created.
-```
-pip install promptflow
-pip install azure-identity
-```
-
-The prompt flow SDK takes a dependency on multiple packages, that you can choose to separately install if you don't want all of them:
- * ```promptflow-core```: contains the core prompt flow runtime used for executing LLM code
- * ```promptflow-tracing```: lightweight library used for emitting OpenTelemetry traces in standards
- * ```promptflow-devkit```: contains the prompt flow test bed and trace viewer tools for local development environments
- * ```openai```: client libraries for using the Azure OpenAI service
- * ```python-dotenv```: used to set environment variables by reading them from ```.env``` files
+[!INCLUDE [Install prompt flow](../includes/install-promptflow.md)]
 
 ## Configure your environment variables
 
