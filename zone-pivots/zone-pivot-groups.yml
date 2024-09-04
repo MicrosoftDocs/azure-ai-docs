@@ -6,7 +6,7 @@ groups:
   prompt: Choose a programming language or tool
   pivots:
   - id: azportal
-    title: Azure portal
+    title: Azure portal TEST
   - id: azcli
     title: Azure CLI
   - id: azpowershell
