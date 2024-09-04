@@ -180,7 +180,7 @@ Use Search Explorer to formulate a vector query. Search Explorer has a **Query v
 
 Otherwise, if you don't have a vectorizer, you must use **JSON view** and formulate the vector query in JSON, pasting in a vector array as the query input.
 
-1. Sign in to the [Azure portal](https://portal.azure.com) and find your search service.
+1. Sign in to the [Azure portal](https://portal.azure.com) and [find your search service](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices).
 
 1. Under **Search management** and **Indexes**, select the index.
 

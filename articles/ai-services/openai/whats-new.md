@@ -23,7 +23,7 @@ This article provides a summary of the latest releases and major documentation u
 ### GPT-4o 2024-08-06 structured outputs
 
 - Available for standard and global deployments in [all US regions and Sweden Central](./concepts/models.md#global-standard-model-availability).
-- This model adds support for [structured outputs](https://aka.ms/oai/docs/structured-outputs) when used in conjunction with the new `2024-08-01-preview` inference API.
+- This model adds support for [structured outputs](https://aka.ms/oai/docs/structured-outputs).
 
 ### GPT-4o mini provisioned deployments
 
