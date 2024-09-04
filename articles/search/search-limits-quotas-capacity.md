@@ -63,11 +63,14 @@ You might find some variation in maximum limits if your service happens to be pr
 
 ## Document limits 
 
-You can have approximately 24 billion documents per index on Basic, S1, S2, S3, L1, and L2 search services. For S3 HD, the limit is 2 billion documents per index. Each instance of a complex collection counts as a separate document in terms of these limits.
+Maximum number of documents per index are:
 
-### Document size limits per API call
++ 24 billion on Basic, S1, S2, S3, L1, and L2 search services.
++ 2 billion on S3 HD.
 
-The maximum document size when calling an Index API is approximately 16 megabytes.
+Each instance of a complex collection counts as a separate document in terms of these limits.
+
+Maximum document size when calling an Index API is approximately 16 megabytes.
 
 Document size is actually a limit on the size of the Index API request body. Since you can pass a batch of multiple documents to the Index API at once, the size limit realistically depends on how many documents are in the batch. For a batch with a single document, the maximum document size is 16 MB of JSON.
 
@@ -89,7 +92,7 @@ Use the [GET Service Statistics](/rest/api/searchservice/get-service-statistics)
 
 Vector limits vary by service creation date and tier. To check the age of your search service and learn more about vector indexes, see [Vector index size and staying under limits](vector-search-index-size.md).
 
-### Storage quota (GB)
+#### Storage quota (GB)
 
 This table shows the progression of storage quota increases in GB over time. Vector quota is per partition, so the increase in vector quota is bound to the increase in per-partition storage for each tier. Higher capacity partitions came online starting in April 2024.
 
@@ -108,7 +111,7 @@ This table shows the progression of storage quota increases in GB over time. Vec
 
 <sup>4</sup> Higher capacity storage for more tiers and more regions. **Europe**: Germany North​, Germany West Central, Switzerland West​. **Azure Government**: Texas, Arizona, Virginia. **Africa**: South Africa North​. **Asia Pacific**: China North 3, China East 3.
 
-### Vector quota per partition (GB)
+#### Vector quota per partition (GB)
 
 This table shows the progression of vector quota increases in GB over time. The quota is per partition, so if you scale a new Standard (S1) service to 6 partitions, total vector quota is 35 multiplied by 6.
 
