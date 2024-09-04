@@ -253,7 +253,7 @@ When each training epoch completes a checkpoint is generated. A checkpoint is a 
 
 :::image type="content" source="../media/fine-tuning/checkpoints.png" alt-text="Screenshot of checkpoints UI." lightbox="../media/fine-tuning/checkpoints.png":::
 
-## Safety evaluation GPT-4 fine-tuning - public preview
+## Safety evaluation for GPT-4 fine-tuning (preview)
 
 [!INCLUDE [Safety evaluation](../includes/safety-evaluation.md)]
 
