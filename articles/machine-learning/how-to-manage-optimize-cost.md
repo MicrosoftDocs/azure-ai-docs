@@ -9,7 +9,7 @@ ms.custom: subject-cost-optimization
 ms.service: azure-machine-learning
 ms.subservice: core
 ms.topic: how-to
-ms.date: 09/02/2024
+ms.date: 09/05/2024
 #customer intent: As a data scientist or engineer, I want to optimize my cost for training learning modules.
 ---
 
@@ -51,7 +51,7 @@ Because these compute pools are inside of Azure's IaaS infrastructure, you can d
 
 Autoscaling clusters based on the requirements of your workload helps reduce your costs so you only use what you need.
 
-AmlCompute clusters are designed to scale dynamically based on your workload. The cluster can be scaled up to the maximum number of nodes you configure. As each job completes, the cluster releases nodes and scale to your configured minimum node count.
+AmlCompute clusters are designed to scale dynamically based on your workload. The cluster can be scaled up to the maximum number of nodes you configure. As each job finishes, the cluster releases nodes and scales to your configured minimum node count.
 
 [!INCLUDE [min-nodes-note](includes/machine-learning-min-nodes.md)]
 
@@ -60,7 +60,7 @@ You can also configure the amount of time the node is idle before scale down. By
 - If you perform less iterative experimentation, reduce this time to save costs.
 - If you perform highly iterative dev/test experimentation, you might need to increase the time so that you don't pay for constant scaling up and down after each change to your training script or environment.
 
-You can configure AmlCompute clusters your changing workload requirements by using:
+You can configure AmlCompute clusters for your changing workload requirements by using:
 
 - The Azure portal
 - The [AmlCompute SDK class](/python/api/azure-ai-ml/azure.ai.ml.entities.amlcompute)
@@ -81,14 +81,14 @@ For more information, see [Autoscale online endpoints](how-to-autoscale-endpoint
 
 ## Set quotas on resources
 
-AmlCompute comes with a quota, or limit, configuration. This quota is by VM family, for example, Dv2 series, NCv3 series. The quota varies by region for each subscription. Subscriptions start with small defaults. Use this setting to control the amount of Amlcompute resources available to be spun up in your subscription. For more information, see [Azure Machine Learning Compute](how-to-manage-quotas.md#azure-machine-learning-compute).
+AmlCompute comes with a quota, or limit, configuration. This quota is by VM family, for example, Dv2 series or NCv3 series. The quota varies by region for each subscription. Subscriptions start with small defaults. Use this setting to control the amount of AmlCompute resources available to be spun up in your subscription. For more information, see [Azure Machine Learning Compute](how-to-manage-quotas.md#azure-machine-learning-compute).
 
 Also, you can configure workspace level quota by VM family for each workspace within a subscription. This approach gives you more granular control on the costs that each workspace might incur and restricts certain VM families. For more information, see [Workspace-level quotas](how-to-manage-quotas.md#workspace-level-quotas).
 
 To set quotas at the workspace level:
 
 1. Open the [Azure portal](https://portal.azure.com) and then select any workspace in your subscription.
-1. Select **Support + troubleshooting** > **Usages + quotas** in the workspace menu.
+1. Select **Support + Troubleshooting** > **Usage + quotas** in the workspace menu.
 1. Select **View quota** to view quotas in Azure Machine Learning studio.
 1. From this page, you can find your subscription and region in order to set quotas.
 
@@ -102,7 +102,7 @@ Here are a few options that you have:
 
 - Define a parameter called `max_run_duration_seconds` in your RunConfiguration to control the maximum duration a run can extend to on the compute you choose, either local or remote cloud compute.
 - For *hyperparameter tuning*, define an early termination policy from a Bandit policy, a Median stopping policy, or a Truncation selection policy. To further control hyperparameter sweeps, use parameters such as `max_total_runs` or `max_duration_minutes`. For more information, see [Specify early termination policy](how-to-tune-hyperparameters.md#early-termination).
-- For automated machine learning, set similar termination policies using the  `enable_early_stopping` flag. Also use properties such as `iteration_timeout_minutes` and `experiment_timeout_minutes` to control the maximum duration of a job or for the entire experiment. For more information, see [Exit criteria](how-to-configure-auto-train.md#exit-criteria).
+- For automated machine learning, set similar termination policies using the  `enable_early_stopping` flag. You can also use properties such as `iteration_timeout_minutes` and `experiment_timeout_minutes` to control the maximum duration of a job or for the entire experiment. For more information, see [Exit criteria](how-to-configure-auto-train.md#exit-criteria).
 
 ## <a id="low-pri-vm"></a>Use low-priority virtual machines
 
@@ -141,7 +141,7 @@ For hybrid cloud scenarios like those that use Azure ExpressRoute, it can someti
 
 ## Delete failed deployments
 
-Managed online endpoint uses VMs for the deployments. If you submitted request to create an online deployment and it failed, the request might have passed the stage when compute is created. In that case, the failed deployment would incur charges. When you finish debugging or investigation for the failure, delete the failed deployments to save the cost.
+Managed online endpoints use VMs for the deployments. If you submitted request to create an online deployment and it failed, the request might have passed the stage when compute is created. In that case, the failed deployment would incur charges. When you finish debugging or investigation for the failure, delete the failed deployments to save the cost.
 
 ## Related content
 
