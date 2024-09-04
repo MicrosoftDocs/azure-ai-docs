@@ -198,6 +198,10 @@ while status not in ("completed", "failed", "canceled"):
     batch_response = client.batches.retrieve(batch_id)
     status = batch_response.status
     print(f"{datetime.datetime.now()} Batch Id: {batch_id},  Status: {status}")
+
+if batch_response.status == "failed":
+    for error in batch_response.errors.data:  
+        print(f"Error code {error.code} Message {error.message}")
 ```
 
 **Output:**
@@ -271,13 +275,19 @@ Observe that there's both `error_file_id` and a separate `output_file_id`. Use t
 ```python
 import json
 
-file_response = client.files.content(batch_response.output_file_id)
-raw_responses = file_response.text.strip().split('\n')  
+output_file_id = batch_response.output_file_id
 
-for raw_response in raw_responses:  
-    json_response = json.loads(raw_response)  
-    formatted_json = json.dumps(json_response, indent=2)  
-    print(formatted_json)  
+if not output_file_id:
+    output_file_id = batch_response.error_file_id
+
+if output_file_id:
+    file_response = client.files.content(output_file_id)
+    raw_responses = file_response.text.strip().split('\n')  
+
+    for raw_response in raw_responses:  
+        json_response = json.loads(raw_response)  
+        formatted_json = json.dumps(json_response, indent=2)  
+        print(formatted_json)
 ```
 
 **Output:**
