@@ -10,7 +10,7 @@ ms.custom:
   - ignite-2023
 ms.topic: conceptual
 layout: LandingPage
-ms.date: 06/18/2024
+ms.date: 09/04/2024
 ---
 
 # Data sources gallery
@@ -153,7 +153,7 @@ By [Azure AI Search](search-how-to-index-onelake-files.md)
 
 Connect to a OneLake lakehouse to extract supported files content from a hierarchy of directories and nested subdirectories.
 
-[More details](search-howto-index-cosmosdb.md)
+[More details](search-how-to-index-onelake-files.md)
 
 :::image type="icon" source="media/search-data-sources-gallery/fabric_onelake_logo.png":::
 
