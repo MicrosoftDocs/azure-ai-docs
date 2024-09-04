@@ -155,12 +155,6 @@ If you don't have an Azure AI Search index already created, we walk through how 
     pip install promptflow-rag
     ```
 
-1. Upgrade the *azure-ai-ml* package to the latest version. Run the following command in your terminal:
-
-    ```bash
-    pip install azure-ai-ml -U
-    ```
-
 1. Create the **build_index.py** file in your **rag-tutorial** folder. 
 1. Copy and paste the following code into your **build_index.py** file.
 
