@@ -6,9 +6,9 @@ services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: how-to
-ms.date: 05/22/2024
-author: mrbullwinkle
-ms.author: mbullwin
+ms.date: 09/04/2024
+author: aahill
+ms.author: aahi
 recommendations: false
 
 ---
@@ -29,8 +29,7 @@ To use all features of function calling including parallel functions, you need t
 
 ### API Versions
 
-- `2024-02-15-preview`
-- `2024-05-01-preview`
+Api versions starting with `2024-02-15-preview`.
 
 ## Example function definition
 
@@ -46,40 +45,27 @@ from openai import AzureOpenAI
     
 client = AzureOpenAI(
     api_key=os.getenv("AZURE_OPENAI_API_KEY"),  
-    api_version="2024-02-15-preview",
+    api_version="2024-07-01-preview",
     azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT")
     )
 
 assistant = client.beta.assistants.create(
+  name="Weather Bot",
   instructions="You are a weather bot. Use the provided functions to answer questions.",
-  model="gpt-4-1106-preview", #Replace with model deployment name
+  model="gpt-4", #Replace with model deployment name
   tools=[{
       "type": "function",
     "function": {
-      "name": "getCurrentWeather",
+      "name": "get_weather",
       "description": "Get the weather in location",
       "parameters": {
         "type": "object",
         "properties": {
-          "location": {"type": "string", "description": "The city and state e.g. San Francisco, CA"},
-          "unit": {"type": "string", "enum": ["c", "f"]}
+          "location": {"type": "string", "description": "The city name, for example San Francisco"}
         },
         "required": ["location"]
       }
     }
-  }, {
-    "type": "function",
-    "function": {
-      "name": "getNickname",
-      "description": "Get the nickname of a city",
-      "parameters": {
-        "type": "object",
-        "properties": {
-          "location": {"type": "string", "description": "The city and state e.g. San Francisco, CA"},
-        },
-        "required": ["location"]
-      }
-    } 
   }]
 )
 ```
@@ -169,35 +155,68 @@ When you initiate a **Run** with a user Message that triggers the function, the 
 
 ## Submitting function outputs
 
-You can then complete the **Run** by submitting the tool output from the function(s) you call. Pass the `tool_call_id` referenced in the `required_action` object above to match output to each function call.
+You can then complete the **Run** by submitting the tool output from the function(s) you call. Pass the `tool_call_id` referenced in the `required_action` object to match output to each function call.
 
 
 # [Python 1.x](#tab/python)
 
 ```python
-from openai import AzureOpenAI
-    
-client = AzureOpenAI(
-    api_key=os.getenv("AZURE_OPENAI_API_KEY"),  
-    api_version="2024-02-15-preview",
-    azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT")
-    )
 
+# Example function
+def get_weather():
+    return "It's 80 degrees F and slightly cloudy."
 
-run = client.beta.threads.runs.submit_tool_outputs(
-  thread_id=thread.id,
-  run_id=run.id,
-  tool_outputs=[
-      {
-        "tool_call_id": call_ids[0],
-        "output": "22C",
-      },
-      {
-        "tool_call_id": call_ids[1],
-        "output": "LA",
-      },
-    ]
+# Create a thread
+thread = client.beta.threads.create()
+
+#Add a user question to the thread
+message = client.beta.threads.messages.create(
+    thread_id=thread.id,
+    role="user",
+    content="What is the weather in Seattle?"
 )
+
+run = client.beta.threads.runs.create_and_poll(
+    thread_id=thread.id,
+    assistant_id= assistant.id,
+    instructions="",
+)
+
+# Define the list to store tool outputs
+tool_outputs = []
+ 
+# Loop through each tool in the required action section
+for tool in run.required_action.submit_tool_outputs.tool_calls:
+  # get data from the weather function
+  if tool.function.name == "get_weather":
+    weather = get_weather()
+    tool_outputs.append({
+      "tool_call_id": tool.id,
+      "output": weather
+    })
+ 
+# Submit all tool outputs at once after collecting them in a list
+if tool_outputs:
+  try:
+    run = client.beta.threads.runs.submit_tool_outputs_and_poll(
+      thread_id=thread.id,
+      run_id=run.id,
+      tool_outputs=tool_outputs
+    )
+    print("Tool outputs submitted successfully.")
+  except Exception as e:
+    print("Failed to submit tool outputs:", e)
+else:
+  print("No tool outputs to submit.")
+ 
+if run.status == 'completed':
+  print("run status: ", run.status)
+  messages = client.beta.threads.messages.list(thread_id=thread.id)
+  print(messages.to_json(indent=2))
+
+else:
+  print("run status: ", run.status)
+  print (run.last_error.message)
 ```
 
 # [REST](#tab/rest)
