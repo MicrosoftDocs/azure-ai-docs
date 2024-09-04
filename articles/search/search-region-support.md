@@ -9,24 +9,39 @@ ms.author: heidist
 ms.service: cognitive-search
 ms.topic: conceptual
 ms.custom: references_regions
-ms.date: 08/22/2024
+ms.date: 09/03/2024
 
 ---
 
 # Azure AI Search feature availability across cloud regions
 
-This article identifies the cloud regions in which Azure AI Search is available. It also lists which premium features are available in each region:
+This article identifies the cloud regions in which Azure AI Search is available. It also lists which premium features are available in each region.
 
-- [Semantic ranking](semantic-search-overview.md) depends on models hosted by Microsoft. These models are available in specific regions.
-- [AI enrichment](cognitive-search-concept-intro.md) refer to skills and vectorizers that make internal calls to Azure AI and Azure OpenAI. AI enrichment requires that Azure AI Search coexist with an [Azure AI multi-service account](/azure/ai-services/multi-service-resource) in the same physical region. The following tables indicate whether Azure AI is offered in the same region as Azure AI Search.
+## Features subject to regional availability
+
+| Feature | Availability |
+|---------|--------------|
+| [Extra capacity](search-limits-quotas-capacity.md#service-limits) | Higher capacity partitions became available in selected regions starting in April 2024 with a second wave following in May 2024. Currently, there are just a few regions that *don't* offer higher capacity partitions. If you're using an older search service, create a new search service to benefit from more capacity at the same billing rate. To check existing capacity, [find your search service](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices) and select the **Properties** tab in the middle of the Overview page. To check search service age, follow [these instructions](vector-search-index-size.md#how-to-check-service-creation-date). Regional support for extra capacity is noted in the footnotes of this article.|
+| [Availability zones](search-reliability.md#availability-zone-support) | Divides a region's data centers into distinct physical location groups, providing high-availability within the same geo. Regional support is noted in this article. |
+| [Azure AI integration](vector-search-integrated-vectorization.md) | Refers to skills and vectorizers that make internal calls to Azure AI and Azure OpenAI. Integration requires that Azure AI Search coexists with an [Azure AI multi-service account](/azure/ai-services/multi-service-resource) in the same physical region. <p>AI Search also integrates with Azure OpenAI. Check [Azure OpenAI model region availability](/azure/ai-services/openai/concepts/models#model-summary-table-and-region-availability) for the most current list of regions for each embedding and chat model. Regional support for Azure AI integration is noted in this article. Specific Azure OpenAI models are in fewer regions, so be sure to check before installing.|
+| [Azure AI Studio integration](vector-search-integrated-vectorization-ai-studio.md) | Check [Azure AI Studio region availability](/azure/ai-studio/reference/region-support) for the most current list of regions. |
+| [Azure AI Vision 4.0 multimodal APIs for image vectorization](search-get-started-portal-image-search.md) | Check the [Azure AI Vision region list for multimodal embeddings](/azure/ai-services/computer-vision/overview-image-analysis#region-availability) support. Be sure to create both your Azure AI multi-service account and Azure AI Search service in one of those supported regions. |
+| [Semantic ranking](semantic-search-overview.md) | Takes a dependency on Microsoft-hosted models in specific regions. Regional support is noted in this article. |
+
+<!-- Each cloud region noted in this article includes a column indicating support for the following features.
+
+- [Semantic ranking](semantic-search-overview.md) depends on models hosted in specific regions.
+- [AI enrichment](cognitive-search-concept-intro.md) refers to skills and vectorizers that make internal calls to Azure AI and Azure OpenAI. Integration requires that Azure AI Search coexist with an [Azure AI multi-service account](/azure/ai-services/multi-service-resource) in the same physical region.
 - [Availability zones](search-reliability.md#availability-zone-support) are an Azure platform capability that divides a region's data centers into distinct physical location groups to provide high-availability, within the same region.
 
 We recommend that you check [Azure AI Studio region availability](/azure/ai-studio/reference/region-support) and [Azure OpenAI model region availability](/azure/reliability/availability-zones-service-support#azure-regions-with-availability-zone-support) for the most current list of regions for those features. 
 
-Also, if you're using Azure AI Vision 4.0 multimodal APIs for image vectorization, it's available on a more limited basis. [Check the Azure AI Vision region list for multimodal embeddings](/azure/ai-services/computer-vision/overview-image-analysis#region-availability) and be sure to create both your Azure AI multi-service account and Azure AI Search service in one of those supported regions.
+Also, if you plan to use Azure AI Vision 4.0 multimodal APIs for image vectorization, it's available in a reduced list of regions. [Check the Azure AI Vision region list for multimodal embeddings](/azure/ai-services/computer-vision/overview-image-analysis#region-availability) and be sure to create both your Azure AI multi-service account and Azure AI Search service in one of those supported regions.
 
 > [!NOTE]
-> Higher capacity partitions became available in selected regions starting in April 2024. A second wave of higher capacity partitions released in May 2024. If you're using an older search service, consider creating a new search service to benefit from more capacity at the same billing rate as before. For more information, see [Service limits](search-limits-quotas-capacity.md#service-limits)
+> Higher capacity partitions became available in selected regions starting in April 2024. A second wave of higher capacity partitions released in May 2024. Currently, there are just a few regions that *don't* offer higher capacity patitions, and those are indicated in footnotes.
+>
+> If you're using an older search service, consider creating a new search service in a supported region to benefit from more capacity at the same billing rate as before. For more information, see [Service limits](search-limits-quotas-capacity.md#service-limits) and [How to check service creation date](vector-search-index-size.md#how-to-check-service-creation-date). -->
 
 ## Azure Public regions
 
@@ -34,7 +49,7 @@ You can create an Azure AI Search resource in any of the following Azure public 
 
 ### Americas
 
-| Region | AI enrichment | Semantic ranking | Availability zones |
+| Region | AI integration | Semantic ranking | Availability zones |
 |--|--|--|--|
 | Brazil South​​ ​ | ✅ | ✅ | |
 | Canada Central​​ | ✅ | ✅ | ✅ |
@@ -53,7 +68,7 @@ You can create an Azure AI Search resource in any of the following Azure public 
 
 ### Europe
 
-| Region | AI enrichment | Semantic ranking | Availability zones |
+| Region | AI integration | Semantic ranking | Availability zones |
 |--|--|--|--|
 | North Europe​​ <sup>1</sup>| ✅ | ✅ | ✅ |
 | West Europe​​ <sup>2</sup>| ✅ | ✅ | ✅ |
@@ -75,7 +90,7 @@ You can create an Azure AI Search resource in any of the following Azure public 
 
 ### Middle East
 
-| Region | AI enrichment | Semantic ranking | Availability zones |
+| Region | AI integration | Semantic ranking | Availability zones |
 |--|--|--|--|
 | Israel Central​ <sup>2</sup> |  |  | ✅  |
 | Qatar Central​ <sup>1, 2</sup> |  |  | ✅ |
@@ -87,13 +102,13 @@ You can create an Azure AI Search resource in any of the following Azure public 
 
 ### Africa
 
-| Region | AI enrichment | Semantic ranking | Availability zones |
+| Region | AI integration | Semantic ranking | Availability zones |
 |--|--|--|--|
 | South Africa North​ | ✅ |  | ✅ |
 
 ### Asia Pacific
 
-| Region | AI enrichment | Semantic ranking | Availability zones |
+| Region | AI integration | Semantic ranking | Availability zones |
 |--|--|--|--|
 | Australia East​ ​ | ✅ | ✅ | ✅ |
 | Australia Southeast​​​ |  | ✅ |  |
@@ -111,180 +126,13 @@ You can create an Azure AI Search resource in any of the following Azure public 
 
 <sup>2</sup> These regions run on older infrastructure that has lower capacity per partition at every tier. Choose a different region if you want [higher capacity](search-limits-quotas-capacity.md#service-limits).
 
-<!-- ### United States
-
-| Region | AI enrichment | Semantic ranking | Availability zones |
-|--|--|--|--|
-| East US​ | ✅ | ✅ | ✅ |
-| East US 2 ​ | ✅ | ✅ | ✅ |
-| ​Central US​ ​ | ✅ | ✅ | ✅ |
-| North Central US​ ​ | ✅ | ✅ | |
-| South Central US​ ​ | ✅ | ✅ | ✅ |
-| West US​ ​ | ✅ | ✅ | |
-| West US 2​ ​ | ✅ | ✅ | ✅ |
-| West US 3​ ​ | ✅ | ✅ |✅ |
-| West Central US​ ​ | ✅ | ✅ | |
-
-### United Kingdom
-
-| Region | AI enrichment | Semantic ranking | Availability zones |
-|--|--|--|--|
-| UK South​ | ✅ | ✅ | ✅ |
-| UK West​ ​|  | ✅ | |
-
-### United Arab Emirates
-
-| Region | AI enrichment | Semantic ranking | Availability zones |
-|--|--|--|--|
-| UAE North​​ | ✅ |  | ✅ |
-
-### Switzerland
-
-| Region | AI enrichment | Semantic ranking | Availability zones |
-|--|--|--|--|
-| Switzerland North​ | ✅ | ✅ | ✅ |
-| Switzerland West​ | ✅ | ✅ | ✅ |
-
-### Sweden
-
-| Region | AI enrichment | Semantic ranking | Availability zones |
-|--|--|--|--|
-| Sweden Central​​ | ✅ |  | ✅ |
-
-### Spain
-
-| Region | AI enrichment | Semantic ranking | Availability zones |
-|--|--|--|--|
-| Spain Central |  |  | ✅  |
-
-### South Africa
-
-| Region | AI enrichment | Semantic ranking | Availability zones |
-|--|--|--|--|
-| South Africa North​ | ✅ |  | ✅ |
-
-### Qatar
-
-| Region | AI enrichment | Semantic ranking | Availability zones |
-|--|--|--|--|
-| Qatar Central​ <sup>1</sup> |  |  | ✅ |
-
-<sup>1</sup> This region runs on older infrastructure that has lower capacity per partition at every tier. You can't create a search service with [higher capacity](search-limits-quotas-capacity.md#service-limits) in this region.
-
-### Poland
-
-| Region | AI enrichment | Semantic ranking | Availability zones |
-|--|--|--|--|
-| Poland Central​​ |  |  |  |
-
-### Norway
-
-| Region | AI enrichment | Semantic ranking | Availability zones |
-|--|--|--|--|
-| Norway East​​ | ✅ |  | ✅ |
-
-### Korea
-
-| Region | AI enrichment | Semantic ranking | Availability zones |
-|--|--|--|--|
-| Korea Central | ✅ | ✅ | ✅ |
-| Korea South​ ​ |  | ✅ |  |
-
-### Japan
-
-| Region | AI enrichment | Semantic ranking | Availability zones |
-|--|--|--|--|
-| Japan East| ✅ | ✅ | ✅ |
-| Japan West​ | ✅ | ✅ |  |
-
-### Italy
-
-| Region | AI enrichment | Semantic ranking | Availability zones |
-|--|--|--|--|
-| Italy North​​ |  |  | ✅ |
-
-### Israel
-
-| Region | AI enrichment | Semantic ranking | Availability zones |
-|--|--|--|--|
-| Israel Central​ <sup>1</sup> |  |  | ✅  | 
-
-<sup>1</sup> This region runs on older infrastructure that has lower capacity per partition at every tier. You can't create a search service with [higher capacity](search-limits-quotas-capacity.md#service-limits) in this region.
-
-### India
-
-| Region | AI enrichment | Semantic ranking | Availability zones |
-|--|--|--|--|
-| Central India| ✅ | ✅ | ✅ |
-| Jio India West​ ​ | ✅ | ✅ |  |
-| South India <sup>1</sup> |  | | ✅ |
-
-<sup>1</sup> This region runs on older infrastructure that has lower capacity per partition at every tier. You can't create a search service with [higher capacity](search-limits-quotas-capacity.md#service-limits) in this region.
-
-### Germany
-
-| Region | AI enrichment | Semantic ranking | Availability zones |
-|--|--|--|--|
-| Germany West Central​ ​| ✅ |  | ✅ |
-
-### France
-
-| Region | AI enrichment | Semantic ranking | Availability zones |
-|--|--|--|--|
-| France Central​​ | ✅ | ✅ | ✅ |
-
-### Europe
-
-| Region | AI enrichment | Semantic ranking | Availability zones |
-|--|--|--|--|
-| North Europe​​ | ✅ | ✅ | ✅ |
-| West Europe​​ <sup>1</sup>| ✅ | ✅ | ✅ |
-
-<sup>1</sup> This region runs on older infrastructure that has lower capacity per partition at every tier. You can't create a search service with [higher capacity](search-limits-quotas-capacity.md#service-limits) in this region.
-
-### Canary (US)
-
-| Region | AI enrichment | Semantic ranking | Availability zones |
-|--|--|--|--|
-| Central US EUAP​ <sup>1</sup> | | ✅ | |
-| East US 2 EUAP ​ | | ✅ | |
-
-<sup>1</sup> This region runs on older infrastructure that has lower capacity per partition at every tier. You can't create a search service with [higher capacity](search-limits-quotas-capacity.md#service-limits) in this region.
-
-### Canada
-
-| Region | AI enrichment | Semantic ranking | Availability zones |
-|--|--|--|--|
-| Canada Central​​ | ✅ | ✅ | ✅ |
-| Canada East​​ ​ |  | ✅ | | 
-
-### Brazil
-
-| Region | AI enrichment | Semantic ranking | Availability zones |
-|--|--|--|--|
-| Brazil South​​ ​ | ✅ | ✅ | |
-
-### Asia Pacific
-
-| Region | AI enrichment | Semantic ranking | Availability zones |
-|--|--|--|--|
-| East Asia​ | ✅ | ✅ | ✅ |
-| Southeast Asia​ ​ ​ | ✅ | ✅ | ✅ |
-
-### Australia
-
-| Region | AI enrichment | Semantic ranking | Availability zones |
-|--|--|--|--|
-| Australia East​ ​ | ✅ | ✅ | ✅ |
-| Australia Southeast​​​ |  | ✅ |  | -->
-
 ## Azure Government regions
 
 All of these regions support [higher capacity tiers](search-limits-quotas-capacity.md#service-limits). 
 
 None of these regions support Azure [role-based access for data plane operations](search-security-rbac.md). You must use key-based authentication for indexing and query workloads.
 
-| Region | AI enrichment | Semantic ranking | Availability zones |
+| Region | AI integration | Semantic ranking | Availability zones |
 |--|--|--|--|
 | Arizona | ✅ | ✅  | |
 | Texas |  |  |  |
@@ -294,7 +142,7 @@ None of these regions support Azure [role-based access for data plane operations
 
 You can install Azure AI Search in any of the following regions. If you need semantic ranking or AI enrichment, choose a region that provides the feature.
 
-| Region | AI enrichment  | Semantic ranking | Availability zones |
+| Region | AI integration | Semantic ranking | Availability zones |
 |--|--|--|--|
 | China East <sup>1</sup> |  |  |  |
 | China East 2 <sup>1</sup> | ✅  | | |
