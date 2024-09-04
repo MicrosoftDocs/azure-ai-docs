@@ -98,7 +98,7 @@ This table shows the progression of storage quota increases in GB over time. Vec
 |**Before July 1, 2023** <sup>1</sup> | 2  | 25 | 100 | 200 | 1,000 | 2,000 |
 | **July 1, 2023 through April 3, 2024** <sup>2</sup>| 2  | 25 | 100 | 200 | 1,000 | 2,000 |
 |**April 3, 2024 through May 17, 2024** <sup>3</sup> | 15  | 160 | 350 | 700 | 1,000 | 2,000 |
-|**After May 17, 2024** <sup>4</sup>b| 15  | 160 | 512 | 1,024 | 2,048 | 4,096 |
+|**After May 17, 2024** <sup>4</sup> | 15  | 160 | 512 | 1,024 | 2,048 | 4,096 |
 
 <sup>1</sup> Partition sizes during early preview.
 
