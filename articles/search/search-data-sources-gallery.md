@@ -9,7 +9,6 @@ ms.service: cognitive-search
 ms.custom:
   - ignite-2023
 ms.topic: conceptual
-layout: LandingPage
 ms.date: 09/04/2024
 ---
 
