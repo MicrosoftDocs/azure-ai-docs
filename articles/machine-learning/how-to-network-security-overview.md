@@ -10,7 +10,7 @@ ms.author: larryfr
 author: Blackmist
 ms.date: 09/04/2024
 ms.topic: how-to
-ms.custom: references_regions, security, build-2023
+ms.custom: references_regions, security, build-2023, FY25Q1-Linter
 monikerRange: 'azureml-api-2 || azureml-api-1'
 # Customer Intent: As an admin, I wante to understand how to secure my Azure Machine Learning workspace and associated resources.
 ---
