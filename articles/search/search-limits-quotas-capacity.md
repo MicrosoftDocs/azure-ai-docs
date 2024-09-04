@@ -82,19 +82,15 @@ When you index documents with vector fields, Azure AI Search constructs internal
 
 The service enforces a vector index size quota **for every partition** in your search service. Each extra partition increases the available vector index size quota. This quota is a hard limit to ensure your service remains healthy, which means that further indexing attempts once the limit is exceeded results in failure. You can resume indexing once you free up available quota by either deleting some vector documents or by scaling up in partitions.
 
-The table describes the vector index size quota per partition across the service tiers. For context, it includes:
+Vector limits vary by service creation date and tier.
 
-+ [Partition storage limits](#service-limits) for each tier, repeated here for context.
-+ Amount of each partition (in GB) available for vector indexes (created when you add vector fields to an index).
-+ Approximate number of embeddings (floating point values) per partition.
++ To check the age of your search service or learn more about vector indexes, see [Vector index size and staying under limits](vector-search-index-size.md).
 
-Use the [GET Service Statistics](/rest/api/searchservice/get-service-statistics) to retrieve your vector index size quota or review the **Indexes** page or **Usage** tab in the Azure portal.
-
-Vector limits vary by service creation date and tier. To check the age of your search service and learn more about vector indexes, see [Vector index size and staying under limits](vector-search-index-size.md).
++ To view the vector quota in effect for your search service, use [GET Service Statistics](/rest/api/searchservice/get-service-statistics), or check the **Properties** and **Usage** tabs for your search service in the Azure portal.
 
 #### Storage quota (GB)
 
-This table shows the progression of storage quota increases in GB over time. Vector quota is per partition, so the increase in vector quota is bound to the increase in per-partition storage for each tier. Higher capacity partitions came online starting in April 2024.
+This table repeats [partition storage limits](#service-limits) for context. The table shows the progression of storage quota increases in GB over time. Vector quota is per partition, so the increase in vector quota is bound to the increase in per-partition storage for each tier. Higher capacity partitions were brought online starting in April 2024.
 
 | Service creation date |Basic | S1| S2 | S3 | L1 | L2 |
 |-----------------------|------|---|----|----|----|----|
