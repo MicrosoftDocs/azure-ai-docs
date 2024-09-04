@@ -539,6 +539,120 @@ wps_connection = WorkspaceConnection(
 ml_client.connections.create_or_update(workspace_connection=wps_connection)
 ```
 
+---
+
+### Third party Container Registry
+
+Using the GenericContainerRegistry workspace connection, you can specify an external registry for image builds. Environment images will be pushed and served from the specified registry, and the previous cache will be ignored.
+
+# [Azure CLI](#tab/cli)
+
+Create a connection using the following YAML files. Be sure to update the appropriate values:
+```yml
+#myenv.yml
+$schema: https://azuremlschemas.azureedge.net/latest/environment.schema.json 
+name: docker-image-plus-conda-example 
+image: mcr.microsoft.com/azureml/openmpi4.1.0-ubuntu20.04
+type: python_feed
+conda_file: conda_dep.yml
+description: Environment created from a Docker image plus Conda environment
+```
+
+```yml
+#conda_dep.yml
+name: project_environment
+dependencies:
+  - python=3.10
+  - pip:
+    - azureml-defaults
+channels:
+  - anaconda
+  - conda-forge
+```
+
+```yml
+#connection.yml
+name: ws_conn_generic_container_registry
+type: container_registry
+target: https://test-registry.com
+credentials:
+  type: username_password
+  username: contoso
+  password: pass
+```
+
+```yml
+#hello_world_job.yml
+$schema: https://azuremlschemas.azureedge.net/latest/commandJob.schema.json
+command: echo "hello world"
+environment: azureml:<env name>@latest
+```
+
+Create connection from YAML file with your credentials:
+
+```azurecli
+az ml connection create --file connection.yaml --credentials username=<username> password=<password> --resource-group my-resource-group --workspace-name my-workspace
+```
+
+Create environment
+
+```azurecli
+az ml environment create --name my-env --version 1 --file my_env.yml  --conda-file conda_dep.yml --image mcr.microsoft.com/azureml/openmpi4.1.0-ubuntu20.04 --resource-group my-resource-group --workspace-name my-workspace
+```
+
+You can verify that the environment was successfully created
+
+```azurecli
+az ml environment show --name my-env --version 1 --resource-group my-resource-group --workspace-name my-workspace
+```
+
+# [Python SDK](#tab/python)
+
+The following example creates an Azure Container Registry connection. A managed identity authenticates this connection:
+
+```python
+import os
+from azure.ai.ml import MLClient
+from azure.identity import DefaultAzureCredential
+from azure.ai.ml.entities import Environment
+from azure.ai.ml.entities import WorkspaceConnection
+from azure.ai.ml.entities import UsernamePasswordConfiguration
+from azureml.core.conda_dependencies import CondaDependencies
+from azure.ai.ml import command
+
+# Enter details of AML workspace
+subscription_id = "<SUBSCRIPTION_ID>"
+resource_group = "<RESOURCE_GROUP>"
+workspace = "<AML_WORKSPACE_NAME>"
+
+ml_client = MLClient( DefaultAzureCredential(), subscription_id, resource_group, workspace)
+# Fetching secrets from env var to secure access, these secrets can be set outside or source code
+registry_username = os.environ["REGISTRY_USERNAME"]
+registry_password = os.environ["REGISTRY_PASSWORD"]
+credentials = UsernamePasswordConfiguration(username= registry_username, password= registry_password)
+
+# Create GenericContainerRegistry workspace connection for 3p registry
+ws_connection = WorkspaceConnection(name="<name>", target="<target>", type="GenericContainerRegistry", credentials=credentials)
+ml_client.connections.create_or_update(ws_connection)
+
+# Create an environment
+env_docker_conda = Environment(image="<base image>", conda_file="<yml file>", name="docker-image-plus-conda-example", description="Environment created from a Docker image plus Conda environment.")
+ml_client.environments.create_or_updat(env_docker_conda) 
+
+job = command(command="echo 'hello world'", environment=env_docker_conda,display_name="v2-job-example")
+returned_job = ml_client.create_or_update(job)
+```
+
+# [Studio](#tab/azure-studio)
+
+1. Navigate to the [Azure Machine Learning studio](https://ml.azure.com/).
+
+1. Under **Manage** in the left navigation, select **Connections** and then select **Create**.
+
+1. Under **Other resources types**, select **Generic Container Registry**, input the required information, and then select **Add connection**
+
+---
+
 ## Related content
 
 If you use a data connection (Snowflake DB, Amazon S3, or Azure SQL DB), these articles offer more information:
