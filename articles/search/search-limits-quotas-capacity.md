@@ -90,12 +90,14 @@ Vector limits vary by service creation date and tier.
 
 #### Storage quota (GB)
 
-This table repeats [partition storage limits](#service-limits) for context. The table shows the progression of storage quota increases in GB over time. Vector quota is per partition, so the increase in vector quota is bound to the increase in per-partition storage for each tier. Higher capacity partitions were brought online starting in April 2024.
+This table repeats [partition storage limits](#service-limits) for context. The table shows the progression of storage quota increases in GB over time. Vector quota is per partition, so the increase in vector quota is bound to the increase in per-partition storage for each tier. 
 
-| Service creation date |Basic | S1| S2 | S3 | L1 | L2 |
+Higher capacity partitions were brought online starting in April 2024. Standard 3 (S3) and Standard 3 High Density (S3HD) have the same storage and partition limits.
+
+| Service creation date |Basic | S1| S2 | S3/HD | L1 | L2 |
 |-----------------------|------|---|----|----|----|----|
 |**Before July 1, 2023** <sup>1</sup> | 2  | 25 | 100 | 200 | 1,000 | 2,000 |
-| **July 1, 2023 through April 3, 2024** <sup>2</sup>| 2  | 25 | 100 | 200 | 1,000 | 2,000 |
+|**July 1, 2023 through April 3, 2024** <sup>2</sup>| 2  | 25 | 100 | 200 | 1,000 | 2,000 |
 |**April 3, 2024 through May 17, 2024** <sup>3</sup> | 15  | 160 | 350 | 700 | 1,000 | 2,000 |
 |**After May 17, 2024** <sup>4</sup> | 15  | 160 | 512 | 1,024 | 2,048 | 4,096 |
 
@@ -111,7 +113,7 @@ This table repeats [partition storage limits](#service-limits) for context. The 
 
 This table shows the progression of vector quota increases in GB over time. The quota is per partition, so if you scale a new Standard (S1) service to 6 partitions, total vector quota is 35 multiplied by 6.
 
-| Service creation date |Basic | S1| S2 | S3 | L1 | L2 |
+| Service creation date |Basic | S1| S2 | S3/HD | L1 | L2 |
 |-----------------------|------|---|----|----|----|----|
 |**Before July 1, 2023** <sup>1</sup> | 0.5 | 1 | 6 | 12 | 12 | 36 |
 | **July 1, 2023 through April 3, 2024** <sup>2</sup>| 1  | 3 | 12 | 36 | 12 | 36 |
