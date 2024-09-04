@@ -50,10 +50,10 @@ landingContent:
             url: retrieval-augmented-generation-overview.md
       - linkListType: quickstart
         links:
-          - text: Create a vector index
-            url: search-get-started-vector.md
           - text: Retrieve data using an LLM
             url: search-get-started-rag.md
+          - text: Create a vector index
+            url: search-get-started-vector.md
           - text: Query a vector index
             url: vector-search-how-to-query.md
       - linkListType: sample
