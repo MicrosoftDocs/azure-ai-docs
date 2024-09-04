@@ -6,7 +6,7 @@ groups:
   prompt: Choose a programming language or tool
   pivots:
   - id: azportal
-    title: Azure portal TEST
+    title: Azure portal
   - id: azcli
     title: Azure CLI
   - id: azpowershell
@@ -820,12 +820,3 @@ groups:
     title: Python
   - id: programming-language-powershell
     title: PowerShell
-- id: usage-custom-language-features
-# Owner aahill
-  title: Usage methods
-  prompt: Choose your preferred usage method
-  pivots:
-  - id: language-studio
-    title: Language Studio
-  - id: rest-api
-    title: REST API
