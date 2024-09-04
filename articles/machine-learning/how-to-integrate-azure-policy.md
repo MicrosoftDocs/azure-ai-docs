@@ -1,15 +1,17 @@
 ---
 title: Audit and manage Azure Machine Learning
 titleSuffix: Azure Machine Learning
-description: Learn how to use Azure Policy to use built-in policies for Azure Machine Learning to make sure your workspaces are compliant with your requirements.
+description: Learn how to use Azure Policy with Azure Machine Learning to make sure your workspaces are compliant with your requirements.
 author: Blackmist
 ms.author: larryfr
-ms.date: 08/30/2024
+ms.date: 09/04/2024
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: enterprise-readiness
 ms.topic: how-to
 ms.reviewer: jhirono
+ms.custom: FY25Q1-Linter
+# Customer Intent: As an admin, I want to understand how I can use Azure Policy to audit and manage Azure Machine Learning resources so that I can ensure compliance with my organization's requirements.
 ---
 
 # Audit and manage Azure Machine Learning
@@ -174,31 +176,85 @@ To discover the allowed values for a specific alias, visit the [Azure Machine Le
 
 For a tutorial (not Azure Machine Learning specific) on how to create custom policies, visit [Create a custom policy definition](/azure/governance/policy/tutorials/create-custom-policy-definition).
 
-### How to find values to use in policies
-
 ### Example: Block serverless spark compute jobs
 
 ```json
 {
-    "mode": "All",
-    "policyRule": {
-        "if": {
-            "allOf": [
-                {
-                    "field": "Microsoft.MachineLearningServices/workspaces/jobs/jobType",
-                    "in": [
-                        "Spark"
-                    ]
-                }
-            ]
+    "properties": {
+        "displayName": "Deny serverless Spark compute jobs",
+        "description": "Deny serverless Spark compute jobs",
+        "mode": "All",
+        "policyRule": {
+            "if": {
+                "allOf": [
+                    {
+                        "field": "Microsoft.MachineLearningServices/workspaces/jobs/jobType",
+                        "in": [
+                            "Spark"
+                        ]
+                    }
+                ]
+            },
+            "then": {
+                "effect": "Deny"
+            }
         },
-        "then": {
-            "effect": "Deny"
-        }
-    },
-    "parameters": {}
+        "parameters": {}
+    }
 }
 ```
+
+### Example: Configure no public IP for managed computes
+
+```json
+{
+    "properties": {
+        "displayName": "Deny compute instance and compute cluster creation with public IP",
+        "description": "Deny compute instance and compute cluster creation with public IP",
+        "mode": "all",
+        "parameters": {
+            "effectType": {
+                "type": "string",
+                "defaultValue": "Deny",
+                "allowedValues": [
+                    "Deny",
+                    "Disabled"
+                ],
+                "metadata": {
+                    "displayName": "Effect",
+                    "description": "Enable or disable the execution of the policy"
+                }
+            }
+        },
+        "policyRule": {
+            "if": {
+                "allOf": [
+                  {
+                    "field": "type",
+                    "equals": "Microsoft.MachineLearningServices/workspaces/computes"
+                  },
+                  {
+                    "allOf": [
+                      {
+                        "field": "Microsoft.MachineLearningServices/workspaces/computes/computeType",
+                        "notEquals": "AKS"
+                      },
+                      {
+                        "field": "Microsoft.MachineLearningServices/workspaces/computes/enableNodePublicIP",
+                        "equals": true
+                      }
+                    ]
+                  }
+                ]
+              },
+            "then": {
+                "effect": "[parameters('effectType')]"
+            }
+        }
+    }
+}
+```
+
 
 ## Related content
 
