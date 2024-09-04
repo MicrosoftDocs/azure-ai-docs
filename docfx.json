@@ -261,7 +261,7 @@
       ],
       "uhfHeaderId": "azure",
       "ms.suite": "office",
-	  "zone_pivot_group_filename": "zone-pivots/azure-ai/zone-pivot-groups.yml"
+	  "zone_pivot_group_filename": "zone-pivot-groups.yml"
     },
     "fileMetadata": {
       "author": {

@@ -12,6 +12,7 @@
       "monikers": [],
       "open_to_public_contributors": true,
       "type_mapping": {
+        "ZonePivotGroups": "Toc",
         "Conceptual": "Content"
       },
       "build_entry_point": "docs"
