@@ -257,6 +257,8 @@ training:
 
 ---
 
+<a name="forecasting-job-settings"></a>
+
 ### Forecast job settings
 
 Forecasting tasks have many settings that are specific to forecasting. The most basic of these settings are the name of the time column in the training data and the forecast horizon.
@@ -536,6 +538,8 @@ forecasting:
 > [!CAUTION]
 > Padding can impact the accuracy of the resulting model, since you introduce artificial data to avoid training failures. If many of the series are short, you might also see some impact in explainability results.
 
+<a name="frequency--target-data-aggregation"></a>
+
 #### Frequency and target data aggregation
 
 Use the frequency and data aggregation options to avoid failures caused by irregular data. Your data is irregular if it doesn't follow a set cadence in time, like hourly or daily. Point-of-sales data is a good example of irregular data. In these cases, AutoML can aggregate your data to a desired frequency and then build a forecasting model from the aggregates.
@@ -762,6 +766,8 @@ az ml job show -n $run_id --web
 ---
 
 After the job is submitted, AutoML provisions compute resources, applies featurization and other preparation steps to the input data, and begins sweeping over forecasting models. For more information, see [forecasting methodology](./concept-automl-forecasting-methods.md) and [model search](concept-automl-forecasting-sweeping.md).
+
+<a name="orchestrating-training-inference-and-evaluation-with-components-and-pipelines"></a>
 
 ## Orchestrate training, inference, and evaluation with components and pipelines
 
@@ -1035,6 +1041,8 @@ az ml job download --name $run_id --download-path . --output-name rolling_fcst_r
 You can find the metrics results in *./named-outputs/metrics_results/evaluationResult/metrics.json* and the forecasts, in JSON lines format, in *./named-outputs/rolling_fcst_result/inference_output_file*.
 
 For more information on rolling evaluation, see [Inference and evaluation of forecasting models](concept-automl-forecasting-evaluation.md).
+
+<a name="forecasting-at-scale-many-models"></a>
 
 ## Forecast at scale: many models
 
@@ -1312,6 +1320,8 @@ For a more detailed example, see the [demand forecasting with many models notebo
 
 > [!NOTE]
 > The many models training and inference components conditionally partition your data according to the `partition_column_names` setting so that each partition is in its own file. This process can be very slow or fail when data is very large. In this case, we recommend partitioning your data manually before running many models training or inference.  
+
+<a name="forecasting-at-scale-hierarchical-time-series"></a>
 
 ## Forecast at scale: hierarchical time series
 
