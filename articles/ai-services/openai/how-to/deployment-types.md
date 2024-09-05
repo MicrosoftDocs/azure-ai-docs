@@ -20,7 +20,9 @@ Azure OpenAI provides customers with choices on the hosting structure that fits 
 
 ## Global versus regional deployment types
 
-For standard deployments you have an option of two types of configurations within your resource – **global** or **regional**. Global standard is the recommended starting point for development and experimentation. Global deployments leverage Azure's global infrastructure, dynamically route customer traffic to the data center with best availability for the customer’s inference requests. With global deployments there are higher initial throughput limits, though your latency may vary at high usage levels. For customers that require the lower latency variance at large workload usage, we recommend purchasing provisioned throughput.
+For standard deployments you have an option of two types of configurations within your resource – **global** or **regional**. Global standard is the recommended starting point. 
+
+Global deployments leverage Azure's global infrastructure, dynamically route customer traffic to the data center with best availability for the customer’s inference requests. This means you will get the higest initial throughput limits and best model availability with Global while still providing our uptime SLA and low latency.For high voulmne workloads above the specified usage tiers, you may experience increased latency variation. For customers that require the lower latency variance at large workload usage, we recommend purchasing provisioned throughput.
 
 Our global deployments will be the first location for all new models and features. Customers with very large throughput requirements should consider our provisioned deployment offering.
 
