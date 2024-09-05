@@ -1,15 +1,17 @@
 ---
 title: Audit and manage Azure Machine Learning
 titleSuffix: Azure Machine Learning
-description: Learn how to use Azure Policy to use built-in policies for Azure Machine Learning to make sure your workspaces are compliant with your requirements.
+description: Learn how to use Azure Policy with Azure Machine Learning to make sure your workspaces are compliant with your requirements.
 author: Blackmist
 ms.author: larryfr
-ms.date: 04/01/2024
+ms.date: 09/04/2024
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: enterprise-readiness
 ms.topic: how-to
 ms.reviewer: jhirono
+ms.custom: FY25Q1-Linter
+# Customer Intent: As an admin, I want to understand how I can use Azure Policy to audit and manage Azure Machine Learning resources so that I can ensure compliance with my organization's requirements.
 ---
 
 # Audit and manage Azure Machine Learning
@@ -22,7 +24,7 @@ As a platform administrator, you can use policies to lay out guardrails for team
 
 [Azure Policy](/azure/governance/policy/) is a governance tool that allows you to ensure that Azure resources are compliant with your policies.
 
-Azure Policy provides a set of policies that you can use for common scenarios with Azure Machine Learning. You can assign these policy definitions to your existing subscription or use them as the basis to create your own custom definitions.
+Azure Policy provides a set of policies that you can use for common scenarios with Azure Machine Learning. You can assign these policy definitions to your existing subscription or use them as the basis to create your own [custom definitions](#create-custom-definitions).
 
 The following table lists the built-in policies you can assign with Azure Machine Learning. For a list of all Azure built-in policies, see [Built-in policies](/azure/governance/policy/samples/built-in-policies).
 
@@ -52,7 +54,7 @@ Landing zones are an architectural pattern that accounts for scale, governance, 
 
 The purpose of the landing zone is to ensure that all infrastructure configuration work is done when a team starts in the Azure environment. For instance, security controls are set up in compliance with organizational standards and network connectivity is set up.
 
-Using the landing zones pattern, machine learning teams can deploy and manage their own resources on a self-service basis. By using Azure policy as an administrator, you can audit and manage Azure resources for compliance. 
+When you use the landing zones pattern, machine learning teams can deploy and manage their own resources on a self-service basis. By using Azure policy as an administrator, you can audit and manage Azure resources for compliance. 
 
 Azure Machine Learning integrates with [data landing zones](https://github.com/Azure/data-landing-zone) in the [Cloud Adoption Framework data management and analytics scenario](/azure/cloud-adoption-framework/scenarios/data-management/). This reference implementation provides an optimized environment to migrate machine learning workloads onto Azure Machine Learning and includes preconfigured policies.
 
@@ -120,7 +122,7 @@ If the policy is set to __Deny__, then you can't create a workspace unless it us
 
 Controls whether a workspace is created using a system-assigned managed identity (default) or a user-assigned managed identity. The managed identity for the workspace is used to access associated resources such as Azure Storage, Azure Container Registry, Azure Key Vault, and Azure Application Insights. For more information, see [Set up authentication between Azure Machine Learning and other services](how-to-identity-based-service-authentication.md).
 
-To configure this policy, set the effect parameter to __Audit__, __Deny__, or __Disabled__. If set to __Audit__, you can create a workspace without specifying a user-assigned managed identity. A system-assigned identity is used and a warning event is created in the activity log.
+To configure this policy, set the effect parameter to __Audit__, __Deny__, or __Disabled__. If set to __Audit__, you can create a workspace without specifying a user-assigned managed identity. A system-assigned identity is used, and a warning event is created in the activity log.
 
 If the policy is set to __Deny__, then you can't create a workspace unless you provide a user-assigned identity during the creation process. Attempting to create a workspace without providing a user-assigned identity results in an error. The error is also logged to the activity log. The policy identifier is returned as part of this error.
 
@@ -128,7 +130,7 @@ If the policy is set to __Deny__, then you can't create a workspace unless you p
 
 This policy modifies any Azure Machine Learning compute cluster or instance creation request to disable local authentication (SSH).
 
-To configure this policy, set the effect parameter to __Modify__ or __Disabled__. If set __Modify__, any creation of a compute cluster or instance within the scope where the policy applies will automatically have local authentication disabled.
+To configure this policy, set the effect parameter to __Modify__ or __Disabled__. If set __Modify__, any creation of a compute cluster or instance within the scope where the policy applies automatically has local authentication disabled.
 
 ### Configure workspace to use private DNS zones
 
@@ -138,9 +140,9 @@ To configure this policy, set the effect parameter to __DeployIfNotExists__. Set
 
 ### Configure workspaces to disable public network access
 
-Configures a workspace to disable network access from the public internet. This helps protect the workspaces against data leakage risks. You can instead access your workspace by creating private endpoints. For more information, see [Configure a private endpoint for an Azure Machine Learning workspace](how-to-configure-private-link.md).
+Configures a workspace to disable network access from the public internet. Disabling public network access helps protect the workspaces against data leakage risks. You can instead access your workspace by creating private endpoints. For more information, see [Configure a private endpoint for an Azure Machine Learning workspace](how-to-configure-private-link.md).
 
-To configure this policy, set the effect parameter to __Modify__ or __Disabled__. If set to __Modify__, any creation of a workspace within the scope where the policy applies will automatically have public network access disabled.
+To configure this policy, set the effect parameter to __Modify__ or __Disabled__. If set to __Modify__, any creation of a workspace within the scope where the policy applies automatically has public network access disabled.
 
 ### Configure workspaces with private endpoints
 
@@ -159,6 +161,100 @@ To configure this policy, set the effect parameter to __DeployIfNotExists__ or _
 Audits whether resource logs are enabled for an Azure Machine Learning workspace. Resource logs provide detailed information about operations performed on resources in the workspace.
 
 To configure this policy, set the effect parameter to __AuditIfNotExists__ or __Disabled__. If set to __AuditIfNotExists__, the policy audits if resource logs aren't enabled for the workspace.
+
+## Create custom definitions
+
+When you need to create custom policies for your organization, you can use the [Azure Policy definition structure](/azure/governance/policy/concepts/definition-structure-basics) to create your own definitions. You can use the [Azure Policy Visual Studio Code extension](https://marketplace.visualstudio.com/items?itemName=AzurePolicy.azurepolicyextension) to author and test your policies.
+
+To discover the policy aliases you can use in your definition, use the following Azure CLI command to list the aliases for Azure Machine Learning:
+
+```azurecli
+az provider show --namespace Microsoft.MachineLearningServices --expand "resourceTypes/aliases" --query "resourceTypes[].aliases[].name"
+```
+
+To discover the allowed values for a specific alias, visit the [Azure Machine Learning REST API](/rest/api/azureml/) reference.
+
+For a tutorial (not Azure Machine Learning specific) on how to create custom policies, visit [Create a custom policy definition](/azure/governance/policy/tutorials/create-custom-policy-definition).
+
+### Example: Block serverless spark compute jobs
+
+```json
+{
+    "properties": {
+        "displayName": "Deny serverless Spark compute jobs",
+        "description": "Deny serverless Spark compute jobs",
+        "mode": "All",
+        "policyRule": {
+            "if": {
+                "allOf": [
+                    {
+                        "field": "Microsoft.MachineLearningServices/workspaces/jobs/jobType",
+                        "in": [
+                            "Spark"
+                        ]
+                    }
+                ]
+            },
+            "then": {
+                "effect": "Deny"
+            }
+        },
+        "parameters": {}
+    }
+}
+```
+
+### Example: Configure no public IP for managed computes
+
+```json
+{
+    "properties": {
+        "displayName": "Deny compute instance and compute cluster creation with public IP",
+        "description": "Deny compute instance and compute cluster creation with public IP",
+        "mode": "all",
+        "parameters": {
+            "effectType": {
+                "type": "string",
+                "defaultValue": "Deny",
+                "allowedValues": [
+                    "Deny",
+                    "Disabled"
+                ],
+                "metadata": {
+                    "displayName": "Effect",
+                    "description": "Enable or disable the execution of the policy"
+                }
+            }
+        },
+        "policyRule": {
+            "if": {
+                "allOf": [
+                  {
+                    "field": "type",
+                    "equals": "Microsoft.MachineLearningServices/workspaces/computes"
+                  },
+                  {
+                    "allOf": [
+                      {
+                        "field": "Microsoft.MachineLearningServices/workspaces/computes/computeType",
+                        "notEquals": "AKS"
+                      },
+                      {
+                        "field": "Microsoft.MachineLearningServices/workspaces/computes/enableNodePublicIP",
+                        "equals": true
+                      }
+                    ]
+                  }
+                ]
+              },
+            "then": {
+                "effect": "[parameters('effectType')]"
+            }
+        }
+    }
+}
+```
+
 
 ## Related content
 

@@ -1,11 +1,11 @@
 ---
-title: Azure OpenAI Service API version retirement
+title: Azure OpenAI Service API version lifecycle
 description: Learn more about API version retirement in Azure OpenAI Services.
 services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: conceptual 
-ms.date: 08/14/2024
+ms.date: 09/05/2024
 author: mrbullwinkle
 ms.author: mbullwin
 recommendations: false
@@ -14,10 +14,10 @@ ms.custom:
 
 # Azure OpenAI API preview lifecycle
 
-This article is to help you understand the support lifecycle for the Azure OpenAI API previews. New preview APIs target a monthly release cadence. After February 3rd, 2025, the latest three preview APIs will remain supported while older APIs will no longer be supported unless support is explicitly indicated.
+This article is to help you understand the support lifecycle for the Azure OpenAI API previews. New preview APIs target a monthly release cadence. Whenever possible we recommend using either the latest GA, or preview API releases.
 
 > [!NOTE]
-> The `2023-06-01-preview` API will remain supported at this time, as `DALL-E 2` is only available in this API version. `DALL-E 3` is supported in the latest API releases. The `2023-10-01-preview` API will also remain supported at this time.
+> The `2023-06-01-preview` API and the `2023-10-01-preview` API remain supported at this time.
 
 ## Latest preview API releases
 
@@ -61,7 +61,7 @@ This version contains support for the latest Azure OpenAI features including:
 
 ## Latest GA API release
 
-Azure OpenAI API version [2024-06-01](./reference.md) is currently the latest GA API release. This API version is the replacement for the previous`2024-02-01` GA API release.
+Azure OpenAI API version [2024-06-01](./reference.md) is currently the latest GA API release. This API version is the replacement for the previous `2024-02-01` GA API release.
 
 This version contains support for the latest GA features like Whisper, DALL-E 3, fine-tuning, on your data, etc. Any preview features that were released after the `2023-12-01-preview` release like Assistants, TTS, certain on your data datasources, are only supported in the latest preview API releases.
 

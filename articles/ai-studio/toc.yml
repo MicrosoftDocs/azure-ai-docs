@@ -194,6 +194,8 @@ items:
               href: how-to/prompt-flow-tools/azure-open-ai-gpt-4v-tool.md
             - name: Index Lookup tool
               href: how-to/prompt-flow-tools/index-lookup-tool.md
+            - name: Rerank tool
+              href: how-to/prompt-flow-tools/rerank-tool.md
             - name: Content Safety tool
               href: how-to/prompt-flow-tools/content-safety-tool.md
             - name: Embedding tool

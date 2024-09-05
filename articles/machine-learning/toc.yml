@@ -327,9 +327,6 @@
         - name: Data preparation with Azure Synapse
           displayName: data, data prep, spark, spark pool, cluster, spark cluster,dataset, datastore
           href: ./v1/how-to-data-prep-synapse-spark-pool.md
-        - name: DevOps for data ingestion
-          displayName: data, ingestion, devops
-          href: ./v1/how-to-cicd-data-ingestion.md
         - name: Import data in the designer
           displayName: designer, data, import, dataset, datastore
           href: ./v1/how-to-designer-import-data.md
@@ -738,6 +735,8 @@
               href: ./prompt-flow/tools-reference/content-safety-text-tool.md
             - name: Index Lookup tool
               href: ./prompt-flow/tools-reference/index-lookup-tool.md
+            - name: Rerank tool 
+              href: ./prompt-flow/tools-reference/rerank-tool.md
             - name: SERP API tool
               href: ./prompt-flow/tools-reference/serp-api-tool.md
             - name: Open Model LLM tool

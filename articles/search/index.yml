@@ -11,7 +11,7 @@ metadata:
   ms.topic: landing-page
   author: HeidiSteen
   ms.author: heidist
-  ms.date: 02/08/2024
+  ms.date: 09/04/2024
 # linkListType: architecture | concept | deploy | download | get-started | how-to-guide | learn | overview | quickstart | reference | tutorial | video | whats-new
 
 landingContent:
@@ -36,24 +36,24 @@ landingContent:
             url: search-get-started-portal.md
 
   # Card
-  - title: Vector support
+  - title: RAG and vectors
     linkLists:
       - linkListType: concept
         links:
           - text: Vectors in Azure AI Search
             url: vector-search-overview.md
-          - text: Built-in vectorization (preview)
+          - text: Built-in vectorization
             url: vector-search-integrated-vectorization.md
-          - text: Built-in scalar quantization (preview)
+          - text: Built-in compression
             url: vector-search-how-to-configure-compression-storage.md
           - text: Retrieval Augmented Generation (RAG)
             url: retrieval-augmented-generation-overview.md
       - linkListType: quickstart
         links:
+          - text: Retrieve data using an LLM
+            url: search-get-started-rag.md
           - text: Create a vector index
             url: search-get-started-vector.md
-          - text: Chat with your data
-            url: search-get-started-retrieval-augmented-generation.md
           - text: Query a vector index
             url: vector-search-how-to-query.md
       - linkListType: sample
@@ -68,6 +68,8 @@ landingContent:
         links:
           - text: Create a vector index in AI Studio
             url: /azure/ai-studio/how-to/index-add
+          - text: Chat with your data in Azure OpenAI Studio
+            url: /azure/ai-services/openai/use-your-data-quickstart
           - text: Build a question and answer copilot
             url: /azure/ai-studio/tutorials/deploy-copilot-ai-studio
 

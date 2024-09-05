@@ -1,5 +1,5 @@
 ---
-title: "Share custom model projects using Document Intelligence (formerly Form Recognizer) Studio"
+title: "Share custom model projects using Document Intelligence Studio"
 titleSuffix: Azure AI services
 description: Learn how to share custom model projects using Document Intelligence Studio.
 author: laujan

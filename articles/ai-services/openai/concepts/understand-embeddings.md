@@ -6,7 +6,7 @@ description: Learn more about how the Azure OpenAI embeddings API uses cosine si
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: tutorial
-ms.date: 09/12/2023
+ms.date: 09/05/2024
 author: mrbullwinkle
 ms.author: mbullwin
 recommendations: false
@@ -19,17 +19,11 @@ An embedding is a special format of data representation that machine learning mo
 
 ## Embedding models
 
-Different Azure OpenAI embedding models are created to be good at a particular task:
- 
-- **Similarity embeddings** are good at capturing semantic similarity between two or more pieces of text.
-- **Text search embeddings** help measure whether long documents are relevant to a short query. 
-- **Code search embeddings** are useful for embedding code snippets and embedding natural language search queries.
-
 Embeddings make it easier to do machine learning on large inputs representing words by capturing the semantic similarities in a vector space. Therefore, you can use embeddings to determine if two text chunks are semantically related or similar, and provide a score to assess similarity.
 
 ## Cosine similarity
 
-Azure OpenAI embeddings rely on cosine similarity to compute similarity between documents and a query.
+Azure OpenAI embeddings often rely on cosine similarity to compute similarity between documents and a query.
 
 From a mathematic perspective, cosine similarity measures the cosine of the angle between two vectors projected in a multidimensional space. This measurement is beneficial, because if two documents are far apart by Euclidean distance because of size, they could still have a smaller angle between them and therefore higher cosine similarity. For more information about cosine similarity equations, see [Cosine similarity](https://en.wikipedia.org/wiki/Cosine_similarity).
 

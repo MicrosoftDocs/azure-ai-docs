@@ -1,5 +1,5 @@
 ---
-title: "Use the custom categories (rapid) API"
+title: "Use the custom categories (rapid) API (preview)"
 titleSuffix: Azure AI services
 description: Learn how to use the custom categories (rapid) API to mitigate harmful content incidents quickly.
 #services: cognitive-services
@@ -13,7 +13,7 @@ ms.author: pafarley
 ---
 
 
-# Use the custom categories (rapid) API
+# Use the custom categories (rapid) API (preview)
 
 The custom categories (rapid) API lets you quickly respond to emerging harmful content incidents. You can define an incident with a few examples in a specific topic, and the service will start detecting similar content.
 

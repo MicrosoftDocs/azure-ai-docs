@@ -1,5 +1,5 @@
 ---
-title: "Quickstart: Document Intelligence (formerly Form Recognizer) client libraries | REST API "
+title: "Quickstart: Document Intelligence client libraries | REST API "
 titleSuffix: Azure AI services
 description: Use a Document Intelligence SDK or the REST API to create a forms processing app that extracts key data and structure elements from your documents.
 author: laujan
@@ -10,9 +10,8 @@ ms.custom:
   - devx-track-extended-java
   - devx-track-js
   - devx-track-python
-  - ignite-2023
 ms.topic: quickstart
-ms.date: 08/19/2024
+ms.date: 08/30/2024
 ms.author: lajanuar
 zone_pivot_groups: programming-languages-set-formre
 ---
