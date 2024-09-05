@@ -13,9 +13,9 @@ recommendations: false
 ms.custom: devx-track-python
 ---
 
-# Azure OpenAI GPT-3.5 Turbo fine-tuning tutorial
+# Azure OpenAI GPT-4o-mini fine-tuning tutorial
 
-This tutorial walks you through fine-tuning a `gpt-35-turbo-0613` model.
+This tutorial walks you through fine-tuning a `gpt-4o-mini-2024-07-18` model.
 
 In this tutorial you learn how to:
 
@@ -24,7 +24,7 @@ In this tutorial you learn how to:
 > * Create environment variables for your resource endpoint and API key.
 > * Prepare your sample training and validation datasets for fine-tuning.
 > * Upload your training file and validation file for fine-tuning.
-> * Create a fine-tuning job for `gpt-35-turbo-0613`.
+> * Create a fine-tuning job for `gpt-4o-mini-2024-07-18`.
 > * Deploy a custom fine-tuned model.
 
 ## Prerequisites
@@ -33,7 +33,7 @@ In this tutorial you learn how to:
 - Python 3.8 or later version
 - The following Python libraries: `json`, `requests`, `os`, `tiktoken`, `time`, `openai`, `numpy`.
 - [Jupyter Notebooks](https://jupyter.org/)
-- An Azure OpenAI resource in a [region where `gpt-35-turbo-0613` fine-tuning is available](../concepts/models.md). If you don't have a resource the process of creating one is documented in our resource [deployment guide](../how-to/create-resource.md).
+- An Azure OpenAI resource in a [region where `gpt-4o-mini-2024-07-18` fine-tuning is available](../concepts/models.md). If you don't have a resource the process of creating one is documented in our resource [deployment guide](../how-to/create-resource.md).
 - Fine-tuning access requires **Cognitive Services OpenAI Contributor**.
 - If you do not already have access to view quota, and deploy models in Azure OpenAI Studio you will require [additional permissions](../how-to/role-based-access-control.md).
 
@@ -106,7 +106,7 @@ source /etc/environment
 
 ### Create a sample dataset
 
-Fine-tuning `gpt-35-turbo-0613` requires a specially formatted JSONL training file. OpenAI provides the following example in their documentation:
+Fine-tuning `gpt-4o-mini-2024-07-18` requires a specially formatted JSONL training file. OpenAI provides the following example in their documentation:
 
 ```json
 {"messages": [{"role": "system", "content": "Marv is a factual chatbot that is also sarcastic."}, {"role": "user", "content": "What's the capital of France?"}, {"role": "assistant", "content": "Paris, as if everyone doesn't know that already."}]}
@@ -206,7 +206,7 @@ First example in validation set:
 
 In this case we only have 10 training and 10 validation examples so while this will demonstrate the basic mechanics of fine-tuning a model this in unlikely to be a large enough number of examples to produce a consistently noticeable impact.
 
-Now you can then run some additional code from OpenAI using the tiktoken library to validate the token counts. Individual examples need to remain under the `gpt-35-turbo-0613` model's input token limit of 4096 tokens.
+Now you can then run some additional code from OpenAI using the tiktoken library to validate the token counts. Individual examples need to remain under the `gpt-4o-mini-2024-07-18` model's input token limit of 4096 tokens.
 
 ```python
 # Validate token counts
@@ -381,7 +381,7 @@ In this example we're also passing the seed parameter. The seed controls the rep
 response = client.fine_tuning.jobs.create(
     training_file = training_file_id,
     validation_file = validation_file_id,
-    model = "gpt-35-turbo-0613", # Enter base model name. Note that in Azure OpenAI the model name contains dashes and cannot contain dot/period characters.
+    model = "gpt-4o-mini-2024-07-18", # Enter base model name. Note that in Azure OpenAI the model name contains dashes and cannot contain dot/period characters.
     seed = 105 # seed parameter controls reproducibility of the fine-tuning job. If no seed is specified one will be generated automatically.
 )
 
@@ -404,7 +404,7 @@ print(response.model_dump_json(indent=2))
 response = openai.FineTuningJob.create(
     training_file = training_file_id,
     validation_file = validation_file_id,
-    model = "gpt-35-turbo-0613",
+    model = "gpt-4o-mini-2024-07-18",
 )
 
 job_id = response["id"]
@@ -435,7 +435,7 @@ Status: pending
     "batch_size": -1,
     "learning_rate_multiplier": 1
   },
-  "model": "gpt-35-turbo-0613",
+  "model": "gpt-4o-mini-2024-07-18",
   "object": "fine_tuning.job",
   "organization_id": null,
   "result_files": null,
@@ -540,7 +540,7 @@ Status: pending
     "batch_size": -1,
     "learning_rate_multiplier": 1
   },
-  "model": "gpt-35-turbo-0613",
+  "model": "gpt-4o-mini-2024-07-18",
   "object": "fine_tuning.job",
   "organization_id": null,
   "result_files": null,
@@ -753,7 +753,7 @@ This command isn't available in the 0.28.1 OpenAI Python library. Upgrade to the
     {
       "id": "ftchkpt-148ab69f0a404cf9ab55a73d51b152de",
       "created_at": 1715743077,
-      "fine_tuned_model_checkpoint": "gpt-35-turbo-0613.ft-372c72db22c34e6f9ccb62c26ee0fbd9",
+      "fine_tuned_model_checkpoint": "gpt-4o-mini-2024-07-18.ft-372c72db22c34e6f9ccb62c26ee0fbd9",
       "fine_tuning_job_id": "ftjob-372c72db22c34e6f9ccb62c26ee0fbd9",
       "metrics": {
         "full_valid_loss": 1.8258173013035255,
@@ -770,7 +770,7 @@ This command isn't available in the 0.28.1 OpenAI Python library. Upgrade to the
     {
       "id": "ftchkpt-e559c011ecc04fc68eaa339d8227d02d",
       "created_at": 1715743013,
-      "fine_tuned_model_checkpoint": "gpt-35-turbo-0613.ft-372c72db22c34e6f9ccb62c26ee0fbd9:ckpt-step-90",
+      "fine_tuned_model_checkpoint": "gpt-4o-mini-2024-07-18.ft-372c72db22c34e6f9ccb62c26ee0fbd9:ckpt-step-90",
       "fine_tuning_job_id": "ftjob-372c72db22c34e6f9ccb62c26ee0fbd9",
       "metrics": {
         "full_valid_loss": 1.7958603267428241,
@@ -787,7 +787,7 @@ This command isn't available in the 0.28.1 OpenAI Python library. Upgrade to the
     {
       "id": "ftchkpt-8ae8beef3dcd4dfbbe9212e79bb53265",
       "created_at": 1715742984,
-      "fine_tuned_model_checkpoint": "gpt-35-turbo-0613.ft-372c72db22c34e6f9ccb62c26ee0fbd9:ckpt-step-80",
+      "fine_tuned_model_checkpoint": "gpt-4o-mini-2024-07-18.ft-372c72db22c34e6f9ccb62c26ee0fbd9:ckpt-step-80",
       "fine_tuning_job_id": "ftjob-372c72db22c34e6f9ccb62c26ee0fbd9",
       "metrics": {
         "full_valid_loss": 1.6909511662736725,
@@ -848,7 +848,7 @@ Alternatively, you can deploy your fine-tuned model using any of the other commo
 | resource_group | The resource group name for your Azure OpenAI resource |
 | resource_name | The Azure OpenAI resource name |
 | model_deployment_name | The custom name for your new fine-tuned model deployment. This is the name that will be referenced in your code when making chat completion calls. |
-| fine_tuned_model | Retrieve this value from your fine-tuning job results in the previous step. It will look like `gpt-35-turbo-0613.ft-b044a9d3cf9c4228b5d393567f693b83`. You'll need to add that value to the deploy_data json. |
+| fine_tuned_model | Retrieve this value from your fine-tuning job results in the previous step. It will look like `gpt-4o-mini-2024-07-18.ft-b044a9d3cf9c4228b5d393567f693b83`. You'll need to add that value to the deploy_data json. |
 
 [!INCLUDE [Fine-tuning deletion](../includes/fine-tune.md)]
 
@@ -862,7 +862,7 @@ token = os.getenv("TEMP_AUTH_TOKEN")
 subscription = "<YOUR_SUBSCRIPTION_ID>"
 resource_group = "<YOUR_RESOURCE_GROUP_NAME>"
 resource_name = "<YOUR_AZURE_OPENAI_RESOURCE_NAME>"
-model_deployment_name = "YOUR_CUSTOM_MODEL_DEPLOYMENT_NAME"
+model_deployment_name = "gpt-4o-mini-2024-07-18-ft" # Custom deployment name you chose for your fine-tuning model
 
 deploy_params = {'api-version': "2023-05-01"}
 deploy_headers = {'Authorization': 'Bearer {}'.format(token), 'Content-Type': 'application/json'}
@@ -872,7 +872,7 @@ deploy_data = {
     "properties": {
         "model": {
             "format": "OpenAI",
-            "name": "<YOUR_FINE_TUNED_MODEL>", #retrieve this value from the previous call, it will look like gpt-35-turbo-0613.ft-b044a9d3cf9c4228b5d393567f693b83
+            "name": "<YOUR_FINE_TUNED_MODEL>", #retrieve this value from the previous call, it will look like gpt-4o-mini-2024-07-18.ft-b044a9d3cf9c4228b5d393567f693b83
             "version": "1"
         }
     }
@@ -915,7 +915,7 @@ client = AzureOpenAI(
 )
 
 response = client.chat.completions.create(
-    model = "gpt-35-turbo-ft", # model = "Custom deployment name you chose for your fine-tuning model"
+    model = "gpt-4o-mini-2024-07-18-ft", # model = "Custom deployment name you chose for your fine-tuning model"
     messages = [
         {"role": "system", "content": "You are a helpful assistant."},
         {"role": "user", "content": "Does Azure OpenAI support customer managed keys?"},
@@ -941,7 +941,7 @@ openai.api_version = "2024-02-01"
 openai.api_key = os.getenv("AZURE_OPENAI_API_KEY")
 
 response = openai.ChatCompletion.create(
-    engine = "gpt-35-turbo-ft", # engine = "Custom deployment name you chose for your fine-tuning model"
+    engine = "gpt-4o-mini-2024-07-18-ft", # engine = "Custom deployment name you chose for your fine-tuning model"
     messages = [
         {"role": "system", "content": "You are a helpful assistant."},
         {"role": "user", "content": "Does Azure OpenAI support customer managed keys?"},
