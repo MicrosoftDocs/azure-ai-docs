@@ -211,7 +211,7 @@ The following cURL commands are executed from a BASH shell. Edit these commands 
 
 The query-based text summarization API is an extension to the existing text summarization API.
 
-The biggest difference is a new `query` field in the request body (under `tasks` > `parameters` > `query`). Additionally, there's a new way to specify the preferred `summaryLength` in "buckets" of short/medium/long, which we recommend using instead of `sentenceCount`, especially when using abstractive. 
+The biggest difference is a new `query` field in the request body (under `tasks` > `parameters` > `query`).
 
 > [!TIP]
 > Query based summarization has some differentiation in the utilization of length control based on the type of query based summarization you're using:
