@@ -396,7 +396,7 @@
       "redirect_document_id": false
     },
     {
-      "source_path_from_root": "/articles/ai-services/anomaly-detector/postman.md",
+      "source_path_from_root": "/articles/ai-services/anomaly-detector/how-to/postman.md",
       "redirect_url": "/azure/ai-services/anomaly-detector/overview",
       "redirect_document_id": false
     }
