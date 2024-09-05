@@ -26,6 +26,11 @@
             "redirect_document_id": true
         },
         {
+            "source_path_from_root": "/articles/ai-studio/how-to/deploy-models-phi-3-5-moe.md",
+            "redirect_url": "/azure/ai-studio/how-to/deploy-models-phi-3",
+            "redirect_document_id": true
+        },
+        {
             "source_path_from_root": "/articles/ai-studio/how-to/cli-install.md",
             "redirect_url": "/azure/ai-studio/how-to/develop/sdk-overview",
             "redirect_document_id": false
