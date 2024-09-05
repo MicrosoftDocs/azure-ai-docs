@@ -13,7 +13,7 @@ metadata:
   ms.author: eur
   manager: nitinme
   ms.custom: ignite-2023
-  ms.date: 8/20/2024
+  ms.date: 9/5/2024
 highlightedContent:
 # itemType: architecture | concept | deploy | download | get-started | how-to-guide | learn | overview | quickstart | reference | tutorial | whats-new
   items:
@@ -23,9 +23,9 @@ highlightedContent:
     - title: What is Azure AI Studio?
       itemType: overview
       url: ../ai-studio/what-is-ai-studio.md
-    - title: Build your own copilot with Azure AI SDKs
-      itemType: tutorial
-      url: ../ai-studio/tutorials/copilot-sdk-build-rag.md
+    - title: Chat with Azure OpenAI models using your own data
+      itemType: quickstart
+      url: ./openai/use-your-data-quickstart.md
     - title: Responsible use of AI
       itemType: concept
       url: responsible-use-of-ai-overview.md
@@ -42,20 +42,25 @@ productDirectory:
       summary: Perform a wide variety of natural language tasks.
       url: ./openai/index.yml
     # Card
+    - title: Azure AI Search
+      imageSrc: ~/reusable-content/ce-skilling/azure/media/ai-services/search.svg
+      summary: Bring AI-powered cloud search to your mobile and web applications.
+      url: /azure/search/
+    # Card
+    - title: Content Safety
+      imageSrc: ~/reusable-content/ce-skilling/azure/media/ai-services/content-safety.svg
+      summary: An AI service that detects unwanted contents
+      url: ./content-safety/index.yml
+    # Card
     - title: Speech
       imageSrc: ~/reusable-content/ce-skilling/azure/media/ai-services/speech.svg
       summary: Speech to text, text to speech, translation, and speaker recognition
       url: ./speech-service/index.yml
     # Card
-    - title: Language
-      imageSrc: ~/reusable-content/ce-skilling/azure/media/ai-services/language.svg
-      summary: Build apps with industry-leading natural language understanding capabilities.
-      url: ./language-service/index.yml
-    # Card
-    - title: Translator
-      imageSrc: ~/reusable-content/ce-skilling/azure/media/ai-services/translator.svg
-      summary: Use AI-powered translation technology to translate more than 100 in-use, at-risk, and endangered languages and dialects.
-      url: ./translator/index.yml
+    - title: Document Intelligence
+      imageSrc: ~/reusable-content/ce-skilling/azure/media/ai-services/document-intelligence.svg
+      summary: Turn documents into intelligent data-driven solutions.
+      url: ./document-intelligence/index.yml
     # Card
     - title: Vision
       imageSrc: ~/reusable-content/ce-skilling/azure/media/ai-services/vision.svg
@@ -72,25 +77,15 @@ productDirectory:
       summary: Detect and identify people and emotions in images.
       url: ./computer-vision/overview-identity.md
     # Card
-    - title: Content Safety
-      imageSrc: ~/reusable-content/ce-skilling/azure/media/ai-services/content-safety.svg
-      summary: An AI service that detects unwanted contents
-      url: ./content-safety/index.yml
+    - title: Translator
+      imageSrc: ~/reusable-content/ce-skilling/azure/media/ai-services/translator.svg
+      summary: Use AI-powered translation technology to translate more than 100 in-use, at-risk, and endangered languages and dialects.
+      url: ./translator/index.yml
     # Card
-    - title: Bot Service
-      imageSrc: ~/reusable-content/ce-skilling/azure/media/ai-services/bot-services.svg
-      summary: Create bots and connect them across channels.
-      url: /composer/
-    # Card
-    - title: Document Intelligence
-      imageSrc: ~/reusable-content/ce-skilling/azure/media/ai-services/document-intelligence.svg
-      summary: Turn documents into intelligent data-driven solutions.
-      url: ./document-intelligence/index.yml
-    # Card
-    - title: Azure AI Search
-      imageSrc: ~/reusable-content/ce-skilling/azure/media/ai-services/search.svg
-      summary: Bring AI-powered cloud search to your mobile and web applications.
-      url: /azure/search/
+    - title: Language
+      imageSrc: ~/reusable-content/ce-skilling/azure/media/ai-services/language.svg
+      summary: Build apps with industry-leading natural language understanding capabilities.
+      url: ./language-service/index.yml
     # Card
     - title: Video Indexer
       imageSrc: ~/reusable-content/ce-skilling/azure/media/ai-services/video-indexer.svg
@@ -110,34 +105,32 @@ additionalContent:
           links:
             - text: Azure AI Studio
               url: https://ai.azure.com/
-            - text: Azure OpenAI
+            - text: Azure OpenAI Studio
               url: https://oai.azure.com/
+            - text: Content Safety
+              url: https://contentsafety.cognitive.azure.com/
             - text: Speech
               url: https://speech.microsoft.com/
-            - text: Language
-              url: https://language.cognitive.azure.com/
+            - text: Document Intelligence
+              url: https://formrecognizer.appliedai.azure.com/
             - text: Vision
               url: https://portal.vision.cognitive.azure.com/
             - text: Custom Vision
               url: https://www.customvision.ai/
-            - text: Document Intelligence
-              url: https://formrecognizer.appliedai.azure.com/
-            - text: Content Safety
-              url: https://contentsafety.cognitive.azure.com/
             - text: Custom Translator
               url: https://portal.customtranslator.azure.ai/
-            - text: Azure Machine Learning
-              url: https://ml.azure.com/
+            - text: Language
+              url: https://language.cognitive.azure.com/
         - title: Explore more AI resources
           links:
+            - text: Azure AI Studio
+              url: /azure/ai-studio/
             - text: Azure Machine Learning
               url: /azure/machine-learning/
             - text: Semantic Kernel
               url: /semantic-kernel/
             - text: AI Builder
               url: /ai-builder/
-            - text: Power Virtual Agents with Azure AI Language
-              url: /power-virtual-agents/advanced-clu-integration
             - text: Windows AI
               url: /windows/ai/
             - text: GitHub Copilot
