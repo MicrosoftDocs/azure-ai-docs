@@ -13,7 +13,7 @@ metadata:
   ms.author: eur
   manager: nitinme
   ms.custom: ignite-2023
-  ms.date: 8/30/2024
+  ms.date: 9/5/2024
 highlightedContent:
 # itemType: architecture | concept | deploy | download | get-started | how-to-guide | learn | overview | quickstart | reference | tutorial | whats-new
   items:
@@ -62,21 +62,6 @@ productDirectory:
       summary: Turn documents into intelligent data-driven solutions.
       url: ./document-intelligence/index.yml
     # Card
-    - title: Translator
-      imageSrc: ~/reusable-content/ce-skilling/azure/media/ai-services/translator.svg
-      summary: Use AI-powered translation technology to translate more than 100 in-use, at-risk, and endangered languages and dialects.
-      url: ./translator/index.yml
-    # Card
-    - title: Language
-      imageSrc: ~/reusable-content/ce-skilling/azure/media/ai-services/language.svg
-      summary: Build apps with industry-leading natural language understanding capabilities.
-      url: ./language-service/index.yml
-    # Card
-    - title: Face
-      imageSrc: ~/reusable-content/ce-skilling/azure/media/ai-services/face.svg
-      summary: Detect and identify people and emotions in images.
-      url: ./computer-vision/overview-identity.md
-    # Card
     - title: Vision
       imageSrc: ~/reusable-content/ce-skilling/azure/media/ai-services/vision.svg
       summary: Analyze content in images and videos.
@@ -86,6 +71,21 @@ productDirectory:
       imageSrc: ~/reusable-content/ce-skilling/azure/media/ai-services/custom-vision.svg
       summary: Customize image recognition for your business.
       url: ./custom-vision-service/index.yml
+    # Card
+    - title: Face
+      imageSrc: ~/reusable-content/ce-skilling/azure/media/ai-services/face.svg
+      summary: Detect and identify people and emotions in images.
+      url: ./computer-vision/overview-identity.md
+    # Card
+    - title: Translator
+      imageSrc: ~/reusable-content/ce-skilling/azure/media/ai-services/translator.svg
+      summary: Use AI-powered translation technology to translate more than 100 in-use, at-risk, and endangered languages and dialects.
+      url: ./translator/index.yml
+    # Card
+    - title: Language
+      imageSrc: ~/reusable-content/ce-skilling/azure/media/ai-services/language.svg
+      summary: Build apps with industry-leading natural language understanding capabilities.
+      url: ./language-service/index.yml
     # Card
     - title: Video Indexer
       imageSrc: ~/reusable-content/ce-skilling/azure/media/ai-services/video-indexer.svg
@@ -105,7 +105,7 @@ additionalContent:
           links:
             - text: Azure AI Studio
               url: https://ai.azure.com/
-            - text: Azure OpenAI
+            - text: Azure OpenAI Studio
               url: https://oai.azure.com/
             - text: Content Safety
               url: https://contentsafety.cognitive.azure.com/
@@ -113,24 +113,24 @@ additionalContent:
               url: https://speech.microsoft.com/
             - text: Document Intelligence
               url: https://formrecognizer.appliedai.azure.com/
-            - text: Custom Translator
-              url: https://portal.customtranslator.azure.ai/
-            - text: Language
-              url: https://language.cognitive.azure.com/
             - text: Vision
               url: https://portal.vision.cognitive.azure.com/
             - text: Custom Vision
               url: https://www.customvision.ai/
+            - text: Custom Translator
+              url: https://portal.customtranslator.azure.ai/
+            - text: Language
+              url: https://language.cognitive.azure.com/
         - title: Explore more AI resources
           links:
+            - text: Azure AI Studio
+              url: /azure/ai-studio/
             - text: Azure Machine Learning
               url: /azure/machine-learning/
             - text: Semantic Kernel
               url: /semantic-kernel/
             - text: AI Builder
               url: /ai-builder/
-            - text: Power Virtual Agents with Azure AI Language
-              url: /power-virtual-agents/advanced-clu-integration
             - text: Windows AI
               url: /windows/ai/
             - text: GitHub Copilot
