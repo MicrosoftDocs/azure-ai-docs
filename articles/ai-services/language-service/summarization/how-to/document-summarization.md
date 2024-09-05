@@ -270,7 +270,7 @@ For the `summaryLength` parameter, three values are accepted:
 * long: Generates a summary of mostly over 7 sentences, with around 210 tokens.
 
 #### Using the sentenceCount parameter in extractive summarization
-For the `sentenceCount` parameter (extractive summarization only), you can input a value 1-20 to indicate the desired number of output sentences.
+For the `sentenceCount` parameter, you can input a value 1-20 to indicate the desired number of output sentences.
 
 ## Service and data limits
 
