@@ -24,6 +24,8 @@ This tutorial is part one of a three-part tutorial.  This part one shows you how
 > - Create an Azure AI Search index
 > - Configure access for the Azure AI Studio and Azure AI Search resources
 
+If you've completed other tutorials or quickstarts, you might have already created some of the resources needed for this tutorial. If you have, feel free to skip some of the steps here. But make sure to complete the sections where you configure access for resources.
+
 This tutorial is part one of a three-part tutorial.
 
 ## Prerequisites
