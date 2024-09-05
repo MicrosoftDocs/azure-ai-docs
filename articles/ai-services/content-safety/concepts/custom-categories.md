@@ -1,5 +1,5 @@
 ---
-title: "Custom categories in Azure AI Content Safety"
+title: "Custom categories in Azure AI Content Safety (preview)"
 titleSuffix: Azure AI services
 description: Learn about custom content categories and the different ways you can use Azure AI Content Safety to handle them on your platform.
 #services: cognitive-services
@@ -12,7 +12,7 @@ ms.date: 07/05/2024
 ms.author: pafarley
 ---
 
-# Custom categories 
+# Custom categories (preview)
 
 Azure AI Content Safety lets you create and manage your own content moderation categories for enhanced moderation and filtering that matches your specific policies or use cases.
 
