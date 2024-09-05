@@ -44,7 +44,7 @@ Customers are responsible for ensuring that applications integrating Azure OpenA
 | Protected material - text | GA| On | Completion | Identifies and blocks known text content from being displayed in the model output (for example, song lyrics, recipes, and selected web content).  |
 
 
-## Configuring content filters via Azure OpenAI Studio (preview)
+## Configuring content filters via Azure OpenAI Studio
 
 The following steps show how to set up a customized content filtering configuration for your resource.
 
