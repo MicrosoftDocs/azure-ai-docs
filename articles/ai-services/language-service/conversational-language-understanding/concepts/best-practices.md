@@ -241,7 +241,7 @@ curl --request POST \
 }'
 ```
 
-## Address out-of-domain utterances (updated)
+## Address out-of-domain utterances
 
 Customers can use the newly updated recipe version `2024-08-01-preview` (previously `2024-06-01-preview`) if the model has poor AIQ on out-of-domain utterances. An example of this scenario with the default recipe can be like the following example where the model has three intents: `Sports`, `QueryWeather`, and `Alarm`. The test utterances are out-of-domain utterances and the model classifies them as `InDomain` with a relatively high confidence score.
 
