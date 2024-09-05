@@ -20,12 +20,14 @@ In Azure AI Search, an indexer is a component that automates indexing, and it's 
 
 Key points:
 
-- Dependency on a supported data source
+- Dependency on a supported data source. Use Azure blob storage for this tutorial.
 - Indexer pulls from the data source, pushes to the index
-- Skillset has two skills: text split and embedding
+- Skillset (example 1) has two skills: text split and embedding
 - embedding model is also be used for vectorization at query time (assume text-to-vector conversion)
 - Large PDF files can't be chunked. Indexer shows success, but doesn't even attempt to chunk/ingest the docs. Individual files have to be less than 16 MB.
 - Check your data in the index (hide vectors). Duplicated content is expected due to overlap, repetition of parent info. It won't affect your LLM
+- Skillset (example 2) add a custom skill that points to external embedding model, or document intelligence.
+- Skillset (example 3) add an entity recognition skill to lift locations?
 
 <!-- 
 ## Prerequisites

@@ -24,6 +24,9 @@ Key points:
 - schema determines what queries you can create (be generous in attribute assignments)
 - schema must cover all the queries you want to run. You can only query one index at a time (no joins), but you can create indexes that preserve parent-child relationship, and then use nested queries or parallel queries in your search logic to pull from both.
 - schema has impact on storage/size. Consider narrow data types, attribution, vector configuration.
+- show schemas for parent-child all-up and paired indexes via index projections
+- note metadata for filters
+- TBD: add fields for location and use entity recognition to pull this values out of the PDFs? Not sure how it will query, but goal would be to add some structure to the schema.
 
 <!-- 
 

@@ -16,7 +16,7 @@ ms.date: 09/12/2024
 
 This tutorial series demonstrates a RAG pattern in Azure AI Search. It covers the components built in Azure AI Search, dependencies, optimizations, and deployment tasks.
 
-Sample data is a collection of PDFs that are uploaded to Azure Storage.
+Sample data is a [collection of PDFs](LINK-TBD) that are uploaded to Azure Storage. Sample code can be found in [this Python notebook](LINK-TBD).
 
 ## In this series
 
@@ -53,4 +53,4 @@ You could use Azure AI Studio and a playground, but you might need to build your
 ## Next step
 
 > [!div class="nextstepaction"]
-> TBD
+> [Choose models](tutorial-rag-build-solution-models.md)

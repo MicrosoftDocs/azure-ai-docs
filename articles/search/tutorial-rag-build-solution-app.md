@@ -1,7 +1,7 @@
 ---
 title: 'RAG Tutorial: Deploy an app'
 titleSuffix: Azure AI Search
-description: Learn how to build a generative search (RAG) app using LLMs and your proprietary grounding data in Azure AI Search.
+description: Review steps and tasks for deploying a chat app built on an Azure AI Search RAG pattern.
 
 manager: nitinme
 author: HeidiSteen
@@ -18,9 +18,10 @@ In this lesson, review options for setting up simple web front-end for a RAG pro
 
 Key points:
 
-- Revisit index schema (any fields you can omit, or make non-retrievable)
+- Is your index ready for deployment? Clean up (can you remove fields? Make some non-retrievable?). Rebuild is probably required.
+- Remove any permissions you don't need (for example, to models or data sources you aren't using)
 - Provide source code for a simple web app that has input, output
-- Steps for deploying
+- Provide steps for deploying
 - Create an index alias so that you can swap out changes on the backend
 - Link to securing app/granting access
 - Link to "Get started with chat security" article and sample

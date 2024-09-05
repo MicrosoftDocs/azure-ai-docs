@@ -18,12 +18,13 @@ In this tutorial, review your options for choosing embedding models for vectors 
 
 Key points:
 
-- Model location requirements (Azure cloud).
-- For chunking, use Text Split skill with overlap,
+- Model location requirement (Azure cloud).
+- For chunking, use Text Split skill with overlap -- or --
 - For semantic chunking, add Document Intelligence
 - For embedding during indexing, use Azure OpenAI, Azure AI Vision, model catalog, custom skill with HTTP endpoint to external model
-- For queries, same as above, but you're creating "vectorizers"
-- For chat, same location requirements and providers, except for Azure AI Vision. You specify a chat model in your query logic.
+- For queries, same as above, but you're creating "vectorizers". It's doing the same thing.
+- For chat, same location requirements and providers, except no Azure AI Vision. You specify a chat model in your query logic. Unlike embedding, you can swap this out to what they do.
+- To do's for accessing models: permissions, endpoints. Include a "configure access" step.
 
 <!-- 
 The GPT-35-Turbo and GPT-4 models are optimized to work with inputs formatted as a conversation. 
@@ -32,8 +33,7 @@ The messages variable passes an array of dictionaries with different roles in th
 
 The system message can be used to prime the model by including context or instructions on how the model should respond. -->
 
-
 ## Next step
 
 > [!div class="nextstepaction"]
-> TBD
+> [Design an index](tutorial-rag-build-solution-index-schema.md)
