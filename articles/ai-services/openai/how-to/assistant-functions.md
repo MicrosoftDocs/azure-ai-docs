@@ -29,7 +29,7 @@ To use all features of function calling including parallel functions, you need t
 
 ### API Versions
 
-Api versions starting with `2024-02-15-preview`.
+API versions starting with `2024-02-15-preview`.
 
 ## Example function definition
 
@@ -182,7 +182,7 @@ else:
 
 # [REST](#tab/rest)
 
-in the following example, replace `output` with the output of the function you want to use.
+In the following example, replace `output` with the output of the function you want to use.
  
 ```console
 curl https://YOUR_RESOURCE_NAME.openai.azure.com/openai/threads/thread_abc123/runs/run_123/submit_tool_outputs?api-version=2024-07-01-preview \
