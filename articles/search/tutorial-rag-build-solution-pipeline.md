@@ -16,18 +16,30 @@ ms.date: 09/12/2024
 
 In this tutorial, learn how to build an automated indexing pipeline for a RAG solution on Azure AI Search.
 
-In Azure AI Search, an indexer is a component that automates indexing, and it's required if you're using [integrated vectorization](vector-search-integrated-vectorization.md) to chunk and embed content during indexing. This tutorial uses integrated vectorization to generate embeddings for the search index.
+An indexer drives indexing and skillset execution that provides [integrated data chunking and vectorization](vector-search-integrated-vectorization.md) on a one-time or recurring basis for incremental updates. You create an indexer, data source connection, skillset, and provide the index schema you created in the previous tutorial. This exercise uses Azure Blob storage as the data source.
+
+Objective:
+
+- Create objects and run the indexer to produce an operational search index with chunked and vectorized content.
 
 Key points:
 
 - Dependency on a supported data source. Use Azure blob storage for this tutorial.
-- Indexer pulls from the data source, pushes to the index
-- Skillset (example 1) has two skills: text split and embedding
-- embedding model is also be used for vectorization at query time (assume text-to-vector conversion)
+- Indexer pulls from the data source, pushes to the index.
 - Large PDF files can't be chunked. Indexer shows success, but doesn't even attempt to chunk/ingest the docs. Individual files have to be less than 16 MB.
-- Check your data in the index (hide vectors). Duplicated content is expected due to overlap, repetition of parent info. It won't affect your LLM
+- Skillset (example 1) has two skills: text split and embedding. Embedding model is also be used for vectorization at query time (assume text-to-vector conversion).
 - Skillset (example 2) add a custom skill that points to external embedding model, or document intelligence.
-- Skillset (example 3) add an entity recognition skill to lift locations?
+- Skillset (example 3) add an entity recognition skill to lift locations from raw content into the index?
+- Duplicated content is expected due to overlap and repetition of parent info. It won't affect your LLM.
+
+Tasks:
+
+- H2: Configure access to Azure Storage and upload sample data.
+- H2: Create a data source
+- H2: Create a skillset (choose one skillset)
+- H2: Use alternative skillsets (present the other two skillsets)
+- H2: Create and run the indexer
+- H2: Check your data in the search index (hide vectors)
 
 <!-- 
 ## Prerequisites
@@ -131,4 +143,4 @@ if you're sending search results directly to a search page, it's a poor experien
 ## Next step
 
 > [!div class="nextstepaction"]
-> TBD
+> [Chat with your data](tutorial-rag-build-solution-query.md)

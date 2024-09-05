@@ -16,6 +16,10 @@ ms.date: 09/12/2024
 
 In this tutorial, learn how to improve the relevance of search results used in RAG solutions. Azure AI Search includes a broad range of relevance tuning capabilities. Learn which ones are best for solving specific problems.
 
+Objective:
+
+- Learn about relevance features and when and why to use each one.
+
 Key points:
 
 - How to measure relevance (?) to determine if changes are improving results
@@ -32,4 +36,4 @@ Key points:
 ## Next step
 
 > [!div class="nextstepaction"]
-> TBD
+> [Reduce vector storage and costs](tutorial-rag-build-solution-optimize.md)

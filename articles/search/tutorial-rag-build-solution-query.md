@@ -14,7 +14,11 @@ ms.date: 09/12/2024
 
 # Search your data using a chat model (RAG tutorial - Azure AI Search)
 
-In this tutorial, learn how to provide queries and prompts to a chat model for generative search.
+In this tutorial, learn how to send queries and prompts to a chat model for generative search.
+
+Objective:
+
+- Set up clients for chat model and search engine, set up a prompt, point the model to search results.
 
 Key points:
 
@@ -24,6 +28,13 @@ Key points:
 - Query parent-child, one index
 - Query parent-child, two indexes
 - Filters
+
+Tasks:
+
+- H2 Set up clients and configure access (to the chat model)
+- H2 Query using text, with a filter
+- H2 Query using vectors and text-to-vector conversion at query time (not sure what the code looks like for this)
+- H2 Query parent-child two indexes (unclear how to do this, Carey said query on child, do a lookup query on parent)
 
 <!-- 
 ## Old introduction
@@ -83,4 +94,4 @@ Only fields marked as "retrievable" in the search index can appear in results. I
 ## Next step
 
 > [!div class="nextstepaction"]
-> TBD
+> [Maximize relevance](tutorial-rag-build-solution-relevance.md)

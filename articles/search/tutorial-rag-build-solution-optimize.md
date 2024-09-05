@@ -27,4 +27,4 @@ Key points:
 ## Next step
 
 > [!div class="nextstepaction"]
-> TBD
+> [Deploy and secure an app](tutorial-rag-build-solution-app.md)

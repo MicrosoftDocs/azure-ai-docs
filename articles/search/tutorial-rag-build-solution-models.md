@@ -14,17 +14,28 @@ ms.date: 09/12/2024
 
 # Choose embedding and chat models (RAG tutorial - Azure AI Search)
 
-In this tutorial, review your options for choosing embedding models for vectors and chat models for conversational search over your data. 
+A RAG solution built on Azure AI Search takes a dependency on embedding models for vectorization, and chat models for conversational search over your data. 
+
+In this tutorial, review your options for choosing embedding and chat models for Learn how to set up connections so that Azure AI Search can connect securely during indexing and at query time for generative AI responses and text-to-vector conversions of query strings.
+
+Objective:
+
+- Identify an embedding model and chat model for your RAG workflow.
 
 Key points:
 
-- Model location requirement (Azure cloud).
-- For chunking, use Text Split skill with overlap -- or --
-- For semantic chunking, add Document Intelligence
-- For embedding during indexing, use Azure OpenAI, Azure AI Vision, model catalog, custom skill with HTTP endpoint to external model
-- For queries, same as above, but you're creating "vectorizers". It's doing the same thing.
-- For chat, same location requirements and providers, except no Azure AI Vision. You specify a chat model in your query logic. Unlike embedding, you can swap this out to what they do.
-- To do's for accessing models: permissions, endpoints. Include a "configure access" step.
+- Built-in integration for models hosted in the Azure cloud.
+- For chunking, use the native Text Split skill with overlapping text -- or -- for semantic chunking, use Document Intelligence.
+- For embedding during indexing, use a skill that points to Azure OpenAI, Azure AI Vision, or the model catalog. Alternatively, use custom skill with HTTP endpoint to external model.
+- For queries, same embedding models as above, but you're wrapping it in a "vectorizer" instead of a "skill".
+- Use the same embedding model for indexing and text-to-vector queries. If you want to try a different model, it's a rebuild. An indexer pipeline like the one used in this tutorial makes this step easy.
+- For chat, same location requirements and providers, except no Azure AI Vision. You specify a chat model in your query logic. Unlike embedding, you can swap these around at query time to see what they do.
+
+Tasks:
+
+- H2: Identify the models for which we have skills/vectorizers and provide locations (model catalog, Azure OpenAI, etc). Crosslink to model deployment instructions. Include steps for getting endpoints, model version, deployment name, REST API version.
+- H2: How to use other models (create a custom skill, create a custom vectorizer).
+- H2: How to configure access. Set up an Azure AI Search managed identity, give it permissions on Azure-hosted models.
 
 <!-- 
 The GPT-35-Turbo and GPT-4 models are optimized to work with inputs formatted as a conversation. 

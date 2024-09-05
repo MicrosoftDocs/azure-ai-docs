@@ -20,9 +20,9 @@ Sample data is a [collection of PDFs](LINK-TBD) that are uploaded to Azure Stora
 
 ## In this series
 
-- Design an index for conversational search
+- Choose your models for embeddings and chat
 
-- Choose models for embeddings and chat
+- Design an index for conversational search
 
 - Design an indexing pipeline that loads, chunks, embeds, and ingests searchable content
 
@@ -44,11 +44,9 @@ This series covers the fundamentals of RAG solution development. Once you unders
 
 ## Why use Azure AI Search for RAG?
 
-LLMs like GPT are constrained by quotas and bandwidth on the amount of data they can accept on a request. You should use Azure AI Search because the quality of content passed to an LLM can make or break a RAG solution. 
+Chat models face constraints on the amount of data they can accept on a request. You should use Azure AI Search because the *quality* of content passed to an LLM can make or break a RAG solution. 
 
-To deliver on highest quality results, Azure AI Search provides a best-in-class search engine with AI integration and comprehensive relevance tuning. The search engine supports vector similarity search (multiple algorithms), keyword search, fuzzy search, geospatial search, and filters. You can build hybrid query requests that include all of these components, and you can control how much each query contributes to the overall request.
-
-You could use Azure AI Studio and a playground, but you might need to build your own solution if you want to control indexing and data ingestion, or have more control over queries and relevance tuning.
+To deliver the highest quality inputs to a chat model, Azure AI Search provides a best-in-class search engine with AI integration and comprehensive relevance tuning. The search engine supports vector similarity search (multiple algorithms), keyword search, fuzzy search, geospatial search, and filters. You can build hybrid query requests that include all of these components, and you can control how much each query contributes to the overall request.
 
 ## Next step
 

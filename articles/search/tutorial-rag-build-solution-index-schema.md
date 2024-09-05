@@ -14,7 +14,11 @@ ms.date: 09/12/2024
 
 # Design an index (RAG tutorial - Azure AI Search)
 
-In this tutorial, you create an index that's designed for conversational search. 
+In this tutorial, you create an index that's designed for conversational search. Your index should accommodate vector and hybrid queries. We also recommend semantic ranking and filters.
+
+Objective:
+
+- Design an index schema that generates results in a format that works for LLMs.
 
 Key points:
 
@@ -24,9 +28,16 @@ Key points:
 - schema determines what queries you can create (be generous in attribute assignments)
 - schema must cover all the queries you want to run. You can only query one index at a time (no joins), but you can create indexes that preserve parent-child relationship, and then use nested queries or parallel queries in your search logic to pull from both.
 - schema has impact on storage/size. Consider narrow data types, attribution, vector configuration.
-- show schemas for parent-child all-up and paired indexes via index projections
+- show schema patterns: one for parent-child all-up, one for paired indexes via index projections
 - note metadata for filters
-- TBD: add fields for location and use entity recognition to pull this values out of the PDFs? Not sure how it will query, but goal would be to add some structure to the schema.
+- TBD: add fields for location and use entity recognition to pull this values out of the PDFs? Not sure how the extraction will work on chunked documents or how it will query, but goal would be to show that you can add structured data to the schema.
+
+Tasks:
+
+- H2 How to create an index for chunked and vectorized data (show examples for parent-child variants)
+- H2 How to define vector profiles and configuration (discuss pros and cons, shouldn't be a rehash of existing how-to)
+- H2 How to add filters
+- H2 How to add structured data (example is "location", top-level field, data aquisition is through the pipeline)
 
 <!-- 
 
@@ -98,4 +109,4 @@ This is probably out of scope for this tutorial, but could be an extension. -->
 ## Next step
 
 > [!div class="nextstepaction"]
-> TBD
+> [Create an indexing pipeline](tutorial-rag-build-solution-pipeline.md)
