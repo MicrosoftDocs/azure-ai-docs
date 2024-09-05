@@ -117,7 +117,7 @@ az ml data create -f [PATH_TO_YML_FILE] --workspace-name [YOUR_AZURE_WORKSPACE] 
 
 ---
 
-If you already have your data in an existing datastore, to create a data asset out of it, provide the path to the data in the datastore, instead of the path of your local machine. Update [the preceding code](#using-prelabeled-training-data-from-local-machine) with the following snippet.
+If you already have your data in an existing datastore, to create a data asset out of it, provide the path to the data in the datastore, instead of the path of your local machine. Update [the preceding code](#use-prelabeled-training-data-from-local-machine) with the following snippet.
 
 # [Azure CLI](#tab/cli)
 [!INCLUDE [cli v2](includes/machine-learning-cli-v2.md)]
