@@ -1,5 +1,5 @@
 ---
-title: "Quickstart: Custom categories"
+title: "Quickstart: Custom categories (preview)"
 titleSuffix: Azure AI services
 description: Use the custom category API to create your own harmful content categories and train the Content Safety model for your use case.
 #services: cognitive-services
@@ -11,7 +11,7 @@ ms.date: 07/03/2024
 ms.author: pafarley
 ---
 
-# Quickstart: Custom categories (standard mode)
+# Quickstart: Custom categories (standard mode) (preview)
 
 Follow this guide to use Azure AI Content Safety Custom category REST API to create your own content categories for your use case and train Azure AI Content Safety to detect them in new text content.
 

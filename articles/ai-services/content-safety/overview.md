@@ -7,7 +7,7 @@ author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-content-safety
 ms.topic: overview
-ms.date: 06/01/2024
+ms.date: 09/04/2024
 ms.author: pafarley
 keywords: content safety, Azure AI Content Safety, online content safety, content filtering software, content moderation service, content moderation
 ms.custom: references_regions, build-2023, build-2023-dataai
@@ -16,12 +16,11 @@ ms.custom: references_regions, build-2023, build-2023-dataai
 
 # What is Azure AI Content Safety? 
 
-Azure AI Content Safety detects harmful user-generated and AI-generated content in applications and services. Azure AI Content Safety includes text and image APIs that allow you to detect material that is harmful. We also have an interactive Content Safety Studio that allows you to view, explore and try out sample code for detecting harmful content across different modalities.  
+Azure AI Content Safety is an AI service that detects harmful user-generated and AI-generated content in applications and services. Azure AI Content Safety includes text and image APIs that allow you to detect material that is harmful. The interactive Content Safety Studio allows you to view, explore, and try out sample code for detecting harmful content across different modalities.
 
 Content filtering software can help your app comply with regulations or maintain the intended environment for your users.
 
 This documentation contains the following article types:  
-
 * **[Concepts](concepts/harm-categories.md)** provide in-depth explanations of the service functionality and features.  
 * **[Quickstarts](./quickstart-text.md)** are getting-started instructions to guide you through making requests to the service.  
 * **[How-to guides](./how-to/use-blocklist.md)** contain instructions for using the service in more specific or customized ways.  
@@ -43,7 +42,7 @@ The following are a few scenarios in which a software developer or team would re
 
 ## Product features
 
-There are different types of analysis available from this service. The following table describes the currently available APIs.
+This service makes several different types of analysis available. The following table describes the currently available APIs.
 
 | Feature                        | Functionality           | Concepts guide | Get started |
 | :-------------------------- | :---------------------- | --| --| 
@@ -60,19 +59,19 @@ There are different types of analysis available from this service. The following
 
 [Azure AI Content Safety Studio](https://contentsafety.cognitive.azure.com) is an online tool designed to handle potentially offensive, risky, or undesirable content using cutting-edge content moderation ML models. It provides templates and customized workflows, enabling users to choose and build their own content moderation system. Users can upload their own content or try it out with provided sample content.
 
-Content Safety Studio not only contains out-of-the-box AI models but also includes Microsoft's built-in **terms blocklists** to flag profanities and stay up to date with new trends. You can also upload your own blocklists to enhance the coverage of harmful content that's specific to your use case. 
+Content Safety Studio not only contains out-of-the-box AI models but also includes **Microsoft's built-in terms blocklists** to flag profanities and stay up to date with new content trends. You can also upload your own blocklists to enhance the coverage of harmful content that's specific to your use case. 
 
 Studio also lets you set up a **moderation workflow**, where you can continuously monitor and improve content moderation performance. It can help you meet content requirements from all kinds of industries like gaming, media, education, E-commerce, and more. Businesses can easily connect their services to the Studio and have their content moderated in real-time, whether user-generated or AI-generated.
 
 All of these capabilities are handled by the Studio and its backend; customers don’t need to worry about model development. You can onboard your data for quick validation and monitor your KPIs accordingly, like technical metrics (latency, accuracy, recall), or business metrics (block rate, block volume, category proportions, language proportions, and more). With simple operations and configurations, customers can test different solutions quickly and find the best fit, instead of spending time experimenting with custom models or doing moderation manually. 
 
 > [!div class="nextstepaction"]
-> [Content Safety Studio](https://contentsafety.cognitive.azure.com)
+> [Try Content Safety Studio](https://contentsafety.cognitive.azure.com)
 
 
 ### Content Safety Studio features
 
-In Content Safety Studio, the following Azure AI Content Safety service features are available:
+In Content Safety Studio, the following Azure AI Content Safety features are available:
 
 * **[Moderate Text Content](https://contentsafety.cognitive.azure.com/text)**: With the text moderation tool, you can easily run tests on text content. Whether you want to test a single sentence or an entire dataset, our tool offers a user-friendly interface that lets you assess the test results directly in the portal. You can experiment with different sensitivity levels to configure your content filters and blocklist management, ensuring that your content is always moderated to your exact specifications. Plus, with the ability to export the code, you can implement the tool directly in your application, streamlining your workflow and saving time.
 
@@ -96,7 +95,7 @@ Learn how Azure AI Content Safety handles the [encryption and decryption of your
 
 ## Pricing
 
-Currently, Azure AI Content Safety has an **F0 and S0** pricing tier. See the Azure [pricing page](https://aka.ms/content-safety-pricing) for more information.
+Currently, Azure AI Content Safety has an **F0** and **S0** pricing tier. See the Azure [pricing page](https://aka.ms/content-safety-pricing) for more information.
 
 ## Service limits
 
@@ -115,58 +114,54 @@ See the following list for the input requirements for each feature.
   - Maximum image file size: 4 MB
   - Dimensions between 50 x 50 and 2048 x 2048 pixels.
   - Images can be in JPEG, PNG, GIF, BMP, TIFF, or WEBP formats.
-- **Prompt Shields**: 
+- **Prompt Shields API**: 
   - Maximum prompt length: 10K characters.
   - Up to five documents with a total of 10K characters.
-- **Groundedness detection (preview)**: 
+- **Groundedness detection API (preview)**: 
   - Maximum length for grounding sources: 55,000 characters (per API call).
   - Maximum text and query length: 7,500 characters.
-- **Protected material detection**: 
+- **Protected material detection API**: 
   - Default maximum length: 1K characters.
   - Default minimum length: 110 characters (for scanning LLM completions, not user prompts).
-- **Custom categories (standard)**:
+- **Custom categories (standard) API (preview)**:
   - Maximum inference input length: 1K characters.
 
 
 ### Language support
 
-Content Safety models have been specifically trained and tested in the following languages: English, German, Spanish, Japanese, French, Italian, Portuguese, and Chinese. However, the service can work in many other languages, but the quality might vary. In all cases, you should do your own testing to ensure that it works for your application.
-
-Custom Categories currently only works well in English. You can try to use other languages with your own dataset, but the quality might vary across languages.
+[!INCLUDE [language-notice](includes/language-notice.md)]
 
 For more information, see [Language support](/azure/ai-services/content-safety/language-support).
 
 ### Region availability
 
-To use the Content Safety APIs, you must create your Azure AI Content Safety resource in the supported regions. Currently, the Content Safety features are available in the following Azure regions: 
+To use the Content Safety APIs, you must create your Azure AI Content Safety resource in a supported region. Currently, the Content Safety features are available in the following Azure regions: 
 
-| Region              | Moderation APIs (text and image) | Prompt Shields | Protected material detection for Text | Groundedness detection (preview) | Custom categories (rapid) (preview) | Custom categories (standard) | Blocklists |
+| Region              | Moderation APIs (text and image) | Prompt Shields | Protected material detection for Text | Groundedness detection (preview) | Custom categories (rapid) (preview) | Custom categories (standard) (preview) | Blocklists |
 |---------------------|----------------------------------|----------------|--------------------------------------|-----------------------------------|------------------------------------|-------------------------------|------------|
 | East US             | ✅                                | ✅              | ✅                                    | ✅                                | ✅                                  | ✅                             | ✅          |
-| East US 2           | ✅                                |                | ✅                                    | ✅                                | ✅                                  |                               | ✅          |
-| West US             |                                  | ✅              | ✅                                    |                                   | ✅                                  |                               |            |
+| East US 2           | ✅                                | ✅              | ✅                                    | ✅                                | ✅                                  |                               | ✅          |
+| West US             |                                    | ✅              | ✅                                    |                                   | ✅                                  |                               |            |
 | West US 2           | ✅                                | ✅              | ✅                                    |                                   | ✅                                  |                               | ✅          |
 | West US 3           | ✅                                | ✅              | ✅                                    |                                   | ✅                                  |                               | ✅          |
 | Poland Central      | ✅                                | ✅              | ✅                                    |                                   | ✅                                   |                               | ✅          |
-| South East Asia      | ✅                                |                | ✅                                    |                                   |  ✅                                  |                               | ✅          |
-| Central US          | ✅                                |                | ✅                                    |                                   | ✅                                   |                               | ✅          |
-| North Central US    | ✅                                |                | ✅                                    |                                   | ✅                                  |                               | ✅          |
-| South Central US    | ✅                                |                | ✅                                    |                                   | ✅                                  |                               | ✅          |
+| South East Asia      | ✅                                |✅              | ✅                                    |                                   |  ✅                                  |                               | ✅          |
+| Central US          | ✅                                |                  | ✅                                    |                                   | ✅                                   |                               | ✅          |
+| North Central US    | ✅                                | ✅               | ✅                                    |                                   | ✅                                  |                               | ✅          |
+| South Central US    | ✅                                | ✅               | ✅                                    |                                   | ✅                                  |                               | ✅          |
 | Canada East         | ✅                                | ✅              | ✅                                    |                                   | ✅                                  |                               | ✅          |
 | Switzerland North   | ✅                                | ✅              | ✅                                    |                                   | ✅                                  | ✅                             | ✅          |
 | Sweden Central      | ✅                                | ✅              | ✅                                    | ✅                                | ✅                                  |                               | ✅          |
-| UK South            | ✅                                |               | ✅                                    |                                   | ✅                                  |                               | ✅          |
+| UK South            | ✅                                | ✅              | ✅                                    |                                   | ✅                                  |                               | ✅          |
 | France Central      | ✅                                | ✅              | ✅                                    |                                   | ✅                                  |                               | ✅          |
 | West Europe         | ✅                                | ✅              | ✅                                    |                                   | ✅                                  |                               | ✅          |
 | Japan East          | ✅                                | ✅              | ✅                                    |                                   | ✅                                  |                               | ✅          |
-| Australia East      | ✅                                | ✅              | ✅                                    |                                   | ✅                                  |                             | ✅          |
-| South India         | ✅                                |                | ✅                                    |                                   | ✅                                  | ✅                             | ✅          |
-| USGov Arizona       | ✅                                | ✅              | ✅                                    |                                   |                                    |                               |            |
-| USGov Virginia      | ✅                                | ✅              | ✅                                    |                                   |                                    |                               |            |
+| Australia East      | ✅                                | ✅              | ✅                                    |                                   | ✅                                  |  ✅                            | ✅          |
+| South India         | ✅                                |                | ✅                                    |                                   | ✅                                  |                            | ✅          |
+| USGov Arizona       | ✅                                |               |                                    |                                   |                                    |                               |   ✅          |
+| USGov Virginia      | ✅                                |              |                                    |                                   |                                    |                               |    ✅         |
 
-
-
-Feel free to [contact us](mailto:contentsafetysupport@microsoft.com) if you need other regions for your business.
+Feel free to [contact us](mailto:contentsafetysupport@microsoft.com) if your business needs other regions to be available.
 
 ### Query rates
 
@@ -174,10 +169,10 @@ Content Safety features have query rate limits in requests-per-second (RPS) or r
 
 |Pricing tier | Moderation APIs<br>(text and image) | Prompt Shields |  Protected material<br>detection | Groundedness<br>detection (preview) | Custom categories<br>(rapid) (preview) | Custom categories<br>(standard) (preview)|
 |--------|---------|-------------|---------|---------|---------|--|
-| F0    | 1000 RP10S    | 1000 RP10S       | 1000 RP10S    | 50 RP10S     | 1000 RP10S | 5 RPS|
+| F0    | 5 RPS    | 5 RPS       | 5 RPS    | 10 RP10S     | 5 RPS | 10 RP10S|
 | S0    | 1000 RP10S    | 1000 RP10S       | 1000 RP10S    | 50 RP10S     | 1000 RP10S | 5 RPS|
 
-If you need a faster rate, please [contact us](mailto:contentsafetysupport@microsoft.com) to request.
+If you need a faster rate, please [contact us](mailto:contentsafetysupport@microsoft.com) to request it.
 
 
 ## Contact us

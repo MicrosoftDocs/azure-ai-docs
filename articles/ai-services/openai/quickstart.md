@@ -9,7 +9,7 @@ ms.custom: devx-track-dotnet, devx-track-python, devx-track-extended-java, devx-
 ms.topic: quickstart
 author: mrbullwinkle
 ms.author: mbullwin
-ms.date: 08/23/2023
+ms.date: 09/05/2024
 zone_pivot_groups: openai-quickstart-new
 recommendations: false
 ---

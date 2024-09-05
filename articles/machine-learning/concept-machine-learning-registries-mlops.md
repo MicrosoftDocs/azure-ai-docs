@@ -29,7 +29,7 @@ In the preceding scenarios, you might use different Azure Machine Learning works
 
 ## Cross-workspace MLOps with registries
 
-A registry, much like a Git repository, decouples machine learning assets from workspaces and hosts the assets in a central location, making them available to all workspaces in your organization.
+A registry, much like a Git repository, decouples machine learning assets from workspaces and hosts the assets in a central location, making them available to all workspaces in your organization. You can use registries to store and share assets such as __models__, __environments__, __components__, and __datasets__.
 
 To promote models across development, test, and production environments, you can start by iteratively developing a model in the development environment. When you have a good candidate model, you can publish it to a registry. You can then deploy the model from the registry to endpoints in different workspaces.
 

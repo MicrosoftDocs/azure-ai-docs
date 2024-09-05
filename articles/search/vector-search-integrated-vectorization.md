@@ -9,7 +9,7 @@ ms.service: cognitive-search
 ms.custom:
   - ignite-2023
 ms.topic: conceptual
-ms.date: 08/05/2024
+ms.date: 09/04/2024
 ---
 
 # Integrated data chunking and embedding in Azure AI Search
@@ -22,11 +22,9 @@ Integrated vectorization is an extension of the indexing and query pipelines in 
 
 Data chunking isn't a hard requirement, but unless your raw documents are small, chunking is necessary for meeting the token input requirements of embedding models.
 
-A key benefit is that integrated vectorization speeds up the development and minimizes maintenance tasks during data ingestion and query time because there are fewer external components to configure and manage.
-
 Vector conversions are one-way: text-to-vector. There's no vector-to-text conversion for queries or results (for example, you can't convert a vector result to a human-readable string).
 
-Integrated data chunking and vectorization is now generally available.
+Integrated data chunking and vectorization speeds up the development and minimizes maintenance tasks during data ingestion and query time because there are fewer external components to configure and manage. This capability is now generally available.
 
 ## Using integrated vectorization during indexing
 
@@ -40,7 +38,7 @@ For data chunking and text-to-vector conversions, you're taking a dependency on 
 
   + [Text Split skill](cognitive-search-skill-textsplit.md), used to chunk the data.
   
-  + An embedding skill, used to generate vector arrays:
+  + An embedding skill, used to generate vector arrays, which can be any of the following:
 
     + [AzureOpenAIEmbedding skill](cognitive-search-skill-azure-openai-embedding.md), attached to text-embedding-ada-002,text-embedding-3-small, text-embedding-3-large on Azure OpenAI.
 

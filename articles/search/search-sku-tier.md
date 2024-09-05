@@ -64,7 +64,7 @@ Currently, several regions are at capacity for Basic and Standard (S1) tiers and
 | Central US | Basic, Standard (S1) |
 | South Central US | Basic, Standard (S1) |
 | West US 2 | Basic, Standard (S1) |
-| West US 3| Basic, Standard (S1) |
+| West US 3| All tiers |
 
 <a name="premium-features"></a>
 

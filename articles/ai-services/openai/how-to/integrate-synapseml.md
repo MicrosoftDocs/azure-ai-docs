@@ -7,9 +7,9 @@ manager: nitinme
 ms.service: azure-ai-openai
 ms.custom: build-2023, build-2023-dataai
 ms.topic: how-to
-ms.date: 09/01/2023
-author: ChrisHMSFT
-ms.author: chrhoder
+ms.date: 09/01/2024
+author: mrbullwinkle
+ms.author: mbullwin
 recommendations: false
 ---
 
