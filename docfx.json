@@ -82,6 +82,13 @@
         ],
         "src": "breadcrumb/azure-ai",
         "dest": "breadcrumb/azure-ai"
+      },
+      {
+        "files": [
+          "zone-pivot-groups.yml"
+        ],
+        "src": "zone-pivots",
+        "dest": "zone-pivots/azure-ai/"
       }
     ],
     "resource": [
@@ -260,7 +267,8 @@
         "Certification"
       ],
       "uhfHeaderId": "azure",
-      "ms.suite": "office"
+      "ms.suite": "office",
+      "zone_pivot_group_filename": "zone-pivots/azure-ai/zone-pivot-groups.json"
     },
     "fileMetadata": {
       "author": {
