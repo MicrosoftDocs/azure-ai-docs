@@ -122,22 +122,11 @@ curl -i -X POST https://<your-language-resource-endpoint>/language/analyze-text/
     {
       "kind": "AbstractiveSummarization",
       "taskName": "Text Abstractive Summarization Task 1",
-      "parameters": {
-        "summaryLength": "short"
-      }
     }
   ]
 }
 '
 ```
-If you don't specify `summaryLength`, the model determines the summary length.
-
-### Using the summaryLength parameter
-For the `summaryLength` parameter, three values are accepted:
-* oneSentence: Generates a summary of mostly 1 sentence, with around 80 tokens.
-* short: Generates a summary of mostly 2-3 sentences, with around 120 tokens.
-* medium: Generates a summary of mostly 4-6 sentences, with around 170 tokens.
-* long: Generates a summary of mostly over 7 sentences, with around 210 tokens.
 
 2. Make the following changes in the command where needed:
     - Replace the value `your-language-resource-key` with your key.
@@ -260,8 +249,7 @@ curl -i -X POST https://<your-language-resource-endpoint>/language/analyze-text/
       "kind": "ExtractiveSummarization",
       "taskName": "Query_based Extractive Summarization",
       "parameters": {
-          "query": "XYZ-code",
-          "sentenceCount": 3
+          "query": "XYZ-code"
       }
     }
   ]
@@ -269,12 +257,20 @@ curl -i -X POST https://<your-language-resource-endpoint>/language/analyze-text/
 '
 ```
 
-### Using the summaryLength parameter
+### Summary length control
+
+#### Using the summaryLength parameter in abstractive summarization
+
+If you don't specify `summaryLength`, the model determines the summary length.
+
 For the `summaryLength` parameter, three values are accepted:
 * oneSentence: Generates a summary of mostly 1 sentence, with around 80 tokens.
 * short: Generates a summary of mostly 2-3 sentences, with around 120 tokens.
 * medium: Generates a summary of mostly 4-6 sentences, with around 170 tokens.
 * long: Generates a summary of mostly over 7 sentences, with around 210 tokens.
+
+#### Using the sentenceCount parameter in extractive summarization
+For the `sentenceCount` parameter (extractive summarization only), you can input a value 1-20 to indicate the desired number of output sentences.
 
 ## Service and data limits
 
