@@ -322,7 +322,7 @@ Here are some of the tasks you can do on the **Models** pane:
 When each training epoch completes a checkpoint is generated. A checkpoint is a fully functional version of a model which can both be deployed and used as the target model for subsequent fine-tuning jobs. Checkpoints can be particularly useful, as they can provide a snapshot of your model prior to overfitting having occurred. When a fine-tuning job completes you will have the three most recent versions of the model available to deploy. 
 
 
-## Safety evaluation for GPT-4 fine-tuning (preview)
+## Safety evaluation GPT-4 fine-tuning - public preview
 
 [!INCLUDE [Safety evaluation](../includes/safety-evaluation.md)]
 
