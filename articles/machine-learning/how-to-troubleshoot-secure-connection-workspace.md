@@ -15,7 +15,7 @@ ms.date: 09/05/2024
 
 # Troubleshoot private endpoint connection problems
 
-When you connect to an Azure Machine Learning workspace that's configured with a private endpoint, you might encounter a *403* error or a message saying that access is forbidden. This article explains how you can check for common configuration problems that cause this error.
+When you connect to an Azure Machine Learning workspace configured with a private endpoint, you might encounter a *403* error or a message saying that access is forbidden. This article explains how you can check for common configuration problems that cause this error.
 
 > [!TIP]
 > Before using the steps in this article, try the Azure Machine Learning workspace diagnostic API. It can help identify configuration problems with your workspace. For more information, see [How to use workspace diagnostics](how-to-workspace-diagnostic-api.md).
