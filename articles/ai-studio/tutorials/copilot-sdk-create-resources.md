@@ -16,7 +16,7 @@ author: sdgilley
 
 In this tutorial, you use the prompt flow SDK (and other libraries) to build, configure, evaluate, and deploy a chat app for your retail company called Contoso Trek. Your retail company specializes in outdoor camping gear and clothing. The chat app should answer questions about your products and services. For example, the chat app can answer questions such as "which tent is the most waterproof?" or "what is the best sleeping bag for cold weather?".
 
-This tutorial is part one of a three-part tutorial.  This part one shows you how to create and configure the resources you'll need for parts two and three of the tutorial series. In this part one, you learn how to:
+This tutorial is part one of a three-part tutorial.  This part one shows how, as an administrator of Azure subscription, you create and configure the resources needed for parts two and three of the tutorial series. In this part one, you learn how to:
 
 > [!div class="checklist"]
 > - Create an Azure AI Studio hub
@@ -24,7 +24,7 @@ This tutorial is part one of a three-part tutorial.  This part one shows you how
 > - Create an Azure AI Search index
 > - Configure access for the Azure AI Studio and Azure AI Search resources
 
-If you've completed other tutorials or quickstarts, you might have already created some of the resources needed for this tutorial. If you have, feel free to skip some of the steps here. But make sure to complete the sections where you configure access for resources.
+If you've completed other tutorials or quickstarts, you might have already created some of the resources needed for this tutorial. If you have, feel free to skip those steps here.
 
 This tutorial is part one of a three-part tutorial.
 
