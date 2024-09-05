@@ -123,7 +123,7 @@ See the following list for the input requirements for each feature.
 - **Protected material detection API**: 
   - Default maximum length: 1K characters.
   - Default minimum length: 110 characters (for scanning LLM completions, not user prompts).
-- **Custom categories (standard) API**:
+- **Custom categories (standard) API (preview)**:
   - Maximum inference input length: 1K characters.
 
 

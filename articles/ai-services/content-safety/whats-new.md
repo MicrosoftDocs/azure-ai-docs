@@ -18,13 +18,13 @@ Learn what's new in the service. These items might be release notes, videos, blo
 
 ## July 2024
 
-### Custom categories (standard) API
+### Custom categories (standard) API public preview
 
 The custom categories (standard) API lets you create and train your own custom content categories and scan text for matches. See [Custom categories](./concepts/custom-categories.md) to learn more.
 
 ## May 2024
 
-### Custom categories (rapid) API
+### Custom categories (rapid) API public preview
 
 The custom categories (rapid) API lets you quickly define emerging harmful content patterns and scan text and images for matches. See [Custom categories](./concepts/custom-categories.md) to learn more.
 

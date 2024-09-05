@@ -11,7 +11,7 @@ ms.date: 03/15/2024
 ms.author: pafarley
 ---
 
-# Quickstart: Prompt Shields (preview)
+# Quickstart: Prompt Shields
 
 "Prompt Shields" in Azure AI Content Safety are specifically designed to safeguard generative AI systems from generating harmful or inappropriate content. These shields detect and mitigate risks associated with both User Prompt Attacks (malicious or harmful user-generated inputs) and Document Attacks (inputs containing harmful content embedded within documents). The use of "Prompt Shields" is crucial in environments where GenAI is employed, ensuring that AI outputs remain safe, compliant, and trustworthy.
 
