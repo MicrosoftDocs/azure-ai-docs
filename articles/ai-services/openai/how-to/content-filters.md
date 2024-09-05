@@ -21,25 +21,27 @@ The content filtering system integrated into Azure OpenAI Service runs alongside
 
 Content filters can be configured at resource level. Once a new configuration is created, it can be associated with one or more deployments. For more information about model deployment, see the [resource deployment guide](create-resource.md).
 
-The configurability feature is available in preview and allows customers to adjust the settings, separately for prompts and completions, to filter content for each content category at different severity levels as described in the table below. Content detected at the 'safe' severity level is labeled in annotations but is not subject to filtering and isn't configurable.
+The configurability feature allows customers to adjust the settings, separately for prompts and completions, to filter content for each content category at different severity levels as described in the table below. Content detected at the 'safe' severity level is labeled in annotations but is not subject to filtering and isn't configurable.
 
 | Severity filtered | Configurable for prompts | Configurable for completions | Descriptions |
 |-------------------|--------------------------|------------------------------|--------------|
-| Low, medium, high | Yes | Yes | Strictest filtering configuration. Content detected at severity levels low, medium, and high is filtered.|
-| Medium, high      | Yes | Yes | Default setting. Content detected at severity level low isn't filtered, content at medium and high is filtered.|
+| Low, medium, high | Yes | Yes | Strictest filtering configuration. Content detected at severity levels low, medium, and high is filtered. |
+| Medium, high      | Yes | Yes | Content detected at severity level low isn't filtered, content at medium and high is filtered. |
 | High              | Yes| Yes | Content detected at severity levels low and medium isn't filtered. Only content at severity level high is filtered. |
 | No filters | If approved<sup>\*</sup>| If approved<sup>\*</sup>| No content is filtered regardless of severity level detected. Requires approval<sup>\*</sup>.|
+|Annotate only | If approved<sup>\*</sup>| If approved<sup>\*</sup>| Disables the filter functionality, so content will not be blocked, but annotations are returned via API response. Requires approval<sup>\*</sup>|
 
 <sup>\*</sup> Only approved customers have full content filtering control and can turn the content filters partially or fully off. Managed customers only can apply for full content filtering control via this form: [Azure OpenAI Limited Access Review: Modified Content Filters](https://ncv.microsoft.com/uEfCgnITdR). At this time, it is not possible to become a managed customer.
 
 Customers are responsible for ensuring that applications integrating Azure OpenAI comply with the [Code of Conduct](/legal/cognitive-services/openai/code-of-conduct?context=%2Fazure%2Fai-services%2Fopenai%2Fcontext%2Fcontext). 
 
 
-|Filter category  |Default setting  |Applied to prompt or completion?  |Description  |
+|Filter category  |Status |Default setting  |Applied to prompt or completion?  |Description  |
 |---------|---------|---------|---------|
-|Jailbreak risk detection     |    Off     |   Prompt      |   Can be turned on to filter or annotate user prompts that might present a Jailbreak Risk. For more information about consuming annotations, visit [Azure OpenAI Service content filtering](/azure/ai-services/openai/concepts/content-filter?tabs=python#annotations-preview) |
-| Protected material - code | off | Completion | Can be turned on to get the example citation and license information in annotations for code snippets that match any public code sources. For more information about consuming annotations, see the [content filtering concepts guide](/azure/ai-services/openai/concepts/content-filter#annotations-preview) |
-| Protected material - text | off | Completion | Can be turned on to identify and block known text content from being displayed in the model output (for example, song lyrics, recipes, and selected web content).  |
+|Prompt Shields for direct attacks (jailbreak)     |GA|    On     |   User prompt      |   Filters / annotates user prompts that might present a Jailbreak Risk. For more information about annotations, visit [Azure OpenAI Service content filtering](/azure/ai-services/openai/concepts/content-filter?tabs=python#annotations-preview). |
+|Prompt Shields for indirect attacks  | GA| On| User prompt | Filter / annotate Indirect Attacks, also referred to as Indirect Prompt Attacks or Cross-Domain Prompt Injection Attacks, a potential vulnerability where third parties place malicious instructions inside of documents that the generative AI system can access and process. Required: [Document ](/azure/ai-services/openai/concepts/content-filter?tabs=warning%2Cuser-prompt%2Cpython-new#embedding-documents-in-your-prompt)formatting. |
+| Protected material - code |GA| On | Completion | Filters protected code or gets the example citation and license information in annotations for code snippets that match any public code sources, powered by GitHub Copilot. For more information about consuming annotations, see the [content filtering concepts guide](/azure/ai-services/openai/concepts/content-filter#annotations-preview) |
+| Protected material - text | GA| On | Completion | Identifies and blocks known text content from being displayed in the model output (for example, song lyrics, recipes, and selected web content).  |
 
 
 ## Configuring content filters via Azure OpenAI Studio (preview)
