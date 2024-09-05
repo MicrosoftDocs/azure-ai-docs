@@ -5,11 +5,12 @@ description: 'Learn how to troubleshoot connectivity problems to a workspace tha
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: enterprise-readiness
-ms.topic: how-to
+ms.topic: troubleshooting
 ms.author: larryfr
 author: Blackmist
 ms.reviewer: meerakurup
-ms.date: 01/24/2024
+ms.date: 09/05/2024
+# Customer Intent: As an admin, I need to understand how to troubleshoot connectivity problems to a workspace that is configured with a private endpoint.
 ---
 
 # Troubleshoot private endpoint connection problems
@@ -60,13 +61,13 @@ Use the following steps to verify if your custom DNS solution is correctly resol
 
     `nslookup <fqdn>`
 
-    For example, running the command `nslookup 29395bb6-8bdb-4737-bf06-848a6857793f.workspace.eastus.api.azureml.ms` returns a value similar to the following text:
+    For example, running the command `nslookup a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1.workspace.eastus.api.azureml.ms` returns a value similar to the following text:
 
     ```output
     Server: yourdnsserver
     Address: yourdnsserver-IP-address
 
-    Name: 29395bb6-8bdb-4737-bf06-848a6857793f.workspace.eastus.api.azureml.ms
+    Name: a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1.workspace.eastus.api.azureml.ms
     Address: 10.3.0.5
     ```
 
