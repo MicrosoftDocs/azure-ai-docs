@@ -10,7 +10,7 @@ ms.service: azure-machine-learning
 ms.subservice: automl
 ms.topic: conceptual
 ms.custom: automl, sdkv2
-ms.date: 09/03/2024
+ms.date: 09/05/2024
 show_latex: true
 #customer intent: As a data scientist, I want to understand model inference and evaluation in forecasting tasks.
 ---
@@ -31,10 +31,10 @@ In machine learning, *inference* is the process of generating model predictions 
 
 The diagram shows two important inference parameters:
 
-- The *context length* is the amount of history that the model requires to make a forecast
-- The *forecast horizon* is how far ahead in time the forecaster is trained to predict
+- The *context length* is the amount of history that the model requires to make a forecast.
+- The *forecast horizon* is how far ahead in time the forecaster is trained to predict.
 
-Forecasting models usually use some historical information, the context, to make predictions ahead in time up to the forecast horizon. When the context is part of the training data, AutoML saves what it needs to make forecasts. There's no need to explicitly provide it.
+Forecasting models usually use some historical information, the *context*, to make predictions ahead in time up to the forecast horizon. When the context is part of the training data, AutoML saves what it needs to make forecasts. There's no need to explicitly provide it.
 
 There are two other inference scenarios that are more complicated:
 
@@ -60,7 +60,7 @@ Suppose that after you train a model, you want to use it to make predictions fro
 
 :::image type="content" source="media/concept-automl-forecasting-evaluation/forecasting-with-gap-diagram.png" alt-text="Diagram demonstrating a forecast with a gap between the training and inference periods.":::
 
-AutoML supports this inference scenario, but you need to provide the context data in the gap period, as shown in the diagram. The prediction data passed to the [inference component](how-to-auto-train-forecast.md#orchestrating-training-inference-and-evaluation-with-components-and-pipelines) needs values for features and observed target values in the gap and missing values or "NaN" values for the target in the inference period. The following table shows an example of this pattern:  
+AutoML supports this inference scenario, but you need to provide the context data in the gap period, as shown in the diagram. The prediction data passed to the [inference component](how-to-auto-train-forecast.md#orchestrating-training-inference-and-evaluation-with-components-and-pipelines) needs values for features and observed target values in the gap and missing values or `NaN` values for the target in the inference period. The following table shows an example of this pattern:  
 
 :::image type="content" source="media/concept-automl-forecasting-evaluation/forecasting-with-gap-table.png" alt-text="Table showing an example of prediction data when there's a gap between the training and inference periods.":::
 
@@ -80,13 +80,13 @@ The following diagram shows a simple example with three forecasting windows:
 
 The diagram illustrates three rolling evaluation parameters:
 
-- The *context length* is the amount of history that the model requires to make a forecast
-- The *forecast horizon* is how far ahead in time the forecaster is trained to predict
-- The *step size* is how far ahead in time the rolling window advances on each iteration on the test set
+- The *context length* is the amount of history that the model requires to make a forecast.
+- The *forecast horizon* is how far ahead in time the forecaster is trained to predict.
+- The *step size* is how far ahead in time the rolling window advances on each iteration on the test set.
 
 The context advances along with the forecasting window. Actual values from the test set are used to make forecasts when they fall within the current context window. The latest date of actual values used for a given forecast window is called the *origin time* of the window. The following table shows an example output from the three-window rolling forecast with a horizon of three days and a step size of one day:
 
-:::image type="content" source="media/concept-automl-forecasting-evaluation/rolling-evaluation-table.png" alt-text="Example output table from a rolling forecast.":::
+:::image type="content" source="media/concept-automl-forecasting-evaluation/rolling-evaluation-table.png" alt-text="Diagram shows example output table from a rolling forecast.":::
 
 With a table like this, you can visualize the forecasts versus the actuals and compute desired evaluation metrics. AutoML pipelines can generate rolling forecasts on a test set with an [inference component](how-to-auto-train-forecast.md#orchestrating-training-inference-and-evaluation-with-components-and-pipelines).
 
