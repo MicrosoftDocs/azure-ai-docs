@@ -30,13 +30,14 @@ The following models support fine-tuning:
 - `gpt-35-turbo` (1106)
 - `gpt-35-turbo` (0125)
 - `gpt-4` (0613)**<sup>*</sup>**
+- `gpt-4o` (2024-08-06)**<sup>*</sup>**
 - `gpt-4o-mini` (2024-07-18)**<sup>*</sup>**
 
 **<sup>*</sup>** Fine-tuning for this model is currently in public preview.
 
+
 Consult the [models page](../concepts/models.md#fine-tuning-models) to check which regions currently support fine-tuning.
 
-If you plan to use `gpt-4` for fine-tuning, please refer to the [GPT-4 public preview safety evaluation guidance](#safety-evaluation-gpt-4-fine-tuning---public-preview)
 
 ## Review the workflow for Azure OpenAI Studio
 
@@ -322,7 +323,7 @@ Here are some of the tasks you can do on the **Models** pane:
 When each training epoch completes a checkpoint is generated. A checkpoint is a fully functional version of a model which can both be deployed and used as the target model for subsequent fine-tuning jobs. Checkpoints can be particularly useful, as they can provide a snapshot of your model prior to overfitting having occurred. When a fine-tuning job completes you will have the three most recent versions of the model available to deploy. 
 
 
-## Safety evaluation GPT-4 fine-tuning - public preview
+## Safety evaluation GPT-4, 4o, and 4o-mini fine-tuning - public preview
 
 [!INCLUDE [Safety evaluation](../includes/safety-evaluation.md)]
 
