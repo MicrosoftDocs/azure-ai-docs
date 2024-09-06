@@ -55,15 +55,6 @@ To create a project in [Azure AI Studio](https://ai.azure.com), follow these ste
 1. Select **+ New project**.
 1. Enter a name for the project.
 1. Select the hub you created in the previous step.
-1. Select an existing Azure AI services resource (including Azure OpenAI) from the dropdown or create a new one.
-
-1. On the **Review and finish** page, you see the Azure AI services resource name and other settings to review.
-
-    :::image type="content" source="../media/how-to/projects/projects-create-review-finish.png" alt-text="Screenshot of the review and finish page within the create project dialog." lightbox="../media/how-to/projects/projects-create-review-finish.png":::
-
-1. Review the project details and then select **Create a project**. You see progress of resource creation and the project is created when the process is complete.
-
-    :::image type="content" source="../media/how-to/projects/projects-create-review-finish-progress.png" alt-text="Screenshot of the resource creation progress within the create project dialog." lightbox="../media/how-to/projects/projects-create-review-finish-progress.png":::
 
 Once a project is created, you can access the playground, tools, and other assets in the left navigation panel.
 
