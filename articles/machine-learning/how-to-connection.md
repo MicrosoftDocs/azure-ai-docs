@@ -541,7 +541,7 @@ ml_client.connections.create_or_update(workspace_connection=wps_connection)
 
 ---
 
-### Third party Container Registry
+### Generic Container Registry
 
 Using the GenericContainerRegistry workspace connection, you can specify an external registry for image builds. Environment images will be pushed and served from the specified registry, and the previous cache will be ignored.
 
@@ -649,13 +649,13 @@ returned_job = ml_client.create_or_update(job)
 
 1. Under **Manage** in the left navigation, select **Connections** and then select **Create**.
 
-   :::image type="content" source="media/how-to-connection/how-to-manage-connections-create.png" lightbox="media/how-to-connection/create-new-data-connection.png" alt-text="Screenshot showing the start of a new data connection in Azure Machine Learning studio UI.":::
+   :::image type="content" source="media/how-to-connection/how-to-manage-connections-create.png" lightbox="media/how-to-connection/create-new-data-connection.png" alt-text="Screenshot showing the start of creating a new connection in Azure Machine Learning studio UI.":::
 
 1. Under **Other resources types**, select **Generic Container Registry*
-   :::image type="content" source="media/how-to-connection/how-to-connect-generic-container-registry.png" lightbox="media/how-to-connection/create-new-data-connection.png" alt-text="Screenshot showing the start of a new data connection in Azure Machine Learning studio UI.":::
+   :::image type="content" source="media/how-to-connection/how-to-connect-generic-container-registry.png" lightbox="media/how-to-connection/create-new-data-connection.png" alt-text="Screenshot highlighting the option to connect to a generic container registry in Azure Machine Learning studio UI.":::
 
 1. Input the required information, and then select **Add connection**
-   :::image type="content" source="media/how-to-connection/how-to-connect-add-connection.png" lightbox="media/how-to-connection/create-new-data-connection.png" alt-text="Screenshot showing the start of a new data connection in Azure Machine Learning studio UI.":::
+   :::image type="content" source="media/how-to-connection/how-to-connect-add-connection.png" lightbox="media/how-to-connection/create-new-data-connection.png" alt-text="Screenshot showing the input fields for connecting to a generic container registry in Azure Machine Learning studio UI.":::
 
 ---
 
