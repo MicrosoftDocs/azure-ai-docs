@@ -16,7 +16,7 @@ author: sdgilley
 
 In this tutorial, you use the prompt flow SDK (and other libraries) to build, configure, evaluate, and deploy a chat app for your retail company called Contoso Trek. Your retail company specializes in outdoor camping gear and clothing. The chat app should answer questions about your products and services. For example, the chat app can answer questions such as "which tent is the most waterproof?" or "what is the best sleeping bag for cold weather?".
 
-This tutorial is part one of a three-part tutorial.  This part one shows how, as an administrator of an Azure subscription, you create and configure the resources needed for parts two and three of the tutorial series. In this part one, you learn how to:
+This tutorial is part one of a three-part tutorial.  This part one shows how an administrator of an Azure subscription creates and configures the resources needed for parts two and three of the tutorial series. Parts two and three show how a developer uses the resources.  (The same person might act as both developer and administrator.) In this part one, you learn how to:
 
 > [!div class="checklist"]
 > - Create an Azure AI Studio hub
@@ -55,7 +55,7 @@ To create a project in [Azure AI Studio](https://ai.azure.com), follow these ste
 1. Select **+ New project**.
 1. Enter a name for the project.
 1. Select the hub you created in the previous step.
-1. Select an existing Azure AI services resource (including Azure OpenAI) from the dropdown or create a new one. 
+1. Select an existing Azure AI services resource (including Azure OpenAI) from the dropdown or create a new one.
 
 1. On the **Review and finish** page, you see the Azure AI services resource name and other settings to review.
 
