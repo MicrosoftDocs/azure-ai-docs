@@ -32,7 +32,7 @@ The following models support fine-tuning:
 - `gpt-35-turbo` (1106)
 - `gpt-35-turbo` (0125)
 - `gpt-4` (0613)**<sup>*</sup>**
-- `gpt-4o` (20234-08-06)**<sup>*</sup>**
+- `gpt-4o` (2024-08-06)**<sup>*</sup>**
 - `gpt-4o-mini` (2024-07-18)**<sup>*</sup>**
 
 **<sup>*</sup>** Fine-tuning for this model is currently in public preview.
