@@ -127,13 +127,13 @@ It is important to note that certain populations may be more negatively impacted
 
 #### Best practices for improving system performance
 
-The Microsoft Translator Pro is an integrated end-to-end solution that leverages various services such as speech-to-text, translation, and text-to-speech. Please refer to [speech-to-text](../speech-service/speech-to-text/transparency-note.md) and [text-to-speech](../speech-service/text-to-speech/transparency-note.md) transparency notes for more details on the best practices for improving system performance.
+The Microsoft Translator Pro is an integrated end-to-end solution that leverages various services such as speech-to-text, translation, and text-to-speech. Please refer to [speech-to-text](/legal/cognitive-services/speech-service/speech-to-text/transparency-note.md) and [text-to-speech](/legal/cognitive-services/speech-service/text-to-speech/transparency-note.md) transparency notes for more details on the best practices for improving system performance.
 
 ### Evaluation of Microsoft Translator Pro
 
 #### Evaluation results
 
-The Microsoft Translator Pro is an integrated end-to-end solution that leverages various services such as speech-to-text, translation, and text-to-speech. Please refer to [speech-to-text](../speech-service/speech-to-text/transparency-note.md) and [text-to-speech](../speech-service/text-to-speech/transparency-note.md) transparency notes transparency notes for more details on evaluation results.
+The Microsoft Translator Pro is an integrated end-to-end solution that leverages various services such as speech-to-text, translation, and text-to-speech. Please refer to [speech-to-text](/legal/cognitive-services/speech-service/speech-to-text/transparency-note) and [text-to-speech](/legal/cognitive-services/speech-service/text-to-speech/transparency-note.md) transparency notes transparency notes for more details on evaluation results.
 
 #### Fairness considerations
 
@@ -147,12 +147,11 @@ One dimension to consider is how well the app performs for different groups of p
 
 [Microsoft responsible AI resources](https://www.microsoft.com/ai/tools-practices)
 
-[Microsoft Azure Learning courses on responsible AI](https://learn.microsoft.com/ai/)
+[Microsoft Azure Learning courses on responsible AI](/ai/)
 
 ### Learn more about Microsoft Translator Pro
 
 [Microsoft Translator Pro](TODO)
-
 
 About this document
 
