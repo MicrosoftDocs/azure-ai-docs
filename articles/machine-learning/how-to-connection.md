@@ -649,7 +649,13 @@ returned_job = ml_client.create_or_update(job)
 
 1. Under **Manage** in the left navigation, select **Connections** and then select **Create**.
 
-1. Under **Other resources types**, select **Generic Container Registry**, input the required information, and then select **Add connection**
+   :::image type="content" source="media/how-to-connection/how-to-manage-connections-create.png" lightbox="media/how-to-connection/create-new-data-connection.png" alt-text="Screenshot showing the start of a new data connection in Azure Machine Learning studio UI.":::
+
+1. Under **Other resources types**, select **Generic Container Registry*
+   :::image type="content" source="media/how-to-connection/how-to-connect-generic-container-registry.png" lightbox="media/how-to-connection/create-new-data-connection.png" alt-text="Screenshot showing the start of a new data connection in Azure Machine Learning studio UI.":::
+
+1. Input the required information, and then select **Add connection**
+   :::image type="content" source="media/how-to-connection/how-to-connect-add-connection.png" lightbox="media/how-to-connection/create-new-data-connection.png" alt-text="Screenshot showing the start of a new data connection in Azure Machine Learning studio UI.":::
 
 ---
 
