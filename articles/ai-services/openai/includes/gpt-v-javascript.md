@@ -7,7 +7,7 @@ manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: include
 ms.custom: references_regions
-ms.date: 09/09/2024
+ms.date: 09/06/2024
 ---
 
 Use this article to get started using the OpenAI JavaScript SDK to deploy and use the GPT-4 Turbo with Vision model. 
@@ -61,6 +61,8 @@ Install the client libraries with:
 ```console
 npm install openai @azure/openai @azure/identity
 ```
+
+The `@azure/openai` package provides the types the Azure service objects.
 
 ## [**JavaScript**](#tab/javascript)
 

@@ -8,7 +8,7 @@ ms.service: azure-ai-openai
 ms.topic: include
 author: PatrickFarley
 ms.author: pafarley
-ms.date: 08/24/2023
+ms.date: 09/06/2024
 ---
 
 Use this guide to get started generating images with the Azure OpenAI SDK for JavaScript.
@@ -17,10 +17,21 @@ Use this guide to get started generating images with the Azure OpenAI SDK for Ja
 
 ## Prerequisites
 
+#### [TypeScript](#tab/typescript)
+
+- An Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services?azure-portal=true)
+- [LTS versions of Node.js](https://github.com/nodejs/release#release-schedule)
+- [TypeScript](https://www.typescriptlang.org/download/)
+- An Azure OpenAI resource created in a supported region (see [Region availability](/azure/ai-services/openai/concepts/models#model-summary-table-and-region-availability)). For more information, see [Create a resource and deploy a model with Azure OpenAI](../how-to/create-resource.md).
+
+
+#### [JavaScript](#tab/javascript)
+
 - An Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services?azure-portal=true)
 - [LTS versions of Node.js](https://github.com/nodejs/release#release-schedule)
 - An Azure OpenAI resource created in a supported region (see [Region availability](/azure/ai-services/openai/concepts/models#model-summary-table-and-region-availability)). For more information, see [Create a resource and deploy a model with Azure OpenAI](../how-to/create-resource.md).
 
+---
 
 ## Setup
 
@@ -39,11 +50,23 @@ npm init
 
 ## Install the client library
 
-Install the Azure OpenAI client library for JavaScript with npm:
+Install the client libraries with:
+
+## [**TypeScript**](#tab/typescript)
 
 ```console
-npm install @azure/openai
+npm install openai @azure/openai @azure/identity
 ```
+
+The `@azure/openai` package provides the types the Azure service objects.
+
+## [**JavaScript**](#tab/javascript)
+
+```console
+npm install openai @azure/identity
+```
+
+---
 
 Your app's _package.json_ file will be updated with the dependencies.
 
@@ -51,43 +74,35 @@ Your app's _package.json_ file will be updated with the dependencies.
 
 Create a new file named _ImageGeneration.js_ and open it in your preferred code editor. Copy the following code into the _ImageGeneration.js_ file:
 
+#### [TypeScript](#tab/typescript)
+
+```typescript
+```
+
+1. Build the application with the following command:
+
+    ```console
+    tsc
+    ```
+
+1. Run the application with the following command:
+
+    ```console
+    node ImageGeneration.js
+    ```
+
+
+#### [JavaScript](#tab/javascript)
+
 ```javascript
-const { OpenAIClient, AzureKeyCredential } = require("@azure/openai");
-
-// You will need to set these environment variables or edit the following values
-const endpoint = process.env["AZURE_OPENAI_ENDPOINT"] ;
-const azureApiKey = process.env["AZURE_OPENAI_API_KEY"] ;
-
-// The prompt to generate images from
-const prompt = "a monkey eating a banana";
-const size = "256x256";
-
-// The number of images to generate
-const n = 2;
-
-async function main() {
-    console.log("== Batch Image Generation ==");
-  
-    const client = new OpenAIClient(endpoint, new AzureKeyCredential(azureApiKey));
-    const deploymentName = "dall-e";
-    const results = await client.getImages(deploymentName, prompt, { n, size });
-  
-    for (const image of results.data) {
-      console.log(`Image generation result URL: ${image.url}`);
-    }
-    //console.log(`Image generation result URL: ${results.result.status}`);
-}
-
-main().catch((err) => {
-console.error("The sample encountered an error:", err);
-});
 ```
 
 Run the script with the following command:
 
 ```console
-node _ImageGeneration.js
+node ImageGeneration.js
 ```
+---
 
 ## Output
 
