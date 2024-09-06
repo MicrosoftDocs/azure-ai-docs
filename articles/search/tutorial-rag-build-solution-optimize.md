@@ -1,5 +1,5 @@
 ---
-title: 'RAG Tutorial: Reduce storage and costs'
+title: 'RAG Tutorial: Minimize storage and costs'
 titleSuffix: Azure AI Search
 description: Compress vectors using binary or scalar quantization, remove copies of stored vectors.
 
@@ -12,7 +12,7 @@ ms.date: 09/12/2024
 
 ---
 
-# Optimize using vector compression and reduced storage (RAG tutorial - Azure AI Search)
+# Minimize storage and costs using vector compression and narrow data types (RAG tutorial - Azure AI Search)
 
 In this tutorial, learn the techniques for reducing index size, with a focus on vector compression and storage. 
 

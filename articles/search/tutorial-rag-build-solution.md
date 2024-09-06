@@ -7,20 +7,20 @@ manager: nitinme
 author: HeidiSteen
 ms.author: heidist
 ms.service: cognitive-search
-ms.topic: tutorial
+ms.topic: conceptual
 ms.date: 09/12/2024
 
 ---
 
 # How to build a RAG solution using Azure AI Search
 
-This tutorial series demonstrates a RAG pattern in Azure AI Search. It covers the components built in Azure AI Search, dependencies, optimizations, and deployment tasks.
+This tutorial series demonstrates a pattern for building RAG solutions on Azure AI Search. It covers the components built in Azure AI Search, dependencies, optimizations, and deployment tasks.
 
 Sample data is a [collection of PDFs](https://github.com/Azure-Samples/azure-search-sample-data/tree/main/nasa-e-book/earth_book_2019_text_pages) uploaded to Azure Storage. 
 
-Sample code can be found in [this Python notebook](LINK-TBD), but we recommend using this series for context and for understanding tradeoffs and alternatives.
+Sample code can be found in [this Python notebook](LINK-TBD), but we recommend using this series for context, insights, and alternative approaches.
 
-## In this series
+## Exercises in this series
 
 - Choose your models for embeddings and chat
 
@@ -30,9 +30,9 @@ Sample code can be found in [this Python notebook](LINK-TBD), but we recommend u
 
 - Retrieve searchable content using queries and a chat model
 
-- Optimize for relevance
+- Maximize relevance
 
-- Optimize for speed and lower costs
+- Minimize storage and costs
 
 - Deploy and secure an app
 

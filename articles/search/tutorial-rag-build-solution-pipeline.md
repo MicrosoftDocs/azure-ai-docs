@@ -18,7 +18,9 @@ In this tutorial, learn how to build an automated indexing pipeline for a RAG so
 
 An indexer drives indexing and skillset execution that provides [integrated data chunking and vectorization](vector-search-integrated-vectorization.md) on a one-time or recurring basis for incremental updates. You create an indexer, data source connection, skillset, and provide the index schema you created in the previous tutorial. This exercise uses Azure Blob storage as the data source.
 
-Objective:
+If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) before you begin.
+
+<!-- Objective:
 
 - Create objects and run the indexer to produce an operational search index with chunked and vectorized content.
 
@@ -39,7 +41,7 @@ Tasks:
 - H2: Create a skillset (choose one skillset)
 - H2: Use alternative skillsets (present the other two skillsets)
 - H2: Create and run the indexer
-- H2: Check your data in the search index (hide vectors)
+- H2: Check your data in the search index (hide vectors) -->
 
 <!-- 
 ## Prerequisites
