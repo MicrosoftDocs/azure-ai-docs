@@ -42,7 +42,7 @@ The tool helps to create, manage, and monitor data labeling tasks for:
 - Object detection (bounding box)
 - Instance segmentation (polygon)
 
-If you already labeled data you want to use, you can export your labeled data as an Azure Machine Learning Dataset and access the dataset under the **Datasets** tab in Azure Machine Learning studio. You can pass this exported dataset as an input using `azureml:<tabulardataset_name>:<version>` format. For more information, see [Export the labels](how-to-manage-labeling-projects.md#export-the-labels).
+If you already have labeled data to use, export that labeled data as an Azure Machine Learning Dataset and access the dataset under the **Datasets** tab in Azure Machine Learning studio. You can pass this exported dataset as an input using `azureml:<tabulardataset_name>:<version>` format. For more information, see [Export the labels](how-to-manage-labeling-projects.md#export-the-labels).
 
 Here's an example of how to pass existing dataset as input for training computer vision models.
 
@@ -80,7 +80,7 @@ Refer to CLI/SDK tabs for reference.
 
 ### Use prelabeled training data from local machine
 
-If you labeled data that you want to use to train your model, you need to upload the images to Azure. You can upload your images to the default Azure Blob Storage of your Azure Machine Learning Workspace. Register it as a *data asset*. For more information, see [Create and manage data assets](how-to-create-data-assets.md).
+If you labeled data that you want to use to train your model, upload the images to Azure. You can upload your images to the default Azure Blob Storage of your Azure Machine Learning Workspace. Register it as a *data asset*. For more information, see [Create and manage data assets](how-to-create-data-assets.md).
 
 The following script uploads the image data on your local machine at path *./data/odFridgeObjects* to datastore in Azure Blob Storage. It then creates a new data asset with the name `fridge-items-images-object-detection` in your Azure Machine Learning Workspace.
 
@@ -99,7 +99,7 @@ path: ./data/odFridgeObjects
 type: uri_folder
 ```
 
-To upload the images as a data asset, you run the following CLI v2 command with the path to your *.yml* file, workspace name, resource group, and subscription ID.
+To upload the images as a data asset, run the following CLI v2 command with the path to your *.yml* file, workspace name, resource group, and subscription ID.
 
 ```azurecli
 az ml data create -f [PATH_TO_YML_FILE] --workspace-name [YOUR_AZURE_WORKSPACE] --resource-group [YOUR_AZURE_RESOURCE_GROUP] --subscription [YOUR_AZURE_SUBSCRIPTION]
@@ -117,7 +117,7 @@ az ml data create -f [PATH_TO_YML_FILE] --workspace-name [YOUR_AZURE_WORKSPACE] 
 
 ---
 
-If you already have your data in an existing datastore, to create a data asset out of it, provide the path to the data in the datastore, instead of the path of your local machine. Update [the preceding code](#use-prelabeled-training-data-from-local-machine) with the following snippet.
+If you already have your data in an existing datastore, you can create a data asset out of it. Provide the path to the data in the datastore instead of the path of your local machine. Update [the preceding code](#use-prelabeled-training-data-from-local-machine) with the following snippet.
 
 # [Azure CLI](#tab/cli)
 [!INCLUDE [cli v2](includes/machine-learning-cli-v2.md)]
@@ -153,7 +153,7 @@ Next, get the label annotations in JSONL format. The schema of labeled data depe
 
 If your training data is in a different format, like pascal VOC or COCO, [helper scripts](https://github.com/Azure/azureml-examples/blob/v1-archive/v1/python-sdk/tutorials/automl-with-azureml/image-object-detection/coco2jsonl.py) can convert the data to JSONL. The scripts are available in [notebook examples](https://github.com/Azure/azureml-examples/blob/main/sdk/python/jobs/automl-standalone-jobs).
 
-After you create the *.jsonl* file, you can register it as a data asset using UI. Make sure that you select `stream` type in schema section as shown in this animation.
+After you create the *.jsonl* file, you can register it as a data asset using the UI. Make sure that you select `stream` type in schema section as shown in this animation.
 
 :::image type="content" source="media\how-to-prepare-datasets-for-automl-images\ui-dataset-jsnol.gif" alt-text="Animation showing how to register a data asset from the jsonl files.":::
 
