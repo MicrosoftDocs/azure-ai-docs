@@ -116,7 +116,7 @@ To open the schedule creation wizard, on the pipeline job detail page, select **
 
 # [Studio UI](#tab/ui)
 
-On the **Basic settings** screen, define the following properties.
+On the **Basic settings** screen, define the following properties. Only the **Name** property requires a unique entry. If you don't specify values for the other properties, the default schedule is a recurrence pattern that starts at schedule creation and runs every Monday through Friday at 4:00 PM UTC.
 
 :::image type="content" source="./media/how-to-schedule-pipeline-job/create-schedule-basic-settings.png" alt-text="Screenshot of schedule creation wizard showing the basic settings." lightbox= "./media/how-to-schedule-pipeline-job/create-schedule-basic-settings.png":::
 
@@ -143,7 +143,7 @@ In an Azure Machine Language schedule cron expression:
 - `MONTHS` values aren't supported, and are always treated as `*`.
 - `DAYS-OF-WEEK` is an integer or list from 0 to 6, where 0 = Sunday. Names of days are also accepted.
 
-The `*` value in `DAYS` means all days in a month, which varies with month and year. The expression `15 16 * * 1` means 16:15PM every Monday. For more information about crontab expressions, see the [Crontab Expression wiki on GitHub ](https://github.com/atifaziz/NCrontab/wiki/Crontab-Expression).
+The `*` value in `DAYS` means all days in a month, which varies with month and year. The expression `15 16 * * 1` means 4:15 PM UTC every Monday. For more information about crontab expressions, see the [Crontab Expression wiki on GitHub ](https://github.com/atifaziz/NCrontab/wiki/Crontab-Expression).
 
 # [Azure CLI](#tab/cliv2)
 
@@ -181,13 +181,13 @@ To open the schedule creation wizard, on the pipeline job detail page, select **
 
 On the **Basic settings** screen, define the following properties.
 
-:::image type="content" source="./media/how-to-schedule-pipeline-job/create-schedule-basic-settings.png" alt-text="Screenshot of schedule creation wizard showing the basic settings." lightbox= "./media/how-to-schedule-pipeline-job/create-schedule-basic-settings.png":::
+:::image type="content" source="./media/how-to-schedule-pipeline-job/create-schedule-basic-settings-cron.png" alt-text="Screenshot of schedule creation wizard showing the basic settings." lightbox= "./media/how-to-schedule-pipeline-job/create-schedule-basic-settings-cron.png":::
 
 - **Name**: Unique identifier of the schedule within the workspace.
 - **Description**: Description of the schedule.
   - **Trigger**: Recurrence pattern of the schedule, including the following properties:
   - **Time zone**: Time zone to use for the trigger time, Coordinated Universal Time (UTC) by default.
-  - Select **Cron expression** to provide a standard crontab expression that expresses a recurring schedule.
+  - Select **Cron expression** to provide a standard crontab expression that expresses a recurring schedule. The default cron expression creates a schedule that runs daily at 4:00 PM UTC.
   - **Start**: Date the schedule becomes active, by default the date created.
   - **End**: Date the schedule becomes inactive. By default the value is none, and a schedule remains active until you manually disable it.
   - **Tags**: Tags on the schedule.
@@ -210,8 +210,7 @@ The following Python code creates the schedule you defined:
 
 # [Studio UI](#tab/ui)
 
-After you configure the basic settings, select **Review + Create** and then select **Create** to create the schedule. You receive notification when the creation is complete.
-
+After you configure the basic settings, select **Review + Create**, review the settings, and then select **Review + Create** again to create the schedule.
 
 ---
 
@@ -219,27 +218,25 @@ After you configure the basic settings, select **Review + Create** and then sele
 
 Sometimes you might want the jobs triggered by schedules to have different configurations from the test jobs. When you define a schedule by using an existing job, you can change the runtime settings of the job. This approach lets you define multiple schedules that use the same job with different inputs.
 
-You can change the following properties when defining a schedule for an existing job:
+# [Azure CLI / Python SDK](#tab/cliv2+python)
 
-- `settings` to use when running the pipeline job.
-- `inputs` to use when running the pipeline job.
-- `outputs` to use when running the pipeline job. 
+You can change the `settings`, `inputs`, or `outputs` to use when running the pipeline job. You can also change the `experiment_name` of the triggered job.
+
+# [Studio UI](#tab/ui)
+
+In the studio UI, you can use **Advanced settings** in the schedule creation wizard to modify `inputs`, `outputs`, and runtime `settings` for a pipeline job. You can't change the `experiment_name` in the studio UI.
+
+---
 
 # [Azure CLI](#tab/cliv2)
-
-- `experiment_name` of the triggered job.
 
 :::code language="yaml" source="~/azureml-examples-main/cli/schedules/cron-with-settings-job-schedule.yml":::
 
 # [Python SDK](#tab/python)
 
-- `experiment_name` of the triggered job.
-
 [!Notebook-python[] (~/azureml-examples-main/sdk/python/schedules/job-schedule.ipynb?name=change_run_settings)]
 
 # [Studio UI](#tab/ui)
-
-In the studio UI, you can use **Advanced settings** in the schedule creation wizard to modify `inputs`, `outputs`, and runtime `settings` when you define a schedule. You can change `experiment_name` only by using the CLI or SDK.
 
 1. In **Job inputs & outputs**, you can modify inputs and outputs for future jobs triggered by the schedule. You can use macro expressions for the inputs and outputs paths.
 
@@ -249,11 +246,9 @@ In the studio UI, you can use **Advanced settings** in the schedule creation wiz
 
    :::image type="content" source="./media/how-to-schedule-pipeline-job/create-schedule-advanced-settings-runtime.png" alt-text="Screenshot of schedule creation wizard showing the job runtime settings." lightbox= "./media/how-to-schedule-pipeline-job/create-schedule-advanced-settings-runtime.png":::
 
-1. Select **Review + Create** to review the schedule settings you configured.
+1. Select **Review + Create** to review the schedule settings you configured, and then select **Review + Create** again to create the schedule.
 
-    :::image type="content" source="./media/how-to-schedule-pipeline-job/create-schedule-review.png" alt-text="Screenshot of schedule creation wizard showing the review of the schedule settings." lightbox= "./media/how-to-schedule-pipeline-job/create-schedule-review.png":::
-
-1. Select **Create**. You receive notification when the creation is complete.
+   :::image type="content" source="./media/how-to-schedule-pipeline-job/create-schedule-review.png" alt-text="Screenshot of schedule creation wizard showing the review of the schedule settings." lightbox= "./media/how-to-schedule-pipeline-job/create-schedule-review.png":::
 
 ---
 
@@ -343,7 +338,7 @@ Once you set up a schedule to do regular retraining or batch inference on produc
 
 1. If desired, you can modify the job inputs/outputs and runtime settings for the future jobs triggered by the schedule.
 
-1. Select **Review + Update** to finish the update and by notified when the update is complete.
+1. Select **Review + Update** to finish the update and be notified when the update is complete.
 
 After the update completes, you can view the new job definition in the schedule detail page. The schedule now triggers different jobs.
 
@@ -419,7 +414,7 @@ You can also apply [Azure CLI JMESPath query](/cli/azure/query-azure-cli) to que
 
 ---
 
-## Role based access control (RBAC) support
+## Role-based access control (RBAC) support
 
 Because schedules are used for production, it's important to reduce the possibility and impact of misoperation. Workspace admins can restrict access to schedule creation and management in a workspace.
 
@@ -428,13 +423,14 @@ Admins can configure the following action rules related to schedules in the Azur
 | Action | Description                                                                | Rule                                                          |
 |--------|----------------------------------------------------------------------------|---------------------------------------------------------------|
 | Read   | Get and list schedules                       | Microsoft.MachineLearningServices/workspaces/schedules/read   |
-| Write  | Create, update, disable and enable schedules | Microsoft.MachineLearningServices/workspaces/schedules/write  |
+| Write  | Create, update, disable, and enable schedules | Microsoft.MachineLearningServices/workspaces/schedules/write  |
 | Delete | Delete schedules                             | Microsoft.MachineLearningServices/workspaces/schedules/delete |
 
 ## Cost considerations
 
-- Schedules are billed based on the number of schedules. Each schedule creates a logic app hosted by Azure Machine Learning on behalf (HOBO) of the user.
-- The logic app charges back to the user's Azure subscription. Costs of HOBO resources are billed using the same meter emitted by the original resource provider. Charges appear under the host resource, which is the Azure Machine Learning workspace.
+Schedules are billed based on the number of schedules. Each schedule creates a logic app that Azure Machine Learning hosts on behalf of (HOBO) the user.
+
+The logic app charges back to the user's Azure subscription. HOBO resource costs are billed using the same meter emitted by the original resource provider. Charges appear under the host resource, which is the Azure Machine Learning workspace.
 
 ## Related content
 
