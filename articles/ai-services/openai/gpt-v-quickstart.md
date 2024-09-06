@@ -5,7 +5,7 @@ description: Use this article to get started using Azure OpenAI to deploy and us
 services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-openai
-ms.custom: devx-track-python
+ms.custom: devx-track-python, devx-track-js, devx-track-ts
 ms.topic: quickstart
 author: PatrickFarley
 ms.author: pafarley
