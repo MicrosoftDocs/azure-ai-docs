@@ -9,15 +9,26 @@ ms.author: eur
 author: eric-urban
 ---
 
+<a href="https://platform.openai.com/docs/guides/speech-to-text" target="_blank">Reference documentation</a> | <a href="https://github.com/openai/openai-node" target="_blank">Library source code</a> | <a href="https://www.npmjs.com/package/openai" target="_blank">Package (npm)</a> | <a href="https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/openai/openai/samples" target="_blank">Samples</a>
+
 ## Prerequisites
 
-- An Azure subscription - <a href="https://azure.microsoft.com/free/cognitive-services" target="_blank">Create one for free</a>.
+#### [TypeScript](#tab/typescript)
 
-- An Azure OpenAI resource deployed in a [supported region and with a supported model](./concepts/use-your-data.md#regional-availability-and-model-support).
+- An Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services?azure-portal=true)
+- [LTS versions of Node.js](https://github.com/nodejs/release#release-schedule)
+- [TypeScript](https://www.typescriptlang.org/download/)
+- An Azure OpenAI resource created in a supported region (see [Region availability](/azure/ai-services/openai/concepts/models#model-summary-table-and-region-availability)). For more information, see [Create a resource and deploy a model with Azure OpenAI](../how-to/create-resource.md).
 
-- Be sure that you are assigned at least the [Cognitive Services Contributor](./how-to/role-based-access-control.md#cognitive-services-contributor) role for the Azure OpenAI resource.
 
-- Download the example data from [GitHub](https://github.com/Azure-Samples/cognitive-services-sample-data-files/blob/master/openai/contoso_benefits_document_example.pdf) if you don't have your own data.
+#### [JavaScript](#tab/javascript)
+
+- An Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services?azure-portal=true)
+- [LTS versions of Node.js](https://github.com/nodejs/release#release-schedule)
+- An Azure OpenAI resource created in a supported region (see [Region availability](/azure/ai-services/openai/concepts/models#model-summary-table-and-region-availability)). For more information, see [Create a resource and deploy a model with Azure OpenAI](../how-to/create-resource.md).
+
+---
+
 
 ## Set up
 
@@ -71,22 +82,76 @@ echo export AZURE_OPENAI_ENDPOINT="REPLACE_WITH_YOUR_ENDPOINT_HERE" >> /etc/envi
 ```
 ---
 
-## Create a REST API request and response
+## Passwordless authentication is recommended
 
-In a bash shell, run the following command. You need to replace `YourDeploymentName` with the deployment name you chose when you deployed the Whisper model. The deployment name isn't necessarily the same as the model name. Entering the model name results in an error unless you chose a deployment name that is identical to the underlying model name.
+For passwordless authentication, you need to 
 
-```bash
-curl $AZURE_OPENAI_ENDPOINT/openai/deployments/YourDeploymentName/audio/transcriptions?api-version=2024-02-01 \
- -H "api-key: $AZURE_OPENAI_API_KEY" \
- -H "Content-Type: multipart/form-data" \
- -F file="@./wikipediaOcelot.wav"
+1. Use the `@azure/identity` package.
+1. Assign the `Cognitive Services User` role to your user account. This can be done in the Azure portal under **Access control (IAM)** > **Add role assignment**.
+1. Sign in with the Azure CLI such as `az login`.
+
+## Create a Node application
+
+In a console window (such as cmd, PowerShell, or Bash), create a new directory for your app, and navigate to it. Then run the `npm init` command to create a node application with a _package.json_ file.
+
+```console
+npm init
 ```
 
-The first line of the preceding command with an example endpoint would appear as follows:
+## Install the client library
 
-```bash
-curl https://aoai-docs.openai.azure.com/openai/deployments/{YourDeploymentName}/audio/transcriptions?api-version=2024-02-01 \
+Install the client libraries with:
+
+## [**TypeScript**](#tab/typescript)
+
+```console
+npm install openai @azure/openai @azure/identity
 ```
+
+The `@azure/openai` package provides the types the Azure service objects.
+
+## [**JavaScript**](#tab/javascript)
+
+```console
+npm install openai @azure/identity
+```
+
+---
+Your app's _package.json_ file will be updated with the dependencies.
+
+## Create a sample application
+Create a new file named _Whisper.js_ and open it in your preferred code editor. Copy the following code into the _Whisper.js_ file:
+
+#### [TypeScript](#tab/typescript)
+
+```typescript
+```
+
+1. Build the application with the following command:
+
+    ```console
+    tsc
+    ```
+
+1. Run the application with the following command:
+
+    ```console
+    node Whisper.js
+    ```
+
+
+#### [JavaScript](#tab/javascript)
+
+```javascript
+```
+
+Run the script with the following command:
+
+```console
+node Whisper.js
+```
+
+---
 
 You can get sample audio files, such as *wikipediaOcelot.wav*, from the [Azure AI Speech SDK repository at GitHub](https://github.com/Azure-Samples/cognitive-services-speech-sdk/tree/master/sampledata/audiofiles).
 
@@ -95,6 +160,6 @@ You can get sample audio files, such as *wikipediaOcelot.wav*, from the [Azure A
 
 ## Output
 
-```bash
+```json
 {"text":"The ocelot, Lepardus paradalis, is a small wild cat native to the southwestern United States, Mexico, and Central and South America. This medium-sized cat is characterized by solid black spots and streaks on its coat, round ears, and white neck and undersides. It weighs between 8 and 15.5 kilograms, 18 and 34 pounds, and reaches 40 to 50 centimeters 16 to 20 inches at the shoulders. It was first described by Carl Linnaeus in 1758. Two subspecies are recognized, L. p. paradalis and L. p. mitis. Typically active during twilight and at night, the ocelot tends to be solitary and territorial. It is efficient at climbing, leaping, and swimming. It preys on small terrestrial mammals such as armadillo, opossum, and lagomorphs."}
 ```
