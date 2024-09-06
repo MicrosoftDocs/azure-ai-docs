@@ -49,26 +49,17 @@ This article shows you how to create, retrieve, update, and deactivate schedules
 
 - Azure Machine Learning v2 schedules don't support event-based triggers.
 - CLI and SDK v2 schedules support specifying complex recurrence patterns that contain multiple trigger timestamps. The studio UI displays the complex patterns but doesn't support editing them.
-- The studio UI schedule functions support only v2 schedules, and don't list or access v1 schedules based on published pipelines or pipeline endpoints.
+- The studio UI schedule functions support only v2 schedules, and can't list or access v1 schedules based on published pipelines or pipeline endpoints.
 - If recurrence is set as the 31st or 30th day of every month, the schedule doesn't trigger jobs in months that have fewer days.
 - `DAYS` and `MONTHS` values aren't supported in cron schedule expressions. Values passed for these parameters are ignored and treated as `*`.
 
 ## Create a schedule
 
-To run a pipeline job on a recurring basis, you must create a schedule that associates the job with a trigger. The trigger can be either a `recurrence` pattern or a`cron` expression that specifies the interval and frequency to run the job.
+To run a pipeline job on a recurring basis, you must create a schedule that associates the job with a trigger. The trigger can be either a `recurrence` pattern or a `cron` expression that specifies the interval and frequency to run the job.
 
 In both cases, you need to define a pipeline job first, either inline or by specifying an existing pipeline job. You can define pipelines in YAML and run them from the CLI, author pipelines inline in Python, or compose pipelines in Azure Machine Learning studio. You can create pipeline jobs locally or from existing jobs in the workspace.
 
 You can create v2 schedules for v2 or v1 pipeline jobs by using the studio UI, SDK v2, or CLI v2. You don't have to publish the pipelines first to set up schedules for existing pipeline jobs.
-
-### Use supported expressions in schedules
-
-When you define a schedule, you can use the following macro expressions to define dynamic parameter values. The parameters resolve to actual values during job runtime.
-
-| Expression | Description |Supported properties|
-|----------------|----------------|-------------|
-|`${{name}}`|Name of the job|`outputs` path of the pipeline job|
-|`${{creation_context.trigger_time}}`|Trigger time of the job | String type inputs of pipeline job|
 
 ### Define a time-based schedule with a recurrence pattern
 
@@ -102,7 +93,7 @@ To open the schedule creation wizard, on the pipeline job detail page, select **
 
 #### Parameters
 
-- `frequency` **(required)** is the time unit on which basis the schedule fires. Can be `minute`, `hour`, `day`, `week`, or `month`.
+- `frequency` **(required)** is the time unit on which basis the schedule fires. Can be `minutes`, `hours`, `days`, `weeks`, or `months`.
 - `interval` **(required)** is the number of time units between schedule recurrences.
 - `schedule` (optional) defines the recurrence pattern, which can contain `hours`, `minutes`, and `weekdays`. If omitted, jobs trigger according to the logic of `start_time`, `frequency`, and `interval`.
   - When `frequency` is `day`, the pattern can specify `hours` and `minutes`.
@@ -116,7 +107,7 @@ To open the schedule creation wizard, on the pipeline job detail page, select **
 
 # [Studio UI](#tab/ui)
 
-On the **Basic settings** screen, define the following properties. Only the **Name** property requires a unique entry. If you don't specify values for the other properties, the default schedule is a recurrence pattern that starts at schedule creation and runs every Monday through Friday at 4:00 PM UTC.
+To define a recurrence-based schedule, on the **Basic settings** screen, define the following properties. Only the **Name** property requires a unique entry. If you don't specify values for the other properties, the default schedule is a recurrence pattern that starts at schedule creation and runs every Monday through Friday at 4:00 PM UTC.
 
 :::image type="content" source="./media/how-to-schedule-pipeline-job/create-schedule-basic-settings.png" alt-text="Screenshot of schedule creation wizard showing the basic settings." lightbox= "./media/how-to-schedule-pipeline-job/create-schedule-basic-settings.png":::
 
@@ -133,20 +124,19 @@ On the **Basic settings** screen, define the following properties. Only the **Na
 
 ### Define a time-based schedule with a cron expression
 
-A cron expression can specify a flexible and customized recurrence pattern. A standard crontab expression expresses a recurring schedule composed of the space-delimited fields `MINUTES HOURS DAYS MONTHS DAYS-OF-WEEK`. A wildcard `*` means all values for a field.
+A cron expression can specify a flexible and customized recurrence pattern for a schedule. A standard crontab expression is composed of the space-delimited fields `MINUTES HOURS DAYS MONTHS DAYS-OF-WEEK`. A wildcard `*` means all values for a field.
 
 In an Azure Machine Language schedule cron expression:
 
-- `HOURS` is an integer or list from 0 to 23.
 - `MINUTES` is an integer or list from 0 to 59.
-- `DAYS` values aren't supported, and are always treated as `*`.
+- `HOURS` is an integer or list from 0 to 23.
+- `DAYS` values aren't supported, and are always treated as `*`. The `*` value in `DAYS` means all days in a month, which varies with month and year. 
 - `MONTHS` values aren't supported, and are always treated as `*`.
 - `DAYS-OF-WEEK` is an integer or list from 0 to 6, where 0 = Sunday. Names of days are also accepted.
 
-The `*` value in `DAYS` means all days in a month, which varies with month and year. The expression `15 16 * * 1` means 4:15 PM UTC every Monday. For more information about crontab expressions, see the [Crontab Expression wiki on GitHub ](https://github.com/atifaziz/NCrontab/wiki/Crontab-Expression).
+For example, the expression `15 16 * * 1` means 4:15 PM UTC every Monday. For more information about crontab expressions, see the [Crontab Expression wiki on GitHub](https://github.com/atifaziz/NCrontab/wiki/Crontab-Expression).
 
 # [Azure CLI](#tab/cliv2)
-
 
 The following YAML code defines a recurring schedule for a pipeline job. The required `type` parameter specifies that the `trigger` type is `cron`.
 
@@ -164,7 +154,7 @@ You must or can provide the following schedule parameters:
 
 # [Studio UI](#tab/ui)
 
-To open the schedule creation wizard, on the pipeline job detail page, select **Schedule** > **Create new schedule**.
+To define a cron-based schedule, on the **Basic settings** screen, select **Cron expression** instead of **Recurrence**.
 
 ---
 
@@ -179,15 +169,15 @@ To open the schedule creation wizard, on the pipeline job detail page, select **
 
 # [Studio UI](#tab/ui)
 
-On the **Basic settings** screen, define the following properties.
+On the **Basic settings** screen, only the **Name** property requires a unique entry. If you don't specify a cron expression, the default cron expression creates a schedule that runs daily at 4:00 PM UTC.
 
-:::image type="content" source="./media/how-to-schedule-pipeline-job/create-schedule-basic-settings-cron.png" alt-text="Screenshot of schedule creation wizard showing the basic settings." lightbox= "./media/how-to-schedule-pipeline-job/create-schedule-basic-settings-cron.png":::
+:::image type="content" source="./media/how-to-schedule-pipeline-job/create-schedule-basic-settings-cron.png" alt-text="Screenshot of schedule creation wizard showing the basic settings for cron." lightbox= "./media/how-to-schedule-pipeline-job/create-schedule-basic-settings-cron.png":::
 
 - **Name**: Unique identifier of the schedule within the workspace.
 - **Description**: Description of the schedule.
   - **Trigger**: Recurrence pattern of the schedule, including the following properties:
   - **Time zone**: Time zone to use for the trigger time, Coordinated Universal Time (UTC) by default.
-  - Select **Cron expression** to provide a standard crontab expression that expresses a recurring schedule. The default cron expression creates a schedule that runs daily at 4:00 PM UTC.
+  - Select **Cron expression** to provide a standard crontab expression that expresses a recurring schedule.
   - **Start**: Date the schedule becomes active, by default the date created.
   - **End**: Date the schedule becomes inactive. By default the value is none, and a schedule remains active until you manually disable it.
   - **Tags**: Tags on the schedule.
@@ -214,29 +204,29 @@ After you configure the basic settings, select **Review + Create**, review the s
 
 ---
 
-### Change job runtime settings when you define schedules
+### Change job settings when you define schedules
 
-Sometimes you might want the jobs triggered by schedules to have different configurations from the test jobs. When you define a schedule by using an existing job, you can change the runtime settings of the job. This approach lets you define multiple schedules that use the same job with different inputs.
-
-# [Azure CLI / Python SDK](#tab/cliv2+python)
-
-You can change the `settings`, `inputs`, or `outputs` to use when running the pipeline job. You can also change the `experiment_name` of the triggered job.
-
-# [Studio UI](#tab/ui)
-
-In the studio UI, you can use **Advanced settings** in the schedule creation wizard to modify `inputs`, `outputs`, and runtime `settings` for a pipeline job. You can't change the `experiment_name` in the studio UI.
-
----
+Sometimes you might want the jobs triggered by schedules to have different configurations from the test jobs. When you define a schedule by using an existing job, you can change the job settings. This approach lets you define multiple schedules that use the same job with different inputs.
 
 # [Azure CLI](#tab/cliv2)
+
+When you define a schedule, you can change the `settings`, `inputs`, or `outputs` to use when running the pipeline job. You can also change the `experiment_name` of the triggered job.
+
+The following schedule definition changes the settings of the existing job.
 
 :::code language="yaml" source="~/azureml-examples-main/cli/schedules/cron-with-settings-job-schedule.yml":::
 
 # [Python SDK](#tab/python)
 
+When you define a schedule, you can change the `settings`, `inputs`, or `outputs` to use when running the pipeline job. You can also change the `experiment_name` of the triggered job.
+
+The following schedule definition changes the settings of a pipeline per job.
+
 [!Notebook-python[] (~/azureml-examples-main/sdk/python/schedules/job-schedule.ipynb?name=change_run_settings)]
 
 # [Studio UI](#tab/ui)
+
+In the studio UI, you can use **Advanced settings** in the schedule creation wizard to modify `inputs`, `outputs`, and runtime `settings` for a pipeline job. You can't change the `experiment_name` in the studio UI.
 
 1. In **Job inputs & outputs**, you can modify inputs and outputs for future jobs triggered by the schedule. You can use macro expressions for the inputs and outputs paths.
 
@@ -251,6 +241,15 @@ In the studio UI, you can use **Advanced settings** in the schedule creation wiz
    :::image type="content" source="./media/how-to-schedule-pipeline-job/create-schedule-review.png" alt-text="Screenshot of schedule creation wizard showing the review of the schedule settings." lightbox= "./media/how-to-schedule-pipeline-job/create-schedule-review.png":::
 
 ---
+
+#### Use supported expressions in schedules
+
+When you define a schedule, you can use the following macro expressions to define dynamic parameter values that resolve to actual values during job runtime.
+
+| Expression | Description |Supported properties|
+|----------------|----------------|-------------|
+|`${{name}}`|Name of the job|`outputs` path of the pipeline job|
+|`${{creation_context.trigger_time}}`|Trigger time of the job | String type `inputs` of the pipeline job|
 
 ## Manage schedule
 
@@ -329,16 +328,16 @@ Once you set up a schedule to do regular retraining or batch inference on produc
 
    :::image type="content" source="./media/how-to-schedule-pipeline-job/update-to-existing-schedule.png" alt-text="Screenshot of the jobs tab with schedule button selected showing update to existing schedule button." lightbox= "./media/how-to-schedule-pipeline-job/update-to-existing-schedule.png":::
 
-1. Select an existing schedule to update.
+1. Select an existing schedule to update its job definition.
 
    :::image type="content" source="./media/how-to-schedule-pipeline-job/update-select-schedule.png" alt-text="Screenshot of update select schedule showing the select schedule tab." lightbox= "./media/how-to-schedule-pipeline-job/update-select-schedule.png":::
 
    > [!IMPORTANT]
    > Make sure you select the correct schedule you want to update.
 
-1. If desired, you can modify the job inputs/outputs and runtime settings for the future jobs triggered by the schedule.
+1. If desired, you can select **Next** to modify the job inputs/outputs and runtime settings for the future jobs triggered by the schedule.
 
-1. Select **Review + Update** to finish the update and be notified when the update is complete.
+1. Select **Review + Update** to review the schedule settings, and then select **Review + Update** again to finish the update.
 
 After the update completes, you can view the new job definition in the schedule detail page. The schedule now triggers different jobs.
 
