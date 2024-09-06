@@ -35,6 +35,8 @@ The following models support fine-tuning:
 
 **<sup>*</sup>** Fine-tuning for this model is currently in public preview.
 
+Or you can fine tune a previously fine-tuned model, formatted as base-model.ft-{jobid}.
+
 
 Consult the [models page](../concepts/models.md#fine-tuning-models) to check which regions currently support fine-tuning.
 
