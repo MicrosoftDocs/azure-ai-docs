@@ -11,7 +11,7 @@ ms.date: 02/08/2024
 ms.author: eur
 zone_pivot_groups: programming-languages-csharp-python
 keywords: speech to text, openai
-#customer intent: As a developer, I want to create a voice-based chat system to talk to the OpenAI application I host through Azure to simplify AI interactions.
+#customer intent: As a developer, I want to create a voice-based chat system to talk to the Azure OpenAI application I host through Azure to simplify AI interactions.
 ---
 
 # Azure OpenAI speech to speech chat

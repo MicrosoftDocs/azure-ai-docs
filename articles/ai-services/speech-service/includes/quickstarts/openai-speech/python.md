@@ -35,7 +35,7 @@ This example requires environment variables named `AZURE_OPENAI_API_KEY`, `AZURE
 
 Follow these steps to create a new console application.
 
-1. Open a command prompt window in the folder where you want the new project. Open a command prompt where you want the new project, and create a new file named `openai-speech.py`.
+1. Open a command prompt window in the folder where you want the new project. Open a command prompt where you want the new project, and create a new file named `azure-openai-speech.py`.
 
 1. Run this command to install the Speech SDK:  
 
@@ -52,7 +52,7 @@ Follow these steps to create a new console application.
     > [!NOTE]
     > This library is maintained by OpenAI, not Microsoft Azure. Refer to the [release history](https://github.com/openai/openai-python/releases) or the [version.py commit history](https://github.com/openai/openai-python/commits/main/openai/version.py) to track the latest updates to the library.
 
-1. Create a file named *openai-speech.py*. Copy the following code into that file:
+1. Create a file named *azure-openai-speech.py*. Copy the following code into that file:
 
     ```Python
     import os
@@ -86,7 +86,7 @@ Follow these steps to create a new console application.
     tts_sentence_end = [ ".", "!", "?", ";", "。", "！", "？", "；", "\n" ]
 
     # Prompts Azure OpenAI with a request and synthesizes the response.
-    def ask_openai(prompt):
+    def ask_azure_openai(prompt):
         # Ask Azure OpenAI in streaming way
         response = client.chat.completions.create(model=deployment_id, max_tokens=200, stream=True, messages=[
             {"role": "user", "content": prompt}
@@ -110,7 +110,7 @@ Follow these steps to create a new console application.
             last_tts_request.get()
 
     # Continuously listens for speech input to recognize and send as text to Azure OpenAI
-    def chat_with_open_ai():
+    def chat_with_azure_openai():
         while True:
             print("Azure OpenAI is listening. Say 'Stop' or press Ctrl-Z to end the conversation.")
             try:
@@ -123,7 +123,7 @@ Follow these steps to create a new console application.
                         print("Conversation ended.")
                         break
                     print("Recognized speech: {}".format(speech_recognition_result.text))
-                    ask_openai(speech_recognition_result.text)
+                    ask_azure_openai(speech_recognition_result.text)
                 elif speech_recognition_result.reason == speechsdk.ResultReason.NoMatch:
                     print("No speech could be recognized: {}".format(speech_recognition_result.no_match_details))
                     break
@@ -138,7 +138,7 @@ Follow these steps to create a new console application.
     # Main
 
     try:
-        chat_with_open_ai()
+        chat_with_azure_openai()
     except Exception as err:
         print("Encountered exception. {}".format(err))
     ```
@@ -148,7 +148,7 @@ Follow these steps to create a new console application.
 1. Run your new console application to start speech recognition from a microphone:
 
     ```console
-    python openai-speech.py
+    python azure-openai-speech.py
     ```
 
 > [!IMPORTANT]
@@ -157,7 +157,7 @@ Follow these steps to create a new console application.
 Speak into your microphone when prompted. The console output includes the prompt for you to begin speaking, then your request as text, and then the response from Azure OpenAI as text. The response from Azure OpenAI should be converted from text to speech and then output to the default speaker.
 
 ```console
-PS C:\dev\openai\python> python.exe .\openai-speech.py
+PS C:\dev\openai\python> python.exe .\azure-openai-speech.py
 Azure OpenAI is listening. Say 'Stop' or press Ctrl-Z to end the conversation.
 Recognized speech:Make a comma separated list of all continents.
 Azure OpenAI response:Africa, Antarctica, Asia, Australia, Europe, North America, South America
