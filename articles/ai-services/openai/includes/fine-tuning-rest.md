@@ -254,7 +254,7 @@ curl -X POST $AZURE_OPENAI_ENDPOINT/openai/fine_tuning/jobs/{fine_tuning_job_id}
   -H "api-key: $AZURE_OPENAI_API_KEY" 
 ```
 
-## Safety evaluation GPT-4, 4o, 4o-mini fine-tuning - public preview
+## Safety evaluation GPT-4, GPT-4o, GPT-4o-mini fine-tuning - public preview
 
 [!INCLUDE [Safety evaluation](../includes/safety-evaluation.md)]
 
