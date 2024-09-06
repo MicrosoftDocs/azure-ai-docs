@@ -135,6 +135,14 @@ Now we create our app and call the Azure OpenAI Service from code.
 
 [!INCLUDE [Install Python](../includes/install-python.md)]
 
+## Upgrade pip
+
+To make sure you have the latest version of pip, run the following command:
+
+```bash
+python -m pip install --upgrade pip
+```
+
 ## Install the prompt flow SDK
 
 [Prompt flow](https://microsoft.github.io/promptflow) is a suite of development tools designed to streamline the end-to-end development cycle of LLM-based AI applications, from ideation, prototyping, testing, evaluation to production deployment and monitoring.
