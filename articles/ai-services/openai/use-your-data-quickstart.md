@@ -5,7 +5,7 @@ description: Use this article to import and use your data in Azure OpenAI.
 #services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-openai
-ms.custom: devx-track-dotnet, devx-track-extended-java, devx-track-js, devx-track-go, devx-track-python
+ms.custom: devx-track-dotnet, devx-track-extended-java, devx-track-js, devx-track-ts, devx-track-go, devx-track-python
 ms.topic: quickstart
 author: aahill
 ms.author: aahi
@@ -46,7 +46,12 @@ In this quickstart, you can use your own data with Azure OpenAI models. Using Az
 
 ## Prerequisites
 
+#### [TypeScript](#tab/typescript)
+
 - An Azure subscription - <a href="https://azure.microsoft.com/free/cognitive-services" target="_blank">Create one for free</a>.
+
+- [LTS versions of Node.js](https://github.com/nodejs/release#release-schedule)
+- [TypeScript](https://www.typescriptlang.org/download/)
 
 - An Azure OpenAI resource deployed in a [supported region and with a supported model](./concepts/use-your-data.md#regional-availability-and-model-support).
 
@@ -54,7 +59,20 @@ In this quickstart, you can use your own data with Azure OpenAI models. Using Az
 
 - Download the example data from [GitHub](https://github.com/Azure-Samples/cognitive-services-sample-data-files/blob/master/openai/contoso_benefits_document_example.pdf) if you don't have your own data.
 
+#### [JavaScript](#tab/javascript)
+
+- An Azure subscription - <a href="https://azure.microsoft.com/free/cognitive-services" target="_blank">Create one for free</a>.
+- [LTS versions of Node.js](https://github.com/nodejs/release#release-schedule)
+- An Azure OpenAI resource deployed in a [supported region and with a supported model](./concepts/use-your-data.md#regional-availability-and-model-support).
+
+- Be sure that you are assigned at least the [Cognitive Services Contributor](./how-to/role-based-access-control.md#cognitive-services-contributor) role for the Azure OpenAI resource.
+
+- Download the example data from [GitHub](https://github.com/Azure-Samples/cognitive-services-sample-data-files/blob/master/openai/contoso_benefits_document_example.pdf) if you don't have your own data.
+
+
 ::: zone pivot="programming-language-javascript"
+
+
 
 - [Long Term Support (LTS) versions of Node.js](https://github.com/nodejs/release#release-schedule)
 
