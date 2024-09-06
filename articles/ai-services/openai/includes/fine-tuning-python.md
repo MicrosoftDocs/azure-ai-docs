@@ -37,7 +37,7 @@ The following models support fine-tuning:
 
 **<sup>*</sup>** Fine-tuning for this model is currently in public preview.
 
-Or you can fine tune a previously fine-tuned model, formatted as base-model.ft-{jobid}.
+Or you can fine tune a previously fine-tuned model, formatted as `base-model.ft-{jobid}`.
 
 :::image type="content" source="../media/fine-tuning/models.png" alt-text="Screenshot of model options with a custom fine-tuned model." lightbox="../media/fine-tuning/models.png":::
 
