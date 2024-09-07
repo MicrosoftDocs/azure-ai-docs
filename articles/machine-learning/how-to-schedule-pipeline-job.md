@@ -55,11 +55,23 @@ This article shows you how to create, retrieve, update, and deactivate schedules
 
 ## Create a schedule
 
-To run a pipeline job on a recurring basis, you must create a schedule that associates the job with a trigger. The trigger can be either a `recurrence` pattern or a `cron` expression that specifies the interval and frequency to run the job.
+When you have a pipeline job with satisfying performance and outputs, you can set up a schedule to automatically trigger the job on a regular basis. To do so, you must create a schedule that associates the job with a trigger. The trigger can be either a `recurrence` pattern or a `cron` expression that specifies the interval and frequency to run the job.
 
 In both cases, you need to define a pipeline job first, either inline or by specifying an existing pipeline job. You can define pipelines in YAML and run them from the CLI, author pipelines inline in Python, or compose pipelines in Azure Machine Learning studio. You can create pipeline jobs locally or from existing jobs in the workspace.
 
 You can create v2 schedules for v2 or v1 pipeline jobs by using the studio UI, SDK v2, or CLI v2. You don't have to publish existing pipelines first to set up schedules for pipeline jobs.
+
+# [Azure CLI](#tab/cliv2)
+
+The code examples in this article are from [Working with Schedule in Azure Machine Learning CLI 2.0](https://github.com/Azure/azureml-examples/tree/main/cli/schedules).
+
+# [Python SDK](#tab/python)
+
+The code examples in this article are excerpts from the [Working with Schedule](https://github.com/Azure/azureml-examples/blob/main/sdk/python/schedules/job-schedule.ipynb) Azure Machine Learning Notebook. Run the notebook to create and manage the schedules as described.
+
+# [Studio UI](#tab/ui)
+
+To create a schedule for an Azure Machine Learning v2 pipeline job, open the pipeline page for that job.
 
 ### Define a time-based schedule with a recurrence pattern
 
@@ -81,9 +93,7 @@ You must or can provide the following schedule parameters:
 
 # [Studio UI](#tab/ui)
 
-When you have a pipeline job with satisfying performance and outputs, you can set up a schedule to automatically trigger the job on a regular basis.
-
-To open the schedule creation wizard, on the pipeline job detail page, select **Schedule** > **Create new schedule**.
+To open the schedule creation wizard, select **Schedule** > **Create new schedule**.
 
 :::image type="content" source="./media/how-to-schedule-pipeline-job/schedule-entry-button.png" alt-text="Screenshot of the jobs tab showing the Create new schedule button selected." lightbox= "./media/how-to-schedule-pipeline-job/schedule-entry-button.png":::
 
@@ -121,9 +131,6 @@ To define a recurrence-based schedule, on the **Basic settings** screen, define 
 :::image type="content" source="./media/how-to-schedule-pipeline-job/create-schedule-basic-settings.png" alt-text="Screenshot of schedule creation wizard showing the basic settings." lightbox= "./media/how-to-schedule-pipeline-job/create-schedule-basic-settings.png":::
 
 ---
-
-
-### Create the recurrence-based schedule
 
 # [Azure CLI](#tab/cliv2)
 
@@ -206,8 +213,6 @@ Only the **Name** property requires you to enter a value. If you don't specify a
 :::image type="content" source="./media/how-to-schedule-pipeline-job/create-schedule-basic-settings-cron.png" alt-text="Screenshot of schedule creation wizard showing the basic settings for cron." lightbox= "./media/how-to-schedule-pipeline-job/create-schedule-basic-settings-cron.png":::
 
 ---
-
-### Create the schedule
 
 # [Azure CLI](#tab/cliv2)
 
