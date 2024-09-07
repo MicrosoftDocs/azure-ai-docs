@@ -1,27 +1,27 @@
 ---
-title: How to deploy Jamba models with Azure Machine Learning studio
+title: How to deploy AI21 Jamba models with Azure Machine Learning studio
 titleSuffix: Azure Machine Learning studio
-description: How to deploy Jamba models with Azure Machine Learning studio
+description: How to deploy AI21 Jamba models with Azure Machine Learning studio
 manager: scottpolly
 ms.service: azure-machine-learning
 ms.topic: how-to
-ms.date: 06/19/2024
+ms.date: 09/06/2024
 ms.author: ssalgado
 ms.reviewer: tgokal
 author: ssalgadodev
 ms.custom: references_regions
 ---
 
-# How to deploy AI21's Jamba-Instruct model with Azure Machine Learning studio
+# How to deploy AI21 Jamba models with Azure Machine Learning studio
 
-In this article, you learn how to use Azure Machine Learning studio to deploy AI21's Jamba-Instruct model as a serverless API with pay-as-you-go billing.
+In this article, you learn how to use Azure Machine Learning studio to deploy AI21 Jamba models as serverless APIs with pay-as-you-go billing.
 
-The Jamba Instruct model is AI21's production-grade Mamba-based large language model (LLM) which leverages AI21's hybrid Mamba-Transformer architecture. It's an instruction-tuned version of AI21's hybrid structured state space model (SSM) transformer Jamba model. The Jamba Instruct model is built for reliable commercial use with respect to quality and performance.
+The AI21 Jamba models are AI21's production-grade Mamba-based large language models (LLM) which leverages AI21's hybrid Mamba-Transformer architecture. They're an instruction-tuned version of AI21's hybrid structured state space model (SSM) transformer Jamba model. The Jamba Instruct model is built for reliable commercial use with respect to quality and performance.
 
 [!INCLUDE [machine-learning-preview-generic-disclaimer](includes/machine-learning-preview-generic-disclaimer.md)]
 
 
-## Deploy the Jamba Instruct model as a serverless API
+## Deploy the AI21 Jamba models as serverless APIs
 
 Certain models in the model catalog can be deployed as a serverless API with pay-as-you-go billing, providing a way to consume them as an API without hosting them on your subscription, while keeping the enterprise security and compliance organizations need. This deployment option doesn't require quota from your subscription.
 
@@ -112,9 +112,9 @@ For more information on using the APIs, see the [reference](#reference-for-jamba
 
 
 
-## Reference for Jamba Instruct deployed as a serverless API
+## Reference for AI21 Jamba models as serverless APIs
 
-Jamba Instruct models accept both of these APIs:
+AI21 Jamba models accept both of these APIs:
 
 - The [Azure AI model inference API](reference-model-inference-api.md) [Azure AI Model Inference API] on the route `/chat/completions` for multi-turn chat or single-turn question-answering. This API is supported because Jamba Instruct is fine-tuned for chat completion.
 - [AI21's Azure Client](https://docs.ai21.com/reference/jamba-instruct-api). For more information about the REST endpoint being called, visit [AI21's REST documentation](https://docs.ai21.com/reference/jamba-instruct-api).
