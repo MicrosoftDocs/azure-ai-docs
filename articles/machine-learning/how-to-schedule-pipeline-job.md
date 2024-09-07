@@ -32,7 +32,7 @@ This article shows you how to create, retrieve, update, and deactivate schedules
 # [Azure CLI](#tab/cliv2)
 
 - The Azure CLI and `ml` extension installed by following the instructions in [Install, set up, and use the CLI (v2)](how-to-configure-cli.md).
-- Knowledge of how to create YAML pipelines for Azure Machine Learning. For information, see [Create and run machine learning pipelines using components with the Azure Machine Learning CLI](how-to-create-component-pipelines-cli.md).
+- Knowledge of how to create Azure Machine Learning YAML pipelines. For information, see [Create and run machine learning pipelines using components with the Azure Machine Learning CLI](how-to-create-component-pipelines-cli.md).
 
 # [Python SDK](#tab/python)
 
@@ -49,7 +49,7 @@ This article shows you how to create, retrieve, update, and deactivate schedules
 
 - Azure Machine Learning v2 schedules don't support event-based triggers.
 - CLI and SDK v2 schedules support specifying complex recurrence patterns that contain multiple trigger timestamps. The studio UI displays the complex patterns but doesn't support editing them.
-- The studio UI schedule functions support only v2 schedules, and can't list or access v1 schedules based on published pipelines or pipeline endpoints.
+- The studio UI supports only v2 schedules, and can't list or access v1 schedules that are based on published pipelines or pipeline endpoints.
 - If recurrence is set as the 31st or 30th day of every month, the schedule doesn't trigger jobs in months that have fewer days.
 - `DAYS` and `MONTHS` values aren't supported in cron schedule expressions. Values passed for these parameters are ignored and treated as `*`.
 
@@ -59,7 +59,7 @@ To run a pipeline job on a recurring basis, you must create a schedule that asso
 
 In both cases, you need to define a pipeline job first, either inline or by specifying an existing pipeline job. You can define pipelines in YAML and run them from the CLI, author pipelines inline in Python, or compose pipelines in Azure Machine Learning studio. You can create pipeline jobs locally or from existing jobs in the workspace.
 
-You can create v2 schedules for v2 or v1 pipeline jobs by using the studio UI, SDK v2, or CLI v2. You don't have to publish the pipelines first to set up schedules for existing pipeline jobs.
+You can create v2 schedules for v2 or v1 pipeline jobs by using the studio UI, SDK v2, or CLI v2. You don't have to publish existing pipelines first to set up schedules for pipeline jobs.
 
 ### Define a time-based schedule with a recurrence pattern
 
@@ -107,9 +107,7 @@ To open the schedule creation wizard, on the pipeline job detail page, select **
 
 # [Studio UI](#tab/ui)
 
-To define a recurrence-based schedule, on the **Basic settings** screen, define the following properties. Only the **Name** property requires a unique entry. If you don't specify values for the other properties, the default schedule is a recurrence pattern that starts at schedule creation and runs every Monday through Friday at 4:00 PM UTC.
-
-:::image type="content" source="./media/how-to-schedule-pipeline-job/create-schedule-basic-settings.png" alt-text="Screenshot of schedule creation wizard showing the basic settings." lightbox= "./media/how-to-schedule-pipeline-job/create-schedule-basic-settings.png":::
+To define a recurrence-based schedule, on the **Basic settings** screen, define the following properties. Only the **Name** property requires you to enter a value. If you don't specify values for the other properties, the default schedule is a **Recurrence** pattern that starts at schedule creation and runs every Monday through Friday at 4:00 PM UTC.
 
 - **Name**: Unique identifier of the schedule within the workspace.
 - **Description**: Schedule description.
@@ -119,6 +117,31 @@ To define a recurrence-based schedule, on the **Basic settings** screen, define 
   - **Start**: Date the schedule becomes active, by default the date created.
   - **End**: Date when the schedule becomes inactive. By default the value is none, and the schedule remains active until manually disabled.
   - **Tags**: Tags on the schedule.
+
+:::image type="content" source="./media/how-to-schedule-pipeline-job/create-schedule-basic-settings.png" alt-text="Screenshot of schedule creation wizard showing the basic settings." lightbox= "./media/how-to-schedule-pipeline-job/create-schedule-basic-settings.png":::
+
+---
+
+
+### Create the recurrence-based schedule
+
+# [Azure CLI](#tab/cliv2)
+
+After you create the schedule YAML, use the following command to create the schedule via CLI:
+
+```azurecli
+# This action creates related resources for a schedule. It takes dozens of seconds to complete.
+az ml schedule create --file simple-pipeline-job.yml --no-wait
+```
+# [Python SDK](#tab/python)
+
+The following Python code creates the schedule you defined:
+
+[!Notebook-python[] (~/azureml-examples-main/sdk/python/schedules/job-schedule.ipynb?name=create_schedule)]
+
+# [Studio UI](#tab/ui)
+
+After you configure the basic settings, select **Review + Create**, review the settings, and then select **Review + Create** again to create the schedule.
 
 ---
 
@@ -154,7 +177,7 @@ You must or can provide the following schedule parameters:
 
 # [Studio UI](#tab/ui)
 
-To define a cron-based schedule, on the **Basic settings** screen, select **Cron expression** instead of **Recurrence**.
+To define a cron-based schedule, select **Cron expression** instead of **Recurrence** on the **Basic settings** screen.
 
 ---
 
@@ -169,9 +192,7 @@ To define a cron-based schedule, on the **Basic settings** screen, select **Cron
 
 # [Studio UI](#tab/ui)
 
-On the **Basic settings** screen, only the **Name** property requires a unique entry. If you don't specify a cron expression, the default cron expression creates a schedule that runs daily at 4:00 PM UTC.
-
-:::image type="content" source="./media/how-to-schedule-pipeline-job/create-schedule-basic-settings-cron.png" alt-text="Screenshot of schedule creation wizard showing the basic settings for cron." lightbox= "./media/how-to-schedule-pipeline-job/create-schedule-basic-settings-cron.png":::
+Only the **Name** property requires you to enter a value. If you don't specify a cron expression, the default cron expression creates a schedule that runs daily at 4:00 PM UTC.
 
 - **Name**: Unique identifier of the schedule within the workspace.
 - **Description**: Description of the schedule.
@@ -182,13 +203,15 @@ On the **Basic settings** screen, only the **Name** property requires a unique e
   - **End**: Date the schedule becomes inactive. By default the value is none, and a schedule remains active until you manually disable it.
   - **Tags**: Tags on the schedule.
 
+:::image type="content" source="./media/how-to-schedule-pipeline-job/create-schedule-basic-settings-cron.png" alt-text="Screenshot of schedule creation wizard showing the basic settings for cron." lightbox= "./media/how-to-schedule-pipeline-job/create-schedule-basic-settings-cron.png":::
+
 ---
 
 ### Create the schedule
 
 # [Azure CLI](#tab/cliv2)
 
-After you create the schedule YAML, use the following command to create a schedule via CLI:
+After you create the schedule YAML, use the following command to create the schedule via CLI:
 
 :::code language="azurecli" source="~/azureml-examples-main/cli/schedules/schedule.sh" ID="create_schedule":::
 
