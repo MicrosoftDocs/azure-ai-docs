@@ -11,15 +11,15 @@ ms.custom: cogserv-non-critical-speech, devx-track-csharp, devx-track-extended-j
 zone_pivot_groups: programming-languages-set-twenty-one
 ---
 
-# Asynchronous conversation transcription
+# Asynchronous conversation transcription multichannel diarization
 
 > [!NOTE]
 > This feature is currently in public preview. This preview is provided without a service-level agreement, and is not recommended for production workloads. Certain features might not be supported or might have constrained capabilities. For more information, see [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
 
-In this article, asynchronous conversation transcription is demonstrated using the **RemoteMeetingTranscriptionClient** API. If you have configured conversation transcription to do asynchronous transcription and have a `meetingId`, you can obtain the transcription associated with that `meetingId` using the **RemoteMeetingTranscriptionClient** API.
+In this article, asynchronous conversation transcription multichannel diarization is demonstrated using the **RemoteMeetingTranscriptionClient** API. If you configured conversation transcription to do asynchronous transcription and have a `meetingId`, you can obtain the transcription associated with that `meetingId` using the **RemoteMeetingTranscriptionClient** API.
 
 > [!IMPORTANT]
-> Conversation transcription multichannel diarization (preview) is retiring on March 28, 2025. For more information about migrating to other speech to text features, see [Migrate away from conversation transcription multichannel diarization](#migrate-away-from-conversation-transcription-multichannel-diarization).
+> Conversation transcription multichannel diarization (preview) is retiring on March 28, 2025. For more information about migrating to other speech to text features, see [Migrate away from conversation transcription multichannel diarization](meeting-transcription.md#migrate-away-from-conversation-transcription-multichannel-diarization).
 
 ## Asynchronous vs. real-time + asynchronous
 

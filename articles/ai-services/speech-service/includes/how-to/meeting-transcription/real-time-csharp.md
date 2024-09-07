@@ -11,11 +11,12 @@ ms.author: eur
 [!INCLUDE [Prerequisites](../../common/azure-prerequisites.md)]
 
 ## Set up the environment
+
 The Speech SDK is available as a [NuGet package](https://www.nuget.org/packages/Microsoft.CognitiveServices.Speech) and implements .NET Standard 2.0. You install the Speech SDK later in this guide, but first check the [platform-specific installation instructions](../../../quickstarts/setup-platform.md?pivots=programming-language-csharp) for any more requirements.
 
 ## Create voice signatures
 
-If you want to enroll user profiles, the first step is to create voice signatures for the meeting participants so that they can be identified as unique speakers. This isn't required if you don't want to use pre-enrolled user profiles to identify specific participants.
+If you want to enroll user profiles, the first step is to create voice signatures for the meeting participants so that they can be identified as unique speakers. This isn't required if you don't want to use preenrolled user profiles to identify specific participants.
 
 The input `.wav` audio file for creating voice signatures must be 16-bit, 16-kHz sample rate, in single channel (mono) format. The recommended length for each audio sample is between 30 seconds and two minutes. An audio sample that is too short results in reduced accuracy when recognizing the speaker. The `.wav` file should be a sample of one person's voice so that a unique voice profile is created.
 
@@ -89,7 +90,7 @@ Running the function `GetVoiceSignatureString()` returns a voice signature strin
 
 ## Transcribe meetings
 
-The following sample code demonstrates how to transcribe meetings in real-time for two speakers. It assumes you've already created voice signature strings for each speaker as shown above. Substitute real information for `subscriptionKey`, `region`, and the path `filepath` for the audio you want to transcribe.
+The following sample code demonstrates how to transcribe meetings in real-time for two speakers. It assumes that you created voice signature strings for each speaker as shown above. Substitute real information for `subscriptionKey`, `region`, and the path `filepath` for the audio you want to transcribe.
 
 If you don't use pre-enrolled user profiles, it takes a few more seconds to complete the first recognition of unknown users as speaker1, speaker2, etc.
 
