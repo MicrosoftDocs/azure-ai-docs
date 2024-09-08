@@ -71,7 +71,7 @@ The code examples in this article are excerpts from the [Working with Schedule](
 
 # [Studio UI](#tab/ui)
 
-To create a schedule for an Azure Machine Learning v2 pipeline job, open the pipeline page for that job.
+To create a schedule for an Azure Machine Learning v2 pipeline job in the studio UI, open its pipeline detail page.
 
 ---
 
@@ -95,7 +95,7 @@ You must or can provide the following schedule parameters:
 
 # [Studio UI](#tab/ui)
 
-To open the schedule creation wizard, select **Schedule** > **Create new schedule**.
+To open the schedule creation wizard, select **Schedule** > **Create new schedule** at the top of the page.
 
 :::image type="content" source="./media/how-to-schedule-pipeline-job/schedule-entry-button.png" alt-text="Screenshot of the jobs tab showing the Create new schedule button selected." lightbox= "./media/how-to-schedule-pipeline-job/schedule-entry-button.png":::
 
@@ -142,6 +142,7 @@ After you create the schedule YAML, use the following command to create the sche
 # This action creates related resources for a schedule. It takes dozens of seconds to complete.
 az ml schedule create --file simple-pipeline-job.yml --no-wait
 ```
+
 # [Python SDK](#tab/python)
 
 The following Python code creates the schedule you defined:
@@ -186,7 +187,7 @@ You must or can provide the following schedule parameters:
 
 # [Studio UI](#tab/ui)
 
-To define a cron-based schedule, select **Cron expression** instead of **Recurrence** on the **Basic settings** screen.
+To define a cron-based schedule, select **Cron expression** instead of **Recurrence** on the **Basic settings** screen for the schedule.
 
 ---
 
@@ -220,7 +221,10 @@ Only the **Name** property requires you to enter a value. If you don't specify a
 
 After you create the schedule YAML, use the following command to create the schedule via CLI:
 
-:::code language="azurecli" source="~/azureml-examples-main/cli/schedules/schedule.sh" ID="create_schedule":::
+```azurecli
+# This action creates related resources for a schedule. It takes dozens of seconds to complete.
+az ml schedule create --file simple-pipeline-job.yml --no-wait
+```
 
 # [Python SDK](#tab/python)
 
@@ -242,7 +246,7 @@ Sometimes you might want the jobs triggered by schedules to have different confi
 
 When you define a schedule, you can change the `settings`, `inputs`, or `outputs` to use when running the pipeline job. You can also change the `experiment_name` of the triggered job.
 
-The following schedule definition changes the settings of the existing job.
+The following schedule definition changes the settings of an existing job.
 
 :::code language="yaml" source="~/azureml-examples-main/cli/schedules/cron-with-settings-job-schedule.yml":::
 
@@ -338,11 +342,11 @@ Select a schedule name to show the schedule detail page, which contains the foll
 :::code language="azurecli" source="~/azureml-examples-main/cli/schedules/schedule.sh" ID="update_schedule":::
 
 > [!NOTE]
-> To update more than just tags and description, use `az ml schedule create --file update_schedule.yml`.
+> To update more than just tags and description, use `az ml schedule create --file simple_cron_job_schedule.yml`.
 
 # [Python SDK](#tab/python)
 
-[!Notebook-python[] (~/azureml-examples-main/sdk/python/schedules/job-schedule.ipynb?name=create_schedule)]
+[!Notebook-python[] (~/azureml-examples-main/sdk/python/schedules/job-schedule.ipynb?name=enable_schedule)]
 
 # [Studio UI](#tab/ui)
 
@@ -369,7 +373,7 @@ Once you set up a schedule to do regular retraining or batch inference on produc
 
 1. Select **Review + Update** to review the schedule settings, and then select **Review + Update** again to finish the update.
 
-After the update completes, you can view the new job definition in the schedule detail page. The schedule now triggers different jobs.
+After the update completes, you can view the new job definition in the schedule detail page. The schedule now triggers the new job.
 
 ---
 
@@ -380,6 +384,8 @@ After the update completes, you can view the new job definition in the schedule 
 :::code language="azurecli" source="~/azureml-examples-main/cli/schedules/schedule.sh" ID="disable_schedule":::
 
 # [Python SDK](#tab/python)
+
+The following code returns `False`:
 
 [!Notebook-python[] (~/azureml-examples-main/sdk/python/schedules/job-schedule.ipynb?name=disable_schedule)]
 
@@ -397,7 +403,12 @@ You can disable schedules from the **All schedules** tab or disable the current 
 
 # [Python SDK](#tab/python)
 
-[!Notebook-python[] (~/azureml-examples-main/sdk/python/schedules/job-schedule.ipynb?name=enable_schedule)]
+The following code returns `True`:
+
+```python
+job_schedule = ml_client.schedules.begin_enable(name=schedule_name).result()
+job_schedule.is_enabled
+```
 
 # [Studio UI](#tab/ui)
 
