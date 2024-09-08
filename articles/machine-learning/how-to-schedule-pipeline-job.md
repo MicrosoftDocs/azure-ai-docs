@@ -73,6 +73,8 @@ The code examples in this article are excerpts from the [Working with Schedule](
 
 To create a schedule for an Azure Machine Learning v2 pipeline job, open the pipeline page for that job.
 
+---
+
 ### Define a time-based schedule with a recurrence pattern
 
 # [Azure CLI](#tab/cliv2)
