@@ -8,7 +8,7 @@ ms.subservice: mlops
 ms.author: lagayhar
 author: lgayhardt
 ms.reviewer: keli19
-ms.date: 09/05/2024
+ms.date: 09/08/2024
 ms.topic: how-to
 ---
 
@@ -16,7 +16,7 @@ ms.topic: how-to
 
 [!INCLUDE [dev v2](includes/machine-learning-dev-v2.md)]
 
-In this article, you learn how to schedule a machine learning pipeline to run on Azure. You can use schedules based on elapsed time to do routine tasks like retraining models or regularly updating batch predictions.
+In this article, you learn how to schedule machine learning pipelines to run on Azure. You can schedule routine tasks like retraining models or regularly updating batch predictions based on elapsed time.
 
 This article shows you how to create, retrieve, update, and deactivate schedules by using the Azure Machine Learning CLI, Azure Machine Learning SDK v2 for Python, or Azure Machine Learning studio UI.
 
@@ -49,7 +49,7 @@ This article shows you how to create, retrieve, update, and deactivate schedules
 
 - Azure Machine Learning v2 schedules don't support event-based triggers.
 - CLI and SDK v2 schedules support specifying complex recurrence patterns that contain multiple trigger timestamps. The studio UI displays the complex patterns but doesn't support editing them.
-- The studio UI supports only v2 schedules, and can't list or access v1 schedules that are based on published pipelines or pipeline endpoints.
+- The studio UI supports only v2 schedules, and can't list or access v1 schedules that are based on published pipelines or pipeline endpoints. You can create a schedule for an unpublished pipeline.
 - If recurrence is set as the 31st or 30th day of every month, the schedule doesn't trigger jobs in months that have fewer days.
 - `DAYS` and `MONTHS` values aren't supported in cron schedule expressions. Values passed for these parameters are ignored and treated as `*`.
 
@@ -67,7 +67,7 @@ The code examples in this article are from [Working with Schedule in Azure Machi
 
 # [Python SDK](#tab/python)
 
-The code examples in this article are excerpts from the [Working with Schedule](https://github.com/Azure/azureml-examples/blob/main/sdk/python/schedules/job-schedule.ipynb) Azure Machine Learning Notebook. Run the notebook to create and manage the schedules as described.
+The code examples in this article are excerpts from the [Working with Schedule](https://github.com/Azure/azureml-examples/blob/main/sdk/python/schedules/job-schedule.ipynb) Azure Machine Learning notebook. Run the notebook to create and manage the schedules as described.
 
 # [Studio UI](#tab/ui)
 
