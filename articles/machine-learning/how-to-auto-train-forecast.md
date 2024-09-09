@@ -1,7 +1,7 @@
 ---
 title: Set up AutoML for time-series forecasting
 titleSuffix: Azure Machine Learning
-description: Set up Azure Machine Learning automated ML to train time-series forecasting models with the Azure Machine Learning CLI and Python SDK
+description: Set up Azure Machine Learning automated ML to train time-series forecasting models with the Azure Machine Learning CLI and Python SDK.
 services: machine-learning
 author: ssalgadodev
 ms.author: ssalgado
@@ -10,45 +10,42 @@ ms.service: azure-machine-learning
 ms.subservice: automl
 ms.topic: how-to
 ms.custom: automl, sdkv2, build-2023, devx-track-python, devx-track-azurecli
-ms.date: 08/01/2023
+ms.date: 09/09/2024
 show_latex: true
+#customer intent: As a data scientist, I want to train time-series forecasting models and understand the options available for training them by using AutoML.
 ---
 
 # Set up AutoML to train a time-series forecasting model with SDK and CLI
 
 [!INCLUDE [dev v2](includes/machine-learning-dev-v2.md)]
 
+AutoML uses standard machine learning models along with well-known time series models to create forecasts. This approach incorporates historical information about the target variable, user-provided features in the input data, and automatically engineered features. Model search algorithms work to find a model with the best predictive accuracy. For more information, see [forecasting methodology](./concept-automl-forecasting-methods.md) and [model search](concept-automl-forecasting-sweeping.md).
 
-In this article, you'll learn how to set up AutoML for time-series forecasting with Azure Machine Learning automated ML in the [Azure Machine Learning Python SDK](/python/api/overview/azure/ai-ml-readme).
+In this article, you learn how to set up AutoML for time-series forecasting with Azure Machine Learning automated ML in the [Azure Machine Learning Python SDK](/python/api/overview/azure/ai-ml-readme).
 
-To do so, you: 
+To do so, you:
 
-> [!div class="checklist"]
-> * Prepare data for training.
-> * Configure specific time-series parameters in a [Forecasting Job](/python/api/azure-ai-ml/azure.ai.ml.automl.forecastingjob).
-> * Orchestrate training, inference, and model evaluation using components and pipelines.
+- Prepare data for training.
+- Configure specific time-series parameters in a [Forecasting Job](/python/api/azure-ai-ml/azure.ai.ml.automl.forecastingjob).
+- Orchestrate training, inference, and model evaluation using components and pipelines.
 
-For a low code experience, see the [Tutorial: Forecast demand with automated machine learning](tutorial-automated-ml-forecast.md) for a time-series forecasting example using automated ML in the [Azure Machine Learning studio](https://ml.azure.com/).
-
-AutoML uses standard machine learning models along with well-known time series models to create forecasts. Our approach incorporates historical information about the target variable, user-provided features in the input data, and automatically engineered features. Model search algorithms then work to find a model with the best predictive accuracy. For more details, see our articles on [forecasting methodology](./concept-automl-forecasting-methods.md) and [model search](concept-automl-forecasting-sweeping.md). 
+For a low code experience, see [Tutorial: Forecast demand with automated machine learning](tutorial-automated-ml-forecast.md). This resource is a time-series forecasting example that uses automated ML in the [Azure Machine Learning studio](https://ml.azure.com/).
 
 ## Prerequisites
 
-For this article you need, 
-
-* An Azure Machine Learning workspace. To create the workspace, see [Create workspace resources](quickstart-create-resources.md).
-
-* The ability to launch AutoML training jobs. Follow the [how-to guide for setting up AutoML](how-to-configure-auto-train.md) for details.
+- An Azure Machine Learning workspace. To create a workspace, see [Create workspace resources](quickstart-create-resources.md).
+- The ability to launch AutoML training jobs. For more information, see [how-to guide for setting up AutoML](how-to-configure-auto-train.md).
 
 ## Training and validation data
 
-Input data for AutoML forecasting must contain valid time series in tabular format. Each variable must have its own corresponding column in the data table. AutoML requires at least two columns: a **time column** representing the time axis and the **target column** which is the quantity to forecast. Other columns can serve as predictors. For more details, see [how AutoML uses your data](./concept-automl-forecasting-methods.md#how-automl-uses-your-data). 
+Input data for AutoML forecasting must contain a valid time series in tabular format. Each variable must have its own corresponding column in the data table. AutoML requires at least two columns: a *time column* that represents the time axis and the *target column, which is the quantity to forecast. Other columns can serve as predictors. For more information, see [how AutoML uses your data](./concept-automl-forecasting-methods.md#how-automl-uses-your-data).
 
 > [!IMPORTANT]
-> When training a model for forecasting future values, ensure all the features used in training can be used when running predictions for your intended horizon. <br> <br> For example, a feature for current stock price could massively increase training accuracy. However, if you intend to forecast with a long horizon, you may not be able to accurately predict future stock values corresponding to future time-series points, and model accuracy could suffer.
+> When you train a model for forecasting future values, ensure that all the features used in training can be used when running predictions for your intended horizon.
+>
+> For example, a feature for current stock price could massively increase training accuracy. However, if you intend to forecast with a long horizon, you might not be able to accurately predict future stock values that correspond to future time-series points. Model accuracy could suffer.
 
-AutoML forecasting jobs require that your training data is represented as an **MLTable** object. An MLTable specifies a data source and steps for loading the data. For more information and use cases, see the [MLTable how-to guide](./how-to-mltable.md). As a simple example, suppose your training data is contained in a CSV file in a local directory, `./train_data/timeseries_train.csv`. 
-
+AutoML forecasting jobs require that your training data is represented as an *MLTable* object. An MLTable specifies a data source and steps for loading the data. For more information and use cases, see [Working with tables in Azure Machine Learning](./how-to-mltable.md). As an example, suppose your training data is contained in a CSV file in a local directory, *./train_data/timeseries_train.csv*.
 
 # [Python SDK](#tab/python)
 
@@ -65,9 +62,9 @@ train_table = mltable.from_delimited_files(paths)
 train_table.save('./train_data')
 ```
 
-This code creates a new file, `./train_data/MLTable`, which contains the file format and loading instructions.
+This code creates a new file, *./train_data/MLTable*, which contains the file format and loading instructions.
 
-You now define an input data object, which is required to start a training job, using the Azure Machine Learning Python SDK as follows: 
+In order to start the training job, define an input data object by using the Azure Machine Learning Python SDK as follows:
 
 ```python
 from azure.ai.ml.constants import AssetTypes
@@ -77,11 +74,11 @@ from azure.ai.ml import Input
 my_training_data_input = Input(
     type=AssetTypes.MLTABLE, path="./train_data"
 )
-``` 
+```
 
 # [Azure CLI](#tab/cli)
 
-You can define a new MLTable by copying the following YAML text to a new file, `./train_data/MLTable`:
+You can define a new MLTable by copying the following YAML text to a new file, *./train_data/MLTable*:
 
 ```yml
 $schema: https://azuremlschemas.azureedge.net/latest/MLTable.schema.json
@@ -96,7 +93,7 @@ transformations:
         encoding: ascii
 ```
 
-You now begin building the YAML configuration file for the AutoML job, with the training data specified as shown in the following example:
+Begin building the YAML configuration file for the AutoML job with the training data specified as shown in the following example:
 
 ```yml
 $schema: https://azuremlsdk2.blob.core.windows.net/preview/0.0.1/autoMLJob.schema.json
@@ -130,16 +127,17 @@ training:
     # training settings 
 ```
 
-We add more detail to this configuration in subsequent sections of this how-to guide, assuming the YAML text is stored at the path, `./automl-forecasting-job.yml`.
+Add more detail to this configuration in subsequent sections of this how-to guide. In this example, the location is *./automl-forecasting-job.yml*.
 
 ---
 
-You specify [validation data](concept-automated-ml.md#training-validation-and-test-data) in a similar way, by creating a MLTable and specifying a validation data input. Alternatively, if you don't supply validation data, AutoML automatically creates cross-validation splits from your training data to use for model selection. See our article on [forecasting model selection](./concept-automl-forecasting-sweeping.md#model-selection) for more details. Also see [training data length requirements](./concept-automl-forecasting-methods.md#data-length-requirements) for details on how much training data you need to successfully train a forecasting model.
+You specify [validation data](concept-automated-ml.md#training-validation-and-test-data) in a similar way. Create a MLTable and specify a validation data input. Alternatively, if you don't supply validation data, AutoML automatically creates cross-validation splits from your training data to use for model selection. For more information, see [forecasting model selection](./concept-automl-forecasting-sweeping.md#model-selection). For more information about how much training data you need, see [training data length requirements](./concept-automl-forecasting-methods.md#data-length-requirements).
 
 Learn more about how AutoML applies cross validation to [prevent over fitting](concept-manage-ml-pitfalls.md#prevent-overfitting).
 
 ## Compute to run experiment
-AutoML uses Azure Machine Learning Compute, which is a fully managed compute resource, to run the training job. In the following example, a compute cluster named `cpu-compute` is created:
+
+AutoML uses Azure Machine Learning Compute, which is a fully managed compute resource, to run the training job. Create a compute cluster named `cpu-compute`.
 
 # [Python SDK](#tab/python)
 
@@ -153,7 +151,7 @@ You can create a new compute called `cpu-compute` with the following CLI command
 az ml compute create -n cpu-compute --type amlcompute --min-instances 0 --max-instances 4
 ```
 
-Then, you reference this compute in the job definition as follows:
+Reference this compute in the job definition as follows:
 
 ```yml
 $schema: https://azuremlsdk2.blob.core.windows.net/preview/0.0.1/autoMLJob.schema.json
@@ -184,7 +182,7 @@ forecasting:
 
 training:
     # training settings
-``` 
+```
 
 ---
 
@@ -217,7 +215,14 @@ forecasting_job.set_limits(
 
 # [Azure CLI](#tab/cli)
 
-We now configure general properties of the AutoML job like the [primary metric](how-to-configure-auto-train.md#primary-metric), the name of the target column in the training data, the cross-validation settings, and resource limits on the job. See the [forecasting job](reference-automated-ml-forecasting.md), [training parameters](reference-automated-ml-forecasting.md#training), and [limits](reference-automated-ml-forecasting.md#limits) reference documents for more information and a full list of parameters.
+Configure general properties of the AutoML job, including:
+
+- The [primary metric](how-to-configure-auto-train.md#primary-metric)
+- The name of the target column in the training data
+- The cross-validation settings
+- Resource limits on the job
+
+For more information, see the [forecasting job](reference-automated-ml-forecasting.md), [training parameters](reference-automated-ml-forecasting.md#training), and [limits](reference-automated-ml-forecasting.md#limits).
 
 ```yml
 $schema: https://azuremlsdk2.blob.core.windows.net/preview/0.0.1/autoMLJob.schema.json
@@ -252,10 +257,12 @@ training:
 ```
 
 ---
-    
-### Forecasting job settings
 
-Forecasting tasks have many settings that are specific to forecasting. The most basic of these settings are the name of the time column in the training data and the forecast horizon. 
+<a name="forecasting-job-settings"></a>
+
+### Forecast job settings
+
+Forecasting tasks have many settings that are specific to forecasting. The most basic of these settings are the name of the time column in the training data and the forecast horizon.
 
 # [Python SDK](#tab/python)
 
@@ -271,7 +278,7 @@ forecasting_job.set_forecast_settings(
 
 # [Azure CLI](#tab/cli)
 
-These settings are configured in the `forecasting` section of the job YAML: 
+These settings are configured in the `forecasting` section of the job YAML:
 
 ```yml
 $schema: https://azuremlsdk2.blob.core.windows.net/preview/0.0.1/autoMLJob.schema.json
@@ -308,7 +315,7 @@ training:
 
 ---
 
-The time column name is a required setting and you should generally set the forecast horizon according to your prediction scenario. If your data contains multiple time series, you can specify the names of the **time series ID columns**. These columns, when grouped, define the individual series. For example, suppose that you have data consisting of hourly sales from different stores and brands. The following sample shows how to set the time series ID columns assuming the data contains columns named "store" and "brand": 
+The time column name is a required setting. You should generally set the forecast horizon according to your prediction scenario. If your data contains multiple time series, you can specify the names of the *time series ID columns*. These columns, when grouped, define the individual series. For example, suppose that you have data that consists of hourly sales from different stores and brands. The following sample shows how to set the time series ID columns assuming that the data contains columns named *store* and *brand*:
 
 # [Python SDK](#tab/python)
 
@@ -333,17 +340,17 @@ forecasting:
 
 ---
 
-AutoML tries to automatically detect time series ID columns in your data if none are specified.
+AutoML tries to automatically detect time series ID columns in your data if none is specified.
 
 Other settings are optional and reviewed in the next section.
 
 ### Optional forecasting job settings
 
-Optional configurations are available for forecasting tasks, such as enabling deep learning and specifying a target rolling window aggregation. A complete list of parameters is available in the forecasting [reference documentation](reference-automated-ml-forecasting.md#forecasting) documentation.
+Optional configurations are available for forecasting tasks, such as enabling deep learning and specifying a target rolling window aggregation. A complete list of parameters is available in the [reference documentation](reference-automated-ml-forecasting.md#forecasting) documentation.
 
 #### Model search settings
 
-There are two optional settings that control the model space where AutoML searches for the best model, `allowed_training_algorithms` and `blocked_training_algorithms`. To restrict the search space to a given set of model classes, use the `allowed_training_algorithms` parameter as in the following sample:
+There are two optional settings that control the model space where AutoML searches for the best model: `allowed_training_algorithms` and `blocked_training_algorithms`. To restrict the search space to a given set of model classes, use the `allowed_training_algorithms` parameter as in the following sample:
 
 # [Python SDK](#tab/python)
 
@@ -392,7 +399,7 @@ training:
 
 ---
 
-In this case, the forecasting job _only_ searches over Exponential Smoothing and Elastic Net model classes. To remove a given set of model classes from the search space, use the blocked_training_algorithms as in the following sample:
+In this case, the forecasting job *only* searches over Exponential Smoothing and Elastic Net model classes. To remove a given set of model classes from the search space, use the `blocked_training_algorithms` as in the following sample:
 
 # [Python SDK](#tab/python)
 
@@ -415,13 +422,13 @@ training:
 
 ---
 
-Now, the job searches over all model classes _except_ Prophet. For a list of forecasting model names that are accepted in `allowed_training_algorithms` and `blocked_training_algorithms`, see the [training properties](reference-automated-ml-forecasting.md#training) reference documentation. Either, but not both, of `allowed_training_algorithms` and `blocked_training_algorithms` can be applied to a training run.
+The job searches over all model classes *except* Prophet. For a list of forecasting model names that are accepted in `allowed_training_algorithms` and `blocked_training_algorithms`, see [training properties](reference-automated-ml-forecasting.md#training). You can apply either but not both `allowed_training_algorithms` and `blocked_training_algorithms` to a training run.
 
 #### Enable deep learning
 
-AutoML ships with a custom deep neural network (DNN) model called `TCNForecaster`. This model is a [temporal convolutional network](https://arxiv.org/abs/1803.01271), or TCN, that applies common imaging task methods to time series modeling. Namely, one-dimensional "causal" convolutions form the backbone of the network and enable the model to learn complex patterns over long durations in the training history. For more details, see our [TCNForecaster article](./concept-automl-forecasting-deep-learning.md#introduction-to-tcnforecaster). 
+AutoML ships with a custom deep neural network (DNN) model called `TCNForecaster`. This model is a [temporal convolutional network](https://arxiv.org/abs/1803.01271) (TCN), that applies common imaging task methods to time series modeling. One-dimensional "causal" convolutions form the backbone of the network and enable the model to learn complex patterns over long durations in the training history. For more information, see [Introduction to TCNForecaster](./concept-automl-forecasting-deep-learning.md#introduction-to-tcnforecaster).
 
-:::image type="content" source="media/how-to-auto-train-forecast/tcn-basic.png" alt-text="Diagram showing major components of AutoML's TCNForecaster.":::
+:::image type="content" source="media/how-to-auto-train-forecast/tcn-basic.png" alt-text="Diagram showing major components of AutoML's TCNForecaster." lightbox="media/how-to-auto-train-forecast/tcn-basic.png":::
 
 The TCNForecaster often achieves higher accuracy than standard time series models when there are thousands or more observations in the training history. However, it also takes longer to train and sweep over TCNForecaster models due to their higher capacity.
 
@@ -448,25 +455,25 @@ training:
 
 ---
 
-By default, TCNForecaster training is limited to a single compute node and a single GPU, if available, per model trial. **For large data scenarios, we recommend distributing each TCNForecaster trial over multiple cores/GPUs** and nodes. See our [distributed training](how-to-configure-auto-train.md#distributed-training-for-forecasting) article section for more information and code samples.  
+By default, TCNForecaster training is limited to a single compute node and a single GPU, if available, per model trial. For large data scenarios, we recommend distributing each TCNForecaster trial over multiple cores/GPUs and nodes. For more information and code samples, see [distributed training](how-to-configure-auto-train.md#distributed-training-for-forecasting).
 
 To enable DNN for an AutoML experiment created in the Azure Machine Learning studio, see the [task type settings in the studio UI how-to](how-to-use-automated-ml-for-ml-models.md#create-and-run-experiment).
 
 > [!NOTE]
-> * When you enable DNN for experiments created with the SDK, [best model explanations](./v1/how-to-machine-learning-interpretability-automl.md) are disabled.
-> * DNN support for forecasting in Automated Machine Learning is not supported for runs initiated in Databricks.
-> * GPU compute types are recommended when DNN training is enabled 
+> - When you enable DNN for experiments created with the SDK, [best model explanations](./v1/how-to-machine-learning-interpretability-automl.md) are disabled.
+> - DNN support for forecasting in Automated Machine Learning is not supported for runs initiated in Databricks.
+> - We recommend GPU compute types when DNN training is enabled.
 
 #### Lag and rolling window features
 
 Recent values of the target are often impactful features in a forecasting model. Accordingly, AutoML can create time-lagged and rolling window aggregation features to potentially improve model accuracy.
 
 Consider an energy demand forecasting scenario where weather data and historical demand are available.
-The table shows resulting feature engineering that occurs when window aggregation is applied over the most recent three hours. Columns for **minimum, maximum,** and **sum** are generated on a sliding window of three hours based on the defined settings. For instance, for the observation valid on September 8, 2017 4:00am, the maximum, minimum, and sum values are calculated using the **demand values** for September 8, 2017 1:00AM - 3:00AM. This window of three hours shifts along to populate data for the remaining rows. For more details and examples, see the [lag feature article](concept-automl-forecasting-lags.md).
+The table shows resulting feature engineering that occurs when window aggregation is applied over the most recent three hours. Columns for *minimum*, *maximum,* and *sum* are generated on a sliding window of three hours based on the defined settings. For instance, for the observation valid on September 8, 2017 4:00am, the maximum, minimum, and sum values are calculated using the *demand values* for September 8, 2017 1:00AM - 3:00AM. This window of three hours shifts along to populate data for the remaining rows. For more information and examples, see the [Lagged features for time series forecasting in AutoML](concept-automl-forecasting-lags.md).
 
-![target rolling window](./media/how-to-auto-train-forecast/target-roll.svg)
+:::image type="content" source="./media/how-to-auto-train-forecast/target-roll.svg" alt-text="Screenshot shows the target rolling window with values for Demand called out.":::
 
-You can enable lag and rolling window aggregation features for the target by setting the rolling window size, which was three in the previous example, and the lag orders you want to create. You can also enable lags for features with the `feature_lags` setting. In the following sample, we set all of these settings to `auto` so that AutoML will automatically determine settings by analyzing the correlation structure of your data:
+You can enable lag and rolling window aggregation features for the target by setting the rolling window size and the lag orders you want to create. The window size was three in the previous example. You can also enable lags for features with the `feature_lags` setting. In the following example, all of these settings are `auto` so that AutoML automatically determines settings by analyzing the correlation structure of your data:
 
 # [Python SDK](#tab/python)
 
@@ -495,18 +502,18 @@ forecasting:
 
 #### Short series handling
 
-Automated ML considers a time series a **short series** if there aren't enough data points to conduct the train and validation phases of model development. See [training data length requirements](./concept-automl-forecasting-methods.md#data-length-requirements) for more details on length requirements.
+Automated ML considers a time series a *short series* if there aren't enough data points to conduct the train and validation phases of model development. For more information, see [training data length requirements](./concept-automl-forecasting-methods.md#data-length-requirements).
 
-AutoML has several actions it can take for short series. These actions are configurable with the `short_series_handling_config` setting. The default value is "auto." The following table describes the settings:
+AutoML has several actions it can take for short series. These actions are configurable with the `short_series_handling_config` setting. The default value is `auto`. The following table describes the settings:
 
-|Setting|Description
-|---|---
-|`auto`| The default value for short series handling. <br> - _If all series are short_, pad the data. <br> - _If not all series are short_, drop the short series. 
-|`pad`| If `short_series_handling_config = pad`, then automated ML adds random values to each short series found. The following lists the column types and what they're padded with: <br> - Object columns with NaNs <br> - Numeric columns  with 0 <br> - Boolean/logic columns with False <br> - The target column is padded with white noise. 
-|`drop`| If `short_series_handling_config = drop`, then automated ML drops the short series, and it will not be used for training or prediction. Predictions for these series will return NaN's.
-|`None`| No series is padded or dropped
+| Setting | Description |
+|:---|:---|
+|`auto`| The default value for short series handling. <br> - *If all series are short*, pad the data. <br> - *If not all series are short*, drop the short series.|
+|`pad`| If `short_series_handling_config = pad`, automated ML adds random values to each short series found. The following lists the column types and what they're padded with: <br> - Object columns with NaNs <br> - Numeric columns  with 0 <br> - Boolean/logic columns with False <br> - The target column is padded with white noise. |
+|`drop`| If `short_series_handling_config = drop`, automated ML drops the short series, and it isn't used for training or prediction. Predictions for these series return `NaN`. |
+|`None`| No series is padded or dropped |
 
-In the following example, we set the short series handling so that all short series are padded to the minimum length:
+In the following example, set the short series handling so that all short series are padded to the minimum length:
 
 # [Python SDK](#tab/python)
 
@@ -529,26 +536,28 @@ forecasting:
 
 ---
 
->[!WARNING]
->Padding may impact the accuracy of the resulting model, since we are introducing artificial data to avoid training failures. If many of the series are short, then you may also see some impact in explainability results
+> [!CAUTION]
+> Padding can impact the accuracy of the resulting model, since you introduce artificial data to avoid training failures. If many of the series are short, you might also see some impact in explainability results.
 
-#### Frequency & target data aggregation
+<a name="frequency--target-data-aggregation"></a>
 
-Use the frequency and data aggregation options to avoid failures caused by irregular data. Your data is irregular if it doesn't follow a set cadence in time, like hourly or daily. Point-of-sales data is a good example of irregular data. In these cases, AutoML can aggregate your data to a desired frequency and then build a forecasting model from the aggregates. 
+#### Frequency and target data aggregation
+
+Use the frequency and data aggregation options to avoid failures caused by irregular data. Your data is irregular if it doesn't follow a set cadence in time, like hourly or daily. Point-of-sales data is a good example of irregular data. In these cases, AutoML can aggregate your data to a desired frequency and then build a forecasting model from the aggregates.
 
 You need to set the `frequency` and `target_aggregate_function` settings to handle irregular data. The frequency setting accepts [Pandas DateOffset strings](https://pandas.pydata.org/pandas-docs/stable/user_guide/timeseries.html#dateoffset-objects) as input. Supported values for the aggregation function are:
 
-|Function | Description
-|---|---
-|`sum`| Sum of target values
-|`mean`| Mean or average of target values
-|`min`| Minimum value of a target  
-|`max`| Maximum value of a target  
+| Function | Description |
+|:---|:---|
+|`sum`| Sum of target values |
+|`mean`| Mean or average of target values |
+|`min`| Minimum value of a target |
+|`max`| Maximum value of a target |
 
-* The target column values are aggregated according to the specified operation. Typically, sum is appropriate for most scenarios.
-* Numerical predictor columns in your data are aggregated by sum, mean, minimum value, and maximum value. As a result, automated ML generates new columns suffixed with the aggregation function name and applies the selected aggregate operation.
-* For categorical predictor columns, the data is aggregated by mode, the most prominent category in the window.
-* Date predictor columns are aggregated by minimum value, maximum value and mode.
+- The target column values are aggregated according to the specified operation. Typically, `sum` is appropriate for most scenarios.
+- Sum, mean, minimum value, and maximum value aggregate numerical predictor columns in your data. As a result, automated ML generates new columns suffixed with the aggregation function name and applies the selected aggregate operation.
+- Mode aggregates the data for categorical predictor columns. It's the most prominent category in the window.
+- Minimum value, maximum value, and mode aggregate the data predictor columns.
 
 The following example sets the frequency to hourly and the aggregation function to summation:
 
@@ -578,7 +587,9 @@ forecasting:
 
 #### Custom cross-validation settings
 
-There are two customizable settings that control cross-validation for forecasting jobs: the number of folds, `n_cross_validations`, and the step size defining the time offset between folds, `cv_step_size`. See [forecasting model selection](./concept-automl-forecasting-sweeping.md#model-selection) for more information on the meaning of these parameters. By default, AutoML sets both settings automatically based on characteristics of your data, but advanced users may want to set them manually. For example, suppose you have daily sales data and you want your validation setup to consist of five folds with a seven-day offset between adjacent folds. The following code sample shows how to set these:
+There are two customizable settings that control cross-validation for forecasting jobs: the number of folds, `n_cross_validations`, and the step size defining the time offset between folds, `cv_step_size`. For more information on the meaning of these parameters, see [forecasting model selection](./concept-automl-forecasting-sweeping.md#model-selection).
+
+By default, AutoML sets both settings automatically based on characteristics of your data. Advanced users might want to set them manually. For example, suppose you have daily sales data and you want your validation setup to consist of five folds with a seven-day offset between adjacent folds. The following code sample shows how to set these values:
 
 # [Python SDK](#tab/python)
 
@@ -637,16 +648,16 @@ training:
 
 ### Custom featurization
 
-By default, AutoML augments training data with engineered features to increase the accuracy of the models. See [automated feature engineering](./concept-automl-forecasting-methods.md#automated-feature-engineering) for more information. Some of the preprocessing steps can be customized using the [featurization](reference-automated-ml-forecasting.md#featurization) configuration of the forecasting job.
+By default, AutoML augments training data with engineered features to increase the accuracy of the models. For more information, see [automated feature engineering](./concept-automl-forecasting-methods.md#automated-feature-engineering). Some of the preprocessing steps can be customized using the [featurization](reference-automated-ml-forecasting.md#featurization) configuration of the forecasting job.
 
 Supported customizations for forecasting are in the following table:
 
-|Customization|Description|Options
-|--|--|---
-|**Column purpose update**|Override the auto-detected feature type for the specified column.|"Categorical", "DateTime", "Numeric"
-|**Transformer parameter update**|Update the parameters for the specified imputer.|`{"strategy": "constant", "fill_value": <value>}`, `{"strategy": "median"}`, `{"strategy": "ffill"}`
+| Customization | Description | Options |
+|:--|:--|:---|
+| Column purpose update |Override the autodetected feature type for the specified column. | Categorical, DateTime, Numeric |
+| Transformer parameter update | Update the parameters for the specified imputer. |`{"strategy": "constant", "fill_value": <value>}`, `{"strategy": "median"}`, `{"strategy": "ffill"}`|
 
-For example, suppose you have a retail demand scenario where the data includes prices, an "on sale" flag, and a product type. The following sample shows how you can set customized types and imputers for these features:
+For example, suppose you have a retail demand scenario where the data includes prices, an `on sale` flag, and a product type. The following sample shows how you can set customized types and imputers for these features:
 
 # [Python SDK](#tab/python)
 
@@ -721,9 +732,9 @@ training:
 
 If you're using the Azure Machine Learning studio for your experiment, see [how to customize featurization in the studio](how-to-use-automated-ml-for-ml-models.md#customize-featurization).
 
-## Submitting a forecasting job 
+## Submitting a forecasting job
 
-After all settings are configured, you launch the forecasting job as follows:
+After all settings are configured, you run the forecasting job as follows:
 
 # [Python SDK](#tab/python)
 
@@ -741,13 +752,13 @@ returned_job.services["Studio"].endpoint
 
 # [Azure CLI](#tab/cli)
 
-In following CLI command, we assume the job YAML configuration is in the current working directory at the path, `./automl-forecasting-job.yml`. If you run the command from a different directory, you will need to change the path accordingly.
+In following CLI command, the job YAML configuration is in the current working directory at the path, *./automl-forecasting-job.yml*. If you run the command from a different directory, you need to change the path accordingly.
 
 ```azurecli
 run_id=$(az ml job create --file automl-forecasting-job.yml)
 ```
 
-You can use the stored run ID to return information about the job. The `--web` parameter opens the Azure Machine Learning studio web UI where you can drill into details on the job:
+You can use the stored run ID to return information about the job. The `--web` parameter opens the Azure Machine Learning studio web UI where you can see details on the job:
 
 ```azurecli
 az ml job show -n $run_id --web
@@ -755,17 +766,19 @@ az ml job show -n $run_id --web
 
 ---
 
-Once the job is submitted, AutoML will provision compute resources, apply featurization and other preparation steps to the input data, then begin sweeping over forecasting models. For more details, see our articles on [forecasting methodology](./concept-automl-forecasting-methods.md) and [model search](concept-automl-forecasting-sweeping.md).
+After the job is submitted, AutoML provisions compute resources, applies featurization and other preparation steps to the input data, and begins sweeping over forecasting models. For more information, see [forecasting methodology](./concept-automl-forecasting-methods.md) and [model search](concept-automl-forecasting-sweeping.md).
 
-## Orchestrating training, inference, and evaluation with components and pipelines
+<a name="orchestrating-training-inference-and-evaluation-with-components-and-pipelines"></a>
+
+## Orchestrate training, inference, and evaluation with components and pipelines
 
 [!INCLUDE [preview v2](includes/machine-learning-preview-generic-disclaimer.md)]
 
-Your ML workflow likely requires more than just training. Inference, or retrieving model predictions on newer data, and evaluation of model accuracy on a test set with known target values are other common tasks that you can orchestrate in AzureML along with training jobs. To support inference and evaluation tasks, AzureML provides [components](concept-component.md), which are self-contained pieces of code that do one step in an AzureML [pipeline](concept-ml-pipelines.md).
+Your ML workflow likely requires more than just training. Inference, or retrieving model predictions on newer data, and evaluation of model accuracy on a test set with known target values are other common tasks that you can orchestrate in Azure Machine Learning along with training jobs. To support inference and evaluation tasks, Azure Machine Learning provides [components](concept-component.md), which are self-contained pieces of code that do one step in an Azure Machine Learning [pipeline](concept-ml-pipelines.md).
 
 # [Python SDK](#tab/python)
 
-In the following example, we retrieve component code from a client registry:
+In the following example, retrieve component code from a client registry:
 
 ```python
 from azure.ai.ml import MLClient
@@ -805,7 +818,7 @@ compute_metrics_component = ml_client_metrics_registry.components.get(
 )
 ```
 
-Next, we define a factory function that creates pipelines orchestrating training, inference, and metric computation. See the [training configuration](#configure-experiment) section for more details on training settings.
+Next, define a factory function that creates pipelines orchestrating training, inference, and metric computation. For more information, see [Configure experiment](#configure-experiment).
 
 ```python
 from azure.ai.ml import automl
@@ -873,7 +886,7 @@ def forecasting_train_and_evaluate_factory(
     }
 ```
 
-Now, we define train and test data inputs assuming that they're contained in local folders, `./train_data` and `./test_data`:
+Define train and test data inputs contained in local folders: *./train_data* and *./test_data*.
 
 ```python
 my_train_data_input = Input(
@@ -887,7 +900,7 @@ my_test_data_input = Input(
 )
 ```
 
-Finally, we construct the pipeline, set its default compute and submit the job:
+Finally, construct the pipeline, set its default compute, and submit the job:
 
 ```python
 pipeline_job = forecasting_train_and_evaluate_factory(
@@ -995,9 +1008,9 @@ jobs:
             evaluation_result: ${{parent.outputs.metrics_result}}
 ```
 
-Note that AutoML requires training data in [MLTable format](#training-and-validation-data) for AutoML. 
+AutoML requires training data in [MLTable format](#training-and-validation-data) for AutoML.
 
-Now, you launch the pipeline run using the following command, assuming the pipeline configuration is at the path `./automl-forecasting-pipeline.yml`:
+Launch the pipeline run using the following command. The pipeline configuration is at the path *./automl-forecasting-pipeline.yml*:
 
 ```azurecli
 run_id=$(az ml job create --file automl-forecasting-pipeline.yml -w <Workspace> -g <Resource Group> --subscription <Subscription>)
@@ -1005,7 +1018,7 @@ run_id=$(az ml job create --file automl-forecasting-pipeline.yml -w <Workspace> 
 
 ---
 
-Once submitted, the pipeline runs AutoML training, rolling evaluation inference, and metric calculation in sequence. You can monitor and inspect the run in the studio UI. When the run is finished, the rolling forecasts and the evaluation metrics can be downloaded to the local working directory:
+Once submitted, the pipeline runs AutoML training, rolling evaluation inference, and metric calculation in sequence. You can monitor and inspect the run in the studio UI. When the run is finished, you can download the rolling forecasts and the evaluation metrics to the local working directory:
 
 # [Python SDK](#tab/python)
 
@@ -1026,27 +1039,29 @@ az ml job download --name $run_id --download-path . --output-name rolling_fcst_r
 
 ---
 
-Then, you can find the metrics results in `./named-outputs/metrics_results/evaluationResult/metrics.json` and the forecasts, in JSON lines format, in `./named-outputs/rolling_fcst_result/inference_output_file`. 
+You can find the metrics results in *./named-outputs/metrics_results/evaluationResult/metrics.json* and the forecasts, in JSON lines format, in *./named-outputs/rolling_fcst_result/inference_output_file*.
 
-For more details on rolling evaluation, see our [forecasting model evaluation article](concept-automl-forecasting-evaluation.md).
- 
-## Forecasting at scale: many models
+For more information on rolling evaluation, see [Inference and evaluation of forecasting models](concept-automl-forecasting-evaluation.md).
+
+<a name="forecasting-at-scale-many-models"></a>
+
+## Forecast at scale: many models
 
 [!INCLUDE [preview v2](includes/machine-learning-preview-generic-disclaimer.md)]
 
-The many models components in AutoML enable you to train and manage millions of models in parallel. For more information on many models concepts, see the [many models article section](concept-automl-forecasting-at-scale.md#many-models).
-
+The many models components in AutoML enable you to train and manage millions of models in parallel. For more information on many models concepts, see [Many models](concept-automl-forecasting-at-scale.md#many-models).
 
 ### Many models training configuration
 
-The many models training component accepts a YAML format configuration file of AutoML training settings. The component applies these settings to each AutoML instance it launches. This YAML file has the same specification as the [Forecasting Job](reference-automated-ml-forecasting.md) plus additional parameters `partition_column_names` and `allow_multi_partitions`.
+The many models training component accepts a YAML format configuration file of AutoML training settings. The component applies these settings to each AutoML instance it launches. This YAML file has the same specification as the [Forecasting Job](reference-automated-ml-forecasting.md) plus parameters `partition_column_names` and `allow_multi_partitions`.
 
-Parameter|Description
---|--
-| **partition_column_names** | Column names in the data that, when grouped, define the data partitions. The many models training component launches an independent training job on each partition.
-| **allow_multi_partitions** | An optional flag that allows training one model per partition when each partition contains more than one unique time series. The default value is False.
+| Parameter | Description |
+|:--|:--|
+| partition_column_names | Column names in the data that, when grouped, define the data partitions. The many models training component launches an independent training job on each partition. |
+| allow_multi_partitions | An optional flag that allows training one model per partition when each partition contains more than one unique time series. The default value is `false`. |
 
 The following sample provides a configuration template:
+
 ```yml
 $schema: https://azuremlsdk2.blob.core.windows.net/preview/0.0.1/autoMLJob.schema.json
 type: automl
@@ -1078,21 +1093,20 @@ partition_column_names: ["state", "store"]
 allow_multi_partitions: false
 ```
 
-In subsequent examples, we assume that the configuration is stored at the path, `./automl_settings_mm.yml`. 
-
+In subsequent examples, the configuration is stored at the path, *./automl_settings_mm.yml*`.
 
 ### Many models pipeline
 
-Next, we define a factory function that creates pipelines for orchestration of many models training, inference, and metric computation. The parameters of this factory function are detailed in the following table:
+Next, define a factory function that creates pipelines for orchestration of many models training, inference, and metric computation. The parameters of this factory function are detailed in the following table:
 
-Parameter|Description
---|--
-**max_nodes** | Number of compute nodes to use in the training job 
-**max_concurrency_per_node** | Number of AutoML processes to run on each node. Hence, the total concurrency of a many models jobs is `max_nodes * max_concurrency_per_node`. 
-**parallel_step_timeout_in_seconds** | Many models component timeout given in number of seconds.
-**retrain_failed_models** | Flag to enable re-training for failed models. This is useful if you've done previous many models runs that resulted in failed AutoML jobs on some data partitions. When this flag is enabled, many models will only launch training jobs for previously failed partitions.
-**forecast_mode** | Inference mode for model evaluation. Valid values are `"recursive"` and "`rolling`". See the [model evaluation article](concept-automl-forecasting-evaluation.md) for more information.
-**forecast_step** | Step size for rolling forecast. See the [model evaluation article](concept-automl-forecasting-evaluation.md) for more information.   
+| Parameter | Description |
+|:--|:--|
+|max_nodes | Number of compute nodes to use in the training job |
+|max_concurrency_per_node | Number of AutoML processes to run on each node. Hence, the total concurrency of a many models jobs is `max_nodes * max_concurrency_per_node`. |
+|parallel_step_timeout_in_seconds | Many models component timeout given in number of seconds. |
+|retrain_failed_models | Flag to enable retraining for failed models. This value is useful if you did previous many models runs that resulted in failed AutoML jobs on some data partitions. When this flag is enabled, many models only launch training jobs for previously failed partitions. |
+|forecast_mode | Inference mode for model evaluation. Valid values are `recursive` and `rolling`. For more information, see [Inference and evaluation of forecasting models](concept-automl-forecasting-evaluation.md). |
+|forecast_step | Step size for rolling forecast. For more information, see [Inference and evaluation of forecasting models](concept-automl-forecasting-evaluation.md).|
 
 The following sample illustrates a factory method for constructing many models training and model evaluation pipelines:
 
@@ -1178,7 +1192,7 @@ def many_models_train_evaluate_factory(
     }
 ```
 
-Now, we construct the pipeline via the factory function, assuming the training and test data are in local folders, `./data/train` and `./data/test`, respectively. Finally, we set the default compute and submit the job as in the following sample:
+Construct the pipeline via the factory function. The training and test data are in local folders *./data/train* and *./data/test*, respectively. Finally, set the default compute and submit the job as in the following sample:
 
 ```python
 pipeline_job = many_models_train_evaluate_factory(
@@ -1293,7 +1307,7 @@ jobs:
             evaluation_result: ${{parent.outputs.metrics_result}}
 ```
 
-You launch the pipeline job with the following command, assuming the many models pipeline configuration is at the path `./automl-mm-forecasting-pipeline.yml`:
+You launch the pipeline job with the following command. The many models pipeline configuration is at the path *./automl-mm-forecasting-pipeline.yml*:
 
 ```azurecli
 az ml job create --file automl-mm-forecasting-pipeline.yml -w <Workspace> -g <Resource Group> --subscription <Subscription>
@@ -1301,14 +1315,16 @@ az ml job create --file automl-mm-forecasting-pipeline.yml -w <Workspace> -g <Re
 
 ---
 
-After the job finishes, the evaluation metrics can be downloaded locally using the same procedure as in the [single training run pipeline](#orchestrating-training-inference-and-evaluation-with-components-and-pipelines). 
+After the job finishes, the evaluation metrics can be downloaded locally using the same procedure as in the [single training run pipeline](#orchestrating-training-inference-and-evaluation-with-components-and-pipelines).
 
-Also see the [demand forecasting with many models notebook](https://github.com/Azure/azureml-examples/blob/main/sdk/python/jobs/pipelines/1k_demand_forecast_pipeline/aml-demand-forecast-mm-pipeline/aml-demand-forecast-mm-pipeline.ipynb) for a more detailed example.
+For a more detailed example, see the [demand forecasting with many models notebook](https://github.com/Azure/azureml-examples/blob/main/sdk/python/jobs/pipelines/1k_demand_forecast_pipeline/aml-demand-forecast-mm-pipeline/aml-demand-forecast-mm-pipeline.ipynb) for a more detailed example.
 
 > [!NOTE]
 > The many models training and inference components conditionally partition your data according to the `partition_column_names` setting so that each partition is in its own file. This process can be very slow or fail when data is very large. In this case, we recommend partitioning your data manually before running many models training or inference.  
 
-## Forecasting at scale: hierarchical time series
+<a name="forecasting-at-scale-hierarchical-time-series"></a>
+
+## Forecast at scale: hierarchical time series
 
 [!INCLUDE [preview v2](includes/machine-learning-preview-generic-disclaimer.md)]
 
@@ -1316,14 +1332,15 @@ The hierarchical time series (HTS) components in AutoML enable you to train a la
 
 ### HTS training configuration
 
-The HTS training component accepts a YAML format configuration file of AutoML training settings. The component applies these settings to each AutoML instance it launches. This YAML file has the same specification as the [Forecasting Job](reference-automated-ml-forecasting.md#) plus additional parameters related to the hierarchy information:
+The HTS training component accepts a YAML format configuration file of AutoML training settings. The component applies these settings to each AutoML instance it launches. This YAML file has the same specification as the [Forecasting Job](reference-automated-ml-forecasting.md) plus other parameters related to the hierarchy information:
 
-Parameter|Description
---|--
-| **hierarchy_column_names** | A list of column names in the data that define the hierarchical structure of the data. The order of the columns in this list determines the hierarchy levels; the degree of aggregation decreases with the list index. That is, the last column in the list defines the leaf (most disaggregated) level of the hierarchy.
-**hierarchy_training_level** | The hierarchy level to use for forecast model training.
+| Parameter | Description |
+|:--|:--|
+| hierarchy_column_names | A list of column names in the data that define the hierarchical structure of the data. The order of the columns in this list determines the hierarchy levels. The degree of aggregation decreases with the list index. That is, the last column in the list defines the leaf, or most disaggregated, level of the hierarchy. |
+| hierarchy_training_level | The hierarchy level to use for forecast model training. |
 
 The following shows a sample configuration:
+
 ```yml
 $schema: https://azuremlsdk2.blob.core.windows.net/preview/0.0.1/autoMLJob.schema.json
 type: automl
@@ -1356,21 +1373,21 @@ hierarchy_column_names: ["state", "store", "SKU"]
 hierarchy_training_level: "store"
 ```
 
-In subsequent examples, we assume that the configuration is stored at the path, `./automl_settings_hts.yml`. 
+In subsequent examples, the configuration is stored at the path, *./automl_settings_hts.yml*.
 
 ### HTS pipeline
 
-Next, we define a factory function that creates pipelines for orchestration of HTS training, inference, and metric computation. The parameters of this factory function are detailed in the following table:
+Next, define a factory function that creates pipelines for orchestration of HTS training, inference, and metric computation. The parameters of this factory function are detailed in the following table:
 
-Parameter|Description
---|--
-**forecast_level** | The level of the hierarchy to retrieve forecasts for
-**allocation_method** | Allocation method to use when forecasts are disaggregated. Valid values are `"proportions_of_historical_average"` and `"average_historical_proportions"`.
-**max_nodes** | Number of compute nodes to use in the training job 
-**max_concurrency_per_node** | Number of AutoML processes to run on each node. Hence, the total concurrency of an HTS job is `max_nodes * max_concurrency_per_node`. 
-**parallel_step_timeout_in_seconds** | Many models component timeout given in number of seconds.
-**forecast_mode** | Inference mode for model evaluation. Valid values are `"recursive"` and "`rolling`". See the [model evaluation article](concept-automl-forecasting-evaluation.md) for more information.
-**forecast_step** | Step size for rolling forecast. See the [model evaluation article](concept-automl-forecasting-evaluation.md) for more information.   
+| Parameter | Description |
+|:--|:--|
+| forecast_level | The level of the hierarchy to retrieve forecasts for |
+| allocation_method | Allocation method to use when forecasts are disaggregated. Valid values are `proportions_of_historical_average` and `average_historical_proportions`. |
+| max_nodes | Number of compute nodes to use in the training job |
+| max_concurrency_per_node | Number of AutoML processes to run on each node. Hence, the total concurrency of an HTS job is `max_nodes * max_concurrency_per_node`. |
+| parallel_step_timeout_in_seconds | Many models component timeout given in number of seconds. |
+| forecast_mode | Inference mode for model evaluation. Valid values are `recursive` and `rolling`. For more information, see the [model evaluation article](concept-automl-forecasting-evaluation.md). |
+| forecast_step | Step size for rolling forecast. For more information, see the [model evaluation article](concept-automl-forecasting-evaluation.md). |
 
 # [Python SDK](#tab/python)
 
@@ -1451,7 +1468,7 @@ def hts_train_evaluate_factory(
     }
 ```
 
-Now, we construct the pipeline via the factory function, assuming the training and test data are in local folders, `./data/train` and `./data/test`, respectively. Finally, we set the default compute and submit the job as in the following sample:
+Construct the pipeline by using the factory function. The training and test data are in local folders *./data/train* and *./data/test*, respectively. Finally, set the default compute and submit the job as in the following sample:
 
 ```python
 pipeline_job = hts_train_evaluate_factory(
@@ -1568,7 +1585,7 @@ jobs:
             evaluation_result: ${{parent.outputs.metrics_result}}
 ```
 
-You launch the pipeline job with the following command, assuming the many models pipeline configuration is at the path `./automl-hts-forecasting-pipeline.yml`:
+You launch the pipeline job with the following command. The many models pipeline configuration is at the path *./automl-hts-forecasting-pipeline.yml*:
 
 ```azurecli
 az ml job create --file automl-hts-forecasting-pipeline.yml -w <Workspace> -g <Resource Group> --subscription <Subscription>
@@ -1576,32 +1593,32 @@ az ml job create --file automl-hts-forecasting-pipeline.yml -w <Workspace> -g <R
 
 ---
 
-After the job finishes, the evaluation metrics can be downloaded locally using the same procedure as in the [single training run pipeline](#orchestrating-training-inference-and-evaluation-with-components-and-pipelines). 
+After the job finishes, the evaluation metrics can be downloaded locally using the same procedure as in the [single training run pipeline](#orchestrating-training-inference-and-evaluation-with-components-and-pipelines).
 
-Also see the [demand forecasting with hierarchical time series notebook](https://github.com/Azure/azureml-examples/blob/main/sdk/python/jobs/pipelines/1k_demand_forecast_pipeline/aml-demand-forecast-hts-pipeline/aml-demand-forecast-hts.ipynb) for a more detailed example.
+For a more detailed example, see the [demand forecasting with hierarchical time series notebook](https://github.com/Azure/azureml-examples/blob/main/sdk/python/jobs/pipelines/1k_demand_forecast_pipeline/aml-demand-forecast-hts-pipeline/aml-demand-forecast-hts.ipynb).
 
 > [!NOTE]
-> The HTS training and inference components conditionally partition your data according to the `hierarchy_column_names` setting so that each partition is in its own file. This process can be very slow or fail when data is very large. In this case, we recommend partitioning your data manually before running HTS training or inference. 
+> The HTS training and inference components conditionally partition your data according to the `hierarchy_column_names` setting so that each partition is in its own file. This process can be very slow or fail when data is very large. In this case, we recommend partitioning your data manually before running HTS training or inference.
 
-## Forecasting at scale: distributed DNN training
+## Forecast at scale: distributed DNN training
 
-* To learn how distributed training works for forecasting tasks, see our [forecasting at scale article](concept-automl-forecasting-at-scale.md#distributed-dnn-training-preview). 
-* See our [setup distributed training for tabular data](how-to-configure-auto-train.md#automl-at-scale-distributed-training) article section for code samples. 
+- To learn how distributed training works for forecasting tasks, see [Distributed DNN training](concept-automl-forecasting-at-scale.md#distributed-dnn-training-preview).
+- To see code samples, see [AutoML at scale: distributed training](how-to-configure-auto-train.md#automl-at-scale-distributed-training).
 
 ## Example notebooks
 
-See the [forecasting sample notebooks](https://github.com/Azure/azureml-examples/tree/main/sdk/python/jobs/automl-standalone-jobs) for detailed code examples of advanced forecasting configuration including:
+For detailed code examples of advanced forecasting configuration, see the [forecasting sample notebooks](https://github.com/Azure/azureml-examples/tree/main/sdk/python/jobs/automl-standalone-jobs):
 
-* [Demand forecasting pipeline examples](https://github.com/Azure/azureml-examples/tree/main/sdk/python/jobs/pipelines/1k_demand_forecast_pipeline)
-* [Deep learning models](https://github.com/Azure/azureml-examples/blob/main/sdk/python/jobs/automl-standalone-jobs/automl-forecasting-github-dau/auto-ml-forecasting-github-dau.ipynb)
-* [Holiday detection and featurization](https://github.com/Azure/azureml-examples/blob/main/sdk/python/jobs/automl-standalone-jobs/automl-forecasting-task-bike-share/auto-ml-forecasting-bike-share.ipynb)
-* [Manual configuration for lags and rolling window aggregation features](https://github.com/Azure/azureml-examples/blob/main/sdk/python/jobs/automl-standalone-jobs/automl-forecasting-task-energy-demand/automl-forecasting-task-energy-demand-advanced.ipynb)
+- [Demand forecasting pipeline examples](https://github.com/Azure/azureml-examples/tree/main/sdk/python/jobs/pipelines/1k_demand_forecast_pipeline)
+- [Deep learning models](https://github.com/Azure/azureml-examples/blob/main/sdk/python/jobs/automl-standalone-jobs/automl-forecasting-github-dau/auto-ml-forecasting-github-dau.ipynb)
+- [Holiday detection and featurization](https://github.com/Azure/azureml-examples/blob/main/sdk/python/jobs/automl-standalone-jobs/automl-forecasting-task-bike-share/auto-ml-forecasting-bike-share.ipynb)
+- [Manual configuration for lags and rolling window aggregation features](https://github.com/Azure/azureml-examples/blob/main/sdk/python/jobs/automl-standalone-jobs/automl-forecasting-task-energy-demand/automl-forecasting-task-energy-demand-advanced.ipynb)
 
-## Next steps
+## Related content
 
-* Learn more about [How to deploy an AutoML model to an online endpoint](how-to-deploy-automl-endpoint.md).
-* Learn about [Interpretability: model explanations in automated machine learning (preview)](./v1/how-to-machine-learning-interpretability-automl.md).
-* Learn about [how AutoML builds forecasting models](./concept-automl-forecasting-methods.md).
-* Learn about [forecasting at scale](./concept-automl-forecasting-at-scale.md).
-* Learn how to [configure AutoML for various forecasting scenarios](./how-to-automl-forecasting-faq.md#what-modeling-configuration-should-i-use).
-* Learn about [inference and evaluation of forecasting models](concept-automl-forecasting-evaluation.md).
+- [How to deploy an AutoML model to an online endpoint](how-to-deploy-automl-endpoint.md)
+- [Interpretability: model explanations in automated machine learning (preview)](./v1/how-to-machine-learning-interpretability-automl.md)
+- [Overview of forecasting methods in AutoML](./concept-automl-forecasting-methods.md)
+- [Forecasting at scale: many models and distributed training](./concept-automl-forecasting-at-scale.md)
+- [What modeling configuration should I use?](./how-to-automl-forecasting-faq.md#what-modeling-configuration-should-i-use)
+- [Inference and evaluation of forecasting models (preview)](concept-automl-forecasting-evaluation.md)
