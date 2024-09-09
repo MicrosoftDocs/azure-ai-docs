@@ -631,7 +631,7 @@ registry_username = os.environ["REGISTRY_USERNAME"]
 registry_password = os.environ["REGISTRY_PASSWORD"]
 credentials = UsernamePasswordConfiguration(username= registry_username, password= registry_password)
 
-# Create GenericContainerRegistry workspace connection for 3p registry
+# Create GenericContainerRegistry workspace connection for a generic registry
 ws_connection = WorkspaceConnection(name="<name>", target="<target>", type="GenericContainerRegistry", credentials=credentials)
 ml_client.connections.create_or_update(ws_connection)
 
