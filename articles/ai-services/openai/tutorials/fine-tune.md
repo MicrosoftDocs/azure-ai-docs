@@ -1,12 +1,12 @@
 ---
-title: Azure OpenAI Service fine-tuning gpt-3.5-turbo
+title: Azure OpenAI Service fine-tuning gpt-4o-mini
 titleSuffix: Azure OpenAI
-description: Learn how to use Azure OpenAI's latest fine-tuning capabilities with gpt-3.5-turbo.
+description: Learn how to use Azure OpenAI's latest fine-tuning capabilities with gpt-4o-mini-2024-07-18
 #services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: tutorial
-ms.date: 05/15/2024
+ms.date: 09/09/2024
 author: mrbullwinkle
 ms.author: mbullwin
 recommendations: false
@@ -206,7 +206,10 @@ First example in validation set:
 
 In this case we only have 10 training and 10 validation examples so while this will demonstrate the basic mechanics of fine-tuning a model this in unlikely to be a large enough number of examples to produce a consistently noticeable impact.
 
-Now you can then run some additional code from OpenAI using the tiktoken library to validate the token counts. Individual examples need to remain under the `gpt-4o-mini-2024-07-18` model's input token limit of 4096 tokens.
+Now you can then run some additional code from OpenAI using the tiktoken library to validate the token counts. Token counting using this method is not going to give you the exact token counts that will be used for fine-tuning, but should provide a good estimate.
+
+> [!NOTE]
+> Individual examples need to remain under the `gpt-4o-mini-2024-07-18` model's current training example context legnth of: 64,536 tokens. The model's input token limit remains 128,000 tokens.
 
 ```python
 # Validate token counts
@@ -216,7 +219,7 @@ import tiktoken
 import numpy as np
 from collections import defaultdict
 
-encoding = tiktoken.get_encoding("cl100k_base") # default encoding used by gpt-4, turbo, and text-embedding-ada-002 models
+encoding = tiktoken.get_encoding("o200k_base") # default encoding for gpt-4o models. This requires the latest version of tiktoken to be installed.
 
 def num_tokens_from_messages(messages, tokens_per_message=3, tokens_per_name=1):
     num_tokens = 0
@@ -268,27 +271,27 @@ for file in files:
 Processing file: training_set.jsonl
 
 #### Distribution of total tokens:
-min / max: 47, 62
-mean / median: 52.1, 50.5
-p5 / p95: 47.9, 57.5
+min / max: 46, 59
+mean / median: 49.8, 48.5
+p5 / p95: 46.0, 53.599999999999994
 
 #### Distribution of assistant tokens:
-min / max: 13, 30
-mean / median: 17.6, 15.5
-p5 / p95: 13.0, 21.9
+min / max: 13, 28
+mean / median: 16.5, 14.0
+p5 / p95: 13.0, 19.9
 **************************************************
 Processing file: validation_set.jsonl
 
 #### Distribution of total tokens:
-min / max: 43, 65
-mean / median: 51.4, 49.0
-p5 / p95: 45.7, 56.9
+min / max: 41, 64
+mean / median: 48.9, 47.0
+p5 / p95: 43.7, 54.099999999999994
 
 #### Distribution of assistant tokens:
 min / max: 8, 29
-mean / median: 15.9, 13.5
-p5 / p95: 11.6, 20.9
-**************************************************
+mean / median: 15.0, 12.5
+p5 / p95: 10.7, 19.999999999999996
+****************************
 ```
 
 ## Upload fine-tuning files
@@ -304,7 +307,7 @@ from openai import AzureOpenAI
 client = AzureOpenAI(
   azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT"),
   api_key = os.getenv("AZURE_OPENAI_API_KEY"),
-  api_version = "2024-05-01-preview"  # This API version or later is required to access seed/events/checkpoint features
+  api_version = "2024-08-01-preview"  # This API version or later is required to access seed/events/checkpoint features
 )
 
 training_file_name = 'training_set.jsonl'
@@ -564,7 +567,7 @@ Found 4 fine-tune jobs.
 
 ## List fine-tuning events
 
-API version: `2024-05-01-preview` or later is required for this command.
+API version: `2024-08-01-preview` or later is required for this command.
 
 While not necessary to complete fine-tuning it can be helpful to examine the individual fine-tuning events that were generated during training. The full training results can also be examined after training is complete in the [training results file](../how-to/fine-tuning.md#analyze-your-customized-model).
 
@@ -728,7 +731,7 @@ This command isn't available in the 0.28.1 OpenAI Python library. Upgrade to the
 
 ## List checkpoints
 
-API version: `2024-05-01-preview` or later is required for this command.
+API version: `2024-08-01-preview` or later is required for this command.
 
 When each training epoch completes a checkpoint is generated. A checkpoint is a fully functional version of a model which can both be deployed and used as the target model for subsequent fine-tuning jobs. Checkpoints can be particularly useful, as they can provide a snapshot of your model prior to overfitting having occurred. When a fine-tuning job completes you will have the three most recent versions of the model available to deploy. The final epoch will be represented by your fine-tuned model, the previous two epochs will be available as checkpoints.
 
@@ -911,7 +914,7 @@ from openai import AzureOpenAI
 client = AzureOpenAI(
   azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT"),
   api_key = os.getenv("AZURE_OPENAI_API_KEY"),
-  api_version = "2024-02-01"
+  api_version = "2024-06-01"
 )
 
 response = client.chat.completions.create(
@@ -937,7 +940,7 @@ import openai
 
 openai.api_type = "azure"
 openai.api_base = os.getenv("AZURE_OPENAI_ENDPOINT")
-openai.api_version = "2024-02-01"
+openai.api_version = "2024-06-01"
 openai.api_key = os.getenv("AZURE_OPENAI_API_KEY")
 
 response = openai.ChatCompletion.create(
