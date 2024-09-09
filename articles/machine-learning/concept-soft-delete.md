@@ -46,13 +46,13 @@ When a workspace is soft deleted, data and metadata stored service-side get soft
 
 \* *Microsoft attempts recreation or reattachment when a workspace is recovered. Recovery isn't guaranteed, and a best effort attempt.*
 
-After soft deletion, the service keeps necessary data and metadata during the recovery [retention period](#soft-delete-retention-period). When the retention period expires, or in case you permanently delete a workspace, data, and metadata are actively deleted.
+After soft deletion, the service keeps necessary data and metadata during the recovery [retention period](#soft-delete-retention-period). When the retention period expires, or in case you permanently delete a workspace, data and metadata are actively deleted.
 
 ## Soft delete retention period
 
 A default retention period of 14 days holds for deleted workspaces. The retention period indicates how long workspace data remains available after deletion. The clock starts on the retention period as soon as a workspace is soft deleted.
 
-During the retention period, soft deleted workspaces can be recovered or permanently deleted. Any other operations on the workspace, like submitting a training job, fails. 
+During the retention period, soft deleted workspaces can be recovered or permanently deleted. Any other operations on the workspace, like submitting a training job, fail. 
 
 > [!IMPORTANT]    
 > You can't reuse the name of a workspace that has been soft deleted until the retention period has passed or the workspace is permanently deleted. Once the retention period elapses, a soft deleted workspace automatically gets permanently deleted.
@@ -134,7 +134,7 @@ In general, when a workspace is in soft deleted state, there are only two operat
 
 After soft deletion, the service keeps necessary data and metadata during the recovery [retention period](#soft-delete-retention-period). From a GDPR and privacy perspective, a request to delete personal data should be interpreted as a request for *permanent* deletion of a workspace and not soft delete.
 
-When the retention period expires, or in case you permanently delete a workspace, data, and metadata are actively deleted. You could choose to permanently delete a workspace at the time of deletion.
+When the retention period expires, or in case you permanently delete a workspace, data and metadata are actively deleted. You could choose to permanently delete a workspace at the time of deletion.
 
 For more information, see the [Export or delete workspace data](how-to-export-delete-data.md) article.
 
