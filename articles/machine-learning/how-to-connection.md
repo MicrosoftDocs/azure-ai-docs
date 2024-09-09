@@ -543,7 +543,7 @@ ml_client.connections.create_or_update(workspace_connection=wps_connection)
 
 ### Generic Container Registry
 
-Using the GenericContainerRegistry workspace connection, you can specify an external registry for image builds. Environment images will be pushed and served from the specified registry, and the previous cache will be ignored.
+Using the GenericContainerRegistry workspace connection, you can specify an external registry, such as Nexus or Artifactory, for image builds. Environment images will be pushed and served from the specified registry, and the previous cache will be ignored.
 
 # [Azure CLI](#tab/cli)
 
