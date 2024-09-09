@@ -18,6 +18,9 @@ Image Analysis 4.0 allows you to train a custom model using your own training im
 
 This guide shows you how to create and train a custom image classification model. The few differences between training an image classification model and object detection model are noted.
 
+> [!NOTE]
+> Model customization is available through the REST API and Vision Studio, but not through the client language SDKs.
+
 ## Prerequisites
 
 * Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services)
@@ -331,7 +334,7 @@ If an evaluation set isn't provided when training the model, the reported perfor
 
 ![Screenshot of evaluation]( ../media/customization/training-result.png)
 
-## Test custom model in Vision Studio
+## Test the custom model in Vision Studio
 
 Once you've built a custom model, you can test by selecting the **Try it out** button on the model evaluation screen.
 
@@ -466,7 +469,7 @@ The API call returns an **ImageAnalysisResult** JSON object, which contains all 
 
 ## Next steps
 
-In this guide, you created and trained a custom image classification model using Image Analysis. Next, learn more about the Analyze Image 4.0 API, so you can call your custom model from an application using REST or library SDKs.
+In this guide, you created and trained a custom image classification model using Image Analysis. Next, learn more about the Analyze Image 4.0 API, so you can call your custom model from an application using REST.
 
 * See the [Model customization concepts](../concept-model-customization.md) guide for a broad overview of this feature and a list of frequently asked questions.
 * [Call the Analyze Image API](./call-analyze-image-40.md). <!--Note the sections [Set model name when using a custom model](./call-analyze-image-40.md#set-model-name-when-using-a-custom-model) and [Get results using custom model](./call-analyze-image-40.md#get-results-using-custom-model).-->
