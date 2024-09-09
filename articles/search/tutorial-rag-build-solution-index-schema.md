@@ -27,7 +27,7 @@ In this tutorial, you:
 
 ## Prerequisites
 
-- [Visual Studio Code](https://code.visualstudio.com/download) with the [Python extension](https://marketplace.visualstudio.com/items?itemName=ms-python.python) and the [Jupyter package](https://pypi.org/project/jupyter/). For more information, see [Python in Visual Studio Code](https://code.visualstudio.com/docs/languages/python).
+[Visual Studio Code](https://code.visualstudio.com/download) with the [Python extension](https://marketplace.visualstudio.com/items?itemName=ms-python.python) and the [Jupyter package](https://pypi.org/project/jupyter/). For more information, see [Python in Visual Studio Code](https://code.visualstudio.com/docs/languages/python).
 
 The output of this exercise is an index definition in JSON. At this point, it's not uploaded to Azure AI Search, so there are no requirements for cloud services or permissions in this exercise.
 
@@ -35,39 +35,51 @@ The output of this exercise is an index definition in JSON. At this point, it's 
 
 In conversational search, LLMs compose the response that the user sees, not the search engine, so you don't need to think about what fields to show in your search results, and whether the representations of individual search documents are coherent to the user. Depending on the question, the LLM might return verbatim content from your index, or more likely, repackage the content for a better answer.
 
-To generate a response, LLMs operate on chunks of content, and while they need to know where the chunk came from for citation purposes, what matters most is the quality of message inputs and its relevance to the user's question. Whether the chunks come from one document or a thousand, the LLM ingests the information or *grounding data*, and formulates the response using instructions provided in a system prompt. 
+### Focus on chunks
 
-A minimal index for LLM is designed to store chunks of content. It includes vector fields if you want similarity search for highly relevant results, and nonvector fields for human-readable inputs to the LLM for conversational search. Nonvector "chunked" content in the search results becomes the grounding data sent to the LLM.
+To generate a response, LLMs operate on chunks of content, and while they need to know where the chunk came from for citation purposes, what matters most is the quality of message inputs and its relevance to the user's question. Whether the chunks come from one document or a thousand, the LLM ingests the information or *grounding data*, and formulates the response using instructions provided in a system prompt.
+
+Chunks are the focus of the schema, and each chunk is the definitive element of a search document in a RAG pattern. You can think of your index as a large collection of chunks, as opposed to traditional search documents that have more structure and fields containing uniform content for a name field, versus a description field, versus a category field.
+
+A minimal index for LLM is designed to store chunks of content. It includes vector fields if you want similarity search for highly relevant results, and nonvector fields for human-readable inputs to the LLM for conversational search. Nonvector chunked content in the search results becomes the grounding data sent to the LLM.
+
+### Checklist of schema considerations
 
 An index that works best for RAG workloads has these qualities:
 
-- Returns chunks that are relevant to the query and readable to the LLM.
+- Returns chunks that are relevant to the query and readable to the LLM. LLMs can handle a certain level of dirty data in chunks, such as mark up, redundancy, and incomplete strings. While chunks need to be readable and relevant to the query, they don't need to be pristine.
 
-  LLMs can handle a certain level of dirty data in chunked data, such as mark up, redundancy, and incomplete strings. While chunks need to be readable, they don't need to be pristine.
+- Maintains a parent-child relationship between chunks of a document and the properties of the parent document, such as the file name, file type, title, author, and so forth. To answer a query, chunks could be pulled from anywhere in the index. Association with the parent document providing the chunk is useful for context, citations, and follow up queries.
 
-- Maintains a relationship between chunks of a document and properties of the parent document. For example, file name, file type, title, author, and so forth. Chunks in search results could be pulled from anywhere in the index. Association with the parent document that provides the chunk is useful for context, citations, and follow up queries.
-
-- Accommodates the queries you want create. You should have fields for vector and hybrid content, and those fields should be attributed to support specific query behaviors. You can only query one index at a time (no joins) so your field collection should define all of your searchable content.
+- Accommodates the queries you want create. You should have fields for vector and hybrid content, and those fields should be attributed to support specific query behaviors. You can only query one index at a time (no joins) so your fields collection should define all of your searchable content.
 
 - Your schema should be flat (no complex types or structures). This requirement is specific to the RAG pattern in Azure AI Search.
 
-Although Azure AI Search can't join indexes, you can create indexes that preserve parent-child relationship, and then use nested queries or parallel queries in your search logic to pull from both. This exercise includes templates for both parent-child elements in the same index, or parent-child elements in separate indexes that are connected at query time through sequential queries to different indexes.
+Although Azure AI Search can't join indexes, you can create indexes that preserve parent-child relationship, and then use sequential or parallel queries in your search logic to pull from both. This exercise includes templates for parent-child elements in the same index and in separate indexes, where information from the parent index is retrieved using a look up query.
 
 Schema design affects storage and costs. This exercise is focused on schema fundamentals. In the [Minimize storage and costs](tutorial-rag-build-solution-optimize.md) tutorial, we revisit schema design to consider narrow data types, attribution, and vector configurations that are more efficient.
 
-## Create a basic index
+### Sample content for this tutorial
 
-Here's a minimal index definition for RAG solutions that supports vector and hybrid search. If you aren't using vectors, the index can be even simpler (see [Quickstart: Generative search (RAG)](search-get-started-rag.md) for an example).
+The content you're indexing informs what fields are in the index.
+
+In this tutorial, we use PDFs and content from the NASA Earth at Night ebook. The original ebook is large, over 100 pages and 35 MB in size. We broke it up into smaller PDFs, one per page of text, to stay under the REST API payload limit of 16 MB per API call.
+
+We omit image vectorization for this exercise.
+
+The sample content is descriptive and informative. It also mentions places, regions, and countries across the world. We can include skills in our indexing pipeline that extracts this information and loads it into a queryable and filterable `locations` field.
+
+Because all of the chunks of text originate from the same parent (Earth at Night ebook), we don't need a separate index dedicated to parent fields. If we were indexing from multiple parent PDFs, we would want a parent-child index pair to capture PDF-specific fields (path, title, authors, publication date, summary) and then send look up queries to the parent index to retrieve those fields relevant to each chunk. We include an example of that parent-child index template in this exercise for comparison.
+
+## Create a basic index
 
 1. Open Visual Studio Code and create a new file. It doesn't have to be a Python file type for this exercise.
 
-1. Review the following example for an introduction to required elements. In a RAG pattern, elements consist of a name, key field (`"id"`), non-vector chunks for the LLM, vector chunks for similarity search by the search engine, and a `vectorSearch` configuration for the vector fields. 
-
-   Vector fields have [specific types](/rest/api/searchservice/supported-data-types#edm-data-types-for-vector-fields) and extra attributes for embedding model dimensions and configuration. `Edm.Single` is a data type that works for the more commonly used LLMs. For more information about vector fields, see [Create a vector index](vector-search-how-to-create-index.md).
+1. Here's a minimal index definition for RAG solutions that support vector and hybrid search. Review it for an introduction to required elements: name, fields, and a `vectorSearch` configuration for the vector fields.
 
     ```json
     {
-      "name": "my-demo-index",
+      "name": "example-minimal-index",
       "fields": [
         { "name": "id", "type": "Edm.String", "key": true },
         { "name": "chunked_content", "type": "Edm.String", "searchable": true, "retrievable": true },
@@ -84,6 +96,13 @@ Here's a minimal index definition for RAG solutions that supports vector and hyb
       }
     }
     ```
+
+   Fields must include key field (`"id"`) and should include vector chunks for similarity search, and nonvector chunks for the LLM. Metadata about the source file might be file path, creation date, or content type.
+
+   Vector fields have [specific types](/rest/api/searchservice/supported-data-types#edm-data-types-for-vector-fields) and extra attributes for embedding model dimensions and configuration. `Edm.Single` is a data type that works for the more commonly used LLMs. For more information about vector fields, see [Create a vector index](vector-search-how-to-create-index.md).
+
+1. Here's the index schema for the tutorial and the NASA ebook content. It's similar to the basic schema, but adds a parent ID and metadata. It also includes fields for storing generated content that's created in the indexing pipeline.
+
 
 <!-- Objective:
 

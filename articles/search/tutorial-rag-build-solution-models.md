@@ -30,15 +30,17 @@ If you don't have an Azure subscription, create a [free account](https://azure.m
 
 ## Prerequisites
 
-- Use the Azure portal to deploy models and configure role assignments in the Azure cloud.
+- The Azure portal, used to deploy models and configure role assignments in the Azure cloud.
 
-- An **Owner** role on your Azure subscription is necessary for creating role assignments. Your model provider imposes more permissions or requirements for deploying and accessing models.
+- An **Owner** role on your Azure subscription is necessary for creating role assignments. Your model provider has more role requirements for deploying and accessing models. Those are noted in the following steps.
 
-- A model provider, such as [Azure OpenAI](/azure/ai-services/openai/how-to/create-resource) (used in this tutorial), Azure AI Vision created using [a multi-service account](/azure/ai-services/multi-service-resource), or [Azure AI Studio](https://ai.azure.com/). We use Azure OpenAI in this tutorial, but list the other Azure resources so that you know your options.
+- A model provider, such as [Azure OpenAI](/azure/ai-services/openai/how-to/create-resource), Azure AI Vision created using [a multi-service account](/azure/ai-services/multi-service-resource), or [Azure AI Studio](https://ai.azure.com/).
+
+  We use Azure OpenAI in this tutorial, but list the other Azure resources so that you know your options for integrated embedding.
 
 - Azure AI Search, Basic tier or higher provides a [managed identity](search-howto-managed-identities-data-sources.md) used in role assignments. 
 
-To complete all of the tutorials in this series, the region must also support both Azure AI Search and the model provider. See supported regions for:
+To complete all of the tutorials in this series, the region must support both Azure AI Search and the model provider. See supported regions for:
 
 - [Azure OpenAI regions](/azure/ai-services/openai/concepts/models#model-summary-table-and-region-availability)
 
@@ -46,7 +48,7 @@ To complete all of the tutorials in this series, the region must also support bo
 
 - [Azure AI Studio](/azure/ai-studio/reference/region-support) regions. 
 
-Azure AI Search is currently facing limited availability in some regions. Check the [Azure AI Search region list](search-region-support.md) to confirm availability.
+Azure AI Search is currently facing limited availability in some regions, such as West Europe and West US 2/3. Check the [Azure AI Search region list](search-region-support.md) to confirm availability.
 
 > [!TIP]
 > Currently, the following regions provide the most overlap and have the most capacity: **East US**, **East US2**, and **South Central** in the Americas; **France Central** or **Switzerland North** in Europe; **Australia East** in Asia Pacific.
@@ -97,7 +99,7 @@ This tutorial series uses the following models and model providers:
 - Text-embedding-ada-02 on Azure OpenAI for embeddings
 - GPT-35-Turbo on Azure OpenAI for chat completion
 
-You must have **Cognitive Services AI User** permissions to deploy models in Azure OpenAI.
+You must have [**Cognitive Services OpenAI Contributor**]( /azure/ai-services/openai/how-to/role-based-access-control#cognitive-services-openai-contributor) or higher to deploy models in Azure OpenAI.
 
 1. Go to [Azure OpenAI Studio](https://oai.azure.com/).
 1. Select **Deployments** on the left menu.
@@ -120,10 +122,12 @@ Assign yourself and the search service identity permissions on Azure OpenAI. The
 1. Find your Azure OpenAI resource.
 1. Select **Access control (IAM)** on the left menu. 
 1. Select **Add role assignment**.
-1. Select **Cognitive Services OpenAI User**.
+1. Select [**Cognitive Services OpenAI User**](/azure/ai-services/openai/how-to/role-based-access-control#cognitive-services-openai-userpermissions).
 1. Select **Managed identity** and then select **Members**. Find the system-managed identity for your search service in the dropdown list.
 1. Next, select **User, group, or service principal** and then select **Members**. Search for your user account and then select it from the dropdown list.
 1. Select **Review and Assign** to create the role assignments.
+
+For access to models on Azure AI Vision, assign **Cognitive Services OpenAI User**. For Azure AI Studio, assign **Azure AI Developer**.
 
 ## Use non-Azure models for embeddings
 

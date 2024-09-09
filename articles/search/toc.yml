@@ -103,9 +103,9 @@ items:
     - name: Search and generate answers
       href: tutorial-rag-build-solution-query.md
     - name: Maximize relevance
-      href: tutorial-rag-build-solution-relevance.md
-    - name: Optimize (reduce storage and costs)
-      href: tutorial-rag-build-solution-optimize.md
+      href: tutorial-rag-build-solution-maximize-relevance.md
+    - name: Minimize storage and costs
+      href: tutorial-rag-build-solution-minimize-storage.md
     - name: Deploy and secure an app
       href: tutorial-rag-build-solution-app.md
   - name: Skills tutorials
