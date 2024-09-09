@@ -342,7 +342,7 @@ Select a schedule name to show the schedule detail page, which contains the foll
 :::code language="azurecli" source="~/azureml-examples-main/cli/schedules/schedule.sh" ID="update_schedule":::
 
 > [!NOTE]
-> To update more than just tags and description, use `az ml schedule create --file simple_cron_job_schedule.yml`.
+> To update more than just tags and description, consider using `az ml schedule create --file update_schedule.yml`.
 
 # [Python SDK](#tab/python)
 
