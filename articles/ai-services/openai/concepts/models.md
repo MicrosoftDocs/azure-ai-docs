@@ -4,7 +4,7 @@ titleSuffix: Azure OpenAI
 description: Learn about the different model capabilities that are available with Azure OpenAI.
 ms.service: azure-ai-openai
 ms.topic: conceptual
-ms.date: 08/28/2024
+ms.date: 09/09/2024
 ms.custom: references_regions, build-2023, build-2023-dataai, refefences_regions
 manager: nitinme
 author: mrbullwinkle #ChrisHMSFT
@@ -198,7 +198,8 @@ For more information on Provisioned deployments, see our [Provisioned guidance](
 - koreacentral      
 - northcentralus    
 - norwayeast        
-- polandcentral     
+- polandcentral
+- spaincentral     
 - southafricanorth  
 - southcentralus    
 - southindia        
@@ -214,6 +215,7 @@ For more information on Provisioned deployments, see our [Provisioned guidance](
 **Supported regions:**
 
 - eastus
+- swedencentral
 
 
 ### Global batch model availability
@@ -313,7 +315,7 @@ These models can only be used with Embedding API requests.
 | `gpt-35-turbo` (0125)  | East US2 <br> North Central US <br> Sweden Central <br> Switzerland West | 16,385 | Sep 2021 |
 | `gpt-4` (0613) <sup>**1**</sup> | North Central US <br> Sweden Central | 8192 | Sep 2021 |
 | `gpt-4o-mini` <sup>**1**</sup> (2024-07-18) | North Central US <br> Sweden Central | Input: 128,000 <br> Output: 16,384  <br> Training example context length: 64,536 | Oct 2023 |
-| `gpt-4o` <sup>**1**</sup> (2024-08-06) | North Central US <br> Sweden Central | Input: 128,000 <br> Output: 16,384  <br> Training example context length: 64,536 | Oct 2023 | 
+| `gpt-4o` <sup>**1**</sup> (2024-08-06) | East US2 <br> North Central US <br> Sweden Central | Input: 128,000 <br> Output: 16,384  <br> Training example context length: 64,536 | Oct 2023 | 
 
 **<sup>1</sup>** GPT-4, GPT-4o, and GPT-4o mini fine-tuning is currently in public preview. See our [GPT-4, GPT-4o,  & GPT-4o mini fine-tuning safety evaluation guidance](/azure/ai-services/openai/how-to/fine-tuning?tabs=turbo%2Cpython-new&pivots=programming-language-python#safety-evaluation-gpt-4-fine-tuning---public-preview) for more information.
 
