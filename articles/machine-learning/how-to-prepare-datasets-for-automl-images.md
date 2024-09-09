@@ -80,7 +80,7 @@ Refer to CLI/SDK tabs for reference.
 
 ### Use prelabeled training data from local machine
 
-If you labeled data that you want to use to train your model, upload the images to Azure. You can upload your images to the default Azure Blob Storage of your Azure Machine Learning Workspace. Register it as a *data asset*. For more information, see [Create and manage data assets](how-to-create-data-assets.md).
+If you have labeled data that you want to use to train your model, upload the images to Azure. You can upload your images to the default Azure Blob Storage of your Azure Machine Learning Workspace. Register it as a *data asset*. For more information, see [Create and manage data assets](how-to-create-data-assets.md).
 
 The following script uploads the image data on your local machine at path *./data/odFridgeObjects* to datastore in Azure Blob Storage. It then creates a new data asset with the name `fridge-items-images-object-detection` in your Azure Machine Learning Workspace.
 
