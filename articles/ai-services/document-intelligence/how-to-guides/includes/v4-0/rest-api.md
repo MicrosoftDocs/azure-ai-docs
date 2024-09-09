@@ -6,7 +6,7 @@ manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.custom: ignite-2023, linux-related-content
 ms.topic: include
-ms.date: 05/23/2024
+ms.date: 09/09/2024
 ms.author: lajanuar
 ---
 
@@ -14,7 +14,7 @@ ms.author: lajanuar
 >
 > This project uses cURL command-line tool to execute REST API calls.
 
-| [Document Intelligence REST API](/rest/api/aiservices/document-models/analyze-document?view=rest-aiservices-2024-02-29-preview&preserve-view=true&tabs=HTTP) | [Supported Azure SDKS](../../../sdk-overview-v4-0.md)
+| [Document Intelligence REST API](/rest/api/aiservices/operation-groups?view=rest-aiservices-v4.0%20(2024-07-31-preview)&preserve-view=true) | [Supported Azure SDKS](../../../sdk-overview-v4-0.md)
 
 ## Prerequisites
 
