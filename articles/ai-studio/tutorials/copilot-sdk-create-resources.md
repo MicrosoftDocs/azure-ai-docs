@@ -37,11 +37,10 @@ This tutorial is part one of a three-part tutorial.
 
 ## Azure AI Studio and Azure portal
 
-In this tutorial, you perform some tasks in Azure AI Studio and some tasks in the Azure portal.  
+In this tutorial, you use Azure resources to build the chat app.  You'll use both Azure AI Studio and Azure portal to create and configure these resources.
 
-Azure AI Studio is a web-based environment for building, training, and deploying AI models. It's where the developer will build and deploy the chat application.  
-
-The Azure portal allows an administrator to manage and monitor Azure resources.  As an administrator, you'll use the portal to configure settings for various Azure services that the developer will use in parts two and three of this tutorial series.  
+- As an administrator, you use Azure portal to configure access to resources.
+- As a developer, you use Azure AI Studio to group together those resources needed to build, evaluate, and deploy the chat app. You can also interact with your models and deployments in AI Studio.
 
 ## Create an Azure AI Studio hub
 
