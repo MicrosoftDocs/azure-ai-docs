@@ -152,7 +152,6 @@ sections:
       - question: |
           What are the recommended CPU and RAM resources?
         answer: |
-        
         The following table describes the minimum and recommended allocation of resources for each Speech container.
 
           # [Speech-to-text](#tab/stt)
