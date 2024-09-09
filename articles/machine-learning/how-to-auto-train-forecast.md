@@ -10,8 +10,9 @@ ms.service: azure-machine-learning
 ms.subservice: automl
 ms.topic: how-to
 ms.custom: automl, sdkv2, build-2023, devx-track-python, devx-track-azurecli
-ms.date: 09/04/2024
+ms.date: 09/09/2024
 show_latex: true
+#customer intent: As a data scientist, I want to train time-series forecasting models and understand the options available for training them by using AutoML.
 ---
 
 # Set up AutoML to train a time-series forecasting model with SDK and CLI
@@ -427,7 +428,7 @@ The job searches over all model classes *except* Prophet. For a list of forecast
 
 AutoML ships with a custom deep neural network (DNN) model called `TCNForecaster`. This model is a [temporal convolutional network](https://arxiv.org/abs/1803.01271) (TCN), that applies common imaging task methods to time series modeling. One-dimensional "causal" convolutions form the backbone of the network and enable the model to learn complex patterns over long durations in the training history. For more information, see [Introduction to TCNForecaster](./concept-automl-forecasting-deep-learning.md#introduction-to-tcnforecaster).
 
-:::image type="content" source="media/how-to-auto-train-forecast/tcn-basic.png" alt-text="Diagram showing major components of AutoML's TCNForecaster.":::
+:::image type="content" source="media/how-to-auto-train-forecast/tcn-basic.png" alt-text="Diagram showing major components of AutoML's TCNForecaster." lightbox="media/how-to-auto-train-forecast/tcn-basic.png":::
 
 The TCNForecaster often achieves higher accuracy than standard time series models when there are thousands or more observations in the training history. However, it also takes longer to train and sweep over TCNForecaster models due to their higher capacity.
 
