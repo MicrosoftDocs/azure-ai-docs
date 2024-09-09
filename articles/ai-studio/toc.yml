@@ -128,7 +128,7 @@ items:
       displayName: maas
     - name: JAIS model
       href: how-to/deploy-models-jais.md
-    - name: Jamba instruct model
+    - name: AI21 Jamba models
       href: how-to/deploy-models-jamba.md
     - name: TimeGEN-1 model
       href: how-to/deploy-models-timegen-1.md
