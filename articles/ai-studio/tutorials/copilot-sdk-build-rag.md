@@ -84,7 +84,7 @@ Replace the placeholders with the following values:
 * Find the `<your subscription id>`, `<your resource group>`, and `<your project name>` from your project view in AI Studio:
     1. In [AI Studio](https://ai.azure.com), go to your project and select **Settings** from the left pane.
     1. In the **Project properties** section, find the **Subscription ID** and **Resource group**. The **Name** field is `<your project name>`
-* * Still in your project **Settings**, in the **Connected resources** section, you'll see an entry for either Azure AIServices or Azure OpenAI.  Select the name to open the **Connection Details**. The connection name appears at the top of the **Connection Details** page. Copy this name to use for `<your AIServices or Azure OpenAI connection name>`.
+* Still in your project **Settings**, in the **Connected resources** section, you'll see an entry for either Azure AIServices or Azure OpenAI.  Select the name to open the **Connection Details**. The connection name appears at the top of the **Connection Details** page. Copy this name to use for `<your AIServices or Azure OpenAI connection name>`.
 * Go back to the project **Settings** page. In the **Connected resources** section, select the link for the Azure AI Search.
     * Copy the **Target** URL for `<your Azure Search endpoint>`.
     * Copy the name at the top for `<your Azure Search connection name>`. 
