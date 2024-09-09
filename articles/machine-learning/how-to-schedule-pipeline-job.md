@@ -8,7 +8,7 @@ ms.subservice: mlops
 ms.author: lagayhar
 author: lgayhardt
 ms.reviewer: keli19
-ms.date: 09/08/2024
+ms.date: 09/09/2024
 ms.topic: how-to
 ---
 
@@ -71,7 +71,7 @@ The code examples in this article are excerpts from the [Working with Schedule](
 
 # [Studio UI](#tab/ui)
 
-To create a schedule for an Azure Machine Learning v2 pipeline job in the studio UI, open its pipeline detail page.
+To create a schedule for an Azure Machine Learning pipeline job in the studio UI, open the pipeline job detail page.
 
 ---
 
@@ -125,7 +125,7 @@ To define a recurrence-based schedule, on the **Basic settings** screen, define 
 - **Description**: Schedule description.
 - **Trigger**: Recurrence pattern of the schedule, including the following properties:
   - **Time zone**: Time zone to use for the trigger time, UTC by default.
-  - Select **Recurrence** to specify a recurring pattern of minutes, hours, days, weeks, or months.
+  - Select **Recurrence** and specify a recurring pattern of minutes, hours, days, weeks, or months.
   - **Start**: Date the schedule becomes active, by default the date created.
   - **End**: Date when the schedule becomes inactive. By default the value is none, and the schedule remains active until manually disabled.
   - **Tags**: Tags on the schedule.
@@ -206,9 +206,9 @@ Only the **Name** property requires you to enter a value. If you don't specify a
 
 - **Name**: Unique identifier of the schedule within the workspace.
 - **Description**: Description of the schedule.
-  - **Trigger**: Recurrence pattern of the schedule, including the following properties:
+- **Trigger**: Recurrence pattern of the schedule, including the following properties:
   - **Time zone**: Time zone to use for the trigger time, Coordinated Universal Time (UTC) by default.
-  - Select **Cron expression** to provide a standard crontab expression that expresses a recurring schedule.
+  - Select **Cron expression** and provide a standard crontab expression that expresses a recurring schedule.
   - **Start**: Date the schedule becomes active, by default the date created.
   - **End**: Date the schedule becomes inactive. By default the value is none, and a schedule remains active until you manually disable it.
   - **Tags**: Tags on the schedule.
@@ -369,7 +369,7 @@ Once you set up a schedule to do regular retraining or batch inference on produc
    > [!IMPORTANT]
    > Make sure you select the correct schedule you want to update.
 
-1. If desired, you can select **Next** to modify the job inputs/outputs and runtime settings for the future jobs triggered by the schedule.
+1. Optionally, select **Next** to modify the job inputs/outputs and runtime settings for the future jobs triggered by the schedule.
 
 1. Select **Review + Update** to review the schedule settings, and then select **Review + Update** again to finish the update.
 
