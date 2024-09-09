@@ -73,7 +73,7 @@ In this quickstart, use the following features to analyze and extract data and v
  4. Install the `ai-document-intelligence` client library and `azure/identity` npm packages:
 
     ```console
-    npm i @azure-rest/ai-document-intelligence@1.0.0-beta.2 @azure/core-auth
+    npm i @azure-rest/ai-document-intelligence@1.0.0-beta.3 @azure/core-auth
     ```
 
     Your app's `package.json` file is updated with the dependencies.

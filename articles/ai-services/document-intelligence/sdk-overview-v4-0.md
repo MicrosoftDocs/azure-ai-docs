@@ -11,7 +11,7 @@ ms.custom:
   - devx-track-js
   - devx-track-python
 ms.topic: conceptual
-ms.date: 08/30/2024
+ms.date: 09/09/2024
 ms.author: lajanuar
 monikerRange: 'doc-intel-4.0.0'
 --- 
@@ -39,7 +39,7 @@ Document Intelligence SDK supports the following languages and platforms:
 | [**.NET/C# → 1.0.0-beta.3 (preview)**](/dotnet/api/overview/azure/ai.documentintelligence-readme?view=azure-dotnet-preview&preserve-view=true)|[NuGet](https://www.nuget.org/packages/Azure.AI.DocumentIntelligence/1.0.0-beta.3)|[2024-07-31 (preview)](/rest/api/aiservices/operation-groups?view=rest-aiservices-v4.0%20(2024-07-31-preview)&preserve-view=true)|[Windows, macOS, Linux, Docker](https://dotnet.microsoft.com/download)|
 |[**Java → 1.0.0-beta.4 (preview)**](/java/api/overview/azure/ai-documentintelligence-readme?view=azure-java-preview&preserve-view=true) |[Maven repository](https://mvnrepository.com/artifact/com.azure/azure-ai-documentintelligence/1.0.0-beta.4) |[2024-07-31 (preview)](/rest/api/aiservices/operation-groups?view=rest-aiservices-v4.0%20(2024-07-31-preview)&preserve-view=true)|[Windows, macOS, Linux](/java/openjdk/install)|
 |[**JavaScript → 1.0.0-beta.3 (preview)**](/javascript/api/overview/azure/ai-document-intelligence-rest-readme?view=azure-node-preview&preserve-view=true)| [npm](https://www.npmjs.com/package/@azure-rest/ai-document-intelligence/v/1.0.0-beta.3)|[2024-07-31 (preview)](/rest/api/aiservices/operation-groups?view=rest-aiservices-v4.0%20(2024-07-31-preview)&preserve-view=true)| [Browser, Windows, macOS, Linux](https://nodejs.org/en/download/) |
-|[**Python → 1.0.0b2 (preview)**](/python/api/overview/azure/ai-documentintelligence-readme?view=azure-python-preview&preserve-view=true) | [PyPI](https://pypi.org/project/azure-ai-documentintelligence/)|[2024-07-31 (preview)](/rest/api/aiservices/operation-groups?view=rest-aiservices-v4.0%20(2024-07-31-preview)&preserve-view=true)|[Windows, macOS, Linux](/azure/developer/python/configure-local-development-environment?tabs=windows%2Capt%2Ccmd#use-the-azure-cli)|
+|[**Python → 1.0.0b4 (preview)**](/python/api/overview/azure/ai-documentintelligence-readme?view=azure-python-preview&preserve-view=true) | [PyPI](https://pypi.org/project/azure-ai-documentintelligence/1.0.0b4/)|[2024-07-31 (preview)](/rest/api/aiservices/operation-groups?view=rest-aiservices-v4.0%20(2024-07-31-preview)&preserve-view=true)|[Windows, macOS, Linux](/azure/developer/python/configure-local-development-environment?tabs=windows%2Capt%2Ccmd#use-the-azure-cli)|
 
 For more information on other SDK versions, see:
 
@@ -134,7 +134,7 @@ npm i @azure-rest/ai-document-intelligence version 1.0.0-beta.3
 ### [Python](#tab/python)
 
 ```python
-pip install azure-ai-documentintelligence==1.0.0b2
+pip install azure-ai-documentintelligence==1.0.0b4
 ```
 
 ---
