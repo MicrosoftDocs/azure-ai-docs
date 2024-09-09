@@ -160,7 +160,7 @@ The deploy script will:
 - Route all traffic to that deployment
 - Output the link to view and test the deployment in the Azure AI Studio
 
-The deployment defines a build context (Dockerfile) that relies on the `requirement.txt` specified in our flow folder, and also sets our environment variables to the deployed environment, so we can be confident that our chat app application runs the same in a production environment as it did locally.
+The deployment defines a build context (Dockerfile) that relies on the `requirement.txt` specified in our flow folder, and also sets our environment variables to the deployed environment, so we can be confident that our chat app runs the same in a production environment as it did locally.
 
 ### Build context for the deployment (Dockerfile)
 

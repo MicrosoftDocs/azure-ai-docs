@@ -97,9 +97,9 @@ This section shows how to configure the various access controls needed for the r
 
 We recommend using [Microsoft Entra ID](/entra/fundamentals/whatis) instead of using API keys. In order to use this authentication, you need to set the right access controls and assign the right roles for your services. 
 
-### Configure access for Azure AI Services/OpenAI
+### Configure access for Azure AI Services
 
-Start in the project to find the AI Services/OpenAI resource:
+Start in the project to find the AI Services resource:
 
 1. In [AI Studio](https://ai.azure.com), go to your project and select **Settings** from the left pane.
 1. Select **Connected resources**.
