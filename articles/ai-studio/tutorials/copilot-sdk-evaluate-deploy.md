@@ -1,47 +1,45 @@
 ---
-title: "Part 2: Evaluate and deploy copilot with the prompt flow SDK"
+title: "Part 3: Evaluate and deploy chat app with the prompt flow SDK"
 titleSuffix: Azure AI Studio
-description: Evaluate and deploy a RAG-based copilot with the prompt flow SDK. This tutorial is part 2 of a two-part tutorial.
+description: Evaluate and deploy a custom chat app with the prompt flow SDK. This tutorial is part 3 of a 3-part tutorial series.
 manager: scottpolly
 ms.service: azure-ai-studio
 ms.topic: tutorial
-ms.date: 8/6/2024
+ms.date: 08/29/2024
 ms.reviewer: lebaro
 ms.author: sgilley
 author: sdgilley
-#customer intent: As a developer, I want to learn how to use the prompt flow SDK so that I can evaluate and deploy a copilot.
+#customer intent: As a developer, I want to learn how to use the prompt flow SDK so that I can evaluate and deploy a chat app.
 ---
 
-# Tutorial: Part 2 - Evaluate and deploy a RAG-based copilot with the prompt flow SDK
+# Tutorial: Part 3 - Evaluate and deploy a custom chat application with the prompt flow SDK
 
-In this [Azure AI Studio](https://ai.azure.com) tutorial, you use the prompt flow SDK (and other libraries) to  evaluate and deploy the copilot you built in [Part 1 of the tutorial series](copilot-sdk-build-rag.md).
-
-This tutorial is part two of a two-part tutorial.
-
-In this part two, you learn how to:
+In this tutorial, you use the prompt flow SDK (and other libraries) to  evaluate and deploy the chat app you built in [Part 2 of the tutorial series](copilot-sdk-build-rag.md). In this part three, you learn how to:
 
 > [!div class="checklist"]
-> - [Evaluate the quality of copilot responses](#evaluate-the-quality-of-copilot-responses)
-> - [Deploy the copilot to Azure](#deploy-the-copilot-to-azure)
-> - [Verify the deployment](#verify-the-deployment)
+> - Evaluate the quality of chat app responses
+> - Deploy the chat app to Azure
+> - Verify the deployment
+
+This tutorial is part three of a three-part tutorial.
 
 ## Prerequisites
 
-- You must complete [part 1 of the tutorial series](copilot-sdk-build-rag.md) to build the copilot application.
+- You must complete [part 2 of the tutorial series](copilot-sdk-build-rag.md) to build the chat application.
 
 - You must have the necessary permissions to add role assignments in your Azure subscription. Granting permissions by role assignment is only allowed by the **Owner** of the specific Azure resources. You might need to ask your Azure subscription owner (who might be your IT admin) for help with endpoint access later in the tutorial.
 
-## Evaluate the quality of copilot responses
+## <a name="evaluate"></a> Evaluate the quality of the chat app responses
 
-Now that you know your copilot responds well to your queries, including with chat history, it's time to evaluate how it does across a few different metrics and more data.
+Now that you know your chat app responds well to your queries, including with chat history, it's time to evaluate how it does across a few different metrics and more data.
 
 You use the prompt flow evaluator with an evaluation dataset and the `get_chat_response()` target function, then assess the evaluation results.
 
-Once you run an evaluation, you can then make improvements to your logic, like improving your system prompt, and observing how the copilot responses change and improve.
+Once you run an evaluation, you can then make improvements to your logic, like improving your system prompt, and observing how the chat app responses change and improve.
 
 ### Set your evaluation model
 
-Choose the evaluation model you want to use. It can be the same as the chat model you deployed before. If you want a different model for evaluation, you need to deploy it, or specify it if it already exists. For example, you might be using gpt-35-turbo for your chat completions, but want to use gpt-4 for evaluation since it might perform better.
+Choose the evaluation model you want to use. It can be the same as a chat model you used to build the app. If you want a different model for evaluation, you need to deploy it, or specify it if it already exists. For example, you might be using `gpt-35-turbo` for your chat completions, but want to use `gpt-4` for evaluation since it might perform better.
 
 Add your evaluation model name in your **.env** file:
 
@@ -64,9 +62,9 @@ Now define an evaluation script that will:
 
 - Import the `evaluate` function and evaluators from the Prompt flow `evals` package.
 - Load the sample `.jsonl` dataset.
-- Generate a target function wrapper around our copilot logic.
-- Run the evaluation, which takes the target function, and merges the evaluation dataset with the responses from the copilot.
-- Generate a set of GPT-assisted metrics (relevance, groundedness, and coherence) to evaluate the quality of the copilot responses.
+- Generate a target function wrapper around our chat app logic.
+- Run the evaluation, which takes the target function, and merges the evaluation dataset with the responses from the chat app.
+- Generate a set of GPT-assisted metrics (relevance, groundedness, and coherence) to evaluate the quality of the chat app responses.
 - Output the results locally, and logs the results to the cloud project.
 
 The script allows you to review the results locally, by outputting the results in the command line, and to a json file.
@@ -88,10 +86,11 @@ The main function at the end allows you to view the evaluation result locally, a
     az login
     ```
 
-1. Install the required package:
+1. Install the required packages:
 
     ```bash
     pip install promptflow-evals
+    pip install promptflow-azure
     ```
 
 1. Now run the evaluation script:
@@ -147,11 +146,11 @@ You can also look at the individual rows and see metric scores per row, and view
 
 For more information about evaluation results in AI Studio, see [How to view evaluation results in AI Studio](../how-to/evaluate-flow-results.md).
 
-Now that you verified your copilot behaves as expected, you're ready to deploy your application.
+Now that you verified your chat app behaves as expected, you're ready to deploy your application.
 
-## Deploy the copilot to Azure
+## <a name="deploy"></a>Deploy the chat app to Azure
 
-Now let's go ahead and deploy this copilot to a managed endpoint so that it can be consumed by an external application or website. 
+Now let's go ahead and deploy this chat app to a managed endpoint so that it can be consumed by an external application or website. 
 
 The deploy script will:
 
@@ -161,7 +160,7 @@ The deploy script will:
 - Route all traffic to that deployment
 - Output the link to view and test the deployment in the Azure AI Studio
 
-The deployment defines a build context (Dockerfile) that relies on the `requirement.txt` specified in our flow folder, and also sets our environment variables to the deployed environment, so we can be confident that our copilot application runs the same in a production environment as it did locally.
+The deployment defines a build context (Dockerfile) that relies on the `requirement.txt` specified in our flow folder, and also sets our environment variables to the deployed environment, so we can be confident that our chat app application runs the same in a production environment as it did locally.
 
 ### Build context for the deployment (Dockerfile)
 
@@ -174,11 +173,11 @@ COPY ./requirements.txt .
 RUN pip install -r requirements.txt
 ```
 
-### Deploy copilot to a managed endpoint
+### Deploy chat app to a managed endpoint
 
 To deploy your application to a managed endpoint in Azure, create an online endpoint, then create a deployment in that endpoint, and then route all traffic to that deployment.
 
-As part of creating the deployment, your copilot_flow folder is packaged as a model and a cloud environment is built. The endpoint is set up with Microsoft Entra ID authentication. You can update the auth mode you want in the code, or in the Azure AI Studio on the endpoint details page.
+As part of creating the deployment, your **copilot_flow** folder is packaged as a model and a cloud environment is built. The endpoint is set up with Microsoft Entra ID authentication. You can update the auth mode you want in the code, or in the Azure AI Studio on the endpoint details page.
 
 > [!IMPORTANT]
 > Deploying your application to a managed endpoint in Azure has associated compute cost based on the instance type you choose. Make sure you are aware of the associated cost and have quota for the instance type you specify. Learn more about [online endpoints](/azure/machine-learning/reference-managed-online-endpoints-vm-sku-list).
@@ -207,7 +206,7 @@ python deploy.py
 
 Once the deployment is completed, you get a link to the Azure AI Studio deployment page, where you can test your deployment.
 
-## Verify the deployment
+## <a name="verify"></a>Verify the deployment
 
 We recommend you test your application in the Azure AI Studio. If you prefer to test your deployed endpoint locally, you can invoke it with some custom code.
 
@@ -259,7 +258,7 @@ To grant yourself access to the Azure AI Services resource that you're using:
 
 You might need to ask your Azure subscription owner (who might be your IT admin) for help with this section.
 
-Similar to how you assigned the **Search Index Data Contributor** [role to your Azure AI Search service](./copilot-sdk-build-rag.md#configure-access-for-the-azure-ai-search-service), you need to assign the same role for your endpoint.
+Similar to how you assigned the **Search Index Data Contributor** [role to your Azure AI Search service](./copilot-sdk-create-resources.md#configure), you need to assign the same role for your endpoint.
 
 1. In Azure AI Studio, select **Settings** and navigate to the connected **Azure AI Search** service. 
 1. Select the link to open a summary of the resource. Select the link on the summary page to open the resource in the Azure portal.
@@ -300,7 +299,7 @@ If you get an error, select the **Logs** tab to get more details.
 > [!NOTE]
 > If you get an unauthorized error, your endpoint access may not have been applied yet. Try again in a few minutes.
 
-### Invoke the deployed copilot locally
+### Invoke the deployed chat app locally
 
 If you prefer to verify your deployment locally, you can invoke it via a Python script.
 
@@ -313,7 +312,7 @@ Create an **invoke-local.py** file in your **rag-tutorial** folder, with the fol
 
 :::code language="python" source="~/rag-data-openai-python-promptflow-main/tutorial/invoke-local.py":::
 
-You should see the copilot reply to your query in the console.
+You should see the chat app reply to your query in the console.
 
 > [!NOTE]
 > If you get an unauthorized error, your endpoint access may not have been applied yet. Try again in a few minutes.
@@ -325,4 +324,4 @@ To avoid incurring unnecessary Azure costs, you should delete the resources you 
 ## Related content
 
 - [Learn more about prompt flow](../how-to/prompt-flow.md)
-- For a sample copilot application that implements RAG, see [Azure-Samples/rag-data-openai-python-promptflow](https://github.com/Azure-Samples/rag-data-openai-python-promptflow)
+- For a sample chat app application that implements RAG, see [Azure-Samples/rag-data-openai-python-promptflow](https://github.com/Azure-Samples/rag-data-openai-python-promptflow)
