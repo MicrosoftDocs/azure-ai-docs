@@ -57,7 +57,9 @@ InteractiveBrowserCredential browserCredential = new InteractiveBrowserCredentia
 var browserToken = browserCredential.GetToken(context);
 string aadToken = browserToken.Token;
 ```
-The token context must be set to "https://cognitiveservices.azure.com/.default".
+> [!NOTE]
+> The token context must be set to "https://cognitiveservices.azure.com/.default".
+
 ::: zone-end
 
 ::: zone pivot="programming-language-cpp"
@@ -65,22 +67,18 @@ To get a Microsoft Entra access token in C++, use the [Azure Identity Client Lib
 
 Here's an example of using Azure Identity to get a Microsoft Entra access token with your tenant ID, client ID, and client secret credentials:
 ```cpp
-const std::string tenantId = "Your Tenant ID";
-const std::string clientId = "Your Client ID";
-const std::string clientSecret = "Your Client Secret";
 const std::string tokenContext = "https://cognitiveservices.azure.com/.default";
 
-Azure::Identity::ClientSecretCredential cred(tenantId,
-    clientId,
-    clientSecret,
-    Azure::Identity::ClientSecretCredentialOptions());
+Azure::Identity::DefaultAzureCredential();
 
 Azure::Core::Credentials::TokenRequestContext context;
 context.Scopes.push_back(tokenContext);
 
 auto token = cred.GetToken(context, Azure::Core::Context());
 ```
-The token context must be set to "https://cognitiveservices.azure.com/.default".
+
+> [!NOTE]
+> The token context must be set to "https://cognitiveservices.azure.com/.default".
 
 ::: zone-end
 
@@ -98,7 +96,10 @@ InteractiveBrowserCredential browserCredential = builder.build();
 AccessToken browserToken = browserCredential.getToken(context).block();
 String token = browserToken.getToken();
 ```
-The token context must be set to "https://cognitiveservices.azure.com/.default".
+
+> [!NOTE]
+> The token context must be set to "https://cognitiveservices.azure.com/.default".
+
 ::: zone-end
 
 ::: zone pivot="programming-language-python"
