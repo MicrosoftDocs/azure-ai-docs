@@ -25,7 +25,7 @@ This tutorial is part three of a three-part tutorial.
 
 ## Prerequisites
 
-- You must complete [part 2 of the tutorial series](copilot-sdk-build-rag.md) to build the chat application.
+- Complete [part 2 of the tutorial series](copilot-sdk-build-rag.md) to build the chat application.
 
 - You must have the necessary permissions to add role assignments in your Azure subscription. Granting permissions by role assignment is only allowed by the **Owner** of the specific Azure resources. You might need to ask your Azure subscription owner (who might be your IT admin) for help with endpoint access later in the tutorial.
 
