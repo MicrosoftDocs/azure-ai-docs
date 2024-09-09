@@ -1,14 +1,14 @@
 ---
 title: "Quickstart: Document Intelligence C# SDK | v4.0 | v3.1 | v3.0"
 titleSuffix: Azure AI services
-description: 'Form and document processing, data extraction, and analysis using Document Intelligence C# client library.
+description: 'Form and document processing, data extraction, and analysis using Document Intelligence C# client library.'
 author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.custom:
   - ignite-2023
 ms.topic: include
-ms.date: 08/30/2024
+ms.date: 09/09/2024
 ms.author: lajanuar
 monikerRange: ">=doc-intel-3.0.0"
 ---
