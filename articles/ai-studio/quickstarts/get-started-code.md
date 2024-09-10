@@ -277,4 +277,4 @@ For more information on how to use prompt flow evaluators, including how to make
 ## Next step
 
 > [!div class="nextstepaction"]
-> [Add data and use retrieval augmented generation (RAG) to build a copilot](../tutorials/copilot-sdk-build-rag.md)
+> [Add data and use retrieval augmented generation (RAG) to build a custom chat app](../tutorials/copilot-sdk-create-resources.md)
