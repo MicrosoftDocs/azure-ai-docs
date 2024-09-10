@@ -333,6 +333,10 @@ using (var speechRecognizer = new SpeechRecognizer(
     speechConfig,
     audioConfig))
 {
+    // (Optional) get the session ID
+    speechRecognizer.SessionStarted += (s, e) => {
+        Console.WriteLine($"SESSION ID: {e.SessionId}");
+    };
     pronunciationAssessmentConfig.ApplyTo(speechRecognizer);
     var speechRecognitionResult = await speechRecognizer.RecognizeOnceAsync();
 
@@ -355,7 +359,10 @@ Word, syllable, and phoneme results aren't available by using SDK objects with t
 auto speechRecognizer = SpeechRecognizer::FromConfig(
     speechConfig,
     audioConfig);
-
+// (Optional) get the session ID
+speechRecognizer->SessionStarted.Connect([](const SessionEventArgs& e) {
+    std::cout << "SESSION ID: " << e.SessionId << std::endl;
+});
 pronunciationAssessmentConfig->ApplyTo(speechRecognizer);
 speechRecognitionResult = speechRecognizer->RecognizeOnceAsync().get();
 
@@ -372,13 +379,17 @@ To learn how to specify the learning language for pronunciation assessment in yo
 ::: zone-end
 
 ::: zone pivot="programming-language-java"
+
 For Android application development, the word, syllable, and phoneme results are available by using SDK objects with the Speech SDK for Java. The results are also available in the JSON string. For Java Runtime (JRE) application development, the word, syllable, and phoneme results are only available in the JSON string.
 
 ```Java
 SpeechRecognizer speechRecognizer = new SpeechRecognizer(
     speechConfig,
     audioConfig);
-
+// (Optional) get the session ID
+speechRecognizer.sessionStarted.addEventListener((s, e) -> {
+    System.out.println("SESSION ID: " + e.getSessionId());
+});
 pronunciationAssessmentConfig.applyTo(speechRecognizer);
 Future<SpeechRecognitionResult> future = speechRecognizer.recognizeOnceAsync();
 SpeechRecognitionResult speechRecognitionResult = future.get(30, TimeUnit.SECONDS);
@@ -403,7 +414,10 @@ speechRecognitionResult.close();
 
 ```JavaScript
 var speechRecognizer = SpeechSDK.SpeechRecognizer.FromConfig(speechConfig, audioConfig);
-
+// (Optional) get the session ID
+speechRecognizer.sessionStarted = (s, e) => {
+    console.log(`SESSION ID: ${e.sessionId}`);
+};
 pronunciationAssessmentConfig.applyTo(speechRecognizer);
 
 speechRecognizer.recognizeOnceAsync((speechRecognitionResult: SpeechSDK.SpeechRecognitionResult) => {
@@ -426,10 +440,10 @@ To learn how to specify the learning language for pronunciation assessment in yo
 speech_recognizer = speechsdk.SpeechRecognizer(
         speech_config=speech_config, \
         audio_config=audio_config)
-
+# (Optional) get the session ID
+speech_recognizer.session_started.connect(lambda evt: print(f"SESSION ID: {evt.session_id}"))
 pronunciation_assessment_config.apply_to(speech_recognizer)
 speech_recognition_result = speech_recognizer.recognize_once()
-
 # The pronunciation assessment result as a Speech SDK object
 pronunciation_assessment_result = speechsdk.PronunciationAssessmentResult(speech_recognition_result)
 
@@ -447,7 +461,10 @@ To learn how to specify the learning language for pronunciation assessment in yo
 SPXSpeechRecognizer* speechRecognizer = \
         [[SPXSpeechRecognizer alloc] initWithSpeechConfiguration:speechConfig
                                               audioConfiguration:audioConfig];
-
+// (Optional) get the session ID
+[speechRecognizer addSessionStartedEventHandler: ^ (SPXRecognizer *sender, SPXSessionEventArgs *eventArgs) {
+    NSLog(@"SESSION ID: %@", eventArgs.sessionId);
+}];
 [pronunciationAssessmentConfig applyToRecognizer:speechRecognizer];
 
 SPXSpeechRecognitionResult *speechRecognitionResult = [speechRecognizer recognizeOnce];
@@ -467,7 +484,9 @@ To learn how to specify the learning language for pronunciation assessment in yo
 
 ```swift
 let speechRecognizer = try! SPXSpeechRecognizer(speechConfiguration: speechConfig, audioConfiguration: audioConfig)
-
+// (Optional) get the session ID
+speechRecognizer.addSessionStartedEventHandler { (sender, evt) in
+	print("SESSION ID: \(evt.sessionId)")
 try! pronConfig.apply(to: speechRecognizer)
 
 let speechRecognitionResult = try? speechRecognizer.recognizeOnce()
