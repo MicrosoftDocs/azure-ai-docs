@@ -14,6 +14,8 @@ ms.custom: devx-track-python
 
 # Create a custom Image Analysis model (preview)
 
+[!INCLUDE [model-customization-deprecation](../includes/model-customization-deprecation.md)]
+
 Image Analysis 4.0 allows you to train a custom model using your own training images. By manually labeling your images, you can train a model to apply custom tags to the images (image classification) or detect custom objects (object detection). Image Analysis 4.0 models are especially effective at few-shot learning, so you can get accurate models with less training data.
 
 This guide shows you how to create and train a custom image classification model. The few differences between training an image classification model and object detection model are noted.
@@ -350,7 +352,7 @@ The prediction results appear in the right column.
 
 ## Prepare training data
 
-The first thing you need to do is create a COCO file from your training data. You can create a COCO file by converting an old Custom Vision project using the [migration script](migrate-from-custom-vision.md). Or, you can create a COCO file from scratch using some other labeling tool. See the following specification:
+The first thing you need to do is create a COCO file from your training data. See the following specification:
 
 [!INCLUDE [coco-files](../includes/coco-files.md)]
 
