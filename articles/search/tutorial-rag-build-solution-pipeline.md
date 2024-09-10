@@ -46,7 +46,7 @@ If you don't have an Azure subscription, create a [free account](https://azure.m
 
 ## Provide the index schema
 
-Here's the index schema from the [previous tutorial](search\tutorial-rag-build-solution-index-schema.md). It's organized around vectorized and nonvectorized chunks. It includes a `locations` field that stores AI-generated content created by the skillset.  
+Here's the index schema from the [previous tutorial](tutorial-rag-build-solution-index-schema.md). It's organized around vectorized and nonvectorized chunks. It includes a `locations` field that stores AI-generated content created by the skillset.  
 
 ```python
 index_name = "py-rag-tutorial-idx"
@@ -227,6 +227,10 @@ print(f"{skillset.name} created")
 
 ## Create and run the indexer
 
+Indexers are the component that sets all of the processes in motion. You can create an indexer in a disabled state, but the default is to run it immediately. In this tutorial, create and run the indexer to retrieve the data from Blob storage, execute the skills, including chunking and vectorization, and load the index.
+
+The indexer takes several minutes to run. When it's done, you can move on to the final step: querying your index.
+
 ```python
 from azure.search.documents.indexes.models import (
     SearchIndexer,
@@ -259,6 +263,8 @@ print(f' {indexer_name} is created and running. Give the indexer a few minutes b
 
 ## Run hybrid search to check results
 
+Send a query to confirm your index is operational. A hybrid query is useful for verifying text and vector search.
+
 ```python
 from azure.search.documents import SearchClient
 from azure.search.documents.models import VectorizableTextQuery
@@ -272,15 +278,64 @@ vector_query = VectorizableTextQuery(text=query, k_nearest_neighbors=1, fields="
 results = search_client.search(  
     search_text=query,  
     vector_queries= [vector_query],
-    select=["parent_id", "chunk_id", "chunk, locations"],
+    select=["parent_id", "chunk_id", "title", "chunk", "locations"],
     top=1
 )  
   
 for result in results:  
-    print(f"Score: {result['@search.score']}")  
+    print(f"Score: {result['@search.score']}")
+    print(f"Title: {result['title']}")  
     print(f"Content: {result['chunk']}") 
 ```
 
+This query returns a single match (`top=1`) consisting of the one chunk determined by the search engine to be the most relevant. Results from the query should look similar to the following example:
+
+```
+Score: 0.03306011110544205
+Content: national Aeronautics and Space Administration
+
+earth Science
+
+NASA Headquarters 
+
+300 E Street SW 
+
+Washington, DC 20546
+
+www.nasa.gov
+
+np-2018-05-2546-hQ
+```
+
+Try a few more queries to get a sense of what the search engine returns directly so that you can compare it with an LLM-enabled response. Re-run the previous script with this query: "how much of the earth is covered in water"?
+
+Results from this second query should look similar to the following results, which are lightly edited for concision. 
+
+With this example, it's easier to spot how chunks are returned verbatim, and how keyword and similarity search identify top matches. This specific chunk definitely has information about water and coverage over the earth, but it's not exactly relevant to the query. Semantic ranking would find a better answer, but as a next step, let's see how to connect Azure AI Search to an LLM for conversational search.
+
+```
+Score: 0.03333333507180214
+Content:
+
+Land of Lakes
+Canada
+
+During the last Ice Age, nearly all of Canada was covered by a massive ice sheet. Thousands of years later, the landscape still shows 
+
+the scars of that icy earth-mover. Surfaces that were scoured by retreating ice and flooded by Arctic seas are now dotted with 
+
+millions of lakes, ponds, and streams. In this false-color view from the Terra satellite, water is various shades of blue, green, tan, and 
+
+black, depending on the amount of suspended sediment and phytoplankton; vegetation is red.
+
+The region of Nunavut Territory is sometimes referred to as the “Barren Grounds,” as it is nearly treeless and largely unsuitable for 
+
+agriculture. The ground is snow-covered for much of the year, and the soil typically remains frozen (permafrost) even during the 
+
+summer thaw. Nonetheless, this July 2001 image shows plenty of surface vegetation in midsummer, including lichens, mosses, 
+
+shrubs, and grasses. The abundant fresh water also means the area is teeming with flies and mosquitoes.
+```
 
 <!-- Objective:
 

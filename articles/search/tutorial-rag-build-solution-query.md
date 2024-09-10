@@ -14,7 +14,83 @@ ms.date: 09/12/2024
 
 # Tutorial: Search your data using a chat model (RAG in Azure AI Search)
 
-In this tutorial, learn how to send queries and prompts to a chat model for generative search.
+
+
+## Generate an answer
+
+```python
+# Import libraries
+from azure.search.documents import SearchClient
+from azure.core.credentials import AzureKeyCredential
+from openai import AzureOpenAI
+
+# Set up clients and specify the chat model
+openai_client = AzureOpenAI(
+     api_version="2024-06-01",
+     azure_endpoint=AZURE_OPENAI_ACCOUNT,
+     api_key=AZURE_OPENAI_KEY
+ )
+
+deployment_name = "gpt-35-turbo"
+
+search_client = SearchClient(
+     endpoint=AZURE_SEARCH_SERVICE,
+     index_name=index_name,
+     credential=AZURE_SEARCH_CREDENTIAL
+ )
+
+# Provide instructions to the model
+GROUNDED_PROMPT="""
+You are an AI assistant that helps users find the information their looking for.
+Answer the query using only the sources provided below.
+Use bullets if the answer has multiple points.
+If the answer is longer than 3 sentences, provide a summary.
+Answer ONLY with the facts listed in the list of sources below.
+If there isn't enough information below, say you don't know.
+Do not generate answers that don't use the sources below.
+Query: {query}
+Sources:\n{sources}
+"""
+
+# Provide the query. Notice it's sent to both the search engine and the LLM.
+query="how much of earth is covered by water"
+
+# Set up the search results and the chat thread.
+# Retrieve the selected fields from the search index related to the question.
+search_results = search_client.search(
+    search_text=query,
+    top=1,
+    select="title, chunk, locations"
+)
+sources_formatted = "\n".join([f'{document["title"]}:{document["chunk"]}:{document["locations"]}' for document in search_results])
+
+response = openai_client.chat.completions.create(
+    messages=[
+        {
+            "role": "user",
+            "content": GROUNDED_PROMPT.format(query=query, sources=sources_formatted)
+        }
+    ],
+    model=deployment_name
+)
+
+print(response.choices[0].message.content)
+```
+
+In this example, the answer is based on a single input (`top=1`) consisting of the one chunk determined by the search engine to be the most relevant. Results from the query should look similar to the following example.
+
+```
+About 72% of the Earth's surface is covered in water, according to page-79.pdf. The provided sources do not give further information on this topic.
+```
+
+Run the same query again after setting `top=3`. When you increase the inputs, the model returns different results each time, even if the query doesn't change. Here's one example of what the model returns after increasing the inputs to 3.
+
+```
+About 71% of the earth is covered by water, while the remaining 29% is land. Canada has numerous water bodies like lakes, ponds, and streams, giving it a unique landscape. The Nunavut territory is unsuitable for agriculture due to being snow-covered most of the year and frozen during the summer thaw. Don Juan Pond in the McMurdo Dry Valleys of Antarctica is the saltiest body of water on earth with a salinity level over 40%, much higher than the Dead Sea and Great Salt Lake. It rarely snows in the valley and Don Juan's calcium chloride–rich waters rarely freeze. NASA studies our planet's physical processes, including the water cycle, carbon cycle, ocean circulation, heat movement, and light interaction. NASA has a unique vantage point of observing the earth and making sense of it from space.
+```
+
+
+<!-- In this tutorial, learn how to send queries and prompts to a chat model for generative search.
 
 Objective:
 
@@ -34,7 +110,7 @@ Tasks:
 - H2 Set up clients and configure access (to the chat model)
 - H2 Query using text, with a filter
 - H2 Query using vectors and text-to-vector conversion at query time (not sure what the code looks like for this)
-- H2 Query parent-child two indexes (unclear how to do this, Carey said query on child, do a lookup query on parent)
+- H2 Query parent-child two indexes (unclear how to do this, Carey said query on child, do a lookup query on parent) -->
 
 <!-- 
 ## Old introduction
