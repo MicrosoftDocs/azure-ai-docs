@@ -7,6 +7,7 @@ manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: overview
 ms.date: 09/04/2024
+ms.custom: FY25Q1-Linter
 ---
 
 # What is Microsoft Translator Pro (preview)?
