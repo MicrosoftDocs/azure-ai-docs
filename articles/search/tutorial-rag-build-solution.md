@@ -16,7 +16,7 @@ ms.date: 09/12/2024
 
 This tutorial series demonstrates a pattern for building RAG solutions on Azure AI Search. It covers the components built in Azure AI Search, dependencies, optimizations, and deployment tasks.
 
-Sample data is a [collection of PDFs](https://github.com/Azure-Samples/azure-search-sample-data/tree/main/nasa-e-book/earth_book_2019_text_pages) uploaded to Azure Storage. 
+Sample data is a [collection of PDFs](https://github.com/Azure-Samples/azure-search-sample-data/tree/main/nasa-e-book/earth_book_2019_text_pages) uploaded to Azure Storage.
 
 Sample code can be found in [this Python notebook](LINK-TBD), but we recommend using this series for context, insights, and alternative approaches.
 

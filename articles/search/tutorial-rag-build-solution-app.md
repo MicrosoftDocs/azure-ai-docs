@@ -12,7 +12,7 @@ ms.date: 09/12/2024
 
 ---
 
-# Deployment checklist for next-level testing (RAG tutorial - Azure AI Search)
+# Tutorial: Deployment checklist for next-level testing (RAG in Azure AI Search)
 
 In this lesson, review options for setting up simple web front-end for a RAG prototype. A simple app is useful for scenario testing with users and stakeholders. This lesson also provides a deployment checklist for broader distribution.
 

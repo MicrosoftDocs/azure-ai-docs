@@ -12,7 +12,7 @@ ms.date: 09/12/2024
 
 ---
 
-# Design an index (RAG tutorial - Azure AI Search)
+# Tutorial: Design an index (RAG in Azure AI Search)
 
 An index contains searchable text and vector content, plus configurations. In a RAG pattern that uses a chat model for responses, you want an index that contains chunks of content that can be passed to an LLM at query time. 
 
@@ -23,7 +23,7 @@ In this tutorial, you:
 > - Create an index that accommodate vectors and hybrid queries
 > - Add vector profiles and configurations
 > - Add structured data
-> - Add filters
+> - Add filtering
 
 ## Prerequisites
 
@@ -37,17 +37,33 @@ In conversational search, LLMs compose the response that the user sees, not the 
 
 ### Focus on chunks
 
-To generate a response, LLMs operate on chunks of content, and while they need to know where the chunk came from for citation purposes, what matters most is the quality of message inputs and its relevance to the user's question. Whether the chunks come from one document or a thousand, the LLM ingests the information or *grounding data*, and formulates the response using instructions provided in a system prompt.
+When LLMs generate a response, they operate on chunks of content for message inputs, and while they need to know where the chunk came from for citation purposes, what matters most is the quality of message inputs and its relevance to the user's question. Whether the chunks come from one document or a thousand, the LLM ingests the information or *grounding data*, and formulates the response using instructions provided in a system prompt.
 
-Chunks are the focus of the schema, and each chunk is the definitive element of a search document in a RAG pattern. You can think of your index as a large collection of chunks, as opposed to traditional search documents that have more structure and fields containing uniform content for a name field, versus a description field, versus a category field.
+Chunks are the focus of the schema, and each chunk is the defining element of a search document in a RAG pattern. You can think of your index as a large collection of chunks, as opposed to traditional search documents that probably have more structure, such as fields containing uniform content for a name, descriptions, categories, and addresses.
 
-A minimal index for LLM is designed to store chunks of content. It includes vector fields if you want similarity search for highly relevant results, and nonvector fields for human-readable inputs to the LLM for conversational search. Nonvector chunked content in the search results becomes the grounding data sent to the LLM.
+### Focus on content
+
+In addition to structural considerations, like chunked content, you also want to consider the substance of your content because it also informs what fields are indexed.
+
+In this tutorial, we use PDFs and content from the NASA Earth Book. This content is descriptive and informative, with numerous references to geographies, countries, and areas across the world. To capture this information in our index and potentially use it in queries, we can include skills in our indexing pipeline that recognize and extract this information, loading it into a searchable and filterable `locations` field.
+
+The original ebook is large, over 100 pages and 35 MB in size. We broke it up into smaller PDFs, one per page of text, to stay under the REST API payload limit of 16 MB per API call.
+
+For simplicity, we omit image vectorization for this exercise.
+
+### Focus on parent-child indexes
+
+Chunked content typically derives from a larger document. And although the schema is organized around chunks, you also want to capture properties and content at the parent level. Examples of these properties might include the parent file path, title, authors, publication date, summary.
+
+An inflection point in schema design is whether to have two indexes for parent and child/chunked content, or a single index that repeats parent elements for each chunk.
+
+In this tutorial, because all of the chunks of text originate from a single parent (NASA Earth Book), you don't need a separate index dedicated to up level parent fields. If you index from multiple parent PDFs, you might want a parent-child index pair to capture level-specific fields and then send lookup queries to the parent index to retrieve those fields relevant to each chunk. We include an example of that parent-child index template in this exercise for comparison.
 
 ### Checklist of schema considerations
 
-An index that works best for RAG workloads has these qualities:
+In Azure AI Search, an index that works best for RAG workloads has these qualities:
 
-- Returns chunks that are relevant to the query and readable to the LLM. LLMs can handle a certain level of dirty data in chunks, such as mark up, redundancy, and incomplete strings. While chunks need to be readable and relevant to the query, they don't need to be pristine.
+- Returns chunks that are relevant to the query and readable to the LLM. LLMs can handle a certain level of dirty data in chunks, such as mark up, redundancy, and incomplete strings. While chunks need to be readable and relevant to the question, they don't need to be pristine.
 
 - Maintains a parent-child relationship between chunks of a document and the properties of the parent document, such as the file name, file type, title, author, and so forth. To answer a query, chunks could be pulled from anywhere in the index. Association with the parent document providing the chunk is useful for context, citations, and follow up queries.
 
@@ -55,23 +71,14 @@ An index that works best for RAG workloads has these qualities:
 
 - Your schema should be flat (no complex types or structures). This requirement is specific to the RAG pattern in Azure AI Search.
 
-Although Azure AI Search can't join indexes, you can create indexes that preserve parent-child relationship, and then use sequential or parallel queries in your search logic to pull from both. This exercise includes templates for parent-child elements in the same index and in separate indexes, where information from the parent index is retrieved using a look up query.
+Although Azure AI Search can't join indexes, you can create indexes that preserve parent-child relationship, and then use sequential or parallel queries in your search logic to pull from both. This exercise includes templates for parent-child elements in the same index and in separate indexes, where information from the parent index is retrieved using a lookup query.
 
-Schema design affects storage and costs. This exercise is focused on schema fundamentals. In the [Minimize storage and costs](tutorial-rag-build-solution-optimize.md) tutorial, we revisit schema design to consider narrow data types, attribution, and vector configurations that are more efficient.
-
-### Sample content for this tutorial
-
-The content you're indexing informs what fields are in the index.
-
-In this tutorial, we use PDFs and content from the NASA Earth at Night ebook. The original ebook is large, over 100 pages and 35 MB in size. We broke it up into smaller PDFs, one per page of text, to stay under the REST API payload limit of 16 MB per API call.
-
-We omit image vectorization for this exercise.
-
-The sample content is descriptive and informative. It also mentions places, regions, and countries across the world. We can include skills in our indexing pipeline that extracts this information and loads it into a queryable and filterable `locations` field.
-
-Because all of the chunks of text originate from the same parent (Earth at Night ebook), we don't need a separate index dedicated to parent fields. If we were indexing from multiple parent PDFs, we would want a parent-child index pair to capture PDF-specific fields (path, title, authors, publication date, summary) and then send look up queries to the parent index to retrieve those fields relevant to each chunk. We include an example of that parent-child index template in this exercise for comparison.
+> [!NOTE]
+> Schema design affects storage and costs. This exercise is focused on schema fundamentals. In the [Minimize storage and costs](tutorial-rag-build-solution-minimize-storage.md) tutorial, you revisit schema design to consider narrow data types, attribution, and vector configurations that offer more efficient.
 
 ## Create a basic index
+
+A minimal index for LLM is designed to store chunks of content. It includes vector fields if you want similarity search for highly relevant results, and nonvector fields for human-readable inputs to the LLM for conversational search. Nonvector chunked content in the search results becomes the grounding data sent to the LLM.
 
 1. Open Visual Studio Code and create a new file. It doesn't have to be a Python file type for this exercise.
 
@@ -101,7 +108,121 @@ Because all of the chunks of text originate from the same parent (Earth at Night
 
    Vector fields have [specific types](/rest/api/searchservice/supported-data-types#edm-data-types-for-vector-fields) and extra attributes for embedding model dimensions and configuration. `Edm.Single` is a data type that works for the more commonly used LLMs. For more information about vector fields, see [Create a vector index](vector-search-how-to-create-index.md).
 
-1. Here's the index schema for the tutorial and the NASA ebook content. It's similar to the basic schema, but adds a parent ID and metadata. It also includes fields for storing generated content that's created in the indexing pipeline.
+1. Here's the index schema for the tutorial and the Earth Book content. It's similar to the basic schema, but adds a parent ID, metadata (`title`), strings (`chunks`), and vectors for similarity search (`text_vectors`). It also includes a `locations` field for storing generated content that's created in the [indexing pipeline](tutorial-rag-build-solution-pipeline.md).
+
+    ```json
+    {
+      "name": "rag-tutorial-earth-book",
+      "defaultScoringProfile": null,
+      "fields": [
+        {
+          "name": "chunk_id", 
+          "type": "Edm.String",
+          "key": true,
+          "searchable": true,
+          "filterable": true,
+          "retrievable": true,
+          "stored": true,
+          "sortable": true,
+          "facetable": true,
+          "analyzer": "keyword",
+        },
+        {
+          "name": "parent_id",
+          "type": "Edm.String",
+          "searchable": true,
+          "filterable": true,
+          "retrievable": true,
+          "stored": true,
+          "sortable": true,
+          "facetable": true,
+          "analyzer": null,
+        },
+        {
+          "name": "chunk",
+          "type": "Edm.String",
+          "searchable": true,
+          "filterable": false,
+          "retrievable": true,
+          "stored": true,
+          "sortable": false,
+          "facetable": false,
+          "analyzer": null,
+        },
+        {
+          "name": "title",
+          "type": "Edm.String",
+          "searchable": true,
+          "filterable": true,
+          "retrievable": true,
+          "stored": true,
+          "sortable": false,
+          "facetable": false,
+          "analyzer": null,
+        },
+        {
+          "name": "text_vector",
+          "type": "Collection(Edm.Single)",
+          "searchable": true,
+          "retrievable": true,
+          "stored": true,
+          "dimensions": 1536,
+          "vectorSearchProfile": "rag-tutorial-earth-book-azureOpenAi-text-profile",
+          "vectorEncoding": null,
+        },
+        {
+          "name": "locations",
+          "type": "Collection(Edm.String)",
+          "searchable": true,
+          "filterable": true,
+          "retrievable": true,
+          "stored": true,
+          "sortable": false,
+          "facetable": false,
+          "analyzer": "standard.lucene",
+        }
+      ],
+      "vectorSearch": {
+        "algorithms": [
+          {
+            "name": "rag-tutorial-earth-book-algorithm",
+            "kind": "hnsw",
+            "hnswParameters": {
+              "metric": "cosine",
+              "m": 4,
+              "efConstruction": 400,
+              "efSearch": 500
+            },
+            "exhaustiveKnnParameters": null
+          }
+        ],
+        "profiles": [
+          {
+            "name": "rag-tutorial-earth-book-azureOpenAi-text-profile",
+            "algorithm": "rag-tutorial-earth-book-algorithm",
+            "vectorizer": "rag-tutorial-earth-book-azureOpenAi-text-vectorizer",
+            "compression": null
+          }
+        ],
+        "vectorizers": [
+          {
+            "name": "rag-tutorial-earth-book-azureOpenAi-text-vectorizer",
+            "kind": "azureOpenAI",
+            "azureOpenAIParameters": {
+              "resourceUri": "https://heidistazureopenaieastus.openai.azure.com",
+              "deploymentId": "text-embedding-ada-002",
+              "apiKey": null,
+              "modelName": "text-embedding-ada-002",
+              "authIdentity": null
+            },
+            "customWebApiParameters": null,
+            "aiServicesVisionParameters": null,
+            "amlParameters": null
+          }
+        ],
+        "compressions": []
+      }
+    }
 
 
 <!-- Objective:
@@ -128,8 +249,6 @@ Tasks:
 - H2 How to add structured data (example is "location", top-level field, data aquisition is through the pipeline) -->
 
 <!-- 
-
-ps 1: We have another physical resource limit for our services: vector index size. HNSW requires vector indices to reside entirely in memory. "Vector index size" is our customer-facing resource limit that governs the memory consumed by their vector data. (and this is a big reason why the beefiest VMs have 512 GB of RAM). Increasing partitions also increases the amount of vector quota for customers as well. 
 
 ps 2: A richer index has more fields and configurations, and is often better because extra fields support richer queries and more opportunities for relevance tuning. Filters and scoring profiles for boosting apply to nonvector fields. If you have content that should be matched precisely and not similarly, such as a name or employee number, then create fields to contain that information.*
 

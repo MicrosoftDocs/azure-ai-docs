@@ -12,7 +12,7 @@ ms.date: 09/12/2024
 
 ---
 
-# Maximize relevance (RAG tutorial - Azure AI Search)
+# Tutorial: Maximize relevance (RAG in Azure AI Search)
 
 In this tutorial, learn how to improve the relevance of search results used in RAG solutions. Azure AI Search includes a broad range of relevance tuning capabilities. Learn which ones are best for solving specific problems.
 
@@ -36,4 +36,4 @@ Key points:
 ## Next step
 
 > [!div class="nextstepaction"]
-> [Reduce vector storage and costs](tutorial-rag-build-solution-optimize.md)
+> [Reduce vector storage and costs](tutorial-rag-build-solution-minimize-storage.md)

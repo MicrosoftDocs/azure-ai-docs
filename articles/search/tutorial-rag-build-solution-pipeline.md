@@ -12,7 +12,7 @@ ms.date: 09/12/2024
 
 ---
 
-# Build an indexing pipeline (RAG tutorial - Azure AI Search)
+# Tutorial: Build an indexing pipeline (RAG in Azure AI Search)
 
 In this tutorial, learn how to build an automated indexing pipeline for a RAG solution on Azure AI Search.
 

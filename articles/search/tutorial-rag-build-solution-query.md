@@ -12,7 +12,7 @@ ms.date: 09/12/2024
 
 ---
 
-# Search your data using a chat model (RAG tutorial - Azure AI Search)
+# Tutorial: Search your data using a chat model (RAG in Azure AI Search)
 
 In this tutorial, learn how to send queries and prompts to a chat model for generative search.
 
@@ -94,4 +94,4 @@ Only fields marked as "retrievable" in the search index can appear in results. I
 ## Next step
 
 > [!div class="nextstepaction"]
-> [Maximize relevance](tutorial-rag-build-solution-relevance.md)
+> [Maximize relevance](tutorial-rag-build-solution-maximize-relevance.md)

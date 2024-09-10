@@ -13,7 +13,7 @@ ms.date: 09/12/2024
 
 ---
 
-# Choose embedding and chat models (RAG tutorial - Azure AI Search)
+# Tutorial: Choose embedding and chat models (RAG in Azure AI Search)
 
 A RAG solution built on Azure AI Search takes a dependency on embedding models for vectorization, and on chat models for conversational search over your data.
 
@@ -32,23 +32,23 @@ If you don't have an Azure subscription, create a [free account](https://azure.m
 
 - The Azure portal, used to deploy models and configure role assignments in the Azure cloud.
 
-- An **Owner** role on your Azure subscription is necessary for creating role assignments. Your model provider has more role requirements for deploying and accessing models. Those are noted in the following steps.
+- An **Owner** role on your Azure subscription, necessary for creating role assignments. Your model provider has more role requirements for deploying and accessing models. Those are noted in the following steps.
 
-- A model provider, such as [Azure OpenAI](/azure/ai-services/openai/how-to/create-resource), Azure AI Vision created using [a multi-service account](/azure/ai-services/multi-service-resource), or [Azure AI Studio](https://ai.azure.com/).
+- A model provider, such as [Azure OpenAI](/azure/ai-services/openai/how-to/create-resource), Azure AI Vision via an [Azure AI multi-service account](/azure/ai-services/multi-service-resource), or [Azure AI Studio](https://ai.azure.com/).
 
-  We use Azure OpenAI in this tutorial, but list the other Azure resources so that you know your options for integrated embedding.
+  We use Azure OpenAI in this tutorial. Other providers are listed so that you know your options for integrated embedding.
 
 - Azure AI Search, Basic tier or higher provides a [managed identity](search-howto-managed-identities-data-sources.md) used in role assignments. 
 
-To complete all of the tutorials in this series, the region must support both Azure AI Search and the model provider. See supported regions for:
+- A shared region. To complete all of the tutorials in this series, the region must support both Azure AI Search and the model provider. See supported regions for:
 
-- [Azure OpenAI regions](/azure/ai-services/openai/concepts/models#model-summary-table-and-region-availability)
+  - [Azure OpenAI regions](/azure/ai-services/openai/concepts/models#model-summary-table-and-region-availability)
 
-- [Azure AI Vision regions](/azure/ai-services/computer-vision/overview-image-analysis?tabs=4-0#region-availability)
+  - [Azure AI Vision regions](/azure/ai-services/computer-vision/overview-image-analysis?tabs=4-0#region-availability)
 
-- [Azure AI Studio](/azure/ai-studio/reference/region-support) regions. 
+  - [Azure AI Studio](/azure/ai-studio/reference/region-support) regions. 
 
-Azure AI Search is currently facing limited availability in some regions, such as West Europe and West US 2/3. Check the [Azure AI Search region list](search-region-support.md) to confirm availability.
+  Azure AI Search is currently facing limited availability in some regions, such as West Europe and West US 2/3. Check the [Azure AI Search region list](search-region-support.md) to confirm availability.
 
 > [!TIP]
 > Currently, the following regions provide the most overlap and have the most capacity: **East US**, **East US2**, and **South Central** in the Americas; **France Central** or **Switzerland North** in Europe; **Australia East** in Asia Pacific.
@@ -73,7 +73,7 @@ Azure AI Search provides skill and vectorizer support for the following embeddin
 
 <sup>2</sup> Deployed models in the model catalog are accessed over an AML endpoint. We use the existing AML skill for this connection.
 
-You can use other models besides those listed here. For more information, see [Use non-Azure models for embeddings](#use-non-azure-models-for-embeddings-and-chat) in this article.
+You can use other models besides those listed here. For more information, see [Use non-Azure models for embeddings](#use-non-azure-models-for-embeddings) in this article.
 
 > [!NOTE]
 > Inputs to an embedding models are typically chunked data. In an Azure AI Search RAG pattern, chunking is handled in the indexer pipeline, covered in [another tutorial](tutorial-rag-build-solution-pipeline.md) in this series.
@@ -108,8 +108,8 @@ You must have [**Cognitive Services OpenAI Contributor**]( /azure/ai-services/op
 1. Specify a deployment name. We recommend "text-embedding-ada-002".
 1. Accept the defaults.
 1. Select **Deploy**.
-1. Repeat the previous steps for GPT-35-Turbo.
-1. Make a note of the model names and endpoint. Embedding skills and vectorizers assemble the full endpoint internally, so you only need the resource name. For example, given `https://MY-FAKE-ACCOUNT.openai.azure.com/openai/deployments/text-embedding-ada-002/embeddings?api-version=2023-05-15`, the endpoint you should provide in skill and vectorizer definitions is `https://MY-FAKE-ACCOUNT.openai.azure.com`.
+1. Repeat the previous steps for **gpt-35-turbo**.
+1. Make a note of the model names and endpoint. Embedding skills and vectorizers assemble the full endpoint internally, so you only need the resource URI. For example, given `https://MY-FAKE-ACCOUNT.openai.azure.com/openai/deployments/text-embedding-ada-002/embeddings?api-version=2023-05-15`, the endpoint you should provide in skill and vectorizer definitions is `https://MY-FAKE-ACCOUNT.openai.azure.com`.
 
 ## Configure search engine access to Azure models
 
