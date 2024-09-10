@@ -12,13 +12,275 @@ ms.date: 09/12/2024
 
 ---
 
-# Tutorial: Build an indexing pipeline (RAG in Azure AI Search)
+# Tutorial: Build an indexing pipeline for RAG on Azure AI Search
 
-In this tutorial, learn how to build an automated indexing pipeline for a RAG solution on Azure AI Search.
+Learn how to build an automated indexing pipeline for a RAG solution on Azure AI Search. Indexing automation is through an indexer that drives indexing and skillset execution, providing [integrated data chunking and vectorization](vector-search-integrated-vectorization.md) on a one-time or recurring basis for incremental updates.
 
-An indexer drives indexing and skillset execution that provides [integrated data chunking and vectorization](vector-search-integrated-vectorization.md) on a one-time or recurring basis for incremental updates. You create an indexer, data source connection, skillset, and provide the index schema you created in the previous tutorial. This exercise uses Azure Blob storage as the data source.
+In this tutorial, you:
+
+> [!div class="checklist"]
+> - Provide the index schema from the previous tutorial 
+> - Create a data source connection
+> - Create an indexer
+> - Create a skillset
+> - Run the indexer and check results
 
 If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) before you begin.
+
+> [!TIP]
+> You can use the [Import and vectorize data wizard](search-import-data-portal.md) to create your pipeline. For some quickstarts, see [Image search](search-get-started-portal-image-search.md) and [Vector search](search-get-started-portal-import-vectors.md).
+
+## Prerequisites
+
+- [Visual Studio Code](https://code.visualstudio.com/download) with the [Python extension](https://marketplace.visualstudio.com/items?itemName=ms-python.python) and the [Jupyter package](https://pypi.org/project/jupyter/). For more information, see [Python in Visual Studio Code](https://code.visualstudio.com/docs/languages/python).
+
+- Azure Storage general purpose account. This exercise uploads PDF files into blob storage for automated indexing.
+
+- Azure AI Search, Basic tier or above for managed identity and semantic ranking. Choose a region that's shared with Azure OpenAI.
+
+- Azure OpenAI, with a deployment of text-embedding-002. For more information about embedding models used in RAG solutions, see [Choose embedding models for RAG in Azure AI Search](tutorial-rag-build-solution-models.md)
+
+## Download file
+
+[Download a Jupyter notebook](https://github.com/Azure-Samples/azure-search-python-samples/blob/main/Tutorial-RAG/Tutorial-rag.ipynb) from GitHub to send the requests in this quickstart. For more information, see [Downloading files from GitHub](https://docs.github.com/get-started/start-your-journey/downloading-files-from-github).
+
+## Provide the index schema
+
+Here's the index schema from the [previous tutorial](search\tutorial-rag-build-solution-index-schema.md). It's organized around vectorized and nonvectorized chunks. It includes a `locations` field that stores AI-generated content created by the skillset.  
+
+```python
+index_name = "py-rag-tutorial-idx"
+index_client = SearchIndexClient(endpoint=AZURE_SEARCH_SERVICE, credential=AZURE_SEARCH_CREDENTIAL)  
+fields = [
+    SearchField(name="parent_id", type=SearchFieldDataType.String),  
+    SearchField(name="title", type=SearchFieldDataType.String),
+    SearchField(name="locations", type=SearchFieldDataType.Collection(SearchFieldDataType.String), filterable=True),
+    SearchField(name="chunk_id", type=SearchFieldDataType.String, key=True, sortable=True, filterable=True, facetable=True, analyzer_name="keyword"),  
+    SearchField(name="chunk", type=SearchFieldDataType.String, sortable=False, filterable=False, facetable=False),  
+    SearchField(name="text_vector", type=SearchFieldDataType.Collection(SearchFieldDataType.Single), vector_search_dimensions=1536, vector_search_profile_name="myHnswProfile")
+    ]  
+    
+# Configure the vector search configuration  
+vector_search = VectorSearch(  
+    algorithms=[  
+        HnswAlgorithmConfiguration(name="myHnsw"),
+    ],  
+    profiles=[  
+        VectorSearchProfile(  
+            name="myHnswProfile",  
+            algorithm_configuration_name="myHnsw",  
+            vectorizer="myOpenAI",  
+        )
+    ],  
+    vectorizers=[  
+        AzureOpenAIVectorizer(  
+            name="myOpenAI",  
+            kind="azureOpenAI",  
+            azure_open_ai_parameters=AzureOpenAIParameters(  
+                resource_uri=AZURE_OPENAI_ACCOUNT,  
+                deployment_id="text-embedding-ada-002",
+                model_name="text-embedding-ada-002"
+            ),
+        ),  
+    ],  
+)  
+    
+# Create the search index on Azure AI Search
+index = SearchIndex(name=index_name, fields=fields, vector_search=vector_search)  
+result = index_client.create_or_update_index(index)  
+print(f"{result.name} created")  
+```
+
+## Create a data source connection
+
+In this step, set up a connection to Azure Blob Storage. The indexer retrieves PDFs from a container. You can create the container and upload files in the Azure portal.
+
+1. Sign in to the Azure portal and find your Azure Storage account.
+
+1. Create a container and upload the PDFs from [earth_book_2019_text_pages](https://github.com/Azure-Samples/azure-search-sample-data/tree/main/nasa-e-book/earth_book_2019_text_pages).
+
+1. Make sure Azure AI Search has **Storage Blob Data Reader** permissions on the resource.
+
+1. Next, in Visual Studio Code, define an indexer data source that provides connection information during indexing.
+
+    ```python
+    from azure.search.documents.indexes import SearchIndexerClient
+    from azure.search.documents.indexes.models import (
+        SearchIndexerDataContainer,
+        SearchIndexerDataSourceConnection
+    )
+    
+    # Create a data source 
+    indexer_client = SearchIndexerClient(endpoint=AZURE_SEARCH_SERVICE, credential=AZURE_SEARCH_CREDENTIAL)
+    container = SearchIndexerDataContainer(name="nasa-ebook-pdfs-all")
+    data_source_connection = SearchIndexerDataSourceConnection(
+        name="py-rag-tutorial-ds",
+        type="azureblob",
+        connection_string=AZURE_STORAGE_CONNECTION,
+        container=container
+    )
+    data_source = indexer_client.create_or_update_data_source_connection(data_source_connection)
+    
+    print(f"Data source '{data_source.name}' created or updated")
+    ```
+
+## Create a skillset
+
+Skills are the basis for integrated data chunking and vectorization. At a minimum, you want a Text Split skill to chunk your content, and an embedding skill that create vector representations of your chunked content.
+
+In this skillset, an extra skill is used to create structured data in the index. The Entity Recognition skill is used to identify locations, which can range from proper names to generic references, such as "ocean" or "mountain". Having structured data gives you more options for creating interesting queries and boosting relevance.
+
+```python
+from azure.search.documents.indexes.models import (
+    SplitSkill,
+    InputFieldMappingEntry,
+    OutputFieldMappingEntry,
+    AzureOpenAIEmbeddingSkill,
+    EntityRecognitionSkill,
+    SearchIndexerIndexProjections,
+    SearchIndexerIndexProjectionSelector,
+    SearchIndexerIndexProjectionsParameters,
+    IndexProjectionMode,
+    SearchIndexerSkillset,
+    CognitiveServicesAccountKey
+)
+
+# Create a skillset  
+skillset_name = "py-rag-tutorial-ss"
+
+split_skill = SplitSkill(  
+    description="Split skill to chunk documents",  
+    text_split_mode="pages",  
+    context="/document",  
+    maximum_page_length=2000,  
+    page_overlap_length=500,  
+    inputs=[  
+        InputFieldMappingEntry(name="text", source="/document/content"),  
+    ],  
+    outputs=[  
+        OutputFieldMappingEntry(name="textItems", target_name="pages")  
+    ],  
+)  
+  
+embedding_skill = AzureOpenAIEmbeddingSkill(  
+    description="Skill to generate embeddings via Azure OpenAI",  
+    context="/document/pages/*",  
+    resource_uri=AZURE_OPENAI_ACCOUNT,  
+    deployment_id="text-embedding-ada-002",  
+    model_name="text-embedding-ada-002",
+    dimensions=1536,
+    inputs=[  
+        InputFieldMappingEntry(name="text", source="/document/pages/*"),  
+    ],  
+    outputs=[  
+        OutputFieldMappingEntry(name="embedding", target_name="text_vector")  
+    ],  
+)
+
+entity_skill = EntityRecognitionSkill(
+    description="Skill to recognize entities in text",
+    context="/document/pages/*",
+    categories=["Location"],
+    default_language_code="en",
+    inputs=[
+        InputFieldMappingEntry(name="text", source="/document/pages/*")
+    ],
+    outputs=[
+        OutputFieldMappingEntry(name="locations", target_name="locations")
+    ]
+)
+  
+index_projections = SearchIndexerIndexProjections(  
+    selectors=[  
+        SearchIndexerIndexProjectionSelector(  
+            target_index_name=index_name,  
+            parent_key_field_name="parent_id",  
+            source_context="/document/pages/*",  
+            mappings=[  
+                InputFieldMappingEntry(name="chunk", source="/document/pages/*"),  
+                InputFieldMappingEntry(name="text_vector", source="/document/pages/*/text_vector"),  
+                InputFieldMappingEntry(name="title", source="/document/metadata_storage_name"),  
+            ],  
+        ),  
+    ],  
+    parameters=SearchIndexerIndexProjectionsParameters(  
+        projection_mode=IndexProjectionMode.SKIP_INDEXING_PARENT_DOCUMENTS  
+    ),  
+) 
+
+cognitive_services_account = CognitiveServicesAccountKey(key=AZURE_AI_MULTISERVICE_KEY)
+
+skills = [split_skill, embedding_skill, entity_skill]
+
+skillset = SearchIndexerSkillset(  
+    name=skillset_name,  
+    description="Skillset to chunk documents and generating embeddings",  
+    skills=skills,  
+    index_projections=index_projections,
+    cognitive_services_account=cognitive_services_account
+)
+  
+client = SearchIndexerClient(endpoint=AZURE_SEARCH_SERVICE, credential=AZURE_SEARCH_CREDENTIAL)  
+client.create_or_update_skillset(skillset)  
+print(f"{skillset.name} created")  
+```
+
+## Create and run the indexer
+
+```python
+from azure.search.documents.indexes.models import (
+    SearchIndexer,
+    FieldMapping
+)
+
+# Create an indexer  
+indexer_name = "py-rag-tutorial-idxr" 
+
+indexer_parameters = None
+
+indexer = SearchIndexer(  
+    name=indexer_name,  
+    description="Indexer to index documents and generate embeddings",  
+    skillset_name=skillset_name,  
+    target_index_name=index_name,  
+    data_source_name=data_source.name,
+    # Map the metadata_storage_name field to the title field in the index to display the PDF title in the search results  
+    field_mappings=[FieldMapping(source_field_name="metadata_storage_name", target_field_name="title")],
+    parameters=indexer_parameters
+)  
+
+indexer_client = SearchIndexerClient(endpoint=AZURE_SEARCH_SERVICE, credential=AZURE_SEARCH_CREDENTIAL)  
+indexer_result = indexer_client.create_or_update_indexer(indexer)  
+  
+# Run the indexer  
+indexer_client.run_indexer(indexer_name)  
+print(f' {indexer_name} is created and running. Give the indexer a few minutes before running a query.')  
+```
+
+## Run hybrid search to check results
+
+```python
+from azure.search.documents import SearchClient
+from azure.search.documents.models import VectorizableTextQuery
+
+# Hybrid Search
+query = "where are the nasa headquarters located?"  
+
+search_client = SearchClient(endpoint=AZURE_SEARCH_SERVICE, credential=AZURE_SEARCH_CREDENTIAL, index_name=index_name)
+vector_query = VectorizableTextQuery(text=query, k_nearest_neighbors=1, fields="text_vector", exhaustive=True)
+  
+results = search_client.search(  
+    search_text=query,  
+    vector_queries= [vector_query],
+    select=["parent_id", "chunk_id", "chunk, locations"],
+    top=1
+)  
+  
+for result in results:  
+    print(f"Score: {result['@search.score']}")  
+    print(f"Content: {result['chunk']}") 
+```
+
 
 <!-- Objective:
 

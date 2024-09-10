@@ -18,7 +18,7 @@ This tutorial series demonstrates a pattern for building RAG solutions on Azure 
 
 Sample data is a [collection of PDFs](https://github.com/Azure-Samples/azure-search-sample-data/tree/main/nasa-e-book/earth_book_2019_text_pages) uploaded to Azure Storage.
 
-Sample code can be found in [this Python notebook](LINK-TBD), but we recommend using this series for context, insights, and alternative approaches.
+Sample code can be found in [this Python notebook](https://github.com/Azure-Samples/azure-search-python-samples/blob/main/Tutorial-RAG/Tutorial-rag.ipynb), but we recommend using this series for context, insights, and alternative approaches.
 
 ## Exercises in this series
 

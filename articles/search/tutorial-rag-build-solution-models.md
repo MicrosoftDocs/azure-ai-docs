@@ -13,7 +13,7 @@ ms.date: 09/12/2024
 
 ---
 
-# Tutorial: Choose embedding and chat models (RAG in Azure AI Search)
+# Tutorial: Choose embedding and chat models for RAG in Azure AI Search
 
 A RAG solution built on Azure AI Search takes a dependency on embedding models for vectorization, and on chat models for conversational search over your data.
 
