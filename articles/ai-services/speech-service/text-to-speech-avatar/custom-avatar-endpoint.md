@@ -2,12 +2,12 @@
 title: Deploy your custom text to speech avatar model as an endpoint - Speech service
 titleSuffix: Azure AI services
 description: Learn about how to deploy your custom text to speech avatar model as an endpoint. 
-author: sally-baolian
+author: eric-urban
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
 ms.date: 4/15/2024
-ms.author: v-baolianzou
+ms.author: eur
 ---
 
 # Deploy your custom text to speech avatar model as an endpoint
