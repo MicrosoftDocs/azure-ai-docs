@@ -5,7 +5,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.topic: include
-ms.date: 05/23/2024
+ms.date: 09/09/2024
 ms.author: lajanuar
 ms.custom: devx-track-csharp, ignite-2023, linux-related-content
 ---
@@ -15,7 +15,7 @@ ms.custom: devx-track-csharp, ignite-2023, linux-related-content
 <!-- markdownlint-disable MD033 -->
 <!-- markdownlint-disable MD034 -->
 
-[Client library](/java/api/overview/azure/ai-documentintelligence-readme?view=azure-java-preview&preserve-view=true) | [SDK reference](https://azuresdkdocs.blob.core.windows.net/$web/java/azure-ai-documentintelligence/1.0.0-beta.2/index.html) | [REST API reference](/rest/api/aiservices/operation-groups?view=rest-aiservices-v4.0%20(2024-07-31-preview)&preserve-view=true) | [Package (Maven)](https://central.sonatype.com/artifact/com.azure/azure-ai-documentintelligence/1.0.0-beta.2) | [Samples]( https://github.com/Azure/azure-sdk-for-java/blob/azure-ai-documentintelligence_1.0.0-beta.2/sdk/documentintelligence/azure-ai-documentintelligence/src/samples/README.md) |[Supported REST API version](../../../sdk-overview-v4-0.md)
+[Client library](/java/api/overview/azure/ai-documentintelligence-readme?view=azure-java-preview&preserve-view=true) | [SDK reference](https://azuresdkdocs.blob.core.windows.net/$web/java/azure-ai-documentintelligence/1.0.0-beta.4/index.html) | [REST API reference](/rest/api/aiservices/operation-groups?view=rest-aiservices-v4.0%20(2024-07-31-preview)&preserve-view=true) | [Package (Maven)](https://mvnrepository.com/artifact/com.azure/azure-ai-documentintelligence/1.0.0-beta.4) | [Samples](https://github.com/Azure/azure-sdk-for-java/tree/azure-ai-documentintelligence_1.0.0-beta.4/sdk/documentintelligence/azure-ai-documentintelligence/src/samples) |[Supported REST API version](../../../sdk-overview-v4-0.md)
 
 ## Prerequisites
 
@@ -97,7 +97,7 @@ This article uses the Gradle dependency manager. You can find the client library
        mavenCentral()
    }
    dependencies {
-       implementation group: 'com.azure', name: 'azure-ai-documentintelligence', version: '1.0.0-beta.2'
+       implementation group: 'com.azure', name: 'azure-ai-documentintelligence', version: '1.0.0-beta.4'
    }
    ```
 
