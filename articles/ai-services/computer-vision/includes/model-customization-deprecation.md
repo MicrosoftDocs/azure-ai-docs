@@ -11,4 +11,6 @@ ms.author: pafarley
 ---
 
 > [!IMPORTANT]
-> The Azure AI Vision model customization feature will be deprecated on January 10, 2025. After this date, it will no longer be supported.
+> This feature is now deprecated. On January 10, 2025, the Azure AI Vision Product Recognition and model customization features will be retired: after this date, API calls to these services will fail.
+>
+> To maintain a smooth operation of your models, transition to [Azure AI Custom Vision](/azure/ai-services/Custom-Vision-Service/overview), which is now generally available. Custom Vision offers similar functionality to these retiring features.
