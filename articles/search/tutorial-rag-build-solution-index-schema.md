@@ -45,7 +45,7 @@ Chunks are the focus of the schema, and each chunk is the defining element of a 
 
 In addition to structural considerations, like chunked content, you also want to consider the substance of your content because it also informs what fields are indexed.
 
-In this tutorial, sample data consists of PDFs and content from the NASA Earth Book. This content is descriptive and informative, with numerous references to geographies, countries, and areas across the world. To capture this information in our index and potentially use it in queries, we include skills in our indexing pipeline that recognize and extract this information, loading it into a searchable and filterable `locations` field.
+In this tutorial, sample data consists of PDFs and content from the NASA Earth Book. This content is descriptive and informative, with numerous references to geographies, countries, and areas across the world. To capture this information in our index and potentially use it in queries, we include skills in our indexing pipeline that recognize and extract this information, loading it into a searchable and filterable `locations` field. Adding structured content to your index gives you more options for filtering, relevance tuning, and richer answers.
 
 The original ebook is large, over 100 pages and 35 MB in size. We broke it up into smaller PDFs, one per page of text, to stay under the REST API payload limit of 16 MB per API call.
 
@@ -57,7 +57,7 @@ Chunked content typically derives from a larger document. And although the schem
 
 An inflection point in schema design is whether to have two indexes for parent and child/chunked content, or a single index that repeats parent elements for each chunk.
 
-In this tutorial, because all of the chunks of text originate from a single parent (NASA Earth Book), you don't need a separate index dedicated to up level parent fields. However, if you index from multiple parent PDFs, you might want a parent-child index pair to capture level-specific fields and then send lookup queries to the parent index to retrieve those fields relevant to each chunk.
+In this tutorial, because all of the chunks of text originate from a single parent (NASA Earth Book), you don't need a separate index dedicated to up level the parent fields. However, if you're indexing from multiple parent PDFs, you might want a parent-child index pair to capture level-specific fields and then send [lookup queries](https://learn.microsoft.com/rest/api/searchservice/documents/get) to the parent index to retrieve those fields relevant to each chunk.
 
 ### Checklist of schema considerations
 

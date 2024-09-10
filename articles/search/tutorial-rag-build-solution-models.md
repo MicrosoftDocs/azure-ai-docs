@@ -102,13 +102,21 @@ This tutorial series uses the following models and model providers:
 You must have [**Cognitive Services OpenAI Contributor**]( /azure/ai-services/openai/how-to/role-based-access-control#cognitive-services-openai-contributor) or higher to deploy models in Azure OpenAI.
 
 1. Go to [Azure OpenAI Studio](https://oai.azure.com/).
+
 1. Select **Deployments** on the left menu.
+
 1. Select **Deploy model** > **Deploy base model**.
+
 1. Select **text-embedding-ada-02** from the dropdown list and confirm the selection.
+
 1. Specify a deployment name. We recommend "text-embedding-ada-002".
+
 1. Accept the defaults.
+
 1. Select **Deploy**.
+
 1. Repeat the previous steps for **gpt-35-turbo**.
+
 1. Make a note of the model names and endpoint. Embedding skills and vectorizers assemble the full endpoint internally, so you only need the resource URI. For example, given `https://MY-FAKE-ACCOUNT.openai.azure.com/openai/deployments/text-embedding-ada-002/embeddings?api-version=2023-05-15`, the endpoint you should provide in skill and vectorizer definitions is `https://MY-FAKE-ACCOUNT.openai.azure.com`.
 
 ## Configure search engine access to Azure models
@@ -118,13 +126,20 @@ For pipeline and query execution, this tutorial uses Microsoft Entra ID for auth
 Assign yourself and the search service identity permissions on Azure OpenAI. The code for this tutorial runs locally. Requests to Azure OpenAI originate from your system. Also, search results from the search engine are passed to Azure OpenAI. For these reasons, both you and the search service need permissions on Azure OpenAI.
 
 1. Sign in to the [Azure portal](https://portal.azure.com) and [find your search service](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices).
+
 1. Configure Azure AI Search to [use a system-managed identity](search-howto-managed-identities-data-sources.md).
+
 1. Find your Azure OpenAI resource.
+
 1. Select **Access control (IAM)** on the left menu. 
+
 1. Select **Add role assignment**.
+
 1. Select [**Cognitive Services OpenAI User**](/azure/ai-services/openai/how-to/role-based-access-control#cognitive-services-openai-userpermissions).
 1. Select **Managed identity** and then select **Members**. Find the system-managed identity for your search service in the dropdown list.
+
 1. Next, select **User, group, or service principal** and then select **Members**. Search for your user account and then select it from the dropdown list.
+
 1. Select **Review and Assign** to create the role assignments.
 
 For access to models on Azure AI Vision, assign **Cognitive Services OpenAI User**. For Azure AI Studio, assign **Azure AI Developer**.
