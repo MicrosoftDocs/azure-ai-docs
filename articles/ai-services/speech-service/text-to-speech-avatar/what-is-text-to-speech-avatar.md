@@ -5,7 +5,7 @@ description: Get an overview of the Text to speech avatar feature of speech serv
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: overview
-ms.date: 2/24/2024
+ms.date: 9/11/2024
 ms.reviewer: v-baolianzou
 ms.author: eur
 author: eric-urban
