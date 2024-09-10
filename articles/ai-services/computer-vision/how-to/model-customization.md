@@ -352,7 +352,7 @@ The prediction results appear in the right column.
 
 ## Prepare training data
 
-The first thing you need to do is create a COCO file from your training data. You can create a COCO file by converting an old Custom Vision project using the [migration script](migrate-from-custom-vision.md). Or, you can create a COCO file from scratch using some other labeling tool. See the following specification:
+The first thing you need to do is create a COCO file from your training data. See the following specification:
 
 [!INCLUDE [coco-files](../includes/coco-files.md)]
 
