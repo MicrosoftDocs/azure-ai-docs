@@ -77,7 +77,7 @@ search_client = SearchClient(
 
 # Provide instructions to the model
 GROUNDED_PROMPT="""
-You are an AI assistant that helps users find the information their looking for.
+You are an AI assistant that helps users learn from the information found in the source material.
 Answer the query using only the sources provided below.
 Use bullets if the answer has multiple points.
 If the answer is longer than 3 sentences, provide a summary.
@@ -117,21 +117,49 @@ print(response.choices[0].message.content)
 
 In this example, the answer is based on a single input (`top=1`) consisting of the one chunk determined by the search engine to be the most relevant. Instructions in the prompt tell the LLM to use only the information in the `sources`, or formatted search results. Results from the first query`"how much of earth is covered by water"` should look similar to the following example.
 
-```
-About 72% of the Earth's surface is covered in water, according to page-79.pdf. The provided sources do not give further information on this topic.
-```
+:::image type="content" source="media/tutorial-rag-solution/chat-results-1.png" alt-text="Screenshot of an LLM response to a simple question using a single match from search results.":::
 
 ### Changing the inputs
 
-Increasing or decreasing the number of inputs to the LLM can have a large impact on the response. Try running the same query again after setting `top=3`. When you increase the inputs, the model returns different results each time, even if the query doesn't change. Here's one example of what the model returns after increasing the inputs to 3.
+Increasing or decreasing the number of inputs to the LLM can have a large effect on the response. Try running the same query again after setting `top=3`. When you increase the inputs, the model returns different results each time, even if the query doesn't change. Here's one example of what the model returns after increasing the inputs to 3.
 
-```
-About 71% of the earth is covered by water, while the remaining 29% is land. Canada has numerous water bodies like lakes, ponds, and streams, giving it a unique landscape. The Nunavut territory is unsuitable for agriculture due to being snow-covered most of the year and frozen during the summer thaw. Don Juan Pond in the McMurdo Dry Valleys of Antarctica is the saltiest body of water on earth with a salinity level over 40%, much higher than the Dead Sea and Great Salt Lake. It rarely snows in the valley and Don Juan's calcium chloride–rich waters rarely freeze. NASA studies our planet's physical processes, including the water cycle, carbon cycle, ocean circulation, heat movement, and light interaction. NASA has a unique vantage point of observing the earth and making sense of it from space.
-```
+:::image type="content" source="media/tutorial-rag-solution/chat-results-2.png" alt-text="Screenshot of an LLM response to a simple question using a larger result set.":::
+
+Because the model is bound to just the grounding data, the answer is larger also more vague. You can use relevance tuning to potentially generate more focused answers.
 
 ### Changing the prompt
 
-You can control the format of the output, tone, and whether you want the model to supplement the answer with its own training data by changing the prompt. 
+You can also change the prompt to control the format of the output, tone, and whether you want the model to supplement the answer with its own training data by changing the prompt. Here's another example of LLM output if we refocus the prompt.
+
+```python
+# Provide instructions to the model
+GROUNDED_PROMPT="""
+You are an AI assistant that helps users pull facts from the source material.
+Answer the query cocisely, using bulleted points.
+Answer ONLY with the facts listed in the list of sources below.
+If there isn't enough information below, say you don't know.
+Do not generate answers that don't use the sources below.
+Do not exceed 5 bullets.
+Query: {query}
+Sources:\n{sources}
+"""
+```
+
+Output from changing just the prompt, retaining `top=3` from the previous query, might look like this example. 
+
+:::image type="content" source="media/tutorial-rag-solution/chat-results-3.png" alt-text="Screenshot of an LLM response to a change in prompt composition.":::
+
+In this tutorial, assessing the quality of the answer is subjective, but since the model is working with the same results as the previous query, the answer feels incomplete given the body of content available. Let's try the request one last time, increasing `top=10`.
+
+:::image type="content" source="media/tutorial-rag-solution/chat-results-4.png" alt-text="Screenshot of an LLM response to a simple question using top set to 10.":::
+
+There are several observations to note:
+
+- Raising the `top` value can exhaust available quota on the model. If there's no quota, an error message is returned.
+
+- Improving the relevance of the search results from Azure AI Search is the most effective approach for maximizing the utility of your LLM.
+
+In the next series of tutorials, the focus shifts to maximizing relevance and optimizing query performance for speed and concision. We revisit the schema definition and query logic to implement relevance features, but the rest of the pipeline and models remain intact.
 
 <!-- In this tutorial, learn how to send queries and prompts to a chat model for generative search.
 
@@ -210,7 +238,7 @@ In preview APIs, you can set a "threshhold" query parameter to exlude results ha
 
 Only fields marked as "retrievable" in the search index can appear in results. If a field you want isn't already retrievable, you must drop and rebuild the index to create the physical data structures for storing retrievable data. -->
 
-## Next step
+<!-- ## Next step
 
 > [!div class="nextstepaction"]
-> [Maximize relevance](tutorial-rag-build-solution-maximize-relevance.md)
+> [Maximize relevance](tutorial-rag-build-solution-maximize-relevance.md) -->

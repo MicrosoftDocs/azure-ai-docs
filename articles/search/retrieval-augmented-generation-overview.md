@@ -222,6 +222,8 @@ A RAG solution that includes Azure AI Search can leverage [built-in data chunkin
 
 + [Try this RAG quickstart](search-get-started-rag.md) for a demonstration of query integration with chat models over a search index.
 
++ [Tutorial: How to build a RAG solution in Azure AI Search](tutorial-rag-build-solution.md) for focused coverage on the features and pattern for RAG solutions that obtain grounding data from a search index.
+
 + Start with solution accelerators:
 
   + ["Chat with your data" solution accelerator](https://github.com/Azure-Samples/chat-with-your-data-solution-accelerator) helps you create a custom RAG solution over your content.
