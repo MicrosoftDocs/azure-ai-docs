@@ -19,13 +19,15 @@ This article explains how to get the most value from your Azure trial subscripti
 
 ## Sign up for a free subscription
 
-To try Azure AI Search for free, [start a trial subscription](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A261C142F). The trial subscription is non-renewable, active for one month, and comes with free credits so that you can create services at no charge. In the United States, the credit amount is $200. Equivalent credits are available in other currencies. 
+To try Azure AI Search for free, [start a trial subscription](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A261C142F). The trial subscription is non-renewable, active for one month, and comes with free credits so that you can create services at no charge. In the United States, the credit amount is $200. Equivalent credits are available in other currencies.
+
+Although you can create a free search service that doesn't use up your credits, we recommend provisioning the **Basic** tier so that you can work with larger indexes, more indexes, and premium features like semantic ranking.
 
 The [Azure portal](https://portal.azure.com/) is the easiest approach for first-time users who want to create and use Azure resources. You can access and manage all of your subscriptions and resources from the portal. For Azure AI Search, you can use the portal to build components for classic search scenarios and generative search (RAG) workloads.
 
-## Roadmap for RAG
+## Start with a plan
 
-Although you can create a free search service that doesn't use up your credits, we recommend provisioning the **Basic** tier so that you can work with larger indexes, more indexes, and premium features like semantic ranking.
+Having a plan of action can help you get the most out of your trial subscription. For Azure AI Search, most newer customers and developers are exploring RAG patterns.
 
 To evaluate Azure for RAG scenarios, you should have three or five Azure resources for:
 
@@ -61,6 +63,9 @@ Continue with the following links to review which regions also provide the model
 
 > [!TIP]
 > Currently, these regions provide the most overlap and capacity: **East US**, **East US2**, and **South Central** in the Americas; **France Central** or **Switzerland North** in Europe; **Australia East** in Asia Pacific.
+>
+> For Azure AI Vision and AI Search interoperability, choose one of these regions: **East US**, **France Central**, **Korea Central**, **North Europe**, **South East Asia**, or **West US**.
+
 
 ## Create services
 
@@ -74,7 +79,7 @@ Continue with the following links to review which regions also provide the model
 
    :::image type="content" source="media/search-try-for-free/azure-ai-service-marketplace.png" alt-text="Screenshot of the Azure AI Services offering in the Azure Marketplace.":::
 
-## Estimating costs
+## Estimate costs
 
 During the trial period, you want to stay under the $200 credit allocation. Most services are pay-as-you-go, so you won't be charged while they're not in use, but an Azure AI Search service is provisioned on dedicated clusters and it can only be used by you. It's billable during its lifetime. If you provision a basic tier search service, expect Azure AI Search to consume about one third (or $70) of your available credits during the trial period.
 
