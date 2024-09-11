@@ -9,6 +9,7 @@ ms.date: 08/29/2024
 ms.reviewer: lebaro
 ms.author: sgilley
 author: sdgilley
+ms.custom: [copilot-learning-hub]
 #customer intent: As a developer, I want to learn how to use the prompt flow SDK so that I can build a RAG-based chat app.
 ---
 
