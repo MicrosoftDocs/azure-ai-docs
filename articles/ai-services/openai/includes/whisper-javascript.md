@@ -9,7 +9,7 @@ ms.author: eur
 author: eric-urban
 ---
 
-<a href="https://platform.openai.com/docs/guides/speech-to-text" target="_blank">Reference documentation</a> | <a href="https://github.com/openai/openai-node" target="_blank">Library source code</a> | <a href="https://www.npmjs.com/package/openai" target="_blank">Package (npm)</a> | <a href="https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/openai/openai/samples" target="_blank">Samples</a>
+[Reference documentation](https://platform.openai.com/docs/api-reference/audio/createTranscription) | [Source code](https://github.com/openai/openai-node) | [Package (npm)](https://www.npmjs.com/package/openai) | [Samples](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/openai/openai/samples)
 
 ## Prerequisites
 
