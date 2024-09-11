@@ -97,27 +97,13 @@ In a console window (such as cmd, PowerShell, or Bash), create a new directory f
 npm init
 ```
 
-
-
 ## Install the client library
 
 Install the client libraries with:
 
-## [**TypeScript**](#tab/typescript)
-
-```console
-npm install openai @azure/openai @azure/identity
-```
-
-The `@azure/openai` package provides the types the Azure service objects.
-
-## [**JavaScript**](#tab/javascript)
-
 ```console
 npm install openai @azure/identity
 ```
-
----
 
 Your app's _package.json_ file will be updated with the dependencies.
 
@@ -129,6 +115,58 @@ Your app's _package.json_ file will be updated with the dependencies.
 Create a new file named _Text-to-speech.ts_ and open it in your preferred code editor. Copy the following code into the _Text-to-speech.ts_ file:
 
 ```typescript
+import "dotenv/config";
+import { writeFile } from "fs/promises";
+import { AzureOpenAI } from "openai";
+import type { SpeechCreateParams } from "openai/resources/audio/speech";
+import "openai/shims/node";
+
+// You will need to set these environment variables or edit the following values
+const endpoint = process.env["AZURE_OPENAI_ENDPOINT"] || "<endpoint>";
+const apiKey = process.env["AZURE_OPENAI_API_KEY"] || "<api key>";
+const speechFilePath =
+  process.env["SPEECH_FILE_PATH"] || "<path to save the speech file>";
+
+// Required Azure OpenAI deployment name and API version
+const deploymentName = "tts";
+const apiVersion = "2024-07-01-preview";
+
+function getClient(): AzureOpenAI {
+  return new AzureOpenAI({
+    endpoint,
+    apiKey,
+    apiVersion,
+    deployment: deploymentName,
+  });
+}
+
+async function generateAudioStream(
+  client: AzureOpenAI,
+  params: SpeechCreateParams
+): Promise<NodeJS.ReadableStream> {
+  const response = await client.audio.speech.create(params);
+  if (response.ok) return response.body;
+  throw new Error(`Failed to generate audio stream: ${response.statusText}`);
+}
+export async function main() {
+  console.log("== Text to Speech Sample ==");
+
+  const client = getClient();
+  const streamToRead = await generateAudioStream(client, {
+    model: deploymentName,
+    voice: "alloy",
+    input: "the quick brown chicken jumped over the lazy dogs",
+  });
+
+  console.log(`Streaming response to ${speechFilePath}`);
+  await writeFile(speechFilePath, streamToRead);
+  console.log("Finished streaming");
+}
+
+main().catch((err) => {
+  console.error("The sample encountered an error:", err);
+});
+
 ```
 
 1. Build the application with the following command:
@@ -149,6 +187,57 @@ Create a new file named _Text-to-speech.ts_ and open it in your preferred code e
 Create a new file named _Text-to-speech.js_ and open it in your preferred code editor. Copy the following code into the _Text-to-speech.js_ file:
 
 ```javascript
+require("dotenv/config");
+const { writeFile } = require("fs/promises");
+const { AzureOpenAI } = require("openai");
+require("openai/shims/node");
+
+// You will need to set these environment variables or edit the following values
+const endpoint = process.env["AZURE_OPENAI_ENDPOINT"] || "<endpoint>";
+const apiKey = process.env["AZURE_OPENAI_API_KEY"] || "<api key>";
+const speechFilePath =
+  process.env["SPEECH_FILE_PATH"] || "<path to save the speech file>";
+
+// Required Azure OpenAI deployment name and API version
+const deploymentName = "tts";
+const apiVersion = "2024-07-01-preview";
+
+function getClient() {
+  return new AzureOpenAI({
+    endpoint,
+    apiKey,
+    apiVersion,
+    deployment: deploymentName,
+  });
+}
+
+async function generateAudioStream(
+  client,
+  params
+) {
+  const response = await client.audio.speech.create(params);
+  if (response.ok) return response.body;
+  throw new Error(`Failed to generate audio stream: ${response.statusText}`);
+}
+export async function main() {
+  console.log("== Text to Speech Sample ==");
+
+  const client = getClient();
+  const streamToRead = await generateAudioStream(client, {
+    model: deploymentName,
+    voice: "alloy",
+    input: "the quick brown chicken jumped over the lazy dogs",
+  });
+
+  console.log(`Streaming response to ${speechFilePath}`);
+  await writeFile(speechFilePath, streamToRead);
+  console.log("Finished streaming");
+}
+
+main().catch((err) => {
+  console.error("The sample encountered an error:", err);
+});
+
 ```
 
 Run the script with the following command:
