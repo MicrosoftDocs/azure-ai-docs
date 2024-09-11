@@ -68,9 +68,7 @@ The following example comes from the [pipeline_with_train_eval_pipeline_componen
 
 The example component defines a three-node pipeline job. The two nodes in the example pipeline job each use the locally defined components `train`, `score`, and `eval`. The following code defines the pipeline component:
 
-:::code language="yaml" source="~/azureml-examples-main/cli/jobs/pipelines-with-components/pipeline_with_pipeline_component/pipeline_with_train_eval_pipeline_component/components/train_pipeline_component.yml" highlight="8,23,30,43,53":::
-
-You can find other Azure CLI pipeline component-related examples and information at [pipelines-with-components](https://github.com/Azure/azureml-examples/tree/main/cli/jobs/pipelines-with-components) in the [Azure Machine Learning examples repository](https://github.com/Azure/azureml-examples).
+:::code language="yaml" source="~/azureml-examples-main/cli/jobs/pipelines-with-components/pipeline_with_pipeline_component/pipeline_with_train_eval_pipeline_component/components/train_pipeline_component.yml" highlight="8,20,23,30,43,53":::
 
 # [Python SDK](#tab/python)
 
@@ -79,8 +77,6 @@ You can define a pipeline component using a Python function, which is similar to
 The following Python SDK examples are from the [Build pipeline with subpipeline (pipeline component)](https://github.com/Azure/azureml-examples/blob/main/sdk/python/jobs/pipelines/1j_pipeline_with_pipeline_component/pipeline_with_train_eval_pipeline_component/pipeline_with_train_eval_pipeline_component.ipynb) Azure Machine Learning notebook. Run this notebook to build the example pipeline.
 
 [!Notebook-python[] (~/azureml-examples-main/sdk/python/jobs/pipelines/1j_pipeline_with_pipeline_component/pipeline_with_train_eval_pipeline_component/pipeline_with_train_eval_pipeline_component.ipynb?name=pipeline-component)]
-
-You can find other Python SDK v2 pipeline component-related notebooks and information at [Pipeline component](https://github.com/Azure/azureml-examples/tree/main/sdk/python/jobs/pipelines/1j_pipeline_with_pipeline_component) in the [Azure Machine Learning examples](https://github.com/Azure/azureml-examples) GitHub repository.
 
 # [Studio UI](#tab/ui)
 
@@ -103,6 +99,8 @@ To submit the pipeline job, edit the `cpu-cluster` in the `default_compute` sect
 >[!NOTE]
 >To share or reuse components across jobs in the workspace, you need to register the components. You can use [`az ml component create`](/cli/azure/ml/component#az-ml-component-create) to register pipeline components.
 
+You can find other Azure CLI pipeline component-related examples and information at [pipelines-with-components](https://github.com/Azure/azureml-examples/tree/main/cli/jobs/pipelines-with-components) in the [Azure Machine Learning examples repository](https://github.com/Azure/azureml-examples).
+
 # [Python SDK](#tab/python)
 
 You can use the pipeline component as a step like other components in the pipeline job.
@@ -112,17 +110,19 @@ You can use the pipeline component as a step like other components in the pipeli
 >[!NOTE]
 >To share or reuse components across jobs in the workspace, you need to register the components. You can use [`ml_client.components.create_or_update`](/python/api/azure-ai-ml/azure.ai.ml.mlclient#azure-ai-ml-mlclient-create-or-update) to register pipeline components.
 
+You can find other Python SDK v2 pipeline component-related notebooks and information at [Pipeline component](https://github.com/Azure/azureml-examples/tree/main/sdk/python/jobs/pipelines/1j_pipeline_with_pipeline_component) in the [Azure Machine Learning examples](https://github.com/Azure/azureml-examples) GitHub repository.
+
 # [Studio UI](#tab/ui)
 
 After you register a pipeline component, you can drag and drop the component into the studio Designer canvas and use the UI to build a pipeline job. For detailed instructions, see [Create pipelines using registered components](how-to-create-component-pipelines-ui.md#create-pipeline-using-registered-component).
 
 The following screenshots are from the [nyc_taxi_data_regression_with_pipeline_component](https://github.com/Azure/azureml-examples/blob/main/sdk/python/jobs/pipelines/1j_pipeline_with_pipeline_component/nyc_taxi_data_regression_with_pipeline_component/nyc_taxi_data_regression_with_pipeline_component.ipynb) notebook in the [Azure Machine Learning examples](https://github.com/Azure/azureml-examples) GitHub repository.
 
-:::image type="content" source="./media/how-to-use-pipeline-component/pipeline-component-authoring.png" alt-text="Screenshot of the designer canvas page to build pipeline job with pipeline component." lightbox= "./media/how-to-use-pipeline-component/pipeline-component-authoring.png":::
+:::image type="content" source="./media/how-to-use-pipeline-component/pipeline-component-authoring.png" alt-text="Screenshot of the Designer canvas page to build a pipeline job with a pipeline component." lightbox= "./media/how-to-use-pipeline-component/pipeline-component-authoring.png":::
 
 After you submit a pipeline job, you can go to the pipeline job detail page to change pipeline component status. You can also drill down to child components in the pipeline component to debug the components.
 
-:::image type="content" source="./media/how-to-use-pipeline-component/pipeline-component-right-panel.png" alt-text="Screenshot of view pipeline component on the pipeline job detail page." lightbox= "./media/how-to-use-pipeline-component/pipeline-component-right-panel.png":::
+:::image type="content" source="./media/how-to-use-pipeline-component/pipeline-component-right-panel.png" alt-text="Screenshot of View pipeline component on the pipeline job detail page." lightbox= "./media/how-to-use-pipeline-component/pipeline-component-right-panel.png":::
 
 ---
 
