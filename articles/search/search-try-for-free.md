@@ -19,7 +19,7 @@ This article explains how to get the most value from your Azure trial subscripti
 
 ## Sign up for a free subscription
 
-To try Azure AI Search for free, [start a trial subscription](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A261C142F). The trial subscription is active for one month and comes with free credits so that you can create services at no charge. In the United States, the credit amount is $200. Equivalent credits are available in other currencies. 
+To try Azure AI Search for free, [start a trial subscription](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A261C142F). The trial subscription is non-renewable, active for one month, and comes with free credits so that you can create services at no charge. In the United States, the credit amount is $200. Equivalent credits are available in other currencies. 
 
 The [Azure portal](https://portal.azure.com/) is the easiest approach for first-time users who want to create and use Azure resources. You can access and manage all of your subscriptions and resources from the portal. For Azure AI Search, you can use the portal to build components for classic search scenarios and generative search (RAG) workloads.
 
@@ -33,11 +33,11 @@ To evaluate Azure for RAG scenarios, you should have three or five Azure resourc
 - Embedding and chat models
 - Applied AI services, like Azure AI Vision or Document Intelligence
 - Providing relevant grounding data (Azure AI Search)
-- Apps
+- Apps (optional)
 
 Most of our quickstarts and tutorials use Azure Storage, so we recommend creating an Azure Storage account for getting started.
 
-Generative search requires embedding and chat models. Azure provides Azure OpenAI, but you can also use Azure AI Vision for multimodal embeddings (but not chat). Another option is Azure AI Studio and deploying chat and embedding models into the model catalog. We recommend Azure OpenAI for its familiarity and mainstream offerings.
+Generative search requires embedding and chat models. Azure provides Azure OpenAI, but you can also use Azure AI Vision for multimodal embeddings (but not chat). Another model provider is Azure AI Studio and deploying chat and embedding models into the model catalog. We recommend Azure OpenAI for its familiarity and mainstream offerings.
 
 Application front-ends are useful if you're prototyping a solution for a wider audience. You can use Azure Web apps or build an ASP.NET MVC application for this task. Otherwise, if you're working locally, you can view output in Jupyter notebooks in Visual Studio Code or another IDE. Or view results in console apps or other apps that run on localhost.
 
@@ -45,19 +45,19 @@ Application front-ends are useful if you're prototyping a solution for a wider a
 
 Azure AI Search has integrated operations with applied AI in the Azure cloud. Integration depends on services running within the same region. This is a requirement for data residency laws and for efficient operations.
 
-Verifying regional availability can save time and steps because you need to choose a region that supports all of the services you want to use.
+Verifying regional availability can save you time and frusteration because you need to choose a region that supports all of the services you want to use.
 
 Start here:
 
 - [Azure AI Search region list](search-region-support.md). This list identifies region support for applied AI (Azure AI multiservice) and semantic ranking. You don't need a separate region check for applied AI.
 
-Continue with the following links to review which regions provide the model provider that you want to use.
+West Europe and West US 2/3 are currently at capacity for Azure AI Search and aren't accepting new search services.
+
+Continue with the following links to review which regions also provide the model provider that you want to use.
 
 - [Azure OpenAI region list](/azure/ai-services/openai/concepts/models#model-summary-table-and-region-availability)
 - [Azure AI Vision region list](/azure/ai-services/computer-vision/overview-image-analysis?tabs=4-0#region-availability)
 - [Azure AI Studio region list](/azure/ai-studio/reference/region-support)
-
-West Europe and West US 2/3 are currently at capacity for Azure AI Search.
 
 > [!TIP]
 > Currently, the following regions provide the most overlap and have the most capacity: **East US**, **East US2**, and **South Central** in the Americas; **France Central** or **Switzerland North** in Europe; **Australia East** in Asia Pacific.
@@ -80,7 +80,7 @@ During the trial period, you want to stay under the credit allocation. Most serv
 
 During the trial period, the Azure portal provides a notification on the top right that tells you how many credits are used up and what remains. 
 
-You can search for *subscriptions* in the Azure portal to view subscription information at any time. The Overview page gives you spending rates, forecasts, and cost management.
+You can also monitor billing by searching for *subscriptions* in the Azure portal to view subscription information at any time. The Overview page gives you spending rates, forecasts, and cost management.
 
 ## Tips for rapid growth and maximum learning
 
