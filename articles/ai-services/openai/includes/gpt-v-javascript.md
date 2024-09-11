@@ -56,21 +56,9 @@ npm init
 
 Install the client libraries with:
 
-## [**TypeScript**](#tab/typescript)
-
-```console
-npm install openai @azure/openai @azure/identity
-```
-
-The `@azure/openai` package provides the types the Azure service objects.
-
-## [**JavaScript**](#tab/javascript)
-
 ```console
 npm install openai @azure/identity
 ```
-
----
 
 Your app's _package.json_ file will be updated with the dependencies.
 
@@ -81,6 +69,71 @@ Your app's _package.json_ file will be updated with the dependencies.
 1. Create a _quickstart.ts_ and paste in the following code. 
     
     ```typescript
+    import "dotenv/config";
+    import { AzureOpenAI } from "openai";
+    import type {
+      ChatCompletion,
+      ChatCompletionCreateParamsNonStreaming,
+    } from "openai/resources/index";
+    
+    // You will need to set these environment variables or edit the following values
+    const endpoint = process.env["AZURE_OPENAI_ENDPOINT"] || "<endpoint>";
+    const apiKey = process.env["AZURE_OPENAI_API_KEY"] || "<api key>";
+    const imageUrl = process.env["IMAGE_URL"] || "<image url>";
+    
+    // Required Azure OpenAI deployment name and API version
+    const apiVersion = "2024-07-01-preview";
+    const deploymentName = "gpt-4-with-turbo";
+    
+    function getClient(): AzureOpenAI {
+      return new AzureOpenAI({
+        endpoint,
+        apiKey,
+        apiVersion,
+        deployment: deploymentName,
+      });
+    }
+    function createMessages(): ChatCompletionCreateParamsNonStreaming {
+      return {
+        messages: [
+          { role: "system", content: "You are a helpful assistant." },
+          {
+            role: "user",
+            content: [
+              {
+                type: "text",
+                text: "Describe this picture:",
+              },
+              {
+                type: "image_url",
+                image_url: {
+                  url: imageUrl,
+                },
+              },
+            ],
+          },
+        ],
+        model: "",
+        max_tokens: 2000,
+      };
+    }
+    async function printChoices(completion: ChatCompletion): Promise<void> {
+      for (const choice of completion.choices) {
+        console.log(choice.message);
+      }
+    }
+    export async function main() {
+      console.log("== Get GPT-4 Turbo with vision Sample ==");
+    
+      const client = getClient();
+      const messages = createMessages();
+      const completion = await client.chat.completions.create(messages);
+      await printChoices(completion);
+    }
+    
+    main().catch((err) => {
+      console.error("Error occurred:", err);
+    });
     ```
 1. Make the following changes:
     1. Enter the name of your GPT-4 Turbo with Vision deployment in the appropriate field.
@@ -106,7 +159,69 @@ Your app's _package.json_ file will be updated with the dependencies.
 1. Replace the contents of _quickstart.js_ with the following code. 
     
     ```javascript
+    import "dotenv/config";
+    import { AzureOpenAI } from "openai";
+    
+    // You will need to set these environment variables or edit the following values
+    const endpoint = process.env["AZURE_OPENAI_ENDPOINT"] || "<endpoint>";
+    const apiKey = process.env["AZURE_OPENAI_API_KEY"] || "<api key>";
+    const imageUrl = process.env["IMAGE_URL"] || "<image url>";
+    
+    // Required Azure OpenAI deployment name and API version
+    const apiVersion = "2024-07-01-preview";
+    const deploymentName = "gpt-4-with-turbo";
+    
+    function getClient() {
+      return new AzureOpenAI({
+        endpoint,
+        apiKey,
+        apiVersion,
+        deployment: deploymentName,
+      });
+    }
+    function createMessages() {
+      return {
+        messages: [
+          { role: "system", content: "You are a helpful assistant." },
+          {
+            role: "user",
+            content: [
+              {
+                type: "text",
+                text: "Describe this picture:",
+              },
+              {
+                type: "image_url",
+                image_url: {
+                  url: imageUrl,
+                },
+              },
+            ],
+          },
+        ],
+        model: "",
+        max_tokens: 2000,
+      };
+    }
+    async function printChoices(completion) {
+      for (const choice of completion.choices) {
+        console.log(choice.message);
+      }
+    }
+    export async function main() {
+      console.log("== Get GPT-4 Turbo with vision Sample ==");
+    
+      const client = getClient();
+      const messages = createMessages();
+      const completion = await client.chat.completions.create(messages);
+      await printChoices(completion);
+    }
+    
+    main().catch((err) => {
+      console.error("Error occurred:", err);
+    });
     ```
+
 1. Make the following changes:
     1. Enter the name of your GPT-4 Turbo with Vision deployment in the appropriate field.
     1. Change the value of the `"url"` field to the URL of your image.
@@ -117,84 +232,6 @@ Your app's _package.json_ file will be updated with the dependencies.
     ```console
     node quickstart.js
     ```
-
-## Create a new JavaScript application for image prompt enhancements
-
-GPT-4 Turbo with Vision provides exclusive access to Azure AI Services tailored enhancements. When combined with Azure AI Vision, it enhances your chat experience by providing the chat model with more detailed information about visible text in the image and the locations of objects.
-
-The **Optical Character Recognition (OCR)** integration allows the model to produce higher quality responses for dense text, transformed images, and number-heavy financial documents. It also covers a wider range of languages.
-
-The **object grounding** integration brings a new layer to data analysis and user interaction, as the feature can visually distinguish and highlight important elements in the images it processes.
-
-> [!CAUTION]
-> Azure AI enhancements for GPT-4 Turbo with Vision will be billed separately from the core functionalities. Each specific Azure AI enhancement for GPT-4 Turbo with Vision has its own distinct charges. For details, see the [special pricing information](../concepts/gpt-with-vision.md#special-pricing-information).
-
-> [!IMPORTANT]
-> Vision enhancements are not supported by the GPT-4 Turbo GA model. They are only available with the preview models.
-
-## [**TypeScript**](#tab/typescript)
-
-1. Replace the contents of _quickstart.py_ with the following code. 
-    
-    ```typescript
-    
-    ```
-
-1. Make the following changes:
-    1. Enter your GPT-4 Turbo with Vision deployment name in the appropriate field. 
-    1. Enter your Computer Vision endpoint URL and key in the appropriate fields.
-    1. Change the value of the `"url"` field to the URL of your image.
-        > [!TIP]
-        > You can also use a base 64 encoded image data instead of a URL. For more information, see the [GPT-4 Turbo with Vision how-to guide](../how-to/gpt-with-vision.md#use-a-local-image).
-
-
-1. Build the application with the following command:
-
-    ```console
-    tsc
-    ```
-
-1. Run the application with the following command:
-
-    ```console
-    node quickstart.js
-    ```
-
-
-## [**JavaScript**](#tab/javascript)
-
-```javascript
-```
-
-1. Make the following changes:
-    1. Enter your GPT-4 Turbo with Vision deployment name in the appropriate field. 
-    1. Enter your Computer Vision endpoint URL and key in the appropriate fields.
-    1. Change the value of the `"url"` field to the URL of your image.
-        > [!TIP]
-        > You can also use a base 64 encoded image data instead of a URL. For more information, see the [GPT-4 Turbo with Vision how-to guide](../how-to/gpt-with-vision.md#use-a-local-image).
-1. Run the application with the following command:
-
-    ```console
-    node quickstart.js
-    ```
-
----
-
-1. Make the following changes:
-    1. Enter your GPT-4 Turbo with Vision deployment name in the appropriate field. 
-    1. Enter your Computer Vision endpoint URL and key in the appropriate fields.
-    1. Change the value of the `"url"` field to the URL of your image.
-        > [!TIP]
-        > You can also use a base 64 encoded image data instead of a URL. For more information, see the [GPT-4 Turbo with Vision how-to guide](../how-to/gpt-with-vision.md#use-a-local-image).
-1. Run the application with the `python` command:
-
-    ```console
-    python quickstart.py
-    ```
-
-## Create a new JavaScript application for video prompt enhancements
-
-Video prompt integration is outside the scope of this quickstart. See the [GPT-4 Turbo with Vision how-to guide](../how-to/gpt-with-vision.md#use-vision-enhancement-with-video) for detailed instructions on setting up video prompts in chat completions programmatically.
 
 ---
 
