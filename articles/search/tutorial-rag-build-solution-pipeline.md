@@ -40,13 +40,15 @@ If you don't have an Azure subscription, create a [free account](https://azure.m
 
 - Azure OpenAI, with a deployment of text-embedding-002. For more information about embedding models used in RAG solutions, see [Choose embedding models for RAG in Azure AI Search](tutorial-rag-build-solution-models.md)
 
-## Download file
+## Download the sample
 
-[Download a Jupyter notebook](https://github.com/Azure-Samples/azure-search-python-samples/blob/main/Tutorial-RAG/Tutorial-rag.ipynb) from GitHub to send the requests in this quickstart. For more information, see [Downloading files from GitHub](https://docs.github.com/get-started/start-your-journey/downloading-files-from-github).
+[Download a Jupyter notebook](https://github.com/Azure-Samples/azure-search-python-samples/blob/main/Tutorial-RAG/Tutorial-rag.ipynb) from GitHub to send the requests to Azure AI Search. For more information, see [Downloading files from GitHub](https://docs.github.com/get-started/start-your-journey/downloading-files-from-github).
 
 ## Provide the index schema
 
-Here's the index schema from the [previous tutorial](tutorial-rag-build-solution-index-schema.md). It's organized around vectorized and nonvectorized chunks. It includes a `locations` field that stores AI-generated content created by the skillset.  
+Open or create a Jupyter notebook (.ipynb) in Visual Studio code to contain the scripts that comprise the pipeline. Initial steps install packages and collect variables for the connections. After you complete the set up steps, you're ready to begin with the components of the indexing pipeline. 
+
+Let's start with the index schema from the [previous tutorial](tutorial-rag-build-solution-index-schema.md). It's organized around vectorized and nonvectorized chunks. It includes a `locations` field that stores AI-generated content created by the skillset.  
 
 ```python
 index_name = "py-rag-tutorial-idx"

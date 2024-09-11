@@ -14,9 +14,45 @@ ms.date: 09/12/2024
 
 # Tutorial: Search your data using a chat model (RAG in Azure AI Search)
 
+The defining characteristic of a RAG solution on Azure AI Search is sending queries to a Large Language Model (LLM) and providing a conversational search experience over your indexed content. It can be surprisingly easy if you implement just the basics.
 
+In this tutorial, you:
 
-## Generate an answer
+> [!div class="checklist"]
+> - Set up clients
+> - Write instructions for the LLM
+> - Provide a query designed for LLM inputs
+> - Review results and explore next steps
+
+This tutorial builds on the previous tutorials. It assumes you have a search index created by the [indexing pipeline](tutorial-rag-build-solution-pipeline.md).
+
+## Prerequisites
+
+- [Visual Studio Code](https://code.visualstudio.com/download) with the [Python extension](https://marketplace.visualstudio.com/items?itemName=ms-python.python) and the [Jupyter package](https://pypi.org/project/jupyter/). For more information, see [Python in Visual Studio Code](https://code.visualstudio.com/docs/languages/python).
+
+- Azure AI Search, in a region shared with Azure OpenAI.
+
+- Azure OpenAI, with a deployment of gpt-35-turbo. For more information, see [Choose models for RAG in Azure AI Search](tutorial-rag-build-solution-models.md)
+
+## Download the sample
+
+You use the same notebook from the previous indexing pipeline tutorial. Scripts for querying the LLM follow the pipeline steps. If you don't already have the notebook, [download it](https://github.com/Azure-Samples/azure-search-python-samples/blob/main/Tutorial-RAG/Tutorial-rag.ipynb) from GitHub.
+
+## Configure clients for sending queries
+
+The RAG pattern in Azure AI Search is a synchronized connection to a search index to obtain the grounding data, followed by a connection to an LLM to formulate a response to the user's question. The same query string is used by both clients.
+
+You're setting up two clients, so you need permissions on both resources. We use API keys for this exercise. The following endpoints and keys are used for queries:
+
+```python
+# Set endpoints and API keys for Azure services
+AZURE_SEARCH_SERVICE: str = "PUT YOUR SEARCH SERVICE URL HERE"
+AZURE_SEARCH_KEY: str = "PUT YOUR SEARCH SERVICE ADMIN KEY HERE"
+AZURE_OPENAI_ACCOUNT: str = "PUT YOUR AZURE OPENAI ACCOUNT URL HERE"
+AZURE_OPENAI_KEY: str = "PUT YOUR AZURE OPENAI KEY HERE"
+```
+
+## Example script for prompt and query
 
 ```python
 # Import libraries
@@ -77,18 +113,25 @@ response = openai_client.chat.completions.create(
 print(response.choices[0].message.content)
 ```
 
-In this example, the answer is based on a single input (`top=1`) consisting of the one chunk determined by the search engine to be the most relevant. Results from the query should look similar to the following example.
+## Review results
+
+In this example, the answer is based on a single input (`top=1`) consisting of the one chunk determined by the search engine to be the most relevant. Instructions in the prompt tell the LLM to use only the information in the `sources`, or formatted search results. Results from the first query`"how much of earth is covered by water"` should look similar to the following example.
 
 ```
 About 72% of the Earth's surface is covered in water, according to page-79.pdf. The provided sources do not give further information on this topic.
 ```
 
-Run the same query again after setting `top=3`. When you increase the inputs, the model returns different results each time, even if the query doesn't change. Here's one example of what the model returns after increasing the inputs to 3.
+### Changing the inputs
+
+Increasing or decreasing the number of inputs to the LLM can have a large impact on the response. Try running the same query again after setting `top=3`. When you increase the inputs, the model returns different results each time, even if the query doesn't change. Here's one example of what the model returns after increasing the inputs to 3.
 
 ```
 About 71% of the earth is covered by water, while the remaining 29% is land. Canada has numerous water bodies like lakes, ponds, and streams, giving it a unique landscape. The Nunavut territory is unsuitable for agriculture due to being snow-covered most of the year and frozen during the summer thaw. Don Juan Pond in the McMurdo Dry Valleys of Antarctica is the saltiest body of water on earth with a salinity level over 40%, much higher than the Dead Sea and Great Salt Lake. It rarely snows in the valley and Don Juan's calcium chloride–rich waters rarely freeze. NASA studies our planet's physical processes, including the water cycle, carbon cycle, ocean circulation, heat movement, and light interaction. NASA has a unique vantage point of observing the earth and making sense of it from space.
 ```
 
+### Changing the prompt
+
+You can control the format of the output, tone, and whether you want the model to supplement the answer with its own training data by changing the prompt. 
 
 <!-- In this tutorial, learn how to send queries and prompts to a chat model for generative search.
 

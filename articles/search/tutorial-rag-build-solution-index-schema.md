@@ -57,7 +57,7 @@ Chunked content typically derives from a larger document. And although the schem
 
 An inflection point in schema design is whether to have two indexes for parent and child/chunked content, or a single index that repeats parent elements for each chunk.
 
-In this tutorial, because all of the chunks of text originate from a single parent (NASA Earth Book), you don't need a separate index dedicated to up level the parent fields. However, if you're indexing from multiple parent PDFs, you might want a parent-child index pair to capture level-specific fields and then send [lookup queries](https://learn.microsoft.com/rest/api/searchservice/documents/get) to the parent index to retrieve those fields relevant to each chunk.
+In this tutorial, because all of the chunks of text originate from a single parent (NASA Earth Book), you don't need a separate index dedicated to up level the parent fields. However, if you're indexing from multiple parent PDFs, you might want a parent-child index pair to capture level-specific fields and then send [lookup queries](/rest/api/searchservice/documents/get) to the parent index to retrieve those fields relevant to each chunk.
 
 ### Checklist of schema considerations
 
