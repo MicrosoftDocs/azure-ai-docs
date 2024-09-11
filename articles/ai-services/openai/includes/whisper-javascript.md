@@ -111,9 +111,9 @@ Your app's _package.json_ file will be updated with the dependencies.
 
 ## Create a sample application
 
+#### [TypeScript](#tab/typescript)
+
 1. Create a new file named _Whisper.js_ and open it in your preferred code editor. Copy the following code into the _Whisper.js_ file:
-    
-    #### [TypeScript](#tab/typescript)
     
     ```typescript
     import "dotenv/config";
@@ -167,8 +167,9 @@ Your app's _package.json_ file will be updated with the dependencies.
     node Whisper.js
     ```
 
-
 #### [JavaScript](#tab/javascript)
+
+1. Create a new file named _Whisper.js_ and open it in your preferred code editor. Copy the following code into the _Whisper.js_ file:
 
     ```javascript
     require("dotenv/config");
