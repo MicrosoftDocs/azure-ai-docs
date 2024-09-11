@@ -5,7 +5,7 @@
     - name: What is Azure Machine Learning?
       displayName: AML, services, overview, introduction
       href: overview-what-is-azure-machine-learning.md
-    - name: "AI Studio or AML: Which experience should I choose?"
+    - name: "AI Studio or AML: Which should I choose?"
       href: /ai/ai-studio-experiences-overview
     - name: Azure Machine Learning CLI and Python SDK
       href: concept-v2.md
