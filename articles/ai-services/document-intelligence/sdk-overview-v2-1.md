@@ -1,5 +1,5 @@
 ---
-title: Document Intelligence (formerly Form Recognizer) SDK target REST API v2.1 (GA)
+title: Document Intelligence SDK target REST API v2.1 (GA)
 titleSuffix: Azure AI services
 description: Document Intelligence v2.1 (GA) software development kits (SDKs) expose Document Intelligence models, features and capabilities, using C#, Java, JavaScript, and Python programming language.
 author: laujan

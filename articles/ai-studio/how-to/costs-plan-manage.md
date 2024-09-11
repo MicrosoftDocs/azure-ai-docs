@@ -18,7 +18,10 @@ author: Blackmist
 
 [!INCLUDE [Feature preview](~/reusable-content/ce-skilling/azure/includes/ai-studio/includes/feature-preview.md)]
 
-This article describes how you plan for and manage costs for Azure AI Studio. First, you use the Azure pricing calculator to help plan for Azure AI Studio costs before you add any resources for the service to estimate costs. Next, as you add Azure resources, review the estimated costs. 
+This article describes how you plan for and manage costs for Azure AI Studio. First, you use the Azure pricing calculator to help plan for Azure AI Studio costs before you add any resources for the service to estimate costs. Next, as you add Azure resources, review the estimated costs.
+
+> [!TIP]
+> Azure AI Studio does not have a specific page in the Azure pricing calculator. Azure AI Studio is composed of several other Azure services, some of which are optional. This article provides information on using the pricing calculator to estimate costs for these services.
 
 You use Azure AI services in Azure AI Studio. Costs for Azure AI services are only a portion of the monthly costs in your Azure bill. You're billed for all Azure services and resources used in your Azure subscription, including the third-party services.
 

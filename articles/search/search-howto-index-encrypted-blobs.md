@@ -11,14 +11,14 @@ ms.custom:
   - ignite-2023
 ms.service: cognitive-search
 ms.topic: tutorial
-ms.date: 05/23/2024
+ms.date: 09/04/2024
 ---
 
 # Tutorial: Index and enrich encrypted blobs for full-text search in Azure AI Search
 
 This tutorial shows you how to use [Azure AI Search](search-what-is-azure-search.md) to index documents that have been previously encrypted with a customer-managed key in [Azure Blob Storage](/azure/storage/blobs/storage-blobs-introduction). 
 
-Normally, an indexer can't extract content from blobs that have been encrypted using the [client side encryption](/azure/storage/blobs/client-side-encryption) of the Azure Blob Storage client library because the indexer doesn't have access to the customer-managed encryption key in [Azure Key Vault](/azure/key-vault/general/overview). However, by leveraging the [DecryptBlobFile custom skill](https://github.com/Azure-Samples/azure-search-power-skills/blob/main/Utils/DecryptBlobFile), followed by the [Document Extraction skill](cognitive-search-skill-document-extraction.md), you can provide controlled access to the key to decrypt the files and then extract content from them. This unlocks the ability to index and enrich these documents without compromising the encryption status of your stored documents.
+Normally, an indexer can't extract content from blobs that have been encrypted using the [client-side encryption](/azure/storage/blobs/client-side-encryption) of the Azure Blob Storage client library because the indexer doesn't have access to the customer-managed encryption key in [Azure Key Vault](/azure/key-vault/general/overview). However, by leveraging the [DecryptBlobFile custom skill](https://github.com/Azure-Samples/azure-search-power-skills/blob/main/Utils/DecryptBlobFile), followed by the [Document Extraction skill](cognitive-search-skill-document-extraction.md), you can provide controlled access to the key to decrypt the files and then extract content from them. This unlocks the ability to index and enrich these documents without compromising the encryption status of your stored documents.
 
 Starting with previously encrypted whole documents (unstructured text) such as PDF, HTML, DOCX, and PPTX in Azure Blob Storage, this tutorial uses a REST client and the Search REST APIs to perform the following tasks:
 
@@ -34,7 +34,7 @@ If you don't have an Azure subscription, open a [free account](https://azure.mic
 
 + [Azure AI Search](search-create-service-portal.md) on any tier or region.
 
-+ [Azure Storage](https://azure.microsoft.com/services/storage/), Standard performance (general-purpose v2)
++ [Azure Storage](https://azure.microsoft.com/services/storage/), Standard performance (general-purpose v2).
 
 + Blobs encrypted with a customer-managed key. See [Tutorial: Encrypt and decrypt blobs using Azure Key Vault](/azure/storage/blobs/storage-encrypt-decrypt-blobs-key-vault) if you need to create sample data.
 
@@ -45,17 +45,15 @@ Custom skill deployment creates an Azure Function app and an Azure Storage accou
 > [!NOTE]
 > Skillsets often require [attaching an Azure AI multi-service resource](cognitive-search-attach-cognitive-services.md). As written, this skillset has no dependency on Azure AI services and thus no key is required. If you later add enrichments that invoke built-in skills, remember to update your skillset accordingly.
 
-## 1 - Create services and collect credentials
+## Deploy the custom skill
 
-### Deploy the custom skill
+This example uses the sample [DecryptBlobFile](https://github.com/Azure-Samples/azure-search-power-skills/blob/main/Utils/DecryptBlobFile) project from the [Azure Search Power Skills](https://github.com/Azure-Samples/azure-search-power-skills) GitHub repository. In this section, you deploy the skill to an Azure Function so that it can be used in a skillset. A built-in deployment script creates an Azure Function resource with a **psdbf-function-app-** prefix and loads the skill. You are prompted to provide a subscription and resource group. Be sure to choose the same subscription that your Azure Key Vault instance lives in.
 
-This example uses the sample [DecryptBlobFile](https://github.com/Azure-Samples/azure-search-power-skills/blob/main/Utils/DecryptBlobFile) project from the [Azure Search Power Skills](https://github.com/Azure-Samples/azure-search-power-skills) GitHub repository. In this section, you will deploy the skill to an Azure Function so that it can be used in a skillset. A built-in deployment script creates an Azure Function resource named starting with **psdbf-function-app-** and loads the skill. You'll be prompted to provide a subscription and resource group. Be sure to choose the same subscription that your Azure Key Vault instance lives in.
-
-Operationally, the DecryptBlobFile skill takes the URL and SAS token for each blob as inputs, and it outputs the downloaded, decrypted file using the file reference contract that Azure AI Search expects. Recall that DecryptBlobFile needs the encryption key to perform the decryption. As part of setup, you'll also create an access policy that grants DecryptBlobFile function access to the encryption key in Azure Key Vault.
+Operationally, the DecryptBlobFile skill takes the URL and SAS token for each blob as inputs, and it outputs the downloaded, decrypted file using the file reference contract that Azure AI Search expects. Recall that DecryptBlobFile needs the encryption key to perform the decryption. As part of setup, you also create an access policy that grants DecryptBlobFile function access to the encryption key in Azure Key Vault.
 
 1. Click the **Deploy to Azure** button found on the [DecryptBlobFile landing page](https://github.com/Azure-Samples/azure-search-power-skills/blob/main/Utils/DecryptBlobFile#deployment), which will open the provided Resource Manager template within the Azure portal.
 
-1. Choose the same subscription where your Azure Key Vault instance exists (this tutorial will not work if you select a different subscription).
+1. Choose the same subscription where your Azure Key Vault instance exists (this tutorial won't work if you select a different subscription).
 
 1. Select an existing resource group or create a new one. A dedicated resource group makes cleanup easier later.
 
@@ -67,7 +65,7 @@ Operationally, the DecryptBlobFile skill takes the URL and SAS token for each bl
 
 You should have an Azure Function app that contains the decryption logic and an Azure Storage resource that will store application data. In the next several steps, you'll give the app permissions to access the key vault and collect information that you'll need for the REST calls.
 
-### Grant permissions in Azure Key Vault
+## Grant permissions in Azure Key Vault
 
 1. Navigate to your Azure Key Vault service in the portal. [Create an access policy](/azure/key-vault/general/assign-access-policy-portal) in the Azure Key Vault that grants key access to the custom skill.
 
@@ -85,7 +83,7 @@ You should have an Azure Function app that contains the decryption logic and an 
 
 1. On **Review + create**, select **Create**.
 
-### Collect app information
+## Collect app information
 
 1. Navigate to the **psdbf-function-app** function in the portal, and make a note of the following properties you'll need for the REST calls:
 
@@ -97,7 +95,7 @@ You should have an Azure Function app that contains the decryption logic and an 
 
     :::image type="content" source="media/indexing-encrypted-blob-files/function-host-key.png" alt-text="Screenshot of the App Keys page of the Azure Function app." border="true":::
 
-### Get an admin api-key and URL for Azure AI Search
+## Get an admin api-key and URL for Azure AI Search
 
 1. Sign in to the [Azure portal](https://portal.azure.com), and in your search service **Overview** page, get the name of your search service. You can confirm your service name by reviewing the endpoint URL. If your endpoint URL were `https://mydemo.search.windows.net`, your service name would be `mydemo`.
 
@@ -125,7 +123,7 @@ Create variables for endpoints and keys:
 | `skillset-name` | Leave as **encrypted-blobs-ss**. |
 | `indexer-name` | Leave as **encrypted-blobs-ixr**. |
 
-### Review and run each request
+## Review and run each request
 
 Use HTTP requests to create the objects of an enrichment pipeline:
 
@@ -141,11 +139,11 @@ Use HTTP requests to create the objects of an enrichment pipeline:
 
 Indexing and enrichment commence as soon as you submit the Create Indexer request. Depending on how many documents are in your storage account, indexing can take a while. To find out whether the indexer is still running, send a **Get Indexer Status** request and review the response to learn whether the indexer is running, or to view error and warning information.  
 
-If you are using the Free tier, the following message is expected: `"Could not extract content or metadata from your document. Truncated extracted text to '32768' characters"`. This message appears because blob indexing on the Free tier has a [32K limit on character extraction](search-limits-quotas-capacity.md#indexer-limits). You won't see this message for this data set on higher tiers. 
+If you're using the Free tier, the following message is expected: `"Could not extract content or metadata from your document. Truncated extracted text to '32768' characters"`. This message appears because blob indexing on the Free tier has a [32K limit on character extraction](search-limits-quotas-capacity.md#indexer-limits). You won't see this message for this data set on higher tiers. 
 
 ## Search your content
 
-After indexer execution is finished, you can run some queries to verify that the data has been successfully decrypted and indexed. Navigate to your Azure AI Search service in the portal, and use the [search explorer](search-explorer.md) to run queries over the indexed data.
+After indexer execution is finished, you can run some queries to verify that the data has been successfully decrypted and indexed. Navigate to your Azure AI Search service in the portal, and use the [Search Explorer](search-explorer.md) to run queries over the indexed data.
 
 ## Clean up resources
 
@@ -155,6 +153,6 @@ You can find and manage resources in the portal, using the All resources or Reso
 
 ## Next steps
 
-Now that you have successfully indexed encrypted files, you can [iterate on this pipeline by adding more cognitive skills](cognitive-search-defining-skillset.md). This will allow you to enrich and gain additional insights to your data.
+Now that you have successfully indexed encrypted files, you can [iterate on this pipeline by adding more skills](cognitive-search-defining-skillset.md). This will allow you to enrich and gain additional insights to your data.
 
-If you are working with doubly encrypted data, you might want to investigate the index encryption features available in Azure AI Search. Although the indexer needs decrypted data for indexing purposes, once the index exists, it can be encrypted in a search index using a customer-managed key. This will ensure that your data is always encrypted when at rest. For more information, see [Configure customer-managed keys for data encryption in Azure AI Search](search-security-manage-encryption-keys.md).
+If you're working with doubly encrypted data, you might want to investigate the index encryption features available in Azure AI Search. Although the indexer needs decrypted data for indexing purposes, once the index exists, it can be encrypted in a search index using a customer-managed key. This will ensure that your data is always encrypted when at rest. For more information, see [Configure customer-managed keys for data encryption in Azure AI Search](search-security-manage-encryption-keys.md).

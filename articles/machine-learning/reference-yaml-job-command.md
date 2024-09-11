@@ -9,7 +9,7 @@ ms.topic: reference
 ms.custom: cliv2, devx-track-python, update-code
 author: Blackmist
 ms.author: larryfr
-ms.date: 07/25/2024
+ms.date: 08/29/2024
 ms.reviewer: balapv
 ---
 
@@ -34,9 +34,9 @@ The source JSON schema can be found at https://azuremlschemas.azureedge.net/late
 | `experiment_name` | string | Experiment name to organize the job under. Each job's run record is organized under the corresponding experiment in the studio's "Experiments" tab. If omitted, Azure Machine Learning defaults it to the name of the working directory where the job was created. | | |
 | `description` | string | Description of the job. | | |
 | `tags` | object | Dictionary of tags for the job. | | |
-| `command` | string | **Required (if not using `component` field).** The command to execute. | | |
+| `command` | string | The command to execute. | | |
 | `code` | string | Local path to the source code directory to be uploaded and used for the job. | | |
-| `environment` | string or object | **Required (if not using `component` field).** The environment to use for the job. Can be either a reference to an existing versioned environment in the workspace or an inline environment specification. <br><br> To reference an existing environment, use the `azureml:<environment_name>:<environment_version>` syntax or `azureml:<environment_name>@latest` (to reference the latest version of an environment). <br><br> To define an environment inline, follow the [Environment schema](reference-yaml-environment.md#yaml-syntax). Exclude the `name` and `version` properties as they aren't supported for inline environments. | | |
+| `environment` | string or object | The environment to use for the job. Can be either a reference to an existing versioned environment in the workspace or an inline environment specification. <br><br> To reference an existing environment, use the `azureml:<environment_name>:<environment_version>` syntax or `azureml:<environment_name>@latest` (to reference the latest version of an environment). <br><br> To define an environment inline, follow the [Environment schema](reference-yaml-environment.md#yaml-syntax). Exclude the `name` and `version` properties as they aren't supported for inline environments. | | |
 | `environment_variables` | object | Dictionary of environment variable key-value pairs to set on the process where the command is executed. | | |
 | `distribution` | object | The distribution configuration for distributed training scenarios. One of [MpiConfiguration](#mpiconfiguration), [PyTorchConfiguration](#pytorchconfiguration), or [TensorFlowConfiguration](#tensorflowconfiguration). | | |
 | `compute` | string | Name of the compute target to execute the job on. Can be either a reference to an existing compute in the workspace (using the `azureml:<compute_name>` syntax) or `local` to designate local execution. **Note:** jobs in pipeline didn't support `local` as `compute` | | `local` |

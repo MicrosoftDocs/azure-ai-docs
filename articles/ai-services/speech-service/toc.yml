@@ -71,11 +71,11 @@ items:
       items:
       - name: Batch transcription overview
         href: batch-transcription.md
-      - name: Locate audio files in storage
+      - name: "Part 1: Locate audio files in storage"
         href: batch-transcription-audio-data.md
-      - name: Create a batch transcription
+      - name: "Part 2: Create a batch transcription"
         href: batch-transcription-create.md
-      - name: Get batch transcription results
+      - name: "Part 3: Get batch transcription results"
         href: batch-transcription-get.md
     - name: Custom speech
       items:
@@ -83,17 +83,17 @@ items:
           href: custom-speech-overview.md
         - name: Create a custom speech model 
           items:
-          - name: Create a project
+          - name: "Part 1: Create a project"
             href: how-to-custom-speech-create-project.md
-          - name: Upload training and testing datasets
+          - name: "Part 2: Upload training and testing datasets"
             href: how-to-custom-speech-upload-data.md
-          - name: Test recognition quality
+          - name: "Part 3: Test recognition quality"
             href: how-to-custom-speech-inspect-data.md
-          - name: Test model quantitatively
+          - name: "Part 4: Test model quantitatively"
             href: how-to-custom-speech-evaluate-data.md
-          - name: Train a model
+          - name: "Part 5: Train a model"
             href: how-to-custom-speech-train-model.md
-          - name: Deploy a model
+          - name: "Part 6: Deploy a model"
             href: how-to-custom-speech-deploy-model.md
         - name: Custom speech datasets
           items:
@@ -171,16 +171,16 @@ items:
               href: how-to-custom-voice-training-data.md
             - name: Record voice samples
               href: record-custom-voice-samples.md
-          - name: Create a professional voice project
+          - name: "Part 1: Create a professional voice project"
             displayName: custom voice, neural voice, cnv
             href: professional-voice-create-project.md
-          - name: Add voice talent consent to your project
+          - name: "Part 2: Add voice talent consent to your project"
             href: professional-voice-create-consent.md
-          - name: Add training datasets
+          - name: "Part 3: Add training datasets"
             href: professional-voice-create-training-set.md
-          - name: Train your voice model
+          - name: "Part 4: Train your voice model"
             href: professional-voice-train-voice.md
-          - name: Deploy and use your voice model
+          - name: "Part 5: Deploy and use your voice model"
             href: professional-voice-deploy-endpoint.md
         - name: Custom neural voice lite (preview)
           href: custom-neural-voice-lite.md
@@ -188,13 +188,13 @@ items:
           items:
           - name: Personal voice overview
             href: personal-voice-overview.md
-          - name: Create a personal voice project
+          - name: "Part 1: Create a personal voice project"
             href: personal-voice-create-project.md
-          - name: Add user consent to your project
+          - name: "Part 2: Add user consent to your project"
             href: personal-voice-create-consent.md
-          - name: Get a speaker profile ID
+          - name: "Part 3: Get a speaker profile ID"
             href: personal-voice-create-voice.md
-          - name: Use personal voice in your application
+          - name: "Part 4: Use personal voice in your application"
             href: personal-voice-how-to-use.md
             displayName: cnv
     - name: Text to speech avatar
@@ -321,13 +321,13 @@ items:
           displayName: pronounce, learn language, assess pron, chatting 
     - name: Azure OpenAI speech to speech chat
       href: openai-speech.md
-    - name: Meeting transcription
+    - name: Conversation transcription multichannel diarization (preview)
       items:
-        - name: Meeting transcription overview
+        - name: Conversation transcription overview
           href: meeting-transcription.md
-        - name: Real-time Meeting transcription quickstart
+        - name: Real-time conversation transcription quickstart
           href: how-to-use-meeting-transcription.md
-        - name: Asynchronous Meeting transcription
+        - name: Asynchronous conversation transcription
           href: how-to-async-meeting-transcription.md
     - name: Multi-device conversation
       items:

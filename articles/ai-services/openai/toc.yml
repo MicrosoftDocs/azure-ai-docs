@@ -23,6 +23,8 @@ items:
       href: ./supported-languages.md
     - name: Azure OpenAI FAQ
       href: faq.yml
+    - name: Azure OpenAI in Azure Government
+      href: azure-government.md
 - name: Quickstarts
   items:
     - name: Assistants (preview)
@@ -122,6 +124,8 @@ items:
       href: ./how-to/json-mode.md
     - name: Reproducible output
       href: ./how-to/reproducible-output.md
+    - name: Structured outputs
+      href: ./how-to/structured-outputs.md
     - name: Work with code
       href: ./how-to/work-with-code.md
     - name: Use with large datasets
@@ -214,7 +218,7 @@ items:
   items:
     - name: Embeddings
       href: ./tutorials/embeddings.md
-    - name: Fine-tuning GPT-3.5-Turbo
+    - name: Fine-tuning GPT-4o mini
       href: ./tutorials/fine-tune.md
     - name: Speech to speech chat
       href: ../speech-service/openai-speech.md?context=%2fazure%2fcognitive-services%2fopenai%2fcontext%2fcontext

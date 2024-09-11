@@ -1,5 +1,5 @@
 ---
-title: Document Intelligence (formerly Form Recognizer) pay stub model
+title: Document Intelligence pay stub model
 titleSuffix: Azure AI services
 description: Automate compensation and earnings information from pay slips and stubs.
 author: laujan

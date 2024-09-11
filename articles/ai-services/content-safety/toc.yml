@@ -23,19 +23,19 @@ items:
     href: concepts/groundedness.md
   - name: Protected material detection
     href: concepts/protected-material.md
-  - name: Custom categories
+  - name: Custom categories (preview)
     href: concepts/custom-categories.md
   - name: Harm categories
     href: concepts/harm-categories.md
 - name: Quickstarts
   items:
-  - name: Prompt Shields (preview)
+  - name: Prompt Shields
     href: quickstart-jailbreak.md
   - name: Groundedness detection (preview)
     href: quickstart-groundedness.md
-  - name: Protected material detection (preview)
+  - name: Protected material detection
     href: quickstart-protected-material.md
-  - name: Custom categories
+  - name: Custom categories (preview)
     href: quickstart-custom-categories.md
   - name: Content Safety Studio
     href: studio-quickstart.md
@@ -57,7 +57,7 @@ items:
     href: /legal/cognitive-services/content-safety/data-privacy?context=/azure/ai-services/content-safety/context/context
 - name: How-to guides
   items:
-  - name: Use custom categories
+  - name: Use custom categories (preview)
     href: how-to/custom-categories.md
   - name: Use a blocklist
     href: how-to/use-blocklist.md

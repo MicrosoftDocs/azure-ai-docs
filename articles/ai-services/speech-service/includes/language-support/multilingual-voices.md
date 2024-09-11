@@ -1,9 +1,9 @@
 ---
-author: sally-baolian
+author: eric-urban
 ms.service: azure-ai-speech
 ms.date: 07/06/2023
 ms.topic: include
-ms.author: v-baolianzou
+ms.author: eur
 ---
 
 | Voice                                                        | Auto-detected language number | Auto-detected language (locale)                              | All locales number | All languages (locale) supported from SSML                   |

@@ -295,10 +295,8 @@ items:
   items:
   - name: REST APIs
     items:
-    - name: 2024-02-29-preview (v4.0)
-      href: /rest/api/aiservices/document-models/build-model?view=rest-aiservices-2024-02-29-preview&preserve-view=true&branch=docintelligence&tabs=HTTP
-    - name: 2023-10-31-preview (v4.0)
-      href: /rest/api/aiservices/operation-groups?view=rest-aiservices-2023-10-31-preview&preserve-view=true&tabs=HTTP
+    - name: 2024-07-31-preview (v4.0)
+      href: /rest/api/aiservices/operation-groups?view=rest-aiservices-v4.0%20(2024-07-31-preview)&preserve-view=true
     - name: 2023-07-31 (v3.1)
       href: /rest/api/aiservices/document-models/analyze-document?view=rest-aiservices-2023-07-31&preserve-view=true&tabs=HTTP
     - name: 2022-08-31 (v3.0)
@@ -307,7 +305,7 @@ items:
       href: v3-error-guide.md
     - name: v2.1
       href: /rest/api/aiservices/analyzer?view=rest-aiservices-v2.1&preserve-view=true
-  - name: Client libraries (2023-10-31-preview)
+  - name: Client libraries (2024-07-31-preview)
     items:
     - name: C# / .NET
       href: /dotnet/api/overview/azure/ai.documentintelligence-readme?view=azure-dotnet-preview&preserve-view=true
