@@ -54,7 +54,7 @@ endpoint: https://contoso.search.windows.net/
 api_key: XXXXXXXXXXXXXXX
 ```
 
-### YAML: Microsoft Entra ID
+### YAML: Microsoft Entra ID (preview)
 
 ```yml
 #AzureContentSafetyConnection.yml

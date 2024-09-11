@@ -56,6 +56,8 @@ Follow these steps to create a new connection that's only available for the curr
 
     > [!TIP]
     > Different connection types support different authentication methods. Using Microsoft Entra ID may require specific Azure role-based access permissions for your developers. For more information, visit [Role-based access control](../concepts/rbac-ai-studio.md#scenario-connections-using-microsoft-entra-id-authentication).
+    >
+    > Microsoft Entra ID support with the Azure AI Search connection is currently in preview.
 
     :::image type="content" source="../media/data-connections/connection-add-azure-ai-search-connect.png" alt-text="Screenshot of the page to select the Azure AI Search service that you want to connect to." lightbox="../media/data-connections/connection-add-azure-ai-search-connect.png":::
 
