@@ -325,12 +325,6 @@ curl -i -X POST https://<your-language-resource-endpoint>/language/analyze-text/
   },
 "tasks": [
     {
-      "kind": "AbstractiveSummarization",
-      "taskName": "Query-based Abstractive Summarization",
-      "parameters": {
-          "summaryLength": "short"
-      }
-    },    {
       "kind": "ExtractiveSummarization",
       "taskName": "Query_based Extractive Summarization",
       "parameters": {
