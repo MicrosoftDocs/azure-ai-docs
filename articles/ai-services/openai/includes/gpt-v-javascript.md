@@ -37,7 +37,7 @@ This SDK is provided by OpenAI with Azure specific types provided by Azure.
 
 
 > [!NOTE]
-> This library is maintained by OpenAI. Refer to the [release history](https://github.com/openai/openai-python/releases) to track the latest updates to the library.
+> This library is maintained by OpenAI. Refer to the [release history](https://github.com/openai/openai-node/releases) to track the latest updates to the library.
 
 [!INCLUDE [get-key-endpoint](get-key-endpoint.md)]
 
@@ -63,6 +63,8 @@ npm install openai @azure/identity
 Your app's _package.json_ file will be updated with the dependencies.
 
 ## Create a new JavaScript application for image prompts
+
+Select an image from the [azure-samples/cognitive-services-sample-data-files](https://github.com/Azure-Samples/cognitive-services-sample-data-files/tree/master/ComputerVision/Images) and set the URL for an image in the environment variables.
 
 ## [**TypeScript**](#tab/typescript)
 
