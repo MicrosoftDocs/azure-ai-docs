@@ -69,6 +69,7 @@ In this quickstart, you can use your own data with Azure OpenAI models. Using Az
 
 - Download the example data from [GitHub](https://github.com/Azure-Samples/cognitive-services-sample-data-files/blob/master/openai/contoso_benefits_document_example.pdf) if you don't have your own data.
 
+---
 
 ::: zone pivot="programming-language-javascript"
 
