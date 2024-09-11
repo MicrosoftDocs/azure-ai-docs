@@ -1,0 +1,114 @@
+---
+title: 'Try Azure AI Search for free'
+titleSuffix: Azure AI Search
+description: Learn how to create a trial subscription and use credits for trying advanced features.
+
+manager: nitinme
+author: HeidiSteen
+ms.author: heidist
+ms.service: cognitive-search
+ms.topic: conceptual
+ms.date: 09/12/2024
+---
+
+# Try Azure AI Search for free
+
+If you're new to Azure, you can set up a free trial subscription to explore the services important you, at no charge. One of the Azure services you might want to try is Azure AI Search. Search is an expected component of any front-end app that backs data, and increasingly it's a critical component for generative search over content you own.
+
+This article explains how to get the most value from your Azure trial subscription so that you can complete your evaluation of Azure AI Search quickly and efficiently.
+
+## Sign up for a free subscription
+
+To try Azure AI Search for free, [start a trial subscription](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A261C142F). The trial subscription is active for one month and comes with free credits so that you can create services at no charge. In the United States, the credit amount is $200. Equivalent credits are available in other currencies. 
+
+The [Azure portal](https://portal.azure.com/) is the easiest approach for first-time users who want to create and use Azure resources. You can access and manage all of your subscriptions and resources from the portal, and in the case of Azure AI Search, you can build components for classic search scenarios and generative search (RAG) workloads.
+
+## Create services
+
+Although you can create a free search service that doesn't use up your credits, we recommend provisioning the **Basic** tier so that you can work with larger indexes, more indexes, and premium features like semantic ranking.
+
+To evaluate Azure for RAG scenarios, you should have three or five Azure resources for:
+
+- Storing data
+- Embedding and chat models
+- Applied AI services, like Azure AI Vision or Document Intelligence
+- Providing relevant grounding data (Azure AI Search)
+- Apps
+
+Most of our quickstarts and tutorials use Azure Storage, so we recommend creating an Azure Storage account for getting started.
+
+Generative search requires embedding and chat models. Azure provides Azure OpenAI, but you can also use Azure AI Vision for multimodal embeddings (but not chat). Another option is Azure AI Studio and deploying chat and embedding models into the model catalog. We recommend Azure OpenAI for its familiarity and mainstream offerings.
+
+Application front-ends are useful if you're prototyping a solution for a wider audience. You can use Azure Web apps or build an ASP.NET MVC application for this task. Otherwise, if you're working locally, you can view output in Jupyter notebooks in Visual Studio Code or another IDE. Or view results in console apps or other apps that run on localhost.
+
+## Check regions
+
+Azure AI Search has integrated operations with applied AI in the Azure cloud. Integration depends on services running within the same region. This is a requirement for data residency laws and for efficient operations.
+
+Verifying regional availability can save time and steps because you need to choose a region that supports all of the services you want to use.
+
+Start here:
+
+- [Azure AI Search region list](search-region-support.md). This list identifies region support for applied AI (Azure AI multiservice) and semantic ranking. You don't need a separate region check for applied AI.
+
+Continue with the following links to review which regions provide the model provider that you want to use.
+
+- [Azure OpenAI region list](/azure/ai-services/openai/concepts/models#model-summary-table-and-region-availability)
+- [Azure AI Vision region list](/azure/ai-services/computer-vision/overview-image-analysis?tabs=4-0#region-availability)
+- [Azure AI Studio region list](/azure/ai-studio/reference/region-support)
+
+West Europe and West US 2/3 are currently at capacity for Azure AI Search.
+
+> [!TIP]
+> Currently, the following regions provide the most overlap and have the most capacity: **East US**, **East US2**, and **South Central** in the Americas; **France Central** or **Switzerland North** in Europe; **Australia East** in Asia Pacific.
+
+## Create services
+
+1. [Create a search service](search-create-service-portal.md), choosing the Basic tier and a region that also offers a model provider. Most Azure AI Search regions provide higher capacity storage limits. There are just a few that have older and lower limits. For the Basic tier, as you install, confirm that you have a 15-GB partition.
+
+1. [Create an Azure Storage account](/azure/storage/common/storage-account-create?tabs=azure-portal), choosing a general purpose account and using default settings.
+
+1. [Create an Azure OpenAI resource](/azure/ai-services/openai/how-to/create-resource?pivots=web-portal) as your model provider.
+
+1. [Create an Azure AI multiservice account](/azure/ai-services/multi-service-resource?pivots=azportal) to use applied AI in your indexing workloads and Azure AI Vision multimodal APIs as an embedding model provider. You can create and transform content during indexing if applied AI can be attached. For multimodal APIs, make sure you have chosen a region that provides those APIs. Look for this tile in the Azure marketplace:
+
+   :::image type="content" source="media/search-try-for-free/azure-ai-service-marketplace.png alt-text="Screenshot of the Azure AI Services offering in the Azure marketplace.":::
+
+## Estimating costs
+
+During the trial period, you want to stay under the credit allocation. Most services are pay-as-you-go, so you won't be charged while they're not in use, but an Azure AI Search service is provisioned on dedicated clusters and it can only be used by you. It's billable during its lifetime.
+
+During the trial period, the Azure portal provides a notification on the top right that tells you how many credits are used up and what remains. 
+
+You can search for *subscriptions* in the Azure portal to view subscription information at any time. The Overview page gives you spending rates, forecasts, and cost management.
+
+## Tips for rapid growth and maximum learning
+
+Try the portal quickstarts for Azure AI Search. It's the fastest approach creating searchable content, and you don't need coding skills to complete the tasks.
+
+Developers should review azure-search-vector-samples repository or the solution accelerators. You can deploy and run any of these samples using the Azure trial subscription. 
+
+Many samples and accelerators come with bicep scripts that deploy all Azure resources and dependencies, so you can skip installation steps and explore an operational solution as soon as the development completes.
+
+## Use the free tier
+
+You can create a search service that doesn't consume credits. Here are some points about the free tier to keep in mind:
+
+- You can have one free search service per Azure subscription.
+- You can complete all of the quickstarts and most tutorials, except for those featuring semantic ranking and managed identities for Microsoft Entra ID authentication and authorization.
+- Storage is capped at 50 MB.
+- You can have up to three indexes, indexers, data sources, and skillset at one time. 
+
+Review the [service limits](search-limits-quotas-capacity.md) for other constraints that apply to the free tier.
+
+## Next steps
+
+After provisioning a service, you can continue in the portal to create your first index.
+
+> [!div class="nextstepaction"]
+> [Quickstart: Create an Azure AI Search index in the portal](search-get-started-portal.md)
+
+Want to optimize and save on your cloud spending?
+
+> [!div class="nextstepaction"]
+> [Start analyzing costs with Cost Management](/azure/cost-management-billing/costs/quick-acm-cost-analysis?WT.mc_id=costmanagementcontent_docsacmhorizontal_-inproduct-learn)
