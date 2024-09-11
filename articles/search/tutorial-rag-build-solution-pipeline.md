@@ -46,7 +46,7 @@ If you don't have an Azure subscription, create a [free account](https://azure.m
 
 ## Provide the index schema
 
-Open or create a Jupyter notebook (.ipynb) in Visual Studio code to contain the scripts that comprise the pipeline. Initial steps install packages and collect variables for the connections. After you complete the set up steps, you're ready to begin with the components of the indexing pipeline. 
+Open or create a Jupyter notebook (`.ipynb`) in Visual Studio Code to contain the scripts that comprise the pipeline. Initial steps install packages and collect variables for the connections. After you complete the setup steps, you're ready to begin with the components of the indexing pipeline. 
 
 Let's start with the index schema from the [previous tutorial](tutorial-rag-build-solution-index-schema.md). It's organized around vectorized and nonvectorized chunks. It includes a `locations` field that stores AI-generated content created by the skillset.  
 
@@ -309,7 +309,7 @@ www.nasa.gov
 np-2018-05-2546-hQ
 ```
 
-Try a few more queries to get a sense of what the search engine returns directly so that you can compare it with an LLM-enabled response. Re-run the previous script with this query: "how much of the earth is covered in water"?
+Try a few more queries to get a sense of what the search engine returns directly so that you can compare it with an LLM-enabled response. Rerun the previous script with this query: "how much of the earth is covered in water"?
 
 Results from this second query should look similar to the following results, which are lightly edited for concision. 
 

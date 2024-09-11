@@ -73,8 +73,8 @@ In Azure AI Search, an index that works best for RAG workloads has these qualiti
 
 Although Azure AI Search can't join indexes, you can create indexes that preserve parent-child relationship, and then use sequential or parallel queries in your search logic to pull from both. This exercise includes templates for parent-child elements in the same index and in separate indexes, where information from the parent index is retrieved using a lookup query.
 
-> [!NOTE]
-> Schema design affects storage and costs. This exercise is focused on schema fundamentals. In the [Minimize storage and costs](tutorial-rag-build-solution-minimize-storage.md) tutorial, you revisit schema design to consider narrow data types, attribution, and vector configurations that offer more efficient.
+<!-- > [!NOTE]
+> Schema design affects storage and costs. This exercise is focused on schema fundamentals. In the [Minimize storage and costs](tutorial-rag-build-solution-minimize-storage.md) tutorial, you revisit schema design to consider narrow data types, attribution, and vector configurations that offer more efficient. -->
 
 ## Create an index for RAG workloads
 
@@ -278,7 +278,7 @@ A minimal index for LLM is designed to store chunks of content. It typically inc
 
    Fields in the child index:
 
-   - id
+   - ID
    - chunk
    - chunkVectcor
    - parent_id
