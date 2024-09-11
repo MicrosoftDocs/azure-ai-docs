@@ -39,6 +39,12 @@ Get started using GPT-4 Turbo with images with the Azure OpenAI Service.
 
 ::: zone-end
 
+::: zone pivot="programming-language-javascript"
+
+[!INCLUDE [JavaScript quickstart](includes/gpt-v-javascript.md)]
+
+::: zone-end
+
 ## Next steps
 
 * Learn more about these APIs in the [GPT-4 Turbo with Vision how-to guide](./gpt-v-quickstart.md)
