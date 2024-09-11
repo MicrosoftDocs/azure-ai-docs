@@ -246,8 +246,8 @@ Your app's _package.json_ file will be updated with the dependencies.
 
 1. Run the script with the following command:
 
-```console
-node Text-to-speech.js
-```
-
+    ```console
+    node Text-to-speech.js
+    ```
+    
 ---
