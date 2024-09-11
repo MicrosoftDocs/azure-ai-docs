@@ -169,6 +169,8 @@ main().catch((err) => {
 
 ```
 
+The "openai/shims/node" import supports the ability for the a stream type that changes depending on whether you run in Node.js or in another environment such as a browser.
+
 1. Build the application with the following command:
 
     ```console
