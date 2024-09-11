@@ -328,14 +328,12 @@ curl -i -X POST https://<your-language-resource-endpoint>/language/analyze-text/
       "kind": "AbstractiveSummarization",
       "taskName": "Query-based Abstractive Summarization",
       "parameters": {
-          "query": "XYZ-code",
           "summaryLength": "short"
       }
     },    {
       "kind": "ExtractiveSummarization",
       "taskName": "Query_based Extractive Summarization",
       "parameters": {
-          "query": "XYZ-code"
           "sentenceCount": "5"
       }
     }
