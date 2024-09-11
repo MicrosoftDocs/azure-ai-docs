@@ -21,7 +21,7 @@ This article explains how to get the most value from your Azure trial subscripti
 
 To try Azure AI Search for free, [start a trial subscription](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A261C142F). The trial subscription is active for one month and comes with free credits so that you can create services at no charge. In the United States, the credit amount is $200. Equivalent credits are available in other currencies. 
 
-The [Azure portal](https://portal.azure.com/) is the easiest approach for first-time users who want to create and use Azure resources. You can access and manage all of your subscriptions and resources from the portal, and in the case of Azure AI Search, you can build components for classic search scenarios and generative search (RAG) workloads.
+The [Azure portal](https://portal.azure.com/) is the easiest approach for first-time users who want to create and use Azure resources. You can access and manage all of your subscriptions and resources from the portal. For Azure AI Search, you can use the portal to build components for classic search scenarios and generative search (RAG) workloads.
 
 ## Create services
 
@@ -70,13 +70,13 @@ West Europe and West US 2/3 are currently at capacity for Azure AI Search.
 
 1. [Create an Azure OpenAI resource](/azure/ai-services/openai/how-to/create-resource?pivots=web-portal) as your model provider.
 
-1. [Create an Azure AI multiservice account](/azure/ai-services/multi-service-resource?pivots=azportal) to use applied AI in your indexing workloads and Azure AI Vision multimodal APIs as an embedding model provider. You can create and transform content during indexing if applied AI can be attached. For multimodal APIs, make sure you have chosen a region that provides those APIs. Look for this tile in the Azure marketplace:
+1. [Create an Azure AI multiservice account](/azure/ai-services/multi-service-resource?pivots=azportal) to use applied AI in your indexing workloads and Azure AI Vision multimodal APIs as an embedding model provider. You can create and transform content during indexing if applied AI can be attached. For multimodal APIs, make sure you have chosen a region that provides those APIs. Look for this tile in the Azure Marketplace:
 
-   :::image type="content" source="media/search-try-for-free/azure-ai-service-marketplace.png alt-text="Screenshot of the Azure AI Services offering in the Azure marketplace.":::
+   :::image type="content" source="media/search-try-for-free/azure-ai-service-marketplace.png alt-text="Screenshot of the Azure AI Services offering in the Azure Marketplace.":::
 
 ## Estimating costs
 
-During the trial period, you want to stay under the credit allocation. Most services are pay-as-you-go, so you won't be charged while they're not in use, but an Azure AI Search service is provisioned on dedicated clusters and it can only be used by you. It's billable during its lifetime.
+During the trial period, you want to stay under the credit allocation. Most services are pay-as-you-go, so you won't be charged while they're not in use, but an Azure AI Search service is provisioned on dedicated clusters and it can only be used by you. It's billable during its lifetime. If you provision a basic tier search service, expect Azure AI Search to consume about one third of your available credits during the trial period.
 
 During the trial period, the Azure portal provides a notification on the top right that tells you how many credits are used up and what remains. 
 
