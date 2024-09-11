@@ -11,7 +11,7 @@ ms.author: mbullwin
 ms.date: 05/20/2024
 ---
 
-[Source code](https://github.com/openai/openai-node) | [Package (npm)](https://www.npmjs.com/package/openai)
+[Reference documentation](https://platform.openai.com/docs/api-reference/completions) | [Source code](https://github.com/openai/openai-node) | [Package (npm)](https://www.npmjs.com/package/openai) | [Samples](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/openai/openai/samples)
 
 > [!NOTE]
 > This article has been updated to use the [latest OpenAI npm package](https://www.npmjs.com/package/openai) which now fully supports Azure OpenAI. If you are looking for code examples for the legacy Azure OpenAI JavaScript SDK they are currently still [available in this repo](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/openai/openai/samples/v2-beta/javascript).
@@ -67,38 +67,42 @@ Open a command prompt where you created the new project, and create a new file n
 ## [**TypeScript**](#tab/typescript)
 
 ```typescript
+import "dotenv/config";
 import { AzureOpenAI } from "openai";
 import { type Completion } from "openai/resources/index";
-import "dotenv/config";
 
 // You will need to set these environment variables or edit the following values
 const endpoint = process.env["AZURE_OPENAI_ENDPOINT"] || "<endpoint>";
 const apiKey = process.env["AZURE_OPENAI_API_KEY"] || "<api key>";
 
-// Azure OpenAI API version and deployment
-const apiVersion = "2024-04-01-preview";
-const deployment = "gpt-35-turbo-instruct";
+// Required Azure OpenAI deployment name and API version
+const apiVersion = "2024-07-01-preview";
+const deploymentName = "gpt-35-turbo-instruct";
 
 // Chat prompt and max tokens
 const prompt = ["When was Microsoft founded?"];
 const maxTokens = 128;
 
 function getClient(): AzureOpenAI {
-  return new AzureOpenAI({ endpoint, apiKey, apiVersion, deployment });
+  return new AzureOpenAI({
+    endpoint,
+    apiKey,
+    apiVersion,
+    deployment: deploymentName,
+  });
 }
 async function getCompletion(
   client: AzureOpenAI,
   prompt: string[],
-  model: string,
   max_tokens: number
 ): Promise<Completion> {
-  return await client.completions.create({
+  return client.completions.create({
     prompt,
-    model,
+    model: "",
     max_tokens,
   });
 }
-async function getChoices(completion: Completion): Promise<void> {
+async function printChoices(completion: Completion): Promise<void> {
   for (const choice of completion.choices) {
     console.log(choice.text);
   }
@@ -107,8 +111,8 @@ export async function main() {
   console.log("== Get completions Sample ==");
 
   const client = getClient();
-  const completion = await getCompletion(client, prompt, deployment, maxTokens);
-  await getChoices(completion);
+  const completion = await getCompletion(client, prompt, maxTokens);
+  await printChoices(completion);
 }
 
 main().catch((err) => {
@@ -188,14 +192,20 @@ Microsoft was founded on April 4, 1975.
 ## [**TypeScript**](#tab/typescript)
 
 ```typescript
+import {
+  DefaultAzureCredential,
+  getBearerTokenProvider,
+} from "@azure/identity";
+import "dotenv/config";
 import { AzureOpenAI } from "openai";
 import { type Completion } from "openai/resources/index";
-import { DefaultAzureCredential, getBearerTokenProvider } from "@azure/identity";
-import "dotenv/config";
 
-// Azure OpenAI API version and deployment
-const apiVersion = "2024-04-01-preview";
-const deployment = "gpt-35-turbo-instruct";
+// You will need to set these environment variables or edit the following values
+const endpoint = process.env["AZURE_OPENAI_ENDPOINT"] || "<endpoint>";
+
+// Required Azure OpenAI deployment name and API version
+const apiVersion = "2024-07-01-preview";
+const deploymentName = "gpt-35-turbo-instruct";
 
 // Chat prompt and max tokens
 const prompt = ["When was Microsoft founded?"];
@@ -203,23 +213,29 @@ const maxTokens = 128;
 
 function getClient(): AzureOpenAI {
   const scope = "https://cognitiveservices.azure.com/.default";
-  const azureADTokenProvider = getBearerTokenProvider(new DefaultAzureCredential(), scope);
-  return new AzureOpenAI({ azureADTokenProvider, deployment, apiVersion });
-  
+  const azureADTokenProvider = getBearerTokenProvider(
+    new DefaultAzureCredential(),
+    scope
+  );
+  return new AzureOpenAI({
+    endpoint,
+    azureADTokenProvider,
+    deployment: deploymentName,
+    apiVersion,
+  });
 }
 async function getCompletion(
   client: AzureOpenAI,
   prompt: string[],
-  model: string,
   max_tokens: number
 ): Promise<Completion> {
-  return await client.completions.create({
+  return client.completions.create({
     prompt,
-    model,
+    model: "",
     max_tokens,
   });
 }
-async function getChoices(completion: Completion): Promise<void> {
+async function printChoices(completion: Completion): Promise<void> {
   for (const choice of completion.choices) {
     console.log(choice.text);
   }
@@ -228,13 +244,14 @@ export async function main() {
   console.log("== Get completions Sample ==");
 
   const client = getClient();
-  const completion = await getCompletion(client, prompt, deployment, maxTokens);
-  await getChoices(completion);
+  const completion = await getCompletion(client, prompt, maxTokens);
+  await printChoices(completion);
 }
 
 main().catch((err) => {
   console.error("Error occurred:", err);
 });
+
 ```
 
 Build the script with the following command:
