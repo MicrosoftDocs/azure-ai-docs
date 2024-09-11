@@ -46,9 +46,9 @@ Your app's _package.json_ file will be updated with the dependencies.
 1. Open a command prompt where you want the new project, and create a new file named `ChatWithOwnData.ts`. Copy the following code into the `ChatWithOwnData.ts` file.
 
 ```typescript
-import "@azure/openai/types";
 import "dotenv/config";
 import { AzureOpenAI } from "openai";
+import "@azure/openai/types";
 
 // Set the Azure and AI Search values from environment variables
 const endpoint = process.env["AZURE_OPENAI_ENDPOINT"];
