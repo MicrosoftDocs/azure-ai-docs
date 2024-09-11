@@ -13,7 +13,7 @@ ms.date: 09/12/2024
 
 # Try Azure AI Search for free
 
-If you're new to Azure, you can set up a free trial subscription to explore the services important you, at no charge. One of the Azure services you might want to try is Azure AI Search. Search is an expected component of any front-end app that backs data, and increasingly it's a critical component for generative search over content you own.
+If you're new to Azure, you can set up a free trial subscription to explore the services important you at no charge. One of the Azure services you might want to try is Azure AI Search. Search is an expected component of any front-end app that's backed by content, and increasingly it's a critical component for generative search over content you own.
 
 This article explains how to get the most value from your Azure trial subscription so that you can complete your evaluation of Azure AI Search quickly and efficiently.
 
@@ -51,7 +51,7 @@ Start here:
 
 - [Azure AI Search region list](search-region-support.md). This list identifies region support for applied AI (Azure AI multiservice) and semantic ranking. You don't need a separate region check for applied AI.
 
-West Europe and West US 2/3 are currently at capacity for Azure AI Search and aren't accepting new search services.
+  West Europe and West US 2/3 are currently at capacity for Azure AI Search and aren't accepting new search services.
 
 Continue with the following links to review which regions also provide the model provider that you want to use.
 
@@ -60,7 +60,7 @@ Continue with the following links to review which regions also provide the model
 - [Azure AI Studio region list](/azure/ai-studio/reference/region-support)
 
 > [!TIP]
-> Currently, the following regions provide the most overlap and have the most capacity: **East US**, **East US2**, and **South Central** in the Americas; **France Central** or **Switzerland North** in Europe; **Australia East** in Asia Pacific.
+> Currently, these regions provide the most overlap and capacity: **East US**, **East US2**, and **South Central** in the Americas; **France Central** or **Switzerland North** in Europe; **Australia East** in Asia Pacific.
 
 ## Create services
 
@@ -76,13 +76,13 @@ Continue with the following links to review which regions also provide the model
 
 ## Estimating costs
 
-During the trial period, you want to stay under the credit allocation. Most services are pay-as-you-go, so you won't be charged while they're not in use, but an Azure AI Search service is provisioned on dedicated clusters and it can only be used by you. It's billable during its lifetime. If you provision a basic tier search service, expect Azure AI Search to consume about one third of your available credits during the trial period.
+During the trial period, you want to stay under the $200 credit allocation. Most services are pay-as-you-go, so you won't be charged while they're not in use, but an Azure AI Search service is provisioned on dedicated clusters and it can only be used by you. It's billable during its lifetime. If you provision a basic tier search service, expect Azure AI Search to consume about one third (or $70) of your available credits during the trial period.
 
 During the trial period, the Azure portal provides a notification on the top right that tells you how many credits are used up and what remains. 
 
 You can also monitor billing by searching for *subscriptions* in the Azure portal to view subscription information at any time. The Overview page gives you spending rates, forecasts, and cost management.
 
-## Tips for rapid growth and maximum learning
+## Tips for getting the most value from your subscription
 
 Try the portal quickstarts for Azure AI Search. It's the fastest approach creating searchable content, and you don't need coding skills to complete the tasks.
 
