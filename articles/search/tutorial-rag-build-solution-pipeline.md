@@ -95,7 +95,7 @@ print(f"{result.name} created")
 
 ## Create a data source connection
 
-In this step, set up a connection to Azure Blob Storage. The indexer retrieves PDFs from a container. You can create the container and upload files in the Azure portal.
+In this step, set up the sample data and a connection to Azure Blob Storage. The indexer retrieves PDFs from a container. You create the container and upload files in this step.
 
 1. Sign in to the Azure portal and find your Azure Storage account.
 

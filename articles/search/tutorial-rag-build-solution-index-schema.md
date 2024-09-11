@@ -41,7 +41,7 @@ When LLMs generate a response, they operate on chunks of content for message inp
 
 Chunks are the focus of the schema, and each chunk is the defining element of a search document in a RAG pattern. You can think of your index as a large collection of chunks, as opposed to traditional search documents that probably have more structure, such as fields containing uniform content for a name, descriptions, categories, and addresses.
 
-### Content-aware
+### Content centricity and structured data
 
 In addition to structural considerations, like chunked content, you also want to consider the substance of your content because it also informs what fields are indexed.
 

@@ -36,11 +36,11 @@ This tutorial builds on the previous tutorials. It assumes you have a search ind
 
 ## Download the sample
 
-You use the same notebook from the previous indexing pipeline tutorial. Scripts for querying the LLM follow the pipeline steps. If you don't already have the notebook, [download it](https://github.com/Azure-Samples/azure-search-python-samples/blob/main/Tutorial-RAG/Tutorial-rag.ipynb) from GitHub.
+You use the same notebook from the previous indexing pipeline tutorial. Scripts for querying the LLM follow the pipeline creation steps. If you don't already have the notebook, [download it](https://github.com/Azure-Samples/azure-search-python-samples/blob/main/Tutorial-RAG/Tutorial-rag.ipynb) from GitHub.
 
 ## Configure clients for sending queries
 
-The RAG pattern in Azure AI Search is a synchronized connection to a search index to obtain the grounding data, followed by a connection to an LLM to formulate a response to the user's question. The same query string is used by both clients.
+The RAG pattern in Azure AI Search is a synchronized series of connections to a search index to obtain the grounding data, followed by a connection to an LLM to formulate a response to the user's question. The same query string is used by both clients.
 
 You're setting up two clients, so you need permissions on both resources. We use API keys for this exercise. The following endpoints and keys are used for queries:
 
@@ -53,6 +53,8 @@ AZURE_OPENAI_KEY: str = "PUT YOUR AZURE OPENAI KEY HERE"
 ```
 
 ## Example script for prompt and query
+
+Here's the Python script that instantiates the clients, defines the prompt, and sets up the query. You can run this script in the notebook to generate a response from your chat model deployment.
 
 ```python
 # Import libraries
@@ -115,21 +117,27 @@ print(response.choices[0].message.content)
 
 ## Review results
 
-In this example, the answer is based on a single input (`top=1`) consisting of the one chunk determined by the search engine to be the most relevant. Instructions in the prompt tell the LLM to use only the information in the `sources`, or formatted search results. Results from the first query`"how much of earth is covered by water"` should look similar to the following example.
+In this response, the answer is based on a single input (`top=1`) consisting of the one chunk determined by the search engine to be the most relevant. Instructions in the prompt tell the LLM to use only the information in the `sources`, or formatted search results. 
+
+Results from the first query`"how much of earth is covered by water"` should look similar to the following example.
 
 :::image type="content" source="media/tutorial-rag-solution/chat-results-1.png" alt-text="Screenshot of an LLM response to a simple question using a single match from search results.":::
 
 ### Changing the inputs
 
-Increasing or decreasing the number of inputs to the LLM can have a large effect on the response. Try running the same query again after setting `top=3`. When you increase the inputs, the model returns different results each time, even if the query doesn't change. Here's one example of what the model returns after increasing the inputs to 3.
+Increasing or decreasing the number of inputs to the LLM can have a large effect on the response. Try running the same query again after setting `top=3`. When you increase the inputs, the model returns different results each time, even if the query doesn't change. 
+
+Here's one example of what the model returns after increasing the inputs to 3.
 
 :::image type="content" source="media/tutorial-rag-solution/chat-results-2.png" alt-text="Screenshot of an LLM response to a simple question using a larger result set.":::
 
-Because the model is bound to just the grounding data, the answer is larger also more vague. You can use relevance tuning to potentially generate more focused answers.
+Because the model is bound to just the grounding data, the answer becomes more expansive as you increase size of the input. You can use relevance tuning to potentially generate more focused answers.
 
 ### Changing the prompt
 
-You can also change the prompt to control the format of the output, tone, and whether you want the model to supplement the answer with its own training data by changing the prompt. Here's another example of LLM output if we refocus the prompt.
+You can also change the prompt to control the format of the output, tone, and whether you want the model to supplement the answer with its own training data by changing the prompt. 
+
+Here's another example of LLM output if we refocus the prompt.
 
 ```python
 # Provide instructions to the model
@@ -149,7 +157,7 @@ Output from changing just the prompt, retaining `top=3` from the previous query,
 
 :::image type="content" source="media/tutorial-rag-solution/chat-results-3.png" alt-text="Screenshot of an LLM response to a change in prompt composition.":::
 
-In this tutorial, assessing the quality of the answer is subjective, but since the model is working with the same results as the previous query, the answer feels incomplete given the body of content available. Let's try the request one last time, increasing `top=10`.
+In this tutorial, assessing the quality of the answer is subjective, but since the model is working with the same results as the previous query, the answer feels less focused, and some bullets seem only tangential to a question about the surface area of water on earth. Let's try the request one last time, increasing `top=10`.
 
 :::image type="content" source="media/tutorial-rag-solution/chat-results-4.png" alt-text="Screenshot of an LLM response to a simple question using top set to 10.":::
 
@@ -157,7 +165,9 @@ There are several observations to note:
 
 - Raising the `top` value can exhaust available quota on the model. If there's no quota, an error message is returned.
 
-- Improving the relevance of the search results from Azure AI Search is the most effective approach for maximizing the utility of your LLM.
+- Raising the `top` value doesn't necessarily improve the outcome. The answer isn't the same as `top=3`, but it's similar. This observation underscores an important point that might be counter-intuitive to expections. Throwing more content at an LLM doesn't always yield better results.
+
+- So what might help? Typically, the answer is relevance tuning. Improving the relevance of the search results from Azure AI Search is usually the most effective approach for maximizing the utility of your LLM.
 
 In the next series of tutorials, the focus shifts to maximizing relevance and optimizing query performance for speed and concision. We revisit the schema definition and query logic to implement relevance features, but the rest of the pipeline and models remain intact.
 
