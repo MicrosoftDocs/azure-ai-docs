@@ -23,7 +23,7 @@ To try Azure AI Search for free, [start a trial subscription](https://azure.micr
 
 The [Azure portal](https://portal.azure.com/) is the easiest approach for first-time users who want to create and use Azure resources. You can access and manage all of your subscriptions and resources from the portal. For Azure AI Search, you can use the portal to build components for classic search scenarios and generative search (RAG) workloads.
 
-## Create services
+## Roadmap for RAG
 
 Although you can create a free search service that doesn't use up your credits, we recommend provisioning the **Basic** tier so that you can work with larger indexes, more indexes, and premium features like semantic ranking.
 
@@ -72,7 +72,7 @@ West Europe and West US 2/3 are currently at capacity for Azure AI Search.
 
 1. [Create an Azure AI multiservice account](/azure/ai-services/multi-service-resource?pivots=azportal) to use applied AI in your indexing workloads and Azure AI Vision multimodal APIs as an embedding model provider. You can create and transform content during indexing if applied AI can be attached. For multimodal APIs, make sure you have chosen a region that provides those APIs. Look for this tile in the Azure Marketplace:
 
-   :::image type="content" source="media/search-try-for-free/azure-ai-service-marketplace.png alt-text="Screenshot of the Azure AI Services offering in the Azure Marketplace.":::
+   :::image type="content" source="media/search-try-for-free/azure-ai-service-marketplace.png" alt-text="Screenshot of the Azure AI Services offering in the Azure Marketplace.":::
 
 ## Estimating costs
 
