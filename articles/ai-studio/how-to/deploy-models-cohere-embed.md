@@ -617,12 +617,12 @@ Cohere Embed V3 models can optimize the embeddings based on its use case.
 
 | Description                               | Language          | Sample                                                          |
 |-------------------------------------------|-------------------|-----------------------------------------------------------------|
-| Web requests                              | Bash              | [Command-R](https://aka.ms/samples/cohere-command-r/webrequests) - [Command-R+](https://aka.ms/samples/cohere-command-r-plus/webrequests) |
+| Web requests                              | Bash              | [cohere-embed.ipynb](https://aka.ms/samples/embed-v3/webrequests) |
 | Azure AI Inference package for JavaScript | JavaScript        | [Link](https://aka.ms/azsdk/azure-ai-inference/javascript/samples)  |
 | Azure AI Inference package for Python     | Python            | [Link](https://aka.ms/azsdk/azure-ai-inference/python/samples)      |
-| OpenAI SDK (experimental)                 | Python            | [Link](https://aka.ms/samples/cohere-command/openaisdk)             |
-| LangChain                                 | Python            | [Link](https://aka.ms/samples/cohere/langchain)                     |
-| Cohere SDK                                | Python            | [Link](https://aka.ms/samples/cohere-python-sdk)                    |
+| OpenAI SDK (experimental)                 | Python            | [Link](https://aka.ms/samples/cohere-embed/openaisdk)             |
+| LangChain                                 | Python            | [Link](https://aka.ms/samples/cohere-embed/langchain)                     |
+| Cohere SDK                                | Python            | [Link](https://aka.ms/samples/cohere-embed/cohere-python-sdk)                    |
 | LiteLLM SDK                               | Python            | [Link](https://github.com/Azure/azureml-examples/blob/main/sdk/python/foundation-models/cohere/litellm.ipynb) |
 
 #### Retrieval Augmented Generation (RAG) and tool use samples

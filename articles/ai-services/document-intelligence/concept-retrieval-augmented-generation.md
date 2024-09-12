@@ -1,5 +1,5 @@
 ---
-title: Retrieval-Augmented Generation (RAG) with Azure AI Document Intelligence (formerly Form Recognizer)
+title: Retrieval-Augmented Generation (RAG) with Azure AI Document Intelligence 
 titleSuffix: Azure AI services
 description: Introduction to how semantic chunking can help with Retrieval-Augmented Generation (RAG) implementation using Azure AI Document Intelligence Layout model.
 author: laujan

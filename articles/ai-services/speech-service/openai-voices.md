@@ -36,15 +36,15 @@ You can choose from the following text to speech voices in Azure AI services:
 
 ## OpenAI text to speech voices via Azure OpenAI Service or via Azure AI Speech?
 
-If you want to use OpenAI text to speech voices, you can choose whether to use them via [Azure OpenAI](../openai/text-to-speech-quickstart.md) or via [Azure AI Speech](./get-started-text-to-speech.md#openai-text-to-speech-voices-in-azure-ai-speech). In either case, the speech synthesis result is the same. 
+If you want to use OpenAI text to speech voices, you can choose whether to use them via [Azure OpenAI](../openai/text-to-speech-quickstart.md) or via [Azure AI Speech](./get-started-text-to-speech.md#openai-text-to-speech-voices-in-azure-ai-speech). In either case, the speech synthesis result is the same. To explore OpenAI text to speech voices through Azure AI Speech, visit the [Voice Gallery](https://speech.microsoft.com/portal/voicegallery).
 
 Here's a comparison of features between OpenAI text to speech voices in Azure OpenAI Service and OpenAI text to speech voices in Azure AI Speech. 
 
 | Feature | Azure OpenAI Service (OpenAI voices) | Azure AI Speech (OpenAI voices) | Azure AI Speech voices |
-|---------|---------------|------------------------|
+|---------|---------------|------------------------|------------------------|
 | **Region** | North Central US, Sweden Central | North Central US, Sweden Central | Available in dozens of regions. See the [region list](regions.md#speech-service).|
-| **Voice variety** | 6 | 6 | More than 400 |
-| **Multilingual voice number** | 6 | 6 | 14 |
+| **Voice variety** | 6 | 12 | More than 500 |
+| **Multilingual voice number** | 6 | 12 | 49 |
 | **Max multilingual language coverage** | 57 | 57 | 77 |
 | **Speech Synthesis Markup Language (SSML) support** | Not supported | Support for [a subset of SSML elements](#ssml-elements-supported-by-openai-text-to-speech-voices-in-azure-ai-speech). | Support for the [full set of SSML](speech-synthesis-markup-structure.md) in Azure AI Speech. |
 | **Development options** | REST API | Speech SDK, Speech CLI, REST API | Speech SDK, Speech CLI, REST API |

@@ -1,5 +1,5 @@
 ---
-title: Contract data extraction – Document Intelligence (formerly Form Recognizer)
+title: Contract data extraction – Document Intelligence 
 titleSuffix: Azure AI services
 description: Automate contract data extraction with Document Intelligence's contract models.
 author: laujan

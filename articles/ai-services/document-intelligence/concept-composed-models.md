@@ -1,5 +1,5 @@
 ---
-title: Composed custom models - Document Intelligence (formerly Form Recognizer)
+title: Composed custom models - Document Intelligence 
 titleSuffix: Azure AI services
 description: Compose several custom models into a single model for easier data extraction from groups of distinct form types.
 author: laujan

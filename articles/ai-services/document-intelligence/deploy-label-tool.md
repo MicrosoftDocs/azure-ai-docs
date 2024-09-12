@@ -1,5 +1,5 @@
 ---
-title: Deploy the Document Intelligence (formerly Form Recognizer) Sample Labeling tool
+title: Deploy the Document Intelligence Sample Labeling tool
 titleSuffix: Azure AI services
 description: Learn the different ways you can deploy the Document Intelligence Sample Labeling tool to help with supervised learning.
 author: laujan

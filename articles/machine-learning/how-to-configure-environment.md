@@ -15,6 +15,8 @@ ms.custom: devx-track-python, devx-track-azurecli, py-fresh-zinc
 
 # Set up a Python development environment for Azure Machine Learning
 
+[!INCLUDE [sdk v2](includes/machine-learning-sdk-v2.md)]
+
 Learn how to configure a Python development environment for Azure Machine Learning.
 
 The following table shows each development environment covered in this article, along with pros and cons.
