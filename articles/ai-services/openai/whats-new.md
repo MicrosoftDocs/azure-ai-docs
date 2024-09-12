@@ -22,7 +22,7 @@ This article provides a summary of the latest releases and major documentation u
 
 ### NEW o1-preview and o1-mini models available for limited access
 
-The OpenAI `o1 series models` are specifically designed to tackle reasoning and problem-solving tasks with increased focus and capability. These models spend more time processing and understanding the user's request, making them exceptionally strong in areas like science, coding, and math compared to previous iterations.
+The Azure OpenAI `o1-preview` and `o1-mini` models are specifically designed to tackle reasoning and problem-solving tasks with increased focus and capability. These models spend more time processing and understanding the user's request, making them exceptionally strong in areas like science, coding, and math compared to previous iterations.
 
 ### Key capabilities of the o1 series
 
@@ -38,9 +38,11 @@ The OpenAI `o1 series models` are specifically designed to tackle reasoning and 
 
 Model version: `2024-09-12`
 
+Request access: [limited access model application](https://aka.ms/oai/modelaccess)
+
 ### Limitations
 
-The `o1` models are currently in preview and do not include some features available in other models, such as image understanding and structured outputs found in the GPT-4o and GPT-4o-mini models. For many tasks, the generally available GPT-4o models may still be more suitable.
+The `o1-preview` and `o1-mini` models are currently in preview and do not include some features available in other models, such as image understanding and structured outputs found in the GPT-4o and GPT-4o-mini models. For many tasks, the generally available GPT-4o models may still be more suitable.
 
 ### Safety
 
@@ -48,17 +50,16 @@ OpenAI has incorporated additional safety measures into the o1 models, including
 
 ### Availability
 
-The `o1 models` are available in the East US2 region for limited access through the [AI Studio](https://ai.azure.com) early access playground. Data processing for the `o1 models` may occur in a different region than where they are available for use.
+The `o1-preview` and `o1-mini` are available in the East US2 region for limited access through the [AI Studio](https://ai.azure.com) early access playground. Data processing for the `o1` models may occur in a different region than where they are available for use.
 
-To try the `o1 series models` in the early access playground, registration is required, and access will be granted based on Microsoft’s eligibility criteria.
+To try the `o1-preview` and `o1-mini` models in the early access playground registration is required, and access will be granted based on Microsoft’s eligibility criteria.
 
-Request access: [application](https://aka.ms/oai/modelaccess)
+Request access: [limited access model application](https://aka.ms/oai/modelaccess)
 
 Once access has been granted, you will need to:
 
 1. Navigate to https://ai.azure.com/resources and select a resource in the `eastus2` region. If you do not have an Azure OpenAI resource in this region you will need to [create one](https://portal.azure.com/#create/Microsoft.CognitiveServicesOpenAI).  
-2. Once the `eastus2` Azure OpenAI resource is selected, in the upper left-hand panel under **Get started** select **Model catalog**.
-3. From the **Model catalog** select the model card for the new **o1-series** models to access the limited access playground.
+2. Once the `eastus2` Azure OpenAI resource is selected, in the upper left-hand panel under **Playgrounds** select **Early access playground (preview)**.
  
 ## August 2024
 

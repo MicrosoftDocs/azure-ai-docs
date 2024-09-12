@@ -4,7 +4,7 @@ titleSuffix: Azure OpenAI
 description: Learn about the different model capabilities that are available with Azure OpenAI.
 ms.service: azure-ai-openai
 ms.topic: conceptual
-ms.date: 09/11/2024
+ms.date: 09/12/2024
 ms.custom: references_regions, build-2023, build-2023-dataai, refefences_regions
 manager: nitinme
 author: mrbullwinkle #ChrisHMSFT
@@ -28,21 +28,20 @@ Azure OpenAI Service is powered by a diverse set of models with different capabi
 
 ## o1-preview and o1-mini models limited access
 
-The OpenAI `o1 series models` are specifically designed to tackle reasoning and problem-solving tasks with increased focus and capability. These models spend more time processing and understanding the user's request, making them exceptionally strong in areas like science, coding, and math compared to previous iterations.
+The Azure OpenAI `o1-preview` and `o1-mini` models are specifically designed to tackle reasoning and problem-solving tasks with increased focus and capability. These models spend more time processing and understanding the user's request, making them exceptionally strong in areas like science, coding, and math compared to previous iterations.
 
 ### Availability
 
-The `o1 models` are available in the East US2 region for limited access through the [AI Studio](https://ai.azure.com) early access playground. Data processing for the `o1 models` may occur in a different region than where they are available for use.
+The `o1-preview` and `o1-mini` models are available in the East US2 region for limited access through the [AI Studio](https://ai.azure.com) early access playground. Data processing for the `o1` models may occur in a different region than where they are available for use.
 
-To try the `o1 series models` in the early access playground, **registration is required, and access will be granted based on Microsoft’s eligibility criteria**.
+To try the `o1-preview` and `o1-mini` models in the early access playground, **registration is required, and access will be granted based on Microsoft’s eligibility criteria**.
 
-Request access: [application](https://aka.ms/oai/modelaccess)
+Request access: [limited access model application](https://aka.ms/oai/modelaccess)
 
 Once access has been granted, you will need to:
 
 1. Navigate to https://ai.azure.com/resources and select a resource in the `eastus2` region. If you do not have an Azure OpenAI resource in this region you will need to [create one](https://portal.azure.com/#create/Microsoft.CognitiveServicesOpenAI).  
-2. Once the `eastus2` Azure OpenAI resource is selected, in the upper left-hand panel under **Get started** select **Model catalog**.
-3. From the **Model catalog** select the model card for the new **o1-series** models to access the limited access playground.
+2. Once the `eastus2` Azure OpenAI resource is selected, in the upper left-hand panel under **Playgrounds** select **Early access playground (preview)**.
 
 ## GPT-4o and GPT-4 Turbo
 
