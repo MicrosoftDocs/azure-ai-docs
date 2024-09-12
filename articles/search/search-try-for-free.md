@@ -13,7 +13,7 @@ ms.date: 09/12/2024
 
 # Try Azure AI Search for free
 
-If you're new to Azure, you can set up a free trial subscription to explore the services important you at no charge. One of the Azure services you might want to try is Azure AI Search. Search is an expected component of any front-end app that's backed by content, and increasingly it's a critical component for generative search over content you own.
+If you're new to Azure, you can set up a free trial subscription to explore the services at no charge. One of the Azure services you might want to try is Azure AI Search. Search is an expected component of any front-end app that's backed by content, and increasingly it's a critical component for generative search over content you own.
 
 This article explains how to get the most value from your Azure trial subscription so that you can complete your evaluation of Azure AI Search quickly and efficiently.
 
@@ -32,26 +32,26 @@ Having a plan of action can help you get the most out of your trial subscription
 To evaluate Azure for [RAG scenarios](retrieval-augmented-generation-overview.md), you should have three or five Azure resources for:
 
 - Storing data
-- Embedding and chat models
-- Applied AI services to try out AI-generated content during indexing (optional)
-- Information retrieval (**Azure AI Search**)
-- Apps (optional)
+- Deploying embedding and chat models
+- Applying AI services for creating AI-generated content during indexing (optional)
+- Adding information retrieval (**Azure AI Search**)
+- Adding a frontend app (optional)
 
-Most of our quickstarts and tutorials use Azure Storage, so we recommend creating an Azure Storage account for getting started.
+Many of our quickstarts and tutorials use Azure Storage, so we recommend creating an Azure Storage account for getting started.
 
-Generative search requires embedding and chat models. Azure provides Azure OpenAI, but you can also use Azure AI Vision for multimodal embeddings (but not chat). Another model provider is Azure AI Studio and deploying chat and embedding models into the model catalog. We recommend Azure OpenAI for its familiarity and mainstream offerings.
+Generative search requires embedding and chat models. The Azure cloud provides Azure OpenAI, but you can also use Azure AI Vision for multimodal embeddings (but not chat). Another model provider is Azure AI Studio and deploying chat and embedding models into the model catalog. However, for initial exploration, we recommend Azure OpenAI for its familiarity and mainstream offerings.
 
-Application front-ends are useful if you're prototyping a solution for a wider audience. You can use Azure Web apps or build an ASP.NET MVC application for this task. Otherwise, if you're working locally, you can view output in Jupyter notebooks in Visual Studio Code or another IDE. Or view results in console apps or other apps that run on localhost.
+Application frontends are useful if you're prototyping a solution for a wider audience. You can use Azure Web apps or build an ASP.NET MVC application for this task. Otherwise, if you're working locally, you can view output in Jupyter notebooks in Visual Studio Code or another IDE. Or view results in console apps or other apps that run on localhost.
 
 ## Check regions
 
-Azure AI Search has integrated operations with applied AI in the Azure cloud. Integration depends on services running within the same region. This is a requirement for data residency laws and for efficient operations.
+Azure AI Search has integrated operations with applied AI in the Azure cloud. Integration depends on services running within the same region. This is a requirement for data residency and for efficient operations.
 
-Verifying regional availability can save you time and frusteration because you need to choose a region that supports all of the services you want to use.
+Verifying region availability can save you time and frusteration because you need to choose a region that supports all of the services you want to use.
 
 Start here:
 
-- [Azure AI Search region list](search-region-support.md). This list identifies region support for applied AI (Azure AI multiservice) and semantic ranking. You don't need a separate region check for applied AI.
+- [Azure AI Search region list](search-region-support.md). This list identifies region support for Azure AI Search, applied AI (Azure AI multiservice), and semantic ranking. You don't need a separate region check for applied AI.
 
   West Europe and West US 2/3 are currently at capacity for Azure AI Search and aren't accepting new search services.
 
