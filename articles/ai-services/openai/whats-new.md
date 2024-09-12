@@ -42,7 +42,7 @@ Request access: [limited access model application](https://aka.ms/oai/modelacces
 
 ### Limitations
 
-The `o1` series models are currently in preview and do not include some features available in other models, such as image understanding and structured outputs found in the latest GPT-4o model. For many tasks, the generally available GPT-4o models may still be more suitable.
+The `o1` series models are currently in preview and do not include some features available in other models, such as image understanding and structured outputs which are available in the latest GPT-4o model. For many tasks, the generally available GPT-4o models may still be more suitable.
 
 ### Safety
 
