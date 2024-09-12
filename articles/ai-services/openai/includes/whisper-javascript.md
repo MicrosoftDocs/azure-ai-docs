@@ -3,7 +3,7 @@ ms.topic: include
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: include
-ms.date: 9/10/2024
+ms.date: 9/12/2024
 ms.reviewer: v-baolianzou
 ms.author: eur
 author: eric-urban
