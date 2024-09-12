@@ -33,8 +33,8 @@ The Azure OpenAI `o1-preview` and `o1-mini` models are specifically designed to 
 
 ### Model variants
 
-- `o1-preview`: o1-preview is the more capable of the o1 series models.  
-- `o1-mini`: o1-mini is the faster and cheaper of the o1 series models.
+- `o1-preview`: `o1-preview` is the more capable of the `o1` series models.  
+- `o1-mini`: `o1-mini` is the faster and cheaper of the `o1` series models.
 
 Model version: `2024-09-12`
 
@@ -46,13 +46,13 @@ The `o1-preview` and `o1-mini` models are currently in preview and do not includ
 
 ### Safety
 
-OpenAI has incorporated additional safety measures into the o1 models, including new techniques to help the models refuse unsafe requests. These advancements make the o1 series some of the most robust models available.
+OpenAI has incorporated additional safety measures into the `o1` models, including new techniques to help the models refuse unsafe requests. These advancements make the `o1` series some of the most robust models available.
 
 ### Availability
 
 The `o1-preview` and `o1-mini` are available in the East US2 region for limited access through the [AI Studio](https://ai.azure.com) early access playground. Data processing for the `o1` models may occur in a different region than where they are available for use.
 
-To try the `o1-preview` and `o1-mini` models in the early access playground registration is required, and access will be granted based on Microsoft’s eligibility criteria.
+To try the `o1-preview` and `o1-mini` models in the early access playground **registration is required, and access will be granted based on Microsoft’s eligibility criteria.**
 
 Request access: [limited access model application](https://aka.ms/oai/modelaccess)
 
