@@ -160,7 +160,7 @@ Your app's _package.json_ file will be updated with the dependencies.
     function getClient() {
       return new AzureOpenAI({
         endpoint,
-        apiKey: apiKey,
+        apiKey,
         deployment: deploymentName,
         apiVersion,
       });
