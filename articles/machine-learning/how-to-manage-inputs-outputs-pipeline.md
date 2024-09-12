@@ -1,7 +1,7 @@
 ---
-title: Manage component and pipeline inputs and outputs
+title: Manage inputs and outputs for components and pipelines
 titleSuffix: Azure Machine Learning
-description: Learn how to manage inputs and outputs of components and pipelines in Azure Machine Learning.
+description: Understand and manage inputs and outputs of pipeline components and pipeline jobs in Azure Machine Learning.
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: core
@@ -12,48 +12,49 @@ ms.date:  09/11/2024
 ms.topic: how-to
 ms.custom: devplatv2, pipeline, devx-track-azurecli, update-code6
 ---
-# Manage component and pipeline inputs and outputs
+# Manage inputs and outputs for components and pipelines
 
 Azure Machine Learning pipelines support inputs and outputs at both the component and pipeline levels. This article describes pipeline and component inputs and outputs and how to manage them.
 
-At the component level, the inputs and outputs define the interface of a component. You can use the output from one component as an input for another component in the same parent pipeline, allowing for data or models to be passed between components. This interconnectivity forms a graph that illustrates the data flow within the pipeline.
+At the component level, the inputs and outputs define the component interface. You can use the output from one component as an input for another component in the same parent pipeline, allowing for data or models to be passed between components. You can represent this interconnectivity as a graph that illustrates the data flow within the pipeline.
 
-At the pipeline level, you can use inputs and outputs to submit pipeline jobs with varying data inputs or parameters that control training logic, such as `learning_rate`. When you invoke a pipeline via a REST endpoint, inputs and outputs are especially useful for assigning different values to the pipeline input or accessing the output of pipeline jobs. For more information, see [Create jobs and input data for batch endpoints](how-to-access-data-batch-endpoints-jobs.md).
+At the pipeline level, you can use inputs and outputs to submit pipeline jobs with varying data inputs or parameters that control training logic, such as `learning_rate`. Inputs and outputs are especially useful when you invoke a pipeline via a REST endpoint. You can assign different values to the pipeline input or access the output of pipeline jobs. For more information, see [Create jobs and input data for batch endpoints](how-to-access-data-batch-endpoints-jobs.md).
 
 ## Input and output types
 
-The following types are supported as **inputs** or **outputs** of a component or pipeline:
+The following types are supported as both inputs and outputs of components or pipelines:
  
-Data types. For more information, see [Data types](concept-data.md#data-types).
-- `uri_file`
-- `uri_folder`
-- `mltable`
+- Data types. For more information, see [Data types](concept-data.md#data-types).
+  - `uri_file`
+  - `uri_folder`
+  - `mltable`
 
-Model types.
-- `mlflow_model`
-- `custom_model`
+- Model types.
+  - `mlflow_model`
+  - `custom_model`
 
-Pipeline or component **inputs** can also be the following primitive types:
+The following primitive types are also supported for inputs only:
+
 - `string`
 - `number`
 - `integer`
 - `boolean`
 
-Primitive types **output** isn't supported.
+Primitive type output isn't supported.
 
-Using data or model output serializes the outputs and saves them as files in a storage location. Later steps can mount this storage location, or download or upload the files to the compute file system, allowing the steps to access the files during job execution.
+Using data or model outputs serializes the outputs and saves them as files in a storage location. Later steps can access the files during job execution by mounting this storage location or by downloading or uploading the files to the compute file system.
 
-This process requires the component source code to serialize the desired output object, usually stored in memory, into files. For example, you could serialize a pandas dataframe as a CSV file. Azure Machine Learning doesn't define any standardized methods for object serialization. Users have the flexibility to choose their preferred methods to serialize objects into files. In the downstream component, you can independently deserialize and read these files.
+This process requires the component source code to serialize the output object, which is usually stored in memory, into files. For example, you could serialize a pandas dataframe as a CSV file. Azure Machine Learning doesn't define any standardized methods for object serialization. You have the flexibility to choose your preferred methods to serialize objects into files. In the downstream component, you can independently deserialize and read these files.
 
-### Examples
+### Example inputs and outputs
 
-The following example inputs and outputs are from the [NYC Taxi Data Regression](https://github.com/Azure/azureml-examples/tree/main/cli/jobs/pipelines-with-components/nyc_taxi_data_regression) pipeline in the [Azure Machine Learning examples](https://github.com/Azure/azureml-examples) GitHub repository.
+These examples are from the [NYC Taxi Data Regression](https://github.com/Azure/azureml-examples/tree/main/cli/jobs/pipelines-with-components/nyc_taxi_data_regression) pipeline in the [Azure Machine Learning examples](https://github.com/Azure/azureml-examples) GitHub repository.
 
 - The [train component](https://github.com/Azure/azureml-examples/blob/main/cli/jobs/pipelines-with-components/nyc_taxi_data_regression/train.yml) has a `number` input named `test_split_ratio`.
-- The [prep component](https://github.com/Azure/azureml-examples/blob/main/cli/jobs/pipelines-with-components/nyc_taxi_data_regression/prep.yml) has  an`uri_folder` type output. The component source code reads the CSV files from the input folder, processes the files, and writes the processed CSV files to the output folder.
-- The [train component](https://github.com/Azure/azureml-examples/blob/main/cli/jobs/pipelines-with-components/nyc_taxi_data_regression/train.yml) has a `mlflow_model` type output. The component source code saves the trained model using `mlflow.sklearn.save_model` method.
+- The [prep component](https://github.com/Azure/azureml-examples/blob/main/cli/jobs/pipelines-with-components/nyc_taxi_data_regression/prep.yml) has a `uri_folder` type output. The component source code reads the CSV files from the input folder, processes the files, and writes the processed CSV files to the output folder.
+- The [train component](https://github.com/Azure/azureml-examples/blob/main/cli/jobs/pipelines-with-components/nyc_taxi_data_regression/train.yml) has a `mlflow_model` type output. The component source code saves the trained model using the `mlflow.sklearn.save_model` method.
 
-## Data type input and output paths and modes
+## Data input and output paths and modes
 
 For data asset inputs and outputs, you must specify a `path` parameter that points to the data location. The following table shows the different data locations that Azure Machine Learning pipelines support, with `path` parameter examples:
 
@@ -61,13 +62,13 @@ For data asset inputs and outputs, you must specify a `path` parameter that poin
 |---------|---------|---------|---------|
 |A path on your local computer     | `./home/username/data/my_data`         | ✓ | |
 |A path on a public http(s) server    |  `https://raw.githubusercontent.com/pandas-dev/pandas/main/doc/data/titanic.csv`    | ✓ | |
-|A path on Azure Storage     |   `wasbs://<container_name>@<account_name>.blob.core.windows.net/<path>`<br>`abfss://<file_system>@<account_name>.dfs.core.windows.net/<path>`    | \* |  |
+|A path on Azure Storage     |   `wasbs://<container_name>@<account_name>.blob.core.windows.net/<path>`<br>or<br>`abfss://<file_system>@<account_name>.dfs.core.windows.net/<path>`    | \* |  |
 |A path on an Azure Machine Learning datastore   |   `azureml://datastores/<data_store_name>/paths/<path>`  | ✓ | ✓ |
 |A path to a data asset  |  `azureml:<my_data>:<version>`  |✓ | ✓ |
 
 \* Using Azure Storage directly isn't recommended for input/output, because it might need extra identity configuration to read the data. It's better to use an Azure Machine Learning datastore path instead of a direct Azure Storage path. Datastore paths are supported across various job types in pipelines.
 
-For data input/output, you can choose from various download, upload, and mount modes to define how to access data in the compute target. The following table shows the possible modes for different types of inputs and outputs.
+For data type inputs and outputs, you can choose from several download, upload, and mount modes to define how to access data in the compute target. The following table shows the possible modes for different types of inputs and outputs.
 
 Type | `upload` | `download` | `ro_mount` | `rw_mount` | `direct` | `eval_download` | `eval_mount` 
 ------ | ------ | :---: | :---: | :---: | :---: | :---: | :---: | :---:
@@ -79,13 +80,13 @@ Type | `upload` | `download` | `ro_mount` | `rw_mount` | `direct` | `eval_downlo
 `mltable` output | ✓  |   |    | ✓  | ✓  |  | 
 
 > [!NOTE]
-> In most cases, `ro_mount` or `rw_mount` modes are suggested. For more information, see [Modes](how-to-read-write-data-v2.md#modes). 
+> In most cases, `ro_mount` or `rw_mount` modes are recommended. For more information, see [Modes](how-to-read-write-data-v2.md#modes). 
 
-## Inputs and outputs in the studio UI
+## Inputs and outputs in studio Designer
 
-The following screenshots show how the Azure Machine Learning studio UI displays inputs and outputs in the [NYC Taxi Data Regression](https://github.com/Azure/azureml-examples/tree/main/cli/jobs/pipelines-with-components/nyc_taxi_data_regression) pipeline from the [Azure Machine Learning examples](https://github.com/Azure/azureml-examples) repository.
+The following screenshots from the [NYC Taxi Data Regression](https://github.com/Azure/azureml-examples/tree/main/cli/jobs/pipelines-with-components/nyc_taxi_data_regression) pipeline show how Azure Machine Learning studio displays inputs and outputs.
 
-The studio pipeline job page shows data or model type inputs/outputs as small circles, called input/output ports, in the corresponding component. These ports represent the data flow in a pipeline. Pipeline level output is displayed as a purple box for easy identification.
+The studio pipeline job page shows data or model type inputs/outputs as small circles called input/output ports in the corresponding component. These ports represent the data flow in a pipeline. Pipeline level output is displayed as a purple box for easy identification.
 
 :::image type="content" source="./media/how-to-manage-pipeline-input-output/input-output-port.png" lightbox="./media/how-to-manage-pipeline-input-output/input-output-port.png" alt-text="Screenshot highlighting the pipeline input and output ports.":::
 
@@ -95,25 +96,25 @@ When you hover over an input/output port, the type is displayed.
 
 Primitive type inputs aren't displayed on the graph. You can find these inputs on the **Settings** tab of the pipeline job overview panel for pipeline level inputs, or the component panel for component level inputs.
 
-The following screenshot shows the **Settings** tab of a pipeline job, which you can open by selecting **Job Overview**. To check inputs for a component, double-click the component to open the component panel.
+The following screenshot shows the **Settings** tab of a pipeline job, which you can open by selecting **Job overview**. To check inputs for a component, double-click the component to open the component panel.
 
 :::image type="content" source="./media/how-to-manage-pipeline-input-output/job-overview-setting.png" lightbox="./media/how-to-manage-pipeline-input-output/job-overview-setting.png" alt-text="Screenshot highlighting the job overview setting panel.":::
 
 When you edit a pipeline in the Designer, the pipeline inputs and outputs are in the **Pipeline interface** panel, and the component inputs and outputs are in the component's panel. 
 
-:::image type="content" source="./media/how-to-manage-pipeline-input-output/pipeline-interface.png" lightbox="./media/how-to-manage-pipeline-input-output/pipeline-interface.png" alt-text="Screenshot highlighting the pipeline interface in Designer.":::
+:::image type="content" source="./media/how-to-manage-pipeline-input-output/pipeline-interface.png" alt-text="Screenshot highlighting the pipeline interface in Designer.":::
 
 ## Promote component inputs/outputs to pipeline level
 
-Promoting a component's input/output to the pipeline level lets you overwrite the component's input/output when you submit a pipeline job. Promoting to the pipeline level is also useful for triggering the pipeline by using the REST endpoint.
+Promoting a component's input/output to the pipeline level lets you overwrite the component's input/output when you submit a pipeline job. This ability is especially useful when triggering the pipeline by using a REST endpoint.
 
 The following examples show how to promote component level inputs/outputs to pipeline level inputs/outputs.
 
 # [Azure CLI](#tab/cli)
 
-The following pipeline promotes three inputs and three outputs to the pipeline level. For example, `pipeline_job_training_max_epocs` is declared under the `inputs` section on the root level, which means it's pipeline level input.
+The following pipeline promotes three inputs and three outputs to the pipeline level. For example, `pipeline_job_training_max_epocs` is pipeline level input because it's declared under the `inputs` section on the root level.
 
-Under `train_job` in the `jobs` section, the input named `max_epocs` is referenced as `${{parent.inputs.pipeline_job_training_max_epocs}}`, meaning that the `train_job`'s `max_epocs` input references the pipeline level `pipeline_job_training_max_epocs` input. You can promote pipeline output by using the same schema.
+Under `train_job` in the `jobs` section, the input named `max_epocs` is referenced as `${{parent.inputs.pipeline_job_training_max_epocs}}`, meaning that the `train_job`'s `max_epocs` input references the pipeline level `pipeline_job_training_max_epocs` input. Pipeline output is promoted by using the same schema.
 
 :::code language="yaml" source="~/azureml-examples-main/cli/jobs/pipelines-with-components/basics/1b_e2e_registered_components/pipeline.yml" range="1-65" highlight="6-17,30,34,52,57,63,65":::
 
@@ -195,30 +196,30 @@ pipeline_job.settings.default_datastore = "workspaceblobstore"
 
 ---
 
-### Studio UI
+### Promote inputs in the studio UI
 
-You can promote a component's input to pipeline level input in the studio Designer authoring page.
+You can promote a component's input to pipeline level input on the studio Designer authoring page.
 
-1. Open the component's settings panel by double clicking the component.
+1. Open the component's settings panel by double-clicking the component.
 1. Find the input you want to promote and select the three dots on the right.
 1. Select **Add to pipeline input**.
 
-   :::image type="content" source="./media/how-to-manage-pipeline-input-output/promote-pipeline-input.png" lightbox="./media/how-to-manage-pipeline-input-output/promote-pipeline-input.png" alt-text="Screenshot highlighting how to promote to pipeline input in Designer.":::
+   :::image type="content" source="./media/how-to-manage-pipeline-input-output/promote-pipeline-input.png" alt-text="Screenshot highlighting how to promote to pipeline input in Designer.":::
 
 ## Define optional inputs
 
-By default, all inputs are required and must be assigned a default value or a value each time you submit a pipeline job. However, you can define an optional input and not assign a value to the input when you submit a pipeline job.
+By default, all inputs are required and must either have a default value or be assigned a value each time you submit a pipeline job. However, you can define an optional input and not assign a value to the input when you submit a pipeline job.
 
 > [!NOTE]
 > Optional outputs aren't supported.
 
-If you have an optional data/model type input and don't assign a value to it when submitting the pipeline job, a component in the pipeline lacks a preceding data dependency. The component's input port isn't linked to any component or data/model node. This situation causes the pipeline service to invoke the component directly, instead of waiting for the preceding dependency to be ready.
+If you have an optional data/model type input and don't assign a value to it when submitting the pipeline job, a component in the pipeline lacks a preceding data dependency. The component's input port isn't linked to any component or data/model node. The pipeline service invokes the component directly, instead of waiting for the preceding dependency to be ready.
 
-If you set `continue_on_step_failure = True` for the pipeline and a second node uses required output from the first node, the second node doesn't execute if the first node fails. But if the second node uses optional input from the first node, it executes even if the first node fails. The following screenshot illustrates this scenario:
+If you set `continue_on_step_failure = True` for the pipeline and a second node uses required output from the first node, the second node doesn't execute if the first node fails. But if the second node uses optional input from the first node, it executes even if the first node fails. The following screenshot illustrates this scenario.
 
 :::image type="content" source="./media/how-to-manage-pipeline-input-output/continue-on-failure-optional-input.png" alt-text="Screenshot showing the orchestration logic of optional input and continue on failure.":::
 
-The following YAML code example shows how to define optional input. When the input is set as `optional = true`, you need to use `$[[]]` to embrace the command line with inputs, as in the highlighted lines of the example.
+The following YAML code example shows how to define optional input. When the input is set as `optional = true`, you need to use `$[[]]` to embrace the command line inputs, as in the highlighted lines of the example.
 
 :::code language="yaml" source="~/azureml-examples-main/cli/assets/component/train.yml" range="1-34" highlight="11-21,30-32":::
 
@@ -294,9 +295,9 @@ output = client.jobs.download(name=job.name, download_path=tmp_path, output_name
 ```
 ---
 
-### Download child job outputs
+## Download child job outputs
 
-To download the output of a child component that isn't promoted to pipeline level, first list all child job entities of a pipeline job and then use similar code to download the output.
+To download the outputs of a child component that isn't promoted to pipeline level, first list all child job entities of a pipeline job and then use similar code to download the outputs.
 
 # [Azure CLI](#tab/cli)
 
