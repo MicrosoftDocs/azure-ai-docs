@@ -26,11 +26,11 @@ If the language of the content in the source document is known, we recommend tha
 
 * PDF documents generated from digital file formats (also known as "native" PDFs) provide optimal output.
 
-* Printed documents scanned into an electronic format(scanned PDF files) can result in loss of the original formatting, layout, and style.
+* Printed documents scanned into an electronic format (scanned PDF files) can result in loss of the original formatting, layout, and style.
 
 * The translation of text from one language to another can alter its length. This variation can impact the layout, causing the text to reflow or shift across different pages.
 
-* Various factors influence the preservation and retention of font style. For instance, some fonts aren't available in both the source and target languages. Typically, the same font style or an optimally suited alternative is applied to the target language to maintain the formatting that closely resembles the original source text.
+* Various factors influence the preservation and retention of font style. For instance, some fonts aren't available in both the source and target languages. Typically, the same font style, or an optimally suited alternative, is applied to the target language to maintain formatting that most closely resembles the original source text.
 
 #### Will the text in an image within a document gets translated?
 
