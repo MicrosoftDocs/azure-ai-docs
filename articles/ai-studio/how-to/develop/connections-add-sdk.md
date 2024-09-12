@@ -7,7 +7,7 @@ ms.service: azure-ai-studio
 ms.custom:
   - build-2024
 ms.topic: how-to
-ms.date: 5/21/2024
+ms.date: 08/29/2024
 ms.reviewer: dantaylo
 ms.author: larryfr
 author: Blackmist
@@ -31,6 +31,10 @@ Connections are a way to authenticate and consume both Microsoft and other resou
 
 [!INCLUDE [SDK setup](../../includes/development-environment-config.md)]
 
+## Authenticating with Microsoft Entra ID
+
+There are various authentication methods for the different connection types. When you use Microsoft Entra ID, in addition to creating the connection you might also need to grant Azure role-based access control permissions before the connection can be used. For more information, visit [Role-based access control](../../concepts/rbac-ai-studio.md#scenario-connections-using-microsoft-entra-id-authentication).
+
 ## Azure OpenAI Service
 
 The following example creates an Azure OpenAI Service connection.
@@ -44,14 +48,20 @@ from azure.ai.ml.entities import UsernamePasswordConfiguration
 
 name = "XXXXXXXXX"
 
-target = "https://XXXXXXXXX.cognitiveservices.azure"
-api_key= "my-key"
+target = "https://XXXXXXXXX.cognitiveservices.azure.com/"
+
 resource_id= "Azure-resource-id"
+
+# Microsoft Entra ID
+credentials = None
+# Uncomment the following to use API key instead
+# api_key= "my-key"
+# credentials = ApiKeyConfiguration(key=api_key)
 
 wps_connection = AzureOpenAIConnection(
     name=name,
     azure_endpoint=target,
-    credentials=ApiKeyConfiguration(key=api_key),
+    credentials=credentials,
     resource_id = resource_id,
     is_shared=False
 )
@@ -70,12 +80,17 @@ name = "my-ai-services"
 
 target = "https://XXXXXXXXX.cognitiveservices.azure.com/"
 resource_id=""
-api_key="XXXXXXXXX"
+
+# Microsoft Entra ID
+credentials = None
+# Uncomment the following to use API key instead
+# api_key= "my-key"
+# credentials = ApiKeyConfiguration(key=api_key)
 
 wps_connection = AzureAIServicesConnection(
     name=name,
     endpoint=target,
-    credentials=ApiKeyConfiguration(key=api_key),
+    credentials=credentials,
     ai_services_resource_id=resource_id,
 )
 ml_client.connections.create_or_update(wps_connection)
@@ -90,13 +105,18 @@ from azure.ai.ml.entities import AzureAISearchConnection, ApiKeyConfiguration
 from azure.ai.ml.entities import UsernamePasswordConfiguration
 
 name = "my_aisearch_demo_connection"
-
 target = "https://XXXXXXXXX.search.windows.net"
-api_key="XXXXXXXXX"
+
+# Microsoft Entra ID
+credentials = None
+# Uncomment the following to use API key instead
+# api_key= "my-key"
+# credentials = ApiKeyConfiguration(key=api_key)
+
 wps_connection = AzureAISearchConnection(
     name=name,
     endpoint=target,
-    credentials=ApiKeyConfiguration(key=api_key),
+    credentials=credentials,
 )
 ml_client.connections.create_or_update(wps_connection)
 ```
@@ -132,7 +152,7 @@ from azure.ai.ml.entities import ServerlessConnection
 
 name = "my_maas_apk"
 
-endpoint = "https://XXXXXXXXX.eastus2.inference.ai.azure.com"
+endpoint = "https://XXXXXXXXX.eastus2.inference.ai.azure.com/"
 api_key = "XXXXXXXXX"
 wps_connection = ServerlessConnection(
     name=name,

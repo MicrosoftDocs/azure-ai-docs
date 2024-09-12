@@ -214,6 +214,31 @@ If your AI Studio hub is configured with a **user-assigned managed identity**, t
 
 Within the key vault, the user or service principal must have the create, get, delete, and purge access to the key through a key vault access policy. For more information, see [Azure Key Vault security](/azure/key-vault/general/security-features#controlling-access-to-key-vault-data).
 
+## Scenario: Connections using Microsoft Entra ID authentication
+
+When you create a connection that uses Microsoft Entra ID authentication, you must assign roles to your developers so they can access the resource.
+
+| Resource connection | Role | Description |
+|----------|------|-------------|
+| Azure AI Search | Contributor | List API-Keys to list indexes from Azure OpenAI Studio. |
+| Azure AI Search | Search Index Data Contributor | Required for indexing scenarios |
+| Azure AI services/Azure OpenAI | Cognitive Services OpenAI Contributor | Call public ingestion API from Azure OpenAI Studio. |
+| Azure AI services/OpenAI | Cognitive Services User | List API-Keys from Azure OpenAI Studio. |
+| Azure AI services/OpenAI | Contributor | Allows for calls to the control plane. |
+
+When using Microsoft Entra ID authenticated connections in the chat playground, the services need to authorize each other to access the required resources. The admin performing the configuration needs to have the __Owner__ role on these resources to add role assignments. The following table lists the required role assignments for each resource. The __Assignee__ column refers to the system-assigned managed identity of the listed resource. The __Resource__ column refers to the resource that the assignee needs to access. For example, Azure OpenAI has a system-assigned managed identity that needs to be assigned the __Search Index Data Reader__ role for the Azure AI Search resource.
+
+| Role | Assignee | Resource | Description |
+|------|----------|----------|-------------|
+| Search Index Data Reader | Azure AI services/OpenAI | Azure AI Search | Inference service queries the data from the index. Only used for inference scenarios. |
+| Search Index Data Contributor | Azure AI services/OpenAI | Azure AI Search | Read-write access to content in indexes. Import, refresh, or query the documents collection of an index. Only used for ingestion and inference scenarios. |
+| Search Service Contributor | Azure AI services/OpenAI | Azure AI Search | Read-write access to object definitions (indexes, aliases, synonym maps, indexers, data sources, and skillsets). Inference service queries the index schema for auto fields mapping. Data ingestion service creates index, data sources, skill set, indexer, and queries the indexer status. |
+| Cognitive Services OpenAI Contributor | Azure AI Search | Azure AI services/OpenAI | Custom skill |
+| Cognitive Services OpenAI User | Azure OpenAI Resource for chat model | Azure OpenAI resource for embedding model | Required only if using two Azure OpenAI resources to communicate. |
+
+> [!NOTE]
+> The __Cognitive Services OpenAI User__ role is only required if you are using two Azure OpenAI resources: one for your chat model and one for your embedding model. If this applies, enable Trusted Services AND ensure the connection for your embedding model Azure OpenAI resource has Microsoft Entra ID enabled.  
+
 ## Scenario: Use an existing Azure OpenAI resource
 
 When you create a connection to an existing Azure OpenAI resource, you must also assign roles to your users so they can access the resource. You should assign either the **Cognitive Services OpenAI User** or **Cognitive Services OpenAI Contributor** role, depending on the tasks they need to perform. For information on these roles and the tasks they enable, see [Azure OpenAI roles](/azure/ai-services/openai/how-to/role-based-access-control#azure-openai-roles).
