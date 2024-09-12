@@ -539,7 +539,7 @@ catch (RequestFailedException ex)
 {
     if (ex.ErrorCode == "content_filter")
     {
-        Console.WriteLine($"Your query has trigger Azure Content Safeaty: {ex.Message}");
+        Console.WriteLine($"Your query has trigger Azure Content Safety: {ex.Message}");
     }
     else
     {

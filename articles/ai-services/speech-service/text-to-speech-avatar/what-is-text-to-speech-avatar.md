@@ -18,7 +18,12 @@ Text to speech avatar converts text into a digital video of a photorealistic hum
 
 With text to speech avatar's advanced neural network models, the feature empowers users to deliver life-like and high-quality synthetic talking avatar videos for various applications while adhering to [responsible AI practices](/legal/cognitive-services/speech-service/disclosure-voice-talent?context=/azure/ai-services/speech-service/context/context).
 
-Azure AI text to speech avatar feature capabilities include:
+> [!TIP]
+> To convert text to speech with a no-code approach, try the [Text to speech avatar tool in Speech Studio](https://speech.microsoft.com/portal/talkingavatar).
+
+## Avatar capabilities
+
+Text to speech avatar capabilities include:
 
 - Converts text into a digital video of a photorealistic human speaking with natural-sounding voices powered by Azure AI text to speech.
 - Provides a collection of prebuilt avatars.
@@ -28,9 +33,6 @@ Azure AI text to speech avatar feature capabilities include:
 - Enables real-time avatar conversations through the [live chat avatar tool](https://speech.microsoft.com/portal/livechat) in Speech Studio.
 
 With text to speech avatar's advanced neural network models, the feature empowers you to deliver lifelike and high-quality synthetic talking avatar videos for various applications while adhering to responsible AI practices.
-
-> [!TIP]
-> To convert text to speech with a no-code approach, try the [Text to speech avatar tool in Speech Studio](https://speech.microsoft.com/portal/talkingavatar).
 
 ## Avatar voice and language
 
