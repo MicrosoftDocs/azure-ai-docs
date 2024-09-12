@@ -29,12 +29,12 @@ The [Azure portal](https://portal.azure.com/) is the easiest approach for first-
 
 Having a plan of action can help you get the most out of your trial subscription. For Azure AI Search, most newer customers and developers are exploring RAG patterns.
 
-To evaluate Azure for RAG scenarios, you should have three or five Azure resources for:
+To evaluate Azure for [RAG scenarios](retrieval-augmented-generation-overview.md), you should have three or five Azure resources for:
 
 - Storing data
 - Embedding and chat models
-- Applied AI services, like Azure AI Vision or Document Intelligence
-- Providing relevant grounding data (Azure AI Search)
+- Applied AI services to try out AI-generated content during indexing (optional)
+- Information retrieval (**Azure AI Search**)
 - Apps (optional)
 
 Most of our quickstarts and tutorials use Azure Storage, so we recommend creating an Azure Storage account for getting started.
@@ -65,7 +65,6 @@ Continue with the following links to review which regions also provide the model
 > Currently, these regions provide the most overlap and capacity: **East US**, **East US2**, and **South Central** in the Americas; **France Central** or **Switzerland North** in Europe; **Australia East** in Asia Pacific.
 >
 > For Azure AI Vision and AI Search interoperability, choose one of these regions: **East US**, **France Central**, **Korea Central**, **North Europe**, **South East Asia**, or **West US**.
-
 
 ## Create services
 
