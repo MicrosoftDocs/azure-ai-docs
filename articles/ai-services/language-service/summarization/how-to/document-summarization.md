@@ -291,7 +291,7 @@ curl -i -X POST https://<your-language-resource-endpoint>/language/analyze-text/
   "tasks": [
     {
       "kind": "AbstractiveSummarization",
-      "taskName": "Text Abstractive Summarization Task 1",
+      "taskName": "Length controlled Abstractive Summarization",
           "parameters": {
           "sentenceLength": "short"
       }
@@ -326,7 +326,7 @@ curl -i -X POST https://<your-language-resource-endpoint>/language/analyze-text/
 "tasks": [
     {
       "kind": "ExtractiveSummarization",
-      "taskName": "Query_based Extractive Summarization",
+      "taskName": "Length controlled Extractive Summarization",
       "parameters": {
           "sentenceCount": "5"
       }
