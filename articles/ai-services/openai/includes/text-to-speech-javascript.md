@@ -194,7 +194,6 @@ Your app's _package.json_ file will be updated with the dependencies.
     require("dotenv/config");
     const { writeFile } = require("fs/promises");
     const { AzureOpenAI } = require("openai");
-    require("openai/shims/node");
     
     // You will need to set these environment variables or edit the following values
     const endpoint = process.env["AZURE_OPENAI_ENDPOINT"] || "<endpoint>";
