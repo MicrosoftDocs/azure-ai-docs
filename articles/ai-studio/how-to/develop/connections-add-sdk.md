@@ -2,12 +2,12 @@
 title: How to add a new connection in AI Studio using the Azure Machine Learning SDK
 titleSuffix: Azure AI Studio
 description: This article provides instructions on how to add connections to other resources using the Azure Machine Learning SDK.
-manager: nitinme
+manager: scottpolly
 ms.service: azure-ai-studio
 ms.custom:
   - build-2024
 ms.topic: how-to
-ms.date: 08/29/2024
+ms.date: 9/12/2024
 ms.reviewer: dantaylo
 ms.author: larryfr
 author: Blackmist
@@ -35,6 +35,12 @@ Connections are a way to authenticate and consume both Microsoft and other resou
 
 There are various authentication methods for the different connection types. When you use Microsoft Entra ID, in addition to creating the connection you might also need to grant Azure role-based access control permissions before the connection can be used. For more information, visit [Role-based access control](../../concepts/rbac-ai-studio.md#scenario-connections-using-microsoft-entra-id-authentication).
 
+> [!IMPORTANT]
+> We recommend Microsoft Entra ID authentication with [managed identities for Azure resources](/azure/active-directory/managed-identities-azure-resources/overview) to avoid storing credentials with your applications that run in the cloud.
+>
+> If you use an API key, store it securely somewhere else, such as in [Azure Key Vault](/azure/key-vault/general/overview). Don't include the API key directly in your code, and never post it publicly.
+
+
 ## Azure OpenAI Service
 
 The following example creates an Azure OpenAI Service connection.
@@ -54,7 +60,7 @@ resource_id= "Azure-resource-id"
 
 # Microsoft Entra ID
 credentials = None
-# Uncomment the following to use API key instead
+# Uncomment the following if you need to use API key instead
 # api_key= "my-key"
 # credentials = ApiKeyConfiguration(key=api_key)
 
@@ -83,7 +89,7 @@ resource_id=""
 
 # Microsoft Entra ID
 credentials = None
-# Uncomment the following to use API key instead
+# Uncomment the following if you need to use API key instead
 # api_key= "my-key"
 # credentials = ApiKeyConfiguration(key=api_key)
 
@@ -109,7 +115,7 @@ target = "https://XXXXXXXXX.search.windows.net"
 
 # Microsoft Entra ID
 credentials = None
-# Uncomment the following to use API key instead
+# Uncomment the following if you need to use API key instead
 # api_key= "my-key"
 # credentials = ApiKeyConfiguration(key=api_key)
 
