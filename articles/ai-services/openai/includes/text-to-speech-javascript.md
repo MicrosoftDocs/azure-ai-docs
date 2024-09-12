@@ -171,7 +171,7 @@ Your app's _package.json_ file will be updated with the dependencies.
     
     ```
     
-    The "openai/shims/node" import supports the ability for the a stream type that changes depending on whether you run in Node.js or in another environment such as a browser.
+The import of `"openai/shims/node"` is necessary when running the code in a Node.js environment. It ensures that the output type of the `client.audio.speech.create` method is correctly set to `NodeJS.ReadableStream`.
 
 1. Build the application with the following command:
 
