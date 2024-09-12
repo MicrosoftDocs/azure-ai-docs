@@ -9,7 +9,7 @@ ms.topic: reference
 author: fbsolo-ms1
 ms.author: franksolomon
 ms.reviewer: qiax
-ms.date: 05/23/2023
+ms.date: 09/12/2024
 ms.custom: cliv2, build-2023
 ---
 
@@ -20,7 +20,6 @@ ms.custom: cliv2, build-2023
 [!INCLUDE [schema note](includes/machine-learning-preview-old-json-schema-note.md)]
 
 ## YAML syntax
-
 
 | Key | Type | Description | Allowed values | Default value |
 |--|--|--|--|--|
@@ -80,6 +79,37 @@ location: eastus
 display_name: marketing feature store
 tags:
   foo: bar
+```
+
+## Configure the online store in the CLI with YAML
+
+```yaml
+# online_store:
+
+target: /subscriptions/{sub-id}/resourceGroups/{rg}/XXX
+type: redis
+```
+
+## Configure the online store in the CLI with Python
+
+```python
+redis_arm_id = f"/subscriptions/{subscription_id}/resourceGroups/{resource_group_name}/providers/Microsoft.Cache/Redis/{redis_name}"
+online_store = MaterializationStore(type="redis", target=redis_arm_id)
+ 
+fs = FeatureStore(
+    name=featurestore_name,
+    location=location,
+    online_store=online_store,
+)
+ 
+# wait for feature store creation
+fs_poller = ml_client.feature_stores.begin_create(fs)
+
+# move the feature store to a YAML file
+
+yaml_path = root_dir + "/featurestore/featurestore_with_online.yaml"
+fs.dump(yaml_path)
+
 ```
 
 ## Next steps
