@@ -231,14 +231,14 @@ groups:
   title: Programming languages
   prompt: Choose a programming language
   pivots:
-  - id: rest-api
-    title: REST
-  - id: programming-language-powershell
-    title: PowerShell
-  - id: programming-language-python
-    title: Python
   - id: programming-language-javascript
     title: JavaScript
+  - id: programming-language-python
+    title: Python
+  - id: programming-language-powershell
+    title: PowerShell
+  - id: rest-api
+    title: REST
 # Owner: diberry
 - id: programming-languages-set-six
   title: Programming languages
