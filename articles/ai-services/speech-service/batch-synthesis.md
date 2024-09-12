@@ -6,7 +6,7 @@ author: eric-urban
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 1/18/2024
+ms.date: 9/12/2024
 ms.author: eur
 ---
 
@@ -35,8 +35,6 @@ You can use the following REST API operations for batch synthesis:
 | [List batch synthesis](#list-batch-synthesis)     | `GET`    | texttospeech/batchsyntheses                 |
 | [Delete batch synthesis](#delete-batch-synthesis) | `DELETE` | texttospeech/batchsyntheses/YourSynthesisId |
 
-<!-- | [Get operation for status monitor](#get-operation) | `GET`    | texttospeech/operations/YourOperationId     | -->
-
 For code samples, see [GitHub](https://github.com/Azure-Samples/cognitive-services-speech-sdk/tree/master/samples/batch-synthesis).
 
 ## Create batch synthesis
@@ -48,9 +46,9 @@ To submit a batch synthesis request, construct the HTTP PUT request path and bod
 - Optionally you can set the `description`, `timeToLiveInHours`, and other properties. For more information, see [batch synthesis properties](batch-synthesis-properties.md).
 
 > [!NOTE]
-> The maximum JSON payload size that will be accepted is 2 megabytes.
+> The maximum JSON payload size that's accepted is 2 megabytes.
 
-Set the required `YourSynthesisId` in path. The `YourSynthesisId` have to be unique. It must be 3-64 long, contains only numbers, letters, hyphens, underscores and dots, starts and ends with a letter or number.
+Set the required `YourSynthesisId` in path. The `YourSynthesisId` must be unique. It must be 3-64 long, contains only numbers, letters, hyphens, underscores and dots, starts and ends with a letter or number.
 
 Make an HTTP PUT request using the URI as shown in the following example. Replace `YourSpeechKey` with your Speech resource key, replace `YourSpeechRegion` with your Speech resource region, and set the request body properties as previously described.
 
@@ -229,9 +227,9 @@ The response headers include `HTTP/1.1 204 No Content` if the delete request was
 
 ## Batch synthesis results
 
-After you [get a batch synthesis job](#get-batch-synthesis) with `status` of "Succeeded", you can download the audio output results. Use the URL from the `outputs.result` property of the [get batch synthesis](#get-batch-synthesis) response.
+After you [get a batch synthesis job](#get-batch-synthesis) with `status` of "Succeeded", you can download the audio output results. Use the URL from the `outputs.result` property of the [batch synthesis GET](#get-batch-synthesis) response.
 
-To get the batch synthesis results file, make an HTTP GET request using the URI as shown in the following example. Replace `YourOutputsResultUrl` with the URL from the `outputs.result` property of the [get batch synthesis](#get-batch-synthesis) response. Replace `YourSpeechKey` with your Speech resource key.
+To get the batch synthesis results file, make an HTTP GET request using the URI as shown in the following example. Replace `YourOutputsResultUrl` with the URL from the `outputs.result` property of the [batch synthesis GET](#get-batch-synthesis) response. Replace `YourSpeechKey` with your Speech resource key.
 
 ```azurecli-interactive
 curl -v -X GET "YourOutputsResultUrl" -H "Ocp-Apim-Subscription-Key: YourSpeechKey" > results.zip
@@ -331,7 +329,7 @@ HTTP 200 OK indicates that the request was successful.
 
 ### HTTP 201 Created
 
-HTTP 201 Created indicates that the create batch synthesis request (via HTTP PUT) was successful.
+HTTP 201 Created indicates that the batch synthesis create request (via HTTP PUT) was successful.
 
 ### HTTP 204 error
 
