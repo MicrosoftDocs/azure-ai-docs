@@ -8,7 +8,7 @@ author: HeidiSteen
 ms.author: heidist
 ms.service: cognitive-search
 ms.topic: conceptual
-ms.date: 09/12/2024
+ms.date: 09/13/2024
 ---
 
 # Try Azure AI Search for free
@@ -47,7 +47,7 @@ Application frontends are useful if you're prototyping a solution for a wider au
 
 Azure AI Search has integrated operations with applied AI in the Azure cloud. Integration depends on services running within the same region. This is a requirement for data residency and for efficient operations.
 
-Verifying region availability can save you time and frusteration because you need to choose a region that supports all of the services you want to use.
+Verifying region availability can save you time and frustration because you need to choose a region that supports all of the services you want to use.
 
 Start here:
 
@@ -88,11 +88,22 @@ You can also monitor billing by searching for *subscriptions* in the Azure porta
 
 ## Tips for getting the most value from your subscription
 
-Try the portal quickstarts for Azure AI Search. It's the fastest approach creating searchable content, and you don't need coding skills to complete the tasks.
+Try the portal quickstarts for Azure AI Search or quickstarts that use Visual Studio Code with REST or Python extensions.  It's the fastest approach creating searchable content, and you don't need coding skills to complete the tasks.
 
-Developers should review azure-search-vector-samples repository or the solution accelerators. You can deploy and run any of these samples using the Azure trial subscription. 
+- [Quickstart: Vector search in the Azure portal](search-get-started-portal-import-vectors.md)
+- [Quickstart: Image search in the Azure portal](search-get-started-portal-image-search.md)
+- [Quickstart: Keyword in the Azure portal](search-get-started-portal.md)
+- [Quickstart: Generative search (RAG) using a Python client](search-get-started-rag.md)
+- [Quickstart: Vector search using a REST client](search-get-started-vector.md)
 
-Many samples and accelerators come with bicep scripts that deploy all Azure resources and dependencies, so you can skip installation steps and explore an operational solution as soon as the development completes.
+Azure AI Studio and Azure OpenAI Studio support connecting to content in Azure AI Search
+
+- [Quickstart: Chat using your own data in Azure OpenAI Studio](/azure/ai-services/openai/use-your-data-quickstart)
+- [Tutorial: Build a custom chat app with the prompt flow SDK](/azure/ai-studio/tutorials/copilot-sdk-create-resources)
+
+Developers should review [azure-search-vector-samples](https://github.com/Azure/azure-search-vector-samples) repository or the solution accelerators. You can deploy and run any of these samples using the Azure trial subscription. 
+
+Many samples and [accelerators](resource-tools.md) come with bicep scripts that deploy all Azure resources and dependencies, so you can skip installation steps and explore an operational solution as soon as the development completes.
 
 ## Use the free tier
 
@@ -107,12 +118,12 @@ Review the [service limits](search-limits-quotas-capacity.md) for other constrai
 
 ## Next steps
 
-After provisioning a service, you can continue in the portal to create your first index.
+Sign up for an Azure trial subscription:
 
 > [!div class="nextstepaction"]
-> [Quickstart: Create an Azure AI Search index in the portal](search-get-started-portal.md)
+> [Start your free trial subscription](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A261C142F)
 
-Want to optimize and save on your cloud spending?
+When you're ready, add Azure AI Search as your first resource:
 
 > [!div class="nextstepaction"]
-> [Start analyzing costs with Cost Management](/azure/cost-management-billing/costs/quick-acm-cost-analysis?WT.mc_id=costmanagementcontent_docsacmhorizontal_-inproduct-learn)
+> [Create a search service](search-create-service-portal.md)
