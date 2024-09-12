@@ -29,7 +29,7 @@ Install the Azure OpenAI client and Azure Identity libraries for JavaScript with
 npm install openai @azure/identity @azure/openai 
 ```
 
-The `@azure/openai/types` dependency is included to extend the OpenAI model for the `data_sources` property. This import is only necessary for TypeScript.
+The `@azure/openai/types` dependency is included to extend the Azure OpenAI model for the `data_sources` property. This import is only necessary for TypeScript.
 
 #### [JavaScript](#tab/javascript)
 
