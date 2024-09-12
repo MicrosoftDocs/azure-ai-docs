@@ -175,13 +175,6 @@ Tasks:
 - H2: How to use other models (create a custom skill, create a custom vectorizer).
 - H2: How to configure access. Set up an Azure AI Search managed identity, give it permissions on Azure-hosted models. -->
 
-<!-- 
-The GPT-35-Turbo and GPT-4 models are optimized to work with inputs formatted as a conversation. 
-
-The messages variable passes an array of dictionaries with different roles in the conversation delineated by system, user, and assistant. 
-
-The system message can be used to prime the model by including context or instructions on how the model should respond. -->
-
 ## Next step
 
 > [!div class="nextstepaction"]

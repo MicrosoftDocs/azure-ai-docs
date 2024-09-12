@@ -34,11 +34,13 @@ If you don't have an Azure subscription, create a [free account](https://azure.m
 
 - [Visual Studio Code](https://code.visualstudio.com/download) with the [Python extension](https://marketplace.visualstudio.com/items?itemName=ms-python.python) and the [Jupyter package](https://pypi.org/project/jupyter/). For more information, see [Python in Visual Studio Code](https://code.visualstudio.com/docs/languages/python).
 
-- Azure Storage general purpose account. This exercise uploads PDF files into blob storage for automated indexing.
+- [Azure Storage](/azure/storage/common/storage-account-create) general purpose account. This exercise uploads PDF files into blob storage for automated indexing.
 
-- Azure AI Search, Basic tier or above for managed identity and semantic ranking. Choose a region that's shared with Azure OpenAI.
+- [Azure AI Search](search-create-service-portal.md), Basic tier or above for managed identity and semantic ranking. Choose a region that's shared with Azure OpenAI and Azure AI Services.
 
-- Azure OpenAI, with a deployment of text-embedding-002. For more information about embedding models used in RAG solutions, see [Choose embedding models for RAG in Azure AI Search](tutorial-rag-build-solution-models.md)
+- [Azure OpenAI](/azure/ai-services/openai/how-to/create-resource), with a deployment of text-embedding-002, in the same region as Azure AI Search. For more information about embedding models used in RAG solutions, see [Choose embedding models for RAG in Azure AI Search](tutorial-rag-build-solution-models.md).
+
+- [Azure AI Services multiservice account](/azure/ai-services/multi-service-resource), in the same region as Azure AI Search. This resource is used for the Entity Recognition skill that detects locations in your content.
 
 ## Download the sample
 
@@ -200,7 +202,8 @@ index_projections = SearchIndexerIndexProjections(
             source_context="/document/pages/*",  
             mappings=[  
                 InputFieldMappingEntry(name="chunk", source="/document/pages/*"),  
-                InputFieldMappingEntry(name="text_vector", source="/document/pages/*/text_vector"),  
+                InputFieldMappingEntry(name="text_vector", source="/document/pages/*/text_vector"),
+                InputFieldMappingEntry(name="locations", source="/document/pages/*/locations"),
                 InputFieldMappingEntry(name="title", source="/document/metadata_storage_name"),  
             ],  
         ),  
@@ -255,17 +258,16 @@ indexer = SearchIndexer(
     parameters=indexer_parameters
 )  
 
+# Create and run the indexer  
 indexer_client = SearchIndexerClient(endpoint=AZURE_SEARCH_SERVICE, credential=AZURE_SEARCH_CREDENTIAL)  
 indexer_result = indexer_client.create_or_update_indexer(indexer)  
-  
-# Run the indexer  
-indexer_client.run_indexer(indexer_name)  
+
 print(f' {indexer_name} is created and running. Give the indexer a few minutes before running a query.')  
 ```
 
-## Run hybrid search to check results
+## Run a query to check results
 
-Send a query to confirm your index is operational. A hybrid query is useful for verifying text and vector search.
+Send a query to confirm your index is operational. This request converts the text string "`where are the nasa headquarters located?`" into a vector for a vector search. Results consist of the fields in the select statement, some of which are printed as output.
 
 ```python
 from azure.search.documents import SearchClient
@@ -286,7 +288,8 @@ results = search_client.search(
   
 for result in results:  
     print(f"Score: {result['@search.score']}")
-    print(f"Title: {result['title']}")  
+    print(f"Title: {result['title']}")
+    print(f"Locations: {result['locations']}")
     print(f"Content: {result['chunk']}") 
 ```
 
@@ -294,6 +297,8 @@ This query returns a single match (`top=1`) consisting of the one chunk determin
 
 ```
 Score: 0.03306011110544205
+Title: page-178.pdf
+Locations: ['Headquarters', 'Washington']
 Content: national Aeronautics and Space Administration
 
 earth Science
@@ -309,11 +314,9 @@ www.nasa.gov
 np-2018-05-2546-hQ
 ```
 
-Try a few more queries to get a sense of what the search engine returns directly so that you can compare it with an LLM-enabled response. Rerun the previous script with this query: "how much of the earth is covered in water"?
+Try a few more queries to get a sense of what the search engine returns directly so that you can compare it with an LLM-enabled response. Rerun the previous script with this query: `"how much of the earth is covered in water"`?
 
 Results from this second query should look similar to the following results, which are lightly edited for concision. 
-
-With this example, it's easier to spot how chunks are returned verbatim, and how keyword and similarity search identify top matches. This specific chunk definitely has information about water and coverage over the earth, but it's not exactly relevant to the query. Semantic ranking would find a better answer, but as a next step, let's see how to connect Azure AI Search to an LLM for conversational search.
 
 ```
 Score: 0.03333333507180214
@@ -339,6 +342,8 @@ summer thaw. Nonetheless, this July 2001 image shows plenty of surface vegetatio
 shrubs, and grasses. The abundant fresh water also means the area is teeming with flies and mosquitoes.
 ```
 
+With this example, it's easier to spot how chunks are returned verbatim, and how keyword and similarity search identify top matches. This specific chunk definitely has information about water and coverage over the earth, but it's not exactly relevant to the query. Semantic ranking would find a better answer, but as a next step, let's see how to connect Azure AI Search to an LLM for conversational search.
+
 <!-- Objective:
 
 - Create objects and run the indexer to produce an operational search index with chunked and vectorized content.
@@ -361,105 +366,6 @@ Tasks:
 - H2: Use alternative skillsets (present the other two skillsets)
 - H2: Create and run the indexer
 - H2: Check your data in the search index (hide vectors) -->
-
-<!-- 
-## Prerequisites
-
-TBD
-
-## Create a blob data source
-
-1. Create a baseline data source definition with required elements. Provide a valid connection string to your Azure Storage account. Provide the name of the container that has the sample data.
-
-    ```http
-    ### Create a data source
-    POST {{baseUrl}}/datasources?api-version=2024-05-01-preview  HTTP/1.1
-      Content-Type: application/json
-      Authorization: Bearer {{token}}
-    
-        {
-            "name": "demo-rag-ds",
-            "description": null,
-            "type": "azureblob",
-            "subtype": null,
-            "credentials": {
-                "connectionString": "{{storageConnectionString}}"
-            },
-            "container": {
-                "name": "{{blobContainer}}",
-                "query": null
-            },
-            "dataChangeDetectionPolicy": null,
-            "dataDeletionDetectionPolicy": null
-        }
-    ```
-
-1. Review the [Datasource REST API](/rest/api/searchservice/data-sources/create) for information about other properties. For more information about blob indexers, see [Index data from Azure Blob Storage](search-howto-indexing-azure-blob-storage.md).
-
-1. Send the request to save the data source to Azure AI Search.
-
-## Create an indexer
-
-1. Create a baseline indexer definition with required elements. In this example, the indexer is disabled so that it doesn't immediately run when it's saved to the search service. In later steps, you'll add a skillset and output field mappings, and run the indexer once it's fully specified.
-
-   ```http
-    ### Create and run an indexer
-    POST {{baseUrl}}/indexers?api-version=2023-11-01  HTTP/1.1
-      Content-Type: application/json
-      Authorization: Bearer {{token}}
-
-       {   
-        "name" : "demo-rag-idxr",  
-        "dataSourceName" : "demo-rag-ds",  
-        "targetIndexName" : "demo-rag-index",  
-        "skillsetName" : null,
-        "disabled" : true,
-        "fieldMappings" : null,
-        "outputFieldMappings" : null
-        }
-   ```
-
-1. Review the [Indexer REST API](/rest/api/searchservice/indexers/create) for information about other properties. For more information about indexers, see [Create an indexer](search-howto-create-indexers.md).
-
-1. Send the request to save the data source to Azure AI Search.
-
-## About indexer execution
-
-An indexer connects to a supported data source, retrieves data, serializes it into JSON, calls a skillset, and populates a predefined index with raw content from the source and generated content from a skillset.
-
-An indexer requires a data source and an index, and accepts a skillset definition. All of these objects are distinct. 
-
-- An indexer object provides configuration information and field mappings.
-- A data source has connection information.
-- An index is the destination of an indexer pipeline and it defines the physical structure of your data in Azure AI Search.
-- A skillset is optional, but necessary for RAG workloads if you want integrated data chunking and vectorization.
-
-If you're already familiar with indexers and data sources, the definitions don't change in a RAG solution. 
-
-## Checklist for indexer execution
-
-Before you run an indexer, review this checklist to avoid problems during indexing. This checklist applies equally to RAG and non-RAG scenarios:
-
-- Is the data source accessible to Azure AI Search? Check network configuration and permissions. Indexers connect under a search service identity. Consider configuring your search service for a managed identity and then granting it read permissions. 
-- Does the data source support change tracking? Enable it so that your search service can keep your index up to date.
-- Is the data ready for indexing? Indexers consume a single table (or view), or a collection of documents from a single directory. You can either consolidate files into one location, or you could create multiple data sources and indexers that send data to the same index.
-- Do you need vectorization? Most RAG apps built on Azure AI Search include vector content in the index to support similarity search and hybrid queries. If you need vectorization and chunking, create a skillset and add it to your indexer.
-- Do you need field mappings? If source and destination field names or types are different, add field mappings. 
-- If you have a skillset that generates content that you need to store in your index, add output field mappings. Data chunks fall into this category. More information about output field mappings is covered in the skillset exercise.
-
-## Check index
-
-duplicated content in the index
-
-chunks aren't intended for classic search experience. Chunks might start or end mid-sentence or contain duplicated content if you specified an overlap.
-
-Combined index means duplicated parent fields. Document grain is the chunk so each chunk has its copy of parent fields.
-Overlapping text also duplicates content.
-
-All of this duplicated content is acceptable for LLMS because they aren't returning verbatim results.
-
-if you're sending search results directly to a search page, it's a poor experience.
- -->
 
 ## Next step
 

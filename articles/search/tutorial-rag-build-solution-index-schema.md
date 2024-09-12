@@ -159,121 +159,6 @@ A minimal index for LLM is designed to store chunks of content. It typically inc
     print(f"{result.name} created")  
     ```
 
-<!--     ```json
-    {
-      "name": "rag-tutorial-earth-book",
-      "defaultScoringProfile": null,
-      "fields": [
-        {
-          "name": "chunk_id", 
-          "type": "Edm.String",
-          "key": true,
-          "searchable": true,
-          "filterable": true,
-          "retrievable": true,
-          "stored": true,
-          "sortable": true,
-          "facetable": true,
-          "analyzer": "keyword",
-        },
-        {
-          "name": "parent_id",
-          "type": "Edm.String",
-          "searchable": true,
-          "filterable": true,
-          "retrievable": true,
-          "stored": true,
-          "sortable": true,
-          "facetable": true,
-          "analyzer": null,
-        },
-        {
-          "name": "chunk",
-          "type": "Edm.String",
-          "searchable": true,
-          "filterable": false,
-          "retrievable": true,
-          "stored": true,
-          "sortable": false,
-          "facetable": false,
-          "analyzer": null,
-        },
-        {
-          "name": "title",
-          "type": "Edm.String",
-          "searchable": true,
-          "filterable": true,
-          "retrievable": true,
-          "stored": true,
-          "sortable": false,
-          "facetable": false,
-          "analyzer": null,
-        },
-        {
-          "name": "text_vector",
-          "type": "Collection(Edm.Single)",
-          "searchable": true,
-          "retrievable": true,
-          "stored": true,
-          "dimensions": 1536,
-          "vectorSearchProfile": "rag-tutorial-earth-book-azureOpenAi-text-profile",
-          "vectorEncoding": null,
-        },
-        {
-          "name": "locations",
-          "type": "Collection(Edm.String)",
-          "searchable": true,
-          "filterable": true,
-          "retrievable": true,
-          "stored": true,
-          "sortable": false,
-          "facetable": false,
-          "analyzer": "standard.lucene",
-        }
-      ],
-      "vectorSearch": {
-        "algorithms": [
-          {
-            "name": "rag-tutorial-earth-book-algorithm",
-            "kind": "hnsw",
-            "hnswParameters": {
-              "metric": "cosine",
-              "m": 4,
-              "efConstruction": 400,
-              "efSearch": 500
-            },
-            "exhaustiveKnnParameters": null
-          }
-        ],
-        "profiles": [
-          {
-            "name": "rag-tutorial-earth-book-azureOpenAi-text-profile",
-            "algorithm": "rag-tutorial-earth-book-algorithm",
-            "vectorizer": "rag-tutorial-earth-book-azureOpenAi-text-vectorizer",
-            "compression": null
-          }
-        ],
-        "vectorizers": [
-          {
-            "name": "rag-tutorial-earth-book-azureOpenAi-text-vectorizer",
-            "kind": "azureOpenAI",
-            "azureOpenAIParameters": {
-              "resourceUri": "https://heidistazureopenaieastus.openai.azure.com",
-              "deploymentId": "text-embedding-ada-002",
-              "apiKey": null,
-              "modelName": "text-embedding-ada-002",
-              "authIdentity": null
-            },
-            "customWebApiParameters": null,
-            "aiServicesVisionParameters": null,
-            "amlParameters": null
-          }
-        ],
-        "compressions": []
-      }
-    }
-    ``` -->
-
 1. For an index schema that more closely mimics structured content, you would have separate indexes for parent and child (chunked) fields. You would need index projections to coordinate the indexing of the two indexes simultaneously. Queries execute against the child index. Query logic includes a lookup query, using the parent_idto retrieve content from the parent index.
 
    Fields in the child index:
@@ -294,7 +179,6 @@ A minimal index for LLM is designed to store chunks of content. It typically inc
 
 Key points:
 
-- 
 - schema for rag is designed for producing chunks of content
 - schema should be flat (no complex types or structures)
 - schema determines what queries you can create (be generous in attribute assignments)
@@ -310,11 +194,6 @@ Tasks:
 - H2 How to define vector profiles and configuration (discuss pros and cons, shouldn't be a rehash of existing how-to)
 - H2 How to add filters
 - H2 How to add structured data (example is "location", top-level field, data aquisition is through the pipeline) -->
-
-<!-- 
-
-ps 2: A richer index has more fields and configurations, and is often better because extra fields support richer queries and more opportunities for relevance tuning. Filters and scoring profiles for boosting apply to nonvector fields. If you have content that should be matched precisely and not similarly, such as a name or employee number, then create fields to contain that information.*
- -->
 
 ## Next step
 
