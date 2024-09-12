@@ -25,11 +25,14 @@ Some summarization features are only available in limited regions. More regions 
 |North Europe      |&#9989;                           |&#9989;                                        |&#10060;            |
 |East US           |&#9989;                           |&#9989;                                        |&#9989;             |
 |East US 2         |&#9989;                           |&#9989;                                        |&#10060;            |
+|Central US        |&#9989;                           |&#9989;                                        |&#10060;            |
+|South Central US  |&#9989;                           |&#9989;                                        |&#10060;            |
 |West US           |&#9989;                           |&#9989;                                        |&#10060;            |
-|USNat West        |&#9989;                           |&#9989;                                        |&#10060;            |
+|West US 2         |&#9989;                           |&#9989;                                        |&#10060;            |
 |USNat East        |&#9989;                           |&#9989;                                        |&#10060;            |
-|USSec West        |&#9989;                           |&#9989;                                        |&#10060;            |
+|USNat West        |&#9989;                           |&#9989;                                        |&#10060;            |
 |USSec East        |&#9989;                           |&#9989;                                        |&#10060;            |
+|USSec West        |&#9989;                           |&#9989;                                        |&#10060;            |
 |South UK          |&#9989;                           |&#9989;                                        |&#10060;            |
 |Southeast Asia    |&#9989;                           |&#9989;                                        |&#10060;            |
 |Australia East    |&#9989;                           |&#9989;                                        |&#10060;            |
