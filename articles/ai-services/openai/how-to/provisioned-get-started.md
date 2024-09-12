@@ -83,6 +83,7 @@ If you are unsure of the costs, cancel the deployment and proceed once you under
 * [Azure Pricing Portal](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/) 
 * [Understanding the provisioned throughput purchase model](provisioned-throughput-onboarding.md#understanding-the-provisioned-throughput-purchase-model) 
 
+The image below shows the pricing confirmation you will see. The price shown is an example only. 
 
 :::image type="content" source="../media/provisioned/confirm-pricing.png" alt-text="Screenshot showing the pricing confirmation screen." lightbox="../media/provisioned/confirm-pricing.png":::
 
