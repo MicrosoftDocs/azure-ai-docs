@@ -222,7 +222,7 @@ const endpoint = process.env["AZURE_OPENAI_ENDPOINT"] || "<endpoint>";
 
 // Required Azure OpenAI deployment name and API version
 const apiVersion = "2024-08-01-preview";
-const deploymentName = "gpt-4o"; //This must match your deployment name.
+const deploymentName = "gpt-4o-mini"; //This must match your deployment name.
 
 function getClient(): AzureOpenAI {
   const scope = "https://cognitiveservices.azure.com/.default";
