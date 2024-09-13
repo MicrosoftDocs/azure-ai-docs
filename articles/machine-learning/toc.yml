@@ -6,7 +6,7 @@
       displayName: AML, services, overview, introduction
       href: overview-what-is-azure-machine-learning.md
     - name: "AI Studio or AML: Which should I choose?"
-      href: /ai/ai-studio-experiences-overview?context=/azure/machine-learning/context/ml-context
+      href: /ai/ai-studio-experiences-overview?context=/azure/machine-learning/context/context
     - name: Azure Machine Learning CLI and Python SDK
       href: concept-v2.md
     # v1
@@ -1192,7 +1192,7 @@
         - name: Secured workspace traffic flow
           href: concept-secure-network-traffic-flow.md
         - name: Security baseline
-          href: /security/benchmark/azure/baselines/machine-learning-security-baseline?context=/azure/machine-learning/context/ml-context
+          href: /security/benchmark/azure/baselines/machine-learning-security-baseline?context=/azure/machine-learning/context/context
         - name: Security controls by Azure Policy
           href: ./security-controls-policy.md
         - name: Data encryption
@@ -1806,7 +1806,7 @@
     - name: Stack Overflow
       href: https://stackoverflow.com/questions/tagged/azure-machine-learning-service
     - name: Compare our ML products
-      href: /azure/architecture/data-guide/technology-choices/data-science-and-machine-learning?context=azure/machine-learning/context/ml-context
+      href: /azure/architecture/data-guide/technology-choices/data-science-and-machine-learning?context=azure/machine-learning/context/context
     - name: Designer accessibility features
       displayName: accessibility, designer, visual interface, screen reader, keyboard shortcuts
       href: designer-accessibility.md
