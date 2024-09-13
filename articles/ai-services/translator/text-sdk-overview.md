@@ -178,8 +178,8 @@ const {TextTranslationClient } = require("@azure-rest/ai-translation-text").defa
 ### [Python](#tab/python)
 
 ```python
-from azure.core.credentials import TextTranslationClient
-from azure-ai-translation-text import TextTranslationClient
+from azure.core.credentials import AzureKeyCredential
+from azure.ai.translation.text import TextTranslationClient
 ```
 
 ---
