@@ -36,7 +36,7 @@ You can choose from the following text to speech voices in Azure AI services:
 
 ## OpenAI text to speech voices via Azure OpenAI Service or via Azure AI Speech?
 
-If you want to use OpenAI text to speech voices, you can choose whether to use them via [Azure OpenAI](../openai/text-to-speech-quickstart.md) or via [Azure AI Speech](./get-started-text-to-speech.md#openai-text-to-speech-voices-in-azure-ai-speech). In either case, the speech synthesis result is the same. To explore OpenAI text to speech voices through Azure AI Speech, visit the [Voice Gallery](https://speech.microsoft.com/portal/voicegallery).
+If you want to use OpenAI text to speech voices, you can choose whether to use them via [Azure OpenAI](../openai/text-to-speech-quickstart.md) or via [Azure AI Speech](./get-started-text-to-speech.md#openai-text-to-speech-voices-in-azure-ai-speech). You can visit the [Voice Gallery](https://speech.microsoft.com/portal/voicegallery) to listen to samples of Azure OpenAI voices or synthesize speech with your own text using the [Audio Content Creation](https://speech.microsoft.com/portal/audiocontentcreation). The audio output is identical in both cases, with only a few feature differences between the two services. See the table below for details.
 
 Here's a comparison of features between OpenAI text to speech voices in Azure OpenAI Service and OpenAI text to speech voices in Azure AI Speech. 
 
