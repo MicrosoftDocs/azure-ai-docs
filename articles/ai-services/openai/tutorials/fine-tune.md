@@ -755,7 +755,7 @@ This command isn't available in the 0.28.1 OpenAI Python library. Upgrade to the
     {
       "id": "ftchkpt-148ab69f0a404cf9ab55a73d51b152de",
       "created_at": 1715743077,
-      "fine_tuned_model_checkpoint": "gpt-4o-mini-2024-07-18.ft-372c72db22c34e6f9ccb62c26ee0fbd9",
+      "fine_tuned_model_checkpoint": "gpt-4o-mini-2024-07-18.ft-0e208cf33a6a466994aff31a08aba678",
       "fine_tuning_job_id": "ftjob-372c72db22c34e6f9ccb62c26ee0fbd9",
       "metrics": {
         "full_valid_loss": 1.8258173013035255,
@@ -772,7 +772,7 @@ This command isn't available in the 0.28.1 OpenAI Python library. Upgrade to the
     {
       "id": "ftchkpt-e559c011ecc04fc68eaa339d8227d02d",
       "created_at": 1715743013,
-      "fine_tuned_model_checkpoint": "gpt-4o-mini-2024-07-18.ft-372c72db22c34e6f9ccb62c26ee0fbd9:ckpt-step-90",
+      "fine_tuned_model_checkpoint": "gpt-4o-mini-2024-07-18.ft-0e208cf33a6a466994aff31a08aba678:ckpt-step-90",
       "fine_tuning_job_id": "ftjob-372c72db22c34e6f9ccb62c26ee0fbd9",
       "metrics": {
         "full_valid_loss": 1.7958603267428241,
@@ -789,7 +789,7 @@ This command isn't available in the 0.28.1 OpenAI Python library. Upgrade to the
     {
       "id": "ftchkpt-8ae8beef3dcd4dfbbe9212e79bb53265",
       "created_at": 1715742984,
-      "fine_tuned_model_checkpoint": "gpt-4o-mini-2024-07-18.ft-372c72db22c34e6f9ccb62c26ee0fbd9:ckpt-step-80",
+      "fine_tuned_model_checkpoint": "gpt-4o-mini-2024-07-18.ft-0e208cf33a6a466994aff31a08aba678:ckpt-step-80",
       "fine_tuning_job_id": "ftjob-372c72db22c34e6f9ccb62c26ee0fbd9",
       "metrics": {
         "full_valid_loss": 1.6909511662736725,
@@ -850,7 +850,7 @@ Alternatively, you can deploy your fine-tuned model using any of the other commo
 | resource_group | The resource group name for your Azure OpenAI resource |
 | resource_name | The Azure OpenAI resource name |
 | model_deployment_name | The custom name for your new fine-tuned model deployment. This is the name that will be referenced in your code when making chat completion calls. |
-| fine_tuned_model | Retrieve this value from your fine-tuning job results in the previous step. It will look like `gpt-4o-mini-2024-07-18.ft-b044a9d3cf9c4228b5d393567f693b83`. You'll need to add that value to the deploy_data json. |
+| fine_tuned_model | Retrieve this value from your fine-tuning job results in the previous step. It will look like `gpt-4o-mini-2024-07-18.ft-0e208cf33a6a466994aff31a08aba678`. You'll need to add that value to the deploy_data json. |
 
 [!INCLUDE [Fine-tuning deletion](../includes/fine-tune.md)]
 
@@ -874,7 +874,7 @@ deploy_data = {
     "properties": {
         "model": {
             "format": "OpenAI",
-            "name": "<YOUR_FINE_TUNED_MODEL>", #retrieve this value from the previous call, it will look like gpt-4o-mini-2024-07-18.ft-b044a9d3cf9c4228b5d393567f693b83
+            "name": "<YOUR_FINE_TUNED_MODEL>", #retrieve this value from the previous call, it will look like gpt-4o-mini-2024-07-18.ft-0e208cf33a6a466994aff31a08aba678
             "version": "1"
         }
     }
@@ -894,7 +894,7 @@ print(r.json())
 
 You can check on your deployment progress in the Azure OpenAI Studio:
 
-:::image type="content" source="../media/tutorials/fine-tuning/status.png" alt-text="Screenshot of the initial DataFrame table results from the CSV file." lightbox="../media/tutorials/fine-tuning/status.png":::
+:::image type="content" source="../media/tutorials/fine-tuning/studio-deployment-status.png" alt-text="Deployment progress on AOAI studio" lightbox="../media/tutorials/fine-tuning/studio-deployment-status.png":::
 
 It isn't uncommon for this process to take some time to complete when dealing with deploying fine-tuned models.
 
