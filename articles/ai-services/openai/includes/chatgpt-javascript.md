@@ -81,7 +81,7 @@ const endpoint = process.env["AZURE_OPENAI_ENDPOINT"] || "<endpoint>";
 const apiKey = process.env["AZURE_OPENAI_API_KEY"] || "<api key>";
 
 // Required Azure OpenAI deployment name and API version
-const apiVersion = "2024-07-01-preview";
+const apiVersion = "2024-08-01-preview";
 const deploymentName = "gpt-4o-mini"; //This must match your deployment name.
 
 function getClient(): AzureOpenAI {
