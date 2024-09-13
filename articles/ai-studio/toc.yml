@@ -316,6 +316,8 @@ items:
         href: how-to/configure-private-link.md
       - name: Configure custom DNS
         href: /azure/machine-learning/how-to-custom-dns?context=/azure/ai-studio/context/context
+      - name: Secure playground chat
+        href: how-to/secure-data-playground.md
       - name: Troubleshoot secure project connectivity
         href: how-to/troubleshoot-secure-connection-project.md
     - name: Data protection & encryption
