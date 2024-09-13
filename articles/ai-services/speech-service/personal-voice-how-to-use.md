@@ -85,6 +85,15 @@ For detailed information on the supported and unsupported SSML elements for Phoe
 | `<p>`                   | Denotes paragraphs in SSML documents.                                       | Yes                  | Yes                 |
 | `<s>`                   | Denotes sentences in SSML documents.                                        | Yes                  | Yes                 |
 
+## Supported and unsupported SDK features for personal voice
+
+The following table outlines which SDK features are supported for Phoenix and Dragon models. For details on how to utilize these SDK features in your applications, refer to [Subscribe to synthesizer events](how-to-speech-synthesis.md#subscribe-to-synthesizer-events).
+
+| **SDK features**  | **Description**                                                | **Supported in Phoenix** | **Supported in Dragon** |
+| ----------------- | -------------------------------------------------------------- | ------------------------ | ----------------------- |
+| Word boundary   | Signals that a word boundary was received during synthesis, providing precise word timing for synchronization. | Yes                      | No                      |
+| Viseme events  | Provides viseme (lips, jaw, and tongue movement) information during synthesis, allowing visual synchronization.  | Yes                      | No                      |
+
 ## Reference documentation
 
 > [!div class="nextstepaction"]
