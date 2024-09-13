@@ -794,7 +794,7 @@ If you plan to use __HuggingFace models__ with the hub, add outbound _FQDN_ rule
 
 ### Scenario: Curated by Azure AI
 
-These models involve dynamic installation of dependencies at runtime, and reequire outbound _FQDN_ rules to allow traffic to the following hosts:
+These models involve dynamic installation of dependencies at runtime, and require outbound _FQDN_ rules to allow traffic to the following hosts:
 
 *.anaconda.org
 *.anaconda.com
