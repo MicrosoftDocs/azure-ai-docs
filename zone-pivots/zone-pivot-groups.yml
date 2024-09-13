@@ -183,6 +183,8 @@ groups:
     title: Studio
   - id: programming-language-python
     title: Python
+  - id: programming-language-javascript
+    title: JavaScript
   - id: rest-api
     title: REST
 # Owner: mbullwin
