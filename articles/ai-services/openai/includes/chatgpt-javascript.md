@@ -221,7 +221,7 @@ import type {
 const endpoint = process.env["AZURE_OPENAI_ENDPOINT"] || "<endpoint>";
 
 // Required Azure OpenAI deployment name and API version
-const apiVersion = "2024-07-01-preview";
+const apiVersion = "2024-08-01-preview";
 const deploymentName = "gpt-4o"; //This must match your deployment name.
 
 function getClient(): AzureOpenAI {
