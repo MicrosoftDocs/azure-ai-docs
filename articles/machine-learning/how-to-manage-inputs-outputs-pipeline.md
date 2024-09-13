@@ -274,7 +274,7 @@ In the Designer **Pipeline interface** for a pipeline, or the component panel fo
 
 You can download outputs at the pipeline or component level.
 
-### Download pipeline-level outputs
+### Download pipeline level outputs
 
 # [Azure CLI](#tab/cli)
 
