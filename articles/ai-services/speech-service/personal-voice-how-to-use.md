@@ -91,7 +91,7 @@ The following table outlines which SDK features are supported for Phoenix and Dr
 
 | **SDK features**  | **Description**                                                | **Supported in Phoenix** | **Supported in Dragon** |
 | ----------------- | -------------------------------------------------------------- | ------------------------ | ----------------------- |
-| Word boundary   | Signals that a word boundary was received during synthesis, providing precise word timing for synchronization. | Yes                      | No                      |
+| Word boundary   | Signals that a word boundary was received during synthesis, providing precise word timing during the speech synthesis process. | Yes                      | No                      |
 | Viseme events  | Provides viseme (lips, jaw, and tongue movement) information during synthesis, allowing visual synchronization.  | Yes                      | No                      |
 
 ## Reference documentation
