@@ -104,7 +104,7 @@ The following screenshot shows the **Settings** tab of a pipeline job, which you
 
 :::image type="content" source="./media/how-to-manage-pipeline-input-output/job-overview-setting.png" lightbox="./media/how-to-manage-pipeline-input-output/job-overview-setting.png" alt-text="Screenshot highlighting the job overview setting panel.":::
 
-When you edit a pipeline in the Designer, pipeline inputs and outputs are in the **Pipeline interface** panel, and component inputs and outputs are in the component panel.
+When you edit a pipeline in the studio Designer, pipeline inputs and outputs are in the **Pipeline interface** panel, and component inputs and outputs are in the component panel.
 
 :::image type="content" source="./media/how-to-manage-pipeline-input-output/pipeline-interface.png" alt-text="Screenshot highlighting the pipeline interface in Designer.":::
 
@@ -203,7 +203,7 @@ pipeline_job.settings.default_datastore = "workspaceblobstore"
 You can promote a component's input to pipeline level input on the studio Designer authoring page.
 
 1. Open the component's settings panel by double-clicking the component.
-1. Find the input you want to promote and select the three dots on the right.
+1. Select **...** next to the input you want to promote.
 1. Select **Add to pipeline input**.
 
    :::image type="content" source="./media/how-to-manage-pipeline-input-output/promote-pipeline-input.png" alt-text="Screenshot highlighting how to promote to pipeline input in Designer.":::
@@ -212,16 +212,18 @@ You can promote a component's input to pipeline level input on the studio Design
 
 ## Define optional inputs
 
-By default, all inputs are required and must either have a default value or be assigned a value each time you submit a pipeline job. However, you can define an optional input and not assign a value to the input when you submit a pipeline job.
+By default, all inputs are required and must either have a default value or be assigned a value each time you submit a pipeline job. However, you can define an optional input.
 
 > [!NOTE]
 > Optional outputs aren't supported.
 
-If you have an optional data/model type input and don't assign a value to it when submitting the pipeline job, a component in the pipeline lacks a preceding data dependency. The component's input port isn't linked to any component or data/model node. The pipeline service invokes the component directly, instead of waiting for the preceding dependency to be ready.
+Setting optional inputs can be useful in two scenarios:
 
-If you set `continue_on_step_failure = True` for the pipeline and a second node uses required output from the first node, the second node doesn't execute if the first node fails. But if the second node uses optional input from the first node, it executes even if the first node fails. The following screenshot illustrates this scenario.
+- If you define an optional data/model type input and don't assign a value to it when you submit the pipeline job, the pipeline component lacks a preceding data dependency. If the component's input port isn't linked to any component or data/model node, the pipeline invokes the component directly instead of waiting for the preceding dependency.
 
-:::image type="content" source="./media/how-to-manage-pipeline-input-output/continue-on-failure-optional-input.png" alt-text="Screenshot showing the orchestration logic of optional input and continue on failure.":::
+- If you set `continue_on_step_failure = True` for the pipeline and `node2` uses optional input from `node1`, `node2` executes even if `node1` fails. If `node1` input is required, `node2` doesn't execute if `node1` fails. The following example demonstrates this scenario.
+
+  :::image type="content" source="./media/how-to-manage-pipeline-input-output/continue-on-failure-optional-input.png" alt-text="Screenshot showing the orchestration logic of optional input and continue on failure.":::
 
 # [Azure CLI / Python SDK](#tab/cli+python)
 
@@ -231,7 +233,7 @@ The following code example shows how to define optional input. When the input is
 
 # [Studio UI](#tab/ui)
 
-In a pipeline graph, optional inputs of data/model types are represented by dotted circles. Optional inputs of primitive types are in the **Settings** tab. Unlike required inputs, optional inputs don't have an asterisk next to them, indicating that they aren't mandatory.
+In a pipeline graph, dotted circles represent optional inputs of data or model types. Optional inputs of primitive types are in the **Settings** tab. Unlike required inputs, optional inputs don't have an asterisk next to them, indicating that they aren't mandatory.
 
 :::image type="content" source="./media/how-to-manage-pipeline-input-output/optional-input.png" lightbox="./media/how-to-manage-pipeline-input-output/optional-input.png" alt-text="Screenshot highlighting the optional input.":::
 
@@ -241,11 +243,11 @@ In a pipeline graph, optional inputs of data/model types are represented by dott
 
 By default, component output is stored in the `{default_datastore}` you set for the pipeline, `azureml://datastores/${{default_datastore}}/paths/${{name}}/${{output_name}}`. If not set, the default is the workspace blob storage.
 
-The job `{name}` is resolved at job execution time, and `{output_name}` is the name you defined in the component YAML. You can customize where to store the output by defining the path of an output.
+Job `{name}` is resolved at job execution time, and `{output_name}` is the name you defined in the component YAML. You can customize where to store the output by defining an output path.
 
 # [Azure CLI](#tab/cli)
 
-The *pipeline.yml* file defines a pipeline that has three pipeline level outputs. You can use the following command to set custom output paths for the `pipeline_job_trained_model` output.
+The [pipeline.yml](https://github.com/Azure/azureml-examples/blob/main/cli/jobs/pipelines-with-components/basics/1b_e2e_registered_components/pipeline.yml) file at [train-score-eval pipeline with registered components example](https://github.com/Azure/azureml-examples/tree/main/cli/jobs/pipelines-with-components/basics/1b_e2e_registered_components) defines a pipeline that has three pipeline level outputs. You can use the following command to set custom output paths for the `pipeline_job_trained_model` output.
 
 ```azurecli
 # define the custom output path using datastore uri
@@ -256,17 +258,15 @@ output_path="azureml://datastores/{datastore_name}/paths/{relative_path_of_conta
 az ml job create -f ./pipeline.yml --set outputs.pipeline_job_trained_model.path=$output_path  
 ```
 
-You can find the full YAML file at [train-score-eval pipeline with registered components example](https://github.com/Azure/azureml-examples/blob/main/cli/jobs/pipelines-with-components/basics/1b_e2e_registered_components/pipeline.yml).
-
 # [Python SDK](#tab/python)
+
+The following code that demonstrates how to customize output paths is from the [Build pipeline with command_component decorated python function](https://github.com/Azure/azureml-examples/blob/main/sdk/python/jobs/pipelines/1b_pipeline_with_python_function_components/pipeline_with_python_function_components.ipynb) notebook.
 
 [!Notebook-python[] (~/azureml-examples-main/sdk/python/jobs/pipelines/1b_pipeline_with_python_function_components/pipeline_with_python_function_components.ipynb?name=custom-output-path)] 
 
-You can find the end-to-end notebook at [Build pipeline with command_component decorated python function](https://github.com/Azure/azureml-examples/blob/main/sdk/python/jobs/pipelines/1b_pipeline_with_python_function_components/pipeline_with_python_function_components.ipynb).
-
 # [Studio UI](#tab/ui)
 
-In the Designer **Pipeline interface** for a pipeline, or the component panel for a component, expand **Outputs** in the **Settings** tab to specify a custom path.
+In the Designer **Pipeline interface** for a pipeline, or the component panel for a component, expand **Outputs** in the **Settings** tab to specify a custom **Path**.
 
 :::image type="content" source="./media/how-to-manage-pipeline-input-output/custom-output.png" lightbox="./media/how-to-manage-pipeline-input-output/custom-output.png" alt-text="Screenshot showing custom output.":::
 
@@ -318,10 +318,10 @@ output = client.jobs.download(name=job.name, download_path=tmp_path, output_name
 
 # [Studio UI](#tab/ui)
 
-In the **Outputs + logs** tab of the job details page:
+On the **Outputs + logs** tab of the job details page:
 
 - To download all outputs, select **Download all** in the top menu.
-- To download a specific output, select **...** next to a file in the file tree and select **Download** from the context menu.
+- To download a specific output, select **...** next to a file and select **Download** from the context menu.
 
 :::image type="content" source="./media/how-to-manage-pipeline-input-output/download.png" lightbox="./media/how-to-manage-pipeline-input-output/download.png" alt-text="Screenshot showing how to download an output file or all outputs from a pipeline job.":::
 
@@ -331,7 +331,7 @@ In the **Outputs + logs** tab of the job details page:
 
 # [Azure CLI](#tab/cli)
 
-To download the outputs of a child component that isn't promoted to pipeline level, first list all child job entities of a pipeline job and then use similar code to download the outputs.
+To download the outputs of a child component, first list all child jobs of a pipeline job and then use similar code to download the outputs.
 
 ```azurecli
 # List all child jobs in the job and print job details in table format
@@ -357,7 +357,7 @@ ml_client = MLClient(
 )
 ```
 
-To download the outputs of a child component that isn't promoted to pipeline level, first list all child job entities of a pipeline job and then use similar code to download the outputs.
+To download the outputs of a child component, first list all child jobs of a pipeline job and then use similar code to download the outputs.
 
 ```python
 # List all child jobs in the job
@@ -370,7 +370,7 @@ for child_job in child_jobs:
 
 # [Studio UI](#tab/ui)
 
-In the **Outputs + logs** tab of the component panel for a component, select **Download all**.
+On the **Outputs + logs** tab of the component panel for a component, select **Download all**.
 
 :::image type="content" source="./media/how-to-manage-pipeline-input-output/download-component.png" alt-text="Screenshot showing how to download outputs from a pipeline component.":::
 
