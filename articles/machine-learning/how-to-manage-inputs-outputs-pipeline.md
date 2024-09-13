@@ -234,6 +234,7 @@ The following code example shows how to define optional input. When the input is
 In a pipeline graph, optional inputs of data/model types are represented by dotted circles. Optional inputs of primitive types are in the **Settings** tab. Unlike required inputs, optional inputs don't have an asterisk next to them, indicating that they aren't mandatory.
 
 :::image type="content" source="./media/how-to-manage-pipeline-input-output/optional-input.png" lightbox="./media/how-to-manage-pipeline-input-output/optional-input.png" alt-text="Screenshot highlighting the optional input.":::
+
 ---
 
 ## Customize output paths
@@ -277,9 +278,10 @@ You can download outputs at the pipeline or component level.
 
 ### Download pipeline-level outputs
 
+# [Azure CLI](#tab/cli)
+
 You can download all the outputs of a job or download a specific output.
 
-# [Azure CLI](#tab/cli)
 ```azurecli
 # Download all the outputs of the job
 az ml job download --all -n <JOB_NAME> -g <RESOURCE_GROUP_NAME> -w <WORKSPACE_NAME> --subscription <SUBSCRIPTION_ID>
