@@ -184,7 +184,7 @@ For more information about `docker run` with Speech containers, see [Install and
 
 ### SSML voice element
 
-When you construct a neural text to speech HTTP POST, the [SSML](speech-synthesis-markup.md) message requires a `voice` element with a `name` attribute. The [locale of the voice](language-support.md?tabs=tts) must correspond to the locale of the container model. 
+When you construct a neural text to speech HTTP POST, the [SSML](speech-synthesis-markup.md) message requires a `voice` element with a `name` attribute. The [locale of the voice](language-support.md?tabs=tts) must correspond to the locale of the container model. The [SSML tag](speech-synthesis-markup-structure.md) support is consistent for [each text to speech voice](https://mcr.microsoft.com/product/azure-cognitive-services/speechservices/neural-text-to-speech/tags) both in the Azure cloud and the container environment.
 
 For example, a model that was downloaded via the `latest` tag (defaults to "en-US") would have a voice name of `en-US-AriaNeural`.
 
