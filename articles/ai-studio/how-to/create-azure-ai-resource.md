@@ -12,6 +12,7 @@ ms.date: 5/21/2024
 ms.reviewer: deeikele
 ms.author: larryfr
 author: Blackmist
+# Customer Intent: As an admin, I need to create and manage an Azure AI Studio hub so that my team can use it to create projects for collaboration.
 ---
 
 # How to create and manage an Azure AI Studio hub
@@ -142,7 +143,18 @@ az ml workspace update -n "myexamplehub" -g "{MY_RESOURCE_GROUP}" -a "APPLICATIO
 ```
 ---
 
-## Next steps
+## Delete an Azure AI Studio hub
+
+To delete a hub, use the Azure portal. From the Azure portal, navigate to the hub you want to delete, then select **Delete** from the **Overview** section.
+
+:::image type="content" source="../media/how-to/hubs/delete-hub-button.png" alt-text="Screenshot of the delete button for the Azure AI Studio hub in the Azure portal.":::
+
+> [!TIP]
+> To quickly get to the Azure portal from the Azure AI Studio, select **Manage in Azure portal** from the **Hub overview**.
+> 
+> :::image type="content" source="../media/how-to/hubs/manage-hub-azure-portal.png" alt-text="Screenshot of the manage in Azure portal link in Azure AI Studio.":::
+
+## Related content
 
 - [Create a project](create-projects.md)
 - [Learn more about Azure AI Studio](../what-is-ai-studio.md)
