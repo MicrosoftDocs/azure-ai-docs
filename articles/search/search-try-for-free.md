@@ -19,7 +19,7 @@ This article explains how to get the most value from your Azure trial subscripti
 
 ## Sign up for a free subscription
 
-To try Azure AI Search for free, [start a trial subscription](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A261C142F). The trial subscription is non-renewable, active for one month, and comes with free credits so that you can create services at no charge. In the United States, the credit amount is $200. Equivalent credits are available in other currencies.
+To try Azure AI Search for free, [start a trial subscription](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A261C142F). The trial subscription is non-renewable, active for one month, and comes with free credits so that you can create services at no charge. In the United States, the credit amount is USD 200. Equivalent credits are available in other currencies.
 
 Although you can create a free search service that doesn't use up your credits, we recommend provisioning the **Basic** tier so that you can work with larger indexes, more indexes, and premium features like semantic ranking.
 
@@ -80,7 +80,7 @@ Continue with the following links to review which regions also provide the model
 
 ## Estimate costs
 
-During the trial period, you want to stay under the $200 credit allocation. Most services are pay-as-you-go, so you won't be charged while they're not in use, but an Azure AI Search service is provisioned on dedicated clusters and it can only be used by you. It's billable during its lifetime. If you provision a basic tier search service, expect Azure AI Search to consume about one third (or $70) of your available credits during the trial period.
+During the trial period, you want to stay under the USD 200 credit allocation. Most services are pay-as-you-go, so you won't be charged while they're not in use, but an Azure AI Search service is provisioned on dedicated clusters and it can only be used by you. It's billable during its lifetime. If you provision a basic tier search service, expect Azure AI Search to consume about one third (or USD 70) of your available credits during the trial period.
 
 During the trial period, the Azure portal provides a notification on the top right that tells you how many credits are used up and what remains. 
 
