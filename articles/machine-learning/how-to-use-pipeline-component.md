@@ -1,7 +1,7 @@
 ---
-title: How to nest pipeline components
+title: How to use pipeline components in pipeline jobs
 titleSuffix: Azure Machine Learning
-description: Learn how to nest pipeline components to build Azure Machine Learning pipeline jobs by using CLI v2, Python SDK v2, or the studio UI.
+description: Learn how to nest multistep pipeline components in Azure Machine Learning pipeline jobs by using CLI v2, Python SDK v2, or the studio UI.
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: mlops
@@ -9,7 +9,7 @@ ms.topic: how-to
 author: lgayhardt
 ms.author: lagayhar
 ms.reviewer: lochen
-ms.date: 09/10/2024
+ms.date: 09/13/2024
 ms.custom:
   - sdkv2
   - cliv2
@@ -17,19 +17,19 @@ ms.custom:
   - ignite-2023
 ---
 
-# How to nest pipeline components to build pipeline jobs
+# Use multistep pipeline components in pipeline jobs
 
 [!INCLUDE [dev v2](includes/machine-learning-dev-v2.md)]
 
-It's common to use pipeline components to develop complex machine learning pipelines. You can also group multiple steps into a component that you can use as a single step to do tasks like data preprocessing or model training.
+It's common to use pipeline components to develop complex machine learning pipelines. You can group multiple steps into a pipeline component that you use as a single step to do tasks like data preprocessing or model training.
 
-This article shows you how to nest multiple steps in components to build complex Azure Machine Learning pipeline jobs. You can develop and test these multistep components standalone, which helps you share your work and collaborate better with team members.
+This article shows you how to nest multiple steps in components that you use to build complex Azure Machine Learning pipeline jobs. You can develop and test these multistep components standalone, which helps you share your work and collaborate better with team members.
 
 By using multistep pipeline components, you can focus on developing subtasks and easily integrate them with the entire pipeline job. A pipeline component has a well-defined input and output interface, so multistep pipeline component users don't need to know the implementation details of the component.
 
 Both pipeline components and pipeline jobs contain groups of steps or components, but defining a pipeline component differs from defining a pipeline job in the following ways:
 
-- Pipeline components define only the input and output interfaces. In a pipeline component, you explicitly set the input and output types, but don't directly assign values to them.
+- Pipeline components define only the interfaces of inputs and outputs. In a pipeline component, you explicitly set the input and output types, but you don't directly assign values to them.
 - Pipeline components don't have runtime settings, so you can't hardcode a compute or data node in a pipeline component. Instead you must promote these nodes as pipeline level inputs and assign values during runtime.
 - Pipeline level settings such as `default_datastore` and `default_compute` are also runtime settings that aren't part of pipeline component definitions.
 
@@ -54,7 +54,7 @@ Both pipeline components and pipeline jobs contain groups of steps or components
 
 ---
 
-## Build pipeline jobs with nested components
+## Build pipeline jobs with pipeline components
 
 You can define multiple steps as a pipeline component, and then use the multistep component like any other component to build a pipeline job.
 
