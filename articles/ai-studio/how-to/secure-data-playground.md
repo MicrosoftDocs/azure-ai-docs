@@ -5,7 +5,7 @@ description: Learn how to securely use the Azure AI Studio playground chat on yo
 manager: scottpolly
 ms.service: azure-ai-studio
 ms.topic: how-to
-ms.date: 08/28/2024
+ms.date: 09/13/2024
 ms.reviewer: meerakurup 
 ms.author: larryfr
 author: Blackmist
@@ -153,9 +153,22 @@ If you're using Azure Storage for the ingestion scenario with the Azure AI Studi
 1. Repeat the previous step to create a private endpoint, however this time set the __Target sub-resource__ to __file__. The previous private endpoint allows secure communication to blob storage, and this private endpoint allows secure communication to file storage.
 1. To disable local (shared key) authentication to storage, select __Configuration__, under __Settings__. Set __Allow storage account key access__ to __Disabled__, and then select __Save__ to apply the changes. For more information, visit the [Prevent authorization with shared key](/azure/storage/common/shared-key-authorization-prevent) article. 
 
+## Configure Azure Key Vault
+
+Azure AI Studio uses Azure Key Vault to securely store and manage secrets. To allow access to the key vault from trusted services, use the following steps.
+
+> [!NOTE]
+> These steps assume that the key vault has already been configured for network isolation when you created your Azure AI Studio Hub.
+
+1. From the Azure portal, select the Key Vault resource, then select __Settings__, __Networking__, and __Firewalls and virtual networks__.
+1. From the __Exception__ section of the page, make sure that __Allow trusted Microsoft services to bypass firewall__ is __enabled__.
+
 ## Configure connections to use Microsoft Entra ID
 
 Connections from Azure AI Studio to Azure AI services and Azure AI Search should use Microsoft Entra ID for secure access. Connections are created from [Azure AI Studio](https://ai.azure.com) instead of the Azure portal.
+
+> [!IMPORTANT]
+> Using Microsoft Entra ID with Azure AI Search is currently a preview feature. For more information on connections, visit the [Add connections](connections-add.md#create-a-new-connection) article.
 
 1. from Azure AI Studio, select __Connections__. If you have existing connections to the resources, you can select the connection and then select the __pencil icon__ in the __Access details__ section to update the connection. Set the __Authentication__ field to __Microsoft Entra ID__, then select __Update__.
 1. To create a new connection, select __+ New connection__, then select the resource type. Browse for the resource or enter the required information, then set __Authentication__ to __Microsoft Entra ID__. Select __Add connection__ to create the connection.
