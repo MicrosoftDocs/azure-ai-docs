@@ -123,14 +123,14 @@ Results from the first query`"how much of earth is covered by water"` should loo
 
 :::image type="content" source="media/tutorial-rag-solution/chat-results-1.png" alt-text="Screenshot of an LLM response to a simple question using a single match from search results.":::
 
-It's common for LLMs to return different answers, even if the prompt and queries are unchanged. Your result might look very different from the example.
+It's expected for LLMs to return different answers, even if the prompt and queries are unchanged. Your result might look very different from the example. For more information, see [Learn how to use reproducible output](/azure/ai-services/openai/how-to/reproducible-output).
 
 > [!NOTE]
 > In testing this tutorial, we saw a variety of responses, some more relevant than others. A few times, repeating the same request caused a deterioration in the response, most likely due to confusion in the chat history, possibly with the model registering the repeated requests as dissatisfaction with the generated answer. Managing chat history is out of scope for this tutorial, but including it in your application code should mitigate or even eliminate this behavior.
 
 ## Add a filter
 
-Recall that you created a `locations` field using applied AI, populated with places recognized by the Entity Recognition skill. The field definition for locations includes the `filterable` attribute. Let's repeat the previous request, but this time adding a filter that selects on the term *ice* in the locations field.
+Recall that you created a `locations` field using applied AI, populated with places recognized by the Entity Recognition skill. The field definition for locations includes the `filterable` attribute. Let's repeat the previous request, but this time adding a filter that selects on the term *ice* in the locations field. For more information about filtering on string collections, see [text filter fundamentals](search-filters.md#text-filter-fundamentals) and [Understand collection filters](search-query-understand-collection-filters.md).
 
 Replace the search_results definition with the following example that includes a filter:
 
