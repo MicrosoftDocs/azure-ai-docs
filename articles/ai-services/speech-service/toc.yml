@@ -77,6 +77,8 @@ items:
         href: batch-transcription-create.md
       - name: "Part 3: Get batch transcription results"
         href: batch-transcription-get.md
+      - name: Power automate batch transcription
+        href: power-automate-batch-transcription.md
     - name: Custom speech
       items:
         - name: Custom speech overview
@@ -365,6 +367,52 @@ items:
               href: windows-voice-assistants-best-practices.md
             - name: 'Samples and frequently asked questions'
               href: windows-voice-assistants-faq.yml
+- name: Containers
+  items:
+    - name: Speech containers overview
+      href: speech-container-overview.md
+    - name: Get started with speech containers
+      items:
+      - name: Install and run speech containers
+        displayName: 'containers,install container,run container'
+        href: speech-container-howto.md
+      - name: Speech to text containers
+        href: speech-container-stt.md
+      - name: Custom speech to text containers
+        href: speech-container-cstt.md
+      - name: Text to speech containers
+        href: speech-container-ntts.md
+      - name: Language identification containers
+        href: speech-container-lid.md
+    - name: Configure speech containers
+      displayName: 'containers,configure containers,container config,configuration'
+      href: speech-container-configuration.md
+    - name: Batch processing with speech containers
+      href: speech-container-batch-processing.md
+    - name: Speech containers with Kubernetes and Helm
+      displayName: 'containers,kubernetes,k8s,helm,orchestration,on-prem,on-premises'
+      href: speech-container-howto-on-premises.md
+    - name: Speech containers on Azure container instances
+      href: ../containers/azure-container-instance-recipe.md?context=/azure/ai-services/speech-service/context/context
+      displayName: 'ACI,azure container instances,container instances,containers'
+    - name: Containers FAQ
+      href: speech-container-faq.yml
+- name: Devices
+  items:
+    - name: Devices overview
+      href: speech-devices.md
+    - name: Audio processing
+      href: audio-processing-overview.md
+    - name: Use the Microsoft Audio Stack (MAS)
+      href: audio-processing-speech-sdk.md
+    - name: Microphone array recommendations
+      href: speech-sdk-microphone.md
+- name: Embedded speech
+  items:
+    - name: Embedded speech overview
+      href: embedded-speech.md
+    - name: Evaluate performance of embedded speech
+      href: embedded-speech-performance-evaluations.md
 - name: How-to guides
   items:
     - name: Language identification
@@ -434,44 +482,6 @@ items:
     - name: Generate a REST API client library
       href: swagger-documentation.md
       displayName: rest, swagger
-    - name: Embedded Speech
-      items:
-        - name: Overview
-          href: embedded-speech.md
-        - name: Performance evaluations
-          href: embedded-speech-performance-evaluations.md
-    - name: Power automate batch transcription
-      href: power-automate-batch-transcription.md
-    - name: Containers
-      items:
-        - name: Speech containers overview
-          href: speech-container-overview.md
-        - name: Get started with speech containers
-          items:
-          - name: Install and run speech containers
-            displayName: 'containers,install container,run container'
-            href: speech-container-howto.md
-          - name: Speech to text containers
-            href: speech-container-stt.md
-          - name: Custom speech to text containers
-            href: speech-container-cstt.md
-          - name: Text to speech containers
-            href: speech-container-ntts.md
-          - name: Language identification containers
-            href: speech-container-lid.md
-        - name: Configure speech containers
-          displayName: 'containers,configure containers,container config,configuration'
-          href: speech-container-configuration.md
-        - name: Batch processing with speech containers
-          href: speech-container-batch-processing.md
-        - name: Speech containers with Kubernetes and Helm
-          displayName: 'containers,kubernetes,k8s,helm,orchestration,on-prem,on-premises'
-          href: speech-container-howto-on-premises.md
-        - name: Speech containers on Azure container instances
-          href: ../containers/azure-container-instance-recipe.md?context=/azure/ai-services/speech-service/context/context
-          displayName: 'ACI,azure container instances,container instances,containers'
-        - name: Containers FAQ
-          href: speech-container-faq.yml
     - name: Migration
       items:
         - name: Neural voice migration
@@ -494,18 +504,6 @@ items:
             displayName: migrate,migration,deprecate,retire,sunset
         - name: From Long Audio API to Batch synthesis API
           href: migrate-to-batch-synthesis.md
-- name: Devices
-  items:
-    - name: Devices overview
-      href: speech-devices.md
-    - name: Audio processing
-      href: audio-processing-overview.md
-    - name: Use the Microsoft Audio Stack (MAS)
-      href: audio-processing-speech-sdk.md
-    - name: Microphone array recommendations
-      href: speech-sdk-microphone.md
-    - name: Speech Devices SDK (Retired)
-      href: devices-sdk-release-notes.md
 - name: Reference
   items:
     - name: SDK reference
