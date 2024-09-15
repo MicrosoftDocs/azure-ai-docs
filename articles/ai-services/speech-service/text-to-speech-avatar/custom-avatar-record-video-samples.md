@@ -113,7 +113,7 @@ Gesture video clips are optional, and customers who have the need to insert cert
 
 **Gesture tips:**
 - Each gesture clip should be within 10 seconds.
-- Gestures should start from status 0 and end with status 0; otherwise, the gesture clip can't be smoothly inserted into the avatar video.
+- Gestures should start from status 0 and end with status 0. It's essential that the character maintains the same position as in status 0, which is in the middle of the screen, throughout the gesture. Otherwise, the gesture clip can't be smoothly inserted into the avatar video. 
 - The gesture clip only captures the body gestures; the actor doesn't have to speak during making gestures.
 - We recommend designing a list of gestures before recording; here are some examples of gesture video clips:
 
@@ -131,6 +131,28 @@ High-quality avatar models are built from high-quality video recordings, includi
 | **Dos** | **Don'ts**   |
 |---------|--------------|
 | - Ensure all video clips are taken in the same conditions.</br>- During the recording process, design the size and display area of the character you need so that the character can be displayed on the screen appropriately.</br> - Actor should be steady during the recording. </br> - Mind facial expressions, which should be suitable for the avatar's use case. For example, look positive and smile if the custom text to speech avatar is used as customer service. Look professionally if the avatar is used for news reporting.</br> - Maintain eye gaze towards the camera, even when using a teleprompter.</br> - Return your body to status 0 when pausing speaking.</br> - Speak on a self-chosen topic, and minor speech mistakes like miss a word or mispronounced are acceptable. If the actor misses a word or mispronounces something, just go back to status 0, pause for 3 seconds, and then continue speaking.</br> - Consciously pause between sentences and paragraphs. When pausing, go back to the status 0 and close your lips. </br> - The audio should be clear and loud enough; bad audio quality impacts training result.</br> - Keep the shooting environment quiet. | - Don't adjust the camera parameters, focal length, position, angle of view. Don't move the camera; keep the person's position, size, angle, consistent in the camera.</br> - Characters that are too small might lead to a loss of image quality during post-processing. Characters that are too large might cause the screen to overflow during gestures and movements.</br> - Don't make too long gestures or too much movement for one gesture; for example, actor's hands are always making gestures and forget to go back to status 0.</br> - The actor's movements and gestures must not block the face.</br> - Avoid small movements of the actor like licking lips, touching hair, talking sideways, constant head shaking during speech, and not closing up after speaking.</br> - Avoid background noise; staff should avoid walking and talking during video recording.</br> - Avoid other people's voice recorded during the actor speaking. |
+
+### How to prepare an interaction video clip
+
+Creating a high-quality interaction video clip is essential if you're building a real-time conversation with a custom avatar. The clip should consist of a question-and-answer format, where a photographer asks a question, and the actor responds. Loop the question-answer pair until the conversation is complete. If you're filming alone, imagine someone else asking the questions during the asking phase.
+
+Here are some tips for each phase:
+
+**Asking phase:**
+- Maintain status 0, don't speak, but still feel relaxed.
+- Even remaining in status 0, don't keep still. Perform like you're waiting.
+- Maintain a smile as if listening or waiting patiently.
+- Avoid nodding frequently.
+- Length: Each asking slot should last around 3–5 seconds.
+
+**Answering phase:**
+- Speak naturally with natural hand gestures from time to time.
+- Use natural and common gestures when speaking. Avoid meaningful gestures like pointing, applause, or thumbs up.
+- Begin gestures after starting to speak, and stop them before you finish.
+- Length: Each answering slot should last around 5 seconds.
+
+**Total video length:**
+- Aim for a total video length of 1–5 minutes.
 
 ## Data requirements
 

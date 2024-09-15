@@ -8,6 +8,8 @@ items:
     href: what-is-ai-studio.md
   - name: Azure AI Studio architecture
     href: concepts/architecture.md
+  - name: "AI Studio or AML: Which should I choose?"
+    href: /ai/ai-studio-experiences-overview?context=/azure/ai-studio/context/context
   - name: Region support
     href: reference/region-support.md
   - name: Azure AI FAQ

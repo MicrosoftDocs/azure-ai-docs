@@ -276,6 +276,6 @@ When you're working in your own subscription, it's a good idea at the end of a p
 
 You can find and manage resources in the portal by using the **All resources** or **Resource groups** link in the leftmost pane.
 
-## Next steps
+## See also
 
-As a next step, we recommend that you review the demo code for [Python](https://github.com/Azure/azure-search-vector-samples/tree/main/demo-python), [C#](https://github.com/Azure/azure-search-vector-samples/tree/main/demo-dotnet), or [JavaScript](https://github.com/Azure/azure-search-vector-samples/tree/main/demo-javascript) on the azure-search-vector-samples repository.
+- [Tutorial: How to build a RAG solution in Azure AI Search](tutorial-rag-build-solution.md)
