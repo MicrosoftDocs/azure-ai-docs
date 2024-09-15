@@ -304,6 +304,12 @@ items:
       href: keyword-recognition-guidelines.md
 - name: Infrastructure & security
   items:
+    - name: Access control and authentication
+      items:
+      - name: Role-based access with Microsoft Entra ID 
+        href: role-based-access-control.md
+      - name: Use Microsoft Entra authentication
+        href: how-to-configure-azure-ad-auth.md
     - name: Audio configuration
       items:
       - name: Audio concepts
@@ -315,12 +321,6 @@ items:
         displayName: codec,codecs,compression,compressed,mp3,flac,mulaw,alaw,mp4,mp4a,wav,opus,ogg,pcm,silk
       - name: Select a specific microphone input device
         href: how-to-select-audio-input-devices.md
-    - name: Access control and authentication
-      items:
-      - name: Role-based access with Microsoft Entra ID 
-        href: role-based-access-control.md
-      - name: Use Microsoft Entra authentication
-        href: how-to-configure-azure-ad-auth.md
     - name: Containers
       items:
         - name: Speech containers overview
