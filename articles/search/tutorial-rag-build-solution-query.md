@@ -142,7 +142,7 @@ search_results = search_client.search(
     select="title, chunk, locations"
 ```
 
-Results from the filtered query should now look similar to the following response.
+Results from the filtered query should now look similar to the following response. Notice the emphasis on ice cover.
 
 :::image type="content" source="media/tutorial-rag-solution/chat-results-filter.png" alt-text="Screenshot of an LLM response after a filter is added.":::
 
@@ -160,7 +160,7 @@ Because the model is bound to just the grounding data, the answer becomes more e
 
 You can also change the prompt to control the format of the output, tone, and whether you want the model to supplement the answer with its own training data by changing the prompt. 
 
-Here's another example of LLM output if we refocus the prompt.
+Here's another example of LLM output if we refocus the prompt on fact collection.
 
 ```python
 # Provide instructions to the model
