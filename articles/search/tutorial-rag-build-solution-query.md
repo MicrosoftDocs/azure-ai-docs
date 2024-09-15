@@ -119,7 +119,7 @@ print(response.choices[0].message.content)
 
 In this response, the answer is based on a single input (`top=1`) consisting of the one chunk determined by the search engine to be the most relevant. Instructions in the prompt tell the LLM to use only the information in the `sources`, or formatted search results. 
 
-Results from the first query`"how much of earth is covered by water"` should look similar to the following example.
+Results from the first query `"how much of earth is covered by water"` should look similar to the following example.
 
 :::image type="content" source="media/tutorial-rag-solution/chat-results-1.png" alt-text="Screenshot of an LLM response to a simple question using a single match from search results.":::
 
@@ -130,7 +130,7 @@ It's expected for LLMs to return different answers, even if the prompt and queri
 
 ## Add a filter
 
-Recall that you created a `locations` field using applied AI, populated with places recognized by the Entity Recognition skill. The field definition for locations includes the `filterable` attribute. Let's repeat the previous request, but this time adding a filter that selects on the term *ice* in the locations field. For more information about filtering on string collections, see [text filter fundamentals](search-filters.md#text-filter-fundamentals) and [Understand collection filters](search-query-understand-collection-filters.md).
+Recall that you created a `locations` field using applied AI, populated with places recognized by the Entity Recognition skill. The field definition for locations includes the `filterable` attribute. Let's repeat the previous request, but this time adding a filter that selects on the term *ice* in the locations field. A filter introduces inclusion or exclusion criteria. The search engine is still doing a vector search on `"how much of earth is covered by water"`, but it's now excluding matches that don't include *ice*. For more information about filtering on string collections and on vector queries, see [text filter fundamentals](search-filters.md#text-filter-fundamentals),[Understand collection filters](search-query-understand-collection-filters.md), and [Add filters to a vector query](vector-search-filters.md).
 
 Replace the search_results definition with the following example that includes a filter:
 
