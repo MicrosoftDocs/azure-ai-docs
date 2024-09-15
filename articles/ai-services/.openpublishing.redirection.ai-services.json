@@ -403,7 +403,7 @@
     {
       "source_path_from_root": "/articles/ai-services/speech-service/devices-sdk-release-notes.md",
       "redirect_url": "/azure/ai-services/speech-service/release-notes",
-      "redirect_document_id": true
+      "redirect_document_id": false
     },
     {
       "source_path_from_root": "/articles/ai-services/anomaly-detector/how-to/postman.md",
