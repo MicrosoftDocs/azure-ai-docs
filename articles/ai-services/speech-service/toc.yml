@@ -20,50 +20,9 @@ items:
     displayName: cost
   - name: Quotas and limits
     href: speech-services-quotas-and-limits.md
-- name: Speech Studio
-  href: speech-studio-overview.md
-  displayName: get started
-- name: Speech CLI
-  items:
-    - name: Speech CLI overview
-      displayName: spx
-      href: spx-overview.md
-    - name: Speech CLI quickstart
-      displayName: cli basics, spx basics, spx help, spx quickstart, spx get started, get started, install
-      href: spx-basics.md
-    - name: Configure the datastore
-      displayName: SPX configuration options, speech cli config, speech cli data store, data store, datastore, speech cli datastore, reference
-      href: spx-data-store-configuration.md
-    - name: Configure output options
-      displayName: reference
-      href: spx-output-options.md
-    - name: Run batch operations
-      displayName: spx batch, spx batch operations, speech batch, speech cli speech to text batch, speech cli tex to speech batch
-      href: spx-batch-operations.md
-- name: Speech SDK
-  items:
-  - name: Speech SDK overview
-    href: speech-sdk.md
-    displayName: get started, install, download
-  - name: Install the Speech SDK
-    href: quickstarts/setup-platform.md
-    displayName: get started, install, download, get sdk, get the sdk
-  - name: Logs and diagnostics
-    items:
-      - name: Enable logs in SDK
-        href: how-to-use-logging.md
-      - name: Log audio and transcriptions
-        href: logging-audio-transcription.md
-      - name: Troubleshoot the Speech SDK
-        href: troubleshooting.md
-        displayName: help, faq, tsg, error
-      - name: Get Speech to text Session ID
-        href: how-to-get-speech-session-id.md
-      - name: Track memory usage
-        href: how-to-track-speech-sdk-memory-usage.md
-  - name: Generate a REST API client library
-    href: swagger-documentation.md
-    displayName: rest, swagger
+  - name: Speech Studio
+    href: speech-studio-overview.md
+    displayName: get started
 - name: Speech to text
   items:
     - name: Speech to text documentation
@@ -302,6 +261,89 @@ items:
       href: custom-keyword-basics.md
     - name: Recommendations and guidelines
       href: keyword-recognition-guidelines.md
+- name: Scenario guides
+  items:
+    - name: Captioning
+      items:
+      - name: Captioning with speech to text
+        href: captioning-concepts.md
+      - name: Captioning quickstart
+        href: captioning-quickstart.md
+    - name: Call Center
+      items:
+      - name: Overview
+        displayName: IVRs, IVR, Telephony Data, Transcription for Telephony Data, Real-time Transcription for Call Centers, Post-Call Analytics
+        href: call-center-overview.md
+      - name: Post-call transcription and analytics quickstart
+        href: call-center-quickstart.md
+      - name: Ingestion Client
+        href: ingestion-client.md
+      - name: Telephony Integration
+        href: call-center-telephony-integration.md
+      - name: Connect Azure Communication Services with Azure AI services
+        href: /azure/communication-services/concepts/call-automation/azure-communication-services-azure-cognitive-services-integration?context=/azure/ai-services/speech-service/context/context
+    - name: Gaming integration
+      href: gaming-concepts.md
+    - name: Language identification
+      href: language-identification.md
+    - name: Language learning
+      items:
+      - name: Overview
+        href: language-learning-overview.md
+      - name: Pronunciation Assessment with speech to text
+        items:
+        - name: Reading and speaking assessment in AI Studio
+          href: pronunciation-assessment-tool.md
+          displayName: pronounce, learn language, assess pron
+        - name: Interactive language learning with pronunciation assessment
+          href: language-learning-with-pronunciation-assessment.md
+          displayName: pronounce, learn language, assess pron, chatting 
+    - name: Azure OpenAI speech to speech chat
+      href: openai-speech.md
+    - name: Conversation transcription multichannel diarization (preview)
+      items:
+        - name: Conversation transcription overview
+          href: meeting-transcription.md
+        - name: Real-time conversation transcription quickstart
+          href: how-to-use-meeting-transcription.md
+        - name: Asynchronous conversation transcription
+          href: how-to-async-meeting-transcription.md
+    - name: Multi-device conversation
+      items:
+        - name: Multi-device conversation overview
+          href: multi-device-conversation.md
+        - name: Multi-device conversation quickstart
+          href: quickstarts/multi-device-conversation.md
+    - name: Voice assistants
+      items:
+        - name: Voice assistants overview
+          href: voice-assistants.md
+        - name: Voice Assistants Samples (GitHub)
+          href: https://aka.ms/speech/va-samples
+        - name: Custom commands
+          href: custom-commands.md
+        - name: Direct Line Speech
+          items:
+            - name: Direct Line Speech overview
+              href: direct-line-speech.md
+            - name: Custom voice assistant quickstart
+              href: quickstarts/voice-assistants.md
+            - name: Voice enable your bot
+              href: tutorial-voice-enable-your-bot-speech-sdk.md
+        - name: Voice assistants on Windows
+          items:
+            - name: Voice assistants on Windows overview
+              href: windows-voice-assistants-overview.md
+            - name: 'Start developing your assistant with Windows'
+              href: how-to-windows-voice-assistants-get-started.md
+            - name: 'Enable voice activation'
+              href: windows-voice-assistants-implementation-guide.md
+            - name: 'Privacy requirements and guidelines'
+              href: windows-voice-assistants-automatic-enablement-guidelines.md
+            - name: 'Best practices for assistant experiences'
+              href: windows-voice-assistants-best-practices.md
+            - name: 'Samples and frequently asked questions'
+              href: windows-voice-assistants-faq.yml
 - name: Infrastructure & security
   items:
     - name: Access control and authentication
@@ -421,89 +463,47 @@ items:
             displayName: migrate,migration,deprecate,retire,sunset
         - name: From Long Audio API to Batch synthesis API
           href: migrate-to-batch-synthesis.md
-- name: Scenario guides
+- name: Speech CLI
   items:
-    - name: Captioning
-      items:
-      - name: Captioning with speech to text
-        href: captioning-concepts.md
-      - name: Captioning quickstart
-        href: captioning-quickstart.md
-    - name: Call Center
-      items:
-      - name: Overview
-        displayName: IVRs, IVR, Telephony Data, Transcription for Telephony Data, Real-time Transcription for Call Centers, Post-Call Analytics
-        href: call-center-overview.md
-      - name: Post-call transcription and analytics quickstart
-        href: call-center-quickstart.md
-      - name: Ingestion Client
-        href: ingestion-client.md
-      - name: Telephony Integration
-        href: call-center-telephony-integration.md
-      - name: Connect Azure Communication Services with Azure AI services
-        href: /azure/communication-services/concepts/call-automation/azure-communication-services-azure-cognitive-services-integration?context=/azure/ai-services/speech-service/context/context
-    - name: Gaming integration
-      href: gaming-concepts.md
-    - name: Language identification
-      href: language-identification.md
-    - name: Language learning
-      items:
-      - name: Overview
-        href: language-learning-overview.md
-      - name: Pronunciation Assessment with speech to text
-        items:
-        - name: Reading and speaking assessment in AI Studio
-          href: pronunciation-assessment-tool.md
-          displayName: pronounce, learn language, assess pron
-        - name: Interactive language learning with pronunciation assessment
-          href: language-learning-with-pronunciation-assessment.md
-          displayName: pronounce, learn language, assess pron, chatting 
-    - name: Azure OpenAI speech to speech chat
-      href: openai-speech.md
-    - name: Conversation transcription multichannel diarization (preview)
-      items:
-        - name: Conversation transcription overview
-          href: meeting-transcription.md
-        - name: Real-time conversation transcription quickstart
-          href: how-to-use-meeting-transcription.md
-        - name: Asynchronous conversation transcription
-          href: how-to-async-meeting-transcription.md
-    - name: Multi-device conversation
-      items:
-        - name: Multi-device conversation overview
-          href: multi-device-conversation.md
-        - name: Multi-device conversation quickstart
-          href: quickstarts/multi-device-conversation.md
-    - name: Voice assistants
-      items:
-        - name: Voice assistants overview
-          href: voice-assistants.md
-        - name: Voice Assistants Samples (GitHub)
-          href: https://aka.ms/speech/va-samples
-        - name: Custom commands
-          href: custom-commands.md
-        - name: Direct Line Speech
-          items:
-            - name: Direct Line Speech overview
-              href: direct-line-speech.md
-            - name: Custom voice assistant quickstart
-              href: quickstarts/voice-assistants.md
-            - name: Voice enable your bot
-              href: tutorial-voice-enable-your-bot-speech-sdk.md
-        - name: Voice assistants on Windows
-          items:
-            - name: Voice assistants on Windows overview
-              href: windows-voice-assistants-overview.md
-            - name: 'Start developing your assistant with Windows'
-              href: how-to-windows-voice-assistants-get-started.md
-            - name: 'Enable voice activation'
-              href: windows-voice-assistants-implementation-guide.md
-            - name: 'Privacy requirements and guidelines'
-              href: windows-voice-assistants-automatic-enablement-guidelines.md
-            - name: 'Best practices for assistant experiences'
-              href: windows-voice-assistants-best-practices.md
-            - name: 'Samples and frequently asked questions'
-              href: windows-voice-assistants-faq.yml
+    - name: Speech CLI overview
+      displayName: spx
+      href: spx-overview.md
+    - name: Speech CLI quickstart
+      displayName: cli basics, spx basics, spx help, spx quickstart, spx get started, get started, install
+      href: spx-basics.md
+    - name: Configure the datastore
+      displayName: SPX configuration options, speech cli config, speech cli data store, data store, datastore, speech cli datastore, reference
+      href: spx-data-store-configuration.md
+    - name: Configure output options
+      displayName: reference
+      href: spx-output-options.md
+    - name: Run batch operations
+      displayName: spx batch, spx batch operations, speech batch, speech cli speech to text batch, speech cli tex to speech batch
+      href: spx-batch-operations.md
+- name: Speech SDK
+  items:
+  - name: Speech SDK overview
+    href: speech-sdk.md
+    displayName: get started, install, download
+  - name: Install the Speech SDK
+    href: quickstarts/setup-platform.md
+    displayName: get started, install, download, get sdk, get the sdk
+  - name: Logs and diagnostics
+    items:
+      - name: Enable logs in SDK
+        href: how-to-use-logging.md
+      - name: Log audio and transcriptions
+        href: logging-audio-transcription.md
+      - name: Troubleshoot the Speech SDK
+        href: troubleshooting.md
+        displayName: help, faq, tsg, error
+      - name: Get Speech to text Session ID
+        href: how-to-get-speech-session-id.md
+      - name: Track memory usage
+        href: how-to-track-speech-sdk-memory-usage.md
+  - name: Generate a REST API client library
+    href: swagger-documentation.md
+    displayName: rest, swagger
 - name: Reference
   items:
     - name: SDK reference
