@@ -45,7 +45,7 @@ Chunks are the focus of the schema, and each chunk is the defining element of a 
 
 In this tutorial, sample data consists of PDFs and content from the [NASA Earth Book](https://www.nasa.gov/ebooks/earth/). This content is descriptive and informative, with numerous references to geographies, countries, and areas across the world. All of the textual content is captured in chunks, but these recurring instances of place names create an opportunity for adding structure to the index. Using skills, it's possible to recognize entities in the text and capture them in an index for use in queries and filters. In this tutorial, we include an [entity recognition skill](cognitive-search-skill-entity-recognition-v3.md) that recognizes and extracts location entities, loading it into a searchable and filterable `locations` field. Adding structured content to your index gives you more options for filtering, improved relevance, and richer answers.
 
-### Parent-child fields in one or two indexes
+### Parent-child fields in one or two indexes?
 
 Chunked content typically derives from a larger document. And although the schema is organized around chunks, you also want to capture properties and content at the parent level. Examples of these properties might include the parent file path, title, authors, publication date, or a summary.
 
