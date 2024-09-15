@@ -22,7 +22,7 @@ In this tutorial, you:
 > - Provide the index schema from the previous tutorial 
 > - Create a data source connection
 > - Create an indexer
-> - Create a skillset
+> - Create a skillset that chunks, vectorizes, and recognizes entities
 > - Run the indexer and check results
 
 If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) before you begin.
@@ -98,6 +98,8 @@ print(f"{result.name} created")
 ## Create a data source connection
 
 In this step, set up the sample data and a connection to Azure Blob Storage. The indexer retrieves PDFs from a container. You create the container and upload files in this step.
+
+The original ebook is large, over 100 pages and 35 MB in size. We broke it up into smaller PDFs, one per page of text, to stay under the REST API payload limit of 16 MB per API call. For simplicity, we omit image vectorization for this exercise.
 
 1. Sign in to the Azure portal and find your Azure Storage account.
 
