@@ -34,7 +34,7 @@ In this tutorial, you accomplish the following tasks:
 > * Connect to the jump box and use the Azure Machine Learning studio.
 
 > [!TIP]
-> If you're looking for a template (Microsoft Bicep or Hashicorp Terraform) that demonstrates how to create a secure workspace, see [Tutorial - Create a secure workspace using a template](tutorial-create-secure-workspace-template.md).
+> If you're looking for a template that demonstrates how to create a secure workspace, see [Bicep template](/samples/azure/azure-quickstart-templates/machine-learning-end-to-end-secure/), or [Terraform template](https://github.com/Azure/terraform/tree/master/quickstart/201-machine-learning-moderately-secure).
 
 After completing this tutorial, you'll have the following architecture:
 
