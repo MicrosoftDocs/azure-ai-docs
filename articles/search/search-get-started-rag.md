@@ -6,7 +6,7 @@ author: HeidiSteen
 ms.author: heidist
 ms.service: cognitive-search
 ms.topic: quickstart
-ms.date: 08/18/2024
+ms.date: 09/16/2024
 ---
 
 # Quickstart: Generative search (RAG) with grounding data from Azure AI Search
@@ -262,9 +262,11 @@ This section uses Visual Studio Code and Python to call the chat completion APIs
     Several other hotels have views and water features, but do not offer beach access or views of the ocean.
     ```
 
-    If you get an authorization error message, wait a few minutes and try again. It can take several minutes for role assignments to become operational.
+    If you get a **Forbidden** error message, check Azure AI Search configuration to make sure role-based access is enabled.
 
-    To experiment further, change the query and rerun the last step to better understand how the model works with the grounding data.
+    If you get an **Authorization failed** error message, wait a few minutes and try again. It can take several minutes for role assignments to become operational.
+
+    Otherwise, to experiment further, change the query and rerun the last step to better understand how the model works with the grounding data.
 
     You can also modify the prompt to change the tone or structure of the output.
 
