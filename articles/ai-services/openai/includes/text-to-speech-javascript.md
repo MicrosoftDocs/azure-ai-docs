@@ -124,7 +124,7 @@ Your app's _package.json_ file will be updated with the dependencies.
     
     // Required Azure OpenAI deployment name and API version
     const deploymentName = "tts";
-    const apiVersion = "2024-07-01-preview";
+    const apiVersion = "2024-08-01-preview";
     
     function getClient() {
       return new AzureOpenAI({
@@ -190,7 +190,7 @@ Your app's _package.json_ file will be updated with the dependencies.
     
     // Required Azure OpenAI deployment name and API version
     const deploymentName = "tts";
-    const apiVersion = "2024-07-01-preview";
+    const apiVersion = "2024-08-01-preview";
     
     function getClient(): AzureOpenAI {
       return new AzureOpenAI({

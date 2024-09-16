@@ -129,7 +129,7 @@ Your app's _package.json_ file will be updated with the dependencies.
     const apiKey = process.env["AZURE_OPENAI_API_KEY"] || "<api key>";
     
     // Required Azure OpenAI deployment name and API version
-    const apiVersion = "2024-07-01-preview";
+    const apiVersion = "2024-08-01-preview";
     const deploymentName = "whisper";
     
     function getClient() {
@@ -180,7 +180,7 @@ Your app's _package.json_ file will be updated with the dependencies.
     const apiKey = process.env["AZURE_OPENAI_API_KEY"] || "<api key>";
     
     // Required Azure OpenAI deployment name and API version
-    const apiVersion = "2024-07-01-preview";
+    const apiVersion = "2024-08-01-preview";
     const deploymentName = "whisper";
     
     function getClient(): AzureOpenAI {
