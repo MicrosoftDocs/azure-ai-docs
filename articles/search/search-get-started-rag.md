@@ -272,6 +272,28 @@ This section uses Visual Studio Code and Python to call the chat completion APIs
 
     You might also try the query without semantic ranking by setting `use_semantic_reranker=False` in the query parameters step. Semantic ranking can noticably improve the relevance of query results and the ability of the LLM to return useful information. Experimentation can help you decide whether it makes a difference for your content.
 
+## Troubleshooting errors
+
+To debug authentication errors, insert the following code before the step that calls the search engine and the LLM.
+
+```python
+import sys
+import logging # Set the logging level for all azure-storage-* libraries
+logger = logging.getLogger('azure.identity') 
+logger.setLevel(logging.DEBUG)
+
+handler = logging.StreamHandler(stream=sys.stdout)
+formatter = logging.Formatter('[%(levelname)s %(name)s] %(message)s')
+handler.setFormatter(formatter)
+logger.addHandler(handler)
+```
+
+Rerun the query script. You should now get INFO and DEBUG statements in the output that provide more detail about the issue.
+
+If you see output messages related to ManagedIdentityCredential and token acquisition failures, it could be that you have multiple tenants, and your Azure sign-in is using a tenant that doesn't have your search service. To get your tenant ID, search the Azure portal for "tenant properties".
+
+Run `az login --tenant <YOUR-TENANT-ID>` at a command prompt, and then rerun the script.
+
 ## Clean up
 
 When you're working in your own subscription, it's a good idea at the end of a project to identify whether you still need the resources you created. Resources left running can cost you money. You can delete resources individually or delete the resource group to delete the entire set of resources.
