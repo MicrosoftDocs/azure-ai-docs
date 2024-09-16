@@ -1461,6 +1461,11 @@
         "redirect_document_id": true
     },
     {
+        "source_path_from_root": "/articles/machine-learning/deploy-jais-models.md",
+        "redirect_url": "/azure/machine-learning/how-to-deploy-models-jais",
+        "redirect_document_id": true
+    },
+    {
         "source_path_from_root": "/articles/machine-learning/service/tutorial-data-prep.md",
         "redirect_url": "/azure/machine-learning/tutorial-auto-train-models",
         "redirect_document_id": false
