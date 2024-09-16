@@ -145,14 +145,19 @@ az ml workspace update -n "myexamplehub" -g "{MY_RESOURCE_GROUP}" -a "APPLICATIO
 
 ## Delete an Azure AI Studio hub
 
-To delete a hub, use the Azure portal. From the Azure portal, navigate to the hub you want to delete, then select **Delete** from the **Overview** section.
+To delete a hub, use the [Azure portal](https://portal.azure.com). To quickly get to the Azure portal from the Azure AI Studio, go to the **Hub overview** for your hub and then select **Manage in Azure portal**.
+
+:::image type="content" source="../media/how-to/hubs/manage-hub-azure-portal.png" alt-text="Screenshot of the manage in Azure portal link in Azure AI Studio.":::
+
+From the portal page for your hub, select **Overview** along the left side of the page and then select **Delete** from the top of the page.
 
 :::image type="content" source="../media/how-to/hubs/delete-hub-button.png" alt-text="Screenshot of the delete button for the Azure AI Studio hub in the Azure portal.":::
 
-> [!TIP]
-> To quickly get to the Azure portal from the Azure AI Studio, select **Manage in Azure portal** from the **Hub overview**.
-> 
-> :::image type="content" source="../media/how-to/hubs/manage-hub-azure-portal.png" alt-text="Screenshot of the manage in Azure portal link in Azure AI Studio.":::
+You can also find your hub in the Azure portal by entering the hub name in the search field at the top of the Azure portal. Select the hub from the **Resources** list to navigate to the **Overview** page for the hub.
+
+:::image type="content" source="../media/how-to/hubs/search-in-portal.png" alt-text="Screenshot of using the search field in the Azure portal to find a hub.":::
+
+
 
 ## Related content
 
