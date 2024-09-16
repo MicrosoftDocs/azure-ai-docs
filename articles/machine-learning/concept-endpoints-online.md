@@ -1,7 +1,7 @@
 ---
-title: Online endpoints for realtime inference
+title: Online endpoints for real-time inference
 titleSuffix: Azure Machine Learning
-description: Learn about online endpoints for realtime inference in Azure Machine Learning.
+description: Learn about online endpoints for real-time inference in Azure Machine Learning.
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: inferencing
@@ -15,31 +15,29 @@ ms.date: 09/16/2024
 #Customer intent: As an ML pro, I want to understand what an online endpoint is and why I need it.
 ---
 
-# Online endpoint deployment for realtime inference
+# Online endpoint deployment for real-time inference
 
 [!INCLUDE [dev v2](includes/machine-learning-dev-v2.md)]
 
-Inferencing is the process of applying new input data to a machine learning model to generate outputs. Azure Machine Learning allows you to perform realtime inferencing on data by using models that are deployed to*online endpoints*. While these outputs are typically called *predictions*, you can use inferencing to generate outputs for other machine learning tasks, such as classification and clustering.
+Inferencing is the process of applying new input data to a machine learning model to generate outputs. Azure Machine Learning allows you to perform real-time inferencing on data by using models that are deployed to *online endpoints*. While these outputs are typically called *predictions*, you can use inferencing to generate outputs for other machine learning tasks, such as classification and clustering.
 
-Online endpoints deploy models to a web server that can return predictions under the HTTP protocol. Online endpoints can operationalize models for realtime inference in synchronous, low-latency requests, and are best used when:
+Online endpoints deploy models to a web server that can return predictions under the HTTP protocol. Online endpoints can operationalize models for real-time inference in synchronous, low-latency requests, and are best used when:
 
 - You have low-latency requirements.
 - Your model can answer the request in a relatively short amount of time.
 - Your model's inputs fit on the HTTP payload of the request.
 - You need to scale up the number of requests.
 
-To define an endpoint, you need to specify:
+To define an endpoint, you must specify:
 
-- **Endpoint name**. This name must be unique in the Azure region. For more information on the naming rules, see [endpoint limits](how-to-manage-quotas.md#azure-machine-learning-online-endpoints-and-batch-endpoints).
-- **Authentication mode**. You can choose from key-based authentication mode, Azure Machine Learning token-based authentication mode, or Microsoft Entra token-based authentication for the endpoint. For more information on authenticating, see [Authenticate to an online endpoint](how-to-authenticate-online-endpoint.md).
+- **Endpoint name**. This name must be unique in the Azure region. For other naming requirements, see [Azure Machine Learning online endpoints and batch endpoints](how-to-manage-quotas.md#azure-machine-learning-online-endpoints-and-batch-endpoints).
+- **Authentication mode**. You can choose from key-based authentication mode, Azure Machine Learning token-based authentication mode, or Microsoft Entra token-based authentication for the endpoint. For more information on authenticating, see [Authenticate clients for online endpoints](how-to-authenticate-online-endpoint.md).
 
 ## Managed online endpoints
 
-Azure Machine Learning offers convenient *managed online endpoints* to deploy your machine learning models in a turnkey manner. Managed online endpoints are the recommended way to use online endpoints in Azure Machine Learning.
+Managed online endpoints deploy your machine learning models in a convenient, turnkey manner, and are the recommended way to use Azure Machine Learning online endpoints. Managed online endpoints work with powerful CPU and GPU machines in Azure in a scalable, fully managed way.
 
-Managed online endpoints work with powerful CPU and GPU machines in Azure in a scalable, fully managed way. These endpoints also take care of serving, scaling, securing, and monitoring your models, to free you from the overhead of setting up and managing the underlying infrastructure.
-
-To learn how to define managed online endpoints, see [Define the endpoint](how-to-deploy-online-endpoints.md#define-the-endpoint).
+To free you from the overhead of setting up and managing the underlying infrastructure, these endpoints also take care of serving, scaling, securing, and monitoring your models. To learn how to define managed online endpoints, see [Define the endpoint](how-to-deploy-online-endpoints.md#define-the-endpoint).
 
 ### Managed online endpoints vs Azure Container Instances or Azure Kubernetes Service (AKS) v1
 
@@ -48,34 +46,33 @@ The following table highlights key attributes of managed online endpoints compar
 |Attributes  |Managed online endpoints (v2)  |Container Instances or AKS (v1)  |
 |---------|---------|---------|
 |Network security/isolation |Easy inbound/outbound control with quick toggle |Virtual network not supported or requires complex manual configuration |
-|Managed service |- Fully managed compute provisioning/scaling<br> - Network configuration for data exfiltration prevention<br> - Host OS upgrade, controlled rollout of in-place updates |- Scaling is limited<br> - Network configuration or upgrade must be managed by user |
+|Managed service |• Fully managed compute provisioning/scaling<br>• Network configuration for data exfiltration prevention<br>• Host OS upgrade, controlled rollout of in-place updates |• Scaling is limited<br>• Network configuration or upgrade must be managed by user |
 |Endpoint/deployment concept |Distinction between endpoint and deployment enables complex scenarios such as safe rollout of models |No concept of endpoint |
-|Diagnostics and Monitoring |- Local endpoint debugging possible with Docker and Visual Studio Code<br> - Advanced metrics and logs analysis with chart/query to compare between deployments<br> - Cost breakdown to deployment level |No easy local debugging |
-|Scalability |Limitless, elastic, and automatic scaling |- Container Instances isn't scalable <br> - AKS v1 supports in-cluster scale only and requires scalability configuration |
+|Diagnostics and Monitoring |• Local endpoint debugging possible with Docker and Visual Studio Code<br>• Advanced metrics and logs analysis with chart/query to compare between deployments<br>• Cost breakdown to deployment level |No easy local debugging |
+|Scalability |Limitless, elastic, and automatic scaling |• Container Instances isn't scalable <br>• AKS v1 supports in-cluster scale only and requires scalability configuration |
 |Enterprise readiness |Private link, customer managed keys, Microsoft Entra ID, quota management, billing integration, Service Level Agreement (SLA) |Not supported |
-|Advanced ML features |- Model data collection<br> - Model monitoring<br> - Champion-challenger model, safe rollout, traffic mirroring<br> - Responsible AI extensibility |Not supported |
+|Advanced ML features |• Model data collection<br>• Model monitoring<br>• Champion-challenger model, safe rollout, traffic mirroring<br>• Responsible AI extensibility |Not supported |
 
-### Managed online endpoints vs Kubernetes online endpoints (AKS v2)
+### Managed online endpoints vs Kubernetes online endpoints
 
 If you prefer to use Kubernetes to deploy your models and serve endpoints, and you're comfortable with managing infrastructure requirements, you can use *Kubernetes online endpoints*. These endpoints allow you to deploy models and serve online endpoints with CPUs or GPUs at your fully configured and managed [Kubernetes cluster](./how-to-attach-kubernetes-anywhere.md) anywhere.
 
 Managed online endpoints can help streamline your deployment process and provide the following benefits over Kubernetes online endpoints:
 
 - Automatic infrastructure management
-  - Provisions the compute and hosts the model. You just specify the VM type and scale settings. 
+  - Provisions the compute and hosts the model. You just specify the virtual machine (VM) type and scale settings. 
   - Updates and patches the underlying host OS image.
   - Performs node recovery if there's a system failure.
 
 - Monitoring and logs
-  - Monitor model availability, performance, and SLA using [native integration with Azure Monitor](how-to-monitor-online-endpoints.md).
-  - Debug deployments using the logs and native integration with [Log Analytics](/azure/azure-monitor/logs/log-analytics-overview).
+  - Monitors model availability, performance, and SLA using [native integration with Azure Monitor](how-to-monitor-online-endpoints.md).
+  - Helps debug deployments by using logs and native integration with [Log Analytics](/azure/azure-monitor/logs/log-analytics-overview).
 
   :::image type="content" source="media/concept-endpoints/log-analytics-and-azure-monitor.png" alt-text="Screenshot showing Azure Monitor graph of endpoint latency." lightbox="media/concept-endpoints/log-analytics-and-azure-monitor.png":::
 
-- Cost view
-  - [Monitor cost at the endpoint and deployment level](how-to-view-online-endpoints-costs.md)
+- Cost view [monitors cost at the endpoint and deployment level](how-to-view-online-endpoints-costs.md).
   
-    :::image type="content" source="media/concept-endpoints/endpoint-deployment-costs.png" alt-text="Screenshot cost chart of an endpoint and deployment." lightbox="media/concept-endpoints/endpoint-deployment-costs.png":::
+  :::image type="content" source="media/concept-endpoints/endpoint-deployment-costs.png" alt-text="Screenshot cost chart of an endpoint and deployment." lightbox="media/concept-endpoints/endpoint-deployment-costs.png":::
 
   > [!NOTE]
   > Managed online endpoints are based on Azure Machine Learning compute. When you use a managed online endpoint, you pay for the compute and networking charges. There's no added surcharge. For more information on pricing, see the [Azure pricing calculator](https://azure.microsoft.com/pricing/calculator/).
@@ -106,11 +103,11 @@ A *deployment* is a set of resources and computes required to host the model tha
 
 The following diagram shows an online endpoint that has two deployments, **blue** and **green**. The blue deployment uses VMs with a CPU SKU, and runs version 1 of a model. The green deployment uses VMs with a GPU SKU, and runs version 2 of the model. The endpoint is configured to route 90% of incoming traffic to the blue deployment, while the green deployment receives the remaining 10%.
 
-:::image type="content" source="media/concept-endpoints/endpoint-concept.png" alt-text="Diagram showing an endpoint splitting traffic to two deployments." border="false" lightbox="media/concept-endpoints/endpoint-concept.png":::
+:::image type="content" source="media/concept-endpoints/endpoint-concept.png" alt-text="Diagram showing an endpoint splitting traffic to two deployments." border="false":::
 
 To deploy a model, you must have:
 
-- **Model files**, or the name and version of a model that's already registered in your workspace
+- **Model files**, or the name and version of a model already registered in your workspace.
 - **Scoring script** code that executes the model on a given input request.
 
   The scoring script receives data submitted to a deployed web service and passes it to the model. The script then executes the model and returns its response to the client. The scoring script is specific to your model and must understand the data that the model expects as input and returns as output.
@@ -118,7 +115,7 @@ To deploy a model, you must have:
 - An **environment** to run your model. The environment can be a Docker image with Conda dependencies or a Dockerfile.
 - Settings to specify the **instance type** and **scaling capacity**.
 
-To learn how to deploy online endpoints by using the Azure CLI, Python SDK, Azure Machine Learning studio, or an ARM template, see [Deploy an ML model with an online endpoint](how-to-deploy-online-endpoints.md).
+To learn how to deploy online endpoints by using the Azure CLI, Python SDK, Azure Machine Learning studio, or an ARM template, see [Deploy and score a machine learning model by using an online endpoint](how-to-deploy-online-endpoints.md).
 
 ### Key attributes of a deployment
 
@@ -133,14 +130,17 @@ The following table describes the key attributes of a deployment:
 | Scoring script | The relative path to the scoring file in the source code directory. This Python code must have an `init()` function and a `run()` function. The `init()` function is called after the model is created or updated, for example to cache the model in memory. The `run()` function is called at every invocation of the endpoint to do the actual scoring and prediction. |
 | Environment    | The environment to host the model and code. This value can be either a reference to an existing versioned environment in the workspace or an inline environment specification. |
 | Instance type  | The VM size to use for the deployment. For the list of supported sizes, see [Managed online endpoints SKU list](reference-managed-online-endpoints-vm-sku-list.md).    |
-| Instance count | The number of instances to use for the deployment. Base the value on the workload you expect. For high availability, set the value to at least `3`. The system reserves an extra 20% for performing upgrades. For more information, see [VM quota allocation for deployments](#virtual-machine-quota-allocation-for-deployment).                                |
+| Instance count | The number of instances to use for the deployment. Base the value on the workload you expect. For high availability, set the value to at least `3`. The system reserves an extra 20% for performing upgrades. For more information, see [Virtual machine quota allocation for deployments](#virtual-machine-quota-allocation-for-deployment).                                |
 
->[!NOTE]
->- The deployment can reference the model and container image defined in **Environment** at any time, when the deployment instances undergo security patches or other recovery operations. If you use a registered model or container image in Azure Container Registry for deployment and later remove the model or the container image, the deployments that rely on these assets can fail when re-imaging occurs. If you remove the model or the container image, be sure to recreate or update the dependent deployments with an alternative model or container image.
->- The container registry that the environment refers to can be private only if the endpoint identity has permission to access it via Microsoft Entra authentication and Azure role-based access control (RBAC). For the same reason, private Docker registries other than Container Registry aren't supported.
->- Microsoft regularly patches the base images for known security vulnerabilities. You need to redeploy your endpoint to use the patched image. If you provide your own image, you're responsible for updating it. For more information, see [Image patching](concept-environments.md#image-patching).
+### Notes for online deployments
 
-### Virtual machine quota allocation for deployment
+- The deployment can reference the model and container image defined in **Environment** at any time, for example when the deployment instances undergo security patches or other recovery operations. If you use a registered model or container image in Azure Container Registry for deployment and later remove the model or the container image, the deployments that rely on these assets can fail when re-imaging occurs. If you remove the model or the container image, be sure to recreate or update the dependent deployments with an alternative model or container image.
+
+- The container registry that the environment refers to can be private only if the endpoint identity has permission to access it via Microsoft Entra authentication and Azure role-based access control (RBAC). For the same reason, private Docker registries other than Container Registry aren't supported.
+
+- Microsoft regularly patches the base images for known security vulnerabilities. You need to redeploy your endpoint to use the patched image. If you provide your own image, you're responsible for updating it. For more information, see [Image patching](concept-environments.md#image-patching).
+
+### VM quota allocation for deployment
 
 [!INCLUDE [quota-allocation-online-deployment](includes/quota-allocation-online-deployment.md)]
 
@@ -152,13 +152,13 @@ To deploy Llama-2, Phi, Nemotron, Mistral, Dolly, and Deci-DeciLM models from th
 
 For more information on quotas and limits for resources in Azure Machine Learning, see [Manage and increase quotas and limits for resources with Azure Machine Learning](how-to-manage-quotas.md).
 
-## Deployment for coders and non-coders
+## Deployment for coders and noncoders
 
-Azure Machine Learning supports model deployment to online endpoints for coders and non-coders by providing options for *no-code deployment*, *low-code deployment*, and *Bring Your Own Container (BYOC) deployment*.
+Azure Machine Learning supports model deployment to online endpoints for coders and noncoders by providing options for *no-code deployment*, *low-code deployment*, and *Bring Your Own Container (BYOC) deployment*.
 
 - **No-code deployment** provides out-of-box inferencing for common frameworks like scikit-learn, TensorFlow, PyTorch, and ONNX via MLflow and Triton.
 - **Low-code deployment** allows you to provide minimal code along with your machine learning model for deployment.
-- **BYOC deployment** lets you virtually bring any containers to run your online endpoint. You can use all the Azure Machine Learning platform features such as autoscaling, GitOps, debugging, and safe rollout to manage your MLOps pipelines.
+- **BYOC deployment** lets you bring virtually any containers to run your online endpoint. You can use all the Azure Machine Learning platform features such as autoscaling, GitOps, debugging, and safe rollout to manage your MLOps pipelines.
 
 The following table highlights key aspects of the online deployment options:
 
@@ -170,11 +170,11 @@ The following table highlights key aspects of the online deployment options:
 | **Custom code** | None. The scoring script is autogenerated for easy deployment. | Bring your scoring script. | The scoring script is included in the container image. |
 
 > [!NOTE]
-> AutoML runs create a scoring script and dependencies automatically for users. For no-code deployment, you can deploy any AutoML model without authoring other code. For low-code deployment, you can modify autogenerated scripts to your business needs. To learn how to deploy with AutoML models, see [How to deploy an AutoML model with an online endpoint](how-to-deploy-automl-endpoint.md).
+> AutoML runs create a scoring script and dependencies automatically for users. For no-code deployment, you can deploy any AutoML model without authoring other code. For low-code deployment, you can modify autogenerated scripts to your business needs. To learn how to deploy with AutoML models, see [How to deploy an AutoML model to an online endpoint](how-to-deploy-automl-endpoint.md).
 
 ## Online endpoint debugging
 
-If possible, test-run your endpoint locally to validate and debug your code and configuration before you deploy to Azure. Azure CLI and Python SDK support local endpoints and deployments. Azure Machine Learning studio and ARM templates don't support local endpoints or deployments.
+If possible, test run your endpoint locally to validate and debug your code and configuration before you deploy to Azure. Azure CLI and Python SDK support local endpoints and deployments, but Azure Machine Learning studio and ARM templates don't support local endpoints or deployments.
 
 Azure Machine Learning provides the following ways to debug online endpoints locally and by using container logs:
 
@@ -185,18 +185,18 @@ Azure Machine Learning provides the following ways to debug online endpoints loc
 
 ### Local debugging with Azure Machine Learning inference HTTP server
 
-You can debug your scoring script locally by using the Azure Machine Learning inference HTTP server. The HTTP server is a Python package that exposes your scoring function as an HTTP endpoint and wraps the Flask server code and dependencies into a singular package.
+You can debug your scoring script locally by using the Azure Machine Learning inference HTTP server. The HTTP server is a Python package that exposes your scoring function as an HTTP endpoint and wraps the Flask server code and dependencies into a single package.
 
-Azure Machine Learning includes an HTTP server in the [prebuilt Docker images for inference](concept-prebuilt-docker-images-inference.md) used to deploy a model. By using the package alone, you can deploy the model locally for production, and you can also easily validate your scoring (entry) script in a local development environment. If there's a problem with the scoring script, the server returns an error and the location where the error occurred. You can also use Visual Studio Code to debug with the Azure Machine Learning inference HTTP server.
+Azure Machine Learning includes an HTTP server in the [prebuilt Docker images for inference](concept-prebuilt-docker-images-inference.md) used to deploy a model. By using the package alone, you can deploy the model locally for production, and you can also easily validate your entry scoring script in a local development environment. If there's a problem with the scoring script, the server returns an error and the location where the error occurred. You can also use Visual Studio Code to debug with the Azure Machine Learning inference HTTP server.
 
 > [!TIP]
 > You can use the Azure Machine Learning inference HTTP server Python package to debug your scoring script locally without Docker Engine. Debugging with the inference server helps you to debug the scoring script before deploying to local endpoints, so you can debug without being affected by the deployment container configurations.
 
-To learn more about debugging with the HTTP server, see [Debug scoring script with Azure Machine Learning inference HTTP server](how-to-inference-server-http.md).
+For more information about debugging with the HTTP server, see [Debug scoring script with Azure Machine Learning inference HTTP server](how-to-inference-server-http.md).
 
 ### Local debugging with local endpoint
 
-For local debugging, you need a model that's deployed to a local Docker environment. You can use this local deployment for testing and debugging before deployment to the cloud.
+For local debugging, you need a model deployed to a local Docker environment. You can use this local deployment for testing and debugging before deployment to the cloud.
 
 To deploy locally, you need the [Docker Engine](https://docs.docker.com/engine/install/) installed and running. Azure Machine Learning then creates a local Docker image to mimic the online image. Azure Machine Learning builds and runs deployments for you locally and caches the image for rapid iterations.
 
@@ -225,9 +225,9 @@ For more information about local debugging, see [Deploy and debug locally by usi
 
 [!INCLUDE [machine-learning-preview-generic-disclaimer](includes/machine-learning-preview-generic-disclaimer.md)]
 
-As with local debugging, you need to have the [Docker Engine](https://docs.docker.com/engine/install/) installed and running, and then deploy a model to the local Docker environment. Once you have a local deployment, Azure Machine Learning local endpoints use Docker and Visual Studio Code development containers (dev containers) to build and configure a local debugging environment. With dev containers, you can use Visual Studio Code features such as interactive debugging from inside a Docker container.
+As with local debugging, you need to have the [Docker Engine](https://docs.docker.com/engine/install/) installed and running, and then deploy a model to the local Docker environment. Once you have a local deployment, Azure Machine Learning local endpoints use Docker and Visual Studio Code development containers (dev containers) to build and configure a local debugging environment.
 
-For more information about interactively debugging online endpoints in VS Code, see [Debug online endpoints locally in Visual Studio Code](how-to-debug-managed-online-endpoints-visual-studio-code.md).
+With dev containers, you can use Visual Studio Code features such as interactive debugging from inside a Docker container. For more information about interactively debugging online endpoints in VS Code, see [Debug online endpoints locally in Visual Studio Code](how-to-debug-managed-online-endpoints-visual-studio-code.md).
 
 ### Debugging with container logs
 
@@ -240,7 +240,7 @@ For more information about debugging with container logs, see [Get container log
 
 ## Traffic routing and mirroring to online deployments
 
-A single online endpoint can have multiple deployments. As the endpoint receives incoming traffic requests, it can route percentages of traffic to each deployment, as used in the native blue/green deployment strategy. It can also mirror or copy traffic from one deployment to another, called traffic mirroring or shadowing.
+A single online endpoint can have multiple deployments. As the endpoint receives incoming traffic requests, it can route percentages of traffic to each deployment, as in the native blue/green deployment strategy. The endpoint can also mirror or copy traffic from one deployment to another, called traffic mirroring or shadowing.
 
 ### Traffic routing for blue/green deployment
 
@@ -251,11 +251,11 @@ Blue/green deployment is a deployment strategy that lets you roll out a new gree
 
 The following image shows settings in Azure Machine Learning studio for allocating traffic between a blue and green deployment.
 
-:::image type="content" source="media/concept-endpoints/traffic-allocation.png" alt-text="Screenshot showing slider interface to set traffic allocation between deployments." lightbox="media/concept-endpoints/traffic-allocation.png":::
+:::image type="content" source="media/concept-endpoints/traffic-allocation.png" alt-text="Screenshot showing slider interface to set traffic allocation between deployments.":::
 
-The preceding traffic allocation routes traffic as shown in the following image, with 10% of the traffic going to the green deployment and 90% of the traffic going to the blue deployment.
+The preceding traffic allocation routes 10% of the traffic to the green deployment and 90% of the traffic to the blue deployment, as shown in the following image.
 
-:::image type="content" source="media/concept-endpoints/endpoint-concept.png" alt-text="Diagram showing an endpoint splitting traffic to two deployments." border="false" lightbox="media/concept-endpoints/endpoint-concept.png":::
+:::image type="content" source="media/concept-endpoints/endpoint-concept.png" alt-text="Diagram showing an endpoint splitting traffic to two deployments." border="false":::
 
 ### Traffic mirroring to online deployments
 
@@ -263,7 +263,7 @@ The endpoint can also mirror or copy traffic from one deployment to another. You
 
 For example, you can implement a blue/green deployment where 100% of the traffic is routed to blue and 10% is mirrored to the green deployment. The results of the mirrored traffic to the green deployment aren't returned to the clients, but the metrics and logs are recorded.
 
-:::image type="content" source="media/concept-endpoints/endpoint-concept-mirror.png" alt-text="Diagram showing an endpoint mirroring traffic to a deployment." border="false" lightbox="media/concept-endpoints/endpoint-concept-mirror.png":::
+:::image type="content" source="media/concept-endpoints/endpoint-concept-mirror.png" alt-text="Diagram showing an endpoint mirroring traffic to a deployment." border="false":::
 
 For more information about how to use traffic mirroring, see [Perform safe rollout of new deployments for real-time inference](how-to-safely-rollout-online-endpoints.md).
 
@@ -291,13 +291,13 @@ When you deploy a machine learning model to a managed online endpoint, you can s
 
 Inbound communications use the private endpoint of the Azure Machine Learning workspace, while outbound communications use private endpoints created for the workspace's managed virtual network. For more information, see [Network isolation with managed online endpoints](concept-secure-online-endpoint.md).
 
-### Monitoring for online endpoints and deployments
+### Monitoring online endpoints and deployments
 
 Azure Machine Learning endpoints integrate with [Azure Monitor](monitor-azure-machine-learning.md). Azure Monitor integration lets you view metrics in charts, configure alerts, query from log tables, and use Application Insights to analyze events from user containers. For more information, see [Monitor online endpoints](how-to-monitor-online-endpoints.md).
 
 ### Secret injection in online deployments (preview)
 
-Secret injection for an online deployment involves retrieving secrets such as API keys from secret stores and injecting them into the user container that runs inside the deployment. To provide secure secret consumption for the inference server that runs your scoring script or the inferencing stack for your BYOC deployment, access secrets via environment variables.
+Secret injection for an online deployment involves retrieving secrets such as API keys from secret stores and injecting them into the user container that runs inside the deployment. To provide secure secret consumption for the inference server that runs your scoring script or the inferencing stack in your BYOC deployment, you can use environment variables to access secrets.
 
 You can inject secrets yourself by using managed identities or you can use the secret injection feature. For more information, see [Secret injection in online endpoints (preview)](concept-secret-injection.md).
 
