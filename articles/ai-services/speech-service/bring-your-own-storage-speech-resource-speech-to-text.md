@@ -65,7 +65,7 @@ Speech service uses `customspeech-artifacts` Blob container in the BYOS-associat
 >
 > Failure to do so very likely will result in hard to debug 4xx and 5xx Service errors.
 >
-> Use standard tools to interact with Batch transcription. See details in [Batch transcription section](batch-transcription.md).
+> Also don't build solutions that directly use files and folders of `customspeech-artifacts` container. Use standard tools to interact with Batch transcription. See details in [Batch transcription section](batch-transcription.md).
 
 ### Get Batch transcription results via REST API
 
@@ -138,7 +138,7 @@ The Blob container structure is provided for your information only and subject t
 >
 > Failure to do so very likely will result in hard to debug errors and may lead to the necessity of custom model retraining.
 >
-> Use standard tools, like REST API and Speech Studio to interact with the custom speech related data. See details in [custom speech section](custom-speech-overview.md).
+> Also don't build solutions that directly use files and folders of `customspeech-artifacts` container. Use standard tools, like REST API and Speech Studio to interact with the custom speech related data. See details in [custom speech section](custom-speech-overview.md).
 
 ### Use of REST API with custom speech
 
