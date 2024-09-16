@@ -21,6 +21,7 @@ ms.date: 09/16/2024
 
 Inferencing is the process of applying new input data to a machine learning model to generate outputs. Azure Machine Learning allows you to perform real-time inferencing on data by using models that are deployed to *online endpoints*. While these outputs are typically called *predictions*, you can use inferencing to generate outputs for other machine learning tasks, such as classification and clustering.
 
+<a name="online-endpoints"></a>
 Online endpoints deploy models to a web server that can return predictions under the HTTP protocol. Online endpoints can operationalize models for real-time inference in synchronous, low-latency requests, and are best used when:
 
 - You have low-latency requirements.
@@ -37,7 +38,7 @@ To define an endpoint, you must specify:
 
 Managed online endpoints deploy your machine learning models in a convenient, turnkey manner, and are the recommended way to use Azure Machine Learning online endpoints. Managed online endpoints work with powerful CPU and GPU machines in Azure in a scalable, fully managed way.
 
-To free you from the overhead of setting up and managing the underlying infrastructure, these endpoints also take care of serving, scaling, securing, and monitoring your models. To learn how to define managed online endpoints, see [Define the endpoint](how-to-deploy-online-endpoints.md#define-the-endpoint).
+To free you from the overhead of setting up and managing the underlying infrastructure, these endpoints also serve, scale, secure, and monitor your models. To learn how to define managed online endpoints, see [Define the endpoint](how-to-deploy-online-endpoints.md#define-the-endpoint).
 
 ### Managed online endpoints vs Azure Container Instances or Azure Kubernetes Service (AKS) v1
 
@@ -115,7 +116,7 @@ To deploy a model, you must have:
 - An **environment** to run your model. The environment can be a Docker image with Conda dependencies or a Dockerfile.
 - Settings to specify the **instance type** and **scaling capacity**.
 
-To learn how to deploy online endpoints by using the Azure CLI, Python SDK, Azure Machine Learning studio, or an ARM template, see [Deploy and score a machine learning model by using an online endpoint](how-to-deploy-online-endpoints.md).
+To learn how to deploy online endpoints by using the Azure CLI, Python SDK, Azure Machine Learning studio, or an ARM template, see [Deploy a machine learning model by using an online endpoint](how-to-deploy-online-endpoints.md).
 
 ### Key attributes of a deployment
 
@@ -134,7 +135,7 @@ The following table describes the key attributes of a deployment:
 
 ### Notes for online deployments
 
-- The deployment can reference the model and container image defined in **Environment** at any time, for example when the deployment instances undergo security patches or other recovery operations. If you use a registered model or container image in Azure Container Registry for deployment and later remove the model or the container image, the deployments that rely on these assets can fail when re-imaging occurs. If you remove the model or the container image, be sure to recreate or update the dependent deployments with an alternative model or container image.
+- The deployment can reference the model and container image defined in **Environment** at any time, for example when the deployment instances undergo security patches or other recovery operations. If you use a registered model or container image in Azure Container Registry for deployment and later remove the model or the container image, the deployments that rely on these assets can fail when reimaging occurs. If you remove the model or the container image, be sure to recreate or update the dependent deployments with an alternative model or container image.
 
 - The container registry that the environment refers to can be private only if the endpoint identity has permission to access it via Microsoft Entra authentication and Azure role-based access control (RBAC). For the same reason, private Docker registries other than Container Registry aren't supported.
 
@@ -166,7 +167,7 @@ The following table highlights key aspects of the online deployment options:
 |--|--|--|--|
 | **Summary** | Uses out-of-box inferencing for popular frameworks such as scikit-learn, TensorFlow, PyTorch, and ONNX, via MLflow and Triton. For more information, see [Deploy MLflow models to online endpoints](how-to-deploy-mlflow-models-online-endpoints.md). | Uses secure, publicly published curated images for popular frameworks, with updates every two weeks to address vulnerabilities. You provide scoring script and/or Python dependencies. For more information, see [Azure Machine Learning Curated Environments](resource-curated-environments.md). | You provide your complete stack via Azure Machine Learning support for custom images. For more information, see [Use a custom container to deploy a model to an online endpoint](how-to-deploy-custom-container.md). |
 | **Custom base image** | None. Curated environments provide the base image for easy deployment. | You can use either a curated image or your customized image. | Bring either an accessible container image location like docker.io, Container Registry, or Microsoft Artifact Registry, or a Dockerfile that you can build/push with Container Registry for your container. |
-| **Custom dependencies** | None. Curated environments provide dependencies for easy deployment.  | Bring the Azure Machine Learning environment in which the model runs, either a Docker image with Conda dependencies, or a dockerfile. | Custom dependencies are included in the container image. |
+| **Custom dependencies** | None. Curated environments provide dependencies for easy deployment. | Bring the Azure Machine Learning environment in which the model runs, either a Docker image with Conda dependencies, or a dockerfile. | Custom dependencies are included in the container image. |
 | **Custom code** | None. The scoring script is autogenerated for easy deployment. | Bring your scoring script. | The scoring script is included in the container image. |
 
 > [!NOTE]
@@ -174,7 +175,7 @@ The following table highlights key aspects of the online deployment options:
 
 ## Online endpoint debugging
 
-If possible, test run your endpoint locally to validate and debug your code and configuration before you deploy to Azure. Azure CLI and Python SDK support local endpoints and deployments, but Azure Machine Learning studio and ARM templates don't support local endpoints or deployments.
+If possible, test-run your endpoint locally to validate and debug your code and configuration before you deploy to Azure. Azure CLI and Python SDK support local endpoints and deployments, but Azure Machine Learning studio and ARM templates don't support local endpoints or deployments.
 
 Azure Machine Learning provides the following ways to debug online endpoints locally and by using container logs:
 
@@ -208,7 +209,7 @@ Local debugging typically involves the following steps:
 
 1. Check that the local deployment succeeded.
 1. Invoke the local endpoint for inferencing.
-1. Review the output logs for the invoke operation.
+1. Review the output logs for the `invoke` operation.
 
 Local endpoints have the following limitations:
 - No support for traffic rules, authentication, or probe settings.
