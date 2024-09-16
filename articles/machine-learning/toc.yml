@@ -1180,8 +1180,10 @@
         - name: "Tutorial: Create a secure workspace in Azure portal"
           displayName: managed virtual network
           href: tutorial-create-secure-workspace.md
-        - name: "Tutorial: Create a secure workspace with templates"
-          href: tutorial-create-secure-workspace-template.md
+        - name: "Create a secure workspace using a Bicep template"
+          href: /samples/azure/azure-quickstart-templates/machine-learning-end-to-end-secure/
+        - name: "Create a secure workspace using a Terraform template"
+          href: https://github.com/Azure/terraform/tree/master/quickstart/201-machine-learning-moderately-secure
     - name: Security overview
       items:
         - name: Enterprise security overview
