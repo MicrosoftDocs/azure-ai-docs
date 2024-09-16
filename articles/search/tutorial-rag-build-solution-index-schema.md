@@ -41,17 +41,11 @@ When LLMs generate a response, they operate on chunks of content for message inp
 
 Chunks are the focus of the schema, and each chunk is the defining element of a search document in a RAG pattern. You can think of your index as a large collection of chunks, as opposed to traditional search documents that probably have more structure, such as fields containing uniform content for a name, descriptions, categories, and addresses.
 
-### Content centricity and structured data
+### Enhanced with generated data
 
-In addition to structural considerations, like chunked content, you also want to consider the substance of your content because it also informs what fields are indexed.
+In this tutorial, sample data consists of PDFs and content from the [NASA Earth Book](https://www.nasa.gov/ebooks/earth/). This content is descriptive and informative, with numerous references to geographies, countries, and areas across the world. All of the textual content is captured in chunks, but these recurring instances of place names create an opportunity for adding structure to the index. Using skills, it's possible to recognize entities in the text and capture them in an index for use in queries and filters. In this tutorial, we include an [entity recognition skill](cognitive-search-skill-entity-recognition-v3.md) that recognizes and extracts location entities, loading it into a searchable and filterable `locations` field. Adding structured content to your index gives you more options for filtering, improved relevance, and richer answers.
 
-In this tutorial, sample data consists of PDFs and content from the NASA Earth Book. This content is descriptive and informative, with numerous references to geographies, countries, and areas across the world. To capture this information in our index and potentially use it in queries, we include skills in our indexing pipeline that recognize and extract this information, loading it into a searchable and filterable `locations` field. Adding structured content to your index gives you more options for filtering, relevance tuning, and richer answers.
-
-The original ebook is large, over 100 pages and 35 MB in size. We broke it up into smaller PDFs, one per page of text, to stay under the REST API payload limit of 16 MB per API call.
-
-For simplicity, we omit image vectorization for this exercise.
-
-### Parent-child fields in one or two indexes
+### Parent-child fields in one or two indexes?
 
 Chunked content typically derives from a larger document. And although the schema is organized around chunks, you also want to capture properties and content at the parent level. Examples of these properties might include the parent file path, title, authors, publication date, or a summary.
 
@@ -104,11 +98,11 @@ A minimal index for LLM is designed to store chunks of content. It typically inc
     }
     ```
 
-   Fields must include key field (`"id"`) and should include vector chunks for similarity search, and nonvector chunks for inputs to the LLM. 
+   Fields must include key field (`"id"` in this example) and should include vector chunks for similarity search, and nonvector chunks for inputs to the LLM. 
 
-   Vector fields have [specific types](/rest/api/searchservice/supported-data-types#edm-data-types-for-vector-fields) and extra attributes for embedding model dimensions and configuration. `Edm.Single` is a data type that works for commonly used LLMs. For more information about vector fields, see [Create a vector index](vector-search-how-to-create-index.md).
+   Vector fields are associated with algorithms that determine the search paths at query time. The index has a vectorSearch section for specifying multiple algorithm configurations. Vector fields also have [specific types](/rest/api/searchservice/supported-data-types#edm-data-types-for-vector-fields) and extra attributes for embedding model dimensions. `Edm.Single` is a data type that works for commonly used LLMs. For more information about vector fields, see [Create a vector index](vector-search-how-to-create-index.md).
 
-   Metadata fields might be file path, creation date, or content type and are useful for [filters](vector-search-filters.md).
+   Metadata fields might be the parent file path, creation date, or content type and are useful for [filters](vector-search-filters.md).
 
 1. Here's the index schema for the [tutorial source code](https://github.com/Azure-Samples/azure-search-python-samples/blob/main/Tutorial-RAG/Tutorial-rag.ipynb) and the [Earth Book content](https://github.com/Azure-Samples/azure-search-sample-data/tree/main/nasa-e-book/earth_book_2019_text_pages). 
 

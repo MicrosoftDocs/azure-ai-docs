@@ -18,7 +18,7 @@ This tutorial series demonstrates a pattern for building RAG solutions on Azure 
 
 Sample data is a [collection of PDFs](https://github.com/Azure-Samples/azure-search-sample-data/tree/main/nasa-e-book/earth_book_2019_text_pages) uploaded to Azure Storage.
 
-Sample code can be found in [this Python notebook](https://github.com/Azure-Samples/azure-search-python-samples/blob/main/Tutorial-RAG/Tutorial-rag.ipynb), but we recommend using this series for context, insights, and alternative approaches.
+Sample code can be found in [this Python notebook](https://github.com/Azure-Samples/azure-search-python-samples/blob/main/Tutorial-RAG/Tutorial-rag.ipynb), but we recommend using this series for context, insights, and for exploring alternative approaches.
 
 ## Exercises in this series
 
@@ -38,9 +38,9 @@ Sample code can be found in [this Python notebook](https://github.com/Azure-Samp
 
 We omitted a few aspects of a RAG pattern to reduce complexity:
 
-- No chat history and context. Chat history must be stored and managed separately from your grounding data, which means extra steps and code. This tutorial assumes atomic question and answers from the LLM.
+- No management of chat history and context. Chat history is typically stored and managed separately from your grounding data, which means extra steps and code. This tutorial assumes atomic question and answers from the LLM.
 
-- No per-user user access controls over results (what we refer to as "security trimming"). For more information and resources, start with [Security trimming](search-security-trimming-for-azure-search.md) and make sure to review the links at the end of the article.
+- No per-user user security over results (what we refer to as "security trimming"). For more information and resources, start with [Security trimming](search-security-trimming-for-azure-search.md) and make sure to review the links at the end of the article.
 
 This series covers the fundamentals of RAG solution development. Once you understand the basics, continue with accelerators and other code samples that provide more abstraction or are otherwise better suited for production environments and more complex workloads.
 
