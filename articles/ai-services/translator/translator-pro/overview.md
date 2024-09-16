@@ -38,14 +38,6 @@ Microsoft Translator Pros is a paid mobile App Service and is supported on both 
 
 * **Enterprise-grade security**. Ensure data privacy and security with Microsoft Translator Pro's enterprise-grade security features.
 
-## Deployment options
-
-Microsoft Translator Pro can be deployed using the following resources:
-
-* **Microsoft Translator Pro mobile app**. Download the Microsoft Translator Pro app from the [App Store (TODO)](TODO) and install it on your iOS device.
-
-* * **Microsoft Translator Pro REST API**. [REST API documentation (TODO)](TODO)
-
 ## Next steps
 
 [Link to limited access form (TODO)](TODO)
