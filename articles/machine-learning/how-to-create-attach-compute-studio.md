@@ -52,7 +52,7 @@ In addition, you can use the [VS Code extension](how-to-manage-resources-vscode.
 
 For information on configuring and attaching a Kubernetes cluster to your workspace, see [Configure Kubernetes cluster for Azure Machine Learning](how-to-attach-kubernetes-anywhere.md).
 
-## Attach other compute targets
+## <a name="other-compute-targets"></a>Attach other compute targets
 
 To use VMs created outside the Azure Machine Learning workspace, you must first attach them to your workspace. Attaching the compute resource makes it available to your workspace. 
 
