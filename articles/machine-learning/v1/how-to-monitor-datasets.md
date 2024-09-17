@@ -54,15 +54,16 @@ To create and work with dataset monitors, you need:
 * The [Azure Machine Learning SDK for Python installed](/python/api/overview/azure/ml/install), which includes the azureml-datasets package.
 * Structured (tabular) data with a timestamp specified in the file path, file name, or column in the data.
 
+### Migrate to Model Monitor
 When you migrate to Model Monitor, please check the prerequisites as following:
 
 # [Azure CLI](#tab/azure-cli)
 
-[!INCLUDE [basic prereqs cli](includes/machine-learning-cli-prereqs.md)]
+[!INCLUDE [basic prereqs cli](./includes/machine-learning-cli-prereqs.md)]
 
 # [Python SDK](#tab/python)
 
-[!INCLUDE [basic prereqs sdk](includes/machine-learning-sdk-v2-prereqs.md)]
+[!INCLUDE [basic prereqs sdk](./includes/machine-learning-sdk-v2-prereqs.md)]
 
 # [Studio](#tab/azure-studio)
 
@@ -70,17 +71,17 @@ Before following the steps in this article, make sure you have the following pre
 
 * An Azure subscription. If you don't have an Azure subscription, create a free account before you begin. Try the [free or paid version of Azure Machine Learning](https://azure.microsoft.com/free/).
 
-* An Azure Machine Learning workspace and a compute instance. If you don't have these resources, use the steps in the [Quickstart: Create workspace resources](quickstart-create-resources.md) article to create them.
+* An Azure Machine Learning workspace and a compute instance. If you don't have these resources, use the steps in the [Quickstart: Create workspace resources](./quickstart-create-resources.md) article to create them.
 
 ---
 
-* Azure role-based access controls (Azure RBAC) are used to grant access to operations in Azure Machine Learning. To perform the steps in this article, your user account must be assigned the __owner__ or __contributor__ role for the Azure Machine Learning workspace, or a custom role allowing `Microsoft.MachineLearningServices/workspaces/onlineEndpoints/*`. For more information, see [Manage access to an Azure Machine Learning workspace](how-to-assign-roles.md).
+* Azure role-based access controls (Azure RBAC) are used to grant access to operations in Azure Machine Learning. To perform the steps in this article, your user account must be assigned the __owner__ or __contributor__ role for the Azure Machine Learning workspace, or a custom role allowing `Microsoft.MachineLearningServices/workspaces/onlineEndpoints/*`. For more information, see [Manage access to an Azure Machine Learning workspace](./how-to-assign-roles.md).
 
 *  For monitoring a model that is deployed to an Azure Machine Learning online endpoint (managed online endpoint or Kubernetes online endpoint), be sure to:
 
-    * Have a model already deployed to an Azure Machine Learning online endpoint. Both managed online endpoint and Kubernetes online endpoint are supported. If you don't have a model deployed to an Azure Machine Learning online endpoint, see [Deploy and score a machine learning model by using an online endpoint](how-to-deploy-online-endpoints.md).
+    * Have a model already deployed to an Azure Machine Learning online endpoint. Both managed online endpoint and Kubernetes online endpoint are supported. If you don't have a model deployed to an Azure Machine Learning online endpoint, see [Deploy and score a machine learning model by using an online endpoint](./how-to-deploy-online-endpoints.md).
 
-    * Enable data collection for your model deployment. You can enable data collection during the deployment step for Azure Machine Learning online endpoints. For more information, see [Collect production data from models deployed to a real-time endpoint](how-to-collect-production-data.md).
+    * Enable data collection for your model deployment. You can enable data collection during the deployment step for Azure Machine Learning online endpoints. For more information, see [Collect production data from models deployed to a real-time endpoint](./how-to-collect-production-data.md).
 
 *  For monitoring a model that is deployed to an Azure Machine Learning batch endpoint or deployed outside of Azure Machine Learning, be sure to:
 
