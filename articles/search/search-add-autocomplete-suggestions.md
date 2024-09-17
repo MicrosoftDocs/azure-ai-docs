@@ -20,7 +20,7 @@ Search-as-you-type is a common technique for improving query productivity. In Az
 To implement these experiences in Azure AI Search:
 
 + Add a `suggester` to an index schema.
-+ Build a query that calls the [Autocomplete](/rest/api/searchservice/autocomplete) or [Suggestions](/rest/api/searchservice/suggestions) API on the request.
++ Build a query that calls the [Autocomplete](/rest/api/searchservice/documents/autocomplete-post) or [Suggestions](/rest/api/searchservice/suggestions) API on the request.
 + Add a UI control to handle search-as-you-type interactions in your client app. We recommend using an existing JavaScript library for this purpose.
 
 In Azure AI Search, autocompleted queries and suggested results are retrieved from the search index, from selected fields that you register with a suggester. A suggester is part of the index, and it specifies which fields provide content that either completes a query, suggests a result, or does both. When the index is created and loaded, a suggester data structure is created internally to store prefixes used for matching on partial queries. For suggestions, choosing suitable fields that are unique, or at least not repetitive, is essential to the experience. For more information, see [Create a suggester](index-add-suggesters.md).
@@ -52,17 +52,17 @@ Matches are on the beginning of a term anywhere in the input string. Given "the 
 Follow these links for the REST and .NET SDK reference pages:
 
 + [Suggestions REST API](/rest/api/searchservice/suggestions) 
-+ [Autocomplete REST API](/rest/api/searchservice/autocomplete) 
++ [Autocomplete REST API](/rest/api/searchservice/documents/autocomplete-post) 
 + [SuggestAsync method](/dotnet/api/azure.search.documents.searchclient.suggestasync)
 + [AutocompleteAsync method](/dotnet/api/azure.search.documents.searchclient.autocompleteasync)
 
 ## Structure a response
 
-Responses for autocomplete and suggestions are what you might expect for the pattern: [Autocomplete](/rest/api/searchservice/autocomplete#response) returns a list of terms, [Suggestions](/rest/api/searchservice/suggestions#response) returns terms plus a document ID so that you can fetch the document (use the [Lookup Document](/rest/api/searchservice/lookup-document) API to fetch the specific document for a detail page).
+Responses for autocomplete and suggestions are what you might expect for the pattern: [Autocomplete](/rest/api/searchservice/documents/autocomplete-post#responses) returns a list of terms, [Suggestions](/rest/api/searchservice/suggestions#response) returns terms plus a document ID so that you can fetch the document (use the [Lookup Document](/rest/api/searchservice/lookup-document) API to fetch the specific document for a detail page).
 
 Responses are shaped by the parameters on the request:
 
-+ For Autocomplete, set the [autocompleteMode](/rest/api/searchservice/autocomplete#query-parameters) to determine whether text completion occurs on one or two terms. 
++ For Autocomplete, set the [autocompleteMode](/rest/api/searchservice/documents/autocomplete-post#autocompletemode) to determine whether text completion occurs on one or two terms. 
 
 + For Suggestions, set [$select](/rest/api/searchservice/suggestions#query-parameters) to return fields containing unique or differentiating values, such as names and description. Avoid fields that contain duplicate values (such as a category or city).
 
@@ -242,7 +242,7 @@ public async Task<ActionResult> AutoCompleteAsync(string term)
 }
 ```
 
-The Autocomplete function takes the search term input. The method creates an [AutoCompleteParameters object](/rest/api/searchservice/autocomplete). The result is then converted to JSON so it can be shown in the client.
+The Autocomplete function takes the search term input. The method creates an [AutoCompleteParameters object](/rest/api/searchservice/documents/autocomplete-post). The result is then converted to JSON so it can be shown in the client.
 
 ## Next steps
 

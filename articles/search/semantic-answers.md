@@ -32,7 +32,7 @@ All prerequisites that apply to [semantic queries](semantic-how-to-query-request
 + Search documents in the index must contain text having the characteristics of an answer, and that text must exist in one of the fields listed in the [semantic configuration](semantic-how-to-configure.md). For example, given a query "what is a hash table", if none of the fields in the semantic configuration contain passages that include "A hash table is ...", then it's unlikely an answer is returned.
 
 > [!NOTE]
-> Starting in 2021-04-30-Preview, in [Create or Update Index (Preview)](/rest/api/searchservice/preview-api/create-or-update-index) requests, a `"semanticConfiguration"` is required for specifying input fields for semantic ranking.
+> Starting in 2021-04-30-Preview, [Create or Update Index](/rest/api/searchservice/indexes/create-or-update) requests began enfording a `"semanticConfiguration"` requirement for specifying input fields used in semantic ranking.
 
 ## What is a semantic answer?
 
@@ -65,7 +65,7 @@ To return a semantic answer, the query must have the semantic `"queryType"`, `"q
 
 + `"queryType"` must be set to "semantic.
 
-+ `"queryLanguage"` must be one of the values from the [supported languages list (REST API)](/rest/api/searchservice/preview-api/search-documents#queryLanguage).
++ `"queryLanguage"` must be one of the values from the [supported languages list (REST API)](/rest/api/searchservice/documents/search-post?view=rest-searchservice-2024-05-01-preview&preserve-view=true#querylanguage).
 
 + A `"semanticConfiguration"` determines which string fields provide tokens to the extraction model. The same fields that produce captions also produce answers. See [Create a semantic configuration](semantic-how-to-configure.md) for details.
 
