@@ -127,7 +127,7 @@ Indexers require a data source that specifies the type, container, and connectio
 
 1. Make sure you're using a [supported data source type](search-indexer-overview.md#supported-data-sources).
 
-1. [Create a data source](/rest/api/searchservice/create-data-source) definition. The following list is a few of the more frequently used data sources:
+1. [Create a data source](/rest/api/searchservice/data-sources/create) definition. The following list is a few of the more frequently used data sources:
 
    + [Azure Blob Storage](search-howto-indexing-azure-blob-storage.md)
    + [Azure Cosmos DB](search-howto-index-cosmosdb.md)
