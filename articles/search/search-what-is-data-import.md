@@ -94,7 +94,7 @@ Use the following tools and APIs for indexer-based indexing:
 + Azure SDK for Java: [SearchIndexer](/java/api/com.azure.search.documents.indexes.models.searchindexer), [SearchIndexerDataSourceConnection](/java/api/com.azure.search.documents.indexes.models.searchindexerdatasourceconnection), [SearchIndex](/java/api/com.azure.search.documents.indexes.models.searchindex),
 + Azure SDK for JavaScript: [SearchIndexer](/javascript/api/@azure/search-documents/searchindexer), [SearchIndexerDataSourceConnection](/javascript/api/@azure/search-documents/searchindexerdatasourceconnection), [SearchIndex](/javascript/api/@azure/search-documents/searchindex),
 
-Indexer functionality is exposed in the [Azure portal], the [REST API](/rest/api/searchservice/create-indexer), and the [.NET SDK](/dotnet/api/azure.search.documents.indexes.searchindexerclient).
+Indexer functionality is exposed in the [Azure portal], the [REST API](/rest/api/searchservice/indexers/create), and the [.NET SDK](/dotnet/api/azure.search.documents.indexes.searchindexerclient).
 
 An advantage to using the portal is that Azure AI Search can usually generate a default index schema by reading the metadata of the source dataset. 
 

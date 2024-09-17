@@ -70,7 +70,7 @@ Indexers have the following requirements:
 + A `"dataSourceName"` property that points to a data source object. It specifies a connection to external data.
 + A `"targetIndexName"` property that points to the destination search index.
 
-Other parameters are optional and modify run time behaviors, such as how many errors to accept before failing the entire job. Required parameters are specified in all indexers and are documented in the [REST API reference](/rest/api/searchservice/create-indexer#request-body). 
+Other parameters are optional and modify run time behaviors, such as how many errors to accept before failing the entire job. Required parameters are specified in all indexers and are documented in the [REST API reference](/rest/api/searchservice/indexers/create#request-body). 
 
 Data source-specific indexers for blobs, SQL, and Azure Cosmos DB provide extra `"configuration"` parameters for source-specific behaviors. For example, if the source is Blob Storage, you can set a parameter that filters on file extensions: `"parameters" : { "configuration" : { "indexedFileNameExtensions" : ".pdf,.docx" } }`. If the source is Azure SQL, you can set a query time out parameter.
 
@@ -171,7 +171,7 @@ When you're ready to create an indexer on a remote search service, you need a se
 
 ### [**REST**](#tab/indexer-rest)
 
-Visual Studio Code with a REST client can send indexer requests. Using the app, you can connect to your search service and send [Create Indexer (REST)](/rest/api/searchservice/create-indexer) or [Update indexer](/rest/api/searchservice/update-indexer) requests. 
+Visual Studio Code with a REST client can send indexer requests. Using the app, you can connect to your search service and send [Create Indexer (REST)](/rest/api/searchservice/indexers/create) or [Update indexer](/rest/api/searchservice/update-indexer) requests. 
 
 ```http
 POST /indexers?api-version=[api-version]
