@@ -38,7 +38,7 @@ To define an endpoint, you must specify:
 
 Managed online endpoints deploy your machine learning models in a convenient, turnkey manner, and are the recommended way to use Azure Machine Learning online endpoints. Managed online endpoints work with powerful CPU and GPU machines in Azure in a scalable, fully managed way.
 
-To free you from the overhead of setting up and managing the underlying infrastructure, these endpoints also serve, scale, secure, and monitor your models. To learn how to define managed online endpoints, see [Define the endpoint](how-to-deploy-online-endpoints.md#define-the-endpoint).
+To free you from the overhead of setting up and managing the underlying infrastructure, these endpoints also take care of serving, scaling, securing, and monitoring your models. To learn how to define managed online endpoints, see [Define the endpoint](how-to-deploy-online-endpoints.md#define-the-endpoint).
 
 ### Managed online endpoints vs Azure Container Instances or Azure Kubernetes Service (AKS) v1
 
@@ -47,7 +47,7 @@ The following table highlights key attributes of managed online endpoints compar
 |Attributes  |Managed online endpoints (v2)  |Container Instances or AKS (v1)  |
 |---------|---------|---------|
 |Network security/isolation |Easy inbound/outbound control with quick toggle |Virtual network not supported or requires complex manual configuration |
-|Managed service |• Fully managed compute provisioning/scaling<br>• Network configuration for data exfiltration prevention<br>• Host OS upgrade, controlled rollout of in-place updates |• Scaling is limited<br>• Network configuration or upgrade must be managed by user |
+|Managed service |• Fully managed compute provisioning/scaling<br>• Network configuration for data exfiltration prevention<br>• Host OS upgrade, controlled rollout of in-place updates |• Scaling is limited<br>• User must manage network configuration or upgrade |
 |Endpoint/deployment concept |Distinction between endpoint and deployment enables complex scenarios such as safe rollout of models |No concept of endpoint |
 |Diagnostics and Monitoring |• Local endpoint debugging possible with Docker and Visual Studio Code<br>• Advanced metrics and logs analysis with chart/query to compare between deployments<br>• Cost breakdown to deployment level |No easy local debugging |
 |Scalability |Limitless, elastic, and automatic scaling |• Container Instances isn't scalable <br>• AKS v1 supports in-cluster scale only and requires scalability configuration |
@@ -131,7 +131,7 @@ The following table describes the key attributes of a deployment:
 | Scoring script | The relative path to the scoring file in the source code directory. This Python code must have an `init()` function and a `run()` function. The `init()` function is called after the model is created or updated, for example to cache the model in memory. The `run()` function is called at every invocation of the endpoint to do the actual scoring and prediction. |
 | Environment    | The environment to host the model and code. This value can be either a reference to an existing versioned environment in the workspace or an inline environment specification. |
 | Instance type  | The VM size to use for the deployment. For the list of supported sizes, see [Managed online endpoints SKU list](reference-managed-online-endpoints-vm-sku-list.md).    |
-| Instance count | The number of instances to use for the deployment. Base the value on the workload you expect. For high availability, set the value to at least `3`. The system reserves an extra 20% for performing upgrades. For more information, see [Virtual machine quota allocation for deployments](#virtual-machine-quota-allocation-for-deployment).                                |
+| Instance count | The number of instances to use for the deployment. Base the value on the workload you expect. For high availability, set the value to at least `3`. The system reserves an extra 20% for performing upgrades. For more information, see [VM quota allocation for deployments](#vm-quota-allocation-for-deployment).                                |
 
 ### Notes for online deployments
 
@@ -157,7 +157,7 @@ For more information on quotas and limits for resources in Azure Machine Learnin
 
 Azure Machine Learning supports model deployment to online endpoints for coders and noncoders by providing options for *no-code deployment*, *low-code deployment*, and *Bring Your Own Container (BYOC) deployment*.
 
-- **No-code deployment** provides out-of-box inferencing for common frameworks like scikit-learn, TensorFlow, PyTorch, and ONNX via MLflow and Triton.
+- **No-code deployment** provides out-of-box inferencing for common frameworks like scikit-learn, TensorFlow, PyTorch, and Open Neural Network Exchange (ONNX) via MLflow and Triton.
 - **Low-code deployment** allows you to provide minimal code along with your machine learning model for deployment.
 - **BYOC deployment** lets you bring virtually any containers to run your online endpoint. You can use all the Azure Machine Learning platform features such as autoscaling, GitOps, debugging, and safe rollout to manage your MLOps pipelines.
 
@@ -232,9 +232,9 @@ With dev containers, you can use Visual Studio Code features such as interactive
 
 ### Debugging with container logs
 
-You can't get direct access to a VM where a model is deployed, but you can get logs from the following types of containers that are running on the VM:
+You can't get direct access to a VM where a model deploys, but you can get logs from the following containers that are running on the VM:
 
-- The [inference server](how-to-inference-server-http.md)) console log contains the output of print/logging functions from your scoring script `score.py` code. 
+- The [inference server](how-to-inference-server-http.md)) console log contains the output of print/logging functions from your scoring script *score.py* code. 
 - Storage initializer logs contain information on whether code and model data successfully downloaded to the container. The container runs before the inference server container starts to run.
 
 For more information about debugging with container logs, see [Get container logs](how-to-troubleshoot-online-endpoints.md#get-container-logs).
