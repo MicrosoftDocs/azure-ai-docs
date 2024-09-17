@@ -97,7 +97,7 @@ AI enrichment is indexer-driven. This part of the walkthrough creates four objec
 
 ### Step 1: Create a data source
 
-Call [Create Data Source](/rest/api/searchservice/create-data-source) to set the connection string to the Blob container containing the sample data files.
+Call [Create Data Source](/rest/api/searchservice/data-sources/create) to set the connection string to the Blob container containing the sample data files.
 
 ```http
 ### Create a data source
@@ -404,7 +404,7 @@ POST {{baseUrl}}/indexes?api-version=2024-07-01  HTTP/1.1
 
 ### Step 4: Create and run an indexer
 
-Call [Create Indexer](/rest/api/searchservice/create-indexer) to drive the pipeline. The three components you have created thus far (data source, skillset, index) are inputs to an indexer. Creating the indexer on Azure AI Search is the event that puts the entire pipeline into motion.
+Call [Create Indexer](/rest/api/searchservice/indexers/create) to drive the pipeline. The three components you have created thus far (data source, skillset, index) are inputs to an indexer. Creating the indexer on Azure AI Search is the event that puts the entire pipeline into motion.
 
 Expect this step to take several minutes to complete. Even though the data set is small, analytical skills are computation-intensive.
 

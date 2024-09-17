@@ -113,7 +113,7 @@ A valid API key establishes trust, on a per request basis, between the applicati
 
 ## Create a data source
 
-[Create Data Source](/rest/api/searchservice/create-data-source) creates a data source connection on Azure AI Search.
+[Create Data Source](/rest/api/searchservice/data-sources/create) creates a data source connection on Azure AI Search.
 
 1. Paste in the following example to create the data source.
 
@@ -144,7 +144,7 @@ A valid API key establishes trust, on a per request basis, between the applicati
 
 ## Create a skillset 
 
-A skillset defines enrichments (skills) and your knowledge store. [Create Skillset](/rest/api/searchservice/create-indexer) creates the object on your search service.
+A skillset defines enrichments (skills) and your knowledge store. [Create Skillset](/rest/api/searchservice/indexers/create) creates the object on your search service.
 
 1. Paste in the following example to create the skillset.
 
@@ -311,7 +311,7 @@ A skillset defines enrichments (skills) and your knowledge store. [Create Skills
 
 ## Create an indexer
 
-[Create Indexer](/rest/api/searchservice/create-indexer) creates and runs the indexer. Indexer execution starts by cracking the documents, extracting text and images, and initializing the skillset. The indexer checks for the other objects that you created: the datasource, the index, and the skillset. 
+[Create Indexer](/rest/api/searchservice/indexers/create) creates and runs the indexer. Indexer execution starts by cracking the documents, extracting text and images, and initializing the skillset. The indexer checks for the other objects that you created: the datasource, the index, and the skillset. 
 
 1. Paste in the following example to create the indexer.
 

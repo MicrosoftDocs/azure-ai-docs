@@ -46,7 +46,7 @@ Other approaches for creating an Azure SQL indexer include Azure SDKs or [Import
 
 The data source definition specifies the data to index, credentials, and policies for identifying changes in the data. A data source is defined as an independent resource so that it can be used by multiple indexers.
 
-1. [Create data source](/rest/api/searchservice/create-data-source) or [Update data source](/rest/api/searchservice/update-data-source) to set its definition: 
+1. [Create Data Source](/rest/api/searchservice/data-sources/create) or [Create or Update Data Source](/rest/api/searchservice/data-sources/create-or-update) to set its definition: 
 
    ```http
     POST https://myservice.search.windows.net/datasources?api-version=2024-07-01
@@ -138,7 +138,7 @@ In a [search index](search-what-is-an-index.md), add fields that correspond to t
 
 Once the index and data source have been created, you're ready to create the indexer. Indexer configuration specifies the inputs, parameters, and properties controlling run time behaviors.
 
-1. [Create or update an indexer](/rest/api/searchservice/create-indexer) by giving it a name and referencing the data source and target index:
+1. [Create or update an indexer](/rest/api/searchservice/indexers/create) by giving it a name and referencing the data source and target index:
 
     ```http
     POST https://[service name].search.windows.net/indexers?api-version=2024-07-01
