@@ -25,13 +25,13 @@ Add support for the latest model versions:
 
 Add support for the latest model versions:
 - Speech language identification 1.14.0
-    - Upgrade .Net 8.0
+    - Upgrade .NET 8.0
     - Mitigate Vulnerabilities
 - Neural text to speech 3.3.0
-    - Upgrade .Net 8.0
+    - Upgrade .NET 8.0
     - Mitigate Vulnerabilities
 - Speech to text 4.8.0    
-    - Upgrade .Net 8.0
+    - Upgrade .NET 8.0
     - Mitigate Vulnerabilities
     - Upgrade Recognition Engine
     - Fix the issue where `PropertyId.Speech_SegmentationSilenceTimeoutMs` was being ignored.
@@ -95,7 +95,7 @@ Add support for the latest model versions:
 
 Fix the issue of running speech to text container via `docker` mount options with local custom model files.
 
-Fix the issue that in some cases the `RECOGNIZING` event does not show up in response through the Speech SDK.
+Fix the issue that in some cases the `RECOGNIZING` event doesn't show up in response through the Speech SDK.
 
 Fix vulnerability issues.
 
@@ -256,7 +256,7 @@ Regular monthly updates including security upgrades and vulnerability fixes.
 
 Regular monthly updates including security upgrades and vulnerability fixes.
 
-#### Neural Neural text to speech v2.5.0
+#### Neural text to speech v2.5.0
 
 Add support for these [prebuilt neural voices](../../language-support.md?tabs=tts):
    * `az-az-babekneural`
@@ -294,7 +294,7 @@ Add support for using containers in [disconnected environments](../../../contain
 Regular monthly updates including security upgrades and vulnerability fixes.
 
 #### Neural-Neural text to speech Container v1.12.0
-Add support for these prebuilt neural voices: `am-et-amehaneural`, `am-et-mekdesneural`, `so-so-muuseneural` and `so-so-ubaxneural`.
+Add support for these prebuilt neural voices: `am-et-amehaneural`, `am-et-mekdesneural`, `so-so-muuseneural`, and `so-so-ubaxneural`.
 
 Regular monthly updates including security upgrades and vulnerability fixes.
 
