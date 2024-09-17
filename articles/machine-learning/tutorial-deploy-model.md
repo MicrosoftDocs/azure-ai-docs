@@ -96,7 +96,7 @@ If you already completed the earlier training tutorial, [Train a model](tutorial
 
 If you didn't complete the training tutorial, you need to register the model. Registering your model before deployment is a recommended best practice.
 
-The following code specifies the `path` (where to upload files from) inline. If you [cloned the tutorials folder](quickstart-create-resources.md#learn-from-sample-notebooks), then run the following code as-is. Otherwise, [download the files and metadata for the model to deploy](https://azuremlexampledata.blob.core.windows.net/datasets/credit_defaults_model.zip) and unzip the files. Update the path to the location of the unzipped files on your local computer.
+The following code specifies the `path` (where to upload files from) inline. If you [cloned the tutorials folder](quickstart-create-resources.md#learn-from-sample-notebooks), then run the following code as-is. Otherwise, download the files and metadata for the model from the [credit_defaults_model folder](https://github.com/Azure/azureml-examples/tree/main/tutorials/get-started-notebooks/deploy/credit_defaults_model). Save the files you downloaded into a local version of the *credit_defaults_model* folder on your computer and update the path in the following code to the location of the downloaded files.
 
 The SDK automatically uploads the files and registers the model. 
 
