@@ -242,4 +242,4 @@ The example below illustrates a custom normalizer definition with corresponding 
 
 + [Analyzers for linguistic and text processing](search-analyzers.md)
 
-+ [Search Documents REST API](/rest/api/searchservice/search-documents)
++ [Search Documents REST API](/rest/api/searchservice/documents/search-post)

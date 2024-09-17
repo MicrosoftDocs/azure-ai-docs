@@ -71,7 +71,7 @@ POST /indexes/hotels/docs&api-version=2024-07-01
 }
 ```  
 
-This query searches on the term "inn" and passes in the current location. Notice that this query includes other parameters, such as scoringParameter. Query parameters, including "scoringParameter", are described in [Search Documents (REST API)](/rest/api/searchservice/Search-Documents).  
+This query searches on the term "inn" and passes in the current location. Notice that this query includes other parameters, such as scoringParameter. Query parameters, including "scoringParameter", are described in [Search Documents (REST API)](/rest/api/searchservice/documents/search-post).  
 
 See the [Extended example](#bkmk_ex) to review a more detailed example of a scoring profile.  
 

@@ -308,7 +308,7 @@ To push documents, use an HTTP POST request to your index's URL endpoint. The RE
 
 ## Search an index
 
-This step shows you how to query an index by using the [Search Documents API](/rest/api/searchservice/search-documents).
+This step shows you how to query an index by using the [Search Documents API](/rest/api/searchservice/documents/search-post).
 
 Be sure to use single quotation marks on search `$urls`. Query strings include `$` characters, and you can omit having to escape them if the entire string is enclosed in single quotation marks.
 
