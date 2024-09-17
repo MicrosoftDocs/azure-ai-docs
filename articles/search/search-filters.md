@@ -175,7 +175,7 @@ To work with more examples, see [OData Filter Expression Syntax > Examples](./se
 ## See also
 
 + [How full text search works in Azure AI Search](search-lucene-query-architecture.md)
-+ [Search Documents REST API](/rest/api/searchservice/search-documents)
++ [Search Documents REST API](/rest/api/searchservice/documents/search-post)
 + [Simple query syntax](/rest/api/searchservice/simple-query-syntax-in-azure-search)
 + [Lucene query syntax](/rest/api/searchservice/lucene-query-syntax-in-azure-search)
 + [Supported data types](/rest/api/searchservice/supported-data-types)

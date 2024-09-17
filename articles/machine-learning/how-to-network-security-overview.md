@@ -51,7 +51,7 @@ This article is part of a series on securing an Azure Machine Learning workflow.
 * [Use a firewall](how-to-access-azureml-behind-firewall.md)
 :::moniker-end
 
-For a tutorial on creating a secure workspace, visit the [Tutorial: Create a secure workspace](tutorial-create-secure-workspace.md) or [Tutorial: Create a secure workspace using a template](tutorial-create-secure-workspace-template.md) articles.
+For a tutorial on creating a secure workspace, visit the [Tutorial: Create a secure workspace](tutorial-create-secure-workspace.md), [Bicep template](/samples/azure/azure-quickstart-templates/machine-learning-end-to-end-secure/), or [Terraform template](https://github.com/Azure/terraform/tree/master/quickstart/201-machine-learning-moderately-secure).
 
 ## Prerequisites
 

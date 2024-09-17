@@ -141,7 +141,7 @@ api-key: [admin key]
 
 An indexer connects a data source with a target search index, and provides a schedule to automate the data refresh. Once the index and data source have been created, you're ready to create the indexer.
 
-Here's a [Create Indexer](/rest/api/searchservice/create-indexer) REST API call with an Azure SQL indexer definition. The indexer runs when you submit the request.
+Here's a [Create Indexer](/rest/api/searchservice/indexers/create) REST API call with an Azure SQL indexer definition. The indexer runs when you submit the request.
 
 ```http
 POST https://[service name].search.windows.net/indexers?api-version=2020-06-30
