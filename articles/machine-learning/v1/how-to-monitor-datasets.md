@@ -39,7 +39,7 @@ With Azure Machine Learning dataset monitors (preview), you can:
 
 An [Azure Machine Learning dataset](how-to-create-register-datasets.md) is used to create the monitor. The dataset must include a timestamp column.
 
-You can view data drift metrics with the Python SDK or in Azure Machine Learning studio. Other metrics and insights are available through the [Azure Application Insights](../../azure-monitor/app/app-insights-overview.md) resource associated with the Azure Machine Learning workspace.
+You can view data drift metrics with the Python SDK or in Azure Machine Learning studio. Other metrics and insights are available through the [Azure Application Insights](/azure/azure-monitor/app/app-insights-overview) resource associated with the Azure Machine Learning workspace.
 
 > [!IMPORTANT]
 > Data drift detection for datasets is currently in public preview.
