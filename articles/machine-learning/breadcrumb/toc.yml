@@ -1,3 +1,4 @@
+items:
 - name: Azure
   tocHref: /azure/
   topicHref: /azure/index
@@ -83,8 +84,4 @@
     items:
     - name: Security benchmarks
       tocHref: /security/benchmark/azure/
-      topicHref: /azure/machine-learning/index
-      items:
-      - name: Security baseline
-        tocHref: /security/benchmark/azure/baselines/
-        topicHref: /azure/machine-learning/index
+      topicHref: /security/benchmark/azure/index
