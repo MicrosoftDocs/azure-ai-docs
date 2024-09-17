@@ -282,7 +282,7 @@ In a skillset, Image Analysis and OCR skill output is always text. Output text i
       ],
     ```
 
-1. [Update the indexer](/rest/api/searchservice/update-indexer) to map skillset output (nodes in an enrichment tree) to index fields.
+1. [Update the indexer](/rest/api/searchservice/indexers/create-or-update) to map skillset output (nodes in an enrichment tree) to index fields.
 
    Enriched documents are internal. To externalize the nodes in an enriched document tree, set up an output field mapping that specifies which index field receives node content. Enriched data is accessed by your app through an index field. The following example shows a "text" node (OCR output) in an enriched document that's mapped to a "text" field in a search index.
 
