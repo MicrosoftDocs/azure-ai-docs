@@ -93,7 +93,7 @@ Field paths are used in many parameters of the [Azure AI Search REST APIs](/rest
 | [Suggest](/rest/api/searchservice/suggestions) and [Autocomplete](/rest/api/searchservice/documents/autocomplete-post) | `searchFields` | Can only refer to fields that are part of a [suggester](index-add-suggesters.md) |
 | [Search](/rest/api/searchservice/documents/search-post), [Suggest](/rest/api/searchservice/suggestions), and [Autocomplete](/rest/api/searchservice/documents/autocomplete-post) | `$filter` | Can only refer to **filterable** fields |
 | [Search](/rest/api/searchservice/documents/search-post) and [Suggest](/rest/api/searchservice/suggestions) | `$orderby` | Can only refer to **sortable** fields |
-| [Search](/rest/api/searchservice/documents/search-post), [Suggest](/rest/api/searchservice/suggestions), and [Lookup](/rest/api/searchservice/lookup-document) | `$select` | Can only refer to **retrievable** fields |
+| [Search](/rest/api/searchservice/documents/search-post), [Suggest](/rest/api/searchservice/suggestions), and [Lookup](/rest/api/searchservice/documents/get) | `$select` | Can only refer to **retrievable** fields |
 
 ## Constants
 

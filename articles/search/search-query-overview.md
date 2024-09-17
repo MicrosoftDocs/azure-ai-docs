@@ -74,7 +74,7 @@ For more information and examples, see [Geospatial search example](search-query-
 
 ## Document look-up
 
-In contrast with the previously described query forms, this one retrieves a single [search document by ID](/rest/api/searchservice/lookup-document), with no corresponding index search or scan. Only the one document is requested and returned. When a user selects an item in search results, retrieving the document and populating a details page with fields is a typical response, and a document look-up is the operation that supports it.
+In contrast with the previously described query forms, this one retrieves a single [search document by ID](/rest/api/searchservice/documents/get), with no corresponding index search or scan. Only the one document is requested and returned. When a user selects an item in search results, retrieving the document and populating a details page with fields is a typical response, and a document look-up is the operation that supports it.
 
 ## Advanced search: fuzzy, wildcard, proximity, regex
 
