@@ -40,7 +40,7 @@ The following video segment fast-forwards to an explanation of the generally ava
 
 Relevance scoring refers to the computation of a search score (**@search.score**) that serves as an indicator of an item's relevance in the context of the current query. The range is unbounded. However, the higher the score, the more relevant the item. 
 
-The search score is computed based on statistical properties of the string input and the query itself. Azure AI Search finds documents that match on search terms (some or all, depending on [searchMode](/rest/api/searchservice/search-documents#query-parameters)), favoring documents that contain many instances of the search term. The search score goes up even higher if the term is rare across the data index, but common within the document. The basis for this approach to computing relevance is known as *TF-IDF or* term frequency-inverse document frequency.
+The search score is computed based on statistical properties of the string input and the query itself. Azure AI Search finds documents that match on search terms (some or all, depending on [searchMode](/rest/api/searchservice/documents/search-post#searchrequest)), favoring documents that contain many instances of the search term. The search score goes up even higher if the term is rare across the data index, but common within the document. The basis for this approach to computing relevance is known as *TF-IDF or* term frequency-inverse document frequency.
 
 Search scores can be repeated throughout a result set. When multiple hits have the same search score, the ordering of the same scored items is undefined and not stable. Run the query again, and you might see items shift position, especially if you're using the free service or a billable service with multiple replicas. Given two items with an identical score, there's no guarantee that one appears first.
 
@@ -97,7 +97,7 @@ For scalability, Azure AI Search distributes each index horizontally through a s
 
 By default, the score of a document is calculated based on statistical properties of the data *within a shard*. This approach is generally not a problem for a large corpus of data, and it provides better performance than having to calculate the score based on information across all shards. That said, using this performance optimization could cause two very similar documents (or even identical documents) to end up with different relevance scores if they end up in different shards.
 
-If you prefer to compute the score based on the statistical properties across all shards, you can do so by adding `scoringStatistics=global` as a [query parameter](/rest/api/searchservice/search-documents) (or add `"scoringStatistics": "global"` as a body parameter of the [query request](/rest/api/searchservice/search-documents)).
+If you prefer to compute the score based on the statistical properties across all shards, you can do so by adding `scoringStatistics=global` as a [query parameter](/rest/api/searchservice/documents/search-post) (or add `"scoringStatistics": "global"` as a body parameter of the [query request](/rest/api/searchservice/documents/search-post)).
 
 ```http
 POST https://[service name].search.windows.net/indexes/hotels/docs/search?api-version=2024-07-01
@@ -177,5 +177,5 @@ To return more or less results, use the paging parameters `top`, `skip`, and `ne
 
 + [Scoring Profiles](index-add-scoring-profiles.md)
 + [REST API Reference](/rest/api/searchservice/)
-+ [Search Documents API](/rest/api/searchservice/search-documents)
++ [Search Documents API](/rest/api/searchservice/documents/search-post)
 + [Azure AI Search .NET SDK](/dotnet/api/overview/azure/search)

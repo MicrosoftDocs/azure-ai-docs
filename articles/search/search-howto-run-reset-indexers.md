@@ -224,7 +224,7 @@ When you're testing this API for the first time, the following APIs can help you
 
 1. Call [Run Indexer](/rest/api/searchservice/indexers/run) a second time to process from the last high-water mark.
 
-1. Call [Search Documents](/rest/api/searchservice/search-documents) to check for updated values, and also to return document keys if you're unsure of the value. Use `"select": "<field names>"` if you want to limit which fields appear in the response.
+1. Call [Search Documents](/rest/api/searchservice/documents/search-post) to check for updated values, and also to return document keys if you're unsure of the value. Use `"select": "<field names>"` if you want to limit which fields appear in the response.
 
 ### Overwriting the document key list
 

@@ -251,7 +251,7 @@ Paste the following code into the seventh cell and then run it. No modifications
 + [Query syntax](query-simple-syntax.md)
 + [Query examples](search-query-simple-examples.md)
 
-There's no transformer or module that issues queries. This cell is a simple call to the [Search Documents REST API](/rest/api/searchservice/search-documents). 
+There's no transformer or module that issues queries. This cell is a simple call to the [Search Documents REST API](/rest/api/searchservice/documents/search-post). 
 
 This particular example is searching for the word "door" (`"search": "door"`). It also returns a "count" of the number of matching documents, and selects just the contents of the "Description' and "Translations" fields for the results. If you want to see the full list of fields, remove the "select" parameter.
 
