@@ -385,7 +385,7 @@ Output field mappings that reference non-existent/null data will produce warning
 <a name="the-data-change-detection-policy-is-configured-to-use-key-column-x"></a>
 
 ## `Warning: The data change detection policy is configured to use key column 'X'`
-[Data change detection policies](/rest/api/searchservice/create-data-source#data-change-detection-policies) have specific requirements for the columns they use to detect change. One of these requirements is that this column is updated every time the source item is changed. Another requirement is that the new value for this column is greater than the previous value. Key columns don't fulfill this requirement because they don't change on every update. To work around this issue, select a different column for the change detection policy.
+[Data change detection policies](/rest/api/searchservice/data-sources/create#request-body) have specific requirements for the columns they use to detect change. One of these requirements is that this column is updated every time the source item is changed. Another requirement is that the new value for this column is greater than the previous value. Key columns don't fulfill this requirement because they don't change on every update. To work around this issue, select a different column for the change detection policy.
 
 <a name="document-text-appears-to-be-utf-16-encoded-but-is-missing-a-byte-order-mark"></a>
 
