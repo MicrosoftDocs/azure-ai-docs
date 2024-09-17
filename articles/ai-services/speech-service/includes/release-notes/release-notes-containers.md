@@ -2,9 +2,22 @@
 author: eric-urban
 ms.service: azure-ai-speech
 ms.topic: include
-ms.date: 8/7/2024
+ms.date: 9/17/2024
 ms.author: eur
 ---
+
+### 2024-September release
+
+Add support for the latest model versions:
+- Speech language identification 1.15.0
+    - Mitigate Vulnerabilities
+- Neural text to speech 3.4.0
+    -  New voices: `en-us-andrewmultilingualneural`, `en-us-jessaneural`, `es-us-alonsoneural`, `es-us-palomaneural`, `it-it-isabellamultilingualneural`
+    - Mitigate Vulnerabilities
+- Speech to text 4.9.0
+    - New Locales: `ar-YE`, `af-ZA`, `am-ET`, `ar-MA`, `ar-TN`, `sw-KE`, `sw-TZ`, `zu-ZA`
+    - Mitigate Vulnerabilities
+    - Update Deprecated Models
 
 ### 2024-August release
 
@@ -15,7 +28,7 @@ Add support for the latest model versions:
 - Neural text to speech 3.3.0
     - Upgrade .Net 8.0
     - Mitigate Vulnerabilities
-- Speech to text 4.18.0    
+- Speech to text 4.8.0    
     - Upgrade .Net 8.0
     - Mitigate Vulnerabilities
     - Upgrade Recognition Engine
