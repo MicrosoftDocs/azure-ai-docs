@@ -20,9 +20,9 @@ ms.custom: devplatv2, devx-track-azurecli, cliv2, sdkv2
 
 This article describes how to troubleshoot and resolve common Azure Machine Learning online endpoint deployment and scoring issues.
 
-The first sections describes how to use [local deployment](#deploy-locally) and [container logs](#get-container-logs) to help debug issues.
+The first sections describe how to use [local deployment](#deploy-locally) and [container logs](#get-container-logs) to help debug issues.
 
-The rest of the article lists and discusses [common deployment errors](#common-deployment-errors), [common errors specific to Kubernetes deployments](#common-errors-specific-to-kubernetes-deployments), [common model consumption issues](#common-model-consumption-issues), and [other common issues](#other-common-issues and how to fix them.
+The rest of the article lists and discusses [common deployment errors](#common-deployment-errors), [common errors specific to Kubernetes deployments](#common-errors-specific-to-kubernetes-deployments), [common model consumption issues](#common-model-consumption-issues), and [other common issues](#other-common-issues) and how to fix them.
 
 ## Prerequisites
 
@@ -44,14 +44,14 @@ There are two supported tracing headers:
 
 - `x-request-id` is reserved for server tracing. Azure Machine Learning overrides this header to ensure it's a valid GUID. When you create a support ticket for a failed request, attach the failed request ID to expedite the investigation. Alternatively, provide the name of the region and the endpoint name.
 
-- `x-ms-client-request-id` is available for client tracing scenarios. This header only accept alphanumeric characters, hyphens, and underscores, and is truncated to a maximum of 40 characters.
+- `x-ms-client-request-id` is available for client tracing scenarios. This header accepts only alphanumeric characters, hyphens, and underscores, and is truncated to a maximum of 40 characters.
 
 ## Deploy locally
 
-Local deployment is deploying a model to a local Docker environment. Local deployment supports creation, update, and deletion of a local endpoint, and allows you to invoke and get logs from the endpoint. Local deployment is useful for testing and debugging before deployment to the cloud.
+Local deployment means deploying a model to a local Docker environment. Local deployment supports creation, update, and deletion of a local endpoint, and allows you to invoke and get logs from the endpoint. Local deployment is useful for testing and debugging before deployment to the cloud.
 
 > [!TIP]
-> You can also use [Azure Machine Learning inference HTTP server Python package](how-to-inference-server-http.md) to debug your scoring script locally. Debugging with the inference server helps you to debug the scoring script before deploying to local endpoints so that you can debug without being affected by the deployment container configurations.
+> You can also use the [Azure Machine Learning inference HTTP server Python package](how-to-inference-server-http.md) to debug your scoring script locally. Debugging with the inference server helps you to debug the scoring script before deploying to local endpoints so that you can debug without being affected by the deployment container configurations.
 
 # [Azure CLI](#tab/cli)
 
@@ -73,21 +73,21 @@ ml_client.begin_create_or_update(online_deployment, local=True)
 
 The following steps occur during local deployment:
 
-- Docker either builds a new container image or pulls an existing image from the local Docker cache. Docker uses an existing image if one matches the environment part of the specification file.
-- Docker starts a new container with mounted local artifacts such as model and code files.
+1. Docker either builds a new container image or pulls an existing image from the local Docker cache. Docker uses an existing image if one matches the environment part of the specification file.
+1. Docker starts the new container with mounted local artifacts such as model and code files.
 
-For more information, see [Deploy locally in Deploy and score a machine learning model](how-to-deploy-managed-online-endpoint-sdk-v2.md#create-local-endpoint-and-deployment).
+For more information, see [Deploy and debug locally by using a local endpoint](how-to-deploy-managed-online-endpoints.md#deploy-and-debug-locally-by-using-a-local-endpoint).
 
 > [!TIP]
-> You can use Visual Studio Code to test and debug your endpoints locally. For more information, see [debug online endpoints locally in Visual Studio Code](how-to-debug-managed-online-endpoints-visual-studio-code.md).
+> You can use Visual Studio Code to test and debug your endpoints locally. For more information, see [Debug online endpoints locally in Visual Studio Code](how-to-debug-managed-online-endpoints-visual-studio-code.md).
 
 ## Get container logs
 
-You can't get direct access to a VM where a model deploys, but you can get logs from some of the containers that are running on the VM. The amount of information you get depends on the provisioning status of the deployment. If the specified container is up and running, you see its console output. Otherwise, you get a message to try again later.
+You can't get direct access to a virtual machine (VM) where a model deploys, but you can get logs from some of the containers that are running on the VM. The amount of information you get depends on the provisioning status of the deployment. If the specified container is up and running, you see its console output. Otherwise, you get a message to try again later.
 
 You can get logs from the following types of containers:
 
-- The [inference server](how-to-inference-server-http.md)) console log contains the output of print and logging functions from your scoring script *score.py* code.
+- The [inference server](how-to-inference-server-http.md) console log contains the output of print and logging functions from your scoring script *score.py* code.
 - Storage initializer logs contain information on whether code and model data successfully downloaded to the container. The container runs before the inference server container starts to run.
 
 For Kubernetes online endpoints, administrators can directly access the cluster where you deploy the model and check the log in Kubernetes. For example:
@@ -100,6 +100,21 @@ For more information about debugging with container logs, see [Get container log
 > [!NOTE]
 > If you use Python logging, make sure to use the correct logging level, such as `INFO`, for the messages to be published to logs.
 
+### See log output in Azure Machine Learning studio
+
+To see log output from a container in Azure Machine Learning studio:
+
+1. Select **Endpoints** in the left navigation bar. You can create a filter on compute type to show only managed compute types.
+1. Select an endpoint name to view the endpoint details page.
+1. Select the **Deployment logs** tab in the endpoint details page.
+1. Select the deployment log you want to see from the dropdown menu.
+
+:::image type="content" source="media/how-to-troubleshoot-online-endpoints/deployment-logs.png" lightbox="media/how-to-troubleshoot-online-endpoints/deployment-logs.png" alt-text="A screenshot of observing deployment logs in the studio.":::
+
+The logs are pulled from the inference server. To get logs from the storage initializer container, use the Azure CLI or Python SDK commands.
+
+### See log output from containers
+
 # [Azure CLI](#tab/cli)
 
 To see log output from a container, use the following command:
@@ -108,7 +123,7 @@ To see log output from a container, use the following command:
 az ml online-deployment get-logs -e <endpoint-name> -n <deployment-name> -l 100
 ```
 
-or
+Or
 
 ```azurecli
 az ml online-deployment get-logs --endpoint-name <endpoint-name> --name <deployment-name> --lines 100
@@ -116,7 +131,7 @@ az ml online-deployment get-logs --endpoint-name <endpoint-name> --name <deploym
 
 By default, logs are pulled from the inference server. You can also get logs from the storage initializer container by passing `–-container storage-initializer`.
 
-Add `--resource-group` and `--workspace-name` to the commands if you didn't already set these parameters via `az configure`. To see information about how to set these parameters, and if you currently have set values, run the following command:
+Add `--resource-group` and `--workspace-name` to the commands if you didn't already set these parameters via `az configure`. To see information about how to set these parameters, or if you currently have set values, run the following command:
 
 ```azurecli
 az ml online-deployment get-logs -h
@@ -126,15 +141,13 @@ To see more information, add `--help`  or `--debug` to commands.
 
 # [Python SDK](#tab/python)
 
-To see log output from containers, use the `get_logs` method as follows:
+To see log output from containers, use the `get_logs` method as follows. For information about how to set the parameters, see the [get-logs](/python/api/azure-ai-ml/azure.ai.ml.operations.onlinedeploymentoperations#azure-ai-ml-operations-onlinedeploymentoperations-get-logs) reference.
 
 ```python
 ml_client.online_deployments.get_logs(
     name="<deployment-name>", endpoint_name="<endpoint-name>", lines=100
 )
 ```
-
-For information about how to set these parameters, see [reference for get-logs](/python/api/azure-ai-ml/azure.ai.ml.operations.onlinedeploymentoperations#azure-ai-ml-operations-onlinedeploymentoperations-get-logs).
 
 By default, logs are pulled from the inference server. You can also get logs from the storage initializer container by adding `container_type="storage-initializer"` option. 
 
@@ -145,19 +158,6 @@ ml_client.online_deployments.get_logs(
 ```
 
 ---
-
-### See log output in Azure Machine Learning studio
-
-To see log output from a container in Azure Machine Learning studio:
-
-1. Select **Endpoints** in the left navigation bar. You can create a filter on compute type to show only managed compute types.
-1. Select an endpoint name to view the endpoint details page.
-1. Select the **Deployment logs** tab in the endpoint details page.
-1. Use the dropdown to select the deployment log you want to see.
-
-:::image type="content" source="media/how-to-troubleshoot-online-endpoints/deployment-logs.png" lightbox="media/how-to-troubleshoot-online-endpoints/deployment-logs.png" alt-text="A screenshot of observing deployment logs in the studio.":::
-
-The logs are pulled from the inference server. To get logs from the storage initializer container, use the Azure CLI or Python SDK.
 
 ## Common deployment errors
 
@@ -180,7 +180,7 @@ Deployment operation status can report the following common deployment errors:
 - [BadArgument](#error-badargument)
 
   Common to both managed online endpoint and Kubernetes online endpoint:
-  - [Subscription doesn't exist](#subscription-does-not-exist)
+  - [Subscription doesn't exist](#subscription-doesnt-exist)
   - [Startup task failed due to authorization error](#authorization-error)
   - [Startup task failed due to incorrect role assignments on resource](#authorization-error)
   - [Invalid template function specification](#invalid-template-function-specification)
@@ -190,7 +190,7 @@ Deployment operation status can report the following common deployment errors:
   Limited to Kubernetes online endpoint:
   
   - [Resource request was greater than limits](#resource-requests-greater-than-limits)
-  - [azureml-fe for Kubernetes online endpoint isn't ready](#azureml-fe-not-ready)
+  - [Azureml-fe for Kubernetes online endpoint isn't ready](#azureml-fe-not-ready)
   
 - [ResourceNotReady](#error-resourcenotready)
 - [ResourceNotFound](#error-resourcenotfound)
@@ -207,32 +207,32 @@ If you're creating or updating a Kubernetes online deployment, also see [Common 
 
 ### ERROR: ImageBuildFailure
 
-This error returns when the  Docker image environment is being built. You can check the build log for more information on the failure. The build log is located in the default storage for your Azure Machine Learning workspace. The exact location might be returned as part of the error, for example `"the build log under the storage account '[storage-account-name]' in the container '[container-name]' at the path '[path-to-the-log]'"`.
+This error returns when the  Docker image environment is being built. You can check the build log for more information on the failure. The build log is located in the default storage for your Azure Machine Learning workspace.
+
+The exact location might be returned as part of the error, for example `"the build log under the storage account '[storage-account-name]' in the container '[container-name]' at the path '[path-to-the-log]'"`.
 
 The following sections describe common image build failure scenarios:
 
-- [Container Registry authorization failure](#container-registry-authorization-failure)
-- [Image build compute not set in a private workspace with virtual network](#image-build-compute-not-set-in-a-private-workspace-with-vnet)
+- [Azure Container Registry authorization failure](#azure-container-registry-authorization-failure)
+- [Image build compute not set in a private workspace with virtual network](#image-build-compute-not-set-in-a-private-workspace-with-virtual-network)
 - [Image build timing out](#image-build-timing-out)
 - [Generic or unknown failure](#generic-image-build-failure)
 
 #### Azure Container Registry authorization failure
 
-An error message mentions `"container registry authorization failure"` when you can't access the container registry with the current credentials. The desynchronization of workspace resource keys can cause this error, and it takes some time to automatically synchronize. However, you can [manually call for a synchronization of keys](/cli/azure/ml/workspace#az-ml-workspace-sync-keys), which might resolve the authorization failure.
+An error message mentions `"container registry authorization failure"` when you can't access the container registry with the current credentials. The desynchronization of workspace resource keys can cause this error, and it takes some time to automatically synchronize. However, you can manually call for key synchronization with [az ml workspace sync-keys](/cli/azure/ml/workspace#az-ml-workspace-sync-keys), which might resolve the authorization failure.
 
 Container registries that are behind a virtual network might also encounter this error if they're set up incorrectly. Verify that the virtual network is set up properly.
 
 #### Image build compute not set in a private workspace with virtual network
 
-If the error message mentions `"failed to communicate with the workspace's container registry",` and you're using a virtual network, and the workspace's container registry is private and configured with a private endpoint, you need to [allow Container Registry to build images](how-to-managed-network.md#configure-image-builds) in the virtual network.
+If the error message mentions `"failed to communicate with the workspace's container registry"`, and you're using a virtual network, and the workspace's container registry is private and configured with a private endpoint, you need to [allow Container Registry to build images](how-to-managed-network.md#configure-image-builds) in the virtual network.
 
 #### Image build timing out
 
 Image build timeouts are often due to an image being too large to be able to complete building within the deployment creation timeframe. Check your image build logs at the location that the error specifies. The logs are cut off at the point that the image build timed out.
 
-To resolve this issue, [build your image separately](/azure/devops/pipelines/ecosystems/containers/publish-to-acr?view=azure-devops&tabs=javascript%2Cportal%2Cmsi&preserve-view=true) so the image only needs to be pulled during deployment creation.
-
-Also review the default [probe settings](reference-yaml-deployment-managed-online.md#probesettings) if you have ImageBuild timeouts.
+To resolve this issue, [build your image separately](/azure/devops/pipelines/ecosystems/containers/publish-to-acr?view=azure-devops&tabs=javascript%2Cportal%2Cmsi&preserve-view=true) so the image only needs to be pulled during deployment creation. Also review the default [probe settings](reference-yaml-deployment-managed-online.md#probesettings) if you have ImageBuild timeouts.
 
 #### Generic image build failure
 
@@ -259,11 +259,11 @@ For Kubernetes online endpoints only, the [Kubernetes](#kubernetes-quota) resour
 
 You need to have enough compute quota to deploy a model. The CPU quota defines how many virtual cores are available per subscription, per workspace, per SKU, and per region. Each deployment subtracts from available quota and adds it back after deletion, based on type of the SKU.
 
-You can check if there are unused deployments you can delete, or you can submit a [request for a quota increase](how-to-manage-quotas.md#request-quota-and-limit-increases).
+You can check if there are unused deployments you can delete, or you can [submit a request for a quota increase](how-to-manage-quotas.md#request-quota-and-limit-increases).
 
 #### Cluster quota
 
-The OutOfQuota error occurs when you don't have enough Azure Machine Learning Compute cluster quota. The quota defines the total number of clusters per subscription that you can use at the same time to deploy CPU or GPU nodes in the Azure cloud.
+The OutOfQuota error occurs when you don't have enough Azure Machine Learning compute cluster quota. The quota defines the total number of clusters per subscription that you can use at the same time to deploy CPU or GPU nodes in the Azure cloud.
 
 #### Disk quota
 
@@ -274,7 +274,7 @@ The OutOfQuota error occurs when the memory footprint of the model is larger tha
 
 #### Role assignment quota
 
-When you create a managed online endpoint, role assignment is required for the [managed identity](/azure/active-directory/managed-identities-azure-resources/overview) to access workspace resources. If you hit the [role assignment limit](/azure/azure-resource-manager/management/azure-subscription-service-limits#azure-rbac-limits), try to delete some unused role assignments in this subscription. You can check all role assignments in your Azure subscription by selecting **Access control** in the Azure portal.
+When you create a managed online endpoint, role assignment is required for the [managed identity](/azure/active-directory/managed-identities-azure-resources/overview) to access workspace resources. If you hit the [role assignment limit](/azure/azure-resource-manager/management/azure-subscription-service-limits#azure-rbac-limits), try to delete some unused role assignments in this subscription. You can check all role assignments by selecting **Access control** for your Azure subscription in the Azure portal.
 
 #### Endpoint quota
 
@@ -292,7 +292,7 @@ Try the following mitigations to address this issue:
 - Machine learning engineers who deploy models can try to reduce the resource request of the deployment.
 
   - If you directly define the resource request in the deployment configuration via the resource section, try to reduce the resource request.
-  - If you use `instance type` to define resource for model deployment, contact the IT operator to adjust the instance type resource configuration. For more information, see [How to manage Kubernetes instance types](how-to-manage-kubernetes-instance-types.md).
+  - If you use `instance type` to define resource for model deployment, contact the IT operator to adjust the instance type resource configuration. For more information, see [Create and manage instance types](how-to-manage-kubernetes-instance-types.md).
 
 #### Region-wide VM capacity
 
@@ -300,7 +300,7 @@ Due to a lack of Azure Machine Learning capacity in the region, the service fail
 
 #### Other quota
 
-To run the *score.py* file you provide as part of the deployment, Azure creates a container that includes all the resources that the *score.py* needs, and runs the scoring script on that container. If your container can't start, scoring can't happen. The container might be requesting more resources than the `instance_type` can support. Consider updating the `instance_type` of the online deployment.
+To run the *score.py* file you provide as part of the deployment, Azure creates a container that includes all the resources that the *score.py* needs. Azure Machine Learning then runs the scoring script on that container. If your container can't start, scoring can't happen. The container might be requesting more resources than the `instance_type` can support. Consider updating the `instance_type` of the online deployment.
 
 To get the exact reason for the error, run the following command:
 
@@ -345,7 +345,7 @@ The referenced Azure subscription must be existing and active. This error occurs
 
 #### Authorization error
 
-After you provision the compute resource while creating a deployment, Azure pulls the user container image from the workspace container registry and mounts the user model and code artifacts into the user container from the workspace storage account. Azure uses [managed identities](/azure/active-directory/managed-identities-azure-resources/overview) to access the storage account and the container registry.
+After you provision the compute resource when you create a deployment, Azure pulls the user container image from the workspace container registry and mounts the user model and code artifacts into the user container from the workspace storage account. Azure uses [managed identities](/azure/active-directory/managed-identities-azure-resources/overview) to access the storage account and the container registry.
 
 If you create the associated endpoint with user-assigned identity, the user's managed identity must have **Storage blob data reader** permission on the workspace storage account and **AcrPull** permission on the workspace container registry. Make sure your user-assigned identity has the right permissions.
 
@@ -353,7 +353,7 @@ If you create the associated endpoint with system-assigned identity, Azure role-
 
 #### Invalid template function specification
 
-This error occurs when a template function was specified incorrectly. Either fix the policy or remove the policy assignment to unblock. The error message may include the policy assignment name and the policy definition to help you debug this error. See [Azure policy definition structure](https://aka.ms/policy-avoiding-template-failures) for tips to avoid template failures.
+This error occurs when a template function was specified incorrectly. Either fix the policy or remove the policy assignment to unblock. The error message might include the policy assignment name and the policy definition to help you debug this error. See [Azure policy definition structure](https://aka.ms/policy-avoiding-template-failures) for tips to avoid template failures.
 
 #### Unable to download user container image
 
@@ -369,7 +369,7 @@ az acr repository show-tags -n testacr --repository azureml/azureml_92a029f831ce
 
 The user model might not be found. [Check the container logs](#get-container-logs) to get more details. Make sure you registered the model to the same workspace as the deployment.
 
-On the Azure Machine Learning studio **Models** page, you can select a model name to view its details page. Or you can run the following command to show details for a model in a workspace. You must specify either version or label to get the model information.
+You can select a model name on the Azure Machine Learning studio **Models** page to view its details. Or, you can run the following command to show details for a model in a workspace. You must specify either version or label to get the model information.
 
 # [Azure CLI](#tab/cli)
 
@@ -385,7 +385,7 @@ ml_client.models.get(name="<model-name>", version=<version>)
 
 ---
 
-Also check if the blobs are present in the workspace storage account. For example, if the blob is `https://foobar.blob.core.windows.net/210212154504-1517266419/WebUpload/210212154504-1517266419/GaussianNB.pkl`, you can use the following command to check if it exists:
+Also check if the blobs are present in the workspace storage account. For example, if the blob is `https://foobar.blob.core.windows.net/210212154504-1517266419/WebUpload/210212154504-1517266419/GaussianNB.pkl`, you can use the following command to check if the blob exists:
 
 ```azurecli
 az storage blob exists --account-name foobar --container-name 210212154504-1517266419 --name WebUpload/210212154504-1517266419/GaussianNB.pkl --subscription <sub-name>`
@@ -411,27 +411,28 @@ ml_client.online_deployments.get_logs(
 
 #### MLflow model format with private network is unsupported
 
-This error happens when you try to deploy an MLflow model with a no-code deployment approach along with the [legacy network isolation method for managed online endpoints](concept-secure-online-endpoint.md#secure-outbound-access-with-legacy-network-isolation-method). You can't use the private network feature with an MLflow model format if you're using the legacy network isolation method. If you need to deploy an MLflow model with the no-code deployment approach, try using [workspace managed virtual network](concept-secure-online-endpoint.md#secure-outbound-access-with-workspace-managed-virtual-network).
+You can't use the private network feature with a MLflow model format if you're using the [legacy network isolation method for managed online endpoints](concept-secure-online-endpoint.md#secure-outbound-access-with-legacy-network-isolation-method). If you need to deploy a MLflow model with the no-code deployment approach, try using a [workspace managed virtual network](concept-secure-online-endpoint.md#secure-outbound-access-with-workspace-managed-virtual-network).
 
 #### Resource requests greater than limits
 
-Requests for resources must be less than or equal to limits. If you don't set limits, Azure Machine Learning sets default values when you attach your compute to a workspace. You can check limits in the Azure portal or by using the `az ml compute show` command.
+Requests for resources must be less than or equal to limits. If you don't set limits, Azure Machine Learning sets default values when you attach your compute to a workspace. You can check the limits in the Azure portal or by using the `az ml compute show` command.
 
-#### azureml-fe not ready
-The front-end `azureml-fe` component that routes incoming inference requests to deployed services installs during k8s-extension installation and automatically scales as needed. This component should have at least one healthy replica on the cluster. You get this error if the component isn't available when you trigger a Kubernetes online endpoint or deployment creation or update request.
+#### Azureml-fe not ready
 
-Check the pod status and logs to fix this issue. You can also try to update the k8s-extension installed on the cluster.
+The front-end `azureml-fe` component that routes incoming inference requests to deployed services installs during k8s-extension installation and automatically scales as needed. This component should have at least one healthy replica on the cluster.
+
+You get this error if the component isn't available when you trigger a Kubernetes online endpoint or deployment creation or update request. Check the pod status and logs to fix this issue. You can also try to update the k8s-extension installed on the cluster.
 
 ### ERROR: ResourceNotReady
 
 To run the *score.py* file you provide as part of the deployment, Azure creates a container that includes all the resources that the *score.py* needs, and runs the scoring script on that container. The error in this scenario is that this container crashes when running, so scoring can't happen. This error can occur under one of the following conditions:
 
 - There's an error in *score.py*. Use `get-logs` to diagnose common problems, such as:
-  - A package that *score.py* tries to import isn't included in the conda environment
+  - A package that *score.py* tries to import that isn't included in the conda environment
   - A syntax error
   - A failure in the `init()` method
 
-  If `get-logs` doesn't produce any logs, it usually means that the container has failed to start. To debug this issue, try [deploying locally](#deploy-locally).
+  If `get-logs` doesn't produce any logs, it usually means that the container failed to start. To debug this issue, try [deploying locally](#deploy-locally).
   
 - Readiness or liveness probes aren't set up correctly.
 
@@ -450,7 +451,7 @@ You might get this error when using either managed online endpoint or Kubernetes
 
 #### Resource Manager can't find a resource
 
-This error occurs when Azure Resource Manager can't find a required resource. For example, you can receive this error if a storage account can't be found at the path specified. Double check resources that are specified by path or name for accuracy. For more information, see [Resolve Resource Not Found errors](/azure/azure-resource-manager/troubleshooting/error-not-found).
+This error occurs when Azure Resource Manager can't find a required resource. For example, you can receive this error if a storage account can't be found at the path specified. Double check resources that you specify by path or name for accuracy. For more information, see [Resolve errors for Resource Not Found](/azure/azure-resource-manager/troubleshooting/error-not-found).
 
 #### Container registry authorization error
 
@@ -480,7 +481,7 @@ You might get this error when using either managed online endpoint or Kubernetes
 
 #### Operation canceled by another higher priority operation
 
-Azure operations have a certain priority level and execute from highest to lowest. This error happens when your operation is overridden by another operation that has a higher priority. Retrying the operation might allow it to perform without cancellation.
+Azure operations have a certain priority level and execute from highest to lowest. This error happens when another operation that has a higher priority overrides your operation. Retrying the operation might allow it to perform without cancellation.
 
 #### Operation canceled waiting for lock confirmation
 
@@ -492,7 +493,7 @@ You might have submitted a similar request too soon after the initial request. R
 
 Secret retrieval and injection during online deployment creation uses the identity associated with the online endpoint to retrieve secrets from the workspace connections or key vaults. This error happens for one of the following reasons:
 
-- The endpoint identity doesn't have Azure RBAC permission to read the secrets from the workspace connections or key vaults, even though the secrets were specified by the deployment definition as references mapped to environment variables. Role assignment might take time for changes to take effect.
+- The endpoint identity doesn't have Azure RBAC permission to read the secrets from the workspace connections or key vaults, even though the deployment definition specified the secrets as references mapped to environment variables. Role assignment might take time for changes to take effect.
 
 - The format of the secret references is invalid, or the specified secrets don't exist in the workspace connections or key vaults.
 
@@ -537,9 +538,13 @@ Other errors:
 When you create or update Kubernetes online deployments, you might get this error for one of the following reasons:
 
 - Role assignment isn't completed. Wait for a few seconds and try again.
+
 - The Azure Arc-enabled Kubernetes cluster or AKS Azure Machine Learning extension isn't properly installed or configured. Check the Azure Arc-enabled Kubernetes or Azure Machine Learning extension configuration and status.
+
 - The Kubernetes cluster has improper network configuration. Check the proxy, network policy, or certificate.
+
 - Your private AKS cluster doesn't have the proper endpoints. Make sure to set up private endpoints for Container Registry, the storage account, and the workspace in the AKS virtual network.
+
 - Your Azure Machine Learning extension version is v1.1.25 or lower. Make sure your extension version is greater than v1.1.25.
 
 ### ERROR: TokenRefreshFailed
@@ -548,19 +553,19 @@ This error occurs because the Kubernetes cluster identity isn't set properly, so
 
 ### ERROR: GetAADTokenFailed
 
-This error occurs because the Kubernetes cluster request Entra ID token failed or timed out. Check your network access and then try again.
+This error occurs because the Kubernetes cluster request Microsoft Entra ID token failed or timed out. Check your network access and then try again.
 
-- Follow [Configure required network traffic](how-to-access-azureml-behind-firewall.md#scenario-use-kubernetes-compute) to check the outbound proxy and make sure the cluster can connect to the workspace. You can find the workspace endpoint URL in the online endpoint Custom Resource Definition (CRD) in the cluster.
+- Follow instructions at [Use Kubernetes compute](how-to-access-azureml-behind-firewall.md#scenario-use-kubernetes-compute) to check the outbound proxy and make sure the cluster can connect to the workspace. You can find the workspace endpoint URL in the online endpoint Custom Resource Definition (CRD) in the cluster.
 
-- Check whether the workspace allows public access. Regardless of whether the AKS cluster itself is public or private, if a private workspace disables public network access, the Kubernetes cluster can communicate with that workspace only through a private link. For more information, see [Secure Azure Kubernetes Service inferencing environment](how-to-secure-kubernetes-inferencing-environment.md#what-is-a-secure-aks-inferencing-environment).
+- Check whether the workspace allows public access. Regardless of whether the AKS cluster itself is public or private, if a private workspace disables public network access, the Kubernetes cluster can communicate with that workspace only through a private link. For more information, see [What is a secure AKS inferencing environment](how-to-secure-kubernetes-inferencing-environment.md#what-is-a-secure-aks-inferencing-environment).
 
 ### ERROR: ACRAuthenticationChallengeFailed
 
-This error occurs because the Kubernetes cluster can't reach the workspace Container Registry service to do authentication challenge. Check your network, especially the Container Registry public network access, then try again. You can follow the troubleshooting steps in [GetAADTokenFailed](#error-getaadtokenfailed) to check the network.
+This error occurs because the Kubernetes cluster can't reach the workspace Container Registry service to do an authentication challenge. Check your network, especially Container Registry public network access, then try again. You can follow the troubleshooting steps in [GetAADTokenFailed](#error-getaadtokenfailed) to check the network.
 
 ### ERROR: ACRTokenExchangeFailed
 
-This error occurs because the Entra ID token isn't yet authorized, so the Kubernetes cluster exchange Container Registry token fails. The role assignment takes some time, so wait a minute and then try again.
+This error occurs because the Microsoft Entra ID token isn't yet authorized, so the Kubernetes cluster exchange Container Registry token fails. The role assignment takes some time, so wait a minute and then try again.
 
 This failure might also be due to too many concurrent requests to the Container Registry service. This error should be transient, and you can try again later.
 
@@ -572,7 +577,7 @@ You might get the following error during Kubernetes model deployments:
 {"code":"BadRequest","statusCode":400,"message":"The request is invalid.","details":[{"code":"KubernetesUnaccessible","message":"Kubernetes error: AuthenticationException. Reason: InvalidCertificate"}],...}
 ```
 
-To mitigate this error, you can rotate AKS certificate for the cluster. The new certificate should be updated after 5 hours, so you can wait for 5 hours and redeploy it. For more information, see [Certificate rotation in Azure Kubernetes Service (AKS)](/azure/aks/certificate-rotation).
+To mitigate this error, you can rotate the AKS certificate for the cluster. The new certificate should be updated after 5 hours, so you can wait for 5 hours and redeploy it. For more information, see [Certificate rotation in Azure Kubernetes Service (AKS)](/azure/aks/certificate-rotation).
 
 ### ERROR: ImagePullLoopBackOff
 
@@ -604,15 +609,15 @@ You might get this error when you create or update Kubernetes online deployments
 
 ### ERROR: UserScriptImportError
 
-You might get this error when you create or update Kubernetes online deployments because the *score.py* file you uploaded has imported unavailable packages. Check the deployment logs to see the exception message in detail, and fix the exception.
+You might get this error when you create or update Kubernetes online deployments because the *score.py* file that you uploaded imports unavailable packages. Check the deployment logs to see the exception message in detail, and fix the exception.
 
 ### ERROR: UserScriptFunctionNotFound 
 
-You might get this error when you create or update Kubernetes online deployments because the *score.py* file you uploaded doesn't have a function named `init()` or `run()`. Check your code and add the function.
+You might get this error when you create or update Kubernetes online deployments because the *score.py* file that you uploaded doesn't have a function named `init()` or `run()`. Check your code and add the function.
 
 ### ERROR: EndpointNotFound
 
-You might get this error when you create or update Kubernetes online deployments because the system can't find the endpoint resource for the deployment in the cluster. Create the deployment in an existing endpoint or create this endpoint first in your cluster.
+You might get this error when you create or update Kubernetes online deployments because the system can't find the endpoint resource for the deployment in the cluster. Create the deployment in an existing endpoint or create the endpoint first in your cluster.
 
 ### ERROR: EndpointAlreadyExists
 
@@ -620,7 +625,7 @@ You might get this error when you create a Kubernetes online endpoint because th
 
 ### ERROR: ScoringFeUnhealthy
 
-You might get this error when you create or update a Kubernetes online endpoint or deployment because the [Azureml-fe](how-to-kubernetes-inference-routing-azureml-fe.md) system service running in the cluster isn't found or is unhealthy. To mitigate this issue, reinstall or update the Azure Machine Learning extension in your cluster.
+You might get this error when you create or update a Kubernetes online endpoint or deployment because the [azureml-fe](how-to-kubernetes-inference-routing-azureml-fe.md) system service that runs in the cluster isn't found or is unhealthy. To mitigate this issue, reinstall or update the Azure Machine Learning extension in your cluster.
 
 ### ERROR: ValidateScoringFailed
 
@@ -654,7 +659,7 @@ You might get this error when you create or update Kubernetes online endpoints o
 
 To troubleshoot errors by reattaching, make sure to reattach with the same configuration as the detached compute, such as compute name and namespace, to avoid other errors. If it still isn't working, ask an administrator who can access the cluster to use `kubectl get po -n azureml` to check whether the relay server pods are running.
 
-## Common model consumption errors
+## Common model consumption issues
 
 Common model consumption errors resulting from the endpoint `invoke` operation status include [bandwidth limit issues](#bandwidth-limit-issues), [HTTP status codes](#http-status-codes), and [blocked by CORS policy](#blocked-by-cors-policy).
 
@@ -696,20 +701,18 @@ The following table contains common error codes when REST requests consume Kuber
 | 409         | Conflict error     | When an operation is already in progress, any new operation on that same online endpoint responds with a 409 conflict error. For example, if a create or update online endpoint operation is in progress, triggering a new delete operation throws an error.     |
 | 502         | Exception or crash in the `run()` method of the *score.py* file | When there's an error in *score.py*, for example an imported package that doesn't exist in the conda environment, a syntax error, or a failure in the `init()` method, see [ERROR: ResourceNotReady](#error-resourcenotready) to debug the file.|
 | 503         | Large spikes in requests per second | The autoscaler is designed to handle gradual changes in load. If you receive large spikes in requests per second, clients might receive HTTP status code 503. Even though the autoscaler reacts quickly, it takes AKS a significant amount of time to create more containers. See [How to prevent 503 status codes](#how-to-prevent-503-status-codes).|
-| 504         | Request times out | A 504 status code indicates that the request has timed out. The default timeout setting is 5 seconds. You can increase the timeout or try to speed up the endpoint by modifying *score.py* to remove unnecessary calls. If these actions don't correct the problem, the code might be in a nonresponsive state or an infinite loop. Follow [ERROR: ResourceNotReady](#error-resourcenotready) to debug the *score.py* file.  |
+| 504         | Request times out | A 504 status code indicates that the request timed out. The default timeout setting is 5 seconds. You can increase the timeout or try to speed up the endpoint by modifying *score.py* to remove unnecessary calls. If these actions don't correct the problem, the code might be in a nonresponsive state or an infinite loop. Follow [ERROR: ResourceNotReady](#error-resourcenotready) to debug the *score.py* file.  |
 | 500         | Internal server error  | Azure Machine Learning-provisioned infrastructure is failing.|
 
 #### How to prevent 503 status codes
-Kubernetes online deployments support autoscaling, which allows replicas to be added to support extra load, more information you can find in [Azure Machine Learning inference router](how-to-kubernetes-inference-routing-azureml-fe.md). Decisions to scale up/down is based off of utilization of the current container replicas.
+
+Kubernetes online deployments support autoscaling, which allows replicas to be added to support extra load. For more information, see [Azure Machine Learning inference router](how-to-kubernetes-inference-routing-azureml-fe.md). The decision to scale up or down is based on utilization of the current container replicas.
 
 Two actions can help prevent 503 status codes: Changing the utilization level for creating new replicas, or changing the minimum number of replicas. You can use these approaches individually or in combination.
 
-- Change the utilization target at which autoscaling creates new replicas by setting the `autoscale_target_utilization` to a lower value.
+- Change the utilization target at which autoscaling creates new replicas by setting the `autoscale_target_utilization` to a lower value. This change doesn't cause replicas to be created faster, but at a lower utilization threshold. For example, changing the value to 30% causes replicas to be created when 30% utilization occurs instead of waiting until the service is 70% utilized.
 
-  This change doesn't cause replicas to be created faster, but they are created at a lower utilization threshold. For example, changing the value to 30% causes replicas to be created when 30% utilization occurs instead of waiting until the service is 70% utilized.
-    
-
-- Change the minimum number of replicas. Increasing the minimum replicas provides a larger pool to handle the incoming spikes.
+- Changing the minimum number of replicas provides a larger pool to handle the incoming spikes.
 
 #### How to calculate instance count
 
@@ -739,16 +742,28 @@ If the Kubernetes online endpoint is already using the current max replicas and 
 
 ### Blocked by CORS policy
 
-V2 online endpoints don't support [Cross-Origin Resource Sharing (CORS)](https://developer.mozilla.org/docs/Web/HTTP/CORS) natively. If your web application tries to invoke the endpoint without proper handling of the CORS preflight requests, you can see the following error message: 
+V2 online endpoints don't support [Cross-Origin Resource Sharing (CORS)](https://developer.mozilla.org/docs/Web/HTTP/CORS) natively. If your web application tries to invoke the endpoint without proper handling of the CORS preflight requests, you can get the following error message: 
 
 ```output
 Access to fetch at 'https://{your-endpoint-name}.{your-region}.inference.ml.azure.com/score' from origin http://{your-url} has been blocked by CORS policy: Response to preflight request doesn't pass access control check. No 'Access-control-allow-origin' header is present on the request resource. If an opaque response serves your needs, set the request's mode to 'no-cors' to fetch the resource with the CORS disabled.
 ```
 You can use Azure Functions, Azure Application Gateway, or another service as an interim layer to handle CORS preflight requests.
 
+## Common network isolation issues
+
+This section provides information about common network isolation issues.
+
+[!INCLUDE [network isolation issues](includes/machine-learning-online-endpoint-troubleshooting.md)]
+
+## Inference server issues
+
+This section provides basic troubleshooting tips for the [Azure Machine Learning inference HTTP server](how-to-inference-server-http.md).
+
+[!INCLUDE [inference server TSGs](includes/machine-learning-inference-server-troubleshooting.md)]
+
 ## Other common issues
 
-Other online endpoint issues can be related to conda installation, autoscaling, network isolation, or the inference HTTP server.
+Other online endpoint issues are related to conda installation and autoscaling.
 
 ### Conda installation issues
 
@@ -766,18 +781,9 @@ To debug conda installation problems, try the following steps:
 
 ### Autoscaling issues
 
-If you have trouble with autoscaling, see [Troubleshoot Azure autoscale](/azure/azure-monitor/autoscale/autoscale-troubleshoot).
+If you have trouble with autoscaling, see [Troubleshoot Azure Monitor autoscale](/azure/azure-monitor/autoscale/autoscale-troubleshoot).
 
-For Kubernetes online endpoint, the Azure Machine Learning inference router is a front-end component that handle autoscaling for all model deployments on the Kubernetes cluster. For more information, see [Autoscale Kubernetes inference routing](how-to-kubernetes-inference-routing-azureml-fe.md#autoscaling).
-
-### Network isolation issues
-
-[!INCLUDE [network isolation issues](includes/machine-learning-online-endpoint-troubleshooting.md)]
-
-### Inference server issues
-This section provides basic troubleshooting tips for [Azure Machine Learning inference HTTP server](how-to-inference-server-http.md). 
-
-[!INCLUDE [inference server TSGs](includes/machine-learning-inference-server-troubleshooting.md)]
+For Kubernetes online endpoints, the Azure Machine Learning inference router is a front-end component that handles autoscaling for all model deployments on the Kubernetes cluster. For more information, see [Autoscale Kubernetes inference routing](how-to-kubernetes-inference-routing-azureml-fe.md#autoscaling).
 
 ## Related content
 

@@ -71,7 +71,7 @@ Managed online endpoints can help streamline your deployment process and provide
 
   :::image type="content" source="media/concept-endpoints/log-analytics-and-azure-monitor.png" alt-text="Screenshot showing Azure Monitor graph of endpoint latency." lightbox="media/concept-endpoints/log-analytics-and-azure-monitor.png":::
 
-- Cost view [monitors cost at the endpoint and deployment level](how-to-view-online-endpoints-costs.md).
+- [Cost view monitors costs at the endpoint and deployment level](how-to-view-online-endpoints-costs.md).
   
   :::image type="content" source="media/concept-endpoints/endpoint-deployment-costs.png" alt-text="Screenshot cost chart of an endpoint and deployment." lightbox="media/concept-endpoints/endpoint-deployment-costs.png":::
 
@@ -175,7 +175,7 @@ The following table highlights key aspects of the online deployment options:
 
 ## Online endpoint debugging
 
-If possible, test-run your endpoint locally to validate and debug your code and configuration before you deploy to Azure. Azure CLI and Python SDK support local endpoints and deployments, but Azure Machine Learning studio and ARM templates don't support local endpoints or deployments.
+If possible, test-run your endpoint locally to validate and debug your code and configuration before you deploy to Azure. Azure CLI and Python SDK support local endpoints and deployments, while Azure Machine Learning studio and ARM templates don't support local endpoints or deployments.
 
 Azure Machine Learning provides the following ways to debug online endpoints locally and by using container logs:
 
@@ -186,7 +186,7 @@ Azure Machine Learning provides the following ways to debug online endpoints loc
 
 ### Local debugging with Azure Machine Learning inference HTTP server
 
-You can debug your scoring script locally by using the Azure Machine Learning inference HTTP server. The HTTP server is a Python package that exposes your scoring function as an HTTP endpoint and wraps the Flask server code and dependencies into a single package.
+You can debug your scoring script locally by using the [Azure Machine Learning inference HTTP server](how-to-inference-server-http.md). The HTTP server is a Python package that exposes your scoring function as an HTTP endpoint and wraps the Flask server code and dependencies into a single package.
 
 Azure Machine Learning includes an HTTP server in the [prebuilt Docker images for inference](concept-prebuilt-docker-images-inference.md) used to deploy a model. By using the package alone, you can deploy the model locally for production, and you can also easily validate your entry scoring script in a local development environment. If there's a problem with the scoring script, the server returns an error and the location where the error occurred. You can also use Visual Studio Code to debug with the Azure Machine Learning inference HTTP server.
 
