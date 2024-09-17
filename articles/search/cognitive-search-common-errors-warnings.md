@@ -19,7 +19,7 @@ This article provides information and solutions to common errors and warnings yo
 
 Indexing stops when the error count exceeds ['maxFailedItems'](cognitive-search-concept-troubleshooting.md#tip-2-see-what-works-even-if-there-are-some-failures). 
 
-If you want indexers to ignore these errors (and skip over "failed documents"), consider updating the `maxFailedItems` and `maxFailedItemsPerBatch` as described [here](/rest/api/searchservice/create-indexer#general-parameters-for-all-indexers).
+If you want indexers to ignore these errors (and skip over "failed documents"), consider updating the `maxFailedItems` and `maxFailedItemsPerBatch` as described [here](/rest/api/searchservice/indexers/create#indexingparameters).
 
 > [!NOTE]
 > Each failed document along with its document key (when available) will show up as an error in the indexer execution status. You can utilize the [index api](/rest/api/searchservice/addupdate-or-delete-documents) to manually upload the documents at a later point if you have set the indexer to tolerate failures.
@@ -189,7 +189,7 @@ The document was read and processed, but the indexer couldn't add it to the sear
 | Trouble connecting to the target index (that persists after retries) because the service is under other load, such as querying or indexing. | Failed to establish connection to update index. Search service is under heavy load. | [Scale up your search service](search-capacity-planning.md)
 | Search service is being patched for service update, or is in the middle of a topology reconfiguration. | Failed to establish connection to update index. Search service is currently down/Search service is undergoing a transition. | Configure service with at least three replicas for 99.9% availability per [SLA documentation](https://azure.microsoft.com/support/legal/sla/search/v1_0/)
 | Failure in the underlying compute/networking resource (rare) | Failed to establish connection to update index. An unknown failure occurred. | Configure indexers to [run on a schedule](search-howto-schedule-indexers.md) to pick up from a failed state.
-| An indexing request made to the target index wasn't acknowledged within a timeout period due to network issues. | Could not establish connection to the search index in a timely manner. | Configure indexers to [run on a schedule](search-howto-schedule-indexers.md) to pick up from a failed state. Additionally, try lowering the indexer [batch size](/rest/api/searchservice/create-indexer#parameters) if this error condition persists.
+| An indexing request made to the target index wasn't acknowledged within a timeout period due to network issues. | Could not establish connection to the search index in a timely manner. | Configure indexers to [run on a schedule](search-howto-schedule-indexers.md) to pick up from a failed state. Additionally, try lowering the indexer [batch size](/rest/api/searchservice/indexers/create#indexingparameters) if this error condition persists.
 
 <a name="could-not-index-document-because-the-indexer-data-to-index-was-invalid"></a>
 
@@ -390,7 +390,7 @@ Output field mappings that reference non-existent/null data will produce warning
 <a name="document-text-appears-to-be-utf-16-encoded-but-is-missing-a-byte-order-mark"></a>
 
 ## `Warning: Document text appears to be UTF-16 encoded, but is missing a byte order mark`
-The [indexer parsing modes](/rest/api/searchservice/create-indexer#blob-configuration-parameters) need to know how text is encoded before parsing it. The two most common ways of encoding text are UTF-16 and UTF-8. UTF-8 is a variable-length encoding where each character is between 1 byte and 4 bytes long. UTF-16 is a fixed-length encoding where each character is 2 bytes long. UTF-16 has two different variants, `big endian` and `little endian`. Text encoding is determined by a `byte order mark`, a series of bytes before the text.
+The [indexer parsing modes](/rest/api/searchservice/indexers/create#blobindexerparsingmode) need to know how text is encoded before parsing it. The two most common ways of encoding text are UTF-16 and UTF-8. UTF-8 is a variable-length encoding where each character is between 1 byte and 4 bytes long. UTF-16 is a fixed-length encoding where each character is 2 bytes long. UTF-16 has two different variants, `big endian` and `little endian`. Text encoding is determined by a `byte order mark`, a series of bytes before the text.
 
 | Encoding | Byte Order Mark |
 | --- | --- |

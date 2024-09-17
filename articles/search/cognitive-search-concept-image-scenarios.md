@@ -62,7 +62,7 @@ After the source files are set up, enable image normalization by setting the `im
 
 Metadata adjustments are captured in a complex type created for each image. You can't opt out of the image normalization requirement. Skills that iterate over images, such as OCR and image analysis, expect normalized images.
 
-1. [Create or Update an indexer](/rest/api/searchservice/create-indexer) to set the configuration properties:
+1. [Create or Update an indexer](/rest/api/searchservice/indexers/create) to set the configuration properties:
 
     ```json
     {
@@ -636,7 +636,7 @@ def base64EncodeImage(image):
 
 ## See also
 
-+ [Create indexer (REST)](/rest/api/searchservice/create-indexer)
++ [Create indexer (REST)](/rest/api/searchservice/indexers/create)
 + [Image Analysis skill](cognitive-search-skill-image-analysis.md)
 + [OCR skill](cognitive-search-skill-ocr.md)
 + [Text merge skill](cognitive-search-skill-textmerger.md)

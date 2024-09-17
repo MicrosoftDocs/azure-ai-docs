@@ -352,7 +352,7 @@ This step shows you how to configure the indexer to run in the private environme
 
 1. Create the data source definition, index, and skillset (if you're using one) as you would normally. There are no properties in any of these definitions that vary when using a shared private endpoint.
 
-1. [Create an indexer](/rest/api/searchservice/create-indexer) that points to the data source, index, and skillset that you created in the preceding step. In addition, force the indexer to run in the private execution environment by setting the indexer `executionEnvironment` configuration property to `private`.
+1. [Create an indexer](/rest/api/searchservice/indexers/create) that points to the data source, index, and skillset that you created in the preceding step. In addition, force the indexer to run in the private execution environment by setting the indexer `executionEnvironment` configuration property to `private`.
 
     ```json
     {
@@ -371,7 +371,7 @@ This step shows you how to configure the indexer to run in the private environme
 After the indexer is created successfully, it should connect to the Azure resource over the private endpoint connection. You can monitor the status of the indexer by using the [Indexer Status API](/rest/api/searchservice/get-indexer-status).
 
 > [!NOTE]
-> If you already have existing indexers, you can update them via the [PUT API](/rest/api/searchservice/create-indexer) by setting the `executionEnvironment` to `private` or using the JSON editor in the portal.
+> If you already have existing indexers, you can update them via the [PUT API](/rest/api/searchservice/indexers/create) by setting the `executionEnvironment` to `private` or using the JSON editor in the portal.
 
 ## 5 - Test the shared private link
 
