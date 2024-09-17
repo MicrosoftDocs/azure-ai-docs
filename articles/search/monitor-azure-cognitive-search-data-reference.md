@@ -194,7 +194,7 @@ The following operations can appear in a resource log.
 | Indexers.* | Applies to an indexer. Can be Create, Delete, Get, List, and Status. |
 | Indexes.* | Applies to a search index. Can be Create, Delete, Get, List.  |
 | indexes.Prototype | This index is created by the Import Data wizard. |
-| Indexing.Index  | This operation is a call to [Add, Update or Delete Documents](/rest/api/searchservice/addupdate-or-delete-documents). |
+| Indexing.Index  | This operation is a call to [Index Documents](/rest/api/searchservice/documents). |
 | Metadata.GetMetadata | A request for search service system data.  |
 | Query.Autocomplete | An autocomplete query against an index. See [Query types and composition](search-query-overview.md). |
 | Query.Lookup |  A lookup query against an index. See [Query types and composition](search-query-overview.md). |
