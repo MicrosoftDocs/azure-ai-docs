@@ -113,7 +113,7 @@ A valid API key establishes trust, on a per request basis, between the applicati
 
 ## Create a data source
 
-[Create Data Source](/rest/api/searchservice/create-data-source) creates a data source connection on Azure AI Search.
+[Create Data Source](/rest/api/searchservice/data-sources/create) creates a data source connection on Azure AI Search.
 
 1. Paste in the following example to create the data source.
 

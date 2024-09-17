@@ -1,3 +1,4 @@
+items:
 - name: Azure Machine Learning Documentation
   href: index.yml
 - name: Overview
@@ -5,6 +6,8 @@
     - name: What is Azure Machine Learning?
       displayName: AML, services, overview, introduction
       href: overview-what-is-azure-machine-learning.md
+    - name: "AI Studio or AML: Which should I choose?"
+      href: /ai/ai-studio-experiences-overview?toc=/azure/machine-learning/toc.json&bc=/azure/machine-learning/breadcrumb/toc.json
     - name: Azure Machine Learning CLI and Python SDK
       href: concept-v2.md
     # v1
@@ -1807,8 +1810,8 @@
       href: https://stackoverflow.com/questions/tagged/azure-machine-learning-service
     - name: Compare our ML products
       href: /azure/architecture/data-guide/technology-choices/data-science-and-machine-learning?toc=/azure/machine-learning/toc.json&bc=/azure/machine-learning/breadcrumb/toc.json
-      displayName: accessibility, designer, visual interface, screen reader, keyboard shortcuts
     - name: Designer accessibility features
+      displayName: accessibility, designer, visual interface, screen reader, keyboard shortcuts
       href: designer-accessibility.md
     # v1
     - name: Python SDK (v1) release notes

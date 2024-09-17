@@ -365,7 +365,7 @@ You can explore the populated search index after the program has run programmati
 
 ### Programatically
 
-There are two main options for checking the number of documents in an index: the [Count Documents API](/rest/api/searchservice/count-documents) and the [Get Index Statistics API](/rest/api/searchservice/get-index-statistics). Both paths require time to process so don't be alarmed if the number of documents returned is initially lower than you expect.
+There are two main options for checking the number of documents in an index: the [Count Documents API](/rest/api/searchservice/documents/count) and the [Get Index Statistics API](/rest/api/searchservice/get-index-statistics). Both paths require time to process so don't be alarmed if the number of documents returned is initially lower than you expect.
 
 #### Count Documents
 

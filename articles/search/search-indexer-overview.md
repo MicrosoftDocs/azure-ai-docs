@@ -127,7 +127,7 @@ You can create a data source using any of these approaches:
 
 + Using the Azure portal, on the **Data sources** tab of your search service pages, select **Add data source** to specify the data source definition.
 + Using the Azure portal, the [Import data wizard](search-import-data-portal.md) outputs a data source.
-+ Using the REST APIs, call [Create Data Source](/rest/api/searchservice/create-data-source).
++ Using the REST APIs, call [Create Data Source](/rest/api/searchservice/data-sources/create).
 + Using the Azure SDK for .NET, call [SearchIndexerDataSourceConnection class](/dotnet/api/azure.search.documents.indexes.models.searchindexerdatasourceconnection)
 
 ### Step 2: Create an index

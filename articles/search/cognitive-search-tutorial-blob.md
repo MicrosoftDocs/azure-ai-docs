@@ -97,7 +97,7 @@ AI enrichment is indexer-driven. This part of the walkthrough creates four objec
 
 ### Step 1: Create a data source
 
-Call [Create Data Source](/rest/api/searchservice/create-data-source) to set the connection string to the Blob container containing the sample data files.
+Call [Create Data Source](/rest/api/searchservice/data-sources/create) to set the connection string to the Blob container containing the sample data files.
 
 ```http
 ### Create a data source
