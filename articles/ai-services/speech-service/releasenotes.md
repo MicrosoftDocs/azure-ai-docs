@@ -17,7 +17,7 @@ Azure AI Speech is updated on an ongoing basis. To stay up-to-date with recent d
 
 ## Recent highlights
 
-* Fast transcription now supports Diarization to recognize and separate multiple speakers on mono channel audio file. For more information, see [fast transcription API guide](fast-transcription-create.md#use-the-fast-transcription-api).
+* Fast transcription is now available in public preview. Fast transcription allows you to transcribe audio file to text accurately and synchronously, and supports diarization to recognize and separate multiple speakers on mono channel audio. It can transcribe a 30-minutes audio in less than 1 minute. For more information, see the [fast transcription API guide](fast-transcription-create.md).
 * Video translation is now available in the Azure AI Speech service. For more information, see [What is video translation?](./video-translation-overview.md).
 * Personal voice is now generally available. For more information, see [What is personal voice?](./personal-voice-overview.md).
 * The Azure AI Speech service supports OpenAI text to speech voices. For more information, see [What are OpenAI text to speech voices?](./openai-voices.md). 

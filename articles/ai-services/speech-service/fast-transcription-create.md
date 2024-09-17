@@ -7,7 +7,7 @@ author: eric-urban
 ms.author: eur
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 7/12/2024
+ms.date: 9/17/2024
 # Customer intent: As a user who implements audio transcription, I want create transcriptions as quickly as possible.
 ---
 
@@ -40,7 +40,7 @@ Construct the request body according to the following instructions:
 - Set the required `locales` property. This value should match the expected locale of the audio data to transcribe. The supported locales are: en-US, es-ES, es-MX, fr-FR, hi-IN, it-IT, ja-JP, ko-KR, pt-BR, and zh-CN. You can only specify one locale per transcription request.
 - Optionally, set the `profanityFilterMode` property to specify how to handle profanity in recognition results. Accepted values are `None` to disable profanity filtering, `Masked` to replace profanity with asterisks, `Removed` to remove all profanity from the result, or `Tags` to add profanity tags. The default value is `Masked`. The `profanityFilterMode` property works the same way as via the [batch transcription API](./batch-transcription.md).
 - Optionally, set the `channels` property to specify the zero-based indices of the channels to be transcribed separately. If not specified, multiple channels are merged and transcribed jointly. Only up to two channels are supported. If you want to transcribe the channels from a stereo audio file separately, you need to specify `[0,1]` here. Otherwise, stereo audio will be merged to mono, mono audio will be left as is, and only a single channel will be transcribed. In either of the latter cases, the output has no channel indices for the transcribed text, since only a single audio stream is transcribed.
-- Optionally, set the `diarizationSettings` to recognize and separate multiple speakers on mono channel audio file. You need to specify the minimum and maximum number of people who might be speaking in the audio file (for example, specify `"diarizationSettings": {"minSpeakers": 1, "maxSpeakers": 4}`). Then the transcription file will contain a `speaker` entry for each transcribed phrase. The feature isn't available with stereo audio when you set the `channels` property as `[0,1]`.
+- Optionally, set the `diarizationSettings` property to recognize and separate multiple speakers on mono channel audio file. You need to specify the minimum and maximum number of people who might be speaking in the audio file (for example, specify `"diarizationSettings": {"minSpeakers": 1, "maxSpeakers": 4}`). Then the transcription file will contain a `speaker` entry for each transcribed phrase. The feature isn't available with stereo audio when you set the `channels` property as `[0,1]`.
 
 Make a multipart/form-data POST request to the `transcriptions` endpoint with the audio file and the request body properties. The following example shows how to create a transcription using the fast transcription API.
 

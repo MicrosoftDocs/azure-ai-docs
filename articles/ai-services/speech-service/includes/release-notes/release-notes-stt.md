@@ -9,7 +9,7 @@ ms.author: eur
 ### September 2024 release
 
 #### Fast transcription (Preview)
-Fast transcription now supports Diarization to recognize and separate multiple speakers on mono channel audio file. For more information, see [fast transcription API guide](../../fast-transcription-create.md#use-the-fast-transcription-api).
+Fast transcription now supports diarization to recognize and separate multiple speakers on mono channel audio file. For more information, see [fast transcription API guide](../../fast-transcription-create.md#use-the-fast-transcription-api).
 
 ### August 2024 release
 
