@@ -169,7 +169,7 @@ For a query that targets the "description" and "title" fields, a response that i
 
 You can consume these data points in [custom scoring solutions](https://github.com/Azure-Samples/search-ranking-tutorial) or use the information to debug search relevance problems.
 
-The featuresMode parameter isn't documeted in the REST APIs, but you can use it on a preview REST API call to Search Documents.
+The featuresMode parameter isn't documented in the REST APIs, but you can use it on a preview REST API call to Search Documents.
 
 ## Number of ranked results in a full text query response
 
