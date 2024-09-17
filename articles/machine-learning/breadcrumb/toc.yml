@@ -82,6 +82,10 @@ items:
     tocHref: /security/benchmark/
     topicHref: /azure/machine-learning/index
     items:
-    - name: Security benchmarks
-      tocHref: /security/benchmark/azure/
-      topicHref: /security/benchmark/azure/index
+    - name: Service
+      tocHref: /security/benchmark/azure/baselines/
+      topicHref: /azure/machine-learning/index
+      items:
+      - name: Security benchmarks
+        tocHref: /security/benchmark/azure/
+        topicHref: /security/benchmark/azure/index
