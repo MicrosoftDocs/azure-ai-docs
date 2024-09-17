@@ -79,7 +79,7 @@ Normalizers can only be specified when you add a new field to the index, so if p
 > [!NOTE]
 > To change the normalizer of an existing field, [rebuild the index](search-howto-reindex.md) entirely (you cannot rebuild individual fields).
 
-A good workaround for production indexes, where rebuilding indexes is costly, is to create a new field identical to the old one but with the new normalizer, and use it in place of the old one. Use [Update Index](/rest/api/searchservice/update-index) to incorporate the new field and [mergeOrUpload](/rest/api/searchservice/addupdate-or-delete-documents) to populate it. Later, as part of planned index servicing, you can clean up the index to remove obsolete fields.
+A good workaround for production indexes, where rebuilding indexes is costly, is to create a new field identical to the old one but with the new normalizer, and use it in place of the old one. Use [Update Index](/rest/api/searchservice/update-index) to incorporate the new field and [mergeOrUpload](/rest/api/searchservice/documents) to populate it. Later, as part of planned index servicing, you can clean up the index to remove obsolete fields.
 
 ## Predefined and custom normalizers 
 

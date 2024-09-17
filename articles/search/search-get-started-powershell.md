@@ -170,7 +170,7 @@ This index is named `hotels-quickstart` and has the field definitions you see in
 
 ## Load documents
 
-To push documents, use an HTTP POST request to your index's URL endpoint. The REST API for this task is [Add, Update, or Delete Documents](/rest/api/searchservice/addupdate-or-delete-documents).
+To push documents, use an HTTP POST request to your index's URL endpoint. The REST API for this task is [Index Documents](/rest/api/searchservice/documents).
 
 1. Paste this example into PowerShell to create a `$body` object that contains the documents you want to upload.
 

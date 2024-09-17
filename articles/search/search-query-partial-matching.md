@@ -231,7 +231,7 @@ The previous sections explained the logic. This section steps through each API y
 
 + [Create Index](/rest/api/searchservice/create-index) creates the index structure on your search service, including analyzer definitions and fields with an analyzer specification.
 
-+ [Load Documents](/rest/api/searchservice/addupdate-or-delete-documents) imports documents having the same structure as your index, as well as searchable content. After this step, your index is ready to query or test.
++ [Load Documents](/rest/api/searchservice/documents) imports documents having the same structure as your index, as well as searchable content. After this step, your index is ready to query or test.
 
 + [Test Analyzer](/rest/api/searchservice/test-analyzer) was introduced in [Set an analyzer](#set-an-analyzer). Test some of the strings in your index using various analyzers to understand how terms are tokenized.
 
