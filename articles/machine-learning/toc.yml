@@ -1195,7 +1195,7 @@ items:
         - name: Secured workspace traffic flow
           href: concept-secure-network-traffic-flow.md
         - name: Security baseline
-          href: /security/benchmark/azure/baselines/machine-learning-security-baseline?context=/azure/machine-learning/context/ml-context
+          href: /security/benchmark/azure/baselines/machine-learning-security-baseline?toc=/azure/machine-learning/toc.json&bc=/azure/machine-learning/breadcrumb/toc.json
         - name: Security controls by Azure Policy
           href: ./security-controls-policy.md
         - name: Data encryption
