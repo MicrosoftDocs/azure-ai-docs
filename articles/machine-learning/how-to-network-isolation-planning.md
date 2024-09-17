@@ -50,7 +50,7 @@ This architecture balances your network security and your ML engineers' producti
 
 :::image type="content" source="media/how-to-network-isolation-planning/recommended-network-diagram.png" alt-text="Diagram of the recommended network architecture.":::
 
-You can automate this environments creation using [a template](tutorial-create-secure-workspace-template.md) without managed online endpoint or AKS. Managed online endpoint is the solution if you don't have an existing AKS cluster for your AI model scoring. See [how to secure online endpoint](how-to-secure-online-endpoint.md) documentation for more info. AKS with Azure Machine Learning extension is the solution if you have an existing AKS cluster for your AI model scoring. See [how to attach kubernetes](how-to-attach-kubernetes-anywhere.md) documentation for more info.
+You can automate this environments creation using a [Bicep template](/samples/azure/azure-quickstart-templates/machine-learning-end-to-end-secure/) or [Terraform template](https://github.com/Azure/terraform/tree/master/quickstart/201-machine-learning-moderately-secure). without managed online endpoint or AKS. Managed online endpoint is the solution if you don't have an existing AKS cluster for your AI model scoring. See [how to secure online endpoint](how-to-secure-online-endpoint.md) documentation for more info. AKS with Azure Machine Learning extension is the solution if you have an existing AKS cluster for your AI model scoring. See [how to attach kubernetes](how-to-attach-kubernetes-anywhere.md) documentation for more info.
 
 ### Removing firewall requirement
 

@@ -86,14 +86,14 @@ Field paths are used in many parameters of the [Azure AI Search REST APIs](/rest
 | [Create](/rest/api/searchservice/create-index) or [Update](/rest/api/searchservice/update-index) Index | `suggesters/sourceFields` | None |
 | [Create](/rest/api/searchservice/create-index) or [Update](/rest/api/searchservice/update-index) Index | `scoringProfiles/text/weights` | Can only refer to **searchable** fields |
 | [Create](/rest/api/searchservice/create-index) or [Update](/rest/api/searchservice/update-index) Index | `scoringProfiles/functions/fieldName` | Can only refer to **filterable** fields |
-| [Search](/rest/api/searchservice/search-documents) | `search` when `queryType` is `full` | Can only refer to **searchable** fields |
-| [Search](/rest/api/searchservice/search-documents) | `facet` | Can only refer to **facetable** fields |
-| [Search](/rest/api/searchservice/search-documents) | `highlight` | Can only refer to **searchable** fields |
-| [Search](/rest/api/searchservice/search-documents) | `searchFields` | Can only refer to **searchable** fields |
-| [Suggest](/rest/api/searchservice/suggestions) and [Autocomplete](/rest/api/searchservice/autocomplete) | `searchFields` | Can only refer to fields that are part of a [suggester](index-add-suggesters.md) |
-| [Search](/rest/api/searchservice/search-documents), [Suggest](/rest/api/searchservice/suggestions), and [Autocomplete](/rest/api/searchservice/autocomplete) | `$filter` | Can only refer to **filterable** fields |
-| [Search](/rest/api/searchservice/search-documents) and [Suggest](/rest/api/searchservice/suggestions) | `$orderby` | Can only refer to **sortable** fields |
-| [Search](/rest/api/searchservice/search-documents), [Suggest](/rest/api/searchservice/suggestions), and [Lookup](/rest/api/searchservice/lookup-document) | `$select` | Can only refer to **retrievable** fields |
+| [Search](/rest/api/searchservice/documents/search-post) | `search` when `queryType` is `full` | Can only refer to **searchable** fields |
+| [Search](/rest/api/searchservice/documents/search-post) | `facet` | Can only refer to **facetable** fields |
+| [Search](/rest/api/searchservice/documents/search-post) | `highlight` | Can only refer to **searchable** fields |
+| [Search](/rest/api/searchservice/documents/search-post) | `searchFields` | Can only refer to **searchable** fields |
+| [Suggest](/rest/api/searchservice/suggestions) and [Autocomplete](/rest/api/searchservice/documents/autocomplete-post) | `searchFields` | Can only refer to fields that are part of a [suggester](index-add-suggesters.md) |
+| [Search](/rest/api/searchservice/documents/search-post), [Suggest](/rest/api/searchservice/suggestions), and [Autocomplete](/rest/api/searchservice/documents/autocomplete-post) | `$filter` | Can only refer to **filterable** fields |
+| [Search](/rest/api/searchservice/documents/search-post) and [Suggest](/rest/api/searchservice/suggestions) | `$orderby` | Can only refer to **sortable** fields |
+| [Search](/rest/api/searchservice/documents/search-post), [Suggest](/rest/api/searchservice/suggestions), and [Lookup](/rest/api/searchservice/documents/get) | `$select` | Can only refer to **retrievable** fields |
 
 ## Constants
 

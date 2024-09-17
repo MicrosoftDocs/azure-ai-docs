@@ -23,8 +23,8 @@ This article is to help you understand the support lifecycle for the Azure OpenA
 
 Azure OpenAI API latest release:
 
-- Inference: [2024-07-01-preview](https://github.com/Azure/azure-rest-api-specs/blob/main/specification/cognitiveservices/data-plane/AzureOpenAI/inference/preview/2024-07-01-preview/inference.json)
-- Authoring: [2024-07-01-preview](https://github.com/Azure/azure-rest-api-specs/blob/main/specification/cognitiveservices/data-plane/AzureOpenAI/authoring/preview/2024-07-01-preview/azureopenai.json)
+- Inference: [2024-08-01-preview](https://github.com/Azure/azure-rest-api-specs/blob/main/specification/cognitiveservices/data-plane/AzureOpenAI/inference/preview/2024-08-01-preview/inference.json)
+- Authoring: [2024-08-01-preview](https://github.com/Azure/azure-rest-api-specs/blob/main/specification/cognitiveservices/data-plane/AzureOpenAI/authoring/preview/2024-08-01-preview/azureopenai.json)
 
 This version contains support for the latest Azure OpenAI features including:
 
@@ -37,6 +37,17 @@ This version contains support for the latest Azure OpenAI features including:
 - [Whisper](./whisper-quickstart.md). [**Added in 2023-09-01-preview**]
 - [Function calling](./how-to/function-calling.md)  [**Added in 2023-07-01-preview**]
 - [Retrieval augmented generation with your data feature](./use-your-data-quickstart.md).  [**Added in 2023-06-01-preview**]
+
+## Changes between 2024-07-01-preview and 2024-08-01-preview API specification
+
+- [Structured outputs support](./how-to/structured-outputs.md).
+- Large file upload API added.
+- On your data changes:
+    * [Mongo DB integration](./reference-preview.md#example-7).
+    * `role_information` parameter removed.
+    *  [`rerank_score`](https://github.com/Azure/azure-rest-api-specs/blob/2b700e5e84d4a95880d373e6a4bce5d16882e4b5/specification/cognitiveservices/data-plane/AzureOpenAI/inference/preview/2024-08-01-preview/inference.json#L5532) added to citation object.
+    * AML datasource removed.
+    * AI Search vectorization integration improvements.
 
 ## Changes between 2024-5-01-preview and 2024-07-01-preview API specification
 

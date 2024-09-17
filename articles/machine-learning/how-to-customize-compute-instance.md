@@ -10,6 +10,7 @@ ms.author: sgilley
 author: sdgilley
 ms.reviewer: vijetaj
 ms.date: 03/13/2024
+ms.custom: update-code
 ---
 
 # Customize the compute instance with a script

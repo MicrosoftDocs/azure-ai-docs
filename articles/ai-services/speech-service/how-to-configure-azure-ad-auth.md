@@ -2,14 +2,13 @@
 title: How to configure Microsoft Entra authentication
 titleSuffix: Azure AI services
 description: Learn how to authenticate using Microsoft Entra authentication
-author: rhurey
+author: eric-urban
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 1/18/2024
-ms.author: rhurey
+ms.date: 9/9/2024
+ms.author: eur
 zone_pivot_groups: programming-languages-set-two
-ms.devlang: cpp
 ms.custom: devx-track-azurepowershell, devx-track-extended-java, devx-track-python, devx-track-azurecli
 ---
 
@@ -58,7 +57,9 @@ InteractiveBrowserCredential browserCredential = new InteractiveBrowserCredentia
 var browserToken = browserCredential.GetToken(context);
 string aadToken = browserToken.Token;
 ```
-The token context must be set to "https://cognitiveservices.azure.com/.default".
+> [!NOTE]
+> The token context must be set to "https://cognitiveservices.azure.com/.default".
+
 ::: zone-end
 
 ::: zone pivot="programming-language-cpp"
@@ -66,22 +67,18 @@ To get a Microsoft Entra access token in C++, use the [Azure Identity Client Lib
 
 Here's an example of using Azure Identity to get a Microsoft Entra access token with your tenant ID, client ID, and client secret credentials:
 ```cpp
-const std::string tenantId = "Your Tenant ID";
-const std::string clientId = "Your Client ID";
-const std::string clientSecret = "Your Client Secret";
 const std::string tokenContext = "https://cognitiveservices.azure.com/.default";
 
-Azure::Identity::ClientSecretCredential cred(tenantId,
-    clientId,
-    clientSecret,
-    Azure::Identity::ClientSecretCredentialOptions());
+Azure::Identity::DefaultAzureCredential();
 
 Azure::Core::Credentials::TokenRequestContext context;
 context.Scopes.push_back(tokenContext);
 
 auto token = cred.GetToken(context, Azure::Core::Context());
 ```
-The token context must be set to "https://cognitiveservices.azure.com/.default".
+
+> [!NOTE]
+> The token context must be set to "https://cognitiveservices.azure.com/.default".
 
 ::: zone-end
 
@@ -99,7 +96,10 @@ InteractiveBrowserCredential browserCredential = builder.build();
 AccessToken browserToken = browserCredential.getToken(context).block();
 String token = browserToken.getToken();
 ```
-The token context must be set to "https://cognitiveservices.azure.com/.default".
+
+> [!NOTE]
+> The token context must be set to "https://cognitiveservices.azure.com/.default".
+
 ::: zone-end
 
 ::: zone pivot="programming-language-python"
@@ -186,10 +186,10 @@ For ```SpeechRecognizer```, ```SpeechSynthesizer```, ```IntentRecognizer```, ```
 ::: zone pivot="programming-language-csharp"
 ```C#
 string resourceId = "Your Resource ID";
-string aadToken = "Your Azure AD access token";
+string aadToken = "Your Microsoft Entra access token";
 string region =  "Your Speech Region";
 
-// You need to include the "aad#" prefix and the "#" (hash) separator between resource ID and AAD access token.
+// You need to include the "aad#" prefix and the "#" (hash) separator between resource ID and Microsoft Entra access token.
 var authorizationToken = $"aad#{resourceId}#{aadToken}";
 var speechConfig = SpeechConfig.FromAuthorizationToken(authorizationToken, region);
 ```
@@ -198,10 +198,10 @@ var speechConfig = SpeechConfig.FromAuthorizationToken(authorizationToken, regio
 ::: zone pivot="programming-language-cpp"
 ```C++
 std::string resourceId = "Your Resource ID";
-std::string aadToken = "Your Azure AD access token";
+std::string aadToken = "Your Microsoft Entra access token";
 std::string region = "Your Speech Region";
 
-// You need to include the "aad#" prefix and the "#" (hash) separator between resource ID and AAD access token.
+// You need to include the "aad#" prefix and the "#" (hash) separator between resource ID and Microsoft Entra access token.
 auto authorizationToken = "aad#" + resourceId + "#" + aadToken;
 auto speechConfig = SpeechConfig::FromAuthorizationToken(authorizationToken, region);
 ```
@@ -212,7 +212,7 @@ auto speechConfig = SpeechConfig::FromAuthorizationToken(authorizationToken, reg
 String resourceId = "Your Resource ID";
 String region = "Your Region";
 
-// You need to include the "aad#" prefix and the "#" (hash) separator between resource ID and AAD access token.
+// You need to include the "aad#" prefix and the "#" (hash) separator between resource ID and Microsoft Entra access token.
 String authorizationToken = "aad#" + resourceId + "#" + token;
 SpeechConfig speechConfig = SpeechConfig.fromAuthorizationToken(authorizationToken, region);
 ```
@@ -222,7 +222,7 @@ SpeechConfig speechConfig = SpeechConfig.fromAuthorizationToken(authorizationTok
 ```Python
 resourceId = "Your Resource ID"
 region = "Your Region"
-# You need to include the "aad#" prefix and the "#" (hash) separator between resource ID and AAD access token.
+# You need to include the "aad#" prefix and the "#" (hash) separator between resource ID and Microsoft Entra access token.
 authorizationToken = "aad#" + resourceId + "#" + aadToken.token
 speechConfig = SpeechConfig(auth_token=authorizationToken, region=region)
 ```
@@ -235,10 +235,10 @@ For the ```TranslationRecognizer```, build the authorization token from the reso
 ::: zone pivot="programming-language-csharp"
 ```C#
 string resourceId = "Your Resource ID";
-string aadToken = "Your Azure AD access token";
+string aadToken = "Your Microsoft Entra access token";
 string region =  "Your Speech Region";
 
-// You need to include the "aad#" prefix and the "#" (hash) separator between resource ID and AAD access token.
+// You need to include the "aad#" prefix and the "#" (hash) separator between resource ID and Microsoft Entra access token.
 var authorizationToken = $"aad#{resourceId}#{aadToken}";
 var speechConfig = SpeechTranslationConfig.FromAuthorizationToken(authorizationToken, region);
 ```
@@ -247,10 +247,10 @@ var speechConfig = SpeechTranslationConfig.FromAuthorizationToken(authorizationT
 ::: zone pivot="programming-language-cpp"
 ```cpp
 std::string resourceId = "Your Resource ID";
-std::string aadToken = "Your Azure AD access token";
+std::string aadToken = "Your Microsoft Entra access token";
 std::string region = "Your Speech Region";
 
-// You need to include the "aad#" prefix and the "#" (hash) separator between resource ID and AAD access token.
+// You need to include the "aad#" prefix and the "#" (hash) separator between resource ID and Microsoft Entra access token.
 auto authorizationToken = "aad#" + resourceId + "#" + aadToken;
 auto speechConfig = SpeechTranslationConfig::FromAuthorizationToken(authorizationToken, region);
 ```
@@ -261,7 +261,7 @@ auto speechConfig = SpeechTranslationConfig::FromAuthorizationToken(authorizatio
 String resourceId = "Your Resource ID";
 String region = "Your Region";
 
-// You need to include the "aad#" prefix and the "#" (hash) separator between resource ID and AAD access token.
+// You need to include the "aad#" prefix and the "#" (hash) separator between resource ID and Microsoft Entra access token.
 String authorizationToken = "aad#" + resourceId + "#" + token;
 SpeechTranslationConfig translationConfig = SpeechTranslationConfig.fromAuthorizationToken(authorizationToken, region);
 ```
@@ -272,56 +272,10 @@ SpeechTranslationConfig translationConfig = SpeechTranslationConfig.fromAuthoriz
 resourceId = "Your Resource ID"
 region = "Your Region"
 
-# You need to include the "aad#" prefix and the "#" (hash) separator between resource ID and AAD access token.
+# You need to include the "aad#" prefix and the "#" (hash) separator between resource ID and Microsoft Entra access token.
 authorizationToken = "aad#" + resourceId + "#" + aadToken.token
 translationConfig = SpeechTranslationConfig(auth_token=authorizationToken, region=region)
 ```
-::: zone-end
-
-### DialogServiceConnector
-
-For the ```DialogServiceConnection``` object, build the authorization token from the resource ID and the Microsoft Entra access token and then use it to create a ```CustomCommandsConfig``` or a ```BotFrameworkConfig``` object.
-
-::: zone pivot="programming-language-csharp"
-```C#
-string resourceId = "Your Resource ID";
-string aadToken = "Your Azure AD access token";
-string region =  "Your Speech Region";
-string appId = "Your app ID";
-
-// You need to include the "aad#" prefix and the "#" (hash) separator between resource ID and AAD access token.
-var authorizationToken = $"aad#{resourceId}#{aadToken}";
-var customCommandsConfig = CustomCommandsConfig.FromAuthorizationToken(appId, authorizationToken, region);
-```
-::: zone-end
-
-::: zone pivot="programming-language-cpp"
-```cpp
-std::string resourceId = "Your Resource ID";
-std::string aadToken = "Your Azure AD access token";
-std::string region = "Your Speech Region";
-std::string appId = "Your app Id";
-
-// You need to include the "aad#" prefix and the "#" (hash) separator between resource ID and AAD access token.
-auto authorizationToken = "aad#" + resourceId + "#" + aadToken;
-auto customCommandsConfig = CustomCommandsConfig::FromAuthorizationToken(appId, authorizationToken, region);
-```
-::: zone-end
-
-::: zone pivot="programming-language-java"
-```Java
-String resourceId = "Your Resource ID";
-String region = "Your Region";
-String appId = "Your AppId";
-
-// You need to include the "aad#" prefix and the "#" (hash) separator between resource ID and AAD access token.
-String authorizationToken = "aad#" + resourceId + "#" + token;
-CustomCommandsConfig dialogServiceConfig = CustomCommandsConfig.fromAuthorizationToken(appId, authorizationToken, region);
-```
-::: zone-end
-
-::: zone pivot="programming-language-python"
-The DialogServiceConnector is not currently supported in Python
 ::: zone-end
 
 ### VoiceProfileClient
@@ -331,11 +285,11 @@ To use the ```VoiceProfileClient``` with Microsoft Entra authentication, use the
 ```C#
 string customDomainName = "Your Custom Name";
 string hostName = $"https://{customDomainName}.cognitiveservices.azure.com/";
-string token = "Your Azure AD access token";
+string token = "Your Microsoft Entra access token";
 
 var config =  SpeechConfig.FromHost(new Uri(hostName));
 
-// You need to include the "aad#" prefix and the "#" (hash) separator between resource ID and AAD access token.
+// You need to include the "aad#" prefix and the "#" (hash) separator between resource ID and Microsoft Entra access token.
 var authorizationToken = $"aad#{resourceId}#{aadToken}";
 config.AuthorizationToken = authorizationToken;
 ```
@@ -344,11 +298,11 @@ config.AuthorizationToken = authorizationToken;
 ::: zone pivot="programming-language-cpp"
 ```cpp
 std::string customDomainName = "Your Custom Name";
-std::string aadToken = "Your Azure AD access token";
+std::string aadToken = "Your Microsoft Entra access token";
 
 auto speechConfig = SpeechConfig::FromHost("https://" + customDomainName + ".cognitiveservices.azure.com/");
 
-// You need to include the "aad#" prefix and the "#" (hash) separator between resource ID and AAD access token.
+// You need to include the "aad#" prefix and the "#" (hash) separator between resource ID and Microsoft Entra access token.
 auto authorizationToken = "aad#" + resourceId + "#" + aadToken;
 speechConfig->SetAuthorizationToken(authorizationToken);
 ```
@@ -356,12 +310,12 @@ speechConfig->SetAuthorizationToken(authorizationToken);
 
 ::: zone pivot="programming-language-java"
 ```Java
-String aadToken = "Your Azure AD access token";
+String aadToken = "Your Microsoft Entra access token";
 String customDomainName = "Your Custom Name";
 String hostName = "https://" + customDomainName + ".cognitiveservices.azure.com/";
 SpeechConfig speechConfig = SpeechConfig.fromHost(new URI(hostName));
 
-// You need to include the "aad#" prefix and the "#" (hash) separator between resource ID and AAD access token.
+// You need to include the "aad#" prefix and the "#" (hash) separator between resource ID and Microsoft Entra access token.
 String authorizationToken = "aad#" + resourceId + "#" + token;
 
 speechConfig.setAuthorizationToken(authorizationToken);

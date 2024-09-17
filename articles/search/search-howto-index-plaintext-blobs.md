@@ -35,7 +35,7 @@ An alternative third option for breaking content into multiple parts requires ad
 
 ## Set up plain text indexing
 
-To index plain text blobs, create or update an indexer definition with the `parsingMode` configuration property set to `text` on a [Create Indexer](/rest/api/searchservice/create-indexer) request:
+To index plain text blobs, create or update an indexer definition with the `parsingMode` configuration property set to `text` on a [Create Indexer](/rest/api/searchservice/indexers/create) request:
 
 ```http
 PUT https://[service name].search.windows.net/indexers/[indexer name]?api-version=2024-07-01

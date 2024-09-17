@@ -1,3 +1,4 @@
+items:
 - name: Azure Machine Learning Documentation
   href: index.yml
 - name: Overview
@@ -5,6 +6,8 @@
     - name: What is Azure Machine Learning?
       displayName: AML, services, overview, introduction
       href: overview-what-is-azure-machine-learning.md
+    - name: "AI Studio or AML: Which should I choose?"
+      href: /ai/ai-studio-experiences-overview?toc=/azure/machine-learning/toc.json&bc=/azure/machine-learning/breadcrumb/toc.json
     - name: Azure Machine Learning CLI and Python SDK
       href: concept-v2.md
     # v1
@@ -618,8 +621,8 @@
         - name: How to deploy Meta Llama family models
           href: how-to-deploy-models-llama.md
     - name: How to deploy JAIS models
-      href: deploy-jais-models.md
-    - name: How to deploy Jamba Instruct model
+      href: how-to-deploy-models-jais.md
+    - name: AI21 Jamba models
       href: how-to-deploy-models-jamba.md
     - name: Regulate deployments using policy
       href: how-to-regulate-registry-deployments.md
@@ -1180,8 +1183,10 @@
         - name: "Tutorial: Create a secure workspace in Azure portal"
           displayName: managed virtual network
           href: tutorial-create-secure-workspace.md
-        - name: "Tutorial: Create a secure workspace with templates"
-          href: tutorial-create-secure-workspace-template.md
+        - name: "Create a secure workspace using a Bicep template"
+          href: /samples/azure/azure-quickstart-templates/machine-learning-end-to-end-secure/
+        - name: "Create a secure workspace using a Terraform template"
+          href: https://github.com/Azure/terraform/tree/master/quickstart/201-machine-learning-moderately-secure
     - name: Security overview
       items:
         - name: Enterprise security overview
@@ -1190,7 +1195,7 @@
         - name: Secured workspace traffic flow
           href: concept-secure-network-traffic-flow.md
         - name: Security baseline
-          href: /security/benchmark/azure/baselines/machine-learning-security-baseline?context=/azure/machine-learning/context/ml-context
+          href: /security/benchmark/azure/baselines/machine-learning-security-baseline?toc=/azure/machine-learning/toc.json&bc=/azure/machine-learning/breadcrumb/toc.json
         - name: Security controls by Azure Policy
           href: ./security-controls-policy.md
         - name: Data encryption
@@ -1804,7 +1809,7 @@
     - name: Stack Overflow
       href: https://stackoverflow.com/questions/tagged/azure-machine-learning-service
     - name: Compare our ML products
-      href: /azure/architecture/data-guide/technology-choices/data-science-and-machine-learning?context=azure/machine-learning/context/ml-context
+      href: /azure/architecture/data-guide/technology-choices/data-science-and-machine-learning?toc=/azure/machine-learning/toc.json&bc=/azure/machine-learning/breadcrumb/toc.json
     - name: Designer accessibility features
       displayName: accessibility, designer, visual interface, screen reader, keyboard shortcuts
       href: designer-accessibility.md

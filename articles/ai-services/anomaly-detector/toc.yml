@@ -74,8 +74,6 @@
       href: tutorials/azure-data-explorer.md
     - name: Visualize anomalies as a batch using Power BI (univariate)
       href: tutorials/batch-anomaly-detection-powerbi.md
-    - name: Azure Synapse with Multivariate Anomaly Detection
-      href: tutorials/multivariate-anomaly-detection-synapse.md
 - name: Responsible use of AI
   items:
   - name: Transparency note

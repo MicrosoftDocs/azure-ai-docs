@@ -18,7 +18,7 @@ ms.date: 03/13/2024
 | francecentral    | -                             | ✅                              | -                             | ✅                              |
 | japaneast        | -                             | ✅                              | -                             | ✅                              |
 | northcentralus   | -                             | ✅                              | -                             | -                             |
-| norwayeast       | -                             | ✅                              | -                             | -                             |
+| norwayeast       | -                             | ✅                              | -                             | ✅                              |
 | southafricanorth | -                             | ✅                              | -                             | -                             |
 | southcentralus   | ✅                              | ✅                              | -                             | -                             |
 | southindia       | -                             | ✅                              | -                             | ✅                              |

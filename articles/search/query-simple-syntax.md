@@ -38,7 +38,7 @@ POST https://{{service-name}}.search.windows.net/indexes/hotel-rooms-sample/docs
 
 The `searchMode` parameter is relevant in this example. Whenever boolean operators are on the query, you should generally set `searchMode=all` to ensure that *all* of the criteria are matched. Otherwise, you can use the default `searchMode=any` that favors recall over precision.
 
-For more examples, see [Simple query syntax examples](search-query-simple-examples.md). For details about the query request and parameters, see [Search Documents (REST API)](/rest/api/searchservice/Search-Documents).
+For more examples, see [Simple query syntax examples](search-query-simple-examples.md). For details about the query request and parameters, see [Search Documents (REST API)](/rest/api/searchservice/documents/search-post).
 
 ## Keyword search on terms and phrases
 
@@ -141,6 +141,6 @@ You can also review the following articles to learn more about query constructio
 
 + [Query examples for simple search](search-query-simple-examples.md)
 + [Query examples for full Lucene search](search-query-lucene-examples.md)
-+ [Search Documents REST API](/rest/api/searchservice/Search-Documents)
++ [Search Documents REST API](/rest/api/searchservice/documents/search-post)
 + [Lucene query syntax](query-lucene-syntax.md)
 + [Filter and Select (OData) expression syntax](query-odata-filter-orderby-syntax.md)

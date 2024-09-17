@@ -156,8 +156,6 @@ items:
         items:
         - name: Create a custom model (preview)
           href: how-to/model-customization.md
-        - name: Migrate a Custom Vision project to Image Analysis (preview)
-          href: how-to/migrate-from-custom-vision.md
         - name: Verify a custom model COCO file (preview)
           href: how-to/coco-verification.md
       - name: Product Recognition (preview)
