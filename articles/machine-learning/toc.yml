@@ -1192,7 +1192,7 @@
         - name: Secured workspace traffic flow
           href: concept-secure-network-traffic-flow.md
         - name: Security baseline
-          href: /security/benchmark/azure/baselines/machine-learning-security-baseline?context=/azure/machine-learning/context/ml-context
+          href: /security/benchmark/azure/baselines/machine-learning-security-baseline?toc=/azure/machine-learning/toc.json&bc=/azure/machine-learning/breadcrumb/toc.json
         - name: Security controls by Azure Policy
           href: ./security-controls-policy.md
         - name: Data encryption
@@ -1806,8 +1806,7 @@
     - name: Stack Overflow
       href: https://stackoverflow.com/questions/tagged/azure-machine-learning-service
     - name: Compare our ML products
-      href: /azure/architecture/data-guide/technology-choices/data-science-and-machine-learning?context=azure/machine-learning/context/ml-context
-    - name: Designer accessibility features
+      href: /azure/architecture/data-guide/technology-choices/data-science-and-machine-learning?toc=/azure/machine-learning/toc.json&bc=/azure/machine-learning/breadcrumb/toc.json
       displayName: accessibility, designer, visual interface, screen reader, keyboard shortcuts
       href: designer-accessibility.md
     # v1
