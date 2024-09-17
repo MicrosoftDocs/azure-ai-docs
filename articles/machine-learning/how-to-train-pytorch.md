@@ -120,7 +120,7 @@ You use the general purpose `command` to run the training script and perform you
 - The inputs for this command include the number of epochs, learning rate, momentum, and output directory.
 - For the parameter values:
     1. Provide the compute cluster `gpu_compute_target = "gpu-cluster"` that you created for running this command.
-    1. Provide the curated environment `AzureML-pytorch-1.9-ubuntu18.04-py37-cuda11-gpu` that you initialized earlier.
+    1. Provide the curated environment that you initialized earlier.
     1. If you're not using the completed notebook in the Samples folder, specify the location of the *pytorch_train.py* file.
     1. Configure the command line action itself—in this case, the command is `python pytorch_train.py`. You can access the inputs and outputs in the command via the `${{ ... }}` notation.
     1. Configure metadata such as the display name and experiment name, where an experiment is a container for all the iterations one does on a certain project. All the jobs submitted under the same experiment name would be listed next to each other in Azure Machine Learning studio.
