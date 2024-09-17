@@ -200,7 +200,7 @@ The following operations can appear in a resource log.
 | Query.Lookup |  A lookup query against an index. See [Query types and composition](search-query-overview.md). |
 | Query.Search |  A full text search request against an index. See [Query types and composition](search-query-overview.md). |
 | Query.Suggest |  Type ahead query against an index. See [Query types and composition](search-query-overview.md). |
-| ServiceStats | This operation is a routine call to [Get Service Statistics](/rest/api/searchservice/get-service-statistics), either called directly or implicitly to populate a portal overview page when it's loaded or refreshed. |
+| ServiceStats | This operation is a routine call to [Get Service Statistics](/rest/api/searchservice/get-service-statistics/get-service-statistics), either called directly or implicitly to populate a portal overview page when it's loaded or refreshed. |
 | Skillsets.* | Applies to a skillset. Can be Create, Delete, Get, List. |
 
 ## Related content

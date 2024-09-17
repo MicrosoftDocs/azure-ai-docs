@@ -267,7 +267,7 @@ You can process projections by following these steps:
 
 1. [Update the skillset](/rest/api/searchservice/update-skillset) by issuing a PUT request with your projection definition in the body of the skillset.
 
-1. [Run the indexer](/rest/api/searchservice/run-indexer) to put the skillset into execution. 
+1. [Run the indexer](/rest/api/searchservice/indexers/run) to put the skillset into execution. 
 
 1. [Monitor indexer execution](search-howto-monitor-indexers.md) to check progress and catch any errors.
 

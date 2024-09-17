@@ -151,7 +151,7 @@ private static void CreateIndex(string indexName, SearchIndexClient indexClient)
 
 A suggester is used in a query. After a suggester is created, call one of the following APIs for a search-as-you-type experience:
 
-+ [Suggestions REST API](/rest/api/searchservice/suggestions)
++ [Suggestions REST API](/rest/api/searchservice/documents/suggest-post)
 + [Autocomplete REST API](/rest/api/searchservice/documents/autocomplete-post)
 + [SuggestAsync method](/dotnet/api/azure.search.documents.searchclient.suggestasync)
 + [AutocompleteAsync method](/dotnet/api/azure.search.documents.searchclient.autocompleteasync)
