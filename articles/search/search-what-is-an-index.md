@@ -112,7 +112,7 @@ Although you can add new fields at any time, existing field definitions are lock
 
 In Azure AI Search, the physical structure of an index is largely an internal implementation. You can access its schema, query its content, monitor its size, and manage capacity, but the clusters themselves (indexes, [shards](index-similarity-and-scoring.md#sharding-effects-on-query-results), and other files and folders) are managed internally by Microsoft.
 
-You can monitor index size in the Indexes tab in the Azure portal, or by issuing a [GET INDEX request](/rest/api/searchservice/get-index) against your search service. You can also issue a [Service Statistics request](/rest/api/searchservice/get-service-statistics) and check the value of storage size.
+You can monitor index size in the Indexes tab in the Azure portal, or by issuing a [GET INDEX request](/rest/api/searchservice/get-index) against your search service. You can also issue a [Service Statistics request](/rest/api/searchservice/get-service-statistics/get-service-statistics) and check the value of storage size.
 
 The size of an index is determined by:
 

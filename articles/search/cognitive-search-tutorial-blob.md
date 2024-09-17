@@ -497,7 +497,7 @@ POST {{baseUrl}}/indexers?api-version=2024-07-01  HTTP/1.1
 
 Indexing and enrichment commence as soon as you submit the Create Indexer request. Depending on skillset complexity and operations, indexing can take a while.
 
-To find out whether the indexer is still running, call [Get Indexer Status](/rest/api/searchservice/get-indexer-status) to check the indexer status.
+To find out whether the indexer is still running, call [Get Indexer Status](/rest/api/searchservice/indexers/get-status) to check the indexer status.
 
 ```http
 ### Get Indexer Status (wait several minutes for the indexer to complete)
