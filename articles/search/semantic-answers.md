@@ -120,7 +120,7 @@ When designing a search results page that includes answers, be sure to handle ca
 
 Within @search.answers:
 
-+ **"key"** is the document key or ID of the match. Given a document key, you can use [Lookup Document](/rest/api/searchservice/lookup-document) API to retrieve any or all parts of the search document to include on the search page or a detail page.
++ **"key"** is the document key or ID of the match. Given a document key, you can use [Lookup Document](/rest/api/searchservice/documents/get) API to retrieve any or all parts of the search document to include on the search page or a detail page.
 
 + **"text"** and **"highlights"** provide identical content, in both plain text and with highlights. 
 
