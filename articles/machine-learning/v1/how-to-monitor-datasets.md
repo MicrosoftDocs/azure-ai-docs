@@ -14,7 +14,7 @@ ms.custom: UpdateFrequency5, data4ml, sdkv1
 #Customer intent: As a data scientist, I want to detect data drift in my datasets and set alerts for when drift is large.
 ---
 
-# Data drift(preview) will be retired, and replaced by Model Monitor
+# Data drift (preview) will be retired, and replaced by Model Monitor
 
 Data drift(preview) will be retired at 09/01/2025, and you can start to use [Model Monitor](https://learn.microsoft.com/azure/machine-learning/how-to-monitor-model-performance?view=azureml-api-2&tabs=azure-cli) for your data drift tasks.
 Please check the content below to understand the replacement, feature gaps and manual change steps.
