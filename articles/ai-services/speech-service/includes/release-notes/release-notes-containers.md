@@ -18,6 +18,8 @@ Add support for the latest model versions:
     - New Locales: `ar-YE`, `af-ZA`, `am-ET`, `ar-MA`, `ar-TN`, `sw-KE`, `sw-TZ`, `zu-ZA`
     - Mitigate Vulnerabilities
     - Update Deprecated Models
+- Custom speech to text 4.9.0
+    - Mitigate Vulnerabilities
 
 ### 2024-August release
 
