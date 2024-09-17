@@ -157,15 +157,6 @@ In Model Monitor, you can find corresponding concepts as following, and you can 
 
 The target dataset needs the `timeseries` trait set on it by specifying the timestamp column either from a column in the data or a virtual column derived from the path pattern of the files. Create the dataset with a timestamp through the [Python SDK](#sdk-dataset) or [Azure Machine Learning studio](#studio-dataset). A column representing a "timestamp" must be specified to add `timeseries` trait to the dataset. If your data is partitioned into folder structure with time info, such as '{yyyy/MM/dd}', create a virtual column through the path pattern setting and set it as the "partition timestamp" to enable time series API functionality.
 
-### Migrate to Model Monitor
-When you migrate to Model Monitor, if you have deployed your model to production in an Azure Machine Learning online endpoint and enabled [data collection](https://learn.microsoft.com/azure/machine-learning/how-to-collect-production-data?view=azureml-api-2&tabs=azure-cli) at deployment time, Azure Machine Learning collects production inference data, and automatically stores it in Microsoft Azure Blob Storage. You can then use Azure Machine Learning model monitoring to continuously monitor this production inference data, and you can directly choose the model to create target dataset (production inference data in Model Monitor).
-
-When you migrate to Model Monitor, if you didn't deploy your model to production in an Azure Machine Learning online endpoint, or you don't want to use [data collection](https://learn.microsoft.com/azure/machine-learning/how-to-collect-production-data?view=azureml-api-2&tabs=azure-cli), you can also [set up model monitoring with custom signals and metrics](https://learn.microsoft.com/en-us/machine-learning/how-to-monitor-model-performance?view=azureml-api-2&tabs=azure-studio#set-up-model-monitoring-with-custom-signals-and-metrics).
-
-Following sections contain more details on how to migrate to Model Monitor.
-
-
-
 # [Python SDK](#tab/python)
 <a name="sdk-dataset"></a>
 
@@ -220,140 +211,6 @@ If your data is already partitioned by date or time, as is the case here, you ca
 :::image type="content" source="media/how-to-monitor-datasets/timeseries-partitiontimestamp.png" alt-text="Partition timestamp":::
 
 ---
-
-
-
-If you have deployed your model to production in an Azure Machine Learning online endpoint and enabled [data collection](https://learn.microsoft.com/azure/machine-learning/how-to-collect-production-data?view=azureml-api-2&tabs=azure-cli) at deployment time.
-
-# [Azure CLI](#tab/azure-cli)
-
-Azure Machine Learning model monitoring uses `az ml schedule` to schedule a monitoring job. You can create the out-of-box model monitor with the following CLI command and YAML definition:
-
-```azurecli
-az ml schedule create -f ./out-of-box-monitoring.yaml
-```
-
-The following YAML contains the definition for the out-of-box model monitoring.
-
-:::code language="yaml" source="~/azureml-examples-main/cli/monitoring/out-of-box-monitoring.yaml":::
-
-# [Python SDK](#tab/python)
-
-You can use the following code to set up the out-of-box model monitoring:
-
-```python
-from azure.identity import DefaultAzureCredential
-from azure.ai.ml import MLClient
-from azure.ai.ml.entities import (
-    AlertNotification,
-    MonitoringTarget,
-    MonitorDefinition,
-    MonitorSchedule,
-    RecurrencePattern,
-    RecurrenceTrigger,
-    ServerlessSparkCompute
-)
-
-# get a handle to the workspace
-ml_client = MLClient(
-    DefaultAzureCredential(),
-    subscription_id="subscription_id",
-    resource_group_name="resource_group_name",
-    workspace_name="workspace_name",
-)
-
-# create the compute
-spark_compute = ServerlessSparkCompute(
-    instance_type="standard_e4s_v3",
-    runtime_version="3.3"
-)
-
-# specify your online endpoint deployment
-monitoring_target = MonitoringTarget(
-    ml_task="classification",
-    endpoint_deployment_id="azureml:credit-default:main"
-)
-
-
-# create alert notification object
-alert_notification = AlertNotification(
-    emails=['abc@example.com', 'def@example.com']
-)
-
-# create the monitor definition
-monitor_definition = MonitorDefinition(
-    compute=spark_compute,
-    monitoring_target=monitoring_target,
-    alert_notification=alert_notification
-)
-
-# specify the schedule frequency
-recurrence_trigger = RecurrenceTrigger(
-    frequency="day",
-    interval=1,
-    schedule=RecurrencePattern(hours=3, minutes=15)
-)
-
-# create the monitor
-model_monitor = MonitorSchedule(
-    name="credit_default_monitor_basic",
-    trigger=recurrence_trigger,
-    create_monitor=monitor_definition
-)
-
-poller = ml_client.schedules.begin_create_or_update(model_monitor)
-created_monitor = poller.result()
-```
-
-# [Studio](#tab/azure-studio)
-
-1. Navigate to [Azure Machine Learning studio](https://ml.azure.com).
-1. Go to your workspace.
-1. Select **Monitoring** from the **Manage** section
-1. Select **Add**.
-
-   :::image type="content" source="media/how-to-monitor-models/add-model-monitoring.png" alt-text="Screenshot showing how to add model monitoring." lightbox="media/how-to-monitor-models/add-model-monitoring.png":::
-
-1. On the **Basic settings** page, use **(Optional) Select model** to choose the model to monitor.
-1. The **(Optional) Select deployment with data collection enabled** dropdown list should be automatically populated if the model is deployed to an Azure Machine Learning online endpoint. Select the deployment from the dropdown list.
-1. Select the training data to use as the comparison reference in the **(Optional) Select training data** box.
-1. Enter a name for the monitoring in **Monitor name** or keep the default name.
-1. Notice that the virtual machine size is already selected for you.
-1. Select your **Time zone**. 
-1. Select **Recurrence** or **Cron expression** scheduling.
-1. For **Recurrence** scheduling, specify the repeat frequency, day, and time. For **Cron expression** scheduling, enter a cron expression for monitoring run.
-
-   :::image type="content" source="media/how-to-monitor-models/model-monitoring-basic-setup.png" alt-text="Screenshot of basic settings page for model monitoring." lightbox="media/how-to-monitor-models/model-monitoring-basic-setup.png":::
-
-1. Select **Next** to go to the **Advanced settings** section. 
-1. Select **Next** on the **Configure data asset** page to keep the default datasets.
-1. Select **Next** to go to the **Select monitoring signals** page.
-1. Select **Next** to go to the **Notifications** page. Add your email to receive email notifications.
-1. Review your monitoring details and select **Create** to create the monitor.
-
-
-
-When you migrate to Model Monitor, if you didn't deploy your model to production in an Azure Machine Learning online endpoint, or you don't want to use [data collection](https://learn.microsoft.com/azure/machine-learning/how-to-collect-production-data?view=azureml-api-2&tabs=azure-cli), you can also [set up model monitoring with custom signals and metrics](https://learn.microsoft.com/en-us/machine-learning/how-to-monitor-model-performance?view=azureml-api-2&tabs=azure-studio#set-up-model-monitoring-with-custom-signals-and-metrics).
-
-You can also set up model monitoring for models deployed to Azure Machine Learning batch endpoints or deployed outside of Azure Machine Learning. If you don't have a deployment, but you have production data, you can use the data to perform continuous model monitoring. To monitor these models, you must be able to:
-
-* Collect production inference data from models deployed in production.
-* Register the production inference data as an Azure Machine Learning data asset, and ensure continuous updates of the data.
-* Provide a custom data preprocessing component and register it as an Azure Machine Learning component. 
-
-You must provide a custom data preprocessing component if your data isn't collected with the [data collector](how-to-collect-production-data.md). Without this custom data preprocessing component, the Azure Machine Learning model monitoring system won't know how to process your data into tabular form with support for time windowing.
-
-Your custom preprocessing component must have these input and output signatures:
-
-  | Input/Output | Signature name | Type | Description | Example value |
-  |---|---|---|---|---|
-  | input | `data_window_start` | literal, string | data window start-time in ISO8601 format. | 2023-05-01T04:31:57.012Z |
-  | input | `data_window_end` | literal, string | data window end-time in ISO8601 format. | 2023-05-01T04:31:57.012Z |
-  | input | `input_data` | uri_folder | The collected production inference data, which is registered as an Azure Machine Learning data asset. | azureml:myproduction_inference_data:1 |
-  | output | `preprocessed_data` | mltable | A tabular dataset, which matches a subset of the reference data schema. | |
-
-For an example of a custom data preprocessing component, see [custom_preprocessing in the azuremml-examples GitHub repo](https://github.com/Azure/azureml-examples/tree/main/cli/monitoring/components/custom_preprocessing).
-
 
 ## Create dataset monitor
 
@@ -459,6 +316,148 @@ monitor = monitor.enable_schedule()
 After completion of the wizard, the resulting dataset monitor will appear in the list. Select it to go to that monitor's details page.
 
 ---
+
+### Migrate to Model Monitor
+When you migrate to Model Monitor, if you have deployed your model to production in an Azure Machine Learning online endpoint and enabled [data collection](https://learn.microsoft.com/azure/machine-learning/how-to-collect-production-data?view=azureml-api-2&tabs=azure-cli) at deployment time, Azure Machine Learning collects production inference data, and automatically stores it in Microsoft Azure Blob Storage. You can then use Azure Machine Learning model monitoring to continuously monitor this production inference data, and you can directly choose the model to create target dataset (production inference data in Model Monitor).
+
+When you migrate to Model Monitor, if you didn't deploy your model to production in an Azure Machine Learning online endpoint, or you don't want to use [data collection](https://learn.microsoft.com/azure/machine-learning/how-to-collect-production-data?view=azureml-api-2&tabs=azure-cli), you can also [set up model monitoring with custom signals and metrics](https://learn.microsoft.com/en-us/machine-learning/how-to-monitor-model-performance?view=azureml-api-2&tabs=azure-studio#set-up-model-monitoring-with-custom-signals-and-metrics).
+
+Following sections contain more details on how to migrate to Model Monitor.
+
+### If you have deployed your model to production in an Azure Machine Learning online endpoint and enabled data collection
+
+If you have deployed your model to production in an Azure Machine Learning online endpoint and enabled [data collection](https://learn.microsoft.com/azure/machine-learning/how-to-collect-production-data?view=azureml-api-2&tabs=azure-cli) at deployment time.
+
+# [Azure CLI](#tab/azure-cli)
+
+Azure Machine Learning model monitoring uses `az ml schedule` to schedule a monitoring job. You can create the out-of-box model monitor with the following CLI command and YAML definition:
+
+```azurecli
+az ml schedule create -f ./out-of-box-monitoring.yaml
+```
+
+The following YAML contains the definition for the out-of-box model monitoring.
+
+:::code language="yaml" source="~/azureml-examples-main/cli/monitoring/out-of-box-monitoring.yaml":::
+
+# [Python SDK](#tab/python)
+
+You can use the following code to set up the out-of-box model monitoring:
+
+```python
+from azure.identity import DefaultAzureCredential
+from azure.ai.ml import MLClient
+from azure.ai.ml.entities import (
+    AlertNotification,
+    MonitoringTarget,
+    MonitorDefinition,
+    MonitorSchedule,
+    RecurrencePattern,
+    RecurrenceTrigger,
+    ServerlessSparkCompute
+)
+
+# get a handle to the workspace
+ml_client = MLClient(
+    DefaultAzureCredential(),
+    subscription_id="subscription_id",
+    resource_group_name="resource_group_name",
+    workspace_name="workspace_name",
+)
+
+# create the compute
+spark_compute = ServerlessSparkCompute(
+    instance_type="standard_e4s_v3",
+    runtime_version="3.3"
+)
+
+# specify your online endpoint deployment
+monitoring_target = MonitoringTarget(
+    ml_task="classification",
+    endpoint_deployment_id="azureml:credit-default:main"
+)
+
+
+# create alert notification object
+alert_notification = AlertNotification(
+    emails=['abc@example.com', 'def@example.com']
+)
+
+# create the monitor definition
+monitor_definition = MonitorDefinition(
+    compute=spark_compute,
+    monitoring_target=monitoring_target,
+    alert_notification=alert_notification
+)
+
+# specify the schedule frequency
+recurrence_trigger = RecurrenceTrigger(
+    frequency="day",
+    interval=1,
+    schedule=RecurrencePattern(hours=3, minutes=15)
+)
+
+# create the monitor
+model_monitor = MonitorSchedule(
+    name="credit_default_monitor_basic",
+    trigger=recurrence_trigger,
+    create_monitor=monitor_definition
+)
+
+poller = ml_client.schedules.begin_create_or_update(model_monitor)
+created_monitor = poller.result()
+```
+
+# [Studio](#tab/azure-studio)
+
+1. Navigate to [Azure Machine Learning studio](https://ml.azure.com).
+1. Go to your workspace.
+1. Select **Monitoring** from the **Manage** section
+1. Select **Add**.
+
+   :::image type="content" source="./media/how-to-monitor-models/add-model-monitoring.png" alt-text="Screenshot showing how to add model monitoring." lightbox="./media/how-to-monitor-models/add-model-monitoring.png":::
+
+1. On the **Basic settings** page, use **(Optional) Select model** to choose the model to monitor.
+1. The **(Optional) Select deployment with data collection enabled** dropdown list should be automatically populated if the model is deployed to an Azure Machine Learning online endpoint. Select the deployment from the dropdown list.
+1. Select the training data to use as the comparison reference in the **(Optional) Select training data** box.
+1. Enter a name for the monitoring in **Monitor name** or keep the default name.
+1. Notice that the virtual machine size is already selected for you.
+1. Select your **Time zone**. 
+1. Select **Recurrence** or **Cron expression** scheduling.
+1. For **Recurrence** scheduling, specify the repeat frequency, day, and time. For **Cron expression** scheduling, enter a cron expression for monitoring run.
+
+   :::image type="content" source="./media/how-to-monitor-models/model-monitoring-basic-setup.png" alt-text="Screenshot of basic settings page for model monitoring." lightbox="./media/how-to-monitor-models/model-monitoring-basic-setup.png":::
+
+1. Select **Next** to go to the **Advanced settings** section. 
+1. Select **Next** on the **Configure data asset** page to keep the default datasets.
+1. Select **Next** to go to the **Select monitoring signals** page.
+1. Select **Next** to go to the **Notifications** page. Add your email to receive email notifications.
+1. Review your monitoring details and select **Create** to create the monitor.
+
+
+### If you didn't deploy your model to production in an Azure Machine Learning online endpoint or you don't want to use data collection
+When you migrate to Model Monitor, if you didn't deploy your model to production in an Azure Machine Learning online endpoint, or you don't want to use [data collection](https://learn.microsoft.com/azure/machine-learning/how-to-collect-production-data?view=azureml-api-2&tabs=azure-cli), you can also [set up model monitoring with custom signals and metrics](https://learn.microsoft.com/en-us/machine-learning/how-to-monitor-model-performance?view=azureml-api-2&tabs=azure-studio#set-up-model-monitoring-with-custom-signals-and-metrics).
+
+You can also set up model monitoring for models deployed to Azure Machine Learning batch endpoints or deployed outside of Azure Machine Learning. If you don't have a deployment, but you have production data, you can use the data to perform continuous model monitoring. To monitor these models, you must be able to:
+
+* Collect production inference data from models deployed in production.
+* Register the production inference data as an Azure Machine Learning data asset, and ensure continuous updates of the data.
+* Provide a custom data preprocessing component and register it as an Azure Machine Learning component. 
+
+You must provide a custom data preprocessing component if your data isn't collected with the [data collector](./how-to-collect-production-data.md). Without this custom data preprocessing component, the Azure Machine Learning model monitoring system won't know how to process your data into tabular form with support for time windowing.
+
+Your custom preprocessing component must have these input and output signatures:
+
+  | Input/Output | Signature name | Type | Description | Example value |
+  |---|---|---|---|---|
+  | input | `data_window_start` | literal, string | data window start-time in ISO8601 format. | 2023-05-01T04:31:57.012Z |
+  | input | `data_window_end` | literal, string | data window end-time in ISO8601 format. | 2023-05-01T04:31:57.012Z |
+  | input | `input_data` | uri_folder | The collected production inference data, which is registered as an Azure Machine Learning data asset. | azureml:myproduction_inference_data:1 |
+  | output | `preprocessed_data` | mltable | A tabular dataset, which matches a subset of the reference data schema. | |
+
+For an example of a custom data preprocessing component, see [custom_preprocessing in the azuremml-examples GitHub repo](https://github.com/Azure/azureml-examples/tree/main/cli/monitoring/components/custom_preprocessing).
+
+
 
 ## Understand data drift results
 
