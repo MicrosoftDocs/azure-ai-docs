@@ -17,7 +17,7 @@ ms.date: 02/22/2024
 
 When creating queries in Azure AI Search, you can opt for the full [Lucene Query Parser](https://lucene.apache.org/core/6_6_1/queryparser/org/apache/lucene/queryparser/classic/package-summary.html) syntax for specialized query forms: wildcard, fuzzy search, proximity search, regular expressions. Much of the Lucene Query Parser syntax is [implemented intact in Azure AI Search](search-lucene-query-architecture.md), except for *range searches, which are constructed through **`$filter`** expressions. 
 
-To use full Lucene syntax, set the queryType to `full` and pass in a query expression patterned for wildcard, fuzzy search, or one of the other query forms supported by the full syntax. In REST, query expressions are provided in the **`search`** parameter of a [Search Documents (REST API)](/rest/api/searchservice/search-documents) request.
+To use full Lucene syntax, set the queryType to `full` and pass in a query expression patterned for wildcard, fuzzy search, or one of the other query forms supported by the full syntax. In REST, query expressions are provided in the **`search`** parameter of a [Search Documents (REST API)](/rest/api/searchservice/documents/search-post) request.
 
 ## Example (full syntax)
 
@@ -34,7 +34,7 @@ POST /indexes/hotels-sample-index/docs/search?api-version=2024-07-01
 
 While not specific to any query type, the **`searchMode`** parameter is relevant in this example. Whenever operators are on the query, you should generally set `searchMode=all` to ensure that *all* of the criteria are matched.  
 
-For more examples, see [Lucene query syntax examples](search-query-lucene-examples.md). For details about the query request and parameters, including searchMode, see [Search Documents (REST API)](/rest/api/searchservice/Search-Documents).
+For more examples, see [Lucene query syntax examples](search-query-lucene-examples.md). For details about the query request and parameters, including searchMode, see [Search Documents (REST API)](/rest/api/searchservice/documents/search-post).
 
 ## <a name="bkmk_syntax"></a> Syntax fundamentals  
 
@@ -204,6 +204,6 @@ For more information on query limits, see [API request limits](search-limits-quo
 
 + [Query examples for simple search](search-query-simple-examples.md)
 + [Query examples for full Lucene search](search-query-lucene-examples.md)
-+ [Search Documents](/rest/api/searchservice/Search-Documents)
++ [Search Documents](/rest/api/searchservice/documents/search-post)
 + [OData expression syntax for filters and sorting](query-odata-filter-orderby-syntax.md)   
 + [Simple query syntax in Azure AI Search](query-simple-syntax.md)
