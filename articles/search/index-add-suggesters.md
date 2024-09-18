@@ -63,7 +63,7 @@ To satisfy both search-as-you-type experiences, add all of the fields that you n
 
 Your choice of an analyzer determines how fields are tokenized and prefixed. For example, for a hyphenated string like "context-sensitive", using a language analyzer results in these token combinations: "context", "sensitive", "context-sensitive". Had you used the standard Lucene analyzer, the hyphenated string wouldn't exist. 
 
-When evaluating analyzers, consider using the [Analyze Text API](/rest/api/searchservice/test-analyzer) for insight into how terms are processed. Once you build an index, you can try various analyzers on a string to view token output.
+When evaluating analyzers, consider using the [Analyze Text API](/rest/api/searchservice/indexes/analyze) for insight into how terms are processed. Once you build an index, you can try various analyzers on a string to view token output.
 
 Fields that use [custom analyzers](index-add-custom-analyzers.md) or [built-in analyzers](index-add-custom-analyzers.md#built-in-analyzers) (except for standard Lucene) are explicitly disallowed to prevent poor outcomes.
 

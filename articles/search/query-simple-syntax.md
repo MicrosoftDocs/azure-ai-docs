@@ -50,7 +50,7 @@ Strings passed to the `search` parameter can include terms or phrases in any sup
 
 Depending on your search client, you might need to escape the quotation marks in a phrase search. For example, in a POST request, a phrase search on `"Roach Motel"` in the request body might be specified as `"\"Roach Motel\""`. If you're using the Azure SDKs, the search client escapes the quotation marks when it serializes the search text. Your search phrase can be sent be as "Roach Motel".
   
-By default, all strings passed in the `search` parameter undergo lexical analysis. Make sure you understand the tokenization behavior of the analyzer you're using. Often, when query results are unexpected, the reason can be traced to how terms are tokenized at query time. You can [test tokenization on specific strings](/rest/api/searchservice/test-analyzer) to confirm the output.
+By default, all strings passed in the `search` parameter undergo lexical analysis. Make sure you understand the tokenization behavior of the analyzer you're using. Often, when query results are unexpected, the reason can be traced to how terms are tokenized at query time. You can [test tokenization on specific strings](/rest/api/searchservice/indexes/analyze) to confirm the output.
 
 Any text input with one or more terms is considered a valid starting point for query execution. Azure AI Search will match documents containing any or all of the terms, including any variations found during analysis of the text.
 
@@ -111,7 +111,7 @@ If you need special character representation, you can assign an analyzer that pr
 
 + A [language analyzer](search-language-support.md), such as the Microsoft English analyzer (`en.microsoft`), would take the '$' or '€' string as a token. 
 
-For confirmation, you can [test an analyzer](/rest/api/searchservice/test-analyzer) to see what tokens are generated for a given string. As you might expect, you might not get full tokenization from a single analyzer. A workaround is to create multiple fields that contain the same content, but with different analyzer assignments (for example, `description_en`, `description_fr`, and so forth for language analyzers).
+For confirmation, you can [test an analyzer](/rest/api/searchservice/indexes/analyze) to see what tokens are generated for a given string. As you might expect, you might not get full tokenization from a single analyzer. A workaround is to create multiple fields that contain the same content, but with different analyzer assignments (for example, `description_en`, `description_fr`, and so forth for language analyzers).
 
 When using Unicode characters, make sure symbols are properly escaped in the query url (for instance for '❤' would use the escape sequence `%E2%9D%A4+`). Some web clients do this translation automatically.  
 

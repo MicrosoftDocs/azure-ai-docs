@@ -132,7 +132,7 @@ The analyzer definition is a part of the larger index. Definitions for char filt
 
 ## Test custom analyzers
 
-You can use the [Test Analyzer (REST)](/rest/api/searchservice/test-analyzer) to see how an analyzer breaks given text into tokens.
+You can use the [Test Analyzer (REST)](/rest/api/searchservice/indexes/analyze) to see how an analyzer breaks given text into tokens.
 
 **Request**
 
