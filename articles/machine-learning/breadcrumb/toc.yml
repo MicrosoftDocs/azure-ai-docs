@@ -90,6 +90,7 @@ items:
         tocHref: /azure/devops/pipelines/languages/
         topicHref: /azure/devops/pipelines/index
 
+# Security baseline
 - name: Azure
   tocHref: /security/
   topicHref: /azure/index
@@ -106,3 +107,11 @@ items:
         tocHref: /security/benchmark/azure/
         topicHref: /security/benchmark/azure/index
  
+# AI Studio or Azure ML
+- name: Azure
+  tocHref: /ai/
+  topicHref: /azure/index
+  items:
+  - name: Machine Learning
+    tocHref: /ai/
+    topicHref: /azure/machine-learning/index
