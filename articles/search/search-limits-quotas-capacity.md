@@ -88,27 +88,6 @@ Vector limits vary by service creation date and tier.
 
 + To view the vector quota in effect for your search service, use [GET Service Statistics](/rest/api/searchservice/get-service-statistics/get-service-statistics), or check the **Properties** and **Usage** tabs for your search service in the Azure portal.
 
-#### Storage quota (GB)
-
-This table repeats [partition storage limits](#service-limits) for context. The table shows the progression of storage quota increases in GB over time. Vector quota is per partition, so the increase in vector quota is bound to the increase in per-partition storage for each tier. 
-
-Higher capacity partitions were brought online starting in April 2024. Standard 3 (S3) and Standard 3 High Density (S3HD) have the same storage and partition limits.
-
-| Service creation date |Basic | S1| S2 | S3/HD | L1 | L2 |
-|-----------------------|------|---|----|----|----|----|
-|**Before July 1, 2023** <sup>1</sup> | 2  | 25 | 100 | 200 | 1,024 | 2,048 |
-|**July 1, 2023 through April 3, 2024** <sup>2</sup>| 2  | 25 | 100 | 200 | 1,024 | 2,048 |
-|**April 3, 2024 through May 17, 2024** <sup>3</sup> | 15  | 160 | 512 | 1,024 | 1,024 | 2,048 |
-|**After May 17, 2024** <sup>4</sup> | 15  | 160 | 512 | 1,024 | 2,048 | 4,096 |
-
-<sup>1</sup> Partition sizes during early preview.
-
-<sup>2</sup> No change during the later preview period.
-
-<sup>3</sup> Higher capacity storage for Basic, S1, S2, S3 in the following regions. **Americas**: Brazil South​, Canada Central​, Canada East​​, East US​, East US 2, ​Central US​, North Central US​, South Central US​, West US​, West US 2​, West US 3​, West Central US. **Europe**: France Central​. Italy North​​, North Europe​​, Norway East, Poland Central​​, Switzerland North​, Sweden Central​, UK South​, UK West​. **Middle East**:  UAE North. **Africa**: South Africa North. **Asia Pacific**: Australia East​, Australia Southeast​​, Central India, Jio India West​, East Asia, Southeast Asia​, Japan East, Japan West​, Korea Central, Korea South​.
-
-<sup>4</sup> Higher capacity storage for more tiers and more regions. **Europe**: Germany North​, Germany West Central, Switzerland West​. **Azure Government**: Texas, Arizona, Virginia. **Africa**: South Africa North​. **Asia Pacific**: China North 3, China East 3.
-
 #### Vector quota per partition (GB)
 
 This table shows the progression of vector quota increases in GB over time. The quota is per partition, so if you scale a new Standard (S1) service to 6 partitions, total vector quota is 35 multiplied by 6.
@@ -127,6 +106,27 @@ This table shows the progression of vector quota increases in GB over time. The 
 <sup>3</sup> Higher vector quota based on the larger partitions for supported tiers and regions.
 
 <sup>4</sup> Higher vector quota for more tiers and regions based on partition size updates.
+
+#### Storage quota (GB)
+
+This table repeats [partition storage limits](#service-limits) for context. The table shows the progression of storage quota increases in GB over time. Vector quota is per partition, so the more significant increases in vector quota that occurred starting in April 2024 were bound to the increase in per-partition storage that occurred at the same time. 
+
+Higher capacity partitions were brought online starting in April 2024.
+
+| Service creation date |Basic | S1| S2 | S3/HD | L1 | L2 |
+|-----------------------|------|---|----|----|----|----|
+|**Before July 1, 2023** <sup>1</sup> | 2  | 25 | 100 | 200 | 1,024 | 2,048 |
+|**July 1, 2023 through April 3, 2024** <sup>2</sup>| 2  | 25 | 100 | 200 | 1,024 | 2,048 |
+|**April 3, 2024 through May 17, 2024** <sup>3</sup> | 15  | 160 | 512 | 1,024 | 1,024 | 2,048 |
+|**After May 17, 2024** <sup>4</sup> | 15  | 160 | 512 | 1,024 | 2,048 | 4,096 |
+
+<sup>1</sup> Partition sizes during early preview.
+
+<sup>2</sup> No change during the later preview period.
+
+<sup>3</sup> Higher capacity storage for Basic, S1, S2, S3 in these regions. **Americas**: Brazil South​, Canada Central​, Canada East​​, East US​, East US 2, ​Central US​, North Central US​, South Central US​, West US​, West US 2​, West US 3​, West Central US. **Europe**: France Central​. Italy North​​, North Europe​​, Norway East, Poland Central​​, Switzerland North​, Sweden Central​, UK South​, UK West​. **Middle East**:  UAE North. **Africa**: South Africa North. **Asia Pacific**: Australia East​, Australia Southeast​​, Central India, Jio India West​, East Asia, Southeast Asia​, Japan East, Japan West​, Korea Central, Korea South​.
+
+<sup>4</sup> Higher capacity storage for more tiers and more regions. **Europe**: Germany North​, Germany West Central, Switzerland West​. **Azure Government**: Texas, Arizona, Virginia. **Africa**: South Africa North​. **Asia Pacific**: China North 3, China East 3.
 
 ## Indexer limits
 
