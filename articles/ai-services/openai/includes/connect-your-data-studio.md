@@ -21,6 +21,10 @@ Navigate to [Azure OpenAI Studio](https://oai.azure.com/) and sign-in with crede
 
     :::image type="content" source="../media/use-your-data/bring-your-data-card.png" alt-text="A screenshot of the Azure OpenAI Studio landing page." lightbox="../media/use-your-data/bring-your-data-card.png":::
 
+1. In the **Chat playground**, Select **Add your data** and then **Add a data source**
+
+    :::image type="content" source="../media/use-your-data/chat-playground.png" alt-text="A screenshot of the chat playground in  OpenAI Studio." lightbox="../media/use-your-data/chat-playground.png":::
+
 1. In the pane that appears, select **Upload files (preview)** under **Select data source**. Azure OpenAI needs both a storage resource and a search resource to access and index your data. 
 
     > [!TIP]

@@ -79,6 +79,12 @@ In this quickstart, you can use your own data with Azure OpenAI models. Using Az
 
 ::: zone-end
 
+The following resources: 
+- Azure OpenAI
+- [Azure Blob Storage](https://portal.azure.com/#create/Microsoft.StorageAccount-ARM)
+- [Azure AI Search](https://portal.azure.com/#create/Microsoft.Search)
+- An [Azure OpenAI resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesOpenAI) deployed in a [supported region and with a supported model](./concepts/use-your-data.md#regional-availability-and-model-support).
+
 > [!div class="nextstepaction"]
 > [I ran into an issue with the prerequisites.](https://microsoft.qualtrics.com/jfe/form/SV_0Cl5zkG3CnDjq6O?PLanguage=OVERVIEW&Pillar=AOAI&Product=ownData&Page=quickstart&Section=Prerequisites)
 
