@@ -97,7 +97,7 @@ AI enrichment is indexer-driven. This part of the walkthrough creates four objec
 
 ### Step 1: Create a data source
 
-Call [Create Data Source](/rest/api/searchservice/create-data-source) to set the connection string to the Blob container containing the sample data files.
+Call [Create Data Source](/rest/api/searchservice/data-sources/create) to set the connection string to the Blob container containing the sample data files.
 
 ```http
 ### Create a data source
@@ -311,7 +311,7 @@ POST {{baseUrl}}/skillsets?api-version=2024-07-01  HTTP/1.1
 
 ### Step 3: Create an index
 
-Call [Create Index](/rest/api/searchservice/create-index) to provide the schema used to create inverted indexes and other constructs in Azure AI Search. 
+Call [Create Index](/rest/api/searchservice/indexes/create) to provide the schema used to create inverted indexes and other constructs in Azure AI Search. 
 
 The largest component of an index is the fields collection, where data type and attributes determine content and behavior in Azure AI Search. Make sure you have fields for your newly generated output.
 
@@ -497,7 +497,7 @@ POST {{baseUrl}}/indexers?api-version=2024-07-01  HTTP/1.1
 
 Indexing and enrichment commence as soon as you submit the Create Indexer request. Depending on skillset complexity and operations, indexing can take a while.
 
-To find out whether the indexer is still running, call [Get Indexer Status](/rest/api/searchservice/get-indexer-status) to check the indexer status.
+To find out whether the indexer is still running, call [Get Indexer Status](/rest/api/searchservice/indexers/get-status) to check the indexer status.
 
 ```http
 ### Get Indexer Status (wait several minutes for the indexer to complete)

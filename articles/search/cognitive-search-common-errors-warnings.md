@@ -22,7 +22,7 @@ Indexing stops when the error count exceeds ['maxFailedItems'](cognitive-search-
 If you want indexers to ignore these errors (and skip over "failed documents"), consider updating the `maxFailedItems` and `maxFailedItemsPerBatch` as described [here](/rest/api/searchservice/indexers/create#indexingparameters).
 
 > [!NOTE]
-> Each failed document along with its document key (when available) will show up as an error in the indexer execution status. You can utilize the [index api](/rest/api/searchservice/addupdate-or-delete-documents) to manually upload the documents at a later point if you have set the indexer to tolerate failures.
+> Each failed document along with its document key (when available) will show up as an error in the indexer execution status. You can utilize the [index api](/rest/api/searchservice/documents) to manually upload the documents at a later point if you have set the indexer to tolerate failures.
 
 The error information in this article can help you resolve errors, allowing indexing to continue.
 
@@ -92,7 +92,7 @@ Indexer read the document from the data source, but there was an issue convertin
 
 | Reason | Details/Example | Resolution |
 | --- | --- | --- |
-| The document key is missing | `Document key cannot be missing or empty` | Ensure all documents have valid document keys. The document key is determined by setting the 'key' property as part of the [index definition](/rest/api/searchservice/create-index#request-body). Indexers emit this error when the property flagged as the 'key' can't be found on a particular document. |
+| The document key is missing | `Document key cannot be missing or empty` | Ensure all documents have valid document keys. The document key is determined by setting the 'key' property as part of the [index definition](/rest/api/searchservice/indexes/create#request-body). Indexers emit this error when the property flagged as the 'key' can't be found on a particular document. |
 | The document key is invalid | `Invalid document key. Keys can only contain letters, digits, underscore (_), dash (-), or equal sign (=). ` | Ensure all documents have valid document keys. Review [Indexing Blob Storage](search-howto-indexing-azure-blob-storage.md) for more details. If you're using the blob indexer, and your document key is the `metadata_storage_path` field, make sure that the indexer definition has a [base64Encode mapping function](search-indexer-field-mappings.md?tabs=rest#base64encode-function) with `parameters` equal to `null`, instead of the path in plain text. |
 | The document key is invalid | `Document key cannot be longer than 1024 characters` | Modify the document key to meet the validation requirements. |
 | Could not apply field mapping to a field | `Could not apply mapping function 'functionName' to field 'fieldName'. Array cannot be null. Parameter name: bytes` | Double check the [field mappings](search-indexer-field-mappings.md) defined on the indexer, and compare with the data of the specified field of the failed document. It might be necessary to modify the field mappings or the document data. |
@@ -385,7 +385,7 @@ Output field mappings that reference non-existent/null data will produce warning
 <a name="the-data-change-detection-policy-is-configured-to-use-key-column-x"></a>
 
 ## `Warning: The data change detection policy is configured to use key column 'X'`
-[Data change detection policies](/rest/api/searchservice/create-data-source#data-change-detection-policies) have specific requirements for the columns they use to detect change. One of these requirements is that this column is updated every time the source item is changed. Another requirement is that the new value for this column is greater than the previous value. Key columns don't fulfill this requirement because they don't change on every update. To work around this issue, select a different column for the change detection policy.
+[Data change detection policies](/rest/api/searchservice/data-sources/create#request-body) have specific requirements for the columns they use to detect change. One of these requirements is that this column is updated every time the source item is changed. Another requirement is that the new value for this column is greater than the previous value. Key columns don't fulfill this requirement because they don't change on every update. To work around this issue, select a different column for the change detection policy.
 
 <a name="document-text-appears-to-be-utf-16-encoded-but-is-missing-a-byte-order-mark"></a>
 

@@ -133,7 +133,7 @@ See [Quickstart: Text search using REST](search-get-started-rest.md) if you need
 
 ## Create a data source
 
-[Create Data Source (REST)](/rest/api/searchservice/create-data-source) creates a data source connection that specifies what data to index.
+[Create Data Source (REST)](/rest/api/searchservice/data-sources/create) creates a data source connection that specifies what data to index.
 
 ```http
 ### Create a data source
@@ -197,7 +197,7 @@ Connection: close
 
 ## Create an index
 
-[Create Index (REST)](/rest/api/searchservice/create-index) creates a search index on your search service. An index specifies all the parameters and their attributes.
+[Create Index (REST)](/rest/api/searchservice/indexes/create) creates a search index on your search service. An index specifies all the parameters and their attributes.
 
 For nested JSON, the index fields must be identical to the source fields. Currently, Azure AI Search doesn't support field mappings to nested JSON. For this reason, field names and data types must match completely. The following index aligns to the JSON elements in the raw content.
 
