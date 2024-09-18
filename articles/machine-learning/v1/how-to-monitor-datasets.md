@@ -144,7 +144,7 @@ You monitor [Azure Machine Learning datasets](how-to-create-register-datasets.md
 
 The monitor compares the baseline and target datasets.
 
-#### Migrate to Model Monitor
+### Migrate to Model Monitor
 In Model Monitor, you can find corresponding concepts as following, and you can find more details in this article [Set up model monitoring by bringing in your production data to Azure Machine Learning](../how-to-monitor-model-performance.md#set-up-out-of-box-model-monitoring):
 *	Reference dataset: similar to your baseline dataset for data drift detection, it is set as the recent past production inference dataset.
 *	Production inference data: similar to your target dataset in data drift detection, the production inference data can be collected automatically from models deployed in production. It can also be inference data you store.
@@ -212,6 +212,7 @@ If your data is already partitioned by date or time, as is the case here, you ca
 
 Not supported.
 ---
+
 
 
 ## Create dataset monitor
@@ -321,7 +322,8 @@ After completion of the wizard, the resulting dataset monitor will appear in the
 Not supported
 ---
 
-### Migrate to Model Monitor
+
+## Migrate to Model Monitor
 When you migrate to Model Monitor, if you have deployed your model to production in an Azure Machine Learning online endpoint and enabled [data collection](../how-to-collect-production-data.md) at deployment time, Azure Machine Learning collects production inference data, and automatically stores it in Microsoft Azure Blob Storage. You can then use Azure Machine Learning model monitoring to continuously monitor this production inference data, and you can directly choose the model to create target dataset (production inference data in Model Monitor).
 
 When you migrate to Model Monitor, if you didn't deploy your model to production in an Azure Machine Learning online endpoint, or you don't want to use [data collection](../how-to-collect-production-data.md), you can also [set up model monitoring with custom signals and metrics](../how-to-monitor-model-performance.md#set-up-model-monitoring-with-custom-signals-and-metrics).
