@@ -13,7 +13,7 @@ ms.topic: how-to
 ms.custom:
   - prompt-flow
   - ignite-2023
-  - code01
+  - code02
 ---
 
 # Secure your RAG workflows with network isolation (preview)
