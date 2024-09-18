@@ -224,7 +224,7 @@ In a skillset, Image Analysis and OCR skill output is always text. Output text i
     }
     ```
 
-1. [Create or update a search index](/rest/api/searchservice/create-index) to add fields to accept the skill outputs. 
+1. [Create or update a search index](/rest/api/searchservice/indexes/create) to add fields to accept the skill outputs. 
 
    In the following fields collection example, "content" is blob content. "Metadata_storage_name" contains the name of the file (make sure it is "retrievable"). "Metadata_storage_path" is the unique path of the blob and is the default document key. "Merged_content" is output from Text Merge (useful when images are embedded). 
 

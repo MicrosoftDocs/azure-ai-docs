@@ -121,7 +121,7 @@ api-key: [admin key]
 
 The index specifies the fields in a document, attributes, and other constructs that shape the search experience.
 
-Here's a [Create Index](/rest/api/searchservice/create-index) REST API call with a searchable `booktitle` field:   
+Here's a [Create Index](/rest/api/searchservice/indexes/create) REST API call with a searchable `booktitle` field:   
 
 ```http
 POST https://[service name].search.windows.net/indexes?api-version=2020-06-30

@@ -85,7 +85,7 @@ The data source definition specifies the data to index, credentials, and policie
 
 In a [search index](search-what-is-an-index.md), add fields that correspond to the fields in SQL database. Ensure that the search index schema is compatible with source schema by using [equivalent data types](#TypeMapping).
 
-1. [Create or update an index](/rest/api/searchservice/create-index) to define search fields that will store data:
+1. [Create or update an index](/rest/api/searchservice/indexes/create) to define search fields that will store data:
 
     ```http
     POST https://[service name].search.windows.net/indexes?api-version=2024-07-01
