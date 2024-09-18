@@ -9,7 +9,7 @@ ms.author: larryfr
 
 ### Online endpoint creation fails with a V1LegacyMode == true message
 
-You can configure the Azure Machine Learning workspace for `v1_legacy_mode`, which disables v2 APIs. Managed online endpoints are a feature of the v2 API platform, and won't work if `v1_legacy_mode` is enabled for the workspace. 
+You can configure the Azure Machine Learning workspace for `v1_legacy_mode`, which disables v2 APIs. Managed online endpoints are a feature of the v2 API platform, and don't work if `v1_legacy_mode` is enabled for the workspace. 
 
 To disable `v1_legacy_mode`, see [Network isolation with v2](../how-to-configure-network-isolation-with-v2.md).
 
@@ -75,7 +75,7 @@ If the value of `bypass` isn't `AzureServices`, use the guidance in the [Configu
 
 #### Managed online endpoints
 
-1. Use the following command to check whether an A record exists in the private DNS zone for the virtual network.
+1. Use the following command to check whether an A record exists in the private Domain Name Server (DNS) zone for the virtual network.
 
    ```azurecli
    az network private-dns record-set list -z privatelink.api.azureml.ms -o tsv --query [].name

@@ -26,7 +26,7 @@ The document structure reflects the way you should approach troubleshooting:
 1. Use [container logs](#get-container-logs) to help debug issues.
 1. Understand [common deployment errors](#common-deployment-errors) that might arise and how to fix them.
 
-The [HTTP status codes](#http-status-codes) sections explains how invocation and prediction errors map to HTTP status codes when you score endpoints with REST requests.
+The [HTTP status codes](#http-status-codes) sections explain how invocation and prediction errors map to HTTP status codes when you score endpoints with REST requests.
 
 ## Prerequisites
 
@@ -52,7 +52,7 @@ There are two supported tracing headers:
 
 ## Deploy locally
 
-Local deployment means deploying a model to a local Docker environment. Local deployment supports creation, update, and deletion of a local endpoint, and allows you to invoke and get logs from the endpoint. Local deployment is useful for testing and debugging before deployment to the cloud.
+Local deployment means to deploy a model to a local Docker environment. Local deployment supports creation, update, and deletion of a local endpoint, and allows you to invoke and get logs from the endpoint. Local deployment is useful for testing and debugging before deployment to the cloud.
 
 > [!TIP]
 > You can also use the [Azure Machine Learning inference HTTP server Python package](how-to-inference-server-http.md) to debug your scoring script locally. Debugging with the inference server helps you to debug the scoring script before deploying to local endpoints so that you can debug without being affected by the deployment container configurations.
@@ -715,7 +715,7 @@ The following table contains common error codes when REST requests consume Kuber
 | ----------- | ----------------------------------------------------------------------------- | ---------- |
 | 409         | Conflict error     | When an operation is already in progress, any new operation on that same online endpoint responds with a 409 conflict error. For example, if a create or update online endpoint operation is in progress, triggering a new delete operation throws an error.     |
 | 502         | Exception or crash in the `run()` method of the *score.py* file | When there's an error in *score.py*, for example an imported package that doesn't exist in the conda environment, a syntax error, or a failure in the `init()` method, see [ERROR: ResourceNotReady](#error-resourcenotready) to debug the file.|
-| 503         | Large spikes in requests per second | The autoscaler is designed to handle gradual changes in load. If you receive large spikes in requests per second, clients might receive HTTP status code 503. Even though the autoscaler reacts quickly, it takes AKS a significant amount of time to create more containers. See [How to prevent 503 status codes](#how-to-prevent-503-status-codes).|
+| 503         | Large spikes in requests per second | The autoscaler is designed to handle gradual changes in load. If you receive large spikes in requests per second, clients might receive HTTP status code 503. Even though the autoscaler reacts quickly, it takes AKS a significant amount of time to create more containers. See [How to prevent 503 status code errors](#how-to-prevent-503-status-code-errors).|
 | 504         | Request times out | A 504 status code indicates that the request timed out. The default timeout setting is 5 seconds. You can increase the timeout or try to speed up the endpoint by modifying *score.py* to remove unnecessary calls. If these actions don't correct the problem, the code might be in a nonresponsive state or an infinite loop. Follow [ERROR: ResourceNotReady](#error-resourcenotready) to debug the *score.py* file.  |
 | 500         | Internal server error  | Azure Machine Learning-provisioned infrastructure is failing.|
 
@@ -781,7 +781,7 @@ To debug conda installation problems, try the following steps:
 1. Install the mlflow conda file locally with the command `conda env create -n userenv -f <CONDA_ENV_FILENAME>`. 
 1. If there are errors locally, try resolving the conda environment and creating a functional one before redeploying. 
 1. If the container crashes even if it resolves locally, the SKU size used for deployment might be too small. 
-   - Conda package installation occurs at runtime, so if the SKU size is too small to accommodate all the packages detailed in the *conda.yml* environment file, the container might crash. 
+   - Conda package installation occurs at runtime, so if the SKU size is too small to accommodate all the packages in the *conda.yml* environment file, the container might crash. 
    - A Standard_F4s_v2 VM is a good starting SKU size, but you might need larger VMs depending on the dependencies the conda file specifies.
    - For Kubernetes online endpoints, the Kubernetes cluster must have a minimum of four vCPU cores and 8 GB of memory.
 
