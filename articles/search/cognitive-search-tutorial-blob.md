@@ -311,7 +311,7 @@ POST {{baseUrl}}/skillsets?api-version=2024-07-01  HTTP/1.1
 
 ### Step 3: Create an index
 
-Call [Create Index](/rest/api/searchservice/create-index) to provide the schema used to create inverted indexes and other constructs in Azure AI Search. 
+Call [Create Index](/rest/api/searchservice/indexes/create) to provide the schema used to create inverted indexes and other constructs in Azure AI Search. 
 
 The largest component of an index is the fields collection, where data type and attributes determine content and behavior in Azure AI Search. Make sure you have fields for your newly generated output.
 

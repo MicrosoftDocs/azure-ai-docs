@@ -87,7 +87,7 @@ The following example illustrates a language analyzer specification in an index:
     },
 ```
 
-For more information about creating an index and setting field properties, see [Create Index (REST)](/rest/api/searchservice/create-index). For more information about text analysis, see [Analyzers in Azure AI Search](search-analyzers.md).
+For more information about creating an index and setting field properties, see [Create Index (REST)](/rest/api/searchservice/indexes/create). For more information about text analysis, see [Analyzers in Azure AI Search](search-analyzers.md).
 
 <a name="language-analyzer-list"></a>
 
@@ -160,5 +160,5 @@ For more information about creating an index and setting field properties, see [
 
 + [Create an index](search-what-is-an-index.md)
 + [Create a multi-language index](search-language-support.md)
-+ [Create Index (REST API)](/rest/api/searchservice/create-index)  
++ [Create Index (REST API)](/rest/api/searchservice/indexes/create)  
 + [LexicalAnalyzerName Class (Azure SDK for .NET)](/dotnet/api/azure.search.documents.indexes.models.lexicalanalyzername)

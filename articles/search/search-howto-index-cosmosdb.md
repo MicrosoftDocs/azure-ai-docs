@@ -160,7 +160,7 @@ SELECT DISTINCT VALUE c.name FROM c ORDER BY c.name
 
 In a [search index](search-what-is-an-index.md), add fields to accept the source JSON documents or the output of your custom query projection. Ensure that the search index schema is compatible with source data. For content in Azure Cosmos DB, your search index schema should correspond to the [Azure Cosmos DB items](/azure/cosmos-db/resource-model#azure-cosmos-db-items) in your data source.
 
-1. [Create or update an index](/rest/api/searchservice/create-index) to define search fields that store data:
+1. [Create or update an index](/rest/api/searchservice/indexes/create) to define search fields that store data:
 
     ```http
     POST https://[service name].search.windows.net/indexes?api-version=2024-07-01

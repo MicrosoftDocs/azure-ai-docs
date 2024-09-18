@@ -109,7 +109,7 @@ You can define a fielded search operation with the `fieldName:searchExpression` 
 
 Be sure to put multiple strings within quotation marks if you want both strings to be evaluated as a single entity, in this case searching for two distinct artists in the `artists` field.  
 
-The field specified in `fieldName:searchExpression` must be a `searchable` field.  See [Create Index](/rest/api/searchservice/create-index) for details on how index attributes are used in field definitions.  
+The field specified in `fieldName:searchExpression` must be a `searchable` field.  See [Create Index](/rest/api/searchservice/indexes/create) for details on how index attributes are used in field definitions.  
 
 > [!NOTE]
 > When using fielded search expressions, you do not need to use the `searchFields` parameter because each fielded search expression has a field name explicitly specified. However, you can still use the `searchFields` parameter if you want to run a query where some parts are scoped to a specific field, and the rest could apply to several fields. For example, the query `search=genre:jazz NOT history&searchFields=description` would match `jazz` only to the `genre` field, while it would match `NOT history` with the `description` field. The field name provided in `fieldName:searchExpression` always takes precedence over the `searchFields` parameter, which is why in this example, we do not need to include `genre` in the `searchFields` parameter.

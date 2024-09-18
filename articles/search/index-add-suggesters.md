@@ -39,7 +39,7 @@ Search-as-you-type is enabled on a per-field basis for string fields. You can im
 
 ## How to create a suggester
 
-To create a suggester, add one to an [index definition](/rest/api/searchservice/create-index). A suggester takes a name and a collection of fields over which the typeahead experience is enabled. The best time to create a suggester is when you're also defining the field that uses it.
+To create a suggester, add one to an [index definition](/rest/api/searchservice/indexes/create). A suggester takes a name and a collection of fields over which the typeahead experience is enabled. The best time to create a suggester is when you're also defining the field that uses it.
 
 + Use string fields only.
 
@@ -82,7 +82,7 @@ As previously noted, analyzer choice impacts tokenization and prefixing. Conside
 
 ## Create using REST
 
-In the REST API, add suggesters through [Create Index](/rest/api/searchservice/create-index) or [Update Index](/rest/api/searchservice/update-index). 
+In the REST API, add suggesters through [Create Index](/rest/api/searchservice/indexes/create) or [Update Index](/rest/api/searchservice/indexes/create-or-update). 
 
   ```json
   {

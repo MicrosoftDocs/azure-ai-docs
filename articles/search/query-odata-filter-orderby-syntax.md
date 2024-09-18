@@ -83,9 +83,9 @@ Field paths are used in many parameters of the [Azure AI Search REST APIs](/rest
 
 | API | Parameter name | Restrictions |
 | --- | --- | --- |
-| [Create](/rest/api/searchservice/create-index) or [Update](/rest/api/searchservice/update-index) Index | `suggesters/sourceFields` | None |
-| [Create](/rest/api/searchservice/create-index) or [Update](/rest/api/searchservice/update-index) Index | `scoringProfiles/text/weights` | Can only refer to **searchable** fields |
-| [Create](/rest/api/searchservice/create-index) or [Update](/rest/api/searchservice/update-index) Index | `scoringProfiles/functions/fieldName` | Can only refer to **filterable** fields |
+| [Create](/rest/api/searchservice/indexes/create) or [Update](/rest/api/searchservice/indexes/create-or-update) Index | `suggesters/sourceFields` | None |
+| [Create](/rest/api/searchservice/indexes/create) or [Update](/rest/api/searchservice/indexes/create-or-update) Index | `scoringProfiles/text/weights` | Can only refer to **searchable** fields |
+| [Create](/rest/api/searchservice/indexes/create) or [Update](/rest/api/searchservice/indexes/create-or-update) Index | `scoringProfiles/functions/fieldName` | Can only refer to **filterable** fields |
 | [Search](/rest/api/searchservice/documents/search-post) | `search` when `queryType` is `full` | Can only refer to **searchable** fields |
 | [Search](/rest/api/searchservice/documents/search-post) | `facet` | Can only refer to **facetable** fields |
 | [Search](/rest/api/searchservice/documents/search-post) | `highlight` | Can only refer to **searchable** fields |

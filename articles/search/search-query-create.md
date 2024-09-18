@@ -159,7 +159,7 @@ In the portal screenshot below of the [hotels sample index](search-get-started-p
 
 ![Index definition for the hotel sample](./media/search-query-overview/hotel-sample-index-definition.png "Index definition for the hotel sample")
 
-For field attribute definitions, see [Create Index (REST API)](/rest/api/searchservice/create-index).
+For field attribute definitions, see [Create Index (REST API)](/rest/api/searchservice/indexes/create).
 
 ## Effect of tokens on queries
 
