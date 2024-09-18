@@ -10,6 +10,9 @@ ms.date: 07/09/2024
 
 ## Completions
 
+> [!IMPORTANT]
+> Unless you have a specific use case that requires the completions endpoint, we recommend instead using the [chat completions endpoint](#Chat-completions) which allows you to take advantage of the latest models like GPT-4o, GPT-4o mini, and GPT-4 Turbo. 
+
 ```HTTP
 POST https://{endpoint}/openai/deployments/{deployment-id}/completions?api-version=2024-06-01
 ```
@@ -96,18 +99,16 @@ Creates a completion for the provided prompt, parameters and chosen model.
 
 ### Example
 
-Creates a completion for the provided prompt, parameters and chosen model.
+Creates a chat completion for the provided messages.
 
 ```HTTP
-POST https://{endpoint}/openai/deployments/{deployment-id}/completions?api-version=2024-06-01
+POST https://{endpoint}/openai/deployments/{deployment-id}/chat/completions?api-version=2024-06-01
 
 {
- "prompt": [
-  "tell me a joke about mango"
- ],
- "max_tokens": 32,
- "temperature": 1.0,
- "n": 1
+    "messages": [
+        {"role": "system", "content": "Provide some context and/or instructions to the model"},
+        {"role": "user", "content": "tell me a joke about mango"}
+    ]
 }
 
 ```
@@ -116,23 +117,80 @@ POST https://{endpoint}/openai/deployments/{deployment-id}/completions?api-versi
 Status Code: 200
 ```json
 {
-  "body": {
-    "id": "cmpl-7QmVI15qgYVllxK0FtxVGG6ywfzaq",
-    "created": 1686617332,
     "choices": [
-      {
-        "text": "es\n\nWhat do you call a mango who's in charge?\n\nThe head mango.",
-        "index": 0,
-        "finish_reason": "stop",
-        "logprobs": null
-      }
+        {
+            "content_filter_results": {
+                "hate": {
+                    "filtered": false,
+                    "severity": "safe"
+                },
+                "profanity": {
+                    "filtered": false,
+                    "detected": false
+                },
+                "self_harm": {
+                    "filtered": false,
+                    "severity": "safe"
+                },
+                "sexual": {
+                    "filtered": false,
+                    "severity": "safe"
+                },
+                "violence": {
+                    "filtered": false,
+                    "severity": "safe"
+                }
+            },
+            "finish_reason": "stop",
+            "index": 0,
+            "logprobs": null,
+            "message": {
+                "content": "Sure, here's a mango joke for you:\n\nWhy did the mango blush?\n\nBecause it saw the salad dressing!",
+                "role": "assistant"
+            }
+        }
     ],
+    "created": 1726694535,
+    "id": "chatcmpl-A8wPnNAjr2YPtA50Tex0ya7tRDadM",
+    "model": "gpt-4o-2024-05-13",
+    "object": "chat.completion",
+    "prompt_filter_results": [
+        {
+            "prompt_index": 0,
+            "content_filter_results": {
+                "hate": {
+                    "filtered": false,
+                    "severity": "safe"
+                },
+                "jailbreak": {
+                    "filtered": false,
+                    "detected": false
+                },
+                "profanity": {
+                    "filtered": false,
+                    "detected": false
+                },
+                "self_harm": {
+                    "filtered": false,
+                    "severity": "safe"
+                },
+                "sexual": {
+                    "filtered": false,
+                    "severity": "safe"
+                },
+                "violence": {
+                    "filtered": false,
+                    "severity": "safe"
+                }
+            }
+        }
+    ],
+    "system_fingerprint": "fp_80a1bad4c7",
     "usage": {
-      "completion_tokens": 20,
-      "prompt_tokens": 6,
-      "total_tokens": 26
+        "completion_tokens": 22,
+        "prompt_tokens": 26,
+        "total_tokens": 48
     }
-  }
 }
 ```
 

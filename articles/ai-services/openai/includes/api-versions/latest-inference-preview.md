@@ -10,6 +10,9 @@ ms.date: 09/08/2024
 
 ## Completions - Create
 
+> [!IMPORTANT]
+> Unless you have a specific use case that requires the completions endpoint, we recommend instead using the [chat completions endpoint](#Chat-completions---Create) which allows you to take advantage of the latest models like GPT-4o, GPT-4o mini, and GPT-4 Turbo. 
+
 ```HTTP
 POST https://{endpoint}/openai/deployments/{deployment-id}/completions?api-version=2024-08-01-preview
 ```
