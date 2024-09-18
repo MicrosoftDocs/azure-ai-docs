@@ -6,9 +6,9 @@ manager: nitinme
 ms.service: azure-ai-openai
 ms.custom: devx-track-python, devx-track-dotnet, devx-track-extended-java, devx-track-js
 ms.topic: quickstart
-author: mrbullwinkle
-ms.author: mbullwin
-ms.date: 07/18/2024
+author: aahill
+ms.author: aahi
+ms.date: 09/18/2024
 zone_pivot_groups: openai-quickstart-assistants
 recommendations: false
 ---
