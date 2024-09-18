@@ -630,7 +630,7 @@ Add the following using statement to resolve the disambiguated reference.
 using Index = Azure.Search.Documents.Indexes.Models;
 ```
 
-To learn more about index concepts, see [Create Index (REST API)](/rest/api/searchservice/create-index).
+To learn more about index concepts, see [Create Index (REST API)](/rest/api/searchservice/indexes/create).
 
 ### Step 4: Create and run an indexer
 

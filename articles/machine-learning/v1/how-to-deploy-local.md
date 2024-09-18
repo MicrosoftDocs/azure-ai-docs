@@ -247,8 +247,6 @@ You can then find your newly registered model on the Azure Machine Learning **Mo
 
 :::image type="content" source="media/how-to-deploy-local/registered-model.png" alt-text="Screenshot of Azure Machine Learning Model tab, showing an uploaded model." lightbox="media/how-to-deploy-local/registered-model.png":::
 
-For more information on uploading and updating models and environments, see [Register model and deploy locally with advanced usages](https://github.com/Azure/MachineLearningNotebooks/blob/master/how-to-use-azureml/deployment/deploy-to-local/register-model-deploy-local-advanced.ipynb).
-
 ## Next steps
 
 - For information on using VS Code with Azure Machine Learning, see [Launch Visual Studio Code remotely connected to a compute instance (preview)](../how-to-launch-vs-code-remote.md)

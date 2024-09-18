@@ -44,7 +44,7 @@ landingContent:
         links:
           - text: Harm categories
             url: concepts/harm-categories.md
-          - text: Custom categories
+          - text: Custom categories (standard) (preview)
             url: concepts/custom-categories.md
       - linkListType: quickstart
         links:
@@ -54,7 +54,7 @@ landingContent:
             url: quickstart-image.md?pivots=programming-language-rest
       - linkListType: how-to-guide
         links:
-          - text: Use custom categories
+          - text: Use custom categories (standard) (preview)
             url: how-to/custom-categories.md
 
 
@@ -64,7 +64,7 @@ landingContent:
         links:
           - text: Harm categories
             url: concepts/harm-categories.md
-          - text: Custom categories
+          - text: Custom categories (standard) (preview)
             url: concepts/custom-categories.md
           - text: Groundedness detection
             url: concepts/groundedness.md
@@ -78,7 +78,7 @@ landingContent:
             url: quickstart-groundedness.md
       - linkListType: how-to-guide
         links:
-          - text: Use custom categories
+          - text: Use custom categories (standard) (preview)
             url: how-to/custom-categories.md
           - text: Use a blocklist
             url: how-to/use-blocklist.md

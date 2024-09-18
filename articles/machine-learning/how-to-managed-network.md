@@ -8,7 +8,7 @@ ms.subservice: enterprise-readiness
 ms.reviewer: None
 ms.author: larryfr
 author: Blackmist
-ms.date: 04/11/2024
+ms.date: 08/29/2024
 ms.topic: how-to
 ms.custom:
   - build-2023
@@ -142,7 +142,7 @@ Before following the steps in this article, make sure you have the following pre
     resource_group = "<RESOURCE_GROUP>"
 
     # get a handle to the subscription
-    ml_client = MLClient(DefaultAzureCredential(), subscription_id, resource_group)
+    ml_client = MLClient(DefaultAzureCredential(), subscription_id=subscription_id, resource_group_name=resource_group)
     ```
 
 # [Azure portal](#tab/portal)
@@ -294,7 +294,7 @@ To configure a managed VNet that allows internet outbound communications, use th
     
     ```python
     # Get the existing workspace
-    ml_client = MLClient(DefaultAzureCredential(), subscription_id, resource_group, "myworkspace")
+    ml_client = MLClient(DefaultAzureCredential(), subscription_id=subscription_id, resource_group_name=resource_group, workspace_name="myworkspace")
     ws = ml_client.workspaces.get()
     
     # Basic managed VNet configuration
@@ -568,7 +568,7 @@ To configure a managed VNet that allows only approved outbound communications, u
     
     ```python
     # Get the existing workspace
-    ml_client = MLClient(DefaultAzureCredential(), subscription_id, resource_group, "myworkspace")
+    ml_client = MLClient(DefaultAzureCredential(), subscription_id=subscription_id, resource_group_name=resource_group, workspace_name="myworkspace")
     ws = ml_client.workspaces.get()
 
     # Basic managed VNet configuration
@@ -793,7 +793,7 @@ To enable the [serverless Spark jobs](how-to-submit-spark-jobs.md) for the manag
 
     ```python
     # Connect to a workspace named "myworkspace"
-    ml_client = MLClient(DefaultAzureCredential(), subscription_id, resource_group, workspace_name="myworkspace")
+    ml_client = MLClient(DefaultAzureCredential(), subscription_id=subscription_id, resource_group_name=resource_group, workspace_name="myworkspace")
 
     # whether to provision Spark vnet as well
     include_spark = True
@@ -839,7 +839,7 @@ The following example shows how to provision a managed VNet:
 
 ```python
 # Connect to a workspace named "myworkspace"
-ml_client = MLClient(DefaultAzureCredential(), subscription_id, resource_group, workspace_name="myworkspace")
+ml_client = MLClient(DefaultAzureCredential(), subscription_id=subscription_id, resource_group_name=resource_group, workspace_name="myworkspace")
 
 # whether to provision Spark vnet as well
 include_spark = True
@@ -889,7 +889,7 @@ resource_group = "<your resource group name>"
 workspace = "<your workspace name>"
 
 ml_client = MLClient(
-    DefaultAzureCredential(), subscription_id, resource_group, workspace
+    DefaultAzureCredential(), subscription_id=subscription_id, resource_group_name=resource_group, workspace_name=workspace
 )
 
 # Get workspace info
@@ -936,7 +936,7 @@ The following example demonstrates how to manage outbound rules for a workspace 
 
 ```python
 # Connect to the workspace
-ml_client = MLClient(DefaultAzureCredential(), subscription_id, resource_group, workspace_name="myworkspace")
+ml_client = MLClient(DefaultAzureCredential(), subscription_id=subscription_id, resource_group_name=resource_group, workspace_name="myworkspace")
 
 # Specify the rule name
 rule_name = "<some-rule-name>"
@@ -1123,7 +1123,6 @@ If you have an existing workspace and want to enable managed VNet for it, there'
 
 * Compute cluster
 * Compute instance
-* Kubernetes clusters
 * Managed online endpoints
 
 ## Next steps

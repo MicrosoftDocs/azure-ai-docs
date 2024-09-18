@@ -1,5 +1,5 @@
 ---
-title: Document Intelligence (formerly Form Recognizer) SDK target REST API 2022–08–31 (GA)
+title: Document Intelligence SDK target REST API 2022–08–31 (GA)
 titleSuffix: Azure AI services
 description: Document Intelligence 2022–08–31 (GA) software development kits (SDKs) expose Document Intelligence models, features and capabilities, using C#, Java, JavaScript, and Python programming language.
 author: laujan
