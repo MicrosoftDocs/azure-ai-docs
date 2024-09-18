@@ -16,10 +16,8 @@ ms.custom: UpdateFrequency5, data4ml, sdkv1
 
 # Data drift (preview) will be retired, and replaced by Model Monitor
 
-Data drift(preview) will be retired at 09/01/2025, and you can start to use [Model Monitor](https://learn.microsoft.com/azure/machine-learning/how-to-monitor-model-performance?view=azureml-api-2&tabs=azure-cli) for your data drift tasks.
+Data drift(preview) will be retired at 09/01/2025, and you can start to use [Model Monitor](../how-to-monitor-model-performance.md) for your data drift tasks.
 Please check the content below to understand the replacement, feature gaps and manual change steps.
-
-# Detect data drift (preview) on datasets
 
 [!INCLUDE [sdk v1](../includes/machine-learning-sdk-v1.md)]
 
@@ -59,11 +57,11 @@ When you migrate to Model Monitor, please check the prerequisites as following:
 
 # [Azure CLI](#tab/azure-cli)
 
-[!INCLUDE [basic prereqs cli](./includes/machine-learning-cli-prereqs.md)]
+[!INCLUDE [basic prereqs cli](../includes/machine-learning-cli-prereqs.md)]
 
 # [Python SDK](#tab/python)
 
-[!INCLUDE [basic prereqs sdk](./includes/machine-learning-sdk-v2-prereqs.md)]
+[!INCLUDE [basic prereqs sdk](../includes/machine-learning-sdk-v2-prereqs.md)]
 
 # [Studio](#tab/azure-studio)
 
@@ -71,17 +69,17 @@ Before following the steps in this article, make sure you have the following pre
 
 * An Azure subscription. If you don't have an Azure subscription, create a free account before you begin. Try the [free or paid version of Azure Machine Learning](https://azure.microsoft.com/free/).
 
-* An Azure Machine Learning workspace and a compute instance. If you don't have these resources, use the steps in the [Quickstart: Create workspace resources](./quickstart-create-resources.md) article to create them.
+* An Azure Machine Learning workspace and a compute instance. If you don't have these resources, use the steps in the [Quickstart: Create workspace resources](../quickstart-create-resources.md) article to create them.
 
 ---
 
-* Azure role-based access controls (Azure RBAC) are used to grant access to operations in Azure Machine Learning. To perform the steps in this article, your user account must be assigned the __owner__ or __contributor__ role for the Azure Machine Learning workspace, or a custom role allowing `Microsoft.MachineLearningServices/workspaces/onlineEndpoints/*`. For more information, see [Manage access to an Azure Machine Learning workspace](./how-to-assign-roles.md).
+* Azure role-based access controls (Azure RBAC) are used to grant access to operations in Azure Machine Learning. To perform the steps in this article, your user account must be assigned the __owner__ or __contributor__ role for the Azure Machine Learning workspace, or a custom role allowing `Microsoft.MachineLearningServices/workspaces/onlineEndpoints/*`. For more information, see [Manage access to an Azure Machine Learning workspace](../how-to-assign-roles.md).
 
 *  For monitoring a model that is deployed to an Azure Machine Learning online endpoint (managed online endpoint or Kubernetes online endpoint), be sure to:
 
-    * Have a model already deployed to an Azure Machine Learning online endpoint. Both managed online endpoint and Kubernetes online endpoint are supported. If you don't have a model deployed to an Azure Machine Learning online endpoint, see [Deploy and score a machine learning model by using an online endpoint](./how-to-deploy-online-endpoints.md).
+    * Have a model already deployed to an Azure Machine Learning online endpoint. Both managed online endpoint and Kubernetes online endpoint are supported. If you don't have a model deployed to an Azure Machine Learning online endpoint, see [Deploy and score a machine learning model by using an online endpoint](../how-to-deploy-online-endpoints.md).
 
-    * Enable data collection for your model deployment. You can enable data collection during the deployment step for Azure Machine Learning online endpoints. For more information, see [Collect production data from models deployed to a real-time endpoint](./how-to-collect-production-data.md).
+    * Enable data collection for your model deployment. You can enable data collection during the deployment step for Azure Machine Learning online endpoints. For more information, see [Collect production data from models deployed to a real-time endpoint](../how-to-collect-production-data.md).
 
 *  For monitoring a model that is deployed to an Azure Machine Learning batch endpoint or deployed outside of Azure Machine Learning, be sure to:
 
@@ -148,7 +146,7 @@ You monitor [Azure Machine Learning datasets](how-to-create-register-datasets.md
 The monitor compares the baseline and target datasets.
 
 #### Migrate to Model Monitor
-In Model Monitor, you can find corresponding concepts as following, and you can find more details in this article [Set up model monitoring by bringing in your production data to Azure Machine Learning](https://learn.microsoft.com/azure/machine-learning/how-to-monitor-model-performance?view=azureml-api-2&tabs=azure-cli#set-up-out-of-box-model-monitoring):
+In Model Monitor, you can find corresponding concepts as following, and you can find more details in this article [Set up model monitoring by bringing in your production data to Azure Machine Learning](../how-to-monitor-model-performance.md#set-up-out-of-box-model-monitoring):
 *	Reference dataset: similar to your baseline dataset for data drift detection, it is set as the recent past production inference dataset.
 *	Production inference data: similar to your target dataset in data drift detection, the production inference data can be collected automatically from models deployed in production. It can also be inference data you store.
 
@@ -318,15 +316,15 @@ After completion of the wizard, the resulting dataset monitor will appear in the
 ---
 
 ### Migrate to Model Monitor
-When you migrate to Model Monitor, if you have deployed your model to production in an Azure Machine Learning online endpoint and enabled [data collection](https://learn.microsoft.com/azure/machine-learning/how-to-collect-production-data?view=azureml-api-2&tabs=azure-cli) at deployment time, Azure Machine Learning collects production inference data, and automatically stores it in Microsoft Azure Blob Storage. You can then use Azure Machine Learning model monitoring to continuously monitor this production inference data, and you can directly choose the model to create target dataset (production inference data in Model Monitor).
+When you migrate to Model Monitor, if you have deployed your model to production in an Azure Machine Learning online endpoint and enabled [data collection](../how-to-collect-production-data.md) at deployment time, Azure Machine Learning collects production inference data, and automatically stores it in Microsoft Azure Blob Storage. You can then use Azure Machine Learning model monitoring to continuously monitor this production inference data, and you can directly choose the model to create target dataset (production inference data in Model Monitor).
 
-When you migrate to Model Monitor, if you didn't deploy your model to production in an Azure Machine Learning online endpoint, or you don't want to use [data collection](https://learn.microsoft.com/azure/machine-learning/how-to-collect-production-data?view=azureml-api-2&tabs=azure-cli), you can also [set up model monitoring with custom signals and metrics](https://learn.microsoft.com/en-us/machine-learning/how-to-monitor-model-performance?view=azureml-api-2&tabs=azure-studio#set-up-model-monitoring-with-custom-signals-and-metrics).
+When you migrate to Model Monitor, if you didn't deploy your model to production in an Azure Machine Learning online endpoint, or you don't want to use [data collection](../how-to-collect-production-data.md), you can also [set up model monitoring with custom signals and metrics](../how-to-monitor-model-performance.md#set-up-model-monitoring-with-custom-signals-and-metrics).
 
 Following sections contain more details on how to migrate to Model Monitor.
 
 ### If you have deployed your model to production in an Azure Machine Learning online endpoint and enabled data collection
 
-If you have deployed your model to production in an Azure Machine Learning online endpoint and enabled [data collection](https://learn.microsoft.com/azure/machine-learning/how-to-collect-production-data?view=azureml-api-2&tabs=azure-cli) at deployment time.
+If you have deployed your model to production in an Azure Machine Learning online endpoint and enabled [data collection](../how-to-collect-production-data.md) at deployment time.
 
 # [Azure CLI](#tab/azure-cli)
 
@@ -415,7 +413,7 @@ created_monitor = poller.result()
 1. Select **Monitoring** from the **Manage** section
 1. Select **Add**.
 
-   :::image type="content" source="./media/how-to-monitor-models/add-model-monitoring.png" alt-text="Screenshot showing how to add model monitoring." lightbox="./media/how-to-monitor-models/add-model-monitoring.png":::
+   :::image type="content" source="../media/how-to-monitor-models/add-model-monitoring.png" alt-text="Screenshot showing how to add model monitoring." lightbox="../media/how-to-monitor-models/add-model-monitoring.png":::
 
 1. On the **Basic settings** page, use **(Optional) Select model** to choose the model to monitor.
 1. The **(Optional) Select deployment with data collection enabled** dropdown list should be automatically populated if the model is deployed to an Azure Machine Learning online endpoint. Select the deployment from the dropdown list.
@@ -426,7 +424,7 @@ created_monitor = poller.result()
 1. Select **Recurrence** or **Cron expression** scheduling.
 1. For **Recurrence** scheduling, specify the repeat frequency, day, and time. For **Cron expression** scheduling, enter a cron expression for monitoring run.
 
-   :::image type="content" source="./media/how-to-monitor-models/model-monitoring-basic-setup.png" alt-text="Screenshot of basic settings page for model monitoring." lightbox="./media/how-to-monitor-models/model-monitoring-basic-setup.png":::
+   :::image type="content" source="../media/how-to-monitor-models/model-monitoring-basic-setup.png" alt-text="Screenshot of basic settings page for model monitoring." lightbox="../media/how-to-monitor-models/model-monitoring-basic-setup.png":::
 
 1. Select **Next** to go to the **Advanced settings** section. 
 1. Select **Next** on the **Configure data asset** page to keep the default datasets.
@@ -436,7 +434,7 @@ created_monitor = poller.result()
 
 
 ### If you didn't deploy your model to production in an Azure Machine Learning online endpoint or you don't want to use data collection
-When you migrate to Model Monitor, if you didn't deploy your model to production in an Azure Machine Learning online endpoint, or you don't want to use [data collection](https://learn.microsoft.com/azure/machine-learning/how-to-collect-production-data?view=azureml-api-2&tabs=azure-cli), you can also [set up model monitoring with custom signals and metrics](https://learn.microsoft.com/en-us/machine-learning/how-to-monitor-model-performance?view=azureml-api-2&tabs=azure-studio#set-up-model-monitoring-with-custom-signals-and-metrics).
+When you migrate to Model Monitor, if you didn't deploy your model to production in an Azure Machine Learning online endpoint, or you don't want to use [data collection](../how-to-collect-production-data.md), you can also [set up model monitoring with custom signals and metrics](../how-to-monitor-model-performance.md#set-up-model-monitoring-with-custom-signals-and-metrics).
 
 You can also set up model monitoring for models deployed to Azure Machine Learning batch endpoints or deployed outside of Azure Machine Learning. If you don't have a deployment, but you have production data, you can use the data to perform continuous model monitoring. To monitor these models, you must be able to:
 
@@ -444,7 +442,7 @@ You can also set up model monitoring for models deployed to Azure Machine Learni
 * Register the production inference data as an Azure Machine Learning data asset, and ensure continuous updates of the data.
 * Provide a custom data preprocessing component and register it as an Azure Machine Learning component. 
 
-You must provide a custom data preprocessing component if your data isn't collected with the [data collector](./how-to-collect-production-data.md). Without this custom data preprocessing component, the Azure Machine Learning model monitoring system won't know how to process your data into tabular form with support for time windowing.
+You must provide a custom data preprocessing component if your data isn't collected with the [data collector](../how-to-collect-production-data.md). Without this custom data preprocessing component, the Azure Machine Learning model monitoring system won't know how to process your data into tabular form with support for time windowing.
 
 Your custom preprocessing component must have these input and output signatures:
 
