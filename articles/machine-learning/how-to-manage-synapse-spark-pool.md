@@ -56,7 +56,7 @@ Azure Machine Learning offers different ways to attach and manage a Synapse Spar
 
 To attach a Synapse Spark Pool with the Studio Compute tab:
 
-:::image type="content" source="media/how-to-manage-synapse-spark-pool/synapse_compute_synapse_spark_pool.png" alt-text="Screenshot showing creation of a new Synapse Spark Pool." lightbox= "media/how-to-manage-synapse-spark-pool/synapse_compute_synapse_spark_pool.png":::
+:::image type="content" source="media/how-to-manage-synapse-spark-pool/synapse-compute-synapse-spark-pool.png" alt-text="Screenshot showing creation of a new Synapse Spark Pool." lightbox= "media/how-to-manage-synapse-spark-pool/synapse-compute-synapse-spark-pool.png":::
 
 1. In the **Manage** section of the left pane, select **Compute**.
 1. Select **Attached computes**.
@@ -403,7 +403,7 @@ You can manage the attached Synapse Spark pool from the Azure Machine Learning s
 
 To update managed identity for the attached Synapse Spark pool:
 
-:::image type="content" source="media/how-to-manage-synapse-spark-pool/synapse_compute_update_managed_identity.png" alt-text="Screenshot showing Synapse Spark Pool managed identity update." lightbox= "media/how-to-manage-synapse-spark-pool/synapse_compute_update_managed_identity.png":::
+:::image type="content" source="media/how-to-manage-synapse-spark-pool/synapse-compute-update-managed-identity.png" alt-text="Screenshot showing Synapse Spark Pool managed identity update." lightbox= "media/how-to-manage-synapse-spark-pool/synapse-compute-update-managed-identity.png":::
 
 1. Open the **Details** page for the Synapse Spark pool in the Azure Machine Learning studio.
 
