@@ -205,4 +205,4 @@ Even if your workspace cannot be recovered, you may still be able to retrieve yo
 
 ## Next steps
 
-To learn about repeatable infrastructure deployments with Azure Machine Learning, use an [Azure Resource Manager template](../tutorial-create-secure-workspace-template.md).
+To learn about repeatable infrastructure deployments with Azure Machine Learning, use a [Bicep](/samples/azure/azure-quickstart-templates/machine-learning-end-to-end-secure/) or [Terraform](https://github.com/Azure/terraform/tree/master/quickstart/201-machine-learning-moderately-secure) template.

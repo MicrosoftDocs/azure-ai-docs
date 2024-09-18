@@ -46,4 +46,4 @@ Sort hotels in descending order by `search.score` and `rating`, and then in asce
 
 - [OData expression language overview for Azure AI Search](query-odata-filter-orderby-syntax.md)
 - [OData expression syntax reference for Azure AI Search](search-query-odata-syntax-reference.md)
-- [Search Documents &#40;Azure AI Search REST API&#41;](/rest/api/searchservice/Search-Documents)
+- [Search Documents &#40;Azure AI Search REST API&#41;](/rest/api/searchservice/documents/search-post)

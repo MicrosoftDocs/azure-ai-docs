@@ -133,9 +133,9 @@ Enrichments are billable operations. If you no longer need to call Azure AI serv
 
 ### [**REST**](#tab/cogkey-rest-remove)
 
-1. [Get Skillset](/rest/api/searchservice/get-skillset) so that you have the full definition.
+1. [Get Skillset](/rest/api/searchservice/skillsets/get) so that you have the full definition.
 
-1. Formulate an [Update Skillset](/rest/api/searchservice/update-skillset) request, providing the JSON definition of the skillset.
+1. Formulate an [Update Skillset](/rest/api/searchservice/skillsets/create-or-update) request, providing the JSON definition of the skillset.
 
 1. Remove the key in the body of the definition, and then send the request:
 

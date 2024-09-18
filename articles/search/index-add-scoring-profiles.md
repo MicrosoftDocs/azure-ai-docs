@@ -71,7 +71,7 @@ POST /indexes/hotels/docs&api-version=2024-07-01
 }
 ```  
 
-This query searches on the term "inn" and passes in the current location. Notice that this query includes other parameters, such as scoringParameter. Query parameters, including "scoringParameter", are described in [Search Documents (REST API)](/rest/api/searchservice/Search-Documents).  
+This query searches on the term "inn" and passes in the current location. Notice that this query includes other parameters, such as scoringParameter. Query parameters, including "scoringParameter", are described in [Search Documents (REST API)](/rest/api/searchservice/documents/search-post).  
 
 See the [Extended example](#bkmk_ex) to review a more detailed example of a scoring profile.  
 
@@ -93,7 +93,7 @@ Relevancy-based ordering in a search page is also implemented through scoring pr
 
 To implement custom scoring behavior, add a scoring profile to the schema that defines the index. You can have up to 100 scoring profiles within an index (see [Service Limits](search-limits-quotas-capacity.md)), but you can only specify one profile at time in any given query.
 
-1. Start with an index definition. You can add and update scoring profiles on an existing index without having to rebuild it. Use an [Update Index](/rest/api/searchservice/update-index) request to post your revision.
+1. Start with an index definition. You can add and update scoring profiles on an existing index without having to rebuild it. Use an [Update Index](/rest/api/searchservice/indexes/create-or-update) request to post your revision.
 
 1. Paste in the [Template](#bkmk_template) provided in this article.  
 
@@ -103,7 +103,7 @@ To implement custom scoring behavior, add a scoring profile to the schema that d
 
 You should work iteratively, using a data set that will help you prove or disprove the efficacy of a given profile.
 
-Scoring profiles can be defined in Azure portal as shown in the following screenshot, or programmatically through [REST APIs](/rest/api/searchservice/update-index) or in Azure SDKs, such as the [ScoringProfile](/dotnet/api/azure.search.documents.indexes.models.scoringprofile) class in the Azure SDK for .NET.
+Scoring profiles can be defined in Azure portal as shown in the following screenshot, or programmatically through [REST APIs](/rest/api/searchservice/indexes/create-or-update) or in Azure SDKs, such as the [ScoringProfile](/dotnet/api/azure.search.documents.indexes.models.scoringprofile) class in the Azure SDK for .NET.
 
    :::image type="content" source="media/scoring-profiles/portal-add-scoring-profile-small.png" alt-text="Add scoring profiles page" lightbox="media/scoring-profiles/portal-add-scoring-profile.png" border="true":::
 
@@ -342,6 +342,6 @@ The `boostGenre` profile uses weighted text fields, boosting matches found in al
 
 + [Relevance and scoring in Azure AI Search](index-similarity-and-scoring.md)
 + [REST API Reference](/rest/api/searchservice/)
-+ [Create Index API](/rest/api/searchservice/create-index)
++ [Create Index API](/rest/api/searchservice/indexes/create)
 + [Azure AI Search .NET SDK](/dotnet/api/overview/azure/search?)
 + [What Are Scoring Profiles?](https://social.technet.microsoft.com/wiki/contents/articles/26706.azure-search-what-are-scoring-profiles.aspx)
