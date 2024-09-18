@@ -290,9 +290,9 @@ logger.addHandler(handler)
 
 Rerun the query script. You should now get INFO and DEBUG statements in the output that provide more detail about the issue.
 
-If you see output messages related to ManagedIdentityCredential and token acquisition failures, it could be that you have multiple tenants, and your Azure sign-in is using a tenant that doesn't have your search service. To get your tenant ID, search the Azure portal for "tenant properties".
+If you see output messages related to ManagedIdentityCredential and token acquisition failures, it could be that you have multiple tenants, and your Azure sign-in is using a tenant that doesn't have your search service. To get your tenant ID, search the Azure portal for "tenant properties" or run `az login tenant list`.
 
-Run `az login --tenant <YOUR-TENANT-ID>` at a command prompt, and then rerun the script.
+Once you have your tenant ID, run `az login --tenant <YOUR-TENANT-ID>` at a command prompt, and then rerun the script.
 
 ## Clean up
 
