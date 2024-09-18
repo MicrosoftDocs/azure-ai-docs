@@ -13,9 +13,102 @@ ms.author: pafarley
 
 # Quickstart: Groundedness detection (preview)
 
-Follow this guide to use Azure AI Content Safety Groundedness detection to check whether the text responses of large language models (LLMs) are grounded in the source materials provided by the users.
+This document provides guidance on how to effectively use the Groundedness Detection API. The feature automatically detects and corrects ungrounded text based on provided grounding sources, ensuring that the generated content is aligned with factual or intended references. Below, we explore several common scenarios to help you understand how and when to apply these features to achieve the best outcomes. 
 
-For more information on Groundedness detection, see the [Groundedness detection concept page](./concepts/groundedness.md). For API input limits, see the [Input requirements](./overview.md#input-requirements) section of the Overview. 
+### Usage Scenarios and Best Practices
+#### Scenario 1: Summarization in Medical Contexts
+**Use Case:**
+You are summarizing medical documents, and it’s critical that the names of patients in the summaries are accurate and consistent with the provided grounding sources.
+
+Example API Request:
+
+```json
+{
+  "domain": "Medical",
+  "task": "Summarization",
+  "text": "The patient name is Kevin.",
+  "groundingSources": [
+    "The patient name is Jane."
+  ],
+}
+```
+**Expected Outcome:**
+
+The correction feature will detect that "Kevin" is ungrounded because it conflicts with the grounding source "Jane".
+The API will return the corrected text: "The patient name is Jane."
+Best Practice:
+Always ensure that your grounding sources are accurate and up-to-date, particularly in sensitive fields like healthcare. This minimizes the risk of errors in the summarization process.
+
+#### Scenario 2: Question and Answer (QnA) Task with Customer Support Data
+**Use Case:**
+You are implementing a QnA system for a customer support chatbot. It’s essential that the answers provided by the AI align with the most recent and accurate information available.
+
+Example API Request:
+
+```json
+{
+  "domain": "Generic",
+  "task": "QnA",
+  "qna": {
+    "query": "What is the current interest rate?"
+  },
+  "text": "The interest rate is 5%.",
+  "groundingSources": [
+    "As of July 2024, the interest rate is 4.5%."
+  ],
+}
+```
+**Expected Outcome:**
+
+The API will detect that "5%" is ungrounded because it does not match the provided grounding source "4.5%".
+The response will include the correction text: "The interest rate is 4.5%."
+Best Practice:
+In a dynamic environment like finance, always use the most recent and reliable grounding sources to ensure your AI system provides accurate and timely information.
+
+#### Scenario 3: Content Creation with Historical Data
+Use Case:
+You are creating content that involves historical data or events, where accuracy is critical to maintaining credibility and avoiding misinformation.
+
+Example API Request:
+
+```json
+{
+  "domain": "Generic",
+  "task": "Summarization",
+  "text": "The Battle of Hastings occurred in 1065.",
+  "groundingSources": [
+    "The Battle of Hastings occurred in 1066."
+  ],
+}
+```
+**Expected Outcome:**
+The API will detect the ungrounded date "1065" and correct it to "1066" based on the grounding source.
+The response will include the corrected text: "The Battle of Hastings occurred in 1066."
+**Best Practice:**
+For historical content, cross-reference your grounding sources with trusted academic or historical databases to ensure the highest level of accuracy.
+
+#### Scenario 4: Internal Documentation Summarization
+**Use Case:**
+You are summarizing internal documents where product names, version numbers, or other specific data points must remain consistent.
+
+Example API Request:
+
+```json
+{
+  "domain": "Generic",
+  "task": "Summarization",
+  "text": "Our latest product is SuperWidget v2.1.",
+  "groundingSources": [
+    "Our latest product is SuperWidget v2.2."
+  ],
+}
+```
+**Expected Outcome:**
+
+The correction feature will identify "SuperWidget v2.1" as ungrounded and update it to "SuperWidget v2.2" in the response.
+The response will return the corrected text: "Our latest product is SuperWidget v2.2."
+Best Practice:
+When dealing with product names or version numbers, use grounding sources directly from internal release notes or official product documentation to ensure accuracy.
 
 ## Prerequisites
 
@@ -82,7 +175,7 @@ Create a new Python file named _quickstart.py_. Open the new file in your prefer
       "groundingSources": [
         "I'm 21 years old and I need to make a decision about the next two years of my life. Within a week. I currently work for a bank that requires strict sales goals to meet. IF they aren't met three times (three months) you're canned. They pay me 10/hour and it's not unheard of to get a raise in 6ish months. The issue is, **I'm not a salesperson**. That's not my personality. I'm amazing at customer service, I have the most positive customer service \"reports\" done about me in the short time I've worked here. A coworker asked \"do you ask for people to fill these out? you have a ton\". That being said, I have a job opportunity at Chase Bank as a part time teller. What makes this decision so hard is that at my current job, I get 40 hours and Chase could only offer me 20 hours/week. Drive time to my current job is also 21 miles **one way** while Chase is literally 1.8 miles from my house, allowing me to go home for lunch. I do have an apartment and an awesome roommate that I know wont be late on his portion of rent, so paying bills with 20hours a week isn't the issue. It's the spending money and being broke all the time.\n\nI previously worked at Wal-Mart and took home just about 400 dollars every other week. So I know i can survive on this income. I just don't know whether I should go for Chase as I could definitely see myself having a career there. I'm a math major likely going to become an actuary, so Chase could provide excellent opportunities for me **eventually**."
       ],
-      "reasoning": False
+      "reasoning": false
     })
     headers = {
       'Ocp-Apim-Subscription-Key': '<your_subscription_key>',
@@ -167,6 +260,7 @@ The JSON objects in the output are defined here:
 ## Check groundedness with reasoning
 
 The Groundedness detection API provides the option to include _reasoning_ in the API response. With reasoning enabled, the response includes a `"reasoning"` field that details specific instances and explanations for any detected ungroundedness.
+
 ### Bring your own GPT deployment
 
 > [!TIP]
@@ -181,7 +275,14 @@ In order to use your Azure OpenAI GPT4-Turbo (1106-preview) resource to enable t
 In your request to the Groundedness detection API, set the `"reasoning"` body parameter to `true`, and provide the other needed parameters:
     
 ```json
+
 {
+  "domain": "Medical",
+  "task": "Summarization",
+  "text": "The patient name is Kevin.",
+  "groundingSources": [
+    "The patient name is Jane."
+  ],
   "reasoning": true,
   "llmResource": {
     "resourceType": "AzureOpenAI",
@@ -334,6 +435,150 @@ The JSON objects in the output are defined here:
 | - `length > utf16`      | The length of the ungrounded text in UTF-16 encoding.       | Integer |
 | - `length > codePoint`  | The length of the ungrounded text in terms of Unicode code points. |Integer    |
 | -**`reason`** |  Offers explanations for detected ungroundedness. | String  |
+
+
+## Check groundedness with new correction feature
+The Groundedness Detection API now includes a correction feature that automatically corrects any detected ungroundedness in the text based on the provided grounding sources. When the correction feature is enabled, the response includes a `corrected Text` field that presents the corrected text aligned with the grounding sources.
+Below, we explore several common scenarios to help you understand how and when to apply these features to achieve the best outcomes.
+
+
+### Bring your own GPT deployment
+> [!TIP]
+> Currently, the correction feature supports only Azure OpenAI GPT-4 Turbo (1106-preview) resources. To minimize latency and adhere to data privacy guidelines, it's recommended to deploy your GPT-4 Turbo (1106-preview) resources in the same region as your content safety resources. For more details on data privacy, please refer to the Data, privacy and security guidelines for Azure OpenAI Service and Data, privacy, and security for Azure AI Content Safety.
+
+To use your Azure OpenAI GPT4-Turbo (1106-preview) resource for enabling the correction feature, use Managed Identity to allow your Content Safety resource to access the Azure OpenAI resource.
+
+
+### Make the API request
+In your request to the Groundedness Detection API, set the "correction" body parameter to true, and provide the necessary parameters:
+
+```json
+{
+  "domain": "Medical",
+  "task": "Summarization",
+  "text": "The patient name is Kevin.",
+  "groundingSources": [
+    "The patient name is Jane."
+  ],
+  "correction": true,
+  "llmResource": {
+    "resourceType": "AzureOpenAI",
+    "azureOpenAIEndpoint": "<your_OpenAI_endpoint>",
+    "azureOpenAIDeploymentName": "<your_deployment_name>"
+  }
+}
+```
+The parameters in the request body are defined in this table:
+
+
+| Name  | Description     | Type    |
+| :----------- | :--------- | ------- |
+| **domain** | (Optional) `MEDICAL` or `GENERIC`. Default value: `GENERIC`. | Enum  |
+| **task** | (Optional) Type of task: `QnA`, `Summarization`. Default value: `Summarization`. | Enum |
+| **qna**       | (Optional) Holds QnA data when the task type is `QnA`.  | String  |
+| - `query`       | (Optional) This represents the question in a QnA task. Character limit: 7,500. | String  |
+| **text**   | (Required) The LLM output text to be checked. Character limit: 7,500. |  String  |
+| **groundingSources**  | (Required) Uses an array of grounding sources to validate AI-generated text. See [Input requirements](./overview.md#input-requirements) for limits. | String Array    |
+| **correction**  | (Optional) Set to `true`, the service uses Azure OpenAI resources to provide the corrected text, ensuring consistency with the grounding sources. Be careful: using correction increases the processing time and incurs extra fees.| Boolean   |
+| **llmResource**  | (Required) If you want to use your own Azure OpenAI GPT4-Turbo (1106-preview) resource to enable reasoning, add this field and include the subfields for the resources used. | String   |
+| - `resourceType `| Specifies the type of resource being used. Currently it only allows `AzureOpenAI`. We only support Azure OpenAI GPT-4 Turbo (1106-preview) resources and do not support other GPT types. | Enum|
+| - `azureOpenAIEndpoint `| Your endpoint URL for Azure OpenAI service.  | String |
+| - `azureOpenAIDeploymentName` | The name of the specific GPT deployment to use. | String|
+
+
+#### [cURL](#tab/curl)
+This section demonstrates a sample request using cURL. Replace the placeholders as needed:
+- Replace `<endpoint>` with your resource's endpoint URL.
+- Replace `<your_subscription_key>` with your subscription key.
+- Optionally, replace the "text" field with the text you want to analyze.
+
+
+
+```shell
+curl --location --request POST '<endpoint>/contentsafety/text:detectGroundedness?api-version=2024-02-15-preview' \
+--header 'Ocp-Apim-Subscription-Key: <your_subscription_key>' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+  "domain": "Generic",
+  "task": "Summarization",
+  "text": "The patient name is Kevin.",
+  "groundingSources": [
+    "The patient name is Jane."
+  ],
+  "correction": true,
+  "llmResource": {
+        "resourceType": "AzureOpenAI",
+        "azureOpenAIEndpoint": "<your_OpenAI_endpoint>",
+        "azureOpenAIDeploymentName": "<your_deployment_name>"
+  }
+}'
+```
+#### [Python](#tab/python)
+
+Create a Python script named quickstart.py and include the following code. Update the endpoint URL and key as appropriate:
+```Python
+
+conn = http.client.HTTPSConnection("<endpoint>/contentsafety/text:detectGroundedness?api-version=2024-02-15-preview")
+payload = json.dumps({
+  "domain": "Generic",
+  "task": "Summarization",
+  "text": "The patient name is Kevin.",
+  "groundingSources": [
+    "The patient name is Jane."
+  ],
+  "correction": True,
+  "llmResource": {
+   "resourceType": "AzureOpenAI",
+   "azureOpenAIEndpoint": "<your_OpenAI_endpoint>",
+   "azureOpenAIDeploymentName": "<your_deployment_name>"
+  }
+})
+headers = {
+  'Ocp-Apim-Subscription-Key': '<your_subscription_key>',
+  'Content-Type': 'application/json'
+}
+conn.request("POST", "/contentsafety/text:detectGroundedness?api-version=2024-02-15-preview", payload, headers)
+res = conn.getresponse()
+data = res.read()
+print(data.decode("utf-8"))
+```
+
+---
+
+### Interpret the API response
+
+The response will include a "correction Text" field containing the corrected text, ensuring consistency with the provided grounding sources.
+The correction feature will detect that "Kevin" is ungrounded because it conflicts with the grounding source "Jane".
+The API will return the corrected text: "The patient name is Jane."
+
+```json
+{
+  "ungroundedDetected": true,
+  "ungroundedPercentage": 1,
+  "ungroundedDetails": [
+    {
+      "text": "The patient name is Kevin"
+    }
+  ],
+  "correction Text": "The patient name is Jane"
+}
+```
+| Name  | Description    | Type    |
+| :------------------ | :----------- | ------- |
+| **ungroundedDetected** |	Indicates if ungrounded content was detected.|	Boolean|
+| **ungroundedPercentage** |	The proportion of ungrounded content in the text.|	Float|
+| **ungroundedDetails** |	Details of ungrounded content, including specific text segments.|	Array|
+| -**`text`**   |  The specific text that is ungrounded.  | String   |
+| -**`offset`**   |  An object describing the position of the ungrounded text in various encoding.  | String   |
+| - `offset > utf8`       | The offset position of the ungrounded text in UTF-8 encoding.      | Integer   |
+| - `offset > utf16`      | The offset position of the ungrounded text in UTF-16 encoding.       | Integer |
+| -**`length`**   |  An object describing the length of the ungrounded text in various encoding. (utf8, utf16, codePoint), similar to the offset. | Object   |
+| - `length > utf8`       | The length of the ungrounded text in UTF-8 encoding.      | Integer   |
+| - `length > utf16`      | The length of the ungrounded text in UTF-16 encoding.       | Integer |
+| - `length > codePoint`  | The length of the ungrounded text in terms of Unicode code points. |Integer    |
+| -**`correction Text`** |	The corrected text, ensuring consistency with the grounding sources.|String|
+
+
 
 ## Clean up resources
 
