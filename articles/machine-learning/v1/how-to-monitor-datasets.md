@@ -55,9 +55,6 @@ To create and work with dataset monitors, you need:
 ### Migrate to Model Monitor
 When you migrate to Model Monitor, please check the prerequisites as following:
 
-# [Azure CLI](#tab/azure-cli)
-
-[!INCLUDE [basic prereqs cli](../includes/machine-learning-cli-prereqs.md)]
 
 # [Python SDK](#tab/python)
 
@@ -86,6 +83,10 @@ Before following the steps in this article, make sure you have the following pre
     * Have a means to collect production data and register it as an Azure Machine Learning data asset.
     * Update the registered data asset continuously for model monitoring.
     * (Recommended) Register the model in an Azure Machine Learning workspace, for lineage tracking.
+
+# [Azure CLI](#tab/azure-cli)
+
+[!INCLUDE [basic prereqs cli](../includes/machine-learning-cli-prereqs.md)]
 
 > [!IMPORTANT]
 >
@@ -208,7 +209,12 @@ If your data is already partitioned by date or time, as is the case here, you ca
 
 :::image type="content" source="media/how-to-monitor-datasets/timeseries-partitiontimestamp.png" alt-text="Partition timestamp":::
 
+
+# [Azure CLI](#tab/azure-cli)
+
+Not supported.
 ---
+
 
 ## Create dataset monitor
 
@@ -313,6 +319,8 @@ monitor = monitor.enable_schedule()
 
 After completion of the wizard, the resulting dataset monitor will appear in the list. Select it to go to that monitor's details page.
 
+# [Azure CLI](#tab/azure-cli)
+Not supported
 ---
 
 ### Migrate to Model Monitor
@@ -325,18 +333,6 @@ Following sections contain more details on how to migrate to Model Monitor.
 ### If you have deployed your model to production in an Azure Machine Learning online endpoint and enabled data collection
 
 If you have deployed your model to production in an Azure Machine Learning online endpoint and enabled [data collection](../how-to-collect-production-data.md) at deployment time.
-
-# [Azure CLI](#tab/azure-cli)
-
-Azure Machine Learning model monitoring uses `az ml schedule` to schedule a monitoring job. You can create the out-of-box model monitor with the following CLI command and YAML definition:
-
-```azurecli
-az ml schedule create -f ./out-of-box-monitoring.yaml
-```
-
-The following YAML contains the definition for the out-of-box model monitoring.
-
-:::code language="yaml" source="~/azureml-examples-main/cli/monitoring/out-of-box-monitoring.yaml":::
 
 # [Python SDK](#tab/python)
 
@@ -431,7 +427,18 @@ created_monitor = poller.result()
 1. Select **Next** to go to the **Select monitoring signals** page.
 1. Select **Next** to go to the **Notifications** page. Add your email to receive email notifications.
 1. Review your monitoring details and select **Create** to create the monitor.
+# [Azure CLI](#tab/azure-cli)
 
+Azure Machine Learning model monitoring uses `az ml schedule` to schedule a monitoring job. You can create the out-of-box model monitor with the following CLI command and YAML definition:
+
+```azurecli
+az ml schedule create -f ./out-of-box-monitoring.yaml
+```
+
+The following YAML contains the definition for the out-of-box model monitoring.
+
+:::code language="yaml" source="~/azureml-examples-main/cli/monitoring/out-of-box-monitoring.yaml":::
+---
 
 ### If you didn't deploy your model to production in an Azure Machine Learning online endpoint or you don't want to use data collection
 When you migrate to Model Monitor, if you didn't deploy your model to production in an Azure Machine Learning online endpoint, or you don't want to use [data collection](../how-to-collect-production-data.md), you can also [set up model monitoring with custom signals and metrics](../how-to-monitor-model-performance.md#set-up-model-monitoring-with-custom-signals-and-metrics).
