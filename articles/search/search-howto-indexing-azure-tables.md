@@ -34,7 +34,7 @@ This article supplements [**Create an indexer**](search-howto-create-indexers.md
 
 The data source definition specifies the source data to index, credentials, and policies for change detection. A data source is an independent resource that can be used by multiple indexers.
 
-1. [Create or update a data source](/rest/api/searchservice/create-data-source) to set its definition:
+1. [Create or update a data source](/rest/api/searchservice/data-sources/create-or-update) to set its definition:
 
    ```http
     POST https://[service name].search.windows.net/datasources?api-version=2024-07-01 
@@ -112,7 +112,7 @@ To avoid a full scan, you can use table partitions to narrow the scope of each i
 
   + In the data source definition, specify a query similar to the following example: `(PartitionKey ge <TimeStamp>) and (other filters)`. 
 
-  + Monitor indexer progress by using [Get Indexer Status API](/rest/api/searchservice/get-indexer-status), and periodically update the `<TimeStamp>` condition of the query based on the latest successful high-water-mark value. 
+  + Monitor indexer progress by using [Get Indexer Status API](/rest/api/searchservice/indexers/get-status), and periodically update the `<TimeStamp>` condition of the query based on the latest successful high-water-mark value. 
 
   + With this approach, if you need to trigger a full reindex, reset the data source query in addition to [resetting the indexer](search-howto-run-reset-indexers.md). 
 
@@ -160,7 +160,7 @@ In a [search index](search-what-is-an-index.md), add fields to accept the conten
 
 Once you have an index and data source, you're ready to create the indexer. Indexer configuration specifies the inputs, parameters, and properties controlling run time behaviors.
 
-1. [Create or update an indexer](/rest/api/searchservice/create-indexer) by giving it a name and referencing the data source and target index:
+1. [Create or update an indexer](/rest/api/searchservice/indexers/create) by giving it a name and referencing the data source and target index:
 
     ```http
     POST https://[service name].search.windows.net/indexers?api-version=2024-07-01
@@ -199,7 +199,7 @@ An indexer runs automatically when it's created. You can prevent this by setting
 
 ## Check indexer status
 
-To monitor the indexer status and execution history, send a [Get Indexer Status](/rest/api/searchservice/get-indexer-status) request:
+To monitor the indexer status and execution history, send a [Get Indexer Status](/rest/api/searchservice/indexers/get-status) request:
 
 ```http
 GET https://myservice.search.windows.net/indexers/myindexer/status?api-version=2024-07-01

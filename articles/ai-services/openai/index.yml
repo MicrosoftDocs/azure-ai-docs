@@ -56,7 +56,7 @@ landingContent:
         links:
          - text: Embeddings
            url: ./tutorials/embeddings.md
-         - text: Fine-tuning GPT-3.5 Turbo
+         - text: Fine-tuning GPT-4o mini
            url: ./tutorials/fine-tune.md
 
 #Card 2

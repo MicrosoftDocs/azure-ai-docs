@@ -5,7 +5,7 @@ description: Learn how to improve function calling performance with Azure OpenAI
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: how-to
-ms.date: 02/05/2024
+ms.date: 09/05/2024
 author: mrbullwinkle
 ms.author: mbullwin
 ---
@@ -17,9 +17,6 @@ Models that use the chat completions API support [function calling](../how-to/fu
 
 * Get similarly formatted responses even when the full function definition isn't present. (Allowing you to potentially save money on prompt tokens.)
 * Get more accurate and consistent outputs.
-
-> [!IMPORTANT]
-> The `functions` and `function_call` parameters have been deprecated with the release of the [`2023-12-01-preview`](https://github.com/Azure/azure-rest-api-specs/blob/main/specification/cognitiveservices/data-plane/AzureOpenAI/inference/preview/2023-12-01-preview/inference.json) version of the API. However, the fine-tuning API currently requires use of the legacy parameters.
 
 ## Constructing a training file
 

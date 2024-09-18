@@ -57,13 +57,11 @@ Currently, several regions are at capacity for Basic and Standard (S1) tiers and
 
 | Region | Disabled tier (SKU) due to over-capacity |
 |--------|------------------------------------------|
-| Japan East | Basic, Standard (S1) |
-| Qatar Central | Basic, Standard (S1) |
-| North Europe | Basic, Standard (S1) |
+| Central US | S2, S3, S3HD, L1, L2 |
+| Japan East | S2, S3, S3HD, L1, L2 |
+| Qatar Central | All tiers|
+| South Central US | All tiers |
 | West Europe | All tiers |
-| Central US | Basic, Standard (S1) |
-| South Central US | Basic, Standard (S1) |
-| West US 2 | Basic, Standard (S1) |
 | West US 3| All tiers |
 
 <a name="premium-features"></a>

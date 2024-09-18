@@ -30,7 +30,7 @@ The decision about which information retrieval system to use is critical because
 Azure AI Search is a [proven solution for information retrieval](/azure/developer/python/get-started-app-chat-template?tabs=github-codespaces) in a RAG architecture. It provides indexing and query capabilities, with the infrastructure and security of the Azure cloud. Through code and other components, you can design a comprehensive RAG solution that includes all of the elements for generative AI over your proprietary content. 
 
 > [!NOTE]
-> New to copilot and RAG concepts? Watch [Vector search and state of the art retrieval for Generative AI apps](https://ignite.microsoft.com/sessions/18618ca9-0e4d-4f9d-9a28-0bc3ef5cf54e?source=sessions).
+> New to copilot and RAG concepts? Watch [Vector search and state of the art retrieval for Generative AI apps](https://www.youtube.com/watch?v=lSzc1MJktAo).
 
 ## Approaches for RAG with Azure AI Search
 
@@ -221,6 +221,8 @@ A RAG solution that includes Azure AI Search can leverage [built-in data chunkin
 ## How to get started
 
 + [Try this RAG quickstart](search-get-started-rag.md) for a demonstration of query integration with chat models over a search index.
+
++ [Tutorial: How to build a RAG solution in Azure AI Search](tutorial-rag-build-solution.md) for focused coverage on the features and pattern for RAG solutions that obtain grounding data from a search index.
 
 + Start with solution accelerators:
 

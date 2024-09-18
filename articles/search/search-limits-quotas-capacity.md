@@ -86,7 +86,7 @@ Vector limits vary by service creation date and tier.
 
 + To check the age of your search service or learn more about vector indexes, see [Vector index size and staying under limits](vector-search-index-size.md).
 
-+ To view the vector quota in effect for your search service, use [GET Service Statistics](/rest/api/searchservice/get-service-statistics), or check the **Properties** and **Usage** tabs for your search service in the Azure portal.
++ To view the vector quota in effect for your search service, use [GET Service Statistics](/rest/api/searchservice/get-service-statistics/get-service-statistics), or check the **Properties** and **Usage** tabs for your search service in the Azure portal.
 
 #### Storage quota (GB)
 

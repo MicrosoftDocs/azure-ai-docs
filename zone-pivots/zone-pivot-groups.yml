@@ -183,6 +183,8 @@ groups:
     title: Studio
   - id: programming-language-python
     title: Python
+  - id: programming-language-javascript
+    title: JavaScript
   - id: rest-api
     title: REST
 # Owner: mbullwin
@@ -218,8 +220,29 @@ groups:
   - id: programming-language-python
     title: Python
 # Owner: diberry
-- id: programming-languages-set-six
+- id: programming-languages-rest-js
+  title: Programming languages
+  prompt: Choose a programming language
+  pivots:
+  - id: programming-language-javascript
+    title: JavaScript
+  - id: rest-api
+    title: REST
 # Owner: diberry
+- id: programming-languages-rest-ps-py-js
+  title: Programming languages
+  prompt: Choose a programming language
+  pivots:
+  - id: programming-language-javascript
+    title: JavaScript
+  - id: programming-language-python
+    title: Python
+  - id: programming-language-powershell
+    title: PowerShell
+  - id: rest-api
+    title: REST
+# Owner: diberry
+- id: programming-languages-set-six
   title: Programming languages
   prompt: Choose a programming language
   pivots:

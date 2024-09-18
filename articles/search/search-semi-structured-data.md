@@ -133,7 +133,7 @@ See [Quickstart: Text search using REST](search-get-started-rest.md) if you need
 
 ## Create a data source
 
-[Create Data Source (REST)](/rest/api/searchservice/create-data-source) creates a data source connection that specifies what data to index.
+[Create Data Source (REST)](/rest/api/searchservice/data-sources/create) creates a data source connection that specifies what data to index.
 
 ```http
 ### Create a data source
@@ -245,7 +245,7 @@ POST {{baseUrl}}/indexes?api-version=2024-07-01  HTTP/1.1
 
 ## Create and run an indexer
 
-[Create Indexer](/rest/api/searchservice/create-indexer) creates an indexer on your search service. An indexer connects to the data source, loads and indexes data, and optionally provides a schedule to automate the data refresh.
+[Create Indexer](/rest/api/searchservice/indexers/create) creates an indexer on your search service. An indexer connects to the data source, loads and indexes data, and optionally provides a schedule to automate the data refresh.
 
 The indexer configuration includes the `jsonArray` parsing mode and a `documentRoot`.
 
