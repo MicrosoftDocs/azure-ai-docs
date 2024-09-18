@@ -16,6 +16,13 @@ ms.author: pafarley
 
 Learn what's new in the service. These items might be release notes, videos, blog posts, and other types of information. Bookmark this page to stay up to date with new features, enhancements, fixes, and documentation updates.
 
+## August 2024
+
+The Prompt Shields API and groundedness detection API are now generally available (GA). Follow a quickstart to try them out.
+* [Prompt Shields quickstart](/azure/ai-services/content-safety/quickstart-jailbreak)
+* [Groundedness detection quickstart](/azure/ai-services/content-safety/quickstart-groundedness?tabs=curl)
+
+
 ## July 2024
 
 ### Custom categories (standard) API public preview

@@ -339,6 +339,11 @@ This step is **mandatory** if you didn't use Azure portal to create your BYOS-en
 
 BYOS uses the Blob storage of a Storage account. Because of this, BYOS-enabled Speech resource managed identity needs *Storage Blob Data Contributor* role assignment within the scope of BYOS-associated Storage account.
 
+> [!CAUTION]
+> Don't use custom role assignments instead of built-in *Storage Blob Data Contributor* role. 
+>
+> Failure to do so very likely will result in hard to debug service errors and issues related to accessing BYOS-associated Storage account.
+
 If you used Azure portal to create your BYOS-enabled Speech resource, you can skip the rest of this subsection. Your role assignment is already done. Otherwise, follow these steps.
 
 > [!IMPORTANT]

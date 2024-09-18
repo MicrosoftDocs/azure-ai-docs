@@ -373,6 +373,9 @@ Limitations and known issues for data drift monitors:
 
 * If the SDK `backfill()` function doesn't generate the expected output, it may be due to an authentication issue. When you create the compute to pass into this function, don't use `Run.get_context().experiment.workspace.compute_targets`. Instead, use [ServicePrincipalAuthentication](/python/api/azureml-core/azureml.core.authentication.serviceprincipalauthentication) such as the following to create the compute that you pass into that `backfill()` function:
 
+> [!NOTE]
+> Do not hard code the service principal password in your code. Instead, retrieve it from the Python environment, key store, or other secure method of accessing secrets.
+
   ```python
    auth = ServicePrincipalAuthentication(
           tenant_id=tenant_id,

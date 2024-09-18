@@ -35,7 +35,7 @@ Because terminology can be confusing, it's worth noting that [Azure Cosmos DB in
 
 The data source definition specifies the data to index, credentials, and policies for identifying changes in the data. A data source is an independent resource that can be used by multiple indexers.
 
-1. [Create or update a data source](/rest/api/searchservice/create-data-source) to set its definition: 
+1. [Create or update a data source](/rest/api/searchservice/data-sources/create-or-update) to set its definition: 
 
     ```http
     POST https://[service name].search.windows.net/datasources?api-version=2024-07-01
@@ -160,7 +160,7 @@ SELECT DISTINCT VALUE c.name FROM c ORDER BY c.name
 
 In a [search index](search-what-is-an-index.md), add fields to accept the source JSON documents or the output of your custom query projection. Ensure that the search index schema is compatible with source data. For content in Azure Cosmos DB, your search index schema should correspond to the [Azure Cosmos DB items](/azure/cosmos-db/resource-model#azure-cosmos-db-items) in your data source.
 
-1. [Create or update an index](/rest/api/searchservice/create-index) to define search fields that store data:
+1. [Create or update an index](/rest/api/searchservice/indexes/create) to define search fields that store data:
 
     ```http
     POST https://[service name].search.windows.net/indexes?api-version=2024-07-01
@@ -208,7 +208,7 @@ In a [search index](search-what-is-an-index.md), add fields to accept the source
 
 Once the index and data source have been created, you're ready to create the indexer. Indexer configuration specifies the inputs, parameters, and properties controlling run time behaviors.
 
-1. [Create or update an indexer](/rest/api/searchservice/create-indexer) by giving it a name and referencing the data source and target index:
+1. [Create or update an indexer](/rest/api/searchservice/indexers/create) by giving it a name and referencing the data source and target index:
 
     ```http
     POST https://[service name].search.windows.net/indexers?api-version=2024-07-01
@@ -240,7 +240,7 @@ An indexer runs automatically when it's created. You can prevent this by setting
 
 ## Check indexer status
 
-To monitor the indexer status and execution history, send a [Get Indexer Status](/rest/api/searchservice/get-indexer-status) request:
+To monitor the indexer status and execution history, send a [Get Indexer Status](/rest/api/searchservice/indexers/get-status) request:
 
 ```http
 GET https://myservice.search.windows.net/indexers/myindexer/status?api-version=2024-07-01

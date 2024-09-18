@@ -19,10 +19,10 @@ This article provides information and solutions to common errors and warnings yo
 
 Indexing stops when the error count exceeds ['maxFailedItems'](cognitive-search-concept-troubleshooting.md#tip-2-see-what-works-even-if-there-are-some-failures). 
 
-If you want indexers to ignore these errors (and skip over "failed documents"), consider updating the `maxFailedItems` and `maxFailedItemsPerBatch` as described [here](/rest/api/searchservice/create-indexer#general-parameters-for-all-indexers).
+If you want indexers to ignore these errors (and skip over "failed documents"), consider updating the `maxFailedItems` and `maxFailedItemsPerBatch` as described [here](/rest/api/searchservice/indexers/create#indexingparameters).
 
 > [!NOTE]
-> Each failed document along with its document key (when available) will show up as an error in the indexer execution status. You can utilize the [index api](/rest/api/searchservice/addupdate-or-delete-documents) to manually upload the documents at a later point if you have set the indexer to tolerate failures.
+> Each failed document along with its document key (when available) will show up as an error in the indexer execution status. You can utilize the [index api](/rest/api/searchservice/documents) to manually upload the documents at a later point if you have set the indexer to tolerate failures.
 
 The error information in this article can help you resolve errors, allowing indexing to continue.
 
@@ -92,7 +92,7 @@ Indexer read the document from the data source, but there was an issue convertin
 
 | Reason | Details/Example | Resolution |
 | --- | --- | --- |
-| The document key is missing | `Document key cannot be missing or empty` | Ensure all documents have valid document keys. The document key is determined by setting the 'key' property as part of the [index definition](/rest/api/searchservice/create-index#request-body). Indexers emit this error when the property flagged as the 'key' can't be found on a particular document. |
+| The document key is missing | `Document key cannot be missing or empty` | Ensure all documents have valid document keys. The document key is determined by setting the 'key' property as part of the [index definition](/rest/api/searchservice/indexes/create#request-body). Indexers emit this error when the property flagged as the 'key' can't be found on a particular document. |
 | The document key is invalid | `Invalid document key. Keys can only contain letters, digits, underscore (_), dash (-), or equal sign (=). ` | Ensure all documents have valid document keys. Review [Indexing Blob Storage](search-howto-indexing-azure-blob-storage.md) for more details. If you're using the blob indexer, and your document key is the `metadata_storage_path` field, make sure that the indexer definition has a [base64Encode mapping function](search-indexer-field-mappings.md?tabs=rest#base64encode-function) with `parameters` equal to `null`, instead of the path in plain text. |
 | The document key is invalid | `Document key cannot be longer than 1024 characters` | Modify the document key to meet the validation requirements. |
 | Could not apply field mapping to a field | `Could not apply mapping function 'functionName' to field 'fieldName'. Array cannot be null. Parameter name: bytes` | Double check the [field mappings](search-indexer-field-mappings.md) defined on the indexer, and compare with the data of the specified field of the failed document. It might be necessary to modify the field mappings or the document data. |
@@ -189,7 +189,7 @@ The document was read and processed, but the indexer couldn't add it to the sear
 | Trouble connecting to the target index (that persists after retries) because the service is under other load, such as querying or indexing. | Failed to establish connection to update index. Search service is under heavy load. | [Scale up your search service](search-capacity-planning.md)
 | Search service is being patched for service update, or is in the middle of a topology reconfiguration. | Failed to establish connection to update index. Search service is currently down/Search service is undergoing a transition. | Configure service with at least three replicas for 99.9% availability per [SLA documentation](https://azure.microsoft.com/support/legal/sla/search/v1_0/)
 | Failure in the underlying compute/networking resource (rare) | Failed to establish connection to update index. An unknown failure occurred. | Configure indexers to [run on a schedule](search-howto-schedule-indexers.md) to pick up from a failed state.
-| An indexing request made to the target index wasn't acknowledged within a timeout period due to network issues. | Could not establish connection to the search index in a timely manner. | Configure indexers to [run on a schedule](search-howto-schedule-indexers.md) to pick up from a failed state. Additionally, try lowering the indexer [batch size](/rest/api/searchservice/create-indexer#parameters) if this error condition persists.
+| An indexing request made to the target index wasn't acknowledged within a timeout period due to network issues. | Could not establish connection to the search index in a timely manner. | Configure indexers to [run on a schedule](search-howto-schedule-indexers.md) to pick up from a failed state. Additionally, try lowering the indexer [batch size](/rest/api/searchservice/indexers/create#indexingparameters) if this error condition persists.
 
 <a name="could-not-index-document-because-the-indexer-data-to-index-was-invalid"></a>
 
@@ -385,12 +385,12 @@ Output field mappings that reference non-existent/null data will produce warning
 <a name="the-data-change-detection-policy-is-configured-to-use-key-column-x"></a>
 
 ## `Warning: The data change detection policy is configured to use key column 'X'`
-[Data change detection policies](/rest/api/searchservice/create-data-source#data-change-detection-policies) have specific requirements for the columns they use to detect change. One of these requirements is that this column is updated every time the source item is changed. Another requirement is that the new value for this column is greater than the previous value. Key columns don't fulfill this requirement because they don't change on every update. To work around this issue, select a different column for the change detection policy.
+[Data change detection policies](/rest/api/searchservice/data-sources/create#request-body) have specific requirements for the columns they use to detect change. One of these requirements is that this column is updated every time the source item is changed. Another requirement is that the new value for this column is greater than the previous value. Key columns don't fulfill this requirement because they don't change on every update. To work around this issue, select a different column for the change detection policy.
 
 <a name="document-text-appears-to-be-utf-16-encoded-but-is-missing-a-byte-order-mark"></a>
 
 ## `Warning: Document text appears to be UTF-16 encoded, but is missing a byte order mark`
-The [indexer parsing modes](/rest/api/searchservice/create-indexer#blob-configuration-parameters) need to know how text is encoded before parsing it. The two most common ways of encoding text are UTF-16 and UTF-8. UTF-8 is a variable-length encoding where each character is between 1 byte and 4 bytes long. UTF-16 is a fixed-length encoding where each character is 2 bytes long. UTF-16 has two different variants, `big endian` and `little endian`. Text encoding is determined by a `byte order mark`, a series of bytes before the text.
+The [indexer parsing modes](/rest/api/searchservice/indexers/create#blobindexerparsingmode) need to know how text is encoded before parsing it. The two most common ways of encoding text are UTF-16 and UTF-8. UTF-8 is a variable-length encoding where each character is between 1 byte and 4 bytes long. UTF-16 is a fixed-length encoding where each character is 2 bytes long. UTF-16 has two different variants, `big endian` and `little endian`. Text encoding is determined by a `byte order mark`, a series of bytes before the text.
 
 | Encoding | Byte Order Mark |
 | --- | --- |
