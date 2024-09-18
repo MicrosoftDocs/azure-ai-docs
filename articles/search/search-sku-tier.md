@@ -61,6 +61,7 @@ Currently, several regions are at capacity for Basic and Standard (S1) tiers and
 | Japan East | S2, S3, S3HD, L1, L2 |
 | Qatar Central | All tiers|
 | South Central US | All tiers |
+| US Gov Virginia | All tiers |
 | West Europe | All tiers |
 | West US 3| All tiers |
 
