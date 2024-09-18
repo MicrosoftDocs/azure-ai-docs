@@ -11,44 +11,41 @@ ms.author: eur
 author: eric-urban
 ---
 
-# Develop application with LlamaIndex and Azure AI studio
+# Develop applications with LlamaIndex and Azure AI studio
 
-In this article, you learn how to use [`llama-index`](https://github.com/run-llama/llama_index) with models deployed from the Azure AI model catalog deployed to Azure AI studio.
+In this article, you learn how to use [LlamaIndex](https://github.com/run-llama/llama_index) with models deployed from the Azure AI model catalog deployed to Azure AI studio.
+
+Models deployed to Azure AI studio can be used with LlamaIndex in two ways:
+
+- **Using the Azure AI model inference API:** All models deployed to Azure AI studio support the Azure AI model inference API, which offers a common set of functionalities that can be used for most of the models in the catalog. The benefit of this API is that, since it's the same for all the models, changing from one to another is as simple as changing the model deployment being use. No further changes are required in the code. When working with LlamaIndex, install the extensions `llama-index-llms-azure-inference` and `llama-index-embeddings-azure-inference`.
+
+- **Using the model's provider specific API:** Some models, like OpenAI, Cohere, or Mistral, offer their own set of APIs and extensions for LlamaIndex. Those extensions may include specific functionalities that the model support and hence are suitable if you want to exploit them. When working with `llama-index`, install the extension specific for the model you want to use, like `llama-index-llms-openai` or `llama-index-llms-cohere`.
+
+In this example, we are working with the Azure AI model inference API.
 
 ## Prerequisites
 
 To run this tutorial you need:
 
 1. An [Azure subscription](https://azure.microsoft.com).
-2. An Azure AI hub resource as explained at [How to create and manage an Azure AI Studio hub](https://learn.microsoft.com/en-us/azure/ai-studio/how-to/create-azure-ai-resource).
-3. A model supporting the [Azure AI model inference API](https://aka.ms/azureai/modelinference) deployed. In this example we use a `Mistral-Large` deployment, but use any model of your preference. For using embeddings capabilities in LlamaIndex, you need an embedding model like Cohere Embed V3. 
+2. An Azure AI hub resource as explained at [How to create and manage an Azure AI Studio hub](../how-to/create-azure-ai-resource).
+3. A model supporting the [Azure AI model inference API](https://aka.ms/azureai/modelinference) deployed. In this example we use a `Mistral-Large` deployment, but use any model of your preference. For using embeddings capabilities in LlamaIndex, you need an embedding model like `cohere-embed-v3-multilingual`. 
 
-    * You can follow the instructions at [Deploy models as serverless APIs](https://learn.microsoft.com/en-us/azure/ai-studio/how-to/deploy-models-serverless).
+    * You can follow the instructions at [Deploy models as serverless APIs](../how-to/deploy-models-serverless).
 
-4. A Python environment.
+4. Python 3.8 or later installed, including pip.
+5. LlamaIndex installed. You can do it with:
 
+    ```bash
+    pip install llama-index
+    ```
 
-## Install dependencies
+6. In this example, we are working with the Azure AI model inference API, hence we install the following packages:
 
-Ensure you have `llama-index` installed:
-
-```bash
-pip install llama-index
-```
-
-Models deployed to Azure AI studio or Azure Machine Learning can be used with LlamaIndex in two ways:
-
-- **Using the Azure AI model inference API:** All models deployed to Azure AI studio and Azure Machine Learning support the Azure AI model inference API, which offers a common set of functionalities that can be used for most of the models in the catalog. The benefit of this API is that, since it's the same for all the models, changing from one to another is as simple as changing the model deployment being use. No further changes are required in the code. When working with `llama-index`, install the extensions `llama-index-llms-azure-inference` and `llama-index-embeddings-azure-inference`.
-
-- **Using the model's provider specific API:** Some models, like OpenAI, Cohere, or Mistral, offer their own set of APIs and extensions for `llama-index`. Those extensions may include specific functionalities that the model support and hence are suitable if you want to exploit them. When working with `llama-index`, install the extension specific for the model you want to use, like `llama-index-llms-openai` or `llama-index-llms-cohere`.
-
-
-In this example, we are working with the Azure AI model inference API, hence we install the following packages:
-
-```bash
-pip install -U llama-index-llms-azure-inference
-pip install -U llama-index-embeddings-azure-inference
-```
+    ```bash
+    pip install -U llama-index-llms-azure-inference
+    pip install -U llama-index-embeddings-azure-inference
+    ``` 
 
 ## Configure the environment
 
