@@ -107,9 +107,9 @@ This table shows the progression of vector quota increases in GB over time. The 
 
 <sup>4</sup> Higher vector quota for more tiers and regions based on partition size updates.
 
-#### Storage quota (GB)
+#### Partition limits (GB)
 
-This table repeats [partition storage limits](#service-limits) for context. The table shows the progression of storage quota increases in GB over time. Vector quota is per partition, so the more significant increases in vector quota that occurred starting in April 2024 were bound to the increase in per-partition storage that occurred at the same time. 
+This table repeats [partition storage limits](#service-limits) for context. The table shows the progression of storage quota increases in GB over time. Vector quota is per partition, so the more significant increases in vector quota that occurred starting in April 2024 correspond to the increases in per-partition storage occuring at the same time. 
 
 Higher capacity partitions were brought online starting in April 2024.
 
