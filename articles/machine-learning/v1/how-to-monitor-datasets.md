@@ -87,7 +87,7 @@ Before following the steps in this article, make sure you have the following pre
 # [Azure CLI](#tab/azure-cli)
 
 [!INCLUDE [basic prereqs cli](../includes/machine-learning-cli-prereqs.md)]
-
+---
 > [!IMPORTANT]
 >
 > Model monitoring jobs are scheduled to run on serverless Spark compute pools with support for the following VM instance types: `Standard_E4s_v3`, `Standard_E8s_v3`, `Standard_E16s_v3`, `Standard_E32s_v3`, and `Standard_E64s_v3`. You can select the VM instance type with the `create_monitor.compute.instance_type` property in your YAML configuration or from the dropdown in the Azure Machine Learning studio.
