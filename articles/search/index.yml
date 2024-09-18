@@ -139,4 +139,4 @@ landingContent:
           - text: OData language reference
             url: query-odata-filter-orderby-syntax.md
           - text: Search Documents (REST)
-            url: /rest/api/searchservice/search-documents
+            url: /rest/api/searchservice/documents/search-post

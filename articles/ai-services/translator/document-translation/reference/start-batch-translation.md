@@ -77,7 +77,7 @@ Request headers are:
           "language": "fr",
           "glossaries": [
             {
-              "glossaryUrl": "https://myblob.blob.core.windows.net/Container/myglossary.tsv",
+              "glossaryUrl": "https://myblob.blob.core.windows.net/Container/myglossary.xlf",
               "format": "XLIFF",
               "version": "2.0",
               "storageSource": "AzureBlob"

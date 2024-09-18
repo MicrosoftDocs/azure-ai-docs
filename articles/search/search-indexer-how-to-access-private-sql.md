@@ -175,7 +175,7 @@ This article assumes a [REST client](search-get-started-rest.md) and uses the RE
 
 1. Run the indexer. If the indexer execution succeeds and the search index is populated, the shared private link is working.
 
-You can monitor the status of the indexer in Azure portal or by using the [Indexer Status API](/rest/api/searchservice/get-indexer-status).
+You can monitor the status of the indexer in Azure portal or by using the [Indexer Status API](/rest/api/searchservice/indexers/get-status).
 
 You can use [**Search explorer**](search-explorer.md) in Azure portal to check the contents of the index.
 

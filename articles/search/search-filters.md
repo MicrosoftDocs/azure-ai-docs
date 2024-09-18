@@ -110,7 +110,7 @@ The following examples illustrate several usage patterns for filter scenarios. F
 
 ## Field requirements for filtering
 
-In the REST API, filterable is *on* by default for simple fields. Filterable fields increase index size; be sure to set `"filterable": false` for fields that you don't plan to actually use in a filter. For more information about settings for field definitions, see [Create Index](/rest/api/searchservice/create-index).
+In the REST API, filterable is *on* by default for simple fields. Filterable fields increase index size; be sure to set `"filterable": false` for fields that you don't plan to actually use in a filter. For more information about settings for field definitions, see [Create Index](/rest/api/searchservice/indexes/create).
 
 In the .NET SDK, the filterable is *off* by default. You can make a field filterable by setting the [IsFilterable property](/dotnet/api/azure.search.documents.indexes.models.searchfield.isfilterable) of the corresponding [SearchField](/dotnet/api/azure.search.documents.indexes.models.searchfield) object to `true`. In the next example, the attribute is set on the `Rating` property of a model class that maps to the index definition.
 
@@ -175,7 +175,7 @@ To work with more examples, see [OData Filter Expression Syntax > Examples](./se
 ## See also
 
 + [How full text search works in Azure AI Search](search-lucene-query-architecture.md)
-+ [Search Documents REST API](/rest/api/searchservice/search-documents)
++ [Search Documents REST API](/rest/api/searchservice/documents/search-post)
 + [Simple query syntax](/rest/api/searchservice/simple-query-syntax-in-azure-search)
 + [Lucene query syntax](/rest/api/searchservice/lucene-query-syntax-in-azure-search)
 + [Supported data types](/rest/api/searchservice/supported-data-types)

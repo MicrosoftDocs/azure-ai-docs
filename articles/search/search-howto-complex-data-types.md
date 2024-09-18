@@ -69,7 +69,7 @@ This limit applies only to complex collections, and not complex types (like Addr
 
 ## Create complex fields
 
-As with any index definition, you can use the portal, [REST API](/rest/api/searchservice/create-index), or [.NET SDK](/dotnet/api/azure.search.documents.indexes.models.searchindex) to create a schema that includes complex types. 
+As with any index definition, you can use the portal, [REST API](/rest/api/searchservice/indexes/create), or [.NET SDK](/dotnet/api/azure.search.documents.indexes.models.searchindex) to create a schema that includes complex types. 
 
 Other Azure SDKs provide samples in [Python](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/search/azure-search-documents/samples/sample_index_crud_operations.py), [Java](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/search/azure-search-documents/src/samples/java/com/azure/search/documents/indexes/CreateIndexExample.java), and [JavaScript](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/search/search-documents/samples/v11/javascript/indexOperations.js).
 
@@ -89,7 +89,7 @@ Other Azure SDKs provide samples in [Python](https://github.com/Azure/azure-sdk-
 
 ### [**REST**](#tab/complex-type-rest)
 
-Use [Create Index (REST API)](/rest/api/searchservice/create-index) to define a schema.
+Use [Create Index (REST API)](/rest/api/searchservice/indexes/create) to define a schema.
 
 The following example shows a JSON index schema with simple fields, collections, and complex types. Notice that within a complex type, each subfield has a type and can have attributes, just as top-level fields do. The schema corresponds to the example data above. `Address` is a complex field that isn't a collection (a hotel has one address). `Rooms` is a complex collection field (a hotel has many rooms).
 
@@ -218,7 +218,7 @@ Fields must be marked as Retrievable in the index if you want them in search res
 
 ## Filter, facet, and sort complex fields
 
-The same [OData path syntax](query-odata-filter-orderby-syntax.md) used for filtering and fielded searches can also be used for faceting, sorting, and selecting fields in a search request. For complex types, rules apply that govern which subfields can be marked as sortable or facetable. For more information on these rules, see the [Create Index API reference](/rest/api/searchservice/create-index).
+The same [OData path syntax](query-odata-filter-orderby-syntax.md) used for filtering and fielded searches can also be used for faceting, sorting, and selecting fields in a search request. For complex types, rules apply that govern which subfields can be marked as sortable or facetable. For more information on these rules, see the [Create Index API reference](/rest/api/searchservice/indexes/create).
 
 ### Faceting subfields
 
@@ -242,7 +242,7 @@ To filter on a complex collection field, you can use a **lambda expression** wit
 
 > `$filter=Rooms/any(room: room/Type eq 'Deluxe Room') and Rooms/all(room: not room/SmokingAllowed)`
 
-As with top-level simple fields, simple subfields of complex fields can only be included in filters if they have the **filterable** attribute set to `true` in the index definition. For more information, see the [Create Index API reference](/rest/api/searchservice/create-index).
+As with top-level simple fields, simple subfields of complex fields can only be included in filters if they have the **filterable** attribute set to `true` in the index definition. For more information, see the [Create Index API reference](/rest/api/searchservice/indexes/create).
 
 Azure Search has the limitation that the complex objects in the collections across a single document cannot exceed 3000.
 

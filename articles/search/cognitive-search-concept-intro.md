@@ -116,7 +116,7 @@ An enrichment pipeline consists of [*indexers*](search-indexer-overview.md) that
 
 Start with a subset of data in a [supported data source](search-indexer-overview.md#supported-data-sources). Indexer and skillset design is an iterative process. The work goes faster with a small representative data set.
 
-1. Create a [data source](/rest/api/searchservice/create-data-source) that specifies a connection to your data.
+1. Create a [data source](/rest/api/searchservice/data-sources/create) that specifies a connection to your data.
 
 1. [Create a skillset](cognitive-search-defining-skillset.md). Unless your project is small, you should [attach an Azure AI multi-service resource](cognitive-search-attach-cognitive-services.md). If you're [creating a knowledge store](knowledge-store-create-rest.md), define it within the skillset.
 
