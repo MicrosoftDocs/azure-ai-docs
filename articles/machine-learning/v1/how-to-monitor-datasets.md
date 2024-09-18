@@ -52,7 +52,7 @@ To create and work with dataset monitors, you need:
 * The [Azure Machine Learning SDK for Python installed](/python/api/overview/azure/ml/install), which includes the azureml-datasets package.
 * Structured (tabular) data with a timestamp specified in the file path, file name, or column in the data.
 
-## Migrate to Model Monitor
+## Prerequisites (Migrate to Model Monitor)
 When you migrate to Model Monitor, please check the prerequisites as following:
 
 
@@ -326,14 +326,14 @@ Not supported
 ---
 
 
-## Migrate to Model Monitor
+## Create Model Monitor (Migrate to Model Monitor)
 When you migrate to Model Monitor, if you have deployed your model to production in an Azure Machine Learning online endpoint and enabled [data collection](../how-to-collect-production-data.md) at deployment time, Azure Machine Learning collects production inference data, and automatically stores it in Microsoft Azure Blob Storage. You can then use Azure Machine Learning model monitoring to continuously monitor this production inference data, and you can directly choose the model to create target dataset (production inference data in Model Monitor).
 
 When you migrate to Model Monitor, if you didn't deploy your model to production in an Azure Machine Learning online endpoint, or you don't want to use [data collection](../how-to-collect-production-data.md), you can also [set up model monitoring with custom signals and metrics](../how-to-monitor-model-performance.md#set-up-model-monitoring-with-custom-signals-and-metrics).
 
 Following sections contain more details on how to migrate to Model Monitor.
 
-## If you have deployed your model to production in an Azure Machine Learning online endpoint and enabled data collection
+## If you have deployed your model to production in an Azure Machine Learning online endpoint and enabled data collection (Migrate to Model Monitor)
 
 If you have deployed your model to production in an Azure Machine Learning online endpoint and enabled [data collection](../how-to-collect-production-data.md) at deployment time.
 
@@ -444,7 +444,7 @@ The following YAML contains the definition for the out-of-box model monitoring.
 :::code language="yaml" source="~/azureml-examples-main/cli/monitoring/out-of-box-monitoring.yaml":::
 ---
 
-## If you didn't deploy your model to production in an Azure Machine Learning online endpoint or you don't want to use data collection
+## If you didn't deploy your model to production in an Azure Machine Learning online endpoint or you don't want to use data collection (Migrate to Model Monitor)
 When you migrate to Model Monitor, if you didn't deploy your model to production in an Azure Machine Learning online endpoint, or you don't want to use [data collection](../how-to-collect-production-data.md), you can also [set up model monitoring with custom signals and metrics](../how-to-monitor-model-performance.md#set-up-model-monitoring-with-custom-signals-and-metrics).
 
 You can also set up model monitoring for models deployed to Azure Machine Learning batch endpoints or deployed outside of Azure Machine Learning. If you don't have a deployment, but you have production data, you can use the data to perform continuous model monitoring. To monitor these models, you must be able to:
