@@ -68,8 +68,6 @@ Before following the steps in this article, make sure you have the following pre
 
 * An Azure Machine Learning workspace and a compute instance. If you don't have these resources, use the steps in the [Quickstart: Create workspace resources](../quickstart-create-resources.md) article to create them.
 
----
-
 * Azure role-based access controls (Azure RBAC) are used to grant access to operations in Azure Machine Learning. To perform the steps in this article, your user account must be assigned the __owner__ or __contributor__ role for the Azure Machine Learning workspace, or a custom role allowing `Microsoft.MachineLearningServices/workspaces/onlineEndpoints/*`. For more information, see [Manage access to an Azure Machine Learning workspace](../how-to-assign-roles.md).
 
 *  For monitoring a model that is deployed to an Azure Machine Learning online endpoint (managed online endpoint or Kubernetes online endpoint), be sure to:
