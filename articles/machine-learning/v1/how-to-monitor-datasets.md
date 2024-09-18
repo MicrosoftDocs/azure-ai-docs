@@ -68,6 +68,11 @@ Before following the steps in this article, make sure you have the following pre
 
 * An Azure Machine Learning workspace and a compute instance. If you don't have these resources, use the steps in the [Quickstart: Create workspace resources](../quickstart-create-resources.md) article to create them.
 
+# [Azure CLI](#tab/azure-cli)
+
+[!INCLUDE [basic prereqs cli](../includes/machine-learning-cli-prereqs.md)]
+---
+
 * Azure role-based access controls (Azure RBAC) are used to grant access to operations in Azure Machine Learning. To perform the steps in this article, your user account must be assigned the __owner__ or __contributor__ role for the Azure Machine Learning workspace, or a custom role allowing `Microsoft.MachineLearningServices/workspaces/onlineEndpoints/*`. For more information, see [Manage access to an Azure Machine Learning workspace](../how-to-assign-roles.md).
 
 *  For monitoring a model that is deployed to an Azure Machine Learning online endpoint (managed online endpoint or Kubernetes online endpoint), be sure to:
@@ -82,10 +87,6 @@ Before following the steps in this article, make sure you have the following pre
     * Update the registered data asset continuously for model monitoring.
     * (Recommended) Register the model in an Azure Machine Learning workspace, for lineage tracking.
 
-# [Azure CLI](#tab/azure-cli)
-
-[!INCLUDE [basic prereqs cli](../includes/machine-learning-cli-prereqs.md)]
----
 > [!IMPORTANT]
 >
 > Model monitoring jobs are scheduled to run on serverless Spark compute pools with support for the following VM instance types: `Standard_E4s_v3`, `Standard_E8s_v3`, `Standard_E16s_v3`, `Standard_E32s_v3`, and `Standard_E64s_v3`. You can select the VM instance type with the `create_monitor.compute.instance_type` property in your YAML configuration or from the dropdown in the Azure Machine Learning studio.
@@ -215,6 +216,7 @@ Not supported.
 
 
 
+
 ## Create dataset monitor
 
 Create a dataset monitor to detect and alert to data drift on a new dataset. Use either the [Python SDK](#sdk-monitor) or [Azure Machine Learning studio](#studio-monitor).
@@ -319,6 +321,7 @@ monitor = monitor.enable_schedule()
 After completion of the wizard, the resulting dataset monitor will appear in the list. Select it to go to that monitor's details page.
 
 # [Azure CLI](#tab/azure-cli)
+
 Not supported
 ---
 
@@ -427,6 +430,7 @@ created_monitor = poller.result()
 1. Select **Next** to go to the **Select monitoring signals** page.
 1. Select **Next** to go to the **Notifications** page. Add your email to receive email notifications.
 1. Review your monitoring details and select **Create** to create the monitor.
+
 # [Azure CLI](#tab/azure-cli)
 
 Azure Machine Learning model monitoring uses `az ml schedule` to schedule a monitoring job. You can create the out-of-box model monitor with the following CLI command and YAML definition:
