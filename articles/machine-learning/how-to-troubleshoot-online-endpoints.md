@@ -8,7 +8,7 @@ ms.subservice: inferencing
 author: msakande
 ms.author: mopeakande
 ms.reviewer: sehan
-ms.date: 09/16/2024
+ms.date: 09/18/2024
 ms.topic: troubleshooting
 ms.custom: devplatv2, devx-track-azurecli, cliv2, sdkv2
 #Customer intent: As a data scientist, I want to figure out why my online endpoint deployment failed so that I can fix it.
@@ -20,9 +20,13 @@ ms.custom: devplatv2, devx-track-azurecli, cliv2, sdkv2
 
 This article describes how to troubleshoot and resolve common Azure Machine Learning online endpoint deployment and scoring issues.
 
-The first sections describe how to use [local deployment](#deploy-locally) and [container logs](#get-container-logs) to help debug issues.
+The document structure reflects the way you should approach troubleshooting:
 
-The rest of the article discusses [common deployment errors](#common-deployment-errors), [errors specific to Kubernetes deployments](#common-errors-specific-to-kubernetes-deployments), and [model consumption](#model-consumption-issues), [network isolation](#network-isolation-issues), [inference server](#inference-server-issues), and [other common issues](#other-common-issues).
+1. Use [local deployment](#deploy-locally) to test and debug your models locally before deploying in the cloud.
+1. Use [container logs](#get-container-logs) to help debug issues.
+1. Understand [common deployment errors](#common-deployment-errors) that might arise and how to fix them.
+
+The [HTTP status codes](#http-status-codes) sections explains how invocation and prediction errors map to HTTP status codes when you score endpoints with REST requests.
 
 ## Prerequisites
 
@@ -663,7 +667,7 @@ To troubleshoot errors by reattaching, make sure to reattach with the same confi
 
 ## Model consumption issues
 
-Common model consumption errors resulting from the endpoint `invoke` operation status include [bandwidth limit issues](#bandwidth-limit-issues), [HTTP status codes](#http-status-codes), and [blocked by CORS policy](#blocked-by-cors-policy).
+Common model consumption errors resulting from the endpoint `invoke` operation status include [bandwidth limit issues](#bandwidth-limit-issues), [CORS policy](#blocked-by-cors-policy), and various [HTTP status codes](#http-status-codes).
 
 ### Bandwidth limit issues
 
@@ -674,6 +678,15 @@ To monitor the bandwidth delay, use the metric **Network bytes** to understand t
 Two response trailers are returned if the bandwidth limit is enforced:
 - `ms-azureml-bandwidth-request-delay-ms` is the delay time in milliseconds it took for the request stream transfer.
 - `ms-azureml-bandwidth-response-delay-ms`is the delay time in milliseconds it took for the response stream transfer.
+
+### Blocked by CORS policy
+
+V2 online endpoints don't support [Cross-Origin Resource Sharing (CORS)](https://developer.mozilla.org/docs/Web/HTTP/CORS) natively. If your web application tries to invoke the endpoint without properly handling the CORS preflight requests, you can get the following error message:
+
+```output
+Access to fetch at 'https://{your-endpoint-name}.{your-region}.inference.ml.azure.com/score' from origin http://{your-url} has been blocked by CORS policy: Response to preflight request doesn't pass access control check. No 'Access-control-allow-origin' header is present on the request resource. If an opaque response serves your needs, set the request's mode to 'no-cors' to fetch the resource with the CORS disabled.
+```
+You can use Azure Functions, Azure Application Gateway, or another service as an interim layer to handle CORS preflight requests.
 
 ### HTTP status codes
 
@@ -706,11 +719,11 @@ The following table contains common error codes when REST requests consume Kuber
 | 504         | Request times out | A 504 status code indicates that the request timed out. The default timeout setting is 5 seconds. You can increase the timeout or try to speed up the endpoint by modifying *score.py* to remove unnecessary calls. If these actions don't correct the problem, the code might be in a nonresponsive state or an infinite loop. Follow [ERROR: ResourceNotReady](#error-resourcenotready) to debug the *score.py* file.  |
 | 500         | Internal server error  | Azure Machine Learning-provisioned infrastructure is failing.|
 
-#### How to prevent 503 status codes
+#### How to prevent 503 status code errors
 
 Kubernetes online deployments support autoscaling, which allows replicas to be added to support extra load. For more information, see [Azure Machine Learning inference router](how-to-kubernetes-inference-routing-azureml-fe.md). The decision to scale up or down is based on utilization of the current container replicas.
 
-Two actions can help prevent 503 status codes: Changing the utilization level for creating new replicas, or changing the minimum number of replicas. You can use these approaches individually or in combination.
+Two actions can help prevent 503 status code errors: Changing the utilization level for creating new replicas, or changing the minimum number of replicas. You can use these approaches individually or in combination.
 
 - Change the utilization target at which autoscaling creates new replicas by setting the `autoscale_target_utilization` to a lower value. This change doesn't cause replicas to be created faster, but at a lower utilization threshold. For example, changing the value to 30% causes replicas to be created when 30% utilization occurs instead of waiting until the service is 70% utilized.
 
@@ -741,15 +754,6 @@ To increase the number of instances, you can calculate the required replicas as 
   > If you receive request spikes larger than the new minimum replicas can handle, you might receive 503 again. For example, as traffic to your endpoint increases, you might need to increase the minimum replicas.
 
 If the Kubernetes online endpoint is already using the current max replicas and you still get 503 status codes, increase the `autoscale_max_replicas` value to increase the maximum number of replicas.
-
-### Blocked by CORS policy
-
-V2 online endpoints don't support [Cross-Origin Resource Sharing (CORS)](https://developer.mozilla.org/docs/Web/HTTP/CORS) natively. If your web application tries to invoke the endpoint without properly handling the CORS preflight requests, you can get the following error message:
-
-```output
-Access to fetch at 'https://{your-endpoint-name}.{your-region}.inference.ml.azure.com/score' from origin http://{your-url} has been blocked by CORS policy: Response to preflight request doesn't pass access control check. No 'Access-control-allow-origin' header is present on the request resource. If an opaque response serves your needs, set the request's mode to 'no-cors' to fetch the resource with the CORS disabled.
-```
-You can use Azure Functions, Azure Application Gateway, or another service as an interim layer to handle CORS preflight requests.
 
 ## Network isolation issues
 

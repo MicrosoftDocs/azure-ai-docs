@@ -1,7 +1,7 @@
 ---
 title: Online endpoints for real-time inference
 titleSuffix: Azure Machine Learning
-description: Learn about online endpoints for real-time inference in Azure Machine Learning.
+description: Learn about online endpoints for real-time inferencing in Azure Machine Learning.
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: inferencing
@@ -10,16 +10,18 @@ author: msakande
 ms.author: mopeakande
 ms.reviewer: sehan
 ms.custom: devplatv2
-ms.date: 09/16/2024
+ms.date: 09/18/2024
 
 #Customer intent: As an ML pro, I want to understand what an online endpoint is and why I need it.
 ---
 
-# Online endpoint deployment for real-time inference
+# Online endpoint deployment for real-time inferencing
 
 [!INCLUDE [dev v2](includes/machine-learning-dev-v2.md)]
 
-Inferencing is the process of applying new input data to a machine learning model to generate outputs. Azure Machine Learning allows you to perform real-time inferencing on data by using models that are deployed to *online endpoints*. While these outputs are typically called *predictions*, you can use inferencing to generate outputs for other machine learning tasks, such as classification and clustering.
+This article describes online endpoints for real-time inferencing in Azure Machine Learning. Inferencing is the process of applying new input data to a machine learning model to generate outputs.
+
+Azure Machine Learning allows you to perform real-time inferencing on data by using models that are deployed to *online endpoints*. While these outputs are typically called *predictions*, you can use inferencing to generate outputs for other machine learning tasks, such as classification and clustering.
 
 <a name="online-endpoints"></a>
 Online endpoints deploy models to a web server that can return predictions under the HTTP protocol. Online endpoints can operationalize models for real-time inference in synchronous, low-latency requests, and are best used when:
@@ -228,13 +230,13 @@ For more information about local debugging, see [Deploy and debug locally by usi
 
 As with local debugging, you need to have the [Docker Engine](https://docs.docker.com/engine/install/) installed and running, and then deploy a model to the local Docker environment. Once you have a local deployment, Azure Machine Learning local endpoints use Docker and Visual Studio Code development containers (dev containers) to build and configure a local debugging environment.
 
-With dev containers, you can use Visual Studio Code features such as interactive debugging from inside a Docker container. For more information about interactively debugging online endpoints in VS Code, see [Debug online endpoints locally in Visual Studio Code](how-to-debug-managed-online-endpoints-visual-studio-code.md).
+With dev containers, you can use Visual Studio Code features such as interactive debugging from inside a Docker container. For more information about interactively debugging online endpoints in Visual Studio Code, see [Debug online endpoints locally in Visual Studio Code](how-to-debug-managed-online-endpoints-visual-studio-code.md).
 
 ### Debugging with container logs
 
 You can't get direct access to a VM where a model deploys, but you can get logs from the following containers that are running on the VM:
 
-- The [inference server](how-to-inference-server-http.md)) console log contains the output of print/logging functions from your scoring script *score.py* code. 
+- The [inference server](how-to-inference-server-http.md) console log contains the output of print/logging functions from your scoring script *score.py* code. 
 - Storage initializer logs contain information on whether code and model data successfully downloaded to the container. The container runs before the inference server container starts to run.
 
 For more information about debugging with container logs, see [Get container logs](how-to-troubleshoot-online-endpoints.md#get-container-logs).
@@ -294,7 +296,7 @@ Inbound communications use the private endpoint of the Azure Machine Learning wo
 
 ### Monitoring online endpoints and deployments
 
-Azure Machine Learning endpoints integrate with [Azure Monitor](monitor-azure-machine-learning.md). Azure Monitor integration lets you view metrics in charts, configure alerts, query from log tables, and use Application Insights to analyze events from user containers. For more information, see [Monitor online endpoints](how-to-monitor-online-endpoints.md).
+Azure Machine Learning endpoints integrate with [Azure Monitor](monitor-azure-machine-learning.md). Azure Monitor integration lets you view metrics in charts, configure alerts, query log tables, and use Application Insights to analyze events from user containers. For more information, see [Monitor online endpoints](how-to-monitor-online-endpoints.md).
 
 ### Secret injection in online deployments (preview)
 
