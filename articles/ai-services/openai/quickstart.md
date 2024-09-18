@@ -14,7 +14,7 @@ zone_pivot_groups: openai-quickstart-new
 recommendations: false
 ---
 
-# Quickstart: Get started generating text using legacy completions API 
+# Quickstart: Get started generating text using the legacy completions API
 
 Use this article to get started making your first calls to Azure OpenAI.
 
