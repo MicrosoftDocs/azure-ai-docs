@@ -112,7 +112,7 @@ To avoid a full scan, you can use table partitions to narrow the scope of each i
 
   + In the data source definition, specify a query similar to the following example: `(PartitionKey ge <TimeStamp>) and (other filters)`. 
 
-  + Monitor indexer progress by using [Get Indexer Status API](/rest/api/searchservice/get-indexer-status), and periodically update the `<TimeStamp>` condition of the query based on the latest successful high-water-mark value. 
+  + Monitor indexer progress by using [Get Indexer Status API](/rest/api/searchservice/indexers/get-status), and periodically update the `<TimeStamp>` condition of the query based on the latest successful high-water-mark value. 
 
   + With this approach, if you need to trigger a full reindex, reset the data source query in addition to [resetting the indexer](search-howto-run-reset-indexers.md). 
 
@@ -120,7 +120,7 @@ To avoid a full scan, you can use table partitions to narrow the scope of each i
 
 In a [search index](search-what-is-an-index.md), add fields to accept the content and metadata of your table entities.
 
-1. [Create or update an index](/rest/api/searchservice/create-index) to define search fields that will store content from entities:
+1. [Create or update an index](/rest/api/searchservice/indexes/create) to define search fields that will store content from entities:
 
     ```http
     POST https://[service name].search.windows.net/indexes?api-version=2024-07-01 
@@ -199,7 +199,7 @@ An indexer runs automatically when it's created. You can prevent this by setting
 
 ## Check indexer status
 
-To monitor the indexer status and execution history, send a [Get Indexer Status](/rest/api/searchservice/get-indexer-status) request:
+To monitor the indexer status and execution history, send a [Get Indexer Status](/rest/api/searchservice/indexers/get-status) request:
 
 ```http
 GET https://myservice.search.windows.net/indexers/myindexer/status?api-version=2024-07-01

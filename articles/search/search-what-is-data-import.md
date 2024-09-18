@@ -37,7 +37,7 @@ Key benefits include:
 
 Use the following APIs to load single or multiple documents into an index:
 
-+ [Add, Update, or Delete Documents (REST API)](/rest/api/searchservice/AddUpdate-or-Delete-Documents)
++ [Index Documents (REST API)](/rest/api/searchservice/documents)
 + [IndexDocumentsAsync (Azure SDK for .NET)](/dotnet/api/azure.search.documents.searchclient.indexdocumentsasync) or [SearchIndexingBufferedSender](/dotnet/api/azure.search.documents.searchindexingbufferedsender-1)
 + [IndexDocumentsBatch (Azure SDK for Python)](/python/api/azure-search-documents/azure.search.documents.indexdocumentsbatch) or [SearchIndexingBufferedSender](/python/api/azure-search-documents/azure.search.documents.searchindexingbufferedsender)
 + [IndexDocumentsBatch (Azure SDK for Java)](/java/api/com.azure.search.documents.indexes.models.indexdocumentsbatch) or [SearchIndexingBufferedSender](/java/api/com.azure.search.documents.searchindexingbufferedasyncsender)

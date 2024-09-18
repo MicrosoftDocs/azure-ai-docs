@@ -197,7 +197,7 @@ Connection: close
 
 ## Create an index
 
-[Create Index (REST)](/rest/api/searchservice/create-index) creates a search index on your search service. An index specifies all the parameters and their attributes.
+[Create Index (REST)](/rest/api/searchservice/indexes/create) creates a search index on your search service. An index specifies all the parameters and their attributes.
 
 For nested JSON, the index fields must be identical to the source fields. Currently, Azure AI Search doesn't support field mappings to nested JSON. For this reason, field names and data types must match completely. The following index aligns to the JSON elements in the raw content.
 

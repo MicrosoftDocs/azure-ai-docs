@@ -74,7 +74,7 @@ All requests require an API key on every request sent to your service. Having a 
 
 ## Create an index
 
-Unless you're using the portal, an index must exist on the service before you can load data. This step defines the index and pushes it to the service. The [Create Index REST API](/rest/api/searchservice/create-index) is used for this step.
+Unless you're using the portal, an index must exist on the service before you can load data. This step defines the index and pushes it to the service. The [Create Index REST API](/rest/api/searchservice/indexes/create) is used for this step.
 
 Required elements of an index include a name and a fields collection. The fields collection defines the structure of a *document*. Each field has a name, type, and attributes that determine how it's used (for example, whether it's full-text searchable, filterable, or retrievable in search results). Within an index, one of the fields of type `Edm.String` must be designated as the *key* for document identity.
 
@@ -170,7 +170,7 @@ This index is named `hotels-quickstart` and has the field definitions you see in
 
 ## Load documents
 
-To push documents, use an HTTP POST request to your index's URL endpoint. The REST API for this task is [Add, Update, or Delete Documents](/rest/api/searchservice/addupdate-or-delete-documents).
+To push documents, use an HTTP POST request to your index's URL endpoint. The REST API for this task is [Index Documents](/rest/api/searchservice/documents).
 
 1. Paste this example into PowerShell to create a `$body` object that contains the documents you want to upload.
 

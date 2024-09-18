@@ -143,7 +143,7 @@ Indexers can connect to a blob container using the following connections.
 
 In a [search index](search-what-is-an-index.md), add fields to accept the content and metadata of your Azure blobs.
 
-1. [Create or update an index](/rest/api/searchservice/create-index) to define search fields that will store blob content and metadata:
+1. [Create or update an index](/rest/api/searchservice/indexes/create) to define search fields that will store blob content and metadata:
 
     ```http
     {
@@ -227,7 +227,7 @@ An indexer runs automatically when it's created. You can prevent this by setting
 
 ## Check indexer status
 
-To monitor the indexer status and execution history, send a [Get Indexer Status](/rest/api/searchservice/get-indexer-status) request:
+To monitor the indexer status and execution history, send a [Get Indexer Status](/rest/api/searchservice/indexers/get-status) request:
 
 ```http
 GET https://myservice.search.windows.net/indexers/myindexer/status?api-version=2024-07-01

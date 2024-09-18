@@ -22,7 +22,7 @@ Indexing stops when the error count exceeds ['maxFailedItems'](cognitive-search-
 If you want indexers to ignore these errors (and skip over "failed documents"), consider updating the `maxFailedItems` and `maxFailedItemsPerBatch` as described [here](/rest/api/searchservice/indexers/create#indexingparameters).
 
 > [!NOTE]
-> Each failed document along with its document key (when available) will show up as an error in the indexer execution status. You can utilize the [index api](/rest/api/searchservice/addupdate-or-delete-documents) to manually upload the documents at a later point if you have set the indexer to tolerate failures.
+> Each failed document along with its document key (when available) will show up as an error in the indexer execution status. You can utilize the [index api](/rest/api/searchservice/documents) to manually upload the documents at a later point if you have set the indexer to tolerate failures.
 
 The error information in this article can help you resolve errors, allowing indexing to continue.
 
@@ -92,7 +92,7 @@ Indexer read the document from the data source, but there was an issue convertin
 
 | Reason | Details/Example | Resolution |
 | --- | --- | --- |
-| The document key is missing | `Document key cannot be missing or empty` | Ensure all documents have valid document keys. The document key is determined by setting the 'key' property as part of the [index definition](/rest/api/searchservice/create-index#request-body). Indexers emit this error when the property flagged as the 'key' can't be found on a particular document. |
+| The document key is missing | `Document key cannot be missing or empty` | Ensure all documents have valid document keys. The document key is determined by setting the 'key' property as part of the [index definition](/rest/api/searchservice/indexes/create#request-body). Indexers emit this error when the property flagged as the 'key' can't be found on a particular document. |
 | The document key is invalid | `Invalid document key. Keys can only contain letters, digits, underscore (_), dash (-), or equal sign (=). ` | Ensure all documents have valid document keys. Review [Indexing Blob Storage](search-howto-indexing-azure-blob-storage.md) for more details. If you're using the blob indexer, and your document key is the `metadata_storage_path` field, make sure that the indexer definition has a [base64Encode mapping function](search-indexer-field-mappings.md?tabs=rest#base64encode-function) with `parameters` equal to `null`, instead of the path in plain text. |
 | The document key is invalid | `Document key cannot be longer than 1024 characters` | Modify the document key to meet the validation requirements. |
 | Could not apply field mapping to a field | `Could not apply mapping function 'functionName' to field 'fieldName'. Array cannot be null. Parameter name: bytes` | Double check the [field mappings](search-indexer-field-mappings.md) defined on the indexer, and compare with the data of the specified field of the failed document. It might be necessary to modify the field mappings or the document data. |

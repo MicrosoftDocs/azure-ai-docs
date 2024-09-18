@@ -124,7 +124,7 @@ You can implement this architecture by creating multiple services and designing 
 There are two options for keeping two or more distinct search services in sync:
 
 + Pull content updates into a search index by using an [indexer](search-indexer-overview.md).
-+ Push content into an index using the [Add or Update Documents (REST)](/rest/api/searchservice/addupdate-or-delete-documents) API or an Azure SDK equivalent API.
++ Push content into an index using the [Add or Update Documents (REST)](/rest/api/searchservice/documents) API or an Azure SDK equivalent API.
 
 To configure either option, we recommend using the [sample Bicep script in the azure-search-multiple-region](https://github.com/Azure-Samples/azure-search-multiple-regions) repository, modified to your regions and indexing strategies.
 
