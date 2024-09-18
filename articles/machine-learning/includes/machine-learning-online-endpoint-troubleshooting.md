@@ -58,7 +58,7 @@ If the value of `bypass` isn't `AzureServices`, use the guidance in the [Configu
 ### Scoring endpoint can't be resolved
 
 1. Verify that the client issuing the scoring request is a virtual network that can access the Azure Machine Learning workspace.
-1. Use the `nslookup` command on the endpoint hostname to retrieve the IP address information, as follows:
+1. Use the `nslookup` command on the endpoint hostname to retrieve the IP address information, for example:
 
    ```bash
    nslookup endpointname.westcentralus.inference.ml.azure.com
@@ -68,24 +68,24 @@ If the value of `bypass` isn't `AzureServices`, use the guidance in the [Configu
    
    > [!NOTE]
    > - For Kubernetes online endpoint, the endpoint hostname should be the **CName** (domain name) that's specified in your Kubernetes cluster. 
-   > - If the endpoint is HTTP, the IP address is contained in the endpoint URI, which you can get in the studio UI.
+   > - If the endpoint is HTTP, the IP address is contained in the endpoint URI, which you can get from the studio UI.
    > - You can find more ways to get the IP address of the endpoint in [Secure Kubernetes online endpoint](../how-to-secure-Kubernetes-online-endpoint.md#update-your-dns-with-an-fqdn).
 
-If the `nslookup` command doesn't resolve the host name, take the following actions.
+1. If the `nslookup` command doesn't resolve the host name, take the following actions:
 
 #### Managed online endpoints
 
-Use the following command to check whether an A record exists in the private DNS zone for the virtual network.
+1. Use the following command to check whether an A record exists in the private DNS zone for the virtual network.
 
-```azurecli
-az network private-dns record-set list -z privatelink.api.azureml.ms -o tsv --query [].name
-```
+   ```azurecli
+   az network private-dns record-set list -z privatelink.api.azureml.ms -o tsv --query [].name
+   ```
 
-The results should contain an entry similar to `*.<GUID>.inference.<region>`.
+   The results should contain an entry similar to `*.<GUID>.inference.<region>`.
 
-If no inference value returns, delete the private endpoint for the workspace and then recreate it. For more information, see [How to configure a private endpoint](/azure/container-registry/container-registry-private-link). 
+1. If no inference value returns, delete the private endpoint for the workspace and then recreate it. For more information, see [How to configure a private endpoint](/azure/container-registry/container-registry-private-link).
 
-If the workspace with a private endpoint [uses a custom DNS server](../how-to-custom-dns.md), run the following command to verify that the resolution from custom DNS works correctly.
+1. If the workspace with a private endpoint [uses a custom DNS server](../how-to-custom-dns.md), run the following command to verify that the resolution from custom DNS works correctly.
 
 ```bash
 dig endpointname.westcentralus.inference.ml.azure.com
@@ -137,11 +137,12 @@ dig endpointname.westcentralus.inference.ml.azure.com
    az ml online-endpoint show -n <endpointname>  --query traffic
    ```
 
+   The response from this command should list the percentage of traffic assigned to deployments.
+
+
    > [!TIP]
    > This step isn't necessary if you use the `azureml-model-deployment` header in your request to target this deployment.
 
-   The response from this command should list the percentage of traffic assigned to deployments.
-   
 1. If the traffic assignments or deployment header are set correctly, use the following command to get the logs for the endpoint. Replace `<endpointname>` with the name of the endpoint, and `<deploymentname>` with the deployment.
 
    ```azurecli

@@ -6,6 +6,7 @@ ms.date: 09/17/2024
 ms.author: shnagata
 ---
 
+<a name="frequently-asked-questions"></a>
 ### Check installed packages
 
 Follow these steps to address issues with installed packages.
@@ -14,7 +15,7 @@ Follow these steps to address issues with installed packages.
 
 1. Confirm that the `azureml-inference-server-http` Python package version specified in the environment file matches the Azure Machine Learning inference HTTP server version displayed in the [startup log](../how-to-inference-server-http.md#view-startup-logs).
 
-   - In some cases, the pip dependency resolver installs unexpected package versions. You might need to run `pip` to correct installed packages and versions.
+   In some cases, the pip dependency resolver installs unexpected package versions. You might need to run `pip` to correct installed packages and versions.
 
 1. If you specify the Flask or its dependencies in your environment, remove these items.
 
@@ -26,9 +27,7 @@ Follow these steps to address issues with installed packages.
 
 The `azureml-inference-server-http` server package is published to PyPI. The [PyPI page](https://pypi.org/project/azureml-inference-server-http/) lists the changelog and all previous versions.
 
-If you use an earlier package version, it's recommended to update your configuration to the latest version.
-
-The following table summarizes stable versions, common issues, and recommended adjustments:
+If you're using an earlier package version, update your configuration to the latest version. The following table summarizes stable versions, common issues, and recommended adjustments:
 
 | Package version | Description | Issue | Resolution |
 | --- | --- | --- |
@@ -47,7 +46,7 @@ The most relevant dependent packages for the `azureml-inference-server-http` ser
 - `opencensus-ext-azure`
 - `inference-schema`
   
-If you specified the `azureml-defaults` package in your Python environment, the `azureml-inference-server-http` package is a dependendent package. The dependency is installed automatically.
+If you specified the `azureml-defaults` package in your Python environment, the `azureml-inference-server-http` package is a dependent package. The dependency is installed automatically.
 
 > [!TIP]
 > If you use Python SDK v1 and don't explicitly specify the `azureml-defaults` package in your Python environment, the SDK might automatically add the package. However, the packager version is locked relative to the SDK version. For example, if the SDK version is `1.38.0`, then the `azureml-defaults==1.38.0` entry is added to the environment's pip requirements.
@@ -87,9 +86,11 @@ This error occurs when you have Flask 2 installed in your Python environment, bu
 
   If you don't see a similar message in your container log, your image is out-of-date and should be updated. If you use a Compute Unified Device Architecture (CUDA) image, and you can't find a newer image, check if your image is deprecated in [AzureML-Containers](https://github.com/Azure/AzureML-Containers). You can find designated replacements for deprecated images.
 
-  If you use the server with an online endpoint, you can also find the logs in the **Deployment logs** on the **Endpoints** page in Azure Machine Learning studio.
+  If you use the server with an online endpoint, you can also find the logs in the **Logs** on the **Endpoints** page in Azure Machine Learning studio.
 
-If you deploy with SDK v1, and don't explicitly specify an image in your deployment configuration, the server applies the `openmpi4.1.0-ubuntu20.04` package with a version that matches your local SDK toolset. However, the version installed might not be the latest available version of the image. For SDK version 1.43, the server installs the `openmpi4.1.0-ubuntu20.04:20220616` package version by default, but this package version isn't compatible with SDK 1.43. Make sure you use the latest SDK for your deployment.
+If you deploy with SDK v1, and don't explicitly specify an image in your deployment configuration, the server applies the `openmpi4.1.0-ubuntu20.04` package with a version that matches your local SDK toolset. However, the version installed might not be the latest available version of the image.
+
+For SDK version 1.43, the server installs the `openmpi4.1.0-ubuntu20.04:20220616` package version by default, but this package version isn't compatible with SDK 1.43. Make sure you use the latest SDK for your deployment.
 
 If you can't update the image, you can temporarily avoid the issue by pinning the `azureml-defaults==1.43` or `azureml-inference-server-http~=0.4.13` entries in your environment file. These entries direct the server to install the older version with `flask 1.0.x`.
 
@@ -101,4 +102,4 @@ You might encounter an `ImportError` or `ModuleNotFoundError` on specific module
 ImportError: cannot import name 'Markup' from 'jinja2'
 ```
 
-The import and module errors occur when you use older versions of the server (version **0.4.10** and earlier) that don't pin the Flask dependency to a compatible version. To prevent the issue, install a later version of the server.
+The import and module errors occur when you use version **0.4.10** or earlier versions of the server that don't pin the Flask dependency to a compatible version. To prevent the issue, install a later version of the server.
