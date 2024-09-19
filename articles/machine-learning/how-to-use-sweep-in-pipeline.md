@@ -40,21 +40,26 @@ The following Python SDK examples come from [Build pipeline with sweep node](htt
 
 ### Create a command component with hyperparameter inputs
 
-The Azure Machine Learning pipeline must have a command component with hyperparameter inputs. The following *train.yml* file defines a `trial` component that has the `c_value`, `kernel`, and `coef` hyperparameter inputs and runs the source code in the *./train-src* folder.
+The Azure Machine Learning pipeline must have a command component with hyperparameter inputs. The following *train.yml* file defines a `trial` component that has the `c_value`, `kernel`, and `coef` hyperparameter inputs and runs the source code that's located in the *./train-src* folder.
 
 :::code language="yaml" source="~/azureml-examples-main/cli/jobs/pipelines-with-components/pipeline_with_hyperparameter_sweep/train.yml" highlight="11-16,23-25,60":::
 
-In this example, the source code is a single *train.py* file. This code executes in every trial of the sweep job. The following example shows the trial component source code:
+### Create the trial component source code
+
+The example source code for this example is a single *train.py* file. This code executes in every trial of the sweep job. The following code shows the trial component source code:
 
 :::code language="python" source="~/azureml-examples-main/cli/jobs/pipelines-with-components/pipeline_with_hyperparameter_sweep/train-src/train.py" highlight="15":::
+
+>[!NOTE]
+>Make sure to log the metrics in the trial component source code with exactly the same name as the `primary_metric` value in the pipeline file. This example uses `mlflow.autolog()`, which is the recommended way to track machine learning experiments. For more information about MLflow, see [Track ML experiments and models with MLflow](./how-to-use-mlflow-cli-runs.md).
 
 ### Create the pipeline job with hyperparameter sweep step
 
 # [Azure CLI](#tab/cli)
 
-Given the command component defined in *train.yml*, the following code shows a two-step `train` and `predict` pipeline definition file with the hyperparameter tuning `sweep_step` highlighted. In the `sweep_step`, the required step type is `sweep`, and the `c_value`, `kernel`, and `coef` hyperparameter inputs for the `trial` component are added to the `search_space`.
+Given the command component defined in *train.yml*, the following code creates a two-step `train` and `predict` pipeline definition file. In the `sweep_step`, the required step type is `sweep`, and the `c_value`, `kernel`, and `coef` hyperparameter inputs for the `trial` component are added to the `search_space`. The following example highlights the hyperparameter tuning `sweep_step`.
 
-:::code language="yaml" source="~/azureml-examples-main/cli/jobs/pipelines-with-components/pipeline_with_hyperparameter_sweep/pipeline.yml" highlight="7-48":::
+:::code language="yaml" source="~/azureml-examples-main/cli/jobs/pipelines-with-components/pipeline_with_hyperparameter_sweep/pipeline.yml" highlight="8-48":::
 
 # [Python SDK](#tab/python)
 
@@ -62,18 +67,15 @@ In the v2 SDK, you can enable hyperparameter tuning for any command component by
 
 The example first loads the `train_component_func` defined in the *train.yml* file. To create the `train_model`, the code adds the `c_value`, `kernel`, and `coef0` hyperparameters into the search space. The `sweep_step` defines the `primary_metric`, `sampling_algorithm`, and other parameters.
 
-[!notebook-python[] (~/azureml-examples-main/sdk/python/jobs/pipelines/1c_pipeline_with_hyperparameter_sweep/pipeline_with_hyperparameter_sweep.ipynb?name=enable-sweep)]
+[!Notebook-python[] (~/azureml-examples-main/sdk/python/jobs/pipelines/1c_pipeline_with_hyperparameter_sweep/pipeline_with_hyperparameter_sweep.ipynb?name=enable-sweep)]
 
 ---
 
->[!NOTE]
->Make sure to log the metrics in the trial component source code with exactly the same names as the `primary_metric` value in the pipeline file. This example uses `mlflow.autolog()`, which is the recommended way to track machine learning experiments. For more information about MLflow, see [Track ML experiments and models with MLflow](./how-to-use-mlflow-cli-runs.md).
-
-After you submit this pipeline job, Azure Machine Learning runs the `trial` component multiple times to sweep over hyperparameters, based on the search space and limits you defined in the `sweep_step`. See [CLI (v2) sweep job YAML schema](reference-yaml-job-sweep.md) for the full sweep job schema.
+After you submit this pipeline job, Azure Machine Learning runs the `trial` component multiple times to sweep over hyperparameters, based on the search space and limits you defined in the `sweep_step`. For the full sweep job schema, see [CLI (v2) sweep job YAML schema](reference-yaml-job-sweep.md).
 
 ## Check a pipeline job with sweep step in studio
 
-After you submit a pipeline job, the SDK or CLI widget gives you a web URL link to the pipeline graph view in the Azure Machine Learning studio UI.
+After you submit a pipeline job, the SDK or CLI widget gives you a web URL link to the pipeline graph in the Azure Machine Learning studio UI.
 
 To details of the sweep step, double click the sweep step in the pipeline graph, select the **Child jobs** tab in the details panel, and then select the child job.
 
