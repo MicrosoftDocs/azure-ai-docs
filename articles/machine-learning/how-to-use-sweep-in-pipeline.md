@@ -17,7 +17,7 @@ ms.custom: devx-track-python, sdkv2, cliv2, update-code2
 
 [!INCLUDE [dev v2](includes/machine-learning-dev-v2.md)]
 
-In this article, you learn how to do hyperparameter tuning in Azure Machine Learning pipelines by using Azure Machine Learning CLI v2 or Azure Machine Learning SDK for Python v2, and view results in Azure Machine Learning studio.
+In this article, you learn how to do hyperparameter tuning in Azure Machine Learning pipelines by using Azure Machine Learning CLI v2 or Azure Machine Learning SDK for Python v2.
 
 Hyperparameters are adjustable parameters that let you control the model training process. Hyperparameter tuning is the process of finding the configuration of hyperparameters that results in the best performance. Azure Machine Learning lets you automate hyperparameter tuning and run experiments in parallel to efficiently optimize hyperparameters.
 
@@ -52,7 +52,7 @@ In this example, the source code is a single *train.py* file. This code executes
 
 # [Azure CLI](#tab/cli)
 
-Given the command component defined in *train.yml*, the following code shows a two-step `train` and `predict` *pipeline.yml* file with the hyperparameter tuning `sweep_step` highlighted. In the `sweep_step`, the required step type is `sweep`, and the `c_value`, `kernel`, and `coef` hyperparameter inputs for the `trial` component are added to the `search_space`.
+Given the command component defined in *train.yml*, the following code shows a two-step `train` and `predict` pipeline definition file with the hyperparameter tuning `sweep_step` highlighted. In the `sweep_step`, the required step type is `sweep`, and the `c_value`, `kernel`, and `coef` hyperparameter inputs for the `trial` component are added to the `search_space`.
 
 :::code language="yaml" source="~/azureml-examples-main/cli/jobs/pipelines-with-components/pipeline_with_hyperparameter_sweep/pipeline.yml" highlight="7-48":::
 
@@ -65,6 +65,7 @@ The example first loads the `train_component_func` defined in the *train.yml* fi
 [!notebook-python[] (~/azureml-examples-main/sdk/python/jobs/pipelines/1c_pipeline_with_hyperparameter_sweep/pipeline_with_hyperparameter_sweep.ipynb?name=enable-sweep)]
 
 ---
+
 >[!NOTE]
 >Make sure to log the metrics in the trial component source code with exactly the same names as the `primary_metric` value in the pipeline file. This example uses `mlflow.autolog()`, which is the recommended way to track machine learning experiments. For more information about MLflow, see [Track ML experiments and models with MLflow](./how-to-use-mlflow-cli-runs.md).
 
@@ -72,13 +73,13 @@ After you submit this pipeline job, Azure Machine Learning runs the `trial` comp
 
 ## Check a pipeline job with sweep step in studio
 
-After you submit a pipeline job, the SDK or CLI widget provides a web URL link to the pipeline graph view in the Azure Machine Learning studio UI.
+After you submit a pipeline job, the SDK or CLI widget gives you a web URL link to the pipeline graph view in the Azure Machine Learning studio UI.
 
-To check details of the sweep step, double click the sweep step in the graph and select the **Child jobs** tab in the detail panel.
+To details of the sweep step, double click the sweep step in the pipeline graph, select the **Child jobs** tab in the details panel, and then select the child job.
 
 :::image type="content" source="./media/how-to-use-sweep-in-pipeline/pipeline-view.png" alt-text="Screenshot of the pipeline with child job and the train_model node highlighted." lightbox= "./media/how-to-use-sweep-in-pipeline/pipeline-view.png":::
 
-Select the child job to go to the job page, and then select the **Trials** tab to see and compare metrics for all the child runs. Select any of the child runs to see more details for that run.
+On the child job page, select the **Trials** tab to see and compare metrics for all the child runs. Select any of the child runs to see the details for that run.
 
 :::image type="content" source="./media/how-to-use-sweep-in-pipeline/sweep-job.png" alt-text="Screenshot of the child job page with the Trials tab." lightbox= "./media/how-to-use-sweep-in-pipeline/sweep-job.png":::
 
