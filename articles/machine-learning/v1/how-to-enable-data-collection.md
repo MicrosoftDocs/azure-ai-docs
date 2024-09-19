@@ -161,7 +161,7 @@ You can choose a tool of your preference to analyze the data collected in your B
 
 1. Select **Storage**.
 
-    [![Select the Storage option](./media/how-to-enable-data-collection/StorageLocation.png)](././media/how-to-enable-data-collection/StorageLocation.png#lightbox)
+    :::image type="content" source="./media/how-to-enable-data-collection/StorageLocation.png" alt-text="Screenshot showing selection of the storage option." lightbox="./media/how-to-enable-data-collection/StorageLocation.png":::
 
 1. Follow the path to the blob's output data with this syntax:
 
@@ -176,13 +176,13 @@ You can choose a tool of your preference to analyze the data collected in your B
 
 1. Select **Get Data** and select [**Azure Blob Storage**](/power-bi/desktop-data-sources).
 
-    [![Power BI blob setup](./media/how-to-enable-data-collection/PBIBlob.png)](././media/how-to-enable-data-collection/PBIBlob.png#lightbox)
+    :::image type="content" source="./media/how-to-enable-data-collection/PBIBlob.png" alt-text="Screenshot showing the Power BI blob setup." lightbox="./media/how-to-enable-data-collection/PBIBlob.png":::
 
 1. Add your storage account name and enter your storage key. You can find this information by selecting **Settings** > **Access keys** in your blob.
 
 1. Select the **model data** container and select **Edit**.
 
-    [![Power BI Navigator](./media/how-to-enable-data-collection/pbiNavigator.png)](././media/how-to-enable-data-collection/pbiNavigator.png#lightbox)
+    :::image type="content" source="./media/how-to-enable-data-collection/pbiNavigator.png" alt-text="Screenshot showing the Power BI Navigator." lightbox="./media/how-to-enable-data-collection/pbiNavigator.png":::
 
 1. In the query editor, click under the **Name** column and add your storage account.
 
@@ -194,11 +194,11 @@ You can choose a tool of your preference to analyze the data collected in your B
 
 1. Select the downward double arrows next to the **Content** column heading to combine the files.
 
-    [![Power BI Content](./media/how-to-enable-data-collection/pbiContent.png)](././media/how-to-enable-data-collection/pbiContent.png#lightbox)
+    :::image type="content" source="./media/how-to-enable-data-collection/pbiContent.png" alt-text="Screenshot showing the Power BI Content." lightbox="./media/how-to-enable-data-collection/pbiContent.png":::
 
 1. Select **OK**. The data preloads.
 
-    [![Power BI Combine Files](./media/how-to-enable-data-collection/pbiCombine.png)](././media/how-to-enable-data-collection/pbiCombine.png#lightbox)
+    :::image type="content" source="./media/how-to-enable-data-collection/pbiCombine.png" alt-text="Screenshot showing the Power BI Combine Files." lightbox="./media/how-to-enable-data-collection/pbiCombine.png":::
 
 1. Select **Close and Apply**.
 
@@ -214,20 +214,20 @@ You can choose a tool of your preference to analyze the data collected in your B
 
 1. In your Databricks workspace, select **Upload Data**.
 
-    [![Selecting Databricks Upload Data option](./media/how-to-enable-data-collection/dbupload.png)](././media/how-to-enable-data-collection/dbupload.png#lightbox)
+    :::image type="content" source="./media/how-to-enable-data-collection/dbupload.png" alt-text="Screenshot showing selection of Databricks Upload Data option." lightbox="./media/how-to-enable-data-collection/dbupload.png":::
 
 1. Select **Create New Table** and select **Other Data Sources** > **Azure Blob Storage** > **Create Table in Notebook**.
 
-    [![Databricks table creation](./media/how-to-enable-data-collection/dbtable.PNG)](././media/how-to-enable-data-collection/dbtable.PNG#lightbox)
+    :::image type="content" source="./media/how-to-enable-data-collection/dbtable.png" alt-text="Screenshot showing Databricks table creation." lightbox="./media/how-to-enable-data-collection/dbtable.png":::
 
 1. Update the location of your data. Here is an example:
 
     ```
-    file_location = "wasbs://mycontainer@storageaccountname.blob.core.windows.net/modeldata/1a2b3c4d-5e6f-7g8h-9i10-j11k12l13m14/myresourcegrp/myWorkspace/aks-w-collv9/best_model/10/inputs/2018/*/*/data.csv" 
+    file_location = "wasbs://mycontainer@storageaccountname.blob.core.windows.net/*/*/data.csv" 
     file_type = "csv"
     ```
-
-    [![Databricks setup](./media/how-to-enable-data-collection/dbsetup.png)](././media/how-to-enable-data-collection/dbsetup.png#lightbox)
+    
+    :::image type="content" source="./media/how-to-enable-data-collection/dbsetup.png" alt-text="Screenshot showing the Databricks setup." lightbox="./media/how-to-enable-data-collection/dbsetup.png":::
 
 1. Follow the steps on the template to view and analyze your data.
 
