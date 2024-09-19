@@ -76,11 +76,11 @@ You can create an Azure AI Search resource in any of the following Azure public 
 | North Europe​​ | ✅ | ✅ | ✅ |
 | West Europe​​ <sup>1, 2</sup>| ✅ | ✅ | ✅ |
 | France Central​​ | ✅ | ✅ | ✅ |
-| Germany West Central​ <sup>2</sup> ​| ✅ |  | ✅ |
+| Germany West Central​ ​| ✅ |  | ✅ |
 | Italy North​​ |  |  | ✅ |
 | Norway East​​ | ✅ |  | ✅ |
 | Poland Central​​ |  |  |  |
-| Spain Central |  |  | ✅  |
+| Spain Central <sup>2</sup> |  |  | ✅  |
 | Sweden Central​​ | ✅ |  | ✅ |
 | Switzerland North​ | ✅ | ✅ | ✅ |
 | Switzerland West​ | ✅ | ✅ | ✅ |
@@ -107,9 +107,7 @@ You can create an Azure AI Search resource in any of the following Azure public 
 
 | Region | AI integration | Semantic ranking | Availability zones |
 |--|--|--|--|
-| South Africa North​ <sup>1</sup> | ✅ |  | ✅ |
-
-<sup>1</sup> This region runs on older infrastructure that has lower storage limits per partition at every tier. Choose a different region if you want [higher limits](search-limits-quotas-capacity.md#service-limits).
+| South Africa North​ | ✅ |  | ✅ |
 
 ### Asia Pacific
 
