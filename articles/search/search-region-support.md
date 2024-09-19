@@ -1,5 +1,5 @@
 ---
-title: Feature availability across clouds regions
+title: Supported regions
 titleSuffix: Azure AI Search
 description: Shows supported regions and feature availability across regions for Azure AI Search.
 
@@ -13,7 +13,7 @@ ms.date: 09/19/2024
 
 ---
 
-# Azure AI Search feature availability across cloud regions
+# Azure AI Search regions list
 
 This article identifies the cloud regions in which Azure AI Search is available. It also lists which premium features are available in each region. 
 
@@ -57,7 +57,7 @@ You can create an Azure AI Search resource in any of the following Azure public 
 | Canada East​​ ​ |  | ✅ | |
 | East US​ | ✅ | ✅ | ✅ |
 | East US 2 ​ | ✅ | ✅ | ✅ |
-| ​Central US​​ | ✅ | ✅ | ✅ |
+| ​Central US​​ <sup>1</sup> | ✅ | ✅ | ✅ |
 | North Central US​ ​ | ✅ | ✅ | |
 | South Central US​ <sup>2</sup>​ | ✅ | ✅ | ✅ |
 | West US​ ​ | ✅ | ✅ | |
