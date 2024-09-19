@@ -58,7 +58,7 @@ Select the **Clear chat** button to delete the current conversation history.
 
 Once you have experimented with chatting with the model select the **</> View Code** button. This will give you a replay of the code behind your entire conversation so far:
 
-:::image type="content" source="../media/quickstarts/chat-view-code.png" alt-text="Screenshot of the Chat playground page." lightbox="../media/quickstarts/chat-view-code.png":::
+:::image type="content" source="../media/quickstarts/chat-view-code.png" alt-text="Screenshot of view code experience." lightbox="../media/quickstarts/chat-view-code.png":::
 
 ### Understanding the prompt structure
 
