@@ -1,5 +1,5 @@
 ---
-title: "Improve performance in Azure AI Content Safety"
+title: "Mitigate false results in Azure AI Content Safety"
 titleSuffix: Azure AI services
 description: Learn techniques to improve the performance of Azure AI Content Safety models by handling false positives and false negatives.
 #services: cognitive-services
@@ -12,7 +12,7 @@ ms.author: pafarley
 #customer intent: As a user, I want to improve the performance of Azure AI Content Safety so that I can ensure accurate content moderation.
 ---
 
-# Improve performance in Azure AI Content Safety
+# Mitigate false results in Azure AI Content Safety
 
 This guide provides a step-by-step process for handling false positives and false negatives from Azure AI Content Safety models. 
 
