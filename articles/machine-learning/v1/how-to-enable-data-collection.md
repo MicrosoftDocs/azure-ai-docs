@@ -176,13 +176,13 @@ You can choose a tool of your preference to analyze the data collected in your B
 
 1. Select **Get Data** and select [**Azure Blob Storage**](/power-bi/desktop-data-sources).
 
-    :::image type="content" source="./media/how-to-enable-data-collection/PBIBlob.png" alt-text="Screenshot showing the Power BI blob setup." lightbox="./media/how-to-enable-data-collection/PBIBlob.png":::
+    :::image type="content" source="./media/how-to-enable-data-collection/power-bi-blob.png" alt-text="Screenshot showing the Power BI blob setup." lightbox="./media/how-to-enable-data-collection/power-bi-blob.png":::
 
 1. Add your storage account name and enter your storage key. You can find this information by selecting **Settings** > **Access keys** in your blob.
 
 1. Select the **model data** container and select **Edit**.
 
-    :::image type="content" source="./media/how-to-enable-data-collection/pbiNavigator.png" alt-text="Screenshot showing the Power BI Navigator." lightbox="./media/how-to-enable-data-collection/pbiNavigator.png":::
+    :::image type="content" source="./media/how-to-enable-data-collection/power-bi-navigator.png" alt-text="Screenshot showing the Power BI Navigator." lightbox="./media/how-to-enable-data-collection/power-bi-navigator.png":::
 
 1. In the query editor, click under the **Name** column and add your storage account.
 
@@ -194,11 +194,11 @@ You can choose a tool of your preference to analyze the data collected in your B
 
 1. Select the downward double arrows next to the **Content** column heading to combine the files.
 
-    :::image type="content" source="./media/how-to-enable-data-collection/pbiContent.png" alt-text="Screenshot showing the Power BI Content." lightbox="./media/how-to-enable-data-collection/pbiContent.png":::
+    :::image type="content" source="./media/how-to-enable-data-collection/power-bi-content.png" alt-text="Screenshot showing the Power BI Content." lightbox="./media/how-to-enable-data-collection/power-bi-content.png":::
 
 1. Select **OK**. The data preloads.
 
-    :::image type="content" source="./media/how-to-enable-data-collection/pbiCombine.png" alt-text="Screenshot showing the Power BI Combine Files." lightbox="./media/how-to-enable-data-collection/pbiCombine.png":::
+    :::image type="content" source="./media/how-to-enable-data-collection/power-bi-combine.png" alt-text="Screenshot showing the Power BI Combine Files." lightbox="./media/how-to-enable-data-collection/power-bi-combine.png":::
 
 1. Select **Close and Apply**.
 
@@ -214,11 +214,11 @@ You can choose a tool of your preference to analyze the data collected in your B
 
 1. In your Databricks workspace, select **Upload Data**.
 
-    :::image type="content" source="./media/how-to-enable-data-collection/dbupload.png" alt-text="Screenshot showing selection of Databricks Upload Data option." lightbox="./media/how-to-enable-data-collection/dbupload.png":::
+    :::image type="content" source="./media/how-to-enable-data-collection/databricks-upload.png" alt-text="Screenshot showing selection of Databricks Upload Data option." lightbox="./media/how-to-enable-data-collection/databricks-upload.png":::
 
 1. Select **Create New Table** and select **Other Data Sources** > **Azure Blob Storage** > **Create Table in Notebook**.
 
-    :::image type="content" source="./media/how-to-enable-data-collection/dbtable.png" alt-text="Screenshot showing Databricks table creation." lightbox="./media/how-to-enable-data-collection/dbtable.png":::
+    :::image type="content" source="./media/how-to-enable-data-collection/databricks-table.png" alt-text="Screenshot showing Databricks table creation." lightbox="./media/how-to-enable-data-collection/databricks-table.png":::
 
 1. Update the location of your data. Here is an example:
 
@@ -227,7 +227,7 @@ You can choose a tool of your preference to analyze the data collected in your B
     file_type = "csv"
     ```
     
-    :::image type="content" source="./media/how-to-enable-data-collection/dbsetup.png" alt-text="Screenshot showing the Databricks setup." lightbox="./media/how-to-enable-data-collection/dbsetup.png":::
+    :::image type="content" source="./media/how-to-enable-data-collection/databricks-setup.png" alt-text="Screenshot showing the Databricks setup." lightbox="./media/how-to-enable-data-collection/databricks-setup.png":::
 
 1. Follow the steps on the template to view and analyze your data.
 
