@@ -47,7 +47,7 @@ To use the Azure OpenAI for text summarization in the Completions playground, fo
 
 1. Sign in to [Azure OpenAI Studio](https://oai.azure.com).
 1. Select the subscription and OpenAI resource to work with. 
-1. Select **Completions playgrond** on the landing page.
+1. Select **Completions playground** on the landing page.
 1. Select your deployment from the **Deployments** dropdown. If your resource doesn't have a deployment, select **Create a deployment** and then revisit this step.
 1. Enter a prompt for the model.
 
