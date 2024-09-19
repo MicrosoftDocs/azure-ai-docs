@@ -709,10 +709,10 @@ items:
             - name: How to use streaming endpoints deployed from prompt flow
               href: ./prompt-flow/how-to-enable-streaming-mode.md
             - name: Set up end-to-end GenAIOps with prompt flow and GitHub
-            - displayName: LLMOps, DevOps
+              displayName: LLMOps, DevOps
               href: ./prompt-flow/how-to-end-to-end-llmops-with-prompt-flow.md
             - name: Set up end-to-end GenAIOps with prompt flow and Azure DevOps
-            - displayName: LLMOps, DevOps
+              displayName: LLMOps, DevOps
               href: ./prompt-flow/how-to-end-to-end-azure-devops-with-prompt-flow.md
             - name: Custom tool package creation and usage
               href: ./prompt-flow/how-to-custom-tool-package-creation-and-usage.md
@@ -1165,7 +1165,7 @@ items:
       - name: Set up MLOps with GitHub Actions
         href: how-to-setup-mlops-github-azure-ml.md
       - name: Set up GenAIOps with prompt flow and GitHub
-      - displayName: LLMOps, DevOps
+        displayName: LLMOps, DevOps
         href: ./prompt-flow/how-to-end-to-end-llmops-with-prompt-flow.md
 - name: Monitor your models
   items:
