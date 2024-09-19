@@ -17,11 +17,11 @@ In this article, you learn how to use [LlamaIndex](https://github.com/run-llama/
 
 Models deployed to Azure AI studio can be used with LlamaIndex in two ways:
 
-- **Using the Azure AI model inference API:** All models deployed to Azure AI studio support the Azure AI model inference API, which offers a common set of functionalities that can be used for most of the models in the catalog. The benefit of this API is that, since it's the same for all the models, changing from one to another is as simple as changing the model deployment being use. No further changes are required in the code. When working with LlamaIndex, install the extensions `llama-index-llms-azure-inference` and `llama-index-embeddings-azure-inference`.
+- **Using the Azure AI model inference API:** All models deployed to Azure AI studio support the [Azure AI model inference API](../../reference/reference-model-inference-api.md), which offers a common set of functionalities that can be used for most of the models in the catalog. The benefit of this API is that, since it's the same for all the models, changing from one to another is as simple as changing the model deployment being use. No further changes are required in the code. When working with LlamaIndex, install the extensions `llama-index-llms-azure-inference` and `llama-index-embeddings-azure-inference`.
 
 - **Using the model's provider specific API:** Some models, like OpenAI, Cohere, or Mistral, offer their own set of APIs and extensions for LlamaIndex. Those extensions may include specific functionalities that the model support and hence are suitable if you want to exploit them. When working with `llama-index`, install the extension specific for the model you want to use, like `llama-index-llms-openai` or `llama-index-llms-cohere`.
 
-In this example, we are working with the Azure AI model inference API.
+In this example, we are working with the **Azure AI model inference API**.
 
 ## Prerequisites
 
@@ -54,6 +54,8 @@ To use LLMs deployed in Azure AI studio you need the endpoint and credentials to
 1. Go to the [Azure AI studio](https://ai.azure.com/).
 2. Go to deployments and select the model you have deployed as indicated in the prerequisites.
 3. Copy the endpoint URL and the key.
+
+    :::image type="content" source="../../media/how-to/inference/serverless-endpoint-url-keys.png" alt-text="Screenshot of the option to copy endpoint URI and keys from an endpoint." lightbox="../../media/how-to/inference/serverless-endpoint-url-keys.png":::
     
 > [!TIP]
 > If your model was deployed with Microsoft Entra ID support, you don't need a key.
