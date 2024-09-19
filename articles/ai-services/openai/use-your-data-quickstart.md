@@ -28,6 +28,8 @@ The following resources:
 - [Azure Blob Storage](https://portal.azure.com/#create/Microsoft.StorageAccount-ARM)
 - [Azure AI Search](https://portal.azure.com/#create/Microsoft.Search)
 - An [Azure OpenAI resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesOpenAI) deployed in a [supported region and with a supported model](./concepts/use-your-data.md#regional-availability-and-model-support).
+    - Be sure that you're assigned at least the [Cognitive Services Contributor](./how-to/role-based-access-control.md#cognitive-services-contributor) role for the Azure OpenAI resource.
+- Download the example data from [GitHub](https://github.com/Azure-Samples/cognitive-services-sample-data-files/blob/master/openai/contoso_benefits_document_example.pdf) if you don't have your own data.
 
 > [!div class="nextstepaction"]
 > [I ran into an issue with the prerequisites.](https://microsoft.qualtrics.com/jfe/form/SV_0Cl5zkG3CnDjq6O?PLanguage=OVERVIEW&Pillar=AOAI&Product=ownData&Page=quickstart&Section=Prerequisites)
@@ -43,11 +45,13 @@ The following resources:
 
 ## Prerequisites
 
-- The following resources: 
-    - [Azure OpenAI](https://portal.azure.com/#create/Microsoft.CognitiveServicesOpenAI)
-    - [Azure Blob Storage](https://portal.azure.com/#create/Microsoft.StorageAccount-ARM)
-    - [Azure AI Search](https://portal.azure.com/#create/Microsoft.Search)
-    - An [Azure OpenAI resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesOpenAI) deployed in a [supported region and with a supported model](./concepts/use-your-data.md#regional-availability-and-model-support).
+The following resources: 
+- [Azure OpenAI](https://portal.azure.com/#create/Microsoft.CognitiveServicesOpenAI)
+- [Azure Blob Storage](https://portal.azure.com/#create/Microsoft.StorageAccount-ARM)
+- [Azure AI Search](https://portal.azure.com/#create/Microsoft.Search)
+- An [Azure OpenAI resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesOpenAI) deployed in a [supported region and with a supported model](./concepts/use-your-data.md#regional-availability-and-model-support).
+    - Be sure that you're assigned at least the [Cognitive Services Contributor](./how-to/role-based-access-control.md#cognitive-services-contributor) role for the Azure OpenAI resource.
+- Download the example data from [GitHub](https://github.com/Azure-Samples/cognitive-services-sample-data-files/blob/master/openai/contoso_benefits_document_example.pdf) if you don't have your own data.
 - The [.NET 8 SDK](https://dotnet.microsoft.com/download/dotnet/8.0)
 
 [!INCLUDE [Connect your data to OpenAI](includes/connect-your-data-studio.md)]
@@ -62,11 +66,13 @@ The following resources:
 
 ## Prerequisites
 
-- The following resources: 
-    - Azure OpenAI
-    - [Azure Blob Storage](https://portal.azure.com/#create/Microsoft.StorageAccount-ARM)
-    - [Azure AI Search](https://portal.azure.com/#create/Microsoft.Search)
-    - An [Azure OpenAI resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesOpenAI) deployed in a [supported region and with a supported model](./concepts/use-your-data.md#regional-availability-and-model-support).
+The following resources: 
+- [Azure OpenAI](https://portal.azure.com/#create/Microsoft.CognitiveServicesOpenAI)
+- [Azure Blob Storage](https://portal.azure.com/#create/Microsoft.StorageAccount-ARM)
+- [Azure AI Search](https://portal.azure.com/#create/Microsoft.Search)
+- An [Azure OpenAI resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesOpenAI) deployed in a [supported region and with a supported model](./concepts/use-your-data.md#regional-availability-and-model-support).
+    - Be sure that you're assigned at least the [Cognitive Services Contributor](./how-to/role-based-access-control.md#cognitive-services-contributor) role for the Azure OpenAI resource.
+- Download the example data from [GitHub](https://github.com/Azure-Samples/cognitive-services-sample-data-files/blob/master/openai/contoso_benefits_document_example.pdf) if you don't have your own data.
     
 [!INCLUDE [Connect your data to OpenAI](includes/connect-your-data-studio.md)]
 
@@ -117,11 +123,13 @@ The following resources:
 
 ## Prerequisites
 
-- The following resources: 
-    - Azure OpenAI
-    - [Azure Blob Storage](https://portal.azure.com/#create/Microsoft.StorageAccount-ARM)
-    - [Azure AI Search](https://portal.azure.com/#create/Microsoft.Search)
-    - An [Azure OpenAI resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesOpenAI) deployed in a [supported region and with a supported model](./concepts/use-your-data.md#regional-availability-and-model-support).
+The following resources: 
+- [Azure OpenAI](https://portal.azure.com/#create/Microsoft.CognitiveServicesOpenAI)
+- [Azure Blob Storage](https://portal.azure.com/#create/Microsoft.StorageAccount-ARM)
+- [Azure AI Search](https://portal.azure.com/#create/Microsoft.Search)
+- An [Azure OpenAI resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesOpenAI) deployed in a [supported region and with a supported model](./concepts/use-your-data.md#regional-availability-and-model-support).
+    - Be sure that you're assigned at least the [Cognitive Services Contributor](./how-to/role-based-access-control.md#cognitive-services-contributor) role for the Azure OpenAI resource.
+- Download the example data from [GitHub](https://github.com/Azure-Samples/cognitive-services-sample-data-files/blob/master/openai/contoso_benefits_document_example.pdf) if you don't have your own data.
 
 [Reference](https://platform.openai.com/docs/api-reference?lang=python) | [Source code](https://github.com/openai/openai-python) | [Package (pypi)](https://pypi.org/project/openai/) | [Samples](https://github.com/openai/openai-cookbook/)
 
@@ -138,11 +146,13 @@ These links reference the OpenAI API for Python. There's no Azure-specific OpenA
 
 ## Prerequisites
 
-- The following resources: 
-    - Azure OpenAI
-    - [Azure Blob Storage](https://portal.azure.com/#create/Microsoft.StorageAccount-ARM)
-    - [Azure AI Search](https://portal.azure.com/#create/Microsoft.Search)
-    - An [Azure OpenAI resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesOpenAI) deployed in a [supported region and with a supported model](./concepts/use-your-data.md#regional-availability-and-model-support).
+The following resources: 
+- [Azure OpenAI](https://portal.azure.com/#create/Microsoft.CognitiveServicesOpenAI)
+- [Azure Blob Storage](https://portal.azure.com/#create/Microsoft.StorageAccount-ARM)
+- [Azure AI Search](https://portal.azure.com/#create/Microsoft.Search)
+- An [Azure OpenAI resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesOpenAI) deployed in a [supported region and with a supported model](./concepts/use-your-data.md#regional-availability-and-model-support).
+    - Be sure that you're assigned at least the [Cognitive Services Contributor](./how-to/role-based-access-control.md#cognitive-services-contributor) role for the Azure OpenAI resource.
+- Download the example data from [GitHub](https://github.com/Azure-Samples/cognitive-services-sample-data-files/blob/master/openai/contoso_benefits_document_example.pdf) if you don't have your own data.
 
 [!INCLUDE [Connect your data to OpenAI](includes/connect-your-data-studio.md)]
 
@@ -155,11 +165,13 @@ These links reference the OpenAI API for Python. There's no Azure-specific OpenA
 
 ## Prerequisites
 
-- The following resources: 
-    - Azure OpenAI
-    - [Azure Blob Storage](https://portal.azure.com/#create/Microsoft.StorageAccount-ARM)
-    - [Azure AI Search](https://portal.azure.com/#create/Microsoft.Search)
-    - An [Azure OpenAI resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesOpenAI) deployed in a [supported region and with a supported model](./concepts/use-your-data.md#regional-availability-and-model-support).
+The following resources: 
+- [Azure OpenAI](https://portal.azure.com/#create/Microsoft.CognitiveServicesOpenAI)
+- [Azure Blob Storage](https://portal.azure.com/#create/Microsoft.StorageAccount-ARM)
+- [Azure AI Search](https://portal.azure.com/#create/Microsoft.Search)
+- An [Azure OpenAI resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesOpenAI) deployed in a [supported region and with a supported model](./concepts/use-your-data.md#regional-availability-and-model-support).
+    - Be sure that you're assigned at least the [Cognitive Services Contributor](./how-to/role-based-access-control.md#cognitive-services-contributor) role for the Azure OpenAI resource.
+- Download the example data from [GitHub](https://github.com/Azure-Samples/cognitive-services-sample-data-files/blob/master/openai/contoso_benefits_document_example.pdf) if you don't have your own data.
 
 [Reference](https://pkg.go.dev/github.com/Azure/azure-sdk-for-go) | [Source code](https://github.com/Azure/azure-sdk-for-go) | [Package (Go)](https://pkg.go.dev/github.com/azure/azure-dev) | [Samples](https://github.com/azure-samples/azure-sdk-for-go-samples)
 
@@ -174,11 +186,13 @@ These links reference the OpenAI API for Python. There's no Azure-specific OpenA
 
 ## Prerequisites
 
-- The following resources: 
-    - Azure OpenAI
-    - [Azure Blob Storage](https://portal.azure.com/#create/Microsoft.StorageAccount-ARM)
-    - [Azure AI Search](https://portal.azure.com/#create/Microsoft.Search)
-    - An [Azure OpenAI resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesOpenAI) deployed in a [supported region and with a supported model](./concepts/use-your-data.md#regional-availability-and-model-support).
+The following resources: 
+- [Azure OpenAI](https://portal.azure.com/#create/Microsoft.CognitiveServicesOpenAI)
+- [Azure Blob Storage](https://portal.azure.com/#create/Microsoft.StorageAccount-ARM)
+- [Azure AI Search](https://portal.azure.com/#create/Microsoft.Search)
+- An [Azure OpenAI resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesOpenAI) deployed in a [supported region and with a supported model](./concepts/use-your-data.md#regional-availability-and-model-support).
+    - Be sure that you're assigned at least the [Cognitive Services Contributor](./how-to/role-based-access-control.md#cognitive-services-contributor) role for the Azure OpenAI resource.
+- Download the example data from [GitHub](https://github.com/Azure-Samples/cognitive-services-sample-data-files/blob/master/openai/contoso_benefits_document_example.pdf) if you don't have your own data.
 
 [!INCLUDE [Connect your data to OpenAI](includes/connect-your-data-studio.md)]
 
