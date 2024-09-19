@@ -9,7 +9,7 @@ ms.service: cognitive-search
 ms.custom:
   - build-2024
 ms.topic: conceptual
-ms.date: 08/05/2024
+ms.date: 09/19/2024
 ---
 
 # Vector index size and staying under limits
