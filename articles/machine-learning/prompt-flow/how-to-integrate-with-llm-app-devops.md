@@ -29,7 +29,7 @@ This documentation focuses on how to effectively combine the capabilities of pro
 
 When developing applications using LLM, it's common to have a standardized application engineering process that includes code repositories and CI/CD pipelines. This integration allows for a streamlined development process, version control, and collaboration among team members.
 
-For developers experienced in code development who seek a more efficient GenAIOps iteration process, the following key features and benefits you can gain from prompt flow code experience:
+For developers experienced in code development who seek a more efficient GenAIOps (sometimes called LLMOps) iteration process, the following key features and benefits you can gain from prompt flow code experience:
 
 - **Flow versioning in code repository**. You can define your flow in YAML format, which can stay aligned with the referenced source files in a folder structure. 
 - **Integrate flow run with CI/CD pipeline**. You can trigger flow runs using the prompt flow CLI or SDK, which can be seamlessly integrated into your CI/CD pipeline and delivery process.

@@ -17,7 +17,7 @@ ms.date: 01/02/2024
 
 # GenAIOps with prompt flow and GitHub
 
-Large Language Models Operations, or **GenAIOps**, has become the cornerstone of efficient prompt engineering and LLM-infused application development and deployment. As the demand for LLM-infused applications continues to soar, organizations find themselves in need of a cohesive and streamlined process to manage their end-to-end lifecycle.
+Generative Artificial Intelligence Operations, or **GenAIOps** (sometimes called LLMOps), has become the cornerstone of efficient prompt engineering and LLM-infused application development and deployment. As the demand for LLM-infused applications continues to soar, organizations find themselves in need of a cohesive and streamlined process to manage their end-to-end lifecycle.
 
 Azure Machine Learning allows you to integrate with GitHub to automate the LLM-infused application development lifecycle with prompt flow.
 

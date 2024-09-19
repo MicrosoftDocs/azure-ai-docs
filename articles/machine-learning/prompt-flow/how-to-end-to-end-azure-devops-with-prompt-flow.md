@@ -19,7 +19,7 @@ ms.custom:
 
 # GenAIOps with prompt flow and Azure DevOps
 
-Large Language Operations, or **GenAIOps**, has become the cornerstone of efficient prompt engineering and LLM-infused application development and deployment. As the demand for LLM-infused applications continues to soar, organizations find themselves in need of a cohesive and streamlined process to manage their end-to-end lifecycle.
+Generative Artificial Intelligence Operations, or **GenAIOps** (sometimes called LLMOps), has become the cornerstone of efficient prompt engineering and LLM-infused application development and deployment. As the demand for LLM-infused applications continues to soar, organizations find themselves in need of a cohesive and streamlined process to manage their end-to-end lifecycle.
 
 Azure Machine Learning allows you to integrate with **Azure DevOps** to automate the LLM-infused application development lifecycle with prompt flow.
 

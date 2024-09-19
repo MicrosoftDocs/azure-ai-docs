@@ -1,7 +1,7 @@
 ---
 title: Advance your maturity level for GenAIOps
 titleSuffix: Azure Machine Learning
-description: Learn about the different stages of Large Language Operations (GenAIOps) and how to advance your organization's capabilities.
+description: Learn about the different stages of Generative Artificial Intelligence Operations (GenAIOps) and how to advance your organization's capabilities.
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: prompt-flow
@@ -12,9 +12,9 @@ ms.reviewer: sasahami
 ms.date: 03/28/2024
 ---
 
-# Advance your maturity level for Large Language Model Operations (GenAIOps)
+# Advance your maturity level for Generative Artificial Intelligence Operations (GenAIOps)
 
-Large Language Model Operations, or **GenAIOps**, describes the operational practices and strategies for managing large language models (LLMs) in production. This article  provides guidance on how to advance your capabilities in GenAIOps, based on your organization's current maturity level.
+Generative Artificial Intelligence Operations, or **GenAIOps** (sometimes called LLMOps), describes the operational practices and strategies for managing large language models (LLMs) in production. This article  provides guidance on how to advance your capabilities in GenAIOps, based on your organization's current maturity level.
 
 :::image type="content" source="../media/concept-llmops-maturity/llmopsml.png" alt-text="Diagram shows maturity level of GenAIOps." lightbox="../media/concept-llmops-maturity/llmopsml.png":::
 
