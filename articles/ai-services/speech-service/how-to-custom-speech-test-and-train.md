@@ -6,8 +6,9 @@ author: eric-urban
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 1/19/2024
+ms.date: 9/19/2024
 ms.author: eur
+#Customer intent: As a developer, I need to understand the types of training and testing data that I can use for a custom speech project, along with how to use and manage that data.
 ---
 
 # Training and testing datasets
