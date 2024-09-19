@@ -1,24 +1,24 @@
 ---
-title: Speaker recognition overview - Speech service
+title: Speaker recognition overview
 titleSuffix: Azure AI services
-description: Speaker recognition provides algorithms that verify and identify speakers by their unique voice characteristics, by using voice biometry. Speaker recognition is used to answer the question “who is speaking?”. This article is an overview of the benefits and capabilities of the speaker recognition feature.
+description: Speaker recognition provides algorithms that verify and identify speakers by their unique voice characteristics, by using voice biometry. 
 author: eric-urban
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: overview
-ms.date: 1/21/2024
+ms.date: 9/23/2024
 ms.author: eur
 keywords: speaker recognition, voice biometry
+#customer intent: As a developer, I want to learn about speaker recognition in Azure AI Speech to verify and identify speakers by their unique voice characteristics.
 ---
 
 # What is speaker recognition?
 
+[!INCLUDE [deprecation notice](./includes/retire-speaker-recognition.md)]
+
 Speaker recognition can help determine who is speaking in an audio clip. The service can verify and identify speakers by their unique voice characteristics, by using voice biometry. 
 
 You provide audio training data for a single speaker, which creates an enrollment profile based on the unique characteristics of the speaker's voice. You can then cross-check audio voice samples against this profile to verify that the speaker is the same person (speaker verification). You can also cross-check audio voice samples against a *group* of enrolled speaker profiles to see if it matches any profile in the group (speaker identification).
-
-> [!IMPORTANT]
-> Microsoft limits access to Speaker Recognition. We have paused all new registrations for the Speaker Recognition Limited Access program at this time.
 
 ## Speaker verification
 
