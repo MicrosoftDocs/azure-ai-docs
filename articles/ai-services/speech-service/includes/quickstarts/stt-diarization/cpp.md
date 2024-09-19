@@ -316,29 +316,7 @@ Speaker ID=Guest-2
 Speakers are identified as Guest-1, Guest-2, and so on, depending on the number of speakers in the conversation.
 
 > [!NOTE]
-> You might see `Speaker ID=Unknown` in some of the early intermediate results when the speaker is not yet identified.
-
-Without intermediate diarization results (if you don't set the `PropertyId::SpeechServiceResponse_DiarizeIntermediateResults` property to "true"), the output should look like this:
-
-```output
-TRANSCRIBED: Text=Good morning, Steve. How are you doing today?
-Speaker ID=Guest-1
-
-TRANSCRIBED: Text=Good morning, Katie. I hope you're having a great start to your day.
-Speaker ID=Guest-2
-
-TRANSCRIBED: Text=Have you tried the latest real time diarization in Microsoft Speech Service which can tell you who said what in real time?
-Speaker ID=Guest-1
-
-TRANSCRIBED: Text=Not yet. I've been using the batch transcription with diarization functionality, but it produces diarization results after the whole audio is processed. Is the new feature able to diarize in real time?
-Speaker ID=Guest-2
-
-TRANSCRIBED: Text=Absolutely, I recommend you give it a try.
-Speaker ID=Guest-1
-
-TRANSCRIBED: Text=That's exciting. Let me try it right now.
-Speaker ID=Guest-2
-```
+> You might see `Speaker ID=Unknown` in some of the early intermediate results when the speaker is not yet identified. Without intermediate diarization results (if you don't set the `PropertyId::SpeechServiceResponse_DiarizeIntermediateResults` property to "true"), the speaker ID is always "Unknown".
 
 ## Clean up resources
 
