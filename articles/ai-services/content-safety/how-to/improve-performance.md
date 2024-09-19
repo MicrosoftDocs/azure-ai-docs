@@ -64,7 +64,7 @@ In addition to adjusting the severity levels for false negatives, you can also u
 
 Sometimes you might need to create a custom category to ensure the filtering aligns with your specific Responsible AI policy, as prebuilt categories or content filtering may not be enough. 
 
-Refer to the [Custom categories documentation](/azure/ai-services/content-safety/concepts/custom-categories.md) to build your own categories with the Azure AI Content Safety API.
+Refer to the [Custom categories documentation](/azure/ai-services/content-safety/concepts/custom-categories) to build your own categories with the Azure AI Content Safety API.
 
 ## Document issues and send feedback to Azure
 
