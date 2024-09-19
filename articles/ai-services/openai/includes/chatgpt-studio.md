@@ -48,9 +48,9 @@ Select the **Clear chat** button to delete the current conversation history.
 |:--------------------|:-------------------------------------------------------------------------------|
 | Deployments         | Your deployment name that is associated with a specific model. |
 | Add your data | 
-| Parameters | Custom parameters that alter the model responses. When you are starting out we recommend to stick with the defaults for most parameters |
+| Parameters | Custom parameters that alter the model responses. When you are starting out we recommend to use the defaults for most parameters |
 | Temperature         | Controls randomness. Lowering the temperature means that the model produces more repetitive and deterministic responses. Increasing the temperature results in more unexpected or creative responses. Try adjusting temperature or Top P but not both. |
-| Max response (tokens) | Set a limit on the number of tokens per model response. The API supports a maximum of 4096 tokens shared between the prompt (including system message, examples, message history, and user query) and the model's response. One token is roughly four characters for typical English text.|
+| Max response (tokens) | Set a limit on the number of tokens per model response. The API on the latest models supports a maximum of 128,000 tokens shared between the prompt (including system message, examples, message history, and user query) and the model's response. One token is roughly four characters for typical English text.|
 | Top p   | Similar to temperature, this controls randomness but uses a different method. Lowering Top P narrows the model’s token selection to likelier tokens. Increasing Top P lets the model choose from tokens with both high and low likelihood. Try adjusting temperature or Top P but not both.|
 | Stop sequences      | Stop sequence make the model end its response at a desired point. The model response ends before the specified sequence, so it won't contain the stop sequence text. For GPT-35-Turbo, using `<|im_end|>` ensures that the model response doesn't generate a follow-up user query. You can include as many as four stop sequences.|
 
