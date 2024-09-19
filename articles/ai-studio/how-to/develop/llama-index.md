@@ -57,8 +57,8 @@ To use LLMs deployed in Azure AI studio, you need the endpoint and credentials t
 
     :::image type="content" source="../../media/how-to/inference/serverless-endpoint-url-keys.png" alt-text="Screenshot of the option to copy endpoint URI and keys from an endpoint." lightbox="../../media/how-to/inference/serverless-endpoint-url-keys.png":::
     
-> [!TIP]
-> If your model was deployed with Microsoft Entra ID support, you don't need a key.
+    > [!TIP]
+    > If your model was deployed with Microsoft Entra ID support, you don't need a key.
 
 In this scenario, we placed both the endpoint URL and key in the following environment variables:
 
