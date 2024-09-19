@@ -28,8 +28,8 @@ False positives are when the system incorrectly flags non-harmful content as har
 Conduct an initial assessment to confirm that the flagged content is really a false positive or false negative. This can involve: 
 - Checking the context of the flagged content.  
 - Comparing the flagged content against the content safety risk categories and severity definitions:
-    - If you are using content safety in Azure OpenAI, go [here](/azure/ai-services/openai/concepts/content-filter).
-    - If you are using the Azure AI Content Safety standalone API, go [here](/azure/ai-services/content-safety/concepts/harm-categories?tabs=warning) for harm categories and [here](/azure/ai-services/content-safety/concepts/jailbreak-detection) for Prompt Shields.
+    - If you're using content safety in Azure OpenAI, see the [Azure OpenAI content filtering doc](/azure/ai-services/openai/concepts/content-filter).
+    - If you're using the Azure AI Content Safety standalone API, see the [Harm categories doc](/azure/ai-services/content-safety/concepts/harm-categories?tabs=warning) or the [Prompt Shields doc](/azure/ai-services/content-safety/concepts/jailbreak-detection), depending on which API you're using.
 
 ## Customize your severity settings
 
@@ -62,13 +62,13 @@ In addition to adjusting the severity levels for false negatives, you can also u
 
 ## Create a custom category based on your own RAI policy
 
-Sometimes you might need to create a custom category to ensure the filtering aligns with your specific Responsible AI policy, as pre-built categories or content filtering may not be enough. 
+Sometimes you might need to create a custom category to ensure the filtering aligns with your specific Responsible AI policy, as prebuilt categories or content filtering may not be enough. 
 
 Refer to the [Custom categories documentation](/azure/ai-services/content-safety/concepts/custom-categories.md) to build your own categories with the Azure AI Content Safety API.
 
 ## Document issues and send feedback to Azure
 
-If, after you’ve tried all the steps mentioned above, Azure AI Content Safety still cannot resolve the false positives or negatives, there is likely a policy definition or model issue that needs further attention.
+If, after you’ve tried all the steps mentioned above, Azure AI Content Safety still can't resolve the false positives or negatives, there is likely a policy definition or model issue that needs further attention.
 
 Document the details of the false positives and/or false negatives by providing the following information to the [Content safety support team](mailto:contentsafetysupport@microsoft.com):
 - Description of the flagged content.
@@ -78,7 +78,7 @@ Document the details of the false positives and/or false negatives by providing 
 - Any adjustments already attempted by adjusting severity settings or using custom categories. 
 - Screenshots or logs of the flagged content and system responses.
 
-This documentation will help in escalating the issue to the appropriate teams for resolution.
+This documentation helps in escalating the issue to the appropriate teams for resolution.
 
 ## Related content
 
