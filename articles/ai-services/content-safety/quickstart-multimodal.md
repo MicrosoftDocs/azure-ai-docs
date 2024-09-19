@@ -1,5 +1,18 @@
+---
+title: "Quickstart: Analyze multimodal content"
+titleSuffix: Azure AI services
+description: Get started using Azure AI Content Safety to analyze text content in images for objectionable material.
+#services: cognitive-services
+author: PatrickFarley
+manager: nitinme
+ms.service: azure-ai-content-safety
+ms.topic: quickstart
+ms.date: 09/19/2024
+ms.author: pafarley
+# zone_pivot_groups: programming-languages-content-safety
+---
 
-# Quickstart: Multimodal (Preview) 
+# Quickstart: Analyze multimodal content (Preview) 
 
 The Multimodal API analyzes materials containing both image content and text content to help make applications and services safer from harmful user-generated or AI-generated content.
 
