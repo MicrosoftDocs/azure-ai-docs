@@ -24,7 +24,7 @@ In this quickstart, you can use your own data with Azure OpenAI models. Using Az
 ## Prerequisites
 
 The following resources: 
-- Azure OpenAI
+- [Azure OpenAI](https://portal.azure.com/#create/Microsoft.CognitiveServicesOpenAI)
 - [Azure Blob Storage](https://portal.azure.com/#create/Microsoft.StorageAccount-ARM)
 - [Azure AI Search](https://portal.azure.com/#create/Microsoft.Search)
 - An [Azure OpenAI resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesOpenAI) deployed in a [supported region and with a supported model](./concepts/use-your-data.md#regional-availability-and-model-support).
@@ -41,6 +41,15 @@ The following resources:
 
 ::: zone pivot="programming-language-csharp"
 
+## Prerequisites
+
+- The following resources: 
+    - [Azure OpenAI](https://portal.azure.com/#create/Microsoft.CognitiveServicesOpenAI)
+    - [Azure Blob Storage](https://portal.azure.com/#create/Microsoft.StorageAccount-ARM)
+    - [Azure AI Search](https://portal.azure.com/#create/Microsoft.Search)
+    - An [Azure OpenAI resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesOpenAI) deployed in a [supported region and with a supported model](./concepts/use-your-data.md#regional-availability-and-model-support).
+- The [.NET 8 SDK](https://dotnet.microsoft.com/download/dotnet/8.0)
+
 [!INCLUDE [Connect your data to OpenAI](includes/connect-your-data-studio.md)]
 
 [!INCLUDE [Csharp quickstart](includes/use-your-data-dotnet.md)]
@@ -51,6 +60,14 @@ The following resources:
 
 [Source code](https://github.com/spring-projects-experimental/spring-ai)| [Source code](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/openai/openai) | [Sample](https://github.com/rd-1-2022/ai-azure-retrieval-augmented-generation)
 
+## Prerequisites
+
+- The following resources: 
+    - Azure OpenAI
+    - [Azure Blob Storage](https://portal.azure.com/#create/Microsoft.StorageAccount-ARM)
+    - [Azure AI Search](https://portal.azure.com/#create/Microsoft.Search)
+    - An [Azure OpenAI resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesOpenAI) deployed in a [supported region and with a supported model](./concepts/use-your-data.md#regional-availability-and-model-support).
+    
 [!INCLUDE [Connect your data to OpenAI](includes/connect-your-data-studio.md)]
 
 [!INCLUDE [Spring quickstart](includes/use-your-data-spring.md)]
@@ -98,6 +115,14 @@ The following resources:
 
 ::: zone pivot="programming-language-python"
 
+## Prerequisites
+
+- The following resources: 
+    - Azure OpenAI
+    - [Azure Blob Storage](https://portal.azure.com/#create/Microsoft.StorageAccount-ARM)
+    - [Azure AI Search](https://portal.azure.com/#create/Microsoft.Search)
+    - An [Azure OpenAI resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesOpenAI) deployed in a [supported region and with a supported model](./concepts/use-your-data.md#regional-availability-and-model-support).
+
 [Reference](https://platform.openai.com/docs/api-reference?lang=python) | [Source code](https://github.com/openai/openai-python) | [Package (pypi)](https://pypi.org/project/openai/) | [Samples](https://github.com/openai/openai-cookbook/)
 
 These links reference the OpenAI API for Python. There's no Azure-specific OpenAI Python SDK. [Learn how to switch between the OpenAI services and Azure OpenAI services](/azure/ai-services/openai/how-to/switching-endpoints).
@@ -110,6 +135,15 @@ These links reference the OpenAI API for Python. There's no Azure-specific OpenA
 
 ::: zone pivot="programming-language-powershell"
 
+
+## Prerequisites
+
+- The following resources: 
+    - Azure OpenAI
+    - [Azure Blob Storage](https://portal.azure.com/#create/Microsoft.StorageAccount-ARM)
+    - [Azure AI Search](https://portal.azure.com/#create/Microsoft.Search)
+    - An [Azure OpenAI resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesOpenAI) deployed in a [supported region and with a supported model](./concepts/use-your-data.md#regional-availability-and-model-support).
+
 [!INCLUDE [Connect your data to OpenAI](includes/connect-your-data-studio.md)]
 
 [!INCLUDE [PowerShell quickstart](includes/use-your-data-powershell.md)]
@@ -117,6 +151,15 @@ These links reference the OpenAI API for Python. There's no Azure-specific OpenA
 ::: zone-end
 
 ::: zone pivot="programming-language-go"
+
+
+## Prerequisites
+
+- The following resources: 
+    - Azure OpenAI
+    - [Azure Blob Storage](https://portal.azure.com/#create/Microsoft.StorageAccount-ARM)
+    - [Azure AI Search](https://portal.azure.com/#create/Microsoft.Search)
+    - An [Azure OpenAI resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesOpenAI) deployed in a [supported region and with a supported model](./concepts/use-your-data.md#regional-availability-and-model-support).
 
 [Reference](https://pkg.go.dev/github.com/Azure/azure-sdk-for-go) | [Source code](https://github.com/Azure/azure-sdk-for-go) | [Package (Go)](https://pkg.go.dev/github.com/azure/azure-dev) | [Samples](https://github.com/azure-samples/azure-sdk-for-go-samples)
 
@@ -127,6 +170,15 @@ These links reference the OpenAI API for Python. There's no Azure-specific OpenA
 ::: zone-end
 
 ::: zone pivot="rest-api"
+
+
+## Prerequisites
+
+- The following resources: 
+    - Azure OpenAI
+    - [Azure Blob Storage](https://portal.azure.com/#create/Microsoft.StorageAccount-ARM)
+    - [Azure AI Search](https://portal.azure.com/#create/Microsoft.Search)
+    - An [Azure OpenAI resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesOpenAI) deployed in a [supported region and with a supported model](./concepts/use-your-data.md#regional-availability-and-model-support).
 
 [!INCLUDE [Connect your data to OpenAI](includes/connect-your-data-studio.md)]
 
