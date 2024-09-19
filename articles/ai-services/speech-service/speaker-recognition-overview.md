@@ -67,7 +67,7 @@ As with all of the Azure AI services resources, developers who use the speaker r
 | What Azure regions are supported? | See [Speaker recognition region support](regions.md#speech-service).|
 | What audio formats are supported? | Mono 16 bit, 16 kHz PCM-encoded WAV. |
 | Can you enroll one speaker multiple times? | Yes, for text-dependent verification, you can enroll a speaker up to 50 times. For text-independent verification or speaker identification, you can enroll with up to 300 seconds of audio. |
-| What data is stored in Azure? | Enrollment audio is stored in the service until the voice profile is [deleted](./get-started-speaker-recognition.md#delete-voice-profile-enrollments). Recognition audio samples aren't retained or stored. |
+| What data is stored in Azure? | Enrollment audio is stored in the service until the voice profile is deleted. Recognition audio samples aren't retained or stored. |
 
 ## Responsible AI 
 
@@ -79,7 +79,8 @@ An AI system includes not only the technology, but also the people who use it, t
 * [General guidelines](/legal/cognitive-services/speech-service/speaker-recognition/guidance-integration-responsible-use-speaker-recognition?context=/azure/ai-services/speech-service/context/context)
 * [Data, privacy, and security](/legal/cognitive-services/speech-service/speaker-recognition/data-privacy-speaker-recognition?context=/azure/ai-services/speech-service/context/context)
 
-## Next steps
+## Related content
 
-> [!div class="nextstepaction"]
-> [Speaker recognition quickstart](./get-started-speaker-recognition.md) 
+- [Speech service overview](./overview.md)
+- [Speech to text overview](./speech-to-text.md)
+

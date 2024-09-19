@@ -897,7 +897,7 @@ Stay healthy!
 ### Speech SDK 1.12.1: 2020-June release
 
 #### New features
--   **C\#, C++**: Speaker Recognition Preview: This feature enables speaker identification (who is speaking?) and speaker verification (is the speaker who they claim to be?). Start with an [overview](../../speaker-recognition-overview.md), read the [Speaker Recognition basics article](../../get-started-speaker-recognition.md), or the [API reference docs](/rest/api/speakerrecognition/).
+-   **C\#, C++**: Speaker Recognition Preview: This feature enables speaker identification (who is speaking?) and speaker verification (is the speaker who they claim to be?). See the [overview documentation](../../speaker-recognition-overview.md).
 
 #### Bug fixes
 -   **C\#, C++**: Fixed microphone recording wasn't working in 1.12 in Speaker Recognition.
