@@ -1,3 +1,16 @@
+---
+title: "Multimodal categories in Azure AI Content Safety"
+titleSuffix: Azure AI services
+description: tbd
+#services: cognitive-services
+author: PatrickFarley
+manager: nitinme
+ms.service: azure-ai-content-safety
+ms.topic: conceptual
+ms.date: 09/19/2024
+ms.author: pafarley
+---
+
 # Image with text categories in Azure AI Content Safety
 
 This guide describes all of the Image with text categories that Azure AI Content Safety uses to flag content. 
@@ -20,10 +33,10 @@ Classification can be multi-labeled. For example, when a text sample goes throug
 Every Image with text category the service applies also comes with a severity level rating. The severity level is meant to indicate the severity of the consequences of showing the flagged content.
 
 **Image with text**: The current version of the multimodal model supports the full 0-7 severity scale. The classifier detects amongst all severities along this scale. If the user specifies, it can return severities in the trimmed scale of 0, 2, 4, and 6; each two adjacent levels are mapped to a single level.
-- [0,1] -> 0
-- [2,3] -> 2
-- [4,5] -> 4
-- [6,7] -> 6
+- `[0,1]` -> `0`
+- `[2,3]` -> `2`
+- `[4,5]` -> `4`
+- `[6,7]` -> `6`
 
 
 
