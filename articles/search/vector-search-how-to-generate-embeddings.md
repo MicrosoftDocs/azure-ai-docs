@@ -30,7 +30,7 @@ If you want to handle data chunking and vectorization yourself, we provide demos
 
 ## Create resources in the same region
 
-Integrated vectorization requires resoruces to be in the same region:
+Integrated vectorization requires resources to be in the same region:
 
 1. [Check regions for a text embedding model](/azure/ai-services/openai/concepts/models#model-summary-table-and-region-availability).
 
