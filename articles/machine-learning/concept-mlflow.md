@@ -17,7 +17,7 @@ ms.custom: cliv2, sdkv2
 
 [!INCLUDE [dev v2](includes/machine-learning-dev-v2.md)]
 
-This article describes the capabilities and advantages of [MLflow](https://www.mlflow.org), an open-source framework designed to manage the complete machine learning lifecycle. MLflow can train and serve models on different platforms. You can use a consistent set of tools whether your experiments are running locally or on a remote compute target, virtual machine, or Azure Machine Learning compute instance.
+This article describes the capabilities of [MLflow](https://www.mlflow.org), an open-source framework designed to manage the complete machine learning lifecycle. MLflow uses a consistent set of tools to train and serve models on different platforms. You can use MLflow whether your experiments are running locally or on a remote compute target, virtual machine, or Azure Machine Learning compute instance.
 
 Azure Machine Learning workspaces are MLflow-compatible, which means that you can use an Azure Machine Learning workspace the same way you use a MLflow server. This compatibility has the following advantages:
 
@@ -26,7 +26,7 @@ Azure Machine Learning workspaces are MLflow-compatible, which means that you ca
 - You can run any training routine that uses MLflow in Azure Machine Learning without making any changes.
 
 > [!TIP]
-> Unlike the Azure Machine Learning SDK v1, there's no logging functionality in the v2 SDK. You can use MLflow logging to ensure that your training routines are cloud-agnostic, portable, and have no dependency on Azure Machine Learning.
+> Unlike the Azure Machine Learning SDK v1, there's no logging functionality in the Azure Machine Learning v2 SDK. You can use MLflow logging to ensure that your training routines are cloud-agnostic, portable, and have no dependency on Azure Machine Learning.
 
 ## Tracking with MLflow
 
