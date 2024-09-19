@@ -153,6 +153,91 @@ ml_client.connections.create_or_update(workspace_connection=wps_connection)
 
 ---
 
+## Create a Snowflake DB connection that uses OAuth
+
+The information in this section describe how to create a Snowflake DB connection that uses OAuth to authenticate.
+
+> [!IMPORTANT]
+> Before following the steps in this section, you must first [Configure Azure to issue OAuth tokens on behalf of the client](https://community.snowflake.com/s/article/Create-External-OAuth-Token-Using-Azure-AD-For-The-OAuth-Client-Itself). This configuration creates a service principal, which is required for the OAuth connection. You need the following information to create the connection:
+>
+> - Client ID: The ID of the service principal
+> - Client Secret: The secret of the service principal
+> - Tenant ID: The ID of the Microsoft Entra ID tenant
+
+
+# [Azure CLI](#tab/cli)
+
+This YAML file creates a Snowflake DB connection that uses OAuth. Be sure to update the appropriate values:
+
+```yaml
+# my_snowflakedb_connection.yaml
+name: snowflake_service_principal_connection
+type: snowflake
+# Add the Snowflake account, database, warehouse name, and role name here. If no role name is provided, it will default to PUBLIC.
+target: jdbc:snowflake://<myaccount>.snowflakecomputing.com/?db=<mydb>&warehouse=<mywarehouse>&scope=<scopeForServicePrincipal>
+credentials:
+  type: service_principal
+  client_id: <client-id>          # The service principal's client id
+  client_secret: <client-secret>  # The service principal's client secret
+  tenant_id: <tenant-id>          # The Microsoft Entra ID tenant id
+```
+
+Create the Azure Machine Learning connection in the CLI:
+
+```azurecli
+az ml connection create --file my_snowflakedb_connection.yaml
+```
+
+You can also override the information in the YAML file at the command line:
+
+```azurecli
+az ml connection create --file my_snowflakedb_connection.yaml --set credentials.client_id="my-client-id" credentials.client_secret="my-client-secret" credentials.tenant_id="my-tenant-id"
+```
+
+# [Python SDK](#tab/python)
+
+With the Python SDK, you can create a connection by loading the connection information stored in the YAML file. You can optionally override the values:
+
+```python
+from azure.ai.ml import MLClient, load_workspace_connection
+
+ml_client = MLClient.from_config()
+
+wps_connection = load_workspace_connection(source="./my_snowflakedb_connection.yaml")
+wps_connection.credentials_client_id="my-client-id"
+wps_connection.credentials.client_secret="my-client-secret"
+wps_connection.credentials.tenant_id="my-tenant-id"
+ml_client.connections.create_or_update(workspace_connection=wps_connection)
+
+```
+
+You can also directly specify the connection information in a Python script without relying on a YAML file:
+
+```python
+from azure.ai.ml import MLClient
+from azure.ai.ml.entities import WorkspaceConnection
+from azure.ai.ml.entities import ServicePrincipalConfiguration
+
+target= "jdbc:snowflake://<myaccount>.snowflakecomputing.com/?db=<mydb>&warehouse=<mywarehouse>&role=<myrole>"
+# add the Snowflake account, database, warehouse name and role name here. If no role name provided it will default to PUBLIC
+name= <my_snowflake_connection> # name of the connection
+auth = ServicePrincipalConfiguration(client_id="<my-client-id>", client_secret="<my-client-secret>", tenant_id="<my-tenant-id>")
+wps_connection = WorkspaceConnection(name= name,
+                                     type="snowflake",
+                                     target=target,
+                                     credentials=auth
+)
+
+ml_client.connections.create_or_update(workspace_connection=wps_connection)
+
+```
+
+# [Studio](#tab/azure-studio)
+
+You can't create a Snowflake DB connection that uses OAuth in studio.
+
+---
+
 ## Create an Azure SQL DB connection
 
 # [Azure CLI](#tab/cli)
