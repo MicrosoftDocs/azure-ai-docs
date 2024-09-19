@@ -75,7 +75,7 @@ As you're refining the model and collaborating with others throughout the rest o
 
 Azure Machine Learning includes tools to help you build Generative AI applications powered by Large Language Models (LLMs). The solution includes a model catalog, prompt flow, and a suite of tools to streamline the development cycle of AI applications.
 
-Both Azure Machine Learning Studio and Azure AI Studio allow you to work with LLMs.  Use this guide to determine [which studio you should use](/ai/ai-studio-experiences-overview.md?toc=/azure/machine-learning/toc.json&bc=/azure/machine-learning/breadcrumb/toc.json).
+Both Azure Machine Learning Studio and Azure AI Studio allow you to work with LLMs.  Use this guide to determine [which studio you should use](/ai/ai-studio-experiences-overview?toc=/azure/machine-learning/toc.json&bc=/azure/machine-learning/breadcrumb/toc.json).
 
 ### Model catalog
 
