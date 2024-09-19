@@ -8,7 +8,7 @@ ms.service: azure-ai-document-intelligence
 ms.custom:
   - ignite-2023
 ms.topic: reference
-ms.date: 08/30/2024
+ms.date: 09/09/2024
 ms.author: lajanuar
 ---
 
@@ -72,12 +72,12 @@ This reference article provides a version-based description of Document Intellig
 
 ### [**Python**](#tab/python)
 
-* Document Intelligence **1.0.0b2**
+* Document Intelligence **1.0.0b4**
 * **Targets REST API 2024-07-31-preview by default**
 
-[**Changelog/Release History**](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/documentintelligence/azure-ai-documentintelligence/CHANGELOG.md)
+[**Changelog/Release History**](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/documentintelligence/azure-ai-documentintelligence/CHANGELOG.md#100b4-2024-09-05)
 
-[**Package (PyPi)**](https://pypi.org/project/azure-ai-documentintelligence/)
+[**Package (PyPi)**](https://pypi.org/project/azure-ai-documentintelligence/1.0.0b4/)
 
 [**ReadMe**]( https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/documentintelligence/azure-ai-documentintelligence/README.md)
 

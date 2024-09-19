@@ -128,11 +128,11 @@ Within an index definition, you can place this section anywhere in the body of a
 }
 ```
 
-The analyzer definition is a part of the larger index. Definitions for char filters, tokenizers, and token filters are added to the index only if you're setting custom options. To use an existing filter or tokenizer as-is, specify it by name in the analyzer definition. For more information, see [Create Index (REST)](/rest/api/searchservice/create-index). For more examples, see [Add analyzers in Azure AI Search](search-analyzers.md#examples).
+The analyzer definition is a part of the larger index. Definitions for char filters, tokenizers, and token filters are added to the index only if you're setting custom options. To use an existing filter or tokenizer as-is, specify it by name in the analyzer definition. For more information, see [Create Index (REST)](/rest/api/searchservice/indexes/create). For more examples, see [Add analyzers in Azure AI Search](search-analyzers.md#examples).
 
 ## Test custom analyzers
 
-You can use the [Test Analyzer (REST)](/rest/api/searchservice/test-analyzer) to see how an analyzer breaks given text into tokens.
+You can use the [Test Analyzer (REST)](/rest/api/searchservice/indexes/analyze) to see how an analyzer breaks given text into tokens.
 
 **Request**
 
@@ -310,4 +310,4 @@ In the table below, the token filters that are implemented using Apache Lucene a
 
 - [Azure AI Search REST APIs](/rest/api/searchservice/)
 - [Analyzers in Azure AI Search (Examples)](search-analyzers.md#examples)
-- [Create Index (REST)](/rest/api/searchservice/create-index)
+- [Create Index (REST)](/rest/api/searchservice/indexes/create)

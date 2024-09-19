@@ -5,13 +5,13 @@ description: Learn how to use text to speech avatar with real-time synthesis.
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: overview
-ms.date: 2/24/2024
+ms.date: 9/12/2024
 ms.reviewer: v-baolianzou
 ms.author: eur
 author: eric-urban
 ---
 
-# How to do real-time synthesis for text to speech avatar
+# How to use text to speech avatar with real-time synthesis
 
 In this how-to guide, you learn how to use text to speech avatar with real-time synthesis. The synthetic avatar video will be generated in almost real time after the system receives the text input.
 
@@ -82,7 +82,7 @@ Real-time avatar uses WebRTC protocol to output the avatar video stream. You nee
 
 First, you need to create a WebRTC peer connection object. WebRTC is a P2P protocol, which relies on ICE server for network relay. Speech service provides network relay function and exposes a REST API to issue the ICE server information. Therefore, we recommend you fetch the ICE server from the speech service. You can also choose to use your own ICE server.
 
-Here is a sample request to fetch ICE information from the speech service endpoint:
+Here's a sample request to fetch ICE information from the speech service endpoint:
 
 ```HTTP
 GET /cognitiveservices/avatar/relay/token/v1 HTTP/1.1
@@ -148,7 +148,7 @@ avatarSynthesizer.startAvatarAsync(peerConnection).then(
 );
 ```
 
-Our real-time API disconnects after 5 minutes of avatar's idle state. Even if the avatar is not idle and functioning normally, the real-time API will disconnect after a 10-minute connection. To ensure continuous operation of the real-time avatar for more than 10 minutes, you can enable auto-reconnect. For how to set up auto-reconnect, refer to this [sample code](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/samples/js/browser/avatar/README.md) (search "auto reconnect").
+Our real-time API disconnects after 5 minutes of avatar's idle state. Even if the avatar isn't idle and functioning normally, the real-time API will disconnect after a 10-minute connection. To ensure continuous operation of the real-time avatar for more than 10 minutes, you can enable auto-reconnect. For information about how to set up auto-reconnect, refer to this [sample code](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/samples/js/browser/avatar/README.md) (search "auto reconnect").
 
 ## Synthesize talking avatar video from text input
 

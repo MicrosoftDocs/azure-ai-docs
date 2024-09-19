@@ -47,7 +47,7 @@ You also want to avoid mixing different schema designs. Don't build half of your
 
 ## Use standard training before advanced training
 
-[Standard training](../how-to/train-model.md#training-modes) is free and faster than advanced training. It can help you quickly understand the effect of changing your training set or schema while you build the model. After you're satisfied with the schema, consider using advanced training to get the best AIQ out of your model.
+[Standard training](../how-to/train-model.md#training-modes) is free and faster than advanced training. It can help you quickly understand the effect of changing your training set or schema while you build the model. After you're satisfied with the schema, consider using advanced training to get the best model quality.
 
 ## Use the evaluation feature
 
@@ -113,7 +113,7 @@ If you enable this feature, the utterance count of your training set increases. 
 
 ## Address model overconfidence
 
-Customers can use the LoraNorm recipe version if the model is being incorrectly overconfident. An example of this behavior can be like the following scenario where the model predicts the incorrect intent with 100% confidence. This score makes the confidence threshold project setting unusable.
+Customers can use the LoraNorm traning configuration version if the model is being incorrectly overconfident. An example of this behavior can be like the following scenario where the model predicts the incorrect intent with 100% confidence. This score makes the confidence threshold project setting unusable.
 
 | Text |	Predicted intent |	Confidence score |
 |----|----|----|
@@ -243,7 +243,7 @@ curl --request POST \
 
 ## Address out-of-domain utterances
 
-Customers can use the newly updated recipe version `2024-08-01-preview` (previously `2024-06-01-preview`) if the model has poor AIQ on out-of-domain utterances. An example of this scenario with the default recipe can be like the following example where the model has three intents: `Sports`, `QueryWeather`, and `Alarm`. The test utterances are out-of-domain utterances and the model classifies them as `InDomain` with a relatively high confidence score.
+Customers can use the newly updated training configuration version `2024-08-01-preview` (previously `2024-06-01-preview`) if the model has poor quality on out-of-domain utterances. An example of this scenario with the default training configuration can be like the following example where the model has three intents: `Sports`, `QueryWeather`, and `Alarm`. The test utterances are out-of-domain utterances and the model classifies them as `InDomain` with a relatively high confidence score.
 
 | Text |	Predicted intent |	Confidence score |
 |----|----|----|
@@ -273,6 +273,6 @@ After the request is sent, you can track the progress of the training job in Lan
 
 Caveats:
 
-- The None score threshold for the app (confidence threshold below which `topIntent` is marked as `None`) when you use this recipe should be set to 0. This setting is used because this new recipe attributes a certain portion of the in-domain probabilities to out of domain so that the model isn't incorrectly overconfident about in-domain utterances. As a result, users might see slightly reduced confidence scores for in-domain utterances as compared to the prod recipe.
-- We don't recommend this recipe for apps with only two intents, such as `IntentA` and `None`, for example.
-- We don't recommend this recipe for apps with a low number of utterances per intent. We highly recommend a minimum of 25 utterances per intent.
+- The None score threshold for the app (confidence threshold below which `topIntent` is marked as `None`) when you use this training configuration should be set to 0. This setting is used because this new training configuration attributes a certain portion of the in-domain probabilities to out of domain so that the model isn't incorrectly overconfident about in-domain utterances. As a result, users might see slightly reduced confidence scores for in-domain utterances as compared to the prod training configuration.
+- We don't recommend this training configuration for apps with only two intents, such as `IntentA` and `None`, for example.
+- We don't recommend this training configuration for apps with a low number of utterances per intent. We highly recommend a minimum of 25 utterances per intent.

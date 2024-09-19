@@ -203,6 +203,6 @@ To visually explore the OData language grammar supported by Azure AI Search, try
 ## See also  
 
 - [Filters in Azure AI Search](search-filters.md)
-- [Search Documents &#40;Azure AI Search REST API&#41;](/rest/api/searchservice/Search-Documents)
+- [Search Documents &#40;Azure AI Search REST API&#41;](/rest/api/searchservice/documents/search-post)
 - [Lucene query syntax](query-lucene-syntax.md)
 - [Simple query syntax in Azure AI Search](query-simple-syntax.md)

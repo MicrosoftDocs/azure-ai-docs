@@ -30,7 +30,7 @@ The decision about which information retrieval system to use is critical because
 Azure AI Search is a [proven solution for information retrieval](/azure/developer/python/get-started-app-chat-template?tabs=github-codespaces) in a RAG architecture. It provides indexing and query capabilities, with the infrastructure and security of the Azure cloud. Through code and other components, you can design a comprehensive RAG solution that includes all of the elements for generative AI over your proprietary content. 
 
 > [!NOTE]
-> New to copilot and RAG concepts? Watch [Vector search and state of the art retrieval for Generative AI apps](https://ignite.microsoft.com/sessions/18618ca9-0e4d-4f9d-9a28-0bc3ef5cf54e?source=sessions).
+> New to copilot and RAG concepts? Watch [Vector search and state of the art retrieval for Generative AI apps](https://www.youtube.com/watch?v=lSzc1MJktAo).
 
 ## Approaches for RAG with Azure AI Search
 
@@ -71,7 +71,7 @@ RAG patterns that include Azure AI Search have the elements indicated in the fol
 
 The web app provides the user experience, providing the presentation, context, and user interaction. Questions or prompts from a user start here. Inputs pass through the integration layer, going first to information retrieval to get the search results, but also go to the LLM to set the context and intent. 
 
-The app server or orchestrator is the integration code that coordinates the handoffs between information retrieval and the LLM. Common solutions include [LangChain](https://python.langchain.com/docs/get_started/introduction) to coordinate the workflow. LangChain [integrates with Azure AI Search](https://python.langchain.com/docs/integrations/retrievers/azure_ai_search/), making it easier to include Azure AI Search as a [retriever](https://python.langchain.com/docs/modules/data_connection/retrievers/) in your workflow. [LlamaIndex](https://github.com/run-llama/llama_index/tree/main/llama-index-integrations/vector_stores/llama-index-vector-stores-azureaisearch) and [Semantic Kernel](https://devblogs.microsoft.com/semantic-kernel/announcing-semantic-kernel-integration-with-azure-cognitive-search/) are other options.
+The app server or orchestrator is the integration code that coordinates the handoffs between information retrieval and the LLM. Common solutions include [LangChain](https://python.langchain.com/docs/get_started/introduction) to coordinate the workflow. LangChain [integrates with Azure AI Search](https://python.langchain.com/docs/integrations/retrievers/azure_ai_search/), making it easier to include Azure AI Search as a [retriever](https://python.langchain.com/docs/how_to/#retrievers) in your workflow. [LlamaIndex](https://github.com/run-llama/llama_index/tree/main/llama-index-integrations/vector_stores/llama-index-vector-stores-azureaisearch) and [Semantic Kernel](https://devblogs.microsoft.com/semantic-kernel/announcing-semantic-kernel-integration-with-azure-cognitive-search/) are other options.
 
 The information retrieval system provides the searchable index, query logic, and the payload (query response). The search index can contain vectors or nonvector content. Although most samples and demos include vector fields, it's not a requirement. The query is executed using the existing search engine in Azure AI Search, which can handle keyword (or term) and vector queries. The index is created in advance, based on a schema you define, and loaded with your content that's sourced from files, databases, or storage.
 
@@ -221,6 +221,8 @@ A RAG solution that includes Azure AI Search can leverage [built-in data chunkin
 ## How to get started
 
 + [Try this RAG quickstart](search-get-started-rag.md) for a demonstration of query integration with chat models over a search index.
+
++ [Tutorial: How to build a RAG solution in Azure AI Search](tutorial-rag-build-solution.md) for focused coverage on the features and pattern for RAG solutions that obtain grounding data from a search index.
 
 + Start with solution accelerators:
 

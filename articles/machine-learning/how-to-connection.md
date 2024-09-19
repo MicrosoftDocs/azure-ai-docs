@@ -96,7 +96,7 @@ az ml connection create --file my_snowflakedb_connection.yaml
 ### Option 2: Override the username and password at the command line
 
 ```azurecli
-az ml connection create --file my_snowflakedb_connection.yaml --set credentials.username="XXXXX" credentials.password="XXXXX"
+az ml connection create --file my_snowflakedb_connection.yaml --set credentials.username="H4iJ5kL6mN7oP8qR9sT0uV1wX2yZ3a" credentials.password="E3fH4iJ5kL6mN7oP8qR9sT0uV1wX2y"
 ```
 
 # [Python SDK](#tab/python)
@@ -109,8 +109,8 @@ from azure.ai.ml import MLClient, load_workspace_connection
 ml_client = MLClient.from_config()
 
 wps_connection = load_workspace_connection(source="./my_snowflakedb_connection.yaml")
-wps_connection.credentials.username="XXXXX"
-wps_connection.credentials.password="XXXXXXXX"
+wps_connection.credentials.username="E3fH4iJ5kL6mN7oP8qR9sT0uV1wX2y"
+wps_connection.credentials.password="J5kL6mN7oP8qR9sT0uV1wX2yZ3aB4c"
 ml_client.connections.create_or_update(workspace_connection=wps_connection)
 
 ```
@@ -128,7 +128,7 @@ name= <my_snowflake_connection> # name of the connection
 wps_connection = WorkspaceConnection(name= name,
 type="snowflake",
 target= target,
-credentials= UsernamePasswordConfiguration(username="XXXXX", password="XXXXXX")
+credentials= UsernamePasswordConfiguration(username="J5kL6mN7oP8qR9sT0uV1wX2yZ3aB4c", password="C2dE3fH4iJ5kL6mN7oP8qR9sT0uV1w")
 )
 
 ml_client.connections.create_or_update(workspace_connection=wps_connection)
@@ -185,7 +185,7 @@ az ml connection create --file my_sqldb_connection.yaml
 ### Option 2: Override the username and password in YAML file
 
 ```azurecli
-az ml connection create --file my_sqldb_connection.yaml --set credentials.username="XXXXX" credentials.password="XXXXX"
+az ml connection create --file my_sqldb_connection.yaml --set credentials.username="A1bC2dE3fH4iJ5kL6mN7oP8qR9sT0u" credentials.password="N7oP8qR9sT0uV1wX2yZ3aB4cD5eF6g"
 ```
 
 # [Python SDK](#tab/python)
@@ -198,8 +198,8 @@ from azure.ai.ml import MLClient, load_workspace_connection
 ml_client = MLClient.from_config()
 
 wps_connection = load_workspace_connection(source="./my_sqldb_connection.yaml")
-wps_connection.credentials.username="XXXXXX"
-wps_connection.credentials.password="XXXXXxXXX"
+wps_connection.credentials.username="L6mN7oP8qR9sT0uV1wX2yZ3aB4cD5e"
+wps_connection.credentials.password="C2dE3fH4iJ5kL6mN7oP8qR9sT0uV1w"
 ml_client.connections.create_or_update(workspace_connection=wps_connection)
 
 ```
@@ -218,7 +218,7 @@ name= <my_sql_connection> # name of the connection
 wps_connection = WorkspaceConnection(name= name,
 type="azure_sql_db",
 target= target,
-credentials= UsernamePasswordConfiguration(username="XXXXX", password="XXXXXX")
+credentials= UsernamePasswordConfiguration(username="E3fH4iJ5kL6mN7oP8qR9sT0uV1wX2y", password="L6mN7oP8qR9sT0uV1wX2yZ3aB4cD5e")
 )
 
 ml_client.connections.create_or_update(workspace_connection=wps_connection)
@@ -257,8 +257,8 @@ name: my_s3_connection
 target: <mybucket> # add the s3 bucket details
 credentials:
     type: access_key
-    access_key_id: XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX # add access key id
-    secret_access_key: XxXxXxXXXXXXXxXxXxxXxxXXXXXXXXxXxxXXxXXXXXXXxxxXxXXxXXXXXxXXxXXXxXxXxxxXXxXXxXXXXXxXxxXX # add access key secret
+    access_key_id: bbbbbbbb-1c1c-2d2d-3e3e-444444444444 # add access key id
+    secret_access_key: H4iJ5kL6mN7oP8qR9sT0uV1wX2yZ3a # add access key secret
 ```
 
 Create the Azure Machine Learning connection in the CLI:
@@ -293,7 +293,7 @@ name=<my_s3_connection> # name of the connection
 wps_connection=WorkspaceConnection(name=name,
 type="s3",
 target= target,
-credentials= AccessKeyConfiguration(access_key_id="XXXXXX",acsecret_access_key="XXXXXXXX")
+credentials= AccessKeyConfiguration(access_key_id="XXXJ5kL6mN7oP8qR9sT0uV1wX2yZ3aB4cXXX",acsecret_access_key="C2dE3fH4iJ5kL6mN7oP8qR9sT0uV1w")
 )
 
 ml_client.connections.create_or_update(workspace_connection=wps_connection)
@@ -378,7 +378,7 @@ wps_connection = WorkspaceConnection(
     name=name,
     type="git",
     target=target,
-    credentials=PatTokenConfiguration(pat="XXXXXXXXX"),    
+    credentials=PatTokenConfiguration(pat="E3fH4iJ5kL6mN7oP8qR9sT0uV1wX2y"),    
 )
 ml_client.connections.create_or_update(workspace_connection=wps_connection)
 ```
@@ -445,14 +445,14 @@ from azure.ai.ml.entities import UsernamePasswordConfiguration, PatTokenConfigur
 
 name = "my_pfeed_conn"
 
-target = "https://XXXXXXXXX.core.windows.net/mycontainer"
+target = "https://iJ5kL6mN7.core.windows.net/mycontainer"
 
 wps_connection = WorkspaceConnection(
     name=name,
     type="python_feed",
     target=target,
-    #credentials=UsernamePasswordConfiguration(username="xxxxx", password="xxxxx"), 
-    credentials=PatTokenConfiguration(pat="XXXXXXXXX"),    
+    #credentials=UsernamePasswordConfiguration(username="L6mN7oP8qR9sT0uV1wX2yZ3aB4cD5e", password="iJ5kL6mN7oP8qR9sT"), 
+    credentials=PatTokenConfiguration(pat="H4iJ5kL6mN7oP8qR9sT0uV1wX2yZ3a"),    
 
     #credentials=None
 )
@@ -500,13 +500,13 @@ from azure.ai.ml.entities import UsernamePasswordConfiguration
 
 name = "my_acr_conn"
 
-target = "https://XXXXXXXXX.core.windows.net/mycontainer"
+target = "https://iJ5kL6mN7.core.windows.net/mycontainer"
 
 wps_connection = WorkspaceConnection(
     name=name,
     type="container_registry",
     target=target,
-    credentials=UsernamePasswordConfiguration(username="xxxxx", password="xxxxx"), 
+    credentials=UsernamePasswordConfiguration(username="J5kL6mN7oP8qR9sT0uV1wX2yZ3aB4c", password="L6mN7oP8qR9sT0uV1wX2yZ3aB4cD5e"), 
 )
 ml_client.connections.create_or_update(workspace_connection=wps_connection)
 ```
@@ -528,16 +528,136 @@ from azure.ai.ml.entities import UsernamePasswordConfiguration, ApiKeyConfigurat
 
 name = "my_api_key"
 
-target = "https://XXXXXXXXX.core.windows.net/mycontainer"
+target = "https://L6mN7oP8q.core.windows.net/mycontainer"
 
 wps_connection = WorkspaceConnection(
     name=name,
     type="apikey",
     target=target,
-    credentials=ApiKeyConfiguration(key="XXXXXXXXX"),    
+    credentials=ApiKeyConfiguration(key="9sT0uV1wX"),    
 )
 ml_client.connections.create_or_update(workspace_connection=wps_connection)
 ```
+
+---
+
+### Generic Container Registry
+
+Using the GenericContainerRegistry workspace connection, you can specify an external registry, such as Nexus or Artifactory, for image builds. Environment images are pushed from the specified registry, and the previous cache is ignored.
+
+# [Azure CLI](#tab/cli)
+
+Create a connection using the following YAML files. Be sure to update the appropriate values:
+```yml
+#myenv.yml
+$schema: https://azuremlschemas.azureedge.net/latest/environment.schema.json 
+name: docker-image-plus-conda-example 
+image: mcr.microsoft.com/azureml/openmpi4.1.0-ubuntu20.04
+type: python_feed
+conda_file: conda_dep.yml
+description: Environment created from a Docker image plus Conda environment
+```
+
+```yml
+#conda_dep.yml
+name: project_environment
+dependencies:
+  - python=3.10
+  - pip:
+    - azureml-defaults
+channels:
+  - anaconda
+  - conda-forge
+```
+
+```yml
+#connection.yml
+name: ws_conn_generic_container_registry
+type: container_registry
+target: https://test-registry.com
+credentials:
+  type: username_password
+  username: contoso
+  password: pass
+```
+
+```yml
+#hello_world_job.yml
+$schema: https://azuremlschemas.azureedge.net/latest/commandJob.schema.json
+command: echo "hello world"
+environment: azureml:<env name>@latest
+```
+
+Create connection from YAML file with your credentials:
+
+```azurecli
+az ml connection create --file connection.yaml --credentials username=<username> password=<password> --resource-group my-resource-group --workspace-name my-workspace
+```
+
+Create environment
+
+```azurecli
+az ml environment create --name my-env --version 1 --file my_env.yml  --conda-file conda_dep.yml --image mcr.microsoft.com/azureml/openmpi4.1.0-ubuntu20.04 --resource-group my-resource-group --workspace-name my-workspace
+```
+
+You can verify that the environment was successfully created
+
+```azurecli
+az ml environment show --name my-env --version 1 --resource-group my-resource-group --workspace-name my-workspace
+```
+
+# [Python SDK](#tab/python)
+
+The following example creates an Azure Container Registry connection. A managed identity authenticates this connection:
+
+```python
+import os
+from azure.ai.ml import MLClient
+from azure.identity import DefaultAzureCredential
+from azure.ai.ml.entities import Environment
+from azure.ai.ml.entities import WorkspaceConnection
+from azure.ai.ml.entities import UsernamePasswordConfiguration
+from azureml.core.conda_dependencies import CondaDependencies
+from azure.ai.ml import command
+
+# Enter details of AML workspace
+subscription_id = "<SUBSCRIPTION_ID>"
+resource_group = "<RESOURCE_GROUP>"
+workspace = "<AML_WORKSPACE_NAME>"
+
+ml_client = MLClient( DefaultAzureCredential(), subscription_id, resource_group, workspace)
+# Fetching secrets from env var to secure access, these secrets can be set outside or source code
+registry_username = os.environ["REGISTRY_USERNAME"]
+registry_password = os.environ["REGISTRY_PASSWORD"]
+credentials = UsernamePasswordConfiguration(username= registry_username, password= registry_password)
+
+# Create GenericContainerRegistry workspace connection for a generic registry
+ws_connection = WorkspaceConnection(name="<name>", target="<target>", type="GenericContainerRegistry", credentials=credentials)
+ml_client.connections.create_or_update(ws_connection)
+
+# Create an environment
+env_docker_conda = Environment(image="<base image>", conda_file="<yml file>", name="docker-image-plus-conda-example", description="Environment created from a Docker image plus Conda environment.")
+ml_client.environments.create_or_updat(env_docker_conda) 
+
+job = command(command="echo 'hello world'", environment=env_docker_conda,display_name="v2-job-example")
+returned_job = ml_client.create_or_update(job)
+```
+
+# [Studio](#tab/azure-studio)
+
+1. Navigate to the [Azure Machine Learning studio](https://ml.azure.com/).
+
+1. Under **Manage** in the left navigation, select **Connections** and then select **Create**.
+
+   :::image type="content" source="media/how-to-connection/how-to-manage-connections-create.png" lightbox="media/how-to-connection/create-new-data-connection.png" alt-text="Screenshot showing the start of creating a new connection in Azure Machine Learning studio UI.":::
+
+1. Under **Other resources types**, select **Generic Container Registry*
+   :::image type="content" source="media/how-to-connection/how-to-connect-generic-container-registry.png" lightbox="media/how-to-connection/create-new-data-connection.png" alt-text="Screenshot highlighting the option to connect to a generic container registry in Azure Machine Learning studio UI.":::
+
+1. Input the required information, and then select **Add connection**
+   :::image type="content" source="media/how-to-connection/how-to-connect-add-connection.png" lightbox="media/how-to-connection/create-new-data-connection.png" alt-text="Screenshot showing the input fields for connecting to a generic container registry in Azure Machine Learning studio UI.":::
+
+---
 
 ## Related content
 

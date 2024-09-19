@@ -1,3 +1,4 @@
+items:
 - name: Azure AI Search Documentation
   href: index.yml
 - name: Overview
@@ -89,6 +90,18 @@
       href: search-howto-index-encrypted-blobs.md
     - name: Create a custom analyzer
       href: tutorial-create-custom-analyzer.md
+  - name: RAG tutorials
+    items:
+    - name: Build a RAG solution
+      href: tutorial-rag-build-solution.md
+    - name: Choose models
+      href: tutorial-rag-build-solution-models.md
+    - name: Design an index
+      href: tutorial-rag-build-solution-index-schema.md
+    - name: Build an indexing pipeline
+      href: tutorial-rag-build-solution-pipeline.md
+    - name: Search and generate answers
+      href: tutorial-rag-build-solution-query.md
   - name: Skills tutorials
     items:
     - name: C#

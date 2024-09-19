@@ -26,7 +26,6 @@ You get several hub default resources in your resource group. You need to config
 - Disable public network access of hub default resources such as Azure Storage, Azure Key Vault, and Azure Container Registry.
 - Establish private endpoint connection to hub default resources. You need to have both a blob and file private endpoint for the default storage account.
 - [Managed identity configurations](#managed-identity-configuration) to allow hubs access your storage account if it's private.
-- Azure AI Search should be public.
 
 
 ## Prerequisites
@@ -280,7 +279,6 @@ To check AI-PROJECT-GUID, go to the Azure portal, select your project, settings,
 
 ## Limitations
 
-* Private Azure AI Services and Azure AI Search aren't supported.
 * The "Add your data" feature in the Azure AI Studio playground doesn't support private storage account.
 * You might encounter problems trying to access the private endpoint for your hub if you're using Mozilla Firefox. This problem might be related to DNS over HTTPS in Mozilla Firefox. We recommend using Microsoft Edge or Google Chrome.
 

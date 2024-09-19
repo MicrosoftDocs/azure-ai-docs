@@ -1,6 +1,11 @@
 {
     "redirections": [
     {
+        "source_path_from_root": "/articles/machine-learning/tutorial-create-secure-workspace-template.md",
+        "redirect_url": "/azure/machine-learning/tutorial-create-secure-workspace",
+        "redirect_document_id": false
+    },
+    {
         "source_path_from_root": "/articles/machine-learning/how-to-create-manage-compute-instance.md",
         "redirect_url": "/azure/machine-learning/how-to-create-compute-instance",
         "redirect_document_id": true
@@ -1458,6 +1463,11 @@
     {
         "source_path_from_root": "/articles/machine-learning/service/tutorial-deploy-models-with-aml.md",
         "redirect_url": "/azure/machine-learning/tutorial-deploy-models-with-aml",
+        "redirect_document_id": true
+    },
+    {
+        "source_path_from_root": "/articles/machine-learning/deploy-jais-models.md",
+        "redirect_url": "/azure/machine-learning/how-to-deploy-models-jais",
         "redirect_document_id": true
     },
     {

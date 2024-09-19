@@ -29,8 +29,6 @@ items:
   items:
     - name: Assistants (preview)
       href: assistants-quickstart.md
-    - name: Completions
-      href: quickstart.md
     - name: Chat
       href: chatgpt-quickstart.md  
       displayName: ChatGPT, chatgpt
@@ -44,6 +42,8 @@ items:
       href: whisper-quickstart.md
     - name: Text to speech (preview)
       href: text-to-speech-quickstart.md
+    - name: Completions (legacy)
+      href: quickstart.md
 - name: Concepts
   items:
     - name: Assistants
@@ -118,7 +118,7 @@ items:
       href: ./how-to/dall-e.md
     - name: Function calling
       href: ./how-to/function-calling.md
-    - name: Completions
+    - name: Completions (legacy)
       href: ./how-to/completions.md
     - name: JSON mode
       href: ./how-to/json-mode.md
@@ -218,7 +218,7 @@ items:
   items:
     - name: Embeddings
       href: ./tutorials/embeddings.md
-    - name: Fine-tuning GPT-3.5-Turbo
+    - name: Fine-tuning GPT-4o mini
       href: ./tutorials/fine-tune.md
     - name: Speech to speech chat
       href: ../speech-service/openai-speech.md?context=%2fazure%2fcognitive-services%2fopenai%2fcontext%2fcontext

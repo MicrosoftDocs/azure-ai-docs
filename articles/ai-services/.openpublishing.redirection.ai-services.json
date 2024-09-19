@@ -316,6 +316,11 @@
       "redirect_document_id": true
     },
     {
+      "source_path_from_root": "/articles/ai-services/computer-vision/how-to/migrate-from-custom-vision.md",
+      "redirect_url": "/azure/ai-services/computer-vision/how-to/model-customization",
+      "redirect_document_id": false
+    },
+    {
       "source_path_from_root": "/articles/ai-services/document-intelligence/concept-document-intelligence-studio.md",
       "redirect_url": "/azure/ai-services/document-intelligence/studio-overview",
       "redirect_document_id": true
@@ -393,6 +398,11 @@
     {
       "source_path_from_root": "/articles/ai-services/speech-service/how-to-configure-rhel-centos-7.md",
       "redirect_url": "/azure/ai-services/speech-service/quickstarts/setup-platform",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/speech-service/devices-sdk-release-notes.md",
+      "redirect_url": "/azure/ai-services/speech-service/release-notes",
       "redirect_document_id": false
     },
     {
