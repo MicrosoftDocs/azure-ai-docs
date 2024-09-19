@@ -1,7 +1,7 @@
 ---
 title: Develop application with LlamaIndex and Azure AI studio
 titleSuffix: Azure AI Studio
-description: This article explains how to use LlamaIndex with models deployed in Azure AI studio to build advance intelligent applications
+description: This article explains how to use LlamaIndex with models deployed in Azure AI studio to build advance intelligent applications.
 manager: nitinme
 ms.service: azure-ai-studio
 ms.topic: how-to
