@@ -1,5 +1,5 @@
 ---
-title: Feature availability across clouds regions
+title: Supported regions
 titleSuffix: Azure AI Search
 description: Shows supported regions and feature availability across regions for Azure AI Search.
 
@@ -13,7 +13,7 @@ ms.date: 09/19/2024
 
 ---
 
-# Azure AI Search feature availability across cloud regions
+# Azure AI Search regions list
 
 This article identifies the cloud regions in which Azure AI Search is available. It also lists which premium features are available in each region. 
 
@@ -57,7 +57,7 @@ You can create an Azure AI Search resource in any of the following Azure public 
 | Canada East​​ ​ |  | ✅ | |
 | East US​ | ✅ | ✅ | ✅ |
 | East US 2 ​ | ✅ | ✅ | ✅ |
-| ​Central US​​ | ✅ | ✅ | ✅ |
+| ​Central US​​ <sup>1</sup> | ✅ | ✅ | ✅ |
 | North Central US​ ​ | ✅ | ✅ | |
 | South Central US​ <sup>2</sup>​ | ✅ | ✅ | ✅ |
 | West US​ ​ | ✅ | ✅ | |
@@ -76,7 +76,7 @@ You can create an Azure AI Search resource in any of the following Azure public 
 | North Europe​​ | ✅ | ✅ | ✅ |
 | West Europe​​ <sup>1, 2</sup>| ✅ | ✅ | ✅ |
 | France Central​​ | ✅ | ✅ | ✅ |
-| Germany West Central​ ​| ✅ |  | ✅ |
+| Germany West Central​ <sup>2</sup> ​| ✅ |  | ✅ |
 | Italy North​​ |  |  | ✅ |
 | Norway East​​ | ✅ |  | ✅ |
 | Poland Central​​ |  |  |  |
@@ -107,7 +107,9 @@ You can create an Azure AI Search resource in any of the following Azure public 
 
 | Region | AI integration | Semantic ranking | Availability zones |
 |--|--|--|--|
-| South Africa North​ | ✅ |  | ✅ |
+| South Africa North​ <sup>1</sup> | ✅ |  | ✅ |
+
+<sup>1</sup> This region runs on older infrastructure that has lower storage limits per partition at every tier. Choose a different region if you want [higher limits](search-limits-quotas-capacity.md#service-limits).
 
 ### Asia Pacific
 
@@ -143,25 +145,14 @@ You can create an Azure AI Search resource in any of the following Azure public 
 
 | Region | AI integration | Semantic ranking | Availability zones |
 |--|--|--|--|
-| China East <sup>1</sup> |  |  |  |
+| China East |  |  |  |
 | China East 2 <sup>1</sup> | ✅  | | |
 | China East 3 |  |  |  |
-| China North <sup>1</sup> |  |  | |
+| China North |  |  | |
 | China North 2 <sup>1</sup> |  |  | |
 | China North 3 | | ✅ | ✅ |
 
-<sup>1</sup> These regions run on older infrastructure that have lower storage limits per partition at every tier. Choose a different region if you want [higher limits](search-limits-quotas-capacity.md#service-limits).
-
-<!-- ## Early Update Access Program (EUAP)
-
-These regions
-
-| Region | AI enrichment | Semantic ranking | Availability zones |
-|--|--|--|--|
-| Central US EUAP​ <sup>1</sup> | | ✅ | |
-| East US 2 EUAP ​ | | ✅ | |
-
-<sup>1</sup> This region runs on older infrastructure that has lower capacity per partition at every tier. You can't create a search service with [higher capacity](search-limits-quotas-capacity.md#service-limits) in this region. -->
+<sup>1</sup> This region runs on older infrastructure that has lower storage limits per partition at every tier. Choose a different region if you want [higher limits](search-limits-quotas-capacity.md#service-limits).
 
 ## See also
 
