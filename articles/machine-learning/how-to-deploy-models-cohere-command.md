@@ -7,7 +7,8 @@ ms.service: azure-machine-learning
 ms.subservice: inferencing
 ms.topic: how-to
 ms.date: 04/02/2024
-ms.reviewer: None
+ms.reviewer: shubhiraj
+reviewer: shubhirajMsft
 ms.author: mopeakande
 author: msakande
 ms.custom: references_regions, build-2024

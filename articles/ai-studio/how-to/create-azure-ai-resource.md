@@ -12,13 +12,14 @@ ms.date: 5/21/2024
 ms.reviewer: deeikele
 ms.author: larryfr
 author: Blackmist
+# Customer Intent: As an admin, I need to create and manage an Azure AI Studio hub so that my team can use it to create projects for collaboration.
 ---
 
 # How to create and manage an Azure AI Studio hub
 
 In AI Studio, hubs provide the environment for a team to collaborate and organize work, and help you as a team lead or IT admin centrally set up security settings and govern usage and spend. You can create and manage a hub from the Azure portal or from the AI Studio. 
 
-In this article, you learn how to create and manage a hub in AI Studio with the default settings so you can get started quickly. Do you need to customize security or the dependent resources of your hub? Then use [Azure Portal](create-secure-ai-hub.md) or [template options](create-azure-ai-hub-template.md). 
+In this article, you learn how to create and manage a hub in AI Studio with the default settings so you can get started quickly. Do you need to customize security or the dependent resources of your hub? Then use [Azure portal](create-secure-ai-hub.md) or [template options](create-azure-ai-hub-template.md). 
 
 > [!TIP]
 > If you'd like to create your Azure AI Studio hub using a template, see the articles on using [Bicep](create-azure-ai-hub-template.md) or [Terraform](create-hub-terraform.md).
@@ -105,7 +106,7 @@ For hubs that use CMK encryption mode, you can update the encryption key to a ne
 
 To use custom environments for Prompt Flow, you're required to configure an Azure Container Registry for your hub. To use Azure Application Insights for Prompt Flow deployments, a configured Azure Application Insights resource is required for your hub. Updating the workspace-attached Azure Container Registry or ApplicationInsights resources may break lineage of previous jobs, deployed inference endpoints, or your ability to rerun earlier jobs in the workspace. 
 
-You can use the Azure Portal, Azure SDK/CLI options, or the infrastructure-as-code templates to update both Azure Application Insights and Azure Container Registry for the hub.
+You can use the Azure portal, Azure SDK/CLI options, or the infrastructure-as-code templates to update both Azure Application Insights and Azure Container Registry for the hub.
 
 # [Azure portal](#tab/portal)
 
@@ -142,7 +143,23 @@ az ml workspace update -n "myexamplehub" -g "{MY_RESOURCE_GROUP}" -a "APPLICATIO
 ```
 ---
 
-## Next steps
+## Delete an Azure AI Studio hub
+
+To delete a hub, use the [Azure portal](https://portal.azure.com). To quickly get to the Azure portal from the Azure AI Studio, go to the **Hub overview** for your hub and then select **Manage in Azure portal**.
+
+:::image type="content" source="../media/how-to/hubs/manage-hub-azure-portal.png" alt-text="Screenshot of the manage in Azure portal link in Azure AI Studio.":::
+
+From the portal page for your hub, select **Overview** along the left side of the page and then select **Delete** from the top of the page.
+
+:::image type="content" source="../media/how-to/hubs/delete-hub-button.png" alt-text="Screenshot of the delete button for the Azure AI Studio hub in the Azure portal.":::
+
+You can also find your hub in the Azure portal by entering the hub name in the search field at the top of the Azure portal. Select the hub from the **Resources** list to navigate to the **Overview** page for the hub.
+
+:::image type="content" source="../media/how-to/hubs/search-in-portal.png" alt-text="Screenshot of using the search field in the Azure portal to find a hub.":::
+
+
+
+## Related content
 
 - [Create a project](create-projects.md)
 - [Learn more about Azure AI Studio](../what-is-ai-studio.md)

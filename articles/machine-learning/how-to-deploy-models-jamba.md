@@ -1,42 +1,53 @@
 ---
-title: How to deploy Jamba models with Azure Machine Learning studio
+title: How to deploy AI21's Jamba family models with Azure Machine Learning studio
 titleSuffix: Azure Machine Learning studio
-description: How to deploy Jamba models with Azure Machine Learning studio
+description: How to deploy AI21's Jamba family models with Azure Machine Learning studio
 manager: scottpolly
 ms.service: azure-machine-learning
 ms.topic: how-to
-ms.date: 06/19/2024
+ms.date: 09/06/2024
 ms.author: ssalgado
 ms.reviewer: tgokal
 author: ssalgadodev
 ms.custom: references_regions
 ---
 
-# How to deploy AI21's Jamba-Instruct model with Azure Machine Learning studio
-
-In this article, you learn how to use Azure Machine Learning studio to deploy AI21's Jamba-Instruct model as a serverless API with pay-as-you-go billing.
-
-The Jamba Instruct model is AI21's production-grade Mamba-based large language model (LLM) which leverages AI21's hybrid Mamba-Transformer architecture. It's an instruction-tuned version of AI21's hybrid structured state space model (SSM) transformer Jamba model. The Jamba Instruct model is built for reliable commercial use with respect to quality and performance.
+# How to deploy AI21's Jamba family models with Azure Machine Learning studio
 
 [!INCLUDE [machine-learning-preview-generic-disclaimer](includes/machine-learning-preview-generic-disclaimer.md)]
 
+In this article, you learn how to use Azure Machine Learning studio to deploy AI21's Jamba family models as a serverless API with pay-as-you-go billing.
 
-## Deploy the Jamba Instruct model as a serverless API
-
-Certain models in the model catalog can be deployed as a serverless API with pay-as-you-go billing, providing a way to consume them as an API without hosting them on your subscription, while keeping the enterprise security and compliance organizations need. This deployment option doesn't require quota from your subscription.
-
-The AI21-Jamba-Instruct model deployed as a serverless API with pay-as-you-go billing is [offered by AI21 through Microsoft Azure Marketplace](https://aka.ms/azure-marketplace-offer-ai21-jamba-instruct). AI21 can change or update the terms of use and pricing of this model.
-
-To get started with Jamba Instruct deployed as a serverless API, explore our integrations with [LangChain](https://aka.ms/ai21-jamba-instruct-langchain-sample), [LiteLLM](https://aka.ms/ai21-jamba-instruct-litellm-sample), [OpenAI](https://aka.ms/ai21-jamba-instruct-openai-sample) and the [Azure API](https://aka.ms/ai21-jamba-instruct-azure-api-sample).
+The Jamba family models are AI21's production-grade Mamba-based large language model (LLM) which leverages AI21's hybrid Mamba-Transformer architecture. It's an instruction-tuned version of AI21's hybrid structured state space model (SSM) transformer Jamba model. The Jamba family models are built for reliable commercial use with respect to quality and performance.
 
 > [!TIP]
-> See our announcements of AI21's Jamba-Instruct model available now on Azure AI Model Catalog through [AI21's blog](https://aka.ms/ai21-jamba-instruct-blog) and [Microsoft Tech Community Blog](https://aka.ms/ai21-jamba-instruct-announcement).
+> See our announcements of AI21's Jamba family models available now on Azure AI Model Catalog through [AI21's blog](https://aka.ms/ai21-jamba-1.5-large-announcement) and [Microsoft Tech Community Blog](https://aka.ms/ai21-jamba-1.5-large-microsoft-annnouncement).
+
+
+## Deploy the Jamba family models as a serverless API
+
+Certain models in the model catalog can be deployed as a serverless API with pay-as-you-go billing, providing a way to consume them as an API without hosting them on your subscription, while keeping the enterprise security and compliance organizations need. This deployment option doesn't require quota from your subscription. 
+
+# [AI21 Jamba 1.5 Large](#tab/ai21-jamba-1-5-large)
+
+The [AI21-Jamba 1.5 Large model](https://aka.ms/aistudio/landing/ai21-labs-jamba-1.5-large) deployed as a serverless API with pay-as-you-go billing is [offered by AI21 through Microsoft Azure Marketplace](https://aka.ms/azure-marketplace-offer-ai21-jamba-1.5-large). AI21 can change or update the terms of use and pricing of this model.
+
+To get started with Jamba 1.5 large deployed as a serverless API, explore our integrations with [LangChain](https://aka.ms/ai21-jamba-1.5-large-langchain-sample), [LiteLLM](https://aka.ms/ai21-jamba-1.5-large-litellm-sample), [OpenAI](https://aka.ms/ai21-jamba-1.5-large-openai-sample) and the [Azure API](https://aka.ms/ai21-jamba-1.5-large-azure-api-sample).
+
+
+# [AI21 Jamba 1.5 Mini](#tab/ai21-jamba-1-5)
+
+The [AI21 Jamba 1.5 Mini model](https://aka.ms/aistudio/landing/ai21-labs-jamba-1.5-mini) deployed as a serverless API with pay-as-you-go billing is [offered by AI21 through Microsoft Azure Marketplace](https://aka.ms/azure-marketplace-offer-ai21-jamba-1.5-mini). AI21 can change or update the terms of use and pricing of this model.
+
+To get started with Jamba 1.5 mini deployed as a serverless API, explore our integrations with [LangChain](https://aka.ms/ai21-jamba-1.5-mini-langchain-sample), [LiteLLM](https://aka.ms/ai21-jamba-1.5-mini-litellm-sample), [OpenAI](https://aka.ms/ai21-jamba-1.5-mini-openai-sample) and the [Azure API](https://aka.ms/ai21-jamba-1.5-mini-azure-api-sample).
+
+---
 
 
 ### Prerequisites
 
 - An Azure subscription with a valid payment method. Free or trial Azure subscriptions won't work. If you don't have an Azure subscription, create a [paid Azure account](https://azure.microsoft.com/pricing/purchase-options/pay-as-you-go) to begin.
-- An Azure Machine Learning workspace and a compute instance. If you don't have these, use the steps in the [Quickstart: Create workspace resources](quickstart-create-resources.md) article to create them. The serverless API model deployment offering for Jamba Instruct is only available with workspaces created in these regions:
+- An Azure Machine Learning workspace and a compute instance. If you don't have these, use the steps in the [Quickstart: Create workspace resources](quickstart-create-resources.md) article to create them. The serverless API model deployment offering for the Jamba family of models is only available with workspaces created in these regions:
 
      * East US
      * East US 2
@@ -70,11 +81,11 @@ To get started with Jamba Instruct deployed as a serverless API, explore our int
 
 ### Create a new deployment
 
-These steps demonstrate the deployment of AI21-Jamba-Instruct. To create a deployment:
+These steps demonstrate the deployment of `AI21 Jamba 1.5 Large` or `AI21 Jamba 1.5 Mini` models. To create a deployment:
 
 1. Go to [Azure Machine Learning studio](https://ml.azure.com/home).
-1. Select the workspace in which you want to deploy your models. To use the Serverless API model deployment offering, your workspace must belong to the **East US 2** or **Sweden Central** region.
-1. Choose the model you want to deploy from the [model catalog](https://ml.azure.com/model/catalog).
+1. Select the workspace in which you want to deploy your models. To use the Serverless API model deployment offering, your workspace must belong to one of the supported regions that are listed in the pre-requisites.
+1. Search for and select an AI21 model like `AI21 Jamba 1.5 Large` or `AI21 Jamba 1.5 Mini` or `AI21 Jamba Instruct` from the [model catalog](https://ml.azure.com/model/catalog).
 
    Alternatively, you can initiate deployment by going to your workspace and selecting **Endpoints** > **Serverless endpoints** > **Create**.
 
@@ -97,26 +108,26 @@ These steps demonstrate the deployment of AI21-Jamba-Instruct. To create a deplo
 1. You can always find the endpoint's details, URL, and access keys by navigating to **Workspace** > **Endpoints** > **Serverless endpoints**.
 
 
-To learn about billing for Jamba models deployed as a serverless API, see [Cost and quota considerations for Jamba Instruct deployed as a serverless API](#cost-and-quota-considerations-for-jamba-instruct-deployed-as-a-serverless-api).
+To learn about billing for the AI21-Jamba family models deployed as a serverless API with pay-as-you-go token-based billing, see [Cost and quota considerations for Jamba family of models deployed as a serverless API](#cost-and-quota-considerations-for-jamba-family-models-deployed-as-a-serverless-api).
 
-### Consume Jamba Instruct as a service
+### Consume Jamba family models as a serverless API
 
-You can consume Jamba Instruct models as follows:
+You can consume Jamba family models as follows:
 
 1. In the **workspace**, select **Endpoints** > **Serverless endpoints**.
 1. Find and select the deployment you created.
 1. Copy the **Target** URL and the **Key** token values.
 1. Make an API request using either the [Azure AI Model Inference API](reference-model-inference-api.md) on the route `/chat/completions` or the [AI21's Azure Client](https://docs.ai21.com/reference/jamba-instruct-api) on `/v1/chat/completions`.
 
-For more information on using the APIs, see the [reference](#reference-for-jamba-instruct-deployed-as-a-serverless-api) section.
+For more information on using the APIs, see the [reference](#reference-for-jamba-family-models-deployed-as-a-serverless-api) section.
 
 
 
-## Reference for Jamba Instruct deployed as a serverless API
+## Reference for Jamba family models deployed as a serverless API
 
-Jamba Instruct models accept both of these APIs:
+Jamba family models accept both of these APIs:
 
-- The [Azure AI model inference API](reference-model-inference-api.md) [Azure AI Model Inference API] on the route `/chat/completions` for multi-turn chat or single-turn question-answering. This API is supported because Jamba Instruct is fine-tuned for chat completion.
+- The [Azure AI model inference API](reference-model-inference-api.md) [Azure AI Model Inference API] on the route `/chat/completions` for multi-turn chat or single-turn question-answering. This API is supported because Jamba family models are fine-tuned for chat completion.
 - [AI21's Azure Client](https://docs.ai21.com/reference/jamba-instruct-api). For more information about the REST endpoint being called, visit [AI21's REST documentation](https://docs.ai21.com/reference/jamba-instruct-api).
 
 ### Azure AI model inference API
@@ -165,7 +176,7 @@ Payload is a JSON formatted string containing the following parameters:
 
 | Key           | Type           | Required/Default | Allowed values    | Description                                                                                                                                                                                                                                                                                         |
 | ------------- | -------------- | :-----------------:| ----------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `model`       | `string`       | Y    | Must be `jamba-instruct`                                                                                                                                                                                                                                                                            |
+| `model`       | `string`       | Y    | `jamba-instruct` or `AI21 Jamba 1.5 Large` or `AI21 Jamba 1.5 Mini`                                                                                                                                                                                                                                                                           |
 | `messages`    | `list[object]` | Y     | A list of objects, one per message, from oldest to newest. The oldest message can be role `system`. All later messages must alternate between user and assistant roles. See the message object definition below.                                                                                    |
 | `max_tokens`  | `integer`      | N <br>`4096` |  0 – 4096     | The maximum number of tokens to allow for each generated response message. Typically the best way to limit output length is by providing a length limit in the system prompt (for example, "limit your answers to three sentences")                                                                 |
 | `temperature` | `float`        | N <br>`1`  |  0.0 – 2.0      | How much variation to provide in each answer. Setting this value to 0 guarantees the same response to the same question every time. Setting a higher value encourages more variation. Modifies the distribution from which tokens are sampled. We recommend altering this or `top_p`, but not both. |
@@ -302,9 +313,9 @@ data: [DONE]
 
 ## Cost and quotas
 
-### Cost and quota considerations for Jamba Instruct deployed as a serverless API
+### Cost and quota considerations for Jamba family models deployed as a serverless API
 
-Jamba models deployed as a serverless API are offered by AI21 through Azure Marketplace and integrated with Azure Machine Learning studio for use. You can find Azure Marketplace pricing when deploying or fine-tuning models.
+The Jamba family models are deployed as a serverless API and is offered by AI21 through Azure Marketplace and integrated with Azure AI studio for use. You can find Azure Marketplace pricing when deploying or fine-tuning models.
 
 Each time a workspace subscribes to a given model offering from Azure Marketplace, a new resource is created to track the costs associated with its consumption. The same resource is used to track costs associated with inference and fine-tuning; however, multiple meters are available to track each scenario independently.
 

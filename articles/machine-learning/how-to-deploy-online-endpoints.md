@@ -854,7 +854,7 @@ Next, deploy your online endpoint to Azure.
 1. Create the deployment named `blue` under the endpoint.
 
     ```azurecli
-    az ml online-deployment create -name blue --endpoint $ENDPOINT_NAME -f endpoints/online/managed/sample/blue-deployment-with-registered-assets.yml --all-traffic
+    az ml online-deployment create --name blue --endpoint $ENDPOINT_NAME -f endpoints/online/managed/sample/blue-deployment-with-registered-assets.yml --all-traffic
     ```
 
     The deployment creation can take up to 15 minutes, depending on whether the underlying environment or image is being built for the first time. Subsequent deployments that use the same environment are processed faster.

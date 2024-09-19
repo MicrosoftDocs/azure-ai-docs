@@ -6,7 +6,7 @@ author: eric-urban
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: overview
-ms.date: 1/18/2024
+ms.date: 9/15/2024
 ms.author: eur
 ms.custom: cogserv-non-critical-speech
 ---
@@ -53,10 +53,6 @@ Voice assistants built using Speech service can use the full range of customizat
 
 Direct Line Speech and its associated functionality for voice assistants are an ideal supplement to the [Virtual Assistant Solution and Enterprise Template](/azure/bot-service/bot-builder-enterprise-template-overview). Though Direct Line Speech can work with any compatible bot, these resources provide a reusable baseline for high-quality conversational experiences and common supporting skills and models to get started quickly.
 
-## Reference docs
-
-* [Speech SDK](./speech-sdk.md)
-* [Azure AI Bot Service](/azure/bot-service/)
 
 ## Next steps
 

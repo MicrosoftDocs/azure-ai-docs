@@ -1,5 +1,5 @@
 ---
-title: Business card data extraction - Document Intelligence (formerly Form Recognizer)
+title: Business card data extraction - Document Intelligence 
 titleSuffix: Azure AI services
 description: OCR and machine learning based business card scanning in Document Intelligence extracts key data from business cards.
 author: laujan

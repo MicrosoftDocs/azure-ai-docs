@@ -2,7 +2,7 @@
 author: eric-urban
 ms.service: azure-ai-speech
 ms.topic: include
-ms.date: 02/08/2024
+ms.date: 9/5/2024
 ms.author: eur
 ---
 
@@ -27,7 +27,7 @@ Install the following Python libraries: `os`, `requests`, `json`.
 
 ### Set environment variables
 
-This example requires environment variables named `OPEN_AI_KEY`, `OPEN_AI_ENDPOINT`, `OPEN_AI_DEPLOYMENT_NAME`, `SPEECH_KEY`, and `SPEECH_REGION`.
+This example requires environment variables named `AZURE_OPENAI_API_KEY`, `AZURE_OPENAI_ENDPOINT`, `AZURE_OPENAI_CHAT_DEPLOYMENT`, `SPEECH_KEY`, and `SPEECH_REGION`.
 
 [!INCLUDE [Environment variables](../../common/environment-variables-openai.md)]
 
@@ -35,7 +35,7 @@ This example requires environment variables named `OPEN_AI_KEY`, `OPEN_AI_ENDPOI
 
 Follow these steps to create a new console application.
 
-1. Open a command prompt window in the folder where you want the new project. Open a command prompt where you want the new project, and create a new file named `openai-speech.py`.
+1. Open a command prompt window in the folder where you want the new project. Open a command prompt where you want the new project, and create a new file named `azure-openai-speech.py`.
 
 1. Run this command to install the Speech SDK:  
 
@@ -52,23 +52,23 @@ Follow these steps to create a new console application.
     > [!NOTE]
     > This library is maintained by OpenAI, not Microsoft Azure. Refer to the [release history](https://github.com/openai/openai-python/releases) or the [version.py commit history](https://github.com/openai/openai-python/commits/main/openai/version.py) to track the latest updates to the library.
 
-1. Create a file named *openai-speech.py*. Copy the following code into that file:
+1. Create a file named *azure-openai-speech.py*. Copy the following code into that file:
 
     ```Python
     import os
     import azure.cognitiveservices.speech as speechsdk
     from openai import AzureOpenAI
 
-    # This example requires environment variables named "OPEN_AI_KEY", "OPEN_AI_ENDPOINT" and "OPEN_AI_DEPLOYMENT_NAME"
+    # This example requires environment variables named "AZURE_OPENAI_API_KEY", "AZURE_OPENAI_ENDPOINT" and "AZURE_OPENAI_CHAT_DEPLOYMENT"
     # Your endpoint should look like the following https://YOUR_OPEN_AI_RESOURCE_NAME.openai.azure.com/
     client = AzureOpenAI(
-    azure_endpoint=os.environ.get('OPEN_AI_ENDPOINT'),
-    api_key=os.environ.get('OPEN_AI_KEY'),
+    azure_endpoint=os.environ.get('AZURE_OPENAI_ENDPOINT'),
+    api_key=os.environ.get('AZURE_OPENAI_API_KEY'),
     api_version="2023-05-15"
     )
 
     # This will correspond to the custom name you chose for your deployment when you deployed a model.
-    deployment_id=os.environ.get('OPEN_AI_DEPLOYMENT_NAME')
+    deployment_id=os.environ.get('AZURE_OPENAI_CHAT_DEPLOYMENT')
 
     # This example requires environment variables named "SPEECH_KEY" and "SPEECH_REGION"
     speech_config = speechsdk.SpeechConfig(subscription=os.environ.get('SPEECH_KEY'), region=os.environ.get('SPEECH_REGION'))
@@ -86,7 +86,7 @@ Follow these steps to create a new console application.
     tts_sentence_end = [ ".", "!", "?", ";", "。", "！", "？", "；", "\n" ]
 
     # Prompts Azure OpenAI with a request and synthesizes the response.
-    def ask_openai(prompt):
+    def ask_azure_openai(prompt):
         # Ask Azure OpenAI in streaming way
         response = client.chat.completions.create(model=deployment_id, max_tokens=200, stream=True, messages=[
             {"role": "user", "content": prompt}
@@ -110,7 +110,7 @@ Follow these steps to create a new console application.
             last_tts_request.get()
 
     # Continuously listens for speech input to recognize and send as text to Azure OpenAI
-    def chat_with_open_ai():
+    def chat_with_azure_openai():
         while True:
             print("Azure OpenAI is listening. Say 'Stop' or press Ctrl-Z to end the conversation.")
             try:
@@ -123,7 +123,7 @@ Follow these steps to create a new console application.
                         print("Conversation ended.")
                         break
                     print("Recognized speech: {}".format(speech_recognition_result.text))
-                    ask_openai(speech_recognition_result.text)
+                    ask_azure_openai(speech_recognition_result.text)
                 elif speech_recognition_result.reason == speechsdk.ResultReason.NoMatch:
                     print("No speech could be recognized: {}".format(speech_recognition_result.no_match_details))
                     break
@@ -138,7 +138,7 @@ Follow these steps to create a new console application.
     # Main
 
     try:
-        chat_with_open_ai()
+        chat_with_azure_openai()
     except Exception as err:
         print("Encountered exception. {}".format(err))
     ```
@@ -148,16 +148,16 @@ Follow these steps to create a new console application.
 1. Run your new console application to start speech recognition from a microphone:
 
     ```console
-    python openai-speech.py
+    python azure-openai-speech.py
     ```
 
 > [!IMPORTANT]
-> Make sure that you set the `OPEN_AI_KEY`, `OPEN_AI_ENDPOINT`, `OPEN_AI_DEPLOYMENT_NAME`, `SPEECH_KEY` and `SPEECH_REGION` environment variables as described [previously](#set-environment-variables). If you don't set these variables, the sample will fail with an error message.
+> Make sure that you set the `AZURE_OPENAI_API_KEY`, `AZURE_OPENAI_ENDPOINT`, `AZURE_OPENAI_CHAT_DEPLOYMENT`, `SPEECH_KEY` and `SPEECH_REGION` environment variables as described [previously](#set-environment-variables). If you don't set these variables, the sample will fail with an error message.
 
 Speak into your microphone when prompted. The console output includes the prompt for you to begin speaking, then your request as text, and then the response from Azure OpenAI as text. The response from Azure OpenAI should be converted from text to speech and then output to the default speaker.
 
 ```console
-PS C:\dev\openai\python> python.exe .\openai-speech.py
+PS C:\dev\openai\python> python.exe .\azure-openai-speech.py
 Azure OpenAI is listening. Say 'Stop' or press Ctrl-Z to end the conversation.
 Recognized speech:Make a comma separated list of all continents.
 Azure OpenAI response:Africa, Antarctica, Asia, Australia, Europe, North America, South America
@@ -179,7 +179,6 @@ Here are some more considerations:
 - To change the voice that you hear, replace `en-US-JennyMultilingualNeural` with another [supported voice](~/articles/ai-services/speech-service/language-support.md#prebuilt-neural-voices). If the voice doesn't speak the language of the text returned from Azure OpenAI, the Speech service doesn't output synthesized audio.
 - To reduce latency for text to speech output, use the text streaming feature, which enables real-time text processing for fast audio generation and minimizes latency, enhancing the fluidity and responsiveness of real-time audio outputs. Refer to [how to use text streaming](~/articles/ai-services/speech-service/how-to-lower-speech-synthesis-latency.md#input-text-streaming).
 - To enable [TTS Avatar](~/articles/ai-services/speech-service/text-to-speech-avatar/what-is-text-to-speech-avatar.md) as a visual experience of speech output, refer to [real-time synthesis for text to speech avatar](~/articles/ai-services/speech-service/text-to-speech-avatar/real-time-synthesis-avatar.md) and [sample code](https://github.com/Azure-Samples/cognitive-services-speech-sdk/tree/master/samples/js/browser/avatar#chat-sample) for chat scenario with avatar.
-- To use a different [model](/azure/ai-services/openai/concepts/models#model-summary-table-and-region-availability), replace `gpt-35-turbo-instruct` with the ID of another [deployment](/azure/ai-services/openai/how-to/create-resource#deploy-a-model). Keep in mind that the deployment ID isn't necessarily the same as the model name. You named your deployment when you created it in [Azure OpenAI Studio](https://oai.azure.com/).
 - Azure OpenAI also performs content moderation on the prompt inputs and generated outputs. The prompts or responses might be filtered if harmful content is detected. For more information, see the [content filtering](/azure/ai-services/openai/concepts/content-filter) article.
 
 ## Clean up resources

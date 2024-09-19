@@ -41,7 +41,7 @@ When the index is ready to use, move on to the next step.
 
 1. Sign in to the [Azure portal](https://portal.azure.com/) with your Azure account.
 
-1. [Find your search service](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Storage%2storageAccounts/) and on the Overview page, from the links on the middle of the page, select **Indexes**. 
+1. [Find your search service](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices) and on the Overview page, from the links on the middle of the page, select **Indexes**. 
 
 1. Choose *realestate-us-sample-index* from the list of existing indexes.
 

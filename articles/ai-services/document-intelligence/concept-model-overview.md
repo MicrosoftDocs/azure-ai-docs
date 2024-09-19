@@ -1,5 +1,5 @@
 ---
-title: Document processing models - Document Intelligence (formerly Form Recognizer)
+title: Document processing models - Document Intelligence 
 titleSuffix: Azure AI services
 description: Document processing models for OCR, document layout, invoices, identity, custom  models, and more to extract text, structure, and key-value pairs.
 author: laujan

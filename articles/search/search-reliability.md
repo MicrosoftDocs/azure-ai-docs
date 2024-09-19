@@ -6,7 +6,7 @@ author: mattgotteiner
 ms.author: magottei
 ms.service: cognitive-search
 ms.topic: conceptual
-ms.date: 01/02/2024
+ms.date: 09/04/2024
 ms.custom:
   - subject-reliability
   - references_regions
@@ -55,10 +55,9 @@ Availability zones are used when you add two or more replicas to your search ser
 
 ### Supported regions
 
-Support for availability zones depends on infrastructure and storage. Currently, two zones that were announced in October 2023 have insufficient storage and don't provide an availability zone for Azure AI Search:
+Support for availability zones depends on infrastructure and storage. Currently, the following zone has insufficient storage and doesn't provide an availability zone for Azure AI Search:
 
-+ Israel Central
-+ Italy North
++ Japan West
 
 Otherwise, availability zones for Azure AI Search are supported in the following regions:
 
@@ -75,6 +74,8 @@ Otherwise, availability zones for Azure AI Search are supported in the following
 | East US 2 | January 30, 2021 or later |
 | France Central| October 23, 2020 or later |
 | Germany West Central |  May 3, 2021, or later |
+| Israel Central | April 1, 2024, or later |
+| Italy North | April 1, 2024, or later |
 | Japan East | January 30, 2021 or later |
 | Korea Central | January 20, 2022 or later |
 | North Europe | January 28, 2021 or later |
@@ -123,7 +124,7 @@ You can implement this architecture by creating multiple services and designing 
 There are two options for keeping two or more distinct search services in sync:
 
 + Pull content updates into a search index by using an [indexer](search-indexer-overview.md).
-+ Push content into an index using the [Add or Update Documents (REST)](/rest/api/searchservice/addupdate-or-delete-documents) API or an Azure SDK equivalent API.
++ Push content into an index using the [Add or Update Documents (REST)](/rest/api/searchservice/documents) API or an Azure SDK equivalent API.
 
 To configure either option, we recommend using the [sample Bicep script in the azure-search-multiple-region](https://github.com/Azure-Samples/azure-search-multiple-regions) repository, modified to your regions and indexing strategies.
 

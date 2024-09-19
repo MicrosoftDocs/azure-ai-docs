@@ -4,7 +4,7 @@ titleSuffix: Azure OpenAI
 description: Learn how to use prompt engineering to optimize your work with Azure OpenAI Service.
 ms.service: azure-ai-openai
 ms.topic: conceptual
-ms.date: 03/29/2024
+ms.date: 08/29/2024
 ms.custom: references_regions, build-2023, build-2023-dataai
 manager: nitinme
 author: mrbullwinkle
@@ -14,7 +14,7 @@ recommendations: false
 
 # Introduction to prompt engineering
 
-GPT-3, GPT-3.5, and GPT-4 models from OpenAI are prompt-based. With prompt-based models, the user interacts with the model by entering a text prompt, to which the model responds with a text completion. This completion is the model’s continuation of the input text.
+GPT-3, GPT-3.5, GPT-4, and GPT-4o models from OpenAI are prompt-based. With prompt-based models, the user interacts with the model by entering a text prompt, to which the model responds with a text completion. This completion is the model’s continuation of the input text.
 
 While these models are extremely powerful, their behavior is also very sensitive to the prompt. This makes prompt construction an important skill to develop.
 
@@ -24,7 +24,7 @@ Prompt construction can be difficult. In practice, the prompt acts to configure 
 
 This section covers the basic concepts and elements of GPT prompts.
 
-Text prompts are how users interact with GPT models. As with all generative language models, GPT models attempt to produce the next series of words that are most likely to follow from the previous text. It's as if we're saying *What is the first thing that comes to your mind when I say `<prompt>`?*. The examples below demonstrate this behavior. Given the first words of famous content, the model is able to accurately continue the text.
+Text prompts are how users interact with GPT models. As with all generative language models, GPT models attempt to produce the next series of words that are most likely to follow from the previous text. It's as if we're saying *What is the first thing that comes to your mind when I say `<prompt>`?* The examples below demonstrate this behavior. Given the first words of famous content, the model is able to accurately continue the text.
 
 | Prompt                             |Completion |
 |------------------------------------|-----------|

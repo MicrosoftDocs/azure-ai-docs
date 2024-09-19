@@ -1,7 +1,7 @@
 ---
-title: "Use the custom category API"
+title: "Use the custom categories API (preview)"
 titleSuffix: Azure AI services
-description: Learn how to use the custom category API to create your own harmful content categories and train the Content Safety model for your use case.
+description: Learn how to use the custom categories API to create your own harmful content categories and train the Content Safety model for your use case.
 #services: cognitive-services
 author: PatrickFarley
 manager: nitinme
@@ -12,7 +12,7 @@ ms.date: 04/11/2024
 ms.author: pafarley
 ---
 
-# Use the custom categories (standard) API
+# Use the custom categories (standard) API (preview)
 
 
 The custom categories (standard) API lets you create your own content categories for your use case and train Azure AI Content Safety to detect them in new content.
@@ -227,7 +227,7 @@ print(result)
 
 ---
 
-## Other custom category operations
+## Other custom categories operations
 
 Remember to replace the placeholders below with your actual values for the API key, endpoint, and specific content (category name, definition, and so on). These examples help you to manage the customized categories in your account.
 

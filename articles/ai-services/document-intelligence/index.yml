@@ -1,7 +1,7 @@
 ### YamlMime:Landing
 
 title: Azure AI Document Intelligence documentation # < 60 chars
-summary: Azure AI Document Intelligence (formerly Form Recognizer) is a cloud-based Azure AI service that uses machine-learning models to automate your data processing in applications and workflows. Document Intelligence is essential for enhancing data-driven strategies and enriching document search capabilities. # < 160 chars
+summary: Azure AI Document Intelligence is a cloud-based Azure AI service that uses machine-learning models to automate your data processing in applications and workflows. Document Intelligence is essential for enhancing data-driven strategies and enriching document search capabilities. # < 160 chars
 
 metadata:
   title: Document Intelligence documentation - Quickstarts, Tutorials, API Reference - Azure AI services | Microsoft Docs

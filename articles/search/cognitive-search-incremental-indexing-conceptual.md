@@ -83,7 +83,7 @@ Modifying a skill and reprocessing of that skill typically go hand in hand. Howe
 
 If you know that a change to the skill is indeed superficial, you should override skill evaluation by setting the `disableCacheReprocessingChangeDetection` parameter to true:
 
-1. Call [Update Skillset](/rest/api/searchservice/update-skillset) and modify the skillset definition.
+1. Call [Update Skillset](/rest/api/searchservice/skillsets/create-or-update) and modify the skillset definition.
 1. Append the "disableCacheReprocessingChangeDetection=true" parameter on the request.
 1. Submit the change.
 

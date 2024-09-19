@@ -12,7 +12,8 @@
       "monikers": [],
       "open_to_public_contributors": true,
       "type_mapping": {
-        "Conceptual": "Content"
+        "Conceptual": "Content",
+        "ZonePivotGroups": "Toc"
       },
       "build_entry_point": "docs"
     }
@@ -169,8 +170,6 @@
       "branch_mapping": {}
     }
   ],
-  "git_repository_url_open_to_public_contributors": "https://github.com/MicrosoftDocs/azure-ai-docs",
-  "git_repository_branch_open_to_public_contributors": "main",
   "branch_target_mapping": {},
   "targets": {}
 }

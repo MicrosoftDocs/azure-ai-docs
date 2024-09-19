@@ -8,7 +8,7 @@ ms.service: azure-ai-document-intelligence
 ms.custom:
   - ignite-2023
 ms.topic: reference
-ms.date: 03/21/2024
+ms.date: 09/09/2024
 ms.author: lajanuar
 ---
 
@@ -22,6 +22,70 @@ ms.author: lajanuar
 This reference article provides a version-based description of Document Intelligence feature and capability releases, changes, updates, and enhancements.
 
 [!INCLUDE [preview-version-notice](includes/preview-notice.md)]
+
+#### August 2024 (preview) release
+
+### [**.NET (C#)**](#tab/csharp)
+
+* Document Intelligence **1.0.0-beta.3**
+* **Targets REST API 2024-07-31-preview by default**
+
+[**Changelog/Release History**](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/documentintelligence/Azure.AI.DocumentIntelligence/CHANGELOG.md#100-beta3-2024-08-14)
+
+[**Package (NuGet)**](https://www.nuget.org/packages/Azure.AI.DocumentIntelligence/1.0.0-beta.3)
+
+[**ReadMe**](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/documentintelligence/Azure.AI.DocumentIntelligence/README.md)
+
+[**Samples**](https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/documentintelligence/Azure.AI.DocumentIntelligence/samples)
+
+[**Migration guide**](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/documentintelligence/Azure.AI.DocumentIntelligence/MigrationGuide.md)
+
+### [**Java**](#tab/java)
+
+* Document Intelligence **1.0.0-beta.4**
+* **Targets REST API 2024-07-31-preview by default**
+
+[**Changelog/Release History**](https://github.com/Azure/azure-sdk-for-java/blob/azure-ai-documentintelligence_1.0.0-beta.4/sdk/documentintelligence/azure-ai-documentintelligence/CHANGELOG.md#100-beta4-2024-08-14)
+
+[**Package Maven**](https://mvnrepository.com/artifact/com.azure/azure-ai-documentintelligence/1.0.0-beta.4)
+
+[**ReadMe**](https://github.com/Azure/azure-sdk-for-java/blob/azure-ai-documentintelligence_1.0.0-beta.4/sdk/documentintelligence/azure-ai-documentintelligence/README.md)
+
+[**Samples**](https://github.com/Azure/azure-sdk-for-java/tree/azure-ai-documentintelligence_1.0.0-beta.4/sdk/documentintelligence/azure-ai-documentintelligence/src/samples)
+
+[**Migration guide**](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/documentintelligence/azure-ai-documentintelligence/MIGRATION_GUIDE.md)
+
+### [**JavaScript**](#tab/javascript)
+
+* Document Intelligence **1.0.0-beta.3**
+* **Targets REST API 2024-07-31-preview by default**
+
+[**Changelog/Release History**](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/documentintelligence/ai-document-intelligence-rest/CHANGELOG.md#100-beta3-2024-08-20)
+
+[**Package (npm)**](https://www.npmjs.com/package/@azure-rest/ai-document-intelligence/v/1.0.0-beta.3)
+
+[**ReadMe**](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/documentintelligence/ai-document-intelligence-rest#readme)
+
+[**Samples**](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/documentintelligence/ai-document-intelligence-rest/samples/v1-beta)
+
+[**Migration guide**](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/documentintelligence/ai-document-intelligence-rest/MIGRATION-FR_v4-DI_v1.md)
+
+### [**Python**](#tab/python)
+
+* Document Intelligence **1.0.0b4**
+* **Targets REST API 2024-07-31-preview by default**
+
+[**Changelog/Release History**](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/documentintelligence/azure-ai-documentintelligence/CHANGELOG.md#100b4-2024-09-05)
+
+[**Package (PyPi)**](https://pypi.org/project/azure-ai-documentintelligence/1.0.0b4/)
+
+[**ReadMe**]( https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/documentintelligence/azure-ai-documentintelligence/README.md)
+
+[**Samples**](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/documentintelligence/azure-ai-documentintelligence/samples)
+
+[**Migration guide**](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/documentintelligence/azure-ai-documentintelligence/MIGRATION_GUIDE.md)
+
+---
 
 #### March 2024 (preview) release
 

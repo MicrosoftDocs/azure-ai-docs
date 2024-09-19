@@ -1,5 +1,5 @@
 ---
-title: Receipt data extraction - Document Intelligence (formerly Form Recognizer)
+title: Receipt data extraction - Document Intelligence 
 titleSuffix: Azure AI services
 description: Use machine learning powered receipt data extraction model to digitize receipts.
 author: laujan

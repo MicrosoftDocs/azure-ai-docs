@@ -6,6 +6,11 @@ ms.date: 7/12/2024
 ms.author: eur
 ---
 
+### September 2024 release
+
+#### Fast transcription (Preview)
+Fast transcription now supports diarization to recognize and separate multiple speakers on mono channel audio file. For more information, see [fast transcription API guide](../../fast-transcription-create.md#use-the-fast-transcription-api).
+
 ### August 2024 release
 
 #### Language learning (Preview)
@@ -57,7 +62,7 @@ Speech [pronunciation assessment](../../how-to-pronunciation-assessment.md) now
 
 #### Fast Transcription API (Preview)
 
-Fast transcription is now available in public preview. Fast transcription allows you to transcribe audio file to text accurately and synchronously, with a high speed factor. It can transcribe a 30-minutes audio in less than 1 minute. For more information, see the [fast transcription API guide](../../fast-transcription-create.md).
+Fast transcription is now available in public preview. Fast transcription allows you to transcribe audio file to text accurately and synchronously, with a high speed factor. It can transcribe audio much faster than the actual audio length. For more information, see the [fast transcription API guide](../../fast-transcription-create.md).
 
 > [!TIP]
 > Try out fast transcription in [Azure AI Studio](https://aka.ms/fasttranscription/studio).

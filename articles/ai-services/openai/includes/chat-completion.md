@@ -6,15 +6,15 @@ author: mrbullwinkle #dereklegenzoff
 ms.author: mbullwin #delegenz
 ms.service: azure-ai-openai
 ms.topic: include
-ms.date: 04/25/2024
+ms.date: 08/29/2024
 manager: nitinme
 keywords: ChatGPT
 
 ---
 
-## Work with the GPT-3.5-Turbo and GPT-4 models
+## Work with chat completion models
 
-The following code snippet shows the most basic way to use the GPT-3.5-Turbo and GPT-4 models with the Chat Completion API. If this is your first time using these models programmatically, we recommend that you start with the [GPT-3.5-Turbo and GPT-4 quickstart](../chatgpt-quickstart.md).
+The following code snippet shows the most basic way to interact with models that use the Chat Completion API. If this is your first time using these models programmatically, we recommend that you start with the [chat completions quickstart](../chatgpt-quickstart.md).
 
 > [!NOTE]  
 > In the Azure OpenAI documentation, we refer to GPT-3.5-Turbo and GPT-35-Turbo interchangeably. The official name of the model on OpenAI is `gpt-3.5-turbo`. For Azure OpenAI, because of Azure-specific character constraints, the underlying model name is `gpt-35-turbo`.
