@@ -13,10 +13,11 @@ ms.author: pafarley
 
 # Quickstart: Groundedness detection (preview)
 
-This document provides guidance on how to effectively use the Groundedness Detection API. The feature automatically detects and corrects ungrounded text based on provided grounding sources, ensuring that the generated content is aligned with factual or intended references. Below, we explore several common scenarios to help you understand how and when to apply these features to achieve the best outcomes. 
+This guide shows you how to use the groundedness detection API. This feature automatically detects and corrects ungrounded text based on the provided source documents, ensuring that the generated content is aligned with factual or intended references. Below, we explore several common scenarios to help you understand how and when to apply these features to achieve the best outcomes. 
 
-### Usage Scenarios and Best Practices
-#### Scenario 1: Summarization in Medical Contexts
+### Use cases
+
+#### Summarization in Medical Contexts
 **Use Case:**
 You are summarizing medical documents, and it’s critical that the names of patients in the summaries are accurate and consistent with the provided grounding sources.
 
@@ -34,12 +35,12 @@ Example API Request:
 ```
 **Expected Outcome:**
 
-The correction feature will detect that "Kevin" is ungrounded because it conflicts with the grounding source "Jane".
-The API will return the corrected text: "The patient name is Jane."
+The correction feature detects that "Kevin" is ungrounded because it conflicts with the grounding source "Jane".
+The API returns the corrected text: "The patient name is Jane."
 Best Practice:
 Always ensure that your grounding sources are accurate and up-to-date, particularly in sensitive fields like healthcare. This minimizes the risk of errors in the summarization process.
 
-#### Scenario 2: Question and Answer (QnA) Task with Customer Support Data
+#### Question and Answer (QnA) Task with Customer Support Data
 **Use Case:**
 You are implementing a QnA system for a customer support chatbot. It’s essential that the answers provided by the AI align with the most recent and accurate information available.
 
@@ -60,12 +61,12 @@ Example API Request:
 ```
 **Expected Outcome:**
 
-The API will detect that "5%" is ungrounded because it does not match the provided grounding source "4.5%".
-The response will include the correction text: "The interest rate is 4.5%."
+The API detects that "5%" is ungrounded because it does not match the provided grounding source "4.5%".
+The response includes the correction text: "The interest rate is 4.5%."
 Best Practice:
 In a dynamic environment like finance, always use the most recent and reliable grounding sources to ensure your AI system provides accurate and timely information.
 
-#### Scenario 3: Content Creation with Historical Data
+#### Content Creation with Historical Data
 Use Case:
 You are creating content that involves historical data or events, where accuracy is critical to maintaining credibility and avoiding misinformation.
 
@@ -82,12 +83,12 @@ Example API Request:
 }
 ```
 **Expected Outcome:**
-The API will detect the ungrounded date "1065" and correct it to "1066" based on the grounding source.
-The response will include the corrected text: "The Battle of Hastings occurred in 1066."
+The API detects the ungrounded date "1065" and correct it to "1066" based on the grounding source.
+The response includes the corrected text: "The Battle of Hastings occurred in 1066."
 **Best Practice:**
 For historical content, cross-reference your grounding sources with trusted academic or historical databases to ensure the highest level of accuracy.
 
-#### Scenario 4: Internal Documentation Summarization
+#### Internal Documentation Summarization
 **Use Case:**
 You are summarizing internal documents where product names, version numbers, or other specific data points must remain consistent.
 
@@ -105,8 +106,8 @@ Example API Request:
 ```
 **Expected Outcome:**
 
-The correction feature will identify "SuperWidget v2.1" as ungrounded and update it to "SuperWidget v2.2" in the response.
-The response will return the corrected text: "Our latest product is SuperWidget v2.2."
+The correction feature identifies "SuperWidget v2.1" as ungrounded and update it to "SuperWidget v2.2" in the response.
+The response returns the corrected text: "Our latest product is SuperWidget v2.2."
 Best Practice:
 When dealing with product names or version numbers, use grounding sources directly from internal release notes or official product documentation to ensure accuracy.
 
@@ -437,12 +438,13 @@ The JSON objects in the output are defined here:
 | -**`reason`** |  Offers explanations for detected ungroundedness. | String  |
 
 
-## Check groundedness with new correction feature
-The Groundedness Detection API now includes a correction feature that automatically corrects any detected ungroundedness in the text based on the provided grounding sources. When the correction feature is enabled, the response includes a `corrected Text` field that presents the corrected text aligned with the grounding sources.
-Below, we explore several common scenarios to help you understand how and when to apply these features to achieve the best outcomes.
+## Check groundedness with the correction feature
+The groundedness detection API includes a correction feature that automatically corrects any detected ungroundedness in the text based on the provided grounding sources. When the correction feature is enabled, the response includes a `corrected Text` field that presents the corrected text aligned with the grounding sources.
 
+Below, see several common scenarios that illustrate how and when to apply these features to achieve the best outcomes.
 
 ### Bring your own GPT deployment
+
 > [!TIP]
 > Currently, the correction feature supports only Azure OpenAI GPT-4 Turbo (1106-preview) resources. To minimize latency and adhere to data privacy guidelines, it's recommended to deploy your GPT-4 Turbo (1106-preview) resources in the same region as your content safety resources. For more details on data privacy, please refer to the Data, privacy and security guidelines for Azure OpenAI Service and Data, privacy, and security for Azure AI Content Safety.
 
@@ -450,7 +452,7 @@ To use your Azure OpenAI GPT4-Turbo (1106-preview) resource for enabling the cor
 
 
 ### Make the API request
-In your request to the Groundedness Detection API, set the "correction" body parameter to true, and provide the necessary parameters:
+In your request to the groundedness detection API, set the "correction" body parameter to true, and provide the necessary parameters:
 
 ```json
 {
@@ -547,9 +549,9 @@ print(data.decode("utf-8"))
 
 ### Interpret the API response
 
-The response will include a "correction Text" field containing the corrected text, ensuring consistency with the provided grounding sources.
-The correction feature will detect that "Kevin" is ungrounded because it conflicts with the grounding source "Jane".
-The API will return the corrected text: "The patient name is Jane."
+The response includes a `"correction Text"` field containing the corrected text, ensuring consistency with the provided grounding sources.
+
+The correction feature detects that `Kevin` is ungrounded because it conflicts with the grounding source `Jane`. The API returns the corrected text: `"The patient name is Jane."`
 
 ```json
 {
@@ -577,7 +579,6 @@ The API will return the corrected text: "The patient name is Jane."
 | - `length > utf16`      | The length of the ungrounded text in UTF-16 encoding.       | Integer |
 | - `length > codePoint`  | The length of the ungrounded text in terms of Unicode code points. |Integer    |
 | -**`correction Text`** |	The corrected text, ensuring consistency with the grounding sources.|String|
-
 
 
 ## Clean up resources
