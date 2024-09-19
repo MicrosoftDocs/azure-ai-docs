@@ -8,15 +8,15 @@ ms.author: robertlee
 ms.service: cognitive-search
 ms.custom:
   - ignite-2023
-ms.topic: conceptual
-ms.date: 02/14/2024
+ms.topic: concept-article
+ms.date: 09/19/2024
 ---
 
 # Vector storage in Azure AI Search
 
 Azure AI Search provides vector storage and configurations for [vector search](vector-search-overview.md) and [hybrid search](hybrid-search-overview.md). Support is implemented at the field level, which means you can combine vector and nonvector fields in the same search corpus.
 
-Vectors are stored in a search index. Use the [Create Index REST API](/rest/api/searchservice/indexes/create-or-update) or an equivalent Azure SDK method to [create the vector store](vector-search-how-to-create-index.md).
+Vectors are stored in a search index. Use the [Create Index REST API](/rest/api/searchservice/indexes/create) or an equivalent Azure SDK method to [create the vector store](vector-search-how-to-create-index.md).
 
 Considerations for vector storage include the following points:
 
@@ -54,7 +54,7 @@ Vector fields are distinguished by their data type and vector-specific propertie
 }
 ```
 
-Vector fields are of type `Collection(Edm.Single)`. 
+Vector fields have [specific data types](/rest/api/searchservice/supported-data-types#edm-data-types-for-vector-fields). Currently, `Collection(Edm.Single)` is the most common, but using narrow data types can save on storage.
 
 Vector fields must be searchable and retrievable, but they can't be filterable, facetable, or sortable, or have analyzers, normalizers, or synonym map assignments. 
 
@@ -146,7 +146,7 @@ Here's a screenshot showing search results in [Search Explorer](search-explorer.
 
 ## Physical structure and size
 
-In Azure AI Search, the physical structure of an index is largely an internal implementation. You can access its schema, load and query its content, monitor its size, and manage capacity, but the clusters themselves (inverted and vector indexes), and other files and folders) are managed internally by Microsoft.
+In Azure AI Search, the physical structure of an index is largely an internal implementation. You can access its schema, load and query its content, monitor its size, and manage capacity, but the clusters themselves (inverted and vector indexes), and other files and folders are managed internally by Microsoft.
 
 The size and substance of an index is determined by:
 
