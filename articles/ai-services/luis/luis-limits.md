@@ -95,10 +95,6 @@ Use the _kind_, `LUIS`, when filtering resources in the Azure portal.The LUIS qu
 
 [Sentiment analysis integration](how-to/publish.md), which provides sentiment information, is provided without requiring another Azure resource.
 
-### Speech integration
-
-[Speech integration](../speech-service/how-to-recognize-intents-from-speech-csharp.md) provides 1 thousand endpoint requests per unit cost.
-
 [Learn more about pricing.][pricing]
 
 ## Keyboard controls

@@ -74,8 +74,6 @@ items:
     items:
     - name: With Bing Spell Check v7
       href: luis-tutorial-bing-spellcheck.md
-    - name: With Speech service
-      href: ../speech-service/how-to-recognize-intents-from-speech-csharp.md?toc=/azure/ai-services/luis/toc.json&bc=/azure/ai-services/luis/breadcrumb/toc.json
     - name: With LUIS and question answering using orchestration
       href: how-to/orchestration-projects.md
   - name: Migrate to conversational language understanding
@@ -157,8 +155,6 @@ items:
       href: luis-concept-data-alteration.md
     - name: Data retention
       href: luis-concept-data-storage.md
-    - name: Data conversion
-      href: luis-concept-data-conversion.md
     - name: Data extraction
       href: luis-concept-data-extraction.md
   - name: Security
