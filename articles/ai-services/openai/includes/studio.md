@@ -21,8 +21,6 @@ From the Azure OpenAI Studio landing page navigate further to explore examples f
 
 :::image type="content" source="../media/quickstarts/studio-start.png" alt-text="Screenshot of the Azure OpenAI Studio landing page." lightbox="../media/quickstarts/studio-start.png":::
 
-Go to the [Playground](#playground) for experimentation and fine-tuning workflow.
-
 ## Playground
 
 Start exploring Azure OpenAI capabilities with a no-code approach through the GPT-3 Playground. It's simply a text box where you can submit a prompt to generate a completion. From this page, you can quickly iterate and experiment with the capabilities. 
