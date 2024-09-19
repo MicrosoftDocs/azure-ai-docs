@@ -49,7 +49,7 @@ To use the Azure OpenAI for text summarization in the Completions playground, fo
 1. Select your deployment from the **Deployments** dropdown. If your resource doesn't have a deployment, select **Create a deployment** and then revisit this step.
 1. Enter a prompt for the model.
 
-    :::image type="content" source="../media/quickstarts/summarize-text.png" alt-text="Screenshot of the playground page of the Azure OpenAI Studio with a text summarization example" lightbox="../media/quickstarts/summarize-text.png":::
+    :::image type="content" source="../media/quickstarts/summarize-text.png" alt-text="Screenshot of the playground page of the Azure OpenAI Studio with a text summarization example." lightbox="../media/quickstarts/summarize-text.png":::
 
 1. Select `Generate`. Azure OpenAI will attempt to capture the context of text and rephrase it succinctly. You should get a result that resembles the following text:
 
