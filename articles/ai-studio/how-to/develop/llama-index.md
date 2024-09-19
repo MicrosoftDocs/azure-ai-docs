@@ -25,11 +25,11 @@ In this example, we are working with the **Azure AI model inference API**.
 
 ## Prerequisites
 
-To run this tutorial you need:
+To run this tutorial, you need:
 
 1. An [Azure subscription](https://azure.microsoft.com).
 2. An Azure AI hub resource as explained at [How to create and manage an Azure AI Studio hub](../create-azure-ai-resource.md).
-3. A model supporting the [Azure AI model inference API](https://aka.ms/azureai/modelinference) deployed. In this example we use a `Mistral-Large` deployment, but use any model of your preference. For using embeddings capabilities in LlamaIndex, you need an embedding model like `cohere-embed-v3-multilingual`. 
+3. A model supporting the [Azure AI model inference API](https://aka.ms/azureai/modelinference) deployed. In this example, we use a `Mistral-Large` deployment, but use any model of your preference. For using embeddings capabilities in LlamaIndex, you need an embedding model like `cohere-embed-v3-multilingual`. 
 
     * You can follow the instructions at [Deploy models as serverless APIs](../deploy-models-serverless.md).
 
@@ -49,10 +49,10 @@ To run this tutorial you need:
 
 ## Configure the environment
 
-To use LLMs deployed in Azure AI studio you need the endpoint and credentials to connect to it. The parameter `model_name` is not required for endpoints serving a single model, like Managed Online Endpoints. Follow this steps to get the information you need from the model you want to use:
+To use LLMs deployed in Azure AI studio, you need the endpoint and credentials to connect to it. The parameter `model_name` is not required for endpoints serving a single model, like Managed Online Endpoints. Follow these steps to get the information you need from the model you want to use:
 
 1. Go to the [Azure AI studio](https://ai.azure.com/).
-2. Go to deployments and select the model you have deployed as indicated in the prerequisites.
+2. Go to deployments and select the model you deployed as indicated in the prerequisites.
 3. Copy the endpoint URL and the key.
 
     :::image type="content" source="../../media/how-to/inference/serverless-endpoint-url-keys.png" alt-text="Screenshot of the option to copy endpoint URI and keys from an endpoint." lightbox="../../media/how-to/inference/serverless-endpoint-url-keys.png":::
@@ -60,7 +60,7 @@ To use LLMs deployed in Azure AI studio you need the endpoint and credentials to
 > [!TIP]
 > If your model was deployed with Microsoft Entra ID support, you don't need a key.
 
-In this scenario, we have placed both the endpoint URL and key in the following environment variables:
+In this scenario, we placed both the endpoint URL and key in the following environment variables:
 
 ```bash
 export AZURE_INFERENCE_ENDPOINT="<your-model-endpoint-goes-here>"
@@ -79,7 +79,7 @@ llm = AzureAICompletionsModel(
 )
 ```
 
-Alternatively, if you endpoint support Microsoft Entra ID, you can use the following code to create the client:
+Alternatively, if your endpoint support Microsoft Entra ID, you can use the following code to create the client:
 
 ```python
 from azure.identity import DefaultAzureCredential
@@ -119,7 +119,7 @@ llm = AzureAICompletionsModel(
 )
 ```
 
-For parameters extra parameters that are not supported by the Azure AI model inference API but that are available in the underlying model, you can use the `model_extras` argument. In the following example, the parameter `safe_prompt`, only available for Mistral models, is being passed.
+Parameters not supported in the Azure AI model inference API ([reference](../../reference/reference-model-inference-chat-completions.md)) but available in the underlying model, you can use the `model_extras` argument. In the following example, the parameter `safe_prompt`, only available for Mistral models, is being passed.
 
 ```python
 llm = AzureAICompletionsModel(
@@ -178,7 +178,7 @@ embed_model = AzureAIEmbeddingsModel(
 
 ## Configure the models used by your code
 
-You can use the LLM or embeddings model client individually in the code you develop with LlamaIndex or you can configure the entire session using the `Settings` options. Configuring the session has the advantage that then all your code will use the same models for all the operations.
+You can use the LLM or embeddings model client individually in the code you develop with LlamaIndex or you can configure the entire session using the `Settings` options. Configuring the session has the advantage of all your code using the same models for all the operations.
 
 ```python
 from llama_index.core import Settings
@@ -187,7 +187,7 @@ Settings.llm = llm
 Settings.embed_model = embed_model
 ```
 
-However, there are scenarios where you want to use a general model for most of the operations but an specific one for a given task. On those cases, it's useful to set the LLM or embedding model your are using for each LlamaIndex construct. In the following example, we set an specific model:
+However, there are scenarios where you want to use a general model for most of the operations but a specific one for a given task. On those cases, it's useful to set the LLM or embedding model you are using for each LlamaIndex construct. In the following example, we set a specific model:
 
 ```python
 from llama_index.core.evaluation import RelevancyEvaluator
@@ -195,7 +195,7 @@ from llama_index.core.evaluation import RelevancyEvaluator
 relevancy_evaluator = RelevancyEvaluator(llm=llm)
 ```
 
-In general, you will use a combination of both strategies.
+In general, you use a combination of both strategies.
 
 ## Related content
 
