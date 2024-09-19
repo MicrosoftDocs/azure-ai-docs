@@ -324,7 +324,7 @@ Text streaming allows real-time text processing for rapid audio generation. It's
 
 ### How to use text streaming
 
-Currently, only C#, C++ and Python are supported in the SDK. Support for Java and Objective-C is planned for future releases.
+Text streaming is supported in C#, C++ and Python with Speech SDK.
 
 ::: zone pivot="programming-language-csharp"
 
