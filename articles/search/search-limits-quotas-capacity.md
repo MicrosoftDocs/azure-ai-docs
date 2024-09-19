@@ -80,7 +80,7 @@ When estimating document size, remember to consider only those fields that add v
 
 When you index documents with vector fields, Azure AI Search constructs internal vector indexes using the algorithm parameters you provide. The size of these vector indexes is restricted by the memory reserved for vector search for your service's tier (or `SKU`).
 
-Vector limits vary by [service creation date](vector-search-index-size.md#how-to-check-service-creation-date) and [tier](search-sku-tier.md). To view the vector quota in effect for your search service, use [GET Service Statistics](/rest/api/searchservice/get-service-statistics/get-service-statistics), or check the **Properties** and **Usage** tabs for your search service in the Azure portal.
+Vector limits vary by [service creation date](vector-search-index-size.md#how-to-check-service-creation-date) and [tier](search-sku-tier.md). For guidance on managing and maximizing vector storage, see [Vector index size and staying under limits](vector-search-index-size.md).
 
 This table shows the progression of vector quota increases in GB over time. The quota is per partition, so if you scale a new Standard (S1) service to 6 partitions, total vector quota is 35 multiplied by 6.
 
@@ -102,7 +102,7 @@ This table shows the progression of vector quota increases in GB over time. The 
 The service enforces a vector index size quota **for every partition** in your search service. Each extra partition increases the available vector index size quota. This quota is a hard limit to ensure your service remains healthy, which means that further indexing attempts once the limit is exceeded results in failure. You can resume indexing once you free up available quota by either deleting some vector documents or by scaling up in partitions.
 
 > [!IMPORTANT]
-> Higher vector limits are tied to larger partition sizes. Regions that run on older infrastructure are subject to the July-April limits. Review the [regions list](search-region-supportd.md) for status on partition storage limits.
+> Higher vector limits are tied to larger partition sizes. Regions that run on older infrastructure are subject to the July-April limits. Review the [regions list](search-region-support.md) for status on partition storage limits.
 
 ## Indexer limits
 
