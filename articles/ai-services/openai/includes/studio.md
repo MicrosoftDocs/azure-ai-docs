@@ -5,19 +5,13 @@ description: Walkthrough on how to get started with Azure OpenAI and make your f
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: include
-ms.date: 11/15/2023
+ms.date: 09/19/2023
 ---
 
 ## Prerequisites
 
 - An Azure subscription - <a href="https://azure.microsoft.com/free/cognitive-services" target="_blank">Create one for free</a>.
 - An Azure OpenAI resource with a model deployed. For more information about model deployment, see the [resource deployment guide](../how-to/create-resource.md).
-
-> [!div class="nextstepaction"]
-> [I ran into an issue with the prerequisites.](https://microsoft.qualtrics.com/jfe/form/SV_0Cl5zkG3CnDjq6O?PLanguage=STUDIO&Pillar=AOAI&Product=gpt&Page=quickstart&Section=Prerequisites)
-
-> [!TIP]
-> Try out the new unified [Azure AI Studio (preview)](../../../ai-studio/what-is-ai-studio.md) which brings together capabilities from across multiple Azure AI services.
 
 ## Go to the Azure OpenAI Studio
 
@@ -26,8 +20,6 @@ Navigate to Azure OpenAI Studio at <a href="https://oai.azure.com/" target="_bla
 From the Azure OpenAI Studio landing page navigate further to explore examples for prompt completion, manage your deployments and models, and find learning resources such as documentation and community forums. 
 
 :::image type="content" source="../media/quickstarts/studio-start.png" alt-text="Screenshot of the Azure OpenAI Studio landing page." lightbox="../media/quickstarts/studio-start.png":::
-
-Go to the [Playground](#playground) for experimentation and fine-tuning workflow.
 
 ## Playground
 
@@ -45,30 +37,23 @@ You can experiment with the configuration settings such as temperature and pre-r
 
 Azure OpenAI also performs content moderation on the prompt inputs and generated outputs. The prompts or responses may be filtered if harmful content is detected. For more information, see the [content filter](../concepts/content-filter.md) article.
 
-In the GPT-3 playground you can also view Python and curl code samples pre-filled according to your selected settings. Just select **View code** next to the examples dropdown. You can write an application to complete the same task with the OpenAI Python SDK, curl, or other REST API client.
+In the Completions playground you can also view Python and curl code samples pre-filled according to your selected settings. Just select **View code** next to the examples dropdown. You can write an application to complete the same task with the OpenAI Python SDK, curl, or other REST API client.
 
 ### Try text summarization
 
-To use the Azure OpenAI for text summarization in the GPT-3 Playground, follow these steps:
+To use the Azure OpenAI for text summarization in the Completions playground, follow these steps:
 
 1. Sign in to [Azure OpenAI Studio](https://oai.azure.com).
 1. Select the subscription and OpenAI resource to work with. 
-1. Select **GPT-3 Playground** at the top of the landing page.
+1. Select **Completions playground** on the landing page.
 1. Select your deployment from the **Deployments** dropdown. If your resource doesn't have a deployment, select **Create a deployment** and then revisit this step.
-1. Select **Summarize Text** from the **Examples** dropdown. 
+1. Enter a prompt for the model.
 
-    :::image type="content" source="../media/quickstarts/summarize-text.png" alt-text="Screenshot of the playground page of the Azure OpenAI Studio with the Summarize Text dropdown selection visible" lightbox="../media/quickstarts/summarize-text.png":::
+    :::image type="content" source="../media/quickstarts/summarize-text.png" alt-text="Screenshot of the playground page of the Azure OpenAI Studio with a text summarization example." lightbox="../media/quickstarts/summarize-text.png":::
 
 1. Select `Generate`. Azure OpenAI will attempt to capture the context of text and rephrase it succinctly. You should get a result that resembles the following text:
 
-    ```
-    Tl;dr A neutron star is the collapsed core of a supergiant star. These incredibly dense objects are incredibly fascinating due to their strange properties and their potential for phenomena such as extreme gravitational forces and a strong magnetic field.
-    ```
-
-The accuracy of the response can vary per model. The Davinci based model in this example is well-suited to this type of summarization, whereas a Codex based model wouldn't perform as well at this particular task.
-
-> [!div class="nextstepaction"]
-> [I ran into an issue with the playground.](https://microsoft.qualtrics.com/jfe/form/SV_0Cl5zkG3CnDjq6O?PLanguage=STUDIO&Pillar=AOAI&Product=gpt&Page=quickstart&Section=Set-up)
+The accuracy of the response can vary per model. The `gpt-35-turbo-instruct` based model in this example is well-suited to this type of summarization, though in general we recommend using the alternate chat completions API unless you have a particular use case that is particularly suited to the completions API.
 
 ## Clean up resources
 

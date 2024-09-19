@@ -119,8 +119,6 @@ groups:
   title: Programming languages
   prompt: Choose your preferred usage method
   pivots:
-  - id: programming-language-studio
-    title: Azure OpenAI Studio
   - id: programming-language-ai-studio
     title: AI Studio (Preview)
   - id: programming-language-csharp

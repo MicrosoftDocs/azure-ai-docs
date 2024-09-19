@@ -252,6 +252,8 @@ items:
         href: how-to/develop/vscode.md
       - name: Start with an AI template
         href: how-to/develop/ai-template-get-started.md
+      - name: Develop with LlamaIndex and Azure AI studio
+        href: how-to/develop/llama-index.md
       - name: Trace your application with prompt flow
         href: how-to/develop/trace-local-sdk.md
         displayName: code,sdk

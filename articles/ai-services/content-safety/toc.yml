@@ -63,6 +63,8 @@ items:
     href: how-to/custom-categories-rapid.md
   - name: Use a blocklist
     href: how-to/use-blocklist.md
+  - name: Mitigate false results
+    href: how-to/improve-performance.md
   - name: Encryption of data at rest
     href: how-to/encrypt-data-at-rest.md
   - name: Migrate from public preview to GA
