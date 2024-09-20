@@ -8,9 +8,10 @@ ms.author: mopeakande
 ms.reviewer: fasantia
 ms.service: azure-machine-learning
 ms.subservice: mlops
-ms.date: 09/19/2024
-ms.topic: conceptual
+ms.date: 09/20/2024
+ms.topic: concept-article
 ms.custom: cliv2, sdkv2
+#Customer intent: As a data scientist, I want to understand what MLflow is and does so that I can use MLflow with my models.
 ---
 
 # MLflow and Azure Machine Learning
@@ -126,9 +127,6 @@ The following table shows machine learning lifecycle operations that are possibl
 
 ## Related content
 
-- [From artifacts to models in MLflow](concept-mlflow-models.md)
 - [Configure MLflow for Azure Machine Learning](how-to-use-mlflow-configure-tracking.md)
-- [Migrate logging from SDK v1 to MLflow](reference-migrate-sdk-v1-mlflow-tracking.md)
-- [Track ML experiments and models with MLflow](how-to-use-mlflow-cli-runs.md)
 - [Log MLflow models](how-to-log-mlflow-models.md)
 - [Guidelines for deploying MLflow models](how-to-deploy-mlflow-models.md)
