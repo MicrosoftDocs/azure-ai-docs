@@ -271,8 +271,8 @@ items:
       href: how-to/evaluate-prompts-playground.md
     - name: Generate adversarial simulations for safety evaluation
       href: how-to/develop/simulator-interaction-data.md
-    - name: Evaluate with the prompt flow SDK
-      href: how-to/develop/flow-evaluate-sdk.md
+    - name: Evaluate with the Azure AI Evaluation SDK
+      href: how-to/develop/evaluate-sdk.md
       displayName: code,accuracy,metrics
     - name: Evaluate with Azure AI Studio
       href: how-to/evaluate-generative-ai-app.md

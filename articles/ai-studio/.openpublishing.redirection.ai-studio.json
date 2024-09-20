@@ -119,6 +119,11 @@
             "source_path": "articles/ai-studio/how-to/commitment-tier.md",
             "redirect_url": "/azure/ai-services/commitment-tier.md",
             "redirect_document_id": false
+        },
+        {
+            "source_path": "articles/ai-studio/how-to/develop/flow-evaluate-sdk.md",
+            "redirect_url": "/azure/ai-studio/how-to/develop/evaluate-sdk.md",
+            "redirect_document_id": true
         }
     ]
 }
