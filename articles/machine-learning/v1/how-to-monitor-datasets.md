@@ -233,7 +233,7 @@ The **backfill** function runs a backfill job, for a specified start and end dat
 > Azure Machine Learning model monitoring doesn't support manual **backfill** function, if you want to redo the model monitor for a specif time range, you can create another model monitor for that specific time range.
 
 # [Python SDK](#tab/python)
-<a name="sdk-monitor"></a>
+
 
 [!INCLUDE [sdk v1](../includes/machine-learning-sdk-v1.md)]
 
@@ -290,7 +290,7 @@ monitor = monitor.enable_schedule()
 
 
 # [Studio](#tab/azure-studio)
-<a name="studio-monitor"></a>
+
 
 1. Navigate to the [studio's homepage](https://ml.azure.com).
 1. Select the **Data** tab.
@@ -442,6 +442,7 @@ az ml schedule create -f ./out-of-box-monitoring.yaml
 The following YAML contains the definition for the out-of-box model monitoring.
 
 :::code language="yaml" source="~/azureml-examples-main/cli/monitoring/out-of-box-monitoring.yaml":::
+
 ---
 
 ## If you didn't deploy your model to production in an Azure Machine Learning online endpoint or you don't want to use data collection (Migrate to Model Monitor)
