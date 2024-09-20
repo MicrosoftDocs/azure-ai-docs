@@ -234,7 +234,8 @@ ml_client.connections.create_or_update(workspace_connection=wps_connection)
 
 # [Studio](#tab/azure-studio)
 
-You can't create a Snowflake DB connection that uses OAuth in studio.
+> [!NOTE]
+> Creation of a Snowflake DB connection using a service principal (for OAuth) is only available through the Azure CLI or Python SDK.
 
 ---
 
