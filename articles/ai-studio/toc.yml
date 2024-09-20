@@ -8,7 +8,7 @@ items:
     href: what-is-ai-studio.md
   - name: Azure AI Studio architecture
     href: concepts/architecture.md
-  - name: AI Studio versus AML studio
+  - name: AI Studio versus Azure Machine Learning studio
     href: /ai/ai-studio-experiences-overview?context=/azure/ai-studio/context/context
   - name: Region support
     href: reference/region-support.md
