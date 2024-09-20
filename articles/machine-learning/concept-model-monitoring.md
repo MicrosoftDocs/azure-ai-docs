@@ -16,9 +16,9 @@ ms.custom: devplatv2, FY25Q1-Linter
 
 # Azure Machine Learning model monitoring
 
-Model monitoring is the last step in the machine learning end-to-end lifecycle. This step tracks model performance in production and aims to understand the performance from both data science and operational perspectives. In this article, you learn about model monitoring in Azure Machine Learning, the signals and metrics you can monitor, and recommended practices for using model monitoring.
+Model monitoring is the last step in the machine learning end-to-end lifecycle. This step tracks model performance in production and analyzes the performance from both data science and operational perspectives. In this article, you learn about model monitoring in Azure Machine Learning, the signals and metrics you can monitor, and recommended practices for model monitoring.
 
-Unlike traditional software systems, the behavior of machine learning systems is governed not just by rules specified in code, but also by model behavior learned from data. Data distribution changes, training-serving skew, data quality issues, shifts in environments, and consumer behavior changes can all cause a model to become stale.
+Unlike traditional software systems, machine learning system behavior doesn't only depend on rules specified in code, but is also learned from data. Data distribution changes, training-serving skew, data quality issues, shifts in environments, and consumer behavior changes can all cause a model to become stale.
 
 When a model becomes stale, its performance can degrade to the point that it fails to add business value or starts to cause serious compliance issues in highly regulated environments. Therefore, it's important to monitor model performance.
 
@@ -51,17 +51,17 @@ Next, **set up model monitoring.** You can use Azure Machine Learning SDK/CLI 2.
 
 Finally, **view and analyze model monitoring results.** Once you set up model monitoring, Azure Machine Learning runs a monitoring job on your specified schedule. Each run computes and evaluates metrics for all selected monitoring signals and triggers alert notifications when any specified threshold is exceeded. You can follow the link in the alert notification to view and analyze monitoring results in your Azure Machine Learning workspace.
 
-## Model monitoring capabilities
+## Capabilities of model monitoring 
 
 Azure Machine Learning provides the following capabilities for continuous model monitoring:
 
 - **Built-in monitoring signals** for tabular data, including data drift, prediction drift, data quality, feature attribution drift, and model performance.
 - **Out-of-box model monitoring for online endpoints**. If you deploy your model to production in an online endpoint, Azure Machine Learning collects production inference data automatically and uses it for continuous monitoring.
 - **Multiple monitoring signals** in one monitoring setup. For each monitoring signal, you can select your preferred metrics and alert threshold.
-- **Choice of reference data for comparison**. For monitoring signals, Azure Machine Learning lets you use training data or recent, past production data for reference data.
+- **Choice of reference data for comparison**. For monitoring signals, you can set reference data using training data or recent past production data.
 - **Top N features for data drift or data quality monitoring**. If you use training data as the reference data, you can define data drift or data quality signals layered over feature importance.
 - **Ability to define custom monitoring signals**. If the built-in monitoring signals aren't suitable for your business scenario, you can define your own monitoring signal with a custom monitoring signal component.
-- **Flexibility to use production inference data from any source**. If you deploy models outside of Azure Machine Learning or deploy models to batch endpoints, you can still collect production inference data to use in Azure Machine Learning model monitoring.
+- **Flexibility to use production inference data from any source**. If you deploy models outside of Azure Machine Learning or deploy models to batch endpoints, you can still collect production inference data yourself to use in Azure Machine Learning model monitoring.
 
 ## Best practices for model monitoring
 
@@ -72,7 +72,7 @@ Each machine learning model and its use cases are unique. Therefore, model monit
 - **Include multiple monitoring signals in your setup.** With multiple monitoring signals, you get both broad and granular monitoring views. For example, you can combine data drift and feature attribution drift signals to get early warnings about model performance issues.
 - **Use appropriate reference data as the comparison baseline.** For reference data used as the comparison baseline, you can use recent past production data or historical data, such as training or validation data. For more meaningful comparison, use training data as the comparison baseline for data drift and data quality. Use validation data as the comparison baseline for prediction drift.
 - **Specify monitoring frequency based on production data growth over time**. For example, if your production model has heavy daily traffic and the daily data accumulation is sufficient to monitor, set the monitoring frequency to daily. Otherwise, consider a weekly or monthly monitoring frequency based on the growth of your production data over time.
-- **Monitor the top N features or a feature subset.** If you use training data as the comparison baseline, you can easily configure data drift monitoring or data quality monitoring for the top N important features. For models that have a large number of features, consider monitoring a subset of those features to reduce computation cost and monitoring noise.
+- **Monitor top N features or a feature subset.** If you use training data as the comparison baseline, you can easily configure data drift monitoring or data quality monitoring for the top N important features. For models that have a large number of features, consider monitoring a subset of those features to reduce computation cost and monitoring noise.
 - **Use the model performance signal when you have access to ground truth data.** If you have access to ground truth data, also called actuals, based on your machine learning application, use the model performance signal to compare the ground truth data to model output. This comparison provides an objective view of model performance in production.
 
 ## Lookback window size and offset
@@ -81,7 +81,9 @@ The *lookback window size* is the duration of time in ISO 8601 format for your p
 
 For example, your model in production has a monitor set to run on January 31 at 3:15pm UTC. A production data lookback window size of `P7D` or seven days and a data lookback window offset of `P0D` or zero days means the monitor uses production data from January 24 at 3:15pm UTC up until January 31 at 3:15pm UTC, the time your monitor runs.
 
-For the reference data, if you set the lookback window offset to `P7D` or seven days, the reference data window ends right before the production data window starts, so that there's no overlap. You can then set your reference data lookback window size to be as large as you like. For example, if you set the reference data lookback window size to `P24D` or 24 days, the reference data window includes data from January 1 at 3:15pm UTC up until January 24 at 3:15pm UTC. The following diagram illustrates this example.
+For the reference data, if you set the lookback window offset to `P7D` or seven days, the reference data window ends right before the production data window starts, so that there's no overlap. You can then set your reference data lookback window size to be as large as you like.
+
+For example, if you set the reference data lookback window size to `P24D` or 24 days, the reference data window includes data from January 1 at 3:15pm UTC up until January 24 at 3:15pm UTC. The following diagram illustrates this example.
 
 :::image type="content" source="media/how-to-monitor-models/monitoring-period.png" alt-text="A diagram showing the lookback window size and offset for reference and production data." border="false" lightbox="media/how-to-monitor-models/monitoring-period.png"::: 
 
@@ -89,7 +91,7 @@ In some cases, it might be useful to set the lookback window offset for your pro
 
 In practice, you should ensure that the reference data window and the production data window don't overlap. As shown in the following figure, you can ensure nonoverlapping windows by making sure that the reference data lookback window offset, `P10D` or 10 days in this example, is greater or equal to the sum of the production data lookback window size and its lookback window offset, seven days total in this example.
 
-:::image type="content" source="media/how-to-monitor-models/lookback-overlap.png" alt-text="A diagram showing non-overlapping reference data and production data windows." border="false" lightbox="media/how-to-monitor-models/lookback-overlap.png":::
+:::image type="content" source="media/how-to-monitor-models/lookback-overlap.png" alt-text="A diagram showing nonoverlapping reference data and production data windows." border="false" lightbox="media/how-to-monitor-models/lookback-overlap.png":::
 
 With Azure Machine Learning model monitoring, you can use smart defaults for your lookback window size and lookback window offset, or you can customize them to meet your needs. Both rolling windows and fixed windows are supported.
 
@@ -160,7 +162,7 @@ During each monitoring run, Azure Machine Learning model monitoring determines t
 
 For example, if you have a numerical `temperature` feature where all values in the reference dataset fall within the range [37, 77], but 10 out of 100 values for `temperature` in the production data window fall outside the range [37, 77], the out-of-bounds rate for `temperature` is 10%.
 
-Azure Machine Learning supports calculating the out-of-bounds rate for the following data types that are available in PySpark: `StringType`, `IntegerType`, `DoubleType`, `ByteType`, `LongType`, and `FloatType`. If the data type for a feature isn't in this list, Azure Machine Learning model monitoring still runs but doesn't compute the out-of-bounds rate for that feature.
+Azure Machine Learning supports calculating the out-of-bounds rate for the following data types that are available in PySpark: `StringType`, `IntegerType`, `DoubleType`, `ByteType`, `LongType`, and `FloatType`. If the data type for a feature isn't in this list, Azure Machine Learning model monitoring still runs, but doesn't compute the out-of-bounds rate for that feature.
 
 ## Model monitoring integration with Azure Event Grid
 
