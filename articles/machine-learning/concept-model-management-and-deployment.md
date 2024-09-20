@@ -5,12 +5,13 @@ description: Learn how Azure Machine Learning uses machine learning operations (
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: mlops
-ms.topic: conceptual
+ms.topic: concept-article
 author: msakande
 ms.author: mopeakande
 ms.reviewer: sehan
-ms.custom: mktng-kw-nov2021
-ms.date: 09/19/2024
+ms.custom: mktng-kw-nov2021, FY25Q1-Linter
+ms.date: 09/20/2024
+#Customer intent: As a data scientist, I want to understand how MLOps can help manage the lifecycle of my models so I can improve the quality and consistency of my machine learning solutions.
 ---
 
 # MLOps model management with Azure Machine Learning
@@ -24,6 +25,8 @@ MLOps is based on [DevOps](https://azure.microsoft.com/overview/what-is-devops/)
 - Faster experimentation and model development.
 - Faster deployment of models into production.
 - Better quality assurance and end-to-end lineage tracking.
+
+## MLOps capabilities
 
 MLOps provides the following capabilities to the machine learning process:
 
