@@ -2,12 +2,14 @@
 title: How to get speech to text session ID and transcription ID
 titleSuffix: Azure AI services
 description: Learn how to get speech to text session ID and transcription ID
-author: alexeyo26
+author: eric-urban
+ms.author: eur
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 1/21/2024
-ms.author: alexeyo 
+ms.date: 9/20/2024
+ms.reviewer: alexeyo
+#Customer intent: As a developer, I need to know how to get the session ID and transcription ID for speech to text so that I can debug issues with my application.
 ---
 
 # How to get speech to text session ID and transcription ID
@@ -68,7 +70,7 @@ spx help translate log
 
 Unlike Speech SDK, [Speech to text REST API for short audio](rest-speech-to-text-short.md) doesn't automatically generate a Session ID. You need to generate it yourself and provide it within the REST request.
 
-Generate a GUID inside your code or using any standard tool. Use the GUID value *without dashes or other dividers*. As an example we'll use `9f4ffa5113a846eba289aa98b28e766f`.
+Generate a GUID inside your code or using any standard tool. Use the GUID value *without dashes or other dividers*. As an example we use `9f4ffa5113a846eba289aa98b28e766f`.
 
 As a part of your REST request use `X-ConnectionId=<GUID>` expression. For our example, a sample request looks like this:
 ```http
