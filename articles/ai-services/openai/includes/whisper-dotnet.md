@@ -32,77 +32,78 @@ Go to your resource in the Azure portal. The **Endpoint and Keys** can be found 
 
 1. Create a .NET app using the `dotnet new` command:
 
-```dotnetcli
-dotnet new console -n OpenAIWhisper
-```
+    ```dotnetcli
+    dotnet new console -n OpenAIWhisper
+    ```
 
 1. Change into the directory of the new app:
 
-```dotnetcli
-cd OpenAIWhisper
-```
+    ```dotnetcli
+    cd OpenAIWhisper
+    ```
 
 1. Install the [`Azure.OpenAI`](https://www.nuget.org/packages/Azure.AI.OpenAI/) client library:
 
-```dotnetcli
-dotnet add package Azure.AI.OpenAI
-```
+    ```dotnetcli
+    dotnet add package Azure.AI.OpenAI
+    ```
 
 ## Passwordless authentication is recommended
 
-Passwordless authentication is more secure than the key-based alternatives and the recommended approach for connecting to Azure services. If you choose to use Passwordless authentication, you'll need to complete the following:
+Passwordless authentication is more secure than the key-based alternatives and is the recommended approach for connecting to Azure services. If you choose to use Passwordless authentication, you'll need to complete the following:
 
 1. Add the [`Azure.Identity`](https://www.nuget.org/packages/Azure.Identity) package.
 
-```dotnetcli
-dotnet add package Azure.Identity
-```
+    ```dotnetcli
+    dotnet add package Azure.Identity
+    ```
 
-1. Assign the `Cognitive Services User` role to your user account. This can be done in the Azure portal under **Access control (IAM)** > **Add role assignment**.
+1. Assign the `Cognitive Services User` role to your user account. This can be done in the Azure portal on your OpenAI resource under **Access control (IAM)** > **Add role assignment**.
 1. Sign-in to Azure using Visual Studio or the Azure CLI via `az login`.
 
-## Create the app code
+## Update the app code
 
-1. Replace the contents of `program.cs` with the following code and update the placeholder values with your own:
+1. Replace the contents of `program.cs` with the following code and update the placeholder values with your own.
 
-> [!NOTE]
-> You can get sample audio files, such as *wikipediaOcelot.wav*, from the [Azure AI Speech SDK repository at GitHub](https://github.com/Azure-Samples/cognitive-services-speech-sdk/tree/master/sampledata/audiofiles).
+    > [!NOTE]
+    > You can get sample audio files, such as *wikipediaOcelot.wav*, from the [Azure AI Speech SDK repository at GitHub](https://github.com/Azure-Samples/cognitive-services-speech-sdk/tree/master/sampledata/audiofiles).
+    
+    ```csharp
+    using Azure;
+    using Azure.AI.OpenAI;
+    using Azure.Identity; // Required for Passwordless auth
+    
+    var endpoint = new Uri("YOUR_OPENAI_ENDPOINT");
+    var credentials = new AzureKeyCredential("YOUR_OPENAI_KEY");
+    // var credentials = new DefaultAzureCredential(); // Use this line for Passwordless auth
+    var deploymentName = "whisper"; // Default deployment name, update with your own if necessary
+    var audioFilePath = "YOUR_AUDIO_FILE_PATH";
+    
+    var openAIClient = new AzureOpenAIClient(endpoint, credentials);
+    
+    var audioClient = openAIClient.GetAudioClient(deploymentName);
+    
+    var result = await audioClient.TranscribeAudioAsync(audioFilePath);
+    
+    Console.WriteLine("Transcribed text:");
+    foreach (var item in result.Value.Text)
+    {
+        Console.Write(item);
+    }
+    ```
 
-```csharp
-using Azure;
-using Azure.AI.OpenAI;
-using Azure.Identity; // Required for Passwordless auth
-
-var endpoint = new Uri("YOUR_OPENAI_ENDPOINT");
-var credentials = new AzureKeyCredential("YOUR_OPENAI_KEY");
-// var credentials = new DefaultAzureCredential(); // Use for Passwordless auth
-var deploymentName = "whisper"; // Default name, update with your own if necessary
-var audioFilePath = "YOUR_AUDIO_FILE_PATH";
-
-var openAIClient = new AzureOpenAIClient(endpoint, credentials);
-
-var audioClient = openAIClient.GetAudioClient(deploymentName);
-
-var result = await audioClient.TranscribeAudioAsync(audioFilePath);
-
-Console.WriteLine("Transcribed text:");
-foreach (var item in result.Value.Text)
-{
-    Console.Write(item);
-}
-```
-
-> [!IMPORTANT]
-> For production, store and access your credentials using a secure method, such as [Azure Key Vault](/azure/key-vault/general/overview). For more information about credential security, see [Azure AI services security](../../security-features.md).
+    > [!IMPORTANT]
+    > For production, store and access your credentials using a secure method, such as [Azure Key Vault](/azure/key-vault/general/overview). For more information about credential security, see [Azure AI services security](../../security-features.md).
 
 1. Run the application using the `dotnet run` command:
 
-```python
+```dotnetcli
+
 dotnet run
 ```
 
 If you are using the sample audio file, you should see the following text printed out in the console:
 
-``text
+```text
 The ocelot, Lepardus paradalis, is a small wild cat native to the southwestern United States, Mexico, and Central and South America. This medium-sized cat is characterized by solid black spots and streaks on its coat, round ears, and white neck and undersides. It weighs between 8 and 15.5 kilograms, 18 and 34 pounds, and reaches 40 to 50 centimeters 16 to 20 inches at the shoulders. It was first described by Carl Linnaeus in 1758. Two subspecies are recognized, L. p. paradalis and L. p. mitis. Typically active during twilight and at night, the ocelot tends to be solitary and territorial. It is efficient at climbing, leaping, and swimming. It preys on small terrestrial mammals such as armadillo, opossum, and lagomorphs.
 ```
