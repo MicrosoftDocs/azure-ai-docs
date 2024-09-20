@@ -56,7 +56,7 @@ The following table provides a comparison of the benefits and limitations of man
 | | Custom virtual network | Managed virtual network |
 | --- | --- | --- |
 | __Benefits__ | - You can tailor networking to your existing set-up</br>- Bring your own non-Azure resources with Azure Machine Learning</br>- Connect to on-premises resources | - Minimize set-up and maintenance overhead</br>- Supports managed online endpoints</br>- Supports serverless spark</br>- Gets new features first |
-| __Limitations__ | - New feature support might be delayed</br>- Managed online endpoints NOT supported</br>- Serverless spark NOT supported</br>- Foundational models NOT supported</br>- No code MLFlow NOT supported</br>- Implementation complexity</br>- Maintenance overhead | - Cost implications of the Azure Firewall and FQDN rules</br>- Logging of the virtual network, firewall, and NSG rules NOT supported</br>- Access to non-HTTP(s) endpoint resources NOT supported |
+| __Limitations__ | - New feature support might be delayed</br>- Managed online endpoints NOT supported</br>- Serverless spark NOT supported</br>- Foundational models NOT supported</br>- No code MLFlow NOT supported</br>- Implementation complexity</br>- Maintenance overhead | - Cost implications of the Azure Firewall and fully qualified domain name (FQDN) rules</br>- Logging of the virtual network, firewall, and NSG rules NOT supported</br>- Access to non-HTTP(s) endpoint resources NOT supported |
 
 ### Custom virtual network limitations
 
