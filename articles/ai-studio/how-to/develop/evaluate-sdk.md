@@ -38,10 +38,10 @@ For more in-depth information on each evaluator definition and how it's calculat
 
 | Category  | Evaluator class                                                                                                                    |
 |-----------|------------------------------------------------------------------------------------------------------------------------------------|
-| [Performance and quality](###Performance-and-quality-evaluators) (AI-assisted)  | `GroundednessEvaluator`, `RelevanceEvaluator`, `CoherenceEvaluator`, `FluencyEvaluator`, `SimilarityEvaluator` |
-| [Performance and quality](###Performance-and-quality-evaluators) (traditional ML)  | `F1ScoreEvaluator`, `RougeScoreEvaluator`, `GleuScoreEvaluator`, `BleuScoreEvaluator`, `MeteorScoreEvaluator`|
-| [Risk and safety](###Risk-and-safety-evaluators ) (AI-assisted)    | `ViolenceEvaluator`, `SexualEvaluator`, `SelfHarmEvaluator`, `HateUnfairnessEvaluator`, `IndirectAttackEvaluator`, `ProtectedMaterialEvaluator`                                             |
-| [Composite](###Composite-evaluators) | `QAEvaluator`, `ContentSafetyEvaluator`                                             |
+| [Performance and quality](#performance-and-quality-evaluators) (AI-assisted)  | `GroundednessEvaluator`, `RelevanceEvaluator`, `CoherenceEvaluator`, `FluencyEvaluator`, `SimilarityEvaluator` |
+| [Performance and quality](#performance-and-quality-evaluators) (traditional ML)  | `F1ScoreEvaluator`, `RougeScoreEvaluator`, `GleuScoreEvaluator`, `BleuScoreEvaluator`, `MeteorScoreEvaluator`|
+| [Risk and safety](#risk-and-safety-evaluators ) (AI-assisted)    | `ViolenceEvaluator`, `SexualEvaluator`, `SelfHarmEvaluator`, `HateUnfairnessEvaluator`, `IndirectAttackEvaluator`, `ProtectedMaterialEvaluator`                                             |
+| [Composite](#composite-evaluators) | `QAEvaluator`, `ContentSafetyEvaluator`                                             |
 
 Built-in quality and safety metrics take in query and response pairs, along with additional information for specific evaluators. 
 
@@ -161,11 +161,11 @@ You can do this with functionality and attack datasets generated with the [direc
 
 ### Composite evaluators 
 Composite evaluators are built in evaluators that combine the individual quality or safety metrics to easily provide a wide range of metrics right out of the box for both query response pairs or chat messages.
-| Composite evaluator          | Contains                                                                                                                           | Description                                                                                                                                                                                                                                                                                                                                                                                                         |
-|------------------------------|------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `QAEvaluator`                | `GroundednessEvaluator`, `RelevanceEvaluator`, `CoherenceEvaluator`, `FluencyEvaluator`, `SimilarityEvaluator`, `F1ScoreEvaluator` | Combines all the quality evaluators for a single output of combined metrics for query and response pairs      |                                                                                                                      
-| `ContentSafetyEvaluator`     | `ViolenceEvaluator`, `SexualEvaluator`, `SelfHarmEvaluator`, `HateUnfairnessEvaluator`                                             | Combines all the safety evaluators for a single output of combined metrics for query and response pairs                                                                                                                                                                                                                                                                                                            |
 
+| Composite evaluator | Contains | Description |
+|--|--|--|
+| `QAEvaluator` | `GroundednessEvaluator`, `RelevanceEvaluator`, `CoherenceEvaluator`, `FluencyEvaluator`, `SimilarityEvaluator`, `F1ScoreEvaluator` | Combines all the quality evaluators for a single output of combined metrics for query and response pairs |
+| `ContentSafetyEvaluator` | `ViolenceEvaluator`, `SexualEvaluator`, `SelfHarmEvaluator`, `HateUnfairnessEvaluator` | Combines all the safety evaluators for a single output of combined metrics for query and response pairs |
 
 ## Custom evaluators
 
@@ -386,7 +386,7 @@ The `evaluate()` API has a few requirements for the data format that it accepts 
 
 #### Data format
 
-The `evaluate()` API only accepts data in the JSONLines format. For all built-in evaluators, `evaluate()` requires data in the following format with required input fields. See the [previous section on required data input for built-in evaluators](###data-requirements-for-built-in-evaluators).
+The `evaluate()` API only accepts data in the JSONLines format. For all built-in evaluators, `evaluate()` requires data in the following format with required input fields. See the [previous section on required data input for built-in evaluators](#data-requirements-for-built-in-evaluators).
 
 ```json
 {

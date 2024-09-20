@@ -99,7 +99,7 @@ The main function at the end allows you to view the evaluation result locally, a
     python evaluate.py
     ```
 
-For more information about using the prompt flow SDK for evaluation, see [Evaluate with the prompt flow SDK](../how-to/develop/flow-evaluate-sdk.md).
+For more information about using the prompt flow SDK for evaluation, see [Evaluate with the prompt flow SDK](../how-to/develop/evaluate-sdk.md).
 
 ### Interpret the evaluation output
 
