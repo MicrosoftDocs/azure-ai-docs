@@ -1,5 +1,5 @@
 ---
-title: Machine learning model management
+title: MLOps machine learning model management
 titleSuffix: Azure Machine Learning
 description: Learn how to deploy, manage, track lineage, and monitor your models by using machine learning operations (MLOps) with Azure Machine Learning.
 services: machine-learning
@@ -13,7 +13,7 @@ ms.custom: mktng-kw-nov2021
 ms.date: 09/19/2024
 ---
 
-# Model management, deployment, and monitoring with Azure Machine Learning
+# MLOps model management with Azure Machine Learning
 
 [!INCLUDE [dev v2](includes/machine-learning-dev-v2.md)]
 
