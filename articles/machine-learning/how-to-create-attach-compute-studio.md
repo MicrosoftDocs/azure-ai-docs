@@ -10,7 +10,7 @@ ms.service: azure-machine-learning
 ms.subservice: compute
 ms.date: 09/17/2024
 ms.topic: how-to
-ms.custom: build-2023
+ms.custom: build-2023, FY25Q1-Linter
 # customer intent: As a professional data scientist, I want to manage compute resources for model training and deployment in Azure Machine Learning studio.
 ---
 

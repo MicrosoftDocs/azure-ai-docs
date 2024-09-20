@@ -10,6 +10,8 @@ ms.service: azure-machine-learning
 ms.subservice: compute
 ms.topic: how-to
 ms.date: 09/20/2024
+ms.custom: FY25Q1-Linter
+
 #Customer intent: As a data scientist, I want to use Git, install packages and add kernels to a compute instance in my workspace in Azure Machine Learning studio.
 ---
 
