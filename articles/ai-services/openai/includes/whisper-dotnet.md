@@ -50,7 +50,7 @@ Go to your resource in the Azure portal. The **Endpoint and Keys** can be found 
 
 ## Passwordless authentication is recommended
 
-Passwordless authentication is more secure than the key-based alternatives and is the recommended approach for connecting to Azure services. If you choose to use Passwordless authentication, you'll need to complete the following:
+Passwordless authentication is more secure than key-based alternatives and is the recommended approach for connecting to Azure services. If you choose to use Passwordless authentication, you'll need to complete the following:
 
 1. Add the [`Azure.Identity`](https://www.nuget.org/packages/Azure.Identity) package.
 
@@ -95,15 +95,17 @@ Passwordless authentication is more secure than the key-based alternatives and i
     > [!IMPORTANT]
     > For production, store and access your credentials using a secure method, such as [Azure Key Vault](/azure/key-vault/general/overview). For more information about credential security, see [Azure AI services security](../../security-features.md).
 
-1. Run the application using the `dotnet run` command:
+1. Run the application using the `dotnet run` command or the run button at the top of Visual Studio:
 
-```dotnetcli
+    ```dotnetcli
+    dotnet run
+    ```
 
-dotnet run
-```
+    If you are using the sample audio file, you should see the following text printed out in the console:
 
-If you are using the sample audio file, you should see the following text printed out in the console:
-
-```text
-The ocelot, Lepardus paradalis, is a small wild cat native to the southwestern United States, Mexico, and Central and South America. This medium-sized cat is characterized by solid black spots and streaks on its coat, round ears, and white neck and undersides. It weighs between 8 and 15.5 kilograms, 18 and 34 pounds, and reaches 40 to 50 centimeters 16 to 20 inches at the shoulders. It was first described by Carl Linnaeus in 1758. Two subspecies are recognized, L. p. paradalis and L. p. mitis. Typically active during twilight and at night, the ocelot tends to be solitary and territorial. It is efficient at climbing, leaping, and swimming. It preys on small terrestrial mammals such as armadillo, opossum, and lagomorphs.
-```
+    ```text
+    The ocelot, Lepardus paradalis, is a small wild cat native to the southwestern United States, 
+    Mexico, and Central and South America. This medium-sized cat is characterized by solid 
+    black spots and streaks on its coat, round ears...
+    ```
+    
