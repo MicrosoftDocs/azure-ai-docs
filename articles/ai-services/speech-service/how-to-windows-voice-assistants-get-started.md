@@ -7,7 +7,7 @@ ms.author: eur
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: conceptual
-ms.date: 1/21/2024
+ms.date: 9/20/2024
 ms.reviewer: travisw
 ms.custom: cogserv-non-critical-speech
 #Customer intent: As a developer, I want to learn how to create a voice assistant on Windows so that I can build a voice-enabled application.
