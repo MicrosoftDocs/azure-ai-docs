@@ -277,7 +277,7 @@ You should receive a response body in the following format:
 
 ::: zone-end
 
-## Next steps
+## Related content
 
 - [Train a model](how-to-custom-speech-train-model.md)
-- [CI/CD for custom speech](how-to-custom-speech-continuous-integration-continuous-deployment.md)
+- [Custom speech overview](custom-speech-overview.md)

@@ -6,9 +6,10 @@ author: eric-urban
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: overview
-ms.date: 9/9/2024
+ms.date: 9/20/2024
 ms.author: eur
 ms.custom: cogserv-non-critical-speech, references_regions
+#Customer intent: For developers who want to use the conversation transcription feature in the Speech service to transcribe meetings.
 ---
 
 # What is conversation transcription multichannel diarization? (preview)
