@@ -22,7 +22,7 @@ You can get a list of models that are available for both inference and fine-tuni
 
 Azure OpenAI now supports automatic updates for select model deployments. On models where automatic update support is available, a model version drop-down is visible in Azure OpenAI Studio under **Deployments** and **Edit**:
 
-:::image type="content" source="../media/models/auto-update.png" alt-text="Screenshot of the deploy model UI of Azure OpenAI Studio." lightbox="../media/models/auto-update.png":::
+:::image type="content" source="../media/models/auto-update-new.png" alt-text="Screenshot of the deploy model UI of Azure OpenAI Studio." lightbox="../media/models/auto-update-new.png":::
 
 You can learn more about Azure OpenAI model versions and how they work in the [Azure OpenAI model versions](../concepts/model-versions.md) article.
 
@@ -42,7 +42,7 @@ When you select a specific model version for a deployment, this version remains 
 
 For currently deployed models, from Azure OpenAI Studio select **Deployments**:
 
-:::image type="content" source="../media/models/deployments.png" alt-text="Screenshot of the deployment UI of Azure OpenAI Studio." lightbox="../media/models/deployments.png":::
+:::image type="content" source="../media/models/deployments-new.png" alt-text="Screenshot of the deployment UI of Azure OpenAI Studio." lightbox="../media/models/deployments-new.png":::
 
 ## Model deployment upgrade configuration
 
