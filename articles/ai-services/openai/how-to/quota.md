@@ -44,13 +44,11 @@ The flexibility to distribute TPM globally within a subscription and region has 
 
 When you create a model deployment, you have the option to assign Tokens-Per-Minute (TPM) to that deployment. TPM can be modified in increments of 1,000, and will map to the TPM and RPM rate limits enforced on your deployment, as discussed above.
 
-To create a new deployment from within the Azure AI Studio under **Management** select **Deployments** > **Create new deployment**.
-
-The option to set the TPM is under the **Advanced options** drop-down:
+To create a new deployment from within the Azure AI Studio under **Shared Resources** select **Deployments** > **Deploy model** > **Deploy base model** > **Select Model** > **Confirm**.
 
 :::image type="content" source="../media/quota/deployment.png" alt-text="Screenshot of the deployment UI of Azure AI Studio" lightbox="../media/quota/deployment.png":::
 
-Post deployment you can adjust your TPM allocation by selecting **Edit deployment** under **Management** > **Deployments** in Azure AI Studio. You can also modify this selection within the new quota management experience under **Management** > **Quotas**.
+Post deployment you can adjust your TPM allocation by selecting **Edit** under **Shared resources** > **Deployments** in Azure OpenAI Studio. You can also modify this selection within the new quota management experience under **Management** > **Quotas**.
 
 > [!IMPORTANT]
 > Quotas and limits are subject to change, for the most up-date-information consult our [quotas and limits article](../quotas-limits.md).
@@ -70,10 +68,10 @@ For an all up view of your quota allocations across deployments in a given regio
 
 :::image type="content" source="../media/quota/quota.png" alt-text="Screenshot of the quota UI of Azure AI Studio" lightbox="../media/quota/quota.png":::
 
-- **Quota Name**: There's one quota value per region for each model type. The quota covers all versions of that model.  The quota name can be expanded in the UI to show the deployments that are using the quota.
 - **Deployment**: Model deployments divided by model class.
-- **Usage/Limit**: For the quota name, this shows how much quota is used by deployments and the total quota approved for this subscription and region. This amount of quota used is also represented in the bar graph.
-- **Request Quota**: The icon in this field navigates to a form where requests to increase quota can be submitted.
+- **Quota type**: There's one quota value per region for each model type. The quota covers all versions of that model.  
+- **Quota allocation**: For the quota name, this shows how much quota is used by deployments and the total quota approved for this subscription and region. This amount of quota used is also represented in the bar graph.
+- **Request Quota**: The icon navigates to a form where requests to increase quota can be submitted.
 
 ## Migrating existing deployments
 

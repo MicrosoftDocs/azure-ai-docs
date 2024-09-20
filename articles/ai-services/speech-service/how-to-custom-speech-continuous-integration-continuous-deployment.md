@@ -2,12 +2,13 @@
 title: CI/CD for custom speech - Speech service
 titleSuffix: Azure AI services
 description: Apply DevOps with custom speech and CI/CD workflows. Implement an existing DevOps solution for your own project.
-author: nitinme
-manager: cmayomsft
+author: eric-urban
+ms.author: eur
+manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 1/19/2024
-ms.author: nitinme
+ms.date: 9/19/2024
+#Customer intent: As a developer, I want to learn how to apply DevOps with custom speech and CI/CD workflows so that I can implement an existing DevOps solution for my own project.
 ---
 
 # CI/CD for custom speech
@@ -18,15 +19,15 @@ Implement automated training, testing, and release management to enable continuo
 
 [Continuous delivery](/devops/deliver/what-is-continuous-delivery) (CD) takes models from the CI process and creates an endpoint for each improved custom speech model. CD makes endpoints easily available to be integrated into solutions.
 
-Custom CI/CD solutions are possible, but for a robust, pre-built solution, use the [Speech DevOps template repository](https://github.com/Azure-Samples/Speech-Service-DevOps-Template), which executes CI/CD workflows using GitHub Actions.
+Custom CI/CD solutions are possible, but for a robust, prebuilt solution, use the [Speech DevOps template repository](https://github.com/Azure-Samples/Speech-Service-DevOps-Template), which executes CI/CD workflows using GitHub Actions.
 
 ## CI/CD workflows for custom speech
 
-The purpose of these workflows is to ensure that each custom speech model has better recognition accuracy than the previous build. If the updates to the testing and/or training data improve the accuracy, these workflows create a new custom speech endpoint.
+The purpose of these workflows is to ensure that each custom speech model has better recognition accuracy than the previous build. If the updates to the testing or training data improve the accuracy, these workflows create a new custom speech endpoint.
 
 Git servers such as GitHub and Azure DevOps can run automated workflows when specific Git events happen, such as merges or pull requests. For example, a CI workflow can be triggered when updates to testing data are pushed to the *main* branch. Different Git Servers have different tooling, but allow scripting command-line interface (CLI) commands so that they can execute on a build server.
 
-Along the way, the workflows should name and store data, tests, test files, models, and endpoints such that they can be traced back to the commit or version they came from. It's also helpful to name these assets so that it's easy to see which were created after updating testing data versus training data.
+The workflows should name and store data, tests, test files, models, and endpoints such that they can be traced back to the commit or version they came from. It's also helpful to name these assets so that it's easy to see which were created after updating testing data versus training data.
 
 ### CI workflow for testing data updates
 
