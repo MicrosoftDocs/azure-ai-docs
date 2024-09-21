@@ -28,6 +28,7 @@ Reproducible output is only currently supported with the following:
 * `gpt-4` (1106-Preview)
 * `gpt-4` (0125-Preview)
 * `gpt-4` (turbo-2024-04-09)
+* `gpt-4o-mini` (2024-07-18)
 * `gpt-4o` (2024-05-13)
 
 Consult the [models page](../concepts/models.md) for the latest information on model regional availability.
