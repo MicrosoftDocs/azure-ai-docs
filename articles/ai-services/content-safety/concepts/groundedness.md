@@ -55,7 +55,7 @@ Below, see several common scenarios that illustrate how and when to apply these 
 ### Summarization in medical contexts
 **Use case:**
 
-You are summarizing medical documents, and it’s critical that the names of patients in the summaries are accurate and consistent with the provided grounding sources.
+You're summarizing medical documents, and it’s critical that the names of patients in the summaries are accurate and consistent with the provided grounding sources.
 
 Example API Request:
 
@@ -75,9 +75,9 @@ Example API Request:
 The correction feature detects that `Kevin` is ungrounded because it conflicts with the grounding source `Jane`. The API returns the corrected text: `"The patient name is Jane."`
 
 ### Question and answer (QnA) task with customer support data
-** Use case:**
+**Use case:**
 
-You are implementing a QnA system for a customer support chatbot. It’s essential that the answers provided by the AI align with the most recent and accurate information available.
+You're implementing a QnA system for a customer support chatbot. It’s essential that the answers provided by the AI align with the most recent and accurate information available.
 
 Example API Request:
 
@@ -94,15 +94,14 @@ Example API Request:
   ],
 }
 ```
-**Expected Outcome:**
+**Expected outcome:**
 
-The API detects that "5%" is ungrounded because it does not match the provided grounding source "4.5%".
-The response includes the correction text: "The interest rate is 4.5%."
+The API detects that `5%` is ungrounded because it does not match the provided grounding source `4.5%`. The response includes the correction text: `"The interest rate is 4.5%."`
 
 
-### Content Creation with Historical Data
+### Content creation with historical data
 **Use case**:
-You are creating content that involves historical data or events, where accuracy is critical to maintaining credibility and avoiding misinformation.
+You're creating content that involves historical data or events, where accuracy is critical to maintaining credibility and avoiding misinformation.
 
 Example API Request:
 
@@ -120,10 +119,10 @@ Example API Request:
 The API detects the ungrounded date `1065` and correct it to `1066` based on the grounding source. The response includes the corrected text: `"The Battle of Hastings occurred in 1066."`
 
 
-### Internal Documentation Summarization
+### Internal documentation summarization
 **Use case:**
 
-You are summarizing internal documents where product names, version numbers, or other specific data points must remain consistent.
+You're summarizing internal documents where product names, version numbers, or other specific data points must remain consistent.
 
 Example API Request:
 
@@ -164,7 +163,7 @@ See [Input requirements](../overview.md#input-requirements) for maximum text len
 
 To use this API, you must create your Azure AI Content Safety resource in the supported regions. See [Region availability](/azure/ai-services/content-safety/overview#region-availability).
 
-### TPS limitations
+### Rate limitations
 
 See [Query rates](/azure/ai-services/content-safety/overview#query-rates).
 
