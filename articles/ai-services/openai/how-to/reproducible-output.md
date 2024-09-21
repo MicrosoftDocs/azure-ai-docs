@@ -6,7 +6,7 @@ services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: how-to
-ms.date: 07/19/2024
+ms.date: 09/20/2024
 author: mrbullwinkle
 ms.author: mbullwin
 recommendations: false
@@ -15,7 +15,7 @@ recommendations: false
 
 # Learn how to use reproducible output (preview)
 
-By default if you ask an Azure OpenAI Chat Completion model the same question multiple times you're likely to get a different response. The responses are therefore considered to be non-deterministic. Reproducible output is a new  preview feature that allows you to selectively change the default behavior to help product more deterministic outputs.
+By default if you ask an Azure OpenAI Chat Completion model the same question multiple times you're likely to get a different response. The responses are therefore considered to be nondeterministic. Reproducible output is a new  preview feature that allows you to selectively change the default behavior to help product more deterministic outputs.
 
 ## Reproducible output support
 

@@ -69,7 +69,7 @@ Here are some examples of lines you can include:
 
 ## Provide examples to demonstrate the intended behavior of the model
 
-When using the system message to demonstrate the intended behavior of the model in your scenario, it is helpful to provide specific examples. When providing examples, consider the following:
+When using the system message to demonstrate the intended behavior of the model in your scenario, it's helpful to provide specific examples. When providing examples, consider the following:
 
 - **Describe difficult use cases** where the prompt is ambiguous or complicated, to give the model more visibility into how to approach such cases.
 
@@ -166,7 +166,7 @@ Here are some examples of lines you can include to potentially mitigate differen
 
 Indirect attacks, also referred to as Indirect Prompt Attacks, or Cross Domain Prompt Injection Attacks, are a type of prompt injection technique where malicious instructions are hidden in the ancillary documents that are fed into Generative AI Models. We’ve found system messages to be an effective mitigation for these attacks, by way of spotlighting.
 
-**Spotlighting** is a family of techniques that helps large language models (LLMs) distinguish between valid system instructions and potentially untrustworthy external inputs. It is based on the idea of transforming the input text in a way that makes it more salient to the model, while preserving its semantic content and task performance.
+**Spotlighting** is a family of techniques that helps large language models (LLMs) distinguish between valid system instructions and potentially untrustworthy external inputs. It's based on the idea of transforming the input text in a way that makes it more salient to the model, while preserving its semantic content and task performance.
 
 - **Delimiters** are a natural starting point to help mitigate indirect attacks. Including delimiters in your system message helps to explicitly demarcate the location of the input text in the system message. You can choose one or more special tokens to prepend and append the input text, and the model will be made aware of this boundary. By using delimiters, the model will only handle documents if they contain the appropriate delimiters, which reduces the success rate of indirect attacks. However, since delimiters can be subverted by clever adversaries, we recommend you continue on to the other spotlighting approaches.
 
@@ -182,7 +182,7 @@ Below is an example of a potential system message, for a retail company deployin
 
 :::image type="content" source="../media/concepts/system-message/template.png" alt-text="Screenshot of metaprompts influencing a chatbot conversation." lightbox="../media/concepts/system-message/template.png":::
 
-Finally, remember that system messages, or metaprompts, are not "one size fits all." Use of these type of examples has varying degrees of success in different applications. It is important to try different wording, ordering, and structure of system message text to reduce identified harms, and to test the variations to see what works best for a given scenario.
+Finally, remember that system messages, or metaprompts, are not "one size fits all." Use of these type of examples has varying degrees of success in different applications. It's important to try different wording, ordering, and structure of system message text to reduce identified harms, and to test the variations to see what works best for a given scenario.
 
 ## Next steps
 
