@@ -4,7 +4,7 @@ titleSuffix: Azure OpenAI Service
 description: Learn about how red teaming and adversarial testing are an essential practice in the responsible development of systems and features using large language models (LLMs)
 ms.service: azure-ai-openai
 ms.topic: conceptual
-ms.date: 11/03/2023
+ms.date: 09/20/2023
 manager: nitinme
 author: mrbullwinkle
 ms.author: mbullwin
