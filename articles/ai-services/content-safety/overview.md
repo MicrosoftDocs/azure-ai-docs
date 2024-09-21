@@ -115,7 +115,7 @@ See the following list for the input requirements for each feature.
   - Dimensions between 50 x 50 and 7200 x 7200 pixels.
   - Images can be in JPEG, PNG, GIF, BMP, TIFF, or WEBP formats.
 - **Analyze multimodal API**:
-  - Default maximum text length: 1K character
+  - Default maximum text length: 1K characters.
   - Maximum image file size: 4 MB
   - Dimensions between 50 x 50 and 7200 x 7200 pixels.
   - Images can be in JPEG, PNG, GIF, BMP, TIFF, or WEBP formats.
