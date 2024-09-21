@@ -1,5 +1,5 @@
 ---
-title: 'Quickstart: Use GPT 4o and GPT-4o min via the Azure OpenAI Studio'
+title: 'Quickstart: Use GPT-4o and GPT-4o mini via the Azure OpenAI Studio'
 titleSuffix: Azure OpenAI Service
 description: Walkthrough on how to get started with Azure OpenAI and make your first completions call with Azure OpenAI Studio. 
 #services: cognitive-services
