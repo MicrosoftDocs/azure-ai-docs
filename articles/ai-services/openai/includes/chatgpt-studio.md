@@ -20,13 +20,13 @@ Navigate to Azure OpenAI Studio at [https://oai.azure.com/](https://oai.azure.co
 
 From the Azure OpenAI Studio landing page, select **Chat playground**.
 
-:::image type="content" source="../media/quickstarts/chatgpt-playground.png" alt-text="Screenshot of the Azure OpenAI Studio landing page with Chat playground highlighted." lightbox="../media/quickstarts/chatgpt-playground.png":::
+:::image type="content" source="../media/quickstarts/chatgpt-playground-new.png" alt-text="Screenshot of the Azure OpenAI Studio landing page with Chat playground highlighted." lightbox="../media/quickstarts/chatgpt-playground-new.png":::
 
 ## Playground
 
 Start exploring OpenAI capabilities with a no-code approach through the Azure OpenAI Studio Chat playground. From this page, you can quickly iterate and experiment with the capabilities.
 
-:::image type="content" source="../media/quickstarts/chatgpt-playground-load.png" alt-text="Screenshot of the Chat playground page." lightbox="../media/quickstarts/chatgpt-playground-load.png":::
+:::image type="content" source="../media/quickstarts/chatgpt-playground-load-new.png" alt-text="Screenshot of the Chat playground page." lightbox="../media/quickstarts/chatgpt-playground-load-new.png":::
 
 ### Setup
 

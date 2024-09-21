@@ -360,7 +360,7 @@ Cross subscription/region deployment can be accomplished via [Python](/azure/ai-
 
 After your custom model deploys, you can use it like any other deployed model. You can use the **Playgrounds** in [Azure OpenAI Studio](https://oai.azure.com) to experiment with your new deployment. You can continue to use the same parameters with your custom model, such as `temperature` and `max_tokens`, as you can with other deployed models. For fine-tuned `babbage-002` and `davinci-002` models you will use the Completions playground and the Completions API. For fine-tuned `gpt-35-turbo-0613` models you will use the Chat playground and the Chat completion API.
 
-:::image type="content" source="../media/quickstarts/playground-load.png" alt-text="Screenshot of the Playground pane in Azure OpenAI Studio, with sections highlighted." lightbox="../media/quickstarts/playground-load.png":::
+:::image type="content" source="../media/quickstarts/playground-load-new.png" alt-text="Screenshot of the Playground pane in Azure OpenAI Studio, with sections highlighted." lightbox="../media/quickstarts/playground-load-new.png":::
 
 ## Analyze your custom model
 
