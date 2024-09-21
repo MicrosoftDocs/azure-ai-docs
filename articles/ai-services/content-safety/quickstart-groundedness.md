@@ -346,8 +346,6 @@ The JSON objects in the output are defined here:
 ## Check groundedness with the correction feature
 The groundedness detection API includes a correction feature that automatically corrects any detected ungroundedness in the text based on the provided grounding sources. When the correction feature is enabled, the response includes a `corrected Text` field that presents the corrected text aligned with the grounding sources.
 
-Below, see several common scenarios that illustrate how and when to apply these features to achieve the best outcomes.
-
 ### Bring your own GPT deployment
 
 > [!TIP]
