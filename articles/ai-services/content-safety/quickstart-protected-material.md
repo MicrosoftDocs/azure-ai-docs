@@ -11,7 +11,7 @@ ms.date: 10/30/2023
 ms.author: pafarley
 ---
 
-# Quickstart: Protected Material Detection for Text
+# Quickstart: Protected material detection for text
 
 The Protected Material for Text feature provides a comprehensive solution for managing risks associated with AI-generated content (English content only). By detecting and preventing the display of protected material, organizations can ensure compliance with intellectual property laws, maintain content originality, and protect their reputations. Protected material refers to content that matches known text from copyrighted sources, such as song lyrics, articles, recipes, or other selected web content.
 
@@ -21,37 +21,9 @@ The key objectives of the Protected Material Detection for Text feature for AI-g
 - To enable organizations to manage risks associated with AI-generated content.
 - To ensure that AI-generated content complies with legal, ethical, and content policy guidelines.
 
-For more information on protected material detection, see the [Protected material detection concept page](./concepts/protected-material.md). For API input limits, see the [Input requirements](./overview.md#input-requirements) section of the Overview. 
+For more information about protected material detection, see the [Protected material detection concept page](./concepts/protected-material.md). For API input limits, see the [Input requirements](./overview.md#input-requirements) section of the Overview. 
 
 
-
-## User scenarios
-
-### Content generation platforms for creative writing
-- Scenario: A content generation platform that uses generative AI for creative writing (for example, blog posts, stories, marketing copy) integrates the Protected Material for Text feature to prevent the generation of content that closely matches known copyrighted material.
-- User: Platform administrators and content creators.
-- Action: The platform uses Azure AI Content Safety to scan AI-generated content before it's provided to users. If the generated text matches protected material, the content is flagged and either blocked or revised.
-- Outcome: The platform avoids potential copyright infringements and ensures that all generated content is original and compliant with intellectual property laws.
-### Automated social media content creation
-- Scenario: A digital marketing agency uses generative AI to automate social media content creation. The agency integrates the Protected Material for Text feature to avoid publishing AI-generated content that includes copyrighted text, such as song lyrics or excerpts from books.
-- User: Digital marketers and social media managers.
-- Action: The agency employs Azure AI Content Safety to check all AI-generated social media content for matches against a database of protected material. Content that matches is flagged for revision or blocked from posting.
-- Outcome: The agency maintains compliance with copyright laws and avoids reputational risks associated with posting unauthorized content.
-### AI-assisted news writing
-- Scenario: A news outlet uses generative AI to assist journalists in drafting articles and reports. To ensure the content does not unintentionally replicate protected news articles or other copyrighted material, the outlet uses the Protected Material for Text feature.
-- User: Journalists, editors, and compliance officers.
-- Action: The news outlet integrates Azure AI Content Safety into its content creation workflow. AI-generated drafts are automatically scanned for protected content before submission for editorial review.
-- Outcome: The news outlet prevents accidental copyright violations and maintains the integrity and originality of its reporting.
-### E-learning platforms using AI for content generation
-- Scenario: An e-learning platform employs generative AI to generate educational content, such as summaries, quizzes, and explanatory text. The platform uses the Protected Material for Text feature to ensure the generated content does not include protected material from textbooks, articles, or academic papers.
-- User: Educational content creators and compliance officers.
-- Action: The platform integrates the feature to scan AI-generated educational materials. If any content matches known protected academic material, it is flagged for revision or automatically removed.
-- Outcome: The platform maintains educational content quality and complies with copyright laws, avoiding the use of protected material in AI-generated learning resources.
-### AI-powered recipe generators
-- Scenario: A food and recipe website uses generative AI to generate new recipes based on user preferences. To avoid generating content that matches protected recipes from famous cookbooks or websites, the website integrates the Protected Material for Text feature.
-- User: Content managers and platform administrators.
-- Action: The website uses Azure AI Content Safety to check AI-generated recipes against a database of known protected content. If a generated recipe matches a protected one, it is flagged and revised or blocked.
-- Outcome: The website ensures that all AI-generated recipes are original, reducing the risk of copyright infringement.
 
 ## Prerequisites
 
@@ -80,13 +52,13 @@ curl --location --request POST '<endpoint>/contentsafety/text:detectProtectedMat
 ```
 The below fields must be included in the url:
 
-| Name      |Required  |  Description | Type   |
+| Name      |Required?  |  Description | Type   |
 | :------- |-------- |:--------------- | ------ |
 | **API Version** |Required |This is the API version to be checked. The current version is: api-version=2024-09-01. Example: `<endpoint>/contentsafety/text:detectProtectedMaterial?api-version=2024-09-01` |String |
 
 The parameters in the request body are defined in this table:
 
-| Name        | Required     | Description  | Type    |
+| Name        | Required?     | Description  | Type    |
 | :---------- | ----------- | :------------ | ------- |
 | **text**    | Required | This is the raw text to be checked. Other non-ascii characters can be included. | String  |
 
