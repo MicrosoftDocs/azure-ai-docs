@@ -14,9 +14,9 @@ ms.author: pafarley
 
 # Quickstart: Analyze multimodal content (Preview) 
 
-The Multimodal API analyzes materials containing both image content and text content to help make applications and services safer from harmful user-generated or AI-generated content.
+The Multimodal API analyzes materials containing both image content and text content to help make applications and services safer from harmful user-generated or AI-generated content. Analyzing and image and its associated text together can preserve context and provide a more comprehensive understanding of the content.
 
-For more information on Multimodal, see the [Multimodal concept page](./concepts/Multimodal.md). For API input limits, see the [Input requirements](./overview.md#input-requirements) section of the Overview. 
+For more information on the way content is filtered, see the [Harm categories concept page](./concepts/harm-categories.md#multimodal-image-with-text-content). For API input limits, see the [Input requirements](./overview.md#input-requirements) section of the Overview. 
 
 > [!IMPORTANT]
 > This feature is only available in certain Azure regions. See [Region availability](./overview.md#region-availability).
@@ -34,13 +34,13 @@ For more information on Multimodal, see the [Multimodal concept page](./concepts
 
 ## Analyze image with text
 
-The following section walks through a sample image moderation request with cURL. 
+The following section walks through a sample multimodal moderation request with cURL.
 
 ### Prepare a sample image
 
 Choose a sample image to analyze, and download it to your device. 
 
-We support JPEG, PNG, GIF, BMP, TIFF, or WEBP image formats. The maximum size for image submissions is 4 MB, and image dimensions must be between 50 x 50 pixels and 7,200 x 7,200 pixels. If your format is animated, we'll extract the first frame to do the detection.
+See [Input requirements](./overview.md#input-requirements) for the image limitations. If your format is animated, the service will extract the first frame to do the analysis.
 
 You can input your image by one of two methods: **local filestream** or **blob storage URL**.
 - **Local filestream** (recommended): Encode your image to base64. You can use a website like [codebeautify](https://codebeautify.org/image-to-base64-converter) to do the encoding. Then save the encoded string to a temporary location. 
@@ -50,17 +50,18 @@ You can input your image by one of two methods: **local filestream** or **blob s
 
 Paste the command below into a text editor, and make the following changes.
 
-1. Substitute the `<endpoint>` with your resource endpoint URL.
+1. Replace `<endpoint>` with your resource endpoint URL.
 1. Replace `<your_subscription_key>` with your key.
 1. Populate the `"image"` field in the body with either a `"content"` field or a `"blobUrl"` field. For example: `{"image": {"content": "<base_64_string>"}` or `{"image": {"blobUrl": "<your_storage_url>"}`.
+1. Optionally replace the value of the `"text"` field with your own text you'd like to analyze.
 
 ```shell
-curl --location '<Endpoint>contentsafety/imageWithText:analyze?api-version=2024-09-15-preview ' \
---header 'Ocp-Apim-Subscription-Key: <your_subscription_key>7' \
+curl --location '<endpoint>/contentsafety/imageWithText:analyze?api-version=2024-09-15-preview ' \
+--header 'Ocp-Apim-Subscription-Key: <your_subscription_key>' \
 --header 'Content-Type: application/json' \
 --data '{
   "image": {
-      "content": "<image base 64 code>"
+      "content": "<base_64_string>"
  },
   "categories": ["Hate","Sexual","Violence","SelfHarm"],
   "enableOcr": true,
@@ -69,7 +70,7 @@ curl --location '<Endpoint>contentsafety/imageWithText:analyze?api-version=2024-
 ```
 
 > [!NOTE]
-> If you're using a blob storage URL, please replace "content" to "blobUrl":
+> If you're using a blob storage URL, the request body should look like this:
 >
 > ```
 > {
@@ -78,7 +79,7 @@ curl --location '<Endpoint>contentsafety/imageWithText:analyze?api-version=2024-
 >   }
 > }
 > ```
-Open a command prompt window and run the cURL command.
+
 
 The below fields must be included in the URL:
 
@@ -95,12 +96,12 @@ The parameters in the request body are defined in this table:
 | **enableOcr**          | (Required) When set to true, our service will perform OCR and analyze the detected text with input image at the same time. We will recognize at most 1000 characters (unicode code points) from input image. The others will be truncated. | Boolean |
 | **categories**         | (Optional) This is assumed to be an array of category names. See the [Harm categories guide](./concepts/harm-categories.md) for a list of available category names. If no categories are specified, all four categories are used. We use multiple categories to get scores in a single request. | Enum    |
 
-
+Open a command prompt window and run the cURL command.
 
 
 ### Output
 
-You should see the image with text moderation results displayed as JSON data in the console. For example:
+You should see the image and text moderation results displayed as JSON data in the console. For example:
 
 ```json
 {
