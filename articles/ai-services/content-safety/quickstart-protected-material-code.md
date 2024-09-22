@@ -7,11 +7,11 @@ author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-content-safety
 ms.topic: quickstart
-ms.date: 10/30/2023
+ms.date: 09/22/2024
 ms.author: pafarley
 ---
 
-# Quickstart: Protected Material Detection for Code
+# Quickstart: Protected material detection for code
 
 
 The Protected Material for Code feature provides a comprehensive solution for identifying and managing the risks associated with AI-generated code. By detecting and preventing the display of protected code from existing GitHub repositories, organizations can ensure compliance with intellectual property regulations, uphold code originality, and safeguard their reputations. Protected material refers to code that closely matches content from known GitHub repositories, including software libraries, source code, algorithms, and other proprietary programming content.
@@ -22,37 +22,8 @@ The key objectives of the Protected Material Detection for Code feature for AI-g
 - To enable organizations to manage risks associated with AI-generated code.
 - To ensure that AI-generated code complies with legal, ethical, and organizational policy standards.
 
-For more information on protected material detection, see the [Protected material detection concept page](./concepts/protected-material.md). For API input limits, see the [Input requirements](./overview.md#input-requirements) section of the Overview. 
+For more information about protected material detection, see the [Protected material detection concept page](./concepts/protected-material.md). For API input limits, see the [Input requirements](./overview.md#input-requirements) section of the Overview. 
 
-
-## User scenarios
-
-### Software Development Platforms
-- Scenario: A software development platform that utilizes generative AI to help developers write code integrates the Protected Material for Code feature to prevent the generation of code that replicates material from existing GitHub repositories.
-- User: Platform administrators, developers.
-- Action: The platform uses Azure AI Content Safety to scan AI-generated code. If any code matches protected material, it's flagged for review, revised, or blocked.
-- Outcome: The platform ensures that all AI-generated code is original and complies with licensing agreements, reducing legal and compliance risks.
-### Automated Code Writing Tools
-- Scenario: A development team uses generative AI to automate parts of their code writing. The team integrates the Protected Material for Code feature to prevent the accidental use of code snippets that match content from existing GitHub repositories, including open-source code with restrictive licenses.
-- User: Software developers, DevOps teams.
-- Action: Azure AI Content Safety checks the generated code against known material from GitHub repositories. If a match is found, the code is flagged and revised before it is incorporated into the project.
-- Outcome: The team avoids potential copyright infringement and ensures the AI-generated code adheres to appropriate licenses.
-### AI-assisted Code Reviews
-- Scenario: A software company integrates AI-assisted code review tools into its development process. To avoid introducing protected code from GitHub or external libraries, the company leverages the Protected Material for Code feature.
-- User: Code reviewers, software developers, compliance officers.
-- Action: The company scans all AI-generated code for matches against protected material from GitHub repositories before final code review and deployment.
-- Outcome: The company prevents the inclusion of protected material in their projects, maintaining compliance with intellectual property laws and internal standards.
-### AI-generated Code for Educational Platforms
-- Scenario: An e-learning platform uses generative AI to generate example code for programming tutorials and courses. The platform integrates the Protected Material for Code feature to ensure that generated examples do not duplicate code from existing GitHub repositories or other educational sources.
-- User: Course creators, platform administrators.
-- Action: Azure AI Content Safety checks all AI-generated code examples for protected content. Matches are flagged, reviewed, and revised.
-- Outcome: The platform maintains the integrity and originality of its educational content while adhering to copyright laws.
-### 5. AI-powered Coding Assistants
-- Scenario: A coding assistant tool powered by generative AI helps developers by generating code suggestions. To ensure that no suggestions infringe on code from GitHub repositories, the assistant tool uses the Protected Material for Code feature.
-- User: Developers, tool administrators.
-- Action: The tool scans all code suggestions for protected material from GitHub before presenting them to developers. If a suggestion matches protected code, it is flagged and not shown.
-- Outcome: The coding assistant ensures that all code suggestions are free from protected content, fostering originality and reducing legal risks.
-By integrating the Protected Material for Code feature, organizations can manage risks associated with AI-generated code, maintain compliance with intellectual property laws, and ensure the originality of their code outputs.
 
 
 ## Prerequisites
@@ -68,30 +39,31 @@ The following section walks through a sample request with cURL. Paste the comman
 
 1. Replace `<endpoint>` with the endpoint URL associated with your resource.
 1. Replace `<your_subscription_key>` with one of the keys that come with your resource.
-1. Optionally, replace the `"Code"` field in the body with your own Code you'd like to analyze.
+1. Optionally, replace the `"code"` field in the body with your own Code you'd like to analyze.
     > [!TIP]
     > See [Input requirements](./overview.md#input-requirements) for maximum Code length limitations. Protected material detection is meant to be run on LLM completions, not user prompts.
+
 ```shell
 curl --location --request POST '<endpoint>/contentsafety/text:detectProtectedMaterialForCode?api-version=2024-09-15-preview' \
 --header 'Ocp-Apim-Subscription-Key: <your_subscription_key>' \
 --header 'Content-Type: application/json' \
 --data-raw '{
-  "Code": "to everyone, the best things in life are free. the stars belong to everyone, they gleam there for you and me. the flowers in spring, the robins that sing, the sunbeams that shine"
+  "code": "to everyone, the best things in life are free. the stars belong to everyone, they gleam there for you and me. the flowers in spring, the robins that sing, the sunbeams that shine"
 }'
 ```
 The below fields must be included in the url:
 
-| Name      |Required  |  Description | Type   |
+| Name      |Required?  |  Description | Type   |
 | :------- |-------- |:--------------- | ------ |
 | **API Version** |Required |This is the API version to be checked. The current version is: api-version=2024-09-15-preview. Example: `<endpoint>/contentsafety/text:detectProtectedMaterialForCode?api-version=2024-09-15-preview` |String |
 
 The parameters in the request body are defined in this table:
 
-| Name        | Required     | Description  | Type    |
+| Name        | Required?     | Description  | Type    |
 | :---------- | ----------- | :------------ | ------- |
-| **Code**    | Required | This is the raw Code to be checked. Other non-ascii characters can be included. | String  |
+| **code**    | Required | This is the raw code to be checked. Other non-ascii characters can be included. | String  |
 
-See the following sample request body:
+See the following sample value for the `"code"` field:
 ```json
 {
     "code": "python import pygame pygame.init() win = pygame.display.set_mode((500, 500)) pygame.display.set_caption(My Game) x = 50 y = 50 width = 40 height = 60 vel = 5 run = True while run: pygame.time.delay(100) for event in pygame.event.get(): if event.type == pygame.QUIT: run = False keys = pygame.key.get_pressed() if keys[pygame.K_LEFT] and x > vel: x -= vel if keys[pygame.K_RIGHT] and x < 500 - width - vel: x += vel if keys[pygame.K_UP] and y > vel: y -= vel if keys[pygame.K_DOWN] and y < 500 - height - vel: y += vel win.fill((0, 0, 0)) pygame.draw.rect(win, (255, 0, 0), (x, y, width, height)) pygame.display.update() pygame.quit()"
