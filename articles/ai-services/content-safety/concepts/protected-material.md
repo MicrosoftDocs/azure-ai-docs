@@ -37,7 +37,7 @@ This guide provides details about the kinds of content that the protected materi
 - Scenario: A digital marketing agency uses generative AI to automate social media content creation. The agency integrates the Protected Material for Text feature to avoid publishing AI-generated content that includes copyrighted text, such as song lyrics or excerpts from books.
 - User: Digital marketers and social media managers.
 - Action: The agency employs Azure AI Content Safety to check all AI-generated social media content for matches against a database of protected material. Content that matches is flagged for revision or blocked from posting.
-- Outcome: The agency maintains compliance with copyright laws and avoids reputational risks associated with posting unauthorized content.
+- Outcome: The agency maintains compliance with copyright laws and avoids reputation risks associated with posting unauthorized content.
 
 ### AI-assisted news writing
 - Scenario: A news outlet uses generative AI to assist journalists in drafting articles and reports. To ensure the content does not unintentionally replicate protected news articles or other copyrighted material, the outlet uses the Protected Material for Text feature.
@@ -48,13 +48,13 @@ This guide provides details about the kinds of content that the protected materi
 ### E-learning platforms using AI for content generation
 - Scenario: An e-learning platform employs generative AI to generate educational content, such as summaries, quizzes, and explanatory text. The platform uses the Protected Material for Text feature to ensure the generated content does not include protected material from textbooks, articles, or academic papers.
 - User: Educational content creators and compliance officers.
-- Action: The platform integrates the feature to scan AI-generated educational materials. If any content matches known protected academic material, it is flagged for revision or automatically removed.
+- Action: The platform integrates the feature to scan AI-generated educational materials. If any content matches known protected academic material, it's flagged for revision or automatically removed.
 - Outcome: The platform maintains educational content quality and complies with copyright laws, avoiding the use of protected material in AI-generated learning resources.
 
 ### AI-powered recipe generators
 - Scenario: A food and recipe website uses generative AI to generate new recipes based on user preferences. To avoid generating content that matches protected recipes from famous cookbooks or websites, the website integrates the Protected Material for Text feature.
 - User: Content managers and platform administrators.
-- Action: The website uses Azure AI Content Safety to check AI-generated recipes against a database of known protected content. If a generated recipe matches a protected one, it is flagged and revised or blocked.
+- Action: The website uses Azure AI Content Safety to check AI-generated recipes against a database of known protected content. If a generated recipe matches a protected one, it's flagged and revised or blocked.
 - Outcome: The website ensures that all AI-generated recipes are original, reducing the risk of copyright infringement.
 
 #### [Protected code](#tab/code)
@@ -68,11 +68,11 @@ This guide provides details about the kinds of content that the protected materi
 ### Automated Code Writing Tools
 - Scenario: A development team uses generative AI to automate parts of their code writing. The team integrates the Protected Material for Code feature to prevent the accidental use of code snippets that match content from existing GitHub repositories, including open-source code with restrictive licenses.
 - User: Software developers, DevOps teams.
-- Action: Azure AI Content Safety checks the generated code against known material from GitHub repositories. If a match is found, the code is flagged and revised before it is incorporated into the project.
+- Action: Azure AI Content Safety checks the generated code against known material from GitHub repositories. If a match is found, the code is flagged and revised before it's incorporated into the project.
 - Outcome: The team avoids potential copyright infringement and ensures the AI-generated code adheres to appropriate licenses.
 
 ### AI-assisted Code Reviews
-- Scenario: A software company integrates AI-assisted code review tools into its development process. To avoid introducing protected code from GitHub or external libraries, the company leverages the Protected Material for Code feature.
+- Scenario: A software company integrates AI-assisted code review tools into its development process. To avoid introducing protected code from GitHub or external libraries, the company uses the Protected Material for Code feature.
 - User: Code reviewers, software developers, compliance officers.
 - Action: The company scans all AI-generated code for matches against protected material from GitHub repositories before final code review and deployment.
 - Outcome: The company prevents the inclusion of protected material in their projects, maintaining compliance with intellectual property laws and internal standards.
@@ -86,7 +86,7 @@ This guide provides details about the kinds of content that the protected materi
 ### AI-powered Coding Assistants
 - Scenario: A coding assistant tool powered by generative AI helps developers by generating code suggestions. To ensure that no suggestions infringe on code from GitHub repositories, the assistant tool uses the Protected Material for Code feature.
 - User: Developers, tool administrators.
-- Action: The tool scans all code suggestions for protected material from GitHub before presenting them to developers. If a suggestion matches protected code, it is flagged and not shown.
+- Action: The tool scans all code suggestions for protected material from GitHub before presenting them to developers. If a suggestion matches protected code, it's flagged and not shown.
 - Outcome: The coding assistant ensures that all code suggestions are free from protected content, fostering originality and reducing legal risks.
 By integrating the Protected Material for Code feature, organizations can manage risks associated with AI-generated code, maintain compliance with intellectual property laws, and ensure the originality of their code outputs.
 
