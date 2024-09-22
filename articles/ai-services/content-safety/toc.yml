@@ -33,8 +33,10 @@ items:
     href: quickstart-jailbreak.md
   - name: Groundedness detection (preview)
     href: quickstart-groundedness.md
-  - name: Protected material detection
+  - name: Protected material detection for text
     href: quickstart-protected-material.md
+  - name: Protected material detection for code
+    href: quickstart-protected-material-code.md
   - name: Custom categories (preview)
     href: quickstart-custom-categories.md
   - name: Content Safety Studio
@@ -43,6 +45,8 @@ items:
     href: quickstart-text.md
   - name: Image moderation
     href: quickstart-image.md
+  - name: Multimodal moderation
+    href: quickstart-multimodal.md
 - name: Samples 
   items: 
   - name: Azure AI Content Safety Python samples
