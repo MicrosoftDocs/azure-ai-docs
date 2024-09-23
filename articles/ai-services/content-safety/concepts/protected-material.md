@@ -19,6 +19,9 @@ The [Protected material text API](../quickstart-protected-material.md) flags kno
 
 The [Protected material code API](../quickstart-protected-material-code.md) flags protected code content (from known GitHub repositories, including software libraries, source code, algorithms, and other proprietary programming content) that might be output by large language models.
 
+> [!CAUTION]
+> The content safety service's code scanner/indexer is only current through November 6, 2021. Code that was added to GitHub after this date will not be detected. Use your own discretion when using Protected Material for Code to detect recent bodies of code.
+
 By detecting and preventing the display of protected material, organizations can ensure compliance with intellectual property laws, maintain content originality, and protect their reputations.
 
 This guide provides details about the kinds of content that the protected material API detects.
