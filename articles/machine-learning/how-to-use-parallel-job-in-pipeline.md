@@ -23,7 +23,7 @@ For example, in a scenario where you're running an object detection model on a l
 
 Machine learning engineers always have scale requirements on their training or inferencing tasks. For example, when a data scientist provides a single script to train a sales prediction model, machine learning engineers need to apply this training task to each individual data store. Challenges of this scale-out process include long execution times that cause delays, and unexpected issues that require manual intervention to keep the task running.
 
-The core job of Azure Machine Learning parallelization is to split a single serial task into mini-batches and dispatch those mini-batches to multiple computes to execute in parallel. Parallel jobs significantly reduce end-to-end execution time and also handle errors automatically. Consider using Azure Machine Learning Parallel job if you plan to train many models on top of your partitioned data or you want to accelerate your large-scale batch inferencing tasks.
+The core job of Azure Machine Learning parallelization is to split a single serial task into mini-batches and dispatch those mini-batches to multiple computes to execute in parallel. Parallel jobs significantly reduce end-to-end execution time and also handle errors automatically. Consider using Azure Machine Learning Parallel job to train many models on top of your partitioned data or to accelerate your large-scale batch inferencing tasks.
 
 ## Prerequisites
 
@@ -40,7 +40,11 @@ The core job of Azure Machine Learning parallelization is to split a single seri
 - Install the [Azure Machine Learning SDK v2 for Python](/python/api/overview/azure/ai-ml-readme).
 - Understand how to [create and run Azure Machine Learning pipelines and components with the Python SDK v2](how-to-create-component-pipeline-python.md).
 
+---
+
 ## Create and run a pipeline with a parallel job step
+
+An Azure Machine Learning parallel job can be used only as a step in a pipeline job.
 
 # [Azure CLI](#tab/cli)
 
@@ -50,9 +54,11 @@ The following examples come from [Run a pipeline job using parallel job in pipel
 
 The following examples come from the [Build a simple machine learning pipeline with parallel component](https://github.com/Azure/azureml-examples/blob/main/sdk/python/jobs/pipelines/1g_pipeline_with_parallel_nodes/pipeline_with_parallel_nodes.ipynb) notebook in the [Azure Machine Learning examples](https://github.com/Azure/azureml-examples) repository.
 
+---
+
 ### Prepare for parallelization
 
-An Azure Machine Learning parallel job can be used only as a step in a pipeline job. This parallel job step requires preparation. In your parallel job definition, you need to set attributes that:
+This parallel job step requires preparation. In your parallel job definition, you need to set attributes that:
 
 - Define and bind your input data.
 - Set the data division method.
@@ -69,7 +75,7 @@ Different data formats have different input types, input modes, and data divisio
 
 | Data format | Input type | Input mode | Data division method |
 |: ---------- |: ------------- |: ------------- |: --------------- |
-| File list | `mltable` or `uri_folder` | ro_mount or download | By size (number of files) or by partitios |
+| File list | `mltable` or `uri_folder` | ro_mount or download | By size (number of files) or by partition |
 | Tabular data | `mltable` | direct | By size (estimated physical size) or by partition |
 
 > [!NOTE]
@@ -126,8 +132,8 @@ To use the entry script, set the following two attributes in your parallel job d
 
 | Attribute name | Type | Description |
 |: ------------- | ---- |: ---------- |
-| `code` | string | Local path to the source code directory to upload and use for the job. | |
-| `entry_script` | string | The Python file that contains the implementation of predefined parallel functions. | |
+| `code` | string | Local path to the source code directory to upload and use for the job. |
+| `entry_script` | string | The Python file that contains the implementation of predefined parallel functions. |
 
 #### Examples
 
@@ -152,12 +158,12 @@ Azure Machine Learning parallel job exposes many settings that can automatically
 |--|--|--|--|--|--|--|
 | `mini_batch_error_threshold` | integer | Number of failed mini-batches to ignore in this parallel job. If the count of failed mini-batches is higher than this threshold, the parallel job is marked as failed.<br><br>The mini-batch is marked as failed if:<br>- The count of return from `run()` is less than the mini-batch input count.<br>- Exceptions are caught in custom `run()` code.<br><br>`-1` is the default, meaning to ignore all failed mini-batches. | [-1, int.max] | `-1` | `mini_batch_error_threshold` | N/A |
 | `mini_batch_max_retries` | integer | Number of retries when the mini-batch fails or times out. If all retries fail, the mini-batch is marked as failed per the `mini_batch_error_threshold` calculation. | `[0, int.max]` | `2` | `retry_settings.max_retries` | N/A |
-| `mini_batch_timeout` | integer | Timeout in seconds for executing the custom `run()` function. If execution time is higher than this threshold, the mini-batch is aborted and marked as failed to trigger retry. | `(0, 259200]` | `60` | `retry_settings.timeout` | N/A |
+| `mini_batch_timeout` | integer | Time out in seconds for executing the custom `run()` function. If execution time is higher than this threshold, the mini-batch is aborted and marked as failed to trigger retry. | `(0, 259200]` | `60` | `retry_settings.timeout` | N/A |
 | `item_error_threshold` | integer | The threshold of failed items. Failed items are counted by the number gap between inputs and returns from each mini-batch. If the sum of failed items is higher than this threshold, the parallel job is marked as failed.<br><br>Note: `-1` is the default, meaning to ignore all failures during parallel job. | `[-1, int.max]` | `-1` | N/A | `--error_threshold` |
 | `allowed_failed_percent` | integer | Similar to `mini_batch_error_threshold`, but uses the percent of failed mini-batches instead of the count. | `[0, 100]` | `100` | N/A | `--allowed_failed_percent` |
-| `overhead_timeout` | integer | Timeout in seconds for initialization of each mini-batch. For example, load mini-batch data and pass it to the `run()` function. | `(0, 259200]` | `600` | N/A | `--task_overhead_timeout` |
-| `progress_update_timeout` | integer | Timeout in seconds for monitoring the progress of mini-batch execution. If no progress updates are received within this timeout setting, the parallel job is marked as failed. | `(0, 259200]` | Dynamically calculated by other settings. | N/A | `--progress_update_timeout` |
-| `first_task_creation_timeout` | integer | Timeout in seconds for monitoring the time between the job start and the run of the first mini-batch. | `(0, 259200]` | `600` | N/A | --first_task_creation_timeout |
+| `overhead_timeout` | integer | Time out in seconds for initialization of each mini-batch. For example, load mini-batch data and pass it to the `run()` function. | `(0, 259200]` | `600` | N/A | `--task_overhead_timeout` |
+| `progress_update_timeout` | integer | Time out in seconds for monitoring the progress of mini-batch execution. If no progress updates are received within this timeout setting, the parallel job is marked as failed. | `(0, 259200]` | Dynamically calculated by other settings. | N/A | `--progress_update_timeout` |
+| `first_task_creation_timeout` | integer | Time out in seconds for monitoring the time between the job start and the run of the first mini-batch. | `(0, 259200]` | `600` | N/A | --first_task_creation_timeout |
 | `logging_level` | string | The level of logs to dump to user log files. | `INFO`, `WARNING`, or `DEBUG` | `INFO` | `logging_level` | N/A |
 | `append_row_to` | string | Aggregate all returns from each run of the mini-batch and output it into this file. May refer to one of the outputs of the parallel job by using the expression `${{outputs.<output_name>}}` |  |  | `task.append_row_to` | N/A |
 | `copy_logs_to_parent` | string | Boolean option whether to copy the job progress, overview, and logs to the parent pipeline job. | `True` or `False` | `False` | N/A | `--copy_logs_to_parent` |
@@ -171,7 +177,8 @@ Sample code to update these settings:
 
 # [Python](#tab/python)
 
-[!notebook-python[] (~/azureml-examples-main/sdk/python/jobs/pipelines/1g_pipeline_with_parallel_nodes/pipeline_with_parallel_nodes.ipynb?name=parallel-job-for-tabular-data)]
+[!Notebook-python[] (~/azureml-examples-main/sdk/python/jobs/pipelines/1g_pipeline_with_parallel_nodes/pipeline_with_parallel_nodes.ipynb?name=parallel-job-for-tabular-data)]
+
 ---
 
 ### Create the pipeline with parallel job step
