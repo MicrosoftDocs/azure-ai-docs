@@ -5,12 +5,12 @@ description: Learn about online endpoints for real-time inferencing in Azure Mac
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: inferencing
-ms.topic: conceptual
+ms.topic: concept-article
 author: msakande
 ms.author: mopeakande
 ms.reviewer: sehan
 ms.custom: devplatv2
-ms.date: 09/18/2024
+ms.date: 09/23/2024
 
 #Customer intent: As an ML pro, I want to understand what an online endpoint is and why I need it.
 ---
@@ -19,9 +19,7 @@ ms.date: 09/18/2024
 
 [!INCLUDE [dev v2](includes/machine-learning-dev-v2.md)]
 
-This article describes online endpoints for real-time inferencing in Azure Machine Learning. Inferencing is the process of applying new input data to a machine learning model to generate outputs.
-
-Azure Machine Learning allows you to perform real-time inferencing on data by using models that are deployed to *online endpoints*. While these outputs are typically called *predictions*, you can use inferencing to generate outputs for other machine learning tasks, such as classification and clustering.
+This article describes online endpoints for real-time inferencing in Azure Machine Learning. Inferencing is the process of applying new input data to a machine learning model to generate outputs. Azure Machine Learning allows you to perform real-time inferencing on data by using models that are deployed to *online endpoints*. While these outputs are typically called *predictions*, you can use inferencing to generate outputs for other machine learning tasks, such as classification and clustering.
 
 <a name="online-endpoints"></a>
 Online endpoints deploy models to a web server that can return predictions under the HTTP protocol. Online endpoints can operationalize models for real-time inference in synchronous, low-latency requests, and are best used when:
@@ -44,7 +42,7 @@ To free you from the overhead of setting up and managing the underlying infrastr
 
 ### Managed online endpoints vs Azure Container Instances or Azure Kubernetes Service (AKS) v1
 
-The following table highlights key attributes of managed online endpoints compared to Azure Container Instances and Azure Kubernetes Service (AKS) v1 solutions.
+Managed online endpoints are the recommended way to use online endpoints in Azure Machine Learning. The following table highlights key attributes of managed online endpoints compared to Azure Container Instances and Azure Kubernetes Service (AKS) v1 solutions.
 
 |Attributes  |Managed online endpoints (v2)  |Container Instances or AKS (v1)  |
 |---------|---------|---------|
@@ -68,12 +66,12 @@ Managed online endpoints can help streamline your deployment process and provide
   - Performs node recovery if there's a system failure.
 
 - Monitoring and logs
-  - Monitors model availability, performance, and SLA using [native integration with Azure Monitor](how-to-monitor-online-endpoints.md).
-  - Helps debug deployments by using logs and native integration with [Log Analytics](/azure/azure-monitor/logs/log-analytics-overview).
+  - Ability to monitor model availability, performance, and SLA using [native integration with Azure Monitor](how-to-monitor-online-endpoints.md).
+  - Ease of debugging deployments by using logs and native integration with [Log Analytics](/azure/azure-monitor/logs/log-analytics-overview).
 
   :::image type="content" source="media/concept-endpoints/log-analytics-and-azure-monitor.png" alt-text="Screenshot showing Azure Monitor graph of endpoint latency." lightbox="media/concept-endpoints/log-analytics-and-azure-monitor.png":::
 
-- [Cost view monitors costs at the endpoint and deployment level](how-to-view-online-endpoints-costs.md).
+- [Cost analysis view allows you to monitor costs at the endpoint and deployment level](how-to-view-online-endpoints-costs.md).
   
   :::image type="content" source="media/concept-endpoints/endpoint-deployment-costs.png" alt-text="Screenshot cost chart of an endpoint and deployment." lightbox="media/concept-endpoints/endpoint-deployment-costs.png":::
 
