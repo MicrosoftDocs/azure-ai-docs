@@ -85,9 +85,7 @@ POST /indexes/hotels/docs&api-version=2024-07-01
 
 This query searches on the term "inn" and passes in the current location. Notice that this query includes other parameters, such as scoringParameter. Query parameters, including "scoringParameter", are described in [Search Documents (REST API)](/rest/api/searchservice/documents/search-post).  
 
-See the [Extended example](#bkmk_ex) to review a more detailed example of a scoring profile.  
-
-<a name=what-is-default-scoring></a>
+See the [Extended example](#extended-example) to review a more detailed example of a scoring profile.  
 
 ## How search scoring works in Azure AI Search
 
@@ -95,13 +93,14 @@ Scoring profiles supplement the default scoring algorithm by boosting the scores
 
 :::image type="content" source="media/scoring-profiles/scoring-over-ranked-results.png" alt-text="Diagram showing which fields have a scoring profile and when ranking occurs.":::
 
-You can use the [featuresMode (preview)](index-similarity-and-scoring.md#featuresmode-parameter-preview) parameter to request extra scoring details with the search results (including the field level scores).
+> [!TIP]
+> You can use the [featuresMode (preview)](index-similarity-and-scoring.md#featuresmode-parameter-preview) parameter to request extra scoring details with the search results (including the field level scores).
 
 ## Add a scoring profile to a search index
 
 1. Start with an [index definition](/rest/api/searchservice/indexes/create). You can add and update scoring profiles on an existing index without having to rebuild it. Use an [Create or Update Index](/rest/api/searchservice/indexes/create-or-update) request to post a revision.
 
-1. Paste in the [template](#bkmk_template) provided in this article.  
+1. Paste in the [template](#template) provided in this article.  
 
 1. Provide a name that adheres to [naming conventions](/rest/api/searchservice/naming-rules).
 
@@ -112,8 +111,6 @@ You should work iteratively, using a data set that will help you prove or dispro
 Scoring profiles can be defined in Azure portal as shown in the following screenshot, or programmatically through [REST APIs](/rest/api/searchservice/indexes/create-or-update) or in Azure SDKs, such as the [ScoringProfile](/dotnet/api/azure.search.documents.indexes.models.scoringprofile) class in the Azure SDK for .NET.
 
    :::image type="content" source="media/scoring-profiles/portal-add-scoring-profile-small.png" alt-text="Add scoring profiles page" lightbox="media/scoring-profiles/portal-add-scoring-profile.png" border="true":::
-
-<a name="weighted-fields"></a>
 
 ## Use weighted fields
 
@@ -136,15 +133,13 @@ Weighted fields are name-value pairs composed of a searchable field and a positi
 ]
 ```
 
-<a name="functions"></a>
-
 ## Use functions
 
 Use functions when simple relative weights are insufficient or don't apply, as is the case of distance and freshness, which are calculations over numeric data. You can specify multiple functions per scoring profile. For more information about the EDM data types used in Azure AI Search, see [Supported data types](/rest/api/searchservice/supported-data-types).
 
 | Function | Description | Use cases |
 |-|-|
-| freshness | Boosts by values in a datetime field (`Edm.DateTimeOffset`). This function has a "boostingDuration" attribute so that you can specify a value representing a timespan over which boosting occurs. | Use this function to boost a match having a more recent date. You can also rank items like calendar events with future dates such that items closer to the present can be ranked higher than items further in the future. One end of the range is fixed to the current time. To boost a range of times in the past, use a positive boostingDuration. To boost a range of times in the future, use a negative boostingDuration. The [interpolation](#set-interpolations) parameter sets the slope. |
+| freshness | Boosts by values in a datetime field (`Edm.DateTimeOffset`). This function has a "boostingDuration" attribute so that you can specify a value representing a timespan over which boosting occurs. | Use this function to boost a match having a more recent date. You can also rank items like calendar events with future dates such that items closer to the present can be ranked higher than items further in the future. One end of the range is fixed to the current time. To boost a range of times in the past, use a positive boostingDuration. To boost a range of times in the future, use a negative boostingDuration. The [interpolation](#set-interpolations) parameter sets the slope. For more information, see [set boostingDuration](#set-boostingduration-for-freshness-function). |
 | magnitude | The magnitude scoring function is used to alter rankings based on the range of values for a numeric field. The value must be an integer or floating-point number. For star ratings of 1 through 4, this would be 1. For margins over 50%, this would be 50. This function can only be used with `Edm.Double` and `Edm.Int` fields. For the magnitude function, you can reverse the range, high to low, if you want the inverse pattern (for example, to boost lower-priced items more than higher-priced items). Given a range of prices from $100 to $1, you would set "boostingRangeStart" at 100 and "boostingRangeEnd" at 1 to boost the lower-priced items. | Scenarios that call for this function include boosting by profit margin, highest price, lowest price, or a count of downloads. Common usage examples of this are: </br></br>"Star ratings:" Alter the scoring based on the value within the "Star Rating" field. When two items are relevant, the item with the higher rating will be displayed first. </br>"Margin:" When two documents are relevant, a retailer might wish to boost documents that have higher margins first. </br>"Clickthrough counts:" For applications that track clickthrough actions to products or pages, you could use magnitude to boost items that tend to get the most traffic. </br>"Download counts:" For applications that track downloads, the magnitude function lets you boost items that have the most downloads.  |
 | distance  | Boosts by proximity or geographic location. This function can only be used with `Edm.GeographyPoint` fields. | Use for "find near me" scenarios. |
 | tag  | Boosts by tags that are common to both search documents and query strings. Tags are provided in a "tagsParameter". This function can only be used with search fields of type `Edm.String` and `Collection(Edm.String)`. | Use when you have tag fields. If a given tag within the list is itself a comma-delimited list, you can [use a text normalizer](search-normalizers.md) on the field to strip out the commas at query time (map the comma character to a space). This approach will "flatten" the list so that all terms are a single, long string of comma-delimited terms. | 
@@ -155,8 +150,6 @@ Use functions when simple relative weights are insufficient or don't apply, as i
 + Function type ("freshness", "magnitude", "distance", "tag") must be lower case.
 + Functions can't include null or empty values.
 + Functions can only have a single field per function definition. To use magnitude twice in the same profile, provide two definitions magnitude, one for each field.
-
-<a name="bkmk_template"></a>
 
 ## Template
 
@@ -209,9 +202,7 @@ Use functions when simple relative weights are insufficient or don't apply, as i
   }   
 ],   
 "defaultScoringProfile": (optional) "...", 
-```  
-
-<a name="bkmk_interpolation"></a> 
+```
 
 ## Set interpolations
 
@@ -226,9 +217,7 @@ Interpolations set the shape of the slope used for scoring. Because scoring is h
 
  ![Constant, linear, quadratic, log10 lines on graph](media/scoring-profiles/azuresearch_scorefunctioninterpolationgrapht.png "AzureSearch_ScoreFunctionInterpolationGrapht")  
 
-<a name="bkmk_boostdur"></a> 
-
-## Set boostingDuration
+## Set boostingDuration for freshness function
 
 `boostingDuration` is an attribute of the `freshness` function. You use it to set an expiration period after which boosting will stop for a particular document. For example, to boost a product line or brand for a 10-day promotional period, you would specify the 10-day period as "P10D" for those documents.  
 
@@ -243,9 +232,7 @@ The following table provides several examples.
 |15 minutes|"PT15M"|  
 |30 days, 5 hours, 10 minutes, and 6.334 seconds|"P30DT5H10M6.334S"|  
 
-For more examples, see [XML Schema: Datatypes (W3.org web site)](https://www.w3.org/TR/xmlschema11-2/#dayTimeDuration).  
-
-<a name="bkmk_ex"></a>
+For more examples, see [XML Schema: Datatypes (W3.org web site)](https://www.w3.org/TR/xmlschema11-2/#dayTimeDuration).
 
 ## Extended example
 
