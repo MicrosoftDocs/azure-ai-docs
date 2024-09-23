@@ -46,6 +46,14 @@ Go to your resource in the Azure portal. The **Endpoint and Keys** can be found 
     cd OpenAISpeech
     ```
 
+## Install the client library
+
+Install the [`Azure.OpenAI`](https://www.nuget.org/packages/Azure.AI.OpenAI/) client library:
+
+```dotnetcli
+dotnet add package Azure.AI.OpenAI
+```
+
 ## Passwordless authentication is recommended
 
 Passwordless authentication is more secure than key-based alternatives and is the recommended approach for connecting to Azure services. If you choose to use Passwordless authentication, you'll need to complete the following:
@@ -59,21 +67,10 @@ Passwordless authentication is more secure than key-based alternatives and is th
 1. Assign the `Cognitive Services User` role to your user account. This can be done in the Azure portal on your OpenAI resource under **Access control (IAM)** > **Add role assignment**.
 1. Sign-in to Azure using Visual Studio or the Azure CLI via `az login`.
 
-## Install the client library
-
-Install the [`Azure.OpenAI`](https://www.nuget.org/packages/Azure.AI.OpenAI/) client library:
-
-```dotnetcli
-dotnet add package Azure.AI.OpenAI
-```
-
 ## Update the app code
 
 1. Replace the contents of `program.cs` with the following code and update the placeholder values with your own.
 
-    > [!NOTE]
-    > You can get sample audio files, such as *wikipediaOcelot.wav*, from the [Azure AI Speech SDK repository at GitHub](https://github.com/Azure-Samples/cognitive-services-speech-sdk/tree/master/sampledata/audiofiles).
-    
     ```csharp
     using Azure;
     using Azure.AI.OpenAI;
