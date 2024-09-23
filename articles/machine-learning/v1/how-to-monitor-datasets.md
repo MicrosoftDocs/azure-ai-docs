@@ -286,8 +286,10 @@ monitor = monitor.enable_schedule()
 After completion of the wizard, the resulting dataset monitor will appear in the list. Select it to go to that monitor's details page.
 
 # [Azure CLI](#tab/azure-cli)
+<a name="cli-monitor"></a>
 
 Not supported
+
 ---
 
 
@@ -298,11 +300,12 @@ When you migrate to Model Monitor, if you didn't deploy your model to production
 
 Following sections contain more details on how to migrate to Model Monitor.
 
-## If you have deployed your model to production in an Azure Machine Learning online endpoint and enabled data collection (Migrate to Model Monitor)
+## Create Model Monitor via automatically collected production data (Migrate to Model Monitor)
 
 If you have deployed your model to production in an Azure Machine Learning online endpoint and enabled [data collection](../how-to-collect-production-data.md) at deployment time.
 
 # [Python SDK](#tab/python)
+<a name="sdk-model-monitor"></a>
 
 You can use the following code to set up the out-of-box model monitoring:
 
@@ -371,6 +374,7 @@ created_monitor = poller.result()
 ```
 
 # [Studio](#tab/azure-studio)
+<a name="studio-model-monitor"></a>
 
 1. Navigate to [Azure Machine Learning studio](https://ml.azure.com).
 1. Go to your workspace.
@@ -397,6 +401,7 @@ created_monitor = poller.result()
 1. Review your monitoring details and select **Create** to create the monitor.
 
 # [Azure CLI](#tab/azure-cli)
+<a name="cli-model-monitor"></a>
 
 Azure Machine Learning model monitoring uses `az ml schedule` to schedule a monitoring job. You can create the out-of-box model monitor with the following CLI command and YAML definition:
 
@@ -410,10 +415,10 @@ The following YAML contains the definition for the out-of-box model monitoring.
 
 ---
 
-## If you didn't deploy your model to production in an Azure Machine Learning online endpoint or you don't want to use data collection (Migrate to Model Monitor)
+## Create Model Monitor via custom data preprocessing component (Migrate to Model Monitor)
 When you migrate to Model Monitor, if you didn't deploy your model to production in an Azure Machine Learning online endpoint, or you don't want to use [data collection](../how-to-collect-production-data.md), you can also [set up model monitoring with custom signals and metrics](../how-to-monitor-model-performance.md#set-up-model-monitoring-with-custom-signals-and-metrics).
 
-You can also set up model monitoring for models deployed to Azure Machine Learning batch endpoints or deployed outside of Azure Machine Learning. If you don't have a deployment, but you have production data, you can use the data to perform continuous model monitoring. To monitor these models, you must be able to:
+If you don't have a deployment, but you have production data, you can use the data to perform continuous model monitoring. To monitor these models, you must be able to:
 
 * Collect production inference data from models deployed in production.
 * Register the production inference data as an Azure Machine Learning data asset, and ensure continuous updates of the data.
