@@ -71,8 +71,8 @@ ApiKey={API_KEY}
 ```
 
 This command:
-* Runs a `image-analyze` container from the container image.
-* `--gpus all` Use all available GPU resources. Content safety container requires CUDA for optimal performance. See more in  [host requirements and recommendations](./container-install-run.md#host-computer-requirements-and-recommendations). Also make sure your host install [NVIDIA container toolkit](./container-install-run.md#installing-the-nvidia-container-toolkit)
+* Runs an `image-analyze` container from the container image.
+* `--gpus all` Use all available GPU resources. Content safety container requires CUDA for optimal performance. See more in  [host requirements and recommendations](./container-install-run.md#host-computer-requirements-and-recommendations). Also make sure your host install [NVIDIA container toolkit](./container-install-run.md#installing-the-nvidia-container-toolkit).
 * Exposes TCP port 5000 and allocates a pseudo-TTY for the container.
 * Automatically removes the container after it exits. The container image is still available on the host computer.
 
@@ -143,8 +143,7 @@ sudo chown -R nonroot:nonroot <YOUR_LOCAL_MACHINE_PATH_1> <YOUR_LOCAL_MACHINE_PA
 
 Once the container is up and running, you can validate its operation by sending a request to the REST endpoint deployed within the container. To do this, follow below article. Note, you need to replace the endpoint URL with the Docker URL specific to your container deployment. Also, ensure that you're using host authentication, rather than key-based authentication.
 
-
- - [analyze image quick start](./quickstart-text.md#analyze-image-content)
+[Analyze image quick start](./quickstart-text.md#analyze-image-content)
 
 
 
@@ -152,6 +151,6 @@ Once the container is up and running, you can validate its operation by sending 
 
 ## Next steps
 
-* See the [content safety containers overview](content safety-container-overview.md)
-* Review [configure containers](content safety-container-configuration.md) for configuration settings
-* Use more [Azure AI containers](../cognitive-services-container-support.md)
+* See the [content safety containers overview](./container-overview.md)
+* Review [configure containers](./install-run-container.md) for configuration settings
+* Use more [Azure AI containers](../../../cognitive-services-container-support.md)

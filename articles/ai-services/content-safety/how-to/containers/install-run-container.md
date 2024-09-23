@@ -150,7 +150,7 @@ For more information on using WSS and HTTPS protocols, see [Container security](
 When you start or run the container, you might experience issues. Use an output [mount](content safety-container-configuration.md#mount-settings) and enable logging. Doing so allows the container to generate log files that are helpful when you troubleshoot issues.
 
 > [!TIP]
-> For more troubleshooting information and guidance, see [Azure AI containers frequently asked questions (FAQ)](../containers/container-faq.yml) in the Azure AI services documentation.
+> For more troubleshooting information and guidance, see [Azure AI containers frequently asked questions (FAQ)](../../../containers/container-faq.yml) in the Azure AI services documentation.
 
 ### Logging settings
 
@@ -165,7 +165,7 @@ ApiKey={API_KEY} \
 Logging:Console:LogLevel:Default=Information
 ```
 
-For more information about logging, see [Configure content safety containers](content safety-container-configuration.md#logging-settings) and [usage records](../containers/disconnected-containers.md#usage-records) in the Azure AI services documentation.
+For more information about logging, see [Configure content safety containers](./install-run-container.md#logging-settings) and [usage records](../../../containers/disconnected-containers.md#usage-records) in the Azure AI services documentation.
 
 ## Microsoft diagnostics container
 
