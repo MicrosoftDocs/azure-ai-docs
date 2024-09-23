@@ -68,14 +68,14 @@ The table below presents the requests per second (RPS) and latency metrics obtai
 
 Even with identical GPUs, performance can fluctuate based on the GPU load and the specific configuration of the environment. The benchmark data we provide should be used as a reference point when considering the deployment of content safety containers in your environment. For the most accurate assessment, we recommend conducting tests within your specific environment.
 
-#### [Analyze text](#tqb/text)
+#### [Analyze text](#tab/text)
 
 |GPU| Max RPS| Average latency (at Max RPS)|
 |---|---|---|
 | T4 | 130 | 50.4 ms |
 | A100 | 360 | 8.7 |
 
-#### [Analyze image](#tqb/image)
+#### [Analyze image](#tab/image)
 
 |GPU| Max RPS| Average latency (at Max RPS)|
 |---|---|---|
@@ -140,7 +140,7 @@ You can have this container and a different Azure AI container running on the HO
 > [!NOTE]
 > Use a unique port number if you're running multiple containers.
 > | Protocol | Host URL |
-> |--|--
+> |--|--|
 > | WS | `ws://localhost:5000` | 
 > | HTTP | `http://localhost:5000` |
 

@@ -71,7 +71,7 @@ ApiKey={API_KEY}
 
 This command:
 * Runs a `content safety` container from the container image.
-* Uses all available GPU resources (by specifying `--gpus all`). Content safety container requires CUDA for optimal performance. See more in  [host requirements and recommendations](./install-run-container.md#host-computer-requirements-and-recommendations). Also make sure your host install [NVIDIA container toolkit](./install-run-container.md#installing-the-nvidia-container-toolkit)
+* Uses all available GPU resources (by specifying `--gpus all`). Content safety container requires CUDA for optimal performance. See more in  [host requirements and recommendations](./install-run-container.md#host-computer-requirements-and-recommendations). Also make sure your host install [NVIDIA container toolkit](./install-run-container.md#install-the-nvidia-container-toolkit)
 * Exposes TCP port 5000 and allocates a pseudo-TTY for the container.
 * Automatically removes the container after it exits. The container image is still available on the host computer.
 

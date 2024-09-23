@@ -58,7 +58,7 @@ The following table represents the various `docker run` parameters and their cor
 | `{ENDPOINT_URI}` | The endpoint is required for metering and billing. For more information, see [billing arguments](./install-run-container.md#billing-arguments). |
 | `{API_KEY}` | The API key is required. For more information, see [billing arguments](./install-run-container.md#billing-arguments). |
 
-When you run the content safety analyze image container, configure the port, memory, and CPU according to the [requirements and recommendations](./install-run-container.md#container-requirements-and-recommendations).
+When you run the content safety analyze image container, configure the port, memory, and CPU according to the [requirements and recommendations](./install-run-container.md#host-computer-requirements-and-recommendations).
 
 Here's a sample `docker run` command with placeholder values. You must specify the `ENDPOINT_URI` and `API_KEY` values:
 
@@ -72,7 +72,7 @@ ApiKey={API_KEY}
 
 This command:
 * Runs an `image-analyze` container from the container image.
-* Uses all available GPU resources (by specifying `--gpus all`). Content safety containers require CUDA for optimal performance. Learn more in [host requirements and recommendations](./install-run-container.md#host-computer-requirements-and-recommendations). Also make sure your host installs [NVIDIA container toolkit](./install-run-container.md#installing-the-nvidia-container-toolkit).
+* Uses all available GPU resources (by specifying `--gpus all`). Content safety containers require CUDA for optimal performance. Learn more in [host requirements and recommendations](./install-run-container.md#host-computer-requirements-and-recommendations). Also make sure your host installs [NVIDIA container toolkit](./install-run-container.md#install-the-nvidia-container-toolkit).
 * Exposes TCP port 5000 and allocates a pseudo-TTY for the container.
 * Automatically removes the container after it exits. The container image is still available on the host computer.
 
@@ -150,6 +150,6 @@ Once the container is up and running, you can validate its operation by sending 
 
 ## Next steps
 
-* See the [content safety containers overview](../../../container-overview.md)
+* See the [content safety containers overview](./container-overview.md)
 * Review [configure containers](./install-run-container.md) for configuration settings
 * Use more [Azure AI containers](../../../cognitive-services-container-support.md)
