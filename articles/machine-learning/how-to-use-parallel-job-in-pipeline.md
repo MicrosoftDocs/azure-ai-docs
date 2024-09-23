@@ -156,18 +156,18 @@ Azure Machine Learning parallel job exposes many optional settings that can auto
 
 | Key | Type | Description | Allowed values | Default value | Set in attribute or program argument |
 |--|--|--|--|--|--|
-| `mini_batch_error_threshold` | integer | Number of failed mini-batches to ignore in this parallel job. If the count of failed mini-batches is higher than this threshold, the parallel job is marked as failed.<br><br>The mini-batch is marked as failed if:<br>- The count of return from `run()` is less than the mini-batch input count.<br>- Exceptions are caught in custom `run()` code. | `[-1, int.max]` | `-1`, meaning ignore all failed mini-batches | Attribute `mini_batch_error_threshold` | 
+| `mini_batch_error_threshold` | integer | Number of failed mini-batches to ignore in this parallel job. If the count of failed mini-batches is higher than this threshold, the parallel job is marked as failed.<br><br>The mini-batch is marked as failed if:<br>- The count of return from `run()` is less than the mini-batch input count.<br>- Exceptions are caught in custom `run()` code. | `[-1, int.max]` | `-1`, meaning ignore all failed mini-batches | Attribute `mini_batch_error_threshold` |
 | `mini_batch_max_retries` | integer | Number of retries when the mini-batch fails or times out. If all retries fail, the mini-batch is marked as failed per the `mini_batch_error_threshold` calculation. | `[0, int.max]` | `2` | Attribute `retry_settings.max_retries` |
 | `mini_batch_timeout` | integer | Timeout in seconds for executing the custom `run()` function. If execution time is higher than this threshold, the mini-batch is aborted and marked as failed to trigger retry. | `(0, 259200]` | `60` | Attribute `retry_settings.timeout` |
-| `item_error_threshold` | integer | The threshold of failed items. Failed items are counted by the number gap between inputs and returns from each mini-batch. If the sum of failed items is higher than this threshold, the parallel job is marked as failed. | `[-1, int.max]` | `-1`, meaning ignore all failures during parallel job | Program argument `--error_threshold` |
-| `allowed_failed_percent` | integer | Similar to `mini_batch_error_threshold`, but uses the percent of failed mini-batches instead of the count. | `[0, 100]` | `100` | Program argument `--allowed_failed_percent` |
-| `overhead_timeout` | integer | Timeout in seconds for initialization of each mini-batch. For example, load mini-batch data and pass it to the `run()` function. | `(0, 259200]` | `600` | Program argument `--task_overhead_timeout` |
-| `progress_update_timeout` | integer | Timeout in seconds for monitoring the progress of mini-batch execution. If no progress updates are received within this timeout setting, the parallel job is marked as failed. | `(0, 259200]` | Dynamically calculated by other settings | Program argument `--progress_update_timeout` |
-| `first_task_creation_timeout` | integer | Timeout in seconds for monitoring the time between the job start and the run of the first mini-batch. | `(0, 259200]` | `600` | Program argument `--first_task_creation_timeout` |
+| `item_error_threshold` | integer | The threshold of failed items. Failed items are counted by the number gap between inputs and returns from each mini-batch. If the sum of failed items is higher than this threshold, the parallel job is marked as failed. | `[-1, int.max]` | `-1`, meaning ignore all failures during parallel job | Program argument<br>`--error_threshold` |
+| `allowed_failed_percent` | integer | Similar to `mini_batch_error_threshold`, but uses the percent of failed mini-batches instead of the count. | `[0, 100]` | `100` | Program argument<br>`--allowed_failed_percent` |
+| `overhead_timeout` | integer | Timeout in seconds for initialization of each mini-batch. For example, load mini-batch data and pass it to the `run()` function. | `(0, 259200]` | `600` | Program argument<br>`--task_overhead_timeout` |
+| `progress_update_timeout` | integer | Timeout in seconds for monitoring the progress of mini-batch execution. If no progress updates are received within this timeout setting, the parallel job is marked as failed. | `(0, 259200]` | Dynamically calculated by other settings | Program argument<br>`--progress_update_timeout` |
+| `first_task_creation_timeout` | integer | Timeout in seconds for monitoring the time between the job start and the run of the first mini-batch. | `(0, 259200]` | `600` | Program argument<br>`--first_task_creation_timeout` |
 | `logging_level` | string | The level of logs to dump to user log files. | `INFO`, `WARNING`, or `DEBUG` | `INFO` | Attribute `logging_level` |
 | `append_row_to` | string | Aggregate all returns from each run of the mini-batch and output it into this file. May refer to one of the outputs of the parallel job by using the expression `${{outputs.<output_name>}}` |  |  | Attribute `task.append_row_to` |
-| `copy_logs_to_parent` | string | Boolean option whether to copy the job progress, overview, and logs to the parent pipeline job. | `True` or `False` | `False` | N/A | `--copy_logs_to_parent` |
-| `resource_monitor_interval` | integer | Time interval in seconds to dump node resource usage (for example cpu or memory) to log folder under the *logs/sys/perf* path.<br><br>**Note:** Frequent dump resource logs slightly slow execution speed. Set this value to `0` to stop dumping resource usage. | `[0, int.max]` | `600` | Program argument `--resource_monitor_interval` |
+| `copy_logs_to_parent` | string | Boolean option whether to copy the job progress, overview, and logs to the parent pipeline job. | `True` or `False` | `False` | Program argument<br>`--copy_logs_to_parent` |
+| `resource_monitor_interval` | integer | Time interval in seconds to dump node resource usage (for example cpu or memory) to log folder under the *logs/sys/perf* path.<br><br>**Note:** Frequent dump resource logs slightly slow execution speed. Set this value to `0` to stop dumping resource usage. | `[0, int.max]` | `600` | Program argument<br>`--resource_monitor_interval` |
 
 The following sample code updates these settings:
 
@@ -241,6 +241,6 @@ To debug parallel job failure, select the **Outputs + logs** tab, expand the *lo
 
 ## Related content
 
-- [CLI (v2) parallel job YAML schema](reference-yaml-job-parallel.md).
-- [Create and manage data assets](how-to-create-data-assets.md).
-- [Schedule machine learning pipeline jobs](how-to-schedule-pipeline-job.md).
+- [CLI (v2) parallel job YAML schema](reference-yaml-job-parallel.md)
+- [Create and manage data assets](how-to-create-data-assets.md)
+- [Schedule machine learning pipeline jobs](how-to-schedule-pipeline-job.md)
