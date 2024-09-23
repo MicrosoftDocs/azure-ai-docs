@@ -3,10 +3,10 @@ ms.topic: include
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: include
-ms.date: 09/12/2024
+ms.date: 09/23/2024
 ms.reviewer: v-baolianzou
-ms.author: eur
-author: eric-urban
+ms.author: alexwolf
+author: alexwolfmsft
 recommendations: false
 ---
 
