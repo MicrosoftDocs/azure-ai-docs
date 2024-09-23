@@ -27,7 +27,7 @@ In this article, learn how to specify and assign a scoring profile that boosts a
 
 ## Key points about scoring profiles
 
-+ You can use scoring profiles for keyword search, vector search, and hybrid search. However, in vector search, scoring profiles apply to nonvector fields in the index. Make sure your index has text or numeric fields that can be used in a scoring profile.
++ You can use scoring profiles for keyword search, vector search, and hybrid search. However, iscoring profiles only apply to nonvector fields in the index, so make sure your index has text or numeric fields that can be used in a scoring profile. Support for vector and hybrid search is available in 2024-05-01-preview and 2024-07-01 REST APIs and in Azure SDK packages that target those releases.
 
 + You can create multiple profiles and then modify query logic to choose which one is used.
 
@@ -89,9 +89,9 @@ See the [Extended example](#bkmk_ex) to review a more detailed example of a scor
 
 ## How search scoring works in Azure AI Search
 
-Search scores (`@search.score`) are computed for full text search queries. SCores are based on how relevant the match is, and the highest scoring matches are returned in the query response. The overall score for each document is an aggregation of the individual scores for each field, where the individual score of each field is computed based on the term frequency and document frequency of the searched terms within that field (known as [TF-IDF](https://en.wikipedia.org/wiki/Tf%E2%80%93idf) or term frequency-inverse document frequency).
+Scoring profiles supplement the default scoring algorithm by boosting the scores of matches that meet the profile's criteria. Scoring functions apply to keyword search, pure vector queries, and on hybrid queries. When you use scoring profiles, all queries regardless of type are ranked using the [Reciprocal Ranking Function (RRF)](hybrid-search-ranking.md) algorithm, including standalone text and vector queries. Scoring functions directly affect the final ranking of all documents post-RRF-ranking.
 
-Scoring profiles supplement the default scoring algorithm by boosting the scores of matches that meet the profile's criteria.
+:::image type="content" source="media/scoring-profiles/scoring-over-ranked-results.png" alt-text="Diagram showing which fields have a scoring profile and when ranking occurs.":::
 
 You can use the [featuresMode (preview)](index-similarity-and-scoring.md#featuresmode-parameter-preview) parameter to request extra scoring details with the search results (including the field level scores).
 
