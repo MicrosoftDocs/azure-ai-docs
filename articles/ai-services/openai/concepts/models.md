@@ -227,7 +227,7 @@ For more information on Provisioned deployments, see our [Provisioned guidance](
 - westus            
 - westus3           
 
-`gpt-4o-mini` **Version:** `turbo-2024-07-18`  
+`gpt-4o-mini` **Version:** `2024-07-18`  
 
 **Supported regions:**
 
@@ -239,7 +239,7 @@ For more information on Provisioned deployments, see our [Provisioned guidance](
 - westus
 - westus3
 
-`gpt-4` **Version:** `2024-04-09`
+`gpt-4` **Version:** `turbo-2024-04-09`
 
 - australiaeast     
 - brazilsouth       
