@@ -7,7 +7,7 @@ manager: nitinme
 ms.service: azure-ai-metrics-advisor
 ms.custom: applied-ai-non-critical-metrics-advisor
 ms.topic: how-to
-ms.date: 01/19/2024
+ms.date: 09/20/2024
 ms.author: mbullwin
 #Customer intent: As a user of the Metrics Advisor service, I want to learn how encryption at rest works.
 ---
@@ -15,6 +15,9 @@ ms.author: mbullwin
 # Metrics Advisor service encryption of data at rest
 
 [!INCLUDE [Deprecation announcement](includes/deprecation.md)]
+
+> [!IMPORTANT]
+> Microsoft recommends that you use the most secure authentication flow available. Some of the authentication flows described in this article require a very high degree of trust in the application, and carries risks that are not present in other more secure flows. You should only use this flow when other more secure flows, such as managed identities, aren't viable.
 
 Metrics Advisor service automatically encrypts your data when it's persisted to the cloud. The Metrics Advisor service encryption protects your data and helps you to meet your organizational security and compliance commitments.
 
