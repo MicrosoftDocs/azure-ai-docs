@@ -156,7 +156,6 @@ dset = dset.register(ws, 'target')
 > For a full example of using the `timeseries` trait of datasets, see the [example notebook](https://github.com/Azure/MachineLearningNotebooks/blob/master/how-to-use-azureml/work-with-data/datasets-tutorial/timeseries-datasets/tabular-timeseries-dataset-filtering.ipynb) or the [datasets SDK documentation](/python/api/azureml-core/azureml.data.tabulardataset#with-timestamp-columns-timestamp-none--partition-timestamp-none--validate-false----kwargs-).
 
 # [Studio](#tab/azure-studio)
-
 <a name="studio-dataset"></a>
 
 If you create your dataset using Azure Machine Learning studio, ensure the path to your data contains timestamp information, include all subfolders with data, and set the partition format.
@@ -175,8 +174,10 @@ If your data is already partitioned by date or time, as is the case here, you ca
 
 
 # [Azure CLI](#tab/azure-cli)
+<a name="cli-dataset"></a>
 
 Not supported.
+
 ---
 
 
@@ -266,11 +267,11 @@ monitor = monitor.enable_schedule()
 
 :::image type="content" source="media/how-to-monitor-datasets/wizard.png" alt-text="Create a monitor wizard":::
 
-* **Select target dataset**. The target dataset is a tabular dataset with timestamp column specified which to analyze for data drift. The target dataset must have features in common with the baseline dataset, and should be a `timeseries` dataset, which new data is appended to. Historical data in the target dataset can be analyzed, or new data can be monitored.
+1. **Select target dataset**. The target dataset is a tabular dataset with timestamp column specified which to analyze for data drift. The target dataset must have features in common with the baseline dataset, and should be a `timeseries` dataset, which new data is appended to. Historical data in the target dataset can be analyzed, or new data can be monitored.
 
-* **Select baseline dataset.**  Select the tabular dataset to be used as the baseline for comparison of the target dataset over time. The baseline dataset must have features in common with the target dataset. Select a time range to use a slice of the target dataset, or specify a separate dataset to use as the baseline.
+1. **Select baseline dataset.**  Select the tabular dataset to be used as the baseline for comparison of the target dataset over time. The baseline dataset must have features in common with the target dataset. Select a time range to use a slice of the target dataset, or specify a separate dataset to use as the baseline.
 
-* **Monitor settings**. These settings are for the scheduled dataset monitor pipeline to create.
+1. **Monitor settings**. These settings are for the scheduled dataset monitor pipeline to create.
 
     | Setting | Description | Tips | Mutable |
     | ------- | ----------- | ---- | ------- |
@@ -414,6 +415,7 @@ The following YAML contains the definition for the out-of-box model monitoring.
 :::code language="yaml" source="~/azureml-examples-main/cli/monitoring/out-of-box-monitoring.yaml":::
 
 ---
+
 
 ## Create Model Monitor via custom data preprocessing component (Migrate to Model Monitor)
 When you migrate to Model Monitor, if you didn't deploy your model to production in an Azure Machine Learning online endpoint, or you don't want to use [data collection](../how-to-collect-production-data.md), you can also [set up model monitoring with custom signals and metrics](../how-to-monitor-model-performance.md#set-up-model-monitoring-with-custom-signals-and-metrics).
