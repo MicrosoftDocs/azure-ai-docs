@@ -10,22 +10,32 @@ ms.service: cognitive-search
 ms.custom:
   - ignite-2023
 ms.topic: how-to
-ms.date: 09/17/2024
+ms.date: 09/23/2024
 ---
 
 # Add scoring profiles to boost search scores
 
-In this article, learn how to specify and assign a scoring profile. A scoring profile is criteria for boosting a search score based on parameters that you provide. For example, you might want matches found in a "tags" field to be more relevant than the same match found in "descriptions". Criteria can be a weighted field (such as the "tags" example) or a function. 
+In this article, learn how to specify and assign a scoring profile that boosts a search score based on parameters that you provide. Scoring profile parameters are either:
 
-Scoring profiles are defined in a search index and invoked on nonvector fields in query requests. You can create multiple profiles and then modify query logic to choose which one is used.
++ Weighted fields, where a match is found in a specific string field. For example, you might want matches found in a "summary" field to be more relevant than the same match found in a "content" field.
+
++ Functions for numeric data, including dates, ranges, and geographic coordinates. There's also a Tags function that operates on string fields. You can choose this approach over weighted fields if you want to boost a score based on whether a match is found in a tags field (an arbitrary collection of strings).
 
 > [!NOTE]
 > Unfamiliar with relevance concepts? The following [video segment on YouTube](https://www.youtube.com/embed/Y_X6USgvB1g?version=3&start=463&end=970) fast-forwards to how scoring profiles work in Azure AI Search. You can also visit [Relevance and scoring in Azure AI Search](index-similarity-and-scoring.md) for more background.
 >
 
+## Key points about scoring profiles
+
++ You can use scoring profiles for keyword search, vector search, and hybrid search. However, in vector search, scoring profiles apply to nonvector fields in the index. Make sure your index has text or numeric fields that can be used in a scoring profile.
+
++ You can create multiple profiles and then modify query logic to choose which one is used.
+
++ You can have up to 100 scoring profiles within an index (see [service Limits](search-limits-quotas-capacity.md)), but you can only specify one profile at time in any given query.
+
 ## Scoring profile definition
 
-A scoring profile is named object defined in an index schema. A scoring profile can be composed of weighted fields, functions, and parameters.
+A scoring profile is named object defined in an index schema. A scoring profile is composed of weighted fields, functions, and parameters.
 
 The following definition shows a simple profile named "geo". This example boosts results that have the search term in the hotelName field. It also uses the `distance` function to favor results that are within 10 kilometers of the current location. If someone searches on the term 'inn', and 'inn' happens to be part of the hotel name, documents that include hotels with 'inn' within a 10 KM radius of the current location will appear higher in the search results.  
 
@@ -77,27 +87,21 @@ See the [Extended example](#bkmk_ex) to review a more detailed example of a scor
 
 <a name=what-is-default-scoring></a>
 
-## How scores are computed
+## How search scoring works in Azure AI Search
 
-Scores are computed for full text search queries. Matches are scored based on how relevant the match is, and the highest scoring matches are returned in the query response. The overall score for each document is an aggregation of the individual scores for each field, where the individual score of each field is computed based on the term frequency and document frequency of the searched terms within that field (known as [TF-IDF](https://en.wikipedia.org/wiki/Tf%E2%80%93idf) or term frequency-inverse document frequency). 
+Search scores (`@search.score`) are computed for full text search queries. SCores are based on how relevant the match is, and the highest scoring matches are returned in the query response. The overall score for each document is an aggregation of the individual scores for each field, where the individual score of each field is computed based on the term frequency and document frequency of the searched terms within that field (known as [TF-IDF](https://en.wikipedia.org/wiki/Tf%E2%80%93idf) or term frequency-inverse document frequency).
+
+Scoring profiles supplement the default scoring algorithm by boosting the scores of matches that meet the profile's criteria.
 
 You can use the [featuresMode (preview)](index-similarity-and-scoring.md#featuresmode-parameter-preview) parameter to request extra scoring details with the search results (including the field level scores).
 
-## When to add scoring logic
+## Add a scoring profile to a search index
 
-You should create one or more scoring profiles when the default ranking behavior doesn’t go far enough in meeting your business objectives. For example, you might decide that search relevance should favor newly added items. Likewise, you might have a field that contains profit margin, or some other field indicating revenue potential. Boosting results that are more meaningful to your users or the business is often the deciding factor in adoption of scoring profiles.
+1. Start with an [index definition](/rest/api/searchservice/indexes/create). You can add and update scoring profiles on an existing index without having to rebuild it. Use an [Create or Update Index](/rest/api/searchservice/indexes/create-or-update) request to post a revision.
 
-Relevancy-based ordering in a search page is also implemented through scoring profiles. Consider search results pages you’ve used in the past that let you sort by price, date, rating, or relevance. In Azure AI Search, scoring profiles can be used to drive the ‘relevance’ option. The definition of relevance is user-defined, predicated on business objectives and the type of search experience you want to deliver.  
+1. Paste in the [template](#bkmk_template) provided in this article.  
 
-## Steps for adding a scoring profile
-
-To implement custom scoring behavior, add a scoring profile to the schema that defines the index. You can have up to 100 scoring profiles within an index (see [Service Limits](search-limits-quotas-capacity.md)), but you can only specify one profile at time in any given query.
-
-1. Start with an index definition. You can add and update scoring profiles on an existing index without having to rebuild it. Use an [Update Index](/rest/api/searchservice/indexes/create-or-update) request to post your revision.
-
-1. Paste in the [Template](#bkmk_template) provided in this article.  
-
-1. Provide a name. Scoring profiles are optional, but if you add one, the name is required. Be sure to follow Azure AI Search [naming conventions](/rest/api/searchservice/naming-rules) for fields (starts with a letter, avoids special characters and reserved words).  
+1. Provide a name that adheres to [naming conventions](/rest/api/searchservice/naming-rules).
 
 1. Specify boosting criteria. A single profile can contain [weighted fields](#weighted-fields), [functions](#functions), or both. 
 
@@ -109,11 +113,12 @@ Scoring profiles can be defined in Azure portal as shown in the following screen
 
 <a name="weighted-fields"></a>
 
-### Using weighted fields
+## Use weighted fields
 
-Use weighted fields when field context is important and queries are full text search. For example, if a query includes the term "airport", you might want "airport" in the Description field to have more weight than in the HotelName. 
+Use weighted fields when field context is important and queries include searchable string fields. For example, if a query includes the term "airport", you might want "airport" in the Description field to have more weight than in the HotelName. 
 
-Weighted fields are composed of a searchable field and a positive number that is used as a multiplier. If the original field score of HotelName is 3, the boosted score for that field becomes 6, contributing to a higher overall score for the parent document itself.
+Weighted fields are name-value pairs composed of a searchable field and a positive number that is used as a multiplier. If the original field score of HotelName is 3, the boosted score for that field becomes 6, contributing to a higher overall score for the parent document itself.
+
 
 ```json
 "scoringProfiles": [  
@@ -131,28 +136,29 @@ Weighted fields are composed of a searchable field and a positive number that is
 
 <a name="functions"></a>
 
-### Using functions
+## Use functions
 
 Use functions when simple relative weights are insufficient or don't apply, as is the case of distance and freshness, which are calculations over numeric data. You can specify multiple functions per scoring profile. For more information about the EDM data types used in Azure AI Search, see [Supported data types](/rest/api/searchservice/supported-data-types).
 
-| Function | Description |
+| Function | Description | Use cases |
 |-|-|
-| "freshness" | Boosts by values in a datetime field (`Edm.DateTimeOffset`). This function has a "boostingDuration" attribute so that you can specify a value representing a timespan over which boosting occurs. | 
-| "magnitude" | Boosts based on how high or low a numeric value is. Scenarios that call for this function include boosting by profit margin, highest price, lowest price, or a count of downloads. This function can only be used with `Edm.Double` and `Edm.Int` fields. For the magnitude function, you can reverse the range, high to low, if you want the inverse pattern (for example, to boost lower-priced items more than higher-priced items). Given a range of prices from $100 to $1, you would set "boostingRangeStart" at 100 and "boostingRangeEnd" at 1 to boost the lower-priced items. | 
-| "distance"  | Boosts by proximity or geographic location. This function can only be used with `Edm.GeographyPoint` fields. | 
-| "tag"  | Boosts by tags that are common to both search documents and query strings. Tags are provided in a "tagsParameter". This function can only be used with search fields of type `Edm.String` and `Collection(Edm.String)`. | 
+| freshness | Boosts by values in a datetime field (`Edm.DateTimeOffset`). This function has a "boostingDuration" attribute so that you can specify a value representing a timespan over which boosting occurs. | Use this function to boost a match having a more recent date. You can also rank items like calendar events with future dates such that items closer to the present can be ranked higher than items further in the future. One end of the range is fixed to the current time. To boost a range of times in the past, use a positive boostingDuration. To boost a range of times in the future, use a negative boostingDuration. The [interpolation](#set-interpolations) parameter sets the slope. |
+| magnitude | The magnitude scoring function is used to alter rankings based on the range of values for a numeric field. The value must be an integer or floating-point number. For star ratings of 1 through 4, this would be 1. For margins over 50%, this would be 50. This function can only be used with `Edm.Double` and `Edm.Int` fields. For the magnitude function, you can reverse the range, high to low, if you want the inverse pattern (for example, to boost lower-priced items more than higher-priced items). Given a range of prices from $100 to $1, you would set "boostingRangeStart" at 100 and "boostingRangeEnd" at 1 to boost the lower-priced items. | Scenarios that call for this function include boosting by profit margin, highest price, lowest price, or a count of downloads. Common usage examples of this are: </br></br>"Star ratings:" Alter the scoring based on the value within the "Star Rating" field. When two items are relevant, the item with the higher rating will be displayed first. </br>"Margin:" When two documents are relevant, a retailer might wish to boost documents that have higher margins first. </br>"Clickthrough counts:" For applications that track clickthrough actions to products or pages, you could use magnitude to boost items that tend to get the most traffic. </br>"Download counts:" For applications that track downloads, the magnitude function lets you boost items that have the most downloads.  |
+| distance  | Boosts by proximity or geographic location. This function can only be used with `Edm.GeographyPoint` fields. | Use for "find near me" scenarios. |
+| tag  | Boosts by tags that are common to both search documents and query strings. Tags are provided in a "tagsParameter". This function can only be used with search fields of type `Edm.String` and `Collection(Edm.String)`. | Use when you have tag fields. If a given tag within the list is itself a comma-delimited list, you can [use a text normalizer](search-normalizers.md) on the field to strip out the commas at query time (map the comma character to a space). This approach will "flatten" the list so that all terms are a single, long string of comma-delimited terms. | 
 
 ### Rules for using functions
 
-+ Functions can only be applied to fields that are attributed as filterable.
++ Functions can only be applied to fields that are attributed as `filterable`.
 + Function type ("freshness", "magnitude", "distance", "tag") must be lower case.
 + Functions can't include null or empty values.
++ Functions can only have a single field per function definition. To use magnitude twice in the same profile, provide two definitions magnitude, one for each field.
 
 <a name="bkmk_template"></a>
 
 ## Template
 
- This section shows the syntax and template for scoring profiles. Refer to [Property reference](#bkmk_indexref) in the next section for descriptions of the scoring profile attributes.  
+ This section shows the syntax and template for scoring profiles. For a description of properties, see the [REST API reference](/rest/api/searchservice/indexes/create?view=rest-searchservice-2024-07-01&preservice-view=true#scoringfunctionaggregation).
 
 ```json
 "scoringProfiles": [  
@@ -203,39 +209,11 @@ Use functions when simple relative weights are insufficient or don't apply, as i
 "defaultScoringProfile": (optional) "...", 
 ```  
 
-<a name="bkmk_indexref"></a> 
-
-## Property reference
-
-|Attribute|Description|  
-|---------------|-----------------|  
-| name | Required. Name of the scoring profile, folloiwng the same [naming conventions](/rest/api/searchservice/naming-rules) as field name. It must start with a letter, can't contain dots, colons, or @ symbols, and can't start with the phrase azureSearch (case-sensitive).|  
-| text | Contains the weights property.|  
-| weights | Optional. Name-value pairs that specify a `searchable` field and a positive integer or floating-point number by which to boost a field's score. The positive integer or number becomes a multiplier for the original field score generated by the ranking algorithm. For example, if a field score is 2 and the weight value is 3, the boosted score for the field becomes 6. Individual field scores are then aggregated to create a document field score, which is then used to rank the document in the result set. |  
-| functions | Optional. A scoring function is applied to fields that are `filterable`.|  
-| functions > type | Required for scoring functions. Indicates the type of function to use. Valid values include magnitude, freshness, distance, and tag. You can include more than one function in each scoring profile. The function name must be lower case.|  
-| functions > boost | Required for scoring functions. A positive number used as multiplier for raw score. It can't be equal to 1.|  
-| functions > fieldname | Required for scoring functions. A scoring function is applied to fields that are `filterable`. Individual functions come with extra restrictions. For example, freshness is used with datetime fields, magnitude is used with integer or double fields, and distance is used with location fields. You can only specify a single field per function definition. For example, to use magnitude twice in the same profile, you would provide two definitions magnitude, one for each field.|  
-| functions > interpolation | Required for scoring functions. Defines the slope for which the score boosting increases from the start of the range to the end of the range. Valid values include Linear (default), Constant, Quadratic, and Logarithmic. See [Set interpolations](#bkmk_interpolation) for details.|  
-| functions > magnitude | The magnitude scoring function is used to alter rankings based on the range of values for a numeric field. Some of the most common usage examples of this are: </br></br>"Star ratings:" Alter the scoring based on the value within the "Star Rating" field. When two items are relevant, the item with the higher rating will be displayed first. </br>"Margin:" When two documents are relevant, a retailer might wish to boost documents that have higher margins first. </br>"Click counts:" For applications that track clickthrough actions to products or pages, you could use magnitude to boost items that tend to get the most traffic. </br>"Download counts:" For applications that track downloads, the magnitude function lets you boost items that have the most downloads.|  
-| functions > magnitude > boostingRangeStart | Sets the start value of the range over which magnitude is scored. The value must be an integer or floating-point number. For star ratings of 1 through 4, this would be 1. For margins over 50%, this would be 50.|  
-| functions > magnitude > boostingRangeEnd | Sets the end value of the range over which magnitude is scored. The value must be an integer or floating-point number. For star ratings of 1 through 4, this would be 4.|  
-| functions > magnitude > constantBoostBeyondRange | Valid values are true or false (default). When set to true, the full boost will continue to apply to documents that have a value for the target field that’s higher than the upper end of the range. If false, the boost of this function won’t be applied to documents having a value for the target field that falls outside of the range.|  
-| functions > freshness | The freshness scoring function is used to alter ranking scores for items based on values in DateTimeOffset fields. For example, an item with a more recent date can be ranked higher than older items. </br></br>It's also possible to rank items like calendar events with future dates such that items closer to the present can be ranked higher than items further in the future. </br></br>In the current service release, one end of the range will be fixed to the current time. The other end is a time in the past based on the boostingDuration. To boost a range of times in the future, use a negative boostingDuration. </br></br>The rate at which the boosting changes from a maximum and minimum range is determined by the Interpolation applied to the scoring profile (see the figure below). To reverse the boosting factor applied, choose a boost factor of less than 1.|  
-| functions > freshness > boostingDuration | Sets an expiration period after which boosting will stop for a particular document. See [Set boostingDuration](#bkmk_boostdur) in the following section for syntax and examples.|  
-| functions > distance | The distance scoring function is used to affect the score of documents based on how close or far they're relative to a reference geographic location. The reference location is given as part of the query in a parameter (using the scoringParameter query parameter) as a `lon,lat` argument.|  
-|functions >  distance > referencePointParameter | A parameter to be passed in queries to use as reference location (using the scoringParameter query parameter). |  
-| functions > distance > boostingDistance | A number that indicates the distance in kilometers from the reference location where the boosting range ends.|  
-| functions > tag | The tag scoring function is used to affect the score of documents based on tags in documents and search queries. Documents that have tags in common with the search query will be boosted. The tags for the search query are provided as a scoring parameter in each search request (using the scoringParameter query parameter). |  
-| functions > tag > tagsParameter | A parameter to be passed in queries to specify tags for a particular request (using the scoringParameter query parameter). The parameter consists of a comma-delimited list of whole terms. If a given tag within the list is itself a comma-delimited list, you can [use a text normalizer](search-normalizers.md) on the field to strip out the commas at query time (map the comma character to a space). This approach will "flatten" the list so that all terms are a single, long string of comma-delimited terms. |  
-| functionAggregation | Optional. Applies only when functions are specified. Valid values include: sum (default), average, minimum, maximum, and firstMatching. A search score is single value that is computed from multiple variables, including multiple functions. This attribute indicates how the boosts of all the functions are combined into a single aggregate boost that then is applied to the base document score. The base score is based on the [tf-idf](https://wikipedia.org/wiki/Tf%E2%80%93idf) value computed from the document and the search query.|  
-| defaultScoringProfile | When executing a search request, if no scoring profile is specified, then default scoring is used ([tf-idf](https://wikipedia.org/wiki/Tf%E2%80%93idf) only). </br></br>You can override the built-in default, substituting a custom profile as the one to use when no specific profile is given in the search request.|  
-
 <a name="bkmk_interpolation"></a> 
 
 ## Set interpolations
 
-Interpolations allow you to set the shape of the slope used for scoring. Because scoring is high to low, the slope is always decreasing, but the interpolation determines the curve of the downward slope. The following interpolations can be used:  
+Interpolations set the shape of the slope used for scoring. Because scoring is high to low, the slope is always decreasing, but the interpolation determines the curve of the downward slope. The following interpolations can be used:  
 
 | Interpolation | Description |  
 |-|-|  
