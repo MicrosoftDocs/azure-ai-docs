@@ -52,11 +52,11 @@ Newer services created after April 3, 2024 offer five to ten times more vector s
 
 1. Select the deployment. If you have more than one, click through to see if it resolves to your search service.
 
-    :::image type="content" source="media/vector-search-index-size/resource-group-deployments.png" alt-text="Screenshot of a filtered deployments list.":::
+    :::image type="content" source="media/vector-search-index-size/resource-group-deployments.png" lightbox="media/vector-search-index-size/resource-group-deployments.png" alt-text="Screenshot of a filtered deployments list.":::
 
 1. Expand deployment details. You should see *Created* and the creation date.
 
-   :::image type="content" source="media/vector-search-index-size/deployment-details.png" alt-text="Screenshot of the deployment details showing creation date.":::
+   :::image type="content" source="media/vector-search-index-size/deployment-details.png" lightbox="media/vector-search-index-size/deployment-details.png" alt-text="Screenshot of the deployment details showing creation date.":::
 
 1. Now that you know the age of your search service, review the vector quota limits based on service creation: [Vector index size limits](search-limits-quotas-capacity.md#vector-index-size-limits).
 
