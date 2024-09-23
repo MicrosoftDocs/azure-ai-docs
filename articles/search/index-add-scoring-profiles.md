@@ -15,23 +15,25 @@ ms.date: 09/23/2024
 
 # Add scoring profiles to boost search scores
 
-In this article, learn how to specify and assign a scoring profile that boosts a search score based on parameters that you provide. Scoring profile parameters are either:
+In this article, learn how to specify and assign a scoring profile that boosts a search score based on parameters that you provide. 
+
+## Key points about scoring profiles
+
+Scoring profile parameters are either:
 
 + Weighted fields, where a match is found in a specific string field. For example, you might want matches found in a "summary" field to be more relevant than the same match found in a "content" field.
 
-+ Functions for numeric data, including dates, ranges, and geographic coordinates. There's also a Tags function that operates on string fields. You can choose this approach over weighted fields if you want to boost a score based on whether a match is found in a tags field (an arbitrary collection of strings).
++ Functions for numeric data, including dates, ranges, and geographic coordinates. There's also a Tags function that operates on a field providing an arbitrary collection of strings. You can choose this approach over weighted fields if you want to boost a score based on whether a match is found in a tags field.
+
+You can use scoring profiles for keyword search, vector search, and hybrid search. However, scoring profiles only apply to nonvector fields, so make sure your index has text or numeric fields that can be used in a scoring profile. Support for vector and hybrid search is available in 2024-05-01-preview and 2024-07-01 REST APIs and in Azure SDK packages that targeting those releases.
+
+You can create multiple profiles and then modify query logic to choose which one is used.
+
+You can have up to 100 scoring profiles within an index (see [service Limits](search-limits-quotas-capacity.md)), but you can only specify one profile at time in any given query.
 
 > [!NOTE]
 > Unfamiliar with relevance concepts? The following [video segment on YouTube](https://www.youtube.com/embed/Y_X6USgvB1g?version=3&start=463&end=970) fast-forwards to how scoring profiles work in Azure AI Search. You can also visit [Relevance and scoring in Azure AI Search](index-similarity-and-scoring.md) for more background.
 >
-
-## Key points about scoring profiles
-
-+ You can use scoring profiles for keyword search, vector search, and hybrid search. However, iscoring profiles only apply to nonvector fields in the index, so make sure your index has text or numeric fields that can be used in a scoring profile. Support for vector and hybrid search is available in 2024-05-01-preview and 2024-07-01 REST APIs and in Azure SDK packages that target those releases.
-
-+ You can create multiple profiles and then modify query logic to choose which one is used.
-
-+ You can have up to 100 scoring profiles within an index (see [service Limits](search-limits-quotas-capacity.md)), but you can only specify one profile at time in any given query.
 
 ## Scoring profile definition
 
@@ -158,7 +160,7 @@ Use functions when simple relative weights are insufficient or don't apply, as i
 
 ## Template
 
- This section shows the syntax and template for scoring profiles. For a description of properties, see the [REST API reference](/rest/api/searchservice/indexes/create?view=rest-searchservice-2024-07-01&preservice-view=true#scoringfunctionaggregation).
+ This section shows the syntax and template for scoring profiles. For a description of properties, see the [REST API reference](/rest/api/searchservice/indexes/create?view=rest-searchservice-2024-07-01&preserve-view=true#scoringfunctionaggregation).
 
 ```json
 "scoringProfiles": [  
