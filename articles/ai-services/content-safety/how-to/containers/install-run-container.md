@@ -1,5 +1,5 @@
 ---
-title: Install and run content safety containers with Docker - content safety service
+title: Install and run content safety containers with Docker - Content Safety service
 titleSuffix: Azure AI services
 description: Use the content safety containers with Docker to perform content safety check on-premises.
 author: PatrickFarley
@@ -17,20 +17,21 @@ By using containers, you can use a subset of the content safety service features
 
 > [!NOTE]
 > Disconnected container pricing and commitment tiers vary from standard containers. For more information, see [content safety service pricing](https://azure.microsoft.com/pricing/details/cognitive-services/content-safety/).
+
 ## Prerequisites
 
-You must meet the following prerequisites before you use content safety service containers. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/cognitive-services/) before you begin. You need:
+You must meet the following prerequisites before you use content safety containers. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/cognitive-services/) before you begin. You need:
 
 * [Docker](https://docs.docker.com/) installed on a host computer. Docker must be configured to allow the containers to connect with and send billing data to Azure.
     * On Windows, Docker must also be configured to support Linux containers.
     * You should have a basic understanding of [Docker concepts](https://docs.docker.com/get-started/overview/). 
-* A <a href="https://portal.azure.com/#create/Microsoft.CognitiveServicescontent safetyServices"  title="Create a content safety service resource"  target="_blank">content safety service resource </a> with the standard (S) [pricing tier](https://azure.microsoft.com/pricing/details/cognitive-services/content safety-services/).
+* A <a href="https://portal.azure.com/#create/Microsoft.CognitiveServicescontent safetyServices"  title="Create a content safety service resource"  target="_blank">content safety service resource </a> with the standard (S) [pricing tier](https://azure.microsoft.com/pricing/details/cognitive-services/content-safety/).
 
-### Billing arguments
+## Billing arguments
 
-Content safety containers aren't licensed to run without being connected to Azure for metering. You must configure your container to communicate billing information with the metering service always. 
+Content safety containers aren't licensed to run without being connected to Azure for metering. You must configure your container to always communicate billing information with the metering service. 
 
-Three primary parameters for all Azure AI containers are required. The Microsoft Software License Terms must be present with a value of **accept**. An Endpoint URI and API key are also needed.
+Three primary parameters for all Azure AI containers are required. The Microsoft Software License Terms must be present with a value of **accept**. An endpoint URL and API key are also needed.
 
 Queries to the container are billed at the pricing tier of the Azure resource that's used for the `ApiKey` parameter.
 
@@ -43,19 +44,20 @@ The <a href="https://docs.docker.com/engine/reference/commandline/run/" target="
 | `Eula` | Indicates that you accepted the license for the container.<br/>The value of this option must be set to **accept**. |
 
 > [!IMPORTANT]
-> These subscription keys are used to access your Azure AI services API. Don't share your keys. Store them securely. For example, use Azure Key Vault. We also recommend that you regenerate these keys regularly. Only one key is necessary to make an API call. When you regenerate the first key, you can use the second key for continued access to the service.
+> These subscription keys are used to access your Azure AI services API. Don't share your keys. Store them securely. For example, use Azure Key Vault. We also recommend that you regenerate these keys regularly. Only one key is needed to make an API call. When you regenerate the first key, you can use the second key for continued access to the service.
+
 The container needs the billing argument values to run. These values allow the container to connect to the billing endpoint. The container reports usage about every 10 to 15 minutes. If the container doesn't connect to Azure within the allowed time window, the container continues to run but doesn't serve queries until the billing endpoint is restored. The connection is attempted 10 times at the same time interval of 10 to 15 minutes. If it can't connect to the billing endpoint within the 10 tries, the container stops serving requests. For an example of the information sent to Microsoft for billing, see the [Azure AI container FAQ](../../../containers/container-faq.yml#how-does-billing-work) in the Azure AI services documentation.
 
 
-### Host computer requirements and recommendations
+## Host computer requirements and recommendations
 
 The host is an x64-based computer that runs the Docker container. It can be a computer on your premises or a Docker hosting service in Azure.
 
 The following table describes the minimum and recommended specifications for the content safety containers. It applies to both text and image container. 
 
- | Recommended number of CPU cores  | Recommended memory | Notes |
-|----------------------------------|--------------------|-------|
-| 4                                | 16 GB              | Requires NVIDIA CUDA.|
+| Recommended number of CPU cores  | Recommended memory | Notes |
+|---------|--------------------|-------|
+| 4               | 16 GB         | Requires NVIDIA CUDA.|
 
 
 Content safety containers require NVIDIA CUDA for optimal performance. The container is tested on CUDA 11.8 and CUDA 12.6. 
@@ -66,36 +68,34 @@ The table below presents the requests per second (RPS) and latency metrics obtai
 
 Even with identical GPUs, performance can fluctuate based on the GPU load and the specific configuration of the environment. The benchmark data we provide should be used as a reference point when considering the deployment of content safety containers in your environment. For the most accurate assessment, we recommend conducting tests within your specific environment.
 
-**[to-do] make below two table inline sections, one for text one for image.** 
-
-#### Analyze text
+#### [Analyze text](#tqb/text)
 
 |GPU| Max RPS| Average latency (at Max RPS)|
 |---|---|---|
 | T4 | 130 | 50.4 ms |
 | A100 | 360 | 8.7 |
 
-#### Analyze image
+#### [Analyze image](#tqb/image)
 
 |GPU| Max RPS| Average latency (at Max RPS)|
 |---|---|---|
 | T4 | 15 | 229 ms |
 | A100 | 30 | 799 ms |
 
+---
 
+## Install the NVIDIA container toolkit
 
-## Installing the NVIDIA container toolkit
+The `host` is the computer that runs the docker container. The host must support Nvidia container toolkit. Follow the below guidance to install the toolkit in your environment.
 
-The `host` is the computer that runs the docker container. The host must support Nvidia container toolkit. Follow below guidance to install the toolkit in your environment.
-
-- [Install the NVDIA Container Toolkit](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html)
+[Install the NVIDIA Container Toolkit](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html)
 
 
 ## Run the container
 
 Use the [docker run](https://docs.docker.com/engine/reference/commandline/run/) command to run the container. Once running, the container continues to run until you [stop the container](#stop-the-container).
 
-Take note the following best practices with the `docker run` command:
+Note the following best practices for the `docker run` command:
 
 - **Line-continuation character**: The Docker commands in the following sections use the back slash, `\`, as a line continuation character. Replace or remove this character based on your host operating system's requirements.
 - **Argument order**: Don't change the order of the arguments unless you're familiar with Docker containers.
@@ -107,6 +107,7 @@ docker images --format "table {{.ID}}\t{{.Repository}}\t{{.Tag}}"
 ```
 
 Here's an example result:
+
 ```
 IMAGE ID         REPOSITORY                TAG
 <image-id>       <repository-path/name>    <tag-name>
@@ -114,7 +115,7 @@ IMAGE ID         REPOSITORY                TAG
 
 ## Validate that a container is running
 
-There are several ways to validate that the container is running. Locate the *External IP* address and exposed port of the container in question, and open your favorite web browser. Use the various request URLs that follow to validate the container is running. 
+There are several ways to validate that the container is running. Locate the *External IP* address and exposed port of the container in question, and open your preferred web browser. Use the various request URLs that follow to validate the container is running. 
 
 The example request URLs listed here are `http://localhost:5000`, but your specific container might vary. Make sure to rely on your container's *External IP* address and exposed port.
 
@@ -147,7 +148,7 @@ For more information on using WSS and HTTPS protocols, see [Container security](
 
 ## Troubleshooting
 
-When you start or run the container, you might experience issues. Use an output [mount](content safety-container-configuration.md#mount-settings) and enable logging. Doing so allows the container to generate log files that are helpful when you troubleshoot issues.
+When you start or run the container, you might experience issues. Use an output mount and enable logging. Doing so allows the container to generate log files that are helpful when you troubleshoot issues.
 
 > [!TIP]
 > For more troubleshooting information and guidance, see [Azure AI containers frequently asked questions (FAQ)](../../../containers/container-faq.yml) in the Azure AI services documentation.
@@ -165,7 +166,7 @@ ApiKey={API_KEY} \
 Logging:Console:LogLevel:Default=Information
 ```
 
-For more information about logging, see [Configure content safety containers](./install-run-container.md#logging-settings) and [usage records](../../../containers/disconnected-containers.md#usage-records) in the Azure AI services documentation.
+For more information about logging, see [usage records](../../../containers/disconnected-containers.md#usage-records) in the Azure AI services documentation.
 
 ## Microsoft diagnostics container
 
