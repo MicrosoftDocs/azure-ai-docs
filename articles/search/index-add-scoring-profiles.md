@@ -17,6 +17,8 @@ ms.date: 09/23/2024
 
 In this article, learn how to specify and assign a scoring profile that boosts a search score based on parameters that you provide. 
 
+You can use scoring profiles for [keyword search](search-lucene-query-architecture.md), [vector search](vector-search-overview.md), and [hybrid search](hybrid-search-overview.md). However, scoring profiles only apply to nonvector fields, so make sure your index has text or numeric fields that can be used in a scoring profile. Scoring profile support for vector and hybrid search is available in 2024-05-01-preview and 2024-07-01 REST APIs and in Azure SDK packages that targeting those releases.
+
 ## Key points about scoring profiles
 
 Scoring profile parameters are either:
@@ -24,8 +26,6 @@ Scoring profile parameters are either:
 + Weighted fields, where a match is found in a specific string field. For example, you might want matches found in a "summary" field to be more relevant than the same match found in a "content" field.
 
 + Functions for numeric data, including dates, ranges, and geographic coordinates. There's also a Tags function that operates on a field providing an arbitrary collection of strings. You can choose this approach over weighted fields if you want to boost a score based on whether a match is found in a tags field.
-
-You can use scoring profiles for keyword search, vector search, and hybrid search. However, scoring profiles only apply to nonvector fields, so make sure your index has text or numeric fields that can be used in a scoring profile. Support for vector and hybrid search is available in 2024-05-01-preview and 2024-07-01 REST APIs and in Azure SDK packages that targeting those releases.
 
 You can create multiple profiles and then modify query logic to choose which one is used.
 
@@ -89,9 +89,13 @@ See the [Extended example](#extended-example) to review a more detailed example 
 
 ## How search scoring works in Azure AI Search
 
-Scoring profiles supplement the default scoring algorithm by boosting the scores of matches that meet the profile's criteria. Scoring functions apply to keyword search, pure vector queries, and on hybrid queries. When you use scoring profiles, all queries regardless of type are ranked using the [Reciprocal Ranking Function (RRF)](hybrid-search-ranking.md) algorithm, including standalone text and vector queries. Scoring functions directly affect the final ranking of all documents post-RRF-ranking.
+Scoring profiles supplement the default scoring algorithm by boosting the scores of matches that meet the profile's criteria. Scoring functions apply to keyword search, pure vector queries, and on hybrid queries. 
+
+When you use scoring profiles or any other boosting features in Azure AI Search, the [Reciprocal Ranking Function (RRF)](hybrid-search-ranking.md) algorithm assigns the score, including for standalone text and vector queries. Post-RRF, all scoring/boosting, [semantic ranking](semantic-search-overview.md), and [vector weighting](vector-search-how-to-query.md#vector-weighting) adjustments occur.
 
 :::image type="content" source="media/scoring-profiles/scoring-over-ranked-results.png" alt-text="Diagram showing which fields have a scoring profile and when ranking occurs.":::
+
+For text queries, weight is always `1.0`. For vector queries, weight is a decimal. For example, if you have two vector queries, one weight could be `0.5` while the other could be `2.0`. 
 
 > [!TIP]
 > You can use the [featuresMode (preview)](index-similarity-and-scoring.md#featuresmode-parameter-preview) parameter to request extra scoring details with the search results (including the field level scores).
@@ -104,7 +108,7 @@ Scoring profiles supplement the default scoring algorithm by boosting the scores
 
 1. Provide a name that adheres to [naming conventions](/rest/api/searchservice/naming-rules).
 
-1. Specify boosting criteria. A single profile can contain [weighted fields](#weighted-fields), [functions](#functions), or both. 
+1. Specify boosting criteria. A single profile can contain [weighted fields](#use-weighted-fields), [functions](#use-functions), or both. 
 
 You should work iteratively, using a data set that will help you prove or disprove the efficacy of a given profile.
 
@@ -114,15 +118,14 @@ Scoring profiles can be defined in Azure portal as shown in the following screen
 
 ## Use weighted fields
 
-Use weighted fields when field context is important and queries include searchable string fields. For example, if a query includes the term "airport", you might want "airport" in the Description field to have more weight than in the HotelName. 
+Use weighted fields when field context is important and queries include `searchable` string fields. For example, if a query includes the term "airport", you might want "airport" in the Description field to have more weight than in the HotelName. 
 
-Weighted fields are name-value pairs composed of a searchable field and a positive number that is used as a multiplier. If the original field score of HotelName is 3, the boosted score for that field becomes 6, contributing to a higher overall score for the parent document itself.
-
+Weighted fields are name-value pairs composed of a `searchable` field and a positive number that is used as a multiplier. If the original field score of HotelName is 3, the boosted score for that field becomes 6, contributing to a higher overall score for the parent document itself.
 
 ```json
 "scoringProfiles": [  
     {  
-      "name": "boostKeywords",  
+      "name": "boostSearchTerms",  
       "text": {  
         "weights": {  
           "HotelName": 2,  
@@ -140,8 +143,8 @@ Use functions when simple relative weights are insufficient or don't apply, as i
 | Function | Description | Use cases |
 |-|-|
 | distance  | Boost by proximity or geographic location. This function can only be used with `Edm.GeographyPoint` fields. | Use for "find near me" scenarios. |
-| freshness | Boost by values in a datetime field (`Edm.DateTimeOffset`). [Set boostingDuration](#set-boostingduration-for-freshness-function) to specify a value representing a timespan over which boosting occurs. | Boost a match having a more recent date. Rank items like calendar events with future dates such that items closer to the present can be ranked higher than items further in the future. One end of the range is fixed to the current time. To boost a range of times in the past, use a positive boostingDuration. To boost a range of times in the future, use a negative boostingDuration. |
-| magnitude | Alter rankings based on the range of values for a numeric field. The value must be an integer or floating-point number. For star ratings of 1 through 4, this would be 1. For margins over 50%, this would be 50. This function can only be used with `Edm.Double` and `Edm.Int` fields. For the magnitude function, you can reverse the range, high to low, if you want the inverse pattern (for example, to boost lower-priced items more than higher-priced items). Given a range of prices from $100 to $1, you would set `boostingRangeStart` at 100 and `boostingRangeEnd` at 1 to boost the lower-priced items. | Boost by profit margin, ratings, clickthrough counts, number of downloads, highest price, lowest price, or a count of downloads. When two items are relevant, the item with the higher rating will be displayed first. |
+| freshness | Boost by values in a datetime field (`Edm.DateTimeOffset`). [Set boostingDuration](#set-boostingduration-for-freshness-function) to specify a value representing a timespan over which boosting occurs. | Use when you want to boost by newer or older dates. Rank items like calendar events with future dates such that items closer to the present can be ranked higher than items further in the future. One end of the range is fixed to the current time. To boost a range of times in the past, use a positive boostingDuration. To boost a range of times in the future, use a negative boostingDuration. |
+| magnitude | Alter rankings based on the range of values for a numeric field. The value must be an integer or floating-point number. For star ratings of 1 through 4, this would be 1. For margins over 50%, this would be 50. This function can only be used with `Edm.Double` and `Edm.Int` fields. For the magnitude function, you can reverse the range, high to low, if you want the inverse pattern (for example, to boost lower-priced items more than higher-priced items). Given a range of prices from $100 to $1, you would set `boostingRangeStart` at 100 and `boostingRangeEnd` at 1 to boost the lower-priced items. | Use when you want to boost by profit margin, ratings, clickthrough counts, number of downloads, highest price, lowest price, or a count of downloads. When two items are relevant, the item with the higher rating will be displayed first. |
 | tag  | Boost by tags that are common to both search documents and query strings. Tags are provided in a `tagsParameter`. This function can only be used with search fields of type `Edm.String` and `Collection(Edm.String)`. | Use when you have tag fields. If a given tag within the list is itself a comma-delimited list, you can [use a text normalizer](search-normalizers.md) on the field to strip out the commas at query time (map the comma character to a space). This approach will "flatten" the list so that all terms are a single, long string of comma-delimited terms. | 
 
 ### Rules for using functions
