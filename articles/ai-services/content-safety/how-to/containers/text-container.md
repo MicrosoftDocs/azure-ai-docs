@@ -1,5 +1,5 @@
 ---
-title: analyze text container - Azure AI content safety 
+title: Analyze text container - Azure AI content safety 
 titleSuffix: Azure AI services
 description: Install and run content safety analyze text containers with Docker to detect harmful content in text.
 author: 
@@ -13,7 +13,7 @@ keywords: on-premises, Docker, container
 
 # Analyze text content with Docker container 
 
-The analyze text container scans text generate by foundation model or human for sexual content, violence, hate, and self harm with multi-severity levels.	In this article, you learn how to download, install, and run a content safety analyze text container.
+The Analyze text container scans text generate by foundation model or human for sexual content, violence, hate, and self harm with multi-severity levels. In this article, you learn how to download, install, and run a content safety analyze text container.
 
 For more information about prerequisites, validating that a container is running, running multiple containers on the same host, and running disconnected containers, see [Install and run content safety containers with Docker](container-install-run.md).
 
@@ -82,7 +82,7 @@ docker run -e CUDA_ENABLED=false
 ```
 #### Run the container with blocklist
 
-The Analyze Text container supports the use of a [blocklist feature](./how-to/use-blocklist.md), which allows you to block custom terms. You, as the customer, have the ability to manage these blocklists by using CSV files. You have the flexibility to use multiple CSV files for multiple blocklists.
+The Analyze text container supports the use of a [blocklist feature](./how-to/use-blocklist.md), which allows you to block custom terms. You, as the customer, have the ability to manage these blocklists by using CSV files. You have the flexibility to use multiple CSV files for multiple blocklists.
 
 To run the container with a blocklist, use the following command:
 
@@ -92,7 +92,7 @@ docker run -e BLOCKLIST_DIR=/tmp/blocklist  -v {/path/on/host}:/tmp/blocklist
 
 In the command above, replace `{/path/on/host}` with the path to the blocklist folder on your host machine. This command mounts the blocklist directory from your host machine to the `BLOCKLIST_DIR=/tmp/blocklist` environment variable within the container.
 
-Note, the Analyze Text container uses an exact match method for the blocklist. All items in the blocklist will be converted to lowercase before the matching process. This means, for instance, if you have `Contoso` in your blocklist, both "Contoso" and "contoso" from your input will be considered a match.
+Note, the Analyze text container uses an exact match method for the blocklist. All items in the blocklist will be converted to lowercase before the matching process. This means, for instance, if you have `Contoso` in your blocklist, both "Contoso" and "contoso" from your input are considered a match.
 
 
 
@@ -156,7 +156,7 @@ sudo chown -R nonroot:nonroot <YOUR_LOCAL_MACHINE_PATH_1> <YOUR_LOCAL_MACHINE_PA
 ```
 #### Run the container with blocklist
 
-The Analyze Text container supports the use of a [blocklist feature](./how-to/use-blocklist.md), which allows you to block custom terms. You, as the customer, have the ability to manage these blocklists by using CSV files. You have the flexibility to use multiple CSV files for multiple blocklists.
+The Analyze text container supports the use of a [blocklist feature](./how-to/use-blocklist.md), which allows you to block custom terms. You, as the customer, have the ability to manage these blocklists by using CSV files. You have the flexibility to use multiple CSV files for multiple blocklists.
 
 To run the container with a blocklist, use the following command:
 
@@ -166,7 +166,7 @@ docker run -e BLOCKLIST_DIR=/tmp/blocklist  -v {/path/on/host}:/tmp/blocklist
 
 In the command above, replace `{/path/on/host}` with the path to the blocklist folder on your host machine. This command mounts the blocklist directory from your host machine to the `BLOCKLIST_DIR=/tmp/blocklist` environment variable within the container.
 
-Note, the Analyze Text container uses an exact match method for the blocklist. All items in the blocklist will be converted to lowercase before the matching process. This means, for instance, if you have `Contoso` in your blocklist, both "Contoso" and "contoso" from your input will be considered a match.
+Note, the Analyze text container uses an exact match method for the blocklist. All items in the blocklist are converted to lowercase before the matching process. This means, for instance, if you have `Contoso` in your blocklist, both "Contoso" and "contoso" from your input are considered a match.
 
 ---
 

@@ -64,7 +64,7 @@ The minimum GPU requirement for these containers is NVIDIA's T4, however, we rec
 
 The table below presents the requests per second (RPS) and latency metrics obtained when the containers were tested on a single-node GPU configuration using NVIDIA's T4 and A100 GPUs.
 
-Note that even with identical GPUs, performance can fluctuate based on the GPU load and the specific configuration of the environment. The benchmark data we provide should be used as a reference point when considering the deployment of content safety containers in your environment. For the most accurate assessment, we recommend conducting tests within your specific environment.
+Even with identical GPUs, performance can fluctuate based on the GPU load and the specific configuration of the environment. The benchmark data we provide should be used as a reference point when considering the deployment of content safety containers in your environment. For the most accurate assessment, we recommend conducting tests within your specific environment.
 
 **[to-do] make below two table inline sections, one for text one for image.** 
 

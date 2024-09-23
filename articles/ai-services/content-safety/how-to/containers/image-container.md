@@ -13,7 +13,7 @@ keywords: on-premises, Docker, container
 
 # Analyze image content with docker containers
 
-The analyze image container scans image for sexual content, violence, hate, and self harm with multi-severity levels. In this article, you learn how to download, install, and run a content safety to image container.
+The Analyze image container scans image for sexual content, violence, hate, and self harm with multi-severity levels. In this article, you learn how to download, install, and run a content safety to image container.
 
 For more information about prerequisites, validating that a container is running, running multiple containers on the same host, and running disconnected containers, see [Install and run content safety containers with Docker](container-install-run.md).
 

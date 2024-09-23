@@ -30,7 +30,7 @@ The content safety container is available in public preview. Containers in previ
 
 To use the content safety containers in environments that are disconnected from the internet, you must submit a [request form](https://aka.ms/csdisconnectedcontainers) and wait for approval. For more information about applying and purchasing a commitment plan to use containers in disconnected environments, see [Use containers in disconnected environments](../../../../ai-services/containers/disconnected-containers.md) in the Azure AI services documentation.
 
-The request form takes information about you, your company, and the user scenario for which you'll use the container. Make sure you meet the following requirements:
+The request form takes information about you, your company, and the user scenario for which you use the container. Make sure you meet the following requirements:
 
 * On the form, you must use the email address associated with your Azure subscription ID.
 * The Azure resource you use to run the container must be created with the approved Azure subscription ID.

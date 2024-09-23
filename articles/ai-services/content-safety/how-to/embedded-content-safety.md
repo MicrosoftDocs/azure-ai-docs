@@ -2,8 +2,8 @@
 title: Embedded content safety - Azure AI Content Safety
 titleSuffix: Azure AI services
 description: Embedded content safety is designed for on-device scenarios where cloud connectivity is intermittent or unavailable.
-author: 
-manager:
+author: PatrickFarley
+manager: nitinme
 ms.service: azure-ai-content-safety
 ms.topic: how-to
 ms.date: 9/24/2024
@@ -82,10 +82,10 @@ Memory load – An embedded content safety text analysis process consumes about 
 
 ### SDK parameters that can impact performance
 
-Below SDK parameters can impact the infernece time of the embedded content safety model. 
+Below SDK parameters can impact the inference time of the embedded content safety model. 
 
--  `gpuEnabled` Set as **true** to enable GPU, otherwise CPU will be used. Generally inference time will be shorter on GPU.
--  `numThreads` This parameter only works for CPU. It defines number of threads to be used in a multi-threaded environment. We support a maximum number of 4 threads.
+-  `gpuEnabled` Set as **true** to enable GPU, otherwise CPU is used. Generally inference time is shorter on GPU.
+-  `numThreads` This parameter only works for CPU. It defines number of threads to be used in a multi-threaded environment. We support a maximum number of four threads.
 
 See next section to for the performance benchmark data on popular PC CPUs and GPUs
 
@@ -96,7 +96,7 @@ See next section to for the performance benchmark data on popular PC CPUs and GP
 
 As stated above, there are multiple factors that impact the performance of embedded content safety model. We highly suggest you test it on your device and tweak the parameters to fit for your application's requirement. 
 
-We also conduct performance benchmark tests on various popular PC CPUs and GPUs. Please keep in mind that even with the same CPU, performance can vary depending on the CPU and memory load. The benchmark data provided should serve as a reference when considering if the embedded content safety can operate on your device. For optimal results, we advise testing on your intended device and in your specific application scenario.
+We also conduct performance benchmark tests on various popular PC CPUs and GPUs. Keep in mind that even with the same CPU, performance can vary depending on the CPU and memory load. The benchmark data provided should serve as a reference when considering if the embedded content safety can operate on your device. For optimal results, we advise testing on your intended device and in your specific application scenario.
 
 
 The [sample code](https://github.com/Azure/azure-ai-content-safety-sdk) includes code snippet to monitor performance metrics like memory, inference time. 
