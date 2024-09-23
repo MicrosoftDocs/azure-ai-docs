@@ -2,12 +2,12 @@
 title: Analyze text container - Azure AI content safety 
 titleSuffix: Azure AI services
 description: Install and run content safety analyze text containers with Docker to detect harmful content in text.
-author: 
-manager: 
+author: PatrickFarley
+manager: nitinme
 ms.service: azure-ai-content-safety
-ms.topic: 
+ms.topic: how-to
 ms.date: 9/11/2024
-ms.author: 
+ms.author: pafarley
 keywords: on-premises, Docker, container
 ---
 

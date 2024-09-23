@@ -2,12 +2,12 @@
 title: Analyze image container - Azure AI content safety 
 titleSuffix: Azure AI services
 description: Install and run content safety analyze image containers with Docker to detect harmful content in image.
-author: 
-manager: 
+author: PatrickFarley
+manager: nitinme
 ms.service: azure-ai-content-safety
-ms.topic: 
+ms.topic: how-to
 ms.date: 9/11/2024
-ms.author: 
+ms.author: pafarley
 keywords: on-premises, Docker, container
 ---
 
@@ -15,7 +15,7 @@ keywords: on-premises, Docker, container
 
 The Analyze image container scans image for sexual content, violence, hate, and self harm with multi-severity levels. In this article, you learn how to download, install, and run a content safety to image container.
 
-For more information about prerequisites, validating that a container is running, running multiple containers on the same host, and running disconnected containers, see [Install and run content safety containers with Docker](container-install-run.md).
+For more information about prerequisites, validating that a container is running, running multiple containers on the same host, and running disconnected containers, see [Install and run content safety containers with Docker](./install-run-container.md).
 
 ## Container images
 
@@ -35,7 +35,7 @@ The fully qualified container image name is, `mcr.microsoft.com/en-us/product/az
 
 ## Get the container image with docker pull
 
-You need the [prerequisites](container-install-run.md#prerequisites) including required hardware. Also see the [recommended allocation of resources](container-install-run.md#host-computer-requirements-and-recommendations)
+You need the [prerequisites](./install-run-container.md#prerequisites) including required hardware. Also see the [recommended allocation of resources](./install-run-container.md#host-computer-requirements-and-recommendations)
 for each content safety container. 
 
 Use the [docker pull](https://docs.docker.com/engine/reference/commandline/pull/) command to download a container image from Microsoft Container Registry:
@@ -78,7 +78,7 @@ This command:
 
 # [Disconnected container](#tab/disconnected)
 
-To run disconnected containers (not connected to the internet), you must submit [this request form](https://aka.ms/csdisconnectedcontainers) and wait for approval. For more information about applying and purchasing a commitment plan to use containers in disconnected environments, see [Use containers in disconnected environments](../containers/disconnected-containers.md) in the Azure AI services documentation.
+To run disconnected containers (not connected to the internet), you must submit [this request form](https://aka.ms/csdisconnectedcontainers) and wait for approval. For more information about applying and purchasing a commitment plan to use containers in disconnected environments, see [Use containers in disconnected environments](../../../containers/disconnected-containers.md) in the Azure AI services documentation.
 
 If you're approved to run the container disconnected from the internet, the following example shows the formatting of the `docker run` command to use, with placeholder values. Replace these placeholder values with your own values.
 
@@ -113,7 +113,7 @@ Placeholder | Value | Format or example |
  `{MEMORY_SIZE}` | The appropriate size of memory to allocate for your container.<br/><br/>For example: `4g` |
 | `{NUMBER_CPUS}` | The appropriate number of CPUs to allocate for your container.<br/><br/>For example: `4` |
 | `{LICENSE_MOUNT}` | The path where the license is located and mounted.<br/><br/>For example: `/host/license:/path/to/license/directory` |
-| `{OUTPUT_PATH}` | The output path for logging.<br/><br/>For example: `/host/output:/path/to/output/directory`<br/><br/>For more information, see [usage records](../containers/disconnected-containers.md#usage-records) in the Azure AI services documentation. |
+| `{OUTPUT_PATH}` | The output path for logging.<br/><br/>For example: `/host/output:/path/to/output/directory`<br/><br/>For more information, see [usage records](../../../containers/disconnected-containers.md#usage-records) in the Azure AI services documentation. |
 | `{CONTAINER_LICENSE_DIRECTORY}` | Location of the license folder on the container's local filesystem.<br/><br/>For example: `/path/to/license/directory` |
 | `{CONTAINER_OUTPUT_DIRECTORY}` | Location of the output folder on the container's local filesystem.<br/><br/>For example: `/path/to/output/directory` |
 
@@ -143,7 +143,7 @@ sudo chown -R nonroot:nonroot <YOUR_LOCAL_MACHINE_PATH_1> <YOUR_LOCAL_MACHINE_PA
 
 Once the container is up and running, you can validate its operation by sending a request to the REST endpoint deployed within the container. To do this, follow below article. Note, you need to replace the endpoint URL with the Docker URL specific to your container deployment. Also, ensure that you're using host authentication, rather than key-based authentication.
 
-[Analyze image quick start](./quickstart-text.md#analyze-image-content)
+[Analyze image quick start](../quickstart-image.md)
 
 
 

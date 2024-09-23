@@ -2,12 +2,12 @@
 title: Install and run content safety containers with Docker - content safety service
 titleSuffix: Azure AI services
 description: Use the content safety containers with Docker to perform content safety check on-premises.
-author: 
-manager: 
+author: PatrickFarley
+manager: nitinme
 ms.service: azure-ai-content-safety
 ms.topic: how-to
 ms.date: 9/11/2024
-ms.author:
+ms.author: pafarley
 keywords: on-premises, Docker, container
 ---
 
@@ -44,7 +44,7 @@ The <a href="https://docs.docker.com/engine/reference/commandline/run/" target="
 
 > [!IMPORTANT]
 > These subscription keys are used to access your Azure AI services API. Don't share your keys. Store them securely. For example, use Azure Key Vault. We also recommend that you regenerate these keys regularly. Only one key is necessary to make an API call. When you regenerate the first key, you can use the second key for continued access to the service.
-The container needs the billing argument values to run. These values allow the container to connect to the billing endpoint. The container reports usage about every 10 to 15 minutes. If the container doesn't connect to Azure within the allowed time window, the container continues to run but doesn't serve queries until the billing endpoint is restored. The connection is attempted 10 times at the same time interval of 10 to 15 minutes. If it can't connect to the billing endpoint within the 10 tries, the container stops serving requests. For an example of the information sent to Microsoft for billing, see the [Azure AI container FAQ](../containers/container-faq.yml#how-does-billing-work) in the Azure AI services documentation.
+The container needs the billing argument values to run. These values allow the container to connect to the billing endpoint. The container reports usage about every 10 to 15 minutes. If the container doesn't connect to Azure within the allowed time window, the container continues to run but doesn't serve queries until the billing endpoint is restored. The connection is attempted 10 times at the same time interval of 10 to 15 minutes. If it can't connect to the billing endpoint within the 10 tries, the container stops serving requests. For an example of the information sent to Microsoft for billing, see the [Azure AI container FAQ](../../../containers/container-faq.yml#how-does-billing-work) in the Azure AI services documentation.
 
 
 ### Host computer requirements and recommendations
@@ -138,10 +138,10 @@ You can have this container and a different Azure AI container running on the HO
 
 > [!NOTE]
 > Use a unique port number if you're running multiple containers.
-| Protocol | Host URL |
-|--|--
-| WS | `ws://localhost:5000` | 
-| HTTP | `http://localhost:5000` |
+> | Protocol | Host URL |
+> |--|--
+> | WS | `ws://localhost:5000` | 
+> | HTTP | `http://localhost:5000` |
 
 For more information on using WSS and HTTPS protocols, see [Container security](../cognitive-services-container-support.md#azure-ai-services-container-security) in the Azure AI services documentation.
 
@@ -190,10 +190,10 @@ The container tests for network connectivity to the billing endpoint.
 
 ## Run disconnected containers
 
-To run disconnected containers (not connected to the internet), you must submit [this request form](https://aka.ms/csdisconnectedcontainers) and wait for approval. For more information about applying and purchasing a commitment plan to use containers in disconnected environments, see [Use containers in disconnected environments](../containers/disconnected-containers.md) in the Azure AI services documentation.
+To run disconnected containers (not connected to the internet), you must submit [this request form](https://aka.ms/csdisconnectedcontainers) and wait for approval. For more information about applying and purchasing a commitment plan to use containers in disconnected environments, see [Use containers in disconnected environments](../../../containers/disconnected-containers.md) in the Azure AI services documentation.
 
 ## Next steps
 
-* Review [analyze text container](./analyze-text-container.md) for text container configuration settings.
-*  Review [analyze image container](./analyze-image-container.md) for image container configuration settings.
+* Review [analyze text container](./text-container.md) for text container configuration settings.
+*  Review [analyze image container](./image-container.md) for image container configuration settings.
 * Use more [Azure AI containers](../cognitive-services-container-support.md).

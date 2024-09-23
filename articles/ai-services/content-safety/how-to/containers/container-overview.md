@@ -61,7 +61,7 @@ For information about other container services, see the following Azure AI servi
 
 ## Next steps
 
-* [Install and run analyze text containers](./analyze-text-container.md)
-* [Install and run analyze image containers](./analyze-image-container.md)
+* [Install and run analyze text containers](./text-container.md)
+* [Install and run analyze image containers](./image-container.md)
 
 
