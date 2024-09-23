@@ -7,16 +7,16 @@ ms.author: eur
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 1/21/2024
+ms.date: 9/20/2024
 ms.reviewer: yulili
 ms.custom: references_regions, devx-track-extended-java, devx-track-python
 zone_pivot_groups: programming-languages-set-nineteen
+#Customer intent: As a developer, I need to know how to lower speech synthesis latency using Speech SDK so that I can improve the performance of my application.
 ---
 
 # Lower speech synthesis latency using Speech SDK
 
-The synthesis latency is critical to your applications.
-In this article, we'll introduce the best practices to lower the latency and bring the best performance to your end users.
+In this article, we introduce the best practices to lower the text to speech synthesis latency and bring the best performance to your end users.
 
 Normally, we measure the latency by `first byte latency` and `finish latency`, as follows:
 
@@ -298,12 +298,12 @@ SPXConnection* connection = [[SPXConnection alloc]initFromSpeechSynthesizer:synt
 ::: zone-end
 
 > [!NOTE]
-> If the synthesize text is available, just call `SpeakTextAsync` to synthesize the audio. The SDK will handle the connection.
+> If the text is available, just call `SpeakTextAsync` to synthesize the audio. The SDK will handle the connection.
 
 ### Reuse SpeechSynthesizer
 
 Another way to reduce the connection latency is to reuse the `SpeechSynthesizer` so you don't need to create a new `SpeechSynthesizer` for each synthesis.
-We recommend using object pool in service scenario, see our sample code for [C#](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/samples/csharp/sharedcontent/console/speech_synthesis_server_scenario_sample.cs) and [Java](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/samples/java/jre/console/src/com/microsoft/cognitiveservices/speech/samples/console/SpeechSynthesisScenarioSamples.java).
+We recommend using object pool in service scenario. See our sample code for [C#](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/samples/csharp/sharedcontent/console/speech_synthesis_server_scenario_sample.cs) and [Java](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/samples/java/jre/console/src/com/microsoft/cognitiveservices/speech/samples/console/SpeechSynthesisScenarioSamples.java).
 
 
 ## Transmit compressed audio over the network
@@ -313,10 +313,10 @@ Meanwhile, a compressed audio format helps to save the users' network bandwidth,
 
 We support many compressed formats including `opus`, `webm`, `mp3`, `silk`, and so on, see the full list in [SpeechSynthesisOutputFormat](/cpp/cognitive-services/speech/microsoft-cognitiveservices-speech-namespace#speechsynthesisoutputformat).
 For example, the bitrate of `Riff24Khz16BitMonoPcm` format is 384 kbps, while `Audio24Khz48KBitRateMonoMp3` only costs 48 kbps.
-Our Speech SDK will automatically use a compressed format for transmission when a `pcm` output format is set.
+The Speech SDK automatically uses a compressed format for transmission when a `pcm` output format is set.
 For Linux and Windows, `GStreamer` is required to enable this feature.
 Refer [this instruction](how-to-use-codec-compressed-audio-input-streams.md) to install and configure `GStreamer` for Speech SDK.
-For Android, iOS and macOS, no extra configuration is needed starting version 1.20.
+For Android, iOS, and macOS, no extra configuration is needed starting version 1.20.
 
 ## Input text streaming
 
@@ -324,7 +324,7 @@ Text streaming allows real-time text processing for rapid audio generation. It's
 
 ### How to use text streaming
 
-Currently, only C#, C++ and Python are supported in the SDK. Support for Java and Objective-C is planned for future releases.
+Text streaming is supported in C#, C++ and Python with Speech SDK.
 
 ::: zone pivot="programming-language-csharp"
 

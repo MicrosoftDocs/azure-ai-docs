@@ -157,4 +157,4 @@ The example above assumes that a normalized-images field exists. To get normaliz
 
 + [Built-in skills](cognitive-search-predefined-skills.md)
 + [How to define a skillset](cognitive-search-defining-skillset.md)
-+ [Create Indexer (REST)](/rest/api/searchservice/create-indexer)
++ [Create Indexer (REST)](/rest/api/searchservice/indexers/create)

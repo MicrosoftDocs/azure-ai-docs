@@ -86,8 +86,6 @@ items:
             href: how-to-custom-speech-display-text-format.md
         - name: Custom speech model lifecycle
           href: how-to-custom-speech-model-and-endpoint-lifecycle.md
-        - name: CI/CD for custom speech
-          href: how-to-custom-speech-continuous-integration-continuous-deployment.md
     - name: How to use Pronunciation Assessment
       href: how-to-pronunciation-assessment.md
       displayName: pronounce, language learn, assess pron, scripted, unscripted
@@ -594,6 +592,8 @@ items:
           href: /legal/cognitive-services/speech-service/pronunciation-assessment/transparency-note-pronunciation-assessment?context=/azure/ai-services/speech-service/context/context
         - name: Characteristics and limitations
           href: /legal/cognitive-services/speech-service/pronunciation-assessment/characteristics-and-limitations-pronunciation-assessment?context=/azure/ai-services/speech-service/context/context
+    - name: Embedded speech
+      href: /legal/cognitive-services/speech-service/embedded-speech/limited-access-embedded-speech?context=/azure/ai-services/speech-service/context/context
     - name: Speaker Recognition
       items: 
       - name: Transparency note

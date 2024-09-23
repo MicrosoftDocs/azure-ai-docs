@@ -6,10 +6,11 @@ author: eric-urban
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 9/15/2024
+ms.date: 9/20/2024
 ms.author: eur
 ms.devlang: csharp
 ms.custom: devx-track-csharp
+#Customer intent: As a developer, I want to migrate code from v3.1 to v3.2 of the Speech to text REST API.
 ---
 
 # Migrate code from v3.1 to v3.2 of the REST API

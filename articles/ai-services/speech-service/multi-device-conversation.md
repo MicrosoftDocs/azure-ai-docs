@@ -6,9 +6,10 @@ author: eric-urban
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: overview
-ms.date: 1/21/2024
+ms.date: 9/20/2024
 ms.author: eur
 ms.custom: cogserv-non-critical-speech
+#Customer intent: As a developer, I want to learn about multi-device conversation in the Speech service.
 ---
 
 # What is multi-device conversation?
