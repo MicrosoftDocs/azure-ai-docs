@@ -135,7 +135,7 @@ To call the entry script, set the following two attributes in your parallel job 
 | `code` | string | Local path to the source code directory to upload and use for the job. |
 | `entry_script` | string | The Python file that contains the implementation of predefined parallel functions. |
 
-#### Examples
+#### Parallel job step example
 
 # [Azure CLI](#tab/cliv2)
 
@@ -152,7 +152,7 @@ The following code declares the `job_data_path` as input, binds it to the `input
 
 #### Consider automation settings
 
-Azure Machine Learning parallel job exposes many settings that can automatically control the job without manual intervention. The following table describes these settings.
+Azure Machine Learning parallel job exposes many optional settings that can automatically control the job without manual intervention. The following table describes these settings.
 
 | Key | Type | Description | Allowed values | Default value | Set in attribute | Set in program arguments |
 |--|--|--|--|--|--|--|
@@ -173,7 +173,7 @@ The following sample code updates these settings:
 
 # [Azure CLI](#tab/cliv2)
 
-:::code language="yaml" source="~/azureml-examples-main/cli/jobs/pipelines/iris-batch-prediction-using-parallel/pipeline.yml" range="14-61" highlight="24-28,41-48":::
+:::code language="yaml" source="~/azureml-examples-main/cli/jobs/pipelines/iris-batch-prediction-using-parallel/pipeline.yml" range="14-61" highlight="24-28,39-48":::
 
 # [Python](#tab/python)
 
