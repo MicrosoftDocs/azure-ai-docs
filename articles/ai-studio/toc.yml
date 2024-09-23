@@ -277,7 +277,7 @@ items:
     - name: Evaluate with Azure AI Studio
       href: how-to/evaluate-generative-ai-app.md
     - name: View evaluation results in Azure AI Studio
-      href: how-to/evaluate-flow-results.md
+      href: how-to/evaluate-results.md
       displayName: accuracy,metrics
     - name: Evaluate flows in AI Studio
       items:

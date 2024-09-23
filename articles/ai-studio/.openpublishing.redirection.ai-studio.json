@@ -124,6 +124,11 @@
             "source_path": "articles/ai-studio/how-to/develop/flow-evaluate-sdk.md",
             "redirect_url": "/azure/ai-studio/how-to/develop/evaluate-sdk",
             "redirect_document_id": true
+        },
+        {
+            "source_path": "articles/ai-studio/how-to/develop/evaluate-flow-results.md",
+            "redirect_url": "/azure/ai-studio/how-to/develop/evaluate-results",
+            "redirect_document_id": true
         }
     ]
 }
