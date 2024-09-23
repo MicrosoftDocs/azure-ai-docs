@@ -9,7 +9,7 @@ ms.service: azure-machine-learning
 ms.subservice: mlops
 ms.reviewer: alehughes
 ms.topic: concept-article
-ms.date: 09/20/2024
+ms.date: 09/23/2024
 ms.custom: devplatv2, FY25Q1-Linter
 #Customer intent: As a data scientist, I want to understand Azure Machine Learning monitoring so I can keep my machine learning models fresh and performant.
 ---
@@ -33,11 +33,11 @@ Each monitoring signal has one or more metrics. You can set thresholds for these
 
 Azure Machine Learning uses the following process to handle a built-in monitoring signal, such as data drift, for a model in production:
 
-First, Azure Machine Learning calculates the statistical distribution of the feature's value in the training data. This distribution is the baseline distribution for the feature.
+- First, Azure Machine Learning calculates the statistical distribution of the feature's value in the training data. This distribution is the baseline distribution for the feature.
 
-Next, Azure Machine Learning calculates the statistical distribution of the feature's latest values recorded in production.
+- Next, Azure Machine Learning calculates the statistical distribution of the feature's latest values recorded in production.
 
-Azure Machine Learning then performs a statistical test or calculates a distance score to compare the distribution of the feature's latest values in production with the baseline distribution. If the test statistic or distance score between the two distributions exceeds a user-specified threshold, Azure Machine Learning identifies the anomaly and notifies the user.
+- Azure Machine Learning then performs a statistical test or calculates a distance score to compare the distribution of the feature's latest values in production with the baseline distribution. If the test statistic or distance score between the two distributions exceeds a user-specified threshold, Azure Machine Learning identifies the anomaly and notifies the user.
 
 ### Set up and use model monitoring
 
@@ -68,16 +68,16 @@ Azure Machine Learning provides the following capabilities for continuous model 
 Each machine learning model and its use cases are unique. Therefore, model monitoring is unique for each situation. The following list describes recommended best practices for model monitoring.
 
 - **Start model monitoring immediately after you deploy a model to production.**
-- **Work with data scientists who are familiar with the model to set up monitoring.** Data scientists who have insight into the model and its use cases are in the best position to recommend monitoring signals and metrics and set the right alert thresholds for each metric to avoid alert fatigue.
+- **Work with data scientists who are familiar with the model to set up monitoring.** Data scientists who have insight into the model and its use cases can recommend monitoring signals and metrics and set the right alert thresholds for each metric to avoid alert fatigue.
 - **Include multiple monitoring signals in your setup.** With multiple monitoring signals, you get both broad and granular monitoring views. For example, you can combine data drift and feature attribution drift signals to get early warnings about model performance issues.
 - **Use appropriate reference data as the comparison baseline.** For reference data used as the comparison baseline, you can use recent past production data or historical data, such as training or validation data. For more meaningful comparison, use training data as the comparison baseline for data drift and data quality. Use validation data as the comparison baseline for prediction drift.
-- **Specify monitoring frequency based on production data growth over time**. For example, if your production model has heavy daily traffic and the daily data accumulation is sufficient to monitor, set the monitoring frequency to daily. Otherwise, consider a weekly or monthly monitoring frequency based on the growth of your production data over time.
+- **Specify monitoring frequency based on production data growth over time**. For example, if your production model has heavy daily traffic and the daily data accumulation is sufficient, set the monitoring frequency to daily. Otherwise, consider a weekly or monthly monitoring frequency based on the growth of your production data over time.
 - **Monitor top N features or a feature subset.** If you use training data as the comparison baseline, you can easily configure data drift monitoring or data quality monitoring for the top N important features. For models that have a large number of features, consider monitoring a subset of those features to reduce computation cost and monitoring noise.
 - **Use the model performance signal when you have access to ground truth data.** If you have access to ground truth data, also called actuals, based on your machine learning application, use the model performance signal to compare the ground truth data to model output. This comparison provides an objective view of model performance in production.
 
 ## Lookback window size and offset
 
-The *lookback window size* is the duration of time in ISO 8601 format for your production or reference data window, looking back from the date of your monitoring run. The *lookback window offset* is the duration of time in ISO 8601 format to offset the end of your data window from the date of your monitoring run.
+The *lookback window size* is the duration of time in ISO 8601 format that your monitoring run should look back to collect your production or reference data. The *lookback window offset* is the duration of time to offset the end of your data window from the date of your monitoring run.
 
 For example, your model in production has a monitor set to run on January 31 at 3:15pm UTC. A production data lookback window size of `P7D` or seven days and a data lookback window offset of `P0D` or zero days means the monitor uses production data from January 24 at 3:15pm UTC up until January 31 at 3:15pm UTC, the time your monitor runs.
 
@@ -119,15 +119,15 @@ Azure Machine Learning model monitoring supports the following monitoring signal
 
 [!INCLUDE [machine-learning-preview-items-disclaimer](includes/machine-learning-preview-items-disclaimer.md)]
 
-|Monitoring signal | Description | Metrics | Model tasks (supported data format) | Production data | Reference data |
+|Monitoring signal | Description | Metrics | Model tasks or supported data format | Production data | Reference data |
 |--|--|--|--|--|--|
-| Data drift | Tracks changes in the distribution of a model's input data by comparing the distribution to the model's training data or recent, past production data | Jensen-Shannon Distance, Population Stability Index, Normalized Wasserstein Distance, Two-Sample Kolmogorov-Smirnov Test, Pearson's Chi-Squared Test | Classification (tabular data), Regression (tabular data) | Production data: Model inputs | Recent past production data or training data |
-| Prediction drift | Tracks changes in the distribution of a model's predicted outputs by comparing the distribution to validation data, labeled test data, or recent past production data | Jensen-Shannon Distance, Population Stability Index, Normalized Wasserstein Distance, Chebyshev Distance, Two-Sample Kolmogorov-Smirnov Test, Pearson's Chi-Squared Test | Classification (tabular data), Regression (tabular data) | Production data: Model outputs | Recent past production data or validation data |
-| Data quality | Tracks the data integrity of a model's input by comparing it to the model's training data or recent, past production data. The data quality checks include checking for null values, type mismatch, or out-of-bounds values. | Null value rate, data type error rate, out-of-bounds rate | Classification (tabular data), Regression (tabular data) | Production data: Model inputs | Recent past production data or training data |
-| Feature attribution drift (preview) | Based on the contribution of features to predictions, also known as feature importance). Feature attribution drift tracks feature importance during production by comparing it with feature importance during training.| Normalized discounted cumulative gain | Classification (tabular data), Regression (tabular data) | Production data: Model inputs and outputs | Training data (required) |
-| Model performance: Classification (preview) | Tracks the objective performance of a model's output in production by comparing it to collected ground truth data | Accuracy, Precision, and Recall | Classification (tabular data) | Production data: Model outputs | Ground truth data (required) |
+| Data drift | Tracks changes in the distribution of a model's input data by comparing the distribution to the model's training data or recent production data. | Jensen-Shannon Distance, Population Stability Index, Normalized Wasserstein Distance, Two-Sample Kolmogorov-Smirnov Test, Pearson's Chi-Squared Test | Classification (tabular data), Regression (tabular data) | Production data: Model inputs | Recent past production data or training data |
+| Prediction drift | Tracks changes in the distribution of a model's predicted outputs by comparing the distribution to validation data, labeled test data, or recent production data. | Jensen-Shannon Distance, Population Stability Index, Normalized Wasserstein Distance, Chebyshev Distance, Two-Sample Kolmogorov-Smirnov Test, Pearson's Chi-Squared Test | Classification (tabular data), Regression (tabular data) | Production data: Model outputs | Recent past production data or validation data |
+| Data quality | Tracks the data integrity of a model's input by comparing it to the model's training data or recent production data. The data quality checks include checking for null values, type mismatch, or out-of-bounds values. | Null value rate, Data type error rate, Out-of-bounds rate | Classification (tabular data), Regression (tabular data) | Production data: Model inputs | Recent past production data or training data |
+| Feature attribution drift (preview) | Based on the contribution of features to predictions, also known as feature importance. Feature attribution drift tracks feature importance during production by comparing it with feature importance during training.| Normalized discounted cumulative gain | Classification (tabular data), Regression (tabular data) | Production data: Model inputs and outputs | Training data (required) |
+| Model performance: Classification (preview) | Tracks the objective performance of a model's output in production by comparing it to collected ground truth data. | Accuracy, Precision, and Recall | Classification (tabular data) | Production data: Model outputs | Ground truth data (required) |
 | Model performance: Regression (preview) | Tracks the objective performance of a model's output in production by comparing it to collected ground truth data. | Mean Absolute Error (MAE), Mean Squared Error (MSE), Root Mean Squared Error (RMSE) | Regression (tabular data) | Production data: Model outputs | Ground truth data (required) |
-|[Generative AI: Generation safety and quality](prompt-flow/how-to-monitor-generative-ai-applications.md) (preview)|Evaluates generative AI applications for safety and quality, using GPT-assisted metrics.| Groundedness, relevance, fluency, similarity, coherence| Question & Answering | Prompt, completion, context, and annotation template |N/A|
+|[Generative AI: Generation safety and quality](prompt-flow/how-to-monitor-generative-ai-applications.md) (preview)|Evaluates generative AI applications for safety and quality, using GPT-assisted metrics.| Groundedness, Relevance, Fluency, Similarity, Coherence| Questions & Answers | Prompt, completion, context, and annotation template |N/A|
 
 ### Data quality metrics
 
@@ -157,10 +157,10 @@ Azure Machine Learning supports calculating the data type error rate for the fol
 
 During each monitoring run, Azure Machine Learning model monitoring determines the acceptable range or set for each feature from the reference data. The out-of-bounds rate is the rate of values for each feature that fall outside of the appropriate range or set determined by the reference data.
 
-- For numerical features, the appropriate range is the numerical interval between the minimum and maximum values in the reference dataset, such as [0, 100].
-- For categorical features, such as `color`, the appropriate range is a set of all values contained in the reference dataset, such as [`red`, `yellow`, `green`].
+- For numerical features, the appropriate range is the numerical interval between the minimum and maximum values in the reference dataset, such as `[0, 100]`.
+- For categorical features, such as `color`, the appropriate range is a set of all values contained in the reference dataset, such as `[red, yellow, green]`.
 
-For example, if you have a numerical `temperature` feature where all values in the reference dataset fall within the range [37, 77], but 10 out of 100 values for `temperature` in the production data window fall outside the range [37, 77], the out-of-bounds rate for `temperature` is 10%.
+For example, if you have a numerical `temperature` feature where all values in the reference dataset fall within the range `[37, 77]`, but 10 out of 100 values for `temperature` in the production data window fall outside the range `[37, 77]`, the out-of-bounds rate for `temperature` is 10%.
 
 Azure Machine Learning supports calculating the out-of-bounds rate for the following data types that are available in PySpark: `StringType`, `IntegerType`, `DoubleType`, `ByteType`, `LongType`, and `FloatType`. If the data type for a feature isn't in this list, Azure Machine Learning model monitoring still runs, but doesn't compute the out-of-bounds rate for that feature.
 
@@ -168,7 +168,7 @@ Azure Machine Learning supports calculating the out-of-bounds rate for the follo
 
 You can use events generated by Azure Machine Learning model monitoring runs to set up event-driven applications, processes, or continuous integration/continuous delivery (CI/CD) workflows with [Azure Event Grid](how-to-use-event-grid.md). When your model monitor detects drift, data quality issues, or model performance degradation, you can track these events with Event Grid and take action programmatically.
 
-For example, if the accuracy of your classification model in production dips below a certain threshold, you can use Event Grid to begin a retraining job that uses collected ground truth data. To learn how to integrate Azure Machine Learning with Event Grid, see [Perform continuous model monitoring in Azure Machine Learning](how-to-monitor-model-performance.md).
+For example, if the accuracy of your classification model in production dips below a certain threshold, you can use Event Grid to begin a retraining job that uses collected ground truth data. To learn how to integrate Azure Machine Learning with Event Grid, see [Monitor performance of models deployed to production](how-to-monitor-model-performance.md).
 
 ## Related content
 
