@@ -404,24 +404,24 @@ The `evaluate()` API only accepts data in the JSONLines format. For all built-in
 
 When passing in your built-in evaluators, it's important to specify the right keyword mapping in the `evaluators` parameter list. The following is the keyword mapping required for the results from your built-in evaluators to show up in the UI when logged to Azure AI Studio.
 
-| Evaluator                    | keyword param         |
-|------------------------------|-----------------------|
-| `RelevanceEvaluator`         | "relevance"           |
-| `CoherenceEvaluator`         | "coherence"           |
-| `GroundednessEvaluator`      | "groundedness"        |
-| `FluencyEvaluator`           | "fluency"             |
-| `SimilarityEvaluator`        | "similarity"          |
-| `F1ScoreEvaluator`           | "f1_score"            |
-| `RougeScoreEvaluator`        | "rouge_score"         |
-| `GleuScoreEvaluator`         | "gleu_score"          |
-| `BleuScoreEvaluator`         | "bleu_score"          |
-| `MeteorScoreEvaluator`       | "meteor_score"       |
-| `ViolenceEvaluator`          | "violence"            |
-| `SexualEvaluator`            | "sexual"              |
-| `SelfHarmEvaluator`          | "self_harm"           |
-| `HateUnfairnessEvaluator`    | "hate_unfairness"     |
-| `QAEvaluator`                | "qa"                  |
-| `ContentSafetyEvaluator`     | "content_safety"      |
+| Evaluator                 | keyword param     |
+|---------------------------|-------------------|
+| `RelevanceEvaluator`      | "relevance"       |
+| `CoherenceEvaluator`      | "coherence"       |
+| `GroundednessEvaluator`   | "groundedness"    |
+| `FluencyEvaluator`        | "fluency"         |
+| `SimilarityEvaluator`     | "similarity"      |
+| `F1ScoreEvaluator`        | "f1_score"        |
+| `RougeScoreEvaluator`     | "rouge"           |
+| `GleuScoreEvaluator`      | "gleu"            |
+| `BleuScoreEvaluator`      | "bleu"            |
+| `MeteorScoreEvaluator`    | "meteor"          |
+| `ViolenceEvaluator`       | "violence"        |
+| `SexualEvaluator`         | "sexual"          |
+| `SelfHarmEvaluator`       | "self_harm"       |
+| `HateUnfairnessEvaluator` | "hate_unfairness" |
+| `QAEvaluator`             | "qa"              |
+| `ContentSafetyEvaluator`  | "content_safety"  |
 
 Here's an example of setting the `evaluators` parameters:
 ```python
