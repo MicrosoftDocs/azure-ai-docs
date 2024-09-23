@@ -46,7 +46,7 @@ The core job of Azure Machine Learning parallelization is to split a single seri
 
 An Azure Machine Learning parallel job can be used only as a step in a pipeline job.
 
-# [Azure CLI](#tab/cli)
+# [Azure CLI](#tab/cliv2)
 
 The following examples come from [Run a pipeline job using parallel job in pipeline](https://github.com/Azure/azureml-examples/tree/main/cli/jobs/pipelines/iris-batch-prediction-using-parallel/) in the [Azure Machine Learning examples](https://github.com/Azure/azureml-examples) repository.
 
@@ -123,7 +123,7 @@ The parallel job executes the functions in each processor, as shown in the follo
 
 :::image type="content" source="./media/how-to-use-parallel-job-in-pipeline/how-entry-script-works-in-parallel-job.png" alt-text="Diagram showing how entry script works in parallel job." border="false":::
 
-For more details, see the following entry script examples:
+See the following entry script examples:
 
 - [Image identification for a list of image files](https://github.com/Azure/MachineLearningNotebooks/blob/master/how-to-use-azureml/machine-learning-pipelines/parallel-run/Code/digit_identification.py)
 - [Iris classification for a tabular iris data](https://github.com/Azure/MachineLearningNotebooks/blob/master/how-to-use-azureml/machine-learning-pipelines/parallel-run/Code/iris_score.py)
@@ -158,12 +158,12 @@ Azure Machine Learning parallel job exposes many settings that can automatically
 |--|--|--|--|--|--|--|
 | `mini_batch_error_threshold` | integer | Number of failed mini-batches to ignore in this parallel job. If the count of failed mini-batches is higher than this threshold, the parallel job is marked as failed.<br><br>The mini-batch is marked as failed if:<br>- The count of return from `run()` is less than the mini-batch input count.<br>- Exceptions are caught in custom `run()` code.<br><br>`-1` is the default, meaning to ignore all failed mini-batches. | [-1, int.max] | `-1` | `mini_batch_error_threshold` | N/A |
 | `mini_batch_max_retries` | integer | Number of retries when the mini-batch fails or times out. If all retries fail, the mini-batch is marked as failed per the `mini_batch_error_threshold` calculation. | `[0, int.max]` | `2` | `retry_settings.max_retries` | N/A |
-| `mini_batch_timeout` | integer | Time out in seconds for executing the custom `run()` function. If execution time is higher than this threshold, the mini-batch is aborted and marked as failed to trigger retry. | `(0, 259200]` | `60` | `retry_settings.timeout` | N/A |
+| `mini_batch_timeout` | integer | Time-out in seconds for executing the custom `run()` function. If execution time is higher than this threshold, the mini-batch is aborted and marked as failed to trigger retry. | `(0, 259200]` | `60` | `retry_settings.timeout` | N/A |
 | `item_error_threshold` | integer | The threshold of failed items. Failed items are counted by the number gap between inputs and returns from each mini-batch. If the sum of failed items is higher than this threshold, the parallel job is marked as failed.<br><br>Note: `-1` is the default, meaning to ignore all failures during parallel job. | `[-1, int.max]` | `-1` | N/A | `--error_threshold` |
 | `allowed_failed_percent` | integer | Similar to `mini_batch_error_threshold`, but uses the percent of failed mini-batches instead of the count. | `[0, 100]` | `100` | N/A | `--allowed_failed_percent` |
-| `overhead_timeout` | integer | Time out in seconds for initialization of each mini-batch. For example, load mini-batch data and pass it to the `run()` function. | `(0, 259200]` | `600` | N/A | `--task_overhead_timeout` |
-| `progress_update_timeout` | integer | Time out in seconds for monitoring the progress of mini-batch execution. If no progress updates are received within this timeout setting, the parallel job is marked as failed. | `(0, 259200]` | Dynamically calculated by other settings. | N/A | `--progress_update_timeout` |
-| `first_task_creation_timeout` | integer | Time out in seconds for monitoring the time between the job start and the run of the first mini-batch. | `(0, 259200]` | `600` | N/A | --first_task_creation_timeout |
+| `overhead_timeout` | integer | Time-out in seconds for initialization of each mini-batch. For example, load mini-batch data and pass it to the `run()` function. | `(0, 259200]` | `600` | N/A | `--task_overhead_timeout` |
+| `progress_update_timeout` | integer | Time-out in seconds for monitoring the progress of mini-batch execution. If no progress updates are received within this timeout setting, the parallel job is marked as failed. | `(0, 259200]` | Dynamically calculated by other settings. | N/A | `--progress_update_timeout` |
+| `first_task_creation_timeout` | integer | Time-out in seconds for monitoring the time between the job start and the run of the first mini-batch. | `(0, 259200]` | `600` | N/A | --first_task_creation_timeout |
 | `logging_level` | string | The level of logs to dump to user log files. | `INFO`, `WARNING`, or `DEBUG` | `INFO` | `logging_level` | N/A |
 | `append_row_to` | string | Aggregate all returns from each run of the mini-batch and output it into this file. May refer to one of the outputs of the parallel job by using the expression `${{outputs.<output_name>}}` |  |  | `task.append_row_to` | N/A |
 | `copy_logs_to_parent` | string | Boolean option whether to copy the job progress, overview, and logs to the parent pipeline job. | `True` or `False` | `False` | N/A | `--copy_logs_to_parent` |
