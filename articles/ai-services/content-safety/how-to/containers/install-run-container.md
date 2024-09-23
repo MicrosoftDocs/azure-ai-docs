@@ -143,7 +143,7 @@ You can have this container and a different Azure AI container running on the HO
 > | WS | `ws://localhost:5000` | 
 > | HTTP | `http://localhost:5000` |
 
-For more information on using WSS and HTTPS protocols, see [Container security](../cognitive-services-container-support.md#azure-ai-services-container-security) in the Azure AI services documentation.
+For more information on using WSS and HTTPS protocols, see [Container security](../../../cognitive-services-container-support.md#azure-ai-services-container-security) in the Azure AI services documentation.
 
 ## Troubleshooting
 
@@ -196,4 +196,4 @@ To run disconnected containers (not connected to the internet), you must submit 
 
 * Review [analyze text container](./text-container.md) for text container configuration settings.
 *  Review [analyze image container](./image-container.md) for image container configuration settings.
-* Use more [Azure AI containers](../cognitive-services-container-support.md).
+* Use more [Azure AI containers](../../../cognitive-services-container-support.md).

@@ -15,7 +15,7 @@ keywords: on-premises, Docker, container
 
 The Analyze text container scans text generate by foundation model or human for sexual content, violence, hate, and self harm with multi-severity levels. In this article, you learn how to download, install, and run a content safety analyze text container.
 
-For more information about prerequisites, validating that a container is running, running multiple containers on the same host, and running disconnected containers, see [Install and run content safety containers with Docker](container-install-run.md).
+For more information about prerequisites, validating that a container is running, running multiple containers on the same host, and running disconnected containers, see [Install and run content safety containers with Docker](./install-run-container.md).
 
 ## Container images
 
@@ -35,7 +35,7 @@ The fully qualified container image name is, `mcr.microsoft.com/azure-cognitive-
 
 ## Get the container image with docker pull
 
-You need the [prerequisites](container-install-run.md#prerequisites) including required hardware. Also see the [recommended allocation of resources](container-install-run.md#host-computer-requirements-and-recommendations)
+You need the [prerequisites](./install-run-container.md#prerequisites) including required hardware. Also see the [recommended allocation of resources](./install-run-container.md#host-computer-requirements-and-recommendations)
 for each content safety container. 
 
 Use the [docker pull](https://docs.docker.com/engine/reference/commandline/pull/) command to download a container image from Microsoft Container Registry:
@@ -54,10 +54,10 @@ The following table represents the various `docker run` parameters and their cor
 
 | Parameter | Description |
 |---------|---------|
-| `{ENDPOINT_URI}` | The endpoint is required for metering and billing. For more information, see [billing arguments](./container-install-run.md#billing-arguments). |
-| `{API_KEY}` | The API key is required. For more information, see [billing arguments](./container-install-run.md#billing-arguments). |
+| `{ENDPOINT_URI}` | The endpoint is required for metering and billing. For more information, see [billing arguments](./install-run-container.md#billing-arguments). |
+| `{API_KEY}` | The API key is required. For more information, see [billing arguments](./install-run-container.md#billing-arguments). |
 
-When you run the content safety analyze text container, configure the port, GPU according to the content safety container [requirements and recommendations](./container-install-run.md#host-computer-requirements-and-recommendations).
+When you run the content safety analyze text container, configure the port, GPU according to the content safety container [requirements and recommendations](./install-run-container.md#host-computer-requirements-and-recommendations).
 
 Here's an example `docker run` command with placeholder values. You must specify the `ENDPOINT_URI` and `API_KEY` values:
 
@@ -71,7 +71,7 @@ ApiKey={API_KEY}
 
 This command:
 * Runs a `content safety` container from the container image.
-* `--gpus all` Use all available GPU resources. Content safety container requires CUDA for optimal performance. See more in  [host requirements and recommendations](./container-install-run.md#host-computer-requirements-and-recommendations). Also make sure your host install [NVIDIA container toolkit](./container-install-run.md#installing-the-nvidia-container-toolkit)
+* `--gpus all` Use all available GPU resources. Content safety container requires CUDA for optimal performance. See more in  [host requirements and recommendations](./install-run-container.md#host-computer-requirements-and-recommendations). Also make sure your host install [NVIDIA container toolkit](./install-run-container.md#installing-the-nvidia-container-toolkit)
 * Exposes TCP port 5000 and allocates a pseudo-TTY for the container.
 * Automatically removes the container after it exits. The container image is still available on the host computer.
 
@@ -82,7 +82,7 @@ docker run -e CUDA_ENABLED=false
 ```
 #### Run the container with blocklist
 
-The Analyze text container supports the use of a [blocklist feature](./how-to/use-blocklist.md), which allows you to block custom terms. You, as the customer, have the ability to manage these blocklists by using CSV files. You have the flexibility to use multiple CSV files for multiple blocklists.
+The Analyze text container supports the use of a [blocklist feature](../use-blocklist.md), which allows you to block custom terms. You, as the customer, have the ability to manage these blocklists by using CSV files. You have the flexibility to use multiple CSV files for multiple blocklists.
 
 To run the container with a blocklist, use the following command:
 
@@ -98,7 +98,7 @@ Note, the Analyze text container uses an exact match method for the blocklist. A
 
 # [Disconnected container](#tab/disconnected)
 
-To run disconnected containers (not connected to the internet), you must submit [this request form](https://aka.ms/csdisconnectedcontainers) and wait for approval. For more information about applying and purchasing a commitment plan to use containers in disconnected environments, see [Use containers in disconnected environments](../containers/disconnected-containers.md) in the Azure AI services documentation.
+To run disconnected containers (not connected to the internet), you must submit [this request form](https://aka.ms/csdisconnectedcontainers) and wait for approval. For more information about applying and purchasing a commitment plan to use containers in disconnected environments, see [Use containers in disconnected environments](../../../containers/disconnected-containers.md) in the Azure AI services documentation.
 
 If you're approved to run the container disconnected from the internet, the following example shows the formatting of the `docker run` command to use, with placeholder values. Replace these placeholder values with your own values.
 
@@ -131,7 +131,7 @@ Placeholder | Value | Format or example |
 |-------------|-------|---|
 | `{IMAGE}` | The container image you want to use.<br/><br/>For example: `mcr.microsoft.com/azure-cognitive-services/contentsafety/text-analyze:latest`|
 | `{LICENSE_MOUNT}` | The path where the license is located and mounted.<br/><br/>For example: `/host/license:/path/to/license/directory` |
-| `{OUTPUT_PATH}` | The output path for logging.<br/><br/>For example: `/host/output:/path/to/output/directory`<br/><br/>For more information, see [usage records](../containers/disconnected-containers.md#usage-records) in the Azure AI services documentation. |
+| `{OUTPUT_PATH}` | The output path for logging.<br/><br/>For example: `/host/output:/path/to/output/directory`<br/><br/>For more information, see [usage records](../../../containers/disconnected-containers.md#usage-records) in the Azure AI services documentation. |
 | `{CONTAINER_LICENSE_DIRECTORY}` | Location of the license folder on the container's local filesystem.<br/><br/>For example: `/path/to/license/directory` |
 | `{CONTAINER_OUTPUT_DIRECTORY}` | Location of the output folder on the container's local filesystem.<br/><br/>For example: `/path/to/output/directory` |
 
@@ -156,7 +156,7 @@ sudo chown -R nonroot:nonroot <YOUR_LOCAL_MACHINE_PATH_1> <YOUR_LOCAL_MACHINE_PA
 ```
 #### Run the container with blocklist
 
-The Analyze text container supports the use of a [blocklist feature](./how-to/use-blocklist.md), which allows you to block custom terms. You, as the customer, have the ability to manage these blocklists by using CSV files. You have the flexibility to use multiple CSV files for multiple blocklists.
+The Analyze text container supports the use of a [blocklist feature](../use-blocklist.md), which allows you to block custom terms. You, as the customer, have the ability to manage these blocklists by using CSV files. You have the flexibility to use multiple CSV files for multiple blocklists.
 
 To run the container with a blocklist, use the following command:
 
@@ -176,7 +176,7 @@ Note, the Analyze text container uses an exact match method for the blocklist. A
 Once the container is up and running, you can validate its operation by sending a request to the REST endpoint deployed within the container. To do this, follow below article. Note, you need to replace the endpoint URL with the Docker URL specific to your container deployment. Also, ensure that you're using host authentication, rather than key-based authentication.
 
 
- - [analyze text quick start](./quickstart-text.md#analyze-text-content)
+[analyze text quick start](../../quickstart-text.md#analyze-text-content)
 
 
 
