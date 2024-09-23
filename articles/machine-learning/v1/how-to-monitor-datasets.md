@@ -205,7 +205,7 @@ The **backfill** function runs a backfill job, for a specified start and end dat
 
 See the [Python SDK reference documentation on data drift](/python/api/azureml-datadrift/azureml.datadrift) for full details.
 
-The following example shows how to create a dataset monitor using the Python SDK
+The following example shows how to create a dataset monitor using the Python SDK:
 
 ```python
 from azureml.core import Workspace, Dataset
