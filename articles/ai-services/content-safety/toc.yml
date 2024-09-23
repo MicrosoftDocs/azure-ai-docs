@@ -67,6 +67,18 @@ items:
     href: how-to/custom-categories-rapid.md
   - name: Use a blocklist
     href: how-to/use-blocklist.md
+  - name: Containers
+    items:
+    - name: Content Safety containers overview
+      href: how-to/containers/container-overview.md
+    - name: Install and run containers
+      href: how-to/containers/install-run-container.md
+    - name: Text analysis container
+      href: how-to/containers/text-analysis.md
+    - name: Image analysis container
+      href: how-to/containers/image-analysis.md
+  - name: Embedded Content Safety
+    href: how-to/embedded-content-safety.md 
   - name: Encryption of data at rest
     href: how-to/encrypt-data-at-rest.md
   - name: Migrate from public preview to GA
