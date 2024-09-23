@@ -53,43 +53,8 @@ To create and work with dataset monitors, you need:
 * Structured (tabular) data with a timestamp specified in the file path, file name, or column in the data.
 
 ## Prerequisites (Migrate to Model Monitor)
-When you migrate to Model Monitor, please check the prerequisites as following:
+When you migrate to Model Monitor, please check the prerequisites as mentioned in this article [Prerequisites of Azure Machine Learning model monitoring](../how-to-monitor-model-performance.md#prerequisites).
 
-
-# [Python SDK](#tab/python)
-
-[!INCLUDE [basic prereqs sdk](../includes/machine-learning-sdk-v2-prereqs.md)]
-
-# [Studio](#tab/azure-studio)
-
-Before following the steps in this article, make sure you have the following prerequisites:
-
-* An Azure subscription. If you don't have an Azure subscription, create a free account before you begin. Try the [free or paid version of Azure Machine Learning](https://azure.microsoft.com/free/).
-
-* An Azure Machine Learning workspace and a compute instance. If you don't have these resources, use the steps in the [Quickstart: Create workspace resources](../quickstart-create-resources.md) article to create them.
-
-# [Azure CLI](#tab/azure-cli)
-
-[!INCLUDE [basic prereqs cli](../includes/machine-learning-cli-prereqs.md)]
----
-
-* Azure role-based access controls (Azure RBAC) are used to grant access to operations in Azure Machine Learning. To perform the steps in this article, your user account must be assigned the __owner__ or __contributor__ role for the Azure Machine Learning workspace, or a custom role allowing `Microsoft.MachineLearningServices/workspaces/onlineEndpoints/*`. For more information, see [Manage access to an Azure Machine Learning workspace](../how-to-assign-roles.md).
-
-*  For monitoring a model that is deployed to an Azure Machine Learning online endpoint (managed online endpoint or Kubernetes online endpoint), be sure to:
-
-    * Have a model already deployed to an Azure Machine Learning online endpoint. Both managed online endpoint and Kubernetes online endpoint are supported. If you don't have a model deployed to an Azure Machine Learning online endpoint, see [Deploy and score a machine learning model by using an online endpoint](../how-to-deploy-online-endpoints.md).
-
-    * Enable data collection for your model deployment. You can enable data collection during the deployment step for Azure Machine Learning online endpoints. For more information, see [Collect production data from models deployed to a real-time endpoint](../how-to-collect-production-data.md).
-
-*  For monitoring a model that is deployed to an Azure Machine Learning batch endpoint or deployed outside of Azure Machine Learning, be sure to:
-
-    * Have a means to collect production data and register it as an Azure Machine Learning data asset.
-    * Update the registered data asset continuously for model monitoring.
-    * (Recommended) Register the model in an Azure Machine Learning workspace, for lineage tracking.
-
-> [!IMPORTANT]
->
-> Model monitoring jobs are scheduled to run on serverless Spark compute pools with support for the following VM instance types: `Standard_E4s_v3`, `Standard_E8s_v3`, `Standard_E16s_v3`, `Standard_E32s_v3`, and `Standard_E64s_v3`. You can select the VM instance type with the `create_monitor.compute.instance_type` property in your YAML configuration or from the dropdown in the Azure Machine Learning studio.
 
 ## What is data drift?
 
@@ -233,7 +198,7 @@ The **backfill** function runs a backfill job, for a specified start and end dat
 > Azure Machine Learning model monitoring doesn't support manual **backfill** function, if you want to redo the model monitor for a specif time range, you can create another model monitor for that specific time range.
 
 # [Python SDK](#tab/python)
-
+<a name="sdk-monitor"></a>
 
 [!INCLUDE [sdk v1](../includes/machine-learning-sdk-v1.md)]
 
@@ -290,7 +255,7 @@ monitor = monitor.enable_schedule()
 
 
 # [Studio](#tab/azure-studio)
-
+<a name="studio-monitor"></a>
 
 1. Navigate to the [studio's homepage](https://ml.azure.com).
 1. Select the **Data** tab.
