@@ -504,7 +504,7 @@ On this chart, select a single date to compare the feature distribution between 
 
 ## Metrics, alerts, and events
 
-Metrics can be queried in the [Azure Application Insights](/azure/azure-monitor/app/app-insights-overview) resource associated with your machine learning workspace. You have access to all features of Application Insights including set up for custom alert rules and action groups to trigger an action such as, an Email/SMS/Push/Voice or Azure Function. Refer to the complete Application Insights documentation for details.
+Metrics can be queried in the [Azure Application Insights](/azure/azure-monitor/app/app-insights-overview) resource associated with your machine learning workspace. You have access to all features of Application Insights including set up for custom alert rules and action groups to trigger an action such as an Email/SMS/Push/Voice or Azure Function. Refer to the complete Application Insights documentation for details.
 
 To get started, navigate to the [Azure portal](https://portal.azure.com) and select your workspace's **Overview** page. The associated Application Insights resource is on the far right:
 
