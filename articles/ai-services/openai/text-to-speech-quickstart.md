@@ -10,7 +10,7 @@ ms.reviewer: v-baolianzou
 ms.author: eur
 author: eric-urban
 recommendations: false
-zone_pivot_groups: programming-languages-rest-js
+zone_pivot_groups: programming-languages-rest-js-cs
 ---
 
 # Quickstart: Text to speech with the Azure OpenAI Service
@@ -18,7 +18,6 @@ zone_pivot_groups: programming-languages-rest-js
 In this quickstart, you use the Azure OpenAI Service for text to speech with OpenAI voices.  
 
 The available voices are: `alloy`, `echo`, `fable`, `onyx`, `nova`, and `shimmer`. For more information, see [Azure OpenAI Service reference documentation for text to speech](./reference.md#text-to-speech).
-
 
 ::: zone pivot="rest-api"
 
@@ -29,6 +28,12 @@ The available voices are: `alloy`, `echo`, `fable`, `onyx`, `nova`, and `shimmer
 ::: zone pivot="programming-language-javascript"
 
 [!INCLUDE [JavaScript quickstart](includes/text-to-speech-javascript.md)]
+
+::: zone-end
+
+::: zone pivot="programming-language-dotnet"
+
+[!INCLUDE [.NET quickstart](includes/text-to-speech-dotnet.md)]
 
 ::: zone-end
 
