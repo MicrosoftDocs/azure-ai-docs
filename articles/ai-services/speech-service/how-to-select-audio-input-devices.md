@@ -7,9 +7,10 @@ ms.author: eur
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 1/21/2024
+ms.date: 9/20/2024
 ms.reviewer: chlandsi
 ms.custom: devx-track-js, devx-track-python, linux-related-content
+#Customer intent: As a developer, I want to learn how to select an audio input device in the Speech SDK so that I can configure the audio input for my speech-enabled application.
 ---
 
 # Select an audio input device with the Speech SDK
@@ -382,6 +383,5 @@ In JavaScript, the [MediaDevices.enumerateDevices()](https://developer.mozilla.o
 ## Next steps
 
 - [Explore samples on GitHub](https://aka.ms/csspeech/samples)
-
 - [Customize acoustic models](./how-to-custom-speech-train-model.md)
 - [Customize language models](./how-to-custom-speech-train-model.md)

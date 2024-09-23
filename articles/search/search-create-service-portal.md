@@ -11,7 +11,7 @@ ms.custom:
   - references_regions
   - build-2024
 ms.topic: conceptual
-ms.date: 08/22/2024
+ms.date: 09/19/2024
 ---
 
 # Create an Azure AI Search service in the portal
@@ -87,13 +87,13 @@ Service name requirements:
 ## Choose a region
 
 > [!IMPORTANT]
-> Due to high demand, Azure AI Search is currently unavailable for new instances in West Europe. If you don't immediately need semantic ranker or skillsets, choose Sweden Central because it has the most data center capacity. Otherwise, North Europe is another option. Currently, there are also capacity constraints for Basic and Standard (S1) tiers within a given region.
+> Due to high demand, Azure AI Search is currently unavailable for new instances in some regions. 
 
 If you use multiple Azure services, putting all of them in the same region minimizes or voids bandwidth charges. There are no charges for data egress among same-region services.
 
 Generally, choose a region near you, unless the following considerations apply:
 
-+ Your nearest region is capacity constrained. West Europe is at capacity and unavailable for new instances. Other regions are [at capacity for specific tiers](search-sku-tier.md#region-availability-by-tier). One advantage to using the Azure portal for resource setup is that it provides only those regions and tiers that are available. You can't select regions or tiers that are unavailable.
++ Your nearest region is capacity constrained. For example, West Europe is at capacity and unavailable for new instances. Other regions are [at capacity for specific tiers](search-sku-tier.md#region-availability-by-tier). One advantage to using the Azure portal for resource setup is that it provides only those regions and tiers that are available.
 
 + You want to use integrated data chunking and vectorization or built-in skills for AI enrichment. Azure OpenAI and Azure AI services multiservice accounts must be in the same region as Azure AI Search for integration purposes. [Choose a region](search-region-support.md) that provides all necessary resources.
 
@@ -101,11 +101,11 @@ Generally, choose a region near you, unless the following considerations apply:
 
 Here's a checklist for choosing a region:
 
-1. Is Azure AI Search available in a nearby region? Check the [supported regions list](search-region-support.md). Capacity-constrained regions are indicated in the footnotes.
+1. Is Azure AI Search available in a nearby region? Check the [supported regions list](search-region-support.md).
 
 1. Do you know which tier you want to use? Tiers are covered in the next step. Check [region availability by tier](search-sku-tier.md#region-availability-by-tier) to determine if you can create a search service at the desired tier in your region of choice.
 
-1. Do you need [AI enrichment](cognitive-search-concept-intro.md) or [integrated data chunking and vectorization](vector-search-integrated-vectorization.md)? Verify that Azure OpenAI and Azure AI services are [offered in the same region](search-region-support.md) as Azure AI Search. 
+1. Do you need [AI enrichment](cognitive-search-concept-intro.md) or [integrated data chunking and vectorization](vector-search-integrated-vectorization.md)? Verify that Azure OpenAI and Azure AI multiservice are [offered in the same region](search-region-support.md) as Azure AI Search. 
 
    Be aware that Azure AI Vision multimodal embeddings API, used for [integrated image vectorization](search-get-started-portal-image-search.md), must be accessed through an Azure AI multiservice account, but is available in a [smaller subset of regions](/azure/ai-services/computer-vision/overview-image-analysis#region-availability).
 

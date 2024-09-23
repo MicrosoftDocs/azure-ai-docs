@@ -31,6 +31,11 @@
       "redirect_document_id": false
     },
     {
+      "source_path_from_root": "/articles/ai-services/luis/luis-concept-data-conversion.md",
+      "redirect_url": "/azure/ai-services/language-service/conversational-language-understanding/how-to/migrate-from-luis",
+      "redirect_document_id": false
+    },
+    {
       "source_path_from_root": "/articles/ai-services/custom-vision-service/update-application-to-3.0-sdk.md",
       "redirect_url": "/azure/ai-services/custom-vision-service/overview",
       "redirect_document_id": false
@@ -403,6 +408,16 @@
     {
       "source_path_from_root": "/articles/ai-services/speech-service/devices-sdk-release-notes.md",
       "redirect_url": "/azure/ai-services/speech-service/release-notes",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/speech-service/how-to-recognize-intents-from-speech-csharp.md",
+      "redirect_url": "/azure/ai-services/speech-service/intent-recognition",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/speech-service/how-to-custom-speech-continuous-integration-continuous-deployment.md",
+      "redirect_url": "/azure/ai-services/speech-service/how-to-custom-speech-model-and-endpoint-lifecycle",
       "redirect_document_id": false
     },
     {

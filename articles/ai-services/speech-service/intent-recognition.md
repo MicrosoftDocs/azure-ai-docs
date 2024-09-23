@@ -7,8 +7,8 @@ ms.author: eur
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: overview
-ms.date: 1/21/2024
-keywords: intent recognition
+ms.date: 9/20/2024
+#Customer intent: As a developer, I want to learn about intent recognition and how to use it with the Speech service.
 ---
 
 # What is intent recognition?
