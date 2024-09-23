@@ -181,6 +181,6 @@ You can select the evaluator name to see more details. You can see the name, des
 Learn more about how to evaluate your generative AI applications:
 
 - [Evaluate your generative AI apps via the playground](./evaluate-prompts-playground.md)
-- [View the evaluation results](./evaluate-flow-results.md)
+- [View the evaluation results](./evaluate-results.md)
 - Learn more about [harm mitigation techniques](../concepts/evaluation-improvement-strategies.md).
 - [Transparency Note for Azure AI Studio safety evaluations](../concepts/safety-evaluations-transparency-note.md).

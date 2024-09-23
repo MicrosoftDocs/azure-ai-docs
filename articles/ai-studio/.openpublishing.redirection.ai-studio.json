@@ -126,8 +126,8 @@
             "redirect_document_id": true
         },
         {
-            "source_path": "articles/ai-studio/how-to/develop/evaluate-flow-results.md",
-            "redirect_url": "/azure/ai-studio/how-to/develop/evaluate-results",
+            "source_path": "articles/ai-studio/how-to/evaluate-flow-results.md",
+            "redirect_url": "/azure/ai-studio/how-to/evaluate-results",
             "redirect_document_id": true
         }
     ]

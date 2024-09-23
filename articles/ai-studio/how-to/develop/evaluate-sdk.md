@@ -466,6 +466,6 @@ result = evaluate(
 - [Azure Python reference documentation](https://aka.ms/azureaieval-python-ref)
 - [Learn more about the evaluation metrics](../../concepts/evaluation-metrics-built-in.md)
 - [Learn more about simulating test datasets for evaluation](./simulator-interaction-data.md)
-- [View your evaluation results in Azure AI Studio](../../how-to/evaluate-flow-results.md)
+- [View your evaluation results in Azure AI Studio](../../how-to/evaluate-results.md)
 - [Get started building a chat app using the Azure AI SDK](../../quickstarts/get-started-code.md)
 - [Get started with evaluation samples](https://aka.ms/aistudio/eval-samples)
