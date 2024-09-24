@@ -9,9 +9,9 @@ ms.custom:
   - references_regions
 ms.topic: how-to
 ms.date: 09/24/2024
-ms.reviewer: dantaylo
-ms.author: eur
-author: eric-urban
+ms.reviewer: minthigpen
+ms.author: lagayhar
+author: lgayhardt
 ---
 # Evaluate with the Azure AI Evaluation SDK
 
@@ -87,17 +87,16 @@ When using AI-assisted performance and quality metrics, you must specify a GPT m
 You can run the built-in evaluators by importing the desired evaluator class. Ensure that you set your environment variables.
 ```python
 import os
-from promptflow.core import AzureOpenAIModelConfiguration
 
 # Initialize Azure OpenAI Connection with your environment variables
-model_config = AzureOpenAIModelConfiguration(
-    azure_endpoint=os.environ.get("AZURE_OPENAI_ENDPOINT"),
-    api_key=os.environ.get("AZURE_OPENAI_API_KEY"),
-    azure_deployment=os.environ.get("AZURE_OPENAI_DEPLOYMENT"),
-    api_version=os.environ.get("AZURE_OPENAI_API_VERSION"),
-)
+model_config = {
+    "azure_endpoint": os.environ.get("AZURE_OPENAI_ENDPOINT"),
+    "api_key": os.environ.get("AZURE_OPENAI_API_KEY"),
+    "azure_deployment": os.environ.get("AZURE_OPENAI_DEPLOYMENT"),
+    "api_version": os.environ.get("AZURE_OPENAI_API_VERSION"),
+}
 
-from azure.ai.evaluation.evaluators import RelevanceEvaluator
+from azure.ai.evaluation import RelevanceEvaluator
 
 # Initialzing Relevance Evaluator
 relevance_eval = RelevanceEvaluator(model_config)
@@ -131,7 +130,7 @@ azure_ai_project = {
     "project_name": "<project_name>",
 }
 
-from azure.ai.evaluation.evaluators import ViolenceEvaluator
+from azure.ai.evaluation import ViolenceEvaluator
 
 # Initializing Violence Evaluator with project information
 violence_eval = ViolenceEvaluator(azure_ai_project)
@@ -329,7 +328,7 @@ After logging your custom evaluator to your AI Studio project, you can view it i
 After you spot-check your built-in or custom evaluators on a single row of data, you can combine multiple evaluators with the `evaluate()` API on an entire test dataset. In order to ensure the `evaluate()` can correctly parse the data, you must specify column mapping to map the column from the dataset to key words that are accepted by the evaluators. In this case, we specify the data mapping for `ground_truth`.
 
 ```python
-from azure.ai.evaluation.evaluate import evaluate
+from azure.ai.evaluation import evaluate
 
 result = evaluate(
     data="data.jsonl", # provide your data here

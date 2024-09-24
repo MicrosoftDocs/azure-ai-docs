@@ -1,7 +1,7 @@
 ---
 title: Add semantic ranking
 titleSuffix: Azure AI Search
-description: Set a semantic query type to attach the deep learning models of semantic ranking.
+description: Set a semantic query type to attach the deep learning models of semantic ranker.
 
 manager: nitinme
 author: HeidiSteen
@@ -17,11 +17,11 @@ ms.date: 07/24/2024
 
 This article explains how to invoke the semantic ranker on queries. You can apply semantic ranking to text queries, hybrid queries, and vector queries if your search documents contain string fields and the [vector query has a text representation](vector-search-how-to-query.md#query-with-integrated-vectorization).
 
-Semantic ranking iterates over an initial result set, applying an L2 ranking methodology that promotes the most semantically relevant results to the top of the stack. You can also get semantic captions, with highlights over the most relevant terms and phrases, and [semantic answers](semantic-answers.md).
+Semantic ranker iterates over an initial result set, applying an L2 ranking methodology that promotes the most semantically relevant results to the top of the stack. You can also get semantic captions, with highlights over the most relevant terms and phrases, and [semantic answers](semantic-answers.md).
 
 ## Prerequisites
 
-+ A search service, basic tier or higher, with [semantic ranking enabled](semantic-how-to-enable-disable.md).
++ A search service, basic tier or higher, with [semantic ranker enabled](semantic-how-to-enable-disable.md).
 
 + An existing search index with a [semantic configuration](semantic-how-to-configure.md) and rich text content.
 
@@ -136,7 +136,7 @@ The following example in this section uses the [hotels-sample-index](search-get-
 
 ### [**.NET SDK**](#tab/dotnet-query)
 
-Use QueryType or SemanticQuery to invoke semantic ranking on a semantic query. The [following example](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/search/Azure.Search.Documents/samples/Sample08_SemanticSearch.md) is from the Azure SDK team.
+Use QueryType or SemanticQuery to invoke semantic ranker on a semantic query. The [following example](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/search/Azure.Search.Documents/samples/Sample08_SemanticSearch.md) is from the Azure SDK team.
 
 ```csharp
 SearchResults<Hotel> response = await searchClient.SearchAsync<Hotel>(
@@ -237,4 +237,4 @@ If you anticipate consistent throughput requirements near, at, or higher than th
 Semantic ranking can be used in hybrid queries that combine keyword search and vector search into a single request and a unified response.
 
 > [!div class="nextstepaction"]
-> [Hybrid query with semantic ranking](hybrid-search-how-to-query.md#semantic-hybrid-search)
+> [Hybrid query with semantic ranker](hybrid-search-how-to-query.md#semantic-hybrid-search)
