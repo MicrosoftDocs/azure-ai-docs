@@ -108,7 +108,7 @@ You can set the threshold to calculate the defect rate for the content harm metr
 
 For protected material and indirect attack, the defect rate is calculated by taking a percentage of instances where the output is 'true' (Defect Rate = (#trues / #instances) × 100).
 
-:::image type="content" source="../media/evaluations/evaluate/ip-xpia-in-wizard.png" alt-text="Screenshot of risk and safety metrics curated by Microsoft showing self-harm, protected material, and indirect attack selected." lightbox="../media/evaluations/evaluate/ip-xpia-in-wizard.png":::
+:::image type="content" source="../media/evaluations/evaluate/safety-metrics.png" alt-text="Screenshot of risk and safety metrics curated by Microsoft showing self-harm, protected material, and indirect attack selected." lightbox="../media/evaluations/evaluate/safety-metrics.png":::
 
 > [!NOTE]
 > AI-assisted risk and safety metrics are hosted by Azure AI Studio safety evaluations back-end service and is only available in the following regions: East US 2, France Central, UK South, Sweden Central

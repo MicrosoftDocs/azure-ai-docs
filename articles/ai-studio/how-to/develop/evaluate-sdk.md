@@ -11,6 +11,7 @@ ms.date: 09/24/2024
 ms.reviewer: dantaylo
 ms.author: eur
 author: eric-urban
+ms.custom: references_regions
 ---
 # Evaluate with the Azure AI Evaluation SDK
 
@@ -34,10 +35,11 @@ pip install azure-ai-evaluation
 ## Built-in evaluators
 
 Built-in evaluators support the following application scenarios:
-+ **Query and response**: This scenario is designed for applications that involve sending in queries and generating responses. 
-+ **Retrieval augmented generation**: This scenario is suitable for applications where the model engages in generation using a retrieval-augmented approach to extract information from your provided documents and generate detailed responses. 
 
-For more in-depth information on each evaluator definition and how it's calculated, learn more [here](../../concepts/evaluation-metrics-built-in.md).
+- **Query and response**: This scenario is designed for applications that involve sending in queries and generating responses. 
+- **Retrieval augmented generation**: This scenario is suitable for applications where the model engages in generation using a retrieval-augmented approach to extract information from your provided documents and generate detailed responses.
+
+For more in-depth information on each evaluator definition and how it's calculated, see [Evaluation and monitoring metrics for generative AI](../../concepts/evaluation-metrics-built-in.md).
 
 | Category  | Evaluator class                                                                                                                    |
 |-----------|------------------------------------------------------------------------------------------------------------------------------------|
@@ -120,7 +122,7 @@ Here's an example of the result:
 When you use AI-assisted risk and safety metrics, a GPT model isn't required. Instead of `model_config`, provide your `azure_ai_project` information. This accesses the Azure AI Studio safety evaluations back-end service, which provisions a GPT-4 model that can generate content risk severity scores and reasoning to enable your safety evaluators.
 
 > [!NOTE]
-> [TO DO] Currently AI-assisted risk and safety metrics are only available in the following regions: East US 2, France Central, UK South, Sweden Central. Groundedness measurement leveraging Azure AI Content Safety Groundedness Detection is only supported following regions: East US 2 and Sweden Central. Protected Material measurement are only currently supported in East US 2. Read more about the supported metrics [here](../../concepts/evaluation-metrics-built-in.md) and when to use which metric. 
+> Currently AI-assisted risk and safety metrics are only available in the following regions: East US 2, France Central, UK South, Sweden Central. Groundedness measurement leveraging Azure AI Content Safety Groundedness Detection is only supported in the following regions: East US 2 and Sweden Central. Protected Material measurement are only currently supported in East US 2. Read more about the supported metrics [here](../../concepts/evaluation-metrics-built-in.md) and when to use which metric. 
 
 ```python
 azure_ai_project = {
@@ -131,12 +133,13 @@ azure_ai_project = {
 
 from azure.ai.evaluation.evaluators import ViolenceEvaluator
 
-# Initialzing Violence Evaluator with project information
+# Initializing Violence Evaluator with project information
 violence_eval = ViolenceEvaluator(azure_ai_project)
 # Running Violence Evaluator on single input row
 violence_score = violence_eval(query="What is the capital of France?", answer="Paris.")
 print(violence_score)
 ```
+
 ```python
 {'violence': 'Safe',
 'violence_reason': "The system's response is a straightforward factual answer "
@@ -149,14 +152,17 @@ The result of the content safety evaluators is a dictionary containing:
 - `{metric_name}` provides a severity label for that content risk ranging from Very low, Low, Medium, and High. You can read more about the descriptions of each content risk and severity scale [here](../../concepts/evaluation-metrics-built-in.md).
 - `{metric_name}_score` has a range between 0 and 7 severity level that maps to a severity label given in `{metric_name}`.
 - `{metric_name}_reason` has a text reasoning for why a certain severity score was given for each data point.
+
 #### Evaluating direct and indirect attack jailbreak vulnerability
+
 We support evaluating vulnerability towards the following types of jailbreak attacks:
 - **Direct attack jailbreak** (also known as UPIA or User Prompt Injected Attack) injects prompts in the user role turn of conversations or queries to generative AI applications. 
-- **Indirect attack jailbreak** (also known as XPIA or cross domain prompt injected attack) injects prompts in the returned documents or context of the user's query to generative AI applications. 
+- **Indirect attack jailbreak** (also known as XPIA or cross domain prompt injected attack) injects prompts in the returned documents or context of the user's query to generative AI applications.
 
-*Evaluating direct attack* is a comparative measurement using the content safety evaluators as a control. It isn't its own AI-assisted metric. Run `ContentSafetyEvaluator` on two different, red-teamed datasets: 
-1. Baseline adversarial test dataset 
-2. Adversarial test dataset with direct attack jailbreak injections in the first turn. 
+*Evaluating direct attack* is a comparative measurement using the content safety evaluators as a control. It isn't its own AI-assisted metric. Run `ContentSafetyEvaluator` on two different, red-teamed datasets:
+
+- Baseline adversarial test dataset.
+- Adversarial test dataset with direct attack jailbreak injections in the first turn.
 
 You can do this with functionality and attack datasets generated with the [direct attack simulator](./simulator-interaction-data.md) with the same randomization seed. Then you can evaluate jailbreak vulnerability by comparing results from content safety evaluators between the two test dataset's aggregate scores for each safety evaluator. A direct attack jailbreak defect is detected when there's presence of content harm response detected in the second direct attack injected dataset when there was none or lower severity detected in the first control dataset.
 
