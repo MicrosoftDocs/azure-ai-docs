@@ -1,7 +1,7 @@
 ---
 title: Online endpoints for real-time inference
 titleSuffix: Azure Machine Learning
-description: Learn about online endpoints for real-time inferencing in Azure Machine Learning.
+description: Learn about online endpoints for real-time inferencing in Azure Machine Learning, including managed online endpoints.
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: inferencing
@@ -21,7 +21,6 @@ ms.date: 09/23/2024
 
 This article describes online endpoints for real-time inferencing in Azure Machine Learning. Inferencing is the process of applying new input data to a machine learning model to generate outputs. Azure Machine Learning allows you to perform real-time inferencing on data by using models that are deployed to *online endpoints*. While these outputs are typically called *predictions*, you can use inferencing to generate outputs for other machine learning tasks, such as classification and clustering.
 
-<a name="online-endpoints"></a>
 Online endpoints deploy models to a web server that can return predictions under the HTTP protocol. Online endpoints can operationalize models for real-time inference in synchronous, low-latency requests, and are best used when:
 
 - You have low-latency requirements.
@@ -207,9 +206,9 @@ To deploy locally, you need the [Docker Engine](https://docs.docker.com/engine/i
 
 Local debugging typically involves the following steps:
 
-1. Check that the local deployment succeeded.
-1. Invoke the local endpoint for inferencing.
-1. Review the output logs for the `invoke` operation.
+- First, check that the local deployment succeeded.
+- Next, invoke the local endpoint for inferencing.
+- Finally, review the output logs for the `invoke` operation.
 
 Local endpoints have the following limitations:
 - No support for traffic rules, authentication, or probe settings.

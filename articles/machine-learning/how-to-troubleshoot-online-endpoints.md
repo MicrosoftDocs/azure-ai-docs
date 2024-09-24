@@ -8,7 +8,7 @@ ms.subservice: inferencing
 author: msakande
 ms.author: mopeakande
 ms.reviewer: sehan
-ms.date: 09/18/2024
+ms.date: 09/23/2024
 ms.topic: troubleshooting
 ms.custom: devplatv2, devx-track-azurecli, cliv2, sdkv2
 #Customer intent: As a data scientist, I want to figure out why my online endpoint deployment failed so that I can fix it.
@@ -26,7 +26,7 @@ The document structure reflects the way you should approach troubleshooting:
 1. Use [container logs](#get-container-logs) to help debug issues.
 1. Understand [common deployment errors](#common-deployment-errors) that might arise and how to fix them.
 
-The [HTTP status codes](#http-status-codes) sections explain how invocation and prediction errors map to HTTP status codes when you score endpoints with REST requests.
+The [HTTP status codes](#http-status-codes) section explains how invocation and prediction errors map to HTTP status codes when you score endpoints with REST requests.
 
 ## Prerequisites
 
@@ -39,6 +39,10 @@ The [HTTP status codes](#http-status-codes) sections explain how invocation and 
 # [Python SDK](#tab/python)
 
 - The Azure Machine Learning Python SDK v2. [Install the Azure Machine Learning SDK v2 for Python](/python/api/overview/azure/ai-ml-readme).
+
+### [Studio](#tab/studio)
+
+- An Azure Machine Learning workspace.
 
 ---
 
@@ -75,6 +79,10 @@ For local deployment, use the  `local=True` parameter. In this command,`ml_clien
 ml_client.begin_create_or_update(online_deployment, local=True)
 ```
 
+### [Studio](#tab/studio)
+
+Azure Machine Learning studio doesn't support local deployment.
+
 ---
 
 The following steps occur during local deployment:
@@ -101,23 +109,9 @@ For Kubernetes online endpoints, administrators can directly access the cluster 
 ```bash
 kubectl -n <compute-namespace> logs <container-name>
 ```
-For more information about debugging with container logs, see [Get container logs](how-to-troubleshoot-online-endpoints.md#get-container-logs).
 
 > [!NOTE]
 > If you use Python logging, make sure to use the correct logging level, such as `INFO`, for the messages to be published to logs.
-
-### See log output in Azure Machine Learning studio
-
-To view log output from a container in Azure Machine Learning studio:
-
-1. Select **Endpoints** in the left navigation bar.
-1. Select an endpoint name to view the endpoint details page.
-1. Select the **Logs** tab in the endpoint details page.
-1. Select the deployment log you want to see from the dropdown menu.
-
-:::image type="content" source="media/how-to-troubleshoot-online-endpoints/deployment-logs.png" lightbox="media/how-to-troubleshoot-online-endpoints/deployment-logs.png" alt-text="A screenshot of observing deployment logs in the studio.":::
-
-The logs are pulled from the inference server. To get logs from the storage initializer container, use the Azure CLI or Python SDK commands.
 
 ### See log output from containers
 
@@ -162,6 +156,19 @@ ml_client.online_deployments.get_logs(
     name="<deployment-name>", endpoint_name="<endpoint-name>", lines=100, container_type="storage-initializer"
 )
 ```
+
+### [Studio](#tab/studio)
+
+To view log output from a container in Azure Machine Learning studio:
+
+1. Select **Endpoints** in the left navigation bar.
+1. Select an endpoint name to view the endpoint details page.
+1. Select the **Logs** tab in the endpoint details page.
+1. Select the deployment log you want to see from the dropdown menu.
+
+:::image type="content" source="media/how-to-troubleshoot-online-endpoints/deployment-logs.png" lightbox="media/how-to-troubleshoot-online-endpoints/deployment-logs.png" alt-text="A screenshot of observing deployment logs in the studio.":::
+
+The logs are pulled from the inference server. To get logs from the storage initializer container, use the Azure CLI or Python SDK commands.
 
 ---
 
@@ -213,7 +220,7 @@ If you're creating or updating a Kubernetes online deployment, also see [Common 
 
 ### ERROR: ImageBuildFailure
 
-This error returns when the  Docker image environment is being built. You can check the build log for more information on the failure. The build log is located in the default storage for your Azure Machine Learning workspace.
+This error is returned when the Docker image environment is being built. You can check the build log for more information on the failure. The build log is located in the default storage for your Azure Machine Learning workspace.
 
 The exact location might be returned as part of the error, for example `"the build log under the storage account '[storage-account-name]' in the container '[container-name]' at the path '[path-to-the-log]'"`.
 
@@ -259,7 +266,7 @@ The following resources might run out of quota when using Azure services:
 - [Region-wide VM capacity](#region-wide-vm-capacity)
 - [Other](#other-quota)
 
-For Kubernetes online endpoints only, the [Kubernetes](#kubernetes-quota) resource might also run out of quota.
+For Kubernetes online endpoints only, the [Kubernetes resource](#kubernetes-quota) might also run out of quota.
 
 #### CPU quota
 
@@ -269,14 +276,14 @@ You can check if there are unused deployments you can delete, or you can [submit
 
 #### Cluster quota
 
-The OutOfQuota error occurs when you don't have enough Azure Machine Learning compute cluster quota. The quota defines the total number of clusters per subscription that you can use at the same time to deploy CPU or GPU nodes in the Azure cloud.
+The `OutOfQuota` error occurs when you don't have enough Azure Machine Learning compute cluster quota. The quota defines the total number of clusters per subscription that you can use at the same time to deploy CPU or GPU nodes in the Azure cloud.
 
 #### Disk quota
 
-The OutOfQuota error occurs when the size of the model is larger than the available disk space and the model can't be downloaded. Try using a [SKU](reference-managed-online-endpoints-vm-sku-list.md) with more disk space or reducing the image and model size.
+The `OutOfQuota` error occurs when the size of the model is larger than the available disk space and the model can't be downloaded. Try using a [SKU](reference-managed-online-endpoints-vm-sku-list.md) with more disk space or reducing the image and model size.
 
 #### Memory quota
-The OutOfQuota error occurs when the memory footprint of the model is larger than the available memory. Try a [SKU](reference-managed-online-endpoints-vm-sku-list.md) with more memory.
+The `OutOfQuota` error occurs when the memory footprint of the model is larger than the available memory. Try a [SKU](reference-managed-online-endpoints-vm-sku-list.md) with more memory.
 
 #### Role assignment quota
 
@@ -288,7 +295,7 @@ Try to delete some unused endpoints in this subscription. If all your endpoints 
 
 #### Kubernetes quota
 
-The OutOfQuota error occurs when the requested CPU or memory can't be provided due to nodes being unschedulable for this deployment. For example, nodes might be cordoned or otherwise unavailable.
+The `OutOfQuota` error occurs when the requested CPU or memory can't be provided due to nodes being unschedulable for this deployment. For example, nodes might be cordoned or otherwise unavailable.
 
 The error message typically indicates the resource insufficiency in the cluster, for example `OutOfQuota: Kubernetes unschedulable. Details:0/1 nodes are available: 1 Too many pods...`. This message means that there are too many pods in the cluster and not enough resources to deploy the new model based on your request.
 
@@ -324,9 +331,11 @@ ml_client.online_deployments.get_logs(
 )
 ```
 
----
+### [Studio](#tab/studio)
 
-You can also [check the deployment log output in Azure Machine Learning studio](#see-log-output-in-azure-machine-learning-studio).
+[Check the deployment log output in Azure Machine Learning studio](#see-log-output-in-azure-machine-learning-studio).
+
+---
 
 ### ERROR: BadArgument
 
@@ -375,7 +384,7 @@ az acr repository show-tags -n testacr --repository azureml/azureml_92a029f831ce
 
 The user model might not be found. [Check the container logs](#get-container-logs) to get more details. Make sure you registered the model to the same workspace as the deployment.
 
-To show details for a model in a workspace, you can select a model on the Azure Machine Learning studio **Models** page or run the following command. You must specify either version or label to get the model information.
+To show details for a model in a workspace, run the following command. You must specify either version or label to get the model information.
 
 # [Azure CLI](#tab/cli)
 
@@ -388,6 +397,10 @@ az ml model show --name <model-name> --version <version>
 ```python
 ml_client.models.get(name="<model-name>", version=<version>)
 ```
+
+### [Studio](#tab/studio)
+
+To show details for a model in a workspace, select a model on the Azure Machine Learning studio **Models** page
 
 ---
 
@@ -413,11 +426,15 @@ ml_client.online_deployments.get_logs(
 )
 ```
 
+### [Studio](#tab/studio)
+
+You can't see logs from the storage initializer in the studio. Use the Azure CLI or Python SDK commands.
+
 ---
 
 #### MLflow model format with private network is unsupported
 
-You can't use the private network feature with a MLflow model format if you're using the [legacy network isolation method for managed online endpoints](concept-secure-online-endpoint.md#secure-outbound-access-with-legacy-network-isolation-method). If you need to deploy a MLflow model with the no-code deployment approach, try using a [workspace managed virtual network](concept-secure-online-endpoint.md#secure-outbound-access-with-workspace-managed-virtual-network).
+You can't use the private network feature with an MLflow model format if you're using the [legacy network isolation method for managed online endpoints](concept-secure-online-endpoint.md#secure-outbound-access-with-legacy-network-isolation-method). If you need to deploy an MLflow model with the no-code deployment approach, try using a [workspace managed virtual network](concept-secure-online-endpoint.md#secure-outbound-access-with-workspace-managed-virtual-network).
 
 #### Resource requests greater than limits
 
@@ -425,7 +442,7 @@ Requests for resources must be less than or equal to limits. If you don't set li
 
 #### Azureml-fe not ready
 
-The front-end `azureml-fe` component that routes incoming inference requests to deployed services installs during k8s-extension installation and automatically scales as needed. This component should have at least one healthy replica on the cluster.
+The front-end `azureml-fe` component that routes incoming inference requests to deployed services installs during [k8s-extension](/cli/azure/k8s-extension) installation and automatically scales as needed. This component should have at least one healthy replica on the cluster.
 
 You get this error if the component isn't available when you trigger a Kubernetes online endpoint or deployment creation or update request. Check the pod status and logs to fix this issue. You can also try to update the k8s-extension installed on the cluster.
 
@@ -727,7 +744,7 @@ Two actions can help prevent 503 status code errors: Changing the utilization le
 
 - Change the utilization target at which autoscaling creates new replicas by setting the `autoscale_target_utilization` to a lower value. This change doesn't cause replicas to be created faster, but at a lower utilization threshold. For example, changing the value to 30% causes replicas to be created when 30% utilization occurs instead of waiting until the service is 70% utilized.
 
-- Changing the minimum number of replicas provides a larger pool to handle the incoming spikes.
+- Change the minimum number of replicas to provide a larger pool that can handle the incoming spikes.
 
 #### How to calculate instance count
 
