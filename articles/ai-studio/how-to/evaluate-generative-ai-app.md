@@ -6,7 +6,7 @@ manager: scottpolly
 ms.service: azure-ai-studio
 ms.custom: ignite-2023, references_regions, build-2024
 ms.topic: how-to
-ms.date: 5/21/2024
+ms.date: 9/24/2024
 ms.reviewer: mithigpe
 ms.author: lagayhar
 author: lgayhardt
@@ -48,6 +48,13 @@ From the collapsible left menu, select **Prompt flow** > **Evaluate** > **Built-
 
 #### Basic information
 
+When you start an evaluation from the evaluate page, you need to decide what is the evaluation target first. By specifying the appropriate evaluation target, we can tailor the evaluation to the specific nature of your application, ensuring accurate and relevant metrics. Currently we support two types of evaluation target:  
+
+**Dataset**: You already have your model generated outputs in a test dataset.
+**Prompt flow**: You have created a flow, and you want to evaluate the output from the flow.
+
+:::image type="content" source="../media/evaluations/evaluate/select-dataset-or-prompt-flow.png" alt-text="Screenshot of what do you want to evaluate showing dataset or prompt flow selection. " lightbox="../media/evaluations/evaluate/select-dataset-or-prompt-flow.png":::
+
 When you enter the evaluation creation wizard, you can provide an optional name for your evaluation run and select the scenario that best aligns with your application's objectives. We currently offer support for the following scenarios: 
 
 - **Question and answer with context**: This scenario is designed for applications that involve answering user queries and providing responses with context information.
@@ -57,10 +64,7 @@ You can use the help panel to check the FAQs and guide yourself through the wiza
 
 :::image type="content" source="../media/evaluations/evaluate/basic-information.png" alt-text="Screenshot of the basic information page when creating a new evaluation." lightbox="../media/evaluations/evaluate/basic-information.png":::
 
-By specifying the appropriate scenario, we can tailor the evaluation to the specific nature of your application, ensuring accurate and relevant metrics. 
-
-- **Evaluate from data**: If you already have your model generated outputs in a test dataset, skip **Select a flow to evaluate** and directly go to the next step to configure test data.  
-- **Evaluate from flow**: If you initiate the evaluation from the Flow page, we'll automatically select your flow to evaluate. If you intend to evaluate another flow, you can select a different one. It's important to note that within a flow, you might have multiple nodes, each of which could have its own set of variants. In such cases, you must specify the node and the variants you wish to assess during the evaluation process.
+If you are evaluating a prompt flow, you can select the flow to evaluate. If you initiate the evaluation from the Flow page, we'll automatically select your flow to evaluate. If you intend to evaluate another flow, you can select a different one. It's important to note that within a flow, you might have multiple nodes, each of which could have its own set of variants. In such cases, you must specify the node and the variants you wish to assess during the evaluation process.   
 
 :::image type="content" source="../media/evaluations/evaluate/select-flow.png" alt-text="Screenshot of the select a flow to evaluate page when creating a new evaluation." lightbox="../media/evaluations/evaluate/select-flow.png":::
 
@@ -91,9 +95,8 @@ You can refer to the table for the complete list of metrics we offer support for
 
 | Scenario | Performance and quality metrics | Risk and safety metrics |
 |--|--|--|
-| Question and answer with context | Groundedness, Relevance, Coherence, Fluency, GPT similarity, F1 score | Self-harm-related content, Hateful and unfair content, Violent content, Sexual content |
-| Question and answer without context | Coherence, Fluency, GPT similarity, F1 score | Self-harm-related content, Hateful and unfair content, Violent content, Sexual content |
-
+| Question and answer with context | Groundedness, Relevance, Coherence, Fluency, GPT similarity, F1 score | Self-harm-related content, Hateful and unfair content, Violent content, Sexual content, Protected material, Indirect attack  |
+| Question and answer without context | Coherence, Fluency, GPT similarity, F1 score | Self-harm-related content, Hateful and unfair content, Violent content, Sexual content, Protected material, Indirect attack |
 
 When using AI-assisted metrics for performance and quality evaluation, you must specify a GPT model for the calculation process. Choose an Azure OpenAI connection and a deployment with either GPT-3.5, GPT-4, or the Davinci model for our calculations. 
 
@@ -101,9 +104,11 @@ When using AI-assisted metrics for performance and quality evaluation, you must 
 
 For risk and safety metrics, you don't need to provide a connection and deployment. The Azure AI Studio safety evaluations back-end service provisions a GPT-4 model that can generate content risk severity scores and reasoning to enable you to evaluate your application for content harms.
 
-You can set the threshold to calculate the defect rate for the risk and safety metrics. The defect rate is calculated by taking a percentage of instances with severity levels (Very low, Low, Medium, High) above a threshold. By default, we set the threshold as "Medium".
+You can set the threshold to calculate the defect rate for the content harm metrics (self-harm-related content, hateful and unfair content, violent content, sexual content). The defect rate is calculated by taking a percentage of instances with severity levels (Very low, Low, Medium, High) above a threshold. By default, we set the threshold as "Medium".
 
-:::image type="content" source="../media/evaluations/evaluate/safety-metrics.png" alt-text="Screenshot of the select metrics page with safety metrics selected when creating a new evaluation." lightbox="../media/evaluations/evaluate/safety-metrics.png":::
+For protected material and indirect attack, the defect rate is calculated by taking a percentage of instances where the output is 'true' (Defect Rate = (#trues / #instances) × 100).
+
+:::image type="content" source="../media/evaluations/evaluate/safety-metrics.png" alt-text="Screenshot of risk and safety metrics curated by Microsoft showing self-harm, protected material, and indirect attack selected." lightbox="../media/evaluations/evaluate/safety-metrics.png":::
 
 > [!NOTE]
 > AI-assisted risk and safety metrics are hosted by Azure AI Studio safety evaluations back-end service and is only available in the following regions: East US 2, France Central, UK South, Sweden Central
@@ -131,6 +136,8 @@ For guidance on the specific data mapping requirements for each metric, refer to
 | Hateful and unfair content | Required: Str | Required: Str | N/A           | N/A           |
 | Violent content            | Required: Str | Required: Str | N/A           | N/A           |
 | Sexual content             | Required: Str | Required: Str | N/A           | N/A           |
+| Protected material         | Required: Str | Required: Str | N/A           | N/A           |
+| Indirect attack            | Required: Str | Required: Str | N/A           | N/A           |
 
 - Question: the question asked by the user in Question Answer pair
 - Answer: the response to question generated by the model as answer
@@ -156,7 +163,7 @@ From the flow page: From the collapsible left menu, select **Prompt flow** > **E
 The evaluator library is a centralized place that allows you to see the details and status of your evaluators. You can view and manage Microsoft curated evaluators.
 
 > [!TIP]
-> You can use custom evaluators via the prompt flow SDK. For more information, see [Evaluate with the prompt flow SDK](../how-to/develop/flow-evaluate-sdk.md#custom-evaluators).
+> You can use custom evaluators via the prompt flow SDK. For more information, see [Evaluate with the prompt flow SDK](../how-to/develop/evaluate-sdk.md#custom-evaluators).
  
 The evaluator library also enables version management. You can compare different versions of your work, restore previous versions if needed, and collaborate with others more easily. 
 
@@ -165,7 +172,7 @@ To use the evaluator library in AI Studio, go to your project's **Evaluation** p
 :::image type="content" source="../media/evaluations/evaluate/evaluator-library-list.png" alt-text="Screenshot of the page to select evaluators from the evaluator library." lightbox="../media/evaluations/evaluate/evaluator-library-list.png":::
 
 You can select the evaluator name to see more details. You can see the name, description, and parameters, and check any files associated with the evaluator. Here are some examples of Microsoft curated evaluators:
-- For performance and quality evaluators curated by Microsoft, you can view the annotation prompt on the details page. You can adapt these prompts to your own use case by changing the parameters or criteria according to your data and objectives [with the prompt flow SDK](../how-to/develop/flow-evaluate-sdk.md#custom-evaluators). For example, you can select *Groundedness-Evaluator* and check the Prompty file showing how we calculate the metric.
+- For performance and quality evaluators curated by Microsoft, you can view the annotation prompt on the details page. You can adapt these prompts to your own use case by changing the parameters or criteria according to your data and objectives [with the prompt flow SDK](../how-to/develop/evaluate-sdk.md#custom-evaluators). For example, you can select *Groundedness-Evaluator* and check the Prompty file showing how we calculate the metric.
 - For risk and safety evaluators curated by Microsoft, you can see the definition of the metrics. For example, you can select the *Self-Harm-Related-Content-Evaluator* and learn what it means and how Microsoft determines the various severity levels for this safety metric
 
 
@@ -174,6 +181,6 @@ You can select the evaluator name to see more details. You can see the name, des
 Learn more about how to evaluate your generative AI applications:
 
 - [Evaluate your generative AI apps via the playground](./evaluate-prompts-playground.md)
-- [View the evaluation results](./evaluate-flow-results.md)
+- [View the evaluation results](./evaluate-results.md)
 - Learn more about [harm mitigation techniques](../concepts/evaluation-improvement-strategies.md).
 - [Transparency Note for Azure AI Studio safety evaluations](../concepts/safety-evaluations-transparency-note.md).
