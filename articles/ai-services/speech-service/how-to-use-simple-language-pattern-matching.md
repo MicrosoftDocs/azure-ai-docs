@@ -2,14 +2,16 @@
 title: How to recognize intents with simple language pattern matching
 titleSuffix: Azure AI services
 description: In this guide, you learn how to recognize intents and entities from simple patterns.
-author: chschrae
-manager: travisw
+author: eric-urban
+ms.author: eur
+manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 1/21/2024
-ms.author: chschrae
+ms.date: 9/20/2024
+ms.reviewer: chschrae
 zone_pivot_groups: programming-languages-set-thirteen
 ms.custom: devx-track-cpp, devx-track-csharp, mode-other, devx-track-extended-java, linux-related-content
+#Customer intent: As a developer, I want to learn how to recognize intents and entities from simple patterns so that I can understand what the user wants to do.
 ---
 
 # How to recognize intents with simple language pattern matching

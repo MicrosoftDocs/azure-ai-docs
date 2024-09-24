@@ -8,8 +8,9 @@ ms.service: azure-ai-speech
 ms.custom:
   - build-2024
 ms.topic: how-to
-ms.date: 2/7/2024
+ms.date: 9/20/2024
 ms.author: eur
+#Customer intent: As a developer, I want to learn how to get a speaker profile ID for the personal voice.
 ---
 
 # Get a speaker profile ID for the personal voice
@@ -52,8 +53,8 @@ You should receive a response body in the following format:
   "projectId": "ProjectId",
   "consentId": "JessicaConsentId",
   "status": "NotStarted",
-  "createdDateTime": "2023-04-01T05:30:00.000Z",
-  "lastActionDateTime": "2023-04-02T10:15:30.000Z"
+  "createdDateTime": "2024-09-01T05:30:00.000Z",
+  "lastActionDateTime": "2024-09-02T10:15:30.000Z"
 }
 ```
 
@@ -107,8 +108,8 @@ You should receive a response body in the following format:
   "projectId": "ProjectId",
   "consentId": "JessicaConsentId",
   "status": "NotStarted",
-  "createdDateTime": "2023-04-01T05:30:00.000Z",
-  "lastActionDateTime": "2023-04-02T10:15:30.000Z"
+  "createdDateTime": "2024-09-01T05:30:00.000Z",
+  "lastActionDateTime": "2024-09-02T10:15:30.000Z"
 }
 ```
 

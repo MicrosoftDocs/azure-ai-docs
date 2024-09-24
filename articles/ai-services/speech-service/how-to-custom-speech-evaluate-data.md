@@ -6,11 +6,12 @@ author: eric-urban
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 7/15/2024
+ms.date: 9/19/2024
 ms.author: eur
 zone_pivot_groups: speech-studio-cli-rest
 show_latex: true
 no-loc: [$$, '\times', '\over']
+#Customer intent: As a developer, I want to test the accuracy of a custom speech model so that I can evaluate whether it meets my requirements.
 ---
 
 # Test accuracy of a custom speech model

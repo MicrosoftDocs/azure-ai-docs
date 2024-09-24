@@ -1,5 +1,5 @@
 ---
-title: Feature availability across clouds regions
+title: Supported regions
 titleSuffix: Azure AI Search
 description: Shows supported regions and feature availability across regions for Azure AI Search.
 
@@ -9,13 +9,13 @@ ms.author: heidist
 ms.service: cognitive-search
 ms.topic: conceptual
 ms.custom: references_regions
-ms.date: 09/03/2024
+ms.date: 09/19/2024
 
 ---
 
-# Azure AI Search feature availability across cloud regions
+# Azure AI Search regions list
 
-This article identifies the cloud regions in which Azure AI Search is available. It also lists which premium features are available in each region.
+This article identifies the cloud regions in which Azure AI Search is available. It also lists which premium features are available in each region. 
 
 ## Features subject to regional availability
 
@@ -57,37 +57,39 @@ You can create an Azure AI Search resource in any of the following Azure public 
 | Canada East​​ ​ |  | ✅ | |
 | East US​ | ✅ | ✅ | ✅ |
 | East US 2 ​ | ✅ | ✅ | ✅ |
-| ​Central US​ <sup>1</sup>​ | ✅ | ✅ | ✅ |
+| ​Central US​​ <sup>1</sup> | ✅ | ✅ | ✅ |
 | North Central US​ ​ | ✅ | ✅ | |
-| South Central US​ <sup>1</sup>​ | ✅ | ✅ | ✅ |
+| South Central US​ <sup>2</sup>​ | ✅ | ✅ | ✅ |
 | West US​ ​ | ✅ | ✅ | |
-| West US 2​ <sup>1</sup>​ | ✅ | ✅ | ✅ |
-| West US 3​ <sup>1</sup>​ | ✅ | ✅ |✅ |
+| West US 2​ ​ | ✅ | ✅ | ✅ |
+| West US 3​ <sup>2</sup>​ | ✅ | ✅ |✅ |
 | West Central US​ ​ | ✅ | ✅ | |
 
-<sup>1</sup> Currently, this region is at capacity for Basic and Standard (S1) tiers. Choose a higher tier or a different region.
+<sup>1</sup> This region has capacity, but some tiers are [not available](search-sku-tier.md#region-availability-by-tier). 
+
+<sup>2</sup> Currently, this region is at full capacity and not accepting new search services. 
 
 ### Europe
 
 | Region | AI integration | Semantic ranking | Availability zones |
 |--|--|--|--|
-| North Europe​​ <sup>1</sup>| ✅ | ✅ | ✅ |
-| West Europe​​ <sup>2</sup>| ✅ | ✅ | ✅ |
+| North Europe​​ | ✅ | ✅ | ✅ |
+| West Europe​​ <sup>1, 2</sup>| ✅ | ✅ | ✅ |
 | France Central​​ | ✅ | ✅ | ✅ |
 | Germany West Central​ ​| ✅ |  | ✅ |
 | Italy North​​ |  |  | ✅ |
 | Norway East​​ | ✅ |  | ✅ |
 | Poland Central​​ |  |  |  |
-| Spain Central |  |  | ✅  |
+| Spain Central <sup>2</sup> |  |  | ✅  |
 | Sweden Central​​ | ✅ |  | ✅ |
 | Switzerland North​ | ✅ | ✅ | ✅ |
 | Switzerland West​ | ✅ | ✅ | ✅ |
 | UK South​ | ✅ | ✅ | ✅ |
 | UK West​ ​|  | ✅ | |
 
-<sup>1</sup> Currently, this region is at capacity for Basic and Standard (S1) tiers. Choose a higher tier or a different region.
+<sup>1</sup> Currently, this region is at full capacity and not accepting new search services.
 
-<sup>2</sup> West Europe is at capacity for all tiers and isn't accepting any new search services. Additionally, the clusters used to run Azure AI Search don't have the [higher capacity partitions](search-limits-quotas-capacity.md#service-limits) that were brought online in April 2024. This means that search services deployed in this region have lower storage and computing capability.
+<sup>2</sup> This region runs on older infrastructure that has lower storage limits per partition at every tier. Choose a different region if you want [higher limits](search-limits-quotas-capacity.md#service-limits).
 
 ### Middle East
 
@@ -97,9 +99,9 @@ You can create an Azure AI Search resource in any of the following Azure public 
 | Qatar Central​ <sup>1, 2</sup> |  |  | ✅ |
 | UAE North​​ | ✅ |  | ✅ |
 
-<sup>1</sup> Currently, this region is at capacity for Basic and Standard (S1) tiers. Choose a higher tier or a different region.
+<sup>1</sup> Currently, this region is at full capacity and not accepting new search services.
 
-<sup>2</sup> These regions run on older infrastructure that has lower capacity per partition at every tier. Choose a different region if you want [higher capacity](search-limits-quotas-capacity.md#service-limits).
+<sup>2</sup> This region runs on older infrastructure that has lower storage limits per partition at every tier. Choose a different region if you want [higher limits](search-limits-quotas-capacity.md#service-limits).
 
 ### Africa
 
@@ -123,51 +125,37 @@ You can create an Azure AI Search resource in any of the following Azure public 
 | Korea Central | ✅ | ✅ | ✅ |
 | Korea South​ ​ |  | ✅ |  |
 
-<sup>1</sup> Currently, this region is at capacity for Basic and Standard (S1) tiers. Choose a higher tier or a different region.
+<sup>1</sup> This region has capacity, but some tiers are [not available](search-sku-tier.md#region-availability-by-tier). 
 
-<sup>2</sup> These regions run on older infrastructure that has lower capacity per partition at every tier. Choose a different region if you want [higher capacity](search-limits-quotas-capacity.md#service-limits).
+<sup>2</sup> This region runs on older infrastructure that has lower storage limits per partition at every tier. Choose a different region if you want [higher limits](search-limits-quotas-capacity.md#service-limits).
 
 ## Azure Government regions
-
-All of these regions support [higher capacity tiers](search-limits-quotas-capacity.md#service-limits). 
-
-None of these regions support Azure [role-based access for data plane operations](search-security-rbac.md). You must use key-based authentication for indexing and query workloads.
 
 | Region | AI integration | Semantic ranking | Availability zones |
 |--|--|--|--|
 | Arizona | ✅ | ✅  | |
 | Texas |  |  |  |
-| Virginia | ✅ | ✅  | ✅ |
+| Virginia <sup>1</sup> | ✅ | ✅  | ✅ |
+
+<sup>1</sup> Currently, this region is at full capacity and not accepting new search services.
 
 ## Azure operated by 21Vianet
 
-You can install Azure AI Search in any of the following regions. If you need semantic ranking or AI enrichment, choose a region that provides the feature.
-
 | Region | AI integration | Semantic ranking | Availability zones |
 |--|--|--|--|
-| China East <sup>1</sup> |  |  |  |
+| China East |  |  |  |
 | China East 2 <sup>1</sup> | ✅  | | |
 | China East 3 |  |  |  |
-| China North <sup>1</sup> |  |  | |
+| China North |  |  | |
 | China North 2 <sup>1</sup> |  |  | |
 | China North 3 | | ✅ | ✅ |
 
-<sup>1</sup> These regions run on older infrastructure that has lower capacity per partition at every tier. Choose a different region if you want [higher capacity](search-limits-quotas-capacity.md#service-limits).
-
-<!-- ## Early Update Access Program (EUAP)
-
-These regions
-
-| Region | AI enrichment | Semantic ranking | Availability zones |
-|--|--|--|--|
-| Central US EUAP​ <sup>1</sup> | | ✅ | |
-| East US 2 EUAP ​ | | ✅ | |
-
-<sup>1</sup> This region runs on older infrastructure that has lower capacity per partition at every tier. You can't create a search service with [higher capacity](search-limits-quotas-capacity.md#service-limits) in this region. -->
+<sup>1</sup> This region runs on older infrastructure that has lower storage limits per partition at every tier. Choose a different region if you want [higher limits](search-limits-quotas-capacity.md#service-limits).
 
 ## See also
 
 - [Azure AI Studio region availability](/azure/ai-studio/reference/region-support)
 - [Azure OpenAI model region availability](/azure/ai-services/openai/concepts/models#model-summary-table-and-region-availability)
+- [Azure AI Vision region list](/azure/ai-services/computer-vision/overview-image-analysis#region-availability)
 - [Availability zone region availability](/azure/reliability/availability-zones-service-support#azure-regions-with-availability-zone-support)
 - [Azure product by region page](https://azure.microsoft.com/explore/global-infrastructure/products-by-region/?products=search)
