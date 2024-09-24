@@ -10,16 +10,16 @@ ms.service: cognitive-search
 ms.custom:
   - ignite-2023
 ms.topic: how-to
-ms.date: 02/08/2024
+ms.date: 09/24/2024
 ---
 
 # Enable or disable semantic ranker
 
-Semantic ranker is a premium feature that's billed by usage. By default, semantic ranker is disabled on all services. 
+Semantic ranker is a premium feature that's billed by usage. By default, semantic ranker is turned off on a new search service, but it can be enabled by anyone with **Contributor** permissions. If you don't want anyone enabling it inadvertently, you can [disable it using the REST API](#disable-semantic-ranker-using-the-rest-api).
 
 ## Check availability
 
-Check the [Products Available by Region](https://azure.microsoft.com/global-infrastructure/services/?products=search) page on the Azure web site to see if your region is listed.
+Check the [regions list](search-region-support.md) to see if your region is listed.
 
 ## Enable semantic ranker
 
@@ -37,7 +37,7 @@ Follow these steps to enable [semantic ranker](semantic-search-overview.md) at t
 
    :::image type="content" source="media/semantic-search-overview/semantic-search-billing.png" alt-text="Screenshot of enabling semantic ranking in the Azure portal." border="true":::
 
-The free plan is capped at 1,000 queries per month. After the first 1,000 queries in the free plan, you'll receive an error message letting you know you've exhausted your quota the next time you issue a semantic query. When this happens, you need to upgrade to the standard plan to continue using semantic ranking.
+The free plan is capped at 1,000 queries per month. After the first 1,000 queries in the free plan, an error message indicates you've exhausted your quota on the next semantic query. When quota is exhausted, you should upgrade to the standard plan to continue using semantic ranking.
 
 ### [**REST**](#tab/enable-rest)
 
@@ -78,7 +78,7 @@ PATCH https://management.azure.com/subscriptions/{{subscriptionId}}/resourcegrou
     }
 ```
 
-To re-enable semantic ranker, rerun the above request, setting "semanticSearch" to either "free" (default) or "standard".
+To re-enable semantic ranker, rerun the previous request, setting "semanticSearch" to either "free" (default) or "standard".
 
 ## Next steps
 
