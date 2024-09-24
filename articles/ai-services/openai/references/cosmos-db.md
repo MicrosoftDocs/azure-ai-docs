@@ -5,7 +5,7 @@ description: Learn how to use Azure OpenAI on your Azure Cosmos DB data Python &
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: conceptual
-ms.date: 03/12/2024
+ms.date: 09/24/2024
 author: mrbullwinkle
 ms.author: mbullwin
 recommendations: false
@@ -93,6 +93,12 @@ Prerequisites:
 * Configure the role assignments from the user to the Azure OpenAI resource. Required role: `Cognitive Services OpenAI User`.
 * Install [Az CLI](/cli/azure/install-azure-cli) and run `az login`.
 * Define the following environment variables: `AzureOpenAIEndpoint`, `ChatCompletionsDeploymentName`,`ConnectionString`, `Database`, `Container`, `Index`, `EmbeddingDeploymentName`.
+
+> [!NOTE]
+> Microsoft does not recommend the username and password flow because the application will be asking a user for their password directly, which is an insecure pattern. In most scenarios, there exist more secure flows that you can use. 
+>
+> The following is for example only. If you use an API key, store it securely somewhere else, such as in [Azure Key Vault](/azure/key-vault/general/overview). Don't include the API key directly in your code, and never post it publicly.
+
 ```bash
 export AzureOpenAIEndpoint=https://example.openai.azure.com/
 export ChatCompletionsDeploymentName=turbo
