@@ -85,7 +85,7 @@ POST /indexes/hotels/docs&api-version=2024-07-01
 
 This query searches on the term "inn" and passes in the current location. Notice that this query includes other parameters, such as scoringParameter. Query parameters, including "scoringParameter", are described in [Search Documents (REST API)](/rest/api/searchservice/documents/search-post).  
 
-See the [Extended example](#extended-example) to review a more detailed example of a scoring profile.  
+See the [Extended example for vector and hybrid search](#extended-example-for-vector-and-hybrid-search) and [Extended example for keyword search](#extended-example-for-keyword-search) for more scenarios.
 
 ## How search scoring works in Azure AI Search
 
@@ -94,8 +94,6 @@ Scoring profiles supplement the default scoring algorithm by boosting the scores
 When you use scoring profiles or any other boosting features in Azure AI Search, the [Reciprocal Ranking Function (RRF)](hybrid-search-ranking.md) algorithm assigns the score, including for standalone text and vector queries. Post-RRF, all scoring/boosting, [semantic ranking](semantic-search-overview.md), and [vector weighting](vector-search-how-to-query.md#vector-weighting) adjustments occur.
 
 :::image type="content" source="media/scoring-profiles/scoring-over-ranked-results.png" alt-text="Diagram showing which fields have a scoring profile and when ranking occurs.":::
-
-For text queries, weight is always `1.0`. For vector queries, weight is a decimal. For example, if you have two vector queries, one weight could be `0.5` while the other could be `2.0`. 
 
 > [!TIP]
 > You can use the [featuresMode (preview)](index-similarity-and-scoring.md#featuresmode-parameter-preview) parameter to request extra scoring details with the search results (including the field level scores).
@@ -108,7 +106,7 @@ For text queries, weight is always `1.0`. For vector queries, weight is a decima
 
 1. Provide a name that adheres to [naming conventions](/rest/api/searchservice/naming-rules).
 
-1. Specify boosting criteria. A single profile can contain [weighted fields](#use-weighted-fields), [functions](#use-functions), or both. 
+1. Specify boosting criteria. A single profile can contain [text weighted fields](#use-text-weighted-fields), [functions](#use-functions), or both. 
 
 You should work iteratively, using a data set that will help you prove or disprove the efficacy of a given profile.
 
@@ -116,9 +114,9 @@ Scoring profiles can be defined in Azure portal as shown in the following screen
 
    :::image type="content" source="media/scoring-profiles/portal-add-scoring-profile-small.png" alt-text="Add scoring profiles page" lightbox="media/scoring-profiles/portal-add-scoring-profile.png" border="true":::
 
-## Use weighted fields
+## Use text-weighted fields
 
-Use weighted fields when field context is important and queries include `searchable` string fields. For example, if a query includes the term "airport", you might want "airport" in the Description field to have more weight than in the HotelName. 
+Use text-weighted fields when field context is important and queries include `searchable` string fields. For example, if a query includes the term "airport", you might want "airport" in the Description field to have more weight than in the HotelName. 
 
 Weighted fields are name-value pairs composed of a `searchable` field and a positive number that is used as a multiplier. If the original field score of HotelName is 3, the boosted score for that field becomes 6, contributing to a higher overall score for the parent document itself.
 
@@ -237,7 +235,11 @@ The following table provides several examples.
 
 For more examples, see [XML Schema: Datatypes (W3.org web site)](https://www.w3.org/TR/xmlschema11-2/#dayTimeDuration).
 
-## Extended example
+## Extended example for vector and hybrid search
+
+See this [blog post](https://farzzy.hashnode.dev/enhance-azure-ai-search-document-boosting) and [notebook](https://github.com/farzad528/azure-ai-search-python-playground/blob/main/azure-ai-search-document-boosting.ipynb) for a demonstration of using scoring profiles and document boosting in vector and generative AI scenarios.
+
+## Extended example for keyword search
 
 The following example shows the schema of an index with two scoring profiles (`boostGenre`, `newAndHighlyRated`). Any query against this index that includes either profile as a query parameter will use the profile to score the result set. 
 
