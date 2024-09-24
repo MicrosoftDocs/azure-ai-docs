@@ -8,7 +8,7 @@ ms.service: azure-ai-openai
 ms.topic: how-to
 author: aahill
 ms.author: aahi
-ms.date: 07/15/2024
+ms.date: 09/24/2024
 recommendations: false
 ---
 
@@ -152,13 +152,13 @@ To set the managed identities via the management API, see [the management API re
 ```json
 
 "identity": {
-  "principalId": "12345678-abcd-1234-5678-abc123def",
-  "tenantId": "1234567-abcd-1234-1234-abcd1234",
+  "principalId": "<YOUR-PRINCIPAL-ID>",
+  "tenantId": "<YOUR-TENNANT-ID>",
   "type": "SystemAssigned, UserAssigned", 
   "userAssignedIdentities": {
-    "/subscriptions/1234-5678-abcd-1234-1234abcd/resourceGroups/my-resource-group",
-    "principalId": "12345678-abcd-1234-5678-abcdefg1234", 
-    "clientId": "12345678-abcd-efgh-1234-12345678"
+    "/subscriptions/<YOUR-SUBSCIRPTION-ID>/resourceGroups/my-resource-group",
+    "principalId": "<YOUR-PRINCIPAL-ID>", 
+    "clientId": "<YOUR-CLIENT-ID>"
   }
 }
 ```
