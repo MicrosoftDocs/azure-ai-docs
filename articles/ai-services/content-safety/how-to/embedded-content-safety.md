@@ -16,7 +16,7 @@ Embedded content safety is designed for on-device scenarios where cloud connecti
 
 > [!IMPORTANT]
 > Microsoft limits access to embedded content safety. You can apply for access through the Azure AI content safety [embedded content safety limited access review](https://aka.ms/aacs-embedded-application). For more information, see [Limited access for embedded content safety]().
-**to-do**: update the link of an article to limited access for embedded content safety. Embedded speech's reference is [here](/legal/cognitive-services/speech-service/embedded-speech/limited-access-embedded-speech?context=%2Fazure%2Fai-services%2Fspeech-service%2Fcontext%2Fcontext&source=docs)
+**tbd**: update the link of an article to limited access for embedded content safety. Embedded speech's reference is [here](/legal/cognitive-services/speech-service/embedded-speech/limited-access-embedded-speech?context=%2Fazure%2Fai-services%2Fspeech-service%2Fcontext%2Fcontext&source=docs)
 
 ## Platform requirements
 
@@ -101,9 +101,7 @@ We also conduct performance benchmark tests on various popular PC CPUs and GPUs.
 
 The [sample code](https://github.com/Azure/azure-ai-content-safety-sdk) includes code snippet to monitor performance metrics like memory, inference time. 
 
-[to-do] make below table two inline sections, one for image, one for text
-
-#### Text perf benchmark data 
+#### [Text analysis performance](#tab/text)
 
 **CPU: Intel(R) Core(TM) Ultra i9 149000HX**  
 
@@ -135,7 +133,7 @@ The [sample code](https://github.com/Azure/azure-ai-content-safety-sdk) includes
 |------------------------|---------|  
 | 940 MB                  | 80 ms    |  
 
-#### Image performance benchmark data
+#### [Image analysis performance](#tab/image)
 
 
 **CPU: Intel(R) Core(TM) Ultra i9 149000HX**
@@ -169,6 +167,8 @@ The [sample code](https://github.com/Azure/azure-ai-content-safety-sdk) includes
 |------------------------|---------|  
 | 1 GB                    | 280 ms   |  
 
+---
 
+## Related Content
 
-## Next steps
+- [Limited access to Content Safety](tbd)
