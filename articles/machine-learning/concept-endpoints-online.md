@@ -9,7 +9,7 @@ ms.topic: concept-article
 author: msakande
 ms.author: mopeakande
 ms.reviewer: sehan
-ms.custom: devplatv2
+ms.custom: devplatv2, FY25Q1-Linter
 ms.date: 09/23/2024
 
 #Customer intent: As an ML pro, I want to understand what an online endpoint is and why I need it.
@@ -20,6 +20,8 @@ ms.date: 09/23/2024
 [!INCLUDE [dev v2](includes/machine-learning-dev-v2.md)]
 
 This article describes online endpoints for real-time inferencing in Azure Machine Learning. Inferencing is the process of applying new input data to a machine learning model to generate outputs. Azure Machine Learning allows you to perform real-time inferencing on data by using models that are deployed to *online endpoints*. While these outputs are typically called *predictions*, you can use inferencing to generate outputs for other machine learning tasks, such as classification and clustering.
+
+## Online endpoints
 
 Online endpoints deploy models to a web server that can return predictions under the HTTP protocol. Online endpoints can operationalize models for real-time inference in synchronous, low-latency requests, and are best used when:
 

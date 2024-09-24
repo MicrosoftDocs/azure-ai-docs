@@ -159,6 +159,7 @@ ml_client.online_deployments.get_logs(
 
 ### [Studio](#tab/studio)
 
+<a name="see-log-output-in-azure-machine-learning-studio"</a>
 To view log output from a container in Azure Machine Learning studio:
 
 1. Select **Endpoints** in the left navigation bar.
