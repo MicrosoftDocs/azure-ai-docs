@@ -17,11 +17,11 @@ zone_pivot_groups: azure-ai-model-catalog-samples-chat
 
 # How to use Cohere Command chat models with Azure Machine Learning studio
 
-[!INCLUDE [Feature preview](~/reusable-content/ce-skilling/azure/includes/ai-studio/includes/feature-preview.md)]
 
 In this article, you learn about Cohere Command chat models and how to use them.
 The Cohere family of models includes various models optimized for different use cases, including chat completions, embeddings, and rerank. Cohere models are optimized for various use cases that include reasoning, summarization, and question answering.
 
+[!INCLUDE [machine-learning-preview-generic-disclaimer](includes/machine-learning-preview-generic-disclaimer.md)]
 
 
 ::: zone pivot="programming-language-python"
@@ -109,7 +109,7 @@ The following models are available:
 
 ## Prerequisites
 
-To use Cohere Command chat models with Azure AI Studio, you need the following prerequisites:
+To use Cohere Command chat models with Azure Machine Learning, you need the following prerequisites:
 
 ### A model deployment
 
@@ -117,10 +117,10 @@ To use Cohere Command chat models with Azure AI Studio, you need the following p
 
 Cohere Command chat models can be deployed to serverless API endpoints with pay-as-you-go billing. This kind of deployment provides a way to consume models as an API without hosting them on your subscription, while keeping the enterprise security and compliance that organizations need. 
 
-Deployment to a serverless API endpoint doesn't require quota from your subscription. If your model isn't deployed already, use the Azure AI Studio, Azure Machine Learning SDK for Python, the Azure CLI, or ARM templates to [deploy the model as a serverless API](deploy-models-serverless.md).
+Deployment to a serverless API endpoint doesn't require quota from your subscription. If your model isn't deployed already, use the Azure Machine Learning studio, Azure Machine Learning studio, Azure Machine Learning SDK for Python, the Azure CLI, or ARM templates to [deploy the model as a serverless API](how-to-deploy-models-serverless.md).
 
 > [!div class="nextstepaction"]
-> [Deploy the model to serverless API endpoints](deploy-models-serverless.md)
+> [Deploy the model to serverless API endpoints](how-to-deploy-models-serverless.md)
 
 ### The inference package installed
 
@@ -143,7 +143,7 @@ Read more about the [Azure AI inference package and reference](https://aka.ms/az
 In this section, you use the [Azure AI model inference API](https://aka.ms/azureai/modelinference) with a chat completions model for chat.
 
 > [!TIP]
-> The [Azure AI model inference API](https://aka.ms/azureai/modelinference) allows you to talk with most models deployed in Azure AI Studio with the same code and structure, including Cohere Command chat models.
+> The [Azure AI model inference API](https://aka.ms/azureai/modelinference) allows you to talk with most models deployed in Azure Machine Learning with the same code and structure, including Cohere Command chat models.
 
 ### Create a client to consume the model
 
@@ -582,7 +582,7 @@ The following models are available:
 
 ## Prerequisites
 
-To use Cohere Command chat models with Azure AI Studio, you need the following prerequisites:
+To use Cohere Command chat models with Azure Machine Learning, you need the following prerequisites:
 
 ### A model deployment
 
@@ -590,10 +590,10 @@ To use Cohere Command chat models with Azure AI Studio, you need the following p
 
 Cohere Command chat models can be deployed to serverless API endpoints with pay-as-you-go billing. This kind of deployment provides a way to consume models as an API without hosting them on your subscription, while keeping the enterprise security and compliance that organizations need. 
 
-Deployment to a serverless API endpoint doesn't require quota from your subscription. If your model isn't deployed already, use the Azure AI Studio, Azure Machine Learning SDK for Python, the Azure CLI, or ARM templates to [deploy the model as a serverless API](deploy-models-serverless.md).
+Deployment to a serverless API endpoint doesn't require quota from your subscription. If your model isn't deployed already, use the Azure Machine Learning studio, Azure Machine Learning SDK for Python, the Azure CLI, or ARM templates to [deploy the model as a serverless API](how-to-deploy-models-serverless.md).
 
 > [!div class="nextstepaction"]
-> [Deploy the model to serverless API endpoints](deploy-models-serverless.md)
+> [Deploy the model to serverless API endpoints](how-to-deploy-models-serverless.md)
 
 ### The inference package installed
 
@@ -614,7 +614,7 @@ npm install @azure-rest/ai-inference
 In this section, you use the [Azure AI model inference API](https://aka.ms/azureai/modelinference) with a chat completions model for chat.
 
 > [!TIP]
-> The [Azure AI model inference API](https://aka.ms/azureai/modelinference) allows you to talk with most models deployed in Azure AI Studio with the same code and structure, including Cohere Command chat models.
+> The [Azure AI model inference API](https://aka.ms/azureai/modelinference) allows you to talk with most models deployed in Azure Machine Learning with the same code and structure, including Cohere Command chat models.
 
 ### Create a client to consume the model
 
@@ -1069,7 +1069,7 @@ The following models are available:
 
 ## Prerequisites
 
-To use Cohere Command chat models with Azure AI Studio, you need the following prerequisites:
+To use Cohere Command chat models with Azure Machine Learning, you need the following prerequisites:
 
 ### A model deployment
 
@@ -1077,10 +1077,10 @@ To use Cohere Command chat models with Azure AI Studio, you need the following p
 
 Cohere Command chat models can be deployed to serverless API endpoints with pay-as-you-go billing. This kind of deployment provides a way to consume models as an API without hosting them on your subscription, while keeping the enterprise security and compliance that organizations need. 
 
-Deployment to a serverless API endpoint doesn't require quota from your subscription. If your model isn't deployed already, use the Azure AI Studio, Azure Machine Learning SDK for Python, the Azure CLI, or ARM templates to [deploy the model as a serverless API](deploy-models-serverless.md).
+Deployment to a serverless API endpoint doesn't require quota from your subscription. If your model isn't deployed already, use the Azure Machine Learning studio, Azure Machine Learning SDK for Python, the Azure CLI, or ARM templates to [deploy the model as a serverless API](how-to-deploy-models-serverless.md).
 
 > [!div class="nextstepaction"]
-> [Deploy the model to serverless API endpoints](deploy-models-serverless.md)
+> [Deploy the model to serverless API endpoints](how-to-deploy-models-serverless.md)
 
 ### The inference package installed
 
@@ -1124,7 +1124,7 @@ using System.Reflection;
 In this section, you use the [Azure AI model inference API](https://aka.ms/azureai/modelinference) with a chat completions model for chat.
 
 > [!TIP]
-> The [Azure AI model inference API](https://aka.ms/azureai/modelinference) allows you to talk with most models deployed in Azure AI Studio with the same code and structure, including Cohere Command chat models.
+> The [Azure AI model inference API](https://aka.ms/azureai/modelinference) allows you to talk with most models deployed in Azure Machine Learning with the same code and structure, including Cohere Command chat models.
 
 ### Create a client to consume the model
 
@@ -1581,7 +1581,7 @@ The following models are available:
 
 ## Prerequisites
 
-To use Cohere Command chat models with Azure AI Studio, you need the following prerequisites:
+To use Cohere Command chat models with Azure Machine Learning, you need the following prerequisites:
 
 ### A model deployment
 
@@ -1589,10 +1589,10 @@ To use Cohere Command chat models with Azure AI Studio, you need the following p
 
 Cohere Command chat models can be deployed to serverless API endpoints with pay-as-you-go billing. This kind of deployment provides a way to consume models as an API without hosting them on your subscription, while keeping the enterprise security and compliance that organizations need. 
 
-Deployment to a serverless API endpoint doesn't require quota from your subscription. If your model isn't deployed already, use the Azure AI Studio, Azure Machine Learning SDK for Python, the Azure CLI, or ARM templates to [deploy the model as a serverless API](deploy-models-serverless.md).
+Deployment to a serverless API endpoint doesn't require quota from your subscription. If your model isn't deployed already, use the Azure Machine Learning studio, Azure Machine Learning SDK for Python, the Azure CLI, or ARM templates to [deploy the model as a serverless API](how-to-deploy-models-serverless.md).
 
 > [!div class="nextstepaction"]
-> [Deploy the model to serverless API endpoints](deploy-models-serverless.md)
+> [Deploy the model to serverless API endpoints](how-to-deploy-models-serverless.md)
 
 ### A REST client
 
@@ -1606,7 +1606,7 @@ Models deployed with the [Azure AI model inference API](https://aka.ms/azureai/m
 In this section, you use the [Azure AI model inference API](https://aka.ms/azureai/modelinference) with a chat completions model for chat.
 
 > [!TIP]
-> The [Azure AI model inference API](https://aka.ms/azureai/modelinference) allows you to talk with most models deployed in Azure AI Studio with the same code and structure, including Cohere Command chat models.
+> The [Azure AI model inference API](https://aka.ms/azureai/modelinference) allows you to talk with most models deployed in Azure Machine Learning with the same code and structure, including Cohere Command chat models.
 
 ### Create a client to consume the model
 
@@ -1898,7 +1898,7 @@ extra-parameters: pass-through
 
 Cohere Command chat models support the use of tools, which can be an extraordinary resource when you need to offload specific tasks from the language model and instead rely on a more deterministic system or even a different language model. The Azure AI Model Inference API allows you to define tools in the following way.
 
-The following code example creates a tool definition that is able to look from flight information from two different cities.
+The following code example creates a tool definition that is able to look for flight information from two different cities.
 
 
 ```json
@@ -2152,17 +2152,16 @@ For more examples of how to use Cohere models, see the following examples and tu
 
 Quota is managed per deployment. Each deployment has a rate limit of 200,000 tokens per minute and 1,000 API requests per minute. However, we currently limit one deployment per model per project. Contact Microsoft Azure Support if the current rate limits aren't sufficient for your scenarios.
 
-Cohere models deployed as a serverless API are offered by Cohere through the Azure Marketplace and integrated with Azure AI Studio for use. You can find the Azure Marketplace pricing when deploying the model.
+Cohere models deployed as a serverless API are offered by Cohere through the Azure Marketplace and integrated with Azure Machine Learning studio for use. You can find the Azure Marketplace pricing when deploying the model.
 
 Each time a project subscribes to a given offer from the Azure Marketplace, a new resource is created to track the costs associated with its consumption. The same resource is used to track costs associated with inference; however, multiple meters are available to track each scenario independently.
 
-For more information on how to track costs, see [Monitor costs for models offered through the Azure Marketplace](costs-plan-manage.md#monitor-costs-for-models-offered-through-the-azure-marketplace).
+For more information on how to track costs, see [Monitor costs for models offered through the Azure Marketplace](/azure/ai-studio/how-to/costs-plan-manage#monitor-costs-for-models-offered-through-the-azure-marketplace).
 
 ## Related content
 
 
-* [Azure AI Model Inference API](../reference/reference-model-inference-api.md)
-* [Deploy models as serverless APIs](deploy-models-serverless.md)
-* [Consume serverless API endpoints from a different Azure AI Studio project or hub](deploy-models-serverless-connect.md)
-* [Region availability for models in serverless API endpoints](deploy-models-serverless-availability.md)
-* [Plan and manage costs (marketplace)](costs-plan-manage.md#monitor-costs-for-models-offered-through-the-azure-marketplace)
+* [Azure AI Model Inference API](reference-model-inference-api.md)
+* [Deploy models as serverless APIs](how-to-deploy-models-serverless.md)
+* [Region availability for models in serverless API endpoints](concept-endpoint-serverless-availability.md)
+* [Plan and manage costs for Azure AI Studio](concept-plan-manage-cost.md)
