@@ -233,7 +233,7 @@ azure_ai_project = {
 > [!NOTE]
 > Currently adversarial simulation, which uses the Azure AI safety evaluation service, is only available in the following regions: East US 2, France Central, UK South, Sweden Central.
 
-## Specify target callback to simulate against - adversarial simulator
+## Specify target callback to simulate against for adversarial simulator
 
 You can bring any application endpoint to the adversarial simulator. `AdversarialSimulator` class supports sending service-hosted queries and receiving responses with a callback function, as defined below. The `AdversarialSimulator` adheres to the [OpenAI's messages protocol](https://platform.openai.com/docs/api-reference/messages/object#messages/object-content).
 
