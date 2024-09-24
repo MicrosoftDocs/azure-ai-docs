@@ -121,12 +121,12 @@
             "redirect_document_id": false
         },
         {
-            "source_path_from_root": "articles/ai-studio/how-to/develop/flow-evaluate-sdk.md",
+            "source_path_from_root": "/articles/ai-studio/how-to/develop/flow-evaluate-sdk.md",
             "redirect_url": "/azure/ai-studio/how-to/develop/evaluate-sdk",
             "redirect_document_id": true
         },
         {
-            "source_path_from_root": "articles/ai-studio/how-to/evaluate-flow-results.md",
+            "source_path_from_root": "/articles/ai-studio/how-to/evaluate-flow-results.md",
             "redirect_url": "/azure/ai-studio/how-to/evaluate-results",
             "redirect_document_id": true
         }
