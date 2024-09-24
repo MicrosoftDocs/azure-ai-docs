@@ -139,8 +139,9 @@ You can have this container and a different Azure AI container running on the HO
 
 > [!NOTE]
 > Use a unique port number if you're running multiple containers.
-> | Protocol | Host URL |
-> |--|--|
+>
+> |Protocol | Host URL |
+> |---|---|
 > | WS | `ws://localhost:5000` | 
 > | HTTP | `http://localhost:5000` |
 

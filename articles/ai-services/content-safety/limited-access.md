@@ -5,6 +5,7 @@ description: This article explains why certain Azure AI Content Safety features 
 author: PatrickFarley
 ms.author: pafarley
 manager: nitinme
+ms.topic: conceptual
 ms.service: azure-ai-speech
 ms.date: 09/23/2024
 ---

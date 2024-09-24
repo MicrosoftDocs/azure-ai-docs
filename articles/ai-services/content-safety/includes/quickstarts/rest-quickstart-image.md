@@ -27,7 +27,7 @@ The following section walks through a sample image moderation request with cURL.
 
 Choose a sample image to analyze, and download it to your device. 
 
-See [Input requirements](./overview.md#input-requirements) for the image limitations. If your format is animated, the service will extract the first frame to do the analysis.
+See [Input requirements](../../overview.md#input-requirements) for the image limitations. If your format is animated, the service will extract the first frame to do the analysis.
 
 You can input your image by one of two methods: **local filestream** or **blob storage URL**.
 - **Local filestream** (recommended): Encode your image to base64. You can use a website like [codebeautify](https://codebeautify.org/image-to-base64-converter) to do the encoding. Then save the encoded string to a temporary location. 

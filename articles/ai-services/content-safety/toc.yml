@@ -78,9 +78,9 @@ items:
     - name: Install and run containers
       href: how-to/containers/install-run-container.md
     - name: Text analysis container
-      href: how-to/containers/text-analysis.md
+      href: how-to/containers/text-container.md
     - name: Image analysis container
-      href: how-to/containers/image-analysis.md
+      href: how-to/containers/image-container.md
   - name: Embedded Content Safety
     href: how-to/embedded-content-safety.md 
   - name: Encryption of data at rest
