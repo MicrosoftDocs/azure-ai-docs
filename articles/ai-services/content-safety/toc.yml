@@ -19,9 +19,9 @@ items:
   items:
   - name: Prompt Shields
     href: concepts/jailbreak-detection.md
-  - name: Groundedness detection
+  - name: Groundedness detection (preview)
     href: concepts/groundedness.md
-  - name: Protected material detection
+  - name: Protected material detection (preview)
     href: concepts/protected-material.md
   - name: Custom categories (preview)
     href: concepts/custom-categories.md
@@ -33,9 +33,9 @@ items:
     href: quickstart-jailbreak.md
   - name: Groundedness detection (preview)
     href: quickstart-groundedness.md
-  - name: Protected material detection for text
+  - name: Protected material detection for text (preview)
     href: quickstart-protected-material.md
-  - name: Protected material detection for code
+  - name: Protected material detection for code (preview)
     href: quickstart-protected-material-code.md
   - name: Custom categories (preview)
     href: quickstart-custom-categories.md
@@ -71,7 +71,7 @@ items:
     href: how-to/use-blocklist.md
   - name: Mitigate false results
     href: how-to/improve-performance.md
-  - name: Containers
+  - name: Containers (preview)
     items:
     - name: Content Safety containers overview
       href: how-to/containers/container-overview.md
@@ -81,7 +81,7 @@ items:
       href: how-to/containers/text-container.md
     - name: Image analysis container
       href: how-to/containers/image-container.md
-  - name: Embedded Content Safety
+  - name: Embedded Content Safety (preview)
     href: how-to/embedded-content-safety.md 
   - name: Encryption of data at rest
     href: how-to/encrypt-data-at-rest.md

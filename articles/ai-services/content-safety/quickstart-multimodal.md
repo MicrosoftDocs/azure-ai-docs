@@ -12,7 +12,7 @@ ms.author: pafarley
 # zone_pivot_groups: programming-languages-content-safety
 ---
 
-# Quickstart: Analyze multimodal content (Preview) 
+# Quickstart: Analyze multimodal content (preview) 
 
 The Multimodal API analyzes materials containing both image content and text content to help make applications and services safer from harmful user-generated or AI-generated content. Analyzing an image and its associated text content together can preserve context and provide a more comprehensive understanding of the content.
 

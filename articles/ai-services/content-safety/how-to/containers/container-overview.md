@@ -11,7 +11,7 @@ ms.author: pafarley
 keywords: on-premises, Docker, container
 ---
 
-# Content Safety containers overview
+# Content Safety containers overview (preview)
 
 Containers let you use a subset of the Azure AI Content Safety features in your own environment. With content safety containers, you can build a content safety application architecture optimized for both robust cloud capabilities and edge locality. Containers help you meet specific security and data governance requirements. 
 

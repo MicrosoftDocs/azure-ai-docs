@@ -11,7 +11,7 @@ ms.date: 10/30/2023
 ms.author: pafarley
 ---
 
-# Quickstart: Protected material detection for text
+# Quickstart: Protected material detection for text (preview)
 
 The Protected Material for Text feature provides a comprehensive solution for managing risks associated with AI-generated content (English content only). By detecting and preventing the display of protected material, organizations can ensure compliance with intellectual property laws, maintain content originality, and protect their reputations. Protected material refers to content that matches known text from copyrighted sources, such as song lyrics, articles, recipes, or other selected web content.
 

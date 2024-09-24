@@ -11,7 +11,7 @@ ms.author: pafarley
 keywords: on-premises, Docker, container
 ---
 
-# Install and run content safety containers with Docker
+# Install and run content safety containers with Docker (preview)
 
 By using containers, you can use a subset of the content safety service features in your own environment. In this article, you learn how to download, install, and run a content safety container.
 

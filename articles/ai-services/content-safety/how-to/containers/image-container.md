@@ -11,7 +11,7 @@ ms.author: pafarley
 keywords: on-premises, Docker, container
 ---
 
-# Analyze image content with docker containers
+# Analyze image content with docker containers (preview)
 
 The analyze image container scans images for sexual content, violence, hate, and self-harm with multi-severity levels. This guide shows how to download, install, and run a content safety image container.
 

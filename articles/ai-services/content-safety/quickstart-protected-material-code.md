@@ -11,7 +11,7 @@ ms.date: 09/22/2024
 ms.author: pafarley
 ---
 
-# Quickstart: Protected material detection for code
+# Quickstart: Protected material detection for code (preview)
 
 The Protected Material for Code feature provides a comprehensive solution for identifying and managing the risks associated with AI-generated code. By detecting and preventing the display of protected code from existing GitHub repositories, organizations can ensure compliance with intellectual property regulations, uphold code originality, and safeguard their reputations. Protected material refers to code that closely matches content from known GitHub repositories, including software libraries, source code, algorithms, and other proprietary programming content.
 
