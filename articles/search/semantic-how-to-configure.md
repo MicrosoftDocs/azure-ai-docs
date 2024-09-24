@@ -13,7 +13,7 @@ ms.topic: how-to
 ms.date: 08/05/2024
 ---
 
-# Configure semantic ranking and return captions in search results
+# Configure semantic ranker and return captions in search results
 
 This article explains how to configure a search index for semantic reranking. 
 

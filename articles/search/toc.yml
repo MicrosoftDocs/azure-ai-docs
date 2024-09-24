@@ -407,9 +407,9 @@ items:
     href: hybrid-search-how-to-query.md
   - name: Ranking and relevance
     items:
-    - name: Enable or disable semantic ranking
+    - name: Enable or disable semantic ranker
       href: semantic-how-to-enable-disable.md      
-    - name: Configure semantic ranking
+    - name: Configure semantic ranker
       href: semantic-how-to-configure.md
     - name: Add semantic ranking to queries
       href: semantic-how-to-query-request.md
