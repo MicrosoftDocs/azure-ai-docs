@@ -15,13 +15,13 @@ An AI system includes not only the technology, but also the people who will use 
 
 Microsoft's Transparency Notes are part of a broader effort at Microsoft to put our AI Principles into practice. To find out more, *see* [Microsoft AI principles](https://www.microsoft.com/ai/responsible-ai).
 
-## Microsoft Translator Pro
+## Introduction
 
 Microsoft Translator Pro is a solution for enterprise organizations seeking to overcome language barriers at work during communication. This solution is currently available as mobile app available on the iOS platform.
 
 Enterprise organizations can sign into the Microsoft Translator Pro with their organizational credentials to translate conversations between speech-to-speech conversations. Users can either read a translated message or hear it in their language of choice. The app also allows translation of common phrases using a phrasebook. Following the completion of a conversation, the history can be viewed and optionally exported to the enterprise organization storage account.
 
-### Key terms
+## Key terms
 
 |Term|Definition|
 |----|----------|
@@ -35,7 +35,7 @@ Enterprise organizations can sign into the Microsoft Translator Pro with their o
 |Embedded languages|Languages that can be accessed offline.|
 |Admin settings|Settings that can be accessed by an administrator to manage and configure in an application.|
 
-### Capabilities
+## Capabilities
 
 The following sections describe the application's general appearance and response in two areas:
 
@@ -43,7 +43,7 @@ The following sections describe the application's general appearance and respons
 
 * [**Use cases**](#use-cases)
 
-#### System behavior
+### System behavior
 
 * **Speech-to-speech translation via automatic language mode**. In this mode, the app displays a single microphone button with 2 chosen languages, for example English and Spanish. When the microphone button is pressed, the app listens for voice input in both English and Spanish. If the enterprise employee speaks in English, the app will identify the spoken language as English and translate it to Spanish. When the app completes the translation of the voice input, the app will speak the translated message aloud. The external user can then reply to the enterprise employee after hearing the translation. When the user speaks in Spanish, the app will detect the spoken language as Spanish and translate it to English and play the output aloud in English.
 
@@ -59,9 +59,9 @@ The following sections describe the application's general appearance and respons
 
 * **Admin settings**. Administrator settings enable organization administrators to manage and grant permissions for employees to access the app, adjust app configurations, manage conversation history export, and audit logs in the organization storage account.
 
-#### Use cases
+### Use cases
 
-##### Intended use
+#### Intended use
 
 Microsoft Translator Pro can be used in multiple scenarios. The system's intended uses include:
 
@@ -71,7 +71,7 @@ Microsoft Translator Pro can be used in multiple scenarios. The system's intende
 
 * **Communication within workforce**. Enterprise employees can use the app to communicate with external users.
 
-##### Considerations when choosing other use cases
+#### Considerations when choosing other use cases
 
 * **Avoid use in public spaces**. When using voice-enabled features in the app in a public spaces, you cannot stop others from speaking near the app. You should advise users to avoid using these features in a public or open place where the app might capture voices of people without their knowledge or consent.
 
@@ -79,7 +79,7 @@ Microsoft Translator Pro can be used in multiple scenarios. The system's intende
 
 * **Avoid scenarios where use of translation without human review could have consequential impact on life opportunities or legal status**. Before making a decision based on translated material, check with a qualified human reviewer if translation errors might affect someone's legal status, rights, or access to credit, education, work, healthcare, housing, insurance, or social welfare benefits.
 
-##### Unsupported use
+#### Unsupported use
 
 * **Translation with speaker recognition**. The app is not designed to provide speaker diarization or speaker recognition and cannot be used to identify individuals. The app does not create voiceprints.
 
@@ -87,11 +87,11 @@ Microsoft Translator Pro can be used in multiple scenarios. The system's intende
 
 * **Same language transcription**. The app is not designed to provide transcription where both users are speaking the same language.
 
-### Limitations
+## Limitations
 
-#### Technical limitations, operational factors and ranges
+### Technical limitations, operational factors and ranges
 
-##### Transcription and Translation accuracy
+#### Transcription and Translation accuracy
 
 Certain factors may lead to a lower accuracy in transcription and translation:
 
@@ -113,7 +113,7 @@ Certain factors may lead to a lower accuracy in transcription and translation:
 
   * **Political or religious bias**: Phrases or word choices with a political bias in one language don't necessarily translate with the same bias or connotation in the another language.
 
-##### Text-to-speech accuracy
+#### Text-to-speech accuracy
 
 Technical limitations to consider when using text-to-speech include the accuracy of pronunciation and intonation. While text-to-speech is designed to generate natural-sounding speech, the app may encounter difficulties with certain words, names, or uncommon phrases. Users should be aware that there can be instances where the system may mispronounce or emphasize words incorrectly, especially when dealing with niche or domain-specific vocabulary.
 
@@ -123,25 +123,25 @@ It is important to note that certain populations may be more negatively impacted
 
 * **Context or emotion**: Text-to-speech may have limitations in accurately conveying contextual information and emotions. Customers and users should be mindful of the system's inability to understand the emotional nuances or subtle cues present in the text. Considerations should be made to provide additional context or utilize other methods to convey emotions effectively.
 
-### System performance
+## System performance
 
-#### Best practices for improving system performance
+### Best practices for improving system performance
 
 The Microsoft Translator Pro is an integrated end-to-end solution that leverages various services such as speech-to-text, translation, and text-to-speech. Please refer to [speech-to-text](/legal/cognitive-services/speech-service/speech-to-text/transparency-note) and [text-to-speech](/legal/cognitive-services/speech-service/text-to-speech/transparency-note) transparency notes for more details on the best practices for improving system performance.
 
-### Evaluation of Microsoft Translator Pro
+## Evaluation of Microsoft Translator Pro
 
-#### Evaluation results
+### Evaluation results
 
 The Microsoft Translator Pro is an integrated end-to-end solution that leverages various services such as speech-to-text, translation, and text-to-speech. Please refer to [speech-to-text](/legal/cognitive-services/speech-service/speech-to-text/transparency-note) and [text-to-speech](/legal/cognitive-services/speech-service/text-to-speech/transparency-note) transparency notes transparency notes for more details on evaluation results.
 
-#### Fairness considerations
+### Fairness considerations
 
 **At Microsoft, we strive to empower every person on the planet to achieve more**. An essential part of this goal is working to create technologies and products that are fair and inclusive. Fairness is a multidimensional, sociotechnical topic, and it affects many different aspects of our product development. To learn more, *see* [Microsoft approach to fairness](https://www.microsoft.com/ai/responsible-ai?activetab=pivot1%3Aprimaryr6).
 
 One dimension to consider is how well the app performs for different groups of people. Research has shown that without conscious effort focused on improving performance for all groups, it is often possible for the performance of an AI application to vary across groups based on factors such as race, ethnicity, region, gender, and age.
 
-### Learn more about responsible AI
+## Learn more about responsible AI
 
 [Microsoft AI principles](https://www.microsoft.com/ai/responsible-ai)
 
@@ -149,9 +149,9 @@ One dimension to consider is how well the app performs for different groups of p
 
 [Microsoft Azure Learning courses on responsible AI](/ai/)
 
-### Learn more about Microsoft Translator Pro
+## Learn more about Microsoft Translator Pro
 
-[Microsoft Translator Pro](TODO)
+[Microsoft Translator Pro](overview.md)
 
 About this document
 
