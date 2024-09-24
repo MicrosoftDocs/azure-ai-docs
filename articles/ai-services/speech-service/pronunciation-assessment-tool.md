@@ -8,8 +8,9 @@ ms.service: azure-ai-speech
 ms.custom:
   - build-2024
 ms.topic: how-to
-ms.date: 1/21/2024
+ms.date: 9/23/2024
 ms.author: eur
+# Customer intent: As a language learner, I want to use the pronunciation assessment tool in AI Studio to get feedback on my speech.
 ---
 
 # Pronunciation assessment in AI Studio

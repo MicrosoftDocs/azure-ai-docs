@@ -5,11 +5,12 @@ description: With Azure AI Speech video translation, you can seamlessly translat
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 5/21/2024
+ms.date: 9/24/2024
 ms.reviewer: sally-baolian
 ms.author: eur
 author: eric-urban
 ms.custom: references_regions
+#Customer intent: As a developer, I want to learn how to use video translation in the studio.
 ---
 
 # Video translation in the studio

@@ -83,14 +83,6 @@ conceptualContent:
         - itemType: overview
           text: About Speech CLI
           url: spx-overview.md    
-    - title: Speaker Recognition
-      links:
-        - itemType: quickstart
-          text: Get started with Speaker Recognition          
-          url: ./get-started-speaker-recognition.md
-        - itemType: how-to-guide
-          text: Speaker Recognition API reference
-          url: /rest/api/speakerrecognition/  
     - title: Speech translation
       links:
       - itemType: overview

@@ -2,13 +2,15 @@
 title: Sovereign Clouds - Speech service
 titleSuffix: Azure AI services
 description: Learn how to use Sovereign Clouds
-author: alexeyo26
+author: eric-urban
+ms.author: eur
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
 ms.custom: references_regions
-ms.date: 1/21/2024
-ms.author: alexeyo
+ms.date: 9/24/2024
+ms.reviewer: alexeyo
+#Customer intent: As a developer, I want to learn how to use Speech service in sovereign clouds.
 ---
 
 # Speech service in sovereign clouds
