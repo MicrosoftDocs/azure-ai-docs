@@ -9,9 +9,9 @@ ms.custom:
   - references_regions
 ms.topic: how-to
 ms.date: 09/24/2024
-ms.reviewer: dantaylo
-ms.author: eur
-author: eric-urban
+ms.reviewer: minthigpen
+ms.author: lagayhar
+author: lgayhardt
 ---
 # Evaluate with the Azure AI Evaluation SDK
 
