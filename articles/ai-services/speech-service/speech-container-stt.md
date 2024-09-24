@@ -11,6 +11,7 @@ ms.date: 9/17/2024
 ms.author: eur
 zone_pivot_groups: programming-languages-speech-sdk-cli
 keywords: on-premises, Docker, container
+#Customer intent: As a developer, I want to learn how to install and run speech to text containers with Docker.
 ---
 
 # Speech to text containers with Docker

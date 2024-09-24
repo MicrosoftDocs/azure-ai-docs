@@ -9,6 +9,7 @@ ms.topic: how-to
 ms.date: 9/17/2024
 ms.author: eur
 keywords: on-premises, Docker, container
+# Customer intent: As a developer, I want to learn about the Speech containers available in the Microsoft Container Registry (MCR).
 ---
 
 # Speech containers overview
