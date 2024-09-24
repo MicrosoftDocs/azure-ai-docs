@@ -144,27 +144,41 @@ To use the Content Safety APIs, you must create your Azure AI Content Safety res
    
 | Region   | Moderation APIs (text and image) | Moderation APIs (multimodal) | Prompt Shields | Protected material detection for Text | Protected material detection for Code | Groundedness detection (preview) | Custom categories (rapid) (preview) | Custom categories (standard) (preview) | Blocklists |  
 |--|-|---|-|--|---|-|-|---|---|  
-| East US        | ✅    | ✅    | ✅  | ✅    |   ✅ | ✅    | ✅   | ✅ | ✅  |  
-| East US 2      | ✅    |  | ✅  | ✅    |  ✅  | ✅    | ✅   |   | ✅  |  
-| West US        |  |  | ✅  | ✅    |  ✅  |    | ✅   |   |    |  
-| West US 2      | ✅    |  | ✅  | ✅    |  ✅  |    | ✅   |   | ✅  |  
-| West US 3      | ✅    |  | ✅  | ✅    | ✅   |    | ✅   |   | ✅  |  
-| Poland Central  | ✅  |  | ✅  | ✅    |  ✅  |    | ✅   |   | ✅  |  
-| South East Asia | ✅ |  | ✅  | ✅    |   ✅ |    | ✅   |   | ✅  |  
-| Central US      | ✅    |  |    | ✅    | ✅  |    | ✅   |   | ✅  |  
-| North Central US | ✅    |  | ✅  | ✅    | ✅   |    | ✅   |   | ✅  |  
-| South Central US | ✅    |  | ✅  | ✅    | ✅   |    | ✅   |   | ✅  |  
-| Canada East      | ✅    |  | ✅  | ✅    | ✅   |    | ✅   |   | ✅  |  
-| Switzerland North | ✅   |  | ✅  | ✅    |  ✅  |    | ✅   | ✅ | ✅  |  
-| Sweden Central | ✅  |  | ✅  | ✅    |  ✅  | ✅    | ✅   |   | ✅  |  
-| UK South       | ✅    |  | ✅  | ✅    | ✅   |    | ✅   |   | ✅  |  
-| France Central | ✅  |  | ✅  | ✅    | ✅   |    | ✅   |   | ✅  |  
-| West Europe    | ✅    | ✅    | ✅  | ✅    |   ✅ |    | ✅   |   | ✅  |  
-| Japan East     | ✅    |  | ✅  | ✅    |  ✅  |    | ✅   |   | ✅  |  
-| Australia East | ✅  |  | ✅  | ✅    |  ✅  |    | ✅   | ✅ | ✅  |  
-| South India    | ✅    |  |    | ✅    | ✅   |    | ✅   |   | ✅  |  
-| USGov Arizona  | ✅   |  |    |  |    |    |   |   | ✅  |  
-| USGov Virginia | ✅  |  |    |  |    |    |   |   | ✅  |
+| East US           | ✅  |✅| ✅  | ✅    |  ✅ | ✅| ✅  | ✅ | ✅   |  
+| East US 2         | ✅  |   | ✅ | ✅    |  ✅  | ✅| ✅   |   | ✅   |  
+| Central US        | ✅  |  |      | ✅      | ✅  |    | ✅   |   | ✅  |  
+| North Central US  |  ✅  |  |    |        |       |    |      |   |       |
+| South Central US  |  ✅  |  |    |        |       |    |      |   |       |
+| West US           |      |  | ✅  | ✅   |  ✅  |    | ✅   |   |       |  
+| West US 2         | ✅  |  | ✅  | ✅    |  ✅  |    | ✅   |   | ✅  |  
+| West US 3         | ✅  |  | ✅  | ✅    | ✅   |    | ✅   |   | ✅  |  
+| Brazil South      |      |  |    |        |       |    |      |   |       |
+| Poland Central    | ✅  |  | ✅  | ✅     |  ✅  |    | ✅   |   | ✅  |  
+| South East Asia   |      |  | ✅  | ✅     |   ✅ |    | ✅   |   | ✅  |  
+| India North       |      |  |    |        |       |    |      |   |       |
+| South India       | ✅  |  |     | ✅    | ✅   |    | ✅   |   | ✅   |  
+| Central India     |      |    |        |       |    |      |   |       |
+| North Central US  | ✅  |  | ✅  | ✅     | ✅   |    | ✅   |   | ✅  |  
+| South Central US  | ✅  |  | ✅  | ✅     | ✅   |    | ✅   |   | ✅  |  
+| Canada East       | ✅  |  | ✅  | ✅    | ✅   |    | ✅   |   | ✅  |  
+| Canada Central    |      |  |    |        |       |    |      |   |       |
+| Switzerland North | ✅  |  | ✅  | ✅    |  ✅  |    | ✅   | ✅ | ✅  |  
+| Germany West Central|   |  |    |        |       |    |      |   |       |
+| Sweden Central    | ✅  |  | ✅  | ✅    |  ✅  | ✅| ✅    |  | ✅   |  
+| Norway East       |      |  |    |        |       |    |      |   |       |
+| UK South          | ✅  |  | ✅  | ✅    | ✅   |    | ✅   |   | ✅  |  
+| France Central    | ✅  |  | ✅  | ✅    | ✅   |    | ✅   |   | ✅  |  
+| West Europe       | ✅  |✅| ✅ | ✅    |   ✅ |    | ✅   |   | ✅   |  
+| Italy North       |      |  |    |        |       |    |      |   |       |
+| Japan East        | ✅  |  | ✅  | ✅    |  ✅  |    | ✅   |   | ✅   |  
+| Japan West        |      |  |    |        |       |    |      |   |       |
+| Korea Central     |  ✅    |  |    |        |       |    |      |   |       |
+| Australia East    | ✅  |  | ✅  | ✅    |  ✅  |    | ✅   | ✅ | ✅ |  
+| UAE North         |   ✅   |  |    |        |       |    |      |   |       |
+| USGov Arizona     | ✅  |  |     |        |      |    |       |   | ✅   |  
+| USGov Virginia    | ✅  |  |     |        |      |    |       |   | ✅   |
+| South Africa North|      |  |    |        |       |    |      |   |       |
+| South Central US  |      |  |    |        |       |    |      |   |       |
 
 Feel free to [contact us](mailto:contentsafetysupport@microsoft.com) if your business needs other regions to be available.
 
