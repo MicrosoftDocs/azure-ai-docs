@@ -1,7 +1,7 @@
 ---
-title: 'Quickstart: Use GPT-4 Turbo with Vision on your images and videos with the Python SDK'
+title: 'Quickstart: Use GPT-4 Turbo with Vision on your images and videos with the .NET SDK'
 titleSuffix: Azure OpenAI
-description: Get started using the Azure OpenAI Python SDK to deploy and use the GPT-4 Turbo with Vision model.
+description: Get started using the Azure OpenAI .NET SDK to deploy and use the GPT-4 Turbo with Vision model.
 services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-openai
@@ -10,10 +10,7 @@ ms.custom: references_regions
 ms.date: 01/22/2024
 ---
 
-Use this article to get started using the Azure OpenAI Python SDK to deploy and use the GPT-4 Turbo with Vision model. 
-
-[Library source code](https://github.com/openai/openai-python?azure-portal=true) | [Package (PyPi)](https://pypi.org/project/openai?azure-portal=true) |
-
+Use this article to get started using the Azure OpenAI .NET SDK to deploy and use the GPT-4 Turbo with Vision model. 
 
 ## Prerequisites
 
