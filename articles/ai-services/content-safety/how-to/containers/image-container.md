@@ -21,10 +21,7 @@ For more information about prerequisites, validating that a container is running
 
 The content safety analyze image container image for all supported versions can be found on the [Microsoft Container Registry (MCR)](https://mcr.microsoft.com/product/azure-cognitive-services/contentsafety/image-analyze/tags) syndicate. It resides in the `azure-cognitive-services/contentsafety` repository and is named `image-analyze`.
 
- 
-<!--
-**to do: update MCR screenshot** **[to-do]** update MCR screenshot for AACS image analyze image. the MCR release is in progress, expect to finish by EOD 9/20 PST. the MCR link is  https://mcr.microsoft.com/en-us/product/azure-cognitive-services/contentsafety/image-analyze/tags
--->
+:::image type="content" source="../../media/image-container.png" alt-text="Screenshot of image container on registry website.":::
 
 
 The fully qualified container name is, `mcr.microsoft.com/en-us/product/azure-cognitive-services/contentsafety/image-analyze`. Append a specific container version, or append `:latest` to get the most recent version. For example:
