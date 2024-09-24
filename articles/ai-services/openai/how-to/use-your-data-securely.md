@@ -83,6 +83,11 @@ If you are using a published [web app](./use-web-app.md), you need to redeploy i
 
 When using the API, pass the `filter` parameter in each API request. For example:
 
+> [!IMPORTANT]
+> The following is for example only. If you use an API key, store it securely somewhere else, such as in [Azure Key Vault](/azure/key-vault/general/overview). Don't include the API key directly in your code, and never post it publicly.
+
+For more information about AI services security, see [Authenticate requests to Azure AI services](/azure/ai-services/authentication).
+
 ```json
 {
     "messages": [
@@ -91,13 +96,13 @@ When using the API, pass the `filter` parameter in each API request. For example
             "content": "who is my manager?"
         }
     ],
-    "dataSources": [
+    "data_sources": [
         {
-            "type": "AzureCognitiveSearch",
+            "type": "azure_search",
             "parameters": {
-                "endpoint": "'$AZURE_AI_SEARCH_ENDPOINT'",
-                "key": "'$AZURE_AI_SEARCH_API_KEY'",
-                "indexName": "'$AZURE_AI_SEARCH_INDEX'",
+                "endpoint": "<AZURE_AI_SEARCH_ENDPOINT>",
+                "key": "<AZURE_AI_SEARCH_API_KEY>",
+                "index_name": "<AZURE_AI_SEARCH_INDEX>",
                 "filter": "my_group_ids/any(g:search.in(g, 'group_id1, group_id2'))"
             }
         }
