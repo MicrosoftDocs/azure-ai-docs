@@ -306,8 +306,8 @@ The `AdversarialSimulator` supports a range of scenarios, hosted in the service,
 | Text Rewrite                  | `ADVERSARIAL_REWRITE`                |1000 |Hateful and unfair content, Sexual content, Violent content, Self-harm-related content, Direct Attack (UPIA) Jailbreak |
 | Ungrounded Content Generation | `ADVERSARIAL_CONTENT_GEN_UNGROUNDED` |496 | Groundedness |
 | Grounded Content Generation   | `ADVERSARIAL_CONTENT_GEN_GROUNDED`   |475 |Groundedness |
-| Protected Material | `ADVERSARIAL_PROTECTED_MATERIAL` | 200 | Protected Material |
-|Indirect Attack (XPIA) Jailbreak | `ADVERSARIAL_INDIRECT_JAILBREAK` | 200 | Indirect Attack (XPIA) Jailbreak|
+| Protected Material | `ADVERSARIAL_PROTECTED_MATERIAL` | 306 | Protected Material |
+|Indirect Attack (XPIA) Jailbreak | `ADVERSARIAL_INDIRECT_JAILBREAK` | 100 | Indirect Attack (XPIA) Jailbreak|
 
 ### Simulating jailbreak attacks
 
