@@ -8,12 +8,12 @@ items:
     href: what-is-ai-studio.md
   - name: Azure AI Studio architecture
     href: concepts/architecture.md
-  - name: AI Studio versus AML studio
-    href: /ai/ai-studio-experiences-overview?context=/azure/ai-studio/context/context
   - name: Region support
     href: reference/region-support.md
   - name: Azure AI FAQ
     href: faq.yml
+  - name: "AI Studio or Azure Machine Learning studio: Which should I choose?"
+    href: /ai/ai-studio-experiences-overview?context=/azure/ai-studio/context/context
 - name: Quickstarts
   items:
   - name: Create a project and use the chat playground

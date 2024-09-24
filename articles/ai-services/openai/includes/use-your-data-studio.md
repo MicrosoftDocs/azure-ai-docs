@@ -16,7 +16,7 @@ recommendations: false
 
 Start exploring Azure OpenAI capabilities with a no-code approach through the chat playground. It's simply a text box where you can submit a prompt to generate a completion. From this page, you can quickly iterate and experiment with the capabilities. 
 
-:::image type="content" source="../media/quickstarts/chat-playground.png" alt-text="Screenshot of the playground page of the Azure OpenAI Studio with sections highlighted." lightbox="../media/quickstarts/chat-playground.png":::
+:::image type="content" source="../media/quickstarts/chat-playground-new.png" alt-text="Screenshot of the playground page of the Azure OpenAI Studio with sections highlighted." lightbox="../media/quickstarts/chat-playground-new.png":::
 
 The playground gives you options to tailor your chat experience. On the right, you can select **Deployment** to determine which model generates a response using the search results from your index. You choose the number of past messages to include as conversation history for future generated responses. [Conversation history](../concepts/use-your-data.md#conversation-history-for-better-results) gives context to generate related responses but also consumes [token usage](../concepts/use-your-data.md#token-usage-estimation-for-azure-openai-on-your-data). The input token progress indicator keeps track of the token count of the question you submit. 
 
