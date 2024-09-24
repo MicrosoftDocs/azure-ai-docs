@@ -122,7 +122,7 @@ Here's an example of the result:
 When you use AI-assisted risk and safety metrics, a GPT model isn't required. Instead of `model_config`, provide your `azure_ai_project` information. This accesses the Azure AI Studio safety evaluations back-end service, which provisions a GPT-4 model that can generate content risk severity scores and reasoning to enable your safety evaluators.
 
 > [!NOTE]
-> Currently AI-assisted risk and safety metrics are only available in the following regions: East US 2, France Central, UK South, Sweden Central. Groundedness measurement leveraging Azure AI Content Safety Groundedness Detection is only supported in the following regions: East US 2 and Sweden Central. Protected Material measurement are only currently supported in East US 2. Read more about the supported metrics [here](../../concepts/evaluation-metrics-built-in.md) and when to use which metric. 
+> Currently AI-assisted risk and safety metrics are only available in the following regions: East US 2, France Central, UK South, Sweden Central. Groundedness measurement leveraging Azure AI Content Safety Groundedness Detection is only supported in the following regions: East US 2 and Sweden Central. Protected Material measurement is only supported in East US 2. Read more about the supported metrics [here](../../concepts/evaluation-metrics-built-in.md) and when to use which metric. 
 
 ```python
 azure_ai_project = {
