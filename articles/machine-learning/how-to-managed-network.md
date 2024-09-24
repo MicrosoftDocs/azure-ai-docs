@@ -1123,7 +1123,6 @@ If you have an existing workspace and want to enable managed VNet for it, there'
 
 * Compute cluster
 * Compute instance
-* Kubernetes clusters
 * Managed online endpoints
 
 ## Next steps

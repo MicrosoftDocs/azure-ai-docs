@@ -40,7 +40,7 @@ The following video segment fast-forwards to an explanation of the generally ava
 
 Relevance scoring refers to the computation of a search score (**@search.score**) that serves as an indicator of an item's relevance in the context of the current query. The range is unbounded. However, the higher the score, the more relevant the item. 
 
-The search score is computed based on statistical properties of the string input and the query itself. Azure AI Search finds documents that match on search terms (some or all, depending on [searchMode](/rest/api/searchservice/search-documents#query-parameters)), favoring documents that contain many instances of the search term. The search score goes up even higher if the term is rare across the data index, but common within the document. The basis for this approach to computing relevance is known as *TF-IDF or* term frequency-inverse document frequency.
+The search score is computed based on statistical properties of the string input and the query itself. Azure AI Search finds documents that match on search terms (some or all, depending on [searchMode](/rest/api/searchservice/documents/search-post#searchrequest)), favoring documents that contain many instances of the search term. The search score goes up even higher if the term is rare across the data index, but common within the document. The basis for this approach to computing relevance is known as *TF-IDF or* term frequency-inverse document frequency.
 
 Search scores can be repeated throughout a result set. When multiple hits have the same search score, the ordering of the same scored items is undefined and not stable. Run the query again, and you might see items shift position, especially if you're using the free service or a billable service with multiple replicas. Given two items with an identical score, there's no guarantee that one appears first.
 
@@ -97,7 +97,7 @@ For scalability, Azure AI Search distributes each index horizontally through a s
 
 By default, the score of a document is calculated based on statistical properties of the data *within a shard*. This approach is generally not a problem for a large corpus of data, and it provides better performance than having to calculate the score based on information across all shards. That said, using this performance optimization could cause two very similar documents (or even identical documents) to end up with different relevance scores if they end up in different shards.
 
-If you prefer to compute the score based on the statistical properties across all shards, you can do so by adding `scoringStatistics=global` as a [query parameter](/rest/api/searchservice/search-documents) (or add `"scoringStatistics": "global"` as a body parameter of the [query request](/rest/api/searchservice/search-documents)).
+If you prefer to compute the score based on the statistical properties across all shards, you can do so by adding `scoringStatistics=global` as a [query parameter](/rest/api/searchservice/documents/search-post) (or add `"scoringStatistics": "global"` as a body parameter of the [query request](/rest/api/searchservice/documents/search-post)).
 
 ```http
 POST https://[service name].search.windows.net/indexes/hotels/docs/search?api-version=2024-07-01
@@ -137,7 +137,9 @@ In Azure AI Search, you can configure BM25 algorithm parameters, and tune search
 
 ## featuresMode parameter (preview)
 
-[Search Documents](/rest/api/searchservice/preview-api/search-documents) requests have a new [featuresMode](/rest/api/searchservice/preview-api/search-documents#featuresmode) parameter that can provide more detail about relevance at the field level. Whereas the `@searchScore` is calculated for the document all-up (how relevant is this document in the context of this query), through featuresMode you can get information about individual fields, as expressed in a `@search.features` structure. The structure contains all fields used in the query (either specific fields through **searchFields** in a query, or all fields attributed as **searchable** in an index). For each field, you get the following values:
+[Search Documents](/rest/api/searchservice/documents/search-post) requests support a featuresMode parameter that provides more detail about a relevance score at the field level. Whereas the `@searchScore` is calculated for the document all-up (how relevant is this document in the context of this query), featuresMode reveals information about individual fields, as expressed in a `@search.features` structure. The structure contains all fields used in the query (either specific fields through **searchFields** in a query, or all fields attributed as **searchable** in an index). 
+
+For each field, `@search.features` give you the following values:
 
 + Number of unique tokens found in the field
 + Similarity score, or a measure of how similar the content of the field is, relative to the query term
@@ -167,6 +169,8 @@ For a query that targets the "description" and "title" fields, a response that i
 
 You can consume these data points in [custom scoring solutions](https://github.com/Azure-Samples/search-ranking-tutorial) or use the information to debug search relevance problems.
 
+The featuresMode parameter isn't documented in the REST APIs, but you can use it on a preview REST API call to Search Documents.
+
 ## Number of ranked results in a full text query response
 
 By default, if you aren't using pagination, the search engine returns the top 50 highest ranking matches for full text search. You can use the `top` parameter to return a smaller or larger number of items (up to 1000 in a single response). Full text search is subject to a maximum limit of 1,000 matches (see [API response limits](search-limits-quotas-capacity.md#api-response-limits)). Once 1,000 matches are found, the search engine no longer looks for more.
@@ -177,5 +181,5 @@ To return more or less results, use the paging parameters `top`, `skip`, and `ne
 
 + [Scoring Profiles](index-add-scoring-profiles.md)
 + [REST API Reference](/rest/api/searchservice/)
-+ [Search Documents API](/rest/api/searchservice/search-documents)
++ [Search Documents API](/rest/api/searchservice/documents/search-post)
 + [Azure AI Search .NET SDK](/dotnet/api/overview/azure/search)

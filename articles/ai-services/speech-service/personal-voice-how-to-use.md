@@ -6,9 +6,10 @@ author: eric-urban
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: overview
-ms.date: 2/7/2024
+ms.date: 9/20/2024
 ms.author: eur
 ms.custom: references_regions, build-2024
+#Customer intent: As a developer, I want to learn how to integrate personal voice in my application.
 ---
 
 # Use personal voice in your application
@@ -84,6 +85,15 @@ For detailed information on the supported and unsupported SSML elements for Phoe
 | `<mstts:viseme>`        | Defines the position of the face and mouth while a person is speaking.      | Yes                  | No                  |
 | `<p>`                   | Denotes paragraphs in SSML documents.                                       | Yes                  | Yes                 |
 | `<s>`                   | Denotes sentences in SSML documents.                                        | Yes                  | Yes                 |
+
+## Supported and unsupported SDK features for personal voice
+
+The following table outlines which SDK features are supported for Phoenix and Dragon models. For details on how to utilize these SDK features in your applications, refer to [Subscribe to synthesizer events](how-to-speech-synthesis.md#subscribe-to-synthesizer-events).
+
+| **SDK features**  | **Description**                                                | **Supported in Phoenix** | **Supported in Dragon** |
+| ----------------- | -------------------------------------------------------------- | ------------------------ | ----------------------- |
+| Word boundary   | Signals that a word boundary was received during synthesis, providing precise word timing during the speech synthesis process. | Yes                      | No                      |
+| Viseme events  | Provides viseme (lips, jaw, and tongue movement) information during synthesis, allowing visual synchronization.  | Yes                      | No                      |
 
 ## Reference documentation
 

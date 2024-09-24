@@ -1,11 +1,11 @@
 ---
-author: sally-baolian
+author: eric-urban
 ms.service: azure-ai-speech
 ms.custom:
   - build-2024
 ms.date: 04/28/2024
 ms.topic: include
-ms.author: v-baolianzou
+ms.author: eur
 ---
 
 | Source language | Source locale | Target language | Target locale  |

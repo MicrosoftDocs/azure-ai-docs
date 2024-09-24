@@ -16,13 +16,16 @@ recommendations: false
 
 Structured outputs make a model follow a [JSON Schema](https://json-schema.org/overview/what-is-jsonschema) definition that you provide as part of your inference API call. This is in contrast to the older [JSON mode](./json-mode.md) feature, which guaranteed valid JSON would be generated, but was unable to ensure strict adherence to the supplied schema. Structured outputs is recommended for function calling, extracting structured data, and building complex multi-step workflows.
 
+>[!NOTE]
+> Currently Structured outputs is not supported on [bring your own data](../concepts/use-your-data.md) scenario.
+
 ## Supported models
 
 Currently only `gpt-4o` version: `2024-08-06` supports structured outputs.
 
 ## API support
 
-Support for structured outputs was first added in API version [`2024-08-01-preview`](https://github.com/Azure/azure-rest-api-specs/blob/main/specification/cognitiveservices/data-plane/AzureOpenAI/inference/preview/2024-08-01-preview/inference.json).
+Support for structured outputs was first added in API version `2024-08-01-preview`. 
 
 ## Getting started
 

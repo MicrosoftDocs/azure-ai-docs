@@ -1,52 +1,40 @@
 ---
-title: "Part 1: Build a RAG-based copilot with the prompt flow SDK"
+title: "Part 2: Build a custom chat app with the prompt flow SDK"
 titleSuffix: Azure AI Studio
-description:  Learn how to build a RAG-based copilot using the prompt flow SDK. This tutorial is part 1 of a 2-part tutorial.
+description:  Learn how to build a RAG-based chat app using the prompt flow SDK. This tutorial is part 2 of a 3-part tutorial series.
 manager: scottpolly
 ms.service: azure-ai-studio
 ms.topic: tutorial
-ms.date: 8/6/2024
+ms.date: 08/29/2024
 ms.reviewer: lebaro
 ms.author: sgilley
 author: sdgilley
-#customer intent: As a developer, I want to learn how to use the prompt flow SDK so that I can build a RAG-based copilot.
+ms.custom: [copilot-learning-hub]
+#customer intent: As a developer, I want to learn how to use the prompt flow SDK so that I can build a RAG-based chat app.
 ---
 
-# Tutorial:  Part 1 - Build a RAG-based copilot with the prompt flow SDK
+# Tutorial:  Part 2 - Build a custom chat application with the prompt flow SDK
 
-In this [Azure AI Studio](https://ai.azure.com) tutorial, you use the prompt flow SDK (and other libraries) to build, configure, evaluate, and deploy a copilot for your retail company called Contoso Trek. Your retail company specializes in outdoor camping gear and clothing. The copilot should answer questions about your products and services. For example, the copilot can answer questions such as "which tent is the most waterproof?" or "what is the best sleeping bag for cold weather?".
+In this tutorial, you use the prompt flow SDK (and other libraries) to build, configure, evaluate, and deploy a chat app for your retail company called Contoso Trek. Your retail company specializes in outdoor camping gear and clothing. The chat app should answer questions about your products and services. For example, the chat app can answer questions such as "which tent is the most waterproof?" or "what is the best sleeping bag for cold weather?".
 
-This tutorial is part one of a two-part tutorial.
-
-> [!TIP]
-> Be sure to set aside enough time to complete the prerequisites before starting this tutorial. If you're new to Azure AI Studio, you might need to spend additional time to get familiar with the platform. 
-
-This part one shows you how to enhance a basic chat application by adding [retrieval augmented generation (RAG)](../concepts/retrieval-augmented-generation.md) to ground the responses in your custom data.
-
-In this part one, you learn how to:
+This part two shows you how to enhance a basic chat application by adding [retrieval augmented generation (RAG)](../concepts/retrieval-augmented-generation.md) to ground the responses in your custom data. Retrieval Augmented Generation (RAG) is a pattern that uses your data with a large language model (LLM) to generate answers specific to your data. In this part two, you learn how to:
 
 > [!div class="checklist"]
-> - [Deploy an embedding model](#deploy-an-embedding-model)
-> - [Create an Azure AI Search index](#create-an-azure-ai-search-index)
-> - [Develop custom RAG code](#develop-custom-rag-code)
-> - [Use prompt flow to test your copilot](#use-prompt-flow-to-test-your-copilot)
+> - Deploy AI models in Azure AI Studio to use in your app
+> - Develop custom RAG code
+> - Use prompt flow to test your chat app
 
+This tutorial is part two of a three-part tutorial.
 
 ## Prerequisites
 
-> [!IMPORTANT]
-> You must have the necessary permissions to add role assignments in your Azure subscription. Granting permissions by role assignment is only allowed by the **Owner** of the specific Azure resources. You might need to ask your Azure subscription owner (who might be your IT admin) for help with completing the [assign access](#configure-access-for-the-azure-ai-search-service) section.
+* Complete [Tutorial:  Part 1 - Create resources for building a custom chat application with the prompt flow SDK](copilot-sdk-create-resources.md).
 
-- You need to complete the [Build a custom chat app in Python using the prompt flow SDK quickstart](../quickstarts/get-started-code.md) to set up your environment. 
-
-    > [!IMPORTANT]
-    > This tutorial builds on the code and environment you set up in the quickstart.
-
-- You need a local copy of product data. The [Azure-Samples/rag-data-openai-python-promptflow repository on GitHub](https://github.com/Azure-Samples/rag-data-openai-python-promptflow/) contains sample retail product information that's relevant for this tutorial scenario. [Download the example Contoso Trek retail product data in a ZIP file](https://github.com/Azure-Samples/rag-data-openai-python-promptflow/tree/main/tutorial/data) to your local machine.
+* You need a local copy of product data. The [Azure-Samples/rag-data-openai-python-promptflow repository on GitHub](https://github.com/Azure-Samples/rag-data-openai-python-promptflow/) contains sample retail product information that's relevant for this tutorial scenario. [Download the example Contoso Trek retail product data in a ZIP file](https://github.com/Azure-Samples/rag-data-openai-python-promptflow/blob/main/tutorial/data/product-info.zip) to your local machine.
 
 ## Application code structure
 
-Create a folder called **rag-tutorial** on your local machine. This tutorial series walks through creation of the contents of each file. If you complete the tutorial series, your folder structure looks like this:
+Create a folder called **rag-tutorial** on your local machine. This tutorial series walks through creation of the contents of each file. When you complete the tutorial series, your folder structure looks like this:
 
 ```text
 rag-tutorial/
@@ -71,171 +59,109 @@ rag-tutorial/
 |   └─── [Your own data or sample data as described in the prerequisites.]
 ```
 
-The implementation in this tutorial uses prompt flow's flex flow, which is the code-first approach to implementing flows. You specify an entry function (which will be defined in **copilot.py**), and then use prompt flow's testing, evaluation, and tracing capabilities for your flow. This flow is in code and doesn't have a DAG (Directed Acyclic Graph) or other visual component. Learn more about how to develop a flex flow in the [prompt flow documentation on GitHub](https://microsoft.github.io/promptflow/how-to-guides/develop-a-flex-flow/index.html).
+The implementation in this tutorial uses prompt flow's flex flow, which is the code-first approach to implementing flows. You specify an entry function (which is in **copilot.py**), and then use prompt flow's testing, evaluation, and tracing capabilities for your flow. This flow is in code and doesn't have a DAG (Directed Acyclic Graph) or other visual component. Learn more about how to develop a flex flow in the [prompt flow documentation on GitHub](https://microsoft.github.io/promptflow/how-to-guides/develop-a-flex-flow/index.html).
 
 ## Set initial environment variables
 
-There's a collection of environment variables used across the different code snippets. Let's set them now.
+There's a collection of environment variables used across the different code snippets. Add them all into an **.env** file.  
 
-1. You created an **.env** file with the following environment variables via the [Build a custom chat app in Python using the prompt flow SDK quickstart](../quickstarts/get-started-code.md). If you haven't already, create an **.env** file in your **rag-tutorial** folder with the following environment variables:
+> [!IMPORTANT]
+> If you create this in a git repository, ensure that `.env` is in your `.gitignore` file so that you don't accidentally check it into the repository.
 
-    ```
-    AZURE_OPENAI_ENDPOINT=endpoint_value
-    AZURE_OPENAI_DEPLOYMENT_NAME=chat_model_deployment_name
-    AZURE_OPENAI_API_VERSION=api_version
-    ```
+Start with these values. You'll add a few more values as you progress through the tutorial.
 
-1. Copy the **.env** file into your **rag-tutorial** folder. 
-1. In the **.env** file enter more environment variables for the copilot application:
-    - **AZURE_SUBSCRIPTION_ID**: Your Azure subscription ID
-    - **AZURE_RESOURCE_GROUP**: Your Azure resource group
-    - **AZUREAI_PROJECT_NAME**: Your Azure AI Studio project name
-    - **AZURE_OPENAI_CONNECTION_NAME**: Use the same **AIServices** or **Azure OpenAI** connection that you used [to deploy the chat model](../quickstarts/get-started-playground.md#deploy-a-chat-model). 
-
-You can find the subscription ID, resource group name, and project name from your project view in AI Studio.
-1. In [AI Studio](https://ai.azure.com), go to your project and select **Settings** from the left pane.
-1. In the **Project details** section, you can find the **Subscription ID** and **Resource group**.
-1. In the **Project settings** section, you can find the **Project name**.
-
-By now, you should have the following environment variables in your *.env* file:
-
-```env
-AZURE_OPENAI_ENDPOINT=endpoint_value
-AZURE_OPENAI_DEPLOYMENT_NAME=chat_model_deployment_name
-AZURE_OPENAI_API_VERSION=api_version
-AZURE_SUBSCRIPTION_ID=<your subscription id>
-AZURE_RESOURCE_GROUP=<your resource group>
-AZUREAI_PROJECT_NAME=<your project name>
-AZURE_OPENAI_CONNECTION_NAME=<your AIServices or Azure OpenAI connection name>
-```
-
-## Deploy an embedding model
-
-For the [retrieval augmented generation (RAG)](../concepts/retrieval-augmented-generation.md) capability, we need to be able to embed the search query to search the Azure AI Search index we create. 
-
-1. Deploy an Azure OpenAI embedding model. Follow the [deploy Azure OpenAI models guide](../how-to/deploy-models-openai.md) and deploy the **text-embedding-ada-002** model. Use the same **AIServices** or **Azure OpenAI** connection that you used [to deploy the chat model](../quickstarts/get-started-playground.md#deploy-a-chat-model). 
-2. Add embedding model environment variables in your *.env* file. For the *AZURE_OPENAI_EMBEDDING_DEPLOYMENT* value, enter the name of the embedding model that you deployed. 
+1. Create an **.env** file into your **rag-tutorial** folder. Add these variables:
 
     ```env
-    AZURE_OPENAI_EMBEDDING_DEPLOYMENT=embedding_model_deployment_name
+    AZURE_SUBSCRIPTION_ID=<your subscription id>
+    AZURE_RESOURCE_GROUP=<your resource group>
+    AZUREAI_PROJECT_NAME=<your project name>
+    AZURE_OPENAI_CONNECTION_NAME=<your AIServices or Azure OpenAI connection name>
+    AZURE_SEARCH_ENDPOINT=<your Azure Search endpoint>
+    AZURE_SEARCH_CONNECTION_NAME=<your Azure Search connection name>
     ```
+Replace the placeholders with the following values:
 
-For more information about the embedding model, see the [Azure OpenAI Service embeddings documentation](../../ai-services/openai/how-to/embeddings.md).
+* Find the `<your subscription id>`, `<your resource group>`, and `<your project name>` from your project view in AI Studio:
+    1. In [AI Studio](https://ai.azure.com), go to your project and select **Settings** from the left pane.
+    1. In the **Project properties** section, find the **Subscription ID** and **Resource group**. The **Name** field is `<your project name>`
+* Still in your project **Settings**, in the **Connected resources** section, you'll see an entry for either Azure AIServices or Azure OpenAI.  Select the name to open the **Connection Details**. The connection name appears at the top of the **Connection Details** page. Copy this name to use for `<your AIServices or Azure OpenAI connection name>`.
+* Go back to the project **Settings** page. In the **Connected resources** section, select the link for the Azure AI Search.
+    * Copy the **Target** URL for `<your Azure Search endpoint>`.
+    * Copy the name at the top for `<your Azure Search connection name>`. 
+
+    :::image type="content" source="../media/tutorials/develop-rag-copilot-sdk/search-settings.png" alt-text="Screenshot shows endpoint and connection names.":::
+
+## Deploy models
+
+You need two models to build a RAG-based chat app: an Azure OpenAI chat model (`gpt-3.5-turbo`) and an Azure OpenAI embedding model (`text-embedding-ada-002`). Deploy these models in your Azure AI Studio project, using this set of steps for each model.
+
+These steps deploy a model to a real-time endpoint from the AI Studio [model catalog](../how-to/model-catalog-overview.md):
+
+1. Sign in to [AI Studio](https://ai.azure.com) and go to the **Home** page.
+1. Select **Model catalog** from the left sidebar.
+1. In the **Collections** filter, select **Azure OpenAI**.
+
+    :::image type="content" source="../media/deploy-monitor/catalog-filter-azure-openai.png" alt-text="A screenshot showing how to filter by Azure OpenAI models in the catalog." lightbox="../media/deploy-monitor/catalog-filter-azure-openai.png"::: 
+
+1. Select the model from the Azure OpenAI collection. The first time through, select the `gpt-3.5-turbo` model.  The second time, select the `text-embedding-ada-002` model.
+1. Select **Deploy** to open the deployment window. 
+1. Select the hub that you want to deploy the model to. Use the same hub as your project.
+1. Specify the deployment name and modify other default settings depending on your requirements.
+1. Select **Deploy**.
+1. You land on the deployment details page. Select **Open in playground**.
+1. Select **View Code** to obtain code samples that can be used to consume the deployed model in your application.
+ 
+When you deploy the `gpt-3.5-turbo` model, find the following values in the **View Code** section, and add them to your **.env** file:
+
+```env
+AZURE_OPENAI_ENDPOINT=<endpoint_value>
+AZURE_OPENAI_CHAT_DEPLOYMENT=<chat_model_deployment_name>
+AZURE_OPENAI_API_VERSION=<api_version>
+```
+
+When you deploy the `text-embedding-ada-002` model, add the name to your **.env** file:
+
+```env
+AZURE_OPENAI_EMBEDDING_DEPLOYMENT=<embedding_model_deployment_name>
+```
+
+## Install the Azure CLI and sign in 
+
+[!INCLUDE [Install the Azure CLI](../includes/install-cli.md)]
+
+Now we create our app and call the Azure OpenAI Service from code.
+
+## Create a new Python environment
+
+[!INCLUDE [Install Python](../includes/install-python.md)]
+
+## Upgrade pip
+
+To make sure you have the latest version of pip, run the following command:
+
+```bash
+python -m pip install --upgrade pip
+```
+
+## Install the prompt flow SDK
+
+[Prompt flow](https://microsoft.github.io/promptflow) is a suite of development tools designed to streamline the end-to-end development cycle of LLM-based AI applications, from ideation, prototyping, testing, evaluation to production deployment and monitoring.
+
+[!INCLUDE [Install prompt flow](../includes/install-promptflow.md)]
 
 ## Create an Azure AI Search index
 
 The goal with this RAG-based application is to ground the model responses in your custom data. You use an Azure AI Search index that stores vectorized data from the embeddings model. The search index is used to retrieve relevant documents based on the user's question.
 
-You need an Azure AI Search service and connection in order to create a search index.
+If you don't have an Azure AI Search index already created, we walk through how to create one. If you already have an index to use, you can skip to the [set the search environment variable](#set-search-index) section. The search index is created on the Azure AI Search service that was either created or referenced in the previous step.
 
-> [!NOTE]
-> Creating an [Azure AI Search service](/azure/search/) and subsequent search indexes has associated costs. You can see details about pricing and pricing tiers for the Azure AI Search service on the creation page, to confirm cost before creating the resource.
-
-### Create an Azure AI Search service
-
-If you already have an Azure AI Search service in the same location as your project, you can skip to the [next section](#create-an-azure-ai-search-connection).
-
-Otherwise, you can create an Azure AI Search service using the [Azure portal](https://portal.azure.com) or the Azure CLI (which you installed previously for the [quickstart](../quickstarts/get-started-code.md)).
-
-> [!IMPORTANT]
-> Use the same location as your project for the Azure AI Search service. Find your project's location in the top-right project picker of the Azure AI Studio in the project view.
-
-## [Portal](#tab/azure-portal)
-
-1. Go to the [Azure portal](https://portal.azure.com).
-1. [Create an Azure AI Search service](https://portal.azure.com/#create/Microsoft.Search) in the Azure portal.
-1. Select your resource group and instance details. You can see details about pricing and pricing tiers on this page.
-1. Continue through the wizard and select **Review + assign** to create the resource.
-1. Confirm the details of your Azure AI Search service, including estimated cost.
-
-## [Azure CLI](#tab/cli)
-
-1. Open a terminal on your local machine.
-1. Type `az` and then enter to verify that the Azure CLI tool is installed. If it's installed, a help menu with `az` commands appears. If you get an error, make sure you followed the [steps for installing the Azure CLI in the quickstart](../quickstarts/get-started-code.md#install-the-azure-cli-and-sign-in).
-1. Follow the steps to create an Azure AI Search service using the [`az search service create`](/azure/search/search-manage-azure-cli#create-or-delete-a-service) command.
-
----
-
-### Create an Azure AI Search connection
-
-If you already have an Azure AI Search connection in your project, you can skip to [configure access for the Azure AI Search service](#configure-access-for-the-azure-ai-search-service). Only use an existing connection if it's in the same location as your project.
-
-In the Azure AI Studio, check for an Azure AI Search connected resource.
-
-1. In [AI Studio](https://ai.azure.com), go to your project and select **Settings** from the left pane.
-1. In the **Connected resources** section, look to see if you have a connection of type Azure AI Search.
-1. If you have an Azure AI Search connection, verify that it is in the same location as your project. If so, you can skip ahead to [configure access for the Azure AI Search service](#configure-access-for-the-azure-ai-search-service).
-1. Otherwise, select **New connection** and then **Azure AI Search**.
-1. Find your Azure AI Search service in the options and select **Add connection**.
-1. Continue through the wizard to create the connection. For more information about adding connections, see [this how-to guide](../how-to/connections-add.md#create-a-new-connection).
-
-### Configure access for the Azure AI Search service
-
-We recommend using [Microsoft Entra ID](/entra/fundamentals/whatis) instead of using API keys. In order to use this authentication, you need to set the right access controls and assign the right roles for your Azure AI Search service. 
-
-> [!WARNING]
-> You can use role-based access control locally because you run `az login` later in this tutorial. But when you deploy your app in [part 2 of the tutorial](./copilot-sdk-evaluate-deploy.md), the deployment is authenticated using API keys from your Azure AI Search service. Support for Microsoft Entra ID authentication of the deployment is coming soon.
-
-To enable role-based access control for your Azure AI Search service, follow these steps:
-
-1. On your Azure AI Search service in the [Azure portal](https://portal.azure.com), select **Settings > Keys** from the left pane.
-1. Select **Both** to ensure that API keys and role-based access control are both enabled for your Azure AI Search service. 
-
-    :::image type="content" source="../media/tutorials/develop-rag-copilot-sdk/search-access-control.png" alt-text="Screenshot shows API Access control setting.":::
-
-You or your administrator needs to grant your user identity the **Search Index Data Contributor** and **Search Service Contributor** roles on your Azure AI Search service. These roles enable you to call the Azure AI Search service using your user identity.
-
-> [!NOTE]
-> These steps are similar to how you assigned a role for your user identity to use the Azure OpenAI Service in the [quickstart](../quickstarts/get-started-code.md).
-
-In the Azure portal, follow these steps to assign the **Search Index Data Contributor** role to your Azure AI Search service:
-
-1. Select your Azure AI Search service in the [Azure portal](https://portal.azure.com).
-1. From the left page in the Azure portal, select **Access control (IAM)** > **+ Add** > **Add role assignment**.
-1. Search for the **Search Index Data Contributor** role and then select it. Then select **Next**.
-1. Select **User, group, or service principal**. Then select **Select members**.
-1. In the **Select members** pane that opens, search for the name of the user that you want to add the role assignment for. Select the user and then select **Select**.
-1. Continue through the wizard and select **Review + assign** to add the role assignment. 
-
-Repeat the previous steps to add the **Search Service Contributor** role.
-
-> [!IMPORTANT]
-> After you assign these roles, run `az login` in your console to ensure the changes propagate in your development environment. This also ensures that you can use your user identity locally to authenticate with the Azure AI Search service.
-
-### Set search environment variables
-
-You need to set environment variables for the Azure AI Search service and connection in your **.env** file.
-
-1. In [AI Studio](https://ai.azure.com), go to your project and select **Settings** from the left pane.
-1. In the **Connected resources** section, select the link for the Azure AI Search service that you created previously.
-1. Copy the **Target** URL for `<your Azure Search endpoint>`.
-1. Copy the name at the top for `<your Azure Search connection name>`. 
-
-    :::image type="content" source="../media/tutorials/develop-rag-copilot-sdk/search-settings.png" alt-text="Screenshot shows endpoint and connection names.":::
-
-1. Add these environment variables to your **.env** file:
-
-    ```env
-    AZURE_SEARCH_ENDPOINT=<your Azure Search endpoint>
-    AZURE_SEARCH_CONNECTION_NAME=<your Azure Search connection name>
-    ```
-
-### Create the search index
-
-If you don't have an Azure AI Search index already created, we walk through how to create one. If you already have an index to use, you can skip to the [set the search environment variables](#set-search-environment-variables) section. The search index is created on the Azure AI Search service that was either created or referenced in the previous step.
-
-1. Use your own data or [download the example Contoso Trek retail product data in a ZIP file](https://github.com/Azure-Samples/rag-data-openai-python-promptflow/tree/main/tutorial/data) to your local machine. Unzip the file into your **rag-tutorial** folder. This data is a collection of markdown files that represent product information. The data is structured in a way that is easy to ingest into a search index. You build a search index from this data.
+1. Use your own data or [download the example Contoso Trek retail product data in a ZIP file](https://github.com/Azure-Samples/rag-data-openai-python-promptflow/blob/main/tutorial/data/product-info.zip) to your local machine. Unzip the file into your **rag-tutorial/data** folder. This data is a collection of markdown files that represent product information. The data is structured in a way that is easy to ingest into a search index. You build a search index from this data.
 
 1. The prompt flow RAG package allows you to ingest the markdown files, locally create a search index, and register it in the cloud project. Install the prompt flow RAG package:
 
     ```bash
     pip install promptflow-rag
-    ```
-
-1. Upgrade the *azure-ai-ml* package to the latest version. Run the following command in your terminal:
-
-    ```bash
-    pip install azure-ai-ml -U
     ```
 
 1. Create the **build_index.py** file in your **rag-tutorial** folder. 
@@ -259,7 +185,7 @@ If you don't have an Azure AI Search index already created, we walk through how 
 
 1. If you run the script again with the same index name, it creates a new version of the same index.
 
-### Set the search index environment variable
+### <a name="set-search-index"></a> Set the search index environment variable
 
 Once you have the index name you want to use (either by creating a new one, or referencing an existing one), add it to your **.env** file, like this:
 
@@ -271,7 +197,7 @@ AZUREAI_SEARCH_INDEX_NAME=<index-name>
 
 Next you create custom code to add retrieval augmented generation (RAG) capabilities to a basic chat application. In the quickstart, you created **chat.py** and **chat.prompty** files. Here you expand on that code to include RAG capabilities.
 
-The copilot with RAG implements the following general logic:
+The chat app with RAG implements the following general logic:
 
 1. Generate a search query based on user query intent and any chat history
 1. Use an embedding model to embed the query
@@ -279,9 +205,9 @@ The copilot with RAG implements the following general logic:
 1. Pass the relevant context to the Azure OpenAI chat completion model
 1. Return the response from the Azure OpenAI model
 
-### The copilot implementation logic
+### The chat app implementation logic
 
-The copilot implementation logic is in the **copilot.py** file. This file contains the core logic for the RAG-based copilot.
+The chat app implementation logic is in the **copilot.py** file. This file contains the core logic for the RAG-based chat app.
 
 1. Create a folder named **copilot_flow** in the **rag-tutorial** folder. 
 1. Then create a file called **copilot.py** in the **copilot_flow** folder.
@@ -338,7 +264,7 @@ Create the file **requirements.txt** in the **copilot_flow** folder. Add this co
 
 :::code language="txt" source="~/rag-data-openai-python-promptflow-main/tutorial/copilot_flow/requirements.txt":::
 
-These are the packages required for the flow to run locally and in a deployed environment.
+These packages are required for the flow to run locally and in a deployed environment.
 
 ### Use flex flow
 
@@ -350,9 +276,9 @@ Create the file **flow.flex.yaml** in the **copilot_flow** folder. Add this cont
 
 :::code language="yaml" source="~/rag-data-openai-python-promptflow-main/tutorial/copilot_flow/flow.flex.yaml":::
 
-## Use prompt flow to test your copilot
+## Use prompt flow to test your chat app
 
-Use prompt flow's testing capability to see how your copilot performs as expected on sample inputs. By using your **flow.flex.yaml** file, you can use prompt flow to test with your specified inputs.
+Use prompt flow's testing capability to see how your chat app performs as expected on sample inputs. By using your **flow.flex.yaml** file, you can use prompt flow to test with your specified inputs.
 
 Run the flow using this prompt flow command:
 
@@ -394,17 +320,17 @@ The expected output is something like: "The Alpine Explorer Tent is priced at $3
 
 This system is able to interpret the intent of the query "how much does it cost?" to know that "it" refers to the Alpine Explorer Tent, which was the latest context in the chat history. Then the system constructs a search query for the price of the Alpine Explorer Tent to retrieve the relevant documents for the Alpine Explorer Tent's cost, and we get the response.
 
-If you navigate to the trace from this flow run, you see this in action. The local traces link shows in the console output before the result of the flow test run.
+If you navigate to the trace from this flow run, you see the conversation in action. The local traces link shows in the console output before the result of the flow test run.
 
-:::image type="content" source="../media/tutorials/develop-rag-copilot-sdk/trace-for-chat-history.png" alt-text="Screenshot shows the console output for the pf flow." lightbox="../media/tutorials/develop-rag-copilot-sdk/trace-for-chat-history.png" :::
+:::image type="content" source="../media/tutorials/develop-rag-copilot-sdk/trace-for-chat-history.png" alt-text="Screenshot shows the console output for the prompt flow." lightbox="../media/tutorials/develop-rag-copilot-sdk/trace-for-chat-history.png" :::
 
 ## Clean up resources
 
 To avoid incurring unnecessary Azure costs, you should delete the resources you created in this tutorial if they're no longer needed. To manage resources, you can use the [Azure portal](https://portal.azure.com?azure-portal=true).
 
-But don't delete them yet, if you want to deploy your copilot to Azure in [the next part of this tutorial series](copilot-sdk-evaluate-deploy.md).
+But don't delete them yet, if you want to deploy your chat app to Azure in [the next part of this tutorial series](copilot-sdk-evaluate-deploy.md).
 
 ## Next step
 
 > [!div class="nextstepaction"]
-> [Evaluate and deploy your copilot to Azure](copilot-sdk-evaluate-deploy.md)
+> [Part 3: Evaluate and deploy your chat app to Azure](copilot-sdk-evaluate-deploy.md)

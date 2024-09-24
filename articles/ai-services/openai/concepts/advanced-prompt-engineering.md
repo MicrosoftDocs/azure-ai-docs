@@ -6,7 +6,7 @@ author: mrbullwinkle
 ms.author: mbullwin 
 ms.service: azure-ai-openai
 ms.topic: conceptual 
-ms.date: 02/16/2024
+ms.date: 09/05/2024
 manager: nitinme
 keywords: ChatGPT, GPT-4, prompt engineering, meta prompts, chain of thought
 zone_pivot_groups: openai-prompt

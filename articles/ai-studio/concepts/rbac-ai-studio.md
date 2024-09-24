@@ -8,7 +8,7 @@ ms.custom:
   - ignite-2023
   - build-2024
 ms.topic: conceptual
-ms.date: 5/21/2024
+ms.date: 9/12/2024
 ms.reviewer: deeikele
 ms.author: larryfr
 author: Blackmist
@@ -144,9 +144,6 @@ az role assignment create --role "Azure AI Developer" --assignee "joe@contoso.co
 
 ## Create custom roles
 
-> [!NOTE]
-> In order to make a new hub, you need the Owner or Contributor role. At this time, a custom role, even with all actions allowed, will not enable you to make a hub. 
-
 If the built-in roles are insufficient, you can create custom roles. Custom roles might have the read, write, delete, and compute resource permissions in that AI Studio. You can make the role available at a specific project level, a specific resource group level, or a specific subscription level. 
 
 > [!NOTE]
@@ -213,6 +210,31 @@ If your AI Studio hub is configured with a **user-assigned managed identity**, t
 - `Microsoft.DocumentDB/databaseAccounts/write`
 
 Within the key vault, the user or service principal must have the create, get, delete, and purge access to the key through a key vault access policy. For more information, see [Azure Key Vault security](/azure/key-vault/general/security-features#controlling-access-to-key-vault-data).
+
+## Scenario: Connections using Microsoft Entra ID authentication
+
+When you create a connection that uses Microsoft Entra ID authentication, you must assign roles to your developers so they can access the resource.
+
+| Resource connection | Role | Description |
+|----------|------|-------------|
+| Azure AI Search | Contributor | List API-Keys to list indexes from Azure AI Studio. |
+| Azure AI Search | Search Index Data Contributor | Required for indexing scenarios |
+| Azure AI services / Azure OpenAI | Cognitive Services OpenAI Contributor | Call public ingestion API from Azure AI Studio. |
+| Azure AI services / Azure OpenAI | Cognitive Services User | List API-Keys from Azure AI Studio. |
+| Azure AI services / Azure OpenAI | Contributor | Allows for calls to the control plane. |
+
+When using Microsoft Entra ID authenticated connections in the chat playground, the services need to authorize each other to access the required resources. The admin performing the configuration needs to have the __Owner__ role on these resources to add role assignments. The following table lists the required role assignments for each resource. The __Assignee__ column refers to the system-assigned managed identity of the listed resource. The __Resource__ column refers to the resource that the assignee needs to access. For example, Azure OpenAI has a system-assigned managed identity that needs to be assigned the __Search Index Data Reader__ role for the Azure AI Search resource.
+
+| Role | Assignee | Resource | Description |
+|------|----------|----------|-------------|
+| Search Index Data Reader | Azure AI services / Azure OpenAI | Azure AI Search | Inference service queries the data from the index. Only used for inference scenarios. |
+| Search Index Data Contributor | Azure AI services / Azure OpenAI | Azure AI Search | Read-write access to content in indexes. Import, refresh, or query the documents collection of an index. Only used for ingestion and inference scenarios. |
+| Search Service Contributor | Azure AI services / Azure OpenAI | Azure AI Search | Read-write access to object definitions (indexes, aliases, synonym maps, indexers, data sources, and skillsets). Inference service queries the index schema for auto fields mapping. Data ingestion service creates index, data sources, skill set, indexer, and queries the indexer status. |
+| Cognitive Services OpenAI Contributor | Azure AI Search | Azure AI services / Azure OpenAI | Custom skill |
+| Cognitive Services OpenAI User | Azure OpenAI Resource for chat model | Azure OpenAI resource for embedding model | Required only if using two Azure OpenAI resources to communicate. |
+
+> [!NOTE]
+> The __Cognitive Services OpenAI User__ role is only required if you are using two Azure OpenAI resources: one for your chat model and one for your embedding model. If this applies, enable Trusted Services AND ensure the connection for your embedding model Azure OpenAI resource has Microsoft Entra ID enabled.  
 
 ## Scenario: Use an existing Azure OpenAI resource
 
@@ -291,8 +313,8 @@ The following example defines a role for a developer using [Azure OpenAI Assista
 {
     "id": "",
     "properties": {
-        "roleName": "CognitiveServices OpenAI Assistants API Developer",
-        "description": "Custom role to work with AOAI Assistants API",
+        "roleName": "Azure OpenAI Assistants API Developer",
+        "description": "Custom role to work with Azure OpenAI Assistants API",
         "assignableScopes": [
             "<your-scope>"
         ],

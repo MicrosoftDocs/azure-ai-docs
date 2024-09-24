@@ -69,6 +69,8 @@ items:
     href: how-to/custom-categories-rapid.md
   - name: Use a blocklist
     href: how-to/use-blocklist.md
+  - name: Mitigate false results
+    href: how-to/improve-performance.md
   - name: Containers
     items:
     - name: Content Safety containers overview

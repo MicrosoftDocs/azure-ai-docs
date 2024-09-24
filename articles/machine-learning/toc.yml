@@ -1,3 +1,4 @@
+items:
 - name: Azure Machine Learning Documentation
   href: index.yml
 - name: Overview
@@ -5,6 +6,8 @@
     - name: What is Azure Machine Learning?
       displayName: AML, services, overview, introduction
       href: overview-what-is-azure-machine-learning.md
+    - name: "AI Studio or Azure Machine Learning Studio: Which should I choose?"
+      href: /ai/ai-studio-experiences-overview?toc=/azure/machine-learning/toc.json&bc=/azure/machine-learning/breadcrumb/toc.json
     - name: Azure Machine Learning CLI and Python SDK
       href: concept-v2.md
     # v1
@@ -618,8 +621,8 @@
         - name: How to deploy Meta Llama family models
           href: how-to-deploy-models-llama.md
     - name: How to deploy JAIS models
-      href: deploy-jais-models.md
-    - name: How to deploy Jamba Instruct model
+      href: how-to-deploy-models-jais.md
+    - name: AI21 Jamba models
       href: how-to-deploy-models-jamba.md
     - name: Regulate deployments using policy
       href: how-to-regulate-registry-deployments.md
@@ -705,9 +708,11 @@
               href: ./prompt-flow/how-to-enable-trace-feedback-for-deployment.md
             - name: How to use streaming endpoints deployed from prompt flow
               href: ./prompt-flow/how-to-enable-streaming-mode.md
-            - name: Set up end-to-end LLMOps with prompt flow and GitHub 
+            - name: Set up end-to-end GenAIOps with prompt flow and GitHub
+              displayName: LLMOps, DevOps
               href: ./prompt-flow/how-to-end-to-end-llmops-with-prompt-flow.md
-            - name: Set up end-to-end LLMOps with prompt flow and Azure DevOps
+            - name: Set up end-to-end GenAIOps with prompt flow and Azure DevOps
+              displayName: LLMOps, DevOps
               href: ./prompt-flow/how-to-end-to-end-azure-devops-with-prompt-flow.md
             - name: Custom tool package creation and usage
               href: ./prompt-flow/how-to-custom-tool-package-creation-and-usage.md
@@ -1159,7 +1164,8 @@
         href: how-to-setup-mlops-azureml.md
       - name: Set up MLOps with GitHub Actions
         href: how-to-setup-mlops-github-azure-ml.md
-      - name: Set up LLMOps with prompt flow and GitHub 
+      - name: Set up GenAIOps with prompt flow and GitHub
+        displayName: LLMOps, DevOps
         href: ./prompt-flow/how-to-end-to-end-llmops-with-prompt-flow.md
 - name: Monitor your models
   items:
@@ -1180,8 +1186,10 @@
         - name: "Tutorial: Create a secure workspace in Azure portal"
           displayName: managed virtual network
           href: tutorial-create-secure-workspace.md
-        - name: "Tutorial: Create a secure workspace with templates"
-          href: tutorial-create-secure-workspace-template.md
+        - name: "Create a secure workspace using a Bicep template"
+          href: /samples/azure/azure-quickstart-templates/machine-learning-end-to-end-secure/
+        - name: "Create a secure workspace using a Terraform template"
+          href: https://github.com/Azure/terraform/tree/master/quickstart/201-machine-learning-moderately-secure
     - name: Security overview
       items:
         - name: Enterprise security overview
@@ -1190,7 +1198,7 @@
         - name: Secured workspace traffic flow
           href: concept-secure-network-traffic-flow.md
         - name: Security baseline
-          href: /security/benchmark/azure/baselines/machine-learning-security-baseline?context=/azure/machine-learning/context/ml-context
+          href: /security/benchmark/azure/baselines/machine-learning-security-baseline?toc=/azure/machine-learning/toc.json&bc=/azure/machine-learning/breadcrumb/toc.json
         - name: Security controls by Azure Policy
           href: ./security-controls-policy.md
         - name: Data encryption
@@ -1804,7 +1812,7 @@
     - name: Stack Overflow
       href: https://stackoverflow.com/questions/tagged/azure-machine-learning-service
     - name: Compare our ML products
-      href: /azure/architecture/data-guide/technology-choices/data-science-and-machine-learning?context=azure/machine-learning/context/ml-context
+      href: /azure/architecture/data-guide/technology-choices/data-science-and-machine-learning?toc=/azure/machine-learning/toc.json&bc=/azure/machine-learning/breadcrumb/toc.json
     - name: Designer accessibility features
       displayName: accessibility, designer, visual interface, screen reader, keyboard shortcuts
       href: designer-accessibility.md

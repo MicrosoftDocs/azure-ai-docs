@@ -13,6 +13,8 @@ ms.custom: build-2023
 
 # Shelf image composition (preview)
 
+[!INCLUDE [model-customization-deprecation](../includes/model-customization-deprecation.md)]
+
 Part of the Product Recognition workflow involves fixing and modifying the input images so the service can perform correctly. 
 
 This guide shows you how to use the **Stitching API** to combine multiple images of the same physical shelf: this gives you a composite image of the entire retail shelf, even if it's only viewed partially by multiple different cameras.
