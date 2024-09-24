@@ -9,7 +9,7 @@ ms.service: cognitive-search
 ms.custom:
   - build-2024
 ms.topic: how-to
-ms.date: 08/19/2024
+ms.date: 09/24/2024
 ---
 
 # Create a vector query in Azure AI Search
@@ -463,8 +463,6 @@ Weights are used when calculating the [reciprocal rank fusion](hybrid-search-ran
 
 The following example is a hybrid query with two vector query strings and one text string. Weights are assigned to the vector queries. The first query is 0.5 or half the weight, reducing its importance in the request. The second vector query is twice as important. 
 
-Text queries have no weight parameters, but you can increase or decrease their importance by setting [maxTextRecallSize](hybrid-search-how-to-query.md#set-maxtextrecallsize-and-countandfacetmode-preview).
-
 ```http
 POST https://[service-name].search.windows.net/indexes/[index-name]/docs/search?api-version=2024-07-01
 
@@ -488,6 +486,8 @@ POST https://[service-name].search.windows.net/indexes/[index-name]/docs/search?
       "search": "hello world" 
     } 
 ```
+
+Vector weighting applies to vectors only. The text query in this example ("hello world") has an implicit weight of 1.0 or neutral weight. However, in a hybrid query, you can increase or decrease the importance of text fields by setting [maxTextRecallSize](hybrid-search-how-to-query.md#set-maxtextrecallsize-and-countandfacetmode-preview).
 
 ## Set thresholds to exclude low-scoring results (preview)
 
