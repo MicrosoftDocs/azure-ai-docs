@@ -401,7 +401,7 @@ ml_client.models.get(name="<model-name>", version=<version>)
 
 ### [Studio](#tab/studio)
 
-To show details for a model in a workspace, select a model on the Azure Machine Learning studio **Models** page
+To show details for a model in a workspace, select a model on the Azure Machine Learning studio **Models** page.
 
 ---
 
