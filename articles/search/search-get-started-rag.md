@@ -17,7 +17,7 @@ This quickstart shows you how to send queries to a Large Language Model (LLM) fo
 
 - An Azure subscription. [Create one for free](https://azure.microsoft.com/free/).
 
-- [Azure AI Search](search-create-service-portal.md), Basic tier or higher so that you can [enable semantic ranking](semantic-how-to-enable-disable.md). Region must be the same one used for Azure OpenAI.
+- [Azure AI Search](search-create-service-portal.md), Basic tier or higher so that you can [enable semantic ranker](semantic-how-to-enable-disable.md). Region must be the same one used for Azure OpenAI.
 
 - [Azure OpenAI](https://aka.ms/oai/access) resource with a deployment of `gpt-35-turbo`, `gpt-4`, or equivalent model, in the same region as Azure AI Search.
 
@@ -124,7 +124,7 @@ We recommend the hotels-sample-index, which can be created in minutes and runs o
 
 1. Run the following query in [Search Explorer](search-explorer.md) to test your index: `hotels near the ocean with beach access and good views`.
 
-   Output should look similar to the following example. Results that are returned directly from the search engine consist of fields and their verbatim values, along with metadata like a search score and a semantic ranking score and caption if you use semantic ranking.
+   Output should look similar to the following example. Results that are returned directly from the search engine consist of fields and their verbatim values, along with metadata like a search score and a semantic ranking score and caption if you use semantic ranker.
 
    ```
       "@search.score": 5.600783,
@@ -183,7 +183,7 @@ This section uses Visual Studio Code and Python to call the chat completion APIs
     AZURE_DEPLOYMENT_MODEL: str = "gpt-35-turbo"
    ```
 
-1. Run the following code to set query parameters. The query is a keyword search using semantic ranking. In a keyword search, the search engine returns up to 50 matches, but only the top 5 are provided to the model. If you can't [enable semantic ranking](semantic-how-to-enable-disable.md) on your search service, set the value to false.
+1. Run the following code to set query parameters. The query is a keyword search using semantic ranking. In a keyword search, the search engine returns up to 50 matches, but only the top 5 are provided to the model. If you can't [enable semantic rankersemantic-how-to-enable-disable.md) on your search service, set the value to false.
 
    ```python
    # Set query parameters for grounding the conversation on your search index

@@ -15,20 +15,20 @@ ms.date: 06/12/2024
 
 # Semantic ranking in Azure AI Search
 
-In Azure AI Search, *semantic ranking* is a feature that measurably improves search relevance by using Microsoft's language understanding models to rerank search results. This article is a high-level introduction. The section at the end covers [availability and pricing](#availability-and-pricing).
+In Azure AI Search, *semantic ranker* is a feature that measurably improves search relevance by using Microsoft's language understanding models to rerank search results. This article is a high-level introduction. The section at the end covers [availability and pricing](#availability-and-pricing).
 
 Semantic ranker is a premium feature, billed by usage. We recommend this article for background, but if you'd rather get started, follow these steps:
 
 > [!div class="checklist"]
 > * [Check regional availability](search-region-support.md)
 > * [Sign in to Azure portal](https://portal.azure.com) to verify your search service is Basic or higher
-> * [Enable semantic ranking and choose a pricing plan](semantic-how-to-enable-disable.md)
-> * [Set up a semantic configuration in a search index](semantic-how-to-configure.md)
+> * [Enable semantic ranker and choose a pricing plan](semantic-how-to-enable-disable.md)
+> * [Configure semantic ranker in a search index](semantic-how-to-configure.md)
 > * [Set up queries to return semantic captions and highlights](semantic-how-to-query-request.md)
 > * [Optionally, return semantic answers](semantic-answers.md)
 
 > [!NOTE]
-> Semantic ranking doesn't use generative AI or vectors. If you're looking for vector support and similarity search? See [Vector search in Azure AI Search](vector-search-overview.md) for details.
+> Semantic ranker doesn't use generative AI or vectors. If you're looking for vector support and similarity search? See [Vector search in Azure AI Search](vector-search-overview.md) for details.
 
 ## What is semantic ranking?
 
@@ -42,7 +42,7 @@ Here are the capabilities of the semantic reranker.
 
 | Feature | Description |
 |---------|-------------|
-| Semantic ranking | Uses the context or semantic meaning of a query to compute a new relevance score over preranked results. |
+| Semantic ranker | Uses the context or semantic meaning of a query to compute a new relevance score over preranked results. |
 | [Semantic captions and highlights](semantic-how-to-query-request.md) | Extracts verbatim sentences and phrases from a document that best summarize the content, with highlights over key passages for easy scanning. Captions that summarize a result are useful when individual content fields are too dense for the search results page. Highlighted text elevates the most relevant terms and phrases so that users can quickly determine why a match was considered relevant. |
 | [Semantic answers](semantic-answers.md) | An optional and extra substructure returned from a semantic query. It provides a direct answer to a query that looks like a question. It requires that a document has text with the characteristics of an answer. |
 
@@ -62,7 +62,7 @@ There are two steps to semantic ranking: summarization and scoring. Outputs cons
 
 In semantic ranking, the query subsystem passes search results as an input to summarization and ranking models. Because the ranking models have input size constraints and are processing intensive, search results must be sized and structured (summarized) for efficient handling.
 
-1. Semantic ranking starts with a [BM25-ranked result](index-ranking-similarity.md) from a text query or an [RRF-ranked result](hybrid-search-ranking.md) from a hybrid query. Only text fields are used in the reranking exercise, and only the top 50 results progress to semantic ranking, even if results include more than 50. Typically, fields used in semantic ranking are informational and descriptive.
+1. Semantic ranker starts with a [BM25-ranked result](index-ranking-similarity.md) from a text query or an [RRF-ranked result](hybrid-search-ranking.md) from a hybrid query. Only text fields are used in the reranking exercise, and only the top 50 results progress to semantic ranking, even if results include more than 50. Typically, fields used in semantic ranking are informational and descriptive.
 
 1. For each document in the search result, the summarization model accepts up to 2,000 tokens, where a token is approximately 10 characters. Inputs are assembled from the "title", "keyword", and "content" fields listed in the [semantic configuration](semantic-how-to-configure.md). 
 
@@ -111,11 +111,11 @@ Semantic ranker is a newer technology so it's important to set expectations abou
 
 * Find strings to use as captions and answers. Captions and answers are returned in the response and can be rendered on a search results page.
 
-What semantic ranking *can't* do is rerun the query over the entire corpus to find semantically relevant results. Semantic ranking reranks the existing result set, consisting of the top 50 results as scored by the default ranking algorithm. Furthermore, semantic ranking can't create new information or strings. Captions and answers are extracted verbatim from your content so if the results don't include answer-like text, the language models won't produce one.
+What semantic ranker *can't* do is rerun the query over the entire corpus to find semantically relevant results. Semantic ranking reranks the existing result set, consisting of the top 50 results as scored by the default ranking algorithm. Furthermore, semantic ranker can't create new information or strings. Captions and answers are extracted verbatim from your content so if the results don't include answer-like text, the language models won't produce one.
 
-Although semantic ranking isn't beneficial in every scenario, certain content can benefit significantly from its capabilities. The language models in semantic ranking work best on searchable content that is information-rich and structured as prose. A knowledge base, online documentation, or documents that contain descriptive content see the most gains from semantic ranking capabilities.
+Although semantic ranking isn't beneficial in every scenario, certain content can benefit significantly from its capabilities. The language models in semantic ranker work best on searchable content that is information-rich and structured as prose. A knowledge base, online documentation, or documents that contain descriptive content see the most gains from semantic ranker capabilities.
 
-The underlying technology is from Bing and Microsoft Research, and integrated into the Azure AI Search infrastructure as an add-on feature. For more information about the research and AI investments backing semantic ranking, see [How AI from Bing is powering Azure AI Search (Microsoft Research Blog)](https://www.microsoft.com/research/blog/the-science-behind-semantic-search-how-ai-from-bing-is-powering-azure-cognitive-search/).
+The underlying technology is from Bing and Microsoft Research, and integrated into the Azure AI Search infrastructure as an add-on feature. For more information about the research and AI investments backing semantic ranker, see [How AI from Bing is powering Azure AI Search (Microsoft Research Blog)](https://www.microsoft.com/research/blog/the-science-behind-semantic-search-how-ai-from-bing-is-powering-azure-cognitive-search/).
 
 The following video provides an overview of the capabilities.
 
@@ -132,10 +132,10 @@ When you enable semantic ranker, choose a pricing plan for the feature:
 
 The [Azure AI Search pricing page](https://azure.microsoft.com/pricing/details/search/) shows you the billing rate for different currencies and intervals.
 
-Charges for semantic ranking are levied when query requests include `queryType=semantic` and the search string isn't empty (for example, `search=pet friendly hotels in New York`). If your search string is empty (`search=*`), you aren't charged, even if the queryType is set to semantic.
+Charges for semantic ranker are levied when query requests include `queryType=semantic` and the search string isn't empty (for example, `search=pet friendly hotels in New York`). If your search string is empty (`search=*`), you aren't charged, even if the queryType is set to semantic.
 
 ## See also
 
-* [Enable semantic ranking](semantic-how-to-enable-disable.md)
-* [Configure semantic ranking](semantic-how-to-query-request.md)
+* [Enable semantic ranker](semantic-how-to-enable-disable.md)
+* [Configure semantic ranker](semantic-how-to-query-request.md)
 * [Blog: Outperforming vector search with hybrid retrieval and ranking capabilities](https://techcommunity.microsoft.com/t5/azure-ai-services-blog/azure-cognitive-search-outperforming-vector-search-with-hybrid/ba-p/3929167)
