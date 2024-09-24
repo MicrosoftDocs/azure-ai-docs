@@ -154,6 +154,7 @@ For Provisioned-Managed and Global Provisioned-Managed, we use a variation of th
 3.	When a request finishes, we now know the actual compute cost for the call. To ensure an accurate accounting, we correct the utilization using the following logic:
 
     a.	If the actual > estimated, then the difference is added to the deployment's utilization
+
     b.	If the actual < estimated, then the difference is subtracted. 
 
 4.	The overall utilization is decremented down at a continuous rate based on the number of PTUs deployed. 
