@@ -165,7 +165,7 @@ HTTP/1.1 201 Created
 Transfer-Encoding: chunked
 Content-Type: application/json; odata.metadata=minimal; odata.streaming=true; charset=utf-8
 ETag: "0x8DC43A5FDB8448F"
-Location: https://free-demo-search-svc.search.windows.net:443/datasources('ny-philharmonic-ds')?api-version=2024-07-01
+Location: https://<YOUR-SEARCH-SERVICE-NAME>.search.windows.net:443/datasources('ny-philharmonic-ds')?api-version=2024-07-01
 Server: Microsoft-IIS/10.0
 Strict-Transport-Security: max-age=2592000, max-age=15724800; includeSubDomains
 Preference-Applied: odata.include-annotations="*"
@@ -176,7 +176,7 @@ Date: Wed, 13 Mar 2024 21:38:58 GMT
 Connection: close
 
 {
-  "@odata.context": "https://free-demo-search-svc.search.windows.net/$metadata#datasources/$entity",
+  "@odata.context": "https://<YOUR-SEARCH-SERVICE-NAME>.search.windows.net/$metadata#datasources/$entity",
   "@odata.etag": "\"0x8DC43A5FDB8448F\"",
   "name": "ny-philharmonic-ds",
   "description": null,
@@ -308,7 +308,7 @@ Date: Wed, 13 Mar 2024 22:09:59 GMT
 Connection: close
 
 {
-  "@odata.context": "https://free-demo-search-svc.search.windows.net/indexes('ny-philharmonic-index')/$metadata#docs(*)",
+  "@odata.context": "https://<YOUR-SEARCH-SERVICE-NAME>.search.windows.net/indexes('ny-philharmonic-index')/$metadata#docs(*)",
   "@odata.count": 1521,
   "@search.nextPageParameters": {
     "search": "*",
@@ -317,7 +317,7 @@ Connection: close
   },
   "value": [
   ],
-  "@odata.nextLink": "https://free-demo-search-svc.search.windows.net/indexes/ny-philharmonic-index/docs/search?api-version=2024-07-01"
+  "@odata.nextLink": "https://<YOUR-SEARCH-SERVICE-NAME>.search.windows.net/indexes/ny-philharmonic-index/docs/search?api-version=2024-07-01"
 }
 ```
 
