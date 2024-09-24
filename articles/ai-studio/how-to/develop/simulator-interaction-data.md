@@ -10,9 +10,9 @@ ms.custom:
   - references_regions
 ms.topic: how-to
 ms.date: 9/24/2024
-ms.reviewer: eur
-ms.author: eur
-author: eric-urban
+ms.reviewer: minthigpen
+ms.author: lagayhar
+author: lgayhardt
 ---
 
 # Generate synthetic and simulated data for evaluation
