@@ -98,7 +98,7 @@ You can also select **Create a dataset** to use an existing Azure datastore or t
 
 ### Data column mapping (preview)
 
-If you select a MLTable data asset, another **Data Column Mapping** step appears for you to specify the column that contains the image URLs.  
+If you select an MLTable data asset, another **Data Column Mapping** step appears for you to specify the column that contains the image URLs.  
 
 [!INCLUDE [mapping](includes/machine-learning-data-labeling-mapping.md)]
 
