@@ -6,7 +6,7 @@ manager: scottpolly
 ms.service: azure-machine-learning
 ms.subservice: inferencing
 ms.topic: how-to
-ms.date: 08/08/2024
+ms.date: 09/24/2024
 ms.reviewer: shubhiraj
 reviewer: shubhirajMsft
 ms.author: mopeakande
