@@ -157,7 +157,7 @@ ml_client.connections.create_or_update(workspace_connection=wps_connection)
 
 ## Create a Snowflake DB connection that uses OAuth
 
-The information in this section describe how to create a Snowflake DB connection that uses OAuth to authenticate.
+The information in this section describes how to create a Snowflake DB connection that uses OAuth to authenticate.
 
 > [!IMPORTANT]
 > Before following the steps in this section, you must first [Configure Azure to issue OAuth tokens on behalf of the client](https://community.snowflake.com/s/article/Create-External-OAuth-Token-Using-Azure-AD-For-The-OAuth-Client-Itself). This configuration creates a service principal, which is required for the OAuth connection. You need the following information to create the connection:
