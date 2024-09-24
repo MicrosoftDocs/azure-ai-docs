@@ -8,6 +8,7 @@ ms.service: azure-ai-speech
 ms.topic: overview
 ms.date: 9/18/2024
 ms.author: eur
+#Customer intent: As a developer, I want to learn about the Whisper model from OpenAI that I can use for speech to text and speech translation.
 ---
 
 # What is the Whisper model?
