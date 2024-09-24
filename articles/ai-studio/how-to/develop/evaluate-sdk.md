@@ -6,12 +6,12 @@ manager: nitinme
 ms.service: azure-ai-studio
 ms.custom:
   - build-2024
+  - references_regions
 ms.topic: how-to
 ms.date: 09/24/2024
 ms.reviewer: dantaylo
 ms.author: eur
 author: eric-urban
-ms.custom: references_regions
 ---
 # Evaluate with the Azure AI Evaluation SDK
 

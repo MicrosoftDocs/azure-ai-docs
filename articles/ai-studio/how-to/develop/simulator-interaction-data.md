@@ -7,12 +7,12 @@ ms.service: azure-ai-studio
 ms.custom:
   - ignite-2023
   - build-2024
+  - references_regions
 ms.topic: how-to
 ms.date: 9/24/2024
 ms.reviewer: eur
 ms.author: eur
 author: eric-urban
-ms.custom: references_regions
 ---
 
 # Generate synthetic and simulated data for evaluation

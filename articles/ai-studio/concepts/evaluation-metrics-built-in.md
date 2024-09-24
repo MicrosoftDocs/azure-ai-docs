@@ -7,12 +7,12 @@ ms.service: azure-ai-studio
 ms.custom:
   - ignite-2023
   - build-2024
+  - references_regions
 ms.topic: conceptual
 ms.date: 09/24/2024
 ms.reviewer: mithigpe
 ms.author: lagayhar
 author: lgayhardt
-ms.custom: references_regions
 ---
 
 # Evaluation and monitoring metrics for generative AI
