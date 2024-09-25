@@ -1,12 +1,12 @@
 ---
 title: GPT-4 Turbo with Vision concepts
 titleSuffix: Azure OpenAI
-description: Learn about vision chats enabled by GPT-4 Turbo with Vision.
+description: Learn concepts related to using images in your AI model chats, enabled through GPT-4 Turbo with Vision and other models.
 author: PatrickFarley
 ms.author: pafarley
 ms.service: azure-ai-openai
 ms.topic: conceptual 
-ms.date: 01/02/2024
+ms.date: 09/24/2024
 manager: nitinme
 ---
 
@@ -36,6 +36,7 @@ See the [Tokens section of the overview](/azure/ai-services/openai/overview#toke
 
 
 ### Example image price calculation
+
 > [!IMPORTANT]
 > The following content is an example only, and prices are subject to change in the future.
 
@@ -68,7 +69,7 @@ For a typical use case, take a 3-minute video with a 100-token prompt input. The
 
 Additionally, there's a one-time indexing cost of $0.15 to generate the Video Retrieval index for this 3-minute video. This index can be reused across any number of Video Retrieval and GPT-4 Turbo with Vision API calls.
 
-## Limitations
+## Input limitations
 
 This section describes the limitations of GPT-4 Turbo with Vision.
 
