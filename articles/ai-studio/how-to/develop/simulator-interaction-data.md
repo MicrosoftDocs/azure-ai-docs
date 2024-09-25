@@ -42,7 +42,7 @@ Azure AI Evaluation SDK's `Simulator` provides an end-to-end synthetic data gene
 By automating the creation of synthetic data, the `Simulator` class helps streamline the development and testing processes, ensuring your applications are robust and reliable.
 
 ```python
-from azure.ai.evaluation.synthetic import Simulator
+from azure.ai.evaluation.simulator import Simulator
 ```
 
 ### Generate text or index-based synthetic data as input
@@ -215,7 +215,7 @@ print(json.dumps(outputs, indent=2))
 Augment and accelerate your red-teaming operation by using Azure AI Studio safety evaluations to generate an adversarial dataset against your application. We provide adversarial scenarios along with configured access to a service-side Azure OpenAI GPT-4 model with safety behaviors turned off to enable the adversarial simulation.
 
 ```python
-from azure.ai.evaluation.synthetic import AdversarialSimulator
+from azure.ai.evaluation.simulator import AdversarialSimulator
 ```
 
 The adversarial simulator works by setting up a service-hosted GPT large language model to simulate an adversarial user and interact with your application. An AI Studio project is required to run the adversarial simulator:
@@ -272,7 +272,7 @@ async def callback(
 ## Run an adversarial simulation
 
 ```python
-from azure.ai.evaluation.synthetic import AdversarialScenario
+from azure.ai.evaluation.simulator import AdversarialScenario
 
 scenario = AdversarialScenario.ADVERSARIAL_QA
 adversarial_simulator = AdversarialSimulator(azure_ai_project=azure_ai_project)
