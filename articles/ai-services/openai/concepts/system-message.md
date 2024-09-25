@@ -1,5 +1,5 @@
 ---
-title: Safety System Messages 
+title: Safety system messages 
 titleSuffix: Azure OpenAI Service
 description: Learn about how to construct system messages also know as metaprompts to guide an AI system's behavior.
 ms.service: azure-ai-openai
@@ -13,7 +13,7 @@ ms.author: mbullwin
 recommendations: false
 ---
 
-# Safety System Messages 
+# Safety system messages 
 
 This article recommends frameworks and examples for writing effective system messages to guide AI models’ behavior, improve output quality and accuracy, and mitigate harms. Alongside other mitigation techniques, system messages provide a more precise way of determining safe outputs.  
 
@@ -35,9 +35,9 @@ You are a helpful AI assistant.
 
 A system message can also be *many* lines long, containing detailed rules, detailed context, formatting and output guidelines, and responsible AI (RAI) mitigations.
 
-## Safety System Messages 
+## Safety system message examples
 
-Safety system messages are a type of system message that provide explicit instructions to mitigate against potential RAI harms and guide systems to interact safely with users. Safety system messages complement your safety stack and can be added alongside foundation model training, data grounding, Azure AI Content Safety classifiers, and UX/UI interventions. Learn more about [Responsible AI practices for Azure OpenAI models](https://learn.microsoft.com/en-us/legal/cognitive-services/openai/overview?context=%2Fazure%2Fai-services%2Fopenai%2Fcontext%2Fcontext). 
+Safety system messages are a type of system message that provide explicit instructions to mitigate against potential RAI harms and guide systems to interact safely with users. Safety system messages complement your safety stack and can be added alongside foundation model training, data grounding, Azure AI Content Safety classifiers, and UX/UI interventions. Learn more about [Responsible AI practices for Azure OpenAI models](/legal/cognitive-services/openai/overview?context=%2Fazure%2Fai-services%2Fopenai%2Fcontext%2Fcontext). 
 
 While this technique is very effective, it is still fallible, and most safety system messages need to be used in combination with other safety mitigations.  
 
@@ -107,7 +107,7 @@ For safety system message components, the primary criterion is the improvement i
 
 ### 7/ Iterate on system messages and safety system components and above steps 
 
-Based on your evaluations, revisit your top components to improve any issues to reach an acceptable level. Continue to monitor and evaluate your system regularly as changes are introduced, including new use cases, updated models, etc. Remember that even when using this guidance, you still need to validate your model responses per scenario. A well-crafted system message for one scenario may not work more broadly across other scenarios. Understanding the [limitations of LLMs](https://learn.microsoft.com/en-us/legal/cognitive-services/openai/transparency-note?context=/azure/ai-services/openai/context/context#limitations) and the [mechanisms for evaluating and mitigating those limitations](https://learn.microsoft.com/en-us/legal/cognitive-services/openai/overview?context=/azure/ai-services/openai/context/context) is just as important as understanding how to leverage their strengths. 
+Based on your evaluations, revisit your top components to improve any issues to reach an acceptable level. Continue to monitor and evaluate your system regularly as changes are introduced, including new use cases, updated models, etc. Remember that even when using this guidance, you still need to validate your model responses per scenario. A well-crafted system message for one scenario may not work more broadly across other scenarios. Understanding the [limitations of LLMs](/legal/cognitive-services/openai/transparency-note?context=/azure/ai-services/openai/context/context#limitations) and the [mechanisms for evaluating and mitigating those limitations](/legal/cognitive-services/openai/overview?context=/azure/ai-services/openai/context/context) is just as important as understanding how to leverage their strengths. 
 
 
 ## Summary of best practices  
@@ -163,7 +163,7 @@ Finally, remember that system messages, or metaprompts, are not "one size fits a
 
 ## Next steps
 
-- [Azure OpenAI Service](https://learn.microsoft.com/en-us/azure/ai-services/openai/concepts/prompt-engineering)
-- [Prompt engineering techniques with Azure OpenAI](https://learn.microsoft.com/en-us/azure/ai-services/openai/concepts/advanced-prompt-engineering?pivots=programming-language-chat-completions) 
+- [Azure OpenAI Service](/azure/ai-services/openai/concepts/prompt-engineering)
+- [Prompt engineering techniques with Azure OpenAI](/azure/ai-services/openai/concepts/advanced-prompt-engineering?pivots=programming-language-chat-completions) 
 - [Announcing Safety System Messages in Azure AI Studio and Azure OpenAI Studio](https://techcommunity.microsoft.com/t5/ai-azure-ai-services-blog/announcing-safety-system-messages-in-azure-ai-studio-and-azure/ba-p/4146991) - Microsoft Community Hub 
 - [Safety system message templates ](tbd)

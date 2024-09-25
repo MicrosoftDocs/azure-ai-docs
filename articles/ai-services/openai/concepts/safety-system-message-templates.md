@@ -1,12 +1,23 @@
+---
+title: Safety system message templates 
+titleSuffix: Azure OpenAI Service
+description: This article contains recommended safety system messages for your generative AI systems, to help reduce the propensity of harm in various concern areas.
+ms.service: azure-ai-openai
+ms.topic: conceptual
+ms.date: 09/20/2024
+ms.custom:
+manager: nitinme
+author: PatrickFarley
+ms.author: pafarley
+---
 
 
+# Safety system message templates
 
-# Safety System Message Templates
 
+This article contains recommended safety system messages for your generative AI systems, to help reduce the propensity of harm in various concern areas. Before you begin evaluating and integrating your safety system messages, visit the [Safety System Message documentation](/azure/ai-services/openai/concepts/system-message) to get started.  
 
-This article contains recommended safety system messages for your generative AI systems, to help reduce the propensity of harm in various concern areas. Before you begin evaluating and integrating your safety system messages, visit the [Safety System Message documentation](https://learn.microsoft.com/en-us/azure/ai-services/openai/concepts/system-message) to get started.  
-
-Please note using a safety system message is one of many techniques that can be used for mitigations risks in AI systems, and different from [Azure AI Content Safety](https://learn.microsoft.com/en-us/azure/ai-services/content-safety/overview). 
+Please note using a safety system message is one of many techniques that can be used for mitigations risks in AI systems, and different from [Azure AI Content Safety](/azure/ai-services/content-safety/overview). 
 
 ## Recommended system messages 
 
@@ -26,7 +37,7 @@ The following steps show how to leverage safety system messages in Azure AI stud
 1. Go to Azure AI Studio and navigate to Azure OpenAI and the Chat playground.
     :::image type="content" source="../media/navigate-chat-playground.PNG" alt-text="Screenshot of the AI Studio selection.":::
 1. Navigate to the default safety system messages integrated in the studio.
-    :::image type="content" source="../media/navigate-system-message.PNG" alt-text="Screenshot of the system message selection.":::
+    :::image type="content" source="../media/navigate-system-message.PNG" alt-text="Screenshot of the system message navigation.":::
 1. Select the system message(s) that are applicable to your scenario. 
     :::image type="content" source="../media/select-system-message.PNG" alt-text="Screenshot of the system message selection.":::
 1. Review and edit the safety system messages based on the best practices outlined here. 
@@ -40,4 +51,4 @@ The following steps show how to leverage safety system messages in Azure AI stud
 
 ## Evaluation 
 
-We recommend informing your safety system message approach based on an iterative process of identification and evaluation. Learn more in our [Safety System Message documentation](https://learn.microsoft.com/en-us/azure/ai-services/openai/concepts/system-message). 
+We recommend informing your safety system message approach based on an iterative process of identification and evaluation. Learn more in our [Safety System Message documentation](/azure/ai-services/openai/concepts/system-message). 

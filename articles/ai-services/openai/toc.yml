@@ -74,13 +74,13 @@ items:
         href: ./concepts/prompt-engineering.md
       - name: Image prompt engineering techniques
         href: ./concepts/gpt-4-v-prompt-engineering.md
-    - name: System message
+    - name: System messages
       items:
       - name: System message design
         href: ./concepts/advanced-prompt-engineering.md
       - name: Safety system messages
         href: ./concepts/system-message.md
-      - name: System message templates
+      - name: Safety system message templates
         href: ./concepts/safety-system-message-templates.md
     - name: Model versions
       href: ./concepts/model-versions.md

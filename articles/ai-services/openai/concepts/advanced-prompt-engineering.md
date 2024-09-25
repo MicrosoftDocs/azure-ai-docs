@@ -9,24 +9,26 @@ ms.topic: conceptual
 ms.date: 09/05/2024
 manager: nitinme
 keywords: ChatGPT, GPT-4, meta prompts, chain of thought
-zone_pivot_groups: openai-prompt
 ---
 
-# System messages
+# System message design
 
 This guide will walk you through some techniques in system message design. 
 
-While the principles of prompt engineering can be generalized across many different model types, certain models expect a specialized prompt structure. For Azure OpenAI GPT models, there are currently two distinct APIs where prompt engineering comes into play:
 
-- Chat Completion API.
-- Completion API.
 
-Each API requires input data to be formatted differently, which in turn impacts overall prompt design. The **Chat Completion API** supports the GPT-35-Turbo and GPT-4 models. These models are designed to take input formatted in a [specific chat-like transcript](../how-to/chatgpt.md) stored inside an array of dictionaries.
+## What is a system message? 
 
-The **Completion API** supports the older GPT-3 models and has much more flexible input requirements in that it takes a string of text with no specific format rules.
+A system message is a feature-specific set of instructions or contextual frameworks given to a generative AI model (e.g. GPT4-o, GPT3.5 Turbo, etc.) to direct and improve the quality and safety of a model’s output. This is particularly helpful in situations that need certain degrees of formality, technical language, or industry-specific terms.  
 
-The techniques in this guide will teach you strategies for increasing the accuracy and grounding of responses you generate with a Large Language Model (LLM). It is, however, important to remember that even when using prompt engineering effectively you still need to validate the responses the models generate. Just because a carefully crafted prompt worked well for a particular scenario doesn't necessarily mean it will generalize more broadly to certain use cases. Understanding the [limitations of LLMs](/legal/cognitive-services/openai/transparency-note?context=/azure/ai-services/openai/context/context#limitations), is just as important as understanding how to leverage their strengths.
 
+There is no prescribed length. A system message can be one short sentence:  
+
+```
+You are a helpful AI assistant.
+```
+
+A system message can also be *many* lines long, containing detailed rules, detailed context, formatting and output guidelines, and responsible AI (RAI) mitigations.
 
 ## System message examples
 
