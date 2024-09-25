@@ -48,7 +48,7 @@ When it comes to chunking data, think about these factors:
 
 If you have large documents, you must insert a chunking step into indexing and query workflows that breaks up large text. When using [integrated vectorization](vector-search-integrated-vectorization.md), a default chunking strategy using the [Text Split skill](./cognitive-search-skill-textsplit.md) is applied. You can also apply a custom chunking strategy using a [custom skill](cognitive-search-custom-skill-web-api.md). Some libraries that provide chunking include:
 
-+ [LangChain Text Splitters](https://python.langchain.com/docs/modules/data_connection/document_transformers/)
++ [LangChain Text Splitters](https://python.langchain.com/v0.1/docs/modules/data_connection/document_transformers/)
 + [Semantic Kernel TextChunker](/dotnet/api/microsoft.semantickernel.text.textchunker)
 
 Most libraries provide common chunking techniques for fixed size, variable size, or a combination. You can also specify an overlap that duplicates a small amount of content in each chunk for context preservation.
