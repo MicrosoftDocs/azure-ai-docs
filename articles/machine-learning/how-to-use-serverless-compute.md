@@ -12,7 +12,7 @@ ms.topic: how-to
 ms.author: sgilley
 author: sdgilley
 ms.reviewer: vijetaj
-ms.date: 10/23/2023
+ms.date: 09/25/2024
 ---
 
 # Model training on serverless compute
@@ -102,7 +102,7 @@ When you [view your usage and quota in the Azure portal](how-to-manage-quotas.md
     )
     job = command(
         command="echo 'hello world'",
-        environment="AzureML-sklearn-1.0-ubuntu20.04-py38-cpu@latest",
+        environment="azureml://registries/azureml/environments/sklearn-1.5/labels/latest",
             identity=UserIdentityConfiguration(),
     )
     # submit the command job
@@ -143,7 +143,7 @@ When you [view your usage and quota in the Azure portal](how-to-manage-quotas.md
     )
     job = command(
         command="echo 'hello world'",
-        environment="AzureML-sklearn-1.0-ubuntu20.04-py38-cpu@latest",
+        environment=""azureml://registries/azureml/environments/sklearn-1.5/labels/latest"",
             identity= ManagedIdentityConfiguration(),
     )
     # submit the command job
@@ -235,7 +235,7 @@ You can override these defaults.  If you want to specify the VM type or number o
     )
     job = command(
         command="echo 'hello world'",
-        environment="AzureML-sklearn-1.0-ubuntu20.04-py38-cpu@latest",
+        environment=""azureml://registries/azureml/environments/sklearn-1.5/labels/latest"",
         resources = JobResourceConfiguration(instance_type="Standard_NC24", instance_count=4)
     )
     # submit the command job
@@ -274,7 +274,7 @@ You can override these defaults.  If you want to specify the VM type or number o
     )
     job = command(
         command="echo 'hello world'",
-        environment="AzureML-sklearn-1.0-ubuntu20.04-py38-cpu@latest",
+        environment=""azureml://registries/azureml/environments/sklearn-1.5/labels/latest"",
         queue_settings={
           "job_tier": "spot"  
         }
@@ -315,7 +315,7 @@ ml_client = MLClient(
 )
 job = command(
     command="echo 'hello world'",
-    environment="AzureML-sklearn-1.0-ubuntu20.04-py38-cpu@latest",
+    environment=""azureml://registries/azureml/environments/sklearn-1.5/labels/latest"",
          identity=UserIdentityConfiguration(),
     queue_settings={
       "job_tier": "Standard"  
