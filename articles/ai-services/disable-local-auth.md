@@ -1,19 +1,22 @@
 ---
 title: Disable local authentication in Azure AI Services
 titleSuffix: Azure AI services
-description: "This article describes disabling local authentication in Azure AI Services."
+description: "This article describes how to disable local authentication in Azure AI Services for improved security."
 #services: cognitive-services
 author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-services
 ms.topic: how-to
-ms.date: 09/22/2023
+ms.date: 09/25/2024
 ms.author: pafarley
+#customer intent: As a developer, I want to disable local authentication in Azure AI Services so that I can enforce Microsoft Entra authentication.
 ---
 
 # Disable local authentication in Azure AI Services
 
 Azure AI Services provides Microsoft Entra authentication support for all resources. This feature provides you with seamless integration when you require centralized control and management of identities and resource credentials. Organizations can disable local authentication methods and enforce Microsoft Entra authentication instead.
+
+## How to disable local authentication
 
 You can disable local authentication using the Azure policy **Azure AI Services resources should have key access disabled (disable local authentication)**. Set it at the subscription level or resource group level to enforce the policy for a group of services.
 
@@ -31,7 +34,6 @@ Set-AzCognitiveServicesAccount -ResourceGroupName "my-resource-group" -Name "my-
 Disabling local authentication doesn't take effect immediately. Allow a few minutes for the service to block future authentication requests.
 
 You can use PowerShell to determine whether the local authentication policy is currently enabled. First sign in with the `Connect-AzAccount` command. Then use the cmdlet **[Get-AzCognitiveServicesAccount](/powershell/module/az.cognitiveservices/get-azcognitiveservicesaccount)** to retrieve your resource, and check the property `DisableLocalAuth`. A value of `true` means local authentication is disabled.
-
 
 ## Re-enable local authentication
 

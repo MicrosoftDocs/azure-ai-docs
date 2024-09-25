@@ -82,8 +82,10 @@ items:
     href: logo-detector-mobile.md
 - name: Reference
   items:
-  - name: Custom Vision Training API  
+  - name: Custom Vision Training API
+    href: /rest/api/customvision/operation-groups
   - name: Custom Vision Prediction API 
+    href: /rest/api/customvision/operation-groups
   - name: SDKs
     items:
     - name: .NET
