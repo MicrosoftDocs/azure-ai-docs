@@ -39,6 +39,8 @@ For a description of the different model types, see the [Forecasting models in A
 
 The amount of sweeping by AutoML depends on the forecasting job configuration. You can specify the stopping criteria as a time limit or a limit on the number of trials, or the equivalent number of models. Early termination logic can be used in both cases to stop sweeping if the primary metric isn't improving.
 
+<a name="model-selection"></a>
+
 ## Model selection in AutoML
 
 AutoML follows a three-phase process to search for and select forecasting models:
@@ -60,7 +62,7 @@ AutoML has two validation configurations: cross-validation and explicit validati
 
 In the cross-validation case, AutoML uses the input configuration to create data splits into training and validation folds. Time order must be preserved in these splits. AutoML uses so-called **Rolling Origin Cross Validation**, which divides the series into training and validation data by using an origin time point. Sliding the origin in time generates the cross-validation folds. Each validation fold contains the next horizon of observations immediately following the position of the origin for the given fold. This strategy preserves the time-series data integrity and mitigates the risk of information leakage.  
 
-:::image type="content" source="media/how-to-auto-train-forecast/rolling-origin-cross-validation.png" border=false" alt-text="Diagram showing cross validation folds separating the training and validation sets based on the cross validation step size.":::
+:::image type="content" source="media/how-to-auto-train-forecast/rolling-origin-cross-validation.png" border="false" alt-text="Diagram showing cross validation folds separating the training and validation sets based on the cross validation step size.":::
 
 AutoML follows the usual cross-validation procedure, training a separate model on each fold and averaging validation metrics from all folds. 
 
