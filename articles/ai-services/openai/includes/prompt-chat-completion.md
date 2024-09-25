@@ -138,8 +138,3 @@ Here's an example where the system is provided a [recent blog describing the lau
 
 <sup>1</sup> Text from [Azure OpenAI GPT-4 launch blog](https://azure.microsoft.com/blog/introducing-gpt4-in-azure-openai-service/).
 
-## Next steps
-
-* [Learn more about Azure OpenAI](../overview.md).
-* [Learn more about the Chat Completions API](../how-to/chatgpt.md).
-* [Azure OpenAI Samples](https://github.com/Azure-Samples/azureai-samples/tree/main).

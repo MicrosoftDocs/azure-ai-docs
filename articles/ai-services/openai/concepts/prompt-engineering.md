@@ -141,8 +141,10 @@ While the input size increases with each new generation of GPT models, there wil
 
 Given this limited space, it is important to use it as efficiently as possible.
 - Tables – As shown in the examples in the previous section, GPT models can understand tabular formatted data quite easily. This can be a space efficient way to include data, rather than preceding every field with name (such as with JSON). 
-- White Space – Consecutive whitespaces are treated as separate tokens which can be an easy way to waste space. Spaces preceding a word, on the other hand, are typically treated as part of the same token as the word. Carefully watch your usage of whitespace and don’t use punctuation when a space alone will do.
+- White Space – Consecutive whitespaces are treated as separate tokens which can be an easy way to waste space. Spaces preceding a word, on the other hand, are typically treated as part of the same token as the word. Carefully watch your usage of whitespace and don’t use punctuation when a space alone will do. 
 
-## Next steps
+## Related content 
 
-[Learn more about Azure OpenAI.](../overview.md)
+* [Learn more about Azure OpenAI](../overview.md).
+* Get started with the ChatGPT model with [the ChatGPT quickstart](../chatgpt-quickstart.md).
+* For more examples, check out the [Azure OpenAI Samples GitHub repository](https://github.com/Azure/openai-samples)
