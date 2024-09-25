@@ -9,6 +9,8 @@ ms.date: 05/17/2023
 
 # Pan UK-Biobank: Pan-ancestry genetic analysis of the UK Biobank
 
+<em> Important Update 9/19/2024: all URLs are changing.  We are enabling public access to all Genomics Data Lake containers.  The existing “signed URLs” (shared access signatures) will be retired at: 2024-11-04T00:00:00Z .  After this time, the URLs without a query string will continue to work, however the “signed URLs” will no longer work and will return a 403 HTTP status code.  Please plan accordingly to access the public URLs without a query string after this date  (remove the ‘?’ and trailing characters). </em>
+
 The [Pan-ancestry genetic analysis of the UK Biobank(Pan-UKBB)](https://pan.ukbb.broadinstitute.org) is a resource to researchers that promotes more inclusive research practices, accelerates scientific discoveries, and improves the health of all people equitably. In genetics research, it's statistically necessary to study groups of individuals together with similar ancestries. In practice, this method has meant that most previous research has excluded individuals with non-European ancestries. The Pan-ancestry of UK-biobank is a resource using one of the most widely accessed sources of genetic data, the UK Biobank, in a manner that is more inclusive than most previous efforts--namely studying groups of individuals with diverse ancestries. The results of this research have many important limitations, which should be carefully considered when researchers use this resource in their work and when they and others interpret subsequent findings.
 
 [!INCLUDE [Open Dataset usage notice](./includes/open-datasets-usage-note.md)]
