@@ -344,7 +344,7 @@ summer thaw. Nonetheless, this July 2001 image shows plenty of surface vegetatio
 shrubs, and grasses. The abundant fresh water also means the area is teeming with flies and mosquitoes.
 ```
 
-With this example, it's easier to spot how chunks are returned verbatim, and how keyword and similarity search identify top matches. This specific chunk definitely has information about water and coverage over the earth, but it's not exactly relevant to the query. Semantic ranking would find a better answer, but as a next step, let's see how to connect Azure AI Search to an LLM for conversational search.
+With this example, it's easier to spot how chunks are returned verbatim, and how keyword and similarity search identify top matches. This specific chunk definitely has information about water and coverage over the earth, but it's not exactly relevant to the query. Semantic ranker would find a better answer, but as a next step, let's see how to connect Azure AI Search to an LLM for conversational search.
 
 <!-- Objective:
 

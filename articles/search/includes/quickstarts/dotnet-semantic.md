@@ -115,7 +115,7 @@ Azure AI Search searches over content stored in the service. The code for upload
 
 #### Search an index
 
-Here's a query that invokes semantic ranking, with search options for specifying parameters:
+Here's a query that invokes semantic ranker, with search options for specifying parameters:
 
 ```csharp
 Console.WriteLine("Example of a semantic query.");
