@@ -71,8 +71,8 @@ The URI and key are generated when you deploy the model from the catalog. For mo
 {
   "@odata.type": "#Microsoft.Skills.Custom.AmlSkill",
   "context": "/document/pages/*",
-  "uri": "{YOUR_MODEL_URL_HERE}",
-  "key": "{YOUR_MODEL_KEY_HERE}",
+  "uri": "<YOUR_MODEL_URL_HERE>",
+  "key": "<YOUR_MODEL_KEY_HERE>",
   "inputs": [
     {
       "name": "input_data",
@@ -118,8 +118,8 @@ The URI and key are generated when you deploy the model from the catalog. For mo
 {
   "@odata.type": "#Microsoft.Skills.Custom.AmlSkill",
   "context": "/document/normalized_images/*",
-  "uri": "{YOUR_MODEL_URL_HERE}",
-  "key": "{YOUR_MODEL_HERE}",
+  "uri": "<YOUR_MODEL_URL_HERE>",
+  "key": "<YOUR_MODEL_HERE>",
   "inputs": [
     {
       "name": "input_data",
@@ -165,8 +165,8 @@ The URI and key are generated when you deploy the model from the catalog. For mo
 {
   "@odata.type": "#Microsoft.Skills.Custom.AmlSkill",
   "context": "/document/pages/*",
-  "uri": "{YOUR_MODEL_URL_HERE}/v1/embed",
-  "key": "{YOUR_MODEL_KEY_HERE}",
+  "uri": "<YOUR_MODEL_URL_HERE>/v1/embed",
+  "key": "<YOUR_MODEL_KEY_HERE>",
   "inputs": [
     {
       "name": "texts",
@@ -202,7 +202,7 @@ If you selected a different `embedding_types` in your skill definition that you 
 "indexProjections": {
   "selectors": [
     {
-      "targetIndexName": "{YOUR_TARGET_INDEX_NAME_HERE}",
+      "targetIndexName": "<YOUR_TARGET_INDEX_NAME_HERE>",
       "parentKeyFieldName": "ParentKey", // Change this to the name of the field in your index definition where the parent key will be stored
       "sourceContext": "/document/pages/*",
       "mappings": [
@@ -230,12 +230,12 @@ For Cohere models, you should NOT add the `/v1/embed` path to the end of your UR
 ```json
 "vectorizers": [
     {
-        "name": "{YOUR_VECTORIZER_NAME_HERE}",
+        "name": "<YOUR_VECTORIZER_NAME_HERE>",
         "kind": "aml",
         "amlParameters": {
-            "uri": "{YOUR_URL_HERE}",
-            "key": "{YOUR_PRIMARY_KEY_HERE}",
-            "modelName": "{YOUR_MODEL_ID_HERE}"
+            "uri": "<YOUR_URL_HERE>",
+            "key": "<YOUR_PRIMARY_KEY_HERE>",
+            "modelName": "<YOUR_MODEL_ID_HERE>"
         },
     }
 ]
@@ -246,8 +246,8 @@ For Cohere models, you should NOT add the `/v1/embed` path to the end of your UR
 If you can't use key-based authentication, you can instead configure the AML skill and AI Studio vectorizer connection for [token authentication](../machine-learning/how-to-authenticate-online-endpoint.md) via role-based access control on Azure. The search service must have a [system or user-assigned managed identity](search-howto-managed-identities-data-sources.md), and the identity must have Owner or Contributor permissions for your AML project workspace. You can then remove the key field from your skill and vectorizer definition, replacing it with the resourceId field. If your AML project and search service are in different regions, also provide the region field.
 
 ```json
-"uri": "{YOUR_URL_HERE}",
-"resourceId": "subscriptions/{YOUR_SUBSCRIPTION_ID_HERE/resourceGroups/{YOUR_RESOURCE_GROUP_NAME_HERE}/providers/Microsoft.MachineLearningServices/workspaces/{YOUR_AML_WORKSPACE_NAME_HERE}/onlineendpoints/{YOUR_AML_ENDPOINT_NAME_HERE}",
+"uri": "<YOUR_URL_HERE>",
+"resourceId": "subscriptions/<YOUR_SUBSCRIPTION_ID_HERE>/resourceGroups/<YOUR_RESOURCE_GROUP_NAME_HERE>/providers/Microsoft.MachineLearningServices/workspaces/<YOUR_AML_WORKSPACE_NAME_HERE>/onlineendpoints/<YOUR_AML_ENDPOINT_NAME_HERE>",
 "region": "westus", // Only need if AML project lives in different region from search service
 ```
 

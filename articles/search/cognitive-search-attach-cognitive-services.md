@@ -133,9 +133,9 @@ Enrichments are billable operations. If you no longer need to call Azure AI serv
 
 ### [**REST**](#tab/cogkey-rest-remove)
 
-1. [Get Skillset](/rest/api/searchservice/get-skillset) so that you have the full definition.
+1. [Get Skillset](/rest/api/searchservice/skillsets/get) so that you have the full definition.
 
-1. Formulate an [Update Skillset](/rest/api/searchservice/update-skillset) request, providing the JSON definition of the skillset.
+1. Formulate an [Update Skillset](/rest/api/searchservice/skillsets/create-or-update) request, providing the JSON definition of the skillset.
 
 1. Remove the key in the body of the definition, and then send the request:
 
@@ -185,7 +185,7 @@ Enrichments are billable operations. If you no longer need to call Azure AI serv
 
 Key-based billing applies when API calls to Azure AI services resources exceed 20 API calls per indexer, per day. 
 
-The key is used for billing, but not for enrichment operations' connections. For connections, a search service [connects over the internal network](search-security-overview.md#internal-traffic) to an Azure AI services resource that's located in the [same physical region](https://azure.microsoft.com/global-infrastructure/services/?products=search). Most regions that offer Azure AI Search also offer other Azure AI services such as Language. If you attempt AI enrichment in a region that doesn't have both services, you'll see this message: "Provided key isn't a valid CognitiveServices type key for the region of your search service."
+The key is used for billing, but not for enrichment operations' connections. For connections, a search service [connects over the internal network](search-security-overview.md#internal-traffic) to an Azure AI services resource that's located in the [same physical region](search-region-support.md). Most regions that offer Azure AI Search also offer other Azure AI services such as Language. If you attempt AI enrichment in a region that doesn't have both services, you'll see this message: "Provided key isn't a valid CognitiveServices type key for the region of your search service."
 
 Currently, billing for [built-in skills](cognitive-search-predefined-skills.md) requires a public connection from Azure AI Search to another Azure AI service. Disabling public network access breaks billing. If disabling public networks is a requirement, you can configure a [Custom Web API skill](cognitive-search-custom-skill-interface.md) implemented with an [Azure Function](cognitive-search-create-custom-skill-example.md) that supports [private endpoints](/azure/azure-functions/functions-create-vnet) and add the [Azure AI services resource to the same VNET](/azure/ai-services/cognitive-services-virtual-networks). In this way, you can call Azure AI services resource directly from the custom skill using private endpoints.
 

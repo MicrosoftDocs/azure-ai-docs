@@ -6,9 +6,10 @@ author: eric-urban
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: conceptual
-ms.date: 8/20/2024
+ms.date: 9/20/2024
 ms.author: eur
 ms.custom: references_regions, build-2024
+#Customer intent: As a developer, I want to learn about the languages supported by the Speech service.
 ---
 
 # Language and voice support for the Speech service
@@ -26,15 +27,15 @@ You can also get a list of locales and voices supported for each specific region
 Language support varies by Speech service functionality. 
 
 > [!NOTE]
-> See [Speech Containers](speech-container-overview.md#available-speech-containers) and [Embedded Speech](embedded-speech.md#models-and-voices) separately for their supported languages.
+> See [speech containers](speech-container-overview.md#available-speech-containers) and [embedded speech](embedded-speech.md#models-and-voices) documentation for their supported languages.
 
 **Choose a Speech feature**
 
 # [Speech to text](#tab/stt)
 
-The table in this section summarizes the locales supported for Speech to text. See the table footnotes for more details. 
+The table in this section summarizes the locales supported for speech to text. For details, see the table footnotes.
 
-More remarks for Speech to text locales are included in the [custom speech](#custom-speech) section of this article. 
+More remarks for speech to text locales are included in the [custom speech](#custom-speech) section of this article. 
 
 > [!TIP]
 > Try out the [real-time speech to text tool](https://speech.microsoft.com/portal/speechtotexttool) without having to use any code.
@@ -43,7 +44,7 @@ More remarks for Speech to text locales are included in the [custom speech](#cus
 
 ### Custom speech
 
-To improve Speech to text recognition accuracy, customization is available for some languages and base models. Depending on the locale, you can upload audio + human-labeled transcripts, plain text, structured text, and pronunciation data. By default, plain text customization is supported for all available base models. To learn more about customization, see [custom speech](./custom-speech-overview.md).
+To improve speech to text recognition accuracy, customization is available for some languages and base models. Depending on the locale, you can upload audio + human-labeled transcripts, plain text, structured text, and pronunciation data. By default, plain text customization is supported for all available base models. To learn more about customization, see [custom speech](./custom-speech-overview.md).
 
 These are the locales that support the [display text format feature](./how-to-custom-speech-display-text-format.md): da-DK, de-DE, en-AU, en-CA, en-GB, en-HK, en-IE, en-IN, en-NG, en-NZ, en-PH, en-SG, en-US, es-ES, es-MX, fi-FI, fr-CA, fr-FR, hi-IN, it-IT, ja-JP, ko-KR, nb-NO, nl-NL, pl-PL, pt-BR, pt-PT, sv-SE, tr-TR, zh-CN, zh-HK.
 
@@ -53,7 +54,7 @@ The supported locales for the [fast transcription API](fast-transcription-create
 
 # [Text to speech](#tab/tts)
 
-The table in this section summarizes the locales and voices supported for Text to speech. See the table footnotes for more details.
+The table in this section summarizes the locales and voices supported for text to speech. For details, see the table footnotes.
 
 More remarks for text to speech locales are included in the [voice styles and roles](#voice-styles-and-roles), [prebuilt neural voices](#prebuilt-neural-voices), [Custom neural voice](#custom-neural-voice), and [personal voice](#personal-voice) sections in this article. 
 
@@ -98,9 +99,9 @@ Each prebuilt neural voice model is available at 24kHz and high-fidelity 48kHz. 
 
 Note that the following neural voices are retired.
 
-- The English (United Kingdom) voice `en-GB-MiaNeural` is retired on October 30, 2021. All service requests to `en-GB-MiaNeural` will be redirected to `en-GB-SoniaNeural` automatically as of October 30, 2021. If you're using container Neural TTS, [download](speech-container-ntts.md#get-the-container-image-with-docker-pull) and deploy the latest version. All requests with previous versions won't succeed starting from October 30, 2021.
+- The English (United Kingdom) voice `en-GB-MiaNeural` is retired on October 30, 2021. All service requests to `en-GB-MiaNeural` will be redirected to `en-GB-SoniaNeural` automatically as of October 30, 2021. If you're using containers for text to speech, [download](speech-container-ntts.md#get-the-container-image-with-docker-pull) and deploy the latest version. All requests with previous versions don't succeed starting from October 30, 2021.
 - The `en-US-JessaNeural` voice is retired and replaced by `en-US-AriaNeural`. If you were using "Jessa" before, convert  to "Aria."
-- The Chinese (Mandarin, Simplified) voice `zh-CN-XiaoxuanNeural` is retired on February 29, 2024. All service requests to `zh-CN-XiaoxuanNeural` will be redirected to `zh-CN-XiaoyiNeural` automatically as of February 29, 2024. If you're using container Neural TTS, [download](speech-container-ntts.md#get-the-container-image-with-docker-pull) and deploy the latest version. All requests with previous versions won't succeed starting from February 29, 2024.
+- The Chinese (Mandarin, Simplified) voice `zh-CN-XiaoxuanNeural` is retired on February 29, 2024. All service requests to `zh-CN-XiaoxuanNeural` will be redirected to `zh-CN-XiaoyiNeural` automatically as of February 29, 2024. If you're using containers for text to speech, [download](speech-container-ntts.md#get-the-container-image-with-docker-pull) and deploy the latest version. All requests with previous versions won't succeed starting from February 29, 2024.
 
 ### Custom neural voice
 
@@ -122,7 +123,7 @@ With the cross-lingual feature, you can transfer your custom neural voice model 
 
 # [Pronunciation assessment](#tab/pronunciation-assessment)
 
-The table in this section summarizes the 33 locales supported for pronunciation assessment, and each language is available on all [Speech to text regions](regions.md#speech-service). Latest update extends support from English to 32 more languages and quality enhancements to existing features, including accuracy, fluency and miscue assessment. You should specify the language that you're learning or practicing improving pronunciation. The default language is set as `en-US`. If you know your target learning language, [set the locale](how-to-pronunciation-assessment.md#get-pronunciation-assessment-results) accordingly. For example, if you're learning British English, you should specify the language as `en-GB`. If you're teaching a broader language, such as Spanish, and are uncertain about which locale to select, you can run various accent models (`es-ES`, `es-MX`) to determine the one that achieves the highest score to suit your specific scenario. If you're interested in languages not listed in the following table, fill out this [intake form](https://aka.ms/speechpa/intake) for further assistance.
+The table in this section summarizes the 33 locales supported for pronunciation assessment, and each language is available on all [speech to text regions](regions.md#speech-service). Latest update extends support from English to 32 more languages and quality enhancements to existing features, including accuracy, fluency and miscue assessment. You should specify the language that you're learning or practicing improving pronunciation. The default language is set as `en-US`. If you know your target learning language, [set the locale](how-to-pronunciation-assessment.md#get-pronunciation-assessment-results) accordingly. For example, if you're learning British English, you should specify the language as `en-GB`. If you're teaching a broader language, such as Spanish, and are uncertain about which locale to select, you can run various accent models (`es-ES`, `es-MX`) to determine the one that achieves the highest score to suit your specific scenario. If you're interested in languages not listed in the following table, fill out this [intake form](https://aka.ms/speechpa/intake) for further assistance.
 
 [!INCLUDE [Language support include](includes/language-support/pronunciation-assessment.md)]
 
