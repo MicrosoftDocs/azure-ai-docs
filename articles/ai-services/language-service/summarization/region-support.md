@@ -18,32 +18,32 @@ Some summarization features are only available in limited regions. More regions 
 
 ## Regional availability table
 
-|Region            |Text abstractive summarization    |Conversation summarization                     |Custom summarization|
-|------------------|----------------------------------|-----------------------------------------------|--------------------|
-|US Gov Virginia   |&#9989;                           |&#9989;                                        |&#10060;            |
-|US Gov Arizona    |&#9989;                           |&#9989;                                        |&#10060;            |
-|North Europe      |&#9989;                           |&#9989;                                        |&#10060;            |
-|East US           |&#9989;                           |&#9989;                                        |&#9989;             |
-|East US 2         |&#9989;                           |&#9989;                                        |&#10060;            |
-|Central US        |&#9989;                           |&#9989;                                        |&#10060;            |
-|South Central US  |&#9989;                           |&#9989;                                        |&#10060;            |
-|West US           |&#9989;                           |&#9989;                                        |&#10060;            |
-|West US 2         |&#9989;                           |&#9989;                                        |&#10060;            |
-|USNat East        |&#9989;                           |&#9989;                                        |&#10060;            |
-|USNat West        |&#9989;                           |&#9989;                                        |&#10060;            |
-|USSec East        |&#9989;                           |&#9989;                                        |&#10060;            |
-|USSec West        |&#9989;                           |&#9989;                                        |&#10060;            |
-|South UK          |&#9989;                           |&#9989;                                        |&#10060;            |
-|Southeast Asia    |&#9989;                           |&#9989;                                        |&#10060;            |
-|Australia East    |&#9989;                           |&#9989;                                        |&#10060;            |
-|France Central    |&#9989;                           |&#9989;                                        |&#10060;            |
-|Japan East        |&#9989;                           |&#9989;                                        |&#10060;            |
-|North Central US  |&#9989;                           |&#9989;                                        |&#10060;            |
-|Central Sweden    |&#9989;                           |&#9989;                                        |&#10060;            |
-|Switzerland North |&#9989;                           |&#9989;                                        |&#10060;            |
-|West Europe       |&#9989;                           |&#9989;                                        |&#10060;            |
-|Italy North       |&#9989;                           |&#9989;                                        |&#10060;            |
-|China North 3     |&#9989;                           |&#9989;                                        |&#10060;            |
+|Region            |Text abstractive summarization    |Conversation summarization                     |
+|------------------|----------------------------------|-----------------------------------------------|
+|US Gov Virginia   |&#9989;                           |&#9989;                                        |
+|US Gov Arizona    |&#9989;                           |&#9989;                                        |
+|North Europe      |&#9989;                           |&#9989;                                        |
+|East US           |&#9989;                           |&#9989;                                        |
+|East US 2         |&#9989;                           |&#9989;                                        |
+|Central US        |&#9989;                           |&#9989;                                        |
+|South Central US  |&#9989;                           |&#9989;                                        |
+|West US           |&#9989;                           |&#9989;                                        |
+|West US 2         |&#9989;                           |&#9989;                                        |
+|USNat East        |&#9989;                           |&#9989;                                        |
+|USNat West        |&#9989;                           |&#9989;                                        |
+|USSec East        |&#9989;                           |&#9989;                                        |
+|USSec West        |&#9989;                           |&#9989;                                        |
+|South UK          |&#9989;                           |&#9989;                                        |
+|Southeast Asia    |&#9989;                           |&#9989;                                        |
+|Australia East    |&#9989;                           |&#9989;                                        |
+|France Central    |&#9989;                           |&#9989;                                        |
+|Japan East        |&#9989;                           |&#9989;                                        |
+|North Central US  |&#9989;                           |&#9989;                                        |
+|Central Sweden    |&#9989;                           |&#9989;                                        |
+|Switzerland North |&#9989;                           |&#9989;                                        |
+|West Europe       |&#9989;                           |&#9989;                                        |
+|Italy North       |&#9989;                           |&#9989;                                        |
+|China North 3     |&#9989;                           |&#9989;                                        |
 
 ## Next steps
 

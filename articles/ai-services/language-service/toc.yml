@@ -628,7 +628,6 @@ items:
                 href: sentiment-opinion-mining/custom/how-to/deploy-model.md
               - name: Call the API
                 href: sentiment-opinion-mining/custom/how-to/call-api.md
-
   - name: Text Analytics for health
     items:
     - name: Text Analytics for health overview
@@ -754,18 +753,7 @@ items:
         - name: Data, privacy, and security
           href: /legal/cognitive-services/language-service/data-privacy?context=/azure/ai-services/language-service/context/context
           displayName: Data privacy, logging, data retention
-    - name: Custom (preview)
-      items:
-      - name: Custom summarization quickstart
-        href: summarization/custom/quickstart.md
-      - name: How-to guides
-        items:
-        - name: Utilize custom summarization data formats
-          href: summarization/custom/how-to/data-formats.md
-        - name: Deploy a model
-          href: summarization/custom/how-to/deploy-model.md
-        - name: Test and evaluate your models
-          href: summarization/custom/how-to/test-evaluate.md
+          
 - name: Concepts
   items:
   - name: Language Studio

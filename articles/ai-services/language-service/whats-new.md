@@ -15,6 +15,10 @@ ms.author: jboback
 
 Azure AI Language is updated on an ongoing basis. To stay up-to-date with recent developments, this article provides you with information about new releases and features.
 
+## September 2024
+
+* Custom Summarization has been removed from both the portal and docuentation.
+
 ## July 2024
 
 * [Conversational PII redaction](https://techcommunity.microsoft.com/t5/ai-azure-ai-services-blog/announcing-conversational-pii-detection-service-s-general/ba-p/4162881) service in English-language contexts is now Generally Available (GA).
