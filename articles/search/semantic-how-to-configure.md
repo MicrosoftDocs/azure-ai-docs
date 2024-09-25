@@ -10,18 +10,18 @@ ms.service: cognitive-search
 ms.custom:
   - ignite-2023
 ms.topic: how-to
-ms.date: 08/05/2024
+ms.date: 09/24/2024
 ---
 
 # Configure semantic ranker and return captions in search results
 
-This article explains how to configure a search index for semantic reranking. 
-
 Semantic ranking iterates over an initial result set, applying an L2 ranking methodology that promotes the most semantically relevant results to the top of the stack. You can also get semantic captions, with highlights over the most relevant terms and phrases, and [semantic answers](semantic-answers.md).
+
+This article explains how to configure a search index for semantic reranking. 
 
 ## Prerequisites
 
-+ A search service on a basic tier or higher, subject to [region availability](https://azure.microsoft.com/global-infrastructure/services/?products=search).
++ A search service on a Basic tier or higher, subject to [region availability](search-region-support.md).
 
 + Semantic ranker [enabled on your search service](semantic-how-to-enable-disable.md).
 
