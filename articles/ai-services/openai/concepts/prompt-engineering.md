@@ -102,6 +102,18 @@ Supporting content is information that the model can utilize to influence the ou
 | Without | Workshop list:<br>Title	Description<br> Planning Workshop Kickoff Please join us to kick off our workshop! Hear from our leaders about cross group priorities and learnings for the year ahead. The invitation to this event has already been sent to everyone in […]<br>Summarize the workshops above, grouped by topic: | Workshop list: <br> Planning Workshop Kickoff <br> -Planning Workshop Wrap-up<br>- Core MeetUp<br>- Customer Driven Perspectives<br>-Impact and Key Focus Areas<br>-Best practices<br>-Accelerating app adoption […] |
 | With | Workshop list: <br>Title	Description<br>Planning Workshop Kickoff	Please join us to kick off our workshop! Hear from our leaders about cross group priorities and learnings for the year ahead. The invitation to this event has already been sent to everyone in […] <br>My Important Topics: prompt engineering, search, GPT models<br>Summarize the workshops above, grouped by my important topics:| 1. Prompt Engineering: <br>- New prompt engineering tips<br>- The art of prompt engineering<br>2. Search:<br>-Intro to vector search with embedding<br>3. GPT Models:<br>- Intro to GPT-4<br>- GPT-35-Turbo in-depth.|
 
+## Scenario-specific guidance
+
+#### [Chat completion APIs](#tab/chat)
+
+[!INCLUDE [Prompt Chat Completion](../includes/prompt-chat-completion.md)]
+
+#### [Completion APIs](#tab/completion)
+
+[!INCLUDE [Prompt Completion](../includes/prompt-completion.md)]
+
+---
+
 ## Best practices
 
 - **Be Specific**. Leave as little to interpretation as possible. Restrict the operational space.
