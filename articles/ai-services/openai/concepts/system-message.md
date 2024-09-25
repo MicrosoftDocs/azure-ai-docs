@@ -157,7 +157,7 @@ Catch-all | Involves integrating different methods in one framework to try to co
 
 These best practices can help you better understand the process of developing robust system messages for your scenario.  
 
-For more information on recommended safety components, please visit our [Safety System Message Template guidance](tbd). 
+For more information on recommended safety components, please visit our [Safety system message template guidance](./safety-system-message-templates.md). 
 
 Finally, remember that system messages, or metaprompts, are not "one size fits all." Use of these type of examples has varying degrees of success in different applications. It's important to try different wording, ordering, and structure of system message text to reduce identified harms, and to test the variations to see what works best for a given scenario.
 
@@ -166,4 +166,4 @@ Finally, remember that system messages, or metaprompts, are not "one size fits a
 - [Azure OpenAI Service](/azure/ai-services/openai/concepts/prompt-engineering)
 - [Prompt engineering techniques with Azure OpenAI](/azure/ai-services/openai/concepts/advanced-prompt-engineering?pivots=programming-language-chat-completions) 
 - [Announcing Safety System Messages in Azure AI Studio and Azure OpenAI Studio](https://techcommunity.microsoft.com/t5/ai-azure-ai-services-blog/announcing-safety-system-messages-in-azure-ai-studio-and-azure/ba-p/4146991) - Microsoft Community Hub 
-- [Safety system message templates ](tbd)
+- [Safety system message templates ](./safety-system-message-templates.md)
