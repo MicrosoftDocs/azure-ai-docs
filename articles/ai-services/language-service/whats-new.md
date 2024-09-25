@@ -17,7 +17,7 @@ Azure AI Language is updated on an ongoing basis. To stay up-to-date with recent
 
 ## September 2024
 
-* Custom Summarization has been removed from both the portal and docuentation.
+* Custom Summarization has been removed from both the Studio and docuentation.
 
 ## July 2024
 
