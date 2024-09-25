@@ -29,7 +29,7 @@ In this article, you learn about the Meta Llama family of models and how to use 
 
 The Meta Llama family of models include the following models:
 
-# [Llama-3.2](#tab/intro-llama-3-2)
+# [Llama-3.2](#tab/python-llama-3-2)
 
 The Llama 3.2 collection of SLMs and image reasoning models are now available. Coming soon, Llama 3.2 11B Vision Instruct and Llama 3.2 90B Vision Instruct will be available as a serverless API endpoint via Models-as-a-Service. Starting today, the following models will be available for deployment via managed compute:
 * Llama 3.2 1B
@@ -41,7 +41,7 @@ The Llama 3.2 collection of SLMs and image reasoning models are now available. C
 * Llama 3.2 11B Vision Instruct
 * Llama 3.2 90B Vision Instruct are available for managed compute deployment.
 
-# [Meta Llama-3.1](#tab/intro-meta-llama-3-1)
+# [Meta Llama-3.1](#tab/python-meta-llama-3-1)
 
 The Meta Llama 3.1 collection of multilingual large language models (LLMs) is a collection of pretrained and instruction tuned generative models in 8B, 70B and 405B sizes (text in/text out). The Llama 3.1 instruction tuned text only models (8B, 70B, 405B) are optimized for multilingual dialogue use cases and outperform many of the available open-source and closed models on common industry benchmarks.
 
@@ -53,7 +53,7 @@ The following models are available:
 * [Meta-Llama-3.1-8B-Instruct](https://ai.azure.com/explore/models/Meta-Llama-3.1-8B-Instruct/version/1/registry/azureml-meta)
 
 
-# [Meta Llama-3](#tab/intro-meta-llama-3)
+# [Meta Llama-3](#tab/python-meta-llama-3)
 
 Meta developed and released the Meta Llama 3 family of large language models (LLMs), a collection of pretrained and instruction tuned generative text models in 8B, and 70B sizes. The Llama 3 instruction tuned models are optimized for dialogue use cases and outperform many of the available open-source models on common industry benchmarks. Further, in developing these models, we took great care to optimize helpfulness and safety.
 
@@ -64,7 +64,7 @@ The following models are available:
 * [Meta-Llama-3-8B-Instruct](https://ai.azure.com/explore/models/Meta-Llama-3-8B-Instruct/version/6/registry/azureml-meta)
 
 
-# [Meta Llama-2](#tab/intro-meta-llama-2)
+# [Meta Llama-2](#tab/python-meta-llama-2)
 
 Meta has developed and publicly released the Llama 2 family of large language models (LLMs), a collection of pretrained and fine-tuned generative text models ranging in scale from 7 billion to 70 billion parameters. Our fine-tuned LLMs, called Llama-2-Chat, are optimized for dialogue use cases. Llama-2-Chat models outperform open-source chat models on most benchmarks we tested, and in our human evaluations for helpfulness and safety, are on par with some popular closed-source models like ChatGPT and PaLM. We provide a detailed description of our approach to fine-tuning and safety improvements of Llama-2-Chat in order to enable the community to build on our work and contribute to the responsible development of LLMs.
 
