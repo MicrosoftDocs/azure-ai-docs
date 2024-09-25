@@ -35,8 +35,8 @@ A Marketing Manager at an environmentally conscious company can use prompt engin
 
 ### Getting started
 
-- [Introduction to prompt engineering](./prompt-engineering.md)
-- [Prompt engineering techniques](./advanced-prompt-engineering.md)
+- [Prompt engineering techniques](./prompt-engineering.md)
+- [System messages](./advanced-prompt-engineering.md)
 - [15 tips to become a better prompt engineer for generative AI](https://techcommunity.microsoft.com/t5/ai-azure-ai-services-blog/15-tips-to-become-a-better-prompt-engineer-for-generative-ai/ba-p/3882935)
 - [The basics of prompt engineering (video)](https://www.youtube.com/watch?v=e7w6QV1NX1c)
 

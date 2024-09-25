@@ -164,6 +164,6 @@ Finally, remember that system messages, or metaprompts, are not "one size fits a
 ## Next steps
 
 - [Azure OpenAI Service](/azure/ai-services/openai/concepts/prompt-engineering)
-- [Prompt engineering techniques with Azure OpenAI](/azure/ai-services/openai/concepts/advanced-prompt-engineering?pivots=programming-language-chat-completions) 
+- [System message design with Azure OpenAI](/azure/ai-services/openai/concepts/advanced-prompt-engineering?pivots=programming-language-chat-completions) 
 - [Announcing Safety System Messages in Azure AI Studio and Azure OpenAI Studio](https://techcommunity.microsoft.com/t5/ai-azure-ai-services-blog/announcing-safety-system-messages-in-azure-ai-studio-and-azure/ba-p/4146991) - Microsoft Community Hub 
 - [Safety system message templates ](./safety-system-message-templates.md)
