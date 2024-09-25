@@ -8,7 +8,7 @@ ms.subservice: inferencing
 author: msakande
 ms.author: mopeakande
 ms.reviewer: sehan
-ms.date: 09/23/2024
+ms.date: 09/25/2024
 ms.topic: troubleshooting
 ms.custom: devplatv2, devx-track-azurecli, cliv2, sdkv2
 #Customer intent: As a data scientist, I want to figure out why my online endpoint deployment failed so that I can fix it.
@@ -34,10 +34,12 @@ The [HTTP status codes](#http-status-codes) section explains how invocation and 
 
 # [Azure CLI](#tab/cli)
 
+- An Azure Machine Learning workspace.
 - The [Azure CLI](/cli/azure/install-azure-cli) and Azure Machine Learning CLI v2. [Install, set up, and use the CLI (v2)](how-to-configure-cli.md).
 
 # [Python SDK](#tab/python)
 
+- An Azure Machine Learning workspace.
 - The Azure Machine Learning Python SDK v2. [Install the Azure Machine Learning SDK v2 for Python](/python/api/overview/azure/ai-ml-readme).
 
 ### [Studio](#tab/studio)
@@ -316,15 +318,19 @@ Due to a lack of Azure Machine Learning capacity in the region, the service fail
 
 To run the *score.py* file you provide as part of the deployment, Azure creates a container that includes all the resources that the *score.py* needs. Azure Machine Learning then runs the scoring script on that container. If your container can't start, scoring can't happen. The container might be requesting more resources than the `instance_type` can support. Consider updating the `instance_type` of the online deployment.
 
-To get the exact reason for the error, run the following command:
+To get the exact reason for the error, take the following action.
 
 # [Azure CLI](#tab/cli)
+
+Run the following command:
 
 ```azurecli
 az ml online-deployment get-logs -e <endpoint-name> -n <deployment-name> -l 100
 ```
 
 # [Python SDK](#tab/python)
+
+Run the following command:
 
 ```python
 ml_client.online_deployments.get_logs(
@@ -385,15 +391,19 @@ az acr repository show-tags -n testacr --repository azureml/azureml_92a029f831ce
 
 The user model might not be found. [Check the container logs](#get-container-logs) to get more details. Make sure you registered the model to the same workspace as the deployment.
 
-To show details for a model in a workspace, run the following command. You must specify either version or label to get the model information.
+To show details for a model in a workspace, take the following action. You must specify either version or label to get the model information.
 
 # [Azure CLI](#tab/cli)
 
-```azurecli
+Run the following command:
+
+ ```azurecli
 az ml model show --name <model-name> --version <version>
 ```
 
 # [Python SDK](#tab/python)
+
+Run the following command:
 
 ```python
 ml_client.models.get(name="<model-name>", version=<version>)
@@ -401,7 +411,7 @@ ml_client.models.get(name="<model-name>", version=<version>)
 
 ### [Studio](#tab/studio)
 
-To show details for a model in a workspace, select a model on the Azure Machine Learning studio **Models** page.
+Select a model on the Azure Machine Learning studio **Models** page.
 
 ---
 
