@@ -17,7 +17,7 @@ zone_pivot_groups: azure-ai-model-catalog-samples-embeddings
 
 # How to use Cohere Embed V3 models with Azure Machine Learning studio
 
-In this article, you learn about Cohere Embed V3 models and how to use them with Azure AI Studio.
+In this article, you learn about Cohere Embed V3 models and how to use them with Azure Machine Learning studio.
 The Cohere family of models includes various models optimized for different use cases, including chat completions, embeddings, and rerank. Cohere models are optimized for various use cases that include reasoning, summarization, and question answering.
 
 [!INCLUDE [machine-learning-preview-generic-disclaimer](includes/machine-learning-preview-generic-disclaimer.md)]
@@ -49,7 +49,7 @@ Cohere Embed Multilingual is a text representation model used for semantic searc
 
 ## Prerequisites
 
-To use Cohere Embed V3 models with Azure AI Studio, you need the following prerequisites:
+To use Cohere Embed V3 models with Azure Machine Learning studio, you need the following prerequisites:
 
 ### A model deployment
 
@@ -238,7 +238,7 @@ Cohere Embed Multilingual is a text representation model used for semantic searc
 
 ## Prerequisites
 
-To use Cohere Embed V3 models with Azure AI Studio, you need the following prerequisites:
+To use Cohere Embed V3 models with Azure Machine Learning studio, you need the following prerequisites:
 
 ### A model deployment
 
@@ -639,7 +639,7 @@ Cohere Embed V3 models can optimize the embeddings based on its use case.
 
 ## Cost and quota considerations for Cohere models deployed as serverless API endpoints
 
-Cohere models deployed as a serverless API are offered by Cohere through the Azure Marketplace and integrated with Azure AI Studio for use. You can find the Azure Marketplace pricing when deploying the model.
+Cohere models deployed as a serverless API are offered by Cohere through the Azure Marketplace and integrated with Azure Machine Learning studio for use. You can find the Azure Marketplace pricing when deploying the model.
 
 Each time a project subscribes to a given offer from the Azure Marketplace, a new resource is created to track the costs associated with its consumption. The same resource is used to track costs associated with inference; however, multiple meters are available to track each scenario independently.
 
