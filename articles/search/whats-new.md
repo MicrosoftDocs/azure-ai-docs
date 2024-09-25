@@ -7,7 +7,7 @@ author: HeidiSteen
 ms.author: heidist
 ms.service: cognitive-search
 ms.topic: overview
-ms.date: 08/20/2024
+ms.date: 10/01/2024
 ms.custom:
   - references_regions
 ---
@@ -18,6 +18,12 @@ ms.custom:
 
 > [!NOTE]
 > Preview features are announced here, but we also maintain a [preview features list](search-api-preview.md) so you can find them in one place.
+
+## October 2024
+
+| Item&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Type |  Description |
+|-----------------------------|------|--------------|
+| [**Text Split skill**](cognitive-search-skill-textsplit.md) | Feature | New in the [2024-09-01-preview](/rest/api/searchservice/skillsets/create-or-update?view=rest-searchservice-2024-09-01-preview&preserve-view=true) release, this skill adds parameters that improve data chunking for embedding models. You can now chunk by token length, setting the length to a value that makes sense for your embedding model. You can also use the Azure portal to set these parameters. For Azure SDK support, refer to the change log of the package you're using for version updates. |
 
 ## August 2024
 
