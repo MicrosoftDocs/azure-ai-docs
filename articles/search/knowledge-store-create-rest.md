@@ -68,7 +68,7 @@ A valid API key establishes trust, on a per request basis, between the applicati
 
 ## Create an index
 
-[Create Index (REST)](/rest/api/searchservice/create-index) creates  a search index on the search service. A search index is unrelated to a knowledge store, but the indexer requires one. The search index contains the same content as the knowledge store, which you can explore by sending query requests.
+[Create Index (REST)](/rest/api/searchservice/indexes/create) creates  a search index on the search service. A search index is unrelated to a knowledge store, but the indexer requires one. The search index contains the same content as the knowledge store, which you can explore by sending query requests.
 
 1. Open a new text file in Visual Studio Code.
 

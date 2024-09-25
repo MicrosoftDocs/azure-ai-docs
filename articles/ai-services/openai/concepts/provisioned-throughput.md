@@ -17,13 +17,13 @@ recommendations: false
  
 The provisioned throughput capability allows you to specify the amount of throughput you require in a deployment. The service then allocates the necessary model processing capacity and ensures it's ready for you. Throughput is defined in terms of provisioned throughput units (PTU) which is a normalized way of representing the throughput for your deployment. Each model-version pair requires different amounts of PTU to deploy and provide different amounts of throughput per PTU. 
 
-## What does the provisioned deployment type provide?
+## What do the provisioned and global provisioned deployment types provide?
 
 - **Predictable performance:** stable max latency and throughput for uniform workloads. 
 - **Reserved processing capacity:** A deployment configures the amount of throughput. Once deployed, the throughput is available whether used or not.
 - **Cost savings:** High throughput workloads might provide cost savings vs token-based consumption.
 
-An Azure OpenAI Deployment is a unit of management for a specific OpenAI Model. A deployment provides customer access to a model for inference and integrates more features like Content Moderation ([See content moderation documentation](content-filter.md)).
+An Azure OpenAI Deployment is a unit of management for a specific OpenAI Model. A deployment provides customer access to a model for inference and integrates more features like Content Moderation ([See content moderation documentation](content-filter.md)). Global deployments are available in the same Azure OpenAI resources as non-global deployment types but allow you to leverage Azure's global infrastructure to dynamically route traffic to the data center with best availability for each request.
 
 ## What do you get?
 
@@ -31,9 +31,9 @@ An Azure OpenAI Deployment is a unit of management for a specific OpenAI Model. 
 |---|---|
 | What is it? | Provides guaranteed throughput at smaller increments than the existing provisioned offer. Deployments have a consistent max latency for a given model-version. |
 | Who is it for? | Customers who want guaranteed throughput with minimal latency variance. |
-| Quota | Provisioned-managed throughput Units for a given model. |
+| Quota | Provisioned Managed Throughput Unit or Global Provisioned Managed Throughput Unit assigned per region. Quota can be used across any available Azure OpenAI model.|
 | Latency | Max latency constrained from the model. Overall latency is a factor of call shape.  |
-| Utilization | Provisioned-managed Utilization measure provided in Azure Monitor. |
+| Utilization | Provisioned-managed Utilization V2 measure provided in Azure Monitor. |
 | Estimating size | Provided calculator in the studio & benchmarking script. |
 
 ## What models and regions are available for provisioned throughput?
@@ -47,9 +47,9 @@ An Azure OpenAI Deployment is a unit of management for a specific OpenAI Model. 
 
 ### Deployment types
 
-When creating a provisioned deployment in Azure OpenAI Studio, the deployment type on the Create Deployment dialog is Provisioned-Managed.
+When creating a provisioned deployment in Azure OpenAI Studio, the deployment type on the Create Deployment dialog is Provisioned-Managed. When creating a global provisioned managed deployment in Azure Open Studio, the deployment type on the Create Deployment dialog is Global Provisioned-Managed.
 
-When creating a provisioned deployment in Azure OpenAI via CLI or API, you need to set the `sku-name` to be Provisioned-Managed. The `sku-capacity` specifies the number of PTUs assigned to the deployment. 
+When creating a provisioned deployment in Azure OpenAI via CLI or API, you need to set the `sku-name` to be `ProvisionedManaged`. When creating a global provisioned deployment in Azure OpenAI via CLI or API, you need to set the `sku-name` to be `GlobalProvisionedManaged`. The `sku-capacity` specifies the number of PTUs assigned to the deployment. 
 
 ```azurecli
 az cognitiveservices account deployment create \
@@ -76,13 +76,13 @@ Unlike the Tokens Per Minute (TPM) quota used by other Azure OpenAI offerings, P
 
 :::image type="content" source="../media/provisioned/model-independent-quota.png" alt-text="Diagram of model independent quota with one pool of PTUs available to multiple Azure OpenAI models." lightbox="../media/provisioned/model-independent-quota.png":::
 
-The new quota shows up in Azure OpenAI Studio as a quota item named **Provisioned Managed Throughput Unit**. In the Studio Quota pane, expanding the quota item will show the deployments contributing to usage of the quota.
+For provisioned deployments, the new quota shows up in Azure OpenAI Studio as a quota item named **Provisioned Managed Throughput Unit**. For global provisioned managed deployments, the new quota shows up in the Azure OpenAI Studio as a quota item named **Global Provisioned Managed Throughput Unit**.  In the Studio Quota pane, expanding the quota item will show the deployments contributing to usage of each quota.
 
 :::image type="content" source="../media/provisioned/ptu-quota-page.png" alt-text="Screenshot of quota UI for Azure OpenAI provisioned." lightbox="../media/provisioned/ptu-quota-page.png":::
 
 #### Obtaining PTU Quota 
 
-PTU quota is available by default in many regions. If additional quota is required, customers can request additional quota via the Request Quota link to the right of the Provisioned Managed Throughput Unit quota item in Azure OpenAI Studio. The form allows the customer to request an increase in PTU quota for a specified region. The customer will receive an email at the included address once the request is approved, typically within two business days. 
+PTU quota is available by default in many regions. If additional quota is required, customers can request additional quota via the Request Quota link to the right of the Provisioned Managed Throughput Unit or Global Provisioned Managed Throughput Unit quota items in Azure OpenAI Studio. The form allows the customer to request an increase in the specified PTU quota for a given region. The customer will receive an email at the included address once the request is approved, typically within two business days. 
 
 #### Per-Model PTU Minimums 
 
@@ -123,13 +123,13 @@ A few high-level considerations:
 
 ### How utilization performance works
 
-Provisioned deployments provide you with an allocated amount of model processing capacity to run a given model.
+Provisioned and global provisioned deployments provide you with an allocated amount of model processing capacity to run a given model.
 
-In Provisioned-Managed deployments, when capacity is exceeded, the API will immediately return a 429 HTTP Status Error. This enables the user to make decisions on how to manage their traffic. Users can redirect requests to a separate deployment, to a standard pay-as-you-go instance, or leverage a retry strategy to manage a given request. The service will continue to return the 429 HTTP status code until the utilization drops below 100%.
+In Provisioned-Managed and Global Provisioned-Managed deployments, when capacity is exceeded, the API will immediately return a 429 HTTP Status Error. This enables the user to make decisions on how to manage their traffic. Users can redirect requests to a separate deployment, to a standard pay-as-you-go instance, or leverage a retry strategy to manage a given request. The service will continue to return the 429 HTTP status code until the utilization drops below 100%.
 
 ### How can I monitor capacity?
 
-The [Provisioned-Managed Utilization V2 metric](../how-to/monitoring.md#azure-openai-metrics) in Azure Monitor measures a given deployments utilization on 1-minute increments. Provisioned-Managed deployments are optimized to ensure that accepted calls are processed with a consistent model processing time (actual end-to-end latency is dependent on a call's characteristics).  
+The [Provisioned-Managed Utilization V2 metric](../how-to/monitoring.md#azure-openai-metrics) in Azure Monitor measures a given deployments utilization on 1-minute increments. Provisioned-Managed and Global Provisioned-Managed deployments are optimized to ensure that accepted calls are processed with a consistent model processing time (actual end-to-end latency is dependent on a call's characteristics).  
 
 #### What should  I do when I receive a 429 response?
 The 429 response isn't an error, but instead part of the design for telling users that a given deployment is fully utilized at a point in time. By providing a fast-fail response, you have control over how to handle these situations in a way that best fits your application requirements.
@@ -140,9 +140,10 @@ The  `retry-after-ms` and `retry-after` headers in the response tell you the tim
 
 #### How does the service decide when to send a 429?
 
-In the Provisioned-Managed offering, each request is evaluated individually according to its prompt size, expected generation size, and model to determine its expected utilization. This is in contrast to pay-as-you-go deployments, which have a [custom rate limiting behavior](../how-to/quota.md) based on the estimated traffic load. For pay-as-you-go deployments this can lead to HTTP 429 errors being generated prior to defined quota values being exceeded if traffic is not evenly distributed.
+In the Provisioned-Managed and Global Provisioned-Managed offerings, each request is evaluated individually according to its prompt size, expected generation size, and model to determine its expected utilization. This is in contrast to pay-as-you-go deployments, which have a [custom rate limiting behavior](../how-to/quota.md) based on the estimated traffic load. For pay-as-you-go deployments this can lead to HTTP 429 errors being generated prior to defined quota values being exceeded if traffic is not evenly distributed.
 
-For Provisioned-Managed, we use a variation of the leaky bucket algorithm to maintain utilization below 100% while allowing some burstiness in the traffic. The high-level logic is as follows:
+For Provisioned-Managed and Global Provisioned-Managed, we use a variation of the leaky bucket algorithm to maintain utilization below 100% while allowing some burstiness in the traffic. The high-level logic is as follows:
+
 1.	Each customer has a set amount of capacity they can utilize on a deployment
 2.	When a request is made:
 

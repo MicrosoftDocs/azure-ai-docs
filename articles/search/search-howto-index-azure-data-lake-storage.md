@@ -143,7 +143,7 @@ Indexers can connect to a blob container using the following connections.
 
 In a [search index](search-what-is-an-index.md), add fields to accept the content and metadata of your Azure blobs.
 
-1. [Create or update an index](/rest/api/searchservice/create-index) to define search fields that will store blob content and metadata:
+1. [Create or update an index](/rest/api/searchservice/indexes/create) to define search fields that will store blob content and metadata:
 
     ```http
     {

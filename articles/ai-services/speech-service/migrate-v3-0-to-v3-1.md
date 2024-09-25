@@ -2,14 +2,16 @@
 title: Migrate from v3.0 to v3.1 REST API - Speech service
 titleSuffix: Azure AI services
 description: This document helps developers migrate code from v3.0 to v3.1 of the Speech to text REST API.
-author: heikora
-manager: dongli
+author: eric-urban
+ms.author: eur
+manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 9/15/2024
-ms.author: heikora
+ms.date: 9/20/2024
+ms.reviewer: heikora
 ms.devlang: csharp
 ms.custom: devx-track-csharp
+#Customer intent: As a developer, I want to migrate code from v3.0 to v3.1 of the Speech to text REST API.
 ---
 
 # Migrate code from v3.0 to v3.1 of the REST API

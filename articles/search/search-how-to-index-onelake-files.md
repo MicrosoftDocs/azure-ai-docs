@@ -327,7 +327,7 @@ Some key points include:
 
 In a [search index](search-what-is-an-index.md), add fields to accept the content and metadata of your OneLake data lake files.
 
-1. [Create or update an index](/rest/api/searchservice/create-index) to define search fields that store file content and metadata:
+1. [Create or update an index](/rest/api/searchservice/indexes/create) to define search fields that store file content and metadata:
 
     ```http
     {

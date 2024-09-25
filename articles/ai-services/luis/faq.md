@@ -24,10 +24,6 @@ LUIS has several limit areas. The first is the model limit, which controls inten
 
 An authoring resource lets you create, manage, train, test, and publish your applications. A prediction resource lets you query your prediction endpoint beyond the 1,000 requests provided by the authoring resource. See [Authoring and query prediction endpoint keys in LUIS](luis-how-to-azure-subscription.md) to learn about the differences between the authoring key and the prediction runtime key.
 
-## Does LUIS support speech to text?
-
-Yes, [Speech](../speech-service/how-to-recognize-intents-from-speech-csharp.md#luis-and-speech) to text is provided as an integration with LUIS.
-
 ## What are Synonyms and word variations?
 
 LUIS has little or no knowledge of the broader _NLP_ aspects, such as semantic similarity, without explicit identification in examples. For example, the following tokens (words) are three different things until they're used in similar contexts in the examples provided:

@@ -6,9 +6,10 @@ author: eric-urban
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 1/22/2024
+ms.date: 9/24/2024
 ms.author: eur
 keywords: on-premises, Docker, container
+#Customer intent: As a developer, I want to learn how to install and run Speech containers with Docker.
 ---
 
 # Install and run Speech containers with Docker

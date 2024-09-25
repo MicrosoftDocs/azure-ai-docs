@@ -120,7 +120,7 @@ To avoid a full scan, you can use table partitions to narrow the scope of each i
 
 In a [search index](search-what-is-an-index.md), add fields to accept the content and metadata of your table entities.
 
-1. [Create or update an index](/rest/api/searchservice/create-index) to define search fields that will store content from entities:
+1. [Create or update an index](/rest/api/searchservice/indexes/create) to define search fields that will store content from entities:
 
     ```http
     POST https://[service name].search.windows.net/indexes?api-version=2024-07-01 

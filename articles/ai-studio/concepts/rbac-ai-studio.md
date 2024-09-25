@@ -144,9 +144,6 @@ az role assignment create --role "Azure AI Developer" --assignee "joe@contoso.co
 
 ## Create custom roles
 
-> [!NOTE]
-> In order to make a new hub, you need the Owner or Contributor role. At this time, a custom role, even with all actions allowed, will not enable you to make a hub. 
-
 If the built-in roles are insufficient, you can create custom roles. Custom roles might have the read, write, delete, and compute resource permissions in that AI Studio. You can make the role available at a specific project level, a specific resource group level, or a specific subscription level. 
 
 > [!NOTE]

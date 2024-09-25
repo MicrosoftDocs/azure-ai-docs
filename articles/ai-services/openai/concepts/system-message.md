@@ -4,7 +4,7 @@ titleSuffix: Azure OpenAI Service
 description: Learn about how to construct system messages also know as metaprompts to guide an AI system's behavior.
 ms.service: azure-ai-openai
 ms.topic: conceptual
-ms.date: 03/26/2024
+ms.date: 09/20/2024
 ms.custom:
   - ignite-2023
 manager: nitinme
@@ -159,6 +159,7 @@ These best practices can help you better understand the process of developing ro
 
 For more information on recommended safety components, please visit our [Safety System Message Template guidance](tbd). 
 
+Finally, remember that system messages, or metaprompts, are not "one size fits all." Use of these type of examples has varying degrees of success in different applications. It's important to try different wording, ordering, and structure of system message text to reduce identified harms, and to test the variations to see what works best for a given scenario.
 
 ## Next steps
 
