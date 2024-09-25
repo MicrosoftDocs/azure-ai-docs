@@ -11,6 +11,7 @@ ms.topic: overview
 ms.date: 09/25/2024
 ms.author: pafarley
 keywords: image recognition, image identifier, image recognition app, custom vision
+ms.custom: FY25Q1-Linter
 #Customer intent: As a data scientist/developer, I want to understand what the Custom Vision service does so that I can determine if it's suitable for my project.
 ---
 
