@@ -279,7 +279,6 @@ To check AI-PROJECT-GUID, go to the Azure portal, select your project, settings,
 
 ## Limitations
 
-* The "Add your data" feature in the Azure AI Studio playground doesn't support private storage account.
 * You might encounter problems trying to access the private endpoint for your hub if you're using Mozilla Firefox. This problem might be related to DNS over HTTPS in Mozilla Firefox. We recommend using Microsoft Edge or Google Chrome.
 
 ## Next steps
