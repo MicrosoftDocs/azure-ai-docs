@@ -6,9 +6,10 @@ author: eric-urban
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: quickstart
-ms.date: 1/22/2024
+ms.date: 9/24/2024
 ms.author: eur
 ms.custom: mode-api
+# Customer intent: As a developer, I want to learn how to use the Azure AI Speech CLI to interact with speech to text, text to speech, and speech translation without writing code.
 ---
 
 # Quickstart: Get started with the Azure AI Speech CLI

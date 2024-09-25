@@ -6,8 +6,9 @@ author: eric-urban
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: overview
-ms.date: 8/20/2024
+ms.date: 9/20/2024
 ms.author: eur
+#Customer intent: As a developer, I want to learn about the Speech service and its capabilities to add speech to my applications, tools, and devices.
 ---
 
 # What is the Speech service?

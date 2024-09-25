@@ -5,9 +5,9 @@ description: Learn how to use Azure OpenAI's Python & REST API messages with Ass
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: conceptual
-ms.date: 07/25/2024
-author: mrbullwinkle
-ms.author: mbullwin
+ms.date: 09/25/2024
+author: aahill
+ms.author: aahi
 recommendations: false
 ms.custom: devx-track-python
 ---

@@ -411,8 +411,18 @@
       "redirect_document_id": false
     },
     {
+      "source_path_from_root": "/articles/ai-services/speech-service/get-started-speaker-recognition.md",
+      "redirect_url": "/azure/ai-services/speech-service/speaker-recognition-overview",
+      "redirect_document_id": false
+    },
+    {
       "source_path_from_root": "/articles/ai-services/speech-service/how-to-recognize-intents-from-speech-csharp.md",
       "redirect_url": "/azure/ai-services/speech-service/intent-recognition",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/speech-service/how-to-custom-speech-continuous-integration-continuous-deployment.md",
+      "redirect_url": "/azure/ai-services/speech-service/how-to-custom-speech-model-and-endpoint-lifecycle",
       "redirect_document_id": false
     },
     {
