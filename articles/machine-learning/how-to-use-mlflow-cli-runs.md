@@ -1,5 +1,5 @@
 ---
-title: Track ML experiments and models with MLflow
+title: Track experiments and models with MLflow
 titleSuffix: Azure Machine Learning
 description:  Use MLflow to log metrics and artifacts from machine learning runs.
 author: msakande
@@ -11,10 +11,10 @@ ms.date: 09/25/2024
 ms.topic: how-to
 ms.custom: mlflow, devx-track-azurecli, cliv2, devplatv2, update-code, FY25Q1-Linter
 ms.devlang: azurecli
-#Customer intent: As a data scientist, I want to know how to track my machine learning experiments and models with MLflow so I can understand what MLflow is and does so that I can use MLflow with my models.
+#Customer intent: As a data scientist, I want to know how to track my machine learning experiments and models with MLflow so I can use MLflow for tracking.
 ---
 
-# Track ML experiments and models with MLflow
+# Track experiments and models with MLflow
 
 In this article, you learn how to use MLflow for tracking experiments and runs in Azure Machine Learning workspaces. *Tracking* is the process of saving relevant information about experiments. The saved metadata varies by experiment, and can include:
 
