@@ -19,6 +19,8 @@ ms.date: 09/25/2024
 
 This article describes how automated machine learning (AutoML) in Azure Machine Learning searches for and selects forecasting models. If you're interested in learning more about the forecasting methodology in AutoML, see [Overview of forecasting methods in AutoML](concept-automl-forecasting-methods.md). To explore training examples for forecasting models in AutoML, see [Set up AutoML to train a time-series forecasting model with the SDK and CLI](how-to-auto-train-forecast.md).
 
+<a name="model-sweeping"></a>
+
 ## Model sweeping in AutoML
 
 The central task for AutoML is to train and evaluate several models and choose the best one with respect to the given primary metric. The word "model" in this case refers to both the model class, such as ARIMA or Random Forest, and the specific hyper-parameter settings that distinguish models within a class. For instance, ARIMA refers to a class of models that share a mathematical template and a set of statistical assumptions. Training, or _fitting_, an ARIMA model requires a list of positive integers that specify the precise mathematical form of the model. These values are the hyper-parameters. The models ARIMA(1, 0, 1) and ARIMA(2, 1, 2) have the same class, but different hyper-parameters. These definitions can be separately fit with the training data and evaluated against each other. AutoML searches, or _sweeps_, over different model classes and within classes by varying the hyper-parameters.
