@@ -73,7 +73,7 @@ except Exception as ex:
 
 # [Azure CLI](#tab/azurecli)
 
-In the CLI, begin by logging into your Azure account. If you account is associated with multiple subscripstions, you need to [set the subscription](/cli/azure/manage-azure-subscriptions-azure-cli#change-the-active-subscription).
+In the CLI, begin by logging into your Azure account. If you account is associated with multiple subscriptions, you need to [set the subscription](/cli/azure/manage-azure-subscriptions-azure-cli#change-the-active-subscription).
 
 ```azurecli
 az login
@@ -88,6 +88,8 @@ az configure --defaults group=<RESOURCE_GROUP> workspace=<AZUREML_WORKSPACE_NAME
 For more information, see [CLI setup](how-to-configure-cli.md#set-up).
 
 ---
+
+<a name="data-source-and-format"></a>
 
 ## Specify data source and format
 
@@ -652,6 +654,8 @@ Now, you launch the pipeline run using the following command. The pipeline confi
 ```
 
 ---
+
+<a name="automl-at-scale-distributed-training"></a>
 
 ## Use AutoML at scale: distributed training
 
