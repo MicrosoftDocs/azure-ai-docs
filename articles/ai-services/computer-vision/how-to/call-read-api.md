@@ -51,7 +51,7 @@ When using the Read operation, use the following values for the optional `model-
 
 ### Input language
 
-By default, the service extracts all text from your images or documents including mixed languages. The [Read operation](/rest/api/computervision/read/read?view=rest-computervision-v3.2-preview&tabs=HTTP) has an optional request parameter for language. Only provide a language code if you want to force the document to be processed as that specific language. Otherwise, the service might return incomplete and incorrect text.
+By default, the service extracts all text from your images or documents including mixed languages. The [Read operation](/rest/api/computervision/read/read?view=rest-computervision-v3.2-preview&preserve-view=true) has an optional request parameter for language. Only provide a language code if you want to force the document to be processed as that specific language. Otherwise, the service might return incomplete and incorrect text.
 
 ### Natural reading order output (Latin languages only)
 
@@ -71,7 +71,7 @@ You submit either a local image or a remote image to the Read API. For local, yo
 
 `{"url":"http://example.com/images/test.jpg"}`
 
-The Read API's [Read call](/rest/api/computervision/read/read?view=rest-computervision-v3.2-preview&tabs=HTTP) takes an image or PDF document as the input and extracts text asynchronously.
+The Read API's [Read call](/rest/api/computervision/read/read?view=rest-computervision-v3.2-preview&preserve-view=true) takes an image or PDF document as the input and extracts text asynchronously.
 
 `https://{endpoint}/vision/v3.2/read/analyze[?language][&pages][&readingOrder]`
 
@@ -89,7 +89,7 @@ The call returns with a response header field called `Operation-Location`. The `
 
 ## Get results from the service
 
-The second step is to call the [Get Read Result](/rest/api/computervision/get-read-result/get-read-result?view=rest-computervision-v3.2-preview&tabs=HTTP) operation. This operation takes as input the operation ID that was created by the Read operation.
+The second step is to call the [Get Read Result](/rest/api/computervision/get-read-result/get-read-result?view=rest-computervision-v3.2-preview&preserve-view=true) operation. This operation takes as input the operation ID that was created by the Read operation.
 
 `https://{endpoint}/vision/v3.2/read/analyzeResults/{operationId}`
 
@@ -196,4 +196,4 @@ The response includes a classification of whether each line of text is in handwr
 ## Related content
 
 - [Quickstart: Azure AI Vision v3.2 GA Read](../quickstarts-sdk/client-library.md)
-- [Read 3.2 REST API reference](/rest/api/computervision/read/read?view=rest-computervision-v3.2-preview&tabs=HTTP)
+- [Read 3.2 REST API reference](/rest/api/computervision/read/read?view=rest-computervision-v3.2-preview&preserve-view=true)
