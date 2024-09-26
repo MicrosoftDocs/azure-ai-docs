@@ -78,7 +78,7 @@ Azure Machine Learning tracks training jobs in what MLflow calls runs. Use runs 
 
 # [Notebooks](#tab/interactive)
 
-When you work interactively, MLflow starts tracking your training routine as soon as you start to log information that requires an active run. For instance, if Mlflow's autologging functionality is enabled, MLflow tracking starts when you log a metric or parameter, or start a training cycle.
+When you work interactively, MLflow starts tracking your training routine as soon as you log information that requires an active run. For instance, if Mlflow's autologging functionality is enabled, MLflow tracking starts when you log a metric or parameter, or start a training cycle.
 
 However, it's usually helpful to start the run explicitly, especially if you want to capture the total time for your experiment in the **Duration** field. To start the run explicitly, use `mlflow.start_run()`.
 
@@ -160,9 +160,7 @@ Use the Azure Machine Learning jobs parameter `display_name` to configure the na
 
 ### Submit the job
 
-The workspace is the top-level resource for Azure Machine Learning, providing a centralized place to work with all the Azure Machine Learning artifacts you create.
-
-1. Connect to the Azure Machine Learning workspace.
+1. The workspace is the top-level resource for Azure Machine Learning, providing a centralized place to work with all the Azure Machine Learning artifacts you create. Connect to the Azure Machine Learning workspace.
 
     # [Azure CLI](#tab/cli)
    
@@ -172,8 +170,6 @@ The workspace is the top-level resource for Azure Machine Learning, providing a 
     ```
    
     # [Python SDK](#tab/python)
-   
-    Connect to the Azure Machine Learning workspace.
    
     1. Import the required libraries:
    
