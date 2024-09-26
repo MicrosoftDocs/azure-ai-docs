@@ -10,7 +10,7 @@ author: msakande
 ms.author: mopeakande
 ms.reviewer: sehan
 ms.custom: mktng-kw-nov2021, FY25Q1-Linter
-ms.date: 09/20/2024
+ms.date: 09/25/2024
 #Customer intent: As a data scientist, I want to understand how MLOps can help manage the lifecycle of my models so I can improve the quality and consistency of my machine learning solutions.
 ---
 
@@ -98,18 +98,18 @@ To deploy a model as an endpoint, you need to provide the following information:
 - An **environment** that describes the pip and conda dependencies required by the models and entry script.
 - Any other assets, such as text and data, required by the model and entry script.
 
-You also provide the configuration of the target deployment platform, such as the virtual machine (VM) family type, available memory, and number of cores. When Azure Machine Learning creates the image, it also adds any components it needs, such as assets needed to run the web service.
-
 >[!IMPORTANT]
 >When you deploy an [MLflow model](concept-mlflow.md), you don't need to provide an entry script or an environment for the deployment. For more information on deploying MLflow models, see [Guidelines for deploying MLflow models](how-to-deploy-mlflow-models.md).
 
-#### Batch scoring and endpoints
+You also provide the configuration of the target deployment platform, such as the virtual machine (VM) family type, available memory, and number of cores. When Azure Machine Learning creates the image, it also adds any components it needs, such as assets needed to run the web service.
+
+#### Batch scoring with batch endpoints
 
 Batch scoring is supported through batch endpoints. For more information on batch scoring, see [Batch endpoints](concept-endpoints-batch.md).
 
 #### Real-time scoring with online endpoints
 
-You can use your models with [online endpoints](concept-endpoints-online.md) for real-time scoring. Compute targets for online endpoints can be local endpoints, managed online endpoints, or Azure Kubernetes Service (AKS) endpoints.
+You can use your models with [online endpoints](concept-endpoints-online.md) for real-time scoring. Compute targets for online endpoints can be local development environments, managed online endpoints, or Azure Kubernetes Service (AKS).
 
 To deploy a model to an online endpoint, you need to provide the following information:
 
