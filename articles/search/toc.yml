@@ -337,14 +337,14 @@ items:
       href: vector-search-how-to-generate-embeddings.md
     - name: Use embedding models from Azure AI Studio
       href: vector-search-integrated-vectorization-ai-studio.md
-    - name: Index binary data for vector search
-      href: vector-search-how-to-index-binary-data.md
     - name: Reduce vector size
       items:
       - name: Understand vector quotas and limits
         href: vector-search-index-size.md
       - name: Choose an approach for compression
         href: vector-search-how-to-configure-compression-storage.md
+      - name: Index binary data for vector search
+        href: vector-search-how-to-index-binary-data.md
       - name: Compress vectors using quantization
         href: vector-search-how-to-configure-compression-storage.md
       - name: Assign narrow data types
