@@ -102,6 +102,6 @@ If you're detecting faces from a video feed, you might be able to improve perfor
 
 Now that you're familiar with face detection concepts, learn how to write a script that detects faces in a given image.
 
-* [Call the detect API](./how-to/identity-detect-faces.md)
+* [Call the Detect API](./how-to/identity-detect-faces.md)
 
 [Detect]: /rest/api/face/face-detection-operations/detect
