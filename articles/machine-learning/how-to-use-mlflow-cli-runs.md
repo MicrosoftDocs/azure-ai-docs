@@ -229,7 +229,7 @@ The metrics and artifacts from MLflow logging are tracked in your workspace. You
 
 To view metrics and artifacts in the studio:
 
-1. On the **Jobs** page in your workspace, find the experiment by name.
+1. On the **Jobs** page in your workspace, select the experiment name.
 1. On the experiment details page, select the **Metrics** tab.
 1. Select logged metrics to render charts on the right side. You can customize the charts by applying smoothing, changing the color, or plotting multiple metrics on a single graph. You can also resize and rearrange the layout.
 1. Once you create your desired view, save it for future use and share it with your teammates by using a direct link.
