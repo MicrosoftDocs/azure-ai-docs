@@ -1,5 +1,5 @@
 ---
-title: How to use Cohere Embed V3 models models with Azure Machine Learning studio
+title: How to use Cohere Embed V3 models with Azure Machine Learning studio
 titleSuffix: Azure Machine Learning
 description: Learn how to use Cohere Embed V3 models with Azure Machine Learning studio.
 manager: scottpolly
