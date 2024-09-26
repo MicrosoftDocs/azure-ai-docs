@@ -17,7 +17,7 @@ Our vision is to empower developers and organizations to use AI to transform soc
 
 ## What is Limited Access?
 
-Limited Access services require registration, and only customers managed by Microsoft&mdash;meaning anyone who works directly with Microsoft account teams&mdash;are eligible for access. The use of these services is limited to the use case selected at the time of registration. Customers must acknowledge that they've reviewed and agree to the terms of service. Microsoft might require customers to reverify this information.
+Limited Access services require registration, and only customers managed by Microsoft&mdash;meaning anyone who works directly with Microsoft account teams&mdash;is eligible for access. The use of these services is limited to the use case selected at the time of registration. Customers must acknowledge that they've reviewed and agree to the terms of service. Microsoft might require customers to reverify this information.
 
 Limited Access services are made available to customers under the terms governing their subscription to Microsoft Azure Services (including the [terms and conditions](https://www.microsoft.com/licensing/docs/view/Microsoft-supplemental-terms-and-conditions)). Review these terms carefully as they contain important conditions and obligations governing your use of Limited Access services.
 
@@ -27,9 +27,9 @@ The following services are Limited Access:
 
 - [Custom Neural Voice](/legal/cognitive-services/speech-service/text-to-speech/limited-access): Pro features 
 - [Custom text to speech avatar](/legal/cognitive-services/speech-service/text-to-speech/limited-access): All features
-- [Speaker Recognition](/legal/cognitive-services/speech-service/speaker-recognition/limited-access-speaker-recognition): All features 
-- [Face API](/legal/cognitive-services/computer-vision/limited-access-identity): Identify and Verify features, face ID property
-- [Azure AI Vision](/legal/cognitive-services/computer-vision/limited-access): Celebrity Recognition feature 
+- [Speaker Recognition](/legal/cognitive-services/speech-service/speaker-recognition/limited-access-speaker-recognition?context=/azure/ai-services/speech-service/context/context): All features 
+- [Face API](/legal/cognitive-services/computer-vision/limited-access-identity?context=/azure/ai-services/computer-vision/context/context): Identify and Verify features, face ID property
+- [Azure AI Vision](/legal/cognitive-services/computer-vision/limited-access?context=/azure/ai-services/computer-vision/context/context): Celebrity Recognition feature
 - [Azure AI Video Indexer](/azure/azure-video-indexer/limited-access-features): Celebrity Recognition and Face Identify features
 - [Azure OpenAI](/legal/cognitive-services/openai/limited-access): Azure OpenAI Service, modified abuse monitoring, and modified content filters
 
@@ -84,13 +84,13 @@ Limited Access features are only available for the use cases listed on the regis
 
 ### Where can I use Limited Access services?
 
-To view regional availability for a Limited Access service, see [Products available by region](https://azure.microsoft.com/explore/global-infrastructure/products-by-region/). In the Brazil South and UAE North datacenter regions, we're prioritizing access for commercial customers managed by Microsoft.
+To view regional availability for a Limited Access service, see [Products available by region](https://azure.microsoft.com/explore/global-infrastructure/products-by-region/). In the Brazil South and UAE North datacenter regions, we prioritize access for commercial customers managed by Microsoft.
 
 For more information about supported regions for Custom Neural Voice and Speaker Recognition operations, see [Speech service supported regions](./speech-service/regions.md).
 
 ### What happens to my data if my application is denied?
 
-If you're an existing customer and your application for access is denied, you can no longer use Limited Access features after June 30, 2023. Your data is subject to Microsoft's [data retention policies](https://www.microsoft.com/en-us/trust-center/privacy/data-management#leave).
+If you're an existing customer and your application for access is denied, you can no longer use Limited Access features after June 30, 2023. Your data is subject to Microsoft's [data retention policies](https://www.microsoft.com/trust-center/privacy/data-management#leave).
 
 ## Help and support
 
