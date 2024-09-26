@@ -287,7 +287,7 @@ items:
       href: connector/text-translator-flow.md
     - name: Microsoft Translator Pro
       items:
-      - name: What is Translator Pro?
+      - name: What is Microsoft Translator Pro?
         displayName: app service, mobile app, ios, speech-to-speech
         href: translator-pro/overview.md
       - name: Responsible AI and compliance

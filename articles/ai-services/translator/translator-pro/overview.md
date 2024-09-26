@@ -14,7 +14,7 @@ ms.custom: FY25Q1-Linter
 
 Microsoft Translator Pro is a speech-to-speech translation mobile app that enables users to translate conversations. Translator Pro is designed for enterprises seeking to eliminate language barriers within the workplace by delivering a standalone, native experience within the enterprise ecosystem.
 
-Microsoft Translator Pro is a subscription-based mobile app available on both commercial and government cloud platforms. To use the app, Enterprise users must establish their identities and translator resources within either of these clouds.
+Microsoft Translator Pro is a paid mobile app available on both commercial and government cloud platforms. To use the app, Enterprise users must establish their identities and translator resources within either of these clouds.
 
   > [!IMPORTANT]
   >
@@ -27,7 +27,7 @@ Microsoft Translator Pro is a subscription-based mobile app available on both co
 
 * Enterprise users must set up identities and translator resources within either commercial or government cloud environments; the app doesn't support hybrid use across these environments. For example, an identity created in the commercial cloud can't be used to access an Azure resource in the government cloud via this app.
 
-* This app operates as a prepaid subscription service.
+* This app operates as a paid offering, necessitating payment prior to usage.
 
 * The app preview is initially available only to enterprises in the United States that meet certain criteria.
 

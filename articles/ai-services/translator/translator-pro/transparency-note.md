@@ -149,10 +149,6 @@ One dimension to consider is how well the app performs for different groups of p
 
 [Microsoft Azure Learning courses on responsible AI](/ai/)
 
-## Learn more about Microsoft Translator Pro
-
-[Microsoft Translator Pro](overview.md)
-
 About this document
 
 &copy; **2024 Microsoft Corporation**. All rights reserved. This document is provided "as-is" and for informational purposes only. Information and views expressed in this document, including URL and other Internet Web site references, may change without notice. You bear the risk of using it. Some examples are for illustration only and are fictitious. No real association is intended or inferred.
