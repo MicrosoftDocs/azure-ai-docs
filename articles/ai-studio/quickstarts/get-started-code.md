@@ -271,7 +271,7 @@ You should see an output that looks like this:
 
 Looks like we scored 5 for coherence and fluency of the LLM responses on this conversation! 
 
-For more information on how to use prompt flow evaluators, including how to make your own custom evaluators and log evaluation results to AI Studio, be sure to check out [Evaluate your app using the prompt flow SDK](../how-to/develop/flow-evaluate-sdk.md).
+For more information on how to use prompt flow evaluators, including how to make your own custom evaluators and log evaluation results to AI Studio, be sure to check out [Evaluate your app using the prompt flow SDK](../how-to/develop/evaluate-sdk.md).
 
 
 ## Next step

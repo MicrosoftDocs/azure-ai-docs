@@ -8,12 +8,12 @@ items:
     href: what-is-ai-studio.md
   - name: Azure AI Studio architecture
     href: concepts/architecture.md
-  - name: "AI Studio or Azure Machine Learning Studio: Which should I choose?"
-    href: /ai/ai-studio-experiences-overview?context=/azure/ai-studio/context/context
   - name: Region support
     href: reference/region-support.md
   - name: Azure AI FAQ
     href: faq.yml
+  - name: "AI Studio or Azure Machine Learning studio: Which should I choose?"
+    href: /ai/ai-studio-experiences-overview?context=/azure/ai-studio/context/context
 - name: Quickstarts
   items:
   - name: Create a project and use the chat playground
@@ -269,15 +269,15 @@ items:
         href: concepts/evaluation-improvement-strategies.md
     - name: Manually evaluate prompts in Azure AI Studio playground
       href: how-to/evaluate-prompts-playground.md
-    - name: Generate adversarial simulations for safety evaluation
+    - name: Generate synthetic and simulated data for evaluation
       href: how-to/develop/simulator-interaction-data.md
-    - name: Evaluate with the prompt flow SDK
-      href: how-to/develop/flow-evaluate-sdk.md
+    - name: Evaluate with the Azure AI Evaluation SDK
+      href: how-to/develop/evaluate-sdk.md
       displayName: code,accuracy,metrics
     - name: Evaluate with Azure AI Studio
       href: how-to/evaluate-generative-ai-app.md
     - name: View evaluation results in Azure AI Studio
-      href: how-to/evaluate-flow-results.md
+      href: how-to/evaluate-results.md
       displayName: accuracy,metrics
     - name: Evaluate flows in AI Studio
       items:

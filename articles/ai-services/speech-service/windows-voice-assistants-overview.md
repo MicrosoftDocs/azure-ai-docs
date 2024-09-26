@@ -2,13 +2,15 @@
 title: Voice Assistants on Windows overview - Speech service
 titleSuffix: Azure AI services
 description: An overview of the voice assistants on Windows, including capabilities and development resources available.
-author: cfogg6
-manager: trrwilson
+author: eric-urban
+ms.author: eur
+manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: overview
-ms.date: 1/22/2024
-ms.author: travisw
+ms.date: 9/24/2024
+ms.reviewer: travisw
 ms.custom: cogserv-non-critical-speech
+#Customer intent: As a developer, I want to learn about voice assistants and how to create them by using the Speech SDK.
 ---
 
 # What are Voice Assistants on Windows?

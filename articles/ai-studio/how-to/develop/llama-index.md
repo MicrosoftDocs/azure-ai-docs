@@ -13,7 +13,7 @@ author: eric-urban
 
 # Develop applications with LlamaIndex and Azure AI studio
 
-In this article, you learn how to use [LlamaIndex](https://github.com/run-llama/llama_index) with models deployed from the Azure AI model catalog deployed to Azure AI studio.
+In this article, you learn how to use [LlamaIndex](https://github.com/run-llama/llama_index) with models deployed from the Azure AI model catalog in Azure AI studio.
 
 Models deployed to Azure AI studio can be used with LlamaIndex in two ways:
 
@@ -49,7 +49,7 @@ To run this tutorial, you need:
 
 ## Configure the environment
 
-To use LLMs deployed in Azure AI studio, you need the endpoint and credentials to connect to it. The parameter `model_name` is not required for endpoints serving a single model, like Managed Online Endpoints. Follow these steps to get the information you need from the model you want to use:
+To use LLMs deployed in Azure AI studio, you need the endpoint and credentials to connect to it. Follow these steps to get the information you need from the model you want to use:
 
 1. Go to the [Azure AI studio](https://ai.azure.com/).
 2. Go to deployments and select the model you deployed as indicated in the prerequisites.
@@ -79,10 +79,15 @@ llm = AzureAICompletionsModel(
 )
 ```
 
+> [!TIP]
+> The parameter `model_name` in the constructor is not required for endpoints serving a single model, like serverless endpoints).
+
 Alternatively, if your endpoint support Microsoft Entra ID, you can use the following code to create the client:
 
 ```python
+import os
 from azure.identity import DefaultAzureCredential
+from llama_index.llms.azure_inference import AzureAICompletionsModel
 
 llm = AzureAICompletionsModel(
     endpoint=os.environ["AZURE_INFERENCE_ENDPOINT"],
@@ -91,7 +96,7 @@ llm = AzureAICompletionsModel(
 ```
 
 > [!NOTE]
-> > Note: When using Microsoft Entra ID, make sure that the endpoint was deployed with that authentication method and that you have the required permissions to invoke it.
+> When using Microsoft Entra ID, make sure that the endpoint was deployed with that authentication method and that you have the required permissions to invoke it.
 
 If you are planning to use asynchronous calling, it's a best practice to use the asynchronous version for the credentials:
 
@@ -99,6 +104,7 @@ If you are planning to use asynchronous calling, it's a best practice to use the
 from azure.identity.aio import (
     DefaultAzureCredential as DefaultAzureCredentialAsync,
 )
+from llama_index.llms.azure_inference import AzureAICompletionsModel
 
 llm = AzureAICompletionsModel(
     endpoint=os.environ["AZURE_INFERENCE_ENDPOINT"],
@@ -132,7 +138,7 @@ llm = AzureAICompletionsModel(
 
 ## Use LLMs models
 
-Use the `chat` endpoint for chat instruction models. The `complete` method is still available for model of type `chat-completions`. On those cases, your input text is converted to a message with `role="user"`.
+You can use the client directly or [#configure-the-models-used-by-your-code](Configure the models used by your code) in LlamaIndex. To use the model directly, use the `chat` method for chat instruction models:
 
 ```python
 from llama_index.core.llms import ChatMessage
@@ -156,9 +162,11 @@ for r in response:
     print(r.delta, end="")
 ```
 
+The `complete` method is still available for model of type `chat-completions`. On those cases, your input text is converted to a message with `role="user"`.
+
 ## Use embeddings models
 
-In the same way you create an LLM client, you can connect to an embedding model. In the following example, we are setting again the environment variable to now point to an embeddings model:
+In the same way you create an LLM client, you can connect to an embeddings model. In the following example, we are setting the environment variable to now point to an embeddings model:
 
 ```bash
 export AZURE_INFERENCE_ENDPOINT="<your-model-endpoint-goes-here>"
@@ -174,6 +182,21 @@ embed_model = AzureAIEmbeddingsModel(
     endpoint=os.environ["AZURE_INFERENCE_ENDPOINT"],
     credential=os.environ['AZURE_INFERENCE_CREDENTIAL'],
 )
+```
+
+The following example shows a simple test to verify it works:
+
+```python
+from llama_index.core.schema import TextNode
+
+nodes = [
+    TextNode(
+        text="Before college the two main things I worked on, "
+        "outside of school, were writing and programming."
+    )
+]
+response = embed_model(nodes=nodes)
+print(response[0].embedding)
 ```
 
 ## Configure the models used by your code
@@ -200,3 +223,5 @@ In general, you use a combination of both strategies.
 ## Related content
 
 * [How to get started with Azure AI SDKs](sdk-overview.md)
+* [Reference for LlamaIndex Embeddings Integration](https://llamahub.ai/l/embeddings/llama-index-embeddings-azure-inference)
+* [Reference for LlamaIndex LLMs Integration](https://llamahub.ai/l/llms/llama-index-llms-azure-inference)

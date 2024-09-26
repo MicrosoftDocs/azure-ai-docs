@@ -16,7 +16,27 @@ ms.author: pafarley
 
 Learn what's new in the service. These items might be release notes, videos, blog posts, and other types of information. Bookmark this page to stay up to date with new features, enhancements, fixes, and documentation updates.
 
+## September 2024
+
+### Multimodal analysis (preview)
+
+The Multimodal API analyzes materials containing both image content and text content to help make applications and services safer from harmful user-generated or AI-generated content. Analyzing an image and its associated text content together can preserve context and provide a more comprehensive understanding of the content. Follow the [quickstart](./quickstart-multimodal.md) to get started.
+
+
+### Protected material detection for code (preview)
+
+The Protected material code API flags protected code content (from known GitHub repositories, including software libraries, source code, algorithms, and other proprietary programming content) that might be output by large language models. Follow the [quickstart](./quickstart-protected-material-code.md) to get started.
+
+> [!CAUTION]
+> The content safety service's code scanner/indexer is only current through November 6, 2021. Code that was added to GitHub after this date will not be detected. Use your own discretion when using Protected Material for Code to detect recent bodies of code.
+
+### Groundedness correction (preview)
+
+The groundedness detection API includes a correction feature that automatically corrects any detected ungroundedness in the text based on the provided grounding sources. When the correction feature is enabled, the response includes a `corrected Text` field that presents the corrected text aligned with the grounding sources. Follow the [quickstart](./quickstart-groundedness.md) to get started.
+
 ## August 2024
+
+### New features are GA
 
 The Prompt Shields API and groundedness detection API are now generally available (GA). Follow a quickstart to try them out.
 * [Prompt Shields quickstart](/azure/ai-services/content-safety/quickstart-jailbreak)

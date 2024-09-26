@@ -6,9 +6,10 @@ author: eric-urban
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 8/20/2024
+ms.date: 9/24/2024
 ms.author: eur
 ms.custom: references_regions
+#Customer intent: As a developer, I want to learn how to use Speech Synthesis Markup Language (SSML) elements to customize what my Speech service voice sounds like.
 ---
 
 # Customize voice and sound with SSML

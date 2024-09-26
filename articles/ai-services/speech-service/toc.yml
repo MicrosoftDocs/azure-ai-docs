@@ -245,12 +245,6 @@ items:
       href: get-started-intent-recognition-clu.md
     - name: Recognize speech intents with LUIS (deprecated)
       href: get-started-intent-recognition.md
-- name: Speaker recognition
-  items:
-    - name: Speaker recognition overview
-      href: speaker-recognition-overview.md
-    - name: Speaker recognition quickstart
-      href: get-started-speaker-recognition.md
 - name: Keyword recognition
   items:
     - name: Keyword recognition overview
@@ -342,6 +336,8 @@ items:
               href: windows-voice-assistants-best-practices.md
             - name: 'Samples and frequently asked questions'
               href: windows-voice-assistants-faq.yml
+    - name: Speaker recognition
+      href: speaker-recognition-overview.md
 - name: Infrastructure & security
   items:
     - name: Access control and authentication
@@ -544,9 +540,6 @@ items:
           href: /rest/api/batchtexttospeech/operation-groups
         - name: Batch avatar REST API
           href: /rest/api/batchavatar/operation-groups
-        - name: Speaker Recognition REST API
-          href: /rest/api/speakerrecognition/
-          displayName: reference 
         - name: Conversation transcription REST APIs
           href: https://signature.centralus.cts.speech.microsoft.com/UI/index.html 
           displayName: reference
