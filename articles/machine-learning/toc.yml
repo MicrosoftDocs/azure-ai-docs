@@ -606,13 +606,13 @@ items:
       href: how-to-deploy-models-timegen-1.md
     - name: How to deploy Mistral family models
       href: how-to-deploy-models-mistral.md
-    - name: Deploy Cohere models
+    - name: Cohere models
       items:
-        - name: How to deploy Cohere Command models
+        - name: Cohere Command models
           href: how-to-deploy-models-cohere-command.md
-        - name: How to deploy Cohere Embed models
+        - name: Cohere Embed models
           href: how-to-deploy-models-cohere-embed.md
-        - name: How to deploy Cohere Rerank models
+        - name: Cohere Rerank models
           href: how-to-deploy-models-cohere-rerank.md
     - name: Deploy Meta Llama models
       items:
