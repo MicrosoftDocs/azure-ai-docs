@@ -199,7 +199,7 @@ sections:
       - question: |
           Can I use GPT-4 to generate images?
         answer: |
-          No, you can use `dall-e-3` to generate images and `gpt-4-visual-preview` to understand images.
+          No, you can use `dall-e-3` to generate images and `gpt-4-vision-preview` to understand images.
       - question: |
           What type of files can I upload?
         answer: |
