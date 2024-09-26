@@ -221,8 +221,8 @@ PATCH https://management.azure.com/subscriptions/{{subscriptionId}}/resourcegrou
      {
         "properties": {
             "encryptionWithCmk": {
-            "enforcement": "Disabled"
-            },
+                "enforcement": "Enabled"
+            }
         }
     }
 ```
