@@ -275,6 +275,8 @@ To use this config in your AKS cluster, you need to follow the following steps:
 > Since the gang plugin is removed, there's potential that the deadlock happens when volcano schedules the job. 
 > 
 > * To avoid this situation, you can **use same instance type across the jobs**.
+> 
+> Using a scheduler configuration other than the default provided by the Azure Machine Learning extension may not be fully supported. Proceed with caution.
 >
 > Note that you need to disable `job/validate` webhook in the volcano admission if your **volcano version is lower than 1.6**.
 
