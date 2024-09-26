@@ -17,4 +17,4 @@ ms.author: fasantia
 
 - Create an Azure Machine Learning workspace. To create a workspace, see [Create resources you need to get started](../quickstart-create-resources.md). Review the [access permissions](../how-to-assign-roles.md#mlflow-operations) you need to perform your MLflow operations in your workspace.
 
-- To do remote tracking, that is track experiments running outside Azure Machine Learning, configure MLflow to point to the tracking URI of your Azure Machine Learning workspace. For more information on how to connect MLflow to your workspace, see [Configure MLflow for Azure Machine Learning](../how-to-use-mlflow-configure-tracking.md).
+- To do *remote tracking*, or track experiments running outside Azure Machine Learning, configure MLflow to point to the tracking URI of your Azure Machine Learning workspace. For more information on how to connect MLflow to your workspace, see [Configure MLflow for Azure Machine Learning](../how-to-use-mlflow-configure-tracking.md).
