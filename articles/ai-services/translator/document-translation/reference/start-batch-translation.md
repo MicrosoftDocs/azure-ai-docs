@@ -89,9 +89,6 @@ Request headers are:
       "storageType": "Folder"
     }
   ],
-  "options": {
-    "experimental": true
-  }
 }
 
 ```
