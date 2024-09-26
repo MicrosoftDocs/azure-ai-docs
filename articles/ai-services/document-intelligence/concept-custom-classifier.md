@@ -1,16 +1,15 @@
 ---
-title: Custom classification model - Document Intelligence 
+title: Custom classification model - Document Intelligence
 titleSuffix: Azure AI services
 description: Use the custom classification model to train a model to identify and split the documents you process within your application.
 author: vkurpad
 manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.topic: conceptual
-ms.date: 08/07/2024
+ms.date: 09/26/2024
 ms.author: lajanuar
 ms.custom:
   - references_regions
-  - ignite-2023
 monikerRange: '>=doc-intel-3.1.0'
 ---
 
@@ -50,7 +49,6 @@ Custom classification models are deep-learning-model types that combine layout a
 Custom classification models can analyze a single- or multi-file documents to identify if any of the trained document types are contained within an input file. Here are the currently supported scenarios:
 
 * A single file containing one document type, such as a loan application form.
-
 * A single file containing multiple document types. For instance, a loan application package that contains a loan application form, payslip, and bank statement.
 
 * A single file containing multiple instances of the same document. For instance, a collection of scanned invoices.
@@ -59,7 +57,8 @@ Custom classification models can analyze a single- or multi-file documents to id
 
 ✔️ The maximum allowed number of classes is `500`. The maximum allowed number of document samples per class is `100`.
 
-The model classifies each page of the input document, unless specified, to one of the classes in the labeled dataset. You can specify the page numbers to analyze in the input document as well. To set the threshold for your application, use the confidence score from the response. 
+The model classifies each page of the input document, unless specified, to one of the classes in the labeled dataset. You can specify the page numbers to analyze in the input document as well. To set the threshold for your application, use the confidence score from the response.
+
 ### Incremental training
 
 With custom models, you need to maintain access to the training dataset to update your classifier with new samples for an existing class, or add new classes. Classifier models now support incremental training where you can reference an existing classifier and append new samples for an existing class or add new classes with samples. Incremental training enables scenarios where data retention is a challenge and the classifier needs to be updated to align with changing business needs. Incremental training is supported with models trained with API version `2024-02-29-preview` and later.
@@ -250,7 +249,7 @@ Alternatively, if you have a flat list of files or only plan to use a few select
 ```
 
 As an example, the file list `car-maint.jsonl` contains the following files.
- 
+
 ```json
 {"file":"classifier/car-maint/Commercial Motor Vehicle - Adatum.pdf"}
 {"file":"classifier/car-maint/Commercial Motor Vehicle - Fincher.pdf"}
