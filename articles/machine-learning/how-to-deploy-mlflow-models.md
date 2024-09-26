@@ -1,7 +1,7 @@
 ---
 title: Guidelines for deploying MLflow models
 titleSuffix: Azure Machine Learning
-description: Learn how to deploy your MLflow model to the deployment targets that are supported by Azure Machine Learning.
+description: Learn how to deploy your MLflow model to the deployment targets that Azure Machine Learning supports.
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: mlops
@@ -19,7 +19,7 @@ ms.devlang: azurecli
 
 [!INCLUDE [cli v2](includes/machine-learning-cli-v2.md)]
 
-In this article, learn about deployment of [MLflow](https://www.mlflow.org) models to Azure Machine Learning for both real-time and batch inference, and about the different tools you can use to manage the deployment.
+In this article, learn about deployment of [MLflow](https://www.mlflow.org) models to Azure Machine Learning for both real-time and batch inference, and about different tools you can use to manage the deployment.
 
 ## No-code deployment
 
@@ -72,7 +72,7 @@ Azure Machine Learning also supports deploying models to both online and batch e
 The following table shows the input types supported by the MLflow built-in server versus Azure Machine Learning online endpoints.
 
 | Input type | MLflow built-in server | Azure Machine Learning online endpoints |
-| :- | :-: | :-: |
+|---| :-: | :-: |
 | JSON-serialized pandas DataFrames in the split orientation | **&check;** | **&check;** |
 | JSON-serialized pandas DataFrames in the records orientation | Deprecated |  |
 | CSV-serialized pandas DataFrames | **&check;** | Use batch inferencing. For more information, see [Deploy MLflow models to batch endpoints](how-to-mlflow-batch.md). |
@@ -228,11 +228,11 @@ Azure Machine Learning offers the following tools to deploy MLflow models to onl
 Each tool has different capabilities, particularly for which type of compute it can target. The following table shows the support for different MLflow deployment scenarios.
 
 | Scenario | MLflow SDK | Azure Machine Learning CLI/SDK or studio |
-|---|---|---|---|
-| Deploy to managed online endpoints<sup>1</sup> | [Progressive rollout of MLflow models to online endpoints](how-to-deploy-mlflow-models-online-progressive.md) |
+|---| :-: | :-: |
+| Deploy to managed online endpoints<sup>1</sup> | [Progressive rollout of MLflow models to online endpoints](how-to-deploy-mlflow-models-online-progressive.md) | [Deploy MLflow models to online endpoints](how-to-deploy-mlflow-models-online-endpoints.md) |
 | Deploy to managed online endpoints with a scoring script | Not supported<sup>3</sup> | [Customize MLflow model deployments](how-to-deploy-mlflow-models-online-endpoints.md#customize-mlflow-model-deployments) |
 | Deploy to batch endpoints | Not supported<sup>3</sup> | [Use MLflow models in batch deployments](how-to-mlflow-batch.md) |
-| Deploy to batch endpoints with a scoring script | Not supported<sup>3</sup> | [Customize model deployment with scoring script](how-to-mlflow-batch.md#customize-model-deployment-with-scoring-script)|
+| Deploy to batch endpoints with a scoring script | Not supported<sup>3</sup> | [Customize model deployment with scoring script](how-to-mlflow-batch.md#customize-model-deployment-with-scoring-script) |
 | Deploy to web services like Azure Container Instances or Azure Kubernetes Service (AKS) | Legacy support<sup>2</sup> | Not supported<sup>2</sup> |
 | Deploy to web services like Container Instances or AKS with a scoring script | Not supported<sup>3</sup> | Legacy support<sup>2</sup> |
 
