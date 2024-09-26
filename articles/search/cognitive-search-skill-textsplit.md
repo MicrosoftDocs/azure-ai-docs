@@ -23,7 +23,7 @@ Microsoft.Skills.Text.SplitSkill
 
 ## Skill Parameters
 
-Parameters are case-sensitive. Some parameters are version-specific. This table notes the API version in which a parameter was introduced so that you know whether a [version upgrade](search-api-migration.md) is required. The Azure portal supports most preview features. Azure SDKs are on a separate release schedule, so you should check their change logs to determine feature availability.
+Parameters are case-sensitive. Some parameters are version-specific. This table notes the API version in which a parameter was introduced so that you know whether a [version upgrade](search-api-migration.md) is required. The Azure portal supports most preview features. For updates to Text Split skill, you can edit the skillset JSON definition to add new preview parameters. Azure SDKs are on a separate release schedule, so you should check their change logs to determine feature availability.
 
 | Parameter name     | Version   | Description |
 |--------------------|-------------|-------------|
