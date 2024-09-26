@@ -180,6 +180,20 @@ avatarSynthesizer.speakTextAsync(spokenText).then(
 
 You can find end-to-end working samples on [GitHub](https://github.com/Azure-Samples/cognitive-services-speech-sdk/tree/master/samples/js/browser/avatar).
 
+## Close the real-time avatar connection
+
+To avoid unnecessary costs after you finish using the real-time avatar, it’s important to close the connection. There are several ways to do this:
+
+- When the browser web page is closed, the WebRTC client side peer connection object will be released, and the avatar connection will be automatically closed after a few seconds.
+- If the avatar remains idle for 5 minutes, the connection will be automatically closed by the avatar service.
+- You can proactively close the avatar connection by running the following code:
+  
+   ```javascript
+   avatarSynthesizer.close();
+   ``` 
+
+You can find end-to-end working samples on [GitHub](https://github.com/Azure-Samples/cognitive-services-speech-sdk/tree/master/samples/js/browser/avatar).
+
 ## Edit background
 
 The avatar real-time synthesis API currently doesn't support setting a background image/video and only supports setting a solid-color background, without transparent background support. However, there's an alternative way to implement background customization on the client side, following these guidelines:
