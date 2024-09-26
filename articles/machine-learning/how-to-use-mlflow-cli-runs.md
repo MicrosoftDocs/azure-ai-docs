@@ -48,7 +48,7 @@ Azure Machine Learning workspaces are MLflow-compatible. This compatibility mean
 ## Prerequisites
 
 - Have an Azure subscription with the [free or paid version of Azure Machine Learning](https://azure.microsoft.com/free/).
-
+- To run Azure CLI and Python commands, install [Azure CLI v2](how-to-configure-cli.md) and the [Azure Machine Learning SDK v2 for Python](/python/api/overview/azure/ai-ml-readme). The `ml` extension for Azure CLI installs automatically the first time you run an Azure Machine Learning CLI command.
 [!INCLUDE [mlflow-prereqs](includes/machine-learning-mlflow-prereqs.md)]
 
 ## Configure the experiment
@@ -130,7 +130,7 @@ All Azure Machine Learning curated environments already have MLflow installed. H
 
 :::code language="yaml" source="~/azureml-examples-main/sdk/python/using-mlflow/deploy/environment/conda.yaml" highlight="7-8" range="1-12":::
 
-### Configure your job name
+### Configure the job name
 
 Use the Azure Machine Learning jobs parameter `display_name` to configure the name of the run.
 
@@ -138,7 +138,7 @@ Use the Azure Machine Learning jobs parameter `display_name` to configure the na
 
     # [Azure CLI](#tab/cli)
 
-    To submit the job, create a YAML file with your job definition in a *job.yml* file outside of the *src* directory.
+    To configure the job, create a YAML file with your job definition in a *job.yml* file outside of the *src* directory.
 
     :::code language="yaml" source="~/azureml-examples-main/cli/jobs/basics/hello-world-org.yml" highlight="7" range="1-9":::
 
