@@ -16,7 +16,7 @@ ms.devlang: azurecli
 
 # Track experiments and models with MLflow
 
-*Tracking* is the process of saving relevant information about experiments. In this article, you learn how to use MLflow for tracking experiments and runs in Azure Machine Learning workspaces. The saved metadata varies by experiment, and can include:
+*Tracking* is the process of saving relevant information about experiments. In this article, you learn how to use MLflow for tracking experiments and runs in Azure Machine Learning workspaces. The saved tracking metadata varies by experiment, and can include:
 
 - Code
 - Environment details such as OS version and Python packages
@@ -130,75 +130,73 @@ All Azure Machine Learning curated environments already have MLflow installed. H
 
 :::code language="yaml" source="~/azureml-examples-main/sdk/python/using-mlflow/deploy/environment/conda.yaml" highlight="7-8" range="1-12":::
 
-Reference the environment in your job.
-
 ### Configure your job name
 
-Use the Azure Machine Learning jobs parameter `display_name` to configure the name of the job. Make sure not to use `mlflow.start_run(run_name="")` inside your training routine.
+Use the Azure Machine Learning jobs parameter `display_name` to configure the name of the run.
 
-   # [Azure CLI](#tab/cli)
+1. Use the `display_name` property to configure the job.
 
-   Create a YAML file with your job definition in a *job.yml* file outside the *src* directory.
+    # [Azure CLI](#tab/cli)
 
-   :::code language="yaml" source="~/azureml-examples-main/cli/jobs/basics/hello-world-org.yml" highlight="7" range="1-9":::
+    To submit the job, create a YAML file with your job definition in a *job.yml* file outside of the *src* directory.
 
-   # [Python SDK](#tab/python)
+    :::code language="yaml" source="~/azureml-examples-main/cli/jobs/basics/hello-world-org.yml" highlight="7" range="1-9":::
 
-   Create the command job as follows:
+    # [Python SDK](#tab/python)
 
-   ```python
-   from azure.ai.ml import command, Environment
-   
-   command_job = command(
-       code="src",
-       command="echo "hello world",
-       environment=Environment(image="library/python:latest"),
-       compute="cpu-cluster",
-       display_name="hello-world-example"
-   )
-   ```
+    ```python
+    from azure.ai.ml import command, Environment
+
+    command_job = command(
+        code="src",
+        command="echo "hello world",
+        environment=Environment(image="library/python:latest"),
+        compute="cpu-cluster",
+        display_name="hello-world-example"
+    )
+    ```
+
+1. Make sure not to use `mlflow.start_run(run_name="")` inside your training routine.
 
 ### Submit the job
 
-The workspace is the top-level resource for Azure Machine Learning, providing a centralized place to work with the artifacts you create. Jobs that use MLflow and run on Azure Machine Learning automatically log any tracking information to the workspace. In this section, you connect to the workspace to do deployment tasks.
+The workspace is the top-level resource for Azure Machine Learning, providing a centralized place to work with all the Azure Machine Learning artifacts you create.
 
-1. Connect to your Azure Machine Learning workspace.
+1. Connect to the Azure Machine Learning workspace.
+
+    # [Azure CLI](#tab/cli)
+   
+    ```azurecli
+    az account set --subscription <subscription>
+    az configure --defaults workspace=<workspace> group=<resource-group> location=<location>
+    ```
+   
+    # [Python SDK](#tab/python)
+   
+    Connect to the Azure Machine Learning workspace.
+   
+    1. Import the required libraries:
+   
+        ```python
+        from azure.ai.ml import MLClient
+        from azure.identity import DefaultAzureCredential
+        ```
+   
+    2. Configure workspace details and get a handle to the workspace:
+   
+        ```python
+        subscription_id = "<subscription>"
+        resource_group = "<resource-group>"
+        workspace = "<workspace>"
+        
+        ml_client = MLClient(DefaultAzureCredential(), subscription_id, resource_group, workspace)
+        ```
+
+1. Open your terminal and use the following code to submit the job. Jobs that use MLflow and run on Azure Machine Learning automatically log any tracking information to the workspace.
 
    # [Azure CLI](#tab/cli)
 
-   Open your terminal and enter the following code:
-
-   ```azurecli
-   az account set --subscription <subscription>
-   az configure --defaults workspace=<workspace> group=<resource-group> location=<location>
-   ```
-
-   # [Python SDK](#tab/python)
-
-   
-
-   1. Import the required libraries:
-   
-       ```python
-       from azure.ai.ml import MLClient
-       from azure.identity import DefaultAzureCredential
-       ```
-
-   1. Configure workspace details and get a handle to the workspace:
-
-       ```python
-       subscription_id = "<subscription>"
-       resource_group = "<resource-group>"
-       workspace = "<workspace>"
-       
-       ml_client = MLClient(DefaultAzureCredential(), subscription_id, resource_group, workspace)
-       ```
-
-1. Submit the job
-
-   # [Azure CLI](#tab/cli)
-
-   Use the Azure Machine Learning CLI to [submit your job](how-to-train-model.md).
+   Use the Azure Machine Learning CLI [to submit your job](how-to-train-model.md).
 
    ```azurecli
    az ml job create -f job.yml --web
@@ -206,7 +204,7 @@ The workspace is the top-level resource for Azure Machine Learning, providing a 
 
    # [Python SDK](#tab/python)
 
-   Use the Python SDK to [submit your job](how-to-train-model.md).
+   Use the Python SDK [to submit your job](how-to-train-model.md).
 
    ```python
    returned_job = ml_client.jobs.create_or_update(command_job)
