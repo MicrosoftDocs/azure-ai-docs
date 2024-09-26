@@ -107,7 +107,7 @@ The final step concatenates the data in Tables 1, 2, and 3, and rearranges the r
 
 In Table 5, the lag column is renamed to **$y_{t-1}^{(h)}$** to reflect that the lag is generated with respect to a specific horizon. Table 5 shows how lags generated with respect to the horizon can be mapped to the conventional ways of generating lags in the previous tables.
 
-Table 5 is an example of the data augmentation that AutoML applies to training data to enable direct forecasting from regression models. When the configuration includes lag features, AutoML creates horizon-dependent lags along with an integer-valued horizon feature. AutoML forecasting regression models can make a prediction at horizon $h$ without regard to the prediction at $h-1$, in contrast to recursively-defined models like ARIMA.
+Table 5 is an example of the data augmentation that AutoML applies to training data to enable direct forecasting from regression models. When the configuration includes lag features, AutoML creates horizon-dependent lags along with an integer-valued horizon feature. AutoML forecasting regression models can make a prediction at horizon $h$ without regard to the prediction at $h-1$, in contrast to recursively defined models like ARIMA.
 
 ## Considerations for lag featurization
 
