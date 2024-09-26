@@ -138,7 +138,7 @@ llm = AzureAICompletionsModel(
 
 ## Use LLMs models
 
-You can use the client directly or [#configure-the-models-used-by-your-code](Configure the models used by your code) in LlamaIndex. To use the model directly, use the `chat` method for chat instruction models:
+You can use the client directly or (Configure the models used by your code)[#configure-the-models-used-by-your-code] in LlamaIndex. To use the model directly, use the `chat` method for chat instruction models:
 
 ```python
 from llama_index.core.llms import ChatMessage
