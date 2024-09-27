@@ -24,7 +24,7 @@ In this article, learn how to:
 + Optimize query behaviors by controlling text and vector inputs
 
 > [!NOTE]
-> New in [**2024-09-01-preview**](/rest/api/searchservice/documents/search-post?view=rest-searchservice-2024-09-01-preview&preserve-view=true) is the ability to target filters to just the vector subqueries in a hybrid request. This gives you more precision over how filters are applied. For more information, see [scope filters to vector subqueries](#hybrid-search-with-filters-scoped-to-vector-subqueries-preview) in this article.
+> New in [**2024-09-01-preview**](/rest/api/searchservice/documents/search-post?view=rest-searchservice-2024-09-01-preview&preserve-view=true) is the ability to target filters to just the vector subqueries in a hybrid request. This gives you more precision over how filters are applied. For more information, see [targeting filters to vector subqueries](#hybrid-search-with-filters-targeting-vector-subqueries-preview) in this article.
 
 <!-- To improve relevance in a hybrid query, use these parameters:
 
@@ -180,7 +180,7 @@ api-key: {{admin-api-key}}
 
 + When you postfilter query results, the number of results might be less than top-n.
 
-## Hybrid search with filters scoped to vector subqueries (preview)
+## Hybrid search with filters targeting vector subqueries (preview)
 
 Using [**2024-09-01-preview**](/rest/api/searchservice/documents/search-post?view=rest-searchservice-2024-09-01-preview&preserve-view=true), you can override a global filter on the search request by applying a secondary filter that targets just the vector subqueries in a hybrid request.
 
