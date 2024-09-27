@@ -19,16 +19,19 @@ ms.date: 10/01/2024
 In this article, learn how to:
 
 + Set up a basic request
-+ Add filters
++ Formulate hybrid queries with more parameters and filters
 + Improve relevance using semantic ranking or vector weights
 + Optimize query behaviors by controlling text and vector inputs
 
-To improve relevance in a hybrid query, use these parameters:
+> [!NOTE]
+> New in [**2024-09-01-preview**](/rest/api/searchservice/documents/search-post?view=rest-searchservice-2024-09-01-preview&preserve-view=true) is the ability to target filters to just the vector subqueries in a hybrid request. This gives you more precision over how filters are applied. For more information, see [scope filters to vector subqueries](#hybrid-search-with-filters-scoped-to-vector-subqueries-preview) in this article.
+
+<!-- To improve relevance in a hybrid query, use these parameters:
 
 + [vector.queries.weight](vector-search-how-to-query.md#vector-weighting) lets you set the relative weight of the vector query. This feature is particularly useful in complex queries where two or more distinct result sets need to be combined, as is the case for hybrid search. This feature is generally available.
 
 + [hybridsearch.maxTextRecallSize and countAndFacetMode (preview)](#set-maxtextrecallsize-and-countandfacetmode-preview) give you more control over text inputs into a hybrid query. This feature requires a preview API version.
-
+ -->
 ## Prerequisites
 
 + A search index containing `searchable` vector and nonvector fields. We recommend the [Import and vectorize data wizard](search-import-data-portal.md) to create an index quickly. Otherwise, see [Create an index](search-how-to-create-search-index.md) and [Add vector fields to a search index](vector-search-how-to-create-index.md).
@@ -176,6 +179,49 @@ api-key: {{admin-api-key}}
 + In hybrid queries, filters can be applied before query execution to reduce the query surface, or after query execution to trim results. `"preFilter"` is the default. To use `postFilter`, set the [filter processing mode](vector-search-filters.md) as shown in this example.
 
 + When you postfilter query results, the number of results might be less than top-n.
+
+## Hybrid search with filters scoped to vector subqueries (preview)
+
+Using [**2024-09-01-preview**](/rest/api/searchservice/documents/search-post?view=rest-searchservice-2024-09-01-preview&preserve-view=true), you can override a global filter on the search request by applying a secondary filter that targets just the vector subqueries in a hybrid request.
+
+This feature provides fine-grained control by ensuring that filters only influence the vector search results, leaving keyword-based search results unaffected. 
+
+The targeted filter fully overrides the global filter, including any filters used for [security trimming](search-security-trimming-for-azure-search.md) or geospatial search.  In cases where global filters are required, such as security trimming, you must explicitly include these filters in both the top-level filter and in each vector-level filter to ensure security and other constraints are consistently enforced.
+
+To apply targeted vector filters:
+
++ Use the [latest preview Search Documents REST API](/rest/api/searchservice/documents/search-post?view=rest-searchservice-2024-09-01-preview&preserve-view=true#request-body) or an Azure SDK beta package that provides the feature.
+
++ Modify a query request, adding a new `vectorQueries.filterOverride` parameter set to an [OData filter expression](search-query-odata-filter.md).
+
+Here's an example of hybrid query that adds a filter override:
+
+```http
+POST https://{{search-service-name}}.search.windows.net/indexes/{{index-name}}/docs/search?api-version=2024-09-01=preview
+
+{
+    "vectorQueries": [
+        {
+            "vector": [
+                -0.009154141,
+                0.018708462,
+                . . . 
+                -0.02178128,
+                -0.00086512347
+            ],
+            "fields": "DescriptionVector",
+            "kind": "vector",
+            "exhaustive": true,
+            "filterOverride": "Address/City eq 'Seattle'",
+            "k": 10
+        }
+    ],
+    "search": "historic hotel walk to restaurants and shopping",
+    "select": "HotelName, Description, Address/City",
+    "debug": "vector",
+    "top": 10
+}
+```
 
 ## Semantic hybrid search
 

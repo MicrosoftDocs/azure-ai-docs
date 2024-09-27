@@ -347,7 +347,7 @@ items:
         href: vector-search-how-to-index-binary-data.md
     - name: Query vectors
       href: vector-search-how-to-query.md
-    - name: Configure a vectorizer for vector queries
+    - name: Add a vectorizer for text-to-vector queries
       href: vector-search-how-to-configure-vectorizer.md
     - name: Filter on vector queries
       href: vector-search-filters.md
