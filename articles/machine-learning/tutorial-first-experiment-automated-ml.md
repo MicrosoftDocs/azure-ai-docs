@@ -55,7 +55,7 @@ Complete the following steps to create a workspace and continue the tutorial.
    |:---|:--- |
    |  Workspace name | Enter a unique name that identifies your workspace. Names must be unique across the resource group. Use a name that's easy to recall and to differentiate from workspaces created by others. The workspace name is case-insensitive. |
    | Subscription | Select the Azure subscription that you want to use. |
-   | Resource group | Use an existing resource group in your subscription or enter a name to create a new resource group. A resource group holds related resources for an Azure solution. You need *contributor* or *owner* role to use an existing resource group. For more information , see [Manage access to an Azure Machine Learning workspace](how-to-assign-roles.md). |
+   | Resource group | Use an existing resource group in your subscription or enter a name to create a new resource group. A resource group holds related resources for an Azure solution. You need *contributor* or *owner* role to use an existing resource group. For more information, see [Manage access to an Azure Machine Learning workspace](how-to-assign-roles.md). |
    | Region | Select the Azure region closest to your users and the data resources to create your workspace. |
 
 1. Select **Create** to create the workspace.
