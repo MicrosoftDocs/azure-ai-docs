@@ -72,28 +72,29 @@ Azure OpenAI processes text by breaking it down into tokens. Tokens can be words
 
 The total number of tokens processed in a given request depends on the length of your input, output and request parameters. The quantity of tokens being processed will also affect your response latency and throughput for the models.
  
-#### Image tokens (GPT-4 Turbo with Vision and GPT-4o)
+#### Image tokens
 
-The token cost of an input image depends on two main factors: the size of the image and the detail setting (low or high) used for each image. Here's a breakdown of how it works:
+Azure OpenAI's image processing capabilities with GPT-4o, GPT-4o mini, and GPT-4 Turbo with Vision models uses image tokenization to determine the total number of tokens consumed by image inputs. The number of tokens consumed is calculated based on two main factors: the level of image detail (low or high) and the image’s dimensions. Here's how token costs are calculated:
 
-- **Detail: Low resolution mode**
-    - Low detail allows the API to return faster responses and consume fewer input tokens for use cases that don’t require high detail.
-    - These images cost 85 tokens each, regardless of the image size.
-    - **Example: 4096 x 8192 image (low detail)**: The cost is a fixed 85 tokens, because it's a low detail image, and the size doesn't affect the cost in this mode.
-      
-- **Detail: High resolution mode**
-    - High detail lets the API see the image in more detail by cropping it into smaller squares. Each square uses more tokens to generate text.
-    - The token cost is calculated by a series of scaling steps:
-        1. The image is first scaled to fit within a 2048 x 2048 square while maintaining its aspect ratio.
-        1. The image is then scaled down so that the shortest side is 768 pixels long.
-        1. The image is divided into 512-pixel square tiles, and the number of these tiles (rounding up for partial tiles) determines the final cost. Each tile costs 170 tokens.
-        1. An additional 85 tokens are added to the total cost.
-    - **Example: 2048 x 4096 image (high detail)**
-        1. Initially resized to 1024 x 2048 to fit in the 2048 square.
-        1. Further resized to 768 x 1536.
-        1. Requires six 512px tiles to cover.
-        1. Total cost is `170 × 6 + 85 = 1105` tokens.
-
+- **Low resolution mode**
+  - Low detail allows the API to return faster responses for scenarios that don't require high image resolution analysis. The tokens consumed for low detail images are:
+    - **GPT-4o and GPT-4 Turbo with Vision**: Flat rate of **85 tokens per image**, regardless of size.
+    - **GPT-4o mini**: Flat rate of **2833 tokens per image**, regardless of size.
+  - **Example: 4096 x 8192 image (low detail)**: The cost is a fixed 85 tokens, because it's a low detail image, and the size doesn't affect the cost in this mode.
+- **High resolution mode**
+  - Low detail allows the API to analyze images in more detail. Image tokens are calculated based on the image's dimensions. The calculation involves the following steps:
+    1. **Image resizing**: The image is resized to fit within a 2048 x 2048 pixel square. If the shortest side is larger than 768 pixels, the image is further resized so that the shortest side is 768 pixels long. The aspect ratio is preserved during resizing.
+    1. **Tile calculation**: Once resized, the image is divided into 512 x 512 pixel tiles. Any partial tiles are rounded up to a full tile. The number of tiles determines the total token cost.
+    1. **Token calculation**:
+      - **GPT-4o and GPT-4 Turbo with Vision**: Each 512 x 512 pixel tile costs **170 tokens**. An extra **85 base tokens** are added to the total.
+      - **GPT-4o mini**: Each 512 x 512 pixel tile costs **5667 tokens**. An extra **2833 base tokens** are added to the total.
+  - **Example: 2048 x 4096 image (high detail)**:
+    1. The image is initially resized to 1024 x 2048 pixels to fit within the 2048 x 2048 pixel square.
+    2. The image is further resized to 768 x 1536 pixels to ensure the shortest side is a maximum of 768 pixels long.
+    3. The image is divided into 2 x 3 tiles, each 512 x 512 pixels.
+    4. **Final calculation**: 
+      - For GPT-4o and GPT-4 Turbo with Vision, the total token cost is 6 tiles x 170 tokens per tile + 85 base tokens = 1105 tokens.
+      - For GPT-4o mini, the total token cost is 6 tiles x 5667 tokens per tile + 2833 base tokens = 36835 tokens.
 
 ### Resources
 
