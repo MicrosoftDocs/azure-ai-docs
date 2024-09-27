@@ -7,7 +7,7 @@ author: heidisteen
 ms.author: heidist
 ms.service: cognitive-search
 ms.topic: how-to
-ms.date: 08/14/2024
+ms.date: 10/01/2024
 ---
 
 # Reduce vector size through quantization, narrow data types, and storage options
