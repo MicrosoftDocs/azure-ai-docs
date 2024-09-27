@@ -226,7 +226,7 @@ Indexing is slower due to the extra steps, but queries will be faster.
 
 The following example illustrates a vector search configuration that meets the requirements and recommendations of MRL. 
 
-`truncationDimension` is a compression property. It specifies how much to shrink the vector graph in memory in conjunction with a compression method like scalar or binary compression. We recommend 1,024 for t`runcationDimension`. A dimensionality of less than 1,000 degrades the quality of search results when using MRL and binary compression.
+`truncationDimension` is a compression property. It specifies how much to shrink the vector graph in memory in conjunction with a compression method like scalar or binary compression. We recommend 1,024 or higher for `truncationDimension` with binary quantization. A dimensionality of less than 1,000 degrades the quality of search results when using MRL and binary compression.
 
 
 ```json
