@@ -7,7 +7,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: conceptual
-ms.date: 01/31/2024
+ms.date: 09/26/2024
 ms.author: lajanuar
 ---
 
