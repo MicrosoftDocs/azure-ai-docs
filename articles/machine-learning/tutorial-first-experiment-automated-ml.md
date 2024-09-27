@@ -156,30 +156,31 @@ A compute target is a local or cloud-based resource environment used to run your
 > [!NOTE]
 > To use serverless compute, [enable the preview feature](./how-to-use-serverless-compute.md#how-to-use-serverless-compute), select **Serverless**, and skip this procedure.
 
-1. To create your own compute target, in **Select compute type**, select **Compute instance** to configure your compute target.
+1. To create your own compute target, in **Select compute type**, select **Compute cluster** to configure your compute target.
 
-1. Populate the **Configure required settings** form to set up your compute. Select **New**.
+1. Populate the **Virtual Machine** form to set up your compute. Select **New**.
+
+   | Field | Description | Value for tutorial |
+   |:----|:---|:---|
+   | Location | Your region that you'd like to run the machine from |West US 2
+   | Virtual&nbsp;machine&nbsp;tier |Select what priority your experiment should have| Dedicated
+   | Virtual&nbsp;machine&nbsp;type| Select the virtual machine type for your compute.|CPU (Central Processing Unit)
+   | Virtual&nbsp;machine&nbsp;size| Select the virtual machine size for your compute. A list of recommended sizes is provided based on your data and experiment type. |Standard_DS12_V2
+
+1. Select **Next** to go to the **Advanced Settings** form.
 
    | Field | Description | Value for tutorial |
    |:----|:---|:---|
    | Compute name | A unique name that identifies your compute context. | automl-compute |
-   | Virtual&nbsp;machine&nbsp;type | Select the virtual machine type for your compute.| CPU (Central Processing Unit)
-   | Virtual&nbsp;machine&nbsp;size| Select the virtual machine size for your compute. A list of recommended sizes is provided based on your data and experiment type. |Standard_DS12_V2 |
-
-   If you choose to create a compute cluster, you might need to enter values for these fields:
-
-   | Field | Description | Value for tutorial |
-   |:----|:---|:---|
-   | Compute name | A unique name that identifies your compute context. | automl-compute |
-   | Min / Max nodes | To profile data, you must specify one or more nodes. | Min nodes: 1<br>Max nodes: 6
-   | Idle seconds before scale down | Idle time before  the cluster is automatically scaled down to the minimum node count. | 120 (default) |
-   | Advanced settings | Settings to configure and authorize a virtual network for your experiment. | None |
-
-1. Select **Review + Create**, then **Create** to create your compute target.
-
-   Creating a compute can take minutes to complete.
+   | Min / Max nodes| To profile data, you must specify 1 or more nodes. | Min nodes: 1<br>Max nodes: 6 |
+   | Idle seconds before scale down | Idle time before  the cluster is automatically scaled down to the minimum node count.|120 (default) |
+   | Advanced settings | Settings to configure and authorize a virtual network for your experiment.| None |
 
    :::image type="content" source="./media/tutorial-first-experiment-automated-ml/compute-settings.png" alt-text="Settings page":::
+
+1. Select **Create**.
+
+   Creating a compute can take minutes to complete.
 
 1. After creation, select your new compute target from the list. Select **Next**.
 
@@ -193,75 +194,75 @@ A compute target is a local or cloud-based resource environment used to run your
 
 ##  Explore models
 
-Navigate to the **Models + child jobs** tab to see the algorithms (models) tested. By default, the job orders the models by metric score as they complete. For this tutorial, the model that scores the highest based on the chosen **AUC_weighted** metric is at the top of the list.
+Navigate to the **Models + child jobs** tab to see the algorithms (models) tested. By default, the job orders the models by metric score as they complete. For this tutorial, the model that scores the highest based on the chosen **AUCWeighted** metric is at the top of the list.
 
-While you wait for all of the experiment models to finish, select the **Algorithm name** of a completed model to explore its performance details.
+While you wait for all of the experiment models to finish, select the **Algorithm name** of a completed model to explore its performance details. Select the **Overiew** and the **Metrics** tabs for information about the job.
 
-The following navigates through the **Details** and the **Metrics** tabs to view the selected model's properties, metrics, and performance charts. 
+The following animation views the selected model's properties, metrics, and performance charts.
 
 ![Run iteration detail](./media/tutorial-first-experiment-automated-ml/run-detail.gif)
 
 ## View model explanations
 
-While you wait for the models to complete, you can also take a look at model explanations and see which data features (raw or engineered) influenced a particular model's predictions. 
+While you wait for the models to complete, you can also take a look at model explanations and see which data features (raw or engineered) influenced a particular model's predictions.
 
 These model explanations can be generated on demand, and are summarized in the model explanations dashboard  that's part of the **Explanations (preview)** tab.
 
 To generate model explanations:
- 
-1. Select **Job 1** at the top to navigate back to the **Models** screen. 
-1. Select the **Models** tab.
+
+1. In the navigation links at the top of the page, select the job name to go back to the **Models** screen.
+1. Select the **Models + child jobs** tab.
 1. For this tutorial, select the first **MaxAbsScaler, LightGBM** model.
-1. Select the **Explain model** button at the top. On the right, the **Explain model** pane appears. 
-1. Select your compute type and then select the instance or cluster: **automl-compute** that you created previously. This compute  initiates a child job to generate the model explanations.
+1. Select **Explain model**. On the right, the **Explain model** pane appears.
+1. Select your compute type and then select the instance or cluster: **automl-compute** that you created previously. This compute starts a child job to generate the model explanations.
 1. Select **Create**. A green success message appears.
 
    >[!NOTE]
    > The explainability job takes about 2-5 minutes to complete.
 
-1. Select **Explanations (preview)**. This tab populates once the explainability run completes.
+1. Select **Explanations (preview)**. This tab populates after the explainability run completes.
 1. On the left, expand the pane. Under **Features**, select the row that says **raw**.
 1. Select the **Aggregate feature importance** tab. This chart shows which data features influenced the predictions of the selected model.
 
-   In this example, the *duration* appears to have the most influence on the predictions of this model.
-
    :::image type="content" source="media/tutorial-first-experiment-automated-ml/model-explanation-dashboard.png" alt-text="Model explanation dashboard":::
+
+   In this example, the *duration* appears to have the most influence on the predictions of this model.
 
 ## Deploy the best model
 
-The automated machine learning interface allows you to deploy the best model as a web service in a few steps. Deployment is the integration of the model so it can predict on new data and identify potential areas of opportunity. 
+The automated machine learning interface allows you to deploy the best model as a web service in a few steps. Deployment is the integration of the model so it can predict on new data and identify potential areas of opportunity.
 
-For this experiment, deployment to a web service means that the financial institution now has an iterative and scalable web solution for identifying potential fixed term deposit customers. 
+For this experiment, deployment to a web service means that the financial institution now has an iterative and scalable web solution for identifying potential fixed term deposit customers.
 
-Check to see if your experiment run is complete. To do so,  navigate back to the parent job page by selecting **Job 1** at the top of your screen. A **Completed** status is shown on the top left of the screen. 
+Check to see if your experiment run is complete. To do so, navigate back to the parent job page by selecting the job name at the top of your screen. A **Completed** status is shown on the top left of the screen.
 
-Once the experiment run is complete, the **Details** page is populated with a **Best model summary** section. In this experiment context, **VotingEnsemble** is considered the best model, based on the **AUC_weighted** metric.
+After the experiment run is complete, the **Details** page is populated with a **Best model summary** section. In this experiment context, **VotingEnsemble** is considered the best model, based on the **AUCWeighted** metric.
 
-We deploy this model. Deployment takes about 20 minutes to complete. The deployment process entails several steps including registering the model, generating resources, and configuring them for the web service.
+Deploy this model. Deployment takes about 20 minutes to complete. The deployment process entails several steps including registering the model, generating resources, and configuring them for the web service.
 
 1. Select **VotingEnsemble** to open the model-specific page.
 
-1. Select the **Deploy** menu in the top-left and select **Deploy to web service**.
+1. Select **Deploy** > **Web service**.
 
 1. Populate the **Deploy a model** pane as follows:
 
-    Field| Value
-    ----|----
-    Deployment name| my-automl-deploy
-    Deployment description| My first automated machine learning experiment deployment
-    Compute type | Select Azure Container Instance (ACI)
-    Enable authentication| Disable. 
-    Use custom deployments| Disable. Allows for the default driver file (scoring script) and environment file to be autogenerated. 
-    
-    For this example, we use the defaults provided in the *Advanced* menu. 
+   | Field | Value |
+   |:----|:----|
+   | Name | my-automl-deploy |
+   | Description | My first automated machine learning experiment deployment |
+   | Compute type | Select Azure Container Instance |
+   | Enable authentication | Disable. |
+   | Use custom deployment assets | Disable. Allows for the default driver file (scoring script) and environment file to be autogenerated. |
+
+   For this example, use the defaults provided in the **Advanced** menu.
 
 1. Select **Deploy**.
 
-    A green success message appears at the top of the **Job** screen, and in the **Model summary** pane, a status message appears under **Deploy status**. Select **Refresh** periodically to check the deployment status.
-    
-Now you have an operational web service to generate predictions. 
+   A green success message appears at the top of the **Job** screen, and in the **Model summary** pane, a status message appears under **Deploy status**. Select **Refresh** periodically to check the deployment status.
 
-Proceed to the [**Next Steps**](#next-steps) to learn more about how to consume your new web service, and test your predictions using Power BI built in Azure Machine Learning support.
+Now you have an operational web service to generate predictions.
+
+Proceed to the [Related content](#related-content) to learn more about how to consume your new web service, and test your predictions using Power BI built in Azure Machine Learning support.
 
 ## Clean up resources
 
@@ -269,15 +270,15 @@ Deployment files are larger than data and experiment files, so they cost more to
 
 ### Delete the deployment instance
 
-Delete just the deployment instance from Azure Machine Learning at https:\//ml.azure.com/, if you want to keep the resource group and workspace for other tutorials and exploration. 
+Delete just the deployment instance from Azure Machine Learning at https:\//ml.azure.com/, if you want to keep the resource group and workspace for other tutorials and exploration.
 
 1. Go to [Azure Machine Learning](https://ml.azure.com/). Navigate to your workspace and under the **Assets** pane, select **Endpoints**.
 
-1. Select the deployment you want to delete and select **Delete**. 
+1. Select the deployment you want to delete and select **Delete**.
 
 1. Select **Proceed**.
 
-## Clean up resources
+### Delete the resource group
 
 [!INCLUDE [aml-delete-resource-group](includes/aml-delete-resource-group.md)]
 
