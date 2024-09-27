@@ -65,7 +65,7 @@ items:
     - name: Create a project
       href: how-to/create-projects.md
     - name: Create and manage compute
-    href: how-to/create-manage-compute.md
+      href: how-to/create-manage-compute.md
   - name: Connect to services and resources
     items:
     - name: Connections overview
