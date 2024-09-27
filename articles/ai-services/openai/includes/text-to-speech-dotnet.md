@@ -16,8 +16,6 @@ recommendations: false
 - An Azure OpenAI resource with a Whisper model deployed in a [supported region](../concepts/models.md#whisper-models). For more information, see [Create a resource and deploy a model with Azure OpenAI](../how-to/create-resource.md).
 - [The .NET 8.0 SDK](https://dotnet.microsoft.com/en-us/download)
 
-## Set up
-
 ## Create the .NET app
 
 1. Create a .NET app using the `dotnet new` command:
@@ -45,8 +43,8 @@ To make requests to your Azure OpenAI service, you need the service endpoint as 
 - [Microsoft Entra ID](/entra/fundamentals/whatis) is the recommended approach for authenticating to Azure services and is more secure than key-based alternatives. 
 - Access keys allow you to provide a secret key to connect to your resource.
 
-> [!IMPORTANT]
-> Access keys should be used with caution. If your service access key is lost or accidentally exposed in an insecure location, your service may become vulnerable. Anyone who has the access key is able to authorize requests against the Azure OpenAI service.
+    > [!IMPORTANT]
+    > Access keys should be used with caution. If your service access key is lost or accidentally exposed in an insecure location, your service may become vulnerable. Anyone who has the access key is able to authorize requests against the Azure OpenAI service.
 
 ### Get the Azure OpenAI endpoint
 
@@ -81,7 +79,7 @@ The access key value can be found in the **Keys & Endpoint** section when examin
     using Azure.Identity; // Required for Passwordless auth
     
     var endpoint = new Uri(
-            Environment.GetEnvironmentVariable("YOUR_OPENAI_ENDPOINT") ?? throw new ArgumentNullException());
+        Environment.GetEnvironmentVariable("YOUR_OPENAI_ENDPOINT") ?? throw new ArgumentNullException());
     var credentials = new DefaultAzureCredential();
 
     // Use this line for key auth
@@ -111,4 +109,4 @@ The access key value can be found in the **Keys & Endpoint** section when examin
     dotnet run
     ```
 
-  The app generates an audio file at the location you specified for the `speechFilePath` variable. Play the file on your device to hear the generated audio.
+    The app generates an audio file at the location you specified for the `speechFilePath` variable. Play the file on your device to hear the generated audio.
