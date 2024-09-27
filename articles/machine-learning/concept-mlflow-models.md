@@ -11,7 +11,7 @@ ms.subservice: mlops
 ms.date: 09/27/2024
 ms.topic: conceptual
 ms.custom: cliv2, sdkv2, FY25Q1-Linter
-#Customer intent: As a data scientist, I want to understand artifacts and models in MLflow so that I can transition from one to the other.
+#Customer intent: As a data scientist, I want to understand artifacts and models in MLflow so that I can enable a streamlined path to deployment.
 ---
 
 # From artifacts to models in MLflow
@@ -24,7 +24,7 @@ There are fundamental differences between logging MLflow artifacts and files vs.
 
 ### Artifact
 
-An artifact is any file that's generated and captured from an experiment's run or job. An artifact could be a model serialized as a pickle file, the weights of a PyTorch or TensorFlow model, or a text file containing the coefficients of a linear regression. Some artifacts have nothing to do with the model itself but contain configurations to run the model, preprocessing information, or sample data. Artifacts can have various formats.
+An artifact is any file that's generated and captured from an experiment's run or job. An artifact could be a model serialized as a pickle file, the weights of a PyTorch or TensorFlow model, or a text file containing the coefficients of a linear regression. Some artifacts have nothing to do with the model itself but contain run configurations, preprocessing information, or sample data. Artifacts can have various formats.
 
 You can log artifacts as follows:
 
@@ -38,29 +38,29 @@ mlflow.log_artifact(filename)
 
 ### Model
 
-A model in MLflow is also an artifact, but there are stronger assumptions about models. These assumptions provide a clear contract between the saved files and what they mean.
+An MLflow model is an artifact, but you make stronger assumptions about this type of artifact that provide a clear *contract* between the saved files and what they mean.
 
-When you log models as simple artifact files, you need to know what the model builder intended for those files so you know how to load the model for inference. However, you can load MLflow models using the contract specified in the [the MLmodel format](concept-mlflow-models.md#the-mlmodel-format).
-
-Logging MLflow models in Azure Machine Learning has the following advantages:
-
-- You can deploy the models to real-time or batch endpoints without providing a scoring script or an environment.
-- When you deploy models, the deployments automatically generate a swagger file, and you can use the **Test** feature in Azure Machine Learning studio.
-- You can use the models directly as pipeline inputs.
-- You can use the [Responsible AI dashboard](how-to-responsible-ai-dashboard.md) with your models.
-
-You can log models by using the MLflow SDK, as follows:
+You can log MLflow models by using the MLflow SDK as follows:
 
 ```python
 import mlflow
 mlflow.sklearn.log_model(sklearn_estimator, "classifier")
 ```
 
+Logging MLflow models in Azure Machine Learning has the following advantages:
+
+- You can deploy MLflow models to real-time or batch endpoints without providing a scoring script or an environment.
+- When you deploy MLflow models, the deployments automatically generate a swagger file, so you can use the **Test** feature in Azure Machine Learning studio.
+- You can use MLflow models directly as pipeline inputs.
+- You can use the [Responsible AI dashboard](how-to-responsible-ai-dashboard.md) with MLflow models.
+
 ## The MLmodel format
 
-The MLmodel format is a way to create a contract between the artifacts and what they represent. The MLmodel format stores assets in a folder. Among these assets is file named `MLmodel` that's the single source of truth about how the model can be loaded and used.
+When you log models as simple artifact files, you need to know how the model builder intended to use each of the files to load the model for inference. For MLflow models, the *MLmodel format* specifies the contract between the artifacts and what they represent. You load MLflow models by using the contract specified in the MLflow format.
 
-The following screenshot shows a sample MLflow model folder in Azure Machine Learning studio. This model is in a folder called *credit_defaults_model*. There's no specific requirement for naming this folder. The folder contains the *MLmodel* file among other model artifacts.
+The MLmodel format stores assets in a folder, which has no specific naming requirement. Among the assets is a file named *MLmodel* that's the single source of truth for how to load and use the model.
+
+The following example shows an MLflow model folder called *credit_defaults_model* in Azure Machine Learning studio. The folder contains the *MLmodel* file among other model artifacts.
 
 :::image type="content" source="media/concept-mlflow-models/mlflow-mlmodel.png" alt-text="A screenshot showing assets of a sample MLflow model, including the MLmodel file." lightbox="media/concept-mlflow-models/mlflow-mlmodel.png":::
 
@@ -90,9 +90,9 @@ signature:
             }]'
 ```
 
-### Model flavors
+### Model flavor
 
-Considering the large number of machine learning frameworks available to use, MLflow introduced the concept of *flavor* as a way to provide a unique contract that works across all machine learning frameworks. A flavor indicates what to expect for a given model that's created with a specific framework. For instance, TensorFlow has its own flavor, which specifies how to persist and load a TensorFlow model.
+Considering the large number of machine learning frameworks available, MLflow introduced the concept of *flavor* as a way to provide a unique contract for all machine learning frameworks. A flavor indicates what to expect for a given model that's created with a specific framework. For instance, TensorFlow has its own flavor, which specifies how to persist and load a TensorFlow model.
 
 Because each model flavor indicates how to persist and load the model for a given framework, the MLmodel format doesn't enforce a single serialization mechanism that all models must support. Therefore, each flavor can use the methods that provide the best performance or best support according to their best practices, without compromising compatibility with the MLmodel standard.
 
