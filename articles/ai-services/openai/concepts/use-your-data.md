@@ -197,7 +197,6 @@ To keep your Azure AI Search index up-to-date with your latest data, you can sch
 After the data ingestion is set to a cadence other than once, Azure AI Search indexers will be created with a schedule equivalent to `0.5 * the cadence specified`. This means that at the specified cadence, the indexers will pull, reprocess, and index the documents that were added or modified from the storage container. This process ensures that the updated data gets preprocessed and indexed in the final index at the desired cadence automatically. To update your data, you only need to upload the additional documents from the Azure portal. From the portal, select **Storage Account** > **Containers**. Select the name of the original container, then **Upload**. The index will pick up the files automatically after the scheduled refresh period. The intermediate assets created in the Azure AI Search resource won't be cleaned up after ingestion to allow for future runs. These assets are:
    - `{Index Name}-index`
    - `{Index Name}-indexer`
-   - `{Index Name}-indexer-chunk`
    - `{Index Name}-datasource`
    - `{Index Name}-skillset`
 
