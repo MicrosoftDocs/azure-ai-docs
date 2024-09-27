@@ -606,7 +606,7 @@ Represents an execution run on a thread.
 | `max_prompt_tokens` | integer or null | The maximum number of prompt tokens specified to have been used over the course of the run. |
 | `max_completion_tokens` | integer or null | The maximum number of completion tokens specified to have been used over the course of the run. |
 | `usage` | object or null | Usage statistics related to the run. This value will be null if the run is not in a terminal state (for example `in_progress`, `queued`). |
-| `truncation_strategy | object | Controls for how a thread will be truncated prior to the run. | 
+| `truncation_strategy` | object | Controls for how a thread will be truncated prior to the run. | 
 | `response_format` | string | The format that the model must output. Compatible with GPT-4 Turbo and all GPT-3.5 Turbo models since `gpt-3.5-turbo-1106`. |
 | `tool_choice` | string | Controls which (if any) tool is called by the model. `none` means the model won't call any tools and instead generates a message. `auto` is the default value and means the model can pick between generating a message or calling a tool. |
 
@@ -685,6 +685,14 @@ with client.beta.threads.runs.stream(
   stream.until_done()
 ```
 
+## Truncation object
+
+Controls for how a thread will be truncated prior to the run. Use this to control the initial context window of the run.
+
+| Name | Type | Description | Required |
+|---  |---   |---         |
+| `type` | string | The truncation strategy to use for the thread. The default is `auto`. If set to `last_messages`, the thread will be truncated to the n most recent messages in the thread. When set to `auto`, messages in the middle of the thread will be dropped to fit the context length of the model, `max_prompt_tokens`. | Yes |	
+| `last_messages`	| integer | The number of most recent messages from the thread when constructing the context for the run. | No | 
 
 ## Message delta object
 
