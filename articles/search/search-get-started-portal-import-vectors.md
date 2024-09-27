@@ -77,9 +77,9 @@ For more secure connections:
 
 If you're starting with the free service, you're limited to 3 indexes, data sources, skillsets, and indexers. Basic limits you to 15. Make sure you have room for extra items before you begin. This quickstart creates one of each object.
 
-### Check for semantic ranking
+### Check for semantic ranker
 
-The wizard supports semantic ranking, but only on the Basic tier and higher, and only if semantic ranking is already [enabled on your search service](semantic-how-to-enable-disable.md). If you're using a billable tier, check whether semantic ranking is enabled.
+The wizard supports semantic ranking, but only on the Basic tier and higher, and only if semantic ranker is already [enabled on your search service](semantic-how-to-enable-disable.md). If you're using a billable tier, check whether semantic ranker is enabled.
 
 ## Prepare sample data
 

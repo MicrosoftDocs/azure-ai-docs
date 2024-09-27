@@ -227,7 +227,7 @@ sections:
       - question: |
           What are the known limitations of GPT-4 Turbo with Vision?
         answer: |
-          See the [limitations](./concepts/gpt-with-vision.md#limitations) section of the GPT-4 Turbo with Vision concepts guide.
+          See the [limitations](./concepts/gpt-with-vision.md#input-limitations) section of the GPT-4 Turbo with Vision concepts guide.
       - question: |
           I keep getting truncated responses when I use GPT-4 Turbo vision models. Why is this happening?
         answer:

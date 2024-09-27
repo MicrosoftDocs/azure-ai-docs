@@ -40,7 +40,7 @@ sections:
       - question: |
           Can I detect harmful content in custom categories that I define myself?
         answer: |
-          Yes, you can use the Azure AI Content Safety custom categories API to create categories, upload examples, and train the service to detect similar content. Custom categories are available for both text and image moderation.
+          Yes, you can use the Azure AI Content Safety custom categories (standard) API to create categories, upload examples, and train the service to detect similar content. Custom categories are available for both text and image moderation.
       - question: |
           How does billing work for the Azure AI Content Safety service?
         answer: |

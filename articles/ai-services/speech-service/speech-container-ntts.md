@@ -7,10 +7,11 @@ manager: nitinme
 ms.service: azure-ai-speech
 ms.custom: devx-track-extended-java, devx-track-go, devx-track-js, devx-track-python
 ms.topic: how-to
-ms.date: 1/22/2024
+ms.date: 9/17/2024
 ms.author: eur
 zone_pivot_groups: programming-languages-speech-sdk-cli
 keywords: on-premises, Docker, container
+#Customer intent: As a developer, I want to learn how to install and run neural text to speech containers with Docker.
 ---
 
 # Text to speech containers with Docker
@@ -30,7 +31,7 @@ The fully qualified container image name is, `mcr.microsoft.com/azure-cognitive-
 | Version | Path |
 |-----------|------------|
 | Latest | `mcr.microsoft.com/azure-cognitive-services/speechservices/neural-text-to-speech:latest`<br/><br/>The `latest` tag pulls the `en-US` locale and `en-us-arianeural` voice. |
-| 3.1.0 | `mcr.microsoft.com/azure-cognitive-services/speechservices/neural-text-to-speech:3.1.0-amd64-en-us-arianeural` |
+| 3.4.0 | `mcr.microsoft.com/azure-cognitive-services/speechservices/neural-text-to-speech:3.4.0-amd64-en-us-arianeural` |
 
 All tags, except for `latest`, are in the following format and are case sensitive:
 
@@ -45,17 +46,19 @@ The tags are also available [in JSON format](https://mcr.microsoft.com/v2/azure-
   "name": "azure-cognitive-services/speechservices/neural-text-to-speech",
   "tags": [
     <--redacted for brevity-->
-    "3.1.0-amd64-en-us-arianeural",
-    "3.1.0-amd64-en-us-guyneural",
-    "3.1.0-amd64-en-us-jennymultilingualneural",
-    "3.1.0-amd64-en-us-jennyneural",
-    "3.1.0-amd64-en-us-michelleneural",
-    "3.1.0-amd64-es-es-alvaroneural",
-    "3.1.0-amd64-es-es-elviraneural",
-    "3.1.0-amd64-es-mx-candelaneural",
-    "3.1.0-amd64-es-mx-dalianeural",
-    "3.1.0-amd64-es-mx-jorgeneural",
-    <--redacted for brevity-->
+    "3.4.0-amd64-uk-ua-ostapneural",
+    "3.4.0-amd64-zh-cn-xiaochenneural-preview",
+    "3.4.0-amd64-zh-cn-xiaohanneural",
+    "3.4.0-amd64-zh-cn-xiaomoneural",
+    "3.4.0-amd64-zh-cn-xiaoqiuneural-preview",
+    "3.4.0-amd64-zh-cn-xiaoruineural",
+    "3.4.0-amd64-zh-cn-xiaoshuangneural-preview",
+    "3.4.0-amd64-zh-cn-xiaoxiaoneural",
+    "3.4.0-amd64-zh-cn-xiaoyanneural-preview",
+    "3.4.0-amd64-zh-cn-xiaoyouneural",
+    "3.4.0-amd64-zh-cn-yunxineural",
+    "3.4.0-amd64-zh-cn-yunyangneural",
+    "3.4.0-amd64-zh-cn-yunyeneural",
     "latest"
   ]
 }

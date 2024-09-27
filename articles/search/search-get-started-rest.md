@@ -152,7 +152,7 @@ If you're not familiar with the REST client for Visual Studio Code, this section
 
 ## Create an index
 
-Add a second request to your `.rest` file. [Create Index (REST)](/rest/api/searchservice/create-index) creates a search index and sets up the physical data structures on your search service.
+Add a second request to your `.rest` file. [Create Index (REST)](/rest/api/searchservice/indexes/create) creates a search index and sets up the physical data structures on your search service.
 
 1. Paste in the following example to create the `hotels-quickstart` index on your search service.
 
@@ -198,7 +198,7 @@ Add a second request to your `.rest` file. [Create Index (REST)](/rest/api/searc
 
 Within the index schema, the fields collection defines document structure. Each document that you upload must have these fields. Each field must be assigned to an [Entity Data Model (EDM) data type](/rest/api/searchservice/supported-data-types). String fields are used in full text search. If you want numeric data to be searchable, make sure the data type is `Edm.String`. Other data types such as `Edm.Int32` are filterable, sortable, facetable, and retrievable but not full-text searchable.
 
-Attributes on the field determine allowed actions. The REST APIs allow [many actions by default](/rest/api/searchservice/create-index#request-body). For example, all strings are searchable and retrievable by default. For REST APIs, you might only have attributes if you need to turn off a behavior.
+Attributes on the field determine allowed actions. The REST APIs allow [many actions by default](/rest/api/searchservice/indexes/create#request-body). For example, all strings are searchable and retrievable by default. For REST APIs, you might only have attributes if you need to turn off a behavior.
 
 ```json
 {

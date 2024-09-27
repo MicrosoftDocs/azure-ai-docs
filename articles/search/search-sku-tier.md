@@ -8,7 +8,7 @@ author: HeidiSteen
 ms.author: heidist
 ms.service: cognitive-search
 ms.topic: conceptual
-ms.date: 08/22/2024
+ms.date: 09/19/2024
 
 ---
 
@@ -27,13 +27,13 @@ In a few instances, the tier you choose determines the availability of [premium 
 Billing rates are shown in the portal's **Select Pricing Tier** page. You can check the [pricing page](https://azure.microsoft.com/pricing/details/search/) for regional rates and review [Plan and manage costs](search-sku-manage-costs.md) to learn more about the billing model.
 
 > [!NOTE]
-> Search services created after April 3, 2024 have larger partitions and higher vector quotas at almost every tier. For more information, see [service limits](search-limits-quotas-capacity.md#after-april-3-2024).
+> Search services created after April 3, 2024 have larger partitions and higher vector quotas at almost every tier. For more information, see [service limits](search-limits-quotas-capacity.md#service-limits).
 
 ## Tier descriptions
 
 Tiers include **Free**, **Basic**, **Standard**, and **Storage Optimized**. Standard and Storage Optimized are available with several configurations and capacities. The following screenshot from Azure portal shows the available tiers, minus pricing (which you can find in the portal and on the [pricing page](https://azure.microsoft.com/pricing/details/search/)). 
 
-:::image type="content" source="media/search-sku-tier/tiers.png" alt-text="Pricing tier chart" border="true":::
+:::image type="content" source="media/search-sku-tier/tiers.png" lightbox="media/search-sku-tier/tiers.png" alt-text="Pricing tier chart" border="true":::
 
 **Free** creates a [limited search service](search-limits-quotas-capacity.md#subscription-limits) for smaller projects, like running tutorials and code samples. Internally, system resources are shared among multiple subscribers. You can't scale a free service, run significant workloads, and some premium features aren't available. You can only have one free search service per Azure subscription.
 
@@ -53,17 +53,18 @@ You can find out more about the various tiers on the [pricing page](https://azur
 
 ## Region availability by tier
 
-Currently, several regions are at capacity for Basic and Standard (S1) tiers and can't be used for new search services. If you use the Azure portal to create a search service, the portal excludes any region-tier combinations that aren't available.
+The supported [regions list](search-region-support.md) provides the locations where Azure AI Search is offered.
+
+Currently, several regions are at capacity for specific tiers and can't be used for new search services. If you use the Azure portal to create a search service, the portal excludes any region-tier combinations that aren't available.
 
 | Region | Disabled tier (SKU) due to over-capacity |
 |--------|------------------------------------------|
-| Japan East | Basic, Standard (S1) |
-| Qatar Central | Basic, Standard (S1) |
-| North Europe | Basic, Standard (S1) |
+| Central US | S2, S3, S3HD, L1, L2 |
+| Japan East | S2, S3, S3HD, L1, L2 |
+| Qatar Central | All tiers|
+| South Central US | All tiers |
+| US Gov Virginia | All tiers |
 | West Europe | All tiers |
-| Central US | Basic, Standard (S1) |
-| South Central US | Basic, Standard (S1) |
-| West US 2 | Basic, Standard (S1) |
 | West US 3| All tiers |
 
 <a name="premium-features"></a>
@@ -94,7 +95,7 @@ Tiers determine the  maximum storage of the service itself, plus the maximum num
 Tier pricing includes details about per-partition storage that ranges from 15 GB for Basic, up to 2 TB for Storage Optimized (L2) tiers. Other hardware characteristics, such as speed of operations, latency, and transfer rates, aren't published, but tiers that are designed for specific solution architectures are built on hardware that has the features to support those scenarios. For more information about partitions, see [Estimate and manage capacity](search-capacity-planning.md) and [Reliability in Azure AI Search](search-reliability.md).
 
 > [!NOTE]
-> Higher capacity partitions became available in selected regions starting in April 2024. A second wave of higher capacity partitions released in May 2024. If you're using an older search service, consider creating a new search service to benefit from more capacity at the same billing rate. For more information, see [Service limits](search-limits-quotas-capacity.md#service-limits)
+> Higher capacity partitions became available in selected regions starting in April 2024. A second wave of higher capacity partitions released in May 2024. If you're using an older search service, consider creating a new search service to benefit from more capacity at the same billing rate. For more information, see [Service limits](search-limits-quotas-capacity.md#service-limits). To check the age of your search service, see [How to check service creation date](vector-search-index-size.md#how-to-check-service-creation-date).
 
 ## Billing rates
 
