@@ -13,7 +13,11 @@ ms.date: 10/01/2024
 
 # Text split cognitive skill
 
-The **Text Split** skill breaks text into chunks of text. You can specify whether you want to break the text into sentences or into pages of a particular length. This skill is especially useful if there are maximum text length requirements in other skills downstream, such as embedding skills that pass data chunks to embedding models on Azure OpenAI and other model providers. For more information about this scenario, see [Chunk documents for vector search](vector-search-how-to-chunk-documents.md).
+The **Text Split** skill breaks text into chunks of text. You can specify whether you want to break the text into sentences or into pages of a particular length. This skill is useful if there are maximum text length requirements in other skills downstream, such as embedding skills that pass data chunks to embedding models on Azure OpenAI and other model providers. For more information about this scenario, see [Chunk documents for vector search](vector-search-how-to-chunk-documents.md).
+
+Several parameters are version-specific. The skills parameter table notes the API version in which a parameter was introduced so that you know whether a [version upgrade](search-api-migration.md) is required. To use version-specific features such as token chunking in **2024-09-01-preview**, you can use the Azure portal, or target a REST API version, or check an Azure SDK change log to see if it supports the feature.
+
+The Azure portal supports most preview features and can be used to create or update a skillset. For updates to the Text Split skill, edit the skillset JSON definition to add new preview parameters. 
 
 > [!NOTE]
 > This skill isn't bound to Azure AI services. It's non-billable and has no Azure AI services key requirement.
@@ -23,7 +27,7 @@ Microsoft.Skills.Text.SplitSkill
 
 ## Skill Parameters
 
-Parameters are case-sensitive. Some parameters are version-specific. This table notes the API version in which a parameter was introduced so that you know whether a [version upgrade](search-api-migration.md) is required. The Azure portal supports most preview features. For updates to Text Split skill, you can edit the skillset JSON definition to add new preview parameters. Azure SDKs are on a separate release schedule, so you should check their change logs to determine feature availability.
+Parameters are case-sensitive. 
 
 | Parameter name     | Version   | Description |
 |--------------------|-------------|-------------|
