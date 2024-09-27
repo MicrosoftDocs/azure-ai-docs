@@ -194,7 +194,7 @@ To apply targeted vector filters:
 
 + Modify a query request, adding a new `vectorQueries.filterOverride` parameter set to an [OData filter expression](search-query-odata-filter.md).
 
-Here's an example of hybrid query that adds a filter override:
+Here's an example of hybrid query that adds a filter override. The global filter "Rating gt 3" is replaced at run time by the filterOvrride.
 
 ```http
 POST https://{{search-service-name}}.search.windows.net/indexes/{{index-name}}/docs/search?api-version=2024-09-01=preview
@@ -217,7 +217,8 @@ POST https://{{search-service-name}}.search.windows.net/indexes/{{index-name}}/d
         }
     ],
     "search": "historic hotel walk to restaurants and shopping",
-    "select": "HotelName, Description, Address/City",
+    "select": "HotelName, Description, Address/City, Rating",
+    "filter": "Rating gt 3"
     "debug": "vector",
     "top": 10
 }
