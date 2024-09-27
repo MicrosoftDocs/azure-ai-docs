@@ -24,7 +24,7 @@ In MLflow, there are some fundamental differences between logging simple file ar
 
 ### Artifact
 
-An artifact is any file that's generated and captured from an experiment's run or job. An artifact could be a model serialized as a pickle file, the weights of a PyTorch or TensorFlow model, or a text file containing the coefficients of a linear regression. Some artifacts have nothing to do with the model itself but contain run configurations, preprocessing information, or sample data. Artifacts can have various formats.
+An artifact is any file generated and captured from an experiment's run or job. An artifact could be a model serialized as a pickle file, the weights of a PyTorch or TensorFlow model, or a text file containing the coefficients of a linear regression. Some artifacts have nothing to do with the model itself but contain run configurations, preprocessing information, or sample data. Artifacts can have various formats.
 
 The following example logs a file artifact.
 
@@ -38,7 +38,7 @@ mlflow.log_artifact(filename)
 
 ### Model
 
-An MLflow model is an artifact, but you make stronger assumptions about this type of artifact that provide a clear *contract* between the saved files and what they mean.
+An MLflow model is an artifact, but you make stronger assumptions about this type of artifact that provide a clear contract between the saved files and what they mean.
 
 You can log MLflow models by using the MLflow SDK, for example:
 
@@ -56,7 +56,7 @@ Logging MLflow models in Azure Machine Learning has the following advantages:
 
 ## The MLmodel format
 
-For models logged as simple artifact files, you need to know what the model builder intended for each file so you can load the model for inference. You load MLflow models by using the *MLmodel format* to specify the contract between the artifacts and what they represent.
+For models logged as simple artifact files, you need to know what the model builder intended for each file before you can load the model for inference. But for MLflow models, you load the model by using the *MLmodel format* to specify the contract between the artifacts and what they represent.
 
 The MLmodel format stores assets in a folder that has no specific naming requirement. Among the assets is a file named *MLmodel* that's the single source of truth for how to load and use the model.
 
@@ -92,7 +92,7 @@ signature:
 
 ### Model flavors
 
-Considering the large number of machine learning frameworks available, MLflow introduced the concept of *flavor* as a way to provide a unique contract for all machine learning frameworks. A flavor indicates what to expect for a given model that's created with a specific framework. For instance, TensorFlow has its own flavor, which specifies how to persist and load a TensorFlow model.
+Considering the large number of machine learning frameworks available, MLflow introduced the concept of *flavor* as a way to provide a unique contract for all machine learning frameworks. A flavor indicates what to expect for a given model created with a specific framework. For instance, TensorFlow has its own flavor, which specifies how to persist and load a TensorFlow model.
 
 Because each model flavor indicates how to persist and load the model for a given framework, the MLmodel format doesn't enforce a single serialization mechanism that all models must support. Therefore, each flavor can use the methods that provide the best performance or best support according to their best practices, without compromising compatibility with the MLmodel standard.
 
