@@ -189,10 +189,10 @@ To avoid unnecessary costs after you finish using the real-time avatar, it’s i
 - You can proactively close the avatar connection by running the following code:
   
    ```javascript
-   avatarSynthesizer.close();
+   avatarSynthesizer.close()
    ``` 
 
-You can find end-to-end working samples on [GitHub](https://github.com/Azure-Samples/cognitive-services-speech-sdk/tree/master/samples/js/browser/avatar).
+  You can find end-to-end working samples on [GitHub](https://github.com/Azure-Samples/cognitive-services-speech-sdk/tree/master/samples/js/browser/avatar).
 
 ## Edit background
 
