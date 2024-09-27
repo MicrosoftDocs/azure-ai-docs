@@ -331,6 +331,26 @@
       "redirect_document_id": false
     },
     {
+      "source_path_from_root": "/articles/ai-services/computer-vision/deploy-computer-vision-on-premises.md",
+      "redirect_url": "/azure/ai-services/computer-vision/",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/computer-vision/spatial-analysis-web-app.md",
+      "redirect_url": "/azure/ai-services/computer-vision/",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/computer-vision/tutorials/storage-lab-tutorial.md",
+      "redirect_url": "/azure/ai-services/computer-vision/",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/custom-vision-service/iot-visual-alerts-tutorial.md",
+      "redirect_url": "/azure/ai-services/computer-vision/",
+      "redirect_document_id": false
+    },
+    {
       "source_path_from_root": "/articles/ai-services/document-intelligence/concept-document-intelligence-studio.md",
       "redirect_url": "/azure/ai-services/document-intelligence/studio-overview",
       "redirect_document_id": true
