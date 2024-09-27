@@ -5,9 +5,9 @@ description: Learn how to use Azure OpenAI's Python & REST API with Assistants.
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: conceptual
-ms.date: 07/25/2024
-author: mrbullwinkle
-ms.author: mbullwin
+ms.date: 09/17/2024
+author: aahill
+ms.author: aahi
 recommendations: false
 ms.custom: devx-track-python
 ---
@@ -36,11 +36,11 @@ Create an assistant with a model and instructions.
 | description| string or null | Optional | The description of the assistant. The maximum length is 512 characters.|
 | instructions | string or null | Optional | The system instructions that the assistant uses. The maximum length is 256,000 characters.|
 | tools | array | Optional | Defaults to []. A list of tools enabled on the assistant. There can be a maximum of 128 tools per assistant. Tools can currently be of types `code_interpreter`, or `function`. A `function` description can be a maximum of 1,024 characters. |
-| file_ids | array | Optional | Defaults to []. A list of file IDs attached to this assistant. There can be a maximum of 20 files attached to the assistant. Files are ordered by their creation date in ascending order.|
 | metadata | map | Optional | Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long.|
 | temperature | number or null | Optional | Defaults to 1. Determines what sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. |
 | top_p | number or null | Optional | Defaults to 1. An alternative to sampling with temperature, called nucleus sampling, where the model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered. We generally recommend altering this or temperature but not both. |
 | response_format | string or object | Optional | Specifies the format that the model must output. Compatible with GPT-4 Turbo and all GPT-3.5 Turbo models since gpt-3.5-turbo-1106. Setting this parameter to `{ "type": "json_object" }` enables JSON mode, which guarantees the message the model generates is valid JSON. Importantly, when using JSON mode, you must also instruct the model to produce JSON yourself using a system or user message. Without this instruction, the model may generate an unending stream of whitespace until the generation reaches the token limit, resulting in a long-running and seemingly "stuck" request. Additionally, the message content may be partially cut off if you use `finish_reason="length"`, which indicates the generation exceeded `max_tokens` or the conversation exceeded the max context length. |
+| tool_resources | object | Optional | A set of resources that are used by the assistant's tools. The resources are specific to the type of tool. For example, the `code_interpreter` tool requires a list of file IDs, while the `file_search` tool requires a list of vector store IDs. |
 
 ### Returns
 
@@ -55,7 +55,7 @@ from openai import AzureOpenAI
     
 client = AzureOpenAI(
     api_key=os.getenv("AZURE_OPENAI_API_KEY"),  
-    api_version="2024-05-01-preview",
+    api_version="2024-08-01-preview",
     azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT")
     )
 
@@ -69,7 +69,7 @@ assistant = client.beta.assistants.create(
 # [REST](#tab/rest)
 
 ```console
-curl https://YOUR_RESOURCE_NAME.openai.azure.com/openai/assistants?api-version=2024-05-01-preview \
+curl https://YOUR_RESOURCE_NAME.openai.azure.com/openai/assistants?api-version=2024-08-01-preview \
   -H "api-key: $AZURE_OPENAI_API_KEY" \
   -H 'Content-Type: application/json' \
   -d '{
@@ -113,7 +113,7 @@ from openai import AzureOpenAI
     
 client = AzureOpenAI(
     api_key=os.getenv("AZURE_OPENAI_API_KEY"),  
-    api_version="2024-05-01-preview",
+    api_version="2024-08-01-preview",
     azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT")
     )
 
@@ -128,7 +128,7 @@ print(my_assistants.data)
 # [REST](#tab/rest)
 
 ```console
-curl https://YOUR_RESOURCE_NAME.openai.azure.com/openai/assistants?api-version=2024-05-01-preview  \
+curl https://YOUR_RESOURCE_NAME.openai.azure.com/openai/assistants?api-version=2024-08-01-preview  \
   -H "api-key: $AZURE_OPENAI_API_KEY" \
   -H 'Content-Type: application/json' 
 ```
@@ -139,7 +139,7 @@ curl https://YOUR_RESOURCE_NAME.openai.azure.com/openai/assistants?api-version=2
 ## Retrieve assistant
 
 ```http
-GET https://YOUR_RESOURCE_NAME.openai.azure.com/openai/assistants/{assistant_id}?api-version=2024-05-01-preview
+GET https://YOUR_RESOURCE_NAME.openai.azure.com/openai/assistants/{assistant_id}?api-version=2024-08-01-preview
 ```
 
 Retrieves an assistant.
@@ -161,7 +161,7 @@ The [assistant](#assistant-object) object matching the specified ID.
 ```python
 client = AzureOpenAI(
     api_key=os.getenv("AZURE_OPENAI_API_KEY"),  
-    api_version="2024-05-01-preview",
+    api_version="2024-08-01-preview",
     azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT")
     )
 
@@ -172,7 +172,7 @@ print(my_assistant)
 # [REST](#tab/rest)
 
 ```console
-curl https://YOUR_RESOURCE_NAME.openai.azure.com/openai/assistants/{assistant-id}?api-version=2024-05-01-preview  \
+curl https://YOUR_RESOURCE_NAME.openai.azure.com/openai/assistants/{assistant-id}?api-version=2024-08-01-preview  \
   -H "api-key: $AZURE_OPENAI_API_KEY" \
   -H 'Content-Type: application/json' 
 ```
@@ -182,7 +182,7 @@ curl https://YOUR_RESOURCE_NAME.openai.azure.com/openai/assistants/{assistant-id
 ## Modify assistant
 
 ```http
-POST https://YOUR_RESOURCE_NAME.openai.azure.com/openai/assistants/{assistant_id}?api-version=2024-05-01-preview
+POST https://YOUR_RESOURCE_NAME.openai.azure.com/openai/assistants/{assistant_id}?api-version=2024-08-01-preview
 ```
 
 Modifies an assistant.
@@ -202,8 +202,11 @@ Modifies an assistant.
 | `description` | string or null | Optional | The description of the assistant. The maximum length is 512 characters. |
 | `instructions` | string or null | Optional | The system instructions that the assistant uses. The maximum length is 32768 characters. |
 | `tools` | array | Optional | Defaults to []. A list of tools enabled on the assistant. There can be a maximum of 128 tools per assistant. Tools can be of types code_interpreter, or function. A `function` description can be a maximum of 1,024 characters. |
-| `file_ids` | array | Optional | Defaults to []. A list of File IDs attached to this assistant. There can be a maximum of 20 files attached to the assistant. Files are ordered by their creation date in ascending order. If a file was previously attached to the list but does not show up in the list, it will be deleted from the assistant. |
 | `metadata` | map | Optional | Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. |
+| `temperature` | number or null | Optional | Defaults to 1. Determines what sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. |
+| `top_p` | number or null | Optional | Defaults to 1. An alternative to sampling with temperature, called nucleus sampling, where the model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered. We generally recommend altering this or temperature but not both. |
+| `response_format` | string or object | Optional | Specifies the format that the model must output. Compatible with GPT-4 Turbo and all GPT-3.5 Turbo models since gpt-3.5-turbo-1106. Setting this parameter to `{ "type": "json_object" }` enables JSON mode, which guarantees the message the model generates is valid JSON. Importantly, when using JSON mode, you must also instruct the model to produce JSON yourself using a system or user message. Without this instruction, the model may generate an unending stream of whitespace until the generation reaches the token limit, resulting in a long-running and seemingly "stuck" request. Additionally, the message content may be partially cut off if you use `finish_reason="length"`, which indicates the generation exceeded `max_tokens` or the conversation exceeded the max context length. |
+| `tool_resources` | object | Optional | A set of resources that are used by the assistant's tools. The resources are specific to the type of tool. For example, the `code_interpreter` tool requires a list of file IDs, while the `file_search` tool requires a list of vector store IDs. |
 
 **Returns**
 
@@ -216,7 +219,7 @@ The modified [assistant object](#assistant-object).
 ```python
 client = AzureOpenAI(
     api_key=os.getenv("AZURE_OPENAI_API_KEY"),  
-    api_version="2024-05-01-preview",
+    api_version="2024-08-01-preview",
     azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT")
     )
 
@@ -226,7 +229,6 @@ my_updated_assistant = client.beta.assistants.update(
   name="HR Helper",
   tools=[{"type": "code-interpreter"}],
   model="gpt-4", #model = model deployment name
-  file_ids=["assistant-abc123", "assistant-abc456"],
 )
 
 print(my_updated_assistant)
@@ -235,14 +237,13 @@ print(my_updated_assistant)
 # [REST](#tab/rest)
 
 ```console
-curl https://YOUR_RESOURCE_NAME.openai.azure.com/openai/assistants/{assistant-id}?api-version=2024-05-01-preview  \
+curl https://YOUR_RESOURCE_NAME.openai.azure.com/openai/assistants/{assistant-id}?api-version=2024-08-01-preview  \
   -H "api-key: $AZURE_OPENAI_API_KEY" \
   -H 'Content-Type: application/json' \
   -d '{
       "instructions": "You are an HR bot, and you have access to files to answer employee questions about company policies. Always response with info from either of the files.",
       "tools": [{"type": "code-interpreter"}],
-      "model": "gpt-4",
-      "file_ids": ["assistant-abc123", "assistant-abc456"]
+      "model": "gpt-4"
     }'
 ```
 
@@ -251,7 +252,7 @@ curl https://YOUR_RESOURCE_NAME.openai.azure.com/openai/assistants/{assistant-id
 ## Delete assistant
 
 ```http
-DELETE https://YOUR_RESOURCE_NAME.openai.azure.com/openai/assistants/{assistant_id}?api-version=2024-05-01-preview
+DELETE https://YOUR_RESOURCE_NAME.openai.azure.com/openai/assistants/{assistant_id}?api-version=2024-08-01-preview
 ```
 
 Delete an assistant.
@@ -273,7 +274,7 @@ Deletion status.
 ```python
 client = AzureOpenAI(
     api_key=os.getenv("AZURE_OPENAI_API_KEY"),  
-    api_version="2024-05-01-preview",
+    api_version="2024-08-01-preview",
     azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT")
     )
 
@@ -284,7 +285,7 @@ print(response)
 # [REST](#tab/rest)
 
 ```console
-curl https://YOUR_RESOURCE_NAME.openai.azure.com/openai/assistants/{assistant-id}?api-version=2024-05-01-preview  \
+curl https://YOUR_RESOURCE_NAME.openai.azure.com/openai/assistants/{assistant-id}?api-version=2024-08-01-preview  \
   -H "api-key: $AZURE_OPENAI_API_KEY" \
   -H 'Content-Type: application/json' \
   -X DELETE
@@ -309,5 +310,8 @@ Assistants use the [same API for file upload as fine-tuning](/rest/api/azureopen
 | `model` | string | Name of the model deployment name to use.|
 | `instructions` | string or null | The system instructions that the assistant uses. The maximum length is 32768 characters.|
 | `tools` | array | A list of tool enabled on the assistant. There can be a maximum of 128 tools per assistant. Tools can be of types code_interpreter, or function. A `function` description can be a maximum of 1,024 characters.|
-| `file_ids` | array | A list of file IDs attached to this assistant. There can be a maximum of 20 files attached to the assistant. Files are ordered by their creation date in ascending order.|
 | `metadata` | map | Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long.|
+| `temperature` | number or null | Defaults to 1. Determines what sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. |
+| `top_p` | number or null | Defaults to 1. An alternative to sampling with temperature, called nucleus sampling, where the model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered. We generally recommend altering this or temperature but not both. |
+| `response_format` | string or object | Specifies the format that the model must output. Compatible with GPT-4 Turbo and all GPT-3.5 Turbo models since gpt-3.5-turbo-1106. Setting this parameter to `{ "type": "json_object" }` enables JSON mode, which guarantees the message the model generates is valid JSON. Importantly, when using JSON mode, you must also instruct the model to produce JSON yourself using a system or user message. Without this instruction, the model may generate an unending stream of whitespace until the generation reaches the token limit, resulting in a long-running and seemingly "stuck" request. Additionally, the message content may be partially cut off if you use `finish_reason="length"`, which indicates the generation exceeded `max_tokens` or the conversation exceeded the max context length. |
+| `tool_resources` | object | A set of resources that are used by the assistant's tools. The resources are specific to the type of tool. For example, the `code_interpreter` tool requires a list of file IDs, while the `file_search` tool requires a list of vector store IDs. |
