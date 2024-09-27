@@ -197,7 +197,7 @@ This feature is in preview. It's available in `2024-09-01-preview` and in beta S
 #### Requirements
 
 - Text-embedding-3-small, Text-embedding-3-large (text content only).
-- Vector fields of type `Edm.Half` or `Edm.Single`.
+- New vector fields of type `Edm.Half` or `Edm.Single` (you can't add MRL compression to an existing field).
 - [HNSW algorithm](vector-search-ranking.md) (no support for exhaustive KNN in this preview).
 - [Configure scalar or binary quantization](#option-1-configure-quantization). We recommend binary quantization.
 
