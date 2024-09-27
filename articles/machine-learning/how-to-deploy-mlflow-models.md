@@ -7,7 +7,7 @@ ms.service: azure-machine-learning
 ms.subservice: mlops
 author: msakande
 ms.author: mopeakande
-ms.reviewer: fasantia
+ms.reviewer: cacrest
 ms.date: 09/27/2024
 ms.topic: concept-article
 ms.custom: deploy, mlflow, devplatv2, no-code-deployment, cliv2, update-code, FY25Q1-Linter
@@ -19,16 +19,18 @@ ms.devlang: azurecli
 
 [!INCLUDE [cli v2](includes/machine-learning-cli-v2.md)]
 
-In this article, learn about deployment of [MLflow](https://www.mlflow.org) models to Azure Machine Learning for both real-time and batch inference, and about different tools you can use to manage the deployment.
+In this article, learn about deployment of [MLflow](https://www.mlflow.org) models to Azure Machine Learning for both real-time and batch inference, and about different tools you can use to manage the deployments.
 
 ## No-code deployment
 
 When you deploy MLflow models to Azure Machine Learning, unlike with custom model deployment, you don't have to provide a scoring script or an environment. Azure Machine Learning automatically generates the scoring script and environment for you. This functionality is called *no-code deployment*.
 
-To ensure that all the package dependencies in the MLflow model are satisfied, Azure Machine Learning provides an MLflow base image or curated environment that contains:
+For no-code deployment, Azure Machine Learning:
 
-- Packages required to perform inference, including [`mlflow-skinny`](https://github.com/mlflow/mlflow/blob/master/README_SKINNY.rst).
-- A scoring script to perform inference.
+- Ensures that all the package dependencies indicated in the MLflow model are satisfied.
+- Provides an MLflow base image or curated environment that contains the following items:
+  - Packages required for Azure Machine Learning to perform inference, including [`mlflow-skinny`](https://github.com/mlflow/mlflow/blob/master/README_SKINNY.rst).
+  - A scoring script to perform inference.
 
 [!INCLUDE [mlflow-model-package-for-workspace-without-egress](includes/mlflow-model-package-for-workspace-without-egress.md)]
 
@@ -41,7 +43,7 @@ The following example *conda.yaml* file shows conda dependencies specified in an
 :::code language="yaml" source="~/azureml-examples-main/sdk/python/endpoints/online/mlflow/sklearn-diabetes/model/conda.yaml":::
 
 > [!IMPORTANT]
-> MLflow automatically detects packages when it logs a model, and pins the package versions in the model's conda dependencies. This automatic package detection might not reflect your intentions or requirements. You can alternatively [log models with a custom signature, environment or samples](how-to-log-mlflow-models.md#logging-models-with-a-custom-signature-environment-or-samples).
+> MLflow automatically detects packages when it logs a model, and it pins the package versions in the model's conda dependencies. This automatic package detection might not reflect your intentions or requirements. You can alternatively [log models with a custom signature, environment or samples](how-to-log-mlflow-models.md#logging-models-with-a-custom-signature-environment-or-samples).
 
 ### Models with signatures
 
@@ -57,7 +59,7 @@ The following example *MLmodel* file highlights the `signature`.
 > Signatures in MLflow models are recommended because they provide a convenient way to detect data compatibility issues. For more information about how to log models with signatures, see [Logging models with a custom signature, environment or samples](how-to-log-mlflow-models.md#logging-models-with-a-custom-signature-environment-or-samples).
 
 <a name="models-deployed-in-azure-machine-learning-vs-models-deployed-in-the-mlflow-built-in-server"></a>
-## MLflow and Azure Machine Learning deployment targets
+## Deployment in the MLflow built-in server vs. deployment in Azure Machine Learning inferencing server
 
 Model developers can use MLflow built-in deployment tools to test models locally. For instance, you can run a local instance of a model that's registered in the MLflow server registry by using `mlflow models serve` or the MLflow CLI `mlflow models predict`. For more information about MLflow built-in deployment tools, see [Built-in deployment tools](https://www.mlflow.org/docs/latest/models.html#built-in-deployment-tools) in the MLflow documentation.
 
@@ -71,7 +73,7 @@ Azure Machine Learning also supports deploying models to both online and batch e
 
 The following table shows the input types supported by the MLflow built-in server versus Azure Machine Learning online endpoints.
 
-| Input type | MLflow built-in server | Azure Machine Learning online endpoints |
+| Input type | MLflow built-in server | Azure Machine Learning online endpoint |
 |---| :-: | :-: |
 | JSON-serialized pandas DataFrames in the split orientation | **&check;** | **&check;** |
 | JSON-serialized pandas DataFrames in the records orientation | Deprecated |  |
@@ -205,7 +207,7 @@ If you need to change how inference is executed for an MLflow model, you can do 
 
 When you log a model by using either `mlflow.autolog` or `mlflow.<flavor>.log_model`, the flavor used for the model determines how to execute inference and what results to return. MLflow doesn't enforce any specific behavior for how the `predict()` function generates results.
 
-In some cases, you might want to do some preprocessing or postprocessing before and after your model executes. Or, you might want to change what is returned, for example probabilities instead of classes. One solution is to implement machine learning pipelines that move from inputs to outputs directly.
+In some cases, you might want to do some preprocessing or postprocessing before and after your model executes. Or, you might want to change what is returned; for example, probabilities instead of classes. One solution is to implement machine learning pipelines that move from inputs to outputs directly.
 
 For example, [`sklearn.pipeline.Pipeline`](https://scikit-learn.org/stable/modules/generated/sklearn.pipeline.Pipeline.html) or [`pyspark.ml.Pipeline`](https://spark.apache.org/docs/latest/api/python/reference/api/pyspark.ml.Pipeline.html) are popular ways to implement pipelines, and are sometimes recommended for performance reasons. You can also customize how your model does inferencing by [logging custom models](how-to-log-mlflow-models.md?#logging-custom-models).
 
@@ -229,10 +231,10 @@ Each tool has different capabilities, particularly for which type of compute it 
 
 | Scenario | MLflow SDK | Azure Machine Learning CLI/SDK or studio |
 |---| :-: | :-: |
-| Deploy to managed online endpoints<sup>1</sup> | [Progressive rollout of MLflow models to online endpoints](how-to-deploy-mlflow-models-online-progressive.md) | [Deploy MLflow models to online endpoints](how-to-deploy-mlflow-models-online-endpoints.md) |
-| Deploy to managed online endpoints with a scoring script | Not supported<sup>3</sup> | [Customize MLflow model deployments](how-to-deploy-mlflow-models-online-endpoints.md#customize-mlflow-model-deployments) |
-| Deploy to batch endpoints | Not supported<sup>3</sup> | [Use MLflow models in batch deployments](how-to-mlflow-batch.md) |
-| Deploy to batch endpoints with a scoring script | Not supported<sup>3</sup> | [Customize model deployment with scoring script](how-to-mlflow-batch.md#customize-model-deployment-with-scoring-script) |
+| Deploy to managed online endpoints<sup>1</sup> | Supported. See [Progressive rollout of MLflow models to online endpoints](how-to-deploy-mlflow-models-online-progressive.md) | Supported. See [Deploy MLflow models to online endpoints](how-to-deploy-mlflow-models-online-endpoints.md) |
+| Deploy to managed online endpoints with a scoring script | Not supported<sup>3</sup> | Supported. See [Customize MLflow model deployments](how-to-deploy-mlflow-models-online-endpoints.md#customize-mlflow-model-deployments) |
+| Deploy to batch endpoints | Not supported<sup>3</sup> | Supported. See [Use MLflow models in batch deployments](how-to-mlflow-batch.md) |
+| Deploy to batch endpoints with a scoring script | Not supported<sup>3</sup> | Supported. See [Customize model deployment with scoring script](how-to-mlflow-batch.md#customize-model-deployment-with-scoring-script) |
 | Deploy to web services like Azure Container Instances or Azure Kubernetes Service (AKS) | Legacy support<sup>2</sup> | Not supported<sup>2</sup> |
 | Deploy to web services like Container Instances or AKS with a scoring script | Not supported<sup>3</sup> | Legacy support<sup>2</sup> |
 
