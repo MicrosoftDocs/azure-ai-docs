@@ -9,7 +9,7 @@ ms.service: azure-machine-learning
 ms.subservice: mlops
 ms.reviewer: alehughes
 ms.topic: concept-article
-ms.date: 09/23/2024
+ms.date: 09/27/2024
 ms.custom: devplatv2, FY25Q1-Linter
 #Customer intent: As a data scientist, I want to understand Azure Machine Learning monitoring so I can keep my machine learning models fresh and performant.
 ---
@@ -77,7 +77,7 @@ Each machine learning model and its use cases are unique. Therefore, model monit
 
 ## Lookback window size and offset
 
-The *lookback window size* is the duration of time in ISO 8601 format that your monitoring run should look back to collect your production or reference data. The *lookback window offset* is the duration of time to offset the end of your data window from the date of your monitoring run.
+The *lookback window size* is the duration of time in ISO 8601 format for your production or reference data window. The *lookback window offset* is the duration of time to offset the end of your data window from the date of your monitoring run.
 
 For example, your model in production has a monitor set to run on January 31 at 3:15pm UTC. A production data lookback window size of `P7D` or seven days and a data lookback window offset of `P0D` or zero days means the monitor uses production data from January 24 at 3:15pm UTC up until January 31 at 3:15pm UTC, the time your monitor runs.
 
@@ -99,7 +99,7 @@ With Azure Machine Learning model monitoring, you can use smart defaults for you
 
 You have the flexibility to select a lookback window size for both the production data and the reference data.
 
-- By default, the lookback window size for production data is your monitoring frequency. All data collected in the monitoring period before the monitoring job runs is analyzed. You can use the `production_data.data_window.lookback_window_size` property to adjust the rolling data window for production data.
+- By default, the lookback window size for production data is your monitoring frequency. All data collected in the monitoring period before the monitoring job runs is included in the lookback window. You can use the `production_data.data_window.lookback_window_size` property to adjust the rolling data window for production data.
 
 - By default, the lookback window for the reference data is the full dataset. You can use the `reference_data.data_window.lookback_window_size` property to adjust the reference lookback window size.
 
