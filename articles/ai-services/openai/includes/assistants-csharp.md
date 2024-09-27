@@ -56,6 +56,19 @@ ms.date: 9/27/2024
 
 [!INCLUDE [environment-variables](environment-variables.md)]
 
+### Passwordless authentication is recommended
+
+Passwordless authentication is more secure than key-based alternatives and is the recommended approach for connecting to Azure services. If you choose Passwordless authentication, you'll need to complete the following:
+
+1. Add the [`Azure.Identity`](https://www.nuget.org/packages/Azure.Identity) package.
+
+    ```dotnetcli
+    dotnet add package Azure.Identity
+    ```
+
+1. Assign the `Cognitive Services User` role to your user account. This can be done in the Azure portal on your OpenAI resource under **Access control (IAM)** > **Add role assignment**.
+1. Sign-in to Azure using Visual Studio or the Azure CLI via `az login`.
+
 ### Create the assistant
 
 Update the `Program.cs` file with the following code to create an assistant:
@@ -64,7 +77,8 @@ Update the `Program.cs` file with the following code to create an assistant:
 using Azure;
 using Azure.AI.OpenAI.Assistants;
 
-// Assistants is a beta API and subject to change; acknowledge its experimental status by suppressing the matching warning.
+// Assistants is a beta API and subject to change
+// Acknowledge its experimental status by suppressing the matching warning.
 string endpoint = Environment.GetEnvironmentVariable("AZURE_OPENAI_ENDPOINT");
 string key = Environment.GetEnvironmentVariable("AZURE_OPENAI_API_KEY");
 
@@ -138,7 +152,7 @@ AssistantCreationOptions assistantOptions = new()
 
 Assistant assistant = await assistantClient.CreateAssistantAsync(deploymentName, assistantOptions);
 
-// Now we'll create a thread with a user query about the data already associated with the assistant, then run it
+// Create and run a thread with a user query about the data already associated with the assistant
 ThreadCreationOptions threadOptions = new()
 {
     InitialMessages = { "How well did product 113045 sell in February? Graph its trend over time." }
@@ -155,7 +169,9 @@ do
 
 // Finally, we'll print out the full history for the thread that includes the augmented generation
 AsyncCollectionResult<ThreadMessage> messages
-    = assistantClient.GetMessagesAsync(threadRun.ThreadId, new MessageCollectionOptions() { Order = MessageCollectionOrder.Ascending });
+    = assistantClient.GetMessagesAsync(
+        threadRun.ThreadId,
+        new MessageCollectionOptions() { Order = MessageCollectionOrder.Ascending });
 
 await foreach (ThreadMessage message in messages)
 {
