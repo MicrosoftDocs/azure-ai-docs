@@ -20,6 +20,64 @@ Azure Machine Learning checks and validates any machine learning packages that m
 
 Main updates provided with each image version are described in the below sections.
 
+## September 27, 2024
+
+Image Version : 24.09.23
+
+Release Notes:
+
+azureml-dataprep: `5.2.0`
+
+azureml-fsspec: `1.3.1`  
+
+torch: `2.4.1` 
+
+cuda-drivers-fabricmanager-535 
+
+krb5: `0.6.0`
+
+python3-jupyter-core: `4.6.3-3` 
+
+libzmq5: `4.3.2-2ubuntu1` 
+
+tensorflow: `2.17.0`
+
+python3.8,python3.8-minimal: `3.8.10-0`
+
+python3.9,python3.9-minimal: `3.9.5-3`
+
+linux-image-5.15.0-1048-gkeop: `5.15.0-1048.55`
+
+linux-image-5.15.0-1060-intel-iotg: `5.15.0-1060.66`
+
+linux-image-gkeop-5.15: `5.15.0.1053.60`
+
+linux-image-intel: `5.15.0.1065.71`
+
+linux-image-intel-iotg: `5.15.0.1065.71`
+
+libgtk-3-0: `3.24.20-0`
+
+libgtk2.0-0: `2.24.32-4`
+
+bind9: `1:9.18.28-0`
+
+pypy-zipp, python-zipp, python3-zipp: `1.0.0-1`
+
+openjdk-11-jdk, openjdk-11-jdk-headless, openjdk-11-jre , openjdk-11-jre-headless, openjdk-11-jre-zero: `11.0.24+8-1ubuntu3`
+
+mysql-server-8.0: `8.0.39-0`
+
+libssl1.1: `1.1.1f-1ubuntu2.23`
+
+snapd: `2.63+20.04ubuntu0.1`
+
+curl, libcurl3-gnutls, libcurl3-nss,libcurl4: `7.68.0-1ubuntu2.23`
+
+wpasupplicant: `2:2.9-1ubuntu4.4`
+
+krb5-admin-server, krb5-kdc, krb5-kdc-ldap, krb5-otp, krb5-pkinit, krb5-user, libgssapi-krb5-2, libgssrpc4, libk5crypto3, libkadm5clnt-mit11, libkadm5srv-mit11, libkdb5-9, libkrad0 libkrb5-3,  libkrb5support0: `1.17-6ubuntu4.6`
+
 ## August 2, 2024
 
 Image version: 24.07.01
