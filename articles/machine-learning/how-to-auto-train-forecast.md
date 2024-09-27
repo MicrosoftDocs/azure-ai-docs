@@ -1318,6 +1318,9 @@ For a more detailed example, see the [demand forecasting with many models notebo
 > [!NOTE]
 > The many models training and inference components conditionally partition your data according to the `partition_column_names` setting so that each partition is in its own file. This process can be very slow or fail when data is very large. In this case, we recommend partitioning your data manually before running many models training or inference.  
 
+> [!NOTE]
+> The default parallelism limit for a many models run within a subscription is set to 320. If your workload requires a higher limit, please don't hesitate to reach out to us.
+
 <a name="forecasting-at-scale-hierarchical-time-series"></a>
 
 ## Forecast at scale: hierarchical time series
@@ -1593,6 +1596,9 @@ For a more detailed example, see the [demand forecasting with hierarchical time 
 
 > [!NOTE]
 > The HTS training and inference components conditionally partition your data according to the `hierarchy_column_names` setting so that each partition is in its own file. This process can be very slow or fail when data is very large. In this case, we recommend partitioning your data manually before running HTS training or inference.
+
+> [!NOTE]
+> The default parallelism limit for a hierarchical time series run within a subscription is set to 320. If your workload requires a higher limit, please don't hesitate to reach out to us.
 
 ## Forecast at scale: distributed DNN training
 
