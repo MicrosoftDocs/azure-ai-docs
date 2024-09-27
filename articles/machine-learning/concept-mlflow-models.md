@@ -11,22 +11,22 @@ ms.subservice: mlops
 ms.date: 09/27/2024
 ms.topic: conceptual
 ms.custom: cliv2, sdkv2, FY25Q1-Linter
-#Customer intent: As a data scientist, I want to understand artifacts and models in MLflow so that I can enable a streamlined path to deployment.
+#Customer intent: As a data scientist, I want to understand MLflow artifacts and models so I can use MLflow models to enable streamlined deployment workflows.
 ---
 
-# From artifacts to models in MLflow
+# Artifacts and models in MLflow
 
-This article explains the differences between an MLflow *artifact* and an MLflow *model*, and how to transition from one to the other. The article also explains how Azure Machine Learning uses the concept of an MLflow model to enable streamlined deployment workflows.
+This article explains MLflow artifacts and MLflow models, and how MLflow models differ from other artifacts. The article also explains how Azure Machine Learning uses the characteristics of an MLflow model to enable streamlined deployment workflows.
 
 ## Artifacts and models
 
-There are fundamental differences between logging MLflow artifacts and files vs. logging MLflow models.
+In MLflow, there are some fundamental differences between logging simple file artifacts and logging MLflow models.
 
 ### Artifact
 
 An artifact is any file that's generated and captured from an experiment's run or job. An artifact could be a model serialized as a pickle file, the weights of a PyTorch or TensorFlow model, or a text file containing the coefficients of a linear regression. Some artifacts have nothing to do with the model itself but contain run configurations, preprocessing information, or sample data. Artifacts can have various formats.
 
-You can log artifacts as follows:
+The following example logs a file artifact.
 
 ```python
 filename = 'model.pkl'
@@ -40,7 +40,7 @@ mlflow.log_artifact(filename)
 
 An MLflow model is an artifact, but you make stronger assumptions about this type of artifact that provide a clear *contract* between the saved files and what they mean.
 
-You can log MLflow models by using the MLflow SDK as follows:
+You can log MLflow models by using the MLflow SDK, for example:
 
 ```python
 import mlflow
@@ -56,11 +56,11 @@ Logging MLflow models in Azure Machine Learning has the following advantages:
 
 ## The MLmodel format
 
-When you log models as simple artifact files, you need to know how the model builder intended to use each of the files to load the model for inference. For MLflow models, the *MLmodel format* specifies the contract between the artifacts and what they represent. You load MLflow models by using the contract specified in the MLflow format.
+For models logged as simple artifact files, you need to know what the model builder intended for each file so you can load the model for inference. You load MLflow models by using the *MLmodel format* to specify the contract between the artifacts and what they represent.
 
 The MLmodel format stores assets in a folder that has no specific naming requirement. Among the assets is a file named *MLmodel* that's the single source of truth for how to load and use the model.
 
-The following example shows an MLflow model folder called *credit_defaults_model* in Azure Machine Learning studio. The folder contains the *MLmodel* file among other model artifacts.
+The following example shows an MLflow model folder called *credit_defaults_model* in Azure Machine Learning studio. The folder contains the *MLmodel* file and other model artifacts.
 
 :::image type="content" source="media/concept-mlflow-models/mlflow-mlmodel.png" alt-text="A screenshot showing assets of a sample MLflow model, including the MLmodel file." lightbox="media/concept-mlflow-models/mlflow-mlmodel.png":::
 
@@ -90,7 +90,7 @@ signature:
             }]'
 ```
 
-### Model flavor
+### Model flavors
 
 Considering the large number of machine learning frameworks available, MLflow introduced the concept of *flavor* as a way to provide a unique contract for all machine learning frameworks. A flavor indicates what to expect for a given model that's created with a specific framework. For instance, TensorFlow has its own flavor, which specifies how to persist and load a TensorFlow model.
 
@@ -112,11 +112,9 @@ flavors:
 
 ### Model signature
 
-An MLflow [model signature](https://www.mlflow.org/docs/latest/models.html#model-signature) is an important part of the model specification, because it serves as a data contract between the model and the server running the model. A model signature is also important for parsing and enforcing a model's input types at deployment time.
+An MLflow [model signature](https://www.mlflow.org/docs/latest/models.html#model-signature) is an important part of the model specification, because it serves as a data contract between the model and the server running the model. A model signature is also important for parsing and enforcing a model's input types at deployment time. If a signature is available, MLflow enforces the input types when data is submitted to your model. For more information, see [MLflow signature enforcement](https://www.mlflow.org/docs/latest/models.html#signature-enforcement).
 
-If a signature is available, MLflow enforces the input types when data is submitted to your model. For more information, see [MLflow signature enforcement](https://www.mlflow.org/docs/latest/models.html#signature-enforcement).
-
-Signatures are indicated when models get logged, and are persisted in the `signature` section of the *MLmodel* file. The **Autolog** feature in MLflow automatically makes a best effort to infer signatures. However, you can log models manually if the inferred signatures aren't the ones you need. For more information, see [How to log models with signatures](https://www.mlflow.org/docs/latest/models.html#how-to-log-models-with-signatures). 
+Signatures are indicated at the time that models are logged, and are persisted in the `signature` section of the *MLmodel* file. The **Autolog** feature in MLflow automatically makes a best effort to infer signatures. However, you can log models manually if the inferred signatures aren't the ones you need. For more information, see [How to log models with signatures](https://www.mlflow.org/docs/latest/models.html#how-to-log-models-with-signatures). 
 
 There are two types of signatures:
 
@@ -144,7 +142,7 @@ signature:
 
 Requirements for the model to run are specified in the *conda.yaml* file. MLflow can automatically detect dependencies, or you can manually indicate them by calling the `mlflow.<flavor>.log_model()` method. Calling the method can be useful if the libraries that MLflow included in your environment aren't the ones you intended to use.
 
-The following *conda.yaml* example shows an environment used for a model that's created with the `fastai` framework:
+The following *conda.yaml* example shows an environment for a model created with the `fastai` framework:
 
 ```yaml
 channels:
@@ -165,29 +163,31 @@ dependencies:
 name: mlflow-env
 ```
 
-While an MLflow environment operates at the level of the model, an Azure Machine Learning environment operates at the workspace level for registered environments or the jobs/deployments level for anonymous environments. When you deploy MLflow models, Azure Machine Learning builds the model's environment and uses it for deployment. You can use the [Azure Machine Learning CLI](concept-v2.md) to override this behavior and deploy MLflow models using a specific Azure Machine Learning environment.
+An MLflow environment operates at the level of the model, but an Azure Machine Learning environment operates at the workspace level for registered environments or the jobs/deployments level for anonymous environments. When you deploy MLflow models, Azure Machine Learning builds the model environment and uses it for deployment. You can use the [Azure Machine Learning CLI](concept-v2.md) to override this behavior and deploy MLflow models to a specific Azure Machine Learning environment.
 
 ### Predict function
 
-All MLflow models contain a `predict` function that is called when the model is deployed by using a no-code deployment. What the `predict` function returns, such as classes, probabilities, or a forecast, depends on the framework or flavor used for training. The documentation of each flavor describes what it returns.
+All MLflow models contain a `predict` function, which is called when the model is deployed by using a no-code deployment. What the `predict` function returns, for example classes, probabilities, or a forecast, depends on the framework or flavor used for training. The documentation of each flavor describes what it returns.
 
-In same cases, you might need to customize the `predict` function to change the way inference is executed. In such cases, you need to [log models with a different behavior in the predict method](how-to-log-mlflow-models.md#logging-models-with-a-different-behavior-in-the-predict-method) or [log a custom model's flavor](how-to-log-mlflow-models.md#logging-custom-models).
+You can customize the `predict` function to change the way inference is executed. You can either [log models with a different behavior](how-to-log-mlflow-models.md#logging-models-with-a-different-behavior-in-the-predict-method), or [log a custom model flavor](how-to-log-mlflow-models.md#logging-custom-models).
 
 ## Workflows for loading MLflow models
 
 You can load MLflow models from the following locations:
 
 - Directly from the run where the models were logged
-- From the file system where they models are saved
+- From the file system where the models are saved
 - From the model registry where the models are registered
 
-MLflow provides a consistent way to load these models regardless of the location.
+MLflow provides a consistent way to load these models regardless of location.
 
 There are two workflows for loading models:
 
-- **Load back the same object and types that were logged.** You can load models using the MLflow SDK and obtain an instance of the model with types belonging to the training library. For example, an ONNX model returns a `ModelProto`, while a decision tree model trained with `scikit-learn` returns a `DecisionTreeClassifier` object. Use `mlflow.<flavor>.load_model()` to load back the same model object and types that were logged.
+- **Load back the same object and types that were logged.** You can load models using the MLflow SDK and obtain an instance of the model with types belonging to the training library. For example, an Open Neural Network Exchange (ONNX) model returns a `ModelProto`, while a decision tree model trained with `scikit-learn` returns a `DecisionTreeClassifier` object. Use `mlflow.<flavor>.load_model()` to load back the same model object and types that were logged.
 
-- **Load back a model for running inference.** You can load models using the MLflow SDK and get a wrapper that has a guaranteed `predict` function. It doesn't matter which flavor you use, because every MLflow model has a `predict` function. MLflow guarantees that you can call this function by using arguments of type `pandas.DataFrame`, `numpy.ndarray`, or `dict[string, numpyndarray]`, depending on the model signature. MLflow handles the type conversion to the input type that the model expects. Use `mlflow.pyfunc.load_model()` to load back a model for running inference.
+- **Load back a model for running inference.** You can load models using the MLflow SDK and get a wrapper that has a guaranteed `predict` function. It doesn't matter which flavor you use, because every MLflow model has a `predict` function.
+
+  MLflow guarantees that you can call this function by using arguments of type `pandas.DataFrame`, `numpy.ndarray`, or `dict[string, numpyndarray]`, depending on the model signature. MLflow handles the type conversion to the input type that the model expects. Use `mlflow.pyfunc.load_model()` to load back a model for running inference.
 
 ## Related content
 
