@@ -18,20 +18,6 @@ recommendations: false
 
 ## Set up
 
-### Retrieve key and endpoint
-
-To successfully make a call against Azure OpenAI, you need an **endpoint** and a **key**.
-
-|Variable name | Value |
-|--------------------------|-------------|
-| `AZURE_OPENAI_ENDPOINT`               | This value can be found in the **Keys & Endpoint** section when examining your resource from the Azure portal. Alternatively, you can find the value in the **Azure OpenAI Studio** > **Playground** > **Code View**. An example endpoint is: `https://aoai-docs.openai.azure.com/`.|
-| `AZURE_OPENAI_API_KEY` | This value can be found in the **Keys & Endpoint** section when examining your resource from the Azure portal. You can use either `KEY1` or `KEY2`.|
-
-Go to your resource in the Azure portal. The **Endpoint and Keys** can be found in the **Resource Management** section. Copy your endpoint and access key as you need both for authenticating your API calls. You can use either `KEY1` or `KEY2`. Always having two keys allows you to securely rotate and regenerate keys without causing a service disruption.
-
-:::image type="content" source="../media/quickstarts/endpoint.png" alt-text="Screenshot of the overview UI for an Azure OpenAI resource in the Azure portal with the endpoint & access keys location highlighted." lightbox="../media/quickstarts/endpoint.png":::
-
-
 ## Create the .NET app
 
 1. Create a .NET app using the `dotnet new` command:
@@ -46,17 +32,31 @@ Go to your resource in the Azure portal. The **Endpoint and Keys** can be found 
     cd OpenAISpeech
     ```
 
-## Install the client library
+1. Install the [`Azure.OpenAI`](https://www.nuget.org/packages/Azure.AI.OpenAI/) client library:
+    
+    ```dotnetcli
+    dotnet add package Azure.AI.OpenAI
+    ```
 
-Install the [`Azure.OpenAI`](https://www.nuget.org/packages/Azure.AI.OpenAI/) client library:
+## Authenticate and connect to Azure OpenAI
 
-```dotnetcli
-dotnet add package Azure.AI.OpenAI
-```
+To make requests to your Azure OpenAI service, you need the service endpoint as well as authentication credentials via one of the following options:
 
-## Passwordless authentication is recommended
+- [Microsoft Entra ID](/entra/fundamentals/whatis) is the recommended approach for authenticating to Azure services and is more secure than key-based alternatives. 
+- Access keys allow you to provide a secret key to connect to your resource.
 
-Passwordless authentication is more secure than key-based alternatives and is the recommended approach for connecting to Azure services. If you choose to use Passwordless authentication, you'll need to complete the following:
+> [!IMPORTANT]
+> Access keys should be used with caution. If your service access key is lost or accidentally exposed in an insecure location, your service may become vulnerable. Anyone who has the access key is able to authorize requests against the Azure OpenAI service.
+
+### Get the Azure OpenAI endpoint
+
+The service endpoint can be found in the **Keys & Endpoint** section when examining your resource from the Azure portal. Alternatively, you can find the value in the **Azure OpenAI Studio** > **Playground** > **Code View**. An example endpoint is: `https://aoai-docs.openai.azure.com/`.
+
+:::image type="content" source="../media/quickstarts/endpoint.png" alt-text="Screenshot of the overview UI for an Azure OpenAI resource in the Azure portal with the endpoint & access keys location highlighted." lightbox="../media/quickstarts/endpoint.png":::
+
+### Authenticate using Microsoft Entra ID
+
+If you choose to use Microsoft Entra ID authentication, you'll need to complete the following:
 
 1. Add the [`Azure.Identity`](https://www.nuget.org/packages/Azure.Identity) package.
 
@@ -67,6 +67,10 @@ Passwordless authentication is more secure than key-based alternatives and is th
 1. Assign the `Cognitive Services User` role to your user account. This can be done in the Azure portal on your OpenAI resource under **Access control (IAM)** > **Add role assignment**.
 1. Sign-in to Azure using Visual Studio or the Azure CLI via `az login`.
 
+### Authenticate using keys
+
+The access key value can be found in the **Keys & Endpoint** section when examining your resource from the Azure portal. You can use either `KEY1` or `KEY2`. Always having two keys allows you to securely rotate and regenerate keys without causing a service disruption.
+
 ## Update the app code
 
 1. Replace the contents of `program.cs` with the following code and update the placeholder values with your own.
@@ -76,9 +80,14 @@ Passwordless authentication is more secure than key-based alternatives and is th
     using Azure.AI.OpenAI;
     using Azure.Identity; // Required for Passwordless auth
     
-    var endpoint = new Uri("YOUR_OPENAI_ENDPOINT");
-    var credentials = new AzureKeyCredential("YOUR_OPENAI_KEY");
-    // var credentials = new DefaultAzureCredential(); // Use this line for Passwordless auth
+    var endpoint = new Uri(
+            Environment.GetEnvironmentVariable("YOUR_OPENAI_ENDPOINT") ?? throw new ArgumentNullException());
+    var credentials = new DefaultAzureCredential();
+
+    // Use this line for key auth
+    // var credentials = new AzureKeyCredential(
+    //    Environment.GetEnvironmentVariable("YOUR_OPENAI_KEY") ?? throw new ArgumentNullException());
+
     var deploymentName = "tts"; // Default deployment name, update with your own if necessary
     var speechFilePath = "YOUR_AUDIO_FILE_PATH";
     
