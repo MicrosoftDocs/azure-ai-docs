@@ -24,13 +24,13 @@ ms.date: 9/27/2024
 
 ### Create a new .NET Core application
 
-1. In a console window (such as cmd, PowerShell, or Bash), use the `dotnet new` command to create a new console app with the name `azure-openai-quickstart`. This command creates a simple "Hello World" project with a single C# source file: *Program.cs*.
+1. In a console window (such as cmd, PowerShell, or Bash), use the [`dotnet new`](/dotnet/core/tools/dotnet-new) command to create a new console app with the name `azure-openai-quickstart`:
     
     ```dotnetcli
     dotnet new console -n azure-openai-assistants-quickstart
     ```
 
-2. Change your directory to the newly created app folder. You can build the application with:
+2. Change into the directory of the newly created app folder and build the app with the [`dotnet build`](/dotnet/core/tools/dotnet-build) command:
 
     ```dotnetcli
     dotnet build
@@ -46,10 +46,10 @@ ms.date: 9/27/2024
     ...
     ```
 
-3. Install the OpenAI .NET client library with:
+3. Install the [OpenAI .NET client library](https://www.nuget.org/packages/Azure.AI.OpenAI/) with the [dotnet add package](/dotnet/core/tools/dotnet-add-package) command:
 
     ```console
-    dotnet add package Azure.AI.OpenAI.Assistants --prerelease
+    dotnet add package Azure.AI.OpenAI --prerelease
     ```
 
 [!INCLUDE [get-key-endpoint](get-key-endpoint.md)]
@@ -58,7 +58,7 @@ ms.date: 9/27/2024
 
 ### Create the assistant
 
-Create and run an assistant with the following:
+Update the `Program.cs` file with the following code to create an assistant:
 
 ```csharp
 using Azure;
@@ -196,6 +196,27 @@ await foreach (ThreadMessage message in messages)
     }
     Console.WriteLine();
 }
+```
+
+Run the app using the [`dotnet run`](/dotnet/core/tools/dotnet-run) command:
+
+```csharp
+dotnet run
+```
+
+The console output should resemble the following:
+
+```text
+[USER]: How well did product 113045 sell in February? Graph its trend over time.
+
+[ASSISTANT]: Product 113045 sold 22 units in February. Let's visualize its sales trend over the given months (January through March).
+
+I'll create a graph to depict this trend.
+
+[ASSISTANT]: <image: 553380b7-fdb6-49cf-9df6-e8e6700d69f4.png>
+The graph above visualizes the sales trend for product 113045 from January to March. As seen, the sales peaked in February with 22 units sold, and fluctuated over the period from January (12 units) to March (16 units).
+
+If you need further analysis or more details, feel free to ask!
 ```
 
 ## Clean up resources
