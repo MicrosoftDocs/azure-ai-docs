@@ -37,7 +37,7 @@ Go to your resource in the Azure portal. The **Endpoint and Keys** can be found 
 1. Create a .NET app using the `dotnet new` command:
 
     ```dotnetcli
-    dotnet new console -n OpenAISpeech
+    dotnet new console -n TextToSpeech
     ```
 
 1. Change into the directory of the new app:
