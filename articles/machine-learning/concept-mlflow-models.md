@@ -58,7 +58,7 @@ Logging MLflow models in Azure Machine Learning has the following advantages:
 
 When you log models as simple artifact files, you need to know how the model builder intended to use each of the files to load the model for inference. For MLflow models, the *MLmodel format* specifies the contract between the artifacts and what they represent. You load MLflow models by using the contract specified in the MLflow format.
 
-The MLmodel format stores assets in a folder, which has no specific naming requirement. Among the assets is a file named *MLmodel* that's the single source of truth for how to load and use the model.
+The MLmodel format stores assets in a folder that has no specific naming requirement. Among the assets is a file named *MLmodel* that's the single source of truth for how to load and use the model.
 
 The following example shows an MLflow model folder called *credit_defaults_model* in Azure Machine Learning studio. The folder contains the *MLmodel* file among other model artifacts.
 
@@ -142,7 +142,7 @@ signature:
 
 ### Model environment
 
-Requirements for the model to run are specified in the *conda.yaml* file. MLflow can automatically detect dependencies, or you can manually indicate them by calling the `mlflow.<flavor>.log_model()` method. Calling the method can be useful if the libraries MLflow included in your environment aren't the ones you intended to use.
+Requirements for the model to run are specified in the *conda.yaml* file. MLflow can automatically detect dependencies, or you can manually indicate them by calling the `mlflow.<flavor>.log_model()` method. Calling the method can be useful if the libraries that MLflow included in your environment aren't the ones you intended to use.
 
 The following *conda.yaml* example shows an environment used for a model that's created with the `fastai` framework:
 
@@ -165,11 +165,11 @@ dependencies:
 name: mlflow-env
 ```
 
-While an MLflow environment operates at the level of the model, an Azure Machine Learning environment operates at the level of the workspace, for registered environments, or jobs/deployments, for anonymous environments. When you deploy MLflow models in Azure Machine Learning, the model's environment is built and used for deployment. You can use the [Azure Machine Learning CLI v2](concept-v2.md) to override this behavior and deploy MLflow models using a specific Azure Machine Learning environment.
+While an MLflow environment operates at the level of the model, an Azure Machine Learning environment operates at the workspace level for registered environments or the jobs/deployments level for anonymous environments. When you deploy MLflow models, Azure Machine Learning builds the model's environment and uses it for deployment. You can use the [Azure Machine Learning CLI](concept-v2.md) to override this behavior and deploy MLflow models using a specific Azure Machine Learning environment.
 
 ### Predict function
 
-All MLflow models contain a `predict` function. This function is called when a model is deployed using a no-code-deployment experience. What the `predict` function returns, such as classes, probabilities, or a forecast, depends on the framework or flavor used for training. The documentation of each flavor describes what it returns.
+All MLflow models contain a `predict` function that is called when the model is deployed by using a no-code deployment. What the `predict` function returns, such as classes, probabilities, or a forecast, depends on the framework or flavor used for training. The documentation of each flavor describes what it returns.
 
 In same cases, you might need to customize the `predict` function to change the way inference is executed. In such cases, you need to [log models with a different behavior in the predict method](how-to-log-mlflow-models.md#logging-models-with-a-different-behavior-in-the-predict-method) or [log a custom model's flavor](how-to-log-mlflow-models.md#logging-custom-models).
 
@@ -187,7 +187,7 @@ There are two workflows for loading models:
 
 - **Load back the same object and types that were logged.** You can load models using the MLflow SDK and obtain an instance of the model with types belonging to the training library. For example, an ONNX model returns a `ModelProto`, while a decision tree model trained with `scikit-learn` returns a `DecisionTreeClassifier` object. Use `mlflow.<flavor>.load_model()` to load back the same model object and types that were logged.
 
-- **Load back a model for running inference.** You can load models using the MLflow SDK and get a wrapper with a guaranteed `predict` function. It doesn't matter which flavor you use, because every MLflow model has a `predict` function. MLflow guarantees that you can call this function by using arguments of type `pandas.DataFrame`, `numpy.ndarray`, or `dict[string, numpyndarray]`, depending on the model signature. MLflow handles the type conversion to the input type that the model expects. Use `mlflow.pyfunc.load_model()` to load back a model for running inference.
+- **Load back a model for running inference.** You can load models using the MLflow SDK and get a wrapper that has a guaranteed `predict` function. It doesn't matter which flavor you use, because every MLflow model has a `predict` function. MLflow guarantees that you can call this function by using arguments of type `pandas.DataFrame`, `numpy.ndarray`, or `dict[string, numpyndarray]`, depending on the model signature. MLflow handles the type conversion to the input type that the model expects. Use `mlflow.pyfunc.load_model()` to load back a model for running inference.
 
 ## Related content
 
