@@ -190,7 +190,7 @@ It's particularly effective for embeddings with dimensions greater than 1024. Fo
 
 ### Use MRL compression and truncated dimensions (preview)
 
-MRL multilevel compression saves on vector storage and increases query response times for vector queries based on text embeddings. In Azure AI Search, MRL support is an extension of quantization. Using binary quantization with MRL provides the maximum vector index size reduction. To achieve maximum storage reduction, use binary quantization with MRL, and `stored` set to false. 
+MRL multilevel compression saves on vector storage and improves query response times for vector queries based on text embeddings. In Azure AI Search, MRL support is only offered together with another method of quantization. Using binary quantization with MRL provides the maximum vector index size reduction. To achieve maximum storage reduction, use binary quantization with MRL, and `stored` set to false. 
 
 This feature is in preview. It's available in `2024-09-01-preview` and in beta SDK packages targeting that preview API version.
 
