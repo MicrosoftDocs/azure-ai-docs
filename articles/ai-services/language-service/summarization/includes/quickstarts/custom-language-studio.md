@@ -32,12 +32,6 @@ If you need sample data, we've provided some for [text summarization](https://gi
 
 [!INCLUDE [Uploading sample data for custom Summarization](../../../includes/custom/language-studio/upload-data-to-storage.md)]
 
-## Create a custom summarization project
-
-Once your resource and storage account are configured, create a new custom Summarization project. A project is a work area for building your custom ML models based on your data. Your project can only be accessed by you and others who have access to the Language resource being used.
-
-[!INCLUDE [Create custom Summarization project](../../../includes/custom/language-studio/create-project.md)]
-
 ## Train your model
 
 After you create a project, you go ahead and start training your model.
