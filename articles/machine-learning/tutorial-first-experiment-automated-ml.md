@@ -151,10 +151,10 @@ After you load and configure your data, you can set up your experiment. This set
 1. Select **Next**.
 1. Select **compute cluster** as your compute type.
 
-A compute target is a local or cloud-based resource environment used to run your training script or host your service deployment. For this experiment, you can either try a cloud-based serverless compute (preview) or create your own cloud-based compute.
+   A compute target is a local or cloud-based resource environment used to run your training script or host your service deployment. For this experiment, you can either try a cloud-based serverless compute (preview) or create your own cloud-based compute.
 
-> [!NOTE]
-> To use serverless compute, [enable the preview feature](./how-to-use-serverless-compute.md#how-to-use-serverless-compute), select **Serverless**, and skip this procedure.
+   > [!NOTE]
+   > To use serverless compute, [enable the preview feature](./how-to-use-serverless-compute.md#how-to-use-serverless-compute), select **Serverless**, and skip this procedure.
 
 1. To create your own compute target, in **Select compute type**, select **Compute cluster** to configure your compute target.
 
@@ -169,14 +169,14 @@ A compute target is a local or cloud-based resource environment used to run your
 
 1. Select **Next** to go to the **Advanced Settings** form.
 
+   :::image type="content" source="./media/tutorial-first-experiment-automated-ml/compute-settings.png" alt-text="Screenshot shows the Advanced Settings page, where you enter values for your compute cluster." lightbox="./media/tutorial-first-experiment-automated-ml/compute-settings.png":::
+
    | Field | Description | Value for tutorial |
    |:----|:---|:---|
    | Compute name | A unique name that identifies your compute context. | automl-compute |
    | Min / Max nodes| To profile data, you must specify 1 or more nodes. | Min nodes: 1<br>Max nodes: 6 |
    | Idle seconds before scale down | Idle time before  the cluster is automatically scaled down to the minimum node count.|120 (default) |
    | Advanced settings | Settings to configure and authorize a virtual network for your experiment.| None |
-
-   :::image type="content" source="./media/tutorial-first-experiment-automated-ml/compute-settings.png" alt-text="Screenshot shows the Advanced Settings page, where you enter values for your compute cluster." lightbox="./media/tutorial-first-experiment-automated-ml/compute-settings.png":::
 
 1. Select **Create**.
 
