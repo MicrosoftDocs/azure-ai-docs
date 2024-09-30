@@ -1,7 +1,7 @@
 ---
-title: Authentication for managed online endpoints
+title: Authentication and authorization for online endpoints
 titleSuffix: Azure Machine Learning
-description: Learn how authentication works for Azure Machine Learning managed online endpoints.
+description: Learn how authentication and authorization work for Azure Machine Learning online endpoints.
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: inferencing
@@ -13,7 +13,7 @@ ms.custom: devplatv2
 ms.date: 09/30/2024
 ---
 
-# Authentication for managed online endpoints
+# Authentication and authorization for online endpoints
 
 [!INCLUDE [machine-learning-dev-v2](includes/machine-learning-dev-v2.md)]
 
