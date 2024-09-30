@@ -60,7 +60,7 @@ For control plane operations, you use a Microsoft Entra token to authenticate a 
 For control plane operations, your user identity needs to have the proper Azure RBAC role assigned to access your resources. Specifically, for CRUD operations on online endpoints and deployments, the user identity needs to have roles assigned for the following actions:
 
 | Operation | Required Azure RBAC role | Scope |
-| -- | -- | -- |
+| --- | --- | --- |
 | Perform create/update operations on online endpoints and deployments. | **Owner**, **Contributor**, or any role allowing `Microsoft.MachineLearningServices/workspaces/onlineEndpoints/write` | Workspace |
 | Perform delete operations on online endpoints and deployments. | **Owner**, **Contributor**, or any role allowing `Microsoft.MachineLearningServices/workspaces/onlineEndpoints/delete` | Workspace |
 | Perform create/update/delete operations on online endpoints and deployments via Azure Machine Learning studio. | **Owner**, **Contributor**, or any role allowing `Microsoft.Resources/deployments/write` | Resource group that contains the workspace |
@@ -103,7 +103,7 @@ For more information on how to authenticate clients for data plane operations, s
 For data plane operations, your user identity needs proper Azure RBAC roles to allow access to your resources only if the endpoint is set to use Microsoft Entra `aad_token`. For data plane operations on online endpoints and deployments, the user identity needs to have a role assigned with the following actions:
 
 | Operation | Required Azure RBAC role | Scope |
-| -- | -- | -- |
+| --- | --- | --- |
 | Invoke online endpoints with `key` or Azure Machine Learning `aml_token`. | Doesn't require a role. | Not applicable |
 | Invoke managed online endpoints with Microsoft Entra `aad_token`. | **Owner**, **Contributor**, or any role allowing `Microsoft.MachineLearningServices/workspaces/onlineEndpoints/score/action` | Endpoint |
 | Invoke Kubernetes online endpoints with Microsoft Entra `aad_token`. | Kubernetes online endpoint doesn't support Microsoft Entra token for data plane operations. | Not applicable |
@@ -120,7 +120,7 @@ An online deployment runs your user container with the endpoint identity, that i
 If the endpoint identity is a SAI, the following roles are assigned to the endpoint identity for convenience.
 
 | Role | Description | Condition for automatic role assignment |
-| -- | -- | -- |
+| --- | --- | --- |
 | **AcrPull** | Allows the endpoint identity to pull images from the Azure container registry associated with the workspace | The endpoint identity is a SAI.
 | **Storage Blob Data Reader** | Allows the endpoint identity to read blobs from the default datastore of the workspace | The endpoint identity is a SAI.
 | **AzureML Metrics Writer (preview)** | Allows the endpoint identity to write metrics to the workspace | The endpoint identity is a SAI.
