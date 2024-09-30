@@ -16,10 +16,9 @@ ms.devlang: azurecli
 
 # Track experiments and models with MLflow
 
-*Tracking* is the process of saving relevant information about experiments. In this article, you learn how to use MLflow for tracking experiments and runs in Azure Machine Learning workspaces. For more information about supported MLflow functionalities in Azure Machine Learning, see [MLflow and Azure Machine Learning](concept-mlflow.md).
+*Tracking* is the process of saving relevant information about experiments. In this article, you learn how to use MLflow for tracking experiments and runs in Azure Machine Learning workspaces.
 
-> [!NOTE]
-> Some methods available in the MLflow API might not be available when connected to Azure Machine Learning. For details about supported and unsupported operations, see [Support matrix for querying runs and experiments](how-to-track-experiments-mlflow.md#support-matrix-for-querying-runs-and-experiments).
+Some methods available in the MLflow API might not be available when connected to Azure Machine Learning. For details about supported and unsupported operations, see [Support matrix for querying runs and experiments](how-to-track-experiments-mlflow.md#support-matrix-for-querying-runs-and-experiments). You can also learn about the supported MLflow functionalities in Azure Machine Learning from the article [MLflow and Azure Machine Learning](concept-mlflow.md).
 
 > [!NOTE] 
 > - To track experiments running on Azure Databricks, see [Track Azure Databricks ML experiments with MLflow and Azure Machine Learning](how-to-use-mlflow-azure-databricks.md).
