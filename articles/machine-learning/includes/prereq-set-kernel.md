@@ -20,9 +20,11 @@ ms.custom: include file
 
     :::image type="content" source="../media/tutorial-azure-ml-in-a-day/start-compute.png" alt-text="Screenshot shows how to start a stopped compute instance." lightbox="../media/tutorial-azure-ml-in-a-day/start-compute.png":::
 
-1. Make sure that the kernel, found on the top right, is `Python 3.10 - SDK v2`. If not, use the dropdown to select this kernel.
+1. Wait until the compute instance is running.  Then make sure that the kernel, found on the top right, is `Python 3.10 - SDK v2`. If not, use the dropdown to select this kernel.
 
     :::image type="content" source="../media/tutorial-azure-ml-in-a-day/set-kernel.png" alt-text="Screenshot shows how to set the kernel." lightbox="../media/tutorial-azure-ml-in-a-day/set-kernel.png":::
+
+    If you don't see this kernel, verify that your compute instance is running. If it is, select the **Refresh** button on the top right of the notebook.
 
 1. If you see a banner that says you need to be authenticated, select **Authenticate**.
 
