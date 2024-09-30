@@ -9,7 +9,7 @@ ms.author: heidist
 ms.service: cognitive-search
 ms.topic: tutorial
 ms.custom: references_regions
-ms.date: 09/12/2024
+ms.date: 09/30/2024
 
 ---
 
@@ -32,7 +32,7 @@ If you don't have an Azure subscription, create a [free account](https://azure.m
 
 - The Azure portal, used to deploy models and configure role assignments in the Azure cloud.
 
-- An **Owner** role on your Azure subscription, necessary for creating role assignments. Your model provider has more role requirements for deploying and accessing models. Those are noted in the following steps.
+- An **Owner** role on your Azure subscription, necessary for creating role assignments. You use at least three Azure resources in this tutorial. The connections are authenticated using Microsoft Entra ID, which requires the ability to create roles. Role assignments for connecting to models are documented in this article.
 
 - A model provider, such as [Azure OpenAI](/azure/ai-services/openai/how-to/create-resource), Azure AI Vision via an [Azure AI multi-service account](/azure/ai-services/multi-service-resource), or [Azure AI Studio](https://ai.azure.com/).
 
@@ -51,25 +51,25 @@ If you don't have an Azure subscription, create a [free account](https://azure.m
   Azure AI Search is currently facing limited availability in some regions, such as West Europe and West US 2/3. Check the [Azure AI Search region list](search-region-support.md) to confirm region status.
 
 > [!TIP]
-> Currently, the following regions provide the most overlap among the model providers and have the most capacity: **East US**, **East US2**, and **South Central** in the Americas; **France Central** or **Switzerland North** in Europe; **Australia East** in Asia Pacific.
+> Currently, the following regions provide the most overlap among the model providers and have the most capacity: **East US2** and **South Central** in the Americas; **France Central** or **Switzerland North** in Europe; **Australia East** in Asia Pacific.
 >
-> For Azure AI Vision and AI Search interoperability, choose one of these regions: **East US**, **France Central**, **Korea Central**, **North Europe**, **South East Asia**, or **West US**. 
+> For Azure AI Vision and AI Search interoperability, choose one of these regions: **France Central**, **Korea Central**, **North Europe**, **South East Asia**, or **West US**. 
 
 ## Review models supporting built-in vectorization
 
-Vectorized content improves the query results in a RAG solution. Azure AI Search supports an embedding action in an indexing pipeline. It also supports an embedding action at query time, converting text or image inputs into vectors for a vector search. In this step, identify an embedding model that works for your content and queries. If you're providing raw vector data and raw vector queries, or if your RAG solution doesn't include vector data, skip this step.
+Vectorized content improves the query results in a RAG solution. Azure AI Search supports a built-in vectorization action in an indexing pipeline. It also supports vectorization at query time, converting text or image inputs into embeddings for a vector search. In this step, identify an embedding model that works for your content and queries. If you're providing raw vector data and raw vector queries, or if your RAG solution doesn't include vector data, skip this step.
 
 Vector queries that include a text-to-vector conversion step must use the same embedding model that was used during indexing. The search engine won't throw an error if you use different models, but you'll get poor results.
 
-To meet the same-model requirement, choose embedding models that can be referenced through *skills* during indexing and through *vectorizers* during query execution. Review [Create an indexing pipeline](tutorial-rag-build-solution-pipeline.md) for code that calls an embedding skill and a matching vectorizer. 
+To meet the same-model requirement, choose embedding models that can be referenced through *skills* during indexing and through *vectorizers* during query execution. The following table lists the skill and vectorizer pairs. To see how the embedding models are used, skip ahead to [Create an indexing pipeline](tutorial-rag-build-solution-pipeline.md) for code that calls an embedding skill and a matching vectorizer. 
 
 Azure AI Search provides skill and vectorizer support for the following embedding models in the Azure cloud.
 
 | Client | Embedding models | Skill | Vectorizer |
 |--------|------------------|-------|------------|
-| Azure OpenAI | text-embedding-ada-002, text-embedding-3-large, text-embedding-3-small | [AzureOpenAIEmbedding](cognitive-search-skill-azure-openai-embedding.md) | [AzureOpenAIEmbedding](vector-search-vectorizer-azure-open-ai.md) |
+| Azure OpenAI | text-embedding-ada-002, <br>text-embedding-3-large, <br>text-embedding-3-small | [AzureOpenAIEmbedding](cognitive-search-skill-azure-openai-embedding.md) | [AzureOpenAIEmbedding](vector-search-vectorizer-azure-open-ai.md) |
 | Azure AI Vision | multimodal 4.0 <sup>1</sup> | [AzureAIVision](cognitive-search-skill-vision-vectorize.md) | [AzureAIVision](vector-search-vectorizer-ai-services-vision.md) |
-| Azure AI Studio model catalog | OpenAI-CLIP-Image-Text-Embeddings-vit-base-patch32, OpenAI-CLIP-Image-Text-Embeddings-ViT-Large-Patch14-336, Facebook-DinoV2-Image-Embeddings-ViT-Base, Facebook-DinoV2-Image-Embeddings-ViT-Giant, Cohere-embed-v3-english, Cohere-embed-v3-multilingual | [AML](cognitive-search-aml-skill.md) <sup>2</sup>  | [Azure AI Studio model catalog](vector-search-vectorizer-azure-machine-learning-ai-studio-catalog.md) |
+| Azure AI Studio model catalog | OpenAI-CLIP-Image-Text-Embeddings-vit-base-patch32, <br>OpenAI-CLIP-Image-Text-Embeddings-ViT-Large-Patch14-336, <br>Facebook-DinoV2-Image-Embeddings-ViT-Base, <br>Facebook-DinoV2-Image-Embeddings-ViT-Giant, <br>Cohere-embed-v3-english, <br>Cohere-embed-v3-multilingual | [AML](cognitive-search-aml-skill.md) <sup>2</sup>  | [Azure AI Studio model catalog](vector-search-vectorizer-azure-machine-learning-ai-studio-catalog.md) |
 
 <sup>1</sup> Supports image and text vectorization.
 
@@ -88,7 +88,7 @@ The following models are commonly used for a chat search experience:
 
 | Client | Chat models |
 |--------|------------|
-| Azure OpenAI | GPT-35-Turbo, GPT-4, GPT-4o, GPT-4 Turbo |
+| Azure OpenAI | GPT-35-Turbo, <br>GPT-4, <br>GPT-4o, <br>GPT-4 Turbo |
 
 GPT-35-Turbo and GPT-4 models are optimized to work with inputs formatted as a conversation. 
 
