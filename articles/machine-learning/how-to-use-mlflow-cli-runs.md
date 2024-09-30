@@ -7,7 +7,7 @@ ms.author: mopeakande
 ms.reviewer: fasantia
 ms.service: azure-machine-learning
 ms.subservice: mlops
-ms.date: 09/25/2024
+ms.date: 09/30/2024
 ms.topic: how-to
 ms.custom: mlflow, devx-track-azurecli, cliv2, devplatv2, update-code, FY25Q1-Linter
 ms.devlang: azurecli
@@ -16,34 +16,14 @@ ms.devlang: azurecli
 
 # Track experiments and models with MLflow
 
-*Tracking* is the process of saving relevant information about experiments. In this article, you learn how to use MLflow for tracking experiments and runs in Azure Machine Learning workspaces. The saved tracking metadata varies by experiment, and can include:
+*Tracking* is the process of saving relevant information about experiments. In this article, you learn how to use MLflow for tracking experiments and runs in Azure Machine Learning workspaces. For more information about supported MLflow functionalities in Azure Machine Learning, see [MLflow and Azure Machine Learning](concept-mlflow.md).
 
-- Code
-- Environment details such as OS version and Python packages
-- Input data
-- Parameter configurations
-- Models
-- Evaluation metrics 
-- Evaluation visualizations such as confusion matrices and importance plots
-- Evaluation results, including some evaluation predictions
-
-When you work with jobs, Azure Machine Learning automatically tracks some information about experiments, such as code, environment, and input and output data. However, models, parameters, and metrics are specific to the scenario, so model builders must configure their tracking.
-
-Whether you train models with jobs in Azure Machine Learning or interactively in notebooks, experiment tracking helps you:
-
-- Organize all of your machine learning experiments in a single place. You can then search and filter experiments and drill down to see details about previous experiments.
-- Easily compare experiments, analyze results, and debug model training.
-- Reproduce or rerun experiments to validate results.
-- Improve collaboration, because you can see what other teammates are doing, share experiment results, and access experiment data programmatically.
+> [!NOTE]
+> Some methods available in the MLflow API might not be available when connected to Azure Machine Learning. For details about supported and unsupported operations, see [Support matrix for querying runs and experiments](how-to-track-experiments-mlflow.md#support-matrix-for-querying-runs-and-experiments).
 
 > [!NOTE] 
 > - To track experiments running on Azure Databricks, see [Track Azure Databricks ML experiments with MLflow and Azure Machine Learning](how-to-use-mlflow-azure-databricks.md).
 > - To track experiments running on Azure Synapse Analytics, see [Track Azure Synapse Analytics ML experiments with MLflow and Azure Machine Learning](how-to-use-mlflow-azure-synapse.md).
-
-Azure Machine Learning workspaces are MLflow-compatible. This compatibility means you can use MLflow to track runs, metrics, parameters, and artifacts in workspaces without needing to change your training routines or inject any cloud-specific syntax. For more information about supported MLflow and Azure Machine Learning functionalities, see [MLflow and Azure Machine Learning](concept-mlflow.md).
-
->[!NOTE]
->Some methods available in the MLflow API might not be available when connected to Azure Machine Learning. For details about supported and unsupported operations, see [Support matrix for querying runs and experiments](how-to-track-experiments-mlflow.md#support-matrix-for-querying-runs-and-experiments).
 
 ## Prerequisites
 
@@ -55,7 +35,7 @@ Azure Machine Learning workspaces are MLflow-compatible. This compatibility mean
 
 ## Configure the experiment
 
-MLflow organizes information in experiments and runs, which are called *jobs* in Azure Machine Learning. By default, runs log to an automatically created experiment named **Default**, but you can configure which experiment to track.
+MLflow organizes information in experiments and runs. Runs are called *jobs* in Azure Machine Learning. By default, runs log to an automatically created experiment named **Default**, but you can configure which experiment to track.
 
 # [Notebooks](#tab/interactive)
 
@@ -266,4 +246,3 @@ For more information about how to retrieve or compare information from experimen
 * [Deploy MLflow models](how-to-deploy-mlflow-models.md)
 * [Manage models with MLflow](how-to-manage-models-mlflow.md)
 * [Using MLflow (Jupyter Notebooks)](https://github.com/Azure/azureml-examples/tree/main/sdk/python/using-mlflow)
-
