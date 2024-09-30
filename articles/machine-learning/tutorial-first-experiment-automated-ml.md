@@ -9,7 +9,7 @@ ms.topic: tutorial
 author: ssalgadodev
 ms.author: ssalgado
 ms.reviewer: manashg
-ms.date: 09/27/2024
+ms.date: 09/30/2024
 ms.custom: automl, build-2023
 #Customer intent: As a non-coding data scientist, I want to use automated machine learning techniques so that I can build a classification model.
 ---
@@ -74,7 +74,7 @@ Complete the following experiment set-up and run steps by using the Azure Machin
 
    Because this tutorial is your first automated ML experiment, you see an empty list and links to documentation.
 
-   :::image type="content" source="./media/tutorial-first-experiment-automated-ml/get-started.png" alt-text="REPLACE SCREENSHOT":::
+   :::image type="content" source="./media/tutorial-first-experiment-automated-ml/get-started.png" alt-text="Screenshot shows the Automated ML page where you can create a new Automated ML job." ="./media/tutorial-first-experiment-automated-ml/get-started.png":::
 
 1. Select **New Automated ML job**.
 
@@ -116,7 +116,7 @@ Before you configure your experiment, upload your data file to your workspace in
 
    1. The **Schema** form allows for further configuration of your data for this experiment. For this example, select the toggle switch for the **day_of_week**, so as to not include it. Select **Next**.
 
-       :::image type="content" source="./media/tutorial-first-experiment-automated-ml/configure-schema-tab.png" alt-text="Schema form":::
+       :::image type="content" source="./media/tutorial-first-experiment-automated-ml/configure-schema-tab.png" alt-text="Screenshot shows the Schema form where you can exlcued columns from your data.":::
 
    1. In the **Review** form, verify your information, and then select **Create**.
 
@@ -176,7 +176,7 @@ A compute target is a local or cloud-based resource environment used to run your
    | Idle seconds before scale down | Idle time before  the cluster is automatically scaled down to the minimum node count.|120 (default) |
    | Advanced settings | Settings to configure and authorize a virtual network for your experiment.| None |
 
-   :::image type="content" source="./media/tutorial-first-experiment-automated-ml/compute-settings.png" alt-text="Settings page":::
+   :::image type="content" source="./media/tutorial-first-experiment-automated-ml/compute-settings.png" alt-text="Screenshot shows the Advanced Settings page, where you enter values for your compute cluster." lightbox="./media/tutorial-first-experiment-automated-ml/compute-settings.png":::
 
 1. Select **Create**.
 
@@ -196,17 +196,19 @@ A compute target is a local or cloud-based resource environment used to run your
 
 Navigate to the **Models + child jobs** tab to see the algorithms (models) tested. By default, the job orders the models by metric score as they complete. For this tutorial, the model that scores the highest based on the chosen **AUCWeighted** metric is at the top of the list.
 
-While you wait for all of the experiment models to finish, select the **Algorithm name** of a completed model to explore its performance details. Select the **Overiew** and the **Metrics** tabs for information about the job.
+While you wait for all of the experiment models to finish, select the **Algorithm name** of a completed model to explore its performance details. Select the **Overview** and the **Metrics** tabs for information about the job.
 
 The following animation views the selected model's properties, metrics, and performance charts.
 
 ![Run iteration detail](./media/tutorial-first-experiment-automated-ml/run-detail.gif)
 
+:::image type="content" source="./media/tutorial-first-experiment-automated-ml/run-detail.gif" alt-text="Animation that shows different views available for a child job." lightbox="./media/tutorial-first-experiment-automated-ml/run-detail.gif":::
+
 ## View model explanations
 
 While you wait for the models to complete, you can also take a look at model explanations and see which data features (raw or engineered) influenced a particular model's predictions.
 
-These model explanations can be generated on demand, and are summarized in the model explanations dashboard  that's part of the **Explanations (preview)** tab.
+These model explanations can be generated on demand. The model explanations dashboard that's part of the **Explanations (preview)** tab summarizes these explanations.
 
 To generate model explanations:
 
@@ -224,17 +226,15 @@ To generate model explanations:
 1. On the left, expand the pane. Under **Features**, select the row that says **raw**.
 1. Select the **Aggregate feature importance** tab. This chart shows which data features influenced the predictions of the selected model.
 
-   :::image type="content" source="media/tutorial-first-experiment-automated-ml/model-explanation-dashboard.png" alt-text="Model explanation dashboard":::
+   :::image type="content" source="media/tutorial-first-experiment-automated-ml/model-explanation-dashboard.png" alt-text="Screenshot shows the Model explanation dashboard, displaying an aggregate feature importance chart." lightbox="media/tutorial-first-experiment-automated-ml/model-explanation-dashboard.png":::
 
    In this example, the *duration* appears to have the most influence on the predictions of this model.
 
 ## Deploy the best model
 
-The automated machine learning interface allows you to deploy the best model as a web service in a few steps. Deployment is the integration of the model so it can predict on new data and identify potential areas of opportunity.
+The automated machine learning interface allows you to deploy the best model as a web service. *Deployment* is the integration of the model so it can predict on new data and identify potential areas of opportunity. For this experiment, deployment to a web service means that the financial institution now has an iterative and scalable web solution for identifying potential fixed term deposit customers.
 
-For this experiment, deployment to a web service means that the financial institution now has an iterative and scalable web solution for identifying potential fixed term deposit customers.
-
-Check to see if your experiment run is complete. To do so, navigate back to the parent job page by selecting the job name at the top of your screen. A **Completed** status is shown on the top left of the screen.
+Check to see whether your experiment run is complete. To do so, navigate back to the parent job page by selecting the job name at the top of your screen. A **Completed** status is shown on the top left of the screen.
 
 After the experiment run is complete, the **Details** page is populated with a **Best model summary** section. In this experiment context, **VotingEnsemble** is considered the best model, based on the **AUCWeighted** metric.
 
@@ -258,19 +258,19 @@ Deploy this model. Deployment takes about 20 minutes to complete. The deployment
 
 1. Select **Deploy**.
 
-   A green success message appears at the top of the **Job** screen, and in the **Model summary** pane, a status message appears under **Deploy status**. Select **Refresh** periodically to check the deployment status.
+   A green success message appears at the top of the **Job** screen. In the **Model summary** pane, a status message appears under **Deploy status**. Select **Refresh** periodically to check the deployment status.
 
-Now you have an operational web service to generate predictions.
+You have an operational web service to generate predictions.
 
 Proceed to the [Related content](#related-content) to learn more about how to consume your new web service, and test your predictions using Power BI built in Azure Machine Learning support.
 
 ## Clean up resources
 
-Deployment files are larger than data and experiment files, so they cost more to store. Delete only the deployment files to minimize costs to your account, or if you want to keep your workspace and experiment files. Otherwise, delete the entire resource group, if you don't plan to use any of the files.
+Deployment files are larger than data and experiment files, so they cost more to store. If you want to keep your workspace and experiment files, delete only the deployment files to minimize costs to your account. If you don't plan to use any of the files, delete the entire resource group.
 
 ### Delete the deployment instance
 
-Delete just the deployment instance from Azure Machine Learning at https:\//ml.azure.com/, if you want to keep the resource group and workspace for other tutorials and exploration.
+Delete just the deployment instance from Azure Machine Learning at https:\//ml.azure.com/.
 
 1. Go to [Azure Machine Learning](https://ml.azure.com/). Navigate to your workspace and under the **Assets** pane, select **Endpoints**.
 
@@ -287,7 +287,7 @@ Delete just the deployment instance from Azure Machine Learning at https:\//ml.a
 In this automated machine learning tutorial, you used Azure Machine Learning's automated ML interface to create and deploy a classification model. For more information and next steps, see these resources:
 
 - Learn more about [automated machine learning](concept-automated-ml.md).
-- Learn about classification metrics and charts, see the [Evaluate automated machine learning experiment results](how-to-understand-automated-ml.md) article.
+- Learn about classification metrics and charts: [Evaluate automated machine learning experiment results](how-to-understand-automated-ml.md) article.
 - Learn more about [how to set up AutoML for NLP](how-to-auto-train-nlp-models.md).
 
 Also try automated machine learning for these other model types:
