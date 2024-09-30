@@ -1,16 +1,17 @@
 ---
 title: Authentication and authorization for online endpoints
 titleSuffix: Azure Machine Learning
-description: Learn how authentication and authorization work for Azure Machine Learning online endpoints.
+description: Learn how authentication, authorization, and Azure role-based access control (RBAC) work for Azure Machine Learning online endpoints.
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: inferencing
-ms.topic: conceptual
+ms.topic: concept-article
 author: msakande
 ms.author: mopeakande
 ms.reviewer: sehan
-ms.custom: devplatv2
+ms.custom: devplatv2, FY25Q1-Linter
 ms.date: 09/30/2024
+#Customer intent: As a data scientist, I want to learn how authentication and authorization work for Azure Machine Learning online endpoints so I can create and deploy online endpoints.
 ---
 
 # Authentication and authorization for online endpoints
@@ -30,11 +31,11 @@ The user identity and endpoint identity have separate permission requirements. F
 
 ## Permissions and scope for authorization
 
-[Azure role-based access control (Azure RBAC)](/azure/role-based-access-control/overview) allows you to define and assign **roles** with a set of allowed and/or denied **actions** on specific **scopes**. You can customize these roles and scopes according to your business needs. The following examples serve as a starting point that you can extend as necessary.
+[Azure role-based access control (RBAC)](/azure/role-based-access-control/overview) allows you to define and assign **roles** with a set of allowed and/or denied **actions** on specific **scopes**. You can customize these roles and scopes according to your business needs. The following examples serve as a starting point that you can extend as necessary.
 
 For user identity:
 
-- To control control plane and data plane operations, you can use the built-in role **AzureML Data Scientist** that includes the permission action `Microsoft.MachineLearningServices/workspaces/onlineEndpoints/*/actions`.
+- To manage control plane and data plane operations, you can use the built-in role **AzureML Data Scientist** that includes the permission action `Microsoft.MachineLearningServices/workspaces/onlineEndpoints/*/actions`.
 - To control the operations for a specific endpoint, use the scope `/subscriptions/<subscriptionId>/resourcegroups/<resourceGroupName>/providers/Microsoft.MachineLearningServices/workspaces/<workspaceName>/onlineEndpoints/<endpointName>`.
 - To control the operations for all endpoints in a workspace, use the scope `/subscriptions/<subscriptionId>/resourcegroups/<resourceGroupName>/providers/Microsoft.MachineLearningServices/workspaces/<workspaceName>`.
 
@@ -73,15 +74,15 @@ For control plane operations, your user identity needs to have the proper Azure 
 
 #### Permissions for user identity to enforce access to default secret stores
 
-If you use the [secret injection](concept-secret-injection.md) feature and you set the flag to enforce access to the default secret stores while creating your endpoints, your user identity must have permission to read secrets from workspace connections.
+If you use the [secret injection](concept-secret-injection.md) feature, and you set the flag to enforce access to the default secret stores while creating endpoints, your user identity must have permission to read secrets from workspace connections.
 
-An endpoint identity can be either a system-assigned identity (SAI) or a user-assigned identity (UAI). When the endpoint is created with a SAI and the flag to enforce access to the default secret stores is set, a user identity must have permissions to read secrets from workspace connections when creating an endpoint and creating deployments under the endpoint. This restriction ensures that only a user identity with the permission to read secrets can grant the endpoint identity the permission to read secrets.
+An endpoint identity can be either a system-assigned identity (SAI) or a user-assigned identity (UAI). When the endpoint is created with a SAI and the flag to enforce access to the default secret stores is set, a user identity must have permissions to read secrets from workspace connections when creating an endpoint and deployments. This restriction ensures that only a user identity with the permission to read secrets can grant the endpoint identity the permission to read secrets.
 
-If a user identity that doesn't have permission to read secrets from workspace connections tries to create an endpoint or a deployment with a SAI, and the endpoint's flag is set to enforce access to the default secret stores, the endpoint or deployment creation is rejected.
+If a user identity that doesn't have permission to read secrets from workspace connections tries to create an endpoint or a deployment with a SAI, and the endpoint's flag is set to enforce access to the default secret stores, the endpoint, or deployment creation is rejected.
 
-If the endpoint is created with a UAI, or the endpoint uses a SAI but the the flag to enforce access to the default secret stores isn't set, the user identity doesn't need to be able to read secrets from workspace connections to create an endpoint or deployment. In this case, the endpoint identity isn't automatically granted the permission to read secrets, but can be manually granted this permission by assigning the proper role.
+If the endpoint is created with a UAI, or the endpoint uses a SAI but the flag to enforce access to the default secret stores isn't set, the user identity doesn't need to be able to read secrets from workspace connections to create an endpoint or deployment. In this case, the endpoint identity isn't automatically granted the permission to read secrets, but can be manually granted this permission by assigning the proper role.
 
-Regardless of whether the role assignment is automatic or manual, the secret retrieval and injection is triggered if you mapped the environment variables with secret references in the endpoint or deployment definition. The secret injection feature uses the endpoint identity to do the secret retrieval and injection. For more information on secret injection, see [Secret injection in online endpoints](concept-secret-injection.md).
+Regardless of whether the role assignment is automatic or manual, the secret retrieval, and injection is triggered if you mapped the environment variables with secret references in the endpoint or deployment definition. The secret injection feature uses the endpoint identity to do the secret retrieval and injection. For more information on secret injection, see [Secret injection in online endpoints](concept-secret-injection.md).
 
 ### Data plane operations
 
@@ -118,19 +119,18 @@ An online deployment runs your user container with the endpoint identity, that i
 
 If the endpoint identity is a SAI, the following roles are assigned to the endpoint identity for convenience.
 
-Role | Description | Condition for automatic role assignment
--- | -- | --
-**AcrPull** | Allows the endpoint identity to pull images from the Azure container registry associated with the workspace | The endpoint identity is a SAI.
-**Storage Blob Data Reader** | Allows the endpoint identity to read blobs from the default datastore of the workspace | The endpoint identity is a SAI.
-**AzureML Metrics Writer (preview)** | Allows the endpoint identity to write metrics to the workspace | The endpoint identity is a SAI.
-**Azure Machine Learning Workspace Connection Secrets Reader** | Allows the endpoint identity to read secrets from workspace connections | The endpoint identity is a SAI and the endpoint creation has a flag to enforce access to the default secret stores. The user identity that creates the endpoint also has permission to read secrets from workspace connections.
+| Role | Description | Condition for automatic role assignment |
+| -- | -- | -- |
+| **AcrPull** | Allows the endpoint identity to pull images from the Azure container registry associated with the workspace | The endpoint identity is a SAI.
+| **Storage Blob Data Reader** | Allows the endpoint identity to read blobs from the default datastore of the workspace | The endpoint identity is a SAI.
+| **AzureML Metrics Writer (preview)** | Allows the endpoint identity to write metrics to the workspace | The endpoint identity is a SAI.
+| **Azure Machine Learning Workspace Connection Secrets Reader** | Allows the endpoint identity to read secrets from workspace connections | The endpoint identity is a SAI and the endpoint creation has a flag to enforce access to the default secret stores. The user identity that creates the endpoint also has permission to read secrets from workspace connections.
 
 - If the endpoint identity is a SAI, and the enforce flag isn't set or the user identity doesn't have permission to read secrets, there's no automatic role assignment for the **Azure Machine Learning Workspace Connection Secrets Reader** role. For more information, see [How to deploy online endpoint with secret injection](how-to-deploy-online-endpoint-with-secret-injection.md#create-an-endpoint).
 - If the endpoint identity is a UAI, there's no automatic role assignment for the **Azure Machine Learning Workspace Connection Secrets Reader** role. In this case, you need to manually assign roles to the endpoint identity as needed.
 
 For more information on the **Azure Machine Learning Workspace Connection Secrets Reader** role, see [Assign permissions to the identity]
 (how-to-authenticate-online-endpoint.md#assign-permissions-to-the-identity).
-
 
 ## Related content
 
