@@ -96,4 +96,4 @@ Optimizing LLMs requires a careful consideration of several factors, including o
 - [Deploy Azure OpenAI models with Azure AI Studio](../how-to/deploy-models-openai.md)
 - [Deploy Meta Llama 3.1 models with Azure AI Studio](../how-to/deploy-models-llama.md)
 - [Deploy large language models with Azure AI Studio](../how-to/deploy-models-open.md)
-- [Azure AI Studio FAQ](../faq.yml)
+- [Model catalog and collections in Azure AI Studio](../how-to/model-catalog-overview.md)
