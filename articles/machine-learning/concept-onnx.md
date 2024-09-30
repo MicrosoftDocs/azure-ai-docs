@@ -1,5 +1,5 @@
 ---
-title: ONNX models
+title: ONNX Runtime and models
 titleSuffix: Azure Machine Learning
 description: Learn how using the Open Neural Network Exchange (ONNX) can help optimize inference of your machine learning models.
 services: machine-learning
@@ -9,7 +9,7 @@ ms.topic: concept-article
 ms.author: mopeakande
 author: msakande
 ms.reviewer: kritifaujdar
-ms.date: 09/27/2024
+ms.date: 09/30/2024
 #customer intent: As a data scientist, I want to learn about ONNX so I can use it to optimize the inference of my machine learning models.
 ---
 
@@ -17,19 +17,17 @@ ms.date: 09/27/2024
 
 This article describes how the [Open Neural Network Exchange (ONNX)](https://onnx.ai) can help optimize the inference of your machine learning models. Inference or model scoring is the process of using a deployed model to generate predictions on production data.
 
-Optimizing machine learning models for inference requires you to tune the model and the inference library to make the most of hardware capabilities. This task becomes complex if you want to get optimal performance on different kinds of platforms such as cloud, edge, CPU, or GPU, because each platform has different capabilities and characteristics. The complexity increases if you need to run models from various frameworks on different platforms. It can be time-consuming to optimize all the different combinations of frameworks and hardware.
+Optimizing machine learning models for inference requires you to tune the model and the inference library to make the most of hardware capabilities. This task becomes complex if you want to get optimal performance on different platforms such as cloud, edge, CPU, or GPU, because each platform has different capabilities and characteristics. The complexity increases if you need to run models from various frameworks on different platforms. It can be time-consuming to optimize all the different combinations of frameworks and hardware.
 
-A useful solution is to train your model one time in your preferred framework and then run it anywhere on the cloud or edge. ONNX can help with this solution.
+A useful solution is to train your model one time in your preferred framework, and then export or convert it to ONNX so it can run anywhere on the cloud or edge. Microsoft and a community of partners created ONNX as an open standard for representing machine learning models. You can export or convert models from [many frameworks](https://onnx.ai/supported-tools) to the standard ONNX format. Supported frameworks include TensorFlow, PyTorch, scikit-learn, Keras, Chainer, MXNet, and MATLAB. You can run models in the ONNX format on various platforms and devices.
 
-Microsoft and a community of partners created ONNX as an open standard for representing machine learning models. You can export or convert models from [many frameworks](https://onnx.ai/supported-tools), including TensorFlow, PyTorch, scikit-learn, Keras, Chainer, MXNet, and MATLAB, to the standard ONNX format. You can run models in the ONNX format on various platforms and devices.
+This ONNX flow diagram shows available frameworks and deployment options.
 
-The following ONNX flow diagram shows available frameworks and deployment options.
-
-:::image type="content" source="media/concept-onnx/onnx.png" alt-text="ONNX flow diagram showing training, converters, and deployment." lightbox="media/concept-onnx/onnx.png":::
+:::image type="content" source="media/concept-onnx/onnx.png" alt-text="ONNX flow diagram showing training, converters, and deployment." border="false" lightbox="media/concept-onnx/onnx.png":::
 
 ## ONNX Runtime
 
-[ONNX Runtime](https://onnxruntime.ai) is a high-performance inference engine for deploying ONNX models to production. ONNX Runtime is optimized for both cloud and edge, and works on Linux, Windows, and MacOS. ONNX is written in C++, but also has C, Python, C#, Java, and JavaScript (Node.js) APIs for use in those environments.
+[ONNX Runtime](https://onnxruntime.ai) is a high-performance inference engine for deploying ONNX models to production. ONNX Runtime is optimized for both cloud and edge, and works on Linux, Windows, and macOS. ONNX is written in C++, but also has C, Python, C#, Java, and JavaScript (Node.js) APIs to use in those environments.
 
 ONNX Runtime supports both deep neural networks (DNN) and traditional machine learning models, and it integrates with accelerators on different hardware such as TensorRT on Nvidia GPUs, OpenVINO on Intel processors, and DirectML on Windows. By using ONNX Runtime, you can benefit from extensive production-grade optimizations, testing, and ongoing improvements.
 
@@ -48,11 +46,11 @@ You can obtain ONNX models in several ways:
 - Get a pretrained ONNX model from the [ONNX Model Zoo](https://github.com/onnx/models).
 - Generate a customized ONNX model from [Azure AI Custom Vision service](/azure/ai-services/custom-vision-service/).
 
-You can represent many models as ONNX models, including image classification, object detection, and text processing models. If you can't convert your model successfully, file a GitHub issue in the repository of the converter you used.
+You can represent many models as ONNX, including image classification, object detection, and text processing models. If you can't convert your model successfully, file a GitHub issue in the repository of the converter you used.
 
 ## ONNX model deployment in Azure
 
-You can deploy, manage, and monitor your ONNX models with Azure Machine Learning. Use the standard [MLOps deployment workflow](concept-model-management-and-deployment.md) with ONNX Runtime to create a REST endpoint hosted in the cloud.
+You can deploy, manage, and monitor your ONNX models in Azure Machine Learning. Using a standard [MLOps deployment workflow](concept-model-management-and-deployment.md#deploy-models-as-endpoints) with ONNX Runtime, you can create a REST endpoint hosted in the cloud.
 
 ## Python packages for ONNX Runtime
 
@@ -65,7 +63,7 @@ pip install onnxruntime       # CPU build
 pip install onnxruntime-gpu   # GPU build
 ```
 
-To call ONNX Runtime in your Python script, use:
+To call ONNX Runtime in your Python script, use the following code:
 
 ```python
 import onnxruntime
@@ -74,7 +72,7 @@ session = onnxruntime.InferenceSession("path to model")
 
 The documentation accompanying the model usually tells you the inputs and outputs for using the model. You can also use a visualization tool such as [Netron](https://github.com/lutzroeder/Netron) to view the model.
 
-ONNX Runtime lets you query the model metadata, inputs, and outputs as follows:
+ONNX Runtime lets you query the model metadata, inputs, and outputs, as follows:
 
 ```python
 session.get_modelmeta()
