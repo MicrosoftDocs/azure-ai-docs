@@ -2,10 +2,49 @@
 author: eric-urban
 ms.service: azure-ai-speech
 ms.topic: include
-ms.date: 2/7/2024
+ms.date: 9/30/2024
 ms.author: eur
 ms.custom: references_regions
 ---
+
+### September 2024 release
+
+#### Prebuilt neural voice
+
+Added support and general availability for new voices in the following locales: 
+
+| Locale (BCP-47) | Language | Text to speech voices |
+| ----- | ----- | ----- |
+| `as-IN` | Assamese (India) | `as-IN-YashicaNeural` (Female)<br/>`as-IN-PriyomNeural` (Male) |
+| `or-IN` | Oriya (India) | `or-IN-SubhasiniNeural` (Female)<br/>`or-IN-SukantNeural` (Male) |
+| `pa-IN` | Punjabi (India) | `pa-IN-OjasNeural` (Male)<br/>`pa-IN-VaaniNeural` (Female) |
+
+The five voices in this table are generally available and support both "en-IN" and "hi-IN" locales. 
+
+| Locale (BCP-47) | Language | Text to speech voices |
+| ----- | ----- | ----- |
+| `en-IN` | English (India) | `en-IN-AaravNeural` (Male)<br/>`en-IN-AnanyaNeural` (Female)<br/>`en-IN-KavyaNeural` (Female)<br/>`en-IN-KunalNeural` (Male)<br/>`en-IN-RehaanNeural` (Male) |
+| `hi-IN` | Hindi (India) | `hi-IN-AaravNeural` (Male)<br/>`hi-IN-AnanyaNeural` (Female)<br/>`hi-IN-KavyaNeural` (Female)<br/>`hi-IN-KunalNeural` (Male)<br/>`hi-IN-RehaanNeural` (Male) |
+
+#### Voice styles and roles
+
+Added `newscast`, `cheerful`, `empathetic` styles support for the `en-IN-NeerjaNeural` and `hi-IN-SwaraNeural` voices. 
+
+Added new styles for the following voices:
+
+- `es-MX-DaliaNeural`: `whispering`, `sad`, `cheerful`
+- `fr-FR-DeniseNeural`: `whispering`, `sad`, `excited`
+- `it-IT-IsabellaNeural`: `whispering`, `sad`, `excited`, `cheerful`
+- `pt-PT-RaquelNeural`: `whispering`, `sad`
+- `de-DE-ConradNeural`: `sad`, `cheerful`
+- `en-GB-RyanNeural`: `whispering`, `sad`
+- `es-MX-JorgeNeural`: `whispering`, `sad`, `excited`, `cheerful`
+- `fr-FR-HenriNeural`: `whispering`, `sad`, `excited`
+- `it-IT-DiegoNeural`: `sad`, `excited`, `cheerful`
+- `es-ES-AlvaroNeural`: `cheerful`, `sad`
+- `ko-KR-InjoonNeural`: `sad`
+
+See the [Voice styles and roles](../../language-support.md?tabs=tts#voice-styles-and-roles) for more information.'
 
 ### August 2024 release
 
