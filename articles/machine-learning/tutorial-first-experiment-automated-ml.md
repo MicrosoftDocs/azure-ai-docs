@@ -74,7 +74,7 @@ Complete the following experiment set-up and run steps by using the Azure Machin
 
    Because this tutorial is your first automated ML experiment, you see an empty list and links to documentation.
 
-   :::image type="content" source="./media/tutorial-first-experiment-automated-ml/get-started.png" alt-text="Screenshot shows the Automated ML page where you can create a new Automated ML job." ="./media/tutorial-first-experiment-automated-ml/get-started.png":::
+   :::image type="content" source="./media/tutorial-first-experiment-automated-ml/get-started.png" alt-text="Screenshot shows the Automated ML page where you can create a new Automated ML job." lightbox="./media/tutorial-first-experiment-automated-ml/get-started.png":::
 
 1. Select **New Automated ML job**.
 
