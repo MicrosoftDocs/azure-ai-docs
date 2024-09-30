@@ -9,6 +9,7 @@ ms.author: heidist
 ms.service: cognitive-search
 ms.topic: conceptual
 ms.date: 09/18/2024
+ms.custom: references_regions
 ---
 
 # Try Azure AI Search for free
