@@ -5,10 +5,10 @@ description: Learn how MLflow uses the concept of models instead of artifacts to
 services: machine-learning
 author: msakande
 ms.author: mopeakande
-ms.reviewer: fasantia
+ms.reviewer: cacrest
 ms.service: azure-machine-learning
 ms.subservice: mlops
-ms.date: 09/27/2024
+ms.date: 09/30/2024
 ms.topic: conceptual
 ms.custom: cliv2, sdkv2, FY25Q1-Linter
 #Customer intent: As a data scientist, I want to understand MLflow artifacts and models so I can use MLflow models to enable streamlined deployment workflows.
@@ -38,7 +38,7 @@ mlflow.log_artifact(filename)
 
 ### Model
 
-An MLflow model is an artifact, but you make stronger assumptions about this type of artifact that provide a clear contract between the saved files and what they mean.
+An MLflow model is an artifact for which you make stronger assumptions that provide a clear contract between the saved files and what they mean. If, however, you log your model's files simply as artifacts, you need to know what each of the files mean and how to load them for inference.
 
 You can log MLflow models by using the MLflow SDK, for example:
 
@@ -60,7 +60,7 @@ For models logged as simple artifact files, you need to know what the model buil
 
 The MLmodel format stores assets in a folder that has no specific naming requirement. Among the assets is a file named *MLmodel* that's the single source of truth for how to load and use the model.
 
-The following example shows an MLflow model folder called *credit_defaults_model* in Azure Machine Learning studio. The folder contains the *MLmodel* file and other model artifacts.
+The following image shows an MLflow model folder called *credit_defaults_model* in Azure Machine Learning studio. The folder contains the *MLmodel* file and other model artifacts.
 
 :::image type="content" source="media/concept-mlflow-models/mlflow-mlmodel.png" alt-text="A screenshot showing assets of a sample MLflow model, including the MLmodel file." lightbox="media/concept-mlflow-models/mlflow-mlmodel.png":::
 
@@ -121,7 +121,7 @@ There are two types of signatures:
 - **Column-based signatures**  operate on tabular data. For models with this type of signature, MLflow supplies `pandas.DataFrame` objects as inputs.
 - **Tensor-based signatures** operate with n-dimensional arrays or tensors. For models with this signature, MLflow supplies `numpy.ndarray` as inputs, or a dictionary of `numpy.ndarray` for named tensors.
 
-The following *MLmodel* example shows a computer vision model trained with `fastai`. This model receives a batch of images represented as tensors of shape `(300, 300, 3)` with their RGB representation as unsigned integers. The model outputs batches of predictions as probabilities for two classes.
+The following example shows the `signature` section for a computer vision model trained with `fastai`. This model receives a batch of images represented as tensors of shape `(300, 300, 3)` with their RGB representation as unsigned integers. The model outputs batches of predictions as probabilities for two classes.
 
 ```yaml
 signature:
@@ -163,7 +163,8 @@ dependencies:
 name: mlflow-env
 ```
 
-An MLflow environment operates at the level of the model, but an Azure Machine Learning environment operates at the workspace level for registered environments or the jobs/deployments level for anonymous environments. When you deploy MLflow models, Azure Machine Learning builds the model environment and uses it for deployment. You can use the [Azure Machine Learning CLI](concept-v2.md) to override this behavior and deploy MLflow models to a specific Azure Machine Learning environment.
+>[!NOTE]
+>An MLflow environment operates at the level of the model, but an Azure Machine Learning environment operates at the workspace level for registered environments or the jobs/deployments level for anonymous environments. When you deploy MLflow models, Azure Machine Learning builds the model environment and uses it for deployment. You can use the [Azure Machine Learning CLI](concept-v2.md) to override this behavior and deploy MLflow models to a specific Azure Machine Learning environment.
 
 ### Predict function
 
