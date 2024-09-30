@@ -12,8 +12,6 @@ ms.date: 5/21/2024
 ms.reviewer: fasantia
 ms.author: mopeakande
 author: msakande
-
-customer-intent: As a -- I want to do -- so that --
 ---
 
 # Overview: Deploy models, flows, and web apps with Azure AI Studio
@@ -95,7 +93,7 @@ Optimizing LLMs requires a careful consideration of several factors, including o
 
 ## Related content
 
-- [Model catalog and collections in Azure AI Studio](../how-to/model-catalog-overview.md)
 - [Deploy Azure OpenAI models with Azure AI Studio](../how-to/deploy-models-openai.md)
 - [Deploy Meta Llama 3.1 models with Azure AI Studio](../how-to/deploy-models-llama.md)
 - [Deploy large language models with Azure AI Studio](../how-to/deploy-models-open.md)
+- [Model catalog and collections in Azure AI Studio](../how-to/model-catalog-overview.md)
