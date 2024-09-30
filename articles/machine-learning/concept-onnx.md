@@ -41,7 +41,7 @@ High-scale Microsoft services such as Bing, Office, and Azure AI use ONNX Runtim
 
 You can obtain ONNX models in several ways:
 
-- Train a new ONNX model in Azure Machine Learning or use [automated machine learning capabilities](concept-automated-ml.md#automl--onnx).
+- [Train a new ONNX model in Azure Machine Learning](https://github.com/onnx/onnx/tree/main/examples) or use [automated machine learning capabilities](concept-automated-ml.md#automl--onnx).
 - Convert an existing model from another format to ONNX. For more information, see [ONNX Tutorials](https://github.com/onnx/tutorials).
 - Get a pretrained ONNX model from the [ONNX Model Zoo](https://github.com/onnx/models).
 - Generate a customized ONNX model from [Azure AI Custom Vision service](/azure/ai-services/custom-vision-service/).
