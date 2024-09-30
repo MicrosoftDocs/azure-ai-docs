@@ -257,7 +257,6 @@ volcano-scheduler.conf: |
     - plugins:
       - name: conformance
     - plugins:
-        - name: overcommit
         - name: drf
         - name: predicates
         - name: proportion
@@ -269,13 +268,15 @@ To use this config in your AKS cluster, you need to follow the following steps:
 1. Create a configmap file with the above config in the `azureml` namespace. This namespace will generally be created when you install the Azure Machine Learning extension.
 1. Set `volcanoScheduler.schedulerConfigMap=<configmap name>` in the extension config to apply this configmap. And you need to skip the resource validation when installing the extension by configuring `amloperator.skipResourceValidation=true`. For example:
     ```azurecli
-    az k8s-extension update --name <extension-name> --extension-type Microsoft.AzureML.Kubernetes --config volcanoScheduler.schedulerConfigMap=<configmap name> amloperator.skipResourceValidation=true --cluster-type managedClusters --cluster-name <your-AKS-cluster-name> --resource-group <your-RG-name> --scope cluster
+    az k8s-extension update --name <extension-name> --config volcanoScheduler.schedulerConfigMap=<configmap name> amloperator.skipResourceValidation=true --cluster-type managedClusters --cluster-name <your-AKS-cluster-name> --resource-group <your-RG-name>
     ```
 
 > [!NOTE]
 > Since the gang plugin is removed, there's potential that the deadlock happens when volcano schedules the job. 
 > 
 > * To avoid this situation, you can **use same instance type across the jobs**.
+> 
+> Using a scheduler configuration other than the default provided by the Azure Machine Learning extension may not be fully supported. Proceed with caution.
 >
 > Note that you need to disable `job/validate` webhook in the volcano admission if your **volcano version is lower than 1.6**.
 
