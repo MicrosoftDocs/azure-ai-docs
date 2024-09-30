@@ -24,6 +24,9 @@ To try Azure AI Search for free, [start a trial subscription](https://azure.micr
 
 At this point in time, the credit is equivalent to USD 200. As always, the exact amount is subject to change, but you can verify the credit on the trial subscription sign-up page.
 
+> [!div class="nextstepaction"]
+> [Start your free trial subscription](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A261C142F)
+
 Once you sign up, you can immediately use either of these links to access Azure resources and experiences:
 
 + [Sign in to Azure portal](https://portal.azure.com/) to view, manage, and create more resources. You can also use the portal to track your credits and projected costs.
@@ -97,6 +100,9 @@ Continue with the following links to review which regions also provide the model
 ### Create services
 
 1. [Create a search service](search-create-service-portal.md) if you don't have one already, choosing the Basic tier and a region that also offers a model provider. Most Azure AI Search regions provide higher capacity storage limits. There are just a few that have older and lower limits. For the Basic tier, as you install, confirm that you have a 15-GB partition.
+
+   > [!div class="nextstepaction"]
+   > [Create a search service](search-create-service-portal.md)
 
 1. [Create an Azure Storage account](/azure/storage/common/storage-account-create?tabs=azure-portal), choosing a general purpose account and using default settings.
 
