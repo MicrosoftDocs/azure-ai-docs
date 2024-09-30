@@ -144,9 +144,9 @@ To use the Content Safety APIs, you must create your Azure AI Content Safety res
    
 | Region   | Moderation APIs (text and image) | Moderation APIs (multimodal) | Prompt Shields | Protected material detection for Text | Protected material detection for Code | Groundedness detection (preview) | Custom categories (rapid) (preview) | Custom categories (standard) (preview) | Blocklists |  
 |--|-|---|-|--|---|-|-|---|---|  
-| East US           | ✅  |✅| ✅  | ✅    |  ✅ | ✅| ✅  | ✅ | ✅   |  
-| East US 2         | ✅  |   | ✅ | ✅    |  ✅  | ✅| ✅   |   | ✅   |  
-| Central US        | ✅  |  |      | ✅      | ✅  |    | ✅   |   | ✅  |  
+| East US           | ✅  |✅| ✅  | ✅    |  ✅ | ✅ | ✅   | ✅ | ✅  |  
+| East US 2         | ✅  |   | ✅ | ✅    |  ✅  | ✅| ✅    |   | ✅   |  
+| Central US        | ✅  |  |      | ✅     | ✅  |    | ✅   |   | ✅   |  
 | North Central US  |  ✅  |  |    |        |       |    |      |   |       |
 | South Central US  |  ✅  |  |    |        |       |    |      |   |       |
 | West US           |      |  | ✅  | ✅   |  ✅  |    | ✅   |   |       |  
@@ -155,11 +155,11 @@ To use the Content Safety APIs, you must create your Azure AI Content Safety res
 | Brazil South      |      |  |    |        |       |    |      |   |       |
 | Poland Central    | ✅  |  | ✅  | ✅     |  ✅  |    | ✅   |   | ✅  |  
 | South East Asia   |      |  | ✅  | ✅     |   ✅ |    | ✅   |   | ✅  |  
-| India North       |      |  |    |        |       |    |      |   |       |
-| South India       | ✅  |  |     | ✅    | ✅   |    | ✅   |   | ✅   |  
-| Central India     |      |    |        |       |    |      |   |       |
-| North Central US  | ✅  |  | ✅  | ✅     | ✅   |    | ✅   |   | ✅  |  
-| South Central US  | ✅  |  | ✅  | ✅     | ✅   |    | ✅   |   | ✅  |  
+| India North       |      |  |    |        |       |    |        |   |      |
+| South India       | ✅  |  |     | ✅    | ✅   |    | ✅     |   | ✅  |  
+| Central India     |     |   |     |       |      |     |       |   |      |
+| North Central US  | ✅  |  | ✅  | ✅    | ✅   |    | ✅   |   | ✅  |  
+| South Central US  | ✅  |  | ✅  | ✅    | ✅   |    | ✅   |   | ✅  |  
 | Canada East       | ✅  |  | ✅  | ✅    | ✅   |    | ✅   |   | ✅  |  
 | Canada Central    |      |  |    |        |       |    |      |   |       |
 | Switzerland North | ✅  |  | ✅  | ✅    |  ✅  |    | ✅   | ✅ | ✅  |  
@@ -172,9 +172,9 @@ To use the Content Safety APIs, you must create your Azure AI Content Safety res
 | Italy North       |      |  |    |        |       |    |      |   |       |
 | Japan East        | ✅  |  | ✅  | ✅    |  ✅  |    | ✅   |   | ✅   |  
 | Japan West        |      |  |    |        |       |    |      |   |       |
-| Korea Central     |  ✅    |  |    |        |       |    |      |   |       |
-| Australia East    | ✅  |  | ✅  | ✅    |  ✅  |    | ✅   | ✅ | ✅ |  
-| UAE North         |   ✅   |  |    |        |       |    |      |   |       |
+| Korea Central     |  ✅ |  |    |         |       |    |      |   |       |
+| Australia East    | ✅  |  | ✅  | ✅    |  ✅  |     | ✅  | ✅| ✅   |  
+| UAE North         |   ✅|  |     |        |      |     |      |   |       |
 | USGov Arizona     | ✅  |  |     |        |      |    |       |   | ✅   |  
 | USGov Virginia    | ✅  |  |     |        |      |    |       |   | ✅   |
 | South Africa North|      |  |    |        |       |    |      |   |       |
