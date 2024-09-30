@@ -56,34 +56,34 @@ ms.author: eur
 | `en-US` | English (United States) | Audio + human-labeled transcript<br/><br/>Audio<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Output format<br/><br/>Pronunciation<br/><br/>Phrase list |
 | `en-ZA` | English (South Africa) | Audio + human-labeled transcript<br/><br/>Audio<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Pronunciation<br/><br/>Phrase list |
 | `es-AR` | Spanish (Argentina) | Plain text<br/><br/>Structured text<br/><br/>Pronunciation |
-| `es-BO` | Spanish (Bolivia) | Plain text<br/><br/>Structured text<br/><br/>Pronunciation |
-| `es-CL` | Spanish (Chile) | Plain text<br/><br/>Structured text<br/><br/>Pronunciation |
-| `es-CO` | Spanish (Colombia) | Plain text<br/><br/>Structured text<br/><br/>Pronunciation |
-| `es-CR` | Spanish (Costa Rica) | Plain text<br/><br/>Structured text<br/><br/>Pronunciation |
+| `es-BO` | Spanish (Bolivia) | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Pronunciation |
+| `es-CL` | Spanish (Chile) | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Pronunciation |
+| `es-CO` | Spanish (Colombia) | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Pronunciation |
+| `es-CR` | Spanish (Costa Rica) | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Pronunciation |
 | `es-CU` | Spanish (Cuba) | Plain text<br/><br/>Structured text<br/><br/>Pronunciation |
 | `es-DO` | Spanish (Dominican Republic) | Plain text<br/><br/>Structured text<br/><br/>Pronunciation |
 | `es-EC` | Spanish (Ecuador) | Plain text<br/><br/>Structured text<br/><br/>Pronunciation |
 | `es-ES` | Spanish (Spain) | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Output format<br/><br/>Pronunciation<br/><br/>Phrase list |
-| `es-GQ` | Spanish (Equatorial Guinea) | Plain text<br/><br/>Structured text |
-| `es-GT` | Spanish (Guatemala) | Plain text<br/><br/>Structured text<br/><br/>Pronunciation |
-| `es-HN` | Spanish (Honduras) | Plain text<br/><br/>Structured text<br/><br/>Pronunciation |
+| `es-GQ` | Spanish (Equatorial Guinea) | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text |
+| `es-GT` | Spanish (Guatemala) | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Pronunciation |
+| `es-HN` | Spanish (Honduras) | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Pronunciation |
 | `es-MX` | Spanish (Mexico) | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Output format<br/><br/>Pronunciation<br/><br/>Phrase list |
-| `es-NI` | Spanish (Nicaragua) | Plain text<br/><br/>Structured text<br/><br/>Pronunciation |
-| `es-PA` | Spanish (Panama) | Plain text<br/><br/>Structured text<br/><br/>Pronunciation |
-| `es-PE` | Spanish (Peru) | Plain text<br/><br/>Structured text<br/><br/>Pronunciation |
-| `es-PR` | Spanish (Puerto Rico) | Plain text<br/><br/>Structured text<br/><br/>Pronunciation |
-| `es-PY` | Spanish (Paraguay) | Plain text<br/><br/>Structured text<br/><br/>Pronunciation |
-| `es-SV` | Spanish (El Salvador) | Plain text<br/><br/>Pronunciation |
-| `es-US` | Spanish (United States)<sup>1</sup> | Plain text<br/><br/>Structured text<br/><br/>Pronunciation<br/><br/>Phrase list |
-| `es-UY` | Spanish (Uruguay) | Plain text<br/><br/>Structured text<br/><br/>Pronunciation |
+| `es-NI` | Spanish (Nicaragua) | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Pronunciation |
+| `es-PA` | Spanish (Panama) | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Pronunciation |
+| `es-PE` | Spanish (Peru) | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Pronunciation |
+| `es-PR` | Spanish (Puerto Rico) | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Pronunciation |
+| `es-PY` | Spanish (Paraguay) | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Pronunciation |
+| `es-SV` | Spanish (El Salvador) | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Pronunciation |
+| `es-US` | Spanish (United States) | Plain text<br/><br/>Structured text<br/><br/>Pronunciation<br/><br/>Phrase list |
+| `es-UY` | Spanish (Uruguay) | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Pronunciation |
 | `es-VE` | Spanish (Venezuela) | Plain text<br/><br/>Structured text<br/><br/>Pronunciation |
 | `et-EE` | Estonian (Estonia) | Plain text<br/><br/>Pronunciation |
 | `eu-ES` | Basque | Plain text |
 | `fa-IR` | Persian (Iran) | Plain text |
-| `fi-FI` | Finnish (Finland) | Plain text<br/><br/>Output format<br/><br/>Pronunciation |
+| `fi-FI` | Finnish (Finland) | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Output format<br/><br/>Pronunciation |
 | `fil-PH` | Filipino (Philippines) | Plain text<br/><br/>Pronunciation |
 | `fr-BE` | French (Belgium) | Plain text |
-| `fr-CA` | French (Canada)<sup>1</sup> | Plain text<br/><br/>Structured text<br/><br/>Output format<br/><br/>Pronunciation<br/><br/>Phrase list |
+| `fr-CA` | French (Canada) | Plain text<br/><br/>Structured text<br/><br/>Output format<br/><br/>Pronunciation<br/><br/>Phrase list |
 | `fr-CH` | French (Switzerland) | Plain text<br/><br/>Pronunciation |
 | `fr-FR` | French (France) | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Output format<br/><br/>Pronunciation<br/><br/>Phrase list |
 | `ga-IE` | Irish (Ireland) | Plain text<br/><br/>Pronunciation |
@@ -94,7 +94,7 @@ ms.author: eur
 | `hr-HR` | Croatian (Croatia) | Plain text<br/><br/>Pronunciation |
 | `hu-HU` | Hungarian (Hungary) | Plain text<br/><br/>Pronunciation |
 | `hy-AM` | Armenian (Armenia) | Plain text |
-| `id-ID` | Indonesian (Indonesia) | Plain text<br/><br/>Pronunciation<br/><br/>Phrase list |
+| `id-ID` | Indonesian (Indonesia) | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Pronunciation<br/><br/>Phrase list |
 | `is-IS` | Icelandic (Iceland) | Plain text |
 | `it-CH` | Italian (Switzerland) | Plain text |
 | `it-IT` | Italian (Italy) | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Output format<br/><br/>Pronunciation<br/><br/>Phrase list |
@@ -120,10 +120,10 @@ ms.author: eur
 | `nl-BE` | Dutch (Belgium) | Plain text |
 | `nl-NL` | Dutch (Netherlands) | Plain text<br/><br/>Output format<br/><br/>Pronunciation<br/><br/>Phrase list |
 | `pa-IN` | Punjabi (India) | Audio + human-labeled transcript |
-| `pl-PL` | Polish (Poland) | Plain text<br/><br/>Output format<br/><br/>Pronunciation<br/><br/>Phrase list |
+| `pl-PL` | Polish (Poland) | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Output format<br/><br/>Pronunciation<br/><br/>Phrase list |
 | `ps-AF` | Pashto (Afghanistan) | Plain text |
 | `pt-BR` | Portuguese (Brazil) | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Output format<br/><br/>Pronunciation<br/><br/>Phrase list |
-| `pt-PT` | Portuguese (Portugal) | Plain text<br/><br/>Output format<br/><br/>Pronunciation<br/><br/>Phrase list |
+| `pt-PT` | Portuguese (Portugal) | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Output format<br/><br/>Pronunciation<br/><br/>Phrase list |
 | `ro-RO` | Romanian (Romania) | Plain text<br/><br/>Pronunciation |
 | `ru-RU` | Russian (Russia) | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Phrase list |
 | `si-LK` | Sinhala (Sri Lanka) | Plain text |
@@ -137,7 +137,7 @@ ms.author: eur
 | `sw-TZ` | Kiswahili (Tanzania) | Plain text |
 | `ta-IN` | Tamil (India) | Plain text |
 | `te-IN` | Telugu (India) | Plain text |
-| `th-TH` | Thai (Thailand) | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Phrase list |
+| `th-TH` | Thai (Thailand) | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Phrase list |
 | `tr-TR` | Turkish (Türkiye) | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Output format |
 | `uk-UA` | Ukrainian (Ukraine) | Plain text |
 | `ur-IN` | Urdu (India) | Audio + human-labeled transcript |
@@ -145,11 +145,11 @@ ms.author: eur
 | `vi-VN` | Vietnamese (Vietnam) | Plain text<br/><br/>Phrase list |
 | `wuu-CN` | Chinese (Wu, Simplified) | Plain text |
 | `yue-CN` | Chinese (Cantonese, Simplified) | Plain text |
-| `zh-CN` | Chinese (Mandarin, Simplified) | Plain text<br/><br/>Structured text<br/><br/>Output format<br/><br/>Phrase list |
+| `zh-CN` | Chinese (Mandarin, Simplified) | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Output format<br/><br/>Phrase list |
 | `zh-CN-shandong` | Chinese (Jilu Mandarin, Simplified) | Plain text |
 | `zh-CN-sichuan` | Chinese (Southwestern Mandarin, Simplified) | Plain text |
-| `zh-HK` | Chinese (Cantonese, Traditional) | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Output format<br/><br/>Phrase list |
-| `zh-TW` | Chinese (Taiwanese Mandarin, Traditional) | Plain text<br/><br/>Phrase list |
+| `zh-HK` | Chinese (Cantonese, Traditional) | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Output format<br/><br/>Phrase list |
+| `zh-TW` | Chinese (Taiwanese Mandarin, Traditional) | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Phrase list |
 | `zu-ZA` | isiZulu (South Africa) | Plain text |
 
 <sup>1</sup> The model is bilingual and also supports English.

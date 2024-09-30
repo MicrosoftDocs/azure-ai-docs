@@ -29,7 +29,7 @@ You can use Custom Vision through a client library SDK, REST API, or through the
 This documentation contains the following types of articles:
 * The [quickstarts](./getting-started-build-a-classifier.md) are step-by-step instructions that let you make calls to the service and get results in a short period of time.
 * The [how-to guides](./test-your-model.md) contain instructions for using the service in more specific or customized ways.
-* The [tutorials](./iot-visual-alerts-tutorial.md) are longer guides that show you how to use this service as a component in broader business solutions.
+* The [tutorials](./logo-detector-mobile.md) are longer guides that show you how to use this service as a component in broader business solutions.
 <!--* The [conceptual articles](Vision-API-How-to-Topics/call-read-api.md) provide in-depth explanations of the service's functionality and features.-->
 
 For a more structured approach, follow a **Training module** for Custom Vision:
