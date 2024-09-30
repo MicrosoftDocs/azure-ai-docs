@@ -1,7 +1,7 @@
 ---
 title: "Tutorial: Train a model"
 titleSuffix: Azure Machine Learning
-description: Dive in to the process of training a model
+description: In this tutorial, learn how to submit a cloud-based training job in Azure Machine Learning by using a notebook in Azure Machine Learning studio. 
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: core
@@ -12,7 +12,7 @@ ms.topic: tutorial
 ms.reviewer: None
 author: ssalgadodev
 ms.author: ssalgado
-ms.date: 10/20/2023
+ms.date: 09/30/2024
 #Customer intent: As a data scientist, I want to know how to prototype and develop machine learning models on a cloud workstation.
 ---
 
@@ -20,19 +20,20 @@ ms.date: 10/20/2023
 
 [!INCLUDE [sdk v2](includes/machine-learning-sdk-v2.md)]
 
-Learn how a data scientist uses Azure Machine Learning to train a model. In this example, you use the associated credit card dataset to show how you can use Azure Machine Learning for a classification problem. The goal is to predict if a customer has a high likelihood of defaulting on a credit card payment.
+Learn how a data scientist uses Azure Machine Learning to train a model. In this example, you use a credit card dataset to understand how to use Azure Machine Learning for a classification problem. The goal is to predict if a customer has a high likelihood of defaulting on a credit card payment. The training script handles the data preparation. The script then trains and registers a model.
 
-The training script handles the data preparation, then trains and registers a model. This tutorial takes you through steps to submit a cloud-based training job (command job). If you would like to learn more about how to load your data into Azure, see [Tutorial: Upload, access, and explore your data in Azure Machine Learning](tutorial-explore-data.md).
-The steps are:
+This tutorial takes you through steps to submit a cloud-based training job (command job).
 
 > [!div class="checklist"]
 > - Get a handle to your Azure Machine Learning workspace
 > - Create your compute resource and job environment
 > - Create your training script
-> - Create and run your command job to run the training script on the compute resource, configured with the appropriate job environment and the data source
+> - Create and run your command job to run the training script on the compute resource
 > - View the output of your training script
 > - Deploy the newly-trained model as an endpoint
 > - Call the Azure Machine Learning endpoint for inferencing
+
+If you would like to learn more about how to load your data into Azure, see [Tutorial: Upload, access, and explore your data in Azure Machine Learning](tutorial-explore-data.md).
 
 This video shows how to get started in Azure Machine Learning studio so that you can follow the steps in the tutorial. The video shows how to create a notebook, create a compute instance, and clone the notebook. The steps are also described in the following sections.
 
@@ -44,7 +45,7 @@ This video shows how to get started in Azure Machine Learning studio so that you
 
 - [!INCLUDE [sign in](includes/prereq-sign-in.md)]
 
-- [!INCLUDE [open or create  notebook](includes/prereq-open-or-create.md)]
+- [!INCLUDE [open or create notebook](includes/prereq-open-or-create.md)]
 
   - [!INCLUDE [new notebook](includes/prereq-new-notebook.md)]
   - Or, open **tutorials/get-started-notebooks/train-model.ipynb** from the **Samples** section of studio. [!INCLUDE [clone notebook](includes/prereq-clone-notebook.md)]
@@ -55,18 +56,18 @@ This video shows how to get started in Azure Machine Learning studio so that you
 
 ## Use a command job to train a model in Azure Machine Learning
 
-To train a model, you need to submit a *job*. The type of job that you submit in this tutorial is a *command job*. Azure Machine Learning offers several different types of jobs to train models. Users can select their method of training based on complexity of the model, data size, and training speed requirements. In this tutorial, you learn how to submit a *command job* to run a *training script*.
+To train a model, you need to submit a *job*. Azure Machine Learning offers several different types of jobs to train models. Users can select their method of training based on complexity of the model, data size, and training speed requirements. In this tutorial, you learn how to submit a *command job* to run a *training script*.
 
 A command job is a function that allows you to submit a custom training script to train your model. This job can also be defined as a custom training job. A command job in Azure Machine Learning is a type of job that runs a script or command in a specified environment. You can use command jobs to train models, process data, or any other custom code you want to execute in the cloud.
 
-This tutorial focuses on using a command job to create a custom training job that you use to train a model. For any custom training job, the below items are required:
+This tutorial focuses on using a command job to create a custom training job that you use to train a model. Any custom training job requires the following items:
 
 - environment
 - data
 - command job
 - training script
 
-This tutorial provides all these items for the example: creating a classifier to predict customers who have a high likelihood of defaulting on credit card payments.
+This tutorial provides these items for the example: creating a classifier to predict customers who have a high likelihood of defaulting on credit card payments.
 
 ## Create handle to workspace
 
@@ -75,8 +76,7 @@ Before you dive in the code, you need a way to reference your workspace. Create 
 In the next cell, enter your subscription ID, resource group name, and workspace name. To find these values:
 
 1. In the upper right Azure Machine Learning studio toolbar, select your workspace name.
-1. Copy the value for workspace, resource group, and subscription ID into the code.
-1. You need to copy one value, close the area and paste, then come back for the next one.
+1. Copy the value for workspace, resource group, and subscription ID into the code. You need to copy one value, close the area and paste, then come back for the next one.
 
 ```python
 from azure.ai.ml import MLClient
@@ -109,9 +109,9 @@ print(ws.location,":", ws.resource_group)
 
 ## Create a job environment
 
-To run your Azure Machine Learning job on your compute resource, you need an [environment](concept-environments.md). An environment lists the software runtime and libraries that you want installed on the compute where do the training. It's similar to your python environment on your local machine.
+To run your Azure Machine Learning job on your compute resource, you need an environment. An environment lists the software runtime and libraries that you want installed on the compute where do the training. It's similar to the python environment on your local machine. For more information, see [What are Azure Machine Learning environments?](concept-environments.md)
 
-Azure Machine Learning provides many curated or ready-made environments, which are useful for common training and inference scenarios. 
+Azure Machine Learning provides many curated or ready-made environments that are useful for common training and inference scenarios.
 
 In this example, you create a custom conda environment for your jobs, using a conda yaml file.
 
@@ -149,7 +149,7 @@ dependencies:
     - matplotlib
 ```
 
-The specification contains some usual packages that you use in your job (numpy, pip).
+The specification contains some usual packages that you use in your job, such as numpy and  pip.
 
 Reference this *yaml* file to create and register this custom environment in your workspace:
 
@@ -174,17 +174,15 @@ print(
 
 ## Configure a training job using the command function
 
-You create an Azure Machine Learning *command job* to train a model for credit default prediction. The command job runs a *training script* in a specified environment on a specified compute resource. You already created the environment and the compute cluster. Next, create the training script. In this specific case, you're training the dataset to produce a classifier using the `GradientBoostingClassifier` model. 
+You create an Azure Machine Learning *command job* to train a model for credit default prediction. The command job runs a *training script* in a specified environment on a specified compute resource. You already created the environment and the compute cluster. Next, create the training script. In this case, you're training the dataset to produce a classifier using the `GradientBoostingClassifier` model.
 
-The *training script* handles the data preparation, training and registering of the trained model. The method `train_test_split` handles splitting the dataset into test and training data. In this tutorial, you create a Python training script.
+The training script handles the data preparation, training, and registering of the trained model. The method `train_test_split` splits the dataset into test and training data. In this tutorial, you create a Python training script.
 
 Command jobs can be run from CLI, Python SDK, or studio interface. In this tutorial, use the Azure Machine Learning Python SDK v2 to create and run the command job.
 
 ## Create training script
 
-Let's start by creating the training script - the *main.py* python file.
-
-First create a source folder for the script:
+Start by creating the training script: the *main.py* python file. First create a source folder for the script:
 
 ```python
 import os
@@ -193,9 +191,9 @@ train_src_dir = "./src"
 os.makedirs(train_src_dir, exist_ok=True)
 ```
 
-This script handles the preprocessing of the data, splitting it into test and train data. It then consumes this data to train a tree based model and return the output model.
+This script preprocesses the data, splitting it into test and train data. It then consumes the data to train a tree based model and return the output model.
 
-[MLFlow](concept-mlflow.md) is used to log the parameters and metrics during this job. The MLFlow package allows you to keep track of metrics and results for each model Azure trains. Use MLFlow to first get the best model for your data. Then view the model's metrics on the Azure studio.
+MLFlow is used to log the parameters and metrics during this job. The MLFlow package allows you to track metrics and results for each model Azure trains. Use MLFlow to get the best model for your data. Then view the model's metrics on the Azure studio. For more information, see [MLflow and Azure Machine Learning](concept-mlflow.md).
 
 ```python
 %%writefile {train_src_dir}/main.py
@@ -303,16 +301,16 @@ if __name__ == "__main__":
     main()
 ```
 
-In this script, once the model is trained, the model file is saved and registered to the workspace. Registering your model allows you to store and version your models in the Azure cloud, in your workspace. Once you register a model, you can find all other registered model in one place in the Azure Studio called the model registry. The model registry helps you organize and keep track of your trained models.
+In this script, after the model is trained, the model file is saved and registered to the workspace. Registering your model allows you to store and version your models in the Azure cloud, in your workspace. After you register a model, you can find all other registered model in one place in the Azure Studio called the *model registry*. The model registry helps you organize and keep track of your trained models.
 
 ## Configure the command
 
 Now that you have a script that can perform the classification task, use the general purpose **command** that can run command line actions. This command line action can be directly calling system commands or by running a script.
 
-Here, create input variables to specify the input data, split ratio, learning rate and registered model name. The command script:
+Create input variables to specify the input data, split ratio, learning rate and registered model name. The command script:
 
-- Uses the environment created earlier - you can use the `@latest` notation to indicate the latest version of the environment when the command is run.
-- Configures the command line action itself - `python main.py` in this case. The inputs/outputs are accessible in the command via the `${{ ... }}` notation.
+- Uses the environment created earlier. Use the `@latest` notation to indicate the latest version of the environment when the command is run.
+- Configures the command line action itself, `python main.py` in this case. You can access the inputs and outputs in the command by using `${{ ... }}` notation.
 - Since a compute resource wasn't specified, the script runs on a [serverless compute cluster](how-to-use-serverless-compute.md) that is automatically created.
 
 ```python
@@ -340,7 +338,7 @@ job = command(
 
 ## Submit the job
 
-It's now time to submit the job to run in Azure Machine Learning studio. This time, use `create_or_update`  on `ml_client`. `ml_client` is a client class that allows you to connect to your Azure subscription using Python and interact with Azure Machine Learning services. `ml_client` allows you to submit your jobs using Python.
+Submit the job to run in Azure Machine Learning studio. This time, use `create_or_update` on `ml_client`. `ml_client` is a client class that allows you to connect to your Azure subscription using Python and interact with Azure Machine Learning services. `ml_client` allows you to submit your jobs using Python.
 
 ```python
 ml_client.create_or_update(job)
@@ -348,32 +346,34 @@ ml_client.create_or_update(job)
 
 ## View job output and wait for job completion
 
-View the job in Azure Machine Learning studio by selecting the link in the output of the previous cell. The output of this job looks like this in the Azure Machine Learning studio. Explore the tabs for various details like metrics, outputs etc. Once completed, the job registers a model in your workspace as a result of training.
+To view the job in Azure Machine Learning studio, select the link in the output of the previous cell. The output of this job looks like this in the Azure Machine Learning studio. Explore the tabs for various details like metrics, outputs etc. After the job finishes, it registers a model in your workspace as a result of training.
 
 :::image type="content" source="media/tutorial-azure-ml-in-a-day/view-job.gif" alt-text="Screenshot shows the overview page for the job.":::
 
 > [!IMPORTANT]
-> Wait until the status of the job is complete before returning to this notebook to continue. The job takes 2 to 3 minutes to run. It could take longer (up to 10 minutes) if the compute cluster has been scaled down to zero nodes and custom environment is still building.
+> Wait until the status of the job is complete before you return to this notebook to continue. The job takes 2 to 3 minutes to run. It could take longer, up to 10 minutes, if the compute cluster has been scaled down to zero nodes and custom environment is still building.
 
-When you run the cell, the notebook output shows a link to the job's details page on Azure Studio. Alternatively, you can also select Jobs on the left navigation menu. A job is a grouping of many runs from a specified script or piece of code. Information for the run is stored under that job. The details page gives an overview of the job, the time it took to run, when it was created, etc. The page also has tabs to other information about the job such as metrics, Outputs + logs, and code. Listed here are the tabs available in the job's details page:
+When you run the cell, the notebook output shows a link to the job's details page on Machine Learning studio. Alternatively, you can also select Jobs on the left navigation menu.
 
-- Overview: The overview section provides basic information about the job, including its status, start and end times, and the type of job that was run
-- Inputs: The input section lists the data and code that were used as inputs for the job. This section can include datasets, scripts, environment configurations, and other resources that were used during training.
-- Outputs + logs: The Outputs + logs tab contains logs generated while the job was running. This tab helps troubleshooting if anything goes wrong with your training script or model creation.
-- Metrics: The metrics tab showcases key performance metrics from your model such as training score, f1 score, and precision score. 
+A job is a grouping of many runs from a specified script or piece of code. Information for the run is stored under that job. The details page gives an overview of the job, the time it took to run, when it was created, and other information. The page also has tabs to other information about the job such as metrics, Outputs + logs, and code. Here are the tabs available in the job's details page:
+
+- Overview: Basic information about the job, including its status, start and end times, and the type of job that was run
+- Inputs: The data and code that were used as inputs for the job. This section can include datasets, scripts, environment configurations, and other resources that were used during training.
+- Outputs + logs: Logs generated while the job was running. This tab helps troubleshooting if anything goes wrong with your training script or model creation.
+- Metrics: Key performance metrics from your model such as training score, f1 score, and precision score.
 
 <!-- nbend -->
 
 ## Clean up resources
 
-If you plan to continue now to other tutorials, skip to [Next steps](#next-step).
+If you plan to continue now to other tutorials, skip to [Related content](#related-content).
 
 ### Stop compute instance
 
 If you're not going to use it now, stop the compute instance:
 
 1. In the studio, in the left navigation area, select **Compute**.
-1. In the top tabs, select **Compute instances**
+1. In the top tabs, select **Compute instances**.
 1. Select the compute instance in the list.
 1. On the top toolbar, select **Stop**.
 
@@ -381,15 +381,15 @@ If you're not going to use it now, stop the compute instance:
 
 [!INCLUDE [aml-delete-resource-group](includes/aml-delete-resource-group.md)]
 
-## Next step
+## Related content
 
-Learn about deploying a model
+Learn about deploying a model:
 
 > [!div class="nextstepaction"]
 > [Deploy a model](tutorial-deploy-model.md).
 
 This tutorial used an online data file. To learn more about other ways to access data, see [Tutorial: Upload, access, and explore your data in Azure Machine Learning](tutorial-explore-data.md).
 
-If you would like to learn more about different ways to train models in Azure Machine Learning, see [What is automated machine learning (AutoML)?](concept-automated-ml.md). Automated ML is a supplemental tool to reduce the amount of time a data scientist spends finding a model that works best with their data.
+Automated ML is a supplemental tool to reduce the amount of time a data scientist spends finding a model that works best with their data. For more information, see [What is automated machine learning](concept-automated-ml.md).
 
-If you would like more examples similar to this tutorial, see [**Samples**](quickstart-create-resources.md#learn-from-sample-notebooks) section of studio. These same samples are available at the [GitHub examples page.](https://github.com/Azure/azureml-examples) The examples include complete Python Notebooks that you can run code and learn to train a model. You can modify and run  existing scripts from the samples, containing scenarios including classification, natural language processing, and anomaly detection. 
+If you would like more examples similar to this tutorial, see [**Samples**](quickstart-create-resources.md#learn-from-sample-notebooks). These samples are available at the [GitHub examples page](https://github.com/Azure/azureml-examples). The examples include complete Python Notebooks that you can run code and learn to train a model. You can modify and run existing scripts from the samples, containing scenarios including classification, natural language processing, and anomaly detection.
