@@ -6,7 +6,7 @@ author: jboback
 ms.author: jboback
 manager: nitinme
 ms.service: azure-ai-language
-ms.date: 08/23/2024
+ms.date: 09/27/2024
 ms.topic: quickstart
 ---
 

@@ -6,8 +6,9 @@ author: eric-urban
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: conceptual
-ms.date: 1/21/2024
+ms.date: 9/20/2024
 ms.author: eur
+#Customer intent: As a developer, I want to migrate from non-neural voice to neural voice in the Speech service.
 ---
 
 # Migration to neural voice

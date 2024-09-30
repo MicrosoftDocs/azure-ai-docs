@@ -28,7 +28,7 @@ To improve relevance, use these parameters:
 
 + A search index containing `searchable` vector and nonvector fields. See [Create an index](search-how-to-create-search-index.md) and [Add vector fields to a search index](vector-search-how-to-create-index.md).
 
-+ (Optional) If you want [semantic ranking](semantic-how-to-configure.md), your search service must be Basic tier or higher, with [semantic ranking enabled](semantic-how-to-enable-disable.md).
++ (Optional) If you want the [semantic ranker](semantic-search-overview.md), your search service must be Basic tier or higher, with [semantic ranker enabled](semantic-how-to-enable-disable.md).
 
 + (Optional) If you want text-to-vector conversion of a query string, [create and assign a vectorizer](vector-search-how-to-configure-vectorizer.md) to vector fields in the search index.
 
@@ -167,7 +167,7 @@ api-key: {{admin-api-key}}
 
 ## Semantic hybrid search
 
-Assuming that you [enabled semantic ranking](semantic-how-to-enable-disable.md) and your index definition includes a [semantic configuration](semantic-how-to-query-request.md), you can formulate a query that includes vector search and keyword search, with semantic ranking over the merged result set. Optionally, you can add captions and answers. 
+Assuming that you [enabled semantic ranker](semantic-how-to-enable-disable.md) and your index definition includes a [semantic configuration](semantic-how-to-query-request.md), you can formulate a query that includes vector search and keyword search, with semantic ranking over the merged result set. Optionally, you can add captions and answers. 
 
 ```http
 POST https://{{search-service-name}}.search.windows.net/indexes/{{index-name}}/docs/search?api-version=2024-07-01
@@ -200,7 +200,7 @@ api-key: {{admin-api-key}}
 
 **Key points:**
 
-+ Semantic ranking accepts up to 50 results from the merged response.
++ Semantic ranker accepts up to 50 results from the merged response.
 
 + "queryType" and "semanticConfiguration" are required.
 
@@ -353,9 +353,9 @@ Both "k" and "top" are optional. Unspecified, the default number of results in a
 > [!NOTE]
 > The semantic ranker can take up to 50 results. 
 
-If you're using semantic ranking in 2024-05-01-preview API, it's a best practice to set "k" and "maxTextRecallSize" to sum to at least 50 total.  You can then restrict the results returned to the user with the "top" parameter. 
+If you're using semantic ranker in 2024-05-01-preview API, it's a best practice to set "k" and "maxTextRecallSize" to sum to at least 50 total.  You can then restrict the results returned to the user with the "top" parameter. 
 
-If you're using semantic ranking in previous APIs do the following:
+If you're using semantic ranker in previous APIs do the following:
 
 + if doing keyword-only search (no vector) set "top" to 50
 + if doing hybrid search set "k" to 50, to ensure that the semantic ranker gets at least 50 results. 

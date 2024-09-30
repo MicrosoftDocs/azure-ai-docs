@@ -131,13 +131,15 @@ In Azure AI Search, you can configure BM25 algorithm parameters, and tune search
 | [Scoring algorithm configuration](index-ranking-similarity.md) | Search index |  |
 | [Scoring profiles](index-add-scoring-profiles.md) | Search index | Provide criteria for boosting the search score of a match based on content characteristics. For example, you might want to boost matches based on their revenue potential, promote newer items, or perhaps boost items that have been in inventory too long. A scoring profile is part of the index definition, composed of weighted fields, functions, and parameters. You can update an existing index with scoring profile changes, without incurring an index rebuild.|
 | [Semantic ranking](semantic-search-overview.md) | Query request | Applies machine reading comprehension to search results, promoting more semantically relevant results to the top. |
-| [featuresMode parameter](#featuresmode-parameter-preview) | Query request | This parameter is mostly used for unpacking a score, but it can be used for in code that provides a [custom scoring solution](https://github.com/Azure-Samples/search-ranking-tutorial). |
+| [featuresMode parameter](#featuresmode-parameter-preview) | Query request | This parameter is mostly used for unpacking a BM25-ranked score, but it can be used for in code that provides a [custom scoring solution](https://github.com/Azure-Samples/search-ranking-tutorial). |
 
 <a name="featuresMode-param"></a>
 
 ## featuresMode parameter (preview)
 
-[Search Documents](/rest/api/searchservice/preview-api/search-documents) requests have a new [featuresMode](/rest/api/searchservice/preview-api/search-documents#featuresmode) parameter that can provide more detail about relevance at the field level. Whereas the `@searchScore` is calculated for the document all-up (how relevant is this document in the context of this query), through featuresMode you can get information about individual fields, as expressed in a `@search.features` structure. The structure contains all fields used in the query (either specific fields through **searchFields** in a query, or all fields attributed as **searchable** in an index). For each field, you get the following values:
+[Search Documents](/rest/api/searchservice/documents/search-post) requests support a featuresMode parameter that provides more detail about a BM25 relevance score at the field level. Whereas the `@searchScore` is calculated for the document all-up (how relevant is this document in the context of this query), featuresMode reveals information about individual fields, as expressed in a `@search.features` structure. The structure contains all fields used in the query (either specific fields through **searchFields** in a query, or all fields attributed as **searchable** in an index). 
+
+For each field, `@search.features` give you the following values:
 
 + Number of unique tokens found in the field
 + Similarity score, or a measure of how similar the content of the field is, relative to the query term
@@ -166,6 +168,8 @@ For a query that targets the "description" and "title" fields, a response that i
 ```
 
 You can consume these data points in [custom scoring solutions](https://github.com/Azure-Samples/search-ranking-tutorial) or use the information to debug search relevance problems.
+
+The featuresMode parameter isn't documented in the REST APIs, but you can use it on a preview REST API call to Search Documents for text (Keyword) search that's BM25-ranked.
 
 ## Number of ranked results in a full text query response
 

@@ -6,9 +6,10 @@ author: eric-urban
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: conceptual
-ms.date: 1/17/2024
+ms.date: 9/23/2024
 ms.author: eur
 ms.custom: references_regions
+#Customer intent: As a developer, I want to learn about the available regions and endpoints for the Speech service.
 ---
 
 # Speech service supported regions

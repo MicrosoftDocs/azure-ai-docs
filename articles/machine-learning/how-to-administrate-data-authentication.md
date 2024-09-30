@@ -55,11 +55,13 @@ In general, identity-based data authentication involves these checks:
     - Does the user identity or the compute managed identity have the necessary permissions for that storage resource? Permissions are granted by using Azure RBAC.
     - The storage account [Reader](/azure/role-based-access-control/built-in-roles#reader) reads the storage metadata.
     - The [Storage Blob Data Reader](/azure/role-based-access-control/built-in-roles#storage-blob-data-reader) reads and lists storage containers and blobs.
+    - The [Storage File Data Privileged Reader](/azure/role-based-access-control/built-in-roles#storage-file-data-privileged-reader) reaeds and lists files and directories in Azure file shares.
     - For more information, visit [Azure built-in roles for storage](/azure/role-based-access-control/built-in-roles/storage).
 * Does this user have write permission for the resource?
     - Does the user identity or the compute managed identity have the necessary permissions for that storage resource? Permissions are granted by using Azure RBAC.
     - The storage account [Reader](/azure/role-based-access-control/built-in-roles#reader) reads the storage metadata.
     - The [Storage Blob Data Contributor](/azure/role-based-access-control/built-in-roles#storage-blob-data-contributor) reads, writes, and deletes Azure Storage containers and blobs.
+    - The [Storage File Data Privileged Contributor](/azure/role-based-access-control/built-in-roles#storage-file-data-privileged-contributor) reads, writes, deletes, and modifies access control lists on files and directories in Azure file shares.
     - For more information, visit [Azure built-in roles for storage](/azure/role-based-access-control/built-in-roles/storage).
 
 ## Other general checks for authentication

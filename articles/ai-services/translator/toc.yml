@@ -30,14 +30,14 @@ items:
   - name: What is Text Translation?
     displayName: features,develop,development,free
     href: text-translation-overview.md
-  - name: 🆕 Text Translation SDK overview (preview)
+  - name: 🆕 Text Translation SDK overview
     displayName: get started,sdk,keys,endpoint
     href: text-sdk-overview.md
   - name: Text Translation REST API guide
     href:  reference/rest-api-guide.md
   - name: Quickstarts
     items:
-    - name: Translator Text SDK (preview)
+    - name: Translator Text SDK
       displayName: get started,sdk,keys,endpoint,headers,c#,go,java,javascript,python,setup
       href: quickstart-text-sdk.md
     - name:  Translator Text REST APIs
