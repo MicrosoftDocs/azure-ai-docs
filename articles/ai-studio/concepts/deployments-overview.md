@@ -7,7 +7,7 @@ ms.service: azure-ai-studio
 ms.custom:
   - ignite-2023
   - build-2024
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 5/21/2024
 ms.reviewer: fasantia
 ms.author: mopeakande
