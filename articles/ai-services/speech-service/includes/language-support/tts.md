@@ -27,7 +27,7 @@ ms.custom: references_regions
 | `ar-SY` | Arabic (Syria) | `ar-SY-AmanyNeural` (Female)<br/>`ar-SY-LaithNeural` (Male) |
 | `ar-TN` | Arabic (Tunisia) | `ar-TN-ReemNeural` (Female)<br/>`ar-TN-HediNeural` (Male) |
 | `ar-YE` | Arabic (Yemen) | `ar-YE-MaryamNeural` (Female)<br/>`ar-YE-SalehNeural` (Male) |
-| `as-IN` | Assamese (India) | `as-IN-PriyomNeural`<sup>2,3</sup> (Male)<br/>`as-IN-YashicaNeural`<sup>2,3</sup> (Female) |
+| `as-IN` | Assamese (India) | `as-IN-YashicaNeural`<sup>3</sup> (Female)<br/>`as-IN-PriyomNeural`<sup>3</sup> (Male) |
 | `az-AZ` | Azerbaijani (Latin, Azerbaijan) | `az-AZ-BanuNeural`<sup>3</sup> (Female)<br/>`az-AZ-BabekNeural`<sup>3</sup> (Male) |
 | `bg-BG` | Bulgarian (Bulgaria) | `bg-BG-KalinaNeural` (Female)<br/>`bg-BG-BorislavNeural` (Male) |
 | `bn-BD` | Bangla (Bangladesh) | `bn-BD-NabanitaNeural`<sup>3</sup> (Female)<br/>`bn-BD-PradeepNeural`<sup>3</sup> (Male) |
@@ -46,7 +46,7 @@ ms.custom: references_regions
 | `en-GB` | English (United Kingdom) | `en-GB-SoniaNeural` (Female)<br/>`en-GB-RyanNeural` (Male)<br/>`en-GB-LibbyNeural` (Female)<br/>`en-GB-AbbiNeural` (Female)<br/>`en-GB-AlfieNeural` (Male)<br/>`en-GB-BellaNeural` (Female)<br/>`en-GB-ElliotNeural` (Male)<br/>`en-GB-EthanNeural` (Male)<br/>`en-GB-HollieNeural` (Female)<br/>`en-GB-MaisieNeural` (Female, Child)<br/>`en-GB-NoahNeural` (Male)<br/>`en-GB-OliverNeural` (Male)<br/>`en-GB-OliviaNeural` (Female)<br/>`en-GB-ThomasNeural` (Male)<br/>`en-GB-AdaMultilingualNeural`<sup>1,4</sup> (Female)<br/>`en-GB-OllieMultilingualNeural`<sup>1,4</sup> (Male) |
 | `en-HK` | English (Hong Kong SAR) | `en-HK-YanNeural` (Female)<br/>`en-HK-SamNeural` (Male) |
 | `en-IE` | English (Ireland) | `en-IE-EmilyNeural` (Female)<br/>`en-IE-ConnorNeural` (Male) |
-| `en-IN` | English (India) | `en-IN-NeerjaNeural`<sup>1</sup> (Female)<br/>`en-IN-PrabhatNeural` (Male)<br/>`en-IN-AaravNeural`<sup>1</sup> (Male)<br/>`en-IN-AashiNeural`<sup>1</sup> (Female)<br/>`en-IN-AnanyaNeural`<sup>1</sup> (Female)<br/>`en-IN-KavyaNeural`<sup>1</sup> (Female)<br/>`en-IN-KunalNeural`<sup>1</sup> (Male)<br/>`en-IN-RehaanNeural`<sup>1</sup> (Male) |
+| `en-IN` | English (India) | `en-IN-AaravNeural` (Male)<br/>`en-IN-AashiNeural` (Female)<br/>`en-IN-AnanyaNeural` (Female)<br/>`en-IN-KavyaNeural` (Female)<br/>`en-IN-KunalNeural` (Male)<br/>`en-IN-NeerjaNeural` (Female)<br/>`en-IN-PrabhatNeural` (Male)<br/>`en-IN-RehaanNeural` (Male) |
 | `en-KE` | English (Kenya) | `en-KE-AsiliaNeural` (Female)<br/>`en-KE-ChilembaNeural` (Male) |
 | `en-NG` | English (Nigeria) | `en-NG-EzinneNeural` (Female)<br/>`en-NG-AbeoNeural` (Male) |
 | `en-NZ` | English (New Zealand) | `en-NZ-MollyNeural` (Female)<br/>`en-NZ-MitchellNeural` (Male) |
@@ -90,7 +90,7 @@ ms.custom: references_regions
 | `gl-ES` | Galician | `gl-ES-SabelaNeural`<sup>3</sup> (Female)<br/>`gl-ES-RoiNeural`<sup>3</sup> (Male) |
 | `gu-IN` | Gujarati (India) | `gu-IN-DhwaniNeural` (Female)<br/>`gu-IN-NiranjanNeural` (Male) |
 | `he-IL` | Hebrew (Israel) | `he-IL-HilaNeural` (Female)<br/>`he-IL-AvriNeural` (Male) |
-| `hi-IN` | Hindi (India) | `hi-IN-SwaraNeural`<sup>1</sup> (Female)<br/>`hi-IN-MadhurNeural` (Male)<br/>`hi-IN-AaravNeural`<sup>1</sup> (Male)<br/>`hi-IN-AnanyaNeural`<sup>1</sup> (Female)<br/>`hi-IN-KavyaNeural`<sup>1</sup> (Female)<br/>`hi-IN-KunalNeural`<sup>1</sup> (Male)<br/>`hi-IN-RehaanNeural`<sup>1</sup> (Male) |
+| `hi-IN` | Hindi (India) | `hi-IN-AaravNeural` (Male)<br/>`hi-IN-AnanyaNeural` (Female)<br/>`hi-IN-KavyaNeural` (Female)<br/>`hi-IN-KunalNeural` (Male)<br/>`hi-IN-RehaanNeural` (Male)<br/>`hi-IN-SwaraNeural` (Female)<br/>`hi-IN-MadhurNeural` (Male) |
 | `hr-HR` | Croatian (Croatia) | `hr-HR-GabrijelaNeural` (Female)<br/>`hr-HR-SreckoNeural` (Male) |
 | `hu-HU` | Hungarian (Hungary) | `hu-HU-NoemiNeural` (Female)<br/>`hu-HU-TamasNeural` (Male) |
 | `hy-AM` | Armenian (Armenia) | `hy-AM-AnahitNeural`<sup>3</sup> (Female)<br/>`hy-AM-HaykNeural`<sup>3</sup> (Male) |
@@ -120,8 +120,8 @@ ms.custom: references_regions
 | `ne-NP` | Nepali (Nepal) | `ne-NP-HemkalaNeural`<sup>3</sup> (Female)<br/>`ne-NP-SagarNeural`<sup>3</sup> (Male) |
 | `nl-BE` | Dutch (Belgium) | `nl-BE-DenaNeural` (Female)<br/>`nl-BE-ArnaudNeural` (Male) |
 | `nl-NL` | Dutch (Netherlands) | `nl-NL-FennaNeural` (Female)<br/>`nl-NL-MaartenNeural` (Male)<br/>`nl-NL-ColetteNeural` (Female) |
-| `or-IN` | Oriya (India) | `or-IN-SubhasiniNeural`<sup>2,3</sup> (Female)<br/>`or-IN-SukantNeural`<sup>2,3</sup> (Male) |
-| `pa-IN` | Punjabi (India) | `pa-IN-OjasNeural`<sup>2,3</sup> (Male)<br/>`pa-IN-VaaniNeural`<sup>2,3</sup> (Female) |
+| `or-IN` | Oriya (India) | `or-IN-SubhasiniNeural`<sup>3</sup> (Female)<br/>`or-IN-SukantNeural`<sup>3</sup> (Male) |
+| `pa-IN` | Punjabi (India) | `pa-IN-OjasNeural`<sup>3</sup> (Male)<br/>`pa-IN-VaaniNeural`<sup>3</sup> (Female) |
 | `pl-PL` | Polish (Poland) | `pl-PL-AgnieszkaNeural` (Female)<br/>`pl-PL-MarekNeural` (Male)<br/>`pl-PL-ZofiaNeural` (Female) |
 | `ps-AF` | Pashto (Afghanistan) | `ps-AF-LatifaNeural`<sup>3</sup> (Female)<br/>`ps-AF-GulNawazNeural`<sup>3</sup> (Male) |
 | `pt-BR` | Portuguese (Brazil) | `pt-BR-FranciscaNeural` (Female)<br/>`pt-BR-AntonioNeural` (Male)<br/>`pt-BR-BrendaNeural` (Female)<br/>`pt-BR-DonatoNeural` (Male)<br/>`pt-BR-ElzaNeural` (Female)<br/>`pt-BR-FabioNeural` (Male)<br/>`pt-BR-GiovannaNeural` (Female)<br/>`pt-BR-HumbertoNeural` (Male)<br/>`pt-BR-JulioNeural` (Male)<br/>`pt-BR-LeilaNeural` (Female)<br/>`pt-BR-LeticiaNeural` (Female)<br/>`pt-BR-ManuelaNeural` (Female)<br/>`pt-BR-NicolauNeural` (Male)<br/>`pt-BR-ThalitaNeural` (Female)<br/>`pt-BR-ValerioNeural` (Male)<br/>`pt-BR-YaraNeural` (Female)<br/>`pt-BR-MacerioMultilingualNeural`<sup>1,4</sup> (Male)<br/>`pt-BR-ThalitaMultilingualNeural`<sup>1,4</sup> (Female) |
