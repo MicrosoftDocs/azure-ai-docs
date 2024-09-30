@@ -29,7 +29,7 @@ Azure OpenAI Service models are continually refreshed with newer and more capabl
 
 Azure OpenAI notifies customers of active Azure OpenAI Service deployments for models with upcoming retirements. We notify customers of upcoming retirements as follows for each deployment:
 
-1. At model launch, we programmatically designate a "not sooner than" retirement date (typically six months to one year out).
+1. At model launch, we programmatically designate a "not sooner than" retirement date (typically one year out).
 2. At least 60 days notice before model retirement for Generally Available (GA) models.
 3. At least 30 days notice before preview model version upgrades.  
 

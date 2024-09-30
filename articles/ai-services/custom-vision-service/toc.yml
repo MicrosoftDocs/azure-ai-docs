@@ -76,8 +76,8 @@ items:
       href: encrypt-data-at-rest.md
 - name: Tutorials
   items:
-  - name: Report visual states on IoT device
-    href: iot-visual-alerts-tutorial.md
+  #- name: Report visual states on IoT device
+  #  href: iot-visual-alerts-tutorial.md
   - name: Recognize logos on mobile
     href: logo-detector-mobile.md
 - name: Reference
