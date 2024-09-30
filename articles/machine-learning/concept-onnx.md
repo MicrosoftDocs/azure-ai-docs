@@ -15,7 +15,7 @@ ms.date: 09/30/2024
 
 # ONNX and Azure Machine Learning
 
-This article describes how the [Open Neural Network Exchange (ONNX)](https://onnx.ai) can help optimize the inference of your machine learning models. Inference or model scoring is the process of using a deployed model to generate predictions on production data.
+This article describes how the [Open Neural Network Exchange (ONNX)](https://onnx.ai) can help optimize the *inference* of your machine learning models. Inference or model scoring is the process of using a deployed model to generate predictions on production data.
 
 Optimizing machine learning models for inference requires you to tune the model and the inference library to make the most of hardware capabilities. This task becomes complex if you want to get optimal performance on different platforms such as cloud, edge, CPU, or GPU, because each platform has different capabilities and characteristics. The complexity increases if you need to run models from various frameworks on different platforms. It can be time-consuming to optimize all the different combinations of frameworks and hardware.
 
