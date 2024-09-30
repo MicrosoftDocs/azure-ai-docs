@@ -50,7 +50,7 @@ These prerequisites cover the submission of a Spark job from Azure Machine Learn
 ---
 
 > [!NOTE]
-> - For more infomration about resource access while using Azure Machine Learning serverless Spark compute and attached Synapse Spark pool, visit [Ensuring resource access for Spark jobs](apache-spark-environment-configuration.md#ensuring-resource-access-for-spark-jobs).
+> - For more information about resource access while using Azure Machine Learning serverless Spark compute and attached Synapse Spark pool, visit [Ensuring resource access for Spark jobs](apache-spark-environment-configuration.md#ensuring-resource-access-for-spark-jobs).
 > - Azure Machine Learning provides a [shared quota](how-to-manage-quotas.md#azure-machine-learning-shared-quota) pool, from which all users can access compute quota to perform testing for a limited time. When you use the serverless Spark compute, Azure Machine Learning allows you to access this shared quota for a short time.
 
 ### Attach user assigned managed identity using CLI v2
@@ -131,12 +131,10 @@ df.to_csv(args.wrangled_data, index_col="PassengerId")
 > [!NOTE]
 > This Python code sample uses `pyspark.pandas`. Only the Spark runtime version 3.2 or later supports this.
 
-This script takes two arguments
+This script takes two arguments, which pass the path of input data and output folder, respectively:
 
 - `--titanic_data`
 - `--wrangled_data`
-
-which pass the path of input data and output folder respectively.
 
 # [Azure CLI](#tab/cli)
 [!INCLUDE [cli v2](includes/machine-learning-cli-v2.md)]
