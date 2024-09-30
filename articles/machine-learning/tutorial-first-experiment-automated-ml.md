@@ -80,13 +80,13 @@ Complete the following experiment set-up and run steps by using the Azure Machin
 
 1. In **Training method**, select **Train automatically**, then select **Start configuring job**.
 
-1. In **Basic settings**, select **Create new**, then for **Experiment name**, enter *my-1st-automl-experiment*.\
+1. In **Basic settings**, select **Create new**, then for **Experiment name**, enter *my-1st-automl-experiment*.
 
 1. Select **Next** to load your dataset.
 
 ## Create and load a dataset as a data asset
 
-Before you configure your experiment, upload your data file to your workspace in the form of an Azure Machine Learning data asset. For this tutorial, you can think of a data asset as your dataset for the AutoML job. Doing so allows you to ensure that your data is formatted appropriately for your experiment.
+Before you configure your experiment, upload the data file to your workspace in the form of an Azure Machine Learning data asset. For this tutorial, you can think of a data asset as your dataset for the Automated ML job. Doing so allows you to ensure that your data is formatted appropriately for your experiment.
 
 1. In **Task type & data**, for **Select task type**, choose **Classification**.
 
@@ -102,7 +102,7 @@ Before you configure your experiment, upload your data file to your workspace in
    1. Choose the *bankmarketing_train.csv* file on your local computer. You downloaded this file as a [prerequisite](https://automlsamplenotebookdata.blob.core.windows.net/automl-sample-notebook-data/bankmarketing_train.csv).
    1. Select **Next**.
 
-      When the upload finishes, the **Data preview** area is prepopulated based on the file type.
+      When the upload finishes, the **Data preview** area is populated based on the file type.
 
    1. In the **Settings** form, review the values for your data. Then select **Next**.
 
@@ -148,7 +148,7 @@ After you load and configure your data, you can set up your experiment. This set
     1. For **Validation type**, select **k-fold cross-validation**.
     1. For **Number of cross validations**, select **2**.
 
-1. Select **Next**
+1. Select **Next**.
 1. Select **compute cluster** as your compute type.
 
 A compute target is a local or cloud-based resource environment used to run your training script or host your service deployment. For this experiment, you can either try a cloud-based serverless compute (preview) or create your own cloud-based compute.
@@ -187,20 +187,17 @@ A compute target is a local or cloud-based resource environment used to run your
 1. Select **Submit training job** to run the experiment. The **Overview** screen opens with the **Status** at the top as the experiment preparation begins. This status updates as the experiment progresses. Notifications also appear in the studio to inform you of the status of your experiment.
 
 >[!IMPORTANT]
-> Preparation takes **10-15 minutes** to prepare the experiment run.
-> Once running, it takes **2-3 minutes more for each iteration**.
+> Preparation takes **10-15 minutes** to prepare the experiment run. Once running, it takes **2-3 minutes more for each iteration**.
 >
-> In production, you'd likely walk away for a bit. But for this tutorial, we suggest you start exploring the tested algorithms on the **Models** tab as they complete while the others are still running.
+> In production, you'd likely walk away for a bit. But for this tutorial, you can start exploring the tested algorithms on the **Models** tab as they complete while the others continue to run.
 
-##  Explore models
+## Explore models
 
 Navigate to the **Models + child jobs** tab to see the algorithms (models) tested. By default, the job orders the models by metric score as they complete. For this tutorial, the model that scores the highest based on the chosen **AUCWeighted** metric is at the top of the list.
 
 While you wait for all of the experiment models to finish, select the **Algorithm name** of a completed model to explore its performance details. Select the **Overview** and the **Metrics** tabs for information about the job.
 
 The following animation views the selected model's properties, metrics, and performance charts.
-
-![Run iteration detail](./media/tutorial-first-experiment-automated-ml/run-detail.gif)
 
 :::image type="content" source="./media/tutorial-first-experiment-automated-ml/run-detail.gif" alt-text="Animation that shows different views available for a child job." lightbox="./media/tutorial-first-experiment-automated-ml/run-detail.gif":::
 
@@ -219,7 +216,7 @@ To generate model explanations:
 1. Select your compute type and then select the instance or cluster: **automl-compute** that you created previously. This compute starts a child job to generate the model explanations.
 1. Select **Create**. A green success message appears.
 
-   >[!NOTE]
+   > [!NOTE]
    > The explainability job takes about 2-5 minutes to complete.
 
 1. Select **Explanations (preview)**. This tab populates after the explainability run completes.
