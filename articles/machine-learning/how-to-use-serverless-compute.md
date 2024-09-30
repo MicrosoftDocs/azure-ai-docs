@@ -111,6 +111,8 @@ When you [view your usage and quota in the Azure portal](how-to-manage-quotas.md
 
     # [Azure CLI](#tab/cli)
 
+`  Create a file named hello.yaml with the following content:
+
     ```yml
     $schema: https://azuremlschemas.azureedge.net/latest/commandJob.schema.json
     command: echo "hello world"
@@ -119,7 +121,12 @@ When you [view your usage and quota in the Azure portal](how-to-manage-quotas.md
     identity:
       type: user_identity
     ```
+    Run the file using the following command:
 
+    ```bash
+    az ml job create --file hello.yaml --resource-group my-resource-group --workspace-name my-workspace
+    ```
+    The rest of the CLI examples show variations of the hello.yaml file.  Run each of them in the same way.
     ---
 
 * **User-assigned managed identity** : When you have a workspace configured with [user-assigned managed identity](how-to-identity-based-service-authentication.md#workspace), you can use that identity with the serverless job for storage access. To access secrets, see [Use authentication credential secrets in Azure Machine Learning jobs](how-to-use-secrets-in-runs.md).  
