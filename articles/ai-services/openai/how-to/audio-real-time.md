@@ -94,7 +94,7 @@ The JavaScript web sample demonstrates how to use the GPT-4o real-time audio API
     - **Voice**: Optionally, you can select a voice.
 1. Select the **Record** button to start the session. Accept permissions to use your microphone if prompted.
 1. You should see a `<< Session Started >>` message in the main output. Then you can speak into the microphone to start a chat.
-1. You can interrupt the chat at any time by speaking and completely stop the chat by selecting the "Stop" button.
+1. You can interrupt the chat at any time by speaking. You can end the chat by selecting the **Stop** button.
 
 ## Related content
 
