@@ -10,7 +10,7 @@ ms.custom:
   - ignite-2023
   - references_regions
 ms.topic: whats-new
-ms.date: 9/19/2024
+ms.date: 10/01/2024
 recommendations: false
 ---
 
@@ -19,6 +19,24 @@ recommendations: false
 This article provides a summary of the latest releases and major documentation updates for Azure OpenAI.
 
 ## October 2024
+
+### o1-preview and o1-mini models limited access
+
+The `o1-preview` and `o1-mini` models are now available for API access and model deployment. **Registration is required, and access will be granted based on Microsoft's eligibility criteria**.
+
+Request access: [limited access model application](https://aka.ms/oai/modelaccess)
+
+Customers who were already approved and have access to the model through the early access playground do not need to apply again, you will automatically be granted API access. Once access has been granted, you will need to create a deployment for each model.
+
+**API support:**
+
+Support for the **o1 series** models was added in API version `2024-09-01-preview`.
+
+The `max_tokens` parameter has been deprecated and replaced with the new `max_completion_tokens` parameter. **o1 series** models will only work with the `max_completions_tokens` parameter.
+
+**Region availability**:
+
+Models are available for standard and global standard deployment in East US2 and Sweden Central for approved customers.
 
 ### New GPT-4o real-time audio public preview
 
@@ -674,7 +692,7 @@ If you are currently using the `2023-03-15-preview` API, we recommend migrating 
 - **GPT-35-Turbo preview**. To learn more checkout the [how-to article](./how-to/chatgpt.md).
 
 - Increased training limits for fine-tuning: The max training job size (tokens in training file) x (# of epochs) is 2 Billion tokens for all models. We have also increased the max training job from 120 to 720 hours. 
-- Adding additional use cases to your existing access.  Previously, the process for adding new use cases required customers to reapply to the service. Now, we're releasing a new process that allows you to quickly add new use cases to your use of the service. This process follows the established Limited Access process within Azure AI services. [Existing customers can attest to any and all new use cases here](https://customervoice.microsoft.com/Pages/ResponsePage.aspx?id=v4j5cvGGr0GRqy180BHbR7en2Ais5pxKtso_Pz4b1_xUM003VEJPRjRSOTZBRVZBV1E5N1lWMk1XUyQlQCN0PWcu). Please note that this is required anytime you would like to use the service for a new use case you did not originally apply for.
+- Adding additional use cases to your existing access.  Previously, the process for adding new use cases required customers to reapply to the service. Now, we're releasing a new process that allows you to quickly add new use cases to your use of the service. This process follows the established Limited Access process within Azure AI services. [Existing customers can attest to any and all new use cases here](https://customervoice.microsoft.com/Pages/ResponsePage.aspx?id=v4j5cvGGr0GRqy180BHbR7en2Ais5pxKtso_Pz4b1_xUM003VEJPRjRSOTZBRVZBV1E5N1lWMk1XUyQlQCN0PWcu). Please note that this is required anytime you would like to use the service for a new use case you did not originally apply for.
 
 ## February 2023
 
