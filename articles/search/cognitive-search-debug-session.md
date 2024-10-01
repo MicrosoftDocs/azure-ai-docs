@@ -53,7 +53,7 @@ Debug Sessions work with all generally available [indexer data sources](search-d
 
 + For custom skills, a user-assigned managed identity isn't supported for a debug session connection to Azure Storage. As stated in the prerequisites, you can use a system managed identity, or specify a full access connection string that includes a key. For more information, see [Connect a search service to other Azure resources using a managed identity](search-howto-managed-identities-data-sources.md).
 
-+ Currently, the ability to select which document to debug is unavailable. This limitation is not permanent and will be lifted soon. At this time, Debug Sessions selects the first document it finds.
++ Currently, the ability to select which document to debug is unavailable. This limitation is not permanent and will be lifted soon. At this time, Debug Sessions selects the first document in the source data container or folder.
 
 ## How a debug session works
 
