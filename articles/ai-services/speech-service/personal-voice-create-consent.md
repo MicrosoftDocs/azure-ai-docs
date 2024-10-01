@@ -29,6 +29,15 @@ You can get the consent statement text for each locale from the text to speech G
 "I [state your first and last name] am aware that recordings of my voice will be used by [state the name of the company] to create and use a synthetic version of my voice."
 ```
 
+### Supported audio formats for consent audio
+
+See the table below for the supported formats for consent audio files:
+
+| Format | Sample rate                  | Bit rate                    | Bit depth|
+|------------|--------------------------|-------------------------|----------|
+| mp3  | 16 kHz, 24 kHz, 44.1 kHz, 48 kHz       | 128 kbps, 192 kbps, 256 kbps, 320 kbps              | /                          |
+| wav    | 16 kHz, 24 kHz, 44.1 kHz, 48 kHz       | /                                               | 16-bit, 24-bit, 32-bit      |
+
 ## Add consent from a file
 
 In this scenario, the audio files must be available locally. 

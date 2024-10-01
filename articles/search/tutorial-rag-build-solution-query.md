@@ -8,7 +8,7 @@ author: HeidiSteen
 ms.author: heidist
 ms.service: cognitive-search
 ms.topic: tutorial
-ms.date: 09/12/2024
+ms.date: 10/01/2024
 
 ---
 
@@ -46,10 +46,10 @@ You're setting up two clients, so you need permissions on both resources. We use
 
 ```python
 # Set endpoints and API keys for Azure services
-AZURE_SEARCH_SERVICE: str = "PUT YOUR SEARCH SERVICE URL HERE"
-AZURE_SEARCH_KEY: str = "PUT YOUR SEARCH SERVICE ADMIN KEY HERE"
-AZURE_OPENAI_ACCOUNT: str = "PUT YOUR AZURE OPENAI ACCOUNT URL HERE"
-AZURE_OPENAI_KEY: str = "PUT YOUR AZURE OPENAI KEY HERE"
+AZURE_SEARCH_SERVICE: str = "PUT YOUR SEARCH SERVICE ENDPOINT HERE"
+# AZURE_SEARCH_KEY: str = "DELETE IF USING ROLES, OTHERWISE PUT YOUR SEARCH SERVICE ADMIN KEY HERE"
+AZURE_OPENAI_ACCOUNT: str = "PUR YOUR AZURE OPENAI ENDPOINT HERE"
+# AZURE_OPENAI_KEY: str = "DELETE IF USING ROLES, OTHERWISE PPUT YOUR AZURE OPENAI KEY HERE"
 ```
 
 ## Example script for prompt and query
@@ -59,14 +59,13 @@ Here's the Python script that instantiates the clients, defines the prompt, and 
 ```python
 # Import libraries
 from azure.search.documents import SearchClient
-from azure.core.credentials import AzureKeyCredential
 from openai import AzureOpenAI
 
-# Set up clients and specify the chat model
+token_provider = get_bearer_token_provider(credential, "https://cognitiveservices.azure.com/.default")
 openai_client = AzureOpenAI(
      api_version="2024-06-01",
      azure_endpoint=AZURE_OPENAI_ACCOUNT,
-     api_key=AZURE_OPENAI_KEY
+     azure_ad_token_provider=token_provider
  )
 
 deployment_name = "gpt-35-turbo"
@@ -74,7 +73,7 @@ deployment_name = "gpt-35-turbo"
 search_client = SearchClient(
      endpoint=AZURE_SEARCH_SERVICE,
      index_name=index_name,
-     credential=AZURE_SEARCH_CREDENTIAL
+     credential=credential
  )
 
 # Provide instructions to the model

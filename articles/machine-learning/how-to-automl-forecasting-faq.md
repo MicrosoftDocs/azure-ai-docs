@@ -116,7 +116,7 @@ To choose between them, note that NRMSE penalizes outliers in the training data 
 
 ## Will AutoML always select the same best model from the same training data and configuration?
 
-[AutoML's model search process](./concept-automl-forecasting-sweeping.md#model-sweeping) is not deterministic, so it doesn't always select the same model from the same data and configuration.  
+[AutoML's model search process](./concept-automl-forecasting-sweeping.md#model-sweeping-in-automl) is not deterministic, so it doesn't always select the same model from the same data and configuration.  
 
 ## How do I fix an out-of-memory error?
 

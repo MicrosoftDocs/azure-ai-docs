@@ -9,7 +9,7 @@ ms.topic: conceptual
 ms.author: sgilley
 author: sdgilley
 ms.reviewer: balapv
-ms.date: 01/17/2024
+ms.date: 09/30/2024
 ms.custom: cliv2, sdkv2, devx-track-python
 #Customer intent: As a data scientist, I want to know whether to use v1 or v2 of CLI and SDK.
 ---
@@ -98,7 +98,7 @@ We encourage you to migrate your code for both CLI and SDK v1 to CLI and SDK v2.
 
 ### CLI v2
 
-Azure Machine Learning CLI v1 has been deprecated. Support for the v1 extension will end on September 30, 2025. You will be able to install and use the v1 extension until that date.
+Azure Machine Learning CLI v1 has been deprecated. Support for the v1 extension will end on September 30, 2025. You'll be able to install and use the v1 extension until that date.
 
 We recommend that you transition to the `ml`, or v2, extension before September 30, 2025.
 
@@ -110,7 +110,7 @@ Azure Machine Learning Python SDK v1 doesn't have a planned deprecation date. If
 * You're starting a new workflow or pipeline. All new features and future investments will be introduced in v2.
 * You want to take advantage of the improved usability of the Python SDK v2 ability to compose jobs and pipelines by using Python functions, with easy evolution from simple to complex tasks.
 
-## Next steps
+## Related content
 
 * [Upgrade from v1 to v2](how-to-migrate-from-v1.md)
 * Get started with CLI v2:
