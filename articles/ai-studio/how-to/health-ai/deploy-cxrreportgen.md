@@ -18,7 +18,7 @@ zone_pivot_groups: ?????
 
 [!INCLUDE [Feature preview](~/reusable-content/ce-skilling/azure/includes/ai-studio/includes/feature-preview.md)]
 
-[!INCLUDE [Medical device disclaimer](~/reusable-content/ce-skilling/azure/includes/ai-studio/includes/med_device_disclaimer.md)]
+[!INCLUDE [health-ai-models-meddev-disclaimer](../../includes/health-ai-models-meddev-disclaimer.md)]
 
 In this article, you learn about the CXRReportGen Foundational Model for Healthcare. 
 
