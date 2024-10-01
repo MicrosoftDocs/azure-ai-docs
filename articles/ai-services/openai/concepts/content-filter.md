@@ -812,7 +812,7 @@ When you do so, the following options are available for detection on tagged docu
 Here's an example chat completion messages array: 
 
 ```json
-{"role": "system", "content": "Provide some context and/or instructions to the model, including document context. \"\"\" <documents>\n*insert your document content here*\n<\\documents> \"\"\""}, 
+{"role": "system", "content": "Provide some context and/or instructions to the model, including document context. \"\"\" <documents>\n*insert your document content here*\n</documents> \"\"\""}, 
 
 {"role": "user", "content": "First question/message for the model to actually respond to."} 
 ```
@@ -838,7 +838,7 @@ Hello Jos\u00E9,\nI hope this email finds you well today.
 The escaped text in a chat completion context would read: 
 
 ```json
-{"role": "system", "content": "Provide some context and/or instructions to the model, including document context. \"\"\" <documents>\n Hello Jos\\u00E9,\\nI hope this email finds you well today. \n<\\documents> \"\"\""}, 
+{"role": "system", "content": "Provide some context and/or instructions to the model, including document context. \"\"\" <documents>\n Hello Jos\\u00E9,\\nI hope this email finds you well today. \n</documents> \"\"\""}, 
 
 {"role": "user", "content": "First question/message for the model to actually respond to."}
 ```
