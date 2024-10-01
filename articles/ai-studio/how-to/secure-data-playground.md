@@ -203,7 +203,7 @@ To enable your developers to use these resources to build applications, add the 
 | Azure AI services/OpenAI | Contributor | Allows for calls to the control plane. |
 | Azure Storage Account | Contributor | List Account SAS to upload files from Azure OpenAI Studio. |
 | Azure Storage Account | Storage Blob Data Contributor | Needed for developers to read and write to blob storage. |
-| Azure Storage Account | Storage File Data PrivilegedContributorRoleId | Needed to Access File Share in Storage for Promptflow data. |
+| Azure Storage Account | Storage File Data Privileged Contributor | Needed to Access File Share in Storage for Promptflow data. |
 | The resource group or Azure subscription where the developer need to deploy the web app to | Contributor | Deploy web app to the developer's Azure subscription. |
 
 ## Use your data in AI Studio  
