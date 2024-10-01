@@ -368,8 +368,7 @@ PATCH https://management.azure.com/subscriptions/<your-subscription-Id>/resource
 {
     "properties": {
         "encryptionWithCmk": {
-            "enforcement": "Enabled",
-            "encryptionComplianceStatus": "Compliant"
+            "enforcement": "Enabled"
         }
     }
 }

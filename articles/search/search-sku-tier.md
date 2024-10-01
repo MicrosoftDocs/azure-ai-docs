@@ -60,6 +60,7 @@ Currently, several regions are at capacity for specific tiers and can't be used 
 | Region | Disabled tier (SKU) due to over-capacity |
 |--------|------------------------------------------|
 | Central US | S2, S3, S3HD, L1, L2 |
+| East US| All tiers|
 | Japan East | S2, S3, S3HD, L1, L2 |
 | Qatar Central | All tiers|
 | South Central US | All tiers |

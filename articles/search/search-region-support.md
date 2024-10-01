@@ -9,7 +9,7 @@ ms.author: heidist
 ms.service: cognitive-search
 ms.topic: conceptual
 ms.custom: references_regions
-ms.date: 09/19/2024
+ms.date: 09/29/2024
 
 ---
 
@@ -40,19 +40,19 @@ You can create an Azure AI Search resource in any of the following Azure public 
 | Brazil South​​ ​ | ✅ | ✅ | |
 | Canada Central​​ | ✅ | ✅ | ✅ |
 | Canada East​​ ​ |  | ✅ | |
-| East US​ | ✅ | ✅ | ✅ |
+| East US​ <sup>1</sup>| ✅ | ✅ | ✅ |
 | East US 2 ​ | ✅ | ✅ | ✅ |
-| ​Central US​​ <sup>1</sup> | ✅ | ✅ | ✅ |
+| ​Central US​​ <sup>2</sup> | ✅ | ✅ | ✅ |
 | North Central US​ ​ | ✅ | ✅ | |
 | South Central US​ <sup>2</sup>​ | ✅ | ✅ | ✅ |
 | West US​ ​ | ✅ | ✅ | |
 | West US 2​ ​ | ✅ | ✅ | ✅ |
-| West US 3​ <sup>2</sup>​ | ✅ | ✅ |✅ |
+| West US 3​ <sup>1</sup>​ | ✅ | ✅ |✅ |
 | West Central US​ ​ | ✅ | ✅ | |
 
-<sup>1</sup> This region has capacity, but some tiers are [not available](search-sku-tier.md#region-availability-by-tier). 
+<sup>1</sup> Currently, this region is at full capacity and not accepting new search services. 
 
-<sup>2</sup> Currently, this region is at full capacity and not accepting new search services. 
+<sup>2</sup> This region has capacity, but some tiers are [not available](search-sku-tier.md#region-availability-by-tier). 
 
 ### Europe
 

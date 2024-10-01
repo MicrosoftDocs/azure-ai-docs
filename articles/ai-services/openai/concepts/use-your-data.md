@@ -21,12 +21,25 @@ Use this article to learn about Azure OpenAI On Your Data, which makes it easier
 
 Azure OpenAI On Your Data enables you to run advanced AI models such as GPT-35-Turbo and GPT-4 on your own enterprise data without needing to train or fine-tune models. You can chat on top of and analyze your data with greater accuracy. You can specify sources to support the responses based on the latest information available in your designated data sources. You can access Azure OpenAI On Your Data using a REST API, via the SDK or the web-based interface in the [Azure OpenAI Studio](https://oai.azure.com/). You can also create a web app that connects to your data to enable an enhanced chat solution or deploy it directly as a copilot in the Copilot Studio (preview).
 
-## Get started
+## Developing with Azure OpenAI On Your Data
+
+:::image type="content" source="../media/use-your-data/workflow-diagram.png" alt-text="A diagram showing an example workflow.":::
+
+Typically, the development process you'd use with Azure OpenAI On Your Data is:
+1. **Ingest**: Upload files using either Azure OpenAI Studio or the ingestion API. This enables your data to be cracked, chunked and embedded into an Azure AI Search instance that can be used by Azure Open AI models. If you have an existing [supported data source](#supported-data-sources), you can also connect it directly.
+
+1. **Develop**: After trying Azure OpenAI On Your Data, begin developing your application using the available REST API and SDKs, which are available in several languages. It will create prompts and search intents to pass to the Azure OpenAI service.
+
+1. **Inference**: After your application is deployed in your preferred environment, it will send prompts to Azure OpenAI, which will perform several steps before returning a response:
+    1. **Intent generation**: The service will determine the intent of the user's prompt to determine a proper response.
+
+    1. **Retrieval**: The service retrieves relevant chunks of available data from the connected data source by querying it. For example by using a semantic or vector search. [Parameters](#runtime-parameters) such as strictness and number of documents to retreive are utilized to influence the retrieval.
+    
+    1. **Filtration and reranking**: Search results from the retrieval step are improved by ranking and filtering data to refine relevance.    
+    
+    1. **Response generation**: The resulting data is submitted along with other information like the system message to the Large Language Model (LLM) and the response is sent back to the application.
 
 To get started, [connect your data source](../use-your-data-quickstart.md) using Azure OpenAI Studio and start asking questions and chatting on your data.
-
-> [!NOTE]
-> To get started, you need to already have been approved for [Azure OpenAI access](../overview.md#how-do-i-get-access-to-azure-openai) and have an [Azure OpenAI Service resource](../how-to/create-resource.md) deployed in a [supported region](#regional-availability-and-model-support) with either the gpt-35-turbo or the gpt-4 models.
 
 ## Azure Role-based access controls (Azure RBAC) for adding data sources
 
@@ -184,7 +197,6 @@ To keep your Azure AI Search index up-to-date with your latest data, you can sch
 After the data ingestion is set to a cadence other than once, Azure AI Search indexers will be created with a schedule equivalent to `0.5 * the cadence specified`. This means that at the specified cadence, the indexers will pull, reprocess, and index the documents that were added or modified from the storage container. This process ensures that the updated data gets preprocessed and indexed in the final index at the desired cadence automatically. To update your data, you only need to upload the additional documents from the Azure portal. From the portal, select **Storage Account** > **Containers**. Select the name of the original container, then **Upload**. The index will pick up the files automatically after the scheduled refresh period. The intermediate assets created in the Azure AI Search resource won't be cleaned up after ingestion to allow for future runs. These assets are:
    - `{Index Name}-index`
    - `{Index Name}-indexer`
-   - `{Index Name}-indexer-chunk`
    - `{Index Name}-datasource`
    - `{Index Name}-skillset`
 
