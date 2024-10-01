@@ -147,38 +147,41 @@ To use the Content Safety APIs, you must create your Azure AI Content Safety res
 | East US           | ✅  |✅| ✅  | ✅    |  ✅ | ✅ | ✅   | ✅ | ✅  |  
 | East US 2         | ✅  |   | ✅ | ✅    |  ✅  | ✅| ✅    |   | ✅   |  
 | Central US        | ✅  |  |      | ✅     | ✅  |    | ✅   |   | ✅   |  
-| North Central US  |  ✅  |  |    |        |       |    |      |   |       |
-| South Central US  |  ✅  |  |    |        |       |    |      |   |       |
+| North Central US  | ✅  |  | ✅  | ✅    | ✅   |    | ✅   |   | ✅  |  
+| South Central US  | ✅  |  | ✅  | ✅    | ✅   |    | ✅   |   | ✅  |  
 | West US           |      |  | ✅  | ✅   |  ✅  |    | ✅   |   |       |  
 | West US 2         | ✅  |  | ✅  | ✅    |  ✅  |    | ✅   |   | ✅  |  
 | West US 3         | ✅  |  | ✅  | ✅    | ✅   |    | ✅   |   | ✅  |  
-| Brazil South      |      |  |    |        |       |    |      |   |       |
-| Poland Central    | ✅  |  | ✅  | ✅     |  ✅  |    | ✅   |   | ✅  |  
-| South East Asia   |      |  | ✅  | ✅     |   ✅ |    | ✅   |   | ✅  |  
-| India North       |      |  |    |        |       |    |        |   |      |
-| South India       | ✅  |  |     | ✅    | ✅   |    | ✅     |   | ✅  |  
-| Central India     |     |   |     |       |      |     |       |   |      |
-| North Central US  | ✅  |  | ✅  | ✅    | ✅   |    | ✅   |   | ✅  |  
-| South Central US  | ✅  |  | ✅  | ✅    | ✅   |    | ✅   |   | ✅  |  
 | Canada East       | ✅  |  | ✅  | ✅    | ✅   |    | ✅   |   | ✅  |  
-| Canada Central    |      |  |    |        |       |    |      |   |       |
+| Canada Central    |✅   |  | ✅  |✅     | ✅   |    |      |   |       |
+| Brazil South      |  ✅ |  |  ✅|    ✅  |  ✅  |    |      |   |       |
 | Switzerland North | ✅  |  | ✅  | ✅    |  ✅  |    | ✅   | ✅ | ✅  |  
-| Germany West Central|   |  |    |        |       |    |      |   |       |
+| Germany West Central|✅|  | ✅|   ✅  |  ✅  |    |      |   |       |
+| Poland Central    | ✅  |  | ✅  | ✅     |  ✅  |    | ✅   |   | ✅  |  
 | Sweden Central    | ✅  |  | ✅  | ✅    |  ✅  | ✅| ✅    |  | ✅   |  
-| Norway East       |      |  |    |        |       |    |      |   |       |
+| Norway East       |✅   |  | ✅ | ✅    |   ✅  |    |      |   |       |
 | UK South          | ✅  |  | ✅  | ✅    | ✅   |    | ✅   |   | ✅  |  
-| France Central    | ✅  |  | ✅  | ✅    | ✅   |    | ✅   |   | ✅  |  
+| France Central    | ✅  |  |     | ✅    | ✅   |    | ✅   |   | ✅  |  
 | West Europe       | ✅  |✅| ✅ | ✅    |   ✅ |    | ✅   |   | ✅   |  
-| Italy North       |      |  |    |        |       |    |      |   |       |
+| Italy North       |      |  | ✅| ✅    | ✅   |    |      |   |       |
+| India North       |      |  |✅ |✅     | ✅   |    |       |   |      |
+| South India       | ✅  |  |     | ✅    | ✅   |    | ✅     |   | ✅  |  
+| Central India     |     |   | ✅ |   ✅  | ✅   |     |       |   |      |
+| South East Asia   |      |  | ✅  | ✅   |   ✅ |    | ✅   |   | ✅  |  
 | Japan East        | ✅  |  | ✅  | ✅    |  ✅  |    | ✅   |   | ✅   |  
-| Japan West        |      |  |    |        |       |    |      |   |       |
+| Japan West        |      |  | ✅|  ✅   |  ✅  |    | ✅   |   |       |
 | Korea Central     |  ✅ |  |    |         |       |    |      |   |       |
 | Australia East    | ✅  |  | ✅  | ✅    |  ✅  |     | ✅  | ✅| ✅   |  
 | UAE North         |   ✅|  |     |        |      |     |      |   |       |
+| South Africa North|   ✅|  | ✅ |   ✅   |  ✅  |    |      |   |       |
 | USGov Arizona     | ✅  |  |     |        |      |    |       |   | ✅   |  
 | USGov Virginia    | ✅  |  |     |        |      |    |       |   | ✅   |
-| South Africa North|      |  |    |        |       |    |      |   |       |
-| South Central US  |      |  |    |        |       |    |      |   |       |
+
+
+
+
+
+
 
 Feel free to [contact us](mailto:contentsafetysupport@microsoft.com) if your business needs other regions to be available.
 
