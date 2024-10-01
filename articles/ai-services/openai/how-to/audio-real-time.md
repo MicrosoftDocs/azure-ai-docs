@@ -82,6 +82,12 @@ You can run the sample code locally on your machine by following these steps. Re
 
 1. Run `download-pkg.ps1` or `download-pkg.sh` to download the required packages. 
 
+1. Go to the `web` folder from the `./javascript/samples` folder.
+
+    ```bash
+    cd ./web
+    ```
+
 1. Run `npm install` to install package dependencies.
 
 1. Run `npm run dev` to start the web server, navigating any firewall permissions prompts as needed.
