@@ -144,7 +144,7 @@ landingContent:
             url: ./concepts/content-filter.md#asynchronous-filter
           - text: Red teaming large language models (LLMs)
             url: ./concepts/red-teaming.md
-          - text: System message templates
+          - text: Safety system messages
             url: ./concepts/system-message.md
           - text: Abuse monitoring
             url: ./concepts/abuse-monitoring.md

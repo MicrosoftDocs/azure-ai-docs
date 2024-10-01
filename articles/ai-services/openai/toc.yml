@@ -68,12 +68,20 @@ items:
       href: ./concepts/red-teaming.md
     - name: Content credentials
       href: ./concepts/content-credentials.md
-    - name: Intro to prompt engineering
-      href: ./concepts/prompt-engineering.md
-    - name: Prompt engineering techniques
-      href: ./concepts/advanced-prompt-engineering.md
-    - name: Image prompt engineering techniques
-      href: ./concepts/gpt-4-v-prompt-engineering.md
+    - name: Prompt engineering
+      items:
+      - name: Prompt engineering techniques
+        href: ./concepts/prompt-engineering.md
+      - name: Image prompt engineering techniques
+        href: ./concepts/gpt-4-v-prompt-engineering.md
+    - name: System messages
+      items:
+      - name: System message design
+        href: ./concepts/advanced-prompt-engineering.md
+      - name: Safety system messages
+        href: ./concepts/system-message.md
+      - name: Safety system message templates
+        href: ./concepts/safety-system-message-templates.md
     - name: Model versions
       href: ./concepts/model-versions.md
     - name: Provisioned throughput units (PTU)
@@ -81,8 +89,6 @@ items:
       displayName: PTU, provisioned, provisioned throughput units
     - name: Azure OpenAI PTU update
       href: ./concepts/provisioned-migration.md
-    - name: System message templates
-      href: ./concepts/system-message.md
     - name: Legacy models
       href: ./concepts/legacy-models.md
 - name: How-to 
@@ -105,6 +111,8 @@ items:
           href: ./how-to/assistants-logic-apps.md
       - name: File search
         href: ./how-to/file-search.md
+  - name: Audio in real time
+    href: ./how-to/audio-real-time.md
   - name: Batch
     href: ./how-to/batch.md
   - name: Completions & chat completions

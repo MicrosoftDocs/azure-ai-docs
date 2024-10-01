@@ -10,7 +10,7 @@ ms.service: cognitive-search
 ms.custom:
   - ignite-2023
 ms.topic: how-to
-ms.date: 08/20/2024
+ms.date: 10/01/2024
 ---
 
 # Debug an Azure AI Search skillset in Azure portal
@@ -51,6 +51,8 @@ Debug sessions work with all generally available [indexer data sources](search-d
 
 + For custom skills, a user-assigned managed identity isn't supported for a debug session connection to Azure Storage. As stated in the prerequisites, you can use a system managed identity, or specify a full access connection string that includes a key. For more information, see [Connect a search service to other Azure resources using a managed identity](search-howto-managed-identities-data-sources.md).
 
++ Currently, the ability to select which document to debug is unavailable. This limitation is not permanent and will be lifted soon. At this time, Debug Sessions selects the first document in the source data container or folder.
+
 ## Create a debug session
 
 1. Sign in to the [Azure portal](https://portal.azure.com) and [find your search service](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices).
@@ -79,11 +81,11 @@ Debug sessions work with all generally available [indexer data sources](search-d
 
 1. In **Storage connection string**, you can specify the connection string or change the storage account. 
 
-1. In **Document to debug**, choose the first document in the index or select a specific document. If you select a specific document, depending on the data source, you're asked for a URI or a row ID.
+   <!-- 1. In **Document to debug**, choose the first document in the index or select a specific document. If you select a specific document, depending on the data source, you're asked for a URI or a row ID.
 
    If your specific document is a blob, provide the blob URI. You can find the URI in the blob property page in the portal.
 
-   :::image type="content" source="media/cognitive-search-debug/copy-blob-url.png" lightbox="media/cognitive-search-debug/copy-blob-url.png" alt-text="Screenshot of the URI property in blob storage." border="true":::
+   :::image type="content" source="media/cognitive-search-debug/copy-blob-url.png" lightbox="media/cognitive-search-debug/copy-blob-url.png" alt-text="Screenshot of the URI property in blob storage." border="true"::: -->
 
 1. Optionally, in **Indexer settings**, specify any [indexer execution settings](search-howto-indexing-azure-blob-storage.md) used to create the session. The settings should mirror the settings used by the actual indexer. Any indexer options that you specify in a debug session have no effect on the indexer itself.
 
