@@ -8,7 +8,7 @@ ms.custom:
   - ignite-2023
   - build-2024
 ms.topic: how-to
-ms.date: 5/21/2024
+ms.date: 10/01/2024
 ms.reviewer: deeikele
 ms.author: sgilley
 author: sdgilley
@@ -20,6 +20,11 @@ author: sdgilley
 This article describes how to create an Azure AI Studio project. A project is used to organize your work and save state while building customized AI apps. 
 
 Projects are hosted by an Azure AI Studio hub that provides enterprise-grade security and a collaborative environment. For more information about the projects and resources model, see [Azure AI Studio hubs](../concepts/ai-resources.md).
+
+## Prerequisites
+
+- An Azure subscription. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/).
+- An Azure AI Studio hub. If you don't have a hub, see [Create an Azure AI Studio hub](create-hub.md).
 
 ## Create a project
 
@@ -70,7 +75,7 @@ Use the following tabs to select the method you plan to use to create a project:
 
 ---
 
-## Project settings
+## View project settings
 
 # [Azure AI Studio](#tab/ai-studio)
 
@@ -104,27 +109,26 @@ az ml workspace show --name {my_project_name} --resource-group {my_resource_grou
 
 ---
 
-## Project resource access
+## Access project resources
 
 Common configurations on the hub are shared with your project, including connections, compute instances, and network access, so you can start developing right away.
 
 In addition, a number of resources are only accessible by users in your project workspace:
 
 1. Components including datasets, flows, indexes, deployed model API endpoints (open and serverless).
-1. Connections created by you under 'project settings'.
+1. Connections created by you under 'project settings.'
 1. Azure Storage blob containers, and a fileshare for data upload within your project. Access storage using the following connections:
    
    | Data connection | Storage location | Purpose |
    | --- | --- | --- |
-   | workspaceblobstore | {project-GUID}-azureml-blobstore | Default container for data upload |
+   | workspaceblobstore | {project-GUID}-azureml-blobstore | Default container for data uploads |
    | workspaceartifactstore | {project-GUID}-azureml | Stores components and metadata for your project such as model weights |
    | workspacefilestore | {project-GUID}-code | Hosts files created on your compute and using prompt flow |
 
 > [!NOTE]
 > Storage connections are not created directly with the project when your storage account has public network access set to disabled. These are created instead when a first user accesses AI Studio over a private network connection. [Troubleshoot storage connections](troubleshoot-secure-connection-project.md#troubleshoot-missing-storage-connections)
 
-
-## Next steps
+## Related content
 
 - [Deploy an enterprise chat web app](../tutorials/deploy-chat-web-app.md)
 - [Learn more about Azure AI Studio](../what-is-ai-studio.md)
