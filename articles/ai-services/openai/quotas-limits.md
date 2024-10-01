@@ -65,6 +65,7 @@ The following sections provide you with a quick guide to the default quotas and 
 ### o1-preview & o1-mini global standard
 
 | Model|Tier| Quota Limit in tokens per minute (TPM) | Requests per minute |
+|---|---|:---:|:---:|
 | `o1-preview` | Enterprise agreement | 15 M | 2.5 K |
 | `o1-mini`| Enterprise agreement | 50 M | 5 K |
 | `o1-preview` | Default | 1.5 M | 250 |
@@ -73,6 +74,7 @@ The following sections provide you with a quick guide to the default quotas and 
 ### o1-preview & o1-mini standard
 
 | Model|Tier| Quota Limit in tokens per minute (TPM) | Requests per minute |
+|---|---|:---:|:---:|
 | `o1-preview` | Enterprise agreement | 300 K | 50 |
 | `o1-mini`| Enterprise agreement |  1 M | 100 |
 | `o1-preview` | Default | 300 K | 50 |
