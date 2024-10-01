@@ -137,6 +137,16 @@ items:
           href: how-to/deploy-models-phi-3-5-vision.md
         - name: Fine-tune Phi-3 chat models
           href: how-to/fine-tune-phi-3.md
+    - name: Foundational Multimodal Healthcare AI models
+      items:
+        - name: Foundational Multimodal Healthcare AI models
+          href: how-to/health-ai/healthcare-ai-models.md
+        - name: MedImageInsight - embedding model
+          href: how-to/health-ai/deploy-medimageinsight.md
+        - name: CXRReportGen - text generation model
+          href: how-to/health-ai/deploy-cxrreportgen.md
+        - name: MedImageParse - prompted segmentation model
+          href: how-to/health-ai/deploy-medimageparse.md
     - name: Cohere models
       items:
       - name: Cohere Command models
