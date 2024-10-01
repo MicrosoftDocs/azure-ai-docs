@@ -5,7 +5,7 @@ description: Learn about the Azure Machine Learning compute instance, a fully ma
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: compute
-ms.topic: conceptual
+ms.topic: concept-article
 ms.author: sgilley
 author: sdgilley
 ms.reviewer: vijetaj
@@ -109,6 +109,7 @@ You can use the `/tmp` directory on the compute instance for your temporary data
 :::moniker range="azureml-api-1"
 You can also mount [datastores and datasets](v1/concept-azure-machine-learning-architecture.md?view=azureml-api-1&preserve-view=true#datasets-and-datastores). 
 :::moniker-end
+
 ## Create
 
 Follow the steps in [Create resources you need to get started](quickstart-create-resources.md) to create a basic compute instance. 
@@ -146,7 +147,7 @@ You can use compute instance as a local inferencing deployment target for test/d
 > [!TIP]
 > The compute instance has 120GB OS disk. If you run out of disk space and get into an unusable state, please clear at least 5 GB disk space on OS disk (mounted on /) through the compute instance terminal by removing files/folders and then do `sudo reboot`. Temporary disk will be freed after restart; you do not need to clear space on temp disk manually. To access the terminal go to compute list page or compute instance details page and click on **Terminal** link. You can check available disk space by running `df -h` on the terminal. Clear at least 5 GB space before doing `sudo reboot`. Please do not stop or restart the compute instance through the Studio until 5 GB disk space has been cleared. Auto shutdowns, including scheduled start or stop as well as idle shutdowns, will not work if the CI disk is full.
 
-## Next steps
+## Related content
 
 * [Create resources you need to get started](quickstart-create-resources.md).
 * [Tutorial: Train your first ML model](tutorial-1st-experiment-sdk-train.md) shows how to use a compute instance with an integrated notebook.
