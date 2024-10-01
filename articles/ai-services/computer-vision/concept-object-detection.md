@@ -18,7 +18,7 @@ This article explains the concept of object detection. Object detection is simil
 
 The object detection function applies tags based on the objects or living things identified in the image. There's no formal relationship between the tagging taxonomy and the object detection taxonomy. At a conceptual level, the object detection function only finds objects and living things, while the tag function can also include contextual terms like *indoor*, which can't be localized with bounding boxes.
 
-Try out the capabilities of object detection quickly and easily in your browser using Azure AI Vision Studio.
+Try out the capabilities of object detection quickly and easily in your browser by using the Azure AI Vision Studio.
 
 > [!div class="nextstepaction"]
 > [Try Vision Studio](https://portal.vision.cognitive.azure.com/)

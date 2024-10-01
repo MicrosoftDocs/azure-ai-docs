@@ -12,7 +12,7 @@ ms.author: pafarley
 ms.custom: devx-track-python
 ---
 
-# Create a custom Image Analysis model (preview)
+# Create a custom Image Analysis model
 
 [!INCLUDE [model-customization-deprecation](../includes/model-customization-deprecation.md)]
 

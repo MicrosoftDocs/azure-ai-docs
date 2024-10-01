@@ -69,7 +69,7 @@ Managed customers work with Microsoft account teams. We invite you to submit a r
 
 Existing customers have until June 30, 2023 to submit a registration form and be approved to continue using Limited Access services after June 30, 2023. Allow 10 business days for review. Without an approved application, you will be denied access after June 30, 2023.  
 
-### I'm an existing customer who applied for access to Custom Neural Voice or Speaker Recognition, do I have to register to keep using these services?
+### I'm an existing customer who applied for access to Custom Neural Voice or Speaker Recognition. Do I have to register to keep using these services?
 
 We're always looking for opportunities to improve our Responsible AI program, and Limited Access is an update to our service gating processes. If you previously applied for and were granted access to Custom Neural Voice or Speaker Recognition, we request that you submit a new registration form to continue using these services beyond June 30, 2023. 
 

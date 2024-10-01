@@ -154,7 +154,7 @@ items:
         href: how-to/call-analyze-image-40.md
       - name: Model customization
         items:
-        - name: Create a custom model (preview)
+        - name: Create a custom model
           href: how-to/model-customization.md
         - name: Verify a custom model COCO file (preview)
           href: how-to/coco-verification.md

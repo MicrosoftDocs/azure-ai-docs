@@ -24,19 +24,19 @@ ms.author: pafarley
 
 This article explains the concepts of face detection and face attribute data. Face detection is the process of locating human faces in an image and optionally returning different kinds of face-related data.
 
-You use the [Detect] API to detect faces in an image. To get started using the REST API or a client SDK, follow a [quickstart](./quickstarts-sdk/identity-client-library.md). Or, for a more in-depth guide, see [Call the detect API](./how-to/identity-detect-faces.md).
+You use the [Detect] API to detect faces in an image. To get started using the REST API or a client SDK, follow a [Face service quickstart](./quickstarts-sdk/identity-client-library.md). Or, for a more in-depth guide, see [Call the detect API](./how-to/identity-detect-faces.md).
 
 ## Face rectangle
 
 Each detected face corresponds to a *faceRectangle* field in the response. This is a set of pixel coordinates for the left, top, width, and height of the detected face. Using these coordinates, you can get the location and size of the face. In the API response, faces are listed in size order from largest to smallest.
 
-Try out the capabilities of face detection quickly and easily using Azure AI Vision Studio.
+Try out the capabilities of face detection quickly and easily by using the Azure AI Vision Studio.
 > [!div class="nextstepaction"]
 > [Try Vision Studio](https://portal.vision.cognitive.azure.com/)
 
 ## Face ID
 
-The face ID is a unique identifier string for each detected face in an image. Face ID requires limited access approval, which you can apply for by filling out the [intake form](https://aka.ms/facerecognition). For more information, see the Face API [limited access page](/legal/cognitive-services/computer-vision/limited-access-identity?context=%2Fazure%2Fcognitive-services%2Fcomputer-vision%2Fcontext%2Fcontext). You can request a face ID in your [Detect] API call.
+The face ID is a unique identifier string for each detected face in an image. Face ID requires limited access approval, which you can apply for by filling out the [intake form](https://aka.ms/facerecognition). For more information, see the Face API [Limited Access page](/legal/cognitive-services/computer-vision/limited-access-identity?context=%2Fazure%2Fcognitive-services%2Fcomputer-vision%2Fcontext%2Fcontext). You can request a face ID in your [Detect] API call.
 
 ## Face landmarks
 
@@ -92,8 +92,8 @@ To properly display the face rectangle and landmarks, you need to make sure the 
 If you're detecting faces from a video feed, you might be able to improve performance by adjusting certain settings on your video camera:
 
 * **Smoothing**: Many video cameras apply a smoothing effect. You should turn this off if you can because it creates a blur between frames and reduces clarity.
-* **Shutter Speed**: A faster shutter speed reduces the amount of motion between frames and makes each frame clearer. We recommend shutter speeds of 1/60 second or faster.
-* **Shutter Angle**: Some cameras specify shutter angle instead of shutter speed. You should use a lower shutter angle, if possible, which results in clearer video frames.
+* **Shutter speed**: A faster shutter speed reduces the amount of motion between frames and makes each frame clearer. We recommend shutter speeds of 1/60 second or faster.
+* **Shutter angle**: Some cameras specify shutter angle instead of shutter speed. You should use a lower shutter angle, if possible, which results in clearer video frames.
 
     >[!NOTE]
     > A camera sensor with a lower shutter angle receives less light in each frame, so the image is darker. You need to determine the right level to use.
