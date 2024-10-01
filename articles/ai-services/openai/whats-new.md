@@ -18,6 +18,16 @@ recommendations: false
 
 This article provides a summary of the latest releases and major documentation updates for Azure OpenAI.
 
+## October 2024
+
+### New GPT-4o real-time audio public preview
+
+Azure OpenAI GPT-4o audio is part of the GPT-4o model family that supports low-latency, "speech in, speech out" conversational interactions. The GPT-4o audio `realtime` API is designed to handle real-time, low-latency conversational interactions, making it a great fit for use cases involving live interactions between a user and a model, such as customer support agents, voice assistants, and real-time translators.
+
+The `gpt-4o-realtime-preview` model is available for global deployments in [East US 2 and Sweden Central regions](./concepts/models.md#global-standard-model-availability).
+
+For more information, see the [GPT-4o real-time audio documentation](./how-to/audio-real-time.md).
+
 ## September 2024
 
 ### Azure OpenAI Studio UX updates
