@@ -128,7 +128,7 @@ Within @search.answers:
 
 + **"score"** is a confidence score that reflects the strength of the answer. If there are multiple answers in the response, this score is used to determine the order. Top answers and top captions can be derived from different search documents, where the top answer originates from one document, and the top caption from another, but in general the same documents appear in the top positions within each array.
 
-Answers are followed by the **"value"** array, which always includes scores, captions, and any fields that are retrievable by default. If you specified the select parameter, the "value" array is limited to the fields that you specified. See [Configure semantic ranking](semantic-how-to-configure.md) for details.
+Answers are followed by the **"value"** array, which always includes scores, captions, and any fields that are retrievable by default. If you specified the select parameter, the "value" array is limited to the fields that you specified. See [Configure semantic ranker](semantic-how-to-configure.md) for details.
 
 ## Tips for producing high-quality answers
 
@@ -144,4 +144,4 @@ For best results, return semantic answers on a document corpus having the follow
 
 + [Semantic ranking overview](semantic-search-overview.md)
 + [Configure BM25 ranking](index-ranking-similarity.md)
-+ [Configure semantic ranking](semantic-how-to-configure.md)
++ [Configure semantic ranker](semantic-how-to-configure.md)

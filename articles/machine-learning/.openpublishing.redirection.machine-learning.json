@@ -4296,6 +4296,11 @@
         "redirect_document_id": true
     },
     {
+        "source_path_from_root": "/articles/machine-learning/how-to-deploy-models-phi-3-5-moe.md",
+        "redirect_url": "/azure/machine-learning/how-to-deploy-models-phi-3",
+        "redirect_document_id": true
+    },
+    {
         "source_path_from_root": "/articles/machine-learning/prompt-flow/tools-reference/vector-db-lookup-tool.md",
         "redirect_url": "/azure/machine-learning/prompt-flow/tools-reference/index-lookup-tool",
         "redirect_document_id": false

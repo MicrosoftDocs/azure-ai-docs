@@ -8,7 +8,7 @@ ms.custom:
   - ignite-2023
   - build-2024
 ms.topic: how-to
-ms.date: 5/21/2024
+ms.date: 9/24/2024
 ms.reviewer: wenxwei
 ms.author: lagayhar
 author: lgayhardt
@@ -20,7 +20,7 @@ author: lgayhardt
 
 The Azure AI Studio evaluation page is a versatile hub that not only allows you to visualize and assess your results but also serves as a control center for optimizing, troubleshooting, and selecting the ideal AI model for your deployment needs. It's a one-stop solution for data-driven decision-making and performance enhancement in your AI Studio projects. You can seamlessly access and interpret the results from various sources, including your flow, the playground quick test session, evaluation submission UI, and SDK. This flexibility ensures that you can interact with your results in a way that best suits your workflow and preferences.
 
-Once you've visualized your evaluation results, you can dive into a thorough examination. This includes the ability to not only view individual results but also to compare these results across multiple evaluation runs. By doing so, you can identify trends, patterns, and discrepancies, gaining invaluable insights into the performance of your AI system under various conditions. 
+Once you've visualized your evaluation results, you can dive into a thorough examination. This includes the ability to not only view individual results but also to compare these results across multiple evaluation runs. By doing so, you can identify trends, patterns, and discrepancies, gaining invaluable insights into the performance of your AI system under various conditions.
 
 In this article you learn to:
 
@@ -55,11 +55,13 @@ Some potential action items based on the evaluation metrics could include:
 
 The metrics detail table offers a wealth of data that can guide your model improvement efforts, from recognizing patterns to customizing your view for efficient analysis and refining your model based on identified issues.
 
-We break down the aggregate views or your metrics by**Performance and quality** and **Risk and safety metrics**. You can view the distribution of scores across the evaluated dataset and see aggregate scores for each metric.  
+We break down the aggregate views or your metrics by **Performance and quality** and **Risk and safety metrics**. You can view the distribution of scores across the evaluated dataset and see aggregate scores for each metric.  
 
 - For performance and quality metrics, we aggregate by calculating an average across all the scores for each metric.
     :::image type="content" source="../media/evaluations/view-results/evaluation-details-page.png" alt-text="Screenshot of performance and quality metrics dashboard tab." lightbox="../media/evaluations/view-results/evaluation-details-page.png":::
-- For risk and safety metrics, we aggregate based on a threshold to calculate a defect rate across all scores for each metric. Defect rate is defined as the percentage of instances in your test dataset that surpass a threshold on the severity scale over the whole dataset size. 
+- For risk and safety metrics, we aggregate by calculating a defect rate for each metric.
+    - For content harm metrics, the defect rate is defined as the percentage of instances in your test dataset that surpass a threshold on the severity scale over the whole dataset size.  By default, the threshold is “Medium”.
+    - For protected material and indirect attack, the defect rate is calculated as the percentage of instances where the output is 'true' (Defect Rate = (#trues / #instances) × 100). 
     :::image type="content" source="../media/evaluations/view-results/evaluation-details-safety-metrics.png" alt-text="Screenshot of risk and safety metrics dashboard tab." lightbox="../media/evaluations/view-results/evaluation-details-safety-metrics.png":::
 
 Here are some examples of the metrics results for the question answering scenario:

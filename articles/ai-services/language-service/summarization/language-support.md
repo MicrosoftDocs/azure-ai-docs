@@ -81,14 +81,6 @@ Conversation summarization supports the following languages:
 |Hungarian|	`hu`||	
 |Thai|	`th`||	
 
-## Custom summarization
-
-Custom summarization supports the following languages:
-
-| Language              | Language code |      Notes          |
-|-----------------------|---------------|---------------------|
-| English               | `en`          |                     |
-
 ## Next steps
 
 * [Summarization overview](overview.md)
