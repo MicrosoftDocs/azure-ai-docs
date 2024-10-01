@@ -91,7 +91,7 @@ Select **Manage in the Azure portal** to navigate to the project resources in th
 To manage or use the new project, include it in the `MLClient`:
 
 ```python
-ml_client = MLClient(workspace_name=my_project_name, resource_group_name=my_resource_group, subscription_id=my_subscription_id,credential=DefaultAzureCredential())
+ml_client = MLClient(workspace_name=my_project_name, resource_group_name=resource_group, subscription_id=subscription_id,credential=DefaultAzureCredential())
 ```
 
 # [Azure CLI](#tab/azurecli)
