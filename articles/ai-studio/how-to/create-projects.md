@@ -37,18 +37,17 @@ Use the following tabs to select the method you plan to use to create a project:
 
     ```Python
     from azure.ai.ml.entities import Project
-
+    
     my_project_name = "myexampleproject"
-    my_location = "East US"
     my_display_name = "My Example Project"
-    hub_id = "" # Azure resource manager ID of the hub
-
-    my_project = Project(name=my_hub_name, 
-                    location=my_location,
+    hub_name = "myhubname" # Azure resource manager ID of the hub
+    hub_id=f"/subscriptions/{subscription_id}/resourceGroups/{resource_group}/providers/Microsoft.MachineLearningServices/workspaces/{hub_name}"
+    
+    my_project = Project(name=my_project_name, 
                     display_name=my_display_name,
-                    hub_id=created_hub.id)
-
-    created_project = ml_client.workspaces.begin_create(workspace=my_hub).result() 
+                    hub_id=hub_id)
+    
+    created_project = ml_client.workspaces.begin_create(workspace=my_project).result()
     ```
 
 # [Azure CLI](#tab/azurecli)
