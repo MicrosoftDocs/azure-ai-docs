@@ -10,7 +10,7 @@ ms.service: azure-machine-learning
 ms.subservice: automl
 ms.topic: concept-article
 ms.custom: automl, sdkv1
-ms.date: 09/25/2024
+ms.date: 10/01/2024
 
 #customer intent: As a developer, I want to use AutoML in Azure Machine Learning, so I can search for (sweep) and select forecasting models.
 ---
@@ -18,8 +18,6 @@ ms.date: 09/25/2024
 # Model sweeping and selection for forecasting in AutoML
 
 This article describes how automated machine learning (AutoML) in Azure Machine Learning searches for and selects forecasting models. If you're interested in learning more about the forecasting methodology in AutoML, see [Overview of forecasting methods in AutoML](concept-automl-forecasting-methods.md). To explore training examples for forecasting models in AutoML, see [Set up AutoML to train a time-series forecasting model with the SDK and CLI](how-to-auto-train-forecast.md).
-
-<a name="model-sweeping"></a>
 
 ## Model sweeping in AutoML
 
@@ -40,8 +38,6 @@ The following table shows the different hyper-parameter sweeping methods that Au
 For a description of the different model types, see the [Forecasting models in AutoML](concept-automl-forecasting-methods.md#forecasting-models-in-automl) section of the forecasting methods overview article.
 
 The amount of sweeping by AutoML depends on the forecasting job configuration. You can specify the stopping criteria as a time limit or a limit on the number of trials, or the equivalent number of models. Early termination logic can be used in both cases to stop sweeping if the primary metric isn't improving.
-
-<a name="model-selection"></a>
 
 ## Model selection in AutoML
 
