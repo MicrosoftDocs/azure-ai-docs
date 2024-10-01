@@ -48,9 +48,7 @@ You can deploy the model from the Azure OpenAI model catalog or from your projec
 1. Sign in to [AI Studio](https://ai.azure.com) and go to the **Home** page.
 1. Select **Model catalog** from the left sidebar.
 1. Search for and select the `gpt-4o-realtime-preview` model from the Azure OpenAI collection.
-1. Select **Deploy** to open the deployment window. 
-1. Select the subscription that you want to use.
-1. Select **Customize** from the **Deployment details** section.
+1. Select **Deploy** to open the deployment window.
 1. Enter a deployment name and select an Azure OpenAI resource.
 1. Select `2024-10-01` from the **Model version** dropdown.
 1. Modify other default settings depending on your requirements.
