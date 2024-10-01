@@ -17,7 +17,7 @@ ms.author: pafarley
 
 This article contains recommended safety system messages for your generative AI systems, to help reduce the propensity of harm in various concern areas. Before you begin evaluating and integrating your safety system messages, visit the [Safety System Message documentation](/azure/ai-services/openai/concepts/system-message) to get started.  
 
-Please note using a safety system message is one of many techniques that can be used for mitigations risks in AI systems, and different from [Azure AI Content Safety](/azure/ai-services/content-safety/overview). 
+Note that using a safety system message is one of many techniques that can be used for mitigations risks in AI systems, and different from [Azure AI Content Safety](/azure/ai-services/content-safety/overview). 
 
 ## Recommended system messages 
 

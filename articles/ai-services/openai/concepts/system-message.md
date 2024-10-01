@@ -18,7 +18,7 @@ recommendations: false
 This article recommends frameworks and examples for writing effective system messages to guide AI models’ behavior, improve output quality and accuracy, and mitigate harms. Alongside other mitigation techniques, system messages provide a more precise way of determining safe outputs.  
 
 > [!NOTE]
-> Please note: System message is used interchangeably with "metaprompt," and "system prompt." Here, we use "system message" to align with industry taxonomy and standards.
+> System message is used interchangeably with "metaprompt," and "system prompt." Here, we use "system message" to align with industry taxonomy and standards.
 >
 > Additionally, we use the term "component" - a component is a distinct part that contributes to the overall structure and function of the system message. Examples include instructions, context, tone, safety guidelines, and tools.  
 
