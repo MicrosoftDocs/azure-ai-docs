@@ -6,9 +6,10 @@ author: eric-urban
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: overview
-ms.date: 2/7/2024
+ms.date: 9/20/2024
 ms.author: eur
 ms.custom: references_regions, build-2024
+#Customer intent: As a developer, I want to learn about personal voice for text to speech.
 ---
 
 # What is personal voice for text to speech? 

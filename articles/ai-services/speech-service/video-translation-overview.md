@@ -5,11 +5,12 @@ description: With video translation, you can seamlessly integrate multi-language
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: overview
-ms.date: 5/21/2024
+ms.date: 9/24/2024
 ms.reviewer: sally-baolian
 ms.author: eur
 author: eric-urban
 ms.custom: references_regions
+#Customer intent: As a developer, I want to learn about video translation in Azure AI Speech.
 ---
 
 # What is video translation (preview) 

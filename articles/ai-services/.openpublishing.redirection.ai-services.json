@@ -46,6 +46,11 @@
       "redirect_document_id": false
     },
     {
+      "source_path_from_root": "/articles/ai-services/custom-vision-service/concepts/compare-alternatives.md",
+      "redirect_url": "/azure/ai-services/custom-vision-service/overview",
+      "redirect_document_id": false
+    },
+    {
       "source_path_from_root": "/articles/ai-services/luis/luis-migration-authoring.md",
       "redirect_url": "/azure/ai-services/language-service/conversational-language-understanding/how-to/migrate-from-luis",
       "redirect_document_id": false
@@ -326,6 +331,26 @@
       "redirect_document_id": false
     },
     {
+      "source_path_from_root": "/articles/ai-services/computer-vision/deploy-computer-vision-on-premises.md",
+      "redirect_url": "/azure/ai-services/computer-vision/",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/computer-vision/spatial-analysis-web-app.md",
+      "redirect_url": "/azure/ai-services/computer-vision/",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/computer-vision/tutorials/storage-lab-tutorial.md",
+      "redirect_url": "/azure/ai-services/computer-vision/",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/custom-vision-service/iot-visual-alerts-tutorial.md",
+      "redirect_url": "/azure/ai-services/computer-vision/",
+      "redirect_document_id": false
+    },
+    {
       "source_path_from_root": "/articles/ai-services/document-intelligence/concept-document-intelligence-studio.md",
       "redirect_url": "/azure/ai-services/document-intelligence/studio-overview",
       "redirect_document_id": true
@@ -411,6 +436,11 @@
       "redirect_document_id": false
     },
     {
+      "source_path_from_root": "/articles/ai-services/speech-service/get-started-speaker-recognition.md",
+      "redirect_url": "/azure/ai-services/speech-service/speaker-recognition-overview",
+      "redirect_document_id": false
+    },
+    {
       "source_path_from_root": "/articles/ai-services/speech-service/how-to-recognize-intents-from-speech-csharp.md",
       "redirect_url": "/azure/ai-services/speech-service/intent-recognition",
       "redirect_document_id": false
@@ -428,6 +458,26 @@
     {
       "source_path_from_root": "/articles/ai-services/anomaly-detector//tutorials/multivariate-anomaly-detection-synapse.md",
       "redirect_url": "/azure/ai-services/anomaly-detector/overview",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/language-service/summarization/custom/how-to/data-formats.md",
+      "redirect_url": "/azure/ai-services//language-service/summarization/overview",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/language-service/summarization/custom/how-to/deploy-model.md",
+      "redirect_url": "/azure/ai-services//language-service/summarization/overview",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/language-service/summarization/custom/how-to/test-evaluate.md",
+      "redirect_url": "/azure/ai-services//language-service/summarization/overview",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/language-service/summarization/custom/quickstart.md",
+      "redirect_url": "/azure/ai-services//language-service/summarization/overview",
       "redirect_document_id": false
     }
   ]

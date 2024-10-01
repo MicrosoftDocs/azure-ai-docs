@@ -46,7 +46,7 @@ When you create a model deployment, you have the option to assign Tokens-Per-Min
 
 To create a new deployment from within the Azure AI Studio under **Shared Resources** select **Deployments** > **Deploy model** > **Deploy base model** > **Select Model** > **Confirm**.
 
-:::image type="content" source="../media/quota/deployment.png" alt-text="Screenshot of the deployment UI of Azure AI Studio" lightbox="../media/quota/deployment.png":::
+:::image type="content" source="../media/quota/deployment-new.png" alt-text="Screenshot of the deployment UI of Azure AI Studio" lightbox="../media/quota/deployment-new.png":::
 
 Post deployment you can adjust your TPM allocation by selecting **Edit** under **Shared resources** > **Deployments** in Azure OpenAI Studio. You can also modify this selection within the new quota management experience under **Management** > **Quotas**.
 
@@ -66,7 +66,7 @@ All other model classes have a common max TPM value.
 
 For an all up view of your quota allocations across deployments in a given region, select **Management** > **Quota** in Azure AI Studio:
 
-:::image type="content" source="../media/quota/quota.png" alt-text="Screenshot of the quota UI of Azure AI Studio" lightbox="../media/quota/quota.png":::
+:::image type="content" source="../media/quota/quota-new.png" alt-text="Screenshot of the quota UI of Azure AI Studio" lightbox="../media/quota/quota-new.png":::
 
 - **Deployment**: Model deployments divided by model class.
 - **Quota type**: There's one quota value per region for each model type. The quota covers all versions of that model.  

@@ -35,20 +35,28 @@ Classification can be multi-labeled. For example, when a text sample goes throug
 Every harm category the service applies also comes with a severity level rating. The severity level is meant to indicate the severity of the consequences of showing the flagged content.
 
 **Text**: The current version of the text model supports the full 0-7 severity scale. The classifier detects amongst all severities along this scale. If the user specifies, it can return severities in the trimmed scale of 0, 2, 4, and 6; each two adjacent levels are mapped to a single level.
-- [0,1] -> 0
-- [2,3] -> 2
-- [4,5] -> 4
-- [6,7] -> 6
+- `[0,1]` -> `0`
+- `[2,3]` -> `2`
+- `[4,5]` -> `4`
+- `[6,7]` -> `6`
 
-**Image**: The current version of the image model supports the trimmed version of the full 0-7 severity scale. The classifier only returns severities 0, 2, 4, and 6; each two adjacent levels are mapped to a single level.
-- [0,1] -> 0
-- [2,3] -> 2
-- [4,5] -> 4
-- [6,7] -> 6
+**Image**: The current version of the image model supports the trimmed version of the full 0-7 severity scale. The classifier only returns severities 0, 2, 4, and 6.
+- `0`
+- `2`
+- `4`
+- `6`
+
+**Image with text**: The current version of the multimodal model supports the full 0-7 severity scale. The classifier detects amongst all severities along this scale. If the user specifies, it can return severities in the trimmed scale of 0, 2, 4, and 6; each two adjacent levels are mapped to a single level.
+- `[0,1]` -> `0`
+- `[2,3]` -> `2`
+- `[4,5]` -> `4`
+- `[6,7]` -> `6`
 
 [!INCLUDE [severity-levels text](../includes/severity-levels-text.md)]
 
 [!INCLUDE [severity-levels image](../includes/severity-levels-image.md)]
+
+[!INCLUDE [severity-levels multimodal](../includes/severity-levels-multimodal.md)]
 
 
 ## Next steps

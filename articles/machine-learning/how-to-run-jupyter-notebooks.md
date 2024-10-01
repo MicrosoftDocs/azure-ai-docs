@@ -8,7 +8,7 @@ ms.author: sgilley
 ms.reviewer: sgilley
 ms.service: azure-machine-learning
 ms.subservice: core
-ms.custom: devx-track-python
+ms.custom: devx-track-python, FY25Q1-Linter
 ms.topic: how-to
 ms.date: 08/14/2024
 #Customer intent: As a data scientist, I want to run Jupyter notebooks in my workspace in Azure Machine Learning studio.
@@ -338,7 +338,7 @@ Using the following keystroke shortcuts, you can more easily navigate and run co
 
 * **File upload limit**: When uploading a file through the notebook's file explorer, you're limited files that are smaller than 5 TB. If you need to upload a file larger than this, we recommend that you use the SDK to upload the data to a datastore. For more information, see [Create data assets](how-to-create-data-assets.md?tabs=Python-SDK).
 
-## Next steps
+## Related content
 
 * [Run your first experiment](tutorial-1st-experiment-sdk-train.md)
 * [Backup your file storage with snapshots](/azure/storage/files/storage-snapshots-files)
