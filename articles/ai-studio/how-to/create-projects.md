@@ -24,7 +24,7 @@ Projects are hosted by an Azure AI Studio hub that provides enterprise-grade sec
 ## Prerequisites
 
 - An Azure subscription. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/).
-- An Azure AI Studio hub. If you don't have a hub, see [Create an Azure AI Studio hub](create-hub.md).
+- An Azure AI Studio hub. If you don't have a hub, see [How to create and manage an Azure AI Studio hub](create-azure-ai-resource.md).
 
 ## Create a project
 
