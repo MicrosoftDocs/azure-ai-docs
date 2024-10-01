@@ -10,7 +10,7 @@ author: msakande
 ms.author: mopeakande
 ms.reviewer: sehan
 ms.custom: devplatv2, FY25Q1-Linter
-ms.date: 09/30/2024
+ms.date: 10/01/2024
 #Customer intent: As a data scientist, I want to learn how authentication and authorization work for Azure Machine Learning online endpoints so I can create and deploy online endpoints.
 ---
 
@@ -18,7 +18,7 @@ ms.date: 09/30/2024
 
 [!INCLUDE [machine-learning-dev-v2](includes/machine-learning-dev-v2.md)]
 
-This article explains the concepts of identity and permission in the context of Azure Machine Learning online endpoints. The article discusses [Microsoft Entra IDs](/entra/fundamentals/whatis) that support role-based access control and permissions. A Microsoft Entra ID is either a *user identity* or an *endpoint identity*, depending on its purpose.
+This article explains the concepts of identity and permission in the context of Azure Machine Learning online endpoints. The article discusses [Microsoft Entra IDs](/entra/fundamentals/whatis) that support role-based access control and permissions. A Microsoft Entra ID is called either a *user identity* or an *endpoint identity*, depending on its purpose.
 
 - A user identity is a Microsoft Entra ID that can create an endpoint and its deployments, or interact with endpoints or workspaces. A user identity issues requests to endpoints, deployments, or workspaces. The user identity needs proper permissions to perform *control plane* and *data plane* operations on the endpoints or workspaces.
 
@@ -45,7 +45,7 @@ For more information on managing authorization to Azure Machine Learning workspa
 
 ## Permissions needed for user identity
 
-When you sign in to your Azure tenant with your Microsoft account, for example by using `az login`, you complete the `authn` user authentication step that determines your identity as a user. To create an online endpoint under an Azure Machine Learning workspace, your identity needs the proper permission, also called authorization or `authz`. User identities need appropriate permissions to perform both *control plane* and *data plane* operations.
+When you sign in to your Azure tenant with your Microsoft account, for example by using `az login`, you complete the **authn** user authentication step that determines your identity as a user. To create an online endpoint under an Azure Machine Learning workspace, your identity needs the proper permission, also called authorization or **authz**. User identities need appropriate permissions to perform both [control plane](#control-plane-operations) and [data plane](#data-plane-operations) operations.
 
 ### Control plane operations
 
@@ -129,8 +129,7 @@ If the endpoint identity is a SAI, the following roles are assigned to the endpo
 - If the endpoint identity is a SAI, and the enforce flag isn't set or the user identity doesn't have permission to read secrets, there's no automatic role assignment for the **Azure Machine Learning Workspace Connection Secrets Reader** role. For more information, see [How to deploy online endpoint with secret injection](how-to-deploy-online-endpoint-with-secret-injection.md#create-an-endpoint).
 - If the endpoint identity is a UAI, there's no automatic role assignment for the **Azure Machine Learning Workspace Connection Secrets Reader** role. In this case, you need to manually assign roles to the endpoint identity as needed.
 
-For more information on the **Azure Machine Learning Workspace Connection Secrets Reader** role, see [Assign permissions to the identity]
-(how-to-authenticate-online-endpoint.md#assign-permissions-to-the-identity).
+For more information on the **Azure Machine Learning Workspace Connection Secrets Reader** role, see [Assign permissions to the identity](how-to-authenticate-online-endpoint.md#assign-permissions-to-the-identity).
 
 ## Related content
 
