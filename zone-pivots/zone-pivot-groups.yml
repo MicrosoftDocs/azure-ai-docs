@@ -841,14 +841,3 @@ groups:
     title: Python
   - id: programming-language-powershell
     title: PowerShell
-# Owner: eur
-- id: openai-studio-cs-py
-  title: Programming languages
-  prompt: Choose your preferred usage method
-  pivots:
-  - id: programming-language-ai-studio
-    title: AI Studio
-  - id: programming-language-csharp
-    title: C#
-  - id: programming-language-python
-    title: Python

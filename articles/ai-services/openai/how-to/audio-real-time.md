@@ -15,7 +15,7 @@ recommendations: false
 
 Azure OpenAI GPT-4o audio is part of the GPT-4o model family that supports low-latency, "speech in, speech out" conversational interactions. The GPT-4o audio `realtime` API is designed to handle real-time, low-latency conversational interactions, making it a great fit for use cases involving live interactions between a user and a model, such as customer support agents, voice assistants, and real-time translators.
 
-Most users of this API need to deliver and receive audio from an end-user in real-time, including applications that use WebRTC or a telephony system. The real-time API isn't designed to connect directly to end user devices and relies on client integrations to terminate end user audio streams. 
+Most users of this API need to deliver and receive audio from an end-user in real time, including applications that use WebRTC or a telephony system. The real-time API isn't designed to connect directly to end user devices and relies on client integrations to terminate end user audio streams. 
 
 ## Supported models
 
@@ -55,7 +55,7 @@ You can deploy the model from the Azure OpenAI model catalog or from your projec
 1. Modify other default settings depending on your requirements.
 1. Select **Deploy**. You land on the deployment details page. 
 
-Now that you have a deployment of the `gpt-4o-realtime-preview` model, you can use the playground to interact with the model in real-time. Select **Early access playground** from the list of playgrounds in the left pane.
+Now that you have a deployment of the `gpt-4o-realtime-preview` model, you can use the playground to interact with the model in real time. Select **Early access playground** from the list of playgrounds in the left pane.
 
 ## Use the GPT-4o real-time audio API
 
@@ -64,7 +64,7 @@ Now that you have a deployment of the `gpt-4o-realtime-preview` model, you can u
 
 Right now, the fastest way to get started with GPT-4o real-time audio is to download the sample code from the [Azure OpenAI GPT-4o real-time audio repository on GitHub](https://github.com/azure-samples/aoai-realtime-audio-sdk).
 
-The JavaScript web sample demonstrates how to use the GPT-4o real-time audio API to interact with the model in real-time. The sample code includes a simple web interface that captures audio from the user's microphone and sends it to the model for processing. The model responds with text and audio, which the sample code renders in the web interface.
+The JavaScript web sample demonstrates how to use the GPT-4o real-time audio API to interact with the model in real time. The sample code includes a simple web interface that captures audio from the user's microphone and sends it to the model for processing. The model responds with text and audio, which the sample code renders in the web interface.
  
 1. Clone the repository to your local machine:
     
