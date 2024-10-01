@@ -8,7 +8,7 @@ author: HeidiSteen
 ms.author: heidist
 ms.service: cognitive-search
 ms.topic: tutorial
-ms.date: 09/23/2024
+ms.date: 10/01/2024
 
 ---
 
@@ -19,7 +19,7 @@ Learn how to build an automated indexing pipeline for a RAG solution on Azure AI
 In this tutorial, you:
 
 > [!div class="checklist"]
-> - Provide the index schema from the previous tutorial 
+> - Provide the index schema from the previous tutorial
 > - Create a data source connection
 > - Create an indexer
 > - Create a skillset that chunks, vectorizes, and recognizes entities
@@ -53,8 +53,25 @@ Open or create a Jupyter notebook (`.ipynb`) in Visual Studio Code to contain th
 Let's start with the index schema from the [previous tutorial](tutorial-rag-build-solution-index-schema.md). It's organized around vectorized and nonvectorized chunks. It includes a `locations` field that stores AI-generated content created by the skillset.  
 
 ```python
+from azure.identity import DefaultAzureCredential
+from azure.identity import get_bearer_token_provider
+from azure.search.documents.indexes import SearchIndexClient
+from azure.search.documents.indexes.models import (
+    SearchField,
+    SearchFieldDataType,
+    VectorSearch,
+    HnswAlgorithmConfiguration,
+    VectorSearchProfile,
+    AzureOpenAIVectorizer,
+    AzureOpenAIVectorizerParameters,
+    SearchIndex
+)
+
+credential = DefaultAzureCredential()
+
+# Create a search index  
 index_name = "py-rag-tutorial-idx"
-index_client = SearchIndexClient(endpoint=AZURE_SEARCH_SERVICE, credential=AZURE_SEARCH_CREDENTIAL)  
+index_client = SearchIndexClient(endpoint=AZURE_SEARCH_SERVICE, credential=credential)  
 fields = [
     SearchField(name="parent_id", type=SearchFieldDataType.String),  
     SearchField(name="title", type=SearchFieldDataType.String),
@@ -63,7 +80,7 @@ fields = [
     SearchField(name="chunk", type=SearchFieldDataType.String, sortable=False, filterable=False, facetable=False),  
     SearchField(name="text_vector", type=SearchFieldDataType.Collection(SearchFieldDataType.Single), vector_search_dimensions=1536, vector_search_profile_name="myHnswProfile")
     ]  
-    
+  
 # Configure the vector search configuration  
 vector_search = VectorSearch(  
     algorithms=[  
@@ -73,23 +90,23 @@ vector_search = VectorSearch(
         VectorSearchProfile(  
             name="myHnswProfile",  
             algorithm_configuration_name="myHnsw",  
-            vectorizer="myOpenAI",  
+            vectorizer_name="myOpenAI",  
         )
     ],  
     vectorizers=[  
         AzureOpenAIVectorizer(  
-            name="myOpenAI",  
+            vectorizer_name="myOpenAI",  
             kind="azureOpenAI",  
-            azure_open_ai_parameters=AzureOpenAIParameters(  
-                resource_uri=AZURE_OPENAI_ACCOUNT,  
-                deployment_id="text-embedding-ada-002",
+            parameters=AzureOpenAIVectorizerParameters(  
+                resource_url=AZURE_OPENAI_ACCOUNT,  
+                deployment_name="text-embedding-ada-002",
                 model_name="text-embedding-ada-002"
             ),
         ),  
-    ],  
+    ], 
 )  
-    
-# Create the search index on Azure AI Search
+  
+# Create the search index
 index = SearchIndex(name=index_name, fields=fields, vector_search=vector_search)  
 result = index_client.create_or_update_index(index)  
 print(f"{result.name} created")  
@@ -101,11 +118,11 @@ In this step, set up the sample data and a connection to Azure Blob Storage. The
 
 The original ebook is large, over 100 pages and 35 MB in size. We broke it up into smaller PDFs, one per page of text, to stay under the [API payload limit](search-limits-quotas-capacity.md#api-request-limits) of 16 MB per API call and also the [AI enrichment data limits](search-limits-quotas-capacity.md#data-limits-ai-enrichment). For simplicity, we omit image vectorization for this exercise.
 
-1. Sign in to the Azure portal and find your Azure Storage account.
+1. Sign in to the [Azure portal](https://portal.azure.com) and find your Azure Storage account.
 
 1. Create a container and upload the PDFs from [earth_book_2019_text_pages](https://github.com/Azure-Samples/azure-search-sample-data/tree/main/nasa-e-book/earth_book_2019_text_pages).
 
-1. Make sure Azure AI Search has **Storage Blob Data Reader** permissions on the resource.
+1. Make sure Azure AI Search has [**Storage Blob Data Reader** permissions](/azure/role-based-access-control/role-assignments-portal) on the resource.
 
 1. Next, in Visual Studio Code, define an indexer data source that provides connection information during indexing.
 
@@ -117,8 +134,8 @@ The original ebook is large, over 100 pages and 35 MB in size. We broke it up in
     )
     
     # Create a data source 
-    indexer_client = SearchIndexerClient(endpoint=AZURE_SEARCH_SERVICE, credential=AZURE_SEARCH_CREDENTIAL)
-    container = SearchIndexerDataContainer(name="nasa-ebook-pdfs-all")
+    indexer_client = SearchIndexerClient(endpoint=AZURE_SEARCH_SERVICE, credential=credential)
+    container = SearchIndexerDataContainer(name="nasa-ebooks-pdfs-all")
     data_source_connection = SearchIndexerDataSourceConnection(
         name="py-rag-tutorial-ds",
         type="azureblob",
@@ -130,11 +147,15 @@ The original ebook is large, over 100 pages and 35 MB in size. We broke it up in
     print(f"Data source '{data_source.name}' created or updated")
     ```
 
+If you set up a managed identity for Azure AI Search for the connection, the connection string includes a `ResourceId=` suffix. It should look similar to the following example: `"ResourceId=/subscriptions/FAKE-SUBCRIPTION=ID/resourceGroups/FAKE-RESOURCE-GROUP/providers/Microsoft.Storage/storageAccounts/FAKE-ACCOUNT;"`
+
 ## Create a skillset
 
 Skills are the basis for integrated data chunking and vectorization. At a minimum, you want a Text Split skill to chunk your content, and an embedding skill that create vector representations of your chunked content.
 
-In this skillset, an extra skill is used to create structured data in the index. The Entity Recognition skill is used to identify locations, which can range from proper names to generic references, such as "ocean" or "mountain". Having structured data gives you more options for creating interesting queries and boosting relevance.
+In this skillset, an extra skill is used to create structured data in the index. The [Entity Recognition skill](cognitive-search-skill-entity-recognition-v3.md) is used to identify locations, which can range from proper names to generic references, such as "ocean" or "mountain". Having structured data gives you more options for creating interesting queries and boosting relevance.
+
+The AZURE_AI_MULTISERVICE_KEY is needed even if you're using role-based access control. Azure AI Search uses the key for billing purposes and it's required unless your workloads stay under the free limit.
 
 ```python
 from azure.search.documents.indexes.models import (
@@ -143,7 +164,7 @@ from azure.search.documents.indexes.models import (
     OutputFieldMappingEntry,
     AzureOpenAIEmbeddingSkill,
     EntityRecognitionSkill,
-    SearchIndexerIndexProjections,
+    SearchIndexerIndexProjection,
     SearchIndexerIndexProjectionSelector,
     SearchIndexerIndexProjectionsParameters,
     IndexProjectionMode,
@@ -171,8 +192,8 @@ split_skill = SplitSkill(
 embedding_skill = AzureOpenAIEmbeddingSkill(  
     description="Skill to generate embeddings via Azure OpenAI",  
     context="/document/pages/*",  
-    resource_uri=AZURE_OPENAI_ACCOUNT,  
-    deployment_id="text-embedding-ada-002",  
+    resource_url=AZURE_OPENAI_ACCOUNT,  
+    deployment_name="text-embedding-ada-002",  
     model_name="text-embedding-ada-002",
     dimensions=1536,
     inputs=[  
@@ -196,7 +217,7 @@ entity_skill = EntityRecognitionSkill(
     ]
 )
   
-index_projections = SearchIndexerIndexProjections(  
+index_projections = SearchIndexerIndexProjection(  
     selectors=[  
         SearchIndexerIndexProjectionSelector(  
             target_index_name=index_name,  
@@ -205,7 +226,7 @@ index_projections = SearchIndexerIndexProjections(
             mappings=[  
                 InputFieldMappingEntry(name="chunk", source="/document/pages/*"),  
                 InputFieldMappingEntry(name="text_vector", source="/document/pages/*/text_vector"),
-                InputFieldMappingEntry(name="locations", source="/document/pages/*/locations"),
+                InputFieldMappingEntry(name="locations", source="/document/pages/*/locations"),  
                 InputFieldMappingEntry(name="title", source="/document/metadata_storage_name"),  
             ],  
         ),  
@@ -223,13 +244,13 @@ skillset = SearchIndexerSkillset(
     name=skillset_name,  
     description="Skillset to chunk documents and generating embeddings",  
     skills=skills,  
-    index_projections=index_projections,
+    index_projection=index_projections,
     cognitive_services_account=cognitive_services_account
 )
   
-client = SearchIndexerClient(endpoint=AZURE_SEARCH_SERVICE, credential=AZURE_SEARCH_CREDENTIAL)  
+client = SearchIndexerClient(endpoint=AZURE_SEARCH_SERVICE, credential=credential)  
 client.create_or_update_skillset(skillset)  
-print(f"{skillset.name} created")  
+print(f"{skillset.name} created")
 ```
 
 ## Create and run the indexer
@@ -261,24 +282,26 @@ indexer = SearchIndexer(
 )  
 
 # Create and run the indexer  
-indexer_client = SearchIndexerClient(endpoint=AZURE_SEARCH_SERVICE, credential=AZURE_SEARCH_CREDENTIAL)  
+indexer_client = SearchIndexerClient(endpoint=AZURE_SEARCH_SERVICE, credential=credential)  
 indexer_result = indexer_client.create_or_update_indexer(indexer)  
 
-print(f' {indexer_name} is created and running. Give the indexer a few minutes before running a query.')  
+print(f' {indexer_name} is created and running. Give the indexer a few minutes before running a query.')    
 ```
 
 ## Run a query to check results
 
 Send a query to confirm your index is operational. This request converts the text string "`where are the nasa headquarters located?`" into a vector for a vector search. Results consist of the fields in the select statement, some of which are printed as output.
 
+There's no chat or generative AI at this point. The results are verbatim content from your search index.
+
 ```python
 from azure.search.documents import SearchClient
 from azure.search.documents.models import VectorizableTextQuery
 
-# Hybrid Search
-query = "where are the nasa headquarters located?"  
+# Vector Search using text-to-vector conversion of the querystring
+query = "where are NASA's headquarters located?"  
 
-search_client = SearchClient(endpoint=AZURE_SEARCH_SERVICE, credential=AZURE_SEARCH_CREDENTIAL, index_name=index_name)
+search_client = SearchClient(endpoint=AZURE_SEARCH_SERVICE, credential=credential, index_name=index_name)
 vector_query = VectorizableTextQuery(text=query, k_nearest_neighbors=1, fields="text_vector", exhaustive=True)
   
 results = search_client.search(  
@@ -292,7 +315,7 @@ for result in results:
     print(f"Score: {result['@search.score']}")
     print(f"Title: {result['title']}")
     print(f"Locations: {result['locations']}")
-    print(f"Content: {result['chunk']}") 
+    print(f"Content: {result['chunk']}")
 ```
 
 This query returns a single match (`top=1`) consisting of the one chunk determined by the search engine to be the most relevant. Results from the query should look similar to the following example:
