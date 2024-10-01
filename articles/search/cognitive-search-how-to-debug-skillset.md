@@ -81,7 +81,7 @@ Debug sessions work with all generally available [indexer data sources](search-d
 
 1. In **Storage connection string**, you can specify the connection string or change the storage account. 
 
-<!-- 1. In **Document to debug**, choose the first document in the index or select a specific document. If you select a specific document, depending on the data source, you're asked for a URI or a row ID.
+   <!-- 1. In **Document to debug**, choose the first document in the index or select a specific document. If you select a specific document, depending on the data source, you're asked for a URI or a row ID.
 
    If your specific document is a blob, provide the blob URI. You can find the URI in the blob property page in the portal.
 
