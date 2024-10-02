@@ -18,18 +18,16 @@ ms.custom:
 
 Azure AI Search automatically encrypts data at rest with [service-managed keys](/azure/security/fundamentals/encryption-atrest#azure-encryption-at-rest-components). If more protection is needed, you can supplement default encryption with another encryption layer using keys that you create and manage in Azure Key Vault. 
 
-This article walks you through the steps of setting up customer-managed key (CMK) or "bring-your-own-key" (BYOK) encryption. Here are some points to keep in mind:
-
-+ CMK encryption is enacted on individual objects. If you require CMK across your search service, [set an enforcement policy](#set-up-a-policy-to-enforce-cmk-compliance).
-
-+ CMK encryption depends on [Azure Key Vault](/azure/key-vault/general/overview). You can create your own encryption keys and store them in a key vault, or you can use Azure Key Vault APIs to generate encryption keys. Azure Key Vault must be in the same subscription as Azure AI Search, but it can be in a different tenant. Using the same tenant makes it easier to retrieve your managed key by connecting through a system or user-managed identity. This behavior requires both services to share the same tenant. For more information about creating a tenant, see [Set up a new tenant](/azure/active-directory/develop/quickstart-create-new-tenant).
-
-+ CMK encryption becomes operational when an object is created. You can't encrypt objects that already exist. CMK encryption occurs whenever an object is saved to disk, either data at rest for long-term storage or temporary data for short-term storage. With CMK, the disk never sees unencrypted data.
+This article walks you through the steps of setting up customer-managed key (CMK) or "bring-your-own-key" (BYOK) encryption.
 
 > [!NOTE]
 > If an index is CMK encrypted, it is only accessible if the search service has access to the key. If access is revoked, the index is unusable and the service cannot be scaled until the index is deleted or access to the key is restored.
 
 ## CMK encrypted objects
+
+CMK encryption is enacted on individual objects. If you require CMK across your search service, [set an enforcement policy](#set-up-a-policy-to-enforce-cmk-compliance).
+
+CMK encryption becomes operational when an object is created. You can't encrypt objects that already exist. CMK encryption occurs whenever an object is saved to disk, either data at rest for long-term storage or temporary data for short-term storage. With CMK, the disk never sees unencrypted data.
 
 Objects that can be encrypted include indexes, synonym lists, indexers, data sources, and skillsets. Encryption is computationally expensive to decrypt so only sensitive content is encrypted.
 
@@ -37,7 +35,7 @@ Encryption is performed over the following content:
 
 + All content within indexes and synonym lists.
 
-+ Sensitive content in indexers, data sources, skillsets, and vetorizers. This content consists of only those fields that store connection strings, descriptions, identities, keys, and user inputs. For example, skillsets have Azure AI services keys, and some skills accept user inputs, such as custom entities. In both cases, keys and user inputs into skills are encrypted. Any references to external resources (such as Azure data sources or Azure OpenAI models) are also encrypted.
++ Sensitive content in indexers, data sources, skillsets, and vectorizers. This content consists of only those fields that store connection strings, descriptions, identities, keys, and user inputs. For example, skillsets have Azure AI services keys, and some skills accept user inputs, such as custom entities. In both cases, keys and user inputs into skills are encrypted. Any references to external resources (such as Azure data sources or Azure OpenAI models) are also encrypted.
 
 ## Full double encryption
 
@@ -65,9 +63,7 @@ Although double encryption is now available in all regions, support was rolled o
 
 + [Azure Key Vault](/azure/key-vault/general/overview) in the same subscription as Azure AI Search. You can [create a key vault using the Azure portal](/azure/key-vault/general/quick-create-portal), [Azure CLI](/azure/key-vault/general/quick-create-cli), or [Azure PowerShell](/azure/key-vault/general/quick-create-powershell). The key vault must have **soft-delete** and **purge protection** enabled. 
 
-+ A search client that can create an encrypted object. Into this code, you reference a key vault key and application registration information. This code could be a working app, or prototype code such as the [Python example](#python-example-of-an-encryption-key-configuration) in this article.
-
-  To add CMK support, create an object using the [REST client](search-get-started-rest.md), [Azure PowerShell](search-get-started-powershell.md), or an Azure SDK (Python, .NET, Java, JavaScript).
++ A search client that can create an encrypted object, such as a [REST client](search-get-started-rest.md), [Azure PowerShell](search-get-started-powershell.md), or an Azure SDK (Python, .NET, Java, JavaScript). 
 
 ## Limitations
 
@@ -75,11 +71,17 @@ Although double encryption is now available in all regions, support was rolled o
 
 + No support for adding encryption keys in the Azure portal.
 
++ No cross-subscription support. Azure Key Vault and Azure AI Search must be in the same subscription.
+
 ## Key Vault tips
 
-If you're new to Azure Key Vault, review this quickstart to learn about basic tasks: [Set and retrieve a secret from Azure Key Vault using PowerShell](/azure/key-vault/secrets/quick-create-powershell). Here are some tips for using Key Vault:
+If you're new to Azure Key Vault, review this quickstart to learn about basic tasks: [Set and retrieve a secret from Azure Key Vault using PowerShell](/azure/key-vault/secrets/quick-create-powershell). 
+
+Here are some tips for using Key Vault:
 
 + Use as many key vaults as you need. Managed keys can be in different key vaults. A search service can have multiple encrypted objects, each one encrypted with a different customer-managed encryption key, stored in different key vaults.
+
++ Use the same tenant so that you can retrieve your managed key by connecting through a system or user-managed identity. This behavior requires both services to share the same tenant. For more information about creating a tenant, see [Set up a new tenant](/azure/active-directory/develop/quickstart-create-new-tenant).
 
 + [Enable purge protection](/azure/key-vault/general/soft-delete-overview#purge-protection) and [soft-delete](/azure/key-vault/general/soft-delete-overview). Due to the nature of encryption with customer-managed keys, no one can retrieve your data if your Azure Key Vault key is deleted. To prevent data loss caused by accidental Key Vault key deletions, soft-delete and purge protection must be enabled on the key vault. Soft-delete is enabled by default, so you'll only encounter issues if you purposely disable it. Purge protection isn't enabled by default, but it's required for customer-managed key encryption in Azure AI Search.
 
@@ -230,33 +232,11 @@ In this step, assign the **Key Vault Crypto Service Encryption User** role to yo
 
 Wait a few minutes for the role assignment to become operational.
 
-<!-- In this step, create an access policy in Key Vault. This policy gives the application you registered with Microsoft Entra ID permission to use your customer-managed key.
-
-Access permissions could be revoked at any given time. Once revoked, any search service index or synonym map that uses that key vault become unusable. Restoring key vault access permissions at a later time restores index and synonym map access. For more information, see [Secure access to a key vault](/azure/key-vault/general/security-features).
-
-1. Still in the Azure portal, open your key vault **Overview** page. 
-
-1. Select the **Access policies** on the left, and select **Create** to start the **Create an access policy** wizard.
-
-   :::image type="content" source="media/search-manage-encryption-keys/cmk-add-access-policy.png" alt-text="Create an access policy." border="true":::
-
-1. On the **Permissions** page, select *Get* for **Key permissions**, **Secret permissions**, and **Certificate Permissions**. Select *Unwrap Key* and *Wrap Key* for ** cryptographic operations on the key.
-
-   :::image type="content" source="media/search-manage-encryption-keys/cmk-access-policy-permissions.png" alt-text="Select permissions in the Permissions page." border="true":::
-
-1. Select **Next**.
-
-1. On the **Principle** page, find and select the security principal used by the search service to access the encryption key. This will either be the system-managed or user-managed identity of the search service, or the registered application.
-
-1. Select **Next** and **Create**. -->
-
-<a name="encrypt-content"></a>
-
 ## Step 4: Encrypt content
 
 Encryption keys are added when you create an object. To add a customer-managed key on an index, synonym map, indexer, data source, or skillset, use the [Search REST API](/rest/api/searchservice/) or an Azure SDK to create an object that has encryption enabled. To add encryption using the Azure SDK, see the [Python example](#python-example-of-an-encryption-key-configuration) in this article.
 
-1. Call the Create APIs to specify the **encryptionKey** property:
+1. Call the creation APIs to specify the **encryptionKey** property:
 
    + [Create Index](/rest/api/searchservice/indexes/create)
    + [Create Synonym Map](/rest/api/searchservice/synonym-maps/create)
@@ -345,7 +325,7 @@ PATCH https://management.azure.com/subscriptions/<your-subscription-Id>/resource
 
 We recommend using the [autorotation capabilities of Azure Key Vault](/azure/key-vault/keys/how-to-configure-key-rotation), but you can also rotate keys manually.
 
-When changing to a new Key Vault key or a new key version, any object that uses the key must first be updated to use the new key\version **before** deleting the previous key\version. Failing to do so will render the object unusable, as it won't be able to decrypt the content once key access is lost. Although restoring key vault access permissions at a later time will restore content access.
+When you change a key or its version, any object that uses the key must first be updated to use the new key\version **before** deleting the previous key\version. Failing to do so will render the object unusable, as it won't be able to decrypt the content once key access is lost. Although restoring key vault access permissions at a later time will restore content access.
 
 1. [Determine the key used by an index or synonym map](search-security-get-encryption-keys.md).
 
