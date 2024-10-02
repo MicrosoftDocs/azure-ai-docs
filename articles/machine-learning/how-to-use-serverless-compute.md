@@ -341,7 +341,7 @@ ml_client.create_or_update(job)
 $schema: https://azuremlschemas.azureedge.net/latest/commandJob.schema.json
 command: echo "hello world"
 environment:
-  image: azureml:AzureML-sklearn-1.0-ubuntu20.04-py38-cpu@latest
+  image: library/python:latest
 queue_settings:
    job_tier: Standard #Possible Values are Standard, Spot. Default is Standard.
 identity:
