@@ -349,9 +349,9 @@ We recommend that you [enable logging](/azure/key-vault/general/logging) as part
 
 ## Python example of an encryption key configuration
 
-This section shows the Python representation of an encryptionKey in an object definition. It's the same definition for indexes, data sources, skillets, indexers, and synonym maps.
+This section shows the Python representation of an `encryptionKey` in an object definition. The same definition applies to indexes, data sources, skillets, indexers, and synonym maps. To try this example on your search service and key vault, download the notebook from [azure-search-python-samples](https://github.com/Azure-Samples/azure-search-python-samples).
 
-Install some packages
+Install some packages.
 
 ```python
 ! pip install python-dotenv
