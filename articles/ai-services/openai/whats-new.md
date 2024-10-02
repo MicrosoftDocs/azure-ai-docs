@@ -46,6 +46,10 @@ The `gpt-4o-realtime-preview` model is available for global deployments in [East
 
 For more information, see the [GPT-4o real-time audio documentation](./how-to/audio-real-time.md).
 
+### Global batch support updates
+
+Global batch now supports GPT-4o (2024-08-06). See the [global batch getting started guide](./how-to/batch.md) for more information.
+
 ## September 2024
 
 ### Azure OpenAI Studio UX updates
