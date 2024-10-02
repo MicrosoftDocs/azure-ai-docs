@@ -6,7 +6,7 @@ manager: nitinme
 ms.service: azure-ai-openai
 ms.custom: 
 ms.topic: how-to
-ms.date: 09/04/2024
+ms.date: 10/01/2024
 author: mrbullwinkle
 ms.author: mbullwin
 recommendations: false
@@ -50,15 +50,17 @@ Global batch is currently supported in the following regions:
 
 The following models support global batch:
 
-| Model | Version | Supported |
+| Model | Version | Input format |
 |---|---|---|
-|`gpt-4o` | 2024-05-13 |Yes (text + vision) |
-|`gpt-4o-mini` | 2024-07-18  | Yes (text + vision) |
-|`gpt-4` | turbo-2024-04-09 | Yes (text only) |
-|`gpt-4` | 0613 | Yes |
-| `gpt-35-turbo` | 0125 | Yes |
-| `gpt-35-turbo` | 1106 | Yes |
-| `gpt-35-turbo` | 0613 | Yes |
+|`gpt-4o` | 2024-08-06 |text + image |
+|`gpt-4o-mini`| 2024-07-18 | text + image |
+|`gpt-4o` | 2024-05-13 |text + image |
+|`gpt-4` | turbo-2024-04-09 | text |
+|`gpt-4` | 0613 | text |
+| `gpt-35-turbo` | 0125 | text |
+| `gpt-35-turbo` | 1106 | text |
+| `gpt-35-turbo` | 0613 | text |
+
 
 
 Refer to the [models page](../concepts/models.md) for the most up-to-date information on regions/models where global batch is currently supported.
