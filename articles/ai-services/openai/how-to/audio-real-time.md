@@ -12,11 +12,11 @@ ms.custom: references_regions
 recommendations: false
 ---
 
-# GPT-4o Realtime API for speech and audio
+# GPT-4o Realtime API for speech and audio (Preview)
 
 Azure OpenAI GPT-4o Realtime API for speech and audio is part of the GPT-4o model family that supports low-latency, "speech in, speech out" conversational interactions. The GPT-4o audio `realtime` API is designed to handle real-time, low-latency conversational interactions, making it a great fit for use cases involving live interactions between a user and a model, such as customer support agents, voice assistants, and real-time translators.
 
-Most users of this API need to deliver and receive audio from an end-user in real time, including applications that use WebRTC or a telephony system. The Realtime API isn't designed to connect directly to end user devices and relies on client integrations to terminate end user audio streams. 
+Most users of the Realtime API need to deliver and receive audio from an end-user in real time, including applications that use WebRTC or a telephony system. The Realtime API isn't designed to connect directly to end user devices and relies on client integrations to terminate end user audio streams. 
 
 ## Supported models
 
@@ -43,7 +43,7 @@ Support for the Realtime API was first added in API version `2024-10-01-preview`
 
 Before you can use GPT-4o real-time audio, you need a deployment of the `gpt-4o-realtime-preview` model in a supported region as described in the [supported models](#supported-models) section.
 
-You can deploy the model from the Azure OpenAI model catalog or from your project in AI Studio. Follow these steps to deploy a `gpt-4o-realtime-preview` model from the [AI Studio model catalog](../../../ai-studio/how-to/model-catalog-overview.md):
+You can deploy the model from the [Azure AI Studio model catalog](../../../ai-studio/how-to/model-catalog-overview.md) or from your project in AI Studio. Follow these steps to deploy a `gpt-4o-realtime-preview` model from the model catalog:
 
 1. Sign in to [AI Studio](https://ai.azure.com) and go to the **Home** page.
 1. Select **Model catalog** from the left sidebar.
@@ -54,7 +54,7 @@ You can deploy the model from the Azure OpenAI model catalog or from your projec
 1. Modify other default settings depending on your requirements.
 1. Select **Deploy**. You land on the deployment details page. 
 
-Now that you have a deployment of the `gpt-4o-realtime-preview` model, you can use the playground to interact with the model in real time. Select **Early access playground** from the list of playgrounds in the left pane.
+Now that you have a deployment of the `gpt-4o-realtime-preview` model, you can use the Realtime API to interact with it in real time.
 
 ## Use the GPT-4o Realtime API
 
