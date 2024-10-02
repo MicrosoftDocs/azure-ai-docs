@@ -83,27 +83,6 @@ Detecting indirect attacks requires using document delimiters when constructing 
 
 [!INCLUDE [content-filter-configurability](../includes/content-filter-configurability.md)]
 
-
-<sup>1</sup> For Azure OpenAI models, only customers who have been approved for modified content filtering have full content filtering control and can turn off content filters. Apply for modified content filters via this form: [Azure OpenAI Limited Access Review: Modified Content Filters](https://ncv.microsoft.com/uEfCgnITdR) For Azure Government customers, please apply for modified content filters via this form: [Azure Government - Request Modified Content Filtering for Azure OpenAI Service](https://aka.ms/AOAIGovModifyContentFilter).
-
-Configurable content filters for inputs (prompts) and outputs (completions) are available for the following Azure OpenAI models:
-
-* GPT model series
-* GPT-4 Turbo Vision GA<sup>*</sup> (turbo-2024-04-09)
-* GPT-4o
-* GPT-4o mini
-* DALL-E 2 and 3
-
-Configurable content filters are currently not available for 
-
-`o1-preview` and `o1-mini`
-
-<sup>*</sup>Only available for GPT-4 Turbo Vision GA, does not apply to GPT-4 Turbo Vision preview 
-
-Content filtering configurations are created within a Resource in Azure AI Studio, and can be associated with Deployments. [Learn more about configurability here](../how-to/content-filters.md).  
-
-Customers are responsible for ensuring that applications integrating Azure OpenAI comply with the [Code of Conduct](/legal/cognitive-services/openai/code-of-conduct?context=%2Fazure%2Fai-services%2Fopenai%2Fcontext%2Fcontext). 
-
 ## Scenario details
 
 When the content filtering system detects harmful content, you receive either an error on the API call if the prompt was deemed inappropriate, or the `finish_reason` on the response will be `content_filter` to signify that some of the completion was filtered. When building your application or system, you'll want to account for these scenarios where the content returned by the Completions API is filtered, which might result in content that is incomplete. How you act on this information will be application specific. The behavior can be summarized in the following points:
