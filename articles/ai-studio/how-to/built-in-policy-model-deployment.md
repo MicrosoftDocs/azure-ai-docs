@@ -1,20 +1,20 @@
 ---
 title: Control AI model deployment with built-in policies
-titleSuffix: Azure Machine Learning
-description: "Learn how to use built-in Azure policies to control what managed AI Services (MaaS) and Model-as-a-Platform (MaaP) AI models can be deployed."
+titleSuffix: Azure AI Studio
+description: "Learn how to use built-in Azure policies to control what managed AI Services (MaaS) and Model-as-a-Platform (MaaP) AI models can be deployed in Azure AI Studio."
 author: Blackmist
 ms.author: larryfr
-ms.service: azure-machine-learning
+ms.service: azure-ai-studio
 ms.topic: how-to #Don't change
-ms.date: 09/30/2024
+ms.date: 10/02/2024
 
 #customer intent: As an admin, I want control what Managed AI Services (MaaS) and Model-as-a-Platform (MaaP) AI models can be deployed by my developers.
 
 ---
 
-# Control AI model deployment with built-in policies in Azure Machine Learning
+# Control AI model deployment with built-in policies in Azure AI Studio
 
-Azure Policy provides built-in policy definitions that help you govern the deployment of AI models in Managed AI Services (MaaS) and Model-as-a-Platform (MaaP). You can use these policies to control what models your developers can deploy.
+Azure Policy provides built-in policy definitions that help you govern the deployment of AI models in Managed AI Services (MaaS) and Model-as-a-Platform (MaaP). You can use these policies to control what models your developers can deploy in Azure AI Studio.
 
 ## Prerequisites
 
@@ -39,10 +39,8 @@ Azure Policy provides built-in policy definitions that help you govern the deplo
 
     - **Allowed models**: This field expects the **model ID strings**, separated by commas. To get the model ID strings, use the following steps:
 
-        1. Go to the [Azure Machine Learning Model Catalog](https://ml.azure.com/model/catalog) for your workspace.
-        
-            > [!NOTE]
-            > You must have an Azure Machine Learning workspace to access the Model Catalog.
+        1. Go to the [Azure AI Studio model catalog](model-catalog-overview.md).
+
 
         1. For each model you want to allow, select the model to view the details. In the model detail information, copy the **Model ID** value. For example, the value might look like `azureml://registries/azure-openai/models/gpt-35-turbo/versions/3`.
         
@@ -83,4 +81,4 @@ To update an existing policy assignment with new models, follow these steps:
 ## Related content
 
 - [Azure Policy overview](/azure/governance/policy/overview)
-- [Azure Machine Learning model catalog](concept-model-catalog.md)
+- [Azure AI Studio model catalog](model-catalog-overview.md)
