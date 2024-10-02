@@ -5,7 +5,7 @@ description: Learn more about what you should take into consideration before fin
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: conceptual 
-ms.date: 10/23/2023
+ms.date: 08/29/2024
 author: mrbullwinkle
 ms.author: mbullwin
 recommendations: false
@@ -79,7 +79,7 @@ Even with a great use case, fine-tuning is only as good as the quality of the da
 
 Another important point is even with high quality data if your data isn't in the necessary format for fine-tuning you'll need to commit engineering resources in order to properly format the data.
 
-| Data  | Babbage-002 & Davinci-002 | GPT-3.5-Turbo |
+| Data  | Babbage-002 <br> Davinci-002 | GPT-3.5-Turbo <br> GPT-4o & GPT-4o mini <br> GPT-4 |
 |---|---|---|
 | Volume | Thousands of Examples | Thousands of Examples |
 | Format | Prompt/Completion | Conversational Chat |

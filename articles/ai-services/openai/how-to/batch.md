@@ -6,7 +6,7 @@ manager: nitinme
 ms.service: azure-ai-openai
 ms.custom: 
 ms.topic: how-to
-ms.date: 08/12/2024
+ms.date: 10/02/2024
 author: mrbullwinkle
 ms.author: mbullwin
 recommendations: false
@@ -50,15 +50,17 @@ Global batch is currently supported in the following regions:
 
 The following models support global batch:
 
-| Model | Version | Supported |
+| Model | Version | Input format |
 |---|---|---|
-|`gpt-4o` | 2024-05-13 |Yes (text + vision) |
-|`gpt-4o-mini` | 2024-07-18  | Yes (text + vision) |
-|`gpt-4` | turbo-2024-04-09 | Yes (text only) |
-|`gpt-4` | 0613 | Yes |
-| `gpt-35-turbo` | 0125 | Yes |
-| `gpt-35-turbo` | 1106 | Yes |
-| `gpt-35-turbo` | 0613 | Yes |
+|`gpt-4o` | 2024-08-06 |text + image |
+|`gpt-4o-mini`| 2024-07-18 | text + image |
+|`gpt-4o` | 2024-05-13 |text + image |
+|`gpt-4` | turbo-2024-04-09 | text |
+|`gpt-4` | 0613 | text |
+| `gpt-35-turbo` | 0125 | text |
+| `gpt-35-turbo` | 1106 | text |
+| `gpt-35-turbo` | 0613 | text |
+
 
 
 Refer to the [models page](../concepts/models.md) for the most up-to-date information on regions/models where global batch is currently supported.
@@ -169,20 +171,18 @@ When a job failure occurs, you'll find details about the failure in the `errors`
 ```json
 "value": [
         {
-            "cancelled_at": null,
-            "cancelling_at": null,
-            "completed_at": "2024-06-27T06:50:01.6603753+00:00",
-            "completion_window": null,
-            "created_at": "2024-06-27T06:37:07.3746615+00:00",
-            "error_file_id": "file-f13a58f6-57c7-44d6-8ceb-b89682588072",
-            "expired_at": null,
-            "expires_at": "2024-06-28T06:37:07.3163459+00:00",
-            "failed_at": null,
-            "finalizing_at": "2024-06-27T06:49:59.1994732+00:00",
-            "id": "batch_50fa47a0-ef19-43e5-9577-a4679b92faff",
-            "in_progress_at": "2024-06-27T06:39:57.455977+00:00",
-            "input_file_id": "file-42147e78ea42488682f4fd1d73028e72",
-            "errors": {
+          "id": "batch_80f5ad38-e05b-49bf-b2d6-a799db8466da",
+          "completion_window": "24h",
+          "created_at": 1725419394,
+          "endpoint": "/chat/completions",
+          "input_file_id": "file-c2d9a7881c8a466285e6f76f6321a681",
+          "object": "batch",
+          "status": "failed",
+          "cancelled_at": null,
+          "cancelling_at": null,
+          "completed_at": 1725419955,
+          "error_file_id": "file-3b0f9beb-11ce-4796-bc31-d54e675f28fb",
+          "errors": {
                 "object": “list”,
                 "data": [
                 {
@@ -190,16 +190,20 @@ When a job failure occurs, you'll find details about the failure in the `errors`
                “message”: “The input file is empty. Please ensure that the batch contains at least one   request.”
                     }
                 ]
-      },
-            "metadata": null,
-            "object": "batch",
-            "output_file_id": "file-22d970b7-376e-4223-a307-5bb081ea24d7",
+          },
+          "expired_at": null,
+          "expires_at": 1725505794,
+          "failed_at": null,
+          "finalizing_at": 1725419710,
+          "in_progress_at": 1725419572,
+          "metadata": null,
+          "output_file_id": "file-ef12af98-dbbc-4d27-8309-2df57feed572",
+
             "request_counts": {
                 "total": 10,
                 "completed": null,
                 "failed": null
             },
-            "status": "Failed"
         }
 ```
 

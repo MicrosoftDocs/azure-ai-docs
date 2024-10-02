@@ -9,7 +9,7 @@ ms.service: cognitive-search
 ms.custom:
   - build-2024
 ms.topic: conceptual
-ms.date: 08/05/2024
+ms.date: 09/19/2024
 ---
 
 # Vector index size and staying under limits
@@ -30,12 +30,7 @@ For each vector field, Azure AI Search constructs an internal vector index using
 
 + Vector indexes are also subject to disk quota, in the sense that all indexes are subject disk quota. There's no separate disk quota for vector indexes.
 
-+ Vector quotas are enforced on the search service as a whole, per partition, meaning that if you add partitions, vector quota goes up. Per-partition vector quotas are higher on newer services:
-
-  + [Vector quota for services created after May 17, 2024](search-limits-quotas-capacity.md#vector-limits-on-services-created-after-may-17-2024)
-  + [Vector quota for services between April 3, 2024 and May 17, 2024](search-limits-quotas-capacity.md#vector-limits-on-services-created-between-april-3-2024-and-may-17-2024)
-  + [Vector quota for services created between July 1, 2023 and April 3, 2024](search-limits-quotas-capacity.md#vector-limits-on-services-created-between-july-1-2023-and-april-3-2024)
-  + [Vector quota for services created before July 1, 2023](search-limits-quotas-capacity.md#vector-limits-on-services-created-before-july-1-2023)
++ Vector quotas are enforced on the search service as a whole, per partition, meaning that if you add partitions, vector quota goes up. Per-partition vector quotas are higher on newer services. For more information, see [Vector index size limits](search-limits-quotas-capacity.md#vector-index-size-limits).
 
 ## How to check partition size and quantity
 
@@ -57,18 +52,13 @@ Newer services created after April 3, 2024 offer five to ten times more vector s
 
 1. Select the deployment. If you have more than one, click through to see if it resolves to your search service.
 
-    :::image type="content" source="media/vector-search-index-size/resource-group-deployments.png" alt-text="Screenshot of a filtered deployments list.":::
+    :::image type="content" source="media/vector-search-index-size/resource-group-deployments.png" lightbox="media/vector-search-index-size/resource-group-deployments.png" alt-text="Screenshot of a filtered deployments list.":::
 
 1. Expand deployment details. You should see *Created* and the creation date.
 
-   :::image type="content" source="media/vector-search-index-size/deployment-details.png" alt-text="Screenshot of the deployment details showing creation date.":::
+   :::image type="content" source="media/vector-search-index-size/deployment-details.png" lightbox="media/vector-search-index-size/deployment-details.png" alt-text="Screenshot of the deployment details showing creation date.":::
 
-1. Now that you know the age of your search service, review the vector quota limits based on service creation:
-
-   + [After May 17, 2024](search-limits-quotas-capacity.md#vector-limits-on-services-created-after-may-17-2024)
-   + [Between April 3, 2024 and May 17, 2024](search-limits-quotas-capacity.md#vector-limits-on-services-created-between-april-3-2024-and-may-17-2024)
-   + [Between July 1, 2023 and April 3, 2024](search-limits-quotas-capacity.md#vector-limits-on-services-created-between-july-1-2023-and-april-3-2024)
-   + [Before July 1, 2023](search-limits-quotas-capacity.md#vector-limits-on-services-created-before-july-1-2023)
+1. Now that you know the age of your search service, review the vector quota limits based on service creation: [Vector index size limits](search-limits-quotas-capacity.md#vector-index-size-limits).
 
 ## How to get vector index size
 

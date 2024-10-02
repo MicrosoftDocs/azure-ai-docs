@@ -33,7 +33,7 @@ This documentation contains the following types of articles:
 * The [quickstarts](./quickstarts-sdk/image-analysis-client-library.md) are step-by-step instructions that let you make calls to the service and get results in a short period of time. 
 * The [how-to guides](./how-to/call-analyze-image.md) contain instructions for using the service in more specific or customized ways.
 * The [conceptual articles](concept-tagging-images.md) provide in-depth explanations of the service's functionality and features.
-* The [tutorials](./tutorials/storage-lab-tutorial.md) are longer guides that show you how to use this service as a component in broader business solutions.
+<!--* The [tutorials](./tutorials/storage-lab-tutorial.md) are longer guides that show you how to use this service as a component in broader business solutions.-->
 
 For a more structured approach, follow a Training module for Image Analysis.
 * [Analyze images with the Azure AI Vision service](/training/modules/analyze-images-computer-vision/)
@@ -46,7 +46,7 @@ You can analyze images to provide insights about their visual features and chara
 
 | Name | Description | Concept page |
 |---|---|---|
-|**Model customization** (v4.0 preview only)|You can create and train custom models to do image classification or object detection. Bring your own images, label them with custom tags, and Image Analysis trains a model customized for your use case.|[Model customization](./concept-model-customization.md)|
+|**Model customization** (v4.0 preview only) (deprecated) |You can create and train custom models to do image classification or object detection. Bring your own images, label them with custom tags, and Image Analysis trains a model customized for your use case.|[Model customization](./concept-model-customization.md)|
 |**Read text from images** (v4.0 only)| Version 4.0 preview of Image Analysis offers the ability to extract readable text from images. Compared with the async Computer Vision 3.2 Read API, the new version offers the familiar Read OCR engine in a unified performance-enhanced synchronous API that makes it easy to get OCR along with other insights in a single API call. |[OCR for images](concept-ocr.md)|
 |**Detect people in images** (v4.0 only)|Version 4.0 of Image Analysis offers the ability to detect people appearing in images. The bounding box coordinates of each detected person are returned, along with a confidence score. |[People detection](concept-people-detection.md)|
 |**Generate image captions** | Generate a caption of an image in human-readable language, using complete sentences. Computer Vision's algorithms generate captions based on the objects identified in the image. <br/><br/>The version 4.0 image captioning model is a more advanced implementation and works with a wider range of input images. It's only available in the certain geographic regions. See [Region availability](#region-availability). <br/><br/>Version 4.0 also lets you use dense captioning, which generates detailed captions for individual objects that are found in the image. The API returns the bounding box coordinates (in pixels) of each object found in the image, plus a caption. You can use this functionality to generate descriptions of separate parts of an image.<br/><br/>:::image type="content" source="Images/description.png" alt-text="Photo of cows with a simple description on the right.":::| [Generate image captions (v3.2)](concept-describing-images.md)<br/>[(v4.0)](concept-describe-images-40.md)|
@@ -61,10 +61,10 @@ You can analyze images to provide insights about their visual features and chara
 |**Detect the color scheme** (v3.2 only) |Analyze color usage within an image. Azure AI Vision can determine whether an image is black & white or color and, for color images, identify the dominant and accent colors.| [Detect the color scheme](concept-detecting-color-schemes.md)|
 |**Moderate content in images** (v3.2 only) |You can use Azure AI Vision to detect adult content in an image and return confidence scores for different classifications. The threshold for flagging content can be set on a sliding scale to accommodate your preferences.|[Detect adult content](concept-detecting-adult-content.md)|
 
-> [!TIP]
-> You can leverage the Read text and Object detection features of Image Analysis through the [Azure OpenAI](/azure/ai-services/openai/overview) service. The **GPT-4 Turbo with Vision** model lets you chat with an AI assistant that can analyze the images you share, and the Vision Enhancement option uses Image Analysis to give the AI assistant more details about the image (readable text and object locations). For more information, see the [GPT-4 Turbo with Vision quickstart](/azure/ai-services/openai/gpt-v-quickstart).
 
-## Product Recognition (v4.0 preview only)
+## Product Recognition (v4.0 preview only) (deprecated)
+
+[!INCLUDE [model-customization-deprecation](includes/model-customization-deprecation.md)]
 
 The Product Recognition APIs let you analyze photos of shelves in a retail store. You can detect the presence or absence of products and get their bounding box coordinates. Use it in combination with model customization to train a model to identify your specific products. You can also compare Product Recognition results to your store's planogram document.
 

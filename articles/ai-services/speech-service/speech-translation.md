@@ -6,9 +6,10 @@ author: eric-urban
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: overview
-ms.date: 4/22/2024
+ms.date: 9/24/2024
 ms.author: eur
 ms.custom: devx-track-csharp
+#Customer intent: As a developer, I want to learn about the benefits and capabilities of speech translation with Azure AI Speech.
 ---
 
 # What is speech translation?

@@ -8,7 +8,7 @@ author: HeidiSteen
 ms.author: heidist
 ms.service: cognitive-search
 ms.topic: how-to
-ms.date: 08/05/2024
+ms.date: 09/23/2024
 ms.custom:
   - references_regions
   - ignite-2023
@@ -57,7 +57,7 @@ Although double encryption is now available in all regions, support was rolled o
   + US Gov Virginia
   + US Gov Arizona
 
-+ The second rollout on May 13, 2021 added encryption for temporary disks and extended CMK encryption to [all supported regions](https://azure.microsoft.com/global-infrastructure/services/?products=search#select-product).
++ The second rollout on May 13, 2021 added encryption for temporary disks and extended CMK encryption to [all supported regions](search-region-support.md).
 
   If you're using CMK from a service created during the first rollout and you also want CMK encryption over temporary disks, you need to create a new search service in your region of choice and redeploy your content.
 
@@ -207,19 +207,19 @@ Conditions that prevent you from adopting this approach include:
     Content-Type: application/json
 
     {
-      "location": "[region]",
+      "location": "<your-region>",
       "sku": {
-        "name": "[sku]"
+        "name": "<your-sku>"
       },
       "properties": {
-        "replicaCount": [replica count],
-        "partitionCount": [partition count],
+        "replicaCount": <your-replica-count>,
+        "partitionCount": <your-partition count>,
         "hostingMode": "default"
       },
       "identity": {
         "type": "UserAssigned",
         "userAssignedIdentities": {
-          "/subscriptions/[subscription ID]/resourcegroups/[resource group name]/providers/Microsoft.ManagedIdentity/userAssignedIdentities/[managed identity name]": {}
+          "/subscriptions/<your-subscription-ID>/resourcegroups/<your-resource-group-name>/providers/Microsoft.ManagedIdentity/userAssignedIdentities/<your-managed-identity-name>": {}
         }
       }
     } 
@@ -230,12 +230,12 @@ Conditions that prevent you from adopting this approach include:
     ```json
     {
       "encryptionKey": {
-        "keyVaultUri": "https://[key vault name].vault.azure.net",
-        "keyVaultKeyName": "[key vault key name]",
-        "keyVaultKeyVersion": "[key vault key version]",
+        "keyVaultUri": "<YOUR-KEY-VAULT-URI>",
+        "keyVaultKeyName": "<YOUR-ENCRYPTION-KEY-NAME>",
+        "keyVaultKeyVersion": "<YOUR-ENCRYPTION-KEY-VERSION>",
         "identity" : { 
             "@odata.type": "#Microsoft.Azure.Search.DataUserAssignedIdentity",
-            "userAssignedIdentity" : "/subscriptions/[subscription ID]/resourceGroups/[resource group name]/providers/Microsoft.ManagedIdentity/userAssignedIdentities/[managed identity name]"
+            "userAssignedIdentity" : "/subscriptions/<your-subscription-ID>/resourceGroups/<your-resource-group-name>/providers/Microsoft.ManagedIdentity/userAssignedIdentities/<your-managed-identity-name>"
         }
       }
     }
@@ -312,9 +312,9 @@ Encryption keys are added when you create an object. To add a customer-managed k
     ```json
     {
       "encryptionKey": {
-        "keyVaultUri": "https://demokeyvault.vault.azure.net",
-        "keyVaultKeyName": "myEncryptionKey",
-        "keyVaultKeyVersion": "eaab6a663d59439ebb95ce2fe7d5f660"
+        "keyVaultUri": "<YOUR-KEY-VAULT-URI>",
+        "keyVaultKeyName": "<YOUR-ENCRYPTION-KEY-NAME>",
+        "keyVaultKeyVersion": "<YOUR-ENCRYPTION-KEY-VERSION>"
       }
     }
     ```
@@ -324,12 +324,12 @@ Encryption keys are added when you create an object. To add a customer-managed k
     ```json
     {
       "encryptionKey": {
-        "keyVaultUri": "https://demokeyvault.vault.azure.net",
-        "keyVaultKeyName": "myEncryptionKey",
-        "keyVaultKeyVersion": "eaab6a663d59439ebb95ce2fe7d5f660",
+        "keyVaultUri": "<YOUR-KEY-VAULT-URI>",
+        "keyVaultKeyName": "<YOUR-ENCRYPTION-KEY-NAME>",
+        "keyVaultKeyVersion": "<YOUR-ENCRYPTION-KEY-VERSION>",
         "accessCredentials": {
-          "applicationId": "00000000-0000-0000-0000-000000000000",
-          "applicationSecret": "myApplicationSecret"
+          "applicationId": "<YOUR-APPLICATION-ID>",
+          "applicationSecret": "<YOUR-APPLICATION-SECRET>"
         }
       }
     }
@@ -363,13 +363,12 @@ In this section, you set the policy that defines a CMK standard for your search 
 1. Call the [Services - Update API](/rest/api/searchmanagement/services/update) to enable CMK policy enforcement at the service level.
 
 ```http
-PATCH https://management.azure.com/subscriptions/[subscriptionId]/resourceGroups/[resourceGroupName]/providers/Microsoft.Search/searchServices/[serviceName]?api-version=2023-11-01
+PATCH https://management.azure.com/subscriptions/<your-subscription-Id>/resourceGroups/<your-resource-group-name>/providers/Microsoft.Search/searchServices/<your-search-service-name>?api-version=2023-11-01
 
 {
     "properties": {
         "encryptionWithCmk": {
-            "enforcement": "Enabled",
-            "encryptionComplianceStatus": "Compliant"
+            "enforcement": "Enabled"
         }
     }
 }
@@ -399,12 +398,12 @@ The details of creating a new index via the REST API could be found at [Create I
   {"name": "Location", "type": "Edm.GeographyPoint", "filterable": true, "sortable": true}
  ],
   "encryptionKey": {
-    "keyVaultUri": "https://demokeyvault.vault.azure.net",
-    "keyVaultKeyName": "myEncryptionKey",
-    "keyVaultKeyVersion": "eaab6a663d59439ebb95ce2fe7d5f660",
+    "keyVaultUri": "<YOUR-KEY-VAULT-URI>",
+    "keyVaultKeyName": "<YOUR-ENCRYPTION-KEY-NAME>",
+    "keyVaultKeyVersion": "<YOUR-ENCRYPTION-KEY-VERSION>",
     "accessCredentials": {
-      "applicationId": "00000000-0000-0000-0000-000000000000",
-      "applicationSecret": "myApplicationSecret"
+      "applicationId": "<YOUR-APPLICATION-ID>",
+      "applicationSecret": "<YOUR-APPLICATION-SECRET>"
     }
   }
 }
@@ -423,12 +422,12 @@ Create an encrypted synonym map using the [Create Synonym Map Azure AI Search RE
   "synonyms" : "United States, United States of America, USA\n
   Washington, Wash. => WA",
   "encryptionKey": {
-    "keyVaultUri": "https://demokeyvault.vault.azure.net",
-    "keyVaultKeyName": "myEncryptionKey",
-    "keyVaultKeyVersion": "eaab6a663d59439ebb95ce2fe7d5f660",
+    "keyVaultUri": "<YOUR-KEY-VAULT-URI>",
+    "keyVaultKeyName": "<YOUR-ENCRYPTION-KEY-NAME>",
+    "keyVaultKeyVersion": "<YOUR-ENCRYPTION-KEY-VERSION>",
     "accessCredentials": {
-      "applicationId": "00000000-0000-0000-0000-000000000000",
-      "applicationSecret": "myApplicationSecret"
+      "applicationId": "<YOUR-APPLICATION-ID>",
+      "applicationSecret": "<YOUR-APPLICATION-SECRET>"
     }
   }
 }
@@ -449,12 +448,12 @@ Create an encrypted data source using the [Create Data Source (REST API)](/rest/
   },
   "container" : { "name" : "containername" },
   "encryptionKey": {
-    "keyVaultUri": "https://demokeyvault.vault.azure.net",
-    "keyVaultKeyName": "myEncryptionKey",
-    "keyVaultKeyVersion": "eaab6a663d59439ebb95ce2fe7d5f660",
+    "keyVaultUri": "<YOUR-KEY-VAULT-URI>",
+    "keyVaultKeyName": "<YOUR-ENCRYPTION-KEY-NAME>",
+    "keyVaultKeyVersion": "<YOUR-ENCRYPTION-KEY-VERSION>",
     "accessCredentials": {
-      "applicationId": "00000000-0000-0000-0000-000000000000",
-      "applicationSecret": "myApplicationSecret"
+      "applicationId": "<YOUR-APPLICATION-ID>",
+      "applicationSecret": "<YOUR-APPLICATION-SECRET>"
     }
   }
 }
@@ -473,12 +472,12 @@ Create an encrypted skillset using the [Create Skillset REST API](/rest/api/sear
     "cognitiveServices": { omitted for brevity },
       "knowledgeStore":  { omitted for brevity  },
     "encryptionKey": (optional) { 
-        "keyVaultKeyName": "myEncryptionKey",
-        "keyVaultKeyVersion": "eaab6a663d59439ebb95ce2fe7d5f660",
-        "keyVaultUri": "https://demokeyvault.vault.azure.net",
+        "keyVaultKeyName": "<YOUR-ENCRYPTION-KEY-NAME>",
+        "keyVaultKeyVersion": "<YOUR-ENCRYPTION-KEY-VERSION>",
+        "keyVaultUri": "<YOUR-KEY-VAULT-URI>",
         "accessCredentials": {
-            "applicationId": "00000000-0000-0000-0000-000000000000",
-            "applicationSecret": "myApplicationSecret"}
+          "applicationId": "<YOUR-APPLICATION-ID>",
+          "applicationSecret": "<YOUR-APPLICATION-SECRET>"
     }
 }
 ```
@@ -500,12 +499,12 @@ Create an encrypted indexer using the [Create Indexer REST API](/rest/api/search
       }
   },
   "encryptionKey": {
-    "keyVaultUri": "https://demokeyvault.vault.azure.net",
-    "keyVaultKeyName": "myEncryptionKey",
-    "keyVaultKeyVersion": "eaab6a663d59439ebb95ce2fe7d5f660",
+    "keyVaultUri": "<YOUR-KEY-VAULT-URI>",
+    "keyVaultKeyName": "<YOUR-ENCRYPTION-KEY-NAME>",
+    "keyVaultKeyVersion": "<YOUR-ENCRYPTION-KEY-VERSION>",
     "accessCredentials": {
-      "applicationId": "00000000-0000-0000-0000-000000000000",
-      "applicationSecret": "myApplicationSecret"
+      "applicationId": "<YOUR-APPLICATION-ID>",
+      "applicationSecret": "<YOUR-APPLICATION-SECRET>"
     }
   }
 }

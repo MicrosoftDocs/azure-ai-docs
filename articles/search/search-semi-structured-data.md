@@ -133,7 +133,7 @@ See [Quickstart: Text search using REST](search-get-started-rest.md) if you need
 
 ## Create a data source
 
-[Create Data Source (REST)](/rest/api/searchservice/create-data-source) creates a data source connection that specifies what data to index.
+[Create Data Source (REST)](/rest/api/searchservice/data-sources/create) creates a data source connection that specifies what data to index.
 
 ```http
 ### Create a data source
@@ -165,7 +165,7 @@ HTTP/1.1 201 Created
 Transfer-Encoding: chunked
 Content-Type: application/json; odata.metadata=minimal; odata.streaming=true; charset=utf-8
 ETag: "0x8DC43A5FDB8448F"
-Location: https://free-demo-search-svc.search.windows.net:443/datasources('ny-philharmonic-ds')?api-version=2024-07-01
+Location: https://<YOUR-SEARCH-SERVICE-NAME>.search.windows.net:443/datasources('ny-philharmonic-ds')?api-version=2024-07-01
 Server: Microsoft-IIS/10.0
 Strict-Transport-Security: max-age=2592000, max-age=15724800; includeSubDomains
 Preference-Applied: odata.include-annotations="*"
@@ -176,7 +176,7 @@ Date: Wed, 13 Mar 2024 21:38:58 GMT
 Connection: close
 
 {
-  "@odata.context": "https://free-demo-search-svc.search.windows.net/$metadata#datasources/$entity",
+  "@odata.context": "https://<YOUR-SEARCH-SERVICE-NAME>.search.windows.net/$metadata#datasources/$entity",
   "@odata.etag": "\"0x8DC43A5FDB8448F\"",
   "name": "ny-philharmonic-ds",
   "description": null,
@@ -197,7 +197,7 @@ Connection: close
 
 ## Create an index
 
-[Create Index (REST)](/rest/api/searchservice/create-index) creates a search index on your search service. An index specifies all the parameters and their attributes.
+[Create Index (REST)](/rest/api/searchservice/indexes/create) creates a search index on your search service. An index specifies all the parameters and their attributes.
 
 For nested JSON, the index fields must be identical to the source fields. Currently, Azure AI Search doesn't support field mappings to nested JSON. For this reason, field names and data types must match completely. The following index aligns to the JSON elements in the raw content.
 
@@ -245,7 +245,7 @@ POST {{baseUrl}}/indexes?api-version=2024-07-01  HTTP/1.1
 
 ## Create and run an indexer
 
-[Create Indexer](/rest/api/searchservice/create-indexer) creates an indexer on your search service. An indexer connects to the data source, loads and indexes data, and optionally provides a schedule to automate the data refresh.
+[Create Indexer](/rest/api/searchservice/indexers/create) creates an indexer on your search service. An indexer connects to the data source, loads and indexes data, and optionally provides a schedule to automate the data refresh.
 
 The indexer configuration includes the `jsonArray` parsing mode and a `documentRoot`.
 
@@ -308,7 +308,7 @@ Date: Wed, 13 Mar 2024 22:09:59 GMT
 Connection: close
 
 {
-  "@odata.context": "https://free-demo-search-svc.search.windows.net/indexes('ny-philharmonic-index')/$metadata#docs(*)",
+  "@odata.context": "https://<YOUR-SEARCH-SERVICE-NAME>.search.windows.net/indexes('ny-philharmonic-index')/$metadata#docs(*)",
   "@odata.count": 1521,
   "@search.nextPageParameters": {
     "search": "*",
@@ -317,7 +317,7 @@ Connection: close
   },
   "value": [
   ],
-  "@odata.nextLink": "https://free-demo-search-svc.search.windows.net/indexes/ny-philharmonic-index/docs/search?api-version=2024-07-01"
+  "@odata.nextLink": "https://<YOUR-SEARCH-SERVICE-NAME>.search.windows.net/indexes/ny-philharmonic-index/docs/search?api-version=2024-07-01"
 }
 ```
 

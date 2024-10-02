@@ -1,5 +1,5 @@
 ---
-title: "How to guide: create and compose custom models with Document Intelligence (formerly Form Recognizer)"
+title: "How to guide: create and compose custom models with Document Intelligence "
 titleSuffix: Azure AI services
 description: Learn how to create, use, and manage Document Intelligence custom and composed models
 author: laujan

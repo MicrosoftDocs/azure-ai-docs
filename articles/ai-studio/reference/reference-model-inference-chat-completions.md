@@ -42,6 +42,7 @@ POST /chat/completions?api-version=2024-04-01-preview
 
 | Name | Required | Type | Description |
 | --- | --- | --- | --- |
+| model |      | string | The model name. This parameter is ignored if the endpoint serves only one model. |
 | messages | True | [ChatCompletionRequestMessage](#chatcompletionrequestmessage) | A list of messages comprising the conversation so far. Returns a 422 error if at least some of the messages can't be understood by the model. |
 | frequency\_penalty |     | number | Helps prevent word repetitions by reducing the chance of a word being selected if it has already been used. The higher the frequency penalty, the less likely the model is to repeat the same words in its output. Return a 422 error if value or parameter is not supported by model. |
 | max\_tokens |     | integer | The maximum number of tokens that can be generated in the chat completion.<br><br>The total length of input tokens and generated tokens is limited by the model's context length. Passing null causes the model to use its max context length. |

@@ -1,16 +1,15 @@
 ---
-title: Document Intelligence (formerly Form Recognizer) APIs analyze document response
+title: Document Intelligence APIs analyze document response
 titleSuffix: Azure AI services
 description: Description of the different objects returned as part of the AnalyzeDocument response and how to use the document analysis response in your applications.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.topic: conceptual
-ms.date: 08/07/2024
+ms.date: 09/26/2024
 ms.author: vikurpad
 ms.custom:
   - references_regions
-  - ignite-2023
 monikerRange: '>=doc-intel-3.0.0'
 ---
 
@@ -22,7 +21,7 @@ In this article, let's examine the different objects returned as part of the `An
 
 ## Analyze document request
 
-The Document Intelligence APIs analyze images, PDFs, and other document files to extract and detect various content, layout, style, and semantic elements. The analyze operation is an async API. Submitting a document returns an **Operation-Location** header that contains the URL to poll for completion. When an analysis request completes successfully, the response contains the elements described in the [model data extraction](concept-model-overview.md#model-data-extraction).
+The Document Intelligence APIs analyze images, PDFs, and other document files to extract and detect various content, layout, style, and semantic elements. The `Analyze` operation is an async API. Submitting a document returns an **Operation-Location** header that contains the URL to poll for completion. When an analysis request completes successfully, the response contains the elements described in the [model data extraction](concept-model-overview.md#model-data-extraction).
 
 ### Response elements
 
@@ -43,7 +42,7 @@ The top-level content property contains a concatenation of all content elements 
 
 ## Analyze response
 
-The analyze response for each API returns different objects. API responses contain elements from component models where applicable.
+The `Analyze` response for each API returns different objects. API responses contain elements from component models where applicable.
 
 | Response content | Description | API |
 |--|--|--|
@@ -52,8 +51,8 @@ The analyze response for each API returns different objects. API responses conta
 | **styles**| Identified text element properties. | Read, Layout, General Document, Prebuilt, and Custom models|
 | **languages**| Identified language associated with each span of the text extracted | Read |
 | **tables**| Tabular content identified and extracted from the document. Tables relate to tables identified by the pretrained layout model. Content labeled as tables is extracted as structured fields in the documents object.| Layout, General Document, Invoice, and Custom models |
-| **figures**| Figures (charts, images) identified and extracted from the document, providing visual representations that aid in the understanding of complex information. | Layout model |
-| **sections** | Hierarchical document structure identified and extracted from the document. Section or subsection with the corresponding elements (paragraph, table, figure) attached to it. | Layout model |
+| **figures**| Figures (charts, images) identified and extracted from the document, providing visual representations that aid in the understanding of complex information. | The Layout model |
+| **sections** | Hierarchical document structure identified and extracted from the document. Section or subsection with the corresponding elements (paragraph, table, figure) attached to it. | The Layout model |
 | **keyValuePairs**| Key-value pairs recognized by a pretrained model. The key is a span of text from the document with the associated value. | General document and Invoice models |
 | **documents**| Fields recognized are returned in the `fields` dictionary within the list of documents| Prebuilt models, Custom models.|
 
@@ -142,7 +141,7 @@ Based on its position and styling, a cell can be classified as general content, 
 Figures (charts, images) in documents play a crucial role in complementing and enhancing the textual content, providing visual representations that aid in the understanding of complex information. The figures object detected by the Layout model has key properties like `boundingRegions` (the spatial locations of the figure on the document pages, including the page number and the polygon coordinates that outline the figure's boundary), `spans` (details the text spans related to the figure, specifying their offsets and lengths within the document's text. This connection helps in associating the figure with its relevant textual context), `elements` (the identifiers for text elements or paragraphs within the document that are related to or describe the figure) and `caption`, if any.
 
 When *output=figures* is specified during the initial `Analyze` operation, the service generates cropped images for all detected figures that can be accessed via `/analyeResults/{resultId}/figures/{figureId}`.
-`FigureId` will be included in each figure object, following an undocumented convention of `{pageNumber}.{figureIndex}` where `figureIndex` resets to one per page.
+`FigureId` is included in each figure object, following an undocumented convention of `{pageNumber}.{figureIndex}` where `figureIndex` resets to one per page.
 
 ```json
 {
@@ -255,7 +254,7 @@ The semantic schema of a document type is described via the fields it contains. 
 | date | Date | ISO 8601 - YYYY-MM-DD | InvoiceDate: "5/7/2022" → "2022-05-07" |
 | time | Time | ISO 8601 - hh:mm:ss | TransactionTime: "9:45 PM" → "21:45:00" |
 | phoneNumber | Phone number | E.164 - +{CountryCode}{SubscriberNumber} | WorkPhone: "(800) 555-7676" → "+18005557676"|
-| countryRegion | Country/region | ISO 3166-1 alpha-3 | CountryRegion: "United States" → "USA" |
+| countryRegion | Country/Region | ISO 3166-1 alpha-3 | CountryRegion: "United States" → "USA" |
 | selectionMark | Is selected | "signed" or "unsigned" | AcceptEula: ☑ → "selected" |
 | signature | Is signed | Same as content | LendeeSignature: {signature} → "signed" |
 | number | Floating point number | Floating point number | Quantity: "1.20" → 1.2|

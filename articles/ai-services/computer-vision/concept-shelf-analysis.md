@@ -15,6 +15,8 @@ ms.custom: build-2023, build-2023-dataai
 
 # Product Recognition (version 4.0 preview)
 
+[!INCLUDE [model-customization-deprecation](includes/model-customization-deprecation.md)]
+
 The Product Recognition APIs let you analyze photos of shelves in a retail store. You can detect the presence of products and get their bounding box coordinates. Use it in combination with model customization to train a model to identify your specific products. You can also compare Product Recognition results to your store's planogram document.
 
 Try out the capabilities of Product Recognition quickly and easily in your browser using Vision Studio.

@@ -61,7 +61,7 @@ Query composition and complexity are one of the most important factors for perfo
 
 + **Number of searchable fields.** Each additional searchable field results in more work for the search service. You can limit the fields being searched at query time using the "searchFields" parameter. It's best to specify only the fields that you care about to improve performance.
 
-+ **Amount of data being returned.** Retrieving a large amount content can make queries slower. When structuring a query, return only those fields that you need to render the results page, and then retrieve remaining fields using the [Lookup API](/rest/api/searchservice/lookup-document) once a user selects a match.
++ **Amount of data being returned.** Retrieving a large amount content can make queries slower. When structuring a query, return only those fields that you need to render the results page, and then retrieve remaining fields using the [Lookup API](/rest/api/searchservice/documents/get) once a user selects a match.
 
 + **Use of partial term searches.** [Partial term searches](search-query-partial-matching.md), such as prefix search, fuzzy search, and regular expression search, are more computationally expensive than typical keyword searches, as they require full index scans to produce results.
 
@@ -103,7 +103,7 @@ The tier of your search service and the number of replicas/partitions also have 
 
 ### Tip: Create a new high capacity search service
 
-Basic and standard services created [in supported regions]([supported regions](search-limits-quotas-capacity.md#supported-regions-with-higher-storage-limits) after April 3, 2024 have more storage per partition than older services. Before upgrading to a higher tier and a higher billable rate, revisit the [tier service limits](search-limits-quotas-capacity.md#service-limits) to see if the same tier on a newer service gives you the necessary storage.
+Basic and standard services created [in supported regions](search-limits-quotas-capacity.md#service-limits) after April 3, 2024 have more storage per partition than older services. Before upgrading to a higher tier and a higher billable rate, revisit the [tier service limits](search-limits-quotas-capacity.md#service-limits) to see if the same tier on a newer service gives you the necessary storage.
 
 ### Tip: Upgrade to a Standard S2 tier
 

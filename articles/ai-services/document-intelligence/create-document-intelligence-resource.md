@@ -1,5 +1,5 @@
 ---
-title: Create a Document Intelligence (formerly Form Recognizer) resource
+title: Create a Document Intelligence resource
 titleSuffix: Azure AI services
 description: Create a Document Intelligence resource in the Azure portal.
 author: laujan
@@ -8,7 +8,7 @@ ms.service: azure-ai-document-intelligence
 ms.custom:
   - ignite-2023
 ms.topic: how-to
-ms.date: 04/24/2024
+ms.date: 09/26/2024
 ms.author: lajanuar
 ---
 
@@ -37,10 +37,10 @@ Let's get started:
 
 ## Create a resource
 
-1. Next, you're going to fill out the **Create Document Intelligence** fields with the following values:
+1. Next, you're going to fill out the **`Create Document Intelligence`** fields with the following values:
 
     * **Subscription**. Select your current subscription.
-    * **Resource group**. The [Azure resource group](/azure/cloud-adoption-framework/govern/resource-consistency/resource-access-management#what-is-an-azure-resource-group) that contains your resource. You can create a new group or add it to a pre-existing group.
+    * **Resource group**. The [Azure resource group](/azure/cloud-adoption-framework/govern/resource-consistency/resource-access-management#what-is-an-azure-resource-group) that contains your resource. You can create a new group or add it to an existing group.
     * **Region**. Select your local region.
     * **Name**. Enter a name for your resource. We recommend using a descriptive name, for example *YourNameFormRecognizer*.
     * **Pricing tier**. The cost of your resource depends on the pricing tier you choose and your usage. For more information, see [pricing details](https://azure.microsoft.com/pricing/details/cognitive-services/). You can use the free pricing tier (F0) to try the service, and upgrade later to a paid tier for production.

@@ -2,14 +2,16 @@
 title: Migrate from v3.0 to v3.1 REST API - Speech service
 titleSuffix: Azure AI services
 description: This document helps developers migrate code from v3.0 to v3.1 of the Speech to text REST API.
-author: heikora
-manager: dongli
+author: eric-urban
+ms.author: eur
+manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 6/6/2024
-ms.author: heikora
+ms.date: 9/20/2024
+ms.reviewer: heikora
 ms.devlang: csharp
 ms.custom: devx-track-csharp
+#Customer intent: As a developer, I want to migrate code from v3.0 to v3.1 of the Speech to text REST API.
 ---
 
 # Migrate code from v3.0 to v3.1 of the REST API
@@ -40,7 +42,7 @@ For more information, see [Operation IDs](#operation-ids) later in this guide.
 In the [Transcriptions_Create](/rest/api/speechtotext/transcriptions/create) operation the following three properties are added:
 - The `displayFormWordLevelTimestampsEnabled` property can be used to enable the reporting of word-level timestamps on the display form of the transcription results. The results are returned in the `displayWords` property of the transcription file.
 - The `diarization` property can be used to specify hints for the minimum and maximum number of speaker labels to generate when performing optional diarization (speaker separation). With this feature, the service is now able to generate speaker labels for more than two speakers. To use this property, you must also set the `diarizationEnabled` property to `true`. With the v3.1 API, we have increased the number of speakers that can be identified through diarization from the two speakers supported by the v3.0 API. It's recommended to keep the number of speakers under 30 for better performance.
-- The `languageIdentification` property can be used specify settings for language identification on the input prior to transcription. Up to 10 candidate locales are supported for language identification. The returned transcription includes a new `locale` property for the recognized language or the locale that you provided. 
+- The `languageIdentification` property can be used to specify settings for language identification on the input prior to transcription. Up to 10 candidate locales are supported for language identification. The returned transcription includes a new `locale` property for the recognized language or the locale that you provided. 
 
 The `filter` property is added to the [Transcriptions_List](/rest/api/speechtotext/transcriptions/list), [Transcriptions_ListFiles](/rest/api/speechtotext/transcriptions/list-files), and [Projects_ListTranscriptions](/rest/api/speechtotext/projects/list-transcriptions) operations. The `filter` expression can be used to select a subset of the available resources. You can filter by `displayName`, `description`, `createdDateTime`, `lastActionDateTime`, `status`, and `locale`. For example: `filter=createdDateTime gt 2022-02-01T11:00:00Z`
 

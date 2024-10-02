@@ -1,12 +1,12 @@
 ---
-title: Choose the best Document Intelligence (formerly Form Recognizer) model for your applications and workflows.
+title: Choose the best Document Intelligence model for your applications and workflows.
 titleSuffix: Azure AI services
 description: Choose the best Document Intelligence model for your applications and workflows.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.topic: overview
-ms.date: 08/07/2024
+ms.date: 09/26/2024
 ms.author: lajanuar
 ---
 

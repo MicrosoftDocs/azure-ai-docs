@@ -1,5 +1,5 @@
 ---
-title: Service quotas and limits - Document Intelligence (formerly Form Recognizer)
+title: Service quotas and limits - Document Intelligence
 titleSuffix: Azure AI services
 description: Quick reference, detailed description, and best practices for working within Azure AI Document Intelligence service Quotas and Limits
 #services: cognitive-services
@@ -9,7 +9,7 @@ ms.service: azure-ai-document-intelligence
 ms.custom:
   - ignite-2023
 ms.topic: conceptual
-ms.date: 06/26/2024
+ms.date: 09/26/2024
 ms.author: lajanuar
 monikerRange: '<=doc-intel-4.0.0'
 ---

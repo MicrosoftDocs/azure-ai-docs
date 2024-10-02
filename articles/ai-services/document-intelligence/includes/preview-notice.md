@@ -1,5 +1,5 @@
 ---
-title: Document Intelligence (formerly Form Recognizer) preview content notice
+title: Document Intelligence preview content notice
 description: Preview notices include file.
 author: laujan
 ms.author: lajanuar

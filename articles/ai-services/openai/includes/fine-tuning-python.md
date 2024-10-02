@@ -32,13 +32,12 @@ The following models support fine-tuning:
 - `gpt-35-turbo` (1106)
 - `gpt-35-turbo` (0125)
 - `gpt-4` (0613)**<sup>*</sup>**
-- `gpt-4o-mini` (2024-07-18)**<sup>*</sup>**
+- `gpt-4o` (2024-08-06)
+- `gpt-4o-mini` (2024-07-18)
 
 **<sup>*</sup>** Fine-tuning for this model is currently in public preview.
 
-If you plan to use `gpt-4` for fine-tuning, please refer to the [GPT-4 public preview safety evaluation guidance](#safety-evaluation-gpt-4-fine-tuning---public-preview)
-
-Or you can fine tune a previously fine-tuned model, formatted as base-model.ft-{jobid}.
+Or you can fine tune a previously fine-tuned model, formatted as `base-model.ft-{jobid}`.
 
 :::image type="content" source="../media/fine-tuning/models.png" alt-text="Screenshot of model options with a custom fine-tuned model." lightbox="../media/fine-tuning/models.png":::
 
@@ -287,6 +286,7 @@ The current supported hyperparameters for fine-tuning are:
 |`batch_size` |integer | The batch size to use for training. The batch size is the number of training examples used to train a single forward and backward pass. In general, we've found that larger batch sizes tend to work better for larger datasets. The default value as well as the maximum value for this property are specific to a base model. A larger batch size means that model parameters are updated less frequently, but with lower variance. |
 | `learning_rate_multiplier` | number | The learning rate multiplier to use for training. The fine-tuning learning rate is the original learning rate used for pre-training multiplied by this value. Larger learning rates tend to perform better with larger batch sizes. We recommend experimenting with values in the range 0.02 to 0.2 to see what produces the best results. A smaller learning rate can be useful to avoid overfitting. |
 |`n_epochs` | integer | The number of epochs to train the model for. An epoch refers to one full cycle through the training dataset. |
+|`seed` | integer |	The seed controls the reproducibility of the job. Passing in the same seed and job parameters should produce the same results, but may differ in rare cases. If a seed isn't specified, one will be generated for you. |
 
 To set custom hyperparameters with the 1.x version of the OpenAI Python API:
 
@@ -374,7 +374,7 @@ This command isn't available in the 0.28.1 OpenAI Python library. Upgrade to the
 
 ---
 
-## Safety evaluation GPT-4 fine-tuning - public preview
+## Safety evaluation GPT-4, GPT-4o, GPT-4o-mini fine-tuning - public preview
 
 [!INCLUDE [Safety evaluation](../includes/safety-evaluation.md)]
 

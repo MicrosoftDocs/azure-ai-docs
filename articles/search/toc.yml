@@ -1,3 +1,4 @@
+items:
 - name: Azure AI Search Documentation
   href: index.yml
 - name: Overview
@@ -9,6 +10,8 @@
     href: whats-new.md
   - name: Features
     href: search-features-list.md
+  - name: Try search for free
+    href: search-try-for-free.md
   - name: FAQ
     href: search-faq-frequently-asked-questions.yml
 - name: Quickstarts
@@ -89,6 +92,18 @@
       href: search-howto-index-encrypted-blobs.md
     - name: Create a custom analyzer
       href: tutorial-create-custom-analyzer.md
+  - name: RAG tutorials
+    items:
+    - name: Build a RAG solution
+      href: tutorial-rag-build-solution.md
+    - name: Choose models
+      href: tutorial-rag-build-solution-models.md
+    - name: Design an index
+      href: tutorial-rag-build-solution-index-schema.md
+    - name: Build an indexing pipeline
+      href: tutorial-rag-build-solution-pipeline.md
+    - name: Search and generate answers
+      href: tutorial-rag-build-solution-query.md
   - name: Skills tutorials
     items:
     - name: C#
@@ -394,16 +409,16 @@
     href: hybrid-search-how-to-query.md
   - name: Ranking and relevance
     items:
-    - name: Enable or disable semantic ranking
+    - name: Enable or disable semantic ranker
       href: semantic-how-to-enable-disable.md      
-    - name: Configure semantic ranking
+    - name: Configure semantic ranker
       href: semantic-how-to-configure.md
-    - name: Configure BM25 ranking
-      href: index-ranking-similarity.md
     - name: Add semantic ranking to queries
       href: semantic-how-to-query-request.md
     - name: Add a scoring profile
       href: index-add-scoring-profiles.md
+    - name: Configure BM25 ranking
+      href: index-ranking-similarity.md
   - name: Security
     items:
     - name: Configure network access

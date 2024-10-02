@@ -1,27 +1,27 @@
 ---
 title: "Prompt Shields in Azure AI Content Safety"
 titleSuffix: Azure AI services
-description: Learn about User Prompt injection attacks and the Prompt Shields feature that helps prevent them.
+description: Learn about User Prompt injection attacks and document attacks and how to prevent them with the Prompt Shields feature.
 #services: cognitive-services
 author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-content-safety
 ms.custom: build-2023
 ms.topic: conceptual
-ms.date: 03/15/2024
+ms.date: 09/25/2024
 ms.author: pafarley
 ---
 
 # Prompt Shields
 
-Generative AI models can pose risks of exploitation by malicious actors. To mitigate these risks, we integrate safety mechanisms to restrict the behavior of large language models (LLMs) within a safe operational scope. However, despite these safeguards, LLMs can still be vulnerable to adversarial inputs that bypass the integrated safety protocols.
+Generative AI models can pose risks of being exploited by malicious actors. To mitigate these risks, we integrate safety mechanisms to restrict the behavior of large language models (LLMs) within a safe operational scope. However, despite these safeguards, LLMs can still be vulnerable to adversarial inputs that bypass the integrated safety protocols.
 
-Prompt Shields is a unified API that analyzes LLM inputs and detects User Prompt attacks and Document attacks, which are two common types of adversarial inputs.
+Prompt Shields is a unified API that analyzes LLM inputs and detects adversarial user input attacks.
 
 
 ## Types of input attacks
 
-The two types of input attacks that Prompt Shields detects are described in this table.
+The types of input attacks that Prompt Shields detects are described in this table.
 
 | Type | Attacker | Entry point    | Method    | Objective/impact   | Resulting behavior  |
 |-------|----------|---------|---------|---------|---------|
@@ -92,11 +92,11 @@ Prompt Shields have been specifically trained and tested on the following langua
 
 See [Input requirements](/azure/ai-services/content-safety/overview#input-requirements) for maximum text length limitations.
 
-### Regions
+### Region availability
 
 To use this API, you must create your Azure AI Content Safety resource in the supported regions. See [Region availability](/azure/ai-services/content-safety/overview#region-availability).
 
-### TPS limitations
+### Rate limitations
 
 See [Query rates](/azure/ai-services/content-safety/overview#query-rates).
 

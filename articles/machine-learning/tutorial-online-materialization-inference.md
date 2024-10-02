@@ -109,6 +109,8 @@ The feature store needs the Azure Cache for Redis as an attached resource, for u
 > - Online store target
 > - Offline store target
 
+For an example that shows how to do this with the SDK, visit the [Tutorial: Different Approaches for Provisioning a Managed Feature Store](https://github.com/Azure/azureml-examples/blob/main/sdk/python/featurestore_sample/notebooks/sdk_and_cli/4.Provision-feature-store.ipynb) resource.
+
 ## Materialize the `accounts` feature set data to online store
 
 ### Enable materialization on the `accounts` feature set
@@ -166,11 +168,11 @@ You can explore the feature materialization status for a feature set from the **
 - Your data can have a maximum of 2,000 *data intervals*. If your data contains more than 2,000 *data intervals*, create a new feature set version.
 - You can provide a list of more than one data statuses (for example, `["None", "Incomplete"]`) in a single backfill job.
 - During backfill, a new materialization job is submitted for each *data interval* that falls in the defined feature window.
-- A new job is not submitted for a *data interval* if a materialization job is already pending, or is running for a *data interval* that hasn't yet been backfilled.
+- A new job isn't submitted for a *data interval* if a materialization job is already pending, or is running for a *data interval* that hasn't yet been backfilled.
 
 ### Updating online materialization store
 - If an online materialization store is to be updated at the feature store level, then all feature sets in the feature store should have online materialization disabled.
-- If online materialization is disabled on a feature set, the materialization status of the already-materialized data in the online materialization store will be reset. This renders the already-materialized data unusable. You must resubmit your materialization jobs after you enable online materialization.
+- If online materialization is disabled on a feature set, the materialization status of the already-materialized data in the online materialization store is reset. This renders the already-materialized data unusable. You must resubmit your materialization jobs after you enable online materialization.
 - If only offline materialization was initially enabled for a feature set, and online materialization is enabled later:
   - The default data materialization status of the data in the online store will be `None`.
   - When the first online materialization job is submitted, the data already materialized in the offline store, if available, is used to calculate online features.

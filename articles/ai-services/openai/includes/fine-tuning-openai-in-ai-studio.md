@@ -32,13 +32,14 @@ The following models support fine-tuning:
 - `gpt-35-turbo` (1106)
 - `gpt-35-turbo` (0125)
 - `gpt-4` (0613)**<sup>*</sup>**
-- `gpt-4o-mini` (2024-07-18)**<sup>*</sup>**
+- `gpt-4o` (2024-08-06)
+- `gpt-4o-mini` (2024-07-18)
 
 **<sup>*</sup>** Fine-tuning for this model is currently in public preview.
 
-Consult the [models page](../concepts/models.md#fine-tuning-models) to check which regions currently support fine-tuning.
+Or you can fine tune a previously fine-tuned model, formatted as base-model.ft-{jobid}.
 
-If you plan to use `gpt-4` for fine-tuning, please refer to the [GPT-4 public preview safety evaluation guidance](#safety-evaluation-gpt-4-fine-tuning---public-preview)
+Consult the [models page](../concepts/models.md#fine-tuning-models) to check which regions currently support fine-tuning.
 
 ## Review the workflow for Azure AI Studio
 
@@ -253,7 +254,7 @@ When each training epoch completes a checkpoint is generated. A checkpoint is a 
 
 :::image type="content" source="../media/fine-tuning/checkpoints.png" alt-text="Screenshot of checkpoints UI." lightbox="../media/fine-tuning/checkpoints.png":::
 
-## Safety evaluation GPT-4 fine-tuning - public preview
+## Safety evaluation GPT-4, GPT-4o, GPT-4o-mini fine-tuning - public preview
 
 [!INCLUDE [Safety evaluation](../includes/safety-evaluation.md)]
 

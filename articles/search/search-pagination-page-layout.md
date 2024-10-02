@@ -15,7 +15,7 @@ ms.date: 06/12/2024
 
 # How to shape results in Azure AI Search
 
-This article explains how to work with a query response in Azure AI Search. The structure of a response is determined by parameters in the query itself, as described in [Search Documents (REST)](/rest/api/searchservice/Search-Documents) or [SearchResults Class (Azure for .NET)](/dotnet/api/azure.search.documents.models.searchresults-1). 
+This article explains how to work with a query response in Azure AI Search. The structure of a response is determined by parameters in the query itself, as described in [Search Documents (REST)](/rest/api/searchservice/documents/search-post) or [SearchResults Class (Azure for .NET)](/dotnet/api/azure.search.documents.models.searchresults-1). 
 
 Parameters on the query determine:
 
@@ -165,7 +165,7 @@ For either algorithm, a "@search.score" equal to 1.00 indicates an unscored or u
 
 ### Order by the semantic reranker
 
-If you're using [semantic ranking](semantic-search-overview.md), the "@search.rerankerScore" determines the sort order of your results. 
+If you're using [semantic ranker](semantic-search-overview.md), the "@search.rerankerScore" determines the sort order of your results. 
 
 The "@search.rerankerScore" range is 1 to 4.00, where a higher score indicates a stronger semantic match.
 
@@ -195,7 +195,7 @@ Hit highlighting refers to text formatting (such as bold or yellow highlights) a
 
 Notice that highlighting is applied to individual terms. There's no highlight capability for the contents of an entire field. If you want to highlight over a phrase, you'll have to provide the matching terms (or phrase) in a quote-enclosed query string. This technique is described further on in this section.
 
-Hit highlighting instructions are provided on the [query request](/rest/api/searchservice/search-documents). Queries that trigger query expansion in the engine, such as fuzzy and wildcard search, have limited support for hit highlighting.
+Hit highlighting instructions are provided on the [query request](/rest/api/searchservice/documents/search-post). Queries that trigger query expansion in the engine, such as fuzzy and wildcard search, have limited support for hit highlighting.
 
 ### Requirements for hit highlighting
 

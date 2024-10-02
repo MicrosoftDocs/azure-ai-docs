@@ -1,5 +1,5 @@
 ---
-title: Document Intelligence (formerly Form Recognizer) v4.0 and v3.1 content
+title: Document Intelligence v4.0 and v3.1 content
 description: include file
 author: laujan
 ms.author: lajanuar

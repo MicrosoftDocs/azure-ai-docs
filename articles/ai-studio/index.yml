@@ -67,8 +67,8 @@ landingContent:
             url: how-to/develop/sdk-overview.md
           - text: Work with AI Studio projects in VS Code
             url: how-to/develop/vscode.md
-          - text: Build your copilot using the prompt flow SDK
-            url: tutorials/copilot-sdk-build-rag.md
+          - text: Build a custom chat app with the prompt flow SDK
+            url: tutorials/copilot-sdk-create-resources.md
       - linkListType: concept
         links:
           - text: Connections for flows and indexing
