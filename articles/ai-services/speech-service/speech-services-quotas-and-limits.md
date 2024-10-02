@@ -136,6 +136,10 @@ The limits in this table apply per Speech resource when you create a personal vo
 | Quota | Free (F0)| Standard (S0) |
 |-----|-----|-----|
 | New connections per minute | Not available for F0 | 2 new connections per minute |
+| Max connection duration with speaking | Not available for F0 | 10 minutes<sup>1</sup> |
+| Max connection duration with idle state | Not available for F0 | 5 minutes |
+
+<sup>1</sup> To ensure continuous operation of the real-time avatar for more than 10 minutes, you can enable auto-reconnect. For information about how to set up auto-reconnect, refer to this [sample code](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/samples/js/browser/avatar/README.md) (search "auto reconnect").
 
 #### Audio Content Creation tool
 

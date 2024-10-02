@@ -11,7 +11,7 @@ ms.topic: conceptual
 author: lgayhardt
 ms.author: lagayhar
 ms.reviewer: chenlujiao
-ms.date: 11/06/2023
+ms.date: 09/30/2024
 ---
 
 # Prompt flow ecosystem

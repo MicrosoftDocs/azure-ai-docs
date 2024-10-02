@@ -111,6 +111,8 @@ items:
           href: ./how-to/assistants-logic-apps.md
       - name: File search
         href: ./how-to/file-search.md
+  - name: Audio in real time
+    href: ./how-to/audio-real-time.md
   - name: Batch
     href: ./how-to/batch.md
   - name: Completions & chat completions

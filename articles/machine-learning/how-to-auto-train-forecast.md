@@ -131,7 +131,7 @@ Add more detail to this configuration in subsequent sections of this how-to guid
 
 ---
 
-You specify [validation data](concept-automated-ml.md#training-validation-and-test-data) in a similar way. Create a MLTable and specify a validation data input. Alternatively, if you don't supply validation data, AutoML automatically creates cross-validation splits from your training data to use for model selection. For more information, see [forecasting model selection](./concept-automl-forecasting-sweeping.md#model-selection). For more information about how much training data you need, see [training data length requirements](./concept-automl-forecasting-methods.md#data-length-requirements).
+You specify [validation data](concept-automated-ml.md#training-validation-and-test-data) in a similar way. Create a MLTable and specify a validation data input. Alternatively, if you don't supply validation data, AutoML automatically creates cross-validation splits from your training data to use for model selection. For more information, see [forecasting model selection](./concept-automl-forecasting-sweeping.md#model-selection-in-automl). For more information about how much training data you need, see [training data length requirements](./concept-automl-forecasting-methods.md#data-length-requirements).
 
 Learn more about how AutoML applies cross validation to [prevent over fitting](concept-manage-ml-pitfalls.md#prevent-overfitting).
 
@@ -587,7 +587,7 @@ forecasting:
 
 #### Custom cross-validation settings
 
-There are two customizable settings that control cross-validation for forecasting jobs: the number of folds, `n_cross_validations`, and the step size defining the time offset between folds, `cv_step_size`. For more information on the meaning of these parameters, see [forecasting model selection](./concept-automl-forecasting-sweeping.md#model-selection).
+There are two customizable settings that control cross-validation for forecasting jobs: the number of folds, `n_cross_validations`, and the step size defining the time offset between folds, `cv_step_size`. For more information on the meaning of these parameters, see [forecasting model selection](./concept-automl-forecasting-sweeping.md#model-selection-in-automl).
 
 By default, AutoML sets both settings automatically based on characteristics of your data. Advanced users might want to set them manually. For example, suppose you have daily sales data and you want your validation setup to consist of five folds with a seven-day offset between adjacent folds. The following code sample shows how to set these values:
 

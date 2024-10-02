@@ -13,7 +13,7 @@ ms.author: pafarley
 
 # Quickstart: Protected material detection for code (preview)
 
-The Protected Material for Code feature provides a comprehensive solution for identifying and managing the risks associated with AI-generated code. By detecting and preventing the display of protected code from existing GitHub repositories, organizations can ensure compliance with intellectual property regulations, uphold code originality, and safeguard their reputations. Protected material refers to code that closely matches content from known GitHub repositories, including software libraries, source code, algorithms, and other proprietary programming content.
+The Protected Material for Code feature provides a comprehensive solution for identifying AI outputs that match code from existing GitHub repositories. This feature allows code generation models to be used confidently, in a way that enhances transparency to end users and promotes compliance with organizational policies.
 
 > [!CAUTION]
 > The content safety service's code scanner/indexer is only current through November 6, 2021. Code that was added to GitHub after this date will not be detected. Use your own discretion when using Protected Material for Code to detect recent bodies of code.
@@ -50,7 +50,7 @@ curl --location --request POST '<endpoint>/contentsafety/text:detectProtectedMat
 --header 'Ocp-Apim-Subscription-Key: <your_subscription_key>' \
 --header 'Content-Type: application/json' \
 --data-raw '{
-  "code": "to everyone, the best things in life are free. the stars belong to everyone, they gleam there for you and me. the flowers in spring, the robins that sing, the sunbeams that shine"
+  "code": "python import pygame pygame.init() win = pygame.display.set_mode((500, 500)) pygame.display.set_caption(My Game) x = 50 y = 50 width = 40 height = 60 vel = 5 run = True while run: pygame.time.delay(100) for event in pygame.event.get(): if event.type == pygame.QUIT: run = False keys = pygame.key.get_pressed() if keys[pygame.K_LEFT] and x > vel: x -= vel if keys[pygame.K_RIGHT] and x < 500 - width - vel: x += vel if keys[pygame.K_UP] and y > vel: y -= vel if keys[pygame.K_DOWN] and y < 500 - height - vel: y += vel win.fill((0, 0, 0)) pygame.draw.rect(win, (255, 0, 0), (x, y, width, height)) pygame.display.update() pygame.quit()"
 }'
 ```
 The below fields must be included in the url:

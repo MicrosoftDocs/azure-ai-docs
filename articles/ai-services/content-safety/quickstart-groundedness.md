@@ -39,7 +39,7 @@ This section walks through a sample request with cURL. Paste the command below i
     
     
     ```shell
-    curl --location --request POST '<endpoint>/contentsafety/text:detectGroundedness?api-version=2024-02-15-preview' \
+    curl --location --request POST '<endpoint>/contentsafety/text:detectGroundedness?api-version=2024-09-15-preview' \
     --header 'Ocp-Apim-Subscription-Key: <your_subscription_key>' \
     --header 'Content-Type: application/json' \
     --data-raw '{
@@ -87,7 +87,7 @@ Create a new Python file named _quickstart.py_. Open the new file in your prefer
       'Ocp-Apim-Subscription-Key': '<your_subscription_key>',
       'Content-Type': 'application/json'
     }
-    conn.request("POST", "/contentsafety/text:detectGroundedness?api-version=2024-02-15-preview", payload, headers)
+    conn.request("POST", "/contentsafety/text:detectGroundedness?api-version=2024-09-15-preview", payload, headers)
     res = conn.getresponse()
     data = res.read()
     print(data.decode("utf-8"))
@@ -124,7 +124,7 @@ The following fields must be included in the URL:
 
 | Name     | Required | Description | Type   |
 | :-------------- | :-------- | :------ | :----- |
-| **API Version** | Required  | This is the API version to be used. The current version is: api-version=2024-02-15-preview. Example: `<endpoint>/contentsafety/text:detectGroundedness?api-version=2024-02-15-preview` | String |
+| **API Version** | Required  | This is the API version to be used. The current version is: api-version=2024-09-15-preview. Example: `<endpoint>/contentsafety/text:detectGroundedness?api-version=2024-09-15-preview` | String |
 
 The parameters in the request body are defined in this table:
 
@@ -210,7 +210,7 @@ This section walks through a sample request with cURL. Paste the command below i
     
     
     ```shell
-    curl --location --request POST '<endpoint>/contentsafety/text:detectGroundedness?api-version=2024-02-15-preview' \
+    curl --location --request POST '<endpoint>/contentsafety/text:detectGroundedness?api-version=2024-09-15-preview' \
     --header 'Ocp-Apim-Subscription-Key: <your_subscription_key>' \
     --header 'Content-Type: application/json' \
     --data-raw '{
@@ -244,7 +244,7 @@ Create a new Python file named _quickstart.py_. Open the new file in your prefer
     import http.client
     import json
     
-    conn = http.client.HTTPSConnection("<endpoint>/contentsafety/text:detectGroundedness?api-version=2024-02-15-preview")
+    conn = http.client.HTTPSConnection("<endpoint>/contentsafety/text:detectGroundedness?api-version=2024-09-15-preview")
     payload = json.dumps({
       "domain": "Generic",
       "task": "QnA",
@@ -266,7 +266,7 @@ Create a new Python file named _quickstart.py_. Open the new file in your prefer
       'Ocp-Apim-Subscription-Key': '<your_subscription_key>',
       'Content-Type': 'application/json'
     }
-    conn.request("POST", "/contentsafety/text:detectGroundedness?api-version=2024-02-15-preview", payload, headers)
+    conn.request("POST", "/contentsafety/text:detectGroundedness?api-version=2024-09-15-preview", payload, headers)
     res = conn.getresponse()
     data = res.read()
     print(data.decode("utf-8"))
@@ -389,7 +389,7 @@ This section demonstrates a sample request using cURL. Replace the placeholders 
 
 
 ```shell
-curl --location --request POST '<endpoint>/contentsafety/text:detectGroundedness?api-version=2024-02-15-preview' \
+curl --location --request POST '<endpoint>/contentsafety/text:detectGroundedness?api-version=2024-09-15-preview' \
 --header 'Ocp-Apim-Subscription-Key: <your_subscription_key>' \
 --header 'Content-Type: application/json' \
 --data-raw '{
@@ -412,7 +412,7 @@ curl --location --request POST '<endpoint>/contentsafety/text:detectGroundedness
 Create a Python script named quickstart.py and include the following code. Update the endpoint URL and key as appropriate:
 ```Python
 
-conn = http.client.HTTPSConnection("<endpoint>/contentsafety/text:detectGroundedness?api-version=2024-02-15-preview")
+conn = http.client.HTTPSConnection("<endpoint>/contentsafety/text:detectGroundedness?api-version=2024-09-15-preview")
 payload = json.dumps({
   "domain": "Generic",
   "task": "Summarization",
@@ -431,7 +431,7 @@ headers = {
   'Ocp-Apim-Subscription-Key': '<your_subscription_key>',
   'Content-Type': 'application/json'
 }
-conn.request("POST", "/contentsafety/text:detectGroundedness?api-version=2024-02-15-preview", payload, headers)
+conn.request("POST", "/contentsafety/text:detectGroundedness?api-version=2024-09-15-preview", payload, headers)
 res = conn.getresponse()
 data = res.read()
 print(data.decode("utf-8"))
