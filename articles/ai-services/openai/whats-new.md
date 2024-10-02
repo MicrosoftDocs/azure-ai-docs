@@ -398,9 +398,9 @@ Azure OpenAI Studio now provides a Risks & Safety dashboard for each of your dep
 
 ### 2024-02-01 general availability (GA) API released
 
-This is the latest GA API release and is the replacement for the previous `2023-05-15` GA release. This release adds support for the latest Azure OpenAI GA features like Whisper, DALLE-3, fine-tuning, on your data, etc.
+This is the latest GA API release and is the replacement for the previous `2023-05-15` GA release. This release adds support for the latest Azure OpenAI GA features like Whisper, DALLE-3, fine-tuning, on your data, and more.
 
-Features that are still in preview such as Assistants, text to speech (TTS), certain on your data datasources, still require a preview API version. For more information, check out our [API version lifecycle guide](./api-version-deprecation.md).
+Features that are in preview such as Assistants, text to speech (TTS), and some of the "on your data" datasources, require a preview API version. For more information, check out our [API version lifecycle guide](./api-version-deprecation.md).
 
 ### Whisper general availability (GA)
 
