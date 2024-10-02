@@ -53,7 +53,7 @@ Azure Policy provides built-in policy definitions that help you govern the deplo
 
 1. Optionally, select the **Non-compliance messages** tab at the top of the page and set a custom message for noncompliance.
 1. Select **Review + create** tab and verify that the policy assignment is correct. When ready, select **Create** to assign the policy.
-1. Notify your developers that the policy is in place. For models that aren't allowed, the **deploy** option is disabled in the Azure Machine Learning studio.
+1. Notify your developers that the policy is in place. They will receive an error message if they try to deploy a model that is not in the list of allowed models.
 
 ## Monitor compliance
 
@@ -62,7 +62,7 @@ To monitor compliance with the policy, follow these steps:
 1. From the [Azure portal](https://portal.azure.com), select **Policy** from the left side of the page. You can also search for **Policy** in the search bar at the top of the page.
 1. From the left side of the Azure Policy Dashboard, select **Compliance**. Each policy assignment is listed with the compliance status. To view more details, select the policy assignment.
 
-## Update the allowed models
+## Update the policy assignment
 
 To update an existing policy assignment with new models, follow these steps:
 
