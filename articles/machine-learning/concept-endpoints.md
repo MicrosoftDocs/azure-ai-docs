@@ -130,7 +130,7 @@ The following table shows a summary of the different features available to serve
 | Compute type                  | None (serverless)                               | Managed compute and Kubernetes                  | Managed compute and Kubernetes                |
 | Low-priority compute          | NA                                              | No                                              | Yes                                           |
 | Scaling compute to zero       | Built-in                                        | No                                              | Yes                                           |
-| Autoscaling compute<sup>4</sup> | Built-in                                        | Yes, based on resource use                 | Yes, based on job count                       |
+| Autoscaling compute<sup>4</sup> | No                                            | Yes, based on resource use                 | Yes, based on job count                       |
 | Overcapacity management       | Throttling                                      | Throttling                                      | Queuing                                       |
 | Cost basis<sup>5</sup>        | Per token                                      | Per deployment: compute instances running       | Per job: compute instanced consumed in the job  (capped to the maximum number of instances of the cluster) |
 | Local testing of deployments  | No                                              | Yes                                             | No                                            |
