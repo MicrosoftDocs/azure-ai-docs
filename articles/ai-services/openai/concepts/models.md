@@ -18,6 +18,7 @@ Azure OpenAI Service is powered by a diverse set of models with different capabi
 
 | Models | Description |
 |--|--|
+| [o1-preview and o1-mini](#o1-preview-and-o1-mini-models-limited-access) | Limited access models, specifically designed to tackle reasoning and problem-solving tasks with increased focus and capability.  |
 | [GPT-4o & GPT-4o mini & GPT-4 Turbo](#gpt-4o-and-gpt-4-turbo) | The latest most capable Azure OpenAI models with multimodal versions, which can accept both text and images as input. |
 | [GPT-4o audio](#gpt-4o-audio) | A GPT-4o model that supports low-latency, "speech in, speech out" conversational interactions. |
 | [GPT-4](#gpt-4) | A set of models that improve on GPT-3.5 and can understand and generate natural language and code. |
@@ -30,6 +31,11 @@ Azure OpenAI Service is powered by a diverse set of models with different capabi
 ## o1-preview and o1-mini models limited access
 
 The Azure OpenAI `o1-preview` and `o1-mini` models are specifically designed to tackle reasoning and problem-solving tasks with increased focus and capability. These models spend more time processing and understanding the user's request, making them exceptionally strong in areas like science, coding, and math compared to previous iterations.
+
+|  Model ID  | Description | Max Request (tokens) | Training Data (up to)  |
+|  --- |  :--- |:--- |:---: |
+|`o1-preview` (2024-09-12) | The most capable model in the o1 series, offering enhanced reasoning abilities.| Input: 128,000  <br> Output: 32,768 | Oct 2023 |
+| `o1-mini` (2024-09-12) | A faster and more cost-efficient option in the o1 series, ideal for coding tasks requiring speed and lower resource consumption.| Input: 128,000  <br> Output: 65,536 | Oct 2023 |
 
 ### Availability
 
@@ -44,6 +50,10 @@ Once access has been granted, you will need to create a deployment for each mode
 Support for the **o1 series** models was added in API version `2024-09-01-preview`.
 
 The `max_tokens` parameter has been deprecated and replaced with the new `max_completion_tokens` parameter. **o1 series** models will only work with the `max_completions_tokens` parameter.
+
+### Region availability
+
+Available for standard and global standard deployment in East US2 and Sweden Central for approved customers.
 
 ## GPT-4o audio
 
@@ -99,8 +109,6 @@ See [model versions](../concepts/model-versions.md) to learn about how Azure Ope
 
 |  Model ID  | Description | Max Request (tokens) | Training Data (up to)  |
 |  --- |  :--- |:--- |:---: |
-|`o1-preview` (2024-09-12) | The most capable model in the o1 series, offering enhanced reasoning abilities.| Input: 128,000  <br> Output: 32,768 | Oct 2023 |
-| `o1-mini` (2024-09-12) | A faster and more cost-efficient option in the o1 series, ideal for coding tasks requiring speed and lower resource consumption.| Input: 128,000  <br> Output: 65,536 | Oct 2023 |
 |`gpt-4o` (2024-08-06) <br> **GPT-4o (Omni)** | **Latest large GA model** <br> - Structured outputs<br> - Text, image processing <br> - JSON Mode <br> - parallel function calling <br> - Enhanced accuracy and responsiveness <br> - Parity with English text and coding tasks compared to GPT-4 Turbo with Vision <br> - Superior performance in non-English languages and in vision tasks |Input: 128,000  <br> Output: 16,384 | Oct 2023 |
 |`gpt-4o-mini` (2024-07-18) <br> **GPT-4o mini** | **Latest small GA model** <br> - Fast, inexpensive, capable model ideal for replacing GPT-3.5 Turbo series models. <br> - Text, image processing <br>- JSON Mode <br> - parallel function calling | Input: 128,000 <br> Output: 16,384  | Oct 2023 |
 |`gpt-4o` (2024-05-13) <br> **GPT-4o (Omni)** | Text, image processing <br> - JSON Mode <br> - parallel function calling <br> - Enhanced accuracy and responsiveness <br> - Parity with English text and coding tasks compared to GPT-4 Turbo with Vision <br> - Superior performance in non-English languages and in vision tasks |Input: 128,000  <br> Output: 4,096| Oct 2023 |
