@@ -49,7 +49,7 @@ Once access has been granted, you will need to create a deployment for each mode
 
 Support for the **o1 series** models was added in API version `2024-09-01-preview`.
 
-The `max_tokens` parameter has been deprecated and replaced with the new `max_completion_tokens` parameter. **o1 series** models will only work with the `max_completions_tokens` parameter.
+The `max_tokens` parameter has been deprecated and replaced with the new `max_completion_tokens` parameter. **o1 series** models will only work with the `max_completions_tokens` parameter. `max_completions_tokens` is backwards compatible with `max_tokens`.
 
 ### Region availability
 
