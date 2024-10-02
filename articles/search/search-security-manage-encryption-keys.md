@@ -20,7 +20,7 @@ Azure AI Search automatically encrypts data at rest with [service-managed keys](
 
 This article walks you through the steps of setting up customer-managed key (CMK) or "bring-your-own-key" (BYOK) encryption. Here are some points to keep in mind:
 
-+ CMK encryption is enacted on individual objects. If you require CMK across your search service, [set an enforcement policy](#encryption-enforcement-policy).
++ CMK encryption is enacted on individual objects. If you require CMK across your search service, [set an enforcement policy](#set-up-a-policy-to-enforce-cmk-compliance).
 
 + CMK encryption depends on [Azure Key Vault](/azure/key-vault/general/overview). You can create your own encryption keys and store them in a key vault, or you can use Azure Key Vault APIs to generate encryption keys. Azure Key Vault must be in the same subscription as Azure AI Search, but it can be in a different tenant. Using the same tenant makes it easier to retrieve your managed key by connecting through a system or user-managed identity. This behavior requires both services to share the same tenant. For more information about creating a tenant, see [Set up a new tenant](/azure/active-directory/develop/quickstart-create-new-tenant).
 
@@ -65,7 +65,7 @@ Although double encryption is now available in all regions, support was rolled o
 
 + [Azure Key Vault](/azure/key-vault/general/overview) in the same subscription as Azure AI Search. You can [create a key vault using the Azure portal](/azure/key-vault/general/quick-create-portal), [Azure CLI](/azure/key-vault/general/quick-create-cli), or [Azure PowerShell](/azure/key-vault/general/quick-create-powershell). The key vault must have **soft-delete** and **purge protection** enabled. 
 
-+ A search client that can create an encrypted object. Into this code, you reference a key vault key and application registration information. This code could be a working app, or prototype code such as the [C# code sample DotNetHowToEncryptionUsingCMK](https://github.com/Azure-Samples/search-dotnet-getting-started/tree/master/DotNetHowToEncryptionUsingCMK).
++ A search client that can create an encrypted object. Into this code, you reference a key vault key and application registration information. This code could be a working app, or prototype code such as the [Python example](#python-example-of-an-encryption-key-configuration) in this article.
 
   To add CMK support, create an object using the [REST client](search-get-started-rest.md), [Azure PowerShell](search-get-started-powershell.md), or an Azure SDK (Python, .NET, Java, JavaScript).
 
@@ -81,63 +81,13 @@ If you're new to Azure Key Vault, review this quickstart to learn about basic ta
 
 + Use as many key vaults as you need. Managed keys can be in different key vaults. A search service can have multiple encrypted objects, each one encrypted with a different customer-managed encryption key, stored in different key vaults.
 
-+ [Enable logging](/azure/key-vault/general/logging) on Key Vault so that you can monitor key usage.
++ [Enable purge protection](/azure/key-vault/general/soft-delete-overview#purge-protection) and [soft-delete](/azure/key-vault/general/soft-delete-overview). Due to the nature of encryption with customer-managed keys, no one can retrieve your data if your Azure Key Vault key is deleted. To prevent data loss caused by accidental Key Vault key deletions, soft-delete and purge protection must be enabled on the key vault. Soft-delete is enabled by default, so you'll only encounter issues if you purposely disable it. Purge protection isn't enabled by default, but it's required for customer-managed key encryption in Azure AI Search.
 
-+ Remember to follow strict procedures during routine rotation of key vault keys and application secrets and registration. Always update all [encrypted content](search-security-get-encryption-keys.md) to use new secrets and keys before deleting the old ones. If you miss this step, your content can't be decrypted.
++ [Enable logging](/azure/key-vault/general/logging) on the key vault so that you can monitor key usage.
 
-## 1 - Enable purge protection
++ [Enable autorotation of keys](/azure/key-vault/keys/how-to-configure-key-rotation) or follow strict procedures during routine rotation of key vault keys and application secrets and registration. Always update all [encrypted content](search-security-get-encryption-keys.md) to use new secrets and keys before deleting the old ones. If you miss this step, your content can't be decrypted.
 
-As a first step, make sure [soft-delete](/azure/key-vault/general/soft-delete-overview) and [purge protection](/azure/key-vault/general/soft-delete-overview#purge-protection) are enabled on the key vault. Due to the nature of encryption with customer-managed keys, no one can retrieve your data if your Azure Key Vault key is deleted. 
-
-To prevent data loss caused by accidental Key Vault key deletions, soft-delete and purge protection must be enabled on the key vault. Soft-delete is enabled by default, so you'll only encounter issues if you purposely disable it. Purge protection isn't enabled by default, but it's required for customer-managed key encryption in Azure AI Search. 
-
-You can set both properties using the portal, PowerShell, or Azure CLI commands.
-
-### [**Azure portal**](#tab/portal-pp)
-
-1. Sign in to the [Azure portal](https://portal.azure.com) and open your key vault overview page.
-
-1. On the **Overview** page under **Essentials**, enable **Soft-delete** and **Purge protection**.
-
-### [**Using PowerShell**](#tab/ps-pp)
-
-1. Run `Connect-AzAccount` to  set up your Azure credentials.
-
-1. Run the following command to connect to your key vault, replacing `<vault_name>` with a valid name:
-
-   ```powershell
-   $resource = Get-AzResource -ResourceId (Get-AzKeyVault -VaultName "<vault_name>").ResourceId
-   ```
-
-1. Azure Key Vault is created with soft-delete enabled. If it's disabled on your vault, run  the following command:
-
-   ```powershell
-   $resource.Properties | Add-Member -MemberType NoteProperty -Name "enableSoftDelete" -Value 'true'
-   ```
-
-1. Enable purge protection:
-
-   ```powershell
-   $resource.Properties | Add-Member -MemberType NoteProperty -Name "enablePurgeProtection" -Value 'true'
-   ```
-
-1. Save your updates:
-
-   ```powershell
-   Set-AzResource -resourceid $resource.ResourceId -Properties $resource.Properties
-   ```
-
-### [**Using Azure CLI**](#tab/cli-pp)
-
-+ If you have an [installation of Azure CLI](/cli/azure/install-azure-cli), you can run the following command to enable the required properties.
-
-   ```azurecli-interactive
-   az keyvault update -n <vault_name> -g <resource_group> --enable-soft-delete --enable-purge-protection
-   ```
-
----
-
-## 2 - Create a key in Key Vault
+## Step 1: Create a key in Key Vault
 
 Skip key generation if you already have a key in Azure Key Vault that you want to use, but collect the key identifier. You need this information when creating an encrypted object.
 
@@ -161,7 +111,7 @@ Azure AI Search encryption supports RSA keys of sizes 2048, 3072 and 4096. For m
 
    :::image type="content" source="media/search-manage-encryption-keys/cmk-key-identifier.png" alt-text="Create a new key vault key" border="true":::
 
-## 3 - Create a security principal
+## Step 2: Create a security principal
 
 You have several options for setting up Azure AI Search access to the encryption key at run time. The simplest approach is to retrieve the key using the managed identity of your search service. You can use either a system or user-managed identity. Doing so allows you to omit the steps for application registration and application secrets. Alternatively, you can create and register a Microsoft Entra application and have the search service provides the application ID on requests.
 
@@ -262,7 +212,7 @@ Enable the system assigned managed identity for your search service.
 
 ---
 
-## 4 - Grant permissions
+## Step 3: Grant permissions
 
 Azure Key Vault supports authorization using role-based access controls. We recommend this approach over key vault access policies. For more information, see [Provide access to Key Vault keys, certificates, and secrets using Azure roles](/azure/key-vault/general/rbac-guide).
 
@@ -302,9 +252,9 @@ Access permissions could be revoked at any given time. Once revoked, any search 
 
 <a name="encrypt-content"></a>
 
-## 5 - Encrypt content
+## Step 4: Encrypt content
 
-Encryption keys are added when you create an object. To add a customer-managed key on an index, synonym map, indexer, data source, or skillset, use the [Search REST API](/rest/api/searchservice/) or an Azure SDK to create an object that has encryption enabled. The portal doesn't allow encryption properties on object creation. 
+Encryption keys are added when you create an object. To add a customer-managed key on an index, synonym map, indexer, data source, or skillset, use the [Search REST API](/rest/api/searchservice/) or an Azure SDK to create an object that has encryption enabled. To add encryption using the Azure SDK, see the [Python example](#python-example-of-an-encryption-key-configuration) in this article.
 
 1. Call the Create APIs to specify the **encryptionKey** property:
 
@@ -515,8 +465,40 @@ except Exception as ex:
     index_client = SearchClient(endpoint=AZURE_SEARCH_SERVICE, credential=credential)
 ```
 
-Since encrypted content is decrypted prior to data refresh or queries, you won't see visual evidence of encryption. To verify encryption is working, check the resource logs.
+Run a query to confirm the index is operational.
 
+```python
+from azure.search.documents import SearchClient
+
+query = "historic"  
+
+search_client = SearchClient(endpoint=AZURE_SEARCH_SERVICE, credential=credential, index_name=index_name)
+  
+results = search_client.search(  
+    query_type='simple',
+    search_text=query, 
+    select=["Id", "Description"],
+    include_total_count=True
+    )
+  
+for result in results:  
+    print(f"Score: {result['@search.score']}")
+    print(f"Id: {result['Id']}")
+    print(f"Description: {result['Description']}")
+```
+
+Output from the query should produce results similar to the following example.
+
+```
+Score: 0.6130029
+Id: 4
+Description: The hotel is located in the heart of the historic center of Sublime in an extremely vibrant and lively area within short walking distance to the sites and landmarks of the city and is surrounded by the extraordinary beauty of churches, buildings, shops and monuments. Sublime Cliff is part of a lovingly restored 1800 palace.
+Score: 0.26286605
+Id: 1
+Description: The hotel is ideally located on the main commercial artery of the city in the heart of New York. A few minutes away is Time's Square and the historic centre of the city, as well as other places of interest that make New York one of America's most attractive and cosmopolitan cities.
+```
+
+Since encrypted content is decrypted prior to data refresh or queries, you won't see visual evidence of encryption. To verify encryption is working, check the resource logs.
 
 ## Next steps
 
