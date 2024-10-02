@@ -38,7 +38,7 @@ The `max_tokens` parameter has been deprecated and replaced with the new `max_co
 
 Models are available for standard and global standard deployment in East US2 and Sweden Central for approved customers.
 
-### New GPT-4o real-time audio public preview
+### New GPT-4o Realtime API for speech and audio public preview
 
 Azure OpenAI GPT-4o audio is part of the GPT-4o model family that supports low-latency, "speech in, speech out" conversational interactions. The GPT-4o audio `realtime` API is designed to handle real-time, low-latency conversational interactions, making it a great fit for use cases involving live interactions between a user and a model, such as customer support agents, voice assistants, and real-time translators.
 
