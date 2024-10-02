@@ -282,12 +282,36 @@ Encryption keys are added when you create an object. To add a customer-managed k
    + [GET Data Source](/rest/api/searchservice/data-sources/get)
    + [GET Skillset](/rest/api/searchservice/skillsets/get)
 
+1. Verify the object is operational by performing a task, such as query an index that's been encrypted.
+
 Once you create the encrypted object on the search service, you can use it as you would any other object of its type. Encryption is transparent to the user and developer.
 
 None of these key vault details are considered secret and could be easily retrieved by browsing to the relevant Azure Key Vault page in Azure portal.
 
 > [!Important]
 > Encrypted content in Azure AI Search is configured to use a specific Azure Key Vault key with a specific *version*. If you change the key or version, the object must be updated to use it **before** you delete the previous one. Failing to do so renders the object unusable. You won't be able to decrypt the content if the key is lost.
+
+## Step 5: Test encryption
+
+To verify encryption is working, revoke the encryption key, query the index (it should be unusable), and then reinstate the encryption key.
+
+Use the Azure portal for this task.
+
+1. On the Azure Key Vault page, select **Objects** > **Keys**.
+
+1. Select the key you just created, and then select **Delete**.
+
+1. On the Azure AI Search page, select **Search management** > **Indexes**.
+
+1. Select your index and use Search Explorer to run a query. You should get an error.
+
+1. Return to the Azure Key Vault **Objects** > **Keys** page.
+
+1. Select **Manage deleted keys**.
+
+1. Select your key, and then select **Recover**. 
+
+1. Return to your index in Azure AI Search and rerun the query. You should see search results.
 
 ## Set up a policy to enforce CMK compliance
 
@@ -341,11 +365,13 @@ For performance reasons, the search service caches the key for up to several hou
 
 With customer-managed key encryption, you might notice latency for both indexing and queries due to the extra encrypt/decrypt work. Azure AI Search doesn't log encryption activity, but you can monitor key access through key vault logging. 
 
-We recommend that you [enable logging](/azure/key-vault/general/logging) as part of key vault configuration.
+We reommend that you [enable logging](/azure/key-vault/general/logging) as part of key vault configuration.
 
 1. [Create a log analytics workspace](/azure/azure-monitor/logs/quick-create-workspace).
 
-1. [Add a diagnostic setting in key vault](/azure/key-vault/general/howto-logging) that uses the workspace for data retention.
+1. [Add a diagnostic setting in key vault](/azure/key-vault/general/howto-logging) that uses the workspace for data retention. 
+
+1. Select **audit** or **allLogs** for the category, give the diagnostic setting a name, and then save it.
 
 ## Python example of an encryption key configuration
 
