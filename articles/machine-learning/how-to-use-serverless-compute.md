@@ -11,7 +11,7 @@ ms.custom:
 ms.topic: how-to
 ms.author: sgilley
 author: sdgilley
-ms.reviewer: vijetaj
+ms.reviewer: aram
 ms.date: 10/02/2024
 ---
 
