@@ -9,6 +9,7 @@ ms.date: 10/1/2024
 author: eric-urban
 ms.author: eur
 ms.custom: references_regions
+zone_pivot_groups: openai-studio-js
 recommendations: false
 ---
 
@@ -54,14 +55,30 @@ You can deploy the model from the [Azure AI Studio model catalog](../../../ai-st
 1. Modify other default settings depending on your requirements.
 1. Select **Deploy**. You land on the deployment details page. 
 
-Now that you have a deployment of the `gpt-4o-realtime-preview` model, you can use the Realtime API to interact with it in real time.
+Now that you have a deployment of the `gpt-4o-realtime-preview` model, you can use the AI Studio **Real-time audio** playground or Realtime API to interact with it in real time.
 
 ## Use the GPT-4o Realtime API
 
-> [!TIP]
-> A playground for GPT-4o real-time audio is coming soon to [Azure AI Studio](https://ai.azure.com). You can already use the API directly in your application.
-
 Right now, the fastest way to get started with the GPT-4o Realtime API is to download the sample code from the [Azure OpenAI GPT-4o real-time audio repository on GitHub](https://github.com/azure-samples/aoai-realtime-audio-sdk).
+
+::: zone pivot="programming-language-ai-studio"
+
+To chat with your deployed `gpt-4o-realtime-preview` model in the [Azure AI Studio](https://ai.azure.com) **Real-time audio** playground, follow these steps:
+
+1. Go to your project in [Azure AI Studio](https://ai.azure.com). 
+1. Select **Playgrounds** > **Real-time audio** from the left pane.
+1. Select your deployed `gpt-4o-realtime-preview` model from the **Deployment** dropdown. 
+
+    :::image type="content" source="../media/how-to/real-time/real-time-playground.png" alt-text="Screenshot of the real-time audio playground with the deployed model selected." lightbox="../media/how-to/real-time/real-time-playground.png":::
+
+1. Optionally you can edit contents in the **Give the model instructions and context** text box. Give the model instructions about how it should behave and any context it should reference when generating a response. You can describe the assistant's personality, tell it what it should and shouldn't answer, and tell it how to format responses.
+1. Optionally, change settings such as threshold, prefix padding, and silence duration.
+1. Select **Start listening** to start the session. You can speak into the microphone to start a chat.
+1. You can interrupt the chat at any time by speaking. You can end the chat by selecting the **Stop listening** button.
+
+::: zone-end
+
+::: zone pivot="programming-language-javascript"
 
 The JavaScript web sample demonstrates how to use the GPT-4o Realtime API to interact with the model in real time. The sample code includes a simple web interface that captures audio from the user's microphone and sends it to the model for processing. The model responds with text and audio, which the sample code renders in the web interface.
 
@@ -102,6 +119,8 @@ You can run the sample code locally on your machine by following these steps. Re
 1. Select the **Record** button to start the session. Accept permissions to use your microphone if prompted.
 1. You should see a `<< Session Started >>` message in the main output. Then you can speak into the microphone to start a chat.
 1. You can interrupt the chat at any time by speaking. You can end the chat by selecting the **Stop** button.
+
+::: zone-end
 
 ## Related content
 
