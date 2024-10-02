@@ -139,7 +139,7 @@ items:
           href: how-to/fine-tune-phi-3.md
     - name: Foundational Multimodal Healthcare AI models
       items:
-        - name: Foundational Multimodal Healthcare AI models
+        - name: Health and Life Sciences AI Models
           href: how-to/health-ai/healthcare-ai-models.md
         - name: MedImageInsight - embedding model
           href: how-to/health-ai/deploy-medimageinsight.md

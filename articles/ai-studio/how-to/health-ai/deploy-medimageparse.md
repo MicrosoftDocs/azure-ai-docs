@@ -6,7 +6,7 @@ ms.service: azure-ai-studio
 manager: scottpolly
 ms.topic: how-to
 ms.date: 09/30/2024
-ms.reviewer: kritifaujdar
+ms.reviewer: itarapov
 reviewer: fkriti
 ms.author: mopeakande
 author: msakande

@@ -1,12 +1,12 @@
 ---
-title: How do Deploy Foundational Multimodal Healthcare AI Models with AI Studio
+title: How do Deploy Health and Life Sciences AI Models with AI Studio
 titleSuffix: Azure AI Studio
-description: Learn how to use Foundational Multimodal Healthcare models with Azure AI Studio.
+description: Learn how to use Health and Life Sciences AI Models models with Azure AI Studio.
 ms.service: azure-ai-studio
 manager: scottpolly
 ms.topic: how-to
 ms.date: 09/30/2024
-ms.reviewer: kritifaujdar
+ms.reviewer: itarapov
 reviewer: fkriti
 ms.author: mopeakande
 author: msakande
@@ -14,7 +14,7 @@ ms.custom: references_regions, generated
 zone_pivot_groups: ?????
 ---
 
-# Foundational Multimodal Healthcare AI Models
+# Health and Life Sciences AI Models
 
 [!INCLUDE [Feature preview](~/reusable-content/ce-skilling/azure/includes/ai-studio/includes/feature-preview.md)]
 
@@ -26,7 +26,7 @@ In this article, you learn about Microsoft's catalog of Foundational Multimodal 
 
 Microsoft's first party Foundational Multimodal Healthcare AI Models include the following models:
 
-### [MedImageInsight](deploy-medimageinsight.md/)
+### [MedImageInsight](./deploy-medimageinsight.md/)
 A model for generating embeddings from medical images. 
 
 ### [CXRReportGen](./deploy-cxrreportgen.md)
