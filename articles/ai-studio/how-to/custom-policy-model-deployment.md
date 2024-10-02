@@ -1,20 +1,20 @@
 ---
 title: Control AI model deployment with custom policies
-titleSuffix: Azure Machine Learning
-description: "Learn how to use custom Azure Policies to control Azure AI services and Azure OpenAI model deployment with Azure Machine Learning."
+titleSuffix: Azure AI Studio
+description: "Learn how to use custom Azure Policies to control Azure AI services and Azure OpenAI model deployment with Azure AI Studio."
 author: Blackmist
 ms.author: larryfr
-ms.service: azure-machine-learning
+ms.service: azure-ai-studio
 ms.topic: how-to #Don't change
-ms.date: 10/01/2024
+ms.date: 10/02/2024
 
 #customer intent: As an admin, I want control what Azure AI services and Azure OpenAI models can be deployed by my developers.
 
 ---
 
-# Control AI model deployment with custom policies in Azure Machine Learning
+# Control AI model deployment with custom policies in Azure AI Studio
 
-When using models from Azure AI services and Azure OpenAI with Azure Machine Learning, you might need to use custom policies to control what models your developers can deploy. Custom Azure Policies allow you to create policy definitions that meet your organization's unique requirements. This article shows you how to create and assign an example custom policy to control model deployment.
+When using models from Azure AI services and Azure OpenAI with Azure AI Studio, you might need to use custom policies to control what models your developers can deploy. Custom Azure Policies allow you to create policy definitions that meet your organization's unique requirements. This article shows you how to create and assign an example custom policy to control model deployment.
 
 ## Prerequisites
 
@@ -84,7 +84,7 @@ When using models from Azure AI services and Azure OpenAI with Azure Machine Lea
 1. From the **Parameters** tab, set **Allowed models** to the list of models that you want to allow. The list should be a comma-separated list of model names, surrounded by square brackets. For example, `["gpt-4", "gpt-35-turbo"]`.
 
     > [!TIP]
-    > You can find the model names in the [Azure Machine Learning Model Catalog](https://ml.azure.com/model/catalog) for your workspace. Select the model to view the details, and then copy the model name in the title.
+    > You can find the model names in the [Azure AI Studio Model Catalog](https://ai.azure.com/explore/models). Select the model to view the details, and then copy the model name in the title.
 
 1. Optionally, select the **Non-compliance messages** tab at the top of the page and set a custom message for noncompliance.
 1. Select **Review + create** tab and verify that the policy assignment is correct. When ready, select **Create** to assign the policy.
@@ -112,7 +112,7 @@ To update an existing policy assignment with new models, follow these steps:
 
 ## Best practices
 
-- **Obtaining model names**: Use the [Azure Machine Learning Model Catalog](https://ml.azure.com/model/catalog), then select the model to view details. Use the model name in the title with the policy.
+- **Obtaining model names**: Use the [Azure AI Studio Model Catalog](https://ai.azure.com/explore/models), then select the model to view details. Use the model name in the title with the policy.
 - **Granular scoping**: Assign policies at the appropriate scope to balance control and flexibility. For example, apply at the subscription level to control all resources in the subscription, or apply at the resource group level to control resources in a specific group.
 - **Policy naming**: Use a consistent naming convention for policy assignments to make it easier to identify the purpose of the policy. Include information such as the purpose and scope in the name.
 - **Documentation**: Keep records of policy assignments and configurations for auditing purposes. Document any changes made to the policy over time.
@@ -123,6 +123,6 @@ To update an existing policy assignment with new models, follow these steps:
 ## Related content
 
 - [Azure Policy overview](/azure/governance/policy/overview)
-- [Azure Machine Learning model catalog](concept-model-catalog.md)
+- [Azure AI Studio model catalog](model-catalog-overview.md)
 - [Azure AI services documentation](/azure/ai-services)
 
