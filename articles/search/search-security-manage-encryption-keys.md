@@ -311,7 +311,7 @@ Use the Azure portal for this task.
 
 1. Select your key, and then select **Recover**. 
 
-1. Return to your index in Azure AI Search and rerun the query. You should see search results.
+1. Return to your index in Azure AI Search and rerun the query. You should see search results. If you don't see immediate results, wait a minute and try again.
 
 ## Set up a policy to enforce CMK compliance
 
