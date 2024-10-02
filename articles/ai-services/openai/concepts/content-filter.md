@@ -83,8 +83,6 @@ Detecting indirect attacks requires using document delimiters when constructing 
 
 [!INCLUDE [content-filter-configurability](../includes/content-filter-configurability.md)]
 
-
-
 ## Scenario details
 
 When the content filtering system detects harmful content, you receive either an error on the API call if the prompt was deemed inappropriate, or the `finish_reason` on the response will be `content_filter` to signify that some of the completion was filtered. When building your application or system, you'll want to account for these scenarios where the content returned by the Completions API is filtered, which might result in content that is incomplete. How you act on this information will be application specific. The behavior can be summarized in the following points:

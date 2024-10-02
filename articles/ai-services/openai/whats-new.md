@@ -10,7 +10,7 @@ ms.custom:
   - ignite-2023
   - references_regions
 ms.topic: whats-new
-ms.date: 9/19/2024
+ms.date: 10/01/2024
 recommendations: false
 ---
 
@@ -20,13 +20,35 @@ This article provides a summary of the latest releases and major documentation u
 
 ## October 2024
 
-### New GPT-4o real-time audio public preview
+### o1-preview and o1-mini models limited access
+
+The `o1-preview` and `o1-mini` models are now available for API access and model deployment. **Registration is required, and access will be granted based on Microsoft's eligibility criteria**.
+
+Request access: [limited access model application](https://aka.ms/oai/modelaccess)
+
+Customers who were already approved and have access to the model through the early access playground don't need to apply again, you'll automatically be granted API access. Once access has been granted, you'll need to create a deployment for each model.
+
+**API support:**
+
+Support for the **o1 series** models was added in API version `2024-09-01-preview`.
+
+The `max_tokens` parameter has been deprecated and replaced with the new `max_completion_tokens` parameter. **o1 series** models will only work with the `max_completions_tokens` parameter. `max_completions_tokens` is backwards compatible with `max_tokens`.
+
+**Region availability**:
+
+Models are available for standard and global standard deployment in East US2 and Sweden Central for approved customers.
+
+### New GPT-4o Realtime API for speech and audio public preview
 
 Azure OpenAI GPT-4o audio is part of the GPT-4o model family that supports low-latency, "speech in, speech out" conversational interactions. The GPT-4o audio `realtime` API is designed to handle real-time, low-latency conversational interactions, making it a great fit for use cases involving live interactions between a user and a model, such as customer support agents, voice assistants, and real-time translators.
 
 The `gpt-4o-realtime-preview` model is available for global deployments in [East US 2 and Sweden Central regions](./concepts/models.md#global-standard-model-availability).
 
 For more information, see the [GPT-4o real-time audio documentation](./how-to/audio-real-time.md).
+
+### Global batch support updates
+
+Global batch now supports GPT-4o (2024-08-06). See the [global batch getting started guide](./how-to/batch.md) for more information.
 
 ## September 2024
 
@@ -36,7 +58,7 @@ On September 19, when you access the [Azure OpenAI Studio](https://oai.azure.com
 
 
 ### GPT-4o 2024-08-06 provisioned deployments
-GPT-4o 2024-08-06 is now available for provisioned deployments in East US, East US 2, North Central US, and Sweden Central. It is also available for global provisioned deployments.
+GPT-4o 2024-08-06 is now available for provisioned deployments in East US, East US 2, North Central US, and Sweden Central. It's also available for global provisioned deployments.
 
 For the latest information on model availability, see the [models page](/azure/ai-services/openai/concepts/models#provisioned-deployment-model-availability).
 
@@ -47,7 +69,7 @@ For more information, see the [deployment types guide](https://aka.ms/aoai/docs/
 
 ### NEW o1-preview and o1-mini models available for limited access
 
-The Azure OpenAI `o1-preview` and `o1-mini` models are specifically designed to tackle reasoning and problem-solving tasks with increased focus and capability. These models spend more time processing and understanding the user's request, making them exceptionally strong in areas like science, coding, and math compared to previous iterations.
+The Azure OpenAI `o1-preview` and `o1-mini` models are designed to tackle reasoning and problem-solving tasks with increased focus and capability. These models spend more time processing and understanding the user's request, making them exceptionally strong in areas like science, coding, and math compared to previous iterations.
 
 ### Key capabilities of the o1 series
 
@@ -67,7 +89,7 @@ Request access: [limited access model application](https://aka.ms/oai/modelacces
 
 ### Limitations
 
-The `o1` series models are currently in preview and do not include some features available in other models, such as image understanding and structured outputs which are available in the latest GPT-4o model. For many tasks, the generally available GPT-4o models may still be more suitable.
+The `o1` series models are currently in preview and don't include some features available in other models, such as image understanding and structured outputs which are available in the latest GPT-4o model. For many tasks, the generally available GPT-4o models might still be more suitable.
 
 ### Safety
 
@@ -75,7 +97,7 @@ OpenAI has incorporated additional safety measures into the `o1` models, includi
 
 ### Availability
 
-The `o1-preview` and `o1-mini` are available in the East US2 region for limited access through the [AI Studio](https://ai.azure.com) early access playground. Data processing for the `o1` models may occur in a different region than where they are available for use.
+The `o1-preview` and `o1-mini` are available in the East US2 region for limited access through the [AI Studio](https://ai.azure.com) early access playground. Data processing for the `o1` models might occur in a different region than where they are available for use.
 
 To try the `o1-preview` and `o1-mini` models in the early access playground **registration is required, and access will be granted based on Microsoft’s eligibility criteria.**
 
@@ -83,7 +105,7 @@ Request access: [limited access model application](https://aka.ms/oai/modelacces
 
 Once access has been granted, you will need to:
 
-1. Navigate to https://ai.azure.com/resources and select a resource in the `eastus2` region. If you do not have an Azure OpenAI resource in this region you will need to [create one](https://portal.azure.com/#create/Microsoft.CognitiveServicesOpenAI).  
+1. Navigate to https://ai.azure.com/resources and select a resource in the `eastus2` region. If you don't have an Azure OpenAI resource in this region you'll need to [create one](https://portal.azure.com/#create/Microsoft.CognitiveServicesOpenAI).  
 2. Once the `eastus2` Azure OpenAI resource is selected, in the upper left-hand panel under **Playgrounds** select **Early access playground (preview)**.
  
 ## August 2024
@@ -133,10 +155,10 @@ On August 6, 2024, OpenAI [announced](https://openai.com/index/introducing-struc
 
 Azure customers can test out GPT-4o `2024-08-06` today in the new AI Studio early access playground (preview).
 
-Unlike the previous early access playground, the AI Studio early access playground (preview) does not require you to have a resource in a specific region.
+Unlike the previous early access playground, the AI Studio early access playground (preview) doesn't require you to have a resource in a specific region.
 
 > [!NOTE]
-> Prompts and completions made through the early access playground (preview) may be processed in any Azure OpenAI region, and are currently subject to a 10 request per minute per Azure subscription limit. This limit may change in the future.
+> Prompts and completions made through the early access playground (preview) might be processed in any Azure OpenAI region, and are currently subject to a 10 request per minute per Azure subscription limit. This limit might change in the future.
 >
 > Azure OpenAI Service abuse monitoring is enabled for all early access playground users even if approved for modification; default content filters are enabled and cannot be modified.
 
@@ -265,7 +287,7 @@ Threads and Files in Assistants now supports CMK in the following region:
 ### GPT-4o provisioned deployments
 
 `gpt-4o` Version: `2024-05-13` is available for both standard and provisioned deployments. Provisioned and standard model deployments accept both text and image/vision inference requests.
-For information on model regional availability consult the model matrix for [provisioned deployments](./concepts/models.md#provisioned-deployment-model-availability).
+For information on model regional availability, consult the model matrix for [provisioned deployments](./concepts/models.md#provisioned-deployment-model-availability).
 
 ### Assistants v2 (preview)
 
@@ -302,7 +324,7 @@ For information on model regional availability, see the [models page](./concepts
 
 ### Global standard deployment type (preview)
 
-Global deployments are available in the same Azure OpenAI resources as non-global offers but allow you to leverage Azure's global infrastructure to dynamically route traffic to the data center with best availability for each request. Global standard will provide the highest default quota for new models and eliminates the need to load balance across multiple resources.
+Global deployments are available in the same Azure OpenAI resources as non-global offers but allow you to leverage Azure's global infrastructure to dynamically route traffic to the data center with best availability for each request. Global standard provides the highest default quota for new models and eliminates the need to load balance across multiple resources.
 
 For more information, see the [deployment types guide](https://aka.ms/aoai/docs/deployment-types).
 
@@ -321,7 +343,7 @@ Running filters asynchronously for improved latency in streaming scenarios is no
 
 ### Prompt Shields
 
-Prompt Shields protect applications powered by Azure OpenAI models from two types of attacks: direct (jailbreak) and indirect attacks. Indirect Attacks (also known as Indirect Prompt Attacks or Cross-Domain Prompt Injection Attacks) are a type of attack on systems powered by Generative AI models that may occur when an application processes information that wasn’t directly authored by either the developer of the application or the user. [Content filtering](/azure/ai-services/openai/concepts/content-filter?tabs=warning%2Cpython-new#prompt-shields)
+Prompt Shields protect applications powered by Azure OpenAI models from two types of attacks: direct (jailbreak) and indirect attacks. Indirect Attacks (also known as Indirect Prompt Attacks or Cross-Domain Prompt Injection Attacks) are a type of attack on systems powered by Generative AI models that might occur when an application processes information that wasn’t directly authored by either the developer of the application or the user. [Content filtering](/azure/ai-services/openai/concepts/content-filter?tabs=warning%2Cpython-new#prompt-shields)
 
 ### 2024-05-01-preview API release
 
@@ -376,9 +398,9 @@ Azure OpenAI Studio now provides a Risks & Safety dashboard for each of your dep
 
 ### 2024-02-01 general availability (GA) API released
 
-This is the latest GA API release and is the replacement for the previous `2023-05-15` GA release. This release adds support for the latest Azure OpenAI GA features like Whisper, DALLE-3, fine-tuning, on your data, etc.
+This is the latest GA API release and is the replacement for the previous `2023-05-15` GA release. This release adds support for the latest Azure OpenAI GA features like Whisper, DALLE-3, fine-tuning, on your data, and more.
 
-Features that are still in preview such as Assistants, text to speech (TTS), certain on your data datasources, still require a preview API version. For more information check out our [API version lifecycle guide](./api-version-deprecation.md).
+Features that are in preview such as Assistants, text to speech (TTS), and some of the "on your data" datasources, require a preview API version. For more information, check out our [API version lifecycle guide](./api-version-deprecation.md).
 
 ### Whisper general availability (GA)
 
@@ -405,9 +427,9 @@ We have added a page to track [model deprecations and retirements](./concepts/mo
 `2024-03-01-preview` has all the same functionality as `2024-02-15-preview` and adds two new parameters for embeddings:
 
 - `encoding_format` allows you to specify the format to generate embeddings in `float`, or `base64`. The default is `float`.
-- `dimensions` allows you set the number of output embeddings. This parameter is only supported with the new third generation embeddings models: `text-embedding-3-large`, `text-embedding-3-small`. Typically larger embeddings are more expensive from a compute, memory, and storage perspective. Being able to adjust the number of dimensions allows more control over overall cost and performance. The `dimensions` parameter is not supported in all versions of the OpenAI 1.x Python library, to take advantage of this parameter  we recommend upgrading to the latest version: `pip install openai --upgrade`.
+- `dimensions` allows you set the number of output embeddings. This parameter is only supported with the new third generation embeddings models: `text-embedding-3-large`, `text-embedding-3-small`. Typically larger embeddings are more expensive from a compute, memory, and storage perspective. Being able to adjust the number of dimensions allows more control over overall cost and performance. The `dimensions` parameter isn't supported in all versions of the OpenAI 1.x Python library, to take advantage of this parameter  we recommend upgrading to the latest version: `pip install openai --upgrade`.
 
-If you are currently using a preview API version to take advantage of the latest features, we recommend consulting the [API version lifecycle](./api-version-deprecation.md) article to track how long your current API version will be supported.
+If you're currently using a preview API version to take advantage of the latest features, we recommend consulting the [API version lifecycle](./api-version-deprecation.md) article to track how long your current API version will be supported.
 
 ### Update to GPT-4-1106-Preview upgrade plans
 
@@ -434,7 +456,7 @@ For information on model regional availability and upgrades refer to the [models
 
 ### GPT-3.5 Turbo quota consolidation
 
-To simplify migration between different versions of the GPT-3.5-Turbo models (including 16k), we will be consolidating all GPT-3.5-Turbo quota into a single quota value.
+To simplify migration between different versions of the GPT-3.5-Turbo models (including 16k), we'll be consolidating all GPT-3.5-Turbo quota into a single quota value.
 
 - Any customers who have increased quota approved will have combined total quota that reflects the previous increases.
 
@@ -502,13 +524,13 @@ GPT-4 Turbo with Vision on Azure OpenAI service is now in public preview. GPT-4 
 
 ### New data source support in Azure OpenAI On Your Data
 
-- You can now use [Azure Cosmos DB for MongoDB vCore](./concepts/use-your-data.md#supported-data-sources) as well as URLs/web addresses as data sources to ingest your data and chat with a supported Azure OpenAI model.
+- You can now use [Azure Cosmos DB for MongoDB vCore](./concepts/use-your-data.md#supported-data-sources) and URLs/web addresses as data sources to ingest your data and chat with a supported Azure OpenAI model.
 
 ### GPT-4 Turbo Preview & GPT-3.5-Turbo-1106 released
 
 Both models are the latest release from OpenAI with improved instruction following, [JSON mode](./how-to/json-mode.md), [reproducible output](./how-to/reproducible-output.md), and parallel function calling.
 
-- **GPT-4 Turbo Preview** has a max context window of 128,000 tokens and can generate 4,096 output tokens. It has the latest training data with knowledge up to April 2023. This model is in preview and is not recommended for production use. All deployments of this preview model will be automatically updated in place once the stable release becomes available.
+- **GPT-4 Turbo Preview** has a max context window of 128,000 tokens and can generate 4,096 output tokens. It has the latest training data with knowledge up to April 2023. This model is in preview and isn't recommended for production use. All deployments of this preview model will be automatically updated in place once the stable release becomes available.
 
 - **GPT-3.5-Turbo-1106** has a max context window of 16,385 tokens and can generate 4,096 output tokens.
 
@@ -649,7 +671,7 @@ Azure OpenAI Service now supports speech to text APIs powered by OpenAI's Whispe
   - GPT-35-Turbo models.
   - GPT-4 model series. 
   
-If you are currently using the `2023-03-15-preview` API, we recommend migrating to the GA `2023-05-15` API. If you are currently using API version `2022-12-01` this API remains GA, but does not include the latest Chat Completion capabilities.
+If you're currently using the `2023-03-15-preview` API, we recommend migrating to the GA `2023-05-15` API. If you're currently using API version `2022-12-01` this API remains GA, but doesn't include the latest Chat Completion capabilities.
 
 > [!IMPORTANT]
 > Using the current versions of the GPT-35-Turbo models with the completion endpoint remains in preview.
@@ -674,7 +696,7 @@ If you are currently using the `2023-03-15-preview` API, we recommend migrating 
 - **GPT-35-Turbo preview**. To learn more checkout the [how-to article](./how-to/chatgpt.md).
 
 - Increased training limits for fine-tuning: The max training job size (tokens in training file) x (# of epochs) is 2 Billion tokens for all models. We have also increased the max training job from 120 to 720 hours. 
-- Adding additional use cases to your existing access.  Previously, the process for adding new use cases required customers to reapply to the service. Now, we're releasing a new process that allows you to quickly add new use cases to your use of the service. This process follows the established Limited Access process within Azure AI services. [Existing customers can attest to any and all new use cases here](https://customervoice.microsoft.com/Pages/ResponsePage.aspx?id=v4j5cvGGr0GRqy180BHbR7en2Ais5pxKtso_Pz4b1_xUM003VEJPRjRSOTZBRVZBV1E5N1lWMk1XUyQlQCN0PWcu). Please note that this is required anytime you would like to use the service for a new use case you did not originally apply for.
+- Adding additional use cases to your existing access.  Previously, the process for adding new use cases required customers to reapply to the service. Now, we're releasing a new process that allows you to quickly add new use cases to your use of the service. This process follows the established Limited Access process within Azure AI services. [Existing customers can attest to any and all new use cases here](https://customervoice.microsoft.com/Pages/ResponsePage.aspx?id=v4j5cvGGr0GRqy180BHbR7en2Ais5pxKtso_Pz4b1_xUM003VEJPRjRSOTZBRVZBV1E5N1lWMk1XUyQlQCN0PWcu). Please note that this is required anytime you would like to use the service for a new use case you didn't originally apply for.
 
 ## February 2023
 
