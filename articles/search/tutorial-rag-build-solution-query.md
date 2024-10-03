@@ -8,7 +8,7 @@ author: HeidiSteen
 ms.author: heidist
 ms.service: cognitive-search
 ms.topic: tutorial
-ms.date: 10/01/2024
+ms.date: 10/03/2024
 
 ---
 
@@ -90,14 +90,17 @@ Sources:\n{sources}
 """
 
 # Provide the query. Notice it's sent to both the search engine and the LLM.
+# The query sent to the search engine is hybrid. Keyword search on "query". Text-to-vector conversion for vector search.
 query="how much of earth is covered by water"
+vector_query = VectorizableTextQuery(text=query, k_nearest_neighbors=1, fields="text_vector", exhaustive=True)
 
 # Set up the search results and the chat thread.
 # Retrieve the selected fields from the search index related to the question.
 search_results = search_client.search(
     search_text=query,
+    vector_queries= [vector_query],
+    select="title, chunk, locations",
     top=1,
-    select="title, chunk, locations"
 )
 sources_formatted = "\n".join([f'{document["title"]}:{document["chunk"]}:{document["locations"]}' for document in search_results])
 
