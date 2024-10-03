@@ -10,7 +10,7 @@ ms.service: azure-machine-learning
 ms.subservice: automl
 ms.topic: conceptual
 ms.custom: automl, sdkv2
-ms.date: 09/05/2024
+ms.date: 10/03/2024
 show_latex: true
 #customer intent: As a data scientist, I want to understand model inference and evaluation in forecasting tasks.
 ---
