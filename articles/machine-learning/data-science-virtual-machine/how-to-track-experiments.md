@@ -165,7 +165,7 @@ Next, select the __Deploy__ button in the model details pane:
 
 :::image type="content" source="./media/how-to-track-experiments/mlflow-experiments-4.png" alt-text="Screenshot showing selection of the Deploy button." lightbox= "./media/how-to-track-experiments/mlflow-experiments-4.png":::
 
-The model will deploy to the Inference Cluster (Azure Kubernetes Service) we created in step 1. Provide a name for the service, and the name of the AKS compute cluster (created in step 1), to fill in the details. We also recommend that you increase the __CPU reserve capacity__ from 0.1 to 1, and the __Memory reserve capacity__ from 0.5 to 1. Select __Advanced__ and fill in the details to set this increase. Then select __Deploy__, as shown in this screenshot:
+The model deploys to the Inference Cluster (Azure Kubernetes Service) we created in step 1. Provide a name for the service, and the name of the AKS compute cluster (created in step 1), to fill in the details. We also recommend that you increase the __CPU reserve capacity__ from 0.1 to 1, and the __Memory reserve capacity__ from 0.5 to 1. Select __Advanced__ and fill in the details to set this increase. Then select __Deploy__, as shown in this screenshot:
 
 :::image type="content" source="./media/how-to-track-experiments/mlflow-experiments-5.png" alt-text="Screenshot showing details of the model deployment." lightbox= "./media/how-to-track-experiments/mlflow-experiments-5.png":::
 
