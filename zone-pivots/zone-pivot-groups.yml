@@ -841,3 +841,11 @@ groups:
     title: Python
   - id: programming-language-powershell
     title: PowerShell
+- id: openai-studio-js
+  title: Programming languages
+  prompt: Choose your preferred usage method
+  pivots:
+  - id: programming-language-ai-studio
+    title: AI Studio
+  - id: programming-language-javascript
+    title: JavaScript
