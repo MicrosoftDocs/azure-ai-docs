@@ -127,7 +127,7 @@ Add more detail to this configuration in subsequent sections of this article. In
 
 ---
 
-You specify [validation data](concept-automated-ml.md#prepare-training-validation-and-test-data) in a similar way. Create an `MLTable` object and specify a validation data input. Alternatively, if you don't supply validation data, AutoML automatically creates cross-validation splits from your training data to use for model selection. For more information, see the following resources:
+You specify [validation data](concept-automated-ml.md#training-validation-and-test-data) in a similar way. Create an `MLTable` object and specify a validation data input. Alternatively, if you don't supply validation data, AutoML automatically creates cross-validation splits from your training data to use for model selection. For more information, see the following resources:
 
 - [Select forecasting models](./concept-automl-forecasting-sweeping.md#model-selection-in-automl)
 - [Set training data length requirements](./concept-automl-forecasting-methods.md#data-length-requirements)
@@ -139,7 +139,7 @@ AutoML uses Azure Machine Learning Compute, which is a fully managed compute res
 
 # [Python SDK](#tab/python)
 
-[!Notebook Python[] (~/azureml-examples-main/sdk/python/jobs/configuration.ipynb?name=create-cpu-compute)]
+[!notebook-python[] (~/azureml-examples-main/sdk/python/jobs/configuration.ipynb?name=create-cpu-compute)]
 
 # [Azure CLI](#tab/cli)
 
@@ -1004,7 +1004,7 @@ jobs:
             evaluation_result: ${{parent.outputs.metrics_result}}
 ```
 
-AutoML requires training data in [MLTable format](#training-and-validation-data) for AutoML.
+AutoML requires training data in [MLTable format](#prepare-training-and-validation-data) for AutoML.
 
 Launch the pipeline run by using the following command. The pipeline configuration is at the path *./automl-forecasting-pipeline.yml*:
 
