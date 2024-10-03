@@ -39,7 +39,7 @@ __Custom network isolation__ relies on you creating and managing an Azure Virtua
 Use managed virtual network when… 
 - You're new user to Azure Machine Learning with standard network isolation requirements
 - You're a company with standard network isolation requirements
-- You require on-premises access to resources with HTTP(s) endpoints
+- You require on-premises access to resources with HTTP/S endpoints
 - You don't have many non-Azure dependencies set up yet
 - You require using Azure Machine Learning managed online endpoints and serverless spark computes
 - You have fewer management requirements for networking in your organization
@@ -47,7 +47,7 @@ Use managed virtual network when…
 Use custom virtual network when… 
 - You're a company with heavy network isolation requirements
 - You have many non-Azure dependencies previously set-up and need to access Azure Machine Learning
-- You have on-premises databases with no HTTP(s) endpoints
+- You have on-premises databases with no HTTP/S endpoints
 - You require using your own Firewall and virtual network logging and monitoring of outbound network traffic
 - You want to use Azure Kubernetes Services (AKS) for inference workloads
 
@@ -56,7 +56,7 @@ The following table provides a comparison of the benefits and limitations of man
 | | Custom virtual network | Managed virtual network |
 | --- | --- | --- |
 | __Benefits__ | - You can tailor networking to your existing set-up</br>- Bring your own non-Azure resources with Azure Machine Learning</br>- Connect to on-premises resources | - Minimize set-up and maintenance overhead</br>- Supports managed online endpoints</br>- Supports serverless spark</br>- Gets new features first |
-| __Limitations__ | - New feature support might be delayed</br>- Managed online endpoints NOT supported</br>- Serverless spark NOT supported</br>- Foundational models NOT supported</br>- No code MLFlow NOT supported</br>- Implementation complexity</br>- Maintenance overhead | - Cost implications of the Azure Firewall and fully qualified domain name (FQDN) rules</br>- Logging of the virtual network, firewall, and NSG rules NOT supported</br>- Access to non-HTTP(s) endpoint resources NOT supported |
+| __Limitations__ | - New feature support might be delayed</br>- Managed online endpoints NOT supported</br>- Serverless spark NOT supported</br>- Foundational models NOT supported</br>- No code MLFlow NOT supported</br>- Implementation complexity</br>- Maintenance overhead | - Cost implications of the Azure Firewall and fully qualified domain name (FQDN) rules</br>- Logging of the virtual network, firewall, and NSG rules NOT supported</br>- Access to non-HTTP/S endpoint resources NOT supported |
 
 ### Custom virtual network limitations
 
@@ -69,7 +69,7 @@ The following table provides a comparison of the benefits and limitations of man
 
 - __Cost implications with Azure Firewall and FQDN rules__: An Azure Firewall is provisioned on behalf of the user only when a user-defined FQDN outbound rule is created. The Azure Firewall is the Standard SKU Firewall and incurs costs that are added to your billing. For more information, visit [Azure Firewall pricing](https://azure.microsoft.com/pricing/details/azure-firewall). 
 - __Logging and monitoring of managed virtual network NOT supported__: The managed virtual network doesn't support virtual network flow, NSG flow, or Firewall logs. This limitation is because the managed virtual network is deployed in a Microsoft tenant and can't be sent to your subscription. 
-- __Access to non-Azure, non-HTTP(S) resources isn't supported__: The managed virtual network doesn't allow for access to non-Azure, non-HTTP(S) resources. To access HTTP(s) resources on-premises, private support through Azure Application Gateway is supported. For more information on Application Gateway set-up for on-premises access, visit [Configure Outbound Access to non-Azure Resources].
+- __Access to non-Azure, non-HTTP/S resources isn't supported__: The managed virtual network doesn't allow for access to non-Azure, non-HTTP/S resources. To access HTTP/S resources on-premises, private support through Azure Application Gateway is supported. For more information on Application Gateway set-up for on-premises access, visit [Configure Outbound Access to non-Azure Resources].
 
 ## Related content
 
