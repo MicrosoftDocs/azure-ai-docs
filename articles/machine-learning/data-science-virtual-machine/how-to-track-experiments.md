@@ -177,7 +177,7 @@ When the model successfully deploys, select Endpoints from the left-hand menu, t
 
 The deployment state should change from __transitioning__ to __healthy__. Additionally, the details section provides the REST endpoint and Swagger URLs that application developers can use to integrate your ML model into their apps.
 
-You can test the endpoint with [Postman](https://www.postman.com/), or you can use the Azure Machine Learning SDK:
+You can test the endpoint with the Azure Machine Learning SDK:
 
 [!INCLUDE [SDK v1](../includes/machine-learning-sdk-v1.md)]
 
