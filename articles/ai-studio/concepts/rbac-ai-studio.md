@@ -45,10 +45,11 @@ Here's a table of the built-in roles and their permissions for the hub:
 | Azure AI Inference Deployment Operator | Perform all actions required to create a resource deployment within a resource group. |
 | Reader |     Read only access to the hub. This role is automatically assigned to all project members within the hub. |
 
-
 The key difference between Contributor and Azure AI Developer is the ability to make new hubs. If you don't want users to make new hubs (due to quota, cost, or just managing how many hubs you have), assign the Azure AI Developer role.
 
 Only the Owner and Contributor roles allow you to make a hub. At this time, custom roles can't grant you permission to make hubs.
+
+### Azure AI Developer role
 
 The full set of permissions for the new "Azure AI Developer" role are as follows:
 
@@ -56,22 +57,24 @@ The full set of permissions for the new "Azure AI Developer" role are as follows
 {
     "Permissions": [ 
         { 
-        "Actions": [ 
+        "Actions": [
+            "Microsoft.MachineLearningServices/workspaces/*/read",
+            "Microsoft.MachineLearningServices/workspaces/*/action",
+            "Microsoft.MachineLearningServices/workspaces/*/delete",
+            "Microsoft.MachineLearningServices/workspaces/*/write",
+            "Microsoft.MachineLearningServices/locations/*/read",
+            "Microsoft.Authorization/*/read",
+            "Microsoft.Resources/deployments/*"
+        ],
     
-            "Microsoft.MachineLearningServices/workspaces/*/read", 
-            "Microsoft.MachineLearningServices/workspaces/*/action", 
-            "Microsoft.MachineLearningServices/workspaces/*/delete", 
-            "Microsoft.MachineLearningServices/workspaces/*/write" 
-        ], 
-    
-        "NotActions": [ 
-            "Microsoft.MachineLearningServices/workspaces/delete", 
-            "Microsoft.MachineLearningServices/workspaces/write", 
-            "Microsoft.MachineLearningServices/workspaces/listKeys/action", 
-            "Microsoft.MachineLearningServices/workspaces/hubs/write", 
-            "Microsoft.MachineLearningServices/workspaces/hubs/delete", 
-            "Microsoft.MachineLearningServices/workspaces/featurestores/write", 
-            "Microsoft.MachineLearningServices/workspaces/featurestores/delete" 
+        "NotActions": [
+            "Microsoft.MachineLearningServices/workspaces/delete",
+            "Microsoft.MachineLearningServices/workspaces/write",
+            "Microsoft.MachineLearningServices/workspaces/listKeys/action",
+            "Microsoft.MachineLearningServices/workspaces/hubs/write",
+            "Microsoft.MachineLearningServices/workspaces/hubs/delete",
+            "Microsoft.MachineLearningServices/workspaces/featurestores/write",
+            "Microsoft.MachineLearningServices/workspaces/featurestores/delete"
         ], 
         "DataActions": [ 
             "Microsoft.CognitiveServices/accounts/OpenAI/*", 
@@ -85,6 +88,9 @@ The full set of permissions for the new "Azure AI Developer" role are as follows
     ] 
 }
 ```
+
+If the built-in Azure AI Developer role doesn't meet your needs, you can create a [custom role](#create-custom-roles).
+
 ## Default roles for projects 
 
 Projects in AI Studio have built-in roles that are available by default. 
@@ -198,6 +204,14 @@ The following JSON example defines a custom AI Studio developer role at the subs
     }
 }
 ```
+
+For steps on creating a custom role, use one of the following articles:
+- [Azure portal](/azure/role-based-access-control/custom-roles-portal)
+- [Azure CLI](/azure/role-based-access-control/custom-roles-cli)
+- [Azure PowerShell](/azure/role-based-access-control/custom-roles-powershell)
+
+For more information on creating custom roles in general, visit the [Azure custom roles](/azure/role-based-access-control/custom-roles) article.
+
 
 ## Scenario: Use a customer-managed key
 
