@@ -6,7 +6,7 @@ description: Learn how to create your own custom model with Azure OpenAI Service
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: include
-ms.date: 03/06/2024
+ms.date: 10/03/2024
 author: mrbullwinkle    
 ms.author: mbullwin
 ---
@@ -149,7 +149,7 @@ Azure OpenAI Studio provides the **Create custom model** wizard, so you can inte
 
 1. Open Azure OpenAI Studio at <a href="https://oai.azure.com/" target="_blank">https://oai.azure.com/</a> and sign in with credentials that have access to your Azure OpenAI resource. During the sign-in workflow, select the appropriate directory, Azure subscription, and Azure OpenAI resource.
 
-1. In Azure OpenAI Studio, browse to the **Management > Models** pane, and select **Create a custom model**.
+1. In Azure OpenAI Studio, browse to the **Tools > Fine-tuning** pane, and select **Fine-tune model**.
 
    :::image type="content" source="../media/fine-tuning/studio-create-custom-model.png" alt-text="Screenshot that shows how to access the Create custom model wizard in Azure OpenAI Studio." lightbox="../media/fine-tuning/studio-create-custom-model.png":::
 
@@ -182,9 +182,9 @@ The next step is to either choose existing prepared training data or upload new 
 
 :::image type="content" source="../media/fine-tuning/studio-training-data.png" alt-text="Screenshot of the Training data pane for the Create custom model wizard in Azure OpenAI Studio." lightbox="../media/fine-tuning/studio-training-data.png":::
 
-- If your training data is already uploaded to the service, select **Choose dataset**.
+- If your training data is already uploaded to the service, select **Files from Azure OpenAI Connection**.
 
-   - Select the file from the list shown in the **Training data** pane.
+   - Select the file from the dropdown list shown.
 
 - To upload new training data, use one of the following options:
 
@@ -272,9 +272,9 @@ After you select and upload the validation dataset, select **Next** to continue.
 
 :::image type="content" source="../media/fine-tuning/studio-validation-data-blob.png" alt-text="Screenshot of the Validation data pane for the Create custom model wizard, with Azure Blob and shared web location options." lightbox="../media/fine-tuning/studio-validation-data-blob.png":::
 
-### Configure advanced options
+### Configure task parameters
 
-The **Create custom model** wizard shows the parameters for training your fine-tuned model on the **Advanced options** pane. The following parameters are available:
+The **Create custom model** wizard shows the parameters for training your fine-tuned model on the **Task parameters** pane. The following parameters are available:
 
 
 |**Name**| **Type**| **Description**|
@@ -286,7 +286,7 @@ The **Create custom model** wizard shows the parameters for training your fine-t
 
 :::image type="content" source="../media/fine-tuning/studio-advanced-options.png" alt-text="Screenshot of the Advanced options pane for the Create custom model wizard, with default options selected." lightbox="../media/fine-tuning/studio-advanced-options.png":::
 
-Select **Default** to use the default values for the fine-tuning job, or select **Advanced** to display and edit the hyperparameter values. When defaults are selected, we determine the correct value algorithmically based on your training data.
+Select **Default** to use the default values for the fine-tuning job, or select **Custom** to display and edit the hyperparameter values. When defaults are selected, we determine the correct value algorithmically based on your training data.
 
 After you configure the advanced options, select **Next** to [review your choices and train your fine-tuned model](#review-your-choices-and-train-your-model).
 
