@@ -127,7 +127,7 @@ Add more detail to this configuration in subsequent sections of this article. In
 
 ---
 
-You specify [validation data](concept-automated-ml.md#training-validation-and-test-data) in a similar way. Create an `MLTable` object and specify a validation data input. Alternatively, if you don't supply validation data, AutoML automatically creates cross-validation splits from your training data to use for model selection. For more information, see the following resources:
+You specify [validation data](concept-automated-ml.md#prepare-training-validation-and-test-data) in a similar way. Create an `MLTable` object and specify a validation data input. Alternatively, if you don't supply validation data, AutoML automatically creates cross-validation splits from your training data to use for model selection. For more information, see the following resources:
 
 - [Select forecasting models](./concept-automl-forecasting-sweeping.md#model-selection-in-automl)
 - [Set training data length requirements](./concept-automl-forecasting-methods.md#data-length-requirements)
@@ -421,7 +421,7 @@ training:
 
 ---
 
-The job searches over all model classes *except* Prophet. For a list of forecasting model names that are accepted in `allowed_training_algorithms` and `blocked_training_algorithms`, see [training properties](reference-automated-ml-forecasting.md#training). You can apply either but not both `allowed_training_algorithms` and `blocked_training_algorithms` to a training run.
+The job searches over all model classes *except* Prophet. For a list of forecasting model names that are accepted in `allowed_training_algorithms` and `blocked_training_algorithms`, see [training properties](reference-automated-ml-forecasting.md#training). You can apply either but not both `allowed_training_algorithms` and `blocked_training_algorithms` to a training run. [](#enable-learning-for-deep-neural-networks)
 
 #### Enable learning for deep neural networks
 

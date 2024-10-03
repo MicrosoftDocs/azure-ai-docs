@@ -78,7 +78,7 @@ In the table, $n_{\text{input}} = n_{\text{features}} + 1$, the number of predic
 
 ## TCNForecaster in AutoML
 
-TCNForecaster is an optional model in AutoML. To learn how to use it, see [enable deep learning](./how-to-auto-train-forecast.md#enable-deep-learning).
+TCNForecaster is an optional model in AutoML. To learn how to use it, see [enable deep learning](./how-to-auto-train-forecast.md#enable-learning-for-deep-neural-networks).
 
 In this section, we describe how AutoML builds TCNForecaster models with your data, including explanations of data preprocessing, training, and model search. 
 
@@ -104,7 +104,7 @@ The following table lists and describes input settings and parameters for TCNFor
 
 |Training input|Description|Value|
 |--|--|--|
-|Validation data|A portion of data that is held out from training to guide the network optimization and mitigate over fitting.| [Provided by the user](./how-to-auto-train-forecast.md#training-and-validation-data) or automatically created from training data if not provided.|
+|Validation data|A portion of data that is held out from training to guide the network optimization and mitigate over fitting.| [Provided by the user](./how-to-auto-train-forecast.md#prepare-training-and-validation-data) or automatically created from training data if not provided.|
 |Primary metric|Metric computed from median-value forecasts on the validation data at the end of each training epoch; used for early stopping and model selection.|[Chosen by the user](./how-to-auto-train-forecast.md#configure-experiment); normalized root mean squared error or normalized mean absolute error.|
 |Training epochs|Maximum number of epochs to run for network weight optimization.|100; automated early stopping logic may terminate training at a smaller number of epochs. 
 |Early stopping patience|Number of epochs to wait for primary metric improvement before training is stopped.|20|
