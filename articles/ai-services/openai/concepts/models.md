@@ -259,13 +259,28 @@ For more information on Provisioned deployments, see our [Provisioned guidance](
 
 **Supported regions:**
 
-- eastus
-- eastus2
-- northcentralus
-- swedencentral
-- switzerlandnorth
-- westus
-- westus3
+- australiaeast     
+- brazilsouth       
+- canadaeast        
+- eastus            
+- eastus2           
+- francecentral     
+- germanywestcentral
+- japaneast         
+- koreacentral      
+- northcentralus    
+- norwayeast        
+- polandcentral
+- spaincentral     
+- southafricanorth  
+- southcentralus    
+- southindia        
+- swedencentral     
+- switzerlandnorth  
+- uksouth           
+- westeurope        
+- westus            
+- westus3           
 
 `gpt-4` **Version:** `turbo-2024-04-09`
 
