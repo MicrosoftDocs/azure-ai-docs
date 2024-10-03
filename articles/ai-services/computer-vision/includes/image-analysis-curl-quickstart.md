@@ -15,7 +15,7 @@ ms.author: pafarley
 Use the Image Analysis REST API to analyze an image for tags.
 
 > [!TIP]
-> The Image Analysis API can do many different operations other than generate image tags. See the [Image Analysis how-to guide](../how-to/call-analyze-image.md) for examples that showcase all of the available features.
+> The Analyze Image API can do many different operations other than generate image tags. See the [Image Analysis how-to guide](../how-to/call-analyze-image.md) for examples that showcase all of the available features.
 
 > [!NOTE]
 > This quickstart uses cURL commands to call the REST API. You can also call the REST API using a programming language. See the GitHub samples for examples in [C#](https://github.com/Azure-Samples/cognitive-services-quickstart-code/tree/master/dotnet/ComputerVision/REST), [Python](https://github.com/Azure-Samples/cognitive-services-quickstart-code/tree/master/python/ComputerVision/REST), [Java](https://github.com/Azure-Samples/cognitive-services-quickstart-code/tree/master/java/ComputerVision/REST), and [JavaScript](https://github.com/Azure-Samples/cognitive-services-quickstart-code/tree/master/javascript/ComputerVision/REST).
@@ -90,9 +90,9 @@ A successful response is returned in JSON format. The sample application parses 
 
 ## Next step
 
-In this quickstart, you learned how to make basic image analysis calls using the REST API. Next, learn more about the Image Analysis API features.
+In this quickstart, you learned how to make basic image analysis calls using the REST API. Next, learn more about the Analyze Image API features.
 
 > [!div class="nextstepaction"]
->[Call the Image Analysis API](../how-to/call-analyze-image.md)
+>[Call the Analyze Image API](../how-to/call-analyze-image.md)
 
 * [What is Image Analysis?](../overview-image-analysis.md)
