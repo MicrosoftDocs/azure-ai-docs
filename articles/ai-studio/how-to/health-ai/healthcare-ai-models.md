@@ -4,14 +4,15 @@ titleSuffix: Azure AI Studio
 description: Learn how to use Health and Life Sciences AI Models models with Azure AI Studio.
 ms.service: azure-ai-studio
 manager: scottpolly
-ms.topic: how-to
-ms.date: 09/30/2024
+ms.topic: concept-article # Don't change
+ms.date: 10/10/2024
 ms.reviewer: itarapov
 reviewer: fkriti
-ms.author: mopeakande
-author: msakande
+ms.author: itarapov
+author: ivantarapov
 ms.custom: references_regions, generated
-zone_pivot_groups: ?????
+
+#Customer intent: As a Data Scientist I want to learn what offerings are available within Health and Life Sciences AI Model offerings so that I can use them as the basis for my own AI solutions
 ---
 
 # Health and Life Sciences AI Models

@@ -86,10 +86,14 @@ print("SAMPLE CODE HERE")
 ## More Examples 
 MedImageInsight is a versatile model that can be applied to a wide range of tasks and imaging modalities. For more examples see the following: 
 
-* [Using MedImageInsight to build a zero-shot classifier](http://www.github.com)
-* [Using MedImageInsight to build a better classifier with an smal adapter network](http://www.github.com)
-* [Using MedImageInsight to infer exam acquisition parameters based on imaging pixel data](http://www.github.com)
-* [Using MedImageInsight to find outliers in imaging datasets](http://www.github.com)
+### 101 Examples
+* [Deploy and call the MedImageInsight model](https://github.com/Azure/azureml-examples/tree/main/sdk/python/foundation-models/healthcare-ai/medimageinsight/deploy.ipynb)
+* [Using MedImageInsight to build a zero-shot classifier](https://github.com/Azure/azureml-examples/tree/main/sdk/python/foundation-models/healthcare-ai/medimageinsight/zero-shot.ipynb)
+* [Using MedImageInsight to build a better classifier with an small adapter network](https://github.com/Azure/azureml-examples/tree/main/sdk/python/foundation-models/healthcare-ai/medimageinsight/adapter.ipynb)
+
+### 201 Examples
+* [Using MedImageInsight to infer exam acquisition parameters based on imaging pixel data](https://github.com/Azure/azureml-examples/tree/main/sdk/python/foundation-models/healthcare-ai/medimageinsight/exam-parameter.ipynb)
+* [Using MedImageInsight to find outliers in imaging datasets](https://github.com/Azure/azureml-examples/tree/main/sdk/python/foundation-models/healthcare-ai/medimageinsight/outlier.ipynb)
 
 
 ## Related content
