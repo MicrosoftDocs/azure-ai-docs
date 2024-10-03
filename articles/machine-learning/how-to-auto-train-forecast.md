@@ -770,8 +770,6 @@ After you submit the job, AutoML provisions compute resources, applies featuriza
 
 ## Orchestrate training, inference, and evaluation with components and pipelines
 
-[!INCLUDE [preview v2](includes/machine-learning-preview-generic-disclaimer.md)]
-
 Your machine learning workflow likely requires more than just training. Inference, or retrieving model predictions on newer data, and evaluation of model accuracy on a test set with known target values are other common tasks that you can orchestrate in Azure Machine Learning along with training jobs. To support inference and evaluation tasks, Azure Machine Learning provides [components](concept-component.md), which are self-contained pieces of code that do one step in an Azure Machine Learning [pipeline](concept-ml-pipelines.md).
 
 # [Python SDK](#tab/python)
@@ -1046,8 +1044,6 @@ For more information on rolling evaluation, see [Inference and evaluation of for
 
 ## Forecast at scale: Many models
 
-[!INCLUDE [preview v2](includes/machine-learning-preview-generic-disclaimer.md)]
-
 The many models components in AutoML enable you to train and manage millions of models in parallel. For more information on many models concepts, see [Many models](concept-automl-forecasting-at-scale.md#many-models).
 
 ### Many models training configuration
@@ -1318,12 +1314,14 @@ After the job finishes, you can download the evaluation metrics locally by using
 
 For a more detailed example, see the [demand forecasting with many models notebook](https://github.com/Azure/azureml-examples/blob/main/sdk/python/jobs/pipelines/1k_demand_forecast_pipeline/aml-demand-forecast-mm-pipeline/aml-demand-forecast-mm-pipeline.ipynb).
 
+#### Training considerations for a many models run
+
+The many models training and inference components conditionally partition your data according to the `partition_column_names` setting so each partition is in its own file. This process can be very slow or fail when data is very large. The recommendation is to partition your data manually before you run many models training or inference.
+
 > [!NOTE]
-> The many models training and inference components conditionally partition your data according to the `partition_column_names` setting so each partition is in its own file. This process can be very slow or fail when data is very large. The recommendation is to partition your data manually before you run many models training or inference.
+> The default parallelism limit for a many models run within a subscription is set to 320. If your workload requires a higher limit, you can contact Microsoft support.
 
 ## Forecast at scale: Hierarchical time series
-
-[!INCLUDE [preview v2](includes/machine-learning-preview-generic-disclaimer.md)]
 
 The hierarchical time series (HTS) components in AutoML enable you to train a large number of models on data with hierarchical structure. For more information, see [Hierarchical time series forecasting](concept-automl-forecasting-at-scale.md#hierarchical-time-series-forecasting).
 
@@ -1594,8 +1592,12 @@ After the job finishes, the evaluation metrics can be downloaded locally by usin
 
 For a more detailed example, see the [demand forecasting with hierarchical time series notebook](https://github.com/Azure/azureml-examples/blob/main/sdk/python/jobs/pipelines/1k_demand_forecast_pipeline/aml-demand-forecast-hts-pipeline/aml-demand-forecast-hts.ipynb).
 
+#### Training considerations for an HTS run
+
+The HTS training and inference components conditionally partition your data according to the `hierarchy_column_names` setting so each partition is in its own file. This process can be very slow or fail when data is very large. The recommended approach is to partition your data manually before you run HTS training or inference.
+
 > [!NOTE]
-> The HTS training and inference components conditionally partition your data according to the `hierarchy_column_names` setting so each partition is in its own file. This process can be very slow or fail when data is very large. The recommended approach is to partition your data manually before you run HTS training or inference.
+> The default parallelism limit for an HTS run within a subscription is set to 320. If your workload requires a higher limit, you can contact Microsoft support.
 
 ## Forecast at scale: Distributed DNN training
 

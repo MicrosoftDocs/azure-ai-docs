@@ -20,9 +20,6 @@ This quickstart explains how to use the [Azure OpenAI Whisper model](../speech-s
 
 The file size limit for the Whisper model is 25 MB. If you need to transcribe a file larger than 25 MB, you can use the Azure AI Speech [batch transcription](../speech-service/batch-transcription-create.md#use-a-whisper-model) API.
 
-> [!NOTE]
-> The OpenAI Whisper model is currently in Limited Access Public Preview.
-
 ::: zone pivot="rest-api"
 
 [!INCLUDE [REST API quickstart](includes/whisper-rest.md)]
