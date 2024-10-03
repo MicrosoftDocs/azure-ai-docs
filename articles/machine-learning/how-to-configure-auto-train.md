@@ -8,7 +8,7 @@ ms.reviewer: rasavage
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: automl
-ms.date: 08/01/2023
+ms.date: 10/03/2024
 ms.topic: how-to
 ms.custom: devx-track-python, automl, sdkv2
 show_latex: true
