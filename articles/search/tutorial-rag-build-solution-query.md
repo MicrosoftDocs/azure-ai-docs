@@ -230,7 +230,7 @@ Tasks:
 - H2 Query using vectors and text-to-vector conversion at query time (not sure what the code looks like for this)
 - H2 Query parent-child two indexes (unclear how to do this, Carey said query on child, do a lookup query on parent) -->
 
-<!-- ## Next step
+## Next step
 
 > [!div class="nextstepaction"]
-> [Maximize relevance](tutorial-rag-build-solution-maximize-relevance.md) -->
+> [Maximize relevance](tutorial-rag-build-solution-maximize-relevance.md)
