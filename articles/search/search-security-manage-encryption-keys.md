@@ -115,7 +115,7 @@ Azure AI Search encryption supports RSA keys of sizes 2048, 3072 and 4096. For m
 
 ## Step 2: Create a security principal
 
-You have several options for setting up Azure AI Search access to the encryption key at run time. The simplest approach is to retrieve the key using the managed identity of your search service. You can use either a system or user-managed identity. Doing so allows you to omit the steps for application registration and application secrets. Alternatively, you can create and register a Microsoft Entra application and have the search service provides the application ID on requests.
+You have several options for setting up Azure AI Search access to the encryption key at run time. The simplest approach is to retrieve the key using the managed identity of your search service. You can use either a system or user-managed identity. Doing so allows you to omit the steps for application registration and application secrets. Alternatively, you can create and register a Microsoft Entra application and have the search service provide the application ID on requests.
 
 We recommend using a managed identity. A managed identity enables your search service to authenticate to Azure Key Vault without storing credentials (ApplicationID or ApplicationSecret) in code. The lifecycle of this type of managed identity is tied to the lifecycle of your search service, which can only have one system assigned managed identity. For more information about how managed identities work, see [What are managed identities for Azure resources](/azure/active-directory/managed-identities-azure-resources/overview).
 
@@ -123,7 +123,7 @@ We recommend using a managed identity. A managed identity enables your search se
 
 Enable the system assigned managed identity for your search service.
 
-![Turn on system assigned managed identity](./media/search-managed-identities/turn-on-system-assigned-identity.png "Turn on system assigned managed identity")
+![Turn on system assigned managed identity](./media/search-managed-identities/turn-on-system-assigned-identity.png "Screenshot showing how to turn on the system-assigned managed identity.")
 
 ### [**User-managed identity (preview)**](#tab/managed-id-user)
 
@@ -349,7 +349,7 @@ PATCH https://management.azure.com/subscriptions/<your-subscription-Id>/resource
 
 We recommend using the [autorotation capabilities of Azure Key Vault](/azure/key-vault/keys/how-to-configure-key-rotation), but you can also rotate keys manually.
 
-When you change a key or its version, any object that uses the key must first be updated to use the new key\version **before** deleting the previous key\version. Failing to do so will render the object unusable, as it won't be able to decrypt the content once key access is lost. Although restoring key vault access permissions at a later time will restore content access.
+When you change a key or its version, any object that uses the key must first be updated to use the new values **before** you delete the old values. Otherwise, the object becomes unusable because it can't be decrypted. 
 
 1. [Determine the key used by an index or synonym map](search-security-get-encryption-keys.md).
 
@@ -365,7 +365,7 @@ For performance reasons, the search service caches the key for up to several hou
 
 With customer-managed key encryption, you might notice latency for both indexing and queries due to the extra encrypt/decrypt work. Azure AI Search doesn't log encryption activity, but you can monitor key access through key vault logging. 
 
-We reommend that you [enable logging](/azure/key-vault/general/logging) as part of key vault configuration.
+We recommend that you [enable logging](/azure/key-vault/general/logging) as part of key vault configuration.
 
 1. [Create a log analytics workspace](/azure/azure-monitor/logs/quick-create-workspace).
 
