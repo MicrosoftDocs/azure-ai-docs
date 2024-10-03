@@ -51,7 +51,7 @@ Managed online endpoints are the recommended way to use online endpoints in Azur
 |Managed service |• Fully managed compute provisioning/scaling<br>• Network configuration for data exfiltration prevention<br>• Host OS upgrade, controlled rollout of in-place updates |• Scaling is limited<br>• User must manage network configuration or upgrade |
 |Endpoint/deployment concept |Distinction between endpoint and deployment enables complex scenarios such as safe rollout of models |No concept of endpoint |
 |Diagnostics and Monitoring |• Local endpoint debugging possible with Docker and Visual Studio Code<br>• Advanced metrics and logs analysis with chart/query to compare between deployments<br>• Cost breakdown to deployment level |No easy local debugging |
-|Scalability |Limitless, elastic, and automatic scaling |• Container Instances isn't scalable <br>• AKS v1 supports in-cluster scale only and requires scalability configuration |
+|Scalability |Elastic, and automatic scaling (not bound by the default cluster size) |• Container Instances isn't scalable <br>• AKS v1 supports in-cluster scale only and requires scalability configuration |
 |Enterprise readiness |Private link, customer managed keys, Microsoft Entra ID, quota management, billing integration, Service Level Agreement (SLA) |Not supported |
 |Advanced ML features |• Model data collection<br>• Model monitoring<br>• Champion-challenger model, safe rollout, traffic mirroring<br>• Responsible AI extensibility |Not supported |
 
@@ -88,7 +88,7 @@ The following table highlights the key differences between managed online endpoi
 | **Recommended users**         | Users who want a managed model deployment and enhanced MLOps experience    | Users who prefer Kubernetes and can self-manage infrastructure requirements  |
 | **Node provisioning**         | Managed compute provisioning, update, removal       | User responsibility    |
 | **Node maintenance**          | Managed host OS image updates and security hardening   | User responsibility   |
-| **Cluster sizing (scaling)** | [Managed manual and autoscale](how-to-autoscale-endpoints.md) supporting added node provisioning   | [Manual and autoscale](how-to-kubernetes-inference-routing-azureml-fe.md#autoscaling), supporting scaling the number of replicas within fixed cluster boundaries  |
+| **Cluster sizing (scaling)** | [Managed manual and autoscale](how-to-autoscale-endpoints.md) supporting additional node provisioning   | [Manual and autoscale](how-to-kubernetes-inference-routing-azureml-fe.md#autoscaling), supporting scaling the number of replicas within fixed cluster boundaries  |
 | **Compute type**              | Managed by the service    | Customer-managed Kubernetes cluster   |
 | **Managed identity**          | [Supported](how-to-access-resources-from-endpoints-managed-identities.md)  | Supported    |
 | **Virtual network**    | [Supported via managed network isolation](concept-secure-online-endpoint.md)  | User responsibility   |
