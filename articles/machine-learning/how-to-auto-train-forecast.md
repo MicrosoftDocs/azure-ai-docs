@@ -421,7 +421,7 @@ training:
 
 ---
 
-The job searches over all model classes *except* Prophet. For a list of forecasting model names that are accepted in `allowed_training_algorithms` and `blocked_training_algorithms`, see [training properties](reference-automated-ml-forecasting.md#training). You can apply either but not both `allowed_training_algorithms` and `blocked_training_algorithms` to a training run. [](#enable-learning-for-deep-neural-networks)
+The job searches over all model classes *except* Prophet. For a list of forecasting model names that are accepted in `allowed_training_algorithms` and `blocked_training_algorithms`, see [training properties](reference-automated-ml-forecasting.md#training). You can apply either but not both `allowed_training_algorithms` and `blocked_training_algorithms` to a training run.
 
 #### Enable learning for deep neural networks
 
