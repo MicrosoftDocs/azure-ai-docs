@@ -7,7 +7,7 @@ manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: include
 ms.custom: references_regions
-ms.date: 11/02/2023
+ms.date: 10/03/2024
 ---
 
 Start exploring GPT-4 Turbo with Vision capabilities with a no-code approach through Azure OpenAI Studio.
