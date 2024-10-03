@@ -257,9 +257,9 @@ You can also create custom blocklists in the Azure OpenAI Studio as part of your
     :::image type="content" source="../media/content-filters/blocklist-select-create.png" alt-text="Screenshot of blocklist create selection." lightbox="../media/content-filters/blocklist-select-create.png":::
 1. Create a name for your blocklist, add a description and select on Create Blocklist.
     :::image type="content" source="../media/content-filters/create-blocklist.png" alt-text="Screenshot of blocklist name and description." lightbox="../media/content-filters/create-blocklist.png":::
-1. Select your custom blocklist once it's created, and select Add term. 
+1. Select your custom blocklist once it's created, and select Add new term. 
     :::image type="content" source="../media/content-filters/custom-blocklist-add.png" alt-text="Screenshot of custom blocklist add term." lightbox="../media/content-filters/custom-blocklist-add.png":::
-1. Add a term that should be filtered, and select Create. You can also create a regex.
+1. Add a term that should be filtered, and select Add term. You can also create a regex.
     :::image type="content" source="../media/content-filters/custom-blocklist-add-item.png" alt-text="Screenshot of custom blocklist add item." lightbox="../media/content-filters/custom-blocklist-add-item.png":::
 1. You can delete each term in your blocklist. 
     :::image type="content" source="../media/content-filters/custom-blocklist-edit.png" alt-text="Screenshot of custom blocklist edit screen." lightbox="../media/content-filters/custom-blocklist-edit.png":::
