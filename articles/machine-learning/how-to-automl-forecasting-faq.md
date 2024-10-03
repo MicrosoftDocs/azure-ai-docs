@@ -91,7 +91,7 @@ AutoML's forecasting models all require that training data has regularly spaced 
 
 - **The data has a well-defined frequency, but missing observations are creating gaps in the series**. In this case, AutoML will try to detect the frequency, fill in new observations for the gaps, and impute missing target and feature values. Optionally, the user can configure the imputation methods via SDK settings or through the Web UI. For more information, see [Custom featurization](./how-to-auto-train-forecast.md#custom-featurization).
 
-- **The data doesn't have a well-defined frequency**. That is, the duration between observations doesn't have a discernible pattern. Transactional data, like that from a point-of-sales system, is one example. In this case, you can set AutoML to aggregate your data to a chosen frequency. You can choose a regular frequency that best suits the data and the modeling objectives. For more information, see [Data aggregation](./how-to-auto-train-forecast.md#frequency--target-data-aggregation).
+- **The data doesn't have a well-defined frequency**. That is, the duration between observations doesn't have a discernible pattern. Transactional data, like that from a point-of-sales system, is one example. In this case, you can set AutoML to aggregate your data to a chosen frequency. You can choose a regular frequency that best suits the data and the modeling objectives. For more information, see [Data aggregation](./how-to-auto-train-forecast.md#frequency-and-target-data-aggregation).
 
 ## How do I choose the primary metric?
 
@@ -110,7 +110,7 @@ To choose between them, note that NRMSE penalizes outliers in the training data 
 - Ensure that you're configuring AutoML the best way for your data. For more information, see the [What modeling configuration should I use?](#what-modeling-configuration-should-i-use) answer.
 - Check out the [forecasting recipes notebook](https://github.com/Azure/azureml-examples/blob/v1-archive/v1/python-sdk/tutorials/automl-with-azureml/forecasting-recipes-univariate/auto-ml-forecasting-univariate-recipe-experiment-settings.ipynb) for step-by-step guides on how to build and improve forecast models.  
 - Evaluate the model by using back tests over several forecasting cycles. This procedure gives a more robust estimate of forecasting error and gives you a baseline to measure improvements against. For an example, see the [back-testing notebook](https://github.com/Azure/azureml-examples/blob/v1-archive/v1/python-sdk/tutorials/automl-with-azureml/forecasting-backtest-single-model/auto-ml-forecasting-backtest-single-model.ipynb).
-- If the data is noisy, consider aggregating it to a coarser frequency to increase the signal-to-noise ratio. For more information, see [Frequency and target data aggregation](./how-to-auto-train-forecast.md#frequency--target-data-aggregation).
+- If the data is noisy, consider aggregating it to a coarser frequency to increase the signal-to-noise ratio. For more information, see [Frequency and target data aggregation](./how-to-auto-train-forecast.md#frequency-and-target-data-aggregation).
 - Add new features that can help predict the target. Subject matter expertise can help greatly when you're selecting training data.
 - Compare validation and test metric values, and determine if the selected model is underfitting or overfitting the data. This knowledge can guide you to a better training configuration. For example, you might determine that you need to use more cross-validation folds in response to overfitting.
 
