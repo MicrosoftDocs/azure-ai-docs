@@ -14,25 +14,26 @@ ms.date: 10/05/2024
 
 # Tutorial: Maximize relevance (RAG in Azure AI Search)
 
-In this tutorial, learn how to improve the relevance of search results used in RAG solutions. Relevance tuning can be an important factor in delivering a RAG solution that meets user expectations. In Azure AI Search, relevance tuning includes L2 semantic ranking, scoring profiles, vector query weighting and minimum thresholds, and other options. 
+In this tutorial, learn how to improve the relevance of search results used in RAG solutions. Relevance tuning can be an important factor in delivering a RAG solution that meets user expectations. In Azure AI Search, relevance tuning includes L2 semantic ranking and scoring profiles. 
 
-To implement some of these technqiues, you revisit the index schema to add configurations for semantic ranking and scoring profiles. Other relevance tuning techniques apply to the queries themselves.
+To implement some of these techniques, you revisit the index schema to add configurations for semantic ranking and scoring profiles. Other relevance tuning techniques can be applied to the queries themselves.
 
 In this tutorial, you modify the existing search index and queries to use:
 
 > [!div class="checklist"]
 > - L2 semantic ranking
 > - Scoring profile for document boosting
-> - Vector weighting
-> - Minimum thresholds on vector results
 
-This tutorial  updates the search index created by the [indexing pipeline](tutorial-rag-build-solution-pipeline.md). Updates don't affect the existing content, so no rebuild is necessary and you won't need to rerun the indexer.
+This tutorial  updates the search index created by the [indexing pipeline](tutorial-rag-build-solution-pipeline.md). Updates don't affect the existing content, so no rebuild is necessary and you don't need to rerun the indexer.
+
+> [!NOTE]
+> There are more relevance features in preview, including vector query weighting and setting minimum thresholds, but we omit them from this tutorial becaues they aren't yet available in the Azure SDK for Python.
 
 ## Prerequisites
 
 - [Visual Studio Code](https://code.visualstudio.com/download) with the [Python extension](https://marketplace.visualstudio.com/items?itemName=ms-python.python) and the [Jupyter package](https://pypi.org/project/jupyter/).
 
-- [Azure AI Search](search-create-service-portal.md), Basic tier or above for managed identity and semantic ranking, in the same region as Azure OpenAI and Azure AI Services.
+- [Azure AI Search](search-create-service-portal.md), Basic tier or higher for managed identity and semantic ranking, in the same region as Azure OpenAI and Azure AI Services.
 
 - [Azure OpenAI](/azure/ai-services/openai/how-to/create-resource), with a deployment of text-embedding-002 and gpt-35-turbo, in the same region as Azure AI Search.
 
@@ -189,16 +190,25 @@ response = openai_client.chat.completions.create(
 print(response.choices[0].message.content)
 ```
 
-## Update queries for minimum thresholds
+<!-- ## Update queries for minimum thresholds ** NOT AVAILABLE IN PYTHON SDK
 
-Keyword search only returns results if there's match found in the index, up to a maximum of 50 results by default. In contrast, vector search returns *k*-results every time, even if the matching vectors aren't a close match.
+Keyword search only returns results if there's match found in the index, up to a maximum of 50 results by default. In contrast, vector search returns `k`-results every time, even if the matching vectors aren't a close match.
 
-Using preview features, you can unpack a hybrid search score to review the individual component scores. Based on that information, you can set minimum thresholds to exclude any match that falls below it.
+In the vector query portion of the request, add a threshold object and set a minimum value for including vector matches in the results.
 
-## Update queries for vector weighting
+Vector scores range from 0.333 to 1.00. For more information, see [Set thresholds to exclude low-scoring results](vector-search-how-to-query.md#set-thresholds-to-exclude-low-scoring-results-preview) and [Scores in a vector search results](vector-search-ranking.md#scores-in-a-vector-search-results).
+
+```python
+# Update the vector_query to include a minimum threshold.
+query="how much of earth is covered by water"
+vector_query = VectorizableTextQuery(text=query, k_nearest_neighbors=1, fields="text_vector", threshold.kind="vectorSImiliarty", threshold.value=0.8, exhaustive=True) -->
+
+<!-- ## Update queries for vector weighting
+
+<!-- Using preview features, you can unpack a hybrid search score to review the individual component scores. Based on that information, you can set minimum thresholds to exclude any match that falls below it.
 
 Semantic ranking and scoring profiles operate on nonvector content, but you can tune the vector portion of a hybrid query to amplify or diminish its importance based on how much value it adds to the results. For example, if you run keyword search and vector search independently and find that one of them is outperforming the other, you can adjust the weight on the vector side to higher or lower. This approach gives you more control over query processing.
-
+ -->
 
 <!-- Key points:
 
