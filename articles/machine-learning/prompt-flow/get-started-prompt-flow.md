@@ -23,10 +23,10 @@ This article walks you through the main user journey of using prompt flow in Azu
 
 - An Azure Machine Learning workspace. The default storage for the workspace must be blob type.
 - An Azure OpenAI account, or an existing Azure OpenAI connection with a deployment. For more information, see [Create a resource and deploy a model using Azure OpenAI](/azure/cognitive-services/openai/how-to/create-resource).
-
   >[!NOTE]
-  If you want to secure your prompt flow with a virtual network, also follow the instructions at [Secure prompt flow with workspace managed virtual network](how-to-secure-prompt-flow.md#secure-prompt-flow-with-workspace-managed-virtual-network).
+  >If you want to secure your prompt flow with a virtual network, also follow the instructions at [Secure prompt flow with workspace managed virtual network](how-to-secure-prompt-flow.md#secure-prompt-flow-with-workspace-managed-virtual-network).
 
+<a name="set-up-connection"></a>
 ## Set up a connection
 
 A connection helps securely store and manage secret keys or other sensitive credentials required for interacting with Large Language Models (LLM) and other external tools such as Azure Content Safety. Connection resources are shared with all members in the workspace.
@@ -43,9 +43,9 @@ A connection helps securely store and manage secret keys or other sensitive cred
 
    :::image type="content" source="./media/get-started-prompt-flow/azure-openai-connection.png" alt-text="Screenshot of the Azure OpenAI connection screen." lightbox = "./media/get-started-prompt-flow/azure-openai-connection.png":::
 
-   Prompt flow supports either **API Key** or **Microsoft Entra ID** authentication for Azure OpenAI resources. For this tutorial, select **API Key**.
+   Prompt flow supports either **API Key** or **Microsoft Entra ID** authentication for Azure OpenAI resources. For this tutorial, select **API key** under **Auth Mode**.
 
-   To get the API information, go to the [Chat playground](https://oai.azure.com/portal/chat) in the Azure OpenAI portal and select your Open AI resource name. Copy the **Key** and paste it into the **API key** field in the add connection form, and copy the **Endpoint** and paste it into the **API base** field in the form.
+   To get the API information, go to the [Chat playground](https://oai.azure.com/portal/chat) in the Azure OpenAI portal and select your Azure OpenAI resource name. Copy the **Key** and paste it into the **API key** field in the **Add Azure OpenAI connection** form, and copy the **Endpoint** and paste it into the **API base** field in the form.
 
    :::image type="content" source="./media/get-started-prompt-flow/create-aoai-connection.png" alt-text="Screenshot of the chat playground showing the Key and Endpoint for an Azure OpenAI resource." lightbox = "./media/get-started-prompt-flow/create-aoai-connection.png":::
 
@@ -65,7 +65,7 @@ In the **Explore gallery**, you can browse the built-in samples and select **Vie
 
 This tutorial uses the **Web Classification** sample to walk through the main user journey. Web Classification is a flow demonstrating multiclass classification with a LLM. Given a URL, the flow classifies the URL into a web category with just a few shots, simple summarization, and classification prompts. For example, given a URL `https://www.imdb.com`, it classifies the URL into `Movie`.
 
-To clone the sample, select **Clone** on the **Web Classification** tile .
+To clone the sample, select **Clone** on the **Web Classification** tile.
 
 :::image type="content" source="./media/get-started-prompt-flow/sample-in-gallery.png" alt-text="Screenshot of create from galley highlighting web classification." lightbox = "./media/get-started-prompt-flow/sample-in-gallery.png":::
 
@@ -87,7 +87,7 @@ While the compute session is starting, take a look at the parts of the flow auth
 
 - The **Flow** or *flatten* view on the left side of the page is the main working area, where you can author the flow by adding nodes, editing and running nodes inline, or editing the prompt. In the **Inputs** and **Outputs** sections, you can view, add, and edit inputs and outputs.
 
-  The inputs and outputs are already set when you clone a flow. The flow input schema for the Web Classification sample is `name: url; type: string`, a URL of string type. You can change to another value manually, for example `https://www.imdb.com`.
+  The inputs and outputs are already set when you clone a flow. The flow input schema for the Web Classification sample is `name: url; type: string`, a URL of string type. You can change the preset input value to another value manually, for example `https://www.imdb.com`.
 
 - **Files** at top right shows the folder and file structure of the flow. Each flow folder contains a *flow.dag.yaml* file, source code files, and system folders. You can create, upload, or download files for testing, deployment, or collaboration.
 
@@ -170,7 +170,7 @@ Use the **Batch run & Evaluate** wizard to submit a batch run and optionally to 
 
 1. On the **Batch run settings** screen of the **Batch run & Evaluate** wizard, select **Add new data**. On the **Add data** screen, provide a **Name** for the dataset, select **Browse** to upload the *data.csv* file you downloaded, and then select **Add**.
 
-   After you upload the data, or if your workspace has other datasets you want to use, search for and choose the dataset from the dropdown list and preview the first five rows.
+   After you upload the data, or if your workspace has another dataset you want to use, search for and choose the dataset from the dropdown list to preview the first five rows.
 
    The **Input mapping** feature supports mapping your flow input to any data column in your dataset, even if the column names don't match.
 
@@ -206,7 +206,7 @@ In the **Output** table, you can:
 - Select **Export** to **Download current page** as a CSV file or **Download data export script** as a Jupyter notebook file you can run to download outputs locally.
 - Select the **View details** icon next to any row to open the **Trace view** showing the complete details for that row.
 
-Accuracy isn't the only metric that can evaluate a classification task. For example, you can also use recall to evaluate. To run other evaluations, select **Evaluate** next to **Visualize outputs** on the **Runs** page, and select other methods to evaluate.
+Accuracy isn't the only metric that can evaluate a classification task. For example, you can also use recall to evaluate. To run other evaluations, select **Evaluate** next to **Visualize outputs** on the **Runs** page, and select other evaluation methods.
 
 ## Deploy as an endpoint
 
@@ -230,13 +230,11 @@ Put the URL you want to test in the input box, and select **Test**. You see the 
 
 ## Clean up resources
 
-To conserve compute resources and charges, you can stop your compute session if you're not going to use any more right now. Select the running session and then select **Stop compute session**.
+To conserve compute resources and charges, you can stop your compute session if you're not going to use it anymore right now. Select the running session and then select **Stop compute session**.
 
 You can also stop a compute instance by selecting **Compute** from the studio left navigation, selecting your compute instance in the **Compute instances** list, and selecting **Stop**.
 
-If you don't plan to use any of the resources that you created in this tutorial, you can delete them so you don't incur any charges.
-
-In the Azure portal, search for and select **Resource groups**. Select the resource group from the list, and then select **Delete resource group** from the top menu on the resource group's page.
+If you don't plan to use any of the resources that you created in this tutorial, you can delete them so you don't incur any charges. In the Azure portal, search for and select **Resource groups**. Select the resource group from the list, and then select **Delete resource group** from the top menu on the resource group's page.
 
 ## Related content
 
