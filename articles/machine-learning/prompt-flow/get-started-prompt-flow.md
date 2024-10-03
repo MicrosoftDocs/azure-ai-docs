@@ -41,9 +41,9 @@ A connection helps securely store and manage secret keys or other sensitive cred
 
 1. In the **Add Azure OpenAI connection** pane, provide a name for the connection, select your **Subscription ID** and **Azure OpenAI Account Name**, and provide an **Auth Mode** and API information.
 
-   :::image type="content" source="./media/get-started-prompt-flow/azure-openai-connection.png" alt-text="Screenshot of the Azure OpenAI connection screen." lightbox = "./media/get-started-prompt-flow/azure-openai-connection.png":::
-
    Prompt flow supports either **API Key** or **Microsoft Entra ID** authentication for Azure OpenAI resources. For this tutorial, select **API key** under **Auth Mode**.
+
+   :::image type="content" source="./media/get-started-prompt-flow/azure-openai-connection.png" alt-text="Screenshot of the Azure OpenAI connection screen." lightbox = "./media/get-started-prompt-flow/azure-openai-connection.png":::
 
    To get the API information, go to the [Chat playground](https://oai.azure.com/portal/chat) in the Azure OpenAI portal and select your Azure OpenAI resource name. Copy the **Key** and paste it into the **API key** field in the **Add Azure OpenAI connection** form, and copy the **Endpoint** and paste it into the **API base** field in the form.
 
@@ -61,7 +61,7 @@ In the **Flows** tab of the **Prompt flow** home page, select **Create** to crea
 
 ### Clone from sample
 
-In the **Explore gallery**, you can browse the built-in samples and select **View detail** on any tile to preview whether it's suitable for your scenarios.
+In the **Explore gallery**, you can browse the built-in samples and select **View detail** on any tile to preview whether it's suitable for your scenario.
 
 This tutorial uses the **Web Classification** sample to walk through the main user journey. Web Classification is a flow demonstrating multiclass classification with a LLM. Given a URL, the flow classifies the URL into a web category with just a few shots, simple summarization, and classification prompts. For example, given a URL `https://www.imdb.com`, it classifies the URL into `Movie`.
 
@@ -91,17 +91,17 @@ While the compute session is starting, take a look at the parts of the flow auth
 
 - **Files** at top right shows the folder and file structure of the flow. Each flow folder contains a *flow.dag.yaml* file, source code files, and system folders. You can create, upload, or download files for testing, deployment, or collaboration.
 
-  You can edit files inline in the **Flow** or flatten view, or you can turn on the **Raw file mode** toggle and select a file from **Files** to open the file in a tab for editing.
-
-  :::image type="content" source="./media/get-started-prompt-flow/file-edit-tab.png" alt-text="Screenshot of the file edit tab under raw file mode." lightbox = "./media/get-started-prompt-flow/file-edit-tab.png":::
-
 - The **Graph** view at lower right is for visualizing what the flow looks like. You can zoom in or out, or use auto layout.
+
+You can edit files inline in the **Flow** or flatten view, or you can turn on the **Raw file mode** toggle and select a file from **Files** to open the file in a tab for editing.
+
+:::image type="content" source="./media/get-started-prompt-flow/file-edit-tab.png" alt-text="Screenshot of the file edit tab under raw file mode." lightbox = "./media/get-started-prompt-flow/file-edit-tab.png":::
 
 For this sample, the input is a URL to classify. The flow uses a Python script to fetch text content from the URL, uses LLM to summarize the text content in 100 words, and classifies based on the URL and summarized text content. A Python script then converts LLM output into a dictionary. The **prepare_examples** node feeds a few example shots to the classification node's prompt.
 
 ### Set up LLM nodes
 
-For each LLM node, you need to select a **Connection** to set the LLM API keys. Depending on the connection type, you must select a **deployment_name** or a model from the dropdown list. If you use an Azure OpenAI connection, you must select a deployment. If you don't have a deployment, create one in the Azure OpenAI portal by following instructions at [Deploy a model](/azure/cognitive-services/openai/how-to/create-resource?pivots=web-portal#deploy-a-model).
+For each LLM node, you need to select a **Connection** to set the LLM API keys. Depending on the connection type, you must select a **deployment_name** or a model from the dropdown list. For an Azure OpenAI connection, you must select a deployment. If you don't have a deployment, create one in the Azure OpenAI portal by following instructions at [Deploy a model](/azure/cognitive-services/openai/how-to/create-resource?pivots=web-portal#deploy-a-model).
 
 >[!NOTE]
 >If you use an OpenAI connection rather than an Azure OpenAI connection, you need to select a model rather than a deployment in the **Connection** field.
@@ -110,11 +110,11 @@ For this example, make sure the API type is **chat**, because the provided promp
 
 :::image type="content" source="./media/get-started-prompt-flow/select-a-connection.png" alt-text="Screenshot of Web classification showing the connection dropdown." lightbox = "./media/get-started-prompt-flow/select-a-connection.png":::
 
-Set up connections for both the **summarize_text_content** and **classify_with_llm** LLM nodes in the flow.
+Set up connections for both LLM nodes in the flow, **summarize_text_content** and **classify_with_llm**.
 
 ### Run single node
 
-To test and debug a single node, select the **Run** icon at the top of a node in the **Flow** view. You can change the flow input URL to test the node behavior for different URLs.
+To test and debug a single node, select the **Run** icon at the top of a node in the **Flow** view. You can expand **Inputs** and change the flow input URL to test the node behavior for different URLs.
 
 The run status appears at the top of the node. After the run completes, run output appears in the node **Output** section.
 
@@ -126,7 +126,7 @@ Run **fetch_text_content_from_url** and then run **summarize_text_content** to c
 
 ### Run the whole flow
 
-To test and debug the whole flow, select **Run** at the top of the screen. You can change the flow input URL to test how the flow behaves for different URLs.
+To test and debug the whole flow, select **Run** at the top of the screen. You can expand **Inputs** and change the flow input URL to test how the flow behaves for different URLs.
 
 :::image type="content" source="./media/get-started-prompt-flow/run-flow.png" alt-text="Screenshot of Web classification showing a whole run and highlighting the run button." lightbox = "./media/get-started-prompt-flow/run-flow.png":::
 
@@ -134,7 +134,7 @@ Check the run status and output of each node.
 
 ### Check flow output
 
-You can also set flow output and check outputs of multiple nodes in one place. Flow output helps you:
+You can also set flow output to check outputs of multiple nodes in one place. Flow output helps you:
 
 - Check bulk test results in a single table.
 - Define evaluation interface mapping.
@@ -190,7 +190,7 @@ Use the **Batch run & Evaluate** wizard to submit a batch run and optionally to 
 
 ### Check results
 
-When your run submits successfully, select **View run list** to view run status on the **Runs** page. The batch run might take a while to finish. You can select **Refresh** to load the latest status. 
+When your run submits successfully, select **View run list** to view run status on the prompt flow **Runs** page. The batch run might take a while to finish. You can select **Refresh** to load the latest status. 
 
 After the batch run completes, select the check next to the run and then select **Visualize outputs** to view the result of your batch run. 
 
