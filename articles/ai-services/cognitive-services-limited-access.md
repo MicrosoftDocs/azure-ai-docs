@@ -25,8 +25,8 @@ Limited Access services are made available to customers under the terms governin
 
 The following services are Limited Access:
 
-- [Custom Neural Voice](/legal/cognitive-services/speech-service/text-to-speech/limited-access): Pro features 
-- [Custom text to speech avatar](/legal/cognitive-services/speech-service/text-to-speech/limited-access): All features
+- [Custom Neural Voice](/legal/cognitive-services/speech-service/text-to-speech/limited-access?context=/azure/ai-services/speech-service/context/context): Pro features
+- [Custom text to speech avatar](/legal/cognitive-services/speech-service/text-to-speech/limited-access?context=/azure/ai-services/speech-service/context/context): All features
 - [Speaker Recognition](/legal/cognitive-services/speech-service/speaker-recognition/limited-access-speaker-recognition?context=/azure/ai-services/speech-service/context/context): All features 
 - [Face API](/legal/cognitive-services/computer-vision/limited-access-identity?context=/azure/ai-services/computer-vision/context/context): Identify and Verify features, face ID property
 - [Azure AI Vision](/legal/cognitive-services/computer-vision/limited-access?context=/azure/ai-services/computer-vision/context/context): Celebrity Recognition feature
@@ -94,4 +94,4 @@ If you're an existing customer and your application for access is denied, you ca
 
 ## Help and support
 
-To report abuse of Limited Access services, see the [MSRC reporting portal](https://msrc.microsoft.com/report).
+To report abuse of Limited Access services, see the [MSRC reporting portal](https://aka.ms/reportabuse).

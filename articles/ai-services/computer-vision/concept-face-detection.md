@@ -30,7 +30,7 @@ You use the [Detect] API to detect faces in an image. To get started using the R
 
 Each detected face corresponds to a *faceRectangle* field in the response. This is a set of pixel coordinates for the left, top, width, and height of the detected face. Using these coordinates, you can get the location and size of the face. In the API response, faces are listed in size order from largest to smallest.
 
-Try out the capabilities of face detection quickly and easily by using the Azure AI Vision Studio.
+Try out the capabilities of face detection quickly and easily by using Azure AI Vision Studio.
 > [!div class="nextstepaction"]
 > [Try Vision Studio](https://portal.vision.cognitive.azure.com/)
 
