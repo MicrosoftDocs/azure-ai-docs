@@ -5,7 +5,7 @@ description: Learn how to use GPT-4o Realtime API for speech and audio with Azur
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: how-to
-ms.date: 10/1/2024
+ms.date: 10/3/2024
 author: eric-urban
 ms.author: eur
 ms.custom: references_regions
@@ -57,9 +57,10 @@ You can deploy the model from the [Azure AI Studio model catalog](../../../ai-st
 
 Now that you have a deployment of the `gpt-4o-realtime-preview` model, you can use the AI Studio **Real-time audio** playground or Realtime API to interact with it in real time.
 
-## Use the GPT-4o Realtime API
+## Use the GPT-4o real-time audio
 
-Right now, the fastest way to get started with the GPT-4o Realtime API is to download the sample code from the [Azure OpenAI GPT-4o real-time audio repository on GitHub](https://github.com/azure-samples/aoai-realtime-audio-sdk).
+> [!TIP]
+> Right now, the fastest way to get started development with the GPT-4o Realtime API is to download the sample code from the [Azure OpenAI GPT-4o real-time audio repository on GitHub](https://github.com/azure-samples/aoai-realtime-audio-sdk).
 
 ::: zone pivot="programming-language-ai-studio"
 
@@ -68,12 +69,16 @@ To chat with your deployed `gpt-4o-realtime-preview` model in the [Azure AI Stud
 1. Go to your project in [Azure AI Studio](https://ai.azure.com). 
 1. Select **Playgrounds** > **Real-time audio** from the left pane.
 1. Select your deployed `gpt-4o-realtime-preview` model from the **Deployment** dropdown. 
+1. Select **Enable microphone** to allow the browser to access your microphone. If you already granted permission, you can skip this step.
 
     :::image type="content" source="../media/how-to/real-time/real-time-playground.png" alt-text="Screenshot of the real-time audio playground with the deployed model selected." lightbox="../media/how-to/real-time/real-time-playground.png":::
 
 1. Optionally you can edit contents in the **Give the model instructions and context** text box. Give the model instructions about how it should behave and any context it should reference when generating a response. You can describe the assistant's personality, tell it what it should and shouldn't answer, and tell it how to format responses.
 1. Optionally, change settings such as threshold, prefix padding, and silence duration.
 1. Select **Start listening** to start the session. You can speak into the microphone to start a chat.
+
+    :::image type="content" source="../media/how-to/real-time/real-time-playground-start-listening.png" alt-text="Screenshot of the real-time audio playground with the start listening button and microphone access enabled." lightbox="../media/how-to/real-time/real-time-playground-start-listening.png":::
+
 1. You can interrupt the chat at any time by speaking. You can end the chat by selecting the **Stop listening** button.
 
 ::: zone-end
