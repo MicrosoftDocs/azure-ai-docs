@@ -74,7 +74,7 @@ my_training_data_input = Input(
 
 # [Azure CLI](#tab/cli)
 
-You can define a new `MLTable` object by copying the following YAML text to a new file, *./train_data/MLTable*:
+You can define a new `MLTable` object by copying the following YAML snippet to a new file, *./train_data/MLTable*:
 
 ```yml
 $schema: https://azuremlschemas.azureedge.net/latest/MLTable.schema.json
@@ -89,7 +89,7 @@ transformations:
         encoding: ascii
 ```
 
-Begin building the YAML configuration file for the AutoML job with the training data specified as shown in the following example:
+Begin building the YAML configuration for the AutoML job with the training data specified as shown in the following example:
 
 ```yml
 $schema: https://azuremlsdk2.blob.core.windows.net/preview/0.0.1/autoMLJob.schema.json
@@ -277,7 +277,7 @@ forecasting_job.set_forecast_settings(
 
 # [Azure CLI](#tab/cli)
 
-These settings are configured in the `forecasting` section of the job YAML:
+These settings are configured in the `forecasting` section of the job YAML configuration:
 
 ```yml
 $schema: https://azuremlsdk2.blob.core.windows.net/preview/0.0.1/autoMLJob.schema.json
@@ -427,7 +427,7 @@ The job searches over all model classes *except* Prophet. For a list of forecast
 
 AutoML ships with a custom deep neural network (DNN) model named `TCNForecaster`. This model is a [temporal convolutional network](https://arxiv.org/abs/1803.01271) (TCN), that applies common imaging task methods to time-series modeling. One-dimensional "causal" convolutions form the backbone of the network and enable the model to learn complex patterns over long durations in the training history. For more information, see [Introduction to TCNForecaster](./concept-automl-forecasting-deep-learning.md#introduction-to-tcnforecaster).
 
-:::image type="content" source="media/how-to-auto-train-forecast/tcn-basic.png" alt-text="Diagram that shows the major components of the AutoML TCNForecaster model." lightbox="media/how-to-auto-train-forecast/tcn-basic.png":::
+:::image type="content" source="media/how-to-auto-train-forecast/tcn-basic.png" alt-text="Diagram that shows the major components of the AutoML TCNForecaster model." border="false" lightbox="media/how-to-auto-train-forecast/tcn-basic.png":::
 
 The TCNForecaster often achieves higher accuracy than standard time series models when there are thousands or more observations in the training history. However, it also takes longer to train and sweep over TCNForecaster models due to their higher capacity.
 
@@ -469,7 +469,7 @@ Recent values of the target are often impactful features in a forecasting model.
 
 Consider an energy demand forecasting scenario where weather data and historical demand are available. The table shows resulting feature engineering that occurs when window aggregation is applied over the most recent three hours. Columns for *minimum*, *maximum,* and *sum* are generated on a sliding window of three hours based on the defined settings. For instance, for the observation valid on September 8, 2017 4:00am, the maximum, minimum, and sum values are calculated by using the *demand values* for September 8, 2017 1:00AM - 3:00AM. This window of three hours shifts along to populate data for the remaining rows. For more information and examples, see the [Lag features for time-series forecasting in AutoML](concept-automl-forecasting-lags.md).
 
-:::image type="content" source="./media/how-to-auto-train-forecast/target-roll.png" alt-text="Diagram of a table with data that shows the target rolling window and the values in the Demand column highlighted." lightbox="./media/how-to-auto-train-forecast/target-roll.png":::
+:::image type="content" source="./media/how-to-auto-train-forecast/target-roll.png" alt-text="Diagram of a table with data that shows the target rolling window and the values in the Demand column highlighted." border="false" lightbox="./media/how-to-auto-train-forecast/target-roll.png":::
 
 You can enable lag and rolling window aggregation features for the target by setting the rolling window size and the lag orders you want to create. The window size was three in the previous example. You can also enable lags for features with the `feature_lags` setting. In the following example, all of these settings are set to `auto` to instruct AutoML to automatically determine settings by analyzing the correlation structure of your data:
 
@@ -754,7 +754,7 @@ returned_job.services["Studio"].endpoint
 
 In following Azure CLI command, the job YAML configuration is in the current working directory at the path, *./automl-forecasting-job.yml*. If you run the command from a different directory, you need to change the path accordingly.
 
-```azurecli
+```yml
 run_id=$(az ml job create --file automl-forecasting-job.yml)
 ```
 
@@ -1008,7 +1008,7 @@ AutoML requires training data in [MLTable format](#prepare-training-and-validati
 
 Launch the pipeline run by using the following command. The pipeline configuration is at the path *./automl-forecasting-pipeline.yml*:
 
-```azurecli
+```yml
 run_id=$(az ml job create --file automl-forecasting-pipeline.yml -w <Workspace> -g <Resource Group> --subscription <Subscription>)
 ```
 
@@ -1055,7 +1055,7 @@ The many models training component accepts a YAML format configuration file of A
 | `partition_column_names` | Column names in the data that, when grouped, define the data partitions. The many models training component launches an independent training job on each partition. |
 | `allow_multi_partitions` | An optional flag that allows training one model per partition when each partition contains more than one unique time series. The default value is `false`. |
 
-The following example provides a configuration template:
+The following example provides a sample YAML configuration:
 
 ```yml
 $schema: https://azuremlsdk2.blob.core.windows.net/preview/0.0.1/autoMLJob.schema.json
@@ -1137,9 +1137,7 @@ compute_metrics_component = ml_client_metrics_registry.components.get(
     name="compute_metrics",
     label="latest"
 )
-```
 
-```python
 @pipeline(description="AutoML Many Models Forecasting Pipeline")
 def many_models_train_evaluate_factory(
     train_data_input,
@@ -1334,7 +1332,7 @@ The HTS training component accepts a YAML format configuration file of AutoML tr
 | `hierarchy_column_names`  | A list of column names in the data that define the hierarchical structure of the data. The order of the columns in this list determines the hierarchy levels. The degree of aggregation decreases with the list index. That is, the last column in the list defines the leaf, or most disaggregated, level of the hierarchy. |
 | `hierarchy_training_level` | The hierarchy level to use for forecast model training. |
 
-The following example provides a sample configuration:
+The following example provides a sample YAML configuration:
 
 ```yml
 $schema: https://azuremlsdk2.blob.core.windows.net/preview/0.0.1/autoMLJob.schema.json
@@ -1416,9 +1414,7 @@ compute_metrics_component = ml_client_metrics_registry.components.get(
     name="compute_metrics",
     label="latest"
 )
-```   
 
-```python
 @pipeline(description="AutoML HTS Forecasting Pipeline")
 def hts_train_evaluate_factory(
     train_data_input,
