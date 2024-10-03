@@ -4268,7 +4268,7 @@ Inner error with additional details.
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
 | code | [innerErrorCode](#innererrorcode) | Error codes for the inner error object. | No |  |
-| content_filter_results | [contentFilterPromptResults](#contentfilterpromptresults) | Information about the content filtering category (hate, sexual, violence, self_harm), if it has been detected, as well as the severity level (very_low, low, medium, high-scale that determines the intensity and risk level of harmful content) and if it has been filtered or not. Information about jailbreak content and profanity, if it has been detected, and if it has been filtered or not. And information about customer block list, if it has been filtered and its id. | No |  |
+| content_filter_results | [contentFilterPromptResults](#contentfilterpromptresults) | Information about the content filtering category (hate, sexual, violence, self_harm), if it has been detected, as well as the severity level (very_low, low, medium, high-scale that determines the intensity and risk level of harmful content) and if it has been filtered or not. Information about jailbreak content and profanity, if it has been detected, and if it has been filtered or not. And information about customer blocklist, if it has been filtered and its id. | No |  |
 
 
 ### innerErrorCode
@@ -4317,7 +4317,7 @@ Inner error with additional details.
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
 | code | [innerErrorCode](#innererrorcode) | Error codes for the inner error object. | No |  |
-| content_filter_results | [dalleFilterResults](#dallefilterresults) | Information about the content filtering category (hate, sexual, violence, self_harm), if it has been detected, as well as the severity level (very_low, low, medium, high-scale that determines the intensity and risk level of harmful content) and if it has been filtered or not. Information about jailbreak content and profanity, if it has been detected, and if it has been filtered or not. And information about customer block list, if it has been filtered and its id. | No |  |
+| content_filter_results | [dalleFilterResults](#dallefilterresults) | Information about the content filtering category (hate, sexual, violence, self_harm), if it has been detected, as well as the severity level (very_low, low, medium, high-scale that determines the intensity and risk level of harmful content) and if it has been filtered or not. Information about jailbreak content and profanity, if it has been detected, and if it has been filtered or not. And information about customer blocklist, if it has been filtered and its id. | No |  |
 | revised_prompt | string | The prompt that was used to generate the image, if there was any revision to the prompt. | No |  |
 
 
@@ -4401,7 +4401,7 @@ Information about the content filtering results.
 
 ### contentFilterPromptResults
 
-Information about the content filtering category (hate, sexual, violence, self_harm), if it has been detected, as well as the severity level (very_low, low, medium, high-scale that determines the intensity and risk level of harmful content) and if it has been filtered or not. Information about jailbreak content and profanity, if it has been detected, and if it has been filtered or not. And information about customer block list, if it has been filtered and its id.
+Information about the content filtering category (hate, sexual, violence, self_harm), if it has been detected, as well as the severity level (very_low, low, medium, high-scale that determines the intensity and risk level of harmful content) and if it has been filtered or not. Information about jailbreak content and profanity, if it has been detected, and if it has been filtered or not. And information about customer blocklist, if it has been filtered and its id.
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
@@ -4418,7 +4418,7 @@ Information about the content filtering category (hate, sexual, violence, self_h
 
 ### contentFilterChoiceResults
 
-Information about the content filtering category (hate, sexual, violence, self_harm), if it has been detected, as well as the severity level (very_low, low, medium, high-scale that determines the intensity and risk level of harmful content) and if it has been filtered or not. Information about third party text and profanity, if it has been detected, and if it has been filtered or not. And information about customer block list, if it has been filtered and its id.
+Information about the content filtering category (hate, sexual, violence, self_harm), if it has been detected, as well as the severity level (very_low, low, medium, high-scale that determines the intensity and risk level of harmful content) and if it has been filtered or not. Information about third party text and profanity, if it has been detected, and if it has been filtered or not. And information about customer blocklist, if it has been filtered and its id.
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
@@ -4450,7 +4450,7 @@ Content filtering results for a single prompt in the request.
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
 | prompt_index | integer |  | No |  |
-| content_filter_results | [contentFilterPromptResults](#contentfilterpromptresults) | Information about the content filtering category (hate, sexual, violence, self_harm), if it has been detected, as well as the severity level (very_low, low, medium, high-scale that determines the intensity and risk level of harmful content) and if it has been filtered or not. Information about jailbreak content and profanity, if it has been detected, and if it has been filtered or not. And information about customer block list, if it has been filtered and its id. | No |  |
+| content_filter_results | [contentFilterPromptResults](#contentfilterpromptresults) | Information about the content filtering category (hate, sexual, violence, self_harm), if it has been detected, as well as the severity level (very_low, low, medium, high-scale that determines the intensity and risk level of harmful content) and if it has been filtered or not. Information about jailbreak content and profanity, if it has been detected, and if it has been filtered or not. And information about customer blocklist, if it has been filtered and its id. | No |  |
 
 
 ### promptFilterResults
@@ -4474,7 +4474,7 @@ Information about the content filtering results.
 
 ### dalleFilterResults
 
-Information about the content filtering category (hate, sexual, violence, self_harm), if it has been detected, as well as the severity level (very_low, low, medium, high-scale that determines the intensity and risk level of harmful content) and if it has been filtered or not. Information about jailbreak content and profanity, if it has been detected, and if it has been filtered or not. And information about customer block list, if it has been filtered and its id.
+Information about the content filtering category (hate, sexual, violence, self_harm), if it has been detected, as well as the severity level (very_low, low, medium, high-scale that determines the intensity and risk level of harmful content) and if it has been filtered or not. Information about jailbreak content and profanity, if it has been detected, and if it has been filtered or not. And information about customer blocklist, if it has been filtered and its id.
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
@@ -4652,7 +4652,7 @@ This component can be one of the following:
 
 | Name | Type | Description | Default |
 |------|------|-------------|--------|
-| arguments | string | The arguments to call the function with, as generated by the model in JSON format. Note that the model doesn't always generate valid JSON, and may hallucinate parameters not defined by your function schema. Validate the arguments in your code before calling your function. |  |
+| arguments | string | The arguments to call the function with, as generated by the model in JSON format. Note that the model doesn't always generate valid JSON, and may fabricate parameters not defined by your function schema. Validate the arguments in your code before calling your function. |  |
 
 #### name
 
@@ -5366,7 +5366,7 @@ The filtering reason of the retrieved document.
 
 | Name | Type | Description | Default |
 |------|------|-------------|--------|
-| arguments | string | The arguments to call the function with, as generated by the model in JSON format. Note that the model doesn't always generate valid JSON, and may hallucinate parameters not defined by your function schema. Validate the arguments in your code before calling your function. |  |
+| arguments | string | The arguments to call the function with, as generated by the model in JSON format. Note that the model doesn't always generate valid JSON, and may fabricate parameters not defined by your function schema. Validate the arguments in your code before calling your function. |  |
 
 
 ### toolCallType
@@ -5458,7 +5458,7 @@ A chat completion delta generated by streamed model responses.
 
 | Name | Type | Description | Default |
 |------|------|-------------|--------|
-| arguments | string | The arguments to call the function with, as generated by the model in JSON format. Note that the model doesn't always generate valid JSON, and may hallucinate parameters not defined by your function schema. Validate the arguments in your code before calling your function. |  |
+| arguments | string | The arguments to call the function with, as generated by the model in JSON format. Note that the model doesn't always generate valid JSON, and may fabricate parameters not defined by your function schema. Validate the arguments in your code before calling your function. |  |
 
 #### name
 
@@ -5491,7 +5491,7 @@ A chat completion delta generated by streamed model responses.
 
 | Name | Type | Description | Default |
 |------|------|-------------|--------|
-| arguments | string | The arguments to call the function with, as generated by the model in JSON format. Note that the model doesn't always generate valid JSON, and may hallucinate parameters not defined by your function schema. Validate the arguments in your code before calling your function. |  |
+| arguments | string | The arguments to call the function with, as generated by the model in JSON format. Note that the model doesn't always generate valid JSON, and may fabricate parameters not defined by your function schema. Validate the arguments in your code before calling your function. |  |
 
 
 ### chatCompletionStreamOptions
@@ -5602,7 +5602,7 @@ Deprecated and replaced by `tool_calls`. The name and arguments of a function th
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
 | name | string | The name of the function to call. | Yes |  |
-| arguments | string | The arguments to call the function with, as generated by the model in JSON format. Note that the model doesn't always generate valid JSON, and may hallucinate parameters not defined by your function schema. Validate the arguments in your code before calling your function. | Yes |  |
+| arguments | string | The arguments to call the function with, as generated by the model in JSON format. Note that the model doesn't always generate valid JSON, and may fabricate parameters not defined by your function schema. Validate the arguments in your code before calling your function. | Yes |  |
 
 
 ### completionUsage
@@ -5956,7 +5956,7 @@ The image url or encoded image if successful, and an error otherwise.
 | b64_json | string | The base64 encoded image | No |  |
 | content_filter_results | [dalleContentFilterResults](#dallecontentfilterresults) | Information about the content filtering results. | No |  |
 | revised_prompt | string | The prompt that was used to generate the image, if there was any revision to the prompt. | No |  |
-| prompt_filter_results | [dalleFilterResults](#dallefilterresults) | Information about the content filtering category (hate, sexual, violence, self_harm), if it has been detected, as well as the severity level (very_low, low, medium, high-scale that determines the intensity and risk level of harmful content) and if it has been filtered or not. Information about jailbreak content and profanity, if it has been detected, and if it has been filtered or not. And information about customer block list, if it has been filtered and its id. | No |  |
+| prompt_filter_results | [dalleFilterResults](#dallefilterresults) | Information about the content filtering category (hate, sexual, violence, self_harm), if it has been detected, as well as the severity level (very_low, low, medium, high-scale that determines the intensity and risk level of harmful content) and if it has been filtered or not. Information about jailbreak content and profanity, if it has been detected, and if it has been filtered or not. And information about customer blocklist, if it has been filtered and its id. | No |  |
 
 
 ### line
@@ -6440,7 +6440,7 @@ Represents an execution run on a thread.
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
 | assistant_id | string | The ID of the assistant to use to execute this run. | Yes |  |
-| model | string | The ID of the Model to be used to execute this run. If a value is provided here, it will override the model associated with the assistant. If not, the model associated with the assistant will be used. | No |  |
+| model | string | The deployment ID of the Model to be used to execute this run. If a value is provided here, it will override the model associated with the assistant. If not, the model associated with the assistant will be used. | No |  |
 | instructions | string | Override the default system message of the assistant. This is useful for modifying the behavior on a per-run basis. | No |  |
 | additional_instructions | string | Appends additional instructions at the end of the instructions for the run. This is useful for modifying the behavior on a per-run basis without overriding other instructions. | No |  |
 | additional_messages | array | Adds additional messages to the thread before creating the run. | No |  |
