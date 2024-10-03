@@ -73,20 +73,6 @@ The following table provides a comparison of the benefits and limitations of man
 
 ## Related content
 
-- [Related article title](link.md)
-- [Related article title](link.md)
-- [Related article title](link.md)
-
-<!-- Optional: Related content - H2
-
-Consider including a "Related content" H2 section that 
-lists links to 1 to 3 articles the user might find helpful.
-
--->
-
-<!--
-
-Remove all comments except the customer intent
-before you sign off or merge to the main branch.
-
--->
+- [Plan for network isolation](how-to-network-isolation-planning.md)
+- [Use a managed virtual network](how-to-managed-network.md)
+- [Use a custom virtual network](how-to-network-security-overview.md)
