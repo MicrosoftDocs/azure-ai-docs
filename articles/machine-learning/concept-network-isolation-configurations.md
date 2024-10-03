@@ -7,7 +7,7 @@ ms.author: larryfr
 ms.reviewer: meerakurup
 ms.service: azure-machine-learning
 ms.topic: concept-article #Don't change.
-ms.date: 09/19/2024
+ms.date: 10/03/2024
 
 #customer intent: As an administrator, I want to understand the network isolation options so that I can plan my infrastructure.
 
