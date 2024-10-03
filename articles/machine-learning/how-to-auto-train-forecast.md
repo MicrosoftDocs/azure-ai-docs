@@ -10,7 +10,7 @@ ms.service: azure-machine-learning
 ms.subservice: automl
 ms.topic: how-to
 ms.custom: automl, sdkv2, build-2023, devx-track-python, devx-track-azurecli
-ms.date: 09/09/2024
+ms.date: 10/03/2024
 show_latex: true
 #customer intent: As a data scientist, I want to train time-series forecasting models and understand the options available for training them by using AutoML.
 ---
@@ -772,8 +772,6 @@ After the job is submitted, AutoML provisions compute resources, applies featuri
 
 ## Orchestrate training, inference, and evaluation with components and pipelines
 
-[!INCLUDE [preview v2](includes/machine-learning-preview-generic-disclaimer.md)]
-
 Your ML workflow likely requires more than just training. Inference, or retrieving model predictions on newer data, and evaluation of model accuracy on a test set with known target values are other common tasks that you can orchestrate in Azure Machine Learning along with training jobs. To support inference and evaluation tasks, Azure Machine Learning provides [components](concept-component.md), which are self-contained pieces of code that do one step in an Azure Machine Learning [pipeline](concept-ml-pipelines.md).
 
 # [Python SDK](#tab/python)
@@ -1046,8 +1044,6 @@ For more information on rolling evaluation, see [Inference and evaluation of for
 <a name="forecasting-at-scale-many-models"></a>
 
 ## Forecast at scale: many models
-
-[!INCLUDE [preview v2](includes/machine-learning-preview-generic-disclaimer.md)]
 
 The many models components in AutoML enable you to train and manage millions of models in parallel. For more information on many models concepts, see [Many models](concept-automl-forecasting-at-scale.md#many-models).
 
@@ -1322,11 +1318,12 @@ For a more detailed example, see the [demand forecasting with many models notebo
 > [!NOTE]
 > The many models training and inference components conditionally partition your data according to the `partition_column_names` setting so that each partition is in its own file. This process can be very slow or fail when data is very large. In this case, we recommend partitioning your data manually before running many models training or inference.  
 
+> [!NOTE]
+> The default parallelism limit for a many models run within a subscription is set to 320. If your workload requires a higher limit, please don't hesitate to reach out to us.
+
 <a name="forecasting-at-scale-hierarchical-time-series"></a>
 
 ## Forecast at scale: hierarchical time series
-
-[!INCLUDE [preview v2](includes/machine-learning-preview-generic-disclaimer.md)]
 
 The hierarchical time series (HTS) components in AutoML enable you to train a large number of models on data with hierarchical structure. For more information, see the [HTS article section](concept-automl-forecasting-at-scale.md#hierarchical-time-series-forecasting).
 
@@ -1599,6 +1596,9 @@ For a more detailed example, see the [demand forecasting with hierarchical time 
 
 > [!NOTE]
 > The HTS training and inference components conditionally partition your data according to the `hierarchy_column_names` setting so that each partition is in its own file. This process can be very slow or fail when data is very large. In this case, we recommend partitioning your data manually before running HTS training or inference.
+
+> [!NOTE]
+> The default parallelism limit for a hierarchical time series run within a subscription is set to 320. If your workload requires a higher limit, please don't hesitate to reach out to us.
 
 ## Forecast at scale: distributed DNN training
 

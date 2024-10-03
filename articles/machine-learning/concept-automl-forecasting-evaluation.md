@@ -10,14 +10,12 @@ ms.service: azure-machine-learning
 ms.subservice: automl
 ms.topic: conceptual
 ms.custom: automl, sdkv2
-ms.date: 09/05/2024
+ms.date: 10/03/2024
 show_latex: true
 #customer intent: As a data scientist, I want to understand model inference and evaluation in forecasting tasks.
 ---
 
-# Inference and evaluation of forecasting models (preview)
-
-[!INCLUDE [machine-learning-preview-generic-disclaimer](./includes/machine-learning-preview-generic-disclaimer.md)]
+# Inference and evaluation of forecasting models
 
 This article introduces concepts related to model inference and evaluation in forecasting tasks. For instructions and examples for training forecasting models in AutoML, see [Set up AutoML to train a time-series forecasting model with SDK and CLI](./how-to-auto-train-forecast.md).
 
