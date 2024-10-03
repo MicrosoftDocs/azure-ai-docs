@@ -123,7 +123,7 @@ We recommend using a managed identity. A managed identity enables your search se
 
 Enable the system assigned managed identity for your search service.
 
-![Turn on system assigned managed identity](./media/search-managed-identities/turn-on-system-assigned-identity.png "Screenshot showing how to turn on the system-assigned managed identity.")
+![Screenshot of turn on system assigned managed identity.](./media/search-managed-identities/turn-on-system-assigned-identity.png "Screenshot showing how to turn on the system-assigned managed identity.")
 
 ### [**User-managed identity (preview)**](#tab/managed-id-user)
 
