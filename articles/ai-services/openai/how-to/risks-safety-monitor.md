@@ -6,7 +6,7 @@ author: PatrickFarley
 ms.author: pafarley 
 ms.service: azure-ai-openai
 ms.topic: how-to
-ms.date: 03/19/2024
+ms.date: 10/03/2024
 manager: nitinme
 ---
 
