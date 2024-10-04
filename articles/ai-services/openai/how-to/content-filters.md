@@ -6,7 +6,7 @@ description: Learn how to use content filters (preview) with Azure OpenAI Servic
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: how-to
-ms.date: 04/16/2024
+ms.date: 10/04/2024
 author: mrbullwinkle
 ms.author: mbullwin
 recommendations: false
@@ -54,47 +54,27 @@ The following steps show how to set up a customized content filtering configurat
 
 1. Create a new customized content filtering configuration.
 
-   :::image type="content" source="../media/content-filters/create-filter.jpg" alt-text="Screenshot of the content filtering configuration UI with create selected" lightbox="../media/content-filters/create-filter.jpg":::
+   :::image type="content" source="../media/content-filters/create-filter.png" alt-text="Screenshot of the content filtering configuration UI with create selected" lightbox="../media/content-filters/create-filter.png":::
 
-    This leads to the following configuration view, where you can choose a name for the custom content filtering configuration.
+    This leads to the following configuration view, where you can choose a name for the custom content filtering configuration. After entering a name, you can configure the **input filters** (user prompts) and **output filters** (model response). For the first four content categories there are three severity levels that are configurable: Low, medium, and high. You can use the sliders to set the severity threshold if you determine that your application or usage scenario requies different filtering than the default values. Some filters enable you to determine if the model should annotate and/or block. Selecting **Annotate** runs the respective model and return annotations via API response, but it will not filter content. In addition to annotations, you can also choose to filter content by switching the **Filter** toggle to on.
 
-    :::image type="content" source="../media/content-filters/filter-view.jpg" alt-text="Screenshot of the content filtering configuration UI" lightbox="../media/content-filters/filter-view.jpg":::
+    If your use case was approved for modified content filters as outlined above, you receive full control over content filtering configurations and can choose to turn filtering partially or fully off.
 
-1. This is the view of the default content filtering configuration, where content is filtered at medium and high severity levels for all categories. You can modify the content filtering severity level for both user prompts and model completions separately (configuration for prompts is in the left column and configuration for completions is in the right column, as designated with the blue boxes below) for each of the four content categories (content categories are listed on the left side of the screen, as designated with the green box below). There are three severity levels for each category that are configurable: Low, medium, and high. You can use the slider to set the severity threshold.
-
-    :::image type="content" source="../media/content-filters/severity-level.jpg" alt-text="Screenshot of the content filtering configuration UI with user prompts and model completions highlighted" lightbox="../media/content-filters/severity-level.jpg":::
-
-1. If you determine that your application or usage scenario requires  stricter filtering for some or all content categories, you can configure the settings, separately for prompts and completions, to filter at more severity levels than the default setting. An example is shown in the image below, where the filtering level for user prompts is set to the strictest configuration for hate and sexual, with low severity content filtered along with content classified as medium and high severity (outlined in the red box below). In the example, the filtering levels for model completions are set at the strictest configuration for all content categories (blue box below). With this modified filtering configuration in place, low, medium, and high severity content will be filtered for the hate and sexual categories in user prompts; medium and high severity content will be filtered for the self-harm and violence categories in user prompts; and low, medium, and high severity content will be filtered for all content categories in model completions.
-
-    :::image type="content" source="../media/content-filters/settings.jpg" alt-text="Screenshot of the content filtering configuration with low, medium, high, highlighted." lightbox="../media/content-filters/settings.jpg":::
-
-1. If your use case was approved for modified content filters as outlined above, you receive full control over content filtering configurations and can choose to turn filtering partially or fully off. In the image below, filtering is turned off for violence (green box below), while default configurations are retained for other categories. While this disabled the filter functionality for violence, content will still be annotated. To turn off all filters and annotations, toggle off Filters and annotations (red box below).
-
-    :::image type="content" source="../media/content-filters/off.jpg" alt-text="Screenshot of the content filtering configuration with self harm and violence set to off." lightbox="../media/content-filters/off.jpg":::
-
-    You can create multiple content filtering configurations as per your requirements.
-
-1. To turn on the optional models, you can select any of the checkboxes at the left hand side. When each of the optional models is turned on, you can indicate whether the model should Annotate or Filter.
-
-1. Selecting Annotate runs the respective model and return annotations via API response, but it will not filter content. In addition to annotations, you can also choose to filter content by switching the Filter toggle to on. 
+    :::image type="content" source="../media/content-filters/filter-view.png" alt-text="Screenshot of the content filtering configuration UI" lightbox="../media/content-filters/filter-view.png":::
 
 1. You can create multiple content filtering configurations as per your requirements.
 
     :::image type="content" source="../media/content-filters/multiple.png" alt-text="Screenshot of multiple content configurations in the Azure portal." lightbox="../media/content-filters/multiple.png":::
 
-1. Next, to make a custom content filtering configuration operational, assign a configuration to one or more deployments in your resource. To do this, go to the **Deployments** tab and select **Edit deployment** (outlined near the top of the screen in a red box below).
+1. Next, to make a custom content filtering configuration operational, assign a configuration to one or more deployments in your resource. To do this, go to the **Deployments** tab and select your deployment. Then select **Edit**.
 
     :::image type="content" source="../media/content-filters/edit-deployment.png" alt-text="Screenshot of the content filtering configuration with edit deployment highlighted." lightbox="../media/content-filters/edit-deployment.png":::
 
-1. Go to advanced options (outlined in the blue box below) select the content filter configuration suitable for that deployment from the **Content Filter** dropdown (outlined near the bottom of the dialog box in the red box below).
-
-    :::image type="content" source="../media/content-filters/advanced.png" alt-text="Screenshot of edit deployment configuration with advanced options selected." lightbox="../media/content-filters/advanced.png":::
-
-1. Select **Save and close** to apply the selected configuration to the deployment.
+1. In the **Update deployment** window that appears, select your custom filter from the **Content filter** dropdown menu. Then select **Save and close** to apply the selected configuration to the deployment.
 
     :::image type="content" source="../media/content-filters/select-filter.png" alt-text="Screenshot of edit deployment configuration with content filter selected." lightbox="../media/content-filters/select-filter.png":::
 
-1. You can also edit and delete a content filter configuration if required. To do this, navigate to the content filters tab and select the desired action (options outlined near the top of the screen in the red box below). You can edit/delete only one filtering configuration at a time.  
+1. You can also edit and delete a content filter configuration if required. To do this, navigate to the content filters tab and select a configuration. Then select the desired action. You can only edit one filtering configuration at a time.  
 
     :::image type="content" source="../media/content-filters/delete.png" alt-text="Screenshot of content filter configuration with edit and delete highlighted." lightbox="../media/content-filters/delete.png":::
 
