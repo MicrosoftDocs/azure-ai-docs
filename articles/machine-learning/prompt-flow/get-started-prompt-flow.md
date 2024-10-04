@@ -49,17 +49,17 @@ A connection helps securely store and manage secret keys or other sensitive cred
 
    :::image type="content" source="./media/get-started-prompt-flow/create-aoai-connection.png" alt-text="Screenshot of the chat playground showing the Key and Endpoint for an Azure OpenAI resource." lightbox = "./media/get-started-prompt-flow/create-aoai-connection.png":::
 
-   For more information about Microsoft Entra ID authentication, see [How to configure Azure OpenAI Service with Microsoft Entra ID authentication](/azure/ai-services/openai/how-to/managed-identity).
+   For information about Microsoft Entra ID authentication, see [How to configure Azure OpenAI Service with Microsoft Entra ID authentication](/azure/ai-services/openai/how-to/managed-identity).
 
 1. After you fill out all fields, select **Save** to create the connection.
 
-1. The connection must be associated with a deployment before you can create and run the LLM nodes in the example flow. To create the deployment, see [Deploy a model](/azure/ai-services/openai/how-to/create-resource#deploy-a-model).
+1. The connection must be associated with a deployment before you can run the LLM nodes in the example flow. To create the deployment, see [Deploy a model](/azure/ai-services/openai/how-to/create-resource#deploy-a-model).
 
 ## Create and develop your prompt flow
 
 In the **Flows** tab of the **Prompt flow** home page, select **Create** to create the prompt flow. The **Create a new flow** page shows flow types you can create, built-in samples you can clone to create a flow, and ways to import a flow.
 
-### Clone from sample
+### Clone from a sample
 
 In the **Explore gallery**, you can browse the built-in samples and select **View detail** on any tile to preview whether it's suitable for your scenario.
 
@@ -69,11 +69,11 @@ To clone the sample, select **Clone** on the **Web Classification** tile.
 
 :::image type="content" source="./media/get-started-prompt-flow/sample-in-gallery.png" alt-text="Screenshot of create from galley highlighting web classification." lightbox = "./media/get-started-prompt-flow/sample-in-gallery.png":::
 
-The **Clone flow** pane shows the location to store your flow within your workspace fileshare storage. You can customize the folder name if you want. Then select **Clone**.
+The **Clone flow** pane shows the location to store your flow within your workspace fileshare storage. You can customize the folder if you want. Then select **Clone**.
 
-The clone flow authoring page opens. You can select the **Edit** pencil icon to edit flow details like name, description, and tags.
+The cloned flow opens in the authoring UI. You can select the **Edit** pencil icon to edit flow details like name, description, and tags.
 
-### Start compute session
+### Start the compute session
 
 A compute session is necessary for flow execution. The compute session manages the computing resources required for the application to run, including a Docker image that contains all necessary dependency packages.
 
@@ -83,11 +83,11 @@ On the flow authoring page, start a compute session by selecting **Start compute
 
 ### Inspect the flow authoring page
 
-While the compute session is starting, take a look at the parts of the flow authoring page.
+The compute session can take a few minutes to start. While the compute session is starting, view the parts of the flow authoring page.
 
-- The **Flow** or *flatten* view on the left side of the page is the main working area, where you can author the flow by adding nodes, editing and running nodes inline, or editing the prompt. In the **Inputs** and **Outputs** sections, you can view, add, and edit inputs and outputs.
+- The **Flow** or *flatten* view on the left side of the page is the main working area, where you can author the flow by adding or removing nodes, editing and running nodes inline, or editing prompts. In the **Inputs** and **Outputs** sections, you can view, add or remove, and edit inputs and outputs.
 
-  The inputs and outputs are already set when you clone a flow. The flow input schema for the Web Classification sample is `name: url; type: string`, a URL of string type. You can change the preset input value to another value manually, for example `https://www.imdb.com`.
+  When you cloned the current Web Classification sample, the inputs and outputs were already set. The input schema for the flow is `name: url; type: string`, a URL of string type. You can change the preset input value to another value like `https://www.imdb.com` manually.
 
 - **Files** at top right shows the folder and file structure of the flow. Each flow folder contains a *flow.dag.yaml* file, source code files, and system folders. You can create, upload, or download files for testing, deployment, or collaboration.
 
@@ -101,7 +101,9 @@ For this sample, the input is a URL to classify. The flow uses a Python script t
 
 ### Set up LLM nodes
 
-For each LLM node, you need to select a **Connection** to set the LLM API keys. Depending on the connection type, you must select a **deployment_name** or a model from the dropdown list. For an Azure OpenAI connection, you must select a deployment. If you don't have a deployment, create one in the Azure OpenAI portal by following instructions at [Deploy a model](/azure/cognitive-services/openai/how-to/create-resource?pivots=web-portal#deploy-a-model).
+For each LLM node, you need to select a **Connection** to set the LLM API keys. Select your Azure OpenAI connection.
+
+Depending on the connection type, you must select a **deployment_name** or a model from the dropdown list. For an Azure OpenAI connection, select a deployment. If you don't have a deployment, create one in the Azure OpenAI portal by following instructions at [Deploy a model](/azure/cognitive-services/openai/how-to/create-resource?pivots=web-portal#deploy-a-model).
 
 >[!NOTE]
 >If you use an OpenAI connection rather than an Azure OpenAI connection, you need to select a model rather than a deployment in the **Connection** field.
@@ -110,9 +112,9 @@ For this example, make sure the API type is **chat**, because the provided promp
 
 :::image type="content" source="./media/get-started-prompt-flow/select-a-connection.png" alt-text="Screenshot of Web classification showing the connection dropdown." lightbox = "./media/get-started-prompt-flow/select-a-connection.png":::
 
-Set up connections for both LLM nodes in the flow, **summarize_text_content** and **classify_with_llm**.
+Set up connections for both of the LLM nodes in the flow, **summarize_text_content** and **classify_with_llm**.
 
-### Run single node
+### Run a single node
 
 To test and debug a single node, select the **Run** icon at the top of a node in the **Flow** view. You can expand **Inputs** and change the flow input URL to test the node behavior for different URLs.
 
@@ -126,15 +128,15 @@ Run **fetch_text_content_from_url** and then run **summarize_text_content** to c
 
 ### Run the whole flow
 
-To test and debug the whole flow, select **Run** at the top of the screen. You can expand **Inputs** and change the flow input URL to test how the flow behaves for different URLs.
+To test and debug the whole flow, select **Run** at the top of the screen. You can change the flow input URL to test how the flow behaves for different URLs.
 
 :::image type="content" source="./media/get-started-prompt-flow/run-flow.png" alt-text="Screenshot of Web classification showing a whole run and highlighting the run button." lightbox = "./media/get-started-prompt-flow/run-flow.png":::
 
 Check the run status and output of each node.
 
-### Check flow output
+### View flow outputs
 
-You can also set flow output to check outputs of multiple nodes in one place. Flow output helps you:
+You can also set flow outputs to check outputs of multiple nodes in one place. Flow outputs help you:
 
 - Check bulk test results in a single table.
 - Define evaluation interface mapping.
@@ -156,19 +158,19 @@ In the cloned sample, the **category** and **evidence** flow outputs are already
 
 ## Test and evaluate
 
-After the flow runs successfully with a single row of data, test whether it performs well with a large set of data. You can run a bulk test and choose some evaluation methods, and then check the results.
+After the flow runs successfully with a single row of data, test whether it performs well with a large set of data. You can run a bulk test and optionally add an evaluation flow, and then check the results.
 
 You need to prepare test data first. Azure Machine Learning supports CSV, TSV, and JSONL file formats for data.
 
 - Go to GitHub and download [data.csv](https://github.com/Azure/azureml-assets/blob/main/assets/promptflow/data/web-classification/data.csv), the golden dataset for the Web Classification sample.
 
-Use the **Batch run & Evaluate** wizard to submit a batch run and optionally to select an evaluation method. Evaluation methods are also flows, which use Python or LLM to calculate metrics like accuracy and relevance score.
+Use the **Batch run & Evaluate** wizard to configure and submit a batch run and optionally an evaluation method. Evaluation methods are also flows, which use Python or LLM to calculate metrics like accuracy and relevance score.
 
 1. Select **Evaluate** from the top menu of your flow authoring page.
 
 1. On the **Basic settings** screen, change the **Run display name** if desired, add an optional **Run description** and **Tags**, and then select **Next**.
 
-1. On the **Batch run settings** screen of the **Batch run & Evaluate** wizard, select **Add new data**. On the **Add data** screen, provide a **Name** for the dataset, select **Browse** to upload the *data.csv* file you downloaded, and then select **Add**.
+1. On the **Batch run settings** screen, select **Add new data**. On the **Add data** screen, provide a **Name** for the dataset, select **Browse** to upload the *data.csv* file you downloaded, and then select **Add**.
 
    After you upload the data, or if your workspace has another dataset you want to use, search for and choose the dataset from the dropdown list to preview the first five rows.
 
@@ -186,7 +188,7 @@ Use the **Batch run & Evaluate** wizard to submit a batch run and optionally to 
 
    :::image type="content" source="./media/get-started-prompt-flow/accuracy-configure.png" alt-text="Screenshot of Web classification showing the batch run and evaluate on the evaluation settings." lightbox = "./media/get-started-prompt-flow/accuracy-configure.png":::
 
-1. Select **Review + submit** and then select **Submit** to submit a batch run and the selected evaluation.
+1. Select **Review + submit** and then select **Submit** to submit a batch run and the selected evaluation method.
 
 ### Check results
 
@@ -230,11 +232,11 @@ Put the URL you want to test in the input box, and select **Test**. You see the 
 
 ## Clean up resources
 
-To conserve compute resources and charges, you can stop your compute session if you're not going to use it anymore right now. Select the running session and then select **Stop compute session**.
+To conserve compute resources and costs, you can stop your compute session if you're done using it for now. Select the running session and then select **Stop compute session**.
 
 You can also stop a compute instance by selecting **Compute** from the studio left navigation, selecting your compute instance in the **Compute instances** list, and selecting **Stop**.
 
-If you don't plan to use any of the resources that you created in this tutorial, you can delete them so you don't incur any charges. In the Azure portal, search for and select **Resource groups**. Select the resource group from the list, and then select **Delete resource group** from the top menu on the resource group's page.
+If you don't plan to use any of the resources that you created in this tutorial, you can delete them so they don't incur charges. In the Azure portal, search for and select **Resource groups**. From the list, select the resource group that contains the resources you created, and then select **Delete resource group** from the top menu on the resource group page.
 
 ## Related content
 
