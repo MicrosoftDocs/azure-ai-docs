@@ -30,7 +30,7 @@ A few service properties are fixed for the lifetime of the service. Before creat
 
 + [Service name](#name-the-service) becomes part of the URL endpoint. The name must be unique and it must conform to naming rules.
 
-+ [Region](search-region-support.md) determines data residency and the availability of certain features. Semantic ranking and Azure AI integration come with region requirements. Make sure your region of choice supports the features you need.
++ [Region](search-region-support.md) determines data residency and the availability of certain features. Semantic ranker and Azure AI integration come with region requirements. Make sure your region of choice supports the features you need.
 
 + [Service tier](search-sku-tier.md) determines infrastructure, service limits, and billing. Some features aren't available on lower or specialized tiers.
 
@@ -38,7 +38,7 @@ A few service properties are fixed for the lifetime of the service. Before creat
 
 Paid (or billable) search occurs when you choose a billable tier (Basic or higher) when creating the resource on a billable Azure subscription.
 
-To try Azure AI Search for free, [open a trial subscription](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A261C142F) and then create your search service by choosing the **Free** tier. You can have one free search service per Azure subscription. Free search services are intended for short-term evaluation of the product for nonproduction applications. Generally, you can complete all of the quickstarts and most tutorials, except for those featuring semantic ranking (it requires a billable service).
+To try Azure AI Search for free, [open a trial subscription](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A261C142F) and then create your search service by choosing the **Free** tier. You can have one free search service per Azure subscription. Free search services are intended for short-term evaluation of the product for nonproduction applications. Generally, you can complete all of the quickstarts and most tutorials, except for those featuring semantic ranker (it requires a billable service).
 
 Alternatively, you can use free credits to try out paid Azure services. With this approach, you can create your search service at **Basic** or higher to get more capacity. Your credit card is never charged unless you explicitly change your settings and ask to be charged. Another approach is to [activate Azure credits in a Visual Studio subscription](https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/?WT.mc_id=A261C142F). A Visual Studio subscription gives you credits every month you can use for paid Azure services. 
 

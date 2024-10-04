@@ -1,5 +1,5 @@
 ---
-title: 'RAG Tutorial: Design an index'
+title: 'RAG tutorial: Design an index'
 titleSuffix: Azure AI Search
 description: Design an index for RAG patterns in Azure AI Search.
 
@@ -8,7 +8,7 @@ author: HeidiSteen
 ms.author: heidist
 ms.service: cognitive-search
 ms.topic: tutorial
-ms.date: 09/12/2024
+ms.date: 10/01/2024
 
 ---
 
@@ -111,8 +111,25 @@ A minimal index for LLM is designed to store chunks of content. It typically inc
    The schema also includes a `locations` field for storing generated content that's created by the [indexing pipeline](tutorial-rag-build-solution-pipeline.md).
 
    ```python
+    from azure.identity import DefaultAzureCredential
+    from azure.identity import get_bearer_token_provider
+    from azure.search.documents.indexes import SearchIndexClient
+    from azure.search.documents.indexes.models import (
+        SearchField,
+        SearchFieldDataType,
+        VectorSearch,
+        HnswAlgorithmConfiguration,
+        VectorSearchProfile,
+        AzureOpenAIVectorizer,
+        AzureOpenAIVectorizerParameters,
+        SearchIndex
+    )
+    
+    credential = DefaultAzureCredential()
+    
+    # Create a search index  
     index_name = "py-rag-tutorial-idx"
-    index_client = SearchIndexClient(endpoint=AZURE_SEARCH_SERVICE, credential=AZURE_SEARCH_CREDENTIAL)  
+    index_client = SearchIndexClient(endpoint=AZURE_SEARCH_SERVICE, credential=credential)  
     fields = [
         SearchField(name="parent_id", type=SearchFieldDataType.String),  
         SearchField(name="title", type=SearchFieldDataType.String),
@@ -131,20 +148,20 @@ A minimal index for LLM is designed to store chunks of content. It typically inc
             VectorSearchProfile(  
                 name="myHnswProfile",  
                 algorithm_configuration_name="myHnsw",  
-                vectorizer="myOpenAI",  
+                vectorizer_name="myOpenAI",  
             )
         ],  
         vectorizers=[  
             AzureOpenAIVectorizer(  
-                name="myOpenAI",  
+                vectorizer_name="myOpenAI",  
                 kind="azureOpenAI",  
-                azure_open_ai_parameters=AzureOpenAIParameters(  
-                    resource_uri=AZURE_OPENAI_ACCOUNT,  
-                    deployment_id="text-embedding-ada-002",
+                parameters=AzureOpenAIVectorizerParameters(  
+                    resource_url=AZURE_OPENAI_ACCOUNT,  
+                    deployment_name="text-embedding-ada-002",
                     model_name="text-embedding-ada-002"
                 ),
             ),  
-        ],  
+        ], 
     )  
       
     # Create the search index

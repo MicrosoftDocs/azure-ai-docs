@@ -10,6 +10,8 @@ items:
     href: whats-new.md
   - name: Features
     href: search-features-list.md
+  - name: Try search for free
+    href: search-try-for-free.md
   - name: FAQ
     href: search-faq-frequently-asked-questions.yml
 - name: Quickstarts
@@ -102,6 +104,8 @@ items:
       href: tutorial-rag-build-solution-pipeline.md
     - name: Search and generate answers
       href: tutorial-rag-build-solution-query.md
+    - name: Maximize relevance
+      href: tutorial-rag-build-solution-maximize-relevance.md
   - name: Skills tutorials
     items:
     - name: C#
@@ -407,16 +411,16 @@ items:
     href: hybrid-search-how-to-query.md
   - name: Ranking and relevance
     items:
-    - name: Enable or disable semantic ranking
+    - name: Enable or disable semantic ranker
       href: semantic-how-to-enable-disable.md      
-    - name: Configure semantic ranking
+    - name: Configure semantic ranker
       href: semantic-how-to-configure.md
-    - name: Configure BM25 ranking
-      href: index-ranking-similarity.md
     - name: Add semantic ranking to queries
       href: semantic-how-to-query-request.md
     - name: Add a scoring profile
       href: index-add-scoring-profiles.md
+    - name: Configure BM25 ranking
+      href: index-ranking-similarity.md
   - name: Security
     items:
     - name: Configure network access

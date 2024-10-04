@@ -4,7 +4,7 @@ titleSuffix: Azure OpenAI
 description: Learn about the different model capabilities that are available with Azure OpenAI.
 ms.service: azure-ai-openai
 ms.topic: conceptual
-ms.date: 09/12/2024
+ms.date: 10/01/2024
 ms.custom: references_regions, build-2023, build-2023-dataai, refefences_regions
 manager: nitinme
 author: mrbullwinkle #ChrisHMSFT
@@ -18,7 +18,9 @@ Azure OpenAI Service is powered by a diverse set of models with different capabi
 
 | Models | Description |
 |--|--|
+| [o1-preview and o1-mini](#o1-preview-and-o1-mini-models-limited-access) | Limited access models, specifically designed to tackle reasoning and problem-solving tasks with increased focus and capability.  |
 | [GPT-4o & GPT-4o mini & GPT-4 Turbo](#gpt-4o-and-gpt-4-turbo) | The latest most capable Azure OpenAI models with multimodal versions, which can accept both text and images as input. |
+| [GPT-4o audio](#gpt-4o-audio) | A GPT-4o model that supports low-latency, "speech in, speech out" conversational interactions. |
 | [GPT-4](#gpt-4) | A set of models that improve on GPT-3.5 and can understand and generate natural language and code. |
 | [GPT-3.5](#gpt-35) | A set of models that improve on GPT-3 and can understand and generate natural language and code. |
 | [Embeddings](#embeddings-models) | A set of models that can convert text into numerical vector form to facilitate text similarity. |
@@ -30,18 +32,42 @@ Azure OpenAI Service is powered by a diverse set of models with different capabi
 
 The Azure OpenAI `o1-preview` and `o1-mini` models are specifically designed to tackle reasoning and problem-solving tasks with increased focus and capability. These models spend more time processing and understanding the user's request, making them exceptionally strong in areas like science, coding, and math compared to previous iterations.
 
+|  Model ID  | Description | Max Request (tokens) | Training Data (up to)  |
+|  --- |  :--- |:--- |:---: |
+|`o1-preview` (2024-09-12) | The most capable model in the o1 series, offering enhanced reasoning abilities.| Input: 128,000  <br> Output: 32,768 | Oct 2023 |
+| `o1-mini` (2024-09-12) | A faster and more cost-efficient option in the o1 series, ideal for coding tasks requiring speed and lower resource consumption.| Input: 128,000  <br> Output: 65,536 | Oct 2023 |
+
 ### Availability
 
-The `o1-preview` and `o1-mini` models are available in the East US2 region for limited access through the [AI Studio](https://ai.azure.com) early access playground. Data processing for the `o1` models may occur in a different region than where they are available for use.
-
-To try the `o1-preview` and `o1-mini` models in the early access playground, **registration is required, and access will be granted based on Microsoft’s eligibility criteria**.
+The `o1-preview` and `o1-mini` models are now available for API access and model deployment. **Registration is required, and access will be granted based on Microsoft's eligibility criteria**.
 
 Request access: [limited access model application](https://aka.ms/oai/modelaccess)
 
-Once access has been granted, you will need to:
+Once access has been granted, you will need to create a deployment for each model.
 
-1. Navigate to https://ai.azure.com/resources and select a resource in the `eastus2` region. If you do not have an Azure OpenAI resource in this region you will need to [create one](https://portal.azure.com/#create/Microsoft.CognitiveServicesOpenAI).  
-2. Once the `eastus2` Azure OpenAI resource is selected, in the upper left-hand panel under **Playgrounds** select **Early access playground (preview)**.
+### API support
+
+Support for the **o1 series** models was added in API version `2024-09-01-preview`.
+
+The `max_tokens` parameter has been deprecated and replaced with the new `max_completion_tokens` parameter. **o1 series** models will only work with the `max_completions_tokens` parameter. 
+
+### Region availability
+
+Available for standard and global standard deployment in East US2 and Sweden Central for approved customers.
+
+## GPT-4o audio
+
+The `gpt-4o-realtime-preview` model is part of the GPT-4o model family and supports low-latency, "speech in, speech out" conversational interactions. GPT-4o audio is designed to handle real-time, low-latency conversational interactions, making it a great fit for support agents, assistants, translators, and other use cases that need highly responsive back-and-forth with a user.
+
+GPT-4o audio is available in the East US 2 (`eastus2`) and Sweden Central (`swedencentral`) regions. To use GPT-4o audio, you need to [create](../how-to/create-resource.md) or use an existing resource in one of the supported regions.
+
+When your resource is created, you can [deploy](../how-to/create-resource.md#deploy-a-model) the GPT-4o audio model. If you are performing a programmatic deployment, the **model** name is `gpt-4o-realtime-preview`. For more information on how to use GPT-4o audio, see the [GPT-4o audio documentation](../how-to/audio-real-time.md).
+
+Details about maximum request tokens and training data are available in the following table.
+
+|  Model ID  | Description | Max Request (tokens) | Training Data (up to)  |
+|  --- |  :--- |:--- |:---: |
+|`gpt-4o-realtime-preview` (2024-10-01-preview) <br> **GPT-4o audio** | **Audio model** for real-time audio processing |Input: 128,000  <br> Output: 4,096 | Oct 2023 |
 
 ## GPT-4o and GPT-4 Turbo
 
@@ -96,15 +122,17 @@ See [model versions](../concepts/model-versions.md) to learn about how Azure Ope
 | `gpt-4` (0314) | **Older GA model** <br> - [Retirement information](./model-retirements.md#current-models)  | 8,192 | Sep 2021         |
 
 > [!CAUTION]
-> We don't recommend using preview models in production. We will upgrade all deployments of preview models to either future preview versions or to the latest stable/GA version. Models designated preview do not follow the standard Azure OpenAI model lifecycle.
+> We don't recommend using preview models in production. We will upgrade all deployments of preview models to either future preview versions or to the latest stable GA version. Models designated preview do not follow the standard Azure OpenAI model lifecycle.
 
 - GPT-4 version 0125-preview is an updated version of the GPT-4 Turbo preview previously released as version 1106-preview.  
 - GPT-4 version 0125-preview completes tasks such as code generation more completely compared to gpt-4-1106-preview. Because of this, depending on the task, customers may find that GPT-4-0125-preview generates more output compared to the gpt-4-1106-preview.  We recommend customers compare the outputs of the new model.  GPT-4-0125-preview also addresses bugs in gpt-4-1106-preview with UTF-8 handling for non-English languages. 
 - GPT-4 version `turbo-2024-04-09` is the latest GA release and replaces `0125-Preview`, `1106-preview`, and `vision-preview`.
 
 > [!IMPORTANT]
->
-> - `gpt-4` versions 1106-Preview, 0125-Preview, and vision-preview will be upgraded with a stable version of `gpt-4` in the future. Deployments of `gpt-4` versions 1106-Preview, 0125-Preview, and vision-preview set to "Auto-update to default" and "Upgrade when expired" will start to be upgraded after the stable version is released. For each deployment, a model version upgrade takes place with no interruption in service for API calls.  Upgrades are staged by region and the full upgrade process is expected to take 2 weeks. Deployments of `gpt-4` versions 1106-Preview, 0125-Preview, and vision-preview set to "No autoupgrade" will not be upgraded and will stop operating when the preview version is upgraded in the region. See [Azure OpenAI model retirements and deprecations](./model-retirements.md) for more information on the timing of the upgrade.
+> The GPT-4 (`gpt-4`) versions `1106-Preview`, `0125-Preview`, and `vision-preview` will be upgraded with a stable version of `gpt-4` in the future. 
+> - Deployments of `gpt-4` versions `1106-Preview`, `0125-Preview`, and `vision-preview` set to "Auto-update to default" and "Upgrade when expired" will start to be upgraded after the stable version is released. For each deployment, a model version upgrade takes place with no interruption in service for API calls. Upgrades are staged by region and the full upgrade process is expected to take 2 weeks. 
+> - Deployments of `gpt-4` versions  `1106-Preview`, `0125-Preview`, and `vision-preview` set to "No autoupgrade" will not be upgraded and will stop operating when the preview version is upgraded in the region. 
+> See [Azure OpenAI model retirements and deprecations](./model-retirements.md) for more information on the timing of the upgrade.
 
 ## GPT-3.5
 
@@ -168,11 +196,9 @@ You can also use the OpenAI text to speech voices via Azure AI Speech. To learn 
 
 [!INCLUDE [Standard Models](../includes/model-matrix/standard-models.md)]
 
-This table doesn't include [global standard](../how-to/deployment-types.md) model deployment regional availability for GPT-4o, or fine-tuning regional availability information.  Consult the dedicated [global standard deployment section](#global-standard-model-availability) and the [fine-tuning section](#fine-tuning-models) for this information.
+This table doesn't include fine-tuning regional availability information.  Consult the  the [fine-tuning section](#fine-tuning-models) for this information.
 
-### Standard and global standard deployment model quota
-
-[!INCLUDE [Quota](../includes/model-matrix/quota.md)]
+For information on default quota, refer to the [quota and limits article](../quotas-limits.md).
 
 ### Provisioned deployment model availability
 
@@ -181,110 +207,19 @@ This table doesn't include [global standard](../how-to/deployment-types.md) mode
 > [!NOTE]
 > The provisioned version of `gpt-4` **Version:** `turbo-2024-04-09` is currently limited to text only.
 
-### How do I get access to Provisioned?
-
-You need to speak with your Microsoft sales/account team to acquire provisioned throughput. If you don't have a sales/account team, unfortunately at this time, you cannot purchase provisioned throughput.
-
 For more information on Provisioned deployments, see our [Provisioned guidance](./provisioned-throughput.md).
 
 ### Global standard model availability
 
-`gpt-4o` **Version:** `2024-08-06`
+[!INCLUDE [Standard Global](../includes/model-matrix/standard-global.md)]
 
-**Supported regions:**
-- eastus            
-- eastus2           
-- northcentralus    
-- southcentralus    
-- swedencentral     
-- westus            
-- westus3           
+### Global provisioned managed model availability
 
-`gpt-4o` **Version:** `2024-05-13`  
-
-**Supported regions:**
-
-- australiaeast     
-- brazilsouth       
-- canadaeast        
-- eastus            
-- eastus2           
-- francecentral     
-- germanywestcentral
-- japaneast         
-- koreacentral      
-- northcentralus    
-- norwayeast        
-- polandcentral
-- spaincentral     
-- southafricanorth  
-- southcentralus    
-- southindia        
-- swedencentral     
-- switzerlandnorth  
-- uksouth           
-- westeurope        
-- westus            
-- westus3           
-
-`gpt-4o-mini` **Version:** `2024-07-18`  
-
-**Supported regions:**
-
-- eastus
-- eastus2
-- northcentralus
-- swedencentral
-- switzerlandnorth
-- westus
-- westus3
-
-`gpt-4` **Version:** `turbo-2024-04-09`
-
-- australiaeast     
-- brazilsouth       
-- canadaeast        
-- eastus            
-- eastus2           
-- francecentral     
-- germanywestcentral
-- japaneast         
-- koreacentral      
-- northcentralus    
-- norwayeast        
-- polandcentral
-- spaincentral     
-- southafricanorth  
-- southcentralus    
-- southindia        
-- swedencentral     
-- switzerlandnorth  
-- uksouth           
-- westeurope        
-- westus            
-- westus3           
+[!INCLUDE [Provisioned Managed Global](../includes/model-matrix/provisioned-global.md)]
 
 ### Global batch model availability
 
-### Region and model support
-
-The following models support global batch:
-
-| Model | Version | Input format |
-|---|---|---|
-|`gpt-4o-mini`| 2024-07-18 | text + image |
-|`gpt-4o` | 2024-05-13 |text + image |
-|`gpt-4` | turbo-2024-04-09 | text |
-|`gpt-4` | 0613 | text |
-| `gpt-35-turbo` | 0125 | text |
-| `gpt-35-turbo` | 1106 | text |
-| `gpt-35-turbo` | 0613 | text |
-
-Global batch is currently supported in the following regions:
-
-- East US
-- West US
-- Sweden Central
+[!INCLUDE [Global batch](../includes/model-matrix/global-batch.md)]
 
 ### GPT-4 and GPT-4 Turbo model availability
 

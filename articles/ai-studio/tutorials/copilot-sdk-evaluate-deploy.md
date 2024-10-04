@@ -99,7 +99,7 @@ The main function at the end allows you to view the evaluation result locally, a
     python evaluate.py
     ```
 
-For more information about using the prompt flow SDK for evaluation, see [Evaluate with the prompt flow SDK](../how-to/develop/flow-evaluate-sdk.md).
+For more information about using the prompt flow SDK for evaluation, see [Evaluate with the prompt flow SDK](../how-to/develop/evaluate-sdk.md).
 
 ### Interpret the evaluation output
 
@@ -144,7 +144,7 @@ You can also look at the individual rows and see metric scores per row, and view
 
 :::image type="content" source="../media/tutorials/develop-rag-copilot-sdk/eval-studio-rows.png" alt-text="Screenshot shows rows of evaluation results in Azure AI Studio.":::
 
-For more information about evaluation results in AI Studio, see [How to view evaluation results in AI Studio](../how-to/evaluate-flow-results.md).
+For more information about evaluation results in AI Studio, see [How to view evaluation results in AI Studio](../how-to/evaluate-results.md).
 
 Now that you verified your chat app behaves as expected, you're ready to deploy your application.
 

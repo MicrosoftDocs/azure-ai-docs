@@ -165,7 +165,7 @@ Next, select the __Deploy__ button in the model details pane:
 
 :::image type="content" source="./media/how-to-track-experiments/mlflow-experiments-4.png" alt-text="Screenshot showing selection of the Deploy button." lightbox= "./media/how-to-track-experiments/mlflow-experiments-4.png":::
 
-The model will deploy to the Inference Cluster (Azure Kubernetes Service) we created in step 1. Provide a name for the service, and the name of the AKS compute cluster (created in step 1), to fill in the details. We also recommend that you increase the __CPU reserve capacity__ from 0.1 to 1, and the __Memory reserve capacity__ from 0.5 to 1. Select __Advanced__ and fill in the details to set this increase. Then select __Deploy__, as shown in this screenshot:
+The model deploys to the Inference Cluster (Azure Kubernetes Service) we created in step 1. Provide a name for the service, and the name of the AKS compute cluster (created in step 1), to fill in the details. We also recommend that you increase the __CPU reserve capacity__ from 0.1 to 1, and the __Memory reserve capacity__ from 0.5 to 1. Select __Advanced__ and fill in the details to set this increase. Then select __Deploy__, as shown in this screenshot:
 
 :::image type="content" source="./media/how-to-track-experiments/mlflow-experiments-5.png" alt-text="Screenshot showing details of the model deployment." lightbox= "./media/how-to-track-experiments/mlflow-experiments-5.png":::
 
@@ -177,7 +177,7 @@ When the model successfully deploys, select Endpoints from the left-hand menu, t
 
 The deployment state should change from __transitioning__ to __healthy__. Additionally, the details section provides the REST endpoint and Swagger URLs that application developers can use to integrate your ML model into their apps.
 
-You can test the endpoint with [Postman](https://www.postman.com/), or you can use the Azure Machine Learning SDK:
+You can test the endpoint with the Azure Machine Learning SDK:
 
 [!INCLUDE [SDK v1](../includes/machine-learning-sdk-v1.md)]
 

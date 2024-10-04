@@ -1,5 +1,5 @@
 ---
-title: 'RAG Tutorial: Search using an LLM'
+title: 'RAG tutorial: Search using an LLM'
 titleSuffix: Azure AI Search
 description: Learn how to build queries and engineer prompts for LLM-enabled search on Azure AI Search. Queries used in generative search provide the inputs to an LLM chat engine.
 
@@ -8,7 +8,7 @@ author: HeidiSteen
 ms.author: heidist
 ms.service: cognitive-search
 ms.topic: tutorial
-ms.date: 09/12/2024
+ms.date: 10/03/2024
 
 ---
 
@@ -46,10 +46,10 @@ You're setting up two clients, so you need permissions on both resources. We use
 
 ```python
 # Set endpoints and API keys for Azure services
-AZURE_SEARCH_SERVICE: str = "PUT YOUR SEARCH SERVICE URL HERE"
-AZURE_SEARCH_KEY: str = "PUT YOUR SEARCH SERVICE ADMIN KEY HERE"
-AZURE_OPENAI_ACCOUNT: str = "PUT YOUR AZURE OPENAI ACCOUNT URL HERE"
-AZURE_OPENAI_KEY: str = "PUT YOUR AZURE OPENAI KEY HERE"
+AZURE_SEARCH_SERVICE: str = "PUT YOUR SEARCH SERVICE ENDPOINT HERE"
+# AZURE_SEARCH_KEY: str = "DELETE IF USING ROLES, OTHERWISE PUT YOUR SEARCH SERVICE ADMIN KEY HERE"
+AZURE_OPENAI_ACCOUNT: str = "PUR YOUR AZURE OPENAI ENDPOINT HERE"
+# AZURE_OPENAI_KEY: str = "DELETE IF USING ROLES, OTHERWISE PPUT YOUR AZURE OPENAI KEY HERE"
 ```
 
 ## Example script for prompt and query
@@ -59,14 +59,13 @@ Here's the Python script that instantiates the clients, defines the prompt, and 
 ```python
 # Import libraries
 from azure.search.documents import SearchClient
-from azure.core.credentials import AzureKeyCredential
 from openai import AzureOpenAI
 
-# Set up clients and specify the chat model
+token_provider = get_bearer_token_provider(credential, "https://cognitiveservices.azure.com/.default")
 openai_client = AzureOpenAI(
      api_version="2024-06-01",
      azure_endpoint=AZURE_OPENAI_ACCOUNT,
-     api_key=AZURE_OPENAI_KEY
+     azure_ad_token_provider=token_provider
  )
 
 deployment_name = "gpt-35-turbo"
@@ -74,7 +73,7 @@ deployment_name = "gpt-35-turbo"
 search_client = SearchClient(
      endpoint=AZURE_SEARCH_SERVICE,
      index_name=index_name,
-     credential=AZURE_SEARCH_CREDENTIAL
+     credential=credential
  )
 
 # Provide instructions to the model
@@ -91,14 +90,17 @@ Sources:\n{sources}
 """
 
 # Provide the query. Notice it's sent to both the search engine and the LLM.
+# The query sent to the search engine is hybrid. Keyword search on "query". Text-to-vector conversion for vector search.
 query="how much of earth is covered by water"
+vector_query = VectorizableTextQuery(text=query, k_nearest_neighbors=1, fields="text_vector", exhaustive=True)
 
 # Set up the search results and the chat thread.
 # Retrieve the selected fields from the search index related to the question.
 search_results = search_client.search(
     search_text=query,
+    vector_queries= [vector_query],
+    select="title, chunk, locations",
     top=1,
-    select="title, chunk, locations"
 )
 sources_formatted = "\n".join([f'{document["title"]}:{document["chunk"]}:{document["locations"]}' for document in search_results])
 
@@ -130,7 +132,7 @@ It's expected for LLMs to return different answers, even if the prompt and queri
 
 ## Add a filter
 
-Recall that you created a `locations` field using applied AI, populated with places recognized by the Entity Recognition skill. The field definition for locations includes the `filterable` attribute. Let's repeat the previous request, but this time adding a filter that selects on the term *ice* in the locations field. A filter introduces inclusion or exclusion criteria. The search engine is still doing a vector search on `"how much of earth is covered by water"`, but it's now excluding matches that don't include *ice*. For more information about filtering on string collections and on vector queries, see [text filter fundamentals](search-filters.md#text-filter-fundamentals),[Understand collection filters](search-query-understand-collection-filters.md), and [Add filters to a vector query](vector-search-filters.md).
+Recall that you created a `locations` field using applied AI, populated with places recognized by the Entity Recognition skill. The field definition for locations includes the `filterable` attribute. Let's repeat the previous request, but this time adding a filter that selects on the term *ice* in the locations field. A filter introduces inclusion or exclusion criteria. The search engine is still doing a vector search on `"how much of earth is covered by water"`, but it's now excluding matches that don't include *ice*. For more information about filtering on string collections and on vector queries, see [text filter fundamentals](search-filters.md#text-filter-fundamentals), [Understand collection filters](search-query-understand-collection-filters.md), and [Add filters to a vector query](vector-search-filters.md).
 
 Replace the search_results definition with the following example that includes a filter:
 
@@ -228,7 +230,7 @@ Tasks:
 - H2 Query using vectors and text-to-vector conversion at query time (not sure what the code looks like for this)
 - H2 Query parent-child two indexes (unclear how to do this, Carey said query on child, do a lookup query on parent) -->
 
-<!-- ## Next step
+## Next step
 
 > [!div class="nextstepaction"]
-> [Maximize relevance](tutorial-rag-build-solution-maximize-relevance.md) -->
+> [Maximize relevance](tutorial-rag-build-solution-maximize-relevance.md)

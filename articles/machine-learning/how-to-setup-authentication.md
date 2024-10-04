@@ -8,9 +8,10 @@ ms.author: larryfr
 ms.reviewer: meyetman
 ms.service: azure-machine-learning
 ms.subservice: enterprise-readiness
-ms.date: 01/05/2024
+ms.date: 10/04/2024
 ms.topic: how-to
 ms.custom: has-adal-ref, subject-rbac-steps, cliv2, sdkv2
+# Customer intent: As a data scientist, I want to learn how to set up authentication for Azure Machine Learning resources and workflows so that I can access the resources I need.
 ---
 
 # Set up authentication for Azure Machine Learning resources and workflows
@@ -131,7 +132,7 @@ The easiest way to create an SP and grant access to your workspace is by using t
 
     For other methods of authenticating, see [Sign in with Azure CLI](/cli/azure/authenticate-azure-cli).
 
-1. Create the service principal. In the following example, an SP named **ml-auth** is created:
+1. Create the service principal. In the following example, an SP named __ml-auth__ is created:
 
     ```azurecli-interactive
     az ad sp create-for-rbac --json-auth --name ml-auth --role Contributor --scopes /subscriptions/<subscription id>

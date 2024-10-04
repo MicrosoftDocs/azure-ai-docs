@@ -33,7 +33,7 @@ This documentation contains the following types of articles:
 * The [quickstarts](./quickstarts-sdk/image-analysis-client-library.md) are step-by-step instructions that let you make calls to the service and get results in a short period of time. 
 * The [how-to guides](./how-to/call-analyze-image.md) contain instructions for using the service in more specific or customized ways.
 * The [conceptual articles](concept-tagging-images.md) provide in-depth explanations of the service's functionality and features.
-* The [tutorials](./tutorials/storage-lab-tutorial.md) are longer guides that show you how to use this service as a component in broader business solutions.
+<!--* The [tutorials](./tutorials/storage-lab-tutorial.md) are longer guides that show you how to use this service as a component in broader business solutions.-->
 
 For a more structured approach, follow a Training module for Image Analysis.
 * [Analyze images with the Azure AI Vision service](/training/modules/analyze-images-computer-vision/)

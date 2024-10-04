@@ -96,7 +96,9 @@ az ml connection create --file my_snowflakedb_connection.yaml
 ### Option 2: Override the username and password at the command line
 
 ```azurecli
-az ml connection create --file my_snowflakedb_connection.yaml --set credentials.username="H4iJ5kL6mN7oP8qR9sT0uV1wX2yZ3a" credentials.password="E3fH4iJ5kL6mN7oP8qR9sT0uV1wX2y"
+az ml connection create --file my_snowflakedb_connection.yaml --set credentials.
+username="<username>" credentials.
+password="<password>"
 ```
 
 # [Python SDK](#tab/python)
@@ -109,8 +111,8 @@ from azure.ai.ml import MLClient, load_workspace_connection
 ml_client = MLClient.from_config()
 
 wps_connection = load_workspace_connection(source="./my_snowflakedb_connection.yaml")
-wps_connection.credentials.username="E3fH4iJ5kL6mN7oP8qR9sT0uV1wX2y"
-wps_connection.credentials.password="J5kL6mN7oP8qR9sT0uV1wX2yZ3aB4c"
+wps_connection.credentials.username="<username>"
+wps_connection.credentials.password="<password>"
 ml_client.connections.create_or_update(workspace_connection=wps_connection)
 
 ```
@@ -128,7 +130,7 @@ name= <my_snowflake_connection> # name of the connection
 wps_connection = WorkspaceConnection(name= name,
 type="snowflake",
 target= target,
-credentials= UsernamePasswordConfiguration(username="J5kL6mN7oP8qR9sT0uV1wX2yZ3aB4c", password="C2dE3fH4iJ5kL6mN7oP8qR9sT0uV1w")
+credentials= UsernamePasswordConfiguration(username="<username>", password="<password>")
 )
 
 ml_client.connections.create_or_update(workspace_connection=wps_connection)
@@ -155,7 +157,7 @@ ml_client.connections.create_or_update(workspace_connection=wps_connection)
 
 ## Create a Snowflake DB connection that uses OAuth
 
-The information in this section describe how to create a Snowflake DB connection that uses OAuth to authenticate.
+The information in this section describes how to create a Snowflake DB connection that uses OAuth to authenticate.
 
 > [!IMPORTANT]
 > Before following the steps in this section, you must first [Configure Azure to issue OAuth tokens on behalf of the client](https://community.snowflake.com/s/article/Create-External-OAuth-Token-Using-Azure-AD-For-The-OAuth-Client-Itself). This configuration creates a service principal, which is required for the OAuth connection. You need the following information to create the connection:
@@ -271,7 +273,9 @@ az ml connection create --file my_sqldb_connection.yaml
 ### Option 2: Override the username and password in YAML file
 
 ```azurecli
-az ml connection create --file my_sqldb_connection.yaml --set credentials.username="A1bC2dE3fH4iJ5kL6mN7oP8qR9sT0u" credentials.password="N7oP8qR9sT0uV1wX2yZ3aB4cD5eF6g"
+az ml connection create --file my_sqldb_connection.yaml --set credentials.
+username="<username>" credentials.
+password="<password>"
 ```
 
 # [Python SDK](#tab/python)
@@ -284,8 +288,8 @@ from azure.ai.ml import MLClient, load_workspace_connection
 ml_client = MLClient.from_config()
 
 wps_connection = load_workspace_connection(source="./my_sqldb_connection.yaml")
-wps_connection.credentials.username="L6mN7oP8qR9sT0uV1wX2yZ3aB4cD5e"
-wps_connection.credentials.password="C2dE3fH4iJ5kL6mN7oP8qR9sT0uV1w"
+wps_connection.credentials.username="<username>"
+wps_connection.credentials.password="<password>"
 ml_client.connections.create_or_update(workspace_connection=wps_connection)
 
 ```
@@ -304,7 +308,7 @@ name= <my_sql_connection> # name of the connection
 wps_connection = WorkspaceConnection(name= name,
 type="azure_sql_db",
 target= target,
-credentials= UsernamePasswordConfiguration(username="E3fH4iJ5kL6mN7oP8qR9sT0uV1wX2y", password="L6mN7oP8qR9sT0uV1wX2yZ3aB4cD5e")
+credentials= UsernamePasswordConfiguration(username="<username>", password="<password>")
 )
 
 ml_client.connections.create_or_update(workspace_connection=wps_connection)
@@ -501,8 +505,8 @@ Create a connection to a Python feed with one of following YAML files. Be sure t
    target: https://test-feed.com
    credentials:
       type: username_password
-      username: john
-      password: pass
+      username: <username>
+      password: <password>
 
    ```
 
@@ -537,8 +541,8 @@ wps_connection = WorkspaceConnection(
     name=name,
     type="python_feed",
     target=target,
-    #credentials=UsernamePasswordConfiguration(username="L6mN7oP8qR9sT0uV1wX2yZ3aB4cD5e", password="iJ5kL6mN7oP8qR9sT"), 
-    credentials=PatTokenConfiguration(pat="H4iJ5kL6mN7oP8qR9sT0uV1wX2yZ3a"),    
+    #credentials=UsernamePasswordConfiguration(username="<username>", password="<password>"), 
+    credentials=PatTokenConfiguration(pat="<PatTokenConfiguration>"),    
 
     #credentials=None
 )
@@ -565,8 +569,8 @@ Create a connection to an Azure Container Registry with one of following YAML fi
    target: https://test-feed.com2
    credentials:
       type: username_password
-      username: contoso
-      password: pass
+      username: <username>
+      password: <password>
    ```
 
 Create the Azure Machine Learning connection in the CLI:
@@ -592,7 +596,7 @@ wps_connection = WorkspaceConnection(
     name=name,
     type="container_registry",
     target=target,
-    credentials=UsernamePasswordConfiguration(username="J5kL6mN7oP8qR9sT0uV1wX2yZ3aB4c", password="L6mN7oP8qR9sT0uV1wX2yZ3aB4cD5e"), 
+    credentials=UsernamePasswordConfiguration(username="<username>", password="<password>"), 
 )
 ml_client.connections.create_or_update(workspace_connection=wps_connection)
 ```
@@ -663,8 +667,8 @@ type: container_registry
 target: https://test-registry.com
 credentials:
   type: username_password
-  username: contoso
-  password: pass
+  username: <username>
+  password: <password>
 ```
 
 ```yml

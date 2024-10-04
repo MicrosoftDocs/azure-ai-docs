@@ -92,7 +92,7 @@ where $H$ is the forecast horizon, $l_{\text{max}}$ is the maximum lag order, an
 
  $T_{\text{CV}} = 2H + (n_{\text{CV}} - 1) n_{\text{step}} + \text{max}(l_{\text{max}}, s_{\text{window}}) + 1$,
 
-where $n_{\text{CV}}$ is the number of cross-validation folds and $n_{\text{step}}$ is the CV step size, or offset between CV folds. The basic logic behind these formulas is that you should always have at least a horizon of training observations for each time series, including some padding for lags and cross-validation splits. See [forecasting model selection](./concept-automl-forecasting-sweeping.md#model-selection) for more details on cross-validation for forecasting.
+where $n_{\text{CV}}$ is the number of cross-validation folds and $n_{\text{step}}$ is the CV step size, or offset between CV folds. The basic logic behind these formulas is that you should always have at least a horizon of training observations for each time series, including some padding for lags and cross-validation splits. See [forecasting model selection](./concept-automl-forecasting-sweeping.md#model-selection-in-automl) for more details on cross-validation for forecasting.
 
 ### Missing data handling
 AutoML's time series models require regularly spaced observations in time. Regularly spaced, here, includes cases like monthly or yearly observations where the number of days between observations may vary. Prior to modeling, AutoML must ensure there are no missing series values _and_ that the observations are regular. Hence, there are two missing data cases:

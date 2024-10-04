@@ -24,6 +24,15 @@ You create a speaker profile ID based on the speaker's verbal consent statement 
 
 You provide the audio files [from a publicly accessible URL](#create-personal-voice-from-a-url) ([PersonalVoices_Create](/rest/api/aiservices/speechapi/personal-voices/create)) or [upload the audio files](#create-personal-voice-from-a-file) ([PersonalVoices_Post](/rest/api/aiservices/speechapi/personal-voices/post)).  
 
+## Prompt audio format
+
+The supported formats for prompt audio files are:
+
+| Format | Sample rate                  | Bit rate                    | Bit depth|
+|------------|--------------------------|-------------------------|----------|
+| mp3  | 16 kHz, 24 kHz, 44.1 kHz, 48 kHz       | 128 kbps, 192 kbps, 256 kbps, 320 kbps              | /                          |
+| wav    | 16 kHz, 24 kHz, 44.1 kHz, 48 kHz       | /                                               | 16-bit, 24-bit, 32-bit      |
+
 ## Create personal voice from a file
 
 In this scenario, the audio files must be available locally. 
