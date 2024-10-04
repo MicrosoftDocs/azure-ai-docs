@@ -30,7 +30,7 @@ Azure Machine Learning Kubernetes compute supports two kinds of Kubernetes clust
 
 | Compute | Location | Description |
 | --- | --- | --- |
-| **[AKS cluster](https://azure.microsoft.com/services/kubernetes-service/)** | Within Azure | With your self-managed AKS cluster in Azure, you can gain security and controls to meet compliance requirement and flexibility to manage your team's machine learning workload. |
+| **[AKS cluster](https://azure.microsoft.com/en-us/products/kubernetes-service/)** | Within Azure | With your self-managed AKS cluster in Azure, you can gain security and controls to meet compliance requirement and flexibility to manage your team's machine learning workload. |
 | **[Arc Kubernetes cluster](/azure/azure-arc/kubernetes/overview)** | Outside Azure | With Arc Kubernetes cluster, you can train or deploy models in any on-premises or multicloud infrastructure, or the edge. |
 
 With a simple cluster extension deployment on AKS or Arc Kubernetes cluster, Kubernetes cluster is seamlessly supported in Machine Learning to run training or inference workload. It's easy to enable and use an existing Kubernetes cluster for Machine Learning workload with the following process:
@@ -43,7 +43,7 @@ With a simple cluster extension deployment on AKS or Arc Kubernetes cluster, Kub
 
 - Step 4: Use the Kubernetes compute target from the CLI v2, SDK v2, or the Azure Machine Learning studio UI.
 
-Here are the roles and responsibilities in this process:
+Here are the primary responsibilities in this process:
 
 - The **IT-operation team** is responsible for Steps 1, 2, and 3. This team prepares an AKS or Arc Kubernetes cluster, deploys the Machine Learning cluster extension, and attaches the Kubernetes cluster to the Machine Learning workspace. In addition to these essential compute setup steps, the IT-operation team also uses familiar tools, such as the Azure CLI or kubectl, to complete the following tasks for the Data-science team:
 
@@ -61,13 +61,13 @@ With Arc Kubernetes cluster, you can build, train, and deploy models in any on-p
 
 | Usage pattern | Location of data | Goals and requirements | Scenario configuration |
 | --- | --- | --- | --- |
-| Train model in cloud, deploy model on-premises | Cloud | - Use cloud compute to support elastic compute needs or special hardware such as a GPU. <br> - Model deployment must be on-premises for security, compliance, or latency requirements. | - Azure-managed compute in cloud <br> - Customer-managed Kubernetes on-premises <br> - Fully automated machine learning operations in hybrid mode, including training and model deployment steps that transition seamlessly between cloud and on-premises <br> - Repeatable, all assets properly tracked, model retrained as needed, deployment updated automatically after retraining |
-| Train model on-premises and cloud, deploy to both cloud and on-premises | Cloud | - Combine on-premises investments with cloud scalability. <br> - Bring cloud and on-premises compute under single pane of glass. <br> - Access single source of truth for data in cloud and replicate on-premises (lazily on usage or proactively). <br> - Enable cloud compute primary usage when on-premises resources aren't available (in use or in maintenance) or don't meet specific hardware requirements (GPU). | - Azure-managed compute in cloud. br> - Customer-managed Kubernetes on-premises <br> - Fully automated machine learning operations in hybrid mode, including training and model deployment steps that transition seamlessly between cloud and on-premises <br> - Repeatable, all assets properly tracked, model retrained as needed, deployment updated automatically after retraining |
-| Train model on-premises, deploy model in cloud | On-premises | - Store data on-premises to meet data-residency requirements. <br> - Deploy model in the cloud for global-service access or to enable compute elasticity for scale and throughput. | - Azure-managed compute in cloud <br> - Customer-managed Kubernetes on-premises <br> - Fully automated machine learning operations in hybrid mode, including training and model deployment steps that transition seamlessly between cloud and on-premises <br> - Repeatable, all assets properly tracked, model retrained as needed, deployment updated automatically after retraining |
-| Bring your own AKS in Azure | Cloud | - Gain more security and controls. <br> - Establish all private IP machine learning to prevent data exfiltration. | - AKS cluster behind an Azure virtual network <br> - Private endpoints in the same virtual network for Azure Machine Learning workspace and associated resources <br> Fully automated machine learning operations |
-| Full machine learning lifecycle on-premises | On-premises | Secure sensitive data or proprietary IP, such as machine learning models, code, and scripts. | - Outbound proxy server connection on-premises <br> - Azure ExpressRoute and Azure Arc private link to Azure resources <br> - Customer-managed Kubernetes on-premises <br> - Fully automated machine learning operations |
+| Train model in cloud, deploy model on-premises | Cloud | - _Use cloud compute to support elastic compute needs or special hardware such as a GPU._ <br> - _Model deployment must be on-premises for security, compliance, or latency requirements._ | - Azure-managed compute in cloud <br> - Customer-managed Kubernetes on-premises <br> - Fully automated machine learning operations in hybrid mode, including training and model deployment steps that transition seamlessly between cloud and on-premises <br> - Repeatable, all assets properly tracked, model retrained as needed, deployment updated automatically after retraining |
+| Train model on-premises and cloud, deploy to both cloud and on-premises | Cloud | - _Combine on-premises investments with cloud scalability._ <br> - _Bring cloud and on-premises compute under single pane of glass._ <br> - _Access single source of truth for data in cloud and replicate on-premises (lazily on usage or proactively)._ <br> - _Enable cloud compute primary usage when on-premises resources aren't available (in use or in maintenance) or don't meet specific hardware requirements (GPU)._ | - Azure-managed compute in cloud. br> - Customer-managed Kubernetes on-premises <br> - Fully automated machine learning operations in hybrid mode, including training and model deployment steps that transition seamlessly between cloud and on-premises <br> - Repeatable, all assets properly tracked, model retrained as needed, deployment updated automatically after retraining |
+| Train model on-premises, deploy model in cloud | On-premises | - _Store data on-premises to meet data-residency requirements._ <br> - _Deploy model in the cloud for global-service access or to enable compute elasticity for scale and throughput._ | - Azure-managed compute in cloud <br> - Customer-managed Kubernetes on-premises <br> - Fully automated machine learning operations in hybrid mode, including training and model deployment steps that transition seamlessly between cloud and on-premises <br> - Repeatable, all assets properly tracked, model retrained as needed, deployment updated automatically after retraining |
+| Bring your own AKS in Azure | Cloud | - _Gain more security and controls._ <br> - _Establish all private IP machine learning to prevent data exfiltration._ | - AKS cluster behind an Azure virtual network <br> - Private endpoints in the same virtual network for Azure Machine Learning workspace and associated resources <br> Fully automated machine learning operations |
+| Full machine learning lifecycle on-premises | On-premises | _Secure sensitive data or proprietary IP, such as machine learning models, code, and scripts._ | - Outbound proxy server connection on-premises <br> - Azure ExpressRoute and Azure Arc private link to Azure resources <br> - Customer-managed Kubernetes on-premises <br> - Fully automated machine learning operations |
 
-### Limitations for a Kubernetes compute
+### Limitations for Kubernetes compute target
 
 A `KubernetesCompute` target in Azure Machine Learning workloads (training and model inference) has the following limitations:
 
@@ -103,20 +103,20 @@ In consideration of these differences, and the overall Machine Learning evolutio
 
 For more information, explore the following articles:
 
-- [Kubernetes version and region availability](./reference-kubernetes.md#supported-kubernetes-version-and-region)
-- [Custom data storage](./reference-kubernetes.md#azure-machine-learning-jobs-connect-with-custom-data-storage)
+- [Review supported Kubernetes versions and regions](./reference-kubernetes.md#supported-kubernetes-version-and-region)
+- [Connect Machine Learning jobs with custom data storage](./reference-kubernetes.md#azure-machine-learning-jobs-connect-with-custom-data-storage)
 
 ## Machine learning examples
 
-Machine learning examples are available in the [Azure Machine Learning (https://github.com/Azure/azureml-examples.git)](https://github.com/Azure/azureml-examples) repository on GitHub. In any example, replace the compute target name with your Kubernetes compute target, and run the sample.
+Machine learning examples are available in the [Azure Machine Learning (azureml-examples)](https://github.com/Azure/azureml-examples) repository on GitHub. In any example, replace the compute target name with your Kubernetes compute target, and run the sample.
 
 Here are several options:
 
-- Training job samples with the CLI v2: [https://github.com/Azure/azureml-examples/tree/main/cli/jobs](https://github.com/Azure/azureml-examples/tree/main/cli/jobs)
-- Model deployment with online endpoint samples and the CLI v2: [https://github.com/Azure/azureml-examples/tree/main/cli/endpoints/online/kubernetes](https://github.com/Azure/azureml-examples/tree/main/cli/endpoints/online/kubernetes)
-- Batch endpoint samples with the CLI v2: [https://github.com/Azure/azureml-examples/tree/main/cli/endpoints/batch](https://github.com/Azure/azureml-examples/tree/main/cli/endpoints/batch)
-- Training job samples with the SDK v2: [https://github.com/Azure/azureml-examples/tree/main/sdk/python/jobs](https://github.com/Azure/azureml-examples/tree/main/sdk/python/jobs)
-- Model deployment with online endpoint samples and the SDK v2: [https://github.com/Azure/azureml-examples/tree/main/sdk/python/endpoints/online/kubernetes](https://github.com/Azure/azureml-examples/tree/main/sdk/python/endpoints/online/kubernetes)
+- [Training job samples with the CLI v2](https://github.com/Azure/azureml-examples/tree/main/cli/jobs)
+- [Training job samples with the SDK v2](https://github.com/Azure/azureml-examples/tree/main/sdk/python/jobs)
+- [Model deployment with online endpoint samples and the CLI v2](https://github.com/Azure/azureml-examples/tree/main/cli/endpoints/online/kubernetes)
+- [Model deployment with online endpoint samples and the SDK v2](https://github.com/Azure/azureml-examples/tree/main/sdk/python/endpoints/online/kubernetes)
+- [Batch endpoint samples with the CLI v2](https://github.com/Azure/azureml-examples/tree/main/cli/endpoints/batch)
 
 ## Related content
 
