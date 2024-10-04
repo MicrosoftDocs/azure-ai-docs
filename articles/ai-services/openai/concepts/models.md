@@ -196,11 +196,9 @@ You can also use the OpenAI text to speech voices via Azure AI Speech. To learn 
 
 [!INCLUDE [Standard Models](../includes/model-matrix/standard-models.md)]
 
-This table doesn't include [global standard](../how-to/deployment-types.md) model deployment regional availability for GPT-4o, or fine-tuning regional availability information.  Consult the dedicated [global standard deployment section](#global-standard-model-availability) and the [fine-tuning section](#fine-tuning-models) for this information.
+This table doesn't include fine-tuning regional availability information.  Consult the  the [fine-tuning section](#fine-tuning-models) for this information.
 
-### Standard and global standard deployment model quota
-
-[!INCLUDE [Quota](../includes/model-matrix/quota.md)]
+For information on default quota, refer to the [quota and limits article](../quotas-limits.md).
 
 ### Provisioned deployment model availability
 
@@ -209,126 +207,19 @@ This table doesn't include [global standard](../how-to/deployment-types.md) mode
 > [!NOTE]
 > The provisioned version of `gpt-4` **Version:** `turbo-2024-04-09` is currently limited to text only.
 
-### How do I get access to Provisioned?
-
-You need to speak with your Microsoft sales/account team to acquire provisioned throughput. If you don't have a sales/account team, unfortunately at this time, you cannot purchase provisioned throughput.
-
 For more information on Provisioned deployments, see our [Provisioned guidance](./provisioned-throughput.md).
 
 ### Global standard model availability
 
-`gpt-4o` **Version:** `2024-08-06`
+[!INCLUDE [Standard Global](../includes/model-matrix/standard-global.md)]
 
-**Supported regions:**
-- eastus            
-- eastus2           
-- northcentralus    
-- southcentralus    
-- swedencentral     
-- westus            
-- westus3           
+### Global provisioned managed model availability
 
-`gpt-4o` **Version:** `2024-05-13`  
-
-**Supported regions:**
-
-- australiaeast     
-- brazilsouth       
-- canadaeast        
-- eastus            
-- eastus2           
-- francecentral     
-- germanywestcentral
-- japaneast         
-- koreacentral      
-- northcentralus    
-- norwayeast        
-- polandcentral
-- spaincentral     
-- southafricanorth  
-- southcentralus    
-- southindia        
-- swedencentral     
-- switzerlandnorth  
-- uksouth           
-- westeurope        
-- westus            
-- westus3           
-
-`gpt-4o-mini` **Version:** `2024-07-18`  
-
-**Supported regions:**
-
-- australiaeast     
-- brazilsouth       
-- canadaeast        
-- eastus            
-- eastus2           
-- francecentral     
-- germanywestcentral
-- japaneast         
-- koreacentral      
-- northcentralus    
-- norwayeast        
-- polandcentral
-- spaincentral     
-- southafricanorth  
-- southcentralus    
-- southindia        
-- swedencentral     
-- switzerlandnorth  
-- uksouth           
-- westeurope        
-- westus            
-- westus3           
-
-`gpt-4` **Version:** `turbo-2024-04-09`
-
-- australiaeast     
-- brazilsouth       
-- canadaeast        
-- eastus            
-- eastus2           
-- francecentral     
-- germanywestcentral
-- japaneast         
-- koreacentral      
-- northcentralus    
-- norwayeast        
-- polandcentral
-- spaincentral     
-- southafricanorth  
-- southcentralus    
-- southindia        
-- swedencentral     
-- switzerlandnorth  
-- uksouth           
-- westeurope        
-- westus            
-- westus3           
+[!INCLUDE [Provisioned Managed Global](../includes/model-matrix/provisioned-global.md)]
 
 ### Global batch model availability
 
-### Region and model support
-
-The following models support global batch:
-
-| Model | Version | Input format |
-|---|---|---|
-|`gpt-4o` | 2024-08-06 |text + image |
-|`gpt-4o-mini`| 2024-07-18 | text + image |
-|`gpt-4o` | 2024-05-13 |text + image |
-|`gpt-4` | turbo-2024-04-09 | text |
-|`gpt-4` | 0613 | text |
-| `gpt-35-turbo` | 0125 | text |
-| `gpt-35-turbo` | 1106 | text |
-| `gpt-35-turbo` | 0613 | text |
-
-Global batch is currently supported in the following regions:
-
-- East US
-- West US
-- Sweden Central
+[!INCLUDE [Global batch](../includes/model-matrix/global-batch.md)]
 
 ### GPT-4 and GPT-4 Turbo model availability
 
