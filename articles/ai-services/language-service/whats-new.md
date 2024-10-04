@@ -20,8 +20,8 @@ Azure AI Language is updated on an ongoing basis. To stay up-to-date with recent
 * Custom Summarization has been discontinued and is no longer available in the Studio and documentation.
 
 ## August 2024
-* [CLU utterance limit in a project](/conversational-language-understanding/service-limits#data-limits.md) increased from 25,000 to 50,000.
-* [CLU new version of training configuration, version 2024-08-01-preview, is available now](/conversational-language-understanding/concepts/best-practices#address-out-of-domain-utterances.md), which improves the quality of intent identification for out of domain utterances.
+* [CLU utterance limit in a project](conversational-language-understanding/service-limits#data-limits.md) increased from 25,000 to 50,000.
+* [CLU new version of training configuration, version 2024-08-01-preview, is available now](conversational-language-understanding/concepts/best-practices#address-out-of-domain-utterances.md), which improves the quality of intent identification for out of domain utterances.
 
 ## July 2024
 
