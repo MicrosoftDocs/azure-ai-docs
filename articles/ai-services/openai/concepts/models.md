@@ -53,7 +53,7 @@ The `max_tokens` parameter has been deprecated and replaced with the new `max_co
 
 ### Usage
 
-These models do not currently support the same set of parameters as other models that use the chat completions API they only support a limited subset. `o1-preview` and `o1-mini` models will not accept the system message role as part of the messages array.
+These models do not currently support the same set of parameters as other models that use the chat completions API. Only a very limited subset is currently supported, so common parameters like `temperature`, `top_p`, are not available and including them will cause your request to fail. `o1-preview` and `o1-mini` models will also not accept the system message role as part of the messages array.
 
 # [Python (Microsoft Entra ID)](#tab/python-secure)
 
