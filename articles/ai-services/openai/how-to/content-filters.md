@@ -49,17 +49,17 @@ The following steps show how to set up a customized content filtering configurat
 
 1. Go to Azure OpenAI Studio and navigate to the Content Filters tab (in the bottom left navigation, as designated by the red box below).
 
-    :::image type="content" source="../media/content-filters/studio.png" alt-text="Screenshot of the AI Studio UI with Content Filters highlighted" lightbox="../media/content-filters/studio.png":::
+    :::image type="content" source="../media/content-filters/studio.png" alt-text="Screenshot of the AI Studio UI with Content Filters highlighted." lightbox="../media/content-filters/studio.png":::
 
 1. Create a new customized content filtering configuration.
 
-   :::image type="content" source="../media/content-filters/create-filter.png" alt-text="Screenshot of the content filtering configuration UI with create selected" lightbox="../media/content-filters/create-filter.png":::
+   :::image type="content" source="../media/content-filters/create-filter.png" alt-text="Screenshot of the content filtering configuration UI with create selected." lightbox="../media/content-filters/create-filter.png":::
 
-    This leads to the following configuration view, where you can choose a name for the custom content filtering configuration. After entering a name, you can configure the **input filters** (user prompts) and **output filters** (model response). For the first four content categories there are three severity levels that are configurable: Low, medium, and high. You can use the sliders to set the severity threshold if you determine that your application or usage scenario requies different filtering than the default values. Some filters enable you to determine if the model should annotate and/or block. Selecting **Annotate** runs the respective model and return annotations via API response, but it will not filter content. In addition to annotations, you can also choose to filter content by switching the **Filter** toggle to on.
+    This leads to the following configuration view, where you can choose a name for the custom content filtering configuration. After entering a name, you can configure the **input filters** (user prompts) and **output filters** (model response). For the first four content categories there are three severity levels that are configurable: Low, medium, and high. You can use the sliders to set the severity threshold if you determine that your application or usage scenario requires different filtering than the default values. Some filters enable you to determine if the model should annotate and/or block. Selecting **Annotate** runs the respective model and return annotations via API response, but it will not filter content. In addition to annotations, you can also choose to filter content by switching the **Filter** toggle to on.
 
     If your use case was approved for modified content filters as outlined above, you receive full control over content filtering configurations and can choose to turn filtering partially or fully off.
 
-    :::image type="content" source="../media/content-filters/filter-view.png" alt-text="Screenshot of the content filtering configuration UI" lightbox="../media/content-filters/filter-view.png":::
+    :::image type="content" source="../media/content-filters/filter-view.png" alt-text="Screenshot of the content filtering configuration UI." lightbox="../media/content-filters/filter-view.png":::
 
 1. You can create multiple content filtering configurations as per your requirements.
 
