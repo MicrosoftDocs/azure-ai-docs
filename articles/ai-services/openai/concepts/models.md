@@ -211,15 +211,15 @@ For more information on Provisioned deployments, see our [Provisioned guidance](
 
 ### Global standard model availability
 
-[!INCLUDE [Provisioned](../includes/model-matrix/standard-global.md)]
+[!INCLUDE [Standard Global](../includes/model-matrix/standard-global.md)]
 
-### Global standard model availability
+### Global provisioned managed model availability
 
-[!INCLUDE [Provisioned](../includes/model-matrix/standard-global.md)]
+[!INCLUDE [Provisioned Managed Global](../includes/model-matrix/provisioned-global.md)]
 
 ### Global batch model availability
 
-[!INCLUDE [Provisioned](../includes/model-matrix/global-batch.md)]
+[!INCLUDE [Global batch](../includes/model-matrix/global-batch.md)]
 
 ### GPT-4 and GPT-4 Turbo model availability
 
