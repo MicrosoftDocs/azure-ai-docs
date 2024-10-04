@@ -115,9 +115,9 @@ The inference task associated with the mode.
 
 | Name | Type | Description |
 | --- | --- | --- |
-| audio\_generation | string | A text-to-audio generative model.  |
-| chat_completion | string | A model capable of taking chat-formatted messages and generate responses.    |
+| audio-generation | string | A text-to-audio generative model.  |
+| chat-completions | string | A model capable of taking chat-formatted messages and generate responses.    |
 | embeddings | string | A model capable of generating embeddings from a text.    |
-| image\_embeddings | string | A model capable of generating embeddings from an image and text description.  |
-| image\_generation | string | A model capable of generating images from an image and text description.  |
-| text\_generation | string | A text generation model.    |
+| image-embeddings | string | A model capable of generating embeddings from an image and text description.  |
+| image-generation | string | A model capable of generating images from an image and text description.  |
+| text-generation | string | A text generation model.    |
