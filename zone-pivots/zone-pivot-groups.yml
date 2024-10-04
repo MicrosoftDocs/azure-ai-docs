@@ -183,6 +183,8 @@ groups:
     title: Python
   - id: programming-language-javascript
     title: JavaScript
+  - id: programming-language-dotnet
+    title: C#
   - id: rest-api
     title: REST
 # Owner: mbullwin
