@@ -22,7 +22,7 @@ monikerRange: 'azureml-api-1'
 
 This article describes options for configuring training data and validation data splits along with cross-validation settings for your automated machine learning (automated ML) experiments. In Azure Machine Learning, when you use automated ML to build multiple machine learning models, each child run needs to validate the related model by calculating the quality metrics for that model, such as accuracy or area under the curve (AUC) weighted. These metrics are calculated by comparing the predictions made with each model with real labels from past observations in the validation data. Automated ML experiments perform model validation automatically.
 
-The following sections describe how you can customize validation settings with the [Azure Machine Learning Python SDK](/python/api/overview/azure/ml/). To learn more about how metrics are calculated based on validation type, see the [Set metric calculation for cross validation](#metric-calculation-for-cross-validation-in-machine-learning) section. If you're interesting in a low-code or no-code experience, see [Create your automated ML experiments in Azure Machine Learning studio](../how-to-use-automated-ml-for-ml-models.md#create-and-run-experiment). 
+The following sections describe how you can customize validation settings with the [Azure Machine Learning Python SDK](/python/api/overview/azure/ml/). To learn more about how metrics are calculated based on validation type, see the [Set metric calculation for cross validation](#set-metric-calculation-for-cross-validation) section. If you're interesting in a low-code or no-code experience, see [Create your automated ML experiments in Azure Machine Learning studio](../how-to-use-automated-ml-for-ml-models.md#create-and-run-experiment). 
 
 ## Prerequisites
 
@@ -43,7 +43,7 @@ The following sections describe how you can customize validation settings with t
 To set default data splits and cross-validation in machine learning, use the [AutoMLConfig](/python/api/azureml-train-automl-client/azureml.train.automl.automlconfig.automlconfig) Class object to define your experiment and training settings. In the following example, only the required parameters are defined. The `n_cross_validations` and `validation_data` parameters aren't included.
 
 > [!NOTE]
-> In forecasting scenarios, the default data splits and cross-validation aren't supported. 
+> In forecasting scenarios, default data splits and cross-validation aren't supported. 
 
 ```python
 data = "https://automlsamplenotebookdata.blob.core.windows.net/automl-sample-notebook-data/creditcard.csv"
