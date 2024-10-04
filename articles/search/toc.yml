@@ -104,6 +104,8 @@ items:
       href: tutorial-rag-build-solution-pipeline.md
     - name: Search and generate answers
       href: tutorial-rag-build-solution-query.md
+    - name: Maximize relevance
+      href: tutorial-rag-build-solution-maximize-relevance.md
   - name: Skills tutorials
     items:
     - name: C#
