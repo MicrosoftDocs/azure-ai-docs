@@ -168,8 +168,6 @@ items:
     items:
       - name: Text data
         href: ./concepts/use-your-data.md
-      - name: Image data (preview)
-        href: ./concepts/use-your-image-data.md
       - name: Use Azure OpenAI On Your Data securely
         href: ./how-to/use-your-data-securely.md
       - name: Deploy and use web apps
