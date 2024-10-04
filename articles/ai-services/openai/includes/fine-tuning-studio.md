@@ -217,7 +217,7 @@ You can import a training dataset from Azure Blob or another shared web location
 
 1. For the **File location**, provide the Azure Blob URL, the Azure Storage shared access signature (SAS), or other link to an accessible shared web location.
 
-1. Select **Upload file** to import the training dataset to the service.
+1. Select **Import** to import the training dataset to the service.
 
 After you select and upload the training dataset, select **Next** to continue.
 
@@ -266,7 +266,7 @@ You can import a validation dataset from Azure Blob or another shared web locati
 
 1. For the **File location**, provide the Azure Blob URL, the Azure Storage shared access signature (SAS), or other link to an accessible shared web location.
 
-1. Select **Upload file** to import the training dataset to the service.
+1. Select **Import** to import the training dataset to the service.
 
 After you select and upload the validation dataset, select **Next** to continue.
 
