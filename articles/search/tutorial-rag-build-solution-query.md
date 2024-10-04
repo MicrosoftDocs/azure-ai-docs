@@ -234,6 +234,9 @@ The NASA Earth book appears to showcase various locations on Earth captured thro
 (Source: page-43.pdf, page-147.pdf, page-153.pdf, page-39.pdf)
 ```
 
+> [!TIP]
+> If you're continuing on with the tutorial, remember to restore the prompt to its previous value (`You are an AI assistant that helps users learn from the information found in the source material`).
+
 Changing parameters and prompts affects the response from the LLM. As you explore on your own, keep the following tips in mind:
 
 - Raising the `top` value can exhaust available quota on the model. If there's no quota, an error message is returned or the model might return "I don't know".
