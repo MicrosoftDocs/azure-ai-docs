@@ -32,7 +32,7 @@ Customers who were already approved and have access to the model through the ear
 
 Support for the **o1 series** models was added in API version `2024-09-01-preview`.
 
-The `max_tokens` parameter has been deprecated and replaced with the new `max_completion_tokens` parameter. **o1 series** models will only work with the `max_completions_tokens` parameter.
+The `max_tokens` parameter has been deprecated and replaced with the new `max_completion_tokens` parameter. **o1 series** models will only work with the `max_completion_tokens` parameter.
 
 **Region availability**:
 

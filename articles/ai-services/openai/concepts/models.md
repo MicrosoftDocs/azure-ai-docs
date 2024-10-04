@@ -49,7 +49,79 @@ Once access has been granted, you will need to create a deployment for each mode
 
 Support for the **o1 series** models was added in API version `2024-09-01-preview`.
 
-The `max_tokens` parameter has been deprecated and replaced with the new `max_completion_tokens` parameter. **o1 series** models will only work with the `max_completions_tokens` parameter. 
+The `max_tokens` parameter has been deprecated and replaced with the new `max_completion_tokens` parameter. **o1 series** models will only work with the `max_completion_tokens` parameter.
+
+### Usage
+
+These models do not currently support the same set of parameters as other models that use the chat completions API. Only a very limited subset is currently supported, so common parameters like `temperature`, `top_p`, are not available and including them will cause your request to fail. `o1-preview` and `o1-mini` models will also not accept the system message role as part of the messages array.
+
+# [Python (Microsoft Entra ID)](#tab/python-secure)
+
+You may need to upgrade your version of the OpenAI Python library to take advantage of the new `max_completion_tokens` parameter.
+
+```cmd
+pip install openai --upgrade
+```
+
+If you are new to using Microsoft Entra ID for authentication see [How to configure Azure OpenAI Service with Microsoft Entra ID authentication](../how-to/managed-identity.md).
+
+```python
+from openai import AzureOpenAI
+from azure.identity import DefaultAzureCredential, get_bearer_token_provider
+
+token_provider = get_bearer_token_provider(
+    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
+)
+
+client = AzureOpenAI(
+  azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT"), 
+  azure_ad_token_provider=token_provider,
+  api_version="2024-09-01-preview"
+)
+
+response = client.chat.completions.create(
+    model="o1-preview-new", # replace with the model deployment name of your o1-preview, or o1-mini model
+    messages=[
+        {"role": "user", "content": "What steps should I think about when writing my first Python API?"},
+    ],
+    max_completion_tokens = 5000
+
+)
+
+print(response.model_dump_json(indent=2))
+```
+
+# [Python (key-based auth)](#tab/python)
+
+You may need to upgrade your version of the OpenAI Python library to take advantage of the new `max_completion_tokens` parameter.
+
+```cmd
+pip install openai --upgrade
+```
+
+```python
+
+from openai import AzureOpenAI
+
+client = AzureOpenAI(
+  azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT"), 
+  api_key=os.getenv("AZURE_OPENAI_API_KEY"),  
+  api_version="2024-09-01-preview"
+)
+
+response = client.chat.completions.create(
+    model="o1-preview-new", # replace with the model deployment name of your o1-preview, or o1-mini model
+    messages=[
+        {"role": "user", "content": "What steps should I think about when writing my first Python API?"},
+    ],
+    max_completion_tokens = 5000
+
+)
+
+print(response.model_dump_json(indent=2))
+```
+
+---
 
 ### Region availability
 
@@ -196,7 +268,7 @@ You can also use the OpenAI text to speech voices via Azure AI Speech. To learn 
 
 [!INCLUDE [Standard Models](../includes/model-matrix/standard-models.md)]
 
-This table doesn't include fine-tuning regional availability information.  Consult the  the [fine-tuning section](#fine-tuning-models) for this information.
+This table doesn't include fine-tuning regional availability information.  Consult the [fine-tuning section](#fine-tuning-models) for this information.
 
 For information on default quota, refer to the [quota and limits article](../quotas-limits.md).
 
