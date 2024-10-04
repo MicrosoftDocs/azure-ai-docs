@@ -1,5 +1,5 @@
 ---
-title: 'RAG Tutorial: Relevance tuning'
+title: 'RAG tutorial: Tune relevance'
 titleSuffix: Azure AI Search
 description: Learn how to use the relevance tuning capabilities to return high quality results for generative search.
 
@@ -16,7 +16,7 @@ ms.date: 10/05/2024
 
 In this tutorial, learn how to improve the relevance of search results used in RAG solutions. Relevance tuning can be an important factor in delivering a RAG solution that meets user expectations. In Azure AI Search, relevance tuning includes L2 semantic ranking and scoring profiles. 
 
-To implement some of these techniques, you revisit the index schema to add configurations for semantic ranking and scoring profiles. Other relevance tuning techniques can be applied to the queries themselves.
+To implement these capabilities, you revisit the index schema to add configurations for semantic ranking and scoring profiles. You then rerun the queries using the new constructs.
 
 In this tutorial, you modify the existing search index and queries to use:
 
@@ -24,7 +24,7 @@ In this tutorial, you modify the existing search index and queries to use:
 > - L2 semantic ranking
 > - Scoring profile for document boosting
 
-This tutorial  updates the search index created by the [indexing pipeline](tutorial-rag-build-solution-pipeline.md). Updates don't affect the existing content, so no rebuild is necessary and you don't need to rerun the indexer.
+This tutorial updates the search index created by the [indexing pipeline](tutorial-rag-build-solution-pipeline.md). Updates don't affect the existing content, so no rebuild is necessary and you don't need to rerun the indexer.
 
 > [!NOTE]
 > There are more relevance features in preview, including vector query weighting and setting minimum thresholds, but we omit them from this tutorial becaues they aren't yet available in the Azure SDK for Python.
@@ -122,7 +122,7 @@ In a previous tutorial, you [designed an index schema](tutorial-rag-build-soluti
 
 ## Update queries for semantic ranking and scoring profiles
 
-In a previous tutorial, you [ran queries](tutorial-rag-build-solution-query.md) that execute on the search engine, and pass the response and other information to an LLM for chat completion.
+In a previous tutorial, you [ran queries](tutorial-rag-build-solution-query.md) that execute on the search engine, passing the response and other information to an LLM for chat completion.
 
 This example modifies the query request to include the semantic configuration and scoring profile.
 
