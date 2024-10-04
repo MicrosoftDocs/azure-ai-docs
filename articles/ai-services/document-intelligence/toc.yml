@@ -32,7 +32,7 @@ items:
         href: sdk-overview-v3-0.md
       - name:  "SDK targets: REST API v2.1 (GA)"
         displayName: get started, installation, downloads, formRecognizerClientClient, form recognizer client, Azure AD, Azure Active Directory, identity, changelog, package, version,AzureKeyCredential, Azure key credential, key, endpoint
-        href: sdk-overview-v2-1.md
+        href: v2-1/sdk-overview.md
   - name: Language support
     items:
       - name: Document analysis models
@@ -63,7 +63,7 @@ items:
       href: quickstarts/get-started-sdks-rest-api.md
     - name: Sample Labeling tool
       displayName: tables, labels, ocr, bounding box
-      href: quickstarts/try-sample-label-tool.md
+      href: v2-1/try-sample-label-tool.md
 - name: How-to guides
   items:
   - name: Use Document Intelligence models
@@ -110,13 +110,13 @@ items:
       href: how-to-guides/compose-custom-models.md
     - name: Deploy the sample-labeling tool
       displayName: FOTT, migration, containers, docker
-      href: deploy-label-tool.md
+      href: v2-1/deploy-label-tool.md
     - name: Train a custom model with the sample-labeling tool
       displayName: FOTT, migration, containers, docker
-      href: label-tool.md
+      href: v2-1/label-tool.md
     - name: Use table tags to train your custom model
       displayName: FOTT, migration, dynamic
-      href: supervised-table-tags.md
+      href: v2-1/supervised-table-tags.md
   - name: Back up and recover models
     displayName: disaster, recovery, region, copy, modelId, model ID
     href: disaster-recovery.md
@@ -158,10 +158,10 @@ items:
     href: concept-model-overview.md
   - name: Accuracy and confidence scores
     displayName: tables, labels, ocr, performance, signatures
-    href: concept-accuracy-confidence.md
+    href: v4-concept/accuracy-confidence.md
   - name: Analyze document API response
     displayName: words, lines, pages, bounding regions, documents
-    href: concept-analyze-document-response.md
+    href: v4-concept/analyze-document-response.md
   - name: Read model
     displayName: text
     href: concept-read.md
@@ -182,28 +182,28 @@ items:
     href: concept-retrieval-augmented-generation.md
   - name: 🆕Custom generative model
     displayName: ai studio, neural, template, custom
-    href: concept-custom-generative.md
+    href: v4-model-feature/custom-generative-extraction.md
   - name: 🆕 Batch documents analysis 
     displayName: analyze, azureBlobFileListSource, azureBlobSource, azureBlobFileListSource, resultContainerUrl, resultPrefix, overwriteExisting
     href: concept-batch-analysis.md
   - name: 🆕 Pay stub model
     displayName: compensation, earnings, deductions, taxes, benefits, employer, employee
-    href: concept-pay-stub.md
+    href: v4-model-feature/pay-stub.md
   - name: 🆕 Bank check model
     displayName: routing, account, number, amount, payee, issuer, date
-    href: concept-bank-check.md
+    href: v4-model-feature/bank-check.md
   - name: 🆕 Bank statement model
     displayName: transactions, deposits, withdrawals, balance, account, number, date
-    href: concept-bank-statement.md
+    href: v4-model-feature/bank-statement.md
   - name: Credit card model
     displayName: debit
-    href: concept-credit-card.md
+    href: v4-model-feature/credit-card.md
   - name: US mortgage documents
     displayName: 1003, 1008, closing, disclosure
     href: concept-mortgage-documents.md
   - name: Marriage certificate model
     displayName: license
-    href: concept-marriage-certificate.md
+    href: v4-model-feature/marriage-certificate.md
   - name: Contract model
     displayName: contracts, agreements, legal, terms, conditions, clauses, parties, dates, signatures
     href: concept-contract.md
@@ -235,7 +235,7 @@ items:
       href:  concept-composed-models.md
     - name: 🆕 Incremental classifier
       displayName: custom, classification, training
-      href: concept-incremental-classifier.md  
+      href: v4-concept/incremental-classifier.md  
     - name: Custom template model
       displayName: structure, selection, labels, tables, tabular, train, template, neural, build mode, signatures, custom
       href: concept-custom-template.md

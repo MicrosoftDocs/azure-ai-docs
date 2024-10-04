@@ -5,10 +5,8 @@ description: How to use the Document Intelligence sample tool to analyze documen
 author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
-ms.custom:
-  - ignite-2023
 ms.topic: how-to
-ms.date: 07/11/2024
+ms.date: 10/03/2024
 ms.author: lajanuar
 monikerRange: 'doc-intel-2.1.0'
 ---
@@ -19,14 +17,14 @@ monikerRange: 'doc-intel-2.1.0'
 <!-- markdownlint-disable MD034 -->
 # Train a custom model using the Sample Labeling tool
 
-**This content applies to:** ![Document Intelligence v2.1 checkmark](media/yes-icon.png) **v2.1**.
+**This content applies to:** ![Document Intelligence v2.1 checkmark](../media/yes-icon.png) **v2.1**.
 
 >[!TIP]
 >
 > * For an enhanced experience and advanced model quality, try the [Document Intelligence v3.0 Studio](https://formrecognizer.appliedai.azure.com/studio).
 > * The v3.0 Studio supports any model trained with v2.1 labeled data.
-> * You can refer to the [API migration guide](v3-1-migration-guide.md) for detailed information about migrating from v2.1 to v3.0.
-> * *See* our [**REST API**](quickstarts/get-started-sdks-rest-api.md?view=doc-intel-3.0.0&preserve-view=true) or [**C#**](quickstarts/get-started-sdks-rest-api.md?view=doc-intel-3.0.0&preserve-view=true), [**Java**](quickstarts/get-started-sdks-rest-api.md?view=doc-intel-3.0.0&preserve-view=true), [**JavaScript**](quickstarts/get-started-sdks-rest-api.md?view=doc-intel-3.0.0&preserve-view=true), or [Python](quickstarts/get-started-sdks-rest-api.md?view=doc-intel-3.0.0&preserve-view=true) SDK quickstarts to get started with the V3.0.
+> * You can refer to the [API migration guide](../v3-1-migration-guide.md) for detailed information about migrating from v2.1 to v3.0.
+> * *See* our [**REST API**](../quickstarts/get-started-sdks-rest-api.md?view=doc-intel-3.0.0&preserve-view=true) or [**C#**](../quickstarts/get-started-sdks-rest-api.md?view=doc-intel-3.0.0&preserve-view=true), [**Java**](../quickstarts/get-started-sdks-rest-api.md?view=doc-intel-3.0.0&preserve-view=true), [**JavaScript**](../quickstarts/get-started-sdks-rest-api.md?view=doc-intel-3.0.0&preserve-view=true), or [Python](../quickstarts/get-started-sdks-rest-api.md?view=doc-intel-3.0.0&preserve-view=true) SDK quickstarts to get started with the V3.0.
 
 In this article, you use the Document Intelligence REST API with the Sample Labeling tool to train a custom model with manually labeled data.
 
@@ -44,7 +42,7 @@ In this article, you use the Document Intelligence REST API with the Sample Labe
 
 ## Create a Document Intelligence resource
 
-[!INCLUDE [create resource](includes/create-resource.md)]
+[!INCLUDE [create resource](../includes/create-resource.md)]
 
 ## Try it out
 
@@ -59,7 +57,7 @@ You need an Azure subscription ([create one for free](https://azure.microsoft.co
 
 > [!NOTE]
 >
-> If your storage data is behind a VNet or firewall, you must deploy the **Document Intelligence Sample Labeling tool** behind your VNet or firewall and grant access by creating a [system-assigned managed identity](managed-identities.md "Azure managed identity is a service principal that creates a Microsoft Entra identity and specific permissions for Azure managed resources").
+> If your storage data is behind a VNet or firewall, you must deploy the **Document Intelligence Sample Labeling tool** behind your VNet or firewall and grant access by creating a [system-assigned managed identity](../managed-identities.md "Azure managed identity is a service principal that creates a Microsoft Entra identity and specific permissions for Azure managed resources").
 
 You use the Docker engine to run the Sample Labeling tool. Follow these steps to set up the Docker container. For a primer on Docker and container basics, see the [Docker overview](https://docs.docker.com/engine/docker-overview/).
 
@@ -112,7 +110,7 @@ Enable CORS on your storage account. Select your storage account in the Azure po
 * Max age = 200
 
 > [!div class="mx-imgBorder"]
-> ![CORS setup in the Azure portal](media/label-tool/cors-setup.png)
+> ![CORS setup in the Azure portal](../media/label-tool/cors-setup.png)
 
 ## Connect to the Sample Labeling tool
 
@@ -126,11 +124,11 @@ Fill in the fields with the following values:
 
 * **Display Name** - The connection display name.
 * **Description** - Your project description.
-* **SAS URL** - The shared access signature (SAS) URL of your Azure Blob Storage container. [!INCLUDE [get SAS URL](includes/sas-instructions.md)]
+* **SAS URL** - The shared access signature (SAS) URL of your Azure Blob Storage container. [!INCLUDE [get SAS URL](../includes/sas-instructions.md)]
 
-   :::image type="content" source="media/quickstarts/get-sas-url.png" alt-text="SAS URL retrieval":::
+   :::image type="content" source="../media/quickstarts/get-sas-url.png" alt-text="SAS URL retrieval":::
 
-:::image type="content" source="media/label-tool/connections.png" alt-text="Connection settings of Sample Labeling tool.":::
+:::image type="content" source="../media/label-tool/connections.png" alt-text="Connection settings of Sample Labeling tool.":::
 
 ## Create a new project
 
@@ -144,7 +142,7 @@ In the Sample Labeling tool, projects store your configurations and settings. Cr
 * **Key** - Your Document Intelligence key.
 * **Description** - Optional - Project description
 
-:::image type="content" source="media/label-tool/new-project.png" alt-text="New project page on Sample Labeling tool.":::
+:::image type="content" source="../media/label-tool/new-project.png" alt-text="New project page on Sample Labeling tool.":::
 
 ## Label your forms
 
@@ -160,7 +158,7 @@ Select **Run Layout on unvisited documents** on the left pane to get the text an
 
 The labeling tool also shows which tables were automatically extracted. To see extracted tables, select the table/grid icon on the left hand of the document. In this quickstart, because the table content is automatically extracted, we don't label the table content, but rather rely on the automated extraction.
 
-:::image type="content" source="media/label-tool/table-extraction.png" alt-text="Table visualization in Sample Labeling tool.":::
+:::image type="content" source="../media/label-tool/table-extraction.png" alt-text="Table visualization in Sample Labeling tool.":::
 
 In v2.1, if your training document doesn't have a value filled in, you can draw a box where the value should be. Use **Draw region** on the upper left corner of the window to make the region taggable.
 
@@ -171,7 +169,7 @@ Next, you create tags (labels) and apply them to the text elements that you want
 1. First, use the tags editor pane to create the tags you'd like to identify.
    1. Select **+** to create a new tag.
    1. Enter the tag name.
-   1. Press Enter to save the tag.
+   1. Select Enter to save the tag.
 1. In the main editor, select words from the highlighted text elements or a region you drew in.
 1. Select the tag you want to apply, or press the corresponding keyboard key. The number keys are assigned as hotkeys for the first 10 tags. You can reorder your tags using the up and down arrow icons in the tag editor pane.
 1. Follow these steps to label at least five of your forms.
@@ -188,14 +186,14 @@ Next, you create tags (labels) and apply them to the text elements that you want
     > * To remove an applied tag without deleting the tag itself, select the tagged rectangle on the document view and press the delete key.
     >
 
-:::image type="content" source="media/label-tool/main-editor-2-1.png" alt-text="Main editor window of Sample Labeling tool.":::
+:::image type="content" source="../media/label-tool/main-editor-2-1.png" alt-text="Main editor window of Sample Labeling tool.":::
 
 ### Specify tag value types
 
 You can set the expected data type for each tag. Open the context menu to the right of a tag and select a type from the menu. This feature allows the detection algorithm to make assumptions that improve the text-detection accuracy. It also ensures that the detected values are returned in a standardized format in the final JSON output. Value type information is saved in the **fields.json** file in the same path as your label files.
 
 > [!div class="mx-imgBorder"]
-> ![Value type selection with Sample Labeling tool](media/whats-new/value-type.png)
+> ![Value type selection with Sample Labeling tool](../media/whats-new/value-type.png)
 
 The following value types and variations are currently supported:
 
@@ -247,11 +245,11 @@ The following value types and variations are currently supported:
 
 At times, your data might lend itself better to being labeled as a table rather than key-value pairs. In this case, you can create a table tag by selecting **Add a new table tag**. Specify whether the table has a fixed number of rows or variable number of rows depending on the document and define the schema.
 
-:::image type="content" source="media/label-tool/table-tag.png" alt-text="Configuring a table tag.":::
+:::image type="content" source="../media/label-tool/table-tag.png" alt-text="Configuring a table tag.":::
 
 Once you define your table tag, tag the cell values.
 
-:::image type="content" source="media/table-labeling.png" alt-text="Labeling a table.":::
+:::image type="content" source="../media/table-labeling.png" alt-text="Labeling a table.":::
 
 ## Train a custom model
 
@@ -261,8 +259,7 @@ To open the Training page, choose the Train icon on the left pane. Then select t
 * **Average Accuracy** - The model's average accuracy. You can improve model accuracy by adding and labeling more forms, then retraining to create a new model. We recommend starting by labeling five forms and adding more forms as needed.
 * The list of tags, and the estimated accuracy per tag.
 
-
-:::image type="content" source="media/label-tool/train-screen.png" alt-text="Training view.":::
+:::image type="content" source="../media/label-tool/train-screen.png" alt-text="Training view.":::
 
 After training finishes, examine the **Average Accuracy** value. If it's low, you should add more input documents and repeat the labeling steps. The documents you already labeled remain in the project index.
 
@@ -278,13 +275,13 @@ With Model Compose, you can compose up to 200 models to a single model ID. When 
 * Choose the **Compose button**. In the pop-up, name your new composed model and select **Compose**.
 * When the operation completes, your newly composed model should appear in the list.
 
-:::image type="content" source="media/label-tool/model-compose.png" alt-text="Model compose UX view.":::
+:::image type="content" source="../media/label-tool/model-compose.png" alt-text="Model compose UX view.":::
 
 ## Analyze a form
 
 To test your model, select the `Analyze` icon from the navigation bar. Select source *Local file*. Browse for a file and select a file from the sample dataset that you unzipped in the test folder. Then choose the **Run analysis** button to get key/value pairs, text, and tables predictions for the form. The tool applies tags in bounding boxes and reports the confidence of each tag.
 
-:::image type="content" source="media/analyze.png" alt-text="Screenshot of analyze-a-custom-form window":::
+:::image type="content" source="../media/analyze.png" alt-text="Screenshot of analyze-a-custom-form window":::
 
 > [!TIP]
 > You can also run the `Analyze` API with a REST call. To learn how to do this, see [Train with labels using Python](https://github.com/Azure-Samples/cognitive-services-quickstart-code/blob/master/python/FormRecognizer/rest/python-labeled-data.md).
@@ -318,5 +315,5 @@ In this quickstart, you learned how to use the Document Intelligence Sample Labe
 > [!div class="nextstepaction"]
 > [Train with labels using Python](https://github.com/Azure-Samples/cognitive-services-quickstart-code/blob/master/python/FormRecognizer/rest/python-labeled-data.md)
 
-* [What is Document Intelligence?](overview.md)
-* [Document Intelligence quickstart](~/articles/ai-services/document-intelligence/how-to-guides/use-sdk-rest-api.md?view=doc-intel-2.1.0&preserve-view=true)
+* [What is Document Intelligence?](../overview.md)
+* [Document Intelligence quickstart](../how-to-guides/use-sdk-rest-api.md?view=doc-intel-2.1.0&preserve-view=true)

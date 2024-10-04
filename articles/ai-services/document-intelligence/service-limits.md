@@ -6,8 +6,6 @@ description: Quick reference, detailed description, and best practices for worki
 author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
-ms.custom:
-  - ignite-2023
 ms.topic: conceptual
 ms.date: 09/26/2024
 ms.author: lajanuar

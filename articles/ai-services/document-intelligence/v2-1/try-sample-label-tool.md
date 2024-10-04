@@ -5,10 +5,8 @@ description: In this quickstart, learn to use the Document Intelligence Sample L
 author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
-ms.custom:
-  - ignite-2023
 ms.topic: quickstart
-ms.date: 03/28/2024
+ms.date: 10/03/2024
 ms.author: lajanuar
 monikerRange: 'doc-intel-2.1.0'
 ---
@@ -27,7 +25,7 @@ monikerRange: 'doc-intel-2.1.0'
 > * For an enhanced experience and advanced model quality, try the [Document Intelligence v3.0 Studio](https://formrecognizer.appliedai.azure.com/studio).
 > * The v3.0 Studio supports any model trained with v2.1 labeled data.
 > * You can refer to the API migration guide for detailed information about migrating from v2.1 to v3.0.
-> * *See* our [**REST API**](get-started-sdks-rest-api.md?view=doc-intel-3.0.0&preserve-view=true) or [**C#**](get-started-sdks-rest-api.md?view=doc-intel-3.0.0&preserve-view=true), [**Java**](get-started-sdks-rest-api.md?view=doc-intel-3.0.0&preserve-view=true), [**JavaScript**](get-started-sdks-rest-api.md?view=doc-intel-3.0.0&preserve-view=true), or [Python](get-started-sdks-rest-api.md?view=doc-intel-3.0.0&preserve-view=true) SDK quickstarts to get started with the v3.0 version.
+> * *See* our [**REST API**](../quickstarts/get-started-sdks-rest-api.md?view=doc-intel-3.0.0&preserve-view=true) or [**C#**](../quickstarts/get-started-sdks-rest-api.md?view=doc-intel-3.0.0&preserve-view=true), [**Java**](../quickstarts/get-started-sdks-rest-api.md?view=doc-intel-3.0.0&preserve-view=true), [**JavaScript**](../quickstarts/get-started-sdks-rest-api.md?view=doc-intel-3.0.0&preserve-view=true), or [Python](../quickstarts/get-started-sdks-rest-api.md?view=doc-intel-3.0.0&preserve-view=true) SDK quickstarts to get started with the v3.0 version.
 
 The Azure AI Document Intelligence Sample Labeling tool is an open source tool that enables you to test the latest features of Document Intelligence and Optical Character Recognition (OCR) services:
 
@@ -119,7 +117,7 @@ Azure the Document Intelligence Layout API extracts text, tables, selection mark
 
 1. Select **Run Layout**. The Document Intelligence Sample Labeling tool calls the `Analyze Layout API` and analyzes the document.
 
-    :::image type="content" source="../media/fott-layout.png" alt-text="Screenshot of layout dropdown menu.":::
+    :::image type="content" source="../media/fott-layout.png" alt-text="Screenshot of the layout dropdown menu.":::
 
 1. View the results - see the highlighted text extracted, selection marks detected, and tables detected.
 
@@ -136,7 +134,7 @@ Train a custom model to analyze and extract data from forms and documents specif
 
 ### Prerequisites for training a custom form model
 
-* An Azure Storage blob container that contains a set of training data. Make sure all the training documents are of the same format. If you have forms in multiple formats, organize them into subfolders based on common format. For this project, you can use our [sample data set](https://github.com/Azure-Samples/cognitive-services-REST-api-samples/blob/master/curl/form-recognizer/sample_data_without_labels.zip). 
+* An Azure Storage blob container that contains a set of training data. Make sure all the training documents are of the same format. If you have forms in multiple formats, organize them into subfolders based on common format. For this project, you can use our [sample data set](https://github.com/Azure-Samples/cognitive-services-REST-api-samples/blob/master/curl/form-recognizer/sample_data_without_labels.zip).
 
 * If you don't know how to create an Azure storage account with a container, follow the [Azure Storage quickstart for Azure portal](/azure/storage/blobs/storage-quickstart-blobs-portal).
 
@@ -187,7 +185,7 @@ Configure the **Project Settings** fields with the following values:
 
 1. **Source connection**. The Sample Labeling tool connects to a source (your original uploaded forms) and a target (created labels and output data). Connections can be set up and shared across projects. They use an extensible provider model, so you can easily add new source/target providers.
 
-    * Create a new connection, select the **Add Connection** button. Complete the fields with the following values:
+    * **Create a new connection**. Select the **Add Connection** button. Complete the fields with the following values:
 
     > [!div class="checklist"]
     >
@@ -265,10 +263,10 @@ Use the tags editor pane to create a new tag you'd like to identify:
 
 Choose the Train icon on the left pane and open the Training page. Then select the **Train** button to begin training the model. Once the training process completes, you see the following information:
 
-* **Model ID** - The ID of the model that was created and trained. Each training call creates a new model with its own ID. Copy this string to a secure location; you need it if you want to do prediction calls through the [REST API](./get-started-sdks-rest-api.md?pivots=programming-language-rest-api) or [client library](./get-started-sdks-rest-api.md).
+* **Model ID** - The ID of the model that was created and trained. Each training call creates a new model with its own ID. Copy this string to a secure location; you need it if you want to do prediction calls through the [REST API](../quickstarts/get-started-sdks-rest-api.md?pivots=programming-language-rest-api) or [client library](../quickstarts/get-started-sdks-rest-api.md).
 
 * **Average Accuracy** - The model's average accuracy. You can improve model accuracy by labeling more forms and retraining to create a new model. We recommend starting by labeling five forms analyzing and testing the results and then if needed adding more forms as needed.
-* The list of tags, and the estimated accuracy per tag. For more information, _see_ [Interpret and improve accuracy and confidence](../concept-accuracy-confidence.md).
+* The list of tags, and the estimated accuracy per tag. For more information, *see* [Interpret and improve accuracy and confidence](../v4-concept/accuracy-confidence.md).
 
     :::image type="content" source="../media/label-tool/custom-3.jpg" alt-text="Training view tool.":::
 

@@ -16,6 +16,7 @@ ms.custom:
 <!-- markdownlint-disable MD036 -->
 <!-- markdownlint-disable MD001 -->
 <!-- markdownlint-disable MD051 -->
+<!-- markdownlint-disable MD049 -->
 
 # What's new in Azure AI Document Intelligence
 
@@ -81,7 +82,7 @@ The Document Intelligence [**2024-07-31-preview**](/rest/api/aiservices/document
 
 * [Layout model](concept-layout.md) now supports [figure detection](concept-layout.md#figures) and [hierarchical document structure analysis (sections and subsections)](concept-layout.md#sections). The AI quality of reading order and logical roles detection is also improved.
 * [Custom extraction models](concept-custom.md#custom-extraction-models)
-  * Custom extraction models now support cell, row, and table level confidence scores. Learn more about [table, row, and cell confidence](concept-accuracy-confidence.md#table-row-and-cell-confidence).
+  * Custom extraction models now support cell, row, and table level confidence scores. Learn more about [table, row, and cell confidence](v4-concept/accuracy-confidence.md#table-row-and-cell-confidence).
   * Custom extraction models have AI quality improvements for field extraction.
   * Custom template extraction model now supports extracting overlapping fields. Learn more about [overlapping fields and how you use them](concept-custom-neural.md#overlapping-fields).
 * [Custom classification model](concept-custom.md#custom-classification-model)
@@ -622,7 +623,6 @@ The v3.1 API introduces new and updated capabilities:
   * [**custom-neural**](concept-custom-neural.md). Improved accuracy for table detection and extraction.
 
 ---
-
 
 ## June 2022
 

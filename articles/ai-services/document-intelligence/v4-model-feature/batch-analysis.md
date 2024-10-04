@@ -5,14 +5,14 @@ description: Learn about the Document Intelligence Batch analysis API preview
 author: laujan
 ms.service: azure-ai-document-intelligence
 ms.topic: conceptual
-ms.date: 08/01/2024
+ms.date: 10/03/2024
 ms.author: ginle
 monikerRange: '>=doc-intel-4.0.0'
 ---
 
 # Document Intelligence batch analysis (preview)
 
-[!INCLUDE [preview-version-notice](includes/preview-notice.md)]
+[!INCLUDE [preview-version-notice](../includes/preview-notice.md)]
 
 The batch analysis API allows you to bulk process multiple documents using one asynchronous request. Rather than having to submit documents individually and track multiple request IDs, you can analyze a collection of invoices, a series of loan documents, or a group of custom model training documents simultaneously.
 
@@ -22,13 +22,13 @@ The batch analysis API allows you to bulk process multiple documents using one a
 
 The following models support batch analysis:
 
-* [**Read**](concept-read.md). Extract text lines, words, detected languages, and handwritten style from forms and document.
+* [**Read**](../concept-read.md). Extract text lines, words, detected languages, and handwritten style from forms and document.
 
-* [**Layout**](concept-layout.md). Extract text, tables, selection marks, and structure information from forms and documents.
+* [**Layout**](../concept-layout.md). Extract text, tables, selection marks, and structure information from forms and documents.
 
-* [**Custom Template**](concept-custom-template.md). Train models to extract key-value pairs, selection marks, tables, signature fields, and regions from structured forms.
+* [**Custom Template**](../concept-custom-template.md). Train models to extract key-value pairs, selection marks, tables, signature fields, and regions from structured forms.
 
-* [**Custom Neural**](concept-custom-neural.md). Train models to extract specified data fields from structured, semi-structured, and unstructured documents.
+* [**Custom Neural**](../concept-custom-neural.md). Train models to extract specified data fields from structured, semi-structured, and unstructured documents.
 
 * **Custom Generative**. Train models to extract specified data from complex objects such as nested tables, abstractive/generative fields, and truly unstructured formats.
 
@@ -65,9 +65,9 @@ You can choose one of the following options to authorize access to your Document
 
 **✔️ Managed Identity**. A managed identity is a service principal that creates a Microsoft Entra identity and specific permissions for an Azure managed resource. Managed identities enable you to run your Document Intelligence application without having to embed credentials in your code. Managed identities are a safer way to grant access to storage data and replace the requirement for you to include shared access signature tokens (SAS) with your source and result URLs.
 
-To learn more, *see* [Managed identities for Document Intelligence](managed-identities.md).
+To learn more, *see* [Managed identities for Document Intelligence](../managed-identities.md).
 
-  :::image type="content" source="media/managed-identities/rbac-flow.png" alt-text="Screenshot of managed identity flow (role-based access control).":::
+  :::image type="content" source="../media/managed-identities/rbac-flow.png" alt-text="Screenshot of managed identity flow (role-based access control).":::
 
 > [!IMPORTANT]
 >
@@ -75,12 +75,12 @@ To learn more, *see* [Managed identities for Document Intelligence](managed-iden
 
 **✔️ Shared Access Signature (SAS)**. A shared access signature is a URL that grants restricted access for a specified period of time to your Document Intelligence service. To use this method, you need to create Shared Access Signature (SAS) tokens for your source and result containers. The source and result containers must include a Shared Access Signature (SAS) token, appended as a query string. The token can be assigned to your container or specific blobs.
 
-:::image type="content" source="media/sas-tokens/sas-url-token.png" alt-text="Screenshot of storage URI with SAS token appended.":::
+:::image type="content" source="../media/sas-tokens/sas-url-token.png" alt-text="Screenshot of storage URI with SAS token appended.":::
 
 * Your **source** container or blob must designate **read**, **write**, **list**, and **delete** access.
 * Your **result** container or blob must designate **write**, **list**, **delete** access.
 
-To learn more, *see* [**Create SAS tokens**](create-sas-tokens.md).
+To learn more, *see* [**Create SAS tokens**](../create-sas-tokens.md).
 
 ## Calling the batch analysis API
 

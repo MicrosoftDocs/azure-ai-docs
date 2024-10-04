@@ -5,8 +5,6 @@ description: 'Form and document processing, data extraction, and analysis using 
 author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
-ms.custom:
-  - ignite-2023
 ms.topic: include
 ms.date: 09/09/2024
 ms.author: lajanuar

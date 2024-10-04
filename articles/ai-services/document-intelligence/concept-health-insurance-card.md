@@ -5,8 +5,6 @@ description: Data extraction and analysis extraction using the health insurance 
 author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
-ms.custom:
-  - ignite-2023
 ms.topic: conceptual
 ms.date: 05/23/2024
 ms.author: lajanuar
@@ -30,7 +28,7 @@ monikerRange: 'doc-intel-4.0.0 || >=doc-intel-3.0.0'
 **This content applies to:** ![checkmark](media/yes-icon.png) **v3.0 (GA)** | **Latest versions:** ![purple-checkmark](media/purple-yes-icon.png) [**v4.0 (preview)**](?view=doc-intel-4.0.0&preserve-view=true) ![purple-checkmark](media/purple-yes-icon.png) [**v3.1**](?view=doc-intel-3.1.0&preserve-view=true)
 ::: moniker-end
 
-The Document Intelligence health insurance card model combines powerful Optical Character Recognition (OCR) capabilities with deep learning models to analyze and extract key information from US health insurance cards. A health insurance card is a key document for care processing and can be digitally analyzed for patient onboarding, financial coverage information, cashless payments, and insurance claim processing. The health insurance card model analyzes health card images; extracts key information such as insurer, member, prescription, and group number; and returns a structured JSON representation. Health insurance cards can be presented in various formats and quality including phone-captured images, scanned documents, and digital PDFs.
+The Document Intelligence health insurance card model combines powerful Optical Character Recognition (OCR) capabilities with deep learning models to analyze and extract key information from US health insurance cards. A health insurance card is a key document for care processing. It can be digitally analyzed for patient onboarding, financial coverage information, cashless payments, and insurance claim processing. The health insurance card model analyzes health card images; extracts key information such as insurer, member, prescription, and group number; and returns a structured JSON representation. Health insurance cards can be presented in various formats and quality including phone-captured images, scanned documents, and digital PDFs.
 
 ***Sample health insurance card processed using Document Intelligence Studio***
 
@@ -112,7 +110,7 @@ See how data is extracted from health insurance cards using the Document Intelli
 |`Dependents.*`|`object`|||
 |`Dependents.*.Name`|`string`|Dependent name|01|
 |`IdNumber`|`object`|||
-|`IdNumber.Prefix`|`string`|Identification Number Prefix as it appears on some health insurance cards|ABC|
+|`IdNumber.Prefix`|`string`|Identification Number Prefix as it appears on some health insurance cards|`ABC`|
 |`IdNumber.Number`|`string`|Identification Number|123456789|
 |`GroupNumber`|`string`|Insurance Group Number|1000000|
 |`PrescriptionInfo`|`object`|||
@@ -130,12 +128,12 @@ See how data is extracted from health insurance cards using the Document Intelli
 |`Copays.*.Amount`|`currency`|Co-Pay required amount|$1,500|
 |`Payer`|`object`|||
 |`Payer.Id`|`string`|Payer ID Number|89063|
-|`Payer.Address`|`address`|Payer address|123 Service St., Redmond WA, 98052|
+|`Payer.Address`|`address`|Payer address|123 Service St., Redmond, Washington, 98052|
 |`Payer.PhoneNumber`|`phoneNumber`|Payer phone number|+1 (987) 213-5674|
 |`Plan`|`object`|||
 |`Plan.Number`|`string`|Plan number|456|
 |`Plan.Name`|`string`|Plan name - If Medicaid -> then `medicaid` (all lower case).|HEALTH SAVINGS PLAN|
-|`Plan.Type`|`string`|Plan type|PPO|
+|`Plan.Type`|`string`|Plan type|`PPO`|
 |`MedicareMedicaidInfo`|`object`|||
 |`MedicareMedicaidInfo.Id`|`string`|Medicare or Medicaid number|1AB2-CD3-EF45|
 |`MedicareMedicaidInfo.PartAEffectiveDate`|`date`|Effective date of Medicare Part A|01-01-2023|

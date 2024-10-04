@@ -5,8 +5,6 @@ description: Create a Document Intelligence resource in the Azure portal.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
-ms.custom:
-  - ignite-2023
 ms.topic: how-to
 ms.date: 09/26/2024
 ms.author: lajanuar

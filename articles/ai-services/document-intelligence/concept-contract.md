@@ -5,8 +5,6 @@ description: Automate contract data extraction with Document Intelligence's cont
 author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
-ms.custom:
-  - ignite-2023
 ms.topic: conceptual
 ms.date: 08/07/2024
 ms.author: lajanuar
@@ -106,7 +104,7 @@ The following are the fields extracted from a contract in the JSON output respon
 | ExpirationDate | Date |Date when the contract ends| One year |
 | EffectiveDate  | Date |Date when the contract is in effect| immediately |
 | RenewalDate | Date |Date when the contract needs to be renewed| `On this twenty-third day of February two thousand and twenty two` |
-| ContractDuration | String | Contract terms | 5 years |
+| ContractDuration | String | Contract terms | Five (5) years |
 | Jurisdictions | Array | List of jurisdictions| |
 
 The contract key-value pairs and line items extracted are in the `documentResults` section of the JSON output.

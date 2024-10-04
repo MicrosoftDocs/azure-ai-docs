@@ -5,8 +5,6 @@ description: Learn how to use the copy model API to back up your Document Intell
 author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
-ms.custom:
-  - ignite-2023
 ms.topic: how-to
 ms.date: 08/07/2024
 ms.author: lajanuar

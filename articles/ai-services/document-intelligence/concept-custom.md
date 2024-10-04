@@ -5,13 +5,12 @@ description: Label and train customized models for your documents and compose mu
 author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
-ms.custom:
-  - ignite-2023
 ms.topic: conceptual
 ms.date: 07/09/2024
 ms.author: lajanuar
 monikerRange: '<=doc-intel-4.0.0'
 ---
+<!-- markdownlint-disable MD033 -->
 
 # Document Intelligence custom models
 
@@ -68,7 +67,7 @@ If the language of your documents and extraction scenarios supports custom neura
 >
 >To confirm that your training documents present a consistent visual template, remove all the user-entered data from each form in the set. If the blank forms are identical in appearance, they represent a consistent visual template.
 >
-> For more information, *see* [Interpret and improve accuracy and confidence for custom models](concept-accuracy-confidence.md).
+> For more information, *see* [Interpret and improve accuracy and confidence for custom models](v4-concept/accuracy-confidence.md).
 
 ## Input requirements
 
@@ -161,7 +160,7 @@ The following table compares custom template and custom neural features:
 
  > [!NOTE]
 >
->Starting with the ```2024-02-29-preview``` API version document classification now supports Office document types for classification. This API version also introduces [incremental training](concept-incremental-classifier.md) for the classification model.
+>Starting with the ```2024-02-29-preview``` API version document classification now supports Office document types for classification. This API version also introduces [incremental training](v4-concept/incremental-classifier.md) for the classification model.
 
 ## Custom model tools
 
@@ -293,7 +292,6 @@ The following table describes the features available with the associated tools a
 ## Supported languages and locales
 
 *See* our [Language Support—custom models](language-support-custom.md) page for a complete list of supported languages.
-
 
 ## Next steps
 

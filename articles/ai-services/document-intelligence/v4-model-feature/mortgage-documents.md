@@ -6,7 +6,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.topic: conceptual
-ms.date: 05/07/2024
+ms.date: 10/03/2024
 ms.author: lajanuar
 monikerRange: '>=doc-intel-4.0.0'
 ---
@@ -19,7 +19,7 @@ monikerRange: '>=doc-intel-4.0.0'
 
 # Document Intelligence mortgage document models
 
-**This content applies to:** ![checkmark](media/yes-icon.png) **v4.0 (preview)** ![checkmark](media/yes-icon.png)
+**This content applies to:** ![checkmark](../media/yes-icon.png) **v4.0 (preview)** ![checkmark](../media/yes-icon.png)
 
 The Document Intelligence Mortgage models use powerful Optical Character Recognition (OCR) capabilities and deep learning models to analyze and extract key fields from mortgage documents. Mortgage documents can be of various formats and quality. The API analyzes mortgage documents and returns a structured JSON data representation. The models currently support English-language documents only.
 
@@ -31,7 +31,6 @@ The Document Intelligence Mortgage models use powerful Optical Character Recogni
 * Uniform Underwriting and Transmittal Summary (Form 1008)
 * Closing Disclosure form
 
-
 ## Development options
 
 ::: moniker range="doc-intel-4.0.0"
@@ -40,12 +39,13 @@ Document Intelligence v4.0 (2024-07-31-preview) supports the following tools, ap
 
 | Feature | Resources | Model ID |
 |----------|-------------|-----------|
-|**Mortgage model**|&bullet; [**Document Intelligence Studio**](https://formrecognizer.appliedai.azure.com)</br>&bullet;  [**REST API**](/rest/api/aiservices/operation-groups?view=rest-aiservices-v4.0%20(2024-07-31-preview)&preserve-view=true)</br>&bullet;  [**C# SDK**](quickstarts/get-started-sdks-rest-api.md?view=doc-intel-4.0.0&preserve-view=true)</br>&bullet;  [**Python SDK**](quickstarts/get-started-sdks-rest-api.md?view=doc-intel-4.0.0&preserve-view=true)</br>&bullet;  [**Java SDK**](quickstarts/get-started-sdks-rest-api.md?view=doc-intel-4.0.0&preserve-view=true)</br>&bullet;  [**JavaScript SDK**](quickstarts/get-started-sdks-rest-api.md?view=doc-intel-4.0.0&preserve-view=true)|**&bullet; prebuilt-mortgage.us.1003</br>&bullet; prebuilt-mortgage.us.1004</br>&bullet; prebuilt-mortgage.us.1005</br>&bullet; prebuilt-mortgage.us.1008</br>&bullet; prebuilt-mortgage.us.closingDisclosure**|
+|**Mortgage model**|&bullet; [**Document Intelligence Studio**](https://formrecognizer.appliedai.azure.com)</br>&bullet;  [**REST API**](/rest/api/aiservices/operation-groups?view=rest-aiservices-v4.0%20(2024-07-31-preview)&preserve-view=true)</br>&bullet;  [**C# SDK**](../quickstarts/get-started-sdks-rest-api.md?view=doc-intel-4.0.0&preserve-view=true)</br>&bullet;  [**Python SDK**](../quickstarts/get-started-sdks-rest-api.md?view=doc-intel-4.0.0&preserve-view=true)</br>&bullet;  [**Java SDK**](../quickstarts/get-started-sdks-rest-api.md?view=doc-intel-4.0.0&preserve-view=true)</br>&bullet;  [**JavaScript SDK**](../quickstarts/get-started-sdks-rest-api.md?view=doc-intel-4.0.0&preserve-view=true)|**&bullet; prebuilt-mortgage.us.1003</br>&bullet; prebuilt-mortgage.us.1004</br>&bullet; prebuilt-mortgage.us.1005</br>&bullet; prebuilt-mortgage.us.1008</br>&bullet; prebuilt-mortgage.us.closingDisclosure**|
+
 ::: moniker-end
 
 ## Input requirements
 
-[!INCLUDE [input requirements](./includes/input-requirements.md)]
+[!INCLUDE [input requirements](../includes/input-requirements.md)]
 
 ## Try mortgage documents data extraction
 
@@ -55,7 +55,7 @@ To see how data extraction works for the mortgage documents service, you need th
 
 * A [Document Intelligence instance](https://portal.azure.com/#create/Microsoft.CognitiveServicesFormRecognizer) in the Azure portal. You can use the free pricing tier (`F0`) to try the service. After your resource deploys, select **Go to resource** to get your key and endpoint.
 
- :::image type="content" source="media/containers/keys-and-endpoint.png" alt-text="Screenshot of keys and endpoint location in the Azure portal.":::
+ :::image type="content" source="../media/containers/keys-and-endpoint.png" alt-text="Screenshot of keys and endpoint location in the Azure portal.":::
 
 ## Document Intelligence Studio
 
@@ -65,14 +65,14 @@ To see how data extraction works for the mortgage documents service, you need th
 
 1. Select the **Run analysis** button and, if necessary, configure the **Analyze options**:
 
-    :::image type="content" source="media/studio/run-analysis-analyze-options.png" alt-text="Screenshot of Run analysis and Analyze options buttons in the Document Intelligence Studio.":::
+    :::image type="content" source="../media/studio/run-analysis-analyze-options.png" alt-text="Screenshot of Run analysis and Analyze options buttons in the Document Intelligence Studio.":::
 
 > [!div class="nextstepaction"]
 > [Try Document Intelligence Studio](https://formrecognizer.appliedai.azure.com/studio/prebuilt?formType=invoice)
 
 ## Supported languages and locales
 
-*See* our [Language Support—prebuilt models](language-support-prebuilt.md) page for a complete list of supported languages.
+*See* our [Language Support—prebuilt models](../language-support-prebuilt.md) page for a complete list of supported languages.
 
 ## Field extraction 1003 Uniform Residential Loan Application (URLA)
 
@@ -128,8 +128,8 @@ The following are the fields extracted from a 1003 URLA form in the JSON output 
 |`Property.MixedUseProperty`|`selectionGroup`|Is the property a mixed-use property?|:selected: NO:unselected: YES|
 |`Property.ManufacturedHome`|`selectionGroup`|Is the property a manufactured home?|:selected: NO:unselected: YES|
 
-
 ## Field extraction 1004 Uniform Residential Appraisal Report (URAR)
+
 The following are the fields extracted from a 1004 URAR form in the JSON output response.
 
 | Field | Type | Description | Example |
@@ -211,7 +211,7 @@ The following are the fields extracted from a 1004 URAR form in the JSON output 
 |`Appraiser.CompanyName`|`string`|Name of the appraisal company for which the appraiser works|Valuation Experts LLC|
 |`Appraiser.CompanyAddress`|`address`|Physical address of the appraisal company|789 Valuation Blvd, Valuetown, MA 34567|
 |`Appraiser.TelephoneNumber`|`phoneNumber`|Telephone number where the appraiser or the appraisal company can be reached|(123) 456-7890|
-|`Appraiser.EmailAddress`|`string`|Email address where the appraiser or the appraisal company can be reached|alice.johnson@valuationexperts.com|
+|`Appraiser.EmailAddress`|`string`|Email address where the appraiser or the appraisal company can be reached|`alice.johnson@valuationexperts.com`|
 |`Appraiser.SignatureAndReportDate`|`date`|Date on which the appraiser signed the appraisal report|04/20/2023|
 |`Appraiser.EffectiveDate`|`date`|Date on which the appraisal is considered effective|04/20/2023|
 |`Appraiser.PropertyAppraisedAddress`|`address`|Address of the property that was appraised|123 Main St., Anytown, MA 12345|
@@ -219,7 +219,8 @@ The following are the fields extracted from a 1004 URAR form in the JSON output 
 |`Appraiser.SubjectPropertyStatus`|`selectionGroup`|Inspection status of the subject property at the time of appraisal|:unselected: Didn't inspect subject property<br>:unselected: Did inspect exterior of subject property from street<br>:unselected: Did inspect interior and exterior of subject property|
 |`Appraiser.ComparableSalesStatus`|`selectionGroup`|Inspection status of the comparable sales used in the appraisal|:unselected: Didn't inspect exterior of comparable sales from street<br>:unselected: Did inspect exterior of comparable sales from street|
 
-## Field extraction 1005 Verification of employment form 
+## Field extraction 1005 Verification of employment form
+
 The following are the fields extracted from a 1005 form in the JSON output response.
 
 | Field | Type | Description | Example |
@@ -237,7 +238,6 @@ The following are the fields extracted from a 1005 form in the JSON output respo
 |`PreviousEmployment.DateHired`|`date`|Date when the applicant was hired for their previous job|01/01/2018|
 |`PreviousEmployment.DateTerminated`|`date`|Date when the applicant's employment was terminated or when they left their previous job|10/30/2020|
 |`PreviousEmployment.PositionHeld`|`string`|Title or role the applicant held in their previous job|SUPERVISOR|
-
 
 ## Field extraction 1008 Uniform Underwriting and Transmittal Summary
 
@@ -337,5 +337,4 @@ The mortgage closing disclosure key-value pairs and line items extracted are in 
 
 * Try processing your own forms and documents with the [Document Intelligence Studio](https://formrecognizer.appliedai.azure.com/studio).
 
-* Complete a [Document Intelligence quickstart](quickstarts/get-started-sdks-rest-api.md?view=doc-intel-3.0.0&preserve-view=true) and get started creating a document processing app in the development language of your choice.
- 
+* Complete a [Document Intelligence quickstart](../quickstarts/get-started-sdks-rest-api.md?view=doc-intel-3.0.0&preserve-view=true) and get started creating a document processing app in the development language of your choice.

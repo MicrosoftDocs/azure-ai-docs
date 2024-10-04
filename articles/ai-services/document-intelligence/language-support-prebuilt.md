@@ -5,8 +5,6 @@ description: Document Intelligence prebuilt / pretrained model language extracti
 author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
-ms.custom:
-  - ignite-2023
 ms.topic: conceptual
 ms.date: 02/29/2024
 ---
