@@ -8,7 +8,7 @@ author: HeidiSteen
 ms.author: heidist
 ms.service: cognitive-search
 ms.topic: tutorial
-ms.date: 10/01/2024
+ms.date: 10/04/2024
 
 ---
 
@@ -43,7 +43,7 @@ Chunks are the focus of the schema, and each chunk is the defining element of a 
 
 ### Enhanced with generated data
 
-In this tutorial, sample data consists of PDFs and content from the [NASA Earth Book](https://www.nasa.gov/ebooks/earth/). This content is descriptive and informative, with numerous references to geographies, countries, and areas across the world. All of the textual content is captured in chunks, but these recurring instances of place names create an opportunity for adding structure to the index. Using skills, it's possible to recognize entities in the text and capture them in an index for use in queries and filters. In this tutorial, we include an [entity recognition skill](cognitive-search-skill-entity-recognition-v3.md) that recognizes and extracts location entities, loading it into a searchable and filterable `locations` field. Adding structured content to your index gives you more options for filtering, improved relevance, and more focused answers.
+In this tutorial, sample data consists of PDFs and content from the [NASA Earth Book](https://www.nasa.gov/ebooks/earth/). This content is descriptive and informative, with numerous references to geographies, countries, and areas across the world. All of the textual content is captured in chunks, but recurring instances of place names create an opportunity for adding structure to the index. Using skills, it's possible to recognize entities in the text and capture them in an index for use in queries and filters. In this tutorial, we include an [entity recognition skill](cognitive-search-skill-entity-recognition-v3.md) that recognizes and extracts location entities, loading it into a searchable and filterable `locations` field. Adding structured content to your index gives you more options for filtering, improved relevance, and more focused answers.
 
 ### Parent-child fields in one or two indexes?
 
@@ -61,11 +61,11 @@ In Azure AI Search, an index that works best for RAG workloads has these qualiti
 
 - Maintains a parent-child relationship between chunks of a document and the properties of the parent document, such as the file name, file type, title, author, and so forth. To answer a query, chunks could be pulled from anywhere in the index. Association with the parent document providing the chunk is useful for context, citations, and follow up queries.
 
-- Accommodates the queries you want create. You should have fields for vector and hybrid content, and those fields should be attributed to support specific query behaviors. You can only query one index at a time (no joins) so your fields collection should define all of your searchable content.
+- Accommodates the queries you want create. You should have fields for vector and hybrid content, and those fields should be attributed to support specific query behaviors, such as searchable or filterable. You can only query one index at a time (no joins) so your fields collection should define all of your searchable content.
 
 - Your schema should be flat (no complex types or structures). This requirement is specific to the RAG pattern in Azure AI Search.
 
-Although Azure AI Search can't join indexes, you can create indexes that preserve parent-child relationship, and then use sequential or parallel queries in your search logic to pull from both. This exercise includes templates for parent-child elements in the same index and in separate indexes, where information from the parent index is retrieved using a lookup query.
+<!-- Although Azure AI Search can't join indexes, you can create indexes that preserve parent-child relationship, and then use sequential queries in your search logic to pull from both (a query on the chunked data index, a lookup on the parent index). This exercise includes templates for parent-child elements in the same index and in separate indexes, where information from the parent index is retrieved using a lookup query. -->
 
 <!-- > [!NOTE]
 > Schema design affects storage and costs. This exercise is focused on schema fundamentals. In the [Minimize storage and costs](tutorial-rag-build-solution-minimize-storage.md) tutorial, you revisit schema design to consider narrow data types, attribution, and vector configurations that offer more efficient. -->
@@ -136,7 +136,7 @@ A minimal index for LLM is designed to store chunks of content. It typically inc
         SearchField(name="locations", type=SearchFieldDataType.Collection(SearchFieldDataType.String), filterable=True),
         SearchField(name="chunk_id", type=SearchFieldDataType.String, key=True, sortable=True, filterable=True, facetable=True, analyzer_name="keyword"),  
         SearchField(name="chunk", type=SearchFieldDataType.String, sortable=False, filterable=False, facetable=False),  
-        SearchField(name="text_vector", type=SearchFieldDataType.Collection(SearchFieldDataType.Single), vector_search_dimensions=1536, vector_search_profile_name="myHnswProfile")
+        SearchField(name="text_vector", type=SearchFieldDataType.Collection(SearchFieldDataType.Single), vector_search_dimensions=1024, vector_search_profile_name="myHnswProfile")
         ]  
       
     # Configure the vector search configuration  
@@ -157,8 +157,8 @@ A minimal index for LLM is designed to store chunks of content. It typically inc
                 kind="azureOpenAI",  
                 parameters=AzureOpenAIVectorizerParameters(  
                     resource_url=AZURE_OPENAI_ACCOUNT,  
-                    deployment_name="text-embedding-ada-002",
-                    model_name="text-embedding-ada-002"
+                    deployment_name="text-embedding-3-large",
+                    model_name="text-embedding-3-large"
                 ),
             ),  
         ], 
@@ -170,7 +170,7 @@ A minimal index for LLM is designed to store chunks of content. It typically inc
     print(f"{result.name} created")  
     ```
 
-1. For an index schema that more closely mimics structured content, you would have separate indexes for parent and child (chunked) fields. You would need index projections to coordinate the indexing of the two indexes simultaneously. Queries execute against the child index. Query logic includes a lookup query, using the parent_idto retrieve content from the parent index.
+1. For an index schema that more closely mimics structured content, you would have separate indexes for parent and child (chunked) fields. You would need [index projections](index-projections-concept-intro.md) to coordinate the indexing of the two indexes simultaneously. Queries execute against the child index. Query logic includes a lookup query, using the parent_idt  retrieve content from the parent index.
 
    Fields in the child index:
 

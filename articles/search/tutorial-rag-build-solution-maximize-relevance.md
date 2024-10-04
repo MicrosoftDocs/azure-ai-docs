@@ -27,7 +27,7 @@ In this tutorial, you modify the existing search index and queries to use:
 This tutorial updates the search index created by the [indexing pipeline](tutorial-rag-build-solution-pipeline.md). Updates don't affect the existing content, so no rebuild is necessary and you don't need to rerun the indexer.
 
 > [!NOTE]
-> There are more relevance features in preview, including vector query weighting and setting minimum thresholds, but we omit them from this tutorial becaues they aren't yet available in the Azure SDK for Python.
+> There are more relevance features in preview, including vector query weighting and setting minimum thresholds, but we omit them from this tutorial because they're in preview.
 
 ## Prerequisites
 
