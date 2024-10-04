@@ -81,14 +81,12 @@ Memory load – An embedded content safety text analysis process consumes about 
 
 ### SDK parameters that can impact performance
 
-Below SDK parameters can impact the inference time of the embedded content safety model. 
+The following SDK parameters can impact the inference time of the embedded content safety model. 
 
 -  `gpuEnabled` Set as **true** to enable GPU, otherwise CPU is used. Generally inference time is shorter on GPU.
 -  `numThreads` This parameter only works for CPU. It defines number of threads to be used in a multi-threaded environment. We support a maximum number of four threads.
 
-See next section to for the performance benchmark data on popular PC CPUs and GPUs
-
-
+See next section for performance benchmark data on popular PC CPUs and GPUs.
 
 
 ### Performance benchmark data on popular CPUs and GPUs
