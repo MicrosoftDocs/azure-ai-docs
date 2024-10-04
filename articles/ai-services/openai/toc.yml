@@ -168,6 +168,7 @@ items:
     items:
       - name: Text data
         href: ./concepts/use-your-data.md
+        displayName: use your data, on your data
       - name: Use Azure OpenAI On Your Data securely
         href: ./how-to/use-your-data-securely.md
       - name: Deploy and use web apps
