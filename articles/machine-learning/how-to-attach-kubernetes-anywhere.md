@@ -30,7 +30,7 @@ Azure Machine Learning Kubernetes compute supports two kinds of Kubernetes clust
 
 | Compute | Location | Description |
 | --- | --- | --- |
-| **[AKS cluster](https://azure.microsoft.com/en-us/products/kubernetes-service/)** | Within Azure | With your self-managed AKS cluster in Azure, you can gain security and controls to meet compliance requirement and flexibility to manage your team's machine learning workload. |
+| **[AKS cluster](https://azure.microsoft.com/products/kubernetes-service/)** | Within Azure | With your self-managed AKS cluster in Azure, you can gain security and controls to meet compliance requirement and flexibility to manage your team's machine learning workload. |
 | **[Arc Kubernetes cluster](/azure/azure-arc/kubernetes/overview)** | Outside Azure | With Arc Kubernetes cluster, you can train or deploy models in any on-premises or multicloud infrastructure, or the edge. |
 
 With a simple cluster extension deployment on AKS or Arc Kubernetes cluster, Kubernetes cluster is seamlessly supported in Machine Learning to run training or inference workload. It's easy to enable and use an existing Kubernetes cluster for Machine Learning workload with the following process:
