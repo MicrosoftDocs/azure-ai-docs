@@ -9,12 +9,12 @@ ms.custom:
   - devx-track-python
   - ignite-2023
 ms.topic: conceptual
-ms.date: 05/23/2024
+ms.date: 10/03/2024
 ms.author: lajanuar
 monikerRange: 'doc-intel-2.1.0'
 ---
 
-
+<!-- markdownlint-disable MD033 -->
 <!-- markdownlint-disable MD024 -->
 <!-- markdownlint-disable MD036 -->
 <!-- markdownlint-disable MD001 -->
@@ -22,7 +22,7 @@ monikerRange: 'doc-intel-2.1.0'
 
 # SDK target: REST API v2.1 (GA)
 
-![Document Intelligence checkmark](media/yes-icon.png) **REST API version v2.1 (GA) 21-06-08**
+![Document Intelligence checkmark](../media/yes-icon.png) **REST API version v2.1 (GA) 21-06-08**
 
 Azure AI Document Intelligence is a cloud service that uses machine learning to analyze text and structured data from documents. The Document Intelligence software development kit (SDK) is a set of libraries and tools that enable you to easily integrate Document Intelligence models and capabilities into your applications. Document Intelligence SDK is available across platforms in C#/.NET, Java, JavaScript, and Python programming languages.
 
@@ -35,14 +35,14 @@ Document Intelligence SDK supports the following languages and platforms:
 | [.NET/C# → 3.1.x (GA)](/dotnet/api/azure.ai.formrecognizer?view=azure-dotnet&preserve-view=true)|[NuGet](https://www.nuget.org/packages/Azure.AI.FormRecognizer)|[v2.1](/rest/api/aiservices/analyzer?view=rest-aiservices-v2.1&preserve-view=true)|[Windows, macOS, Linux, Docker](https://dotnet.microsoft.com/download)|
 |[Java → 3.1.x (GA)](https://azuresdkdocs.blob.core.windows.net/$web/java/azure-ai-formrecognizer/3.1.1/index.html) |[Maven repository](https://mvnrepository.com/artifact/com.azure/azure-ai-formrecognizer/3.1.1) |[v2.1](/rest/api/aiservices/analyzer?view=rest-aiservices-v2.1&preserve-view=true)|[Windows, macOS, Linux](/java/openjdk/install)|
 |[JavaScript → 3.1.0 (GA)](https://azuresdkdocs.blob.core.windows.net/$web/javascript/azure-ai-form-recognizer/3.1.0/index.html)| [npm](https://www.npmjs.com/package/@azure/ai-form-recognizer/v/3.1.0)|[v2.1](/rest/api/aiservices/analyzer?view=rest-aiservices-v2.1&preserve-view=true)| [Browser, Windows, macOS, Linux](https://nodejs.org/en/download/) |
-|[Python → 3.1.0 (GA)](https://azuresdkdocs.blob.core.windows.net/$web/python/azure-ai-formrecognizer/3.1.0/index.html) | [PyPI](https://pypi.org/project/azure-ai-formrecognizer/3.1.0/)|[v2.1](/rest/api/aiservices/analyzer?view=rest-aiservices-v2.1&preserve-view=true)
-|[Windows, macOS, Linux](/azure/developer/python/configure-local-development-environment?tabs=windows%2Capt%2Ccmd#use-the-azure-cli)|
+|[Python → 3.1.0 (GA)](https://azuresdkdocs.blob.core.windows.net/$web/python/azure-ai-formrecognizer/3.1.0/index.html) | [PyPI](https://pypi.org/project/azure-ai-formrecognizer/3.1.0/)|[v2.1](/rest/api/aiservices/analyzer?view=rest-aiservices-v2.1&preserve-view=true)||
+|[Windows, macOS, Linux](/azure/developer/python/configure-local-development-environment?tabs=windows%2Capt%2Ccmd#use-the-azure-cli)||||
 
 For more information on other SDK versions, see:
 
-* [`2024-02-29` (preview)](sdk-overview-v4-0.md)
-* [`2023-07-31` v3.1 (GA)](sdk-overview-v3-1.md)
-* [`2022-08-31` v3.0 (GA)](sdk-overview-v3-0.md)
+* [`2024-02-29` (preview)](../sdk-overview-v4-0.md)
+* [`2023-07-31` v3.1 (GA)](../sdk-overview-v3-1.md)
+* [`2022-08-31` v3.0 (GA)](../sdk-overview-v3-0.md)
 
 ## Supported Clients
 
@@ -142,7 +142,7 @@ There are two supported methods for authentication.
 
 Here's where to find your Document Intelligence API key in the Azure portal:
 
-:::image type="content" source="media/containers/keys-and-endpoint.png" alt-text="Screenshot of the keys and endpoint location in the Azure portal.":::
+:::image type="content" source="../media/containers/keys-and-endpoint.png" alt-text="Screenshot of the keys and endpoint location in the Azure portal.":::
 
 [!INCLUDE [Microsoft Entra ID or AKV](~/reusable-content/ce-skilling/azure/includes/ai-services/security/microsoft-entra-id-akv.md)]
 
@@ -191,7 +191,7 @@ async function main() {
 #### Use a Microsoft Entra token credential
 
 > [!NOTE]
-> Regional endpoints do not support Microsoft Entra authentication. Create a [custom subdomain](../../ai-services/authentication.md?tabs=powershell#create-a-resource-with-a-custom-subdomain) for your resource in order to use this type of authentication.
+> Regional endpoints do not support Microsoft Entra authentication. Create a [custom subdomain](../../../ai-services/authentication.md?tabs=powershell#create-a-resource-with-a-custom-subdomain) for your resource in order to use this type of authentication.
 
 Authorization is easiest using the `DefaultAzureCredential`. It provides a default token credential, based upon the running environment, capable of handling most Azure authentication scenarios.
 
@@ -209,7 +209,7 @@ Here's how to acquire and use the [DefaultAzureCredential](/dotnet/api/azure.ide
         Install-Package Azure.Identity
     ```
 
-1. [Register a Microsoft Entra application and create a new service principal](../../ai-services/authentication.md?tabs=powershell#assign-a-role-to-a-service-principal).
+1. [Register a Microsoft Entra application and create a new service principal](../../../ai-services/authentication.md?tabs=powershell#assign-a-role-to-a-service-principal).
 
 1. Grant access to Document Intelligence by assigning the **`Cognitive Services User`** role to your service principal.
 
@@ -238,7 +238,7 @@ Here's how to acquire and use the [DefaultAzureCredential](/java/api/com.azure.i
     </dependency>
     ```
 
-1. [Register a Microsoft Entra application and create a new service principal](../../ai-services/authentication.md?tabs=powershell#assign-a-role-to-a-service-principal).
+1. [Register a Microsoft Entra application and create a new service principal](../../../ai-services/authentication.md?tabs=powershell#assign-a-role-to-a-service-principal).
 
 1. Grant access to Document Intelligence by assigning the **`Cognitive Services User`** role to your service principal.
 
@@ -266,7 +266,7 @@ Here's how to acquire and use the [DefaultAzureCredential](/javascript/api/@azur
     npm install @azure/identity
     ```
 
-1. [Register a Microsoft Entra application and create a new service principal](../../ai-services/authentication.md?tabs=powershell#assign-a-role-to-a-service-principal).
+1. [Register a Microsoft Entra application and create a new service principal](../../../ai-services/authentication.md?tabs=powershell#assign-a-role-to-a-service-principal).
 
 1. Grant access to Document Intelligence by assigning the **`Cognitive Services User`** role to your service principal.
 
@@ -293,7 +293,7 @@ Here's how to acquire and use the [DefaultAzureCredential](/python/api/azure-ide
     pip install azure-identity
     ```
 
-1. [Register a Microsoft Entra application and create a new service principal](../../ai-services/authentication.md?tabs=powershell#assign-a-role-to-a-service-principal).
+1. [Register a Microsoft Entra application and create a new service principal](../../../ai-services/authentication.md?tabs=powershell#assign-a-role-to-a-service-principal).
 
 1. Grant access to Document Intelligence by assigning the **`Cognitive Services User`** role to your service principal.
 
@@ -318,7 +318,7 @@ For more information, *see* [Authenticate the client](https://github.com/Azure/a
 
 ### 4. Build your application
 
-Create a client object to interact with the Document Intelligence SDK, and then call methods on that client object to interact with the service. The SDKs provide both synchronous and asynchronous methods. For more insight, try a [quickstart](quickstarts/get-started-sdks-rest-api.md?view=doc-intel-3.0.0&preserve-view=true) in a language of your choice.
+Create a client object to interact with the Document Intelligence SDK, and then call methods on that client object to interact with the service. The SDKs provide both synchronous and asynchronous methods. For more insight, try a [quickstart](../quickstarts/get-started-sdks-rest-api.md?view=doc-intel-3.0.0&preserve-view=true) in a language of your choice.
 
 ## Help options
 
@@ -330,4 +330,4 @@ The [Microsoft Q & A](/answers/topics/azure-form-recognizer.html) and [Stack Ove
 > [**Explore Document Intelligence REST API v2.1**](/rest/api/aiservices/analyzer?view=rest-aiservices-v2.1&preserve-view=true)
 
 > [!div class="nextstepaction"]
-> [**Try a Document Intelligence quickstart**](quickstarts/get-started-sdks-rest-api.md?view=doc-intel-2.1.0&preserve-view=true)
+> [**Try a Document Intelligence quickstart**](../quickstarts/get-started-sdks-rest-api.md?view=doc-intel-2.1.0&preserve-view=true)

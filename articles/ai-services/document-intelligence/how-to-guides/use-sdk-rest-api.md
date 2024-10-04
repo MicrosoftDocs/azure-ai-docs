@@ -5,7 +5,7 @@ description: Learn how to use Document Intelligence client libraries or REST API
 author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
-ms.custom: devx-track-dotnet, devx-track-extended-java, devx-track-js, devx-track-python, ignite-2023, linux-related-content
+ms.custom: devx-track-dotnet, devx-track-extended-java, devx-track-js, devx-track-python, linux-related-content
 ms.topic: how-to
 ms.date: 07/18/2024
 ms.author: lajanuar

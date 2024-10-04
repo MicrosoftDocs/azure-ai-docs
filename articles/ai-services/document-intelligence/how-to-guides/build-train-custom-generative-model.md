@@ -5,8 +5,6 @@ description: How to build and train a custom generative AI model with AI Studio 
 author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
-ms.custom:
-  - ignite-2023
 ms.topic: overview
 ms.date: 08/07/2024
 ms.author: lajanuar
@@ -136,4 +134,4 @@ That's it! You learned to train a custom generative model in the Azure AI Studio
 
 [Learn more about the custom generative model](../concept-custom-generative.md)
 
-[Learn more about custom model accuracy and confidence](../concept-accuracy-confidence.md)
+[Learn more about custom model accuracy and confidence](../v4-concept/accuracy-confidence.md)

@@ -6,13 +6,13 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.topic: conceptual
-ms.date: 08/07/2024
+ms.date: 10/03/2024
 ms.author: lajanuar
 ---
 
-# Interpret and improve model accuracy and analysis confidence scores
+<!-- markdownlint-disable MD033 -->
 
-[!INCLUDE [applies to v4.0, v3.1, v3.0, and v2.1](includes/applies-to-v40-v31-v30-v21.md)]
+# Interpret and improve model accuracy and analysis confidence scores
 
 A confidence score indicates probability by measuring the degree of statistical certainty that the extracted result is detected correctly. The estimated accuracy is calculated by running a few different combinations of the training data to predict the labeled values. In this article, learn to interpret accuracy and confidence scores and best practices for using those scores to improve accuracy and confidence results.
 
@@ -30,7 +30,7 @@ Field confidence indicates an estimated probability between 0 and 1 that the pre
 **Document Intelligence Studio** </br>
 **Analyzed invoice prebuilt-invoice model**
 
-:::image type="content" source="media/accuracy-confidence/confidence-scores.png" alt-text="confidence scores from Document Intelligence Studio":::
+:::image type="content" source="../media/accuracy-confidence/confidence-scores.png" alt-text="confidence scores from Document Intelligence Studio":::
 
 ## Improve confidence scores
 
@@ -48,17 +48,16 @@ After an analysis operation, review the JSON output. Examine the `confidence` va
 
 ## Accuracy scores for custom models
 
-
 > [!NOTE]
+>
 > * **Custom neural and generative models** do not provide accuracy scores during training.
 
-The output of a `build` (v3.0 and onward) or `train` (v2.1) custom model operation includes the estimated accuracy score. This score represents the model's ability to accurately predict the labeled value on a visually similar document. Accuracy is measured within a percentage value range from 0% (low) to 100% (high). It's best to target a score of 80% or higher. For more sensitive cases, like financial or medical records, we recommend a score of close to 100%. You can also add a human review stage to validate for more critical automation workflows. 
+The output of a `build` (v3.0 and onward) or `train` (v2.1) custom model operation includes the estimated accuracy score. This score represents the model's ability to accurately predict the labeled value on a visually similar document. Accuracy is measured within a percentage value range from 0% (low) to 100% (high). It's best to target a score of 80% or higher. For more sensitive cases, like financial or medical records, we recommend a score of close to 100%. You can also add a human review stage to validate for more critical automation workflows.
 
 **Document Intelligence Studio** </br>
 **Trained custom model (invoice)**
 
-:::image type="content" source="media/accuracy-confidence/accuracy-studio-results.png" alt-text="Trained custom model accuracy scores":::
-
+:::image type="content" source="../media/accuracy-confidence/accuracy-studio-results.png" alt-text="Trained custom model accuracy scores":::
 
 ## Interpret accuracy and confidence scores for custom models
 
@@ -78,7 +77,6 @@ The following table demonstrates how to interpret both the accuracy and confiden
 | Low | High | &bullet; This result is most unlikely.<br>&bullet; For low accuracy scores, add more labeled data or split visually distinct documents into multiple models. |
 | Low | Low| &bullet; Add more labeled data.<br>&bullet; Split visually distinct documents into multiple models.|
 
-
 ## Ensure high model accuracy for custom models
 
 Variances in the visual structure of your documents affect the accuracy of your model. Reported accuracy scores can be inconsistent when the analyzed documents differ from documents used in training. Keep in mind that a document set can look similar when viewed by humans but appear dissimilar to an AI model. To follow, is a list of the best practices for training models with the highest accuracy. Following these guidelines should produce a model with higher accuracy and confidence scores during analysis and reduce the number of documents flagged for human review.
@@ -89,7 +87,7 @@ Variances in the visual structure of your documents affect the accuracy of your 
 
 * Separate visually distinct document types to train different models for custom template and neural models.
   * As a general rule, if you remove all user entered values and the documents look similar, you need to add more training data to the existing model.
-  * If the documents are dissimilar, split your training data into different folders and train a model for each variation. You can then [compose](how-to-guides/compose-custom-models.md?view=doc-intel-2.1.0&preserve-view=true#create-a-composed-model) the different variations into a single model.
+  * If the documents are dissimilar, split your training data into different folders and train a model for each variation. You can then [compose](../how-to-guides/compose-custom-models.md?view=doc-intel-2.1.0&preserve-view=true#create-a-composed-model) the different variations into a single model.
 
 * Ensure that you don't have any extraneous labels.
 
@@ -128,9 +126,9 @@ With the addition of table, row and cell confidence with the ```2024-02-29-previ
 **A:** Look at all levels of table confidence starting in a top-to-bottom approach: begin by checking a table's confidence as a whole, then drill down to the row level and look at individual rows, finally look at cell-level confidences. Depending on the type of table, there are a couple of things of note:
 
 For **fixed tables**, cell-level confidence already captures quite a bit of information on the correctness of things. This means that simply going over each cell and looking at its confidence can be enough to help determine the quality of the prediction.
-For **dynamic tables**, the levels are meant to build on top of each other, so the top-to-bottom approach is more important. 
+For **dynamic tables**, the levels are meant to build on top of each other, so the top-to-bottom approach is more important.
 
 ## Next step
 
 > [!div class="nextstepaction"]
-> [Learn more about custom models](concept-custom.md)
+> [Learn more about custom models](../concept-custom.md)

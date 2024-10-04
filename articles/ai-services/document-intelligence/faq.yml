@@ -134,7 +134,7 @@ sections:
         answer: |
          **Yes.**
 
-         If your Document Intelligence resource is configured with a firewall or virtual network, you need to add the dedicated IP address 20.3.165.95 to the firewall allowlist for your Document Intelligence resource.  Please note that some functions in custom projects (e.g. auto-label, project management and human in the loop) won't work if the public network access is disabled.
+         If your Document Intelligence resource is configured with a firewall or virtual network, you need to add the dedicated IP address 20.3.165.95 to the firewall allowlist for your Document Intelligence resource. Some functions in custom projects (for example, autolabel, project management and human in the loop) don't work if the public network access is disabled.
 
       - question: |
          When I upload a file in Document Intelligence Studio by "Fetch from URL" function, can I use a URL from my blob storage?
@@ -142,7 +142,7 @@ sections:
         answer: |
          **Yes.** 
          
-         If your Azure blob storage URL includes a SAS token and is accessible from public networks.  You cannot use the **Fetch** function for storage accounts where the key access is disabled or behind a firewall/VNet.
+         If your Azure blob storage URL includes a SAS token, and is accessible from public networks. You can't use the **Fetch** function for storage accounts where the key access is disabled or behind a firewall/VNet.
 
       - question: |
           Can I reuse or customize the labeling experience from Document Intelligence Studio and build it into my own application?
@@ -264,7 +264,7 @@ sections:
 
         - For signature and region labeling, don't include the surrounding text.
 
-        For more information, see [Accuracy and confidence scores](concept-accuracy-confidence.md).
+        For more information, see [Accuracy and confidence scores](v4-concept/accuracy-confidence.md).
 
     - question: |
         Can I retrain a custom model?
@@ -305,9 +305,9 @@ sections:
         
         Custom generative models also rely on the auto label feature to speed up the generation of the labeled dataset. There's a cost associated with this action. While the build operation for template and generative models is free, creating the labeled dataset can result in some minimal costs.
 
-        For `v4.0 2024-07-31-preview`, custom neural models can be trained for free for a **maximum of 10 hours**. Whether you are training a single model for the 10 hours, or training multiple models for the total of 10 hours, you won't be charged for the first 10 hours. After using up the free 10 hours, you will be **automatically charged by the extra training hour**. For details on the prices, refer to the [pricing page](https://azure.microsoft.com/pricing/details/ai-document-intelligence/). This new paid training feature enables training models for an extended duration to process larger documents. For more information on this paid training feature, check [custom neural model billing section](concept-custom-neural.md#billing).
+        For `v4.0 2024-07-31-preview`, custom neural models can be trained for free for a **maximum of 10 hours**. Whether you're training a single model for the 10 hours, or training multiple models for the total of 10 hours, you aren't charged for the first 10 hours. After using up the free 10 hours, you're **automatically charged by the extra training hour**. For details on the prices, refer to the [pricing page](https://azure.microsoft.com/pricing/details/ai-document-intelligence/). This new paid training feature enables training models for an extended duration to process larger documents. For more information on this paid training feature, check [custom neural model billing section](concept-custom-neural.md#billing).
         
-        For `v3.0 2022-08-31` or `v3.1 2023-07-31`, custom neural models can be trained for free for a maximum of 20 training sessions, with each session capped at 30 minutes of training duration. Once you use up all of the 20 training sessions, you can submit Azure support ticket to increase the training session limit. For increasing the limit, 2 training sessions will be considered as 1 training hour, and you will be charged per 2 sessions / 1 training hour. For details on the prices, refer to the [pricing page]. For more information on ways to increase the limit, check [custom neural model billing section](concept-custom-neural.md#billing). **Note that for `v3.0` and `v3.1`, paid training feature is unavailable. Paid training feature for custom neural model is only available on `v4.0`.**
+        For `v3.0 2022-08-31` or `v3.1 2023-07-31`, custom neural models can be trained for free for a maximum of 20 training sessions, with each session capped at 30 minutes of training duration. Once you use up all of the 20 training sessions, you can submit Azure support ticket to increase the training session limit. To increase the limit, two training sessions are considered as one training hour, and you're charged per two sessions / one training hour. For details on the prices, refer to the [pricing page]. For more information on ways to increase the limit, check [custom neural model billing section](concept-custom-neural.md#billing). **For `v3.0` and `v3.1`, paid training feature is unavailable. Paid training feature for custom neural model is only available on `v4.0`.**
 
   - name: Storage account
     questions:

@@ -5,8 +5,6 @@ description: How to increase service limit capacity with add-on capabilities.
 author: jaep3347
 manager: nitinme
 ms.service: azure-ai-document-intelligence
-ms.custom:
-  - ignite-2023
 ms.topic: conceptual
 ms.date: 05/23/2024
 ms.author: lajanuar
@@ -48,7 +46,7 @@ Document Intelligence supports more sophisticated and modular analysis capabilit
 
 * [`languages`](#language-detection)
 
-Starting with `2024-07-31-preview` release, the Read model supports searchable PDF output:
+For `2024-07-31-preview` release and later, the Read model supports searchable PDF output:
 
 * [`Searchable PDF](#searchable-pdf)
 
@@ -157,7 +155,7 @@ if result.tables:
             print(f"...Cell[{cell.row_index}][{cell.column_index}] has text '{cell.content}'")
             if cell.bounding_regions:
                 for region in cell.bounding_regions:
-                    print(f"...content on page {region.page_number} is within bounding polygon '{region.polygon}'")   
+                    print(f"...content on page {region.page_number} is within bounding polygon '{region.polygon}'")
 ```
 > [!div class="nextstepaction"]
 > [View samples on GitHub.](https://github.com/Azure-Samples/document-intelligence-code-samples/blob/main/Python(v4.0)/Add-on_capabilities/sample_analyze_addon_highres.py)
@@ -372,7 +370,7 @@ poller = document_intelligence_client.begin_analyze_document(
     "prebuilt-layout",
     AnalyzeDocumentRequest(url_source=formUrl),
     features=[DocumentAnalysisFeature.FORMULAS],  # Specify which add-on capabilities to enable
-)       
+)
 result: AnalyzeResult = poller.result()
 
 # [START analyze_formulas]
@@ -382,7 +380,7 @@ for page in result.pages:
         inline_formulas = [f for f in page.formulas if f.kind == "inline"]
         display_formulas = [f for f in page.formulas if f.kind == "display"]
 
-        # To learn the detailed concept of "polygon" in the following content, visit: https://aka.ms/bounding-region 
+        # To learn the detailed concept of "polygon" in the following content, visit: https://aka.ms/bounding-region
         print(f"Detected {len(inline_formulas)} inline formulas.")
         for formula_idx, formula in enumerate(inline_formulas):
             print(f"- Inline #{formula_idx}: {formula.value}")
@@ -509,7 +507,7 @@ poller = document_intelligence_client.begin_analyze_document(
     "prebuilt-layout",
     AnalyzeDocumentRequest(url_source=formUrl),
     features=[DocumentAnalysisFeature.STYLE_FONT]    # Specify which add-on capabilities to enable.
-)       
+)
 result: AnalyzeResult = poller.result()
 
 # [START analyze_fonts]
@@ -754,7 +752,7 @@ poller = document_intelligence_client.begin_analyze_document(
     "prebuilt-read",
     AnalyzeDocumentRequest(url_source=formUrl),
     features=[DocumentAnalysisFeature.BARCODES]    # Specify which add-on capabilities to enable.
-)       
+)
 result: AnalyzeResult = poller.result()
 
 # [START analyze_barcodes]
@@ -851,7 +849,7 @@ poller = document_intelligence_client.begin_analyze_document(
     "prebuilt-layout",
     AnalyzeDocumentRequest(url_source=formUrl),
     features=[DocumentAnalysisFeature.LANGUAGES]     # Specify which add-on capabilities to enable.
-)       
+)
 result: AnalyzeResult = poller.result()
 
 # [START analyze_languages]
@@ -934,7 +932,7 @@ for lang_idx, lang in enumerate(result.languages):
 
 ## Searchable PDF
 
-The searchable PDF capability enables you to convert an analog PDF, such as scanned-image PDF files, to a PDF with embedded text. The embedded text enables deep text search within the PDF's extracted content by overlaying the detected text entities on top of the image files. 
+The searchable PDF capability enables you to convert an analog PDF, such as scanned-image PDF files, to a PDF with embedded text. The embedded text enables deep text search within the PDF's extracted content by overlaying the detected text entities on top of the image files.
 
   > [!IMPORTANT]
   >
@@ -969,10 +967,9 @@ GET /documentModels/prebuilt-read/analyzeResults/{resultId}/pdf
 Content-Type: application/pdf
 ```
 
-
 ## Key-value Pairs
 
-In earlier API versions, the prebuilt-document model extracted key-value pairs from forms and documents. With the addition of the `keyValuePairs` feature to prebuilt-layout, the layout model now produces the same results. 
+In earlier API versions, the `prebuilt-document` model extracted key-value pairs from forms and documents. With the addition of the `keyValuePairs` feature to prebuilt-layout, the layout model now produces the same results.
 
 Key-value pairs are specific spans within the document that identify a label or key and its associated response or value. In a structured form, these pairs could be the label and the value the user entered for that field. In an unstructured document, they could be the date a contract was executed on based on the text in a paragraph. The AI model is trained to extract identifiable keys and values based on a wide variety of document types, formats, and structures.
 
@@ -1030,7 +1027,7 @@ For query field extraction, specify the fields you want to extract and Document 
 formUrl = "https://github.com/Azure-Samples/document-intelligence-code-samples/blob/main/Data/invoice/simple-invoice.png?raw=true"
 poller = document_intelligence_client.begin_analyze_document(
     "prebuilt-layout",
-    AnalyzeDocumentRequest(url_source=formUrl),   
+    AnalyzeDocumentRequest(url_source=formUrl),
     features=[DocumentAnalysisFeature.QUERY_FIELDS],    # Specify which add-on capabilities to enable.
     query_fields=["Address", "InvoiceNumber"],  # Set the features and provide a comma-separated list of field names.
 )

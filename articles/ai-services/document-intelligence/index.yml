@@ -77,9 +77,9 @@ landingContent:
              - text: 🆕 Batch document analysis
                url:  concept-batch-analysis.md
              - text: Accuracy and confidence scores
-               url: concept-accuracy-confidence.md
+               url: v4-concept/accuracy-confidence.md
              - text: Use the analyzeDocument response
-               url: concept-analyze-document-response.md
+               url: v4-concept/analyze-document-response.md
              - text: Custom model overview
                url: concept-custom.md
   # Card 5

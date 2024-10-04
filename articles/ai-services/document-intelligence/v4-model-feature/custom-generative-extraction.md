@@ -6,7 +6,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.topic: overview
-ms.date: 08/09/2024
+ms.date: 10/03/2024
 ms.author: lajanuar
 monikerRange: '>=doc-intel-4.0.0'
 ---
@@ -58,7 +58,7 @@ Field extraction custom generative model currently supports dynamic table with t
 
 ## Build mode  
 
-The `build custom model` operation supports custom **template**, **neural**, and **generative** models, _see_ [Custom model build mode](concept-custom.md#build-mode). Here are the differences in the model types:
+The `build custom model` operation supports custom **template**, **neural**, and **generative** models, _see_ [Custom model build mode](../concept-custom.md#build-mode). Here are the differences in the model types:
 
 * **Custom generative AI models** can process complex documents with various formats, varied templates, and unstructured data.
 
@@ -68,7 +68,7 @@ The `build custom model` operation supports custom **template**, **neural**,�
 
 ## Languages and locale support
 
-Field extraction custom generative model `2024-07-31-preview` version supports the **en-us** locale. For more information on language support, _see_ [Language support - custom models](language-support-custom.md).
+Field extraction custom generative model `2024-07-31-preview` version supports the **en-us** locale. For more information on language support, _see_ [Language support - custom models](../language-support-custom.md).
 
 ## Region support
 
@@ -76,7 +76,7 @@ Field extraction custom generative model `2024-07-31-preview` version is only av
 
 ## Input requirements
 
-[!INCLUDE [input requirements](./includes/input-requirements.md)]
+[!INCLUDE [input requirements](../includes/input-requirements.md)]
 
 ## Best practices  
 
@@ -86,7 +86,7 @@ Field extraction custom generative model `2024-07-31-preview` version is only av
 
 * **Field Description**. Provide more contextual information in description to help clarify the field that needs to be extracted. Examples include location in the document, potential field labels it can be associated with, and ways to differentiate with other terms that could be ambiguous.
 
-* **Variation**. Custom generative models can generalize across different document templates of the same document type. As a best practice, create a single model for all variations of a document type. Ideally, include a visual template for each type, especially for ones that involve distinct formatting or structural elements, to improve the model's accuracy and consistency in generating or processing documents.
+* **Variation**. Custom generative models can generalize across different document templates of the same document type. As a best practice, create a single model for all variations of a document type. To enhance the model's accuracy and consistency in document generation or processing, include a visual template for each type, particularly those requiring specific formatting and/or structural elements.
 
 ## Service guidance
 
@@ -127,5 +127,5 @@ https://{endpoint}/documentintelligence/documentModels:build?api-version=2024-07
 
 ## Next steps
 
-* Learn how to [create custom generative models](how-to-guides/build-train-custom-generative-model.md)
-* Learn more about [custom models](concept-custom.md)
+* Learn how to [create custom generative models](../how-to-guides/build-train-custom-generative-model.md)
+* Learn more about [custom models](../concept-custom.md)

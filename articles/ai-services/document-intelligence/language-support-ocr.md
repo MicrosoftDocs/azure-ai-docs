@@ -5,8 +5,6 @@ description: Document Intelligence Read and Layout OCR document analysis model l
 author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
-ms.custom:
-  - ignite-2023
 ms.topic: conceptual
 ms.date: 01/19/2024
 ---

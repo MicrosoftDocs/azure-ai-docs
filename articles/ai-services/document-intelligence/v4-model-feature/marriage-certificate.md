@@ -6,7 +6,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.topic: conceptual
-ms.date: 04/23/2024
+ms.date: 10/03/2024
 ms.author: lajanuar
 monikerRange: '>=doc-intel-4.0.0'
 ---
@@ -19,7 +19,7 @@ monikerRange: '>=doc-intel-4.0.0'
 
 # Document Intelligence marriage certificate model
 
-**This content applies to:** ![checkmark](media/yes-icon.png) **v4.0 (preview)** ![checkmark](media/yes-icon.png)
+**This content applies to:** ![checkmark](../media/yes-icon.png) **v4.0 (preview)** ![checkmark](../media/yes-icon.png)
 
 The Document Intelligence Marriage Certificate model uses powerful Optical Character Recognition (OCR) capabilities to analyze and extract key fields from Marriage Certificates. Marriage certificates  can be of various formats and quality including phone-captured images, scanned documents, and digital PDFs. The API analyzes document text; extracts key information such as Spouse names, Issue date, and marriage place; and returns a structured JSON data representation. The model currently supports English-language document formats.
 
@@ -35,12 +35,13 @@ Document Intelligence v4.0 (2024-07-31-preview) supports the following tools, ap
 
 | Feature | Resources | Model ID |
 |----------|-------------|-----------|
-|**prebuilt-marriageCertificate.us**|&bullet; [**Document Intelligence Studio**](https://documentintelligence.ai.azure.com/studio/prebuilt?formCategory=marriageCertificate.us&formType=marriageCertificate.us)</br>&bullet;  [**REST API**](/rest/api/aiservices/operation-groups?view=rest-aiservices-v4.0%20(2024-07-31-preview)&preserve-view=true)</br>&bullet;  [**C# SDK**](quickstarts/get-started-sdks-rest-api.md?view=doc-intel-4.0.0&preserve-view=true)</br>&bullet;  [**Python SDK**](quickstarts/get-started-sdks-rest-api.md?view=doc-intel-4.0.0&preserve-view=true)</br>&bullet;  [**Java SDK**](quickstarts/get-started-sdks-rest-api.md?view=doc-intel-4.0.0&preserve-view=true)</br>&bullet;  [**JavaScript SDK**](quickstarts/get-started-sdks-rest-api.md?view=doc-intel-4.0.0&preserve-view=true)|**prebuilt-marriageCertificate.us**|
+|**prebuilt-marriageCertificate.us**|&bullet; [**Document Intelligence Studio**](https://documentintelligence.ai.azure.com/studio/prebuilt?formCategory=marriageCertificate.us&formType=marriageCertificate.us)</br>&bullet;  [**REST API**](/rest/api/aiservices/operation-groups?view=rest-aiservices-v4.0%20(2024-07-31-preview)&preserve-view=true)</br>&bullet;  [**C# SDK**](../quickstarts/get-started-sdks-rest-api.md?view=doc-intel-4.0.0&preserve-view=true)</br>&bullet;  [**Python SDK**](../quickstarts/get-started-sdks-rest-api.md?view=doc-intel-4.0.0&preserve-view=true)</br>&bullet;  [**Java SDK**](../quickstarts/get-started-sdks-rest-api.md?view=doc-intel-4.0.0&preserve-view=true)</br>&bullet;  [**JavaScript SDK**](../quickstarts/get-started-sdks-rest-api.md?view=doc-intel-4.0.0&preserve-view=true)|**prebuilt-marriageCertificate.us**|
+
 ::: moniker-end
 
 ## Input requirements
 
-[!INCLUDE [input requirements](./includes/input-requirements.md)]
+[!INCLUDE [input requirements](../includes/input-requirements.md)]
 
 ## Try marriage certificate document data extraction
 
@@ -50,7 +51,7 @@ To see how data extraction works for the marriage certificate card service, you 
 
 * A [Document Intelligence instance](https://portal.azure.com/#create/Microsoft.CognitiveServicesFormRecognizer) in the Azure portal. You can use the free pricing tier (`F0`) to try the service. After your resource deploys, select **Go to resource** to get your key and endpoint.
 
- :::image type="content" source="media/containers/keys-and-endpoint.png" alt-text="Screenshot of keys and endpoint location in the Azure portal.":::
+ :::image type="content" source="../media/containers/keys-and-endpoint.png" alt-text="Screenshot of keys and endpoint location in the Azure portal.":::
 
 ## Document Intelligence Studio
 
@@ -60,18 +61,18 @@ To see how data extraction works for the marriage certificate card service, you 
 
 1. Select the **Run analysis** button and, if necessary, configure the **Analyze options**:
 
-    :::image type="content" source="media/studio/run-analysis-analyze-options.png" alt-text="Screenshot of Run analysis and Analyze options buttons in the Document Intelligence Studio.":::
+    :::image type="content" source="../media/studio/run-analysis-analyze-options.png" alt-text="Screenshot of Run analysis and Analyze options buttons in the Document Intelligence Studio.":::
 
 > [!div class="nextstepaction"]
 > [Try Document Intelligence Studio](https://formrecognizer.appliedai.azure.com/studio/prebuilt?formType=invoice)
 
 ## Supported languages and locales
 
-*See* our [Language Support—prebuilt models](language-support-prebuilt.md) page for a complete list of supported languages.
+*See* our [Language Support—prebuilt models](../language-support-prebuilt.md) page for a complete list of supported languages.
 
 ## Field extraction
 
-The following are the fields extracted from a marriage certificate  in the JSON output response. 
+The following are the fields extracted from a marriage certificate  in the JSON output response.
 
 |Name| Type | Description | Example output |
 |:-----|:----|:----|:---:|
@@ -101,4 +102,4 @@ The marriage certificate key-value pairs and line items extracted are in the `do
 
 * Try processing your own forms and documents with the [Document Intelligence Studio](https://formrecognizer.appliedai.azure.com/studio).
 
-* Complete a [Document Intelligence quickstart](quickstarts/get-started-sdks-rest-api.md?view=doc-intel-3.0.0&preserve-view=true) and get started creating a document processing app in the development language of your choice.
+* Complete a [Document Intelligence quickstart](../quickstarts/get-started-sdks-rest-api.md?view=doc-intel-3.0.0&preserve-view=true) and get started creating a document processing app in the development language of your choice.

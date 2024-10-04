@@ -1,8 +1,6 @@
 ---
 author: laujan
 ms.service: azure-ai-document-intelligence
-ms.custom:
-  - ignite-2023
 ms.topic: include
 ms.date: 07/24/2023
 ms.author: lajanuar

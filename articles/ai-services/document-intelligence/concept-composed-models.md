@@ -46,7 +46,7 @@ In previous versions, the `model compose` operation performed an implicit classi
 
 The new `model compose` operation requires you to train an explicit classifier and provides several benefits.
 
-* **Continual incremental improvement**. You can consistently improve the quality of the classifier by adding more samples and [incrementally improving classification]( concept-incremental-classifier.md). This fine tuning ensures your documents are always routed to the right model for extraction.
+* **Continual incremental improvement**. You can consistently improve the quality of the classifier by adding more samples and [incrementally improving classification]( v4-concept/incremental-classifier.md). This fine tuning ensures your documents are always routed to the right model for extraction.
 
 * **Complete control over routing**. By adding confidence-based routing, you provide a confidence threshold for the document type and the classification response.
 
@@ -84,7 +84,7 @@ Composed models are billed the same as individual custom models. The pricing is 
 
 ::: moniker range="<=doc-intel-3.1.0"
 
-## Use model compose
+## Use the model compose operation
 
 * Start by creating a list of all the model IDs you want to compose into a single model.
 

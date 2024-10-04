@@ -7,7 +7,6 @@ manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.custom:
   - devx-track-python
-  - ignite-2023
 ms.topic: conceptual
 ms.date: 05/06/2024
 ms.author: lajanuar

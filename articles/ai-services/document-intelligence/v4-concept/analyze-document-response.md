@@ -6,7 +6,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.topic: conceptual
-ms.date: 09/26/2024
+ms.date: 10/03/2024
 ms.author: vikurpad
 ms.custom:
   - references_regions
@@ -15,13 +15,11 @@ monikerRange: '>=doc-intel-3.0.0'
 
 # Analyze document API response
 
-**This content applies to:** ![checkmark](media/yes-icon.png) **v4.0 (preview)** ![checkmark](media/yes-icon.png) **v3.1 (GA)** ![checkmark](media/yes-icon.png) **v3.0 (GA)**
-
 In this article, let's examine the different objects returned as part of the `AnalyzeDocument` response and how to use the document analysis API response in your applications.
 
 ## Analyze document request
 
-The Document Intelligence APIs analyze images, PDFs, and other document files to extract and detect various content, layout, style, and semantic elements. The `Analyze` operation is an async API. Submitting a document returns an **Operation-Location** header that contains the URL to poll for completion. When an analysis request completes successfully, the response contains the elements described in the [model data extraction](concept-model-overview.md#model-data-extraction).
+The Document Intelligence APIs analyze images, PDFs, and other document files to extract and detect various content, layout, style, and semantic elements. The `Analyze` operation is an async API. Submitting a document returns an **Operation-Location** header that contains the URL to poll for completion. When an analysis request completes successfully, the response contains the elements described in the [model data extraction](../concept-model-overview.md#model-data-extraction).
 
 ### Response elements
 
@@ -56,21 +54,21 @@ The `Analyze` response for each API returns different objects. API responses con
 | **keyValuePairs**| Key-value pairs recognized by a pretrained model. The key is a span of text from the document with the associated value. | General document and Invoice models |
 | **documents**| Fields recognized are returned in the `fields` dictionary within the list of documents| Prebuilt models, Custom models.|
 
-For more information on the objects returned by each API, see [model data extraction](concept-model-overview.md#model-data-extraction).
+For more information on the objects returned by each API, see [model data extraction](../concept-model-overview.md#model-data-extraction).
 
 ## Element properties
 
 ### Spans
 
-Spans specify the logical position of each element in the overall reading order, with each span specifying a character offset and length into the top-level content string property. By default, character offsets and lengths are returned in units of user-perceived characters (also known as [`grapheme clusters`](/dotnet/standard/base-types/character-encoding-introduction) or text elements). To accommodate different development environments that use different character units, user can specify the `stringIndexIndex` query parameter to return span offsets and lengths in Unicode code points (Python 3) or UTF16 code units (Java, JavaScript, .NET) as well. For more information, *see* [multilingual/emoji support](../../ai-services/language-service/concepts/multilingual-emoji-support.md).
+Spans specify the logical position of each element in the overall reading order, with each span specifying a character offset and length into the top-level content string property. By default, character offsets and lengths are returned in units of user-perceived characters (also known as [`grapheme clusters`](/dotnet/standard/base-types/character-encoding-introduction) or text elements). To accommodate different development environments that use different character units, user can specify the `stringIndexIndex` query parameter to return span offsets and lengths in Unicode code points (Python 3) or UTF16 code units (Java, JavaScript, .NET) as well. For more information, *see* [multilingual/emoji support](../../../ai-services/language-service/concepts/multilingual-emoji-support.md).
 
-:::image type="content" source="media/span.png" alt-text="Screenshot of detected span example.":::
+:::image type="content" source="../media/span.png" alt-text="Screenshot of detected span example.":::
 
 ### Bounding Region
 
 Bounding regions describe the visual position of each element in the file. When elements aren't visually contiguous or cross pages (tables), the positions of most elements are described via an array of bounding regions. Each region specifies the page number (`1`-indexed) and bounding polygon. The bounding polygon is described as a sequence of points, clockwise from the left relative to the natural orientation of the element. For quadrilaterals, plot points are top-left, top-right, bottom-right, and bottom-left corners. Each point represents its x, y coordinate in the page unit specified by the unit property. In general, unit of measure for images is pixels while PDFs use inches.
 
-:::image type="content" source="media/bounding-regions.png" alt-text="Screenshot of detected bounding regions example.":::
+:::image type="content" source="../media/bounding-regions.png" alt-text="Screenshot of detected bounding regions example.":::
 
 > [!NOTE]
 > Currently, Document Intelligence only returns 4-vertex quadrilaterals as bounding polygons. Future versions may return different number of points to describe more complex shapes, such as curved lines or non-rectangular images. Bounding regions applied only to rendered files, if the file is not rendered, bounding regions are not returned. Currently files of docx/xlsx/pptx/html format are not rendered.
@@ -81,13 +79,13 @@ Bounding regions describe the visual position of each element in the file. When 
 
 A word is a content element composed of a sequence of characters. With Document Intelligence, a word is defined as a sequence of adjacent characters, with whitespace separating words from one another. For languages that don't use space separators between words each character is returned as a separate word, even if it doesn't represent a semantic word unit.
 
-:::image type="content" source="media/word-boundaries.png" alt-text="Screenshot of detected words example.":::
+:::image type="content" source="../media/word-boundaries.png" alt-text="Screenshot of detected words example.":::
 
 #### Selection marks
 
 A selection mark is a content element that represents a visual glyph indicating the state of a selection. Checkbox is a common form of selection marks. However, they're also represented via radio buttons or a boxed cell in a visual form. The state of a selection mark can be selected or unselected, with different visual representation to indicate the state.
 
-:::image type="content" source="media/selection-marks.png" alt-text="Screenshot of detected selection marks example.":::
+:::image type="content" source="../media/selection-marks.png" alt-text="Screenshot of detected selection marks example.":::
 
 ### Layout elements
 
@@ -95,14 +93,14 @@ A selection mark is a content element that represents a visual glyph indicating 
 
 A line is an ordered sequence of consecutive content elements separated by a visual space, or ones that are immediately adjacent for languages without space delimiters between words. Content elements in the same horizontal plane (row) but separated by more than a single visual space are most often split into multiple lines. While this feature sometimes splits semantically contiguous content into separate lines, it enables the representation of textual content split into multiple columns or cells. Lines in vertical writing are detected in the vertical direction.
 
-:::image type="content" source="media/lines.png" alt-text="Screenshot of detected lines example.":::
+:::image type="content" source="../media/lines.png" alt-text="Screenshot of detected lines example.":::
 
 #### Paragraph
 
 A paragraph is an ordered sequence of lines that form a logical unit. Typically, the lines share common alignment and spacing between lines. Paragraphs are often delimited via indentation, added spacing, or bullets/numbering. Content can only be assigned to a single paragraph.
 Select paragraphs can also be associated with a functional role in the document. Currently supported roles include page header, page footer, page number, title, section heading, and footnote.
 
-:::image type="content" source="media/paragraph.png" alt-text="Screenshot of detected paragraphs example.":::
+:::image type="content" source="../media/paragraph.png" alt-text="Screenshot of detected paragraphs example.":::
 
 #### Page
 
@@ -134,7 +132,7 @@ Based on its position and styling, a cell can be classified as general content, 
 > [!NOTE]
 > Starting with *2024-07-31-preview*, the bounding regions for figures and tables cover only the core content and exclude associated caption and footnotes.
 
-:::image type="content" source="media/table.png" alt-text="Layout table":::
+:::image type="content" source="../media/table.png" alt-text="Layout table":::
 
 #### Figures
 
@@ -169,7 +167,7 @@ When *output=figures* is specified during the initial `Analyze` operation, the s
 
 #### Sections
 
-Hierarchical document structure analysis is pivotal in organizing, comprehending, and processing extensive documents. This approach is vital for semantically segmenting long documents to boost comprehension, facilitate navigation, and improve information retrieval. The advent of [Retrieval Augmented Generation (RAG)](concept-retrieval-augmented-generation.md) in document generative AI underscores the significance of hierarchical document structure analysis. The Layout model supports sections and subsections in the output, which identifies the relationship of sections and object within each section. The hierarchical structure is maintained in `elements` of each section.
+Hierarchical document structure analysis is pivotal in organizing, comprehending, and processing extensive documents. This approach is vital for semantically segmenting long documents to boost comprehension, facilitate navigation, and improve information retrieval. The advent of [Retrieval Augmented Generation (RAG)](../concept-retrieval-augmented-generation.md) in document generative AI underscores the significance of hierarchical document structure analysis. The Layout model supports sections and subsections in the output, which identifies the relationship of sections and object within each section. The hierarchical structure is maintained in `elements` of each section.
 
 ```json
 {
@@ -192,7 +190,7 @@ Hierarchical document structure analysis is pivotal in organizing, comprehending
 A form field consists of a field label (key) and value. The field label is generally a descriptive text string describing the meaning of the field. It often appears to the left of the value, though it can also appear over or under the value. The field value contains the content value of a specific field instance. The value can consist of words, selection marks, and other content elements. It can also be empty for unfilled form fields. A special type of form field has a selection mark value with the field label to its right.
 Document field is a similar but distinct concept from general form fields. The field label (key) in a general form field must appear in the document. Thus, it can't generally capture information like the merchant name in a receipt. Document fields are labeled and don't extract a key. Document fields only map an extracted value to a labeled key. For more information, *see* [document fields](#form-field-key-value-pair).
 
-:::image type="content" source="media/key-value-pair.png" alt-text="Screenshot of detected key-value pairs example.":::
+:::image type="content" source="../media/key-value-pair.png" alt-text="Screenshot of detected key-value pairs example.":::
 
 ### Style elements
 
@@ -200,7 +198,7 @@ Document field is a similar but distinct concept from general form fields. The f
 
 A style element describes the font style to apply to text content. The content is specified via spans into the global content property. Currently, the only detected font style is whether the text is handwritten. As other styles are added, text can be described via multiple nonconflicting style objects. For compactness, all text sharing the particular font style (with the same confidence) are described via a single style object.
 
-:::image type="content" source="media/style.png" alt-text="Screenshot of detected style handwritten text example.":::
+:::image type="content" source="../media/style.png" alt-text="Screenshot of detected style handwritten text example.":::
 
 ```json
 
@@ -339,5 +337,4 @@ The semantic schema of a document type is described via the fields it contains. 
 
 * Try processing your own forms and documents with [Document Intelligence Studio](https://formrecognizer.appliedai.azure.com/studio).
 
-* Complete a [Document Intelligence quickstart](quickstarts/get-started-sdks-rest-api.md?view=doc-intel-3.0.0&preserve-view=true) and get started creating a document processing app in the development language of your choice.
-
+* Complete a [Document Intelligence quickstart](../quickstarts/get-started-sdks-rest-api.md?view=doc-intel-3.0.0&preserve-view=true) and get started creating a document processing app in the development language of your choice.

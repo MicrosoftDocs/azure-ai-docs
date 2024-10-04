@@ -5,28 +5,26 @@ description: Learn the different ways you can deploy the Document Intelligence S
 author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
-ms.custom:
-  - ignite-2023
 ms.topic: how-to
-ms.date: 07/11/2024
+ms.date: 10/03/2024
 ms.author: lajanuar
 monikerRange: 'doc-intel-2.1.0'
 ---
-
+<!-- markdownlint-disable MD033 -->
 
 # Deploy the Sample Labeling tool
 
-**This content applies to:** ![Document Intelligence v2.1 checkmark](media/yes-icon.png) **v2.1**.
+**This content applies to:** ![Document Intelligence v2.1 checkmark](../media/yes-icon.png) **v2.1**.
 
 >[!TIP]
 >
 > * For an enhanced experience and advanced model quality, try the [Document Intelligence v3.0 Studio](https://formrecognizer.appliedai.azure.com/studio).
 > * The v3.0 Studio supports any model trained with v2.1 labeled data.
-> * You can refer to the [API migration guide](v3-1-migration-guide.md) for detailed information about migrating from v2.1 to v3.0.
-> * *See* our [**REST API**](quickstarts/get-started-sdks-rest-api.md?view=doc-intel-3.0.0&preserve-view=true) or [**C#**](quickstarts/get-started-sdks-rest-api.md?view=doc-intel-3.0.0&preserve-view=true), [**Java**](quickstarts/get-started-sdks-rest-api.md?view=doc-intel-3.0.0&preserve-view=true), [**JavaScript**](quickstarts/get-started-sdks-rest-api.md?view=doc-intel-3.0.0&preserve-view=true), or [Python](quickstarts/get-started-sdks-rest-api.md?view=doc-intel-3.0.0&preserve-view=true) SDK quickstarts to get started with the v3.0 version.
+> * You can refer to the [API migration guide](../v3-1-migration-guide.md) for detailed information about migrating from v2.1 to v3.0.
+> * *See* our [**REST API**](../quickstarts/get-started-sdks-rest-api.md?view=doc-intel-3.0.0&preserve-view=true) or [**C#**](../quickstarts/get-started-sdks-rest-api.md?view=doc-intel-3.0.0&preserve-view=true), [**Java**](../quickstarts/get-started-sdks-rest-api.md?view=doc-intel-3.0.0&preserve-view=true), [**JavaScript**](../quickstarts/get-started-sdks-rest-api.md?view=doc-intel-3.0.0&preserve-view=true), or [Python](../quickstarts/get-started-sdks-rest-api.md?view=doc-intel-3.0.0&preserve-view=true) SDK quickstarts to get started with the v3.0 version.
 
 > [!NOTE]
-> The [cloud hosted](https://fott-2-1.azurewebsites.net/) labeling tool is available at [https://fott-2-1.azurewebsites.net/](https://fott-2-1.azurewebsites.net/). Follow the steps in this document only if you want to deploy the Sample Labeling tool for yourself. 
+> The [cloud hosted](https://fott-2-1.azurewebsites.net/) labeling tool is available at [https://fott-2-1.azurewebsites.net/](https://fott-2-1.azurewebsites.net/). Follow the steps in this document only if you want to deploy the Sample Labeling tool for yourself.
 
 The Document Intelligence Sample Labeling tool is an application that provides a simple user interface (UI), which you can use to manually label forms (documents) for supervised learning. In this article, we provide links and instructions that teach you how to:
 
@@ -56,12 +54,12 @@ Follow these steps to create a new resource using the Azure portal:
 3. Next, select **Web App**.
 
    > [!div class="mx-imgBorder"]
-   > ![Select web app](./media/quickstarts/create-web-app.png)
+   > ![Select web app](../media/quickstarts/create-web-app.png)
 
 4. First, make sure that the **Basics** tab is selected. Now, you're going to need to provide some information:
 
    > [!div class="mx-imgBorder"]
-   > ![Select Basics](./media/quickstarts/select-basics.png)
+   > ![Select Basics](../media/quickstarts/select-basics.png)
    * Subscription - Select an existing Azure subscription
    * Resource Group - You can reuse an existing resource group or create a new one for this project. Creating a new resource group is recommended.
    * Name - Give your web app a name.
@@ -71,12 +69,12 @@ Follow these steps to create a new resource using the Azure portal:
    * Linux Plan - Select a pricing tier/plan for your app service.
 
    > [!div class="mx-imgBorder"]
-   > ![Configure your web app](./media/quickstarts/select-docker.png)
+   > ![Configure your web app](../media/quickstarts/select-docker.png)
 
 5. Next, select the **Docker** tab.
 
    > [!div class="mx-imgBorder"]
-   > ![Select Docker](./media/quickstarts/select-docker.png)
+   > ![Select Docker](../media/quickstarts/select-docker.png)
 
 6. Now let's configure your Docker container. All fields are required unless otherwise noted:
 <!-- markdownlint-disable MD025 -->
@@ -91,7 +89,7 @@ Follow these steps to create a new resource using the Azure portal:
 * Startup command - Set to `./run.sh eula=accept`
 
 > [!div class="mx-imgBorder"]
-> ![Configure Docker](./media/quickstarts/configure-docker.png)
+> ![Configure Docker](../media/quickstarts/configure-docker.png)
 
 * Next, select **Review + Create**, then **Create** to deploy your web app. When complete, you can access your web app at the URL provided in the **Overview** for your resource.
 
@@ -102,7 +100,7 @@ After you create your web app, you can enable the continuous deployment option:
 * From the left pane, choose **Container settings**.
 * In the main window, navigate to Continuous deployment and toggle between the **On** and **Off** buttons to set your preference:
 
-:::image type="content" source="media/label-tool/continuous-deployment.png" alt-text="Screenshot of enlargement of container settings for continuous deployment." lightbox="media/label-tool/continuous-deployment-bigger.png":::
+:::image type="content" source="../media/label-tool/continuous-deployment.png" alt-text="Screenshot of enlargement of container settings for continuous deployment." lightbox="../media/label-tool/continuous-deployment-bigger.png":::
 
 > [!NOTE]
 > When creating your web app, you can also configure authorization/authentication. This is not necessary to get started.
