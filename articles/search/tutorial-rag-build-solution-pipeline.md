@@ -1,5 +1,5 @@
 ---
-title: 'RAG Tutorial: Build an indexing pipeline'
+title: 'RAG tutorial: Build an indexing pipeline'
 titleSuffix: Azure AI Search
 description: Create an indexer-driven pipeline that loads, chunks, embeds, and ingests content for RAG solutions on Azure AI Search.
 
