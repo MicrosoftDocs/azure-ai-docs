@@ -1,5 +1,5 @@
 ---
-title: 'RAG Tutorial: Build an indexing pipeline'
+title: 'RAG tutorial: Build an indexing pipeline'
 titleSuffix: Azure AI Search
 description: Create an indexer-driven pipeline that loads, chunks, embeds, and ingests content for RAG solutions on Azure AI Search.
 
@@ -8,7 +8,7 @@ author: HeidiSteen
 ms.author: heidist
 ms.service: cognitive-search
 ms.topic: tutorial
-ms.date: 10/01/2024
+ms.date: 10/04/2024
 
 ---
 
@@ -28,7 +28,7 @@ In this tutorial, you:
 If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) before you begin.
 
 > [!TIP]
-> You can use the [Import and vectorize data wizard](search-import-data-portal.md) to create your pipeline. For some quickstarts, see [Image search](search-get-started-portal-image-search.md) and [Vector search](search-get-started-portal-import-vectors.md).
+> You can use the [Import and vectorize data wizard](search-import-data-portal.md) to create your pipeline. Try some quickstarts: [Image search](search-get-started-portal-image-search.md) and [Vector search](search-get-started-portal-import-vectors.md).
 
 ## Prerequisites
 
@@ -38,9 +38,9 @@ If you don't have an Azure subscription, create a [free account](https://azure.m
 
 - [Azure AI Search](search-create-service-portal.md), Basic tier or above for managed identity and semantic ranking. Choose a region that's shared with Azure OpenAI and Azure AI Services.
 
-- [Azure OpenAI](/azure/ai-services/openai/how-to/create-resource), with a deployment of text-embedding-002, in the same region as Azure AI Search. For more information about embedding models used in RAG solutions, see [Choose embedding models for RAG in Azure AI Search](tutorial-rag-build-solution-models.md).
+- [Azure OpenAI](/azure/ai-services/openai/how-to/create-resource), with a deployment of text-embedding-3-large, in the same region as Azure AI Search. For more information about embedding models used in RAG solutions, see [Choose embedding models for RAG in Azure AI Search](tutorial-rag-build-solution-models.md).
 
-- [Azure AI Services multiservice account](/azure/ai-services/multi-service-resource), in the same region as Azure AI Search. This resource is used for the Entity Recognition skill that detects locations in your content.
+- [Azure AI Service multiservice account](/azure/ai-services/multi-service-resource), in the same region as Azure AI Search. This resource is used for the Entity Recognition skill that detects locations in your content.
 
 ## Download the sample
 
@@ -78,7 +78,7 @@ fields = [
     SearchField(name="locations", type=SearchFieldDataType.Collection(SearchFieldDataType.String), filterable=True),
     SearchField(name="chunk_id", type=SearchFieldDataType.String, key=True, sortable=True, filterable=True, facetable=True, analyzer_name="keyword"),  
     SearchField(name="chunk", type=SearchFieldDataType.String, sortable=False, filterable=False, facetable=False),  
-    SearchField(name="text_vector", type=SearchFieldDataType.Collection(SearchFieldDataType.Single), vector_search_dimensions=1536, vector_search_profile_name="myHnswProfile")
+    SearchField(name="text_vector", type=SearchFieldDataType.Collection(SearchFieldDataType.Single), vector_search_dimensions=1024, vector_search_profile_name="myHnswProfile")
     ]  
   
 # Configure the vector search configuration  
@@ -99,8 +99,8 @@ vector_search = VectorSearch(
             kind="azureOpenAI",  
             parameters=AzureOpenAIVectorizerParameters(  
                 resource_url=AZURE_OPENAI_ACCOUNT,  
-                deployment_name="text-embedding-ada-002",
-                model_name="text-embedding-ada-002"
+                deployment_name="text-embedding-3-large",
+                model_name="text-embedding-3-large"
             ),
         ),  
     ], 
@@ -116,7 +116,7 @@ print(f"{result.name} created")
 
 In this step, set up the sample data and a connection to Azure Blob Storage. The indexer retrieves PDFs from a container. You create the container and upload files in this step.
 
-The original ebook is large, over 100 pages and 35 MB in size. We broke it up into smaller PDFs, one per page of text, to stay under the [API payload limit](search-limits-quotas-capacity.md#api-request-limits) of 16 MB per API call and also the [AI enrichment data limits](search-limits-quotas-capacity.md#data-limits-ai-enrichment). For simplicity, we omit image vectorization for this exercise.
+The original ebook is large, over 100 pages and 35 MB in size. We broke it up into smaller PDFs, one per page of text, to stay under the [document limit for indexers](search-limits-quotas-capacity.md#indexer-limits) of 16 MB per API call and also the [AI enrichment data limits](search-limits-quotas-capacity.md#data-limits-ai-enrichment). For simplicity, we omit image vectorization for this exercise.
 
 1. Sign in to the [Azure portal](https://portal.azure.com) and find your Azure Storage account.
 
@@ -193,8 +193,8 @@ embedding_skill = AzureOpenAIEmbeddingSkill(
     description="Skill to generate embeddings via Azure OpenAI",  
     context="/document/pages/*",  
     resource_url=AZURE_OPENAI_ACCOUNT,  
-    deployment_name="text-embedding-ada-002",  
-    model_name="text-embedding-ada-002",
+    deployment_name="text-embedding-3-large",  
+    model_name="text-embedding-3-large",
     dimensions=1536,
     inputs=[  
         InputFieldMappingEntry(name="text", source="/document/pages/*"),  
@@ -290,7 +290,7 @@ print(f' {indexer_name} is created and running. Give the indexer a few minutes b
 
 ## Run a query to check results
 
-Send a query to confirm your index is operational. This request converts the text string "`where are the nasa headquarters located?`" into a vector for a vector search. Results consist of the fields in the select statement, some of which are printed as output.
+Send a query to confirm your index is operational. This request converts the text string "`what's NASA's website?`" into a vector for a vector search. Results consist of the fields in the select statement, some of which are printed as output.
 
 There's no chat or generative AI at this point. The results are verbatim content from your search index.
 
@@ -299,32 +299,28 @@ from azure.search.documents import SearchClient
 from azure.search.documents.models import VectorizableTextQuery
 
 # Vector Search using text-to-vector conversion of the querystring
-query = "where are NASA's headquarters located?"  
+query = "what's NASA's website?"  
 
 search_client = SearchClient(endpoint=AZURE_SEARCH_SERVICE, credential=credential, index_name=index_name)
-vector_query = VectorizableTextQuery(text=query, k_nearest_neighbors=1, fields="text_vector", exhaustive=True)
+vector_query = VectorizableTextQuery(text=query, k_nearest_neighbors=50, fields="text_vector")
   
 results = search_client.search(  
     search_text=query,  
     vector_queries= [vector_query],
-    select=["parent_id", "chunk_id", "title", "chunk", "locations"],
+    select=["chunk"],
     top=1
 )  
   
 for result in results:  
     print(f"Score: {result['@search.score']}")
-    print(f"Title: {result['title']}")
-    print(f"Locations: {result['locations']}")
-    print(f"Content: {result['chunk']}")
+    print(f"Chunk: {result['chunk']}")
 ```
 
 This query returns a single match (`top=1`) consisting of the one chunk determined by the search engine to be the most relevant. Results from the query should look similar to the following example:
 
 ```
-Score: 0.03306011110544205
-Title: page-178.pdf
-Locations: ['Headquarters', 'Washington']
-Content: national Aeronautics and Space Administration
+Score: 0.01666666753590107
+Chunk: national Aeronautics and Space Administration
 
 earth Science
 
@@ -339,35 +335,36 @@ www.nasa.gov
 np-2018-05-2546-hQ
 ```
 
-Try a few more queries to get a sense of what the search engine returns directly so that you can compare it with an LLM-enabled response. Rerun the previous script with this query: `"how much of the earth is covered in water"`?
+Try a few more queries to get a sense of what the search engine returns directly so that you can compare it with an LLM-enabled response. Rerun the previous script with this query: `"patagonia geography"` and set `top` to 3 to return more than one response.
 
-Results from this second query should look similar to the following results, which are lightly edited for concision. 
+Results from this second query should look similar to the following results, which are lightly edited for concision. The output is copied from the notebook, which truncates the response to what you see in this example. You can expand the cell output to review the complete answer.
 
 ```
-Score: 0.03333333507180214
-Content:
+Score: 0.03306011110544205
+Chunk: 
 
-Land of Lakes
-Canada
+Swirling Bloom off Patagonia
+Argentina
 
-During the last Ice Age, nearly all of Canada was covered by a massive ice sheet. Thousands of years later, the landscape still shows 
+Interesting art often springs out of the convergence of different ideas and influences. And so it is with nature. 
 
-the scars of that icy earth-mover. Surfaces that were scoured by retreating ice and flooded by Arctic seas are now dotted with 
+Off the coast of Argentina, two strong ocean currents converge and often stir up a colorful brew, as shown in this Aqua image from 
 
-millions of lakes, ponds, and streams. In this false-color view from the Terra satellite, water is various shades of blue, green, tan, and 
+December 2010. 
 
-black, depending on the amount of suspended sediment and phytoplankton; vegetation is red.
+This milky green and blue bloom formed on the continental shelf off of Patagonia, where warmer, saltier waters from the subtropics 
 
-The region of Nunavut Territory is sometimes referred to as the “Barren Grounds,” as it is nearly treeless and largely unsuitable for 
+meet colder, fresher waters flowing from the south. Where these currents collide, turbulent eddies and swirls form, pulling nutrients 
 
-agriculture. The ground is snow-covered for much of the year, and the soil typically remains frozen (permafrost) even during the 
+up from the deep ocean. The nearby Rio de la Plata also deposits nitrogen- and iron-laden sediment into the sea. Add in some 
+...
 
-summer thaw. Nonetheless, this July 2001 image shows plenty of surface vegetation in midsummer, including lichens, mosses, 
+while others terminate in water. The San Rafael and San Quintín glaciers (shown at the right) are the icefield’s largest. Both have 
 
-shrubs, and grasses. The abundant fresh water also means the area is teeming with flies and mosquitoes.
+been receding rapidly in the past 30 years.
 ```
 
-With this example, it's easier to spot how chunks are returned verbatim, and how keyword and similarity search identify top matches. This specific chunk definitely has information about water and coverage over the earth, but it's not exactly relevant to the query. Semantic ranker would find a better answer, but as a next step, let's see how to connect Azure AI Search to an LLM for conversational search.
+With this example, it's easier to spot how chunks are returned verbatim, and how keyword and similarity search identify top matches. This specific chunk definitely has information about Patagonia and geography, but it's not exactly relevant to the query. Semantic ranker would promote more relevant chunks for a better answer, but as a next step, let's see how to connect Azure AI Search to an LLM for conversational search.
 
 <!-- Objective:
 

@@ -251,6 +251,20 @@ groups:
     title: PowerShell
   - id: rest-api
     title: REST
+- id: programming-languages-rest-ps-py-js-cs
+  title: Programming languages
+  prompt: Choose a programming language
+  pivots:
+  - id: programming-language-javascript
+    title: JavaScript
+  - id: programming-language-python
+    title: Python
+  - id: programming-language-dotnet
+    title: C#
+  - id: programming-language-powershell
+    title: PowerShell
+  - id: rest-api
+    title: REST
 # Owner: diberry
 - id: programming-languages-set-six
   title: Programming languages

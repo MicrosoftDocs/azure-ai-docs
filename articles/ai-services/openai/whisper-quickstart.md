@@ -11,7 +11,7 @@ ms.reviewer: v-baolianzou
 ms.author: eur
 author: eric-urban
 recommendations: false
-zone_pivot_groups: programming-languages-rest-ps-py-js
+zone_pivot_groups: programming-languages-rest-ps-py-js-cs
 ---
 
 # Quickstart: Speech to text with the Azure OpenAI Whisper model
@@ -29,6 +29,12 @@ The file size limit for the Whisper model is 25 MB. If you need to transcribe a 
 ::: zone pivot="programming-language-python"
 
 [!INCLUDE [Python SDK quickstart](includes/whisper-python.md)]
+
+::: zone-end
+
+::: zone pivot="programming-language-dotnet"
+
+[!INCLUDE [.NET SDK quickstart](includes/whisper-dotnet.md)]
 
 ::: zone-end
 
