@@ -105,7 +105,7 @@ The operation returns a `202` status code and a JSON object containing the ID an
 
 ```json
 {
-  "id": "f508bcf2-e651-4b4b-85a7-58ad77981ffa",
+  "id": "3d3d3d3d-4444-eeee-5555-6f6f6f6f6f6f",
   "status": "notRunning"
 }
 ```
@@ -119,7 +119,7 @@ GET https://<your_resource_name>.openai.azure.com/openai/operations/images/<oper
 **Replace the following placeholders**:
 - `<your_resource_name>` is the name of your Azure OpenAI resource.
 - `<operation_id>` is the ID of the operation returned in the previous step.
-- `<api_version>` is the version of the API you want to use. For example, `2023-06-01-preview`.
+- `<api_version>` is the version of the API you want to use. For example, *2023-06-01-preview*.
 
 **Required headers**:
 - `Content-Type`: `application/json`
@@ -199,7 +199,7 @@ If your prompt is flagged, the `error.code` value in the message is set to *cont
        "code": "contentFilter",
        "message": "Your task failed as a result of our safety system."
    },
-   "id": "9484f239-9a05-41ba-997b-78252fec4b34",
+   "id": "4e4e4e4e-5555-ffff-6666-7a7a7a7a7a7a",
    "status": "failed"
 }
 ```
@@ -227,7 +227,7 @@ It's also possible that the generated image itself is filtered. In this case, th
 {
    "created": 1589478378,
    "expires": 1589478399,
-   "id": "9484f239-9a05-41ba-997b-78252fec4b34",
+   "id": "4e4e4e4e-5555-ffff-6666-7a7a7a7a7a7a",
    "lastActionDateTime": 1589478378,
    "data": [
        {
@@ -248,7 +248,7 @@ It's also possible that the generated image itself is filtered. In this case, th
 
 ## Writing image prompts
 
-Your image prompts should describe the content you want to see in the image, as well as the visual style of image. 
+Your image prompts should describe the content you want to see in the image, and the visual style of image.
 
 When writing prompts, consider that the image generation APIs come with a content moderation filter. If the service recognizes your prompt as harmful content, it doesn't generate an image. For more information, see [Content filtering](../concepts/content-filter.md).
 
@@ -276,13 +276,13 @@ The default value is *vivid*.
 
 ### Quality
 
-There are two options for image quality: *hd* and *standard*. *hd* creates images with finer details and greater consistency across the image. *standard* images can be generated faster.
+There are two options for image quality: *hd* and *standard*. The *hd* option creates images with finer details and greater consistency across the image. *Standard* images can be generated faster.
 
 The default value is *standard*.
 
 ### Number
 
-With DALL-E 3, you can't generate more than one image in a single API call: the _n_ parameter must be set to `1`. If you need to generate multiple images at once, make parallel requests.
+With DALL-E 3, you can't generate more than one image in a single API call: the `n` parameter must be set to *1*. If you need to generate multiple images at once, make parallel requests.
 
 ### Response format
 
