@@ -40,48 +40,58 @@ The following data is stored on the managed resources.
 |Azure AI Search|Stores indices that are used to help query your AI studio content.|An index based off your model deployment names|
 |Azure Storage Account|Stores instructions for how customization tasks are orchestrated|JSON representation of flows you create in AI Studio|
 
+>[!IMPORTANT]
+> Azure AI Studio uses Azure compute that is managed in the Microsoft subscription, for example when you fine-tune models or or build flows. Its disks are encrypted with Microsoft-managed keys. Compute is ephemeral, meaning after a task is completed the virtual machine is deprovisioned, and the OS disk is deleted. Compute instance machines used for 'Code' experiences are persistant. Azure Disk Encryption isn't supported for the OS disk. 
+
 ## (Preview) Service-side storage of encrypted data when using customer-managed keys
 
 A new architecture for the customer-managed key encryption workspace is available in preview, which resolves the dependency on the managed resource group. In this new model, encrypted data is stored service-side on Microsoft-managed resources instead of in your subscription. Metadata is stored in multi-tenant resources using document-level CMK encryption. An Azure AI Search instance is hosted on the Microsoft-side for each hub. Due to its dedicated resource model, its Azure cost is charged in your subscription.
 
-## Prerequisites
+> [!NOTE]
+> During this preview key rotation and user-assigned identity capabilities are not supported. Server-side encryption is currently not supported in reference to an Azure Key Vault for storing your encryption key that has public network access disabled.
 
-* An Azure subscription.
-* An Azure Key Vault instance. The key vault contains the key(s) used to encrypt your services.
+## Use customer-managed keys with Azure Key Vault
 
-    * The key vault instance must enable soft delete and purge protection.
-    * The managed identity for the services secured by a customer-managed key must have the following permissions in key vault:
+You must use Azure Key Vault to store your customer-managed keys. You can either create your own keys and store them in a key vault, or you can use the Azure Key Vault APIs to generate keys. The Azure AI services resource and the key vault must be in the same region and in the same Microsoft Entra tenant, but they can be in different subscriptions. For more information about Azure Key Vault, see [What is Azure Key Vault?](/azure/key-vault/general/overview).
 
-        * wrap key
-        * unwrap key
-        * get
+To enable customer-managed keys, the key vault containing your keys must meet these requirements:
 
-## How compute data is stored
+- You must enable both the **Soft Delete** and **Do Not Purge** properties on the key vault.
+- If you use the [Key Vault firewall](/azure/key-vault/general/access-behind-firewall), you must allow trusted Microsoft services to access the key vault.
+- You must grant your hub's and Azure AI Services resource's system-assigned managed identity the following permissions on your key vault: *get key*, *wrap key*, *unwrap key*.
 
-Azure AI uses compute resources for compute instance and serverless compute when you fine-tune models or build flows. The following table describes the compute options and how data is encrypted by each one:
+The following limitations hold for Azure AI Services:
+- Only Azure Key Vault with [legacy access policies](/azure/key-vault/general/assign-access-policy) are supported.
+- Only RSA and RSA-HSM keys of size 2048 are supported with Azure AI services encryption. For more information about keys, see **Key Vault keys** in [About Azure Key Vault keys, secrets and certificates](/azure/key-vault/general/about-keys-secrets-certificates).
 
-| Compute | Encryption |
-| ----- | ----- |
-| Compute instance | Local scratch disk is encrypted. |
-| Serverless compute | OS disk encrypted in Azure Storage with Microsoft-managed keys. Temporary disk is encrypted. |
+### Enable your Azure AI Services resource's managed identity
 
-**Compute instance**
-The OS disk for compute instance is encrypted with Microsoft-managed keys in Microsoft-managed storage accounts. If the project was created with the `hbi_workspace` parameter set to `TRUE`, the local temporary disk on compute instance is encrypted with Microsoft managed keys. Customer managed key encryption isn't supported for OS and temp disk.
+1. Go to your Azure AI services resource.
+1. On the left, under **Resource Management**, select **Identity**.
+1. Switch the system-assigned managed identity status to **On**.
+1. Save your changes, and confirm that you want to enable the system-assigned managed identity.
 
-**Serverless compute**
-The OS disk for each compute node stored in Azure Storage is encrypted with Microsoft-managed keys. This compute target is ephemeral, and clusters are typically scaled down when no jobs are queued. The underlying virtual machine is de-provisioned, and the OS disk is deleted. Azure Disk Encryption isn't supported for the OS disk. 
+## Enable customer-managed keys
 
-Each virtual machine also has a local temporary disk for OS operations. If you want, you can use the disk to stage training data. This environment is short-lived (only during your job) and encryption support is limited to system-managed keys only.
+Azure AI studio builds on hub as implementation of Azure Machine Learning workspace, Azure AI Services, and lets you connect with additional resources in Azure. You must set encryption specifically on each resource.
+
+Customer-managed key encryption is configured via Azure Portal in a similar way for each Azure resource:
+1. Create a new Azure resource in Azure portal.
+1. Under the encryption tab, select your encryption key.
+
+:::image type="content" source="../machine-learning/media/concept-customer-managed-keys/cmk-service-side-encryption.png" alt-text="Screenshot of the encryption tab with the option for server side encryption selected." lightbox="./media/concept-customer-managed-keys/cmk-service-side-encryption.png":::
+
+Alternatively, use infrastructure-as-code options for automation. Example Bicep templates for Azure AI Studio are available on the Azure Quickstart repo:
+1. [CMK encryption for hub]([https://github.com/azure/azure-quickstart-templates/tree/master/quickstarts/microsoft.machinelearningservices/machine-learning-workspace-cmk-service-side-encryption](https://github.com/Azure/azure-quickstart-templates/tree/master/quickstarts/microsoft.machinelearningservices/aistudio-cmk).
+1. [Service-side CMK encryption preview for hub](https://github.com/azure/azure-quickstart-templates/tree/master/quickstarts/microsoft.machinelearningservices/machine-learning-workspace-cmk-service-side-encryption).
 
 ## Limitations
 
-* Encryption keys don't pass down from the Azure AI resource to dependent resources including Azure AI Services and Azure Storage when configured on the Azure AI resource. You must set encryption specifically on each resource.
 * The customer-managed key for encryption can only be updated to keys in the same Azure Key Vault instance.
 * After deployment, you can't switch from Microsoft-managed keys to Customer-managed keys or vice versa.
 * Resources that are created in the Microsoft-managed Azure resource group in your subscription can't be modified by you or be provided by you at the time of creation as existing resources.
-* You can't delete Microsoft-managed resources used for customer-managed keys without also deleting your project.
+* You can't delete Microsoft-managed resources used for customer-managed keys without also deleting your hub.
+* [Azure AI services Customer-Managed Key Request Form](https://aka.ms/cogsvc-cmk) is still required for Speech and Content Moderator.
 
 ## Next steps
-
-* [Azure AI services Customer-Managed Key Request Form](https://aka.ms/cogsvc-cmk) is still required for Speech and Content Moderator.
 * [What is Azure Key Vault](/azure/key-vault/general/overview)?
