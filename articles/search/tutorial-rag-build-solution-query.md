@@ -130,7 +130,13 @@ In this response, the answer is based on five inputs (`top=5`) consisting of chu
 Results from the first query `"What's the NASA earth book about?"` should look similar to the following example.
 
 ```
-The NASA Earth book is about the intricate and captivating science of our planet, studied through NASA's unique perspective and tools. It presents Earth as a dynamic and complex system, observed through various cycles and processes such as the water cycle and ocean circulation. The book combines stunning satellite images with detailed scientific insights, portraying Earth’s beauty and the continuous interaction of land, wind, water, ice, and air seen from above. It aims to inspire and demonstrate that the truth of our planet is as compelling as any fiction.
+The NASA Earth book is about the intricate and captivating science of our planet, studied 
+through NASA's unique perspective and tools. It presents Earth as a dynamic and complex 
+system, observed through various cycles and processes such as the water cycle and ocean 
+circulation. The book combines stunning satellite images with detailed scientific insights, 
+portraying Earth’s beauty and the continuous interaction of land, wind, water, ice, and 
+air seen from above. It aims to inspire and demonstrate that the truth of our planet is 
+as compelling as any fiction.
 
 Source: page-8.pdf
 ```
@@ -173,13 +179,19 @@ search_results = search_client.search(
 Results from the filtered query should now look similar to the following response. Notice the emphasis on ice cover.
 
 ```
-The NASA Earth book showcases various geographic and environmental features of Earth through satellite imagery, highlighting remarkable landscapes and natural phenomena. 
+The NASA Earth book showcases various geographic and environmental features of Earth through 
+satellite imagery, highlighting remarkable landscapes and natural phenomena. 
 
-- It features extraordinary views like the Holuhraun Lava Field in Iceland, captured by Landsat 8 during an eruption in 2014, with false-color images illustrating different elements such as ice, steam, sulfur dioxide, and fresh lava ([source](page-43.pdf)).
-- Other examples include the North Patagonian Icefield in South America, depicted through clear satellite images showing glaciers and their changes over time ([source](page-147.pdf)).
-- It documents melt ponds in the Arctic, exploring their effects on ice melting and heat absorption ([source](page-153.pdf)).
+- It features extraordinary views like the Holuhraun Lava Field in Iceland, captured by 
+Landsat 8 during an eruption in 2014, with false-color images illustrating different elements 
+such as ice, steam, sulfur dioxide, and fresh lava ([source](page-43.pdf)).
+- Other examples include the North Patagonian Icefield in South America, depicted through 
+clear satellite images showing glaciers and their changes over time ([source](page-147.pdf)).
+- It documents melt ponds in the Arctic, exploring their effects on ice melting and 
+- heat absorption ([source](page-153.pdf)).
   
-Overall, the book uses satellite imagery to give insights into Earth's dynamic systems and natural changes.
+Overall, the book uses satellite imagery to give insights into Earth's dynamic systems 
+and natural changes.
 ```
 
 ## Change the inputs
@@ -189,14 +201,20 @@ Increasing or decreasing the number of inputs to the LLM can have a large effect
 Here's one example of what the model returns after increasing the inputs to 8.
 
 ```
-The NASA Earth book features a range of satellite images capturing various natural phenomena across the globe. These include:
+The NASA Earth book features a range of satellite images capturing various natural phenomena 
+across the globe. These include:
 
-- The Holuhraun Lava Field in Iceland documented by Landsat 8 during a 2014 volcanic eruption (Source: page-43.pdf).
-- The North Patagonian Icefield in South America, highlighting glacial landscapes captured in a rare cloud-free view in 2017 (Source: page-147.pdf).
-- The impact of melt ponds on ice sheets and sea ice in the Arctic, with images from an airborne research campaign in Alaska during July 2014 (Source: page-153.pdf).
-- Sea ice formations at Shikotan, Japan, and other notable geographic features in various locations recorded by different Landsat missions (Source: page-168.pdf).
+- The Holuhraun Lava Field in Iceland documented by Landsat 8 during a 2014 volcanic 
+eruption (Source: page-43.pdf).
+- The North Patagonian Icefield in South America, highlighting glacial landscapes 
+captured in a rare cloud-free view in 2017 (Source: page-147.pdf).
+- The impact of melt ponds on ice sheets and sea ice in the Arctic, with images from 
+an airborne research campaign in Alaska during July 2014 (Source: page-153.pdf).
+- Sea ice formations at Shikotan, Japan, and other notable geographic features in various 
+locations recorded by different Landsat missions (Source: page-168.pdf).
 
-Summary: The book showcases satellite images of diverse Earth phenomena, such as volcanic eruptions, icefields, and sea ice, to provide insights into natural processes and landscapes.
+Summary: The book showcases satellite images of diverse Earth phenomena, such as volcanic 
+eruptions, icefields, and sea ice, to provide insights into natural processes and landscapes.
 ```
 
 Because the model is bound to the grounding data, the answer becomes more expansive as you increase size of the input. You can use relevance tuning to potentially generate more focused answers.
@@ -224,7 +242,8 @@ Sources:\n{sources}
 Output from changing just the prompt, otherwise retaining all aspects of the previous query, might look like this example. 
 
 ```
-The NASA Earth book appears to showcase various locations on Earth captured through satellite imagery, highlighting natural phenomena and geographic features. For instance, the book includes:
+The NASA Earth book appears to showcase various locations on Earth captured through satellite imagery, 
+highlighting natural phenomena and geographic features. For instance, the book includes:
 
 - The Holuhraun Lava Field in Iceland, detailing volcanic activity and its observation via Landsat 8.
 - The North Patagonian Icefield in South America, covering its glaciers and changes over time as seen by Landsat 8.
