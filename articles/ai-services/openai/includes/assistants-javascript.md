@@ -471,6 +471,12 @@ An individual assistant can access up to 128 tools including `code interpreter`,
     }
     ```
 
+1. Sign in to Azure with the following command:
+
+    ```shell
+    az login
+    ```
+
 1. Run the JavaScript file.
 
     ```shell
@@ -562,7 +568,12 @@ An individual assistant can access up to 128 tools including `code interpreter`,
       }
     }
     ```
-    
+
+1. Sign in to Azure with the following command:
+
+    ```shell
+    az login
+    ```
 
 1. Run the JavaScript file.
 
