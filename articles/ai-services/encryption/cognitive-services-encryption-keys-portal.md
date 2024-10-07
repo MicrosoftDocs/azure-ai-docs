@@ -19,7 +19,7 @@ Customer-managed keys (CMKs) in Azure AI Studio provide enhanced control over th
 
 Azure AI Studio layers on top of Azure Machine Learning and Azure AI services. By default, these services use Microsoft-managed encryption keys. 
 
-Hub and project resources are implementations of the Azure Machine Learning workspace and encrypt data in transit and at rest. For details, see [Data encryption with Azure Machine Learning](../machine-learning/concept-data-encryption?view=azureml-api-2)
+Hub and project resources are implementations of the Azure Machine Learning workspace and encrypt data in transit and at rest. For details, see [Data encryption with Azure Machine Learning](../machine-learning/concept-data-encryption?view=azureml-api-2).
 
 Azure AI services data is encrypted and decrypted using [FIPS 140-2](https://en.wikipedia.org/wiki/FIPS_140-2) compliant [256-bit AES](https://en.wikipedia.org/wiki/Advanced_Encryption_Standard) encryption. Encryption and decryption are transparent, meaning encryption and access are managed for you. Your data is secure by default and you don't need to modify your code or applications to take advantage of encryption.
 
