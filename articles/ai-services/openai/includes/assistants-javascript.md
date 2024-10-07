@@ -32,13 +32,33 @@ For passwordless authentication, you need to
 
 ## Set up
 
+1. Create a new folder `assistants-quickstart` to contain the application and open Visual Studio Code in that folder with the following command:
+
+    ```shell
+    mkdir assistants-quickstart && code assistants-quickstart
+    ```
+    
+
+1. Create the `package.json` with the following command:
+
+    ```shell
+    npm init -y
+    ```
+
+1. Update the `package.json` to ECMAScript with the following command: 
+
+    ```shell
+    npm pkg set type=module
+    ```
+    
+
 1. Install the OpenAI Assistants client library for JavaScript with:
 
     ```console
     npm install openai
     ```
 
-2. For the **recommended** passwordless authentication:
+1. For the **recommended** passwordless authentication:
 
     ```console
     npm install @azure/identity
@@ -104,7 +124,7 @@ An individual assistant can access up to 128 tools including `code interpreter`,
 
 #### [TypeScript](#tab/typescript)
 
-Sign in to Azure with `az login` then create and run an assistant with the following **recommended** passwordless TypeScript module (index.ts):
+Create an assistant with the following **recommended** passwordless TypeScript module (index.ts):
 
 :::code language="typescript" source="~/azure-typescript-e2e-apps/quickstarts/azure-openai-assistants/ts/src/index.ts" :::
 
@@ -112,9 +132,21 @@ To use the service key for authentication, you can create and run an assistant w
 
 :::code language="typescript" source="~/azure-typescript-e2e-apps/quickstarts/azure-openai-assistants/ts/src/index-using-password.ts" :::
 
+Create the `tsconfig.json` file to transpile the TypeScript code and copy the following code for ECMAScript.
+
+```json
+{
+  "compilerOptions": {
+    "target": "es2022",
+    "module": "es2022",
+    "moduleResolution": "node",
+  }
+}
+```
+
 #### [JavaScript](#tab/javascript)
 
-Sign in to Azure with `az login` then create and run an assistant with the following **recommended** passwordless JavaScript module (index.mjs):
+Create an assistant with the following **recommended** passwordless JavaScript module (index.mjs):
 
 :::code language="javascript" source="~/azure-typescript-e2e-apps/quickstarts/azure-openai-assistants/js/src/index.mjs" :::
 
@@ -122,8 +154,37 @@ To use the service key for authentication, you can create and run an assistant w
 
 :::code language="javascript" source="~/azure-typescript-e2e-apps/quickstarts/azure-openai-assistants/js/src/index-using-password.mjs" :::
 
-
 --- 
+
+## Run the code
+
+1. Sign in to Azure with `az login`.
+
+2. Run the code
+
+#### [TypeScript](#tab/typescript)
+
+    Transpile from TypeScript to JavaScript.
+
+    ```shell
+    tsc index.ts
+    ```
+
+    Run the JavaScript file.
+
+    ```shell
+    node index.js
+    ```
+
+#### [JavaScript](#tab/javascript)
+
+    Run the JavaScript file.
+
+    ```shell
+    node index.js
+    ```
+
+```
 
 ## Output
 
