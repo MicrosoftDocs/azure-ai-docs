@@ -11,7 +11,7 @@ ms.custom:
   - ignite-2023
   - build-2024
 ms.topic: conceptual
-ms.date: 08/05/2024
+ms.date: 10/01/2024
 ---
 
 # Upgrade to the latest REST API in Azure AI Search
@@ -20,7 +20,7 @@ Use this article to migrate data plane calls to newer versions of the [**Search 
 
 + [`2024-07-01`](/rest/api/searchservice/search-service-api-versions#2024-07-01) is the most recent stable version.
 
-+ [`2024-05-01-preview`](/rest/api/searchservice/search-service-api-versions#2024-05-01-preview) is the most recent preview API version. 
++ [`2024-09-01-preview`](/rest/api/searchservice/search-service-api-versions#2024-09-01-preview) is the most recent preview API version. 
 
 Upgrade instructions focus on code changes that get you through breaking changes from previous versions so that existing code runs the same as before, but on the newer API version. Once your code is in working order, you can decide whether to adopt newer features. To learn more about new features, see [vector code samples](https://github.com/Azure/azure-search-vector-samples) and [What's New](whats-new.md).
 
@@ -72,6 +72,12 @@ Effective March 29, 2024 and applicable to all [supported REST APIs](/rest/api/s
 + For all API versions, updates on July 14, 2023 to the Microsoft-hosted semantic models made semantic ranker language-agnostic, effectively decommissioning the `queryLanguage` property. There's no "breaking change" in code, but the property is ignored.
 
 See [Migrate from preview version](semantic-how-to-configure.md#migrate-from-preview-versions) to transition your code to use `semanticConfiguration`.
+
+## Upgrade to 2024-09-01-preview
+
+[`2024-09-01-preview`](/rest/api/searchservice/search-service-api-versions#2024-09-01-preview) adds Matryoshka Representation Learning (MRL) compression for text-embedding-3 models, targeted vector filtering for hybrid queries, vector subscore details for debugging, and token chunking for [Text Split skill](cognitive-search-skill-textsplit.md).
+
+If you're upgrading from `2024-05-01-preview`, you can use the new preview APIs with no change to existing code.
 
 ## Upgrade to 2024-07-01
 
