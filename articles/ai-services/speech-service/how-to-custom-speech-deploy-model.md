@@ -388,5 +388,5 @@ Logging data is available on Microsoft-owned storage for 30 days, and then it's 
 
 ## Related content
 
-- [CI/CD for custom speech](how-to-custom-speech-continuous-integration-continuous-deployment.md)
+- [Custom speech overview](custom-speech-overview.md)
 - [Custom speech model lifecycle](how-to-custom-speech-model-and-endpoint-lifecycle.md)

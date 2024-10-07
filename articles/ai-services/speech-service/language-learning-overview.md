@@ -1,13 +1,14 @@
 ---
 title: Language learning with Azure AI Speech
 titleSuffix: Azure AI services
-description: Azure AI services for Speech can be used to learn languages.
+description: Learn about how Azure AI Speech can be used to learn languages.
 author: eric-urban
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: conceptual
-ms.date: 9/11/2024
+ms.date: 9/20/2024
 ms.author: eur
+#Customer intent: As a language learner, I want to learn how to use Azure AI Speech to improve my language skills.
 ---
 
 # Language learning with Azure AI Speech
@@ -25,7 +26,7 @@ The Pronunciation Assessment feature offers several benefits for educators, serv
 
 ## Speech to text 
 
-Azure [Speech to text](speech-to-text.md) supports real-time language identification for multilingual language learning scenarios, help human-human interaction with better understanding and readable context.
+[Speech to text](speech-to-text.md) supports real-time language identification for multilingual language learning scenarios, help human-human interaction with better understanding and readable context.
 
 ##  Text to speech
 
@@ -36,6 +37,6 @@ Azure [Speech to text](speech-to-text.md) supports real-time language identifica
 ## Next steps
 
 * [How to use pronunciation assessment](how-to-pronunciation-assessment.md)
-* [What is Speech to text](speech-to-text.md)
-* [What is Text to speech](text-to-speech.md)
+* [What is speech to text](speech-to-text.md)
+* [What is text to speech](text-to-speech.md)
 * [What is custom neural voice](custom-neural-voice.md)

@@ -6,8 +6,9 @@ author: eric-urban
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 8/20/2024
+ms.date: 9/24/2024
 ms.author: eur
+#Customer intent: As a developer, I want to learn about the Speech Synthesis Markup Language (SSML) document structure.
 ---
 
 # SSML document structure and events

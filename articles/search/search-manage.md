@@ -94,7 +94,7 @@ By default, a search service is created in a minimum configuration of one replic
 Some features add to the cost of running the service:
 
 + [How you're charged for Azure AI Search](search-sku-manage-costs.md#how-youre-charged-for-azure-ai-search) explains which features have billing impact.
-+ [(Optional) disable semantic ranking](semantic-how-to-enable-disable.md) at the service level to prevent usage of the feature.
++ [(Optional) disable semantic ranker](semantic-how-to-enable-disable.md) at the service level to prevent usage of the feature.
 
 ### Enable diagnostic logging
 
@@ -107,9 +107,9 @@ Internally, Microsoft collects telemetry data about your service and the platfor
 > [!NOTE]
 > See the ["Data residency"](search-security-overview.md#data-residency) section of the security overview article for more information about data location and privacy.
 
-### Enable semantic ranking
+### Enable semantic ranker
 
-Semantic ranking is free for the first 1,000 requests per month, but you must opt in to get the free quota. 
+Semantic ranker is free for the first 1,000 requests per month, but you must opt in to get the free quota. 
 
 In Azure portal, under **Settings** on the leftmost pane, select **Semantic ranker** and then choose the Free plan. For more information, see [Enable semantic ranker](semantic-how-to-enable-disable.md).
 

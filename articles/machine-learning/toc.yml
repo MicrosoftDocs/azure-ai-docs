@@ -6,7 +6,7 @@ items:
     - name: What is Azure Machine Learning?
       displayName: AML, services, overview, introduction
       href: overview-what-is-azure-machine-learning.md
-    - name: "AI Studio or AML: Which should I choose?"
+    - name: "AI Studio or Azure Machine Learning Studio: Which should I choose?"
       href: /ai/ai-studio-experiences-overview?toc=/azure/machine-learning/toc.json&bc=/azure/machine-learning/breadcrumb/toc.json
     - name: Azure Machine Learning CLI and Python SDK
       href: concept-v2.md
@@ -598,8 +598,6 @@ items:
       items:
         - name: Phi-3 family chat models
           href: how-to-deploy-models-phi-3.md
-        - name: Phi-3.5 MoE chat model
-          href: how-to-deploy-models-phi-3-5-moe.md
         - name: Phi-3 chat model with vision
           href: how-to-deploy-models-phi-3-vision.md
         - name: Phi-3.5 chat model with vision
@@ -608,13 +606,13 @@ items:
       href: how-to-deploy-models-timegen-1.md
     - name: How to deploy Mistral family models
       href: how-to-deploy-models-mistral.md
-    - name: Deploy Cohere models
+    - name: Cohere models
       items:
-        - name: How to deploy Cohere Command models
+        - name: Cohere Command models
           href: how-to-deploy-models-cohere-command.md
-        - name: How to deploy Cohere Embed models
+        - name: Cohere Embed models
           href: how-to-deploy-models-cohere-embed.md
-        - name: How to deploy Cohere Rerank models
+        - name: Cohere Rerank models
           href: how-to-deploy-models-cohere-rerank.md
     - name: Deploy Meta Llama models
       items:
@@ -708,9 +706,11 @@ items:
               href: ./prompt-flow/how-to-enable-trace-feedback-for-deployment.md
             - name: How to use streaming endpoints deployed from prompt flow
               href: ./prompt-flow/how-to-enable-streaming-mode.md
-            - name: Set up end-to-end LLMOps with prompt flow and GitHub 
+            - name: Set up end-to-end GenAIOps with prompt flow and GitHub
+              displayName: LLMOps, DevOps
               href: ./prompt-flow/how-to-end-to-end-llmops-with-prompt-flow.md
-            - name: Set up end-to-end LLMOps with prompt flow and Azure DevOps
+            - name: Set up end-to-end GenAIOps with prompt flow and Azure DevOps
+              displayName: LLMOps, DevOps
               href: ./prompt-flow/how-to-end-to-end-azure-devops-with-prompt-flow.md
             - name: Custom tool package creation and usage
               href: ./prompt-flow/how-to-custom-tool-package-creation-and-usage.md
@@ -1162,7 +1162,8 @@ items:
         href: how-to-setup-mlops-azureml.md
       - name: Set up MLOps with GitHub Actions
         href: how-to-setup-mlops-github-azure-ml.md
-      - name: Set up LLMOps with prompt flow and GitHub 
+      - name: Set up GenAIOps with prompt flow and GitHub
+        displayName: LLMOps, DevOps
         href: ./prompt-flow/how-to-end-to-end-llmops-with-prompt-flow.md
 - name: Monitor your models
   items:

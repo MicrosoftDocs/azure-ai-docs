@@ -9,7 +9,7 @@ ms.author: heidist
 ms.service: cognitive-search
 ms.topic: tutorial
 ms.custom: references_regions
-ms.date: 09/12/2024
+ms.date: 10/04/2024
 
 ---
 
@@ -32,7 +32,7 @@ If you don't have an Azure subscription, create a [free account](https://azure.m
 
 - The Azure portal, used to deploy models and configure role assignments in the Azure cloud.
 
-- An **Owner** role on your Azure subscription, necessary for creating role assignments. Your model provider has more role requirements for deploying and accessing models. Those are noted in the following steps.
+- An **Owner** or **User Access Administrator** role on your Azure subscription, necessary for creating role assignments. You use at least three Azure resources in this tutorial. The connections are authenticated using Microsoft Entra ID, which requires the ability to create roles. Role assignments for connecting to models are documented in this article. If you can't create roles, you can use [API keys](search-security-api-keys.md) instead.
 
 - A model provider, such as [Azure OpenAI](/azure/ai-services/openai/how-to/create-resource), Azure AI Vision via an [Azure AI multi-service account](/azure/ai-services/multi-service-resource), or [Azure AI Studio](https://ai.azure.com/).
 
@@ -48,34 +48,34 @@ If you don't have an Azure subscription, create a [free account](https://azure.m
 
   - [Azure AI Studio](/azure/ai-studio/reference/region-support) regions. 
 
-  Azure AI Search is currently facing limited availability in some regions, such as West Europe and West US 2/3. Check the [Azure AI Search region list](search-region-support.md) to confirm region status.
+  Azure AI Search is currently facing limited availability in some regions, such as West Europe and West US 2/3. To confirm region status, check the [Azure AI Search region list](search-region-support.md).
 
 > [!TIP]
-> Currently, the following regions provide the most overlap among the model providers and have the most capacity: **East US**, **East US2**, and **South Central** in the Americas; **France Central** or **Switzerland North** in Europe; **Australia East** in Asia Pacific.
+> Currently, the following regions provide the most overlap among the model providers and have the most capacity: **East US2** and **South Central** in the Americas; **France Central** or **Switzerland North** in Europe; **Australia East** in Asia Pacific.
 >
-> For Azure AI Vision and AI Search interoperability, choose one of these regions: **East US**, **France Central**, **Korea Central**, **North Europe**, **South East Asia**, or **West US**. 
+> For Azure AI Vision and AI Search interoperability, choose one of these regions: **France Central**, **Korea Central**, **North Europe**, **South East Asia**, or **West US**. 
 
 ## Review models supporting built-in vectorization
 
-Vectorized content improves the query results in a RAG solution. Azure AI Search supports an embedding action in an indexing pipeline. It also supports an embedding action at query time, converting text or image inputs into vectors for a vector search. In this step, identify an embedding model that works for your content and queries. If you're providing raw vector data and raw vector queries, or if your RAG solution doesn't include vector data, skip this step.
+Vectorized content improves the query results in a RAG solution. Azure AI Search supports a built-in vectorization action in an indexing pipeline. It also supports vectorization at query time, converting text or image inputs into embeddings for a vector search. In this step, identify an embedding model that works for your content and queries. If you're providing raw vector data and raw vector queries, or if your RAG solution doesn't include vector data, skip this step.
 
-Vector queries that include a text-to-vector conversion step must use the same embedding model that was used during indexing. The search engine won't throw an error if you use different models, but you'll get poor results.
+Vector queries that include a text-to-vector conversion step must use the same embedding model that was used during indexing. The search engine doesn't throw an error if you use different models, but you get poor results.
 
-To meet the same-model requirement, choose embedding models that can be referenced through *skills* during indexing and through *vectorizers* during query execution. Review [Create an indexing pipeline](tutorial-rag-build-solution-pipeline.md) for code that calls an embedding skill and a matching vectorizer. 
+To meet the same-model requirement, choose embedding models that can be referenced through *skills* during indexing and through *vectorizers* during query execution. The following table lists the skill and vectorizer pairs. To see how the embedding models are used, skip ahead to [Create an indexing pipeline](tutorial-rag-build-solution-pipeline.md) for code that calls an embedding skill and a matching vectorizer. 
 
 Azure AI Search provides skill and vectorizer support for the following embedding models in the Azure cloud.
 
 | Client | Embedding models | Skill | Vectorizer |
 |--------|------------------|-------|------------|
-| Azure OpenAI | text-embedding-ada-002, text-embedding-3-large, text-embedding-3-small | [AzureOpenAIEmbedding](cognitive-search-skill-azure-openai-embedding.md) | [AzureOpenAIEmbedding](vector-search-vectorizer-azure-open-ai.md) |
+| Azure OpenAI | text-embedding-ada-002, <br>text-embedding-3-large, <br>text-embedding-3-small | [AzureOpenAIEmbedding](cognitive-search-skill-azure-openai-embedding.md) | [AzureOpenAIEmbedding](vector-search-vectorizer-azure-open-ai.md) |
 | Azure AI Vision | multimodal 4.0 <sup>1</sup> | [AzureAIVision](cognitive-search-skill-vision-vectorize.md) | [AzureAIVision](vector-search-vectorizer-ai-services-vision.md) |
-| Azure AI Studio model catalog | OpenAI-CLIP-Image-Text-Embeddings-vit-base-patch32, OpenAI-CLIP-Image-Text-Embeddings-ViT-Large-Patch14-336, Facebook-DinoV2-Image-Embeddings-ViT-Base, Facebook-DinoV2-Image-Embeddings-ViT-Giant, Cohere-embed-v3-english, Cohere-embed-v3-multilingual | [AML](cognitive-search-aml-skill.md) <sup>2</sup>  | [Azure AI Studio model catalog](vector-search-vectorizer-azure-machine-learning-ai-studio-catalog.md) |
+| Azure AI Studio model catalog | OpenAI-CLIP-Image-Text-Embeddings-vit-base-patch32, <br>OpenAI-CLIP-Image-Text-Embeddings-ViT-Large-Patch14-336, <br>Facebook-DinoV2-Image-Embeddings-ViT-Base, <br>Facebook-DinoV2-Image-Embeddings-ViT-Giant, <br>Cohere-embed-v3-english, <br>Cohere-embed-v3-multilingual | [AML](cognitive-search-aml-skill.md) <sup>2</sup>  | [Azure AI Studio model catalog](vector-search-vectorizer-azure-machine-learning-ai-studio-catalog.md) |
 
 <sup>1</sup> Supports image and text vectorization.
 
 <sup>2</sup> Deployed models in the model catalog are accessed over an AML endpoint. We use the existing AML skill for this connection.
 
-You can use other models besides those listed here. For more information, see [Use non-Azure models for embeddings](#use-non-azure-models-for-embeddings) in this article.
+You can use other models besides the ones listed here. For more information, see [Use non-Azure models for embeddings](#use-non-azure-models-for-embeddings) in this article.
 
 > [!NOTE]
 > Inputs to an embedding models are typically chunked data. In an Azure AI Search RAG pattern, chunking is handled in the indexer pipeline, covered in [another tutorial](tutorial-rag-build-solution-pipeline.md) in this series.
@@ -88,18 +88,20 @@ The following models are commonly used for a chat search experience:
 
 | Client | Chat models |
 |--------|------------|
-| Azure OpenAI | GPT-35-Turbo, GPT-4, GPT-4o, GPT-4 Turbo |
+| Azure OpenAI | GPT-35-Turbo, <br>GPT-4, <br>GPT-4o, <br>GPT-4 Turbo |
 
-GPT-35-Turbo and GPT-4 models are optimized to work with inputs formatted as a conversation. 
+GPT-35-Turbo and GPT-4 models are optimized to work with inputs formatted as a conversation.
+
+We use GPT-4o in this tutorial. During testing, we found that it's less likely to supplement with its own training data. For example, given the query "how much of the earth is covered by water?", GPT-35-Turbo answered using its built-in knowledge of earth to state that 71% of the earth is covered by water, even though the sample data doesn't provide that fact. In contrast, GPT-4o responded (correctly) with "I don't know".
 
 ## Deploy models and collect information
 
-Models must be deployed and accessible through an endpoint. Both embedding-related skills and vectorizers need the number of dimensions and the model name. Other details about your model might be required by the client used on the connection.
+Models must be deployed and accessible through an endpoint. Both embedding-related skills and vectorizers need the number of dimensions and the model name. 
 
 This tutorial series uses the following models and model providers:
 
-- Text-embedding-ada-02 on Azure OpenAI for embeddings
-- GPT-35-Turbo on Azure OpenAI for chat completion
+- Text-embedding-3-large on Azure OpenAI for embeddings
+- GPT-4o on Azure OpenAI for chat completion
 
 You must have [**Cognitive Services OpenAI Contributor**]( /azure/ai-services/openai/how-to/role-based-access-control#cognitive-services-openai-contributor) or higher to deploy models in Azure OpenAI.
 
@@ -109,17 +111,17 @@ You must have [**Cognitive Services OpenAI Contributor**]( /azure/ai-services/op
 
 1. Select **Deploy model** > **Deploy base model**.
 
-1. Select **text-embedding-ada-02** from the dropdown list and confirm the selection.
+1. Select **text-embedding-3-large** from the dropdown list and confirm the selection.
 
-1. Specify a deployment name. We recommend "text-embedding-ada-002".
+1. Specify a deployment name. We recommend "text-embedding-3-large".
 
 1. Accept the defaults.
 
 1. Select **Deploy**.
 
-1. Repeat the previous steps for **gpt-35-turbo**.
+1. Repeat the previous steps for **gpt-4o**.
 
-1. Make a note of the model names and endpoint. Embedding skills and vectorizers assemble the full endpoint internally, so you only need the resource URI. For example, given `https://MY-FAKE-ACCOUNT.openai.azure.com/openai/deployments/text-embedding-ada-002/embeddings?api-version=2023-05-15`, the endpoint you should provide in skill and vectorizer definitions is `https://MY-FAKE-ACCOUNT.openai.azure.com`.
+1. Make a note of the model names and endpoint. Embedding skills and vectorizers assemble the full endpoint internally, so you only need the resource URI. For example, given `https://MY-FAKE-ACCOUNT.openai.azure.com/openai/deployments/text-embedding-3-large/embeddings?api-version=2024-06-01`, the endpoint you should provide in skill and vectorizer definitions is `https://MY-FAKE-ACCOUNT.openai.azure.com`.
 
 ## Configure search engine access to Azure models
 
@@ -138,9 +140,12 @@ Assign yourself and the search service identity permissions on Azure OpenAI. The
 1. Select **Add role assignment**.
 
 1. Select [**Cognitive Services OpenAI User**](/azure/ai-services/openai/how-to/role-based-access-control#cognitive-services-openai-userpermissions).
+
 1. Select **Managed identity** and then select **Members**. Find the system-managed identity for your search service in the dropdown list.
 
 1. Next, select **User, group, or service principal** and then select **Members**. Search for your user account and then select it from the dropdown list.
+
+1. Make sure you have two security principals assigned to the role.
 
 1. Select **Review and Assign** to create the role assignments.
 

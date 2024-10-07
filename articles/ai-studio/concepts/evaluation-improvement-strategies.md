@@ -139,4 +139,4 @@ We recommend implementing the following user-centered design and user experience
 
 - [Evaluate your generative AI apps via the playground](../how-to/evaluate-prompts-playground.md)
 - [Evaluate your generative AI apps with the Azure AI Studio or SDK](../how-to/evaluate-generative-ai-app.md)
-- [View the evaluation results](../how-to/evaluate-flow-results.md)
+- [View the evaluation results](../how-to/evaluate-results.md)

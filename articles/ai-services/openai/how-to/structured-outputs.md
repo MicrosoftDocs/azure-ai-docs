@@ -37,7 +37,7 @@ You can use [`Pydantic`](https://docs.pydantic.dev/latest/) to define object sch
 pip install openai pydantic --upgrade
 ```
 
-If you new to using Microsoft Entra ID for authentication see [How to configure Azure OpenAI Service with Microsoft Entra ID authentication](./managed-identity.md).
+If you are new to using Microsoft Entra ID for authentication see [How to configure Azure OpenAI Service with Microsoft Entra ID authentication](./managed-identity.md).
 
 ```python
 from pydantic import BaseModel

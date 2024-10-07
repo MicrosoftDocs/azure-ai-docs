@@ -7,7 +7,7 @@ ms.author: eur
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: overview
-ms.date: 8/20/2024
+ms.date: 9/20/2024
 ms.reviewer: v-baolianzou
 ms.custom: references_regions
 #customer intent: As a user who implements text to speech, I want to understand the options and differences between available OpenAI text to speech voices in Azure AI services.
@@ -75,7 +75,7 @@ The following table outlines the Speech Synthesis Markup Language (SSML) element
 | `<lang>` | Indicates the default locale for the language that you want the neural voice to speak.  |
 | `<break>` | Use to override the default behavior of breaks or pauses between words. |
 
-## Next steps
+## Related content
 
 - [Try the text to speech quickstart in Azure AI Speech](get-started-text-to-speech.md#openai-text-to-speech-voices-in-azure-ai-speech)
 - [Try the text to speech via Azure OpenAI Service](../openai/text-to-speech-quickstart.md)

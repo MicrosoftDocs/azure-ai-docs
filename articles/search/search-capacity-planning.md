@@ -10,7 +10,7 @@ ms.service: cognitive-search
 ms.custom:
   - ignite-2023
 ms.topic: conceptual
-ms.date: 06/19/2024
+ms.date: 10/02/2024
 ---
 
 # Estimate and manage capacity of a search service
@@ -37,7 +37,7 @@ Capacity is expressed in *search units* that can be allocated in combinations of
 
 | Concept  | Definition|
 |----------|-----------|
-|*Search unit* | A single increment of total available capacity (36 units). It's also the billing unit for an Azure AI Search service. A minimum of one unit is required to run the service.|
+|*Search unit* | A single increment of total available capacity (36 units). A minimum of one unit is required to run the service. The first replica and partition pair is the first search unit. However, each extra instance of a replica *or* a partition consumes an extra search unit. For example, you start with one replica and partition (one search unit), add a second replica, you are now consuming two search units. A search unit is also the billing unit for an Azure AI Search service. |
 |*Replica* | Instances of the search service, used primarily to load balance query operations. Each replica hosts one copy of an index. If you allocate three replicas, you have three copies of an index available for servicing query requests.|
 |*Partition* | Physical storage and I/O for read/write operations (for example, when rebuilding or refreshing an index). Each partition has a slice of the total index. If you allocate three partitions, your index is divided into thirds. |
 

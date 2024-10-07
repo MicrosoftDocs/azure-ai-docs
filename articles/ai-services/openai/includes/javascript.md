@@ -11,12 +11,24 @@ ms.author: mbullwin
 ms.date: 05/20/2024
 ---
 
-[Source code](https://github.com/openai/openai-node) | [Package (npm)](https://www.npmjs.com/package/openai)
+[Source code](https://github.com/openai/openai-node) | [Package (npm)](https://www.npmjs.com/package/openai) | [Samples](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/openai/openai/samples)
 
 > [!NOTE]
 > This article has been updated to use the [latest OpenAI npm package](https://www.npmjs.com/package/openai) which now fully supports Azure OpenAI. If you are looking for code examples for the legacy Azure OpenAI JavaScript SDK they are currently still [available in this repo](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/openai/openai/samples/v2-beta/javascript).
 
 ## Prerequisites
+
+## [**TypeScript**](#tab/typescript)
+
+- An Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services?azure-portal=true)
+- [LTS versions of Node.js](https://github.com/nodejs/release#release-schedule)
+- [TypeScript](https://www.typescriptlang.org/download/)
+- An Azure OpenAI Service resource with the `gpt-35-turbo-instruct` model deployed. For more information about model deployment, see the [resource deployment guide](../how-to/create-resource.md).
+
+> [!div class="nextstepaction"]
+> [I ran into an issue with the prerequisites.](https://microsoft.qualtrics.com/jfe/form/SV_0Cl5zkG3CnDjq6O?PLanguage=JAVASCRIPT&Pillar=AOAI&&Product=gpt&Page=quickstart&Section=Prerequisites)
+
+## [**JavaScript**](#tab/javascript)
 
 - An Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services?azure-portal=true)
 - [LTS versions of Node.js](https://github.com/nodejs/release#release-schedule)
@@ -24,6 +36,8 @@ ms.date: 05/20/2024
 
 > [!div class="nextstepaction"]
 > [I ran into an issue with the prerequisites.](https://microsoft.qualtrics.com/jfe/form/SV_0Cl5zkG3CnDjq6O?PLanguage=JAVASCRIPT&Pillar=AOAI&&Product=gpt&Page=quickstart&Section=Prerequisites)
+
+---
 
 ## Set up
 
@@ -49,6 +63,76 @@ Your app's _package.json_ file will be updated with the dependencies.
 ## Create a sample application
 
 Open a command prompt where you created the new project, and create a new file named Completion.js. Copy the following code into the Completion.js file.
+
+## [**TypeScript**](#tab/typescript)
+
+```typescript
+import "dotenv/config";
+import { AzureOpenAI } from "openai";
+import { type Completion } from "openai/resources/index";
+
+// You will need to set these environment variables or edit the following values
+const endpoint = process.env["AZURE_OPENAI_ENDPOINT"] || "<endpoint>";
+const apiKey = process.env["AZURE_OPENAI_API_KEY"] || "<api key>";
+
+// Required Azure OpenAI deployment name and API version
+const apiVersion = "2024-08-01-preview";
+const deploymentName = "gpt-35-turbo-instruct";
+
+// Chat prompt and max tokens
+const prompt = ["When was Microsoft founded?"];
+const maxTokens = 128;
+
+function getClient(): AzureOpenAI {
+  return new AzureOpenAI({
+    endpoint,
+    apiKey,
+    apiVersion,
+    deployment: deploymentName,
+  });
+}
+async function getCompletion(
+  client: AzureOpenAI,
+  prompt: string[],
+  max_tokens: number
+): Promise<Completion> {
+  return client.completions.create({
+    prompt,
+    model: "",
+    max_tokens,
+  });
+}
+async function printChoices(completion: Completion): Promise<void> {
+  for (const choice of completion.choices) {
+    console.log(choice.text);
+  }
+}
+export async function main() {
+  console.log("== Get completions Sample ==");
+
+  const client = getClient();
+  const completion = await getCompletion(client, prompt, maxTokens);
+  await printChoices(completion);
+}
+
+main().catch((err) => {
+  console.error("Error occurred:", err);
+});
+```
+
+Build the script with the following command:
+
+```cmd
+tsc
+```
+
+Run the script with the following command:
+
+```cmd
+node.exe Completion.js
+```
+
+## [**JavaScript**](#tab/javascript)
 
 ```javascript
 const { AzureOpenAI } = require("openai");
@@ -90,6 +174,8 @@ Run the script with the following command:
 node.exe Completion.js
 ```
 
+---
+
 ## Output
 
 ```output
@@ -102,6 +188,86 @@ Microsoft was founded on April 4, 1975.
 
 > [!IMPORTANT]
 > In the previous example we are demonstrating key-based authentication. Once you have tested with key-based authentication successfully, we recommend using the more secure [Microsoft Entra ID](/entra/fundamentals/whatis) for authentication which is demonstrated in the next code sample. Getting started with [Microsoft Entra ID] will require some additional [prerequisites](https://www.npmjs.com/package/@azure/identity).
+
+## [**TypeScript**](#tab/typescript)
+
+```typescript
+import {
+  DefaultAzureCredential,
+  getBearerTokenProvider,
+} from "@azure/identity";
+import "dotenv/config";
+import { AzureOpenAI } from "openai";
+import { type Completion } from "openai/resources/index";
+
+// You will need to set these environment variables or edit the following values
+const endpoint = process.env["AZURE_OPENAI_ENDPOINT"] || "<endpoint>";
+
+// Required Azure OpenAI deployment name and API version
+const apiVersion = "2024-08-01-preview";
+const deploymentName = "gpt-35-turbo-instruct";
+
+// Chat prompt and max tokens
+const prompt = ["When was Microsoft founded?"];
+const maxTokens = 128;
+
+function getClient(): AzureOpenAI {
+  const scope = "https://cognitiveservices.azure.com/.default";
+  const azureADTokenProvider = getBearerTokenProvider(
+    new DefaultAzureCredential(),
+    scope
+  );
+  return new AzureOpenAI({
+    endpoint,
+    azureADTokenProvider,
+    deployment: deploymentName,
+    apiVersion,
+  });
+}
+async function getCompletion(
+  client: AzureOpenAI,
+  prompt: string[],
+  max_tokens: number
+): Promise<Completion> {
+  return client.completions.create({
+    prompt,
+    model: "",
+    max_tokens,
+  });
+}
+async function printChoices(completion: Completion): Promise<void> {
+  for (const choice of completion.choices) {
+    console.log(choice.text);
+  }
+}
+export async function main() {
+  console.log("== Get completions Sample ==");
+
+  const client = getClient();
+  const completion = await getCompletion(client, prompt, maxTokens);
+  await printChoices(completion);
+}
+
+main().catch((err) => {
+  console.error("Error occurred:", err);
+});
+
+```
+
+Build the script with the following command:
+
+```cmd
+tsc
+```
+
+Run the script with the following command:
+
+```cmd
+node.exe Completion.js
+```
+
+
+## [**JavaScript**](#tab/javascript)
 
 ```javascript
 const { AzureOpenAI } = require("openai");
@@ -135,6 +301,8 @@ main().catch((err) => {
 
 module.exports = { main };
 ```
+
+---
 
 > [!NOTE]
 > If your receive the error: *Error occurred: OpenAIError: The `apiKey` and `azureADTokenProvider` arguments are mutually exclusive; only one can be passed at a time.* You may need to remove a pre-existing environment variable for the API key from your system. Even though the Microsoft Entra ID code sample is not explicitly referencing the API key environment variable, if one is present on the system executing this sample, this error will still be generated.

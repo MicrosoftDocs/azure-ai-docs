@@ -119,10 +119,8 @@ groups:
   title: Programming languages
   prompt: Choose your preferred usage method
   pivots:
-  - id: programming-language-studio
-    title: Azure OpenAI Studio
   - id: programming-language-ai-studio
-    title: AI Studio (Preview)
+    title: AI Studio
   - id: programming-language-csharp
     title: C#
   - id: programming-language-python
@@ -185,6 +183,8 @@ groups:
     title: Python
   - id: programming-language-javascript
     title: JavaScript
+  - id: programming-language-dotnet
+    title: C#
   - id: rest-api
     title: REST
 # Owner: mbullwin
@@ -228,6 +228,16 @@ groups:
     title: JavaScript
   - id: rest-api
     title: REST
+- id: programming-languages-rest-js-cs
+  title: Programming languages
+  prompt: Choose a programming language
+  pivots:
+  - id: programming-language-javascript
+    title: JavaScript
+  - id: programming-language-dotnet
+    title: C#
+  - id: rest-api
+    title: REST
 # Owner: diberry
 - id: programming-languages-rest-ps-py-js
   title: Programming languages
@@ -237,6 +247,20 @@ groups:
     title: JavaScript
   - id: programming-language-python
     title: Python
+  - id: programming-language-powershell
+    title: PowerShell
+  - id: rest-api
+    title: REST
+- id: programming-languages-rest-ps-py-js-cs
+  title: Programming languages
+  prompt: Choose a programming language
+  pivots:
+  - id: programming-language-javascript
+    title: JavaScript
+  - id: programming-language-python
+    title: Python
+  - id: programming-language-dotnet
+    title: C#
   - id: programming-language-powershell
     title: PowerShell
   - id: rest-api
@@ -762,7 +786,7 @@ groups:
   - id: programming-language-studio
     title: Studio
   - id: programming-language-ai-studio
-    title: AI Studio (Preview)
+    title: AI Studio
   - id: programming-language-python
     title: Python
   - id: rest-api
@@ -843,3 +867,11 @@ groups:
     title: Python
   - id: programming-language-powershell
     title: PowerShell
+- id: openai-studio-js
+  title: Programming languages
+  prompt: Choose your preferred usage method
+  pivots:
+  - id: programming-language-ai-studio
+    title: AI Studio
+  - id: programming-language-javascript
+    title: JavaScript

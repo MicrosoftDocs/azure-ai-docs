@@ -6,7 +6,7 @@ description: Learn how to create your own custom model with Azure OpenAI Service
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: include
-ms.date: 03/06/2024
+ms.date: 10/03/2024
 author: mrbullwinkle    
 ms.author: mbullwin
 ---
@@ -30,8 +30,8 @@ The following models support fine-tuning:
 - `gpt-35-turbo` (1106)
 - `gpt-35-turbo` (0125)
 - `gpt-4` (0613)**<sup>*</sup>**
-- `gpt-4o` (2024-08-06)**<sup>*</sup>**
-- `gpt-4o-mini` (2024-07-18)**<sup>*</sup>**
+- `gpt-4o` (2024-08-06)
+- `gpt-4o-mini` (2024-07-18)
 
 **<sup>*</sup>** Fine-tuning for this model is currently in public preview.
 
@@ -50,7 +50,7 @@ Take a moment to review the fine-tuning workflow for using Azure OpenAI Studio:
     1. [Select a base model](#select-the-base-model).
     1. [Choose your training data](#choose-your-training-data).
     1. Optionally, [choose your validation data](#choose-your-validation-data).
-    1. Optionally, [configure advanced options](#configure-advanced-options) for your fine-tuning job.
+    1. Optionally, [configure task parameters](#configure-task-parameters) for your fine-tuning job.
     1. [Review your choices and train your new custom model](#review-your-choices-and-train-your-model).
 1. Check the status of your custom fine-tuned model.
 1. Deploy your custom model for use.
@@ -91,7 +91,7 @@ In addition to the JSONL format, training and validation data files must be enco
 
 ### Create your training and validation datasets
 
-The more training examples you have, the better. Fine tuning jobs will not proceed without at least 10 training examples, but such a small number are not enough to noticeably influence model responses. It is best practice to provide hundreds, if not thousands, of training examples to be successful.
+The more training examples you have, the better. Fine tuning jobs will not proceed without at least 10 training examples, but such a small number isn't enough to noticeably influence model responses. It is best practice to provide hundreds, if not thousands, of training examples to be successful.
 
 In general, doubling the dataset size can lead to a linear increase in model quality. But keep in mind, low quality examples can negatively impact performance. If you train the model on a large amount of internal data, without first pruning the dataset for only the highest quality examples you could end up with a model that performs much worse than expected.
 
@@ -149,7 +149,7 @@ Azure OpenAI Studio provides the **Create custom model** wizard, so you can inte
 
 1. Open Azure OpenAI Studio at <a href="https://oai.azure.com/" target="_blank">https://oai.azure.com/</a> and sign in with credentials that have access to your Azure OpenAI resource. During the sign-in workflow, select the appropriate directory, Azure subscription, and Azure OpenAI resource.
 
-1. In Azure OpenAI Studio, browse to the **Management > Models** pane, and select **Create a custom model**.
+1. In Azure OpenAI Studio, browse to the **Tools > Fine-tuning** pane, and select **Fine-tune model**.
 
    :::image type="content" source="../media/fine-tuning/studio-create-custom-model.png" alt-text="Screenshot that shows how to access the Create custom model wizard in Azure OpenAI Studio." lightbox="../media/fine-tuning/studio-create-custom-model.png":::
 
@@ -182,9 +182,9 @@ The next step is to either choose existing prepared training data or upload new 
 
 :::image type="content" source="../media/fine-tuning/studio-training-data.png" alt-text="Screenshot of the Training data pane for the Create custom model wizard in Azure OpenAI Studio." lightbox="../media/fine-tuning/studio-training-data.png":::
 
-- If your training data is already uploaded to the service, select **Choose dataset**.
+- If your training data is already uploaded to the service, select **Files from Azure OpenAI Connection**.
 
-   - Select the file from the list shown in the **Training data** pane.
+   - Select the file from the dropdown list shown.
 
 - To upload new training data, use one of the following options:
 
@@ -217,7 +217,7 @@ You can import a training dataset from Azure Blob or another shared web location
 
 1. For the **File location**, provide the Azure Blob URL, the Azure Storage shared access signature (SAS), or other link to an accessible shared web location.
 
-1. Select **Upload file** to import the training dataset to the service.
+1. Select **Import** to import the training dataset to the service.
 
 After you select and upload the training dataset, select **Next** to continue.
 
@@ -266,15 +266,15 @@ You can import a validation dataset from Azure Blob or another shared web locati
 
 1. For the **File location**, provide the Azure Blob URL, the Azure Storage shared access signature (SAS), or other link to an accessible shared web location.
 
-1. Select **Upload file** to import the training dataset to the service.
+1. Select **Import** to import the training dataset to the service.
 
 After you select and upload the validation dataset, select **Next** to continue.
 
 :::image type="content" source="../media/fine-tuning/studio-validation-data-blob.png" alt-text="Screenshot of the Validation data pane for the Create custom model wizard, with Azure Blob and shared web location options." lightbox="../media/fine-tuning/studio-validation-data-blob.png":::
 
-### Configure advanced options
+### Configure task parameters
 
-The **Create custom model** wizard shows the parameters for training your fine-tuned model on the **Advanced options** pane. The following parameters are available:
+The **Create custom model** wizard shows the parameters for training your fine-tuned model on the **Task parameters** pane. The following parameters are available:
 
 
 |**Name**| **Type**| **Description**|
@@ -286,7 +286,7 @@ The **Create custom model** wizard shows the parameters for training your fine-t
 
 :::image type="content" source="../media/fine-tuning/studio-advanced-options.png" alt-text="Screenshot of the Advanced options pane for the Create custom model wizard, with default options selected." lightbox="../media/fine-tuning/studio-advanced-options.png":::
 
-Select **Default** to use the default values for the fine-tuning job, or select **Advanced** to display and edit the hyperparameter values. When defaults are selected, we determine the correct value algorithmically based on your training data.
+Select **Default** to use the default values for the fine-tuning job, or select **Custom** to display and edit the hyperparameter values. When defaults are selected, we determine the correct value algorithmically based on your training data.
 
 After you configure the advanced options, select **Next** to [review your choices and train your fine-tuned model](#review-your-choices-and-train-your-model).
 
@@ -360,7 +360,7 @@ Cross subscription/region deployment can be accomplished via [Python](/azure/ai-
 
 After your custom model deploys, you can use it like any other deployed model. You can use the **Playgrounds** in [Azure OpenAI Studio](https://oai.azure.com) to experiment with your new deployment. You can continue to use the same parameters with your custom model, such as `temperature` and `max_tokens`, as you can with other deployed models. For fine-tuned `babbage-002` and `davinci-002` models you will use the Completions playground and the Completions API. For fine-tuned `gpt-35-turbo-0613` models you will use the Chat playground and the Chat completion API.
 
-:::image type="content" source="../media/quickstarts/playground-load.png" alt-text="Screenshot of the Playground pane in Azure OpenAI Studio, with sections highlighted." lightbox="../media/quickstarts/playground-load.png":::
+:::image type="content" source="../media/quickstarts/playground-load-new.png" alt-text="Screenshot of the Playground pane in Azure OpenAI Studio, with sections highlighted." lightbox="../media/quickstarts/playground-load-new.png":::
 
 ## Analyze your custom model
 

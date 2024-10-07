@@ -26,6 +26,11 @@
             "redirect_document_id": true
         },
         {
+            "source_path_from_root": "/articles/ai-studio/how-to/deploy-models-phi-3-5-moe.md",
+            "redirect_url": "/azure/ai-studio/how-to/deploy-models-phi-3",
+            "redirect_document_id": true
+        },
+        {
             "source_path_from_root": "/articles/ai-studio/how-to/cli-install.md",
             "redirect_url": "/azure/ai-studio/how-to/develop/sdk-overview",
             "redirect_document_id": false
@@ -119,6 +124,16 @@
             "source_path": "articles/ai-studio/how-to/commitment-tier.md",
             "redirect_url": "/azure/ai-services/commitment-tier.md",
             "redirect_document_id": false
+        },
+        {
+            "source_path_from_root": "/articles/ai-studio/how-to/develop/flow-evaluate-sdk.md",
+            "redirect_url": "/azure/ai-studio/how-to/develop/evaluate-sdk",
+            "redirect_document_id": true
+        },
+        {
+            "source_path_from_root": "/articles/ai-studio/how-to/evaluate-flow-results.md",
+            "redirect_url": "/azure/ai-studio/how-to/evaluate-results",
+            "redirect_document_id": true
         }
     ]
 }
