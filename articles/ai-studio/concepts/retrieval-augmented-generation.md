@@ -9,9 +9,9 @@ ms.custom:
   - build-2024
 ms.topic: conceptual
 ms.date: 5/21/2024
-ms.reviewer: eur
-ms.author: eur
-author: eric-urban
+ms.reviewer: sgilley
+ms.author: sgilley
+author: sdgilley
 ---
 
 # Retrieval augmented generation and indexes

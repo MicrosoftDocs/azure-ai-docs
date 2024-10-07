@@ -8,8 +8,8 @@ ms.custom: build-2024, devx-track-azurecli
 ms.topic: how-to
 ms.date: 5/21/2024
 ms.reviewer: dantaylo
-ms.author: eur
-author: eric-urban
+ms.author: sgilley
+author: sdgilley
 ---
 
 # Create a hub using the Azure Machine Learning SDK and CLI

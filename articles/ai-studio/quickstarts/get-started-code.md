@@ -8,8 +8,8 @@ ms.custom: build-2024, devx-track-azurecli, devx-track-python
 ms.topic: how-to
 ms.date: 8/6/2024
 ms.reviewer: dantaylo
-ms.author: eur
-author: eric-urban
+ms.author: sgilley
+author: sdgilley
 ---
 
 # Build a custom chat app in Python using the prompt flow SDK
