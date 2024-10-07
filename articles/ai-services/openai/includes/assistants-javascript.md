@@ -122,13 +122,27 @@ In our code we are going to specify the following values:
 
 An individual assistant can access up to 128 tools including `code interpreter`, as well as any custom tools you create via [functions](../how-to/assistant-functions.md).
 
-#### [TypeScript](#tab/typescript)
+#### [TypeScript (Recommended) without key](#tab/typescript)
 
-Create an assistant with the following **recommended** passwordless TypeScript module (index.ts):
+Create the `index.ts` file with the following **recommended** passwordless TypeScript module (index.ts):
 
 :::code language="typescript" source="~/azure-typescript-e2e-apps/quickstarts/azure-openai-assistants/ts/src/index.ts" :::
 
-To use the service key for authentication, you can create and run an assistant with the following TypeScript module (index.ts):
+Create the `tsconfig.json` file to transpile the TypeScript code and copy the following code for ECMAScript.
+
+```json
+{
+  "compilerOptions": {
+    "target": "es2022",
+    "module": "es2022",
+    "moduleResolution": "node",
+  }
+}
+```
+
+#### [TypeScript with key](#tab/typescript)
+
+To use the service key for authentication, you can create the `index.ts` file with the following TypeScript module (index.ts):
 
 :::code language="typescript" source="~/azure-typescript-e2e-apps/quickstarts/azure-openai-assistants/ts/src/index-using-password.ts" :::
 
@@ -144,13 +158,15 @@ Create the `tsconfig.json` file to transpile the TypeScript code and copy the fo
 }
 ```
 
-#### [JavaScript](#tab/javascript)
+#### [JavaScript without key](#tab/javascript)
 
-Create an assistant with the following **recommended** passwordless JavaScript module (index.mjs):
+Create the `index.js` file with the following **recommended** passwordless JavaScript module (index.mjs):
 
 :::code language="javascript" source="~/azure-typescript-e2e-apps/quickstarts/azure-openai-assistants/js/src/index.mjs" :::
 
-To use the service key for authentication, you can create and run an assistant with the following JavaScript module (index.mjs):
+#### [JavaScript with key](#tab/javascript)
+
+To use the service key for authentication, you can create the `index.js` file with the following JavaScript module (index.mjs):
 
 :::code language="javascript" source="~/azure-typescript-e2e-apps/quickstarts/azure-openai-assistants/js/src/index-using-password.mjs" :::
 
@@ -164,25 +180,25 @@ To use the service key for authentication, you can create and run an assistant w
 
 #### [TypeScript](#tab/typescript)
 
-    Transpile from TypeScript to JavaScript.
+Transpile from TypeScript to JavaScript.
 
-    ```shell
-    tsc index.ts
-    ```
+```shell
+tsc index.ts
+```
 
-    Run the JavaScript file.
+Run the JavaScript file.
 
-    ```shell
-    node index.js
-    ```
+```shell
+node index.js
+```
 
 #### [JavaScript](#tab/javascript)
 
-    Run the JavaScript file.
+Run the JavaScript file.
 
-    ```shell
-    node index.js
-    ```
+```shell
+node index.js
+```
 
 ```
 
