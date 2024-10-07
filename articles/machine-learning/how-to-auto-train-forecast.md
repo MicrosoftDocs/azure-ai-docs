@@ -190,7 +190,7 @@ The following example shows how to configure the experiment.
 
 # [Python SDK](#tab/python)
 
-You use the [automl factory functions](/python/api/azure-ai-ml/azure.ai.ml.automl#azure-ai-ml-automl-forecasting) to configure forecasting jobs in the Python SDK. The following example shows how to create a [forecasting job](/python/api/azure-ai-ml/azure.ai.ml.automl.forecastingjob) by setting the [primary metric](how-to-configure-auto-train.md#primary-metric) and set limits on the training run:
+You use the [AutoML factory functions](/python/api/azure-ai-ml/azure.ai.ml.automl#azure-ai-ml-automl-forecasting) to configure forecasting jobs in the Python SDK. The following example shows how to create a [forecasting job](/python/api/azure-ai-ml/azure.ai.ml.automl.forecastingjob) by setting the [primary metric](how-to-configure-auto-train.md#primary-metric) and set limits on the training run:
 
 ```python
 from azure.ai.ml import automl
