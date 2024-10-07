@@ -124,81 +124,99 @@ An individual assistant can access up to 128 tools including `code interpreter`,
 
 #### [TypeScript (Recommended) without key](#tab/typescript)
 
-Create the `index.ts` file with the following **recommended** passwordless TypeScript module (index.ts):
+1. Create the `index.ts` file with the following **recommended** passwordless TypeScript module (index.ts):
 
-:::code language="typescript" source="~/azure-typescript-e2e-apps/quickstarts/azure-openai-assistants/ts/src/index.ts" :::
+    :::code language="typescript" source="~/azure-typescript-e2e-apps/quickstarts/azure-openai-assistants/ts/src/index.ts" :::
 
-Create the `tsconfig.json` file to transpile the TypeScript code and copy the following code for ECMAScript.
+1. Create the `tsconfig.json` file to transpile the TypeScript code and copy the following code for ECMAScript.
 
-```json
-{
-  "compilerOptions": {
-    "target": "es2022",
-    "module": "es2022",
-    "moduleResolution": "node",
-  }
-}
-```
+    ```json
+    {
+      "compilerOptions": {
+        "target": "es2022",
+        "module": "es2022",
+        "moduleResolution": "node",
+      }
+    }
+    ```
 
-#### [TypeScript with key](#tab/typescript)
+1. Transpile from TypeScript to JavaScript.
 
-To use the service key for authentication, you can create the `index.ts` file with the following TypeScript module (index.ts):
+    ```shell
+    tsc index.ts
+    ```
+    
+1. Sign in to Azure with the following command:
 
-:::code language="typescript" source="~/azure-typescript-e2e-apps/quickstarts/azure-openai-assistants/ts/src/index-using-password.ts" :::
+    ```shell
+    az login
+    ```
 
-Create the `tsconfig.json` file to transpile the TypeScript code and copy the following code for ECMAScript.
+1. Run the code with the following command:
 
-```json
-{
-  "compilerOptions": {
-    "target": "es2022",
-    "module": "es2022",
-    "moduleResolution": "node",
-  }
-}
-```
+    ```shell
+    node index.js
+    ```
+
+#### [TypeScript with key](#tab/typescript-key)
+
+1. To use the service key for authentication, you can create the `index.ts` file with the following TypeScript module (index.ts):
+
+    :::code language="typescript" source="~/azure-typescript-e2e-apps/quickstarts/azure-openai-assistants/ts/src/index-using-password.ts" :::
+
+1. Create the `tsconfig.json` file to transpile the TypeScript code and copy the following code for ECMAScript.
+
+    ```json
+    {
+      "compilerOptions": {
+        "target": "es2022",
+        "module": "es2022",
+        "moduleResolution": "node",
+      }
+    }
+    ```
+
+1. Transpile from TypeScript to JavaScript.
+
+    ```shell
+    tsc index.ts
+    ```
+    
+1. Sign in to Azure with the following command:
+
+    ```shell
+    az login
+    ```
+
+1. Run the code with the following command:
+
+    ```shell
+    node index.js
+    ```
 
 #### [JavaScript without key](#tab/javascript)
 
-Create the `index.js` file with the following **recommended** passwordless JavaScript module (index.mjs):
+1. Create the `index.js` file with the following **recommended** passwordless JavaScript module (index.mjs):
 
-:::code language="javascript" source="~/azure-typescript-e2e-apps/quickstarts/azure-openai-assistants/js/src/index.mjs" :::
+    :::code language="javascript" source="~/azure-typescript-e2e-apps/quickstarts/azure-openai-assistants/js/src/index.mjs" :::
 
-#### [JavaScript with key](#tab/javascript)
+1. Run the JavaScript file.
 
-To use the service key for authentication, you can create the `index.js` file with the following JavaScript module (index.mjs):
+    ```shell
+    node index.js
+    ```
 
-:::code language="javascript" source="~/azure-typescript-e2e-apps/quickstarts/azure-openai-assistants/js/src/index-using-password.mjs" :::
+#### [JavaScript with key](#tab/javascript-key)
 
---- 
+1. To use the service key for authentication, you can create the `index.js` file with the following JavaScript module (index.mjs):
 
-## Run the code
+    :::code language="javascript" source="~/azure-typescript-e2e-apps/quickstarts/azure-openai-assistants/js/src/index-using-password.mjs" :::
 
-1. Sign in to Azure with `az login`.
+1. Run the JavaScript file.
 
-2. Run the code
-
-#### [TypeScript](#tab/typescript)
-
-Transpile from TypeScript to JavaScript.
-
-```shell
-tsc index.ts
-```
-
-Run the JavaScript file.
-
-```shell
-node index.js
-```
-
-#### [JavaScript](#tab/javascript)
-
-Run the JavaScript file.
-
-```shell
-node index.js
-```
+    ```shell
+    node index.js
+    ```
 
 ```
 
