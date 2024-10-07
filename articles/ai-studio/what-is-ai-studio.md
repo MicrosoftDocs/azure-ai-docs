@@ -7,9 +7,9 @@ keywords: Azure AI services, cognitive
 ms.service: azure-ai-studio
 ms.topic: overview
 ms.date: 5/21/2024
-ms.reviewer: eur
-ms.author: eur
-author: eric-urban
+ms.reviewer: sgilley
+ms.author: sgilley
+author: sdgilley
 ms.custom: ignite-2023, build-2024
 ---
 

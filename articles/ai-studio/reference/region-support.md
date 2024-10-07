@@ -7,8 +7,8 @@ ms.service: azure-ai-studio
 ms.topic: conceptual
 ms.date: 5/21/2024
 ms.reviewer: deeikele
-ms.author: eur
-author: eric-urban
+ms.author: sgilley
+author: sdgilley
 ms.custom: references_regions, build-2024
 ---
 

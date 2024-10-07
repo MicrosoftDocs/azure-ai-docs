@@ -10,8 +10,8 @@ ms.custom:
 ms.topic: quickstart
 ms.date: 8/9/2024
 ms.reviewer: ailsaleen
-ms.author: eur
-author: eric-urban
+ms.author: sgilley
+author: sdgilley
 ---
 
 # QuickStart: Get started using AI Studio with a screen reader
