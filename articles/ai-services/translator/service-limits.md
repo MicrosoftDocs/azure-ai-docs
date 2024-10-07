@@ -7,7 +7,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: conceptual
-ms.date: 09/26/2024
+ms.date: 10/07/2024
 ms.author: lajanuar
 ---
 
@@ -78,7 +78,7 @@ The Translator has a maximum latency of 15 seconds using standard models and 120
 |Total number of files.|≤ 1000 |
 |Total content size in a batch | ≤ 250 MB|
 |Number of target languages in a batch| ≤ 10 |
-|Size of Translation memory file| ≤ 10 MB|
+|Size of glossary file| ≤ 10 MB|
 
 ##### Synchronous operation limits
 
@@ -87,7 +87,7 @@ The Translator has a maximum latency of 15 seconds using standard models and 120
 |Document size| ≤ 10 MB |
 |Total number of files.|1 |
 |Total number of target languages | 1|
-|Size of Translation memory file| ≤ 1 MB|
+|Size of glossary file| ≤ 1 MB|
 |Translated character limit|6 million characters per minute (cpm).|
 
 ## Next steps
