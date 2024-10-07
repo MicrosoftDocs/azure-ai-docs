@@ -20,11 +20,14 @@ zone_pivot_groups: ?????
 
 [!INCLUDE [health-ai-models-meddev-disclaimer](../../includes/health-ai-models-meddev-disclaimer.md)]
 
-In this article, you learn about the MedImageInsight Foundational Model for Healthcare. 
+In this article, you learn how to deploy MedImageInsight as an online endpoint for real-time inference and issue a basic call to the API. The steps you take are:
+
+* Deploy the model to a self-hosted managed compute.
+* Grant permissions to the endpoint.
+* Send test data to the model, receive and interpret results
 
 ## MedImageInsight - the Medical Imaging Embedding model
-* MedImageInsight is a unique model for generating embeddings  
-* See model catalog entry for model card  
+MedImageInsight Foundational Model for Healthcare is a powerful model that can process a wide variety of medical images including X-Ray, CT, MRI, clinical photography, dermoscopy, histopathology, ultrasound, and mammography. Rigorous evaluations demonstrate MedImageInsight's ability to achieve state-of-the-art (SOTA) or human expert level performance across classification, image-image search, and fine-tuning tasks.  Specifically, on public datasets, MedImageInsight achieves or exceeds SOTA in chest X-ray disease classification and search, dermatology classification and search, OCT classification and search, 3D medical image retrieval, and near SOTA for histopathology classification and search.  
 
 ## Prerequisites
 
@@ -84,19 +87,23 @@ print("SAMPLE CODE HERE")
 
 
 ## More Examples 
-MedImageInsight is a versatile model that can be applied to a wide range of tasks and imaging modalities. For more examples see the following: 
+MedImageInsight is a versatile model that can be applied to a wide range of tasks and imaging modalities. For more specific examples of solving a variety of tasks with MedImageInsight see the following interactive Python Notebooks: 
 
-### 101 Examples
-* [Deploy and call the MedImageInsight model](https://github.com/Azure/azureml-examples/tree/main/sdk/python/foundation-models/healthcare-ai/medimageinsight/deploy.ipynb)
-* [Using MedImageInsight to build a zero-shot classifier](https://github.com/Azure/azureml-examples/tree/main/sdk/python/foundation-models/healthcare-ai/medimageinsight/zero-shot.ipynb)
-* [Using MedImageInsight to build a better classifier with an small adapter network](https://github.com/Azure/azureml-examples/tree/main/sdk/python/foundation-models/healthcare-ai/medimageinsight/adapter.ipynb)
+### Getting Started
+* [Deploying and Using MedImageInsight](https://github.com/Azure/azureml-examples/tree/main/sdk/python/foundation-models/healthcare-ai/medimageinsight/deploy.ipynb): learn how to deploy the MedImageInsight model and integrate it into your workflow.
 
-### 201 Examples
-* [Using MedImageInsight to infer exam acquisition parameters based on imaging pixel data](https://github.com/Azure/azureml-examples/tree/main/sdk/python/foundation-models/healthcare-ai/medimageinsight/exam-parameter.ipynb)
-* [Using MedImageInsight to find outliers in imaging datasets](https://github.com/Azure/azureml-examples/tree/main/sdk/python/foundation-models/healthcare-ai/medimageinsight/outlier.ipynb)
+### Classification Techniques
+* [Building a Zero-Shot Classifier](https://github.com/Azure/azureml-examples/tree/main/sdk/python/foundation-models/healthcare-ai/medimageinsight/zero-shot.ipynb): discover how to create a classifier without the need training or large amount of labeled training data using MedImageInsight.
+
+* [Enhancing Classification with Adapter Networks](https://github.com/Azure/azureml-examples/tree/main/sdk/python/foundation-models/healthcare-ai/medimageinsight/adapter.ipynb): improve classification performance by incorporating a small adapter network with MedImageInsight.
+
+### Advanced Applications
+* [Inferring MRI Acquisition Parameters from Pixel Data](https://github.com/Azure/azureml-examples/tree/main/sdk/python/foundation-models/healthcare-ai/medimageinsight/exam-parameter.ipynb): understand how to extract MRI exam acquisition parameters directly from imaging data.
+
+* [Detecting Outliers in Medical Image Series](https://github.com/Azure/azureml-examples/tree/main/sdk/python/foundation-models/healthcare-ai/medimageinsight/outlier.ipynb): learn methods to identify anomalies in full series of medical images using MedImageInsight.
 
 
 ## Related content
 
-* [MedImageParse for medical image segmentation](../reference/reference-model-inference-api.md)
-* [CXRReportGen for grounded report generation](deploy-models-serverless.md)
+* [MedImageParse for medical image segmentation](./deploy-medimageparse)
+* [CXRReportGen for grounded report generation](./deploy-cxrreportgen.md)

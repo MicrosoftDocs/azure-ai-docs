@@ -20,11 +20,15 @@ zone_pivot_groups: ?????
 
 [!INCLUDE [health-ai-models-meddev-disclaimer](../../includes/health-ai-models-meddev-disclaimer.md)]
 
-In this article, you learn about the MedImageParse Foundational Model for Healthcare. 
+In this article, you learn how to deploy MedImageParse as an online endpoint for real-time inference and issue a basic call to the API. The steps you take are:
+
+* Deploy the model to a self-hosted managed compute.
+* Grant permissions to the endpoint.
+* Send test data to the model, receive and interpret results
+
 
 ## MedImageParse - Prompt-based Segmentation of Medical Images
-* MedImageParse is a unique model for prompt-based segmentation
-* See model catalog entry for model card  
+Biomedical image analysis is crucial for discovery in fields like cell biology, pathology, and radiology. Traditionally, tasks such as segmentation, detection, and recognition of relevant objects have been addressed separately, which can limit the overall effectiveness of image analysis. MedImageParse unifies these tasks through image parsing, jointly conducting segmentation, detection, and recognition across numerous object types and imaging modalities. By leveraging the interdependencies among these subtasks—such as the semantic labels of segmented objects—the model enhances accuracy and enables novel applications. For instance, it allows users to segment all relevant objects in an image using a simple text prompt, eliminating the need to manually specify bounding boxes for each object. Remarkably, this was achieved using only standard segmentation datasets, augmented by natural-language labels or descriptions harmonized with established biomedical object ontologies. This approach not only improved individual task performance but also offered an all-in-one tool for biomedical image analysis, paving the way for more efficient and accurate image-based biomedical discovery.
 
 ## Prerequisites
 
@@ -84,12 +88,13 @@ print("SAMPLE CODE HERE")
 
 
 ## More Examples 
-MedImageParse is a versatile model that can be applied to a wide range of tasks and imaging modalities. For more examples see the following: 
+MedImageParse is a versatile model that can be applied to a wide range of tasks and imaging modalities. For more examples see the following interactive Python Notebooks: 
 
-* [Using MedImageParse and visualizing results](http://www.github.com)
-* [Using MedImageParse to analyze various stains of digital pathology workflow](http://www.github.com)
+### Getting Started
+* [Deploying and Using MedImageParse](https://github.com/Azure/azureml-examples/tree/main/sdk/python/foundation-models/healthcare-ai/medimageparse/deploy.ipynb): learn how to deploy the MedImageParse model and integrate it into your workflow.
+* [Generating Segmentation for a Variety of Imaging Modalities](https://github.com/Azure/azureml-examples/tree/main/sdk/python/foundation-models/healthcare-ai/medimageparse/call-examples.ipynb): understand how to use MedImageParse to segment a wide variety of different medical images and learn some prompting techniques. 
 
 ## Related content
 
-* [CXRReportGen for grounded report generation](../reference/reference-model-inference-api.md)
-* [MedImageInsights for embeddings](deploy-models-serverless.md)
+* [CXRReportGen for grounded report generation](./deploy-cxrreportgen.md)
+* [MedImageInsight for grounded report generation](deploy-medimageinsight.md)

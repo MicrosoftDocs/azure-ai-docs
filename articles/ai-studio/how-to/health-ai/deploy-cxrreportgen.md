@@ -20,11 +20,14 @@ zone_pivot_groups: ?????
 
 [!INCLUDE [health-ai-models-meddev-disclaimer](../../includes/health-ai-models-meddev-disclaimer.md)]
 
-In this article, you learn about the CXRReportGen Foundational Model for Healthcare. 
+In this article, you learn how to deploy CXRReportGen as an online endpoint for real-time inference and issue a basic call to the API. The steps you take are:
+
+* Deploy the model to a self-hosted managed compute.
+* Grant permissions to the endpoint.
+* Send test data to the model, receive and interpret results
 
 ## CXRReportGen - Grounded Report Generation Model for Chest X-rays
-* CXRReportGen is a unique model for grounded report generation
-* See model catalog entry for model card  
+Radiology reporting demands detailed image understanding, integration of multiple inputs (including comparisons with prior imaging), and precise language generation, making it an ideal candidate for generative multimodal models. CXRReportGen not only performs the task of generating a list of findings from a chest Xray study, but also extends it by incorporating the localization of individual findings on the image—a task we refer to as grounded report generation. Grounding enhances the clarity of image interpretation and the transparency of AI-generated text, thereby improving the utility of automated report drafting. The model combines a radiology-specific image encoder with a large language model and it takes as inputs a more comprehensive set of data than many traditional approaches: the current frontal image, the current lateral image, the prior frontal image, the prior report, and the Indication, Technique, and Comparison sections of the current report. These additions significantly enhance report quality and reduce hallucinations, demonstrating the feasibility of grounded reporting as a novel and richer task in automated radiology.
 
 ## Prerequisites
 
@@ -84,11 +87,14 @@ print("SAMPLE CODE HERE")
 
 
 ## More Examples 
-CXRReportGen is a versatile model that can be applied to a wide range of tasks and imaging modalities. For more examples see the following: 
+CXRReportGen is a versatile model that can be applied to a wide range of tasks and imaging modalities. For more examples see the following interactive Python Notebooks: 
 
-* [Using CXRReportGen and visualizing results](http://www.github.com)
+
+### Getting Started
+* [Deploying and Using CXRReportGen](https://github.com/Azure/azureml-examples/tree/main/sdk/python/foundation-models/healthcare-ai/medimageinsight/deploy.ipynb): learn how to deploy the CXRReportGen model and integrate it into your workflow.
+* [Calling CXRReportGen and Visualizing Results](http://www.github.com): understand how to submit various types of Chest X-Ray studies to CXRReportGen, interpret the results and apply some visualization techniques. 
 
 ## Related content
 
-* [MedImageParse for medical image segmentation](../reference/reference-model-inference-api.md)
-* [MedImageInsights for grounded report generation](deploy-models-serverless.md)
+* [MedImageParse for medical image segmentation](deploy-medimageparse.md)
+* [MedImageInsight for grounded report generation](deploy-medimageinsight.md)
