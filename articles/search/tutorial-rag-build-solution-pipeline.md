@@ -346,20 +346,26 @@ Chunk:
 Swirling Bloom off Patagonia
 Argentina
 
-Interesting art often springs out of the convergence of different ideas and influences. And so it is with nature. 
+Interesting art often springs out of the convergence of different ideas and influences. 
+And so it is with nature. 
 
-Off the coast of Argentina, two strong ocean currents converge and often stir up a colorful brew, as shown in this Aqua image from 
+Off the coast of Argentina, two strong ocean currents converge and often stir up a colorful 
+brew, as shown in this Aqua image from 
 
 December 2010. 
 
-This milky green and blue bloom formed on the continental shelf off of Patagonia, where warmer, saltier waters from the subtropics 
+This milky green and blue bloom formed on the continental shelf off of Patagonia, where warmer, 
+saltier waters from the subtropics 
 
-meet colder, fresher waters flowing from the south. Where these currents collide, turbulent eddies and swirls form, pulling nutrients 
+meet colder, fresher waters flowing from the south. Where these currents collide, turbulent 
+eddies and swirls form, pulling nutrients 
 
-up from the deep ocean. The nearby Rio de la Plata also deposits nitrogen- and iron-laden sediment into the sea. Add in some 
+up from the deep ocean. The nearby Rio de la Plata also deposits nitrogen- and iron-laden 
+sediment into the sea. Add in some 
 ...
 
-while others terminate in water. The San Rafael and San Quintín glaciers (shown at the right) are the icefield’s largest. Both have 
+while others terminate in water. The San Rafael and San Quintín glaciers (shown at the right) 
+are the icefield’s largest. Both have 
 
 been receding rapidly in the past 30 years.
 ```
