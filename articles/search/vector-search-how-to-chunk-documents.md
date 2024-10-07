@@ -9,18 +9,18 @@ ms.service: cognitive-search
 ms.custom:
   - ignite-2023
 ms.topic: conceptual
-ms.date: 08/05/2024
+ms.date: 10/01/2024
 ---
 
 # Chunk large documents for vector search solutions in Azure AI Search
 
-Partitioning large documents into smaller chunks can help you stay under the maximum token input limits of embedding models. For example, the maximum length of input text for the [Azure OpenAI](/azure/ai-services/openai/how-to/embeddings) embedding models is 8,191 tokens. Given that each token is around four characters of text for common OpenAI models, this maximum limit is equivalent to around 6,000 words of text. If you're using these models to generate embeddings, it's critical that the input text stays under the limit. Partitioning your content into chunks ensures that your data can be processed by the embedding models used to populate vector stores and text-to-vector query conversions. 
+Partitioning large documents into smaller chunks can help you stay under the maximum token input limits of embedding models. For example, the maximum length of input text for the [Azure OpenAI](/azure/ai-services/openai/how-to/embeddings) text-embedding-ada-002 model is 8,191 tokens. Given that each token is around four characters of text for common OpenAI models, this maximum limit is equivalent to around 6,000 words of text. If you're using these models to generate embeddings, it's critical that the input text stays under the limit. Partitioning your content into chunks ensures that your data can be processed by the embedding models and that you don't lose information due to truncation.
 
-Chunking is only required if source documents are too large for the maximum input size imposed by models.
-
-We recommend [integrated vectorization](vector-search-integrated-vectorization.md) for built-in data chunking and embedding. Integrated vectorization takes a dependency on indexers, skillsets, the Text Split skill, and an embedding skill. If you can't use integrated vectorization, this article describes some approaches for chunking your content.
+We recommend [integrated vectorization](vector-search-integrated-vectorization.md) for built-in data chunking and embedding. Integrated vectorization takes a dependency on indexers, skillsets, the [Text Split skill](cognitive-search-skill-textsplit.md), and an embedding skill like [Azure OpenAI Embedding skill](cognitive-search-skill-azure-openai-embedding.md). If you can't use integrated vectorization, this article describes some approaches for chunking your content.
 
 ## Common chunking techniques
+
+Chunking is only required if the source documents are too large for the maximum input size imposed by models.
 
 Here are some common chunking techniques, starting with the most widely used method:
 
@@ -48,7 +48,7 @@ When it comes to chunking data, think about these factors:
 
 If you have large documents, you must insert a chunking step into indexing and query workflows that breaks up large text. When using [integrated vectorization](vector-search-integrated-vectorization.md), a default chunking strategy using the [Text Split skill](./cognitive-search-skill-textsplit.md) is applied. You can also apply a custom chunking strategy using a [custom skill](cognitive-search-custom-skill-web-api.md). Some libraries that provide chunking include:
 
-+ [LangChain Text Splitters](https://python.langchain.com/docs/modules/data_connection/document_transformers/)
++ [LangChain Text Splitters](https://python.langchain.com/v0.1/docs/modules/data_connection/document_transformers/)
 + [Semantic Kernel TextChunker](/dotnet/api/microsoft.semantickernel.text.textchunker)
 
 Most libraries provide common chunking techniques for fixed size, variable size, or a combination. You can also specify an overlap that duplicates a small amount of content in each chunk for context preservation.
@@ -75,11 +75,13 @@ Set `textSplitMode` to break up content into smaller chunks:
 
 The `pages` parameter adds extra parameters:
 
-+ `maximumPageLength` defines the maximum number of characters <sup>1</sup> in each chunk. The text splitter avoids breaking up sentences, so the actual character count depends on the content.
++ `maximumPageLength` defines the maximum number of characters <sup>1</sup> or tokens <sup>2</sup> in each chunk. The text splitter avoids breaking up sentences, so the actual character count depends on the content.
 + `pageOverlapLength` defines how many characters from the end of the previous page are included at the start of the next page. If set, this must be less than half the maximum page length.
 + `maximumPagesToTake` defines how many pages / chunks to take from a document. The default value is 0, which means taking all pages or chunks from the document.
 
 <sup>1</sup> Characters don't align to the definition of a [token](/azure/ai-services/openai/concepts/prompt-engineering#space-efficiency). The number of tokens measured by the LLM might be different than the character size measured by the Text Split skill.
+
+<sup>2</sup> Token chunking is available in the [2024-09-01-preview](/rest/api/searchservice/skillsets/create-or-update?view=rest-searchservice-2024-09-01-preview&preserve-view=true) and includes extra parameters for specifying a tokenizer and any tokens that shouldn't be split up during chunking.
 
 The following table shows how the choice of parameters affects the total chunk count from the Earth at Night e-book:
 
