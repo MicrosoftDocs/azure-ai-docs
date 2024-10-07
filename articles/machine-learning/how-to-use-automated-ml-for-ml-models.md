@@ -313,7 +313,7 @@ If you specified a test dataset or opted for a train/test split during your expe
 > This feature isn't available for the following Automated ML scenarios:
 > - [Computer vision tasks](how-to-auto-train-image-models.md)
 > - [Many models and hiearchical time-series forecasting training (preview)](how-to-auto-train-forecast.md)
-> - [Forecasting tasks where deep learning neural networks (DNN) are enabled](how-to-auto-train-forecast.md#enable-deep-learning)
+> - [Forecasting tasks where deep learning neural networks (DNN) are enabled](how-to-auto-train-forecast.md#enable-learning-for-deep-neural-networks)
 > - [Automated ML jobs from local computes or Azure Databricks clusters](how-to-configure-auto-train.md#compute-to-run-experiment)
 
 Follow these steps to view the test job metrics of the recommended model:
@@ -346,7 +346,7 @@ After your experiment completes, you can test the models Automated ML generates 
 > This feature isn't available for the following Automated ML scenarios:
 > - [Computer vision tasks](how-to-auto-train-image-models.md)
 > - [Many models and hiearchical time-series forecasting training (preview)](how-to-auto-train-forecast.md)
-> - [Forecasting tasks where deep learning neural networks (DNN) are enabled](how-to-auto-train-forecast.md#enable-deep-learning)
+> - [Forecasting tasks where deep learning neural networks (DNN) are enabled](how-to-auto-train-forecast.md#enable-learning-for-deep-neural-networks)
 > - [Automated ML jobs from local computes or Azure Databricks clusters](how-to-configure-auto-train.md#compute-to-run-experiment)
 
 If you want to test a different Automated ML generated model, and not the recommended model, follow these steps:
