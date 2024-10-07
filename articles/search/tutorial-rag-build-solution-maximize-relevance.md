@@ -107,7 +107,12 @@ print(response.choices[0].message.content)
 Output from this request might look like the following example.
 
 ```
-Yes, there are cloud formations specific to oceans and large bodies of water. A notable example is "cloud streets," which are parallel rows of clouds that form over the Bering Strait in the Arctic Ocean. These cloud streets occur when wind blows from a cold surface like sea ice over warmer, moister air near the open ocean, leading to the formation of spinning air cylinders. Clouds form along the upward cycle of these cylinders, while skies remain clear along the downward cycle (Source: page-21.pdf).
+Yes, there are cloud formations specific to oceans and large bodies of water. 
+A notable example is "cloud streets," which are parallel rows of clouds that form over 
+the Bering Strait in the Arctic Ocean. These cloud streets occur when wind blows from 
+a cold surface like sea ice over warmer, moister air near the open ocean, leading to 
+the formation of spinning air cylinders. Clouds form along the upward cycle of these cylinders, 
+while skies remain clear along the downward cycle (Source: page-21.pdf).
 ```
 
 ## Update the index for semantic ranking and scoring profiles
@@ -264,13 +269,20 @@ Output from a semantically ranked and boosted query might look like the followin
 ```
 Yes, there are specific cloud formations influenced by oceans and large bodies of water:
 
-- **Stratus Clouds Over Icebergs**: Low stratus clouds can frame holes over icebergs, such as Iceberg A-56 in the South Atlantic Ocean, likely due to thermal instability caused by the iceberg (source: page-39.pdf).
+- **Stratus Clouds Over Icebergs**: Low stratus clouds can frame holes over icebergs, 
+such as Iceberg A-56 in the South Atlantic Ocean, likely due to thermal instability caused 
+by the iceberg (source: page-39.pdf).
 
-- **Undular Bores**: These are wave structures in the atmosphere created by the collision of cool, dry air from a continent with warm, moist air over the ocean, as seen off the coast of Mauritania (source: page-23.pdf).
+- **Undular Bores**: These are wave structures in the atmosphere created by the collision 
+of cool, dry air from a continent with warm, moist air over the ocean, as seen off the 
+coast of Mauritania (source: page-23.pdf).
 
-- **Ship Tracks**: These are narrow clouds formed by water vapor condensing around tiny particles from ship exhaust. They are observed over the oceans, such as in the Pacific Ocean off the coast of California (source: page-31.pdf).
+- **Ship Tracks**: These are narrow clouds formed by water vapor condensing around tiny 
+particles from ship exhaust. They are observed over the oceans, such as in the Pacific Ocean 
+off the coast of California (source: page-31.pdf).
 
-These specific formations are influenced by unique interactions between atmospheric conditions and the presence of large water bodies or objects within them.
+These specific formations are influenced by unique interactions between atmospheric conditions 
+and the presence of large water bodies or objects within them.
 ```
 
 Adding semantic ranking and scoring profiles positively affects the response from the LLM by promoting results that meet scoring criteria and are semantically relevant. 
