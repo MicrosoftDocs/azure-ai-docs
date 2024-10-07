@@ -45,7 +45,7 @@ The following data is stored on the managed resources.
 
 ## (Preview) Service-side storage of encrypted data when using customer-managed keys
 
-A new architecture for the customer-managed key encryption workspace is available in preview, which resolves the dependency on the managed resource group. In this new model, encrypted data is stored service-side on Microsoft-managed resources instead of in your subscription. Metadata is stored in multi-tenant resources using document-level CMK encryption. An Azure AI Search instance is hosted on the Microsoft-side for each hub. Due to its dedicated resource model, its Azure cost is charged in your subscription.
+A new architecture for customer-managed key encryption with hubs is available in preview, which resolves the dependency on the managed resource group. In this new model, encrypted data is stored service-side on Microsoft-managed resources instead of in managed resources in your subscription. Metadata is stored in multi-tenant resources using document-level CMK encryption. An Azure AI Search instance is hosted on the Microsoft-side per customer, and for each hub. Due to its dedicated resource model, its Azure cost is charged in your subscription via the hub resource.
 
 > [!NOTE]
 > During this preview key rotation and user-assigned identity capabilities are not supported. Server-side encryption is currently not supported in reference to an Azure Key Vault for storing your encryption key that has public network access disabled.
@@ -65,6 +65,8 @@ The following limitations hold for Azure AI Services:
 - Only RSA and RSA-HSM keys of size 2048 are supported with Azure AI services encryption. For more information about keys, see **Key Vault keys** in [About Azure Key Vault keys, secrets and certificates](/azure/key-vault/general/about-keys-secrets-certificates).
 
 ### Enable your Azure AI Services resource's managed identity
+
+If connecting with Azure AI Services, or variants of Azure AI Services such as Azure OpenAI, you need to enable managed identity as a prerequisite for using customer-managed keys.
 
 1. Go to your Azure AI services resource.
 1. On the left, under **Resource Management**, select **Identity**.
@@ -88,7 +90,7 @@ Alternatively, use infrastructure-as-code options for automation. Example Bicep 
 ## Limitations
 
 * The customer-managed key for encryption can only be updated to keys in the same Azure Key Vault instance.
-* After deployment, you can't switch from Microsoft-managed keys to Customer-managed keys or vice versa.
+* After deployment, hubs cannot switch from Microsoft-managed keys to Customer-managed keys or vice versa.
 * Resources that are created in the Microsoft-managed Azure resource group in your subscription can't be modified by you or be provided by you at the time of creation as existing resources.
 * You can't delete Microsoft-managed resources used for customer-managed keys without also deleting your hub.
 * [Azure AI services Customer-Managed Key Request Form](https://aka.ms/cogsvc-cmk) is still required for Speech and Content Moderator.
