@@ -8,7 +8,7 @@ ms.service: azure-ai-services
 ms.custom:
   - ignite-2023
 ms.topic: concept-article
-ms.date: 11/15/2023
+ms.date: 10/7/2024
 ms.reviewer: deeikele
 # Customer intent: As an admin, I want to understand how I can use my own encryption keys with Azure AI Studio.
 ---
