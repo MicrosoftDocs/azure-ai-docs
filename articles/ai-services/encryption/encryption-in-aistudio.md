@@ -91,6 +91,7 @@ Alternatively, use infrastructure-as-code options for automation. Example Bicep 
 
 * The customer-managed key for encryption can only be updated to keys in the same Azure Key Vault instance.
 * After deployment, hubs cannot switch from Microsoft-managed keys to Customer-managed keys or vice versa.
+* [Azure AI services Customer-Managed Key Request Form](https://aka.ms/cogsvc-cmk) is required to use customer-managed keys in combination with Azure Speech and Content Moderator capabilities.
 * Resources that are created in the Microsoft-managed Azure resource group in your subscription can't be modified by you or be provided by you at the time of creation as existing resources.
 * You can't delete Microsoft-managed resources used for customer-managed keys without also deleting your hub.
 * [Azure AI services Customer-Managed Key Request Form](https://aka.ms/cogsvc-cmk) is still required for Speech and Content Moderator.
