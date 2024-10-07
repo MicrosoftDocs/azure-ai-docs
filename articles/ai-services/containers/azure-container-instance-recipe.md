@@ -14,7 +14,7 @@ ms.author: aahi
 #Customer intent: As a potential customer, I want to know more about how Azure AI services provides and supports Docker containers for each service.
 ---
 
-# Deploy and run container on Azure Container Instance
+# Deploy and run containers on Azure Container Instance
 
 With the following steps, scale Azure AI services applications in the cloud easily with Azure [Container Instances](/azure/container-instances/). Containerization helps you focus on building your applications instead of managing the infrastructure. For more information on using containers, see [features and benefits](../cognitive-services-container-support.md#features-and-benefits).
 

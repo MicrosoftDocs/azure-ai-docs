@@ -6,7 +6,7 @@ manager: nitinme
 ms.service: azure-ai-openai
 ms.custom: 
 ms.topic: how-to
-ms.date: 09/04/2024
+ms.date: 10/02/2024
 author: mrbullwinkle
 ms.author: mbullwin
 recommendations: false
@@ -50,15 +50,17 @@ Global batch is currently supported in the following regions:
 
 The following models support global batch:
 
-| Model | Version | Supported |
+| Model | Version | Input format |
 |---|---|---|
-|`gpt-4o` | 2024-05-13 |Yes (text + vision) |
-|`gpt-4o-mini` | 2024-07-18  | Yes (text + vision) |
-|`gpt-4` | turbo-2024-04-09 | Yes (text only) |
-|`gpt-4` | 0613 | Yes |
-| `gpt-35-turbo` | 0125 | Yes |
-| `gpt-35-turbo` | 1106 | Yes |
-| `gpt-35-turbo` | 0613 | Yes |
+|`gpt-4o` | 2024-08-06 |text + image |
+|`gpt-4o-mini`| 2024-07-18 | text + image |
+|`gpt-4o` | 2024-05-13 |text + image |
+|`gpt-4` | turbo-2024-04-09 | text |
+|`gpt-4` | 0613 | text |
+| `gpt-35-turbo` | 0125 | text |
+| `gpt-35-turbo` | 1106 | text |
+| `gpt-35-turbo` | 0613 | text |
+
 
 
 Refer to the [models page](../concepts/models.md) for the most up-to-date information on regions/models where global batch is currently supported.
@@ -81,7 +83,9 @@ In the Studio UI the deployment type will appear as `Global-Batch`.
 :::image type="content" source="../media/how-to/global-batch/global-batch.png" alt-text="Screenshot that shows the model deployment dialog in Azure OpenAI Studio with Global-Batch deployment type highlighted." lightbox="../media/how-to/global-batch/global-batch.png":::
 
 > [!TIP]
-> Each line of your input file for batch processing has a `model` attribute that requires a global batch **deployment name**. For a given input file, all names must be the same deployment name. This is different from OpenAI where the concept of model deployments does not exist.
+> Each line of your input file for batch processing has a `model` attribute that requires a global batch **deployment name**. For a given input file, all names must be the same deployment name. This is different from OpenAI where the concept of model deployments does not exist. 
+>
+> For the best performance we recommend submitting large files for batch processing, rather than a large number of small files with only a few lines in each file.
 
 ::: zone pivot="programming-language-ai-studio"
 

@@ -20,7 +20,7 @@ ms.custom: include file
 
     :::image type="content" source="../media/tutorial-azure-ml-in-a-day/start-compute.png" alt-text="Screenshot shows how to start a stopped compute instance." lightbox="../media/tutorial-azure-ml-in-a-day/start-compute.png":::
 
-1. Wait until the compute instance is running.  Then make sure that the kernel, found on the top right, is `Python 3.10 - SDK v2`. If not, use the dropdown to select this kernel.
+1. Wait until the compute instance is running. Then make sure that the kernel, found on the top right, is `Python 3.10 - SDK v2`. If not, use the dropdown list to select this kernel.
 
     :::image type="content" source="../media/tutorial-azure-ml-in-a-day/set-kernel.png" alt-text="Screenshot shows how to set the kernel." lightbox="../media/tutorial-azure-ml-in-a-day/set-kernel.png":::
 
@@ -32,5 +32,5 @@ ms.custom: include file
 
     :::image type="content" source="../media/tutorial-azure-ml-in-a-day/open-vs-code.png" alt-text="Screenshot shows how to open the notebook in VS Code." lightbox="../media/tutorial-azure-ml-in-a-day/open-vs-code.png":::
 
-> [!Important]
-> The rest of this tutorial contains cells of the tutorial notebook. Copy/paste them into your new notebook, or switch to the notebook now if you cloned it.
+> [!IMPORTANT]
+> The rest of this tutorial contains cells of the tutorial notebook. Copy and paste them into your new notebook, or switch to the notebook now if you cloned it.
