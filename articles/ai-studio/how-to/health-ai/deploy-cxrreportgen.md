@@ -42,7 +42,7 @@ CXRReportGen model can be deployed to our self-hosted managed inference solution
 For deployment to a self-hosted managed compute, you must have enough quota in your subscription. If you don't have enough quota available, you can use our temporary quota access by selecting the option **I want to use shared quota and I acknowledge that this endpoint will be deleted in 168 hours.**
 
 > [!div class="nextstepaction"]
-> [Deploy the model to managed compute](../concepts/deployments-overview.md)
+> [Deploy the model to managed compute](https://portal.azure.com)
 
 ### The inference package installed
 
@@ -91,8 +91,8 @@ CXRReportGen is a versatile model that can be applied to a wide range of tasks a
 
 
 ### Getting Started
-* [Deploying and Using CXRReportGen](https://github.com/Azure/azureml-examples/tree/main/sdk/python/foundation-models/healthcare-ai/medimageinsight/deploy.ipynb): learn how to deploy the CXRReportGen model and integrate it into your workflow.
-* [Calling CXRReportGen and Visualizing Results](http://www.github.com): understand how to submit various types of Chest X-Ray studies to CXRReportGen, interpret the results and apply some visualization techniques. 
+* [Deploying and Using CXRReportGen](https://github.com/Azure/azureml-examples/tree/main/sdk/python/foundation-models/healthcare-ai/cxrreportgen/deploy.ipynb): learn how to deploy the CXRReportGen model and integrate it into your workflow.
+* [Calling CXRReportGen and Visualizing Results](https://github.com/Azure/azureml-examples/tree/main/sdk/python/foundation-models/healthcare-ai/cxrreportgen/examples.ipynb): understand how to submit various types of Chest X-Ray studies to CXRReportGen, interpret the results and apply some visualization techniques. 
 
 ## Related content
 

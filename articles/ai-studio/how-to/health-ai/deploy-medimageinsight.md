@@ -5,12 +5,11 @@ description: Learn how to use MedImageInsight Healthcare AI Model with Azure AI 
 ms.service: azure-ai-studio
 manager: scottpolly
 ms.topic: how-to
-ms.date: 09/30/2024
+ms.date: 10/20/2024
 ms.reviewer: itarapov
-reviewer: fkriti
+reviewer: ivantarapov
 ms.author: mopeakande
 author: msakande
-ms.custom: references_regions, generated
 zone_pivot_groups: ?????
 ---
 
@@ -42,7 +41,7 @@ MedImageInsight model can be deployed to our self-hosted managed inference solut
 For deployment to a self-hosted managed compute, you must have enough quota in your subscription. If you don't have enough quota available, you can use our temporary quota access by selecting the option **I want to use shared quota and I acknowledge that this endpoint will be deleted in 168 hours.**
 
 > [!div class="nextstepaction"]
-> [Deploy the model to managed compute](../concepts/deployments-overview.md)
+> [Deploy the model to managed compute](https://portal.azure.com)
 
 ### The inference package installed
 

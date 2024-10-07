@@ -43,7 +43,7 @@ MedImageParse model can be deployed to our self-hosted managed inference solutio
 For deployment to a self-hosted managed compute, you must have enough quota in your subscription. If you don't have enough quota available, you can use our temporary quota access by selecting the option **I want to use shared quota and I acknowledge that this endpoint will be deleted in 168 hours.**
 
 > [!div class="nextstepaction"]
-> [Deploy the model to managed compute](../concepts/deployments-overview.md)
+> [Deploy the model to managed compute](https://portal.azure.com)
 
 ### The inference package installed
 
