@@ -228,8 +228,6 @@ items:
       href: ./tutorials/embeddings.md
     - name: Fine-tuning GPT-4o mini
       href: ./tutorials/fine-tune.md
-    - name: Speech to speech chat
-      href: ../speech-service/openai-speech.md?context=%2fazure%2fcognitive-services%2fopenai%2fcontext%2fcontext
 - name: Responsible AI
   items:
     - name: Overview
