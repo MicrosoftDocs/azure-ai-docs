@@ -9,8 +9,8 @@ ms.custom:
 ms.topic: how-to
 ms.date: 5/21/2024
 ms.reviewer: dantaylo
-ms.author: eur
-author: eric-urban
+ms.author: sgilley
+author: sdgilley
 ---
 
 # How to build and consume an index using code

@@ -9,7 +9,7 @@ ms.custom:
   - build-2024
 ms.topic: tutorial
 ms.date: 5/21/2024
-ms.reviewer: eur
+ms.reviewer: sgilley
 ms.author: aahi
 author: aahill
 ---

@@ -7,8 +7,8 @@ ms.service: azure-ai-studio
 ms.topic: how-to
 ms.date: 5/21/2024
 ms.reviewer: dantaylo
-ms.author: eur
-author: eric-urban
+ms.author: sgilley
+author: sdgilley
 ---
 
 # How to get started with an AI template

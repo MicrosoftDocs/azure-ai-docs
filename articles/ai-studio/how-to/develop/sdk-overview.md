@@ -9,8 +9,8 @@ ms.custom:
 ms.topic: overview
 ms.date: 8/9/2024
 ms.reviewer: dantaylo
-ms.author: eur
-author: eric-urban
+ms.author: sgilley
+author: sdgilley
 ---
 
 # Overview of the Azure AI SDKs
