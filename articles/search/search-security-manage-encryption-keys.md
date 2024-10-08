@@ -299,6 +299,8 @@ When you create a new object in the Azure portal, you can specify a predefined c
 + Data sources
 + Indexers
 
+Requirements for using the portal is that the key vault and key must exist, and you should have completed the previous steps for authorized access to the key.
+
 In the Azure portal, skillsets are defined in JSON view. Use the JSON shown in the REST API examples to provide a customer-managed key on a skillset.
 
 :::image type="content" source="media/search-security-manage-encryption-keys/assign-key-vault-portal.png" alt-text="Screenshot of the encryption key page in the Azure portal.":::
