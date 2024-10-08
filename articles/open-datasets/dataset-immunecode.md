@@ -8,6 +8,8 @@ ms.date: 11/09/2023
 
 # ImmuneCODE database
 
+<em> Important Update 9/19/2024: all URLs are changing.  We are enabling public access to all Genomics Data Lake containers.  The existing “signed URLs” (shared access signatures) will be retired at: 2024-11-04T00:00:00Z .  After this time, the URLs without a query string will continue to work, however the “signed URLs” will no longer work and will return a 403 HTTP status code.  Please plan accordingly to access the public URLs without a query string after this date  (remove the ‘?’ and trailing characters). </em>
+
 The ImmuneCODE™ database, which includes hundreds of millions of T-cell Receptor (TCR) sequences from over 1,400 subjects exposed to or infected with the SARS-CoV-2 virus, and over 160,000 high-confidence SARS-CoV-2-specific TCRs. 
 The database is accessible at no cost. Its data can be analyzed to aid global initiatives aimed at comprehending the immune response to the SARS-CoV-2 virus and crafting novel interventions. To learn more about the dataset refer the associated [publication.](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7418738/)
 

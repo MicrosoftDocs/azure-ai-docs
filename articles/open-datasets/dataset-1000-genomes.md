@@ -9,6 +9,8 @@ ms.date: 07/10/2024
 
 # 1000 Genomes
 
+<em> Important Update 9/19/2024: all URLs are changing.  We are enabling public access to all Genomics Data Lake containers.  The existing “signed URLs” (shared access signatures) will be retired at: 2024-11-04T00:00:00Z .  After this time, the URLs without a query string will continue to work, however the “signed URLs” will no longer work and will return a 403 HTTP status code.  Please plan accordingly to access the public URLs without a query string after this date  (remove the ‘?’ and trailing characters). </em>
+
 The 1000 Genomes Project ran between 2008 and 2015, to create the largest public catalog of human variation and genotype data. The final data set contains data for 2,504 individuals from 26 populations and 84 million identified variants. For more information, visit the 1000 Genome Project [website](https://www.internationalgenome.org/) and these publications:
 
 [Pilot Analysis: A map of human genome variation from population-scale sequencing Nature 467, 1061-1073 (28 October 2010)](https://www.nature.com/articles/nature09534)

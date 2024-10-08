@@ -9,6 +9,8 @@ ms.date: 06/13/2024
 
 # ClinVar Annotations
 
+<em> Important Update 9/19/2024: all URLs are changing.  We are enabling public access to all Genomics Data Lake containers.  The existing “signed URLs” (shared access signatures) will be retired at: 2024-11-04T00:00:00Z .  After this time, the URLs without a query string will continue to work, however the “signed URLs” will no longer work and will return a 403 HTTP status code.  Please plan accordingly to access the public URLs without a query string after this date  (remove the ‘?’ and trailing characters). </em>
+
 The [ClinVar](https://www.ncbi.nlm.nih.gov/clinvar/) resource is a freely accessible, public archive of reports - with supporting evidence - about the relationships among human variations and phenotypes. It facilitates access to and communication about the claimed relationships between human variation and observed health status, and about the history of that interpretation. It provides access to a broader set of clinical interpretations that researchers can incorporate into genomics workflows and applications.
 
 Visit the [Data Dictionary](https://www.ncbi.nlm.nih.gov/projects/clinvar/ClinVarDataDictionary.pdf) and the [FAQ resource](https://www.ncbi.nlm.nih.gov/clinvar/docs/faq/) for more information about the data.

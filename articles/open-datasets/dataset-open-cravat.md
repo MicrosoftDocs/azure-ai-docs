@@ -8,6 +8,8 @@ ms.date: 04/16/2021
 
 # OpenCravat: Open Custom Ranked Analysis of Variants Toolkit
 
+<em> Important Update 9/19/2024: all URLs are changing.  We are enabling public access to all Genomics Data Lake containers.  The existing “signed URLs” (shared access signatures) will be retired at: 2024-11-04T00:00:00Z .  After this time, the URLs without a query string will continue to work, however the “signed URLs” will no longer work and will return a 403 HTTP status code.  Please plan accordingly to access the public URLs without a query string after this date  (remove the ‘?’ and trailing characters). </em>
+
 OpenCRAVAT is a Python package that performs genomic variant interpretation including variant impact, annotation, and scoring. OpenCRAVAT has a modular architecture with a wide variety of analysis modules and annotation resources that can be selected and installed/run based on the needs of a given study.
 
 For more information on the data, see the [OpenCravat](https://opencravat.org/).

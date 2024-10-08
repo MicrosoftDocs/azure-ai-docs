@@ -8,6 +8,8 @@ ms.date: 04/16/2021
 
 # GATK Resource Bundle
 
+<em> Important Update 9/19/2024: all URLs are changing.  We are enabling public access to all Genomics Data Lake containers.  The existing “signed URLs” (shared access signatures) will be retired at: 2024-11-04T00:00:00Z .  After this time, the URLs without a query string will continue to work, however the “signed URLs” will no longer work and will return a 403 HTTP status code.  Please plan accordingly to access the public URLs without a query string after this date  (remove the ‘?’ and trailing characters). </em>
+
 The [GATK resource bundle](https://gatk.broadinstitute.org/hc/articles/360035890811-Resource-bundle) is a collection of standard files for working with human resequencing data with the GATK.
 
 [!INCLUDE [Open Dataset usage notice](./includes/open-datasets-usage-note.md)]
