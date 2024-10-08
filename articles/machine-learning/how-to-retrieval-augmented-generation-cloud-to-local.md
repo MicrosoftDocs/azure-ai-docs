@@ -1,7 +1,7 @@
 ---
-title: Retrieval Augmented Generation (RAG) cloud to local (preview)
+title: Work with RAG prompt flows locally (preview)
 titleSuffix: Azure Machine Learning
-description: Learn to work with your Azure Machine Learning RAG prompt flows locally by using th
+description: Learn to work with your Azure Machine Learning (RAG) prompt flows locally by using the Prompt flow extension in Visual Studio Code.
 e prompt flow Visual Studio Code extension.
 services: machine-learning
 ms.service: azure-machine-learning
@@ -16,7 +16,7 @@ ms.custom:
   - ignite-2023
 ---
 
-# RAG from cloud to local - bring your own data QnA (preview)
+# Work with RAG prompt flows locally (preview)
 
 [Retrieval Augmented Generation (RAG)](concept-retrieval-augmented-generation.md) is a pattern that works with pretrained Large Language Models (LLM) and your own data to generate responses. You can implement RAG in a prompt flow in Azure Machine Learning.
 
