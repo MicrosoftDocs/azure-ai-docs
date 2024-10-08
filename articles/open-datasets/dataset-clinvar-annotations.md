@@ -9,7 +9,7 @@ ms.date: 06/13/2024
 
 # ClinVar Annotations
 
-[!INCLUDE [Open Dataset usage notice](./includes/open-datasets-change-note.md)]
+[!INCLUDE [Open Dataset access change notice](./includes/open-datasets-change-note.md)]
 
 The [ClinVar](https://www.ncbi.nlm.nih.gov/clinvar/) resource is a freely accessible, public archive of reports - with supporting evidence - about the relationships among human variations and phenotypes. It facilitates access to and communication about the claimed relationships between human variation and observed health status, and about the history of that interpretation. It provides access to a broader set of clinical interpretations that researchers can incorporate into genomics workflows and applications.
 
