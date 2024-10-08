@@ -27,6 +27,7 @@ Containers enable you to run Azure AI services APIs in your own environment, and
   * [Language Detection](../language-service/language-detection/how-to/use-containers.md)
   * [Summarization](../language-service/summarization/how-to/use-containers.md)
   * [Named Entity Recognition](../language-service/named-entity-recognition/how-to/use-containers.md)
+  * [Personally Identifiable Information (PII) detection](../language-service/personally-identifiable-information/how-to/use-containers.md)
 * [Azure AI Vision - Read](../computer-vision/computer-vision-how-to-install-containers.md)
 * [Document Intelligence](../../ai-services/document-intelligence/containers/disconnected.md)
 
@@ -87,6 +88,8 @@ See the following documentation for steps on downloading and configuring the con
 * [Sentiment Analysis](../language-service/sentiment-opinion-mining/how-to/use-containers.md#run-the-container-disconnected-from-the-internet)
 * [Key Phrase Extraction](../language-service/key-phrase-extraction/how-to/use-containers.md#run-the-container-disconnected-from-the-internet)
 * [Language Detection](../language-service/language-detection/how-to/use-containers.md#run-the-container-disconnected-from-the-internet)
+* [Named Entity Recognition](../language-service/named-entity-recognition/how-to/use-containers.md#run-the-container-disconnected-from-the-internet)
+* [Personally Identifiable Information (PII) detection](../language-service/personally-identifiable-information/how-to/use-containers.md#run-the-container-disconnected-from-the-internet)
 
 ## Environment variable names in Kubernetes deployments
 Some Azure AI Containers, for example Translator, require users to pass environmental variable names that include colons (`:`) when running the container. This will work fine when using Docker, but Kubernetes does not accept colons in environmental variable names.
