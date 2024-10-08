@@ -19,6 +19,12 @@ Added support and general availability for new voices in the following locales:
 | `or-IN` | Oriya (India) | `or-IN-SubhasiniNeural` (Female)<br/>`or-IN-SukantNeural` (Male) |
 | `pa-IN` | Punjabi (India) | `pa-IN-OjasNeural` (Male)<br/>`pa-IN-VaaniNeural` (Female) |
 
+The one voice in this table is generally available and supports only the 'en-IN' locale.
+
+| Locale  | Language       | Gender | Voice name       |
+|---------|-------------------|--------|------------------|
+| en-IN   | English (India)    | Female | en-IN-AashiNeural |
+
 The five voices in this table are generally available and support both "en-IN" and "hi-IN" locales. 
 
 | Locale (BCP-47) | Language | Text to speech voices |
@@ -44,7 +50,7 @@ Added new styles for the following voices:
 - `es-ES-AlvaroNeural`: `cheerful`, `sad`
 - `ko-KR-InjoonNeural`: `sad`
 
-See the [Voice styles and roles](../../language-support.md?tabs=tts#voice-styles-and-roles) for more information.'
+See the [Voice styles and roles](../../language-support.md?tabs=tts#voice-styles-and-roles) for more information.
 
 ### August 2024 release
 
