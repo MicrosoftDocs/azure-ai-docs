@@ -7,8 +7,8 @@ ms.service: azure-ai-studio
 ms.topic: how-to
 ms.date: 9/14/2024
 ms.reviewer: fasantia
-ms.author: eur
-author: eric-urban
+ms.author: sgilley
+author: sdgilley
 ---
 
 # Develop applications with LlamaIndex and Azure AI studio
