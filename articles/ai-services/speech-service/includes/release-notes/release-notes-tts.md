@@ -21,9 +21,9 @@ Added support and general availability for new voices in the following locales:
 
 The one voice in this table is generally available and supports only the 'en-IN' locale.
 
-| Locale  | Language       | Gender | Voice name       |
-|---------|-------------------|--------|------------------|
-| en-IN   | English (India)    | Female | en-IN-AashiNeural |
+| Locale (BCP-47) | Language | Text to speech voices |
+|---------|-------------------|--------|
+| `en-IN`   | English (India)    | `en-IN-AashiNeural` (Female)|
 
 The five voices in this table are generally available and support both "en-IN" and "hi-IN" locales. 
 
