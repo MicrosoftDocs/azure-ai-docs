@@ -31,13 +31,11 @@ To run the example code, your configuration must include one of the following en
 
    This configuration requires no downloads or other installation. To prepare this environment, see [Create resources to get started](../quickstart-create-resources.md).
 
-- Jupyter Notebook server. The following links provide resources to help you prepare this environment:
+- Jupyter Notebook server. The following resources provide instructions to help you prepare this environment:
 
-   1. Create a [workspace configuration file](../how-to-configure-environment.md#local-and-dsvm-only-create-a-workspace-configuration-file).
-  
-   1. Install the [Azure Machine Learning SDK](/python/api/overview/azure/ml/install). 
-  
-   1. Create an [Azure container registry](/azure/container-registry/) or other Docker registry available on the internet.
+   - Create a [workspace configuration file](../how-to-configure-environment.md#local-and-dsvm-only-create-a-workspace-configuration-file).
+   - Install the [Azure Machine Learning SDK](/python/api/overview/azure/ml/install).
+   - Create an [Azure container registry](/azure/container-registry/) or other Docker registry available on the internet.
 
 ## Set up a training experiment
 
@@ -116,7 +114,7 @@ For more information about creating and managing Azure Machine Learning environm
 
 ### Create or attach a compute target
 
-You need to create a [compute target](concept-azure-machine-learning-architecture.md#compute) for training your model. In this tutorial, you create `AmlCompute` as your training compute resource.
+You need to create a [compute target](concept-azure-machine-learning-architecture.md#compute-targets) for training your model. In this tutorial, you create `AmlCompute` as your training compute resource.
 
 Creation of `AmlCompute` takes a few minutes. If the `AmlCompute` resource is already in your workspace, this code skips the creation process.
 
