@@ -13,15 +13,18 @@ ms.author: jboback
 keywords: on-premises, Docker, container
 ---
 
-# Install and run Personally Identifiable Information containers
+# Install and run Personally Identifiable Information (PII) Detection containers
 
-Containers enable you to host the Personally Identifiable Information API on your own infrastructure. If you have security or data governance requirements that can't be fulfilled by calling Personally Identifiable Information remotely, then containers might be a good option.
+> [!NOTE]
+> The data limits for the PII container are 5120 characters and 10 documents max.
+
+Containers enable you to host the PII detection API on your own infrastructure. If you have security or data governance requirements that can't be fulfilled by calling PII detection remotely, then containers might be a good option.
 
 If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/cognitive-services/) before you begin.
 
 ## Prerequisites
 
-You must meet the following prerequisites before using Personally Identifiable Information containers. 
+You must meet the following prerequisites before using PII detection containers. 
 
 * If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/cognitive-services/).
 * [Docker](https://docs.docker.com/) installed on a host computer. Docker must be configured to allow the containers to connect with and send billing data to Azure. 
@@ -39,19 +42,19 @@ The following table describes the minimum and recommended specifications for the
 
 It is recommended to have a CPU with AVX-512 instruction set, for the best experience (performance and accuracy).
 
-|                                           | Minimum host specs     | Recommended host specs |
-|-------------------------------------------|------------------------|------------------------|
-| **Personally Identifiable Information**   | 1 core, 2GB memory     | 4 cores, 8GB memory    |
+|                     | Minimum host specs     | Recommended host specs |
+|---------------------|------------------------|------------------------|
+| **PII detection**   | 1 core, 2GB memory     | 4 cores, 8GB memory    |
 
 CPU core and memory correspond to the `--cpus` and `--memory` settings, which are used as part of the `docker run` command.
 
 ## Get the container image with `docker pull`
 
-The Personally Identifiable Information container image can be found on the `mcr.microsoft.com` container registry syndicate. It resides within the `azure-cognitive-services/textanalytics/` repository and is named `pii`. The fully qualified container image name is, `mcr.microsoft.com/azure-cognitive-services/textanalytics/pii`
+The PII detection container image can be found on the `mcr.microsoft.com` container registry syndicate. It resides within the `azure-cognitive-services/textanalytics/` repository and is named `pii`. The fully qualified container image name is, `mcr.microsoft.com/azure-cognitive-services/textanalytics/pii`
 
  To use the latest version of the container, you can use the `latest` tag, which is for English. You can also find a full list of containers for supported languages using the [tags on the MCR](https://mcr.microsoft.com/product/azure-cognitive-services/textanalytics/pii/tags).
 
-The latest Personally Identifiable Information container is available in several languages. To download the container for the English container, use the command below. 
+The latest PII detection container is available in several languages. To download the container for the English container, use the command below. 
 
 ```
 docker pull mcr.microsoft.com/azure-cognitive-services/textanalytics/pii:latest
@@ -68,7 +71,7 @@ Once the container is on the host computer, use the [docker run](https://docs.do
 > * The docker commands in the following sections use the back slash, `\`, as a line continuation character. Replace or remove this based on your host operating system's requirements. 
 > * The `Eula`, `Billing`, and `ApiKey` options must be specified to run the container; otherwise, the container won't start.  For more information, see [Billing](#billing).
 
-To run the Personally Identifiable Information container, execute the following `docker run` command. Replace the placeholders below with your own values:
+To run the PII detection container, execute the following `docker run` command. Replace the placeholders below with your own values:
 
 | Placeholder | Value | Format or example |
 |-------------|-------|---|
@@ -86,7 +89,7 @@ ApiKey={API_KEY}
 
 This command:
 
-* Runs a *Personally Identifiable Information* container from the container image
+* Runs a *PII detection* container from the container image
 * Allocates one CPU core and 8 gigabytes (GB) of memory
 * Exposes TCP port 5000 and allocates a pseudo-TTY for the container
 * Automatically removes the container after it exits. The container image is still available on the host computer.
@@ -121,7 +124,7 @@ If you run the container with an output [mount](../../concepts/configure-contain
 
 ## Billing
 
-The Personally Identifiable Information containers send billing information to Azure, using a _Language_ resource on your Azure account.
+The PII detection containers send billing information to Azure, using a _Language_ resource on your Azure account.
 
 [!INCLUDE [Container's Billing Settings](../../../includes/cognitive-services-containers-how-to-billing-info.md)]
 
@@ -129,9 +132,9 @@ For more information about these options, see [Configure containers](../../conce
 
 ## Summary
 
-In this article, you learned concepts and workflow for downloading, installing, and running Personally Identifiable Information containers. In summary:
+In this article, you learned concepts and workflow for downloading, installing, and running PII detection containers. In summary:
 
-* Personally Identifiable Information provides Linux containers for Docker
+* PII detection provides Linux containers for Docker
 * Container images are downloaded from the Microsoft Container Registry (MCR).
 * Container images run in Docker.
 * You must specify billing information when instantiating a container.
