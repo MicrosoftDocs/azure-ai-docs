@@ -10,9 +10,9 @@ author: fxs130430
 
 ### How data is ingested into Azure AI search
 
-As of September 2024, the ingestion APIs have switched to [integrated vectoriztion](/azure/search/vector-search-integrated-vectorization). This update does **not** alter the existing API contracts. Integrated Vectorization - a new offering of Azure AI Search- utilizes prebuilt skills for chunking and embedding the input data. Consequently, the Azure OpenAI On Your Data ingestion service no longer employs custom skills. Following the migration to Integrated Vectorization, the ingestion process has undergone some modifications and as a result only the following assets are created:
+As of September 2024, the ingestion APIs switched to [integrated vectoriztion](/azure/search/vector-search-integrated-vectorization). This update does **not** alter the existing API contracts. Integrated Vectorization - a new offering of Azure AI Search- utilizes prebuilt skills for chunking and embedding the input data. So, the Azure OpenAI On Your Data ingestion service no longer employs custom skills. Following the migration to Integrated Vectorization, the ingestion process has undergone some modifications and as a result only the following assets are created:
    * `{job-id}-index`
-   * `{job-id}-indexer`, if an hourly or daily schedule is specified, otherwise, the indexer will be cleaned-up at the end of the ingestion process.
+   * `{job-id}-indexer`, if an hourly or daily schedule is specified, otherwise, the indexer is cleaned-up at the end of the ingestion process.
    * `{job-id}-datasource`
 
 The chunks container is no longer available, as this functionality is now inherently managed by Azure AI Search.
