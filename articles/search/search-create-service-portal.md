@@ -212,15 +212,7 @@ Depending on region and datacenter capacity, you can automatically request more 
 
    :::image type="content" source="media/search-create-service-portal/quota-pencil-edit.png" lightbox="media/search-create-service-portal/quota-pencil-edit.png" alt-text="Screenshot of the My Quotas page with a region at maximum quota.":::
 
-1. In **Quota details**, specify the location, tier, and a new limit for your subscription quota. None of the values can be empty. The new limit must be greater than the current limit, and equal to or lower than the number in the auto-approved quota increase column. For example, for the Basic tier in a given region, if the current limit is 16, your new limit can be between 17 and 80.
-
-   | Tier | Default limit | Auto-approved quota increase | Combined total |
-   |--|--|--|--|
-   | Basic | 16 | 80 | 96 |
-   | S1 | 16 | 30 | 46 |
-   | S2 | 8 | 10 | 18 |
-   | S3, S3HD | 6 | 10 | 16 |
-   | L1, L2 | 6 |  10 | 16 |
+1. In **Quota details**, specify the location, tier, and a new limit for your subscription quota. None of the values can be empty. The new limit must be greater than the current limit. If regional capacity is constrained, your request won't be automatically approved. In this scenario, an incident report is generated on your behalf for investigation and resolution.
 
 1. Submit the request.
 
