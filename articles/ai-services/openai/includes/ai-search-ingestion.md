@@ -4,8 +4,8 @@ ms.service: azure-ai-studio
 ms.custom:
 ms.topic: include
 ms.date: 10/08/2024
-ms.author: fshakerin
-author: fshakerin
+ms.author: fxs130430
+author: fxs130430
 ---
 
 ### How data is ingested into Azure AI search
