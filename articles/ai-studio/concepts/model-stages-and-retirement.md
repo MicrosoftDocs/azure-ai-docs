@@ -7,8 +7,8 @@ ms.service: azure-ai-studio
 ms.topic: concept-article
 ms.date: 10/08/2024
 ms.custom: ignite-2024
-author: mopeakande
-ms.author: msakande
+ms.author: mopeakande
+author: msakande
 ms.reviewer: mabables
 reviewer: ManojBableshwar
 
