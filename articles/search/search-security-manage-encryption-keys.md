@@ -8,7 +8,7 @@ author: HeidiSteen
 ms.author: heidist
 ms.service: cognitive-search
 ms.topic: how-to
-ms.date: 10/02/2024
+ms.date: 10/07/2024
 ms.custom:
   - references_regions
   - ignite-2023
@@ -68,8 +68,6 @@ Although double encryption is now available in all regions, support was rolled o
 ## Limitations
 
 + No support for Azure Key Vault Managed Hardware Security Model (HSM).
-
-+ No support for adding encryption keys in the Azure portal.
 
 + No cross-subscription support. Azure Key Vault and Azure AI Search must be in the same subscription.
 
@@ -234,7 +232,9 @@ Wait a few minutes for the role assignment to become operational.
 
 ## Step 4: Encrypt content
 
-Encryption keys are added when you create an object. To add a customer-managed key on an index, synonym map, indexer, data source, or skillset, use the [Search REST API](/rest/api/searchservice/) or an Azure SDK to create an object that has encryption enabled. To add encryption using the Azure SDK, see the [Python example](#python-example-of-an-encryption-key-configuration) in this article.
+Encryption keys are added when you create an object. To add a customer-managed key on an index, synonym map, indexer, data source, or skillset, use the Azure portal, a [Search REST API](/rest/api/searchservice/), or an Azure SDK to create an object that has encryption enabled. To add encryption using the Azure SDK, see the [Python example](#python-example-of-an-encryption-key-configuration) in this article.
+
+### [**REST APIs**](#tab/rest)
 
 1. Call the creation APIs to specify the **encryptionKey** property:
 
@@ -290,6 +290,20 @@ None of these key vault details are considered secret and could be easily retrie
 
 > [!Important]
 > Encrypted content in Azure AI Search is configured to use a specific Azure Key Vault key with a specific *version*. If you change the key or version, the object must be updated to use it **before** you delete the previous one. Failing to do so renders the object unusable. You won't be able to decrypt the content if the key is lost.
+
+### [**Azure portal**](#tab/portal)
+
+When you create a new object in the Azure portal, you can specify a predefined customer-managed key in a key vault. You can enable CMK-encryption for:
+
++ Indexes
++ Data sources
++ Indexers
+
+In the Azure portal, skillsets are defined in JSON view. Use the JSON shown in the REST API examples to provide a customer-managed key on a skillset.
+
+:::image type="content" source="media/search-security-manage-encryption-keys/assign-key-vault-portal.png" alt-text="Screenshot of the encryption key page in the Azure portal.":::
+
+---
 
 ## Step 5: Test encryption
 

@@ -9,8 +9,8 @@ ms.custom:
 ms.topic: how-to
 ms.date: 5/21/2024
 ms.reviewer: chenlujiao
-ms.author: eur
-author: eric-urban
+ms.author: sgilley
+author: sdgilley
 ---
 
 # How to trace your application with prompt flow SDK | Azure AI Studio
