@@ -38,8 +38,8 @@ You or your administrator needs to grant your user identity the **Cognitive Serv
 
 To grant yourself access to the Azure AI Services resource that you're using:
 
-1. In [AI Studio](https://ai.azure.com), go to your project and select **Settings** from the left pane.
-1. In the **Connected resources** section, select the connection name with type **AIServices**.
+1. In [AI Studio](https://ai.azure.com), go to your project and select **Management center** from the left pane.
+1. In the **Connected resources** section of either the **Hub** or **Project**, select the connection name with type **AIServices**.
 
     :::image type="content" source="../media/quickstarts/promptflow-sdk/project-settings-pick-resource.png" alt-text="Screenshot of the project settings page, highlighting how to select the connected AI services resource to open it." lightbox="../media/quickstarts/promptflow-sdk/project-settings-pick-resource.png":::
 

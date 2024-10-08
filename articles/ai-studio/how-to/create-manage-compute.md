@@ -38,7 +38,9 @@ Compute instances can run jobs securely in a virtual network environment, withou
 To create a compute instance in Azure AI Studio:
 
 1. Sign in to [Azure AI Studio](https://ai.azure.com) and select your project. If you don't have a project already, first create one.
-1. Under **Settings**, select **Create compute**.
+1. Select **Management center**
+1. Under the **Hub** heading, select **Computes**. 
+1. Select **New** to create a new compute instance.
 
     :::image type="content" source="../media/compute/compute-create.png" alt-text="Screenshot of the option to create a new compute instance from the manage page." lightbox="../media/compute/compute-create.png":::
 
@@ -83,8 +85,9 @@ For a new compute instance, configure idle shutdown during compute instance crea
 
 To configure idle shutdown for an existing compute instance follow these steps:
 
-1. From the left menu, select **Settings**.
-1. Under **Computes**, select **View all** to see the list of available compute instances.
+1. From the left menu, select **Management center**.
+1. Under the **Hub** heading, select **Computes**. 
+1. In the list, select the compute instance you want to update.
 1. Select **Schedule and idle shutdown**.
 
     :::image type="content" source="../media/compute/compute-schedule-update.png" alt-text="Screenshot of the option to change the idle shutdown schedule for a compute instance." lightbox="../media/compute/compute-schedule-update.png":::
@@ -98,9 +101,10 @@ To configure idle shutdown for an existing compute instance follow these steps:
 
 You can start or stop a compute instance from the Azure AI Studio.
 
-1. From the left menu, select **Settings**.
-1. Under **Computes**, select **View all** to see the list of available compute instances.
-1. Select **Stop** to stop the compute instance. Select **Start** to start the compute instance. Only stopped compute instances can be started and only started compute instances can be stopped.
+1. From the left menu, select **Management center**.
+1. Under the **Hub** heading, select **Computes**.
+1. In the list, select the compute instance you want to start or stop.
+1. 1. Select **Stop** to stop the compute instance. Select **Start** to start the compute instance. Only stopped compute instances can be started and only started compute instances can be stopped.
 
     :::image type="content" source="../media/compute/compute-start-stop.png" alt-text="Screenshot of the option to start or stop a compute instance." lightbox="../media/compute/compute-start-stop.png":::
 

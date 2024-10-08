@@ -19,7 +19,6 @@ In this tutorial, you use the prompt flow SDK (and other libraries) to build, co
 This tutorial is part one of a three-part tutorial.  This part one shows how an administrator of an Azure subscription creates and configures the resources needed for parts two and three of the tutorial series. Parts two and three show how a developer uses the resources. In many organizations, the same person might take on both of these roles. In this part one, you learn how to:
 
 > [!div class="checklist"]
-> - Create an Azure AI Studio hub
 > - Create a project
 > - Create an Azure AI Search index
 > - Configure access for the Azure AI Studio and Azure AI Search resources
@@ -42,10 +41,6 @@ In this tutorial, you use Azure resources to build the chat app.  You'll use bot
 - As an administrator, you use Azure portal to configure access to resources.
 - As a developer, you use Azure AI Studio to group together those resources needed to build, evaluate, and deploy the chat app. You can also interact with your models and deployments in AI Studio.
 
-## Create an Azure AI Studio hub
-
-[!INCLUDE [Create Azure AI Studio hub](../includes/create-hub.md)]
-
 ## Create a project
 
 To create a project in [Azure AI Studio](https://ai.azure.com), follow these steps:
@@ -53,7 +48,7 @@ To create a project in [Azure AI Studio](https://ai.azure.com), follow these ste
 1. Go to the **Home** page of [Azure AI Studio](https://ai.azure.com). 
 1. Select **+ New project**.
 1. Enter a name for the project.
-1. Select the hub you created in the previous step.
+1. Keep the default hub setting if there is one.  Or select **Create new hub** and enter a name for the hub.
 
 Once a project is created, you can access the playground, tools, and other assets in the left navigation panel.
 
@@ -84,8 +79,9 @@ If you already have an Azure AI Search connection in your project, you can skip 
 
 In the Azure AI Studio, check for an Azure AI Search connected resource.
 
-1. In [AI Studio](https://ai.azure.com), go to your project and select **Settings** from the left pane.
-1. In the **Connected resources** section, look to see if you have a connection of type Azure AI Search.
+1. In [AI Studio](https://ai.azure.com), go to your project and select **Management center** from the left pane.
+1. Under the **Project** heading , select **Connected resources**. 
+1. Look to see if you have a connection of type Azure AI Search.
 1. If you have an Azure AI Search connection, you can skip ahead to [configure access for resources](#configure).
 1. Otherwise, select **New connection** and then **Azure AI Search**.
 1. Find your Azure AI Search service in the options and select **Add connection**.
@@ -101,9 +97,9 @@ We recommend using [Microsoft Entra ID](/entra/fundamentals/whatis) instead of u
 
 Start in the project to find the AI Services resource:
 
-1. In [AI Studio](https://ai.azure.com), go to your project and select **Settings** from the left pane.
-1. Select **Connected resources**.
-1. Select the **AI Services** or **Azure OpenAI** name in the connected resources list to open the resource details page.  Then select the resource name again in the **Connection Details** page, which opens the resource in the Azure portal.
+1. In [AI Studio](https://ai.azure.com), go to your project and select **Management center** from the left pane.
+1. Under the **Project** heading, select **Connected resources**.
+1. You'll see an entry for Azure AIServices. (If you don't see Azure AI Services, use the Azure OpenAI entry instead.) Select the name to open the resource details page.  Then select the resource name again in the **Connection Details** page, which opens the resource in the Azure portal.
 
 Specify the access control in the Azure portal:
 
@@ -115,7 +111,7 @@ Specify the access control in the Azure portal:
 
 ### Configure access for Azure AI Search
 
-Now go back to [AI Studio](https://ai.azure.com) **Settings** > **Connected Resources**.  This time select the **Azure AI Search** name in the connected resources list to open the resource details page.  Then select the resource name again in the **Connection Details** page, which opens the resource in the Azure portal.
+Now go back to [AI Studio](https://ai.azure.com) **Management center** > **Connected Resources**.  This time select the **Azure AI Search** name in the connected resources list to open the resource details page.  Then select the resource name again in the **Connection Details** page, which opens the resource in the Azure portal.
 
 To enable role-based access control for your Azure AI Search service, follow these steps:
 

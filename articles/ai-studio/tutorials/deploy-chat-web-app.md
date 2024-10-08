@@ -56,7 +56,8 @@ In this tutorial, your web app is deployed to the same resource group as your [A
 
 Follow these steps to navigate from Azure AI Studio to your resource group in the Azure portal:
 
-1. Go to your project in [Azure AI Studio](https://ai.azure.com). Then select **Settings** from the left pane.
+1. Go to your project in [Azure AI Studio](https://ai.azure.com). Then select **Management center** from the left pane.
+1. Under the **Project** heading, select **Overview**.
 1. Select the resource group name to open the resource group in the Azure portal. In this example, the resource group is named `rg-contoso`.
 
     :::image type="content" source="../media/tutorials/chat/resource-group-manage-page.png" alt-text="Screenshot of the resource group in the Azure AI Studio." lightbox="../media/tutorials/chat/resource-group-manage-page.png":::
@@ -105,7 +106,7 @@ By default, the web app will only be accessible to you. In this tutorial, you ad
 
 1. Select the **App Service** resource from the list of resources in the resource group.
 
-1. From the collapsible left menu under **Settings**, select **Authentication**. 
+1. From the collapsible left menu under **Management center**, select **Authentication**. 
 
     :::image type="content" source="../media/tutorials/chat/azure-portal-app-service.png" alt-text="Screenshot of web app authentication menu item under settings in the Azure portal." lightbox="../media/tutorials/chat/azure-portal-app-service.png":::
 
