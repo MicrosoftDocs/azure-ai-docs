@@ -128,4 +128,4 @@ In the Studio, before training with the classification model, run the [layout mo
 > [Learn about custom model types](../concept-custom.md)
 
 > [!div class="nextstepaction"]
-> [Learn about accuracy and confidence with custom models](../v4-concept/accuracy-confidence.md)
+> [Learn about accuracy and confidence with custom models](../concept/accuracy-confidence.md)

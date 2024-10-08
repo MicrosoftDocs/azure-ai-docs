@@ -482,84 +482,124 @@
     },
     {
       "source_path_from_root": "/articles/ai-services/document-intelligence/concept-accuracy-confidence.md",
-      "redirect_url": "/azure/ai-services/document-intelligence/v4-concept/accuracy-confidence",
+      "redirect_url": "/azure/ai-services/document-intelligence/concept/accuracy-confidence",
       "redirect_document_id": true
     },
     {
       "source_path_from_root": "/articles/ai-services/document-intelligence/concept-analyze-document-response.md",
-      "redirect_url": "/azure/ai-services/document-intelligence/v4-concept/analyze-document-response",
+      "redirect_url": "/azure/ai-services/document-intelligence/concept/analyze-document-response",
       "redirect_document_id": true
     },
     {
       "source_path_from_root": "/articles/ai-services/document-intelligence/label-tool.md",
-      "redirect_url": "/azure/ai-services/document-intelligence/v2-1/label-tool",
+      "redirect_url": "/azure/ai-services/document-intelligence/v21/label-tool",
       "redirect_document_id": true
     },
     {
       "source_path_from_root": "/articles/ai-services/document-intelligence/sdk-overview-v2-1.md",
-      "redirect_url": "/azure/ai-services/document-intelligence/v2-1/sdk-overview",
+      "redirect_url": "/azure/ai-services/document-intelligence/v21/sdk-overview",
       "redirect_document_id": true
     },
     {
       "source_path_from_root": "/articles/ai-services/document-intelligence/quickstarts/try-sample-label-tool.md",
-      "redirect_url": "/azure/ai-services/document-intelligence/v2-1/try-sample-label-tool",
+      "redirect_url": "/azure/ai-services/document-intelligence/v21/try-sample-label-tool",
       "redirect_document_id": true
     },
     {
       "source_path_from_root": "/articles/ai-services/document-intelligence/deploy-label-tool.md",
-      "redirect_url": "/azure/ai-services/document-intelligence/v2-1/deploy-label-tool",
+      "redirect_url": "/azure/ai-services/document-intelligence/v21/deploy-label-tool",
       "redirect_document_id": true
     },
     {
       "source_path_from_root": "/articles/ai-services/document-intelligence/supervised-table-tags.md",
-      "redirect_url": "/azure/ai-services/document-intelligence/v2-1/supervised-table-tags",
+      "redirect_url": "/azure/ai-services/document-intelligence/v21/supervised-table-tags",
       "redirect_document_id": true
     },
     {
       "source_path_from_root": "/articles/ai-services/document-intelligence/concept-bank-statement.md",
-      "redirect_url": "/azure/ai-services/document-intelligence/v4-model-feature/bank-statement",
+      "redirect_url": "/azure/ai-services/document-intelligence/prebuilt/bank-statement",
       "redirect_document_id": true
     },
     {
       "source_path_from_root": "/articles/ai-services/document-intelligence/concept-bank-check.md",
-      "redirect_url": "/azure/ai-services/document-intelligence/v4-model-feature/bank-check",
+      "redirect_url": "/azure/ai-services/document-intelligence/prebuilt/bank-check",
       "redirect_document_id": true
     },
     {
       "source_path_from_root": "/articles/ai-services/document-intelligence/concept-credit-card.md",
-      "redirect_url": "/azure/ai-services/document-intelligence/v4-model-feature/credit-card",
+      "redirect_url": "/azure/ai-services/document-intelligence/prebuilt/credit-card",
       "redirect_document_id": true
     },
     {
       "source_path_from_root": "/articles/ai-services/document-intelligence/concept-marriage-certificate.md",
-      "redirect_url": "/azure/ai-services/document-intelligence/v4-model-feature/marriage-certificate",
+      "redirect_url": "/azure/ai-services/document-intelligence/prebuilt/marriage-certificate",
       "redirect_document_id": true
     },
     {
       "source_path_from_root": "/articles/ai-services/document-intelligence/concept-mortgage-documents.md",
-      "redirect_url": "/azure/ai-services/document-intelligence/v4-model-feature/mortgage-documents",
+      "redirect_url": "/azure/ai-services/document-intelligence/prebuilt/mortgage-documents",
       "redirect_document_id": true
     },
     {
       "source_path_from_root": "/articles/ai-services/document-intelligence/concept-pay-stub.md",
-      "redirect_url": "/azure/ai-services/document-intelligence/v4-model-feature/pay-stub",
+      "redirect_url": "/azure/ai-services/document-intelligence/prebuilt/pay-stub",
       "redirect_document_id": true
     },
     {
       "source_path_from_root": "/articles/ai-services/document-intelligence/concept-batch-analysis.md",
-      "redirect_url": "/azure/ai-services/document-intelligence/v4-model-feature/batch-analysis",
+      "redirect_url": "/azure/ai-services/document-intelligence/prebuilt/batch-analysis",
       "redirect_document_id": true
     },
     {
       "source_path_from_root": "/articles/ai-services/document-intelligence/concept-custom-generative.md",
-      "redirect_url": "/azure/ai-services/document-intelligence/v4-model-feature/custom-generative-extraction",
+      "redirect_url": "/azure/ai-services/document-intelligence/prebuilt/custom-generative-extraction",
       "redirect_document_id": true
     },
     {
       "source_path_from_root": "/articles/ai-services/document-intelligence/concept-incremental-classifier.md",
-      "redirect_url": "/azure/ai-services/document-intelligence/v4-concept/incremental-classifier",
+      "redirect_url": "/azure/ai-services/document-intelligence/concept/incremental-classifier",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/document-intelligence/concept-model-overview.md",
+      "redirect_url": "/azure/ai-services/document-intelligence/model-overview",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/document-intelligence/concept-read.md",
+      "redirect_url": "/azure/ai-services/document-intelligence/prebuilt/read",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/document-intelligence/concept-layout.md",
+      "redirect_url": "/azure/ai-services/document-intelligence/prebuilt/layout",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/document-intelligence/choose-model-feature.md",
+      "redirect_url": "/azure/ai-services/document-intelligence/concept/choose-model-feature",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/document-intelligence/create-document-intelligence-resource.md",
+      "redirect_url": "/azure/ai-services/document-intelligence/how-to-guides/create-document-intelligence-resource",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/document-intelligence/managed-identities.md",
+      "redirect_url": "/azure/ai-services/document-intelligence/authentication/managed-identities",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/document-intelligence/create-sas-tokens.md",
+      "redirect_url": "/azure/ai-services/document-intelligence/authentication/create-sas-tokens",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/document-intelligence/managed-identities-secured-access.md",
+      "redirect_url": "/azure/ai-services/document-intelligence/authentication/managed-identities-secured-access",
       "redirect_document_id": true
     }
-    
+
   ]
 }

@@ -1,5 +1,5 @@
 ---
-title: Composed custom models - Document Intelligence 
+title: Composed custom models - Document Intelligence
 titleSuffix: Azure AI services
 description: Compose several custom models into a single model for easier data extraction from groups of distinct form types.
 author: laujan
@@ -46,7 +46,7 @@ In previous versions, the `model compose` operation performed an implicit classi
 
 The new `model compose` operation requires you to train an explicit classifier and provides several benefits.
 
-* **Continual incremental improvement**. You can consistently improve the quality of the classifier by adding more samples and [incrementally improving classification]( v4-concept/incremental-classifier.md). This fine tuning ensures your documents are always routed to the right model for extraction.
+* **Continual incremental improvement**. You can consistently improve the quality of the classifier by adding more samples and [incrementally improving classification]( concept/incremental-classifier.md). This fine tuning ensures your documents are always routed to the right model for extraction.
 
 * **Complete control over routing**. By adding confidence-based routing, you provide a confidence threshold for the document type and the classification response.
 
@@ -88,7 +88,7 @@ Composed models are billed the same as individual custom models. The pricing is 
 
 * Start by creating a list of all the model IDs you want to compose into a single model.
 
-* Compose the models into a single model ID using the Studio, REST API, or client libraries. 
+* Compose the models into a single model ID using the Studio, REST API, or client libraries.
 
 * Use the composed model ID to analyze documents.
 
@@ -112,7 +112,7 @@ Composed models are billed the same as individual custom models. The pricing is 
 
 * With the `model compose` operation, you can assign up to 500 models to a single model ID. If the number of models that I want to compose exceeds the upper limit of a composed model, you can use one of these alternatives:
 
-  * Classify the documents before calling the custom model. You can use the [Read model](concept-read.md) and build a classification based on the extracted text from the documents and certain phrases by using sources like code, regular expressions, or search.
+  * Classify the documents before calling the custom model. You can use the [Read model](prebuilt/read.md) and build a classification based on the extracted text from the documents and certain phrases by using sources like code, regular expressions, or search.
 
   * If you want to extract the same fields from various structured, semi-structured, and unstructured documents, consider using the deep-learning [custom neural model](concept-custom-neural.md). Learn more about the [differences between the custom template model and the custom neural model](concept-custom.md#compare-model-features).
 

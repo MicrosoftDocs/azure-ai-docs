@@ -6,7 +6,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.topic: how-to
-ms.date: 09/26/2024
+ms.date: 10/08/2024
 ms.author: lajanuar
 ---
 
@@ -14,10 +14,10 @@ ms.author: lajanuar
 # Create a Document Intelligence resource
 
 ::: moniker range="<=doc-intel-4.0.0"
- [!INCLUDE [applies to v4.0 v3.1 v3.0 v2.1](includes/applies-to-v40-v31-v30-v21.md)]
+ [!INCLUDE [applies to v4.0 v3.1 v3.0 v2.1](../includes/applies-to-v40-v31-v30-v21.md)]
 ::: moniker-end
 
-Azure AI Document Intelligence is a cloud-based [Azure AI service](../../ai-services/index.yml) that uses machine-learning models to extract key-value pairs, text, and tables from your documents. In this article, learn how to create a Document Intelligence resource in the Azure portal.
+Azure AI Document Intelligence is a cloud-based [Azure AI service](../../../ai-services/index.yml) that uses machine-learning models to extract key-value pairs, text, and tables from your documents. In this article, learn how to create a Document Intelligence resource in the Azure portal.
 
 ## Visit the Azure portal
 
@@ -45,7 +45,7 @@ Let's get started:
 
 1. Select **Review + Create**.
 
-    :::image type="content" source="media/logic-apps-tutorial/logic-app-connector-demo-two.png" alt-text="Still image showing the correct values for creating Document Intelligence resource.":::
+    :::image type="content" source="../media/logic-apps-tutorial/logic-app-connector-demo-two.png" alt-text="Still image showing the correct values for creating Document Intelligence resource.":::
 
 1. Azure will run a quick validation check, after a few seconds you should see a green banner that says **Validation Passed**.
 
@@ -61,17 +61,17 @@ Let's get started:
 
 1. If your overview page doesn't have the keys and endpoint visible, you can select the **Keys and Endpoint** button, on the left navigation bar, and retrieve them there.
 
-    :::image border="true" type="content" source="media/containers/keys-and-endpoint.png" alt-text="Still photo showing how to access resource key and endpoint URL":::
+    :::image border="true" type="content" source="../media/containers/keys-and-endpoint.png" alt-text="Still photo showing how to access resource key and endpoint URL":::
 
 That's it! You're now ready to start automating data extraction using Azure AI Document Intelligence.
 
 ## Next steps
 
-* Try the [Document Intelligence Studio](concept-document-intelligence-studio.md), an online tool for visually exploring, understanding, and integrating features from the Document Intelligence service into your applications.
+* Try the [Document Intelligence Studio](../concept-document-intelligence-studio.md), an online tool for visually exploring, understanding, and integrating features from the Document Intelligence service into your applications.
 
 * Complete a Document Intelligence quickstart and get started creating a document processing app in the development language of your choice:
 
-  * [C#](quickstarts/get-started-sdks-rest-api.md?view=doc-intel-3.0.0&preserve-view=true)
-  * [Python](quickstarts/get-started-sdks-rest-api.md?view=doc-intel-3.0.0&preserve-view=true)
-  * [Java](quickstarts/get-started-sdks-rest-api.md?view=doc-intel-3.0.0&preserve-view=true)
-  * [JavaScript](quickstarts/get-started-sdks-rest-api.md?view=doc-intel-3.0.0&preserve-view=true)
+  * [C#](../quickstarts/get-started-sdks-rest-api.md?view=doc-intel-3.0.0&preserve-view=true)
+  * [Python](../quickstarts/get-started-sdks-rest-api.md?view=doc-intel-3.0.0&preserve-view=true)
+  * [Java](../quickstarts/get-started-sdks-rest-api.md?view=doc-intel-3.0.0&preserve-view=true)
+  * [JavaScript](../quickstarts/get-started-sdks-rest-api.md?view=doc-intel-3.0.0&preserve-view=true)

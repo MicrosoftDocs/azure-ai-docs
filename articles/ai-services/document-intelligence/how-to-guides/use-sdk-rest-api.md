@@ -42,7 +42,7 @@ Choose from the following Document Intelligence models and analyze and extract d
 
 > [!div class="checklist"]
 >
-> - The [prebuilt-read](../concept-read.md) model is at the core of all Document Intelligence models and can detect lines, words, locations, and languages. Layout, general document, prebuilt, and custom models all use the `read` model as a foundation for extracting texts from documents.
+> - The [prebuilt-read](../prebuilt/read.md) model is at the core of all Document Intelligence models and can detect lines, words, locations, and languages. Layout, general document, prebuilt, and custom models all use the `read` model as a foundation for extracting texts from documents.
 >
 > - The [prebuilt-layout](../concept-layout.md) model extracts text and text locations, tables, selection marks, and structure information from documents and images. You can extract key/value pairs using the layout model with the optional query string parameter **`features=keyValuePairs`** enabled.
 >
@@ -60,6 +60,7 @@ Choose from the following Document Intelligence models and analyze and extract d
 ::: moniker-end
 
 ::: moniker range="doc-intel-3.1.0 || doc-intel-3.0.0"
+
 > [!div class="checklist"]
 >
 > - The [prebuilt-businessCard](../concept-business-card.md) model extracts key information and contact details from business card images.
@@ -72,6 +73,7 @@ Choose from the following Document Intelligence models and analyze and extract d
 ::: moniker-end
 
 ::: moniker range="doc-intel-3.1.0 || doc-intel-3.0.0"
+
 [!INCLUDE [C# SDK quickstart](includes/v3-0/csharp-sdk.md)]
 ::: moniker-end
 
@@ -96,6 +98,7 @@ Choose from the following Document Intelligence models and analyze and extract d
 ::: moniker-end
 
 ::: moniker range="doc-intel-3.1.0 || doc-intel-3.0.0"
+
 [!INCLUDE [NodeJS SDK quickstart](includes/v3-0/javascript-sdk.md)]
 ::: moniker-end
 
@@ -108,6 +111,7 @@ Choose from the following Document Intelligence models and analyze and extract d
 ::: moniker-end
 
 ::: moniker range="doc-intel-3.1.0 || doc-intel-3.0.0"
+
 [!INCLUDE [Python SDK quickstart](includes/v3-0/python-sdk.md)]
 ::: moniker-end
 
@@ -120,6 +124,7 @@ Choose from the following Document Intelligence models and analyze and extract d
 ::: moniker-end
 
 ::: moniker range="doc-intel-3.1.0 || doc-intel-3.0.0"
+
 [!INCLUDE [REST API quickstart](includes/v3-0/rest-api.md)]
 ::: moniker-end
 

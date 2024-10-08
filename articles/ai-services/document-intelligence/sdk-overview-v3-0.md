@@ -95,6 +95,7 @@ npm i @azure/ai-form-recognizer@4.0.0
 ```python
 pip install azure-ai-formrecognizer==3.2.0
 ```
+
 ---
 
 

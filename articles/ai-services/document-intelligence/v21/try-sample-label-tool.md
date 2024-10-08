@@ -266,7 +266,7 @@ Choose the Train icon on the left pane and open the Training page. Then select t
 * **Model ID** - The ID of the model that was created and trained. Each training call creates a new model with its own ID. Copy this string to a secure location; you need it if you want to do prediction calls through the [REST API](../quickstarts/get-started-sdks-rest-api.md?pivots=programming-language-rest-api) or [client library](../quickstarts/get-started-sdks-rest-api.md).
 
 * **Average Accuracy** - The model's average accuracy. You can improve model accuracy by labeling more forms and retraining to create a new model. We recommend starting by labeling five forms analyzing and testing the results and then if needed adding more forms as needed.
-* The list of tags, and the estimated accuracy per tag. For more information, *see* [Interpret and improve accuracy and confidence](../v4-concept/accuracy-confidence.md).
+* The list of tags, and the estimated accuracy per tag. For more information, *see* [Interpret and improve accuracy and confidence](../concept/accuracy-confidence.md).
 
     :::image type="content" source="../media/label-tool/custom-3.jpg" alt-text="Training view tool.":::
 

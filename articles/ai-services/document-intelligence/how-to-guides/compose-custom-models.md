@@ -10,8 +10,9 @@ ms.date: 08/07/2024
 ms.author: lajanuar
 ---
 
-
 # Compose custom models
+
+<!-- markdownlint-disable MD049 --> emphasis style
 
 <!-- markdownlint-disable MD051 -->
 <!-- markdownlint-disable MD024 -->
@@ -55,10 +56,10 @@ To get started, you need the following resources:
 
   1. Copy the **Keys and Endpoint** values from the Azure portal and paste them in a convenient location, such as *Microsoft Notepad*. You need the key and endpoint values to connect your application to the Document Intelligence API.
 
-    :::image type="content" source="../media/containers/keys-and-endpoint.png" alt-text="Still photo showing how to access resource key and endpoint URL.":::
+:::image type="content" source="../media/containers/keys-and-endpoint.png" alt-text="Still photo showing how to access resource key and endpoint URL.":::
 
-    > [!TIP]
-    > For more information, see [**create a Document Intelligence resource**](../create-document-intelligence-resource.md).
+  > [!TIP]
+  > For more information, see [**create a Document Intelligence resource**](../how-to-guides/create-document-intelligence-resource.md).
 
 * **An Azure storage account.** If you don't know how to create an Azure storage account, follow the [Azure Storage quickstart for Azure portal](/azure/storage/blobs/storage-quickstart-blobs-portal). You can use the free pricing tier (F0) to try the service, and upgrade later to a paid tier for production.
 
@@ -139,10 +140,9 @@ Training with labels leads to better performance in some scenarios. To train wit
 |**C#**|**StartBuildModel**|
 |**Java**| [**beginBuildModel**](/java/api/com.azure.ai.formrecognizer.documentanalysis.administration.documentmodeladministrationclient.beginbuildmodel)|
 |**JavaScript** | [**beginBuildModel**](/javascript/api/@azure/ai-form-recognizer/documentmodeladministrationclient?view=azure-node-latest#@azure-ai-form-recognizer-documentmodeladministrationclient-beginbuildmodel&preserve-view=true)|
-| **Python** | [**begin_build_document_model**](/python/api/azure-ai-formrecognizer/azure.ai.formrecognizer.documentmodeladministrationclient?view=azure-python#azure-ai-formrecognizer-documentmodeladministrationclient-begin-build-document-model&preserve-view=true)
+| **Python** | [**begin_build_document_model**](/python/api/azure-ai-formrecognizer/azure.ai.formrecognizer.documentmodeladministrationclient?view=azure-python#azure-ai-formrecognizer-documentmodeladministrationclient-begin-build-document-model&preserve-view=true)|
 
 ---
-
 
 ## Create a composed model
 
@@ -236,10 +236,10 @@ You can use the programming language of your choice to create a composed model:
 
 | Programming language| Code sample |
 |--|--|
-|**C#** | [Model compose](https://github.com/Azure/azure-sdk-for-net/blob/Azure.AI.FormRecognizer_4.0.0/sdk/formrecognizer/Azure.AI.FormRecognizer/samples/Sample_ModelCompose.md)
-|**Java** | [Model compose](https://github.com/Azure/azure-sdk-for-java/blob/afa0d44fa42979ae9ad9b92b23cdba493a562127/sdk/formrecognizer/azure-ai-formrecognizer/src/samples/java/com/azure/ai/formrecognizer/administration/ComposeDocumentModel.java)
-|**JavaScript** | [Compose model](https://github.com/witemple-msft/azure-sdk-for-js/blob/7e3196f7e529212a6bc329f5f06b0831bf4cc174/sdk/formrecognizer/ai-form-recognizer/samples/v4/javascript/composeModel.js)
-|**Python** | [Create composed model](https://github.com/Azure/azure-sdk-for-python/blob/azure-ai-formrecognizer_3.3.0/sdk/formrecognizer/azure-ai-formrecognizer/samples/v3.2_and_later/sample_compose_model.py)
+|**C#** | [Model compose](https://github.com/Azure/azure-sdk-for-net/blob/Azure.AI.FormRecognizer_4.0.0/sdk/formrecognizer/Azure.AI.FormRecognizer/samples/Sample_ModelCompose.md)|
+|**Java** | [Model compose](https://github.com/Azure/azure-sdk-for-java/blob/afa0d44fa42979ae9ad9b92b23cdba493a562127/sdk/formrecognizer/azure-ai-formrecognizer/src/samples/java/com/azure/ai/formrecognizer/administration/ComposeDocumentModel.java)|
+|**JavaScript** | [Compose model](https://github.com/witemple-msft/azure-sdk-for-js/blob/7e3196f7e529212a6bc329f5f06b0831bf4cc174/sdk/formrecognizer/ai-form-recognizer/samples/v4/javascript/composeModel.js)|
+|**Python** | [Create composed model](https://github.com/Azure/azure-sdk-for-python/blob/azure-ai-formrecognizer_3.3.0/sdk/formrecognizer/azure-ai-formrecognizer/samples/v3.2_and_later/sample_compose_model.py)|
 
 #### Analyze documents
 
@@ -247,10 +247,10 @@ Once you build your composed model, you can use it to analyze forms and document
 
 |Programming language| Code sample |
 |--|--|
-|**C#** | [Analyze a document with a custom/composed model using model ID](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/formrecognizer/Azure.AI.FormRecognizer/samples/Sample_AnalyzeWithCustomModel.md)
-|**Java** | [Analyze a document with a custom/composed model using model ID](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/formrecognizer/azure-ai-formrecognizer/src/samples/java/com/azure/ai/formrecognizer/AnalyzeCustomDocumentFromUrl.java)
-|**JavaScript** | [Analyze a document with a custom/composed model using model ID](https://github.com/witemple-msft/azure-sdk-for-js/blob/7e3196f7e529212a6bc329f5f06b0831bf4cc174/sdk/formrecognizer/ai-form-recognizer/samples/v4/javascript/analyzeDocumentByModelId.js)
-|**Python** | [Analyze a document with a custom/composed model using model ID](https://github.com/Azure/azure-sdk-for-python/blob/azure-ai-formrecognizer_3.3.0/sdk/formrecognizer/azure-ai-formrecognizer/samples/v3.2_and_later/sample_analyze_custom_documents.py)
+|**C#** | [Analyze a document with a custom/composed model using model ID](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/formrecognizer/Azure.AI.FormRecognizer/samples/Sample_AnalyzeWithCustomModel.md)|
+|**Java** | [Analyze a document with a custom/composed model using model ID](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/formrecognizer/azure-ai-formrecognizer/src/samples/java/com/azure/ai/formrecognizer/AnalyzeCustomDocumentFromUrl.java)|
+|**JavaScript** | [Analyze a document with a custom/composed model using model ID](https://github.com/witemple-msft/azure-sdk-for-js/blob/7e3196f7e529212a6bc329f5f06b0831bf4cc174/sdk/formrecognizer/ai-form-recognizer/samples/v4/javascript/analyzeDocumentByModelId.js)|
+|**Python** | [Analyze a document with a custom/composed model using model ID](https://github.com/Azure/azure-sdk-for-python/blob/azure-ai-formrecognizer_3.3.0/sdk/formrecognizer/azure-ai-formrecognizer/samples/v3.2_and_later/sample_analyze_custom_documents.py)|
 
 #### Manage your composed models
 
@@ -318,11 +318,11 @@ In the Document Intelligence UI:
 
 1. Select **Use Custom to train a model with labels and get key value pairs**.
 
-      :::image type="content" source="../media/label-tool/fott-use-custom.png" alt-text="Screenshot of the `FOTT` tool select custom model option.":::
+  :::image type="content" source="../media/label-tool/fott-use-custom.png" alt-text="Screenshot of the `FOTT` tool select custom model option.":::
 
 1. In the next window, select **New project**:
 
-    :::image type="content" source="../media/label-tool/fott-new-project.png" alt-text="Screenshot of the `FOTT` tool select new project option.":::
+:::image type="content" source="../media/label-tool/fott-new-project.png" alt-text="Screenshot of the `FOTT` tool select new project option.":::
 
 ## Create your models
 
@@ -440,11 +440,9 @@ Use the programming language code of your choice to create a composed model that
 
 ---
 
-
 ## Analyze documents with your custom or composed model
 
  The custom form **Analyze** operation requires you to provide the `modelID`  in the call to Document Intelligence. You can provide a single custom model ID or a composed model ID for the `modelID` parameter.
-
 
 ### [**Document Intelligence Sample Labeling tool**](#tab/studio)
 
@@ -475,7 +473,6 @@ Using the programming language of your choice to analyze a form or document with
 * [**Python**](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/formrecognizer/azure-ai-formrecognizer/samples/v3.1/sample_recognize_custom_forms.py)
 
 ---
-
 
 Test your newly trained models by [analyzing forms](build-a-custom-model.md?view=doc-intel-2.1.0&preserve-view=true#test-the-model) that weren't part of the training dataset. Depending on the reported accuracy, you may want to do further training to improve the model. You can continue further training to [improve results](../label-tool.md#improve-results).
 

@@ -1,5 +1,5 @@
 ---
-title: Document processing models - Document Intelligence 
+title: Document processing models - Document Intelligence
 titleSuffix: Azure AI services
 description: Document processing models for OCR, document layout, invoices, identity, custom  models, and more to extract text, structure, and key-value pairs.
 author: laujan
@@ -50,7 +50,7 @@ The following table shows the available models for each current preview and stab
 
 |**Model Type**| **Model**|&bullet; [2024-02-29-preview](/rest/api/aiservices/document-models/build-model?view=rest-aiservices-2024-02-29-preview&preserve-view=true&branch=docintelligence&tabs=HTTP) <br> &bullet; [2023-10-31-preview](/rest/api/aiservices/operation-groups?view=rest-aiservices-v4.0%20(2024-07-31-preview)&preserve-view=true)|[2023-07-31 (GA)](/rest/api/aiservices/document-models/analyze-document?view=rest-aiservices-2023-07-31&preserve-view=true&tabs=HTTP)|[2022-08-31 (GA)](/rest/api/aiservices/document-models/analyze-document?view=rest-aiservices-v3.0%20(2022-08-31)&preserve-view=true&tabs=HTTP)|[v2.1 (GA)](/rest/api/aiservices/analyzer?view=rest-aiservices-v2.1&preserve-view=true)|
 |----------------|-----------|---|--|---|---|
-|Document analysis models|[Read](concept-read.md)                                  | ✔️| ✔️| ✔️| n/a|
+|Document analysis models|[Read](prebuilt/read.md)                                  | ✔️| ✔️| ✔️| n/a|
 |Document analysis models|[Layout](concept-layout.md)                              | ✔️| ✔️| ✔️| ✔️|
 |Document analysis models|[General document](concept-general-document.md)          |moved to layout**| ✔️| ✔️| n/a|
 |Prebuilt models|[Bank Check](concept-bank-check.md)   | ✔️| n/a| n/a| n/a|
@@ -123,7 +123,7 @@ For all models, except Business card model, Document Intelligence now supports a
 * [`languages`](concept-add-on-capabilities.md#language-detection)
 * [`keyValuePairs`](concept-add-on-capabilities.md#key-value-pairs) (2024-02-29-preview, 2023-10-31-preview)
 * [`queryFields`](concept-add-on-capabilities.md#query-fields) (2024-02-29-preview, 2023-10-31-preview) `Not available with the US.Tax models`
-* [`searchablePDF`](concept-read.md#searchable-pdf) (2024-07-31-preview) `Only available for Read Model`
+* [`searchablePDF`](prebuilt/read.md#searchable-pdf) (2024-07-31-preview) `Only available for Read Model`
 
 ## Language support
 
@@ -155,7 +155,7 @@ The Read API analyzes and extracts lines, words, their locations, detected langu
 :::image type="content" source="media/studio/form-recognizer-studio-read-v3p2.png" alt-text="Screenshot of Screenshot of sample document processed using Document Intelligence Studio Read":::
 
 > [!div class="nextstepaction"]
-> [Learn more: read model](concept-read.md)
+> [Learn more: read model](prebuilt/read.md)
 
 ### Layout analysis
 
@@ -193,17 +193,17 @@ The US tax document models analyze and extract key fields and line items from a 
   |Model|Description|ModelID|
   |---|---|---|
   |US Tax W-2|Extract taxable compensation details.|**prebuilt-tax.us.W-2**|
-  US Tax 1040|Extract mortgage interest details.|**prebuilt-tax.us.1040(variations)**|
+  |US Tax 1040|Extract mortgage interest details.|**prebuilt-tax.us.1040(variations)**|
   |US Tax 1098|Extract mortgage interest details.|**prebuilt-tax.us.1098(variations)**|
   |US Tax 1099|Extract income received from sources other than employer.|**prebuilt-tax.us.1099(variations)**|
-  
+
 ***Sample W-2 document processed using [Document Intelligence Studio](https://formrecognizer.appliedai.azure.com/studio/prebuilt?formType=tax.us.w2)***:
 
 :::image type="content" source="./media/studio/w-2.png" alt-text="Screenshot of a sample W-2.":::
 
 > [!div class="nextstepaction"]
 > [Learn more: Tax document models](concept-tax-document.md)
-> 
+>
 
 ### US mortgage documents
 
@@ -218,14 +218,14 @@ The US mortgage document models analyze and extract key fields including borrowe
   |Closing disclosure|Extract closing, transaction costs, and loan details.|**prebuilt-mortgage.us.closingDisclosure**|
   |Marriage certificate|Extract marriage information details for joint loan applicants.|**prebuilt-marriageCertificate**|
   |US Tax W-2|Extract taxable compensation details for income verification.|**prebuilt-tax.us.W-2**|
-  
+
 ***Sample Closing disclosure document processed using [Document Intelligence Studio](https://formrecognizer.appliedai.azure.com/studio/prebuilt?formType=mortgage.us.closingDisclosure)***:
 
 :::image type="content" source="./media/studio/closing-disclosure.png" alt-text="Screenshot of a sample closing disclosure.":::
 
 > [!div class="nextstepaction"]
 > [Learn more: Mortgage document models](concept-mortgage-documents.md)
-> 
+>
 ### Contract
 
 :::image type="icon" source="media/overview/icon-contract.png":::
@@ -359,7 +359,6 @@ A composed model is created by taking a collection of custom models and assignin
 > [!div class="nextstepaction"]
 > [Learn more: custom model](concept-custom.md)
 
-
 ## Input requirements
 
 [!INCLUDE [input requirements](./includes/input-requirements.md)]
@@ -386,7 +385,7 @@ Learn how to use Document Intelligence v3.0 in your applications by following ou
 | [Business card](#business-card)  | Extract key information from English business cards.  |
 |**Custom**||
 | [Custom](#custom) |  Extract data from forms and documents specific to your business. Custom models are trained for your distinct data and use cases. |
-| [Composed](#composed-custom-model) | Compose a collection of custom models and assign them to a single model built from your form types.
+| [Composed](#composed-custom-model) | Compose a collection of custom models and assign them to a single model built from your form types.|
 
 ### Layout
 

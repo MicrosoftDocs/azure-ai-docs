@@ -57,14 +57,12 @@ The Document Intelligence [**2024-07-31-preview**](/rest/api/aiservices/document
   * New prebuilt to extract account information including beginning and ending balances, transaction details from bank statements.​
 * [🆕 US Tax model](concept-tax-document.md)
   * New unified US tax model that can extract from forms such as W-2, 1098, 1099, and 1040.
-* 🆕 Searchable PDF. The [prebuilt read](concept-read.md) model now supports [PDF output](concept-read.md#searchable-pdf)  to download PDFs with embedded text from extraction results, allowing for PDF to be utilized in scenarios such as search copy of contents.
+* 🆕 Searchable PDF. The [prebuilt read](prebuilt/read.md) model now supports [PDF output](prebuilt/read.md#searchable-pdf)  to download PDFs with embedded text from extraction results, allowing for PDF to be utilized in scenarios such as search copy of contents.
 * [Layout model](concept-layout.md) now supports improved [figure detection](concept-layout.md#figures) where figures from documents can now be downloaded as an image file to be used for further figure understanding. The layout model also features improvements to the OCR model for scanned text targeting improvements for single characters, boxed text, and dense text documents.
 * [🆕 Batch API](concept-batch-analysis.md)
   * Document Intelligence now adds support for batch analysis operation to support analyzing a set of documents to simplify developer experience and improve efficiency.
 * [Add-on capabilities](concept-add-on-capabilities.md)
   * [Query fields](concept-add-on-capabilities.md#query-fields) AI quality of extraction is improved with the latest model.
-
-
 
 ## May 2024
 
@@ -82,7 +80,7 @@ The Document Intelligence [**2024-07-31-preview**](/rest/api/aiservices/document
 
 * [Layout model](concept-layout.md) now supports [figure detection](concept-layout.md#figures) and [hierarchical document structure analysis (sections and subsections)](concept-layout.md#sections). The AI quality of reading order and logical roles detection is also improved.
 * [Custom extraction models](concept-custom.md#custom-extraction-models)
-  * Custom extraction models now support cell, row, and table level confidence scores. Learn more about [table, row, and cell confidence](v4-concept/accuracy-confidence.md#table-row-and-cell-confidence).
+  * Custom extraction models now support cell, row, and table level confidence scores. Learn more about [table, row, and cell confidence](concept/accuracy-confidence.md#table-row-and-cell-confidence).
   * Custom extraction models have AI quality improvements for field extraction.
   * Custom template extraction model now supports extracting overlapping fields. Learn more about [overlapping fields and how you use them](concept-custom-neural.md#overlapping-fields).
 * [Custom classification model](concept-custom.md#custom-classification-model)
@@ -169,7 +167,7 @@ The Document Intelligence [**2023-10-31-preview**](/rest/api/aiservices/document
   * New page splitting options: autosplit, always split by page, no split.
 * [Add-on capabilities](concept-add-on-capabilities.md)
   * [Query fields](concept-add-on-capabilities.md#query-fields) are available with the `2023-10-31-preview` release.
-  * Add-on capabilities are available within all models excluding the [Read model](concept-read.md).
+  * Add-on capabilities are available within all models excluding the [Read model](prebuilt/read.md).
 
 >[!NOTE]
 > With the 2022-08-31 API general availability (GA) release, the associated preview APIs are being deprecated. If you are using the 2021-09-30-preview, the 2022-01-30-preview or he 2022-06-30-preview API versions, please update your applications to target the 2022-08-31 API version. There are a few minor changes involved, for more information, _see_ the [migration guide](v3-1-migration-guide.md).
@@ -194,8 +192,8 @@ The v3.1 API introduces new and updated capabilities:
 * Document classification API for splitting a single file into individual documents. [Learn more](concept-custom-classifier.md) about document classification.
 * [Prebuilt contract model](concept-contract.md).
 * [Prebuilt US tax form 1098 model](concept-tax-document.md).
-* Support for [Office file types](concept-read.md) with Read API.
-* [Barcode recognition](concept-read.md) in documents.
+* Support for [Office file types](prebuilt/read.md) with Read API.
+* [Barcode recognition](prebuilt/read.md) in documents.
 * Formula recognition [add-on capability](concept-add-on-capabilities.md).
 * Font recognition [add-on capability](concept-add-on-capabilities.md).
 * Support for [high resolution documents](concept-add-on-capabilities.md).
@@ -205,7 +203,6 @@ The v3.1 API introduces new and updated capabilities:
 * [Prebuilt invoice model locale expansion](concept-invoice.md#supported-languages-and-locales).
 * [Prebuilt receipt model language and locale expansion](concept-receipt.md#supported-languages-and-locales) with more than 100 languages supported.
 * [Prebuilt ID model](concept-id-document.md#supported-document-types) now supports European IDs.
-
 
 **Document Intelligence Studio UX Updates**
 
@@ -261,7 +258,7 @@ The v3.1 API introduces new and updated capabilities:
 
 * [🆕 Document Intelligence Overview](overview.md?view=doc-intel-3.0.0&preserve-view=true) enhanced navigation, structured access points, and enriched images.
 
-* [🆕 Choose a Document Intelligence model](choose-model-feature.md?view=doc-intel-3.0.0&preserve-view=true) provides guidance for choosing the best Document Intelligence solution for your projects and workflows.
+* [🆕 Choose a Document Intelligence model](concept/choose-model-feature.md?view=doc-intel-3.0.0&preserve-view=true) provides guidance for choosing the best Document Intelligence solution for your projects and workflows.
 
 ## April 2023
 
@@ -303,10 +300,9 @@ The v3.1 API introduces new and updated capabilities:
   * Receipt model now adds language support for 18 languages and three regional languages (English, French, Portuguese).
   * Receipt model now supports `TaxDetails` extraction.
 * [**Layout model**](concept-layout.md) now improves table recognition.
-* [**Read model**](concept-read.md) now adds improvement for single-digit character recognition.
+* [**Read model**](prebuilt/read.md) now adds improvement for single-digit character recognition.
 
 ---
-
 
 ## February 2023
 
@@ -316,7 +312,6 @@ The v3.1 API introduces new and updated capabilities:
   For more information, _see_ [Install and run Document Intelligence containers](containers/install-run.md?view=doc-intel-3.0.0&preserve-view=true).
 
 ---
-
 
 ## January 2023
 
@@ -386,7 +381,6 @@ The v3.1 API introduces new and updated capabilities:
 
 ---
 
-
 ## December 2022
 
 * [**Document Intelligence Studio updates**](https://formrecognizer.appliedai.azure.com/studio)
@@ -413,7 +407,6 @@ The v3.1 API introduces new and updated capabilities:
 
 ---
 
-
 ## November 2022
 
 * **Announcing the latest stable release of Azure AI Document Intelligence libraries**
@@ -421,7 +414,6 @@ The v3.1 API introduces new and updated capabilities:
   * The most significant enhancements are the introduction of two new clients, the **`DocumentAnalysisClient`** and the **`DocumentModelAdministrationClient`**.
 
 ---
-
 
 ## October 2022
 
@@ -449,7 +441,6 @@ The v3.1 API introduces new and updated capabilities:
     > * US Gov Arizona
 
 ---
-
 
 ## September 2022
 
@@ -523,7 +514,6 @@ The v3.1 API introduces new and updated capabilities:
 
 ---
 
-
 * **Region expansion for training custom neural models now supported in six new regions**
     > [!div class="checklist"]
     >
@@ -542,7 +532,6 @@ The v3.1 API introduces new and updated capabilities:
     * Update your applications using your programming language's **migration guide**.
 
 ---
-
 
 ## August 2022
 
@@ -593,7 +582,6 @@ The v3.1 API introduces new and updated capabilities:
 
 ---
 
-
 * Document Intelligence v3.0 generally available
 
   * **Document Intelligence REST API v3.0 is now generally available and ready for use in production applications!** Update your applications with [**REST API version 2022-08-31**](/rest/api/aiservices/document-models/analyze-document?view=rest-aiservices-2023-07-31&preserve-view=true&tabs=HTTP).
@@ -608,7 +596,7 @@ The v3.1 API introduces new and updated capabilities:
 
 * Document Intelligence service updates
 
-  * [**prebuilt-read**](concept-read.md). Read OCR model is now also available in Document Intelligence with paragraphs and language detection as the two new features. Document Intelligence Read targets advanced document scenarios aligned with the broader document intelligence capabilities in Document Intelligence.
+  * [**prebuilt-read**](prebuilt/read.md). Read OCR model is now also available in Document Intelligence with paragraphs and language detection as the two new features. Document Intelligence Read targets advanced document scenarios aligned with the broader document intelligence capabilities in Document Intelligence.
   * [**prebuilt-layout**](concept-layout.md). The Layout model extracts paragraphs and whether the extracted text is a paragraph, title, section heading, footnote, page header, page footer, or page number.
   * [**prebuilt-invoice**](concept-invoice.md). The TotalVAT and Line/VAT fields now resolves to the existing fields TotalTax and Line/Tax respectively.
   * [**prebuilt-idDocument**](concept-id-document.md). Data extraction support for US state ID, social security, and green cards. Support for passport visa information.
@@ -617,7 +605,7 @@ The v3.1 API introduces new and updated capabilities:
 
 * **AI quality improvements**
 
-  * [**prebuilt-read**](concept-read.md). Enhanced support for single characters, handwritten dates, amounts, names, other key data commonly found in receipts and invoices and improved processing of digital PDF documents.
+  * [**prebuilt-read**](prebuilt/read.md). Enhanced support for single characters, handwritten dates, amounts, names, other key data commonly found in receipts and invoices and improved processing of digital PDF documents.
   * [**prebuilt-layout**](concept-layout.md). Support for better detection of cropped tables, borderless tables, and improved recognition of long spanning cells.
   * [**prebuilt-document**](concept-general-document.md). Improved value and check box detection.
   * [**custom-neural**](concept-custom-neural.md). Improved accuracy for table detection and extraction.
@@ -685,7 +673,7 @@ The v3.1 API introduces new and updated capabilities:
   * [**Invoice language expansion**](concept-invoice.md). The invoice model includes expanded language support. _See_ [supported languages](concept-invoice.md#supported-languages-and-locales).
   * [**Prebuilt business card**](concept-business-card.md) now includes Japanese language support. _See_ [supported languages](concept-business-card.md#supported-languages-and-locales).
   * [**Prebuilt ID document model**](concept-id-document.md). The ID document model now extracts DateOfIssue, Height, Weight, EyeColor, HairColor, and DocumentDiscriminator from US driver's licenses. _See_ [field extraction](concept-id-document.md).
-  * [**Read model now supports common Microsoft Office document types**](concept-read.md). Document types like Word (docx), Excel (xlsx), and PowerPoint (pptx) are now supported with the Read API. See [Read data extraction](concept-read.md#data-extraction).
+  * [**Read model now supports common Microsoft Office document types**](prebuilt/read.md). Document types like Word (docx), Excel (xlsx), and PowerPoint (pptx) are now supported with the Read API. See [Read data extraction](prebuilt/read.md#data-extraction).
 
 ---
 
@@ -737,7 +725,7 @@ The v3.1 API introduces new and updated capabilities:
 
   * [**Custom neural model**](concept-custom-neural.md) or custom document model is a new custom model to extract text and selection marks from structured forms, semi-structured and **unstructured documents**.
   * [**W-2 prebuilt model**](concept-w2.md) is a new prebuilt model to extract fields from W-2 forms for tax reporting and income verification scenarios.
-  * [**Read**](concept-read.md) API extracts printed text lines, words, text locations, detected languages, and handwritten text, if detected.
+  * [**Read**](prebuilt/read.md) API extracts printed text lines, words, text locations, detected languages, and handwritten text, if detected.
   * [**General document**](concept-general-document.md) pretrained model is now updated to support selection marks in addition to API  text, tables, structure, and key-value pairs from forms and documents.
   * [**Invoice API**](concept-invoice.md#supported-languages-and-locales) Invoice prebuilt model expands support to Spanish invoices.
   * [**Document Intelligence Studio**](https://formrecognizer.appliedai.azure.com) adds new demos for Read, W2, Hotel receipt samples, and support for training the new custom neural models.
@@ -767,7 +755,7 @@ The v3.1 API introduces new and updated capabilities:
     * [Custom model—build mode](concept-custom.md#build-mode).
 
   * [W-2 prebuilt model](concept-w2.md) (prebuilt-tax.us.w2).
-  * [Read prebuilt model](concept-read.md) (prebuilt-read).
+  * [Read prebuilt model](prebuilt/read.md) (prebuilt-read).
   * [Invoice prebuilt model (Spanish)](concept-invoice.md#supported-languages-and-locales) (prebuilt-invoice).
 
 ---

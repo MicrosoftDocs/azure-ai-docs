@@ -19,23 +19,27 @@ monikerRange: '<=doc-intel-4.0.0'
 
 # What is Azure AI Document Intelligence?
 
-::: moniker range="doc-intel-4.0.0"
+ :::moniker range="doc-intel-4.0.0"
 [!INCLUDE [preview-version-notice](includes/preview-notice.md)]
 
 [!INCLUDE [applies to v4.0](includes/applies-to-v40.md)]
-::: moniker-end
 
-::: moniker range="doc-intel-3.1.0"
+:::moniker-end
+
+ :::moniker range="doc-intel-3.1.0"
 [!INCLUDE [applies to v3.1](includes/applies-to-v31.md)]
-::: moniker-end
 
-::: moniker range="doc-intel-3.0.0"
+:::moniker-end
+
+ :::moniker range="doc-intel-3.0.0"
 [!INCLUDE [applies to v3.0](includes/applies-to-v30.md)]
-::: moniker-end
 
-::: moniker range="doc-intel-2.1.0"
+:::moniker-end
+
+ :::moniker range="doc-intel-2.1.0"
 [!INCLUDE [applies to v2.1](includes/applies-to-v21.md)]
-::: moniker-end
+
+:::moniker-end
 
 > [!NOTE]
 > Form Recognizer is now **Azure AI Document Intelligence**!
@@ -55,28 +59,32 @@ Azure AI Document Intelligence is a cloud-based [Azure AI service](../../ai-serv
 General extraction models enable text extraction from forms and documents and return structured business-ready content ready for your organization's action, use, or development.
 
 :::moniker range="doc-intel-4.0.0"
-:::row:::
-   :::column:::
-   [**Read**](#read) | Extract printed and handwritten text.
-   :::column-end:::
-   :::column span="":::
-    [**Layout**](#layout) | Extract text, tables, and document structure.
-   :::column-end:::
-  :::row-end:::
-:::moniker-end
 
+ :::row:::
+    :::column:::
+    [**Read**](#read) | Extract printed and handwritten text.
+    :::column-end:::
+    :::column span="":::
+     [**Layout**](#layout) | Extract text, tables, and document structure.
+    :::column-end:::
+   :::row-end:::
+
+:::moniker-end
+ 
 :::moniker range="<=doc-intel-3.1.0"
-:::row:::
-   :::column:::
-   [**Read**](#read) | Extract printed </br>and handwritten text.
-   :::column-end:::
-   :::column span="":::
-    [**Layout**](#layout) | Extract text, tables, </br>and document structure.
-   :::column-end:::
-   :::column span="":::
-    [**General document**](#general-document-deprecated-in-2023-10-31-preview) | Extract text, </br>structure, and key-value pairs.
-   :::column-end:::
-:::row-end:::
+
+ :::row:::
+    :::column:::
+    [**Read**](#read) | Extract printed </br>and handwritten text.
+    :::column-end:::
+    :::column span="":::
+     [**Layout**](#layout) | Extract text, tables, </br>and document structure.
+    :::column-end:::
+    :::column span="":::
+     [**General document**](#general-document-deprecated-in-2023-10-31-preview) | Extract text, </br>structure, and key-value pairs.
+    :::column-end:::
+ :::row-end:::
+
 :::moniker-end
 
 ## Prebuilt models
@@ -84,88 +92,88 @@ General extraction models enable text extraction from forms and documents and re
 Prebuilt models enable you to add intelligent document processing to your apps and flows without having to train and build your own models.
 
 :::moniker range="doc-intel-4.0.0"
+
 ### Financial Services and Legal
 
-:::row:::
-   :::column span="":::
-    [**Bank Statement**](#bank-statement) | Extract account information and details from bank statements.
-   :::column-end:::
-   :::column span="":::
-    [**Check**](#check) | Extract relevant information from checks.
-   :::column-end:::
-   :::column span="":::
-    [**Contract**](#contract-model) | Extract agreement and party details.
-   :::column-end:::
-:::row-end:::
-:::row:::
+ :::row:::
     :::column span="":::
-    [**Credit card**](#credit-card-model) | Extract payment card information.
+     [**Bank Statement**](#bank-statement) | Extract account information and details from bank statements.
     :::column-end:::
     :::column span="":::
-    [**Invoice**](#invoice) | Extract customer and vendor details.
-   :::column-end:::
-   :::column span="":::
-    [**Pay Stub**](#pay-stub) | Extract pay stub details.
-   :::column-end:::
-   :::column span="":::
-    [**Receipt**](#receipt) | Extract sales transaction details.
-   :::column-end:::
-:::row-end:::
+     [**Check**](#check) | Extract relevant information from checks.
+    :::column-end:::
+    :::column span="":::
+     [**Contract**](#contract-model) | Extract agreement and party details.
+    :::column-end:::
+ :::row-end:::
+ :::row:::
+     :::column span="":::
+     [**Credit card**](#credit-card-model) | Extract payment card information.
+     :::column-end:::
+     :::column span="":::
+     [**Invoice**](#invoice) | Extract customer and vendor details.
+    :::column-end:::
+    :::column span="":::
+     [**Pay Stub**](#pay-stub) | Extract pay stub details.
+    :::column-end:::
+    :::column span="":::
+     [**Receipt**](#receipt) | Extract sales transaction details.
+    :::column-end:::
+ :::row-end:::
 
 ### US Tax
-:::row:::
-   :::column span="":::
-    [**Unified US tax**](#unified-us-tax-forms) | Extract from any US tax forms supported.
-   :::column-end:::
-   :::column span="":::
-    [**US Tax W-2**](#us-tax-w-2-model) | Extract taxable compensation details.
-   :::column-end:::
-   :::column span="":::
-    [**US Tax 1098**](#us-tax-1098-and-variations-forms) | Extract `1098` variation details.
-   :::column-end:::
-   :::column span="":::
-    [**US Tax 1099**](#us-tax-1099-and-variations-forms) | Extract `1099` variation details.
-   :::column-end:::
-   :::column span="":::
-    [**US Tax 1040**](#us-tax-1040-and-variations-forms) |  Extract `1040` variation details.
-   :::column-end:::
-:::row-end:::
+
+ :::row:::
+    :::column span="":::
+     [**Unified US tax**](#unified-us-tax-forms) | Extract from any US tax forms supported.
+    :::column-end:::
+    :::column span="":::
+     [**US Tax W-2**](#us-tax-w-2-model) | Extract taxable compensation details.
+    :::column-end:::
+    :::column span="":::
+     [**US Tax 1098**](#us-tax-1098-and-variations-forms) | Extract `1098` variation details.
+    :::column-end:::
+    :::column span="":::
+     [**US Tax 1099**](#us-tax-1099-and-variations-forms) | Extract `1099` variation details.
+    :::column-end:::
+    :::column span="":::
+     [**US Tax 1040**](#us-tax-1040-and-variations-forms) |  Extract `1040` variation details.
+    :::column-end:::
+ :::row-end:::
 
 ### US Mortgage
-:::row:::
-   :::column span="":::
-    [**US mortgage 1003**](#us-mortgage-1003-form) | Extract loan application details.
-   :::column-end:::
-   :::column span="":::
-    [**US mortgage 1004**](#us-mortgage-1004-form) | Extract information from appraisal.
-   :::column-end:::
-   :::column span="":::
-    [**US mortgage 1005**](#us-mortgage-1005-form) | Extract information from validation of employment.
-   :::column-end:::
-   :::column span="":::
-    [**US mortgage 1008**](#us-mortgage-1008-form) | Extract loan transmittal details.
-   :::column-end:::
-   :::column span="":::
-    [**US mortgage disclosure**](#us-mortgage-disclosure-form) | Extract final closing loan terms.
-   :::column-end:::
-:::row-end:::
+
+ :::row:::
+    :::column span="":::
+     [**US mortgage 1003**](#us-mortgage-1003-form) | Extract loan application details.
+    :::column-end:::
+    :::column span="":::
+     [**US mortgage 1004**](#us-mortgage-1004-form) | Extract information from appraisal.
+    :::column-end:::
+    :::column span="":::
+     [**US mortgage 1005**](#us-mortgage-1005-form) | Extract information from validation of employment.
+    :::column-end:::
+    :::column span="":::
+     [**US mortgage 1008**](#us-mortgage-1008-form) | Extract loan transmittal details.
+    :::column-end:::
+    :::column span="":::
+     [**US mortgage disclosure**](#us-mortgage-disclosure-form) | Extract final closing loan terms.
+    :::column-end:::
+ :::row-end:::
 
 ### Personal Identification
 
-:::row:::
-   :::column span="":::
-    [**Health Insurance card**](#health-insurance-card) | Extract insurance coverage details.
-   :::column-end:::
+ :::row:::
     :::column span="":::
-    [**Identity**](#identity-id) | Extract verification details.
-   :::column-end:::
-       :::column span="":::
-    [**Marriage certificate**](#marriage-certificate-model) | Extract certified marriage information.
-   :::column-end:::
-:::row-end:::
-
-
-
+     [**Health Insurance card**](#health-insurance-card) | Extract insurance coverage details.
+    :::column-end:::
+     :::column span="":::
+     [**Identity**](#identity-id) | Extract verification details.
+    :::column-end:::
+        :::column span="":::
+     [**Marriage certificate**](#marriage-certificate-model) | Extract certified marriage information.
+    :::column-end:::
+ :::row-end:::
 
 :::moniker-end
 
@@ -201,6 +209,7 @@ Prebuilt models enable you to add intelligent document processing to your apps a
     [**US Tax 1098**](#us-tax-1098-and-variations-forms) | Extract `1098` variation details.
    :::column-end:::
 :::row-end:::
+
 :::moniker-end
 
 ## Custom models
@@ -208,6 +217,7 @@ Prebuilt models enable you to add intelligent document processing to your apps a
 Custom models are trained using your labeled datasets to extract distinct data from forms and documents, specific to your use cases. Standalone custom models can be combined to create composed models.
 
 ### Document field extraction models
+
 ✔️ Document field extraction models are trained to extract labeled fields from documents.
 
 :::row:::
@@ -226,6 +236,7 @@ Custom models are trained using your labeled datasets to extract distinct data f
 :::row-end:::
 
 ### Custom classification models
+
 ✔️ Custom classifiers identify document types before invoking an extraction model.
 
 :::row:::
@@ -246,7 +257,7 @@ Document Intelligence supports optional features that can be enabled and disable
 
 * [`ocr.barcode`](concept-add-on-capabilities.md#barcode-property-extraction)
 
- The`2024-07-31-preview` release introduces `read` model support for [searchable PDF](concept-read.md#searchable-pdf) output:
+ The`2024-07-31-preview` release introduces `read` model support for [searchable PDF](prebuilt/read.md#searchable-pdf) output:
 
 * [`Searchable PDF](concept-add-on-capabilities.md#searchable-pdf)
 
@@ -273,7 +284,7 @@ You can use Document Intelligence to automate document processing in application
 
 |Model ID| Description |Automation use cases | Development options |
 |----------|--------------|-------------------------|-----------|
-|[**prebuilt-read**](concept-read.md)|&#9679; Extract **text** from documents.</br>&#9679; [Data extraction](concept-read.md#data-extraction)| &#9679; Digitizing any document. </br>&#9679; Compliance and auditing.</br>&#9679; Processing handwritten notes before translation.|&#9679; [**Document Intelligence Studio**](https://documentintelligence.ai.azure.com/studio/read)</br>&#9679; [**REST API**](how-to-guides/use-sdk-rest-api.md?view=doc-intel-4.0.0&preserve-view=true&pivots=programming-language-rest-api)</br>&#9679; [**C# SDK**](how-to-guides/use-sdk-rest-api.md?view=doc-intel-4.0.0&preserve-view=true&pivots=programming-language-csharp)</br>&#9679; [**Python SDK**](how-to-guides/use-sdk-rest-api.md?view=doc-intel-4.0.0&preserve-view=true&pivots=programming-language-python)</br>&#9679; [**Java SDK**](how-to-guides/use-sdk-rest-api.md?view=doc-intel-4.0.0&preserve-view=true&pivots=programming-language-java)</br>&#9679; [**JavaScript**](how-to-guides/use-sdk-rest-api.md?view=doc-intel-4.0.0&preserve-view=true&pivots=programming-language-javascript) |
+|[**prebuilt-read**](prebuilt/read.md)|&#9679; Extract **text** from documents.</br>&#9679; [Data extraction](prebuilt/read.md#data-extraction)| &#9679; Digitizing any document. </br>&#9679; Compliance and auditing.</br>&#9679; Processing handwritten notes before translation.|&#9679; [**Document Intelligence Studio**](https://documentintelligence.ai.azure.com/studio/read)</br>&#9679; [**REST API**](how-to-guides/use-sdk-rest-api.md?view=doc-intel-4.0.0&preserve-view=true&pivots=programming-language-rest-api)</br>&#9679; [**C# SDK**](how-to-guides/use-sdk-rest-api.md?view=doc-intel-4.0.0&preserve-view=true&pivots=programming-language-csharp)</br>&#9679; [**Python SDK**](how-to-guides/use-sdk-rest-api.md?view=doc-intel-4.0.0&preserve-view=true&pivots=programming-language-python)</br>&#9679; [**Java SDK**](how-to-guides/use-sdk-rest-api.md?view=doc-intel-4.0.0&preserve-view=true&pivots=programming-language-java)</br>&#9679; [**JavaScript**](how-to-guides/use-sdk-rest-api.md?view=doc-intel-4.0.0&preserve-view=true&pivots=programming-language-javascript) |
 
 > [!div class="nextstepaction"]
 > [Return to model types](#general-extraction-models)
@@ -289,7 +300,7 @@ You can use Document Intelligence to automate document processing in application
 > [!div class="nextstepaction"]
 > [Return to model types](#general-extraction-models)
 
-::: moniker range="doc-intel-3.1.0 || doc-intel-3.0.0"
+ :::moniker range="doc-intel-3.1.0 || doc-intel-3.0.0"
 
 ### General document (deprecated in 2023-10-31-preview)
 
@@ -303,6 +314,7 @@ You can use Document Intelligence to automate document processing in application
 > [Return to model types](#general-extraction-models)
 
 :::moniker-end
+
 ### Invoice
 
 :::image type="content" source="media/overview/analyze-invoice.png" alt-text="Screenshot of Invoice model analysis using Document Intelligence Studio.":::
@@ -506,7 +518,7 @@ You can use Document Intelligence to automate document processing in application
 |----------|--------------|-----------------|
 |[**prebuilt-tax.us.1040{`variation`}**](concept-tax-document.md)|&#9679; Extract information from 1040-form variations.</br>&#9679; [Data and field extraction](concept-tax-document.md#field-extraction-1040-tax-form)|&#9679; [**Document Intelligence Studio**](https://documentintelligence.ai.azure.com/studio/prebuilt?formCategory=tax.us.1040)</br>&#9679; [**REST API**](quickstarts/get-started-sdks-rest-api.md?view=doc-intel-4.0.0&preserve-view=true&pivots=programming-language-rest-api#analyze-document-post-request)</br>&#9679; [**C# SDK**](quickstarts/get-started-sdks-rest-api.md?view=doc-intel-4.0.0&preserve-view=true#prebuilt-model)</br>&#9679; [**Python SDK**](quickstarts/get-started-sdks-rest-api.md?view=doc-intel-4.0.0&preserve-view=true#prebuilt-model)</br>&#9679; [**Java SDK**](quickstarts/get-started-sdks-rest-api.md?view=doc-intel-4.0.0&preserve-view=true#prebuilt-model)</br>&#9679; [**JavaScript**](quickstarts/get-started-sdks-rest-api.md?view=doc-intel-4.0.0&preserve-view=true#prebuilt-model)|
 
-::: moniker range=">=doc-intel-4.0.0"
+:::moniker range=">=doc-intel-4.0.0"
 
 ### Unified US tax forms
 
@@ -516,7 +528,7 @@ You can use Document Intelligence to automate document processing in application
 
 :::moniker-end
 
-::: moniker range="<=doc-intel-3.1.0"
+ :::moniker range="<=doc-intel-3.1.0"
 
 ### Business card
 
@@ -613,7 +625,7 @@ You can use Document Intelligence to automate document processing in application
 
 :::moniker-end
 
-::: moniker range="doc-intel-2.1.0"
+ :::moniker range="doc-intel-2.1.0"
 
 Azure AI Document Intelligence is a cloud-based [Azure AI service](../../ai-services/index.yml) for developers to build intelligent document processing solutions. Document Intelligence applies machine-learning-based optical character recognition (OCR) and document understanding technologies to extract text, tables, structure, and key-value pairs from documents. You can also label and train custom models to automate data extraction from structured, semi-structured, and unstructured documents. To learn more about each model, *see* the Concepts articles:
 
@@ -623,9 +635,9 @@ Azure AI Document Intelligence is a cloud-based [Azure AI service](../../ai-serv
 | **Prebuilt models** | &#9679; [**Invoice model**](concept-invoice.md?view=doc-intel-2.1.0&preserve-view=true)</br>&#9679; [**Receipt model**](concept-receipt.md?view=doc-intel-2.1.0&preserve-view=true) </br>&#9679; [**Identity document (ID) model**](concept-id-document.md?view=doc-intel-2.1.0&preserve-view=true) </br>&#9679; [**Business card model**](concept-business-card.md?view=doc-intel-2.1.0&preserve-view=true) </br>|
 | **Custom models** | &#9679; [**Custom model**](concept-custom.md) </br>&#9679; [**Composed model**](concept-model-overview.md?view=doc-intel-2.1.0&preserve-view=true)|
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range="doc-intel-2.1.0"
+ :::moniker range="doc-intel-2.1.0"
 
 [!INCLUDE [applies to v2.1](includes/applies-to-v21.md)]
 
@@ -651,7 +663,7 @@ Use the links in the table to learn more about each model and browse the API ref
 |[**Identity document (ID) model**](concept-id-document.md?view=doc-intel-2.1.0&preserve-view=true) | Automated data processing and extraction of key information from US driver's licenses and international passports.| &#9679; [**Document Intelligence labeling tool**](quickstarts/try-sample-label-tool.md#analyze-using-a-prebuilt-model)</br>&#9679; [**REST API**](quickstarts/get-started-sdks-rest-api.md?view=doc-intel-2.1.0&preserve-view=true)</br>&#9679; [**Client-library SDK**](quickstarts/get-started-sdks-rest-api.md)</br>&#9679; [**Document Intelligence Docker container**](containers/install-run.md?tabs=id-document#run-the-container-with-the-docker-compose-up-command)|
 |[**Business card model**](concept-business-card.md?view=doc-intel-2.1.0&preserve-view=true) | Automated data processing and extraction of key information from business cards.| &#9679; [**Document Intelligence labeling tool**](quickstarts/try-sample-label-tool.md#analyze-using-a-prebuilt-model)</br>&#9679; [**REST API**](quickstarts/get-started-sdks-rest-api.md?view=doc-intel-2.1.0&preserve-view=true)</br>&#9679; [**Client-library SDK**](quickstarts/get-started-sdks-rest-api.md)</br>&#9679; [**Document Intelligence Docker container**](containers/install-run.md?tabs=business-card#run-the-container-with-the-docker-compose-up-command)|
 
-::: moniker-end
+:::moniker-end
 
 ## Data privacy and security
 
@@ -659,20 +671,20 @@ Use the links in the table to learn more about each model and browse the API ref
 
 ## Next steps
 
-::: moniker range=">=doc-intel-3.0.0"
+:::moniker range=">=doc-intel-3.0.0"
 
-* [Choose a Document Intelligence model](choose-model-feature.md).
+* [Choose a Document Intelligence model]().
 
 * Try processing your own forms and documents with the [Document Intelligence Studio](https://formrecognizer.appliedai.azure.com/studio).
 
 * Complete a [Document Intelligence quickstart](quickstarts/get-started-sdks-rest-api.md?view=doc-intel-4.0.0&preserve-view=true) and get started creating a document processing app in the development language of your choice.
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range="doc-intel-2.1.0"
+:::moniker range="doc-intel-2.1.0"
 
 * Try processing your own forms and documents with the [Document Intelligence Sample Labeling tool](https://fott-2-1.azurewebsites.net/).
 
 * Complete a [Document Intelligence quickstart](quickstarts/get-started-sdks-rest-api.md?view=doc-intel-2.1.0&preserve-view=true) and get started creating a document processing app in the development language of your choice.
 
-::: moniker-end
+:::moniker-end

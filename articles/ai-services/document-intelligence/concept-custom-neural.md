@@ -106,7 +106,7 @@ Tabular fields provide **table, row and cell confidence** starting with the ```2
   * Row confidence, a measure of recognition of an individual row.
   * Cell confidence, a measure of recognition of an individual cell.
 
-* The recommended approach is to review the accuracy in a top-down manner starting with the table first, followed by the row and then the cell. See  [confidence and accuracy scores](v4-concept/accuracy-confidence.md) to learn more about table, row, and cell confidence.
+* The recommended approach is to review the accuracy in a top-down manner starting with the table first, followed by the row and then the cell. See  [confidence and accuracy scores](concept/accuracy-confidence.md) to learn more about table, row, and cell confidence.
 
 ### Supported languages and locales
 
