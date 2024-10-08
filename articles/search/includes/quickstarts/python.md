@@ -5,28 +5,28 @@ ms.service: cognitive-search
 ms.custom:
   - ignite-2023
 ms.topic: include
-ms.date: 03/11/2024
+ms.date: 10/07/2024
 ---
 
-Use a Jupyter notebook and the [**azure-search-documents**](/python/api/overview/azure/search-documents-readme) library in the Azure SDK for Python to create, load, and query a search index. 
+Use a Jupyter notebook and the [azure-search-documents](/python/api/overview/azure/search-documents-readme) library in the Azure SDK for Python to create, load, and query a search index. 
 
-Alternatively, [download and run a finished notebook](https://github.com/Azure-Samples/azure-search-python-samples/tree/main/Quickstart).
+Alternatively, you can download and run a [finished notebook](https://github.com/Azure-Samples/azure-search-python-samples/tree/main/Quickstart).
 
 #### Set up your environment
 
-Use [Visual Studio Code with the Python extension](https://code.visualstudio.com/docs/languages/python), or equivalent IDE, with Python 3.10 or later.
+Use [Visual Studio Code with the Python extension](https://code.visualstudio.com/docs/languages/python), or an equivalent IDE, with Python 3.10 or later.
 
 We recommend a virtual environment for this quickstart:
 
 1. Start Visual Studio Code.
 
-1. Open the Command Palette (Ctrl+Shift+P).
+1. Open the Command Palette (**Ctrl+Shift+P**).
 
 1. Search for **Python: Create Environment**.
 
-1. Select **`Venv.`**
+1. Select `Venv.`
 
-1. Select a Python interpreter. Choose 3.10 or later.
+1. Select a Python interpreter. Choose version 3.10 or later.
 
 It can take a minute to set up. If you run into problems, see [Python environments in VS Code](https://code.visualstudio.com/docs/python/environments).
 
@@ -40,7 +40,7 @@ It can take a minute to set up. If you run into problems, see [Python environmen
     ! pip install python-dotenv --quiet
     ```
 
-1. Provide endpoint and API keys:
+1. Provide the endpoint and API key for your service:
 
     ```python
     search_endpoint: str = "PUT-YOUR-SEARCH-SERVICE-ENDPOINT-HERE"
@@ -92,7 +92,7 @@ fields = [
 scoring_profiles = []
 suggester = [{'name': 'sg', 'source_fields': ['Tags', 'Address/City', 'Address/Country']}]
 
-# Create the search index=
+# Create the search index
 index = SearchIndex(name=index_name, fields=fields, suggesters=suggester, scoring_profiles=scoring_profiles)
 result = index_client.create_or_update_index(index)
 print(f' {result.name} created')
@@ -100,7 +100,7 @@ print(f' {result.name} created')
 
 #### Create a documents payload
 
-Use an [index action](/python/api/azure-search-documents/azure.search.documents.models.indexaction) for the operation type (upload, merge-and-upload, and so forth). Documents originate from [HotelsData](https://github.com/Azure-Samples/azure-search-sample-data/blob/main/hotels/HotelsData_toAzureSearch.JSON) on GitHub.
+Use an [index action](/python/api/azure-search-documents/azure.search.documents.models.indexaction) for the operation type, such as upload or merge-and-upload. Documents originate from the [HotelsData](https://github.com/Azure-Samples/azure-search-sample-data/blob/main/hotels/HotelsData_toAzureSearch.JSON) sample on GitHub.
 
 ```python
 # Create a documents payload
@@ -203,7 +203,7 @@ except Exception as ex:
 
 #### Run your first query
 
-Use the **search** method of the [search.client class](/python/api/azure-search-documents/azure.search.documents.searchclient).
+Use the *search* method of the [search.client class](/python/api/azure-search-documents/azure.search.documents.searchclient).
 
 This example executes an empty search (`search=*`), returning an unranked list (search score = 1.0) of arbitrary documents. Because there are no criteria, all documents are included in results.
 
@@ -271,7 +271,7 @@ for result in results:
 
 #### Add facets
 
-Facets are generated for positive matches found in search results. There are no zero matches. If search results don't include the term `"wifi"`, then `"wifi"` doesn't appear in the faceted navigation structure.
+Facets are generated for positive matches found in search results. There are no zero matches. If search results don't include the term *wifi*, then *wifi* doesn't appear in the faceted navigation structure.
 
 ```python
 # Return facets
@@ -303,7 +303,7 @@ Autocomplete can provide potential matches as the user types into the search box
 
 Autocomplete uses a suggester (`sg`) to know which fields contain potential matches to suggester requests. In this quickstart, those fields are `Tags`, `Address/City`, `Address/Country`. 
 
-To simulate autocomplete, pass in the letters "sa" as a partial string. The autocomplete method of [SearchClient](/python/api/azure-search-documents/azure.search.documents.searchclient) sends back potential term matches.
+To simulate autocomplete, pass in the letters *sa* as a partial string. The autocomplete method of [SearchClient](/python/api/azure-search-documents/azure.search.documents.searchclient) sends back potential term matches.
 
 ```python
 # Autocomplete a query
