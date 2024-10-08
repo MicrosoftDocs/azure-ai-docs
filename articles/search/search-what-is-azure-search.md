@@ -8,7 +8,7 @@ author: HeidiSteen
 ms.author: heidist
 ms.service: cognitive-search
 ms.topic: overview
-ms.date: 08/15/2024
+ms.date: 10/08/2024
 ---
 
 # What's Azure AI Search?
@@ -77,6 +77,8 @@ For more information about specific functionality, see [Features of Azure AI Sea
 
 Functionality is exposed through the Azure portal, simple [REST APIs](/rest/api/searchservice/), or Azure SDKs like the [Azure SDK for .NET](search-howto-dotnet-sdk.md). The Azure portal supports service administration and content management, with tools for prototyping and querying your indexes and skillsets. 
 
+### Use the Azure portal
+
 An end-to-end exploration of core search features can be accomplished in four steps:
 
 1. [**Decide on a tier**](search-sku-tier.md) and region. One free search service is allowed per subscription. All quickstarts can be completed on the free tier. For more capacity and capabilities, you'll need a [billable tier](https://azure.microsoft.com/pricing/details/search/).
@@ -87,6 +89,8 @@ An end-to-end exploration of core search features can be accomplished in four st
 
 1. [**Finish with Search Explorer**](search-explorer.md), using a portal client to query the search index you just created.
 
+### Use APIs
+
 Alternatively, you can create, load, and query a search index in atomic steps:
 
 1. [**Create a search index**](search-what-is-an-index.md) using the portal, [REST API](/rest/api/searchservice/indexes/create), [.NET SDK](search-howto-dotnet-sdk.md), or another SDK. The index schema defines the structure of searchable content.
@@ -95,6 +99,8 @@ Alternatively, you can create, load, and query a search index in atomic steps:
 
 1. [**Query an index**](search-query-overview.md) using [Search explorer](search-explorer.md) in the portal, [REST API](search-get-started-rest.md), [.NET SDK](/dotnet/api/azure.search.documents.searchclient.search), or another SDK.
 
+### Use accelerators
+
 Or, try solution accelerators:
 
 + [**Chat with your data** solution accelerator](https://github.com/Azure-Samples/chat-with-your-data-solution-accelerator) helps you create a custom RAG solution over your content.
@@ -102,6 +108,8 @@ Or, try solution accelerators:
 + [**Conversational Knowledge Mining** solution accelerator](https://github.com/microsoft/Customer-Service-Conversational-Insights-with-Azure-OpenAI-Services) helps you create an interactive solution to extract actionable insights from post-contact center transcripts.
 
 + [**Build your own copilot** solution accelerator](https://github.com/microsoft/Build-your-own-copilot-Solution-Accelerator), leverages Azure OpenAI Service, Azure AI Search and Microsoft Fabric, to create custom copilot solutions.
+
+  + [Generic copilot](https://github.com/microsoft/Generic-Build-your-own-copilot-Solution-Accelerator) helps you build your own copilot to identify relevant documents, summarize unstructured information, and generate Word document templates using your own data.
 
   + [Client Advisor](https://github.com/microsoft/Build-your-own-copilot-Solution-Accelerator/blob/main/ClientAdvisor/README.md) all-in-one custom copilot empowers Client Advisor to harness the power of generative AI across both structured and unstructured data. Help our customers to optimize daily tasks and foster better interactions with more clients
 
