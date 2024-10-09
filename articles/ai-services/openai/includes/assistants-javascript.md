@@ -16,7 +16,8 @@ ms.custom: passwordless-js, devex-track-javascript
 ## Prerequisites
 
 - An Azure subscription - <a href="https://azure.microsoft.com/free/cognitive-services" target="_blank">Create one for free</a>
-- <a href="https://nodejs.org/" target="_blank">Node.js LTS with TypeScript or ESM support.</a>
+- <a href="https://nodejs.org/" target="_blank">Node.js LTS or ESM support.</a>
+- [TypeScript](https://www.typescriptlang.org/download/) installed globally
 - [Azure CLI](/cli/azure/install-azure-cli) used for passwordless authentication in a local development environment, create the necessary context by signing in with the Azure CLI. 
 - An Azure OpenAI resource with a [compatible model in a supported region](../concepts/models.md#assistants-preview).
 - We recommend reviewing the [Responsible AI transparency note](/legal/cognitive-services/openai/transparency-note?context=%2Fazure%2Fai-services%2Fopenai%2Fcontext%2Fcontext&tabs=text) and other [Responsible AI resources](/legal/cognitive-services/openai/overview?context=%2Fazure%2Fai-services%2Fopenai%2Fcontext%2Fcontext) to familiarize yourself with the capabilities and limitations of the Azure OpenAI Service.
@@ -64,27 +65,26 @@ For passwordless authentication, you need to
     npm install @azure/identity
     ```
 
-## Retrieve key and endpoint
+## Retrieve resource information
 
-To successfully make a call against the Azure OpenAI service, you'll need the following:
+To successfully make a call against the Azure OpenAI service, set environment variables. If you intend to use keyless authentication, you shouldn't have the API Key environment variable set. 
 
-#### [TypeScript without key (Recommended)](#tab/typescript)
+#### [TypeScript keyless (Recommended)](#tab/typescript)
 
 [!INCLUDE [assistants-keyless-environment-variables](assistants-env-var-without-key.md)]
 [!INCLUDE [environment-variables-deployment](assistants-env-var-additional.md)]
 
-
-#### [TypeScript with key](#tab/typescript-key)
+#### [TypeScript with API key](#tab/typescript-key)
 
 [!INCLUDE [assistants-key-environment-variables](assistants-env-var.md)]
 [!INCLUDE [environment-variables-deployment](assistants-env-var-additional.md)]
 
-#### [JavaScript without key](#tab/javascript)
+#### [JavaScript keyless](#tab/javascript)
 
 [!INCLUDE [assistants-keyless-environment-variables](assistants-env-var-without-key.md)]
 [!INCLUDE [environment-variables-deployment](assistants-env-var-additional.md)]
 
-#### [JavaScript with key](#tab/javascript-key)
+#### [JavaScript with API key](#tab/javascript-key)
 
 [!INCLUDE [assistants-key-environment-variables](assistants-env-var.md)]
 [!INCLUDE [environment-variables-deployment](assistants-env-var-additional.md)]
@@ -104,7 +104,7 @@ In our code we are going to specify the following values:
 
 An individual assistant can access up to 128 tools including `code interpreter`, as well as any custom tools you create via [functions](../how-to/assistant-functions.md).
 
-#### [TypeScript without key (Recommended)](#tab/typescript)
+#### [TypeScript keyless (Recommended)](#tab/typescript)
 
 1. Create the `index.ts` file with the following **recommended** passwordless TypeScript module (index.ts):
 
@@ -235,7 +235,7 @@ An individual assistant can access up to 128 tools including `code interpreter`,
     node index.js
     ```
 
-#### [TypeScript with key](#tab/typescript-key)
+#### [TypeScript with API key](#tab/typescript-key)
 
 1. To use the service key for authentication, you can create the `index.ts` file with the following TypeScript module (index.ts):
 
@@ -353,7 +353,7 @@ An individual assistant can access up to 128 tools including `code interpreter`,
     node index.js
     ```
 
-#### [JavaScript without key](#tab/javascript)
+#### [JavaScript keyless](#tab/javascript)
 
 1. Create the `index.js` file with the following **recommended** passwordless JavaScript module:
 
@@ -459,7 +459,7 @@ An individual assistant can access up to 128 tools including `code interpreter`,
     node index.js
     ```
 
-#### [JavaScript with key](#tab/javascript-key)
+#### [JavaScript with API key](#tab/javascript-key)
 
 1. To use the service key for authentication, you can create the `index.js` file with the following JavaScript module:
 
