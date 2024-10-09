@@ -8,6 +8,8 @@ ms.service: azure-ai-document-intelligence
 ms.topic: conceptual
 ms.date: 01/19/2024
 ---
+<!-- markdownlint-disable MD055 -->
+<!-- markdownlint-disable MD056 -->
 
 # Language support: document analysis
 
@@ -36,7 +38,7 @@ Azure AI Document Intelligence models provide multilingual document processing s
 
 ::: moniker range=">=doc-intel-3.0.0"
 
-* [**Read**](#read-model): The read model enables extraction and analysis of printed and handwritten text. This model is the underlying OCR engine for other Document Intelligence prebuilt models like layout, general document, invoice, receipt, identity (ID) document, health insurance card, tax documents and custom models. For more information, *see* [Read model overview](concept-read.md)
+* [**Read**](#read-model): The read model enables extraction and analysis of printed and handwritten text. This model is the underlying OCR engine for other Document Intelligence prebuilt models like layout, general document, invoice, receipt, identity (ID) document, health insurance card, tax documents and custom models. For more information, *see* [Read model overview](prebuilt/read.md)
 ::: moniker-end
 
 ::: moniker range=">=doc-intel-2.1.0"
@@ -72,6 +74,7 @@ The following table lists read model language support for extracting and analyzi
 
 :::row:::
    :::column span="":::
+
   |Language| Code (optional) |
   |:-----|:----:|
   |Abaza|`abq`|
@@ -233,6 +236,7 @@ The following table lists read model language support for extracting and analyzi
   |Lakota|`lkt`|
    :::column-end:::
    :::column span="":::
+
       |Language| Code (optional) |
   |:-----|:----:|
   |Latin|`la`|
@@ -593,6 +597,7 @@ The following table lists read model language support for extracting and analyzi
 |German  |`de`|Spanish  |`es`|
 |Italian  |`it`| Russian (preview) | `ru` |
 |Thai (preview) | `th` | Arabic (preview) | `ar` |
+
 :::moniker-end
 
 ::: moniker range="doc-intel-3.1.0"
@@ -606,6 +611,7 @@ The following table lists read model language support for extracting and analyzi
 |French  |`fr`|Portuguese |`pt`|
 |German  |`de`|Spanish  |`es`|
 |Italian  |`it`|
+
 :::moniker-end
 
 ::: moniker range="doc-intel-3.0.0"
@@ -623,7 +629,7 @@ The following table lists read model language support for extracting and analyzi
 
 ### [**Read: language detection**](#tab/read-detection)
 
-The [Read model API](concept-read.md) supports **language detection** for the following languages in your documents. This list can include languages not currently supported for text extraction.
+The [Read model API](prebuilt/read.md) supports **language detection** for the following languages in your documents. This list can include languages not currently supported for text extraction.
 
 > [!IMPORTANT]
 > **Language detection**
@@ -637,6 +643,7 @@ The [Read model API](concept-read.md) supports **language detection** for the fo
 
 :::row:::
    :::column span="":::
+
 | Language            | Code          |
 |---------------------|---------------|
 | Afrikaans           | `af`          |
@@ -775,6 +782,7 @@ The following table lists the supported languages for printed text:
 
 :::row:::
    :::column span="":::
+
   |**Language**| **Code (optional)** |
   |:-----|:----:|
   |Abaza|`abq`|
@@ -854,6 +862,7 @@ The following table lists the supported languages for printed text:
   |Finnish|`fi`|
    :::column-end:::
    :::column span="":::
+
       |Language| Code (optional) |
   |:-----|:----:|
   |`Fon`|`fon`|
@@ -1100,6 +1109,7 @@ The following table lists layout model language support for extracting and analy
 
 :::row:::
    :::column span="":::
+
   |**Language**| **Code (optional)**|
   |:-----|:----:|
   |Afrikaans|`af`|
@@ -1146,6 +1156,7 @@ The following table lists layout model language support for extracting and analy
   |Filipino|`fil`|
    :::column-end:::
    :::column span="":::
+
       |Language| Code (optional) |
   |:-----|:----:|
   |Fijian|`fj`|
@@ -1367,6 +1378,7 @@ The following table lists layout model language support for extracting and analy
 |Zulu  | `zu` |
 :::column-end:::
 :::row-end:::
+
 :::moniker-end
 
 ### [**Layout: handwritten text**](#tab/layout-hand)
@@ -1383,6 +1395,7 @@ The following table lists layout model language support for extracting and analy
 |German  |`de`|Spanish  |`es`|
 |Italian  |`it`| Russian (preview) | `ru` |
 |Thai (preview) | `th` | Arabic (preview) | `ar` |
+
 :::moniker-end
 
 :::moniker range="doc-intel-3.1.0"
@@ -1419,6 +1432,7 @@ The following table lists layout model language support for extracting and analy
 |German  |`de`|Spanish  |`es`|
 |Italian  |`it`| Russian (preview) | `ru` |
 |Thai (preview) | `th` | Arabic (preview) | `ar` |
+
 :::moniker-end
 
 ---
@@ -1434,6 +1448,7 @@ The following table lists layout model language support for extracting and analy
 |----------  |---------|--------|
 |**Layout model** with query string **`features=keyValuePairs`** specified.|&bullet; v4:2024-02-29-preview, 2023-10-31-preview</br>&bullet; v3.1:2023-07-31 (GA) |**`prebuilt-layout`**|
 |General document model|&bullet; v3.1:2023-07-31 (GA)</br>&bullet; v3.0:2022-08-31 (GA)|**`prebuilt-document`**|
+
 :::moniker-end
 
 :::moniker range="doc-intel-3.1.0 || doc-intel-3.0.0"
@@ -1447,6 +1462,7 @@ The following table lists general document model language support. </br>
 | Model `ID`| Language—Locale code | Default |
 |--------|:----------------------|:---------|
 |**prebuilt-document**| English (United States)—en-`US`| English (United States)—en-`US`|
+
 :::moniker-end
 
 ---

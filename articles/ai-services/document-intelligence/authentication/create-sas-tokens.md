@@ -13,12 +13,12 @@ ms.author: lajanuar
 # Create SAS tokens for storage containers
 
 ::: moniker range="<=doc-intel-4.0.0"
- [!INCLUDE [applies to v4.0 v3.1 v3.0 v2.1](includes/applies-to-v40-v31-v30-v21.md)]
+ [!INCLUDE [applies to v4.0 v3.1 v3.0 v2.1](../includes/applies-to-v40-v31-v30-v21.md)]
 ::: moniker-end
 
- In this article, learn how to create user delegation, shared access signature (SAS) tokens, using the Azure portal or Azure Storage Explorer. User delegation SAS tokens are secured with Microsoft Entra credentials. SAS tokens provide secure, delegated access to resources in your Azure storage account.
+In this article, learn how to create user delegation, shared access signature (SAS) tokens, using the Azure portal or Azure Storage Explorer. User delegation SAS tokens are secured with Microsoft Entra credentials. SAS tokens provide secure, delegated access to resources in your Azure storage account.
 
-:::image type="content" source="media/sas-tokens/sas-url-token.png" alt-text="Screenshot of storage URI with SAS token appended.":::
+  :::image type="content" source="../media/sas-tokens/sas-url-token.png" alt-text="Screenshot of storage URI with SAS token appended.":::
 
 At a high level, here's how SAS tokens work:
 
@@ -66,20 +66,20 @@ To get started, you need:
 1. Sign in to the [Azure portal](https://portal.azure.com).
     * Select **Your storage account** → **Data storage** → **Containers**.
 
-   :::image type="content" source="media/sas-tokens/data-storage-menu.png" alt-text="Screenshot that shows the Data storage menu in the Azure portal.":::
+   :::image type="content" source="../media/sas-tokens/data-storage-menu.png" alt-text="Screenshot that shows the Data storage menu in the Azure portal.":::
 
 1. Select a container from the list.
 
 1. Select **Upload** from the menu at the top of the page.
 
-    :::image type="content" source="media/sas-tokens/container-upload-button.png" alt-text="Screenshot that shows the container Upload button in the Azure portal.":::
+    :::image type="content" source="../media/sas-tokens/container-upload-button.png" alt-text="Screenshot that shows the container Upload button in the Azure portal.":::
 
 1. The **Upload blob** window appears. Select your files to upload.
 
-    :::image type="content" source="media/sas-tokens/upload-blob-window.png" alt-text="Screenshot that shows the Upload blob window in the Azure portal.":::
+    :::image type="content" source="../media/sas-tokens/upload-blob-window.png" alt-text="Screenshot that shows the Upload blob window in the Azure portal.":::
 
    > [!NOTE]
-   > By default, the REST API uses documents located at the root of your container. You can also use data organized in subfolders if specified in the API call. For more information, see [Organize your data in subfolders](how-to-guides/build-a-custom-model.md?view=doc-intel-2.1.0&preserve-view=true#organize-your-data-in-subfolders-optional).
+   > By default, the REST API uses documents located at the root of your container. You can also use data organized in subfolders if specified in the API call. For more information, see [Organize your data in subfolders](../how-to-guides/build-a-custom-model.md?view=doc-intel-2.1.0&preserve-view=true#organize-your-data-in-subfolders-optional).
 
 ## Use the Azure portal
 
@@ -97,13 +97,13 @@ The Azure portal is a web-based console that enables you to manage your Azure su
 
    * Make sure the **Read**, **Write**, **Delete**, and **List** permissions are selected.
 
-    :::image type="content" source="media/sas-tokens/sas-permissions.png" alt-text="Screenshot that shows the SAS permission fields in the Azure portal.":::
+    :::image type="content" source="../media/sas-tokens/sas-permissions.png" alt-text="Screenshot that shows the SAS permission fields in the Azure portal.":::
 
     >[!IMPORTANT]
     >
     > * If you receive a message similar to the following one, you'll also need to assign access to the blob data in your storage account:
     >
-    >     :::image type="content" source="media/sas-tokens/need-permissions.png" alt-text="Screenshot that shows the lack of permissions warning.":::
+    >     :::image type="content" source="../media/sas-tokens/need-permissions.png" alt-text="Screenshot that shows the lack of permissions warning.":::
     >
     > * [Azure role-based access control](/azure/role-based-access-control/overview) (Azure RBAC) is the authorization system used to manage access to Azure resources. Azure RBAC helps you manage access and permissions for your Azure resources.
     > * [Assign an Azure role for access to blob data](/azure/role-based-access-control/role-assignments-portal?tabs=current) to assign a role that allows for read, write, and delete permissions for your Azure storage container. *See* [Storage Blob Data Contributor](/azure/role-based-access-control/built-in-roles#storage-blob-data-contributor).
@@ -177,4 +177,4 @@ That's it! You learned how to create SAS tokens to authorize how clients access 
 ## Next step
 
 > [!div class="nextstepaction"]
-> [Build a training data set](how-to-guides/build-a-custom-model.md?view=doc-intel-2.1.0&preserve-view=true)
+> [Build a training data set](../how-to-guides/build-a-custom-model.md?view=doc-intel-2.1.0&preserve-view=true)

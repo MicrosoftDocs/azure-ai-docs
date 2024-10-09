@@ -264,7 +264,7 @@ sections:
 
         - For signature and region labeling, don't include the surrounding text.
 
-        For more information, see [Accuracy and confidence scores](v4-concept/accuracy-confidence.md).
+        For more information, see [Accuracy and confidence scores](concept/accuracy-confidence.md).
 
     - question: |
         Can I retrain a custom model?
@@ -331,7 +331,7 @@ sections:
 
           If you intend to analyze your private storage account data by using FOTT, you must deploy the tool behind the virtual network or firewall.
 
-          Learn how to [create and use a managed identity for your Document Intelligence resource](managed-identities.md).
+          Learn how to [create and use a managed identity for your Document Intelligence resource](authentication/managed-identities.md).
 
   - name: Containers
     questions:

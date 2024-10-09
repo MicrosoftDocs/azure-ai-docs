@@ -14,19 +14,19 @@ monikerRange: '<=doc-intel-4.0.0'
 
 # Configure secure access with managed identities and virtual networks
 
-[!INCLUDE [applies to v4.0, v3.1, v3.0, and v2.1](includes/applies-to-v40-v31-v30-v21.md)]
+[!INCLUDE [applies to v4.0, v3.1, v3.0, and v2.1](../includes/applies-to-v40-v31-v30-v21.md)]
 
 This how-to guide walks you through the process of enabling secure connections for your Document Intelligence resource. You can secure the following connections:
 
 * Communication between a client application within a Virtual Network (`VNET`) and your Document Intelligence Resource.
 
-* Communication between Document Intelligence Studio and your Document Intelligence resource.
+* Communication between Document Intelligence Studio and your Document Intelligence resource.F
 
 * Communication between your Document Intelligence resource and a storage account (needed when training a custom model).
 
  You're setting up your environment to secure the resources:
 
-  :::image type="content" source="media/managed-identities/secure-config-di.png" alt-text="Screenshot of secure configuration with managed identity and virtual networks.":::
+  :::image type="content" source="../media/managed-identities/secure-config-di.png" alt-text="Screenshot of secure configuration with managed identity and virtual networks.":::
 
 ## Prerequisites
 
@@ -34,7 +34,7 @@ To get started, you need:
 
 * An active [**Azure account**](https://azure.microsoft.com/free/cognitive-services/)—if you don't have one, you can [**create a free account**](https://azure.microsoft.com/free/).
 
-* A [**Document Intelligence**](https://portal.azure.com/#create/Microsoft.CognitiveServicesFormRecognizer) or [**Azure AI services**](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIServices) resource in the Azure portal. For detailed steps, _see_ [Create an Azure AI services resource](../../ai-services/multi-service-resource.md?pivots=azportal).
+* A [**Document Intelligence**](https://portal.azure.com/#create/Microsoft.CognitiveServicesFormRecognizer) or [**Azure AI services**](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIServices) resource in the Azure portal. For detailed steps, _see_ [Create an Azure AI services resource](../../../ai-services/multi-service-resource.md?pivots=azportal).
 
 * An [**Azure blob storage account**](https://portal.azure.com/#create/Microsoft.StorageAccount-ARM) in the same region as your Document Intelligence resource. Create containers to store and organize your blob data within your storage account.
 
@@ -62,7 +62,7 @@ Configure each of the resources to ensure that the resources can communicate wit
 
 You now have a working implementation of all the components needed to build a Document Intelligence solution with the default security model:
 
-  :::image type="content" source="media/managed-identities/default-config-di.png" alt-text="Screenshot of default security configuration.":::
+  :::image type="content" source="../media/managed-identities/default-config-di.png" alt-text="Screenshot of default security configuration.":::
 
 Next, complete the following steps:
 
@@ -82,7 +82,7 @@ Next, complete the following steps:
 
 Navigate to the Document Intelligence resource in the Azure portal and select the **Identity** tab. Toggle the **System assigned** managed identity to **On** and save the changes:
 
-  :::image type="content" source="media/managed-identities/v2-fr-mi.png" alt-text="Screenshot of configure managed identity.":::
+  :::image type="content" source="../media/managed-identities/v2-fr-mi.png" alt-text="Screenshot of configure managed identity.":::
 
 ## Secure the Storage account
 
@@ -94,7 +94,7 @@ Start configuring secure communications by navigating to the **Networking** tab 
 
 1. **Save** your changes.
 
-  :::image type="content" source="media/managed-identities/v2-stg-firewall.png" alt-text="Screenshot of configure storage firewall.":::
+  :::image type="content" source="../media/managed-identities/v2-stg-firewall.png" alt-text="Screenshot of configure storage firewall.":::
 
 > [!NOTE]
 >
@@ -110,11 +110,11 @@ To ensure that the Document Intelligence resource can access the training datase
 
 1. Select the **Add role assignment** button.
 
-    :::image type="content" source="media/managed-identities/v2-stg-role-assign-role.png" alt-text="Screenshot of add role assignment window.":::
+    :::image type="content" source="../media/managed-identities/v2-stg-role-assign-role.png" alt-text="Screenshot of add role assignment window.":::
 
 1. On the **Role** tab, search for and select the **Storage Blob Data Contributor** permission and select **Next**.
 
-    :::image type="content" source="media/managed-identities/v2-stg-role-assignment.png" alt-text="Screenshot of choose a role tab.":::
+    :::image type="content" source="../media/managed-identities/v2-stg-role-assignment.png" alt-text="Screenshot of choose a role tab.":::
 
 1. On the **Members** tab, select the **Managed identity** option and choose **+ Select members**
 
@@ -126,7 +126,7 @@ To ensure that the Document Intelligence resource can access the training datase
 
    * **Select**. Choose the Document Intelligence resource you enabled with a managed identity.
 
-    :::image type="content" source="media/managed-identities/v2-stg-role-assign-resource.png" alt-text="Screenshot of managed identities dialog window.":::
+    :::image type="content" source="../media/managed-identities/v2-stg-role-assign-resource.png" alt-text="Screenshot of managed identities dialog window.":::
 
 1. **Close** the dialog window.
 
@@ -165,7 +165,7 @@ Next, configure the virtual network to ensure only resources within the virtual 
 >
 >If you try accessing any of the Document Intelligence Studio features, you'll see an access denied message. To enable access from the Studio on your machine, select the **Add your client IP address** checkbox and **Save** to restore access.
 
-  :::image type="content" source="media/managed-identities/v2-fr-network.png" alt-text="Screenshot showing how to disable public access to Document Intelligence.":::
+  :::image type="content" source="../media/managed-identities/v2-fr-network.png" alt-text="Screenshot showing how to disable public access to Document Intelligence.":::
 
 ### Configure your private endpoint
 
@@ -183,7 +183,7 @@ Next, configure the virtual network to ensure only resources within the virtual 
 
     * Select **Next: Resource**.
 
-    :::image type="content" source="media/managed-identities/v2-fr-private-end-basics.png" alt-text="Screenshot showing how to set-up a private endpoint":::
+    :::image type="content" source="../media/managed-identities/v2-fr-private-end-basics.png" alt-text="Screenshot showing how to set-up a private endpoint.":::
 
 ### Configure your virtual network
 
@@ -197,7 +197,7 @@ Next, configure the virtual network to ensure only resources within the virtual 
 
 1. Accept the default value **Yes** to **integrate with private DNS zone**.
 
-    :::image type="content" source="media/managed-identities/v2-fr-private-end-vnet.png" alt-text="Screenshot showing how to configure private endpoint":::
+    :::image type="content" source="../media/managed-identities/v2-fr-private-end-vnet.png" alt-text="Screenshot showing how to configure private endpoint.":::
 
 1. Accept the remaining defaults and select **Next: Tags**.
 
@@ -219,13 +219,13 @@ Navigate to your **storage account** on the Azure portal.
 
 1. Select **Next: Resource**.
 
-    :::image type="content" source="media/managed-identities/v2-stg-private-end-basics.png" alt-text="Screenshot showing how to create a private endpoint":::
+    :::image type="content" source="../media/managed-identities/v2-stg-private-end-basics.png" alt-text="Screenshot showing how to create a private endpoint.":::
 
 1. On the resource tab, select **blob** from the **Target sub-resource** list.
 
 1. select **Next: Virtual Network**.
 
-   :::image type="content" source="media/managed-identities/v2-stg-private-end-resource.png" alt-text="Screenshot showing how to configure a private endpoint for a blob.":::
+   :::image type="content" source="../media/managed-identities/v2-stg-private-end-resource.png" alt-text="Screenshot showing how to configure a private endpoint for a blob.":::
 
 1. Select the **Virtual network** and **Subnet**. Make sure **Enable network policies for all private endpoints in this subnet** is selected and the **Dynamically allocate IP address** is enabled.
 
@@ -260,28 +260,28 @@ That's it! You can now configure secure access for your Document Intelligence re
 
 * **Failed to access Blob container**:
 
-   :::image type="content" source="media/managed-identities/cors-error.png" alt-text="Screenshot of error message when CORS config is required":::
+   :::image type="content" source="../media/managed-identities/cors-error.png" alt-text="Screenshot of error message when CORS config is required.":::
 
   **Resolution**:
-    1. [Configure CORS](quickstarts/try-document-intelligence-studio.md#configure-cors).
+    1. [Configure CORS](../quickstarts/try-document-intelligence-studio.md#configure-cors).
  
     1. Make sure the client computer can access Document Intelligence resource and storage account, either they are in the same `VNET`, or client IP address is allowed in **Networking > Firewalls and virtual networks** setting page of both Document Intelligence resource and storage account.
 
 * **AuthorizationFailure**:
 
-  :::image type="content" source="media/managed-identities/auth-failure.png" alt-text="Screenshot of authorization failure error.":::
+  :::image type="content" source="../media/managed-identities/auth-failure.png" alt-text="Screenshot of authorization failure error.":::
 
   **Resolution**: Make sure the client computer can access Document Intelligence resource and storage account, either they are in the same `VNET`, or client IP address is allowed in **Networking > Firewalls and virtual networks** setting page of both Document Intelligence resource and storage account.
 
 * **ContentSourceNotAccessible**:
 
-   :::image type="content" source="media/managed-identities/content-source-error.png" alt-text="Screenshot of content source not accessible error.":::
+   :::image type="content" source="../media/managed-identities/content-source-error.png" alt-text="Screenshot of content source not accessible error.":::
 
     **Resolution**: Make sure you grant your Document Intelligence managed identity the role of **Storage Blob Data Contributor** and enabled **Trusted services** access or **Resource instance** rules on the networking tab.
 
 * **AccessDenied**:
 
-  :::image type="content" source="media/managed-identities/access-denied.png" alt-text="Screenshot of an access denied error.":::
+  :::image type="content" source="../media/managed-identities/access-denied.png" alt-text="Screenshot of an access denied error.":::
 
   **Resolution**: Make sure the client computer can access Document Intelligence resource and storage account, either they are in the same `VNET`, or client IP address is allowed in **Networking > Firewalls and virtual networks** setting page of both Document Intelligence resource and storage account.
 

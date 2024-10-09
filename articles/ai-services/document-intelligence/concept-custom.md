@@ -67,7 +67,7 @@ If the language of your documents and extraction scenarios supports custom neura
 >
 >To confirm that your training documents present a consistent visual template, remove all the user-entered data from each form in the set. If the blank forms are identical in appearance, they represent a consistent visual template.
 >
-> For more information, *see* [Interpret and improve accuracy and confidence for custom models](v4-concept/accuracy-confidence.md).
+> For more information, *see* [Interpret and improve accuracy and confidence for custom models](concept/accuracy-confidence.md).
 
 ## Input requirements
 
@@ -160,7 +160,7 @@ The following table compares custom template and custom neural features:
 
  > [!NOTE]
 >
->Starting with the ```2024-02-29-preview``` API version document classification now supports Office document types for classification. This API version also introduces [incremental training](v4-concept/incremental-classifier.md) for the classification model.
+>Starting with the ```2024-02-29-preview``` API version document classification now supports Office document types for classification. This API version also introduces [incremental training](concept/incremental-classifier.md) for the classification model.
 
 ## Custom model tools
 

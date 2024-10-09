@@ -195,7 +195,7 @@ Now that you learned how to build a training data set, follow a quickstart to tr
 > [Learn about custom model types](../concept-custom.md)
 
 > [!div class="nextstepaction"]
-> [Learn about accuracy and confidence with custom models](../v4-concept/accuracy-confidence.md)
+> [Learn about accuracy and confidence with custom models](../concept/accuracy-confidence.md)
 :::moniker-end
 
 :::moniker range="doc-intel-2.1.0"

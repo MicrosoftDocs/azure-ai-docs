@@ -13,6 +13,8 @@ monikerRange: '>=doc-intel-3.0.0'
 
 
 <!-- markdownlint-disable MD033 -->
+<!-- markdownlint-disable MD051 -->
+
 # Studio experience for Document Intelligence
 
 [!INCLUDE [applies to v4.0 v3.1 v3.0](includes/applies-to-v40-v31-v30.md)]
@@ -52,7 +54,6 @@ Select the studio experience from the following tabs to learn more about each st
 > * Azure for US Government: [Document Intelligence Studio (Azure Fairfax cloud)](https://formrecognizer.appliedai.azure.us/studio)
 > * Microsoft Azure operated by 21Vianet: [Document Intelligence Studio (Azure in China)](https://formrecognizer.appliedai.azure.cn/studio)
 
-
 The studio supports Document Intelligence v3.0 and later API versions for model analysis and custom model training. Previously trained v2.1 models with labeled data are supported, but not v2.1 model training. Refer to the [REST API migration guide](v3-1-migration-guide.md) for detailed information about migrating from v2.1 to v3.0.
 
 Use the [Document Intelligence Studio quickstart](quickstarts/try-document-intelligence-studio.md) to get started analyzing documents with document analysis or prebuilt models. Build custom models and reference the models in your applications using one of the [language specific `SDKs`](quickstarts/get-started-sdks-rest-api.md?view=doc-intel-3.0.0&preserve-view=true). To use Document Intelligence Studio, you need to acquire the following assets from the Azure portal:
@@ -78,17 +79,17 @@ Your organization can opt to disable local authentication and enforce Microsoft 
 
 > [!IMPORTANT]
 >
-> * Make sure you have the **Cognitive Services User role**, and not the Cognitive Services Contributor role when setting up Entra authentication. 
-> * In Azure context, Contributor role can only perform actions to control and manage the resource itself, including listing the access keys. 
+> * Make sure you have the **Cognitive Services User role**, and not the Cognitive Services Contributor role when setting up Entra authentication.
+> * In Azure context, Contributor role can only perform actions to control and manage the resource itself, including listing the access keys.
 > * User accounts with a Contributor are only able to access the Document Intelligence service by calling with access keys. However, when setting up access with Entra ID, key-access will be disabled and **Cognitive Service User** role will be required for an account to use the resources.
 
 #### Document Intelligence model support
 
 Use the help wizard, labeling interface, training step, and interactive visualizations to understand how each feature works.
 
-* **Read**: Try out Document Intelligence's [Studio Read feature](https://documentintelligence.ai.azure.com/studio/read) with sample documents or your own documents and extract text lines, words, detected languages, and handwritten style if detected. To learn more, *see* [Read overview](concept-read.md).
+* **Read**: Try out Document Intelligence's [Studio Read feature](https://documentintelligence.ai.azure.com/studio/read) with sample documents or your own documents and extract text lines, words, detected languages, and handwritten style if detected. To learn more, *see* [Read overview](prebuilt/read.md).
 
-* **Layout**: Try out Document Intelligence's [Studio Layout feature](https://documentintelligence.ai.azure.com/studio/layout) with sample documents or your own documents and extract text, tables, selection marks, and structure information. To learn more, *see* [Layout overview](concept-layout.md). 
+* **Layout**: Try out Document Intelligence's [Studio Layout feature](https://documentintelligence.ai.azure.com/studio/layout) with sample documents or your own documents and extract text, tables, selection marks, and structure information. To learn more, *see* [Layout overview](concept-layout.md).
 
 * **Prebuilt models**: Document Intelligence's prebuilt models enable you to add intelligent document processing to your apps and flows without having to train and build your own models. As an example, start with the [Studio Invoice feature](https://documentintelligence.ai.azure.com/studio/prebuilt?formType=invoice). To learn more, *see* [Models overview](concept-model-overview.md).
 
@@ -203,7 +204,7 @@ Share custom extraction projects with ease. For more information, see [Project s
 
 ### [**AI Studio**](#tab/ai-studio)
 
-Document Intelligence is part of the Azure AI services offerings in the Azure AI Studio. Each of the Azure AI services helps developers and organizations rapidly create intelligent, cutting-edge, market-ready, and responsible applications with out-of-the-box and prebuilt and customizable APIs and models. 
+Document Intelligence is part of the Azure AI services offerings in the Azure AI Studio. Each of the Azure AI services helps developers and organizations rapidly create intelligent, cutting-edge, market-ready, and responsible applications with out-of-the-box and prebuilt and customizable APIs and models.
 
 Learn how to [connect your AI services hub](../../ai-studio/ai-services/connect-ai-services.md) with AI services and get started using Document Intelligence.
 

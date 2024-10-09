@@ -12,6 +12,8 @@ monikerRange: '>=doc-intel-3.1.0'
 ---
 
 <!-- markdownlint-disable MD033 -->
+<!-- markdownlint-disable MD024 -->
+<!-- markdownlint-disable MD051 -->
 
 # Document Intelligence add-on capabilities
 
@@ -49,7 +51,6 @@ Document Intelligence supports more sophisticated and modular analysis capabilit
 For `2024-07-31-preview` release and later, the Read model supports searchable PDF output:
 
 * [`Searchable PDF](#searchable-pdf)
-
 
 :::moniker-end
 
@@ -102,11 +103,13 @@ The task of recognizing small text from large-size documents, like engineering d
 ::: moniker range="doc-intel-4.0.0"
 
 ### [REST API](#tab/rest-api)
+
 ```bash
 {your-resource-endpoint}.cognitiveservices.azure.com/documentintelligence/documentModels/prebuilt-layout:analyze?api-version=2024-02-29-preview&features=ocrHighResolution
 ```
 
 ### [Sample code](#tab/sample-code)
+
 ```Python
 # Analyze a document at a URL:
 formUrl = "https://github.com/Azure-Samples/document-intelligence-code-samples/blob/main/Data/add-on/add-on-highres.png?raw=true"
@@ -157,10 +160,12 @@ if result.tables:
                 for region in cell.bounding_regions:
                     print(f"...content on page {region.page_number} is within bounding polygon '{region.polygon}'")
 ```
+
 > [!div class="nextstepaction"]
 > [View samples on GitHub.](https://github.com/Azure-Samples/document-intelligence-code-samples/blob/main/Python(v4.0)/Add-on_capabilities/sample_analyze_addon_highres.py)
 
 ### [Output](#tab/output)
+
 ```json
 "styles": [true],
 "pages": [
@@ -219,15 +224,20 @@ if result.tables:
 ]
 
 ```
+
 ---
 ::: moniker-end
 
-::: moniker range="doc-intel-3.1.0"
+:::moniker range="doc-intel-3.1.0"
+
 ### [REST API](#tab/rest-api)
+
 ```bash
 {your-resource-endpoint}.cognitiveservices.azure.com/formrecognizer/documentModels/prebuilt-layout:analyze?api-version=2023-07-31&features=ocrHighResolution
 ```
+
 ### [Sample code](#tab/sample-code)
+
 ```Python
 # Analyze a document at a URL:
 url = "(https://github.com/Azure-Samples/document-intelligence-code-samples/blob/main/Data/add-on/add-on-highres.png?raw=true"
@@ -284,10 +294,12 @@ for table_idx, table in enumerate(result.tables):
                 f"...content on page {region.page_number} is within bounding polygon '{format_polygon(region.polygon)}'"
             )
 ```
+
 > [!div class="nextstepaction"]
 > [View samples on GitHub.](https://github.com/Azure-Samples/document-intelligence-code-samples/blob/v3.1(2023-07-31-GA)/Python(v3.1)/Add-on_capabilities/sample_analyze_addon_highres.py)
 
 ### [Output](#tab/output)
+
 ```json
 "styles": [true],
 "pages": [
@@ -346,6 +358,7 @@ for table_idx, table in enumerate(result.tables):
 ]
 
 ```
+
 ---
 ::: moniker-end
 
@@ -359,10 +372,13 @@ The `ocr.formula` capability extracts all identified formulas, such as mathemati
 ::: moniker range="doc-intel-4.0.0"
 
 ### [REST API](#tab/rest-api)
+
 ```bash
 {your-resource-endpoint}.cognitiveservices.azure.com/documentintelligence/documentModels/prebuilt-layout:analyze?api-version=2024-02-29-preview&features=formulas
 ```
+
 ### [Sample code](#tab/sample-code)
+
 ```Python
 # Analyze a document at a URL:
 formUrl = "https://github.com/Azure-Samples/document-intelligence-code-samples/blob/main/Data/add-on/layout-formulas.png?raw=true"
@@ -393,10 +409,12 @@ for page in result.pages:
             print(f"  Confidence: {formula.confidence}")
             print(f"  Bounding regions: {formula.polygon}")
 ```
+
 > [!div class="nextstepaction"]
 > [View samples on GitHub.](https://github.com/Azure-Samples/document-intelligence-code-samples/blob/main/Python(v4.0)/Add-on_capabilities/sample_analyze_addon_formulas.py)
 
 ### [Output](#tab/output)
+
 ```json
 "content": ":formula:",
  "pages": [
@@ -421,15 +439,19 @@ for page in result.pages:
    }
  ]
 ```
+
 ::: moniker-end
 
-::: moniker range="doc-intel-3.1.0"
+:::moniker range="doc-intel-3.1.0"
 
 ### [REST API](#tab/rest-api)
+
 ```bash
 {your-resource-endpoint}.cognitiveservices.azure.com/formrecognizer/documentModels/prebuilt-layout:analyze?api-version=2023-07-31&features=formulas
 ```
+
 ### [Sample code](#tab/sample-code)
+
 ```Python
 # Analyze a document at a URL:
 url = "https://github.com/Azure-Samples/document-intelligence-code-samples/blob/main/Data/add-on/layout-formulas.png?raw=true"
@@ -456,10 +478,12 @@ for page in result.pages:
         print(f"  Confidence: {formula.confidence}")
         print(f"  Bounding regions: {format_polygon(formula.polygon)}")
 ```
+
 > [!div class="nextstepaction"]
 > [View samples on GitHub.](https://github.com/Azure-Samples/document-intelligence-code-samples/blob/v3.1(2023-07-31-GA)/Python(v3.1)/Add-on_capabilities/sample_analyze_addon_formulas.py)
 
 ### [Output](#tab/output)
+
 ```json
  "content": ":formula:",
    "pages": [
@@ -484,6 +508,7 @@ for page in result.pages:
      }
    ]
 ```
+
 ---
 ::: moniker-end
 
@@ -500,6 +525,7 @@ The `ocr.font` capability extracts all font properties of text extracted in the 
 ```
 
 ### [Sample code](#tab/sample-code)
+
 ```Python
 # Analyze a document at a URL:
 formUrl = "https://github.com/Azure-Samples/document-intelligence-code-samples/blob/main/Data/receipt/receipt-with-tips.png?raw=true"
@@ -564,10 +590,12 @@ for font_background_color, styles in font_background_colors.items():
     print(f"- Font background color: '{font_background_color}'")
     print(f"  Text: '{get_styled_text(styles, result.content)}'")
 ```
+
 > [!div class="nextstepaction"]
 > [View samples on GitHub.](https://github.com/Azure-Samples/document-intelligence-code-samples/blob/main/Python(v4.0)/Add-on_capabilities/sample_analyze_addon_fonts.py)
 
 ### [Output](#tab/output)
+
 ```json
 "content": "Foo bar",
 "styles": [
@@ -603,17 +631,20 @@ for font_background_color, styles in font_background_colors.items():
    }
  ]
 ```
+
 ---
 ::: moniker-end
 
-::: moniker range="doc-intel-3.1.0"
+:::moniker range="doc-intel-3.1.0"
 
 ### [REST API](#tab/rest-api)
+
 ```bash
   {your-resource-endpoint}.cognitiveservices.azure.com/formrecognizer/documentModels/prebuilt-layout:analyze?api-version=2023-07-31&features=styleFont
 ```
 
 ### [Sample code](#tab/sample-code)
+
 ```Python
 # Analyze a document at a URL:
 url = "https://github.com/Azure-Samples/document-intelligence-code-samples/blob/main/Data/receipt/receipt-with-tips.png?raw=true"
@@ -675,10 +706,12 @@ for font_background_color, styles in font_background_colors.items():
     print(f"- Font background color: '{font_background_color}'")
     print(f"  Text: '{get_styled_text(styles, result.content)}'")
 ```
+
 > [!div class="nextstepaction"]
 > [View samples on GitHub.](https://github.com/Azure-Samples/document-intelligence-code-samples/blob/v3.1(2023-07-31-GA)/Python(v3.1)/Add-on_capabilities/sample_analyze_addon_fonts.py)
 
 ### [Output](#tab/output)
+
 ```json
 "content": "Foo bar",
 "styles": [
@@ -714,6 +747,7 @@ for font_background_color, styles in font_background_colors.items():
    }
  ]
 ```
+
 ---
 ::: moniker-end
 
@@ -740,11 +774,15 @@ The `ocr.barcode` capability extracts all identified barcodes in the `barcodes` 
 | `Data Matrix` |:::image type="content" source="media/barcodes/datamatrix.gif" alt-text="Screenshot of the Data Matrix.":::|
 
 ::: moniker range="doc-intel-4.0.0"
+
 ### [REST API](#tab/rest-api)
+
 ```bash
 {your-resource-endpoint}.cognitiveservices.azure.com/documentintelligence/documentModels/prebuilt-layout:analyze?api-version=2024-02-29-preview&features=barcodes
 ```
+
 ### [Sample code](#tab/sample-code)
+
 ```Python
 # Analyze a document at a URL:
 formUrl = "https://github.com/Azure-Samples/document-intelligence-code-samples/blob/main/Data/add-on/add-on-barcodes.jpg?raw=true"
@@ -767,10 +805,12 @@ for page in result.pages:
             print(f"  Confidence: {barcode.confidence}")
             print(f"  Bounding regions: {barcode.polygon}")
 ```
+
 > [!div class="nextstepaction"]
 > [View samples on GitHub.](https://github.com/Azure-Samples/document-intelligence-code-samples/blob/main/Python(v4.0)/Add-on_capabilities/sample_analyze_addon_barcodes.py)
 
 ### [Output](#tab/output)
+
 ```json
 ----Barcodes detected from page #1----
 Detected 2 barcodes:
@@ -783,16 +823,20 @@ Detected 2 barcodes:
   Confidence: 0.98
   Bounding regions: [50.5, 60.5, 70.5, 80.5]
 ```
+
 ---
 :::moniker-end
 
 :::moniker range="doc-intel-3.1.0"
 
 ### [REST API](#tab/rest-api)
+
 ```bash
 {your-resource-endpoint}.cognitiveservices.azure.com/formrecognizer/documentModels/prebuilt-layout:analyze?api-version=2023-07-31&features=barcodes
 ```
+
 ### [Sample code](#tab/sample-code)
+
 ```Python
 # Analyze a document at a URL:
 url = "https://github.com/Azure-Samples/document-intelligence-code-samples/blob/main/Data/add-on/add-on-barcodes.jpg?raw=true"
@@ -812,10 +856,12 @@ for page in result.pages:
         print(f"  Confidence: {barcode.confidence}")
         print(f"  Bounding regions: {format_polygon(barcode.polygon)}")
 ```
+
 > [!div class="nextstepaction"]
 > [View samples on GitHub.](https://github.com/Azure-Samples/document-intelligence-code-samples/blob/v3.1(2023-07-31-GA)/Python(v3.1)/Add-on_capabilities/sample_analyze_addon_barcodes.py)
 
 ### [Output](#tab/output)
+
 ```json
 ----Barcodes detected from page #1----
 Detected 2 barcodes:
@@ -828,6 +874,7 @@ Detected 2 barcodes:
   Confidence: 0.98
   Bounding regions: [50.5, 60.5, 70.5, 80.5]
 ```
+
 ---
 ::: moniker-end
 
@@ -838,10 +885,13 @@ Adding the `languages` feature to the `analyzeResult` request predicts the detec
 ::: moniker range="doc-intel-4.0.0"
 
 ### [REST API](#tab/rest-api)
+
 ```bash
 {your-resource-endpoint}.cognitiveservices.azure.com/documentintelligence/documentModels/prebuilt-layout:analyze?api-version=2024-02-29-preview&features=languages
 ```
+
 ### [Sample code](#tab/sample-code)
+
 ```Python
 # Analyze a document at a URL:
 formUrl = "https://github.com/Azure-Samples/document-intelligence-code-samples/blob/main/Data/add-on/add-on-fonts_and_languages.png?raw=true"
@@ -863,10 +913,12 @@ if result.languages:
             f"  Text: '{','.join([result.content[span.offset : span.offset + span.length] for span in lang.spans])}'"
         )
 ```
+
 > [!div class="nextstepaction"]
 > [View samples on GitHub.](https://github.com/Azure-Samples/document-intelligence-code-samples/blob/main/Python(v4.0)/Add-on_capabilities/sample_analyze_addon_languages.py)
 
 ### [Output](#tab/output)
+
 ```json
 "languages": [
     {
@@ -881,16 +933,20 @@ if result.languages:
     },
 ]
 ```
+
 ---
 :::moniker-end
 
 :::moniker range="doc-intel-3.1.0"
 
 ### [REST API](#tab/rest-api)
+
 ```bash
 {your-resource-endpoint}.cognitiveservices.azure.com/formrecognizer/documentModels/prebuilt-layout:analyze?api-version=2023-07-31&features=languages
 ```
+
 ### [Sample code](#tab/sample-code)
+
 ```Python
 # Analyze a document at a URL:
 url = "https://github.com/Azure-Samples/document-intelligence-code-samples/blob/main/Data/add-on/add-on-fonts_and_languages.png?raw=true"
@@ -907,10 +963,12 @@ for lang_idx, lang in enumerate(result.languages):
     print(f"  Confidence: {lang.confidence}")
     print(f"  Text: '{','.join([result.content[span.offset : span.offset + span.length] for span in lang.spans])}'")
 ```
+
 > [!div class="nextstepaction"]
 > [View samples on GitHub.](https://github.com/Azure-Samples/document-intelligence-code-samples/blob/v3.1(2023-07-31-GA)/Python(v3.1)/Add-on_capabilities/sample_analyze_addon_languages.py)
 
 ### [Output](#tab/output)
+
 ```json
 "languages": [
     {
@@ -925,6 +983,7 @@ for lang_idx, lang in enumerate(result.languages):
     },
 ]
 ```
+
 ---
 ::: moniker-end
 
@@ -1022,6 +1081,7 @@ For query field extraction, specify the fields you want to extract and Document 
 ```
 
 ### [Sample code](#tab/sample-code)
+
 ```Python
 # Analyze a document at a URL:
 formUrl = "https://github.com/Azure-Samples/document-intelligence-code-samples/blob/main/Data/invoice/simple-invoice.png?raw=true"
@@ -1040,24 +1100,26 @@ if result.documents:
         if doc.fields and doc.fields["InvoiceNumber"]:
             print(f"Invoice number: {doc.fields['InvoiceNumber'].value_string}")
 ```
+
 > [!div class="nextstepaction"]
 > [View samples on GitHub.](https://github.com/Azure-Samples/document-intelligence-code-samples/blob/main/Python(v4.0)/Add-on_capabilities/sample_analyze_addon_query_fields.py)
 
 ### [Output](#tab/output)
+
 ```json
 Address: 1 Redmond way Suite 6000 Redmond, WA Sunnayvale, 99243
 Invoice number: 34278587
 ```
+
 ---
 
 ::: moniker-end
-
 
 ## Next steps
 
 > [!div class="nextstepaction"]
 > Learn more:
-> [**Read model**](concept-read.md) [**Layout model**](concept-layout.md)
+> [**Read model**](prebuilt/read.md) [**Layout model**](concept-layout.md)
 
 > [!div class="nextstepaction"]
 > SDK samples:
@@ -1069,7 +1131,7 @@ Invoice number: 34278587
 > [**Add-on capabilities**](https://github.com/Azure-Samples/document-intelligence-code-samples/tree/main/Python(v4.0)/Add-on_capabilities)
 ::: moniker-end
 
-::: moniker range="doc-intel-3.1.0"
+:::moniker range="doc-intel-3.1.0"
 > [!div class="nextstepaction"]
 > Find more samples:
 > [**Add-on capabilities**](https://github.com/Azure-Samples/document-intelligence-code-samples/tree/v3.1(2023-07-31-GA)/Python(v3.1)/Add-on_capabilities)

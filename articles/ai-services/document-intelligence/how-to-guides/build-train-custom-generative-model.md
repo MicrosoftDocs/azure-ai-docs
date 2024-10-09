@@ -31,7 +31,7 @@ You can choose one of the following options to authorize access to your Document
 
 **✔️ Managed Identity**. A managed identity is a service principal that creates a Microsoft Entra identity and specific permissions for an Azure managed resource. Managed identities enable you to run your Document Intelligence application without having to embed credentials in your code. Managed identities are a safer way to grant access to storage data and replace the requirement for you to include shared access signature tokens (SAS) with your source and result URLs.
 
-To learn more, *see* [Managed identities for Document Intelligence](../managed-identities.md).
+To learn more, *see* [Managed identities for Document Intelligence](../authentication/managed-identities.md).
 
   :::image type="content" source="../media/managed-identities/rbac-flow.png" alt-text="Screenshot of managed identity flow (role-based access control).":::
 
@@ -45,7 +45,7 @@ To learn more, *see* [Managed identities for Document Intelligence](../managed-i
 * Your **source** container or blob must designate **read**, **write**, **list**, and **delete** access.
 * Your **result** container or blob must designate **write**, **list**, **delete** access.
 
-To learn more, *see* [**Create SAS tokens**](../create-sas-tokens.md).
+To learn more, *see* [**Create SAS tokens**](../authentication/create-sas-tokens.md).
 
 ### Training data
 
@@ -79,7 +79,7 @@ Once you have your Azure blob storage containers, upload your training data to y
 
     :::image type="content" source="../media/custom-generative-model/create-document-extraction-project.png" alt-text="Screenshot of the create document extraction project overview page.":::
 
-1. Next, select the storage account you used to upload your custom model training dataset. 
+1. Next, select the storage account you used to upload your custom model training dataset.
 
     :::image type="content" source="../media/custom-generative-model/create-document-extraction-data-settings.png" alt-text="Screenshot of the document extraction project data settings page.":::
 
@@ -134,4 +134,4 @@ That's it! You learned to train a custom generative model in the Azure AI Studio
 
 [Learn more about the custom generative model](../concept-custom-generative.md)
 
-[Learn more about custom model accuracy and confidence](../v4-concept/accuracy-confidence.md)
+[Learn more about custom model accuracy and confidence](../concept/accuracy-confidence.md)

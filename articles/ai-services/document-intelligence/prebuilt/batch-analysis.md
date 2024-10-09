@@ -22,7 +22,7 @@ The batch analysis API allows you to bulk process multiple documents using one a
 
 The following models support batch analysis:
 
-* [**Read**](../concept-read.md). Extract text lines, words, detected languages, and handwritten style from forms and document.
+* [**Read**](../prebuilt/read.md). Extract text lines, words, detected languages, and handwritten style from forms and document.
 
 * [**Layout**](../concept-layout.md). Extract text, tables, selection marks, and structure information from forms and documents.
 
@@ -65,7 +65,7 @@ You can choose one of the following options to authorize access to your Document
 
 **✔️ Managed Identity**. A managed identity is a service principal that creates a Microsoft Entra identity and specific permissions for an Azure managed resource. Managed identities enable you to run your Document Intelligence application without having to embed credentials in your code. Managed identities are a safer way to grant access to storage data and replace the requirement for you to include shared access signature tokens (SAS) with your source and result URLs.
 
-To learn more, *see* [Managed identities for Document Intelligence](../managed-identities.md).
+To learn more, *see* [Managed identities for Document Intelligence](../authentication/managed-identities.md).
 
   :::image type="content" source="../media/managed-identities/rbac-flow.png" alt-text="Screenshot of managed identity flow (role-based access control).":::
 
@@ -80,7 +80,7 @@ To learn more, *see* [Managed identities for Document Intelligence](../managed-i
 * Your **source** container or blob must designate **read**, **write**, **list**, and **delete** access.
 * Your **result** container or blob must designate **write**, **list**, **delete** access.
 
-To learn more, *see* [**Create SAS tokens**](../create-sas-tokens.md).
+To learn more, *see* [**Create SAS tokens**](../authentication/create-sas-tokens.md).
 
 ## Calling the batch analysis API
 
