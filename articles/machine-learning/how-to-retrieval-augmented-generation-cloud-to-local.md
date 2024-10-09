@@ -45,7 +45,7 @@ To complete the procedures in this article, you need the following prerequisites
 
 This tutorial uses the sample **Q&A on Your Data** RAG prompt flow. This flow contains a **lookup** node that uses the vector index lookup tool to search questions from the indexed docs. The index docs are stored in the workspace storage blob.
 
-1. On the **Connections** tab of the Azure Machine Learning studio **Prompt flow** page, [set up a connection](prompt-flow/get-started-prompt-flow.md#set-up-connection) to your Azure OpenAI resource if you don't have one.
+1. On the **Connections** tab of the Azure Machine Learning studio **Prompt flow** page, [set up a connection](prompt-flow/get-started-prompt-flow.md#set-up-connection) to your Azure OpenAI resource if you don't already have one.
 
 1. Select **Create** on the Azure Machine Learning studio **Prompt flow** page, and on the **Create a new flow** screen, select **Clone** on the **Q&A on Your Data** tile to clone the prompt flow.
 
@@ -53,13 +53,13 @@ This tutorial uses the sample **Q&A on Your Data** RAG prompt flow. This flow co
 
    :::image type="content" source="./media/how-to-retrieval-augmented-generation-cloud-to-local/my-flow.png" alt-text="Screenshot of bring your own data QnA in the Azure Machine Learning studio." lightbox = "./media/how-to-retrieval-augmented-generation-cloud-to-local/my-flow.png":::
 
-1. In your cloned flow, populate the **answer_the_question_with_context** step with your **Connection** and **Deployment** information for the **chat** API.
-
-   :::image type="content" source="./media/how-to-retrieval-augmented-generation-cloud-to-local/my-cloud-connection.png" alt-text="Screenshot of answer_the_question_with_context node in studio showing inputs.":::
-
-1. Populate the **mlindex_content** input in the **lookup** step with your vector index information.
+1. In the **lookup** step of your cloned flow, populate the **mlindex_content** input with your vector index information.
 
    :::image type="content" source="./media/how-to-retrieval-augmented-generation-cloud-to-local/embed-question.png" alt-text="Screenshot of lookup node in studio showing inputs.":::
+
+1. Populate the **answer_the_question_with_context** step with your **Connection** and **Deployment** information for the **chat** API.
+
+   :::image type="content" source="./media/how-to-retrieval-augmented-generation-cloud-to-local/my-cloud-connection.png" alt-text="Screenshot of answer_the_question_with_context node in studio showing inputs.":::
 
 1. Make sure the example flow runs correctly, and save it.
 
@@ -73,11 +73,11 @@ This tutorial uses the sample **Q&A on Your Data** RAG prompt flow. This flow co
 
 The rest of this article details how to use the VS Code Prompt flow extension to edit the flow. If you don't want to use the Prompt flow extension, you can open the unzipped folder in any integrated development environment (IDE) and use the CLI to edit the files. For more information, see the [Prompt flow quick start](https://microsoft.github.io/promptflow/how-to-guides/quick-start.html#quick-start).
 
-1. In VS Code with the Prompt Flow extension enabled, open the unzipped prompt flow folder.
+1. In VS Code with the Prompt flow extension enabled, open the unzipped prompt flow folder.
 
 1. Select the **Prompt flow** icon in the left menu to open the Prompt flow management pane.
 
-   :::image type="content" source="./media/how-to-retrieval-augmented-generation-cloud-to-local/vs-code-extension.png" alt-text="Screenshot of the prompt flow VS Code extension icon in the VS Code left menu.":::
+   :::image type="content" source="./media/how-to-retrieval-augmented-generation-cloud-to-local/vs-code-extension-toolbar.png" alt-text="Screenshot of the prompt flow VS Code extension icon in the VS Code left menu.":::
 
 ### Create the connections
 
@@ -102,11 +102,7 @@ To use the vector index lookup tool locally, you need to create the same connect
 
    :::image type="content" source="./media/how-to-retrieval-augmented-generation-cloud-to-local/visual-editor.png" alt-text="Screenshot of the flow dag yaml file with the visual editor highlighted in VS Code." lightbox = "./media/how-to-retrieval-augmented-generation-cloud-to-local/visual-editor.png":::
 
-1. In the visual editor version of *flow.dag.yaml*, scroll to the **answer_the_question_with_context** node and make sure the connection is the same as the local connection you created. Check the **deployment_name**, which is the model you use here for the embedding.
-
-   :::image type="content" source="./media/how-to-retrieval-augmented-generation-cloud-to-local/answer-connection.png" alt-text="Screenshot of answer the question with context node with the connection highlighted.":::
-
-1. Scroll to the **lookup** node, which consumes the vector index lookup tool in this flow. Check the path of your indexed docs you specify. All publicly accessible paths are supported.
+1. In the visual editor version of *flow.dag.yaml*, scroll to the **lookup** node, which consumes the vector index lookup tool in this flow. Check the path of your indexed docs you specify. All publicly accessible paths are supported.
 
    :::image type="content" source="./media/how-to-retrieval-augmented-generation-cloud-to-local/search-blob.png" alt-text="Screenshot of search question from indexed docs node in VS Code showing the inputs.":::
 
@@ -125,9 +121,13 @@ To use the vector index lookup tool locally, you need to create the same connect
 
     :::image type="content" source="./media/how-to-retrieval-augmented-generation-cloud-to-local/generate-node.png" alt-text="Screenshot of the Python code file with the vector tool package name highlighted.":::
 
+1. Scroll to the **answer_the_question_with_context** node and make sure the connection is the same as the local connection you created. Check the **deployment_name**, which is the model you use here for the embedding.
+
+   :::image type="content" source="./media/how-to-retrieval-augmented-generation-cloud-to-local/answer-connection.png" alt-text="Screenshot of answer the question with context node with the connection highlighted.":::
+
 ### Test and run the flow
 
-Scroll to the top of the flow and fill in the **Inputs** value with a single question for this test run, for example **How to use SDK V2?**, and then select the **Run** icon to run the flow.
+Scroll to the top of the flow and fill in the **Inputs** value with a single question for this test run, such as **How to use SDK V2?**, and then select the **Run** icon to run the flow.
 
 :::image type="content" source="./media/how-to-retrieval-augmented-generation-cloud-to-local/flow-run.png" alt-text="Screenshot of the flow dag YAML file showing inputs and highlighting value of the question input and run button.":::
 
@@ -136,6 +136,5 @@ For more information about batch run and evaluation, see [Submit flow run to Azu
 ## Related content
 
 - [Get started with prompt flow](prompt-flow/get-started-prompt-flow.md)
-- [Create and deploy an Azure OpenAI Service resource](/azure/ai-services/openai/how-to/create-resource)
 - [Create a vector index in an Azure Machine Learning prompt flow (preview)](how-to-create-vector-index.md)
 - [Integrate prompt flow with LLM-based application DevOps](prompt-flow/how-to-integrate-with-llm-app-devops.md)
