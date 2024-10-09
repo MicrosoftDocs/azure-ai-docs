@@ -7,6 +7,7 @@ ms.service: azure-ai-studio
 ms.custom:
   - ignite-2023
   - build-2024
+  - ai-learning-hub
 ms.topic: conceptual
 ms.date: 06/24/2024
 ms.reviewer: deeikele
