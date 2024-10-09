@@ -304,7 +304,7 @@ items:
       href: how-to/quota.md
     - name: Increase rate limit
       href: how-to/autoscale.md
-- name: Governance & security
+- name: Security & Governance
   items:
   - name: Identity & access management
     items:
