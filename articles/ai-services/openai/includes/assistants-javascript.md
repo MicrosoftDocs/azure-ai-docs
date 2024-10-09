@@ -214,11 +214,14 @@ An individual assistant can access up to 128 tools including `code interpreter`,
 
     ```json
     {
-      "compilerOptions": {
-        "target": "es2022",
-        "module": "es2022",
-        "moduleResolution": "node",
-      }
+        "compilerOptions": {
+          "module": "NodeNext",
+          "target": "ES2022", // Supports top-level await
+          "moduleResolution": "NodeNext",
+          "skipLibCheck": true, // Avoid type errors from node_modules
+          "strict": true // Enable strict type-checking options
+        },
+        "include": ["*.ts"]
     }
     ```
 
@@ -341,15 +344,16 @@ An individual assistant can access up to 128 tools including `code interpreter`,
           "target": "ES2022", // Supports top-level await
           "moduleResolution": "NodeNext",
           "skipLibCheck": true, // Avoid type errors from node_modules
-          "strict": true, // Enable strict type-checking options
-        }
+          "strict": true // Enable strict type-checking options
+        },
+        "include": ["*.ts"]
     }
     ```
 
 1. Transpile from TypeScript to JavaScript.
 
     ```shell
-    tsc index.ts
+    tsc
     ```
 
 1. Run the code with the following command:
