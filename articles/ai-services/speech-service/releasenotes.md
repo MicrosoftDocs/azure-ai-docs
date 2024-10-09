@@ -18,7 +18,7 @@ Azure AI Speech is updated on an ongoing basis. To stay up-to-date with recent d
 
 ## Recent highlights
 
-* Azure AI speech high definition (HD) voices are available in public preview. The HD voices can understand the content, automatically detect emotions in the input text, and adjust the speaking tone in real-time to match the sentiment. For more information, see [What are Azure AI Speech high definition (HD) voices?](../../high-definition-voices.md).
+* Azure AI speech high definition (HD) voices are available in public preview. The HD voices can understand the content, automatically detect emotions in the input text, and adjust the speaking tone in real-time to match the sentiment. For more information, see [What are Azure AI Speech high definition (HD) voices?](high-definition-voices.md).
 * Fast transcription is now available in public preview. It can transcribe audio much faster than the actual audio length. For more information, see the [fast transcription API guide](fast-transcription-create.md).
 * Video translation is now available in the Azure AI Speech service. For more information, see [What is video translation?](./video-translation-overview.md).
 * The Azure AI Speech service supports OpenAI text to speech voices. For more information, see [What are OpenAI text to speech voices?](./openai-voices.md). 
