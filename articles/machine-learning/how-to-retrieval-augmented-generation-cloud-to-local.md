@@ -49,6 +49,8 @@ This tutorial uses the sample **Q&A on Your Data** RAG prompt flow. This flow co
 
 1. Select **Create** on the Azure Machine Learning studio **Prompt flow** page, and on the **Create a new flow** screen, select **Clone** on the **Q&A on Your Data** tile to clone the prompt flow.
 
+   The cloned flow opens in the authoring interface.
+
    :::image type="content" source="./media/how-to-retrieval-augmented-generation-cloud-to-local/my-flow.png" alt-text="Screenshot of bring your own data QnA in the Azure Machine Learning studio." lightbox = "./media/how-to-retrieval-augmented-generation-cloud-to-local/my-flow.png":::
 
 1. In your cloned flow, populate the **answer_the_question_with_context** step with your **Connection** and **Deployment** information for the **chat** API.
@@ -125,7 +127,7 @@ To use the vector index lookup tool locally, you need to create the same connect
 
 ### Test and run the flow
 
-Scroll up to the top of the flow and fill in the **Inputs** value with a single question for this test run, for example **How to use SDK V2?**, and then select the **Run** icon to run the flow.
+Scroll to the top of the flow and fill in the **Inputs** value with a single question for this test run, for example **How to use SDK V2?**, and then select the **Run** icon to run the flow.
 
 :::image type="content" source="./media/how-to-retrieval-augmented-generation-cloud-to-local/flow-run.png" alt-text="Screenshot of the flow dag YAML file showing inputs and highlighting value of the question input and run button.":::
 
