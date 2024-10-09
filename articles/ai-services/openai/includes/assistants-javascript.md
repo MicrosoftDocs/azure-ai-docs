@@ -7,7 +7,7 @@ author: mrbullwinkle
 ms.author: mbullwin
 ms.service: azure-ai-openai
 ms.topic: include
-ms.date: 05/30/2024
+ms.date: 10/09/2024
 ms.custom: passwordless-js, devex-track-javascript
 ---
 
@@ -72,22 +72,21 @@ To successfully make a call against the Azure OpenAI service, set environment va
 #### [TypeScript keyless (Recommended)](#tab/typescript-keyless)
 
 [!INCLUDE [assistants-keyless-environment-variables](assistants-env-var-without-key.md)]
-[!INCLUDE [environment-variables-deployment](assistants-env-var-additional.md)]
+
 
 #### [TypeScript with API key](#tab/typescript-key)
 
 [!INCLUDE [assistants-key-environment-variables](assistants-env-var-key.md)]
-[!INCLUDE [environment-variables-deployment](assistants-env-var-additional.md)]
+
 
 #### [JavaScript keyless](#tab/javascript-keyless)
 
 [!INCLUDE [assistants-keyless-environment-variables](assistants-env-var-without-key.md)]
-[!INCLUDE [environment-variables-deployment](assistants-env-var-additional.md)]
+
 
 #### [JavaScript with API key](#tab/javascript-key)
 
 [!INCLUDE [assistants-key-environment-variables](assistants-env-var-key.md)]
-[!INCLUDE [environment-variables-deployment](assistants-env-var-additional.md)]
 
 > [!CAUTION]
 > Don't set `AZURE_OPENAI_KEY` when using keyless authentication.
