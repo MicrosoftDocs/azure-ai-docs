@@ -114,7 +114,7 @@ These steps demonstrate the deployment of `AI21 Jamba 1.5 Large` or `AI21 Jamba 
 
 1. Return to the Deployments page, select the deployment, and note the endpoint's **Target** URL and the Secret **Key**. For more information on using the APIs, see the [Reference](#reference-for-jamba-family-models-deployed-as-a-serverless-api) section.
 
-1. [!INCLUDE [Find your deployment details](~/includes/find-deployments.md)]
+1. [!INCLUDE [Find your deployment details](../includes/find-deployments.md)]
 
 To learn about billing for the AI21-Jamba family models deployed as a serverless API with pay-as-you-go token-based billing, see [Cost and quota considerations for Jamba Instruct deployed as a serverless API](#cost-and-quota-considerations-for-jamba-family-models-deployed-as-a-serverless-api).
 
