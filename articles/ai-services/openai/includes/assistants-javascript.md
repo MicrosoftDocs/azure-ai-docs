@@ -88,10 +88,11 @@ To successfully make a call against the Azure OpenAI service, set environment va
 
 [!INCLUDE [assistants-key-environment-variables](assistants-env-var-key.md)]
 
+---
+
 > [!CAUTION]
 > Don't set `AZURE_OPENAI_KEY` when using keyless authentication.
 
----
 
 ## Create an assistant
 
