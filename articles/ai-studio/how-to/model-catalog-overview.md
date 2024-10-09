@@ -53,6 +53,8 @@ For more information on Azure OpenAI models, see [What is Azure OpenAI Service?]
 The model catalog offers two distinct ways to deploy models for your use: managed compute and serverless APIs.
 
 The deployment options and features available for each model vary, as described in the following tables. [Learn more about data processing with the deployment options]( concept-data-privacy.md).
+
+### Capabilities of model deployment options
 <!-- docutune:disable -->
 
 Features | Managed compute | Serverless API (pay-as-you-go)
@@ -61,6 +63,8 @@ Deployment experience and billing | Model weights are deployed to dedicated virt
 API authentication | Keys and Microsoft Entra authentication. | Keys only.  
 Content safety | Use Azure AI Content Safety service APIs. | Azure AI Content Safety filters are available integrated with inference APIs. Azure AI Content Safety filters are billed separately.
 Network isolation | [Configure managed networks for Azure AI Studio hubs](configure-managed-network.md).  | Managed compute follow your hub's public network access (PNA) flag setting. For more information, see the [Network isolation for models deployed via Serverless APIs](#network-isolation-for-models-deployed-via-serverless-apis) section later in this article.
+
+### Available models for supported deployment options
 
 Model | Managed compute | Serverless API (pay-as-you-go)
 --|--|--
