@@ -96,7 +96,7 @@ To successfully make a call against the Azure OpenAI service, set environment va
 
 ## Create an assistant
 
-In our code we are going to specify the following values:
+In our code we're going to specify the following values:
 
 | **Name** | **Description** |
 |:---|:---|
@@ -107,7 +107,7 @@ In our code we are going to specify the following values:
 
 ### Tools
 
-An individual assistant can access up to 128 tools including `code interpreter`, as well as any custom tools you create via [functions](../how-to/assistant-functions.md).
+An individual assistant can access up to 128 tools including `code interpreter`, and any custom tools you create via [functions](../how-to/assistant-functions.md).
 
 #### [TypeScript keyless (Recommended)](#tab/typescript-keyless)
 
@@ -571,7 +571,7 @@ Message content: "Yes, of course! To solve the equation \\( 3x + 11 = 14 \\), we
 Message content: "I need to solve the equation `3x + 11 = 14`. Can you help me?"
 ```
 
-It is important to remember that while the code interpreter gives the model the capability to respond to more complex queries by converting the questions into code and running that code iteratively in JavaScript until it reaches a solution, you still need to validate the response to confirm that the model correctly translated your question into a valid representation in code.
+It's important to remember that while the code interpreter gives the model the capability to respond to more complex queries by converting the questions into code and running that code iteratively in JavaScript until it reaches a solution, you still need to validate the response to confirm that the model correctly translated your question into a valid representation in code.
 
 ## Clean up resources
 

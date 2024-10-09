@@ -4,7 +4,7 @@ author: mrbullwinkle
 ms.author: mbullwin
 ms.service: azure-ai-openai
 ms.topic: include
-ms.date: 10/0//2024
+ms.date: 10/09/2024
 ms.custom: devex-track-js, devex-track-typescript
 ---
 |Variable name | Value |
