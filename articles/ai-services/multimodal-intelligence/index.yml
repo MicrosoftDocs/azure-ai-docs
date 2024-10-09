@@ -1,0 +1,42 @@
+### YamlMime:Landing
+
+title: Azure AI Multimodal Intelligence documentation
+summary: Multimodal Intelligence is a data analysis and comprehension solution that transforms diverse media content—such as audio, video, text, and images—into structured, organized and searchable data.
+metadata:
+  title: Azure AI Multimodal Intelligence documentation
+  description: Multimodal Intelligence is a data comprehension solution that transforms diverse media content—such as audio, video, text, and images—into structured, organized and searchable data.
+  ms.service: 
+  ms.topic: landing-page
+  author: laujan
+  ms.author: lajanuar
+  ms.date: 10/09/2024
+
+landingContent:
+  # Card 1
+  - title: About Multimodal Intelligence
+    linkLists:
+      - linkListType: overview
+        links:
+          - text: What is Multimodal Intelligence?
+            url: overview.md
+          - text: What are Azure AI services?
+            url: ../../ai-services/what-are-ai-services.md
+
+  # Card 2
+  - title: Get started
+    linkLists:
+      - linkListType: quickstart
+        links:
+        - text: Use Multimodal Intelligence Rest API
+          url: TODO
+
+  # Card 3
+
+  - title: Responsible use of AI
+    linkLists:        
+      - linkListType: concept
+        links:
+        - text: Limited access features
+          url: TODO  
+        - text: Transparency note
+          url: TODO
