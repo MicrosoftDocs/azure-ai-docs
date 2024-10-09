@@ -59,10 +59,13 @@ A file (`uri_file`) data resource type points to a *single file* on storage (for
 
 These steps explain how to create a File typed data in Azure AI Studio:
 
-1. Navigate to [Azure AI Studio](https://ai.azure.com/)
+1. Navigate to [Azure AI Studio](https://ai.azure.com/).
 
-1. From the collapsible menu on the left, select **Data** under **Components**. Select **New Data**.
-:::image type="content" source="../media/data-add/add-data.png" alt-text="Screenshot highlights Add Data in the Data tab.":::
+1. Select the project where you want to create the data.
+
+1. On the left, select **Data + indexes**. Select **New Data**.
+
+    :::image type="content" source="../media/data-add/add-data.png" alt-text="Screenshot highlights Add Data in the Data tab.":::
 
 1. Choose your **Data source**. You have three options to choose a data source.
    - You can select data from **Existing Connections**.
@@ -92,7 +95,9 @@ A Folder (`uri_folder`) data source type points to a *folder* on a storage resou
 
 1. Navigate to [Azure AI Studio](https://ai.azure.com/)
 
-1. From the collapsible menu on the left, select **Data** under **Components**. Select **New Data**.
+1. Select the project where you want to create the data.
+
+1. On the left, select **Data + indexes**. Select **New Data**.
 
     :::image type="content" source="../media/data-add/add-data.png" alt-text="Screenshot highlights Add Data in the Data tab.":::
 
