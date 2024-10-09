@@ -61,7 +61,7 @@ Let's get started:
 
 1. If your overview page doesn't have the keys and endpoint visible, you can select the **Keys and Endpoint** button, on the left navigation bar, and retrieve them there.
 
-    :::image border="true" type="content" source="../media/containers/keys-and-endpoint.png" alt-text="Still photo showing how to access resource key and endpoint URL":::
+    :::image border="true" type="content" source="../media/containers/keys-and-endpoint.png" alt-text="Still photo showing how to access resource key and endpoint URL.":::
 
 That's it! You're now ready to start automating data extraction using Azure AI Document Intelligence.
 

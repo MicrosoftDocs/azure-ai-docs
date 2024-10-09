@@ -183,7 +183,7 @@ Next, configure the virtual network to ensure only resources within the virtual 
 
     * Select **Next: Resource**.
 
-    :::image type="content" source="../media/managed-identities/v2-fr-private-end-basics.png" alt-text="Screenshot showing how to set-up a private endpoint":::
+    :::image type="content" source="../media/managed-identities/v2-fr-private-end-basics.png" alt-text="Screenshot showing how to set-up a private endpoint.":::
 
 ### Configure your virtual network
 
@@ -197,7 +197,7 @@ Next, configure the virtual network to ensure only resources within the virtual 
 
 1. Accept the default value **Yes** to **integrate with private DNS zone**.
 
-    :::image type="content" source="../media/managed-identities/v2-fr-private-end-vnet.png" alt-text="Screenshot showing how to configure private endpoint":::
+    :::image type="content" source="../media/managed-identities/v2-fr-private-end-vnet.png" alt-text="Screenshot showing how to configure private endpoint.":::
 
 1. Accept the remaining defaults and select **Next: Tags**.
 
@@ -219,7 +219,7 @@ Navigate to your **storage account** on the Azure portal.
 
 1. Select **Next: Resource**.
 
-    :::image type="content" source="../media/managed-identities/v2-stg-private-end-basics.png" alt-text="Screenshot showing how to create a private endpoint":::
+    :::image type="content" source="../media/managed-identities/v2-stg-private-end-basics.png" alt-text="Screenshot showing how to create a private endpoint.":::
 
 1. On the resource tab, select **blob** from the **Target sub-resource** list.
 
@@ -260,7 +260,7 @@ That's it! You can now configure secure access for your Document Intelligence re
 
 * **Failed to access Blob container**:
 
-   :::image type="content" source="../media/managed-identities/cors-error.png" alt-text="Screenshot of error message when CORS config is required":::
+   :::image type="content" source="../media/managed-identities/cors-error.png" alt-text="Screenshot of error message when CORS config is required.":::
 
   **Resolution**:
     1. [Configure CORS](../quickstarts/try-document-intelligence-studio.md#configure-cors).
