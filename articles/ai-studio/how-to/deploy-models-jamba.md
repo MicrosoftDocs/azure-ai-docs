@@ -91,7 +91,7 @@ These steps demonstrate the deployment of `AI21 Jamba 1.5 Large` or `AI21 Jamba 
 
 1. Alternatively, you can initiate a deployment by starting from your project in AI Studio.
 
-    1. From the left sidebar of your project, select **Components** > **Deployments**.
+    1. From the left sidebar of your project, select **Models + Endpoints**.
     1. Select **+ Create deployment**.
 
     1. Search for and select a AI21 model like `AI21 Jamba 1.5 Large` or `AI21 Jamba 1.5 Mini` or `AI21 Jamba Instruct` to open the Model's Details page.
@@ -114,7 +114,7 @@ These steps demonstrate the deployment of `AI21 Jamba 1.5 Large` or `AI21 Jamba 
 
 1. Return to the Deployments page, select the deployment, and note the endpoint's **Target** URL and the Secret **Key**. For more information on using the APIs, see the [Reference](#reference-for-jamba-family-models-deployed-as-a-serverless-api) section.
 
-1. You can always find the endpoint's details, URL, and access keys by navigating to your **Project overview** page. Then, from the left sidebar of your project, select **Components** > **Deployments**.
+1. [!INCLUDE [Find your deployment details](../includes/find-deployments.md)]
 
 To learn about billing for the AI21-Jamba family models deployed as a serverless API with pay-as-you-go token-based billing, see [Cost and quota considerations for Jamba Instruct deployed as a serverless API](#cost-and-quota-considerations-for-jamba-family-models-deployed-as-a-serverless-api).
 
@@ -123,7 +123,7 @@ To learn about billing for the AI21-Jamba family models deployed as a serverless
 
 You can consume Jamba family models as follows:
 
-1. From your **Project overview** page, go to the left sidebar and select **Components** > **Deployments**.
+1. From the left sidebar of your project, select **Models + Endpoints**.
 
 1. Find and select the deployment you created.
 

@@ -184,7 +184,7 @@ If you don't have an Azure AI Search index already created, we walk through how 
     python build_index.py
     ```
 
-1. Once the script is run, you can view your newly created index in the **Indexes** page of your Azure AI Studio project. For more information, see [How to build and consume vector indexes in Azure AI Studio](../how-to/index-add.md).
+1. Once the script is run, you can view your newly created index in the **Data + indexes** page of your Azure AI Studio project. For more information, see [How to build and consume vector indexes in Azure AI Studio](../how-to/index-add.md).
 
 1. If you run the script again with the same index name, it creates a new version of the same index.
 
