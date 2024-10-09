@@ -137,10 +137,10 @@ items:
           href: how-to/deploy-models-phi-3-5-vision.md
         - name: Fine-tune Phi-3 chat models
           href: how-to/fine-tune-phi-3.md
-    - name: Foundational Multimodal Healthcare AI models
+    - name: Foundational Multimodal Health AI models
       items:
         - name: Health and Life Sciences AI Models
-          href: how-to/health-ai/healthcare-ai-models.md
+          href: how-to/health-ai/health-ai-models.md
         - name: MedImageInsight - embedding model
           href: how-to/health-ai/deploy-medimageinsight.md
         - name: CXRReportGen - text generation model

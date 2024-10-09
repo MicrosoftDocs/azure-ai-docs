@@ -1,7 +1,7 @@
 ---
-title: How do Deploy MedImageInsight Healthcare AI Model with AI Studio
+title: How do Deploy MedImageInsight Health AI Model with AI Studio
 titleSuffix: Azure AI Studio
-description: Learn how to use MedImageInsight Healthcare AI Model with Azure AI Studio.
+description: Learn how to use MedImageInsight Health AI Model with Azure AI Studio.
 ms.service: azure-ai-studio
 manager: scottpolly
 ms.topic: how-to
@@ -13,7 +13,7 @@ author: msakande
 zone_pivot_groups: ?????
 ---
 
-# How to use MedImageInsight Healthcare AI Model for Generating Image Embeddings
+# How to use MedImageInsight Health AI Model for Generating Image Embeddings
 
 [!INCLUDE [Feature preview](~/reusable-content/ce-skilling/azure/includes/ai-studio/includes/feature-preview.md)]
 
@@ -26,7 +26,7 @@ In this article, you learn how to deploy MedImageInsight as an online endpoint f
 * Send test data to the model, receive and interpret results
 
 ## MedImageInsight - the Medical Imaging Embedding model
-MedImageInsight Foundational Model for Healthcare is a powerful model that can process a wide variety of medical images including X-Ray, CT, MRI, clinical photography, dermoscopy, histopathology, ultrasound, and mammography. Rigorous evaluations demonstrate MedImageInsight's ability to achieve state-of-the-art (SOTA) or human expert level performance across classification, image-image search, and fine-tuning tasks.  Specifically, on public datasets, MedImageInsight achieves or exceeds SOTA in chest X-ray disease classification and search, dermatology classification and search, OCT classification and search, 3D medical image retrieval, and near SOTA for histopathology classification and search.  
+MedImageInsight Foundational Model for Health is a powerful model that can process a wide variety of medical images including X-Ray, CT, MRI, clinical photography, dermoscopy, histopathology, ultrasound, and mammography. Rigorous evaluations demonstrate MedImageInsight's ability to achieve state-of-the-art (SOTA) or human expert level performance across classification, image-image search, and fine-tuning tasks.  Specifically, on public datasets, MedImageInsight achieves or exceeds SOTA in chest X-ray disease classification and search, dermatology classification and search, OCT classification and search, 3D medical image retrieval, and near SOTA for histopathology classification and search.  
 
 ## Prerequisites
 

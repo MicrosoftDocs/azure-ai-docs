@@ -1,7 +1,7 @@
 ---
-title: How do Deploy CXRReportGen Healthcare AI Model with AI Studio
+title: How do Deploy CXRReportGen Health AI Model with AI Studio
 titleSuffix: Azure AI Studio
-description: Learn how to use CXRReportGen Healthcare AI Model with Azure AI Studio.
+description: Learn how to use CXRReportGen Health AI Model with Azure AI Studio.
 ms.service: azure-ai-studio
 manager: scottpolly
 ms.topic: how-to
@@ -14,7 +14,7 @@ ms.custom: references_regions, generated
 zone_pivot_groups: ?????
 ---
 
-# How to use CXRReportGen Healthcare AI Model for Generating Grounded Findings
+# How to use CXRReportGen Health AI Model for Generating Grounded Findings
 
 [!INCLUDE [Feature preview](~/reusable-content/ce-skilling/azure/includes/ai-studio/includes/feature-preview.md)]
 
