@@ -1,0 +1,86 @@
+---
+title: What are neural text to speech HD voices?
+titleSuffix: Azure AI services
+description: Learn about neural text to speech HD voices that you can use with speech synthesis.
+author: eric-urban
+ms.author: eur
+ms.reviewer: v-baolianzou
+manager: nitinme
+ms.service: azure-ai-speech
+ms.topic: overview
+ms.date: 10/9/2024
+ms.custom: references_regions
+#customer intent: As a user who implements text to speech, I want to understand the options and differences between available neural text to speech HD voices in Azure AI Speech.
+---
+
+# What are high definition voices? (Preview)
+
+Azure AI speech continues to advance in the field of text to speech technology with the introduction of neural text to speech high definition (HD) voices. The HD voices can understand the content, automatically detect emotions in the input text, and adjust the speaking tone in real-time to match the sentiment. HD voices maintain a consistent voice persona from their neural (and non HD) counterparts, and deliver even more value through enhanced features.
+
+## Key features of neural text to speech HD voices
+
+The following are the key features of Azure AI Speech HD voices:
+
+| Key features | Description |
+|--------------|-------------|
+| **Human-like speech generation** | Neural text to speech HD voices can generate highly natural and human-like speech. The model is trained on millions of hours of multilingual data, enabling it to accurately interpret input text and generate speech with the appropriate emotion, pace, and rhythm without manual adjustments. |
+| **Version control** | With neural text to speech HD voices, we release different versions of the same voice, each with a unique base model size and recipe. This offers you the opportunity to experience new voice variations or continue using a specific version of a voice. |
+| **High fidelity** | The primary objective of neural text to speech HD voices is to generate high-fidelity audio. The synthetic speech produced by our system can closely mimic human speech in both quality and naturalness. |
+
+## Comparison of Azure AI Speech HD voices to other Azure text to speech voices
+
+How do Azure AI Speech HD voices compare to other Azure text to speech voices? How do they differ in terms of features and capabilities? 
+
+Here's a comparison of features between Azure AI Speech HD voices, Azure OpenAI HD voices, and Azure AI Speech voices:
+
+| Feature | Azure AI Speech HD voices  | Azure OpenAI HD voices | Azure AI Speech voices (not HD) |
+|---------|---------------|------------------------|------------------------|
+| **Region** | North Central US, Sweden Central | North Central US, Sweden Central | Available in dozens of regions. See the [region list](regions.md#speech-service).|
+| **Number of voices** | 12 | 6 | More than 500 |
+| **Multilingual**  | No (perform on primary language only) | Yes  | Yes (applicable only to multilingual voices)  |
+| **SSML support** | Support for [a subset of SSML elements](#supported-and-unsupported-ssml-elements-for-azure-neural-text-to-speech-hd-voices).|  Support for [a subset of SSML elements](openai-voices.md#ssml-elements-supported-by-openai-text-to-speech-voices-in-azure-ai-speech).  | Support for the [full set of SSML](speech-synthesis-markup-structure.md) in Azure AI Speech.  |
+| **Development options** | Speech SDK, Speech CLI, REST API  | Speech SDK, Speech CLI, REST API  | Speech SDK, Speech CLI, REST API  |
+| **Deployment options**  | Cloud only | Cloud only | Cloud, embedded, hybrid, and containers. |
+| **Real-time or batch synthesis**  | Real-time only  | Real-time and batch synthesis  | Real-time and batch synthesis |
+| **Latency**  | Less than 300 ms | Greater than 500 ms | Less than 300 ms  |
+| **Sample rate of synthesized audio** | 8, 16, 22.05, 24, 44.1, and 48 kHz  | 8, 16, 24, and 48 kHz | 8, 16, 22.05, 24, 44.1, and 48 kHz |
+| **Speech output audio format** | opus, mp3, pcm, truesilk |  opus, mp3, pcm, truesilk  |  opus, mp3, pcm, truesilk  |
+
+## Supported and unsupported SSML elements for Azure AI Speech HD voices
+
+The Speech Synthesis Markup Language (SSML) with input text determines the structure, content, and other characteristics of the text to speech output. For example, you can use SSML to define a paragraph, a sentence, a break or a pause, or silence. You can wrap text with event tags such as bookmark or viseme that your application processes later.
+
+The Azure AI Speech HD voices don't support all SSML elements or events that other Azure AI Speech voices support. Of particular note, Azure AI Speech HD voices don't support [word boundary events](./how-to-speech-synthesis.md#subscribe-to-synthesizer-events). 
+
+For detailed information on the supported and unsupported SSML elements for Azure AI Speech HD voices, refer to the following table. For instructions on how to use SSML elements, refer to the [Speech Synthesis Markup Language (SSML) documentation](speech-synthesis-markup-structure.md). 
+
+| SSML element | Description  | Supported in Azure AI Speech HD voices |
+|------------------------------|--------------------------------|-----------------------------------|
+| `<voice>`  | Specifies the voice and optional effects (`eq_car` and `eq_telecomhp8k`). | Yes |
+| `<mstts:express-as>`  | Specifies speaking styles and roles. | No  |
+| `<mstts:ttsembedding>` |  Specifies the `speakerProfileId` property for a personal voice. | No |
+| `<lang xml:lang>` | Specifies the speaking language.  | Yes |
+| `<prosody>`  |  Adjusts pitch, contour, range, rate, and volume. | No |
+| `<emphasis>`| Adds or removes word-level stress for the text. | No|
+| `<audio>`| Embeds prerecorded audio into an SSML document. | No|
+| `<mstts:audioduration>` | Specifies the duration of the output audio. | No  |
+| `<mstts:backgroundaudio>`  | Adds background audio to your SSML documents or mixes an audio file with text to speech.  | No  |
+| `<phoneme>`  |Specifies phonetic pronunciation in SSML documents. | No |
+| `<lexicon>`  | Defines how multiple entities are read in SSML.  | Yes (only supports alias)  |
+| `<say-as>` | Indicates the content type, such as number or date, of the element's text.  | Yes  |
+| `<sub>`  |  Indicates that the alias attribute's text value should be pronounced instead of the element's enclosed text.  | Yes |
+| `<math>` | Uses the MathML as input text to properly pronounce mathematical notations in the output audio.  | No |
+| `<bookmark>` | Gets the offset of each marker in the audio stream.  | No |
+| `<break>`  | Overrides the default behavior of breaks or pauses between words. | No  |
+| `<mstts:silence>`  | Inserts pause before or after text, or between two adjacent sentences.  | No |
+| `<mstts:viseme>` | Defines the position of the face and mouth while a person is speaking.  | No  |
+| `<p>`  | Denotes paragraphs in SSML documents.  | Yes |
+| `<s>`  | Denotes sentences in SSML documents.  | Yes  |
+
+> [!NOTE]
+> Although a [previous section in this guide](#comparison-of-azure-ai-speech-hd-voices-to-other-azure-text-to-speech-voices) also compared Azure AI Speech HD voices to Azure OpenAI HD voices, the SSML elements supported by Azure AI Speech aren't applicable to Azure OpenAI voices. 
+
+## Related content
+
+- [Try the text to speech quickstart in Azure AI Speech](get-started-text-to-speech.md)
+- [Learn more about how to use SSML and events](speech-synthesis-markup-structure.md)
