@@ -225,7 +225,7 @@ An individual assistant can access up to 128 tools including `code interpreter`,
 1. Transpile from TypeScript to JavaScript.
 
     ```shell
-    tsc index.ts
+    tsc
     ```
     
 1. Sign in to Azure with the following command:
