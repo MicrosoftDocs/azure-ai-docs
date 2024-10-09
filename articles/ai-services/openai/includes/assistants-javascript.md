@@ -111,7 +111,7 @@ An individual assistant can access up to 128 tools including `code interpreter`,
 
 #### [TypeScript keyless (Recommended)](#tab/typescript-keyless)
 
-1. Create the `index.ts` file with the following **recommended** passwordless TypeScript module (index.ts):
+1. Create the `index.ts` file with the following code:
 
     ```typescript
     import { AzureOpenAI } from "openai";
@@ -242,7 +242,7 @@ An individual assistant can access up to 128 tools including `code interpreter`,
 
 #### [TypeScript with API key](#tab/typescript-key)
 
-1. To use the service key for authentication, you can create the `index.ts` file with the following TypeScript module (index.ts):
+1. Create the `index.ts` file with the following code:
 
     ```typescript
     import { AzureOpenAI } from "openai";
@@ -360,7 +360,7 @@ An individual assistant can access up to 128 tools including `code interpreter`,
 
 #### [JavaScript keyless](#tab/javascript-keyless)
 
-1. Create the `index.js` file with the following **recommended** passwordless JavaScript module:
+1. Create the `index.js` file with the following code:
 
     ```nodejs
     import { AzureOpenAI } from "openai";
@@ -466,7 +466,7 @@ An individual assistant can access up to 128 tools including `code interpreter`,
 
 #### [JavaScript with API key](#tab/javascript-key)
 
-1. To use the service key for authentication, you can create the `index.js` file with the following JavaScript module:
+1. Create the `index.js` file with the following code:
 
     ```nodejs
     import { AzureOpenAI } from "openai";
