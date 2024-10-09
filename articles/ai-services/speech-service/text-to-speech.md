@@ -58,7 +58,7 @@ Here's more information about neural text to speech features in the Speech servi
 > In addition to Azure AI Speech neural (non HD) voices, you can also use [Azure AI Speech high definition (HD) voices](high-definition-voices.md) and [Azure OpenAI neural (HD and non HD) voices](openai-voices.md). The HD voices provide a higher quality for more versatile scenarios.
 > 
 > Some voices don't support all [Speech Synthesis Markup Language (SSML)](speech-synthesis-markup-structure.md) tags. This includes neural text to speech HD voices, personal voices, and embedded voices. 
-- For Azure AI Speech high definition (HD) voices, check the SSML support [here](high-definition-voices.md#supported-and-unsupported-ssml-elements-for-azure-neural-text-to-speech-hd-voices). 
+- For Azure AI Speech high definition (HD) voices, check the SSML support [here](high-definition-voices.md#supported-and-unsupported-ssml-elements-for-azure-ai-speech-hd-voices). 
 - For personal voice, you can find the SSML support [here](personal-voice-how-to-use.md#supported-and-unsupported-ssml-elements-for-personal-voice). 
 - For embedded voices, check the SSML support [here](embedded-speech.md#embedded-voices-capabilities).
 

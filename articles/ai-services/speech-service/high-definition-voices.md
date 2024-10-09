@@ -26,8 +26,10 @@ The following are the key features of Azure AI Speech HD voices:
 | Key features | Description |
 |--------------|-------------|
 | **Human-like speech generation** | Neural text to speech HD voices can generate highly natural and human-like speech. The model is trained on millions of hours of multilingual data, enabling it to accurately interpret input text and generate speech with the appropriate emotion, pace, and rhythm without manual adjustments. |
-| **Version control** | With neural text to speech HD voices, we release different versions of the same voice, each with a unique base model size and recipe. This offers you the opportunity to experience new voice variations or continue using a specific version of a voice. |
+| **Conversational** | Neural text to speech HD voices can replicate natural speech patterns, including spontaneous pauses and emphasis. When given conversational text, the model can reproduce common phonemes like pauses and filler words. The generated voice sounds as if someone is conversing directly with you. |
+| **Prosody variations** | Neural text to speech HD voices introduce slight variations in each output to enhance realism. These variations make the speech sound more natural, as human voices naturally exhibit variation. |
 | **High fidelity** | The primary objective of neural text to speech HD voices is to generate high-fidelity audio. The synthetic speech produced by our system can closely mimic human speech in both quality and naturalness. |
+| **Version control** | With neural text to speech HD voices, we release different versions of the same voice, each with a unique base model size and recipe. This offers you the opportunity to experience new voice variations or continue using a specific version of a voice. |
 
 ## Comparison of Azure AI Speech HD voices to other Azure text to speech voices
 
@@ -40,13 +42,59 @@ Here's a comparison of features between Azure AI Speech HD voices, Azure OpenAI 
 | **Region** | North Central US, Sweden Central | North Central US, Sweden Central | Available in dozens of regions. See the [region list](regions.md#speech-service).|
 | **Number of voices** | 12 | 6 | More than 500 |
 | **Multilingual**  | No (perform on primary language only) | Yes  | Yes (applicable only to multilingual voices)  |
-| **SSML support** | Support for [a subset of SSML elements](#supported-and-unsupported-ssml-elements-for-azure-neural-text-to-speech-hd-voices).|  Support for [a subset of SSML elements](openai-voices.md#ssml-elements-supported-by-openai-text-to-speech-voices-in-azure-ai-speech).  | Support for the [full set of SSML](speech-synthesis-markup-structure.md) in Azure AI Speech.  |
+| **SSML support** | Support for [a subset of SSML elements](#supported-and-unsupported-ssml-elements-for-azure-ai-speech-hd-voices).|  Support for [a subset of SSML elements](openai-voices.md#ssml-elements-supported-by-openai-text-to-speech-voices-in-azure-ai-speech).  | Support for the [full set of SSML](speech-synthesis-markup-structure.md) in Azure AI Speech.  |
 | **Development options** | Speech SDK, Speech CLI, REST API  | Speech SDK, Speech CLI, REST API  | Speech SDK, Speech CLI, REST API  |
 | **Deployment options**  | Cloud only | Cloud only | Cloud, embedded, hybrid, and containers. |
 | **Real-time or batch synthesis**  | Real-time only  | Real-time and batch synthesis  | Real-time and batch synthesis |
 | **Latency**  | Less than 300 ms | Greater than 500 ms | Less than 300 ms  |
 | **Sample rate of synthesized audio** | 8, 16, 22.05, 24, 44.1, and 48 kHz  | 8, 16, 24, and 48 kHz | 8, 16, 22.05, 24, 44.1, and 48 kHz |
 | **Speech output audio format** | opus, mp3, pcm, truesilk |  opus, mp3, pcm, truesilk  |  opus, mp3, pcm, truesilk  |
+
+## Supported Azure AI Speech HD voices
+
+The following table lists the Azure AI Speech HD voices that are currently available.
+
+| HD voice name | Neural voice persona | Locale |
+|---------------|----------------------|--------|
+| de-DE-Seraphina:DragonHDLatestNeural | de-DE-Seraphina | de-DE |
+| en-US-Andrew:DragonHDLatestNeural | en-US-Andrew | en-US |
+| en-US-Andrew2:DragonHDLatestNeural | en-US-Andrew2 | en-US |
+| en-US-Aria:DragonHDLatestNeural | en-US-Aria | en-US |
+| en-US-Ava:DragonHDLatestNeural | en-US-Ava | en-US |
+| en-US-Davis:DragonHDLatestNeural | en-US-Davis | en-US |
+| en-US-Emma:DragonHDLatestNeural | en-US-Emma | en-US |
+| en-US-Emma2:DragonHDLatestNeural | en-US-Emma2 | en-US |
+| en-US-Jenny:DragonHDLatestNeural | en-US-Jenny | en-US |
+| en-US-Steffan:DragonHDLatestNeural | en-US-Steffan | en-US |
+| ja-JP-Masaru:DragonHDLatestNeural | ja-JP-Masaru | ja-JP |
+| zh-CN-Xiaochen:DragonHDLatestNeural | zh-CN-Xiaochen | zh-CN |
+
+
+## How to use Azure AI Speech HD voices
+
+You can use HD voices with the same Speech SDK and REST APIs as the non HD voices. 
+
+Here are some key points to consider when using Azure AI Speech HD voices:
+
+- **Voice locale**: The locale in the voice name indicates its original language and region.
+- **Base models**:
+  - HD voices come with a base model that understands the input text and predicts the speaking pattern accordingly. You can specify the desired model (such as DragonHDLatestNeural) according to the availability of each voice.
+- **SSML usage**: To reference a voice in SSML, use the format `voicename:basemodel`. The name before the colon, such as `en-US-Andrew`, is the voice persona name and its original locale. The base model is tracked by versions in subsequent updates.
+- **Temperature parameter**:
+  - The temperature value is a float ranging from 0 to 1, influencing the randomness of the output.
+  - You can also adjust the temperature parameter to control the variation of outputs.
+  - **Lower temperature**: Results in less randomness, leading to more predictable outputs.
+  - **Higher temperature**: Increases randomness, allowing for more diverse outputs.
+  - The default temperature is set at 1.0.
+  - Less randomness yields more stable results, while more randomness offers variety but less consistency.
+
+Here's an example of how to use Azure AI Speech HD voices in SSML:
+
+```ssml
+<speak version='1.0' xmlns='http://www.w3.org/2001/10/synthesis' xmlns:mstts='https://www.w3.org/2001/mstts' xml:lang='en-US'>
+<voice name='en-US-Ava:DragonHDLatestNeural' parameters='temperature=0.8'>Here is a test</voice>
+</speak>
+```
 
 ## Supported and unsupported SSML elements for Azure AI Speech HD voices
 
