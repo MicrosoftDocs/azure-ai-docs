@@ -69,25 +69,27 @@ For passwordless authentication, you need to
 
 To successfully make a call against the Azure OpenAI service, set environment variables. If you intend to use keyless authentication, you shouldn't have the API Key environment variable set. 
 
-#### [TypeScript keyless (Recommended)](#tab/typescript)
+#### [TypeScript keyless (Recommended)](#tab/typescript-keyless)
 
 [!INCLUDE [assistants-keyless-environment-variables](assistants-env-var-without-key.md)]
 [!INCLUDE [environment-variables-deployment](assistants-env-var-additional.md)]
 
 #### [TypeScript with API key](#tab/typescript-key)
 
-[!INCLUDE [assistants-key-environment-variables](assistants-env-var.md)]
+[!INCLUDE [assistants-key-environment-variables](assistants-env-var-key.md)]
 [!INCLUDE [environment-variables-deployment](assistants-env-var-additional.md)]
 
-#### [JavaScript keyless](#tab/javascript)
+#### [JavaScript keyless](#tab/javascript-keyless)
 
 [!INCLUDE [assistants-keyless-environment-variables](assistants-env-var-without-key.md)]
 [!INCLUDE [environment-variables-deployment](assistants-env-var-additional.md)]
 
 #### [JavaScript with API key](#tab/javascript-key)
 
-[!INCLUDE [assistants-key-environment-variables](assistants-env-var.md)]
+[!INCLUDE [assistants-key-environment-variables](assistants-env-var-key.md)]
 [!INCLUDE [environment-variables-deployment](assistants-env-var-additional.md)]
+
+> [!CAUTION]
 
 ## Create an assistant
 
@@ -104,7 +106,7 @@ In our code we are going to specify the following values:
 
 An individual assistant can access up to 128 tools including `code interpreter`, as well as any custom tools you create via [functions](../how-to/assistant-functions.md).
 
-#### [TypeScript keyless (Recommended)](#tab/typescript)
+#### [TypeScript keyless (Recommended)](#tab/typescript-keyless)
 
 1. Create the `index.ts` file with the following **recommended** passwordless TypeScript module (index.ts):
 
@@ -353,7 +355,7 @@ An individual assistant can access up to 128 tools including `code interpreter`,
     node index.js
     ```
 
-#### [JavaScript keyless](#tab/javascript)
+#### [JavaScript keyless](#tab/javascript-keyless)
 
 1. Create the `index.js` file with the following **recommended** passwordless JavaScript module:
 
