@@ -2,10 +2,16 @@
 author: eric-urban
 ms.service: azure-ai-speech
 ms.topic: include
-ms.date: 9/30/2024
+ms.date: 10/9/2024
 ms.author: eur
 ms.custom: references_regions
 ---
+
+### October 2024 release
+
+#### Prebuilt high definition (HD) neural voice
+
+Azure AI speech high definition (HD) voices are available in public preview. The HD voices can understand the content, automatically detect emotions in the input text, and adjust the speaking tone in real-time to match the sentiment. HD voices maintain a consistent voice persona from their neural (and non HD) counterparts, and deliver even more value through enhanced features. For more information, see [What are Azure AI Speech high definition (HD) voices?](../../high-definition-voices.md).
 
 ### September 2024 release
 
