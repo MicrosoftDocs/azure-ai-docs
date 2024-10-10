@@ -9,7 +9,7 @@ ms.topic: conceptual
 author: lgayhardt
 ms.author: lagayhar
 ms.reviewer: chenlujiao
-ms.date: 10/08/2024
+ms.date: 10/10/2024
 ms.custom:
   - prompt-flow
   - ignite-2023
@@ -27,11 +27,10 @@ In this article, you learn how to transition RAG flows from your Azure Machine L
 
 ## Prerequisites
 
-To complete the procedures in this article, you need the following prerequisites:
-
 - Python 3.9 or above installed locally.
-  - The `promptflow` SDK and `promptflow-tools` installed by running `pip install promptflow promptflow-tools`.
-  - The `promptflow-vectordb` tool installed by running `pip install promptflow-vectordb`.
+
+  - The `promptflow` SDK and `promptflow-tools` packages installed by running `pip install promptflow promptflow-tools`.
+  - The `promptflow-vectordb` tool installed by running `pip install promptflow-vectordb[azure]`.
 
 - Visual Studio Code with the **Python** and **Prompt flow** extensions installed.
 
@@ -43,11 +42,13 @@ To complete the procedures in this article, you need the following prerequisites
 
 ## Create the prompt flow
 
-This tutorial uses the sample **Q&A on Your Data** RAG prompt flow. This flow contains a **lookup** node that uses the vector index lookup tool to search questions from the indexed docs. The index docs are stored in the workspace storage blob.
+This tutorial uses the sample **Q&A on Your Data** RAG prompt flow, which contains a **lookup** node that uses the vector index lookup tool to search questions from the indexed docs stored in the workspace storage blob.
 
 1. On the **Connections** tab of the Azure Machine Learning studio **Prompt flow** page, [set up a connection](prompt-flow/get-started-prompt-flow.md#set-up-connection) to your Azure OpenAI resource if you don't already have one.
 
-1. Select **Create** on the Azure Machine Learning studio **Prompt flow** page, and on the **Create a new flow** screen, select **Clone** on the **Q&A on Your Data** tile to clone the prompt flow.
+1. On the Azure Machine Learning studio **Prompt flow** page, select **Create**.
+
+1. On the **Create a new flow** screen, select **Clone** on the **Q&A on Your Data** tile to clone the example prompt flow.
 
    The cloned flow opens in the authoring interface.
 
@@ -71,13 +72,15 @@ This tutorial uses the sample **Q&A on Your Data** RAG prompt flow. This flow co
 
 ## Work with the flow in VS Code
 
-The rest of this article details how to use the VS Code Prompt flow extension to edit the flow. If you don't want to use the Prompt flow extension, you can open the unzipped folder in any integrated development environment (IDE) and use the CLI to edit the files. For more information, see the [Prompt flow quick start](https://microsoft.github.io/promptflow/how-to-guides/quick-start.html#quick-start).
+The rest of this article details how to use the VS Code Prompt flow extension to edit the flow. If you don't want to use the Prompt flow extension, you can open the unzipped folder in any integrated development environment (IDE) and use the CLI to edit the files. For more information, see [Prompt flow quick start](https://microsoft.github.io/promptflow/how-to-guides/quick-start.html#quick-start).
 
 1. In VS Code with the Prompt flow extension enabled, open the unzipped prompt flow folder.
 
 1. Select the **Prompt flow** icon in the left menu to open the Prompt flow management pane.
 
    :::image type="content" source="./media/how-to-retrieval-augmented-generation-cloud-to-local/vs-code-extension-toolbar.png" alt-text="Screenshot of the prompt flow VS Code extension icon in the VS Code left menu.":::
+
+1. If necessary, select **Install dependencies** and make sure the correct Python interpreter is selected and the **promptflow** and **promptflow-tools** packages are installed.
 
 ### Create the connections
 
@@ -93,8 +96,7 @@ To use the vector index lookup tool locally, you need to create the same connect
 
 1. Select the **Create connection** link at the bottom of the file. The app runs to create the connection. When prompted, enter the API key for your connection in the terminal.
 
-> [!NOTE]
-> You might also need to create a new Azure AI Search connection for the new version of the local vector index lookup tool to use. For more information, see [Index Lookup tool for Azure Machine Learning (Preview)](prompt-flow/tools-reference/index-lookup-tool.md) and [Package tool isn't found error](prompt-flow/tools-reference/troubleshoot-guidance.md#package-tool-isnt-found-error-occurs-when-you-update-the-flow-for-a-code-first-experience).
+1. Also create a new Azure AI Search connection for the new version of the local vector index lookup tool to use. For more information, see [Index Lookup tool for Azure Machine Learning (Preview)](prompt-flow/tools-reference/index-lookup-tool.md) and [Package tool isn't found error](prompt-flow/tools-reference/troubleshoot-guidance.md#package-tool-isnt-found-error-occurs-when-you-update-the-flow-for-a-code-first-experience).
 
 ### Check the files
 
@@ -102,12 +104,12 @@ To use the vector index lookup tool locally, you need to create the same connect
 
    :::image type="content" source="./media/how-to-retrieval-augmented-generation-cloud-to-local/visual-editor.png" alt-text="Screenshot of the flow dag yaml file with the visual editor highlighted in VS Code." lightbox = "./media/how-to-retrieval-augmented-generation-cloud-to-local/visual-editor.png":::
 
-1. In the visual editor version of *flow.dag.yaml*, scroll to the **lookup** node, which consumes the vector index lookup tool in this flow. Check the path of your indexed docs you specify. All publicly accessible paths are supported.
+1. In the visual editor version of *flow.dag.yaml*, scroll to the **lookup** node, which consumes the vector index lookup tool in this flow. Under **mlindex_content**, check the paths and connections for your **embeddings** and **index**.
 
-   :::image type="content" source="./media/how-to-retrieval-augmented-generation-cloud-to-local/search-blob.png" alt-text="Screenshot of search question from indexed docs node in VS Code showing the inputs.":::
+   :::image type="content" source="./media/how-to-retrieval-augmented-generation-cloud-to-local/search-blob.png" alt-text="Screenshot of indexed docs node in VS Code showing the inputs.":::
 
    > [!NOTE]
-   > If your indexed docs are a data asset in your workspace, local consumption requires Azure authentication. Make sure you're signed in to Azure and connected to your Azure Machine Learning workspace.
+   > If your indexed docs are a data asset in your workspace, local consumption requires Azure authentication. Make sure you're signed in to the correct Azure tenant and connected to your Azure Machine Learning workspace.
 
 1. Select the **Edit** icon in the **queries** input box, which opens the raw *flow.dag.yaml* file to the `lookup` node definition.
 
@@ -137,4 +139,5 @@ For more information about batch run and evaluation, see [Submit flow run to Azu
 
 - [Get started with prompt flow](prompt-flow/get-started-prompt-flow.md)
 - [Create a vector index in an Azure Machine Learning prompt flow (preview)](how-to-create-vector-index.md)
+- [Index Lookup tool for Azure AI Studio](/azure/ai-studio/how-to/prompt-flow-tools/index-lookup-tool)
 - [Integrate prompt flow with LLM-based application DevOps](prompt-flow/how-to-integrate-with-llm-app-devops.md)
