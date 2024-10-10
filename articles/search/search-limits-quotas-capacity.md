@@ -166,11 +166,14 @@ Maximum number of synonym maps varies by tier. Each rule can have up to 20 expan
 
 ## Index alias limits
 
-Maximum number of [index aliases](search-how-to-alias.md) varies by tier. In all tiers, the maximum number of aliases is double the maximum number of indexes allowed.
+Maximum number of [index aliases](search-how-to-alias.md) varies by tier and [service creation date](vector-search-index-size.md#how-to-check-service-creation-date). In all tiers, if the service was created after October 2022 the maximum number of aliases is double the maximum number of indexes allowed. If the service was created before October 2022, the limit is the number of indexes allowed.
 
-| Resource | Free | Basic | S1 | S2 | S3 | S3-HD |L1 | L2 |
+| Service Creation Date | Free | Basic | S1 | S2 | S3 | S3-HD |L1 | L2 |
 |----------|------|-------|----|----|----|-------|----|----|
-| Maximum aliases |6 |10 or 30 |100 |400 |400 |2000 per partition or 6000 per service |20 |20 |
+| Before October 2022 | 3 | 5 or 15 <sup>1</sup> | 50 | 200 | 200 | 1000 per partition or 3000 per service | 10 | 10 |
+| After October 2022 | 6 | 30 | 100 | 400 | 400 | 2000 per partition or 6000 per service | 20 | 20 |
+
+<sup>1</sup> Basic services created before December 2017 have lower limits (5 instead of 15) on indexes
 
 ## Data limits (AI enrichment)
 
