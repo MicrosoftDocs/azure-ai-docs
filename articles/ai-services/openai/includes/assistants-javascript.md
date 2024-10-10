@@ -578,6 +578,8 @@ Message content: "I need to solve the equation `3x + 11 = 14`. Can you help me?"
 
 It's important to remember that while the code interpreter gives the model the capability to respond to more complex queries by converting the questions into code and running that code iteratively in JavaScript until it reaches a solution, you still need to validate the response to confirm that the model correctly translated your question into a valid representation in code.
 
+---
+
 ## Clean up resources
 
 If you want to clean up and remove an Azure OpenAI resource, you can delete the resource or resource group. Deleting the resource group also deletes any other resources associated with it.
