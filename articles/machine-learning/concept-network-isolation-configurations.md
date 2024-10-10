@@ -7,7 +7,7 @@ ms.author: larryfr
 ms.reviewer: meerakurup
 ms.service: azure-machine-learning
 ms.topic: concept-article #Don't change.
-ms.date: 10/03/2024
+ms.date: 10/10/2024
 
 #customer intent: As an administrator, I want to understand the network isolation options so that I can plan my infrastructure.
 
@@ -69,7 +69,7 @@ The following table provides a comparison of the benefits and limitations of man
 
 - __Cost implications with Azure Firewall and FQDN rules__: An Azure Firewall is provisioned on behalf of the user only when a user-defined FQDN outbound rule is created. The Azure Firewall is the Standard SKU Firewall and incurs costs that are added to your billing. For more information, visit [Azure Firewall pricing](https://azure.microsoft.com/pricing/details/azure-firewall). 
 - __Logging and monitoring of managed virtual network NOT supported__: The managed virtual network doesn't support virtual network flow, NSG flow, or Firewall logs. This limitation is because the managed virtual network is deployed in a Microsoft tenant and can't be sent to your subscription. 
-- __Access to non-Azure, non-HTTP/S resources isn't supported__: The managed virtual network doesn't allow for access to non-Azure, non-HTTP/S resources. To access HTTP/S resources on-premises, private support through Azure Application Gateway is supported. For more information on Application Gateway set-up for on-premises access, visit [Configure Outbound Access to non-Azure Resources].
+- __Access to non-Azure, non-HTTP/S resources isn't supported__: The managed virtual network doesn't allow for access to non-Azure, non-HTTP/S resources.
 
 ## Related content
 
