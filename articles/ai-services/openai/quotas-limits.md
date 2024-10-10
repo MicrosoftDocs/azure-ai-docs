@@ -10,7 +10,7 @@ ms.custom:
   - ignite-2023
   - references_regions
 ms.topic: conceptual
-ms.date: 08/21/2024
+ms.date: 10/10/2024
 ms.author: mbullwin
 ---
 
@@ -66,10 +66,10 @@ The following sections provide you with a quick guide to the default quotas and 
 
 | Model|Tier| Quota Limit in tokens per minute (TPM) | Requests per minute |
 |---|---|:---:|:---:|
-| `o1-preview` | Enterprise agreement | 15 M | 2.5 K |
+| `o1-preview` | Enterprise agreement | 30 M | 5 K |
 | `o1-mini`| Enterprise agreement | 50 M | 5 K |
-| `o1-preview` | Default | 1.5 M | 250 |
-| `o1-mini`| Default | 1 M | 100 |
+| `o1-preview` | Default | 3 M | 500 |
+| `o1-mini`| Default | 5 M | 500 |
 
 ### o1-preview & o1-mini standard
 
