@@ -67,7 +67,8 @@ For passwordless authentication, you need to
 
 ## Retrieve resource information
 
-To successfully make a call against the Azure OpenAI service, set environment variables. If you intend to use keyless authentication, you shouldn't have the API Key environment variable set. 
+> [!CAUTION]
+> To use the recommended keyless authentication with the SDK, make sure that the `AZURE_OPENAI_API_KEY` environment variable isn't set. 
 
 #### [TypeScript keyless (Recommended)](#tab/typescript-keyless)
 
