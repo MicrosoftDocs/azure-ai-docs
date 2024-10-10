@@ -290,7 +290,7 @@ An HTTP 204 error indicates that the request was successful, but the resource do
 
 Here are examples that can result in the 400 error:
 
-- The source or target locale you specified isn't among the [supported locales](language-support.md?tabs=speech-translation#video-translation).
+- The source or target locale you specified isn't among the [supported locales](../../../language-support.md?tabs=speech-translation#video-translation).
 - You tried to use a _F0_ Speech resource, but the region only supports the _Standard_ Speech resource pricing tier.
 
 ### HTTP 500 error
