@@ -21,7 +21,7 @@ zone_pivot_groups: azure-ai-model-catalog-samples-chat
 In this article, you learn about Phi-3 chat model with vision and how to use them.
 The Phi-3 family of small language models (SLMs) is a collection of instruction-tuned generative text models.
 
-
+[!INCLUDE [maas-models-preview](../includes/maas-models-preview.md)]
 
 ::: zone pivot="programming-language-python"
 

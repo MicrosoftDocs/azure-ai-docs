@@ -25,7 +25,7 @@ JAIS 30b Chat is an autoregressive bi-lingual LLM for **Arabic** & **English**. 
 * **Input:** Model input is text only.
 * **Output:** Model generates text only.
 
-
+[!INCLUDE [maas-models-preview](../includes/maas-models-preview.md)]
 
 ::: zone pivot="programming-language-python"
 

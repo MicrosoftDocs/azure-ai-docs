@@ -22,7 +22,7 @@ The model catalog in Azure AI Studio is the hub to discover and use a wide range
 
 ## Model collections
 
-The model catalog organizes models into three types collections:
+The model catalog organizes models into three collections:
 
 * **Curated by Azure AI**: The most popular non-Microsoft open-weight and proprietary models packaged and optimized to work seamlessly on the Azure AI platform. Use of these models is subject to the model providers' license terms. When you deploy these models in Azure AI Studio, their availability is subject to the applicable [Azure service-level agreement (SLA)](https://www.microsoft.com/licensing/docs/view/Service-Level-Agreements-SLA-for-Online-Services), and Microsoft provides support for deployment problems.
 
