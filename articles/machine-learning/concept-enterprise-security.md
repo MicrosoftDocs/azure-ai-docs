@@ -90,19 +90,9 @@ You don't have to choose one or the other. For example, you can use an Azure Mac
   * Managed online endpoint
   * Batch online endpoint
 
-  For more information, see [Workspace managed virtual network isolation](how-to-managed-network.md).
-
 * __Azure Virtual Network instance__: Provides a more customizable virtual network offering. However, you're responsible for configuration and management. You might need to use network security groups, user-defined routes, or a firewall to restrict outbound communication.
 
-  For more information, see the following articles:
-
-  * [Secure Azure Machine Learning workspace resources using virtual networks](how-to-network-security-overview.md)
-  * [Secure an Azure Machine Learning workspace with virtual networks](how-to-secure-workspace-vnet.md)
-  * [Secure an Azure Machine Learning training environment with virtual networks](how-to-secure-training-vnet.md)
-  * [Secure an Azure Machine Learning inferencing environment with virtual networks](./how-to-secure-inferencing-vnet.md)
-  * [Use Azure Machine Learning studio in an Azure virtual network](how-to-enable-studio-virtual-network.md)
-  * [Use your workspace with a custom DNS server](how-to-custom-dns.md)
-  * [Configure inbound and outbound network traffic](how-to-access-azureml-behind-firewall.md)
+For more information, visit the [Compare network isolation configurations](concept-network-isolation-configurations.md) article.
 
 <a id="encryption-at-rest"></a><a id="azure-blob-storage"></a>
 
