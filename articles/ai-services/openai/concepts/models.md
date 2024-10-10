@@ -4,7 +4,7 @@ titleSuffix: Azure OpenAI
 description: Learn about the different model capabilities that are available with Azure OpenAI.
 ms.service: azure-ai-openai
 ms.topic: conceptual
-ms.date: 10/01/2024
+ms.date: 10/09/2024
 ms.custom: references_regions, build-2023, build-2023-dataai, refefences_regions
 manager: nitinme
 author: mrbullwinkle #ChrisHMSFT
@@ -221,7 +221,7 @@ print(response.model_dump_json(indent=2))
 
 ### Region availability
 
-Available for standard and global standard deployment in East US2 and Sweden Central for approved customers.
+Available for standard and global standard deployment in East US, East US2, North Central US, South Central US, Sweden Central, West US, and West US3 for approved customers.
 
 ## GPT-4o audio
 
