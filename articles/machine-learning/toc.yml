@@ -1193,6 +1193,8 @@ items:
         - name: Enterprise security overview
           displayName: authorization authentication encryption aad azure active directory
           href: concept-enterprise-security.md
+        - name: Network isolation configurations
+          href: concept-network-isolation-configurations.md
         - name: Secured workspace traffic flow
           href: concept-secure-network-traffic-flow.md
         - name: Security baseline

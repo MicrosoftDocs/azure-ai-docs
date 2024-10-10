@@ -23,7 +23,7 @@ Most users of the Realtime API need to deliver and receive audio from an end-use
 
 Currently only `gpt-4o-realtime-preview` version: `2024-10-01-preview` supports real-time audio.
 
-The `gpt-4o-realtime-preview` model is available for global deployments in [East US 2 and Sweden Central regions](../concepts/models.md#global-standard-model-availability).
+The `gpt-4o-realtime-preview` model is available for global deployments in [East US 2 and Sweden Central regions](./concepts/models.md#global-standard-model-availability).
 
 > [!IMPORTANT]
 > The system stores your prompts and completions as described in the "Data Use and Access for Abuse Monitoring" section of the service-specific Product Terms for Azure OpenAI Service, except that the Limited Exception does not apply. Abuse monitoring will be turned on for use of the `gpt-4o-realtime-preview` API even for customers who otherwise are approved for modified abuse monitoring.
@@ -38,13 +38,13 @@ Support for the Realtime API was first added in API version `2024-10-01-preview`
 ## Prerequisites
 
 - An Azure subscription - <a href="https://azure.microsoft.com/free/cognitive-services" target="_blank">Create one for free</a>.
-- An Azure OpenAI resource created in a [supported region](#supported-models). For more information, see [Create a resource and deploy a model with Azure OpenAI](../how-to/create-resource.md).
+- An Azure OpenAI resource created in a [supported region](#supported-models). For more information, see [Create a resource and deploy a model with Azure OpenAI](./how-to/create-resource.md).
 
 ## Deploy a model for real-time audio
 
 Before you can use GPT-4o real-time audio, you need a deployment of the `gpt-4o-realtime-preview` model in a supported region as described in the [supported models](#supported-models) section.
 
-You can deploy the model from the [Azure AI Studio model catalog](../../../ai-studio/how-to/model-catalog-overview.md) or from your project in AI Studio. Follow these steps to deploy a `gpt-4o-realtime-preview` model from the model catalog:
+You can deploy the model from the [Azure AI Studio model catalog](../../ai-studio/how-to/model-catalog-overview.md) or from your project in AI Studio. Follow these steps to deploy a `gpt-4o-realtime-preview` model from the model catalog:
 
 1. Sign in to [AI Studio](https://ai.azure.com) and go to the **Home** page.
 1. Select **Model catalog** from the left sidebar.
@@ -71,13 +71,13 @@ To chat with your deployed `gpt-4o-realtime-preview` model in the [Azure AI Stud
 1. Select your deployed `gpt-4o-realtime-preview` model from the **Deployment** dropdown. 
 1. Select **Enable microphone** to allow the browser to access your microphone. If you already granted permission, you can skip this step.
 
-    :::image type="content" source="../media/how-to/real-time/real-time-playground.png" alt-text="Screenshot of the real-time audio playground with the deployed model selected." lightbox="../media/how-to/real-time/real-time-playground.png":::
+    :::image type="content" source="./media/how-to/real-time/real-time-playground.png" alt-text="Screenshot of the real-time audio playground with the deployed model selected." lightbox="./media/how-to/real-time/real-time-playground.png":::
 
 1. Optionally you can edit contents in the **Give the model instructions and context** text box. Give the model instructions about how it should behave and any context it should reference when generating a response. You can describe the assistant's personality, tell it what it should and shouldn't answer, and tell it how to format responses.
 1. Optionally, change settings such as threshold, prefix padding, and silence duration.
 1. Select **Start listening** to start the session. You can speak into the microphone to start a chat.
 
-    :::image type="content" source="../media/how-to/real-time/real-time-playground-start-listening.png" alt-text="Screenshot of the real-time audio playground with the start listening button and microphone access enabled." lightbox="../media/how-to/real-time/real-time-playground-start-listening.png":::
+    :::image type="content" source="./media/how-to/real-time/real-time-playground-start-listening.png" alt-text="Screenshot of the real-time audio playground with the start listening button and microphone access enabled." lightbox="./media/how-to/real-time/real-time-playground-start-listening.png":::
 
 1. You can interrupt the chat at any time by speaking. You can end the chat by selecting the **Stop listening** button.
 
@@ -129,5 +129,5 @@ You can run the sample code locally on your machine by following these steps. Re
 
 ## Related content
 
-* Learn more about Azure OpenAI [deployment types](./deployment-types.md)
-* Learn more about Azure OpenAI [quotas and limits](../quotas-limits.md)
+* Learn more about Azure OpenAI [deployment types](./how-to/deployment-types.md)
+* Learn more about Azure OpenAI [quotas and limits](quotas-limits.md)
