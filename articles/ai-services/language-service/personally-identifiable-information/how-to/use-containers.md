@@ -1,7 +1,7 @@
 ---
-title: Use personally identifiable information Docker containers on-premises
+title: Use personally identifiable information (PII) detection Docker containers on-premises
 titleSuffix: Azure AI services
-description: Use Docker containers for the Personally Identifiable Information API to determine the language of written text, on-premises.
+description: Use Docker containers for the Personally Identifiable Information (PII) detection API to determine the language of written text, on-premises.
 #services: cognitive-services
 author: jboback
 manager: nitinme
@@ -16,7 +16,7 @@ keywords: on-premises, Docker, container
 # Install and run Personally Identifiable Information (PII) Detection containers
 
 > [!NOTE]
-> The data limits for the PII container are 5120 characters and 10 documents max.
+> The data limits in a single synchronous API call for the PII container are 5120 characters per document and up to 10 documents per call.
 
 Containers enable you to host the PII detection API on your own infrastructure. If you have security or data governance requirements that can't be fulfilled by calling PII detection remotely, then containers might be a good option.
 
