@@ -2,10 +2,16 @@
 author: eric-urban
 ms.service: azure-ai-speech
 ms.topic: include
-ms.date: 9/30/2024
+ms.date: 10/9/2024
 ms.author: eur
 ms.custom: references_regions
 ---
+
+### October 2024 release
+
+#### Prebuilt high definition (HD) neural voice
+
+Azure AI speech high definition (HD) voices are available in public preview. The HD voices can understand the content, automatically detect emotions in the input text, and adjust the speaking tone in real-time to match the sentiment. HD voices maintain a consistent voice persona from their neural (and non HD) counterparts, and deliver even more value through enhanced features. For more information, see [What are Azure AI Speech high definition (HD) voices?](../../high-definition-voices.md).
 
 ### September 2024 release
 
@@ -18,6 +24,12 @@ Added support and general availability for new voices in the following locales:
 | `as-IN` | Assamese (India) | `as-IN-YashicaNeural` (Female)<br/>`as-IN-PriyomNeural` (Male) |
 | `or-IN` | Oriya (India) | `or-IN-SubhasiniNeural` (Female)<br/>`or-IN-SukantNeural` (Male) |
 | `pa-IN` | Punjabi (India) | `pa-IN-OjasNeural` (Male)<br/>`pa-IN-VaaniNeural` (Female) |
+
+The one voice in this table is generally available and supports only the 'en-IN' locale.
+
+| Locale (BCP-47) | Language | Text to speech voices |
+|---------|-------------------|--------|
+| `en-IN`   | English (India)    | `en-IN-AashiNeural` (Female)|
 
 The five voices in this table are generally available and support both "en-IN" and "hi-IN" locales. 
 
@@ -44,7 +56,7 @@ Added new styles for the following voices:
 - `es-ES-AlvaroNeural`: `cheerful`, `sad`
 - `ko-KR-InjoonNeural`: `sad`
 
-See the [Voice styles and roles](../../language-support.md?tabs=tts#voice-styles-and-roles) for more information.'
+See the [Voice styles and roles](../../language-support.md?tabs=tts#voice-styles-and-roles) for more information.
 
 ### August 2024 release
 

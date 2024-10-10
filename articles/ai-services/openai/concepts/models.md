@@ -4,7 +4,7 @@ titleSuffix: Azure OpenAI
 description: Learn about the different model capabilities that are available with Azure OpenAI.
 ms.service: azure-ai-openai
 ms.topic: conceptual
-ms.date: 10/01/2024
+ms.date: 10/09/2024
 ms.custom: references_regions, build-2023, build-2023-dataai, refefences_regions
 manager: nitinme
 author: mrbullwinkle #ChrisHMSFT
@@ -49,11 +49,179 @@ Once access has been granted, you will need to create a deployment for each mode
 
 Support for the **o1 series** models was added in API version `2024-09-01-preview`.
 
-The `max_tokens` parameter has been deprecated and replaced with the new `max_completion_tokens` parameter. **o1 series** models will only work with the `max_completions_tokens` parameter. 
+The `max_tokens` parameter has been deprecated and replaced with the new `max_completion_tokens` parameter. **o1 series** models will only work with the `max_completion_tokens` parameter.
+
+### Usage
+
+These models do not currently support the same set of parameters as other models that use the chat completions API. Only a very limited subset is currently supported, so common parameters like `temperature`, `top_p`, are not available and including them will cause your request to fail. `o1-preview` and `o1-mini` models will also not accept the system message role as part of the messages array.
+
+# [Python (Microsoft Entra ID)](#tab/python-secure)
+
+You may need to upgrade your version of the OpenAI Python library to take advantage of the new `max_completion_tokens` parameter.
+
+```cmd
+pip install openai --upgrade
+```
+
+If you are new to using Microsoft Entra ID for authentication see [How to configure Azure OpenAI Service with Microsoft Entra ID authentication](../how-to/managed-identity.md).
+
+```python
+from openai import AzureOpenAI
+from azure.identity import DefaultAzureCredential, get_bearer_token_provider
+
+token_provider = get_bearer_token_provider(
+    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
+)
+
+client = AzureOpenAI(
+  azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT"), 
+  azure_ad_token_provider=token_provider,
+  api_version="2024-09-01-preview"
+)
+
+response = client.chat.completions.create(
+    model="o1-preview-new", # replace with the model deployment name of your o1-preview, or o1-mini model
+    messages=[
+        {"role": "user", "content": "What steps should I think about when writing my first Python API?"},
+    ],
+    max_completion_tokens = 5000
+
+)
+
+print(response.model_dump_json(indent=2))
+```
+
+# [Python (key-based auth)](#tab/python)
+
+You may need to upgrade your version of the OpenAI Python library to take advantage of the new `max_completion_tokens` parameter.
+
+```cmd
+pip install openai --upgrade
+```
+
+```python
+
+from openai import AzureOpenAI
+
+client = AzureOpenAI(
+  azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT"), 
+  api_key=os.getenv("AZURE_OPENAI_API_KEY"),  
+  api_version="2024-09-01-preview"
+)
+
+response = client.chat.completions.create(
+    model="o1-preview-new", # replace with the model deployment name of your o1-preview, or o1-mini model
+    messages=[
+        {"role": "user", "content": "What steps should I think about when writing my first Python API?"},
+    ],
+    max_completion_tokens = 5000
+
+)
+
+print(response.model_dump_json(indent=2))
+```
+
+# [Output](#tab/python-output)
+
+```json
+{
+  "id": "chatcmpl-AEj7pKFoiTqDPHuxOcirA9KIvf3yz",
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "logprobs": null,
+      "message": {
+        "content": "Writing your first Python API is an exciting step in developing software that can communicate with other applications. An API (Application Programming Interface) allows different software systems to interact with each other, enabling data exchange and functionality sharing. Here are the steps you should consider when creating your first Python API:\n\n1. **Define the Purpose and Requirements**\n\n   - **Identify the Functionality**: Clearly outline what your API is supposed to do. What data or services will it provide to the users?\n   - **Determine the Endpoints**: Plan the different URLs (endpoints) through which users can access the API functionalities.\n   - **Specify Request and Response Formats**: Decide on the data formats (usually JSON) for incoming requests and outgoing responses.\n\n2. **Choose the Right Framework**\n\n   Python offers several frameworks for building APIs. Two of the most popular are:\n\n   - **Flask**: A lightweight and flexible web framework, great for small to medium-sized APIs.\n   - **FastAPI**: A modern, high-performance framework for building APIs with Python 3.6+ types, offering automatic interactive documentation.\n\n   **Example**:\n   ```bash\n   pip install flask\n   ```\n   or\n   ```bash\n   pip install fastapi uvicorn\n   ```\n\n3. **Set Up the Development Environment**\n\n   - **Create a Virtual Environment**: Isolate your project dependencies using `venv` or `conda`.\n   - **Install Required Packages**: Ensure all necessary libraries and packages are installed.\n\n   **Example**:\n   ```bash\n   python -m venv env\n   source env/bin/activate  # On Windows use `env\\Scripts\\activate`\n   ```\n\n4. **Implement the API Endpoints**\n\n   - **Write the Code for Each Endpoint**: Implement the logic that handles requests and returns responses.\n   - **Use Decorators to Define Routes**: In frameworks like Flask, you use decorators to specify the URL endpoints.\n\n   **Example with Flask**:\n   ```python\n   from flask import Flask, request, jsonify\n\n   app = Flask(__name__)\n\n   @app.route('/hello', methods=['GET'])\n   def hello_world():\n       return jsonify({'message': 'Hello, World!'})\n\n   if __name__ == '__main__':\n       app.run(debug=True)\n   ```\n\n5. **Handle Data Serialization and Deserialization**\n\n   - **Parsing Incoming Data**: Use libraries to parse JSON or other data formats from requests.\n   - **Formatting Output Data**: Ensure that responses are properly formatted in JSON or XML.\n\n6. **Implement Error Handling**\n\n   - **Handle Exceptions Gracefully**: Provide meaningful error messages and HTTP status codes.\n   - **Validate Input Data**: Check for required fields and appropriate data types to prevent errors.\n\n   **Example**:\n   ```python\n   @app.errorhandler(404)\n   def resource_not_found(e):\n       return jsonify(error=str(e)), 404\n   ```\n\n7. **Add Authentication and Authorization (If Necessary)**\n\n   - **Secure Endpoints**: If your API requires, implement security measures such as API keys, tokens (JWT), or OAuth.\n   - **Manage User Sessions**: Handle user login states and permissions appropriately.\n\n8. **Document Your API**\n\n   - **Use Tools Like Swagger/OpenAPI**: Automatically generate interactive API documentation.\n   - **Provide Usage Examples**: Help users understand how to interact with your API.\n\n   **Example with FastAPI**:\n   FastAPI automatically generates docs at `/docs` using Swagger UI.\n\n9. **Test Your API**\n\n   - **Write Unit and Integration Tests**: Ensure each endpoint works as expected.\n   - **Use Testing Tools**: Utilize tools like `unittest`, `pytest`, or API testing platforms like Postman.\n\n   **Example**:\n   ```python\n   import unittest\n   class TestAPI(unittest.TestCase):\n       def test_hello_world(self):\n           response = app.test_client().get('/hello')\n           self.assertEqual(response.status_code, 200)\n   ```\n\n10. **Optimize Performance**\n\n    - **Improve Response Times**: Optimize your code and consider using asynchronous programming if necessary.\n    - **Manage Resource Utilization**: Ensure your API can handle the expected load.\n\n11. **Deploy Your API**\n\n    - **Choose a Hosting Platform**: Options include AWS, Heroku, DigitalOcean, etc.\n    - **Configure the Server**: Set up the environment to run your API in a production setting.\n    - **Use a Production Server**: Instead of the development server, use WSGI servers like Gunicorn or Uvicorn.\n\n    **Example**:\n    ```bash\n    uvicorn main:app --host 0.0.0.0 --port 80\n    ```\n\n12. **Monitor and Maintain**\n\n    - **Logging**: Implement logging to track events and errors.\n    - **Monitoring**: Use monitoring tools to track performance and uptime.\n    - **Update and Patch**: Keep dependencies up to date and patch any security vulnerabilities.\n\n13. **Consider Versioning**\n\n    - **Plan for Updates**: Use versioning in your API endpoints to manage changes without breaking existing clients.\n    - **Example**:\n      ```python\n      @app.route('/v1/hello', methods=['GET'])\n      ```\n\n14. **Gather Feedback and Iterate**\n\n    - **User Feedback**: Encourage users to provide feedback on your API.\n    - **Continuous Improvement**: Use the feedback to make improvements and add features.\n\n**Additional Tips**:\n\n- **Keep It Simple**: Start with a minimal viable API and expand functionality over time.\n- **Follow RESTful Principles**: Design your API according to REST standards to make it intuitive and standard-compliant.\n- **Security Best Practices**: Always sanitize inputs and protect against common vulnerabilities like SQL injection and cross-site scripting (XSS).\nBy following these steps, you'll be well on your way to creating a functional and robust Python API. Good luck with your development!",
+        "refusal": null,
+        "role": "assistant",
+        "function_call": null,
+        "tool_calls": null
+      },
+      "content_filter_results": {
+        "hate": {
+          "filtered": false,
+          "severity": "safe"
+        },
+        "protected_material_code": {
+          "filtered": false,
+          "detected": false
+        },
+        "protected_material_text": {
+          "filtered": false,
+          "detected": false
+        },
+        "self_harm": {
+          "filtered": false,
+          "severity": "safe"
+        },
+        "sexual": {
+          "filtered": false,
+          "severity": "safe"
+        },
+        "violence": {
+          "filtered": false,
+          "severity": "safe"
+        }
+      }
+    }
+  ],
+  "created": 1728073417,
+  "model": "o1-preview-2024-09-12",
+  "object": "chat.completion",
+  "service_tier": null,
+  "system_fingerprint": "fp_503a95a7d8",
+  "usage": {
+    "completion_tokens": 1843,
+    "prompt_tokens": 20,
+    "total_tokens": 1863,
+    "completion_tokens_details": {
+      "audio_tokens": null,
+      "reasoning_tokens": 448
+    },
+    "prompt_tokens_details": {
+      "audio_tokens": null,
+      "cached_tokens": 0
+    }
+  },
+  "prompt_filter_results": [
+    {
+      "prompt_index": 0,
+      "content_filter_results": {
+        "custom_blocklists": {
+          "filtered": false
+        },
+        "hate": {
+          "filtered": false,
+          "severity": "safe"
+        },
+        "jailbreak": {
+          "filtered": false,
+          "detected": false
+        },
+        "self_harm": {
+          "filtered": false,
+          "severity": "safe"
+        },
+        "sexual": {
+          "filtered": false,
+          "severity": "safe"
+        },
+        "violence": {
+          "filtered": false,
+          "severity": "safe"
+        }
+      }
+    }
+  ]
+}
+```
+
+---
 
 ### Region availability
 
-Available for standard and global standard deployment in East US2 and Sweden Central for approved customers.
+Available for standard and global standard deployment in East US, East US2, North Central US, South Central US, Sweden Central, West US, and West US3 for approved customers.
 
 ## GPT-4o audio
 
@@ -61,7 +229,7 @@ The `gpt-4o-realtime-preview` model is part of the GPT-4o model family and suppo
 
 GPT-4o audio is available in the East US 2 (`eastus2`) and Sweden Central (`swedencentral`) regions. To use GPT-4o audio, you need to [create](../how-to/create-resource.md) or use an existing resource in one of the supported regions.
 
-When your resource is created, you can [deploy](../how-to/create-resource.md#deploy-a-model) the GPT-4o audio model. If you are performing a programmatic deployment, the **model** name is `gpt-4o-realtime-preview`. For more information on how to use GPT-4o audio, see the [GPT-4o audio documentation](../how-to/audio-real-time.md).
+When your resource is created, you can [deploy](../how-to/create-resource.md#deploy-a-model) the GPT-4o audio model. If you are performing a programmatic deployment, the **model** name is `gpt-4o-realtime-preview`. For more information on how to use GPT-4o audio, see the [GPT-4o audio documentation](../realtime-audio-quickstart.md).
 
 Details about maximum request tokens and training data are available in the following table.
 
@@ -196,7 +364,7 @@ You can also use the OpenAI text to speech voices via Azure AI Speech. To learn 
 
 [!INCLUDE [Standard Models](../includes/model-matrix/standard-models.md)]
 
-This table doesn't include fine-tuning regional availability information.  Consult the  the [fine-tuning section](#fine-tuning-models) for this information.
+This table doesn't include fine-tuning regional availability information.  Consult the [fine-tuning section](#fine-tuning-models) for this information.
 
 For information on default quota, refer to the [quota and limits article](../quotas-limits.md).
 
@@ -262,10 +430,10 @@ These models can only be used with Embedding API requests.
 
 |  Model ID | Max Request (tokens) | Output Dimensions |Training Data (up-to)
 |---|---| :---:|:---:|:---:|
-| `text-embedding-ada-002` (version 2) |8,191 | 1,536 | Sep 2021 |
+| `text-embedding-ada-002` (version 2) |8,192 | 1,536 | Sep 2021 |
 | `text-embedding-ada-002` (version 1) |2,046 | 1,536 | Sep 2021 |
-| `text-embedding-3-large` | 8,191 | 3,072 |Sep 2021 |
-| `text-embedding-3-small` | 8,191|  1,536 | Sep 2021 |
+| `text-embedding-3-large` | 8,192 | 3,072 |Sep 2021 |
+| `text-embedding-3-small` | 8,192|  1,536 | Sep 2021 |
 
 > [!NOTE]
 > When sending an array of inputs for embedding, the max number of input items in the array per call to the embedding endpoint is 2048.

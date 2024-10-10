@@ -109,7 +109,7 @@ If you do not explicitly specify a `validation_data` or `n_cross_validation` par
 > [!TIP] 
 > You can upload **test data (preview)** to evaluate models that automated ML generated for you. These features are  [experimental](/python/api/overview/azure/ml/#stable-vs-experimental) preview capabilities, and may change at any time.
 > Learn how to: 
-> * [Pass in test data to your AutoMLConfig object](how-to-configure-cross-validation-data-splits.md#provide-test-data-preview). 
+> * [Pass in test data to your AutoMLConfig object](how-to-configure-cross-validation-data-splits.md#provide-test-dataset-preview). 
 > * [Test the models automated ML generated for your experiment](#test-models-preview).
 >  
 > If you prefer a no-code experience, see [step 12 in Set up AutoML with the studio UI](../how-to-use-automated-ml-for-ml-models.md#create-and-run-experiment)
@@ -446,10 +446,10 @@ RunDetails(run).show()
 > This feature is not available for the following automated ML scenarios
 >  * [Computer vision tasks](../how-to-auto-train-image-models.md)
 >  * [Many models and hiearchical time series forecasting training (preview)](../how-to-auto-train-forecast.md)
->  * [Forecasting tasks where deep learning neural networks (DNN) are enabled](../how-to-auto-train-forecast.md#enable-deep-learning)
+>  * [Forecasting tasks where deep learning neural networks (DNN) are enabled](../how-to-auto-train-forecast.md#enable-learning-for-deep-neural-networks)
 >  * [Automated ML runs from local computes or Azure Databricks clusters](../how-to-configure-auto-train.md#compute-to-run-experiment)
 
-Passing the `test_data` or `test_size` parameters into the `AutoMLConfig`, automatically triggers a remote test run that uses the provided test data to evaluate the best model that automated ML recommends upon completion of the experiment. This remote test run is done at the end of the experiment, once the best model is determined. See how to [pass test data into your `AutoMLConfig`](how-to-configure-cross-validation-data-splits.md#provide-test-data-preview). 
+Passing the `test_data` or `test_size` parameters into the `AutoMLConfig`, automatically triggers a remote test run that uses the provided test data to evaluate the best model that automated ML recommends upon completion of the experiment. This remote test run is done at the end of the experiment, once the best model is determined. See how to [pass test data into your `AutoMLConfig`](how-to-configure-cross-validation-data-splits.md#provide-test-dataset-preview). 
 
 ### Get test job results 
 

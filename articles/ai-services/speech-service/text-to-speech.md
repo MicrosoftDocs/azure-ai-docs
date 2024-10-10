@@ -44,7 +44,7 @@ Here's more information about neural text to speech features in the Speech servi
   - Convert digital texts such as e-books into audiobooks.
   - Enhance in-car navigation systems.
 
-  For a full list of platform neural voices, see [Language and voice support for the Speech service](language-support.md?tabs=tts).
+  For a full list of prebuilt Azure AI Speech neural voices, see [Language and voice support for the Speech service](language-support.md?tabs=tts).
 
 * **Improve text to speech output with SSML**: Speech Synthesis Markup Language (SSML) is an XML-based markup language used to customize text to speech outputs. With SSML, you can adjust pitch, add pauses, improve pronunciation, change speaking rate, adjust volume, and attribute multiple voices to a single document.
 
@@ -55,9 +55,12 @@ Here's more information about neural text to speech features in the Speech servi
   By using viseme events in Speech SDK, you can generate facial animation data. This data can be used to animate faces in lip-reading communication, education, entertainment, and customer service. Viseme is currently supported only for the `en-US` (US English) [neural voices](language-support.md?tabs=tts).
 
 > [!NOTE]
-> We plan to retire the traditional/standard voices and non-neural custom voice in 2024. After that, we'll no longer support them. 
+> In addition to Azure AI Speech neural (non HD) voices, you can also use [Azure AI Speech high definition (HD) voices](high-definition-voices.md) and [Azure OpenAI neural (HD and non HD) voices](openai-voices.md). The HD voices provide a higher quality for more versatile scenarios.
 > 
-> If your applications, tools, or products are using any of the standard voices and custom voices, you must migrate to the neural version. For more information, see [Migrate to neural voices](migration-overview-neural-voice.md).
+> Some voices don't support all [Speech Synthesis Markup Language (SSML)](speech-synthesis-markup-structure.md) tags. This includes neural text to speech HD voices, personal voices, and embedded voices. 
+- For Azure AI Speech high definition (HD) voices, check the SSML support [here](high-definition-voices.md#supported-and-unsupported-ssml-elements-for-azure-ai-speech-hd-voices). 
+- For personal voice, you can find the SSML support [here](personal-voice-how-to-use.md#supported-and-unsupported-ssml-elements-for-personal-voice). 
+- For embedded voices, check the SSML support [here](embedded-speech.md#embedded-voices-capabilities).
 
 ## Get started
 

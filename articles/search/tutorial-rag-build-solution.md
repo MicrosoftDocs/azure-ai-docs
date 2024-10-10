@@ -8,17 +8,17 @@ author: HeidiSteen
 ms.author: heidist
 ms.service: cognitive-search
 ms.topic: overview
-ms.date: 09/12/2024
+ms.date: 10/04/2024
 
 ---
 
 # How to build a RAG solution using Azure AI Search
 
-This tutorial series demonstrates a pattern for building RAG solutions on Azure AI Search. It covers the components built in Azure AI Search, dependencies, optimizations, and deployment tasks.
+This tutorial series demonstrates a pattern for building RAG solutions on Azure AI Search. It covers the components built in Azure AI Search, dependencies, and optimizations for maximizing relevance and minimizing costs.
 
-Sample data is a [collection of PDFs](https://github.com/Azure-Samples/azure-search-sample-data/tree/main/nasa-e-book/earth_book_2019_text_pages) uploaded to Azure Storage.
+Sample data is a [collection of PDFs](https://github.com/Azure-Samples/azure-search-sample-data/tree/main/nasa-e-book/earth_book_2019_text_pages) uploaded to Azure Storage. The content is from [NASA's Earth free e-book](https://www.nasa.gov/ebooks/earth/).
 
-Sample code can be found in [this Python notebook](https://github.com/Azure-Samples/azure-search-python-samples/blob/main/Tutorial-RAG/Tutorial-rag.ipynb), but we recommend using this series for context, insights, and for exploring alternative approaches.
+Sample code can be found in [this Python notebook](https://github.com/Azure-Samples/azure-search-python-samples/blob/main/Tutorial-RAG/Tutorial-rag.ipynb), but we recommend using the articles in this series for context, insights, and for exploring alternative approaches.
 
 ## Exercises in this series
 
@@ -34,15 +34,15 @@ Sample code can be found in [this Python notebook](https://github.com/Azure-Samp
 
 - Minimize storage and costs
 
-- Deploy and secure an app
+<!-- - Deploy and secure an app -->
 
 We omitted a few aspects of a RAG pattern to reduce complexity:
 
-- No management of chat history and context. Chat history is typically stored and managed separately from your grounding data, which means extra steps and code. This tutorial assumes atomic question and answers from the LLM.
+- No management of chat history and context. Chat history is typically stored and managed separately from your grounding data, which means extra steps and code. This tutorial assumes atomic question and answers from the LLM and the default LLM experience.
 
 - No per-user user security over results (what we refer to as "security trimming"). For more information and resources, start with [Security trimming](search-security-trimming-for-azure-search.md) and make sure to review the links at the end of the article.
 
-This series covers the fundamentals of RAG solution development. Once you understand the basics, continue with accelerators and other code samples that provide more abstraction or are otherwise better suited for production environments and more complex workloads.
+This series covers the fundamentals of RAG solution development. Once you understand the basics, continue with [accelerators](resource-tools.md) and other [code samples](https://github.com/Azure/azure-search-vector-samples) that provide more abstraction or are otherwise better suited for production environments and more complex workloads.
 
 ## Why use Azure AI Search for RAG?
 

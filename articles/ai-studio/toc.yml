@@ -304,36 +304,35 @@ items:
       href: how-to/quota.md
     - name: Increase rate limit
       href: how-to/autoscale.md
-  - name: Infrastructure & security
+- name: Security & Governance
+  items:
+  - name: Identity & access management
     items:
-    - name: Identity & access management
-      items:
-      - name: Role-based access control in Azure AI Studio
-        href: concepts/rbac-ai-studio.md
-    - name: Network security
-      items:
-      - name: Configure managed network
-        href: how-to/configure-managed-network.md
-      - name: Configure private link
-        href: how-to/configure-private-link.md
-      - name: Configure custom DNS
-        href: /azure/machine-learning/how-to-custom-dns?context=/azure/ai-studio/context/context
-      - name: Secure playground chat
-        href: how-to/secure-data-playground.md
-      - name: Troubleshoot secure project connectivity
-        href: how-to/troubleshoot-secure-connection-project.md
-    - name: Data protection & encryption
-      items:
-      - name: Rotate keys
-        href: ../ai-services/rotate-keys.md?context=/azure/ai-studio/context/context
-      - name: Configure customer-managed keys
-        href: ../ai-services/encryption/cognitive-services-encryption-keys-portal.md?context=/azure/ai-studio/context/context
-    - name: Vulnerability management
-      href: concepts/vulnerability-management.md
-    - name: Disaster recovery
-      href: how-to/disaster-recovery.md
-    - name: Security baseline
-      href: /security/benchmark/azure/baselines/azure-ai-studio-security-baseline
+    - name: Role-based access control in Azure AI Studio
+      href: concepts/rbac-ai-studio.md
+  - name: Network security
+    items:
+    - name: Configure managed network
+      href: how-to/configure-managed-network.md
+    - name: Configure private link
+      displayName: custom dns
+      href: how-to/configure-private-link.md
+    - name: Secure playground chat
+      href: how-to/secure-data-playground.md
+    - name: Troubleshoot secure project connectivity
+      href: how-to/troubleshoot-secure-connection-project.md
+  - name: Data protection & encryption
+    items:
+    - name: Configure customer-managed keys
+      href: concepts/encryption-keys-portal.md
+    - name: Rotate keys
+      href: ../ai-services/rotate-keys.md?context=/azure/ai-studio/context/context
+  - name: Vulnerability management
+    href: concepts/vulnerability-management.md
+  - name: Disaster recovery
+    href: how-to/disaster-recovery.md
+  - name: Security baseline
+    href: /security/benchmark/azure/baselines/azure-ai-studio-security-baseline
 - name: Responsible AI
   items:
   - name: Overview
