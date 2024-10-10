@@ -74,7 +74,7 @@ Follow the [Quickstart: Direct web traffic using the portal](/azure/application-
 
 ### Configure using Python SDK and Azure CLI
 
-To create a private endpoint to Application Gateway with SDK, see [Azure SDK for Python](/python/api/azure-ai-ml/azure.ai.ml.entities.privateendpointdestination?view=azure-python).
+To create a private endpoint to Application Gateway with SDK, see [Azure SDK for Python](/python/api/azure-ai-ml/azure.ai.ml.entities.privateendpointdestination).
 
 To create a private endpoint to Application Gateway with the Azure CLI, see [Configure a managed network](how-to-managed-network.md?tabs=azure-cli).
 
