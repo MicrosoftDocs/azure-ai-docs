@@ -167,7 +167,7 @@ When you're ready to create an indexer on a remote search service, you need a se
 
    + [**Import data** wizard](search-import-data-portal.md): The wizard is unique in that it creates all of the required elements. Other approaches require a predefined data source and index.
 
-   :::image type="content" source="media/search-how-to-create-indexers/portal-indexer-client.png" alt-text="Screenshot that shows the Import data wizrd." border="true":::
+   :::image type="content" source="media/search-how-to-create-indexers/portal-indexer-client.png" alt-text="Screenshot that shows the Import data wizard." border="true":::
 
    + **Add indexer**: A visual editor for specifying an indexer definition.
 
