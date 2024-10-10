@@ -5,7 +5,7 @@ description: Set up an Azure Data Lake Storage (ADLS) Gen2 indexer to automate i
 author: gmndrg
 ms.author: gimondra
 manager: vinodva
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: how-to
