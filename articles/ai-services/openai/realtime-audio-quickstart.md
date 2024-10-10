@@ -77,7 +77,7 @@ To chat with your deployed `gpt-4o-realtime-preview` model in the [Azure AI Stud
 1. Optionally, change settings such as threshold, prefix padding, and silence duration.
 1. Select **Start listening** to start the session. You can speak into the microphone to start a chat.
 
-    :::image type="content" source="../media/how-to/real-time/real-time-playground-start-listening.png" alt-text="Screenshot of the real-time audio playground with the start listening button and microphone access enabled." lightbox="../media/how-to/real-time/real-time-playground-start-listening.png":::
+    :::image type="content" source="./media/how-to/real-time/real-time-playground-start-listening.png" alt-text="Screenshot of the real-time audio playground with the start listening button and microphone access enabled." lightbox="./media/how-to/real-time/real-time-playground-start-listening.png":::
 
 1. You can interrupt the chat at any time by speaking. You can end the chat by selecting the **Stop listening** button.
 
