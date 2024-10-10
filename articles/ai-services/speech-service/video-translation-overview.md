@@ -63,7 +63,7 @@ We support video translation between various languages, enabling you to tailor y
 
 ## Get started 
 
-To get started with video translation, refer to [video translation in the studio](video-translation-studio.md). The video translation API will be available soon.
+To get started with video translation, refer to [How to use video translation](video-translation-get-started.md).
 
 ## Price 
 
@@ -71,5 +71,5 @@ For pricing details on video translation, see [Speech service pricing](https://a
 
 ## Related content
 
-* Try the [video translation in the studio](video-translation-studio.md)
+* Try the [video translation](video-translation-get-started.md)
   
