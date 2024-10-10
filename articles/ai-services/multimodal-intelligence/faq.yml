@@ -1,0 +1,24 @@
+### YamlMime:FAQ
+metadata:
+  title: Azure AI Multimodal Intelligence FAQ
+  description: Get answers to frequently asked questions about the Document Intelligence service.
+  author: laujan
+  manager: nitinme
+  ms.service: TODO
+  ms.topic: faq
+  ms.date: 10/09/2024
+  ms.author: lajanuar
+title: Frequently asked questions
+summary: |
+  
+    Azure AI Multimodal Intelligence is cloud-based a data solution designed to process both structured and unstructured content across various modalities, including documents, images, videos, and audio.
+
+sections:
+  - name: Overview
+    questions:
+      - question: |
+         Can I continue to use the Document Intelligence capabilities with the new Azure AI Multimodal Intelligence service?
+        answer: |
+          **Yes.**
+
+          Current users of Document Intelligence can continue utilizing the service while the Multimodal service is under development. Following the General Availability (GA) release of Document Intelligence v4.0, its capabilities integrate into the Multimodal Intelligence service. Future investments in document-related scenarios are then accessible through the Multimodal Intelligence service. Existing customers can easily transition to Multimodal Intelligence with minimal disruption.

@@ -12,4 +12,4 @@ ms.author: lajanuar
 ---
 
 
-# Service quotas and limits
+# Service limits and quotas
