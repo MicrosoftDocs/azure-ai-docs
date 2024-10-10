@@ -112,6 +112,9 @@ You can use the following policy to disable access to Azure OpenAI global standa
                     "equals": "GlobalStandard"
                 }
             ]
+        },
+        "then": {
+            "effect": "deny"
         }
     }
 }
