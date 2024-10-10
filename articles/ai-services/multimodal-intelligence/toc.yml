@@ -7,9 +7,6 @@ items:
   - name: What is Azure AI Multimodal Intelligence?
     displayName: document, text, images, video, audio, multi-modal, visual,structured, content, field, extraction,
     href: overview.md
-  - name: Pricing
-    displayName: cost, free, F0, tiers, standard, S0
-    href: https://azure.microsoft.com/pricing/details/
   - name: Service quotas and limits
     displayName: quota, tiers, throttle, max, adjustments, requests, support, ocr
     href: service-limits.md
@@ -19,3 +16,6 @@ items:
   - name: What's new
     displayName: changelog, release, updates, previews
     href: whats-new.md
+  - name: Pricing
+    displayName: cost, free, F0, tiers, standard, S0
+    href: https://azure.microsoft.com/pricing/details/

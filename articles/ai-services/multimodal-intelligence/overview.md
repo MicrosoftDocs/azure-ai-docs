@@ -39,8 +39,7 @@ Multimodal Intelligence is a cloud-based data solution capable of processing bot
 
 ## Field extraction and data types
 
-
-Multimodal Intelligence supports the following field data types:
+***Multimodal Intelligence supports the following field data types:***
 
 * **String**. Plain Text
 * **Date**. Normalized to ISO 8601 (YYYY-MM-DD) format.
@@ -51,15 +50,15 @@ Multimodal Intelligence supports the following field data types:
 * **Array**. Data structure storing multiple items of the same type.
 * **Object**. Key-value variable collection potentially of different types.
 
-Multimodal Intelligence supports the following field extraction:
+***Multimodal Intelligence supports the following field operations:***
 
-| Kind | Description | FieldType support |
+| Operation | Description | FieldType support |
 | --- | --- | --- |
 | Extract | Direct extraction of field value from document content. | String, Date, Time, Number, Integer, StaticTable, DynamicTable |
 | Classify | Classify parent field content (or document if top-level). | String |
 | Generate | Generate field value from parent field content. | String|
 
-Field support for scenarios
+### Field support for scenarios
 
 | Modality | Field Kind supported for Ignite |
 | --- | --- |
@@ -84,14 +83,5 @@ Field support for scenarios
 |Audio|.wav|
 |Video|.mp4|
 |Structured|.json, .csv|
-
-
-## Multimodal Intelligence operations
-
-### Request URL
-
-
-
-## Next steps
 
 
