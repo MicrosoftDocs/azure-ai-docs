@@ -29,7 +29,7 @@ Multimodal Intelligence is a cloud-based data solution capable of processing bot
 
   * **Abstracted (tacit)**. Abstracted values are generated based on the content of the input. Examples include summaries, outlines, recaps are examples of abstracted values.
 
-## Multimodal Intelligence use cases
+## Use cases
 
 |Use|Scenario|
 |--------|-------|
@@ -37,12 +37,46 @@ Multimodal Intelligence is a cloud-based data solution capable of processing bot
 |Call center post-call analytics| Businesses and call center operators can generate insights from call recordings to track key KPIs to improve product experience, generate business insights, create differentiated customer experiences, and answer queries faster and more accurately.
 |Marketing automation digital asset management| Independent software and media vendors that build media asset management solutions can use Multimodal Intelligence to extract richer, targeted content from images and videos.|
 
+## Field extraction and data types
 
 
-## Supported input formats
+Multimodal Intelligence supports the following field data types:
+
+* **String**. Plain Text
+* **Date**. Normalized to ISO 8601 (YYYY-MM-DD) format.
+* **Time**. Normalized to ISO 8601 (hh:mm:ss) format.
+* **Number**. Floating point number, normalized to double-precision floating point.
+* **Integer**. Normalized to 64*bit signed integer.
+* **Boolean**. Value normalized to `true` or `false`.
+* **Array**. Data structure storing multiple items of the same type.
+* **Object**. Key-value variable collection potentially of different types.
+
+Multimodal Intelligence supports the following field extraction:
+
+| Kind | Description | FieldType support |
+| --- | --- | --- |
+| Extract | Direct extraction of field value from document content. | String, Date, Time, Number, Integer, StaticTable, DynamicTable |
+| Classify | Classify parent field content (or document if top-level). | String |
+| Generate | Generate field value from parent field content. | String|
+
+Field support for scenarios
+
+| Modality | Field Kind supported for Ignite |
+| --- | --- |
+| Text | Generate |
+| Document | Extract |
+| Image | Generate, Classify |
+| Conversation | Generate, Classify |
+| ConversationAnalysis | Generate, Classify |
+| CallCenterAnalysis | Generate, Classify |
+| Scene | Generate, Classify |
+| SceneAnalysis | Generate, Classify |
+
+
+## Supported input and formats
 
 |Content modality|File extension|
-|------------|----------|
+|----------------|--------------|
 |Text document|.txt, .md|
 |Visual document|.pdf, .tiff, .jpeg|
 |Markup Document|.html, .docx|
@@ -51,6 +85,10 @@ Multimodal Intelligence is a cloud-based data solution capable of processing bot
 |Video|.mp4|
 |Structured|.json, .csv|
 
+
+## Multimodal Intelligence operations
+
+### Request URL
 
 
 
