@@ -5,7 +5,7 @@ description: "Learn how to create, load, and query a search index using the Azur
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.custom:
   - devx-track-dotnet
   - devx-track-extended-java

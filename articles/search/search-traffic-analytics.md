@@ -6,7 +6,7 @@ author: HeidiSteen
 manager: nitinme
 ms.author: heidist
 
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.topic: conceptual
 ms.date: 06/19/2024
 ---

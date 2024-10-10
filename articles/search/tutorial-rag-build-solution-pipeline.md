@@ -6,7 +6,7 @@ description: Create an indexer-driven pipeline that loads, chunks, embeds, and i
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.topic: tutorial
 ms.date: 10/04/2024
 

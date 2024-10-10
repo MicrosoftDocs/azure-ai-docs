@@ -4,7 +4,7 @@ titleSuffix: Azure AI Search
 description: Learn about skillsets and create a skillset in Azure AI Search using REST APIs.
 author: HeidiSteen
 ms.author: heidist
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: conceptual

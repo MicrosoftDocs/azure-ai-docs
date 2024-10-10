@@ -6,7 +6,7 @@ description: Learn how to use the relevance tuning capabilities to return high q
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.topic: tutorial
 ms.date: 10/05/2024
 

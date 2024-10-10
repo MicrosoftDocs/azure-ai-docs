@@ -6,7 +6,7 @@ description: Configure IP control policies to restrict network access to your Az
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: how-to

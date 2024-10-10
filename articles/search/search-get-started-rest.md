@@ -6,7 +6,7 @@ zone_pivot_groups: URL-test-interface-rest-apis
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.topic: quickstart
 ms.devlang: rest-api
 ms.date: 06/27/2024

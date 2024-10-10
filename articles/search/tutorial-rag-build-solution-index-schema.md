@@ -6,7 +6,7 @@ description: Design an index for RAG patterns in Azure AI Search.
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.topic: tutorial
 ms.date: 10/04/2024
 

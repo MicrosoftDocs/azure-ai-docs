@@ -6,7 +6,7 @@ description: Monitor the status, progress, and results of Azure AI Search indexe
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.custom:
   - devx-track-dotnet
   - ignite-2023

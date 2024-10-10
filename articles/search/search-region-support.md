@@ -6,7 +6,7 @@ description: Shows supported regions and feature availability across regions for
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.topic: conceptual
 ms.custom: references_regions
 ms.date: 09/29/2024

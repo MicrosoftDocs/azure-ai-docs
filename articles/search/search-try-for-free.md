@@ -6,7 +6,7 @@ description: Learn how to create a trial subscription and use credits for trying
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.topic: conceptual
 ms.date: 09/18/2024
 ms.custom: references_regions

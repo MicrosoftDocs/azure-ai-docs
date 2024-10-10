@@ -5,7 +5,7 @@ description: Learn how to schedule Azure AI Search indexers to index content at 
 author: HeidiSteen
 manager: nitinme
 ms.author: heidist
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: how-to

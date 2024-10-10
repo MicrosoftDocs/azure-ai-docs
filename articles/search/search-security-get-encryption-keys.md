@@ -6,7 +6,7 @@ description: Retrieve the encryption key name and version used in an index or sy
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: conceptual
