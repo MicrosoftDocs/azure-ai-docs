@@ -5,7 +5,7 @@ description: Learn approaches for resolving OData collection filter errors in Az
 
 author: bevloh
 ms.author: beloh
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: conceptual
