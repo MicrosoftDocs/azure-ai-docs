@@ -44,7 +44,7 @@ Azure OpenAI GPT-4o audio is part of the GPT-4o model family that supports low-l
 
 The `gpt-4o-realtime-preview` model is available for global deployments in [East US 2 and Sweden Central regions](./concepts/models.md#global-standard-model-availability).
 
-For more information, see the [GPT-4o real-time audio documentation](./how-to/audio-real-time.md).
+For more information, see the [GPT-4o real-time audio documentation](realtime-audio-quickstart.md).
 
 ### Global batch support updates
 

@@ -38,6 +38,8 @@ items:
       href: dall-e-quickstart.md
     - name: Use your data
       href: use-your-data-quickstart.md
+    - name: Realtime API for speech and audio (preview)
+      href: realtime-audio-quickstart.md
     - name: Whisper model
       href: whisper-quickstart.md
     - name: Text to speech (preview)
@@ -162,8 +164,6 @@ items:
       - name: Function calling
         href: ./how-to/fine-tuning-functions.md
         displayName: fine-tuning, finetuning
-  - name: Realtime API for speech and audio (Preview)
-    href: ./how-to/audio-real-time.md
   - name: Use your data
     items:
       - name: Text data
