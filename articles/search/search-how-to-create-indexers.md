@@ -7,7 +7,7 @@ manager: nitinme
 author: HeidiSteen
 ms.author: heidist
 
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: how-to
@@ -22,9 +22,9 @@ You can use an indexer to automate data import and indexing in Azure AI Search. 
 
 Indexers support two workflows:
 
-+ Text-based indexing: Extract strings and metadata from textual content for full text search scenarios.
++ **Text-based indexing**: Extract strings and metadata from textual content for full text search scenarios.
 
-+ Skills-based indexing: Use built-in or custom skills that add integrated machine learning for analysis over images and large undifferentiated content, extracting or inferring text and structure. Skills-based indexing enables search over content that isn't otherwise easily full text searchable. To learn more, see [AI enrichment in Azure AI Search](cognitive-search-concept-intro.md).
++ **Skills-based indexing**: Use built-in or custom skills that add integrated machine learning for analysis over images and large undifferentiated content, extracting or inferring text and structure. Skills-based indexing enables search over content that isn't otherwise easily full text searchable. To learn more, see [AI enrichment in Azure AI Search](cognitive-search-concept-intro.md).
 
 ## Prerequisites
 
@@ -74,7 +74,9 @@ Other parameters are optional and modify run time behaviors, such as how many er
 
 Data source-specific indexers for blobs, SQL, and Azure Cosmos DB provide extra `configuration` parameters for source-specific behaviors. For example, if the source is Blob Storage, you can set a parameter that filters on file extensions, such as:
 
-  `"parameters" : { "configuration" : { "indexedFileNameExtensions" : ".pdf,.docx" } }`
+```json
+"parameters" : { "configuration" : { "indexedFileNameExtensions" : ".pdf,.docx" } }
+```
 
 If the source is Azure SQL, you can set a query time out parameter.
 
@@ -167,11 +169,11 @@ When you're ready to create an indexer on a remote search service, you need a se
 
    + [**Import data** wizard](search-import-data-portal.md): The wizard is unique in that it creates all of the required elements. Other approaches require a predefined data source and index.
 
-   :::image type="content" source="media/search-how-to-create-indexers/portal-indexer-client.png" alt-text="Screenshot that shows the Import data wizard." border="true":::
+       :::image type="content" source="media/search-how-to-create-indexers/portal-indexer-client.png" alt-text="Screenshot that shows the Import data wizard." border="true":::
 
    + **Add indexer**: A visual editor for specifying an indexer definition.
 
-   :::image type="content" source="media/search-how-to-create-indexers/portal-indexer-client-2.png" alt-text="Screenshot that shows the Add indexer button." border="true":::
+       :::image type="content" source="media/search-how-to-create-indexers/portal-indexer-client-2.png" alt-text="Screenshot that shows the Add indexer button." border="true":::
 
 ### [**REST**](#tab/indexer-rest)
 
