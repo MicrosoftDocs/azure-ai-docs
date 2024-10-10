@@ -1,7 +1,7 @@
 ---
-title: How do Deploy MedImageInsight Health AI Model with AI Studio
+title: How do Deploy MedImageInsight Healthcare AI Model with AI Studio
 titleSuffix: Azure AI Studio
-description: Learn how to use MedImageInsight Health AI Model with Azure AI Studio.
+description: Learn how to use MedImageInsight Healthcare AI Model with Azure AI Studio.
 ms.service: azure-ai-studio
 manager: scottpolly
 ms.topic: how-to
@@ -13,7 +13,7 @@ author: msakande
 zone_pivot_groups: ?????
 ---
 
-# How to use MedImageInsight Health AI Model for Generating Image Embeddings
+# How to use MedImageInsight Healthcare AI Model for Generating Image Embeddings
 
 [!INCLUDE [Feature preview](~/reusable-content/ce-skilling/azure/includes/ai-studio/includes/feature-preview.md)]
 
