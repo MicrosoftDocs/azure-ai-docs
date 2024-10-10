@@ -12,7 +12,8 @@ configuration:
               action: Opened
           - or:              
               - filesMatchPattern:
-                  pattern: articles/index.yml
+                  matchAny: true
+                  pattern: articles/index.*
         then:
           - addReply:
               reply: >-
