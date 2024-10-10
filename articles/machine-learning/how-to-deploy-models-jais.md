@@ -279,7 +279,7 @@ Quota is managed per deployment. Each deployment has a rate limit of 200,000 tok
 
 ## Content filtering
 
-Models deployed as a service with pay-as-you-go are protected by [Azure AI Content Safety](/azure/ai-services/content-safety/overview). With Azure AI content safety, both the prompt and completion pass through an ensemble of classification models aimed at detecting and preventing the output of harmful content. The content filtering system detects and takes action on specific categories of potentially harmful content in both input prompts and output completions. Learn more about [content filtering here](/azure/ai-studio/concepts/content-filtering).
+Models deployed as a service with pay-as-you-go are protected by [Azure AI Content Safety](/azure/ai-services/content-safety/overview). With Azure AI content safety, both the prompt and completion pass through an ensemble of classification models aimed at detecting and preventing the output of harmful content. The content filtering (preview) system detects and takes action on specific categories of potentially harmful content in both input prompts and output completions. Learn more about [content filtering here](/azure/ai-studio/concepts/content-filtering).
 
 ## Next steps
 
