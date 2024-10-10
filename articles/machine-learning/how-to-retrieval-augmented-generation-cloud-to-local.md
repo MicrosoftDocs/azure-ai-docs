@@ -29,14 +29,14 @@ In this article, you learn how to transition RAG flows from your Azure Machine L
 
 - Python 3.9 or above installed locally.
 
-  - The `promptflow` SDK and `promptflow-tools` packages installed by running `pip install promptflow promptflow-tools`.
-  - The `promptflow-vectordb` tool installed by running `pip install promptflow-vectordb[azure]`.
+  - The `promptflow` SDK and `promptflow-tools` packages installed by running<br>`pip install promptflow promptflow-tools`.
+  - The `promptflow-vectordb` tool installed by running<br>`pip install promptflow-vectordb`.
 
 - Visual Studio Code with the **Python** and **Prompt flow** extensions installed.
 
   :::image type="content" source="./media/how-to-retrieval-augmented-generation-cloud-to-local/vs-code-extension.png" alt-text="Screenshot of the prompt flow VS Code extension in the marketplace.":::
 
-- An [Azure OpenAI account resource](/azure/ai-services/openai/how-to/create-resource#create-a-resource) that has [deployed models](/azure/ai-services/openai/how-to/create-resource#deploy-a-model) for both **chat** and **text-embedding-ada**.
+- An [Azure OpenAI account resource](/azure/ai-services/openai/how-to/create-resource#create-a-resource) that has [model deployments](/azure/ai-services/openai/how-to/create-resource#deploy-a-model) for both **chat** and **text-embedding-ada**.
 
 - A [vector index created](how-to-create-vector-index.md) in Azure Machine Learning studio for the example prompt flow to use.
 
@@ -80,7 +80,7 @@ The rest of this article details how to use the VS Code Prompt flow extension to
 
    :::image type="content" source="./media/how-to-retrieval-augmented-generation-cloud-to-local/vs-code-extension-toolbar.png" alt-text="Screenshot of the prompt flow VS Code extension icon in the VS Code left menu.":::
 
-1. If necessary, select **Install dependencies** and make sure the correct Python interpreter is selected and the **promptflow** and **promptflow-tools** packages are installed.
+1. If necessary, select **Install dependencies** and make sure the correct Python interpreter is selected, and the `promptflow` and `promptflow-tools` packages are installed.
 
 ### Create the connections
 
@@ -139,5 +139,5 @@ For more information about batch run and evaluation, see [Submit flow run to Azu
 
 - [Get started with prompt flow](prompt-flow/get-started-prompt-flow.md)
 - [Create a vector index in an Azure Machine Learning prompt flow (preview)](how-to-create-vector-index.md)
-- [Index Lookup tool for Azure AI Studio](/azure/ai-studio/how-to/prompt-flow-tools/index-lookup-tool)
+- [Use Index Lookup tool for Azure AI Studio](/azure/ai-studio/how-to/prompt-flow-tools/index-lookup-tool)
 - [Integrate prompt flow with LLM-based application DevOps](prompt-flow/how-to-integrate-with-llm-app-devops.md)
