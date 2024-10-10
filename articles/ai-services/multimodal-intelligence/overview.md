@@ -5,7 +5,7 @@ description: Learn about Multimodal Intelligence solutions
 author: laujan
 ms.author: lajanuar
 manager: nitinme
-ms.service: TODO
+ms.service: azure-ai-document-intelligence
 ms.topic: overview
 ms.date: 10/09/2024
 #Customer intent: As a developer of content management software, I want to find out whether Azure AI Multimodal Intelligence is the right solution for my moderation needs.

@@ -5,7 +5,7 @@ description: Quick reference, detailed description, and best practices for worki
 #services: cognitive-services
 author: laujan
 manager: nitinme
-ms.service: TODO
+ms.service: azure-ai-document-intelligence
 ms.topic: conceptual
 ms.date: 10/09/2024
 ms.author: lajanuar

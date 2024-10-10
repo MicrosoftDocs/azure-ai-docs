@@ -28,7 +28,7 @@ landingContent:
       - linkListType: quickstart
         links:
         - text: Use Multimodal Intelligence Rest API
-          url: TODO
+          url: overview.md
 
   # Card 3
 
@@ -37,6 +37,6 @@ landingContent:
       - linkListType: concept
         links:
         - text: Limited access features
-          url: TODO  
+          url: overview.md  
         - text: Transparency note
-          url: TODO
+          url: overview.md
