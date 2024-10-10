@@ -1,9 +1,9 @@
 ---
 title: How to access on-premises resources
-titleSuffix: Azure AI Studio
+titleSuffix: Azure Machine Learning
 description: Learn how to configure an Azure Machine Learning's managed network to securely allow access to your on-premises resources.
 manager: scottpolly
-ms.service: azure-ai-studio
+ms.service: azure-machine-learning
 ms.topic: how-to
 ms.date: 10/10/2024
 ms.reviewer: meerakurup 
@@ -51,7 +51,7 @@ Follow the [Quickstart: Direct web traffic using the portal](/azure/application-
     - In the __Listener__ section:
         - You can create a listener with either HTTP or HTTPS protocol and specify the port you want it to listen to. If you want two listeners listening on the same front-end IP address and routing to different backend pools, you need to choose different ports. Incoming requests are differentiated based on ports.
         - If you want end-to-end TLS encryption, select HTTPS listener and upload your own certificate for Application Gateway to decrypt request received by listener. For more information, see [Enabling end to end TLS on Azure Application Gateway](/azure/application-gateway/ssl-overview#end-to-end-tls-encryption).
-        - If you want a fully private backend target without any public network access, DO NOT setup a listener on the public frontend IP address and its associated routing rule. Application Gateway only forwards requests that listeners receive at the specific port. If you want to avoid adding public frontend IP listener by mistake, see [Network security rules](/application-gateway/configuration-infrastructure#network-security-groups) to fully lock down public network access.
+        - If you want a fully private backend target without any public network access, DO NOT setup a listener on the public frontend IP address and its associated routing rule. Application Gateway only forwards requests that listeners receive at the specific port. If you want to avoid adding public frontend IP listener by mistake, see [Network security rules](/azure/application-gateway/configuration-infrastructure#network-security-groups) to fully lock down public network access.
 
     - In the __Backend targets__ section, if you want to use HTTPS and Backend server’s certificate is NOT issued by a well-known CA, you must upload the Root certificate (.CER) of the backend server. For more on configuring with a root certificate, see Configure end-to-end TLS encryption using the portal.
 
