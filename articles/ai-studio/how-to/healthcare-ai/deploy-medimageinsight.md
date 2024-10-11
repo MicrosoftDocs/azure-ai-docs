@@ -32,11 +32,11 @@ Embedding model is the "swiss army knife" of foundational models since it is cap
 
 :::image type="content" source="../../media/how-to/healthcare-ai/healthcare-embedding-capabilities.gif" alt-text="Embedding model capable of supporting similarity search and quality control scenarios":::
 
-Here we will explain how to deploy MedImageInsight using Azure AI Model Catalog and provide links to more in-depth tutorials and samples.
+Here we will explain how to deploy MedImageInsight using Azure AI Model Catalog using Azure AI Studio or Azure Machine Learning Studio and provide links to more in-depth tutorials and samples.
 
 ## Prerequisites
 
-To use MedImageInsight models with Azure AI Studio, you need the following prerequisites:
+To use MedImageInsight models with Azure AI Studio or Azure Machine Learning Studio, you need the following prerequisites:
 
 ### A model deployment
 
