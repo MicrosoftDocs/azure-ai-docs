@@ -319,6 +319,8 @@ items:
       href: how-to/configure-private-link.md
     - name: Secure playground chat
       href: how-to/secure-data-playground.md
+    - name: Securely access on-premises resources
+      href: how-to/access-on-premises-resources.md
     - name: Troubleshoot secure project connectivity
       href: how-to/troubleshoot-secure-connection-project.md
   - name: Data protection & encryption
