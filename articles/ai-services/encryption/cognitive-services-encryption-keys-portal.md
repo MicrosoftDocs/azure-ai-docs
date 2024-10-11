@@ -27,18 +27,6 @@ Azure AI is built on top of multiple Azure services. While the data is stored se
         * unwrap key
         * get
 
-
-## How metadata is stored
-
-The following services are used by Azure AI to store metadata for your Azure AI resource and projects:
-
-|Service|What it's used for|Example|
-|-----|-----|-----|
-|Azure AI Search|Stores indices that are used to help query your AI studio content.|An index based off your model deployment names|
-|Azure Storage Account|Stores artifacts created by Azure AI projects and tools|Fine-tuned models|
-
-All of the above services are encrypted using the same key at the time that you create your Azure AI resource for the first time, and are set up in a managed resource group in your subscription once for every Azure AI resource and set of projects associated with it. Your Azure AI resource and projects read and write data using managed identity. Managed identities are granted access to the resources using a role assignment (Azure role-based access control) on the data resources. The encryption key you provide is used to encrypt data that is stored on Microsoft-managed resources. It's also used to create indices for Azure AI Search, which are created at runtime.
-
 ## Customer-managed keys
 
 When you don't use a customer-managed key, Microsoft creates and manages these resources in a Microsoft owned Azure subscription and uses a Microsoft-managed key to encrypt the data. 
