@@ -6,7 +6,7 @@ description: Set a semantic query type to attach the deep learning models of sem
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: how-to

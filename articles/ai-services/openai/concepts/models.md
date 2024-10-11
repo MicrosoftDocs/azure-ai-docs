@@ -4,7 +4,7 @@ titleSuffix: Azure OpenAI
 description: Learn about the different model capabilities that are available with Azure OpenAI.
 ms.service: azure-ai-openai
 ms.topic: conceptual
-ms.date: 10/01/2024
+ms.date: 10/09/2024
 ms.custom: references_regions, build-2023, build-2023-dataai, refefences_regions
 manager: nitinme
 author: mrbullwinkle #ChrisHMSFT
@@ -221,7 +221,7 @@ print(response.model_dump_json(indent=2))
 
 ### Region availability
 
-Available for standard and global standard deployment in East US2 and Sweden Central for approved customers.
+Available for standard and global standard deployment in East US, East US2, North Central US, South Central US, Sweden Central, West US, and West US3 for approved customers.
 
 ## GPT-4o audio
 
@@ -229,7 +229,7 @@ The `gpt-4o-realtime-preview` model is part of the GPT-4o model family and suppo
 
 GPT-4o audio is available in the East US 2 (`eastus2`) and Sweden Central (`swedencentral`) regions. To use GPT-4o audio, you need to [create](../how-to/create-resource.md) or use an existing resource in one of the supported regions.
 
-When your resource is created, you can [deploy](../how-to/create-resource.md#deploy-a-model) the GPT-4o audio model. If you are performing a programmatic deployment, the **model** name is `gpt-4o-realtime-preview`. For more information on how to use GPT-4o audio, see the [GPT-4o audio documentation](../how-to/audio-real-time.md).
+When your resource is created, you can [deploy](../how-to/create-resource.md#deploy-a-model) the GPT-4o audio model. If you are performing a programmatic deployment, the **model** name is `gpt-4o-realtime-preview`. For more information on how to use GPT-4o audio, see the [GPT-4o audio documentation](../realtime-audio-quickstart.md).
 
 Details about maximum request tokens and training data are available in the following table.
 
@@ -430,10 +430,10 @@ These models can only be used with Embedding API requests.
 
 |  Model ID | Max Request (tokens) | Output Dimensions |Training Data (up-to)
 |---|---| :---:|:---:|:---:|
-| `text-embedding-ada-002` (version 2) |8,191 | 1,536 | Sep 2021 |
+| `text-embedding-ada-002` (version 2) |8,192 | 1,536 | Sep 2021 |
 | `text-embedding-ada-002` (version 1) |2,046 | 1,536 | Sep 2021 |
-| `text-embedding-3-large` | 8,191 | 3,072 |Sep 2021 |
-| `text-embedding-3-small` | 8,191|  1,536 | Sep 2021 |
+| `text-embedding-3-large` | 8,192 | 3,072 |Sep 2021 |
+| `text-embedding-3-small` | 8,192|  1,536 | Sep 2021 |
 
 > [!NOTE]
 > When sending an array of inputs for embedding, the max number of input items in the array per call to the embedding endpoint is 2048.

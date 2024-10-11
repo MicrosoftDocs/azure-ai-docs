@@ -5,7 +5,7 @@ description: Technical overview and setup for adding search to a website and dep
 manager: nitinme
 author: diberry
 ms.author: diberry
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.topic: tutorial
 ms.date: 08/16/2024
 ms.custom:

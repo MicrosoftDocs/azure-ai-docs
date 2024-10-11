@@ -5,7 +5,7 @@ description: Use a wizard to automate data chunking and vectorization in a searc
 
 author: HeidiSteen
 ms.author: heidist
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.custom:
   - build-2024
 ms.topic: quickstart

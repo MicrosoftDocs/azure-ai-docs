@@ -6,7 +6,7 @@ description: Troubleshooting guide for common problems when managing shared priv
 manager: nitinme
 author: arv100kri
 ms.author: arjagann
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: conceptual

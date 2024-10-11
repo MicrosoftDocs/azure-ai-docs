@@ -104,32 +104,9 @@ file_id = file.id
   "filename": "test.jsonl",
   "object": "file",
   "purpose": "batch",
-  "status": "pending",
+  "status": null,
   "status_details": null
 }
-```
-
-## Track file upload status
-
-Depending on the size of your upload file it might take some time before it's fully uploaded and processed. To check on your file upload status run:
-
-```python
-# Wait until the uploaded file is in processed state
-import time
-import datetime 
-
-status = "pending"
-while status != "processed":
-    time.sleep(15)
-    file_response = client.files.retrieve(file_id)
-    status = file_response.status
-    print(f"{datetime.datetime.now()} File Id: {file_id}, Status: {status}")
-```
-
-**Output:**
-
-```output
-2024-07-31 21:42:53.663655 File Id: file-9f3a81d899b4442f98b640e4bc3535dd, Status: processed
 ```
 
 ## Create batch job

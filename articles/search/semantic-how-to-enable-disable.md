@@ -6,7 +6,7 @@ description: Steps for turning semantic ranker on or off in Azure AI Search.
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: how-to

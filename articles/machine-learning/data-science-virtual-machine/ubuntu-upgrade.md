@@ -4,7 +4,7 @@ titleSuffix: Azure Data Science Virtual Machine
 description: Learn how to upgrade from Ubuntu 18.04 to the latest Ubuntu 20.04 Data Science Virtual Machine.
 keywords: deep learning, AI, data science tools, data science virtual machine, team data science process
 services: machine-learning
-ms.service: data-science-vm
+ms.service: azure-data-science-virtual-machines
 ms.custom: linux-related-content
 author: fbsolo-ms1 
 ms.author: franksolomon 

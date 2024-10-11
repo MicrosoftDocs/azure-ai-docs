@@ -6,7 +6,7 @@ description: Find Azure AI Search demo Java code samples that use the Azure .NET
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.custom:
   - devx-track-dotnet
   - devx-track-extended-java

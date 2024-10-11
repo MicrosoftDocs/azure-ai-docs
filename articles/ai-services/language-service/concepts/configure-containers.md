@@ -23,6 +23,7 @@ Language service provides each container with a common configuration framework, 
 * Text Analytics for Health
 * Summarization
 * Named Entity Recognition (NER)
+* Personally Identifiable (PII) detection
 
 ## Configuration settings
 

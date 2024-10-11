@@ -5,7 +5,7 @@ description: Set up an Azure Files indexer to automate indexing of file shares i
 manager: vinodva
 author: mattgotteiner
 ms.author: magottei
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: how-to

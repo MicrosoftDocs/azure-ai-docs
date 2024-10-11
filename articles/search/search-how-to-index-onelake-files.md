@@ -5,7 +5,7 @@ description: Set up a OneLake indexer to automate indexing of content and metada
 author: gmndrg
 ms.author: gimondra
 manager: nitinme
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.custom:
   - build-2024
 ms.topic: how-to

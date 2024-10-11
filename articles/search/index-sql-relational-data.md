@@ -5,7 +5,7 @@ description: Learn how to model relational data, denormalized into a flat result
 author: HeidiSteen
 manager: nitinme
 ms.author: heidist
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: how-to

@@ -5,7 +5,7 @@ description: Change an existing index to use semantic ranker.
 author: HeidiSteen
 manager: nitinme
 ms.author: heidist
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.custom:
   - devx-track-dotnet
   - devx-track-python

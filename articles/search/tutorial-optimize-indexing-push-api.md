@@ -4,7 +4,7 @@ titleSuffix: Azure AI Search
 description: Learn how to efficiently index data using Azure AI Search's push API. This tutorial and sample code are in C#.
 author: gmndrg
 ms.author: gimondra
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.topic: tutorial
 ms.date: 1/18/2024
 ms.custom:

@@ -1,20 +1,22 @@
 ---
 author: HeidiSteen
 ms.author: heidist
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: include
-ms.date: 06/09/2023
+ms.date: 10/07/2024
 ---
 
-Build a Node.js application using the [**@azure/search-documents**](/javascript/api/overview/azure/search-documents-readme) library to create, load, and query a search index. Alternatively, you can [download the source code](https://github.com/Azure-Samples/azure-search-javascript-samples/tree/main/quickstart) to start with a finished project or follow these steps to create your own.
+Build a Node.js application using the [@azure/search-documents](/javascript/api/overview/azure/search-documents-readme) library to create, load, and query a search index. 
+
+Alternatively, you can [download the source code](https://github.com/Azure-Samples/azure-search-javascript-samples/tree/main/quickstart) to start with a finished project or follow these steps to create your own.
 
 #### Set up your environment
 
 We used the following tools to create this quickstart.
 
-+ [Visual Studio Code](https://code.visualstudio.com), which has built-in support for creating JavaScript apps.
++ [Visual Studio Code](https://code.visualstudio.com), which has built-in support for creating JavaScript apps
 
 + [Node.js](https://nodejs.org) and [npm](https://www.npmjs.com)
 
@@ -22,21 +24,21 @@ We used the following tools to create this quickstart.
 
 1. Start Visual Studio Code.
 
-1. Open the [Command Palette](https://code.visualstudio.com/docs/getstarted/userinterface#_command-palette) **Ctrl+Shift+P** and open the [integrated terminal](https://code.visualstudio.com/docs/editor/integrated-terminal).
+1. Open the [Command Palette](https://code.visualstudio.com/docs/getstarted/userinterface#_command-palette) by using **Ctrl+Shift+P** and open the [integrated terminal](https://code.visualstudio.com/docs/editor/integrated-terminal).
 
-1. Create a development directory, giving it the name `quickstart` :
+1. Create a development directory, giving it the name *quickstart*:
 
     ```cmd
     mkdir quickstart
     cd quickstart
     ```
 
-1. Initialize an empty project with npm by running the following command. To fully initialize the project, press Enter multiple times to accept the default values, except for the License, which you should set to "MIT". 
+1. Initialize an empty project with npm by running the following command. To fully initialize the project, press Enter multiple times to accept the default values, except for the License, which you should set to *MIT*. 
 
     ```cmd
     npm init
     ```
-     
+
 1. Install `@azure/search-documents`, the [JavaScript/TypeScript SDK for Azure AI Search](/javascript/api/overview/azure/search-documents-readme). 
 
     ```cmd
@@ -49,7 +51,7 @@ We used the following tools to create this quickstart.
     npm install dotenv
     ```
 
-1. Confirm that you've configured the projects and its dependencies by checking that your  **package.json** file looks similar to the following json:
+1. Navigate to the *quickstart* directory, then confirm that you've configured the project and its dependencies by checking that your *package.json* file looks similar to the following json:
 
     ```json
     {
@@ -73,18 +75,18 @@ We used the following tools to create this quickstart.
     }
     ```
 
-1. Create a file **.env** to hold your search service parameters:
+1. Create a file *.env* to hold your search service parameters:
 
     ```
     SEARCH_API_KEY=<YOUR-SEARCH-ADMIN-API-KEY>
     SEARCH_API_ENDPOINT=<YOUR-SEARCH-SERVICE-URL>
     ```
 
-Replace the `<search-service-name>` value with the name of your search service. Replace `<search-admin-key>` with the key value you recorded earlier. 
+Replace the `YOUR-SEARCH-SERVICE-URL` value with the name of your search service endpoint URL. Replace `<YOUR-SEARCH-ADMIN-API-KEY>` with the admin key you recorded earlier. 
 
 #### Create index.js file
 
-Next we create an **index.js** file, which is the main file that will host our code.
+Next we create an *index.js* file, which is the main file that hosts our code.
 
 At the top of this file, we import the `@azure/search-documents` library:
 
@@ -92,7 +94,7 @@ At the top of this file, we import the `@azure/search-documents` library:
 const { SearchIndexClient, SearchClient, AzureKeyCredential, odata } = require("@azure/search-documents");
 ```
 
-Next, we need to require the `dotenv` package to read in the parameters from the **.env** file as follows:
+Next, we need to require the `dotenv` package to read in the parameters from the *.env* file as follows:
 
 ```javascript
 // Load the .env file if it exists
@@ -127,9 +129,9 @@ With that in place, we're ready to create an index.
 
 #### Create index 
 
-Create a file **hotels_quickstart_index.json**.  This file defines how Azure AI Search works with the documents you'll be loading in the next step. Each field will be identified by a `name` and have a specified `type`. Each field also has a series of index attributes that specify whether Azure AI Search can search, filter, sort, and facet upon the field. Most of the fields are simple data types, but some, like `AddressType` are complex types that allow you to create rich data structures in your index.  You can read more about [supported data types](/rest/api/searchservice/supported-data-types) and index attributes described in [Create Index (REST)](/rest/api/searchservice/indexes/create). 
+Create a file *hotels_quickstart_index.json*. This file defines how Azure AI Search works with the documents you'll be loading in the next step. Each field will be identified by a `name` and have a specified `type`. Each field also has a series of index attributes that specify whether Azure AI Search can search, filter, sort, and facet upon the field. Most of the fields are simple data types, but some, like `AddressType` are complex types that allow you to create rich data structures in your index. You can read more about [supported data types](/rest/api/searchservice/supported-data-types) and index attributes described in [Create Index (REST)](/rest/api/searchservice/indexes/create). 
 
-Add the following content to **hotels_quickstart_index.json** or [download the file](https://github.com/Azure-Samples/azure-search-javascript-samples/blob/main/quickstart/hotels_quickstart_index.json). 
+Add the following content to *hotels_quickstart_index.json* or [download the file](https://github.com/Azure-Samples/azure-search-javascript-samples/blob/main/quickstart/hotels_quickstart_index.json). 
 
 ```json
 {
@@ -263,7 +265,7 @@ Add the following content to **hotels_quickstart_index.json** or [download the f
 }
 ```
 
-With our index definition in place, we want to import  **hotels_quickstart_index.json** at the top of **index.js** so the main function can access the index definition.
+With our index definition in place, we want to import *hotels_quickstart_index.json* at the top of *index.js* so the main function can access the index definition.
 
 ```javascript
 const indexDefinition = require('./hotels_quickstart_index.json');
@@ -328,10 +330,9 @@ In the next step, you'll add data to index.
 
 #### Load documents 
 
-
 In Azure AI Search, documents are data structures that are both inputs to indexing and outputs from queries. You can push such data to the index or use an [indexer](/azure/search/search-indexer-overview). In this case, we'll programatically push the documents to the index.
 
-Document inputs might be rows in a database, blobs in Blob storage, or, as in this sample, JSON documents on disk. You can either download [hotels.json](https://github.com/Azure-Samples/azure-search-javascript-samples/blob/main/quickstart/hotels.json) or create your own **hotels.json** file with the following content:
+Document inputs might be rows in a database, blobs in Blob storage, or, as in this sample, JSON documents on disk. You can either download [hotels.json](https://github.com/Azure-Samples/azure-search-javascript-samples/blob/main/quickstart/hotels.json) or create your own *hotels.json* file with the following content:
 
 ```json
 {
@@ -408,12 +409,11 @@ Document inputs might be rows in a database, blobs in Blob storage, or, as in th
 }
 ```
 
-Similar to what we did with the indexDefinition, we also need to import `hotels.json` at the top of **index.js** so that the data can be accessed in our main function.
+Similar to what we did with the `indexDefinition`, we also need to import `hotels.json` at the top of *index.js* so that the data can be accessed in our main function.
 
 ```javascript
 const hotelData = require('./hotels.json');
 ```
-
 
 To index data into the search index, we now need to create a `SearchClient`. While the `SearchIndexClient` is used to create and manage an index, the `SearchClient` is used to upload documents and query the index.
 
@@ -429,7 +429,7 @@ Alternatively, you can use the `getSearchClient()` method of the `SearchIndexCli
 const searchClient = indexClient.getSearchClient(indexName);
 ```
 
-Now that the client is defined, upload the documents into the search index. In this case, we use the `mergeOrUploadDocuments()` method, which will upload the documents or merge them with an existing document if a document with the same key already exists.
+Now that the client is defined, upload the documents into the search index. In this case, we use the `mergeOrUploadDocuments()` method, which uploads the documents or merges them with an existing document if a document with the same key already exists.
 
 ```javascript
 console.log('Uploading documents...');
@@ -460,9 +460,9 @@ sleep(1000);
 
 #### Search an index
 
-With an index created and documents uploaded, you're ready to send queries to the index. In this section, we'll send five different queries to the search index to demonstrate different pieces of query functionality available to you.
+With an index created and documents uploaded, you're ready to send queries to the index. In this section, we send five different queries to the search index to demonstrate different pieces of query functionality available to you.
 
-The queries are written in a `sendQueries()` function that we'll call in the main function as follows:
+The queries are written in a `sendQueries()` function that we call in the main function as follows:
 
 ```javascript
 await sendQueries(searchClient);
@@ -472,7 +472,7 @@ Queries are sent using the `search()` method of `searchClient`. The first parame
 
 The first query searches `*`, which is equivalent to searching everything and selects three of the fields in the index. It's a best practice to only `select` the fields you need because pulling back unnecessary data can add latency to your queries.
 
-The `searchOptions` for this query also has `includeTotalCount` set to `true`, which will return the number of matching results found.
+The `searchOptions` for this query also has `includeTotalCount` set to `true`, which returns the number of matching results found.
 
 ```javascript
 async function sendQueries(searchClient) {
@@ -553,4 +553,4 @@ console.log(`HotelId: ${documentResult.HotelId}; HotelName: ${documentResult.Hot
 
 #### Run the sample
 
-Run the program with `node index.js`. Now, in addition to the previous steps, the queries will be sent and the results written to the console.
+Run the program by using `node index.js`. Now, in addition to the previous steps, the queries are sent and the results written to the console.

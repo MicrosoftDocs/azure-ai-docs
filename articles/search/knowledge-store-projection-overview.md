@@ -6,7 +6,7 @@ description: Introduces projection concepts and best practices. If you are creat
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: conceptual
