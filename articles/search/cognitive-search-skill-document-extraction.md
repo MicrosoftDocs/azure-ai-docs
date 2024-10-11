@@ -6,7 +6,7 @@ description: Extracts content from a file within the enrichment pipeline.
 author: careyjmac
 ms.author: chalton
 
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: reference
