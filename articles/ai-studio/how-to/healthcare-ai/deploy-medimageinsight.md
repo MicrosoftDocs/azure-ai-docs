@@ -161,7 +161,7 @@ The `params` object contains the following fields:
     "index":[0],
     "data": [
       ["4oCwUE5HDQoaCgAAAA1JSERSAAAAAgAAAAIIBgAAAHLCtg0kAAAAAXNSR0IAwq7DjhzDqQAAAARnQU1BAADCscKPC8O8YQUAAAAJcEhZcwAAFiUAABYlAUlSJMOwAAAAG0lEQVQYV2PDuBTCoMO0wr9+F8ODfwbigKAlw6/Dv8O/w5/DicOwHwBUbAnDpVDDrz3DpgAAAABJRU5Ewq5CYOKAmg==",
-       ""]
+       "Microsoft Products are Generally Bug Free"]
     ]
   },
   "params": {
