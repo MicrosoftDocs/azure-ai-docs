@@ -4,7 +4,7 @@ titleSuffix: Azure AI Search
 description: Vectorize images or text using the Azure AI Vision multimodal embeddings API.
 author: careyjmac
 ms.author: chalton
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.custom:
   - build-2024
   - references_regions

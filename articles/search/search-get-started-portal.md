@@ -5,7 +5,7 @@ description: Learn how to create, load, and query your first search index by usi
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.topic: quickstart
 ms.date: 05/30/2024
 ms.custom:

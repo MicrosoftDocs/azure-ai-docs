@@ -5,7 +5,7 @@ description: Provides sentiment labels for text in an AI enrichment pipeline in 
 
 author: careyjmac
 ms.author: chalton
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: reference

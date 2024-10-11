@@ -8,7 +8,7 @@ manager: nitinme
 ms.custom:
   - subject-rbac-steps
   - ignite-2023
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.topic: how-to
 ms.date: 02/22/2024
 ---

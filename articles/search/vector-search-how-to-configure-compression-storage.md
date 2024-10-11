@@ -5,7 +5,7 @@ description: Configure vector compression options and vector storage using narro
 
 author: heidisteen
 ms.author: heidist
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.topic: how-to
 ms.date: 10/01/2024
 ---

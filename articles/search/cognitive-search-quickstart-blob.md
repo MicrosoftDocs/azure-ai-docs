@@ -6,7 +6,7 @@ description: In this portal quickstart, use the Import Data wizard to generate s
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: quickstart

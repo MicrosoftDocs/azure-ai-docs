@@ -5,7 +5,7 @@ description: Explains how to configure fields for binary vectors and the vector 
 
 author: HeidiSteen
 ms.author: heidist
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.custom:
   - build-2024
 ms.topic: how-to

@@ -6,7 +6,7 @@ description: Find Azure AI Search demo REST code samples that use the Search or 
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: conceptual

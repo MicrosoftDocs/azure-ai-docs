@@ -9,7 +9,7 @@ ms.author: chalton
 ms.devlang: rest-api
 ms.custom:
   - ignite-2023
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.topic: tutorial
 ms.date: 09/04/2024
 ---

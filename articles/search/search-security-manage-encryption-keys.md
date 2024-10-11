@@ -6,7 +6,7 @@ description: Supplement server-side encryption in Azure AI Search using customer
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.topic: how-to
 ms.date: 10/07/2024
 ms.custom:
