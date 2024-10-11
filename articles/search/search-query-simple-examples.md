@@ -6,7 +6,7 @@ description: Query examples demonstrating the simple syntax for full text search
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: conceptual

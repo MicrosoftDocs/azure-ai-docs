@@ -4,7 +4,7 @@ titleSuffix: Azure AI Search
 description: In this quickstart, learn how to use grounding data from Azure AI Search with a chat model on Azure OpenAI.
 author: HeidiSteen
 ms.author: heidist
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.topic: quickstart
 ms.date: 09/16/2024
 ---

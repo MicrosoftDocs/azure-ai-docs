@@ -6,7 +6,7 @@ description: Enable or disable role-based access control for token authenticatio
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.topic: how-to
 ms.date: 06/18/2024
 

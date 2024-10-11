@@ -6,7 +6,7 @@ description: Search big data from Apache Spark that's been transformed by Synaps
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: tutorial

@@ -5,7 +5,7 @@ description: Get hands-on training on Azure AI Search from Microsoft and other t
 author: HeidiSteen
 manager: nitinme
 ms.author: heidist
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.topic: conceptual
 ms.date: 05/22/2024
 ---

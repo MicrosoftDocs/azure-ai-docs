@@ -5,7 +5,7 @@ description: Search explorer is a query tool in the Azure portal that sends quer
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.topic: quickstart
 ms.date: 06/14/2024
 ms.custom:

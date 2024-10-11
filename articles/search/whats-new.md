@@ -5,7 +5,7 @@ description: Announcements of new and enhanced features, including a service ren
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.topic: overview
 ms.date: 10/01/2024
 ms.custom:

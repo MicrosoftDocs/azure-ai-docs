@@ -6,7 +6,7 @@ description: Learn how to construct a query request for full text search in Azur
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: how-to
