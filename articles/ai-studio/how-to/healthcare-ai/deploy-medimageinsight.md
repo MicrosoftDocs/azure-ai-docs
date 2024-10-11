@@ -47,7 +47,7 @@ MedImageInsight model can be deployed to our self-hosted managed inference solut
 For deployment to a self-hosted managed compute, you must have enough quota in your subscription. If you don't have enough quota available, you can use our temporary quota access by selecting the option **I want to use shared quota and I acknowledge that this endpoint will be deleted in 168 hours.**
 
 > [!div class="nextstepaction"]
-> [Deploy the model to managed compute](../concepts/deployments-overview.md)
+> [Deploy the model to managed compute](../../concepts/deployments-overview.md)
 
 ## Work with an Embedding Model
 
@@ -209,5 +209,5 @@ MedImageInsight is a versatile model that can be applied to a wide range of task
 
 ## Related content
 
-* [MedImageParse for medical image segmentation](./deploy-medimageparse)
+* [MedImageParse for medical image segmentation](./deploy-medimageparse.md)
 * [CXRReportGen for grounded report generation](./deploy-cxrreportgen.md)
