@@ -9,7 +9,7 @@ ms.topic: conceptual
 author: lgayhardt
 ms.author: lagayhar
 ms.reviewer: chenlujiao
-ms.date: 10/10/2024
+ms.date: 10/11/2024
 ms.custom:
   - prompt-flow
   - ignite-2023
@@ -36,7 +36,7 @@ In this article, you learn how to transition RAG flows from your Azure Machine L
 
   :::image type="content" source="./media/how-to-retrieval-augmented-generation-cloud-to-local/vs-code-extension.png" alt-text="Screenshot of the prompt flow VS Code extension in the marketplace.":::
 
-- An [Azure OpenAI account resource](/azure/ai-services/openai/how-to/create-resource#create-a-resource) that has [model deployments](/azure/ai-services/openai/how-to/create-resource#deploy-a-model) for both **chat** and **text-embedding-ada**. If you use an Azure AI Search index as the data source for your vector index, you must also have an Azure AI Search connection.
+- An [Azure OpenAI account resource](/azure/ai-services/openai/how-to/create-resource#create-a-resource) that has [model deployments](/azure/ai-services/openai/how-to/create-resource#deploy-a-model) for both **chat** and **text-embedding-ada**.
 
 - A [vector index created](how-to-create-vector-index.md) in Azure Machine Learning studio for the example prompt flow to use.
 
@@ -44,7 +44,7 @@ In this article, you learn how to transition RAG flows from your Azure Machine L
 
 This tutorial uses the sample **Q&A on Your Data** RAG prompt flow, which contains a **lookup** node that uses the vector index lookup tool to search questions from the indexed docs stored in the workspace storage blob.
 
-1. On the **Connections** tab of the Azure Machine Learning studio **Prompt flow** page, [set up a connection](prompt-flow/get-started-prompt-flow.md#set-up-connection) to your Azure OpenAI resource if you don't already have one.
+1. On the **Connections** tab of the Azure Machine Learning studio **Prompt flow** page, [set up a connection](prompt-flow/get-started-prompt-flow.md#set-up-connection) to your Azure OpenAI resource if you don't already have one. If you use an Azure AI Search index as the data source for your vector index, you must also have an Azure AI Search connection.
 
 1. On the Azure Machine Learning studio **Prompt flow** page, select **Create**.
 
