@@ -56,7 +56,15 @@ For deployment to a self-hosted managed compute, you must have enough quota in y
 MedImageInsight embedding model can be consumed as a REST API using simple GET requests or by creating a client like so:
 
 ```python
-TODO: Client code
+from azure.ai.ml import MLClient
+from azure.identity import DeviceCodeCredential
+
+credential = DeviceCodeCredential()
+ml_client = MLClient.from_config(credential)
+credential.authenticate()
+
+ml_client_workspace = MLClient.from_config(credential)
+
 ```
 
 Note that in the deployment configuration you get to choose authentication method. This example uses Azure ML Token-based authentication.
@@ -69,6 +77,9 @@ Once the model is deployed, use the following code to send data and retrieve emb
 import base64
 import json
 import os
+
+endpoint_name = "medimageinsight"
+deployment_name = "medimageinsight-v1"
 
 sample_image_xray = os.path.join(image_path)
 
