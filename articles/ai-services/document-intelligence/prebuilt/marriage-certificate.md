@@ -68,7 +68,7 @@ To see how data extraction works for the marriage certificate card service, you 
 
 ## Supported languages and locales
 
-*See* our [Language Support—prebuilt models](../language-support-prebuilt.md) page for a complete list of supported languages.
+*See* our [Language Support—prebuilt models](../language-support/prebuilt.md) page for a complete list of supported languages.
 
 ## Field extraction
 

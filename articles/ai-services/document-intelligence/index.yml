@@ -40,7 +40,7 @@ landingContent:
          - text: Read
            url: prebuilt/read.md
          - text: Layout
-           url: concept-layout.md
+           url: prebuilt/layout.md
          - text: Financial Services and Legal
            url: overview.md#financial-services-and-legal
          - text: US Tax
@@ -52,9 +52,9 @@ landingContent:
          - text: Custom classification
            url: overview.md#custom-classification-models
          - text: Add-on capabilities
-           url: concept-add-on-capabilities.md
+           url: concept/add-on-capabilities.md
          - text: Query field extraction
-           url:  concept-query-fields.md
+           url:  concept/query-fields.md
 
   #Card 3
    - title: Document Intelligence Studio
@@ -71,9 +71,9 @@ landingContent:
          - linkListType: concept
            links:
              - text: 🆕 Custom generative model
-               url:  concept-custom-generative.md
+               url:  train/custom-generative-extraction.md
              - text: 🆕 Retrieval-Augmented Generation (RAG)
-               url:  concept-retrieval-augmented-generation.md
+               url:  concept/retrieval-augmented-generation.md
              - text: 🆕 Batch document analysis
                url:  concept-batch-analysis.md
              - text: Accuracy and confidence scores
@@ -81,7 +81,7 @@ landingContent:
              - text: Use the analyzeDocument response
                url: concept/analyze-document-response.md
              - text: Custom model overview
-               url: concept-custom.md
+               url: train/custom-model.md
   # Card 5
    - title: Responsible AI
      linkLists:

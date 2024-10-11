@@ -125,7 +125,7 @@ In this tutorial, you learn how to:
 
 ## Add document processing code
 
-Next, you'll add your own code to the Python script to call the Document Intelligence service and parse the uploaded documents using the Document Intelligence [layout model](concept-layout.md).
+Next, you'll add your own code to the Python script to call the Document Intelligence service and parse the uploaded documents using the Document Intelligence [layout model](prebuilt/layout.md).
 
 1. In VS Code, navigate to the function's *requirements.txt* file. This file defines the dependencies for your script. Add the following Python packages to the file:
 
@@ -298,4 +298,4 @@ In this tutorial, you learned how to use an Azure Function written in Python to 
 > [Microsoft Power BI](https://powerbi.microsoft.com/integrations/azure-table-storage/)
 
 * [What is Document Intelligence?](overview.md)
-* Learn more about the [layout model](concept-layout.md)
+* Learn more about the [layout model](prebuilt/layout.md)

@@ -37,13 +37,13 @@ items:
     items:
       - name: Document analysis models
         displayName: language, locale, handwritten, handwriting, text, detect, detection, general, document, printed
-        href: language-support-ocr.md?view=doc-intel-4.0.0&preserve-view=true
+        href: language-support/ocr.md?view=doc-intel-4.0.0&preserve-view=true
       - name: Prebuilt models
         displayName: locale, handwritten, handwriting, text, detect, detection, printed
-        href: language-support-prebuilt.md
+        href: language-support/prebuilt.md
       - name: Custom models
         displayName: locale, handwritten, handwriting, text, detect, detection, printed
-        href: language-support-custom.md
+        href: language-support/custom.md
   - name: Pricing
     displayName: cost, free, F0, tiers, standard, S0
     href: https://azure.microsoft.com/pricing/details/form-recognizer/
@@ -66,25 +66,25 @@ items:
     href: prebuilt/bank-statement.md
   - name: Business card
     displayName: /rest/api/aiservices/document-models/analyze-document?view=rest-aiservices-2023-07-31&preserve-view=true&tabs=HTTP
-    href: concept-business-card.md?view<=doc-intel-3.1.0&preserve-view=true
+    href: prebuilt/business-card.md?view<=doc-intel-3.1.0&preserve-view=true
   - name: Contract
     displayName: contracts, agreements, legal, terms, conditions, clauses, parties, dates, signatures
-    href: concept-contract.md
+    href: prebuilt/contract.md
   - name: Credit card
     displayName: debit
     href: prebuilt/credit-card.md
   - name: General document
     displayName: key value pairs, selection marks, structured
-    href: concept-general-document.md?view<=doc-intel-3.1.0&preserve-view=true
+    href: prebuilt/general-document.md?view<=doc-intel-3.1.0&preserve-view=true
   - name: Health insurance card
     displayName: health, proof, hospital
-    href: concept-health-insurance-card.md
+    href: prebuilt/health-insurance-card.md
   - name: ID document
     displayName: passport, visa, ID, social security, green card
-    href: concept-id-document.md
+    href: prebuilt/id-document.md
   - name: Invoice
     displayName: sales, vendors, VAT
-    href: concept-invoice.md
+    href: prebuilt/invoice.md
   - name: Layout
     displayName: tables, selection marks, structure, paragraph roles, text, headers, page numbers
     href: prebuilt/layout.md
@@ -93,7 +93,7 @@ items:
     href: prebuilt/marriage-certificate.md
   - name: Mortgage documents (U.S.)
     displayName: 1003, 1008, closing, disclosure
-    href: concept-mortgage-documents.md
+    href: prebuilt/mortgage-documents.md
   - name: 🆕 Pay stub
     displayName: compensation, earnings, deductions, taxes, benefits, employer, employee
     href: prebuilt/pay-stub.md
@@ -102,42 +102,42 @@ items:
     href: prebuilt/read.md
   - name: Receipt
     displayName: sales, merchants
-    href: concept-receipt.md
+    href: prebuilt/receipt.md
   - name: Tax documents (U.S.)
     displayName: tax, forms, 1098, 1098-E, 1098-T, W-2, wages, taxes, salary, employees, tuition, loan, interest, mortgage
-    href: concept-tax-document.md
+    href: prebuilt/tax-document.md
 - name: Custom models
   items:
   - name: Custom model overview
     displayName: table, label, ocr, confidence, template, neural
-    href: concept-custom.md
+    href: train/custom-model.md
   - name: 🆕 Composed models
     displayName: custom, assign, modelId, model ID
-    href:  concept-composed-models.md
+    href:  train/composed-models.md
   - name: 🆕 Incremental classifier
     displayName: custom, classification, training
     href: concept/incremental-classifier.md
   - name: 🆕Custom generative model
     displayName: ai studio, neural, template, custom
-    href: prebuilt/custom-generative-extraction.md  
+    href: train/custom-generative-extraction.md  
   - name: Custom template model
     displayName: structure, selection, labels, tables, tabular, train, template, neural, build mode, signatures, custom
-    href: concept-custom-template.md
+    href: train/custom-template.md
   - name: Custom neural model
     displayName: selection, structure, tables, tabular, train, template, neural, build mode, signatures, custom
-    href: concept-custom-neural.md
+    href: train/custom-neural.md
   - name: Custom classification model
     displayName: custom, train, classification, splitting
-    href: concept-custom-classifier.md
+    href: train/custom-classifier.md
   - name: Custom labels
     displayName: structure, selection, labels, tables, tabular, train
-    href: concept-custom-label.md
+    href: train/custom-labels.md
   - name: Custom labeling tips
     displayName: structure, selection, labels, tables, tabular, train, tips
-    href: concept-custom-label-tips.md
+    href: train/custom-label-tips.md
   - name: Custom model lifecycle
     displayName: custom, train, modelId, model ID, expiration, train, build
-    href: concept-custom-lifecycle.md
+    href: train/custom-lifecycle.md
 - name: Features
   items:
   - name: Add-on capabilities
@@ -156,7 +156,7 @@ items:
     href: concept/analyze-document-response.md
   - name: 🆕 Retrieval-Augmented Generation (RAG)
     displayName: RAG, LLM, semantic, chunk, LangChain, language model
-    href: concept-retrieval-augmented-generation.md
+    href: concept/retrieval-augmented-generation.md
   - name: 🆕 Batch documents analysis
     displayName: analyze, azureBlobFileListSource, azureBlobSource, azureBlobFileListSource, resultContainerUrl, resultPrefix, overwriteExisting
     href: concept-batch-analysis.md

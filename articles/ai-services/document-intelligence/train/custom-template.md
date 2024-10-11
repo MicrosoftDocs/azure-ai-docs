@@ -16,21 +16,21 @@ monikerRange: 'doc-intel-4.0.0 || <=doc-intel-3.1.0'
 
 ::: moniker range="doc-intel-4.0.0"
 
-[!INCLUDE [preview-version-notice](includes/preview-notice.md)]
+[!INCLUDE [preview-version-notice](../includes/preview-notice.md)]
 
-[!INCLUDE [applies to v4.0](includes/applies-to-v40.md)]
+[!INCLUDE [applies to v4.0](../includes/applies-to-v40.md)]
 ::: moniker-end
 
 ::: moniker range="doc-intel-3.1.0"
-[!INCLUDE [applies to v3.1](includes/applies-to-v31.md)]
+[!INCLUDE [applies to v3.1](../includes/applies-to-v31.md)]
 ::: moniker-end
 
 ::: moniker range="doc-intel-3.0.0"
-[!INCLUDE [applies to v3.0](includes/applies-to-v30.md)]
+[!INCLUDE [applies to v3.0](../includes/applies-to-v30.md)]
 ::: moniker-end
 
 ::: moniker range="doc-intel-2.1.0"
-[!INCLUDE [applies to v2.1](includes/applies-to-v21.md)]
+[!INCLUDE [applies to v2.1](../includes/applies-to-v21.md)]
 ::: moniker-end
 
 Custom template (formerly custom form) is an easy-to-train document model that accurately extracts labeled key-value pairs, selection marks, tables, regions, and signatures from documents. Template models use layout cues to extract values from documents and are suitable to extract fields from highly structured documents with defined visual templates.
@@ -64,7 +64,7 @@ Tabular fields are also useful when extracting repeating information within a do
 
 ## Dealing with variations
 
-Template models rely on a defined visual template, changes to the template results in lower accuracy. In those instances, split your training dataset to include at least five samples of each template and train a model for each of the variations. You can then [compose](concept-composed-models.md) the models into a single endpoint. For subtle variations, like digital PDF documents and images, it's best to include at least five examples of each type in the same training dataset.
+Template models rely on a defined visual template, changes to the template results in lower accuracy. In those instances, split your training dataset to include at least five samples of each template and train a model for each of the variations. You can then [compose](composed-models.md) the models into a single endpoint. For subtle variations, like digital PDF documents and images, it's best to include at least five examples of each type in the same training dataset.
 
 ## Input requirements
 
@@ -106,7 +106,7 @@ Custom template models are generally available starting with v2.0 API and later 
 
 | Model | REST API | SDK | Label and Test Models|
 |--|--|--|--|
-| Custom template  | [v3.1 API](/rest/api/aiservices/document-models/build-model?view=rest-aiservices-2024-02-29-preview&preserve-view=true&branch=docintelligence&tabs=HTTP)| [Document Intelligence SDK](quickstarts/get-started-sdks-rest-api.md?view=doc-intel-3.1.0&preserve-view=true)| [Document Intelligence Studio](https://formrecognizer.appliedai.azure.com/studio)|
+| Custom template  | [v3.1 API](/rest/api/aiservices/document-models/build-model?view=rest-aiservices-2024-02-29-preview&preserve-view=true&branch=docintelligence&tabs=HTTP)| [Document Intelligence SDK](../quickstarts/get-started-sdks-rest-api.md?view=doc-intel-3.1.0&preserve-view=true)| [Document Intelligence Studio](https://formrecognizer.appliedai.azure.com/studio)|
 
 With the v3.0 and later APIs, the build operation to train model supports a new ```buildMode``` property, to train a custom template model, set the ```buildMode``` to ```template```.
 
@@ -134,7 +134,7 @@ Custom template models are generally available with the [v3.1 API](/rest/api/ais
 
 | Model | REST API | SDK | Label and Test Models|
 |--|--|--|--|
-| Custom template  | [v3.1 API](/rest/api/aiservices/document-models/analyze-document?view=rest-aiservices-2023-07-31&preserve-view=true&tabs=HTTP)| [Document Intelligence SDK](quickstarts/get-started-sdks-rest-api.md?view=doc-intel-3.0.0&preserve-view=true)| [Document Intelligence Studio](https://formrecognizer.appliedai.azure.com/studio)|
+| Custom template  | [v3.1 API](/rest/api/aiservices/document-models/analyze-document?view=rest-aiservices-2023-07-31&preserve-view=true&tabs=HTTP)| [Document Intelligence SDK](../quickstarts/get-started-sdks-rest-api.md?view=doc-intel-3.0.0&preserve-view=true)| [Document Intelligence Studio](https://formrecognizer.appliedai.azure.com/studio)|
 
 With the v3.0 and later APIs, the build operation to train model supports a new ```buildMode``` property, to train a custom template model, set the ```buildMode``` to ```template```.
 
@@ -157,7 +157,7 @@ https://{endpoint}/formrecognizer/documentModels:build?api-version=2023-07-31
 
 ## Supported languages and locales
 
-*See* our [Language Support—custom models](language-support-custom.md) page for a complete list of supported languages.
+*See* our [Language Support—custom models](../language-support/custom.md) page for a complete list of supported languages.
 
 ::: moniker range="doc-intel-2.1.0"
 
@@ -165,7 +165,7 @@ Custom (template) models  are generally available with the [v2.1 API](/rest/api/
 
 | Model | REST API | SDK | Label and Test Models|
 |--|--|--|--|
-| Custom model (template) | [Document Intelligence 2.1 ](/rest/api/aiservices/analyzer?view=rest-aiservices-v2.1&preserve-view=true)| [Document Intelligence SDK](quickstarts/get-started-sdks-rest-api.md?view=doc-intel-2.1.0&preserve-view=true?pivots=programming-language-python)| [Document Intelligence Sample labeling tool](https://fott-2-1.azurewebsites.net/)|
+| Custom model (template) | [Document Intelligence 2.1 ](/rest/api/aiservices/analyzer?view=rest-aiservices-v2.1&preserve-view=true)| [Document Intelligence SDK](../quickstarts/get-started-sdks-rest-api.md?view=doc-intel-2.1.0&preserve-view=true?pivots=programming-language-python)| [Document Intelligence Sample labeling tool](https://fott-2-1.azurewebsites.net/)|
 
 ::: moniker-end
 
@@ -176,15 +176,15 @@ Learn to create and compose custom models:
 ::: moniker range=">=doc-intel-3.0.0"
 
 > [!div class="nextstepaction"]
-> [**Build a custom model**](how-to-guides/build-a-custom-model.md)
-> [**Compose custom models**](how-to-guides/compose-custom-models.md)
+> [**Build a custom model**](../how-to-guides/build-a-custom-model.md)
+> [**Compose custom models**](../how-to-guides/compose-custom-models.md)
 
 ::: moniker-end
 
 ::: moniker range="doc-intel-2.1.0"
 
 > [!div class="nextstepaction"]
-> [**Build a custom model**](concept-custom.md#build-a-custom-model)
-> [**Compose custom models**](concept-composed-models.md#development-options)
+> [**Build a custom model**](custom-model.md#build-a-custom-model)
+> [**Compose custom models**](composed-models.md#development-options)
 
 ::: moniker-end

@@ -117,4 +117,4 @@ Congratulations! You completed this tutorial.
 ## Next steps
 
 > [!div class="nextstepaction"]
-> [Learn more about Document Intelligence models](concept-model-overview.md)
+> [Learn more about Document Intelligence models](model-overview.md)

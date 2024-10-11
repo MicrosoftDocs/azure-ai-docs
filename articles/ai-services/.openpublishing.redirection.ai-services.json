@@ -233,7 +233,7 @@
     {
       "source_path_from_root": "/articles/ai-services/document-intelligence/concept-insurance-card.md",
       "redirect_url": "/azure/ai-services/document-intelligence/concept-health-insurance-card",
-      "redirect_document_id": true
+      "redirect_document_id": false
     },
     {
       "source_path_from_root": "/articles/ai-services/document-intelligence/concept-w2.md",
@@ -248,7 +248,7 @@
     {
       "source_path_from_root": "/articles/ai-services/document-intelligence/language-support.md",
       "redirect_url": "/azure/ai-services/document-intelligence/language-support-ocr",
-      "redirect_document_id": true
+      "redirect_document_id": false
     },
     {
       "source_path_from_root": "/articles/ai-services/document-intelligence/quickstarts/includes/v3-csharp-sdk.md",
@@ -557,7 +557,7 @@
     },
     {
       "source_path_from_root": "/articles/ai-services/document-intelligence/concept-custom-generative.md",
-      "redirect_url": "/azure/ai-services/document-intelligence/prebuilt/custom-generative-extraction",
+      "redirect_url": "/azure/ai-services/document-intelligence/train/custom-generative-extraction",
       "redirect_document_id": true
     },
     {
@@ -603,6 +603,116 @@
     {
       "source_path_from_root": "/articles/ai-services/document-intelligence/managed-identities-secured-access.md",
       "redirect_url": "/azure/ai-services/document-intelligence/authentication/managed-identities-secured-access",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/document-intelligence/concept-contract.md",
+      "redirect_url": "/azure/ai-services/document-intelligence/prebuilt/contract",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/document-intelligence/concept-general-document.md",
+      "redirect_url": "/azure/ai-services/document-intelligence/prebuilt/general-document",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/document-intelligence/concept-health-insurance-card.md",
+      "redirect_url": "/azure/ai-services/document-intelligence/prebuilt/health-insurance-card",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/document-intelligence/concept-id-document.md",
+      "redirect_url": "/azure/ai-services/document-intelligence/prebuilt/id-document",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/document-intelligence/concept-invoice.md",
+      "redirect_url": "/azure/ai-services/document-intelligence/prebuilt/invoice",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/document-intelligence/concept-receipt.md",
+      "redirect_url": "/azure/ai-services/document-intelligence/prebuilt/receipt",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/document-intelligence/concept-retrieval-augmented-generation.md",
+      "redirect_url": "/azure/ai-services/document-intelligence/concept/retrieval-augmented-generation",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/document-intelligence/concept-tax-document.md",
+      "redirect_url": "/azure/ai-services/document-intelligence/prebuilt/tax-document",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/document-intelligence/concept-add-on-capabilities.md",
+      "redirect_url": "/azure/ai-services/document-intelligence/concept/add-on-capabilities",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/document-intelligence/concept-business-card.md",
+      "redirect_url": "/azure/ai-services/document-intelligence/prebuilt/business-card",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/document-intelligence/concept-composed-models.md",
+      "redirect_url": "/azure/ai-services/document-intelligence/train/composed-models",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/document-intelligence/concept-custom-classifier.md",
+      "redirect_url": "/azure/ai-services/document-intelligence/train/custom-classifier",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/document-intelligence/concept-custom-label-tips.md",
+      "redirect_url": "/azure/ai-services/document-intelligence/train/custom-label-tips",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/document-intelligence/concept-custom-label.md",
+      "redirect_url": "/azure/ai-services/document-intelligence/train/custom-labels",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/document-intelligence/concept-custom-lifecycle.md",
+      "redirect_url": "/azure/ai-services/document-intelligence/train/custom-lifecycle",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/document-intelligence/concept-custom-neural.md",
+      "redirect_url": "/azure/ai-services/document-intelligence/train/custom-neural",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/document-intelligence/concept-custom-template.md",
+      "redirect_url": "/azure/ai-services/document-intelligence/train/custom-template",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/document-intelligence/concept-custom.md",
+      "redirect_url": "/azure/ai-services/document-intelligence/train/custom-model",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/document-intelligence/concept-query-fields.md",
+      "redirect_url": "/azure/ai-services/document-intelligence/concept/query-fields",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/document-intelligence/language-support-ocr.md",
+      "redirect_url": "/azure/ai-services/document-intelligence/language-support/ocr",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/document-intelligence/language-support-prebuilt.md",
+      "redirect_url": "/azure/ai-services/document-intelligence/language-support/prebuilt",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/document-intelligence/language-support-custom.md",
+      "redirect_url": "/azure/ai-services/document-intelligence/language-support/custom",
       "redirect_document_id": true
     }
 

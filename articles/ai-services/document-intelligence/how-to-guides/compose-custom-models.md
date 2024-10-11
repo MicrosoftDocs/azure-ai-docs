@@ -36,11 +36,11 @@ ms.author: lajanuar
 ::: moniker range=">=doc-intel-3.0.0"
 
 > [!IMPORTANT]
-> Model compose behavior is changing for api-version=2024-07-31-preview and later, for more info refer to [composed custom models](../concept-composed-models.md). The following behavior only applies to v3.1 and previous versions
+> Model compose behavior is changing for api-version=2024-07-31-preview and later, for more info refer to [composed custom models](../train/composed-models.md). The following behavior only applies to v3.1 and previous versions
 
 A composed model is created by taking a collection of custom models and assigning them to a single model ID. You can assign up to 200 trained custom models to a single composed model ID. When a document is submitted to a composed model, the service performs a classification step to decide which custom model accurately represents the form presented for analysis. Composed models are useful when you train several models and want to group them to analyze similar form types. For example, your composed model might include custom models trained to analyze your supply, equipment, and furniture purchase orders. Instead of manually trying to select the appropriate model, you can use a composed model to determine the appropriate custom model for each analysis and extraction.
 
-To learn more, see [Composed custom models](../concept-composed-models.md).
+To learn more, see [Composed custom models](../train/composed-models.md).
 
 In this article, you learn how to create and use composed custom models to analyze your forms and documents.
 
@@ -117,7 +117,7 @@ While creating your custom models, you may need to extract data collections from
 
 * Specific collection of values for a given set of fields (columns and/or rows)
 
-See [Document Intelligence Studio: labeling as tables](../concept-custom-label.md#tabular-fields)
+See [Document Intelligence Studio: labeling as tables](../train/custom-labels.md#tabular-fields)
 
 ### [REST API](#tab/rest)
 
@@ -350,7 +350,7 @@ You [train your model](build-a-custom-model.md?view=doc-intel-2.1.0&preserve-vie
 
 When you train with labeled data, the model uses supervised learning to extract values of interest, using the labeled forms you provide. Labeled data results in better-performing models and can produce models that work with complex forms or forms containing values without keys.
 
-Document Intelligence uses the [Layout](../concept-layout.md) API to learn the expected sizes and positions of typeface and handwritten text elements and extract tables. Then it uses user-specified labels to learn the key/value associations and tables in the documents. We recommend that you use five manually labeled forms of the same type (same structure) to get started when training a new model. Add more labeled data as needed to improve the model accuracy. Document Intelligence enables training a model to extract key value pairs and tables using supervised learning capabilities.
+Document Intelligence uses the [Layout](../prebuilt/layout.md) API to learn the expected sizes and positions of typeface and handwritten text elements and extract tables. Then it uses user-specified labels to learn the key/value associations and tables in the documents. We recommend that you use five manually labeled forms of the same type (same structure) to get started when training a new model. Add more labeled data as needed to improve the model accuracy. Document Intelligence enables training a model to extract key value pairs and tables using supervised learning capabilities.
 
 [Get started with Train with labels](../label-tool.md)
 

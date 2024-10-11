@@ -36,18 +36,18 @@ For query field extraction, specify the fields you want to extract and Document 
 
 * If you're processing a contract in the [Document Intelligence Studio](https://documentintelligence.ai.azure.com/studio/layout), use the `2024-02-29-preview`, `2023-10-31-preview`, or later API version:
 
-    :::image type="content" source="media/studio/query-fields.png" alt-text="Screenshot of the query fields button in Document Intelligence Studio.":::
+    :::image type="content" source="../media/studio/query-fields.png" alt-text="Screenshot of the query fields button in Document Intelligence Studio.":::
 
 * You can pass a list of field labels like `Party1`, `Party2`, `TermsOfUse`, `PaymentTerms`, `PaymentDate`, and `TermEndDate`" as part of the `AnalyzeDocument` request.
 
-   :::image type="content" source="media/studio/query-field-select.png" alt-text="Screenshot of query fields selection window in Document Intelligence Studio.":::
+   :::image type="content" source="../media/studio/query-field-select.png" alt-text="Screenshot of query fields selection window in Document Intelligence Studio.":::
 
-* In addition to the query fields, the response includes the model output. For a list of features or schema extracted by each model, see [model analysis features](concept-model-overview.md#model-analysis-features).
+* In addition to the query fields, the response includes the model output. For a list of features or schema extracted by each model, see [model analysis features](../model-overview.md#model-analysis-features).
 
 
 ## Query fields REST API request**
 
-Use the query fields feature with the [general document model](concept-general-document.md), and add fields to the extraction process without having to train a custom model:
+Use the query fields feature with the [general document model](../prebuilt/general-document.md), and add fields to the extraction process without having to train a custom model:
 
 ```http
 POST https://{endpoint}/documentintelligence/documentModels/prebuilt-layout:analyze?api-version=2024-02-29-preview&features=queryFields&queryFields=Terms,PaymentDate HTTP/1.1
@@ -63,7 +63,7 @@ Ocp-Apim-Subscription-Key:
 ## Next steps
 
 > [!div class="nextstepaction"]
-> [Try the Document Intelligence Studio quickstart](./quickstarts/try-document-intelligence-studio.md)
+> [Try the Document Intelligence Studio quickstart](../quickstarts/try-document-intelligence-studio.md)
 
 > [!div class="nextstepaction"]
-> [Learn about other add-on capabilities](concept-add-on-capabilities.md)
+> [Learn about other add-on capabilities](../concept/add-on-capabilities.md)

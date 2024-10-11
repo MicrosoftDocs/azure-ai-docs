@@ -51,21 +51,21 @@ The following table shows the available models for each current preview and stab
 |**Model Type**| **Model**|&bullet; [2024-02-29-preview](/rest/api/aiservices/document-models/build-model?view=rest-aiservices-2024-02-29-preview&preserve-view=true&branch=docintelligence&tabs=HTTP) <br> &bullet; [2023-10-31-preview](/rest/api/aiservices/operation-groups?view=rest-aiservices-v4.0%20(2024-07-31-preview)&preserve-view=true)|[2023-07-31 (GA)](/rest/api/aiservices/document-models/analyze-document?view=rest-aiservices-2023-07-31&preserve-view=true&tabs=HTTP)|[2022-08-31 (GA)](/rest/api/aiservices/document-models/analyze-document?view=rest-aiservices-v3.0%20(2022-08-31)&preserve-view=true&tabs=HTTP)|[v2.1 (GA)](/rest/api/aiservices/analyzer?view=rest-aiservices-v2.1&preserve-view=true)|
 |----------------|-----------|---|--|---|---|
 |Document analysis models|[Read](prebuilt/read.md)                                  | ✔️| ✔️| ✔️| n/a|
-|Document analysis models|[Layout](concept-layout.md)                              | ✔️| ✔️| ✔️| ✔️|
-|Document analysis models|[General document](concept-general-document.md)          |moved to layout**| ✔️| ✔️| n/a|
+|Document analysis models|[Layout](prebuilt/layout.md)                              | ✔️| ✔️| ✔️| ✔️|
+|Document analysis models|[General document](prebuilt/general-document.md)          |moved to layout**| ✔️| ✔️| n/a|
 |Prebuilt models|[Bank Check](concept-bank-check.md)   | ✔️| n/a| n/a| n/a|
 |Prebuilt models|[Bank Statement](concept-bank-statement.md)   | ✔️| n/a| n/a| n/a|
 |Prebuilt models|[Paystub](concept-pay-stub.md)   | ✔️| n/a| n/a| n/a|
-|Prebuilt models|[Contract](concept-contract.md)                          | ✔️| ✔️| n/a| n/a|
-|Prebuilt models|[Health insurance card](concept-health-insurance-card.md)| ✔️| ✔️| ✔️| n/a|
-|Prebuilt models|[ID document](concept-id-document.md)                    | ✔️| ✔️| ✔️| ✔️|
-|Prebuilt models|[Invoice](concept-invoice.md)                            | ✔️| ✔️| ✔️| ✔️|
-|Prebuilt models|[Receipt](concept-receipt.md)                            | ✔️| ✔️| ✔️| ✔️|
-|Prebuilt models|[US Unified Tax*](concept-tax-document.md)                   | ✔️| n/a| n/a| n/a|
-|Prebuilt models|[US 1040 Tax*](concept-tax-document.md)                   | ✔️| ✔️| n/a| n/a|
-|Prebuilt models|[US 1098 Tax*](concept-tax-document.md)                   | ✔️| n/a| n/a| n/a|
-|Prebuilt models|[US 1099 Tax*](concept-tax-document.md)                 | ✔️| n/a| n/a| n/a|
-|Prebuilt models|[US W2 Tax](concept-tax-document.md)                     | ✔️| ✔️| ✔️| n/a|
+|Prebuilt models|[Contract](prebuilt/contract.md)                          | ✔️| ✔️| n/a| n/a|
+|Prebuilt models|[Health insurance card](prebuilt/health-insurance-card.md)| ✔️| ✔️| ✔️| n/a|
+|Prebuilt models|[ID document](prebuilt/id-document.md)                    | ✔️| ✔️| ✔️| ✔️|
+|Prebuilt models|[Invoice](prebuilt/invoice.md)                            | ✔️| ✔️| ✔️| ✔️|
+|Prebuilt models|[Receipt](prebuilt/receipt.md)                            | ✔️| ✔️| ✔️| ✔️|
+|Prebuilt models|[US Unified Tax*](prebuilt/tax-document.md)                   | ✔️| n/a| n/a| n/a|
+|Prebuilt models|[US 1040 Tax*](prebuilt/tax-document.md)                   | ✔️| ✔️| n/a| n/a|
+|Prebuilt models|[US 1098 Tax*](prebuilt/tax-document.md)                   | ✔️| n/a| n/a| n/a|
+|Prebuilt models|[US 1099 Tax*](prebuilt/tax-document.md)                 | ✔️| n/a| n/a| n/a|
+|Prebuilt models|[US W2 Tax](prebuilt/tax-document.md)                     | ✔️| ✔️| ✔️| n/a|
 |Prebuilt models|[US Mortgage 1003 URLA](concept-mortgage-documents.md)    | ✔️| n/a| n/a| n/a|
 |Prebuilt models|[US Mortgage 1004 URAR](concept-mortgage-documents.md)    | ✔️| n/a| n/a| n/a|
 |Prebuilt models|[US Mortgage 1005](concept-mortgage-documents.md)    | ✔️| n/a| n/a| n/a|
@@ -74,11 +74,11 @@ The following table shows the available models for each current preview and stab
 |Prebuilt models|[Marriage certificate](concept-marriage-certificate.md)   | ✔️| n/a| n/a| n/a|
 |Prebuilt models|[Credit card](concept-credit-card.md)   | ✔️| n/a| n/a| n/a|
 |Prebuilt models|[Business card](concept-business-card.md)                | deprecated|✔️|✔️|✔️ |
-|Custom classification model|[Custom classifier](concept-custom-classifier.md)        | ✔️| ✔️| n/a| n/a|
-|Custom Generative Model|[Custom Generative Model](concept-custom-generative.md)   | ✔️| n/a| n/a| n/a|
-|Custom extraction model|[Custom neural](concept-custom-neural.md)                | ✔️| ✔️| ✔️| n/a|
-|Customextraction model|[Custom template](concept-custom-template.md)            | ✔️| ✔️| ✔️| ✔️|
-|Custom extraction model|[Custom composed](concept-composed-models.md)            | ✔️| ✔️| ✔️| ✔️|
+|Custom classification model|[Custom classifier](train/custom-classifier.md)        | ✔️| ✔️| n/a| n/a|
+|Custom Generative Model|[Custom Generative Model](train/custom-generative-extraction.md)   | ✔️| n/a| n/a| n/a|
+|Custom extraction model|[Custom neural](train/custom-neural.md)                | ✔️| ✔️| ✔️| n/a|
+|Customextraction model|[Custom template](train/custom-template.md)            | ✔️| ✔️| ✔️| ✔️|
+|Custom extraction model|[Custom composed](train/composed-models.md)            | ✔️| ✔️| ✔️| ✔️|
 |All models|[Add-on capabilities](concept-add-on-capabilities.md)    | ✔️| ✔️| n/a| n/a|
 
 \* - Contains submodels. See the model specific information for supported variations and subtypes.
@@ -130,9 +130,9 @@ For all models, except Business card model, Document Intelligence now supports a
 The deep-learning-based universal models in Document Intelligence support many languages that can extract multilingual text from your images and documents, including text lines with mixed languages.
 Language support varies by Document Intelligence service functionality. For a complete list, see the following articles:
 
-* [Language support: document analysis models](language-support-ocr.md)
-* [Language support: prebuilt models](language-support-prebuilt.md)
-* [Language support: custom models](language-support-custom.md)
+* [Language support: document analysis models](language-support/ocr.md)
+* [Language support: prebuilt models](language-support/prebuilt.md)
+* [Language support: custom models](language-support/custom.md)
 
 ## Regional availability
 
@@ -169,7 +169,7 @@ The Layout analysis model analyzes and extracts text, tables, selection marks, a
 
 > [!div class="nextstepaction"]
 >
-> [Learn more: layout model](concept-layout.md)
+> [Learn more: layout model](prebuilt/layout.md)
 
 ### Health insurance card
 
@@ -182,7 +182,7 @@ The health insurance card model combines powerful Optical Character Recognition 
 :::image type="content" source="./media/studio/analyze-health-card.png" alt-text="Screenshot of a sample US health insurance card analysis in Document Intelligence Studio." lightbox="./media/studio/analyze-health-card.png":::
 
 > [!div class="nextstepaction"]
-> [Learn more: Health insurance card model](concept-health-insurance-card.md)
+> [Learn more: Health insurance card model](prebuilt/health-insurance-card.md)
 
 ### US tax documents
 
@@ -202,7 +202,7 @@ The US tax document models analyze and extract key fields and line items from a 
 :::image type="content" source="./media/studio/w-2.png" alt-text="Screenshot of a sample W-2.":::
 
 > [!div class="nextstepaction"]
-> [Learn more: Tax document models](concept-tax-document.md)
+> [Learn more: Tax document models](prebuilt/tax-document.md)
 >
 
 ### US mortgage documents
@@ -237,7 +237,7 @@ The US mortgage document models analyze and extract key fields including borrowe
 :::image type="content" source="media/studio/analyze-contract.png" alt-text="Screenshot of contract model extraction using Document Intelligence Studio.":::
 
 > [!div class="nextstepaction"]
-> [Learn more: contract model](concept-contract.md)
+> [Learn more: contract model](prebuilt/contract.md)
 
 ### Invoice
 
@@ -250,7 +250,7 @@ The invoice model automates processing of invoices to extracts customer name, bi
 :::image type="content" source="./media/studio/analyze-invoice.png" alt-text="Screenshot of a sample invoice." lightbox="./media/overview-invoices.jpg":::
 
 > [!div class="nextstepaction"]
-> [Learn more: invoice model](concept-invoice.md)
+> [Learn more: invoice model](prebuilt/invoice.md)
 
 ### Receipt
 
@@ -263,7 +263,7 @@ Use the receipt model to scan sales receipts for merchant name, dates, line item
 :::image type="content" source="./media/studio/analyze-receipt.png" alt-text="Screenshot of a sample receipt." lightbox="./media/overview-receipt.jpg":::
 
 > [!div class="nextstepaction"]
-> [Learn more: receipt model](concept-receipt.md)
+> [Learn more: receipt model](prebuilt/receipt.md)
 
 ### Identity document (ID)
 
@@ -276,7 +276,7 @@ Use the Identity document (ID) model to process U.S. Driver's Licenses (all 50 s
 :::image type="content" source="./media/studio/analyze-drivers-license.png" alt-text="Screenshot of a sample identification card." lightbox="./media/overview-id.jpg":::
 
 > [!div class="nextstepaction"]
-> [Learn more: identity document model](concept-id-document.md)
+> [Learn more: identity document model](prebuilt/id-document.md)
 
 ### Marriage certificate
 
@@ -314,14 +314,14 @@ Custom models can be broadly classified into two types. Custom classification mo
 
 Custom document models analyze and extract data from forms and documents specific to your business. They recognize form fields within your distinct content and extract key-value pairs and table data. You only need one example of the form type to get started.
 
-Version v3.0 and later custom models support signature detection in custom template (form) and cross-page tables in both template and neural models. [Signature detection](concept-custom-template.md#model-capabilities) looks for the presence of a signature, not the identity of the person who signs the document. If the model returns **unsigned** for signature detection, the model didn't find a signature in the defined field.
+Version v3.0 and later custom models support signature detection in custom template (form) and cross-page tables in both template and neural models. [Signature detection](train/custom-template.md#model-capabilities) looks for the presence of a signature, not the identity of the person who signs the document. If the model returns **unsigned** for signature detection, the model didn't find a signature in the defined field.
 
 ***Sample custom template processed using [Document Intelligence Studio](https://formrecognizer.appliedai.azure.com/studio/customform/projects)***:
 
 :::image type="content" source="media/studio/train-model.png" alt-text="Screenshot of Document Intelligence tool analyze-a-custom-form window.":::
 
 > [!div class="nextstepaction"]
-> [Learn more: custom model](concept-custom.md)
+> [Learn more: custom model](train/custom-model.md)
 
 #### Custom extraction
 
@@ -334,10 +334,10 @@ Custom extraction model can be one of two types, **custom template** or **custom
 :::image type="content" source="media/studio/custom-extraction-models.png" alt-text="Screenshot of custom extraction model analysis in Document Intelligence Studio.":::
 
 > [!div class="nextstepaction"]
-> [Learn more: custom template model](concept-custom-template.md)
+> [Learn more: custom template model](train/custom-template.md)
 
 > [!div class="nextstepaction"]
-> [Learn more: custom neural model](./concept-custom-neural.md)
+> [Learn more: custom neural model](./train/custom-neural.md)
 
 #### Custom classifier
 
@@ -346,7 +346,7 @@ Custom extraction model can be one of two types, **custom template** or **custom
 The custom classification model enables you to identify the document type before invoking the extraction model. The classification model is available starting with the `2023-07-31 (GA)` API. Training a custom classification model requires at least two distinct classes and a minimum of five samples per class.
 
 > [!div class="nextstepaction"]
-> [Learn more: custom classification model](concept-custom-classifier.md)
+> [Learn more: custom classification model](train/custom-classifier.md)
 
 #### Composed models
 
@@ -357,7 +357,7 @@ A composed model is created by taking a collection of custom models and assignin
 :::image type="content" source="media/studio/composed-model.png" alt-text="Screenshot of Document Intelligence Studio compose custom model dialog window.":::
 
 > [!div class="nextstepaction"]
-> [Learn more: custom model](concept-custom.md)
+> [Learn more: custom model](train/custom-model.md)
 
 ## Input requirements
 
@@ -397,7 +397,7 @@ The Layout API analyzes and extracts text, tables and headers, selection marks, 
 
 > [!div class="nextstepaction"]
 >
-> [Learn more: layout model](concept-layout.md)
+> [Learn more: layout model](prebuilt/layout.md)
 
 ### Invoice
 
@@ -408,7 +408,7 @@ The invoice model analyzes and extracts key information from sales invoices. The
 :::image type="content" source="./media/overview-invoices.jpg" alt-text="Screenshot of a sample invoice analysis using the Sample Labeling tool.":::
 
 > [!div class="nextstepaction"]
-> [Learn more: invoice model](concept-invoice.md)
+> [Learn more: invoice model](prebuilt/invoice.md)
 
 ### Receipt
 
@@ -419,7 +419,7 @@ The invoice model analyzes and extracts key information from sales invoices. The
 :::image type="content" source="./media/receipts-example.jpg" alt-text="Screenshot of a sample receipt." lightbox="./media/overview-receipt.jpg":::
 
 > [!div class="nextstepaction"]
-> [Learn more: receipt model](concept-receipt.md)
+> [Learn more: receipt model](prebuilt/receipt.md)
 
 ### ID document
 
@@ -434,7 +434,7 @@ The invoice model analyzes and extracts key information from sales invoices. The
 :::image type="content" source="./media/id-example-drivers-license.jpg" alt-text="Screenshot of a sample identification card.":::
 
 > [!div class="nextstepaction"]
-> [Learn more: identity document model](concept-id-document.md)
+> [Learn more: identity document model](prebuilt/id-document.md)
 
 ### Business card
 
@@ -456,7 +456,7 @@ The business card model analyzes and extracts key information from business card
 :::image type="content" source="media/overview-custom.jpg" alt-text="Screenshot of Document Intelligence tool analyze-a-custom-form window.":::
 
 > [!div class="nextstepaction"]
-> [Learn more: custom model](concept-custom.md)
+> [Learn more: custom model](train/custom-model.md)
 
 #### Composed custom model
 
@@ -467,18 +467,18 @@ A composed model is created by taking a collection of custom models and assignin
 :::image type="content" source="media/custom-model-compose.png" alt-text="Screenshot of Document Intelligence Studio compose custom model dialog window.":::
 
 > [!div class="nextstepaction"]
-> [Learn more: custom model](concept-custom.md)
+> [Learn more: custom model](train/custom-model.md)
 
 ## Model data extraction
 
 | **Model** | **Text extraction** | **Language detection** | **Selection Marks** | **Tables** | **Paragraphs** | **Paragraph roles** | **Key-Value pairs** | **Fields** |
 |:-----|:----:|:----:|:----:|:----:|:----:|:----:|:----:|:----:|
-| [Layout](concept-layout.md#data-extraction)  | ✓  |   | ✓ | ✓ | ✓  | ✓  |  |  |
-| [Invoice](concept-invoice.md#field-extraction)  | ✓ |   | ✓  | ✓ | ✓ |   | ✓ | ✓ |
-| [Receipt](concept-receipt.md#field-extraction)  | ✓  |   |  |  | ✓ |   |  | ✓ |
-| [ID Document](concept-id-document.md#field-extractions) | ✓ |   |   |  | ✓ |   |  | ✓ |
+| [Layout](prebuilt/layout.md#data-extraction)  | ✓  |   | ✓ | ✓ | ✓  | ✓  |  |  |
+| [Invoice](prebuilt/invoice.md#field-extraction)  | ✓ |   | ✓  | ✓ | ✓ |   | ✓ | ✓ |
+| [Receipt](prebuilt/receipt.md#field-extraction)  | ✓  |   |  |  | ✓ |   |  | ✓ |
+| [ID Document](prebuilt/id-document.md#field-extractions) | ✓ |   |   |  | ✓ |   |  | ✓ |
 | [Business Card](concept-business-card.md#field-extractions)  | ✓  |   |   |  | ✓ |   |  | ✓ |
-| [Custom Form](concept-custom.md#compare-model-features) | ✓  ||  ✓ | ✓ | ✓  |   | | ✓ |
+| [Custom Form](train/custom-model.md#compare-model-features) | ✓  ||  ✓ | ✓ | ✓  |   | | ✓ |
 
 ## Input requirements
 

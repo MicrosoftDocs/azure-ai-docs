@@ -45,7 +45,7 @@ Pay stubs are essential documents issued by employers to employees, providing ea
 
 ## Supported languages and locales
 
-*See* our [Language Support](../language-support-prebuilt.md) page for a complete list of supported languages.
+*See* our [Language Support](../language-support/prebuilt.md) page for a complete list of supported languages.
 
 ## Field extractions
 

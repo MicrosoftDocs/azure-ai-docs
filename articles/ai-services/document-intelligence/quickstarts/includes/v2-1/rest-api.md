@@ -120,9 +120,9 @@ You can view the [full sample output on GitHub](https://github.com/Azure-Samples
 
 You aren't limited to invoices—there are several prebuilt models to choose from, each of which has its own set of supported fields. The model to use for the analyze operation depends on the type of document to be analyzed. Here are the prebuilt models currently supported by the Document Intelligence service:
 
-* [**Invoice**](../../../concept-invoice.md): extracts text, selection marks, tables, fields, and key information from invoices.
-* [**Receipt**](../../../concept-receipt.md): extracts text and key information from receipts.
-* [**ID document**](../../../concept-id-document.md): extracts text and key information from driver licenses and international passports.
+* [**Invoice**](../../../prebuilt/invoice.md): extracts text, selection marks, tables, fields, and key information from invoices.
+* [**Receipt**](../../../prebuilt/receipt.md): extracts text and key information from receipts.
+* [**ID document**](../../../prebuilt/id-document.md): extracts text and key information from driver licenses and international passports.
 * [**Business-card**](../../../concept-business-card.md): extracts text and key information from business cards.
 
 Before you run the command, make these changes:

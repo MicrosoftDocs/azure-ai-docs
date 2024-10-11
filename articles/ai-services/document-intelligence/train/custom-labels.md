@@ -16,10 +16,10 @@ monikerRange: '>=doc-intel-3.0.0'
 
 # Best practices: generating labeled datasets
 
-[!INCLUDE [applies to v4.0 v3.1 v3.0](includes/applies-to-v40-v31-v30.md)]
+[!INCLUDE [applies to v4.0 v3.1 v3.0](../includes/applies-to-v40-v31-v30.md)]
 
 > [!IMPORTANT]
-> Best practices to generating labelled datasets only applies to custom template and custom neural models, for custom generative, refer to [Custom Generative](concept-custom-generative.md)
+> Best practices to generating labelled datasets only applies to custom template and custom neural models, for custom generative, refer to [Custom Generative](custom-generative-extraction.md)
 
 Custom models (template and neural) require a labeled dataset of at least five documents to train a model. The quality of the labeled dataset affects the accuracy of the trained model. This guide helps you learn more about generating a model with high accuracy by assembling a diverse dataset and provides best practices for labeling your documents.
 
@@ -33,13 +33,13 @@ A labeled dataset consists of several files:
 
   * A `fields.json` file is created when the first field is added. There's one `fields.json` file for the entire training dataset, the field list contains the field name and associated sub fields and types.
 
-  * The Studio runs each of the documents through the [Layout API](concept-layout.md). The layout response for each of the sample files in the dataset is added as `{file}.ocr.json`. The layout response is used to generate the field labels when a specific span of text is labeled.
+  * The Studio runs each of the documents through the [Layout API](../prebuilt/layout.md). The layout response for each of the sample files in the dataset is added as `{file}.ocr.json`. The layout response is used to generate the field labels when a specific span of text is labeled.
 
   * A `{file}.labels.json` file is created or updated when a field is labeled in a document. The label file contains the spans of text and associated polygons from the layout output for each span of text the user adds as a value for a specific field.
 
 ## Video: Custom label tips and pointers
 
-* The following video is the first of two presentations intended to help you build custom models with higher accuracy (The second presentation examines [Best practices for labeling documents](concept-custom-label-tips.md#video-custom-labels-best-practices)).
+* The following video is the first of two presentations intended to help you build custom models with higher accuracy (The second presentation examines [Best practices for labeling documents](custom-label-tips.md#video-custom-labels-best-practices)).
 
 * We explore how to create a balanced data set and select the right documents to label. This process sets you on the path to higher quality models.
 
@@ -51,9 +51,9 @@ Before you start labeling, it's a good idea to look at a few different samples o
 
 * **Document formats**: If you expect to analyze both digital and scanned documents, add a few examples of each type to the training dataset.
 
-* **Variations (template model)**:  Consider splitting the dataset into folders and train a model for each of variation. Any variations that include either structure or layout should be split into different models. You can then compose the individual models into a single [composed model](concept-composed-models.md).
+* **Variations (template model)**:  Consider splitting the dataset into folders and train a model for each of variation. Any variations that include either structure or layout should be split into different models. You can then compose the individual models into a single [composed model](composed-models.md).
 
-* **Variations (Neural models)**: When your dataset has a manageable set of variations, about 15 or fewer, create a single dataset with a few samples of each of the different variations to train a single model. If the number of template variations is larger than 15, you train multiple models and [compose](concept-composed-models.md) them together.
+* **Variations (Neural models)**: When your dataset has a manageable set of variations, about 15 or fewer, create a single dataset with a few samples of each of the different variations to train a single model. If the number of template variations is larger than 15, you train multiple models and [compose](composed-models.md) them together.
 
 * **Tables**: For documents containing tables with a variable number of rows, ensure that the training dataset also represents documents with different numbers of rows.
 
@@ -88,7 +88,7 @@ Custom neural models currently only support key-value pairs, structured fields (
 | Custom template | ✔️Supported| ✔️Supported | ✔️Supported | ✔️Supported | ✔️Supported | Unsupported |
 
 <sup>1</sup> Region labeling implementation differs between template and neural models. For template models, the training process injects synthetic data at training time if no text is found in the region labeled. With neural models, no synthetic text is injected and the recognized text is used as is.</br>
-<sup>2</sup> Overlapping fields are supported starting with the API version ```2024-02-29-preview``` and later. Overlapping fields have some limits. For more information, *see* [overlapping fields](concept-custom-neural.md#overlapping-fields).
+<sup>2</sup> Overlapping fields are supported starting with the API version ```2024-02-29-preview``` and later. Overlapping fields have some limits. For more information, *see* [overlapping fields](custom-neural.md#overlapping-fields).
 
 ## Tabular fields
 
@@ -120,7 +120,7 @@ Tabular fields are also useful when extracting repeating information within a do
 * Train a custom model:
 
   > [!div class="nextstepaction"]
-  > [How to train a model](how-to-guides/build-a-custom-model.md?view=doc-intel-3.0.0&preserve-view=true)
+  > [How to train a model](../how-to-guides/build-a-custom-model.md?view=doc-intel-3.0.0&preserve-view=true)
 
 * View the REST APIs:
 

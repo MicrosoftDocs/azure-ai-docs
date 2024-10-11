@@ -114,11 +114,11 @@ Document Intelligence billing is calculated monthly based on the model type and 
 
 > [!div class="checklist"]
 >
-> * [**Custom template model**](concept-custom-template.md)
-> * [**Custom neural model**](concept-custom-neural.md)
-> * [**Custom generative model**](concept-custom-generative.md)
-> * [**Composed classification models**](concept-custom-classifier.md)
-> * [**Composed custom models**](concept-composed-models.md)
+> * [**Custom template model**](train/custom-template.md)
+> * [**Custom neural model**](train/custom-neural.md)
+> * [**Custom generative model**](train/custom-generative-extraction.md)
+> * [**Composed classification models**](train/custom-classifier.md)
+> * [**Composed custom models**](train/composed-models.md)
 
 |Quota|Free (F0) <sup>1</sup>|Standard (S0)|
 |--|--|--|
@@ -151,10 +151,10 @@ Document Intelligence billing is calculated monthly based on the model type and 
 
 > [!div class="checklist"]
 >
-> * [**Custom template model**](concept-custom-template.md)
-> * [**Custom neural model**](concept-custom-neural.md)
-> * [**Composed classification models**](concept-custom-classifier.md)
-> * [**Composed custom models**](concept-composed-models.md)
+> * [**Custom template model**](train/custom-template.md)
+> * [**Custom neural model**](train/custom-neural.md)
+> * [**Composed classification models**](train/custom-classifier.md)
+> * [**Composed custom models**](train/composed-models.md)
 
 |Quota|Free (F0) <sup>1</sup>|Standard (S0)|
 |--|--|--|
@@ -187,10 +187,10 @@ Document Intelligence billing is calculated monthly based on the model type and 
 
 > [!div class="checklist"]
 >
-> * [**Custom template model**](concept-custom-template.md)
-> * [**Custom neural model**](concept-custom-neural.md)
-> * [**Composed classification models**](concept-custom-classifier.md)
-> * [**Composed custom models**](concept-composed-models.md)
+> * [**Custom template model**](train/custom-template.md)
+> * [**Custom neural model**](train/custom-neural.md)
+> * [**Composed classification models**](train/custom-classifier.md)
+> * [**Composed custom models**](train/composed-models.md)
 
 |Quota|Free (F0) <sup>1</sup>|Standard (S0)|
 |--|--|--|
@@ -223,8 +223,8 @@ Document Intelligence billing is calculated monthly based on the model type and 
 
 > [!div class="checklist"]
 >
-> * [**Custom template model**](concept-custom-template.md)
-> * [**Composed custom models**](concept-composed-models.md)
+> * [**Custom template model**](train/custom-template.md)
+> * [**Composed custom models**](train/composed-models.md)
 
 | Quota | Free (F0) <sup>1</sup> | Standard (S0) |
 |--|--|--|
@@ -247,7 +247,7 @@ Document Intelligence billing is calculated monthly based on the model type and 
 > <sup>4</sup> This limit applies to all documents found in your training dataset folder prior to any labeling-related updates.
 ::: moniker-end
 ::: moniker range=">=doc-intel-4.0.0"
-> <sup>5</sup> This limit applies for `v 4.0 (2024-07-31)` custom neural models only. Starting from `v 4.0`, we support training larger documents for longer durations (up to 10 hours for free, and incurring charges after). For more information, please refer to [custom nerual model page](concept-custom-neural.md).
+> <sup>5</sup> This limit applies for `v 4.0 (2024-07-31)` custom neural models only. Starting from `v 4.0`, we support training larger documents for longer durations (up to 10 hours for free, and incurring charges after). For more information, please refer to [custom nerual model page](train/custom-neural.md).
 ::: moniker-end
 
 ## Detailed description, Quota adjustment, and best practices

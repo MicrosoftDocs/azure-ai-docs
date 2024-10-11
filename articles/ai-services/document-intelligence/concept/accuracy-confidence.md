@@ -131,4 +131,4 @@ For **dynamic tables**, the levels are meant to build on top of each other, so t
 ## Next step
 
 > [!div class="nextstepaction"]
-> [Learn more about custom models](../concept-custom.md)
+> [Learn more about custom models](../train/custom-model.md)

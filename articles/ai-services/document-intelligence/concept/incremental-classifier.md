@@ -20,7 +20,7 @@ monikerRange: '>=doc-intel-4.0.0'
 
 Azure AI Document Intelligence is a cloud-based Azure AI service that enables you to build intelligent document processing solutions. Document Intelligence APIs analyze images, PDFs, and other document files to extract and detect various content, layout, style, and semantic elements.
 
-[Document Intelligence custom classification models](../concept-custom-classifier.md) are deep-learning-model types that combine layout and language features to accurately detect and identify documents you process within your applications. Custom classification models perform classification of input files one page at a time to identify the documents within and can also identify multiple documents or multiple instances of a single document within an input file.
+[Document Intelligence custom classification models](../train/custom-classifier.md) are deep-learning-model types that combine layout and language features to accurately detect and identify documents you process within your applications. Custom classification models perform classification of input files one page at a time to identify the documents within and can also identify multiple documents or multiple instances of a single document within an input file.
 
 Document Intelligence document classifiers identify known document types in files. When processing an input file with multiple document types or when you don't know the document type, use a classifier to identify the document. Classifiers should be periodically updated whenever the following changes occur:
 
@@ -50,7 +50,7 @@ Incremental training is useful when you want to improve the quality of a custom 
 
 ### Create an incremental classifier build request
 
-The incremental classifier build request is similar to the [`classify document` build request](/rest/api/aiservices/document-classifiers?view=rest-aiservices-v4.0%20(2024-02-29-preview)&preserve-view=true) but includes the new `baseClassifierId` property. The `baseClassifierId` is set to the existing classifier that you want to extend. You also need to provide the `docTypes` for the different document types in the sample set. By providing a `docType` that exists in the baseClassifier, the samples provided in the request are added to the samples provided when the base classifier was trained. New `docType` values added in the incremental training are only added to the new classifier. The process to specify the samples remains unchanged. For more information, *see* [training a classifier model](../concept-custom-classifier.md#training-a-model).
+The incremental classifier build request is similar to the [`classify document` build request](/rest/api/aiservices/document-classifiers?view=rest-aiservices-v4.0%20(2024-02-29-preview)&preserve-view=true) but includes the new `baseClassifierId` property. The `baseClassifierId` is set to the existing classifier that you want to extend. You also need to provide the `docTypes` for the different document types in the sample set. By providing a `docType` that exists in the baseClassifier, the samples provided in the request are added to the samples provided when the base classifier was trained. New `docType` values added in the incremental training are only added to the new classifier. The process to specify the samples remains unchanged. For more information, *see* [training a classifier model](../train/custom-classifier.md#training-a-model).
 
 ### Sample POST request
 
@@ -136,4 +136,4 @@ The `GET` response from an incrementally trained classifier differs from the sta
 
 ## Next steps
 
-* Learn more about [document classification](../concept-custom-classifier.md)
+* Learn more about [document classification](../train/custom-classifier.md)

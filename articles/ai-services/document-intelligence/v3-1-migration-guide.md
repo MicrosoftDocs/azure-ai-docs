@@ -64,10 +64,10 @@ Compared with v3.0, Document Intelligence v3.1 introduces several new features a
 
 * [Barcode](concept-add-on-capabilities.md#barcode-property-extraction) extraction.
 * [Add-on capabilities](concept-add-on-capabilities.md) including high resolution, formula, and font properties extraction.
-* [Custom classification model](concept-custom-classifier.md) for document splitting and classification.
-* Language expansion and new fields support in [Invoice](concept-invoice.md) and [Receipt](concept-receipt.md) model.
-* New document type support in [ID document](concept-id-document.md) model.
-* New prebuilt [Health insurance card](concept-health-insurance-card.md) model.
+* [Custom classification model](train/custom-classifier.md) for document splitting and classification.
+* Language expansion and new fields support in [Invoice](prebuilt/invoice.md) and [Receipt](prebuilt/receipt.md) model.
+* New document type support in [ID document](prebuilt/id-document.md) model.
+* New prebuilt [Health insurance card](prebuilt/health-insurance-card.md) model.
 * Office/HTML files are supported in prebuilt-read model, extracting words and paragraphs without bounding boxes. Embedded images are no longer supported. If add-on features are requested for Office/HTML files, an empty array is returned without errors.
 * Model expiration for custom extraction and classification models - Our new custom models build upon on a large base model that we update periodically for quality improvement. An expiration date is introduced to all custom models to enable the retirement of the corresponding base models.  Once a custom model expires, you need to retrain the model using the latest API version (base model).
 
