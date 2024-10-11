@@ -36,7 +36,7 @@ In this article, you learn how to transition RAG flows from your Azure Machine L
 
   :::image type="content" source="./media/how-to-retrieval-augmented-generation-cloud-to-local/vs-code-extension.png" alt-text="Screenshot of the prompt flow VS Code extension in the marketplace.":::
 
-- An [Azure OpenAI account resource](/azure/ai-services/openai/how-to/create-resource#create-a-resource) that has [model deployments](/azure/ai-services/openai/how-to/create-resource#deploy-a-model) for both **chat** and **text-embedding-ada**
+- An [Azure OpenAI account resource](/azure/ai-services/openai/how-to/create-resource#create-a-resource) that has [model deployments](/azure/ai-services/openai/how-to/create-resource#deploy-a-model) for both **chat** and **text-embedding-ada**. If you use an Azure AI Search index as the data source for your vector index, you must also have an Azure AI Search connection.
 
 - A [vector index created](how-to-create-vector-index.md) in Azure Machine Learning studio for the example prompt flow to use.
 
@@ -119,8 +119,8 @@ To use the vector index lookup tool locally, you need to create the same connect
 
    >[!NOTE]
    >If you have any issues with the local `promptflow_vectordb` tool, see [Package tool isn't found error](prompt-flow/tools-reference/troubleshoot-guidance.md#package-tool-isnt-found-error-occurs-when-you-update-the-flow-for-a-code-first-experience) and [Migrate from legacy tools to the Index Lookup tool](/azure/ai-studio/how-to/prompt-flow-tools/index-lookup-tool#migrate-from-legacy-tools-to-the-index-lookup-tool) for troubleshooting.
-   
-   1. Scroll to the **generate_prompt_context** node, and in the raw *flow.dag.yaml* file, select the **Open code file** link.
+
+1. Scroll to the **generate_prompt_context** node, and in the raw *flow.dag.yaml* file, select the **Open code file** link.
 
 1. In the Python code file, make sure the package name of the vector tool is `promptflow_vectordb`.
 
