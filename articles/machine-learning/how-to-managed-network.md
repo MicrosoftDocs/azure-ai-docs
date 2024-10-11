@@ -1116,6 +1116,7 @@ The Azure Machine Learning managed VNet feature is free. However, you're charged
 * When using Managed Vnet, you can't deploy compute resources inside your custom Vnet. Compute resources can only be created inside the managed Vnet.
 * Managed network isolation cannot establish a private connection from the managed virtual network to a user's on-premises resources.
 For the list of supported private connections, see [Private Endpoints](/azure/machine-learning/how-to-managed-network?view=azureml-api-2&tabs=azure-cli&preserve-view=true#private-endpoints).
+* If your managed network is configured to __allow only approved outbound__, you cannot use an FQDN rule to access Azure Storage Accounts. You must use a private endpoint instead.
 
 ### Migration of compute resources
 
