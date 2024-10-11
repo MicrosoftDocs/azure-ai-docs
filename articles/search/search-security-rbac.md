@@ -6,7 +6,7 @@ description: Use Azure role-based access control for granular permissions on ser
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.topic: how-to
 ms.date: 06/03/2024
 ms.custom: subject-rbac-steps, devx-track-azurepowershell

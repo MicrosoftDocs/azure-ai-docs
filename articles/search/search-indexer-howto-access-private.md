@@ -6,7 +6,7 @@ description: Configure indexer connections to access content from other Azure re
 manager: nitinme
 author: mrcarter8
 ms.author: mcarter
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.topic: how-to
 ms.date: 09/17/2024
 ---

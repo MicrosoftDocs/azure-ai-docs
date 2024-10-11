@@ -5,7 +5,7 @@ description: Configure an indexer connection to access content in an Azure SQL M
 
 author: mattgotteiner
 ms.author: magottei
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.topic: how-to
 ms.date: 05/23/2024
 ---

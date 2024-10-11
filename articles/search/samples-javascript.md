@@ -6,7 +6,7 @@ description: Find Azure AI Search demo JavaScript code samples that use the Azur
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.custom:
   - devx-track-dotnet
   - devx-track-js

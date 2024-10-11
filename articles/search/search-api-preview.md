@@ -6,7 +6,7 @@ description: Preview features are released so that customers can provide feedbac
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.custom:
   - build-2024
 ms.topic: conceptual

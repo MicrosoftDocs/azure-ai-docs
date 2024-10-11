@@ -6,7 +6,7 @@ description: Set up an embedding model and chat model for generative search (RAG
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.topic: tutorial
 ms.custom: references_regions
 ms.date: 10/04/2024

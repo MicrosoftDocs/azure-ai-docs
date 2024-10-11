@@ -5,7 +5,7 @@ description: This page provides links to demo sites that are built on Azure AI S
 author: HeidiSteen
 manager: nitinme
 ms.author: heidist
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: conceptual

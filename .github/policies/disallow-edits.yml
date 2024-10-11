@@ -12,10 +12,10 @@ configuration:
               action: Opened
           - or:              
               - filesMatchPattern:
-                  pattern: articles/index.yml
+                  matchAny: true
+                  pattern: articles/index.*
         then:
           - addReply:
               reply: >-
                 @${issueAuthor} - You tried to add an index file to this repository; this is not permitted so your pull request will be closed automatically. 
           - closePullRequest
-          
