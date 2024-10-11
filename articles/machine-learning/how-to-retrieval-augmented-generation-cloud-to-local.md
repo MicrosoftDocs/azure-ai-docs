@@ -36,9 +36,9 @@ In this article, you learn how to transition RAG flows from your Azure Machine L
 
   :::image type="content" source="./media/how-to-retrieval-augmented-generation-cloud-to-local/vs-code-extension.png" alt-text="Screenshot of the prompt flow VS Code extension in the marketplace.":::
 
-- An [Azure OpenAI account resource](/azure/ai-services/openai/how-to/create-resource#create-a-resource) that has [model deployments](/azure/ai-services/openai/how-to/create-resource#deploy-a-model) for both **chat** and **text-embedding-ada**.
+- An [Azure OpenAI account resource](/azure/ai-services/openai/how-to/create-resource#create-a-resource) that has [model deployments](/azure/ai-services/openai/how-to/create-resource#deploy-a-model) for both **chat** and **text-embedding-ada**
 
-- A [vector index created](how-to-create-vector-index.md) in Azure Machine Learning studio for the example prompt flow to use.
+- A [vector index created](how-to-create-vector-index.md) in Azure Machine Learning studio for the example prompt flow to use
 
 ## Create the prompt flow
 
