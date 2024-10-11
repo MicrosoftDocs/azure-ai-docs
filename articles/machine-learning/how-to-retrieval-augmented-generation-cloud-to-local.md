@@ -27,16 +27,16 @@ In this article, you learn how to transition RAG flows from your Azure Machine L
 
 ## Prerequisites
 
-- Python 3.9 or above installed locally.
+- Python installed locally
 
-  - The `promptflow` SDK and `promptflow-tools` packages installed by running<br>`pip install promptflow promptflow-tools`.
-  - The `promptflow-vectordb` tool installed by running<br>`pip install promptflow-vectordb`.
+  - The **promptflow** SDK and **promptflow-tools** packages installed by running<br>`pip install promptflow promptflow-tools`
+  - The **promptflow-vectordb** tool installed by running<br>`pip install promptflow-vectordb`
 
-- Visual Studio Code with the **Python** and **Prompt flow** extensions installed.
+- Visual Studio Code with the **Python** and **Prompt flow** extensions installed
 
   :::image type="content" source="./media/how-to-retrieval-augmented-generation-cloud-to-local/vs-code-extension.png" alt-text="Screenshot of the prompt flow VS Code extension in the marketplace.":::
 
-- An [Azure OpenAI account resource](/azure/ai-services/openai/how-to/create-resource#create-a-resource) that has [model deployments](/azure/ai-services/openai/how-to/create-resource#deploy-a-model) for both **chat** and **text-embedding-ada**.
+- An [Azure OpenAI account resource](/azure/ai-services/openai/how-to/create-resource#create-a-resource) that has [model deployments](/azure/ai-services/openai/how-to/create-resource#deploy-a-model) for both **chat** and **text-embedding-ada**
 
 - A [vector index created](how-to-create-vector-index.md) in Azure Machine Learning studio for the example prompt flow to use.
 
@@ -80,7 +80,7 @@ The rest of this article details how to use the VS Code Prompt flow extension to
 
    :::image type="content" source="./media/how-to-retrieval-augmented-generation-cloud-to-local/vs-code-extension-toolbar.png" alt-text="Screenshot of the prompt flow VS Code extension icon in the VS Code left menu.":::
 
-1. If necessary, select **Install dependencies** and make sure the correct Python interpreter is selected, and the `promptflow` and `promptflow-tools` packages are installed.
+1. Select **Install dependencies** in the management pane and make sure the correct Python interpreter is selected, and the **promptflow** and **promptflow-tools** packages are installed.
 
 ### Create the connections
 
@@ -96,7 +96,7 @@ To use the vector index lookup tool locally, you need to create the same connect
 
 1. Select the **Create connection** link at the bottom of the file. The app runs to create the connection. When prompted, enter the API key for your connection in the terminal.
 
-1. Also create a new Azure AI Search connection for the new version of the local vector index lookup tool to use. For more information, see [Index Lookup tool for Azure Machine Learning (Preview)](prompt-flow/tools-reference/index-lookup-tool.md) and [Package tool isn't found error](prompt-flow/tools-reference/troubleshoot-guidance.md#package-tool-isnt-found-error-occurs-when-you-update-the-flow-for-a-code-first-experience).
+1. If you used an Azure AI Search index as the data source for your vector index, also create a new Azure AI Search connection for the local vector index lookup tool to use. For more information, see [Index Lookup tool for Azure Machine Learning (Preview)](prompt-flow/tools-reference/index-lookup-tool.md).
 
 ### Check the files
 
@@ -117,13 +117,16 @@ To use the vector index lookup tool locally, you need to create the same connect
 
    :::image type="content" source="./media/how-to-retrieval-augmented-generation-cloud-to-local/search-tool.png" alt-text="Screenshot of the tool section of the lookup node.":::
 
-1. Scroll to the **generate_prompt_context** node, and in the raw *flow.dag.yaml* file, select the **Open code file** link.
+   >[!NOTE]
+   >If you have any issues with the local `promptflow_vectordb` tool, see [Package tool isn't found error](prompt-flow/tools-reference/troubleshoot-guidance.md#package-tool-isnt-found-error-occurs-when-you-update-the-flow-for-a-code-first-experience) and [Migrate from legacy tools to the Index Lookup tool](/azure/ai-studio/how-to/prompt-flow-tools/index-lookup-tool#migrate-from-legacy-tools-to-the-index-lookup-tool) for troubleshooting.
+   
+   1. Scroll to the **generate_prompt_context** node, and in the raw *flow.dag.yaml* file, select the **Open code file** link.
 
 1. In the Python code file, make sure the package name of the vector tool is `promptflow_vectordb`.
 
     :::image type="content" source="./media/how-to-retrieval-augmented-generation-cloud-to-local/generate-node.png" alt-text="Screenshot of the Python code file with the vector tool package name highlighted.":::
 
-1. Scroll to the **answer_the_question_with_context** node and make sure the connection is the same as the local connection you created. Check the **deployment_name**, which is the model you use here for the embedding.
+1. Scroll to the **answer_the_question_with_context** node and make sure it uses the local connection you created. Check the **deployment_name**, which is the model you use here for the embedding.
 
    :::image type="content" source="./media/how-to-retrieval-augmented-generation-cloud-to-local/answer-connection.png" alt-text="Screenshot of answer the question with context node with the connection highlighted.":::
 
