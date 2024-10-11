@@ -6,7 +6,7 @@ description: Manage an Azure AI Search resource using the Azure portal.
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.topic: conceptual
 ms.date: 06/18/2024
 ---

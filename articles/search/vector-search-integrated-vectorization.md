@@ -5,7 +5,7 @@ description: Add a data chunking and embedding step in an Azure AI Search skills
 
 author: heidisteen
 ms.author: heidist
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: conceptual

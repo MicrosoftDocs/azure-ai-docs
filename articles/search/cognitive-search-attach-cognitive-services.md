@@ -4,7 +4,7 @@ titleSuffix: Azure AI Search
 description: Learn how to attach an Azure AI multi-service resource to an AI enrichment pipeline in Azure AI Search.
 author: HeidiSteen
 ms.author: heidist
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: how-to

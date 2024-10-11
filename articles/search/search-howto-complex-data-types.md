@@ -9,7 +9,7 @@ ms.author: beloh
 tags: complex data types; compound data types; aggregate data types
 ms.custom:
   - ignite-2023
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.topic: how-to
 ms.date: 01/18/2024
 ---

@@ -5,7 +5,7 @@ description: Learn the tools and techniques for efficiently scaling out a custom
 
 author: gmndrg
 ms.author: gimondra
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: conceptual

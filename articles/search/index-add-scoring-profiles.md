@@ -6,7 +6,7 @@ description: Boost search relevance scores for Azure AI Search results by adding
 manager: nitinme
 author: shmed
 ms.author: ramero
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: how-to

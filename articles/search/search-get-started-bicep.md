@@ -4,7 +4,7 @@ titleSuffix: Azure AI Search
 description: You can quickly deploy an Azure AI Search service instance using Bicep.
 author: HeidiSteen
 ms.author: heidist
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.topic: quickstart
 ms.custom:
   - subject-armqs

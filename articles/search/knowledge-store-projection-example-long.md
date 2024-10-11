@@ -6,7 +6,7 @@ description: Explore a detailed example that projects the output of a rich skill
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: conceptual

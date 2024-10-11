@@ -6,7 +6,7 @@ description: Enable search-as-you-type query actions in Azure AI Search by creat
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: how-to
