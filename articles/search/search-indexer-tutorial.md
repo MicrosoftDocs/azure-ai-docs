@@ -6,7 +6,7 @@ description: In this C# tutorial, connect to Azure SQL Database, extract searcha
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.topic: tutorial
 ms.date: 09/23/2024
 ms.custom:

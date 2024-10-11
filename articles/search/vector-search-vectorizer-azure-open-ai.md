@@ -4,7 +4,7 @@ titleSuffix: Azure AI Search
 description: Connects to a deployed model on your Azure OpenAI resource at query time.
 author: careyjmac
 ms.author: chalton
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.custom:
   - build-2024
 ms.topic: reference

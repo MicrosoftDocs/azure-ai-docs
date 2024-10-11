@@ -4,7 +4,7 @@ titleSuffix: Azure AI Search
 description: Step-by-step guidance on how to build a Power App that connects to an Azure AI Search index, sends queries, and renders results.
 author: HeidiSteen
 ms.author: heidist
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: tutorial

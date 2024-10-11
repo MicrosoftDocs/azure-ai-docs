@@ -6,7 +6,7 @@ description: Learn about the security features in Azure AI Search to protect end
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: conceptual

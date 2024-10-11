@@ -5,7 +5,7 @@ description: Create or update a search index to include vector fields.
 
 author: HeidiSteen
 ms.author: heidist
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.topic: how-to
 ms.date: 08/05/2024
 ---

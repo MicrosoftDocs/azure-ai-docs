@@ -6,7 +6,7 @@ description: In this Azure AI Search tutorial, learn how to add search to an ASP
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.devlang: csharp
 ms.custom:
   - ignite-2023

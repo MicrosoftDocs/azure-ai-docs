@@ -5,7 +5,7 @@ description: Run indexers in full, or reset an indexer, skills, or individual do
 author: HeidiSteen
 manager: nitinme
 ms.author: heidist
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: how-to

@@ -5,7 +5,7 @@ description: Set up a search indexer to index data stored in Azure Cosmos DB for
 
 author: mgottein
 ms.author: magottei
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.custom:
   - devx-track-dotnet
   - ignite-2023

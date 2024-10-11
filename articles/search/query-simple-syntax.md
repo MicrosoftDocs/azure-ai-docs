@@ -6,7 +6,7 @@ description: Reference for the simple query syntax used for full text search que
 manager: nitinme
 author: bevloh
 ms.author: beloh
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: conceptual

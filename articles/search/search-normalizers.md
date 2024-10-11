@@ -5,7 +5,7 @@ description: Specify normalizers to text fields in an index to customize the str
 author: HeidiSteen
 manager: jlembicz
 ms.author: heidist
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: how-to

@@ -6,7 +6,7 @@ description: OData full-text search functions, search.ismatch and search.ismatch
 manager: nitinme
 author: bevloh
 ms.author: beloh
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: reference

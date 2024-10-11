@@ -6,7 +6,7 @@ description: Find Azure AI Search demo C# code samples that use the .NET client 
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.custom:
   - devx-track-dotnet
   - ignite-2023

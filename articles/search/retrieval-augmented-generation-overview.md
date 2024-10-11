@@ -6,7 +6,7 @@ description: Learn how generative AI and retrieval augmented generation (RAG) pa
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: conceptual
