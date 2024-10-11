@@ -6,7 +6,7 @@ description: Review differences in API versions and learn about the REST API lif
 manager: nitinme
 author: bevloh
 ms.author: beloh
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
   - build-2024

@@ -6,7 +6,7 @@ description: Reference for the full Lucene query syntax, as used in Azure AI Sea
 manager: nitinme
 author: bevloh
 ms.author: beloh
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: concept-article
