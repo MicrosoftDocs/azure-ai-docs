@@ -187,7 +187,7 @@ At this point, you should have a Document Intelligence resource and a SharePoint
 
     :::image type="content" source="../../media/logic-apps-tutorial/function-expression-field.png" alt-text="Screenshot of the expression function field.":::
 
-1. In  the **ƒx** box, copy and paste the above formula and replace **FIELD-NAME** with the name of the field we want to extract. For the full list of available fields, refer to the concept page for the given API. In this case, we use the [prebuilt-invoice model field extraction values](../../concept-invoice.md#field-extraction).
+1. In  the **ƒx** box, copy and paste the above formula and replace **FIELD-NAME** with the name of the field we want to extract. For the full list of available fields, refer to the concept page for the given API. In this case, we use the [prebuilt-invoice model field extraction values](../../prebuilt/invoice.md#field-extraction).
 
 1. We're almost done! Make the following changes to the following fields:
 

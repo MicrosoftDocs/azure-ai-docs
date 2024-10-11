@@ -16,21 +16,21 @@ ms.custom: references_regions
 # Document Intelligence invoice model
 
 ::: moniker range="doc-intel-4.0.0"
-[!INCLUDE [preview-version-notice](includes/preview-notice.md)]
+[!INCLUDE [preview-version-notice](../includes/preview-notice.md)]
 
-[!INCLUDE [applies to v4.0](includes/applies-to-v40.md)]
+[!INCLUDE [applies to v4.0](../includes/applies-to-v40.md)]
 ::: moniker-end
 
 ::: moniker range="doc-intel-3.1.0"
-[!INCLUDE [applies to v3.1](includes/applies-to-v31.md)]
+[!INCLUDE [applies to v3.1](../includes/applies-to-v31.md)]
 ::: moniker-end
 
 ::: moniker range="doc-intel-3.0.0"
-[!INCLUDE [applies to v3.0](includes/applies-to-v30.md)]
+[!INCLUDE [applies to v3.0](../includes/applies-to-v30.md)]
 ::: moniker-end
 
 ::: moniker range="doc-intel-2.1.0"
-[!INCLUDE [applies to v2.1](includes/applies-to-v21.md)]
+[!INCLUDE [applies to v2.1](../includes/applies-to-v21.md)]
 ::: moniker-end
 
 The Document Intelligence invoice model uses powerful Optical Character Recognition (OCR) capabilities to analyze and extract key fields and line items from sales invoices, utility bills, and purchase orders. Invoices can be of various formats and quality including phone-captured images, scanned documents, and digital PDFs. The API analyzes invoice text; extracts key information such as customer name, billing address, due date, and amount due; and returns a structured JSON data representation. The model currently supports invoices in 27 languages.
@@ -50,7 +50,7 @@ Automated invoice processing is the process of extracting key accounts payable f
 
 **Sample invoice processed with [Document Intelligence Studio](https://formrecognizer.appliedai.azure.com/studio/prebuilt?formType=invoice)**:
 
-:::image type="content" source="media/studio/overview-invoices.png" alt-text="Screenshot of a sample invoice analyzed in the Document Intelligence Studio." lightbox="media/overview-invoices-big.jpg":::
+:::image type="content" source="../media/studio/overview-invoices.png" alt-text="Screenshot of a sample invoice analyzed in the Document Intelligence Studio." lightbox="../media/overview-invoices-big.jpg":::
 
 ::: moniker-end
 
@@ -58,7 +58,7 @@ Automated invoice processing is the process of extracting key accounts payable f
 
 **Sample invoice processed with [Document Intelligence Sample Labeling tool](https://fott-2-1.azurewebsites.net)**:
 
-:::image type="content" source="media/invoice-example-new.jpg" alt-text="Screenshot of a sample invoice.":::
+:::image type="content" source="../media/invoice-example-new.jpg" alt-text="Screenshot of a sample invoice.":::
 
 ::: moniker-end
 
@@ -70,7 +70,7 @@ Document Intelligence v4.0 (2024-07-31-preview) supports the following tools, ap
 
 | Feature | Resources | Model ID |
 |----------|-------------|-----------|
-|**Invoice model**|&bullet; [**Document Intelligence Studio**](https://formrecognizer.appliedai.azure.com)</br>&bullet;  [**REST API**](/rest/api/aiservices/operation-groups?view=rest-aiservices-v4.0%20(2024-07-31-preview)&preserve-view=true)</br>&bullet;  [**C# SDK**](quickstarts/get-started-sdks-rest-api.md?view=doc-intel-4.0.0&preserve-view=true)</br>&bullet;  [**Python SDK**](quickstarts/get-started-sdks-rest-api.md?view=doc-intel-4.0.0&preserve-view=true)</br>&bullet;  [**Java SDK**](quickstarts/get-started-sdks-rest-api.md?view=doc-intel-4.0.0&preserve-view=true)</br>&bullet;  [**JavaScript SDK**](quickstarts/get-started-sdks-rest-api.md?view=doc-intel-4.0.0&preserve-view=true)|**prebuilt-invoice**|
+|**Invoice model**|&bullet; [**Document Intelligence Studio**](https://formrecognizer.appliedai.azure.com)</br>&bullet;  [**REST API**](/rest/api/aiservices/operation-groups?view=rest-aiservices-v4.0%20(2024-07-31-preview)&preserve-view=true)</br>&bullet;  [**C# SDK**](../quickstarts/get-started-sdks-rest-api.md?view=doc-intel-4.0.0&preserve-view=true)</br>&bullet;  [**Python SDK**](../quickstarts/get-started-sdks-rest-api.md?view=doc-intel-4.0.0&preserve-view=true)</br>&bullet;  [**Java SDK**](../quickstarts/get-started-sdks-rest-api.md?view=doc-intel-4.0.0&preserve-view=true)</br>&bullet;  [**JavaScript SDK**](../quickstarts/get-started-sdks-rest-api.md?view=doc-intel-4.0.0&preserve-view=true)|**prebuilt-invoice**|
 ::: moniker-end
 
 ::: moniker range="doc-intel-3.1.0"
@@ -79,7 +79,7 @@ Document Intelligence v3.1 supports the following tools, applications, and libra
 
 | Feature | Resources | Model ID |
 |----------|-------------|-----------|
-|**Invoice model**|&bullet; [**Document Intelligence Studio**](https://formrecognizer.appliedai.azure.com)</br>&bullet;  [**REST API**](/rest/api/aiservices/document-models/analyze-document?view=rest-aiservices-2023-07-31&preserve-view=true&tabs=HTTP)</br>&bullet;  [**C# SDK**](quickstarts/get-started-sdks-rest-api.md?view=doc-intel-3.1.0&preserve-view=true)</br>&bullet;  [**Python SDK**](quickstarts/get-started-sdks-rest-api.md?view=doc-intel-3.1.0&preserve-view=true)</br>&bullet;  [**Java SDK**](quickstarts/get-started-sdks-rest-api.md?view=doc-intel-3.1.0&preserve-view=true)</br>&bullet;  [**JavaScript SDK**](quickstarts/get-started-sdks-rest-api.md?view=doc-intel-3.1.0&preserve-view=true)|**prebuilt-invoice**|
+|**Invoice model**|&bullet; [**Document Intelligence Studio**](https://formrecognizer.appliedai.azure.com)</br>&bullet;  [**REST API**](/rest/api/aiservices/document-models/analyze-document?view=rest-aiservices-2023-07-31&preserve-view=true&tabs=HTTP)</br>&bullet;  [**C# SDK**](../quickstarts/get-started-sdks-rest-api.md?view=doc-intel-3.1.0&preserve-view=true)</br>&bullet;  [**Python SDK**](../quickstarts/get-started-sdks-rest-api.md?view=doc-intel-3.1.0&preserve-view=true)</br>&bullet;  [**Java SDK**](../quickstarts/get-started-sdks-rest-api.md?view=doc-intel-3.1.0&preserve-view=true)</br>&bullet;  [**JavaScript SDK**](../quickstarts/get-started-sdks-rest-api.md?view=doc-intel-3.1.0&preserve-view=true)|**prebuilt-invoice**|
 ::: moniker-end
 
 ::: moniker range="doc-intel-3.0.0"
@@ -88,7 +88,7 @@ Document Intelligence v3.0 supports the following tools, applications, and libra
 
 | Feature | Resources | Model ID |
 |----------|-------------|-----------|
-|**Invoice model**|&bullet; [**Document Intelligence Studio**](https://formrecognizer.appliedai.azure.com)</br>&bullet;  [**REST API**](/rest/api/aiservices/document-models/analyze-document?view=rest-aiservices-v3.0%20(2022-08-31)&preserve-view=true&tabs=HTTP)</br>&bullet;  [**C# SDK**](quickstarts/get-started-sdks-rest-api.md?view=doc-intel-3.0.0&preserve-view=true)</br>&bullet;  [**Python SDK**](quickstarts/get-started-sdks-rest-api.md?view=doc-intel-3.0.0&preserve-view=true)</br>&bullet;  [**Java SDK**](quickstarts/get-started-sdks-rest-api.md?view=doc-intel-3.0.0&preserve-view=true)</br>&bullet;  [**JavaScript SDK**](quickstarts/get-started-sdks-rest-api.md?view=doc-intel-3.0.0&preserve-view=true)|**prebuilt-invoice**|
+|**Invoice model**|&bullet; [**Document Intelligence Studio**](https://formrecognizer.appliedai.azure.com)</br>&bullet;  [**REST API**](/rest/api/aiservices/document-models/analyze-document?view=rest-aiservices-v3.0%20(2022-08-31)&preserve-view=true&tabs=HTTP)</br>&bullet;  [**C# SDK**](../quickstarts/get-started-sdks-rest-api.md?view=doc-intel-3.0.0&preserve-view=true)</br>&bullet;  [**Python SDK**](../quickstarts/get-started-sdks-rest-api.md?view=doc-intel-3.0.0&preserve-view=true)</br>&bullet;  [**Java SDK**](../quickstarts/get-started-sdks-rest-api.md?view=doc-intel-3.0.0&preserve-view=true)</br>&bullet;  [**JavaScript SDK**](../quickstarts/get-started-sdks-rest-api.md?view=doc-intel-3.0.0&preserve-view=true)|**prebuilt-invoice**|
 ::: moniker-end
 
 ::: moniker range="doc-intel-2.1.0"
@@ -97,14 +97,14 @@ Document Intelligence v2.1 supports the following tools, applications, and libra
 
 | Feature | Resources |
 |----------|-------------------------|
-|**Invoice model**|&bullet; [**Document Intelligence labeling tool**](https://fott-2-1.azurewebsites.net/prebuilts-analyze)</br>&bullet;  [**REST API**](how-to-guides/use-sdk-rest-api.md?pivots=programming-language-rest-api&view=doc-intel-2.1.0&preserve-view=true&tabs=windows)</br>&bullet;  [**Client-library SDK**](~/articles/ai-services/document-intelligence/how-to-guides/use-sdk-rest-api.md?view=doc-intel-2.1.0&preserve-view=true)</br>&bullet;  [**Document Intelligence Docker container**](containers/install-run.md?tabs=id-document#run-the-container-with-the-docker-compose-up-command)|
+|**Invoice model**|&bullet; [**Document Intelligence labeling tool**](https://fott-2-1.azurewebsites.net/prebuilts-analyze)</br>&bullet;  [**REST API**](../how-to-guides/use-sdk-rest-api.md?pivots=programming-language-rest-api&view=doc-intel-2.1.0&preserve-view=true&tabs=windows)</br>&bullet;  [**Client-library SDK**](../how-to-guides/use-sdk-rest-api.md?view=doc-intel-2.1.0&preserve-view=true)</br>&bullet;  [**Document Intelligence Docker container**](../containers/install-run.md?tabs=id-document#run-the-container-with-the-docker-compose-up-command)|
 ::: moniker-end
 
 ## Input requirements
 
 ::: moniker range=">=doc-intel-3.0.0"
 
-[!INCLUDE [input requirements](./includes/input-requirements.md)]
+[!INCLUDE [input requirements](../includes/input-requirements.md)]
 
 ::: moniker-end
 
@@ -124,7 +124,7 @@ See how data, including customer information, vendor details, and line items, is
 
 * A [Document Intelligence instance](https://portal.azure.com/#create/Microsoft.CognitiveServicesFormRecognizer) in the Azure portal. You can use the free pricing tier (`F0`) to try the service. After your resource deploys, select **Go to resource** to get your key and endpoint.
 
- :::image type="content" source="media/containers/keys-and-endpoint.png" alt-text="Screenshot of keys and endpoint location in the Azure portal.":::
+ :::image type="content" source="../media/containers/keys-and-endpoint.png" alt-text="Screenshot of keys and endpoint location in the Azure portal.":::
 
 ::: moniker range=">=doc-intel-3.0.0"
 
@@ -134,7 +134,7 @@ See how data, including customer information, vendor details, and line items, is
 
 1. Select the **Run analysis** button and, if necessary, configure the **Analyze options** :
 
-    :::image type="content" source="media/studio/run-analysis-analyze-options.png" alt-text="Screenshot of Run analysis and Analyze options buttons in the Document Intelligence Studio.":::
+    :::image type="content" source="../media/studio/run-analysis-analyze-options.png" alt-text="Screenshot of Run analysis and Analyze options buttons in the Document Intelligence Studio.":::
 
 > [!div class="nextstepaction"]
 > [Try Document Intelligence Studio](https://formrecognizer.appliedai.azure.com/studio/prebuilt?formType=invoice)
@@ -149,7 +149,7 @@ See how data, including customer information, vendor details, and line items, is
 
 1. On the sample tool home page, select the **Use prebuilt model to get data** tile.
 
-    :::image type="content" source="media/label-tool/prebuilt-1.jpg" alt-text="Screenshot of layout model analyze results process.":::
+    :::image type="content" source="../media/label-tool/prebuilt-1.jpg" alt-text="Screenshot of layout model analyze results process.":::
 
 1. Select the **Form Type**  to analyze from the dropdown menu.
 
@@ -162,19 +162,19 @@ See how data, including customer information, vendor details, and line items, is
 
 1. In the **Source** field, select **URL** from the dropdown menu, paste the selected URL, and select the **Fetch** button.
 
-    :::image type="content" source="media/label-tool/fott-select-url.png" alt-text="Screenshot of source location dropdown menu.":::
+    :::image type="content" source="../media/label-tool/fott-select-url.png" alt-text="Screenshot of source location dropdown menu.":::
 
 1. In the **Document Intelligence service endpoint** field, paste the endpoint that you obtained with your Document Intelligence subscription.
 
 1. In the **key** field, paste  the key you obtained from your Document Intelligence resource.
 
-    :::image type="content" source="media/fott-select-form-type.png" alt-text="Screenshot showing the select-form-type dropdown menu.":::
+    :::image type="content" source="../media/fott-select-form-type.png" alt-text="Screenshot showing the select-form-type dropdown menu.":::
 
 1. Select **Run analysis**. The Document Intelligence Sample Labeling tool calls the Analyze Prebuilt API and analyze the document.
 
 1. View the results - see the key-value pairs extracted, line items, highlighted text extracted, and tables detected.
 
-    :::image type="content" source="media/invoice-example-new.jpg" alt-text="Screenshot of layout model analyze results operation.":::
+    :::image type="content" source="../media/invoice-example-new.jpg" alt-text="Screenshot of layout model analyze results operation.":::
 
 > [!NOTE]
 > The [Sample Labeling tool](https://fott-2-1.azurewebsites.net/) does not support the BMP file format. This is a limitation of the tool not the Document Intelligence Service.
@@ -183,7 +183,7 @@ See how data, including customer information, vendor details, and line items, is
 
 ## Supported languages and locales
 
-*See* our [Language Support—prebuilt models](language-support-prebuilt.md) page for a complete list of supported languages.
+*See* our [Language Support—prebuilt models](../language-support/prebuilt.md) page for a complete list of supported languages.
 
 ## Field extraction
 The Document Intelligence invoice model `prebuilt-invoice` extracts the following fields.
@@ -242,7 +242,7 @@ The Document Intelligence invoice model `prebuilt-invoice` extracts the followin
 
 ### Line items array
 
-Following are the line items extracted from an invoice in the JSON output response (the following output uses this [sample invoice](media/sample-invoice.jpg):
+Following are the line items extracted from an invoice in the JSON output response (the following output uses this [sample invoice](../media/sample-invoice.jpg):
 
 |Name| Type | Description | Value (standardized output) |
 |:-----|:----|:----|:----|
@@ -271,7 +271,7 @@ Keys can also exist in isolation when the model detects that a key exists, with 
 
 ## Fields extracted
 
-The Invoice service extracts the text, tables, and 26 invoice fields. Following are the fields extracted from an invoice in the JSON output response (the following output uses this [sample invoice](media/sample-invoice.jpg)).
+The Invoice service extracts the text, tables, and 26 invoice fields. Following are the fields extracted from an invoice in the JSON output response (the following output uses this [sample invoice](../media/sample-invoice.jpg)).
 
 |Name| Type | Description | Text | Value (standardized output) |
 |:-----|:----|:----|:----| :----|
@@ -302,7 +302,7 @@ The Invoice service extracts the text, tables, and 26 invoice fields. Following 
 | ServiceEndDate | date | End date for the service period (for example, a utility bill service period) | 11/14/2019 | 2019-11-14 |
 | PreviousUnpaidBalance | number | Explicit previously unpaid balance | $500.00 | 500 |
 
-The following are the line items extracted from an invoice in the JSON output response and uses this [sample invoice](./media/sample-invoice.jpg):
+The following are the line items extracted from an invoice in the JSON output response and uses this [sample invoice](../media/sample-invoice.jpg):
 
 |Name| Type | Description | Text (line item #1) | Value (standardized output) |
 |:-----|:----|:----|:----| :----|
@@ -350,7 +350,7 @@ The JSON output has three parts:
 
 ## Migration guide
 
-* Follow our [**Document Intelligence v3.1 migration guide**](v3-1-migration-guide.md) to learn how to use the v3.0 version in your applications and workflows.
+* Follow our [**Document Intelligence v3.1 migration guide**](../v3-1-migration-guide.md) to learn how to use the v3.0 version in your applications and workflows.
 
 ::: moniker-end
 
@@ -360,7 +360,7 @@ The JSON output has three parts:
 
 * Try processing your own forms and documents with the [Document Intelligence Studio](https://formrecognizer.appliedai.azure.com/studio).
 
-* Complete a [Document Intelligence quickstart](quickstarts/get-started-sdks-rest-api.md?view=doc-intel-3.0.0&preserve-view=true) and get started creating a document processing app in the development language of your choice.
+* Complete a [Document Intelligence quickstart](../quickstarts/get-started-sdks-rest-api.md?view=doc-intel-3.0.0&preserve-view=true) and get started creating a document processing app in the development language of your choice.
 
 ::: moniker-end
 
@@ -376,6 +376,6 @@ The JSON output has three parts:
 
 * Try processing your own forms and documents with the [Document Intelligence Sample Labeling tool](https://fott-2-1.azurewebsites.net/).
 
-* Complete a [Document Intelligence quickstart](quickstarts/get-started-sdks-rest-api.md?view=doc-intel-2.1.0&preserve-view=true) and get started creating a document processing app in the development language of your choice.
+* Complete a [Document Intelligence quickstart](../quickstarts/get-started-sdks-rest-api.md?view=doc-intel-2.1.0&preserve-view=true) and get started creating a document processing app in the development language of your choice.
 
 ::: moniker-end

@@ -14,19 +14,19 @@ ms.date: 01/19/2024
 # Language support: document analysis
 
 ::: moniker range="doc-intel-4.0.0"
-[!INCLUDE [applies to v4.0](includes/applies-to-v40.md)]
+[!INCLUDE [applies to v4.0](../includes/applies-to-v40.md)]
 ::: moniker-end
 
 ::: moniker range="doc-intel-3.1.0"
-[!INCLUDE [applies to v3.1](includes/applies-to-v31.md)]
+[!INCLUDE [applies to v3.1](../includes/applies-to-v31.md)]
 ::: moniker-end
 
 ::: moniker range="doc-intel-3.0.0"
-[!INCLUDE [applies to v3.0](includes/applies-to-v30.md)]
+[!INCLUDE [applies to v3.0](../includes/applies-to-v30.md)]
 ::: moniker-end
 
 ::: moniker range="doc-intel-2.1.0"
-[!INCLUDE [applies to v2.1](includes/applies-to-v21.md)]
+[!INCLUDE [applies to v2.1](../includes/applies-to-v21.md)]
 ::: moniker-end
 
 <!-- markdownlint-disable MD001 -->
@@ -38,7 +38,7 @@ Azure AI Document Intelligence models provide multilingual document processing s
 
 ::: moniker range=">=doc-intel-3.0.0"
 
-* [**Read**](#read-model): The read model enables extraction and analysis of printed and handwritten text. This model is the underlying OCR engine for other Document Intelligence prebuilt models like layout, general document, invoice, receipt, identity (ID) document, health insurance card, tax documents and custom models. For more information, *see* [Read model overview](prebuilt/read.md)
+* [**Read**](#read-model): The read model enables extraction and analysis of printed and handwritten text. This model is the underlying OCR engine for other Document Intelligence prebuilt models like layout, general document, invoice, receipt, identity (ID) document, health insurance card, tax documents and custom models. For more information, *see* [Read model overview](../prebuilt/read.md)
 ::: moniker-end
 
 ::: moniker range=">=doc-intel-2.1.0"
@@ -49,7 +49,7 @@ Azure AI Document Intelligence models provide multilingual document processing s
 
 ::: moniker range="doc-intel-3.1.0 || doc-intel-3.0.0"
 
-* [**General document**](#general-document): The general document model enables extraction and analysis of text, document structure, and key-value pairs. For more information, *see* [General document model overview](concept-general-document.md)
+* [**General document**](#general-document): The general document model enables extraction and analysis of text, document structure, and key-value pairs. For more information, *see* [General document model overview](../prebuilt/general-document.md)
 
 ::: moniker-end
 
@@ -629,7 +629,7 @@ The following table lists read model language support for extracting and analyzi
 
 ### [**Read: language detection**](#tab/read-detection)
 
-The [Read model API](prebuilt/read.md) supports **language detection** for the following languages in your documents. This list can include languages not currently supported for text extraction.
+The [Read model API](../prebuilt/read.md) supports **language detection** for the following languages in your documents. This list can include languages not currently supported for text extraction.
 
 > [!IMPORTANT]
 > **Language detection**

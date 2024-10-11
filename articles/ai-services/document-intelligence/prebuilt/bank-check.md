@@ -53,7 +53,7 @@ A check is a secure way to transfer amount from payee's account to receiver's ac
 
 ## Supported languages and locales
 
-*See* our [Language Support](../language-support-prebuilt.md) page for a complete list of supported languages.
+*See* our [Language Support](../language-support/prebuilt.md) page for a complete list of supported languages.
 
 ## Field extractions
 

@@ -132,6 +132,6 @@ That's it! You learned to train a custom generative model in the Azure AI Studio
 
 ## Next steps
 
-[Learn more about the custom generative model](../concept-custom-generative.md)
+[Learn more about the custom generative model](../train/custom-generative-extraction.md)
 
 [Learn more about custom model accuracy and confidence](../concept/accuracy-confidence.md)

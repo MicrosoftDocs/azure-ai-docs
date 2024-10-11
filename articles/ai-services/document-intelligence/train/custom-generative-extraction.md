@@ -58,7 +58,7 @@ Field extraction custom generative model currently supports dynamic table with t
 
 ## Build mode  
 
-The `build custom model` operation supports custom **template**, **neural**, and **generative** models, _see_ [Custom model build mode](../concept-custom.md#build-mode). Here are the differences in the model types:
+The `build custom model` operation supports custom **template**, **neural**, and **generative** models, _see_ [Custom model build mode](../train/custom-model.md#build-mode). Here are the differences in the model types:
 
 * **Custom generative AI models** can process complex documents with various formats, varied templates, and unstructured data.
 
@@ -68,7 +68,7 @@ The `build custom model` operation supports custom **template**, **neural**,�
 
 ## Languages and locale support
 
-Field extraction custom generative model `2024-07-31-preview` version supports the **en-us** locale. For more information on language support, _see_ [Language support - custom models](../language-support-custom.md).
+Field extraction custom generative model `2024-07-31-preview` version supports the **en-us** locale. For more information on language support, _see_ [Language support - custom models](../language-support/custom.md).
 
 ## Region support
 
@@ -128,4 +128,4 @@ https://{endpoint}/documentintelligence/documentModels:build?api-version=2024-07
 ## Next steps
 
 * Learn how to [create custom generative models](../how-to-guides/build-train-custom-generative-model.md)
-* Learn more about [custom models](../concept-custom.md)
+* Learn more about [custom models](../train/custom-model.md)

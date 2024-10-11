@@ -17,13 +17,13 @@ monikerRange: '>=doc-intel-3.1.0'
 # Document Intelligence custom classification model
 
 ::: moniker range="doc-intel-4.0.0"
-[!INCLUDE [preview-version-notice](includes/preview-notice.md)]
+[!INCLUDE [preview-version-notice](../includes/preview-notice.md)]
 
-**This content applies to:**![checkmark](media/yes-icon.png) **v4.0 (preview)** | **Previous version:** ![blue-checkmark](media/blue-yes-icon.png) [**v3.1 (GA)**](?view=doc-intel-3.1.0&preserve-view=tru)
+**This content applies to:**![checkmark](../media/yes-icon.png) **v4.0 (preview)** | **Previous version:** ![blue-checkmark](../media/blue-yes-icon.png) [**v3.1 (GA)**](?view=doc-intel-3.1.0&preserve-view=tru)
 :::moniker-end
 
 :::moniker range="doc-intel-3.1.0"
-**This content applies to:** ![checkmark](media/yes-icon.png) **v3.1 (GA)** | **Latest version:** ![purple-checkmark](media/purple-yes-icon.png) [**v4.0 (preview)**](?view=doc-intel-4.0.0&preserve-view=true)
+**This content applies to:** ![checkmark](../media/yes-icon.png) **v3.1 (GA)** | **Latest version:** ![purple-checkmark](../media/purple-yes-icon.png) [**v4.0 (preview)**](?view=doc-intel-4.0.0&preserve-view=true)
 :::moniker-end
 
 ::: moniker range=">=doc-intel-4.0.0"
@@ -67,7 +67,7 @@ With custom models, you need to maintain access to the training dataset to updat
 >
 > Incremental training is only supported with models trained with the same API version. If you are trying to extend a model, use the API version the original model was trained with to extend the model. Incremental training is only supported with API version **2024-07-31-preview** or later.
 
-Incremental training requires that you provide the original model ID as the `baseClassifierId`. See [incremental training](concept/incremental-classifier.md) to learn more about how to use incremental training.
+Incremental training requires that you provide the original model ID as the `baseClassifierId`. See [incremental training](../concept/incremental-classifier.md) to learn more about how to use incremental training.
 
 ### Office document type support
 
@@ -75,7 +75,7 @@ You can now train classifiers to recognize document types in various formats inc
 
 ### Compare custom classification and composed models
 
-A custom classification model can replace [a composed model](concept-composed-models.md) in some scenarios but there are a few differences to be aware of:
+A custom classification model can replace [a composed model](../train/composed-models.md) in some scenarios but there are a few differences to be aware of:
 
 | Capability | Custom classifier process | Composed model process |
 |--|--|--|
@@ -90,7 +90,7 @@ Classification models currently only support English language documents.
 :::moniker-end
 
 ::: moniker range=">=doc-intel-4.0.0"
-Classification models can now be trained on documents of different languages. See [supported languages](language-support-custom.md) for a complete list.
+Classification models can now be trained on documents of different languages. See [supported languages](../language-support/custom.md) for a complete list.
 ::: moniker-end
 
 ## Input requirements
@@ -145,7 +145,7 @@ The classifier attempts to assign each document to one of the classes, if you ex
 
 ## Training a model
 
-Custom classification models are supported by **v4.0: 2024-02-29-preview, 2024-07-31-preview** and **v3.1: 2023-07-31 (GA)** APIs. [Document Intelligence Studio](https://formrecognizer.appliedai.azure.com/studio) provides a no-code user interface to interactively train a custom classifier. Follow the [how to guide](how-to-guides/build-a-custom-classifier.md) to get started.
+Custom classification models are supported by **v4.0: 2024-02-29-preview, 2024-07-31-preview** and **v3.1: 2023-07-31 (GA)** APIs. [Document Intelligence Studio](https://formrecognizer.appliedai.azure.com/studio) provides a no-code user interface to interactively train a custom classifier. Follow the [how to guide](../how-to-guides/build-a-custom-classifier.md) to get started.
 
 When using the REST API, if you organize your documents by folders, you can use the `azureBlobSource` property of the request to train a classification model.
 
@@ -399,5 +399,5 @@ The response contains the identified documents with the associated page ranges i
 Learn to create custom classification models:
 
 > [!div class="nextstepaction"]
-> [**Build a custom classification model**](how-to-guides/build-a-custom-classifier.md)
-> [**Custom models overview**](concept-custom.md)
+> [**Build a custom classification model**](../how-to-guides/build-a-custom-classifier.md)
+> [**Custom models overview**](../train/custom-model.md)

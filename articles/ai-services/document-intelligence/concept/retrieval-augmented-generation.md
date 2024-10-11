@@ -15,15 +15,15 @@ monikerRange: '>=doc-intel-3.1.0'
 
 <!-- markdownlint-disable MD036 -->
 
-**This content applies to:** ![checkmark](media/yes-icon.png) **v4.0 (preview)**
+**This content applies to:** ![checkmark](../media/yes-icon.png) **v4.0 (preview)**
 
 ## Introduction
 
 Retrieval-Augmented Generation (RAG) is a design pattern that combines a pretrained Large Language Model (LLM) like ChatGPT with an external data retrieval system to generate an enhanced response incorporating new data outside of the original training data. Adding an information retrieval system to your applications enables you to chat with your documents, generate captivating content, and access the power of Azure OpenAI models for your data. You also have more control over the data used by the LLM as it formulates a response.
 
-The Document Intelligence [Layout model](concept-layout.md) is an advanced machine-learning based document analysis API. The Layout model offers a comprehensive solution for advanced content extraction and document structure analysis capabilities. With the Layout model, you can easily extract text and structural elements to divide large bodies of text into smaller, meaningful chunks based on semantic content rather than arbitrary splits. The extracted information can be conveniently outputted to Markdown format, enabling you to define your semantic chunking strategy based on provided building blocks.
+The Document Intelligence [Layout model](../prebuilt/layout.md) is an advanced machine-learning based document analysis API. The Layout model offers a comprehensive solution for advanced content extraction and document structure analysis capabilities. With the Layout model, you can easily extract text and structural elements to divide large bodies of text into smaller, meaningful chunks based on semantic content rather than arbitrary splits. The extracted information can be conveniently outputted to Markdown format, enabling you to define your semantic chunking strategy based on provided building blocks.
 
-:::image type="content" source="media/rag/azure-rag-processing.png" alt-text="Screenshot depicting semantic chunking with RAG using Azure AI Document Intelligence.":::
+:::image type="content" source="../media/rag/azure-rag-processing.png" alt-text="Screenshot depicting semantic chunking with RAG using Azure AI Document Intelligence.":::
 
 ## Semantic chunking
 
@@ -37,23 +37,23 @@ Text data chunking strategies play a key role in optimizing the RAG response and
 
 ## Semantic chunking with Document Intelligence Layout model
 
-Markdown is a structured and formatted markup language and a popular input for enabling semantic chunking in RAG (Retrieval-Augmented Generation). You can use the Markdown content from the [Layout model](concept-layout.md) to split documents based on paragraph boundaries, create specific chunks for tables, and fine-tune your chunking strategy to improve the quality of the generated responses.
+Markdown is a structured and formatted markup language and a popular input for enabling semantic chunking in RAG (Retrieval-Augmented Generation). You can use the Markdown content from the [Layout model](../prebuilt/layout.md) to split documents based on paragraph boundaries, create specific chunks for tables, and fine-tune your chunking strategy to improve the quality of the generated responses.
 
 ### Benefits of using the Layout model
 
 * **Simplified processing**. You can parse different document types, such as digital and scanned PDFs, images, office files (docx, xlsx, pptx), and HTML, with just a single API call.
 
-* **Scalability and AI quality**. The Layout model is highly scalable in Optical Character Recognition (OCR), table extraction, and [document structure analysis](concept-layout.md#document-layout-analysis). It supports [309 printed and 12 handwritten languages](language-support-ocr.md#model-id-prebuilt-layout), further ensuring high-quality results driven by AI capabilities.
+* **Scalability and AI quality**. The Layout model is highly scalable in Optical Character Recognition (OCR), table extraction, and [document structure analysis](../prebuilt/layout.md#document-layout-analysis). It supports [309 printed and 12 handwritten languages](../language-support/ocr.md#model-id-prebuilt-layout), further ensuring high-quality results driven by AI capabilities.
 
 * **Large language model (LLM) compatibility**. The Layout model Markdown formatted output is LLM friendly and facilitates seamless integration into your workflows. You can turn any table in a document into Markdown format and avoid extensive effort parsing the documents for greater LLM understanding.
 
 **Text image processed with Document Intelligence Studio and output to MarkDown using Layout model**
 
-  :::image type="content" source="media/rag/markdown-text-output.png" alt-text="Screenshot of newspaper article processed by Layout model and outputted to Markdown.":::
+  :::image type="content" source="../media/rag/markdown-text-output.png" alt-text="Screenshot of newspaper article processed by Layout model and outputted to Markdown.":::
 
 **Table image processed with Document Intelligence Studio using Layout model**
 
-  :::image type="content" source="media/rag/markdown-table-output.png" alt-text="Screenshot of table processed by Layout model and outputted to Markdown.":::
+  :::image type="content" source="../media/rag/markdown-table-output.png" alt-text="Screenshot of table processed by Layout model and outputted to Markdown.":::
 
 ## Get started
 
@@ -63,13 +63,13 @@ The Document Intelligence Layout model **2024-07-31-preview** and **2023-10-31-p
 
 * [REST API](/rest/api/aiservices/document-models/build-model?view=rest-aiservices-2024-02-29-preview&preserve-view=true&branch=docintelligence&tabs=HTTP).
 
-* [.NET &bull; Java &bull; JavaScript &bull; Python programming language client libraries (SDKs).](sdk-overview-v4-0.md#supported-programming-languages)
+* [.NET &bull; Java &bull; JavaScript &bull; Python programming language client libraries (SDKs).](../sdk-overview-v4-0.md#supported-programming-languages)
 
 **Ready to begin?**
 
 ### Document Intelligence Studio
 
-You can follow the [Document Intelligence Studio quickstart](quickstarts/try-document-intelligence-studio.md) to get started. Next, you can integrate Document Intelligence features with your own application using the sample code provided.
+You can follow the [Document Intelligence Studio quickstart](../quickstarts/try-document-intelligence-studio.md) to get started. Next, you can integrate Document Intelligence features with your own application using the sample code provided.
 
 * Start with the [Layout model](https://documentintelligence.ai.azure.com/studio/layout). You need to select the following **Analyze options** to use RAG in the studio:
 
@@ -85,15 +85,15 @@ You can follow the [Document Intelligence Studio quickstart](quickstarts/try-doc
 
 * Select **Save**.
 
-  :::image type="content" source="media/rag/rag-analyze-options.png" alt-text="Screenshot of Analyze options dialog window with RAG required options in the Document Intelligence studio.":::
+  :::image type="content" source="../media/rag/rag-analyze-options.png" alt-text="Screenshot of Analyze options dialog window with RAG required options in the Document Intelligence studio.":::
 
 * Select the **Run analysis** button to view the output.
 
-  :::image type="content" source="media/rag/run-analysis.png" alt-text="Screenshot of the Run Analysis button in the Document Intelligence Studio.":::
+  :::image type="content" source="../media/rag/run-analysis.png" alt-text="Screenshot of the Run Analysis button in the Document Intelligence Studio.":::
 
 ### SDK or REST API
 
-* You can follow the [Document Intelligence quickstart](quickstarts/get-started-sdks-rest-api.md) for your preferred programming language SDK or REST API. Use the Layout model to extract content and structure from your documents.
+* You can follow the [Document Intelligence quickstart](../quickstarts/get-started-sdks-rest-api.md) for your preferred programming language SDK or REST API. Use the Layout model to extract content and structure from your documents.
 
 * You can also check out GitHub repos for code samples and tips for analyzing a document in markdown output format.
 
@@ -107,7 +107,7 @@ You can follow the [Document Intelligence Studio quickstart](quickstarts/try-doc
 
 ## Build document chat with semantic chunking
 
-* [Azure OpenAI on your data](../openai/concepts/use-your-data.md) enables you to run supported chat on your documents. Azure OpenAI on your data applies the Document Intelligence Layout model to extract and parse document data by chunking long text based on tables and paragraphs. You can also customize your chunking strategy using [Azure OpenAI sample scripts](https://github.com/microsoft/sample-app-aoai-chatGPT/tree/main/scripts) located in our GitHub repo.
+* [Azure OpenAI on your data](../../openai/concepts/use-your-data.md) enables you to run supported chat on your documents. Azure OpenAI on your data applies the Document Intelligence Layout model to extract and parse document data by chunking long text based on tables and paragraphs. You can also customize your chunking strategy using [Azure OpenAI sample scripts](https://github.com/microsoft/sample-app-aoai-chatGPT/tree/main/scripts) located in our GitHub repo.
 
 * Azure AI Document Intelligence is now integrated with [LangChain](https://python.langchain.com/docs/integrations/document_loaders/azure_document_intelligence) as one of its document loaders. You can use it to easily load the data and output to Markdown format. For more information, see our [sample code](https://github.com/microsoft/Form-Recognizer-Toolkit/blob/main/SampleCode/Python/sample_rag_langchain.ipynb) that shows a simple demo for RAG pattern with Azure AI Document Intelligence as document loader and Azure Search as retriever in LangChain.
 
@@ -153,8 +153,8 @@ splits
 
 ## Next steps
 
-* Learn more about [Azure AI Document Intelligence](overview.md).
+* Learn more about [Azure AI Document Intelligence](../overview.md).
 
-* [Learn how to process your own forms and documents](quickstarts/try-document-intelligence-studio.md) with the [Document Intelligence Studio](https://formrecognizer.appliedai.azure.com/studio).
+* [Learn how to process your own forms and documents](../quickstarts/try-document-intelligence-studio.md) with the [Document Intelligence Studio](https://formrecognizer.appliedai.azure.com/studio).
 
-* Complete a [Document Intelligence quickstart](quickstarts/get-started-sdks-rest-api.md?view=doc-intel-4.0.0&preserve-view=true) and get started creating a document processing app in the development language of your choice.
+* Complete a [Document Intelligence quickstart](../quickstarts/get-started-sdks-rest-api.md?view=doc-intel-4.0.0&preserve-view=true) and get started creating a document processing app in the development language of your choice.

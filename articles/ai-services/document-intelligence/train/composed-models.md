@@ -13,21 +13,21 @@ ms.author: lajanuar
 # Document Intelligence composed custom models
 
 ::: moniker range="doc-intel-4.0.0"
-[!INCLUDE [preview-version-notice](includes/preview-notice.md)]
+[!INCLUDE [preview-version-notice](../includes/preview-notice.md)]
 
-[!INCLUDE [applies to v4.0](includes/applies-to-v40.md)]
+[!INCLUDE [applies to v4.0](../includes/applies-to-v40.md)]
 ::: moniker-end
 
 ::: moniker range="doc-intel-3.1.0"
-[!INCLUDE [applies to v3.1](includes/applies-to-v31.md)]
+[!INCLUDE [applies to v3.1](../includes/applies-to-v31.md)]
 ::: moniker-end
 
 ::: moniker range="doc-intel-3.0.0"
-[!INCLUDE [applies to v3.0](includes/applies-to-v30.md)]
+[!INCLUDE [applies to v3.0](../includes/applies-to-v30.md)]
 ::: moniker-end
 
 ::: moniker range="doc-intel-2.1.0"
-[!INCLUDE [applies to v2.1](includes/applies-to-v21.md)]
+[!INCLUDE [applies to v2.1](../includes/applies-to-v21.md)]
 ::: moniker-end
 
 > [!IMPORTANT]
@@ -46,7 +46,7 @@ In previous versions, the `model compose` operation performed an implicit classi
 
 The new `model compose` operation requires you to train an explicit classifier and provides several benefits.
 
-* **Continual incremental improvement**. You can consistently improve the quality of the classifier by adding more samples and [incrementally improving classification]( concept/incremental-classifier.md). This fine tuning ensures your documents are always routed to the right model for extraction.
+* **Continual incremental improvement**. You can consistently improve the quality of the classifier by adding more samples and [incrementally improving classification](../concept/incremental-classifier.md). This fine tuning ensures your documents are always routed to the right model for extraction.
 
 * **Complete control over routing**. By adding confidence-based routing, you provide a confidence threshold for the document type and the classification response.
 
@@ -54,7 +54,7 @@ The new `model compose` operation requires you to train an explicit classifier a
 
 * **Analyze multiple instances of the same document type**. When paired with the  `splitMode` option of the classifier, the `model compose` operation can detect multiple instances of the same document in a file and split the file to process each document independently. Using `splitMode` enables the processing of multiple instances of a document in a single request.
 
-* **Support for add on features**. [Add on features](concept-add-on-capabilities.md) like query fields or barcodes can also be specified as a part of the analysis model parameters.
+* **Support for add on features**. [Add on features](../concept/add-on-capabilities.md) like query fields or barcodes can also be specified as a part of the analysis model parameters.
 
 * **Assigned custom model maximum expanded to 500**. The new implementation of the `model compose` operation allows you to assign up to 500 trained custom models to a single composed model.
 
@@ -112,9 +112,9 @@ Composed models are billed the same as individual custom models. The pricing is 
 
 * With the `model compose` operation, you can assign up to 500 models to a single model ID. If the number of models that I want to compose exceeds the upper limit of a composed model, you can use one of these alternatives:
 
-  * Classify the documents before calling the custom model. You can use the [Read model](prebuilt/read.md) and build a classification based on the extracted text from the documents and certain phrases by using sources like code, regular expressions, or search.
+  * Classify the documents before calling the custom model. You can use the [Read model](../prebuilt/read.md) and build a classification based on the extracted text from the documents and certain phrases by using sources like code, regular expressions, or search.
 
-  * If you want to extract the same fields from various structured, semi-structured, and unstructured documents, consider using the deep-learning [custom neural model](concept-custom-neural.md). Learn more about the [differences between the custom template model and the custom neural model](concept-custom.md#compare-model-features).
+  * If you want to extract the same fields from various structured, semi-structured, and unstructured documents, consider using the deep-learning [custom neural model](../train/custom-neural.md). Learn more about the [differences between the custom template model and the custom neural model](../train/custom-model.md#compare-model-features).
 
 * Analyzing a document by using composed models is identical to analyzing a document by using a single model. The `Analyze Document` result returns a `docType` property that indicates which of the component models you selected for analyzing the document.
 
@@ -143,7 +143,7 @@ Document Intelligence **v4.0:2024-07-31-preview** supports the following tools, 
 
 | Feature | Resources |
 |----------|-------------|
-|***Custom model***| &bullet; [Document Intelligence Studio](https://formrecognizer.appliedai.azure.com/studio/custommodel/projects)</br>&bullet; [REST API](/rest/api/aiservices/operation-groups?view=rest-aiservices-2024-07-31-preview&preserve-view=true)</br>&bullet; [C# SDK](quickstarts/get-started-sdks-rest-api.md?view=doc-intel-4.0.0&preserve-view=true)</br>&bullet; [Java SDK](quickstarts/get-started-sdks-rest-api.md?view=doc-intel-4.0.0&preserve-view=true)</br>&bullet; [JavaScript SDK](quickstarts/get-started-sdks-rest-api.md?view=doc-intel-4.0.0&preserve-view=true)</br>&bullet; [Python SDK](quickstarts/get-started-sdks-rest-api.md?view=doc-intel-4.0.0&preserve-view=true)|
+|***Custom model***| &bullet; [Document Intelligence Studio](https://formrecognizer.appliedai.azure.com/studio/custommodel/projects)</br>&bullet; [REST API](/rest/api/aiservices/operation-groups?view=rest-aiservices-2024-07-31-preview&preserve-view=true)</br>&bullet; [C# SDK](../quickstarts/get-started-sdks-rest-api.md?view=doc-intel-4.0.0&preserve-view=true)</br>&bullet; [Java SDK](../quickstarts/get-started-sdks-rest-api.md?view=doc-intel-4.0.0&preserve-view=true)</br>&bullet; [JavaScript SDK](../quickstarts/get-started-sdks-rest-api.md?view=doc-intel-4.0.0&preserve-view=true)</br>&bullet; [Python SDK](../quickstarts/get-started-sdks-rest-api.md?view=doc-intel-4.0.0&preserve-view=true)|
 | ***Composed model***| &bullet; [Document Intelligence Studio](https://formrecognizer.appliedai.azure.com/studio/custommodel/projects)</br>&bullet; [REST API](/rest/api/aiservices/operation-groups?view=rest-aiservices-2024-02-29-preview&preserve-view=true)</br>&bullet; [C# SDK](/dotnet/api/azure.ai.formrecognizer.training.formtrainingclient.startcreatecomposedmodel)</br>&bullet; [Java SDK](/java/api/com.azure.ai.formrecognizer.training.formtrainingclient.begincreatecomposedmodel)</br>&bullet; [JavaScript SDK](/javascript/api/@azure/ai-form-recognizer/documentmodeladministrationclient?view=azure-node-latest#@azure-ai-form-recognizer-documentmodeladministrationclient-begincomposemodel&preserve-view=true)</br>&bullet; [Python SDK](/python/api/azure-ai-formrecognizer/azure.ai.formrecognizer.formtrainingclient?view=azure-python#azure-ai-formrecognizer-formtrainingclient-begin-create-composed-model&preserve-view=true)|
 
 :::moniker-end
@@ -154,7 +154,7 @@ Document Intelligence **v3.1:2023-07-31 (GA)** supports the following tools, app
 
 | Feature | Resources |
 |----------|-------------|
-|***Custom model***| &bullet; [Document Intelligence Studio](https://formrecognizer.appliedai.azure.com/studio/custommodel/projects)</br>&bullet; [REST API](/rest/api/aiservices/document-models/analyze-document?view=rest-aiservices-2023-07-31&preserve-view=true&tabs=HTTP)</br>&bullet; [C# SDK](quickstarts/get-started-sdks-rest-api.md?view=doc-intel-3.1.0&preserve-view=true)</br>&bullet; [Java SDK](quickstarts/get-started-sdks-rest-api.md?view=doc-intel-3.1.0&preserve-view=true)</br>&bullet; [JavaScript SDK](quickstarts/get-started-sdks-rest-api.md?view=doc-intel-3.1.0&preserve-view=true)</br>&bullet; [Python SDK](quickstarts/get-started-sdks-rest-api.md?view=doc-intel-3.1.0&preserve-view=true)|
+|***Custom model***| &bullet; [Document Intelligence Studio](https://formrecognizer.appliedai.azure.com/studio/custommodel/projects)</br>&bullet; [REST API](/rest/api/aiservices/document-models/analyze-document?view=rest-aiservices-2023-07-31&preserve-view=true&tabs=HTTP)</br>&bullet; [C# SDK](../quickstarts/get-started-sdks-rest-api.md?view=doc-intel-3.1.0&preserve-view=true)</br>&bullet; [Java SDK](../quickstarts/get-started-sdks-rest-api.md?view=doc-intel-3.1.0&preserve-view=true)</br>&bullet; [JavaScript SDK](../quickstarts/get-started-sdks-rest-api.md?view=doc-intel-3.1.0&preserve-view=true)</br>&bullet; [Python SDK](../quickstarts/get-started-sdks-rest-api.md?view=doc-intel-3.1.0&preserve-view=true)|
 | ***Composed model***| &bullet; [Document Intelligence Studio](https://formrecognizer.appliedai.azure.com/studio/custommodel/projects)</br>&bullet; [REST API](/rest/api/aiservices/document-models/compose-model?view=rest-aiservices-2023-07-31&preserve-view=true&tabs=HTTP)</br>&bullet; [C# SDK](/dotnet/api/azure.ai.formrecognizer.training.formtrainingclient.startcreatecomposedmodel)</br>&bullet; [Java SDK](/java/api/com.azure.ai.formrecognizer.training.formtrainingclient.begincreatecomposedmodel)</br>&bullet; [JavaScript SDK](/javascript/api/@azure/ai-form-recognizer/documentmodeladministrationclient?view=azure-node-latest#@azure-ai-form-recognizer-documentmodeladministrationclient-begincomposemodel&preserve-view=true)</br>&bullet; [Python SDK](/python/api/azure-ai-formrecognizer/azure.ai.formrecognizer.formtrainingclient?view=azure-python#azure-ai-formrecognizer-formtrainingclient-begin-create-composed-model&preserve-view=true)|
 
 :::moniker-end
@@ -165,7 +165,7 @@ Document Intelligence **v3.0:2022-08-31 (GA)** supports the following tools, app
 
 | Feature | Resources |
 |----------|-------------|
-|***Custom model***| &bullet; [Document Intelligence Studio](https://formrecognizer.appliedai.azure.com/studio/custommodel/projects)</br>&bullet; [REST API](/rest/api/aiservices/document-models/analyze-document?view=rest-aiservices-v3.0%20(2022-08-31)&preserve-view=true&tabs=HTTP)</br>&bullet; [C# SDK](quickstarts/get-started-sdks-rest-api.md?view=doc-intel-3.0.0&preserve-view=true)</br>&bullet; [Java SDK](quickstarts/get-started-sdks-rest-api.md?view=doc-intel-3.0.0&preserve-view=true)</br>&bullet; [JavaScript SDK](quickstarts/get-started-sdks-rest-api.md?view=doc-intel-3.0.0&preserve-view=true)</br>&bullet; [Python SDK](quickstarts/get-started-sdks-rest-api.md?view=doc-intel-3.0.0&preserve-view=true)|
+|***Custom model***| &bullet; [Document Intelligence Studio](https://formrecognizer.appliedai.azure.com/studio/custommodel/projects)</br>&bullet; [REST API](/rest/api/aiservices/document-models/analyze-document?view=rest-aiservices-v3.0%20(2022-08-31)&preserve-view=true&tabs=HTTP)</br>&bullet; [C# SDK](../quickstarts/get-started-sdks-rest-api.md?view=doc-intel-3.0.0&preserve-view=true)</br>&bullet; [Java SDK](../quickstarts/get-started-sdks-rest-api.md?view=doc-intel-3.0.0&preserve-view=true)</br>&bullet; [JavaScript SDK](../quickstarts/get-started-sdks-rest-api.md?view=doc-intel-3.0.0&preserve-view=true)</br>&bullet; [Python SDK](../quickstarts/get-started-sdks-rest-api.md?view=doc-intel-3.0.0&preserve-view=true)|
 | ***Composed model***| &bullet; [Document Intelligence Studio](https://formrecognizer.appliedai.azure.com/studio/custommodel/projects)</br>&bullet; [REST API](/rest/api/aiservices/document-models/compose-model?view=rest-aiservices-v3.0%20(2022-08-31)&preserve-view=true&tabs=HTTP)</br>&bullet; [C# SDK](/dotnet/api/azure.ai.formrecognizer.training.formtrainingclient.startcreatecomposedmodel)</br>&bullet; [Java SDK](/java/api/com.azure.ai.formrecognizer.training.formtrainingclient.begincreatecomposedmodel)</br>&bullet; [JavaScript SDK](/javascript/api/@azure/ai-form-recognizer/documentmodeladministrationclient?view=azure-node-latest#@azure-ai-form-recognizer-documentmodeladministrationclient-begincomposemodel&preserve-view=true)</br>&bullet; [Python SDK](/python/api/azure-ai-formrecognizer/azure.ai.formrecognizer.formtrainingclient?view=azure-python#azure-ai-formrecognizer-formtrainingclient-begin-create-composed-model&preserve-view=true)|
 
 ::: moniker-end
@@ -176,7 +176,7 @@ Document Intelligence v2.1 supports the following resources:
 
 | Feature | Resources |
 |----------|-------------------------|
-|***Custom model***| &bullet; [Document Intelligence labeling tool](https://fott-2-1.azurewebsites.net)</br>&bullet; [REST API](how-to-guides/compose-custom-models.md?view=doc-intel-2.1.0&tabs=rest&preserve-view=true)</br>&bullet; [Client library SDK](~/articles/ai-services/document-intelligence/how-to-guides/use-sdk-rest-api.md?view=doc-intel-2.1.0&preserve-view=true)</br>&bullet; [Document Intelligence Docker container](containers/install-run.md?tabs=custom#run-the-container-with-the-docker-compose-up-command)|
+|***Custom model***| &bullet; [Document Intelligence labeling tool](https://fott-2-1.azurewebsites.net)</br>&bullet; [REST API](../how-to-guides/compose-custom-models.md?view=doc-intel-2.1.0&tabs=rest&preserve-view=true)</br>&bullet; [Client library SDK](~/articles/ai-services/document-intelligence/how-to-guides/use-sdk-rest-api.md?view=doc-intel-2.1.0&preserve-view=true)</br>&bullet; [Document Intelligence Docker container](../containers/install-run.md?tabs=custom#run-the-container-with-the-docker-compose-up-command)|
 | ***Composed model*** |&bullet; [Document Intelligence labeling tool](https://fott-2-1.azurewebsites.net/)</br>&bullet; [REST API](/rest/api/aiservices/analyzer?view=rest-aiservices-v2.1&preserve-view=true)</br>&bullet; [C# SDK](/dotnet/api/azure.ai.formrecognizer.training.createcomposedmodeloperation?view=azure-dotnet&preserve-view=true)</br>&bullet; [Java SDK](/java/api/com.azure.ai.formrecognizer.models.createcomposedmodeloptions?view=azure-java-stable&preserve-view=true)</br>&bullet; JavaScript SDK</br>&bullet; [Python SDK](/python/api/azure-ai-formrecognizer/azure.ai.formrecognizer.formtrainingclient?view=azure-python#azure-ai-formrecognizer-formtrainingclient-begin-create-composed-model&preserve-view=true)|
 
 ::: moniker-end
@@ -187,5 +187,5 @@ Learn to create and compose custom models:
 
 > [!div class="nextstepaction"]
 >
-> [**Build a custom model**](how-to-guides/build-a-custom-model.md)
-> [**Compose custom models**](how-to-guides/compose-custom-models.md)
+> [**Build a custom model**](../how-to-guides/build-a-custom-model.md)
+> [**Compose custom models**](../how-to-guides/compose-custom-models.md)

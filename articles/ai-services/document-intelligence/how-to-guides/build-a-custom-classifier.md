@@ -118,14 +118,14 @@ The Studio generates the layout results for your training dataset if the dataset
 
 ## Troubleshoot
 
-The [classification model](../concept-custom-classifier.md) requires results from the [layout model](../concept-layout.md) for each training document. If you don't provide the layout results, the Studio attempts to run the layout model for each document before training the classifier. This process is throttled and can result in a 429 response.
+The [classification model](../train/custom-classifier.md) requires results from the [layout model](../prebuilt/layout.md) for each training document. If you don't provide the layout results, the Studio attempts to run the layout model for each document before training the classifier. This process is throttled and can result in a 429 response.
 
 In the Studio, before training with the classification model, run the [layout model](https://formrecognizer.appliedai.azure.com/studio/layout) on each document and upload it to the same location as the original document. Once the layout results are added, you can train the classifier model with your documents.
 
 ## Next steps
 
 > [!div class="nextstepaction"]
-> [Learn about custom model types](../concept-custom.md)
+> [Learn about custom model types](../train/custom-model.md)
 
 > [!div class="nextstepaction"]
 > [Learn about accuracy and confidence with custom models](../concept/accuracy-confidence.md)

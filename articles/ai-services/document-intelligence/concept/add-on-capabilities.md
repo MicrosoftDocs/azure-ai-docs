@@ -18,18 +18,18 @@ monikerRange: '>=doc-intel-3.1.0'
 # Document Intelligence add-on capabilities
 
 ::: moniker range="doc-intel-4.0.0"
-[!INCLUDE [preview-version-notice](includes/preview-notice.md)]
+[!INCLUDE [preview-version-notice](../includes/preview-notice.md)]
 
-**This content applies to:** ![checkmark](media/yes-icon.png) **v4.0 (preview)** | **Previous versions:** ![blue-checkmark](media/blue-yes-icon.png) [**v3.1 (GA)**](?view=doc-intel-3.1.0&preserve-view=tru)
+**This content applies to:** ![checkmark](../media/yes-icon.png) **v4.0 (preview)** | **Previous versions:** ![blue-checkmark](../media/blue-yes-icon.png) [**v3.1 (GA)**](?view=doc-intel-3.1.0&preserve-view=tru)
 :::moniker-end
 
 :::moniker range="doc-intel-3.1.0"
-**This content applies to:** ![checkmark](media/yes-icon.png) **v3.1 (GA)** | **Latest version:** ![purple-checkmark](media/purple-yes-icon.png) [**v4.0 (preview)**](?view=doc-intel-4.0.0&preserve-view=true)
+**This content applies to:** ![checkmark](../media/yes-icon.png) **v3.1 (GA)** | **Latest version:** ![purple-checkmark](../media/purple-yes-icon.png) [**v4.0 (preview)**](?view=doc-intel-4.0.0&preserve-view=true)
 :::moniker-end
 
 :::moniker range="doc-intel-3.1.0"
 > [!NOTE]
-> Add-on capabilities are available within all models except for the [Business card model](concept-business-card.md).
+> Add-on capabilities are available within all models except for the [Business card model](../prebuilt/business-card.md).
 :::moniker-end
 
 :::moniker range=">=doc-intel-3.1.0"
@@ -58,7 +58,7 @@ For `2024-07-31-preview` release and later, the Read model supports searchable P
 
 > [!NOTE]
 >
-> * Not all add-on capabilities are supported by all models. For more information, *see* [model data extraction](concept-model-overview.md#model-analysis-features).
+> * Not all add-on capabilities are supported by all models. For more information, *see* [model data extraction](../model-overview.md#model-analysis-features).
 >
 > * Add-on capabilities are currently not supported for Microsoft Office file types.
 
@@ -759,19 +759,19 @@ The `ocr.barcode` capability extracts all identified barcodes in the `barcodes` 
 
 | **Barcode Type**   | **Example**   |
 | --- | --- |
-| `QR Code` |:::image type="content" source="media/barcodes/qr-code.png" alt-text="Screenshot of the QR Code.":::|
-| `Code 39` |:::image type="content" source="media/barcodes/code-39.png" alt-text="Screenshot of the Code 39.":::|
-| `Code 93` |:::image type="content" source="media/barcodes/code-93.gif" alt-text="Screenshot of the Code 93.":::|
-| `Code 128` |:::image type="content" source="media/barcodes/code-128.png" alt-text="Screenshot of the Code 128.":::|
-| `UPC (UPC-A & UPC-E)` |:::image type="content" source="media/barcodes/upc.png" alt-text="Screenshot of the UPC.":::|
-| `PDF417` |:::image type="content" source="media/barcodes/pdf-417.png" alt-text="Screenshot of the PDF417.":::|
-| `EAN-8` |:::image type="content" source="media/barcodes/european-article-number-8.gif" alt-text="Screenshot of the European-article-number barcode ean-8.":::|
-| `EAN-13` |:::image type="content" source="media/barcodes/european-article-number-13.gif" alt-text="Screenshot of the European-article-number barcode ean-13.":::|
-| `Codabar` |:::image type="content" source="media/barcodes/codabar.png" alt-text="Screenshot of the Codabar.":::|
-| `Databar` |:::image type="content" source="media/barcodes/databar.png" alt-text="Screenshot of the Data bar.":::|
-| `Databar` Expanded |:::image type="content" source="media/barcodes/databar-expanded.gif" alt-text="Screenshot of the Data bar Expanded.":::|
-| `ITF` |:::image type="content" source="media/barcodes/interleaved-two-five.png" alt-text="Screenshot of the interleaved-two-of-five barcode (ITF).":::|
-| `Data Matrix` |:::image type="content" source="media/barcodes/datamatrix.gif" alt-text="Screenshot of the Data Matrix.":::|
+| `QR Code` |:::image type="content" source="../media/barcodes/qr-code.png" alt-text="Screenshot of the QR Code.":::|
+| `Code 39` |:::image type="content" source="../media/barcodes/code-39.png" alt-text="Screenshot of the Code 39.":::|
+| `Code 93` |:::image type="content" source="../media/barcodes/code-93.gif" alt-text="Screenshot of the Code 93.":::|
+| `Code 128` |:::image type="content" source="../media/barcodes/code-128.png" alt-text="Screenshot of the Code 128.":::|
+| `UPC (UPC-A & UPC-E)` |:::image type="content" source="../media/barcodes/upc.png" alt-text="Screenshot of the UPC.":::|
+| `PDF417` |:::image type="content" source="../media/barcodes/pdf-417.png" alt-text="Screenshot of the PDF417.":::|
+| `EAN-8` |:::image type="content" source="../media/barcodes/european-article-number-8.gif" alt-text="Screenshot of the European-article-number barcode ean-8.":::|
+| `EAN-13` |:::image type="content" source="../media/barcodes/european-article-number-13.gif" alt-text="Screenshot of the European-article-number barcode ean-13.":::|
+| `Codabar` |:::image type="content" source="../media/barcodes/codabar.png" alt-text="Screenshot of the Codabar.":::|
+| `Databar` |:::image type="content" source="../media/barcodes/databar.png" alt-text="Screenshot of the Data bar.":::|
+| `Databar` Expanded |:::image type="content" source="../media/barcodes/databar-expanded.gif" alt-text="Screenshot of the Data bar Expanded.":::|
+| `ITF` |:::image type="content" source="../media/barcodes/interleaved-two-five.png" alt-text="Screenshot of the interleaved-two-of-five barcode (ITF).":::|
+| `Data Matrix` |:::image type="content" source="../media/barcodes/datamatrix.gif" alt-text="Screenshot of the Data Matrix.":::|
 
 ::: moniker range="doc-intel-4.0.0"
 
@@ -1064,11 +1064,11 @@ For query field extraction, specify the fields you want to extract and Document 
 
 * If you're processing a contract in the [Document Intelligence Studio](https://formrecognizer.appliedai.azure.com/studio/document), use the `2024-02-29-preview` or `2023-10-31-preview` versions:
 
-    :::image type="content" source="media/studio/query-fields.png" alt-text="Screenshot of the query fields button in Document Intelligence Studio.":::
+    :::image type="content" source="../media/studio/query-fields.png" alt-text="Screenshot of the query fields button in Document Intelligence Studio.":::
 
 * You can pass a list of field labels like `Party1`, `Party2`, `TermsOfUse`, `PaymentTerms`, `PaymentDate`, and `TermEndDate` as part of the `analyze document` request.
 
-   :::image type="content" source="media/studio/query-field-select.png" alt-text="Screenshot of query fields selection window in Document Intelligence Studio.":::
+   :::image type="content" source="../media/studio/query-field-select.png" alt-text="Screenshot of query fields selection window in Document Intelligence Studio.":::
 
 * Document Intelligence is able to analyze and extract the field data and return the values in a structured JSON output.
 
@@ -1119,7 +1119,7 @@ Invoice number: 34278587
 
 > [!div class="nextstepaction"]
 > Learn more:
-> [**Read model**](prebuilt/read.md) [**Layout model**](concept-layout.md)
+> [**Read model**](../prebuilt/read.md) [**Layout model**](../prebuilt/layout.md)
 
 > [!div class="nextstepaction"]
 > SDK samples:

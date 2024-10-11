@@ -56,9 +56,9 @@ You need the following to get started:
 
 Document Intelligence offers several prebuilt models to choose from. Each model has its own set of supported fields. The model to use for the `Analyze` operation depends on the type of document to be analyzed. Here are the prebuilt models currently supported by the Document Intelligence service:
 
-* [**Invoice**](../concept-invoice.md): extracts text, selection marks, tables, key-value pairs, and key information from invoices.
-* [**Receipt**](../concept-receipt.md): extracts text and key information from receipts.
-* [**ID document**](../concept-id-document.md): extracts text and key information from driver licenses and international passports.
+* [**Invoice**](../prebuilt/invoice.md): extracts text, selection marks, tables, key-value pairs, and key information from invoices.
+* [**Receipt**](../prebuilt/receipt.md): extracts text and key information from receipts.
+* [**ID document**](../prebuilt/id-document.md): extracts text and key information from driver licenses and international passports.
 * [**Business-card**](../concept-business-card.md): extracts text and key information from business cards.
 
 1. Navigate to the [Document Intelligence Sample Tool](https://fott-2-1.azurewebsites.net/).

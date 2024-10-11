@@ -44,19 +44,19 @@ Choose from the following Document Intelligence models and analyze and extract d
 >
 > - The [prebuilt-read](../prebuilt/read.md) model is at the core of all Document Intelligence models and can detect lines, words, locations, and languages. Layout, general document, prebuilt, and custom models all use the `read` model as a foundation for extracting texts from documents.
 >
-> - The [prebuilt-layout](../concept-layout.md) model extracts text and text locations, tables, selection marks, and structure information from documents and images. You can extract key/value pairs using the layout model with the optional query string parameter **`features=keyValuePairs`** enabled.
+> - The [prebuilt-layout](../prebuilt/layout.md) model extracts text and text locations, tables, selection marks, and structure information from documents and images. You can extract key/value pairs using the layout model with the optional query string parameter **`features=keyValuePairs`** enabled.
 >
-> - The [prebuilt-contract](../concept-contract.md) model extracts key information from contractual agreements.
+> - The [prebuilt-contract](../prebuilt/contract.md) model extracts key information from contractual agreements.
 >
-> - The [prebuilt-healthInsuranceCard.us](../concept-health-insurance-card.md) model extracts key information from US health insurance cards.
+> - The [prebuilt-healthInsuranceCard.us](../prebuilt/health-insurance-card.md) model extracts key information from US health insurance cards.
 >
-> - The [prebuilt tax document models](../concept-tax-document.md) model extracts information reported on US tax forms.
+> - The [prebuilt tax document models](../prebuilt/tax-document.md) model extracts information reported on US tax forms.
 >
-> - The [prebuilt-invoice](../concept-invoice.md) model extracts key fields and line items from sales invoices in various formats and quality. Fields include phone-captured images, scanned documents, and digital PDFs.
+> - The [prebuilt-invoice](../prebuilt/invoice.md) model extracts key fields and line items from sales invoices in various formats and quality. Fields include phone-captured images, scanned documents, and digital PDFs.
 >
-> - The [prebuilt-receipt](../concept-receipt.md) model extracts key information from printed and handwritten sales receipts.
+> - The [prebuilt-receipt](../prebuilt/receipt.md) model extracts key information from printed and handwritten sales receipts.
 >
-> - The [prebuilt-idDocument](../concept-id-document.md) model extracts key information from US drivers licenses, international passport biographical pages, US state IDs, social security cards, and permanent resident cards.
+> - The [prebuilt-idDocument](../prebuilt/id-document.md) model extracts key information from US drivers licenses, international passport biographical pages, US state IDs, social security cards, and permanent resident cards.
 ::: moniker-end
 
 ::: moniker range="doc-intel-3.1.0 || doc-intel-3.0.0"

@@ -79,7 +79,7 @@ Try extracting text from forms and documents using the Document Intelligence Stu
 
 ## Supported languages and locales (v4)
 
-See our [Language Support—document analysis models](../language-support-ocr.md) page for a complete list of supported languages.
+See our [Language Support—document analysis models](../language-support/ocr.md) page for a complete list of supported languages.
 
 ## Data extraction (v4)
 
@@ -241,7 +241,7 @@ For Microsoft Word, Excel, PowerPoint, and HTML, Document Intelligence Read mode
 
 ### Handwritten style extraction
 
-The response includes classifying whether each text line is of handwriting style or not, along with a confidence score. For more information, *see* [handwritten language support](../language-support-ocr.md). The following example shows an example JSON snippet.
+The response includes classifying whether each text line is of handwriting style or not, along with a confidence score. For more information, *see* [handwritten language support](../language-support/ocr.md). The following example shows an example JSON snippet.
 
 ```json
     "styles": [
@@ -365,7 +365,7 @@ Try extracting text from forms and documents using the Document Intelligence Stu
 
 ## Supported languages and locales
 
-See our [Language Support—document analysis models](../language-support-ocr.md) page for a complete list of supported languages.
+See our [Language Support—document analysis models](../language-support/ocr.md) page for a complete list of supported languages.
 
 ## Data extraction
 
@@ -509,7 +509,7 @@ The Read OCR model in Document Intelligence extracts all identified blocks of te
 
 ### Text, lines, and words
 
-The Read OCR model extracts print and handwritten style text as `lines` and `words`. The model outputs bounding `polygon` coordinates and `confidence` for the extracted words. The `styles` collection includes any handwritten style for lines if detected along with the spans pointing to the associated text. This feature applies to [supported handwritten languages](../language-support.md).
+The Read OCR model extracts print and handwritten style text as `lines` and `words`. The model outputs bounding `polygon` coordinates and `confidence` for the extracted words. The `styles` collection includes any handwritten style for lines if detected along with the spans pointing to the associated text. This feature applies to [supported handwritten languages](../language-support/prebuilt.md).
 
 For Microsoft Word, Excel, PowerPoint, and HTML, Document Intelligence Read model v3.1 and later versions extracts all embedded text as is. Texts are extrated as words and paragraphs. Embedded images aren't supported.
 
@@ -587,7 +587,7 @@ For Microsoft Word, Excel, PowerPoint, and HTML, Document Intelligence Read mode
 
 ### Handwritten style for text lines
 
-The response includes classifying whether each text line is of handwriting style or not, along with a confidence score. For more information, *see* [handwritten language support](../language-support-ocr.md). The following example shows an example JSON snippet.
+The response includes classifying whether each text line is of handwriting style or not, along with a confidence score. For more information, *see* [handwritten language support](../language-support/ocr.md). The following example shows an example JSON snippet.
 
 ```json
     "styles": [
