@@ -6,6 +6,12 @@ ms.date: 7/12/2024
 ms.author: eur
 ---
 
+### October 2024 release
+
+#### Video translation (Preview)
+
+The video translation API is now available in public preview. For more information, see the [How to use video translation](../../video-translation-get-started.md?pivots=rest-api).
+
 ### September 2024 release
 
 #### Fast transcription (Preview)
