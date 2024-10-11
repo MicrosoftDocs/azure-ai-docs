@@ -5,7 +5,7 @@ description: Describes the Reciprocal Rank Fusion (RRF) algorithm used to unify 
 
 author: yahnoosh
 ms.author: jlembicz
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: conceptual
