@@ -132,7 +132,7 @@ The `input_data` object contains the following fields:
 | ------------- | -------------- | :-----------------:| ----------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `columns`       | `list[string]`       | Y    |  `"text"`, `"image"` | An object containing the strings mapping data to inputs passed to the model.|
 | `index`   | `integer` | Y | 0 - 1024| Count of inputs passed to the model. Note that you are limited by how much data can be passed in a single POST request which will depend on the size of your images, so it is reasonable to keep this number in the dozens |
-| `data`   | `list[list[string]]` | Y | "" | The list contains the number of items passed to the model which is defined by the index parameter. Each item is a list of two strings, order is defined by the "columns" parameter. The `text` string contains text to embed, the `image` string are the image bytes encoded using base64 and decoded as utf-8 string |
+| `data`   | `list[list[string]]` | Y | "" | The list contains the items passed to the model which is defined by the index parameter. Each item is a list of two strings, order is defined by the "columns" parameter. The `text` string contains text to embed, the `image` string are the image bytes encoded using base64 and decoded as utf-8 string |
 
 The `params` object contains the following fields:
 
@@ -164,20 +164,19 @@ The `params` object contains the following fields:
 **Request for embedding of an image and a string, requesting for return of the scaling factor** 
 ```JSON
 {
-  "input_data": {
-    "columns": [
-      "image",
-      "text"
-    ],
-    "index":[0],
-    "data": [
-      ["4oCwUE5HDQoaCgAAAA1JSERSAAAAAgAAAAIIBgAAAHLCtg0kAAAAAXNSR0IAwq7DjhzDqQAAAARnQU1BAADCscKPC8O8YQUAAAAJcEhZcwAAFiUAABYlAUlSJMOwAAAAG0lEQVQYV2PDuBTCoMO0wr9+F8ODfwbigKAlw6/Dv8O/w5/DicOwHwBUbAnDpVDDrz3DpgAAAABJRU5Ewq5CYOKAmg==",
-       "Microsoft Products are Generally Bug Free"]
-    ]
-  },
-  "params": {
-    "get_scaling_factor": True
-  }
+    "input_data": {
+        "columns": ["image", "text"],
+        "index": [0],
+        "data": [
+            [
+                "iVBORw0KGgoAAAANSUhEUgAAAAIAAAACCAYAAABytg0kAAAAAXNSR0IArs4c6QAAAARnQU1BAACx\njwv8YQUAAAAJcEhZcwAAFiUAABYlAUlSJPAAAAAbSURBVBhXY/gUoPS/fhfDfwaGJe///9/J8B8A\nVGwJ5VDvPeYAAAAASUVORK5CYII=\n",
+                "Microsoft Products are Generally Bug Free"
+            ]
+        ]
+    },
+    "params": {
+        "get_scaling_factor": true
+    }
 }
 ```
 

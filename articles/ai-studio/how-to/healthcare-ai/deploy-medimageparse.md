@@ -5,12 +5,12 @@ description: Learn how to use MedImageParse Healthcare AI Model with Azure AI St
 ms.service: azure-ai-studio
 manager: scottpolly
 ms.topic: how-to
-ms.date: 09/30/2024
+ms.date: 10/20/2024
 ms.reviewer: itarapov
 reviewer: fkriti
 ms.author: mopeakande
 author: msakande
-ms.custom: references_regions, generated
+zone_pivot_groups: ?????
 ---
 
 # How to use MedImageParse Healthcare AI Model for Generating Grounded Findings
@@ -31,7 +31,7 @@ Biomedical image analysis is crucial for discovery in fields like cell biology, 
 
 ## Prerequisites
 
-To use MedImageParse model with Azure AI Studio, you need the following prerequisites:
+To use MedImageParse model with Azure AI Studio or Azure Machine Learning Studio, you need the following prerequisites:
 
 ### A model deployment
 
@@ -42,49 +42,138 @@ MedImageParse model can be deployed to our self-hosted managed inference solutio
 For deployment to a self-hosted managed compute, you must have enough quota in your subscription. If you don't have enough quota available, you can use our temporary quota access by selecting the option **I want to use shared quota and I acknowledge that this endpoint will be deleted in 168 hours.**
 
 > [!div class="nextstepaction"]
-> [Deploy the model to managed compute](https://portal.azure.com)
+> [Deploy the model to managed compute](../../concepts/deployments-overview.md)
 
-### The inference package installed
+## Work with an Segmentation Model
 
-You can consume predictions from this model by using the `azure-ai-inference` package with Python. To install this package, you need the following prerequisites:
+### Using REST API to consume the model
 
-* Python 3.8 or later installed, including pip.
-* The endpoint URL. To construct the client library, you need to pass in the endpoint URL. The endpoint URL has the form `https://your-host-name.your-azure-region.inference.ai.azure.com`, where `your-host-name` is your unique model deployment host name and `your-azure-region` is the Azure region where the model is deployed (for example, eastus2).
-* Depending on your model deployment and authentication preference, you need either a key to authenticate against the service, or Microsoft Entra ID credentials. The key is a 32-character string.
-  
-Once you have these prerequisites, install the Azure AI inference package with the following command:
-
-```bash
-pip install azure-ai-inference
-```
-
-Read more about the [Azure AI inference package and reference](https://aka.ms/azsdk/azure-ai-inference/python/reference).
-
-## Work with a Prompted Segmentation Model
-
-### Create a client to consume the model
-
-First, create the client to consume the model. The following code uses an endpoint URL and key that are stored in environment variables.
-
+MedImageParse segmentation model can be consumed as a REST API using simple GET requests or by creating a client like so:
 
 ```python
-import os
-from azure.core.credentials import AzureKeyCredential
-
-client = TBD(
-    endpoint=os.environ["AZURE_INFERENCE_ENDPOINT"],
-    credential=AzureKeyCredential(os.environ["AZURE_INFERENCE_CREDENTIAL"]),
-)
+TODO: Client code
 ```
+
+Note that in the deployment configuration you get to choose authentication method. This example uses Azure ML Token-based authentication.
 
 ### Make basic calls to the model
 
 Once the model is deployed, use the following code to send data and retrieve embeddings.
 
 ```python
-print("SAMPLE CODE HERE")
+import base64
+import json
+import os
+
+sample_image_xray = os.path.join(image_path)
+
+def read_image(image_path):
+    with open(image_path, "rb") as f:
+        return f.read()
+
+data = {
+    "input_data": {
+        "columns": ["image", "text"],
+        #  IMPORTANT: Modify the index as needed
+        "index": [0],
+        "data": [
+            [
+                base64.encodebytes(read_image(sample_image_xray)).decode("utf-8"),
+                "x-ray chest anteroposterior Pneumonia",
+            ]
+        ],
+    },
+    "params": {"get_scaling_factor": True},
+}
+
+# Create request json
+request_file_name = "sample_request_data.json"
+with open(request_file_name, "w") as request_file:
+    json.dump(data, request_file)
+
+response = ml_client_workspace.online_endpoints.invoke(
+    endpoint_name=endpoint_name,
+    deployment_name=deployment_name,
+    request_file=request_file_name,
+)
 ```
 
+## Reference for MedImageParse REST API
+MedImageParse model assumes a simple single-turn interaction where one request produces one response. 
+
+### Request schema
+
+Request payload is a JSON formatted string containing the following parameters:
+
+| Key           | Type           | Required/Default | Description |
+| ------------- | -------------- | :-----------------:| ----------------- |
+| `input_data`       | `[object]`       | Y    | An object containing the input data payload |
+| `params`   | `[object]` | Y    | An object containing parameters passed to the model|
+
+The `input_data` object contains the following fields:
+
+| Key           | Type           | Required/Default | Allowed values    | Description |
+| ------------- | -------------- | :-----------------:| ----------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `columns`       | `list[string]`       | Y    |  `"image"`, `"text"` | An object containing the strings mapping data to inputs passed to the model.|
+
+
+### Request Example
+
+**A simple inference requesting embedding of a single string** 
+```JSON
+{
+  "input_data": {
+    "columns": [
+      "image",
+      "text"
+    ],
+    "index":[0],
+    "data": [
+      ["", "a quick brown fox jumps over the lazy dog"]
+    ]
+  },
+  "params": {}
+}
+```
+
+**Request for embedding of an image and a string, requesting for return of the scaling factor** 
+```JSON
+{
+  "input_data": {
+    "columns": [
+      "image",
+      "text"
+    ],
+    "index":[0],
+    "data": [
+      ["4oCwUE5HDQoaCgAAAA1JSERSAAAAAgAAAAIIBgAAAHLCtg0kAAAAAXNSR0IAwq7DjhzDqQAAAARnQU1BAADCscKPC8O8YQUAAAAJcEhZcwAAFiUAABYlAUlSJMOwAAAAG0lEQVQYV2PDuBTCoMO0wr9+F8ODfwbigKAlw6/Dv8O/w5/DicOwHwBUbAnDpVDDrz3DpgAAAABJRU5Ewq5CYOKAmg==",
+       "Microsoft Products are Generally Bug Free"]
+    ]
+  },
+  "params": {
+    "get_scaling_factor": True
+  }
+}
+```
+
+### Response schema
+
+Response payload is a JSON formatted string containing the following fields:
+
+| Key           | Type           |  Description |
+| ------------- | -------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `segmentation_mask`       | `binary` |  If requested, list of vectors, one per each submitted image. |
+
+
+### Response example
+**A simple inference requesting embedding of a single string** 
+```JSON
+{
+  "image_features": [[0.029661938548088074, -0.027228673920035362, ... , -0.0328846238553524]],
+  "text_features": [[0.0028937323950231075, 0.004354152828454971, -0.0227945726364851, ..., 0.002080598147585988]],
+  "scaling_factor": 4.516357
+}
+```
 
 ## More Examples 
 MedImageParse is a versatile model that can be applied to a wide range of tasks and imaging modalities. For more examples see the following interactive Python Notebooks: 
