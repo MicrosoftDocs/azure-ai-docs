@@ -60,14 +60,13 @@ from azure.ai.ml import MLClient
 from azure.identity import DeviceCodeCredential
 
 credential = DeviceCodeCredential()
-ml_client = MLClient.from_config(credential)
 credential.authenticate()
 
 ml_client_workspace = MLClient.from_config(credential)
 
 ```
 
-Note that in the deployment configuration you get to choose authentication method. This example uses Azure ML Token-based authentication.
+Note that in the deployment configuration you get to choose authentication method. This example uses Azure ML Token-based authentication. Also note that client is created from configuration file. This file is created automatically for Azure Machine Learning VMs. Learn more on the [corresponding API documentation page](/python/api/azure-ai-ml/azure.ai.ml.mlclient?view=azure-python#azure-ai-ml-mlclient-from-config).
 
 ### Make basic calls to the model
 
@@ -204,7 +203,7 @@ Response payload is a JSON formatted string containing the following fields:
 MedImageInsight is a versatile model that can be applied to a wide range of tasks and imaging modalities. For more specific examples of solving a variety of tasks with MedImageInsight see the following interactive Python Notebooks: 
 
 ### Getting Started
-* [Deploying and Using MedImageInsight](https://github.com/Azure/azureml-examples/tree/main/sdk/python/foundation-models/healthcare-ai/medimageinsight/deploy.ipynb): learn how to deploy the MedImageInsight model programmatically and issue an API call to it.
+* [Deploying and Using MedImageInsight](https://github.com/Azure/azureml-examples/tree/main/sdk/python/foundation-models/healthcare-ai/medimageinsight/mi2-deploy.ipynb): learn how to deploy the MedImageInsight model programmatically and issue an API call to it.
 
 ### Classification Techniques
 * [Building a Zero-Shot Classifier](https://github.com/Azure/azureml-examples/tree/main/sdk/python/foundation-models/healthcare-ai/medimageinsight/zero-shot-classification.ipynb): discover how to create a classifier without the need training or large amount of labeled training data using MedImageInsight.

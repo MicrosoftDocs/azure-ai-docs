@@ -51,51 +51,51 @@ For deployment to a self-hosted managed compute, you must have enough quota in y
 CXRReportGen report generation model can be consumed as a REST API using simple GET requests or by creating a client like so:
 
 ```python
-TODO: Client code
+from azure.ai.ml import MLClient
+from azure.identity import DeviceCodeCredential
+
+credential = DeviceCodeCredential()
+credential.authenticate()
+
+ml_client_workspace = MLClient.from_config(credential)
 ```
 
-Note that in the deployment configuration you get to choose authentication method. This example uses Azure ML Token-based authentication.
+Note that in the deployment configuration you get to choose authentication method. This example uses Azure ML Token-based authentication. Also note that client is created from configuration file. This file is created automatically for Azure Machine Learning VMs. Learn more on the [corresponding API documentation page](/python/api/azure-ai-ml/azure.ai.ml.mlclient?view=azure-python#azure-ai-ml-mlclient-from-config).
 
 ### Make basic calls to the model
 
-Once the model is deployed, use the following code to send data and retrieve embeddings.
+Once the model is deployed, you can use the following code to send data and retrieve embeddings.
 
 ```python
-import base64
-import json
-import os
+input_data = {
+        "frontal_image": base64.encodebytes(read_image(frontal_path)).decode("utf-8"),
+        "lateral_image": base64.encodebytes(read_image(lateral_path)).decode("utf-8"),
+        "indication": indication,
+        "technique": technique,
+        "comparison": comparison,
+    }
 
-sample_image_xray = os.path.join(image_path)
+    data = {
+        "input_data": {
+            "columns": list(input_data.keys()),
+            #  IMPORANT: Modify the index as needed
+            "index": [0],  # 1, 2],
+            "data": [
+                list(input_data.values()),
+            ],
+        }
+    }
 
-def read_image(image_path):
-    with open(image_path, "rb") as f:
-        return f.read()
+    # Create request json
+    request_file_name = "sample_request_data.json"
+    with open(request_file_name, "w") as request_file:
+        json.dump(data, request_file)
 
-data = {
-    "input_data": {
-        "columns": ["image", "text"],
-        #  IMPORTANT: Modify the index as needed
-        "index": [0],
-        "data": [
-            [
-                base64.encodebytes(read_image(sample_image_xray)).decode("utf-8"),
-                "x-ray chest anteroposterior Pneumonia",
-            ]
-        ],
-    },
-    "params": {"get_scaling_factor": True},
-}
-
-# Create request json
-request_file_name = "sample_request_data.json"
-with open(request_file_name, "w") as request_file:
-    json.dump(data, request_file)
-
-response = ml_client_workspace.online_endpoints.invoke(
-    endpoint_name=endpoint_name,
-    deployment_name=deployment_name,
-    request_file=request_file_name,
-)
+    response = ml_client_workspace.online_endpoints.invoke(
+        endpoint_name=endpoint_name,
+        deployment_name=deployment_name,
+        request_file=request_file_name,
+    )
 ```
 
 ## Reference for CXRReportGen REST API
@@ -181,8 +181,7 @@ Response payload is a JSON formatted string containing the following fields:
 CXRReportGen is a versatile model that can be applied to a wide range of tasks and imaging modalities. For more examples see the following interactive Python Notebooks: 
 
 ### Getting Started
-* [Deploying and Using CXRReportGen](https://github.com/Azure/azureml-examples/tree/main/sdk/python/foundation-models/healthcare-ai/cxrreportgen/deploy.ipynb): learn how to deploy the CXRReportGen model and integrate it into your workflow.
-* [Calling CXRReportGen and Visualizing Results](https://github.com/Azure/azureml-examples/tree/main/sdk/python/foundation-models/healthcare-ai/cxrreportgen/examples.ipynb): understand how to submit various types of Chest X-Ray studies to CXRReportGen, interpret the results and apply some visualization techniques. 
+* [Deploying and Using CXRReportGen](https://github.com/Azure/azureml-examples/tree/main/sdk/python/foundation-models/healthcare-ai/cxrreportgen/cxr-deploy.ipynb): learn how to deploy the CXRReportGen model and integrate it into your workflow. This notebook also covers bounding box parsing and visualization techniques.
 
 ## Related content
 
