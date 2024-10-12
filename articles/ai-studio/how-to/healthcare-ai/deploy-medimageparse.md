@@ -51,14 +51,20 @@ For deployment to a self-hosted managed compute, you must have enough quota in y
 MedImageParse segmentation model can be consumed as a REST API using simple GET requests or by creating a client like so:
 
 ```python
-TODO: Client code
+from azure.ai.ml import MLClient
+from azure.identity import DeviceCodeCredential
+
+credential = DeviceCodeCredential()
+credential.authenticate()
+
+ml_client_workspace = MLClient.from_config(credential)
 ```
 
-Note that in the deployment configuration you get to choose authentication method. This example uses Azure ML Token-based authentication.
+Note that in the deployment configuration you get to choose authentication method. This example uses Azure ML Token-based authentication. Also note that client is created from configuration file. This file is created automatically for Azure Machine Learning VMs. Learn more on the [corresponding API documentation page](/python/api/azure-ai-ml/azure.ai.ml.mlclient?view=azure-python#azure-ai-ml-mlclient-from-config).
 
 ### Make basic calls to the model
 
-Once the model is deployed, use the following code to send data and retrieve embeddings.
+Once the model is deployed, use the following code to send data and retrieve segmentation masks.
 
 ```python
 import base64
@@ -71,20 +77,20 @@ def read_image(image_path):
     with open(image_path, "rb") as f:
         return f.read()
 
+sample_image =  "sample_image.png"
 data = {
     "input_data": {
-        "columns": ["image", "text"],
-        #  IMPORTANT: Modify the index as needed
-        "index": [0],
+        "columns": [ "image", "text" ],
+        "index": [ 0 ],
         "data": [
             [
-                base64.encodebytes(read_image(sample_image_xray)).decode("utf-8"),
-                "x-ray chest anteroposterior Pneumonia",
+                base64.encodebytes(read_image(sample_image)).decode("utf-8"),
+                "neoplastic cells in breast pathology & inflammatory cells"
             ]
-        ],
-    },
-    "params": {"get_scaling_factor": True},
+        ]
+    }
 }
+data_json = json.dumps(data)
 
 # Create request json
 request_file_name = "sample_request_data.json"
@@ -108,18 +114,18 @@ Request payload is a JSON formatted string containing the following parameters:
 | Key           | Type           | Required/Default | Description |
 | ------------- | -------------- | :-----------------:| ----------------- |
 | `input_data`       | `[object]`       | Y    | An object containing the input data payload |
-| `params`   | `[object]` | Y    | An object containing parameters passed to the model|
 
 The `input_data` object contains the following fields:
 
 | Key           | Type           | Required/Default | Allowed values    | Description |
 | ------------- | -------------- | :-----------------:| ----------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `columns`       | `list[string]`       | Y    |  `"image"`, `"text"` | An object containing the strings mapping data to inputs passed to the model.|
-
+| `columns`       | `list[string]`       | Y    |  `"image"`, `"text"` | An object containing the strings mapping data to 
+| `index`   | `integer` | Y | 0 - 1024| Count of inputs passed to the model. Note that you are limited by how much data can be passed in a single POST request which will depend on the size of your images, so it is reasonable to keep this number in the dozens |
+| `data`   | `list[list[string]]` | Y | "" | The list contains the items passed to the model which is defined by the index parameter. Each item is a list of two strings, order is defined by the "columns" parameter. The `text` string contains the prompt text, the `image` string are the image bytes encoded using base64 and decoded as utf-8 string |
 
 ### Request Example
 
-**A simple inference requesting embedding of a single string** 
+**Requesting segmentation of all cells in a pathology image** 
 ```JSON
 {
   "input_data": {
@@ -129,29 +135,9 @@ The `input_data` object contains the following fields:
     ],
     "index":[0],
     "data": [
-      ["", "a quick brown fox jumps over the lazy dog"]
+      ["iVBORw0KGgoAAAANSUhEUgAAAAIAAAACCAYAAABytg0kAAAAAXNSR0IArs4c6QAAAARnQU1BAACx\njwv8YQUAAAAJcEhZcwAAFiUAABYlAUlSJPAAAAAbSURBVBhXY/gUoPS/fhfDfwaGJe///9/J8B8A\nVGwJ5VDvPeYAAAAASUVORK5CYII=\n",
+      "neoplastic & inflammatory cells "]
     ]
-  },
-  "params": {}
-}
-```
-
-**Request for embedding of an image and a string, requesting for return of the scaling factor** 
-```JSON
-{
-  "input_data": {
-    "columns": [
-      "image",
-      "text"
-    ],
-    "index":[0],
-    "data": [
-      ["4oCwUE5HDQoaCgAAAA1JSERSAAAAAgAAAAIIBgAAAHLCtg0kAAAAAXNSR0IAwq7DjhzDqQAAAARnQU1BAADCscKPC8O8YQUAAAAJcEhZcwAAFiUAABYlAUlSJMOwAAAAG0lEQVQYV2PDuBTCoMO0wr9+F8ODfwbigKAlw6/Dv8O/w5/DicOwHwBUbAnDpVDDrz3DpgAAAABJRU5Ewq5CYOKAmg==",
-       "Microsoft Products are Generally Bug Free"]
-    ]
-  },
-  "params": {
-    "get_scaling_factor": True
   }
 }
 ```
@@ -162,27 +148,24 @@ Response payload is a JSON formatted string containing the following fields:
 
 | Key           | Type           |  Description |
 | ------------- | -------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `segmentation_mask`       | `binary` |  If requested, list of vectors, one per each submitted image. |
+| `image_features`       | `binary` |  TODO |
+| `text_features`       | `binary` |  TODO |
 
 
 ### Response example
 **A simple inference requesting embedding of a single string** 
 ```JSON
-{
-  "image_features": [[0.029661938548088074, -0.027228673920035362, ... , -0.0328846238553524]],
-  "text_features": [[0.0028937323950231075, 0.004354152828454971, -0.0227945726364851, ..., 0.002080598147585988]],
-  "scaling_factor": 4.516357
-}
+TODO
 ```
 
 ## More Examples 
 MedImageParse is a versatile model that can be applied to a wide range of tasks and imaging modalities. For more examples see the following interactive Python Notebooks: 
 
 ### Getting Started
-* [Deploying and Using MedImageParse](https://github.com/Azure/azureml-examples/tree/main/sdk/python/foundation-models/healthcare-ai/medimageparse/deploy.ipynb): learn how to deploy the MedImageParse model and integrate it into your workflow.
+* [Deploying and Using MedImageParse](https://github.com/Azure/azureml-examples/tree/main/sdk/python/foundation-models/healthcare-ai/medimageparse/mip-deploy.ipynb): learn how to deploy the MedImageParse model and integrate it into your workflow.
 * [Generating Segmentation for a Variety of Imaging Modalities](https://github.com/Azure/azureml-examples/tree/main/sdk/python/foundation-models/healthcare-ai/medimageparse/call-examples.ipynb): understand how to use MedImageParse to segment a wide variety of different medical images and learn some prompting techniques. 
 
 ## Related content
 
-* [CXRReportGen for grounded report generation](./deploy-cxrreportgen.md)
+* [CXRReportGen for grounded report generation](deploy-cxrreportgen.md)
 * [MedImageInsight for grounded report generation](deploy-medimageinsight.md)

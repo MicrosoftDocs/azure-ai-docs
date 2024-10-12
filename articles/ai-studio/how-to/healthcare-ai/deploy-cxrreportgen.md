@@ -64,7 +64,7 @@ Note that in the deployment configuration you get to choose authentication metho
 
 ### Make basic calls to the model
 
-Once the model is deployed, you can use the following code to send data and retrieve embeddings.
+Once the model is deployed, you can use the following code to send data and retrieve list of findings and corresponding bounding boxes.
 
 ```python
 input_data = {
