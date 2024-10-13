@@ -10,7 +10,7 @@ ms.reviewer: shubhiraj
 reviewer: shubhirajMsft
 ms.author: ssalgado
 author: ssalgadodev
-ms.custom: references_regions, generated
+ms.custom: references_regions, generated, ai-learning-hub
 zone_pivot_groups: azure-ai-model-catalog-samples-chat
 ---
 
