@@ -142,5 +142,4 @@ c.Spawner.default_url = '/lab'
 * Visit the [Data science on the Data Science Virtual Machine for Linux](linux-dsvm-walkthrough.md) walkthrough to learn how to do several common data science tasks with the Linux DSVM provisioned here.
 * Try out the tools this article describes to explore the various data science tools on the DSVM. You can also run `dsvm-more-info` on the shell within the VM for a basic introduction and pointers to more information about the tools installed on the VM.
 * Learn how to systematically build analytical solutions with the [Team Data Science Process](/azure/architecture/data-science-process/overview).
-* Visit the [Azure AI Gallery](https://gallery.azure.ai/) for machine learning and data analytics samples that use the Azure AI services.
 * Visit the appropriate [reference documentation](./reference-ubuntu-vm.md) for this VM.
