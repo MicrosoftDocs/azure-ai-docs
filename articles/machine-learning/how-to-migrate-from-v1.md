@@ -9,7 +9,7 @@ ms.topic: how-to
 author: sdgilley
 ms.author: sgilley
 ms.date: 10/14/2024
-ms.reviewer: balapv
+ms.reviewer: paulsh
 ms.custom: devplatv2, devx-track-python
 monikerRange: 'azureml-api-2 || azureml-api-1'
 #customer intent: As a developer, I want to understand the differences between v1 and v2 of Azure Machine Learning REST APIs, CLI extension, and Python SDK, to decide which I should use.
