@@ -191,8 +191,8 @@ Content Safety features have query rate limits in requests-per-second (RPS) or r
 
 |Pricing tier | Moderation APIs<br>(text and image) | Prompt Shields |  Protected material<br>detection | Groundedness<br>detection (preview) | Custom categories<br>(rapid) (preview) | Custom categories<br>(standard) (preview)|
 |---|-|---|-|-|-|--|
-| F0    | 5 RPS    | 5 RPS   | 5 RPS    | 10 RP10S | 5 RPS | 10 RP10S|
-| S0    | 1000 RP10S    | 1000 RP10S   | 1000 RP10S    | 50 RP10S | 1000 RP10S | 5 RPS|
+| F0    | 5 RPS    | 5 RPS   | 5 RPS    | 5 RPS | 5 RPS | 10 RP10S|
+| S0    | 1000 RP10S    | 1000 RP10S   | 1000 RP10S    | 50 RPS | 1000 RP10S | 5 RPS|
 
 If you need a faster rate, please [contact us](mailto:contentsafetysupport@microsoft.com) to request it.
 
