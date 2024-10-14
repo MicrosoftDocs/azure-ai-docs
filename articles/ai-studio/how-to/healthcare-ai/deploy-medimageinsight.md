@@ -213,7 +213,7 @@ MedImageInsight is a versatile model that can be applied to a wide range of task
 ### Advanced Applications
 * [Inferring MRI Acquisition Parameters from Pixel Data](https://github.com/Azure/azureml-examples/tree/main/sdk/python/foundation-models/healthcare-ai/medimageinsight/exam-parameter-demo/exam-parameter-detection.ipynb): understand how to extract MRI exam acquisition parameters directly from imaging data.
 
-* [Detecting Outliers in Medical Image Series](https://github.com/Azure/azureml-examples/tree/main/sdk/python/foundation-models/healthcare-ai/medimageinsight/outlier.ipynb): learn methods to identify anomalies in full series of medical images using MedImageInsight.
+* [Advanced MedImageInsight Endpoint Call](https://aka.ms/healthcare-ai-examples-mi2-advanced-call): Learn how to process medical images while handling potential network issues gracefully.
 
 
 ## Related content
