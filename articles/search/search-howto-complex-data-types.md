@@ -294,7 +294,10 @@ As with top-level simple fields, simple subfields of complex fields can only be 
 Recall that Azure AI Search limits complex objects in a collection to 3,000 objects per document. Exceeding this limit results in the following message:
 
 ```
-A collection in your document exceeds the maximum elements across all complex collections limit. The document with key '1052' has '4303' objects in collections (JSON arrays). At most '3000' objects are allowed to be in collections across the entire document. Remove objects from collections and try indexing the document again."
+A collection in your document exceeds the maximum elements across all complex collections limit. 
+The document with key '1052' has '4303' objects in collections (JSON arrays). 
+At most '3000' objects are allowed to be in collections across the entire document. 
+Remove objects from collections and try indexing the document again."
 ```
 
 If you need more than 3,000 items, you can pipe (`|`) or use any form of delimiter to delimit the values, concatenate them, and store them as a delimited string. There's no limitation on the number of strings stored in an array. Storing complex values as strings bypasses the complex collection limitation.
