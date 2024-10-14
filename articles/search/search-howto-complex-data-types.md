@@ -289,9 +289,13 @@ To filter on a complex collection field, you can use a **lambda expression** wit
 
 As with top-level simple fields, simple subfields of complex fields can only be included in filters if they have the **filterable** attribute set to `true` in the index definition. For more information, see the [Create Index API reference](/rest/api/searchservice/indexes/create).
 
-Azure AI Search limits complex objects in a collection to 3,000 objects per document. Exceeding this limit results in the following message:
+### Workaround for the complex collection limit
 
-`"A collection in your document exceeds the maximum elements across all complex collections limit. The document with key '1052' has '4303' objects in collections (JSON arrays). At most '3000' objects are allowed to be in collections across the entire document. Remove objects from collections and try indexing the document again."`
+Recall that Azure AI Search limits complex objects in a collection to 3,000 objects per document. Exceeding this limit results in the following message:
+
+```
+A collection in your document exceeds the maximum elements across all complex collections limit. The document with key '1052' has '4303' objects in collections (JSON arrays). At most '3000' objects are allowed to be in collections across the entire document. Remove objects from collections and try indexing the document again."
+```
 
 If you need more than 3,000 items, you can pipe (`|`) or use any form of delimiter to delimit the values, concatenate them, and store them as a delimited string. There's no limitation on the number of strings stored in an array. Storing complex values as strings bypasses the complex collection limitation.
 
@@ -343,11 +347,13 @@ foreach (var filterItem in filterCombinations)
 
 The following list provides inputs and search strings (outputs) side by side:
 
-For "FRA" county code and the "1234" product code, the formatted output is ```|FRA|1234|*|```.
-For "1234" product code, the formatted output is ```|*|1234|*|```.
-For "C100" category code, the formatted output is ```|*|*|C100|```.
++ For "FRA" county code and the "1234" product code, the formatted output is ```|FRA|1234|*|```.
 
-Only provide the wild card entry placeholder if you're implementing the string array workaround. Otherwise, if you're using a complex type, your filter might look this example:
++ For "1234" product code, the formatted output is ```|*|1234|*|```.
+
++ For "C100" category code, the formatted output is ```|*|*|C100|```.
+
+Only provide the wildcard (`*`) if you're implementing the string array workaround. Otherwise, if you're using a complex type, your filter might look like this example:
 
 ```csharp
 var countryFilter = $"searchScope/any(ss: search.in(countryCode ,'FRA'))";

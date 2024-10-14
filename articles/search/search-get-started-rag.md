@@ -324,7 +324,8 @@ If your index has complex types, your query can provide those fields if you firs
 import json
 
 # Query is the question being asked. It's sent to the search engine and the LLM.
-query="Can you recommend a few hotels that offer complimentary breakfast? Tell me their description, address, tags, and the rate for one room they have which sleep 4 people."
+query="Can you recommend a few hotels that offer complimentary breakfast? 
+Tell me their description, address, tags, and the rate for one room that sleeps 4 people."
 
 # Set up the search results and the chat thread.
 # Retrieve the selected fields from the search index related to the question.
@@ -354,28 +355,34 @@ print(response.choices[0].message.content)
 Output is from Azure OpenAI, and it adds content from complex types.
 
 ```
-Absolutely! Here are a few hotels that offer complimentary breakfast:
+Here are a few hotels that offer complimentary breakfast and have rooms that sleep 4 people:
 
 1. **Head Wind Resort**
-   - **Description:** The best of old town hospitality combined with views of the river and cool breezes off the prairie. Enjoy a complimentary continental breakfast in the lobby, and free Wi-Fi throughout the hotel.
+   - **Description:** The best of old town hospitality combined with views of the river and 
+   cool breezes off the prairie. Enjoy a complimentary continental breakfast in the lobby, 
+   and free Wi-Fi throughout the hotel.
    - **Address:** 7633 E 63rd Pl, Tulsa, OK 74133, USA
    - **Tags:** Coffee in lobby, free Wi-Fi, view
    - **Room for 4:** Suite, 2 Queen Beds (Amenities) - $254.99
 
 2. **Double Sanctuary Resort**
-   - **Description:** 5-star Luxury Hotel - Biggest Rooms in the city. #1 Hotel in the area listed by Traveler magazine. Free WiFi, Flexible check in/out, Fitness Center & espresso in room. Offers continental breakfast.
+   - **Description:** 5-star Luxury Hotel - Biggest Rooms in the city. #1 Hotel in the area 
+   listed by Traveler magazine. Free WiFi, Flexible check in/out, Fitness Center & espresso 
+   in room. Offers continental breakfast.
    - **Address:** 2211 Elliott Ave, Seattle, WA 98121, USA
    - **Tags:** View, pool, restaurant, bar, continental breakfast
    - **Room for 4:** Suite, 2 Queen Beds (Amenities) - $254.99
 
 3. **Swan Bird Lake Inn**
-   - **Description:** Continental-style breakfast featuring a variety of food and drinks. Locally made caramel cinnamon rolls are a favorite.
+   - **Description:** Continental-style breakfast featuring a variety of food and drinks. 
+   Locally made caramel cinnamon rolls are a favorite.
    - **Address:** 1 Memorial Dr, Cambridge, MA 02142, USA
    - **Tags:** Continental breakfast, free Wi-Fi, 24-hour front desk service
    - **Room for 4:** Budget Room, 2 Queen Beds (City View) - $85.99
 
 4. **Gastronomic Landscape Hotel**
-   - **Description:** Known for its culinary excellence under the management of William Dough, offers continental breakfast.
+   - **Description:** Known for its culinary excellence under the management of William Dough, 
+   offers continental breakfast.
    - **Address:** 3393 Peachtree Rd, Atlanta, GA 30326, USA
    - **Tags:** Restaurant, bar, continental breakfast
    - **Room for 4:** Budget Room, 2 Queen Beds (Amenities) - $66.99
