@@ -10,7 +10,7 @@ ms.date: 09/09/2024
 author: mrbullwinkle
 ms.author: mbullwin
 recommendations: false
-ms.custom: devx-track-python
+ms.custom: "devx-track-python,ai-learning-hub"
 ---
 
 # Azure OpenAI GPT-4o-mini fine-tuning tutorial
