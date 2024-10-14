@@ -18,7 +18,7 @@ keywords: Azure AI Vision, Azure AI Vision service
 
 # Quickstart: Image Analysis
 
-Get started with the Image Analysis REST API or client libraries to set up a basic image tagging script. The Analyze Image service provides you with AI algorithms for processing images and returning information on their visual features. Follow these steps to install a package to your application and try out the sample code.
+This article explains how to set up a basic image tagging script by using the Image Analysis REST API or client libraries. The Analyze Image service provides you with AI algorithms for processing images and returning information about their visual features. Follow these steps to install a package to your application and try out the sample code.
 
 ::: zone pivot="programming-language-csharp"
 
@@ -49,5 +49,4 @@ Get started with the Image Analysis REST API or client libraries to set up a bas
 [!INCLUDE [REST API quickstart](../includes/image-analysis-curl-quickstart.md)]
 
 ::: zone-end
-
 
