@@ -137,9 +137,7 @@ The `params` object contains the following fields:
 
 | Key           | Type           | Required/Default | Allowed values    | Description |
 | ------------- | -------------- | :-----------------:| ----------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `image_standardization_jpeg_compression_ratio`       | `integer`       | N<br/>`75`    |  0 - 100 | What compression rate to apply to the input images. 75 yields best results. |
-| `image_standardization_image_size`   | `integer` | N<br/>`512` | TODO | TODO |
-| `get_scaling_factor`   | `boolean` | N<br/>`True` | `"True"` OR `"False"` | Whether the model should return "temperature" scaling factor. This factor is useful when you are planning to compare multiple cosine similarity values in application like classification. For usage refer to the zero-shot classification example. |
+| `get_scaling_factor`   | `boolean` | N<br/>`True` | `"True"` OR `"False"` | Whether the model should return "temperature" scaling factor. This factor is useful when you are planning to compare multiple cosine similarity values in application like classification. It is essential for correct implementation of "zero-shot" type of scenarios. For usage refer to the zero-shot classification example linked in the "More Examples" section. |
 
 ### Request Example
 
@@ -198,6 +196,20 @@ Response payload is a JSON formatted string containing the following fields:
   "scaling_factor": 4.516357
 }
 ```
+
+### Additional implementation considerations
+The maximum number of tokens processed in the input string is 77. Anything past 77 tokens would be cut off before passed to the model. The model is using CLIP tokenizer which uses about 3 Latin characters per token.
+
+The submitted text is embedded into the same latent space as the image. This means that strings describing medical images of certain body parts obtained with certain imaging modalities would be embedded close to such images. This also means that when building systems on top of MedImageInsight model you should make sure that all your embedding strings are consistent with one another (word order, punctuation). For best results with base model strings should follow pattern `<image modality> <anatomy> <exam parameters> <condition/pathology>.`, for example: `x-ray chest anteroposterior Atelectasis.`. 
+
+If you are fine tuning the model, you can change these parameters to better suit your application needs.
+
+### Supported Image Formats
+The deployed model API supports images stored in PNG format. 
+
+Upon receiving the images the model does pre-processing which involves compressing and resizing the images to 512x512 pixels.
+
+The preferred format is lossless PNG containing either an 8-bit monochromatic or RGB image. For optimization purposes, you can perform resizing on the client side to reduce network traffic.
 
 ## More Examples 
 MedImageInsight is a versatile model that can be applied to a wide range of tasks and imaging modalities. For more specific examples of solving a variety of tasks with MedImageInsight see the following interactive Python Notebooks: 
