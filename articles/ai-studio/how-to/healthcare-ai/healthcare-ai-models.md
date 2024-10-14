@@ -1,5 +1,5 @@
 ---
-title: Health and life science AI models in AI Studio
+title: Foundational AI models for healthcare in AI Studio
 titleSuffix: Azure AI Studio
 description: Learn about AI models that are applicable to the health and life science industry.
 ms.service: azure-ai-studio
@@ -15,13 +15,13 @@ ms.custom:
 #Customer intent: As a Data Scientist I want to learn what offerings are available within Health and Life Sciences AI Model offerings so that I can use them as the basis for my own AI solutions
 ---
 
-# Health and life science AI models
+# Foundational AI models for healthcare
 
 [!INCLUDE [Feature preview](~/reusable-content/ce-skilling/azure/includes/ai-studio/includes/feature-preview.md)]
 
 [!INCLUDE [health-ai-models-meddev-disclaimer](../../includes/health-ai-models-meddev-disclaimer.md)]
 
-The [Azure AI model catalog]() provides foundational healthcare AI models that go beyond medical text comprehension to perform clinical-based tasks. These AI models can integrate and analyze data from diverse sources that come in various modalities, such as medical imaging, genomics, clinical records, and other structured and unstructured data sources. The models also span several healthcare fields like dermatology, ophthalmology, radiology, and pathology. 
+The [Azure AI model catalog](../model-catalog-overview.md) provides foundational healthcare AI models that go beyond medical text comprehension to multimodal reasoning about medical data. These AI models can integrate and analyze data from diverse sources that come in various modalities, such as medical imaging, genomics, clinical records, and other structured and unstructured data sources. The models also span several healthcare fields like dermatology, ophthalmology, radiology, and pathology. 
 
 The healthcare industry is undergoing a revolutionary transformation driven by the power of artificial intelligence (AI). While existing large language models like GPT-4 show tremendous promise for clinical text-based tasks and general-purpose multimodal reasoning, they struggle to understand non-text multimodal healthcare data such as medical imaging—radiology, pathology, ophthalmology—and other specialized medical text like longitudinal electronic medical records. They also find it challenging to process non-text modalities like signal data, genomic data, and protein data, much of which isn't publicly available.
 

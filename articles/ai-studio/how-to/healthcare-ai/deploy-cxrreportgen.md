@@ -1,5 +1,5 @@
 ---
-title: How do Deploy CXRReportGen Healthcare AI Model with AI Studio
+title: How to Deploy CXRReportGen Healthcare AI Model with AI Studio
 titleSuffix: Azure AI Studio
 description: Learn how to use CXRReportGen Healthcare AI Model with Azure AI Studio.
 ms.service: azure-ai-studio
@@ -177,7 +177,7 @@ Response payload is a JSON formatted string containing the following fields:
 }
 ```
 
-## More Examples 
+## Explore Quickstarts
 CXRReportGen is a versatile model that can be applied to a wide range of tasks and imaging modalities. For more examples see the following interactive Python Notebooks: 
 
 ### Getting Started

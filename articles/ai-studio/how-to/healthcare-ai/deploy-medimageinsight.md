@@ -1,5 +1,5 @@
 ---
-title: How do Deploy MedImageInsight Healthcare AI Model with AI Studio
+title: How to deploy MedImageInsight healthcare AI model with AI Studio
 titleSuffix: Azure AI Studio
 description: Learn how to use MedImageInsight Healthcare AI Model with Azure AI Studio.
 ms.service: azure-ai-studio
@@ -25,14 +25,14 @@ In this article, you learn how to deploy MedImageInsight as an online endpoint f
 * Grant permissions to the endpoint.
 * Send test data to the model, receive and interpret results
 
-## MedImageInsight - the Medical Imaging Embedding model
-MedImageInsight Foundational Model for Health is a powerful model that can process a wide variety of medical images including X-Ray, CT, MRI, clinical photography, dermoscopy, histopathology, ultrasound, and mammography. Rigorous evaluations demonstrate MedImageInsight's ability to achieve state-of-the-art (SOTA) or human expert level performance across classification, image-image search, and fine-tuning tasks.  Specifically, on public datasets, MedImageInsight achieves or exceeds SOTA in chest X-ray disease classification and search, dermatology classification and search, OCT classification and search, 3D medical image retrieval, and near SOTA for histopathology classification and search.  
+## MedImageInsight - the medical imaging embedding model
+MedImageInsight foundational model for health is a powerful model that can process a wide variety of medical images including X-Ray, CT, MRI, clinical photography, dermoscopy, histopathology, ultrasound, and mammography. Rigorous evaluations demonstrate MedImageInsight's ability to achieve state-of-the-art (SOTA) or human expert level performance across classification, image-image search, and fine-tuning tasks.  Specifically, on public datasets, MedImageInsight achieves or exceeds SOTA in chest X-ray disease classification and search, dermatology classification and search, OCT classification and search, 3D medical image retrieval, and near SOTA for histopathology classification and search.  
 
 Embedding model is the "swiss army knife" of foundational models since it is capable of serving as the basis of many different solutions - from classification to more complex scenarios like group matching or outlier detection. 
 
 :::image type="content" source="../../media/how-to/healthcare-ai/healthcare-embedding-capabilities.gif" alt-text="Embedding model capable of supporting similarity search and quality control scenarios":::
 
-Here we will explain how to deploy MedImageInsight using Azure AI Model Catalog using Azure AI Studio or Azure Machine Learning Studio and provide links to more in-depth tutorials and samples.
+Here we will explain how to deploy MedImageInsight using the AI Model Catalog in Azure AI Studio or Azure Machine Learning Studio and provide links to more in-depth tutorials and samples.
 
 ## Prerequisites
 
@@ -167,7 +167,7 @@ The `params` object contains the following fields:
         "data": [
             [
                 "iVBORw0KGgoAAAANSUhEUgAAAAIAAAACCAYAAABytg0kAAAAAXNSR0IArs4c6QAAAARnQU1BAACx\njwv8YQUAAAAJcEhZcwAAFiUAABYlAUlSJPAAAAAbSURBVBhXY/gUoPS/fhfDfwaGJe///9/J8B8A\nVGwJ5VDvPeYAAAAASUVORK5CYII=\n",
-                "Microsoft Products are Generally Bug Free"
+                "x-ray chest anteroposterior Pleural Effusion"
             ]
         ]
     },
@@ -211,8 +211,8 @@ Upon receiving the images the model does pre-processing which involves compressi
 
 The preferred format is lossless PNG containing either an 8-bit monochromatic or RGB image. For optimization purposes, you can perform resizing on the client side to reduce network traffic.
 
-## More Examples 
-MedImageInsight is a versatile model that can be applied to a wide range of tasks and imaging modalities. For more specific examples of solving a variety of tasks with MedImageInsight see the following interactive Python Notebooks: 
+## Explore Quickstarts
+MedImageInsight is a versatile model that can be applied to a wide range of tasks and imaging modalities. For more specific examples of solving a variety of tasks with MedImageInsight see the following interactive Python Notebooks. 
 
 ### Getting Started
 * [Deploying and Using MedImageInsight](https://github.com/Azure/azureml-examples/tree/main/sdk/python/foundation-models/healthcare-ai/medimageinsight/mi2-deploy.ipynb): learn how to deploy the MedImageInsight model programmatically and issue an API call to it.

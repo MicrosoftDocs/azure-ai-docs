@@ -1,5 +1,5 @@
 ---
-title: How do Deploy MedImageParse Healthcare AI Model with AI Studio
+title: How to Deploy MedImageParse Healthcare AI Model with AI Studio
 titleSuffix: Azure AI Studio
 description: Learn how to use MedImageParse Healthcare AI Model with Azure AI Studio.
 ms.service: azure-ai-studio
@@ -158,7 +158,7 @@ Response payload is a JSON formatted string containing the following fields:
 TODO
 ```
 
-## More Examples 
+## Explore Quickstarts
 MedImageParse is a versatile model that can be applied to a wide range of tasks and imaging modalities. For more examples see the following interactive Python Notebooks: 
 
 ### Getting Started
