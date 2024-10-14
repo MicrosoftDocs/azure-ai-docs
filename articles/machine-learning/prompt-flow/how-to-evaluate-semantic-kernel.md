@@ -48,7 +48,7 @@ The integration of Semantic Kernel with prompt flow allows you to:
 
 Similar to the integration of LangChain with prompt flow, Semantic Kernel supports Python and can operate in a Python node within a prompt flow.
 
-:::image type="content" source="./media/how-to-evaluate-semantic-kernel/prompt-flow-end-result.png" alt-text="Diagram of prompt flow with Semantic Kernel." border="false"":::
+:::image type="content" source="./media/how-to-evaluate-semantic-kernel/prompt-flow-end-result.png" alt-text="Diagram of prompt flow with Semantic Kernel." border="false":::
 
 For this example, you create a flow with a Semantic Kernel planner that solves math problems.
 
@@ -72,7 +72,7 @@ For this example, you create a flow with a Semantic Kernel planner that solves m
 
 Instead of manually testing each different scenario, you can automatically run large batches of tests using prompt flow and benchmark data.
 
-:::image type="content" source="./media/how-to-evaluate-semantic-kernel/using-batch-runs-with-prompt-flow.png" alt-text="Diagram showing batch runs with prompt flow for Semantic Kernel." border: "false":::
+:::image type="content" source="./media/how-to-evaluate-semantic-kernel/using-batch-runs-with-prompt-flow.png" alt-text="Diagram showing batch runs with prompt flow for Semantic Kernel." border="false":::
 
 Use batches with prompt flow to run batch tests on your planner that uses the math plugin. By defining several word problems, you can quickly test any changes to your plugins or planners so you can catch regressions early.
 
