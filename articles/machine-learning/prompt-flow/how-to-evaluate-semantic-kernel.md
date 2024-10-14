@@ -56,7 +56,7 @@ For this example, you create a flow with a Semantic Kernel planner that solves m
 1. On the **Create a new flow** screen, select **Create** in the **Standard flow** tile.
 1. At the top of the new flow, select **+ Python** to create a new Python node, and name the node *math_planner*.
 1. Select **+** at the top of the **Files** tab to upload reference files such as the MathPlugin from the Semantic Kernel package.
-1. Update the the *math_planner.py* code to set up the connection and define the input and output of the planner node.
+1. Update the *math_planner.py* code to set up the connection and define the input and output of the planner node.
 
    :::image type="content" source="./media/how-to-evaluate-semantic-kernel/set-connection-in-python.png" alt-text="Screenshot of setting custom connection in python node.":::
 
@@ -135,7 +135,7 @@ Throughout the process of enhancing your plugins and planners in prompt flow, yo
 
 :::image type="content" source="./media/how-to-evaluate-semantic-kernel/batch-evaluation.png" alt-text="Screenshot of batch run with evaluation." lightbox = "./media/how-to-evaluate-semantic-kernel/batch-evaluation.png":::
 
-This capability enables you to conveniently compare the results of various runs, helping you identify which modifications are beneficial. To compare, select the runs you want to analyze, then select the **Visualize outputs** button.
+This capability enables you to conveniently compare the results of various runs, helping you identify which modifications are beneficial. To compare, select the runs you want to analyze, then select **Visualize outputs**.
 
 :::image type="content" source="./media/how-to-evaluate-semantic-kernel/compare.png" alt-text="Screenshot of compare runs." lightbox = "./media/how-to-evaluate-semantic-kernel/compare.png":::
 
