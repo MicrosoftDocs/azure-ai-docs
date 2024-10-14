@@ -52,7 +52,7 @@ Azure AI speech high definition (HD) voices are available in public preview. The
   - `en-NZ`: English (New Zealand)
   - `es-CL`: Spanish (Chile)
   
-  See the [language list for Custom neural voice](#../../language-support.md?tabs=tts#custom-neural-voice) for the full list of supported locales.  
+  See the [language list for Custom neural voice](../../language-support.md?tabs=tts#custom-neural-voice) for the full list of supported locales.  
 
 - The cross-lingual feature now supports the following new locales as source locales:  
 
@@ -73,7 +73,7 @@ Azure AI speech high definition (HD) voices are available in public preview. The
   | `tr-TR`               | Turkish (Türkiye)          |
   | `zh-HK`               | Chinese (Cantonese, Traditional)       |  
 
-  See the [language list for Custom neural voice](#../../language-support.md?tabs=tts#custom-neural-voice) for the full list of supported locales.  
+  See the [language list for Custom neural voice](../../language-support.md?tabs=tts#custom-neural-voice) for the full list of supported locales.  
 
 - The multi-style voice feature now supports the following new locales:  
 
@@ -120,7 +120,7 @@ Azure AI speech high definition (HD) voices are available in public preview. The
   | `zh-HK`             | Chinese (Cantonese, Traditional)      |
   | `zh-TW`             | Chinese (Taiwanese Mandarin, Traditional)         |
 
-  See the [language list for Custom neural voice](#../../language-support.md?tabs=tts#custom-neural-voice) for the full list of supported locales.  
+  See the [language list for Custom neural voice](../../language-support.md?tabs=tts#custom-neural-voice) for the full list of supported locales.  
 
 ### September 2024 release
 
