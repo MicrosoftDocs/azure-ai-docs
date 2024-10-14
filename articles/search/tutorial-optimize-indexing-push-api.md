@@ -153,7 +153,7 @@ The schema of your index has an effect on indexing speeds. For this reason, it m
 
 Azure AI Search supports the following APIs to load single or multiple documents into an index:
 
-+ [Documents - Index (REST API)](/rest/api/searchservice/documents/?view=rest-searchservice-2024-07-01&tabs=HTTP)
++ [Documents - Index (REST API)](/rest/api/searchservice/documents)
 + [IndexDocumentsAction class](/dotnet/api/azure.search.documents.models.indexdocumentsaction) or [IndexDocumentsBatch class](/dotnet/api/azure.search.documents.models.indexdocumentsbatch)
 
 Indexing documents in batches significantly improves indexing performance. These batches can be up to 1,000 documents, or up to about 16 MB per batch.
