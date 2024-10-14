@@ -13,6 +13,41 @@ ms.custom: references_regions
 
 Azure AI speech high definition (HD) voices are available in public preview. The HD voices can understand the content, automatically detect emotions in the input text, and adjust the speaking tone in real-time to match the sentiment. HD voices maintain a consistent voice persona from their neural (and non HD) counterparts, and deliver even more value through enhanced features. For more information, see [What are Azure AI Speech high definition (HD) voices?](../../high-definition-voices.md).
 
+#### Custom neural voice
+
+Previously, some locales were only supported with V3 for the training recipe. These locales now also support V9, enabling improved training quality and expanded features. For these locales, refer to the following table:
+
+| **Locale (BCP-47)** | **Language**              |
+|---------------------|---------------------------|
+| ar-EG               | Arabic (Egypt)            |
+| ar-SA               | Arabic (Saudi Arabia)     |
+| ca-ES               | Catalan           |
+| cs-CZ               | Czech (Czechia)   |
+| da-DK               | Danish (Denmark)          |
+| de-AT               | German (Austria)          |
+| de-CH               | German (Switzerland)      |
+| el-GR               | Greek (Greece)            |
+| en-IN               | English (India)           |
+| fi-FI               | Finnish (Finland)         |
+| fr-CH               | French (Switzerland)      |
+| he-IL               | Hebrew (Israel)           |
+| hi-IN               | Hindi (India)             |
+| hu-HU               | Hungarian (Hungary)       |
+| ms-MY               | Malay (Malaysia)          |
+| nb-NO               | Norwegian Bokmål (Norway) |
+| nl-NL               | Dutch (Netherlands)       |
+| pl-PL               | Polish (Poland)           |
+| pt-PT               | Portuguese (Portugal)     |
+| ro-RO               | Romanian (Romania)        |
+| ru-RU               | Russian (Russia)          |
+| sk-SK               | Slovak (Slovakia)         |
+| sv-SE               | Swedish (Sweden)          |
+| th-TH               | Thai (Thailand)           |
+| tr-TR               | Turkish (Türkiye)          |
+| vi-VN               | Vietnamese (Vietnam)      |
+| zh-HK               | Chinese (Cantonese, Traditional)       |
+| zh-TW               | Chinese (Taiwanese Mandarin, Traditional)          |
+
 ### September 2024 release
 
 #### Prebuilt neural voice
