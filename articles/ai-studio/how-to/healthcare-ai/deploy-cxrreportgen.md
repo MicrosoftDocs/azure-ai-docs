@@ -188,7 +188,7 @@ Response payload is a JSON formatted string containing the following fields:
 CXRReportGen is a versatile model that can be applied to a wide range of tasks and imaging modalities. For more examples see the following interactive Python Notebooks: 
 
 ### Getting Started
-* [Deploying and Using CXRReportGen](https://github.com/Azure/azureml-examples/tree/main/sdk/python/foundation-models/healthcare-ai/cxrreportgen/cxr-deploy.ipynb): learn how to deploy the CXRReportGen model and integrate it into your workflow. This notebook also covers bounding box parsing and visualization techniques.
+* [Deploying and Using CXRReportGen](https://aka.ms/healthcare-ai-examples-cxr-deploy): learn how to deploy the CXRReportGen model and integrate it into your workflow. This notebook also covers bounding box parsing and visualization techniques.
 
 ## Related content
 

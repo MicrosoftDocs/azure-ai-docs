@@ -169,8 +169,8 @@ TODO
 MedImageParse is a versatile model that can be applied to a wide range of tasks and imaging modalities. For more examples see the following interactive Python Notebooks: 
 
 ### Getting Started
-* [Deploying and Using MedImageParse](https://github.com/Azure/azureml-examples/tree/main/sdk/python/foundation-models/healthcare-ai/medimageparse/mip-deploy.ipynb): learn how to deploy the MedImageParse model and integrate it into your workflow.
-* [Generating Segmentation for a Variety of Imaging Modalities](https://github.com/Azure/azureml-examples/tree/main/sdk/python/foundation-models/healthcare-ai/medimageparse/call-examples.ipynb): understand how to use MedImageParse to segment a wide variety of different medical images and learn some prompting techniques. 
+* [Deploying and Using MedImageParse](https://aka.ms/healthcare-ai-examples-mip-deploy): learn how to deploy the MedImageParse model and integrate it into your workflow.
+* [Generating Segmentation for a Variety of Imaging Modalities](https://aka.ms/healthcare-ai-examples-mip-examples): understand how to use MedImageParse to segment a wide variety of different medical images and learn some prompting techniques. 
 
 ## Related content
 
