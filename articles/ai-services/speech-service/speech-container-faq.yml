@@ -164,6 +164,11 @@ sections:
           > The minimum and recommended allocations are based on Docker limits, *not* the host machine resources.
           > For example, speech to text containers memory map portions of a large language model. We recommend that the entire file should fit in memory. You need to add an extra 4 to 8 GB to load the speech models (see above table).
           > Also, the first run of either container might take longer because models are being paged into memory.
+
+          - For files, the throttling will be in the Speech SDK, at 2x. The first 5 seconds of audio aren't throttled.
+          - For speech to text, the decoder is capable of doing about 2-3x real-time. That's why we don't recommend keeping more than two active connections per core. The extreme side would be to put about 10 decoders at 2x real-time in an eight-core machine like `DS13_V2`. For the container version 1.3 and later, there's a param you could try setting `-e DECODER_MAX_COUNT=20`.
+          - For microphone, speech to text happens at 1x real-time. The overall usage should be at about one core for a single recognition.
+          - Beyond 16 cores the system becomes nonuniform memory access (NUMA) node sensitive.
           
           # [Custom speech-to-text](#tab/cstt)
           
@@ -175,16 +180,23 @@ sections:
           > The minimum and recommended allocations are based on Docker limits, *not* the host machine resources.
           > For example, speech to text containers memory map portions of a large language model. We recommend that the entire file should fit in memory. You need to add an extra 4 to 8 GB to load the speech models (see above table).
           > Also, the first run of either container might take longer because models are being paged into memory.
+
+          - For files, the throttling will be in the Speech SDK, at 2x. The first 5 seconds of audio aren't throttled.
+          - For speech to text, the decoder is capable of doing about 2-3x real-time. That's why we don't recommend keeping more than two active connections per core. The extreme side would be to put about 10 decoders at 2x real-time in an eight-core machine like `DS13_V2`. For the container version 1.3 and later, there's a param you could try setting `-e DECODER_MAX_COUNT=20`.
+          - For microphone, speech to text happens at 1x real-time. The overall usage should be at about one core for a single recognition.
+          - Beyond 16 cores the system becomes nonuniform memory access (NUMA) node sensitive.
           
           # [Neural Text-to-speech](#tab/tts)
           
           | Container | Minimum | Recommended | Concurrency Limit |
-          |-----------|---------|-------------|-------------------| 5 requests per 8 core CPU |
-          | Neural text to speech | 6 core, 12-GB memory | 8 core, 16-GB memory |
+          |-----------|---------|-------------|-------------------|
+          | Neural text to speech | 6 core, 12-GB memory | 8 core, 16-GB memory \n 8 core, 24-GB memory (multilingual voices) | 5 requests per 8 core CPU |
           
           > [!NOTE]
           > The minimum and recommended allocations are based on Docker limits, *not* the host machine resources.
           > Also, the first run of either container might take longer because models are being paged into memory.
+
+          - Real-time performance varies depending on concurrency. With a concurrency of 1, an NTTS container instance can achieve 10x real-time performance. However, when concurrency increases to 5, real-time performance drops to 3x or lower. We recommended sending less than 5 concurrent requests in one container. Start more containers for increased concurrency.
           
           # [Speech language identification](#tab/lid)
           
@@ -199,10 +211,6 @@ sections:
           ***
 
           - Each core must be at least 2.6 GHz or faster.
-          - For files, the throttling will be in the Speech SDK, at 2x. The first 5 seconds of audio aren't throttled.
-          - For speech to text, the decoder is capable of doing about 2-3x real-time. That's why we don't recommend keeping more than two active connections per core. The extreme side would be to put about 10 decoders at 2x real-time in an eight-core machine like `DS13_V2`. For the container version 1.3 and later, there's a param you could try setting `-e DECODER_MAX_COUNT=20`.
-          - For microphone, speech to text happens at 1x real-time. The overall usage should be at about one core for a single recognition.
-          - Beyond 16 cores the system becomes nonuniform memory access (NUMA) node sensitive.
          
           Consider the total number of hours of audio you have, and your expected time to complete the task. If the number is large, to improve reliability and availability, we suggest running more instances of containers, either on a single box or on multiple boxes, behind a load balancer. Orchestration could be done using Kubernetes (K8S) and Helm, or with Docker compose.
          
