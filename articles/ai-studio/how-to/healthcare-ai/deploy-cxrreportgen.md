@@ -1,5 +1,5 @@
 ---
-title: How to Deploy CXRReportGen Healthcare AI Model with AI Studio
+title: How to deploy and use CXRReportGen healthcare AI model with AI Studio
 titleSuffix: Azure AI Studio
 description: Learn how to use CXRReportGen Healthcare AI Model with Azure AI Studio.
 ms.service: azure-ai-studio
@@ -14,7 +14,7 @@ ms.custom: references_regions, generated
 zone_pivot_groups: ?????
 ---
 
-# How to use CXRReportGen Healthcare AI Model for Generating Grounded Findings
+# How to use CXRReportGen Healthcare AI Model to generate grounded findings
 
 [!INCLUDE [Feature preview](~/reusable-content/ce-skilling/azure/includes/ai-studio/includes/feature-preview.md)]
 
@@ -26,7 +26,7 @@ In this article, you learn how to deploy CXRReportGen as an online endpoint for 
 * Grant permissions to the endpoint.
 * Send test data to the model, receive and interpret results
 
-## CXRReportGen - Grounded Report Generation Model for Chest X-rays
+## CXRReportGen - grounded report generation model for chest X-rays
 Radiology reporting demands detailed image understanding, integration of multiple inputs (including comparisons with prior imaging), and precise language generation, making it an ideal candidate for generative multimodal models. CXRReportGen not only performs the task of generating a list of findings from a chest Xray study, but also extends it by incorporating the localization of individual findings on the image—a task we refer to as grounded report generation.  
 
 The animation below demonstrates the conceptual architecture of the CxrReportGen model which consists of an embedding model paired with a general reasoner LLM. 
@@ -52,7 +52,7 @@ For deployment to a self-hosted managed compute, you must have enough quota in y
 > [!div class="nextstepaction"]
 > [Deploy the model to managed compute](../../concepts/deployments-overview.md)
 
-## Work with a Grounded Report Generation Model for Chest X-rays
+## Work with a grounded report generation model for chest X-ray analysis
 
 ### Using REST API to consume the model
 
@@ -184,7 +184,7 @@ Response payload is a JSON formatted string containing the following fields:
 }
 ```
 
-### Supported Image Formats
+### Supported image formats
 The deployed model API supports images encoded in PNG or JPEG formats. For optimal results we recommend using uncompressed/lossless PNGs with 8-bit monochromatic images.
 
 ## Learn more from samples

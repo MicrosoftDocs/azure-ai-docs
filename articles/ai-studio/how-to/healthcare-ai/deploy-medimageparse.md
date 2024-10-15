@@ -1,5 +1,5 @@
 ---
-title: How to Deploy MedImageParse Healthcare AI Model with AI Studio
+title: How to deploy and use MedImageParse healthcare AI model with AI Studio
 titleSuffix: Azure AI Studio
 description: Learn how to use MedImageParse Healthcare AI Model with Azure AI Studio.
 ms.service: azure-ai-studio
@@ -13,7 +13,7 @@ author: msakande
 zone_pivot_groups: ?????
 ---
 
-# How to use MedImageParse Healthcare AI Model for Generating Grounded Findings
+# How to use MedImageParse Healthcare AI Model for segmentation of medical images
 
 [!INCLUDE [Feature preview](~/reusable-content/ce-skilling/azure/includes/ai-studio/includes/feature-preview.md)]
 
@@ -26,7 +26,7 @@ In this article, you learn how to deploy MedImageParse as an online endpoint for
 * Send test data to the model, receive and interpret results
 
 
-## MedImageParse - Prompt-based Segmentation of Medical Images
+## MedImageParse - prompt-based segmentation of medical images
 Biomedical image analysis is crucial for discovery in fields like cell biology, pathology, and radiology. Traditionally, tasks such as segmentation, detection, and recognition of relevant objects have been addressed separately, which can limit the overall effectiveness of image analysis. MedImageParse unifies these tasks through image parsing, jointly conducting segmentation, detection, and recognition across numerous object types and imaging modalities. By leveraging the interdependencies among these subtasks—such as the semantic labels of segmented objects—the model enhances accuracy and enables novel applications. For instance, it allows users to segment all relevant objects in an image using a simple text prompt, eliminating the need to manually specify bounding boxes for each object.  
 
 The image below shows the conceptual architecture of the MedImageParse model where an image embedding model is augmented with a task adaptation layer to produce segmentation masks and textual descriptions.
@@ -52,7 +52,7 @@ For deployment to a self-hosted managed compute, you must have enough quota in y
 > [!div class="nextstepaction"]
 > [Deploy the model to managed compute](../../concepts/deployments-overview.md)
 
-## Work with an Segmentation Model
+## Work with a segmentation model
 
 ### Using REST API to consume the model
 
@@ -182,12 +182,12 @@ Response payload is a list of JSON-formatted strings each corresponding to a sub
 ]
 ```
 
-### Supported Image Formats
+### Supported image formats
 The deployed model API supports images encoded in PNG format. For optimal results we recommend using uncompressed/lossless PNGs with RGB images.
 
-Note that as described above in the API spec, the model only accepts images in the resolution of `1024x1024`pixels. Images need to be resized and padded (in case of non-square aspect ratio).
+Note that as described above in the API specification, the model only accepts images in the resolution of `1024x1024`pixels. Images need to be resized and padded (in case of non-square aspect ratio).
 
-See the "Generating Segmentation for a Variety of Imaging Modalities" notebook for techniques and sample code useful for submitting images of various sizes stored in variety of biomedical imaging formats.
+See the "Generating Segmentation for a Variety of Imaging Modalities" notebook for techniques and sample code useful for submitting images of various sizes stored using a variety of biomedical imaging formats.
 
 ## Learn more from samples
 MedImageParse is a versatile model that can be applied to a wide range of tasks and imaging modalities. For more examples see the following interactive Python Notebooks: 

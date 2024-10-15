@@ -1,5 +1,5 @@
 ---
-title: How to deploy MedImageInsight healthcare AI model with AI Studio
+title: How to deploy and use MedImageInsight healthcare AI model with AI Studio
 titleSuffix: Azure AI Studio
 description: Learn how to use MedImageInsight Healthcare AI Model with Azure AI Studio.
 ms.service: azure-ai-studio
@@ -13,7 +13,7 @@ author: msakande
 zone_pivot_groups: ?????
 ---
 
-# How to use MedImageInsight Healthcare AI Model for Generating Image Embeddings
+# How to use MedImageInsight Healthcare AI Model for medical image embedding generation
 
 [!INCLUDE [Feature preview](~/reusable-content/ce-skilling/azure/includes/ai-studio/includes/feature-preview.md)]
 
@@ -137,7 +137,7 @@ The `params` object contains the following fields:
 
 | Key           | Type           | Required/Default | Allowed values    | Description |
 | ------------- | -------------- | :-----------------:| ----------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `get_scaling_factor`   | `boolean` | N<br/>`True` | `"True"` OR `"False"` | Whether the model should return "temperature" scaling factor. This factor is useful when you are planning to compare multiple cosine similarity values in application like classification. It is essential for correct implementation of "zero-shot" type of scenarios. For usage refer to the zero-shot classification example linked in the "More Examples" section. |
+| `get_scaling_factor`   | `boolean` | N<br/>`True` | `"True"` OR `"False"` | Whether the model should return "temperature" scaling factor. This factor is useful when you are planning to compare multiple cosine similarity values in application like classification. It is essential for correct implementation of "zero-shot" type of scenarios. For usage refer to the zero-shot classification example linked in the samples section. |
 
 ### Request Example
 
@@ -172,7 +172,7 @@ The `params` object contains the following fields:
         ]
     },
     "params": {
-        "get_scaling_factor": true
+        "get_scaling_factor": "true"
     }
 }
 ```
@@ -204,10 +204,10 @@ The submitted text is embedded into the same latent space as the image. This mea
 
 If you are fine tuning the model, you can change these parameters to better suit your application needs.
 
-### Supported Image Formats
+### Supported image formats
 The deployed model API supports images encoded in PNG format. 
 
-Upon receiving the images the model does pre-processing which involves compressing and resizing the images to 512x512 pixels.
+Upon receiving the images the model does pre-processing which involves compressing and resizing the images to `512x512` pixels.
 
 The preferred format is lossless PNG containing either an 8-bit monochromatic or RGB image. For optimization purposes, you can perform resizing on the client side to reduce network traffic.
 
@@ -218,7 +218,7 @@ MedImageInsight is a versatile model that can be applied to a wide range of task
 * [Deploying and Using MedImageInsight](https://aka.ms/healthcare-ai-examples-mi2-deploy): learn how to deploy the MedImageInsight model programmatically and issue an API call to it.
 
 ### Classification techniques
-* [Building a Zero-Shot Classifier](https://aka.ms/healthcare-ai-examples-mi2-zero-shot): discover how to create a classifier without the need training or large amount of labeled training data using MedImageInsight.
+* [Building a Zero-Shot Classifier](https://aka.ms/healthcare-ai-examples-mi2-zero-shot): discover how to use MedImageInsight to create a classifier without the need for training or large amount of labeled ground truth data.
 
 * [Enhancing Classification with Adapter Networks](https://aka.ms/healthcare-ai-examples-mi2-adapter): improve classification performance by building a small adapter network on top of MedImageInsight.
 
