@@ -88,7 +88,7 @@ Index projections are generally available. We recommend the most recent stable A
 
 ### [**.NET**](#tab/kstore-csharp)
 
-For .NET developers, use the [IndexProjections Class](/dotnet/api/azure.search.documents.indexes.models.searchindexerskillset.indexprojections?view=azure-dotnet-preview#azure-search-documents-indexes-models-searchindexerskillset-indexprojections&preserve-view=true) in the Azure.Search.Documents client library.
+For .NET developers, use the [IndexProjections Class](/dotnet/api/azure.search.documents.indexes.models.searchindexerskillset?view=azure-dotnet-preview&preserve-view=true) in the Azure.Search.Documents client library.
 
 ---
 
