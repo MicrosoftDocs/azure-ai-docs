@@ -106,7 +106,7 @@ By default, the web app will only be accessible to you. In this tutorial, you ad
 
 1. Select the **App Service** resource from the list of resources in the resource group.
 
-1. From the collapsible left menu under **Management center**, select **Authentication**. 
+1. From the collapsible left menu under **Settings**, select **Authentication**. 
 
     :::image type="content" source="../media/tutorials/chat/azure-portal-app-service.png" alt-text="Screenshot of web app authentication menu item under settings in the Azure portal." lightbox="../media/tutorials/chat/azure-portal-app-service.png":::
 
