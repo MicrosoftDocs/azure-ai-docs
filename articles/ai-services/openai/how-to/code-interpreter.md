@@ -164,7 +164,7 @@ curl https://YOUR_RESOURCE_NAME.openai.azure.com/openai/assistants?api-version=2
     "file_ids": ["assistant-123abc456"]
     "tool_resources"{
       "code interpreter": {
-          "file_ids": [assistant-1234]
+          "file_ids": ["assistant-1234"]
       }
     }
   }'
