@@ -5,7 +5,7 @@ description: Azure OpenAI model global batch Python
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: include
-ms.date: 07/22/2024
+ms.date: 10/15/2024
 ---
 
 ## Prerequisites
@@ -74,13 +74,42 @@ Once your input file is prepared, you first need to upload the file to then be a
 
 [!INCLUDE [Azure key vault](~/reusable-content/ce-skilling/azure/includes/ai-services/security/azure-key-vault.md)]
 
+# [Python (Microsoft Entra ID)](#tab/python-secure)
+
+```python
+import os
+from openai import AzureOpenAI
+from azure.identity import DefaultAzureCredential, get_bearer_token_provider
+
+token_provider = get_bearer_token_provider(
+    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
+)
+
+client = AzureOpenAI(
+  azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT"), 
+  azure_ad_token_provider=token_provider,
+  api_version="2024-10-01-preview"
+)
+
+# Upload a file with a purpose of "batch"
+file = client.files.create(
+  file=open("test.jsonl", "rb"), 
+  purpose="batch"
+)
+
+print(file.model_dump_json(indent=2))
+file_id = file.id
+```
+
+# [Python (API Key)](#tab/python-key)
+
 ```python
 import os
 from openai import AzureOpenAI
     
 client = AzureOpenAI(
     api_key=os.getenv("AZURE_OPENAI_API_KEY"),  
-    api_version="2024-07-01-preview",
+    api_version="2024-10-01-preview",
     azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT")
     )
 
@@ -93,6 +122,8 @@ file = client.files.create(
 print(file.model_dump_json(indent=2))
 file_id = file.id
 ```
+
+---
 
 **Output:**
 
@@ -366,4 +397,205 @@ List all batch jobs for a particular Azure OpenAI resource.
 
 ```python
 client.batches.list()
+```
+
+### List batch (Preview)
+
+Use the REST API to list all batch jobs with additional sorting/filtering options.
+
+In the examples below we are providing the `generate_time_filter` function to make constructing the filter easier. If you don't wish to use this function the format of the filter string would look like `created_at gt 1728773533 and created_at lt 1729032733 and status eq 'Completed'`.
+
+# [Python (Microsoft Entra ID)](#tab/python-secure)
+
+```python
+import requests
+import json
+from datetime import datetime, timedelta
+from azure.identity import DefaultAzureCredential
+
+token_credential = DefaultAzureCredential()
+token = token_credential.get_token('https://cognitiveservices.azure.com/.default')
+
+endpoint = "https://{YOUR_RESOURCE_NAME}.openai.azure.com/"
+api_version = "2024-10-01-preview"
+url = f"{endpoint}openai/batches"
+order = "created_at asc"
+time_filter =  lambda: generate_time_filter("past 8 hours")
+
+# Additional filter examples:
+#time_filter =  lambda: generate_time_filter("past 1 day")
+#time_filter =  lambda: generate_time_filter("past 3 days", status="Completed")
+
+def generate_time_filter(time_range, status=None):
+    now = datetime.now()
+    
+    if 'day' in time_range:
+        days = int(time_range.split()[1])
+        start_time = now - timedelta(days=days)
+    elif 'hour' in time_range:
+        hours = int(time_range.split()[1])
+        start_time = now - timedelta(hours=hours)
+    else:
+        raise ValueError("Invalid time range format. Use 'past X day(s)' or 'past X hour(s)'")
+    
+    start_timestamp = int(start_time.timestamp())
+    end_timestamp = int(now.timestamp())
+    
+    filter_string = f"created_at gt {start_timestamp} and created_at lt {end_timestamp}"
+    
+    if status:
+        filter_string += f" and status eq '{status}'"
+    
+    return filter_string
+
+filter = time_filter()
+
+headers = {'Authorization': 'Bearer ' + token.token}
+
+params = {
+    "api-version": api_version,
+    "$filter": filter,
+    "$orderby": order
+}
+
+response = requests.get(url, headers=headers, params=params)
+
+json_data = response.json()
+
+if response.status_code == 200:
+    print(json.dumps(json_data, indent=2))
+else:
+    print(f"Request failed with status code: {response.status_code}")
+    print(response.text)  
+```
+
+# [Python (API Key)](#tab/python-key)
+
+```python
+import os
+import requests
+import json
+from datetime import datetime, timedelta
+
+api_key = os.getenv("AZURE_OPENAI_API_KEY"),  
+endpoint = os.getenv("AZURE_OPENAI_ENDPOINT")
+api_version = "2024-10-01-preview"
+url = f"{endpoint}openai/batches"
+order = "created_at asc"
+
+time_filter = lambda: generate_time_filter("past 8 hours")
+
+# Additional filter examples:
+#time_filter =  lambda: generate_time_filter("past 1 day")
+#time_filter =  lambda: generate_time_filter("past 3 days", status="Completed")
+
+def generate_time_filter(time_range, status=None):
+    now = datetime.now()
+    
+    if 'day' in time_range:
+        days = int(time_range.split()[1])
+        start_time = now - timedelta(days=days)
+    elif 'hour' in time_range:
+        hours = int(time_range.split()[1])
+        start_time = now - timedelta(hours=hours)
+    else:
+        raise ValueError("Invalid time range format. Use 'past X day(s)' or 'past X hour(s)'")
+    
+    start_timestamp = int(start_time.timestamp())
+    end_timestamp = int(now.timestamp())
+    
+    filter_string = f"created_at gt {start_timestamp} and created_at lt {end_timestamp}"
+    
+    if status:
+        filter_string += f" and status eq '{status}'"
+    
+    return filter_string
+
+filter = time_filter()
+
+headers = {
+    "api-key": api_key
+}
+
+params = {
+    "api-version": api_version,
+    "$filter": filter,
+    "$orderby": order
+}
+
+response = requests.get(url, headers=headers, params=params)
+
+json_data = response.json()
+
+if response.status_code == 200:
+    print(json.dumps(json_data, indent=2))
+else:
+    print(f"Request failed with status code: {response.status_code}")
+    print(response.text)  
+```
+
+---
+
+**Output:**
+
+```output
+{
+  "data": [
+    {
+      "cancelled_at": null,
+      "cancelling_at": null,
+      "completed_at": 1729011896,
+      "completion_window": "24h",
+      "created_at": 1729011128,
+      "error_file_id": "file-472c0626-4561-4327-9e4e-f41afbfb30e6",
+      "expired_at": null,
+      "expires_at": 1729097528,
+      "failed_at": null,
+      "finalizing_at": 1729011805,
+      "id": "batch_4ddc7b60-19a9-419b-8b93-b9a3274b33b5",
+      "in_progress_at": 1729011493,
+      "input_file_id": "file-f89384af0082485da43cb26b49dc25ce",
+      "errors": null,
+      "metadata": null,
+      "object": "batch",
+      "output_file_id": "file-62bebde8-e767-4cd3-a0a1-28b214dc8974",
+      "request_counts": {
+        "total": 3,
+        "completed": 2,
+        "failed": 1
+      },
+      "status": "completed",
+      "endpoint": "/chat/completions"
+    },
+    {
+      "cancelled_at": null,
+      "cancelling_at": null,
+      "completed_at": 1729016366,
+      "completion_window": "24h",
+      "created_at": 1729015829,
+      "error_file_id": "file-85ae1971-9957-4511-9eb4-4cc9f708b904",
+      "expired_at": null,
+      "expires_at": 1729102229,
+      "failed_at": null,
+      "finalizing_at": 1729016272,
+      "id": "batch_6287485f-50fc-4efa-bcc5-b86690037f43",
+      "in_progress_at": 1729016126,
+      "input_file_id": "file-686746fcb6bc47f495250191ffa8a28e",
+      "errors": null,
+      "metadata": null,
+      "object": "batch",
+      "output_file_id": "file-04399828-ae0b-4825-9b49-8976778918cb",
+      "request_counts": {
+        "total": 3,
+        "completed": 2,
+        "failed": 1
+      },
+      "status": "completed",
+      "endpoint": "/chat/completions"
+    }
+  ],
+  "first_id": "batch_4ddc7b60-19a9-419b-8b93-b9a3274b33b5",
+  "has_more": false,
+  "last_id": "batch_6287485f-50fc-4efa-bcc5-b86690037f43"
+}
 ```
