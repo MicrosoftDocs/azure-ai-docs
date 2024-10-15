@@ -4,7 +4,7 @@ titleSuffix: Azure AI Search
 description: Extract different linked entities from text in an enrichment pipeline in Azure AI Search.
 author: HeidiSteen
 ms.author: heidist
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: reference

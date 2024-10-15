@@ -6,7 +6,7 @@ author: gmndrg
 ms.author: gimondra
 manager: nitinme
 
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.topic: how-to
 ms.date: 06/03/2024
 ms.custom:

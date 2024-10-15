@@ -6,7 +6,7 @@ manager: nitinme
 ms.service: azure-ai-openai
 ms.custom: 
 ms.topic: how-to
-ms.date: 10/02/2024
+ms.date: 10/14/2024
 author: mrbullwinkle
 ms.author: mbullwin
 recommendations: false
@@ -65,9 +65,9 @@ The following models support global batch:
 
 Refer to the [models page](../concepts/models.md) for the most up-to-date information on regions/models where global batch is currently supported.
 
-### API Versions
+### API support
 
-- `2024-07-01-preview`
+API support was first added with `2024-07-01-preview`. 
 
 ### Not supported
 
@@ -75,6 +75,13 @@ The following aren't currently supported:
 
 - Integration with the Assistants API.
 - Integration with Azure OpenAI On Your Data feature.
+
+> [!NOTE]
+> There is a known issue with Azure OpenAI global batch and [structured outputs](./structured-outputs.md). Currently, lines in your jsonl file with structured output requests will fail with the following error message written to the error file:
+>
+> ***response_format value as json_schema is enabled only for api versions 2024-08-01-preview and later***.
+>
+>This error will occur even when your code targets the latest preview APIs which support structured outputs. Once the issue is resolved, this page will be updated.
 
 ### Global batch deployment
 
@@ -224,8 +231,7 @@ When a job failure occurs, you'll find details about the failure in the `errors`
 
 ### Known issues
 
-- Resources deployed with Azure CLI won't work out-of-box with Azure OpenAI global batch. This is due to an issue where resources deployed using this method have endpoint subdomains that don't follow the `https://your-resource-name.openai.azure.com` pattern. A workaround for this issue is to deploy a new Azure OpenAI resource using one of the other common deployment methods which will properly handle the subdomain setup as part of the deployment process. 
-
+- Resources deployed with Azure CLI won't work out-of-box with Azure OpenAI global batch. This is due to an issue where resources deployed using this method have endpoint subdomains that don't follow the `https://your-resource-name.openai.azure.com` pattern. A workaround for this issue is to deploy a new Azure OpenAI resource using one of the other common deployment methods which will properly handle the subdomain setup as part of the deployment process.
 
 ## See also
 

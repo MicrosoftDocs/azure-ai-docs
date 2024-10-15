@@ -5,7 +5,7 @@ description: Use existing code samples or build your own tools for working with 
 author: HeidiSteen
 manager: nitinme
 ms.author: heidist
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.topic: conceptual
 ms.date: 10/08/2024
 ---

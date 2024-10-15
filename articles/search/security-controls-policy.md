@@ -5,7 +5,7 @@ ms.date: 02/06/2024
 ms.topic: sample
 author: HeidiSteen
 ms.author: heidist
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.custom:
   - subject-policy-compliancecontrols
   - ignite-2023

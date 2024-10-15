@@ -6,7 +6,7 @@ description: Learn about the management libraries and packages used for control 
 manager: nitinme
 author: bevloh
 ms.author: beloh
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.devlang: csharp
 ms.custom:
   - devx-track-dotnet

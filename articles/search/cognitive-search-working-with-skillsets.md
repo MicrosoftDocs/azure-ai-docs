@@ -4,7 +4,7 @@ titleSuffix: Azure AI Search
 description: Skillsets are used to apply AI processing to indexing pipelines in Azure AI Search. Learn important concepts and details about skillset composition.
 author: HeidiSteen
 ms.author: heidist
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.topic: conceptual
 ms.date: 06/06/2024
 ---

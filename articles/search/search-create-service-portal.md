@@ -6,7 +6,7 @@ description: Learn how to set up an Azure AI Search resource in the Azure portal
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.custom:
   - references_regions
   - build-2024

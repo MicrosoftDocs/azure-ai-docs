@@ -8,7 +8,7 @@ ms.author: franksolomon
 ms.reviewer: franksolomon
 ms.date: 04/22/2024
 ms.topic: quickstart
-ms.service: data-science-vm
+ms.service: azure-data-science-virtual-machines
 ms.custom: subject-armqs, mode-arm, devx-track-bicep
 ---
 

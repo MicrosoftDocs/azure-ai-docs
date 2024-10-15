@@ -5,7 +5,7 @@ description: Index projections are a way to project enriched content created by 
 author: careyjmac
 manager: jiantaosun
 ms.author: chalton
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: conceptual

@@ -6,7 +6,7 @@ description: Add faceted navigation for self-directed filtering in applications 
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.topic: conceptual
 ms.date: 06/06/2024
 ---

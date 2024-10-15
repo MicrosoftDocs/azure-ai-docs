@@ -6,7 +6,7 @@ description: Enable typeahead query actions in Azure AI Search by creating sugge
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.topic: conceptual
 ms.date: 01/18/2024
 ms.custom:

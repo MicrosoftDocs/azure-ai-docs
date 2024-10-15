@@ -764,7 +764,11 @@
       "source_path_from_root": "/articles/ai-services/document-intelligence/disaster-recovery.md",
       "redirect_url": "/azure/ai-services/document-intelligence/how-to-guides/disaster-recovery",
       "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/speech-service/video-translation-studio.md",
+      "redirect_url": "/azure/ai-services/speech-service/video-translation-get-started",
+      "redirect_document_id": true
     }
-
   ]
 }
