@@ -36,12 +36,7 @@ An Azure OpenAI Deployment is a unit of management for a specific OpenAI Model. 
 | Utilization | Provisioned-managed Utilization V2 measure provided in Azure Monitor. |
 | Estimating size | Provided calculator in the studio & benchmarking script. |
 
-## What models and regions are available for provisioned throughput?
 
-[!INCLUDE [Provisioned](../includes/model-matrix/provisioned-models.md)]
-
-> [!NOTE]
-> The provisioned version of `gpt-4` **Version:** `turbo-2024-04-09` is currently limited to text only.
 
 ## How much thoughput you get for each model
 The amount of throughput (tokens per minute or TPM) a deployment gets per PTU is a function of the input and output tokens being generated. 
@@ -185,6 +180,13 @@ For Provisioned-Managed and Global Provisioned-Managed, we use a variation of th
 #### How many concurrent calls can I have on my deployment?
 
 The number of concurrent calls you can achieve depends on each call's shape (prompt size, max_token parameter, etc.). The service will continue to accept calls until the utilization reach 100%. To determine the approximate number of concurrent calls you can model out the maximum requests per minute for a particular call shape in the [capacity calculator](https://oai.azure.com/portal/calculator). If the system generates less than the number of samplings tokens like max_token, it will accept more requests.
+
+## What models and regions are available for provisioned throughput?
+
+[!INCLUDE [Provisioned](../includes/model-matrix/provisioned-models.md)]
+
+> [!NOTE]
+> The provisioned version of `gpt-4` **Version:** `turbo-2024-04-09` is currently limited to text only.
 
 ## Next steps
 
