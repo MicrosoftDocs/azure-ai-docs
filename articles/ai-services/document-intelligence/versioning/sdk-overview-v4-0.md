@@ -24,9 +24,9 @@ monikerRange: 'doc-intel-4.0.0'
 
 # SDK target: REST API 2024-07-31-preview
 
-[!INCLUDE [preview-version-notice](includes/preview-notice.md)]
+[!INCLUDE [preview-version-notice](../includes/preview-notice.md)]
 
-![Document Intelligence checkmark](media/yes-icon.png) **REST API version 2024-07-31-preview**
+![Document Intelligence checkmark](../media/yes-icon.png) **REST API version 2024-07-31-preview**
 
 Azure AI Document Intelligence is a cloud service that uses machine learning to analyze text and structured data from documents. The Document Intelligence software development kit (SDK) is a set of libraries and tools that enable you to easily integrate Document Intelligence models and capabilities into your applications. Document Intelligence SDK is available across platforms in C#/.NET, Java, JavaScript, and Python programming languages.
 
@@ -45,7 +45,7 @@ For more information on other SDK versions, see:
 
 * [`2023-07-31` v3.1 (GA)](sdk-overview-v3-1.md)
 * [`2022-08-31` v3.0 (GA)](sdk-overview-v3-0.md)
-* [`v2.1` (GA)](sdk-overview-v2-1.md)
+* [`v2.1` (GA)](../v21/sdk-overview-v2-1.md)
 
 ## Supported Clients
 
@@ -184,7 +184,7 @@ There are two supported methods for authentication:
 
 Here's where to find your Document Intelligence API key in the Azure portal:
 
-:::image type="content" source="media/containers/keys-and-endpoint.png" alt-text="Screenshot of the keys and endpoint location in the Azure portal.":::
+:::image type="content" source="../media/containers/keys-and-endpoint.png" alt-text="Screenshot of the keys and endpoint location in the Azure portal.":::
 
 [!INCLUDE [Microsoft Entra ID or AKV](~/reusable-content/ce-skilling/azure/includes/ai-services/security/microsoft-entra-id-akv.md)]
 
@@ -236,7 +236,7 @@ async function main() {
 #### Use a Microsoft Entra token credential
 
 > [!NOTE]
-> Regional endpoints do not support Microsoft Entra authentication. Create a [custom subdomain](../../ai-services/authentication.md?tabs=powershell#create-a-resource-with-a-custom-subdomain) for your resource in order to use this type of authentication.
+> Regional endpoints do not support Microsoft Entra authentication. Create a [custom subdomain](../../../ai-services/authentication.md?tabs=powershell#create-a-resource-with-a-custom-subdomain) for your resource in order to use this type of authentication.
 
 Authorization is easiest using the `DefaultAzureCredential`. It provides a default token credential, based upon the running environment, capable of handling most Azure authentication scenarios.
 
@@ -254,7 +254,7 @@ Here's how to acquire and use the [DefaultAzureCredential](/dotnet/api/azure.ide
         Install-Package Azure.Identity
     ```
 
-1. [Register a Microsoft Entra application and create a new service principal](../../ai-services/authentication.md?tabs=powershell#assign-a-role-to-a-service-principal).
+1. [Register a Microsoft Entra application and create a new service principal](../../../ai-services/authentication.md?tabs=powershell#assign-a-role-to-a-service-principal).
 
 1. Grant access to Document Intelligence by assigning the **`Cognitive Services User`** role to your service principal.
 
@@ -283,7 +283,7 @@ Here's how to acquire and use the [DefaultAzureCredential](/java/api/com.azure.i
     </dependency>
     ```
 
-1. [Register a Microsoft Entra application and create a new service principal](../../ai-services/authentication.md?tabs=powershell#assign-a-role-to-a-service-principal).
+1. [Register a Microsoft Entra application and create a new service principal](../../../ai-services/authentication.md?tabs=powershell#assign-a-role-to-a-service-principal).
 
 1. Grant access to Document Intelligence by assigning the **`Cognitive Services User`** role to your service principal.
 
@@ -311,7 +311,7 @@ Here's how to acquire and use the [DefaultAzureCredential](/javascript/api/@azur
     npm install @azure/identity
     ```
 
-1. [Register a Microsoft Entra application and create a new service principal](../../ai-services/authentication.md?tabs=powershell#assign-a-role-to-a-service-principal).
+1. [Register a Microsoft Entra application and create a new service principal](../../../ai-services/authentication.md?tabs=powershell#assign-a-role-to-a-service-principal).
 
 1. Grant access to Document Intelligence by assigning the **`Cognitive Services User`** role to your service principal.
 
@@ -338,7 +338,7 @@ Here's how to acquire and use the [DefaultAzureCredential](/python/api/azure-ide
     pip install azure-identity
     ```
 
-1. [Register a Microsoft Entra application and create a new service principal](../../ai-services/authentication.md?tabs=powershell#assign-a-role-to-a-service-principal).
+1. [Register a Microsoft Entra application and create a new service principal](../../../ai-services/authentication.md?tabs=powershell#assign-a-role-to-a-service-principal).
 
 1. Grant access to Document Intelligence by assigning the **`Cognitive Services User`** role to your service principal.
 
@@ -363,7 +363,7 @@ For more information, *see* [Authenticate the client](https://github.com/Azure/a
 
 ### 4. Build your application
 
-Create a client object to interact with the Document Intelligence SDK, and then call methods on that client object to interact with the service. The SDKs provide both synchronous and asynchronous methods. For more insight, try a [quickstart](quickstarts/get-started-sdks-rest-api.md?view=doc-intel-3.0.0&preserve-view=true) in a language of your choice.
+Create a client object to interact with the Document Intelligence SDK, and then call methods on that client object to interact with the service. The SDKs provide both synchronous and asynchronous methods. For more insight, try a [quickstart](../quickstarts/get-started-sdks-rest-api.md?view=doc-intel-3.0.0&preserve-view=true) in a language of your choice.
 
 ## Help options
 
