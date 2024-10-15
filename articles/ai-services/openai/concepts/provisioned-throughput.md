@@ -43,6 +43,24 @@ An Azure OpenAI Deployment is a unit of management for a specific OpenAI Model. 
 > [!NOTE]
 > The provisioned version of `gpt-4` **Version:** `turbo-2024-04-09` is currently limited to text only.
 
+## How much thoughput you get for each model
+The amount of throughput (tokens per minute or TPM) a deployment gets per PTU is a function of the input and output tokens being generated. 
+
+Generating output tokens requires more processing and the more tokens generated, the lower the overall TPM per PTU. Provisioned deployments dynamically balance the two, so users do not have to set specific input and output limits. This means the service is resilient to fluctuations in the workload shape. 
+
+To help with simplifying the sizing effort, the table below outlines the TPM per PTU for the `gpt-4o` and `gpt-4o-mini` models
+
+|     | **gpt-4o**, **2024-05-13**   | **gpt-4o**, **2024-08-06**   | **gpt-4o-mini**, **2024-07-18**   | 
+| --| --| --|--|
+| Deployable Increments | 50 | 50 | 25|
+| Input TPM per PTU | 2,500 | 2,500 | 37,000  |
+| Output TPM per PTU | 833 | 833  | 12,333 |
+| Latency target | > 25 tokens per second* | > 25 tokens per second*  | > 25 tokens per second* |
+
+\*  Calculated as the average of the per-call average generated tokens on a 1-minute bassis over the month
+\** For a full list please see the [AOAI Studio calcualator](https://oai.azure.com/portal/calculator)
+
+
 ## Key concepts
 
 ### Deployment types
