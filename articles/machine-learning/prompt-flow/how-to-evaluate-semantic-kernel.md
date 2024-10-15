@@ -21,7 +21,7 @@ This article describes the seamless integration between prompt flow and [Semanti
 
 Semantic Kernel is an open-source SDK that lets you easily combine AI services with programming languages like C# and Python to create AI apps that combine the best of both worlds. Semantic Kernel provides [plugins](/semantic-kernel/ai-orchestration/plugins) and [planners](/semantic-kernel/ai-orchestration/planners), which are powerful tools that use AI capabilities to optimize operations, thus driving efficiency and accuracy in planning.
 
-As you build and add more plugins to planners, the potential for errors increases, so it's important to make sure they work as intended. Testing plugins and planners used to be a manual, time-consuming process. Now you can use prompt flow to automate this process.
+As you build and add more plugins to planners, the error potential increases, so it's important to make sure they work as intended. Testing plugins and planners used to be a manual, time-consuming process. Now you can use prompt flow to automate this process.
 
 The integration of Semantic Kernel with prompt flow allows you to:
 
@@ -112,10 +112,11 @@ You can quickly create an evaluation run based on a completed batch run.
 1. Open your previously completed batch run, and select **Evaluate** from the top menu.
 1. On the **New evaluation** screen, select an evaluator to use, select **Next** and configure the input mapping, and then select **Submit**.
 
-:::image type="content" source="./media/how-to-evaluate-semantic-kernel/evaluation-setting.png" alt-text="Screenshot showing evaluation settings." lightbox = "./media/how-to-evaluate-semantic-kernel/evaluation-setting.png":::
-After the evaluator runs, it returns a summary of your metrics. You can use runs that yield less than ideal results as a motivation for immediate improvement.
+   :::image type="content" source="./media/how-to-evaluate-semantic-kernel/evaluation-setting.png" alt-text="Screenshot showing evaluation settings." lightbox = "./media/how-to-evaluate-semantic-kernel/evaluation-setting.png":::
 
-To check the metrics, select **Details** at the top of the evaluator flow run page. On the **Details** screen, select the **Outputs** tab to view the evaluation result.
+After the evaluator runs, it returns a summary of results and metrics. You can use runs that yield less than ideal results as motivation for immediate improvement.
+
+To view results, select **Details** at the top of the evaluator flow run page. On the **Details** page, select the **Outputs** tab to view evaluation output.
 
 :::image type="content" source="./media/how-to-evaluate-semantic-kernel/evaluation-result.png" alt-text="Screenshot showing evaluation result." lightbox = "./media/how-to-evaluate-semantic-kernel/evaluation-result.png":::
 
