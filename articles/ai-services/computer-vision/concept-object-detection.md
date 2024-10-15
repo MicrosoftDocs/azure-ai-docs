@@ -27,7 +27,7 @@ Try out the capabilities of object detection quickly and easily in your browser 
 
 The following JSON response shows what the Analyze Image API returns when it detects objects in the example image.
 
-:::image type="content" source="images/windows-kitchen.jpg" alt-text="Image showing a woman using a Microsoft Surface device in a kitchen.":::
+:::image type="content" source="images/windows-kitchen.jpg" alt-text="Photograph showing a woman using a Microsoft Surface device in a kitchen.":::
 
 ```json
 {

@@ -31,7 +31,7 @@ This guide shows you how to create and train a custom image classification model
 * A set of images with which to train your classification model. You can use the set of [sample images on GitHub](https://github.com/Azure-Samples/cognitive-services-sample-data-files/tree/master/CustomVision/ImageClassification/Images). Or, you can use your own images. You only need about 3-5 images per class.
 
 > [!NOTE]
-> We don't recommend you use custom models for business critical environments due to potential high latency. When customers train custom models in Vision Studio, those custom models belong to the Vision resource that they were trained under and the customer is able to make calls to those models using the **Analyze Image** API. When they make these calls, the custom model is loaded in memory and the prediction infrastructure is initialized. While this happens, customers might experience longer than expected latency to receive prediction results.
+> We don't recommend you use custom models for business critical environments due to potential high latency. When customers train custom models in Vision Studio, those custom models belong to the Vision resource that they were trained under and the customer is able to make calls to those models using the *Analyze Image* API. When they make these calls, the custom model is loaded in memory and the prediction infrastructure is initialized. While this happens, customers might experience longer than expected latency to receive prediction results.
 
 <!-- 
 #### [Python](#tab/python)
@@ -274,7 +274,7 @@ You need a COCO file to convey the labeling information. An easy way to generate
 
 In the dataset details page, select **Add a new Data Labeling project**. Name it and select **Create a new workspace**. That opens a new Azure portal tab where you can create the Azure Machine Learning project.
 
-:::image type="content" source="../media/customization/dataset-details.png" alt-text="Screenshot of Create Azure ML Data Labeling project.":::
+:::image type="content" source="../media/customization/dataset-details.png" alt-text="Screenshot of Create Azure Machine Learning Data Labeling project.":::
 
 Once the Azure Machine Learning project is created, return to the Vision Studio tab and select it under **Workspace**. The Azure Machine Learning portal will then open in a new browser tab.
 
@@ -323,7 +323,7 @@ It might take some time for the training to complete. Image Analysis 4.0 models 
 
 ## Evaluate the trained model
 
-After training has completed, you can view the model's performance evaluation. The following metrics are used:
+After training is complete, you can view the model's performance evaluation. The following metrics are used:
 
 - Image classification: Average Precision, Accuracy Top 1, Accuracy Top 5
 - Object detection: Mean Average Precision @ 30, Mean Average Precision @ 50, Mean Average Precision @ 75

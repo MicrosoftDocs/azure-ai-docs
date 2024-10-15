@@ -16,7 +16,7 @@ ms.author: pafarley
 
 This guide shows you how to call the v3.2 GA Read API to extract text from images. You'll learn the different ways you can configure the behavior of this API to meet your needs.
 
-This following steps assume that you've already created a [Computer Vision resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesComputerVision) and obtained a key and endpoint URL. If you haven't, see the [quickstart](../quickstarts-sdk/client-library.md) to get started.
+The following steps assume that you've already created a [Computer Vision resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesComputerVision) and obtained a key and endpoint URL. If you haven't, see the [quickstart](../quickstarts-sdk/client-library.md) to get started.
 
 [!INCLUDE [read-editions](../includes/read-editions.md)]
 
