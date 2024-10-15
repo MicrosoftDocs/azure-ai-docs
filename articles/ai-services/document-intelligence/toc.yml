@@ -119,7 +119,7 @@ items:
     href: concept/incremental-classifier.md
   - name: 🆕Custom generative model
     displayName: ai studio, neural, template, custom
-    href: train/custom-generative-extraction.md  
+    href: train/custom-generative-extraction.md
   - name: Custom template model
     displayName: structure, selection, labels, tables, tabular, train, template, neural, build mode, signatures, custom
     href: train/custom-template.md
@@ -240,7 +240,7 @@ items:
       href: authentication/managed-identities-secured-access.md
     - name: Use customer-managed keys
       displayName: encrypt, encryption, key vault
-      href: encrypt-data-at-rest.md
+      href: authentication/encrypt-data-at-rest.md
     - name: Use Microsoft Entra authentication
       displayName: headers, subscription, access token, azure active directory, subdomain, role, service principal
       href: ../../ai-services/authentication.md?context=/azure/ai-services/document-intelligence/context/context
@@ -307,7 +307,7 @@ items:
     - name: 2022-08-31 (v3.0)
       href: /rest/api/aiservices/document-models/analyze-document?view=rest-aiservices-v3.0%20(2022-08-31)&preserve-view=true&tabs=HTTP
     - name: Error codes v4.0, v3.1, and v3.0
-      href: v3-error-guide.md
+      href: how-to-guides/resolve-errors.md
     - name: v2.1
       href: /rest/api/aiservices/analyzer?view=rest-aiservices-v2.1&preserve-view=true
   - name: Client libraries (2024-07-31-preview)
@@ -320,6 +320,10 @@ items:
       href: /javascript/api/overview/azure/ai-document-intelligence-rest-readme?view=azure-node-preview&preserve-view=true
     - name: Python
       href: /python/api/overview/azure/ai-documentintelligence-readme?view=azure-python-preview&preserve-view=true
+  - name: Schema
+    items:
+    - name: Marriage certificate
+      href: https://github.com/Azure-Samples/document-intelligence-code-samples/blob/main/schema/marriage-certificate/2024-07-31-preview.json?context=/azure/ai-services/context/context
 - name: Resources
   items:
   - name: Enterprise readiness

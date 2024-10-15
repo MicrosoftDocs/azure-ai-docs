@@ -17,7 +17,7 @@ ms.custom: VS Code-azure-extension-update-completed, devx-track-python
 
 Document Intelligence can be used as part of an automated data processing pipeline built with Azure Functions. This guide will show you how to use Azure Functions to process documents that are uploaded to an Azure blob storage container. This workflow extracts table data from stored documents using the Document Intelligence layout model and saves the table data in a .csv file in Azure. You can then display the data using Microsoft Power BI (not covered here).
 
-:::image type="content" source="media/tutorial-azure-function/workflow-diagram.png" alt-text="Screenshot of Azure Service workflow diagram":::
+:::image type="content" source="../media/tutorial-azure-function/workflow-diagram.png" alt-text="Screenshot of Azure Service workflow diagram":::
 
 In this tutorial, you learn how to:
 
@@ -36,7 +36,7 @@ In this tutorial, you learn how to:
 
   * After your resource deploys, select **Go to resource**. You need the key and endpoint from the resource you create to connect your application to the Document Intelligence API. You'll paste your key and endpoint into the code below later in the tutorial:
 
-      :::image type="content" source="media/containers/keys-and-endpoint.png" alt-text="Screenshot of keys and endpoint location in the Azure portal.":::
+      :::image type="content" source="../media/containers/keys-and-endpoint.png" alt-text="Screenshot of keys and endpoint location in the Azure portal.":::
 
 * [**Python 3.6.x, 3.7.x, 3.8.x or 3.9.x**](https://www.python.org/downloads/) (Python 3.10.x isn't supported for this project).
 
@@ -75,11 +75,11 @@ In this tutorial, you learn how to:
 
     * Select the Azure subscription that you're using for this project and below you should see the Azure Function App.
 
-      :::image type="content" source="media/tutorial-azure-function/azure-extensions-visual-studio-code.png" alt-text="Screenshot of a list showing your Azure resources in a single, unified view.":::
+      :::image type="content" source="../media/tutorial-azure-function/azure-extensions-visual-studio-code.png" alt-text="Screenshot of a list showing your Azure resources in a single, unified view.":::
 
 1. Select the Workspace (Local) section located below your listed resources. Select the plus symbol and choose the **Create Function** button.
 
-    :::image type="content" source="media/tutorial-azure-function/workspace-create-function.png" alt-text="Screenshot showing where to begin creating an Azure function.":::
+    :::image type="content" source="../media/tutorial-azure-function/workspace-create-function.png" alt-text="Screenshot showing where to begin creating an Azure function.":::
 
 1. When prompted, choose **Create new project** and navigate to the **function-app** directory. Choose **Select**.
 
@@ -119,13 +119,13 @@ In this tutorial, you learn how to:
 
 1. Open Azure Storage Explorer and upload the sample PDF document to the **input** container. Then check the VS Code terminal. The script should log that it was triggered by the PDF upload.
 
-    :::image type="content" source="media/tutorial-azure-function/visual-studio-code-terminal-test.png" alt-text="Screenshot of the VS Code terminal after uploading a new document.":::
+    :::image type="content" source="../media/tutorial-azure-function/visual-studio-code-terminal-test.png" alt-text="Screenshot of the VS Code terminal after uploading a new document.":::
 
 1. Stop the script before continuing.
 
 ## Add document processing code
 
-Next, you'll add your own code to the Python script to call the Document Intelligence service and parse the uploaded documents using the Document Intelligence [layout model](prebuilt/layout.md).
+Next, you'll add your own code to the Python script to call the Document Intelligence service and parse the uploaded documents using the Document Intelligence [layout model](../prebuilt/layout.md).
 
 1. In VS Code, navigate to the function's *requirements.txt* file. This file defines the dependencies for your script. Add the following Python packages to the file:
 
@@ -184,7 +184,7 @@ Next, you'll add your own code to the Python script to call the Document Intelli
     ```
 
     > [!IMPORTANT]
-    > Remember to remove the key from your code when you're done, and never post it publicly. For production, use a secure way of storing and accessing your credentials like [Azure Key Vault](/azure/key-vault/general/overview). For more information, *see* Azure AI services [security](../../ai-services/security-features.md).
+    > Remember to remove the key from your code when you're done, and never post it publicly. For production, use a secure way of storing and accessing your credentials like [Azure Key Vault](/azure/key-vault/general/overview). For more information, *see* Azure AI services [security](../../../ai-services/security-features.md).
 
 1. Next, add code to query the service and get the returned data.
 
@@ -297,5 +297,5 @@ In this tutorial, you learned how to use an Azure Function written in Python to 
 > [!div class="nextstepaction"]
 > [Microsoft Power BI](https://powerbi.microsoft.com/integrations/azure-table-storage/)
 
-* [What is Document Intelligence?](overview.md)
-* Learn more about the [layout model](prebuilt/layout.md)
+* [What is Document Intelligence?](../overview.md)
+* Learn more about the [layout model](../prebuilt/layout.md)

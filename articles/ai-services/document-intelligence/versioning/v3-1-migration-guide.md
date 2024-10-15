@@ -15,7 +15,7 @@ monikerRange: '<=doc-intel-3.1.0'
 # Document Intelligence v3.1 migration
 
 ::: moniker range="<=doc-intel-3.1.0"
-[!INCLUDE [applies to v3.1, v3.0, and v2.1](includes/applies-to-v40-v31-v30-v21.md)]
+[!INCLUDE [applies to v3.1, v3.0, and v2.1](../includes/applies-to-v40-v31-v30-v21.md)]
 ::: moniker-end
 
 > [!IMPORTANT]
@@ -62,12 +62,12 @@ Formulas/StyleFont/OCR High Resolution* - Premium features incur added costs
 
 Compared with v3.0, Document Intelligence v3.1 introduces several new features and capabilities:
 
-* [Barcode](concept-add-on-capabilities.md#barcode-property-extraction) extraction.
-* [Add-on capabilities](concept-add-on-capabilities.md) including high resolution, formula, and font properties extraction.
-* [Custom classification model](train/custom-classifier.md) for document splitting and classification.
-* Language expansion and new fields support in [Invoice](prebuilt/invoice.md) and [Receipt](prebuilt/receipt.md) model.
-* New document type support in [ID document](prebuilt/id-document.md) model.
-* New prebuilt [Health insurance card](prebuilt/health-insurance-card.md) model.
+* [Barcode](../concept-add-on-capabilities.md#barcode-property-extraction) extraction.
+* [Add-on capabilities](../concept-add-on-capabilities.md) including high resolution, formula, and font properties extraction.
+* [Custom classification model](../train/custom-classifier.md) for document splitting and classification.
+* Language expansion and new fields support in [Invoice](../prebuilt/invoice.md) and [Receipt](../prebuilt/receipt.md) model.
+* New document type support in [ID document](../prebuilt/id-document.md) model.
+* New prebuilt [Health insurance card](../prebuilt/health-insurance-card.md) model.
 * Office/HTML files are supported in prebuilt-read model, extracting words and paragraphs without bounding boxes. Embedded images are no longer supported. If add-on features are requested for Office/HTML files, an empty array is returned without errors.
 * Model expiration for custom extraction and classification models - Our new custom models build upon on a large base model that we update periodically for quality improvement. An expiration date is introduced to all custom models to enable the retirement of the corresponding base models.  Once a custom model expires, you need to retrain the model using the latest API version (base model).
 
@@ -120,9 +120,9 @@ Besides model quality improvement, you're highly recommended to update your appl
 
 ## Migrating from v2.1 or v2.0
 
-Document Intelligence v3.1 is the latest GA version with the richest features, most languages and document types coverage, and improved model quality. Refer to [model overview](overview.md) for the features and capabilities available in v3.1.
+Document Intelligence v3.1 is the latest GA version with the richest features, most languages and document types coverage, and improved model quality. Refer to [model overview](../overview.md) for the features and capabilities available in v3.1.
 
-Starting from v3.0, [Document Intelligence REST API](quickstarts/get-started-sdks-rest-api.md?view=doc-intel-3.1.0&preserve-view=true) is redesigned for better usability. In this section, learn the differences between Document Intelligence v2.0, v2.1 and v3.1 and how to move to the newer version of the API.
+Starting from v3.0, [Document Intelligence REST API](../quickstarts/get-started-sdks-rest-api.md?view=doc-intel-3.1.0&preserve-view=true) is redesigned for better usability. In this section, learn the differences between Document Intelligence v2.0, v2.1 and v3.1 and how to move to the newer version of the API.
 
 > [!CAUTION]
 >
@@ -131,7 +131,7 @@ Starting from v3.0, [Document Intelligence REST API](quickstarts/get-started-sdk
 
 ## Changes to the REST API endpoints
 
- The v3.1 REST API combines the analysis operations for layout analysis, prebuilt models, and custom models into a single pair of operations by assigning **`documentModels`**  and  **`modelId`** to the layout analysis (prebuilt-layout) and prebuilt models.
+ The v3.1 REST API combines the analysis operations for layout analysis, prebuilt models, and custom models into a single pair of operations by assigning **`documentModels`**  and  **`modelId`** to the layout analysis (../prebuilt-layout) and prebuilt models.
 
 ### POST request
 
@@ -454,5 +454,5 @@ GET https://{your-form-recognizer-endpoint}/formrecognizer/info? api-version=202
 ## Next steps
 
 * [Review the new REST API](/rest/api/aiservices/document-models/analyze-document?view=rest-aiservices-2023-07-31&preserve-view=true&tabs=HTTP)
-* [What is Document Intelligence?](overview.md)
-* [Document Intelligence quickstart](quickstarts/get-started-sdks-rest-api.md)
+* [What is Document Intelligence?](../overview.md)
+* [Document Intelligence quickstart](../quickstarts/get-started-sdks-rest-api.md)

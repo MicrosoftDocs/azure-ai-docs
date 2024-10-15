@@ -4,7 +4,7 @@ titleSuffix: Azure AI Search
 description: Export the enriched content created by a skillset by mapping its output fields to fields in a search index.
 author: HeidiSteen
 ms.author: heidist
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: how-to

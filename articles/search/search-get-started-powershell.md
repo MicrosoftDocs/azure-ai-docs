@@ -5,7 +5,7 @@ description: In this REST API quickstart, learn how to create an index, load dat
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.topic: quickstart
 ms.devlang: rest-api
 ms.date: 03/18/2024

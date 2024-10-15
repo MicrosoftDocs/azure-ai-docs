@@ -6,7 +6,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.topic: tutorial
-ms.date: 04/24/2024
+ms.date: 10/15/2024
 ms.author: lajanuar
 zone_pivot_groups: cloud-location
 monikerRange: '<=doc-intel-4.0.0'
@@ -20,12 +20,12 @@ monikerRange: '<=doc-intel-4.0.0'
 <!-- markdownlint-disable MD004 -->
 <!-- markdownlint-disable MD032 -->
 :::moniker range=">=doc-intel-3.0.0"
-[!INCLUDE [applies to v4.0, v3.1 and v3.0](includes/applies-to-v40-v31-v30.md)]
+[!INCLUDE [applies to v4.0, v3.1 and v3.0](../includes/applies-to-v40-v31-v30.md)]
 
 :::moniker-end
 
 :::moniker range="doc-intel-2.1.0"
-[!INCLUDE [applies to v2.1](includes/applies-to-v21.md)]
+[!INCLUDE [applies to v2.1](../includes/applies-to-v21.md)]
 :::moniker-end
 
 :::moniker range=">=doc-intel-3.0.0"
@@ -63,11 +63,11 @@ For more information, *see* [Logic Apps Overview](/azure/logic-apps/logic-apps-o
 Choose a workflow using a file from either your Microsoft OneDrive account or Microsoft ShareDrive site:
 
 :::zone pivot="workflow-onedrive"
-[!INCLUDE [OneDrive](includes/logic-app-tutorial/onedrive.md)]
+[!INCLUDE [OneDrive](../includes/logic-app-tutorial/onedrive.md)]
 :::zone-end
 
 :::zone pivot="workflow-sharepoint"
-[!INCLUDE [SharePoint](includes/logic-app-tutorial/sharepoint.md)]
+[!INCLUDE [SharePoint](../includes/logic-app-tutorial/sharepoint.md)]
 :::zone-end
 
 ## Test the automation flow
@@ -86,35 +86,35 @@ Now that we created the flow, the last thing to do is to test it and make sure t
 
 1. Return to the Logic App designer tab and select the **Run trigger** button and select **Run** from the drop-down menu.
 
-    :::image type="content" source="media/logic-apps-tutorial/trigger-run.png" alt-text="Screenshot of Run trigger and Run buttons.":::
+    :::image type="content" source="../media/logic-apps-tutorial/trigger-run.png" alt-text="Screenshot of Run trigger and Run buttons.":::
 
 1. You see a message in the upper=right corner indicating that the trigger was successful:
 
-   :::image type="content" source="media/logic-apps-tutorial/trigger-successful.png" alt-text="Screenshot of Successful trigger message.":::
+   :::image type="content" source="../media/logic-apps-tutorial/trigger-successful.png" alt-text="Screenshot of Successful trigger message.":::
 
 1. Navigate to your Logic App overview page by selecting your app name link in the upper-left corner.
 
-    :::image type="content" source="media/logic-apps-tutorial/navigate-overview.png" alt-text="Screenshot of navigate to overview page link.":::
+    :::image type="content" source="../media/logic-apps-tutorial/navigate-overview.png" alt-text="Screenshot of navigate to overview page link.":::
 
 1. Check the status, to see if the run succeeded or failed. You can select the status indicator to check which steps were successful.
 
-    :::image border="true" type="content" source="media/logic-apps-tutorial/succeeded-failed-indicator.png" alt-text="Screenshot of Succeeded or Failed status.":::
+    :::image border="true" type="content" source="../media/logic-apps-tutorial/succeeded-failed-indicator.png" alt-text="Screenshot of Succeeded or Failed status.":::
 
 1. If your run failed, check the failed step to ensure that you entered the correct information.
 
-   :::image type="content" source="media/logic-apps-tutorial/failed-run-step.png" alt-text="Screenshot of failed step.":::
+   :::image type="content" source="../media/logic-apps-tutorial/failed-run-step.png" alt-text="Screenshot of failed step.":::
 
 1. After a workflow run succeeds, check your email. There's a new email with the information we specified.
 
-    :::image type="content" source="media/logic-apps-tutorial/invoice-received.png" alt-text="Screenshot of received email message.":::
+    :::image type="content" source="../media/logic-apps-tutorial/invoice-received.png" alt-text="Screenshot of received email message.":::
 
 1. After you're done, [disable or delete your logic app](/azure/logic-apps/manage-logic-apps-with-azure-portal?tabs=consumption#disable-enable-logic-apps) so that usage stops.
 
-   :::image type="content" source="media/logic-apps-tutorial/disable-delete.png" alt-text="Screenshot of disable and delete buttons.":::
+   :::image type="content" source="../media/logic-apps-tutorial/disable-delete.png" alt-text="Screenshot of disable and delete buttons.":::
 
 Congratulations! You completed this tutorial.
 
 ## Next steps
 
 > [!div class="nextstepaction"]
-> [Learn more about Document Intelligence models](model-overview.md)
+> [Learn more about Document Intelligence models](../model-overview.md)

@@ -6,7 +6,7 @@ description: Extract semantic text through image analysis using the Image Analys
 author: careyjmac
 ms.author: chalton
 
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: reference

@@ -4,7 +4,7 @@ titleSuffix: Azure AI Search
 description: Find out about reliability in Azure AI Search.
 author: mattgotteiner
 ms.author: magottei
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.topic: conceptual
 ms.date: 09/04/2024
 ms.custom:

@@ -5,7 +5,7 @@ description: Learn about end-to-end solutions offered by Microsoft partners that
 author: HeidiSteen
 manager: nitinme
 ms.author: heidist
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: conceptual

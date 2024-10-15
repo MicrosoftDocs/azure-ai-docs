@@ -5,7 +5,7 @@ description: Learn about the import wizards in the Azure portal used to create a
 author: HeidiSteen
 manager: nitinme
 ms.author: heidist
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: conceptual

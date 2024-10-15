@@ -6,7 +6,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.topic: how-to
-ms.date: 08/07/2024
+ms.date: 10/15/2024
 ms.author: lajanuar
 ---
 
@@ -16,19 +16,19 @@ ms.author: lajanuar
 # Disaster recovery
 
 ::: moniker range="doc-intel-4.0.0"
-[!INCLUDE [applies to v4.0](includes/applies-to-v40.md)]
+[!INCLUDE [applies to v4.0](../includes/applies-to-v40.md)]
 ::: moniker-end
 
 ::: moniker range="doc-intel-3.1.0"
-[!INCLUDE [applies to v3.1](includes/applies-to-v31.md)]
+[!INCLUDE [applies to v3.1](../includes/applies-to-v31.md)]
 ::: moniker-end
 
 ::: moniker range="doc-intel-3.0.0"
-[!INCLUDE [applies to v3.0](includes/applies-to-v30.md)]
+[!INCLUDE [applies to v3.0](../includes/applies-to-v30.md)]
 ::: moniker-end
 
 ::: moniker range="doc-intel-2.1.0"
-[!INCLUDE [applies to v2.1](includes/applies-to-v21.md)]
+[!INCLUDE [applies to v2.1](../includes/applies-to-v21.md)]
 ::: moniker-end
 
 ::: moniker range=">= doc-intel-2.1.0"
@@ -38,7 +38,7 @@ When you create a Document Intelligence resource in the Azure portal, you specif
 The Copy API enables this scenario by allowing you to copy custom models and classifiers from one Document Intelligence account or into others, which can exist in any supported geographical region. This guide shows you how to use the Copy REST API with cURL for custom models. You can also use an HTTP request service to issue the requests.
 
 > [!NOTE]
-> Starting with the `2024-07-31-preview` API, custom clasification models also support the Copy API. This guide specifically uses custom models to copy models. For classifier model copy, follow this [guide](train/custom-classifier.md#copy-a-model).
+> Starting with the `2024-07-31-preview` API, custom clasification models also support the Copy API. This guide specifically uses custom models to copy models. For classifier model copy, follow this [guide](../train/custom-classifier.md#copy-a-model).
 
 ## Business scenarios
 

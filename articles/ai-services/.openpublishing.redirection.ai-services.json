@@ -502,7 +502,7 @@
     },
     {
       "source_path_from_root": "/articles/ai-services/document-intelligence/sdk-overview-v2-1.md",
-      "redirect_url": "/azure/ai-services/document-intelligence/v21/sdk-overview",
+      "redirect_url": "/azure/ai-services/document-intelligence/v21/sdk-overview-v2-1",
       "redirect_document_id": true
     },
     {
@@ -714,7 +714,61 @@
       "source_path_from_root": "/articles/ai-services/document-intelligence/language-support-custom.md",
       "redirect_url": "/azure/ai-services/document-intelligence/language-support/custom",
       "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/document-intelligence/encrypt-data-at-rest.md",
+      "redirect_url": "/azure/ai-services/document-intelligence/authentication/encrypt-data-at-rest",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/document-intelligence/sdk-overview-v3-0.md",
+      "redirect_url": "/azure/ai-services/document-intelligence/versioning/sdk-overview-v3-0",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/document-intelligence/sdk-overview-v3-1.md",
+      "redirect_url": "/azure/ai-services/document-intelligence/versioning/sdk-overview-v3-1",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/document-intelligence/sdk-overview-v4-0.md",
+      "redirect_url": "/azure/ai-services/document-intelligence/versioning/sdk-overview-v4-0",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/document-intelligence/v3-1-migration-guide.md",
+      "redirect_url": "/azure/ai-services/document-intelligence/versioning/v3-1-migration-guide",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/document-intelligence/v3-error-guide.md",
+      "redirect_url": "/azure/ai-services/document-intelligence/how-to-guides/resolve-errors",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/document-intelligence/changelog-release-history.md",
+      "redirect_url": "/azure/ai-services/document-intelligence/versioning/changelog-release-history",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/document-intelligence/tutorial-azure-function.md",
+      "redirect_url": "/azure/ai-services/document-intelligence/tutorial/azure-function",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/document-intelligence/tutorial-logic-apps.md",
+      "redirect_url": "/azure/ai-services/document-intelligence/tutorial/logic-apps",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/document-intelligence/disaster-recovery.md",
+      "redirect_url": "/azure/ai-services/document-intelligence/how-to-guides/disaster-recovery",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/speech-service/video-translation-studio.md",
+      "redirect_url": "/azure/ai-services/speech-service/video-translation-get-started",
+      "redirect_document_id": true
     }
-
   ]
 }

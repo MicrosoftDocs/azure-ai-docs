@@ -6,7 +6,7 @@ description: Azure AI Search is an AI-powered information retrieval platform, he
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.topic: overview
 ms.date: 10/08/2024
 ---
