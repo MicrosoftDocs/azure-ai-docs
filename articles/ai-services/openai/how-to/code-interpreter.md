@@ -161,7 +161,6 @@ curl https://YOUR_RESOURCE_NAME.openai.azure.com/openai/assistants?api-version=2
       { "type": "code_interpreter" }
     ],
     "model": "gpt-4-1106-preview",
-    "file_ids": ["assistant-123abc456"]
     "tool_resources"{
       "code interpreter": {
           "file_ids": ["assistant-1234"]
