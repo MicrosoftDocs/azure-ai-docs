@@ -37,7 +37,6 @@ An Azure OpenAI Deployment is a unit of management for a specific OpenAI Model. 
 | Estimating size | Provided calculator in the studio & benchmarking script. |
 
 
-
 ## How much thoughput you get for each model
 The amount of throughput (tokens per minute or TPM) a deployment gets per PTU is a function of the input and output tokens being generated. 
 
