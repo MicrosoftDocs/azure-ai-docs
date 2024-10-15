@@ -50,7 +50,7 @@ To help with simplifying the sizing effort, the table below outlines the TPM per
 | Deployable Increments | 50 | 50 | 25|
 | Input TPM per PTU | 2,500 | 2,500 | 37,000  |
 | Output TPM per PTU | 833 | 833  | 12,333 |
-| Latency target | > 25 tokens per second* | > 25 tokens per second*  | > 25 tokens per second* |
+| Latency target | > 25 tokens per second* | > 25 tokens per second*  | > 33 tokens per second* |
 
 \*  Calculated as the average of the per-call average generated tokens on a 1-minute bassis over the month
 \** For a full list please see the [AOAI Studio calcualator](https://oai.azure.com/portal/calculator)
