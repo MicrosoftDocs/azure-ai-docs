@@ -10,10 +10,9 @@ ms.reviewer: itarapov
 reviewer: ivantarapov
 ms.author: mopeakande
 author: msakande
-zone_pivot_groups: ?????
 ---
 
-# How to use MedImageInsight Healthcare AI Model for medical image embedding generation
+# How to use MedImageInsight Healthcare AI model for medical image embedding generation
 
 [!INCLUDE [Feature preview](~/reusable-content/ce-skilling/azure/includes/ai-studio/includes/feature-preview.md)]
 
@@ -23,20 +22,20 @@ In this article, you learn how to deploy MedImageInsight as an online endpoint f
 
 * Deploy the model to a self-hosted managed compute.
 * Grant permissions to the endpoint.
-* Send test data to the model, receive and interpret results
+* Send test data to the model, receive, and interpret results
 
 ## MedImageInsight - the medical imaging embedding model
 MedImageInsight foundational model for health is a powerful model that can process a wide variety of medical images including X-Ray, CT, MRI, clinical photography, dermoscopy, histopathology, ultrasound, and mammography. Rigorous evaluations demonstrate MedImageInsight's ability to achieve state-of-the-art (SOTA) or human expert level performance across classification, image-image search, and fine-tuning tasks.  Specifically, on public datasets, MedImageInsight achieves or exceeds SOTA in chest X-ray disease classification and search, dermatology classification and search, OCT classification and search, 3D medical image retrieval, and near SOTA for histopathology classification and search.  
 
-Embedding model is the "swiss army knife" of foundational models since it is capable of serving as the basis of many different solutions - from classification to more complex scenarios like group matching or outlier detection. 
+Embedding model is the "swiss army knife" of foundational models since it's capable of serving as the basis of many different solutions - from classification to more complex scenarios like group matching or outlier detection. 
 
 :::image type="content" source="../../media/how-to/healthcare-ai/healthcare-embedding-capabilities.gif" alt-text="Embedding model capable of supporting similarity search and quality control scenarios":::
 
-Here we will explain how to deploy MedImageInsight using the AI Model Catalog in Azure AI Studio or Azure Machine Learning Studio and provide links to more in-depth tutorials and samples.
+Here we'll explain how to deploy MedImageInsight using the AI Model Catalog in Azure AI Studio or Azure Machine Learning studio and provide links to more in-depth tutorials and samples.
 
 ## Prerequisites
 
-To use MedImageInsight models with Azure AI Studio or Azure Machine Learning Studio, you need the following prerequisites:
+To use MedImageInsight models with Azure AI Studio or Azure Machine Learning studio, you need the following prerequisites:
 
 ### A model deployment
 
@@ -66,7 +65,7 @@ credential = DefaultAzureCredential()
 ml_client_workspace = MLClient.from_config(credential)
 ```
 
-Note that in the deployment configuration you get to choose authentication method. This example uses Azure ML Token-based authentication, for more authentication options see the [corresponding documentation page](../../../machine-learning/how-to-setup-authentication.md). Also note that client is created from configuration file. This file is created automatically for Azure Machine Learning VMs. Learn more on the [corresponding API documentation page](/python/api/azure-ai-ml/azure.ai.ml.mlclient?view=azure-python#azure-ai-ml-mlclient-from-config).
+In the deployment configuration you get to choose authentication method. This example uses Azure Machine Learning Token-based authentication, for more authentication options see the [corresponding documentation page](../../../machine-learning/how-to-setup-authentication.md). Also note that client is created from configuration file. This file is created automatically for Azure Machine Learning VMs. Learn more on the [corresponding API documentation page](/python/api/azure-ai-ml/azure.ai.ml.mlclient?view=azure-python#azure-ai-ml-mlclient-from-config).
 
 ### Make basic calls to the model
 
@@ -130,14 +129,14 @@ The `input_data` object contains the following fields:
 | Key           | Type           | Required/Default | Allowed values    | Description |
 | ------------- | -------------- | :-----------------:| ----------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `columns`       | `list[string]`       | Y    |  `"text"`, `"image"` | An object containing the strings mapping data to inputs passed to the model.|
-| `index`   | `integer` | Y | 0 - 1024| Count of inputs passed to the model. Note that you are limited by how much data can be passed in a single POST request which will depend on the size of your images, so it is reasonable to keep this number in the dozens |
+| `index`   | `integer` | Y | 0 - 1024| Count of inputs passed to the model. You are limited by how much data can be passed in a single POST request which will depend on the size of your images, so it's reasonable to keep this number in the dozens |
 | `data`   | `list[list[string]]` | Y | "" | The list contains the items passed to the model which is defined by the index parameter. Each item is a list of two strings, order is defined by the "columns" parameter. The `text` string contains text to embed, the `image` string are the image bytes encoded using base64 and decoded as utf-8 string |
 
 The `params` object contains the following fields:
 
 | Key           | Type           | Required/Default | Allowed values    | Description |
 | ------------- | -------------- | :-----------------:| ----------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `get_scaling_factor`   | `boolean` | N<br/>`True` | `"True"` OR `"False"` | Whether the model should return "temperature" scaling factor. This factor is useful when you are planning to compare multiple cosine similarity values in application like classification. It is essential for correct implementation of "zero-shot" type of scenarios. For usage refer to the zero-shot classification example linked in the samples section. |
+| `get_scaling_factor`   | `boolean` | N<br/>`True` | `"True"` OR `"False"` | Whether the model should return "temperature" scaling factor. This factor is useful when you're planning to compare multiple cosine similarity values in application like classification. It's essential for correct implementation of "zero-shot" type of scenarios. For usage, refer to the zero-shot classification example linked in the samples section. |
 
 ### Request Example
 
@@ -197,22 +196,22 @@ Response payload is a JSON formatted string containing the following fields:
 }
 ```
 
-### Additional implementation considerations
-The maximum number of tokens processed in the input string is 77. Anything past 77 tokens would be cut off before passed to the model. The model is using CLIP tokenizer which uses about 3 Latin characters per token.
+### Other implementation considerations
+The maximum number of tokens processed in the input string is 77. Anything past 77 tokens would be cut off before passed to the model. The model is using CLIP tokenizer which uses about three Latin characters per token.
 
 The submitted text is embedded into the same latent space as the image. This means that strings describing medical images of certain body parts obtained with certain imaging modalities would be embedded close to such images. This also means that when building systems on top of MedImageInsight model you should make sure that all your embedding strings are consistent with one another (word order, punctuation). For best results with base model strings should follow pattern `<image modality> <anatomy> <exam parameters> <condition/pathology>.`, for example: `x-ray chest anteroposterior Atelectasis.`. 
 
-If you are fine tuning the model, you can change these parameters to better suit your application needs.
+If you're fine tuning the model, you can change these parameters to better suit your application needs.
 
 ### Supported image formats
 The deployed model API supports images encoded in PNG format. 
 
-Upon receiving the images the model does pre-processing which involves compressing and resizing the images to `512x512` pixels.
+Upon receiving the images the model does preprocessing which involves compressing and resizing the images to `512x512` pixels.
 
 The preferred format is lossless PNG containing either an 8-bit monochromatic or RGB image. For optimization purposes, you can perform resizing on the client side to reduce network traffic.
 
 ## Learn more from samples
-MedImageInsight is a versatile model that can be applied to a wide range of tasks and imaging modalities. For more specific examples of solving a variety of tasks with MedImageInsight see the following interactive Python Notebooks. 
+MedImageInsight is a versatile model that can be applied to a wide range of tasks and imaging modalities. For more specific examples of solving various tasks with MedImageInsight see the following interactive Python Notebooks. 
 
 ### Getting started
 * [Deploying and Using MedImageInsight](https://aka.ms/healthcare-ai-examples-mi2-deploy): learn how to deploy the MedImageInsight model programmatically and issue an API call to it.
