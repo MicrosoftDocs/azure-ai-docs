@@ -1,7 +1,7 @@
 ---
 title: "Quickstart: Create a skillset in the Azure portal"
 titleSuffix: Azure AI Search
-description: In this portal quickstart, use the Import Data wizard to generate searchable text from images and unstructured documents. Skills in this quickstart include OCR, image analysis, and natural language processing.
+description: Learn how to use the Import Data wizard to generate searchable text from images and unstructured documents. Skills in this quickstart include OCR, image analysis, and natural language processing.
 
 manager: nitinme
 author: HeidiSteen
@@ -10,8 +10,9 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: quickstart
-ms.date: 02/22/2024
+ms.date: 10/15/2024
 ---
+
 # Quickstart: Create a skillset in the Azure portal
 
 In this quickstart, you learn how a skillset in Azure AI Search adds Optical Character Recognition (OCR), image analysis, language detection, text translation, and entity recognition to generate text-searchable content in a search index. 
@@ -59,7 +60,7 @@ You're now ready to move on the Import data wizard.
 
 1. Sign in to the [Azure portal](https://portal.azure.com/) with your Azure account.
 
-1. [Find your search service](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices) and on the Overview page, select **Import data** on the command bar to create searchable content in four steps.
+1. [Find your search service](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices). On the Overview page, select **Import data** on the command bar to create searchable content in four steps.
 
    :::image type="content" source="media/search-import-data-portal/import-data-cmd.png" alt-text="Screenshot of the Import data command." border="true":::
 
@@ -73,7 +74,7 @@ You're now ready to move on the Import data wizard.
 
     Continue to the next page.
 
-If you get "Error detecting index schema from data source", the indexer that's powering the wizard can't connect to your data source. Most likely, the data source has security protections. Try the following solutions and then rerun the wizard.
+If you get *Error detecting index schema from data source*, the indexer that's powering the wizard can't connect to your data source. Most likely, the data source has security protections. Try the following solutions and then rerun the wizard.
 
 | Security feature | Solution |
 |--------------------|----------|
@@ -189,7 +190,7 @@ You can find and manage resources in the portal, using the **All resources** or 
 
 If you used a free service, remember that you're limited to three indexes, indexers, and data sources. You can delete individual items in the portal to stay under the limit. 
 
-## Next steps
+## Next step
 
 You can create skillsets using the portal, .NET SDK, or REST API. To further your knowledge, try the REST API using a REST client and more sample data.
 
