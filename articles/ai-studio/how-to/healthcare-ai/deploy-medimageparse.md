@@ -128,7 +128,7 @@ The `input_data` object contains the following fields:
 | ------------- | -------------- | :-----------------:| ----------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `columns`       | `list[string]`       | Y    |  `"image"`, `"text"` | An object containing the strings mapping data to 
 | `index`   | `integer` | Y | 0 - 256 | Count of inputs passed to the model. Note that you are limited by how much data can be passed in a single POST request which will depend on the size of your images, so it is reasonable to keep this number in the dozens. |
-| `data`   | `list[list[string]]` | Y | "" | The list contains the items passed to the model which is defined by the index parameter. Each item is a list of two strings, order is defined by the "columns" parameter. The `text` string contains the prompt text, the `image` string are the image bytes encoded using base64 and decoded as utf-8 string. **NOTE**: Image should be resized to 1024x1024 before submitting to the model, preserving the aspect ratio.<br/> The input text is a string containing multiple sentences separated by the special character `&`. For example: `tumor core & enhancing tumor & non-enhancing tumor`. In this case, there are three sentences, so the output will consist of three images with segmentation masks. |
+| `data`   | `list[list[string]]` | Y | "" | The list contains the items passed to the model which is defined by the index parameter. Each item is a list of two strings, order is defined by the "columns" parameter. The `text` string contains the prompt text, the `image` string are the image bytes encoded using base64 and decoded as utf-8 string. <br/>**NOTE**: The image should be resized to `1024x1024` pixels before submitting to the model, preserving the aspect ratio. Empty space should be padded with black pixels. See the "Generating Segmentation for a Variety of Imaging Modalities" sample notebook for an example or resizing and padding code.<br/><br/> The input text is a string containing multiple sentences separated by the special character `&`. For example: `tumor core & enhancing tumor & non-enhancing tumor`. In this case, there are three sentences, so the output will consist of three images with segmentation masks. |
 
 ### Request Example
 
@@ -151,18 +151,35 @@ The `input_data` object contains the following fields:
 
 ### Response schema
 
-Response payload is a JSON formatted string containing the following fields:
+Response payload is a list of JSON-formatted strings each corresponding to a submitted image. Each string contains a `segmentation_object` object.
+
+`segmentation_object` contains the following fields:
 
 | Key           | Type           |  Description |
 | ------------- | -------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `image_features`       | `list[list[binary]]` | A list of objects, each corresponding to a submitted image. Each object is a NumPy array represented as a three-dimensional matrix. The array's size is 1024x1024 (matching the input image dimensions), with the third dimension representing the number of input sentences provided. |
-| `text_features`       | `list[list[string]]` |  List of vectors, one per each submitted text string, classifying them into 16 biomedical segmentation categories: `liver`, `lung`, `kidney`, `pancreas`, `heart anatomies`, `brain anatomies`, `eye anatomies`, `vessel`, `other organ`, `tumor`, `infection`, `other lesion`, `fluid disturbance`, `other abnormality`, `histology structure`, `other` |
+| `image_features`       | `segmentation_mask` | An object representing the segmentation masks for a given image |
+| `text_features`       | `list[string]` |  List of strings, one per each submitted text string, classifying the segmentation masks into one of 16 biomedical segmentation categories each: `liver`, `lung`, `kidney`, `pancreas`, `heart anatomies`, `brain anatomies`, `eye anatomies`, `vessel`, `other organ`, `tumor`, `infection`, `other lesion`, `fluid disturbance`, `other abnormality`, `histology structure`, `other` |
 
+`segmentation_mask` contains the following fields:
+
+| Key           | Type           |  Description |
+| ------------- | -------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `data`       | `string` | A base64-encoded Numpy array. Decode and use `np.frombuffer` to deserialize. The array contains a three-dimensional matrix. The array's size is `1024x1024` (matching the input image dimensions), with the third dimension representing the number of input sentences provided. See provided sample notebooks for decoding and usage examples. |
+| `shape`       | `list[int]` | A list representing the shape of the array (typically `[NUM_PROMPTS, 1024, 1024]`) |
+| `dtype`       | `string` | An instance of the [NumPy dtype class](https://numpy.org/doc/stable/reference/arrays.dtypes.html) serialized to a string. Describes the data packing in the data array. |
 
 ### Response example
-**A simple inference requesting embedding of a single string** 
+**A simple inference requesting segmentation of two objects** 
 ```JSON
-TODO
+[
+  {
+    "image_features": "{ 
+    'data': '4oCwUE5HDQoa...',
+    'shape': [2, 1024, 1024], 
+    'dtype': 'uint8'}",
+    "text_features": ['liver', 'pancreas']
+  }
+]
 ```
 
 ## Learn more from samples
