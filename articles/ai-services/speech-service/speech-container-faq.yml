@@ -150,11 +150,12 @@ sections:
           
           
       - question: |
-          What are the recommended CPU and RAM resources?
+          What are the recommended CPU and RAM resources for Speech containers?
         answer: |
-        The following table describes the minimum and recommended allocation of resources for each Speech container.
 
-          # [Speech-to-text](#tab/stt)
+          # [Speech to text](#tab/stt)
+
+          The following table describes the minimum and recommended allocation of resources for Speech to text.
           
           | Container | Minimum | Recommended | Speech Model | Concurrency Limit |
           |-----------|---------|-------------|--------------|-------------------|
@@ -170,7 +171,9 @@ sections:
           - For microphone, speech to text happens at 1x real-time. The overall usage should be at about one core for a single recognition.
           - Beyond 16 cores the system becomes nonuniform memory access (NUMA) node sensitive.
           
-          # [Custom speech-to-text](#tab/cstt)
+          # [Custom speech to text](#tab/cstt)
+
+          The following table describes the minimum and recommended allocation of resources for Custom speech to text.
           
           | Container | Minimum | Recommended | Speech Model | Concurrency Limit |
           |-----------|---------|-------------|--------------|-------------------|
@@ -187,6 +190,8 @@ sections:
           - Beyond 16 cores the system becomes nonuniform memory access (NUMA) node sensitive.
           
           # [Neural Text-to-speech](#tab/tts)
+
+          The following table describes the minimum and recommended allocation of resources for Neural text to speech.
           
           | Container | Minimum | Recommended | Concurrency Limit |
           |-----------|---------|-------------|-------------------|
@@ -199,6 +204,8 @@ sections:
           - Real-time performance varies depending on concurrency. With a concurrency of 1, an NTTS container instance can achieve 10x real-time performance. However, when concurrency increases to 5, real-time performance drops to 3x or lower. We recommended sending less than 5 concurrent requests in one container. Start more containers for increased concurrency.
           
           # [Speech language identification](#tab/lid)
+
+          The following table describes the minimum and recommended allocation of resources for Language Identification.
           
           | Container | Minimum | Recommended | Concurrency Limit |
           |-----------|---------|-------------|-------------------|
