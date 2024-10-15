@@ -17,7 +17,7 @@ This diagram provides a high-level overview of the workflow.
 
 You can use the following REST API operations for video translation:
 
-| Operation                                             | Method | REST API call                                    |
+| Operation                                             | Method | REST API call                                     |
 | ----------------------------------------------------- | ------ | ------------------------------------------------- |
 | [Create a translation](/rest/api/aiservices/videotranslation/translation-operations/create-translation) | `PUT`   | `/translations/{translationId}`                  |
 | [List translations](/rest/api/aiservices/videotranslation/translation-operations/list-translation)   | `GET`   | `/translations`                                  |
@@ -284,7 +284,7 @@ HTTP 200 OK indicates that the request was successful.
 An HTTP 204 error indicates that the request was successful, but the resource doesn't exist. For example:
 
 - You tried to get or delete a translation that doesn't exist.
-- You successfully deleted a translation.
+- You successfully deleted a translation. 
 
 ### HTTP 400 error
 
