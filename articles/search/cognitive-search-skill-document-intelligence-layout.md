@@ -102,25 +102,21 @@ The file reference object can be generated one of following ways:
 {
   "skills": [
     {
-      "description": "Extracts text (plain and structured) from image.",
-      "@odata.type": "#Microsoft.Skills.Vision.OcrSkill",
-      "context": "/document/normalized_images/*",
-      "defaultLanguageCode": null,
-      "detectOrientation": true,
+      "description": "Analyze a document",
+      "@odata.type": "#Microsoft.Skills.Util.DocumentLayoutAnalysisSkill",
+      "context": "/document",
+      "outputMode": "oneToMany", 
+      "markdownHeaderDepth": "h3", 
       "inputs": [
         {
-          "name": "image",
-          "source": "/document/normalized_images/*"
+          "name": "file_data",
+          "source": "/document/file_data"
         }
       ],
       "outputs": [
         {
-          "name": "text",
-          "targetName": "myText"
-        },
-        {
-          "name": "layoutText",
-          "targetName": "myLayoutText"
+          "name": "markdown_document", 
+          "targetName": "markdown_document" 
         }
       ]
     }
@@ -134,115 +130,44 @@ The file reference object can be generated one of following ways:
 
 ```json
 {
-  "text": "Hello World. -John",
-  "layoutText":
-  {
-    "language" : "en",
-    "text" : "Hello World. -John",
-    "lines" : [
-      {
-        "boundingBox":
-        [ {"x":10, "y":10}, {"x":50, "y":10}, {"x":50, "y":30},{"x":10, "y":30}],
-        "text":"Hello World."
-      },
-      {
-        "boundingBox": [ {"x":110, "y":10}, {"x":150, "y":10}, {"x":150, "y":30},{"x":110, "y":30}],
-        "text":"-John"
-      }
-    ],
-    "words": [
-      {
-        "boundingBox": [ {"x":110, "y":10}, {"x":150, "y":10}, {"x":150, "y":30},{"x":110, "y":30}],
-        "text":"Hello"
-      },
-      {
-        "boundingBox": [ {"x":110, "y":10}, {"x":150, "y":10}, {"x":150, "y":30},{"x":110, "y":30}],
-        "text":"World."
-      },
-      {
-        "boundingBox": [ {"x":110, "y":10}, {"x":150, "y":10}, {"x":150, "y":30},{"x":110, "y":30}],
-        "text":"-John"
-      }
-    ]
-  }
-}
-```
-
-## Sample: Merging text extracted from embedded images with the content of the document
-
-Document cracking, the first step in skillset execution, separates text and image content. A common use case for Text Merger is merging the textual representation of images (text from an OCR skill, or the caption of an image) into the content field of a document. This is for scenarios where the source document is a PDF or Word document that combines text with embedded images.
-
-The following example skillset creates a *merged_text* field. This field contains the textual content of your document and the OCRed text from each of the images embedded in that document.
-
-#### Request Body Syntax
-
-```json
-{
-  "description": "Extract text from images and merge with content text to produce merged_text",
-  "skills":
-  [
+  "values": [
     {
-      "description": "Extract text (plain and structured) from image.",
-      "@odata.type": "#Microsoft.Skills.Vision.OcrSkill",
-      "context": "/document/normalized_images/*",
-      "defaultLanguageCode": "en",
-      "detectOrientation": true,
-      "inputs": [
-        {
-          "name": "image",
-          "source": "/document/normalized_images/*"
-        }
-      ],
-      "outputs": [
-        {
-          "name": "text"
-        }
-      ]
-    },
-    {
-      "@odata.type": "#Microsoft.Skills.Text.MergeSkill",
-      "description": "Create merged_text, which includes all the textual representation of each image inserted at the right location in the content field.",
-      "context": "/document",
-      "insertPreTag": " ",
-      "insertPostTag": " ",
-      "inputs": [
-        {
-          "name":"text",
-          "source": "/document/content"
-        },
-        {
-          "name": "itemsToInsert", 
-          "source": "/document/normalized_images/*/text"
-        },
-        {
-          "name":"offsets", 
-          "source": "/document/normalized_images/*/contentOffset"
-        }
-      ],
-      "outputs": [
-        {
-          "name": "mergedText", 
-          "targetName" : "merged_text"
-        }
-      ]
+      "recordId": "1",
+      "data": {
+        "content": "hello",
+        "normalized_images": []
+      }
     }
   ]
 }
-```
 
-The above skillset example assumes that a normalized-images field exists. To generate this field, set the *imageAction* configuration in your indexer definition to *generateNormalizedImages* as shown below:
-
-```json
 {
-  //...rest of your indexer definition goes here ...
-  "parameters": {
-    "configuration": {
-      "dataToExtract":"contentAndMetadata",
-      "imageAction":"generateNormalizedImages"
-    }
-  }
+  "markdown_document": [
+    { 
+      "content": "Hi this is Jim \r\nHi this is Joe", 
+      "sections": { 
+        "h1": "Foo", 
+        "h2": "Bar", 
+        "h3": "" 
+      },
+      "ordinal_position": 0
+    }, 
+    { 
+      "content": "Hi this is Lance",
+      "sections": { 
+         "h1": "Foo", 
+         "h2": "Bar", 
+         "h3": "Boo" 
+      },
+      "ordinal_position": 1,
+    } 
+  ] 
 }
 ```
+
+## Sample: Chunking and vectorization
+
+
 
 ## See also
 
