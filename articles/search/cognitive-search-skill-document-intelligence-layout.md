@@ -1,7 +1,7 @@
 ---
 title: Document Intelligence Layout skill
 titleSuffix: Azure AI Search
-description: Analyze a document to extract regions of interest and their inter-relationships in an enrichment pipeline in Azure AI Search.
+description: Analyze a document to extract regions of interest and their inter-relationships to produce a syntactical representation (markdown format) in an enrichment pipeline in Azure AI Search.
 
 author: rawan
 ms.author: 
@@ -10,58 +10,91 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2024
 ms.topic: reference
-ms.date: 10/10/2022
+ms.date: 10/10/2024
 ---
 # Document Intelligence Layout skill
 
-The **Optical character recognition (OCR)** skill recognizes printed and handwritten text in image files. This article is the reference documentation for the OCR skill. See [Extract text from images](cognitive-search-concept-image-scenarios.md) for usage instructions.
+The **Document Intelligence Layout** skill analyze a document to extract regions of interest and their inter-relationships to produce a syntactical representation (markdown format). This skill uses the [Document Intelligence layout model](/azure/ai-services/document-intelligence/concept-layout) provided in [Azure AI Document Intelligence](/azure/ai-services/document-intelligence/overview). This article is the reference documentation for the Document Intelligence Layout skill.
 
-An OCR skill uses the machine learning models provided by [Azure AI Vision](/azure/ai-services/computer-vision/overview) API [v3.2](https://westus.dev.cognitive.microsoft.com/docs/services/computer-vision-v3-2/operations/5d986960601faab4bf452005) in Azure AI services. The **OCR** skill maps to the following functionality:
++ The **Document Intelligence Layout** skill uses [Document Intelligence Public preview version 2024-07-31-preview](https://learn.microsoft.com/en-us/rest/api/aiservices/operation-groups?view=rest-aiservices-v4.0%20(2024-07-31-preview)). It is currently only available in the following Azure regions:
+    + East US
+    + West US2
+    + West Europe
+    + North Central US
 
-+ For the languages listed under [Azure AI Vision language support](/azure/ai-services/computer-vision/language-support#optical-character-recognition-ocr), the [Read API](/azure/ai-services/computer-vision/overview-ocr) is used.
+Supported file formats include:
 
-+ For Greek and Serbian Cyrillic, the legacy [OCR in version 3.2](https://github.com/Azure/azure-rest-api-specs/tree/master/specification/cognitiveservices/data-plane/ComputerVision/stable/v3.2) API is used.
-
-The **OCR** skill extracts text from image files. Supported file formats include:
-
++ .PDF
 + .JPEG
 + .JPG
 + .PNG
 + .BMP
 + .TIFF
++ .DOCX
++ .XLSX
++ .PPTX
++ .HTML
 
 > [!NOTE]
 > This skill is bound to Azure AI services and requires [a billable resource](cognitive-search-attach-cognitive-services.md) for transactions that exceed 20 documents per indexer per day. Execution of built-in skills is charged at the existing [Azure AI services pay-as-you go price](https://azure.microsoft.com/pricing/details/cognitive-services/).
 >
-> In addition, image extraction is [billable by Azure AI Search](https://azure.microsoft.com/pricing/details/search/).
->
+
+## @odata.type
+
+Microsoft.Skills.Util.DocumentIntelligenceLayoutSkill
+
+## Data limits
++ For PDF and TIFF, up to 2,000 pages can be processed (with a free tier subscription, only the first two pages are processed).
++ The file size for analyzing documents is 500 MB for [Azure AI Document Intelligence paid (S0) tier]((https://azure.microsoft.com/pricing/details/cognitive-services/)) and 4 MB for [Azure AI Document Intelligence free (F0) tier]((https://azure.microsoft.com/pricing/details/cognitive-services/)).
++ Image dimensions must be between 50 pixels x 50 pixels and 10,000 pixels x 10,000 pixels.
++ If your PDFs are password-locked, you must remove the lock before submission.
+
 
 ## Skill parameters
 
 Parameters are case-sensitive.
 
-| Parameter name     | Description |
-|--------------------|-------------|
-| `detectOrientation`    | Detects image orientation. Valid values are `true` or `false`. </p>This parameter only applies if the [legacy OCR version 3.2](https://github.com/Azure/azure-rest-api-specs/tree/master/specification/cognitiveservices/data-plane/ComputerVision/stable/v3.2) API is used.  |
-| `defaultLanguageCode` | Language code of the input text. Supported languages include all of the [generally available languages](/azure/ai-services/computer-vision/language-support#analyze-image) of Azure AI Vision. You can also specify `unk` (Unknown). </p>If the language code is unspecified or null, the language is set to English. If the language is explicitly set to `unk`, all languages found are auto-detected and returned.|
-| `lineEnding` | The value to use as a line separator. Possible values: "Space", "CarriageReturn", "LineFeed".  The default is "Space". |
-
-In previous versions, there was a parameter called "textExtractionAlgorithm" to specify extraction of "printed" or "handwritten" text. This parameter is deprecated because the current Read API algorithm extracts both types of text at once. If your skill includes this parameter, you don't need to remove it, but it won't be used during skill execution.
+| Parameter name     | Allowed Values | Description |
+|--------------------|-------------|-------------|
+| `outputMode`    | `oneToMany` | Controls the cardinality of the output produced by the skill. |
+| `markdownHeaderDepth` |`h1`, `h2`, `h3`, `h4`, `h5`, `h6(default)` | This describes the deepest nesting level that should be considered. For instance, if the markdownHeaderDepth is indicated as “h3”, any markdown section that’s deeper than h3 (i.e., #### and deeper) will simply be considered as “content” that needs to be added to whatever level its parent is at. |
 
 ## Skill inputs
 
-| Input name      | Description                                          |
-|---------------|------------------------------------------------------|
-| `image`         | Complex Type. Currently only works with "/document/normalized_images" field, produced by the Azure blob indexer when ```imageAction``` is set to a value other than ```none```. |
+| Input name | Description |
+|--------------------|-------------|
+| `file_data` | The file that content should be extracted from. |
+
+The "file_data" input must be an object defined as:
+
+```json
+{
+  "$type": "file",
+  "data": "BASE64 encoded string of the file"
+}
+```
+
+Alternatively, it can be defined as:
+
+```json
+{
+  "$type": "file",
+  "url": "URL to download file",
+  "sasToken": "OPTIONAL: SAS token for authentication if the URL provided is for a file in blob storage"
+}
+```
+
+The file reference object can be generated one of following ways:
+
++ Setting the `allowSkillsetToReadFileData` parameter on your indexer definition to "true".  This creates a path `/document/file_data` that is an object representing the original file data downloaded from your blob data source. This parameter only applies to files in Blob storage.
+
++ Having a custom skill return a json object defined EXACTLY as above.  The `$type` parameter must be set to exactly `file` and the `data` parameter must be the base 64 encoded byte array data of the file content, or the `url` parameter must be a correctly formatted URL with access to download the file at that location.
 
 ## Skill outputs
 
 | Output name      | Description                   |
 |---------------|-------------------------------|
-| `text`             | Plain text extracted from the image.   |
-| `layoutText`    | Complex type that describes the extracted text and the location where the text was found.|
-
-If you call OCR on images embedded in PDFs or other application files, the OCR output will be located at the bottom of the page, after any text that was extracted and processed.
+| `markdown_document`    | A collection of “sections” objects, which represent each individual section in the markdown document.|
 
 ## Sample definition
 
@@ -213,9 +246,7 @@ The above skillset example assumes that a normalized-images field exists. To gen
 
 ## See also
 
-+ [What is optical character recognition](/azure/ai-services/computer-vision/overview-ocr)
++ [What is document intelligence layout model](/azure/ai-services/document-intelligence/concept-layout?view=doc-intel-4.0.0&tabs=sample-code)
 + [Built-in skills](cognitive-search-predefined-skills.md)
-+ [TextMerger skill](cognitive-search-skill-textmerger.md)
 + [How to define a skillset](cognitive-search-defining-skillset.md)
-+ [Extract text and information from images](cognitive-search-concept-image-scenarios.md)
 + [Create Indexer (REST)](/rest/api/searchservice/indexers/create)
