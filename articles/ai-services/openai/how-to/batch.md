@@ -6,7 +6,7 @@ manager: nitinme
 ms.service: azure-ai-openai
 ms.custom: 
 ms.topic: how-to
-ms.date: 10/11/2024
+ms.date: 10/14/2024
 author: mrbullwinkle
 ms.author: mbullwin
 recommendations: false
@@ -75,6 +75,13 @@ The following aren't currently supported:
 
 - Integration with the Assistants API.
 - Integration with Azure OpenAI On Your Data feature.
+
+> [!NOTE]
+> There is a known issue with Azure OpenAI global batch and [structured outputs](./structured-outputs.md). Currently, lines in your jsonl file with structured output requests will fail with the following error message written to the error file:
+>
+> ***response_format value as json_schema is enabled only for api versions 2024-08-01-preview and later***.
+>
+>This error will occur even when your code targets the latest preview APIs which support structured outputs. Once the issue is resolved, this page will be updated.
 
 ### Global batch deployment
 
