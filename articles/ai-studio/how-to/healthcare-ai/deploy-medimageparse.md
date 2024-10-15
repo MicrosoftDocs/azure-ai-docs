@@ -182,11 +182,20 @@ Response payload is a list of JSON-formatted strings each corresponding to a sub
 ]
 ```
 
+### Supported Image Formats
+The deployed model API supports images encoded in PNG format. For optimal results we recommend using uncompressed/lossless PNGs with 8-bit monochromatic images.
+
+Note that as described above in the API spec, the model only accepts images in the resolution of `1024x1024`pixels. Images need to be resized and padded (in case of non-square aspect ratio).
+
+See the "Generating Segmentation for a Variety of Imaging Modalities" notebook for techniques and sample code useful for submitting images of various sizes stored in variety of biomedical imaging formats.
+
 ## Learn more from samples
 MedImageParse is a versatile model that can be applied to a wide range of tasks and imaging modalities. For more examples see the following interactive Python Notebooks: 
 
-### Getting Started
+### Getting started
 * [Deploying and Using MedImageParse](https://aka.ms/healthcare-ai-examples-mip-deploy): learn how to deploy the MedImageParse model and integrate it into your workflow.
+
+### Advanced inferencing techniques and samples
 * [Generating Segmentation for a Variety of Imaging Modalities](https://aka.ms/healthcare-ai-examples-mip-examples): understand how to use MedImageParse to segment a wide variety of different medical images and learn some prompting techniques. 
 
 ## Related content

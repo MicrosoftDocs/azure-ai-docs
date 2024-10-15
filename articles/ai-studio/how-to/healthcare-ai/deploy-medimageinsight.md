@@ -205,7 +205,7 @@ The submitted text is embedded into the same latent space as the image. This mea
 If you are fine tuning the model, you can change these parameters to better suit your application needs.
 
 ### Supported Image Formats
-The deployed model API supports images stored in PNG format. 
+The deployed model API supports images encoded in PNG format. 
 
 Upon receiving the images the model does pre-processing which involves compressing and resizing the images to 512x512 pixels.
 
@@ -214,15 +214,15 @@ The preferred format is lossless PNG containing either an 8-bit monochromatic or
 ## Learn more from samples
 MedImageInsight is a versatile model that can be applied to a wide range of tasks and imaging modalities. For more specific examples of solving a variety of tasks with MedImageInsight see the following interactive Python Notebooks. 
 
-### Getting Started
+### Getting started
 * [Deploying and Using MedImageInsight](https://aka.ms/healthcare-ai-examples-mi2-deploy): learn how to deploy the MedImageInsight model programmatically and issue an API call to it.
 
-### Classification Techniques
+### Classification techniques
 * [Building a Zero-Shot Classifier](https://aka.ms/healthcare-ai-examples-mi2-zero-shot): discover how to create a classifier without the need training or large amount of labeled training data using MedImageInsight.
 
 * [Enhancing Classification with Adapter Networks](https://aka.ms/healthcare-ai-examples-mi2-adapter): improve classification performance by building a small adapter network on top of MedImageInsight.
 
-### Advanced Applications
+### Advanced applications
 * [Inferring MRI Acquisition Parameters from Pixel Data](https://aka.ms/healthcare-ai-examples-mi2-exam-parameter): understand how to extract MRI exam acquisition parameters directly from imaging data.
 
 * [Scalable MedImageInsight Endpoint Usage](https://aka.ms/healthcare-ai-examples-mi2-advanced-call): Learn how to generate embeddings of medical images at scale using the MedImageInsight API while handling potential network issues gracefully.
