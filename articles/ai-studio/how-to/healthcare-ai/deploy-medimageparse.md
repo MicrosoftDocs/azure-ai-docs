@@ -27,7 +27,13 @@ In this article, you learn how to deploy MedImageParse as an online endpoint for
 
 
 ## MedImageParse - Prompt-based Segmentation of Medical Images
-Biomedical image analysis is crucial for discovery in fields like cell biology, pathology, and radiology. Traditionally, tasks such as segmentation, detection, and recognition of relevant objects have been addressed separately, which can limit the overall effectiveness of image analysis. MedImageParse unifies these tasks through image parsing, jointly conducting segmentation, detection, and recognition across numerous object types and imaging modalities. By leveraging the interdependencies among these subtasks—such as the semantic labels of segmented objects—the model enhances accuracy and enables novel applications. For instance, it allows users to segment all relevant objects in an image using a simple text prompt, eliminating the need to manually specify bounding boxes for each object. Remarkably, this was achieved using only standard segmentation datasets, augmented by natural-language labels or descriptions harmonized with established biomedical object ontologies. This approach not only improved individual task performance but also offered an all-in-one tool for biomedical image analysis, paving the way for more efficient and accurate image-based biomedical discovery.
+Biomedical image analysis is crucial for discovery in fields like cell biology, pathology, and radiology. Traditionally, tasks such as segmentation, detection, and recognition of relevant objects have been addressed separately, which can limit the overall effectiveness of image analysis. MedImageParse unifies these tasks through image parsing, jointly conducting segmentation, detection, and recognition across numerous object types and imaging modalities. By leveraging the interdependencies among these subtasks—such as the semantic labels of segmented objects—the model enhances accuracy and enables novel applications. For instance, it allows users to segment all relevant objects in an image using a simple text prompt, eliminating the need to manually specify bounding boxes for each object.  
+
+The image below shows the conceptual architecture of the MedImageParse model where an image embedding model is augmented with a task adaptation layer to produce segmentation masks and textual descriptions.
+
+:::image type="content" source="../../media/how-to/healthcare-ai/medimageparse-flow.gif" alt-text="Animation of data flow through MedImageParse model showing image coming through the model paired with a task adaptor, and turning into a set of segmentation masks":::
+
+Remarkably, this was achieved using only standard segmentation datasets, augmented by natural-language labels or descriptions harmonized with established biomedical object ontologies. This approach not only improved individual task performance but also offered an all-in-one tool for biomedical image analysis, paving the way for more efficient and accurate image-based biomedical discovery.
 
 ## Prerequisites
 
@@ -37,7 +43,9 @@ To use MedImageParse model with Azure AI Studio or Azure Machine Learning Studio
 
 **Deployment to a self-hosted managed compute**
 
-MedImageParse model can be deployed to our self-hosted managed inference solution, which allows you to customize and control all the details about how the model is served.
+MedImageParse model can be deployed to our self-hosted managed inference solution, which allows you to customize and control all the details about how the model is served.  
+
+The model can be deployed through the Model Catalog UI or programmatically. In order to deploy through the UI navigate to the [model card in the catalog](https://aka.ms/medimageparsemodelcard). Programmatic deployment is covered in the sample Jupyter Notebook linked at the end of this page. 
 
 For deployment to a self-hosted managed compute, you must have enough quota in your subscription. If you don't have enough quota available, you can use our temporary quota access by selecting the option **I want to use shared quota and I acknowledge that this endpoint will be deleted in 168 hours.**
 
@@ -54,13 +62,12 @@ MedImageParse segmentation model can be consumed as a REST API using simple GET 
 from azure.ai.ml import MLClient
 from azure.identity import DeviceCodeCredential
 
-credential = DeviceCodeCredential()
-credential.authenticate()
+credential = DefaultAzureCredential()
 
 ml_client_workspace = MLClient.from_config(credential)
 ```
 
-Note that in the deployment configuration you get to choose authentication method. This example uses Azure ML Token-based authentication. Also note that client is created from configuration file. This file is created automatically for Azure Machine Learning VMs. Learn more on the [corresponding API documentation page](/python/api/azure-ai-ml/azure.ai.ml.mlclient?view=azure-python#azure-ai-ml-mlclient-from-config).
+Note that in the deployment configuration you get to choose authentication method. This example uses Azure ML Token-based authentication, for more authentication options see the [corresponding documentation page](../../../machine-learning/how-to-setup-authentication.md). Also note that client is created from configuration file. This file is created automatically for Azure Machine Learning VMs. Learn more on the [corresponding API documentation page](/python/api/azure-ai-ml/azure.ai.ml.mlclient?view=azure-python#azure-ai-ml-mlclient-from-config).
 
 ### Make basic calls to the model
 
@@ -104,7 +111,7 @@ response = ml_client_workspace.online_endpoints.invoke(
 )
 ```
 
-## Reference for MedImageParse REST API
+## Use MedImageParse REST API
 MedImageParse model assumes a simple single-turn interaction where one request produces one response. 
 
 ### Request schema
@@ -121,7 +128,7 @@ The `input_data` object contains the following fields:
 | ------------- | -------------- | :-----------------:| ----------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `columns`       | `list[string]`       | Y    |  `"image"`, `"text"` | An object containing the strings mapping data to 
 | `index`   | `integer` | Y | 0 - 256 | Count of inputs passed to the model. Note that you are limited by how much data can be passed in a single POST request which will depend on the size of your images, so it is reasonable to keep this number in the dozens. |
-| `data`   | `list[list[string]]` | Y | "" | The list contains the items passed to the model which is defined by the index parameter. Each item is a list of two strings, order is defined by the "columns" parameter. The `text` string contains the prompt text, the `image` string are the image bytes encoded using base64 and decoded as utf-8 string |
+| `data`   | `list[list[string]]` | Y | "" | The list contains the items passed to the model which is defined by the index parameter. Each item is a list of two strings, order is defined by the "columns" parameter. The `text` string contains the prompt text, the `image` string are the image bytes encoded using base64 and decoded as utf-8 string. **NOTE**: Image should be resized to 1024x1024 before submitting to the model, preserving the aspect ratio.<br/> The input text is a string containing multiple sentences separated by the special character `&`. For example: `tumor core & enhancing tumor & non-enhancing tumor`. In this case, there are three sentences, so the output will consist of three images with segmentation masks. |
 
 ### Request Example
 
@@ -148,8 +155,8 @@ Response payload is a JSON formatted string containing the following fields:
 
 | Key           | Type           |  Description |
 | ------------- | -------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `image_features`       | `binary` |  TODO |
-| `text_features`       | `binary` |  TODO |
+| `image_features`       | `list[list[binary]]` | A list of objects, each corresponding to a submitted image. Each object is a NumPy array represented as a three-dimensional matrix. The array's size is 1024x1024 (matching the input image dimensions), with the third dimension representing the number of input sentences provided. |
+| `text_features`       | `list[list[string]]` |  List of vectors, one per each submitted text string, classifying them into 16 biomedical segmentation categories: `liver`, `lung`, `kidney`, `pancreas`, `heart anatomies`, `brain anatomies`, `eye anatomies`, `vessel`, `other organ`, `tumor`, `infection`, `other lesion`, `fluid disturbance`, `other abnormality`, `histology structure`, `other` |
 
 
 ### Response example
@@ -158,7 +165,7 @@ Response payload is a JSON formatted string containing the following fields:
 TODO
 ```
 
-## Explore Quickstarts
+## Learn more from samples
 MedImageParse is a versatile model that can be applied to a wide range of tasks and imaging modalities. For more examples see the following interactive Python Notebooks: 
 
 ### Getting Started

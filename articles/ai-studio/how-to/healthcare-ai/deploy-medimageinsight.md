@@ -44,6 +44,8 @@ To use MedImageInsight models with Azure AI Studio or Azure Machine Learning Stu
 
 MedImageInsight model can be deployed to our self-hosted managed inference solution, which allows you to customize and control all the details about how the model is served.
 
+The model can be deployed through the Model Catalog UI or programmatically. In order to deploy through the UI navigate to the [model card in the catalog](https://aka.ms/mi2modelcard). Programmatic deployment is covered in the sample Jupyter Notebook linked at the end of this page. 
+
 For deployment to a self-hosted managed compute, you must have enough quota in your subscription. If you don't have enough quota available, you can use our temporary quota access by selecting the option **I want to use shared quota and I acknowledge that this endpoint will be deleted in 168 hours.**
 
 > [!div class="nextstepaction"]
@@ -59,14 +61,12 @@ MedImageInsight embedding model can be consumed as a REST API using simple GET r
 from azure.ai.ml import MLClient
 from azure.identity import DeviceCodeCredential
 
-credential = DeviceCodeCredential()
-credential.authenticate()
+credential = DefaultAzureCredential()
 
 ml_client_workspace = MLClient.from_config(credential)
-
 ```
 
-Note that in the deployment configuration you get to choose authentication method. This example uses Azure ML Token-based authentication. Also note that client is created from configuration file. This file is created automatically for Azure Machine Learning VMs. Learn more on the [corresponding API documentation page](/python/api/azure-ai-ml/azure.ai.ml.mlclient?view=azure-python#azure-ai-ml-mlclient-from-config).
+Note that in the deployment configuration you get to choose authentication method. This example uses Azure ML Token-based authentication, for more authentication options see the [corresponding documentation page](../../../machine-learning/how-to-setup-authentication.md). Also note that client is created from configuration file. This file is created automatically for Azure Machine Learning VMs. Learn more on the [corresponding API documentation page](/python/api/azure-ai-ml/azure.ai.ml.mlclient?view=azure-python#azure-ai-ml-mlclient-from-config).
 
 ### Make basic calls to the model
 
@@ -113,7 +113,7 @@ response = ml_client_workspace.online_endpoints.invoke(
 )
 ```
 
-## Reference for MedImageInsight REST API
+## Use MedImageInsight REST API
 MedImageInsight model assumes a simple single-turn interaction where one request produces one response. 
 
 ### Request schema
@@ -211,7 +211,7 @@ Upon receiving the images the model does pre-processing which involves compressi
 
 The preferred format is lossless PNG containing either an 8-bit monochromatic or RGB image. For optimization purposes, you can perform resizing on the client side to reduce network traffic.
 
-## Explore Quickstarts
+## Learn more from samples
 MedImageInsight is a versatile model that can be applied to a wide range of tasks and imaging modalities. For more specific examples of solving a variety of tasks with MedImageInsight see the following interactive Python Notebooks. 
 
 ### Getting Started

@@ -29,7 +29,6 @@ The healthcare industry is undergoing a revolutionary transformation driven by t
 
 In this article, you learn about Microsoft's catalog of foundational multimodal healthcare AI models. The models were developed in collaboration with Microsoft Research, strategic partners, and leading healthcare institutions for healthcare organizations. Healthcare organizations can use the models to rapidly build and deploy AI solutions tailored to their specific needs, while minimizing the extensive compute and data requirements typically associated with building multimodal models from scratch. The intention isn't for these models to serve as standalone products; rather, they're designed for developers to use as a foundation to build upon. With these healthcare AI models, professionals have the tools they need to harness the full potential of AI to enhance patient care.
 
-
 ## Microsoft first-party models
 
 The following models are Microsoft's first party foundational multimodal Healthcare AI models.
@@ -42,6 +41,10 @@ Chest X-rays are the most common radiology procedure globally. They're crucial b
 
 ### [MedImageParse](./deploy-medimageparse.md)
 This model is designed for precise image segmentation, and it covers various imaging modalities, including X-Rays, CT scans, MRIs, ultrasounds, dermatology images, and pathology slides. The model can be fine-tuned for specific applications, such as tumor segmentation or organ delineation, allowing developers to build tools on top of this model that leverage AI for highly targeted cancers and other disease detection, diagnostics and treatment planning.
+
+## Partner models
+
+The Azure AI model catalog also provides a curated collection of healthcare models from Microsoft partners with capabilities such as digital pathology slide analysis, biomedical research and medical knowledge sharing. This includes models from partners like Paige.AI and Providence Healthcare. For complete list of models, please refer to the [catalog page](https://aka.ms/healthcaremodelstudio). 
 
 ## Related content
 
