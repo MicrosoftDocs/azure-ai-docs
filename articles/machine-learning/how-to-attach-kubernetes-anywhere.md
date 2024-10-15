@@ -73,7 +73,7 @@ A `KubernetesCompute` target in Azure Machine Learning workloads (training and m
 
 - The availability of **Preview features** in Azure Machine Learning isn't guaranteed.
 - Models (including the foundational model) from the **Model Catalog** and **Registry** aren't supported on Kubernetes online endpoints.
-- The process of creating a deployment inside the cluster has a timeout limit of **20 minutes**. This includes downloading the image, downloading the model, and initializing the deployment.
+- The process of creating a model inference deployment inside the cluster has a timeout limit of **20 minutes**. This includes downloading the image, downloading the model, and initializing the user scripts.
 
 ## Recommended best practices
 
