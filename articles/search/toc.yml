@@ -78,7 +78,7 @@ items:
       href: search-howto-powerapps.md     
   - name: Indexing tutorials
     items:
-    - name: Index any data
+    - name: Optimize indexing
       href: tutorial-optimize-indexing-push-api.md
     - name: Index at scale (Apache Spark)
       href: search-synapseml-cognitive-services.md

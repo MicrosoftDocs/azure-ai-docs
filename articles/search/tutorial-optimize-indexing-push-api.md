@@ -1,7 +1,7 @@
 ---
-title: 'C# tutorial: Optimize indexing with the push API'
+title: 'C# tutorial: Optimize indexing by using the push API'
 titleSuffix: Azure AI Search
-description: Learn how to efficiently index data using Azure AI Search's push API. This tutorial and sample code are in C#.
+description: Learn how to efficiently index data by using Azure AI Search's push API. This tutorial and sample code are in C#.
 author: gmndrg
 ms.author: gimondra
 ms.service: azure-ai-search
@@ -12,7 +12,7 @@ ms.custom:
   - ignite-2023
 ---
 
-# Tutorial: Optimize indexing with the push API
+# Tutorial: Optimize indexing by using the push API
 
 Azure AI Search supports [two basic approaches](search-what-is-data-import.md) for importing data into a search index: *push* your data into the index programmatically, or *pull* in the data by pointing an [Azure AI Search indexer](search-indexer-overview.md) at a supported data source.
 
@@ -70,7 +70,7 @@ This tutorial uses key-based authentication. Copy an admin API key to paste into
 
 1. Start Visual Studio and open *OptimizeDataIndexing.sln*.
 
-1. In Solution Explorer, open *appsettings.json* to provide connection information.
+1. In Solution Explorer, open *appsettings.json* to provide your service's connection information.
 
 ```json
 {
@@ -88,7 +88,7 @@ This code is derived from the C# section of [Quickstart: Full text search using 
 
 This simple C#/.NET console app performs the following tasks:
 
-+ Creates a new index based on the data structure of the C# `Hotel` class (which also references the `Address` class).
++ Creates a new index based on the data structure of the C# `Hotel` class (which also references the `Address` class)
 + Tests various batch sizes to determine the most efficient size
 + Indexes data asynchronously
     + Using multiple threads to increase indexing speeds
@@ -96,7 +96,7 @@ This simple C#/.NET console app performs the following tasks:
 
  Before running the program, take a minute to study the code and the index definitions for this sample. The relevant code is in several files:
 
-  + *Hotel.cs* and *Address.cs* contains the schema that defines the index
+  + *Hotel.cs* and *Address.cs* contain the schema that defines the index
   + *DataGenerator.cs* contains a simple class to make it easy to create large amounts of hotel data
   + *ExponentialBackoff.cs* contains code to optimize the indexing process as described in this article
   + *Program.cs* contains functions that create and delete the Azure AI Search index, indexes batches of data, and tests different batch sizes
@@ -242,8 +242,8 @@ Identify which batch size is most efficient and then use that batch size in the 
 
 Now that you identified the batch size you intend to use, the next step is to begin to index the data. To index data efficiently, this sample:
 
-+ uses multiple threads/workers.
-+ implements an exponential backoff retry strategy.
++ uses multiple threads/workers
++ implements an exponential backoff retry strategy
 
 Uncomment lines 41 through 49, and then rerun the program. On this run, the sample generates and sends batches of documents, up to 100,000 if you run the code without changing the parameters.
 
@@ -360,7 +360,7 @@ After the function is finished running, you can verify that all of the documents
 
 ## Step 6: Explore the index
 
-You can explore the populated search index after the program has run programmatically or by using the [Search explorer](search-explorer.md) in the portal.
+You can explore the populated search index after the program has run either programmatically or by using the [Search explorer](search-explorer.md) in the portal.
 
 ### Programatically
 
