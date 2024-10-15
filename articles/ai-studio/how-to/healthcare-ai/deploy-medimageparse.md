@@ -164,7 +164,7 @@ Response payload is a list of JSON-formatted strings each corresponding to a sub
 
 | Key           | Type           |  Description |
 | ------------- | -------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `data`       | `string` | A base64-encoded Numpy array. Decode and use `np.frombuffer` to deserialize. The array contains a three-dimensional matrix. The array's size is `1024x1024` (matching the input image dimensions), with the third dimension representing the number of input sentences provided. See provided sample notebooks for decoding and usage examples. |
+| `data`       | `string` | A base64-encoded Numpy array containing the one-hot encoded segmentation mask. Note that there could be multiple instances of objects in the returned array. Decode and use `np.frombuffer` to deserialize. The array contains a three-dimensional matrix. The array's size is `1024x1024` (matching the input image dimensions), with the third dimension representing the number of input sentences provided. See provided sample notebooks for decoding and usage examples. |
 | `shape`       | `list[int]` | A list representing the shape of the array (typically `[NUM_PROMPTS, 1024, 1024]`) |
 | `dtype`       | `string` | An instance of the [NumPy dtype class](https://numpy.org/doc/stable/reference/arrays.dtypes.html) serialized to a string. Describes the data packing in the data array. |
 
