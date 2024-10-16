@@ -72,9 +72,9 @@ For a complete list of supported languages, *see* our [prebuilt model language s
 
 ## Field extraction
 
-For supported document extraction fields, refer to the [credit card model schema](https://github.com/Azure-Samples/document-intelligence-code-samples/blob/main/schema/2024-07-31-preview/credit-card.md) page in our GitHub sample repository.
+* For supported document extraction fields, refer to the [credit card model schema](https://github.com/Azure-Samples/document-intelligence-code-samples/blob/main/schema/2024-07-31-preview/credit-card.md) page in our GitHub sample repository.
 
-The bank cards key-value pairs and line items extracted are in the `documentResults` section of the JSON output.
+* The bank cards key-value pairs and line items extracted are in the `documentResults` section of the JSON output.
 
 ## Next steps
 

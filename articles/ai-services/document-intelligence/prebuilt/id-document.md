@@ -232,20 +232,6 @@ For supported document extraction fields, refer to the [ID document model schema
 
 ::: moniker-end
 
-::: moniker range="doc-intel-3.1.0"
-
-> [!div class="nextstepaction"]
-> [View samples on GitHub.](https://github.com/Azure-Samples/document-intelligence-code-samples/blob/v3.1(2023-07-31-GA)/Python(v3.1)/Prebuilt_model/sample_analyze_identity_documents.py)
-
-::: moniker-end
-
-::: moniker range="doc-intel-4.0.0"
-
-> [!div class="nextstepaction"]
-> [View samples on GitHub.](https://github.com/Azure-Samples/document-intelligence-code-samples/blob/main/Python(v4.0)/Prebuilt_model/sample_analyze_identity_documents.py)
-
-::: moniker-end
-
 <!--docutune:disable -->
 
 ::: moniker range=">=doc-intel-3.0.0"

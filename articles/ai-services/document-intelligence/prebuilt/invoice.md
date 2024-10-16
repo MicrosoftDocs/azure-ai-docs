@@ -186,27 +186,14 @@ See how data, including customer information, vendor details, and line items, is
 For a complete list of supported languages *see* our [prebuilt model language support](../language-support/prebuilt.md) page .
 
 ## Field extraction
-The Document Intelligence invoice model `prebuilt-invoice` extracts the following fields.
 
-::: moniker range="doc-intel-3.1.0"
-
-> [!div class="nextstepaction"]
-> [View samples on GitHub.](https://github.com/Azure-Samples/document-intelligence-code-samples/blob/v3.1(2023-07-31-GA)/Python(v3.1)/Prebuilt_model/sample_analyze_invoices.py)
-
-::: moniker-end
-
-::: moniker range="doc-intel-4.0.0"
-
-> [!div class="nextstepaction"]
-> [View samples on GitHub.](https://github.com/Azure-Samples/document-intelligence-code-samples/blob/main/Python(v4.0)/Prebuilt_model/sample_analyze_invoices.py)
-
-::: moniker-end
 
 :::moniker range=">=doc-intel-3.1.0"
 
-The invoice key-value pairs and line items extracted are in the `documentResults` section of the JSON output.
+* For supported document extraction fields, refer to the [invoice model schema](https://github.com/Azure-Samples/document-intelligence-code-samples/blob/main/schema/2024-07-31-preview/invoice.md) page in our GitHub sample repository.
 
-For supported document extraction fields, refer to the [invoice model schema](https://github.com/Azure-Samples/document-intelligence-code-samples/blob/main/schema/2024-07-31-preview/invoice.md) page in our GitHub sample repository.
+* The invoice key-value pairs and line items extracted are in the `documentResults` section of the JSON output.
+
 
 ### Key-value pairs
 
