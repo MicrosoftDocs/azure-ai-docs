@@ -2,13 +2,13 @@
 title: Customer-Managed Keys for Azure AI services
 titleSuffix: Azure AI services
 description: Learn about using customer-managed keys to improve data security with Azure AI services.
-author: deeikele
+author: PatrickFarley
 ms.service: azure-ai-services
 ms.custom:
   - ignite-2023
 ms.topic: conceptual
 ms.date: 11/15/2023
-ms.author: deeikele
+ms.author: pafarley
 ---
 
 # Customer-managed keys for encryption
@@ -52,7 +52,7 @@ The process to enable Customer-Managed Keys with Azure Key Vault for Azure AI se
 * [Azure OpenAI encryption of data at rest](../openai/encrypt-data-at-rest.md)
 * [Custom Vision encryption of data at rest](../custom-vision-service/encrypt-data-at-rest.md)
 * [Face Services encryption of data at rest](../computer-vision/identity-encrypt-data-at-rest.md)
-* [Document Intelligence encryption of data at rest](../../ai-services/document-intelligence/encrypt-data-at-rest.md)
+* [Document Intelligence encryption of data at rest](../../ai-services/document-intelligence/authentication/encrypt-data-at-rest.md)
 * [Translator encryption of data at rest](../translator/encrypt-data-at-rest.md)
 * [Language service encryption of data at rest](../language-service/concepts/encryption-data-at-rest.md)
 * [Speech encryption of data at rest](../speech-service/speech-encryption-of-data-at-rest.md)

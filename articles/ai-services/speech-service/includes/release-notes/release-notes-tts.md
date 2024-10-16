@@ -13,6 +13,115 @@ ms.custom: references_regions
 
 Azure AI speech high definition (HD) voices are available in public preview. The HD voices can understand the content, automatically detect emotions in the input text, and adjust the speaking tone in real-time to match the sentiment. HD voices maintain a consistent voice persona from their neural (and non HD) counterparts, and deliver even more value through enhanced features. For more information, see [What are Azure AI Speech high definition (HD) voices?](../../high-definition-voices.md).
 
+#### Custom neural voice
+
+- Previously, some locales were only supported with V3 for the training recipe. These locales now also support V9, enabling improved training quality and expanded features. For these locales, refer to the following table:
+
+  | **Locale (BCP-47)** | **Language**              |
+  |---------------------|---------------------------|
+  | `ar-EG`               | Arabic (Egypt)            |
+  | `ar-SA`               | Arabic (Saudi Arabia)     |
+  | `ca-ES`               | Catalan           |
+  | `cs-CZ`               | Czech (Czechia)   |
+  | `da-DK`               | Danish (Denmark)          |
+  | `de-AT`               | German (Austria)          |
+  | `de-CH`              | German (Switzerland)      |
+  | `el-GR`               | Greek (Greece)            |
+  | `en-IN`               | English (India)           |
+  | `fi-FI`               | Finnish (Finland)         |
+  | `fr-CH`               | French (Switzerland)      |
+  | `he-IL`               | Hebrew (Israel)           |
+  | `hi-IN`               | Hindi (India)             |
+  | `hu-HU`               | Hungarian (Hungary)       |
+  | `ms-MY`               | Malay (Malaysia)          |
+  | `nb-NO`               | Norwegian Bokmål (Norway) |
+  | `nl-NL`               | Dutch (Netherlands)       |
+  | `pl-PL`               | Polish (Poland)           |
+  | `pt-PT`               | Portuguese (Portugal)     |
+  | `ro-RO`               | Romanian (Romania)        |
+  | `ru-RU`               | Russian (Russia)          |
+  | `sk-SK`               | Slovak (Slovakia)         |
+  | `sv-SE`               | Swedish (Sweden)          |
+  | `th-TH`               | Thai (Thailand)           |
+  | `r-TR`               | Turkish (Türkiye)          |
+  | `vi-VN`               | Vietnamese (Vietnam)      |
+  | `zh-HK`               | Chinese (Cantonese, Traditional)       |
+  | `zh-TW`               | Chinese (Taiwanese Mandarin, Traditional)          |
+
+- Custom neural voice Pro now supports the following new locales:
+  - `en-NZ`: English (New Zealand)
+  - `es-CL`: Spanish (Chile)
+  
+  See the [language list for Custom neural voice](../../language-support.md?tabs=tts#custom-neural-voice) for the full list of supported locales.  
+
+- The cross-lingual feature now supports the following new locales as source locales:  
+
+  | **Locale (BCP-47)** | **Language**              |
+  |---------------------|---------------------------|
+  | `da-DK`               | Danish (Denmark)          |
+  | `de-AT`               | German (Austria)          |
+  | `de-CH`               | German (Switzerland)      |
+  | `de-DE`               | German (Germany)          |
+  | `en-CA`               | English (Canada)          |
+  | `fi-FI`               | Finnish (Finland)         |
+  | `fr-CH`               | French (Switzerland)      |
+  | `hu-HU`               | Hungarian (Hungary)       |
+  | `ms-MY`               | Malay (Malaysia)          |
+  | `nb-NO`               | Norwegian Bokmål (Norway) |
+  | `pt-PT`               | Portuguese (Portugal)     |
+  | `sv-SE`               | Swedish (Sweden)          |
+  | `tr-TR`               | Turkish (Türkiye)          |
+  | `zh-HK`               | Chinese (Cantonese, Traditional)       |  
+
+  See the [language list for Custom neural voice](../../language-support.md?tabs=tts#custom-neural-voice) for the full list of supported locales.  
+
+- The multi-style voice feature now supports the following new locales:  
+
+  | **Locale (BCP-47)** | **Language**              |
+  |---------------------|---------------------------|
+  | `ar-EG`             | Arabic (Egypt)            |
+  | `ar-SA`             | Arabic (Saudi Arabia)     |
+  | `ca-ES`             | Catalan         |
+  | `cs-CZ`             | 	Czech (Czechia)   |
+  | `da-DK`             | Danish (Denmark)          |
+  | `de-AT`             | German (Austria)          |
+  | `de-CH`             | German (Switzerland)      |
+  | `de-DE`             | German (Germany)          |
+  | `el-GR`             | Greek (Greece)            |
+  | `en-AU`             | English (Australia)       |
+  | `en-CA`             | English (Canada)          |
+  | `en-GB`             | English (United Kingdom)  |
+  | `en-IN`             | English (India)           |
+  | `es-ES`             | Spanish (Spain)           |
+  | `es-MX`             | Spanish (Mexico)          |
+  | `fi-FI`             | Finnish (Finland)         |
+  | `fr-CA`             | French (Canada)           |
+  | `fr-CH`             | French (Switzerland)      |
+  | `fr-FR`             | French (France)           |
+  | `he-IL`             | Hebrew (Israel)           |
+  | `hi-IN`             | Hindi (India)             |
+  | `hu-HU`             | Hungarian (Hungary)       |
+  | `it-IT`             | Italian (Italy)           |
+  | `ko-KR`             | Korean (Korea)     |
+  | `ms-MY`             | Malay (Malaysia)          |
+  | `nb-NO`             | Norwegian Bokmål (Norway) |
+  | `nl-BE`             | Dutch (Belgium)           |
+  | `nl-NL`             | Dutch (Netherlands)       |
+  | `pl-PL`             | Polish (Poland)           |
+  | `pt-BR`             | Portuguese (Brazil)       |
+  | `pt-PT`             | Portuguese (Portugal)     |
+  | `ro-RO`             | Romanian (Romania)        |
+  | `ru-RU`             | Russian (Russia)          |
+  | `sk-SK`             | Slovak (Slovakia)         |
+  | `sv-SE`             | Swedish (Sweden)          |
+  | `th-TH`             | Thai (Thailand)           |
+  | `tr-TR`             | Turkish (Türkiye)         |
+  | `vi-VN`             | Vietnamese (Vietnam)      |
+  | `zh-HK`             | Chinese (Cantonese, Traditional)      |
+  | `zh-TW`             | Chinese (Taiwanese Mandarin, Traditional)         |
+
+  See the [language list for Custom neural voice](../../language-support.md?tabs=tts#custom-neural-voice) for the full list of supported locales.  
+
 ### September 2024 release
 
 #### Prebuilt neural voice
