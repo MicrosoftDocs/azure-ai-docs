@@ -28,7 +28,8 @@ Fast transcription API is used to transcribe audio files with returning results 
 
 ## Prerequisites
 
-- An Azure AI Speech resource in one of the regions where the fast transcription API is available. The supported regions are: Central India, East US, Southeast Asia, and West Europe. For more information about regions supported for other Speech service features, see [Speech service regions](./regions.md).
+- An Azure AI Speech resource in one of the regions where the fast transcription API is available. The supported regions are: **Australia East**, **Brazil South**, **Central India**, **East US**, **East US 2**, **French Central**, **Japan East**, **North Central US**, **North Europe**, **South Central US**, **Southeast Asia**, **Sweden Central**, **West Europe**, **West US**, **West US 2**, **West US 3**. For more information about regions supported for other Speech service features, see [Speech service regions](./regions.md).
+  
 - An audio file (less than 2 hours long and less than 200 MB in size) in one of the formats and codecs supported by the batch transcription API. For more information about supported audio formats, see [supported audio formats](./batch-transcription-audio-data.md#supported-audio-formats-and-codecs).
 
 ## Use the fast transcription API
