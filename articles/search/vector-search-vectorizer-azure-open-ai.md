@@ -2,8 +2,9 @@
 title: Azure OpenAI vectorizer
 titleSuffix: Azure AI Search
 description: Connects to a deployed model on your Azure OpenAI resource at query time.
-author: careyjmac
-ms.author: chalton
+author: HeidiSteen
+ms.author: heidist
+ms.reviewer: chalton
 ms.service: azure-ai-search
 ms.custom:
   - build-2024
@@ -15,10 +16,6 @@ ms.date: 10/16/2024
 
 The **Azure OpenAI** vectorizer connects to a deployed embedding model on your [Azure OpenAI](/azure/ai-services/openai/overview) resource to generate embeddings at query time. Your data is processed in the [Geo](https://azure.microsoft.com/explore/global-infrastructure/data-residency/) where your model is deployed. 
 
-Your Azure OpenAI Service must have an associated [custom subdomain](/azure/ai-services/cognitive-services-custom-subdomains). If the service was created through the Azure portal, this subdomain is automatically generated as part of your service setup. Ensure that your service includes a custom subdomain before using it with the Azure AI Search integration.
-
-Note that Azure OpenAI models created with an AI Studio service account are not supported. Only models from the Azure OpenAI Service are compatible with this integration. 
-
 Vectorizers are used at query time, but specified in index definitions, and referenced on vector fields through a vector profile. The Azure OpenAI vectorizer is called `AzureOpenAIVectorizer` in the API. 
 
 + Use the [**2024-07-01**](/rest/api/searchservice/indexes/create) REST API or an Azure SDK package that's been updated to provide the feature.
@@ -27,7 +24,12 @@ Vectorizers are used at query time, but specified in index definitions, and refe
 
 > [!NOTE]
 > This vectorizer is bound to Azure OpenAI and is charged at the existing [Azure OpenAI pay-as-you go price](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/#pricing).
->
+
+## Prerequisites
+
+Your Azure OpenAI Service must have an associated [custom subdomain](/azure/ai-services/cognitive-services-custom-subdomains). If the service was created through the Azure portal, this subdomain is automatically generated as part of your service setup. Ensure that your service includes a custom subdomain before using it with the Azure AI Search integration.
+
+Azure OpenAI Service resources (with access to embedding models) that were created in AI Studio aren't supported. Only the Azure OpenAI Service resources created in the Azure portal are compatible with the **Azure OpenAI Embedding** skill integration. 
 
 ## Vectorizer parameters
 

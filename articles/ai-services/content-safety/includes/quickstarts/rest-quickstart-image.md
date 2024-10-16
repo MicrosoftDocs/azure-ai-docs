@@ -44,7 +44,7 @@ Paste the command below into a text editor, and make the following changes.
 1. Populate the `"image"` field in the body with either a `"content"` field or a `"blobUrl"` field. For example: `{"image": {"content": "<base_64_string>"}` or `{"image": {"blobUrl": "<your_storage_url>"}`.
 
 ```shell
-curl --location --request POST '<endpoint>/contentsafety/image:analyze?api-version=2023-10-01' \
+curl --location --request POST '<endpoint>/contentsafety/image:analyze?api-version=2024-09-01' \
 --header 'Ocp-Apim-Subscription-Key: <your_subscription_key>' \
 --header 'Content-Type: application/json' \
 --data-raw '{
@@ -71,7 +71,7 @@ The below fields must be included in the URL:
 
 | Name      |Required?  |  Description | Type   |
 | :------- |-------- |:--------------- | ------ |
-| **API Version** |Required |This is the API version to be checked. Current version is: `api-version=2023-10-01`. Example: `<endpoint>/contentsafety/image:analyze?api-version=2023-10-01` | String |
+| **API Version** |Required |This is the API version to be checked. Current version is: `api-version=2024-09-01`. Example: `<endpoint>/contentsafety/image:analyze?api-version=2024-09-01` | String |
 
 The parameters in the request body are defined in this table:
 
