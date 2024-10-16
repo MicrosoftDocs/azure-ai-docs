@@ -29,16 +29,16 @@ Vehicle analysis is a set of capabilities that, when used with the Spatial Analy
 
 ## Vehicle analysis operations
 
-Similar to Spatial Analysis, vehicle analysis enables the analysis of real-time streaming video from camera devices. For each camera device you configure, the operations for vehicle analysis generates an output stream of JSON messages that are being sent to your instance of Azure IoT Hub.
+Similar to Spatial Analysis, vehicle analysis enables the analysis of real-time streaming video from camera devices. For each camera device you configure, the operations for vehicle analysis generate an output stream of JSON messages that are being sent to your instance of Azure IoT Hub.
 
-The following operations for vehicle analysis are available in the current Spatial Analysis container. Vehicle analysis offers operations optimized for both GPU and CPU (CPU operations include the ".cpu" distinction).
+The following operations for vehicle analysis are available in the current Spatial Analysis container. Vehicle analysis offers operations optimized for both GPU and CPU (CPU operations include the `.cpu` distinction).
 
 | Operation identifier | Description |  
 | -------------------- | ---------------------------------------- |  
-| **cognitiveservices.vision.vehicleanalysis-vehiclecount-preview** and **cognitiveservices.vision.vehicleanalysis-vehiclecount.cpu-preview** | Counts vehicles parked in a designated zone in the camera's field of view. </br> Emits an initial _vehicleCountEvent_ event and then _vehicleCountEvent_ events when the count changes. |  
-| **cognitiveservices.vision.vehicleanalysis-vehicleinpolygon-preview** and **cognitiveservices.vision.vehicleanalysis-vehicleinpolygon.cpu-preview** | Identifies when a vehicle parks in a designated parking region in the camera's field of view. </br> Emits a _vehicleInPolygonEvent_ event when the vehicle is parked inside a parking space. |
+| **cognitiveservices.vision.vehicleanalysis-vehiclecount-preview** and **cognitiveservices.vision.vehicleanalysis-vehiclecount.cpu-preview** | Counts vehicles parked in a designated zone in the camera's field of view. </br>Emits an initial _vehicleCountEvent_ event and then _vehicleCountEvent_ events when the count changes. |  
+| **cognitiveservices.vision.vehicleanalysis-vehicleinpolygon-preview** and **cognitiveservices.vision.vehicleanalysis-vehicleinpolygon.cpu-preview** | Identifies when a vehicle parks in a designated parking region in the camera's field of view. </br>Emits a _vehicleInPolygonEvent_ event when the vehicle is parked inside a parking space. |
 
-In addition to exposing the vehicle location, other estimated attributes for **cognitiveservices.vision.vehicleanalysis-vehiclecount-preview**, **cognitiveservices.vision.vehicleanalysis-vehiclecount.cpu-preview**, **cognitiveservices.vision.vehicleanalysis-vehicleinpolygon-preview** and **cognitiveservices.vision.vehicleanalysis-vehicleinpolygon.cpu-preview** include vehicle color and vehicle type. All of the possible values for these attributes are found in the output section (below).
+In addition to exposing the vehicle location, other estimated attributes for **cognitiveservices.vision.vehicleanalysis-vehiclecount-preview**, **cognitiveservices.vision.vehicleanalysis-vehiclecount.cpu-preview**, **cognitiveservices.vision.vehicleanalysis-vehicleinpolygon-preview**, and **cognitiveservices.vision.vehicleanalysis-vehicleinpolygon.cpu-preview** include vehicle color and vehicle type. All of the possible values for these attributes are found in the output section (below).
 
 ### Operation parameters for vehicle analysis
 
@@ -53,7 +53,7 @@ The following table shows the parameters required by each of the vehicle analysi
 | VIDEO_IS_LIVE| True for camera devices; false for recorded videos.|
 | VIDEO_DECODE_GPU_INDEX| Index specifying which GPU will decode the video frame. By default it's 0. This should be the same as the `gpu_index` in other node configurations like `VICA_NODE_CONFIG`, `DETECTOR_NODE_CONFIG`.|
 | PARKING_REGIONS | JSON configuration for zone and line as outlined below. </br> PARKING_REGIONS must contain four points in normalized coordinates ([0, 1]) that define a convex region (the points follow a clockwise or counterclockwise order).|
-| EVENT_OUTPUT_MODE | Can be ON_INPUT_RATE or ON_CHANGE. ON_INPUT_RATE will generate an output on every single frame received (one FPS). ON_CHANGE will generate an output when something changes (number of vehicles or parking spot occupancy). |
+| EVENT_OUTPUT_MODE | Can be ON_INPUT_RATE or ON_CHANGE. ON_INPUT_RATE generates an output on every single frame received (one FPS). ON_CHANGE generates an output when something changes (number of vehicles or parking spot occupancy). |
 | PARKING_SPOT_METHOD | Can be BOX or PROJECTION. BOX uses an overlap between the detected bounding box and a reference bounding box. PROJECTIONS projects the centroid point into the parking spot polygon drawn on the floor. This is only used for Parking Spot and can be suppressed.|
 
 Here is an example of a valid `PARKING_REGIONS` configuration:

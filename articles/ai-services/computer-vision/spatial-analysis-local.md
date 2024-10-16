@@ -23,7 +23,7 @@ You can use Spatial Analysis with either recorded or live video. Use this guide 
 
 ## Analyze a video file
 
-To use Spatial Analysis for recorded video, record a video file and save it as a .mp4 file. Then take the following steps:
+To use Spatial Analysis for recorded video, record a video file and save it as an .mp4 file. Then take the following steps:
 
 1. Create a blob storage account in Azure, or use an existing one. Then update the following blob storage settings in the Azure portal:
     1. Change **Secure transfer required** to **Disabled**
