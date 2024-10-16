@@ -1,5 +1,5 @@
 ---
-title: Develop a prompt flow
+title: Develop prompt flow
 titleSuffix: Azure Machine Learning
 description: Learn how to develop a prompt flow and a chat flow in Azure Machine Learning studio.
 services: machine-learning
@@ -14,7 +14,7 @@ ms.author: lagayhar
 ms.reviewer: jinzhong
 ms.date: 10/15/2024
 ---
-# Develop a prompt flow
+# Develop prompt flow
 
 Prompt flow is a development tool that streamlines the development cycle of AI applications that are powered by Large Language Models (LLMs). In this article, you learn how to create and develop a prompt flow and a chat flow in Azure Machine Learning studio.
 
@@ -24,7 +24,7 @@ As the momentum for LLM-based AI applications grows, prompt flow provides a comp
 - Easily test, debug, and iterate your flows.
 - Create prompt variants and compare their performance.
 
-## Create and develop a prompt flow
+## Create and develop your prompt flow
 
 To create a prompt flow, select **Prompt flow** in the Azure Machine Learning studio left navigation, and then select **Create** on the **Prompt flow** page.
 
@@ -76,13 +76,13 @@ You can set node **Inputs** and **Outputs** in the following ways:
 
 After you finish composing a prompt or Python script, select **Validate and parse input** for the system to automatically parse the node input based on the prompt template and Python function input.
 
-You can link nodes by referencing node output. For example, you can reference the LLM node output in the Python node input so the Python node consumes the LLM node output. In the **Graph** view you can see the two nodes linked together.
+You can link nodes by referencing node output. For example, you can reference the LLM node output in the Python node input so the Python node consumes the LLM node output. In the **Graph** view, you can see the two nodes linked together.
 
 #### LLM nodes
 
 For an LLM node for Azure OpenAI, you need to select **Connection**, **Api**, and **deployment_name**, and set the **Prompt**. You use the connection to securely store and manage secret keys or other sensitive credentials required for interacting with Azure OpenAI.
 
-If you don't already have a connection, create it before you add an LLM node, and make sure the Azure OpenAI resource has a **chat** or **completion** deployment. For more information, see [Set up a connection](get-started-with-prompt-flow.md#set-up-a-connection) and [Create a resource and deploy a model using Azure OpenAI](/azure/cognitive-services/openai/how-to/create-resource).
+If you don't already have a connection, create it before you add an LLM node, and make sure the Azure OpenAI resource has a **chat** or **completion** deployment. For more information, see [Set up a connection](get-started-prompt-flow.md#set-up-a-connection) and [Create a resource and deploy a model using Azure OpenAI](/azure/cognitive-services/openai/how-to/create-resource).
 
 #### Python nodes
 
@@ -159,34 +159,34 @@ To help you manage chat history, `chat_history` in the **Inputs** section is res
 
 Chat history is structured as a list of inputs and outputs. All interactions in the chat box, including user chat inputs, generated chat outputs, and other flow inputs and outputs, are automatically stored in chat history.
 
-    ```json
-    [
-    {
-        "inputs": {
-        "<flow input 1>": "xxxxxxxxxxxxxxx",
-        "<flow input 2>": "xxxxxxxxxxxxxxx",
-        "<flow input N>""xxxxxxxxxxxxxxx"
-        },
-        "outputs": {
-        "<flow output 1>": "xxxxxxxxxxxx",
-        "<flow output 2>": "xxxxxxxxxxxxx",
-        "<flow output M>": "xxxxxxxxxxxxx"
-        }
+```json
+[
+{
+    "inputs": {
+    "<flow input 1>": "xxxxxxxxxxxxxxx",
+    "<flow input 2>": "xxxxxxxxxxxxxxx",
+    "<flow input N>""xxxxxxxxxxxxxxx"
     },
-    {
-        "inputs": {
-        "<flow input 1>": "xxxxxxxxxxxxxxx",
-        "<flow input 2>": "xxxxxxxxxxxxxxx",
-        "<flow input N>""xxxxxxxxxxxxxxx"
-        },
-        "outputs": {
-        "<flow output 1>": "xxxxxxxxxxxx",
-        "<flow output 2>": "xxxxxxxxxxxxx",
-        "<flow output M>": "xxxxxxxxxxxxx"
-        }
+    "outputs": {
+    "<flow output 1>": "xxxxxxxxxxxx",
+    "<flow output 2>": "xxxxxxxxxxxxx",
+    "<flow output M>": "xxxxxxxxxxxxx"
     }
-    ]
-    ```
+},
+{
+    "inputs": {
+    "<flow input 1>": "xxxxxxxxxxxxxxx",
+    "<flow input 2>": "xxxxxxxxxxxxxxx",
+    "<flow input N>""xxxxxxxxxxxxxxx"
+    },
+    "outputs": {
+    "<flow output 1>": "xxxxxxxxxxxx",
+    "<flow output 2>": "xxxxxxxxxxxxx",
+    "<flow output M>": "xxxxxxxxxxxxx"
+    }
+}
+]
+```
 > [!NOTE]
 > When you conduct tests in the **Chat** box, you automatically save chat history. For batch runs, you must include chat history within the batch run dataset. If there's no chat history available, set the `chat_history` to an empty list `[]` within the batch run dataset.
 
@@ -217,6 +217,6 @@ The **Chat** box provides an interactive way to test your chat flow by simulatin
 
 ## Related content
 
-- [Batch run  using more data and evaluate the flow performance](how-to-bulk-test-evaluate-flow.md)
+- [Submit batch run and evaluate a flow](how-to-bulk-test-evaluate-flow.md)
 - [Tune prompts using variants](how-to-tune-prompts-using-variants.md)
-- [Deploy a flow](how-to-deploy-for-real-time-inference.md)
+- [Deploy a flow as a managed online endpoint for real-time inference](how-to-deploy-for-real-time-inference.md)
