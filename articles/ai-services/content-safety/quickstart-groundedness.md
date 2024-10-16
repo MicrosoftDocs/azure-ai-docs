@@ -356,7 +356,7 @@ The groundedness detection API includes a correction feature that automatically 
 > Currently, the correction feature supports only **Azure OpenAI GPT-4 Turbo (1106-preview)** resources. To minimize latency and adhere to data privacy guidelines, it's recommended to deploy your GPT-4 Turbo (1106-preview) resources in the same region as your content safety resources. For more details on data privacy, please refer to the [Data, privacy and security guidelines for Azure OpenAI Service](/legal/cognitive-services/openai/data-privacy?context=/azure/ai-services/openai/context/context)
  and [Data, privacy, and security for Azure AI Content Safety](/legal/cognitive-services/content-safety/data-privacy?context=/azure/ai-services/content-safety/context/context).
 
-To use your Azure OpenAI GPT4-Turbo (1106-preview) resource for enabling the correction feature, use Managed Identity to allow your Content Safety resource to access the Azure OpenAI resource. Follow the steps in the [earlier section](#bring-your-own-gpt-deployment) to set up the Managed Identity.
+To use your Azure OpenAI GPT4-Turbo (1106-preview) resource for enabling the correction feature, use Managed Identity to allow your Content Safety resource to access the Azure OpenAI resource. Follow the steps in the [earlier section](#connect-your-own-gpt-deployment) to set up the Managed Identity.
 
 
 ### Make the API request
