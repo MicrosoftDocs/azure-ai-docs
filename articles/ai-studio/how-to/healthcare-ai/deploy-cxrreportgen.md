@@ -43,9 +43,9 @@ To use CXRReportGen model with Azure AI Studio or Azure Machine Learning studio,
 
 **Deployment to a self-hosted managed compute**
 
-CXRReportGen model can be deployed to our self-hosted managed inference solution, which allows you to customize and control all the details about how the model is served.  
+CXRReportGen model can be deployed to our self-hosted managed inference solution, which allows you to customize and control all the details about how the model is served. You can deploy the model through the model catalog UI or programmatically.
 
-You can deploy the model through the model catalog UI or programmatically. To deploy through the UI,
+To __deploy the model through the UI__:
 
 - Go to the [model card in the catalog](https://aka.ms/cxrreportgenmodelcard). 
 - On the model's overview page, select __Deploy__. 
@@ -56,7 +56,7 @@ You can deploy the model through the model catalog UI or programmatically. To de
     > For deployment to a self-hosted managed compute, you must have enough quota in your subscription. If you don't have enough quota available, you can use our temporary quota access by selecting the option **I want to use shared quota and I acknowledge that this endpoint will be deleted in 168 hours.**
 - Select __Deploy__.
 
-To deploy the model programmatically, see [How to deploy and inference a managed compute deployment with code](../deploy-models-managed.md).
+To __deploy the model programmatically__, see [How to deploy and inference a managed compute deployment with code](../deploy-models-managed.md).
 
 
 ## Work with a grounded report generation model for chest X-ray analysis
@@ -76,7 +76,7 @@ credential = DefaultAzureCredential()
 ml_client_workspace = MLClient.from_config(credential)
 ```
 
-In the deployment configuration, you get to choose the authentication method. This example uses Azure Machine Learning token-based authentication. For more authentication options, see the [corresponding documentation page](../../../machine-learning/how-to-setup-authentication.md). Also note that the client is created from a configuration file that is created automatically for Azure Machine Learning virtual machines (VMs). Learn more on the [corresponding API documentation page](/python/api/azure-ai-ml/azure.ai.ml.mlclient?view=azure-python#azure-ai-ml-mlclient-from-config).
+In the deployment configuration, you get to choose the authentication method. This example uses Azure Machine Learning token-based authentication. For more authentication options, see the [corresponding documentation page](../../../machine-learning/how-to-setup-authentication.md). Also, note that the client is created from a configuration file that is created automatically for Azure Machine Learning virtual machines (VMs). Learn more on the [corresponding API documentation page](/python/api/azure-ai-ml/azure.ai.ml.mlclient?view=azure-python#azure-ai-ml-mlclient-from-config).
 
 ### Make basic calls to the model
 

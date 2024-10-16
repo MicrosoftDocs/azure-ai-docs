@@ -41,9 +41,9 @@ To use MedImageInsight models with Azure AI Studio or Azure Machine Learning stu
 
 **Deployment to a self-hosted managed compute**
 
-MedImageInsight model can be deployed to our self-hosted managed inference solution, which allows you to customize and control all the details about how the model is served.
+MedImageInsight model can be deployed to our self-hosted managed inference solution, which allows you to customize and control all the details about how the model is served. You can deploy the model through the model catalog UI or programmatically.
 
-You can deploy the model through the model catalog UI or programmatically. To deploy through the UI,
+To __deploy the model through the UI__:
 
 - Go to the [model card in the catalog](https://aka.ms/mi2modelcard). 
 - On the model's overview page, select __Deploy__. 
@@ -55,7 +55,7 @@ You can deploy the model through the model catalog UI or programmatically. To de
 
 - Select __Deploy__.
 
-To deploy the model programmatically, see [How to deploy and inference a managed compute deployment with code](../deploy-models-managed.md).
+To __deploy the model programmatically__, see [How to deploy and inference a managed compute deployment with code](../deploy-models-managed.md).
 
 ## Work with an embedding model
 
@@ -74,7 +74,7 @@ credential = DefaultAzureCredential()
 ml_client_workspace = MLClient.from_config(credential)
 ```
 
-In the deployment configuration, you get to choose the authentication method. This example uses Azure Machine Learning token-based authentication. For more authentication options, see the [corresponding documentation page](../../../machine-learning/how-to-setup-authentication.md). Also note that the client is created from a configuration file that is created automatically for Azure Machine Learning virtual machines (VMs). Learn more on the [corresponding API documentation page](/python/api/azure-ai-ml/azure.ai.ml.mlclient?view=azure-python#azure-ai-ml-mlclient-from-config).
+In the deployment configuration, you get to choose the authentication method. This example uses Azure Machine Learning token-based authentication. For more authentication options, see the [corresponding documentation page](../../../machine-learning/how-to-setup-authentication.md). Also, note that the client is created from a configuration file that is created automatically for Azure Machine Learning virtual machines (VMs). Learn more on the [corresponding API documentation page](/python/api/azure-ai-ml/azure.ai.ml.mlclient?view=azure-python#azure-ai-ml-mlclient-from-config).
 
 ### Make basic calls to the model
 
