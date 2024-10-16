@@ -5,7 +5,7 @@ description: Search for images on an Azure AI Search index by using the Azure po
 
 author: HeidiSteen
 ms.author: heidist
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.topic: quickstart
 ms.date: 08/05/2024
 ms.custom:

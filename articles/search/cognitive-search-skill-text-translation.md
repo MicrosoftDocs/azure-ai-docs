@@ -6,7 +6,7 @@ description: Evaluates text and, for each record, returns text translated to the
 manager: nitinme
 author: careyjmac
 ms.author: chalton
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: reference

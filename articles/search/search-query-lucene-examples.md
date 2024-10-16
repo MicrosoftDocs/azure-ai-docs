@@ -7,7 +7,7 @@ manager: nitinme
 author: HeidiSteen
 ms.author: heidist
 
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: conceptual
@@ -114,7 +114,7 @@ The search expression can be a single term or a phrase, or a more complex expres
 
 Be sure to put a phrase within quotation marks if you want both strings to be evaluated as a single entity, as in this case searching for two distinct locations in the Address/StateProvince field. Depending on the client, you might need to escape (`\`) the quotation marks.
 
-The field specified in `fieldName:searchExpression` must be a searchable field. See [Create Index (REST API)](/rest/api/searchservice/create-index) for details on how field definitions are attributed.
+The field specified in `fieldName:searchExpression` must be a searchable field. See [Create Index (REST API)](/rest/api/searchservice/indexes/create) for details on how field definitions are attributed.
 
 ## Example 2: Fuzzy search
 

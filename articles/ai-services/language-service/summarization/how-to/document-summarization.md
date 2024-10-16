@@ -122,22 +122,11 @@ curl -i -X POST https://<your-language-resource-endpoint>/language/analyze-text/
     {
       "kind": "AbstractiveSummarization",
       "taskName": "Text Abstractive Summarization Task 1",
-      "parameters": {
-        "summaryLength": "short"
-      }
     }
   ]
 }
 '
 ```
-If you don't specify `summaryLength`, the model determines the summary length.
-
-### Using the summaryLength parameter
-For the `summaryLength` parameter, three values are accepted:
-* oneSentence: Generates a summary of mostly 1 sentence, with around 80 tokens.
-* short: Generates a summary of mostly 2-3 sentences, with around 120 tokens.
-* medium: Generates a summary of mostly 4-6 sentences, with around 170 tokens.
-* long: Generates a summary of mostly over 7 sentences, with around 210 tokens.
 
 2. Make the following changes in the command where needed:
     - Replace the value `your-language-resource-key` with your key.
@@ -222,7 +211,14 @@ The following cURL commands are executed from a BASH shell. Edit these commands 
 
 The query-based text summarization API is an extension to the existing text summarization API.
 
-The biggest difference is a new `query` field in the request body (under `tasks` > `parameters` > `query`). Additionally, there's a new way to specify the preferred `summaryLength` in "buckets" of short/medium/long, which we recommend using instead of `sentenceCount`, especially when using abstractive. Below is an example request:
+The biggest difference is a new `query` field in the request body (under `tasks` > `parameters` > `query`).
+
+> [!TIP]
+> Query based summarization has some differentiation in the utilization of length control based on the type of query based summarization you're using:
+> - Query based extractive summarization supports length control by specifying sentenceCount.
+> - Query based abstractive summarization doesn't support length control.
+
+Below is an example request:
 
 ```bash
 curl -i -X POST https://<your-language-resource-endpoint>/language/analyze-text/jobs?api-version=2023-11-15-preview \
@@ -253,8 +249,7 @@ curl -i -X POST https://<your-language-resource-endpoint>/language/analyze-text/
       "kind": "ExtractiveSummarization",
       "taskName": "Query_based Extractive Summarization",
       "parameters": {
-          "query": "XYZ-code",
-          "sentenceCount": 3
+          "query": "XYZ-code"
       }
     }
   ]
@@ -262,12 +257,84 @@ curl -i -X POST https://<your-language-resource-endpoint>/language/analyze-text/
 '
 ```
 
-### Using the summaryLength parameter
+### Summary length control
+
+#### Using the summaryLength parameter in abstractive summarization
+
+If you don't specify `summaryLength`, the model determines the summary length.
+
 For the `summaryLength` parameter, three values are accepted:
 * oneSentence: Generates a summary of mostly 1 sentence, with around 80 tokens.
 * short: Generates a summary of mostly 2-3 sentences, with around 120 tokens.
 * medium: Generates a summary of mostly 4-6 sentences, with around 170 tokens.
 * long: Generates a summary of mostly over 7 sentences, with around 210 tokens.
+
+Below is an example request:
+
+```bash
+curl -i -X POST https://<your-language-resource-endpoint>/language/analyze-text/jobs?api-version=2023-04-01 \
+-H "Content-Type: application/json" \
+-H "Ocp-Apim-Subscription-Key: <your-language-resource-key>" \
+-d \
+' 
+{
+  "displayName": "Text Abstractive Summarization Task Example",
+  "analysisInput": {
+    "documents": [
+      {
+        "id": "1",
+        "language": "en",
+        "text": "At Microsoft, we have been on a quest to advance AI beyond existing techniques, by taking a more holistic, human-centric approach to learning and understanding. As Chief Technology Officer of Azure AI services, I have been working with a team of amazing scientists and engineers to turn this quest into a reality. In my role, I enjoy a unique perspective in viewing the relationship among three attributes of human cognition: monolingual text (X), audio or visual sensory signals, (Y) and multilingual (Z). At the intersection of all three, there’s magic—what we call XYZ-code as illustrated in Figure 1—a joint representation to create more powerful AI that can speak, hear, see, and understand humans better. We believe XYZ-code enables us to fulfill our long-term vision: cross-domain transfer learning, spanning modalities and languages. The goal is to have pretrained models that can jointly learn representations to support a broad range of downstream AI tasks, much in the way humans do today. Over the past five years, we have achieved human performance on benchmarks in conversational speech recognition, machine translation, conversational question answering, machine reading comprehension, and image captioning. These five breakthroughs provided us with strong signals toward our more ambitious aspiration to produce a leap in AI capabilities, achieving multi-sensory and multilingual learning that is closer in line with how humans learn and understand. I believe the joint XYZ-code is a foundational component of this aspiration, if grounded with external knowledge sources in the downstream AI tasks."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "kind": "AbstractiveSummarization",
+      "taskName": "Length controlled Abstractive Summarization",
+          "parameters": {
+          "sentenceLength": "short"
+      }
+    }
+  ]
+}
+'
+```
+
+#### Using the sentenceCount parameter in extractive summarization
+For the `sentenceCount` parameter, you can input a value 1-20 to indicate the desired number of output sentences.
+
+Below is an example request:
+
+```bash
+curl -i -X POST https://<your-language-resource-endpoint>/language/analyze-text/jobs?api-version=2023-11-15-preview \
+-H "Content-Type: application/json" \
+-H "Ocp-Apim-Subscription-Key: <your-language-resource-key>" \
+-d \
+' 
+{
+  "displayName": "Text Extractive Summarization Task Example",
+  "analysisInput": {
+    "documents": [
+      {
+        "id": "1",
+        "language": "en",
+        "text": "At Microsoft, we have been on a quest to advance AI beyond existing techniques, by taking a more holistic, human-centric approach to learning and understanding. As Chief Technology Officer of Azure AI services, I have been working with a team of amazing scientists and engineers to turn this quest into a reality. In my role, I enjoy a unique perspective in viewing the relationship among three attributes of human cognition: monolingual text (X), audio or visual sensory signals, (Y) and multilingual (Z). At the intersection of all three, there’s magic—what we call XYZ-code as illustrated in Figure 1—a joint representation to create more powerful AI that can speak, hear, see, and understand humans better. We believe XYZ-code enables us to fulfill our long-term vision: cross-domain transfer learning, spanning modalities and languages. The goal is to have pretrained models that can jointly learn representations to support a broad range of downstream AI tasks, much in the way humans do today. Over the past five years, we have achieved human performance on benchmarks in conversational speech recognition, machine translation, conversational question answering, machine reading comprehension, and image captioning. These five breakthroughs provided us with strong signals toward our more ambitious aspiration to produce a leap in AI capabilities, achieving multi-sensory and multilingual learning that is closer in line with how humans learn and understand. I believe the joint XYZ-code is a foundational component of this aspiration, if grounded with external knowledge sources in the downstream AI tasks."
+      }
+    ]
+  },
+"tasks": [
+    {
+      "kind": "ExtractiveSummarization",
+      "taskName": "Length controlled Extractive Summarization",
+      "parameters": {
+          "sentenceCount": "5"
+      }
+    }
+  ]
+}
+'
+```
 
 ## Service and data limits
 

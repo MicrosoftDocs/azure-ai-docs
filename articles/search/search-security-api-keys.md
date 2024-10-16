@@ -6,7 +6,7 @@ description: Learn how to use an admin or query API key for inbound access to an
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: how-to

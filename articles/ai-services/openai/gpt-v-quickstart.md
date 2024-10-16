@@ -5,11 +5,11 @@ description: Use this article to get started using Azure OpenAI to deploy and us
 services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-openai
-ms.custom: devx-track-python
+ms.custom: devx-track-python, devx-track-js, devx-track-ts
 ms.topic: quickstart
 author: PatrickFarley
 ms.author: pafarley
-ms.date: 08/21/2024
+ms.date: 10/03/2024
 zone_pivot_groups: openai-quickstart-gpt-v
 ---
 
@@ -36,6 +36,18 @@ Get started using GPT-4 Turbo with images with the Azure OpenAI Service.
 ::: zone pivot="programming-language-python"
 
 [!INCLUDE [Python quickstart](includes/gpt-v-python.md)]
+
+::: zone-end
+
+::: zone pivot="programming-language-javascript"
+
+[!INCLUDE [JavaScript quickstart](includes/gpt-v-javascript.md)]
+
+::: zone-end
+
+::: zone pivot="programming-language-dotnet"
+
+[!INCLUDE [.NET quickstart](includes/gpt-v-dotnet.md)]
 
 ::: zone-end
 

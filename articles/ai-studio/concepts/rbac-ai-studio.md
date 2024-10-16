@@ -8,15 +8,13 @@ ms.custom:
   - ignite-2023
   - build-2024
 ms.topic: conceptual
-ms.date: 5/21/2024
+ms.date: 9/12/2024
 ms.reviewer: deeikele
 ms.author: larryfr
 author: Blackmist
 ---
 
 # Role-based access control in Azure AI Studio
-
-[!INCLUDE [Feature preview](~/reusable-content/ce-skilling/azure/includes/ai-studio/includes/feature-preview.md)]
 
 In this article, you learn how to manage access (authorization) to an Azure AI Studio hub. Azure role-based access control (Azure RBAC) is used to manage access to Azure resources, such as the ability to create new resources or use existing ones. Users in your Microsoft Entra ID are assigned specific roles, which grant access to resources. Azure provides both built-in roles and the ability to create custom roles. 
 
@@ -45,10 +43,11 @@ Here's a table of the built-in roles and their permissions for the hub:
 | Azure AI Inference Deployment Operator | Perform all actions required to create a resource deployment within a resource group. |
 | Reader |     Read only access to the hub. This role is automatically assigned to all project members within the hub. |
 
-
 The key difference between Contributor and Azure AI Developer is the ability to make new hubs. If you don't want users to make new hubs (due to quota, cost, or just managing how many hubs you have), assign the Azure AI Developer role.
 
 Only the Owner and Contributor roles allow you to make a hub. At this time, custom roles can't grant you permission to make hubs.
+
+### Azure AI Developer role
 
 The full set of permissions for the new "Azure AI Developer" role are as follows:
 
@@ -56,22 +55,24 @@ The full set of permissions for the new "Azure AI Developer" role are as follows
 {
     "Permissions": [ 
         { 
-        "Actions": [ 
+        "Actions": [
+            "Microsoft.MachineLearningServices/workspaces/*/read",
+            "Microsoft.MachineLearningServices/workspaces/*/action",
+            "Microsoft.MachineLearningServices/workspaces/*/delete",
+            "Microsoft.MachineLearningServices/workspaces/*/write",
+            "Microsoft.MachineLearningServices/locations/*/read",
+            "Microsoft.Authorization/*/read",
+            "Microsoft.Resources/deployments/*"
+        ],
     
-            "Microsoft.MachineLearningServices/workspaces/*/read", 
-            "Microsoft.MachineLearningServices/workspaces/*/action", 
-            "Microsoft.MachineLearningServices/workspaces/*/delete", 
-            "Microsoft.MachineLearningServices/workspaces/*/write" 
-        ], 
-    
-        "NotActions": [ 
-            "Microsoft.MachineLearningServices/workspaces/delete", 
-            "Microsoft.MachineLearningServices/workspaces/write", 
-            "Microsoft.MachineLearningServices/workspaces/listKeys/action", 
-            "Microsoft.MachineLearningServices/workspaces/hubs/write", 
-            "Microsoft.MachineLearningServices/workspaces/hubs/delete", 
-            "Microsoft.MachineLearningServices/workspaces/featurestores/write", 
-            "Microsoft.MachineLearningServices/workspaces/featurestores/delete" 
+        "NotActions": [
+            "Microsoft.MachineLearningServices/workspaces/delete",
+            "Microsoft.MachineLearningServices/workspaces/write",
+            "Microsoft.MachineLearningServices/workspaces/listKeys/action",
+            "Microsoft.MachineLearningServices/workspaces/hubs/write",
+            "Microsoft.MachineLearningServices/workspaces/hubs/delete",
+            "Microsoft.MachineLearningServices/workspaces/featurestores/write",
+            "Microsoft.MachineLearningServices/workspaces/featurestores/delete"
         ], 
         "DataActions": [ 
             "Microsoft.CognitiveServices/accounts/OpenAI/*", 
@@ -85,6 +86,9 @@ The full set of permissions for the new "Azure AI Developer" role are as follows
     ] 
 }
 ```
+
+If the built-in Azure AI Developer role doesn't meet your needs, you can create a [custom role](#create-custom-roles).
+
 ## Default roles for projects 
 
 Projects in AI Studio have built-in roles that are available by default. 
@@ -144,9 +148,6 @@ az role assignment create --role "Azure AI Developer" --assignee "joe@contoso.co
 
 ## Create custom roles
 
-> [!NOTE]
-> In order to make a new hub, you need the Owner or Contributor role. At this time, a custom role, even with all actions allowed, will not enable you to make a hub. 
-
 If the built-in roles are insufficient, you can create custom roles. Custom roles might have the read, write, delete, and compute resource permissions in that AI Studio. You can make the role available at a specific project level, a specific resource group level, or a specific subscription level. 
 
 > [!NOTE]
@@ -202,6 +203,26 @@ The following JSON example defines a custom AI Studio developer role at the subs
 }
 ```
 
+For steps on creating a custom role, use one of the following articles:
+- [Azure portal](/azure/role-based-access-control/custom-roles-portal)
+- [Azure CLI](/azure/role-based-access-control/custom-roles-cli)
+- [Azure PowerShell](/azure/role-based-access-control/custom-roles-powershell)
+
+For more information on creating custom roles in general, visit the [Azure custom roles](/azure/role-based-access-control/custom-roles) article.
+
+## Assigning roles in AI Studio
+
+You can add users and assign roles directly from Azure AI Studio at either the hub or project level. From a hub or project overview page, select **New user** to add a user. 
+
+> [!NOTE]
+> You are limited to selecting built-in roles. If you need to assign custom roles, you must use the [Azure portal](/azure/role-based-access-control/role-assignments-portal), [Azure CLI](/azure/role-based-access-control/role-assignments-cli), or [Azure PowerShell](/azure/role-based-access-control/role-assignments-powershell).
+
+:::image type="content" source="../media/concepts/hub-overview-add-user.png" lightbox="../media/concepts/hub-overview-add-user.png" alt-text="Screenshot of the Azure AI Studio hub overview with the new user button highlighted.":::
+
+You are then prompted to enter the user information and select a built-in role.
+
+:::image type="content" source="../media/concepts/add-resource-users.png" lightbox="../media/concepts/add-resource-users.png" alt-text="Screenshot of the add users prompt with the role set to Azure AI Developer.":::
+
 ## Scenario: Use a customer-managed key
 
 When configuring a hub to use a customer-managed key (CMK), an Azure Key Vault is used to store the key. The user or service principal used to create the workspace must have owner or contributor access to the key vault.
@@ -213,6 +234,31 @@ If your AI Studio hub is configured with a **user-assigned managed identity**, t
 - `Microsoft.DocumentDB/databaseAccounts/write`
 
 Within the key vault, the user or service principal must have the create, get, delete, and purge access to the key through a key vault access policy. For more information, see [Azure Key Vault security](/azure/key-vault/general/security-features#controlling-access-to-key-vault-data).
+
+## Scenario: Connections using Microsoft Entra ID authentication
+
+When you create a connection that uses Microsoft Entra ID authentication, you must assign roles to your developers so they can access the resource.
+
+| Resource connection | Role | Description |
+|----------|------|-------------|
+| Azure AI Search | Contributor | List API-Keys to list indexes from Azure AI Studio. |
+| Azure AI Search | Search Index Data Contributor | Required for indexing scenarios |
+| Azure AI services / Azure OpenAI | Cognitive Services OpenAI Contributor | Call public ingestion API from Azure AI Studio. |
+| Azure AI services / Azure OpenAI | Cognitive Services User | List API-Keys from Azure AI Studio. |
+| Azure AI services / Azure OpenAI | Contributor | Allows for calls to the control plane. |
+
+When using Microsoft Entra ID authenticated connections in the chat playground, the services need to authorize each other to access the required resources. The admin performing the configuration needs to have the __Owner__ role on these resources to add role assignments. The following table lists the required role assignments for each resource. The __Assignee__ column refers to the system-assigned managed identity of the listed resource. The __Resource__ column refers to the resource that the assignee needs to access. For example, Azure OpenAI has a system-assigned managed identity that needs to be assigned the __Search Index Data Reader__ role for the Azure AI Search resource.
+
+| Role | Assignee | Resource | Description |
+|------|----------|----------|-------------|
+| Search Index Data Reader | Azure AI services / Azure OpenAI | Azure AI Search | Inference service queries the data from the index. Only used for inference scenarios. |
+| Search Index Data Contributor | Azure AI services / Azure OpenAI | Azure AI Search | Read-write access to content in indexes. Import, refresh, or query the documents collection of an index. Only used for ingestion and inference scenarios. |
+| Search Service Contributor | Azure AI services / Azure OpenAI | Azure AI Search | Read-write access to object definitions (indexes, aliases, synonym maps, indexers, data sources, and skillsets). Inference service queries the index schema for auto fields mapping. Data ingestion service creates index, data sources, skill set, indexer, and queries the indexer status. |
+| Cognitive Services OpenAI Contributor | Azure AI Search | Azure AI services / Azure OpenAI | Custom skill |
+| Cognitive Services OpenAI User | Azure OpenAI Resource for chat model | Azure OpenAI resource for embedding model | Required only if using two Azure OpenAI resources to communicate. |
+
+> [!NOTE]
+> The __Cognitive Services OpenAI User__ role is only required if you are using two Azure OpenAI resources: one for your chat model and one for your embedding model. If this applies, enable Trusted Services AND ensure the connection for your embedding model Azure OpenAI resource has Microsoft Entra ID enabled.  
 
 ## Scenario: Use an existing Azure OpenAI resource
 
@@ -291,8 +337,8 @@ The following example defines a role for a developer using [Azure OpenAI Assista
 {
     "id": "",
     "properties": {
-        "roleName": "CognitiveServices OpenAI Assistants API Developer",
-        "description": "Custom role to work with AOAI Assistants API",
+        "roleName": "Azure OpenAI Assistants API Developer",
+        "description": "Custom role to work with Azure OpenAI Assistants API",
         "assignableScopes": [
             "<your-scope>"
         ],

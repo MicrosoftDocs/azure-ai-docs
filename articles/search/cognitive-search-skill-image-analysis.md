@@ -6,7 +6,7 @@ description: Extract semantic text through image analysis using the Image Analys
 author: careyjmac
 ms.author: chalton
 
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: reference
@@ -778,4 +778,4 @@ If you get the error similar to `"One or more skills are invalid. Details: Error
 + [Built-in skills](cognitive-search-predefined-skills.md)
 + [How to define a skillset](cognitive-search-defining-skillset.md)
 + [Extract text and information from images](cognitive-search-concept-image-scenarios.md)
-+ [Create Indexer (REST)](/rest/api/searchservice/create-indexer)
++ [Create Indexer (REST)](/rest/api/searchservice/indexers/create)

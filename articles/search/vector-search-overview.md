@@ -5,7 +5,7 @@ description: Describes concepts, scenarios, and availability of vector capabilit
 
 author: robertklee
 ms.author: robertlee
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: conceptual

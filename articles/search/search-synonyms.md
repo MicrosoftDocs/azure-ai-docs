@@ -6,7 +6,7 @@ description: Create a synonym map to expand the scope of a search query over an 
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: how-to
@@ -33,7 +33,7 @@ To create a synonym map, do so programmatically. The portal doesn't support syno
 
 ### [REST](#tab/rest)
 
-Use the [Create Synonym Map (REST API)](/rest/api/searchservice/create-synonym-map) to create a synonym map.
+Use the [Create Synonym Map (REST API)](/rest/api/searchservice/synonym-maps/create) to create a synonym map.
 
 ```http
 POST /synonymmaps?api-version=2024-07-01
@@ -251,4 +251,4 @@ If you have an existing index in a development (nonproduction) environment, expe
 ## Next steps
 
 > [!div class="nextstepaction"]
-> [Create a synonym map (REST API)](/rest/api/searchservice/create-synonym-map)
+> [Create a synonym map (REST API)](/rest/api/searchservice/synonym-maps/create)

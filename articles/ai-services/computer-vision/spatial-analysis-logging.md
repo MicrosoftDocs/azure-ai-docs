@@ -450,7 +450,7 @@ Review the details of your support request to ensure everything is accurate and 
 
 ## Next steps
 
-* [Deploy a People Counting web application](spatial-analysis-web-app.md)
+<!--* [Deploy a People Counting web application](spatial-analysis-web-app.md)-->
 * [Configure Spatial Analysis operations](./spatial-analysis-operations.md)
 * [Camera placement guide](spatial-analysis-camera-placement.md)
 * [Zone and line placement guide](spatial-analysis-zone-line-placement.md)

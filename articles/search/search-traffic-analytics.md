@@ -6,7 +6,7 @@ author: HeidiSteen
 manager: nitinme
 ms.author: heidist
 
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.topic: conceptual
 ms.date: 06/19/2024
 ---
@@ -109,7 +109,7 @@ Every time that a search request is issued by a user, you should log that as a s
 + **ScoringProfile**: (string) name of the scoring profile used, if any
 
 > [!NOTE]
-> Request the count of user generated queries by adding $count=true to your search query. For more information, see [Search Documents (REST)](/rest/api/searchservice/search-documents#query-parameters).
+> Request the count of user generated queries by adding $count=true to your search query. For more information, see [Search Documents (REST)](/rest/api/searchservice/documents/search-post#searchrequest).
 >
 
 ```csharp

@@ -12,6 +12,8 @@ items:
     href: reference/region-support.md
   - name: Azure AI FAQ
     href: faq.yml
+  - name: "AI Studio or Azure Machine Learning studio: Which should I choose?"
+    href: /ai/ai-studio-experiences-overview?context=/azure/ai-studio/context/context
 - name: Quickstarts
   items:
   - name: Create a project and use the chat playground
@@ -29,12 +31,15 @@ items:
   items:
   - name: Deploy an enterprise chat web app
     href: tutorials/deploy-chat-web-app.md
-  - name: Build your own copilot with the prompt flow SDK
+  - name: Build a custom chat app with the prompt flow SDK
     items:
-      - name: "Part 1: Build a custom copilot that implements RAG"
+      - name: "Part 1: Set up resources"
+        href: tutorials/copilot-sdk-create-resources.md
+        displayName: code,sdk
+      - name: "Part 2: Add data retrieval to a chat app"
         href: tutorials/copilot-sdk-build-rag.md
         displayName: code,sdk
-      - name: "Part 2: Evaluate and deploy your custom copilot"
+      - name: "Part 3: Evaluate and deploy a chat app"
         href: tutorials/copilot-sdk-evaluate-deploy.md
         displayName: code,sdk
 - name: How-to
@@ -46,14 +51,14 @@ items:
       href: concepts/ai-resources.md
     - name: Create your first hub
       href: how-to/create-azure-ai-resource.md
+    - name: Create a hub using the Azure Machine Learning SDK and CLI
+      href: how-to/develop/create-hub-project-sdk.md
     - name: Create a hub with custom security
       items:
       - name: Create a hub in the Azure portal
         href: how-to/create-secure-ai-hub.md
       - name: Create a hub from template
         href: how-to/create-azure-ai-hub-template.md
-      - name: Create a hub using the Azure Machine Learning SDK and CLI
-        href: how-to/develop/create-hub-project-sdk.md
         displayName: code
       - name: Create a hub using Terraform
         href: how-to/create-hub-terraform.md
@@ -61,15 +66,49 @@ items:
       href: how-to/create-projects.md
     - name: Create and manage compute
       href: how-to/create-manage-compute.md
-    - name: Connect to external resources
+  - name: Connect to services and resources
+    items:
+    - name: Connections overview
+      href: concepts/connections.md
+    - name: Create a connection
+      href: how-to/connections-add.md
+    - name: Create a connection using the Azure Machine Learning SDK
+      href: how-to/develop/connections-add-sdk.md
+      displayName: code
+    - name: Azure AI services connections
       items:
-      - name: Connections overview
-        href: concepts/connections.md
-      - name: Create a connection
-        href: how-to/connections-add.md
-      - name: Create a connection using the Azure Machine Learning SDK
-        href: how-to/develop/connections-add-sdk.md
-        displayName: code
+      - name: What are AI services?
+        href: ../ai-services/what-are-ai-services.md?context=/azure/ai-studio/context/context
+        displayName: cognitive
+      - name: Get started with AI services in AI Studio
+        href: ai-services/get-started.md
+      - name: Connect AI services in AI Studio
+        href: ai-services/connect-ai-services.md
+      - name: Azure OpenAI
+        items:
+        - name: Get started with Assistants and code interpreter in the playground
+          href: ../ai-services/openai/assistants-quickstart.md?context=/azure/ai-studio/context/context
+        - name: Analyze images and video with GPT-4 for Vision in the playground
+          href: quickstarts/multimodal-vision.md
+        - name: Use your image data with Azure OpenAI
+          href: how-to/data-image-add.md
+          displayName: vision, gpt, turbo
+      - name: Azure AI Content Safety
+        items:
+        - name: Content filtering
+          href: concepts/content-filtering.md
+        - name: Prevent input attacks with Prompt Shields
+          href: how-to/prompt-shields.md
+        - name: Detect groundedness in chat responses
+          href: how-to/groundedness.md
+      - name: Speech
+        items:
+        - name: Real-time speech to text
+          href: ../ai-services/speech-service/get-started-speech-to-text.md?context=/azure/ai-studio/context/context
+        - name: Pronunciation assessment
+          href: ../ai-services/speech-service/pronunciation-assessment-tool.md?context=/azure/ai-studio/context/context
+        - name: Hear and speak with chat in the playground
+          href: quickstarts/hear-speak-playground.md
   - name: Select and deploy AI models
     items:
     - name: Model catalog
@@ -92,8 +131,6 @@ items:
       items:
         - name: Phi-3 family chat models
           href: how-to/deploy-models-phi-3.md
-        - name: Phi-3.5 MoE chat model
-          href: how-to/deploy-models-phi-3-5-moe.md
         - name: Phi-3 chat model with vision
           href: how-to/deploy-models-phi-3-vision.md
         - name: Phi-3.5 chat model with vision
@@ -125,7 +162,7 @@ items:
       displayName: maas
     - name: JAIS model
       href: how-to/deploy-models-jais.md
-    - name: Jamba instruct model
+    - name: AI21 Jamba models
       href: how-to/deploy-models-jamba.md
     - name: TimeGEN-1 model
       href: how-to/deploy-models-timegen-1.md
@@ -213,6 +250,8 @@ items:
         href: how-to/develop/vscode.md
       - name: Start with an AI template
         href: how-to/develop/ai-template-get-started.md
+      - name: Develop with LlamaIndex and Azure AI studio
+        href: how-to/develop/llama-index.md
       - name: Trace your application with prompt flow
         href: how-to/develop/trace-local-sdk.md
         displayName: code,sdk
@@ -228,15 +267,15 @@ items:
         href: concepts/evaluation-improvement-strategies.md
     - name: Manually evaluate prompts in Azure AI Studio playground
       href: how-to/evaluate-prompts-playground.md
-    - name: Generate adversarial simulations for safety evaluation
+    - name: Generate synthetic and simulated data for evaluation
       href: how-to/develop/simulator-interaction-data.md
-    - name: Evaluate with the prompt flow SDK
-      href: how-to/develop/flow-evaluate-sdk.md
+    - name: Evaluate with the Azure AI Evaluation SDK
+      href: how-to/develop/evaluate-sdk.md
       displayName: code,accuracy,metrics
     - name: Evaluate with Azure AI Studio
       href: how-to/evaluate-generative-ai-app.md
     - name: View evaluation results in Azure AI Studio
-      href: how-to/evaluate-flow-results.md
+      href: how-to/evaluate-results.md
       displayName: accuracy,metrics
     - name: Evaluate flows in AI Studio
       items:
@@ -256,40 +295,6 @@ items:
       href: how-to/monitor-quality-safety.md
     - name: Troubleshoot deployments and monitoring
       href: how-to/troubleshoot-deploy-and-monitor.md
-  - name: Get started with Azure AI services
-    items:
-    - name: What are AI services?
-      href: ../ai-services/what-are-ai-services.md?context=/azure/ai-studio/context/context
-      displayName: cognitive
-    - name: Get started with AI services in AI Studio
-      href: ai-services/get-started.md
-    - name: Connect AI services in AI Studio
-      href: ai-services/connect-ai-services.md
-    - name: Azure OpenAI
-      items:
-      - name: Get started with Assistants and code interpreter in the playground
-        href: ../ai-services/openai/assistants-quickstart.md?context=/azure/ai-studio/context/context
-      - name: Analyze images and video with GPT-4 for Vision in the playground
-        href: quickstarts/multimodal-vision.md
-      - name: Use your image data with Azure OpenAI
-        href: how-to/data-image-add.md
-        displayName: vision, gpt, turbo
-    - name: Azure AI Content Safety
-      items:
-      - name: Content filtering
-        href: concepts/content-filtering.md
-      - name: Prevent input attacks with Prompt Shields
-        href: how-to/prompt-shields.md
-      - name: Detect groundedness in chat responses
-        href: how-to/groundedness.md
-    - name: Speech
-      items:
-      - name: Real-time speech to text
-        href: ../ai-services/speech-service/get-started-speech-to-text.md?context=/azure/ai-studio/context/context
-      - name: Pronunciation assessment
-        href: ../ai-services/speech-service/pronunciation-assessment-tool.md?context=/azure/ai-studio/context/context
-      - name: Hear and speak with chat in the playground
-        href: quickstarts/hear-speak-playground.md
   - name: Costs and quotas
     items:
     - name: Plan and manage costs
@@ -299,34 +304,35 @@ items:
       href: how-to/quota.md
     - name: Increase rate limit
       href: how-to/autoscale.md
-  - name: Infrastructure & security
+- name: Security & Governance
+  items:
+  - name: Identity & access management
     items:
-    - name: Identity & access management
-      items:
-      - name: Role-based access control in Azure AI Studio
-        href: concepts/rbac-ai-studio.md
-    - name: Network security
-      items:
-      - name: Configure managed network
-        href: how-to/configure-managed-network.md
-      - name: Configure private link
-        href: how-to/configure-private-link.md
-      - name: Configure custom DNS
-        href: /azure/machine-learning/how-to-custom-dns?context=/azure/ai-studio/context/context
-      - name: Troubleshoot secure project connectivity
-        href: how-to/troubleshoot-secure-connection-project.md
-    - name: Data protection & encryption
-      items:
-      - name: Rotate keys
-        href: ../ai-services/rotate-keys.md?context=/azure/ai-studio/context/context
-      - name: Configure customer-managed keys
-        href: ../ai-services/encryption/cognitive-services-encryption-keys-portal.md?context=/azure/ai-studio/context/context
-    - name: Vulnerability management
-      href: concepts/vulnerability-management.md
-    - name: Disaster recovery
-      href: how-to/disaster-recovery.md
-    - name: Security baseline
-      href: /security/benchmark/azure/baselines/azure-ai-studio-security-baseline
+    - name: Role-based access control in Azure AI Studio
+      href: concepts/rbac-ai-studio.md
+  - name: Network security
+    items:
+    - name: Configure managed network
+      href: how-to/configure-managed-network.md
+    - name: Configure private link
+      displayName: custom dns
+      href: how-to/configure-private-link.md
+    - name: Secure playground chat
+      href: how-to/secure-data-playground.md
+    - name: Troubleshoot secure project connectivity
+      href: how-to/troubleshoot-secure-connection-project.md
+  - name: Data protection & encryption
+    items:
+    - name: Configure customer-managed keys
+      href: concepts/encryption-keys-portal.md
+    - name: Rotate keys
+      href: ../ai-services/rotate-keys.md?context=/azure/ai-studio/context/context
+  - name: Vulnerability management
+    href: concepts/vulnerability-management.md
+  - name: Disaster recovery
+    href: how-to/disaster-recovery.md
+  - name: Security baseline
+    href: /security/benchmark/azure/baselines/azure-ai-studio-security-baseline
 - name: Responsible AI
   items:
   - name: Overview

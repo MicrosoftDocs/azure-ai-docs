@@ -6,9 +6,10 @@ author: eric-urban
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 7/15/2024
+ms.date: 9/19/2024
 ms.author: eur
 zone_pivot_groups: speech-studio-cli-rest
+#Customer intent: As a developer, I want to train a custom speech model to improve recognition accuracy for the Microsoft base model or a custom model.
 ---
 
 # Train a custom speech model

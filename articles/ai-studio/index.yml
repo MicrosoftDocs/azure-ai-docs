@@ -10,9 +10,9 @@ metadata:
     - build-2024
     - copilot-learning-hub
   ms.topic: landing-page
-  ms.reviewer: eur
-  ms.author: eur
-  author: eric-urban
+  ms.reviewer: sgilley
+  ms.author: sgilley
+  author: sdgilley
   ms.date: 5/21/2024
 # linkListType: architecture | concept | deploy | download | get-started | how-to-guide | learn | overview | quickstart | reference | tutorial | video | whats-new
 
@@ -67,8 +67,8 @@ landingContent:
             url: how-to/develop/sdk-overview.md
           - text: Work with AI Studio projects in VS Code
             url: how-to/develop/vscode.md
-          - text: Build your copilot using the prompt flow SDK
-            url: tutorials/copilot-sdk-build-rag.md
+          - text: Build a custom chat app with the prompt flow SDK
+            url: tutorials/copilot-sdk-create-resources.md
       - linkListType: concept
         links:
           - text: Connections for flows and indexing

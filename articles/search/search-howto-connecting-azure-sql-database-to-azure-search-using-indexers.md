@@ -6,7 +6,7 @@ description: Set up a search indexer to index data stored in Azure SQL Database 
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: how-to
@@ -46,7 +46,7 @@ Other approaches for creating an Azure SQL indexer include Azure SDKs or [Import
 
 The data source definition specifies the data to index, credentials, and policies for identifying changes in the data. A data source is defined as an independent resource so that it can be used by multiple indexers.
 
-1. [Create data source](/rest/api/searchservice/create-data-source) or [Update data source](/rest/api/searchservice/update-data-source) to set its definition: 
+1. [Create Data Source](/rest/api/searchservice/data-sources/create) or [Create or Update Data Source](/rest/api/searchservice/data-sources/create-or-update) to set its definition: 
 
    ```http
     POST https://myservice.search.windows.net/datasources?api-version=2024-07-01
@@ -85,7 +85,7 @@ The data source definition specifies the data to index, credentials, and policie
 
 In a [search index](search-what-is-an-index.md), add fields that correspond to the fields in SQL database. Ensure that the search index schema is compatible with source schema by using [equivalent data types](#TypeMapping).
 
-1. [Create or update an index](/rest/api/searchservice/create-index) to define search fields that will store data:
+1. [Create or update an index](/rest/api/searchservice/indexes/create) to define search fields that will store data:
 
     ```http
     POST https://[service name].search.windows.net/indexes?api-version=2024-07-01
@@ -138,7 +138,7 @@ In a [search index](search-what-is-an-index.md), add fields that correspond to t
 
 Once the index and data source have been created, you're ready to create the indexer. Indexer configuration specifies the inputs, parameters, and properties controlling run time behaviors.
 
-1. [Create or update an indexer](/rest/api/searchservice/create-indexer) by giving it a name and referencing the data source and target index:
+1. [Create or update an indexer](/rest/api/searchservice/indexers/create) by giving it a name and referencing the data source and target index:
 
     ```http
     POST https://[service name].search.windows.net/indexers?api-version=2024-07-01
@@ -182,7 +182,7 @@ An indexer runs automatically when it's created. You can prevent this by setting
 
 ## Check indexer status
 
-To monitor the indexer status and execution history, send a [Get Indexer Status](/rest/api/searchservice/get-indexer-status) request:
+To monitor the indexer status and execution history, send a [Get Indexer Status](/rest/api/searchservice/indexers/get-status) request:
 
 ```http
 GET https://myservice.search.windows.net/indexers/myindexer/status?api-version=2024-07-01
@@ -272,7 +272,7 @@ api-key: admin-key
 When using SQL integrated change tracking policy, don't specify a separate data deletion detection policy. The SQL integrated change tracking policy has built-in support for identifying deleted rows. However, for the deleted rows to be detected automatically, the document key in your search index must be the same as the primary key in the SQL table. 
 
 > [!NOTE]  
-> When using [TRUNCATE TABLE](/sql/t-sql/statements/truncate-table-transact-sql) to remove a large number of rows from a SQL table, the indexer needs to be [reset](/rest/api/searchservice/reset-indexer) to reset the change tracking state to pick up row deletions.
+> When using [TRUNCATE TABLE](/sql/t-sql/statements/truncate-table-transact-sql) to remove a large number of rows from a SQL table, the indexer needs to be [reset](/rest/api/searchservice/indexers/reset) to reset the change tracking state to pick up row deletions.
 
 <a name="HighWaterMarkPolicy"></a>
 

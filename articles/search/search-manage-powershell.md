@@ -6,7 +6,7 @@ description: Create and configure an Azure AI Search service with PowerShell. Yo
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.devlang: powershell
 ms.topic: how-to
 ms.date: 04/05/2024

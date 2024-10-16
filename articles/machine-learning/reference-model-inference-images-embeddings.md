@@ -41,6 +41,7 @@ POST /images/embeddings?api-version=2024-04-01-preview
 
 | Name | Required | Type | Description |
 | --- | --- | --- | --- |
+| model |      | string | The model name. This parameter is ignored if the endpoint serves only one model. |
 | input | True | [EmbeddingInput](#embeddinginput)\[\] | Input image to embed. To embed multiple inputs in a single request, pass an array. The input must not exceed the max input tokens for the model. |
 | dimensions |     | integer | The number of dimensions the resulting output embeddings should have. Passing null causes the model to use its default value. Returns a 422 error if the model doesn't support the value or parameter. |
 | encoding\_format |     | [EmbeddingEncodingFormat](#embeddingencodingformat) | The format to return the embeddings in. Either base64, float, int8, uint8, binary, or ubinary. Returns a 422 error if the model doesn't support the value or parameter. |

@@ -5,7 +5,7 @@ description: Learn the tools and techniques for efficiently scaling out a custom
 
 author: gmndrg
 ms.author: gimondra
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: conceptual
@@ -30,7 +30,7 @@ The following properties on a [custom skill](cognitive-search-custom-skill-web-a
 
 1. Set `timeout`to a value sufficient for the skill to respond with a valid response.
 
-1. In the `indexer` definition, set [`batchSize`](/rest/api/searchservice/create-indexer#indexer-parameters) to the number of documents that should be read from the data source and enriched concurrently.
+1. In the `indexer` definition, set [`batchSize`](/rest/api/searchservice/indexers/create#indexer-parameters) to the number of documents that should be read from the data source and enriched concurrently.
 
 ### Considerations
 

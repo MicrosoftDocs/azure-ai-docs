@@ -6,7 +6,7 @@ description: Syntax and reference documentation for using OData comparison opera
 manager: nitinme
 author: bevloh
 ms.author: beloh
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: reference
@@ -166,4 +166,4 @@ Rooms/any(room: room/Type eq 'Deluxe Room')
 - [Filters in Azure AI Search](search-filters.md)
 - [OData expression language overview for Azure AI Search](query-odata-filter-orderby-syntax.md)
 - [OData expression syntax reference for Azure AI Search](search-query-odata-syntax-reference.md)
-- [Search Documents &#40;Azure AI Search REST API&#41;](/rest/api/searchservice/Search-Documents)
+- [Search Documents &#40;Azure AI Search REST API&#41;](/rest/api/searchservice/documents/search-post)

@@ -4,7 +4,7 @@ titleSuffix: Azure Data Science Virtual Machine
 description: Learn how to create common user accounts that can be used across multiple Data Science Virtual Machines. You can use Microsoft Entra ID or an on-premises Active Directory to authenticate users to the Data Science Virtual Machine.
 keywords: deep learning, AI, data science tools, data science virtual machine, geospatial analytics, team data science process
 services: machine-learning
-ms.service: data-science-vm
+ms.service: azure-data-science-virtual-machines
 author: fbsolo-ms1
 ms.author: franksolomon
 ms.topic: conceptual
@@ -14,7 +14,7 @@ ms.date: 04/10/2024
 
 # Set up a common identity on a Data Science Virtual Machine
 
-On a Microsoft Azure Virtual Machine (VM), or a Data Science Virtual Machine (DSVM), you create local user accounts while provisioning the VM. Users then authenticate to the VM with credentials for those user accounts. If you have multiple VMs that your users need to access, credential management can become difficult. To solve the problem, you can deploy common user accounts, and manage those accounts, through a standards-based identity provider. You can then use a single set of credentials to access multiple resources on Azure, including multiple DSVMs.
+On a Microsoft Azure Virtual Machine (VM), or a Data Science Virtual Machine (DSVM), you create local user accounts while provisioning the VM. Users then authenticate to the VM with credentials for those user accounts. If you have multiple VMs, and your users need to access them, credential management can become difficult. To solve the problem, you can deploy common user accounts, and manage those accounts, through a standards-based identity provider. You can then use a single set of credentials to access multiple resources on Azure, including multiple DSVMs.
 
 Active Directory is a popular identity provider. Azure supports it both as a cloud service and as an on-premises directory. You can use Microsoft Entra ID or on-premises Active Directory to authenticate users on a standalone DSVM, or a cluster of DSVMs, in an Azure virtual machine scale set. To do this, you join the DSVM instances to an Active Directory domain.
 
@@ -38,7 +38,7 @@ Microsoft Entra Domain Services makes it simple to manage your identities. It pr
    
         The **User** pane opens, as shown in this screenshot:
 
-        :::image type="content" source="./media/add-user.png" alt-text="Screenshot showing the add user pane." lightbox="./media/add-user.png":::
+        :::image type="content" source="./media/dsvm-common-identity/add-user.png" alt-text="Screenshot showing the add user pane." lightbox="./media/dsvm-common-identity/add-user.png":::
     
    1. Enter information about the user, such as **Name** and **User name**. The domain name portion of the user name must be either the initial default domain name "[domain name].onmicrosoft.com" or a verified, non-federated [custom domain name](/azure/active-directory/fundamentals/add-custom-domain) such as "contoso.com."
     

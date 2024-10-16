@@ -4,7 +4,7 @@ titleSuffix: Azure AI Search
 description: Learn how to efficiently index data using Azure AI Search's push API. This tutorial and sample code are in C#.
 author: gmndrg
 ms.author: gimondra
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.topic: tutorial
 ms.date: 1/18/2024
 ms.custom:
@@ -365,7 +365,7 @@ You can explore the populated search index after the program has run programmati
 
 ### Programatically
 
-There are two main options for checking the number of documents in an index: the [Count Documents API](/rest/api/searchservice/count-documents) and the [Get Index Statistics API](/rest/api/searchservice/get-index-statistics). Both paths require time to process so don't be alarmed if the number of documents returned is initially lower than you expect.
+There are two main options for checking the number of documents in an index: the [Count Documents API](/rest/api/searchservice/documents/count) and the [Get Index Statistics API](/rest/api/searchservice/indexes/get-statistics). Both paths require time to process so don't be alarmed if the number of documents returned is initially lower than you expect.
 
 #### Count Documents
 
@@ -389,7 +389,7 @@ In Azure portal, from the left navigation pane, and find the **optimize-indexing
 
   ![List of Azure AI Search indexes](media/tutorial-optimize-data-indexing/portal-output.png "List of Azure AI Search indexes")
 
-The *Document Count* and *Storage Size* are based on [Get Index Statistics API](/rest/api/searchservice/get-index-statistics) and can take several minutes to update.
+The *Document Count* and *Storage Size* are based on [Get Index Statistics API](/rest/api/searchservice/indexes/get-statistics) and can take several minutes to update.
 
 ## Reset and rerun
 

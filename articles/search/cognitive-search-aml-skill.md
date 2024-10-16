@@ -5,7 +5,7 @@ description: Extend capabilities of Azure AI Search skillsets with Azure Machine
 
 author: gmndrg
 ms.author: gimondra
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
   - build-2024

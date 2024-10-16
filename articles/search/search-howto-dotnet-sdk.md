@@ -7,7 +7,7 @@ manager: nitinme
 author: HeidiSteen
 ms.author: heidist
 ms.devlang: csharp
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.topic: how-to
 ms.date: 10/18/2023
 ms.custom:
@@ -295,7 +295,7 @@ Whether you use the basic `SearchField` API or either one of the helper models, 
 
 #### Adding field attributes
 
-Notice how each field is decorated with attributes such as `IsFilterable`, `IsSortable`, `IsKey`, and `AnalyzerName`. These attributes map directly to the [corresponding field attributes in an Azure AI Search index](/rest/api/searchservice/create-index). The `FieldBuilder` class uses these properties to construct field definitions for the index.
+Notice how each field is decorated with attributes such as `IsFilterable`, `IsSortable`, `IsKey`, and `AnalyzerName`. These attributes map directly to the [corresponding field attributes in an Azure AI Search index](/rest/api/searchservice/indexes/create). The `FieldBuilder` class uses these properties to construct field definitions for the index.
 
 #### Field type mapping
 

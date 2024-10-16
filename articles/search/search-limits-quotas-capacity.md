@@ -6,9 +6,9 @@ description: Service limits used for capacity planning and maximum limits on req
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.topic: conceptual
-ms.date: 09/04/2024
+ms.date: 09/19/2024
 ms.custom:
   - references_regions
   - build-2024
@@ -53,7 +53,7 @@ Maximum limits on storage, workloads, and quantities of indexes and other object
 
 <sup>2</sup> The upper limit on fields includes both first-level fields and nested subfields in a complex collection. For example, if an index contains 15 fields and has two complex collections with five subfields each, the field count of your index is 25. Indexes with a very large fields collection can be slow. [Limit fields and attributes](search-what-is-an-index.md#physical-structure-and-size) to just those you need, and run indexing and query test to ensure performance is acceptable.
 
-<sup>3</sup> An upper limit exists for elements because having a large number of them significantly increases the storage required for your index. An element of a complex collection is defined as a member of that collection. For example, assume a [Hotel document with a Rooms complex collection](search-howto-complex-data-types.md#indexing-complex-types), each room in the Rooms collection is considered an element. During indexing, the indexing engine can safely process a maximum of 3,000 elements across the document as a whole. [This limit](search-api-migration.md#upgrade-to-2019-05-06) was introduced in `api-version=2019-05-06` and applies to complex collections only, and not to string collections or to complex fields.
+<sup>3</sup> An upper limit exists for elements because having a large number of them significantly increases the storage required for your index. An element of a complex collection is defined as a member of that collection. For example, assume a [Hotel document with a Rooms complex collection](search-howto-complex-data-types.md#complex-collection-limits), each room in the Rooms collection is considered an element. During indexing, the indexing engine can safely process a maximum of 3,000 elements across the document as a whole. [This limit](search-api-migration.md#upgrade-to-2019-05-06) was introduced in `api-version=2019-05-06` and applies to complex collections only, and not to string collections or to complex fields.
 
 <sup>4</sup> On most tiers, maximum index size is all available storage on your search service. For S2, S3, and S3 HD, the maximum size of any index is the number provided in the table. Applies to search services created after April 3, 2024.
 
@@ -78,38 +78,14 @@ When estimating document size, remember to consider only those fields that add v
 
 ## Vector index size limits
 
-When you index documents with vector fields, Azure AI Search constructs internal vector indexes using the algorithm parameters you provide. The size of these vector indexes is restricted by the memory reserved for vector search for your service's tier (or `SKU`).
+When you index documents with vector fields, Azure AI Search constructs internal vector indexes using the algorithm parameters you provide. The size of these vector indexes is restricted by the memory reserved for vector search for your service's tier (or `SKU`). For guidance on managing and maximizing vector storage, see [Vector index size and staying under limits](vector-search-index-size.md).
 
-The service enforces a vector index size quota **for every partition** in your search service. Each extra partition increases the available vector index size quota. This quota is a hard limit to ensure your service remains healthy, which means that further indexing attempts once the limit is exceeded results in failure. You can resume indexing once you free up available quota by either deleting some vector documents or by scaling up in partitions.
+Vector limits vary by:
 
-Vector limits vary by service creation date and tier.
++ [service creation date](vector-search-index-size.md#how-to-check-service-creation-date)
++ [region](search-region-support.md)
 
-+ To check the age of your search service or learn more about vector indexes, see [Vector index size and staying under limits](vector-search-index-size.md).
-
-+ To view the vector quota in effect for your search service, use [GET Service Statistics](/rest/api/searchservice/get-service-statistics), or check the **Properties** and **Usage** tabs for your search service in the Azure portal.
-
-#### Storage quota (GB)
-
-This table repeats [partition storage limits](#service-limits) for context. The table shows the progression of storage quota increases in GB over time. Vector quota is per partition, so the increase in vector quota is bound to the increase in per-partition storage for each tier. 
-
-Higher capacity partitions were brought online starting in April 2024. Standard 3 (S3) and Standard 3 High Density (S3HD) have the same storage and partition limits.
-
-| Service creation date |Basic | S1| S2 | S3/HD | L1 | L2 |
-|-----------------------|------|---|----|----|----|----|
-|**Before July 1, 2023** <sup>1</sup> | 2  | 25 | 100 | 200 | 1,024 | 2,048 |
-|**July 1, 2023 through April 3, 2024** <sup>2</sup>| 2  | 25 | 100 | 200 | 1,024 | 2,048 |
-|**April 3, 2024 through May 17, 2024** <sup>3</sup> | 15  | 160 | 512 | 1,024 | 1,024 | 2,048 |
-|**After May 17, 2024** <sup>4</sup> | 15  | 160 | 512 | 1,024 | 2,048 | 4,096 |
-
-<sup>1</sup> Partition sizes during early preview.
-
-<sup>2</sup> No change during the later preview period.
-
-<sup>3</sup> Higher capacity storage for Basic, S1, S2, S3 in the following regions. **Americas**: Brazil South​, Canada Central​, Canada East​​, East US​, East US 2, ​Central US​, North Central US​, South Central US​, West US​, West US 2​, West US 3​, West Central US. **Europe**: France Central​. Italy North​​, North Europe​​, Norway East, Poland Central​​, Switzerland North​, Sweden Central​, UK South​, UK West​. **Middle East**:  UAE North. **Africa**: South Africa North. **Asia Pacific**: Australia East​, Australia Southeast​​, Central India, Jio India West​, East Asia, Southeast Asia​, Japan East, Japan West​, Korea Central, Korea South​.
-
-<sup>4</sup> Higher capacity storage for more tiers and more regions. **Europe**: Germany North​, Germany West Central, Switzerland West​. **Azure Government**: Texas, Arizona, Virginia. **Africa**: South Africa North​. **Asia Pacific**: China North 3, China East 3.
-
-#### Vector quota per partition (GB)
+Higher vector limits from April 2024 onwards exist on *new search services* in regions providing the extra capacity, which is most of them.
 
 This table shows the progression of vector quota increases in GB over time. The quota is per partition, so if you scale a new Standard (S1) service to 6 partitions, total vector quota is 35 multiplied by 6.
 
@@ -117,16 +93,21 @@ This table shows the progression of vector quota increases in GB over time. The 
 |-----------------------|------|---|----|----|----|----|
 |**Before July 1, 2023** <sup>1</sup> | 0.5 | 1 | 6 | 12 | 12 | 36 |
 | **July 1, 2023 through April 3, 2024** <sup>2</sup>| 1  | 3 | 12 | 36 | 12 | 36 |
-|**April 3, 2024 through May 17, 2024** <sup>3</sup> | 5  | 35 | 100 | 200 | 12 | 36 |
-|**After May 17, 2024** <sup>4</sup> | 5  | 35 | 150 | 300 | 150 | 300 |
+|**April 3, 2024 through May 17, 2024** <sup>3</sup> | **5**  | **35** | **150** | **300** | 12 | 36 |
+|**After May 17, 2024** <sup>4</sup> | 5  | 35 | 150 | 300 | **150** | **300** |
 
 <sup>1</sup> Initial vector limits during early preview.
 
 <sup>2</sup> Vector limits during the later preview period. Three regions didn't have the higher limits: Germany West Central, West India, Qatar Central.
 
-<sup>3</sup> Higher vector quota based on the larger partitions for supported tiers and regions.
+<sup>3</sup> Higher vector quota based on the larger partitions for supported tiers and regions. 
 
 <sup>4</sup> Higher vector quota for more tiers and regions based on partition size updates.
+
+The service enforces a vector index size quota *for every partition* in your search service. Each extra partition increases the available vector index size quota. This quota is a hard limit to ensure your service remains healthy, which means that further indexing attempts once the limit is exceeded results in failure. You can resume indexing once you free up available quota by either deleting some vector documents or by scaling up in partitions.
+
+> [!IMPORTANT]
+> Higher vector limits are tied to larger partition sizes. Regions that run on older infrastructure are subject to the July-April limits. Review the [regions list](search-region-support.md) for status on partition storage limits.
 
 ## Indexer limits
 
@@ -185,11 +166,14 @@ Maximum number of synonym maps varies by tier. Each rule can have up to 20 expan
 
 ## Index alias limits
 
-Maximum number of [index aliases](search-how-to-alias.md) varies by tier. In all tiers, the maximum number of aliases is double the maximum number of indexes allowed.
+Maximum number of [index aliases](search-how-to-alias.md) varies by tier and [service creation date](vector-search-index-size.md#how-to-check-service-creation-date). In all tiers, if the service was created after October 2022 the maximum number of aliases is double the maximum number of indexes allowed. If the service was created before October 2022, the limit is the number of indexes allowed.
 
-| Resource | Free | Basic | S1 | S2 | S3 | S3-HD |L1 | L2 |
+| Service Creation Date | Free | Basic | S1 | S2 | S3 | S3-HD |L1 | L2 |
 |----------|------|-------|----|----|----|-------|----|----|
-| Maximum aliases |6 |10 or 30 |100 |400 |400 |2000 per partition or 6000 per service |20 |20 |
+| Before October 2022 | 3 | 5 or 15 <sup>1</sup> | 50 | 200 | 200 | 1000 per partition or 3000 per service | 10 | 10 |
+| After October 2022 | 6 | 30 | 100 | 400 | 400 | 2000 per partition or 6000 per service | 20 | 20 |
+
+<sup>1</sup> Basic services created before December 2017 have lower limits (5 instead of 15) on indexes
 
 ## Data limits (AI enrichment)
 

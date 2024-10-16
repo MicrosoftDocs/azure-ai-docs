@@ -6,7 +6,7 @@ description: Query examples demonstrating the simple syntax for full text search
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: conceptual
@@ -73,7 +73,7 @@ POST /indexes/hotel-samples-index/docs/search?api-version=2024-07-01
 }
 ```
 
-A keyword search that's composed of important terms or phrases tend to work best. String fields undergo text analysis during indexing and querying, dropping nonessential words like "the", "and", "it". To see how a query string is tokenized in the index, pass the string in an [Analyze Text](/rest/api/searchservice/test-analyzer) call to the index.
+A keyword search that's composed of important terms or phrases tend to work best. String fields undergo text analysis during indexing and querying, dropping nonessential words like "the", "and", "it". To see how a query string is tokenized in the index, pass the string in an [Analyze Text](/rest/api/searchservice/indexes/analyze) call to the index.
 
 The "searchMode" parameter controls precision and recall. If you want more recall, use the default "any" value, which returns a result if any part of the query string is matched. If you favor precision, where all parts of the string must be matched, change searchMode to "all". Try the above query both ways to see how searchMode changes the outcome.
 

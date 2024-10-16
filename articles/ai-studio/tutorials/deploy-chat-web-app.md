@@ -9,7 +9,7 @@ ms.custom:
   - build-2024
 ms.topic: tutorial
 ms.date: 5/21/2024
-ms.reviewer: eur
+ms.reviewer: sgilley
 ms.author: aahi
 author: aahill
 ---
@@ -36,7 +36,7 @@ The steps in this tutorial are:
 
 - An [Azure AI Search service connection](../how-to/connections-add.md#create-a-new-connection) to index the sample product data. 
 
-- You need a local copy of product data. The [Azure-Samples/rag-data-openai-python-promptflow repository on GitHub](https://github.com/Azure-Samples/rag-data-openai-python-promptflow/) contains sample retail product information that's relevant for this tutorial scenario. Specifically, the `product_info_11.md` file contains product information about the TrailWalker hiking shoes that's relevant for this tutorial example. [Download the example Contoso Trek retail product data in a ZIP file](https://github.com/Azure-Samples/rag-data-openai-python-promptflow/raw/main/tutorial/data.zip) to your local machine.
+- You need a local copy of product data. The [Azure-Samples/rag-data-openai-python-promptflow repository on GitHub](https://github.com/Azure-Samples/rag-data-openai-python-promptflow/) contains sample retail product information that's relevant for this tutorial scenario. Specifically, the `product_info_11.md` file contains product information about the TrailWalker hiking shoes that's relevant for this tutorial example. [Download the example Contoso Trek retail product data in a ZIP file](https://github.com/Azure-Samples/rag-data-openai-python-promptflow/raw/refs/heads/main/tutorial/data/product-info.zip) to your local machine.
 
 - You need to have **Microsoft.Web** resource provider registered in the selected subscription, to be able to deploy to a web app.
 
@@ -157,4 +157,4 @@ If you delete the Cosmos DB resource but keep the chat history option enabled on
 ## Related content
 
 - [Get started building a chat app using the prompt flow SDK](../quickstarts/get-started-code.md)
-- [Build your own copilot with the prompt flow SDK.](./copilot-sdk-build-rag.md).
+- [Build a custom chat app with the prompt flow SDK.](./copilot-sdk-create-resources.md).

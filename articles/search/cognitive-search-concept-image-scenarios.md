@@ -4,7 +4,7 @@ titleSuffix: Azure AI Search
 description: Use Optical Character Recognition (OCR) and image analysis to extract text, layout, captions, and tags from image files in Azure AI Search pipelines.
 author: HeidiSteen
 ms.author: heidist
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.topic: how-to
 ms.date: 01/10/2024
 ms.custom:
@@ -62,7 +62,7 @@ After the source files are set up, enable image normalization by setting the `im
 
 Metadata adjustments are captured in a complex type created for each image. You can't opt out of the image normalization requirement. Skills that iterate over images, such as OCR and image analysis, expect normalized images.
 
-1. [Create or Update an indexer](/rest/api/searchservice/create-indexer) to set the configuration properties:
+1. [Create or Update an indexer](/rest/api/searchservice/indexers/create) to set the configuration properties:
 
     ```json
     {
@@ -224,7 +224,7 @@ In a skillset, Image Analysis and OCR skill output is always text. Output text i
     }
     ```
 
-1. [Create or update a search index](/rest/api/searchservice/create-index) to add fields to accept the skill outputs. 
+1. [Create or update a search index](/rest/api/searchservice/indexes/create) to add fields to accept the skill outputs. 
 
    In the following fields collection example, "content" is blob content. "Metadata_storage_name" contains the name of the file (make sure it is "retrievable"). "Metadata_storage_path" is the unique path of the blob and is the default document key. "Merged_content" is output from Text Merge (useful when images are embedded). 
 
@@ -282,7 +282,7 @@ In a skillset, Image Analysis and OCR skill output is always text. Output text i
       ],
     ```
 
-1. [Update the indexer](/rest/api/searchservice/update-indexer) to map skillset output (nodes in an enrichment tree) to index fields.
+1. [Update the indexer](/rest/api/searchservice/indexers/create-or-update) to map skillset output (nodes in an enrichment tree) to index fields.
 
    Enriched documents are internal. To externalize the nodes in an enriched document tree, set up an output field mapping that specifies which index field receives node content. Enriched data is accessed by your app through an index field. The following example shows a "text" node (OCR output) in an enriched document that's mapped to a "text" field in a search index.
 
@@ -636,7 +636,7 @@ def base64EncodeImage(image):
 
 ## See also
 
-+ [Create indexer (REST)](/rest/api/searchservice/create-indexer)
++ [Create indexer (REST)](/rest/api/searchservice/indexers/create)
 + [Image Analysis skill](cognitive-search-skill-image-analysis.md)
 + [OCR skill](cognitive-search-skill-ocr.md)
 + [Text merge skill](cognitive-search-skill-textmerger.md)

@@ -6,11 +6,12 @@ manager: scottpolly
 ms.service: azure-ai-studio
 ms.custom:
   - build-2024
+  - ai-learning-hub
 ms.topic: how-to
 ms.date: 5/21/2024
 ms.reviewer: jcioffi
-ms.author: eur
-author: eric-urban
+ms.author: sgilley
+author: sdgilley
 ---
 
 # Model benchmarks in Azure AI Studio

@@ -6,7 +6,7 @@ description: Attach spelling correction to the query pipeline, to fix typos on q
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: conceptual
@@ -77,7 +77,7 @@ POST https://[service name].search.windows.net/indexes/hotels-sample-index/docs/
 
 ## Spell correction with semantic ranking
 
-This query, with typos in every term except one, undergoes spelling corrections to return relevant results. To learn more, see [Configure semantic ranking](semantic-how-to-query-request.md).
+This query, with typos in every term except one, undergoes spelling corrections to return relevant results. To learn more, see [Configure semantic ranker](semantic-how-to-query-request.md).
 
 ```http
 POST https://[service name].search.windows.net/indexes/hotels-sample-index/docs/search?api-version=2024-05-01-preview    
@@ -105,7 +105,7 @@ Valid values for `queryLanguage` can be found in the following table, copied fro
 | Dutch [NL] | NL, NL-BE, NL-NL (default) |
 
 > [!NOTE]
-> Previously, while semantic ranking was in public preview, the `queryLanguage` parameter was also used for semantic ranking. Semantic ranking is now language-agnostic.
+> Previously, while semantic ranker was in public preview, the `queryLanguage` parameter was also used for semantic ranking. Semantic ranker is now language-agnostic.
 
 ### Language analyzer considerations
 

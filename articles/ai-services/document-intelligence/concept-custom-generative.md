@@ -18,11 +18,7 @@ monikerRange: '>=doc-intel-4.0.0'
 > * Document Intelligence public preview releases provide early access to features that are in active development. Features, approaches, and processes may change, prior to General Availability (GA), based on user feedback.
 > * The public preview version of Document Intelligence client libraries default to REST API version [**2024-07-31-preview**](/rest/api/aiservices/operation-groups?view=rest-aiservices-2024-07-31-preview&preserve-view=true) and is currently only available in the following Azure regions.
 >   * **East US**
->   * **West US2**
->   * **West Europe**
 >   * **North Central US**
->
-> * **The new custom generative model in AI Studio is only available in the North Central US region**:
 
 The document field extraction (custom generative AI) model utilizes generative AI to extract user-specified fields from documents across a wide variety of visual templates. The custom generative AI model combines the power of document understanding with Large Language Models (LLMs) and the rigor and schema from custom extraction capabilities to create a model with high accuracy in minutes. With this generative model type, you can start with a single document and go through the schema addition and model creation process with minimal labeling. The custom generative model allows developers and enterprises to easily automate data extraction workflows with greater accuracy and speed for any type of document. The custom generative AI model excels in extracting simple fields from documents without labeled samples. However, providing a few labeled samples improves the extraction accuracy for complex fields and user-defined fields like tables. You can use the [REST API](/rest/api/aiservices/operation-groups?view=rest-aiservices-2024-07-31-preview&preserve-view=true) or client libraries to submit a document for analysis with a model build and use the custom generative process.
 
@@ -76,7 +72,7 @@ Field extraction custom generative model `2024-07-31-preview` version supports t
 
 ## Region support
 
-Field extraction custom generative model `2024-07-31-preview` version is only available in `North Central US`.  
+Field extraction custom generative model `2024-07-31-preview` version is only available in 'East US' and `North Central US`.  
 
 ## Input requirements
 

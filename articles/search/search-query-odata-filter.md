@@ -6,7 +6,7 @@ description: OData language reference and full syntax used for creating filter e
 manager: nitinme
 author: bevloh
 ms.author: beloh
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: reference
@@ -203,7 +203,7 @@ Find a match on phrases within a collection, such as 'heated towel racks' or 'ha
     $filter=Rooms/any(room: room/Tags/any(tag: search.in(tag, 'heated towel racks,hairdryer included', ','))
 ```
 
-Find documents with the word "waterfront". This filter query is identical to a [search request](/rest/api/searchservice/search-documents) with `search=waterfront`.
+Find documents with the word "waterfront". This filter query is identical to a [search request](/rest/api/searchservice/documents/search-post) with `search=waterfront`.
 
 ```odata-filter-expr
     $filter=search.ismatchscoring('waterfront')
@@ -244,4 +244,4 @@ Find documents that have a word that starts with the letters "lux" in the Descri
 - [Filters in Azure AI Search](search-filters.md)
 - [OData expression language overview for Azure AI Search](query-odata-filter-orderby-syntax.md)
 - [OData expression syntax reference for Azure AI Search](search-query-odata-syntax-reference.md)
-- [Search Documents &#40;Azure AI Search REST API&#41;](/rest/api/searchservice/Search-Documents)
+- [Search Documents &#40;Azure AI Search REST API&#41;](/rest/api/searchservice/documents/search-post)

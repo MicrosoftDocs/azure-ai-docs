@@ -1,27 +1,27 @@
 ---
 title: Add semantic ranking
 titleSuffix: Azure AI Search
-description: Set a semantic query type to attach the deep learning models of semantic ranking.
+description: Set a semantic query type to attach the deep learning models of semantic ranker.
 
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: how-to
-ms.date: 07/24/2024
+ms.date: 09/24/2024
 ---
 
 # Add semantic ranking to queries in Azure AI Search
 
-This article explains how to invoke the semantic ranker on queries. You can apply semantic ranking to text queries, hybrid queries, and vector queries if your search documents contain string fields and the [vector query has a text representation](vector-search-how-to-query.md#query-with-integrated-vectorization).
+You can apply semantic ranking to text queries, hybrid queries, and vector queries if your search documents contain string fields and the [vector query has a text representation](vector-search-how-to-query.md#query-with-integrated-vectorization) in the search document.
 
-Semantic ranking iterates over an initial result set, applying an L2 ranking methodology that promotes the most semantically relevant results to the top of the stack. You can also get semantic captions, with highlights over the most relevant terms and phrases, and [semantic answers](semantic-answers.md).
+This article explains how to invoke the semantic ranker on queries. 
 
 ## Prerequisites
 
-+ A search service, basic tier or higher, with [semantic ranking enabled](semantic-how-to-enable-disable.md).
++ A search service, Basic tier or higher, with [semantic ranker enabled](semantic-how-to-enable-disable.md).
 
 + An existing search index with a [semantic configuration](semantic-how-to-configure.md) and rich text content.
 
@@ -51,7 +51,7 @@ A few query capabilities bypass relevance scoring, which makes them incompatible
 
 ## Set up the query
 
-In this step, add parameters to the query request. To be successful, your query should be full text search (using the `search` parameter to pass in a string), and the index should contain text fields with rich semantic content and a semantic configuration.
+In this step, add parameters to the query request. To be successful, your query should be full text search (using the `search` parameter to pass in a string) or a vector query, and the index should contain text fields with rich semantic content and a semantic configuration.
 
 ### [**Azure portal**](#tab/portal-query)
 
@@ -136,7 +136,7 @@ The following example in this section uses the [hotels-sample-index](search-get-
 
 ### [**.NET SDK**](#tab/dotnet-query)
 
-Use QueryType or SemanticQuery to invoke semantic ranking on a semantic query. The [following example](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/search/Azure.Search.Documents/samples/Sample08_SemanticSearch.md) is from the Azure SDK team.
+Use QueryType or SemanticQuery to invoke semantic ranker on a semantic query. The [following example](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/search/Azure.Search.Documents/samples/Sample08_SemanticSearch.md) is from the Azure SDK team.
 
 ```csharp
 SearchResults<Hotel> response = await searchClient.SearchAsync<Hotel>(
@@ -189,9 +189,9 @@ Console.WriteLine($"Total number of search results:{count}");
 
 ## Evaluate the response
 
-Only the top 50 matches from the initial results can be semantically ranked. As with all queries, a response is composed of all fields marked as retrievable, or just those fields listed in the select parameter. A response includes the original relevance score, and might also include a count, or batched results, depending on how you formulated the request.
+Only the top 50 matches from the initial results can be semantically ranked. As with all queries, a response is composed of all fields marked as retrievable, or just those fields listed in the `select` parameter. A response includes the original relevance score, and might also include a count, or batched results, depending on how you formulated the request.
 
-In semantic ranking, the response has more elements: a new semantically ranked relevance score, an optional caption in plain text and with highlights, and an optional [answer](semantic-answers.md). If your results don't include these extra elements, then your query might be misconfigured. As a first step towards troubleshooting the problem, check the semantic configuration to ensure it's specified in both the index definition and query.
+In semantic ranking, the response has more elements: a new [semantically ranked relevance score](semantic-search-overview.md#how-ranking-is-scored), an optional caption in plain text and with highlights, and an optional [answer](semantic-answers.md). If your results don't include these extra elements, then your query might be misconfigured. As a first step towards troubleshooting the problem, check the semantic configuration to ensure it's specified in both the index definition and query.
 
 In a client app, you can structure the search page to include a caption as the description of the match, rather than the entire contents of a specific field. This approach is useful when individual fields are too dense for the search results page.
 
@@ -237,4 +237,4 @@ If you anticipate consistent throughput requirements near, at, or higher than th
 Semantic ranking can be used in hybrid queries that combine keyword search and vector search into a single request and a unified response.
 
 > [!div class="nextstepaction"]
-> [Hybrid query with semantic ranking](hybrid-search-how-to-query.md#semantic-hybrid-search)
+> [Hybrid query with semantic ranker](hybrid-search-how-to-query.md#semantic-hybrid-search)
