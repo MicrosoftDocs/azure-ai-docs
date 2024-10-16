@@ -228,7 +228,7 @@ Extract data, including name, birth date, and expiration date, from ID documents
 
 ## Field extractions
 
-The following are the fields extracted per document type. The Document Intelligence ID model `prebuilt-idDocument` extracts the following fields in the `documents.*.fields`. The json output includes all the extracted text in the documents, words, lines, and styles.
+For supported document extraction fields, refer to the [ID document model schema](https://github.com/Azure-Samples/document-intelligence-code-samples/blob/main/schema/2024-07-31-preview/id-document.md) page in our GitHub sample repository.
 
 ::: moniker-end
 
