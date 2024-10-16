@@ -23,11 +23,9 @@ To prepare, you create a few resources and upload sample files before running th
 
 ## Prerequisites
 
-Before you begin, have the following prerequisites in place:
-
 + An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/free/).
 
-+ Azure AI Search. [Create a service](search-create-service-portal.md) or [find an existing service](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices). You can use a free service for this quickstart. 
++ Create an [Azure AI Search service](search-create-service-portal.md) or [find an existing service](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices). You can use a free service for this quickstart. 
 
 + Azure Storage account with Blob Storage.
 
@@ -74,19 +72,19 @@ You're now ready to move on the Import data wizard.
 
     Continue to the next page.
 
-If you get *Error detecting index schema from data source*, the indexer that's powering the wizard can't connect to your data source. Most likely, the data source has security protections. Try the following solutions and then rerun the wizard.
+If you get *Error detecting index schema from data source*, the indexer that powers the wizard can't connect to your data source. Most likely, the data source has security protections. Try the following solutions and then rerun the wizard.
 
 | Security feature | Solution |
 |--------------------|----------|
-| Resource requires Azure roles or its access keys are disabled | [Connect as a trusted service](search-indexer-howto-access-trusted-service-exception.md) or [connect using a managed identity](search-howto-managed-identities-data-sources.md) |
-| Resource is behind an IP firewall | [Create an inbound rule for Search and for Azure portal](search-indexer-howto-access-ip-restricted.md) |
+| Resource requires Azure roles, or its access keys are disabled | [Connect as a trusted service](search-indexer-howto-access-trusted-service-exception.md) or [connect using a managed identity](search-howto-managed-identities-data-sources.md) |
+| Resource is behind an IP firewall | [Create an inbound rule for Search and for the Azure portal](search-indexer-howto-access-ip-restricted.md) |
 | Resource requires a private endpoint connection | [Connect over a private endpoint](search-indexer-howto-access-private.md) |
 
 ### Step 2: Add cognitive skills
 
 Next, configure AI enrichment to invoke OCR, image analysis, and natural language processing. 
 
-1. For this quickstart, we're using the **Free** Azure AI services resource. The sample data consists of 14 files, so the free allotment of 20 transaction on Azure AI services is sufficient for this quickstart. 
+1. For this quickstart, we're using the **Free** Azure AI services resource. The sample data consists of 14 files, so the free allotment of 20 transactions on Azure AI services is sufficient for this quickstart. 
 
    :::image type="content" source="media/cognitive-search-quickstart-blob/cog-search-attach.png" alt-text="Screenshot of the Attach Azure AI services tab." border="true":::
 
@@ -136,7 +134,7 @@ Select **Indexers** from the left navigation pane to monitor status, and then se
 
 To view details about execution status, select **Success** (or **Failed**) to view execution details.
 
-In this demo, there are a few warnings: `"Could not execute skill because one or more skill input was invalid."` It tells you that a PNG file in the data source doesn't provide a text input to Entity Recognition. This warning occurs because the upstream OCR skill didn't recognize any text in the image, and thus couldn't provide a text input to the downstream Entity Recognition skill.
+In this demo, there are a few warnings: *"Could not execute skill because one or more skill input was invalid."* It tells you that a PNG file in the data source doesn't provide a text input to Entity Recognition. This warning occurs because the upstream OCR skill didn't recognize any text in the image, and thus couldn't provide a text input to the downstream Entity Recognition skill.
 
 Warnings are common in skillset execution. As you become familiar with how skills iterate over your data, you might begin to notice patterns and learn which warnings are safe to ignore.
 
@@ -146,7 +144,7 @@ After an index is created, use **Search explorer** to return results.
 
 1. On the left, select **Indexes** and then select the index. **Search explorer** is on the first tab.
 
-1. Enter a search string to query the index, such as `satya nadella`. The search bar accepts keywords, quote-enclosed phrases, and operators (`"Satya Nadella" +"Bill Gates" +"Steve Ballmer"`).
+1. Enter a search string to query the index, such as `satya nadella`. The search bar accepts keywords, quote-enclosed phrases, and operators: `"Satya Nadella" +"Bill Gates" +"Steve Ballmer"`
 
 Results are returned as verbose JSON, which can be hard to read, especially in large documents. Some tips for searching in this tool include the following techniques:
 
@@ -180,7 +178,7 @@ Another important concept is that skills operate over content types, and when wo
 
 Output is routed to a search index, and there's a mapping between name-value pairs created during indexing and individual fields in your index. Internally, the wizard sets up [an enrichment tree](cognitive-search-concept-annotations-syntax.md) and defines a [skillset](cognitive-search-defining-skillset.md), establishing the order of operations and general flow. These steps are hidden in the wizard, but when you start writing code, these concepts become important.
 
-Finally, you learned that can verify content by querying the index. In the end, what Azure AI Search provides is a searchable index, which you can query using either the [simple](/rest/api/searchservice/simple-query-syntax-in-azure-search) or [fully extended query syntax](/rest/api/searchservice/lucene-query-syntax-in-azure-search). An index containing enriched fields is like any other. If you want to incorporate standard or [custom analyzers](search-analyzers.md), [scoring profiles](/rest/api/searchservice/add-scoring-profiles-to-a-search-index), [synonyms](search-synonyms.md), [faceted navigation](search-faceted-navigation.md), geo-search, or any other Azure AI Search feature, you can certainly do so.
+Finally, you learned that you can verify content by querying the index. In the end, what Azure AI Search provides is a searchable index, which you can query using either the [simple](/rest/api/searchservice/simple-query-syntax-in-azure-search) or [fully extended query syntax](/rest/api/searchservice/lucene-query-syntax-in-azure-search). An index containing enriched fields is like any other. You can incorporate standard or [custom analyzers](search-analyzers.md), [scoring profiles](/rest/api/searchservice/add-scoring-profiles-to-a-search-index), [synonyms](search-synonyms.md), [faceted navigation](search-faceted-navigation.md), geo-search, or any other Azure AI Search feature.
 
 ## Clean up resources
 
