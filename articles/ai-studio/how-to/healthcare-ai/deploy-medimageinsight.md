@@ -29,7 +29,7 @@ MedImageInsight foundational model for health is a powerful model that can proce
 
 An embedding model is capable of serving as the basis of many different solutions—from classification to more complex scenarios like group matching or outlier detection. The following animation shows an embedding model being used for image similarity search and to detect images that are outliers.
 
-:::image type="content" source="../../media/how-to/healthcare-ai/healthcare-embedding-capabilities.gif" alt-text="Animation that shows an embedding model capable of supporting similarity search and quality control scenarios":::
+:::image type="content" source="../../media/how-to/healthcare-ai/healthcare-embedding-capabilities.gif" alt-text="Animation that shows an embedding model capable of supporting similarity search and quality control scenarios.":::
 
 ## Prerequisites
 
@@ -72,7 +72,7 @@ credential = DefaultAzureCredential()
 ml_client_workspace = MLClient.from_config(credential)
 ```
 
-In the deployment configuration, you get to choose the authentication method. This example uses Azure Machine Learning Token-based authentication. For more authentication options, see the [corresponding documentation page](../../../machine-learning/how-to-setup-authentication.md). Also note the client is created from a configuration file that is created automatically for Azure Machine Learning virtual machines (VMs). Learn more on the [corresponding API documentation page](/python/api/azure-ai-ml/azure.ai.ml.mlclient?view=azure-python#azure-ai-ml-mlclient-from-config).
+In the deployment configuration, you get to choose the authentication method. This example uses Azure Machine Learning token-based authentication. For more authentication options, see the [corresponding documentation page](../../../machine-learning/how-to-setup-authentication.md). Also note that the client is created from a configuration file that is created automatically for Azure Machine Learning virtual machines (VMs). Learn more on the [corresponding API documentation page](/python/api/azure-ai-ml/azure.ai.ml.mlclient?view=azure-python#azure-ai-ml-mlclient-from-config).
 
 ### Make basic calls to the model
 
@@ -137,7 +137,7 @@ The `input_data` object contains the following fields:
 | ------------- | -------------- | :-----------------:| ----------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `columns`       | `list[string]`       | Y    |  `"text"`, `"image"` | An object containing the strings mapping data to inputs passed to the model.|
 | `index`   | `integer` | Y | 0 - 1024| Count of inputs passed to the model. You're limited by how much data can be passed in a single POST request, which depends on the size of your images. Therefore, you should keep this number in the dozens |
-| `data`   | `list[list[string]]` | Y | "" | The list contains the items passed to the model which is defined by the index parameter. Each item is a list of two strings. The order is defined by the "columns" parameter. The `text` string contains text to embed. The `image` strings are the image bytes encoded using base64 and decoded as utf-8 string |
+| `data`   | `list[list[string]]` | Y | "" | The list contains the items passed to the model which is defined by the index parameter. Each item is a list of two strings. The order is defined by the `columns` parameter. The `text` string contains text to embed. The `image` strings are the image bytes encoded using base64 and decoded as utf-8 string |
 
 The `params` object contains the following fields:
 
@@ -220,15 +220,15 @@ The preferred compression format is lossless PNG, containing either an 8-bit mon
 ## Learn more from samples
 MedImageInsight is a versatile model that can be applied to a wide range of tasks and imaging modalities. For more specific examples of solving various tasks with MedImageInsight, see the following interactive Python notebooks. 
 
-### Getting started
+#### Getting started
 * [Deploying and Using MedImageInsight](https://aka.ms/healthcare-ai-examples-mi2-deploy): Learn how to deploy the MedImageInsight model programmatically and issue an API call to it.
 
-### Classification techniques
+#### Classification techniques
 * [Building a Zero-Shot Classifier](https://aka.ms/healthcare-ai-examples-mi2-zero-shot): Discover how to use MedImageInsight to create a classifier without the need for training or large amount of labeled ground truth data.
 
 * [Enhancing Classification with Adapter Networks](https://aka.ms/healthcare-ai-examples-mi2-adapter): Improve classification performance by building a small adapter network on top of MedImageInsight.
 
-### Advanced applications
+#### Advanced applications
 * [Inferring MRI Acquisition Parameters from Pixel Data](https://aka.ms/healthcare-ai-examples-mi2-exam-parameter): Understand how to extract MRI exam acquisition parameters directly from imaging data.
 
 * [Scalable MedImageInsight Endpoint Usage](https://aka.ms/healthcare-ai-examples-mi2-advanced-call): Learn how to generate embeddings of medical images at scale using the MedImageInsight API while handling potential network issues gracefully.
