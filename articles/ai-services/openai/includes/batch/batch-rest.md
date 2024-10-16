@@ -250,7 +250,8 @@ Use the REST API to list all batch jobs with additional sorting/filtering option
 
 ```http
 curl https://YOUR_RESOURCE_NAME.openai.azure.com/openai/batches?api-version=2024-10-01-preview \
-  -H "api-key: $AZURE_OPENAI_API_KEY" 
-  -H "filter": "created_at gt 1728773533 and created_at lt 1729032733 and status eq 'Completed'"
-  -H "orderby": "created_at asc"
+  -H "api-key: $AZURE_OPENAI_API_KEY" \
+  -H "filter: 'created_at gt 1728773533 and created_at lt 1729032733 and status eq 'Completed''" \
+  -H "orderby: created_at asc"
+
 ```
