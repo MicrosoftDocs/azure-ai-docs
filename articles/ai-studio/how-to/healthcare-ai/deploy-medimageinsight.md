@@ -55,7 +55,7 @@ You can deploy the model through the model catalog UI or programmatically. To de
 
 To deploy the model programmatically, see [How to deploy and inference a managed compute deployment with code](../deploy-models-managed.md).
 
-## Work with an embedding Model
+## Work with an embedding model
 
 In this section, you consume the model and make basic calls to it.
 
