@@ -136,7 +136,7 @@ Save the URL of the included sample image. That image is also available on [GitH
 
 ## Analyze layout
 
-You can use Document Intelligence to analyze tables, lines, and words in documents, without needing to train a model. The returned value is a collection of **FormPage** objects. There's one object for each page in the submitted document. For more information about layout extraction, see [Document Intelligence layout model](../../../concept-layout.md).
+You can use Document Intelligence to analyze tables, lines, and words in documents, without needing to train a model. The returned value is a collection of **FormPage** objects. There's one object for each page in the submitted document. For more information about layout extraction, see [Document Intelligence layout model](../../../prebuilt/layout.md).
 
 To analyze the content of a file at a given URL, use the `StartRecognizeContentFromUri` method.
 
@@ -186,7 +186,7 @@ Table 0 has 2 rows and 6 columns.
 
 ## Analyze receipts
 
-This section demonstrates how to analyze and extract common fields from US receipts by using a pretrained receipt model. For more information about receipt analysis, see the [Document Intelligence receipt model](../../../concept-receipt.md).
+This section demonstrates how to analyze and extract common fields from US receipts by using a pretrained receipt model. For more information about receipt analysis, see the [Document Intelligence receipt model](../../../prebuilt/receipt.md).
 
 To analyze receipts from a URL, use the `StartRecognizeReceiptsFromUri` method.
 
@@ -260,7 +260,7 @@ The following code processes the business card at the given URI and prints the m
 
 ## Analyze invoices
 
-This section demonstrates how to analyze and extract common fields from sales invoices by using a pretrained model. For more information about invoice analysis, see the [Document Intelligence invoice model](../../../concept-invoice.md).
+This section demonstrates how to analyze and extract common fields from sales invoices by using a pretrained model. For more information about invoice analysis, see the [Document Intelligence invoice model](../../../prebuilt/invoice.md).
 
 To analyze invoices from a URL, use the `StartRecognizeInvoicesFromUriAsync` method.
 
@@ -275,7 +275,7 @@ The following code processes the invoice at the given URI and prints the major f
 
 ## Analyze ID documents
 
-This section demonstrates how to analyze and extract key information from government-issued identification documents—worldwide passports and U.S. driver's licenses by using the Document Intelligence prebuilt ID model. For more information about ID document analysis, see the [Document Intelligence ID document model](../../../concept-id-document.md).
+This section demonstrates how to analyze and extract key information from government-issued identification documents—worldwide passports and U.S. driver's licenses by using the Document Intelligence prebuilt ID model. For more information about ID document analysis, see the [Document Intelligence ID document model](../../../prebuilt/id-document.md).
 
 To analyze ID documents from a URI, use the `StartRecognizeIdentityDocumentsFromUriAsync` method.
 

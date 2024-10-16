@@ -9,7 +9,7 @@ ms.service: azure-ai-search
 ms.custom:
   - build-2024
 ms.topic: quickstart
-ms.date: 08/13/2024
+ms.date: 10/16/2024
 ---
 
 # Quickstart: Vectorize text and images by using the Azure portal
@@ -46,6 +46,10 @@ Key points about the wizard:
   | [Azure OpenAI Service](https://aka.ms/oai/access) | text-embedding-ada-002, text-embedding-3-large, or text-embedding-3-small. |
   | [Azure AI Studio model catalog](/azure/ai-studio/what-is-ai-studio) |  Azure, Cohere, and Facebook embedding models. |
   | [Azure AI services multiservice account](/azure/ai-services/multi-service-resource) | [Azure AI Vision multimodal](/azure/ai-services/computer-vision/how-to/image-retrieval) for image and text vectorization. Azure AI Vision multimodal is available in selected regions. [Check the documentation](/azure/ai-services/computer-vision/how-to/image-retrieval?tabs=csharp) for an updated list. **To use this resource, the account must be in an available region and in the same region as Azure AI Search**. |
+
+If using the Azure OpenAI Service, it must have an associated [custom subdomain](/azure/ai-services/cognitive-services-custom-subdomains). If the service was created through the Azure portal, this subdomain is automatically generated as part of your service setup. Ensure that your service includes a custom subdomain before using it with the Azure AI Search integration.
+
+Note that Azure OpenAI models created with an AI Studio service account are not supported. Only models from the Azure OpenAI Service are compatible with the Azure OpenAI integration. 
 
 ### Public endpoint requirements
 
