@@ -160,7 +160,7 @@ Yes, from the quota page in the Studio UI. Default quota allocation can be found
 
 The `2024-10-01-preview` REST API adds two new response headers:
 
-* `deployment-enqueued-tokens` - A approximate token count for your jsonl file calculating immediately after the batch request is submitted. This value represents an estimate based on the number of characters and is not the true token count.
+* `deployment-enqueued-tokens` - A approximate token count for your jsonl file calculated immediately after the batch request is submitted. This value represents an estimate based on the number of characters and is not the true token count.
 * `deployment-maximum-enqueued-tokens` The total available enqueued tokens available for this global batch model deployment.
 
 These response headers are only available when making a POST request to begin batch processing of a file with the REST API. The language specific client libraries do not currently return these new response headers.
