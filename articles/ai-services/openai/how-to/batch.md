@@ -90,11 +90,7 @@ In the Studio UI the deployment type will appear as `Global-Batch`.
 :::image type="content" source="../media/how-to/global-batch/global-batch.png" alt-text="Screenshot that shows the model deployment dialog in Azure OpenAI Studio with Global-Batch deployment type highlighted." lightbox="../media/how-to/global-batch/global-batch.png":::
 
 > [!TIP]
-> We recommend enabling **dynamic quota** for all global batch model deployments to help avoid job failures due to insufficient enqueued token quota.
->
-> Each line of your input file for batch processing has a `model` attribute that requires a global batch **deployment name**. For a given input file, all names must be the same deployment name. This is different from OpenAI where the concept of model deployments does not exist.
->
-> For the best performance we recommend submitting large files for batch processing, rather than a large number of small files with only a few lines in each file.
+> We recommend enabling **dynamic quota** for all global batch model deployments to help avoid job failures due to insufficient enqueued token quota. Dynamic quota allows your deployment to opportunistically take advantage of more quota when extra capacity is available. When dynamic quota is set to off, your deployment will only be able to process requests up to the enqueued token limit that was defined when you created the deployment.
 
 ::: zone pivot="programming-language-ai-studio"
 
@@ -169,6 +165,10 @@ The `2024-10-01-preview` REST API adds two new response headers:
 
 * `deployment-enqueued-tokens` - A approximate token count for your jsonl file calculated immediately after the batch request is submitted. This value represents an estimate based on the number of characters and is not the true token count.
 * `deployment-maximum-enqueued-tokens` The total available enqueued tokens available for this global batch model deployment.
+
+**Example:**
+
+
 
 These response headers are only available when making a POST request to begin batch processing of a file with the REST API. The language specific client libraries do not currently return these new response headers.
 

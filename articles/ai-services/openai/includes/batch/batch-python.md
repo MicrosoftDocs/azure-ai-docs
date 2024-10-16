@@ -63,6 +63,8 @@ The `custom_id` is required to allow you to identify which individual batch requ
 
 > [!IMPORTANT]
 > The `model` attribute must be set to match the name of the Global Batch deployment you wish to target for inference responses. The **same Global Batch model deployment name must be present on each line of the batch file.** If you want to target a different deployment you must do so in a separate batch file/job.
+>
+> For the best performance we recommend submitting large files for batch processing, rather than a large number of small files with only a few lines in each file.
 
 ### Create input file
 
