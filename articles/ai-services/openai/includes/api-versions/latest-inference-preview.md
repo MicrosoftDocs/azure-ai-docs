@@ -5,10 +5,8 @@ description: Latest preview data plane inference documentation generated from Op
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: include
-ms.date: 10/01/2024
+ms.date: 10/16/2024
 ---
-
-# API Documentation
 
 ## Completions - Create
 
