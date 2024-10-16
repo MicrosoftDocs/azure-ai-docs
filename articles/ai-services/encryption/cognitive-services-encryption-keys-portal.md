@@ -2,13 +2,13 @@
 title: Customer-Managed Keys for Azure AI services
 titleSuffix: Azure AI services
 description: Learn about using customer-managed keys to improve data security with Azure AI services.
-author: deeikele
+author: PatrickFarley
 ms.service: azure-ai-services
 ms.custom:
   - ignite-2023
 ms.topic: conceptual
 ms.date: 11/15/2023
-ms.author: deeikele
+ms.author: pafarley
 ---
 
 # Customer-managed keys for encryption
