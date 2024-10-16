@@ -12,7 +12,7 @@ ms.topic: how-to
 author: lgayhardt
 ms.author: lagayhar
 ms.reviewer: jinzhong
-ms.date: 10/15/2024
+ms.date: 10/16/2024
 ---
 # Develop prompt flow
 
@@ -49,7 +49,9 @@ Before you begin authoring, start the compute session by selecting **Start compu
 The compute session can take a few minutes to start. While the compute session is starting, inspect the parts of the flow authoring page.
 
 - The **Flow** or *flatten* view on the left side of the page is the main working area where you author the flow. In the flatten view, you can edit nodes, tools, prompts, and inputs; run nodes or the whole flow; and define and view outputs.
+
 - **Files** at top right shows the folder and file structure of the flow. Each flow has a folder that contains a *flow.dag.yaml* file, source code files, and system folders. You can add, edit, delete, upload, or download files for testing, deployment, or collaboration.
+
 - The **Graph** view at lower right visualizes the flow structure. You can zoom in or out or use auto layout. You can't edit this view directly, but you can select a node to locate and edit it in the flatten view.
 
 ### Flow input and output
@@ -135,7 +137,7 @@ After a flow run completes, you can select **View outputs** to check all histori
 
 A *chat flow* is a specific type of prompt flow designed for conversational application development. Chat flow builds on the standard flow capabilities to provide enhanced support for chat inputs/outputs and chat history. By using chat flow, you can easily create a chatbot that handles chat input and output.
 
-To create a chat flow, select **Create** in the **Chat flow** card on the **Create a new flow** screen, or select **Chat** in the **Explore gallery** and clone one of the available flows.
+To create a chat flow, on the **Create a new flow** screen, select **Create** on the **Chat flow** card, or select **Chat** in the **Explore gallery** and clone one of the available flows.
 
 In a chat flow authoring page, the chat flow is tagged with a **Chat** label to distinguish it from standard and evaluation flows. To test a chat flow, you select **Chat** at the top of the page to trigger a **Chat** box for conversation.
 
@@ -151,7 +153,7 @@ The most important elements that differentiate a chat flow from a standard flow 
 
 - **Chat output** refers to the AI-generated messages that are sent to users in response to their inputs. Generating contextually appropriate and engaging chat output is vital for a positive user experience.
 
-A chat flow can have multiple inputs. In the chat flow **Inputs** section, you mark one of the inputs as the **Chat input**, and you populate the chat input value by typing in the **Chat** box.
+A chat flow can have multiple inputs. In the chat flow **Inputs** section, you mark one of the inputs as the **Chat input**, and you populate the chat input value by entering a question in the **Chat** box.
 
 :::image type="content" source="./media/how-to-develop-flow/flow-input-output.png" alt-text="Screenshot showing the test question in the Inputs section and the Chat box." lightbox ="./media/how-to-develop-flow/flow-input-output.png":::
 
@@ -159,7 +161,7 @@ A chat flow can have multiple inputs. In the chat flow **Inputs** section, you m
 
 To help you manage chat history, `chat_history` in the **Inputs** section is reserved for representing chat history. You can't manually edit `chat_history`.
 
-Chat history is structured as a list of inputs and outputs. All interactions in the chat box, including user chat inputs, generated chat outputs, and other flow inputs and outputs, are automatically stored in chat history.
+Chat history is structured as a list of inputs and outputs. All interactions in the chat box, including user chat inputs, generated chat outputs, and other flow inputs and outputs, are automatically stored in chat history. The following code shows the structure of chat history.
 
 ```json
 [
@@ -192,7 +194,7 @@ Chat history is structured as a list of inputs and outputs. All interactions in 
 > [!NOTE]
 > When you conduct tests in the **Chat** box, you automatically save chat history. For batch runs, you must include chat history within the batch run dataset. If there's no chat history available, set the `chat_history` to an empty list `[]` within the batch run dataset.
 
-To retrieve past interactions, reference `chat_history` in your prompts. You can then reference previous inputs and outputs to create contextually relevant responses. Incorporating chat history into your prompts is essential for creating context-aware and engaging chatbot responses.
+To retrieve past interactions, reference `chat_history` in your prompts. You can then refer to previous inputs and outputs to create contextually relevant responses. Incorporating chat history into your prompts is essential for creating context-aware and engaging chatbot responses.
 
 You can use the Jinja language [for-loop](https://jinja.palletsprojects.com/en/3.1.x/templates/#for) grammar to display a list of inputs and outputs from `chat_history`.
 
