@@ -6,12 +6,12 @@ author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: quickstart
-ms.date: 09/16/2024
+ms.date: 10/14/2024
 ---
 
 # Quickstart: Generative search (RAG) with grounding data from Azure AI Search
 
-This quickstart shows you how to send queries to a Large Language Model (LLM) for a conversational search experience over your indexed content on Azure AI Search. You use the Azure portal to set up the resources, and then run Python code to call the APIs. 
+This quickstart shows you how to send basic and complex queries to a Large Language Model (LLM) for a conversational search experience over your indexed content on Azure AI Search. You use the Azure portal to set up the resources, and then run Python code to call the APIs. 
 
 ## Prerequisites
 
@@ -19,7 +19,7 @@ This quickstart shows you how to send queries to a Large Language Model (LLM) fo
 
 - [Azure AI Search](search-create-service-portal.md), Basic tier or higher so that you can [enable semantic ranker](semantic-how-to-enable-disable.md). Region must be the same one used for Azure OpenAI.
 
-- [Azure OpenAI](https://aka.ms/oai/access) resource with a deployment of `gpt-35-turbo`, `gpt-4`, or equivalent model, in the same region as Azure AI Search.
+- [Azure OpenAI](https://aka.ms/oai/access) resource with a deployment of `gpt-4o`, `gpt-4o-mini`, or equivalent LLM, in the same region as Azure AI Search.
 
 - [Visual Studio Code](https://code.visualstudio.com/download) with the [Python extension](https://marketplace.visualstudio.com/items?itemName=ms-python.python) and the [Jupyter package](https://pypi.org/project/jupyter/). For more information, see [Python in Visual Studio Code](https://code.visualstudio.com/docs/languages/python).
 
@@ -122,28 +122,68 @@ We recommend the hotels-sample-index, which can be created in minutes and runs o
 
 1. **Save** your changes.
 
-1. Run the following query in [Search Explorer](search-explorer.md) to test your index: `hotels near the ocean with beach access and good views`.
+1. Run the following query in [Search Explorer](search-explorer.md) to test your index: `complimentary breakfast`.
 
-   Output should look similar to the following example. Results that are returned directly from the search engine consist of fields and their verbatim values, along with metadata like a search score and a semantic ranking score and caption if you use semantic ranker.
+   Output should look similar to the following example. Results that are returned directly from the search engine consist of fields and their verbatim values, along with metadata like a search score and a semantic ranking score and caption if you use semantic ranker. We used a [select statement](search-query-odata-select.md) to return just the HotelName, Description, and Tags fields.
 
    ```
-      "@search.score": 5.600783,
-      "@search.rerankerScore": 2.4191176891326904,
-      "@search.captions": [
-        {
-          "text": "Contoso Ocean Motel. Budget. pool\r\nair conditioning\r\nbar. Oceanfront hotel overlooking the beach features rooms with a private balcony and 2 indoor and outdoor pools. Various shops and art entertainment are on the boardwalk, just steps away..",
-          "highlights": "Contoso Ocean Motel. Budget.<em> pool\r\nair conditioning\r\nbar. O</em>ceanfront hotel overlooking the beach features rooms with a private balcony and 2 indoor and outdoor pools. Various shops and art entertainment are on the boardwalk, just steps away."
-        }
-      ],
-      "HotelId": "41",
-      "HotelName": "Contoso Ocean Motel",
-      "Description": "Oceanfront hotel overlooking the beach features rooms with a private balcony and 2 indoor and outdoor pools. Various shops and art entertainment are on the boardwalk, just steps away.",
-      "Category": "Budget",
-      "Tags": [
-        "pool",
-        "air conditioning",
-        "bar"
-      ],
+   {
+   "@odata.count": 18,
+   "@search.answers": [],
+   "value": [
+      {
+         "@search.score": 2.2896252,
+         "@search.rerankerScore": 2.506816864013672,
+         "@search.captions": [
+         {
+            "text": "Head Wind Resort. Suite. coffee in lobby\r\nfree wifi\r\nview. The best of old town hospitality combined with views of the river and cool breezes off the prairie. Our penthouse suites offer views for miles and the rooftop plaza is open to all guests from sunset to 10 p.m. Enjoy a **complimentary continental breakfast** in the lobby, and free Wi-Fi throughout the hotel..",
+            "highlights": ""
+         }
+         ],
+         "HotelName": "Head Wind Resort",
+         "Description": "The best of old town hospitality combined with views of the river and cool breezes off the prairie. Our penthouse suites offer views for miles and the rooftop plaza is open to all guests from sunset to 10 p.m. Enjoy a complimentary continental breakfast in the lobby, and free Wi-Fi throughout the hotel.",
+         "Tags": [
+         "coffee in lobby",
+         "free wifi",
+         "view"
+         ]
+      },
+      {
+         "@search.score": 2.2158256,
+         "@search.rerankerScore": 2.288334846496582,
+         "@search.captions": [
+         {
+            "text": "Swan Bird Lake Inn. Budget. continental breakfast\r\nfree wifi\r\n24-hour front desk service. We serve a continental-style breakfast each morning, featuring a variety of food and drinks. Our locally made, oh-so-soft, caramel cinnamon rolls are a favorite with our guests. Other breakfast items include coffee, orange juice, milk, cereal, instant oatmeal, bagels, and muffins..",
+            "highlights": ""
+         }
+         ],
+         "HotelName": "Swan Bird Lake Inn",
+         "Description": "We serve a continental-style breakfast each morning, featuring a variety of food and drinks. Our locally made, oh-so-soft, caramel cinnamon rolls are a favorite with our guests. Other breakfast items include coffee, orange juice, milk, cereal, instant oatmeal, bagels, and muffins.",
+         "Tags": [
+         "continental breakfast",
+         "free wifi",
+         "24-hour front desk service"
+         ]
+      },
+      {
+         "@search.score": 0.92481667,
+         "@search.rerankerScore": 2.221315860748291,
+         "@search.captions": [
+         {
+            "text": "White Mountain Lodge & Suites. Resort and Spa. continental breakfast\r\npool\r\nrestaurant. Live amongst the trees in the heart of the forest. Hike along our extensive trail system. Visit the Natural Hot Springs, or enjoy our signature hot stone massage in the Cathedral of Firs. Relax in the meditation gardens, or join new friends around the communal firepit. Weekend evening entertainment on the patio features special guest musicians or poetry readings..",
+            "highlights": ""
+         }
+         ],
+         "HotelName": "White Mountain Lodge & Suites",
+         "Description": "Live amongst the trees in the heart of the forest. Hike along our extensive trail system. Visit the Natural Hot Springs, or enjoy our signature hot stone massage in the Cathedral of Firs. Relax in the meditation gardens, or join new friends around the communal firepit. Weekend evening entertainment on the patio features special guest musicians or poetry readings.",
+         "Tags": [
+         "continental breakfast",
+         "pool",
+         "restaurant"
+         ]
+      },
+      . . .
+   ]}
    ```
 
 ## Get service endpoints
@@ -169,10 +209,11 @@ This section uses Visual Studio Code and Python to call the chat completion APIs
 1. Install the following Python packages.
 
    ```python
-   ! pip install azure-search-documents==11.6.0b4 --quiet
-   ! pip install azure-identity==1.16.0 --quiet
+   ! pip install azure-search-documents==11.6.0b5 --quiet
+   ! pip install azure-identity==1.16.1 --quiet
    ! pip install openai --quiet
    ! pip intall aiohttp --quiet
+   ! pip intall ipykernel --quiet
    ```
 
 1. Set the following variables, substituting placeholders with the endpoints you collected in the previous step. 
@@ -180,17 +221,8 @@ This section uses Visual Studio Code and Python to call the chat completion APIs
    ```python
     AZURE_SEARCH_SERVICE: str = "PUT YOUR SEARCH SERVICE ENDPOINT HERE"
     AZURE_OPENAI_ACCOUNT: str = "PUT YOUR AZURE OPENAI ENDPOINT HERE"
-    AZURE_DEPLOYMENT_MODEL: str = "gpt-35-turbo"
+    AZURE_DEPLOYMENT_MODEL: str = "gpt-4o"
    ```
-
-1. Run the following code to set query parameters. The query is a keyword search using semantic ranking. In a keyword search, the search engine returns up to 50 matches, but only the top 5 are provided to the model. If you can't [enable semantic rankersemantic-how-to-enable-disable.md) on your search service, set the value to false.
-
-   ```python
-   # Set query parameters for grounding the conversation on your search index
-    search_type="text"
-    use_semantic_reranker=True
-    sources_to_include=5
-    ```
 
 1. Set up clients, the prompt, query, and response.
 
@@ -227,7 +259,7 @@ This section uses Visual Studio Code and Python to call the chat completion APIs
     """
     
     # Query is the question being asked. It's sent to the search engine and the LLM.
-    query="Can you recommend a few hotels near the ocean with beach access and good views"
+    query="Can you recommend a few hotels with complimentary breakfast?"
     
     # Set up the search results and the chat thread.
     # Retrieve the selected fields from the search index related to the question.
@@ -254,12 +286,22 @@ This section uses Visual Studio Code and Python to call the chat completion APIs
     Output is from Azure OpenAI, and it consists of recommendations for several hotels. Here's an example of what the output might look like:
 
     ```
-    Based on your criteria, we recommend the following hotels:
-    
-    - Contoso Ocean Motel: located right on the beach and has private balconies with ocean views. They also have indoor and outdoor pools. It's located on the boardwalk near shops and art entertainment.
-    - Northwind Plaza & Suites: offers ocean views, free Wi-Fi, full kitchen, and a free breakfast buffet. Although not directly on the beach, this hotel has great views and is near the aquarium. They also have a pool.
-    
-    Several other hotels have views and water features, but do not offer beach access or views of the ocean.
+   Sure! Here are a few hotels that offer complimentary breakfast:
+   
+   - **Head Wind Resort**
+   - Complimentary continental breakfast in the lobby
+   - Free Wi-Fi throughout the hotel
+   
+   - **Double Sanctuary Resort**
+   - Continental breakfast included
+   
+   - **White Mountain Lodge & Suites**
+   - Continental breakfast available
+   
+   - **Swan Bird Lake Inn**
+   - Continental-style breakfast each morning with a variety of food and drinks 
+     such as caramel cinnamon rolls, coffee, orange juice, milk, cereal, 
+     instant oatmeal, bagels, and muffins
     ```
 
     If you get a **Forbidden** error message, check Azure AI Search configuration to make sure role-based access is enabled.
@@ -271,6 +313,85 @@ This section uses Visual Studio Code and Python to call the chat completion APIs
     You can also modify the prompt to change the tone or structure of the output.
 
     You might also try the query without semantic ranking by setting `use_semantic_reranker=False` in the query parameters step. Semantic ranking can noticably improve the relevance of query results and the ability of the LLM to return useful information. Experimentation can help you decide whether it makes a difference for your content.
+
+## Send a complex RAG query
+
+Azure AI Search supports [complex types](search-howto-complex-data-types.md) for nested JSON structures. In the hotels-sample-index, `Address` is an example of a complex type, consisting of `Address.StreetAddress`, `Address.City`, `Address.StateProvince`, `Address.PostalCode`, and `Address.Country`. The index also has complex collection of `Rooms` for each hotel.
+
+If your index has complex types, your query can provide those fields if you first convert the search results output to JSON, and then pass the JSON to the LLM. The following example adds complex types to the request. The formatting instructions include a JSON specification.
+
+```python
+import json
+
+# Query is the question being asked. It's sent to the search engine and the LLM.
+query="Can you recommend a few hotels that offer complimentary breakfast? 
+Tell me their description, address, tags, and the rate for one room that sleeps 4 people."
+
+# Set up the search results and the chat thread.
+# Retrieve the selected fields from the search index related to the question.
+selected_fields = ["HotelName","Description","Address","Rooms","Tags"]
+search_results = search_client.search(
+    search_text=query,
+    top=5,
+    select=selected_fields,
+    query_type="semantic"
+)
+sources_filtered = [{field: result[field] for field in selected_fields} for result in search_results]
+sources_formatted = "\n".join([json.dumps(source) for source in sources_filtered])
+
+response = openai_client.chat.completions.create(
+    messages=[
+        {
+            "role": "user",
+            "content": GROUNDED_PROMPT.format(query=query, sources=sources_formatted)
+        }
+    ],
+    model=AZURE_DEPLOYMENT_MODEL
+)
+
+print(response.choices[0].message.content)
+```
+
+Output is from Azure OpenAI, and it adds content from complex types.
+
+```
+Here are a few hotels that offer complimentary breakfast and have rooms that sleep 4 people:
+
+1. **Head Wind Resort**
+   - **Description:** The best of old town hospitality combined with views of the river and 
+   cool breezes off the prairie. Enjoy a complimentary continental breakfast in the lobby, 
+   and free Wi-Fi throughout the hotel.
+   - **Address:** 7633 E 63rd Pl, Tulsa, OK 74133, USA
+   - **Tags:** Coffee in lobby, free Wi-Fi, view
+   - **Room for 4:** Suite, 2 Queen Beds (Amenities) - $254.99
+
+2. **Double Sanctuary Resort**
+   - **Description:** 5-star Luxury Hotel - Biggest Rooms in the city. #1 Hotel in the area 
+   listed by Traveler magazine. Free WiFi, Flexible check in/out, Fitness Center & espresso 
+   in room. Offers continental breakfast.
+   - **Address:** 2211 Elliott Ave, Seattle, WA 98121, USA
+   - **Tags:** View, pool, restaurant, bar, continental breakfast
+   - **Room for 4:** Suite, 2 Queen Beds (Amenities) - $254.99
+
+3. **Swan Bird Lake Inn**
+   - **Description:** Continental-style breakfast featuring a variety of food and drinks. 
+   Locally made caramel cinnamon rolls are a favorite.
+   - **Address:** 1 Memorial Dr, Cambridge, MA 02142, USA
+   - **Tags:** Continental breakfast, free Wi-Fi, 24-hour front desk service
+   - **Room for 4:** Budget Room, 2 Queen Beds (City View) - $85.99
+
+4. **Gastronomic Landscape Hotel**
+   - **Description:** Known for its culinary excellence under the management of William Dough, 
+   offers continental breakfast.
+   - **Address:** 3393 Peachtree Rd, Atlanta, GA 30326, USA
+   - **Tags:** Restaurant, bar, continental breakfast
+   - **Room for 4:** Budget Room, 2 Queen Beds (Amenities) - $66.99
+...
+   - **Tags:** Pool, continental breakfast, free parking
+   - **Room for 4:** Budget Room, 2 Queen Beds (Amenities) - $60.99
+
+Enjoy your stay! Let me know if you need any more information.
+```
 
 ## Troubleshooting errors
 

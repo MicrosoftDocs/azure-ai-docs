@@ -15,7 +15,7 @@ ms.author: pafarley
 
 > [!NOTE]
 >
-> If you want to extract text from PDFs, Office files, or HTML documents and document images, use the [Document Intelligence Read OCR model](../../ai-services/document-intelligence/concept-read.md). It's optimized for text-heavy digital and scanned documents and uses an asynchronous API that makes it easy to power your intelligent document processing scenarios.
+> If you want to extract text from PDFs, Office files, or HTML documents and document images, use the [Document Intelligence Read OCR model](../document-intelligence/prebuilt/read.md). It's optimized for text-heavy digital and scanned documents and uses an asynchronous API that makes it easy to power your intelligent document processing scenarios.
 
 OCR is a machine-learning-based technique for extracting text from in-the-wild and non-document images like product labels, user-generated images, screenshots, street signs, and posters. The Azure AI Vision OCR service provides a fast, synchronous API for lightweight scenarios where images aren't text-heavy. This allows OCR to be embedded in near real-time user experiences to enrich content understanding and follow-up user actions with fast turn-around times.
 
