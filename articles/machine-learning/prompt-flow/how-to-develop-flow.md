@@ -82,9 +82,9 @@ You can link nodes by referencing node output. For example, you can reference th
 
 #### LLM nodes
 
-For an LLM node for Azure OpenAI, you need to select **Connection**, **Api**, and **deployment_name**, and set the **Prompt**. You use the connection to securely store and manage secret keys or other sensitive credentials required for interacting with Azure OpenAI.
+For an Azure OpenAI LLM node, you need to select **Connection**, **Api**, and **deployment_name**, and set the **Prompt**. You use the connection to securely store and manage secret keys or other sensitive credentials required for interacting with Azure OpenAI.
 
-If you don't already have a connection, create it before you add an LLM node, and make sure the Azure OpenAI resource has a **chat** or **completion** deployment. For more information, see [Set up a connection](get-started-prompt-flow.md#set-up-a-connection) and [Create a resource and deploy a model using Azure OpenAI](/azure/cognitive-services/openai/how-to/create-resource).
+If you don't already have a connection, create it before you add the LLM node, and make sure the Azure OpenAI resource has a **chat** or **completion** deployment. For more information, see [Set up a connection](get-started-prompt-flow.md#set-up-a-connection) and [Create a resource and deploy a model using Azure OpenAI](/azure/cognitive-services/openai/how-to/create-resource).
 
 #### Python nodes
 
@@ -123,15 +123,15 @@ After you select **Run** to execute the flow, you can see the run status in the 
 
 :::image type="content" source="./media/how-to-develop-flow/view-flow-output.png" alt-text=" Screenshot of view output button in two locations." lightbox ="./media/how-to-develop-flow/view-flow-output.png":::
 
+After the flow run completes, you can select **View outputs** to check all historical outputs on the **Outputs** screen.
+
+:::image type="content" source="./media/how-to-develop-flow/authoring-test-result.png" alt-text="Screenshot of flow test result." lightbox ="./media/how-to-develop-flow/authoring-test-result.png":::
+
 Select the **Trace** tab on the **Outputs** screen to see a graph that provides information about the duration and associated token cost of the flow. Select **flow** under **node name** to see detailed flow overview information in the right pane.
 
 Expand **flow** and select any step to see detailed information for that step. You can see the duration of each node execution in the span tree. For more information, see [Trace Span Specification](https://microsoft.github.io/promptflow/reference/trace-span-spec-reference.html).
 
 :::image type="content" source="./media/how-to-develop-flow/authoring-trace.png" alt-text=" Screenshot of trace detail." lightbox ="./media/how-to-develop-flow/authoring-trace.png":::
-
-After a flow run completes, you can select **View outputs** to check all historical outputs.
-
-:::image type="content" source="./media/how-to-develop-flow/authoring-test-result.png" alt-text="Screenshot of flow test result." lightbox ="./media/how-to-develop-flow/authoring-test-result.png":::
 
 ## Develop a chat flow
 
@@ -139,7 +139,7 @@ A *chat flow* is a specific type of prompt flow designed for conversational appl
 
 To create a chat flow, on the **Create a new flow** screen, select **Create** on the **Chat flow** card, or select **Chat** in the **Explore gallery** and clone one of the available flows.
 
-In a chat flow authoring page, the chat flow is tagged with a **Chat** label to distinguish it from standard and evaluation flows. To test a chat flow, you select **Chat** at the top of the page to trigger a **Chat** box for conversation.
+In a chat flow authoring page, the chat flow is tagged with a **Chat** label to distinguish it from standard and evaluation flows. To test a chat flow, you select **Chat** at the top of the page to open a **Chat** box for conversation.
 
 :::image type="content" source="./media/how-to-develop-flow/chat-authoring-layout.png" alt-text="Screenshot of chat flow authoring page." lightbox ="./media/how-to-develop-flow/chat-authoring-layout.png":::
 
