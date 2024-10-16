@@ -50,7 +50,7 @@ https://<your_resource_name>.openai.azure.com/openai/deployments/<your_deploymen
 **Replace the following placeholders**:
 - `<your_resource_name>` is the name of your Azure OpenAI resource.
 - `<your_deployment_name>` is the name of your DALL-E 3 model deployment.
-- `<api_version>` is the version of the API you want to use. For example, *2024-02-01*.
+- `<api_version>` is the version of the API you want to use. For example, `2024-02-01`.
 
 **Required headers**:
 - `Content-Type`: `application/json`
@@ -119,7 +119,7 @@ GET https://<your_resource_name>.openai.azure.com/openai/operations/images/<oper
 **Replace the following placeholders**:
 - `<your_resource_name>` is the name of your Azure OpenAI resource.
 - `<operation_id>` is the ID of the operation returned in the previous step.
-- `<api_version>` is the version of the API you want to use. For example, *2023-06-01-preview*.
+- `<api_version>` is the version of the API you want to use. For example, `2023-06-01-preview`.
 
 **Required headers**:
 - `Content-Type`: `application/json`
@@ -175,7 +175,7 @@ The output from a successful image generation API call looks like the following 
 
 Prompts and images are filtered based on our content policy, returning an error when a prompt or image is flagged.
 
-If your prompt is flagged, the `error.code` value in the message is set to *contentFilter*. Here's an example:
+If your prompt is flagged, the `error.code` value in the message is set to `contentFilter`. Here's an example:
 
 #### [DALL-E 3](#tab/dalle3)
 
@@ -264,21 +264,21 @@ The following API body parameters are available for DALL-E image generation.
 
 ### Size
 
-Specify the size of the generated images. Must be one of *1024x1024*, *1792x1024*, or *1024x1792* for DALL-E 3 models. Square images are faster to generate.
+Specify the size of the generated images. Must be one of `1024x1024`, `1792x1024`, or `1024x1792` for DALL-E 3 models. Square images are faster to generate.
 
 ### Style
 
-DALL-E 3 introduces two style options: *natural* and *vivid*. The *natural* style is more similar to the DALL-E 2 default style, while the *vivid* style generates more hyper-real and cinematic images.
+DALL-E 3 introduces two style options: `natural` and `vivid`. The natural style is more similar to the DALL-E 2 default style, while the vivid style generates more hyper-real and cinematic images.
 
-The *natural* style is useful in cases where DALL-E 3 over-exaggerates or confuses a subject that's meant to be more simple, subdued, or realistic.
+The natural style is useful in cases where DALL-E 3 over-exaggerates or confuses a subject that's meant to be more simple, subdued, or realistic.
 
-The default value is *vivid*.
+The default value is `vivid`.
 
 ### Quality
 
-There are two options for image quality: *hd* and *standard*. The *hd* option creates images with finer details and greater consistency across the image. *Standard* images can be generated faster.
+There are two options for image quality: `hd` and `standard`. The hd option creates images with finer details and greater consistency across the image. Standard images can be generated faster.
 
-The default value is *standard*.
+The default value is `standard`.
 
 ### Number
 
@@ -286,13 +286,13 @@ With DALL-E 3, you can't generate more than one image in a single API call: the 
 
 ### Response format
 
-The format in which the generated images are returned. Must be one of *url* (a URL pointing to the image) or *b64_json* (the base 64-byte code in JSON format). The default is *url*.
+The format in which the generated images are returned. Must be one of `url` (a URL pointing to the image) or `b64_json` (the base 64-byte code in JSON format). The default is `url`.
 
 #### [DALL-E 2 (preview)](#tab/dalle2)
 
 ### Size
 
-Specify the size of the generated images. Must be one of *256x256*, *512x512*, or *1024x1024* for DALL-E 2 models.
+Specify the size of the generated images. Must be one of `256x256`, `512x512`, or `1024x1024` for DALL-E 2 models.
 
 ### Number
 
