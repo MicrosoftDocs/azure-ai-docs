@@ -11,6 +11,6 @@ ms.author: pafarley
 ---
 
 > [!IMPORTANT]
-> This feature is now deprecated. On January 10, 2025, the Azure AI Vision Product Recognition and model customization features will be retired: after this date, API calls to these services will fail.
+> This feature is now deprecated. On January 10, 2025, Azure AI Image Analysis 4.0 Custom Image Classification, Custom Object Detection, and Product Recognition preview API will be retired: after this date, API calls to these services will fail.
 >
 > To maintain a smooth operation of your models, transition to [Azure AI Custom Vision](/azure/ai-services/Custom-Vision-Service/overview), which is now generally available. Custom Vision offers similar functionality to these retiring features.
