@@ -13,6 +13,8 @@ ms.author: pafarley
 
 # Run Spatial Analysis on a local video file
 
+[!INCLUDE [spatial-analysis-deprecation](includes/spatial-analysis-deprecation.md)]
+
 You can use Spatial Analysis with either recorded or live video. Use this guide to learn how to run Spatial Analysis on a recorded local video.
 
 ## Prerequisites

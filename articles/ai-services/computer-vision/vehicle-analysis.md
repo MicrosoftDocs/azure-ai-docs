@@ -13,6 +13,8 @@ ms.author: pafarley
 
 # Install and run vehicle analysis (preview)
 
+[!INCLUDE [spatial-analysis-deprecation](includes/spatial-analysis-deprecation.md)]
+
 Vehicle analysis is a set of capabilities that, when used with the Spatial Analysis container, enable you to analyze real-time streaming video to understand vehicle characteristics and placement. In this article, you learn how to use the capabilities of the Spatial Analysis container to deploy vehicle analysis operations.
 
 ## Prerequisites

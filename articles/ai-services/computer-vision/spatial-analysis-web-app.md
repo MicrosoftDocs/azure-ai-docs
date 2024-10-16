@@ -13,6 +13,8 @@ ms.author: pafarley
 
 # Deploy a Spatial Analysis web application
 
+[!INCLUDE [spatial-analysis-deprecation](includes/spatial-analysis-deprecation.md)]
+
 Use this article to learn how to deploy a web app that collects Spatial Analysis data/insights from IoT Hub and visualizes it. This can have useful applications across a wide range of scenarios and industries. For example, if a company wants to optimize the use of its real estate space, they can quickly create a solution with different scenarios.
 
 In this tutorial you'll learn how to:

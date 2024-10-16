@@ -14,6 +14,8 @@ ms.author: pafarley
 
 # Spatial Analysis camera placement
 
+[!INCLUDE [spatial-analysis-deprecation](includes/spatial-analysis-deprecation.md)]
+
 This article provides camera placement recommendations for Spatial Analysis (public preview) scenarios. It includes general guidelines as well as specific recommendations for height, angle, and camera-to-focal-point-distance for all the included operations. 
 
 > [!NOTE]
