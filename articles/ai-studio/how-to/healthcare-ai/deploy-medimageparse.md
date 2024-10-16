@@ -192,6 +192,7 @@ Response payload is a list of JSON-formatted strings, each corresponding to a su
 ```
 
 ### Supported image formats
+
 The deployed model API supports images encoded in PNG format. For optimal results, we recommend using uncompressed/lossless PNGs with RGB images.
 
 As described in the API specification, the model only accepts images in the resolution of `1024x1024`pixels. Images need to be resized and padded (in the case of non-square aspect ratio).

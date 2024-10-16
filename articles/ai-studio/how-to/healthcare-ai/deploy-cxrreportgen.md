@@ -194,9 +194,11 @@ Response payload is a JSON formatted string containing the following fields:
 ```
 
 ### Supported image formats
+
 The deployed model API supports images encoded in PNG or JPEG formats. For optimal results, we recommend using uncompressed/lossless PNGs with 8-bit monochromatic images.
 
 ## Learn more from samples
+
 CXRReportGen is a versatile model that can be applied to a wide range of tasks and imaging modalities. For more examples see the following interactive Python notebook: 
 
 * [Deploying and Using CXRReportGen](https://aka.ms/healthcare-ai-examples-cxr-deploy): Learn how to deploy the CXRReportGen model and integrate it into your workflow. This notebook also covers bounding-box parsing and visualization techniques.
