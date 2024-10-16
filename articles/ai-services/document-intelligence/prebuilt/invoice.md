@@ -6,7 +6,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.topic: conceptual
-ms.date: 08/07/2024
+ms.date: 10/16/2024
 ms.author: lajanuar
 ms.custom: references_regions
 ---
@@ -183,7 +183,7 @@ See how data, including customer information, vendor details, and line items, is
 
 ## Supported languages and locales
 
-*See* our [Language Support—prebuilt models](../language-support/prebuilt.md) page for a complete list of supported languages.
+For a complete list of supported languages *see* our [prebuilt model language support](../language-support/prebuilt.md) page .
 
 ## Field extraction
 The Document Intelligence invoice model `prebuilt-invoice` extracts the following fields.
@@ -202,63 +202,11 @@ The Document Intelligence invoice model `prebuilt-invoice` extracts the followin
 
 ::: moniker-end
 
-|Name| Type | Description | Standardized output |
-|:-----|:----|:----|:----|
-| CustomerName |string | Invoiced customer|Microsoft Corp|
-| CustomerId |string | Customer reference ID |CID-12345 |
-| PurchaseOrder |string | Purchase order reference number |PO-3333 |
-| InvoiceId |string | ID for this specific invoice (often Invoice Number) |INV-100 |
-| InvoiceDate |date |date the invoice was issued | mm-dd-yyyy|
-| DueDate |date |date payment for this invoice is due |mm-dd-yyyy|
-| VendorName |string | Vendor who created this invoice |CONTOSO|
-| VendorAddress |address|  Vendor mailing address| 123 456th St, New York, NY 10001 |
-| VendorAddressRecipient |string | Name associated with the VendorAddress |Contoso Headquarters  |
-| CustomerAddress |address | Mailing address for the Customer | 123 Other St, Redmond, WA, 98052|
-| CustomerAddressRecipient |string | Name associated with the CustomerAddress |Microsoft Corp |
-| BillingAddress |address | Explicit billing address for the customer | 123 Bill St., Redmond, WA, 98052 |
-| BillingAddressRecipient |string | Name associated with the BillingAddress |Microsoft Services |
-| ShippingAddress |address | Explicit shipping address for the customer | 123 Ship St., Redmond, WA, 98052|
-| ShippingAddressRecipient |string | Name associated with the ShippingAddress |Microsoft Delivery  |
-|Sub&#8203;Total| currency| Subtotal field identified on this invoice | $100.00 |
-| TotalDiscount | currency | The total discount applied to an invoice | $5.00 |
-| TotalTax | currency| Total tax field identified on this invoice | $10.00 |
-| InvoiceTotal | currency | Total new charges associated with this invoice | $10.00 |
-| AmountDue |  currency | Total Amount Due to the vendor | $610 |
-| PreviousUnpaidBalance | currency| Explicit previously unpaid balance | $500.00 |
-| RemittanceAddress |address| Explicit remittance or payment address for the customer |123 Remit St New York, NY, 10001   |
-| RemittanceAddressRecipient |string | Name associated with the RemittanceAddress |Contoso Billing |
-| ServiceAddress |address | Explicit service address or property address for the customer |123 Service St., Redmond WA, 98052 |
-| ServiceAddressRecipient |string | Name associated with the ServiceAddress |Microsoft Services  |
-| ServiceStartDate |date | First date for the service period (for example, a utility bill service period) | mm-dd-yyyy |
-| ServiceEndDate |date | End date for the service period (for example, a utility bill service period) | mm-dd-yyyy|
-| VendorTaxId |string | The taxpayer number associated with the vendor |123456-7 |
-|CustomerTaxId|string|The taxpayer number associated with the customer|765432-1|
-| PaymentTerm |string | The terms of payment for the invoice |Net 90 |
-| KVKNumber |string | A unique identifier for businesses registered in the Netherlands (NL-only)|12345678|
-| CurrencyCode |string | The currency code associated with the extracted amount | |
-| PaymentDetails | array | An array that holds Payment Option details such as `IBAN`,`SWIFT`, `BPayBillerCode(AU)`, `BPayReference(AU)` |  |
-|TaxDetails|array|An array that holds tax details like amount and rate||
-| TaxDetails | array | AN array that holds added tax information such as `CGST`, `IGST`, and `SGST`. This line item is currently only available for the Germany (`de`), Spain (`es`), Portugal (`pt`), and English Canada (`en-CA`) locales| |
-
-### Line items array
-
-Following are the line items extracted from an invoice in the JSON output response (the following output uses this [sample invoice](../media/sample-invoice.jpg):
-
-|Name| Type | Description | Value (standardized output) |
-|:-----|:----|:----|:----|
-| Amount | currency | The amount of the line item | $60.00 |
-| Date | date| Date corresponding to each line item. Often it's a date the line item was shipped | 3/4/2021|
-| Description | string | The text description for the invoice line item | Consulting service|
-| Quantity | number | The quantity for this invoice line item | 2 |
-| ProductCode | string| Product code, product number, or SKU associated with the specific line item | A123|
-| Tax | currency | Tax associated with each line item. Possible values include tax amount and tax Y/N | $6.00 |
-| TaxRate | string | Tax Rate associated with each line item. | 18%|
-| Unit | string| The unit of the line item, e.g,  kg, lb etc. | Hours|
-| UnitPrice | number | The net or gross price (depending on the gross invoice setting of the invoice) of one unit of this item | $30.00 |
+:::moniker range=">=doc-intel-3.1.0"
 
 The invoice key-value pairs and line items extracted are in the `documentResults` section of the JSON output.
 
-:::moniker range=">=doc-intel-3.1.0"
+For supported document extraction fields, refer to the [invoice model schema](https://github.com/Azure-Samples/document-intelligence-code-samples/blob/main/schema/2024-07-31-preview/invoice.md) page in our GitHub sample repository.
 
 ### Key-value pairs
 

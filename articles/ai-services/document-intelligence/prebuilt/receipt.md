@@ -6,7 +6,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.topic: conceptual
-ms.date: 05/23/2024
+ms.date: 10/16/2024
 ms.author: lajanuar
 ---
 
@@ -195,7 +195,7 @@ See how Document Intelligence extracts data, including time and date of transact
 
 ## Supported languages and locales
 
-*See* our [Language Support—prebuilt models](../language-support/prebuilt.md) page for a complete list of supported languages.
+For a complete list of supported languages, *see* our [prebuilt models language support](../language-support/prebuilt.md) page.
 
 ## Field extraction
 
@@ -245,152 +245,7 @@ See how Document Intelligence extracts data, including time and date of transact
 
 ::: moniker range=">=doc-intel-3.0.0"
 
-### Receipt
-
-| Field | Type | Description | Example |
-|:------|:-----|:------------|:--------|
-|`MerchantName`|`string`|Name of the merchant issuing the receipt|Contoso|
-|`MerchantPhoneNumber`|`phoneNumber`|Listed phone number of merchant|987-654-3210|
-|`MerchantAddress`|`address`|Listed address of merchant|123 Main St. Redmond, Washington 98052|
-|`Total`|`number`|Full transaction total of receipt|$14.34|
-|`TransactionDate`|`date`|Date the receipt was issued|June 06, 2019|
-|`TransactionTime`|`time`|Time the receipt was issued|4:49 PM|
-|`Subtotal`|`number`|Subtotal of receipt, often before taxes are applied|$12.34|
-|`TotalTax`|`number`|Tax on receipt, often sales tax, or equivalent|$2.00|
-|`Tip`|`number`|Tip included by buyer|$1.00|
-|`Items`|`array`|||
-|`Items.*`|`object`|Extracted line item|1<br>Surface Pro 6<br>$999.00<br>$999.00|
-|`Items.*.TotalPrice`|`number`|Total price of line item|$999.00|
-|`Items.*.Description`|`string`|Item description|Surface Pro 6|
-|`Items.*.Quantity`|`number`|Quantity of each item|1|
-|`Items.*.Price`|`number`|Individual price of each item unit|$999.00|
-|`Items.*.ProductCode`|`string`|Product code, product number, or SKU associated with the specific line item|A123|
-|`Items.*.QuantityUnit`|`string`|Quantity unit of each item||
-|`TaxDetails`|`array`|||
-|`TaxDetails.*`|`object`|Extracted line item|1<br>Surface Pro 6<br>$999.00<br>$999.00|
-|`TaxDetails.*.Amount`|`currency`|The amount of the tax detail|$999.00|
-
-### receipt.retailMeal
-
-| Field | Type | Description | Example |
-|:------|:-----|:------------|:--------|
-|`MerchantName`|`string`|Name of the merchant issuing the receipt|Contoso|
-|`MerchantPhoneNumber`|`phoneNumber`|Listed phone number of merchant|987-654-3210|
-|`MerchantAddress`|`address`|Listed address of merchant|123 Main St. Redmond, Washington 98052|
-|`Total`|`number`|Full transaction total of receipt|$14.34|
-|`TransactionDate`|`date`|Date the receipt was issued|June 06, 2019|
-|`TransactionTime`|`time`|Time the receipt was issued|4:49 PM|
-|`Subtotal`|`number`|Subtotal of receipt, often before taxes are applied|$12.34|
-|`TotalTax`|`number`|Tax on receipt, often sales tax, or equivalent|$2.00|
-|`Tip`|`number`|Tip included by buyer|$1.00|
-|`Items`|`array`|||
-|`Items.*`|`object`|Extracted line item|1<br>Surface Pro 6<br>$999.00<br>$999.00|
-|`Items.*.TotalPrice`|`number`|Total price of line item|$999.00|
-|`Items.*.Description`|`string`|Item description|Surface Pro 6|
-|`Items.*.Quantity`|`number`|Quantity of each item|1|
-|`Items.*.Price`|`number`|Individual price of each item unit|$999.00|
-|`Items.*.ProductCode`|`string`|Product code, product number, or SKU associated with the specific line item|A123|
-|`Items.*.QuantityUnit`|`string`|Quantity unit of each item||
-|`TaxDetails`|`array`|||
-|`TaxDetails.*`|`object`|Extracted line item|1<br>Surface Pro 6<br>$999.00<br>$999.00|
-|`TaxDetails.*.Amount`|`currency`|The amount of the tax detail|$999.00|
-
-### receipt.creditCard
-
-| Field | Type | Description | Example |
-|:------|:-----|:------------|:--------|
-|`MerchantName`|`string`|Name of the merchant issuing the receipt|Contoso|
-|`MerchantPhoneNumber`|`phoneNumber`|Listed phone number of merchant|987-654-3210|
-|`MerchantAddress`|`address`|Listed address of merchant|123 Main St. Redmond, Washington 98052|
-|`Total`|`number`|Full transaction total of receipt|$14.34|
-|`TransactionDate`|`date`|Date the receipt was issued|June 06, 2019|
-|`TransactionTime`|`time`|Time the receipt was issued|4:49 PM|
-|`Subtotal`|`number`|Subtotal of receipt, often before taxes are applied|$12.34|
-|`TotalTax`|`number`|Tax on receipt, often sales tax, or equivalent|$2.00|
-|`Tip`|`number`|Tip included by buyer|$1.00|
-|`Items`|`array`|||
-|`Items.*`|`object`|Extracted line item|1<br>Surface Pro 6<br>$999.00<br>$999.00|
-|`Items.*.TotalPrice`|`number`|Total price of line item|$999.00|
-|`Items.*.Description`|`string`|Item description|Surface Pro 6|
-|`Items.*.Quantity`|`number`|Quantity of each item|1|
-|`Items.*.Price`|`number`|Individual price of each item unit|$999.00|
-|`Items.*.ProductCode`|`string`|Product code, product number, or SKU associated with the specific line item|A123|
-|`Items.*.QuantityUnit`|`string`|Quantity unit of each item||
-|`TaxDetails`|`array`|||
-|`TaxDetails.*`|`object`|Extracted line item|1<br>Surface Pro 6<br>$999.00<br>$999.00|
-|`TaxDetails.*.Amount`|`currency`|The amount of the tax detail|$999.00|
-
-### receipt.gas
-
-| Field | Type | Description | Example |
-|:------|:-----|:------------|:--------|
-|`MerchantName`|`string`|Name of the merchant issuing the receipt|Contoso|
-|`MerchantPhoneNumber`|`phoneNumber`|Listed phone number of merchant|987-654-3210|
-|`MerchantAddress`|`address`|Listed address of merchant|123 Main St. Redmond, Washington 98052|
-|`Total`|`number`|Full transaction total of receipt|$14.34|
-|`TransactionDate`|`date`|Date the receipt was issued|June 06, 2019|
-|`TransactionTime`|`time`|Time the receipt was issued|4:49 PM|
-|`Subtotal`|`number`|Subtotal of receipt, often before taxes are applied|$12.34|
-|`TotalTax`|`number`|Tax on receipt, often sales tax, or equivalent|$2.00|
-|`Tip`|`number`|Tip included by buyer|$1.00|
-|`Items`|`array`|||
-|`Items.*`|`object`|Extracted line item|1<br>Surface Pro 6<br>$999.00<br>$999.00|
-|`Items.*.TotalPrice`|`number`|Total price of line item|$999.00|
-|`Items.*.Description`|`string`|Item description|Surface Pro 6|
-|`Items.*.Quantity`|`number`|Quantity of each item|1|
-|`Items.*.Price`|`number`|Individual price of each item unit|$999.00|
-|`Items.*.ProductCode`|`string`|Product code, product number, or SKU associated with the specific line item|A123|
-|`Items.*.QuantityUnit`|`string`|Quantity unit of each item||
-|`TaxDetails`|`array`|||
-|`TaxDetails.*`|`object`|Extracted line item|1<br>Surface Pro 6<br>$999.00<br>$999.00|
-|`TaxDetails.*.Amount`|`currency`|The amount of the tax detail|$999.00|
-
-### receipt.parking
-
-| Field | Type | Description | Example |
-|:------|:-----|:------------|:--------|
-|`MerchantName`|`string`|Name of the merchant issuing the receipt|Contoso|
-|`MerchantPhoneNumber`|`phoneNumber`|Listed phone number of merchant|987-654-3210|
-|`MerchantAddress`|`address`|Listed address of merchant|123 Main St. Redmond, Washington 98052|
-|`Total`|`number`|Full transaction total of receipt|$14.34|
-|`TransactionDate`|`date`|Date the receipt was issued|June 06, 2019|
-|`TransactionTime`|`time`|Time the receipt was issued|4:49 PM|
-|`Subtotal`|`number`|Subtotal of receipt, often before taxes are applied|$12.34|
-|`TotalTax`|`number`|Tax on receipt, often sales tax, or equivalent|$2.00|
-|`Tip`|`number`|Tip included by buyer|$1.00|
-|`Items`|`array`|||
-|`Items.*`|`object`|Extracted line item|1<br>Surface Pro 6<br>$999.00<br>$999.00|
-|`Items.*.TotalPrice`|`number`|Total price of line item|$999.00|
-|`Items.*.Description`|`string`|Item description|Surface Pro 6|
-|`Items.*.Quantity`|`number`|Quantity of each item|1|
-|`Items.*.Price`|`number`|Individual price of each item unit|$999.00|
-|`Items.*.ProductCode`|`string`|Product code, product number, or SKU associated with the specific line item|A123|
-|`Items.*.QuantityUnit`|`string`|Quantity unit of each item||
-|`TaxDetails`|`array`|||
-|`TaxDetails.*`|`object`|Extracted line item|1<br>Surface Pro 6<br>$999.00<br>$999.00|
-|`TaxDetails.*.Amount`|`currency`|The amount of the tax detail|$999.00|
-
-### receipt.hotel
-
-| Field | Type | Description | Example |
-|:------|:-----|:------------|:--------|
-|`MerchantName`|`string`|Name of the merchant issuing the receipt|Contoso|
-|`MerchantPhoneNumber`|`phoneNumber`|Listed phone number of merchant|987-654-310|
-|`MerchantAddress`|`address`|Listed address of merchant|123 Main St. Redmond, Washington 98052|
-|`Total`|`number`|Full transaction total of receipt|$14.34|
-|`ArrivalDate`|`date`|Date of arrival|27Mar21|
-|`DepartureDate`|`date`|Date of departure|28Mar21|
-|`Currency`|`string`|Currency unit of receipt amounts (ISO 4217), or 'MIXED' if multiple values are found|USD|
-|`MerchantAliases`|`array`|||
-|`MerchantAliases.*`|`string`|Alternative name of merchant|Contoso (R)|
-|`Items`|`array`|||
-|`Items.*`|`object`|Extracted line item|1<br>Surface Pro 6<br>$999.00<br>$999.00|
-|`Items.*.TotalPrice`|`number`|Total price of line item|$999.00|
-|`Items.*.Description`|`string`|Item description|Room Charge|
-|`Items.*.Date`|`date`|Item date|27Mar21|
-|`Items.*.Category`|`string`|Item category|Room|
-
----
+For supported document extraction fields, refer to the [receipt model schema](https://github.com/Azure-Samples/document-intelligence-code-samples/blob/main/schema/2024-07-31-preview/receipt.md) page in our GitHub sample repository.
 
 ::: moniker-end
 

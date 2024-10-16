@@ -326,6 +326,8 @@ items:
       href: https://github.com/Azure-Samples/document-intelligence-code-samples/blob/main/schema/2024-07-31-preview/bank-check.md
     - name: Bank statement
       href: https://github.com/Azure-Samples/document-intelligence-code-samples/blob/main/schema/2024-07-31-preview/bank-statement.md
+    - name: Business card (2023-07-31 GA)
+      href: https://github.com/Azure-Samples/document-intelligence-code-samples/blob/main/schema/2023-07-31/business-card.md
     - name: Contract
       href: https://github.com/Azure-Samples/document-intelligence-code-samples/blob/main/schema/2024-07-31-preview/contract.md
     - name: Credit card

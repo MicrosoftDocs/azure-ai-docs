@@ -6,7 +6,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.topic: conceptual
-ms.date: 10/03/2024
+ms.date: 10/16/2024
 ms.author: lajanuar
 monikerRange: '>=doc-intel-4.0.0'
 ---
@@ -68,33 +68,11 @@ To see how data extraction works for the marriage certificate card service, you 
 
 ## Supported languages and locales
 
-*See* our [Language Support—prebuilt models](../language-support/prebuilt.md) page for a complete list of supported languages.
+For a complete list of supported languages, *see* our [prebuilt model language support](../language-support/prebuilt.md) page.
 
 ## Field extraction
 
-The following are the fields extracted from a marriage certificate  in the JSON output response.
-
-|Name| Type | Description | Example output |
-|:-----|:----|:----|:---:|
-| `Spouse1FirstName` | String | Spouse 1's first name| Wesley |
-| `Spouse1MiddleName` | String | Spouse 1's middle name| M. |
-| `Spouse1LastName` | String | Spouse 1's surname| Perry |
-| `Spouse1Age` | Integer | Spouse 1's age| 26 |
-| `Spouse1BirthDate` | Date | Spouse 1's birth date| Nov. 16, 1997 |
-| `Spouse1Address` | Address |Spouse 1's address| 4292 Don Jackson Lane, Bloomfield Township, Michigan 48302 |
-| `Spouse1BirthPlace`| String | Spouse 1's birth place| Michigan |
-| `Spouse2FirstName` | String | Spouse 2's first name| Beth |
-| `Spouse2MiddleName` | String | Spouse 2's middle name| R. |
-| `Spouse2LastName` | String | Spouse 2's surname| Mason |
-| `Spouse2Age` | Integer | Spouse 2's age| 23 |
-| `Spouse2BirthDate` | Date | Spouse 2's birth date| Jul. 22, 2000 |
-| `Spouse2Address` | Address |Spouse 2's address| 2671 Comfort Court, Madison, Wisconsin 53704 |
-| `Spouse2BirthPlace`| String | Spouse 2's birth place| Wisconsin |
-| `DocumentNumber`| String | Document number | 01976/202 |
-| `IssueDate` | Date | Issue date of the certificate | Oct. 10, 2023 |
-| `IssuePlace` | String | Issue place of the certificate | 2398 Echo Lane, Hastings, Michigan 49058 |
-| `MarriageDate`| Date | Marriage date | Oct. 10, 2023 |
-| `MarriagePlace` | String | Marriage place | 105 Coal Street, Galloway, Wisconsin 54432 |
+For supported document extraction fields, refer to the [marriage certificate model schema](https://github.com/Azure-Samples/document-intelligence-code-samples/blob/main/schema/2024-07-31-preview/marriage-certificate.md) page in our GitHub sample repository.
 
 The marriage certificate key-value pairs and line items extracted are in the `documentResults` section of the JSON output.
 

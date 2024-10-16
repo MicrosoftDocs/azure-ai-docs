@@ -6,7 +6,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.topic: conceptual
-ms.date: 10/03/2024
+ms.date: 10/16/2024
 ms.author: lajanuar
 ms.custom: references_regions
 monikerRange: '>=doc-intel-4.0.0'
@@ -51,30 +51,11 @@ A bank statement helps review account's activities during a specified period. It
 
 ## Supported languages and locales
 
-*See* our [Language Support](../language-support/prebuilt.md) page for a complete list of supported languages.
+For a complete list of supported languages, *see* our [prebuilt model language support](../language-support/prebuilt.md) page .
 
 ## Field extractions
 
-| Field | Type | Description | Example |
-|:------|:-----|:------------|:--------|
-|`AccountNumber`|`string`|Account number on the bank statement|987-654-3210|
-|`AccountType`|`string`|Type of account on the bank statement|Checking|
-|`BankAddress`|`address`|Listed address of the bank|123 Main St., Redmond, Washington 98052|
-|`BankName`|`string`|Listed name of the bank|Contoso Bank|
-|`AccountHolderAddress`|`address`|Address of the account holder|456 Main St., Redmond, Washington 98052|
-|`AccountHolderName`|`string`|Name of the account holder|JOHN DOE|
-|`EndingBalance`|`number`|Ending balance on the bank statement|$1488.03|
-|`BeginningBalance`|`number`|Beginning balance on the bank statement|$1488.03|
-|`StatementStartDate`|`date`|Start date of the bank statement|July 01, 2017|
-|`StatementEndDate`|`date`|End date of the bank statement|July 31, 2017|
-|`TotalServiceFees`|`number`|Total service fees|$0.00|
-|`Transactions`|`array`|Extracted transaction line item|07/17<br>OnlineTransfer From Check...6609 Transaction#: 6373187418<br>$1,500.00|
-|`Transactions.*`|`object`|||
-|`Transactions.*.Date`|`date`|Transaction date|07/17|
-|`Transactions.*.Description`|`string`|Transaction description|OnlineTransfer From Check...6609 Transaction#: 6373187418|
-|`Transactions.*.CheckNumber`|`string`|Check number of the transaction|6609|
-|`Transactions.*.DepositAmount`|`number`|Amount of deposit in the transaction|$1500.00|
-|`Transactions.*.WithdrawalAmount`|`number`|Amount of withdrawal in the transaction|$1500.00|
+For supported document extraction fields, refer to the [bank check model schema](https://github.com/Azure-Samples/document-intelligence-code-samples/blob/main/schema/2024-07-31-preview/bank-statement.md) page in our GitHub sample repository.
 
 ## Supported locales
 
