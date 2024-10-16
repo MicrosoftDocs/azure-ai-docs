@@ -8,12 +8,16 @@ ms.service: azure-ai-search
 ms.custom:
   - build-2024
 ms.topic: reference
-ms.date: 08/05/2024
+ms.date: 10/16/2024
 ---
 
 # Azure OpenAI vectorizer
 
 The **Azure OpenAI** vectorizer connects to a deployed embedding model on your [Azure OpenAI](/azure/ai-services/openai/overview) resource to generate embeddings at query time. Your data is processed in the [Geo](https://azure.microsoft.com/explore/global-infrastructure/data-residency/) where your model is deployed. 
+
+Your Azure OpenAI Service must have an associated [custom subdomain](/ai-services/cognitive-services-custom-subdomains). If the service was created through the Azure portal, this subdomain is automatically generated as part of your service setup. Ensure that your service includes a custom subdomain before using it with the Azure AI Search integration.
+
+Note that Azure OpenAI models created with an AI Studio service account are not supported. Only models from the Azure OpenAI Service are compatible with this integration. 
 
 Vectorizers are used at query time, but specified in index definitions, and referenced on vector fields through a vector profile. The Azure OpenAI vectorizer is called `AzureOpenAIVectorizer` in the API. 
 
