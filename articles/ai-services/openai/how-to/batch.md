@@ -4,7 +4,7 @@ titleSuffix: Azure OpenAI
 description: Learn how to use global batch with Azure OpenAI Service
 manager: nitinme
 ms.service: azure-ai-openai
-ms.custom: 
+ms.custom: references_regions
 ms.topic: how-to
 ms.date: 10/14/2024
 author: mrbullwinkle
