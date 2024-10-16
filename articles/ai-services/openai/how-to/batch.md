@@ -166,10 +166,6 @@ The `2024-10-01-preview` REST API adds two new response headers:
 * `deployment-enqueued-tokens` - A approximate token count for your jsonl file calculated immediately after the batch request is submitted. This value represents an estimate based on the number of characters and is not the true token count.
 * `deployment-maximum-enqueued-tokens` The total available enqueued tokens available for this global batch model deployment.
 
-**Example:**
-
-
-
 These response headers are only available when making a POST request to begin batch processing of a file with the REST API. The language specific client libraries do not currently return these new response headers.
 
 ### What happens if the API doesn't complete my request within the 24 hour time frame?
