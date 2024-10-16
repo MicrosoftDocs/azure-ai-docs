@@ -1,5 +1,5 @@
 ---
-title: Document Intelligence pay stub model
+title: Document Intelligence payStub model
 titleSuffix: Azure AI services
 description: Automate compensation and earnings information from pay slips and stubs.
 author: laujan
@@ -13,15 +13,15 @@ monikerRange: '>=doc-intel-4.0.0'
 
 <!-- markdownlint-disable MD033 -->
 
-# Document Intelligence pay stub model
+# Document Intelligence payStub model
 
-The Document Intelligence pay stub model combines powerful Optical Character Recognition (OCR) capabilities with deep learning models to analyze and extract compensation and earnings data from pay slips. The API analyzes documents and files with payroll related information; extracts key information and returns a structured JSON data representation.
+The Document Intelligence payStub model combines powerful Optical Character Recognition (OCR) capabilities with deep learning models to analyze and extract compensation and earnings data from pay slips. The API analyzes documents and files with payroll related information; extracts key information and returns a structured JSON data representation.
 
 | Feature   | version| Model ID |
 |----------  |---------|--------|
-|Pay stub model|&bullet; v4.0:2024-07-31 (preview)|**`prebuilt-payStub.us`**|
+|payStub model|&bullet; v4.0:2024-07-31 (preview)|**`prebuilt-payStub.us`**|
 
-## Try pay stub data extraction
+## Try payStub data extraction
 
 Pay stubs are essential documents issued by employers to employees, providing earnings, deductions, and net pay information for a specific pay period. See how data is extracted using `prebuilt-payStub.us` model. You need the following resources:
 
@@ -49,7 +49,7 @@ For a complete list of supported languages, *see* our [prebuilt model language s
 
 ## Field extractions
 
-For supported document extraction fields, refer to the [pay stub model schema](https://github.com/Azure-Samples/document-intelligence-code-samples/blob/main/schema/2024-07-31-preview/pay-stub.md) page in our GitHub sample repository.
+For supported document extraction fields, refer to the [payStub model schema](https://github.com/Azure-Samples/document-intelligence-code-samples/blob/main/schema/2024-07-31-preview/pay-stub.md) page in our GitHub sample repository.
 
 ## Supported locales
 

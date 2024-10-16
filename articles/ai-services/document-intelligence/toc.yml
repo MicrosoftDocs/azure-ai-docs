@@ -344,8 +344,6 @@ items:
       href: https://github.com/Azure-Samples/document-intelligence-code-samples/blob/main/schema/2024-07-31-preview/pay-stub.md
     - name: Receipt
       href: https://github.com/Azure-Samples/document-intelligence-code-samples/blob/main/schema/2024-07-31-preview/receipt.md
-    - name: Marriage certificate
-      href: https://github.com/Azure-Samples/document-intelligence-code-samples/blob/main/schema/marriage-certificate/2024-07-31-preview.json?context=/azure/ai-services/context/context
 - name: Resources
   items:
   - name: Enterprise readiness

@@ -44,7 +44,7 @@ The Document Intelligence invoice model uses powerful Optical Character Recognit
 
 ## Automated invoice processing
 
-Automated invoice processing is the process of extracting key accounts payable fields from billing account documents. Extracted data includes line items from invoices integrated with your accounts payable (AP) workflows for reviews and payments. Historically, the accounts payable process is performed manually and, hence, very time consuming. Accurate extraction of key data from invoices is typically the first and one of the most critical steps in the invoice automation process.
+Automated invoice processing is the process of extracting key `accounts payable` fields from billing account documents. Extracted data includes line items from invoices integrated with your accounts payable (AP) workflows for reviews and payments. Historically, the accounts payable process is performed manually and, hence, very time consuming. Accurate extraction of key data from invoices is typically the first and one of the most critical steps in the invoice automation process.
 
 ::: moniker range=">=doc-intel-3.0.0"
 
@@ -183,7 +183,7 @@ See how data, including customer information, vendor details, and line items, is
 
 ## Supported languages and locales
 
-For a complete list of supported languages *see* our [prebuilt model language support](../language-support/prebuilt.md) page .
+For a complete list of supported languages, *see* our [prebuilt model language support](../language-support/prebuilt.md) page.
 
 ## Field extraction
 
@@ -269,8 +269,8 @@ List all the detected payment options detected on the field.
 
 |Name| Type | Description | Text (line item #1) | Value (standardized output) |
 |:-----|:----|:----|:----| :----|
-| IBAN | string | Internal Bank Account Number | GB33BUKB20201555555555 | |
-| SWIFT | string | SWIFT code | BUKBGB22 | |
+| `IBAN` | string | Internal Bank Account Number | GB33BUKB20201555555555 | |
+| `SWIFT` | string | SWIFT code | BUKBGB22 | |
 | BankAccountNumber | string | Bank account number, a unique identifier for a bank account | 123456 | |
 | BPayBillerCode | string | Australian B-Pay Biller Code | 12345 | |
 | BPayReference | string | Australian B-Pay Reference Code | 98765432100 | |

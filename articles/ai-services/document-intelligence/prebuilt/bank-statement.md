@@ -51,7 +51,7 @@ A bank statement helps review account's activities during a specified period. It
 
 ## Supported languages and locales
 
-For a complete list of supported languages, *see* our [prebuilt model language support](../language-support/prebuilt.md) page .
+For a complete list of supported languages, *see* our [prebuilt model language support](../language-support/prebuilt.md) page.
 
 ## Field extractions
 

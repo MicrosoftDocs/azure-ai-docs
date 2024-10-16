@@ -234,13 +234,6 @@ For supported document extraction fields, refer to the [ID document model schema
 
 <!--docutune:disable -->
 
-::: moniker range=">=doc-intel-3.0.0"
-
-
-For supported document extraction fields, refer to the [ID document model schema](https://github.com/Azure-Samples/document-intelligence-code-samples/blob/main/schema/2024-07-31-preview/id-document.md) page in our GitHub sample repository.
-
-::: moniker-end
-
 ::: moniker range="doc-intel-2.1.0"
 
 <!--docutune:enable -->
@@ -261,7 +254,7 @@ For supported document extraction fields, refer to the [ID document model schema
 |  LastName | string | Extracted surname | "BROOKS" |
 |  Nationality | country | Country code compliant with ISO 3166 standard | "USA" |
 |  Sex | gender | Possible extracted values include "M" "F" "X" | "F" |
-|  MachineReadableZone | object | Extracted Passport MRZ including two lines of 44 characters each | "P<USABROOKS<<JENNIFER<<<<<<<<<<<<<<<<<<<<<<< 3400200135USA8001014F1905054710000307<715816" |
+|  MachineReadableZone | object | Extracted Passport `MRZ` including two lines of 44 characters each | "P<USABROOKS<<JENNIFER<<<<<<<<<<<<<<<<<<<<<<< 3400200135USA8001014F1905054710000307<715816" |
 |  DocumentType | string | Document type, for example, Passport, Driver's License | "passport" |
 |  Address | string | Extracted address (Driver's License only) | "123 STREET ADDRESS YOUR CITY WA 99999-1234"|
 |  Region | string | Extracted region, state, province, etc. (Driver's License only) | "Washington" |
