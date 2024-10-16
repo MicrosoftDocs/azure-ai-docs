@@ -30,13 +30,13 @@ To create a prompt flow, select **Prompt flow** in the Azure Machine Learning st
 
 On the **Create a new flow** screen, you can create a flow by:
 
-- Creating a **Standard**, **Chat**, or **Evaluation** flow from scratch.
+- Creating a **Standard**, **Chat**, or **Evaluation** flow from a template.
 - Cloning an available sample from the **Explore gallery**.
 - Importing an existing flow from local files or a file share.
 
 :::image type="content" source="./media/how-to-develop-flow/gallery.png" alt-text="Screenshot of prompt flow creation from scratch or gallery." lightbox ="./media/how-to-develop-flow/gallery.png":::
 
-To clone one of the available prompt flows, select **Clone** in the flow card. In the **Clone flow** pane, you can customize the flow name and folder location if you want, and then select **Clone**. The cloned flow opens in the authoring UI.
+To create a flow, select **Create** or **Clone** on the flow card you want. On the next screen pane, you can change the new flow name if you want, and then select **Create** or **Clone**. The new flow opens in the authoring UI.
 
 ### Compute session
 
@@ -62,7 +62,7 @@ In the **Inputs** and **Outputs** sections, you can view, add or remove, and edi
 
 ### Flow tools
 
-In a flow, you can consume different kinds of tools, such as LLM, Python, Prompt, Serp API, and Content Safety. Selecting a tool adds a new node for that tool to the end of the flow. You can use the node controls to change the node's position in the flow. You must specify the node name and set necessary configurations.
+In a flow, you can consume different kinds of tools, such as LLM, Python, Prompt, Serp API, and Content Safety. Selecting a tool adds a new node for that tool to the end of the flow. You must specify the node name and set necessary configurations. You can use the node controls to change the node's position in the flow.
 
 #### Node inputs and outputs
 
@@ -133,11 +133,11 @@ After a flow run completes, you can select **View outputs** to check all histori
 
 ## Develop a chat flow
 
-A *chat flow* is a specific type of chat flow designed for conversational application development. Chat flow builds on the capabilities of standard flow to provide enhanced support for chat inputs/outputs and chat history management. By using chat flow, you can easily create a chatbot that handles chat input and output.
+A *chat flow* is a specific type of prompt flow designed for conversational application development. Chat flow builds on the standard flow capabilities to provide enhanced support for chat inputs/outputs and chat history. By using chat flow, you can easily create a chatbot that handles chat input and output.
 
 To create a chat flow, select **Create** in the **Chat flow** card on the **Create a new flow** screen, or select **Chat** in the **Explore gallery** and clone one of the available flows.
 
-In a chat flow authoring page, the chat flow is tagged with a **Chat** label to distinguish it from standard and evaluation flows. To test a chat flow, you select **Chat** at the top of the page to trigger a chat box for conversation.
+In a chat flow authoring page, the chat flow is tagged with a **Chat** label to distinguish it from standard and evaluation flows. To test a chat flow, you select **Chat** at the top of the page to trigger a **Chat** box for conversation.
 
 :::image type="content" source="./media/how-to-develop-flow/chat-authoring-layout.png" alt-text="Screenshot of chat flow authoring page." lightbox ="./media/how-to-develop-flow/chat-authoring-layout.png":::
 
@@ -146,7 +146,9 @@ In a chat flow authoring page, the chat flow is tagged with a **Chat** label to 
 The most important elements that differentiate a chat flow from a standard flow are the *chat input*, *chat history*, and *chat output*. Chat history and chat input are required in chat flows.
 
 - **Chat input** refers to the messages or queries submitted by users to the chatbot. Effectively handling chat input is crucial for a successful conversation, as it involves understanding user intentions, extracting relevant information, and triggering appropriate responses.
+
 - **Chat history** is the record of all interactions between the user and the chatbot, including both user inputs and AI-generated outputs. Maintaining chat history is essential for keeping track of the conversation context and ensuring the AI can generate contextually relevant responses.
+
 - **Chat output** refers to the AI-generated messages that are sent to users in response to their inputs. Generating contextually appropriate and engaging chat output is vital for a positive user experience.
 
 A chat flow can have multiple inputs. In the chat flow **Inputs** section, you mark one of the inputs as the **Chat input**, and you populate the chat input value by typing in the **Chat** box.
@@ -210,7 +212,7 @@ The **Chat** box provides an interactive way to test your chat flow by simulatin
 1. Select **Chat** to open the **Chat** sidebar.
 1. Enter test questions in the chat box at the bottom of the screen to send them to the chatbot.
 1. Review the chatbot's responses to ensure they're contextually appropriate and accurate.
-1. Select **View outputs** at the top of the screen to quickly view and debug the chat inputs, outputs, and history.
+1. Select **View outputs** at the top of the authoring page to quickly view and debug chat inputs, outputs, and history.
 1. On the **Outputs** screen, select the **Trace** tab and then select **flow** to see detailed flow overview information in the right pane. Expand **flow** and select any step to see detailed information for that step.
 
 :::image type="content" source="./media/how-to-develop-flow/authoring-chat-trace.png" alt-text=" Screenshot of Chat flow chat box experience." lightbox ="./media/how-to-develop-flow/authoring-chat-trace.png":::
