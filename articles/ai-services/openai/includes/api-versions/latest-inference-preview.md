@@ -295,7 +295,7 @@ Creates a completion for the chat message
 | top_p | number | An alternative to sampling with temperature, called nucleus sampling, where the model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered.<br><br>We generally recommend altering this or `temperature` but not both.<br> | No | 1 |
 | stream | boolean | If set, partial message deltas will be sent, like in ChatGPT. Tokens will be sent as data-only [server-sent events](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events#Event_stream_format) as they become available, with the stream terminated by a `data: [DONE]` message.<br> | No | False |
 | stop | string or array | Up to four sequences where the API will stop generating further tokens.<br> | No |  |
-| max_tokens | integer | The maximum number of [tokens](/tokenizer) that can be generated in the chat completion.<br><br>The total length of input tokens and generated tokens is limited by the model's context length. <br> | No |  |
+| max_tokens | integer | The maximum number of tokens that can be generated in the chat completion.<br><br>The total length of input tokens and generated tokens is limited by the model's context length. <br> | No |  |
 | max_completion_tokens | integer | An upper bound for the number of tokens that can be generated for a completion, including visible output tokens and reasoning tokens. This is only supported in o1 series models. Will expand the support to other models in future API release. | No |  |
 | presence_penalty | number | Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear in the text so far, increasing the model's likelihood to talk about new topics.<br> | No | 0 |
 | frequency_penalty | number | Number between -2.0 and 2.0. Positive values penalize new tokens based on their existing frequency in the text so far, decreasing the model's likelihood to repeat the same line verbatim.<br> | No | 0 |
@@ -2199,7 +2199,7 @@ Create a message.
 
 |**Content-Type**|**Type**|**Description**|
 |:---|:---|:---|
-|application/json | [messageObject](#messageobject) | Represents a message within a threads.|
+|application/json | [messageObject](#messageobject) | Represents a message within a thread.|
 
 ### Examples
 
@@ -2275,7 +2275,7 @@ Retrieve a message.
 
 |**Content-Type**|**Type**|**Description**|
 |:---|:---|:---|
-|application/json | [messageObject](#messageobject) | Represents a message within a threads.|
+|application/json | [messageObject](#messageobject) | Represents a message within a thread.|
 
 ### Examples
 
@@ -2354,7 +2354,7 @@ Modifies a message.
 
 |**Content-Type**|**Type**|**Description**|
 |:---|:---|:---|
-|application/json | [messageObject](#messageobject) | Represents a message within a threads.|
+|application/json | [messageObject](#messageobject) | Represents a message within a thread.|
 
 ### Examples
 
@@ -2472,7 +2472,7 @@ Create a thread and run it in one request.
 
 |**Content-Type**|**Type**|**Description**|
 |:---|:---|:---|
-|application/json | [runObject](#runobject) | Represents an execution run on a threads.|
+|application/json | [runObject](#runobject) | Represents an execution run on a thread.|
 
 ### Examples
 
@@ -2743,7 +2743,7 @@ Create a run.
 
 |**Content-Type**|**Type**|**Description**|
 |:---|:---|:---|
-|application/json | [runObject](#runobject) | Represents an execution run on a threads.|
+|application/json | [runObject](#runobject) | Represents an execution run on a thread.|
 
 ### Examples
 
@@ -2832,7 +2832,7 @@ Retrieves a run.
 
 |**Content-Type**|**Type**|**Description**|
 |:---|:---|:---|
-|application/json | [runObject](#runobject) | Represents an execution run on a threads.|
+|application/json | [runObject](#runobject) | Represents an execution run on a thread.|
 
 ### Examples
 
@@ -2910,7 +2910,7 @@ Modifies a run.
 
 |**Content-Type**|**Type**|**Description**|
 |:---|:---|:---|
-|application/json | [runObject](#runobject) | Represents an execution run on a threads.|
+|application/json | [runObject](#runobject) | Represents an execution run on a thread.|
 
 ### Examples
 
@@ -3025,7 +3025,7 @@ When a run has the `status: "requires_action"` and `required_action.type` is `su
 
 |**Content-Type**|**Type**|**Description**|
 |:---|:---|:---|
-|application/json | [runObject](#runobject) | Represents an execution run on a threads.|
+|application/json | [runObject](#runobject) | Represents an execution run on a thread.|
 
 ### Examples
 
@@ -3142,7 +3142,7 @@ Cancels a run that is `in_progress`.
 
 |**Content-Type**|**Type**|**Description**|
 |:---|:---|:---|
-|application/json | [runObject](#runobject) | Represents an execution run on a threads.|
+|application/json | [runObject](#runobject) | Represents an execution run on a thread.|
 
 ### Examples
 
@@ -4609,7 +4609,7 @@ Represents a completion response from the API. Note: both the streamed and non-s
 | top_p | number | An alternative to sampling with temperature, called nucleus sampling, where the model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered.<br><br>We generally recommend altering this or `temperature` but not both.<br> | No | 1 |
 | stream | boolean | If set, partial message deltas will be sent, like in ChatGPT. Tokens will be sent as data-only [server-sent events](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events#Event_stream_format) as they become available, with the stream terminated by a `data: [DONE]` message.<br> | No | False |
 | stop | string or array | Up to 4 sequences where the API will stop generating further tokens.<br> | No |  |
-| max_tokens | integer | The maximum number of [tokens](/tokenizer) that can be generated in the chat completion.<br><br>The total length of input tokens and generated tokens is limited by the model's context length. <br> | No |  |
+| max_tokens | integer | The maximum number of tokens that can be generated in the chat completion.<br><br>The total length of input tokens and generated tokens is limited by the model's context length. <br> | No |  |
 | max_completion_tokens | integer | An upper bound for the number of tokens that can be generated for a completion, including visible output tokens and reasoning tokens. This is only supported in o1 series models. Will expand the support to other models in future API release. | No |  |
 | presence_penalty | number | Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear in the text so far, increasing the model's likelihood to talk about new topics.<br> | No | 0 |
 | frequency_penalty | number | Number between -2.0 and 2.0. Positive values penalize new tokens based on their existing frequency in the text so far, decreasing the model's likelihood to repeat the same line verbatim.<br> | No | 0 |
@@ -6403,7 +6403,7 @@ Specifies a tool the model should use. Use to force the model to call a specific
 
 ### runObject
 
-Represents an execution run on a threads.
+Represents an execution run on a thread.
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
@@ -6750,7 +6750,7 @@ Represents a thread that contains messages.
 
 ### messageObject
 
-Represents a message within a threads.
+Represents a message within a thread.
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
@@ -8075,7 +8075,7 @@ Occurs when a new run is created.
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
 | event | string |  | Yes |  |
-| data | [runObject](#runobject) | Represents an execution run on a threads. | Yes |  |
+| data | [runObject](#runobject) | Represents an execution run on a thread. | Yes |  |
 
 
 
@@ -8096,7 +8096,7 @@ Occurs when a run moves to a `queued` status.
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
 | event | string |  | Yes |  |
-| data | [runObject](#runobject) | Represents an execution run on a threads. | Yes |  |
+| data | [runObject](#runobject) | Represents an execution run on a thread. | Yes |  |
 
 
 
@@ -8117,7 +8117,7 @@ Occurs when a run moves to an `in_progress` status.
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
 | event | string |  | Yes |  |
-| data | [runObject](#runobject) | Represents an execution run on a threads. | Yes |  |
+| data | [runObject](#runobject) | Represents an execution run on a thread. | Yes |  |
 
 
 
@@ -8138,7 +8138,7 @@ Occurs when a run moves to a `requires_action` status.
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
 | event | string |  | Yes |  |
-| data | [runObject](#runobject) | Represents an execution run on a threads. | Yes |  |
+| data | [runObject](#runobject) | Represents an execution run on a thread. | Yes |  |
 
 
 
@@ -8159,7 +8159,7 @@ Occurs when a run is completed.
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
 | event | string |  | Yes |  |
-| data | [runObject](#runobject) | Represents an execution run on a threads. | Yes |  |
+| data | [runObject](#runobject) | Represents an execution run on a thread. | Yes |  |
 
 
 
@@ -8180,7 +8180,7 @@ Occurs when a run fails.
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
 | event | string |  | Yes |  |
-| data | [runObject](#runobject) | Represents an execution run on a threads. | Yes |  |
+| data | [runObject](#runobject) | Represents an execution run on a thread. | Yes |  |
 
 
 
@@ -8201,7 +8201,7 @@ Occurs when a run moves to a `cancelling` status.
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
 | event | string |  | Yes |  |
-| data | [runObject](#runobject) | Represents an execution run on a threads. | Yes |  |
+| data | [runObject](#runobject) | Represents an execution run on a thread. | Yes |  |
 
 
 
@@ -8222,7 +8222,7 @@ Occurs when a run is cancelled.
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
 | event | string |  | Yes |  |
-| data | [runObject](#runobject) | Represents an execution run on a threads. | Yes |  |
+| data | [runObject](#runobject) | Represents an execution run on a thread. | Yes |  |
 
 
 
@@ -8243,7 +8243,7 @@ Occurs when a run expires.
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
 | event | string |  | Yes |  |
-| data | [runObject](#runobject) | Represents an execution run on a threads. | Yes |  |
+| data | [runObject](#runobject) | Represents an execution run on a thread. | Yes |  |
 
 
 
@@ -8425,7 +8425,7 @@ Occurs when a message is created.
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
 | event | string |  | Yes |  |
-| data | [messageObject](#messageobject) | Represents a message within a threads. | Yes |  |
+| data | [messageObject](#messageobject) | Represents a message within a thread. | Yes |  |
 
 
 
@@ -8446,7 +8446,7 @@ Occurs when a message moves to an `in_progress` state.
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
 | event | string |  | Yes |  |
-| data | [messageObject](#messageobject) | Represents a message within a threads. | Yes |  |
+| data | [messageObject](#messageobject) | Represents a message within a thread. | Yes |  |
 
 
 
@@ -8488,7 +8488,7 @@ Occurs when a message is completed.
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
 | event | string |  | Yes |  |
-| data | [messageObject](#messageobject) | Represents a message within a threads. | Yes |  |
+| data | [messageObject](#messageobject) | Represents a message within a thread. | Yes |  |
 
 
 
@@ -8509,7 +8509,7 @@ Occurs when a message ends before it is completed.
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
 | event | string |  | Yes |  |
-| data | [messageObject](#messageobject) | Represents a message within a threads. | Yes |  |
+| data | [messageObject](#messageobject) | Represents a message within a thread. | Yes |  |
 
 
 
