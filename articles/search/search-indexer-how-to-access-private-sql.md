@@ -128,7 +128,7 @@ This article assumes a [REST client](search-get-started-rest.md) and uses the RE
 
 1. [Create the data source definition](search-howto-connecting-azure-sql-database-to-azure-search-using-indexers.md) as you would normally for Azure SQL. The format of the connection string is slightly different for a managed instance, but other properties are the same as if you were configuring a data source connection to Azure SQL database.
 
-    Provide the connection string that you copied earlier.
+    Provide the connection string that you copied earlier with an Initial Catalog specified.
 
     ```http
     POST https://myservice.search.windows.net/datasources?api-version=2024-07-01
@@ -139,7 +139,7 @@ This article assumes a [REST client](search-get-started-rest.md) and uses the RE
          "description" : "A database for testing Azure AI Search indexes.",
          "type" : "azuresql",
          "credentials" : { 
-             "connectionString" : "Server=tcp:contoso.public.0000000000.database.windows.net,1433; Initial Catalog=;Persist Security Info=false; User ID=<your user name>; Password=<your password>;MultipleActiveResultsSets=False; Encrypt=True;Connection Timeout=30;"
+             "connectionString" : "Server=tcp:contoso.public.0000000000.database.windows.net,1433;Persist Security Info=false; User ID=<your user name>; Password=<your password>;MultipleActiveResultsSets=False; Encrypt=True;Connection Timeout=30;Initial Catalog=<your database name>"
             },
          "container" : { 
              "name" : "Name of table or view to index",
