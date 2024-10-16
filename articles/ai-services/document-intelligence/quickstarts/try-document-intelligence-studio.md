@@ -5,8 +5,6 @@ description: Form and document processing, data extraction, and analysis using D
 author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
-ms.custom:
-  - ignite-2023
 ms.topic: quickstart
 ms.date: 08/07/2024
 ms.author: lajanuar
@@ -52,7 +50,7 @@ To use Document Intelligence Studio, you need the following assets and settings:
 
 * To test any of the document analysis or prebuilt models, select the model and use one of the sample documents or upload your own document to analyze. The analysis result is displayed at the right in the content-result-code window.
 
-* Custom models need to be trained on your documents. See [custom models overview](../concept-custom.md) for an overview of custom models.
+* Custom models need to be trained on your documents. See [custom models overview](../train/custom-model.md) for an overview of custom models.
 
 ## Authentication
 

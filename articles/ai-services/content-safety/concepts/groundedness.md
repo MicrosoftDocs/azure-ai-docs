@@ -23,7 +23,7 @@ The Groundedness detection API detects whether the text responses of large langu
 
 ## Groundedness detection options
 
-The following options are available for gGroundedness detection in Azure AI Content Safety:
+The following options are available for Groundedness detection in Azure AI Content Safety:
 
 - **Domain Selection**: Users can choose an established domain to ensure more tailored detection that aligns with the specific needs of their field. The current available domains are `MEDICAL` and `GENERIC`.
 - **Task Specification**: This feature lets you select the task you're doing, such as QnA (question & answering) and Summarization, with adjustable settings according to the task type.
@@ -116,7 +116,7 @@ Example API Request:
 }
 ```
 **Expected outcome:**
-The API detects the ungrounded date `1065` and correct it to `1066` based on the grounding source. The response includes the corrected text: `"The Battle of Hastings occurred in 1066."`
+The API detects the ungrounded date `1065` and corrects it to `1066` based on the grounding source. The response includes the corrected text: `"The Battle of Hastings occurred in 1066."`
 
 
 ### Internal documentation summarization
@@ -139,7 +139,7 @@ Example API Request:
 
 **Expected outcome:**
 
-The correction feature identifies `SuperWidget v2.1` as ungrounded and update it to `SuperWidget v2.2` in the response. The response returns the corrected text: `"Our latest product is SuperWidget v2.2."`
+The correction feature identifies `SuperWidget v2.1` as ungrounded and updates it to `SuperWidget v2.2` in the response. The response returns the corrected text: `"Our latest product is SuperWidget v2.2."`
 
 ## Best practices
 

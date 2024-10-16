@@ -5,8 +5,6 @@ description: Learn how to configure the Document Intelligence container to parse
 author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
-ms.custom:
-  - ignite-2023
 ms.topic: how-to
 ms.date: 05/23/2024
 ms.author: lajanuar
@@ -18,12 +16,12 @@ ms.author: lajanuar
 
 :::moniker range="doc-intel-2.1.0 || doc-intel-4.0.0"
 
-Support for containers is currently available with Document Intelligence version `2022-08-31 (GA)` for all models and `2023-07-31 (GA)` for Read, Layout, Invoice, Receipt and ID Document models:
+Support for containers is currently available with Document Intelligence version `2022-08-31 (GA)` for all models and `2023-07-31 (GA)` for Read, Layout, Invoice, Receipt, and ID Document models:
 
 * [REST API `2022-08-31 (GA)`](/rest/api/aiservices/document-models/analyze-document?view=rest-aiservices-v3.0%20(2022-08-31)&preserve-view=true&tabs=HTTP)
 * [REST API `2023-07-31 (GA)`](/rest/api/aiservices/document-models/analyze-document?view=rest-aiservices-v3.1%20(2023-07-31)&tabs=HTTP&preserve-view=true)
-* [SDKs targeting `REST API 2022-08-31 (GA)`](../sdk-overview-v3-0.md)
-* [SDKs targeting `REST API 2023-07-31 (GA)`](../sdk-overview-v3-1.md)
+* [Client libraries targeting `REST API 2022-08-31 (GA)`](../sdk-overview-v3-0.md)
+* [Client libraries targeting `REST API 2023-07-31 (GA)`](../sdk-overview-v3-1.md)
 
 ✔️ See [**Configure Document Intelligence v3.0 containers**](?view=doc-intel-3.0.0&preserve-view=true) for supported container documentation.
 
@@ -42,7 +40,7 @@ Each container has the following configuration settings:
 |Required|Setting|Purpose|
 |--|--|--|
 |Yes|[Key](#key-and-billing-configuration-setting)|Tracks billing information.|
-|Yes|[Billing](#key-and-billing-configuration-setting)|Specifies the endpoint URI of the service resource on Azure.  For more information, _see_ [Billing](install-run.md#billing). For more information and a complete list of regional endpoints, _see_ [Custom subdomain names for Azure AI services](../../../ai-services/cognitive-services-custom-subdomains.md).|
+|Yes|[Billing](#key-and-billing-configuration-setting)|Specifies the endpoint URI of the service resource on Azure. For more information, _see_ [Billing](install-run.md#billing). For more information and a complete list of regional endpoints, _see_ [Custom subdomain names for Azure AI services](../../../ai-services/cognitive-services-custom-subdomains.md).|
 |Yes|[Eula](#eula-setting)| Indicates that you accepted the license for the container.|
 |No|[ApplicationInsights](#applicationinsights-setting)|Enables adding [Azure Application Insights](/azure/application-insights) customer support for your container.|
 |No|[Fluentd](#fluentd-settings)|Writes log and, optionally, metric data to a Fluentd server.|
@@ -62,7 +60,7 @@ The `Billing` setting specifies the endpoint URI of the resource on Azure that i
 
    :::image type="content" source="../media/containers/keys-and-endpoint.png" alt-text="Screenshot of Azure portal keys and endpoint page.":::
 
-## EULA setting
+## `EULA` setting
 
 [!INCLUDE [Container shared configuration eula settings](../../includes/cognitive-services-containers-configuration-shared-settings-eula.md)]
 
@@ -84,7 +82,7 @@ The `Billing` setting specifies the endpoint URI of the resource on Azure that i
 
 ## Volume settings
 
-Use [**volumes**](https://docs.docker.com/storage/volumes/) to read and write data to and from the container. Volumes are the preferred for persisting data generated and used by Docker containers. You can specify an input mount or an output mount by including the `volumes` option and specifying `type` (bind), `source` (path to the folder) and `target` (file path parameter).
+Use [**volumes**](https://docs.docker.com/storage/volumes/) to read and write data to and from the container. Volumes are the preferred for persisting data generated and used by Docker containers. You can specify an input mount or an output mount by including the `volumes` option and specifying `type` (bind), `source` (path to the folder), and `target` (file path parameter).
 
 The Document Intelligence container requires an input volume and an output volume. The input volume can be read-only (`ro`), and is required for access to the data that is used for training and scoring. The output volume has to be writable, and you use it to store the models and temporary data.
 
