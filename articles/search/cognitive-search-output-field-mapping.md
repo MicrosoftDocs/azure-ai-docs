@@ -13,7 +13,7 @@ ms.date: 10/15/2024
 
 # Map enriched output to fields in a search index in Azure AI Search
 
-:::image type="content" source="media/cognitive-search-output-field-mapping/indexer-stages-output-field-mapping.pn" alt-text="Diagram of the Indexer Stages with Output Field Mappings highlighted.":::
+:::image type="content" source="media/cognitive-search-output-field-mapping/indexer-stages-output-field-mapping.png" alt-text="Diagram of the Indexer Stages with Output Field Mappings highlighted.":::
 
 This article explains how to set up *output field mappings*, defining a data path between in-memory data generated during [skillset processing](cognitive-search-concept-intro.md), and target fields in a search index. During indexer execution, skills-generated information exists in memory only. To persist this information in a search index, you need to tell the indexer where to send the data.
 
