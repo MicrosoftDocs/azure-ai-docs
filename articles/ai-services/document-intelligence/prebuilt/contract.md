@@ -93,9 +93,9 @@ For a complete list of supported languages, *see* our [Language Support—prebui
 
 ## Field extraction
 
-For supported document extraction fields, refer to the [contract model schema](https://github.com/Azure-Samples/document-intelligence-code-samples/blob/main/schema/2024-07-31-preview/contract.md) page in our GitHub sample repository.
+* For supported document extraction fields, refer to the [contract model schema](https://github.com/Azure-Samples/document-intelligence-code-samples/blob/main/schema/2024-07-31-preview/contract.md) page in our GitHub sample repository.
 
-The contract key-value pairs and line items extracted are in the `documentResults` section of the JSON output.
+* The contract key-value pairs and line items extracted are in the `documentResults` section of the JSON output.
 
 ## Next steps
 
