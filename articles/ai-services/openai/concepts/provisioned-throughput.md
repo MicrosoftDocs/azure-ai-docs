@@ -42,11 +42,12 @@ The amount of throughput (tokens per minute or TPM) a deployment gets per PTU is
 
 To help with simplifying the sizing effort, the following table outlines the TPM per PTU for the `gpt-4o` and `gpt-4o-mini` models
 
-|   Variable  | **gpt-4o**, **2024-05-13**   & **gpt-4o**, **2024-08-06**   | **gpt-4o-mini**, **2024-07-18**   | 
+|     | **gpt-4o**, **2024-05-13**   & **gpt-4o**, **2024-08-06**   | **gpt-4o-mini**, **2024-07-18**   | 
 | --- | --- | --- |
 | Deployable Increments | 50 | 25|
 | Input TPM per PTU | 2,500 | 37,000  |
 | Output TPM per PTU | 833  | 12,333 |
+
 \** For a full list see the [AOAI Studio calcualator](https://oai.azure.com/portal/calculator)
 
 
