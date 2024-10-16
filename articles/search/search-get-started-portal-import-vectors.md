@@ -2,7 +2,6 @@
 title: "Quickstart: Vectorize text and images by using the Azure portal"
 titleSuffix: Azure AI Search
 description: Use a wizard to automate data chunking and vectorization in a search index.
-
 author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
@@ -49,7 +48,7 @@ Key points about the wizard:
 
 If using the Azure OpenAI Service, it must have an associated [custom subdomain](/azure/ai-services/cognitive-services-custom-subdomains). If the service was created through the Azure portal, this subdomain is automatically generated as part of your service setup. Ensure that your service includes a custom subdomain before using it with the Azure AI Search integration.
 
-Note that Azure OpenAI models created with an AI Studio service account are not supported. Only models from the Azure OpenAI Service are compatible with the Azure OpenAI integration. 
+Azure OpenAI Service resources (with access to embedding models) that were created in AI Studio aren't supported. Only the Azure OpenAI Service resources created in the Azure portal are compatible with the **Azure OpenAI Embedding** skill integration.
 
 ### Public endpoint requirements
 

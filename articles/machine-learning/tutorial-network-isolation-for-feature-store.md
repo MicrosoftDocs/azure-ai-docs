@@ -34,7 +34,6 @@ Part 1 of this tutorial series showed how to create a feature set specification 
 > [!NOTE]
 > This tutorial uses an Azure Machine Learning notebook with **Serverless Spark Compute**.
 
-* Be sure to complete parts 1 through 4 of this tutorial series
 * An Azure Machine Learning workspace, enabled with Managed virtual network for **serverless spark jobs**
 * To configure your project workspace:
   1. Create a YAML file named `network.yml`:

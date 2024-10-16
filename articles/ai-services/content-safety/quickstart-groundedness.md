@@ -7,11 +7,13 @@ author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-content-safety
 ms.topic: quickstart
-ms.date: 03/18/2024
+ms.date: 10/16/2024
 ms.author: pafarley
+#customer intent: As a developer, I want to learn how to use the groundedness detection API so that I can ensure generated content is aligned with factual references.
+
 ---
 
-# Quickstart: Groundedness detection (preview)
+# Quickstart: Use Groundedness detection (preview)
 
 This guide shows you how to use the groundedness detection API. This feature automatically detects and corrects ungrounded text based on the provided source documents, ensuring that the generated content is aligned with factual or intended references. Below, we explore several common scenarios to help you understand how and when to apply these features to achieve the best outcomes. 
 
@@ -36,7 +38,6 @@ This section walks through a sample request with cURL. Paste the command below i
 1. Replace `<endpoint>` with the endpoint URL associated with your resource.
 1. Replace `<your_subscription_key>` with one of the keys for your resource.
 1. Optionally, replace the `"query"` or `"text"` fields in the body with your own text you'd like to analyze.
-    
     
     ```shell
     curl --location --request POST '<endpoint>/contentsafety/text:detectGroundedness?api-version=2024-09-15-preview' \
@@ -167,7 +168,7 @@ The JSON objects in the output are defined here:
 
 The Groundedness detection API provides the option to include _reasoning_ in the API response. With reasoning enabled, the response includes a `"reasoning"` field that details specific instances and explanations for any detected ungroundedness.
 
-### Bring your own GPT deployment
+### Connect your own GPT deployment
 
 > [!TIP]
 > We only support **Azure OpenAI GPT-4 Turbo (1106-preview)** resources and do not support other GPT types. You have the flexibility to deploy your GPT-4 Turbo (1106-preview) resources in any region. However, to minimize potential latency and avoid any geographical boundary data privacy and risk concerns, we recommend situating them in the same region as your content safety resources. For comprehensive details on data privacy, refer to the [Data, privacy and security guidelines for Azure OpenAI Service](/legal/cognitive-services/openai/data-privacy) and [Data, privacy, and security for Azure AI Content Safety](/legal/cognitive-services/content-safety/data-privacy?context=%2Fazure%2Fai-services%2Fcontent-safety%2Fcontext%2Fcontext).
@@ -349,13 +350,13 @@ The JSON objects in the output are defined here:
 
 The groundedness detection API includes a correction feature that automatically corrects any detected ungroundedness in the text based on the provided grounding sources. When the correction feature is enabled, the response includes a `"correction Text"` field that presents the corrected text aligned with the grounding sources.
 
-### Bring your own GPT deployment
+### Connect your own GPT deployment
 
 > [!TIP]
 > Currently, the correction feature supports only **Azure OpenAI GPT-4 Turbo (1106-preview)** resources. To minimize latency and adhere to data privacy guidelines, it's recommended to deploy your GPT-4 Turbo (1106-preview) resources in the same region as your content safety resources. For more details on data privacy, please refer to the [Data, privacy and security guidelines for Azure OpenAI Service](/legal/cognitive-services/openai/data-privacy?context=/azure/ai-services/openai/context/context)
  and [Data, privacy, and security for Azure AI Content Safety](/legal/cognitive-services/content-safety/data-privacy?context=/azure/ai-services/content-safety/context/context).
 
-To use your Azure OpenAI GPT4-Turbo (1106-preview) resource for enabling the correction feature, use Managed Identity to allow your Content Safety resource to access the Azure OpenAI resource. Follow the steps in the [earlier section](#bring-your-own-gpt-deployment) to set up the Managed Identity.
+To use your Azure OpenAI GPT4-Turbo (1106-preview) resource for enabling the correction feature, use Managed Identity to allow your Content Safety resource to access the Azure OpenAI resource. Follow the steps in the [earlier section](#connect-your-own-gpt-deployment) to set up the Managed Identity.
 
 
 ### Make the API request
@@ -378,14 +379,11 @@ In your request to the groundedness detection API, set the `"correction"` body p
 }
 ```
 
-
-
 #### [cURL](#tab/curl)
 This section demonstrates a sample request using cURL. Replace the placeholders as needed:
 - Replace `<endpoint>` with your resource's endpoint URL.
 - Replace `<your_subscription_key>` with your subscription key.
 - Optionally, replace the "text" field with the text you want to analyze.
-
 
 
 ```shell
