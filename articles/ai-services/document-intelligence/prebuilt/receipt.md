@@ -227,26 +227,6 @@ For supported document extraction fields, refer to the [receipt model schema](ht
  
 ::: moniker-end
 
-::: moniker range="doc-intel-3.1.0"
-
-> [!div class="nextstepaction"]
-> [View samples on GitHub.](https://github.com/Azure-Samples/document-intelligence-code-samples/blob/v3.1(2023-07-31-GA)/Python(v3.1)/Prebuilt_model/sample_analyze_receipts.py)
-
-::: moniker-end
-
-::: moniker range="doc-intel-4.0.0"
-
-> [!div class="nextstepaction"]
-> [View samples on GitHub.](https://github.com/Azure-Samples/document-intelligence-code-samples/blob/main/Python(v4.0)/Prebuilt_model/sample_analyze_receipts.py)
-
-::: moniker-end
-
-::: moniker range=">=doc-intel-3.0.0"
-
-For supported document extraction fields, refer to the [receipt model schema](https://github.com/Azure-Samples/document-intelligence-code-samples/blob/main/schema/2024-07-31-preview/receipt.md) page in our GitHub sample repository.
-
-::: moniker-end
-
 ::: moniker range="doc-intel-2.1.0"
 
 ### Migration guide and REST API v3.1
