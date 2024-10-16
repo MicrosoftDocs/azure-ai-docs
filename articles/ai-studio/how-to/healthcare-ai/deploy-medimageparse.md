@@ -7,9 +7,11 @@ manager: scottpolly
 ms.topic: how-to
 ms.date: 10/20/2024
 ms.reviewer: itarapov
-reviewer: fkriti
+reviewer: ivantarapov
 ms.author: mopeakande
 author: msakande
+#Customer intent: As a Data Scientist I want to learn how to use the MedImageParse healthcare AI model to segment medical images.
+
 ---
 
 # How to use MedImageParse healthcare AI model for segmentation of medical images

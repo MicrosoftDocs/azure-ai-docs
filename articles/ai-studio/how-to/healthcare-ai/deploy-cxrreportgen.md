@@ -5,12 +5,13 @@ description: Learn how to use CXRReportGen Healthcare AI Model with Azure AI Stu
 ms.service: azure-ai-studio
 manager: scottpolly
 ms.topic: how-to
-ms.date: 09/30/2024
+ms.date: 10/20/2024
 ms.reviewer: itarapov
-reviewer: fkriti
+reviewer: ivantarapov
 ms.author: mopeakande
 author: msakande
-ms.custom: references_regions, generated
+#Customer intent: As a Data Scientist I want to learn how to use the CXRReportGen healthcare AI model to generate grounded findings.
+
 ---
 
 # How to use CXRReportGen Healthcare AI model to generate grounded findings

@@ -10,6 +10,8 @@ ms.reviewer: itarapov
 reviewer: ivantarapov
 ms.author: mopeakande
 author: msakande
+
+#Customer intent: As a Data Scientist I want to learn how to use the MedImageInsight healthcare AI model to generate medical image embeddings.
 ---
 
 # How to use MedImageInsight healthcare AI model for medical image embedding generation
