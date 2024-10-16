@@ -8,7 +8,7 @@ author: mrcarter8
 ms.author: mcarter
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 09/17/2024
+ms.date: 10/16/2024
 ---
 
 # Make outbound connections through a shared private link
@@ -95,7 +95,7 @@ You can create a shared private link for the following resources.
 | Microsoft.DBforMySQL/servers (preview) | `mysqlServer`|
 | Microsoft.Web/sites <sup>4</sup> | `sites` |
 | Microsoft.Sql/managedInstances (preview) <sup>5</sup>| `managedInstance` |
-| Microsoft.CognitiveServices/accounts <sup>6</sup>| `openai_account` |
+| Microsoft.CognitiveServices/accounts <sup>6</sup> <sup>7</sup>| `openai_account` |
 
 <sup>1</sup> If Azure Storage and Azure AI Search are in the same region, the connection to storage is made over the Microsoft backbone network, which means a shared private link is redundant for this configuration. However, if you already set up a private endpoint for Azure Storage, you should also set up a shared private link or the connection is refused on the storage side. Also, if you're using multiple storage formats for various scenarios in search, make sure to create a separate shared private link for each subresource.
 
@@ -108,6 +108,9 @@ You can create a shared private link for the following resources.
 <sup>5</sup> See [Create a shared private link for a SQL Managed Instance](search-indexer-how-to-access-private-sql.md) for instructions.
 
 <sup>6</sup> The `Microsoft.CognitiveServices/accounts` resource type is used for vectorizer and indexer connections to Azure OpenAI when implementing [integrated Vectorization](vector-search-integrated-vectorization.md). There's currently no support for shared private link to embedding models in the Azure AI Studio model catalog or to the Azure AI Vision multimodal API.
+
+<sup>7</sup> Shared Private Link for Azure OpenAI is only supported in public cloud. Other cloud offerings such as [Microsoft Azure Government](https://azure.microsoft.com/en-us/explore/global-infrastructure/government/) don't have support for Shared Private Links.
+
 
 ## 1 - Create a shared private link
 
