@@ -22,6 +22,8 @@ You filter on the Nixtla collection to browse the TimeGEN-1 model in the [Model 
 
 The Nixtla TimeGEN-1 is a generative, pretrained forecasting and anomaly detection model for time series data. TimeGEN-1 can produce accurate forecasts for new time series without training, using only historical values and exogenous covariates as inputs.
 
+[!INCLUDE [maas-models-preview](../includes/maas-models-preview.md)]
+
 ## Deploy TimeGEN-1 as a serverless API
 
 Certain models in the model catalog can be deployed as a serverless API with pay-as-you-go billing. This kind of deployment provides a way to consume models as an API without hosting them on your subscription, while keeping the enterprise security and compliance that organizations need. This deployment option doesn't require quota from your subscription.
