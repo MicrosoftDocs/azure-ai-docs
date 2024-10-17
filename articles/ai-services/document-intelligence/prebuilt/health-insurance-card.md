@@ -6,7 +6,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.topic: conceptual
-ms.date: 05/23/2024
+ms.date: 10/16/2024
 ms.author: lajanuar
 monikerRange: 'doc-intel-4.0.0 || >=doc-intel-3.0.0'
 ---
@@ -93,51 +93,11 @@ See how data is extracted from health insurance cards using the Document Intelli
 
 ## Supported languages and locales
 
-*See* our [Language Support—prebuilt models](../language-support/prebuilt.md) page for a complete list of supported languages.
+For a complete list of supported languages, *see* our [prebuilt model language support](../language-support/prebuilt.md) page.
 
 ## Field extraction
 
-| Field | Type | Description | Example |
-|:------|:-----|:------------|:--------|
-|`Insurer`|`string`|Health insurance provider name|PREMERA<br>BLUE CROSS|
-|`Member`|`object`|||
-|`Member.Name`|`string`|Member name|ANGEL BROWN|
-|`Member.BirthDate`|`date`|Member date of birth|01/06/1958|
-|`Member.Employer`|`string`|Member name employer|Microsoft|
-|`Member.Gender`|`string`|Member gender|M|
-|`Member.IdNumberSuffix`|`string`|Identification Number Suffix as it appears on some health insurance cards|01|
-|`Dependents`|`array`|Array holding list of dependents, ordered where possible by membership suffix value||
-|`Dependents.*`|`object`|||
-|`Dependents.*.Name`|`string`|Dependent name|01|
-|`IdNumber`|`object`|||
-|`IdNumber.Prefix`|`string`|Identification Number Prefix as it appears on some health insurance cards|`ABC`|
-|`IdNumber.Number`|`string`|Identification Number|123456789|
-|`GroupNumber`|`string`|Insurance Group Number|1000000|
-|`PrescriptionInfo`|`object`|||
-|`PrescriptionInfo.Issuer`|`string`|ANSI issuer identification number (IIN)|(80840) 300-11908-77|
-|`PrescriptionInfo.RxBIN`|`string`|Prescription issued BIN number|987654|
-|`PrescriptionInfo.RxPCN`|`string`|Prescription processor control number|63200305|
-|`PrescriptionInfo.RxGrp`|`string`|Prescription group number|BCAAXYZ|
-|`PrescriptionInfo.RxId`|`string`|Prescription identification number. If not present, defaults to membership ID number|P97020065|
-|`PrescriptionInfo.RxPlan`|`string`|Prescription Plan number|A1|
-|`Pbm`|`string`|Pharmacy Benefit Manager for the plan|CVS CAREMARK|
-|`EffectiveDate`|`date`|Date from which the plan is effective|08/12/2012|
-|`Copays`|`array`|Array holding list of Co-Pay Benefits||
-|`Copays.*`|`object`|||
-|`Copays.*.Benefit`|`string`|Co-Pay Benefit name|Deductible|
-|`Copays.*.Amount`|`currency`|Co-Pay required amount|$1,500|
-|`Payer`|`object`|||
-|`Payer.Id`|`string`|Payer ID Number|89063|
-|`Payer.Address`|`address`|Payer address|123 Service St., Redmond, Washington, 98052|
-|`Payer.PhoneNumber`|`phoneNumber`|Payer phone number|+1 (987) 213-5674|
-|`Plan`|`object`|||
-|`Plan.Number`|`string`|Plan number|456|
-|`Plan.Name`|`string`|Plan name - If Medicaid -> then `medicaid` (all lower case).|HEALTH SAVINGS PLAN|
-|`Plan.Type`|`string`|Plan type|`PPO`|
-|`MedicareMedicaidInfo`|`object`|||
-|`MedicareMedicaidInfo.Id`|`string`|Medicare or Medicaid number|1AB2-CD3-EF45|
-|`MedicareMedicaidInfo.PartAEffectiveDate`|`date`|Effective date of Medicare Part A|01-01-2023|
-|`MedicareMedicaidInfo.PartBEffectiveDate`|`date`|Effective date of Medicare Part B|01-01-2023|
+For supported document extraction fields, refer to the [health insurance card model schema](https://github.com/Azure-Samples/document-intelligence-code-samples/blob/main/schema/2024-07-31-preview/health-insurance-card.md) page in our GitHub sample repository.
 
 ### Migration guide and REST API v3.1
 
