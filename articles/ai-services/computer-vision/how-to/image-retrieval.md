@@ -1,15 +1,17 @@
 ---
-title: Do image retrieval using multimodal embeddings - Image Analysis 4.0
+title: Image retrieval using multimodal embeddings
 titleSuffix: Azure AI services
-description: Learn how to call the image retrieval API to vectorize image and search terms.
+description: Learn how to use the image retrieval API to vectorize images and search terms, enabling text-based image searches without metadata.
 #services: cognitive-services
 author: PatrickFarley
 manager: nitinme
 
 ms.service: azure-ai-vision
 ms.topic: how-to
-ms.date: 02/20/2024
+ms.date: 10/16/2024
 ms.author: pafarley
+
+#customer intent: As a developer, I want to use the image retrieval API to vectorize images and text so that I can perform text-based image searches.
 ---
 
 # Do image retrieval using multimodal embeddings (version 4.0)
@@ -35,7 +37,7 @@ You can try out the Multimodal embeddings feature quickly and easily in your bro
 > The Vision Studio experience is limited to 500 images. To use a larger image set, create your own search application using the APIs in this guide.
 
 > [!div class="nextstepaction"]
-> [Try Vision Studio](https://portal.vision.cognitive.azure.com/)
+> [Try Vision Studio](https://portal.vision.cognitive.azure.com/gallery/imageanalysis)
 
 ## Call the Vectorize Image API
 
@@ -124,6 +126,7 @@ def cosine_similarity(vector1, vector2):
 
 ---
 
-## Next steps
+## Next step
 
-[Image retrieval concepts](../concept-image-retrieval.md)
+> [!div class="nextstepaction"]
+> [Image retrieval concepts](../concept-image-retrieval.md)
