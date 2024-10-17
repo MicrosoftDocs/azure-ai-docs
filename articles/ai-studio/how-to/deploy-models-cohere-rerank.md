@@ -14,7 +14,7 @@ ms.custom: references_regions, build-2024
 
 # How to deploy Cohere Rerank models with Azure AI Studio
 
-[!INCLUDE [Feature preview](~/reusable-content/ce-skilling/azure/includes/ai-studio/includes/feature-preview.md)]
+[!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
 In this article, you learn about the Cohere Rerank models, how to use Azure AI Studio to deploy them as serverless APIs with pay-as-you-go token-based billing, and how to work with the deployed models.
 

@@ -15,7 +15,7 @@ author: lgayhardt
 ---
 # Evaluate with the Azure AI Evaluation SDK
 
-[!INCLUDE [Feature preview](~/reusable-content/ce-skilling/azure/includes/ai-studio/includes/feature-preview.md)]
+[!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
 > [!NOTE]
 > Evaluate with the prompt flow has been retired and replaced with Azure AI Evaluate.
