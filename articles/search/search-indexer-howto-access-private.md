@@ -109,7 +109,7 @@ You can create a shared private link for the following resources.
 
 <sup>6</sup> The `Microsoft.CognitiveServices/accounts` resource type is used for vectorizer and indexer connections to Azure OpenAI when implementing [integrated Vectorization](vector-search-integrated-vectorization.md). There's currently no support for shared private link to embedding models in the Azure AI Studio model catalog or to the Azure AI Vision multimodal API.
 
-<sup>7</sup> Shared Private Link for Azure OpenAI is only supported in public cloud. Other cloud offerings such as [Microsoft Azure Government](https://azure.microsoft.com/en-us/explore/global-infrastructure/government/) don't have support for Shared Private Links for `openai_account` Group ID.
+<sup>7</sup> Shared Private Link for Azure OpenAI is only supported in public cloud. Other cloud offerings such as [Microsoft Azure Government](https://azure.microsoft.com/explore/global-infrastructure/government/) don't have support for Shared Private Links for `openai_account` Group ID.
 
 
 ## 1 - Create a shared private link
