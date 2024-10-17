@@ -132,7 +132,7 @@ Basic and Standard are the most common choices for production workloads, but man
 
 :::image type="content" source="media/search-create-service-portal/select-pricing-tier.png" lightbox="media/search-create-service-portal/select-pricing-tier.png" alt-text="Screenshot of Select a pricing tier page." border="true":::
 
-Search services created after April 3, 2024 have larger partitions and higher vector quotas at every billable tier.
+Search services created after April 3, 2024 have larger partitions and higher vector quotas at every billable tier. Free services that remain inactive for an extended period of time (many months) might be deleted to make room for other services.
 
 Remember, a pricing tier can't be changed once the service is created. If you need a higher or lower tier, you should re-create the service.
 
