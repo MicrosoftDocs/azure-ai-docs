@@ -111,13 +111,13 @@ Here's a checklist for choosing a region:
 
    + Start with [Azure OpenAI regions](/azure/ai-services/openai/concepts/models#model-summary-table-and-region-availability) because it has the most variability. Azure OpenAI provides embedding models and chat models for RAG and vector search for integrated data chunking and vectorization. 
 
-   + Cross-check [Azure AI Search regions](search-region-support.md) against Azure OpenAI regions. If you're using OCR, entity recognition, or other skills backed by Azure AI, the "AI Integration" column indicates whether Azure AI multiservice is in the same region as Azure AI Search.
+   + Check [Azure AI Search regions](search-region-support.md) for a match to your Azure OpenAI region. If you're using OCR, entity recognition, or other skills backed by Azure AI, the **AI Integration** column indicates whether Azure AI multiservice is in the same region as Azure AI Search.
 
-   + Check [multimodal embedding regions](/azure/ai-services/computer-vision/overview-image-analysis#region-availability) if you're using  multimodal APIs for image search. This API is accessed through an Azure AI multiservice account, but it's available in fewer regions than Azure AI multiservice in general.
+   + Check [multimodal embedding regions](/azure/ai-services/computer-vision/overview-image-analysis#region-availability) if you want  multimodal APIs for image search. This API is accessed through an Azure AI multiservice account, but it's available in fewer regions than Azure AI multiservice in general.
 
 ### Regions with the most overlap
 
-Currently, the following regions offer an overlap among all three services. This list isn't definitive and there might be more choices beyond the regions listed here depending on the tier. Also, region status can change quickly, so be sure to confirm region choice before installing.
+Currently, the following regions offer cross-region among all three services (Azure AI Search, Azure OpenAI, Azure AI Vision multimodal). This list isn't definitive and there might be more choices beyond the regions listed here, depending on the tier. Also, region status can change quickly, so be sure to confirm region choice before installing.
 
 + Americas: West US
 + Europe: France Central, North Europe, Sweden Central
