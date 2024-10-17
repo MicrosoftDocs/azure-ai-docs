@@ -11,7 +11,7 @@ ms.custom:
   - references_regions
   - build-2024
 ms.topic: conceptual
-ms.date: 09/19/2024
+ms.date: 10/17/2024
 ---
 
 # Create an Azure AI Search service in the portal
@@ -93,37 +93,46 @@ If you use multiple Azure services, putting all of them in the same region minim
 
 Generally, choose a region near you, unless the following considerations apply:
 
-+ Your nearest region is capacity constrained. For example, West Europe is at capacity and unavailable for new instances. Other regions are [at capacity for specific tiers](search-sku-tier.md#region-availability-by-tier). One advantage to using the Azure portal for resource setup is that it provides only those regions and tiers that are available.
-
-+ You want to use integrated data chunking and vectorization or built-in skills for AI enrichment. Azure OpenAI and Azure AI services multiservice accounts must be in the same region as Azure AI Search for integration purposes. [Choose a region](search-region-support.md) that provides all necessary resources.
++ Your nearest region is [at capacity for specific tiers or all tiers](search-sku-tier.md#region-availability-by-tier). One advantage to using the Azure portal for resource setup is that it provides only those regions and tiers that are available.
 
 + You want to use Azure Storage for indexer-based indexing or you need to store application data that isn't in an index. Debug session state, enrichment caches, and knowledge stores are Azure AI Search features that have a dependency on Azure Storage. The region you choose for Azure Storage has implications for network security. Specifically, if you're setting up a firewall, you should place the resources in separate regions. For more information, see [Outbound connections from Azure AI Search to Azure Storage](search-indexer-securing-resources.md).
 
-Here's a checklist for choosing a region:
++ You want to use integrated data chunking and vectorization or built-in skills for AI enrichment. Integrated operations require services to coexist in the same region.
+
+### Checklist for choosing a region
 
 1. Is Azure AI Search available in a nearby region? Check the [supported regions list](search-region-support.md).
 
-1. Do you know which tier you want to use? Tiers are covered in the next step. Check [region availability by tier](search-sku-tier.md#region-availability-by-tier) to determine if you can create a search service at the desired tier in your region of choice.
+1. Do you have a specific tier in mind? Tiers are covered in the next step. Check [region availability by tier](search-sku-tier.md#region-availability-by-tier) for tier restrictions.
 
-1. Do you need [AI enrichment](cognitive-search-concept-intro.md) or [integrated data chunking and vectorization](vector-search-integrated-vectorization.md)? Verify that Azure OpenAI and Azure AI multiservice are [offered in the same region](search-region-support.md) as Azure AI Search. 
+1. Do you have business continuity and disaster recovery (BCDR) requirements? Create two or more search services in [regional pairs](/azure/availability-zones/cross-region-replication-azure#azure-paired-regions) within [availability zones](search-reliability.md#availability-zones). For example, if you're operating in North America, you might choose East US and West US, or North Central US and South Central US, for each search service.
 
-   Be aware that Azure AI Vision multimodal embeddings API, used for [integrated image vectorization](search-get-started-portal-image-search.md), must be accessed through an Azure AI multiservice account, but is available in a [smaller subset of regions](/azure/ai-services/computer-vision/overview-image-analysis#region-availability).
+1. Do you need [AI enrichment](cognitive-search-concept-intro.md), [integrated data chunking and vectorization](vector-search-integrated-vectorization.md), or [multimodal image search](search-get-started-portal-image-search.md)? Azure AI Search, Azure OpenAI, and Azure AI multiservice must coexist in the same region.
 
-1. Do you have business continuity and disaster recovery (BCDR) requirements? Such requirements dictate creating multiple search services in [regional pairs](/azure/availability-zones/cross-region-replication-azure#azure-paired-regions) in [availability zones](search-reliability.md#availability-zones). For example, if you're operating in North America, you might choose East US and West US, or North Central US and South Central US, for each search service.
+   + Start with [Azure OpenAI regions](/azure/ai-services/openai/concepts/models#model-summary-table-and-region-availability) because it has the most variability. Azure OpenAI provides embedding models and chat models for RAG and vector search for integrated data chunking and vectorization. 
+
+   + Check [Azure AI Search regions](search-region-support.md) for a match to your Azure OpenAI region. If you're using OCR, entity recognition, or other skills backed by Azure AI, the **AI Integration** column indicates whether Azure AI multiservice is in the same region as Azure AI Search.
+
+   + Check [multimodal embedding regions](/azure/ai-services/computer-vision/overview-image-analysis#region-availability) if you want  multimodal APIs for image search. This API is accessed through an Azure AI multiservice account, but it's available in fewer regions than Azure AI multiservice in general.
+
+### Regions with the most overlap
+
+Currently, the following regions offer cross-region among all three services (Azure AI Search, Azure OpenAI, Azure AI Vision multimodal). This list isn't definitive, and there might be more choices beyond the regions listed here depending on the tier. Also, region status can change quickly, so be sure to confirm region choice before installing.
+
++ Americas: West US
++ Europe: France Central, North Europe, Sweden Central
 
 ## Choose a tier
 
 Azure AI Search is offered in [multiple pricing tiers](https://azure.microsoft.com/pricing/details/search/): Free, Basic, Standard, or Storage Optimized. Each tier has its own [capacity and limits](search-limits-quotas-capacity.md). There are also several features that are tier-dependent.
 
-Review the [tier descriptions](search-sku-tier.md) for computing characteristics and [feature availability](search-sku-tier.md#feature-availability-by-tier).
+Review the [tier descriptions](search-sku-tier.md) for computing characteristics, [feature availability](search-sku-tier.md#feature-availability-by-tier), and [region availability](search-sku-tier.md#region-availability-by-tier).
 
 Basic and Standard are the most common choices for production workloads, but many customers start with the Free service. Among the billable tiers, key differences are partition size and speed, and limits on the number of objects you can create.
 
 :::image type="content" source="media/search-create-service-portal/select-pricing-tier.png" lightbox="media/search-create-service-portal/select-pricing-tier.png" alt-text="Screenshot of Select a pricing tier page." border="true":::
 
-Search services created after April 3, 2024 have larger partitions and higher vector quotas.
-
-Currently, some regions are tier-constrained. For more information, see [region availability by tier](search-sku-tier.md#region-availability-by-tier).
+Search services created after April 3, 2024 have larger partitions and higher vector quotas at every billable tier.
 
 Remember, a pricing tier can't be changed once the service is created. If you need a higher or lower tier, you should re-create the service.
 

@@ -54,7 +54,7 @@ The [Azure portal](https://portal.azure.com/) is the easiest approach for first-
      We recommend Basic for larger data files and more indexes, or Free if your files are less than 50 MB. Basic has more features and storage, but it's billable for the lifetime of the service and it might consume about one third of your available credits if you retain it for the entire trial period.
 
 > [!TIP]
-> Azure AI Search and Azure OpenAI must be in the same region. Currently, these regions provide the most overlap and capacity: **East US**, **East US2**, and **South Central** in the Americas; **France Central** or **Switzerland North** in Europe; **Australia East** in Asia Pacific.
+> Azure AI Search and Azure OpenAI must be in the [same region](search-create-service-portal.md#regions-with-the-most-overlap).
 
 ## Step three: Have a plan for next steps
 
