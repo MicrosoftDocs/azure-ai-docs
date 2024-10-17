@@ -8,7 +8,7 @@ author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: conceptual
-ms.date: 09/19/2024
+ms.date: 10/17/2024
 
 ---
 
@@ -60,6 +60,7 @@ Currently, several regions are at capacity for specific tiers and can't be used 
 | Region | Disabled tier (SKU) due to over-capacity |
 |--------|------------------------------------------|
 | Central US | S2, S3, S3HD, L1, L2 |
+| Central India | S2, S3, S3HD, L1, L2|
 | East US| All tiers|
 | Japan East | S2, S3, S3HD, L1, L2 |
 | Qatar Central | All tiers|

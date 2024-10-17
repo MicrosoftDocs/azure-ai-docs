@@ -8,7 +8,7 @@ ms.service: azure-ai-search
 ms.custom:
   - build-2024
 ms.topic: quickstart
-ms.date: 10/16/2024
+ms.date: 10/17/2024
 ---
 
 # Quickstart: Vectorize text and images by using the Azure portal
@@ -38,7 +38,7 @@ Key points about the wizard:
 
   Azure Storage must be a standard performance (general-purpose v2) account. Access tiers can be hot, cool, and cold.
 
-+ An embedding model on an Azure AI platform. [Deployment instructions](#set-up-embedding-models) are in this article.
++ An embedding model on an Azure AI platform in the [same region as Azure AI Search](search-create-service-portal.md#regions-with-the-most-overlap). [Deployment instructions](#set-up-embedding-models) are in this article.
 
   | Provider | Supported models |
   |---|---|
