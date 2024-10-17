@@ -118,7 +118,7 @@ curl https://YOUR_RESOURCE_NAME.openai.azure.com/openai/files/{file-id}?api-vers
 
 ## Create batch job
 
-Once your file has uploaded successfully by reaching a status of `processed` you can submit the file for batch processing.
+Once your file has uploaded successfully you can submit the file for batch processing.
 
 ```http
 curl -X POST https://YOUR_RESOURCE_NAME.openai.azure.com/openai/batches?api-version=2024-10-01-preview \
