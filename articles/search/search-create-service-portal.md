@@ -95,17 +95,17 @@ Generally, choose a region near you, unless the following considerations apply:
 
 + Your nearest region is [at capacity for specific tiers or all tiers](search-sku-tier.md#region-availability-by-tier). One advantage to using the Azure portal for resource setup is that it provides only those regions and tiers that are available.
 
-+ You want to use integrated data chunking and vectorization or built-in skills for AI enrichment. Azure OpenAI and Azure AI services multiservice accounts must be in the same region as Azure AI Search for integration purposes. [Choose a region](search-region-support.md) that provides all necessary resources.
-
 + You want to use Azure Storage for indexer-based indexing or you need to store application data that isn't in an index. Debug session state, enrichment caches, and knowledge stores are Azure AI Search features that have a dependency on Azure Storage. The region you choose for Azure Storage has implications for network security. Specifically, if you're setting up a firewall, you should place the resources in separate regions. For more information, see [Outbound connections from Azure AI Search to Azure Storage](search-indexer-securing-resources.md).
 
-Here's a checklist for choosing a region:
++ You want to use integrated data chunking and vectorization or built-in skills for AI enrichment. Integrated operations require services to coexist in the same region.
+
+### Checklist for choosing a region
 
 1. Is Azure AI Search available in a nearby region? Check the [supported regions list](search-region-support.md).
 
-1. Do you know which tier you want to use? Tiers are covered in the next step. Check [region availability by tier](search-sku-tier.md#region-availability-by-tier) to determine if you can create a search service at the desired tier in your region of choice.
+1. Do you have a specific tier in mind? Tiers are covered in the next step. Check [region availability by tier](search-sku-tier.md#region-availability-by-tier) for tier restrictions.
 
-1. Do you have business continuity and disaster recovery (BCDR) requirements? You should create two or more search services in [regional pairs](/azure/availability-zones/cross-region-replication-azure#azure-paired-regions) within [availability zones](search-reliability.md#availability-zones). For example, if you're operating in North America, you might choose East US and West US, or North Central US and South Central US, for each search service.
+1. Do you have business continuity and disaster recovery (BCDR) requirements? Create two or more search services in [regional pairs](/azure/availability-zones/cross-region-replication-azure#azure-paired-regions) within [availability zones](search-reliability.md#availability-zones). For example, if you're operating in North America, you might choose East US and West US, or North Central US and South Central US, for each search service.
 
 1. Do you need [AI enrichment](cognitive-search-concept-intro.md), [integrated data chunking and vectorization](vector-search-integrated-vectorization.md), or [multimodal image search](search-get-started-portal-image-search.md)? Azure AI Search, Azure OpenAI, and Azure AI multiservice must coexist in the same region.
 
@@ -117,7 +117,7 @@ Here's a checklist for choosing a region:
 
 ### Regions with the most overlap
 
-Currently, the following regions offer cross-region among all three services (Azure AI Search, Azure OpenAI, Azure AI Vision multimodal). This list isn't definitive and there might be more choices beyond the regions listed here, depending on the tier. Also, region status can change quickly, so be sure to confirm region choice before installing.
+Currently, the following regions offer cross-region among all three services (Azure AI Search, Azure OpenAI, Azure AI Vision multimodal). This list isn't definitive, and there might be more choices beyond the regions listed here depending on the tier. Also, region status can change quickly, so be sure to confirm region choice before installing.
 
 + Americas: West US
 + Europe: France Central, North Europe, Sweden Central
