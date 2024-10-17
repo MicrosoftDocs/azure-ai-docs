@@ -2,7 +2,7 @@
 author: eric-urban
 ms.service: azure-ai-speech
 ms.topic: include
-ms.date: 08/13/2024
+ms.date: 10/17/2024
 ms.author: eur
 ms.custom: devx-track-csharp
 ---
@@ -330,3 +330,22 @@ speechConfig.SetProperty(PropertyId.Speech_SegmentationSilenceTimeoutMs, "300");
 ```csharp
 speechConfig.SetProperty(PropertyId.SpeechServiceConnection_InitialSilenceTimeoutMs, "10000");
 ```
+
+## Semantic segmentation
+
+Semantic segmentation is a speech recognition segmentation strategy that's designed to mitigate issues associated with [silence-based segmentation](#change-how-silence-is-handled): 
+- Under-segmentation: When users speak for a long time without pauses, they can see a long sequence of text without breaks ("wall of text"), which severely degrades their readability experience. 
+- Over-segmentation: When a user pauses for a short time, the silence detection mechanism can segment incorrectly. 
+
+Instead of relying on silence timeouts, semantic segmentation segments and returns final results when it detects sentence-ending punctuation (such as '.' or '?'). This improves the user experience with higher-quality, semantically complete segments and prevents long intermediate results. 
+
+To use semantic segmentation, you need to set the following property on the `SpeechConfig` instance used to create a `SpeechRecognizer`:
+
+```csharp
+speechConfig.SetProperty(PropertyId.Speech_SegmentationStrategy, "Semantic");
+```
+
+Some of the limitations of semantic segmentation are as follows:
+- Semantic segmentation is only intended for use in [continuous recognition](#use-continuous-recognition). This includes scenarios such as transcription, dictation, and captioning. It shouldn't be used in the single recognition and dictation mode. 
+- Semantic segmentation isn't available for all languages and locales. Currently, semantic segmentation is only available for English (en) locales such as en-US, en-GB, en-IN, and en-AU.
+- Semantic segmentation doesn't yet support confidence scores and NBest lists. As such, we don't recommend semantic segmentation if you're using confidence scores or NBest lists.
