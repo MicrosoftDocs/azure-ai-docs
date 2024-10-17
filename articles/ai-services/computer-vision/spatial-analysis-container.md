@@ -14,6 +14,8 @@ ms.custom: devx-track-azurecli
 
 # Install and run the Spatial Analysis container (preview)
 
+[!INCLUDE [spatial-analysis-deprecation](includes/spatial-analysis-deprecation.md)]
+
 The Spatial Analysis container enables you to analyze real-time streaming video to understand spatial relationships between people, their movement, and interactions with objects in physical environments. Containers help you meet specific security and data governance requirements.
 
 ## Prerequisites
