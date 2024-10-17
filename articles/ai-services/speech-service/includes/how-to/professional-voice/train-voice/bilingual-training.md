@@ -14,7 +14,7 @@ If you select the [Neural](?tabs=neural) training type, you can train a voice to
 > [!NOTE]
 > To enable a voice in the `zh-CN` locale to speak English with the same accent as the sample data, you should choose `Chinese (Mandarin, Simplified), English bilingual` when creating a project or specify the `zh-CN (English bilingual)` locale for the training set data via REST API.
 
-The following table shows the differences between the two locales:
+The following table shows the differences among the locales:
 
 | Speech Studio locale | REST API locale | Bilingual support | 
 |:------------- |:------- |:-------------------------- |

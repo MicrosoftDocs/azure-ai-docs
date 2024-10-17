@@ -10,4 +10,4 @@ ms.custom: include file
 ---
 
 > [!IMPORTANT]
-> Models that are in preview are marked as _preview_ in the model catalog.
+> Models that are in preview are marked as _preview_ on their model cards in the model catalog.

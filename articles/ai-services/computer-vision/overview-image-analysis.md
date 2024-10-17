@@ -82,6 +82,8 @@ These APIs are only available in certain geographic regions. See [Region availab
 
 ## Background removal (v4.0 preview only)
 
+[!INCLUDE [segmentation-deprecation](includes/segmentation-deprecation.md)]
+
 Image Analysis 4.0 (preview) offers the ability to remove the background of an image. This feature can either output an image of the detected foreground object with a transparent background, or a grayscale alpha matte image showing the opacity of the detected foreground object. 
 
 [Background removal](./concept-background-removal.md)
