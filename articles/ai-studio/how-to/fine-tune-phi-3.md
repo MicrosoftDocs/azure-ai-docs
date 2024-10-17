@@ -8,13 +8,18 @@ ms.custom:
 ms.topic: how-to
 ms.date: 7/16/2024
 ---
+
 # Fine-tune Phi-3 models in Azure AI Studio
+
+[!INCLUDE [Feature preview](~/reusable-content/ce-skilling/azure/includes/ai-studio/includes/feature-preview.md)]
 
 Azure AI Studio lets you tailor large language models to your personal datasets by using a process known as fine-tuning. Fine-tuning provides significant value by enabling customization and optimization for specific tasks and applications. It leads to improved performance, cost efficiency, reduced latency, and tailored outputs.
 
 In this article, you learn how to fine-tune Phi-3 family of small language models (SLMs) in Azure AI Studio as a service with pay-as you go billing.
 
 The Phi-3 family of SLMs is a collection of instruction-tuned generative text models.  Phi-3 models are the most capable and cost-effective small language models (SLMs) available, outperforming models of the same size and next size up across various language, reasoning, coding, and math benchmarks.
+
+[!INCLUDE [maas-models-preview](../includes/maas-models-preview.md)]
 
 ## [Phi-3-mini](#tab/phi-3-mini)
 

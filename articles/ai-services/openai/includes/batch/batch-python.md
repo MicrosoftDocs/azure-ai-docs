@@ -74,8 +74,6 @@ For this article we'll create a file named `test.jsonl` and will copy the conten
 
 Once your input file is prepared, you first need to upload the file to then be able to kick off a batch job. File upload can be done both programmatically or via the Studio. This example uses environment variables in place of the key and endpoint values. If you're unfamiliar with using environment variables with Python refer to one of our [quickstarts](../../chatgpt-quickstart.md) where the process of setting up the environment variables in explained step-by-step.
 
-[!INCLUDE [Azure key vault](~/reusable-content/ce-skilling/azure/includes/ai-services/security/azure-key-vault.md)]
-
 # [Python (Microsoft Entra ID)](#tab/python-secure)
 
 ```python
@@ -104,6 +102,8 @@ file_id = file.id
 ```
 
 # [Python (API Key)](#tab/python-key)
+
+[!INCLUDE [Azure key vault](~/reusable-content/ce-skilling/azure/includes/ai-services/security/azure-key-vault.md)]
 
 ```python
 import os
@@ -144,7 +144,7 @@ file_id = file.id
 
 ## Create batch job
 
-Once your file has uploaded successfully by reaching a status of `processed` you can submit the file for batch processing.
+Once your file has uploaded successfully you can submit the file for batch processing.
 
 ```python
 # Submit a batch job with the file
@@ -405,7 +405,7 @@ client.batches.list()
 
 Use the REST API to list all batch jobs with additional sorting/filtering options.
 
-In the examples below we are providing the `generate_time_filter` function to make constructing the filter easier. If you don't wish to use this function the format of the filter string would look like `created_at gt 1728773533 and created_at lt 1729032733 and status eq 'Completed'`.
+In the examples below we are providing the `generate_time_filter` function to make constructing the filter easier. If you don't wish to use this function the format of the filter string would look like `created_at gt 1728860560 and status eq 'Completed'`.
 
 # [Python (Microsoft Entra ID)](#tab/python-secure)
 
@@ -441,9 +441,8 @@ def generate_time_filter(time_range, status=None):
         raise ValueError("Invalid time range format. Use 'past X day(s)' or 'past X hour(s)'")
     
     start_timestamp = int(start_time.timestamp())
-    end_timestamp = int(now.timestamp())
     
-    filter_string = f"created_at gt {start_timestamp} and created_at lt {end_timestamp}"
+    filter_string = f"created_at gt {start_timestamp}"
     
     if status:
         filter_string += f" and status eq '{status}'"
@@ -504,9 +503,8 @@ def generate_time_filter(time_range, status=None):
         raise ValueError("Invalid time range format. Use 'past X day(s)' or 'past X hour(s)'")
     
     start_timestamp = int(start_time.timestamp())
-    end_timestamp = int(now.timestamp())
     
-    filter_string = f"created_at gt {start_timestamp} and created_at lt {end_timestamp}"
+    filter_string = f"created_at gt {start_timestamp}"
     
     if status:
         filter_string += f" and status eq '{status}'"
