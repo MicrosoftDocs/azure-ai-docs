@@ -9,7 +9,7 @@ ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: conceptual
 ms.custom: references_regions
-ms.date: 09/29/2024
+ms.date: 10/17/2024
 
 ---
 
@@ -44,7 +44,7 @@ You can create an Azure AI Search resource in any of the following Azure public 
 | East US 2 ​ | ✅ | ✅ | ✅ |
 | ​Central US​​ <sup>2</sup> | ✅ | ✅ | ✅ |
 | North Central US​ ​ | ✅ | ✅ | |
-| South Central US​ <sup>2</sup>​ | ✅ | ✅ | ✅ |
+| South Central US​ <sup>1</sup>​ | ✅ | ✅ | ✅ |
 | West US​ ​ | ✅ | ✅ | |
 | West US 2​ ​ | ✅ | ✅ | ✅ |
 | West US 3​ <sup>1</sup>​ | ✅ | ✅ |✅ |
@@ -102,7 +102,7 @@ You can create an Azure AI Search resource in any of the following Azure public 
 | Australia Southeast​​​ |  | ✅ |  |
 | East Asia​ | ✅ | ✅ | ✅ |
 | Southeast Asia​ ​ ​ | ✅ | ✅ | ✅ |
-| Central India| ✅ | ✅ | ✅ |
+| Central India <sup>1</sup> | ✅ | ✅ | ✅ |
 | Jio India West​ ​ | ✅ | ✅ |  |
 | South India <sup>2</sup> |  | | ✅ |
 | Japan East <sup>1</sup> | ✅ | ✅ | ✅ |
