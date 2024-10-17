@@ -48,14 +48,14 @@ MedImageParse model can be deployed to our self-hosted managed inference solutio
 
 To __deploy the model through the UI__:
 
-- Go to the [model card in the catalog](https://aka.ms/medimageparsemodelcard). 
-- On the model's overview page, select __Deploy__. 
-- If given the option to choose between serverless API deployment and deployment using a managed compute, select **Managed Compute**.
-- Fill out the details in the deployment window.
+1. Go to the [model card in the catalog](https://aka.ms/medimageparsemodelcard). 
+1. On the model's overview page, select __Deploy__. 
+1. If given the option to choose between serverless API deployment and deployment using a managed compute, select **Managed Compute**.
+1. Fill out the details in the deployment window.
 
     > [!NOTE]
     > For deployment to a self-hosted managed compute, you must have enough quota in your subscription. If you don't have enough quota available, you can use our temporary quota access by selecting the option **I want to use shared quota and I acknowledge that this endpoint will be deleted in 168 hours.**
-- Select __Deploy__.
+1. Select __Deploy__.
 
 To __deploy the model programmatically__, see [How to deploy and inference a managed compute deployment with code](../deploy-models-managed.md).
 
