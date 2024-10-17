@@ -140,14 +140,16 @@ This example is similar to the [RAG tutorial](tutorial-rag-build-solution-index-
 
 ## Add index projections to a skillset
 
-Index projections are defined inside a skillset definition and are primarily defined as an array of `selectors`, where each selector corresponds to a different target index on the search service. Each selector requires the following parameters as part of its definition:
+Index projections are defined inside a skillset definition and are primarily defined as an array of `selectors`, where each selector corresponds to a different target index on the search service. This section describes each parameter and includes [steps and examples](#how-to-specify-an-index-projections-definition) for setting up the projections.
+
+### Parameter reference
 
 | Index projection parameters | Definition |
 |----------------------------|------------|
 | `selectors` | Parameters for the main search corpus, usually the one designed around chunks. |
 | `projectionMode` | An optional parameter providing instructions to the indexer. The only valid value for this parameter is `skipIndexingParentDocuments`, and it's used when the chunk index is the primary search corpus and you need to specify whether parent fields are indexed as individual search documents within the chunked index. If you don't set `skipIndexingParentDocuments`, you get extra search documents in your index that are null for chunks, but populated with parent fields only. For example, if five documents contribute 100 chunks to the index, then the number of documents in the index is 105. The five documents created or parent fields have nulls for chunk (child) fields, making them substantially different from the bulk of the documents in the index. We recommend `projectionMode` set to `skipIndexingParentDocument`. |
 
-Selectors also have parameters.
+Each selector requires the following parameters as part of its definition:
 
 | Selector parameters | Definition |
 |-----------|------------|
@@ -161,6 +163,10 @@ The `mappings` parameter is important. You must explicitly map every field in th
 This requirement is in contrast with other field mapping conventions in Azure AI Search. For some data source types, the indexer can implicitly map fields based on similar names, or known characteristics (for example, blob indexers use the unique metadata storage path as the default document key). However, for indexer projections, you must explicitly specify every field mapping on the "many" side of the relationship.
 
 <!-- Avoid creating a field mapping for the parent key field. Doing so disrupts change tracking and synchronized data refresh. -->
+
+### How to specify an `indexProjections` definition
+
+Choose the tab for the API syntax. There's currently no portal support for setting up projections, other than editing the skillset JSON definition.
 
 #### [**REST**](#tab/rest-create-index-projection)
 
