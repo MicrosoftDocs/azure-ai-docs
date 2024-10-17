@@ -17,7 +17,7 @@ author: Blackmist
 
 # How to add a new connection in Azure AI Studio
 
-[!INCLUDE [Feature preview](~/reusable-content/ce-skilling/azure/includes/ai-studio/includes/feature-preview.md)]
+[!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
 In this article, you learn how to add a new connection in Azure AI Studio.
 
