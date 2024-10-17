@@ -85,7 +85,7 @@ Status code: 200
 ```json
 {
   "model_name": "phi3-mini",
-  "model_type": "chat_completion",
+  "model_type": "chat-completions",
   "model_provider_name": "Microsoft"
 }
 ```
