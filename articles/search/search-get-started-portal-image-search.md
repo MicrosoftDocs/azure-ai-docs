@@ -22,11 +22,9 @@ Sample data consists of image files in the [azure-search-sample-data](https://gi
 
 + An Azure subscription. [Create one for free](https://azure.microsoft.com/free/).
 
-+ An [Azure AI services multiservice account](/azure/ai-services/multi-service-resource) to use for image vectorization and optical character recognition (OCR). The account must be in a region that provides Azure AI Vision multimodal embeddings.
++ An [Azure AI services multiservice account](/azure/ai-services/multi-service-resource) to use for image vectorization and optical character recognition (OCR). Image vectorization requires Azure AI Vision multimodal embeddings. [Check the documentation](/azure/ai-services/computer-vision/overview-image-analysis#region-availability) for an updated list of regions.
 
-  Currently, those regions are: EastUS, WestUS, WestUS2, NorthEurope, WestEurope, FranceCentral, SwedenCentral, SwitzerlandNorth, SoutheastAsia, KoreaCentral, AustraliaEast, JapanEast. [Check the documentation](/azure/ai-services/computer-vision/overview-image-analysis#region-availability) for an updated list.
-
-+ Azure AI Search for indexing and queries. It can be on any tier, but it must be in the same region as Azure AI services.
++ Azure AI Search for indexing and queries. It can be on any tier, but it must be in the [same region as Azure AI multiservice](search-create-service-portal.md#regions-with-the-most-overlap).
 
   The service tier determines how many blobs you can index. We used the Free tier to create this walkthrough and limited the content to 10 JPG files.
 
