@@ -52,7 +52,7 @@ Indexers load indexed data into a predefined index. How you define the schema an
 
 ## Create an index for one-to-many indexing
 
-Whether you create one index for chunks that repeats parent values, or separate indexes for parent-child field placement, the primary index used for searching is designed around data chunks. It must have the following fields:
+Whether you create one index for chunks that repeat parent values, or separate indexes for parent-child field placement, the primary index used for searching is designed around data chunks. It must have the following fields:
 
 - A document key field uniquely identifying each document. It must be defined as type `Edm.String` with the `keyword` analyzer.
 
@@ -140,7 +140,7 @@ This example is similar to the [RAG tutorial](tutorial-rag-build-solution-index-
 
 ## Add index projections to a skillset
 
-Index projections are defined inside a skillset definition and are primarily defined as an array of `selectors`, where each selector corresponds to a different target index on the search service. This section describes each parameter and includes [steps and examples](#how-to-specify-an-index-projections-definition) for setting up the projections.
+Index projections are defined inside a skillset definition and are primarily defined as an array of `selectors`, where each selector corresponds to a different target index on the search service. This section describes each parameter and includes [steps and examples](#how-to-specify-an-indexprojections-definition) for setting up the projections.
 
 ### Parameter reference
 
@@ -166,7 +166,7 @@ This requirement is in contrast with other field mapping conventions in Azure AI
 
 ### How to specify an `indexProjections` definition
 
-Choose the tab for the API syntax. There's currently no portal support for setting up projections, other than editing the skillset JSON definition.
+Choose a tab for the various API syntax. There's currently no portal support for setting up projections, other than editing the skillset JSON definition. Refer to the REST example for JSON.
 
 #### [**REST**](#tab/rest-create-index-projection)
 
@@ -212,6 +212,8 @@ Here's an example payload for an index projections definition that you might use
 ```
 
 #### [**Python**](#tab/python-create-index-projection)
+
+We recommend the [latest stable package](https://pypi.org/project/azure-search-documents/) for index projections.
 
 ```python
 index_projections = SearchIndexerIndexProjection(  
