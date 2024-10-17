@@ -74,7 +74,7 @@ Before you get started using Multimodal Intelligence, you need an Azure AI servi
     * **Name**. Enter a name for your resource. We recommend using a descriptive name, for example *YourNameAIServicesResource*.
     * **Pricing tier**. The cost of your resource depends on the pricing tier and options you choose and your usage. For more information, see [pricing details](https://azure.microsoft.com/pricing/details/cognitive-services/). You can use the free pricing tier (F0) to try the service, and upgrade later to a paid tier for production.
 
-1. Configure other settings for your resource as needed, read and accept the conditions (as applicable), and then select **Review + create**.
+1. Configure other settings for your resource as needed, read, and accept the conditions (as applicable), and then select **Review + create**.
 
 1. Azure will run a quick validation check, after a few seconds you should see a green banner that says **Validation Passed**.
 
@@ -88,7 +88,7 @@ Pricing tiers (and the amount you're billed) are based on the number of transact
 
 * Maximum number of allowed transactions per second (TPS).
 * Service features enabled within the pricing tier.
-* Cost for a predefined number of transactions. Going above this number will cause an extra charge, as specified in the [pricing details](https://azure.microsoft.com/pricing/details/cognitive-services) for your service.
+* Cost for a predefined number of transactions. Going above this number causes an extra charge, as specified in the [pricing details](https://azure.microsoft.com/pricing/details/cognitive-services) for your service.
 
 
 

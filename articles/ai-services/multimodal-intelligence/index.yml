@@ -33,7 +33,7 @@ landingContent:
   # Card 3
   - title: How-to guides
     linkLists:
-      - linkListType: how-to
+      - linkListType: how-to-guide
         links:
         - text: Use Multimodal Intelligence Rest API
           url: overview.md
