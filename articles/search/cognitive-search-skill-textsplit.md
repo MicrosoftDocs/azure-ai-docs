@@ -2,8 +2,8 @@
 title: Text split skill
 titleSuffix: Azure AI Search
 description: Break text into chunks or pages of text based on length in an AI enrichment pipeline in Azure AI Search.
-author: careyjmac
-ms.author: chalton
+author: gmndrg
+ms.author: gimondra
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
