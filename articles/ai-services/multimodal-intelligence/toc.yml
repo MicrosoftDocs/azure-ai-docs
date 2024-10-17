@@ -16,6 +16,8 @@ items:
   - name: What's new
     displayName: changelog, release, updates, previews
     href: whats-new.md
-  - name: Pricing
-    displayName: cost, free, F0, tiers, standard, S0
-    href: https://azure.microsoft.com/pricing/details/
+  - name: Concepts
+    items:
+      - name: Content extraction
+        displayName: content, extraction, field, structured, document, text, images, video, audio, multi-modal, visual
+        href: content-extraction.md
