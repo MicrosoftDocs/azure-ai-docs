@@ -22,7 +22,7 @@ In this article, you learn about the Meta Llama family of models and how to use 
 
 See our announcements of Meta's Llama 3.2 family models available now on Azure AI Model Catalog through [Meta's blog](https://aka.ms/llama-3.2-meta-announcement) and [Microsoft Tech Community Blog](https://aka.ms/llama-3.2-microsoft-announcement).
 
-[!INCLUDE [maas-models-preview](../includes/maas-models-preview.md)]
+[!INCLUDE [models-preview](../includes/models-preview.md)]
 
 ::: zone pivot="programming-language-python"
 
