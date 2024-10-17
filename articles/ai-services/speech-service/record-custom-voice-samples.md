@@ -50,9 +50,9 @@ Actors with experience in voiceover, voice character work, announcing or news re
 
 Your voice talent must be able to speak with consistent rate, volume level, pitch, and tone with clear dictation. They also need to be able to control their pitch variation, emotional effect, and speech mannerisms. Recording voice samples can be more fatiguing than other kinds of voice work, so most voice talents can only record for two or three hours a day. Limit sessions to three or four days a week, with a day off in-between if possible.
 
-Work with your voice talent to develop a persona that defines the overall sound and emotional tone of the custom neural voice, making sure to pinpoint what "neutral" sounds like for that persona. You define the speaking styles of your persona and ask your voice talent to read the script in a way that resonates with the styles you want.  
+Work with your voice talent to develop a persona that defines the overall sound and emotional tone of the custom neural voice. Define the speaking styles for your persona and ask your voice talent to read the script in a way that aligns with your desired styles. Ensure that the speaking style remains consistent throughout the recordings for a set of training data.
 
-For example, a persona with a naturally upbeat personality would carry a note of optimism even when they speak neutrally. However, this personality trait should be subtle and consistent. Listen to readings by existing voices to get an idea of what you're aiming for.
+For example, a persona with a naturally upbeat personality would carry a note of optimism in their voice. However, this personality should be expressed consistently across all recordings for a set of training data. Listen to existing voices to get a sense of what you're aiming for.
 
 > [!TIP]
 > Usually, you'll want to own the voice recordings you make. Your voice talent should be amenable to a work-for-hire contract for the project.
