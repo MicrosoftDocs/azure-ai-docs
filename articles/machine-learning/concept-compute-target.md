@@ -5,11 +5,11 @@ description: Learn how to designate a compute resource or environment to train o
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: compute
-ms.topic: conceptual
+ms.topic: concept-article
 ms.author: sgilley
 author: sdgilley
 ms.reviewer: vijetaj
-ms.date: 01/23/2024
+ms.date: 10/17/2024
 ms.custom:
   - cliv2
   - build-2023
@@ -104,6 +104,7 @@ There are a few exceptions and limitations to choosing a VM size:
 
 * Some VM series aren't supported in Azure Machine Learning.
 * Some VM series, such as GPUs and other special SKUs, might not initially appear in your list of available VMs.  But you can still use them, once you request a quota change. For more information about requesting quotas, see [Request quota and limit increases](how-to-manage-quotas.md#request-quota-and-limit-increases).
+
 See the following table to learn more about supported series.
 
 | **Supported VM series** | **Category** | **Supported by** |
@@ -199,7 +200,7 @@ Azure Machine Learning supports the following unmanaged compute types:
 
 For more information, see [Manage compute resources](how-to-create-attach-compute-studio.md).
 
-## Next step
+## Related content
 
 :::moniker range="azureml-api-2"
 * [Deploy and score a machine learning model by using an online endpoint](how-to-deploy-online-endpoints.md)
