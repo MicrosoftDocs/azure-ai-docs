@@ -114,7 +114,7 @@ See the following list for the input requirements for each feature.
   - Maximum image file size: 4 MB
   - Dimensions between 50 x 50 and 7200 x 7200 pixels.
   - Images can be in JPEG, PNG, GIF, BMP, TIFF, or WEBP formats.
-- **Analyze multimodal API**:
+- **Analyze multimodal API (preview)**:
   - Default maximum text length: 1K characters.
   - Maximum image file size: 4 MB
   - Dimensions between 50 x 50 and 7200 x 7200 pixels.
@@ -142,7 +142,7 @@ For more information, see [Language support](/azure/ai-services/content-safety/l
 
 To use the Content Safety APIs, you must create your Azure AI Content Safety resource in a supported region. Currently, the Content Safety features are available in the following Azure regions: 
    
-| Region   | Moderation APIs (text and image) | Moderation APIs (multimodal) | Prompt Shields | Protected material detection for Text | Protected material detection for Code | Groundedness detection (preview) | Custom categories (rapid) (preview) | Custom categories (standard) (preview) | 
+| Region   | Moderation APIs (text and image) | Moderation APIs (multimodal) (preview) | Prompt Shields | Protected material detection for Text | Protected material detection for Code | Groundedness detection (preview) | Custom categories (rapid) (preview) | Custom categories (standard) (preview) | 
 |--|-|---|-|--|---|-|-|---|  
 | Australia East    | ✅  |  | ✅  | ✅    |  ✅  |     | ✅  | ✅| 
 | Brazil South      |  ✅ |  |  ✅|    ✅  |    |    |      |   |      
