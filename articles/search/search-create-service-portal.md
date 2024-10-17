@@ -119,8 +119,8 @@ Generally, choose a region near you, unless the following considerations apply:
 
 Currently, the following regions offer cross-region among all three services (Azure AI Search, Azure OpenAI, Azure AI Vision multimodal). This list isn't definitive, and there might be more choices beyond the regions listed here depending on the tier. Also, region status can change quickly, so be sure to confirm region choice before installing.
 
-+ Americas: West US
-+ Europe: France Central, North Europe, Sweden Central
++ **Americas**: West US
++ **Europe**: France Central, North Europe, Sweden Central
 
 ## Choose a tier
 
