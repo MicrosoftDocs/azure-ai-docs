@@ -15,7 +15,7 @@ author: sdgilley
 
 # How to build and consume an index using code
 
-[!INCLUDE [Feature preview](~/reusable-content/ce-skilling/azure/includes/ai-studio/includes/feature-preview.md)]
+[!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
 In this article, you learn how to create an index and consume it from code. To create an index locally, we use the `promptflow-rag` package. To create a remote index on the cloud, we use the `azure-ai-ml` package. We consume the indexes using `langchain`.
 
@@ -183,7 +183,7 @@ client.indexes.create_or_update(
 ```
 
 > [!NOTE]
-> Environment variables are intended for convenience in a local environment. However, if you register a local index created using environment variables, the index may not function as expected because secrets from environment variables won’t be transferred to the cloud index. To address this issue, you can use a `ConnectionConfig` or `connection_id` to create a local index before registering.
+> Environment variables are intended for convenience in a local environment. However, if you register a local index created using environment variables, the index may not function as expected because secrets from environment variables won't be transferred to the cloud index. To address this issue, you can use a `ConnectionConfig` or `connection_id` to create a local index before registering.
 
 ## Build an index (remotely) in your AI Studio project
 
