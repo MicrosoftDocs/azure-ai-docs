@@ -12,6 +12,8 @@ ms.date: 10/09/2024
 
 # Azure AI Multimodal Intelligence content extraction
 
+The Multimodal Intelligence service can process and integrate multiple data modalities simultaneously Data modalities include mages, audio, video, and text.
+
 ## Field extraction and data types
 
 ***Multimodal Intelligence supports the following field data types:***
