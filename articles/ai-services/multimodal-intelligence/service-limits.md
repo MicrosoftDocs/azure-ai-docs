@@ -32,7 +32,7 @@ This article contains both a quick reference and detailed description of Azure A
 | Quota | Free (F0) | Standard (S0) |
 | --- | --- | --- |
 | Max models | 100 | 100k (up to??? ) |
-| Max analysis/min | 5 pages/images3 min of audio1 min of video | 1000 pages/images (up to???) 4 hours of audio (up to??? ) 1 hour of video (up to??? ) |
+| Max analysis/min | 5 pages/images3 min of audio1 min of video | 1000 pages/images (up to???) four (4) hours of audio (up to??? ) 1 hour of video (up to??? ) |
 | Max analysis/month | 500 pages/images5 hours of audio1 hour of video | 10 M pages/images??? hours of audio??? hours of video |
 | Max operations/min | 50 | 1000 |
 | Free trainings / month | 10 hours | 10 hours |

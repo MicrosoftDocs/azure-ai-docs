@@ -31,6 +31,46 @@ landingContent:
           url: overview.md
 
   # Card 3
+  - title: How-to guides
+    linkLists:
+      - linkListType: how-to
+        links:
+        - text: Use Multimodal Intelligence Rest API
+          url: overview.md
+        - text: Use Multimodal Intelligence SDK
+          url: overview.md
+
+  # Card 4
+  - title: Solution templates
+    linkLists:
+      - linkListType: reference
+        links:
+        - text: Call center analytics
+          url: overview.md
+        - text: Digital asset management
+          url: overview.md
+        - text: Tax document processing
+          url: overview.md
+        - text: Contract analysis
+          url: overview.md
+        - text: Search and retrieval
+          url: overview.md
+        - text: Copilot integration
+          url: overview.md
+  # Card 5
+  - title: Concepts
+    linkLists:
+      - linkListType: concept
+        links:
+        - text: Visual document
+          url: overview.md
+        - text: Conversation
+          url: overview.md
+        - text: Image
+          url: overview.md  
+        - text: Video
+          url: overview.md          
+  # Card 6
 
   - title: Responsible use of AI
     linkLists:
