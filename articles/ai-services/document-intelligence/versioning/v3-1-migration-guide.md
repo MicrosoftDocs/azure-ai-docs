@@ -131,7 +131,7 @@ Starting from v3.0, [Document Intelligence REST API](../quickstarts/get-started-
 
 ## Changes to the REST API endpoints
 
- The v3.1 REST API combines the analysis operations for layout analysis, prebuilt models, and custom models into a single pair of operations by assigning **`documentModels`**  and  **`modelId`** to the layout analysis (../prebuilt-layout) and prebuilt models.
+ The v3.1 REST API combines the analysis operations for layout analysis, prebuilt models, and custom models into a single pair of operations by assigning **`documentModels`**  and  **`modelId`** to the [layout analysis](../prebuilt/layout.md) and prebuilt models.
 
 ### POST request
 
