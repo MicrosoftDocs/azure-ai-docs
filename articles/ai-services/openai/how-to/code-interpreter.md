@@ -6,16 +6,16 @@ services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: how-to
-ms.date: 05/20/2024
-author: mrbullwinkle
-ms.author: mbullwin
+ms.date: 10/15/2024
+author: aahill
+ms.author: aahi
 recommendations: false
 
 ---
 
 # Azure OpenAI Assistants Code Interpreter (Preview)
 
-Code Interpreter allows the Assistants API to write and run Python code in a sandboxed execution environment.  With Code Interpreter enabled, your Assistant can run code iteratively to solve more challenging code, math, and data analysis problems. When your Assistant writes code that fails to run, it can iterate on this code by modifying and running different code until the code execution succeeds.
+Code Interpreter allows the Assistants API to write and run Python code in a sandboxed execution environment. With Code Interpreter enabled, your Assistant can run code iteratively to solve more challenging code, math, and data analysis problems. When your Assistant writes code that fails to run, it can iterate on this code by modifying and running different code until the code execution succeeds.
 
 > [!IMPORTANT]
 > Code Interpreter has [additional charges](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/) beyond the token based fees for Azure OpenAI usage. If your Assistant calls Code Interpreter simultaneously in two different threads, two code interpreter sessions are created. Each session is active by default for one hour.
@@ -28,7 +28,7 @@ Code Interpreter allows the Assistants API to write and run Python code in a san
 
 The [models page](../concepts/models.md#assistants-preview) contains the most up-to-date information on regions/models where Assistants and code interpreter are supported.
 
-We recommend using assistants with the latest models to take advantage of the new features, as well as the larger context windows, and more up-to-date training data.
+We recommend using assistants with the latest models to take advantage of the new features, larger context windows, and more up-to-date training data.
 
 ### API Versions
 
@@ -69,7 +69,7 @@ We recommend using assistants with the latest models to take advantage of the ne
 
 ### File upload API reference
 
-Assistants use the [same API for file upload as fine-tuning](/rest/api/azureopenai/files/upload?view=rest-azureopenai-2024-02-15-preview&tabs=HTTP&preserve-view=true). When uploading a file you have to specify an appropriate value for the [purpose parameter](/rest/api/azureopenai/files/upload?view=rest-azureopenai-2024-02-15-preview&tabs=HTTP&preserve-view=true#purpose).
+Assistants use the [same API for file upload as fine-tuning](/rest/api/azureopenai/files/upload?view=rest-azureopenai-2024-02-15-preview&tabs=HTTP&preserve-view=true). When uploading a file, you have to specify an appropriate value for the [purpose parameter](/rest/api/azureopenai/files/upload?view=rest-azureopenai-2024-02-15-preview&tabs=HTTP&preserve-view=true#purpose).
 
 ## Enable Code Interpreter
 
@@ -136,7 +136,7 @@ assistant = client.beta.assistants.create(
   instructions="You are an AI assistant that can write code to help answer math questions.",
   model="gpt-4-1106-preview",
   tools=[{"type": "code_interpreter"}],
-  file_ids=[file.id]
+  tool_resources={"code interpreter":{"file_ids":[file.id]}}
 )
 ```
 
@@ -161,7 +161,11 @@ curl https://YOUR_RESOURCE_NAME.openai.azure.com/openai/assistants?api-version=2
       { "type": "code_interpreter" }
     ],
     "model": "gpt-4-1106-preview",
-    "file_ids": ["assistant-123abc456"]
+    "tool_resources"{
+      "code interpreter": {
+          "file_ids": ["assistant-1234"]
+      }
+    }
   }'
 ```
 
