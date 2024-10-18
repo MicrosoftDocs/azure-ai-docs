@@ -2,7 +2,7 @@
 title: How to generate synthetic and simulated data for evaluation
 titleSuffix: Azure AI Studio
 description: This article provides instructions on how to generate synthetic data to run simulations to evaluate the performance and safety of your generative AI application.
-manager: nitinme
+manager: scottpolly
 ms.service: azure-ai-studio
 ms.custom:
   - ignite-2023
@@ -479,4 +479,3 @@ User can also define their own `api_call_retry_sleep_sec` and `api_call_retry_ma
 
 - [Get started building a chat app](../../quickstarts/get-started-code.md)
 - [Evaluate your generative AI application](evaluate-sdk.md)
-- [Get started with samples](https://aka.ms/aistudio/syntheticdatagen-samples)
