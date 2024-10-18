@@ -127,7 +127,7 @@ On the **Advanced settings** page, you can optionally add new fields. By default
 | text_vector | Text vectors | Collection(Edm.single). Vector representation of the chunk.  Searchable and retrievable, but not filterable, facetable, or sortable.|
 | image_vector | Image vectors | Collection(Edm.single). Vector representation of the image.  Searchable and retrievable, but not filterable, facetable, or sortable.|
 
-You can't modify the generated fields or their attributes, but you can add new fields if your data source provides them. For example, Azure blob storage provides a collection of metadata fields.
+You can't modify the generated fields or their attributes, but you can add new fields if your data source provides them. For example, Azure Blob Storage provides a collection of metadata fields.
 
 1. Select **Add new**.
 
@@ -157,7 +157,7 @@ When the wizard completes the configuration, it creates the following objects:
 
 + An indexer that drives the indexing pipeline.
 
-+ A data source connection to Blob Storage.
++ A data source connection to Azure Blob Storage.
 
 + An index with vector fields, text fields, vectorizers, vector profiles, and vector algorithms. You can't modify the default index during the wizard workflow. Indexes conform to the [2024-05-01-preview REST API](/rest/api/searchservice/indexes/create-or-update?view=rest-searchservice-2024-05-01-preview&preserve-view=true) so that you can use preview features.
 
