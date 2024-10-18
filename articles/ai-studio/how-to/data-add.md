@@ -2,7 +2,7 @@
 title: How to add and manage data in your Azure AI Studio project
 titleSuffix: Azure AI Studio
 description: Learn how to add and manage data in your Azure AI Studio project.
-manager: nitinme
+manager: scottpolly
 ms.service: azure-ai-studio
 ms.custom:
   - ignite-2023

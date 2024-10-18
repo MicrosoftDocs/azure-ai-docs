@@ -2,7 +2,7 @@
 title: Get started building a chat app using the prompt flow SDK
 titleSuffix: Azure AI Studio
 description: This article provides instructions on how to build a custom chat app in Python using the prompt flow SDK.
-manager: nitinme
+manager: scottpolly
 ms.service: azure-ai-studio
 ms.custom: build-2024, devx-track-azurecli, devx-track-python
 ms.topic: how-to
