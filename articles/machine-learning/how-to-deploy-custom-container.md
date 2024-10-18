@@ -232,7 +232,7 @@ There are a few important concepts to note in this YAML/Python parameter:
 
 The base image is specified as a parameter in environment, and `docker.io/tensorflow/serving:latest` is used in this example. As you inspect the container, you can find that this server uses `ENTRYPOINT` to start an entry point script, which takes the environment variables such as `MODEL_BASE_PATH` and `MODEL_NAME`, and exposes ports such as `8501`. These details are all specific information for this chosen server. You can use this understanding of the server, to determine how to define the deployment. For example, if you set environment variables for `MODEL_BASE_PATH` and `MODEL_NAME` in the deployment definition, the server (in this case, TF Serving) will take the values to initiate the server. Likewise, if you set the port for the routes to be `8501` in the deployment definition, the user request to such routes will be correctly routed to the TF Serving server.
 
-Note that this specific example is based on the TF Serving case, but you can use any containers that will stay up and respond to requests coming to liveness, readiness, and scoring routes. You can refer to other examples and see how the dockerfile is formed (for example, using `CMD` instead of `ENTRYPOINT`), 
+Note that this specific example is based on the TF Serving case, but you can use any containers that will stay up and respond to requests coming to liveness, readiness, and scoring routes. You can refer to other examples and see how the dockerfile is formed (for example, using `CMD` instead of `ENTRYPOINT`) to create the containers.
 
 #### Inference config
 
@@ -244,11 +244,12 @@ The API server you choose may provide a way to check the status of the server. T
 
 For more information about liveness and readiness probes in general, see the [Kubernetes documentation](https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/).
 
-The liveness and readiness routes will be determined by the API server of your choice, as you would have identified when testing the container locally in earlier step. Note that the example deployment in this article uses the same path for both liveness and readiness, since TFServing only defines a liveness route. Refer to other examples for different patterns to define the routes.
+The liveness and readiness routes will be determined by the API server of your choice, as you would have identified when testing the container locally in earlier step. Note that the example deployment in this article uses the same path for both liveness and readiness, since TF Serving only defines a liveness route. Refer to other examples for different patterns to define the routes.
 
 #### Scoring route
 
-The API server you choose would provide a way to receive the payload to work on. In the context of machine learning inferencing, a server would receive the input data via a specific route. Identify this route for your API server as you test the container locally in earlier step, and specify it when you define the deployment to create. Successful creation of the deployment will update the scoring_uri parameter of the endpoint as well, which you can verify with `az ml online-endpoint show -n <name> --query scoring_uri`.
+The API server you choose would provide a way to receive the payload to work on. In the context of machine learning inferencing, a server would receive the input data via a specific route. Identify this route for your API server as you test the container locally in earlier step, and specify it when you define the deployment to create.
+Note that the successful creation of the deployment will update the scoring_uri parameter of the endpoint as well, which you can verify with `az ml online-endpoint show -n <name> --query scoring_uri`.
 
 #### Locating the mounted model
 
