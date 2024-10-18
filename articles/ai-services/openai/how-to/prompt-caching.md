@@ -36,7 +36,6 @@ For a request to take advantage of prompt caching the request must be:
 
 When a match is found between a prompt and the current content of the prompt cache it is referred to a cache hit. Cache hits will show up as [`cached_tokens`](/azure/ai-services/openai/reference-preview#cached_tokens) under [`prompt_token_details`](/azure/ai-services/openai/reference-preview#properties-for-prompt_tokens_details) in the chat completions response.
 
-
 ```json
 {
   "created": 1729227448,
@@ -57,7 +56,7 @@ When a match is found between a prompt and the current content of the prompt cac
       "cached_tokens": 1408
     }
   }
-  
+}
 ```
 
 After the first 1024 tokens cache hits will occur for every 128 additional identical tokens.
