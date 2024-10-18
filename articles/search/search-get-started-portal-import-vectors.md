@@ -361,15 +361,18 @@ On the **Advanced settings** page, you can optionally add [semantic ranking](sem
 
 On the **Advanced settings** page, you can optionally add new fields. By default, the wizard generates the following fields with these attributes:
 
-| Field | Description |
-|-------|-------------|
-| chunk_id | String field. Searchable but not retrievable, filterable, facetable, or sortable. This is the document key for the index. |
-| parent_id | String field. Searchable but not retrievable, filterable, facetable, or sortable. Identifies the parent document from which the chunk originates. |
-| chunk | String field. Human readable version of the data chunk. Searchable and retrievable, but not filterable, facetable, or sortable. |
-| title | String field. Human readable document title or page title or page number. |
-| text_vector | Collection(Edm.single). Vector representation of the chunk.  Searchable and retrievable, but not filterable, facetable, or sortable.|
+| Field | Applies to | Description |
+|-------|------------|-------------|
+| chunk_id | Text and image vectors | Generated string field. Searchable, retrievable, sortable. This is the document key for the index. |
+| parent_id | Text vectors | Generated string field. Retrievable, filterable. Identifies the parent document from which the chunk originates. |
+| text_parent_id | Image vectors | Generated string field. Retrievable, filterable. Identifies the parent document from which the chunk originates. |
+| image_parent_id | Image vectors | Generated string field. Retrievable, filterable. Identifies the parent document from which the image originates. |
+| chunk | Text and image vectors | String field. Human readable version of the data chunk. Searchable and retrievable, but not filterable, facetable, or sortable. |
+| title | Text and image vectors | String field. Human readable document title or page title or page number. Searchable and retrievable, but not filterable, facetable, or sortable. |
+| text_vector | Text vectors | Collection(Edm.single). Vector representation of the chunk.  Searchable and retrievable, but not filterable, facetable, or sortable.|
+| image_vector | Image vectors | Collection(Edm.single). Vector representation of the image.  Searchable and retrievable, but not filterable, facetable, or sortable.|
 
-You can't modify the generated fields or their attributes, but you can add new fields if your data source provides them. For example, Azure blob storage provides metadata fields.
+You can't modify the generated fields or their attributes, but you can add new fields if your data source provides them. For example, Azure blob storage provides a collection of metadata fields.
 
 1. Select **Add new**.
 
