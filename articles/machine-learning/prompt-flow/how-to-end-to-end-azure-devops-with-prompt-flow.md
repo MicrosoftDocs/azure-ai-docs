@@ -21,7 +21,7 @@ ms.custom:
 
 As the demand for LLM-infused applications soars, organizations need a cohesive and streamlined process to manage the end-to-end lifecycle of these apps. Generative Artificial Intelligence Operations (GenAIOps), sometimes called *LLMOps*, is a cornerstone of efficient prompt engineering and LLM-infused application development and deployment.
 
-This article shows how Azure Machine Learning lets you integrate with Azure DevOps to automate the LLM-infused application development lifecycle with prompt flow. Prompt flow provides a streamlined and structured approach to developing LLM-infused applications. Its well-defined process and lifecycle guide you through the process of building, testing, optimizing, and deploying flows, culminating in the creation of fully functional LLM-infused solutions.
+This article shows how Azure Machine Learning lets you integrate with Azure DevOps to automate the LLM-infused application development lifecycle with *prompt flow*. Prompt flow provides a streamlined and structured approach to developing LLM-infused applications. Its well-defined process and lifecycle guide you through the process of building, testing, optimizing, and deploying flows, culminating in the creation of fully functional LLM-infused solutions.
 
 ## GenAIOps prompt flow features
 
@@ -92,9 +92,11 @@ The rest of this article shows you how to use GenAIOps with prompt flow by follo
 - An Azure subscription with the [free or paid version of Azure Machine Learning](https://azure.microsoft.com/free/).
 - An Azure Machine Learning workspace.
 - [Git version 2.27 or newer](https://git-scm.com/downloads) running on your local machine.
-- An [Azure DevOps organization](/azure/devops/organizations/accounts/create-organization) where you have the ability to create a project and an Azure Repos source control repository. An Azure DevOps organization helps you collaborate, plan and track your work and code issues, and set up continuous integration (CI) and continuous deployment (CD).
+- An [Azure DevOps organization](/azure/devops/organizations/accounts/create-organization) where you have the ability to create a project, an Azure Repos source control repository, and Azure Pipelines pipelines. An Azure DevOps organization helps you collaborate, plan and track your work, code, and issues, and set up CI and CD.
 - An understanding of [how to integrate GenAIOps with prompt flow](how-to-integrate-with-llm-app-devops.md).
-- If you use Azure DevOps and Terraform to spin up infrastructure, the [Terraform extension for Azure DevOps](https://marketplace.visualstudio.com/items?itemName=ms-devlabs.custom-terraform-tasks) installed.
+
+>[!NOTE]
+>If you use Azure DevOps and Terraform to spin up infrastructure, you need the [Terraform extension for Azure DevOps](https://marketplace.visualstudio.com/items?itemName=ms-devlabs.custom-terraform-tasks) installed.
 
 ### Set up a prompt flow connection
 
@@ -116,7 +118,7 @@ To create a new local repository, follow the instructions at [Clone the repo](ht
 
 An Azure service principal is a security identity that applications, services, and automation tools use to access Azure resources. The application or service authenticates with Azure to access resources on your behalf.
 
-Create a service principal by following the instructions at [Create Azure service principal](https://github.com/microsoft/genaiops-promptflow-template/blob/main/docs/github_workflows_how_to_setup.md#create-azure-service-principal). You use this service principal to configure the Azure DevOps Services connection and to allow Azure DevOps Services to authenticate and connect to Azure services. The prompt flow experiment and evaluation job executions both run under the identity of the service principal.
+Create a service principal by following the instructions at [Create an Azure service principal](https://github.com/microsoft/genaiops-promptflow-template/blob/main/docs/github_workflows_how_to_setup.md#create-azure-service-principal). You use this service principal to configure the Azure DevOps Services connection and to allow Azure DevOps Services to authenticate and connect to Azure services. The prompt flow experiment and evaluation jobs both run under the identity of the service principal.
 
 The setup provides the service principal with **Owner** permissions so the CD pipeline can automatically provide the newly provisioned Azure Machine Learning endpoint with access to the Azure Machine Learning workspace for reading connection information. The pipeline also adds the endpoint to the key vault policy associated with the Azure Machine Learning workspace with `get` and `list` secret permissions. You can change the **Owner** permissions to **Contributor** level permissions by changing the pipeline YAML code to remove the step related to permissions.
 
@@ -126,20 +128,19 @@ To create a new project in the Azure DevOps UI, follow the instructions at [Crea
 
 ### Set up authentication between Azure DevOps and Azure
 
-This step configures a new Azure DevOps service connection that stores the service principal information. The project pipelines can read the connection information by using the connection name to connect to Azure automatically.
-Use the service principal you created to set up authentication between Azure DevOps and Azure services by following the instructions at [Set up authentication with Azure and Azure DevOps](https://github.com/microsoft/genaiops-promptflow-template/blob/main/docs/github_workflows_how_to_setup.md#set-up-authentication-with-azure-and-azure-devops).
+This step configures a new Azure DevOps service connection that stores the service principal information. The project pipelines can read the connection information by using the connection name to connect to Azure automatically. To use the service principal you created to set up authentication between Azure DevOps and Azure services, follow the instructions at [Set up authentication with Azure and Azure DevOps](https://github.com/microsoft/genaiops-promptflow-template/blob/main/docs/github_workflows_how_to_setup.md#set-up-authentication-with-azure-and-azure-devops).
 
 ### Create an Azure DevOps variable group
 
-To create a new variable group and add a variable related to the Azure DevOps service connection, follow the instructions at [Create an Azure DevOps variable group](https://github.com/microsoft/genaiops-promptflow-template/blob/main/docs/Azure_devops_how_to_setup.md#create-an-azure-devops-variable-group). The service principal name is available to the pipelines automatically as an environment variable.
+To create a new variable group and add a variable related to the Azure DevOps service connection, follow the instructions at [Create an Azure DevOps variable group](https://github.com/microsoft/genaiops-promptflow-template/blob/main/docs/Azure_devops_how_to_setup.md#create-an-azure-devops-variable-group). The service principal name is then available to the pipelines automatically as an environment variable.
 
 ### Configure Azure Repos and Azure Pipelines
 
-The example repository uses two branches, `main` and `development`, for code promotions and execution of pipelines. To set up your own local and remote repositories to use code from the example repo, follow the instructions at [Configure Azure DevOps local and remote repositories](https://github.com/microsoft/genaiops-promptflow-template/blob/main/docs/Azure_devops_how_to_setup.md#configure-azure-devops-local-and-remote-repository).
+The example repository uses two branches, `main` and `development`, for code promotions and pipeline execution. To set up your own local and remote repositories to use code from the example repo, follow the instructions at [Configure Azure DevOps local and remote repositories](https://github.com/microsoft/genaiops-promptflow-template/blob/main/docs/Azure_devops_how_to_setup.md#configure-azure-devops-local-and-remote-repository).
 
 You clone both the `main` and `development` branches from the example repository, and associate the code to refer to the new Azure Repos repository. Both the PR and development pipelines are configured to execute automatically based on PR creation and merge triggers.
 
-The branch policy for the `development` branch is configured to execute the PR pipeline for any PR raised on the development branch from a feature branch. The `dev` pipeline executes when the PR merges to the development branch. The `dev` pipeline consists of both CI and CD phases.
+The branch policy for the `development` branch is configured to execute the PR pipeline for any PR raised on the development branch from a feature branch. The `dev` pipeline executes when the PR merges to the development branch, and consists of both CI and CD phases.
 
 *Human in the loop* is also implemented within the pipelines. After the CI phase in the `dev` pipeline executes, the CD phase follows after manual approval is provided in the Azure Pipelines build execution UI.
 
@@ -160,7 +161,7 @@ The outputs should look similar to the examples at [Example prompt run, evaluati
 
 ### Use local execution
 
-To use the capabilities of [local execution](https://github.com/microsoft/genaiops-promptflow-template/blob/main/docs/github_workflows_how_to_setup.md#local-execution-1), follow these steps.
+To use [local execution](https://github.com/microsoft/genaiops-promptflow-template/blob/main/docs/Azure_devops_how_to_setup.md#local-execution) capabilities, follow these steps.
 
 1. Clone the repository as follows:
 
@@ -168,7 +169,7 @@ To use the capabilities of [local execution](https://github.com/microsoft/genaio
    git clone https://github.com/microsoft/genaiops-promptflow-template.git
    ```
 
-1. Create an *.env* file at the top folder level. Add lines for each connection, updating the values for the placeholders. The examples in the example repo use the AzureOpenAI connection named `aoai` and API version `2023-03-15-preview`.
+1. Create an *.env* file at the top folder level. Add lines for each connection, updating the values for the placeholders. The examples in the example repo use the AzureOpenAI connection named `aoai` and API version `2024-02-01`.
 
    ```bash
    aoai={ "api_key": "<api key>","api_base": "<api base or endpoint>","api_type": "azure","api_version": "2024-02-01"}

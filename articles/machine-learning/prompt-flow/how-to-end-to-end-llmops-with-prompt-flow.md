@@ -19,7 +19,7 @@ ms.date: 10/18/2024
 
 As the demand for LLM-infused applications soars, organizations need a cohesive and streamlined process to manage the end-to-end lifecycle of these apps. Generative Artificial Intelligence Operations (GenAIOps), sometimes called *LLMOps*, is a cornerstone of efficient prompt engineering and LLM-infused application development and deployment.
 
-This article shows how Azure Machine Learning lets you integrate with GitHub to automate the LLM-infused application development lifecycle with prompt flow. Prompt flow provides a streamlined and structured approach to developing LLM-infused applications. Its well-defined process and lifecycle guide you through the process of building, testing, optimizing, and deploying flows, culminating in the creation of fully functional LLM-infused solutions.
+This article shows how Azure Machine Learning lets you integrate with GitHub to automate the LLM-infused application development lifecycle with *prompt flow*. Prompt flow provides a streamlined and structured approach to developing LLM-infused applications. Its well-defined process and lifecycle guide you through the process of building, testing, optimizing, and deploying flows, culminating in the creation of fully functional LLM-infused solutions.
 
 ## GenAIOps prompt flow features
 
@@ -128,7 +128,7 @@ The outputs should look similar to the examples at [Example prompt run, evaluati
 
 ### Use local execution
 
-To use the capabilities of [local execution](https://github.com/microsoft/genaiops-promptflow-template/blob/main/docs/github_workflows_how_to_setup.md#local-execution-1), follow these steps.
+To use [local execution](https://github.com/microsoft/genaiops-promptflow-template/blob/main/docs/github_workflows_how_to_setup.md#local-execution-1) capabilities, follow these steps.
 
 1. Clone the repository as follows:
 
@@ -136,7 +136,7 @@ To use the capabilities of [local execution](https://github.com/microsoft/genaio
    git clone https://github.com/microsoft/genaiops-promptflow-template.git
    ```
 
-1. Create an *.env* file at the top folder level. Add lines for each connection, updating the values for the placeholders. The examples in the example repo use the AzureOpenAI connection named `aoai` and API version `2023-03-15-preview`.
+1. Create an *.env* file at the top folder level. Add lines for each connection, updating the values for the placeholders. The examples in the example repo use the AzureOpenAI connection named `aoai` and API version `2024-02-01`.
 
    ```bash
    aoai={ "api_key": "<api key>","api_base": "<api base or endpoint>","api_type": "azure","api_version": "2024-02-01"}
