@@ -230,11 +230,15 @@ There are a few important concepts to notice in this YAML/Python parameter:
 
 #### Readiness route vs. liveness route
 
-An HTTP server defines paths for both _liveness_ and _readiness_. A liveness route is used to check whether the server is running. A readiness route is used to check whether the server is ready to do work. In machine learning inference, a server could respond 200 OK to a liveness request before loading a model. The server could respond 200 OK to a readiness request only after the model is loaded into memory.
+The API server you choose may provide a way to check the status of the server. There are two types of the route that you can specify: _liveness_ and _readiness_. A liveness route is used to check whether the server is running. A readiness route is used to check whether the server is ready to do work. In the context of machine learning inferencing, a server could respond 200 OK to a liveness request before loading a model, and the server could respond 200 OK to a readiness request only after the model is loaded into the memory.
 
-For more information about liveness and readiness probes, see the [Kubernetes documentation](https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/).
+For more information about liveness and readiness probes in general, see the [Kubernetes documentation](https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/).
 
-Notice that this deployment uses the same path for both liveness and readiness, since TF Serving only defines a liveness route.
+The liveness and readiness routes will be determined by the API server of your choice. Note that the example deployment in this article uses the same path for both liveness and readiness, since TFServing only defines a liveness route. Refer to other examples for different patterns to define the routes. 
+
+#### Scoring route
+
+The API server you choose would provide a way to receive the payload to work on. In the context of machine learning inference, a server would receive the input data via a specific route. Identify this route for your API server and specify it when you define the deployment to create. Successful creation of the deployment will update the scoring_uri parameter of the endpoint as well, which you can verify with `az ml online-endpoint show -n <name> --query scoring_uri`.
 
 #### Locating the mounted model
 
