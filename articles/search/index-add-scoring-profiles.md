@@ -31,6 +31,8 @@ You can create multiple profiles and then modify query logic to choose which one
 
 You can have up to 100 scoring profiles within an index (see [service Limits](search-limits-quotas-capacity.md)), but you can only specify one profile at time in any given query.
 
+You can use semantic ranker with scoring profiles. When multiple ranking or relevance features are in play, semantic ranking is the last step. [How search scoring works](#how-search-scoring-works-in-azure-ai-search) provides an illustration.
+
 > [!NOTE]
 > Unfamiliar with relevance concepts? Visit [Relevance and scoring in Azure AI Search](index-similarity-and-scoring.md) for background. You can also watch this [video segment on YouTube](https://www.youtube.com/embed/Y_X6USgvB1g?version=3&start=463&end=970) for scoring profiles over BM25-ranked results.
 >
