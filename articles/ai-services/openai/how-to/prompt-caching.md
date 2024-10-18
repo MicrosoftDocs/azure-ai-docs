@@ -29,7 +29,7 @@ Official support for prompt caching was first added in API version `2024-10-01-p
 
 ## Getting started
 
-For a request to take advantage of prompt caching the request must be:
+For a request to take advantage of prompt caching the request must be both:
 
 - A minimum of 1,024 tokens in length.
 - The first 1,024 tokens in the prompt must be identical.
