@@ -14,14 +14,14 @@ recommendations: false
 
 # Prompt caching
 
-Prompt caching allows you to reduce overall request latency and cost for longer prompts that have identical content at the beginning of the prompt. *"Prompt"* in this context is referring to the input you send to the model as part of your chat completions request. Rather than re-process the same input tokens over and over again, the model is able to retain a temporary cache of processed input data to improve overall performance. Prompt caching has no impact on the output content returned in the model response beyond a reduction in latency and cost.  
+Prompt caching allows you to reduce overall request latency and cost for longer prompts that have identical content at the beginning of the prompt. *"Prompt"* in this context is referring to the input you send to the model as part of your chat completions request. Rather than reprocess the same input tokens over and over again, the model is able to retain a temporary cache of processed input data to improve overall performance. Prompt caching has no impact on the output content returned in the model response beyond a reduction in latency and cost.  
 
 ## Supported models
 
 Currently only the following models support prompt caching with Azure OpenAI:
 
-- `o1-preview` (2024-09-12)
-- `o1-mini` (2024-09-12)
+- `o1-preview-2024-09-12`
+- `o1-mini-2024-09-12`
 
 ## API support
 
@@ -31,10 +31,10 @@ Official support for prompt caching was first added in API version `2024-10-01-p
 
 For a request to take advantage of prompt caching the request must be:
 
-- A minimum of 1024 tokens in length.
-- The first 1024 tokens in the prompt must be identical.
+- A minimum of 1,024 tokens in length.
+- The first 1,024 tokens in the prompt must be identical.
 
-When a match is found between a prompt and the current content of the prompt cache it is referred to a cache hit. Cache hits will show up as [`cached_tokens`](/azure/ai-services/openai/reference-preview#cached_tokens) under [`prompt_token_details`](/azure/ai-services/openai/reference-preview#properties-for-prompt_tokens_details) in the chat completions response.
+When a match is found between a prompt and the current content of the prompt cache, it's referred to as a cache hit. Cache hits will show up as [`cached_tokens`](/azure/ai-services/openai/reference-preview#cached_tokens) under [`prompt_token_details`](/azure/ai-services/openai/reference-preview#properties-for-prompt_tokens_details) in the chat completions response.
 
 ```json
 {
@@ -59,13 +59,13 @@ When a match is found between a prompt and the current content of the prompt cac
 }
 ```
 
-After the first 1024 tokens cache hits will occur for every 128 additional identical tokens.
+After the first 1,024 tokens cache hits will occur for every 128 additional identical tokens.
 
-A single character difference in the first 1024 tokens will result in a cache miss which is characterized by a `cached_tokens` value of 0. Prompt caching is enabled by default with no additional configuration needed for supported models.
+A single character difference in the first 1,024 tokens will result in a cache miss which is characterized by a `cached_tokens` value of 0. Prompt caching is enabled by default with no additional configuration needed for supported models.
 
 ## What is cached?
 
-The o1-series models are text only and do not support system messages, images, tool use/function calling, or structured outputs. This limits the efficacy of prompt caching for these models to the user/assistant portions of the messages array which are less likely to have an identical 1024 token prefix.
+The o1-series models are text only and don't support system messages, images, tool use/function calling, or structured outputs. This limits the efficacy of prompt caching for these models to the user/assistant portions of the messages array which are less likely to have an identical 1024 token prefix.
 
 Once prompt caching is enabled for other supported models prompt caching will expand to support:  
 
@@ -76,8 +76,8 @@ Once prompt caching is enabled for other supported models prompt caching will ex
 |**Tool use**| Both the messages array and tool definitions |
 |**Structured outputs** | Structured output schema is appended as a prefix to the system message|
 
-To improve the likelihood of cache hits occurring you should structure your requests such that repetitive content occurs at the beginning of the messages array.
+To improve the likelihood of cache hits occurring, you should structure your requests such that repetitive content occurs at the beginning of the messages array.
 
 ## Can I disable prompt caching?
 
-Prompt caching is enabled by default. There is no opt out option.
+Prompt caching is enabled by default. There is no opt-out option.
