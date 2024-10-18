@@ -2,7 +2,7 @@
 title: How to generate synthetic and simulated data for evaluation
 titleSuffix: Azure AI Studio
 description: This article provides instructions on how to generate synthetic data to run simulations to evaluate the performance and safety of your generative AI application.
-manager: nitinme
+manager: scottpolly
 ms.service: azure-ai-studio
 ms.custom:
   - ignite-2023

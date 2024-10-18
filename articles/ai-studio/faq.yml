@@ -3,7 +3,7 @@ metadata:
   title: Azure AI frequently asked questions
   titleSuffix: Azure AI Studio
   description: Get answers to the most popular questions about Azure AI services.
-  manager: nitinme
+  manager: scottpolly
   ms.service: azure-ai-studio
   ms.custom:
     - build-2024

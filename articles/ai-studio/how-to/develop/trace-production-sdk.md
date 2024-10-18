@@ -2,7 +2,7 @@
 title: How to enable tracing and collect feedback for a flow deployment
 titleSuffix: Azure AI Studio
 description: This article provides instructions on how to enable tracing and collect feedback for a flow deployment in Azure AI Studio.
-manager: nitinme
+manager: scottpolly
 ms.service: azure-ai-studio
 ms.custom:
   - build-2024
