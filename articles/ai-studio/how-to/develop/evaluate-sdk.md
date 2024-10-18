@@ -2,7 +2,7 @@
 title: Evaluate with the Azure AI Evaluation SDK
 titleSuffix: Azure AI Studio
 description: This article provides instructions on how to evaluate with the Azure AI Evaluation SDK.
-manager: nitinme
+manager: scottpolly
 ms.service: azure-ai-studio
 ms.custom:
   - build-2024
