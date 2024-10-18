@@ -23,25 +23,25 @@ This article shows how Azure Machine Learning lets you integrate with GitHub to 
 
 ## GenAIOps prompt flow features
 
-GenAIOps with prompt flow uses a GenAIOps template and guidance to help you build LLM-infused apps by using prompt flow. GenAIOps with prompt flow has capabilities for simple or complex LLM-infused apps, and is customizable to the needs of the application.
+[GenAIOps with prompt flow](https://github.com/microsoft/genaiops-promptflow-template) uses a GenAIOps template and guidance to help you build LLM-infused apps by using prompt flow. GenAIOps with prompt flow has capabilities for simple or complex LLM-infused apps, and is customizable to the needs of the application.
 
-GenAIOps with prompt flow provides the following features:
+The GenAIOps with prompt flow platform provides the following features:
 
 - **Centralized code hosting**. The repository supports hosting code for multiple prompt flows, providing a single repository for all your flows. This repo is like a library for your flows, making it easy to find, access, and collaborate on different projects.
 
 - **Lifecycle management**. Each flow has its own lifecycle, providing a smooth transition from local experimentation to production deployment.
 
-- **Variant and hyperparameter experimentation**. Variants and hyperparameters are like ingredients in a recipe. The platform allows you to experiment with different combinations of variants across multiple nodes in a flow. Experiment with multiple variants and hyperparameters to easily evaluate flow variants.
+- **Variant and hyperparameter experimentation**. Variants and hyperparameters are like ingredients in a recipe. The platform allows you to experiment with different combinations of variants across multiple nodes in a flow. You can experiment with multiple variants and hyperparameters to easily evaluate flow variants.
 
-- **Multiple deployment targets**. The platform supports deployment of flows to Azure App Services, Kubernetes, and Azure Managed computes, driven through configuration to ensure that your flows can scale as needed. The platform also generates Docker images infused with your flow and compute session for deployment to any target platform and operating system that supports Docker.
+- **Multiple deployment targets**. The platform generates Docker images infused with your flow and compute session for deployment to any target platform and operating system that supports Docker. You can deploy flows to Azure App Services, Kubernetes, and Azure Managed computes, and configure them to scale as needed.
 
-- **A/B deployment**. The platform seamlessly implements A/B deployments, letting you easily compare different flow versions. This platform facilitates A/B deployment for prompt flow as in traditional website A/B testing. You can easily compare different versions of a flow in a real-world setting to determine which version performs best.
+- **A/B deployment**. GenAIOps with prompt flow seamlessly implements A/B deployments, letting you easily compare different flow versions. This platform facilitates A/B deployment for prompt flow they same way as in traditional website A/B testing. You can easily compare different versions of a flow in a real-world setting to determine which version performs best.
 
-- **Many-to-many dataset to flow relationships**. Accommodate multiple datasets for each standard and evaluation flow, ensuring versatility in flow test and evaluation. The platform is designed to accommodate multiple datasets for each flow.
+- **Many-to-many dataset to flow relationships**. GenAIOps with prompt flow accommodates multiple datasets for each standard and evaluation flow, enabling versatility in flow test and evaluation.
 
-- **Conditional data and model registration**. The platform creates a new dataset version for the Azure Machine Learning data asset and flows in the model registry only when there's a change in them.
+- **Conditional data and model registration**. The platform registers a new dataset version for the Azure Machine Learning data asset and flows in the model registry only when there's a change in the dataset.
 
-- **Comprehensive reporting**. Generate detailed reports for each variant configuration, allowing you to make informed decisions. The platform provides detailed metrics collection, experiments, and variant bulk runs for all runs and experiments, enabling data-driven decisions for CSV and HTML files.
+- **Comprehensive reporting**. GenAIOps with prompt flow generates detailed reports for each variant configuration, allowing you to make informed decisions. The platform provides detailed metrics collection, experiments, and variant bulk runs for all runs and experiments, enabling data-driven decisions for both CSV and HTML files.
 
 GenAIOps with prompt flow provides the following other features for customization:
 
@@ -66,7 +66,7 @@ The GenAIOps lifecycle comprises four distinct stages:
 
 By adhering to this structured methodology, prompt flow empowers you to confidently develop, rigorously test, fine-tune, and deploy flows, leading to the creation of robust and sophisticated AI applications.
 
-The GenAIOps Prompt Flow template formalizes this structured methodology by using a code-first approach, and helps you build LLM-infused apps using prompt flow tools and process and the [GenAIOps prompt flow features](#genaiops-prompt-flow-features). The repository for this template is available at [GenAIOps with prompt flow template](https://github.com/microsoft/llmops-promptflow-template).
+The GenAIOps Prompt Flow template formalizes this structured methodology by using a code-first approach, and helps you build LLM-infused apps using prompt flow tools and process and GenAIOps prompt flow features. This template is available at [GenAIOps with prompt flow template](https://github.com/microsoft/genaiops-promptflow-template).
 
 ## GenAIOps process flow
 
@@ -83,64 +83,64 @@ The GenAIOps Prompt Flow template formalizes this structured methodology by usin
 
 ## Create a GenAIOps prompt flow
 
-In the rest of this article, you can learn GenAIOps with prompt flow by following the end-to-end samples provided, which help you build LLM-infused applications using prompt flow and GitHub. The primary objective is to provide assistance in the development of these applications by using the capabilities of prompt flow and GenAIOps.
+The rest of this article shows you how to use GenAIOps with prompt flow by following the end-to-end sample in the [GenAIOps with prompt flow template repository](https://github.com/microsoft/genaiops-promptflow-template), which help you build LLM-infused applications using prompt flow and GitHub. The primary objective is to provide assistance in the development of these applications by using the capabilities of prompt flow and GenAIOps.
 
 ### Prerequisites
 
 - An Azure subscription with the [free or paid version of Azure Machine Learning](https://azure.microsoft.com/free/).
 - An Azure Machine Learning workspace.
-- [Git version 2.27 or newer](https://git-scm.com/downloads) running on your local machine, with a GitHub source control repository.
+- [Git version 2.27 or newer](https://git-scm.com/downloads) running on your local machine, with the ability to create a GitHub source control repository.
 - An understanding of [how to integrate GenAIOps with prompt flow](how-to-integrate-with-llm-app-devops.md).
 
 ### Set up a prompt flow connection
 
 Prompt flow uses a connection resource to connect to Azure OpenAI, OpenAI, or Azure AI Search endpoints. You can create a connection through the prompt flow portal UI or by using the REST API. For more information, see [Connections in prompt flow](./concept-connections.md).
 
-To create the connection, follow the instructions at [Set up connections for prompt flow](https://github.com/microsoft/llmops-promptflow-template/blob/main/docs/Azure_devops_how_to_setup.md#setup-connections-for-prompt-flow). The sample flows use a connection called `aoai`, so give your connection that name.
+To create the connection, follow the instructions at [Set up connections for prompt flow](https://github.com/microsoft/genaiops-promptflow-template/blob/main/docs/Azure_devops_how_to_setup.md#setup-connections-for-prompt-flow). The sample flows use a connection called `aoai`, so give your connection that name.
 
 ### Set up a compute session
 
-Prompt flow uses a compute session to execute the flow. Create and start the compute session before you execute the prompt flow.
+Prompt flow uses a compute session to execute the flow. [Create and start the compute session](/azure/ai-studio/how-to/create-manage-compute-session) before you execute the prompt flow.
 
 ### Set up the GitHub repository
 
-To create a forked repo in your GitHub organization, follow the instructions at [Set up the GitHub repo](https://github.com/microsoft/llmops-promptflow-template/blob/main/docs/github_workflows_how_to_setup.md#set-up-github-repo). This repo uses two branches, `main` and `development`, for code promotions and pipeline execution.
+To create a forked repo in your GitHub organization, follow the instructions at [Set up the GitHub repo](https://github.com/microsoft/genaiops-promptflow-template/blob/main/docs/github_workflows_how_to_setup.md#set-up-github-repo). This repo uses two branches, `main` and `development`, for code promotions and pipeline execution.
 
-To create a new local repository, follow the instructions at [Clone the repo](https://github.com/microsoft/llmops-promptflow-template/blob/main/docs/github_workflows_how_to_setup.md#cloning-the-repo). This clone helps you create a new feature branch from the development branch and incorporate changes.
+To create a new local repository, follow the instructions at [Clone the repo](https://github.com/microsoft/genaiops-promptflow-template/blob/main/docs/github_workflows_how_to_setup.md#cloning-the-repo). This clone helps you create a new feature branch from the development branch and incorporate changes.
 
 ### Set up authentication between GitHub and Azure
 
-To use a previously created service principal to set up authentication between the GitHub repository and Azure services, follow the instructions at [Set up authentication with Azure and GitHub](https://github.com/microsoft/llmops-promptflow-template/blob/main/docs/github_workflows_how_to_setup.md#set-up-authentication-with-azure-and-github).
+This process configures a GitHub secret that stores service principal information. To connect to Azure automatically, the workflows in the repository can read the connection information by using the secret name. For more information, see [Use GitHub Actions to connect to Azure](/azure/developer/github/connect-from-azure).
 
-This step configures a GitHub secret that stores the service principal information. The workflows in the repository can read the connection information by using the secret name to connect to Azure automatically. For more information, see [Use GitHub Actions to connect to Azure](/azure/developer/github/connect-from-azure).
+1. Create a service principal by following the instructions at [Create Azure service principal](https://github.com/microsoft/genaiops-promptflow-template/blob/main/docs/github_workflows_how_to_setup.md#create-azure-service-principal).
+1. Use the service principal to set up authentication between the GitHub repository and Azure services by following the instructions at [Set up authentication with Azure and GitHub](https://github.com/microsoft/genaiops-promptflow-template/blob/main/docs/github_workflows_how_to_setup.md#set-up-authentication-with-azure-and-github).
 
 ### Test the pipeline
 
-To test the pipelines, follow the instructions at [How to set up the repo with GitHub Workflows](https://github.com/microsoft/llmops-promptflow-template/blob/main/docs/github_workflows_how_to_setup.md#cloning-the-repos). The process involves the following steps:
+To test the pipelines, follow the instructions at [Update test data](https://github.com/microsoft/genaiops-promptflow-template/blob/main/docs/github_workflows_how_to_setup.md#update-test-data). The complete process involves the following steps:
 
 1. You raise a PR from a feature branch to the development branch.
 1. The PR pipeline executes automatically due to the branch policy configuration.
 1. The PR is merged to the development branch.
 1. The associated `dev` pipeline executes, resulting in full CI and CD execution and provisioning or updating of the Azure Machine Learning endpoints.
 
-The outputs should look similar to the examples at [Example prompt run, evaluation, and deployment scenario](https://github.com/microsoft/llmops-promptflow-template/blob/main/docs/github_workflows_how_to_setup.md#example-prompt-run-evaluation-and-deployment-scenario).
+The outputs should look similar to the examples at [Example prompt run, evaluation, and deployment scenario](https://github.com/microsoft/genaiops-promptflow-template/blob/main/docs/github_workflows_how_to_setup.md#example-prompt-run-evaluation-and-deployment-scenario).
 
 ### Use local execution
 
-To use the capabilities of local execution, follow these steps.
+To use the capabilities of [local execution](https://github.com/microsoft/genaiops-promptflow-template/blob/main/docs/github_workflows_how_to_setup.md#local-execution-1), follow these steps.
 
 1. Clone the repository as follows:
 
    ```bash
-   git clone https://github.com/microsoft/llmops-promptflow-template.git
+   git clone https://github.com/microsoft/genaiops-promptflow-template.git
    ```
 
-1. Create an *.env* file at the top folder level and add the following lines. Update the values for `<experiment name>`, `<connection name>`, `<api key>` and `<api base or endpoint>`. All the flow examples in the example repo use the AzureOpenAI connection named `aoai`. Add connection names as needed.
+1. Create an *.env* file at the top folder level. Add lines for each connection, updating the values for `<connection name>`, `<api key>` and `<api base or endpoint>`. All the examples in the example repo use the AzureOpenAI connection named `aoai`.
 
    ```bash
-   experiment_name=<experiment name>
-   <connection name 1>={ "api_key": "<api key>","api_base": "<api base or endpoint>","api_type": "azure","api_version": "2023-03-15-preview"}
-   <connection name 2>={ "api_key": "<api key>","api_base": "<api base or endpoint>","api_type": "azure","api_version": "2023-03-15-preview"}
+   <aoai>={ "api_key": "<api key>","api_base": "<api base or endpoint>","api_type": "azure","api_version": "2024-06-01:"}
+   <azure_openai_connection2>={ "api_key": "<api key>","api_base": "<api base or endpoint>","api_type": "azure","api_version": "2024-06-01:"}
    ```
 1. Prepare the local conda or virtual environment to install the dependencies.
 
@@ -150,11 +150,12 @@ To use the capabilities of local execution, follow these steps.
 
 1. Bring or write your flows into the template based on instructions at [How to onboard new flows](https://github.com/microsoft/llmops-promptflow-template/blob/main/docs/how_to_onboard_new_flows.md).
 
-1. Write Python scripts similar to the provided examples in the *local_execution* folder.
+1. Write Python scripts in the *local_execution* folder similar to the provided examples.
 
 ## Related content
 
-- [GenAIOps with prompt flow template](https://github.com/microsoft/llmops-promptflow-template)
+- [GenAIOps with prompt flow template](https://github.com/microsoft/genaiops-promptflow-template)
 - [Prompt flow open source repository](https://github.com/microsoft/promptflow)
 - [Install and set up Python SDK v2](/python/api/overview/azure/ai-ml-readme)
 - [Install and set up Python CLI v2](../how-to-configure-cli.md)
+
