@@ -19,6 +19,8 @@ In this article, learn about Azure Machine Learning Python SDK releases.  For th
 __RSS feed__: Get notified when this page is updated by copying and pasting the following URL into your feed reader:
 `https://learn.microsoft.com/api/search/rss?search=%22Azure+machine+learning+release+notes%22&locale=en-us`
 
+Support for Python 3.11
+
 AutoML supports scikit-learn version 1.5.1
 
 ## 2024-04-29
