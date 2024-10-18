@@ -136,11 +136,11 @@ To use the capabilities of [local execution](https://github.com/microsoft/genaio
    git clone https://github.com/microsoft/genaiops-promptflow-template.git
    ```
 
-1. Create an *.env* file at the top folder level. Add lines for each connection, updating the values for `<connection name>`, `<api key>` and `<api base or endpoint>`. All the examples in the example repo use the AzureOpenAI connection named `aoai`.
+1. Create an *.env* file at the top folder level. Add lines for each connection, updating the values for the placeholders. The examples in the example repo use the AzureOpenAI connection named `aoai` and API version `2023-03-15-preview`.
 
    ```bash
-   <aoai>={ "api_key": "<api key>","api_base": "<api base or endpoint>","api_type": "azure","api_version": "2024-06-01:"}
-   <azure_openai_connection2>={ "api_key": "<api key>","api_base": "<api base or endpoint>","api_type": "azure","api_version": "2024-06-01:"}
+   aoai={ "api_key": "<api key>","api_base": "<api base or endpoint>","api_type": "azure","api_version": "2023-03-15-preview"}
+   <connection2>={ "api_key": "<api key>","api_base": "<api base or endpoint>","api_type": "<api type>","api_version": "<api_version>"}
    ```
 1. Prepare the local conda or virtual environment to install the dependencies.
 
