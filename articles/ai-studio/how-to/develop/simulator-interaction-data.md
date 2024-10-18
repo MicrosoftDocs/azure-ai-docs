@@ -479,4 +479,3 @@ User can also define their own `api_call_retry_sleep_sec` and `api_call_retry_ma
 
 - [Get started building a chat app](../../quickstarts/get-started-code.md)
 - [Evaluate your generative AI application](evaluate-sdk.md)
-- [Get started with samples](https://aka.ms/aistudio/syntheticdatagen-samples)
