@@ -25,7 +25,7 @@ Azure AI Multimodal Intelligence is a cloud-based solution on the Azure platform
 
 * [**Grounded results for higher accuracy**](#features-and-capabilities)
 
-* [Enhanced data-input alignment framework leading to highly precise confidence scores](#features-and-capabilities)
+* [**Enhanced data-input alignment framework**](#features-and-capabilities)
 
 * [**Precise and efficient extraction of modality-specific details for secondary processing scenarios**](#features-and-capabilities).
 
@@ -63,8 +63,6 @@ Before you get started using Multimodal Intelligence, you need an Azure AI servi
   > Azure provides more than one resource types named Azure AI services. Be sure to select the one that is listed under Azure AI services → Azure AI services with the logo as shown previously.
 
 1. Select the **Create** button.
-
-## Create a resource
 
 1. Next, you're going to fill out the **`Create Document Intelligence`** fields with the following values:
 
