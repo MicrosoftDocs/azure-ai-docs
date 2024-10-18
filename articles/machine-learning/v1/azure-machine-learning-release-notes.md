@@ -23,6 +23,8 @@ __RSS feed__: Get notified when this page is updated by copying and pasting the 
 ### Azure Machine Learning SDK for Python v1.58.0
 Support for Python 3.11
 
+## 2024-08-05
+### Azure Machine Learning SDK for Python v1.57.0
 AutoML supports scikit-learn version 1.5.1
 
 ## 2024-04-29
