@@ -145,14 +145,14 @@ assistant = client.beta.assistants.create(
 ```console
 # Upload a file with an "assistants" purpose
 
-curl https://YOUR_RESOURCE_NAME.openai.azure.com/openai/files?api-version=2024-05-01-preview \
+curl https://YOUR_RESOURCE_NAME.openai.azure.com/openai/files?api-version=2024-08-01-preview \
   -H "api-key: $AZURE_OPENAI_API_KEY" \
   -F purpose="assistants" \
   -F file="@c:\\path_to_file\\file.csv"
 
 # Create an assistant using the file ID
 
-curl https://YOUR_RESOURCE_NAME.openai.azure.com/openai/assistants?api-version=2024-05-01-preview \
+curl https://YOUR_RESOURCE_NAME.openai.azure.com/openai/assistants?api-version=2024-08-01-preview \
   -H "api-key: $AZURE_OPENAI_API_KEY" \
   -H 'Content-Type: application/json' \
   -d '{
