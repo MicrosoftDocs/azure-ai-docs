@@ -1,7 +1,7 @@
 ---
 title: GenAIOps with prompt flow and GitHub
 titleSuffix: Azure Machine Learning
-description: Use Azure Machine Learning to set up an end-to-end GitHub and GenAIOps pipeline that runs a web classification prompt flow.
+description: Use Azure Machine Learning to set up an end-to-end GitHub and GenAIOps pipeline to run a prompt flow.
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: prompt-flow
@@ -139,7 +139,7 @@ To use the capabilities of [local execution](https://github.com/microsoft/genaio
 1. Create an *.env* file at the top folder level. Add lines for each connection, updating the values for the placeholders. The examples in the example repo use the AzureOpenAI connection named `aoai` and API version `2023-03-15-preview`.
 
    ```bash
-   aoai={ "api_key": "<api key>","api_base": "<api base or endpoint>","api_type": "azure","api_version": "2023-03-15-preview"}
+   aoai={ "api_key": "<api key>","api_base": "<api base or endpoint>","api_type": "azure","api_version": "2024-02-01"}
    <connection2>={ "api_key": "<api key>","api_base": "<api base or endpoint>","api_type": "<api type>","api_version": "<api_version>"}
    ```
 1. Prepare the local conda or virtual environment to install the dependencies.
