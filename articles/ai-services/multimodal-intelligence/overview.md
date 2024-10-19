@@ -57,10 +57,10 @@ Before you get started using Multimodal Intelligence, you need an Azure AI servi
 
 1. Sign in to the [Azure portal](https://portal.azure.com) and select **Create a resource** from the Azure portal home page. The Azure AI services multi-service resource is listed under Azure AI services → Azure AI services in the portal as shown here:
 
-  :::image type="content" source="media/overview/azure-multi-service-resource.png" alt-text="Screenshot of the multi-service resource page in the Azure portal.":::
-
-  > [!IMPORTANT]
-  > Azure provides more than one resource types named Azure AI services. Be sure to select the one that is listed under Azure AI services → Azure AI services with the logo as shown previously.
+    :::image type="content" source="media/overview/azure-multi-service-resource.png" alt-text="Screenshot of the multi-service resource page in the Azure portal.":::
+  
+    > [!IMPORTANT]
+    > Azure provides more than one resource types named Azure AI services. Be sure to select the one that is listed under Azure AI services → Azure AI services with the logo as shown previously.
 
 1. Select the **Create** button.
 
