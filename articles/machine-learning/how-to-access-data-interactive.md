@@ -174,7 +174,7 @@ fs = AzureMachineLearningFileSystem(uri)
 
 # append csv files in folder to a list
 dflist = []
-for path in fs.glob('/<folder>/*.csv'):
+for path in fs.glob('<folder>/*.csv'):
     with fs.open(path) as f:
         dflist.append(pd.read_csv(f))
 
@@ -213,7 +213,7 @@ fs = AzureMachineLearningFileSystem(uri)
 
 # append parquet files in folder to a list
 dflist = []
-for path in fs.glob('/<folder>/*.parquet'):
+for path in fs.glob('<folder>/*.parquet'):
     with fs.open(path) as f:
         dflist.append(pd.read_parquet(f))
 
