@@ -143,10 +143,10 @@ This code creates a **FaceList** called `My face collection` and adds a Face to 
 
 In this article, you learned how to specify the detection model to use with different Face APIs. Next, follow a quickstart to get started with face detection and analysis.
 
-* [Face .NET SDK](../quickstarts-sdk/identity-client-library.md?pivots=programming-language-csharp%253fpivots%253dprogramming-language-csharp)
-* [Face Python SDK](../quickstarts-sdk/identity-client-library.md?pivots=programming-language-python%253fpivots%253dprogramming-language-python)
-* [Face Java SDK](../quickstarts-sdk/identity-client-library.md?pivots=programming-language-java%253fpivots%253dprogramming-language-java)
-* [Face JavaScript SDK](../quickstarts-sdk/identity-client-library.md?pivots=programming-language-javascript%253fpivots%253dprogramming-language-javascript)
+* [Face .NET SDK](../quickstarts-sdk/identity-client-library.md?pivots=programming-language-csharp)
+* [Face Python SDK](../quickstarts-sdk/identity-client-library.md?pivots=programming-language-python
+* [Face Java SDK](../quickstarts-sdk/identity-client-library.md?pivots=programming-language-java)
+* [Face JavaScript SDK](../quickstarts-sdk/identity-client-library.md?pivots=programming-language-javascript)
 
 [Detect]: /rest/api/face/face-detection-operations/detect
 [Identify From Person Group]: /rest/api/face/face-recognition-operations/identify-from-person-group
