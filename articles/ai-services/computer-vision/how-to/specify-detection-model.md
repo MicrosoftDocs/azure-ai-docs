@@ -144,7 +144,7 @@ This code creates a **FaceList** called `My face collection` and adds a Face to 
 In this article, you learned how to specify the detection model to use with different Face APIs. Next, follow a quickstart to get started with face detection and analysis.
 
 * [Face .NET SDK](../quickstarts-sdk/identity-client-library.md?pivots=programming-language-csharp)
-* [Face Python SDK](../quickstarts-sdk/identity-client-library.md?pivots=programming-language-python
+* [Face Python SDK](../quickstarts-sdk/identity-client-library.md?pivots=programming-language-python)
 * [Face Java SDK](../quickstarts-sdk/identity-client-library.md?pivots=programming-language-java)
 * [Face JavaScript SDK](../quickstarts-sdk/identity-client-library.md?pivots=programming-language-javascript)
 
