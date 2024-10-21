@@ -35,94 +35,92 @@ You can create an Azure AI Search resource in any of the following Azure public 
 
 ### Americas
 
-| Region | AI integration | Semantic ranker | Availability zones |
-|--|--|--|--|
-| Brazil South​​ ​ | ✅ | ✅ | |
-| Canada Central​​ | ✅ | ✅ | ✅ |
-| Canada East​​ ​ |  | ✅ | |
-| East US​ <sup>1</sup>| ✅ | ✅ | ✅ |
-| East US 2 ​ | ✅ | ✅ | ✅ |
-| ​Central US​​ <sup>2</sup> | ✅ | ✅ | ✅ |
-| North Central US​ ​ | ✅ | ✅ | |
-| South Central US​ <sup>1</sup>​ | ✅ | ✅ | ✅ |
-| West US​ ​ | ✅ | ✅ | |
-| West US 2​ ​ | ✅ | ✅ | ✅ |
-| West US 3​ <sup>1</sup>​ | ✅ | ✅ |✅ |
-| West Central US​ ​ | ✅ | ✅ | |
+| Region | AI integration | Semantic ranker | Availability zones | Capacity Constrained |
+|--|--|--|--|--|
+| Brazil South​​ ​ | ✅ | ✅ | |  |
+| Canada Central​​ | ✅ | ✅ | ✅ |  |
+| Canada East​​ ​ |  | ✅ | |  |
+| East US​ <sup>1</sup>| ✅ | ✅ | ✅ | <span class='red-x'>&#10060;</span> |
+| East US 2 ​ | ✅ | ✅ | ✅ | <span class='red-x'>&#10060;</span> |
+| ​Central US​​ <sup>1</sup> | ✅ | ✅ | ✅ |  |
+| North Central US​ ​ | ✅ | ✅ | |  | 
+| South Central US​ <sup>1</sup>​ | ✅ | ✅ | ✅ | <span class='red-x'>&#10060;</span> |
+| West US​ ​ | ✅ | ✅ | |  |
+| West US 2​ ​ | ✅ | ✅ | ✅ | |
+| West US 3​ <sup>1</sup>​ | ✅ | ✅ |✅ |  <span class='red-x'>&#10060;</span> |
+| West Central US​ ​ | ✅ | ✅ | | |
 
-<sup>1</sup> Currently, this region is at full capacity and not accepting new search services. 
-
-<sup>2</sup> This region has capacity, but some tiers are [not available](search-sku-tier.md#region-availability-by-tier). 
+<sup>1</sup> Currently, this region is at full capacity and temporaly not accepting new search services in the following tiers [not available](search-sku-tier.md#region-availability-by-tier).
 
 ### Europe
 
-| Region | AI integration | Semantic ranker | Availability zones |
-|--|--|--|--|
-| North Europe​​ | ✅ | ✅ | ✅ |
-| West Europe​​ <sup>1, 2</sup>| ✅ | ✅ | ✅ |
-| France Central​​ | ✅ | ✅ | ✅ |
-| Germany West Central​ ​| ✅ |  | ✅ |
-| Italy North​​ |  |  | ✅ |
-| Norway East​​ | ✅ |  | ✅ |
-| Poland Central​​ |  |  |  |
-| Spain Central <sup>2</sup> |  |  | ✅  |
-| Sweden Central​​ | ✅ |  | ✅ |
-| Switzerland North​ | ✅ | ✅ | ✅ |
-| Switzerland West​ | ✅ | ✅ | ✅ |
-| UK South​ | ✅ | ✅ | ✅ |
-| UK West​ ​|  | ✅ | |
+| Region | AI integration | Semantic ranker | Availability zones | Capacity Constrained |
+|--|--|--|--|--|
+| North Europe​​ | ✅ | ✅ | ✅ |  |
+| West Europe​​ <sup>1, 2</sup>| ✅ | ✅ | ✅ | <span class='red-x'>&#10060;</span> |
+| France Central​​ | ✅ | ✅ | ✅ | |
+| Germany West Central​ ​| ✅ |  | ✅ | |
+| Italy North​​ |  |  | ✅ | |
+| Norway East​​ | ✅ |  | ✅ |  |
+| Poland Central​​ |  |  |  |  |
+| Spain Central <sup>2</sup> |  |  | ✅  |  |
+| Sweden Central​​ | ✅ |  | ✅ |  |
+| Switzerland North​ | ✅ | ✅ | ✅ |  |
+| Switzerland West​ | ✅ | ✅ | ✅ |  |
+| UK South​ | ✅ | ✅ | ✅ |  |
+| UK West​ ​|  | ✅ | |  |
 
-<sup>1</sup> Currently, this region is at full capacity and not accepting new search services.
+<sup>1</sup> Currently, this region is at full capacity and temporaly not accepting new search services in the following tiers [not available](search-sku-tier.md#region-availability-by-tier).
 
 <sup>2</sup> This region runs on older infrastructure that has lower storage limits per partition at every tier. Choose a different region if you want [higher limits](search-limits-quotas-capacity.md#service-limits).
 
 ### Middle East
 
-| Region | AI integration | Semantic ranker | Availability zones |
-|--|--|--|--|
-| Israel Central​ <sup>2</sup> |  |  | ✅  |
-| Qatar Central​ <sup>1, 2</sup> |  |  | ✅ |
-| UAE North​​ | ✅ |  | ✅ |
+| Region | AI integration | Semantic ranker | Availability zones | Capacity Constrained |
+|--|--|--|--|--|
+| Israel Central​ <sup>2</sup> |  |  | ✅  |  |
+| Qatar Central​ <sup>1, 2</sup> |  |  | ✅ | <span class='red-x'>&#10060;</span> |
+| UAE North​​ | ✅ |  | ✅ |  |
 
-<sup>1</sup> Currently, this region is at full capacity and not accepting new search services.
+<sup>1</sup> Currently, this region is at full capacity and temporaly not accepting new search services in the following tiers [not available](search-sku-tier.md#region-availability-by-tier).
 
 <sup>2</sup> This region runs on older infrastructure that has lower storage limits per partition at every tier. Choose a different region if you want [higher limits](search-limits-quotas-capacity.md#service-limits).
 
 ### Africa
 
-| Region | AI integration | Semantic ranker | Availability zones |
-|--|--|--|--|
-| South Africa North​ | ✅ |  | ✅ |
+| Region | AI integration | Semantic ranker | Availability zones | Capacity Constrained |
+|--|--|--|--|--|
+| South Africa North​ | ✅ |  | ✅ |   |
 
 ### Asia Pacific
 
-| Region | AI integration | Semantic ranker | Availability zones |
-|--|--|--|--|
-| Australia East​ ​ | ✅ | ✅ | ✅ |
-| Australia Southeast​​​ |  | ✅ |  |
-| East Asia​ | ✅ | ✅ | ✅ |
-| Southeast Asia​ ​ ​ | ✅ | ✅ | ✅ |
-| Central India <sup>1</sup> | ✅ | ✅ | ✅ |
+| Region | AI integration | Semantic ranker | Availability zones | Capacity Constrained |
+|--|--|--|--|--|
+| Australia East​ ​ | ✅ | ✅ | ✅ |   |
+| Australia Southeast​​​ |  | ✅ |  | |
+| East Asia​ | ✅ | ✅ | ✅ |  |
+| Southeast Asia​ ​ ​ | ✅ | ✅ | ✅ |  |
+| Central India <sup>1</sup> | ✅ | ✅ | ✅ | <span class='red-x'>&#10060;</span> |
 | Jio India West​ ​ | ✅ | ✅ |  |
 | South India <sup>2</sup> |  | | ✅ |
-| Japan East <sup>1</sup> | ✅ | ✅ | ✅ |
+| Japan East  | ✅ | ✅ | ✅ |
 | Japan West​ | ✅ | ✅ |  |
 | Korea Central | ✅ | ✅ | ✅ |
 | Korea South​ ​ |  | ✅ |  |
 
-<sup>1</sup> This region has capacity, but some tiers are [not available](search-sku-tier.md#region-availability-by-tier). 
+<sup>1</sup> Currently, this region is at full capacity and temporaly not accepting new search services in the following tiers [not available](search-sku-tier.md#region-availability-by-tier).
 
 <sup>2</sup> This region runs on older infrastructure that has lower storage limits per partition at every tier. Choose a different region if you want [higher limits](search-limits-quotas-capacity.md#service-limits).
 
 ## Azure Government regions
 
-| Region | AI integration | Semantic ranker | Availability zones |
-|--|--|--|--|
-| Arizona | ✅ | ✅  | |
-| Texas |  |  |  |
-| Virginia <sup>1</sup> | ✅ | ✅  | ✅ |
+| Region | AI integration | Semantic ranker | Availability zones | Capacity Constrained |
+|--|--|--|--|--|
+| Arizona | ✅ | ✅  | | |
+| Texas |  |  |  | |
+| Virginia <sup>1</sup> | ✅ | ✅  | ✅ |  <span class='red-x'>&#10060;</span> |
 
-<sup>1</sup> Currently, this region is at full capacity and not accepting new search services.
+<sup>1</sup> Currently, this region is at full capacity and temporaly not accepting new search services in the following tiers [not available](search-sku-tier.md#region-availability-by-tier).
 
 ## Azure operated by 21Vianet
 
