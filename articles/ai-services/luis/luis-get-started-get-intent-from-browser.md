@@ -26,7 +26,7 @@ In order to query a public app, you need:
 * Your Language Understanding (LUIS) resource information:
     * **Prediction key** - which can be obtained from [LUIS Portal](https://www.luis.ai/). If you do not already have a subscription to create a key, you can register for a [free account](https://azure.microsoft.com/free/cognitive-services).
     * **Prediction endpoint subdomain** - the subdomain is also the **name** of your LUIS resource.
-* A LUIS app ID - use the public IoT app ID of `df67dcdb-c37d-46af-88e1-8b97951ca1c2`. The user query used in the quickstart code is specific to that app. This app should work with any prediction resource other than the Europe or Australia regions, since it uses "westus" as the authoring region.
+* A LUIS app ID - use the public IoT app ID of `00001111-aaaa-2222-bbbb-3333cccc4444`. The user query used in the quickstart code is specific to that app. This app should work with any prediction resource other than the Europe or Australia regions, since it uses "westus" as the authoring region.
 
 ## Use the browser to see predictions
 
@@ -39,7 +39,7 @@ In order to query a public app, you need:
     The format of the V3 URL for a **GET** endpoint (by slots) request is:
 
     `
-    https://YOUR-LUIS-ENDPOINT-SUBDOMAIN.api.cognitive.microsoft.com/luis/prediction/v3.0/apps/df67dcdb-c37d-46af-88e1-8b97951ca1c2/slots/production/predict?query=turn on all lights&subscription-key=YOUR-LUIS-PREDICTION-KEY
+    https://YOUR-LUIS-ENDPOINT-SUBDOMAIN.api.cognitive.microsoft.com/luis/prediction/v3.0/apps/00001111-aaaa-2222-bbbb-3333cccc4444/slots/production/predict?query=turn on all lights&subscription-key=YOUR-LUIS-PREDICTION-KEY
     `
 
     #### [V2 prediction request](#tab/V2-1-2)
@@ -47,7 +47,7 @@ In order to query a public app, you need:
     The format of the V2 URL for a **GET** endpoint request is:
 
     `
-    https://YOUR-LUIS-ENDPOINT-SUBDOMAIN.api.cognitive.microsoft.com/luis/v2.0/apps/df67dcdb-c37d-46af-88e1-8b97951ca1c2?subscription-key=YOUR-LUIS-PREDICTION-KEY&q=turn on all lights
+    https://YOUR-LUIS-ENDPOINT-SUBDOMAIN.api.cognitive.microsoft.com/luis/v2.0/apps/00001111-aaaa-2222-bbbb-3333cccc4444?subscription-key=YOUR-LUIS-PREDICTION-KEY&q=turn on all lights
     `
 
 1. Paste the URL into a browser window and press Enter. The browser displays a JSON result that indicates that LUIS detects the `HomeAutomation.TurnOn` intent as the top intent and the `HomeAutomation.Operation` entity with the value `on`.
@@ -103,7 +103,7 @@ In order to query a public app, you need:
     Add `show-all-intents=true` to the end of the querystring to **show all intents**, and `verbose=true` to return all detailed information for entities.
 
     `
-    https://YOUR-LUIS-ENDPOINT-SUBDOMAIN.api.cognitive.microsoft.com/luis/prediction/v3.0/apps/df67dcdb-c37d-46af-88e1-8b97951ca1c2/slots/production/predict?query=turn on all lights&subscription-key=YOUR-LUIS-PREDICTION-KEY&show-all-intents=true&verbose=true
+    https://YOUR-LUIS-ENDPOINT-SUBDOMAIN.api.cognitive.microsoft.com/luis/prediction/v3.0/apps/00001111-aaaa-2222-bbbb-3333cccc4444/slots/production/predict?query=turn on all lights&subscription-key=YOUR-LUIS-PREDICTION-KEY&show-all-intents=true&verbose=true
     `
 
     ```JSON
@@ -136,7 +136,7 @@ In order to query a public app, you need:
     Add `verbose=true` to the end of the querystring to **show all intents**:
 
     `
-    https://YOUR-LUIS-ENDPOINT-SUBDOMAIN.api.cognitive.microsoft.com/luis/v2.0/apps/df67dcdb-c37d-46af-88e1-8b97951ca1c2?q=turn on all lights&subscription-key=YOUR-LUIS-PREDICTION-KEY&verbose=true
+    https://YOUR-LUIS-ENDPOINT-SUBDOMAIN.api.cognitive.microsoft.com/luis/v2.0/apps/00001111-aaaa-2222-bbbb-3333cccc4444?q=turn on all lights&subscription-key=YOUR-LUIS-PREDICTION-KEY&verbose=true
     `
 
     ```json

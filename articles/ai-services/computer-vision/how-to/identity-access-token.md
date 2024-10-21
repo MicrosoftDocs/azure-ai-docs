@@ -47,7 +47,7 @@ The Face resource ID has the following format:
 
 For example:
 
-`/subscriptions/dc4d27d9-ea49-4921-938f-7782a774e151/resourceGroups/client-rg/providers/Microsoft.CognitiveServices/accounts/client-face-api`
+`/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/client-rg/providers/Microsoft.CognitiveServices/accounts/client-face-api`
 
 ## Step 2: ISV generates a token
 
@@ -161,5 +161,3 @@ static void Main(string[] args)
 }
 ```
 ---
-
-
