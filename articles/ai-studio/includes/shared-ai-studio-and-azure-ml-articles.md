@@ -10,4 +10,4 @@ ms.custom: include file
 ---
 
 > [!NOTE]
-> This article is relevant to both [Azure AI Studio](https://ai.azure.com/) and [Azure Machine Learning studio](https://ml.azure.com/). To learn more about the differences between these two products and which one to use, see [AI Studio or Azure Machine Learning: Which experience should I choose?](/ai/ai-studio-experiences-overview).
+> This article applies to both [Azure AI Studio](https://ai.azure.com/) and [Azure Machine Learning studio](https://ml.azure.com/). To learn more about the differences between these two products and which one to use, see [AI Studio or Azure Machine Learning: Which experience should I choose?](/ai/ai-studio-experiences-overview).
