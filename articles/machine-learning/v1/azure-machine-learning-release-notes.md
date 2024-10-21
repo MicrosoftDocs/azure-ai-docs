@@ -174,9 +174,9 @@ AutoML supports scikit-learn version 1.5.1
         + Clean up nan or empty values of target column for nonstreaming scenarios
         + Forecast horizon visuals for test-set are now available while running the training experiment.
       + **azureml-train-core**
-        + Added the support to customer to provide custom run id for hyperdrive runs
+        + Added the support to customer to provide custom run ID for hyperdrive runs
       + **azureml-train-restclients-hyperdrive**
-        + Added the support to customer to provide custom run id for hyperdrive runs
+        + Added the support to customer to provide custom run ID for hyperdrive runs
 
 ## 2022-12-05
 
@@ -217,9 +217,9 @@ AutoML supports scikit-learn version 1.5.1
   + **azureml-core**
     + Added deprecation warning when inference customers use CLI/SDK v1 model deployment APIs to deploy models and also when Python version is 3.6 and less.
     + The following values of `AZUREML_LOG_DEPRECATION_WARNING_ENABLED` change the behavior as follows:
-      + Default - displays the warning when customer uses Python 3.6 and less and for cli/sdk v1.
-      + `True` - displays the sdk v1 deprecation warning on azureml-sdk packages.
-      + `False` - disables the sdk v1 deprecation warning on azureml-sdk packages.
+      + Default - displays the warning when customer uses Python 3.6 and less and for cli/SDK v1.
+      + `True` - displays the SDK v1 deprecation warning on azureml-sdk packages.
+      + `False` - disables the SDK v1 deprecation warning on azureml-sdk packages.
     + Command to be executed to set the environment variable to disable the deprecation message:
       + Windows - `setx AZUREML_LOG_DEPRECATION_WARNING_ENABLED "False"`
       + Linux - `export AZUREML_LOG_DEPRECATION_WARNING_ENABLED="False"`
@@ -1375,7 +1375,7 @@ Learn more about [image instance segmentation labeling](../how-to-label-data.md)
     + Enable registering credential-less ADLS Gen2 datastore.
     + Improved error message when trying to download or mount an incorrect dataset type.
     + Update time series dataset filter sample notebook with more examples of partition_timestamp that provides filter optimization.
-    + Change the sdk and CLI to accept subscriptionId, resourceGroup, workspaceName, peConnectionName as parameters instead of ArmResourceId when deleting private endpoint connection.
+    + Change the SDK and CLI to accept subscriptionId, resourceGroup, workspaceName, peConnectionName as parameters instead of ArmResourceId when deleting private endpoint connection.
     + Experimental Decorator shows class name for easier identification.
     + Descriptions for the Assets inside of Models are no longer automatically generated based on a Run.
   + **azureml-datadrift**
@@ -1441,9 +1441,9 @@ Learn more about [image instance segmentation labeling](../how-to-label-data.md)
   + **azureml-core**
     + Warning messages are printed if no files were downloaded from the datastore in a run.
     + Added documentation for `skip_validation` to the `Datastore.register_azure_sql_database method`.
-    + Users are required to upgrade to sdk v1.10.0 or above to create an auto approved private endpoint. This includes the Notebook resource that is usable behind the VNet.
+    + Users are required to upgrade to SDK v1.10.0 or above to create an auto approved private endpoint. This includes the Notebook resource that is usable behind the VNet.
     + Expose NotebookInfo in the response of get workspace.
-    + Changes to have calls to list compute targets and getting compute target succeed on a remote run. Sdk functions to get compute target and list workspace compute targets now works in remote runs.
+    + Changes to have calls to list compute targets and getting compute target succeed on a remote run. SDK functions to get compute target and list workspace compute targets now works in remote runs.
     + Add deprecation messages to the class descriptions for azureml.core.image classes.
     + Throw exception and clean up workspace and dependent resources if workspace private endpoint creation fails.
     + Support workspace sku upgrade in workspace update method.
@@ -1809,7 +1809,7 @@ Learn more about [image instance segmentation labeling](../how-to-label-data.md)
     + RCranPackage now supports "version" parameter for the CRAN package version.
     + Bug fix: inform clients about partial failure during profiling
     + Added European-style float handling for azureml-core.
-    + Enabled workspace private link features in Azure Machine Learning sdk.
+    + Enabled workspace private link features in Azure Machine Learning SDK.
     + When creating a TabularDataset using `from_delimited_files`, you can specify whether empty values should be loaded as None or as empty string by setting the boolean argument `empty_as_string`.
     + Added European-style float handling for datasets.
     + Improved error messages on dataset mount failures.
@@ -1989,7 +1989,7 @@ Access the following web-based authoring tools from the studio:
   + **azure-cli-ml**
     + Change the endpoint CLI command name from 'az ml endpoint aks' to 'az ml endpoint real time' for consistency.
     + update CLI installation instructions for stable and experimental branch CLI
-    + Single instance profiling was fixed to produce a recommendation and was made available in core sdk.
+    + Single instance profiling was fixed to produce a recommendation and was made available in core SDK.
   + **azureml-automl-core**
     + Enabled the Batch mode inference (taking multiple rows once) for AutoML ONNX models
     + Improved the detection of frequency on the data sets, lacking data or containing irregular data points
@@ -2011,7 +2011,7 @@ Access the following web-based authoring tools from the studio:
     + Fixed the issue with frequency detection slowness.
     + Fixes a bug in AutoML exception handling that caused the real reason for training failure to be replaced by an AttributeError.
   + **azureml-cli-common**
-    + Single instance profiling was fixed to produce a recommendation and was made available in core sdk.
+    + Single instance profiling was fixed to produce a recommendation and was made available in core SDK.
   + **azureml-contrib-mir**
     + Adds functionality in the MirWebservice class to retrieve the Access Token
     + Use token auth for MirWebservice by default during MirWebservice.run() call - Only refresh if call fails
@@ -2021,7 +2021,7 @@ Access the following web-based authoring tools from the studio:
     + Parameters passed in ParallelRunConfig can be overwritten by passing pipeline parameters now. New pipeline parameters supported aml_mini_batch_size, aml_error_threshold, aml_logging_level, aml_run_invocation_timeout (aml_node_count and aml_process_count_per_node are already part of earlier release).
   + **azureml-core**
     + Deployed Azure Machine Learning Webservices now defaults to `INFO` logging. This can be controlled by setting the `AZUREML_LOG_LEVEL` environment variable in the deployed service.
-    + Python sdk uses discovery service to use 'api' endpoint instead of 'pipelines'.
+    + Python SDK uses discovery service to use 'api' endpoint instead of 'pipelines'.
     + Swap to the new routes in all SDK calls.
     + Changed routing of calls to the ModelManagementService to a new unified structure.
       + Made workspace update method publicly available.
@@ -2030,7 +2030,7 @@ Access the following web-based authoring tools from the studio:
     + Added RSection as part of Environment to run R jobs.
     + Added validation to `Dataset.mount` to raise error when source of the dataset is not accessible or does not contain any data.
     + Added `--grant-workspace-msi-access` as another parameter for the Datastore CLI for registering Azure Blob Container that allows you to register Blob Container that is behind a VNet.
-    + Single instance profiling was fixed to produce a recommendation and was made available in core sdk.
+    + Single instance profiling was fixed to produce a recommendation and was made available in core SDK.
     + Fixed the issue in aks.py _deploy.
     + Validates the integrity of models being uploaded to avoid silent storage failures.
     + User may now specify a value for the auth key when regenerating keys for webservices.
@@ -2081,7 +2081,7 @@ Access the following web-based authoring tools from the studio:
     + Deployed Azure Machine Learning Webservices now defaults to `INFO` logging. This can be controlled by setting the `AZUREML_LOG_LEVEL` environment variable in the deployed service.
     + Fix iterating on `Dataset.get_all` to return all datasets registered with the workspace.
     + Improve error message when invalid type is passed to `path` argument of dataset creation APIs.
-    + Python sdk uses discovery service to use 'api' endpoint instead of 'pipelines'.
+    + Python SDK uses discovery service to use 'api' endpoint instead of 'pipelines'.
     + Swap to the new routes in all SDK calls
     + Changes routing of calls to the ModelManagementService to a new unified structure
       + Made workspace update method publicly available.
@@ -2107,7 +2107,7 @@ Access the following web-based authoring tools from the studio:
 
 + **Bug fixes and improvements**
   + **azure-cli-ml**
-    + Single instance profiling was fixed to produce a recommendation and was made available in core sdk.
+    + Single instance profiling was fixed to produce a recommendation and was made available in core SDK.
   + **azureml-automl-core**
     + The error logging has been improved.
   + **azureml-automl-runtime**
@@ -2116,10 +2116,10 @@ Access the following web-based authoring tools from the studio:
     + Using native NumPy and SciPy for serializing and deserializing intermediate data for FileCacheStore (used for local AutoML runs)
     + Fixed a bug where failed child runs could get stuck in Running state.
   + **azureml-cli-common**
-    + Single instance profiling was fixed to produce a recommendation and was made available in core sdk.
+    + Single instance profiling was fixed to produce a recommendation and was made available in core SDK.
   + **azureml-core**
     + Added `--grant-workspace-msi-access` as another parameter for the Datastore CLI for registering Azure Blob Container that allows you to register Blob Container that is behind a VNet
-    + Single instance profiling was fixed to produce a recommendation and was made available in core sdk.
+    + Single instance profiling was fixed to produce a recommendation and was made available in core SDK.
     + Fixed the issue in aks.py _deploy
     + Validates the integrity of models being uploaded to avoid silent storage failures.
   + **azureml-interpret**
@@ -2822,7 +2822,7 @@ At the time, of this release, the following browsers are supported: Chrome, Fire
   + **azureml-train-automl**
     + Created feature to install specific versions of gpu-capable pytorch v1.1.0, :::no-loc text="cuda"::: toolkit 9.0, pytorch-transformers, which is required to enable BERT/ XLNet in the remote Python runtime environment.
   + **azureml-train-core**
-    + Early failure of some hyperparameter space definition errors directly in the sdk instead of server side.
+    + Early failure of some hyperparameter space definition errors directly in the SDK instead of server side.
 
 ### Azure Machine Learning Data Prep SDK v1.1.14
 + **Bug fixes and improvements**
