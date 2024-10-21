@@ -129,6 +129,16 @@ items:
         href: how-to/deploy-models-openai.md
       - name: Fine-tune Azure OpenAI models
         href: ../ai-services/openai/how-to/fine-tuning.md?context=/azure/ai-studio/context/context
+    - name: Healthcare AI models
+      items:
+        - name: Foundational AI models for healthcare
+          href: how-to/healthcare-ai/healthcare-ai-models.md
+        - name: MedImageInsight - embedding model
+          href: how-to/healthcare-ai/deploy-medimageinsight.md
+        - name: CXRReportGen - text generation model
+          href: how-to/healthcare-ai/deploy-cxrreportgen.md
+        - name: MedImageParse - prompted segmentation model
+          href: how-to/healthcare-ai/deploy-medimageparse.md
     - name: Phi-3 family models
       items:
         - name: Phi-3 family chat models
