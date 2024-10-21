@@ -43,13 +43,13 @@ If you leave the property unspecified, your search service attempts to use the f
 
 ### [**Azure portal**](#tab/portal)
 
-1. Add the key to a skillset definition:
+Add the key to a skillset definition:
 
-   + If using the [Import data wizard](search-import-data-portal.md), enter the key in the second step, "Add AI enrichments".
++ If using an [Import data wizard](search-import-data-portal.md), create or select the Azure AI account. The wizard adds the resource key to your skillset definition. 
 
-   + If adding the key to a new or existing skillset, provide the key in the **Azure AI services** tab.
++ For a new or existing skillset, provide the key in skillset definition.
 
-   :::image type="content" source="media/cognitive-search-attach-cognitive-services/attach-existing2.png" alt-text="Screenshot of the key page." border="true":::
+  :::image type="content" source="media/cognitive-search-attach-cognitive-services/attach-existing2.png" alt-text="Screenshot of the key page." border="true":::
 
 ### [**REST**](#tab/cogkey-rest)
 
@@ -123,15 +123,15 @@ Enrichments are billable operations. If you no longer need to call Azure AI serv
 
 ### [**Azure portal**](#tab/portal-remove)
 
-1. Sign in to the [Azure portal](https://portal.azure.com) and open the search service **Overview** page.
+1. Sign in to the [Azure portal](https://portal.azure.com).
 
-1. Under **Skillsets**, select the skillset containing the key you want to remove.
+1. Under **Search management > Skillsets**, select a skillset from the list.
 
    :::image type="content" source="media/cognitive-search-attach-cognitive-services/select-skillset.png" alt-text="Screenshot of the skillset page." border="true" lightbox="media/cognitive-search-attach-cognitive-services/select-skillset.png":::
 
-1. Scroll to the end of the file. 
+1. Scroll to the section in the file containing `"cognitiveServices"`.
 
-1. Remove the key from the JSON and save the skillset.
+1. Delete the key value from the JSON and save the skillset.
 
    :::image type="content" source="media/cognitive-search-attach-cognitive-services/remove-key-save.png" alt-text="Screenshot of the skillset JSON." border="true" lightbox="media/cognitive-search-attach-cognitive-services/remove-key-save.png":::
 
