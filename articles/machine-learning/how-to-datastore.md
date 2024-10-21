@@ -445,21 +445,30 @@ You will then find "Endpoint", "Workspace GUID" and "Artifact GUID" in "URL" and
 ```python
 from azure.ai.ml.entities import OneLakeDatastore, OneLakeArtifact
 from azure.ai.ml import MLClient
-
-ml_client = MLClient.from_config()
-
+from azure.identity import DefaultAzureCredential
+ 
+ml_client = MLClient.from_config(credential=DefaultAzureCredential())
+ 
 store = OneLakeDatastore(
-    name="onelake_example_id",
+    name="fabric-onelake",
     description="Datastore pointing to an Microsoft fabric artifact.",
-    one_lake_workspace_name="XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX", #{your_one_lake_workspace_guid}
-    endpoint="msit-onelake.dfs.fabric.microsoft.com" #{your_one_lake_endpoint}
+    one_lake_workspace_name="XXXXX", #{your_one_lake_workspace_guid or workspace name}
+    endpoint="onelake.dfs.fabric.microsoft.com", #{your_one_lake_endpoint}
     artifact = OneLakeArtifact(
-        name="XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX/Files", #{your_one_lake_artifact_guid}/Files
+        name="XXXX.Lakehouse", #{your_one_lake_artifact_guid} should end in.Lakehouse
         type="lake_house"
     )
 )
-
+ 
 ml_client.create_or_update(store)
+
+#To preview the file:
+
+import pandas as pd
+uri = "azureml://subscriptions/<subscripionID>/resourcegroups/<resourceGroupID>/workspaces/<workspaceID>/datastores/fabric-onelake/paths/Files/raw/<fileName>.csv"
+df = pd.read_csv(uri)
+df
+
 ```
 
 # [Python SDK: Service principal](#tab/sdk-onelake-sp)
