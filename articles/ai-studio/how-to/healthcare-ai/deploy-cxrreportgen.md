@@ -37,6 +37,8 @@ The CXRReportGen model combines a radiology-specific image encoder with a large 
 
 ## Prerequisites
 
+[!INCLUDE [shared-ai-studio-and-azure-ml-articles](../../includes/shared-ai-studio-and-azure-ml-articles.md)]
+
 To use CXRReportGen model with Azure AI Studio or Azure Machine Learning studio, you need the following prerequisites:
 
 ### A model deployment
