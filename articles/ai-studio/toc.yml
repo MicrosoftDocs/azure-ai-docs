@@ -306,6 +306,8 @@ items:
       href: how-to/autoscale.md
 - name: Security & Governance
   items:
+  - name: Management center overview
+    href: concepts/management-center.md
   - name: Identity & access management
     items:
     - name: Role-based access control in Azure AI Studio

@@ -1,5 +1,5 @@
 ---
-title: Management center
+title: Management center overview
 titleSuffix: Azure AI Studio
 description: "The management center in Azure AI Studio provides a centralized hub for governance and management activities."
 author: Blackmist
@@ -24,7 +24,7 @@ TODO:
 - Screenshot
 - links to create and manage hubs and projects
 
-## Resource utilization
+## Manage resource utilization
 
 You can view and manage quotas and usage metrics across multiple hubs and Azure subscriptions.
 
