@@ -10,7 +10,7 @@ ms.author: eur
 #### New Features
   * Added support for Amazon Linux 2023 and Azure Linux 3.0.
   * Added public property id SpeechServiceConnection_ProxyHostBypass to specify hosts for which proxy is not used.
-  * Added properties to control new phrase segmentation strategies. Look for updates from the [Speech To Text Service release notes](../../releasenotes#speech-to-text-service) as service support is rolled out.
+  * Added properties to control new phrase segmentation strategies. 
 
 #### Bug Fixes
   * Fixed incomplete support for the new format of keyword recognition Advanced models.
