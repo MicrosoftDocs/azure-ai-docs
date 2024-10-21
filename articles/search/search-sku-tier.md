@@ -55,19 +55,17 @@ You can find out more about the various tiers on the [pricing page](https://azur
 
 The supported [regions list](search-region-support.md) provides the locations where Azure AI Search is offered.
 
-Currently, several regions are at capacity for specific tiers and can't be used for new search services. If you use the Azure portal to create a search service, the portal excludes any region-tier combinations that aren't available.
+Currently, several regions are at capacity for specific tiers and can't be used for new search services without impacting existing services. If you use the Azure portal to create a search service, the portal excludes any region-tier combinations that aren't available.
 
-| Region | Disabled tier (SKU) due to over-capacity |
-|--------|------------------------------------------|
-| Central US | S2, S3, S3HD, L1, L2 |
-| Central India | S2, S3, S3HD, L1, L2|
-| East US| All tiers|
-| Japan East | S2, S3, S3HD, L1, L2 |
-| Qatar Central | All tiers|
-| South Central US | All tiers |
-| US Gov Virginia | All tiers |
-| West Europe | All tiers |
-| West US 3| All tiers |
+| Region | Disabled tier (SKU) due to over-capacity | Suggested Alternatives  |
+|--------|------------------------------------------|-------------------------|
+| Central India | S2, S3, S3HD, L1, L2| South India |
+| East US| All tiers| Central US|
+| Qatar Central | All tiers| UAE North |
+| South Central US | All tiers | Central Us |
+| US Gov Virginia | All tiers | US Gov Arizona |
+| West Europe | All tiers | North Europe |
+| West US 3| All tiers | Central US |
 
 <a name="premium-features"></a>
 
