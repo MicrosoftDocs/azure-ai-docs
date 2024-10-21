@@ -2,7 +2,6 @@
 title: Configure semantic ranker
 titleSuffix: Azure AI Search
 description: Add a semantic configuration to a search index.
-
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
@@ -10,7 +9,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: how-to
-ms.date: 09/24/2024
+ms.date: 10/20/2024
 ---
 
 # Configure semantic ranker and return captions in search results
@@ -29,7 +28,7 @@ This article explains how to configure a search index for semantic reranking.
 
 ## Choose a client
 
-You can use any of the following tools and SDKs to add a semantic configuration:
+You can use any of the following tools and software development kits (SDKs) to add a semantic configuration:
 
 + [Azure portal](https://portal.azure.com), using the index designer to add a semantic configuration.
 + [Visual Studio Code](https://code.visualstudio.com/download) with the [REST client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client)
@@ -61,15 +60,18 @@ Across all semantic configuration properties, the fields you assign must be:
 
 1. Sign in to the [Azure portal](https://portal.azure.com) and navigate to a search service that has [semantic ranking enabled](semantic-how-to-enable-disable.md).
 
-1. From **Indexes** on the left-navigation pane, open an index.
+1. From **Indexes** on the left-navigation pane, select an index.
 
-1. Select **Semantic Configurations** and then select **Add Semantic Configuration**.
+1. Select **Semantic configurations** and then select **Add semantic configuration**.
 
-   The **New Semantic Configuration** page opens with options for selecting a title field, content fields, and keyword fields. Only searchable and retrievable string fields are eligible. Make sure to list content fields and keyword fields in priority order.
+   :::image type="content" source="./media/semantic-search-overview/create-semantic-config.png" alt-text="Screenshot that shows the option to add a semantic configuration in the Azure portal." lightbox="./media/semantic-search-overview/create-semantic-config.png" border="true":::
+
+1. On the **New semantic configuration** page, enter a semantic configuration name and select the fields to use in the semantic configuration. Only searchable and retrievable string fields are eligible. Make sure to list content fields and keyword fields in priority order.
 
    :::image type="content" source="./media/semantic-search-overview/create-semantic-config.png" alt-text="Screenshot that shows how to create a semantic configuration in the Azure portal." lightbox="./media/semantic-search-overview/create-semantic-config.png" border="true":::
 
-   Select **OK** to save the changes.
+1. Select **Save** to save the configuration settings.
+1. Select **Save** again on the index page to save the semantic configuration in the index.
 
 ### [**REST API**](#tab/rest)
 
@@ -163,27 +165,20 @@ If your semantic ranking code is using preview APIs, this section explains how t
 + [Azure SDK for Java (11.6) change log](https://github.com/Azure/azure-sdk-for-java/blob/azure-search-documents_11.6.1/sdk/search/azure-search-documents/CHANGELOG.md#1160-2023-11-13)
 + [Azure SDK for JavaScript (12.0) change log](https://github.com/Azure/azure-sdk-for-js/blob/%40azure/search-documents_12.0.0/sdk/search/search-documents/CHANGELOG.md#1200-2023-11-13)
 
-**Behavior changes:**
 
-+ As of July 14, 2023, semantic ranker is language agnostic. It can rerank results composed of multilingual content, with no bias towards a specific language. In preview versions, semantic ranking would deprioritize results differing from the language specified by the field analyzer.
+### queryLanguage for semantic ranker
 
-+ In 2021-04-30-Preview and all later versions, for the REST API and all SDK packages targeting the same version: `semanticConfiguration` (in an index definition) defines which search fields are used in semantic ranking. Previously in the 2020-06-30-Preview REST API, `searchFields` (in a query request) was used for field specification and prioritization. This approach only worked in 2020-06-30-Preview and is obsolete in all other versions.
+As of July 14, 2023, semantic ranker is language agnostic. It can rerank results composed of multilingual content, with no bias towards a specific language. In preview versions, semantic ranking would deprioritize results differing from the language specified by the field analyzer.
 
-### Step 1: Remove queryLanguage
+Stop using `queryLanguage` in your code if you were using it for semantic ranking. The `queryLanguage` property is still applicable to features such as [spell correction](speller-how-to-add.md), but not to semantic ranking.
 
-The semantic ranking engine is now language agnostic. If `queryLanguage` is specified in your query logic, it's no longer used for semantic ranking, but still applies to [spell correction](speller-how-to-add.md). 
+### searchFields for semantic ranker
 
-Keep `queryLanguage` if you're using speller, and if the language value is [supported by speller](speller-how-to-add.md#supported-languages). Spell check has limited availability across languages. 
+For the REST API and all SDK packages targeting version `2021-04-30-Preview` and later, the `searchFields` property is no longer used for semantic ranking.
 
-Otherwise, delete `queryLanguage`.
+Instead, use the `semanticConfiguration` property (in a search index) to determine which search fields are used in semantic ranking. To specify field prioritization, add a `semanticConfiguration` to in an index schema following the [instructions in this article](#add-a-semantic-configuration).
 
-### Step 2: Replace `searchFields` with `semanticConfiguration`
-
-If your code calls the 2020-06-30-Preview REST API or beta SDK packages targeting that REST API version, you might be using `searchFields` in a query request to specify semantic fields and priorities. In initial beta versions, `searchFields` had a dual purpose, constraining the initial query to the fields listed in `searchFields`, and also setting field priority if semantic ranking was used. In later versions, `searchFields` retains its original purpose, but is no longer used for semantic ranking.
-
-Keep `searchFields` in query requests if you're using it to limit full text search to the list of named fields.
-
-Add a `semanticConfiguration` to an index schema to specify field prioritization, following the [instructions in this article](#add-a-semantic-configuration).
+You can keep `searchFields` in query requests if you're using it to limit full text search to the list of named fields. 
 
 ## Next steps
 
