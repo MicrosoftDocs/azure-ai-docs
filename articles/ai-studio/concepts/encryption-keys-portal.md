@@ -87,7 +87,7 @@ Customer-managed key encryption is configured via Azure portal in a similar way 
 
 Alternatively, use infrastructure-as-code options for automation. Example Bicep templates for Azure AI Studio are available on the Azure Quickstart repo:
 1. [CMK encryption for hub](https://github.com/Azure/azure-quickstart-templates/tree/master/quickstarts/microsoft.machinelearningservices/aistudio-cmk).
-1. [Service-side CMK encryption preview for hub](https://github.com/azure/azure-quickstart-templates/tree/master/quickstarts/microsoft.machinelearningservices/machine-learning-workspace-cmk-service-side-encryption).
+1. [Service-side CMK encryption preview for hub](https://github.com/azure/azure-quickstart-templates/tree/master/quickstarts/microsoft.machinelearningservices/aistudio-cmk-service-side-encryption).
 
 ## Limitations
 

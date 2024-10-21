@@ -384,6 +384,29 @@ The following example defines a role for a developer using [Azure OpenAI Assista
 }
 ```
 
+## Troubleshooting
+
+### Error: Principal does not have access to API/Operation
+
+#### Symptoms
+
+When using the Azure AI Studio chat playground, you receive an error message stating "Principal does not have access to API/Operation". The error may also include an "Apim-request-id".
+
+#### Cause
+
+The user or service principal used to authenticate requests to Azure OpenAI or Azure AI Search does not have the required permissions to access the resource.
+
+#### Solution
+
+Assign the following roles to the user or service principal. The role you assign depends on the services you are using and the level of access the user or service principal requires:
+
+| Service being accessed | Role | Description |
+| --- | --- | --- |
+| Azure OpenAI | Cognitive Services OpenAI Contributor | Call public ingestion API from Azure AI Studio. |
+| Azure OpenAI | Cognitive Services User | List API-Keys from Azure AI Studio. |
+| Azure AI Search | Search Index Data Contributor | Required for indexing scenarios. |
+| Azure AI Search| Search Index Data Reader | Inference service queries the data from the index. Only used for inference scenarios. |
+
 ## Next steps
 
 - [How to create an Azure AI Studio hub](../how-to/create-azure-ai-resource.md)

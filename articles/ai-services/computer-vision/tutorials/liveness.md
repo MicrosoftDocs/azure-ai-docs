@@ -55,8 +55,8 @@ We provide SDKs in different languages for frontend applications and app servers
 
 Once you have access to the SDK, follow instructions in the [azure-ai-vision-sdk](https://github.com/Azure-Samples/azure-ai-vision-sdk) GitHub repository to integrate the UI and the code into your native mobile application. The liveness SDK supports Java/Kotlin for Android mobile applications, Swift for iOS mobile applications and JavaScript for web applications:
 - For Swift iOS, follow the instructions in the [iOS sample](https://aka.ms/azure-ai-vision-face-liveness-client-sdk-ios-readme) 
-- For Kotlin/Java Android, follow the instructions in the [Android sample](https://aka.ms/liveness-sample-java) 
-- For JavaScript Web, follow the instructions in the [Web sample](https://aka.ms/liveness-sample-web) 
+- For Kotlin/Java Android, follow the instructions in the [Android sample](https://aka.ms/azure-ai-vision-face-liveness-client-sdk-android-readme) 
+- For JavaScript Web, follow the instructions in the [Web sample](https://aka.ms/azure-ai-vision-face-liveness-client-sdk-web-readme) 
 
 Once you've added the code into your application, the SDK handles starting the camera, guiding the end-user in adjusting their position, composing the liveness payload, and calling the Azure AI Face cloud service to process the liveness payload.
 
@@ -808,7 +808,7 @@ If you want to clean up and remove an Azure AI services subscription, you can de
 
 To learn about other options in the liveness APIs, see the Azure AI Vision SDK reference.
 
-- [Kotlin (Android)](https://aka.ms/liveness-sample-java)
+- [Kotlin (Android)](https://aka.ms/azure-ai-vision-face-liveness-client-sdk-android-readme)
 - [Swift (iOS)](https://aka.ms/azure-ai-vision-face-liveness-client-sdk-ios-readme)
 - [JavaScript (Web)](https://aka.ms/azure-ai-vision-face-liveness-client-sdk-web-readme)
 

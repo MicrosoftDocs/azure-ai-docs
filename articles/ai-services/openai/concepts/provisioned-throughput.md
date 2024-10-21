@@ -37,7 +37,7 @@ An Azure OpenAI Deployment is a unit of management for a specific OpenAI Model. 
 | Estimating size | Provided calculator in the studio & benchmarking script. |
 
 
-## How much thoughput per PTU you get for each model
+## How much throughput per PTU you get for each model
 The amount of throughput (tokens per minute or TPM) a deployment gets per PTU is a function of the input and output tokens in the minute. Generating output tokens requires more processing than input tokens and so the more output tokens generated the lower your overall TPM. The service dynamically balances the input & output costs, so users do not have to set specific input and output limits. This approach means your deployment is resilient to fluctuations in the workload shape. 
 
 To help with simplifying the sizing effort, the following table outlines the TPM per PTU for the `gpt-4o` and `gpt-4o-mini` models
@@ -109,7 +109,7 @@ Azure OpenAI is a highly sought-after service where customer demand might exceed
 
 To find the capacity needed for their deployments, use the capacity  API or the Studio deployment experience to provide real-time information on capacity availability.
 
-In Azure OpenAI Studio, the deployment experience identifies when a region lacks the capacity needed to deploy the model. This looks at the desired model, version and number of PTUs. If cpacity is unavailable, the experience direct  users to a select an alternative region.
+In Azure OpenAI Studio, the deployment experience identifies when a region lacks the capacity needed to deploy the model. This looks at the desired model, version and number of PTUs. If capacity is unavailable, the experience direct  users to a select an alternative region.
 
 Details on the new deployment experience can be found in the Azure OpenAI [Provisioned get started guide](../how-to/provisioned-get-started.md).
 
