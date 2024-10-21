@@ -328,7 +328,7 @@ can require two-factor authentication, or allow sign in only from managed device
 
 | Application ID | Name | Note |
 | ----- | ----- | ----- |
-| d7304df8-741f-47d3-9bc2-df0e24e2071f | Azure Machine Learning Workbench Web App | Azure Machine Learning studio |
+| 00001111-aaaa-2222-bbbb-3333cccc4444 | Azure Machine Learning Workbench Web App | Azure Machine Learning studio |
 | cb2ff863-7f30-4ced-ab89-a00194bcf6d9 | Azure AI Studio App | Azure AI Studio |
 
 ### Check for service principal
@@ -355,7 +355,7 @@ Before adding the conditional access policy, verify that the application ID is l
     New-AzAdServicePrincipal -ApplicationId "application-ID"
     ```
 
-    For example, `New-AzADServicePrincipal -ApplicationId "d7304df8-741f-47d3-9bc2-df0e24e2071f"`.
+    For example, `New-AzADServicePrincipal -ApplicationId "00001111-aaaa-2222-bbbb-3333cccc4444"`.
 
 1. After you create the service principal, return to __Enterprise applications__ and verify that you can now find the application ID. You can find the list of IDs in the [Use Conditional Access](#use-conditional-access) section.
 
