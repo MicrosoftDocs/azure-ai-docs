@@ -6,7 +6,7 @@ manager: nitinme
 ms.service: azure-ai-openai
 ms.custom: references_regions
 ms.topic: how-to
-ms.date: 10/14/2024
+ms.date: 10/18/2024
 author: mrbullwinkle
 ms.author: mbullwin
 recommendations: false
@@ -67,7 +67,7 @@ Refer to the [models page](../concepts/models.md) for the most up-to-date inform
 
 API support was first added with `2024-07-01-preview`. Use `2024-10-01-preview` to take advantage of the latest features.
 
-### Not supported
+### Feature support
 
 The following aren't currently supported:
 
@@ -75,11 +75,7 @@ The following aren't currently supported:
 - Integration with Azure OpenAI On Your Data feature.
 
 > [!NOTE]
-> There is a known issue with Azure OpenAI global batch and [structured outputs](./structured-outputs.md). Currently, lines in your jsonl file with structured output requests will fail with the following error message written to the error file:
->
-> ***response_format value as json_schema is enabled only for api versions 2024-08-01-preview and later***.
->
->This error will occur even when your code targets the latest preview APIs which support structured outputs. Once the issue is resolved, this page will be updated.
+> Structured outputs is now supported with Global Batch when used in conjunction with API version `2024-08-01-preview` or later. Use `2024-10-01-preview` for the latest features.
 
 ### Global batch deployment
 
@@ -156,71 +152,6 @@ Yes. Similar to other deployment types, you can create content filters and assoc
 ### Can I request additional quota?
 
 Yes, from the quota page in the Studio UI. Default quota allocation can be found in the [quota and limits article](../quotas-limits.md#global-batch-quota).
-
-### How do I tell how many tokens my batch request contains, and how many tokens are available as quota?
-
-The `2024-10-01-preview` REST API adds two new response headers:
-
-* `deployment-enqueued-tokens` - A approximate token count for your jsonl file calculated immediately after the batch request is submitted. This value represents an estimate based on the number of characters and is not the true token count.
-* `deployment-maximum-enqueued-tokens` The total available enqueued tokens available for this global batch model deployment.
-
-These response headers are only available when making a POST request to begin batch processing of a file with the REST API. The language specific client libraries do not currently return these new response headers. To return all response headers you can add `-i` to the standard REST request.
-
-```http
-curl -i -X POST https://YOUR_RESOURCE_NAME.openai.azure.com/openai/batches?api-version=2024-10-01-preview \
-  -H "api-key: $AZURE_OPENAI_API_KEY" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "input_file_id": "file-abc123",
-    "endpoint": "/chat/completions",
-    "completion_window": "24h"
-  }'
-```
-
-```output
-HTTP/1.1 200 OK
-Content-Length: 619
-Content-Type: application/json; charset=utf-8
-Vary: Accept-Encoding
-Request-Context: appId=
-x-ms-response-type: standard
-deployment-enqueued-tokens: 139
-deployment-maximum-enqueued-tokens: 740000
-Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
-X-Content-Type-Options: nosniff
-x-aml-cluster: vienna-swedencentral-01
-x-request-time: 2.125
-apim-request-id: c8bf4351-c6f5-4bfe-9a79-ef3720eca8af
-x-ms-region: Sweden Central
-Date: Thu, 17 Oct 2024 01:45:45 GMT
-
-{
-  "cancelled_at": null,
-  "cancelling_at": null,
-  "completed_at": null,
-  "completion_window": "24h",
-  "created_at": 1729129545,
-  "error_file_id": null,
-  "expired_at": null,
-  "expires_at": 1729215945,
-  "failed_at": null,
-  "finalizing_at": null,
-  "id": "batch_c8dd49a7-c808-4575-9957-b188cd0dd642",
-  "in_progress_at": null,
-  "input_file_id": "file-f89384af0082485da43cb26b49dc25ce",
-  "errors": null,
-  "metadata": null,
-  "object": "batch",
-  "output_file_id": null,
-  "request_counts": {
-    "total": 0,
-    "completed": 0,
-    "failed": 0
-  },
-  "status": "validating",
-  "endpoint": "/chat/completions"
-}
-```
 
 ### What happens if the API doesn't complete my request within the 24 hour time frame?
 

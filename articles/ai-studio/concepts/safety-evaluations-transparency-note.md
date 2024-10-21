@@ -2,7 +2,7 @@
 title: Transparency Note for Azure AI Studio safety evaluations
 titleSuffix: Azure AI Studio
 description: Azure AI Studio safety evaluations intended purpose, capabilities, limitations and how to achieve the best performance.
-manager: nitinme
+manager: scottpolly
 ms.service: azure-ai-studio
 ms.custom:
   - build-2024

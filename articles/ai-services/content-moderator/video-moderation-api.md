@@ -29,7 +29,7 @@ The Content Moderator's video moderation capability is available as a free publi
 
 ### Create an Azure Media Services account
 
-Follow the instructions in [Create an Azure Media Services account](/azure/media-services/previous/media-services-portal-create-account) to subscribe to AMS and create an associated Azure storage account. In that storage account, create a new Blob storage container.
+Follow the instructions in [Create an Azure Media Services account](/azure/media-services/latest/account-create-how-to) to subscribe to AMS and create an associated Azure storage account. In that storage account, create a new Blob storage container.
 
 <a name='create-an-azure-active-directory-application'></a>
 
@@ -41,7 +41,7 @@ In the **Microsoft Entra app** section, select **Create New** and name your new 
 
 Select your app registration and click the **Manage application** button below it. Note the value in the **Application ID** field; you will need this later. Select **Settings** > **Keys**, and enter a description for a new key (such as "VideoModKey"). Select **Save**, and then notice the new key value. Copy this string and save it somewhere secure.
 
-For a more thorough walkthrough of the above process, See [Get started with Microsoft Entra authentication](/azure/media-services/previous/media-services-portal-get-started-with-aad).
+For a more thorough walkthrough of the above process, See [Get started with Microsoft Entra authentication](/azure/media-services/latest/access-api-howto).
 
 Once you've done this, you can use the video moderation media processor in two different ways.
 

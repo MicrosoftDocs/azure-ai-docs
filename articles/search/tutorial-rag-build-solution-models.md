@@ -48,12 +48,10 @@ If you don't have an Azure subscription, create a [free account](https://azure.m
 
   - [Azure AI Studio](/azure/ai-studio/reference/region-support) regions. 
 
-  Azure AI Search is currently facing limited availability in some regions, such as West Europe and West US 2/3. To confirm region status, check the [Azure AI Search region list](search-region-support.md).
+  Azure AI Search is currently facing limited availability in some regions. To confirm region status, check the [Azure AI Search region list](search-region-support.md).
 
 > [!TIP]
-> Currently, the following regions provide the most overlap among the model providers and have the most capacity: **East US2** and **South Central** in the Americas; **France Central** or **Switzerland North** in Europe; **Australia East** in Asia Pacific.
->
-> For Azure AI Vision and AI Search interoperability, choose one of these regions: **France Central**, **Korea Central**, **North Europe**, **South East Asia**, or **West US**. 
+> Check [this article](search-create-service-portal.md#regions-with-the-most-overlap) for a list of overlapping regions.
 
 ## Review models supporting built-in vectorization
 

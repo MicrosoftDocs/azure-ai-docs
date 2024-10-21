@@ -30,6 +30,7 @@ Here are the most important metrics we think you should monitor for Azure OpenAI
 - Provisioned-managed Utilization V2
 - Prompt Token Cache Match Rate
 - Time to Response
+- Time Between Tokens 
 
 > [!NOTE]
 > The **Provisioned-managed Utilization** metric is now deprecated and is no longer recommended. This metric has been replaced by the **Provisioned-managed Utilization V2** metric.

@@ -237,7 +237,7 @@ The `mappings` parameter is important. You must explicitly map every field in th
 
 This requirement is in contrast with other field mapping conventions in Azure AI Search. For some data source types, the indexer can implicitly map fields based on similar names, or known characteristics (for example, blob indexers use the unique metadata storage path as the default document key). However, for indexer projections, you must explicitly specify every field mapping on the "many" side of the relationship.
 
-<!-- Avoid creating a field mapping for the parent key field. Doing so disrupts change tracking and synchronized data refresh. -->
+Do not create a field mapping for the parent key field. Doing so disrupts change tracking and synchronized data refresh.
 
 ## Handling parent documents
 

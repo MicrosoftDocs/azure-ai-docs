@@ -47,7 +47,7 @@ Here's a comparison of features between Azure AI Speech HD voices, Azure OpenAI 
 | **Deployment options**  | Cloud only | Cloud only | Cloud, embedded, hybrid, and containers. |
 | **Real-time or batch synthesis**  | Real-time only  | Real-time and batch synthesis  | Real-time and batch synthesis |
 | **Latency**  | Less than 300 ms | Greater than 500 ms | Less than 300 ms  |
-| **Sample rate of synthesized audio** | 8, 16, 22.05, 24, 44.1, and 48 kHz  | 8, 16, 24, and 48 kHz | 8, 16, 22.05, 24, 44.1, and 48 kHz |
+| **Sample rate of synthesized audio** | 8, 16, 24, and 48 kHz  | 8, 16, 24, and 48 kHz | 8, 16, 24, and 48 kHz |
 | **Speech output audio format** | opus, mp3, pcm, truesilk |  opus, mp3, pcm, truesilk  |  opus, mp3, pcm, truesilk  |
 
 ## Supported Azure AI Speech HD voices

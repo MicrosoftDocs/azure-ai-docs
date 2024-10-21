@@ -2,7 +2,7 @@
 title: How to create a hub using the Azure Machine Learning SDK/CLI
 titleSuffix: Azure AI Studio
 description: This article provides instructions on how to create an AI Studio hub using the Azure Machine Learning SDK and Azure CLI extension.
-manager: nitinme
+manager: scottpolly
 ms.service: azure-ai-studio
 ms.custom: build-2024, devx-track-azurecli
 ms.topic: how-to
