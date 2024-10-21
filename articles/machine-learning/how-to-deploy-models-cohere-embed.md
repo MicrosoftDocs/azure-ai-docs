@@ -37,6 +37,7 @@ Cohere Embed English is a multimodal (text and image) representation model used 
 * Context window of the model is 512 tokens
 * Embed English accepts images as a base64 encoded data url
 
+Image embeddings consume a fixed number of tokens per image—1,000 tokens per image—which translates to a price of $0.0001 per image embedded. The size or resolution of the image doesn't affect the number of tokens consumed, provided the image is within the accepted dimensions, file size, and formats.
 
 # [Cohere Embed v3 - Multilingual](#tab/cohere-embed-v3-multilingual)
 
@@ -46,6 +47,7 @@ Cohere Embed Multilingual is a multimodal (text and image) representation model 
 * Context window of the model is 512 tokens
 * Embed Multilingual accepts images as a base64 encoded data url
 
+Image embeddings consume a fixed number of tokens per image—1,000 tokens per image—which translates to a price of $0.0001 per image embedded. The size or resolution of the image doesn't affect the number of tokens consumed, provided the image is within the accepted dimensions, file size, and formats.
 
 ---
 
@@ -228,6 +230,7 @@ Cohere Embed English is a multimodal (text and image) representation model used 
 * Context window of the model is 512 tokens
 * Embed English accepts images as a base64 encoded data url
 
+Image embeddings consume a fixed number of tokens per image—1,000 tokens per image—which translates to a price of $0.0001 per image embedded. The size or resolution of the image doesn't affect the number of tokens consumed, provided the image is within the accepted dimensions, file size, and formats.
 
 # [Cohere Embed v3 - Multilingual](#tab/cohere-embed-v3-multilingual)
 
@@ -237,6 +240,7 @@ Cohere Embed Multilingual is a multimodal (text and image) representation model 
 * Context window of the model is 512 tokens
 * Embed Multilingual accepts images as a base64 encoded data url
 
+Image embeddings consume a fixed number of tokens per image—1,000 tokens per image—which translates to a price of $0.0001 per image embedded. The size or resolution of the image doesn't affect the number of tokens consumed, provided the image is within the accepted dimensions, file size, and formats.
 
 ---
 
