@@ -31,13 +31,19 @@ This article isn't a step by step. For help with using the wizard with built-in 
 
 ## Starting the wizards
 
-In the [Azure portal](https://portal.azure.com), open the search service page from the dashboard or [find your service](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices) in the service list. 
+1. In the [Azure portal](https://portal.azure.com), open the search service page from the dashboard or [find your service](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices) in the service list. 
 
-In the service Overview page at the top, select **Import data** or **Import and vectorize data**.
+1. In the service Overview page at the top, select **Import data** or **Import and vectorize data**.
 
-:::image type="content" source="media/search-import-data-portal/import-data-cmd.png" alt-text="Screenshot of the import wizard options on the action bar.":::
+    :::image type="content" source="media/search-what-is-an-index/add-index.png" alt-text="Screenshot of the add index options." border="true"::: 
 
-The wizards open fully expanded in the browser window so that you have more room to work. 
+    The wizards open fully expanded in the browser window so that you have more room to work. 
+
+1. If you selected **Import data**, you can select the **Samples** option to use a prebuilt sample of data from a supported data source.
+
+    :::image type="content" source="media/search-what-is-an-index/add-index-import-samples.png" alt-text="Screenshot of the import data page with the samples option selected." border="true":::
+
+1. Follow the remaining steps in the wizard to create the index and indexer.
 
 You can also launch **Import data** from other Azure services, including Azure Cosmos DB, Azure SQL Database, SQL Managed Instance, and Azure Blob Storage. Look for **Add Azure AI Search** in the left-navigation pane on the service overview page.
 
