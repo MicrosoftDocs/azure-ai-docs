@@ -14,7 +14,7 @@ ms.date: 10/21/2024
 
 # Content metadata properties used in Azure AI Search
 
-Several of the indexer-supported data sources, including Azure Blob Storage, Azure Data Lake Storage Gen2, and SharePoint, contain standalone files or embedded objects of various content types. Many of those content types have metadata properties that can be useful to index. Just as you can create search fields for standard blob properties like `metadata_storage_name`, you can create fields in a search index for metadata properties that are specific to a document format.
+Several indexer-supported data sources, including Azure Blob Storage, Azure Data Lake Storage Gen2, and SharePoint, contain standalone files or embedded objects of various content types. Many of those content types have metadata properties that can be useful to index. Just as you can create search fields for standard blob properties like `metadata_storage_name`, you can create fields in a search index for metadata properties that are specific to a document format.
 
 ## Supported document formats
 
@@ -22,7 +22,7 @@ Azure AI Search supports blob indexing and SharePoint document indexing for the 
 
 [!INCLUDE [search-blob-data-sources](./includes/search-blob-data-sources.md)]
 
-## Properties by document format
+## Document format properties
 
 The following table summarizes processing for each document format, and describes the metadata properties extracted by a blob indexer and the SharePoint Online indexer.
 
