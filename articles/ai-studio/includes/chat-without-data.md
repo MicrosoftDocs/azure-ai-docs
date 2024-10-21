@@ -12,12 +12,6 @@ ms.custom: include, build-2024
 
 To chat with your deployed GPT model in the chat playground, follow these steps:
 
-1. Go to your project in [Azure AI Studio](https://ai.azure.com). 
-1. Select **Playgrounds** > **Chat** from the left pane.
-1. Select your deployed chat model from the **Deployment** dropdown. 
-
-    :::image type="content" source="../media/tutorials/chat/playground-chat.png" alt-text="Screenshot of the chat playground with the chat mode and model selected." lightbox="../media/tutorials/chat/playground-chat.png":::
-
 1. In the **System message** text box, provide this prompt to guide the assistant: "You are an AI assistant that helps people find information." You can tailor the prompt for your scenario. For more information, see [the prompt catalog](../what-is-ai-studio.md#prompt-catalog).
 1. Optionally, add a safety system message by selecting the **Add section** button, then **Safety system messages**. Choose from the prebuilt messages, and then edit them to your needs.
     :::image type="content" source="../media/tutorials/chat/safety-system-message.png" alt-text="Screenshot of the Safety system message menu item.":::
