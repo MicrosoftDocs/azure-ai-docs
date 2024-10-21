@@ -24,14 +24,79 @@ In this article, learn about Azure Machine Learning CLI (v2) releases.
 __RSS feed__: Get notified when this page is updated by copying and pasting the following URL into your feed reader:
 `https://learn.microsoft.com/api/search/rss?search=%22Azure+machine+learning+release+notes-v2%22&locale=en-us`
 
+## 2024-09-18
+
+### Azure Machine Learning CLI (v2) v2.30.0
+
+- `az ml workspace outbound-rule set`
+  - Added support of Optional `--fqdns` property for private_endpoint outbound rule creation in a workspace managed network. Related to support of Application Gateway PE target.
+  - Added support of Optional `--address-prefixes` property for service_tag outbound rule creation in workspace managed network.
+  
+## 2024-08-14
+
+### Azure Machine Learning CLI (v2) v2.29.0
+
+- `az ml compute enable-sso`
+  - Added enable-sso to allow user to enable sso setting of a compute instance without any write permission set on compute.
+
+## 2024-06-21
+
+### Azure Machine Learning CLI (v2) v2.27.0
+
+- `az ml workspace create --system-datastores-auth-mode`
+  - Added `--system-datastores-auth-mode` to create for AzureML workspace.
+  
+- `az ml workspace update --system-datastores-auth-mode`
+  - Added `--system-datastores-auth-mode` to update for AzureML workspace.
+  
+- `az ml workspace create --allow-roleassignment-on-rg`
+  - Added `--allow-roleassignment-on-rg` to create for AzureML workspace with allow/disallow role assignment on RG level.
+  
+- `az ml workspace update --allow-roleassignment-on-rg`
+  - Added `--allow-roleassignment-on-rg` to update for AzureML workspace with allow/disallow role assignment on RG level.
+
 ## 2023-10-18
 
 ### Azure Machine Learning CLI (v2) v2.21.1
 
  - pydash dependency version was upgraded to >=6.0.0 to patch [security vulnerability in versions below 6.0.0](https://github.com/advisories/GHSA-8mjr-6c96-39w8)
 
+## 2023-09-11
+
+### Azure Machine Learning CLI (v2) v2.20.0
+
+- `az ml feature-store provision-network`
+  - [Public review] Added this command to allow user to provision managed network for feature store
+
+- `az ml feature-store create`
+  - Added `--not-grant-permissions` to allow user to not grant materialization identity access to feature store
+
+- `az ml feature-store update`
+  - Added `--not-grant-permissions` to allow user to not grant materialization identity access to feature store
+
+- `az ml feature-set`
+  - Added `--feature-store-name` and deprecated `--workspace-name`, backward compatiblity will be removed in 6 month
+
+- `az ml feature-store-entity`
+  - Added `--feature-store-name` and deprecated `--workspace-name`, backward compatiblity will be removed in 6 months
+
+- `az configure`
+  - Added `--defaults feature-store=<name>` to allow user to configure default feature store
+
+- `az ml job connect-ssh`
+  - Added `--ssh-args/-c` to allow specifying additional ssh options + commands, eg to send signals to running processes or to attach to an interactive terminal
 
 ## 2023-05-09
+
+### Azure Machine Learning CLI (v2) v2.17.0
+
+- `az ml online-deployment create`
+  - Added `--local-enable-gpu` to allow gpu access to local deployment.
+
+- `az ml online-deployment update`
+  - Added `--local-enable-gpu` to allow gpu access to local deployment.
+
+## 2023-05-01
 
 ### Azure Machine Learning CLI (v2) v2.16.0
 
