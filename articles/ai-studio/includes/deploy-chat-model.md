@@ -18,7 +18,7 @@ Follow these steps to deploy an Azure OpenAI chat model for your copilot.
     
     :::image type="content" source="../media/tutorials/chat/deploy-create.png" alt-text="Screenshot of the deployments page with a button to create a new deployment." lightbox="../media/tutorials/chat/deploy-create.png":::
 
-1. Select the model you want to deploy from the list of models. For example, select **gpt-35-turbo-16k**. Then select **Confirm**.
+1. Select the model you want to deploy from the list of models. For example, select **gpt-4o-mini**. Then select **Confirm**.
 
     :::image type="content" source="../media/tutorials/chat/deploy-gpt-35-turbo-16k.png" alt-text="Screenshot of the model selection page." lightbox="../media/tutorials/chat/deploy-gpt-35-turbo-16k.png":::
 
