@@ -64,7 +64,7 @@ Across all semantic configuration properties, the fields you assign must be:
 
 1. Select **Semantic configurations** and then select **Add semantic configuration**.
 
-   :::image type="content" source="./media/semantic-search-overview/create-semantic-config.png" alt-text="Screenshot that shows the option to add a semantic configuration in the Azure portal." lightbox="./media/semantic-search-overview/create-semantic-config.png" border="true":::
+   :::image type="content" source="./media/semantic-search-overview/add-semantic-config.png" alt-text="Screenshot that shows the option to add a semantic configuration in the Azure portal." lightbox="./media/semantic-search-overview/add-semantic-config.png" border="true":::
 
 1. On the **New semantic configuration** page, enter a semantic configuration name and select the fields to use in the semantic configuration. Only searchable and retrievable string fields are eligible. Make sure to list content fields and keyword fields in priority order.
 
