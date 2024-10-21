@@ -26,7 +26,7 @@ Azure AI Content Safety is a content moderation service that helps detect harmfu
 
 To create an Azure Content Safety connection:
 
-1. Sign in to [Azure AI Studio](https://ai.azure.com/).
+1. Sign in to [Azure AI Studio](https://ml.azure.com/).
 1. Go to **Project settings** > **Connections**.
 1. Select **+ New connection**.
 1. Complete all steps in the **Create a new connection** dialog. You can use an Azure AI Studio hub or Azure AI Content Safety resource. We recommend that you use a hub that supports multiple Azure AI services.
