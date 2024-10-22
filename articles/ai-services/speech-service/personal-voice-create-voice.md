@@ -99,8 +99,8 @@ curl -v -X PUT -H "Ocp-Apim-Subscription-Key: YourResourceKey" -H "Content-Type:
   "projectId": "ProjectId",
   "consentId": "JessicaConsentId",
   "audios": {
-    "containerUrl": "https://contoso.blob.core.windows.net/voicecontainer?mySasToken",
-    "prefix": "jessica/",
+    "containerUrl": "https://contoso.blob.core.windows.net/voicecontainer?mySasToken",  // The URL must have both read and list permissions using a SAS token.
+    "prefix": "jessica/",  // Ensure the `.wav` files are located in the "jessica" folder within the container. If there is no such folder, the prefix will match `.wav` files with names starting with "jessica".
     "extensions": [
       ".wav"
     ]
