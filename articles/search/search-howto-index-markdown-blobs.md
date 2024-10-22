@@ -141,6 +141,7 @@ Content for section 2.
 
 ### One-to-one parsing not utilizing field mappings
 If you are not utilizing field mappings, the shape of the index should reflect the shape of the markdown content. Based on  the  previous markdown, the index should look similar to the following example:
+```http
 {
   "name": "my-markdown-index",
   "fields": [
@@ -195,7 +196,7 @@ If you are not utilizing field mappings, the shape of the index should reflect t
 }
 ```
 
-Because the markdown we want to index only goes to a depth of h2 ("##"), we need `sections` fields nested to a depth of 2 to match that. This would result in the following data in index:
+Because the markdown we want to index only goes to a depth of h2 ("##"), we need `sections` fields nested to a depth of 2 to match that. This configuration would result in the following data in index:
 
 ```http
     "document_content": "# Section 1\r\nContent for section 1.\r\n## Subsection 1.1\r\nContent for subsection 1.1.\r\n# Section 2\r\nContent for section 2.\r\n",
@@ -273,7 +274,7 @@ If you would like to extract fields with custom names from the document, you can
 
 Extracting specific fields from the parsed markdown is handled similar to how the document paths are in (outputFieldMappings)[https://learn.microsoft.com/en-us/azure/search/cognitive-search-output-field-mapping?tabs=rest], except the path begins with `/sections`  instead of  `/document`. So, for example, `/sections/0/content` would map to the content under the item at position 0 in the sections array.
 
-This would be useful in the case where the markdown files all have a document title in the first `h1`, a subsection title in the first `h2`, and a summary in the content of the final paragraph underneath the final `h1`. You could use the following field mappings to index only that content:
+An example of a strong use case might look something like this: all markdown files have a document title in the first `h1`, a subsection title in the first `h2`, and a summary in the content of the final paragraph underneath the final `h1`. You could use the following field mappings to index only that content:
 
 ```http
 "fieldMappings" : [
