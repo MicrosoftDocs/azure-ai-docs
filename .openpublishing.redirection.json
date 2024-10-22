@@ -4,6 +4,11 @@
       "source_path_from_root": "/articles/ai-services/openai/concepts/use-your-image-data.md",
       "redirect_url": "/azure/ai-services/openai/concepts/use-your-data",
       "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/search/search-howto-create-indexers.md",
+      "redirect_url": "/azure/search/search-how-to-create-indexers",
+      "redirect_document_id": false
     }
   ]
 }
