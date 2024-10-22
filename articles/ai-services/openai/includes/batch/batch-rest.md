@@ -255,6 +255,8 @@ curl https://YOUR_RESOURCE_NAME.openai.azure.com/openai/batches?api-version=2024
 
 ### List batch (Preview)
 
+<a id="list-batch--preview></a>
+
 Use the REST API to list all batch jobs with additional sorting/filtering options.
 
 ```http
