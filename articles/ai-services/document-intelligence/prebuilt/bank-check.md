@@ -15,7 +15,7 @@ monikerRange: '>=doc-intel-4.0.0'
 
 # Document Intelligence bank check model
 
-The Document Intelligence bank check model combines powerful Optical Character Recognition (OCR) capabilities with deep learning models to analyze and extract data from US bank statements. The API analyzes printed checks; extracts key information, and returns a structured JSON data representation.
+The Document Intelligence bank check model combines powerful Optical Character Recognition (OCR) capabilities with deep learning models to analyze and extract data from US bank statements. The API analyzes printed checks; extracts key information, and returns a structured JSON data representation. With the latest 4.0 release, bank check supports signature detection as well. 
 
 | Feature   | version| Model ID |
 |----------  |---------|--------|
