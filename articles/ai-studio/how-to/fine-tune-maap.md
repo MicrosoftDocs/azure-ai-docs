@@ -12,7 +12,7 @@ ms.author: mopeakande
 author: msakande
 ms.custom: references_regions
 
-#customer intent: As a Data Scientist, I want to learn how to fine-tune models using user-managed compute to improve model performance for specific tasks. 
+#customer intent: As a Data Scientist, I want to learn how to fine-tune models using user-managed compute to improve model performance for specific tasks.. 
 ---
 
 # Fine-tune using User-managed compute
