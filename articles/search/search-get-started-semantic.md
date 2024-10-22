@@ -21,7 +21,7 @@ In Azure AI Search, [semantic ranking](semantic-search-overview.md) is query-sid
 This quickstart walks you through the index and query modifications that invoke semantic ranker.
 
 > [!NOTE]
-> For an example Azure AI Search solution with ChatGPT interaction, see [this demo](https://github.com/Azure-Samples/azure-search-openai-demo/blob/main/README.md) or [this accelerator](https://github.com/Azure-Samples/chat-with-your-data-solution-accelerator).
+> For an Azure AI Search solution example with ChatGPT interaction, see [this demo](https://github.com/Azure-Samples/azure-search-openai-demo/blob/main/README.md) or [this accelerator](https://github.com/Azure-Samples/chat-with-your-data-solution-accelerator).
 
 ## Prerequisites
 

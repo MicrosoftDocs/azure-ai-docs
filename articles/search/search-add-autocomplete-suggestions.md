@@ -15,7 +15,7 @@ ms.date: 10/22/2024
 
 # Add autocomplete and search suggestions in client apps
 
-Search-as-you-type is a common technique for improving query productivity. In Azure AI Search, this experience is supported through *autocomplete*, which finishes a term or phrase based on partial input (for example, completing *micro* with *microchip*, *microscope*, *microsoft*, and any other micro matches). A second user experience is *suggestions*, which produces a short list of matching documents (for exampe, returning book titles with an ID so that you can link to a detail page about that book). Both autocomplete and suggestions are predicated on a match in the index. The service doesn't offer autocompleted queries or suggestions that return zero results.
+Search-as-you-type is a common technique for improving query productivity. In Azure AI Search, this experience is supported through *autocomplete*, which finishes a term or phrase based on partial input (for example, completing *micro* with *microchip*, *microscope*, *microsoft*, and any other micro matches). A second user experience is *suggestions*, which produces a short list of matching documents (for example, returning book titles with an ID so that you can link to a detail page about that book). Both autocomplete and suggestions are predicated on a match in the index. The service doesn't offer autocompleted queries or suggestions that return zero results.
 
 To implement these experiences in Azure AI Search:
 
