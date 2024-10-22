@@ -6,7 +6,7 @@ description: Extract searchable text from Markdown blobs using the blob indexer 
 author: mdonovan
 ms.author: mdonovan
 
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.custom:
   - ignite-2024
 ms.topic: how-to
