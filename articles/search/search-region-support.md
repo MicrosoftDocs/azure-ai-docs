@@ -35,7 +35,7 @@ You can create an Azure AI Search resource in any of the following Azure public 
 
 ### Americas
 
-| Region | AI integration | Semantic ranker | Availability zones | Capacity Constrained |
+| Region | AI integration | Semantic ranker | Availability zones | Capacity constrained |
 |--|--|--|--|--|
 | Brazil South​​ ​ | ✅ | ✅ | |  |
 | Canada Central​​ | ✅ | ✅ | ✅ |  |
@@ -54,7 +54,7 @@ You can create an Azure AI Search resource in any of the following Azure public 
 
 ### Europe
 
-| Region | AI integration | Semantic ranker | Availability zones | Capacity Constrained |
+| Region | AI integration | Semantic ranker | Availability zones | Capacity constrained |
 |--|--|--|--|--|
 | North Europe​​ | ✅ | ✅ | ✅ |  |
 | West Europe​​ <sup>1, 2</sup>| ✅ | ✅ | ✅ | <span class='red-x'>&#10060;</span> |
@@ -76,7 +76,7 @@ You can create an Azure AI Search resource in any of the following Azure public 
 
 ### Middle East
 
-| Region | AI integration | Semantic ranker | Availability zones | Capacity Constrained |
+| Region | AI integration | Semantic ranker | Availability zones | Capacity constrained |
 |--|--|--|--|--|
 | Israel Central​ <sup>2</sup> |  |  | ✅  |  |
 | Qatar Central​ <sup>1, 2</sup> |  |  | ✅ | <span class='red-x'>&#10060;</span> |
@@ -88,13 +88,13 @@ You can create an Azure AI Search resource in any of the following Azure public 
 
 ### Africa
 
-| Region | AI integration | Semantic ranker | Availability zones | Capacity Constrained |
+| Region | AI integration | Semantic ranker | Availability zones | Capacity constrained |
 |--|--|--|--|--|
 | South Africa North​ | ✅ |  | ✅ |   |
 
 ### Asia Pacific
 
-| Region | AI integration | Semantic ranker | Availability zones | Capacity Constrained |
+| Region | AI integration | Semantic ranker | Availability zones | Capacity constrained |
 |--|--|--|--|--|
 | Australia East​ ​ | ✅ | ✅ | ✅ |   |
 | Australia Southeast​​​ |  | ✅ |  | |
@@ -114,7 +114,7 @@ You can create an Azure AI Search resource in any of the following Azure public 
 
 ## Azure Government regions
 
-| Region | AI integration | Semantic ranker | Availability zones | Capacity Constrained |
+| Region | AI integration | Semantic ranker | Availability zones | Capacity constrained |
 |--|--|--|--|--|
 | Arizona | ✅ | ✅  | | |
 | Texas |  |  |  | |
@@ -124,14 +124,14 @@ You can create an Azure AI Search resource in any of the following Azure public 
 
 ## Azure operated by 21Vianet
 
-| Region | AI integration | Semantic ranker | Availability zones |
-|--|--|--|--|
+| Region | AI integration | Semantic ranker | Availability zones | Capacity constrained |
+|--|--|--|--|--|
 | China East |  |  |  |
-| China East 2 <sup>1</sup> | ✅  | | |
-| China East 3 |  |  |  |
-| China North |  |  | |
-| China North 2 <sup>1</sup> |  |  | |
-| China North 3 | | ✅ | ✅ |
+| China East 2 <sup>1</sup> | ✅  | | | |
+| China East 3 |  |  |  | |
+| China North |  |  | | |
+| China North 2 <sup>1</sup> |  |  | | |
+| China North 3 | | ✅ | ✅ | |
 
 <sup>1</sup> This region runs on older infrastructure that has lower storage limits per partition at every tier. Choose a different region if you want [higher limits](search-limits-quotas-capacity.md#service-limits).
 
