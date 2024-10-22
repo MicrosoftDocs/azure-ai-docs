@@ -28,7 +28,15 @@ The blob indexer provides a `submode` parameter to determine the output of struc
 | **`markdown`** | **`oneToMany`** | Multiple per blob | (default) Breaks the markdown into multiple search documents, each representing a content (nonheader) section of the markdown file. |
 | **`markdown`** | **`oneToOne`** | One per blob | Parses the markdown into one search document, with sections mapped to specific headers in the markdown file.|
 
-The blob indexer also provides a `markdownHeaderDepth` parameter, which accepts arguments in the format `h1` through `h6`, corresponding to the markdown headers "#" through "######". This parameter determines the deepest header level that is considered when parsing, allowing for flexible handling of document structure (for example, when `markdownHeaderDepth` is set to `h1`, the parser only recognizes top-level headers that begin with "#", and all lower-level headers are treated as plain text). If not specified, it defaults to `h6`. This setting can be changed after initial creation of the indexer, however the structure of the resulting search documents might change depending on the markdown content.
+## Additional Markdown parsing parameters
+
+Parameters are case-sensitive.
+
+| Parameter name     | Allowed Values | Description |
+|--------------------|-------------|-------------|
+| `markdownHeaderDepth` |`h1`, `h2`, `h3`, `h4`, `h5`, `h6(default)` | This parameter determines the deepest header level that is considered when parsing, allowing for flexible handling of document structure (for example, when `markdownHeaderDepth` is set to `h1`, the parser only recognizes top-level headers that begin with "#", and all lower-level headers are treated as plain text). If not specified, it defaults to `h6`. 
+
+This setting can be changed after initial creation of the indexer, however the structure of the resulting search documents might change depending on the markdown content.
 
 For **`oneToMany`** submode, you should review [Indexing one blob to produce many search documents](search-howto-index-one-to-many-blobs.md) to understand how the blob indexer handles disambiguation of the document key for multiple search documents produced from the same blob.
 
@@ -53,23 +61,22 @@ Content for subsection 1.1.
 Content for section 2.
 ```
 
-The blob indexer parses the markdown document into one search document for each content section, providing all the header metadata at that point in the document. Given an index with a "content" field, and a complex "sections" field with subfields "h1" and "h2", the blob indexer can infer the correct mapping without a field mapping present in the request. This document would result in three search documents after indexing, due to the three content sections. The search document resulting from the first content section of the provided markdown document would contain the following values for "content", "sections", "h1", and "h2":
+The blob indexer parses the markdown document into one search document for each content section, providing all the header metadata at that point in the document. Given an index with a "content" field, and a complex "sections" field with subfields "h1" and "h2", the blob indexer can infer the correct mapping without a field mapping present in the request. This document would result in three search documents after indexing, due to the three content sections. The search document resulting from the first content section of the provided markdown document would contain the following values for `content`, `sections`, `h1`, and `h2`:
 
 ```http
     "content": "Content for section 1.\r\n",
     "sections": {
-        "h1": "Section 1",
-        "h2": ""
-      }
-    },
+      "h1": "Section 1",
+      "h2": ""
+    }
 ```
 
 There is no value for `h2`, because no `h2` is set at that point in the file.
 
 For markdown `oneToMany` parsing, the indexer definition should look similar to the following example:
 ```http
-POST https://[service name].search.windows.net/indexers?api-version=2024-07-01
-Content-Type: text/markdown
+POST https://[service name].search.windows.net/indexers?api-version=2024-10-11
+Content-Type: application/json
 api-key: [admin key]
 
 {
@@ -145,85 +152,80 @@ If you are not utilizing field mappings, the shape of the index should reflect t
 {
   "name": "my-markdown-index",
   "fields": [
+  {
+    "name": "document_content",
+    "type": "Edm.String",
+  {
+    "name": "sections",
+    "type": "Edm.ComplexType",
+    "fields": [
     {
-      "name": "document_content",
+      "name": "header_level",
       "type": "Edm.String",
+    },
+    {
+      "name": "header_name",
+      "type": "Edm.String",
+    },
+    {
+      "name": "content",
+      "type": "Edm.String"
+    },
+    {
+      "name": "ordinal_position",
+      "type": "Edm.Int"
+    },
     {
       "name": "sections",
       "type": "Edm.ComplexType",
       "fields": [
-        {
-          "name": "header_level",
-          "type": "Edm.String",
-        },
-        {
-          "name": "header_name",
-          "type": "Edm.String",
-        },
-        {
-          "name": "content",
-          "type": "Edm.String"
-        },
-        {
-          "name": "ordinal_position",
-          "type": "Edm.Int"
-        },
-        {
-          "name": "sections",
-          "type": "Edm.ComplexType",
-          "fields": [
-            {
-              "name": "header_level",
-              "type": "Edm.String",
-            },
-            {
-              "name": "header_name",
-              "type": "Edm.String",
-            },
-            {
-              "name": "content",
-              "type": "Edm.String"
-            },
-            {
-              "name": "ordinal_position",
-              "type": "Edm.Int"
-            }
-          ]
-        }
-      ]
-    }
-  ]
+      {
+        "name": "header_level",
+        "type": "Edm.String",
+      },
+      {
+        "name": "header_name",
+        "type": "Edm.String",
+      },
+      {
+        "name": "content",
+        "type": "Edm.String"
+      },
+      {
+        "name": "ordinal_position",
+        "type": "Edm.Int"
+      }]
+    }]
+  }
 }
 ```
 
 Because the markdown we want to index only goes to a depth of h2 ("##"), we need `sections` fields nested to a depth of 2 to match that. This configuration would result in the following data in index:
 
 ```http
-    "document_content": "# Section 1\r\nContent for section 1.\r\n## Subsection 1.1\r\nContent for subsection 1.1.\r\n# Section 2\r\nContent for section 2.\r\n",
-    "sections": {
-      [
-        "header_level": "h1",
-        "header_name": "Section 1",
-        "content": "Content for section 1.",
-        "ordinal_position": 1,
-        "sections": {
+  "document_content": "# Section 1\r\nContent for section 1.\r\n## Subsection 1.1\r\nContent for subsection 1.1.\r\n# Section 2\r\nContent for section 2.\r\n",
+  "sections": [
+    {
+      "header_level": "h1",
+      "header_name": "Section 1",
+      "content": "Content for section 1.",
+      "ordinal_position": 1,
+      "sections": [
+        {
           "header_level": "h2",
           "header_name": "Subsection 1.1",
           "content": "Content for subsection 1.1.",
           "ordinal_position": 2,
-        }
-      ],
-      [
-        "header_level": "h1",
-        "header_name": "Section 2",
-        "content": "Content for section 2.",
-        "ordinal_position": 3,
-        "sections": {
-          []
-        }
-      ]
-      }
-    },
+        }]
+    }],
+    {
+      "header_level": "h1",
+      "header_name": "Section 2",
+      "content": "Content for section 2.",
+      "ordinal_position": 3,
+      "sections": []
+    }]
+  }
 ```
 
 As you can see, the ordinal position increments based on the location of the content within the document.
