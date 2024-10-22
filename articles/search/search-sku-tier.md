@@ -62,6 +62,7 @@ Currently, several regions are at capacity for specific tiers and can't be used 
 | Central US | S2, S3, S3HD, L1, L2 |
 | Central India | S2, S3, S3HD, L1, L2|
 | East US| All tiers|
+| East US 2| Basic, S1|
 | Japan East | S2, S3, S3HD, L1, L2 |
 | Qatar Central | All tiers|
 | South Central US | All tiers |
