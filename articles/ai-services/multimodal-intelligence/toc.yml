@@ -13,6 +13,9 @@ items:
   - name: FAQ
     displayName: storage, security, privacy, help, support, versions, development, migrate, migration, cognitive, applied, form recognizer, form, recognizer
     href: faq.yml
+  - name: Pricing
+    displayName: cost, pricing, subscription, tier, free, paid, trial
+    href: https://azure.microsoft.com/pricing
   - name: What's new
     displayName: changelog, release, updates, previews
     href: whats-new.md

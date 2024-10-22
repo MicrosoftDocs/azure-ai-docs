@@ -5,7 +5,7 @@ description: Learn about Multimodal Intelligence solutions
 author: laujan
 ms.author: lajanuar
 manager: nitinme
-ms.service: azure-ai-document-intelligence
+ms.service: azure
 ms.topic: overview
 ms.date: 10/09/2024
 #Customer intent: As a developer of content management software, I want to find out whether Azure AI Multimodal Intelligence is the right solution for my moderation needs.
@@ -15,7 +15,7 @@ ms.date: 10/09/2024
 
 :::image type="content" source="media/overview/media-input.png" alt-text="Screenshot of accepted media input files.":::
 
-Azure AI Multimodal Intelligence is a cloud-based solution within [**Azure AI services**](https://learn.microsoft.com/en-us/azure/ai-services/what-are-ai-services), designed to process various data modalities such as documents, images, videos, and audio within a unified workflow. Integrating these diverse modalities enables Multimodal Intelligence to deliver more extensive, efficient, and accurate results compared to single modality processing. Utilizing the Multimodal Intelligence service, provides you with access to the following processes:
+Azure AI Multimodal Intelligence is a cloud-based solution within [**Azure AI services**](../what-are-ai-services), designed to process various data modalities such as documents, images, videos, and audio within a unified workflow. Integrating these diverse modalities enables Multimodal Intelligence to deliver more extensive, efficient, and accurate results compared to single modality processing. Utilizing the Multimodal Intelligence service, provides you with access to the following processes:
 
 * [**Comprehensive content extraction and analysis**](#features-and-capabilities)
 
@@ -49,13 +49,6 @@ Azure AI Multimodal Intelligence is a cloud-based solution within [**Azure AI se
 |Call center post-call analytics| Businesses and call center operators can generate insights from call recordings to track key KPIs to improve product experience, generate business insights, create differentiated customer experiences, and answer queries faster and more accurately.
 |Marketing automation digital asset management| Independent software and media vendors that build media asset management solutions can use Multimodal Intelligence to extract richer, targeted content from images and videos.|
 
-## Getting started
-Before you get started using Multimodal Intelligence, you need an [**Azure AI services multi-service resource**](). The multi-service resource enables access to multiple Azure AI services with a single set of credentials.
-
-We provide quickstart guides designed to help you begin utilizing MMI service swiftly. Please refer to the following list for these quickstart guides:
-* [**Rest API Quickstart**]()
-* [**Azure AI Studio Quickstart**]()
-
 ## Pricing
 
 Pricing tiers (and the amount you're billed) are based on the number of transactions that you send by using your authentication information. Each pricing tier specifies the:
@@ -63,6 +56,15 @@ Pricing tiers (and the amount you're billed) are based on the number of transact
 * Maximum number of allowed transactions per second (TPS).
 * Service features enabled within the pricing tier.
 * Cost for a predefined number of transactions. Going above this number causes an extra charge, as specified in the [pricing details](https://azure.microsoft.com/pricing/details/cognitive-services) for your service.
+
+## Getting started
+Before you get started using Multimodal Intelligence, you need an [**Azure AI services multi-service resource**](how-to-guide/create-multi-service-resource.md). The multi-service resource enables access to multiple Azure AI services with a single set of credentials.
+
+We provide quickstart guides designed to help you begin utilizing Multimodal Intelligence service swiftly:
+
+* **Rest API Quickstart**
+* **Azure AI Studio Quickstart**
+
 
 
 
