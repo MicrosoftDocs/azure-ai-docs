@@ -35,6 +35,8 @@ An embedding model is capable of serving as the basis of many different solution
 
 ## Prerequisites
 
+[!INCLUDE [shared-ai-studio-and-azure-ml-articles](../../includes/shared-ai-studio-and-azure-ml-articles.md)]
+
 To use MedImageInsight models with Azure AI Studio or Azure Machine Learning studio, you need the following prerequisites:
 
 ### A model deployment

@@ -8,48 +8,52 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: how-to
-ms.date: 01/11/2024
+ms.date: 10/21/2024
 ---
 
 # Attach an Azure AI multi-service resource to a skillset in Azure AI Search
 
-When configuring an optional [AI enrichment pipeline](cognitive-search-concept-intro.md) in Azure AI Search, you can enrich a limited number of documents free of charge. For larger and more frequent workloads, you should attach a billable [**Azure AI multi-service resource**](/azure/ai-services/multi-service-resource?pivots=azportal). 
+When configuring an optional [AI enrichment pipeline](cognitive-search-concept-intro.md) in Azure AI Search, you can enrich a small number of documents free of charge, limited to 20 transactions daily per index. For larger and more frequent workloads, you should attach a billable [**Azure AI multi-service resource**](/azure/ai-services/multi-service-resource?pivots=azportal). 
 
-A multi-service resource references a set of Azure AI services as the offering, rather than individual services, with access granted through a single API key. This key is specified in a [**skillset**](/rest/api/searchservice/skillsets/create) and allows Microsoft to charge you for using these services:
+A multi-service account provides a collection of Azure AI services, rather than individual services. The account has an associated [resource key](/azure/ai-services/authentication#authenticate-with-a-multi-service-resource-key). This key is specified in an Azure AI Search [**skillset**](/rest/api/searchservice/skillsets/create) and allows Microsoft to charge you for using these services:
 
-+ [Azure AI Vision](/azure/ai-services/computer-vision/overview) for image analysis and optical character recognition (OCR)
++ [Azure AI Vision](/azure/ai-services/computer-vision/overview) for image analysis, optical character recognition (OCR), and multimodal text and image embedding.
 + [Azure AI Language](/azure/ai-services/language-service/overview) for language detection, entity recognition, sentiment analysis, and key phrase extraction
 + [Azure AI Speech](/azure/ai-services/speech-service/overview) for speech to text and text to speech
 + [Azure AI Translator](/azure/ai-services/translator/translator-overview) for machine text translation
 
+The key is used for billing, not connections. You must provide a key in the skillset even if you're using other mechanisms, such as role assignments and managed identities, on the connection.
+
 > [!TIP]
 > Azure provides infrastructure for you to monitor billing and budgets. For more information about monitoring Azure AI services, see [Plan and manage costs for Azure AI services](/azure/ai-services/plan-manage-costs).
 
-## Set the resource key
-
-You can use the Azure portal, REST API, or an Azure SDK to attach a billable resource to a skillset.
-
-If you leave the property unspecified, your search service attempts to use the free enrichments available to your indexer on a daily basis. Execution of billable skills stops at 20 transactions per indexer invocation and a "Time Out" message appears in indexer execution history.
-
-### [**Azure portal**](#tab/portal)
+## Get the resource key for an Azure AI multi-service account
 
 1. Sign in to the [Azure portal](https://portal.azure.com).
 
 1. Create an [Azure AI multi-service resource](/azure/ai-services/multi-service-resource?pivots=azportal) in the [same region](#same-region-requirement) as your search service.
 
-1. Add the key to a skillset definition:
+1. Get the resource key from the **Resources** > **Keys and endpoint** page.
 
-   + If using the [Import data wizard](search-import-data-portal.md), enter the key in the second step, "Add AI enrichments".
+## Add the resource key to a skillset
 
-   + If adding the key to a new or existing skillset, provide the key in the **Azure AI services** tab.
+You can use the Azure portal, REST API, or an Azure SDK to add the key to a skillset.
 
-   :::image type="content" source="media/cognitive-search-attach-cognitive-services/attach-existing2.png" alt-text="Screenshot of the key page." border="true":::
+If you leave the property unspecified, your search service attempts to use the free enrichments available to your indexer on a daily basis. Execution of billable skills stops at 20 transactions per indexer invocation and a "Time Out" message appears in indexer execution history.
+
+### [**Azure portal**](#tab/portal)
+
+Add the key to a skillset definition:
+
++ If using an [Import data wizard](search-import-data-portal.md), create or select the Azure AI account. The wizard adds the resource key to your skillset definition. 
+
++ For a new or existing skillset, provide the key in skillset definition.
+
+  :::image type="content" source="media/cognitive-search-attach-cognitive-services/attach-existing2.png" alt-text="Screenshot of the key page." border="true":::
 
 ### [**REST**](#tab/cogkey-rest)
 
-1. Create an [Azure AI multi-service resource](/azure/ai-services/multi-service-resource?pivots=azportal) in the [same region](#same-region-requirement) as your search service.
-
-1. Create or update a skillset, specifying `cognitiveServices` section in the body of the [skillset request](/rest/api/searchservice/skillsets/create):
+1. Use the [Create or Update Skillset](/rest/api/searchservice/skillsets/create-or-update) API, specifying `cognitiveServices` section in the body of the request:
 
 ```http
 PUT https://[servicename].search.windows.net/skillsets/[skillset name]?api-version=2024-07-01
@@ -115,19 +119,19 @@ SearchIndexerSkillset skillset = CreateOrUpdateDemoSkillSet(indexerClient, skill
 
 ## Remove the key
 
-Enrichments are billable operations. If you no longer need to call Azure AI services, follow these instructions to remove the multi-region key and prevent use of the external resource. Without the key, the skillset reverts to the default allocation of 20 free transactions per indexer, per day. Execution of billable skills stops at 20 transactions and a "Time Out" message appears in indexer execution history when the allocation is used up.
+Enrichments are billable operations. If you no longer need to call Azure AI services, follow these instructions to remove the multi-service key and prevent use of the external resource. Without the key, the skillset reverts to the default allocation of 20 free transactions per indexer, per day. Execution of billable skills stops at 20 transactions and a "Time Out" message appears in indexer execution history when the allocation is used up.
 
 ### [**Azure portal**](#tab/portal-remove)
 
-1. Sign in to the [Azure portal](https://portal.azure.com) and open the search service **Overview** page.
+1. Sign in to the [Azure portal](https://portal.azure.com).
 
-1. Under **Skillsets**, select the skillset containing the key you want to remove.
+1. Under **Search management > Skillsets**, select a skillset from the list.
 
    :::image type="content" source="media/cognitive-search-attach-cognitive-services/select-skillset.png" alt-text="Screenshot of the skillset page." border="true" lightbox="media/cognitive-search-attach-cognitive-services/select-skillset.png":::
 
-1. Scroll to the end of the file. 
+1. Scroll to the section in the file containing `"cognitiveServices"`.
 
-1. Remove the key from the JSON and save the skillset.
+1. Delete the key value from the JSON and save the skillset.
 
    :::image type="content" source="media/cognitive-search-attach-cognitive-services/remove-key-save.png" alt-text="Screenshot of the skillset JSON." border="true" lightbox="media/cognitive-search-attach-cognitive-services/remove-key-save.png":::
 
@@ -183,7 +187,7 @@ Enrichments are billable operations. If you no longer need to call Azure AI serv
 
 ## How the key is used
 
-Key-based billing applies when API calls to Azure AI services resources exceed 20 API calls per indexer, per day. 
+Key-based billing applies when API calls to Azure AI services resources exceed 20 API calls per indexer, per day. You can [reset the indexer](search-howto-run-reset-indexers.md) to reset the API count.
 
 The key is used for billing, but not for enrichment operations' connections. For connections, a search service [connects over the internal network](search-security-overview.md#internal-traffic) to an Azure AI services resource that's located in the [same physical region](search-region-support.md). Most regions that offer Azure AI Search also offer other Azure AI services such as Language. If you attempt AI enrichment in a region that doesn't have both services, you'll see this message: "Provided key isn't a valid CognitiveServices type key for the region of your search service."
 
