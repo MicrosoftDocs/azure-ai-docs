@@ -13,7 +13,7 @@ ms.author: eur
   * Added properties to control new phrase segmentation strategies. 
 
 #### Bug Fixes
-  * Fixed incomplete support for the new format of keyword recognition Advanced models.
+  * Fixed incomplete support for keyword recognition Advanced models produced after August 2024.
     * https://github.com/Azure-Samples/cognitive-services-speech-sdk/issues/2564
     * https://github.com/Azure-Samples/cognitive-services-speech-sdk/issues/2571
     * https://github.com/Azure-Samples/cognitive-services-speech-sdk/issues/2590
