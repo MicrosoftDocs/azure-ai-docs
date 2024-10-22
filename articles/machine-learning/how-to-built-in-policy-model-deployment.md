@@ -80,6 +80,13 @@ To update an existing policy assignment with new models, follow these steps:
 - **Testing**: Test policies in a nonproduction environment before applying them to production resources.
 - **Communication**: Make sure developers are aware of the policies in place and understand the implications for their work.
 
+## Models example
+
+```
+"azureml://registries/azure-openai/models/gpt-35-turbo/versions/3, azureml://registries/azure-openai/models/gpt-35-turbo/versions/4, azureml://registries/azure-openai/models/gpt-35-turbo/versions/5"
+```
+
+
 ## Related content
 
 - [Azure Policy overview](/azure/governance/policy/overview)
