@@ -20,13 +20,13 @@ Alternatively, you can [download the source code](https://github.com/Azure-Sampl
 
 1. Select **Browse**.
 
-1. Search for [Azure.Search.Documents package](https://www.nuget.org/packages/Azure.Search.Documents/) and select the latest stable version.
+1. Search for the [Azure.Search.Documents package](https://www.nuget.org/packages/Azure.Search.Documents/) and select the latest stable version.
 
 1. Select **Install** to add the assembly to your project and solution.
 
 #### Create a search client
 
-1. In **Program.cs**, add the following `using` directives.
+1. In *Program.cs*, add the following `using` directives.
 
    ```csharp
    using Azure;
@@ -36,9 +36,9 @@ Alternatively, you can [download the source code](https://github.com/Azure-Sampl
    using Azure.Search.Documents.Models;
    ```
 
-1. Create two clients: [SearchIndexClient](/dotnet/api/azure.search.documents.indexes.searchindexclient) creates the index, and [SearchClient](/dotnet/api/azure.search.documents.searchclient) loads and queries an existing index. Both need the service endpoint and an admin API key for authentication with create/delete rights.
+1. Create two clients: [SearchIndexClient](/dotnet/api/azure.search.documents.indexes.searchindexclient) creates the index, and [SearchClient](/dotnet/api/azure.search.documents.searchclient) loads and queries an existing index.
 
-   Because the code builds out the URI for you, specify just the search service name in the "serviceName" property.
+    Both clients need the service endpoint and an admin API key for authentication with create/delete rights. However, the code builds out the URI for you, so specify only the search service name for the `serviceName` property. Don't include `https://` or `.search.windows.net`.
 
    ```csharp
     static void Main(string[] args)

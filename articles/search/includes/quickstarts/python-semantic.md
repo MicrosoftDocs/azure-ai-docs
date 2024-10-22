@@ -238,7 +238,7 @@ for result in results:
 
 #### Run a text query
 
-For comparison purposes, run text query with BM25 relevance scoring. Full text search is invoked when you provide a query string. The response consists of ranked results, where higher scores are awarded to documents having more instances of matching terms, or more important terms.
+For comparison purposes, run a text query with BM25 relevance scoring. Full text search is invoked when you provide a query string. The response consists of ranked results, where higher scores are awarded to documents having more instances of matching terms, or more important terms.
 
 In this query for *what hotel has a good restaurant on site*, Sublime Cliff Hotel comes out on top because its description includes *site*. Terms that occur infrequently raise the search score of the document. 
 
