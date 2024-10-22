@@ -8,7 +8,7 @@ author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: conceptual
-ms.date: 09/19/2024
+ms.date: 10/17/2024
 ms.custom:
   - references_regions
   - build-2024
