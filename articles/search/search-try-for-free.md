@@ -151,7 +151,7 @@ You can create a search service that doesn't consume credits. Here are some poin
 Review the [service limits](search-limits-quotas-capacity.md) for other constraints that apply to the free tier.
 
 > [!NOTE]
-> Free services that remain inactive for an extended period of time (many months) might be deleted to free up capacity if the region is constrained.
+> Free services that remain inactive for an extended period of time might be deleted to free up capacity if the region is under capacity constraints.
 
 ## Next steps
 
