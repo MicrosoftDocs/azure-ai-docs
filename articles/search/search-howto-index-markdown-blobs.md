@@ -28,18 +28,17 @@ The blob indexer provides a `submode` parameter to determine the output of struc
 | **`markdown`** | **`oneToMany`** | Multiple per blob | (default) Breaks the markdown into multiple search documents, each representing a content (non-header) section of the markdown file. |
 | **`markdown`** | **`oneToOne`** | One per blob | Parses the markdown into one search document, with sections mapped to specific headers in the markdown file.|
 
-The blob indexer also provides a `markdownHeaderDepth` parameter, which accepts arguments in the form `h1` through `h6`, corresponding to the markdown headers "#" through "######". This parameter determines the deepest header level that will be considered when parsing, allowing for flexible handling of document structure (eg. if `markdownHeaderDepth` is set to `h1`, the parser will only recognize top-level headers that begin with "#", and all lower-level headers will be treated as plain content). If not specified, it defaults to `h6`, capturing all possible header depths. This setting can be changed after initial creation of the indexer, however the resulting search documents may be structured differently and may no longer fit the index depending on the content being indexed, so the indexex may need to be updated or recreated accordingly.
-For **`oneToMany`** submode, you should review [Indexing one blob to produce many search documents](search-howto-index-one-to-many-blobs.md) to understand how the blob indexer handles disambiguation of the document key for multiple search documents produced from the same blob.
+The blob indexer also provides a `markdownHeaderDepth` parameter, which accepts arguments in the format `h1` through `h6`, corresponding to the markdown headers "#" through "######". This parameter determines the deepest header level that will be considered when parsing, allowing for flexible handling of document structure (eg. if `markdownHeaderDepth` is set to `h1`, the parser will only recognize top-level headers that begin with "#", and all lower-level headers will be treated as plain text). If not specified, it defaults to `h6`. This setting can be changed after initial creation of the indexer, however the resulting search documents may be structured differently and may no longer fit the index depending on the content being indexed, so the indexex may need to be updated or recreated accordingly.
 
-Within the indexer definition, you can optionally set [field mappings](search-indexer-field-mappings.md) to choose which properties of the source JSON document are used to populate your target search index. 
+For **`oneToMany`** submode, you should review [Indexing one blob to produce many search documents](search-howto-index-one-to-many-blobs.md) to understand how the blob indexer handles disambiguation of the document key for multiple search documents produced from the same blob.
 
 The following sections describe each mode in more detail. If you're unfamiliar with indexer clients and concepts, see [Create a search indexer](search-howto-create-indexers.md). You should also be familiar with the details of [basic blob indexer configuration](search-howto-indexing-azure-blob-storage.md), which isn't repeated here.
 
 <a name="parsing-markdown-one-to-many"></a>
 
-## Markdown One-To-Many Parsing Mode (Markdown Sections to Multiple Documents)
+## Markdown One-To-Many Parsing Mode (Markdown to Multiple Documents)
 
-The **Markdown One-To-Many Parsing Mode** mode parses markdown files into multiple search documents, where each document corresponds to a specific section of the markdown file based on the header metadata at that point in the document.
+The **Markdown One-To-Many Parsing Mode** parses markdown files into multiple search documents, where each document corresponds to a specific section of the markdown file based on the header metadata at that point in the document.
 
 Consider the following markdown content:
 
@@ -76,7 +75,7 @@ api-key: [admin key]
 {
   "name": "my-markdown-indexer",
   "dataSourceName": "my-blob-datasource",
-  "targetIndexName": "my-markdown-index",
+  "targetIndexName": "my-target-index",
   "parameters": {
     "configuration": { "parsingMode": "markdown" }
   },
@@ -238,12 +237,11 @@ api-key: [admin key]
 {
   "name": "my-markdown-indexer",
   "dataSourceName": "my-blob-datasource",
-  "targetIndexName": "my-markdown-index",
+  "targetIndexName": "my-target-index",
   "parameters": {
     "configuration": {
       "parsingMode": "markdown",
       "markdownParsingSubmode": "oneToMany",
-      "markdownHeaderDepth": "h3"
     }
   }
 }
@@ -297,7 +295,6 @@ The resulting search document in the index would look as follows:
 
 > [!NOTE]
 > These examples specify how to use these parsing modes entirely with or without field mappings, but you can leverage both in one scenario if that suits your needs. (TODO-review: unlikely use case but may be worth acknowleding)
-> As with all indexers, if fields do not clearly match, you should expect to explicitly specify individual [field mappings](search-indexer-field-mappings.md) unless you are using the implicit fields mappings available for blob content and metadata, as described in [basic blob indexer configuration](search-howto-indexing-azure-blob-storage.md).
 
 ## Next steps
 
