@@ -230,7 +230,7 @@ The following status values are possible:
 
 ```http
 curl https://YOUR_RESOURCE_NAME.openai.azure.com/openai/files/{output_file_id}/content?api-version=2024-10-01-preview \
-  -H "api-key: $AZURE_OPENAI_API_KEY"  > batch_output.jsonl
+  -H "api-key: $AZURE_OPENAI_API_KEY"
 ```
 
 ### Additional batch commands
