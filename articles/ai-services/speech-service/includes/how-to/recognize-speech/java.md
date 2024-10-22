@@ -250,6 +250,6 @@ speechConfig.SetProperty(PropertyId.Speech_SegmentationStrategy, "Semantic");
 
 Some of the limitations of semantic segmentation are as follows:
 - You need the Speech SDK version 1.41 or later to use semantic segmentation.
-- Semantic segmentation is only intended for use in [continuous recognition](#use-continuous-recognition). This includes scenarios such as transcription, dictation, and captioning. It shouldn't be used in the single recognition and dictation mode. 
+- Semantic segmentation is only intended for use in [continuous recognition](#use-continuous-recognition). This includes scenarios such as transcription and captioning. It shouldn't be used in the single recognition and dictation mode. 
 - Semantic segmentation isn't available for all languages and locales. Currently, semantic segmentation is only available for English (en) locales such as en-US, en-GB, en-IN, and en-AU.
 - Semantic segmentation doesn't yet support confidence scores and NBest lists. As such, we don't recommend semantic segmentation if you're using confidence scores or NBest lists.
