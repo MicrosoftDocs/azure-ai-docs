@@ -42,17 +42,17 @@ The Azure AI inference endpoint allow customers to use a single endpoint with th
 
 You can see the endpoint URL and credentials in the **Overview** section:
 
-:::image type="content" source="../media/overview/overview-endpoint-and-key.png" alt-text="An screenshot showing how to get the URL and key associated with the resource." lightbox="../media/overview/overview-endpoint-and-key.png":::
+:::image type="content" source="../../media/ai-services/overview/overview-endpoint-and-key.png" alt-text="An screenshot showing how to get the URL and key associated with the resource." lightbox="../../media/ai-services/overview/overview-endpoint-and-key.png":::
 
 ### Routing
 
 The inference endpoint routes requests to a given deployment by matching the parameter `name` inside of the request to the name of the deployment. This means that *deployments work as an alias of a given model under certain configurations*. This flexibility allow you to deploy a given model multiple times in the service but under different configurations if needed.
 
-:::image type="content" source="../media/endpoint/endpoint-routing.png" alt-text="An illustration showing how routing works for a Meta-llama-3.2-8b-instruct model by indicating such name in the parameter 'model' inside of the payload request." lightbox="../media/endpoint/endpoint-routing.png":::
+:::image type="content" source="../../media/ai-services/endpoint/endpoint-routing.png" alt-text="An illustration showing how routing works for a Meta-llama-3.2-8b-instruct model by indicating such name in the parameter 'model' inside of the payload request." lightbox="../../media/ai-services/endpoint/endpoint-routing.png":::
 
 For example, if you create a deployment named `Mistral-large`, then such deployment can be invoked as:
 
-[!INCLUDE [code-create-chat-completion](../../includes/code-create-chat-completion.md)]
+[!INCLUDE [code-create-chat-completion](../../includes/ai-services/code-create-chat-completion.md)]
 
 > [!TIP]
 > Deployment routing is not case sensitive.
@@ -65,9 +65,9 @@ The Azure AI inference endpoint is supported by the **Azure AI inference SDK**, 
 
 Azure OpenAI models deployed to AI services also support the Azure OpenAI API. This API exposes the full capabilities of OpenAI models and support additional features like assistants, threads, files, and batch inference.
 
-Azure OpenAI inference endpoints are used per-deployment and they have they own URL that is associated with only one deployment. However, the same authentication mechanism can be used to consume it. Learn more in the reference page for [Azure OpenAI API](../../openai/reference.md)
+Azure OpenAI inference endpoints are used per-deployment and they have they own URL that is associated with only one deployment. However, the same authentication mechanism can be used to consume it. Learn more in the reference page for [Azure OpenAI API](../../../openai/reference.md)
 
-:::image type="content" source="../media/endpoint/endpoint-openai.png" alt-text="An illustration showing how Azure OpenAI deployments contain a single URL for each deployment." lightbox="../media/endpoint/endpoint-openai.png":::
+:::image type="content" source="../../media/ai-services/endpoint/endpoint-openai.png" alt-text="An illustration showing how Azure OpenAI deployments contain a single URL for each deployment." lightbox="../../media/ai-services/endpoint/endpoint-openai.png":::
 
 Each deployment has a URL that is the concatenations of the **Azure OpenAI** base URL and the route `/deployments/<model-deployment-name>`.
 
