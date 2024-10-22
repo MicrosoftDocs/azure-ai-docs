@@ -38,7 +38,7 @@ A few service properties are fixed for the lifetime of the service. Before creat
 
 Paid (or billable) search occurs when you choose a billable tier (Basic or higher) when creating the resource on a billable Azure subscription.
 
-To try Azure AI Search for free, [open a trial subscription](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A261C142F) and then create your search service by choosing the **Free** tier. You can have one free search service per Azure subscription. Free search services are intended for short-term evaluation of the product for nonproduction applications. Generally, you can complete all of the quickstarts and most tutorials, except for those featuring semantic ranker (it requires a billable service).
+To try Azure AI Search for free, [open a trial subscription](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A261C142F) and then create your search service by choosing the **Free** tier. You can have one free search service per Azure subscription. Free search services are intended for short-term evaluation of the product for nonproduction applications. Generally, you can complete all of the quickstarts and most tutorials, except for those featuring semantic ranker (it requires a billable service). Free services that are inactive for an extended period of time can be deleted by Microsoft to make room for other services.
 
 Alternatively, you can use free credits to try out paid Azure services. With this approach, you can create your search service at **Basic** or higher to get more capacity. Your credit card is never charged unless you explicitly change your settings and ask to be charged. Another approach is to [activate Azure credits in a Visual Studio subscription](https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/?WT.mc_id=A261C142F). A Visual Studio subscription gives you credits every month you can use for paid Azure services. 
 
@@ -132,7 +132,7 @@ Basic and Standard are the most common choices for production workloads, but man
 
 :::image type="content" source="media/search-create-service-portal/select-pricing-tier.png" lightbox="media/search-create-service-portal/select-pricing-tier.png" alt-text="Screenshot of Select a pricing tier page." border="true":::
 
-Search services created after April 3, 2024 have larger partitions and higher vector quotas at every billable tier.
+Search services created after April 3, 2024 have larger partitions and higher vector quotas at every billable tier. 
 
 Remember, a pricing tier can't be changed once the service is created. If you need a higher or lower tier, you should re-create the service.
 
