@@ -18,8 +18,8 @@ Azure AI Language is updated on an ongoing basis. To stay up-to-date with recent
 ## September 2024
 
 * Custom Summarization has been discontinued and is no longer available in the Studio and documentation.
-* PII detection now has container support.
-* Custom Sentament Analysis and Custom Text Analytics for Health have been announced for deprecation.
+* PII detection now has container support. See our [blog post](https://techcommunity.microsoft.com/t5/ai-azure-ai-services-blog/announcing-text-pii-redaction-container-release/ba-p/4264655) for more details
+* Custom Sentament Analysis and Custom Text Analytics for Health have been announced for deprecation. See our [blog post](https://azure.microsoft.com/en-us/updates/v2/custom-text-analytics-for-health-retirement) for more details.
 
 ## August 2024
 * [CLU utterance limit in a project](conversational-language-understanding/service-limits.md#data-limits) increased from 25,000 to 50,000.
