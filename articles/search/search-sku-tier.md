@@ -62,7 +62,7 @@ Currently, several regions are at capacity for specific tiers and can't be used 
 | Central India | S2, S3, S3HD, L1, L2| South India |
 | East US| All tiers| Central US|
 | Qatar Central | All tiers| UAE North |
-| South Central US | All tiers | Central Us |
+| South Central US | All tiers | Central US |
 | US Gov Virginia | All tiers | US Gov Arizona |
 | West Europe | All tiers | North Europe |
 | West US 3| All tiers | Central US |
