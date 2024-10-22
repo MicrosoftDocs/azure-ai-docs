@@ -173,7 +173,6 @@ curl -X POST https://YOUR_RESOURCE_NAME.openai.azure.com/openai/batches?api-vers
 
 ## Track batch job progress
 
-
 Once you have created batch job successfully you can monitor its progress either in the Studio or programatically. When checking batch job progress we recommend waiting at least 60 seconds in between each status call.
 
 ```http
@@ -230,7 +229,7 @@ The following status values are possible:
 
 ```http
 curl https://YOUR_RESOURCE_NAME.openai.azure.com/openai/files/{output_file_id}/content?api-version=2024-10-01-preview \
-  -H "api-key: $AZURE_OPENAI_API_KEY"  > batch_output.jsonl
+  -H "api-key: $AZURE_OPENAI_API_KEY" > batch_output.jsonl
 ```
 
 ### Additional batch commands
@@ -253,13 +252,15 @@ curl https://YOUR_RESOURCE_NAME.openai.azure.com/openai/batches?api-version=2024
   -H "api-key: $AZURE_OPENAI_API_KEY" 
 ```
 
+<a id="List"></a>
+
 ### List batch (Preview)
 
 Use the REST API to list all batch jobs with additional sorting/filtering options.
 
 ```http
 curl "YOUR_RESOURCE_NAME.openai.azure.com/batches?api-version=2024-10-01-preview&$filter=created_at%20gt%201728773533%20and%20created_at%20lt%201729032733%20and%20status%20eq%20'Completed'&$orderby=created_at%20asc" \
-  -H "api-key: $AZURE_OPENAI_API_KEY""
+  -H "api-key: $AZURE_OPENAI_API_KEY"
 ```
 
 To avoid the error `URL rejected: Malformed input to a URL function` spaces are replaced with `%20`.

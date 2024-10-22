@@ -35,7 +35,7 @@ Tiers include **Free**, **Basic**, **Standard**, and **Storage Optimized**. Stan
 
 :::image type="content" source="media/search-sku-tier/tiers.png" lightbox="media/search-sku-tier/tiers.png" alt-text="Pricing tier chart" border="true":::
 
-**Free** creates a [limited search service](search-limits-quotas-capacity.md#subscription-limits) for smaller projects, like running tutorials and code samples. Internally, system resources are shared among multiple subscribers. You can't scale a free service, run significant workloads, and some premium features aren't available. You can only have one free search service per Azure subscription.
+**Free** creates a [limited search service](search-limits-quotas-capacity.md#subscription-limits) for smaller projects, like running tutorials and code samples. Internally, system resources are shared among multiple subscribers. You can't scale a free service, run significant workloads, and some premium features aren't available. You can only have one free search service per Azure subscription. If the service is inactive for an extended period of time, it might be deleted to free up capacity, especially if the region is under capacity constraints.
 
 The most commonly used billable tiers include:
 
@@ -62,6 +62,7 @@ Currently, several regions are at capacity for specific tiers and can't be used 
 | Central US | S2, S3, S3HD, L1, L2 |
 | Central India | S2, S3, S3HD, L1, L2|
 | East US| All tiers|
+| East US 2| Basic, S1|
 | Japan East | S2, S3, S3HD, L1, L2 |
 | Qatar Central | All tiers|
 | South Central US | All tiers |
