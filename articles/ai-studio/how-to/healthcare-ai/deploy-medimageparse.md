@@ -38,6 +38,8 @@ Remarkably, the segmentation masks and textual descriptions were achieved by usi
 
 ## Prerequisites
 
+[!INCLUDE [shared-ai-studio-and-azure-ml-articles](../../includes/shared-ai-studio-and-azure-ml-articles.md)]
+
 To use MedImageParse model with Azure AI Studio or Azure Machine Learning studio, you need the following prerequisites:
 
 ### A model deployment
