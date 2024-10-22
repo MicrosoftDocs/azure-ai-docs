@@ -28,7 +28,7 @@ ms.author: eur
   * Fixed the API reference documentation for the max duration of RecognizeOnce audio.
   * Fixed error handling arbitary sampling rates in JavaScript
     * Thanks to [rseanhall](https://github.com/rseanhall) for this contribution.
-  * Fixed error caculating the audio offset in JavaScript
+  * Fixed error calculating the audio offset in JavaScript
     * Thanks to [motamed](https://github.com/motamed) for this contribution.
 
 #### Breaking Changes
