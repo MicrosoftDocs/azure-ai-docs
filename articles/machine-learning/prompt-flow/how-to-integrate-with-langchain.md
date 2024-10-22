@@ -21,7 +21,7 @@ The [LangChain](https://python.langchain.com) Python library is a framework for 
 
 The integration of LangChain with prompt flow is a powerful combination that can help you build and test your custom language models with ease. You can use LangChain modules to initially build the flow, and then use the prompt flow process to scale experiments for bulk testing, evaluation, and eventual deployment. For example, you can conduct large scale experiments based on larger datasets.
 
-If you already have a local prompt flow based on LangChain code, you can use streamlined prompt flow integration to easily convert it into an Azure Machine Learning prompt flow for further experimentation. Or, if you prefer to use LangChain SDK classes and functions directly, you can easily build flows that use Python nodes containing your custom LangChain code.
+If you already have a local prompt flow based on LangChain code, you can use streamlined prompt flow integration to easily convert it into an Azure Machine Learning prompt flow for further experimentation. Or, if you prefer to use LangChain SDK classes and functions directly, you can easily build flows with Python nodes that contain your custom LangChain code.
 
 ## Prerequisites
 
@@ -63,17 +63,11 @@ To create a flow, select **Create** on the **Prompt flow** page in Azure Machine
 
 All your LangChain code can directly run in Python nodes in your flow, as long as your compute session contains the `langchain` package dependency.
 
-There are two ways to convert your LangChain code into a flow:
+There are two ways to convert your LangChain code into an Azure Machine Learning prompt flow. The type of flow to implement depends on your use case.
 
-- For a simple conversion process, you can initialize and invoke the LLM model within a Python node by using the integrated LangChain LLM library.
-- For better experiment management, you can convert the LLM model to use Azure Machine Learning Python LLM tools in the flow.
+- For better experiment management, you can convert your code to use Azure Machine Learning Python, LLM, and prompt tools in the flow. You extract the prompt template from your code into a prompt node, and put the remaining code in single or multiple Python nodes or tools. This option allows easy prompt tuning by running flow variants. You can choose the optimal prompt based on evaluation results.
 
-The type of flow to implement depends on your use case.
-
-| Flow type | Implementation | Use case |
-|-------| -------- | -------- | -------- |
-| A flow that includes both prompt nodes and Python nodes | Extract your prompt template into a prompt node, and combine the remaining code in single or multiple Python nodes or tools. | Easy prompt tuning by running flow variants, to choose the optimal prompt based on evaluation results.|
-| A flow that includes Python nodes only| Create a new flow with Python nodes only. All code runs in Python nodes, including prompt definitions. | Faster batch testing based on larger scale datasets. |
+- For a simpler conversion process, you can call the LangChain LLM library directly from within your Python nodes. All your code runs in Python nodes, including prompt definitions. This option permits faster batch testing based on larger scale datasets.
 
 The following example shows a flow that uses both prompt nodes and Python nodes:
 
@@ -90,22 +84,19 @@ After you structure your flow and move your code to specific tool nodes, you nee
 1. In your Python code, import the custom connection library by entering `from promptflow.connections import CustomConnection`.
 
    >[!NOTE]
-   >For an Azure OpenAI connection, use `from promptflow.connections import AzureOpenAIConnection`.
+   >To import an Azure OpenAI connection, use `from promptflow.connections import AzureOpenAIConnection`.
 
 1. In your tool function, define an input parameter of the type `CustomConnection`.
 
+1. Replace the environment variables that originally defined the key and credential with the corresponding key added in the connection.
+
    :::image type="content" source="./media/how-to-integrate-with-langchain/custom-connection-python-node-1.png" alt-text="Screenshot of doc search chain node highlighting the custom connection. " lightbox = "./media/how-to-integrate-with-langchain/custom-connection-python-node-1.png":::
    
-1. Parse the input to the input section, and then select your custom connection in the value dropdown.
+1. Parse the input to the input section of the node UI, and then select your custom connection in the **Value** dropdown.
 
    :::image type="content" source="./media/how-to-integrate-with-langchain/custom-connection-python-node-2.png" alt-text="Screenshot of the chain node highlighting the connection. " lightbox = "./media/how-to-integrate-with-langchain/custom-connection-python-node-2.png":::
    
-1. In your code, replace the environment variables that originally defined the key and credential with the corresponding key added in the connection.
 1. Save, return to the authoring page, and also configure the connection parameter in the node input.
-
-If you have a LangChain code that consumes an AzureOpenAI model, import the library by entering `from promptflow.connections import AzureOpenAIConnection`. Replace the environment variables with the corresponding keys from the Azure OpenAI connection. 
-
-:::image type="content" source="./media/how-to-integrate-with-langchain/code-consume-aoai.png" alt-text="Screenshot of LangChain code in prompt flow. " lightbox = "./media/how-to-integrate-with-langchain/code-consume-aoai.png":::
 
 ### Configure input and output
 
