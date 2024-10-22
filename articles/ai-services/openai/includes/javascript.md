@@ -8,7 +8,7 @@ ms.service: azure-ai-openai
 ms.topic: include
 author: mrbullwinkle
 ms.author: mbullwin
-ms.date: 05/20/2024
+ms.date: 10/22/2024
 ---
 
 [Source code](https://github.com/openai/openai-node) | [Package (npm)](https://www.npmjs.com/package/openai) | [Samples](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/openai/openai/samples)
@@ -23,6 +23,7 @@ ms.date: 05/20/2024
 - An Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services?azure-portal=true)
 - [LTS versions of Node.js](https://github.com/nodejs/release#release-schedule)
 - [TypeScript](https://www.typescriptlang.org/download/)
+- [Azure CLI](/cli/azure/install-azure-cli) used for passwordless authentication in a local development environment, create the necessary context by signing in with the Azure CLI.
 - An Azure OpenAI Service resource with the `gpt-35-turbo-instruct` model deployed. For more information about model deployment, see the [resource deployment guide](../how-to/create-resource.md).
 
 > [!div class="nextstepaction"]
@@ -32,6 +33,7 @@ ms.date: 05/20/2024
 
 - An Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services?azure-portal=true)
 - [LTS versions of Node.js](https://github.com/nodejs/release#release-schedule)
+- [Azure CLI](/cli/azure/install-azure-cli) used for passwordless authentication in a local development environment, create the necessary context by signing in with the Azure CLI.
 - An Azure OpenAI Service resource with the `gpt-35-turbo-instruct` model deployed. For more information about model deployment, see the [resource deployment guide](../how-to/create-resource.md).
 
 > [!div class="nextstepaction"]
@@ -64,7 +66,138 @@ Your app's _package.json_ file will be updated with the dependencies.
 
 Open a command prompt where you created the new project, and create a new file named Completion.js. Copy the following code into the Completion.js file.
 
-## [**TypeScript**](#tab/typescript)
+## [**TypeScript (Entra id)**](#tab/typescript-keyless)
+
+```typescript
+import { 
+  DefaultAzureCredential, 
+  getBearerTokenProvider 
+} from "@azure/identity";
+import { AzureOpenAI } from "openai";
+import { type Completion } from "openai/resources/index";
+
+// Load the .env file if it exists
+const dotenv = require("dotenv");
+dotenv.config();
+
+// You will need to set these environment variables or edit the following values
+const endpoint = process.env["AZURE_OPENAI_ENDPOINT"] || "<endpoint>";
+const apiKey = process.env["AZURE_OPENAI_API_KEY"] || "<api key>";
+
+// Required Azure OpenAI deployment name and API version
+const apiVersion = "2024-08-01-preview";
+const deploymentName = "gpt-35-turbo-instruct";
+
+// keyless authentication    
+const credential = new DefaultAzureCredential();
+const scope = "https://cognitiveservices.azure.com/.default";
+const azureADTokenProvider = getBearerTokenProvider(credential, scope);
+
+// Chat prompt and max tokens
+const prompt = ["When was Microsoft founded?"];
+const maxTokens = 128;
+
+function getClient(): AzureOpenAI {
+  return new AzureOpenAI({
+    endpoint,
+    azureADTokenProvider,
+    apiVersion,
+    deployment: deploymentName,
+  });
+}
+async function getCompletion(
+  client: AzureOpenAI,
+  prompt: string[],
+  max_tokens: number
+): Promise<Completion> {
+  return client.completions.create({
+    prompt,
+    model: "",
+    max_tokens,
+  });
+}
+async function printChoices(completion: Completion): Promise<void> {
+  for (const choice of completion.choices) {
+    console.log(choice.text);
+  }
+}
+export async function main() {
+  console.log("== Get completions Sample ==");
+
+  const client = getClient();
+  const completion = await getCompletion(client, prompt, maxTokens);
+  await printChoices(completion);
+}
+
+main().catch((err) => {
+  console.error("Error occurred:", err);
+});
+```
+
+Build the script with the following command:
+
+```cmd
+tsc
+```
+
+Run the script with the following command:
+
+```cmd
+node.exe Completion.js
+```
+
+## [**JavaScript (Entra id)**](#tab/javascript-keyless)
+
+```javascript
+const { AzureOpenAI } = require("openai");
+import { 
+  DefaultAzureCredential, 
+  getBearerTokenProvider 
+} from "@azure/identity";
+
+// Load the .env file if it exists
+const dotenv = require("dotenv");
+dotenv.config();
+
+// You will need to set these environment variables or edit the following values
+const endpoint = process.env["AZURE_OPENAI_ENDPOINT"] || "<endpoint>";
+const apiKey = process.env["AZURE_OPENAI_API_KEY"] || "<api key>";
+const apiVersion = "2024-04-01-preview";
+const deployment = "gpt-35-turbo-instruct"; //The deployment name for your completions API model. The instruct model is the only new model that supports the legacy API.
+
+// keyless authentication    
+const credential = new DefaultAzureCredential();
+const scope = "https://cognitiveservices.azure.com/.default";
+const azureADTokenProvider = getBearerTokenProvider(credential, scope);
+
+const prompt = ["When was Microsoft founded?"];
+
+async function main() {
+  console.log("== Get completions Sample ==");
+
+  const client = new AzureOpenAI({ endpoint, azureADTokenProvider, apiVersion, deployment });  
+
+  const result = await client.completions.create({ prompt, model: deployment, max_tokens: 128 });
+
+  for (const choice of result.choices) {
+    console.log(choice.text);
+  }
+}
+
+main().catch((err) => {
+  console.error("Error occurred:", err);
+});
+
+module.exports = { main };
+```
+
+Run the script with the following command:
+
+```cmd
+node.exe Completion.js
+```
+
+## [**TypeScript (API key)**](#tab/typescript-key)
 
 ```typescript
 import "dotenv/config";
@@ -132,7 +265,7 @@ Run the script with the following command:
 node.exe Completion.js
 ```
 
-## [**JavaScript**](#tab/javascript)
+## [**JavaScript (API key)**](#tab/javascript-key)
 
 ```javascript
 const { AzureOpenAI } = require("openai");
