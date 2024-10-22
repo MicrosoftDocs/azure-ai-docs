@@ -76,7 +76,7 @@ api-key: [admin key]
 {
   "name": "my-markdown-indexer",
   "dataSourceName": "my-blob-datasource",
-  "targetIndexName": "my-target-index",
+  "targetIndexName": "my-markdown-index",
   "parameters": {
     "configuration": { "parsingMode": "markdown" }
   },
@@ -143,7 +143,7 @@ Content for section 2.
 ### One-to-one parsing not utilizing field mappings
 If not utilizing field mappings, the shape of the index should reflect the shape of the markdown content. So using the markdown above, the index should look similar to the following:
 {
-  "name": "markdown-onetoone-no-fieldmappings",
+  "name": "my-markdown-index",
   "fields": [
     {
       "name": "document_content",
@@ -238,7 +238,7 @@ api-key: [admin key]
 {
   "name": "my-markdown-indexer",
   "dataSourceName": "my-blob-datasource",
-  "targetIndexName": "my-target-index",
+  "targetIndexName": "my-markdown-index",
   "parameters": {
     "configuration": {
       "parsingMode": "markdown",
@@ -252,7 +252,7 @@ api-key: [admin key]
 If you would like to extract fields with custom names from the document, you can use field mappings to do so. Using the same markdown file from above, consider the following index configuration:
 
 {
-  "name": "markdown-onetoone-with-fieldmappings",
+  "name": "my-markdown-index",
   "fields": [
     {
       "name": "document_content",
