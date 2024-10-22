@@ -5,7 +5,7 @@ description: Learn how to configure an Azure Machine Learning's managed network 
 manager: scottpolly
 ms.service: azure-machine-learning
 ms.topic: how-to
-ms.date: 10/10/2024
+ms.date: 10/22/2024
 ms.reviewer: meerakurup 
 ms.author: larryfr
 author: Blackmist
@@ -31,6 +31,7 @@ To access on-premises or custom virtual network resources from the managed virtu
 Application Gateway is verified to support a private connection from the managed virtual network to:
 - Jfrog Artifactory
 - Snowflake Database 
+- Private APIs
 
 ## Configure Azure Application Gateway
 
