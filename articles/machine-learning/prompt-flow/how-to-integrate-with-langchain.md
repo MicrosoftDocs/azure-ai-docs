@@ -19,8 +19,6 @@ ms.date: 10/21/2024
 
 The [LangChain](https://python.langchain.com) Python library is a framework for developing applications powered by LLMs, agents, and dependency tools. You can use LangChain in Azure Machine Learning prompt flows. This article shows you how to supercharge your LangChain development with prompt flow.
 
-:::image type="content" source="./media/how-to-integrate-with-langchain/flow.png" alt-text="Screenshot of flows with the LangChain python library. " lightbox = "./media/how-to-integrate-with-langchain/flow.png":::
-
 The integration of LangChain with prompt flow is a powerful combination that can help you build and test your custom language models with ease. You can use LangChain modules to initially build the flow, and then use the prompt flow process to scale experiments for bulk testing, evaluation, and eventual deployment. For example, you can conduct larger scale experiments based on larger datasets.
 
 If you already have a local prompt flow based on LangChain code, you can use streamlined prompt flow integration to easily convert it into a flow for further experimentation. Or, if you're already familiar with the LangChain Python SDK and prefer to use its classes and functions directly, you can easily build flows by using Python nodes that contain your custom code.
