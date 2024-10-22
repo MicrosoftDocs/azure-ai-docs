@@ -7,7 +7,7 @@ ms.author: jboback
 author: jboback
 ms.subservice: azure-ai-qna-maker
 ms.topic: quickstart
-ms.date: 01/19/2024
+ms.date: 10/21/2024
 ms.custom: mode-other
 ---
 
