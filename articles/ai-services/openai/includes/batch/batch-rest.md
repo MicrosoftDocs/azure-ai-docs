@@ -173,6 +173,7 @@ curl -X POST https://YOUR_RESOURCE_NAME.openai.azure.com/openai/batches?api-vers
 
 ## Track batch job progress
 
+<a id="TEST1"></a>
 
 Once you have created batch job successfully you can monitor its progress either in the Studio or programatically. When checking batch job progress we recommend waiting at least 60 seconds in between each status call.
 
@@ -230,7 +231,7 @@ The following status values are possible:
 
 ```http
 curl https://YOUR_RESOURCE_NAME.openai.azure.com/openai/files/{output_file_id}/content?api-version=2024-10-01-preview \
-  -H "api-key: $AZURE_OPENAI_API_KEY"
+  -H "api-key: $AZURE_OPENAI_API_KEY" > batch_output.jsonl
 ```
 
 ### Additional batch commands
@@ -255,7 +256,7 @@ curl https://YOUR_RESOURCE_NAME.openai.azure.com/openai/batches?api-version=2024
 
 ### List batch (Preview)
 
-<a id="list-batch--preview></a>
+<a id="TEST"></a>
 
 Use the REST API to list all batch jobs with additional sorting/filtering options.
 
