@@ -75,7 +75,7 @@ There is no value for `h2`, because no `h2` is set at that point in the file.
 
 For markdown `oneToMany` parsing, the indexer definition should look similar to the following example:
 ```http
-POST https://[service name].search.windows.net/indexers?api-version=2024-10-11
+POST https://[service name].search.windows.net/indexers?api-version=2024-11-01
 Content-Type: application/json
 api-key: [admin key]
 
