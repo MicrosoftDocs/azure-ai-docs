@@ -21,7 +21,7 @@ The [LangChain](https://python.langchain.com) Python library is a framework for 
 
 The integration of LangChain with prompt flow is a powerful combination that can help you build and test your custom language models with ease. You can use LangChain modules to initially build the flow, and then use the prompt flow process to scale experiments for bulk testing, evaluation, and eventual deployment. For example, you can conduct large scale experiments based on larger datasets.
 
-If you already have a local prompt flow based on LangChain code, you can use streamlined prompt flow integration to easily convert it into an Azure Machine Learning prompt flow for further experimentation. Or, if you prefer to use LangChain SDK classes and functions directly, you can easily build flows with Python nodes that contain your custom LangChain code.
+If you already have a local prompt flow based on LangChain code, you can use streamlined prompt flow integration to easily convert it into an Azure Machine Learning prompt flow for further experimentation. Or, if you prefer to use LangChain SDK classes and functions directly, you can easily build Azure Machine Learning flows with Python nodes that contain your custom LangChain code.
 
 ## Prerequisites
 
@@ -51,7 +51,7 @@ To create a connection that securely stores credentials such as your LLM API key
 
    :::image type="content" source="./media/how-to-integrate-with-langchain/custom-connection-2.png" alt-text="Screenshot of adding custom connection key-value pairs.":::
 
-1. To store an encrypted value for a key, select the **is secret** checkbox next to one or more key-value pairs. At least one value must be set as secret for the connection creation to succeed.
+1. To store an encrypted value for a key, select the **is secret** checkbox next to one or more key-value pairs. At least one value must be set as secret for custom connection creation to succeed.
 
 1. Select **Save**.
 
@@ -65,7 +65,7 @@ All your LangChain code can directly run in Python nodes in your flow, as long a
 
 There are two ways to convert your LangChain code into an Azure Machine Learning prompt flow. The type of flow to implement depends on your use case.
 
-- For better experiment management, you can convert your code to use Azure Machine Learning Python, LLM, and prompt tools in the flow. You extract the prompt template from your code into a prompt node, and put the remaining code in single or multiple Python nodes or tools. This option allows easy prompt tuning by running flow variants. You can choose the optimal prompt based on evaluation results.
+- For better experiment management, you can convert your code to use Azure Machine Learning Python, LLM, and prompt tools in the flow. You extract the prompt template from your code into a prompt node, and put the remaining code in single or multiple Python nodes or tools. This option allows easy prompt tuning by running flow variants, and lets you choose the optimal prompt based on evaluation results.
 
 - For a simpler conversion process, you can call the LangChain LLM library directly from within your Python nodes. All your code runs in Python nodes, including prompt definitions. This option permits faster batch testing based on larger scale datasets.
 
@@ -81,16 +81,16 @@ The following example shows a flow that uses Python nodes only:
 
 After you structure your flow and move your code to specific tool nodes, you need to replace your original environment variables with the corresponding keys from your connection. To use the custom connection you created, follow these steps:
 
-1. In your Python code, import the custom connection library by entering `from promptflow.connections import CustomConnection`.
+1. In your Python code, import the custom connection library by entering<br>`from promptflow.connections import CustomConnection`.
 
    >[!NOTE]
    >To import an Azure OpenAI connection, use `from promptflow.connections import AzureOpenAIConnection`.
 
 1. In your tool function, define an input parameter of the type `CustomConnection`.
 
-1. Replace the environment variables that originally defined the key and credential with the corresponding key added in the connection.
-
    :::image type="content" source="./media/how-to-integrate-with-langchain/custom-connection-python-node-1.png" alt-text="Screenshot of doc search chain node highlighting the custom connection. " lightbox = "./media/how-to-integrate-with-langchain/custom-connection-python-node-1.png":::
+
+1. Replace the environment variables that originally defined the key and credential with the corresponding key added in the connection.
    
 1. Parse the input to the input section of the node UI, and then select your custom connection in the **Value** dropdown.
 
