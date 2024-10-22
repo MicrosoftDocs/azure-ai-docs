@@ -49,7 +49,7 @@ To obtain the key and endpoint:
 
 8. Once it's deployed, your model's API Key and endpoint are shown in the Overview. Use these values in your code to use the model in your production environment.
 
-    :::image type="content" source="../media/add-model-deployments/models-deploy-endpoint-url.png" alt-text="An screenshot showing how to get the URL and key associated with the deployment." lightbox="../media/add-model-deployments/models-deploy-endpoint-url.png":::
+    :::image type="content" source="../../media/ai-services/add-model-deployments/models-deploy-endpoint-url.png" alt-text="An screenshot showing how to get the URL and key associated with the deployment." lightbox="../media/add-model-deployments/models-deploy-endpoint-url.png":::
 
 At this point, the model you selected will be ready to consume. 
 
@@ -58,13 +58,13 @@ At this point, the model you selected will be ready to consume.
 
 ## Add more models
 
-[!INCLUDE [add-model-deployments](../includes/add-model-deployments.md)]
+[!INCLUDE [add-model-deployments](../../includes/ai-services/add-model-deployments.md)]
 
 ## Upgrade your code to use the new endpoint
 
 Once your Azure AI Services resource is configured, you can start consuming it from your code. You will need the endpoint URL and key for it, which can be found in the **Overview** section:
 
-:::image type="content" source="../media/overview/overview-endpoint-and-key.png" alt-text="An screenshot showing how to get the URL and key associated with the resource." lightbox="../media/overview/overview-endpoint-and-key.png":::
+:::image type="content" source="../../media/ai-services/overview/overview-endpoint-and-key.png" alt-text="An screenshot showing how to get the URL and key associated with the resource." lightbox="../media/overview/overview-endpoint-and-key.png":::
 
 You can use any of the supported SDKs to get predictions out from the endpoint. The following SDKs are officially supported:
 
@@ -74,7 +74,7 @@ You can use any of the supported SDKs to get predictions out from the endpoint. 
 
 See the [supported languages and SDKs](../supported-languages.md) section for more details and examples. The following example shows how to use the Azure AI model inference SDK with the newly deployed model:
 
-[!INCLUDE [code-create-chat-client](../includes/code-create-chat-client.md)]
+[!INCLUDE [code-create-chat-client](../../includes/ai-services/code-create-chat-client.md)]
 
 ## Explore additional features
 

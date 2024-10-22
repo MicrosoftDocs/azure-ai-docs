@@ -16,7 +16,7 @@ You can add all the models you need in the endpoint by using [Azure AI Studio fo
 
 2. Scroll to the model you are interested in and select it.
    
-   :::image type="content" source="../media/add-model-deployments/models-search-and-deploy.gif" alt-text="An animation showing how to search models in the model catalog and select one for viewing its details." lightbox="../media/add-model-deployments/models-search-and-deploy.gif":::
+   :::image type="content" source="../../media/ai-services/add-model-deployments/models-search-and-deploy.gif" alt-text="An animation showing how to search models in the model catalog and select one for viewing its details." lightbox="../media/add-model-deployments/models-search-and-deploy.gif":::
 
 3. You can review the details of the model in the model card.
 
@@ -24,7 +24,7 @@ You can add all the models you need in the endpoint by using [Azure AI Studio fo
 
 5. For models providers that require additional terms of contract, you will be asked to accept those terms. This is the case for Mistral models for instance. Accept the terms on those cases by selecting **Subscribe and deploy**.
    
-   :::image type="content" source="../media/add-model-deployments/models-deploy-agree.png" alt-text="An screenshot showing how to agree the terms and conditions of a Mistral-Large model." lightbox="../media/add-model-deployments/models-deploy-agree.png":::
+   :::image type="content" source="../../media/ai-services/add-model-deployments/models-deploy-agree.png" alt-text="An screenshot showing how to agree the terms and conditions of a Mistral-Large model." lightbox="../media/add-model-deployments/models-deploy-agree.png":::
 
 6.  You can configure the deployment settings at this time. By default, the deployment receives the name of the model you are deploying. The deployment name is used in the `model` parameter for request to route to this particular model deployment. This allow you to also configure specific names for your models when you attach specific configurations. For instance `o1-preview-safe` for a model with a strict content safety content filter.
 
@@ -33,7 +33,7 @@ You can add all the models you need in the endpoint by using [Azure AI Studio fo
 
 7.  Use the **Customize** option if you need to change settings like [content filter](/azure/ai-services/model-inference/concepts/content-filter) or rate limiting (if available).
    
-   :::image type="content" source="../media/add-model-deployments/models-deploy-customize.png" alt-text="An screenshot showing how to customize the deployment if needed." lightbox="../media/add-model-deployments/models-deploy-customize.png":::
+   :::image type="content" source="../../media/ai-services/add-model-deployments/models-deploy-customize.png" alt-text="An screenshot showing how to customize the deployment if needed." lightbox="../media/add-model-deployments/models-deploy-customize.png":::
 
 8.  Select **Deploy**.
 

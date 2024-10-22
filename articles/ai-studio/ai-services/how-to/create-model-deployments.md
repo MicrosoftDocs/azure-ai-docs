@@ -28,7 +28,7 @@ To complete this article, you need:
 
 ## Add a models
 
-[!INCLUDE [add-model-deployments](../includes/add-model-deployments.md)]
+[!INCLUDE [add-model-deployments](../../includes/ai-services/add-model-deployments.md)]
 
 ## Use the model
 
@@ -38,11 +38,11 @@ To use it:
 
 1. Get the Azure AI model's inference endpoint URL and keys from the **deployment page** or the **Overview** page. If you are using Microsoft Entra ID authentication, you don't need a key.
 
-    :::image type="content" source="../media/add-model-deployments/models-deploy-endpoint-url.png" alt-text="An screenshot showing how to get the URL and key associated with the deployment." lightbox="../media/add-model-deployments/models-deploy-endpoint-url.png":::
+    :::image type="content" source="../../media/ai-services/add-model-deployments/models-deploy-endpoint-url.png" alt-text="An screenshot showing how to get the URL and key associated with the deployment." lightbox="../media/add-model-deployments/models-deploy-endpoint-url.png":::
 
 2. When constructing your request, indicate the parameter `model` and insert the model deployment name you have created.
 
-    [!INCLUDE [code-create-chat-completion](../includes/code-create-chat-completion.md)]
+    [!INCLUDE [code-create-chat-completion](../../includes/ai-services/code-create-chat-completion.md)]
 
 3. When using the endpoint, you can change the `model` parameter to any available model deployment in your resource.
 
