@@ -19,7 +19,8 @@ Azure AI Language is updated on an ongoing basis. To stay up-to-date with recent
 
 * Custom Summarization has been discontinued and is no longer available in the Studio and documentation.
 * PII detection now has container support. See our [blog post](https://techcommunity.microsoft.com/t5/ai-azure-ai-services-blog/announcing-text-pii-redaction-container-release/ba-p/4264655) for more details
-* Custom Sentament Analysis and Custom Text Analytics for Health have been announced for deprecation. See our [blog post](https://azure.microsoft.com/en-us/updates/v2/custom-text-analytics-for-health-retirement) for more details.
+* Custom sentiment analysis (preview) will be retired on January 10th, 2025. Please transition to other custom model training services, such as custom text classification in Azure AI Language, by that date.  See more details in the [Azure Update post](https://azure.microsoft.com/en-us/updates/v2/custom-sentiment-analysis-retirement).
+* Custom text analytics for health (preview) will be retired on January 10th, 2025. Please transition to other custom model training services, such as custom named entity recognition in Azure AI Language, by that date.  See more details in the [Azure Update post](https://azure.microsoft.com/en-us/updates/v2/custom-text-analytics-for-health-retirement).
 
 ## August 2024
 * [CLU utterance limit in a project](conversational-language-understanding/service-limits.md#data-limits) increased from 25,000 to 50,000.
