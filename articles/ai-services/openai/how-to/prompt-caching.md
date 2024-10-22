@@ -22,10 +22,13 @@ Currently only the following models support prompt caching with Azure OpenAI:
 
 - `o1-preview-2024-09-12`
 - `o1-mini-2024-09-12`
+- `gpt-4o-2024-05-13`
+- `gpt-4o-2024-08-06`
+- `gpt-4o-mini-2024-07-18`
 
 ## API support
 
-Official support for prompt caching was first added in API version `2024-10-01-preview`.
+Official support for prompt caching was first added in API version `2024-10-01-preview`. At this time, only `o1-preview-2024-09-12` and `o1-mini-2024-09-12` models support the `cached_tokens` API response parameter.
 
 ## Getting started
 
@@ -67,7 +70,7 @@ A single character difference in the first 1,024 tokens will result in a cache m
 
 The o1-series models are text only and don't support system messages, images, tool use/function calling, or structured outputs. This limits the efficacy of prompt caching for these models to the user/assistant portions of the messages array which are less likely to have an identical 1024 token prefix.
 
-Once prompt caching is enabled for other supported models prompt caching will expand to support:  
+For `gpt-4o` and `gpt-4o-mini` models, prompt caching is supported for:  
 
 | **Caching Supported** | **Description** |
 |--------|--------|
