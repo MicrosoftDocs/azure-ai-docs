@@ -175,12 +175,14 @@ items:
         href: ai-services/how-to/quickstart-github-models.md
       - name: Azure AI Services
         items:
-        - name: Inference endpoint
-          href: ai-services/concepts/endpoints.md
+        - name: What is Azure AI model inference in Azure AI Services?
+          href: ai-services/model-inference.md
         - name: Add and configure models
           href: ai-services/how-to/create-model-deployments.md
         - name: Deployment types
           href: ai-services/concepts/deployment-types.md
+        - name: Inference endpoint for model deployments
+          href: ai-services/concepts/endpoints.md
         - name: Supported languages
           href: ai-services/supported-languages.md
       - name: Serverless API
