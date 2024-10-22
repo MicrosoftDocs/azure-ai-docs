@@ -12,15 +12,22 @@ ms.author: mopeakande
 author: msakande
 ms.custom: references_regions
 
-#customer intent: As a Data Scientist, I want to learn how to fine-tune models using user managed compute <what> so that <why>
+#customer intent: As a Data Scientist, I want to learn how to fine-tune models using user-managed compute to improve model performance for specific tasks. 
 ---
 
 # Fine-tune using User-managed compute
 
-In this article
-  - [Fine-tune using User-managed compute](#distillation)
-  - [Related Contents](#next-steps)
+This article explains how to fine-tune a machine learning model by adapting a pre-trained model to a new, related task or domain. The process involves using your own computational resources to adjust training parameters such as learning rate, batch size, and the number of training epochs, allowing you to optimize the model’s performance for specific tasks. This method is more efficient than building a model from scratch, as it leverages the pre-trained model's existing knowledge, reducing the time and data needed for training.
 
+## Prerequisites
+
+- An Azure subscription with a valid payment method. Free or trial Azure subscriptions won't work. If you don't have an Azure subscription, create a [paid Azure account](https://azure.microsoft.com/pricing/purchase-options/pay-as-you-go) to begin.
+
+- An [Azure AI Studio hub](create-azure-ai-resource.md).
+
+- An [Azure AI Studio project](create-projects.md).
+
+- Azure role-based access controls (Azure RBAC) are used to grant access to operations in Azure AI Studio. To perform the steps in this article, your user account must be assigned the __owner__ or __contributor__ role for the Azure subscription. 
 
 ## How to fine-tune foundation models using your own training data
 
@@ -36,9 +43,9 @@ Select the suitable Service method to fine-tune your model. You can choose betwe
 
 
   > [!NOTE]
-    > Some foundation models support only the 'User-managed compute' option.
+  > Some foundation models support only the 'User-managed compute' option.
 
-![Fine tune options in AI Studio](./fine-tune-options.png)
+![Fine tune options in AI Studio](../media/how-to/fine-tuning-maap/fine-tune-options.png)
 
 ### Fine-tune Settings:
 
@@ -50,7 +57,7 @@ Select the suitable Service method to fine-tune your model. You can choose betwe
 
 - Provide the Azure Machine Learning Compute cluster you would like to use for fine-tuning the model. Fine-tuning needs to run on GPU compute. Ensure that you have sufficient compute quota for the compute SKUs you wish to use.
 
-![Fine tune compute in AI Studio](./fine-tune-compute.png)
+![Fine tune compute in AI Studio](../media/how-to/fine-tuning-maap/fine-tune-compute.png)
 
 #### Training Data
 
@@ -58,7 +65,7 @@ Select the suitable Service method to fine-tune your model. You can choose betwe
 
 2.	Once you've selected the dataset, you need to map the columns from your input data, based on the schema needed for the task. For example: map the column names that correspond to the 'sentence' and 'label' keys for Text Classification.
 
-![Fine tune training data in AI Studio](./fine-tune-training-data.jpeg)
+![Fine tune training data in AI Studio](../media/how-to/fine-tuning-maap/fine-tune-training-data.png)
 
 
 #### Validation data
@@ -74,7 +81,5 @@ Select the suitable Service method to fine-tune your model. You can choose betwe
 - Select Finish in the fine-tune form to submit your fine-tuning job. Once the job completes, you can view evaluation metrics for the fine-tuned model. You can then deploy this model to an endpoint for inferencing.
 
 ## Related Contents
-- [Fine-tuning in Azure AI Studio - Azure AI Studio | Microsoft Learn](../fine-tuning-overview.md)
-- [Fine-tune a Llama 2 model in Azure AI Studio](../fine-tune-model-llama.md)
-- [Fine-tune a Phi-3 model in Azure AI Studio](../fine-tune-phi-3.md)
-- [Deploy Phi-3 family of small language models with Azure AI Studio](../deploy-models-phi-3.md)
+- [Fine-tuning in Azure AI Studio - Azure AI Studio | Microsoft Learn](../concepts/fine-tuning-overview.md)
+- [Deploy Phi-3 family of small language models with Azure AI Studio](../how-to/deploy-models-phi-3.md)
