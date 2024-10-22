@@ -69,6 +69,7 @@ The following table lists the Azure AI Speech HD voices that are currently avail
 | en-US-Andrew2 | en-US-Andrew2:DragonHDLatestNeural<br/>en-US-Andrew2:DragonHDv1Neural |
 | en-US-Aria | en-US-Aria:DragonHDLatestNeural<br/>en-US-Aria:DragonHDv1Neural |
 | en-US-Ava | en-US-Ava:DragonHDLatestNeural<br/>en-US-Ava:DragonHDv1Neural |
+| en-US-Brian | en-US-Brian:DragonHDLatestNeural|
 | en-US-Davis | en-US-Davis:DragonHDLatestNeural<br/>en-US-Davis:DragonHDv1Neural |
 | en-US-Emma | en-US-Emma:DragonHDLatestNeural<br/>en-US-Emma:DragonHDv1Neural |
 | en-US-Emma2 | en-US-Emma2:DragonHDLatestNeural<br/>en-US-Emma2:DragonHDv1Neural |
