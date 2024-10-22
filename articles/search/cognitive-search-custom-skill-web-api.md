@@ -8,7 +8,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: conceptual
-ms.date: 07/25/2024
+ms.date: 10/21/2024
 ---
 
 # Custom Web API skill in an Azure AI Search enrichment pipeline
@@ -92,7 +92,7 @@ It always follows these constraints:
 
   * A `recordId` property that is a **unique** string, used to identify that record.
 
-  * A `data` property that is a JSON object. The fields of the `data` property corresponds to the "names" specified in the `inputs` section of the skill definition. The values of those fields are from the `source` of those fields (which could be from a field in the document, or potentially from another skill).
+  * A `data` property that is a JSON object. The fields of the `data` property correspond to the "names" specified in the `inputs` section of the skill definition. The values of those fields are from the `source` of those fields (which could be from a field in the document, or potentially from another skill).
 
 ```json
 {

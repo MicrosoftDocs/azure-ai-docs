@@ -28,7 +28,7 @@ The healthcare industry is undergoing a revolutionary transformation driven by t
 
 The [Azure AI model catalog](../model-catalog-overview.md) provides foundational healthcare AI models that facilitate AI-powered analysis of various medical data types and expand well beyond medical text comprehension into the multimodal reasoning about medical data. These AI models can integrate and analyze data from diverse sources that come in various modalities, such as medical imaging, genomics, clinical records, and other structured and unstructured data sources. The models also span several healthcare fields like dermatology, ophthalmology, radiology, and pathology. 
 
-The healthcare AI AI model pages refer to both Azure AI Studio and Azure Machine Learning studio. To learn more about differences between these two products and which one to use, see [AI Studio or Azure Machine Learning: Which experience should I choose?](/ai/ai-studio-experiences-overview).
+[!INCLUDE [shared-ai-studio-and-azure-ml-articles](../../includes/shared-ai-studio-and-azure-ml-articles.md)]
 
 ## Microsoft first-party models
 
