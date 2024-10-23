@@ -12,11 +12,11 @@ ms.author: fasantia
 recommendations: false
 ---
 
-# Upgrade from GitHub Models to Azure AI model inference in Azure AI Services
+# Upgrade from GitHub Models to the Azure AI model inference service
 
 If you want to develop a generative AI application, you can use [GitHub Models](https://docs.github.com/en/github-models/) to find and experiment with AI models for free. The playground and free API usage are [rate limited](https://docs.github.com/en/github-models/prototyping-with-ai-models#rate-limits) by requests per minute, requests per day, tokens per request, and concurrent requests. If you get rate limited, you will need to wait for the rate limit that you hit to reset before you can make more requests.
 
-Once you are ready to bring your application to production, you can upgrade your experience by deploying an AI services resource in an Azure subscription and start using the Azure AI Models service. You don't need to change anything else in your code.
+Once you're ready to bring your application to production, you can upgrade your experience by deploying an Azure AI Services resource in an Azure subscription and start using the Azure AI model inference service. You don't need to change anything else in your code.
 
 The following article explains how to get started from GitHub Models in Azure AI Models for Azure AI services.
 
@@ -43,7 +43,7 @@ To obtain the key and endpoint:
 
 5. If your existing account is a free account, you first have to upgrade to a Pay as you go plan. Once you upgrade, go back to the playground and select **Get API key** again, then sign in with your upgraded account.
 
-6. Once you've signed in to your Azure account, you see [Azure AI Studio | GitHub](https://ai-azure.com/GitHub). It might take 1-2 minutes to load the studio with your initial model details.
+6. Once you've signed in to your Azure account, you're taken to [Azure AI Studio > GitHub](https://ai-azure.com/GitHub). It might take one or two minutes to load your initial model details in AI Studio.
 
 7. The page is loaded with your model's details. Select the **Deploy** button to deploy the model to your account.
 
@@ -78,7 +78,7 @@ See the [supported languages and SDKs](../supported-languages.md) section for mo
 
 ## Explore additional features
 
-Azure AI services resource supports additional features not available in GitHub Models, including:
+Azure AI model inference service supports additional features not available in GitHub Models, including:
 
 * [Explore the model catalog](https://ai.azure.com/github/models) to see additional models not available in GitHub Models.
 * Configure [content filtering](content-filters.md).
