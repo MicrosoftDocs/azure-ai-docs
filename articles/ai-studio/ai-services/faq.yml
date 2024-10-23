@@ -12,7 +12,7 @@ metadata:
   author: santiagxf
 title: Azure AI model inference service frequently asked questions
 summary: |
-  If you can't find answers to your questions in this document, and still need help check the [Azure AI services support options guide](../cognitive-services-support-options.md?context=/azure/ai-services/openai/context/context).
+  If you can't find answers to your questions in this document, and still need help check the [Azure AI services support options guide](../../ai-services/cognitive-services-support-options.md?context=/azure/ai-studio/context/context).
 sections:
   - name: General
     questions:
@@ -31,7 +31,7 @@ sections:
 
           Customers get the security capabilities of Microsoft Azure while running the same models as OpenAI. It offers private networking, regional availability, and responsible AI content filtering.  
 
-          Learn more about the [Azure OpenAI service](../../openai/overview.md).
+          Learn more about the [Azure OpenAI service](../../ai-services/openai/overview.md).
       - question: |
           What's the difference between Azure AI services and Azure AI studio?
         answer: |
@@ -41,7 +41,7 @@ sections:
       - question: |
           Why are not all the models in the Azure AI model catalog supported in Azure AI services?
         answer: |
-          The Azure AI model inference service in AI services support all the models in the Azure AI catalog having pay-as-you-go billing. See [the Models article](concepts/models.md) for more information.
+          The Azure AI model inference service in AI services support all the models in the Azure AI catalog having pay-as-you-go billing. See [the Models section](model-inference.md#models) for more information.
 
           The Azure AI model catalog contains a wider list of models, however, those models require compute quota from your subscription. They also need to have a project or AI hub where to host the deployment. See [deployment options in Azure AI studio](../concepts/deployments-overview.md) for more details.
       - question: |
@@ -49,7 +49,7 @@ sections:
         answer: |
           The Azure OpenAI Service o1 models require registration and are eligible only to customers on the Enterprise Agreement Offer. Subscriptions not under the Enterprise Agreement Offer are subject to denial. We will onboard eligible customers as we have space. Due to high demand, eligible customers may remain on the waitist until space is available.
 
-          Other models ([see list](../../openai/concepts/models.md)) do not require registration.  [Learn more about limited access to Azure OpenAI Service](/legal/cognitive-services/openai/limited-access?context=/azure/cognitive-services/model-inference/context/context). 
+          Other models ([see list](../../ai-services/openai/concepts/models.md)) do not require registration.  [Learn more about limited access to Azure OpenAI Service](/legal/cognitive-services/openai/limited-access?context=/azure/cognitive-services/model-inference/context/context). 
   - name: SDKs and programming languages
     questions:
       - question: |
@@ -59,7 +59,7 @@ sections:
 
           Cohere SDK, Mistral SDK, and model provider-specific SDKs are not supported when connected to Azure AI services.
 
-          See [supported SDKs and programming languages](supported-languages.md) for more information.
+          See [supported SDKs and programming languages](concepts/endpoints.md) for more information.
       - question: |
           Does Azure AI model inference service work with the latest Python library released by OpenAI (version>=1.0)?
         answer: |

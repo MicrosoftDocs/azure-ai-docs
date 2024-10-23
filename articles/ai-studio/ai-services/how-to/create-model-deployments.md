@@ -23,7 +23,7 @@ In this article, you will learn how to add a new model to the Azure AI model inf
 To complete this article, you need:
 
 * An Azure subscription. If you are using [GitHub Models](https://docs.github.com/en/github-models/), you can upgrade your experience and create an Azure subscription in the process. Read [Upgrade from GitHub Models to Azure AI Models in AI Services](quickstart-github-models.md) if that's your case.
-* An Azure AI services resource. See [Create an Azure AI Services resource](../../ai-services/multi-service-resource.md??context=/azure/ai-services/model-inference/context/context) for more details.
+* An Azure AI services resource. See [Create an Azure AI Services resource](../../../ai-services/multi-service-resource.md??context=/azure/ai-studio/context/context) for more details.
 
 
 ## Add a models
@@ -46,7 +46,7 @@ To use it:
 
 3. When using the endpoint, you can change the `model` parameter to any available model deployment in your resource.
 
-Additionally, Azure OpenAI models can be consumed using the [Azure OpenAI service endpoint](../../ai-services/openai/supported-languages.md) in the resource. This endpoint is exclusive for each model deployment and has its own URL.
+Additionally, Azure OpenAI models can be consumed using the [Azure OpenAI service endpoint](../../../ai-services/openai/supported-languages.md) in the resource. This endpoint is exclusive for each model deployment and has its own URL.
 
 ## Model deployment customization
 
@@ -57,4 +57,4 @@ When creating model deployments, you can configure additional settings including
 
 ## Next steps
 
-* [Develop applications using Azure AI model inference service in Azure AI services](../supported-languages.md)
+* [Develop applications using Azure AI model inference service in Azure AI services](../endpoints.md)
