@@ -351,7 +351,7 @@ An individual assistant can access up to 128 tools including `code interpreter`,
     ```
 
 
-#### [TypeScript with API key](#tab/typescript-key)
+#### [TypeScript (API key)](#tab/typescript-key)
 
 1. Create the `index.ts` file with the following code:
 
@@ -470,7 +470,7 @@ An individual assistant can access up to 128 tools including `code interpreter`,
     node index.js
     ```
 
-#### [JavaScript with API key](#tab/javascript-key)
+#### [JavaScript (API key)](#tab/javascript-key)
 
 1. Create the `index.js` file with the following code:
 

@@ -231,7 +231,7 @@ Your app's _package.json_ file will be updated with the dependencies.
     ```
 
 
-#### [TypeScript (API Key)](#tab/typescript-key)
+#### [TypeScript (API key)](#tab/typescript-key)
 
 1. Open a command prompt where you want the new project, and create a new file named `ChatWithOwnData.ts`. Copy the following code into the `ChatWithOwnData.ts` file.
     
