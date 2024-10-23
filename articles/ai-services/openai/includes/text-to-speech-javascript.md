@@ -18,6 +18,7 @@ recommendations: false
 
 - An Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services?azure-portal=true)
 - [LTS versions of Node.js](https://github.com/nodejs/release#release-schedule)
+- [Azure CLI](/cli/azure/install-azure-cli) used for passwordless authentication in a local development environment, create the necessary context by signing in with the Azure CLI.
 - An Azure OpenAI resource created in a supported region (see [Region availability](/azure/ai-services/openai/concepts/models#model-summary-table-and-region-availability)). For more information, see [Create a resource and deploy a model with Azure OpenAI](../how-to/create-resource.md).
 
 
@@ -26,6 +27,7 @@ recommendations: false
 - An Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services?azure-portal=true)
 - [LTS versions of Node.js](https://github.com/nodejs/release#release-schedule)
 - [TypeScript](https://www.typescriptlang.org/download/)
+- [Azure CLI](/cli/azure/install-azure-cli) used for passwordless authentication in a local development environment, create the necessary context by signing in with the Azure CLI.
 - An Azure OpenAI resource created in a supported region (see [Region availability](/azure/ai-services/openai/concepts/models#model-summary-table-and-region-availability)). For more information, see [Create a resource and deploy a model with Azure OpenAI](../how-to/create-resource.md).
 
 
@@ -104,9 +106,86 @@ Your app's _package.json_ file will be updated with the dependencies.
 
 ## Create a speech file
 
+    
 
+#### [TypeScript (Microsoft Entra Id)](#tab/typescript-keyless)
 
-#### [JavaScript](#tab/javascript)
+1. Create a new file named _Text-to-speech.ts_ and open it in your preferred code editor. Copy the following code into the _Text-to-speech.ts_ file:
+
+    ```typescript
+    import "dotenv/config";
+    import { writeFile } from "fs/promises";
+    import { AzureOpenAI } from "openai";
+    import { DefaultAzureCredential, getBearerTokenProvider } from "@azure/identity";
+    import type { SpeechCreateParams } from "openai/resources/audio/speech";
+    import "openai/shims/node";
+    
+    // You will need to set these environment variables or edit the following values
+    const endpoint = process.env["AZURE_OPENAI_ENDPOINT"] || "<endpoint>";
+    const speechFilePath =
+      process.env["SPEECH_FILE_PATH"] || "<path to save the speech file>";
+    
+    // Required Azure OpenAI deployment name and API version
+    const deploymentName = "tts";
+    const apiVersion = "2024-08-01-preview";
+
+    // keyless authentication    
+    const credential = new DefaultAzureCredential();
+    const scope = "https://cognitiveservices.azure.com/.default";
+    const azureADTokenProvider = getBearerTokenProvider(credential, scope);
+
+    function getClient(): AzureOpenAI {
+      return new AzureOpenAI({
+        endpoint,
+        azureADTokenProvider,
+        apiVersion,
+        deployment: deploymentName,
+      });
+    }
+    
+    async function generateAudioStream(
+      client: AzureOpenAI,
+      params: SpeechCreateParams
+    ): Promise<NodeJS.ReadableStream> {
+      const response = await client.audio.speech.create(params);
+      if (response.ok) return response.body;
+      throw new Error(`Failed to generate audio stream: ${response.statusText}`);
+    }
+    export async function main() {
+      console.log("== Text to Speech Sample ==");
+    
+      const client = getClient();
+      const streamToRead = await generateAudioStream(client, {
+        model: deploymentName,
+        voice: "alloy",
+        input: "the quick brown chicken jumped over the lazy dogs",
+      });
+    
+      console.log(`Streaming response to ${speechFilePath}`);
+      await writeFile(speechFilePath, streamToRead);
+      console.log("Finished streaming");
+    }
+    
+    main().catch((err) => {
+      console.error("The sample encountered an error:", err);
+    });
+    
+    ```
+    
+   The import of `"openai/shims/node"` is necessary when running the code in a Node.js environment. It ensures that the output type of the `client.audio.speech.create` method is correctly set to `NodeJS.ReadableStream`.
+
+1. Build the application with the following command:
+
+    ```console
+    tsc
+    ```
+
+1. Run the application with the following command:
+
+    ```console
+    node Text-to-speech.js
+    ```
+#### [JavaScript (Microsoft Entra Id)](#tab/javascript-keyless)
 
 1. Create a new file named _Text-to-speech.js_ and open it in your preferred code editor. Copy the following code into the _Text-to-speech.js_ file:
 
@@ -114,11 +193,11 @@ Your app's _package.json_ file will be updated with the dependencies.
     require("dotenv/config");
     const { writeFile } = require("fs/promises");
     const { AzureOpenAI } = require("openai");
+    const { DefaultAzureCredential, getBearerTokenProvider } = require("@azure/identity");
     require("openai/shims/node");
     
     // You will need to set these environment variables or edit the following values
     const endpoint = process.env["AZURE_OPENAI_ENDPOINT"] || "<endpoint>";
-    const apiKey = process.env["AZURE_OPENAI_API_KEY"] || "<api key>";
     const speechFilePath =
       process.env["SPEECH_FILE_PATH"] || "<path to save the speech file>";
     
@@ -126,10 +205,15 @@ Your app's _package.json_ file will be updated with the dependencies.
     const deploymentName = "tts";
     const apiVersion = "2024-08-01-preview";
     
+    // keyless authentication    
+    const credential = new DefaultAzureCredential();
+    const scope = "https://cognitiveservices.azure.com/.default";
+    const azureADTokenProvider = getBearerTokenProvider(credential, scope);
+
     function getClient() {
       return new AzureOpenAI({
         endpoint,
-        apiKey,
+        azureADTokenProvider,
         apiVersion,
         deployment: deploymentName,
       });
@@ -169,9 +253,9 @@ Your app's _package.json_ file will be updated with the dependencies.
     ```console
     node Text-to-speech.js
     ```
-    
 
-#### [TypeScript](#tab/typescript)
+
+#### [TypeScript (API key)](#tab/typescript-key)
 
 1. Create a new file named _Text-to-speech.ts_ and open it in your preferred code editor. Copy the following code into the _Text-to-speech.ts_ file:
 
@@ -243,5 +327,70 @@ Your app's _package.json_ file will be updated with the dependencies.
     ```console
     node Text-to-speech.js
     ```
+
+#### [JavaScript (API key)](#tab/javascript-key)
+
+1. Create a new file named _Text-to-speech.js_ and open it in your preferred code editor. Copy the following code into the _Text-to-speech.js_ file:
+
+    ```javascript
+    require("dotenv/config");
+    const { writeFile } = require("fs/promises");
+    const { AzureOpenAI } = require("openai");
+    require("openai/shims/node");
+    
+    // You will need to set these environment variables or edit the following values
+    const endpoint = process.env["AZURE_OPENAI_ENDPOINT"] || "<endpoint>";
+    const apiKey = process.env["AZURE_OPENAI_API_KEY"] || "<api key>";
+    const speechFilePath =
+      process.env["SPEECH_FILE_PATH"] || "<path to save the speech file>";
+    
+    // Required Azure OpenAI deployment name and API version
+    const deploymentName = "tts";
+    const apiVersion = "2024-08-01-preview";
+    
+    function getClient() {
+      return new AzureOpenAI({
+        endpoint,
+        apiKey,
+        apiVersion,
+        deployment: deploymentName,
+      });
+    }
+    
+    async function generateAudioStream(
+      client,
+      params
+    ) {
+      const response = await client.audio.speech.create(params);
+      if (response.ok) return response.body;
+      throw new Error(`Failed to generate audio stream: ${response.statusText}`);
+    }
+    export async function main() {
+      console.log("== Text to Speech Sample ==");
+    
+      const client = getClient();
+      const streamToRead = await generateAudioStream(client, {
+        model: deploymentName,
+        voice: "alloy",
+        input: "the quick brown chicken jumped over the lazy dogs",
+      });
+    
+      console.log(`Streaming response to ${speechFilePath}`);
+      await writeFile(speechFilePath, streamToRead);
+      console.log("Finished streaming");
+    }
+    
+    main().catch((err) => {
+      console.error("The sample encountered an error:", err);
+    });
+    
+    ```
+
+1. Run the script with the following command:
+
+    ```console
+    node Text-to-speech.js
+    ```
+    
 
 ---

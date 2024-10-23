@@ -3,7 +3,7 @@ ms.topic: include
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: include
-ms.date: 9/12/2024
+ms.date: 10/22/2024
 ms.reviewer: v-baolianzou
 ms.author: eur
 author: eric-urban
@@ -17,6 +17,7 @@ author: eric-urban
 
 - An Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services?azure-portal=true)
 - [LTS versions of Node.js](https://github.com/nodejs/release#release-schedule)
+- [Azure CLI](/cli/azure/install-azure-cli) used for passwordless authentication in a local development environment, create the necessary context by signing in with the Azure CLI.
 - An Azure OpenAI resource created in a supported region (see [Region availability](/azure/ai-services/openai/concepts/models#model-summary-table-and-region-availability)). For more information, see [Create a resource and deploy a model with Azure OpenAI](../how-to/create-resource.md).
 
 
@@ -26,6 +27,7 @@ author: eric-urban
 - An Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services?azure-portal=true)
 - [LTS versions of Node.js](https://github.com/nodejs/release#release-schedule)
 - [TypeScript](https://www.typescriptlang.org/download/)
+- [Azure CLI](/cli/azure/install-azure-cli) used for passwordless authentication in a local development environment, create the necessary context by signing in with the Azure CLI.
 - An Azure OpenAI resource created in a supported region (see [Region availability](/azure/ai-services/openai/concepts/models#model-summary-table-and-region-availability)). For more information, see [Create a resource and deploy a model with Azure OpenAI](../how-to/create-resource.md).
 
 
@@ -113,8 +115,67 @@ Your app's _package.json_ file will be updated with the dependencies.
 
 ## Create a sample application
 
+#### [TypeScript (Microsoft Entra Id)](#tab/typescript-keyless)
 
-#### [JavaScript](#tab/javascript)
+1. Create a new file named _Whisper.js_ and open it in your preferred code editor. Copy the following code into the _Whisper.js_ file:
+    
+    ```typescript
+    import "dotenv/config";
+    import { createReadStream } from "fs";
+    import { AzureOpenAI } from "openai";
+    import { DefaultAzureCredential, getBearerTokenProvider } from "@azure/identity";
+
+    // You will need to set these environment variables or edit the following values
+    const audioFilePath = process.env["AUDIO_FILE_PATH"] || "<audio file path>";
+    const endpoint = process.env["AZURE_OPENAI_ENDPOINT"] || "<endpoint>";
+    
+    // Required Azure OpenAI deployment name and API version
+    const apiVersion = "2024-08-01-preview";
+    const deploymentName = "whisper";
+
+    // keyless authentication    
+    const credential = new DefaultAzureCredential();
+    const scope = "https://cognitiveservices.azure.com/.default";
+    const azureADTokenProvider = getBearerTokenProvider(credential, scope);
+    
+    function getClient(): AzureOpenAI {
+      return new AzureOpenAI({
+        endpoint,
+        azureADTokenProvider,
+        apiVersion,
+        deployment: deploymentName,
+      });
+    }
+    
+    export async function main() {
+      console.log("== Transcribe Audio Sample ==");
+    
+      const client = getClient();
+      const result = await client.audio.transcriptions.create({
+        model: "",
+        file: createReadStream(audioFilePath),
+      });
+    
+      console.log(`Transcription: ${result.text}`);
+    }
+    
+    main().catch((err) => {
+      console.error("The sample encountered an error:", err);
+    });
+    ```
+
+1. Build the application with the following command:
+
+    ```console
+    tsc
+    ```
+
+1. Run the application with the following command:
+
+    ```console
+    node Whisper.js
+    ```
+#### [JavaScript (Microsoft Entra Id)](#tab/javascript-keyless)
 
 1. Create a new file named _Whisper.js_ and open it in your preferred code editor. Copy the following code into the _Whisper.js_ file:
 
@@ -122,20 +183,25 @@ Your app's _package.json_ file will be updated with the dependencies.
     require("dotenv/config");
     const { createReadStream } = require("fs");
     const { AzureOpenAI } = require("openai");
+    const { DefaultAzureCredential, getBearerTokenProvider } = require("@azure/identity");
     
     // You will need to set these environment variables or edit the following values
     const audioFilePath = process.env["AUDIO_FILE_PATH"] || "<audio file path>";
     const endpoint = process.env["AZURE_OPENAI_ENDPOINT"] || "<endpoint>";
-    const apiKey = process.env["AZURE_OPENAI_API_KEY"] || "<api key>";
     
     // Required Azure OpenAI deployment name and API version
     const apiVersion = "2024-08-01-preview";
     const deploymentName = "whisper";
     
+    // keyless authentication    
+    const credential = new DefaultAzureCredential();
+    const scope = "https://cognitiveservices.azure.com/.default";
+    const azureADTokenProvider = getBearerTokenProvider(credential, scope);
+
     function getClient() {
       return new AzureOpenAI({
         endpoint,
-        apiKey,
+        azureADTokenProvider,
         apiVersion,
         deployment: deploymentName,
       });
@@ -165,7 +231,8 @@ Your app's _package.json_ file will be updated with the dependencies.
     ```
 
 
-#### [TypeScript](#tab/typescript)
+
+#### [TypeScript (API key)](#tab/typescript-key)
 
 1. Create a new file named _Whisper.js_ and open it in your preferred code editor. Copy the following code into the _Whisper.js_ file:
     
@@ -216,6 +283,56 @@ Your app's _package.json_ file will be updated with the dependencies.
     ```
 
 1. Run the application with the following command:
+
+    ```console
+    node Whisper.js
+    ```
+
+#### [JavaScript (API key)](#tab/javascript-key)
+
+1. Create a new file named _Whisper.js_ and open it in your preferred code editor. Copy the following code into the _Whisper.js_ file:
+
+    ```javascript
+    require("dotenv/config");
+    const { createReadStream } = require("fs");
+    const { AzureOpenAI } = require("openai");
+    
+    // You will need to set these environment variables or edit the following values
+    const audioFilePath = process.env["AUDIO_FILE_PATH"] || "<audio file path>";
+    const endpoint = process.env["AZURE_OPENAI_ENDPOINT"] || "<endpoint>";
+    const apiKey = process.env["AZURE_OPENAI_API_KEY"] || "<api key>";
+    
+    // Required Azure OpenAI deployment name and API version
+    const apiVersion = "2024-08-01-preview";
+    const deploymentName = "whisper";
+    
+    function getClient() {
+      return new AzureOpenAI({
+        endpoint,
+        apiKey,
+        apiVersion,
+        deployment: deploymentName,
+      });
+    }
+    
+    export async function main() {
+      console.log("== Transcribe Audio Sample ==");
+    
+      const client = getClient();
+      const result = await client.audio.transcriptions.create({
+        model: "",
+        file: createReadStream(audioFilePath),
+      });
+    
+      console.log(`Transcription: ${result.text}`);
+    }
+    
+    main().catch((err) => {
+      console.error("The sample encountered an error:", err);
+    });
+    ```
+
+1. Run the script with the following command:
 
     ```console
     node Whisper.js
