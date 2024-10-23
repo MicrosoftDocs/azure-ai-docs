@@ -57,4 +57,4 @@ When creating model deployments, you can configure additional settings including
 
 ## Next steps
 
-* [Develop applications using Azure AI model inference service in Azure AI services](../endpoints.md)
+* [Develop applications using Azure AI model inference service in Azure AI services](../concepts/endpoints.md)

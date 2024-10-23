@@ -31,7 +31,7 @@ You can add all the models you need in the endpoint by using [Azure AI Studio fo
    > [!TIP]
    > Each model may support different deployments types, providing different data residency or throughput guarantees. See [deployment types](/azure/ai-studio/ai-services/concepts/deployment-types) for more details.
 
-7.  Use the **Customize** option if you need to change settings like [content filter](/azure/ai-studio/ai-services/concepts/content-filter) or rate limiting (if available).
+7.  Use the **Customize** option if you need to change settings like [content filter](/azure/ai-studio/concepts/content-filtering) or rate limiting (if available).
    
    :::image type="content" source="../../media/ai-services/add-model-deployments/models-deploy-customize.png" alt-text="An screenshot showing how to customize the deployment if needed." lightbox="../../media/ai-services/add-model-deployments/models-deploy-customize.png":::
 
