@@ -148,7 +148,7 @@ Models from Microsoft are billed via Azure meters as First Party Consumption Ser
 
 ### Fine-tuning models
 
-Certain models support also serverless fine-tuning. For these models, you can take advantage of hosted fine-tuning with pay-as-you-go billing to tailor the models by using data that you provide. For more information, see the [fine-tuning overview](../concepts/fine-tuning-overview.md).
+Certain models support also fine-tuning. For these models, you can take advantage of user-managed compute or pay-as-you-go fine-tuning to tailor the models by using data that you provide. For more information, see the [fine-tuning overview](../concepts/fine-tuning-overview.md).
 
 ### RAG with models deployed as serverless APIs
 
