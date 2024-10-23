@@ -140,7 +140,6 @@ These steps deploy a model to a real-time endpoint from the AI Studio [model cat
 1. Select the model from the Azure OpenAI collection. The first time through, select the `gpt-3.5-turbo` model. The second time, select the `text-embedding-ada-002` model.
 1. Select **Deploy** to open the deployment window. 
 1. Select the hub that you want to deploy the model to. Use the same hub as your project.
-1. Specify the deployment name and modify other default settings depending on your requirements.
 1. Select **Deploy**.
 1. You land on the deployment details page. Select **Open in playground**.
 1. Select **View Code** to obtain code samples that can be used to consume the deployed model in your application.
