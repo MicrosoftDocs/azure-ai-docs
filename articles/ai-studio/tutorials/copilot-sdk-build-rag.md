@@ -152,6 +152,9 @@ AZURE_OPENAI_CHAT_DEPLOYMENT=<chat_model_deployment_name>
 AZURE_OPENAI_API_VERSION=<api_version>
 ```
 
+> [!NOTE]
+> You can access previously deployed models (and their respective chat playground and code samples if available) via the **Deployments** button under the **Components** section in the left pane.
+
 When you deploy the `text-embedding-ada-002` model, add the name to your **.env** file:
 
 ```env
@@ -159,7 +162,7 @@ AZURE_OPENAI_EMBEDDING_DEPLOYMENT=<embedding_model_deployment_name>
 ```
 
 > [!NOTE]
-> You can access previously deployed models (and their respect chat playground and code samples) via the **Deployments** button under the **Components** section in the left pane.
+> There is no chat playground feature for the `text-embedding-ada-002` model
 
 ## Install the Azure CLI and sign in 
 
