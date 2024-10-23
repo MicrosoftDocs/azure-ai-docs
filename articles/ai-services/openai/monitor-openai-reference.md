@@ -40,10 +40,6 @@ You can also monitor Content Safety metrics that are used by other Azure AI serv
 - Total Volume Sent for Safety Check 
 
 
-
-
-
-
 > [!NOTE]
 > The **Provisioned-managed Utilization** metric is now deprecated and is no longer recommended. This metric has been replaced by the **Provisioned-managed Utilization V2** metric.
 
