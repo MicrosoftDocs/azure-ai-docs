@@ -57,18 +57,14 @@ The supported [regions list](search-region-support.md) provides the locations wh
 
 Currently, several regions are at capacity for specific tiers and can't be used for new search services. If you use the Azure portal to create a search service, the portal excludes any region-tier combinations that aren't available.
 
-| Region | Disabled tier (SKU) due to over-capacity |
-|--------|------------------------------------------|
-| Central US | S2, S3, S3HD, L1, L2 |
-| Central India | S2, S3, S3HD, L1, L2|
-| East US| All tiers|
-| East US 2| Basic, S1|
-| Japan East | S2, S3, S3HD, L1, L2 |
-| Qatar Central | All tiers|
-| South Central US | All tiers |
-| US Gov Virginia | All tiers |
-| West Europe | All tiers |
-| West US 3| All tiers |
+| Region | Disabled tier (SKU) due to over-capacity | Suggested Alternative |
+|--------|------------------------------------------|-----------------------|
+| Central India | S2, S3, S3HD, L1, L2| South India |
+| East US 2| Basic, S1| Central US |
+| South Central US | All tiers | Central US |
+| US Gov Virginia | All tiers | US Gov Arizona |
+| West Europe | All tiers | Sweden Central/ North Europe |
+| West US 3| Basic, S1 | Central US |
 
 <a name="premium-features"></a>
 
