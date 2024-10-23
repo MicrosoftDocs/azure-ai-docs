@@ -14,7 +14,7 @@ recommendations: false
 
 # Prompt caching
 
-Prompt caching allows you to reduce overall request latency and cost for longer prompts that have identical content at the beginning of the prompt. *"Prompt"* in this context is referring to the input you send to the model as part of your chat completions request. Rather than reprocess the same input tokens over and over again, the model is able to retain a temporary cache of processed input data to improve overall performance. Prompt caching has no impact on the output content returned in the model response beyond a reduction in latency and cost.  
+Prompt caching allows you to reduce overall request latency and cost for longer prompts that have identical content at the beginning of the prompt. *"Prompt"* in this context is referring to the input you send to the model as part of your chat completions request. Rather than reprocess the same input tokens over and over again, the model is able to retain a temporary cache of processed input data to improve overall performance. Prompt caching has no impact on the output content returned in the model response beyond a reduction in latency and cost. For supported models, cached tokens are billed at a [50% discount on input token pricing](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/).
 
 ## Supported models
 
@@ -22,10 +22,13 @@ Currently only the following models support prompt caching with Azure OpenAI:
 
 - `o1-preview-2024-09-12`
 - `o1-mini-2024-09-12`
+- `gpt-4o-2024-05-13`
+- `gpt-4o-2024-08-06`
+- `gpt-4o-mini-2024-07-18`
 
 ## API support
 
-Official support for prompt caching was first added in API version `2024-10-01-preview`.
+Official support for prompt caching was first added in API version `2024-10-01-preview`. At this time, only `o1-preview-2024-09-12` and `o1-mini-2024-09-12` models support the `cached_tokens` API response parameter.
 
 ## Getting started
 
@@ -67,7 +70,7 @@ A single character difference in the first 1,024 tokens will result in a cache m
 
 The o1-series models are text only and don't support system messages, images, tool use/function calling, or structured outputs. This limits the efficacy of prompt caching for these models to the user/assistant portions of the messages array which are less likely to have an identical 1024 token prefix.
 
-Once prompt caching is enabled for other supported models prompt caching will expand to support:  
+For `gpt-4o` and `gpt-4o-mini` models, prompt caching is supported for:  
 
 | **Caching Supported** | **Description** |
 |--------|--------|
@@ -81,3 +84,7 @@ To improve the likelihood of cache hits occurring, you should structure your req
 ## Can I disable prompt caching?
 
 Prompt caching is enabled by default. There is no opt-out option.
+
+## How does prompt caching work for Provisioned deployments?
+
+For supported models on provisioned deployments, we discount up to 100% of cached input tokens. For more information, see our [Provisioned Throughput documentation](/azure/ai-services/openai/concepts/provisioned-throughput). 
