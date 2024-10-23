@@ -112,6 +112,7 @@ This table provides more details about the Azure OpenAI Service models that supp
 ## Related content
 
 - [Fine-tune an Azure OpenAI model in Azure AI Studio](../../ai-services/openai/how-to/fine-tuning.md?context=/azure/ai-studio/context/context)
+- [Fine-tune a model using User-managed compute](../how-to/fine-tune-maap.md)
 - [Fine-tune a Llama 2 model in Azure AI Studio](../how-to/fine-tune-model-llama.md)
 - [Fine-tune a Phi-3 model in Azure AI Studio](../how-to/fine-tune-phi-3.md)
 - [Deploy Phi-3 family of small language models with Azure AI Studio](../how-to/deploy-models-phi-3.md)
