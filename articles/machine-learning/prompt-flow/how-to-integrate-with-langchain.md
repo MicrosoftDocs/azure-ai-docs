@@ -97,7 +97,7 @@ After you structure your flow and move your code to specific tool nodes, you nee
 
    :::image type="content" source="./media/how-to-integrate-with-langchain/custom-connection-python-node-1.png" alt-text="Screenshot of doc search chain node highlighting the custom connection. " lightbox = "./media/how-to-integrate-with-langchain/custom-connection-python-node-1.png":::
 
-1. Replace the environment variables that originally defined the key or credential with the corresponding key from the connection.
+1. Replace environment variables that originally defined the keys or credentials with the corresponding keys from the connection.
    
 1. Parse the input to the input section of the node UI, and then select your custom connection from the **Value** dropdown list in the UI.
 
