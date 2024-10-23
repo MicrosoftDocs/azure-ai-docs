@@ -34,7 +34,7 @@ This tutorial is part two of a three-part tutorial.
 
 ## Application code structure
 
-Create a folder called **rag-tutorial** on your local machine. This tutorial series walks through creation of the contents of each file. When you complete the tutorial series, your folder structure looks like this:
+Create a folder called **rag-tutorial** on your local machine. By the end of this tutorial series, **rag-tutorial** folder will provide the setup and scripts required to build, deploy, and test a Retrieval-Augmented Generation (RAG) based chat app based on the prompt flow SDK. When you complete the tutorial series, your folder structure looks like this:
 
 ```text
 rag-tutorial/
