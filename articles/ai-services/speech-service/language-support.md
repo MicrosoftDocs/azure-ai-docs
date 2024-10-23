@@ -40,6 +40,9 @@ More remarks for speech to text locales are included in the [custom speech](#cus
 > [!TIP]
 > Try out the [real-time speech to text tool](https://speech.microsoft.com/portal/speechtotexttool) without having to use any code.
 
+> [!TIP]
+> Try out the [Azure AI Speech Toolkit](https://marketplace.visualstudio.com/items?itemName=ms-azureaispeech.azure-ai-speech-toolkit) to easily build and run samples on Visual Studio Code.
+
 [!INCLUDE [Language support include](includes/language-support/stt.md)]
 
 ### Custom speech
@@ -59,7 +62,10 @@ The table in this section summarizes the locales and voices supported for text t
 More remarks for text to speech locales are included in the [voice styles and roles](#voice-styles-and-roles), [prebuilt neural voices](#prebuilt-neural-voices), [Custom neural voice](#custom-neural-voice), and [personal voice](#personal-voice) sections in this article. 
 
 > [!TIP]
-> Check the [Voice Gallery](https://speech.microsoft.com/portal/voicegallery) and determine the right voice for your business needs. 
+> Check the [Voice Gallery](https://speech.microsoft.com/portal/voicegallery) and determine the right voice for your business needs.
+
+> [!TIP]
+> Try out the [Azure AI Speech Toolkit](https://marketplace.visualstudio.com/items?itemName=ms-azureaispeech.azure-ai-speech-toolkit) to easily build and run samples on Visual Studio Code.
 
 [!INCLUDE [Language support include](includes/language-support/tts.md)]
 
@@ -128,6 +134,9 @@ The table in this section summarizes the 33 locales supported for pronunciation 
 [!INCLUDE [Language support include](includes/language-support/pronunciation-assessment.md)]
 
 # [Speech translation](#tab/speech-translation)
+
+> [!TIP]
+> Try out the [Azure AI Speech Toolkit](https://marketplace.visualstudio.com/items?itemName=ms-azureaispeech.azure-ai-speech-toolkit) to easily build and run samples on Visual Studio Code.
 
 ### Real-time speech translation
 
