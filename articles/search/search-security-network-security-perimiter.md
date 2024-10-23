@@ -5,7 +5,7 @@ description: Add a search service to a network security perimeter for a secure c
 author: MattGotteiner
 ms.author: magottei
 manager: nitinme
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.topic: how-to
 ms.date: 10/23/2024
 ---
@@ -171,7 +171,8 @@ Inbound access rules can allow the internet and resources outside the perimeter 
 
 Network security perimeter supports two types of inbound access rules:
 
-* IP Address Ranges. IP addresses or ranges must be in the Classless Inter-Domain Routing (CIDR) format. An example of CIDR notation is 8.8.8.0/24, which represents the IPs that range from 8.8.8.0 to 8.8.8.255. This type of rule allows inbound from any IP address in the range is allowed.
+* IP address ranges. IP addresses or ranges must be in the Classless Inter-Domain Routing (CIDR) format. An example of CIDR notation is 8.8.8.0/24, which represents the IPs that range from 8.8.8.0 to 8.8.8.255. This type of rule allows inbound requests from any IP address within the range.
+
 * Subscriptions. This type of rule allows inbound access authenticated using any managed identity from the subscription.
 
 To add an inbound access rule in the portal:
