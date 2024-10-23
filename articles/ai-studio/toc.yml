@@ -171,12 +171,12 @@ items:
       - name: Deployments overview
         href: concepts/deployments-overview.md
         displayName: endpoint
-      - name: Upgrade from GitHub Models to Azure AI Services
-        href: ai-services/how-to/quickstart-github-models.md
       - name: Azure AI model inference
         items:
         - name: What is the Azure AI model inference service?
           href: ai-services/model-inference.md
+        - name: Upgrade from GitHub Models
+          href: ai-services/how-to/quickstart-github-models.md
         - name: Add and configure models
           href: ai-services/how-to/create-model-deployments.md
         - name: Deployment types
