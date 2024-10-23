@@ -173,18 +173,18 @@ items:
         displayName: endpoint
       - name: Upgrade from GitHub Models to Azure AI Services
         href: ai-services/how-to/quickstart-github-models.md
-      - name: Azure AI Services
+      - name: Azure AI model inference
         items:
-        - name: What is Azure AI model inference in Azure AI Services?
+        - name: What is Azure AI model inference?
           href: ai-services/model-inference.md
         - name: Add and configure models
           href: ai-services/how-to/create-model-deployments.md
         - name: Deployment types
           href: ai-services/concepts/deployment-types.md
-        - name: Inference endpoint for model deployments
+        - name: Use the inference endpoint
           href: ai-services/concepts/endpoints.md
-        - name: Supported languages
-          href: ai-services/supported-languages.md
+        - name: Azure AI model inference FAQ
+          href: ai-services/faq.yml
       - name: Serverless API
         items:
         - name: Deploy models as serverless API

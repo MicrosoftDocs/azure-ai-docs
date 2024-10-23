@@ -1,7 +1,7 @@
 ---
-title: What is Azure AI model inference service in Azure AI Services?
+title: What is Azure AI model inference service?
 titleSuffix: Azure AI Studio
-description: Apply advanced language models to variety of use cases with Azure AI model inference in Azure AI Services
+description: Apply advanced language models to variety of use cases with Azure AI model inference
 manager: nitinme
 author: mrbullwinkle
 ms.author: fasantia
@@ -12,7 +12,7 @@ ms.custom: ignite-2024, github-universe-2024
 recommendations: false
 ---
 
-# What is Azure AI model inference service in Azure AI Services?
+# What is Azure AI model inference service?
 
 Azure AI models inference service provides access to the most powerful models available in the [Azure AI model catalog](concepts/models.md). Coming from the key model providers in the industry including OpenAI, Microsoft, Meta, Mistral, Cohere, G42, and AI21 Labs; these models can be integrated with software solutions to deliver a wide range of tasks including content generation, summarization, image understanding, semantic search, and code generation.
 
