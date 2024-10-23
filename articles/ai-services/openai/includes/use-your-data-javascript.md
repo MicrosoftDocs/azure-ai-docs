@@ -46,7 +46,6 @@ Your app's _package.json_ file will be updated with the dependencies.
 1. Open a command prompt where you want the new project, and create a new file named `ChatWithOwnData.ts`. Copy the following code into the `ChatWithOwnData.ts` file.
     
     ```typescript
-    import "dotenv/config";
     import { AzureOpenAI } from "openai";
     import { DefaultAzureCredential, getBearerTokenProvider } from "@azure/identity";
     import "@azure/openai/types";
@@ -145,8 +144,7 @@ Your app's _package.json_ file will be updated with the dependencies.
 1. Open a command prompt where you want the new project, and create a new file named `ChatWithOwnData.js`. Copy the following code into the `ChatWithOwnData.js` file.
     
     ```javascript
-    require("dotenv/config");
-    import { DefaultAzureCredential, getBearerTokenProvider } from "@azure/identity";
+    const { DefaultAzureCredential, getBearerTokenProvider } = require("@azure/identity");
     const { AzureOpenAI } = require("openai");
     
     // Set the Azure and AI Search values from environment variables
@@ -238,7 +236,6 @@ Your app's _package.json_ file will be updated with the dependencies.
 1. Open a command prompt where you want the new project, and create a new file named `ChatWithOwnData.ts`. Copy the following code into the `ChatWithOwnData.ts` file.
     
     ```typescript
-    import "dotenv/config";
     import { AzureOpenAI } from "openai";
     import "@azure/openai/types";
     
@@ -333,7 +330,6 @@ Your app's _package.json_ file will be updated with the dependencies.
 1. Open a command prompt where you want the new project, and create a new file named `ChatWithOwnData.js`. Copy the following code into the `ChatWithOwnData.js` file.
     
     ```javascript
-    require("dotenv/config");
     const { AzureOpenAI } = require("openai");
     
     // Set the Azure and AI Search values from environment variables
