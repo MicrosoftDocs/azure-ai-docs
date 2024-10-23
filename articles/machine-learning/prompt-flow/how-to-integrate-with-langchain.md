@@ -12,7 +12,7 @@ ms.topic: how-to
 author: lgayhardt
 ms.author: lagayhar
 ms.reviewer: chenlujiao
-ms.date: 10/22/2024
+ms.date: 10/23/2024
 ---
 
 # Integrate LangChain in prompt flows
@@ -36,9 +36,14 @@ Use the following process to convert your local LangChain code to a runnable Azu
 
 ### Convert credentials to a prompt flow connection
 
-Your LangChain code might [define environment variables](https://python.langchain.com/docs/integrations/platforms/microsoft) to store credentials, such as the AzureOpenAI API key necessary for invoking AzureOpenAI models. For example, the following image shows environmental variables being set for OpenAI API type, key, base, and version.
+Your LangChain code might [define environment variables](https://python.langchain.com/docs/integrations/platforms/microsoft) to store credentials, such as the AzureOpenAI API key necessary for invoking AzureOpenAI models. For example, the following code shows environmental variables being set for OpenAI API type, key, base, and version.
 
-:::image type="content" source="./media/how-to-integrate-with-langchain/langchain-env-variables.png" alt-text="Screenshot of Azure OpenAI example in LangChain.":::
+```python
+os.environ["OPENAI_API_TYPE"] = "azure"
+os.environ["OPENAI_API_VERSION"] = "2023-05-15"
+os.environ["OPENAI_API_BASE"] = "https://contosobamiopenai.openai.azure.com/"
+os.environ["OPENAI_API_KEY"] = "abc123abc123abc123abc123abc123ab"
+```
 
 When you run an Azure Machine Learning prompt flow in the cloud, it's better not to expose credentials as environment variables. To securely store and manage credentials separately from your code, you should convert the environmental variables into a prompt flow connection.
 
@@ -67,17 +72,17 @@ All your LangChain code can directly run in Python nodes in your flow, as long a
 
 There are two ways to convert your LangChain code into an Azure Machine Learning prompt flow. The type of flow to implement depends on your use case.
 
-- For better experiment management, you can convert your code to use Azure Machine Learning Python, LLM, and prompt tools in the flow. You extract the prompt template from your code into a prompt node, and put the remaining code in single or multiple Python nodes or tools. This option lets you easily tune prompts by running variants and choose optimal prompts based on evaluation results.
+- For better experiment management, you can convert your code to use Azure Machine Learning Python and prompt tools in the flow. You extract the prompt template from your code into a prompt node, and put the remaining code in single or multiple Python nodes or tools. This option helps you easily tune prompts by running variants and lets you choose optimal prompts based on evaluation results.
+
+  The following example shows a flow that uses both prompt nodes and Python nodes:
+
+  :::image type="content" source="./media/how-to-integrate-with-langchain/flow-node-a-1.png" alt-text="Screenshot of flows highlighting the prompt button and system template. " lightbox = "./media/how-to-integrate-with-langchain/flow-node-a-1.png":::
 
 - For a simpler conversion process, you can call the LangChain LLM library directly from within Python nodes. All your code runs in Python nodes, including prompt definitions. This option supports faster batch testing based on larger datasets or other configurations.
 
-The following example shows a flow that uses both prompt nodes and Python nodes:
+  The following example shows a flow that uses Python nodes only:
 
-:::image type="content" source="./media/how-to-integrate-with-langchain/flow-node-a-1.png" alt-text="Screenshot of flows highlighting the prompt button and system template. " lightbox = "./media/how-to-integrate-with-langchain/flow-node-a-1.png":::
-
-The following example shows a flow that uses Python nodes only:
-
-:::image type="content" source="./media/how-to-integrate-with-langchain/flow-node-b.png" alt-text="Screenshot of flows showing the LangChain code node and graph. " lightbox = "./media/how-to-integrate-with-langchain/flow-node-b.png":::
+  :::image type="content" source="./media/how-to-integrate-with-langchain/flow-node-b.png" alt-text="Screenshot of flows showing the LangChain code node and graph. " lightbox = "./media/how-to-integrate-with-langchain/flow-node-b.png":::
 
 ### Configure connection
 
@@ -92,13 +97,13 @@ After you structure your flow and move your code to specific tool nodes, you nee
 
    :::image type="content" source="./media/how-to-integrate-with-langchain/custom-connection-python-node-1.png" alt-text="Screenshot of doc search chain node highlighting the custom connection. " lightbox = "./media/how-to-integrate-with-langchain/custom-connection-python-node-1.png":::
 
-1. Replace the environment variables that originally defined the key or credential with the corresponding key added in the connection.
+1. Replace the environment variables that originally defined the key or credential with the corresponding key from the connection.
    
-1. Parse the input to the input section of the node UI, and then select your custom connection in the **Value** dropdown.
+1. Parse the input to the input section of the node UI, and then select your custom connection from the **Value** dropdown list in the UI.
 
    :::image type="content" source="./media/how-to-integrate-with-langchain/custom-connection-python-node-2.png" alt-text="Screenshot of the chain node highlighting the connection. " lightbox = "./media/how-to-integrate-with-langchain/custom-connection-python-node-2.png":::
    
-1. Be sure to also configure the connection parameters in any other nodes that require it, such as LLM nodes.
+1. Be sure to also configure the connection parameters in any other nodes that require them, such as LLM nodes.
 
 ### Configure inputs and outputs
 
