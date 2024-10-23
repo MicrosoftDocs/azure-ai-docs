@@ -41,7 +41,7 @@ npm install @azure/openai @azure/identity
 
 Your app's _package.json_ file will be updated with the dependencies.
 
-#### [TypeScript (Entra ID)](#tab/typescript-keyless)
+#### [TypeScript (Microsoft Entra ID)](#tab/typescript-keyless)
 
 1. Open a command prompt where you want the new project, and create a new file named `ChatWithOwnData.ts`. Copy the following code into the `ChatWithOwnData.ts` file.
     
