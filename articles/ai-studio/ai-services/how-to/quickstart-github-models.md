@@ -16,7 +16,7 @@ recommendations: false
 
 If you want to develop a generative AI application, you can use [GitHub Models](https://docs.github.com/en/github-models/) to find and experiment with AI models for free. The playground and free API usage are [rate limited](https://docs.github.com/en/github-models/prototyping-with-ai-models#rate-limits) by requests per minute, requests per day, tokens per request, and concurrent requests. If you get rate limited, you will need to wait for the rate limit that you hit to reset before you can make more requests.
 
-Once you are ready to bring your application to production, you can upgrade your experience by deploying an AI services resource in an Azure subscription and start using the Azure AI Models service. You don't need to change anything else in your code.
+Once you're ready to bring your application to production, you can upgrade your experience by deploying an Azure AI Services resource in an Azure subscription and start using the Azure AI model inference service. You don't need to change anything else in your code.
 
 The following article explains how to get started from GitHub Models in Azure AI Models for Azure AI services.
 
