@@ -20,6 +20,8 @@ Azure Application Gateway is a load balancer that makes routing decisions based 
 
 To access on-premises or custom virtual network resources from the managed virtual network, you configure an Application Gateway on your Azure virtual network. The application gateway is used for inbound access to the workspace. Once configured, you then create a private endpoint from the workspace's managed virtual network to the Application Gateway. With the private endpoint, the full end to end path is secured and not routed through the Internet.
 
+:::image type="content" source="media/how-to-access-on-premises-resources/machine-learning-app-gateway.png" alt-text="Diagram of a managed network using Application Gateway to access on-premises resources." lightbox="media/how-to-access-on-premises-resources/machine-learning-app-gateway.png":::
+
 ## Prerequisites
 
 - Read the [How an application gateway works](/azure/application-gateway/how-application-gateway-works) article to understand how the Application Gateway can secure the connection to your non-Azure resources. 
