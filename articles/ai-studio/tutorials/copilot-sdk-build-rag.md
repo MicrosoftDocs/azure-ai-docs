@@ -127,7 +127,7 @@ Replace the placeholders with the values in the next steps
 
 ## Deploy models
 
-You need two models to build a RAG-based chat app: an Azure OpenAI chat model (`gpt-3.5-turbo`) and an Azure OpenAI embedding model (`text-embedding-ada-002`). Deploy these models in your Azure AI Studio project, using this set of steps for each model.
+You need two models to build a RAG-based chat app: an Azure OpenAI chat model (` gpt-35-turbo`) and an Azure OpenAI embedding model (`text-embedding-ada-002`). Deploy these models in your Azure AI Studio project, using this set of steps for each model.
 
 These steps deploy a model to a real-time endpoint from the AI Studio [model catalog](../how-to/model-catalog-overview.md):
 
@@ -137,14 +137,14 @@ These steps deploy a model to a real-time endpoint from the AI Studio [model cat
 
     :::image type="content" source="../media/deploy-monitor/catalog-filter-azure-openai.png" alt-text="A screenshot showing how to filter by Azure OpenAI models in the catalog." lightbox="../media/deploy-monitor/catalog-filter-azure-openai.png"::: 
 
-1. Select the model from the Azure OpenAI collection. The first time through, select the `gpt-3.5-turbo` model. The second time, select the `text-embedding-ada-002` model.
+1. Select the model from the Azure OpenAI collection. The first time through, select the ` gpt-35-turbo` model. The second time, select the `text-embedding-ada-002` model.
 1. Select **Deploy** to open the deployment window. 
 1. Select the hub that you want to deploy the model to. Use the same hub as your project.
 1. Select **Deploy**.
 1. You land on the deployment details page. Select **Open in playground**.
 1. Select **View Code** to obtain code samples that can be used to consume the deployed model in your application.
  
-When you deploy the `gpt-3.5-turbo` model, find the following values in the **View Code** section, and add them to your **.env** file:
+When you deploy the ` gpt-35-turbo` model, find the following values in the **View Code** section, and add them to your **.env** file:
 
 ```env
 AZURE_OPENAI_ENDPOINT=<endpoint_value>
