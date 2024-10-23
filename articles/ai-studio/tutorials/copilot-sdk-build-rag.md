@@ -158,6 +158,9 @@ When you deploy the `text-embedding-ada-002` model, add the name to your **.env*
 AZURE_OPENAI_EMBEDDING_DEPLOYMENT=<embedding_model_deployment_name>
 ```
 
+> [!NOTE]
+> You can access previously deployed models (and their respect chat playground and code samples) via the **Deployments** button under the **Components** section in the left pane.
+
 ## Install the Azure CLI and sign in 
 
 [!INCLUDE [Install the Azure CLI](../includes/install-cli.md)]
