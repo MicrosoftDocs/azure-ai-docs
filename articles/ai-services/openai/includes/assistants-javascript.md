@@ -475,7 +475,7 @@ An individual assistant can access up to 128 tools including `code interpreter`,
 1. Create the `index.js` file with the following code:
 
     ```javascript
-    import { AzureOpenAI } from "openai";
+    const { AzureOpenAI } = require("openai");
     
     // Get environment variables
     const azureOpenAIKey = process.env.AZURE_OPENAI_KEY;

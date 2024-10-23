@@ -325,7 +325,7 @@ Your app's _package.json_ file will be updated with the dependencies.
     node ChatWithOwnData.js
     ```
 
-#### [JavaScript (API Key)](#tab/javascript-key)
+#### [JavaScript (API key)](#tab/javascript-key)
 
 1. Open a command prompt where you want the new project, and create a new file named `ChatWithOwnData.js`. Copy the following code into the `ChatWithOwnData.js` file.
     
