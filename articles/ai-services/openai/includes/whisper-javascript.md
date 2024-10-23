@@ -115,12 +115,11 @@ Your app's _package.json_ file will be updated with the dependencies.
 
 ## Create a sample application
 
-#### [TypeScript (Microsoft Entra Id)](#tab/typescript-keyless)
+#### [TypeScript (Microsoft Entra ID)](#tab/typescript-keyless)
 
 1. Create a new file named _Whisper.js_ and open it in your preferred code editor. Copy the following code into the _Whisper.js_ file:
     
     ```typescript
-    import "dotenv/config";
     import { createReadStream } from "fs";
     import { AzureOpenAI } from "openai";
     import { DefaultAzureCredential, getBearerTokenProvider } from "@azure/identity";
@@ -175,12 +174,11 @@ Your app's _package.json_ file will be updated with the dependencies.
     ```console
     node Whisper.js
     ```
-#### [JavaScript (Microsoft Entra Id)](#tab/javascript-keyless)
+#### [JavaScript (Microsoft Entra ID)](#tab/javascript-keyless)
 
 1. Create a new file named _Whisper.js_ and open it in your preferred code editor. Copy the following code into the _Whisper.js_ file:
 
     ```javascript
-    require("dotenv/config");
     const { createReadStream } = require("fs");
     const { AzureOpenAI } = require("openai");
     const { DefaultAzureCredential, getBearerTokenProvider } = require("@azure/identity");
@@ -237,7 +235,6 @@ Your app's _package.json_ file will be updated with the dependencies.
 1. Create a new file named _Whisper.js_ and open it in your preferred code editor. Copy the following code into the _Whisper.js_ file:
     
     ```typescript
-    import "dotenv/config";
     import { createReadStream } from "fs";
     import { AzureOpenAI } from "openai";
     
@@ -293,7 +290,6 @@ Your app's _package.json_ file will be updated with the dependencies.
 1. Create a new file named _Whisper.js_ and open it in your preferred code editor. Copy the following code into the _Whisper.js_ file:
 
     ```javascript
-    require("dotenv/config");
     const { createReadStream } = require("fs");
     const { AzureOpenAI } = require("openai");
     
