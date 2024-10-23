@@ -33,4 +33,4 @@ items:
   items:
   - name: Create an Azure AI multi-service resource
     displayName: extract, text, images, OCR, optical character recognition
-    href: how-to/create-multi-service-resource.md
+    href: how-to-guide/create-multi-service-resource.md
