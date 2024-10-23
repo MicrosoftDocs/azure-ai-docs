@@ -1,5 +1,5 @@
 ---
-title: Quickstart:Azure AI Multimodal Intelligence REST APIs
+title: "Quickstart: Azure AI Multimodal Intelligence REST APIs"
 titleSuffix: Azure AI services
 description: Learn about Multimodal Intelligence REST APIs
 author: laujan
@@ -26,14 +26,14 @@ To use Multimodal Intelligence, you need an Azure AI services multi-service reso
 
 * To get started, you need an active [**Azure account**](https://azure.microsoft.com/free/cognitive-services/). If you don't have one, you can [**create a free 12-month subscription**](https://azure.microsoft.com/free/).
 
-* Once you have your Azure subscription, create an [**Azure AI services multi-services resource**](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIServices) in the Azure portal.The Azure AI services multi-service resource is listed under Azure AI services → Azure AI services in the portal as shown here:
+* Once you have your Azure subscription, create an [**Azure AI services multi-services resource**](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIServices) in the Azure portal. The Azure AI services multi-service resource is listed under Azure AI services → Azure AI services in the portal as shown here:
 
     :::image type="content" source="../media/overview/azure-multi-service-resource.png" alt-text="Screenshot of the multi-service resource page in the Azure portal.":::
 
     > [!IMPORTANT]
     > Azure provides more than one resource types named Azure AI services. Be sure to select the one that is listed under Azure AI services → Azure AI services with the logo as shown previously.
 
-    For more information, *see* [Create an Azure Ai services multi-services resource](../how-to-guide/create-multi-service-resource.md)
+    For more information, *see* [Create an Azure AI services multi-services resource](../how-to-guide/create-multi-service-resource.md)
 
 * * curl command line tool installed.
 
