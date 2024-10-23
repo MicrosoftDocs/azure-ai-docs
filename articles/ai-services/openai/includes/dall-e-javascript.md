@@ -67,7 +67,6 @@ Create a new file named _ImageGeneration.js_ and open it in your preferred code 
 #### [TypeScript (Microsoft Entra ID)](#tab/typescript-keyless)
 
 ```typescript
-import "dotenv/config";
 import { AzureOpenAI } from "openai";
 import { 
     DefaultAzureCredential, 
@@ -133,7 +132,6 @@ main().catch((err) => {
 #### [JavaScript (Microsoft Entra ID)](#tab/javascript-keyless)
 
 ```javascript
-require("dotenv/config");
 const { AzureOpenAI } = require("openai");
 const { 
     DefaultAzureCredential, 
@@ -197,7 +195,6 @@ node ImageGeneration.js
 #### [TypeScript (API key)](#tab/typescript-key)
 
 ```typescript
-import "dotenv/config";
 import { AzureOpenAI } from "openai";
 
 // You will need to set these environment variables or edit the following values
@@ -259,7 +256,6 @@ main().catch((err) => {
 #### [JavaScript (API key)](#tab/javascript-key)
 
 ```javascript
-require("dotenv/config");
 const { AzureOpenAI } = require("openai");
 
 // You will need to set these environment variables or edit the following values
