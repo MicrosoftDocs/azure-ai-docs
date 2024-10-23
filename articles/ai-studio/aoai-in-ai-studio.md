@@ -17,9 +17,7 @@ ms.custom: ignite-2023, build-2024
 
 Azure OpenAI is now integrated into Azure AI Studio.
 
-While Azure AI Studio uses a project-based approach, Azure OpenAI Studio does not use projects.
-
-Now that Azure OpenAI Studio is integrated into Azure AI Studio, you have the choice of working with the Azure OpenAI resource itself or within a project. The following table highlights the differences between the two approaches:
+While Azure AI Studio uses a project-based approach, Azure OpenAI Studio does not use projects. Now that Azure OpenAI Studio is integrated into Azure AI Studio, you have the choice of working with the Azure OpenAI resource itself or within a project. The following table highlights the differences between the two approaches:
 
 
 || **Azure OpenAI Resource**                                                                 | **AI Studio Project**                                                                 |
