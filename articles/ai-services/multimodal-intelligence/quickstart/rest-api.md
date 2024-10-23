@@ -14,7 +14,7 @@ ms.date: 10/22/2024
 
 * Get started with the Azure AI Multimodal Intelligence latest preview version REST API (2024-12-01-preview).
 
-* Azure AI Multimodal Intelligence is a cloud-based solution within [**Azure AI services**](../../what-are-ai-services), designed to process varied data modalities such as documents, images, videos, and audio within a unified workflow.
+* Azure AI Multimodal Intelligence is a cloud-based solution within [**Azure AI services**](../../what-are-ai-services.md), designed to process varied data modalities such as documents, images, videos, and audio within a unified workflow.
 
 * The Multimodal Intelligence API provides you with AI algorithms for extracting data modalities and returns a structured JSON representation. Follow these steps to install a package to your application and try out the sample code.
 
@@ -53,7 +53,7 @@ To use Multimodal Intelligence, you need an Azure AI services multi-service reso
 
 ##  Analyze document (POST)
 
-Before you run the cURL command, make the following changes to the [POST request](#post-request):
+Before you run the cURL command, make the following changes to the [POST request](#analyze-document-post):
 
 1. Replace {endpoint} with the endpoint value from your Azure portal AI service resource instance.
 
