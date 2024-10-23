@@ -40,8 +40,8 @@ You can create an Azure AI Search resource in any of the following Azure public 
 | Brazil South​​ ​ | ✅ | ✅ | |  |
 | Canada Central​​ | ✅ | ✅ | ✅ |  |
 | Canada East​​ ​ |  | ✅ | |  |
-| East US​ <sup>1</sup>| ✅ | ✅ | ✅ | <span class='red-x'>&#10060;</span> |
-| East US 2 ​ | ✅ | ✅ | ✅ | |
+| East US​ <sup>1</sup>| ✅ | ✅ | ✅ |  |
+| East US 2 ​ | ✅ | ✅ | ✅ |  <span class='red-x'>&#10060;</span>|
 | ​Central US​​ <sup>1</sup> | ✅ | ✅ | ✅ |  |
 | North Central US​ ​ | ✅ | ✅ | |  | 
 | South Central US​ <sup>1</sup>​ | ✅ | ✅ | ✅ | <span class='red-x'>&#10060;</span> |
@@ -70,7 +70,7 @@ You can create an Azure AI Search resource in any of the following Azure public 
 | UK South​ | ✅ | ✅ | ✅ |  |
 | UK West​ ​|  | ✅ | |  |
 
-<sup>1</sup> Capacity constraints apply to specific tiers. See tier availability by region for details (search-sku-tier.md#region-availability-by-tier).
+<sup>1</sup> Capacity constraints apply to specific tiers. See [tier availability by region](search-sku-tier.md#region-availability-by-tier) for details.
 
 <sup>2</sup> This region runs on older infrastructure that has lower storage limits per partition at every tier. Choose a different region if you want [higher limits](search-limits-quotas-capacity.md#service-limits).
 
@@ -79,10 +79,10 @@ You can create an Azure AI Search resource in any of the following Azure public 
 | Region | AI integration | Semantic ranker | Availability zones | Capacity constrained |
 |--|--|--|--|--|
 | Israel Central​ <sup>2</sup> |  |  | ✅  |  |
-| Qatar Central​ <sup>1, 2</sup> |  |  | ✅ | <span class='red-x'>&#10060;</span> |
+| Qatar Central​ <sup>1, 2</sup> |  |  | ✅ | |
 | UAE North​​ | ✅ |  | ✅ |  |
 
-<sup>1</sup> Capacity constraints apply to specific tiers. See tier availability by region for details (search-sku-tier.md#region-availability-by-tier).
+<sup>1</sup> Capacity constraints apply to specific tiers. See [tier availability by region](search-sku-tier.md#region-availability-by-tier) for details.
 
 <sup>2</sup> This region runs on older infrastructure that has lower storage limits per partition at every tier. Choose a different region if you want [higher limits](search-limits-quotas-capacity.md#service-limits).
 
@@ -108,7 +108,8 @@ You can create an Azure AI Search resource in any of the following Azure public 
 | Korea Central | ✅ | ✅ | ✅ |
 | Korea South​ ​ |  | ✅ |  |
 
-<sup>1</sup> Capacity constraints apply to specific tiers. See tier availability by region for details (search-sku-tier.md#region-availability-by-tier).
+<sup>1</sup> Capacity constraints apply to specific tiers. See [tier availability by region](search-sku-tier.md#region-availability-by-tier) for details.
+
 
 <sup>2</sup> This region runs on older infrastructure that has lower storage limits per partition at every tier. Choose a different region if you want [higher limits](search-limits-quotas-capacity.md#service-limits).
 
@@ -120,7 +121,8 @@ You can create an Azure AI Search resource in any of the following Azure public 
 | Texas |  |  |  | |
 | Virginia <sup>1</sup> | ✅ | ✅  | ✅ |  <span class='red-x'>&#10060;</span> |
 
-<sup>1</sup> Capacity constraints apply to specific tiers. See tier availability by region for details (search-sku-tier.md#region-availability-by-tier).
+<sup>1</sup> Capacity constraints apply to specific tiers. See [tier availability by region](search-sku-tier.md#region-availability-by-tier) for details.
+
 
 ## Azure operated by 21Vianet
 
