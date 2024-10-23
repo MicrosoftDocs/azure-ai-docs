@@ -255,7 +255,7 @@ In order to test your connection through network security perimeter, you need ac
 
 1. Decide if you want to use a local computer or an Azure VM.
    1. If you're using a local computer, you need to know your public IP address.
-   1. If you're using an Azure VM, you can either use [private link](../private-link/private-link-overview.md) or [check the IP address using the portal](../virtual-network/ip-services/configure-public-ip-vm.yml).
+   1. If you're using an Azure VM, you can either use [private link](/azure/private-link/private-link-overview) or [check the IP address using the portal](/azure/virtual-network/ip-services/virtual-network-network-interface-addresses).
 
 1. Using the IP address, you can create an [inbound access rule](#add-an-inbound-access-rule) for that IP address to allow access. You can skip this step if you're using private link.
 
@@ -263,4 +263,4 @@ In order to test your connection through network security perimeter, you need ac
 
 ## See also
 
-+ [Use Azure role-based access control in Azure AI Search](search-security-rbac.md)
+* [Use Azure role-based access control in Azure AI Search](search-security-rbac.md)
