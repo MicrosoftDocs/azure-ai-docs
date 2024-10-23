@@ -66,9 +66,9 @@ When evaluating shared private links for your scenario, remember these constrain
 
 ## Prerequisites
 
-+ For [integrated vectorization](vector-search-integrated-vectorization.md) only, outbound connections through shared private link are supported on all billable tiers, on services [created after April 3, 2024](vector-search-index-size.md#how-to-check-service-creation-date), in regions providing [higher capacity](search-limits-quotas-capacity.md#partition-storage-gb).
++ For [integrated vectorization](vector-search-integrated-vectorization.md) only, outbound connections through shared private link are supported on all billable tiers, only on services [created after April 3, 2024](vector-search-index-size.md#how-to-check-service-creation-date) located in regions providing [higher capacity](search-limits-quotas-capacity.md#partition-storage-gb). 
 
-+ For [AI enrichment](cognitive-search-concept-intro.md) and skillset processing that doesn't include an embedding skill, Azure AI Search must be Standard 2 (S2) or higher.
++ For [AI enrichment](cognitive-search-concept-intro.md), skillset processing that doesn't include an embedding skill and in services [created before April 3, 2024](vector-search-index-size.md#how-to-check-service-creation-date), Azure AI Search must be Standard 2 (S2) or higher.
 
 + For all other use cases, that don't involve skillsets, Azure AI Search can be Basic or higher.
 
