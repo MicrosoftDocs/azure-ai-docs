@@ -63,12 +63,12 @@ Before you run the cURL command, make the following changes to the [POST request
 
 1. Using the following table as a reference, replace `{analyzerID}` and `{your-document-url}` with your desired values.
 
-|Feature|{analyzerID}| {document-url}|
-|--------|-------|-------|
-|Audio|||
-|Video|||
-|Document|||
-|Image|||
+    |Feature|{analyzerID}| {document-url}|
+    |--------|-------|-------|
+    |Audio|||
+    |Video|||
+    |Document|||
+    |Image|||
 
 1. Open a command prompt window.
 
