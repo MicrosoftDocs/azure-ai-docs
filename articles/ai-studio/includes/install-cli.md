@@ -1,7 +1,7 @@
 ---
 title: include file
 description: include file
-author: sdgilley
+author: sdgilley, aliphys
 ms.reviewer: sgilley
 ms.author: sgilley
 ms.service: azure-ai-studio
