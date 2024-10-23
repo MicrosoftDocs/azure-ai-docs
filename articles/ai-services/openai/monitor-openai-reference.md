@@ -32,7 +32,7 @@ Here are the most important metrics we think you should monitor for Azure OpenAI
 - Time to Response
 - Time Between Tokens
 
-You can also monitor Content Safety metrics that are used by other Cognitive Services. 
+You can also monitor Content Safety metrics that are used by other Azure AI services. 
 - Blocked Volume
 - Harmful Volume Detected
 - Potential Abusive User Count
