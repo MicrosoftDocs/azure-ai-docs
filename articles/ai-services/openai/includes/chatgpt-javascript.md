@@ -83,7 +83,6 @@ import type {
 
 // You will need to set these environment variables or edit the following values
 const endpoint = process.env["AZURE_OPENAI_ENDPOINT"] || "<endpoint>";
-const apiKey = process.env["AZURE_OPENAI_API_KEY"] || "<api key>";
 
 // Required Azure OpenAI deployment name and API version
 const apiVersion = "2024-08-01-preview";
@@ -160,7 +159,6 @@ const {
 
 // You will need to set these environment variables or edit the following values
 const endpoint = process.env["AZURE_OPENAI_ENDPOINT"] || "<endpoint>";
-const apiKey = process.env["AZURE_OPENAI_API_KEY"] || "<api key>";
 const apiVersion = "2024-05-01-preview";
 const deployment = "gpt-4o"; //This must match your deployment name.
 
