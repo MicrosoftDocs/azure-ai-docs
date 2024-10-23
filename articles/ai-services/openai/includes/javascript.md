@@ -66,7 +66,7 @@ Your app's _package.json_ file will be updated with the dependencies.
 
 Open a command prompt where you created the new project, and create a new file named Completion.js. Copy the following code into the Completion.js file.
 
-## [**TypeScript (Entra id)**](#tab/typescript-keyless)
+## [**TypeScript (Microsoft Entra ID)**](#tab/typescript-keyless)
 
 ```typescript
 import { 
@@ -76,13 +76,8 @@ import {
 import { AzureOpenAI } from "openai";
 import { type Completion } from "openai/resources/index";
 
-// Load the .env file if it exists
-const dotenv = require("dotenv");
-dotenv.config();
-
 // You will need to set these environment variables or edit the following values
 const endpoint = process.env["AZURE_OPENAI_ENDPOINT"] || "<endpoint>";
-const apiKey = process.env["AZURE_OPENAI_API_KEY"] || "<api key>";
 
 // Required Azure OpenAI deployment name and API version
 const apiVersion = "2024-08-01-preview";
@@ -146,22 +141,17 @@ Run the script with the following command:
 node.exe Completion.js
 ```
 
-## [**JavaScript (Entra id)**](#tab/javascript-keyless)
+## [**JavaScript (Microsoft Entra ID)**](#tab/javascript-keyless)
 
 ```javascript
 const { AzureOpenAI } = require("openai");
-import { 
+const { 
   DefaultAzureCredential, 
   getBearerTokenProvider 
-} from "@azure/identity";
-
-// Load the .env file if it exists
-const dotenv = require("dotenv");
-dotenv.config();
+} = require("@azure/identity");
 
 // You will need to set these environment variables or edit the following values
 const endpoint = process.env["AZURE_OPENAI_ENDPOINT"] || "<endpoint>";
-const apiKey = process.env["AZURE_OPENAI_API_KEY"] || "<api key>";
 const apiVersion = "2024-04-01-preview";
 const deployment = "gpt-35-turbo-instruct"; //The deployment name for your completions API model. The instruct model is the only new model that supports the legacy API.
 
@@ -200,7 +190,6 @@ node.exe Completion.js
 ## [**TypeScript (API key)**](#tab/typescript-key)
 
 ```typescript
-import "dotenv/config";
 import { AzureOpenAI } from "openai";
 import { type Completion } from "openai/resources/index";
 
@@ -270,10 +259,6 @@ node.exe Completion.js
 ```javascript
 const { AzureOpenAI } = require("openai");
 
-// Load the .env file if it exists
-const dotenv = require("dotenv");
-dotenv.config();
-
 // You will need to set these environment variables or edit the following values
 const endpoint = process.env["AZURE_OPENAI_ENDPOINT"] || "<endpoint>";
 const apiKey = process.env["AZURE_OPENAI_API_KEY"] || "<api key>";
@@ -316,126 +301,6 @@ node.exe Completion.js
 
 Microsoft was founded on April 4, 1975.
 ```
-
-## Microsoft Entra ID
-
-> [!IMPORTANT]
-> In the previous example we are demonstrating key-based authentication. Once you have tested with key-based authentication successfully, we recommend using the more secure [Microsoft Entra ID](/entra/fundamentals/whatis) for authentication which is demonstrated in the next code sample. Getting started with [Microsoft Entra ID] will require some additional [prerequisites](https://www.npmjs.com/package/@azure/identity).
-
-## [**TypeScript**](#tab/typescript)
-
-```typescript
-import {
-  DefaultAzureCredential,
-  getBearerTokenProvider,
-} from "@azure/identity";
-import "dotenv/config";
-import { AzureOpenAI } from "openai";
-import { type Completion } from "openai/resources/index";
-
-// You will need to set these environment variables or edit the following values
-const endpoint = process.env["AZURE_OPENAI_ENDPOINT"] || "<endpoint>";
-
-// Required Azure OpenAI deployment name and API version
-const apiVersion = "2024-08-01-preview";
-const deploymentName = "gpt-35-turbo-instruct";
-
-// Chat prompt and max tokens
-const prompt = ["When was Microsoft founded?"];
-const maxTokens = 128;
-
-function getClient(): AzureOpenAI {
-  const scope = "https://cognitiveservices.azure.com/.default";
-  const azureADTokenProvider = getBearerTokenProvider(
-    new DefaultAzureCredential(),
-    scope
-  );
-  return new AzureOpenAI({
-    endpoint,
-    azureADTokenProvider,
-    deployment: deploymentName,
-    apiVersion,
-  });
-}
-async function getCompletion(
-  client: AzureOpenAI,
-  prompt: string[],
-  max_tokens: number
-): Promise<Completion> {
-  return client.completions.create({
-    prompt,
-    model: "",
-    max_tokens,
-  });
-}
-async function printChoices(completion: Completion): Promise<void> {
-  for (const choice of completion.choices) {
-    console.log(choice.text);
-  }
-}
-export async function main() {
-  console.log("== Get completions Sample ==");
-
-  const client = getClient();
-  const completion = await getCompletion(client, prompt, maxTokens);
-  await printChoices(completion);
-}
-
-main().catch((err) => {
-  console.error("Error occurred:", err);
-});
-
-```
-
-Build the script with the following command:
-
-```cmd
-tsc
-```
-
-Run the script with the following command:
-
-```cmd
-node.exe Completion.js
-```
-
-
-## [**JavaScript**](#tab/javascript)
-
-```javascript
-const { AzureOpenAI } = require("openai");
-const { DefaultAzureCredential, getBearerTokenProvider } = require("@azure/identity");
-
-// Set AZURE_OPENAI_ENDPOINT to the endpoint of your
-// OpenAI resource. You can find this in the Azure portal.
-// Load the .env file if it exists
-require("dotenv/config");
-
-const prompt = ["When was Microsoft founded?"];
-
-async function main() {
-  console.log("== Get completions Sample ==");
-
-  const scope = "https://cognitiveservices.azure.com/.default";
-  const azureADTokenProvider = getBearerTokenProvider(new DefaultAzureCredential(), scope);
-  const deployment = "gpt-35-turbo-instruct";
-  const apiVersion = "2024-04-01-preview";
-  const client = new AzureOpenAI({ azureADTokenProvider, deployment, apiVersion });
-  const result = await client.completions.create({ prompt, model: deployment, max_tokens: 128 });
-
-  for (const choice of result.choices) {
-    console.log(choice.text);
-  }
-}
-
-main().catch((err) => {
-  console.error("Error occurred:", err);
-});
-
-module.exports = { main };
-```
-
----
 
 > [!NOTE]
 > If your receive the error: *Error occurred: OpenAIError: The `apiKey` and `azureADTokenProvider` arguments are mutually exclusive; only one can be passed at a time.* You may need to remove a pre-existing environment variable for the API key from your system. Even though the Microsoft Entra ID code sample is not explicitly referencing the API key environment variable, if one is present on the system executing this sample, this error will still be generated.
