@@ -13,7 +13,7 @@ ms.author: fasantia
 
 # Azure AI model inference quotas and limits
 
-This article contains a quick reference and a detailed description of the quotas and limits for Azure AI model's inference in Azure AI services. For quotas and limits specific to the Azure OpenAI Service, see [Quota and limits in the Azure OpenAI service](../../../openai/quotas-limits.md).
+This article contains a quick reference and a detailed description of the quotas and limits for Azure AI model's inference in Azure AI services. For quotas and limits specific to the Azure OpenAI Service, see [Quota and limits in the Azure OpenAI service](../../../ai-services/openai/quotas-limits.md).
 
 ## Quotas and limits reference
 
@@ -30,9 +30,9 @@ The following sections provide you with a quick guide to the default quotas and 
 
 | Limit name | Limit value |
 | ---------- | ----------- |
-| Tokens per minute (Azure OpenAI models)   | Varies per model and SKU. See [limits for Azure OpenAI](../openai/quotas-limits.md). |
+| Tokens per minute (Azure OpenAI models)   | Varies per model and SKU. See [limits for Azure OpenAI](../../../ai-services/openai/quotas-limits.md). |
 | Tokens per minute (rest of models)        | 200.000 |
-| Requests per minute (Azure OpenAI models) | Varies per model and SKU. See [limits for Azure OpenAI](../openai/quotas-limits.md). |
+| Requests per minute (Azure OpenAI models) | Varies per model and SKU. See [limits for Azure OpenAI](../../../ai-services/openai/quotas-limits.md). |
 | Requests per minute (rest of models)      | 1.000   |
 
 ### Other limits
@@ -60,7 +60,7 @@ To minimize issues related to rate limits, it's a good idea to use the following
 
 ### Request increases to the default quotas and limits
 
-Quota increase requests can be submitted and evaluated per request. [Submit a service request](../cognitive-services-support-options.md?context=/azure/ai-services/openai/context/context).
+Quota increase requests can be submitted and evaluated per request. [Submit a service request](../../../ai-services/cognitive-services-support-options.md?context=/azure/ai-studio/context/context).
 
 ## Next steps
 

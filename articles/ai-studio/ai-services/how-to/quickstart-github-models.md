@@ -50,7 +50,7 @@ To obtain the key and endpoint:
 
 8. Once it's deployed, your model's API Key and endpoint are shown in the Overview. Use these values in your code to use the model in your production environment.
 
-    :::image type="content" source="../../media/ai-services/add-model-deployments/models-deploy-endpoint-url.png" alt-text="An screenshot showing how to get the URL and key associated with the deployment." lightbox="../media/ai-services/add-model-deployments/models-deploy-endpoint-url.png":::
+    :::image type="content" source="../../media/ai-services/add-model-deployments/models-deploy-endpoint-url.png" alt-text="An screenshot showing how to get the URL and key associated with the deployment." lightbox="../../media/ai-services/add-model-deployments/models-deploy-endpoint-url.png":::
 
 At this point, the model you selected will be ready to consume. 
 
@@ -61,7 +61,7 @@ At this point, the model you selected will be ready to consume.
 
 Once your Azure AI Services resource is configured, you can start consuming it from your code. You will need the endpoint URL and key for it, which can be found in the **Overview** section:
 
-:::image type="content" source="../../media/ai-services/overview/overview-endpoint-and-key.png" alt-text="An screenshot showing how to get the URL and key associated with the resource." lightbox="../../media/overview/overview-endpoint-and-key.png":::
+:::image type="content" source="../../media/ai-services/overview/overview-endpoint-and-key.png" alt-text="An screenshot showing how to get the URL and key associated with the resource." lightbox="../../media/ai-services/overview/overview-endpoint-and-key.png":::
 
 You can use any of the supported SDKs to get predictions out from the endpoint. The following SDKs are officially supported:
 
@@ -75,7 +75,7 @@ See the [supported languages and SDKs](../concepts/endpoints.md#azure-ai-inferen
 
 Generate your first chat completion:
 
-[!INCLUDE [code-create-chat-completion](../includes/code-create-chat-completion.md)]
+[!INCLUDE [code-create-chat-completion](../../includes/ai-services/code-create-chat-completion.md)]
 
 ## Explore additional features
 
@@ -85,7 +85,7 @@ Azure AI model inference supports additional features not available in GitHub Mo
 * Configure [content filtering](../../concepts/content-filtering.md).
 * Configure rate limiting (for specific models).
 * Explore additional [deployment SKUs (for specific models)](../concepts/deployment-types.md).
-* Configure [private networking](../../ai-services/cognitive-services-virtual-networks.md?context=/azure/ai-services/openai/context/context).
+* Configure [private networking](../../../ai-services/cognitive-services-virtual-networks.md?context=/azure/ai-studio/context/context).
 * 
 ## Got troubles?
 
