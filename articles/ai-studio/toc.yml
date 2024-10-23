@@ -175,7 +175,7 @@ items:
         href: ai-services/how-to/quickstart-github-models.md
       - name: Azure AI Services
         items:
-        - name: What is Azure AI model inference in Azure AI Services?
+        - name: What is the Azure AI model inference service?
           href: ai-services/model-inference.md
         - name: Add and configure models
           href: ai-services/how-to/create-model-deployments.md
