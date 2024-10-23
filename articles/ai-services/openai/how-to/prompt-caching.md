@@ -14,7 +14,7 @@ recommendations: false
 
 # Prompt caching
 
-Prompt caching allows you to reduce overall request latency and cost for longer prompts that have identical content at the beginning of the prompt. *"Prompt"* in this context is referring to the input you send to the model as part of your chat completions request. Rather than reprocess the same input tokens over and over again, the model is able to retain a temporary cache of processed input data to improve overall performance. Prompt caching has no impact on the output content returned in the model response beyond a reduction in latency and cost.  
+Prompt caching allows you to reduce overall request latency and cost for longer prompts that have identical content at the beginning of the prompt. *"Prompt"* in this context is referring to the input you send to the model as part of your chat completions request. Rather than reprocess the same input tokens over and over again, the model is able to retain a temporary cache of processed input data to improve overall performance. Prompt caching has no impact on the output content returned in the model response beyond a reduction in latency and cost. For supported models, cached tokens are billed at [50% less than the input token cost]([https://azure.microsoft.com/en-us/pricing/details/cognitive-services/openai-service/](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/)).
 
 ## Supported models
 
