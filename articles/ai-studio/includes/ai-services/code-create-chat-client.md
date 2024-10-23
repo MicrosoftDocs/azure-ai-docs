@@ -26,7 +26,7 @@ import os
 from azure.ai.inference import ChatCompletionsClient
 from azure.core.credentials import AzureKeyCredential
 
-model = ChatCompletionsClient(
+client = ChatCompletionsClient(
     endpoint=os.environ["AZUREAI_ENDPOINT_URL"],
     credential=AzureKeyCredential(os.environ["AZUREAI_ENDPOINT_KEY"]),
 )
