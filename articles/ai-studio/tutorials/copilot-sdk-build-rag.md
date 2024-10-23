@@ -94,7 +94,7 @@ In this tutorial, the chat app is created using the [Prompt Flow](https://micros
 
 ## Set initial environment variables
 
-There's a collection of environment variables used across the different code snippets. Add them all into an **.env** file. 
+Environment variables are used to securely store configuration details without hardcoding them into the code. Use an **.env** file to manage variables securely across your code. 
 
 > [!IMPORTANT]
 > If you create this in a git repository, ensure that `.env` is in your `.gitignore` file so that you don't accidentally check it into the repository.
