@@ -12,7 +12,7 @@ ms.author: fasantia
 recommendations: false
 ---
 
-# Upgrade from GitHub Models to Azure AI model inference in Azure AI Services
+# Upgrade from GitHub Models to the Azure AI model inference service
 
 If you want to develop a generative AI application, you can use [GitHub Models](https://docs.github.com/en/github-models/) to find and experiment with AI models for free. The playground and free API usage are [rate limited](https://docs.github.com/en/github-models/prototyping-with-ai-models#rate-limits) by requests per minute, requests per day, tokens per request, and concurrent requests. If you get rate limited, you will need to wait for the rate limit that you hit to reset before you can make more requests.
 
