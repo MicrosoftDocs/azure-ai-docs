@@ -87,4 +87,4 @@ Prompt caching is enabled by default. There is no opt-out option.
 
 ## How does prompt caching work for Provisioned deployments?
 
-For supported models on provisioned deployments, we discount up to 100% of cached input tokens. For more information, see our [Provisioned Throughput documentation](https://learn.microsoft.com/en-us/azure/ai-services/openai/concepts/provisioned-throughput). 
+For supported models on provisioned deployments, we discount up to 100% of cached input tokens. For more information, see our [Provisioned Throughput documentation](/azure/ai-services/openai/concepts/provisioned-throughput). 
