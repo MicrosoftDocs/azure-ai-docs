@@ -84,6 +84,14 @@ You might be ready for fine-tuning if:
 
 There isn't a single right answer to this question, but you should have clearly defined goals for what success with fine-tuning looks like. Ideally, this effort shouldn't just be qualitative. It should include quantitative measures of success, like using a holdout set of data for validation, in addition to user acceptance testing or A/B testing the fine-tuned model against a base model. 
 
+## Fine-tuning Options: User-managed compute and Serverless API (pay-as-you-go)
+
+There are two distinct options through which fine-tuning could be performed in Azure AI Studio 1. User-managed compute and Serverless API (pay-as-you-go).
+
+> [!NOTE]
+   > Some foundation models support only the 'User-managed compute' option.
+
+
 ## Supported models for fine-tuning in Azure AI Studio
 
 Now that you know when to use fine-tuning for your use case, you can go to Azure AI Studio to find models available to fine-tune. The following table describes models that you can fine-tune in Azure AI Studio, along with the regions where you can fine-tune them.
