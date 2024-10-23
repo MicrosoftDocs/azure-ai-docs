@@ -54,30 +54,28 @@ Here's a comparison of features between Azure AI Speech HD voices, Azure OpenAI 
 
 The Azure AI Speech HD voice values are in the format `voicename:basemodel:version`. The name before the colon, such as `en-US-Ava`, is the voice persona name and its original locale. The base model is tracked by versions in subsequent updates.
 
-Currently, `DragonHD` is the only base model available for Azure AI Speech HD voices. One version of the base model (`v1Neural`) is available for each voice persona. To ensure that you're using the latest version of the base model that we provide without having to make a code change, use the `LatestNeural` version.
+Currently, `DragonHD` is the only base model available for Azure AI Speech HD voices. To ensure that you're using the latest version of the base model that we provide without having to make a code change, use the `LatestNeural` version.
 
-For example, for the persona `en-US-Ava` you can specify two HD voice values:
+For example, for the persona `en-US-Ava` you can specify the following HD voice values:
 - `en-US-Ava:DragonHDLatestNeural`: Always uses the latest version of the base model that we provide later.
-- `en-US-Ava:DragonHDv1Neural`: Always uses the `v1Neural` version of the base model. When we release a new version of the base model, you need to update your code to use the new version.
 
 The following table lists the Azure AI Speech HD voices that are currently available.
 
 | Neural voice persona | HD voices | 
 |----------------------|-----------|
-| de-DE-Seraphina | de-DE-Seraphina:DragonHDLatestNeural<br/>de-DE-Seraphina:DragonHDv1Neural |
-| en-US-Andrew | en-US-Andrew:DragonHDLatestNeural<br/>en-US-Andrew:DragonHDv1Neural |
-| en-US-Andrew2 | en-US-Andrew2:DragonHDLatestNeural<br/>en-US-Andrew2:DragonHDv1Neural |
-| en-US-Aria | en-US-Aria:DragonHDLatestNeural<br/>en-US-Aria:DragonHDv1Neural |
-| en-US-Ava | en-US-Ava:DragonHDLatestNeural<br/>en-US-Ava:DragonHDv1Neural |
+| de-DE-Seraphina | de-DE-Seraphina:DragonHDLatestNeural|
+| en-US-Andrew | en-US-Andrew:DragonHDLatestNeural|
+| en-US-Andrew2 | en-US-Andrew2:DragonHDLatestNeural|
+| en-US-Aria | en-US-Aria:DragonHDLatestNeural |
+| en-US-Ava | en-US-Ava:DragonHDLatestNeural|
 | en-US-Brian | en-US-Brian:DragonHDLatestNeural|
-| en-US-Davis | en-US-Davis:DragonHDLatestNeural<br/>en-US-Davis:DragonHDv1Neural |
-| en-US-Emma | en-US-Emma:DragonHDLatestNeural<br/>en-US-Emma:DragonHDv1Neural |
-| en-US-Emma2 | en-US-Emma2:DragonHDLatestNeural<br/>en-US-Emma2:DragonHDv1Neural |
-| en-US-Jenny | en-US-Jenny:DragonHDLatestNeural<br/>en-US-Jenny:DragonHDv1Neural |
-| en-US-Steffan | en-US-Steffan:DragonHDLatestNeural<br/>en-US-Steffan:DragonHDv1Neural |
-| ja-JP-Masaru | ja-JP-Masaru:DragonHDLatestNeural<br/>ja-JP-Masaru:DragonHDv1Neural |
-| zh-CN-Xiaochen | zh-CN-Xiaochen:DragonHDLatestNeural<br/>zh-CN-Xiaochen:DragonHDv1Neural |
-
+| en-US-Davis | en-US-Davis:DragonHDLatestNeural|
+| en-US-Emma | en-US-Emma:DragonHDLatestNeural |
+| en-US-Emma2 | en-US-Emma2:DragonHDLatestNeural |
+| en-US-Jenny | en-US-Jenny:DragonHDLatestNeural |
+| en-US-Steffan | en-US-Steffan:DragonHDLatestNeural |
+| ja-JP-Masaru | ja-JP-Masaru:DragonHDLatestNeural|
+| zh-CN-Xiaochen | zh-CN-Xiaochen:DragonHDLatestNeural |
 
 ## How to use Azure AI Speech HD voices
 
