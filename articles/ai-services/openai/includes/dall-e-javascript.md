@@ -8,7 +8,7 @@ ms.service: azure-ai-openai
 ms.topic: include
 author: PatrickFarley
 ms.author: pafarley
-ms.date: 09/06/2024
+ms.date: 10/23/2024
 ---
 
 Use this guide to get started generating images with the Azure OpenAI SDK for JavaScript.
@@ -22,6 +22,7 @@ Use this guide to get started generating images with the Azure OpenAI SDK for Ja
 - An Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services?azure-portal=true)
 - [LTS versions of Node.js](https://github.com/nodejs/release#release-schedule)
 - [TypeScript](https://www.typescriptlang.org/download/)
+- [Azure CLI](/cli/azure/install-azure-cli) used for passwordless authentication in a local development environment, create the necessary context by signing in with the Azure CLI.
 - An Azure OpenAI resource created in a supported region (see [Region availability](/azure/ai-services/openai/concepts/models#model-summary-table-and-region-availability)). For more information, see [Create a resource and deploy a model with Azure OpenAI](../how-to/create-resource.md).
 
 
@@ -29,6 +30,7 @@ Use this guide to get started generating images with the Azure OpenAI SDK for Ja
 
 - An Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services?azure-portal=true)
 - [LTS versions of Node.js](https://github.com/nodejs/release#release-schedule)
+- [Azure CLI](/cli/azure/install-azure-cli) used for passwordless authentication in a local development environment, create the necessary context by signing in with the Azure CLI.
 - An Azure OpenAI resource created in a supported region (see [Region availability](/azure/ai-services/openai/concepts/models#model-summary-table-and-region-availability)). For more information, see [Create a resource and deploy a model with Azure OpenAI](../how-to/create-resource.md).
 
 ---
@@ -62,7 +64,137 @@ Your app's _package.json_ file will be updated with the dependencies.
 
 Create a new file named _ImageGeneration.js_ and open it in your preferred code editor. Copy the following code into the _ImageGeneration.js_ file:
 
-#### [TypeScript](#tab/typescript)
+#### [TypeScript (Microsoft Entra Id)](#tab/typescript-keyless)
+
+```typescript
+import "dotenv/config";
+import { AzureOpenAI } from "openai";
+import { 
+    DefaultAzureCredential, 
+    getBearerTokenProvider 
+} from "@azure/identity";
+
+// You will need to set these environment variables or edit the following values
+const endpoint = process.env["AZURE_OPENAI_ENDPOINT"];
+
+// Required Azure OpenAI deployment name and API version
+const apiVersion = "2024-07-01";
+const deploymentName = "dall-e-3";
+
+// keyless authentication    
+const credential = new DefaultAzureCredential();
+const scope = "https://cognitiveservices.azure.com/.default";
+const azureADTokenProvider = getBearerTokenProvider(credential, scope);
+
+function getClient(): AzureOpenAI {
+  return new AzureOpenAI({
+    endpoint,
+    azureADTokenProvider,
+    apiVersion,
+    deployment: deploymentName,
+  });
+}
+async function main() {
+  console.log("== Image Generation ==");
+
+  const client = getClient();
+
+  const results = await client.images.generate({
+    prompt,
+    size: "1024x1024",
+    n: numberOfImagesToGenerate,
+    model: "",
+    style: "vivid", // or "natural"
+  });
+
+  for (const image of results.data) {
+    console.log(`Image generation result URL: ${image.url}`);
+  }
+}
+
+main().catch((err) => {
+  console.error("The sample encountered an error:", err);
+});
+```
+
+1. Build the application with the following command:
+
+    ```console
+    tsc
+    ```
+
+1. Run the application with the following command:
+
+    ```console
+    node ImageGeneration.js
+    ```
+
+
+#### [JavaScript (API key)](#tab/javascript-key)
+
+```javascript
+require("dotenv/config");
+const { AzureOpenAI } = require("openai");
+const { 
+    DefaultAzureCredential, 
+    getBearerTokenProvider 
+} = require("@azure/identity");
+
+// You will need to set these environment variables or edit the following values
+const endpoint = process.env["AZURE_OPENAI_ENDPOINT"];
+
+// Required Azure OpenAI deployment name and API version
+const apiVersion = "2024-07-01";
+const deploymentName = "dall-e-3";
+
+// The prompt to generate images from
+const prompt = "a monkey eating a banana";
+const numberOfImagesToGenerate = 1;
+
+// keyless authentication    
+const credential = new DefaultAzureCredential();
+const scope = "https://cognitiveservices.azure.com/.default";
+const azureADTokenProvider = getBearerTokenProvider(credential, scope);
+
+function getClient(): AzureOpenAI {
+  return new AzureOpenAI({
+    endpoint,
+    azureADTokenProvider,
+    apiVersion,
+    deployment: deploymentName,
+  });
+}
+async function main() {
+  console.log("== Image Generation ==");
+
+  const client = getClient();
+
+  const results = await client.images.generate({
+    prompt,
+    size: "1024x1024",
+    n: numberOfImagesToGenerate,
+    model: "",
+    style: "vivid", // or "natural"
+  });
+
+  for (const image of results.data) {
+    console.log(`Image generation result URL: ${image.url}`);
+  }
+}
+
+main().catch((err) => {
+  console.error("The sample encountered an error:", err);
+});
+```
+
+Run the script with the following command:
+
+```console
+node ImageGeneration.js
+```
+
+
+#### [TypeScript (API key)](#tab/typescript-key)
 
 ```typescript
 import "dotenv/config";
@@ -124,7 +256,7 @@ main().catch((err) => {
     ```
 
 
-#### [JavaScript](#tab/javascript)
+#### [JavaScript (API key)](#tab/javascript-key)
 
 ```javascript
 require("dotenv/config");
@@ -178,6 +310,7 @@ Run the script with the following command:
 ```console
 node ImageGeneration.js
 ```
+
 ---
 
 ## Output
