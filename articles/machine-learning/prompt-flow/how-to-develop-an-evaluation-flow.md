@@ -1,7 +1,7 @@
 ---
-title: Customize evaluation flow and metrics in prompt flow
+title: Evaluation flow and metrics in prompt flow
 titleSuffix: Azure Machine Learning
-description: Learn how to customize or create your own evaluation flow and evaluation metrics tailored to your tasks and objectives, and then use in a batch run as an evaluation method in prompt flow with Azure Machine Learning studio.
+description: Use Azure Machine Learning studio to create or customize evaluation flows and metrics tailored to your tasks and objectives, and use a batch run as a prompt flow evaluation method.
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: prompt-flow
@@ -14,17 +14,17 @@ ms.reviewer: ziqiwang
 ms.date: 10/23/2024
 ---
 
-# Customize evaluation flow and metrics
+# Evaluation flows and metrics
 
-Evaluation flows are a special type of prompt flows that calculate metrics to assess how well the outputs of a run meet specific criteria and goals. You can create or customize evaluation flows and metrics tailored to your tasks and objectives, and use them to evaluate other flows. This article explains evaluation flows, how to develop and customize them, and how to use them in batch runs.
+Evaluation flows are a special type of prompt flows that calculate metrics to assess how well the outputs of a run meet specific criteria and goals. You can create or customize evaluation flows and metrics tailored to your tasks and objectives, and use them to evaluate other prompt flows. This article explains evaluation flows, how to develop and customize them, and how to use them in prompt flow batch runs to evaluate performance.
 
 ## Understand evaluation flows
 
-A prompt flow is a sequence of nodes that process input and generate output. Evaluation flows take required inputs and produce corresponding outputs that are usually scores or metrics. Evaluation flows differ from standard flows in their authoring experience and usage.
+A prompt flow is a sequence of nodes that process input and generate output. Evaluation flows consume required inputs and produce corresponding outputs that are usually scores or metrics. Evaluation flows differ from standard flows in their authoring experience and usage.
 
-Evaluation flows usually run after the run they're testing, by receiving its outputs and using the outputs to calculate the scores and metrics. Evaluation flows log metrics by using the `log_metric()` function.
+Evaluation flows usually run after the run they're testing by receiving its outputs and using the outputs to calculate scores and metrics. Evaluation flows log metrics by using the promptflow SDK `log_metric()` function.
 
-The outputs of the evaluation flow are results that measure the performance of the flow being tested. Evaluation flows may have an aggregation node that calculates the overall performance of the flow being tested over the test dataset.
+The outputs of the evaluation flow are results that measure the performance of the flow being tested. Evaluation flows can have an aggregation node that calculates the overall performance of the flow being tested over the test dataset.
 
 The next sections describe how inputs and outputs are defined in evaluation flows.
 
@@ -34,11 +34,11 @@ Evaluation flows calculate metrics or scores for batch runs by taking in the out
 
 You might need other inputs as ground truth. For example, if you want to calculate the accuracy of a classification flow, you need to provide the `category` column of the dataset as ground truth. If you want to calculate the accuracy of a QnA flow, you need to provide the `answer` column of the dataset as the ground truth. You might need some other inputs to calculate metrics, such as `question` and `context` in QnA or retrieval augmented generation (RAG) scenarios.
 
-You define the inputs of the evaluation flow in the same way as defining the inputs of a standard flow. By default, evaluation uses the same dataset as the run being tested. However, if the corresponding labels or target ground truth values are in a different dataset, you can easily switch to that dataset.
+You define the inputs of the evaluation flow in the same way as you define the inputs of a standard flow. By default, evaluation uses the same dataset as the run being tested. However, if the corresponding labels or target ground truth values are in a different dataset, you can easily switch to that dataset.
 
 #### Input descriptions
 
-To describe the needed inputs for calculating metrics, you can add descriptions. The descriptions appear when you map the sources in batch run submissions.
+To describe the inputs needed for calculating metrics, you can add descriptions. The descriptions appear when you map the input sources in batch run submissions.
 
 To add descriptions for each input, select **Show description** in the input section when developing your evaluation method, and then enter the descriptions.
 
@@ -54,19 +54,19 @@ The outputs of an evaluation are results that show the performance of the flow b
 
 #### Output scores
 
-Prompt flow processes one row of data at a time and generates an output record. Evaluation flows likewise can calculate scores for each row of data, so you can check how the flow performs on each individual data point.
+Prompt flows process one row of data at a time and generate an output record. Evaluation flows likewise can calculate scores for each row of data, so you can check how a flow performs on each individual data point.
 
-You can record the scores for each data instance as evaluation flow outputs by setting them in the output section of the evaluation flow. The authoring experience is the same as defining a standard flow output.
+You can record the scores for each data instance as evaluation flow outputs by specifying them in the output section of the evaluation flow. The authoring experience is the same as defining a standard flow output.
 
 :::image type="content" source="./media/how-to-develop-an-evaluation-flow/eval-output.png" alt-text="Screenshot of the outputs section showing a name and value. " lightbox = "./media/how-to-develop-an-evaluation-flow/eval-output.png":::
 
-You can view the individual scores in the **Outputs** tab when you select **View outputs**, the same as when you check the outputs of a standard flow batch run. You can append the instance-level scores to the output of the flow being tested.
+You can view the individual scores in the **Outputs** tab when you select **View outputs**, the same as when you check the outputs of a standard flow batch run. You can append these instance-level scores to the output of the flow being tested.
 
 #### Aggregation and metrics logging
 
-The evaluation flow also provides an overall assessment for the run. To distinguish from the individual output scores, values for evaluating overall run performance are called *metrics*.
+The evaluation flow also provides an overall assessment for the run. To distinguish them from individual output scores, values for evaluating overall run performance are called *metrics*.
 
-To calculate an overall assessment value based on individual scores, you can check the **Aggregation** on a Python node in an evaluation flow to turn it into a *reduce* node. The node then takes in the inputs as a list and processes them as a batch.
+To calculate an overall assessment value based on individual scores, select the **Aggregation** checkbox on a Python node in an evaluation flow to turn it into a *reduce* node. The node then takes in the inputs as a list and processes them as a batch.
 
 :::image type="content" source="./media/how-to-develop-an-evaluation-flow/set-as-aggregation.png" alt-text="Screenshot of the Python node heading pointing to an unchecked checked box. " lightbox = "./media/how-to-develop-an-evaluation-flow/set-as-aggregation.png":::
 
@@ -87,7 +87,7 @@ def calculate_accuracy(grades: List[str]): # Receive a list of grades from a pre
     return accuracy
 ```
 
-Because you call this function in the Python node, you don't need to assign it elsewhere, and you can view the metrics later. After you use this evaluation method in a batch run, you can view the metrics showing overall performance by selecting the **Metrics** tab when you **View outputs**.
+Because you call this function in the Python node, you don't need to assign it elsewhere, and you can view the metrics later. After you use this evaluation method in a batch run, you can view the metric showing overall performance by selecting the **Metrics** tab when you **View outputs**.
 
 :::image type="content" source="./media/how-to-develop-an-evaluation-flow/evaluation-metrics-bulk.png" alt-text="Screenshot of the metrics tab that shows the metrics logged by log metrics. " lightbox = "./media/how-to-develop-an-evaluation-flow/evaluation-metrics-bulk.png":::
 
@@ -99,24 +99,24 @@ To develop your own evaluation flow, select **Create** on the Azure Machine Lear
 
 - Select **Evaluation flow** in the **Explore gallery**, and select from one of the available built-in flows. Select **View details** to get a summary of each flow, and select **Clone** to open and customize the flow. The flow creation wizard helps you modify the flow for your own scenario.
 
-:::image type="content" source="./media/how-to-develop-an-evaluation-flow/create-by-type.png" alt-text="Screenshot of create a new evaluation flow from scratch. " lightbox = "./media/how-to-develop-an-evaluation-flow/create-by-type.png":::
+:::image type="content" source="./media/how-to-develop-an-evaluation-flow/create-by-type.png" alt-text="Screenshot of different ways to create a new evaluation flow. " lightbox = "./media/how-to-develop-an-evaluation-flow/create-by-type.png":::
 
 ### Calculate scores for each data point
 
-Evaluation flows calculate scores and metrics for a flow run on a dataset. The first step in evaluation flows is calculating scores for each individual output.
+Evaluation flows calculate scores and metrics for flows run on datasets. The first step in evaluation flows is calculating scores for each individual output.
 
 For example, in the built-in Classification Accuracy Evaluation flow, the `grade` that measures the accuracy of each flow-generated output to its corresponding ground truth is calculated in the **grade** Python node.
 
-If you create an evaluation flow from template, you calculate this score in the **line_process** Python node. You can also replace the **line_process** python node with an LLM node to use an LLM to calculate the score, or use multiple nodes to perform the calculation.
+If you use the evaluation flow template, you calculate this score in the **line_process** Python node. You can also replace the **line_process** python node with an LLM node to use an LLM to calculate the score, or use multiple nodes to perform the calculation.
 
 :::image type="content" source="./media/how-to-develop-an-evaluation-flow/line-process.png" alt-text="Screenshot of line process node in the template. " lightbox = "./media/how-to-develop-an-evaluation-flow/line-process.png":::
-You need to specify the output of the node as the outputs of the evaluation flow, which indicates that the outputs are the scores calculated for each data sample. You can also output reasoning for more information, and it's the same experience in defining outputs in standard flow.
+You specify the outputs of this node as the outputs of the evaluation flow, which indicates that the outputs are the scores calculated for each data sample. You can also output reasoning for more information, and it's the same experience as defining outputs in standard flow.
 
 ### Calculate and log metrics
 
 The next step in evaluation is to calculate overall metrics to assess the run. You calculate metrics in a Python node that has the **Aggregation** option selected. This node takes in the scores from the previous calculation node and organizes them into a list, then calculates overall values.
 
-If you use the evaluation template, this score is calculated in the **aggregate** node. The following code snippet is the template of the aggregation node.
+If you use the evaluation template, this score is calculated in the **aggregate** node. The following code snippet shows the template for the aggregation node.
 
 ```python
 
@@ -139,9 +139,9 @@ def aggregate(processed_results: List[str]):
     return aggregated_results
 
 ```
-You can use your own aggregation logic, such as calculating score mean, median, or standard deviation.
+You can use your own aggregation logic, such as calculating score average, variance, or standard deviation.
 
-Log the metrics by using the `promptflow.logmetric()` function. You can log multiple metrics in a single evaluation flow. Metrics must be numerical (`float`/`int`).
+Log the metrics by using the `promptflow.log_metric()` function. You can log multiple metrics in a single evaluation flow. Metrics must be numerical (`float`/`int`).
 
 ## Use a customized evaluation flow
 
