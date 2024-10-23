@@ -5,7 +5,7 @@ description: Learn about the model inference endpoint in Azure AI services
 author: mrbullwinkle
 manager: nitinme
 ms.service: azure-ai-studio
-ms.topic: concept
+ms.topic: conceptual
 ms.date: 10/11/2024
 ms.author: fasantia
 ms.custom: ignite-2024, github-universe-2024
@@ -72,7 +72,7 @@ All models deployed in Azure AI model inference service support the [Azure AI mo
 
 Azure OpenAI models deployed to AI services also support the Azure OpenAI API. This API exposes the full capabilities of OpenAI models and support additional features like assistants, threads, files, and batch inference.
 
-Azure OpenAI inference endpoints are used per-deployment and they have they own URL that is associated with only one deployment. However, the same authentication mechanism can be used to consume it. Learn more in the reference page for [Azure OpenAI API](../../../openai/reference.md)
+Azure OpenAI inference endpoints are used per-deployment and they have they own URL that is associated with only one deployment. However, the same authentication mechanism can be used to consume it. Learn more in the reference page for [Azure OpenAI API](../../../ai-services/openai/reference.md)
 
 :::image type="content" source="../../media/ai-services/endpoint/endpoint-openai.png" alt-text="An illustration showing how Azure OpenAI deployments contain a single URL for each deployment." lightbox="../../media/ai-services/endpoint/endpoint-openai.png":::
 
@@ -95,5 +95,4 @@ The Azure OpenAI endpoint is supported by the **OpenAI SDK (`AzureOpenAI` class)
 
 ## Next steps
 
-- [Models](models.md)
 - [Deployment types](deployment-types.md)

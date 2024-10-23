@@ -25,6 +25,7 @@ The following article explains how to get started from GitHub Models in Azure AI
 To complete this tutorial, you need:
 
 * A GitHub account with access to [GitHub Models](https://docs.github.com/en/github-models/).
+
 * An Azure subscription. If you don't have one, you are prompted to create or update your Azure account to a pay as you go account when you're ready to deploy your model to production.
 
 ## Upgrade to Azure AI Services
@@ -49,22 +50,18 @@ To obtain the key and endpoint:
 
 8. Once it's deployed, your model's API Key and endpoint are shown in the Overview. Use these values in your code to use the model in your production environment.
 
-    :::image type="content" source="../../media/ai-services/add-model-deployments/models-deploy-endpoint-url.png" alt-text="An screenshot showing how to get the URL and key associated with the deployment." lightbox="../media/add-model-deployments/models-deploy-endpoint-url.png":::
+    :::image type="content" source="../../media/ai-services/add-model-deployments/models-deploy-endpoint-url.png" alt-text="An screenshot showing how to get the URL and key associated with the deployment." lightbox="../media/ai-services/add-model-deployments/models-deploy-endpoint-url.png":::
 
 At this point, the model you selected will be ready to consume. 
 
 > [!TIP]
 > Use the parameter `model="<deployment-name>` to route your request to this deployment. *Deployments work as an alias of a given model under certain configurations*. See [Routing](../concepts/endpoints.md#routing) concept page to learn how Azure AI Services route deployments.
 
-## Add more models
-
-[!INCLUDE [add-model-deployments](../../includes/ai-services/add-model-deployments.md)]
-
 ## Upgrade your code to use the new endpoint
 
 Once your Azure AI Services resource is configured, you can start consuming it from your code. You will need the endpoint URL and key for it, which can be found in the **Overview** section:
 
-:::image type="content" source="../../media/ai-services/overview/overview-endpoint-and-key.png" alt-text="An screenshot showing how to get the URL and key associated with the resource." lightbox="../media/overview/overview-endpoint-and-key.png":::
+:::image type="content" source="../../media/ai-services/overview/overview-endpoint-and-key.png" alt-text="An screenshot showing how to get the URL and key associated with the resource." lightbox="../../media/overview/overview-endpoint-and-key.png":::
 
 You can use any of the supported SDKs to get predictions out from the endpoint. The following SDKs are officially supported:
 
@@ -72,25 +69,29 @@ You can use any of the supported SDKs to get predictions out from the endpoint. 
 * Azure OpenAI SDK
 * Azure AI Inference SDK
 
-See the [supported languages and SDKs](../supported-languages.md) section for more details and examples. The following example shows how to use the Azure AI model inference SDK with the newly deployed model:
+See the [supported languages and SDKs](../concepts/endpoints.md#azure-ai-inference-endpoint) section for more details and examples. The following example shows how to use the Azure AI model inference SDK with the newly deployed model:
 
 [!INCLUDE [code-create-chat-client](../../includes/ai-services/code-create-chat-client.md)]
 
+Generate your first chat completion:
+
+[!INCLUDE [code-create-chat-completion](../includes/code-create-chat-completion.md)]
+
 ## Explore additional features
 
-Azure AI model inference service supports additional features not available in GitHub Models, including:
+Azure AI model inference supports additional features not available in GitHub Models, including:
 
 * [Explore the model catalog](https://ai.azure.com/github/models) to see additional models not available in GitHub Models.
-* Configure [content filtering](content-filters.md).
+* Configure [content filtering](../../concepts/content-filtering.md).
 * Configure rate limiting (for specific models).
-* Configure Microsoft Entra ID support for [key-less access](role-based-access-control.md).
 * Explore additional [deployment SKUs (for specific models)](../concepts/deployment-types.md).
-* Configure [private networking](../../cognitive-services-virtual-networks.md?context=/azure/ai-services/openai/context/context).
-
+* Configure [private networking](../../ai-services/cognitive-services-virtual-networks.md?context=/azure/ai-services/openai/context/context).
+* 
 ## Got troubles?
 
 See the [FAQ section](../faq.yml) to explore more help.
 
 ## Next steps
 
+* [Add more models](create-model-deployments.md) to your endpoint.
 * [Explore the model catalog](https://ai.azure.com/github/models) in Azure AI studio.

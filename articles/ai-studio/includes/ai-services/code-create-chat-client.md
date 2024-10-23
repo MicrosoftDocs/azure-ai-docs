@@ -32,19 +32,6 @@ model = ChatCompletionsClient(
 )
 ```
 
-If you are using an endpoint with support for Entra ID, you can create your client as follows:
-
-```python
-import os
-from azure.ai.inference import ChatCompletionsClient
-from azure.identity import AzureDefaultCredential
-
-model = ChatCompletionsClient(
-    endpoint=os.environ["AZUREAI_ENDPOINT_URL"],
-    credential=AzureDefaultCredential(),
-)
-```
-
 Explore our [samples](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-inference/samples) and read the [API reference documentation](https://aka.ms/azsdk/azure-ai-inference/python/reference) to get yourself started.
 
 # [JavaScript](#tab/javascript)
@@ -68,19 +55,6 @@ const client = new ModelClient(
 );
 ```
 
-For endpoint with support for Microsoft Entra ID, you can create your client as follows:
-
-```javascript
-import ModelClient from "@azure-rest/ai-inference";
-import { isUnexpected } from "@azure-rest/ai-inference";
-import { AzureDefaultCredential } from "@azure/identity";
-
-const client = new ModelClient(
-    process.env.AZUREAI_ENDPOINT_URL, 
-    new AzureDefaultCredential()
-);
-```
-
 Explore our [samples](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/ai/ai-inference-rest/samples) and read the [API reference documentation](https://aka.ms/AAp1kxa) to get yourself started.
 
 # [C#](#tab/csharp)
@@ -89,12 +63,6 @@ Install the Azure AI inference library with the following command:
 
 ```dotnetcli
 dotnet add package Azure.AI.Inference --prerelease
-```
-
-For endpoint with support for Microsoft Entra ID (formerly Azure Active Directory), install the `Azure.Identity` package:
-
-```dotnetcli
-dotnet add package Azure.Identity
 ```
 
 Import the following namespaces:
@@ -114,15 +82,6 @@ ChatCompletionsClient client = new ChatCompletionsClient(
 );
 ```
 
-For endpoint with support for Microsoft Entra ID (formerly Azure Active Directory):
-
-```csharp
-ChatCompletionsClient client = new ChatCompletionsClient(
-    new Uri(Environment.GetEnvironmentVariable("AZURE_INFERENCE_ENDPOINT")),
-    new DefaultAzureCredential(includeInteractiveCredentials: true)
-);
-```
-
 Explore our [samples](https://aka.ms/azsdk/azure-ai-inference/csharp/samples) and read the [API reference documentation](https://aka.ms/azsdk/azure-ai-inference/csharp/reference) to get yourself started.
 
 # [Java](#tab/java)
@@ -137,31 +96,11 @@ Add the package to your project:
 </dependency>
 ```
 
-For endpoint with support for Microsoft Entra ID (formerly Azure Active Directory), install the `azure-identity` package:
-
-```xml
-<dependency>
-    <groupId>com.azure</groupId>
-    <artifactId>azure-identity</artifactId>
-    <version>1.13.3</version>
-</dependency>
-```
-
 Then, you can use the package to consume the model. The following example shows how to create a client to consume chat completions:
 
 ```java
 ChatCompletionsClient client = new ChatCompletionsClientBuilder()
     .credential(new AzureKeyCredential("{key}"))
-    .endpoint("{endpoint}")
-    .buildClient();
-```
-
-For endpoint with support for Microsoft Entra ID (formerly Azure Active Directory):
-
-```java
-TokenCredential defaultCredential = new DefaultAzureCredentialBuilder().build();
-ChatCompletionsClient client = new ChatCompletionsClientBuilder()
-    .credential(defaultCredential)
     .endpoint("{endpoint}")
     .buildClient();
 ```

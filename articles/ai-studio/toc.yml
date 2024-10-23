@@ -183,6 +183,8 @@ items:
           href: ai-services/concepts/deployment-types.md
         - name: Use the inference endpoint
           href: ai-services/concepts/endpoints.md
+        - name: Quotas and limits
+          href: ai-services/concepts/quotas-limits.md
         - name: Azure AI model inference FAQ
           href: ai-services/faq.yml
       - name: Serverless API
