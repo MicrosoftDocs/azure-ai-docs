@@ -19,7 +19,7 @@ See [Monitor Azure OpenAI](./how-to/monitor-openai.md) for details on the data y
 
 ### Supported metrics for Microsoft.CognitiveServices/accounts
 
-Here are the most important metrics we think you should monitor for Azure OpenAI. Later in this article is a longer list of all available OpenAI metrics, which contains more details on metrics in this shorter list.
+Here are the most important metrics we think you should monitor for Azure OpenAI. Later in this article is a longer list of all available Azure AI services metrics which contains more details on metrics in this shorter list.
 
 - Azure OpenAI Requests
 - Active Tokens
@@ -30,7 +30,15 @@ Here are the most important metrics we think you should monitor for Azure OpenAI
 - Provisioned-managed Utilization V2
 - Prompt Token Cache Match Rate
 - Time to Response
-- Time Between Tokens 
+- Time Between Tokens
+
+You can also monitor Content Safety metrics that are used by other Azure AI services. 
+- Blocked Volume
+- Harmful Volume Detected
+- Potential Abusive User Count
+- Safety System Event
+- Total Volume Sent for Safety Check 
+
 
 > [!NOTE]
 > The **Provisioned-managed Utilization** metric is now deprecated and is no longer recommended. This metric has been replaced by the **Provisioned-managed Utilization V2** metric.
