@@ -72,7 +72,7 @@ Once your input file is prepared, you first need to upload the file to then be a
 
 1. Sign in to [AI Studio](https://ai.azure.com).
 2. Select the Azure OpenAI resource where you have a global batch model deployment available.
-3. Select **Batch jobs PREVIEW** > **+Create batch jobs**.
+3. Select **Batch jobs** > **+Create batch jobs**.
 
     :::image type="content" source="../../media/how-to/global-batch/create-batch-job-empty.png" alt-text="Screenshot that shows the batch job creation experience in Azure AI Studio." lightbox="../../media/how-to/global-batch/create-batch-job-empty.png":::
 
