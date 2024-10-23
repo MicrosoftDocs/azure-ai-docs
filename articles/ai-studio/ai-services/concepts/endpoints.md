@@ -1,7 +1,7 @@
 ---
-title: Model inference endpoint in Azure AI services
-titleSuffix: Azure AI services
-description: Learn about the model inference endpoint in Azure AI services
+title: Use the Azure AI model inference endpoint
+titleSuffix: Azure AI studio
+description: Learn about to use the Azure AI model inference endpoint and how to configure it.
 author: mrbullwinkle
 manager: nitinme
 ms.service: azure-ai-studio
@@ -11,7 +11,7 @@ ms.author: fasantia
 ms.custom: ignite-2024, github-universe-2024
 ---
 
-# Model inference endpoint in Azure AI Services
+# Use the Azure AI model inference endpoint
 
 Azure AI inference service in Azure AI services allow customers to consume the most powerful models from flagship model providers using a single endpoint and credentials. This means that you can switch between models and consume them from your application without changing a single line of code.
 

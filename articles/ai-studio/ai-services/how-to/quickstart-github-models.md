@@ -86,7 +86,7 @@ Azure AI model inference supports additional features not available in GitHub Mo
 * Configure rate limiting (for specific models).
 * Explore additional [deployment SKUs (for specific models)](../concepts/deployment-types.md).
 * Configure [private networking](../../../ai-services/cognitive-services-virtual-networks.md?context=/azure/ai-studio/context/context).
-* 
+
 ## Got troubles?
 
 See the [FAQ section](../faq.yml) to explore more help.
