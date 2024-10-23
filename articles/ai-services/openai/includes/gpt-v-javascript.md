@@ -68,7 +68,7 @@ Your app's _package.json_ file will be updated with the dependencies.
 Select an image from the [azure-samples/cognitive-services-sample-data-files](https://github.com/Azure-Samples/cognitive-services-sample-data-files/tree/master/ComputerVision/Images) and set the URL for an image in the environment variables.
 
 
-## [**TypeScript** (Microsoft Entra Id)](#tab/typescript-keyless)
+## [**TypeScript** (Microsoft Entra ID)](#tab/typescript-keyless)
 
 1. Create a _quickstart.ts_ and paste in the following code. 
     
@@ -166,7 +166,7 @@ Select an image from the [azure-samples/cognitive-services-sample-data-files](ht
     ```
 
 
-## [**JavaScript** (Microsoft Entra Id)](#tab/javascript-keyless)
+## [**JavaScript** (Microsoft Entra ID)](#tab/javascript-keyless)
 
 1. Replace the contents of _quickstart.js_ with the following code. 
     

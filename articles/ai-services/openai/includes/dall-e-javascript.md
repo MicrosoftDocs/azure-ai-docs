@@ -64,7 +64,7 @@ Your app's _package.json_ file will be updated with the dependencies.
 
 Create a new file named _ImageGeneration.js_ and open it in your preferred code editor. Copy the following code into the _ImageGeneration.js_ file:
 
-#### [TypeScript (Microsoft Entra Id)](#tab/typescript-keyless)
+#### [TypeScript (Microsoft Entra ID)](#tab/typescript-keyless)
 
 ```typescript
 import "dotenv/config";
@@ -130,7 +130,7 @@ main().catch((err) => {
     ```
 
 
-#### [JavaScript (API key)](#tab/javascript-key)
+#### [JavaScript (Microsoft Entra ID)](#tab/javascript-keyless)
 
 ```javascript
 require("dotenv/config");
