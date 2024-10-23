@@ -78,7 +78,7 @@ See the [supported languages and SDKs](../supported-languages.md) section for mo
 
 ## Explore additional features
 
-Azure AI services resource supports additional features not available in GitHub Models, including:
+Azure AI model inference service supports additional features not available in GitHub Models, including:
 
 * [Explore the model catalog](https://ai.azure.com/github/models) to see additional models not available in GitHub Models.
 * Configure [content filtering](content-filters.md).
