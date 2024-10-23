@@ -4,7 +4,7 @@ titleSuffix: Azure AI services
 description: Learn the latest updates to the Multimodal Intelligence API.
 author: laujan
 manager: nitinme
-ms.service: azure-ai-document-intelligence
+ms.service: azure
 ms.topic: whats-new
 ms.date: 10/09/2024
 ms.author: lajanuar

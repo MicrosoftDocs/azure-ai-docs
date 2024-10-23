@@ -5,7 +5,7 @@ description: Learn about Multimodal Intelligence content extraction capabilities
 author: laujan
 ms.author: lajanuar
 manager: nitinme
-ms.service: azure-ai-document-intelligence
+ms.service: azure
 ms.topic: conceptual
 ms.date: 10/09/2024
 ---

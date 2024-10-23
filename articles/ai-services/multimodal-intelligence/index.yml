@@ -5,7 +5,7 @@ summary: Multimodal Intelligence is a data analysis and comprehension solution t
 metadata:
   title: Azure AI Multimodal Intelligence documentation
   description: Multimodal Intelligence is a data comprehension solution that transforms diverse media content—such as audio, video, text, and images—into structured, organized, and searchable data.
-  ms.service:
+  ms.service: azure
   ms.topic: landing-page
   author: laujan
   ms.author: lajanuar

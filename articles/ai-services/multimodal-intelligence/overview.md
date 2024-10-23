@@ -1,21 +1,20 @@
 ---
 title: What is Azure AI Multimodal Intelligence?
 titleSuffix: Azure AI services
-description: Learn about Multimodal Intelligence solutions
+description: Learn about Azure AI Multimodal Intelligence solutions
 author: laujan
 ms.author: lajanuar
 manager: nitinme
-ms.service: azure-ai-document-intelligence
+ms.service: azure
 ms.topic: overview
 ms.date: 10/09/2024
-#Customer intent: As a developer of content management software, I want to find out whether Azure AI Multimodal Intelligence is the right solution for my moderation needs.
 ---
 
 # What is Azure AI Multimodal Intelligence?
 
 :::image type="content" source="media/overview/media-input.png" alt-text="Screenshot of accepted media input files.":::
 
-Azure AI Multimodal Intelligence is a cloud-based solution on the Azure platform designed to process various data modalities such as documents, images, videos, and audio within a unified workflow. Integrating these diverse modalities enables Multimodal Intelligence to deliver more extensive, efficient, and accurate results compared to single modality processing. Utilizing the Multimodal Intelligence service, provides you with access to the following processes:
+Azure AI Multimodal Intelligence is a cloud-based solution within [**Azure AI services**](../what-are-ai-services.md), designed to process various data modalities such as documents, images, videos, and audio within a unified workflow. Integrating these diverse modalities enables Multimodal Intelligence to deliver more extensive, efficient, and accurate results compared to single modality processing. Utilizing the Multimodal Intelligence service, provides you with access to the following processes:
 
 * [**Comprehensive content extraction and analysis**](#features-and-capabilities)
 
@@ -49,37 +48,6 @@ Azure AI Multimodal Intelligence is a cloud-based solution on the Azure platform
 |Call center post-call analytics| Businesses and call center operators can generate insights from call recordings to track key KPIs to improve product experience, generate business insights, create differentiated customer experiences, and answer queries faster and more accurately.
 |Marketing automation digital asset management| Independent software and media vendors that build media asset management solutions can use Multimodal Intelligence to extract richer, targeted content from images and videos.|
 
-## Getting started
-
-Before you get started using Multimodal Intelligence, you need an Azure AI services multi-service resource. The multi-service resource enables access to multiple Azure AI services with a single set of credentials.
-
-1.  To get started, you need an active [**Azure account**](https://azure.microsoft.com/free/cognitive-services/). If you don't have one, you can [**create a free 12-month subscription**](https://azure.microsoft.com/free/).
-
-1. Sign in to the [Azure portal](https://portal.azure.com) and select **Create a resource** from the Azure portal home page. The Azure AI services multi-service resource is listed under Azure AI services → Azure AI services in the portal as shown here:
-
-    :::image type="content" source="media/overview/azure-multi-service-resource.png" alt-text="Screenshot of the multi-service resource page in the Azure portal.":::
-  
-    > [!IMPORTANT]
-    > Azure provides more than one resource types named Azure AI services. Be sure to select the one that is listed under Azure AI services → Azure AI services with the logo as shown previously.
-
-1. Select the **Create** button.
-
-1. Next, you're going to fill out the **`Create Document Intelligence`** fields with the following values:
-
-    * **Subscription**. Select one of your available Azure subscriptions.
-    * **Resource group**. The [Azure resource group](/azure/cloud-adoption-framework/govern/resource-consistency/resource-access-management#what-is-an-azure-resource-group) that contains your resource. You can create a new group or add it to an existing group.
-    * **Region**. Select your local region. Different locations may introduce latency, but have no impact on the runtime availability of your resource.
-    * **Name**. Enter a name for your resource. We recommend using a descriptive name, for example *YourNameAIServicesResource*.
-    * **Pricing tier**. The cost of your resource depends on the pricing tier and options you choose and your usage. For more information, see [pricing details](https://azure.microsoft.com/pricing/details/cognitive-services/). You can use the free pricing tier (F0) to try the service, and upgrade later to a paid tier for production.
-
-1. Configure other settings for your resource as needed, read, and accept the conditions (as applicable), and then select **Review + create**.
-
-1. Azure will run a quick validation check, after a few seconds you should see a green banner that says **Validation Passed**.
-
-1. Once the validation banner appears, select the **Create** button from the bottom-left corner.
-
-1. After you select create, you'll be redirected to a new page that says **Deployment in progress**. After a few seconds, you'll see a message that says, **Your deployment is complete**.
-
 ## Pricing
 
 Pricing tiers (and the amount you're billed) are based on the number of transactions that you send by using your authentication information. Each pricing tier specifies the:
@@ -87,6 +55,15 @@ Pricing tiers (and the amount you're billed) are based on the number of transact
 * Maximum number of allowed transactions per second (TPS).
 * Service features enabled within the pricing tier.
 * Cost for a predefined number of transactions. Going above this number causes an extra charge, as specified in the [pricing details](https://azure.microsoft.com/pricing/details/cognitive-services) for your service.
+
+## Getting started
+Before you get started using Multimodal Intelligence, you need an [**Azure AI services multi-service resource**](how-to-guide/create-multi-service-resource.md). The multi-service resource enables access to multiple Azure AI services with a single set of credentials.
+
+We provide quickstart guides designed to help you begin utilizing Multimodal Intelligence service swiftly:
+
+* **Rest API Quickstart**
+* **Azure AI Studio Quickstart**
+
 
 
 
