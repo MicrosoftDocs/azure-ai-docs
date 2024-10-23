@@ -4,7 +4,7 @@ titleSuffix: Azure AI services
 description: Create and manage an Azure AI services multi-services resource for Multimodal Intelligence operations
 author: laujan
 manager: nitinme
-ms.service: azure-ai-services
+ms.service: azure
 ms.topic: how-to
 ms.date: 10/22/2024
 ms.author: lajanuar
