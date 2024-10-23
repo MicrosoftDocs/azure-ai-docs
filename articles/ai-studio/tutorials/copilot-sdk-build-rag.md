@@ -59,7 +59,7 @@ rag-tutorial/
 |   └─── [Your own data or sample data as described in the prerequisites.]
 ```
 
-In this tutorial, the chat app is created using the [Prompt Flow](https://microsoft.github.io/promptflow/) suite, which simplifies building LLM-based applications. It uses a [flex flow](https://microsoft.github.io/promptflow/concepts/concept-flows.html#flex-flow) with copilot.py as the entry point, enabling access to Prompt Flow's testing, evaluation, and tracing features. For more details on developing a flex flow, visit the [Prompt Flow documentation on GitHub](https://microsoft.github.io/promptflow/how-to-guides/develop-a-flex-flow/index.html).
+In this tutorial, the chat app is created using the [Prompt Flow](https://microsoft.github.io/promptflow/) suite, which simplifies building LLM-based applications. It uses a [flex flow](https://microsoft.github.io/promptflow/concepts/concept-flows.html#flex-flow) with **copilot.py** as the entry point, enabling access to Prompt Flow's testing, evaluation, and tracing features. For more details on developing a flex flow, visit the [Prompt Flow documentation on GitHub](https://microsoft.github.io/promptflow/how-to-guides/develop-a-flex-flow/index.html).
 
 ## Set initial environment variables
 
