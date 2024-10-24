@@ -568,8 +568,8 @@ result = evaluate(
         "relevance": relevance_eval
     },
     evaluator_config={
-        "default": {
-            "column_mapping": {
+        "column_mapping": {
+            "default": {
                 "query": "${data.queries}"
                 "context": "${outputs.context}"
                 "response": "${outputs.response}"
