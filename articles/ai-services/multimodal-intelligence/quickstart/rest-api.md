@@ -10,7 +10,7 @@ ms.topic: quickstart
 ms.date: 10/22/2024
 ---
 
-# Quickstart: Azure AI Multimodal Intelligence REST APIs
+# Quickstart: Multimodal Intelligence REST APIs
 
 * Get started with the Azure AI Multimodal Intelligence latest preview version REST API (2024-12-01-preview).
 
@@ -33,7 +33,7 @@ To use Multimodal Intelligence, you need an Azure AI services multi-service reso
     > [!IMPORTANT]
     > Azure provides more than one resource types named Azure AI services. Be sure to select the one that is listed under Azure AI services → Azure AI services with the logo as shown previously.
 
-    For more information, *see* [Create an Azure AI services multi-services resource](../how-to-guide/create-multi-service-resource.md)
+    For more information, *see* [Create an Azure AI services multi-services resource](../how-to/create-multi-service-resource.md)
 
 * * curl command line tool installed.
 
