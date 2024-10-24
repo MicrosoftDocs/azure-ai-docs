@@ -263,7 +263,7 @@ In order to test your connection through network security perimeter, you need ac
 
 ## View and manage network security perimeter configuration
 
-You can use the [Management REST APIs](/rest/api/searchmanagement/network-security-perimeter-configurations?view=rest-searchmanagement-2024-06-01-preview) to review and reconcile perimeter configurations.
+You can use the [Management REST APIs](/rest/api/searchmanagement/network-security-perimeter-configurations?view=rest-searchmanagement-2024-06-01-preview&preserve-view=true) to review and reconcile perimeter configurations.
 
 Be sure to use preview API version `2024-06-01-preview`. For more information about the REST API, see [Manage your Azure AI Search service with REST APIs](search-manage-rest.md).
 
