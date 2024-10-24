@@ -92,7 +92,7 @@ A speech analytics project is a specialized project in Azure AI Studio that prim
 
 Follow these steps to create a speech analytics project in your hub:
 
-Navigate to the Home page and select AI Services from the left pane. Then select **Speech analytics** from the list of features.
+1. gitNavigate to the Home page and select AI Services from the left pane. Then select **Speech analytics** from the list of features.
 
    :::image type="content" source="../../media/ai-studio/speech-analytics/choose-project.png" alt-text="Screenshot of the Speech analytics selection tab.":::
 
