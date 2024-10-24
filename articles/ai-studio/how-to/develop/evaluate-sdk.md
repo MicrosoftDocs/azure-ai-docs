@@ -420,7 +420,7 @@ Then install the following sub-package:
 pip install azure-ai-evaluation[remote]
 ```
 
-Finally, ensure that you assign the proper storage permissions for CosmsDB. This can be done with the following command:
+Finally, ensure that you assign the proper storage permissions for CosmosDB. This can be done with the following command:
 
 ```Shell
 az role assignment create --role "Storage Blob Data Contributor" --scope /subscriptions/<mySubscriptionID>/resourceGroups/<myResourceGroupName> --assignee-principal-type User --assignee-object-id "<user-id>"
