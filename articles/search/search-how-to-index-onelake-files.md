@@ -222,7 +222,7 @@ A data source is defined as an independent resource so that it can be used by mu
       "description": "description",  
       "type": "onelake",  
       "credentials": {  
-        "connectionString": "ResourceId=00000000-0000-0000-0000-000000000000"  
+        "connectionString": "ResourceId=a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1"  
       },  
       "container": {  
         "name": "11111111-1111-1111-1111-111111111111",  
@@ -260,7 +260,7 @@ A data source is defined as an independent resource so that it can be used by mu
       "description": "description",  
       "type": "onelake",  
       "credentials": {  
-        "connectionString": "ResourceId=00000000-0000-0000-0000-000000000000"  
+        "connectionString": "ResourceId=a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1"  
       },  
       "container": {  
         "name": "11111111-1111-1111-1111-111111111111",  
