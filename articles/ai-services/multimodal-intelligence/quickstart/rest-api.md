@@ -33,7 +33,7 @@ To use Multimodal Intelligence, you need an Azure AI services multi-service reso
     > [!IMPORTANT]
     > Azure provides more than one resource types named Azure AI services. Be sure to select the one that is listed under Azure AI services → Azure AI services with the logo as shown previously.
 
-    For more information, *see* [Create an Azure AI services multi-services resource](../how-to-guide/create-multi-service-resource.md)
+    For more information, *see* [Create an Azure AI services multi-services resource](../how-to/create-multi-service-resource.md)
 
 * * curl command line tool installed.
 

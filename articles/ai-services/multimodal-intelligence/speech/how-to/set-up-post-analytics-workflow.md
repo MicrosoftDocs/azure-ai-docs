@@ -72,16 +72,16 @@ You deploy and manage your Azure AI Studio projects in hubs. Here's how to creat
 1. Select **All hubs** from the left pane and then select **➕New hub**.
 
 
-    :::image type="content" source="../../media/ai-studio/hub/create-new.png" alt-text="Screenshot of the create a new hub button." lightbox="../media/ai-studio/create-new-hub.png":::
+    :::image type="content" source="../../media/ai-studio/hub/create-new.png" alt-text="Screenshot of the create a new hub button." lightbox="../../media/ai-studio/create-new-hub.png":::
 
 1. In the **Create a new hub** dialog window, enter a name for your hub and select **Next**. Leave the default **Connect Azure AI Services** option selected. A new Azure AI services connection is created for the hub.
 
 
-    :::image type="content" source="../../media/ai-studio/hub/create-new-connection.png" alt-text="Screenshot of the create a new hub dialog window." lightbox="../media/ai-studio/create-new-connection.png":::
+    :::image type="content" source="../../media/ai-studio/hub/create-new-connection.png" alt-text="Screenshot of the create a new hub dialog window." lightbox="../../media/ai-studio/create-new-connection.png":::
 
 1. Review your entries then select **Create**.
 
-    :::image type="content" source="../../media/ai-studio/hub/create-new-review.png" alt-text="Screenshot of the review and finish dialog window." lightbox="../media/ai-studio/create-new-hub-review.png":::
+    :::image type="content" source="../../media/ai-studio/hub/create-new-review.png" alt-text="Screenshot of the review and finish dialog window." lightbox="../../media/ai-studio/create-new-hub-review.png":::
 
 1. You can review the progress of the hub creation in the deployment wizard. The deployment may take a few minutes to complete.
 
@@ -98,42 +98,42 @@ Navigate to the Home page and select AI Services from the left pane. Then select
 
 1. On the Speech analytics page, select **➕New speech analytics project**.
 
-    :::image type="content" source="../../media/ai-studio/speech-analytics/start-new-project.png" alt-text="Screenshot of the start new speech analytics project window." lightbox="../media/ai-studio/speech-analytics/start-new-project.png":::
+    :::image type="content" source="../../media/ai-studio/speech-analytics/start-new-project.png" alt-text="Screenshot of the start new speech analytics project window." lightbox="../../media/ai-studio/speech-analytics/start-new-project.png":::
 
 1. **Scenario**. In the **Create a speech analytics project** dialog window, select **Post-call analytics**, and then select **Next**.
 
-    :::image type="content" source="../../media/ai-studio/speech-analytics/create-project-scenario.png" alt-text="Screenshot the Scenario window." lightbox="../media/ai-studio/speech-analytics/create-project-scenario.png":::
+    :::image type="content" source="../../media/ai-studio/speech-analytics/create-project-scenario.png" alt-text="Screenshot the Scenario window." lightbox="../../media/ai-studio/speech-analytics/create-project-scenario.png":::
 
 1. **Project details**. Enter a **Project name**, select the **Hub** that you previously created from the dropdown list, and then select **Next**.
 
-    :::image type="content" source="../../media/ai-studio/speech-analytics/create-project-details.png" alt-text="Screenshot the Project details window." lightbox="../media/ai-studio/speech-analytics/create-project-details.png":::
+    :::image type="content" source="../../media/ai-studio/speech-analytics/create-project-details.png" alt-text="Screenshot the Project details window." lightbox="../../media/ai-studio/speech-analytics/create-project-details.png":::
 
 1. **Data settings**. Leave the default settings selected for the data location. Optionally, you can select **Show advanced settings** to view the names of the storage containers that you use later during prompt flow. Select **Next**.
 
-    :::image type="content" source="../../media/ai-studio/speech-analytics/create-project-data-settings.png" alt-text="Screenshot the Data settings window." lightbox="../media/ai-studio/speech-analytics/create-project-data-settings.png":::
+    :::image type="content" source="../../media/ai-studio/speech-analytics/create-project-data-settings.png" alt-text="Screenshot the Data settings window." lightbox="../../media/ai-studio/speech-analytics/create-project-data-settings.png":::
 
 1. **Speech settings**. Leave the default setting selected for the Azure AI services connection. This setting is used to connect to the GPT chat model deployment that you created earlier.
 
    * Select the spoken language in the audio file corresponding to the transcription that you want to analyze. Select *English (United States)* if you're using our [**sample audio file on GitHub**](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/scenarios/call-center/sampledata/Call1_separated_16k_health_insurance.wav).
 
-      :::image type="content" source="../../media/ai-studio/speech-analytics/create-project-speech-settings.png" alt-text="Screenshot the Speech settings window." lightbox="../media/ai-studio/speech-analytics/create-project-speech-settings.png":::
+      :::image type="content" source="../../media/ai-studio/speech-analytics/create-project-speech-settings.png" alt-text="Screenshot the speech settings window." lightbox="../../media/ai-studio/speech-analytics/create-project-speech-settings.png":::
 
    * In the same **Speech settings** dialog window, you can select **Show advanced settings** to view the Azure AI Speech features that can be enabled for your speech analytics project. You can enable features such as language identification, profanity filter mode, and more. Speech analytics supports a subset of the batch transcription API request options.
 
       >[!NOTE]
       > Make sure that you select **20231129 Batch Transcription** from the **Speech to text model** dropdown menu.
 
-       :::image type="content" source="../../media/ai-studio/speech-analytics/create-project-advanced-settings.png" alt-text="Screenshot the Speech settings window." lightbox="../media/ai-studio/speech-analytics/create-project-advanced-settings.png":::
+       :::image type="content" source="../../media/ai-studio/speech-analytics/create-project-advanced-settings.png" alt-text="Screenshot the advanced settings window." lightbox="../../media/ai-studio/speech-analytics/create-project-advanced-settings.png":::
 
    * After you complete your selections, select **Next**.
 
 1. **Analytics settings**. Select the Azure OpenAI model deployment that you created earlier. Leave the default settings selected for the generative AI project, prompt flow, and custom connection. Then select **Next**.
 
-   :::image type="content" source="../../media/ai-studio/speech-analytics/create-project-analytics-settings.png" alt-text="Screenshot the Speech settings window." lightbox="../media/ai-studio/speech-analytics/create-project-analytics-settings.png":::
+   :::image type="content" source="../../media/ai-studio/speech-analytics/create-project-analytics-settings.png" alt-text="Screenshot the analytics settings window." lightbox="../../media/ai-studio/speech-analytics/create-project-analytics-settings.png":::
 
 1. **Review**. After you review the settings for the speech analytics project, select **Create project**.
 
-   :::image type="content" source="../../media/ai-studio/speech-analytics/create-project-review-settings.png" alt-text="Screenshot the Speech settings window." lightbox="../media/ai-studio/speech-analytics/create-project-review-settings.png":::
+   :::image type="content" source="../../media/ai-studio/speech-analytics/create-project-review-settings.png" alt-text="Screenshot the review settings window." lightbox="../../media/ai-studio/speech-analytics/create-project-review-settings.png":::
 
 1. You can view the progress of the speech analytics project creation in the deployment wizard window. The deployment may take up to 10 minutes to complete.
 
@@ -150,7 +150,7 @@ The transcription is what you analyze with the prompt flow in AI Studio. You can
 
 1. Navigate to the Upload and monitor page and select **Upload data**.
 
-   :::image type="content" source="../../media/ai-studio/speech-analytics/upload-monitor-data.png" alt-text="Screenshot the Speech settings window." lightbox="../media/ai-studio/speech-analytics/upload-monitor-data.png":::
+   :::image type="content" source="../../media/ai-studio/speech-analytics/upload-monitor-data.png" alt-text="Screenshot the upload and monitor data window." lightbox="../../media/ai-studio/speech-analytics/upload-monitor-data.png":::
 
 1. In the **Upload data** dialog window, select the audio file that you want to analyze. You can use the [**sample *.wav* file**](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/scenarios/call-center/sampledata/Call1_separated_16k_health_insurance.wav) in our GitHub repo.
 
@@ -160,7 +160,7 @@ You can monitor the analytics results in the Speech analytics project in AI Stud
 
 1. Navigate to the **Upload and monitor** page to see the status of processing the audio file that you uploaded.
 
-   :::image type="content" source="../../media/ai-studio/speech-analytics/monitor-analytics-results.png" alt-text="Screenshot the Speech settings window." lightbox="../media/ai-studio/speech-analytics/monitor-analytics-results.png":::
+   :::image type="content" source="../../media/ai-studio/speech-analytics/monitor-analytics-results.png" alt-text="Screenshot the monitor analytics results window." lightbox="../../media/ai-studio/speech-analytics/monitor-analytics-results.png":::
 
 1. You can also access the transcription in your transcription container in the Azure portal. The wizard created the storage container during the speech analytics project creation process.
 
