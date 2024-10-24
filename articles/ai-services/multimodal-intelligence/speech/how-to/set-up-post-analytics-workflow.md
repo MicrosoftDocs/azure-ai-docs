@@ -7,7 +7,7 @@ ms.author: lajanuar
 manager: nitinme
 ms.service: azure
 ms.topic: overview
-ms.date: 10/09/2024
+ms.date: 10/24/2024
 ---
 
 # Set up a post-call analytics workflow in Azure AI Studio
