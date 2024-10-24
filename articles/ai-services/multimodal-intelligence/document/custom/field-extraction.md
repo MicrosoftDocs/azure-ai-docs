@@ -59,7 +59,7 @@ Custom Document Field Extraction can process complex documents with various form
 
 ## Supported regions
 
-During the public preview, custom document field extraction model capabilities will only be available in the following Azure regions:
+During the public preview, custom document field extraction model capabilities are only available in the following Azure regions:
 
 * North Central US
 
@@ -85,11 +85,11 @@ During the public preview, custom document field extraction model capabilities w
 
 Generative AI models perform well extracting simple fields from documents with no labeled samples. Providing a few labeled samples improves the extraction accuracy for complex fields and user defined fields like tables.
 
-* **Representative data**. Use representative documents that target actual data distribution, to train a high-quality custom generative model. For example, if the target document has partially filled tabular fields, add training documents that have partially filled tables. Or if field is named date, values for this field should be a date as random strings can affect model performance.
+* **Representative data**. Use representative documents that target actual data distribution. For example, if the target document tabular fields are  partially completed, add training documents with partially completed tables. Or if field is named date, values for this field should be a date as random strings can affect model performance.
 
 * **Field naming**. Choose a precise field name that represents the field values. For example, for a field value containing the Transaction Date, consider naming the field TransactionDate instead of Date1.
 
-* **Field Description**. Provide additional contextual information in description to help clarify the field that needs to be extracted. Examples include location in the document, potential field labels it may be associated with, ways to differentiate with other terms that could be ambiguous.
+* **Field Description**. Provide more contextual information in description to help clarify the field that needs to be extracted. Examples include location in the document, potential field labels it may be associated with, ways to differentiate with other terms that could be ambiguous.
 
 * **Dealing with variation**. Custom generative models can generalize across different document templates of the same document type. As a best practice, create a single model for all variations of a document type. Ideally, include a visual template for each type.
 
@@ -97,14 +97,14 @@ Generative AI models perform well extracting simple fields from documents with n
 
 * Custom document field extraction doesn't support fixed table and signature extraction.
 
-* Inference on the same document could yield slightly different results across calls. This is a known limitation for current `GPT` models.
+* Inference on the same document could yield slightly different results across calls. This limitation is one that is known for current `GPT` models.
 
 * Confidence scores for each field may vary. We recommend testing with your representative data to establish confidence thresholds for your scenario.
 
 * Grounding, especially for tabular fields, is challenging and may not align in some cases.
 
-* Latency for large documents is high. This is a known limitation in preview.
+* Latency for large documents is high.
 
-* Composed model aren't supported in preview.
+* Composed models aren't supported in preview.
 
 
