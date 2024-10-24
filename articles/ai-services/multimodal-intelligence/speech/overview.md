@@ -69,9 +69,9 @@ A typical Multimodal IntelligenceSpeech workflow consists of the following steps
 
 **Multimodal Intelligence provides the following customizable prebuilt scenario templates:
 **
-* **Post call analytics** [LINK TO 'How to']. Analyze call recordings and generate outputs such as conversation transcript, call summary, sentiment assessment and more.
+* **Post call analytics**. Analyze call recordings and generate outputs such as conversation transcript, call summary, sentiment assessment and more.
 
-* **Conversation summarization** [LINK TO 'How to']. Generate transcriptions from conversation audio recordings, generate a summary, and assess sentiment.
+* **Conversation summarization**. Generate transcriptions from conversation audio recordings, generate a summary, and assess sentiment.
 
  You can start with any prebuilt scenario or start from scratch to get started and customize as needed to meet your business needs.
 
