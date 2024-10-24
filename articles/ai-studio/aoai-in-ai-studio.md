@@ -49,7 +49,7 @@ If you've been using Azure OpenAI Studio, all your work is still here. No featur
 * Deploy models: From the **Model catalog** or **Deployments** list in the left navigation, you  see all supported models. You can deploy models from either section.
 * Fine-tuning: Use **Fine-tuning** to find your fine-tuned/custom models or create new fine-tune jobs.
 
-### Navigating to/from projects
+### Navigate to/from projects
 
 Pay attention to the top left corner of the screen to see which context you are in.
 
@@ -65,6 +65,6 @@ Pay attention to the top left corner of the screen to see which context you are 
 
 Use the **Azure AI Studio** breadcrumb to navigate back to the Azure AI Studio home page. You can also navigate back to the Azure AI Studio home page when you see **View all Azure AI Studio resources & projects** in the top right corner of the screen.
 
-## Next step 
+## Next step
 
 * [Azure OpenAI Documentation](/azure/ai-services/openai/)
