@@ -44,15 +44,15 @@ Follow these steps to deploy an Azure OpenAI chat model.
     * If you have projects but are not in one, select the project you wish to use, then select **Model catalog** from the left navigation pane. Or, you can select **Model catalog and benchmarks** at the bottom of the screen.
     * If you have never used Azure AI Studio before, select **Explore models**. 
   
-        :::image type="content" source="media/tutorials/chat/deploy-create.png" alt-text="Screenshot of the deployments page with a button to create a new deployment." lightbox="media/tutorials/chat/deploy-create.png":::
+        :::image type="content" source="../media/tutorials/chat/home-page.png" alt-text="Screenshot of the home page if you have never created a project." lightbox="../media/tutorials/chat/home-page.png":::
 
 1. Select the model you want to deploy from the list of models. For example, select **gpt-4o-mini**.
 
-    :::image type="content" source="media/tutorials/chat/select-model.png" alt-text="Screenshot of the model selection page." lightbox="media/tutorials/chat/select-model.png":::
+    :::image type="content" source="../media/tutorials/chat/select-model.png" alt-text="Screenshot of the model selection page." lightbox="../media/tutorials/chat/select-model.png":::
 
 1. On the model details page, select **Deploy**.
 
-    :::image type="content" source="media/tutorials/chat/deploy-model.png" alt-text="Screenshot of the model details page with a button to deploy the model." lightbox="media/tutorials/chat/deploy-model.png":::
+    :::image type="content" source="../media/tutorials/chat/deploy-model.png" alt-text="Screenshot of the model details page with a button to deploy the model." lightbox="../media/tutorials/chat/deploy-model.png":::
 
 1. If you are already signed into a project, you won't see this step.  Your model is deployed to your existing project.  If you are not in a project, on the **Select or create a project** page: 
  
