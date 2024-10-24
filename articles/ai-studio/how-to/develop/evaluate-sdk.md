@@ -556,7 +556,7 @@ result = evaluate(
 
 If you have a list of queries that you'd like to run then evaluate, the `evaluate()` also supports a `target` parameter, which can send queries to an application to collect answers then run your evaluators on the resulting query and response.
 
-A target can be any callable class in your directory. In this case we have a python script `askwiki.py` with a callable class `askwiki()` that we can set as our target. Given a dataset of queries we can send into our simple `askwiki` app, we can evaluate the relevance of the outputs. Ensure you specify the propery column mapping for your data in `"column_mapping"`.
+A target can be any callable class in your directory. In this case we have a python script `askwiki.py` with a callable class `askwiki()` that we can set as our target. Given a dataset of queries we can send into our simple `askwiki` app, we can evaluate the relevance of the outputs. Ensure you specify the propery column mapping for your data in `"column_mapping"`. You can use `"default"` to specify column mapping for all evaluators.
 
 ```python
 from askwiki import askwiki
