@@ -56,7 +56,7 @@ Follow these steps to deploy an Azure OpenAI chat model.
 
 1. If you are already signed into a project, you won't see this step.  Your model is deployed to your existing project.  If you are not in a project, on the **Select or create a project** page: 
  
-    * If you have have a project you want to use, select it.
+    * If you have a project you want to use, select it.
     * If you don't yet have a project:
         1. Select **Create a new project**.
         1. Provide a name for your project.
