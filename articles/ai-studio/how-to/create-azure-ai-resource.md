@@ -17,12 +17,14 @@ author: Blackmist
 
 # How to create and manage an Azure AI Studio hub
 
-In AI Studio, hubs provide the environment for a team to collaborate and organize work, and help you as a team lead or IT admin centrally set up security settings and govern usage and spend. You can create and manage a hub from the Azure portal or from the AI Studio. 
+In AI Studio, hubs provide the environment for a team to collaborate and organize work, and help you as a team lead or IT admin centrally set up security settings and govern usage and spend. You can create and manage a hub from the Azure portal or from the AI Studio, and then your developers can create projects from the hub.
 
 In this article, you learn how to create and manage a hub in AI Studio with the default settings so you can get started quickly. Do you need to customize security or the dependent resources of your hub? Then use [Azure portal](create-secure-ai-hub.md) or [template options](create-azure-ai-hub-template.md). 
 
 > [!TIP]
-> If you'd like to create your Azure AI Studio hub using a template, see the articles on using [Bicep](create-azure-ai-hub-template.md) or [Terraform](create-hub-terraform.md).
+> If you're an individual developer and not an admin, dev lead, or part of a larger effort that requires a hub, you can create a project directly from the AI Studio without creating a hub first. For more information, see [Create a project](create-projects.md).
+> 
+> If you're an admin or dev lead and would like to create your Azure AI Studio hub using a template, see the articles on using [Bicep](create-azure-ai-hub-template.md) or [Terraform](create-hub-terraform.md).
 
 ## Create a hub in AI Studio
 
