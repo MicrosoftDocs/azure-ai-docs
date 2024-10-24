@@ -100,5 +100,5 @@ api-key: [admin key]
 
 ## Related content
 
-+ [Index data from Blob Storage](search-howto-indexing-azure-blob-storage.md)
-+ [Index data from File Storage](search-file-storage-integration.md)
++ [Index data from Azure Blob Storage](search-howto-indexing-azure-blob-storage.md)
++ [Index data from Azure Files](search-file-storage-integration.md)

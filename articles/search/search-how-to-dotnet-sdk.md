@@ -16,7 +16,7 @@ ms.custom:
   - ignite-2023
 ---
 
-# How to use Azure.Search.Documents in a C# .NET Application
+# How to use Azure.Search.Documents in a .NET application
 
 This article explains how to create and manage search objects using C# and the [**Azure.Search.Documents**](/dotnet/api/overview/azure/search) (version 11) client library in the Azure SDK for .NET.
 
