@@ -1,7 +1,7 @@
 ---
-title: Create an Azure AI services multi-services resource
+title: Create an Azure AI services multi-service resource
 titleSuffix: Azure AI services
-description: Create and manage an Azure AI services multi-services resource for Multimodal Intelligence operations
+description: Create and manage an Azure AI Services multi-services resource for Multimodal Intelligence operations
 author: laujan
 manager: nitinme
 ms.service: azure
@@ -10,10 +10,10 @@ ms.date: 10/22/2024
 ms.author: lajanuar
 ---
 
-# Create an Azure AI services multi-services resource
+# Create an Azure AI services multi-service resource
 
 
-To use Multimodal Intelligence, you need an Azure AI services multi-service resource. The multi-service resource enables access to multiple Azure AI services with a single set of credentials.
+To use Multimodal Intelligence, you need an Azure AI services resource. The multi-service resource enables access to multiple Azure AI services with a single set of credentials.
 
 1. To get started, you need an active [**Azure account**](https://azure.microsoft.com/free/cognitive-services/). If you don't have one, you can [**create a free 12-month subscription**](https://azure.microsoft.com/free/).
 

@@ -23,13 +23,13 @@ Azure AI Multimodal Intelligence in [Azure AI Studio](https://ai.azure.com/) is 
 
 Post-call analytics is a process that uses AI, natural language processing (NLP), and speech analytics to review customer-agent interactions after a call ends. It can help you gain insights, measure performance, and improve customer experiences.
 
-In this article, you learn how to create a post call analytics workflow with an Multimodal Intelligence project using the following resources:
+In this article, you learn how to create a post call analytics workflow with a Multimodal Intelligence project using the following resources:
 
 * An AI Studio hub and connected Azure Blob Storage account.
 
 * An Azure AI services connection for the hub.
 
-* An Multimodal Intelligence project in the hub.
+* A Multimodal Intelligence project in the hub.
 
 ## Prerequisites
 
@@ -48,7 +48,7 @@ In this article, you learn how to create a post call analytics workflow with an 
 
      * Australia East
 
-* An audio file (less than 2 hours long and less than 200 MB in size) in one of the formats and codecs supported. Multimodal Intelligence speech capabilities supports multiple audio formats and codecs, such as:
+* An audio file (less than 2 hours long and less than 200 MB in size) in one of the formats and codecs supported. Multimodal Intelligence speech capabilities support multiple audio formats and codecs, such as:
 
 * `WAV`
 * `MP3`
@@ -72,12 +72,12 @@ You deploy and manage your Azure AI Studio projects in hubs. Here's how to creat
 1. Select **All hubs** from the left pane and then select **➕New hub**.
 
 
-    :::image type="content" source="../../media/ai-studio/hub/create-new.png" alt-text="Screenshot of the create a new hub button." lightbox="../../media/ai-studio/hub/create-new.png":::
+    :::image type="content" source="../../media/ai-studio/hub/create-new.png" alt-text="Screenshot of the Create a new hub button." lightbox="../../media/ai-studio/hub/create-new.png":::
 
-1. In the **Create a new hub** dialog window, enter a name for your hub and select **Next**. Leave the default **Connect Azure AI Services** option selected. A new Azure AI services connection is created for the hub.
+1. In the **Create a new hub** dialog window, enter a name for your hub, and select **Next**. Leave the default **Connect Azure AI Services** option selected. A new Azure AI services connection is created for the hub.
 
 
-    :::image type="content" source="../../media/ai-studio/hub/create-new-connection.png" alt-text="Screenshot of the create a new hub dialog window." lightbox="../../media/ai-studio/hub/create-new-connection.png":::
+    :::image type="content" source="../../media/ai-studio/hub/create-new-connection.png" alt-text="Screenshot of the Create a new hub dialog window." lightbox="../../media/ai-studio/hub/create-new-connection.png":::
 
 1. Review your entries then select **Create**.
 
@@ -88,7 +88,7 @@ You deploy and manage your Azure AI Studio projects in hubs. Here's how to creat
 ## Create a speech analytics project in your AI Studio hub
 
 
-A speech analytics project is a specialized project in Azure AI Studio that primarily has resources and tools for speech analytics. You see it listed among your other projects int he studio. When you create a speech analytics project, you also create a generative AI project. The generative AI project is where you customize the prompt flow deployment.
+A speech analytics project is a specialized project in Azure AI Studio that primarily has resources and tools for speech analytics. You see it listed among your other projects in the studio. When you create a speech analytics project, you also create a generative AI project. The generative AI project is where you customize the prompt flow deployment.
 
 Follow these steps to create a speech analytics project in your hub:
 
@@ -112,7 +112,7 @@ Navigate to the Home page and select AI Services from the left pane. Then select
 
     :::image type="content" source="../../media/ai-studio/speech-analytics/create-project-data-settings.png" alt-text="Screenshot the Data settings window." lightbox="../../media/ai-studio/speech-analytics/create-project-data-settings.png":::
 
-1. **Speech settings**. Leave the default setting selected for the Azure AI services connection. This setting is used to connect to the GPT chat model deployment that you created earlier.
+1. **Speech settings**. Leave the default setting selected for the Azure AI services connection. This setting is used to connect to the `GPT` chat model deployment that you created earlier.
 
    * Select the spoken language in the audio file corresponding to the transcription that you want to analyze. Select *English (United States)* if you're using our [**sample audio file on GitHub**](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/scenarios/call-center/sampledata/Call1_separated_16k_health_insurance.wav).
 

@@ -19,7 +19,7 @@ items:
   - name: What's new
     displayName: changelog, release, updates, previews
     href: whats-new.md
-- name: Azure Ai Multimodal Intelligence capabilities
+- name: Azure AI Multimodal Intelligence capabilities
   items:
   - name: Speech
     items:
