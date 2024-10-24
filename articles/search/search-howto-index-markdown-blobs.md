@@ -28,6 +28,10 @@ The blob indexer provides a `submode` parameter to determine the output of struc
 | **`markdown`** | **`oneToMany`** | Multiple per blob | (default) Breaks the Markdown into multiple search documents, each representing a content (nonheader) section of the Markdown file. |
 | **`markdown`** | **`oneToOne`** | One per blob | Parses the Markdown into one search document, with sections mapped to specific headers in the Markdown file.|
 
+For **`oneToMany`** submode, you should review [Indexing one blob to produce many search documents](search-howto-index-one-to-many-blobs.md) to understand how the blob indexer handles disambiguation of the document key for multiple search documents produced from the same blob.
+
+Later sections describe each submode in more detail. If you're unfamiliar with indexer clients and concepts, see [Create a search indexer](search-howto-create-indexers.md). You should also be familiar with the details of [basic blob indexer configuration](search-howto-indexing-azure-blob-storage.md), which isn't repeated here.
+
 ## Additional Markdown parsing parameters
 
 Parameters are case-sensitive.
@@ -38,13 +42,12 @@ Parameters are case-sensitive.
 
 This setting can be changed after initial creation of the indexer, however the structure of the resulting search documents might change depending on the Markdown content.
 
-For **`oneToMany`** submode, you should review [Indexing one blob to produce many search documents](search-howto-index-one-to-many-blobs.md) to understand how the blob indexer handles disambiguation of the document key for multiple search documents produced from the same blob.
-
-The following sections describe each mode in more detail. If you're unfamiliar with indexer clients and concepts, see [Create a search indexer](search-howto-create-indexers.md). You should also be familiar with the details of [basic blob indexer configuration](search-howto-indexing-azure-blob-storage.md), which isn't repeated here.
+## Supported Markdown elements
+Markdown parsing will only split content based on valid headers. All other elements such as lists, codeblocks, tables, etc., are treated as plaintext.
 
 <a name="parsing-markdown-one-to-many"></a>
 
-## Markdown One-To-Many Parsing Mode (Markdown to Multiple Documents)
+## Markdown one-to-many parsing mode (Markdown to Multiple Documents)
 
 The **Markdown one-to-many parsing mode** parses Markdown files into multiple search documents, where each document corresponds to a specific content section of the Markdown file based on the header metadata at that point in the document. The Markdown is parsed based on headers into documents which contain the following content:
 
@@ -67,8 +70,8 @@ Content for subsection 1.1.
 Content for section 2.
 ```
 
+### Index schema for one-to-many parsed Markdown files
 An example index configuration might look something like this:
-
 ```http
 {
   "name": "my-markdown-index",
@@ -228,7 +231,7 @@ Content for subsection 1.1.
 Content for section 2.
 ```
 
-### One-to-one parsing not utilizing field mappings
+ ### Index schema for one-to-one parsed Markdown files
 If you are not utilizing field mappings, the shape of the index should reflect the shape of the Markdown content. Based on  the  previous Markdown, the index should look similar to the following example:
 ```http
 {
