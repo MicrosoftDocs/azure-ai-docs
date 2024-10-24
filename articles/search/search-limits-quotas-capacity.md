@@ -8,7 +8,7 @@ author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: conceptual
-ms.date: 10/22/2024
+ms.date: 10/24/2024
 ms.custom:
   - references_regions
   - build-2024
@@ -18,21 +18,21 @@ ms.custom:
 
 Maximum limits on storage, workloads, and quantities of indexes and other objects depend on whether you [create Azure AI Search](search-create-service-portal.md) at **Free**, **Basic**, **Standard**, or **Storage Optimized** pricing tiers.
 
-+ **Free** is a multitenant shared service that comes with your Azure subscription. 
++ **Free** is a multitenant shared service that comes with your Azure subscription.
 
 + **Basic** provides dedicated computing resources for production workloads at a smaller scale, but shares some networking infrastructure with other tenants.
 
-+ **Standard** runs on dedicated machines with more storage and processing capacity at every level. Standard comes in four levels: S1, S2, S3, and S3 HD. S3 High Density (S3 HD) is engineered for [multi-tenancy](search-modeling-multitenant-saas-applications.md) and large quantities of small indexes (3,000 indexes per service). S3 HD doesn't provide the [indexer feature](search-indexer-overview.md) and data ingestion must use APIs that push data from source to index. 
++ **Standard** runs on dedicated machines with more storage and processing capacity at every level. Standard comes in four levels: S1, S2, S3, and S3 HD. S3 High Density (S3 HD) is engineered for [multi-tenancy](search-modeling-multitenant-saas-applications.md) and large quantities of small indexes (3,000 indexes per service). S3 HD doesn't provide the [indexer feature](search-indexer-overview.md) and data ingestion must use APIs that push data from source to index.
 
 + **Storage Optimized** runs on dedicated machines with more total storage, storage bandwidth, and memory than **Standard**. This tier targets large, slow-changing indexes. Storage Optimized comes in two levels: L1 and L2.
 
 ## Subscription limits
+
 [!INCLUDE [azure-search-limits-per-subscription](~/reusable-content/ce-skilling/azure/includes/azure-search-limits-per-subscription.md)]
 
 ## Service limits
-[!INCLUDE [azure-search-limits-per-service](~/reusable-content/ce-skilling/azure/includes/azure-search-limits-per-service.md)]
 
-<a name="index-limits"></a>
+[!INCLUDE [azure-search-limits-per-service](~/reusable-content/ce-skilling/azure/includes/azure-search-limits-per-service.md)]
 
 ## Index limits
 
@@ -49,7 +49,7 @@ Maximum limits on storage, workloads, and quantities of indexes and other object
 | Maximum functions per profile |8 |8 |8 |8 |8 |8 |8 |8 |
 | Maximum index size&nbsp;<sup>4</sup> | N/A | N/A | N/A | 1.88&nbsp;TB | 2.34&nbsp;TB | 100 GB| N/A | N/A |
 
-<sup>1</sup> Basic services created before December 2017 have lower limits (5 instead of 15) on indexes. Basic tier is the only tier with a lower limit of 100 fields per index. 
+<sup>1</sup> Basic services created before December 2017 have lower limits (5 instead of 15) on indexes. Basic tier is the only tier with a lower limit of 100 fields per index.
 
 <sup>2</sup> The upper limit on fields includes both first-level fields and nested subfields in a complex collection. For example, if an index contains 15 fields and has two complex collections with five subfields each, the field count of your index is 25. Indexes with a very large fields collection can be slow. [Limit fields and attributes](search-what-is-an-index.md#physical-structure-and-size) to just those you need, and run indexing and query test to ensure performance is acceptable.
 
@@ -59,9 +59,7 @@ Maximum limits on storage, workloads, and quantities of indexes and other object
 
 You might find some variation in maximum limits if your service happens to be provisioned on a more powerful cluster. The limits here represent the common denominator. Indexes built to the above specifications are portable across equivalent service tiers in any region.
 
-<a name="document-limits"></a>
-
-## Document limits 
+## Document limits
 
 Maximum number of documents per index are:
 
@@ -100,7 +98,7 @@ This table shows the progression of vector quota increases in GB over time. The 
 
 <sup>2</sup> Vector limits during the later preview period. Three regions didn't have the higher limits: Germany West Central, West India, Qatar Central.
 
-<sup>3</sup> Higher vector quota based on the larger partitions for supported tiers and regions. 
+<sup>3</sup> Higher vector quota based on the larger partitions for supported tiers and regions.
 
 <sup>4</sup> Higher vector quota for more tiers and regions based on partition size updates.
 
@@ -160,8 +158,6 @@ Indexers can access other Azure resources [over private endpoints](search-indexe
 
 <sup>3</sup> The number of distinct resource types are computed as the number of unique `groupId` values used across all shared private link resources for a given search service, irrespective of the status of the resource.
 
-
-
 ## Synonym limits
 
 Maximum number of synonym maps varies by tier. Each rule can have up to 20 expansions, where an expansion is an equivalent term. For example, given "cat", association with "kitty", "feline", and "felis" (the genus for cats) would count as 3 expansions.
@@ -188,7 +184,7 @@ An [AI enrichment pipeline](cognitive-search-concept-intro.md) that makes calls 
 
 ## Throttling limits
 
-API requests are throttled as the system approaches peak capacity. Throttling behaves differently for different APIs. Query APIs (Search/Suggest/Autocomplete) and indexing APIs throttle dynamically based on the load on the service. Index APIs and service operations API have static request rate limits. 
+API requests are throttled as the system approaches peak capacity. Throttling behaves differently for different APIs. Query APIs (Search/Suggest/Autocomplete) and indexing APIs throttle dynamically based on the load on the service. Index APIs and service operations API have static request rate limits.
 
 Static rate request limits for operations related to an index:
 
@@ -196,7 +192,7 @@ Static rate request limits for operations related to an index:
 + Get Index (GET /indexes/myindex): 10 per second per search unit
 + Create Index (POST /indexes): 12 per minute per search unit
 + Create or Update Index (PUT /indexes/myindex): 6 per second per search unit
-+ Delete Index (DELETE /indexes/myindex): 12 per minute per search unit 
++ Delete Index (DELETE /indexes/myindex): 12 per minute per search unit
 
 Static rate request limits for operations related to a service:
 
@@ -208,15 +204,15 @@ L2 reranking using the semantic reranker has an expected volume:
 
 ## API request limits
 
-* Maximum of 16 MB per request <sup>1</sup>
-* Maximum 8-KB URL length
-* Maximum 1,000 documents per batch of index uploads, merges, or deletes
-* Maximum 32 fields in $orderby clause
-* Maximum 100,000 characters in a search clause
-* The maximum number of clauses in `search` (expressions separated by AND or OR) is 1024
-* Maximum search term size is 32,766 bytes (32 KB minus 2 bytes) of UTF-8 encoded text
-* Maximum search term size is 1,000 characters for [prefix search](query-simple-syntax.md#prefix-queries) and [regex search](query-lucene-syntax.md#bkmk_regex)
-* [Wildcard search](query-lucene-syntax.md#bkmk_wildcard) and [Regular expression search](query-lucene-syntax.md#bkmk_regex) are limited to a maximum of 1,000 states when processed by [Lucene](https://lucene.apache.org/core/7_0_1/core/org/apache/lucene/util/automaton/RegExp.html). 
++ Maximum of 16 MB per request <sup>1</sup>
++ Maximum 8-KB URL length
++ Maximum 1,000 documents per batch of index uploads, merges, or deletes
++ Maximum 32 fields in $orderby clause
++ Maximum 100,000 characters in a search clause
++ The maximum number of clauses in `search` (expressions separated by AND or OR) is 1024
++ Maximum search term size is 32,766 bytes (32 KB minus 2 bytes) of UTF-8 encoded text
++ Maximum search term size is 1,000 characters for [prefix search](query-simple-syntax.md#prefix-queries) and [regex search](query-lucene-syntax.md#bkmk_regex)
++ [Wildcard search](query-lucene-syntax.md#bkmk_wildcard) and [Regular expression search](query-lucene-syntax.md#bkmk_regex) are limited to a maximum of 1,000 states when processed by [Lucene](https://lucene.apache.org/core/7_0_1/core/org/apache/lucene/util/automaton/RegExp.html).
 
 <sup>1</sup> In Azure AI Search, the body of a request is subject to an upper limit of 16 MB, imposing a practical limit on the contents of individual fields or collections that aren't otherwise constrained by theoretical limits (see [Supported data types](/rest/api/searchservice/supported-data-types) for more information about field composition and restrictions).
 
@@ -224,12 +220,12 @@ Limits on query size and composition exist because unbounded queries can destabi
 
 ## API response limits
 
-* Maximum 1,000 documents returned per page of search results
-* Maximum 100 suggestions returned per Suggest API request
++ Maximum 1,000 documents returned per page of search results
++ Maximum 100 suggestions returned per Suggest API request
 
 ## API key limits
 
 API keys are used for service authentication. There are two types. Admin keys are specified in the request header and grant full read-write access to the service. Query keys are read-only, specified on the URL, and typically distributed to client applications.
 
-* Maximum of 2 admin keys per service
-* Maximum of 50 query keys per service
++ Maximum of 2 admin keys per service
++ Maximum of 50 query keys per service
