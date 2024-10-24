@@ -72,16 +72,16 @@ You deploy and manage your Azure AI Studio projects in hubs. Here's how to creat
 1. Select **All hubs** from the left pane and then select **➕New hub**.
 
 
-    :::image type="content" source="../../media/ai-studio/hub/create-new.png" alt-text="Screenshot of the create a new hub button." lightbox="../../media/ai-studio/create-new-hub.png":::
+    :::image type="content" source="../../media/ai-studio/hub/create-new.png" alt-text="Screenshot of the create a new hub button." lightbox="../../media/ai-studio/hub/create-new.png":::
 
 1. In the **Create a new hub** dialog window, enter a name for your hub and select **Next**. Leave the default **Connect Azure AI Services** option selected. A new Azure AI services connection is created for the hub.
 
 
-    :::image type="content" source="../../media/ai-studio/hub/create-new-connection.png" alt-text="Screenshot of the create a new hub dialog window." lightbox="../../media/ai-studio/create-new-connection.png":::
+    :::image type="content" source="../../media/ai-studio/hub/create-new-connection.png" alt-text="Screenshot of the create a new hub dialog window." lightbox="../../media/ai-studio/hub/create-new-connection.png":::
 
 1. Review your entries then select **Create**.
 
-    :::image type="content" source="../../media/ai-studio/hub/create-new-review.png" alt-text="Screenshot of the review and finish dialog window." lightbox="../../media/ai-studio/create-new-hub-review.png":::
+    :::image type="content" source="../../media/ai-studio/hub/create-new-review.png" alt-text="Screenshot of the review and finish dialog window." lightbox="../../media/ai-studio/hub/create-new-review.png":::
 
 1. You can review the progress of the hub creation in the deployment wizard. The deployment may take a few minutes to complete.
 
@@ -94,15 +94,15 @@ Follow these steps to create a speech analytics project in your hub:
 
 Navigate to the Home page and select AI Services from the left pane. Then select **Speech analytics** from the list of features.
 
-    :::image type="content" source="../../media/ai-studio/speech-analytics/choose-project.png" alt-text="Screenshot of the Speech analytics selection tab.":::
+   :::image type="content" source="../../media/ai-studio/speech-analytics/choose-project.png" alt-text="Screenshot of the Speech analytics selection tab.":::
 
 1. On the Speech analytics page, select **➕New speech analytics project**.
 
-    :::image type="content" source="../../media/ai-studio/speech-analytics/start-new-project.png" alt-text="Screenshot of the start new speech analytics project window." lightbox="../../media/ai-studio/speech-analytics/start-new-project.png":::
+   :::image type="content" source="../../media/ai-studio/speech-analytics/start-new-project.png" alt-text="Screenshot of the start new speech analytics project window." lightbox="../../media/ai-studio/speech-analytics/start-new-project.png":::
 
 1. **Scenario**. In the **Create a speech analytics project** dialog window, select **Post-call analytics**, and then select **Next**.
 
-    :::image type="content" source="../../media/ai-studio/speech-analytics/create-project-scenario.png" alt-text="Screenshot the Scenario window." lightbox="../../media/ai-studio/speech-analytics/create-project-scenario.png":::
+   :::image type="content" source="../../media/ai-studio/speech-analytics/create-project-scenario.png" alt-text="Screenshot the Scenario window." lightbox="../../media/ai-studio/speech-analytics/create-project-scenario.png":::
 
 1. **Project details**. Enter a **Project name**, select the **Hub** that you previously created from the dropdown list, and then select **Next**.
 
