@@ -133,7 +133,7 @@ When using AI-assisted performance and quality metrics, you must specify a GPT m
 
 ### Set up
 
-Choose a deployment with either GPT-3.5, GPT-4, or the Davinci model for your calculations and set it as your `model_config`. We support both Azure OpenAI or OpenAI model configuration schema. We recommend using GPT models that do not have the `(preview)` suffix for the best performance and parseable responses with our evaluators.
+Choose a deployment with either GPT-3.5, GPT-4, GPT-4o or GPT-4-mini model for your calculations and set it as your `model_config`. We support both Azure OpenAI or OpenAI model configuration schema. We recommend using GPT models that do not have the `(preview)` suffix for the best performance and parseable responses with our evaluators.
 
 #### Performance and quality evaluator usage
 
