@@ -32,7 +32,8 @@ The steps in this tutorial are:
 ## Prerequisites
 
 - An Azure subscription - <a href="https://azure.microsoft.com/free/cognitive-services" target="_blank">Create one for free</a>.
-- A [deployed Azure OpenAI](../how-to/deploy-models-openai.md) chat model. Complete the [AI Studio playground quickstart](../quickstarts/get-started-playground.md) to create these resources if you haven't already.
+- A [deployed Azure OpenAI](../how-to/deploy-models-openai.md) chat model. Complete the [AI Studio playground quickstart](../quickstarts/get-started-playground.md) to create this resource
+- if you haven't already.
 
 - An [Azure AI Search service connection](../how-to/connections-add.md#create-a-new-connection) to index the sample product data. 
 
