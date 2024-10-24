@@ -1248,6 +1248,8 @@ items:
         - name: Use private endpoint
           displayName: private endpoint
           href: how-to-configure-private-link.md
+        - name: Securely use on-premises resources
+          href: how-to-access-on-premises-resources.md
         - name: Use custom DNS
           href: how-to-custom-dns.md
         - name: Use Azure Virtual Network
