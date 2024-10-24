@@ -14,7 +14,7 @@ author: msakande
 #Customer intent: As a Data Scientist I want to learn what offerings are available within Health and Life Sciences AI Model offerings so that I can use them as the basis for my own AI solutions
 ---
 
-# foundation AI models for healthcare
+# Foundation AI models for healthcare
 
 [!INCLUDE [Feature preview](~/reusable-content/ce-skilling/azure/includes/ai-studio/includes/feature-preview.md)]
 
