@@ -5,7 +5,6 @@ description: Quick reference, detailed description, and best practices on the qu
 ms.service: azure-ai-studio
 ms.custom: ignite-2024, github-universe-2024
 ms.topic: conceptual
-ms.date: 10/21/2024
 author: sdgilley
 manager: scottpolly
 ms.date: 10/24/2024
