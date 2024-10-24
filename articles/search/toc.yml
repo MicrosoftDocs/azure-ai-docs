@@ -256,7 +256,7 @@ items:
         - name: Index JSON
           href: search-howto-index-json-blobs.md
         - name: Index Markdown
-          href: search-howto-index-markdown-blobs.md
+          href: search-how-to-index-markdown-blobs.md
       - name: Troubleshooting guidance
         href: search-indexer-troubleshooting.md
       - name: Troubleshoot indexer errors and warnings
