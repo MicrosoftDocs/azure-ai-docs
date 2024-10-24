@@ -30,7 +30,7 @@ items:
         items:
         - name: Set up post-call analytics workflow
           displayName: audio, voice, recognition, transcription, translation, language, understanding, sentiment, analysis, emotion, detection, pronunciation, model
-          href: speech/how-to/set-up-post-call-analytics-workflow.md  
+          href: speech/how-to/set-up-post-call-analytics.md
 - name: Concepts
   items:
   - name: Content extraction
