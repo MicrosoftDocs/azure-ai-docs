@@ -23,8 +23,8 @@ To create a hub in [Azure AI Studio](https://ai.azure.com), follow these steps:
 1. In the **Create a new hub** dialog, enter a name for your hub (such as *contoso-hub*). If you don't have a resource group, a new **Resource group** will be created linked to the **Subscription** provided. Leave the default **Connect Azure AI Services** option selected. 
 1. Select **Next**. If you didn't reuse an existing resource group, a new resource group (*rg-contoso*) is created.  Also an Azure AI service (*ai-contoso-hub*) is created for the hub.
 
-> [!NOTE]
-> If you don't see (new) before the **Resource group** and **Connect Azure AI Services** entries then an existing resource is being used. For the purposes of this tutorial, create a seperate entity via **Create new resource group** and **Create new AI Services**. This will allow you to prevent any unexpected charges by deleting the entities after the tutorial.
+    > [!NOTE]
+    > If you don't see (new) before the **Resource group** and **Connect Azure AI Services** entries then an existing resource is being used. For the purposes of this tutorial, create a seperate entity via **Create new resource group** and **Create new AI Services**. This will allow you to prevent any unexpected charges by deleting the entities after the tutorial.
 
     :::image type="content" source="../media/how-to/hubs/hub-new-connect-services.png" alt-text="Screenshot of the dialog to connect services while creating a new hub." lightbox="../media/how-to/hubs/hub-new-connect-services.png":::
 
