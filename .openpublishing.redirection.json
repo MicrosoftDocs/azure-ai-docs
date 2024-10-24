@@ -9,6 +9,16 @@
       "source_path_from_root": "/articles/search/search-howto-create-indexers.md",
       "redirect_url": "/azure/search/search-how-to-create-indexers",
       "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/search-howto-dotnet-sdk.md",
+      "redirect_url": "/azure/search/search-how-to-dotnet-sdk",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/search-howto-index-csv-blobs.md",
+      "redirect_url": "/azure/search/search-how-to-index-csv-blobs",
+      "redirect_document_id": false
     }
   ]
 }
