@@ -1,16 +1,15 @@
 ---
 title: 'Tutorial: Index Markdown blobs'
 titleSuffix: Azure AI Search
-description: Learn how to index and search semi-structured Azure JSON blobs using Azure AI Search REST APIs.
+description: Learn how to index and search Azure Markdown blobs using Azure AI Search REST APIs.
 
-manager: nitinme
-author: HeidiSteen
-ms.author: heidist
+author: mdonovan
+ms.author: mdonovan
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: tutorial
-ms.date: 03/13/2024
+ms.date: 10/24/2024
 
 ---
 
@@ -18,7 +17,7 @@ ms.date: 03/13/2024
 
 Azure AI Search can index Markdown documents and arrays in Azure Blob Storage using an [indexer](search-indexer-overview.md) that knows how to read Markdown data. 
 
-This tutorial shows you to index Markdown files. It uses a REST client and the [Search REST APIs](/rest/api/searchservice/) to perform the following tasks:
+This tutorial shows you to index Markdown files indexed using the `oneToMany` Markdown parsing mode. It uses a REST client and the [Search REST APIs](/rest/api/searchservice/) to perform the following tasks:
 
 > [!div class="checklist"]
 > + Set up sample data and configure an `azureblob` data source
@@ -43,11 +42,9 @@ If you don't have an Azure subscription, create a [free account](https://azure.m
 
 Download a zip file of the sample data repository and extract the contents. [Learn how](https://docs.github.com/get-started/start-your-journey/downloading-files-from-github).
 
-+ [sample-markdown-free](https://github.com/Azure-Samples/azure-search-sample-data)
++ (TODO: update this link, need to host this file somewhere) [sample-markdown](https://github.com/Azure-Samples/azure-search-sample-data)
 
-Sample data is a single JSON file containing a JSON array and 1,521 nested JSON elements. Sample data originates from [NY Philharmonic Performance History](https://www.kaggle.com/datasets/nyphil/perf-history) on Kaggle. We chose one JSON file to stay under the storage limits of the free tier.
-
-Here's the first nested JSON in the file. The remainder of the file includes 1,520 other instances of concert performances.
+Sample data is a single Markdown file containing various Markdown elements. We chose one Markdown file to stay under the storage limits of the free tier.
 
 ```md
 # Project Documentation
@@ -317,8 +314,6 @@ POST {{baseUrl}}/indexes?api-version=2024-11-01  HTTP/1.1
 
 [Create Indexer](/rest/api/searchservice/indexers/create) creates an indexer on your search service. An indexer connects to the data source, loads and indexes data, and optionally provides a schedule to automate the data refresh.
 
-The indexer configuration includes the `jsonArray` parsing mode and a `documentRoot`.
-
 ```http
 ### Create and run an indexer
 POST {{baseUrl}}/indexers?api-version=2024-11-01  HTTP/1.1
@@ -521,8 +516,7 @@ When you're working in your own subscription, at the end of a project, it's a go
 You can use the portal to delete indexes, indexers, and data sources.
 
 ## Next steps
-
-Now that you're familiar with the basics of Azure Blob indexing, let's take a closer look at indexer configuration for JSON blobs in Azure Storage.
+Now that you're familiar with the basics of Azure Blob indexing, let's take a closer look at indexer configuration for Markdown blobs in Azure Storage.
 
 > [!div class="nextstepaction"]
 > [Configure Markdown blob indexing](search-how-to-index-markdown-blobs.md)
