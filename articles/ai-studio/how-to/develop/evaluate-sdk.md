@@ -172,7 +172,7 @@ Here's an example of the result:
 
 ### Risk and safety evaluators
 
-When you use AI-assisted risk and safety metrics, a GPT model isn't required. Instead of `model_config`, provide your `azure_ai_project` information. This accesses the Azure AI Studio safety evaluations back-end service, which provisions an GPT model specific to harms evaluation that can generate content risk severity scores and reasoning to enable your safety evaluators.
+When you use AI-assisted risk and safety metrics, a GPT model isn't required. Instead of `model_config`, provide your `azure_ai_project` information. This accesses the Azure AI Studio safety evaluations back-end service, which provisions an GPT model specific to harms evaluation that can generate content risk severity scores and reasoning to enable the safety evaluators.
 
 #### Region support
 
