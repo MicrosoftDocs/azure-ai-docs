@@ -140,49 +140,32 @@ For more information, see [Language support](/azure/ai-services/content-safety/l
 
 ### Region availability
 
-To use the Content Safety APIs, you must create your Azure AI Content Safety resource in a supported region. Currently, the Content Safety features are available in the following Azure regions: 
-   
-| Region   | Moderation APIs (text and image) | Moderation APIs (multimodal) (preview) | Prompt Shields | Protected material detection for Text | Protected material detection for Code | Groundedness detection (preview) | Custom categories (rapid) (preview) | Custom categories (standard) (preview) | 
-|--|-|---|-|--|---|-|-|---|  
-| Australia East    | ✅  |  | ✅  | ✅    |  ✅  |     | ✅  | ✅| 
-| Brazil South      |  ✅ |  |  ✅|    ✅  |    |    |      |   |      
-| Canada Central    |✅   |  | ✅  |✅     |    |    |      |   |       
-| Central India     |     |   | ✅ |   ✅  |    |     |       |   |      
-| Canada East       | ✅  |  | ✅  | ✅    | ✅   |    | ✅   |   | 
-| Central US        | ✅  |  |      | ✅     | ✅  |    | ✅   |   |
-| East US           | ✅  |✅| ✅  | ✅    |  ✅ | ✅ | ✅   | ✅ |  
-| East US 2         | ✅  |   | ✅ | ✅    |  ✅  | ✅| ✅    |   | 
- | France Central    | ✅  |  |  ✅ | ✅    | ✅   |    | ✅   |   |
-| Germany West Central|✅|  | ✅|   ✅  |    |    |      |   |       
-| India North       |      |  |✅ |✅     |    |    |       |   |      
-| Italy North       | ✅     |  | ✅| ✅    |   |    |      |   |       
-| Japan East        | ✅  |  | ✅  | ✅    |  ✅  |    | ✅   |   |  
-| Japan West        |      |  | |    |  ✅  |    | ✅   |   |       
-| Korea Central     |  ✅ |  |    |         |       |    |      |   |      
-| North Central US  | ✅  |  | ✅  | ✅    | ✅   |    | ✅   |   |  
-| Norway East       |✅   |  |  |    |     |    |      |   |       
-| Poland Central    | ✅  |  | ✅  | ✅     |  ✅  |    | ✅   |   | 
-| South Africa North|   ✅|  | ✅ |   ✅   |  ✅  |    |      |   |     
-| South Central US  | ✅  |  |   |    | ✅   |    | ✅   |   |  
-| South East Asia   |      |  | ✅  | ✅   |    |    | ✅   |   | 
-| South India       | ✅  |  |     | ✅    | ✅   |    | ✅     |   |   
-| Sweden Central    | ✅  |  | ✅  | ✅    |  ✅  | ✅| ✅    |  |  
-| Switzerland North | ✅  |  | ✅  | ✅    |    |    | ✅   | ✅ |  
-| Switzerland West  | ✅  |  | ✅  | ✅    |    |    | ✅   | ✅ |  
-| UAE North         | ✅  |  |     |        |      |     |      |   |       
-| UK South          | ✅  |  | ✅  | ✅    |    |    | ✅   |   | 
-| West Europe       | ✅  |✅| ✅ | ✅    |   ✅ |    | ✅   |   |  
-| West US           |      |  | ✅  | ✅   |  ✅  |    | ✅   |   |        
-| West US 2         | ✅  |  | ✅  | ✅    |  ✅  |    | ✅   |   |  
-| West US 3         | ✅  |  | ✅  | ✅    | ✅   |    | ✅   |   | 
-| USGov Arizona     | ✅  |  |  ✅   |    ✅    |      |    |       |   |   
-| USGov Virginia    | ✅  |  |  ✅   |  ✅      |      |    |       |   | 
+To use the Content Safety APIs, you must create your Azure AI Content Safety resource in a supported region. Currently, the Content Safety features are available in the following Azure regions with different API versions: 
 
-
-
-
-
-
+| Region              | Custom Category    | Groundedness       | Image | Multimodal(Image with Tex) | Incident Response | Prompt Shield | Protected Material (Text) | Protected Material (Code) | Text | Unified API |
+|--------------------|--------------------|--------------------|-------|-----------------|-------------------|---------------|---------------------------|---------------------------|------|-------------|
+| Australia East                     | ✅                  |                    | ✅    |                 | ✅                 | ✅             | ✅                         | ✅                         | ✅    | ✅           |
+| Canada East                          |                    |                    | ✅    |                 | ✅                 | ✅             | ✅                         | ✅                         | ✅    | ✅           |
+| Central US                             |                    |                    | ✅    |                 | ✅                 | ✅             | ✅                         | ✅                         | ✅    | ✅           |
+| East US                            | ✅                 | ✅                 | ✅    | ✅              | ✅                 | ✅             | ✅                         | ✅                         | ✅    | ✅           |
+| East US 2                           |                    | ✅                 | ✅    |                 | ✅                 | ✅             | ✅                         | ✅                         | ✅    | ✅           |
+| France Central                        |                    | ✅                 | ✅    |                 | ✅                 | ✅             | ✅                         | ✅                         | ✅    | ✅           |
+| Japan East                            |                    |                    | ✅    |                 | ✅                 | ✅             | ✅                         | ✅                         | ✅    | ✅           |
+| North Central US                      |                    |                    | ✅    |                 | ✅                 | ✅             | ✅                         | ✅                         | ✅    | ✅           |
+| Poland Central                        |                    |                    | ✅    |                 |                   | ✅             | ✅                         | ✅                         | ✅    | ✅           |
+| South Central US                     |                    |                    | ✅    |                 | ✅                 | ✅             | ✅                         | ✅                         | ✅    | ✅           |
+| South India                           |                    |                    | ✅    |                 | ✅                 |               | ✅                         | ✅                         | ✅    | ✅           |
+| Sweden Central                        |                    | ✅                 | ✅    |                 | ✅                 | ✅             | ✅                         | ✅                         | ✅    | ✅           |
+| Switzerland North                     | ✅                 |                    | ✅    |                 | ✅                 | ✅             | ✅                         | ✅                         | ✅    | ✅           |
+| Switzerland West                      |                    |                    | ✅    |                 | ✅                 | ✅             | ✅                         | ✅                         | ✅    |             |
+| UAE North                            |                    |                    | ✅    |                 | ✅                 | ✅             | ✅                         | ✅                         | ✅    |             |
+| UK South                             |                    | ✅                 | ✅    |                 | ✅                 | ✅             | ✅                         | ✅                         | ✅    | ✅           |
+| West Europe                          |                    |                    | ✅    | ✅              | ✅                 | ✅             | ✅                         | ✅                         | ✅    | ✅           |
+| West US                              |                    | ✅                 | ✅    |                 | ✅                 | ✅             | ✅                         | ✅                         | ✅    | ✅           |
+| West US 2                            |                    |                    | ✅    |                 | ✅                 | ✅             | ✅                         | ✅                         | ✅    | ✅           |
+| West US 3                            |                    |                    | ✅    |                 | ✅                 | ✅             | ✅                         | ✅                         | ✅    | ✅           |
+| FairFax - USGovArizona|                                     |                    | ✅    |                 |                   | ✅             | ✅                         |                            | ✅    | ✅           |
+| FairFax - USGovVirginia|                                   |                    | ✅    |                 |                   | ✅             | ✅                         |                            | ✅    | ✅           |
 
 Feel free to [contact us](mailto:contentsafetysupport@microsoft.com) if your business needs other regions to be available.
 
