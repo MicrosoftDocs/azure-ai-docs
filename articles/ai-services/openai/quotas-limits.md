@@ -10,7 +10,7 @@ ms.custom:
   - ignite-2023
   - references_regions
 ms.topic: conceptual
-ms.date: 10/11/2024
+ms.date: 10/23/2024
 ms.author: mbullwin
 ---
 
@@ -132,14 +132,14 @@ The Usage Limit determines the level of usage above which customers might see la
 
 |Model| Usage Tiers per month |
 |----|----|
-|`gpt-4o` | 8 Billion tokens |
-|`gpt-4o-mini` | 45 Billion tokens |
+|`gpt-4o` | 12 Billion tokens |
+|`gpt-4o-mini` | 85 Billion tokens |
 
 #### GPT-4 standard
 
 |Model| Usage Tiers per month|
 |---|---|
-| `gpt-4` + `gpt-4-32k`  (all versions) | 4 Billion |
+| `gpt-4` + `gpt-4-32k`  (all versions) | 6 Billion |
 
 
 ## Other offer types
