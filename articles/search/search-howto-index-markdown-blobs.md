@@ -1,5 +1,5 @@
 ---
-title: Search over markdown blobs
+title: Search over Markdown blobs
 titleSuffix: Azure AI Search
 description: Extract searchable text from Markdown blobs using the blob indexer in Azure AI Search. Indexers provide indexing automation for supported data sources like Azure Blob Storage.
 
@@ -17,16 +17,16 @@ ms.date: 10/22/2024
 
 **Applies to**: [Blob indexers](search-howto-indexing-azure-blob-storage.md), [File indexers](search-file-storage-integration.md)
 
-In Azure AI Search, indexers for Azure Blob Storage and Azure Files support a `markdown` parsing mode for markdown files. Markdown files can be indexed in two ways: 
-+ One-To-Many Parsing Mode
-+ One-To-One Parsing Mode
+In Azure AI Search, indexers for Azure Blob Storage and Azure Files support a `markdown` parsing mode for Markdown files. Markdown files can be indexed in two ways: 
++ One-to-many parsing mode
++ One-to-one parsing mode
 
 The blob indexer provides a `submode` parameter to determine the output of structure of the search documents. Markdown parsing mode provides the following submode options:
 
 | parsingMode | submode | Search document | Description |
 |--------------|-------------|-------------|--------------|
-| **`markdown`** | **`oneToMany`** | Multiple per blob | (default) Breaks the markdown into multiple search documents, each representing a content (nonheader) section of the markdown file. |
-| **`markdown`** | **`oneToOne`** | One per blob | Parses the markdown into one search document, with sections mapped to specific headers in the markdown file.|
+| **`markdown`** | **`oneToMany`** | Multiple per blob | (default) Breaks the Markdown into multiple search documents, each representing a content (nonheader) section of the Markdown file. |
+| **`markdown`** | **`oneToOne`** | One per blob | Parses the Markdown into one search document, with sections mapped to specific headers in the Markdown file.|
 
 ## Additional Markdown parsing parameters
 
@@ -36,7 +36,7 @@ Parameters are case-sensitive.
 |--------------------|-------------|-------------|
 | `markdownHeaderDepth` |`h1`, `h2`, `h3`, `h4`, `h5`, `h6(default)` | This parameter determines the deepest header level that is considered when parsing, allowing for flexible handling of document structure (for example, when `markdownHeaderDepth` is set to `h1`, the parser only recognizes top-level headers that begin with "#", and all lower-level headers are treated as plain text). If not specified, it defaults to `h6`. 
 
-This setting can be changed after initial creation of the indexer, however the structure of the resulting search documents might change depending on the markdown content.
+This setting can be changed after initial creation of the indexer, however the structure of the resulting search documents might change depending on the Markdown content.
 
 For **`oneToMany`** submode, you should review [Indexing one blob to produce many search documents](search-howto-index-one-to-many-blobs.md) to understand how the blob indexer handles disambiguation of the document key for multiple search documents produced from the same blob.
 
@@ -46,15 +46,15 @@ The following sections describe each mode in more detail. If you're unfamiliar w
 
 ## Markdown One-To-Many Parsing Mode (Markdown to Multiple Documents)
 
-The **Markdown One-To-Many Parsing Mode** parses markdown files into multiple search documents, where each document corresponds to a specific content section of the markdown file based on the header metadata at that point in the document. The markdown is parsed based on headers into documents which contain the following content:
+The **Markdown one-to-many parsing mode** parses Markdown files into multiple search documents, where each document corresponds to a specific content section of the Markdown file based on the header metadata at that point in the document. The Markdown is parsed based on headers into documents which contain the following content:
 
-- `content`: A string that contains the raw markdown found in a specific location, based on the header metadata at that point in the document.
+- `content`: A string that contains the raw Markdown found in a specific location, based on the header metadata at that point in the document.
 
-- `sections`: An object that contains the hierarchical representation of the sections within the markdown document. Contains subfields for the header metadata up to the desired header level. For example, when `markdownHeaderDepth` is set to `h3`, contains string fields `h1`, `h2`, and `h3` field. When a header is not present at that point in the document, contains an empty string.
+- `sections`: An object that contains the hierarchical representation of the sections within the Markdown document. Contains subfields for the header metadata up to the desired header level. For example, when `markdownHeaderDepth` is set to `h3`, contains string fields `h1`, `h2`, and `h3` field. When a header is not present at that point in the document, contains an empty string.
 
 - `ordinal_position`: An integer value indicating the position of the section within the document hierarchy. This field is used for ordering the sections in their original sequence as they appear in the document. The root level sections start with an ordinal position of 1, and the value increments sequentially for each subsection. 
 
-Consider the following markdown content:
+Consider the following Markdown content:
 
 ```md
 # Section 1
@@ -123,7 +123,7 @@ api-key: [admin key]
 > [!NOTE]
 > The `submode` does not need to be set explicitly here because `oneToMany` is the default. 
 
- This markdown file would result in three search documents after indexing, due to the three content sections. The search document resulting from the first content section of the provided markdown document would contain the following values for `content`, `sections`, `h1`, and `h2`:
+ This Markdown file would result in three search documents after indexing, due to the three content sections. The search document resulting from the first content section of the provided Markdown document would contain the following values for `content`, `sections`, `h1`, and `h2`:
 
 ```http
 {
@@ -154,13 +154,13 @@ api-key: [admin key]
 }   
 ```
 
-## Map markdown one-to-many fields to search fields
+## Map Markdown one-to-many fields to search fields
 
-Field mappings associate a source field with a destination field in situations where the field names and types aren't identical. But field mappings can also be used to match parts of a markdown document and "lift" them into top-level fields of the search document.
+Field mappings associate a source field with a destination field in situations where the field names and types aren't identical. But field mappings can also be used to match parts of a Markdown document and "lift" them into top-level fields of the search document.
 
 The following example illustrates this scenario. For more information about field mappings in general, see [field mappings](search-indexer-field-mappings.md). 
 
-Assume a search index with the following fields: `raw_content` of type `Edm.String`, `h1_header` of type `Edm.String`, and `h2_header` of type `Edm.String`,`. To map your markdown into the desired shape, use the following field mappings:
+Assume a search index with the following fields: `raw_content` of type `Edm.String`, `h1_header` of type `Edm.String`, and `h2_header` of type `Edm.String`,`. To map your Markdown into the desired shape, use the following field mappings:
 
 ```http
 "fieldMappings" : [
@@ -193,29 +193,29 @@ The resulting search document in the index would look as follows:
 
 <a name="parsing-markdown-one-to-one"></a>
 
-## Markdown One-To-One Parsing Mode (Markdown to a Single Document)
+## Markdown one-to-one parsing mode (Markdown to a single document)
 
-In **Markdown One-To-One Parsing Mode**, the entire markdown document is indexed as a single search document, preserving the hierarchy and structure of the original content. This mode is most useful when the files to be indexed share a common structure, so that you can leverage this common structure in the index to make the relevant fields searchable.
+In **Markdown one-to-one parsing mode**, the entire Markdown document is indexed as a single search document, preserving the hierarchy and structure of the original content. This mode is most useful when the files to be indexed share a common structure, so that you can leverage this common structure in the index to make the relevant fields searchable.
 
-Within the indexer definition, set the `parsingMode` to "markdown" and use the optional `markdownHeaderDepth` parameter to define the maximum heading depth for chunking. If not specified, it defaults to `h6`, capturing all possible header depths.
+Within the indexer definition, set the `parsingMode` to "Markdown" and use the optional `markdownHeaderDepth` parameter to define the maximum heading depth for chunking. If not specified, it defaults to `h6`, capturing all possible header depths.
 
-The markdown is parsed based on headers into documents which contain the following content: 
+The Markdown is parsed based on headers into documents which contain the following content: 
 
-- `document_content`: Contains the full markdown text as a single string. This field serves as a raw representation of the input document. 
+- `document_content`: Contains the full Markdown text as a single string. This field serves as a raw representation of the input document. 
 
-- `sections`: An array of objects that contains the hierarchical representation of the sections within the markdown document. Each section is represented as an object within this array and captures the structure of the document in a nested manner corresponding to the headers and their respective content. The objects in this array have the following properties: 
+- `sections`: An array of objects that contains the hierarchical representation of the sections within the Markdown document. Each section is represented as an object within this array and captures the structure of the document in a nested manner corresponding to the headers and their respective content. The objects in this array have the following properties: 
 
-  - `header_level`: A string that indicates the level of the header (`h1`, `h2`, `h3`, etc.) in markdown syntax. This field helps in understanding the hierarchy and structuring of the content. 
+  - `header_level`: A string that indicates the level of the header (`h1`, `h2`, `h3`, etc.) in Markdown syntax. This field helps in understanding the hierarchy and structuring of the content. 
 
-  - `header_name`: A string contianing the text of the header as it appears in the markdown document. This field provides a label or title for the section. 
+  - `header_name`: A string contianing the text of the header as it appears in the Markdown document. This field provides a label or title for the section. 
 
   - `content`: A string containing text content that immediately follows the header, up to the next header. This field captures the detailed information or description associated with the header. If there is no content directly under a header, this is an empty string. 
 
   - `ordinal_position`: An integer value indicating the position of the section within the document hierarchy. This field is used for ordering the sections in their original sequence as they appear in the document. The root level sections start with an ordinal position of 1, and the value increments sequentially for each subsection. 
 
-  - `sections`: An array that contains objects representing subsections nested under the current section. This array follows the same structure as the top-level `sections` array, allowing for the representation of multiple levels of nested content. Each subsection object also includes header_level, header_name, content, and ordinal_position properties, enabling a recursive structure that accurately represents the depth and organization of the markdown content. 
+  - `sections`: An array that contains objects representing subsections nested under the current section. This array follows the same structure as the top-level `sections` array, allowing for the representation of multiple levels of nested content. Each subsection object also includes header_level, header_name, content, and ordinal_position properties, enabling a recursive structure that accurately represents the depth and organization of the Markdown content. 
 
-  Consider the following markdown content:
+  Consider the following Markdown content:
 
 ```md
 # Section 1
@@ -229,7 +229,7 @@ Content for section 2.
 ```
 
 ### One-to-one parsing not utilizing field mappings
-If you are not utilizing field mappings, the shape of the index should reflect the shape of the markdown content. Based on  the  previous markdown, the index should look similar to the following example:
+If you are not utilizing field mappings, the shape of the index should reflect the shape of the Markdown content. Based on  the  previous Markdown, the index should look similar to the following example:
 ```http
 {
   "name": "my-markdown-index",
@@ -282,7 +282,7 @@ If you are not utilizing field mappings, the shape of the index should reflect t
 }
 ```
 
-Because the markdown we want to index only goes to a depth of h2 ("##"), we need `sections` fields nested to a depth of 2 to match that. This configuration would result in the following data in index:
+Because the Markdown we want to index only goes to a depth of h2 ("##"), we need `sections` fields nested to a depth of 2 to match that. This configuration would result in the following data in index:
 
 ```http
   "document_content": "# Section 1\r\nContent for section 1.\r\n## Subsection 1.1\r\nContent for subsection 1.1.\r\n# Section 2\r\nContent for section 2.\r\n",
@@ -312,11 +312,11 @@ Because the markdown we want to index only goes to a depth of h2 ("##"), we need
 
 As you can see, the ordinal position increments based on the location of the content within the document.
 
-It should also be noted that if header levels are skipped in the content, then structure of the resulting document reflects the headers that are present in the markdown content, not necessarily containing nested sections for `h1` through `h6` consecutively. For example, when the document begins at "h2", then the first element in the top-level sections array is "h2. 
+It should also be noted that if header levels are skipped in the content, then structure of the resulting document reflects the headers that are present in the Markdown content, not necessarily containing nested sections for `h1` through `h6` consecutively. For example, when the document begins at "h2", then the first element in the top-level sections array is "h2. 
 
 ```http
 POST https://[service name].search.windows.net/indexers?api-version=2024-07-01
-Content-Type: text/markdown
+Content-Type: application/json
 api-key: [admin key]
 
 {
@@ -331,8 +331,8 @@ api-key: [admin key]
   }
 }
 ```
-## Map markdown one-to-one fields to search fields
-If you would like to extract fields with custom names from the document, you can use field mappings to do so. Using the same markdown sample as before, consider the following index configuration:
+## Map Markdown one-to-one fields to search fields
+If you would like to extract fields with custom names from the document, you can use field mappings to do so. Using the same Markdown sample as before, consider the following index configuration:
 
 {
   "name": "my-markdown-index",
@@ -356,9 +356,9 @@ If you would like to extract fields with custom names from the document, you can
   ]
 }
 
-Extracting specific fields from the parsed markdown is handled similar to how the document paths are in (outputFieldMappings)[https://learn.microsoft.com/en-us/azure/search/cognitive-search-output-field-mapping?tabs=rest], except the path begins with `/sections`  instead of  `/document`. So, for example, `/sections/0/content` would map to the content under the item at position 0 in the sections array.
+Extracting specific fields from the parsed Markdown is handled similar to how the document paths are in (outputFieldMappings)[https://learn.microsoft.com/en-us/azure/search/cognitive-search-output-field-mapping?tabs=rest], except the path begins with `/sections`  instead of  `/document`. So, for example, `/sections/0/content` would map to the content under the item at position 0 in the sections array.
 
-An example of a strong use case might look something like this: all markdown files have a document title in the first `h1`, a subsection title in the first `h2`, and a summary in the content of the final paragraph underneath the final `h1`. You could use the following field mappings to index only that content:
+An example of a strong use case might look something like this: all Markdown files have a document title in the first `h1`, a subsection title in the first `h2`, and a summary in the content of the final paragraph underneath the final `h1`. You could use the following field mappings to index only that content:
 
 ```http
 "fieldMappings" : [
