@@ -440,8 +440,8 @@ result = evaluate(
     },
     # column mapping
     evaluator_config={
-        "relevance": {
-            "column_mapping": {
+        "column_mapping": {
+            "relevance": {
                 "query": "${data.queries}"
                 "ground_truth": "${data.ground_truth}"
                 "response": "${outputs.response}"
