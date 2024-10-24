@@ -193,7 +193,7 @@ The resulting search document in the index would look as follows:
 
 <a name="parsing-markdown-one-to-one"></a>
 
-## Markdown One-To-One Parsing Mode (Markdown as a Single Document)
+## Markdown One-To-One Parsing Mode (Markdown to a Single Document)
 
 In **Markdown One-To-One Parsing Mode**, the entire markdown document is indexed as a single search document, preserving the hierarchy and structure of the original content. This mode is most useful when the files to be indexed share a common structure, so that you can leverage this common structure in the index to make the relevant fields searchable.
 
