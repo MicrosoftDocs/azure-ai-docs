@@ -72,9 +72,9 @@ Network security perimeter supports two different access modes for associated re
 
 #### Network security perimeter and search service networking settings
 
-The `publicNetworkAccess` setting deteremines search service association with a network security perimeter. 
+The `publicNetworkAccess` setting determines search service association with a network security perimeter.
 
-* In Learning mode, the `publicNetworkAccess` setting controls public access to the resource. 
+* In Learning mode, the `publicNetworkAccess` setting controls public access to the resource.
 
 * In Enforced mode, the `publicNetworkAccess` setting is overridden by the network security perimeter rules. For example, if a search service with a `publicNetworkAccess` setting of `enabled` is associated with a network security perimeter in Enforced mode, access to the search service is still controlled by network security perimeter access rules.
 
@@ -120,7 +120,7 @@ The `publicNetworkAccess` setting deteremines search service association with a 
 
 #### Log Analytics workspace
 
-The `network-security-perimeterAccessLogs` table contains all the logs for every log category (for example `network-security-perimeterPublicInboundResourceRulesAllowed`). Every log contains a record of the network security perimeter network access that matches the log category. 
+The `network-security-perimeterAccessLogs` table contains all the logs for every log category (for example `network-security-perimeterPublicInboundResourceRulesAllowed`). Every log contains a record of the network security perimeter network access that matches the log category.
 
 Here's an example of the `network-security-perimeterPublicInboundResourceRulesAllowed` log format:
 
@@ -171,7 +171,7 @@ Inbound access rules can allow the internet and resources outside the perimeter 
 
 Network security perimeter supports two types of inbound access rules:
 
-* IP address ranges. IP addresses or ranges must be in the Classless Inter-Domain Routing (CIDR) format. An example of CIDR notation is 8.8.8.0/24, which represents the IPs that range from 8.8.8.0 to 8.8.8.255. This type of rule allows inbound requests from any IP address within the range.
+* IP address ranges. IP addresses or ranges must be in the Classless Inter-Domain Routing (CIDR) format. An example of CIDR notation is 192.0.2.0/24, which represents the IPs that range from 192.0.2.0 to 192.0.2.255. This type of rule allows inbound requests from any IP address within the range.
 
 * Subscriptions. This type of rule allows inbound access authenticated using any managed identity from the subscription.
 
@@ -197,11 +197,11 @@ To add an inbound access rule in the portal:
 
 1. Enter or select the following values:
 
-| Setting | Value |
-| ------- | ----- |
-| Rule name | The name for the inbound access rule (for example, "MyInboundAccessRule").  |
-| Source Type | Valid values are IP address ranges or subscriptions. |
-| Allowed Sources | If you selected IP address ranges, enter the IP address range in CIDR format that you want to allow inbound access from. Azure IP ranges are available at [this link](https://www.microsoft.com/download/details.aspx?id=56519). If you selected Subscriptions, use the subscription you want to allow inbound access from. |
+   | Setting | Value |
+   | ------- | ----- |
+   | Rule name | The name for the inbound access rule (for example, "MyInboundAccessRule").  |
+   | Source Type | Valid values are IP address ranges or subscriptions. |
+   | Allowed Sources | If you selected IP address ranges, enter the IP address range in CIDR format that you want to allow inbound access from. Azure IP ranges are available at [this link](https://www.microsoft.com/download/details.aspx?id=56519). If you selected Subscriptions, use the subscription you want to allow inbound access from. |
 
 1. Select **Add** to create the inbound access rule.
 
@@ -260,6 +260,12 @@ In order to test your connection through network security perimeter, you need ac
 1. Using the IP address, you can create an [inbound access rule](#add-an-inbound-access-rule) for that IP address to allow access. You can skip this step if you're using private link.
 
 1. Finally, try navigating to the search service in the Azure portal. If you can view the indexes successfully, then the network security perimeter is configured correctly.
+
+## View and manage network security perimeter configuration
+
+You can use the [Management REST APIs](/rest/api/searchmanagement/network-security-perimeter-configurations?view=rest-searchmanagement-2024-06-01-preview) to review and reconcile perimeter configurations.
+
+Be sure to use preview API version `2024-06-01-preview`. For more information about the REST API, see [Manage your Azure AI Search service with REST APIs](search-manage-rest.md).
 
 ## See also
 
