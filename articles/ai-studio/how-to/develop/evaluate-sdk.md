@@ -420,12 +420,6 @@ Then install the following sub-package:
 pip install azure-ai-evaluation[remote]
 ```
 
-Finally, ensure that you assign the proper storage permissions for CosmosDB. This can be done with the following command:
-
-```Shell
-az role assignment create --role "Storage Blob Data Contributor" --scope /subscriptions/<mySubscriptionID>/resourceGroups/<myResourceGroupName> --assignee-principal-type User --assignee-object-id "<user-id>"
-```
-
 In order to ensure the `evaluate()` can correctly parse the data, you must specify column mapping to map the column from the dataset to key words that are accepted by the evaluators. In this case, we specify the data mapping for `query`, `response`, and `ground_truth`.
 
 ```python
