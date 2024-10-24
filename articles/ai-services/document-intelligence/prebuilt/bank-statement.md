@@ -16,11 +16,11 @@ monikerRange: '>=doc-intel-4.0.0'
 
 # Document Intelligence bank statement model
 
-The Document Intelligence bank statement model combines powerful Optical Character Recognition (OCR) capabilities with deep learning models to analyze and extract data from US bank statements. The API analyzes printed bank statements; extracts key information such as account number, bank details, statement details, transaction details, and fees;  and returns a structured JSON data representation.
+The Document Intelligence bank statement model combines powerful Optical Character Recognition (OCR) capabilities with deep learning models to analyze and extract data from US bank statements. The API analyzes printed bank statements; extracts key information such as account number, bank details, statement details, transaction details, and fees;  and returns a structured JSON data representation. With V4.0 GA, you can now extract check tables in the US bank statements. 
 
 | Feature   | version| Model ID |
 |----------  |---------|--------|
-| Bank statement model|&bullet; v4.0:2024-07-31 (preview)|**`prebuilt-bankStatement.us`**|
+| Bank statement model|&bullet; v4.0:2024-07-31 (preview) ; v4.0:2024-11-30(GA)|**`prebuilt-bankStatement.us`**|
 
 ## Bank statement data extraction
 
@@ -59,10 +59,9 @@ For supported document extraction fields, refer to the [bank check model schema]
 
 ## Supported locales
 
-The **prebuilt-bankStatement.us** version 2027-07-31-preview supports the **en-us** locale.
+The **prebuilt-bankStatement.us** version 2027-07-31-preview , v4.0:2024-11-30(GA) supports the **en-us** locale.
 
 ## Next steps
-
 * Try processing your own forms and documents with the [Document Intelligence Studio](https://formrecognizer.appliedai.azure.com/studio)
 
 * Complete a [Document Intelligence quickstart](../quickstarts/get-started-sdks-rest-api.md?view=doc-intel-3.0.0&preserve-view=true) and get started creating a document processing app in the development language of your choice.
