@@ -19,18 +19,30 @@ items:
   - name: What's new
     displayName: changelog, release, updates, previews
     href: whats-new.md
-  - name: Concepts
+- name: Azure AI Multimodal Intelligence capabilities
+  items:
+  - name: Speech
     items:
-      - name: Content extraction
-        displayName: content, extraction, field, structured, document, text, images, video, audio, multi-modal, visual
-        href: content-extraction.md
+      - name: Speech overview
+        displayName: speech, audio, voice, recognition, synthesis, speaker, identification, verification, diarization, transcription, translation, language, understanding, sentiment, analysis, emotion, detection, pronunciation, model
+        href: speech/overview.md
+      - name: How-to guides
+        items:
+        - name: Set up post-call analytics workflow
+          displayName: audio, voice, recognition, transcription, translation, language, understanding, sentiment, analysis, emotion, detection, pronunciation, model
+          href: speech/how-to/set-up-post-call-analytics.md
+- name: Concepts
+  items:
+  - name: Content extraction
+    displayName: content, extraction, field, structured, document, text, images, video, audio, multi-modal, visual
+    href: concept/content-extraction.md
 - name: Quickstarts
   items:
-  - name: Azure AI Multimodal Intelligence REST API
+  - name: Multimodal Intelligence REST API
     displayName: quickstart, extract, text, images, OCR, optical character recognition
     href: quickstart/rest-api.md
 - name: How-to guides
   items:
   - name: Create an Azure AI multi-service resource
     displayName: extract, text, images, OCR, optical character recognition
-    href: how-to-guide/create-multi-service-resource.md
+    href: how-to/create-multi-service-resource.md
