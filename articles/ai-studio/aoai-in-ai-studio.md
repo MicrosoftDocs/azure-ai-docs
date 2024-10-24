@@ -1,7 +1,7 @@
 ---
-title: Azure OpenAI in Azure AI Studio
+title: Azure OpenAI Studio in Azure AI Studio
 titleSuffix: Azure AI Studio
-description: Learn about using Azure OpenAI resources in Azure AI Studio.
+description: Learn about using Azure OpenAI resources in Azure AI Studio, including when to use a project and when to use without a project.
 manager: scottpolly
 keywords: Azure AI services, cognitive, Azure OpenAI
 ms.service: azure-ai-studio
@@ -11,17 +11,18 @@ ms.reviewer: shwinne
 ms.author: sgilley
 author: sdgilley
 ms.custom: ignite-2023, build-2024
+# customer intent: As a developer, I want to understand the different ways I can work with Azure OpenAI resources so that I can build and deploy AI models.
 ---
 
-# Azure OpenAI in Azure AI Studio
+# What is Azure OpenAI in Azure AI Studio?
 
-Azure OpenAI Studio is now integrated into Azure AI Studio.
+Azure OpenAI Studio is now a part of Azure AI Studio.  The Azure OpenAI service can be used in two contexts: within a project and outside of a project.
 
-While Azure **AI** Studio uses a project-based approach, Azure **OpenAI** Studio does not use projects. Now that Azure OpenAI Studio is integrated into Azure AI Studio, you have the choice of working with the Azure OpenAI resource itself or within a project.
+While Azure **AI** Studio uses a project-based approach, Azure **OpenAI** Studio did not use projects. Now that Azure OpenAI Studio is integrated into Azure AI Studio, you have the choice of working with the Azure OpenAI resource itself or within a project.
 
-## Comparing project and outside-of-project approaches
+## Understand project and non-project approaches
 
-This table highlights the differences between using a project and working outside of a project in Azure AI Studio:
+This table highlights the differences between working with Azure OpenAI outside of a project or in a project in Azure AI Studio:
 
 
 |  | **Azure OpenAI resource (outside a project)** | **AI Studio project** |
@@ -65,6 +66,6 @@ Pay attention to the top left corner of the screen to see which context you are 
 
 Use the **Azure AI Studio** breadcrumb to navigate back to the Azure AI Studio home page. You can also navigate back to the Azure AI Studio home page when you see **View all Azure AI Studio resources & projects** in the top right corner of the screen.
 
-## Next step
+## Related content
 
 * [Azure OpenAI Documentation](/azure/ai-services/openai/)
