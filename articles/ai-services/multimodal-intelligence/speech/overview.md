@@ -11,7 +11,7 @@ ms.date: 10/24/2024
 ---
 
 
-# Azure AI Multimodal Intelligence speech overview (preview)
+# Azure AI Multimodal Intelligence speech solutions overview (preview)
 
 > [!IMPORTANT]
 >
@@ -19,7 +19,7 @@ ms.date: 10/24/2024
 > * Features, approaches, and processes may change or have constrained capabilities, prior to General Availability (GA).
 > * For more information, *see* [**Supplemental Terms of Use for Microsoft Azure Previews**](https://azure.microsoft.com/support/legal/preview-supplemental-terms).
 
-Multimodal Intelligence can help you transcribe and diarize conversational audio. The service can also help you generate enhanced outputs like summaries, special industry record formats, captioning data. Multimodal Intelligence speech and audio capabilities enable you to extract valuable information such as key topics, sentiment, and more. To get started, use one of the provided out-of-box prebuilt extraction schemas and start generating results. You can also customize Multimodal Intelligence capabilities to meet your business needs as necessary.
+Multimodal Intelligence speech capabilities can help you transcribe and diarize conversational audio. The feature can also help you generate enhanced outputs like summaries, special industry record formats, captioning data. Multimodal Intelligence speech and audio capabilities enable you to extract valuable information such as key topics, sentiment, and more. To get started, use one of the provided out-of-box prebuilt extraction schemas and start generating results. You can also customize Multimodal Intelligence capabilities to meet your business needs as necessary.
 
 Here are some of the common use cases for Multimodal Intelligence on conversational audio data:
 
