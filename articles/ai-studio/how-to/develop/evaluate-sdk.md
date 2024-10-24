@@ -119,8 +119,7 @@ A conversation is a python dictionary of a list of messages (which include conte
             "role": "assistant",
             "context": null
         }
-        ], 
-    "$schema": "http://azureml/sdk-2-0/ChatConversation.json"
+        ]
     }
 }
 ```
