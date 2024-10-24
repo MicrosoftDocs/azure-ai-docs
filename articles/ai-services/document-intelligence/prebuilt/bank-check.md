@@ -15,15 +15,15 @@ monikerRange: '>=doc-intel-4.0.0'
 
 # Document Intelligence bank check model
 
-The Document Intelligence bank check model combines powerful Optical Character Recognition (OCR) capabilities with deep learning models to analyze and extract data from US bank statements. The API analyzes printed checks; extracts key information, and returns a structured JSON data representation.
+The Document Intelligence bank check model combines powerful Optical Character Recognition (OCR) capabilities with deep learning models to analyze and extract data from US bank statements. With 4.0 GA version, you can now extracter Payer's Signature from checks as well. The API analyzes printed checks; extracts key information, and returns a structured JSON data representation.
 
 | Feature   | version| Model ID |
 |----------  |---------|--------|
-| Check model|&bullet; v4.0:2024-07-31 (preview)|**`prebuilt-check.us`**|
+| Check model|&bullet; v4.0:2024-07-31 (preview) ; v4.0:2024-11-30 (GA)|**`prebuilt-check.us`**|
 
 ## Check data extraction
 
-A check is a secure way to transfer amount from payee's account to receiver's account. Businesses use check to pay their vendors as a signed document to instruct the bank for payment. See how data, including check details, account details, amount, memo, is extracted from bank statement US. You need the following resources:
+A check is a secure way to transfer amount from payee's account to receiver's account. Businesses use check to pay their vendors as a signed document to instruct the bank for payment. See how data, including check details, account details, amount, memo, is extracted from bank statement US.  You need the following resources:
 
 * An Azure subscription—you can [create one for free](https://azure.microsoft.com/free/cognitive-services/)
 
@@ -61,7 +61,7 @@ For supported document extraction fields, refer to the [bank check model schema]
 
 ## Supported locales
 
-The **`prebuilt-check.us`** version 2024-07-31-preview supports the **en-us** locale.
+The **`prebuilt-check.us`** version 2024-07-31-preview and version 2024-11-30-GA supports the **en-us** locale.
 
 ## Next steps
 
