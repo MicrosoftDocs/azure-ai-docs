@@ -5,7 +5,7 @@ description: Learn how to configure an Azure Machine Learning's managed network 
 manager: scottpolly
 ms.service: azure-machine-learning
 ms.topic: how-to
-ms.date: 10/22/2024
+ms.date: 10/24/2024
 ms.reviewer: meerakurup 
 ms.author: larryfr
 author: Blackmist
@@ -30,7 +30,7 @@ To access on-premises or custom virtual network resources from the managed virtu
 
 ## Supported resources
 
-Application Gateway supports any backend target resource that uses HTTP or HTTPS protocol. It's verified to support a private connection from the managed virtual network to:
+Application Gateway supports any backend target resource that uses HTTP or HTTPS protocol. Connections to the following resources from the managed virtual network are verified:
 - Jfrog Artifactory
 - Snowflake Database 
 - Private APIs
@@ -58,13 +58,13 @@ Follow the [Quickstart: Direct web traffic using the portal](/azure/application-
 
     - In the __Backend targets__ section, if you want to use HTTPS and Backend server’s certificate is NOT issued by a well-known CA, you must upload the Root certificate (.CER) of the backend server. For more on configuring with a root certificate, see [Configure end-to-end TLS encryption using the portal](/azure/application-gateway/end-to-end-ssl-portal).
 
-1. Once the Application Gateway resource is created, navigate to the new Application Gateway resource in the Azure portal. Under __Settings__, select, __Private link__ to enable the a virtual network to privately access the Application Gateway through a private endpoint connection. The Private link configuration is not created by default. 
+1. Once the Application Gateway resource is created, navigate to the new Application Gateway resource in the Azure portal. Under __Settings__, select, __Private link__ to enable a virtual network to privately access the Application Gateway through a private endpoint connection. The Private link configuration isn't created by default. 
 
     - Select __+ Add__ to add the Private Link configuration, and then use the following values to create the configuration:
         - Name: Provide a name for your private link configuration
         - Private link subnet: Select a subnet in your virtual network. 
         - Frontend IP Configuration: `appGwPrivateFrontendIpIPv4`
-    - To verify the Private link is set up correctly, navigate to the __Private endpoint connections__ tab and select __+ Private endpoint__. On the __Resource__ tab, the __Target sub-resource__ should be the name of your private Frontend IP configuration, `appGwPrivateFrontendIpIPv4`. If no value appears in the __Target sub-resource__ then the Application Gateway listener was not configured correctly. 
+    - To verify the Private link is set up correctly, navigate to the __Private endpoint connections__ tab and select __+ Private endpoint__. On the __Resource__ tab, the __Target sub-resource__ should be the name of your private Frontend IP configuration, `appGwPrivateFrontendIpIPv4`. If no value appears in the Target sub-resource,__ then the Application Gateway listener wasn't configured correctly. 
 
 ## Configure private link
 
@@ -89,7 +89,7 @@ Follow the [Quickstart: Direct web traffic using the portal](/azure/application-
 
 To create a private endpoint to Application Gateway with SDK, see [Azure SDK for Python](/python/api/azure-ai-ml/azure.ai.ml.entities.privateendpointdestination).
 
-To create a private endpoint to Application Gateway with the Azure CLI, use the `az ml workspace outbound-rule set` command. Set additional properties as needed for your configuration. For more information, see [Configure a managed network](how-to-managed-network.md?tabs=azure-cli).
+To create a private endpoint to Application Gateway with the Azure CLI, use the `az ml workspace outbound-rule set` command. Set properties as needed for your configuration. For more information, see [Configure a managed network](how-to-managed-network.md?tabs=azure-cli).
 
 ## Limitations
 
