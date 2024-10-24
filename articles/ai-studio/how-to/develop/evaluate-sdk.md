@@ -205,7 +205,7 @@ credential = DefaultAzureCredential()
 
 
 # Initializing Violence Evaluator with project information
-violence_eval = ViolenceEvaluator(azure_ai_project=azure_ai_project, credential=credential)
+violence_eval = ViolenceEvaluator(credential=credential, azure_ai_project=azure_ai_project)
 # Running Violence Evaluator on single input row
 violence_score = violence_eval(query="What is the capital of France?", answer="Paris.")
 print(violence_score)
