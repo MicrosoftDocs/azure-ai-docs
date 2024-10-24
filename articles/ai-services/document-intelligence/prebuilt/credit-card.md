@@ -19,19 +19,19 @@ monikerRange: '>=doc-intel-4.0.0'
 
 # Document Intelligence credit card model
 
-**This content applies to:** ![checkmark](../media/yes-icon.png) **v4.0 (preview)** ![checkmark](../media/yes-icon.png)
+**This content applies to:** ![checkmark](../media/yes-icon.png) **v4.0 (preview)** ![checkmark](../media/yes-icon.png) **v4.0 (GA)**
 
 The Document Intelligence credit/debit card model uses powerful Optical Character Recognition (OCR) capabilities to analyze and extract key fields from credit and debit cards. Credit cards and debit cards can be of various formats and quality including phone-captured images, scanned documents, and digital PDFs. The API analyzes document text; extracts key information such as Card Number, Issuing Bank, and Expiration Date; and returns a structured JSON data representation. The model currently supports English-language document formats.
 
 ## Automated card processing
 
-Automated Credit/Debit card processing is the process of extracting key  fields from bank cards. Historically, bank card analysis process is achieved manually and, hence, very time consuming. Accurate extraction of key data from bank cards s is typically the first and one of the most critical steps in the contract automation process.
+Automated Credit/Debit card processing is the process of extracting key  fields from bank cards. Historically, bank card analysis process is achieved manually and, hence, very time consuming. Accurate extraction of key data from bank cards is typically the first and one of the most critical steps in the contract automation process.
 
 ## Development options
 
 ::: moniker range="doc-intel-4.0.0"
 
-Document Intelligence C supports the following tools, applications, and libraries:
+Document Intelligence supports the following tools, applications, and libraries:
 
 | Feature | Resources | Model ID |
 |----------|-------------|-----------|
