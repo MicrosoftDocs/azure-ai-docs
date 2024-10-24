@@ -60,7 +60,7 @@ curl -X POST 'https://<isv-endpoint>/sts/v1.0/issueLimitedAccessToken?expiredTim
 -H 'Ocp-Apim-Subscription-Key: <isv-face-key>' \  
 -H 'Content-Type: application/json' \  
 -d '{  
-    "resourceId": "/subscriptions/<subscription-id>/resourceGroups/<resource-group-name>/providers/Microsoft.CognitiveServices/accounts/<face-resource-name>",  
+    "targetAzureResourceId": "/subscriptions/<subscription-id>/resourceGroups/<resource-group-name>/providers/Microsoft.CognitiveServices/accounts/<face-resource-name>",  
     "featureFlags": ["Face.Identification", "Face.Verification"]  
 }' 
 ```

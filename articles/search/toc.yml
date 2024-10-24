@@ -252,7 +252,7 @@ items:
         - name: Index plain text
           href: search-howto-index-plaintext-blobs.md
         - name: Index CSV
-          href: search-howto-index-csv-blobs.md
+          href: search-how-to-index-csv-blobs.md
         - name: Index JSON
           href: search-howto-index-json-blobs.md
       - name: Troubleshooting guidance
@@ -482,7 +482,7 @@ items:
     - name: Upgrade .NET libraries
       href: search-dotnet-sdk-migration-version-11.md
     - name: Develop in .NET
-      href: search-howto-dotnet-sdk.md
+      href: search-how-to-dotnet-sdk.md
     - name: Manage with Azure SDKs
       href: search-dotnet-mgmt-sdk-migration.md
     - name: Handle concurrent updates
