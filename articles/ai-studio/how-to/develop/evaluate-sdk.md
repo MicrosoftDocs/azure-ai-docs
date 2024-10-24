@@ -18,7 +18,7 @@ author: lgayhardt
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
 > [!NOTE]
-> Evaluate with the prompt flow has been retired and replaced with Azure AI Evaluate.
+> Evaluate with the Prompt flow SDK has been retired and replaced with Azure AI Evaluation SDK.
 
 To thoroughly assess the performance of your generative AI application when applied to a substantial dataset, you can evaluate in your development environment with the Azure AI evaluation SDK. Given either a test dataset or a target, your generative AI application generations are quantitatively measured with both mathematical based metrics and AI-assisted quality and safety evaluators. Built-in or custom evaluators can provide you with comprehensive insights into the application's capabilities and limitations.
 
@@ -36,55 +36,109 @@ pip install azure-ai-evaluation
 
 Built-in evaluators support the following application scenarios:
 
-- **Query and response**: This scenario is designed for applications that involve sending in queries and generating responses. 
-- **Retrieval augmented generation**: This scenario is suitable for applications where the model engages in generation using a retrieval-augmented approach to extract information from your provided documents and generate detailed responses.
+- **Query and response**: This scenario is designed for applications that involve sending in queries and generating responses, usually single-turn.
+- **Retrieval augmented generation**: This scenario is suitable for applications where the model engages in generation using a retrieval-augmented approach to extract information from your provided documents and generate detailed responses, usually multi-turn.
 
 For more in-depth information on each evaluator definition and how it's calculated, see [Evaluation and monitoring metrics for generative AI](../../concepts/evaluation-metrics-built-in.md).
 
 | Category  | Evaluator class                                                                                                                    |
 |-----------|------------------------------------------------------------------------------------------------------------------------------------|
-| [Performance and quality](#performance-and-quality-evaluators) (AI-assisted)  | `GroundednessEvaluator`, `RelevanceEvaluator`, `CoherenceEvaluator`, `FluencyEvaluator`, `SimilarityEvaluator` |
-| [Performance and quality](#performance-and-quality-evaluators) (traditional ML)  | `F1ScoreEvaluator`, `RougeScoreEvaluator`, `GleuScoreEvaluator`, `BleuScoreEvaluator`, `MeteorScoreEvaluator`|
+| [Performance and quality](#performance-and-quality-evaluators) (AI-assisted)  | `GroundednessEvaluator`, `RelevanceEvaluator`, `CoherenceEvaluator`, `FluencyEvaluator`, `SimilarityEvaluator`, `RetrievalEvaluator` |
+| [Performance and quality](#performance-and-quality-evaluators) (NLP)  | `F1ScoreEvaluator`, `RougeScoreEvaluator`, `GleuScoreEvaluator`, `BleuScoreEvaluator`, `MeteorScoreEvaluator`|
 | [Risk and safety](#risk-and-safety-evaluators ) (AI-assisted)    | `ViolenceEvaluator`, `SexualEvaluator`, `SelfHarmEvaluator`, `HateUnfairnessEvaluator`, `IndirectAttackEvaluator`, `ProtectedMaterialEvaluator`                                             |
 | [Composite](#composite-evaluators) | `QAEvaluator`, `ContentSafetyEvaluator`                                             |
 
-Built-in quality and safety metrics take in query and response pairs, along with additional information for specific evaluators. 
+Built-in quality and safety metrics take in query and response pairs, along with additional information for specific evaluators.
 
 > [!TIP]
 > For more information about inputs and outputs, see the [Azure Python reference documentation](https://aka.ms/azureaieval-python-ref).
 
 ### Data requirements for built-in evaluators
-We require query and response pairs in `.jsonl` format with the required inputs, and column mapping for evaluating datasets, as follows:
 
-| Evaluator         | `query`      | `response`      | `context`       | `ground_truth`  |
-|----------------|---------------|---------------|---------------|---------------|
-| `GroundednessEvaluator`   | N/A | Required: String | Required: String | N/A           |
-| `RelevanceEvaluator`      | Required: String | Required: String | Required: String | N/A           |
-| `CoherenceEvaluator`      | Required: String | Required: String | N/A           | N/A           |
-| `FluencyEvaluator`        | Required: String | Required: String | N/A          | N/A           |
-| `RougeScoreEvaluator` | N/A | Required: String | N/A           | Required: String           |
-| `GleuScoreEvaluator` | N/A | Required: String | N/A           | Required: String           |
-| `BleuScoreEvaluator` | N/A | Required: String | N/A           | Required: String           |
-| `MeteorScoreEvaluator` | N/A | Required: String | N/A           | Required: String           |
-| `SimilarityEvaluator` | Required: String | Required: String | N/A           | Required: String |
-| `F1ScoreEvaluator` | N/A  | Required: String | N/A           | Required: String |
-| `ViolenceEvaluator`      | Required: String | Required: String | N/A           | N/A           |
-| `SexualEvaluator`        | Required: String | Required: String | N/A           | N/A           |
-| `SelfHarmEvaluator`      | Required: String | Required: String | N/A           | N/A           |
-| `HateUnfairnessEvaluator`        | Required: String | Required: String | N/A           | N/A           |
-| `IndirectAttackEvaluator`      | Required: String | Required: String | Required: String | N/A           |
-| `ProtectedMaterialEvaluator`  | Required: String | Required: String | N/A           | N/A           |
+Built-in evaluators can accept *either* query and respons pairs or a list of conversations:
+
+- query and response pairs in `.jsonl` format with the required inputs
+- list of conversations in `.jsonl` format in the following section
+
+| Evaluator         | `query`      | `response`      | `context`       | `ground_truth`  | `conversation` |
+|----------------|---------------|---------------|---------------|---------------|-----------|
+| `GroundednessEvaluator`   | N/A | Required: String | Required: String | N/A  | Supported |
+| `RelevanceEvaluator`      | Required: String | Required: String | Required: String | N/A           | Supported |
+| `CoherenceEvaluator`      | Required: String | Required: String | N/A           | N/A           |Supported |
+| `FluencyEvaluator`        | Required: String | Required: String | N/A          | N/A           |Supported |
+| `SimilarityEvaluator` | Required: String | Required: String | N/A           | Required: String |Not supported |
+| `RetrievalEvaluator`        | N/A | N/A | N/A          | N/A           |Only conversation supported |
+| `F1ScoreEvaluator` | N/A  | Required: String | N/A           | Required: String |Not supported |
+| `RougeScoreEvaluator` | N/A | Required: String | N/A           | Required: String           | Not supported |
+| `GleuScoreEvaluator` | N/A | Required: String | N/A           | Required: String           |Not supported |
+| `BleuScoreEvaluator` | N/A | Required: String | N/A           | Required: String           |Not supported |
+| `MeteorScoreEvaluator` | N/A | Required: String | N/A           | Required: String           |Not supported |
+| `ViolenceEvaluator`      | Required: String | Required: String | N/A           | N/A           |Supported |
+| `SexualEvaluator`        | Required: String | Required: String | N/A           | N/A           |Supported |
+| `SelfHarmEvaluator`      | Required: String | Required: String | N/A           | N/A           |Supported |
+| `HateUnfairnessEvaluator`        | Required: String | Required: String | N/A           | N/A           |Supported |
+| `IndirectAttackEvaluator`      | Required: String | Required: String | Required: String | N/A           |Supported |
+| `ProtectedMaterialEvaluator`  | Required: String | Required: String | N/A           | N/A           |Supported |
+| `QAEvaluator`      | Required: String | Required: String | Required: String | N/A           | Not supported |
+| `ContentSafetyEvaluator`      | Required: String | Required: String |  N/A  | N/A           | Supported |
+
 - Query: the query sent in to the generative AI application
 - Response: the response to query generated by the generative AI application
 - Context: the source that response is generated with respect to (that is, grounding documents)
 - Ground truth: the response to query generated by user/human as the true answer
-### Performance and quality evaluators
-When using AI-assisted performance and quality metrics, you must specify a GPT model for the calculation process. Choose a deployment with either GPT-3.5, GPT-4, or the Davinci model for your calculations and set it as your `model_config`. We support both Azure OpenAI or OpenAI model configuration schema.
+- Conversation: a list of messages of user and assistant turns. See more below.
 
-> [!NOTE]
-> We recommend using GPT models that do not have the `(preview)` suffix for the best performance and parseable responses with our evaluators.
+#### Evaluating multi-turn conversations
+
+For evaluators that support conversations as input, you can just pass in the conversation directly into the evaluator:
+
+```python
+relevance_score = relevance_eval(conversation=conversation)
+```
+
+A conversation is a python dictionary of a list of messages (which include content, role, and optionally context). Below is an example of a two-turn conversation.
+
+```json
+{"conversation":
+    {"messages": [
+        {
+            "content": "Which tent is the most waterproof?", 
+            "role": "user"
+        },
+        {
+            "content": "The Alpine Explorer Tent is the most waterproof",
+            "role": "assistant", 
+            "context": "From the our product list the alpine explorer tent is the most waterproof. The Adventure Dining Table has higher weight."
+        },
+        {
+            "content": "How much does it cost?",
+            "role": "user"
+        },
+        {
+            "content": "The Alpine Explorer Tent is $120.",
+            "role": "assistant",
+            "context": null
+        }
+        ], 
+    "$schema": "http://azureml/sdk-2-0/ChatConversation.json"
+    }
+}
+```
+
+Conversations are evaluated per turn and results are aggregated over all turns for a conversation score.
+
+### Performance and quality evaluators
+
+When using AI-assisted performance and quality metrics, you must specify a GPT model for the calculation process.
+
+### Set up
+
+Choose a deployment with either GPT-3.5, GPT-4, or the Davinci model for your calculations and set it as your `model_config`. We support both Azure OpenAI or OpenAI model configuration schema. We recommend using GPT models that do not have the `(preview)` suffix for the best performance and parseable responses with our evaluators.
+
+#### Performance and quality evaluator usage
 
 You can run the built-in evaluators by importing the desired evaluator class. Ensure that you set your environment variables.
+
 ```python
 import os
 
@@ -117,11 +171,26 @@ Here's an example of the result:
 {'relevance.gpt_relevance': 5.0}
 ```
 
-### Risk and safety evaluators 
-When you use AI-assisted risk and safety metrics, a GPT model isn't required. Instead of `model_config`, provide your `azure_ai_project` information. This accesses the Azure AI Studio safety evaluations back-end service, which provisions a GPT-4 model that can generate content risk severity scores and reasoning to enable your safety evaluators.
+### Risk and safety evaluators
 
-> [!NOTE]
-> Currently AI-assisted risk and safety metrics are only available in the following regions: East US 2, France Central, UK South, Sweden Central. Groundedness measurement leveraging Azure AI Content Safety Groundedness Detection is only supported in the following regions: East US 2 and Sweden Central. Protected Material measurement is only supported in East US 2. Read more about the supported metrics [here](../../concepts/evaluation-metrics-built-in.md) and when to use which metric. 
+When you use AI-assisted risk and safety metrics, a GPT model isn't required. Instead of `model_config`, provide your `azure_ai_project` information. This accesses the Azure AI Studio safety evaluations back-end service, which provisions an GPT model specific to harms evaluation that can generate content risk severity scores and reasoning to enable your safety evaluators.
+
+#### Region support
+
+Currently AI-assisted risk and safety metrics are only available in the following regions:
+
+| Region | Hate and unfairness, sexual, violent, self-harm, XPIA | Protected material |
+| - | - | - |
+|UK South | Will be deprecated 12/1/24 | N/A |
+|East US 2 | Supported | Supported  |
+|Sweden Central | Supported  | N/A |
+|US North Central | Supported  | N/A |
+|France Central | Supported | N/A |
+|SwitzerlandWest | Supported| N/A |
+
+Read more about the supported metrics [here](../../concepts/evaluation-metrics-built-in.md) and when to use which metric.
+
+#### Risk and safety evaluator usage
 
 ```python
 azure_ai_project = {
@@ -131,21 +200,25 @@ azure_ai_project = {
 }
 
 from azure.ai.evaluation import ViolenceEvaluator
+from azure.identity import DefaultAzureCredential
+credential = DefaultAzureCredential()
+
 
 # Initializing Violence Evaluator with project information
-violence_eval = ViolenceEvaluator(azure_ai_project)
+violence_eval = ViolenceEvaluator(azure_ai_project=azure_ai_project, credential=credential)
 # Running Violence Evaluator on single input row
 violence_score = violence_eval(query="What is the capital of France?", answer="Paris.")
 print(violence_score)
 ```
 
 ```python
-{'violence': 'Safe',
+{'violence': 'Very low',
 'violence_reason': "The system's response is a straightforward factual answer "
                     'to a geography question. There is no violent content or '
                     'language present.',
 'violence_score': 0}
 ```
+
 The result of the content safety evaluators is a dictionary containing:
 
 - `{metric_name}` provides a severity label for that content risk ranging from Very low, Low, Medium, and High. You can read more about the descriptions of each content risk and severity scale [here](../../concepts/evaluation-metrics-built-in.md).
@@ -155,7 +228,8 @@ The result of the content safety evaluators is a dictionary containing:
 #### Evaluating direct and indirect attack jailbreak vulnerability
 
 We support evaluating vulnerability towards the following types of jailbreak attacks:
-- **Direct attack jailbreak** (also known as UPIA or User Prompt Injected Attack) injects prompts in the user role turn of conversations or queries to generative AI applications. 
+
+- **Direct attack jailbreak** (also known as UPIA or User Prompt Injected Attack) injects prompts in the user role turn of conversations or queries to generative AI applications.
 - **Indirect attack jailbreak** (also known as XPIA or cross domain prompt injected attack) injects prompts in the returned documents or context of the user's query to generative AI applications.
 
 *Evaluating direct attack* is a comparative measurement using the content safety evaluators as a control. It isn't its own AI-assisted metric. Run `ContentSafetyEvaluator` on two different, red-teamed datasets:
@@ -165,9 +239,10 @@ We support evaluating vulnerability towards the following types of jailbreak att
 
 You can do this with functionality and attack datasets generated with the [direct attack simulator](./simulator-interaction-data.md) with the same randomization seed. Then you can evaluate jailbreak vulnerability by comparing results from content safety evaluators between the two test dataset's aggregate scores for each safety evaluator. A direct attack jailbreak defect is detected when there's presence of content harm response detected in the second direct attack injected dataset when there was none or lower severity detected in the first control dataset.
 
-*Evaluating indirect attack* is an AI-assisted metric and doesn't require comparative measurement like evaluating direct attacks. Generate an indirect attack jailbreak injected dataset with the [indirect attack simulator](./simulator-interaction-data.md) then evaluate with the `IndirectAttackEvaluator`. 
+*Evaluating indirect attack* is an AI-assisted metric and doesn't require comparative measurement like evaluating direct attacks. Generate an indirect attack jailbreak injected dataset with the [indirect attack simulator](./simulator-interaction-data.md) then evaluate with the `IndirectAttackEvaluator`.
 
-### Composite evaluators 
+### Composite evaluators
+
 Composite evaluators are built in evaluators that combine the individual quality or safety metrics to easily provide a wide range of metrics right out of the box for both query response pairs or chat messages.
 
 | Composite evaluator | Contains | Description |
@@ -182,6 +257,7 @@ Built-in evaluators are great out of the box to start evaluating your applicatio
 ### Code-based evaluators
 
 Sometimes a large language model isn't needed for certain evaluation metrics. This is when code-based evaluators can give you the flexibility to define metrics based on functions or callable class. Given a simple Python class in an example `answer_length.py` that calculates the length of an answer:
+
 ```python
 class AnswerLengthEvaluator:
     def __init__(self):
@@ -190,7 +266,9 @@ class AnswerLengthEvaluator:
     def __call__(self, *, answer: str, **kwargs):
         return {"answer_length": len(answer)}
 ```
+
 You can create your own code-based evaluator and run it on a row of data by importing a callable class:
+
 ```python
 with open("answer_length.py") as fin:
     print(fin.read())
@@ -200,11 +278,15 @@ answer_length = AnswerLengthEvaluator(answer="What is the speed of light?")
 
 print(answer_length)
 ```
+
 The result:
+
 ```JSON
 {"answer_length":27}
 ```
+
 #### Log your custom code-based evaluator to your AI Studio project
+
 ```python
 # First we need to save evaluator into separate file in its own directory:
 def answer_len(answer):
@@ -287,6 +369,7 @@ output:
 ```
 
 You can create your own prompty-based evaluator and run it on a row of data:
+
 ```python
 with open("apology.prompty") as fin:
     print(fin.read())
@@ -301,10 +384,13 @@ print(apology_score)
 ```
 
 Here's the result:
+
 ```JSON
 {"apology": 0}
 ```
+
 #### Log your custom prompt-based evaluator to your AI Studio project
+
 ```python
 # Define the path to prompty file.
 prompty_path = os.path.join("apology-prompty", "apology.prompty")
@@ -325,7 +411,23 @@ After logging your custom evaluator to your AI Studio project, you can view it i
 
 ## Evaluate on test dataset using `evaluate()`
 
-After you spot-check your built-in or custom evaluators on a single row of data, you can combine multiple evaluators with the `evaluate()` API on an entire test dataset. In order to ensure the `evaluate()` can correctly parse the data, you must specify column mapping to map the column from the dataset to key words that are accepted by the evaluators. In this case, we specify the data mapping for `ground_truth`.
+After you spot-check your built-in or custom evaluators on a single row of data, you can combine multiple evaluators with the `evaluate()` API on an entire test dataset.
+
+Before running `evaluate()`, to ensure that you can enable logging and tracing to your Azure AI project, make sure you are first logged in by running `az login`.
+
+Then install the following sub-package:
+
+```python
+pip install azure-ai-evaluation[remote]
+```
+
+Finally, ensure that you assign the proper storage permissions for CosmsDB. This can be done with the following command:
+
+```Shell
+az role assignment create --role "Storage Blob Data Contributor" --scope /subscriptions/<mySubscriptionID>/resourceGroups/<myResourceGroupName> --assignee-principal-type User --assignee-object-id "<user-id>"
+```
+
+In order to ensure the `evaluate()` can correctly parse the data, you must specify column mapping to map the column from the dataset to key words that are accepted by the evaluators. In this case, we specify the data mapping for `query`, `response`, and `ground_truth`.
 
 ```python
 from azure.ai.evaluation import evaluate
@@ -338,10 +440,14 @@ result = evaluate(
     },
     # column mapping
     evaluator_config={
-        "default": {
-            "ground_truth": "${data.truth}"
+        "relevance": {
+            "column_mapping": {
+                "query": "${data.queries}"
+                "ground_truth": "${data.ground_truth}"
+                "response": "${outputs.response}"
+            } 
         }
-    },
+    }
     # Optionally provide your AI Studio project information to track your evaluation results in your Azure AI Studio project
     azure_ai_project = azure_ai_project,
     # Optionally provide an output path to dump a json of metric summary, row level data and metric and studio URL
@@ -351,6 +457,7 @@ result = evaluate(
 
 > [!TIP]
 > Get the contents of the `result.studio_url` property for a link to view your logged evaluation results in Azure AI Studio.
+
 The evaluator outputs results in a dictionary which contains aggregate `metrics` and row-level data and metrics. An example of an output:
 
 ```python
@@ -394,7 +501,7 @@ The `evaluate()` API has a few requirements for the data format that it accepts 
 
 #### Data format
 
-The `evaluate()` API only accepts data in the JSONLines format. For all built-in evaluators, `evaluate()` requires data in the following format with required input fields. See the [previous section on required data input for built-in evaluators](#data-requirements-for-built-in-evaluators).
+The `evaluate()` API only accepts data in the JSONLines format. For all built-in evaluators, `evaluate()` requires data in the following format with required input fields. See the [previous section on required data input for built-in evaluators](#data-requirements-for-built-in-evaluators). Sample of one line can look like the following:
 
 ```json
 {
@@ -416,6 +523,7 @@ When passing in your built-in evaluators, it's important to specify the right ke
 | `GroundednessEvaluator`   | "groundedness"    |
 | `FluencyEvaluator`        | "fluency"         |
 | `SimilarityEvaluator`     | "similarity"      |
+| `RetrievalEvaluator`      | "retrieval"       |
 | `F1ScoreEvaluator`        | "f1_score"        |
 | `RougeScoreEvaluator`     | "rouge"           |
 | `GleuScoreEvaluator`      | "gleu"            |
@@ -425,10 +533,13 @@ When passing in your built-in evaluators, it's important to specify the right ke
 | `SexualEvaluator`         | "sexual"          |
 | `SelfHarmEvaluator`       | "self_harm"       |
 | `HateUnfairnessEvaluator` | "hate_unfairness" |
+| `IndirectAttackEvaluator` | "indirect_attack" |
+| `ProtectedMaterialEvaluator`| "protected_material" |
 | `QAEvaluator`             | "qa"              |
 | `ContentSafetyEvaluator`  | "content_safety"  |
 
 Here's an example of setting the `evaluators` parameters:
+
 ```python
 result = evaluate(
     data="data.jsonl",
@@ -443,9 +554,9 @@ result = evaluate(
 
 ## Evaluate on a target
 
-If you have a list of queries that you'd like to run then evaluate, the `evaluate()` also supports a `target` parameter, which can send queries to an application to collect answers then run your evaluators on the resulting query and response. 
+If you have a list of queries that you'd like to run then evaluate, the `evaluate()` also supports a `target` parameter, which can send queries to an application to collect answers then run your evaluators on the resulting query and response.
 
-A target can be any callable class in your directory. In this case we have a python script `askwiki.py` with a callable class `askwiki()` that we can set as our target. Given a dataset of queries we can send into our simple `askwiki` app, we can evaluate the relevance of the outputs.
+A target can be any callable class in your directory. In this case we have a python script `askwiki.py` with a callable class `askwiki()` that we can set as our target. Given a dataset of queries we can send into our simple `askwiki` app, we can evaluate the relevance of the outputs. Ensure you specify the propery column mapping for your data in `"column_mapping"`.
 
 ```python
 from askwiki import askwiki
@@ -458,17 +569,21 @@ result = evaluate(
     },
     evaluator_config={
         "default": {
-            "query": "${data.queries}"
-            "context": "${outputs.context}"
-            "response": "${outputs.response}"
+            "column_mapping": {
+                "query": "${data.queries}"
+                "context": "${outputs.context}"
+                "response": "${outputs.response}"
+            } 
         }
     }
 )
+
 ```
 
 ## Related content
 
 - [Azure Python reference documentation](https://aka.ms/azureaieval-python-ref)
+- [Azure AI Evaluation SDK Troubleshooting guide](https://aka.ms/azureaieval-tsg)
 - [Learn more about the evaluation metrics](../../concepts/evaluation-metrics-built-in.md)
 - [Learn more about simulating test datasets for evaluation](./simulator-interaction-data.md)
 - [View your evaluation results in Azure AI Studio](../../how-to/evaluate-results.md)
