@@ -2,12 +2,13 @@
 title: Use the Azure AI model inference endpoint
 titleSuffix: Azure AI studio
 description: Learn about to use the Azure AI model inference endpoint and how to configure it.
-author: mrbullwinkle
-manager: nitinme
 ms.service: azure-ai-studio
 ms.topic: conceptual
-ms.date: 10/11/2024
-ms.author: fasantia
+author: sdgilley
+manager: scottpolly
+ms.date: 10/24/2024
+ms.author: sgilley
+ms.reviewer: fasantia
 ms.custom: ignite-2024, github-universe-2024
 ---
 
