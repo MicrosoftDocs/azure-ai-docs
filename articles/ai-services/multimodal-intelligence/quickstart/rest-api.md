@@ -61,22 +61,109 @@ Before you run the cURL command, make the following changes to the [POST request
 
 1. You need a document file at a URL. For this quickstart, you can use the sample forms provided in the following table for each feature.
 
-1. Using the following table as a reference, replace `{analyzerID}` and `{your-document-url}` with your desired values.
-
-    |Feature|{analyzerID}| {document-url}|
-    |--------|-------|-------|
-    |Audio|||
-    |Video|||
-    |Document|||
-    |Image|||
+1. Replace `{analyzerID}` with the name of your analyzer defined in your schema.
 
 1. Open a command prompt window.
 
 1. Copy and Past your edited curl command from the text editor into the command prompt window, and then run the command.
+### POST Request
 
   ```bash
-  curl -v -i POST "{endpoint}/multimodalintelligence/analyzers/{analyzerId}:analyze?api-version=2024-12-01-preview" -H "Content-Type: application/json" -H "Ocp-Apim-Subscription-Key: {key}" --data-ascii "{'urlSource': '{your-document-url}'}"
+  curl -v -i POST "{endpoint}/multimodalintelligence/analyzers/{analyzerId}:analyze?api-version=2024-12-01-preview" -H "Content-Type: application/json" -H "Ocp-Apim-Subscription-Key: {key}" -H "Content-Type: application/json" -d @request_body.json "
   ```
+### POST Request Body
+```json
+{ 
+
+  "input": { 
+
+    "kind": "url", 
+
+    "url": "YOUR_FILE_URL" 
+
+  }, 
+
+  "properties": { 
+
+   "schema": { 
+
+    "name": "Defect Detection", 
+
+    "description": "Identification of all potential defects in provided images of metal plates.", 
+
+    "fields": { 
+
+       "defects": { 
+
+            "type": "array", 
+
+            "kind": "generate", 
+
+            "description": "List of all the defect types and their severities in the image.", 
+
+            "items": { 
+
+                "type": "object", 
+
+                "kind": "generate", 
+
+                "properties": { 
+
+                    "defect_type": { 
+
+                        "type": "string", 
+
+                        "kind": "classify", 
+
+                        "enum": ["scratch", "pit", "crack"], 
+
+                        "enumDescriptions": { 
+
+                            "scratch": "A superficial, long, thin mark that may be straight or curved, and often is paler than the surrounding metal.", 
+
+                            "pit": "A small, round defect that may look like a small hole or depression.", 
+
+                            "crack": "A fracture or break in the material, which may look jagged or appear to branch, and penetrates more significantly into the material than a scratch." 
+
+                        } 
+
+                    }, 
+
+                    "severity": { 
+
+                        "type": "string", 
+
+                        "kind": "classify", 
+
+                        "enum": ["low", "moderate", "high"], 
+
+                        "enumDescriptions": { 
+
+                            "low": "Minor defect; may not require repair.", 
+
+                            "moderate": "Should be flagged for human review.", 
+
+                            "high": "Severe and requires immediate attention." 
+
+                        } 
+
+                    } 
+
+                } 
+
+            } 
+
+        } 
+
+    } 
+
+    } 
+
+  } 
+
+} 
+
+```
 
 ## Get analyze results (GET Request)
 
@@ -97,31 +184,55 @@ A successful response is 200 with JSON output. The first field, `status`, indica
 
 ```json
 {
-  "fileType": "pdf",
-  "documents": [
-    {
-      // Generic properties
-      "documentId": "myFile.pdf",
-      "kind": "visualDocument",
-
-      // Content representation
-      "content": "{markdown representation of document}",
-
-      // Semantic field extraction
-      "type": "invoice",
-      "confidence": 0.95,
-      "fields": {
-        "VendorName": {
-          "type": "string",
-          "content": "Contoso",
-          "value": "Contoso",
-          "spans": [{ "offset": 10, "length", 7 }],
-          "confidence": 0.98,
-          "groundings": [ "VD({pageNumber}:{x1},{y1},{x2},{y2},{x3},{y3},{x4},{y4})" ]
+  "status": "succeeded",
+  "createdDateTime": "2024-09-12T12:34:56Z",
+  "lastUpdatedDateTime": "2024-09-12T12:35:56Z",
+  "analyzeResult": {
+    "metadata": {
+      "width": 1920,
+      "height": 1080,
+      "duration": "00:05:00"
+    },
+    "documents": [
+      {
+        "fields": {
+          "VideoDescription": {
+            "type": "string",
+            "content": "A promotional video showcasing the features of Contoso's new electric car model.",
+            "confidence": 0.95
+          },
+          "GeographicLocation": {
+            "type": "string",
+            "content": "Seattle, Washington",
+            "confidence": 0.90
+          },
+          "ShotSetting": {
+            "type": "string",
+            "content": "Outdoor, Urban",
+            "confidence": 0.92
+          },
+          "ShotType": {
+            "type": "string",
+            "content": "Wide-angle, Close-up",
+            "confidence": 0.88
+          },
+          "ShotMovement": {
+            "type": "string",
+            "content": "Panning left to right, Zooming in",
+            "confidence": 0.87
+          }
         }
       }
-    }
-  ]
+    ]
+  }
 }
 
+
 ```
+## Next steps 
+
+In this quickstart, you learned how to call the REST API.  For a user experience, try [**Azure AI Studio**](). 
+
+For more scenario-based samples/quickstarts, learn about our [**Scenario Guides**](). 
+
+ 
