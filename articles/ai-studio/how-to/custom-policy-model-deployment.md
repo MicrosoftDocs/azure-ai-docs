@@ -39,35 +39,35 @@ When using models from Azure AI services and Azure OpenAI with Azure AI Studio, 
 
         ```json
         {
-            "mode": "All",
-            "policyRule": {
+              "mode": "All",
+              "policyRule": {
                 "if": {
-                "allOf": [
+                  "allOf": [
                     {
-                    "field": "type",
-                    "equals": "Microsoft.CognitiveServices/accounts/deployments"
+                      "field": "type",
+                      "equals": "Microsoft.CognitiveServices/accounts/deployments"
                     },
                     {
-                    "not": {
-                        "field": "Microsoft.CognitiveServices/accounts/deployments/model.name",
+                      "not": {
+                        "value": "[concat(field('Microsoft.CognitiveServices/accounts/deployments/model.name'), ',', field('Microsoft.CognitiveServices/accounts/deployments/model.version'))]",
                         "in": "[parameters('allowedModels')]"
+                      }
                     }
-                    }
-                ]
+                  ]
                 },
                 "then": {
-                "effect": "deny"
+                  "effect": "deny"
                 }
-            },
-            "parameters": {
+              },
+              "parameters": {
                 "allowedModels": {
-                "type": "Array",
-                "metadata": {
-                    "description": "The list of allowed models to be deployed.",
-                    "displayName": "Allowed models"
+                  "type": "Array",
+                  "metadata": {
+                    "displayName": "Allowed AI models",
+                    "description": "The list of allowed models to be deployed."
+                  }
                 }
-                }
-            }
+              }
         }
         ```
 
@@ -76,15 +76,15 @@ When using models from Azure AI services and Azure OpenAI with Azure AI Studio, 
 1. From the **Assign policy** page, use the following values on the **Basics** tab:
 
     - **Scope**: Select the scope where you want to assign the policy. The scope can be a management group, subscription, or resource group.
-    - **Policy definition**: This field is prepopulated with the policy definition you created.
+    - **Policy definition**: This field is prepopulated with the title of policy definition you created previously.
     - **Assignment name**: Enter a unique name for the assignment.
     - **Policy enforcement**: Make sure that the **Policy enforcement** field is set to **Enabled**. If it isn't enabled, the policy isn't enforced.
 
     Select **Next** at the bottom of the page, or the **Parameters** tab at the top of the page.
-1. From the **Parameters** tab, set **Allowed models** to the list of models that you want to allow. The list should be a comma-separated list of model names, surrounded by square brackets. For example, `["gpt-4", "gpt-35-turbo"]`.
+1. From the **Parameters** tab, set **Allowed AI models** to the list of models that you want to allow. The list should be a comma-separated list of model names and approved versions, surrounded by square brackets. For example, `["gpt-4,0613", "gpt-35-turbo,0613"]`.
 
     > [!TIP]
-    > You can find the model names in the [Azure AI Studio Model Catalog](https://ai.azure.com/explore/models). Select the model to view the details, and then copy the model name in the title.
+    > You can find the model names and their versions in the [Azure AI Studio Model Catalog](https://ai.azure.com/explore/models). Select the model to view the details, and then copy the model name and their version in the title.
 
 1. Optionally, select the **Non-compliance messages** tab at the top of the page and set a custom message for noncompliance.
 1. Select **Review + create** tab and verify that the policy assignment is correct. When ready, select **Create** to assign the policy.
