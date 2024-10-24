@@ -57,7 +57,7 @@ Pricing tiers (and the amount you're billed) are based on the number of transact
 * Cost for a predefined number of transactions. Going above this number causes an extra charge, as specified in the [pricing details](https://azure.microsoft.com/pricing/details/cognitive-services) for your service.
 
 ## Getting started
-Before you get started using Multimodal Intelligence, you need an [**Azure AI services multi-service resource**](how-to-guide/create-multi-service-resource.md). The multi-service resource enables access to multiple Azure AI services with a single set of credentials.
+Before you get started using Multimodal Intelligence, you need an [**Azure AI services multi-service resource**](how-to/create-multi-service-resource.md). The multi-service resource enables access to multiple Azure AI services with a single set of credentials.
 
 We provide quickstart guides designed to help you begin utilizing Multimodal Intelligence service swiftly:
 
