@@ -80,10 +80,10 @@ Follow the [Quickstart: Direct web traffic using the portal](/azure/application-
     - FQDNs: These FQDNs are the aliases that you want to use inside the Azure AI Studio. They're resolved to the managed private endpoint’s private IP address targeting Application Gateway. You might include multiple FQDNs depending on how many resources you would like to connect to with the Application Gateway.
 
     > [!NOTE]
-    > If you are using HTTPS listener with certificate uploaded, make sure the FQDN alias matches with the certificate's CN (Common Name) or SAN (Subject Alternative Name) otherwise HTTPS call will fail with SNI (Server Name Indication).
-    > The provided FQDNs must have at least three labels in the name to properly create the private DNS zone of thee private endpoint for Application Gateway.
-    > The FQDNs field is editable after the private endpoint creation through SDK or CLI. The field is not editable in the Azure portal.
-    > Dyname sub-resource naming is not supported for the private Frontend IP configuration. The Frontend IP name must be `appGwPrivateFrontendIpIPv4`.
+    > - If you are using HTTPS listener with certificate uploaded, make sure the FQDN alias matches with the certificate's CN (Common Name) or SAN (Subject Alternative Name) otherwise HTTPS call will fail with SNI (Server Name Indication).
+    > - The provided FQDNs must have at least three labels in the name to properly create the private DNS zone of thee private endpoint for Application Gateway.
+    > - The FQDNs field is editable after the private endpoint creation through SDK or CLI. The field is not editable in the Azure portal.
+    > - Dyname sub-resource naming is not supported for the private Frontend IP configuration. The Frontend IP name must be `appGwPrivateFrontendIpIPv4`.
 
 ### Configure using Python SDK and Azure CLI
 
