@@ -10,7 +10,7 @@ ms.topic: quickstart
 ms.date: 10/22/2024
 ---
 
-# Quickstart: Azure AI Multimodal Intelligence REST APIs
+# Quickstart: Multimodal Intelligence REST APIs
 
 * Get started with the Azure AI Multimodal Intelligence latest preview version REST API (2024-12-01-preview).
 
