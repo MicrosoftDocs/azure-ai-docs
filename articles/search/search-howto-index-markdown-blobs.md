@@ -46,7 +46,13 @@ The following sections describe each mode in more detail. If you're unfamiliar w
 
 ## Markdown One-To-Many Parsing Mode (Markdown to Multiple Documents)
 
-The **Markdown One-To-Many Parsing Mode** parses markdown files into multiple search documents, where each document corresponds to a specific section of the markdown file based on the header metadata at that point in the document.
+The **Markdown One-To-Many Parsing Mode** parses markdown files into multiple search documents, where each document corresponds to a specific content section of the markdown file based on the header metadata at that point in the document. The markdown is parsed based on headers into documents which contain the following content:
+
+- `content`: A string that contains the raw markdown found in a specific location, based on the header metadata at that point in the document.
+
+- `sections`: An object that contains the hierarchical representation of the sections within the markdown document. Contains subfields for the header metadata up to the desired header level. For example, when `markdownHeaderDepth` is set to `h3`, contains string fields `h1`, `h2`, and `h3` field. When a header is not present at that point in the document, contains an empty string.
+
+- `ordinal_position`: An integer value indicating the position of the section within the document hierarchy. This field is used for ordering the sections in their original sequence as they appear in the document. The root level sections start with an ordinal position of 1, and the value increments sequentially for each subsection. 
 
 Consider the following markdown content:
 
@@ -61,19 +67,44 @@ Content for subsection 1.1.
 Content for section 2.
 ```
 
-The blob indexer parses the markdown document into one search document for each content section, providing all the header metadata at that point in the document. Given an index with a "content" field, and a complex "sections" field with subfields "h1" and "h2", the blob indexer can infer the correct mapping without a field mapping present in the request. This document would result in three search documents after indexing, due to the three content sections. The search document resulting from the first content section of the provided markdown document would contain the following values for `content`, `sections`, `h1`, and `h2`:
+An example index configuration might look something like this:
 
 ```http
-    "content": "Content for section 1.\r\n",
-    "sections": {
-      "h1": "Section 1",
-      "h2": ""
-    }
+{
+  "name": "my-markdown-index",
+  "fields": [
+  {
+    "name": "id",
+    "type": "Edm.String",
+    "key": true
+  },
+  {
+    "name": "content",
+    "type": "Edm.String",
+    "retrievable": true,
+    "searchable": true
+  },
+  {
+    "name": "ordinal_position",
+    "type": "Edm.Int32"
+  },
+  {
+    "name": "sections",
+    "type": "Edm.ComplexType",
+    "fields": [
+    {
+      "name": "h1",
+      "type": "Edm.String"
+    },
+    {
+      "name": "h2",
+      "type": "Edm.String"
+    }]
+  }]
+}
 ```
 
-There is no value for `h2`, because no `h2` is set at that point in the file.
-
-For markdown `oneToMany` parsing, the indexer definition should look similar to the following example:
+The blob indexer can infer the mapping without a field mapping present in the request, so an indexer configuration corresponding to the provided index configuration might look like this:
 ```http
 POST https://[service name].search.windows.net/indexers?api-version=2024-11-01
 Content-Type: application/json
@@ -92,6 +123,36 @@ api-key: [admin key]
 > [!NOTE]
 > The `submode` does not need to be set explicitly here because `oneToMany` is the default. 
 
+ This markdown file would result in three search documents after indexing, due to the three content sections. The search document resulting from the first content section of the provided markdown document would contain the following values for `content`, `sections`, `h1`, and `h2`:
+
+```http
+{
+  {
+    "content": "Content for section 1.\r\n",
+    "sections": {
+      "h1": "Section 1",
+      "h2": ""
+    },
+    "ordinal_position": 1
+  },
+  {
+    "content": "Content for subsection 1.1.\r\n",
+    "sections": {
+      "h1": "Section 1",
+      "h2": "Subsection 1.1"
+    },
+    "ordinal_position": 2
+  },
+  {
+    "content": "Content for section 2.\r\n",
+    "sections": {
+      "h1": "Section 2",
+      "h2": ""
+    },
+    "ordinal_position": 3
+  }
+}   
+```
 
 ## Map markdown one-to-many fields to search fields
 
@@ -109,6 +170,27 @@ Assume a search index with the following fields: `raw_content` of type `Edm.Stri
   ]
 ```
 
+The resulting search document in the index would look as follows:
+```http
+{
+  {
+    "raw_content": "Content for section 1.\r\n",
+    "h1_header": "Section 1",
+    "h2_header": "",
+  },
+  {
+    "raw_content": "Content for section 1.1.\r\n",
+    "h1_header": "Section 1",
+    "h2_header": "Subsection 1.1",
+  },
+  {
+    "raw_content": "Content for section 2.\r\n",
+    "h1_header": "Section 2",
+    "h2_header": "",
+  }
+}
+```
+
 <a name="parsing-markdown-one-to-one"></a>
 
 ## Markdown One-To-One Parsing Mode (Markdown as a Single Document)
@@ -121,17 +203,17 @@ The markdown is parsed based on headers into documents which contain the followi
 
 - `document_content`: Contains the full markdown text as a single string. This field serves as a raw representation of the input document. 
 
-- `sections`: An array that contains the hierarchical representation of the sections within the markdown document. Each section is represented as an object within this array and captures the structure of the document in a nested manner corresponding to the headers and their respective content. The objects in this array have the following properties: 
+- `sections`: An array of objects that contains the hierarchical representation of the sections within the markdown document. Each section is represented as an object within this array and captures the structure of the document in a nested manner corresponding to the headers and their respective content. The objects in this array have the following properties: 
 
-  - `header_level`: Indicates the level of the header (`h1`, `h2`, `h3`, etc.) in markdown syntax. This field helps in understanding the hierarchy and structuring of the content. 
+  - `header_level`: A string that indicates the level of the header (`h1`, `h2`, `h3`, etc.) in markdown syntax. This field helps in understanding the hierarchy and structuring of the content. 
 
-  - `header_name`: The text of the header as it appears in the markdown document. This field provides a label or title for the section. 
+  - `header_name`: A string contianing the text of the header as it appears in the markdown document. This field provides a label or title for the section. 
 
-  - `content`: The text content that immediately follows the header, up to the next header. This field captures the detailed information or description associated with the header. If there is no content directly under a header, this is an empty string. 
+  - `content`: A string containing text content that immediately follows the header, up to the next header. This field captures the detailed information or description associated with the header. If there is no content directly under a header, this is an empty string. 
 
-  - `ordinal_position`: A numerical value indicating the position of the section within the document hierarchy. This field is used for ordering the sections in their original sequence as they appear in the document. The root level sections start with an ordinal position of 0, and the value increments sequentially for each subsection. 
+  - `ordinal_position`: An integer value indicating the position of the section within the document hierarchy. This field is used for ordering the sections in their original sequence as they appear in the document. The root level sections start with an ordinal position of 1, and the value increments sequentially for each subsection. 
 
-  - `sections`: An array that contains objects representing subsections nested under the current section. This array follows the same structure as the top-level sections array, allowing for the representation of multiple levels of nested content. Each subsection object also includes header_level, header_name, content, and ordinal_position properties, enabling a recursive structure that accurately represents the depth and organization of the markdown content. 
+  - `sections`: An array that contains objects representing subsections nested under the current section. This array follows the same structure as the top-level `sections` array, allowing for the representation of multiple levels of nested content. Each subsection object also includes header_level, header_name, content, and ordinal_position properties, enabling a recursive structure that accurately represents the depth and organization of the markdown content. 
 
   Consider the following markdown content:
 
@@ -280,21 +362,23 @@ An example of a strong use case might look something like this: all markdown fil
 
 ```http
 "fieldMappings" : [
-    { "sourceFieldName" : "/content", "targetFieldName" : "raw_content" },
-    { "sourceFieldName" : "/sections/0/header_name", "targetFieldName" : "document_title" },
-    { "sourceFieldName" : "/sections/0/sections/header_name", "targetFieldName" : "opening_subsection_title" },
-    { "sourceFieldName" : "/sections/1/content", "targetFieldName" : "summary_content" },
-  ]
+  { "sourceFieldName" : "/content", "targetFieldName" : "raw_content" },
+  { "sourceFieldName" : "/sections/0/header_name", "targetFieldName" : "document_title" },
+  { "sourceFieldName" : "/sections/0/sections/header_name", "targetFieldName" : "opening_subsection_title" },
+  { "sourceFieldName" : "/sections/1/content", "targetFieldName" : "summary_content" },
+]
 ```
 
 Here you would extract only the relevant pieces from that document. To most effectively use this functionality, documents you plan to index should share the same hierarchical header structure.
 
 The resulting search document in the index would look as follows:
 ```http
-    "content": "Content for section 1.\r\n",
-    "document_title": "Section 1",
-    "opening_subsection_title": "Subsection 1.1",
-    "summary_content": "Content for section 2."
+{
+  "content": "Content for section 1.\r\n",
+  "document_title": "Section 1",
+  "opening_subsection_title": "Subsection 1.1",
+  "summary_content": "Content for section 2."
+}
 ```
 
 > [!NOTE]
