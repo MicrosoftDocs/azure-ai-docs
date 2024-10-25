@@ -7,6 +7,7 @@ ms.author: lajanuar
 manager: nitinme
 ms.service: azure
 ms.topic: reference
+ms.custom: references_regions
 ms.date: 10/09/2024
 ---
 
