@@ -24,8 +24,7 @@ Each modality covers a set of MIME file types. 
 |Image | .jpg, .png, .bmp, .heif| ≤ 20 MB (OpenAI-enforced) | Min: 50 x 50Max: 10k x 10k |  |
 |Document |  pdf, tiff, jpg, png, bmp, heif, txt  | asynchronous: ≤ 200MB Batch: ≤ 500 MB |  | asynchronous: ≤ 300 pages Batch: ≤ 2,000 pages |
 |Speech | mp3, wav, wma, aac, ogg, flac, mp4, avi, mov, wmv, mkv  | asynchronous: ≤ 200MBBatch: ≤ 1 GB |  | asynchronous: ≤ 2hBatch: ≤ 4 hours |
-|Video | MP4 (.mp4, .m4a, .m4v), FLV (with H.264 and AAC codecs) (.flv), ISMV (.isma, .ismv), MXF (.mxf), GXF (.gxf), MPEG2-PS,MPEG2-TS, 3GP (.ts, .ps, .3gp, .3gpp, .mpg), Windows Media Video (WMV)/ASF (.wmv, .asf), AVI (Uncompressed 8bit/10bit) (.avi),
-Microsoft Digital Video Recording (DVR-MS) (.dvr-ms), Matroska/WebM (.mkv), WAVE/WAV (.wav), QuickTime (.mov)  | asynchronous: ≤???Batch: ≤ 20 GB | Min: 320 x 240Max: 1920 x 1080 | asynchronous: ≤???Batch: ≤ 4 hours |
+|Video | MP4 (.mp4, .m4a, .m4v), FLV (with H.264 and AAC codecs) (.flv), ISMV (.isma, .ismv), MXF (.mxf), GXF (.gxf), MPEG2-PS,MPEG2-TS, 3GP (.ts, .ps, .3gp, .3gpp, .mpg), Windows Media Video (WMV)/ASF (.wmv, .asf), AVI (Uncompressed 8bit/10bit) (.avi),Microsoft Digital Video Recording (DVR-MS) (.dvr-ms), Matroska/WebM (.mkv), WAVE/WAV (.wav), QuickTime (.mov)  | asynchronous: ≤???Batch: ≤ 20 GB | Min: 320 x 240Max: 1920 x 1080 | asynchronous: ≤???Batch: ≤ 4 hours |
 | text | ≤ 10 MB |  | ≤ 10M characters |
 
 ### Supported Codecs
