@@ -402,9 +402,9 @@ This table doesn't include fine-tuning regional availability information.  Consu
 
 ### Standard models by endpoint
 
-### Chat completions
-
 # [Chat Completions](#tab/standard-chat-completions)
+
+### Chat completions
 
 [!INCLUDE [Chat Completions](../includes/model-matrix/standard-chat-completions.md)]
 
