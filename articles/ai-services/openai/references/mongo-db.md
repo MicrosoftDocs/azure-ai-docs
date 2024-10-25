@@ -47,6 +47,7 @@ The authentication options for Azure OpenAI On Your Data when using a username a
 
 |Name | Type | Required | Description |
 |--- | --- | --- | --- |
+| `type` | string | True | Must be `username_and_password`. |
 | `username` | string | True | The username to use for authentication. |
 | `password` | string | True | The password to use for authentication. |
 
