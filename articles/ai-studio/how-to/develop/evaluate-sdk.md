@@ -187,7 +187,7 @@ Currently AI-assisted risk and safety metrics are only available in the followin
 |France Central | Supported | N/A |
 |SwitzerlandWest | Supported| N/A |
 
-Read more about the supported metrics [here](../../concepts/evaluation-metrics-built-in.md) and when to use which metric.
+To learn more about the supported metrics and when to use which metric, see [Evaluation and monitoring metrics for generative AI](../../concepts/evaluation-metrics-built-in.md).
 
 #### Risk and safety evaluator usage
 
