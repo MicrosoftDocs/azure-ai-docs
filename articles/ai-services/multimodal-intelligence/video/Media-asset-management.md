@@ -58,11 +58,11 @@ Segment-based context aware analysis: By analyzing video segments rather than fr
 Corporate Training: Organize training videos by key topics, scenes, or important moments.
 Marketing and Advertising: Analyze promotional videos to extract product placements, brand appearances, and key messages.
 
-## Use Cases:
+**Use Cases**:
 * **Media Asset Libraries**: Enhance your media library with detailed metadata for better searchability and organization. 
 * **Highlight Generation**: Automatically create highlights or summaries of videos based on scene descriptions and key moments. 
 * **Content Categorization & Compliance**: Categorize videos for streaming platforms, deciding where specific content will air. 
 * **RAG Applications: Enable applications** that can answer user questions with specific video moments by indexing content at a granular level.
 
 # Next steps
-In this section of this article, you learn how to create a media asset management workflow with Multimodal Intelligence service. 
+Follow this [**how to guide**](how-to/set-up-video-assets-mam.md) to get started with using Multimodal Intelligence APIs for this scenario. 
