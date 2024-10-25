@@ -20,7 +20,7 @@ author: lgayhardt
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
 > [!NOTE]
-> Evaluate with the Prompt flow SDK has been retired and replaced with Azure AI Evaluation SDK.
+> Evaluate with the prompt flow SDK has been retired and replaced with Azure AI Evaluation SDK.
 
 Large language models are known for their few-shot and zero-shot learning abilities, allowing them to function with minimal data. However, this limited data availability impedes thorough evaluation and optimization when you might not have test datasets to evaluate the quality and effectiveness of your generative AI application.
 
