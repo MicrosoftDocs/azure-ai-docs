@@ -28,7 +28,7 @@ items:
     items:
       - name: Speech overview
         displayName: speech, audio, voice, recognition, synthesis, speaker, identification, verification, diarization, transcription, translation, language, understanding, sentiment, analysis, emotion, detection, pronunciation, model
-        href: speech/overview.md
+        href: speech/speechoverview.md
       - name: How-to guides
         items:
         - name: Set up post-call analytics workflow
