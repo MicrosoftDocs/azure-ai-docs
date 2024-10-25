@@ -21,21 +21,21 @@ items:
     href: whats-new.md
 - name: Azure AI Multimodal Intelligence capabilities
   items:
-  - name: Speech
+  - name: Audio
     items:
-      - name: Speech overview
+      - name: Audio overview
         displayName: speech, audio, voice, recognition, synthesis, speaker, identification, verification, diarization, transcription, translation, language, understanding, sentiment, analysis, emotion, detection, pronunciation, model
-        href: speech/overview.md
+        href: audio/overview.md
       - name: How-to guides
         items:
         - name: Set up post-call analytics workflow
           displayName: audio, voice, recognition, transcription, translation, language, understanding, sentiment, analysis, emotion, detection, pronunciation, model
-          href: speech/how-to/set-up-post-call-analytics.md
+          href: audio/how-to/set-up-post-call-analytics.md
   - name: Document
     items:
       - name: Custom
         items:
-        - name: Field extraction
+        - name: Custom extraction overview
           displayName: document, text, images, video, audio, multi-modal, visual, structured, content, field, extraction
           href: document/custom/field-extraction.md
 - name: Concepts

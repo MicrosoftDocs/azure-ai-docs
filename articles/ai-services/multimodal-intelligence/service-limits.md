@@ -7,36 +7,56 @@ author: laujan
 manager: nitinme
 ms.service: azure
 ms.topic: conceptual
-ms.date: 10/09/2024
+ms.date: 10/25/2024
 ms.author: lajanuar
 ---
 
 
 # Service limits and quotas
 
-This article contains both a quick reference and detailed description of Azure AI Multimodal Intelligence service quotas and limits.
+This article is both a quick reference and detailed description of Azure AI Multimodal Intelligence service quotas and limits.
 
-## Document limits
+## File limits
 
-| Input | File Size | Resolution | Length |
-| --- | --- | --- | --- |
-| image (.jpg, .png, .bmp, .heif) | ≤ 20 MB (OpenAI-enforced) | Min: 50 x 50Max: 10k x 10k |  |
-| document (pdf, tiff) | asynchronous: ≤ 200MBBatch: ≤ 500 MB |  | asynchronous: ≤ 300 pagesBatch: ≤ 2,000 pages |
-| speech | asynchronous: ≤ 200MBBatch: ≤ 1 GB |  | asynchronous: ≤ 2hBatch: ≤ 4 hours |
-| video | asynchronous: ≤???Batch: ≤ 20 GB | Min: 320 x 240Max: 1920 x 1080 | asynchronous: ≤???Batch: ≤ 4 hours |
-| text | ≤ 10 MB |  | ≤ 10M characters |
+Each modality covers a set of MIME file types. 
 
+|Modality| Supported File Types | File Size | Resolution | Length |
+|--- | --- | --- | --- | --- |
+|Image | .jpg, .png, .bmp, .heif| ≤ 20 MB (OpenAI-enforced) | Min: 50 x 50Max: 10k x 10k |  |
+|Document |  pdf, tiff, jpg, png, bmp, heif, txt  | asynchronous: ≤ 200 MB Batch: ≤ 500 MB |  | asynchronous: ≤ 300 pages Batch: ≤ 2,000 pages |
+|Speech | mp3, wav, wma, aac, ogg, flac, mp4, avi, mov, wmv, mkv  | asynchronous: ≤ 200MBBatch: ≤ 1 GB |  | asynchronous: ≤ 2hBatch: ≤ 4 hours |
+|Video | MP4 (.mp4, .m4a, .m4v), FLV (with H.264 and AAC codecs) (.flv), ISMV (.isma, .ismv), MXF (.mxf), GXF (.gxf), MPEG2-PS, MPEG2-TS, 3GP (.ts, .ps, .3gp, .3gpp, .mpg), Windows Media Video (WMV)/ASF (.wmv, .asf), AVI (Uncompressed 8bit/10bit) (.avi),
+Microsoft Digital Video Recording (DVR-MS) (.dvr-ms), Matroska/WebM (.mkv), WAVE/WAV (.wav), QuickTime (.mov)  | asynchronous: ≤???Batch: ≤ 20 GB | Min: 320 x 240Max: 1920 x 1080 | asynchronous: Batch: ≤ 4 hours |
+| Text | ≤ 10 MB |  | ≤ 10M characters |
 
-## Model limits
+### Supported codecs
 
-| Quota | Free (F0) | Standard (S0) |
-| --- | --- | --- |
-| Max models | 100 | 100k (up to??? ) |
-| Max analysis/min | 5 pages/images3 min of audio1 min of video | 1000 pages/images (up to???) four (4) hours of audio (up to??? ) 1 hour of video (up to??? ) |
-| Max analysis/month | 500 pages/images5 hours of audio1 hour of video | 10 M pages/images??? hours of audio??? hours of video |
-| Max operations/min | 50 | 1000 |
-| Free trainings / month | 10 hours | 10 hours |
-| Max training file size | 1 GB | 1 GB |
-| Max training length | 50k pages/images... | 50k pages/images... |
-| Max fields | 1000 | 1000 |
+|Modality| Codecs |
+| --- | ---|
+| Video | AVC 8-bit/10-bit, up to 4:2:2, including AVCIntra, 8 bit 4:2:0 and 4:2:2, Sony XAVC / XAVC S (in MXF container), Avid DNxHD (in MXF container), DVCPro/DVCProHD (in MXF container), Digital video (DV) (in AVI files), JPEG 2000, MPEG-2 (up to 422 Profile and High Level; including variants such as Sony XDCAM, Sony XDCAM HD, Sony XDCAM IMX, CableLabs&reg;, and D10), up to 420 profiles, MPEG-1, VC-1/WMV9, MPEG-4 Part 2, Theora, YUV420 uncompressed, or mezzanine, Apple ProRes 422, Apple ProRes 422 LT, Apple ProRes 422 HQ, Apple ProRes 4444, Apple ProRes 4444 XQ, HEVC/H.265 Main Profile |
+| Audio | AAC (AAC-LC, AAC-HE, and AAC-HEv2; up to 5.1), MPEG Layer 2, MP3 (MPEG-1 Audio Layer 3), Windows Media Audio, WAV/PCM, FLAC, Opus, Vorbis, AMR (adaptive multi-rate) |
 
+## Field schema limits
+
+A schema in Multimodal Intelligence (MMI) refers to a defined structure that specifies the types of information to be extracted from various types of unstructured content, such as documents, images, videos, and audio. This structured representation of data is crucial for enabling downstream applications to process and analyze the extracted information effectively.
+
+This section details the limits of the field inputs for schema definition.
+
+| Field Types Supported | Max # of Fields Supported Per Schema |
+| --- | --- |
+| string: Plain Text, date: Date normalized to ISO 8601 (YYYY-MM-DD) format, time: Time normalized to ISO 8601 (hh:mm:ss) format. number: Floating point number normalized to double precision floating point. integer: Integer number, normalized to 64-bit signed integer. boolean: Boolean value, normalized to true or false.array: List of subfields of the same type. object: Named list of subfields of potentially different types. | 10 |
+
+## Analyzer limits per resource
+
+Analyzers in Multimodal Intelligence (MMI) are specialized components designed to process and extract structured data from various types of unstructured content, such as textual documents, audio, images, and video. These analyzers are tailored to handle specific types of data and tasks, ensuring that the extracted information is accurate and useful for downstream applications.
+
+| Quota | Standard (S0) |
+| --- | --- |
+| Max models | 100k |
+| Max analysis/min | 1000 pages/images four, (2) hours of audio, 1 hour of video  |
+| Max analysis/month | 10M pages/images, 100-K hours of audio, 10K hours of video |
+| Max operations/min | 1000 |
+| Free trainings / month | 10 hours |
+| Max training file size | 1 GB |
+| Max training length | 50k pages/images|
+| Max fields | 1000 |
