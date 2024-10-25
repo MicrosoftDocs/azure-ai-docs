@@ -341,12 +341,6 @@ items:
       href: concepts/encryption-keys-portal.md
     - name: Rotate keys
       href: ../ai-services/rotate-keys.md?context=/azure/ai-studio/context/context
-  - name: Azure policies
-    items:
-    - name: Built-in policy to allow specific models
-      href: how-to/built-in-policy-model-deployment.md
-    - name: Custom policy to allow specific models
-      href: how-to/custom-policy-model-deployment.md
   - name: Vulnerability management
     href: concepts/vulnerability-management.md
   - name: Disaster recovery
