@@ -1440,6 +1440,10 @@ items:
     - name: Audit and manage
       displayName: policy
       href: how-to-integrate-azure-policy.md
+    - name: Built-in policy to allow specific models
+      href: how-to-built-in-policy-model-deployment.md
+    - name: Custom policy to allow specific models
+      href: how-to-custom-policy-model-deployment.md
 - name: Troubleshoot & known issues
   items:
     - name: Troubleshoot
