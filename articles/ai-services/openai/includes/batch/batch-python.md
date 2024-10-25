@@ -401,10 +401,25 @@ client.batches.cancel("batch_abc123") # set to your batch_id for the job you wan
 
 ### List batch
 
-List all batch jobs for a particular Azure OpenAI resource.
+List batch jobs for a particular Azure OpenAI resource.
 
 ```python
 client.batches.list()
+```
+
+List methods in the Python library are paginated.
+
+To list all jobs:
+
+```python
+all_jobs = []
+# Automatically fetches more pages as needed.
+for job in client.batches.list(
+    limit=20,
+):
+    # Do something with job here
+    all_jobs.append(job)
+print(all_jobs)
 ```
 
 ### List batch (Preview)

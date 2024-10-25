@@ -14,7 +14,7 @@ ms.date: 10/09/2024
 
 :::image type="content" source="media/overview/media-input.png" alt-text="Screenshot of accepted media input files.":::
 
-Azure AI Multimodal Intelligence is a cloud-based solution within [**Azure AI services**](../what-are-ai-services.md), designed to process various data modalities such as documents, images, videos, and audio within a unified workflow. Integrating these diverse modalities enables Multimodal Intelligence to deliver more extensive, efficient, and accurate results compared to single modality processing. Utilizing the Multimodal Intelligence service, provides you with access to the following processes:
+Azure AI Multimodal Intelligence is a cloud-based solution within [**Azure AI services**](../what-are-ai-services.md), designed to process various data modalities such as documents, images, videos, and audio within a unified workflow. Integrating these diverse modalities enables Multimodal Intelligence to deliver more extensive, efficient, and accurate results compared to single modality processing. Utilizing the Multimodal Intelligence service, provides you with access to the following benefits:
 
 * [**Comprehensive content extraction and analysis**](#features-and-capabilities)
 

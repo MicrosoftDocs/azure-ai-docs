@@ -101,49 +101,4 @@ A typical Multimodal IntelligenceSpeech workflow consists of the following steps
 |Speakers|Maximum number of 36 speakers|
 
 
-## Region and language support
-
-**The following regions support Multimodal Intelligence speech capabilities**:
-
-* West US
-
-* East US
-
-* West Europe
-
-* Sweden Central
-
-* SouthEast Asia
-
-* Australia East
-
-**Multimodal Intelligence speech capabilities supports the following languages and locales**: 
-
-|Language|Language code and locale|
-|--------|-------------|
-|Arabic |&bullet; `ar-AE` (United Arab Emirates)</br>&bullet; `ar-BH`(Bahrain)</br>&bullet; `ar-DZ` (Algeria)</br>&bullet; `ar-EG` (Egypt)</br>&bullet; `ar-IL` (Israel)</br>&bullet; `ar-IQ` (Iraq)</br>&bullet; `ar-JO` (Jordan)</br>&bullet; `ar-KW` (Kuwait) </br>&bullet; `ar-LB` (Lebanon)</br>&bullet; `ar-LY` (Libya)</br>&bullet; `ar-MA` (Morocco)</br>&bullet; `ar-OM` (Oman)</br>&bullet; `ar-PS` (Palestinian Authority)</br>&bullet; `ar-QA` (Qatar)</br>&bullet; `ar-SY` (Syria)</br>&bullet; `ar-TN` (Tunisia)</br>&bullet; `ar-YE` (Yemen) |
-|Chinese Simplified|&bullet; `zh-cn` (Mandarin, Simplified)</br>&bullet; `zh-HK`(Cantonese, Traditional)</br>&bullet;  `zh-TW`(Taiwanese Mandarin, Traditional)|
-|Czech |`cs-CZ` (Czechia)|
-|Danish |`da-DK` (Denmark)|
-|English|&bullet; `en-AU` (Australia)</br>&bullet; `en-CA` (Canada)</br>&bullet; `en-GB` (United Kingdom)</br>&bullet;  `en-IN` (India)</br>&bullet; `en-US` (United States)|
-|Finnish |`fi-FI` (Finland)|
-|French|&bullet; `fr-CA` (Canada)</br>&bullet; fr-FR (France)|
-|German|&bullet; `de-DE` (Germany)|
-|German |`de-AT` (Austria)|
-|German |`de-CH` (Switzerland)|
-|Greek |`el-GR` (Greece)|
-|Hebrew |`he-IL` (Israel)|
-|Indonesian |`id-ID` (Indonesia)|
-|Italian|&bullet; `it-IT` (Italy)|
-|Japanese|&bullet; `ja-JP` (Japan)|
-|Polish |`pl-PL` (Poland)|
-|Portuguese|&bullet; `pt-BR` (Brazil)|
-|Portuguese |`pt-PT` (Portugal)|
-|Punjabi |`pa-IN` (India)|
-|Russian |`ru-RU` (Russia)|
-|Spanish|&bullet; `es-ES` (Spain)</br>&bullet; `es-MX` (Mexico) |
-|Spanish |`es-US` (United States)|
-|Swedish |`sv-SE` (Sweden)|
-|Turkish |`tr-TR` (Türkiye)|
-|Ukrainian |`uk-UA` (Ukraine)|
 
