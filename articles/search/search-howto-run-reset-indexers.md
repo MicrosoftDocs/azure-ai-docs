@@ -9,7 +9,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: how-to
-ms.date: 06/25/2024
+ms.date: 10/25/2024
 ---
 
 # Run or reset indexers, skills, or documents
@@ -40,11 +40,11 @@ You can run multiple indexers at one time assuming sufficient capacity, but each
 
 An indexer job runs in a managed execution environment. Currently, there are two environments:
 
-+ A private execution environment that runs on search clusters that are specific to your search service. To run an indexer to the private execution environment exclusively, [set the `executionEnvironment` parameter](search-how-to-create-indexers.md?tabs=indexer-rest#create-an-indexer) in the indexer definition.
++ A private execution environment runs on search clusters that are specific to your search service. To run an indexer to the private execution environment exclusively, [set the `executionEnvironment` parameter](search-how-to-create-indexers.md?tabs=indexer-rest#create-an-indexer) in the indexer definition.
 
-+ A multitenant environment with content processors, managed and secured by Microsoft at no extra cost. This environment is used to offload computationally intensive processing, leaving service-specific resources available for routine operations. Whenever possible, most skillsets execute in the multitenant environment. This is the default.
++ A multitenant environment has content processors that are managed and secured by Microsoft at no extra cost. This environment is used to offload computationally intensive processing, leaving service-specific resources available for routine operations. Whenever possible, most skillsets execute in the multitenant environment. This is the default.
 
-  Computationally intensive processing includes skillsets running on content processors, and high volume indexer jobs or indexer jobs with large documents. Non-skillset processing on the multitenant content processors is determined by hueristics and system information and isn't under customer control. If you want to pin an indexer exclusively to your search clusters, set the `executionEnvironment` parameter.
+  Computationally intensive processing includes skillsets running on content processors, and high volume indexer jobs or indexer jobs with large documents. Non-skillset processing on the multitenant content processors is determined by hueristics and system information and isn't under customer control. If you want to pin an indexer and skillset processing exclusively to your search clusters, set the `executionEnvironment` parameter to private.
 
   > [!NOTE]
   > [IP firewalls](search-indexer-securing-resources.md#indexer-execution-environment) block the multitenant environment, so if you have a firewall, create a rule that allows multitenant processing.
