@@ -359,7 +359,7 @@ You can also use the OpenAI text to speech voices via Azure AI Speech. To learn 
 
 ### Models by deployment type
 
-Azure OpenAI provides customers with choices on the hosting structure that fits their business and usage patterns. The service offers two main types of deployment: standard and provisioned.
+Azure OpenAI provides customers with choices on the hosting structure that fits their business and usage patterns. The service offers two main types of deployment: 
 
 - **Standard** is offered with a global deployment option, routing traffic globally to provide higher throughput.
 - **Provisioned** is also offered with a global deployment option, allowing customers to purchase and deploy provisioned throughput units across Azure global infrastructure.
