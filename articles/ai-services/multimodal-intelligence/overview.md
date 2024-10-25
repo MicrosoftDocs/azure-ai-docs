@@ -63,7 +63,7 @@ Before you get started using Multimodal Intelligence, you need an [**Azure AI se
 
 We provide quickstart guides designed to help you begin utilizing Multimodal Intelligence service swiftly:
 
-* **Rest API Quickstart**
+* **[**Rest API Quickstart**](quickstart/rest-api.md)**
 * **Azure AI Studio Quickstart**
 
 
