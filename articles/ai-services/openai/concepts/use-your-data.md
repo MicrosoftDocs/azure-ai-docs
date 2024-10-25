@@ -307,7 +307,7 @@ Mapping these fields correctly helps ensure the model has better response and ci
 
 Along with using Elasticsearch databases in Azure OpenAI Studio, you can also use your Elasticsearch database using the [API](../references/elasticsearch.md). 
 
-# [MongoDB Atlas (preview)](#tab/mongo-db)
+# [MongoDB Atlas (preview)](#tab/mongo-db-atlas)
 
 ### Prerequisites 
 
