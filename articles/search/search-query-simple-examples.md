@@ -413,12 +413,12 @@ In the context of a Boolean search, the default `"searchMode": "any"` can be con
 
 The following example provides an illustration. Running the following query with searchMode (any), 42 documents are returned: those containing the term *restaurant*, plus all documents that don't have the phrase *air conditioning. 
 
-Notice that there's no space between the boolean operator (`-`) and the phrase *air conditioning*.
+Notice that there's no space between the boolean operator (`-`) and the phrase *air conditioning*. The quotation marks are escaped (`\"`).
 
 ```http
 POST /indexes/hotels-sample-index/docs/search?api-version=2024-07-01
 {
-    "search": "restaurant -"air conditioning"",
+    "search": "restaurant -\"air conditioning\"",
     "searchMode": "any",
     "searchFields": "Tags",
     "select": "HotelId, HotelName, Tags",

@@ -15,9 +15,9 @@ ms.date: 10/24/2024
 
 # Index large data sets in Azure AI Search
 
-If your search solution requirements include indexing big data or complex data, this article articulates strategies for accommodating long running processes on Azure AI Search.
+If you need to index large or complex data sets in your search solution, this article explores strategies to accommodate long-running processes on Azure AI Search.
 
-This article assumes familiarity with the [two basic approaches for importing data](search-what-is-data-import.md): *pushing* data into an index, or *pulling* in data from a supported data source using a [search indexer](search-indexer-overview.md). If your scenario involves computationally intensive [AI enrichment](cognitive-search-concept-intro.md), then indexers are required, given the skillset dependency on indexers.
+These strategies assume familiarity with the [two basic approaches for importing data](search-what-is-data-import.md): *pushing* data into an index, or *pulling* in data from a supported data source using a [search indexer](search-indexer-overview.md). If your scenario involves computationally intensive [AI enrichment](cognitive-search-concept-intro.md), then indexers are required, given the skillset dependency on indexers.
 
 This article complements [Tips for better performance](search-performance-tips.md), which offers best practices on index and query design. A well-designed index that includes only the fields and attributes you need is an important prerequisite for large-scale indexing.
 
@@ -26,9 +26,9 @@ We recommend using a newer search service, created after April 3, 2024, for [hig
 > [!NOTE]
 > The strategies described in this article assume a single large data source. If your solution requires indexing from multiple data sources, see [Index multiple data sources in Azure AI Search](/samples/azure-samples/azure-search-dotnet-scale/multiple-data-sources/) for a recommended approach.
 
-## Index large data using the push APIs
+## Index data using the push APIs
 
-*Push* APIs, such as [Documents Index REST API](/rest/api/searchservice/documents) or the [IndexDocuments method (Azure SDK for .NET)](/dotnet/api/azure.search.documents.searchclient.indexdocuments), are the most prevalent form of indexing in Azure AI Search. For solutions that use a push API, the strategy for long-running indexing has one or both of the following components:
+*Push* APIs, such as the [Documents Index REST API](/rest/api/searchservice/documents) or the [IndexDocuments method (Azure SDK for .NET)](/dotnet/api/azure.search.documents.searchclient.indexdocuments), are the most prevalent form of indexing in Azure AI Search. For solutions that use a push API, the strategy for long-running indexing has one or both of the following components:
 
 + Batching documents
 + Managing threads
@@ -60,7 +60,7 @@ Indexers have built-in thread management, but when you're using the push APIs, y
 
 The Azure .NET SDK automatically retries 503s and other failed requests, but you need to implement your own logic to retry 207s. Open-source tools such as [Polly](https://github.com/App-vNext/Polly) can also be used to implement a retry strategy.
 
-## Index with indexers and the pull APIs
+## Use indexers and the pull APIs
 
 [Indexers](search-indexer-overview.md) have several capabilities that are useful for long-running processes:
 

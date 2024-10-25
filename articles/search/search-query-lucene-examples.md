@@ -14,7 +14,7 @@ ms.topic: conceptual
 ms.date: 10/24/2024
 ---
 
-# Examples of *full* Lucene search syntax (advanced queries in Azure AI Search)
+# Examples of *full* Lucene search syntax (advanced queries)
 
 When constructing queries for Azure AI Search, you can replace the default [simple query parser](query-simple-syntax.md) with the more powerful [Lucene query parser](query-lucene-syntax.md) to formulate specialized and advanced query expressions.
 
