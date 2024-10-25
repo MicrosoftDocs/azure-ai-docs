@@ -81,36 +81,36 @@ In this section, we use prompt flow to build our application. [Prompt flow](http
 
 ## Configure your environment variables
 
-Your AI services endpoint and deployment name are required to call the Azure OpenAI service from your code. In this quickstart, you save these values in a ```.env``` file, which is a file that contains environment variables that your application can read. You can find these values in the AI Studio chat playground. 
+Your AI services endpoint and deployment name are required to call the Azure OpenAI service from your code. In this quickstart, you save these values in a `.env` file, which is a file that contains environment variables that your application can read. You can find these values in the AI Studio chat playground. 
 
-1. Create a ```.env``` file, and paste the following code:
+1. Create a `.env` file, and paste the following code:
 
-    ```
+    `
     AZURE_OPENAI_ENDPOINT=endpoint_value
     AZURE_OPENAI_CHAT_DEPLOYMENT=chat_deployment_name
     AZURE_OPENAI_API_VERSION=api_version
-    ```
+    `
 
 1. Navigate to the [chat playground inside of your AI Studio project](./get-started-playground.md#chat-in-the-playground-without-your-data). First validate that chat is working with your model by sending a message to the LLM.
 1. Find the Azure OpenAI deployment name in the chat playground. Select the deployment in the dropdown and hover over the deployment name to view it. In this example, the deployment name is **gpt-40-mini**.
 
     :::image type="content" source="../media/quickstarts/promptflow-sdk/playground-deployment-view-code.png" alt-text="Screenshot of the AI Studio chat playground opened, highlighting the deployment name and the view code button." lightbox="../media/quickstarts/promptflow-sdk/playground-deployment-view-code.png":::
 
-1. In the ```.env``` file, replace ```chat_deployment_name``` with the name of the deployment from the previous step. In this example, we're using the deployment name ```gpt-35-turbo-16k```. 
+1. In the `.env` file, replace `chat_deployment_name` with the name of the deployment from the previous step. In this example, we're using the deployment name `gpt-35-turbo-16k`. 
 1. Select the **<\> View Code** button and copy the endpoint value and API version value.
 
     :::image type="content" source="../media/quickstarts/promptflow-sdk/playground-copy-endpoint.png" alt-text="Screenshot of the view code popup highlighting the button to copy the endpoint value." lightbox="../media/quickstarts/promptflow-sdk/playground-copy-endpoint.png":::
 
-1. In the ```.env``` file, replace ```endpoint_value``` with the endpoint value and replace ```api_version``` with the API version copied from the dialog in the previous step (such as "2024-02-15-preview"). 
+1. In the `.env` file, replace `endpoint_value` with the endpoint value and replace `api_version` with the API version copied from the dialog in the previous step (such as "2024-02-15-preview"). 
 
 > [!WARNING]
-> Key based authentication is supported but isn't recommended by Microsoft. If you want to use keys you can add your key to the ```.env```, but please ensure that your ```.env``` is in your ```.gitignore``` file so that you don't accidentally check it into your git repository.
+> Key based authentication is supported but isn't recommended by Microsoft. If you want to use keys you can add your key to the `.env`, but please ensure that your `.env` is in your `.gitignore` file so that you don't accidentally check it into your git repository.
 
 ## Create a basic chat prompt and app
 
 First create a **Prompty** file, which is the prompt template format supported by prompt flow.
 
-Create a ```chat.prompty``` file and copy the following code into it:
+Create a `chat.prompty` file and copy the following code into it:
 
 ```yaml
 ---
@@ -148,7 +148,8 @@ user:
 {{chat_input}}
 ```
 
-Now let's create a Python file that uses this prompt template. Create a ```chat.py``` file and paste the following code into it:
+Now let's create a Python file that uses this prompt template. Create a `chat.py` file and paste the following code into it:
+
 ```Python
 import os
 from dotenv import load_dotenv
@@ -174,12 +175,14 @@ print(result)
 ```
 
 Now from your console, run the Python code:
-```
+
+```bash
 python chat.py
 ```
 
 You should now see the output from running the prompty:
-```
+
+```terminal
 Yes, other Azure AI services also support various capabilities and features. Some of the Azure AI services include Azure Cognitive Services, Azure Machine Learning, Azure Bot Service, and Azure Databricks. Each of these services offers different AI capabilities and can be used for various use cases. If you have a specific service or capability in mind, feel free to ask for more details.
 ```
 
@@ -187,18 +190,21 @@ Yes, other Azure AI services also support various capabilities and features. Som
 
 Now we take a look at how prompt flow tracing can provide insights into the various LLM calls that are happening in our Python scripts.
 
-At the start of your ```chat.py``` file, add the following code to enable prompt flow tracing:
+At the start of your `chat.py` file, add the following code to enable prompt flow tracing:
+
 ```Python
 from promptflow.tracing import start_trace
 start_trace()
 ```
 
-Rerun your ```chat.py``` again:
+Rerun your `chat.py` again:
+
 ```bash
 python chat.py
 ```
 
 This time you see a link in the output to view a prompt flow trace of the execution:
+
 ```terminal
 Starting prompt flow service...
 Start prompt flow service on port 23333, version: 1.10.1.
@@ -216,14 +222,16 @@ Prompt flow tracing also allows you to trace specific function calls and log tra
 
 ## Evaluate your prompt
 
-Now let's show how we can use prompt flow evaluators to generate metrics that can score the quality of the conversation on a scale from 0 to 5. We run the prompt again but this time we store the results into an array containing the full conversation, and then pass that to a ```ChatEvaluator``` to score.
+Now let's show how we can use prompt flow evaluators to generate metrics that can score the quality of the conversation on a scale from 0 to 5. We run the prompt again but this time we store the results into an array containing the full conversation, and then pass that to a `ChatEvaluator` to score.
 
-First, install the ```promptflow-evals package```:
-```
+First, install the `promptflow-evals package`:
+
+```bash
 pip install promptflow-evals
 ```
 
-Now copy the following code to an ```evaluate.py``` file:
+Now copy the following code to an `evaluate.py` file:
+
 ```Python
 import os
 from dotenv import load_dotenv
@@ -259,13 +267,15 @@ score = chat_eval(conversation=conversation)
 print(score)
 ```
 
-Run the ```evaluate.py``` script:
-```
+Run the `evaluate.py` script:
+
+```bash
 python evaluate.py
 ```
 
 You should see an output that looks like this:
-```
+
+```terminal
 {'gpt_coherence': 5.0, 'gpt_fluency': 5.0, 'evaluation_per_turn': {'gpt_coherence': {'score': [5.0, 5.0]}, 'gpt_fluency': {'score': [5.0, 5.0]}}}
 ```
 
