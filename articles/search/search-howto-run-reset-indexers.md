@@ -44,7 +44,7 @@ An indexer job runs in a managed execution environment. Currently, there are two
 
 + A multitenant environment has content processors that are managed and secured by Microsoft at no extra cost. This environment is used to offload computationally intensive processing, leaving service-specific resources available for routine operations. Whenever possible, most skillsets execute in the multitenant environment. This is the default.
 
-  Computationally intensive processing includes skillsets running on content processors, and high volume indexer jobs or indexer jobs with large documents. Non-skillset processing on the multitenant content processors is determined by hueristics and system information and isn't under customer control. S2 services and higher support pinping an indexer and skillset processing exclusively to your search clusters through the `executionEnvironment` parameter.
+  Computationally intensive processing includes skillsets running on content processors, and high volume indexer jobs or indexer jobs with large documents. Non-skillset processing on the multitenant content processors is determined by hueristics and system information and isn't under customer control. S2 services and higher support pinning an indexer and skillset processing exclusively to your search clusters through the `executionEnvironment` parameter.
 
   > [!NOTE]
   > [IP firewalls](search-indexer-securing-resources.md#indexer-execution-environment) block the multitenant environment, so if you have a firewall, create a rule that allows multitenant processing.
