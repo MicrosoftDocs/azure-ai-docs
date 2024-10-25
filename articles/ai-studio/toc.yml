@@ -98,7 +98,13 @@ items:
       - name: How to use model benchmarking
         href: how-to/benchmark-model-in-catalog.md
     - name: Fine-tune models
-      href: concepts/fine-tuning-overview.md
+      items:
+        - name: Fine-tuning overview
+          href: concepts/fine-tuning-overview.md
+        - name: Fine-tune with user-managed compute
+          href: how-to/fine-tune-managed-compute.md
+        - name: Fine-tune Azure OpenAI models
+          href: ../ai-services/openai/how-to/fine-tuning.md?context=/azure/ai-studio/context/context
     - name: Distillation
       href: concepts/concept-model-distillation.md
     - name: Azure OpenAI models

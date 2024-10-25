@@ -1,23 +1,27 @@
 ---
-title: Fine-tune models using User-managed compute
+title: Fine-tune models using a user-managed compute with Azure AI Studio
 titleSuffix: Azure AI Studio
-description: Learn how to do fine-tune models using User-managed compute.
+description: Learn how to fine-tune models using a user-managed compute with Azure AI Studio.
 manager: scottpolly
 ms.service: azure-ai-studio
 ms.topic: how-to
-ms.date: 10/02/2024
+ms.date: 10/25/2024
 ms.reviewer: vkann
 reviewer: kvijaykannan
 ms.author: mopeakande
 author: msakande
 ms.custom: references_regions
 
-#customer intent: As a Data Scientist, I want to learn how to fine-tune models using user-managed compute to improve model performance for specific tasks. 
+#customer intent: As a data scientist using a user-managed compute, I want to learn how to fine-tune models to improve model performance for specific tasks. 
 ---
 
-# Fine-tune using User-managed compute
+# Fine-tune models using user-managed compute
 
-This article explains how to fine-tune a machine learning model by adapting a pre-trained model to a new, related task or domain. The process involves using your own computational resources to adjust training parameters such as learning rate, batch size, and the number of training epochs, allowing you to optimize the model’s performance for specific tasks. This method is more efficient than building a model from scratch, as it leverages the pre-trained model's existing knowledge, reducing the time and data needed for training.
+This article explains how to use a user-managed compute fine-tune a machine learning model in Azure AI Studio. Fine-tuning involves adapting a pretrained model to a new, related task or domain. WHen you use a managed compute for fine-tuning, you use your computational resources to adjust training parameters such as learning rate, batch size, and number of training epochs to optimize the model's performance for a specific task. Fine-tuning a pretrained model to use for a related task is more efficient than building a new model, as it builds upon the pretrained model's existing knowledge and reduces the time and data needed for training.
+
+To improve model performance, you might consider fine-tuning a foundation model with your training data. You can easily fine-tune foundation models by using either the fine-tune settings in AI Studio or by using code-based samples.
+
+__Todo: link to the code-based samples__
 
 ## Prerequisites
 
@@ -29,16 +33,12 @@ This article explains how to fine-tune a machine learning model by adapting a pr
 
 - Azure role-based access controls (Azure RBAC) are used to grant access to operations in Azure AI Studio. To perform the steps in this article, your user account must be assigned the __owner__ or __contributor__ role for the Azure subscription. 
 
-## How to fine-tune foundation models using your own training data
-
-In order to improve model performance in your workload, you might want to fine tune a foundation model using your own training data. You can easily fine-tune these foundation models by using either the fine-tune settings in the studio or by using the code based samples.
-
-## Fine-tune using the User-managed compute
+## Fine-tune using user-managed compute in 
 
 You can access the fine-tune settings form using one of the following methods:
-1.	Choose the "Fine-Tuning" option from the left menu, and then select any foundation model.
+1.    Choose the "Fine-Tuning" option from the left menu, and then select any foundation model.
 
-2.	Choose the "Model Card" option from the left menu for any foundation model, and then click the ‘Fine-tune’ button on the model card.
+2.    Choose the "Model Card" option from the left menu for any foundation model, and then click the 'Fine-tune' button on the model card.
 Select the suitable Service method to fine-tune your model. You can choose between 'Hosted fine-tuning' or 'User-managed compute'. If you intend to use your own compute resources, select the 'User-managed compute' option. To learn more about Fine-tuning using Serverless API, refer to the related content articles.
 
 
@@ -61,9 +61,9 @@ Select the suitable Service method to fine-tune your model. You can choose betwe
 
 #### Training Data
 
-1.	Pass in the training data you would like to use to fine-tune your model. You can choose to either upload a local file (in JSONL, CSV or TSV format) or select an existing registered dataset from your workspace.
+1.    Pass in the training data you would like to use to fine-tune your model. You can choose to either upload a local file (in JSONL, CSV or TSV format) or select an existing registered dataset from your workspace.
 
-2.	Once you've selected the dataset, you need to map the columns from your input data, based on the schema needed for the task. For example: map the column names that correspond to the 'sentence' and 'label' keys for Text Classification.
+2.    Once you've selected the dataset, you need to map the columns from your input data, based on the schema needed for the task. For example: map the column names that correspond to the 'sentence' and 'label' keys for Text Classification.
 
 ![Fine tune training data in AI Studio](../media/how-to/fine-tuning-maap/fine-tune-training-data.png)
 
