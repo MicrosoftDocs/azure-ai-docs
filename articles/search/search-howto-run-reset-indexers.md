@@ -40,11 +40,11 @@ You can run multiple indexers at one time assuming sufficient capacity, but each
 
 An indexer job runs in a managed execution environment. Currently, there are two environments:
 
-+ A private execution environment runs on search clusters that are specific to your search service. To run an indexer to the private execution environment exclusively, [set the `executionEnvironment` parameter](search-how-to-create-indexers.md?tabs=indexer-rest#create-an-indexer) in the indexer definition.
++ A private execution environment runs on search clusters that are specific to your search service. If your search service is Standard2 or nigher, you can [set the `executionEnvironment` parameter](search-how-to-create-indexers.md?tabs=indexer-rest#create-an-indexer) in the indexer definition to always run an indexer in the private execution environment. 
 
 + A multitenant environment has content processors that are managed and secured by Microsoft at no extra cost. This environment is used to offload computationally intensive processing, leaving service-specific resources available for routine operations. Whenever possible, most skillsets execute in the multitenant environment. This is the default.
 
-  Computationally intensive processing includes skillsets running on content processors, and high volume indexer jobs or indexer jobs with large documents. Non-skillset processing on the multitenant content processors is determined by hueristics and system information and isn't under customer control. If you want to pin an indexer and skillset processing exclusively to your search clusters, set the `executionEnvironment` parameter to private.
+  Computationally intensive processing includes skillsets running on content processors, and high volume indexer jobs or indexer jobs with large documents. Non-skillset processing on the multitenant content processors is determined by hueristics and system information and isn't under customer control. S2 services and higher support pinping an indexer and skillset processing exclusively to your search clusters through the `executionEnvironment` parameter.
 
   > [!NOTE]
   > [IP firewalls](search-indexer-securing-resources.md#indexer-execution-environment) block the multitenant environment, so if you have a firewall, create a rule that allows multitenant processing.

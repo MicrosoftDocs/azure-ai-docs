@@ -79,7 +79,7 @@ For any given indexer run, Azure AI Search determines the best environment in wh
 | Private | Internal to a search service. Indexers running in the private environment share computing resources with other indexing and query workloads on the same search service. If you set up a private connection between an indexer and your data, such as a shared private link, this is the only execution enriovnment you can use and it's used automatically. |
 |  multitenant | Managed and secured by Microsoft at no extra cost. It isn't subject to any network provisions under your control. This environment is used to offload computationally intensive processing, leaving service-specific resources available for routine operations. Examples of resource-intensive indexer jobs include skillsets, processing large documents, or processing a high volume of documents. |
 
-You can configure an indexer to always use the private environment. For more information, see [Create an indexer](search-how-to-create-indexers.md?tabs=indexer-rest#create-an-indexer).
+For Standard2 services and higher, you can configure an indexer to always use the private environment. For more information, see [Create an indexer](search-how-to-create-indexers.md?tabs=indexer-rest#create-an-indexer).
 
 ### Setting up IP ranges for indexer execution
 
