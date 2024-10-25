@@ -66,7 +66,7 @@ The GenAIOps lifecycle comprises four distinct stages:
 
 By adhering to this structured methodology, prompt flow empowers you to confidently develop, rigorously test, fine-tune, and deploy flows, leading to the creation of robust and sophisticated AI applications.
 
-The GenAIOps Prompt Flow template formalizes this structured methodology by using a code-first approach, and helps you build LLM-infused apps using prompt flow tools and process and GenAIOps prompt flow features. This template is available at [GenAIOps with prompt flow template](https://github.com/microsoft/genaiops-promptflow-template).
+The GenAIOps prompt flow template formalizes this structured methodology by using a code-first approach, and helps you build LLM-infused apps using prompt flow tools and process and GenAIOps prompt flow features. This template is available at [GenAIOps with prompt flow template](https://github.com/microsoft/genaiops-promptflow-template).
 
 ## GenAIOps process flow
 
