@@ -63,16 +63,18 @@ You might find some variation in maximum limits if your service happens to be pr
 
 Maximum number of documents per index are:
 
-+ 24 billion on Basic, S1, S2, S3, L1, and L2 search services.
-+ 2 billion on S3 HD.
++ 24 billion on Basic, S1, S2, S3
++ 2 billion on S3 HD
++ 288 billion on L1
++ 576 billion on L2
 
 Each instance of a complex collection counts as a separate document in terms of these limits.
 
-Maximum document size when calling an Index API is approximately 16 megabytes.
+Maximum size of each document is approximately 16 megabytes. Document size is actually a limit on the size of the indexing API request payload, which is 16 megabytes. That payload can be a single document, or a batch of documents. For a batch with a single document, the maximum document size is 16 MB of JSON. 
 
-Document size is actually a limit on the size of the Index API request body. Since you can pass a batch of multiple documents to the Index API at once, the size limit realistically depends on how many documents are in the batch. For a batch with a single document, the maximum document size is 16 MB of JSON.
+Document size applies to *push mode* indexing that uploads documents to a search service. If you're using an indexer for *pull mode* indexing, your source files can be any file size, subject to [indexer limits](#indexer-limits). For the blob indexer, file size limits are larger for higher tiers. For example, the S1 limit is 128 megabytes, S2 limit is 256 megabytes, and so forth.
 
-When estimating document size, remember to consider only those fields that add value to your search scenarios, and exclude any source fields that have no purpose in the queries you intend to run.
+When estimating document size, remember to index only those fields that add value to your search scenarios, and exclude any source fields that have no purpose in the queries you intend to run.
 
 ## Vector index size limits
 
@@ -119,9 +121,9 @@ Maximum running times exist to provide balance and stability to the service as a
 | Maximum indexing load per invocation |10,000 documents |Limited only by maximum documents |Limited only by maximum documents |Limited only by maximum documents |Limited only by maximum documents |N/A |No limit |No limit |
 | Minimum schedule | 5 minutes |5 minutes |5 minutes |5 minutes |5 minutes |5 minutes |5 minutes | 5 minutes |
 | Maximum running time <sup>5</sup>| 1-3 minutes |2 or 24 hours |2 or 24 hours |2 or 24 hours |2 or 24 hours |N/A  |2 or 24 hours |2 or 24 hours |
-| Maximum running time for indexers with a skillset <sup>6</sup> | 3-10 minutes |2 hours |2 hours |2 hours |2 hours |N/A  |2 hours |2 hours |
+| Maximum running time for indexers with a skillset <sup>6</sup> | 3-10 minutes |2 or 24 hours |2 or 24 hours |2 or 24 hours |2 or 24 hours |N/A  |2 or 24 hours |2 or 24 hours |
 | Blob indexer: maximum blob size, MB |16 |16 |128 |256 |256 |N/A  |256 |256 |
-| Blob indexer: maximum characters of content extracted from a blob <sup>7</sup> |32,000 |64,000 |4&nbsp;million |8&nbsp;million |16&nbsp;million |N/A |4&nbsp;million |4&nbsp;million |
+| Blob indexer: maximum characters of content extracted from a blob <sup>6</sup> |32,000 |64,000 |4&nbsp;million |8&nbsp;million |16&nbsp;million |N/A |4&nbsp;million |4&nbsp;million |
 
 <sup>1</sup> Free services have indexer maximum execution time of 3 minutes for blob sources and 1 minute for all other data sources. Indexer invocation is once every 180 seconds. For AI indexing that calls into Azure AI services, free services are limited to 20 free transactions per indexer per day, where a transaction is defined as a document that successfully passes through the enrichment pipeline (tip: you can reset an indexer to reset its count).
 
@@ -131,11 +133,9 @@ Maximum running times exist to provide balance and stability to the service as a
 
 <sup>4</sup> Maximum of 30 skills per skillset.
 
-<sup>5</sup> Regarding the 2 or 24 hour maximum duration for indexers: a 2-hour maximum is the most common and it's what you should plan for. The 24-hour limit is from an older indexer implementation. If you have unscheduled indexers that run continuously for 24 hours, it's because those indexers couldn't be migrated to the newer infrastructure. As a general rule, for indexing jobs that can't finish within two hours, put the indexer on a [2-hour schedule](search-howto-schedule-indexers.md). When the first 2-hour interval is complete, the indexer picks up where it left off when starting the next 2-hour interval.
+<sup>5</sup> Regarding the 2 or 24 hour maximum duration for indexers: a 2-hour maximum is the most common and it's what you should plan for. It refers to indexers that run in the [public environment](search-howto-run-reset-indexers.md#indexer-execution), used to offload computationally intensive processing and leave more resources for queries. The 24-hour limit applies if you configure the indexer to run in a private environment using only the infrastructure that's allocated to your search service. Note that some older indexers are incapable of running in the public environment, and those indexers always have a 24-hour processing range. If you have unscheduled indexers that run continuously for 24 hours, you can assume those indexers couldn't be migrated to the newer infrastructure. As a general rule, for indexing jobs that can't finish within two hours, put the indexer on a [2-hour schedule](search-howto-schedule-indexers.md). When the first 2-hour interval is complete, the indexer picks up where it left off when starting the next 2-hour interval.
 
-<sup>6</sup> Skillset execution, and image analysis in particular, are computationally intensive and consume disproportionate amounts of available processing power. Running time for these workloads is shorter so that other jobs in the queue have more opportunity to run.
-
-<sup>7</sup> The maximum number of characters is based on Unicode code units, specifically UTF-16.
+<sup>6</sup> The maximum number of characters is based on Unicode code units, specifically UTF-16.
 
 > [!NOTE]
 > As stated in the [Index limits](#index-limits), indexers will also enforce the upper limit of 3000 elements across all complex collections per document starting with the latest GA API version that supports complex types (`2019-05-06`) onwards. This means that if you've created your indexer with a prior API version, you will not be subject to this limit. To preserve maximum compatibility, an indexer that was created with a prior API version and then updated with an API version `2019-05-06` or later, will still be **excluded** from the limits. Customers should be aware of the adverse impact of having very large complex collections (as stated previously) and we highly recommend creating any new indexers with the latest GA API version.
@@ -204,8 +204,10 @@ L2 reranking using the semantic reranker has an expected volume:
 
 ## API request limits
 
-+ Maximum of 16 MB per request <sup>1</sup>
-+ Maximum 8-KB URL length
+Except where noted, the following API requests apply to all programmable interfaces, including the Azure SDKs.
+
++ Maximum of 16 MB per indexing or query request when pushing a payload to the search service <sup>1</sup>
++ Maximum 8-KB URL length (applies to REST APIs only)
 + Maximum 1,000 documents per batch of index uploads, merges, or deletes
 + Maximum 32 fields in $orderby clause
 + Maximum 100,000 characters in a search clause
