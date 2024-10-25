@@ -8,7 +8,7 @@ ms.service: azure-ai-openai
 ms.topic: quickstart
 author: aahill
 ms.author: aahi
-ms.date: 04/08/2024
+ms.date: 10/25/2024
 recommendations: false
 ms.custom: references_regions 
 ---
@@ -306,6 +306,27 @@ Mapping these fields correctly helps ensure the model has better response and ci
 ### Use Elasticsearch as a data source via API  
 
 Along with using Elasticsearch databases in Azure OpenAI Studio, you can also use your Elasticsearch database using the [API](../references/elasticsearch.md). 
+
+# [MongoDB Atlas (preview)](#tab/elasticsearch)
+
+### Prerequisites 
+
+* A [MongoDB Atlas account](https://account.mongodb.com/account/register)
+
+We recommend using one of the following models for MongoDB Atlas
+* gpt-4 (0613)
+* gpt-4 (turbo-2024-04-09) 
+* gpt-4o (2024-05-13) 
+* gpt-35-turbo (1106) 
+
+### Configuration  
+
+Only public network access is supported. Please make sure the database allows public access 
+:::image type="content" source="../media/use-your-data/mongo-db-network-access.png" alt-text="A screenshot showing the network access screen for Mongo DB":::
+
+### Data preparation
+
+Use the [available script on Github](https://github.com/microsoft/sample-app-aoai-chatGPT/blob/rawan/mongodbdataprep/scripts/mongo_vector_db_data_preparation.py) to prepare your Data for use with Azure OpenAI On Your Data. 
 
 ---
 
