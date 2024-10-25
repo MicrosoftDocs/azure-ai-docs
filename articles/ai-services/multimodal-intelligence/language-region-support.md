@@ -80,4 +80,5 @@ To learn more Multimodal Intelligence language support, select a capability from
 |Language|Language code and locale|
 |--------|-------------|
 |English|&bullet; `en-AU` (Australia)</br>&bullet; `en-CA` (Canada)</br>&bullet; `en-GB` (United Kingdom)</br>&bullet;  `en-IN` (India)</br>&bullet; `en-US` (United States)|
+
 ---
