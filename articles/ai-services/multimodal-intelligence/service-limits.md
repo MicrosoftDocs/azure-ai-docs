@@ -14,7 +14,7 @@ ms.author: lajanuar
 
 # Service limits and quotas
 
-This article contains both a quick reference and detailed description of Azure AI Multimodal Intelligence service quotas and limits.
+This article is both a quick reference and detailed description of Azure AI Multimodal Intelligence service quotas and limits.
 
 ## File limits
 
@@ -23,9 +23,9 @@ Each modality covers a set of MIME file types. 
 |Modality| Supported File Types | File Size | Resolution | Length |
 |--- | --- | --- | --- | --- |
 |Image | .jpg, .png, .bmp, .heif| ≤ 20 MB (OpenAI-enforced) | Min: 50 x 50Max: 10k x 10k |  |
-|Document |  pdf, tiff, jpg, png, bmp, heif, txt  | asynchronous: ≤ 200MB Batch: ≤ 500 MB |  | asynchronous: ≤ 300 pages Batch: ≤ 2,000 pages |
+|Document |  pdf, tiff, jpg, png, bmp, heif, txt  | asynchronous: ≤ 200 MB Batch: ≤ 500 MB |  | asynchronous: ≤ 300 pages Batch: ≤ 2,000 pages |
 |Speech | mp3, wav, wma, aac, ogg, flac, mp4, avi, mov, wmv, mkv  | asynchronous: ≤ 200MBBatch: ≤ 1 GB |  | asynchronous: ≤ 2hBatch: ≤ 4 hours |
-|Video | MP4 (.mp4, .m4a, .m4v), FLV (with H.264 and AAC codecs) (.flv), ISMV (.isma, .ismv), MXF (.mxf), GXF (.gxf), MPEG2-PS,MPEG2-TS, 3GP (.ts, .ps, .3gp, .3gpp, .mpg), Windows Media Video (WMV)/ASF (.wmv, .asf), AVI (Uncompressed 8bit/10bit) (.avi),
+|Video | MP4 (.mp4, .m4a, .m4v), FLV (with H.264 and AAC codecs) (.flv), ISMV (.isma, .ismv), MXF (.mxf), GXF (.gxf), MPEG2-PS, MPEG2-TS, 3GP (.ts, .ps, .3gp, .3gpp, .mpg), Windows Media Video (WMV)/ASF (.wmv, .asf), AVI (Uncompressed 8bit/10bit) (.avi),
 Microsoft Digital Video Recording (DVR-MS) (.dvr-ms), Matroska/WebM (.mkv), WAVE/WAV (.wav), QuickTime (.mov)  | asynchronous: ≤???Batch: ≤ 20 GB | Min: 320 x 240Max: 1920 x 1080 | asynchronous: ≤???Batch: ≤ 4 hours |
 | text | ≤ 10 MB |  | ≤ 10M characters |
 
@@ -38,13 +38,13 @@ Microsoft Digital Video Recording (DVR-MS) (.dvr-ms), Matroska/WebM (.mkv), WAVE
 
 ## Field Schema Limits
 
-A schema in Multimodal Intelligence (MMI) a refers to a defined structure that specifies the types of information to be extracted from various types of unstructured content, such as documents, images, videos, and audio. This structured representation of data is crucial for enabling downstream applications to process and analyze the extracted information effectively.
+A schema in Multimodal Intelligence (MMI) refers to a defined structure that specifies the types of information to be extracted from various types of unstructured content, such as documents, images, videos, and audio. This structured representation of data is crucial for enabling downstream applications to process and analyze the extracted information effectively.
 
 This section details the limits of the field inputs for schema definition.
 
 | Field Types Supported | Max # of Fields Supported Per Schema |
 | --- | --- |
-| string: Plain Text, date: Date, normalized to ISO 8601 (YYYY-MM-DD) format, time: Time, normalized to ISO 8601 (hh:mm:ss) format. number: Floating point number, normalized to double precision floating point. integer: Integer number, normalized to 64-bit signed integer. boolean: Boolean value, normalized to true or false.array: List of subfields of the same type. object: Named list of subfields of potentially different types. | 10 |
+| string: Plain Text, date: Date normalized to ISO 8601 (YYYY-MM-DD) format, time: Time normalized to ISO 8601 (hh:mm:ss) format. number: Floating point number normalized to double precision floating point. integer: Integer number, normalized to 64-bit signed integer. boolean: Boolean value, normalized to true or false.array: List of subfields of the same type. object: Named list of subfields of potentially different types. | 10 |
 
 ## Analyzer limits per resource
 
@@ -54,7 +54,7 @@ Analyzers in Multimodal Intelligence (MMI) are specialized components designed t
 | --- | --- |
 | Max models | 100k |
 | Max analysis/min | 1000 pages/images four, (2) hours of audio, 1 hour of video  |
-| Max analysis/month | 10M pages/images, 100K hours of audio, 10K hours of video |
+| Max analysis/month | 10M pages/images, 100-K hours of audio, 10K hours of video |
 | Max operations/min | 1000 |
 | Free trainings / month | 10 hours |
 | Max training file size | 1 GB |

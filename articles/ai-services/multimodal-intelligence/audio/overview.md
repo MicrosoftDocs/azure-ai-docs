@@ -53,7 +53,7 @@ AI studio enables you to set up, test, and manage Multimodal Intelligence soluti
 
 The following diagram provides a high-level overview of a typical Multimodal Intelligence Speech processing workflow.
 
-  :::image type="content" source="../media/audiooverview/workflow-diagram.png" alt-text="Illustration of Multimodal Intelligence speech workflow.":::
+  :::image type="content" source="../media/audio/overview/workflow-diagram.png" alt-text="Illustration of Multimodal Intelligence speech workflow.":::
 
 A typical Multimodal IntelligenceSpeech workflow consists of the following steps:
 
