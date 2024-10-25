@@ -35,7 +35,7 @@ This category contains the following entity:
       
     :::column-end:::
     :::column span="2":::
-      **Supported document languages**
+      **Supported languages**
 
       `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `af`, `ca`, `da`, `el`, `ga`, `gl`, `ku`, `nl`, `no`, `ss`, `ro`, `sq`, `ur`, `ar`, `bg`, `bs`, `cy`, `fa`, `hr`, `id`, `mg`, `mk`, `ms`, `ps`, `ru`, `sl`, `so`, `sr`, `sw`, `am`, `as`, `cs`, `et`, `eu`, `fi`, `he`, `hu`, `km`, `lo`, `lt`, `lv`, `mr`, `my`, `ne`, `or`, `pa`, `pl`, `sk`, `th`, `uk`, `az`, `bn`, `gu`, `hy`, `ka`, `kk`, `kn`, `ky`, `ml`, `mn`, `ta`, `te`, `ug`, `uz`, `vi`  
       
@@ -63,7 +63,7 @@ This category contains the following entity:
       
     :::column-end:::
     :::column span="2":::
-      **Supported document languages**
+      **Supported languages**
 
       `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `af`, `ca`, `da`, `el`, `ga`, `gl`, `ku`, `nl`, `no`, `ss`, `ro`, `sq`, `ur`, `ar`, `bg`, `bs`, `cy`, `fa`, `hr`, `id`, `mg`, `mk`, `ms`, `ps`, `ru`, `sl`, `so`, `sr`, `sw`, `am`, `as`, `cs`, `et`, `eu`, `fi`, `he`, `hu`, `km`, `lo`, `lt`, `lv`, `mr`, `my`, `ne`, `or`, `pa`, `pl`, `sk`, `th`, `uk`, `az`, `bn`, `gu`, `hy`, `ka`, `kk`, `kn`, `ky`, `ml`, `mn`, `ta`, `te`, `ug`, `uz`, `vi`  
       
@@ -90,7 +90,7 @@ This category contains the following entity:
 
     :::column-end:::
     :::column span="2":::
-      **Supported document languages**
+      **Supported languages**
 
       `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `af`, `ca`, `da`, `el`, `ga`, `gl`, `ku`, `nl`, `no`, `ss`, `ro`, `sq`, `ur`, `ar`, `bg`, `bs`, `cy`, `fa`, `hr`, `id`, `mg`, `mk`, `ms`, `ps`, `ru`, `sl`, `so`, `sr`, `sw`, `am`, `as`, `cs`, `et`, `eu`, `fi`, `he`, `hu`, `km`, `lo`, `lt`, `lv`, `mr`, `my`, `ne`, `or`, `pa`, `pl`, `sk`, `th`, `uk`, `az`, `bn`, `gu`, `hy`, `ka`, `kk`, `kn`, `ky`, `ml`, `mn`, `ta`, `te`, `ug`, `uz`, `vi`  
       
@@ -117,7 +117,7 @@ This category contains the following entity:
       
     :::column-end:::
     :::column span="2":::
-      **Supported document languages**
+      **Supported languages**
 
       `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `af`, `ca`, `da`, `el`, `ga`, `gl`, `ku`, `nl`, `no`, `ss`, `ro`, `sq`, `ur`, `ar`, `bg`, `bs`, `cy`, `fa`, `hr`, `id`, `mg`, `mk`, `ms`, `ps`, `ru`, `sl`, `so`, `sr`, `sw`, `am`, `as`, `cs`, `et`, `eu`, `fi`, `he`, `hu`, `km`, `lo`, `lt`, `lv`, `mr`, `my`, `ne`, `or`, `pa`, `pl`, `sk`, `th`, `uk`, `az`, `bn`, `gu`, `hy`, `ka`, `kk`, `kn`, `ky`, `ml`, `mn`, `ta`, `te`, `ug`, `uz`, `vi`  
       
@@ -151,7 +151,7 @@ The following entities are grouped and listed by country/region:
       
     :::column-end:::
     :::column span="":::
-      **Supported document languages**
+      **Supported languages**
 
       `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `da`, `nl`, `no`, `ro`, `ar`, `bg`, `hr`, `ms`, `ru`, `sl`, `cs`, `et`, `fi`, `he`, `hu`, `lv`, `sk`, `th`, `uk`
       
@@ -175,7 +175,7 @@ The following entities are grouped and listed by country/region:
       
     :::column-end:::
     :::column span="":::
-      **Supported document languages**
+      **Supported languages**
 
       `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `da`, `nl`, `no`, `ro`, `ar`, `bg`, `hr`, `ms`, `ru`, `sl`, `cs`, `et`, `fi`, `he`, `hu`, `lv`, `sk`, `th`, `uk`
       
@@ -235,7 +235,7 @@ The following entities are grouped and listed by country/region:
         Also returned with `domain=phi`.
     :::column-end:::
     :::column span="":::
-      **Supported document languages**
+      **Supported languages**
 
       `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `da`, `nl`, `no`, `ro`, `ar`, `bg`, `hr`, `ms`, `ru`, `sl`, `cs`, `et`, `fi`, `he`, `hu`, `lv`, `sk`, `th`, `uk`
       
@@ -364,7 +364,7 @@ The following entities are grouped and listed by country/region:
         Also returned with `domain=phi`.
     :::column-end:::
     :::column span="":::
-      **Supported document languages**
+      **Supported languages**
 
       `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `da`, `nl`, `no`, `ro`, `ar`, `bg`, `hr`, `ms`, `ru`, `sl`, `cs`, `et`, `fi`, `he`, `hu`, `lv`, `sk`, `th`, `uk`
       
@@ -385,7 +385,7 @@ The following entities are grouped and listed by country/region:
         Also returned with `domain=phi`.
     :::column-end:::
     :::column span="":::
-      **Supported document languages**
+      **Supported languages**
 
       `fr`, `de`
       
@@ -430,7 +430,7 @@ The following entities are grouped and listed by country/region:
         Also returned with `domain=phi`.
     :::column-end:::
     :::column span="":::
-      **Supported document languages**
+      **Supported languages**
 
       `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `da`, `nl`, `no`, `ro`, `ar`, `bg`, `hr`, `ms`, `ru`, `sl`, `cs`, `et`, `fi`, `he`, `hu`, `lv`, `sk`, `th`, `uk`
       
@@ -490,7 +490,7 @@ The following entities are grouped and listed by country/region:
         Also returned with `domain=phi`.
     :::column-end:::
     :::column span="":::
-      **Supported document languages**
+      **Supported languages**
 
       `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `da`, `nl`, `no`, `ro`, `ar`, `bg`, `hr`, `ms`, `ru`, `sl`, `cs`, `et`, `fi`, `he`, `hu`, `lv`, `sk`, `th`, `uk`
       
@@ -609,7 +609,7 @@ The following entities are grouped and listed by country/region:
         Also returned with `domain=phi`.
     :::column-end:::
     :::column span="":::
-      **Supported document languages**
+      **Supported languages**
 
       `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `da`, `nl`, `no`, `ro`, `ar`, `bg`, `hr`, `ms`, `ru`, `sl`, `cs`, `et`, `fi`, `he`, `hu`, `lv`, `sk`, `th`, `uk`
       
@@ -633,7 +633,7 @@ The following entities are grouped and listed by country/region:
         Also returned with `domain=phi`.
     :::column-end:::
     :::column span="":::
-      **Supported document languages**
+      **Supported languages**
 
       `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `da`, `nl`, `no`, `ro`, `ar`, `bg`, `hr`, `ms`, `ru`, `sl`, `cs`, `et`, `fi`, `he`, `hu`, `lv`, `sk`, `th`, `uk`
       
@@ -658,7 +658,7 @@ The following entities are grouped and listed by country/region:
         Also returned with `domain=phi`.
     :::column-end:::
     :::column span="":::
-      **Supported document languages**
+      **Supported languages**
 
       `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `da`, `nl`, `no`, `ro`, `ar`, `bg`, `hr`, `ms`, `ru`, `sl`, `cs`, `et`, `fi`, `he`, `hu`, `lv`, `sk`, `th`, `uk`
       
@@ -787,7 +787,7 @@ The following entities are grouped and listed by country/region:
         Also returned with `domain=phi`.
     :::column-end:::
     :::column span="":::
-      **Supported document languages**
+      **Supported languages**
 
       `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `da`, `nl`, `no`, `ro`, `ar`, `bg`, `hr`, `ms`, `ru`, `sl`, `cs`, `et`, `fi`, `he`, `hu`, `lv`, `sk`, `th`, `uk`
       
@@ -915,7 +915,7 @@ The following entities are grouped and listed by country/region:
         Also returned with `domain=phi`.
     :::column-end:::
     :::column span="":::
-      **Supported document languages**
+      **Supported languages**
 
       `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `da`, `nl`, `no`, `ro`, `ar`, `bg`, `hr`, `ms`, `ru`, `sl`, `cs`, `et`, `fi`, `he`, `hu`, `lv`, `sk`, `th`, `uk`
       
@@ -1009,7 +1009,7 @@ The following entities are grouped and listed by country/region:
         Also returned with `domain=phi`.
     :::column-end:::
     :::column span="":::
-      **Supported document languages**
+      **Supported languages**
 
       `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `da`, `nl`, `no`, `ro`, `ar`, `bg`, `hr`, `ms`, `ru`, `sl`, `cs`, `et`, `fi`, `he`, `hu`, `lv`, `sk`, `th`, `uk`
       
@@ -1032,7 +1032,7 @@ The following entities are grouped and listed by country/region:
       
     :::column-end:::
     :::column span="":::
-      **Supported document languages**
+      **Supported languages**
 
       `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `da`, `nl`, `no`, `ro`, `ar`, `bg`, `hr`, `ms`, `ru`, `sl`, `cs`, `et`, `fi`, `he`, `hu`, `lv`, `sk`, `th`, `uk`
       
@@ -1090,7 +1090,7 @@ The following entities are grouped and listed by country/region:
         Also returned with `domain=phi`.
     :::column-end:::
     :::column span="":::
-      **Supported document languages**
+      **Supported languages**
 
       `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `da`, `nl`, `no`, `ro`, `ar`, `bg`, `hr`, `ms`, `ru`, `sl`, `cs`, `et`, `fi`, `he`, `hu`, `lv`, `sk`, `th`, `uk`
       
@@ -1135,7 +1135,7 @@ The following entities are grouped and listed by country/region:
         Also returned with `domain=phi`.
     :::column-end:::
     :::column span="":::
-      **Supported document languages**
+      **Supported languages**
 
       `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `da`, `nl`, `no`, `ro`, `ar`, `bg`, `hr`, `ms`, `ru`, `sl`, `cs`, `et`, `fi`, `he`, `hu`, `lv`, `sk`, `th`, `uk`
       
@@ -1159,7 +1159,7 @@ The following entities are grouped and listed by country/region:
         Also returned with `domain=phi`.
     :::column-end:::
     :::column span="":::
-      **Supported document languages**
+      **Supported languages**
 
       `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `da`, `nl`, `no`, `ro`, `ar`, `bg`, `hr`, `ms`, `ru`, `sl`, `cs`, `et`, `fi`, `he`, `hu`, `lv`, `sk`, `th`, `uk`
       
@@ -1177,7 +1177,7 @@ The following entities are grouped and listed by country/region:
       
     :::column-end:::
     :::column span="":::
-      **Supported document languages**
+      **Supported languages**
 
       `en`
       
@@ -1200,7 +1200,7 @@ The following entities are grouped and listed by country/region:
       
     :::column-end:::
     :::column span="":::
-      **Supported document languages**
+      **Supported languages**
 
       `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `da`, `nl`, `no`, `ro`, `ar`, `bg`, `hr`, `ms`, `ru`, `sl`, `cs`, `et`, `fi`, `he`, `hu`, `lv`, `sk`, `th`, `uk`
       
@@ -1242,7 +1242,7 @@ The following entities are grouped and listed by country/region:
         Also returned with `domain=phi`.
     :::column-end:::
     :::column span="":::
-      **Supported document languages**
+      **Supported languages**
 
       `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `da`, `nl`, `no`, `ro`, `ar`, `bg`, `hr`, `ms`, `ru`, `sl`, `cs`, `et`, `fi`, `he`, `hu`, `lv`, `sk`, `th`, `uk`
       
@@ -1301,7 +1301,7 @@ The following entities are grouped and listed by country/region:
         Also returned with `domain=phi`.
     :::column-end:::
     :::column span="":::
-      **Supported document languages**
+      **Supported languages**
 
       `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `da`, `nl`, `no`, `ro`, `ar`, `bg`, `hr`, `ms`, `ru`, `sl`, `cs`, `et`, `fi`, `he`, `hu`, `lv`, `sk`, `th`, `uk`
       
@@ -1447,7 +1447,7 @@ The following entities are grouped and listed by country/region:
       
     :::column-end:::
     :::column span="":::
-      **Supported document languages**
+      **Supported languages**
 
       `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `da`, `nl`, `no`, `ro`, `ar`, `bg`, `hr`, `ms`, `ru`, `sl`, `cs`, `et`, `fi`, `he`, `hu`, `lv`, `sk`, `th`, `uk`
       
@@ -1487,7 +1487,7 @@ The following entities are grouped and listed by country/region:
       
     :::column-end:::
     :::column span="":::
-      **Supported document languages**
+      **Supported languages**
 
       `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `da`, `nl`, `no`, `ro`, `ar`, `bg`, `hr`, `ms`, `ru`, `sl`, `cs`, `et`, `fi`, `he`, `hu`, `lv`, `sk`, `th`, `uk`
       
@@ -1528,7 +1528,7 @@ The following entities are grouped and listed by country/region:
       
     :::column-end:::
     :::column span="":::
-      **Supported document languages**
+      **Supported languages**
 
       `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `da`, `nl`, `no`, `ro`, `ar`, `bg`, `hr`, `ms`, `ru`, `sl`, `cs`, `et`, `fi`, `he`, `hu`, `lv`, `sk`, `th`, `uk`
       
@@ -1622,7 +1622,7 @@ The following entities are grouped and listed by country/region:
         Also returned with `domain=phi`.
     :::column-end:::
     :::column span="":::
-      **Supported document languages**
+      **Supported languages**
 
       `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `da`, `nl`, `no`, `ro`, `ar`, `bg`, `hr`, `ms`, `ru`, `sl`, `cs`, `et`, `fi`, `he`, `hu`, `lv`, `sk`, `th`, `uk`
       
@@ -1646,7 +1646,7 @@ The following entities are grouped and listed by country/region:
         Also returned with `domain=phi`.
     :::column-end:::
     :::column span="":::
-      **Supported document languages**
+      **Supported languages**
 
       `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `da`, `nl`, `no`, `ro`, `ar`, `bg`, `hr`, `ms`, `ru`, `sl`, `cs`, `et`, `fi`, `he`, `hu`, `lv`, `sk`, `th`, `uk`
       
@@ -1687,7 +1687,7 @@ The following entities are grouped and listed by country/region:
       
     :::column-end:::
     :::column span="":::
-      **Supported document languages**
+      **Supported languages**
 
       `en`, `zh-hans`
       
@@ -1712,7 +1712,7 @@ The following entities are grouped and listed by country/region:
         Also returned with `domain=phi`.
     :::column-end:::
     :::column span="":::
-      **Supported document languages**
+      **Supported languages**
 
       `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `da`, `nl`, `no`, `ro`, `ar`, `bg`, `hr`, `ms`, `ru`, `sl`, `cs`, `et`, `fi`, `he`, `hu`, `lv`, `sk`, `th`, `uk`
       
@@ -1737,7 +1737,7 @@ The following entities are grouped and listed by country/region:
         Also returned with `domain=phi`.
     :::column-end:::
     :::column span="":::
-      **Supported document languages**
+      **Supported languages**
 
       `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `da`, `nl`, `no`, `ro`, `ar`, `bg`, `hr`, `ms`, `ru`, `sl`, `cs`, `et`, `fi`, `he`, `hu`, `lv`, `sk`, `th`, `uk`
       
@@ -1760,7 +1760,7 @@ The following entities are grouped and listed by country/region:
       
     :::column-end:::
     :::column span="":::
-      **Supported document languages**
+      **Supported languages**
 
       `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `da`, `nl`, `no`, `ro`, `ar`, `bg`, `hr`, `ms`, `ru`, `sl`, `cs`, `et`, `fi`, `he`, `hu`, `lv`, `sk`, `th`, `uk`
       
@@ -1818,7 +1818,7 @@ The following entities are grouped and listed by country/region:
       
     :::column-end:::
     :::column span="":::
-      **Supported document languages**
+      **Supported languages**
 
       `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `da`, `nl`, `no`, `ro`, `ar`, `bg`, `hr`, `ms`, `ru`, `sl`, `cs`, `et`, `fi`, `he`, `hu`, `lv`, `sk`, `th`, `uk`
       
@@ -1843,7 +1843,7 @@ The following entities are grouped and listed by country/region:
         Also returned with `domain=phi`.
     :::column-end:::
     :::column span="":::
-      **Supported document languages**
+      **Supported languages**
 
       `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `da`, `nl`, `no`, `ro`, `ar`, `bg`, `hr`, `ms`, `ru`, `sl`, `cs`, `et`, `fi`, `he`, `hu`, `lv`, `sk`, `th`, `uk`
       
@@ -1902,7 +1902,7 @@ The following entities are grouped and listed by country/region:
         Also returned with `domain=phi`.
     :::column-end:::
     :::column span="":::
-      **Supported document languages**
+      **Supported languages**
 
       `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `da`, `nl`, `no`, `ro`, `ar`, `bg`, `hr`, `ms`, `ru`, `sl`, `cs`, `et`, `fi`, `he`, `hu`, `lv`, `sk`, `th`, `uk`
       
@@ -2016,7 +2016,7 @@ The following entities are grouped and listed by country/region:
         Also returned with `domain=phi`.
     :::column-end:::
     :::column span="":::
-      **Supported document languages**
+      **Supported languages**
 
       `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `da`, `nl`, `no`, `ro`, `ar`, `bg`, `hr`, `ms`, `ru`, `sl`, `cs`, `et`, `fi`, `he`, `hu`, `lv`, `sk`, `th`, `uk`
       
