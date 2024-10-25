@@ -1,11 +1,11 @@
 ---
 title: include file
 description: include file
-author: eric-urban
+author: sdgilley
 ms.service: azure-ai-studio
 ms.topic: include
 ms.date: 5/21/2024
-ms.author: eur
+ms.author: sgilley
 ms.custom: include file, build-2024
 ---
 

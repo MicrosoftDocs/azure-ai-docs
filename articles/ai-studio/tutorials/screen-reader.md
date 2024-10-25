@@ -2,7 +2,7 @@
 title: Get started using Azure AI Studio with a screen reader
 titleSuffix: Azure AI Studio
 description: This quickstart guides you in how to get oriented and navigate Azure AI Studio with a screen reader.
-manager: nitinme
+manager: scottpolly
 ms.service: azure-ai-studio
 ms.custom:
   - ignite-2023
@@ -10,8 +10,8 @@ ms.custom:
 ms.topic: quickstart
 ms.date: 8/9/2024
 ms.reviewer: ailsaleen
-ms.author: eur
-author: eric-urban
+ms.author: sgilley
+author: sdgilley
 ---
 
 # QuickStart: Get started using AI Studio with a screen reader

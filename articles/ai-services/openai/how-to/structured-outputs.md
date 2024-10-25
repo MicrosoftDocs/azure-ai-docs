@@ -16,8 +16,10 @@ recommendations: false
 
 Structured outputs make a model follow a [JSON Schema](https://json-schema.org/overview/what-is-jsonschema) definition that you provide as part of your inference API call. This is in contrast to the older [JSON mode](./json-mode.md) feature, which guaranteed valid JSON would be generated, but was unable to ensure strict adherence to the supplied schema. Structured outputs is recommended for function calling, extracting structured data, and building complex multi-step workflows.
 
->[!NOTE]
-> Currently Structured outputs is not supported on [bring your own data](../concepts/use-your-data.md) scenario.
+> [!NOTE]
+> * Currently structured outputs is not supported on [bring your own data](../concepts/use-your-data.md) scenario.
+
+
 
 ## Supported models
 
@@ -25,7 +27,7 @@ Currently only `gpt-4o` version: `2024-08-06` supports structured outputs.
 
 ## API support
 
-Support for structured outputs was first added in API version `2024-08-01-preview`. 
+Support for structured outputs was first added in API version `2024-08-01-preview`.
 
 ## Getting started
 
@@ -37,7 +39,7 @@ You can use [`Pydantic`](https://docs.pydantic.dev/latest/) to define object sch
 pip install openai pydantic --upgrade
 ```
 
-If you new to using Microsoft Entra ID for authentication see [How to configure Azure OpenAI Service with Microsoft Entra ID authentication](./managed-identity.md).
+If you are new to using Microsoft Entra ID for authentication see [How to configure Azure OpenAI Service with Microsoft Entra ID authentication](./managed-identity.md).
 
 ```python
 from pydantic import BaseModel

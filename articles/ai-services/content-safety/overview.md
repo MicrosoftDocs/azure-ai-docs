@@ -114,7 +114,7 @@ See the following list for the input requirements for each feature.
   - Maximum image file size: 4 MB
   - Dimensions between 50 x 50 and 7200 x 7200 pixels.
   - Images can be in JPEG, PNG, GIF, BMP, TIFF, or WEBP formats.
-- **Analyze multimodal API**:
+- **Analyze multimodal API (preview)**:
   - Default maximum text length: 1K characters.
   - Maximum image file size: 4 MB
   - Dimensions between 50 x 50 and 7200 x 7200 pixels.
@@ -140,31 +140,32 @@ For more information, see [Language support](/azure/ai-services/content-safety/l
 
 ### Region availability
 
-To use the Content Safety APIs, you must create your Azure AI Content Safety resource in a supported region. Currently, the Content Safety features are available in the following Azure regions: 
-   
-| Region   | Moderation APIs (text and image) | Moderation APIs (multimodal) | Prompt Shields | Protected material detection for Text | Protected material detection for Code | Groundedness detection (preview) | Custom categories (rapid) (preview) | Custom categories (standard) (preview) | Blocklists |  
-|--|-|---|-|--|---|-|-|---|---|  
-| East US        | ✅    | ✅    | ✅  | ✅    |   ✅ | ✅    | ✅   | ✅ | ✅  |  
-| East US 2      | ✅    |  | ✅  | ✅    |  ✅  | ✅    | ✅   |   | ✅  |  
-| West US        |  |  | ✅  | ✅    |  ✅  |    | ✅   |   |    |  
-| West US 2      | ✅    |  | ✅  | ✅    |  ✅  |    | ✅   |   | ✅  |  
-| West US 3      | ✅    |  | ✅  | ✅    | ✅   |    | ✅   |   | ✅  |  
-| Poland Central  | ✅  |  | ✅  | ✅    |  ✅  |    | ✅   |   | ✅  |  
-| South East Asia | ✅ |  | ✅  | ✅    |   ✅ |    | ✅   |   | ✅  |  
-| Central US      | ✅    |  |    | ✅    | ✅  |    | ✅   |   | ✅  |  
-| North Central US | ✅    |  | ✅  | ✅    | ✅   |    | ✅   |   | ✅  |  
-| South Central US | ✅    |  | ✅  | ✅    | ✅   |    | ✅   |   | ✅  |  
-| Canada East      | ✅    |  | ✅  | ✅    | ✅   |    | ✅   |   | ✅  |  
-| Switzerland North | ✅   |  | ✅  | ✅    |  ✅  |    | ✅   | ✅ | ✅  |  
-| Sweden Central | ✅  |  | ✅  | ✅    |  ✅  | ✅    | ✅   |   | ✅  |  
-| UK South       | ✅    |  | ✅  | ✅    | ✅   |    | ✅   |   | ✅  |  
-| France Central | ✅  |  | ✅  | ✅    | ✅   |    | ✅   |   | ✅  |  
-| West Europe    | ✅    | ✅    | ✅  | ✅    |   ✅ |    | ✅   |   | ✅  |  
-| Japan East     | ✅    |  | ✅  | ✅    |  ✅  |    | ✅   |   | ✅  |  
-| Australia East | ✅  |  | ✅  | ✅    |  ✅  |    | ✅   | ✅ | ✅  |  
-| South India    | ✅    |  |    | ✅    | ✅   |    | ✅   |   | ✅  |  
-| USGov Arizona  | ✅   |  |    |  |    |    |   |   | ✅  |  
-| USGov Virginia | ✅  |  |    |  |    |    |   |   | ✅  |
+To use the Content Safety APIs, you must create your Azure AI Content Safety resource in a supported region. Currently, the Content Safety features are available in the following Azure regions with different API versions: 
+
+| Region              | Custom Category    | Groundedness       | Image | Multimodal(Image with Tex) | Incident Response | Prompt Shield | Protected Material (Text) | Protected Material (Code) | Text | Unified API |
+|--------------------|--------------------|--------------------|-------|-----------------|-------------------|---------------|---------------------------|---------------------------|------|-------------|
+| Australia East                     | ✅                  |                    | ✅    |                 | ✅                 | ✅             | ✅                         | ✅                         | ✅    | ✅           |
+| Canada East                          |                    |                    | ✅    |                 | ✅                 | ✅             | ✅                         | ✅                         | ✅    | ✅           |
+| Central US                             |                    |                    | ✅    |                 | ✅                 | ✅             | ✅                         | ✅                         | ✅    | ✅           |
+| East US                            | ✅                 | ✅                 | ✅    | ✅              | ✅                 | ✅             | ✅                         | ✅                         | ✅    | ✅           |
+| East US 2                           |                    | ✅                 | ✅    |                 | ✅                 | ✅             | ✅                         | ✅                         | ✅    | ✅           |
+| France Central                        |                    | ✅                 | ✅    |                 | ✅                 | ✅             | ✅                         | ✅                         | ✅    | ✅           |
+| Japan East                            |                    |                    | ✅    |                 | ✅                 | ✅             | ✅                         | ✅                         | ✅    | ✅           |
+| North Central US                      |                    |                    | ✅    |                 | ✅                 | ✅             | ✅                         | ✅                         | ✅    | ✅           |
+| Poland Central                        |                    |                    | ✅    |                 |                   | ✅             | ✅                         | ✅                         | ✅    | ✅           |
+| South Central US                     |                    |                    | ✅    |                 | ✅                 | ✅             | ✅                         | ✅                         | ✅    | ✅           |
+| South India                           |                    |                    | ✅    |                 | ✅                 |               | ✅                         | ✅                         | ✅    | ✅           |
+| Sweden Central                        |                    | ✅                 | ✅    |                 | ✅                 | ✅             | ✅                         | ✅                         | ✅    | ✅           |
+| Switzerland North                     | ✅                 |                    | ✅    |                 | ✅                 | ✅             | ✅                         | ✅                         | ✅    | ✅           |
+| Switzerland West                      |                    |                    | ✅    |                 | ✅                 | ✅             | ✅                         | ✅                         | ✅    |             |
+| UAE North                            |                    |                    | ✅    |                 | ✅                 | ✅             | ✅                         | ✅                         | ✅    |             |
+| UK South                             |                    | ✅                 | ✅    |                 | ✅                 | ✅             | ✅                         | ✅                         | ✅    | ✅           |
+| West Europe                          |                    |                    | ✅    | ✅              | ✅                 | ✅             | ✅                         | ✅                         | ✅    | ✅           |
+| West US                              |                    | ✅                 | ✅    |                 | ✅                 | ✅             | ✅                         | ✅                         | ✅    | ✅           |
+| West US 2                            |                    |                    | ✅    |                 | ✅                 | ✅             | ✅                         | ✅                         | ✅    | ✅           |
+| West US 3                            |                    |                    | ✅    |                 | ✅                 | ✅             | ✅                         | ✅                         | ✅    | ✅           |
+| FairFax - USGovArizona|                                     |                    | ✅    |                 |                   | ✅             | ✅                         |                            | ✅    | ✅           |
+| FairFax - USGovVirginia|                                   |                    | ✅    |                 |                   | ✅             | ✅                         |                            | ✅    | ✅           |
 
 Feel free to [contact us](mailto:contentsafetysupport@microsoft.com) if your business needs other regions to be available.
 
@@ -172,10 +173,10 @@ Feel free to [contact us](mailto:contentsafetysupport@microsoft.com) if your bus
 
 Content Safety features have query rate limits in requests-per-second (RPS) or requests-per-10-seconds (RP10S) . See the following table for the rate limits for each feature.
 
-|Pricing tier | Moderation APIs<br>(text and image) | Prompt Shields |  Protected material<br>detection | Groundedness<br>detection (preview) | Custom categories<br>(rapid) (preview) | Custom categories<br>(standard) (preview)|
-|---|-|---|-|-|-|--|
-| F0    | 5 RPS    | 5 RPS   | 5 RPS    | 10 RP10S | 5 RPS | 10 RP10S|
-| S0    | 1000 RP10S    | 1000 RP10S   | 1000 RP10S    | 50 RP10S | 1000 RP10S | 5 RPS|
+|Pricing tier | Moderation APIs<br>(text and image) | Prompt Shields |  Protected material<br>detection | Groundedness<br>detection (preview) | Custom categories<br>(rapid) (preview) | Custom categories<br>(standard) (preview)|Multimodal |
+|---|-|---|-|-|-|--|--|
+| F0    | 5 RPS    | 5 RPS   | 5 RPS    | N/A | 5 RPS | 5 RPS|5 RPS|
+| S0    | 1000 RP10S    | 1000 RP10S   | 1000 RP10S    | 50 RPS | 1000 RP10S | 5 RPS|10 RPS|
 
 If you need a faster rate, please [contact us](mailto:contentsafetysupport@microsoft.com) to request it.
 

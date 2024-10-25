@@ -4,7 +4,7 @@ titleSuffix: Azure AI Search
 description: Data extraction, natural language, and image processing skills add semantics and structure to raw content in an Azure AI Search enrichment pipeline. Data chunking and vectorization skills support vector search scenarios.
 author: HeidiSteen
 ms.author: heidist
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
   - build-2024

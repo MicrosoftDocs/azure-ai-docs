@@ -6,7 +6,7 @@ description: Implement a fuzzy search query for a "did you mean" search experien
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: how-to

@@ -2,9 +2,9 @@
 title: Integrated vectorization with models from Azure AI Studio
 titleSuffix: Azure AI Search
 description: Learn  how to vectorize content during indexing on Azure AI Search with an AI Studio model.
-author: careyjmac
-ms.author: chalton
-ms.service: cognitive-search
+author: gmndrg
+ms.author: gimondra
+ms.service: azure-ai-search
 ms.custom:
   - build-2024
 ms.topic: how-to

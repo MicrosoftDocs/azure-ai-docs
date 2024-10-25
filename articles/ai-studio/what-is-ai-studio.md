@@ -2,14 +2,14 @@
 title: What is Azure AI Studio?
 titleSuffix: Azure AI Studio
 description: Azure AI Studio is a trusted platform that empowers developers to drive innovation and shape the future with AI in a safe, secure, and responsible way.
-manager: nitinme
+manager: scottpolly
 keywords: Azure AI services, cognitive
 ms.service: azure-ai-studio
 ms.topic: overview
 ms.date: 5/21/2024
-ms.reviewer: eur
-ms.author: eur
-author: eric-urban
+ms.reviewer: sgilley
+ms.author: sgilley
+author: sdgilley
 ms.custom: ignite-2023, build-2024
 ---
 

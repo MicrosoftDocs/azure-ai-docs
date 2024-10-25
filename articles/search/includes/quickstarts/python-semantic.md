@@ -1,16 +1,16 @@
 ---
 author: HeidiSteen
 ms.author: heidist
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: include
-ms.date: 03/11/2024
+ms.date: 10/22/2024
 ---
 
-Use a Jupyter notebook and the [**azure-search-documents**](/python/api/overview/azure/search-documents-readme) library in the Azure SDK for Python to learn about semantic ranking. 
+Use a Jupyter notebook and the [**azure-search-documents**](/python/api/overview/azure/search-documents-readme) library in the Azure SDK for Python to learn about semantic ranking.
 
-Alternatively, [download and run a finished notebook](https://github.com/Azure-Samples/azure-search-python-samples/tree/main/Quickstart-Semantic-Search).
+Alternatively, you can [download and run a finished notebook](https://github.com/Azure-Samples/azure-search-python-samples/tree/main/Quickstart-Semantic-Search).
 
 #### Set up your environment
 
@@ -22,7 +22,7 @@ We recommend a virtual environment for this quickstart:
 
 1. Create a new ipynb file.
 
-1. Open the Command Palette (Ctrl+Shift+P).
+1. Open the Command Palette by using **Ctrl+Shift+P**.
 
 1. Search for **Python: Create Environment**.
 
@@ -42,7 +42,7 @@ It can take a minute to set up. If you run into problems, see [Python environmen
     ! pip install python-dotenv --quiet
     ```
 
-1. Provide endpoint and API keys:
+1. Provide your endpoint and API keys:
 
     ```python
     search_endpoint: str = "PUT-YOUR-SEARCH-SERVICE-ENDPOINT-HERE"
@@ -238,9 +238,9 @@ for result in results:
 
 #### Run a text query
 
-For comparison purposes, run text query with BM25 relevance scoring. Full text search is invoked when you provide a query string. The response consists of ranked results, where higher scores are awarded to documents having more instances of matching terms, or more important terms.
+For comparison purposes, run a text query with BM25 relevance scoring. Full text search is invoked when you provide a query string. The response consists of ranked results, where higher scores are awarded to documents having more instances of matching terms, or more important terms.
 
-In this query for "what hotel has a good restaurant on site", Sublime Cliff Hotel comes out on top because its description includes "site". Terms that occur infrequently raise the search score of the document. 
+In this query for *what hotel has a good restaurant on site*, Sublime Cliff Hotel comes out on top because its description includes *site*. Terms that occur infrequently raise the search score of the document. 
 
 ```python
 # Run a text query (returns a BM25-scored result set)

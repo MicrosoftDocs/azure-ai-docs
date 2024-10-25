@@ -3,15 +3,15 @@ metadata:
   title: Azure AI frequently asked questions
   titleSuffix: Azure AI Studio
   description: Get answers to the most popular questions about Azure AI services.
-  manager: nitinme
+  manager: scottpolly
   ms.service: azure-ai-studio
   ms.custom:
     - build-2024
   ms.topic: faq
   ms.date: 5/21/2024
-  ms.reviewer: eur
-  ms.author: eur
-  author: eric-urban
+  ms.reviewer: sgilley
+  ms.author: sgilley
+  author: sdgilley
 title: Azure AI frequently asked questions
 summary: |
   If you can't find answers to your questions in this document, and still need help check the [Azure AI services support options guide](../ai-services/cognitive-services-support-options.md?context=/azure/ai-services/openai/context/context). Azure OpenAI is part of Azure AI services.

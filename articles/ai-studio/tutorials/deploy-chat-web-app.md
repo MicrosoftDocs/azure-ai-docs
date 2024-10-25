@@ -9,14 +9,14 @@ ms.custom:
   - build-2024
 ms.topic: tutorial
 ms.date: 5/21/2024
-ms.reviewer: eur
+ms.reviewer: sgilley
 ms.author: aahi
 author: aahill
 ---
 
 # Tutorial: Deploy an Enterprise Chat web app
 
-[!INCLUDE [Feature preview](~/reusable-content/ce-skilling/azure/includes/ai-studio/includes/feature-preview.md)]
+[!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
 In this article, you deploy an enterprise chat web app that uses your own data with a large language model in AI Studio.
 
@@ -36,7 +36,7 @@ The steps in this tutorial are:
 
 - An [Azure AI Search service connection](../how-to/connections-add.md#create-a-new-connection) to index the sample product data. 
 
-- You need a local copy of product data. The [Azure-Samples/rag-data-openai-python-promptflow repository on GitHub](https://github.com/Azure-Samples/rag-data-openai-python-promptflow/) contains sample retail product information that's relevant for this tutorial scenario. Specifically, the `product_info_11.md` file contains product information about the TrailWalker hiking shoes that's relevant for this tutorial example. [Download the example Contoso Trek retail product data in a ZIP file](https://github.com/Azure-Samples/rag-data-openai-python-promptflow/raw/main/tutorial/data.zip) to your local machine.
+- You need a local copy of product data. The [Azure-Samples/rag-data-openai-python-promptflow repository on GitHub](https://github.com/Azure-Samples/rag-data-openai-python-promptflow/) contains sample retail product information that's relevant for this tutorial scenario. Specifically, the `product_info_11.md` file contains product information about the TrailWalker hiking shoes that's relevant for this tutorial example. [Download the example Contoso Trek retail product data in a ZIP file](https://github.com/Azure-Samples/rag-data-openai-python-promptflow/raw/refs/heads/main/tutorial/data/product-info.zip) to your local machine.
 
 - You need to have **Microsoft.Web** resource provider registered in the selected subscription, to be able to deploy to a web app.
 

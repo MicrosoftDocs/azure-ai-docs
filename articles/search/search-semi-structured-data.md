@@ -6,7 +6,7 @@ description: Learn how to index and search semi-structured Azure JSON blobs usin
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: tutorial

@@ -1,5 +1,5 @@
 ---
-title: Azure OpenAI Service | Introduction to Prompt engineering
+title: Azure OpenAI Service | Prompt engineering techniques
 titleSuffix: Azure OpenAI
 description: Learn how to use prompt engineering to optimize your work with Azure OpenAI Service.
 ms.service: azure-ai-openai
@@ -12,7 +12,7 @@ ms.author: mbullwin
 recommendations: false
 ---
 
-# Introduction to prompt engineering
+# Prompt engineering techniques
 
 GPT-3, GPT-3.5, GPT-4, and GPT-4o models from OpenAI are prompt-based. With prompt-based models, the user interacts with the model by entering a text prompt, to which the model responds with a text completion. This completion is the model’s continuation of the input text.
 
@@ -102,6 +102,29 @@ Supporting content is information that the model can utilize to influence the ou
 | Without | Workshop list:<br>Title	Description<br> Planning Workshop Kickoff Please join us to kick off our workshop! Hear from our leaders about cross group priorities and learnings for the year ahead. The invitation to this event has already been sent to everyone in […]<br>Summarize the workshops above, grouped by topic: | Workshop list: <br> Planning Workshop Kickoff <br> -Planning Workshop Wrap-up<br>- Core MeetUp<br>- Customer Driven Perspectives<br>-Impact and Key Focus Areas<br>-Best practices<br>-Accelerating app adoption […] |
 | With | Workshop list: <br>Title	Description<br>Planning Workshop Kickoff	Please join us to kick off our workshop! Hear from our leaders about cross group priorities and learnings for the year ahead. The invitation to this event has already been sent to everyone in […] <br>My Important Topics: prompt engineering, search, GPT models<br>Summarize the workshops above, grouped by my important topics:| 1. Prompt Engineering: <br>- New prompt engineering tips<br>- The art of prompt engineering<br>2. Search:<br>-Intro to vector search with embedding<br>3. GPT Models:<br>- Intro to GPT-4<br>- GPT-35-Turbo in-depth.|
 
+## Scenario-specific guidance
+
+While the principles of prompt engineering can be generalized across many different model types, certain models expect a specialized prompt structure. For Azure OpenAI GPT models, there are currently two distinct APIs where prompt engineering comes into play:
+
+- Chat Completion API.
+- Completion API.
+
+Each API requires input data to be formatted differently, which in turn impacts overall prompt design. The **Chat Completion API** supports the GPT-35-Turbo and GPT-4 models. These models are designed to take input formatted in a [specific chat-like transcript](../how-to/chatgpt.md) stored inside an array of dictionaries.
+
+The **Completion API** supports the older GPT-3 models and has much more flexible input requirements in that it takes a string of text with no specific format rules.
+
+The techniques in this section will teach you strategies for increasing the accuracy and grounding of responses you generate with a Large Language Model (LLM). It is, however, important to remember that even when using prompt engineering effectively you still need to validate the responses the models generate. Just because a carefully crafted prompt worked well for a particular scenario doesn't necessarily mean it will generalize more broadly to certain use cases. Understanding the [limitations of LLMs](/legal/cognitive-services/openai/transparency-note?context=/azure/ai-services/openai/context/context#limitations), is just as important as understanding how to leverage their strengths.
+
+#### [Chat completion APIs](#tab/chat)
+
+[!INCLUDE [Prompt Chat Completion](../includes/prompt-chat-completion.md)]
+
+#### [Completion APIs](#tab/completion)
+
+[!INCLUDE [Prompt Completion](../includes/prompt-completion.md)]
+
+---
+
 ## Best practices
 
 - **Be Specific**. Leave as little to interpretation as possible. Restrict the operational space.
@@ -118,8 +141,10 @@ While the input size increases with each new generation of GPT models, there wil
 
 Given this limited space, it is important to use it as efficiently as possible.
 - Tables – As shown in the examples in the previous section, GPT models can understand tabular formatted data quite easily. This can be a space efficient way to include data, rather than preceding every field with name (such as with JSON). 
-- White Space – Consecutive whitespaces are treated as separate tokens which can be an easy way to waste space. Spaces preceding a word, on the other hand, are typically treated as part of the same token as the word. Carefully watch your usage of whitespace and don’t use punctuation when a space alone will do.
+- White Space – Consecutive whitespaces are treated as separate tokens which can be an easy way to waste space. Spaces preceding a word, on the other hand, are typically treated as part of the same token as the word. Carefully watch your usage of whitespace and don’t use punctuation when a space alone will do. 
 
-## Next steps
+## Related content 
 
-[Learn more about Azure OpenAI.](../overview.md)
+* [Learn more about Azure OpenAI](../overview.md).
+* Get started with the ChatGPT model with [the ChatGPT quickstart](../chatgpt-quickstart.md).
+* For more examples, check out the [Azure OpenAI Samples GitHub repository](https://github.com/Azure/openai-samples)

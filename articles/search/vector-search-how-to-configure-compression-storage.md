@@ -5,16 +5,18 @@ description: Configure vector compression options and vector storage using narro
 
 author: heidisteen
 ms.author: heidist
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 08/14/2024
+ms.date: 10/01/2024
 ---
 
 # Reduce vector size through quantization, narrow data types, and storage options
 
-This article explains how to use vector quantization and other techniques for reducing vector size in Azure AI Search. The search index specifies vector field definitions, including properties for stored and narrow data types. Quantization is also specified in the index and assigned to vector field through its vector profile. 
+This article explains how to use vector quantization and other techniques for reducing vector size in Azure AI Search. The search index specifies vector field definitions, including properties used to specify narrow data types or control whether a copy of vector content is retained for search results. Quantization is also specified in the index and assigned to vector field through its vector profile.
 
-These features are generally available in [2024-07-01 REST API](/rest/api/searchservice/operation-groups?view=rest-searchservice-2024-07-01&preserve-view=true) and in the Azure SDK packages targeting that version. [An example](#example-vector-compression-techniques) at the end of this article shows the variations in vector size for each of the approaches described in this article.
+Most of the features described in this article are generally available in [2024-07-01 REST API](/rest/api/searchservice/operation-groups?view=rest-searchservice-2024-07-01&preserve-view=true) and in the Azure SDK packages targeting that version. The [latest preview version](/rest/api/searchservice/operation-groups?view=rest-searchservice-2024-09-01-preview&preserve-view=true) adds support for truncated dimensions if you're using text-embedding-3-large or text-embedding-3-small for vectorization.
+
+[An example](#example-vector-compression-techniques) at the end of this article shows the variations in vector size for each of the approaches described in this article.
 
 ## Evaluate the options
 
@@ -25,6 +27,7 @@ We recommend built-in quantization because it compresses vector size in memory *
 | Approach | Why use this option |
 |----------|---------------------|
 | [Add scalar or binary quantization](#option-1-configure-quantization) | Use quantization to compress native float32 or float16  embeddings to  int8  (scalar) or Byte (binary). This option reduces storage in memory and on disk with no degradation of query performance. Smaller data types like int8 or Byte produce vector indexes that are less content-rich than those with larger embeddings. To offset information loss, built-in compression includes options for post-query processing using uncompressed embeddings and oversampling to return more relevant results. Reranking and oversampling are specific features of built-in quantization of float32 or float16 fields and can't be used on embeddings that undergo custom quantization. |
+| [Truncate dimensions for MRL-capable text-embedding-3 models (preview)](#use-mrl-compression-and-truncated-dimensions-preview) | Exercise the option to use fewer dimensions on text-embedding-3 models. On Azure OpenAI, these models have been retrained on the [Matryoshka Representation Learning (MRL)](https://arxiv.org/abs/2205.13147) technique that produces multiple vector representations at different levels of compression. This approach produces faster searches and reduced storage costs, with minimal loss of semantic information. In Azure AI Search, MRL support supplements scalar and binary quantization. When you use either quantization method, you can also specify a `truncateDimension` property on your vector fields to reduce the dimensionality of text embeddings. |
 | [Assign smaller primitive data types to vector fields](#option-2-assign-narrow-data-types-to-vector-fields) | Narrow data types, such as float16, int16,  int8, and Byte (binary) consume less space in memory and on disk, but you must have an embedding model that outputs vectors in a narrow data format. Or, you must have custom quantization logic that outputs small data. A third use case that requires less effort is recasting native float32 embeddings produced by most models to float16. See [Index binary vectors](vector-search-how-to-index-binary-data.md) for details about binary vectors. |
 | [Eliminate optional storage of retrievable vectors](#option-3-set-the-stored-property-to-remove-retrievable-storage) | Vectors returned in a query response are stored separately from vectors used during query execution. If you don't need to return vectors, you can turn off retrievable storage, reducing overall per-field disk storage by up to 50 percent. |
 
@@ -36,7 +39,7 @@ After the index is defined, you can load and index documents as a separate step.
 
 Quantization is recommended for reducing vector size because it lowers both memory and disk storage requirements for float16 and float32 embeddings. To offset the effects of a smaller index, you can add oversampling and reranking over uncompressed vectors.
 
-Quantization applies to vector fields receiving float-type vectors. In the examples in this article, the field's data type is `Collection(Edm.Single)` for incoming float32 embeddings, but float16 is also supported. When the vectors are received on a field with compression configured, the engine automatically performs quantization to reduce the footprint of the vector data in memory and on disk. 
+Quantization applies to vector fields receiving float-type vectors. In the examples in this article, the field's data type is `Collection(Edm.Single)` for incoming float32 embeddings, but float16 is also supported. When the vectors are received on a field with compression configured, the engine automatically performs quantization to reduce the footprint of the vector data in memory and on disk.
 
 Two types of quantization are supported:
 
@@ -47,7 +50,7 @@ Two types of quantization are supported:
 To use built-in quantization, follow these steps:
 
 > [!div class="checklist"]
-> - Use [Create Index](/rest/api/searchservice/indexes/create) or [Create Or Update Index](/rest/api/searchservice/indexes/create-or-update) to specify vector compression 
+> - Use [Create Index](/rest/api/searchservice/indexes/create) or [Create Or Update Index](/rest/api/searchservice/indexes/create-or-update) to specify vector compression
 > - Add `vectorSearch.compressions` to a search index
 > - Add a `scalarQuantization` or `binaryQuantization` configuration and give it a name
 > - Set optional properties to mitigate the effects of lossy indexing
@@ -58,7 +61,7 @@ To use built-in quantization, follow these steps:
 
 ### Add "compressions" to a search index
 
-The following example shows a partial index definition with a fields collection that includes a vector field, and a `vectorSearch.compressions` section. 
+The following example shows a partial index definition with a fields collection that includes a vector field, and a `vectorSearch.compressions` section.
 
 This example includes both `scalarQuantization` or `binaryQuantization`. You can specify as many compression configurations as you need, and then assign the ones you want to a vector profile.
 
@@ -70,7 +73,7 @@ POST https://[servicename].search.windows.net/indexes?api-version=2024-07-01
   "fields": [
     { "name": "Id", "type": "Edm.String", "key": true, "retrievable": true, "searchable": true, "filterable": true },
     { "name": "content", "type": "Edm.String", "retrievable": true, "searchable": true },
-    { "name": "vectorContent", "type": "Collection(Edm.Single)", "retrievable": false, "searchable": true },
+    { "name": "vectorContent", "type": "Collection(Edm.Single)", "retrievable": false, "searchable": true, "dimensions": 1536,"vectorSearchProfile": "vector-profile-1"},
   ],
   "vectorSearch": {
         "profiles": [ ],
@@ -156,9 +159,9 @@ To use a new quantization configuration, you must create a *new* vector profile.
    }
    ```
 
-1. Assign a vector profile to a *new* vector field. The data type of the field is either float32 or float16. 
+1. Assign a vector profile to a *new* vector field. The data type of the field is either float32 or float16.
 
-   In Azure AI Search, the Entity Data Model (EDM) equivalents of float32 and float16 types are `Collection(Edm.Single)` and `Collection(Edm.Half)`, respectively. 
+   In Azure AI Search, the Entity Data Model (EDM) equivalents of float32 and float16 types are `Collection(Edm.Single)` and `Collection(Edm.Half)`, respectively.
 
    ```json
    {
@@ -177,13 +180,120 @@ To use a new quantization configuration, you must create a *new* vector profile.
 
 Scalar quantization reduces the resolution of each number within each vector embedding. Instead of describing each number as a 16-bit or 32-bit floating point number, it uses an 8-bit integer. It identifies a range of numbers (typically 99th percentile minimum and maximum) and divides them into a finite number of levels or bin, assigning each bin an identifier. In 8-bit scalar quantization, there are 2^8, or 256, possible bins.
 
-Each component of the vector is mapped to the closest representative value within this set of quantization levels in a process akin to rounding a real number to the nearest integer. In the quantized 8-bit vector, the identifier number stands in place of the original value. After quantization, each vector is represented by an array of identifiers for the bins to which its components belong. These quantized vectors require much fewer bits to store compared to the original vector, thus reducing storage requirements and memory footprint. 
+Each component of the vector is mapped to the closest representative value within this set of quantization levels in a process akin to rounding a real number to the nearest integer. In the quantized 8-bit vector, the identifier number stands in place of the original value. After quantization, each vector is represented by an array of identifiers for the bins to which its components belong. These quantized vectors require much fewer bits to store compared to the original vector, thus reducing storage requirements and memory footprint.
 
 ### How  binary quantization works in Azure AI Search
 
 Binary quantization compresses high-dimensional vectors by representing each component as a single bit, either 0 or 1. This method drastically reduces the memory footprint and accelerates vector comparison operations, which are crucial for search and retrieval tasks. Benchmark tests show up to 96% reduction in vector index size.
 
-It's particularly effective for embeddings with dimensions greater than 1024. For smaller dimensions, we recommend testing the quality of binary quantization, or trying scalar instead. Additionally, we’ve found BQ performs very well when embeddings are centered around zero. Most popular embedding models such as OpenAI, Cohere, and Mistral are centered around zero. 
+It's particularly effective for embeddings with dimensions greater than 1024. For smaller dimensions, we recommend testing the quality of binary quantization, or trying scalar instead. Additionally, we’ve found BQ performs very well when embeddings are centered around zero. Most popular embedding models such as OpenAI, Cohere, and Mistral are centered around zero.
+
+### Use MRL compression and truncated dimensions (preview)
+
+MRL multilevel compression saves on vector storage and improves query response times for vector queries based on text embeddings. In Azure AI Search, MRL support is only offered together with another method of quantization. Using binary quantization with MRL provides the maximum vector index size reduction. To achieve maximum storage reduction, use binary quantization with MRL, and `stored` set to false.
+
+This feature is in preview. It's available in `2024-09-01-preview` and in beta SDK packages targeting that preview API version.
+
+#### Requirements
+
+- Text-embedding-3-small, Text-embedding-3-large (text content only).
+- New vector fields of type `Edm.Half` or `Edm.Single` (you can't add MRL compression to an existing field).
+- [HNSW algorithm](vector-search-ranking.md) (no support for exhaustive KNN in this preview).
+- [Configure scalar or binary quantization](#option-1-configure-quantization). We recommend binary quantization.
+
+#### Supported clients
+
+- [REST API 2024-09-01-preview](/rest/api/searchservice/indexes/create-or-update?view=rest-searchservice-2024-09-01-preview&preserve-view=true)
+- Check the change logs for each Azure SDK beta package: [Python](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/search/azure-search-documents/CHANGELOG.md), [.NET](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/search/Azure.Search.Documents/CHANGELOG.md), [Java](https://github.com/Azure/azure-sdk-for-java/blob/azure-search-documents_11.1.3/sdk/search/azure-search-documents/CHANGELOG.md), [JavaScript](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/search/search-documents/CHANGELOG.md).
+
+There's no Azure portal or Azure AI Studio support at this time.
+
+#### How to use MRL-extended text embeddings
+
+MRL is a capability of the textembedding model. To benefit from those capabilities in Azure AI Search, follow these steps.
+
+1. Specify a `vectorSearch.compressions` object in your index definition.
+1. Include a quantization method, either scalar or binary (recommended).
+1. Include the `truncationDimension` parameter set to 512, or as low as 256 if you use the text-embedding-3-large model.
+1. Specify a vector profile that specifies the HNSW algorithm and the vector compression object.
+1. Assign the vector profile to a vector field of type `Edm.Half` or `Edm.Single` in the fields collection.
+
+There are no query-side modifications for using an MRL-capable text embedding model. Integrated vectorization, text-to-query conversions at query time, semantic ranking and other relevance enhancement features such as reranking with original vectors and oversampling are unaffected by MRL support.
+
+Indexing is slower due to the extra steps, but queries will be faster.
+
+#### Example of a vector search configuration that supports MRL
+
+The following example illustrates a vector search configuration that meets the requirements and recommendations of MRL.
+
+`truncationDimension` is a compression property. It specifies how much to shrink the vector graph in memory in conjunction with a compression method like scalar or binary compression. We recommend 1,024 or higher for `truncationDimension` with binary quantization. A dimensionality of less than 1,000 degrades the quality of search results when using MRL and binary compression.
+
+```json
+{ 
+  "vectorSearch": { 
+    "profiles": [ 
+      { 
+        "name": "use-bq-with-mrl", 
+        "compression": "use-mrl,use-bq", 
+        "algorithm": "use-hnsw" 
+      } 
+    ],
+    "algorithms": [
+       {
+          "name": "use-hnsw",
+          "kind": "hnsw",
+          "hnswParameters": {
+             "m": 4,
+             "efConstruction": 400,
+             "efSearch": 500,
+             "metric": "cosine"
+          }
+       }
+    ],
+    "compressions": [ 
+      { 
+        "name": "use-mrl", 
+        "kind": "truncation", 
+        "rerankWithOriginalVectors": true, 
+        "defaultOversampling": 10, 
+        "truncationDimension": 1024
+      }, 
+      { 
+        "name": "use-bq", 
+        "kind": "binaryQuantization", 
+        "rerankWithOriginalVectors": true,
+        "defaultOversampling": 10
+       } 
+    ] 
+  } 
+} 
+```
+
+Here's an example of a [fully specified vector field definition](/rest/api/searchservice/indexes/create-or-update?view=rest-searchservice-2024-09-01-preview&preserve-view=true#searchfield) that satisfies the requirements for MRL.
+
+Recall that vector fields must be of type `Edm.Half` or `Edm.Single`. Vector fields must have a `vectorSearchProfile` property that determines the algorithm and compression settings. Vector fields have a `dimensions` property used for specifying the number of dimensions for scoring and ranking results. Its value should be dimensions limit of the model you're using (1,536 for text-embedding-3-small).
+
+```json
+{
+    "name": "text_vector",
+    "type": "Collection(Edm.Single)",
+    "searchable": true,
+    "filterable": false,
+    "retrievable": false,
+    "stored": false,
+    "sortable": false,
+    "facetable": false,
+    "key": false,
+    "indexAnalyzer": null,
+    "searchAnalyzer": null,
+    "analyzer": null,
+    "normalizer": null,
+    "dimensions": 1536,
+    "vectorSearchProfile": "use-bq-with-mrl",
+    "vectorEncoding": null,
+    "synonymMaps": []
+}
+```
 
 ## Option 2: Assign narrow data types to vector fields
 
@@ -232,7 +342,7 @@ Considerations for setting `stored` to false:
 
 - Because vectors aren't human readable, you can omit them from results sent to LLMs in RAG scenarios, and from results that are rendered on a search page. Keep them, however, if you're using vectors in a downstream process that consumes vector content.
 
-- However, if your indexing strategy includes [partial document updates](search-howto-reindex.md#update-content), such as "merge" or "mergeOrUpload" on a document, be aware that setting `stored` to false will cause vectors in the non-stored field to be omitted during the merge. On each "merge" or "mergeOrUpload" operation, you must provide the vector fields in addition to other nonvector fields that you're updating, or the vector will be dropped. 
+- However, if your indexing strategy includes [partial document updates](search-howto-reindex.md#update-content), such as "merge" or "mergeOrUpload" on a document, be aware that setting `stored` to false will cause vectors in the non-stored field to be omitted during the merge. On each "merge" or "mergeOrUpload" operation, you must provide the vector fields in addition to other nonvector fields that you're updating, or the vector will be dropped.
 
 Remember that the `stored` attribution is irreversible. It's set during index creation on vector fields when physical data structures are created. If you want retrievable vector content later, you must drop and rebuild the index, or create and load a new field that has the new attribution.
 
@@ -270,7 +380,7 @@ The following example shows the fields collection of a search index. Set `stored
 
 ## Example: vector compression techniques
 
-Here's Python code that demonstrates quantization, narrow data types, and use of the stored property: [Code sample: Vector quantization and storage options using Python](https://github.com/Azure/azure-search-vector-samples/blob/main/demo-python/code/vector-quantization-and-storage/README.md). 
+Here's Python code that demonstrates quantization, narrow data types, and use of the stored property: [Code sample: Vector quantization and storage options using Python](https://github.com/Azure/azure-search-vector-samples/blob/main/demo-python/code/vector-quantization-and-storage/README.md).
 
 This code creates and compares storage and vector index size for each option:
 

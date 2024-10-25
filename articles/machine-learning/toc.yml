@@ -594,6 +594,16 @@ items:
       href: how-to-use-foundation-models.md
     - name: Hugging Face Hub community partner models
       href: how-to-deploy-models-from-huggingface.md
+    - name: Healthcare AI models
+      items:
+        - name: Foundational AI models for healthcare
+          href: /azure/ai-studio/how-to/healthcare-ai/healthcare-ai-models?toc=/azure/machine-learning/toc.json&bc=/azure/machine-learning/breadcrumb/toc.json
+        - name: MedImageInsight - embedding model
+          href: /azure/ai-studio/how-to/healthcare-ai/deploy-medimageinsight?toc=/azure/machine-learning/toc.json&bc=/azure/machine-learning/breadcrumb/toc.json
+        - name: CXRReportGen - text generation model
+          href: /azure/ai-studio/how-to/healthcare-ai/deploy-cxrreportgen?toc=/azure/machine-learning/toc.json&bc=/azure/machine-learning/breadcrumb/toc.json
+        - name: MedImageParse - prompted segmentation model
+          href: /azure/ai-studio/how-to/healthcare-ai/deploy-medimageparse?toc=/azure/machine-learning/toc.json&bc=/azure/machine-learning/breadcrumb/toc.json
     - name: Phi-3 family models
       items:
         - name: Phi-3 family chat models
@@ -1193,6 +1203,8 @@ items:
         - name: Enterprise security overview
           displayName: authorization authentication encryption aad azure active directory
           href: concept-enterprise-security.md
+        - name: Network isolation configurations
+          href: concept-network-isolation-configurations.md
         - name: Secured workspace traffic flow
           href: concept-secure-network-traffic-flow.md
         - name: Security baseline
@@ -1236,6 +1248,8 @@ items:
         - name: Use private endpoint
           displayName: private endpoint
           href: how-to-configure-private-link.md
+        - name: Securely use on-premises resources
+          href: how-to-access-on-premises-resources.md
         - name: Use custom DNS
           href: how-to-custom-dns.md
         - name: Use Azure Virtual Network

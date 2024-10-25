@@ -5,7 +5,7 @@ description: Configure an indexer connection to access content in an Azure SQL M
 
 author: mattgotteiner
 ms.author: magottei
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.topic: how-to
 ms.date: 05/23/2024
 ---
@@ -14,7 +14,7 @@ ms.date: 05/23/2024
 
 This article explains how to configure an indexer in Azure AI Search for a private connection to a SQL managed instance that runs within a virtual network. The private connection is through a [shared private link](search-indexer-howto-access-private.md) and Azure Private Link.
 
-On a private connection to a managed instance, the fully qualified domain name (FQDN) of the instance must include the [DNS Zone](/azure/azure-sql/managed-instance/connectivity-architecture-overview#virtual-cluster-connectivity-architecture). Currently, only the Azure AI Search Management REST API provides a `resourceRegion` parameter for accepting the DNS zone specification.
+On a private connection to a managed instance, the fully qualified domain name (FQDN) of the instance must include the [DNS Zone](/azure/azure-sql/managed-instance/connectivity-architecture-overview#virtual-cluster-connectivity-architecture). Currently, only the Azure AI Search Management REST API provides a `dnsZonePrefix` parameter for accepting the DNS zone specification.
 
 Although you can call the Management REST API directly, it's easier to use the Azure CLI `az rest` module to send Management REST API calls from a command line. This article uses the Azure CLI with REST to set up the private link.
 
@@ -57,7 +57,7 @@ For more information about connection properties, see [Create an Azure SQL Manag
        "name": "{{shared-private-link-name}}",
        "properties": {
            "privateLinkResourceId": "/subscriptions/{{target-resource-subscription-ID}}/resourceGroups/{{target-resource-rg}}/providers/Microsoft.Sql/managedInstances/{{target-resource-name}}",
-           "resourceRegion": "a1b22c333d44",
+           "dnsZonePrefix": "a1b22c333d44",
            "groupId": "managedInstance",
            "requestMessage": "please approve",
        }
@@ -66,7 +66,7 @@ For more information about connection properties, see [Create an Azure SQL Manag
 
 1. Provide a meaningful name for the shared private link. The shared private link appears alongside other private endpoints. A name like "shared-private-link-for-search" can remind you how it's used.
 
-1. Paste in the DNS zone name in "resourceRegion" that you retrieved in an earlier step.
+1. Paste in the DNS zone name in "dnsZonePrefix" that you retrieved in an earlier step.
 
 1. Edit the "privateLinkResourceId" to reflect the private endpoint of your managed instance. Provide the subscription ID, resource group name, and object name of the managed instance.
 
@@ -128,7 +128,7 @@ This article assumes a [REST client](search-get-started-rest.md) and uses the RE
 
 1. [Create the data source definition](search-howto-connecting-azure-sql-database-to-azure-search-using-indexers.md) as you would normally for Azure SQL. The format of the connection string is slightly different for a managed instance, but other properties are the same as if you were configuring a data source connection to Azure SQL database.
 
-    Provide the connection string that you copied earlier.
+    Provide the connection string that you copied earlier with an Initial Catalog specified.
 
     ```http
     POST https://myservice.search.windows.net/datasources?api-version=2024-07-01
@@ -139,7 +139,7 @@ This article assumes a [REST client](search-get-started-rest.md) and uses the RE
          "description" : "A database for testing Azure AI Search indexes.",
          "type" : "azuresql",
          "credentials" : { 
-             "connectionString" : "Server=tcp:contoso.public.0000000000.database.windows.net,1433; Persist Security Info=false; User ID=<your user name>; Password=<your password>;MultipleActiveResultsSets=False; Encrypt=True;Connection Timeout=30;" 
+             "connectionString" : "Server=tcp:contoso.public.0000000000.database.windows.net,1433;Persist Security Info=false; User ID=<your user name>; Password=<your password>;MultipleActiveResultsSets=False; Encrypt=True;Connection Timeout=30;Initial Catalog=<your database name>"
             },
          "container" : { 
              "name" : "Name of table or view to index",
@@ -147,8 +147,7 @@ This article assumes a [REST client](search-get-started-rest.md) and uses the RE
              },
          "dataChangeDetectionPolicy": null,
          "dataDeletionDetectionPolicy": null,
-         "encryptionKey": null,
-         "identity": null
+         "encryptionKey": null
      }
     ```
 

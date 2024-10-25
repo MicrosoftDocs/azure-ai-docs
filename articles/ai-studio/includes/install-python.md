@@ -3,7 +3,7 @@ title: include file
 description: include file
 author: sdgilley
 ms.reviewer: sgilley
-ms.author: esgiley
+ms.author: sgilley
 ms.service: azure-ai-studio
 ms.topic: include
 ms.date: 08/29/2024

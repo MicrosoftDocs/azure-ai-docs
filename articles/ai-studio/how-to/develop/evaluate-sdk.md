@@ -2,7 +2,7 @@
 title: Evaluate with the Azure AI Evaluation SDK
 titleSuffix: Azure AI Studio
 description: This article provides instructions on how to evaluate with the Azure AI Evaluation SDK.
-manager: nitinme
+manager: scottpolly
 ms.service: azure-ai-studio
 ms.custom:
   - build-2024
@@ -15,7 +15,7 @@ author: lgayhardt
 ---
 # Evaluate with the Azure AI Evaluation SDK
 
-[!INCLUDE [Feature preview](~/reusable-content/ce-skilling/azure/includes/ai-studio/includes/feature-preview.md)]
+[!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
 > [!NOTE]
 > Evaluate with the prompt flow has been retired and replaced with Azure AI Evaluate.

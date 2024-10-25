@@ -17,6 +17,8 @@ ms.custom: build-2024, serverless, devx-track-azurecli
 
 In this article, you learn how to deploy a model from the model catalog as a serverless API with pay-as-you-go token based billing.
 
+[!INCLUDE [models-preview](../includes/models-preview.md)]
+
 [Certain models in the model catalog](deploy-models-serverless-availability.md) can be deployed as a serverless API with pay-as-you-go billing. This kind of deployment provides a way to consume models as an API without hosting them on your subscription, while keeping the enterprise security and compliance that organizations need. This deployment option doesn't require quota from your subscription.
 
 This article uses a Meta Llama model deployment for illustration. However, you can use the same steps to deploy any of the [models in the model catalog that are available for serverless API deployment](deploy-models-serverless-availability.md).
@@ -325,7 +327,7 @@ In this section, you create an endpoint with the name **meta-llama3-8b-qwerty**.
 
         :::image type="content" source="../media/deploy-monitor/serverless/deployment-name.png" alt-text="A screenshot showing how to specify the name of the deployment you want to create." lightbox="../media/deploy-monitor/serverless/deployment-name.png":::
        > [!TIP]
-       > The **Content filter (preview)** option is enabled by default. Leave the default setting for the service to detect harmful content such as hate, self-harm, sexual, and violent content. For more information about content filtering, see [Content filtering in Azure AI Studio](../concepts/content-filtering.md).
+       > The **Content filter (preview)** option is enabled by default. Leave the default setting for the service to detect harmful content such as hate, self-harm, sexual, and violent content. For more information about content filtering (preview), see [Content filtering in Azure AI Studio](../concepts/content-filtering.md).
 
     1. Select **Deploy**. Wait until the deployment is ready and you're redirected to the Deployments page.
 

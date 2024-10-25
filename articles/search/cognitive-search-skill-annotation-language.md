@@ -5,7 +5,7 @@ description: Annotation syntax reference for annotation in the context, inputs, 
 
 author: BertrandLeRoy
 ms.author: beleroy
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
   - build-2024

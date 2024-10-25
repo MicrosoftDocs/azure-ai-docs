@@ -5,7 +5,7 @@ services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: conceptual 
-ms.date: 09/05/2024
+ms.date: 10/16/2024
 author: mrbullwinkle
 ms.author: mbullwin
 recommendations: false
@@ -23,8 +23,8 @@ This article is to help you understand the support lifecycle for the Azure OpenA
 
 Azure OpenAI API latest release:
 
-- Inference: [2024-08-01-preview](https://github.com/Azure/azure-rest-api-specs/blob/main/specification/cognitiveservices/data-plane/AzureOpenAI/inference/preview/2024-08-01-preview/inference.json)
-- Authoring: [2024-08-01-preview](https://github.com/Azure/azure-rest-api-specs/blob/main/specification/cognitiveservices/data-plane/AzureOpenAI/authoring/preview/2024-08-01-preview/azureopenai.json)
+- Inference: [2024-10-01-preview](https://github.com/Azure/azure-rest-api-specs/blob/main/specification/cognitiveservices/data-plane/AzureOpenAI/inference/preview/2024-10-01-preview/inference.json)
+- Authoring: [2024-10-01-preview](https://github.com/Azure/azure-rest-api-specs/blob/main/specification/cognitiveservices/data-plane/AzureOpenAI/authoring/preview/2024-10-01-preview/azureopenai.json)
 
 This version contains support for the latest Azure OpenAI features including:
 
@@ -37,6 +37,13 @@ This version contains support for the latest Azure OpenAI features including:
 - [Whisper](./whisper-quickstart.md). [**Added in 2023-09-01-preview**]
 - [Function calling](./how-to/function-calling.md)  [**Added in 2023-07-01-preview**]
 - [Retrieval augmented generation with your data feature](./use-your-data-quickstart.md).  [**Added in 2023-06-01-preview**]
+
+## Changes between 2024-09-01-preview and 2024-08-01-preview
+
+- `max_completion_tokens` added to support `o1-preview` and `o1-mini` models. `max_tokens` does not work with the **o1 series** models.
+- `parallel_tool_calls` added.
+- `completion_tokens_details` & `reasoning_tokens` added.
+- `stream_options` & `include_usage` added.
 
 ## Changes between 2024-07-01-preview and 2024-08-01-preview API specification
 

@@ -7,7 +7,7 @@ author: jboback
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: conceptual
-ms.date: 12/19/2023
+ms.date: 10/21/2024
 ms.author: jboback
 ms.custom: language-service-pii
 ---
@@ -22,7 +22,6 @@ The PII feature includes the ability to detect personal (`PII`) and health (`PHI
 
 > [!NOTE]
 > To detect protected health information (PHI), use the `domain=phi` parameter and model version `2020-04-01` or later.
-
 
 The following entity categories are returned when you're sending API requests PII feature.
 
@@ -47,7 +46,7 @@ This category contains the following entity:
     :::column-end:::
     
     :::column span="":::
-      **Supported document languages**
+      **Supported languages**
 
       `en`, `es`, `fr`, `de`, `it`, `zh-hans`, `ja`, `ko`, `pt-pt`, `pt-br`   
       
@@ -76,7 +75,7 @@ This category contains the following entity:
     :::column-end:::
 
     :::column span="":::
-      **Supported document languages**
+      **Supported languages**
 
       `en`, `es`, `fr`, `de`, `it`, `zh-hans`, `ja`, `ko`, `pt-pt`, `pt-br`  
       
@@ -104,7 +103,7 @@ This category contains the following entity:
     :::column-end:::
 
     :::column span="":::
-      **Supported document languages**
+      **Supported languages**
 
       `en`, `es`, `fr`, `de`, `it`, `zh-hans`, `ja`, `ko`, `pt-pt` `pt-br`
       
@@ -134,7 +133,7 @@ This category contains the following entity:
     :::column-end:::
 
     :::column span="":::
-      **Supported document languages**
+      **Supported languages**
 
       `en`, `es`, `fr`, `de`, `it`, `zh-hans`, `ja`, `ko`, `pt-pt`, `pt-br`  
       
@@ -163,7 +162,7 @@ The entity in this category can have the following subcategories.
     :::column-end:::
 
     :::column span="":::
-      **Supported document languages**
+      **Supported languages**
 
       `en`   
       
@@ -235,7 +234,7 @@ This category contains the following entity:
     :::column-end:::
 
     :::column span="":::
-      **Supported document languages**
+      **Supported languages**
 
       `en`, `es`, `fr`, `de`, `it`, `zh-hans`, `ja`, `ko`, `pt-pt`, `pt-br`
       
@@ -263,7 +262,7 @@ This category contains the following entity:
 
     :::column-end:::
     :::column span="":::
-      **Supported document languages**
+      **Supported languages**
 
       `en`, `es`, `fr`, `de`, `it`, `zh-hans`, `ja`, `ko`, `pt-pt`, `pt-br`
       
@@ -292,7 +291,7 @@ This category contains the following entity:
     :::column-end:::
 
     :::column span="":::
-      **Supported document languages**
+      **Supported languages**
 
       `en`, `es`, `fr`, `de`, `it`, `zh-hans`, `ja`, `ko`, `pt-pt`, `pt-br`
       
@@ -321,7 +320,7 @@ This category contains the following entity:
     :::column-end:::
 
     :::column span="":::
-      **Supported document languages**
+      **Supported languages**
 
       `en`, `es`, `fr`, `de`, `it`, `zh-hans`, `ja`, `ko`, `pt-pt`, `pt-br`
       
@@ -348,7 +347,7 @@ This category contains the following entities:
       
     :::column-end:::
 :::column span="":::
-      **Supported document languages**
+      **Supported languages**
 
       `en`, `es`, `fr`, `de`, `it`, `zh-hans`, `ja`, `ko`, `pt-pt`, `pt-br`
       
@@ -375,7 +374,7 @@ The entity in this category can have the following subcategories.
       
     :::column-end:::
     :::column span="2":::
-      **Supported document languages**
+      **Supported languages**
       
       `en`, `es`, `fr`, `de`, `it`, `zh-hans`, `ja`, `ko`, `pt-pt`, `pt-br`   
       
@@ -401,7 +400,7 @@ The PII service supports the Age subcategory within the broader Quantity categor
       
     :::column-end:::
     :::column span="2":::
-      **Supported document languages**
+      **Supported languages**
 
       `en`, `es`, `fr`, `de`, `it`, `zh-hans`, `pt-pt`, `pt-br`   
       
@@ -428,7 +427,7 @@ These entity categories include identifiable Azure information like authenticati
       
     :::column-end:::
     :::column span="":::
-      **Supported document languages**
+      **Supported languages**
 
       `en` 
 

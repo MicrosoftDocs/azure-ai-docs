@@ -6,7 +6,7 @@ description: Version policy for Azure AI Search REST APIs and the client library
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.custom:
   - devx-track-dotnet
   - devx-track-extended-java

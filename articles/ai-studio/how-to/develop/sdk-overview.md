@@ -2,15 +2,15 @@
 title: How to get started with Azure AI SDKs
 titleSuffix: Azure AI Studio
 description: This article provides an overview of available Azure AI SDKs.
-manager: nitinme
+manager: scottpolly
 ms.service: azure-ai-studio
 ms.custom:
   - build-2024
 ms.topic: overview
 ms.date: 8/9/2024
 ms.reviewer: dantaylo
-ms.author: eur
-author: eric-urban
+ms.author: sgilley
+author: sdgilley
 ---
 
 # Overview of the Azure AI SDKs

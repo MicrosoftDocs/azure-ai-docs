@@ -4,7 +4,7 @@ titleSuffix: Azure AI Search
 description: Extract different custom entities from text in an Azure AI Search enrichment pipeline.
 author: gmndrg
 ms.author: gimondra
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: reference

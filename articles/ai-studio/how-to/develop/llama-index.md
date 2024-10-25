@@ -2,13 +2,13 @@
 title: Develop application with LlamaIndex and Azure AI studio
 titleSuffix: Azure AI Studio
 description: This article explains how to use LlamaIndex with models deployed in Azure AI studio to build advance intelligent applications.
-manager: nitinme
+manager: scottpolly
 ms.service: azure-ai-studio
 ms.topic: how-to
 ms.date: 9/14/2024
 ms.reviewer: fasantia
-ms.author: eur
-author: eric-urban
+ms.author: sgilley
+author: sdgilley
 ---
 
 # Develop applications with LlamaIndex and Azure AI studio
@@ -67,7 +67,7 @@ export AZURE_INFERENCE_ENDPOINT="<your-model-endpoint-goes-here>"
 export AZURE_INFERENCE_CREDENTIAL="<your-key-goes-here>"
 ```
 
-Once configured, create a client to connect to the endpoint:
+Once configured, create a client to connect to the endpoint. The parameter `model_name` in the constructor is not required for endpoints serving a single model, like serverless endpoints.
 
 ```python
 import os
@@ -80,7 +80,7 @@ llm = AzureAICompletionsModel(
 ```
 
 > [!TIP]
-> The parameter `model_name` in the constructor is not required for endpoints serving a single model, like serverless endpoints).
+> If your model is an OpenAI model deployed to Azure OpenAI service or AI services resource, configure the client as indicated at [Azure OpenAI models](#azure-openai-models).
 
 Alternatively, if your endpoint support Microsoft Entra ID, you can use the following code to create the client:
 
@@ -111,6 +111,23 @@ llm = AzureAICompletionsModel(
     credential=DefaultAzureCredentialAsync(),
 )
 ```
+
+### Azure OpenAI models
+
+If you are using Azure OpenAI models with key-based authentication, you need to pass the authentication key in the header `api-key`, which is the one expected in the Azure OpenAI service and in Azure AI Services. This configuration is not required if you are using Microsoft Entra ID (formerly known as Azure AD). The following example shows how to configure the client:
+
+```python
+import os
+from llama_index.llms.azure_inference import AzureAICompletionsModel
+
+llm = AzureAICompletionsModel(
+    endpoint=os.environ["AZURE_INFERENCE_ENDPOINT"],
+    credential="",
+    client_kwargs={"headers" : { "api-key": os.environ["AZURE_INFERENCE_CREDENTIAL"] } }
+)
+```
+
+Notice that `credentials` is still being passed with an empty value since it's a required parameter.
 
 ### Inference parameters
 

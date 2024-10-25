@@ -6,7 +6,7 @@ description: Retrieve the encryption key name and version used in an index or sy
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: conceptual
@@ -25,7 +25,7 @@ Objects that aren't encrypted with a customer-managed key have an empty **encryp
    "keyVaultKeyName":"myEncryptionKey",
    "keyVaultKeyVersion":"eaab6a663d59439ebb95ce2fe7d5f660",
    "accessCredentials":{
-      "applicationId":"00000000-0000-0000-0000-000000000000",
+      "applicationId":"00001111-aaaa-2222-bbbb-3333cccc4444",
       "applicationSecret":"myApplicationSecret"
    }
 }

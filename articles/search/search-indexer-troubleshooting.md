@@ -5,7 +5,7 @@ description: Provides indexer problem and resolution guidance for cases when no 
 
 author: gmndrg
 ms.author: gimondra
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: conceptual

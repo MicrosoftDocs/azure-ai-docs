@@ -133,6 +133,9 @@ items:
     - name: Get facial position with viseme
       href: how-to-speech-synthesis-viseme.md
       displayName: viseme, phoneme, phonetic
+    - name: Use high definition (HD) voices (preview)
+      href: high-definition-voices.md
+      displayName: hd voice
     - name: Custom neural voice
       items:
         - name: Custom neural voice overview
@@ -229,8 +232,8 @@ items:
       items:
        - name: Video translation overview
          href: video-translation-overview.md
-       - name: Video translation in the studio
-         href: video-translation-studio.md
+       - name: How to use video translation
+         href: video-translation-get-started.md
 - name: Intent recognition
   items:
     - name: Intent recognition overview
@@ -540,11 +543,6 @@ items:
           href: /rest/api/batchtexttospeech/operation-groups
         - name: Batch avatar REST API
           href: /rest/api/batchavatar/operation-groups
-        - name: Conversation transcription REST APIs
-          href: https://signature.centralus.cts.speech.microsoft.com/UI/index.html 
-          displayName: reference
-        - name: Ingestion service REST API
-          href: https://eastus.ingestion.speech.microsoft.com/swagger/index.html?urls.primaryName=v0.2-preview
 - name: Responsible AI
   items:
     - name: Speech to text

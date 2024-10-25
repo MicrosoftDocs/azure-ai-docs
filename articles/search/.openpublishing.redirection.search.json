@@ -1,6 +1,11 @@
 {
     "redirections": [
         {
+            "source_path_from_root": "/articles/search/index-projections-concept-intro.md",
+            "redirect_url": "/azure/search/search-how-to-define-index-projections",
+            "redirect_document_id": true
+        },
+        {
             "source_path_from_root": "/articles/search/tutorial-javascript-overview.md",
             "redirect_url": "/azure/search/tutorial-csharp-overview",
             "redirect_document_id": false

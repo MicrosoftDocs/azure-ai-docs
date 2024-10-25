@@ -1,177 +1,191 @@
 ---
 title: Overview of forecasting methods in AutoML
 titleSuffix: Azure Machine Learning
-description: Learn how Azure Machine Learning's AutoML uses machine learning to build forecasting models
+description: Learn how AutoML in Azure Machine Learning uses machine learning to build forecasting models, including time series or regression models for predictions.
 services: machine-learning
 author: ssalgadodev
 ms.author: ssalgado
 ms.reviewer: erwright
 ms.service: azure-machine-learning
 ms.subservice: automl
-ms.topic: conceptual
+ms.topic: overview
 ms.custom: automl, sdkv2
-ms.date: 09/27/2023
+ms.date: 10/07/2024
 show_latex: true
+
+#Customer intent: As a data science professional, I want to use AutoML forecasting methods in Azure Machine Learning, so that I can make model predictions.
 ---
 
 # Overview of forecasting methods in AutoML
-This article focuses on the methods that AutoML uses to prepare time series data and build forecasting models. Instructions and examples for training forecasting models in AutoML can be found in our [set up AutoML for time series forecasting](./how-to-auto-train-forecast.md) article.
+
+This article describes the methods that AutoML in Azure Machine Learning uses to prepare time series data and build forecasting models. For instructions and examples about training forecasting models in AutoML, see [Set up AutoML for time series forecasting](how-to-auto-train-forecast.md).
+
+## Forecasting methods in AutoML
 
 AutoML uses several methods to forecast time series values. These methods can be roughly assigned to two categories:
 
-1. Time series models that use historical values of the target quantity to make predictions into the future.
-2. Regression, or explanatory, models that use predictor variables to forecast values of the target.
+- Time series models that use historical values of the target quantity to make predictions into the future
+- Regression, or explanatory, models that use predictor variables to forecast values of the target
 
-As an example, consider the problem of forecasting daily demand for a particular brand of orange juice from a grocery store. Let $y_t$ represent the demand for this brand on day $t$. A **time series model** predicts demand at $t+1$ using some function of historical demand,
+Suppose you need to forecast daily demand for a particular brand of orange juice from a grocery store. For the expression, let $y_t$ represent the demand for this brand on day $t$. A **time series model** predicts demand at $t+1$ by using some function of historical demand with the following expression:
 
-$y_{t+1} = f(y_t, y_{t-1}, \ldots, y_{t-s})$. 
+$y_{t+1} = f(y_t, y_{t-1}, \ldots, y_{t-s})$
 
-The function $f$ often has parameters that we tune using observed demand from the past. The amount of history that $f$ uses to make predictions, $s$, can also be considered a parameter of the model.
+The function $f$ often has parameters that you tune by using observed demand from the past. The amount of history that $f$ uses to make predictions, $s$, can also be considered a parameter of the model.
 
-The time series model in the orange juice demand example may not be accurate enough since it only uses information about past demand. There are many other factors that likely influence future demand such as price, day of the week, and whether it's a holiday or not. Consider a **regression model** that uses these predictor variables,
+The time series model in the orange juice demand example might not be accurate enough because it uses only information about past demand. There are many other factors that can influence future demand, such as price, day of the week, and holiday periods. Consider a **regression model** that uses these predictor variables with the following expression:
 
-$y = g(\text{price}, \text{day of week}, \text{holiday})$.
+$y = g(\text{price}, \text{day of week}, \text{holiday})$
 
-Again, $g$ generally has a set of parameters, including those governing regularization, that AutoML tunes using past values of the demand and the predictors. We omit $t$ from the expression to emphasize that the regression model uses correlational patterns between _contemporaneously_ defined variables to make predictions. That is, to predict $y_{t+1}$ from $g$, we must know which day of the week $t+1$ falls on, whether it's a holiday, and the orange juice price on day $t+1$. The first two pieces of information are always easily found by consulting a calendar. A retail price is usually set in advance, so the price of orange juice is likely also known one day ahead. However, the price may not be known 10 days into the future! It's important to understand that the utility of this regression is limited by how far into the future we need forecasts, also called the **forecast horizon**, and to what degree we know the future values of the predictors.
+Again, the function $g$ generally has a set of parameters, including values that govern regularization, which AutoML tunes by using past values of the demand and the predictors. You omit $t$ from the expression to emphasize that the regression model uses correlational patterns between _contemporaneously_ defined variables to make predictions. To predict $y_{t+1}$ from $g$, you need to know which day of the week corresponds to $t+1$, whether the day is a holiday, and the orange juice price on day $t+1$. The first two pieces of information are easy to identify by using a calendar. A retail price is commonly set in advance, so the price of orange juice is likely also known one day in advance. However, the price might not be known 10 days into the future. It's important to understand that the utility of this regression is limited by how far into the future you need forecasts, also called the **forecast horizon**, and to what degree you know the future values of the predictors.
 
 > [!IMPORTANT]
 > AutoML's forecasting regression models assume that all features provided by the user are known into the future, at least up to the forecast horizon.  
 
-AutoML's forecasting regression models can also be augmented to use historical values of the target and predictors. The result is a hybrid model with characteristics of a time series model and a pure regression model. Historical quantities are additional predictor variables in the regression and we refer to them as **lagged quantities**. The _order_ of the lag refers to how far back the value is known. For example, the current value of an order-two lag of the target for our orange juice demand example is the observed juice demand from two days ago.
+AutoML's forecasting regression models can also be augmented to use historical values of the target and predictors. The result is a hybrid model with characteristics of a time series model and a pure regression model. Historical quantities are extra predictor variables in the regression referred to as **lagged quantities**. The _order_ of the lag refers to how far back the value is known. For example, the current value of an order-two lag of the target for the orange juice demand example is the observed juice demand from two days ago.
 
-Another notable difference between the time series models and the regression models is in the way they generate forecasts. Time series models are generally defined by recursion relations and produce forecasts one-at-a-time. To forecast many periods into the future, they iterate up-to the forecast horizon, feeding previous forecasts back into the model to generate the next one-period-ahead forecast as needed. In contrast, the regression models are so-called **direct forecasters** that generate _all_ forecasts up to the horizon in one go. Direct forecasters can be preferable to recursive ones because recursive models compound prediction error when they feed previous forecasts back into the model. When lag features are included, AutoML makes some important modifications to the training data so that the regression models can function as direct forecasters. See the [lag features article](./concept-automl-forecasting-lags.md) for more details. 
+Another notable difference between the time series models and the regression models is how they generate forecasts. Recursion relations generally define time series models that produce forecasts one-at-a-time. To forecast many periods into the future, they iterate up-to the forecast horizon, feeding previous forecasts back into the model to generate the next one-period-ahead forecast as needed. In contrast, the regression models are considered **direct forecasters** that generate _all_ forecasts up to the horizon in a single attempt. Direct forecasters can be preferable to recursive methods because recursive models compound prediction error when they feed previous forecasts back into the model. When lag features are included, AutoML makes some important modifications to the training data so the regression models can function as direct forecasters. For more information, see [Lag features for time-series forecasting in AutoML](concept-automl-forecasting-lags.md). 
 
 ## Forecasting models in AutoML
-The following table lists the forecasting models implemented in AutoML and what category they belong to:
 
-Time Series Models | Regression Models
--------------------| -----------------
-[Naive, Seasonal Naive, Average, Seasonal Average](https://otexts.com/fpp3/simple-methods.html), [ARIMA(X)](https://www.statsmodels.org/dev/generated/statsmodels.tsa.statespace.sarimax.SARIMAX.html), [Exponential Smoothing](https://www.statsmodels.org/dev/generated/statsmodels.tsa.holtwinters.ExponentialSmoothing.html) | [Linear SGD](https://scikit-learn.org/stable/modules/linear_model.html#stochastic-gradient-descent-sgd), [LARS LASSO](https://scikit-learn.org/stable/modules/linear_model.html#lars-lasso), [Elastic Net](https://scikit-learn.org/stable/modules/linear_model.html#elastic-net), [Prophet](https://facebook.github.io/prophet/), [K Nearest Neighbors](https://scikit-learn.org/stable/modules/neighbors.html#nearest-neighbors-regression), [Decision Tree](https://scikit-learn.org/stable/modules/tree.html#regression), [Random Forest](https://scikit-learn.org/stable/modules/ensemble.html#random-forests), [Extremely Randomized Trees](https://scikit-learn.org/stable/modules/ensemble.html#extremely-randomized-trees), [Gradient Boosted Trees](https://scikit-learn.org/stable/modules/ensemble.html#regression), [LightGBM](https://lightgbm.readthedocs.io/en/latest/index.html), [XGBoost](https://xgboost.readthedocs.io/en/latest/parameter.html), [TCNForecaster](./concept-automl-forecasting-deep-learning.md#introduction-to-tcnforecaster)
+AutoML in Machine Learning implements the following forecasting models. For each category, the models are listed roughly in order of the complexity of patterns they can incorporate, also known as the **model capacity**. A Naive model, which simply forecasts the last observed value, has low capacity while the Temporal Convolutional Network (TCNForecaster), a deep neural network (DNN) with potentially millions of tunable parameters, has high capacity.
 
-The models in each category are listed roughly in order of the complexity of patterns they're able to incorporate, also known as the **model capacity**. A Naive model, which simply forecasts the last observed value, has low capacity while the Temporal Convolutional Network (TCNForecaster), a deep neural network with potentially millions of tunable parameters, has high capacity.
+| Time series models | Regression models |
+| --- | --- |
+| [Naive, Seasonal Naive, Average, Seasonal Average](https://otexts.com/fpp3/simple-methods.html), [ARIMA(X)](https://www.statsmodels.org/dev/generated/statsmodels.tsa.statespace.sarimax.SARIMAX.html), [Exponential Smoothing](https://www.statsmodels.org/dev/generated/statsmodels.tsa.holtwinters.ExponentialSmoothing.html) | [Linear SGD](https://scikit-learn.org/stable/modules/linear_model.html#stochastic-gradient-descent-sgd), [LARS LASSO](https://scikit-learn.org/stable/modules/linear_model.html#lars-lasso), [Elastic Net](https://scikit-learn.org/stable/modules/linear_model.html#elastic-net), [Prophet](https://facebook.github.io/prophet/), [K Nearest Neighbors](https://scikit-learn.org/stable/modules/neighbors.html#nearest-neighbors-regression), [Decision Tree](https://scikit-learn.org/stable/modules/tree.html#regression), [Random Forest](https://scikit-learn.org/stable/modules/ensemble.html#random-forests), [Extremely Randomized Trees](https://scikit-learn.org/stable/modules/ensemble.html#extremely-randomized-trees), [Gradient Boosted Trees](https://scikit-learn.org/stable/modules/ensemble.html#regression), [LightGBM](https://lightgbm.readthedocs.io/en/latest/index.html), [XGBoost](https://xgboost.readthedocs.io/en/latest/parameter.html), [TCNForecaster](./concept-automl-forecasting-deep-learning.md#introduction-to-tcnforecaster) |
 
-Importantly, AutoML also includes **ensemble** models that create weighted combinations of the best performing models to further improve accuracy. For forecasting, we use a [soft voting ensemble](https://scikit-learn.org/stable/modules/ensemble.html#voting-regressor) where composition and weights are found via the [Caruana Ensemble Selection Algorithm](http://www.niculescu-mizil.org/papers/shotgun.icml04.revised.rev2.pdf).
+AutoML also includes **ensemble** models that create weighted combinations of the best performing models to further improve accuracy. For forecasting, you use a [soft voting ensemble](https://scikit-learn.org/stable/modules/ensemble.html#voting-regressor) where composition and weights are found by using the [Caruana Ensemble Selection Algorithm](http://www.niculescu-mizil.org/papers/shotgun.icml04.revised.rev2.pdf).
 
 > [!NOTE]
 > There are two important caveats for forecast model ensembles:
-> 1.  The TCN cannot currently be included in ensembles.
-> 2. AutoML by default disables another ensemble method, the **stack ensemble**, which is included with default regression and classification tasks in AutoML. The stack ensemble fits a meta-model on the best model forecasts to find ensemble weights. We've found in internal benchmarking that this strategy has an increased tendency to over fit time series data. This can result in poor generalization, so the stack ensemble is disabled by default. However, it can be enabled if desired in the AutoML configuration.
+> 
+> - The TCN cannot currently be included in ensembles.
+> - By default, AutoML disables the **stack ensemble** method, which is included with default regression and classification tasks in AutoML. The stack ensemble fits a meta-model on the best model forecasts to find ensemble weights. During internal benchmarking, this strategy has an increased tendency to over fit time series data. This result can result in poor generalization, so the stack ensemble is disabled by default. You can enable the ensemble in the AutoML configuration, as needed.
 
 ## How AutoML uses your data
 
-AutoML accepts time series data in tabular, "wide" format; that is, each variable must have its own corresponding column. AutoML requires one of the columns to be the time axis for the forecasting problem. This column must be parsable into a datetime type. The simplest time series data set consists of a **time column** and a numeric **target column**. The target is the variable one intends to predict into the future. The following is an example of the format in this simple case: 
+AutoML accepts time series data in tabular "wide" format. Each variable must have its own corresponding column. AutoML requires one column to be the time axis for the forecasting problem. This column must be parsable into a datetime type. The simplest time series dataset consists of a **time column** and a numeric **target column**. The target is the variable you intend to predict into the future. The following table shows example values for this format: 
 
-timestamp | quantity
---------- | --------
-2012-01-01 | 100
-2012-01-02 | 97
-2012-01-03 | 106
-...        | ...
-2013-12-31 | 347
+| timestamp | quantity |
+| --- | --- |
+| 2012-01-01 | 100 |
+| 2012-01-02 | 97 |
+| 2012-01-03 | 106 |
+| ...        | ... |
+| 2013-12-31 | 347 |
 
-In more complex cases, the data may contain other columns aligned with the time index. 
+In more complex cases, the dataset might contain other columns aligned with the time index: 
 
-timestamp | SKU | price | advertised | quantity
---------- | --- | ----- | ---------- | --------
-2012-01-01 | JUICE1 | 3.5 | 0 | 100
-2012-01-01 | BREAD3 | 5.76 | 0 | 47
-2012-01-02 | JUICE1 | 3.5 | 0 | 97
-2012-01-02 | BREAD3 | 5.5 | 1 | 68
-... | ... | ... | ... | ...
-2013-12-31 | JUICE1 | 3.75 | 0 | 347
-2013-12-31 | BREAD3 | 5.7 | 0 | 94
+| timestamp | SKU | price | advertised | quantity |
+| --- | --- | --- | --- | --- |
+| 2012-01-01 | JUICE1 | 3.5 | 0 | 100 |
+| 2012-01-01 | BREAD3 | 5.76 | 0 | 47 |
+| 2012-01-02 | JUICE1 | 3.5 | 0 | 97 |
+| 2012-01-02 | BREAD3 | 5.5 | 1 | 68 |
+| ... | ... | ... | ... | ... |
+| 2013-12-31 | JUICE1 | 3.75 | 0 | 347 |
 
-In this example, there's a SKU, a retail price, and a flag indicating whether an item was advertised in addition to the timestamp and target quantity. There are evidently two series in this dataset - one for the JUICE1 SKU and one for the BREAD3 SKU; the `SKU` column is a **time series ID column** since grouping by it gives two groups containing a single series each. Before sweeping over models, AutoML does basic validation of the input configuration and data and adds engineered features.
+The second example includes a SKU, a retail price, and a flag to indicate whether an item was advertised in addition to the timestamp and target quantity. The second dataset reveals two series: one for the JUICE1 SKU and one for the BREAD3 SKU. The **SKU** column is a **time series ID column** because grouping by these column values produces two groups that each contain a single series. Before the model sweep, AutoML does basic validation of the input configuration and data and adds engineered features.
 
 ### Data length requirements
-To train a forecasting model, you must have a sufficient amount of historical data. This threshold quantity varies with the training configuration. If you've provided validation data, the minimum number of training observations required per time series is given by,
 
-$T_{\text{user validation}} = H + \text{max}(l_{\text{max}}, s_{\text{window}}) + 1$,
+To train a forecasting model, you must have a sufficient amount of historical data. This threshold quantity varies with the training configuration. If you provide validation data, the minimum number of training observations required per time series is expressed as follows:
 
-where $H$ is the forecast horizon, $l_{\text{max}}$ is the maximum lag order, and $s_{\text{window}}$ is the window size for rolling aggregation features. If you're using cross-validation, the minimum number of observations is,
+$T_{\text{user validation}} = H + \text{max}(l_{\text{max}}, s_{\text{window}}) + 1$
 
- $T_{\text{CV}} = 2H + (n_{\text{CV}} - 1) n_{\text{step}} + \text{max}(l_{\text{max}}, s_{\text{window}}) + 1$,
+In this expression, $H$ is the forecast horizon, $l_{\text{max}}$ is the maximum lag order, and $s_{\text{window}}$ is the window size for rolling aggregation features. If you use cross-validation, the minimum number of observations is expressed as follows:
 
-where $n_{\text{CV}}$ is the number of cross-validation folds and $n_{\text{step}}$ is the CV step size, or offset between CV folds. The basic logic behind these formulas is that you should always have at least a horizon of training observations for each time series, including some padding for lags and cross-validation splits. See [forecasting model selection](./concept-automl-forecasting-sweeping.md#model-selection) for more details on cross-validation for forecasting.
+$T_{\text{CV}} = 2H + (n_{\text{CV}} - 1) n_{\text{step}} + \text{max}(l_{\text{max}}, s_{\text{window}}) + 1$
+
+In this version, $n_{\text{CV}}$ is the number of cross-validation folds and $n_{\text{step}}$ is the CV step size, or offset between CV folds. The basic logic behind these formulas is that you should always have at least a horizon of training observations for each time series, including some padding for lags and cross-validation splits. For more information about cross-validation for forecasting, see [Model selection in AutoML](concept-automl-forecasting-sweeping.md#model-selection-in-automl).
 
 ### Missing data handling
-AutoML's time series models require regularly spaced observations in time. Regularly spaced, here, includes cases like monthly or yearly observations where the number of days between observations may vary. Prior to modeling, AutoML must ensure there are no missing series values _and_ that the observations are regular. Hence, there are two missing data cases:
 
-* A value is missing for some cell in the tabular data
-* A _row_ is missing which corresponds with an expected observation given the time series frequency
+The time series models in AutoML require regularly spaced observations in time, which includes cases like monthly or yearly observations where the number of days between observations can vary. Before the modeling process initiates, AutoML must ensure there are no missing series values _and_ that the observations are regular. As a result, there are two missing data cases:
 
-In the first case, AutoML imputes missing values using common, configurable techniques.
+- A value is missing for some cell in the tabular data.
+- A _row_ is missing, which corresponds with an expected observation given the time series frequency.
 
-An example of a missing, expected row is shown in the following table:
+In the first case, AutoML imputes missing values by using common configurable techniques. The following table shows an example of an expected row that's missing:
 
-timestamp | quantity
---------- | --------
-2012-01-01 | 100
-2012-01-03 | 106
-2012-01-04 | 103
-...        | ...
-2013-12-31 | 347
+| timestamp | quantity |
+| --- | --- |
+| 2012-01-01 | 100 |
+| 2012-01-03 | 106 |
+| 2012-01-04 | 103 |
+| ...        | ... |
+| 2013-12-31 | 347 |
 
-This series ostensibly has a daily frequency, but there's no observation for Jan. 2, 2012. In this case, AutoML will attempt to fill in the data by adding a new row for Jan. 2, 2012. The new value for the `quantity` column, and any other columns in the data, will then be imputed like other missing values. Clearly, AutoML must know the series frequency in order to fill in observation gaps like this. AutoML automatically detects this frequency, or, optionally, the user can provide it in the configuration.
+This series ostensibly has a daily frequency, but there's no observation for January 2, 2012 (2012-01-02). In this case, AutoML attempts to fill in the data by adding a new row for the missing value. The new value for the `quantity` column, and any other columns in the data, are then imputed like other missing values. To execute this process, AutoML must recognize the series frequency to be able to fill in observation gaps as demonstrated in this case. AutoML automatically detects this frequency, or, optionally, the user can provide it in the configuration.
 
-The imputation method for filling missing values can be [configured](./how-to-auto-train-forecast.md#custom-featurization) in the input. The default methods are listed in the following table:
+The imputation method for supplying missing values can be [configured](how-to-auto-train-forecast.md#custom-featurization) in the input. The following table lists the default methods:
 
-Column Type | Default Imputation Method 
------------ | ---------------
-Target      | Forward fill (last observation carried forward)
-Numeric Feature     | Median value
+| Column type | Default imputation method  |
+| --- | --- |
+| Target | Forward fill (last observation carried forward) |
+| Numeric feature | Median value |
 
-Missing values for categorical features are handled during numerical encoding by including an additional category corresponding to a missing value. Imputation is implicit in this case.
+Missing values for categorical features are handled during numerical encoding by including another category that corresponds to a missing value. Imputation is implicit in this case.
 
 ### Automated feature engineering
-AutoML generally adds new columns to user data to increase modeling accuracy. Engineered feature can include the following:
 
-Feature Group | Default/Optional
------------- | ----------------
-[Calendar features](./concept-automl-forecasting-calendar-features.md) derived from the time index (for example, day of week) | Default
-Categorical features derived from time series IDs | Default
-Encoding categorical types to numeric type | Default
-Indicator features for holidays associated with a given country or region | Optional
-[Lags of target quantity](./concept-automl-forecasting-lags.md) | Optional
-Lags of feature columns | Optional
-Rolling window aggregations (for example, rolling average) of target quantity | Optional
-Seasonal decomposition ([STL](https://otexts.com/fpp3/stl.html)) | Optional
+AutoML generally adds new columns to user data to increase modeling accuracy. Engineered features can include default or optional items.
 
-You can configure featurization from the AutoML SDK via the [ForecastingJob](/python/api/azure-ai-ml/azure.ai.ml.automl.forecastingjob#azure-ai-ml-automl-forecastingjob-set-forecast-settings) class or from the [Azure Machine Learning studio web interface](how-to-use-automated-ml-for-ml-models.md#customize-featurization).
+Default engineered features:
 
-### Non-stationary time series detection and handling
+- [Calendar features](concept-automl-forecasting-calendar-features.md) derived from the time index, such as day of the week
+- Categorical features derived from time series IDs
+- Encoding categorical types to numeric type
 
-A time series where mean and variance change over time is called a **non-stationary**. For example, time series that exhibit stochastic trends are non-stationary by nature. To visualize this, the following image plots a series that is generally trending upward. Now, compute and compare the mean (average) values for the first and the second half of the series. Are they the same? Here, the mean of the series in the first half of the plot is significantly smaller than in the second half. The fact that the mean of the series depends on the time interval one is looking at, is an example of the time-varying moments. Here, the mean of a series is the first moment.
+Optional engineered features:
 
-:::image type="content" source="media/how-to-auto-train-forecast/non-stationary-retail-sales.png" alt-text="Diagram showing retail sales for a non-stationary time series.":::
+- Indicator features for holidays associated with a given region
+- [Lags of target quantity](concept-automl-forecasting-lags.md)
+- Lags of feature columns
+- Rolling window aggregations, like rolling average, of target quantity
+- Seasonal decomposition ([(Seasonal and Trend decomposition by using Loess (STL)](https://otexts.com/fpp3/stl.html))
 
-Next, let's examine the following image, which plots the original series in first differences, $\Delta y_{t} = y_t - y_{t-1}$. The mean of the series is roughly constant over the time range while the variance appears to vary. Thus, this is an example of a first order stationary times series. 
+You can configure featurization from the AutoML SDK by using the [ForecastingJob](/python/api/azure-ai-ml/azure.ai.ml.automl.forecastingjob#azure-ai-ml-automl-forecastingjob-set-forecast-settings) class or from the [Azure Machine Learning studio web interface](how-to-use-automated-ml-for-ml-models.md#customize-featurization).
 
+### Nonstationary time series detection and handling
 
-:::image type="content" source="media/how-to-auto-train-forecast/weakly-stationary-retail-sales.png" alt-text="Diagram showing retail sales for a weakly stationary time series.":::
+A time series where mean and variance change over time is called **non-stationary**. Time series that exhibit stochastic trends are nonstationary by nature.
 
-AutoML regression models can't inherently deal with stochastic trends, or other well-known problems associated with non-stationary time series. As a result, out-of-sample forecast accuracy can be  poor if such trends are present.
+The following image presents a visualization for this scenario. The chart plots a series that's generally trending upward. If you compute and compare the mean (average) values for the first and second half of the series, you can identify the differences. The mean of the series in the first half of the plot is smaller than the mean in the second half. The fact that the mean of the series depends on the time interval under review is an example of the time-varying moments. In this scenario, the mean of a series is the first moment.
 
-AutoML automatically analyzes time series dataset to determine stationarity. When non-stationary time series are detected, AutoML applies a differencing transform automatically to mitigate the impact of non-stationary behavior.
+:::image type="content" source="media/how-to-auto-train-forecast/non-stationary-retail-sales.png" border="false" alt-text="Diagram showing retail sales for a nonstationary time series." lightbox="media/how-to-auto-train-forecast/non-stationary-retail-sales.png":::
+
+The next image shows a chart that plots the original series in first differences, $\Delta y_{t} = y_t - y_{t-1}$. The mean of the series is roughly constant over the time range while the variance appears to vary. This scenario demonstrates an example of a first-order stationary times series:
+
+:::image type="content" source="media/how-to-auto-train-forecast/weakly-stationary-retail-sales.png" border="false" alt-text="Diagram showing retail sales for a weakly stationary time series." lightbox="media/how-to-auto-train-forecast/weakly-stationary-retail-sales.png":::
+
+AutoML regression models can't inherently deal with stochastic trends or other well-known problems associated with nonstationary time series. As a result, out-of-sample forecast accuracy can be poor when such trends are present.
+
+AutoML automatically analyzes a time series dataset to determine its level or stationarity. When nonstationary time series are detected, AutoML applies a differencing transform automatically to mitigate the effects of nonstationary behavior.
 
 ### Model sweeping
-After data has been prepared with missing data handling and feature engineering, AutoML sweeps over a set of models and hyper-parameters using a [model recommendation service](https://www.microsoft.com/research/publication/probabilistic-matrix-factorization-for-automated-machine-learning/). The models are ranked based on validation or cross-validation metrics and then, optionally, the top models may be used in an ensemble model. The best model, or any of the trained models, can be inspected, downloaded, or deployed to produce forecasts as needed. See the [model sweeping and selection](./concept-automl-forecasting-sweeping.md) article for more details.
 
+After data is prepared with missing data handling and feature engineering, AutoML sweeps over a set of models and hyper-parameters by using a [model recommendation service](https://www.microsoft.com/research/publication/probabilistic-matrix-factorization-for-automated-machine-learning/).
+
+The models are ranked based on validation or cross-validation metrics, and then, optionally, the top models can be used in an ensemble model. The best model, or any of the trained models, can be inspected, downloaded, or deployed to produce forecasts as needed. For more information, see [Model sweeping and selection for forecasting in AutoML](concept-automl-forecasting-sweeping.md).
 
 ### Model grouping
-When a dataset contains more than one time series, as in the given data example, there are multiple ways to model that data. For instance, we may simply group by the **time series ID column(s)** and train independent models for each series. A more general approach is to partition the data into groups that may each contain multiple, likely related series and train a model per group. By default, AutoML forecasting uses a mixed approach to model grouping. Time series models, plus ARIMAX and Prophet, assign one series to one group and other regression models assign all series to a single group. The following table summarizes the model groupings in two categories, one-to-one and many-to-one:  
 
-Each Series in Own Group (1:1) | All Series in Single Group (N:1)
--------------------| -----------------
-Naive, Seasonal Naive, Average, Seasonal Average, Exponential Smoothing, ARIMA, ARIMAX, Prophet | Linear SGD, LARS LASSO, Elastic Net, K Nearest Neighbors, Decision Tree, Random Forest, Extremely Randomized Trees, Gradient Boosted Trees, LightGBM, XGBoost, TCNForecaster
+When a dataset contains more than one time series, there are multiple ways to model the data. You can group by the data in the **time series ID columns** and train independent models for each series. A more general approach is to partition the data into groups that can each contain multiple (likely related) series and train a model per group. 
 
-More general model groupings are possible via AutoML's Many-Models solution; see our [Many Models- Automated ML notebook](https://github.com/Azure/azureml-examples/blob/main/sdk/python/jobs/pipelines/1k_demand_forecast_pipeline/aml-demand-forecast-mm-pipeline/aml-demand-forecast-mm-pipeline.ipynb).
+By default, AutoML forecasting uses a mixed approach to model grouping. Time series models, plus ARIMAX and Prophet, assign one series to one group and other regression models assign all series to a single group.
 
-## Next steps
+Here's how each model type uses groups:
 
-* Learn about [deep learning models](./concept-automl-forecasting-deep-learning.md) for forecasting in AutoML
-* Learn more about [model sweeping and selection](./concept-automl-forecasting-sweeping.md) for forecasting in AutoML.
-* Learn about how AutoML creates [features from the calendar](./concept-automl-forecasting-calendar-features.md).
-* Learn about how AutoML creates [lag features](./concept-automl-forecasting-lags.md).
-* Read answers to [frequently asked questions](./how-to-automl-forecasting-faq.md) about forecasting in AutoML.
+- **Each series in a separate group (1:1)**: Naive, Seasonal Naive, Average, Seasonal Average, Exponential Smoothing, ARIMA, ARIMAX, Prophet
+
+- **All series in the same group (N:1)**: Linear SGD, LARS LASSO, Elastic Net, K Nearest Neighbors, Decision Tree, Random Forest, Extremely Randomized Trees, Gradient Boosted Trees, LightGBM, XGBoost, TCNForecaster
+
+More general model groupings are possible by using the many models solution in AutoML. For more information, see [Many Models - Automated ML notebook](https://github.com/Azure/azureml-examples/blob/main/sdk/python/jobs/pipelines/1k_demand_forecast_pipeline/aml-demand-forecast-mm-pipeline/aml-demand-forecast-mm-pipeline.ipynb).
+
+## Related content
+
+- [Deep learning models (DNN) for forecasting in AutoML](concept-automl-forecasting-deep-learning.md)
+- [How AutoML creates features from the calendar](concept-automl-forecasting-calendar-features.md)
+- [Frequently Asked Questions (FAQ) for forecasting in AutoML](how-to-automl-forecasting-faq.md)
   

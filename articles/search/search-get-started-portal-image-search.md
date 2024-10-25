@@ -5,9 +5,9 @@ description: Search for images on an Azure AI Search index by using the Azure po
 
 author: HeidiSteen
 ms.author: heidist
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.topic: quickstart
-ms.date: 08/05/2024
+ms.date: 10/18/2024
 ms.custom:
   - references_regions
 ---
@@ -22,11 +22,9 @@ Sample data consists of image files in the [azure-search-sample-data](https://gi
 
 + An Azure subscription. [Create one for free](https://azure.microsoft.com/free/).
 
-+ An [Azure AI services multiservice account](/azure/ai-services/multi-service-resource) to use for image vectorization and optical character recognition (OCR). The account must be in a region that provides Azure AI Vision multimodal embeddings.
++ An [Azure AI services multiservice account](/azure/ai-services/multi-service-resource) to use for image vectorization and optical character recognition (OCR). Image vectorization requires Azure AI Vision multimodal embeddings. [Check the documentation](/azure/ai-services/computer-vision/overview-image-analysis#region-availability) for an updated list of regions.
 
-  Currently, those regions are: EastUS, WestUS, WestUS2, NorthEurope, WestEurope, FranceCentral, SwedenCentral, SwitzerlandNorth, SoutheastAsia, KoreaCentral, AustraliaEast, JapanEast. [Check the documentation](/azure/ai-services/computer-vision/overview-image-analysis#region-availability) for an updated list.
-
-+ Azure AI Search for indexing and queries. It can be on any tier, but it must be in the same region as Azure AI services.
++ Azure AI Search for indexing and queries. It can be on any tier, but it must be in the [same region as Azure AI multiservice](search-create-service-portal.md#regions-with-the-most-overlap).
 
   The service tier determines how many blobs you can index. We used the Free tier to create this walkthrough and limited the content to 10 JPG files.
 
@@ -114,6 +112,29 @@ The inclusion of plain text in the `chunk` field is useful if you want to use re
 
 1. Select **Next**.
 
+## Map new fields
+
+On the **Advanced settings** page, you can optionally add new fields. By default, the wizard generates the following fields with these attributes:
+
+| Field | Applies to | Description |
+|-------|------------|-------------|
+| chunk_id | Text and image vectors | Generated string field. Searchable, retrievable, sortable. This is the document key for the index. |
+| text_parent_id | Image vectors | Generated string field. Retrievable, filterable. Identifies the parent document from which the chunk originates. |
+| image_parent_id | Image vectors | Generated string field. Retrievable, filterable. Identifies the parent document from which the image originates. |
+| chunk | Text and image vectors | String field. Human readable version of the data chunk. Searchable and retrievable, but not filterable, facetable, or sortable. |
+| title | Text and image vectors | String field. Human readable document title or page title or page number. Searchable and retrievable, but not filterable, facetable, or sortable. |
+| image_vector | Image vectors | Collection(Edm.single). Vector representation of the image.  Searchable and retrievable, but not filterable, facetable, or sortable.|
+
+You can't modify the generated fields or their attributes, but you can add new fields if your data source provides them. For example, Azure Blob Storage provides a collection of metadata fields.
+
+1. Select **Add new**.
+
+1. Choose a source field from the list of available fields, provide a field name for the index, and accept the default data type or override as needed.
+
+   Metadata fields are searchable, but not retrievable, filterable, facetable, or sortable. 
+
+1. Select **Reset** if you want to restore the schema to its original version.
+
 ## Schedule indexing
 
 1. On the **Advanced settings** page, under **Schedule indexing**, specify a [run schedule](search-howto-schedule-indexers.md) for the indexer. We recommend **Once** for this exercise. For data sources where the underlying data is volatile, you can schedule indexing to pick up the changes.
@@ -134,7 +155,7 @@ When the wizard completes the configuration, it creates the following objects:
 
 + An indexer that drives the indexing pipeline.
 
-+ A data source connection to Blob Storage.
++ A data source connection to Azure Blob Storage.
 
 + An index with vector fields, text fields, vectorizers, vector profiles, and vector algorithms. You can't modify the default index during the wizard workflow. Indexes conform to the [2024-05-01-preview REST API](/rest/api/searchservice/indexes/create-or-update?view=rest-searchservice-2024-05-01-preview&preserve-view=true) so that you can use preview features.
 

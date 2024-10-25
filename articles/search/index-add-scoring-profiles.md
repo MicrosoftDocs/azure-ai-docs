@@ -6,11 +6,11 @@ description: Boost search relevance scores for Azure AI Search results by adding
 manager: nitinme
 author: shmed
 ms.author: ramero
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: how-to
-ms.date: 09/23/2024
+ms.date: 10/01/2024
 ---
 
 # Add scoring profiles to boost search scores
@@ -30,6 +30,8 @@ Scoring profile parameters are either:
 You can create multiple profiles and then modify query logic to choose which one is used.
 
 You can have up to 100 scoring profiles within an index (see [service Limits](search-limits-quotas-capacity.md)), but you can only specify one profile at time in any given query.
+
+You can use [semantic ranker](semantic-how-to-query-request.md) with scoring profiles. When multiple ranking or relevance features are in play, semantic ranking is the last step. [How search scoring works](#how-search-scoring-works-in-azure-ai-search) provides an illustration.
 
 > [!NOTE]
 > Unfamiliar with relevance concepts? Visit [Relevance and scoring in Azure AI Search](index-similarity-and-scoring.md) for background. You can also watch this [video segment on YouTube](https://www.youtube.com/embed/Y_X6USgvB1g?version=3&start=463&end=970) for scoring profiles over BM25-ranked results.
@@ -89,14 +91,19 @@ See the [Extended example for vector and hybrid search](#extended-example-for-ve
 
 ## How search scoring works in Azure AI Search
 
-Scoring profiles supplement the default scoring algorithm by boosting the scores of matches that meet the profile's criteria. Scoring functions apply to keyword search, pure vector queries, and on hybrid queries. 
+Scoring profiles supplement the default scoring algorithm by boosting the scores of matches that meet the profile's criteria. Scoring functions apply to:
 
-When you use scoring profiles or any other boosting features in Azure AI Search, the [Reciprocal Ranking Function (RRF)](hybrid-search-ranking.md) algorithm assigns the score, including for standalone text and vector queries. Post-RRF, all scoring/boosting, [semantic ranking](semantic-search-overview.md), and [vector weighting](vector-search-how-to-query.md#vector-weighting) adjustments occur.
++ [Text (keyword) search](search-query-create.md)
++ [Pure vector queries](vector-search-how-to-query.md)
++ [Hybrid queries](hybrid-search-how-to-query.md), with text and vector subqueries execute in parallel
+
+For standalone text queries, scoring profiles identify the maximum 1,000 matches in a [BM25-ranked search](index-similarity-and-scoring.md), and the top 50 are returned in results.
+
+For pure vectors, the query is vector-only, but if the [*k*-matching documents](vector-search-ranking.md) include alphanumeric fields that a scoring profile can process, a scoring profile is applied. The scoring profile revises the result set by boosting documents that match criteria in the profile.
+
+For text queries in a hybrid query, scoring profiles identify the maximum 1,000 matches in a BM25-ranked search. However, once those 1,000 results are identified, they're restored to their original BM25 order so that they can be rescored alongside vectors results in the final [Reciprocal Ranking Function (RRF)](hybrid-search-ranking.md) ordering, where the scoring profile (identified as "final document boosting adjustment" in the illustration) is applied to the merged results, along with [vector weighting](vector-search-how-to-query.md#vector-weighting), and [semantic ranking](semantic-search-overview.md) as the last step.
 
 :::image type="content" source="media/scoring-profiles/scoring-over-ranked-results.png" alt-text="Diagram showing which fields have a scoring profile and when ranking occurs.":::
-
-> [!TIP]
-> You can use the [featuresMode (preview)](index-similarity-and-scoring.md#featuresmode-parameter-preview) parameter to request extra scoring details with the search results (including the field level scores).
 
 ## Add a scoring profile to a search index
 

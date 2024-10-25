@@ -19,7 +19,7 @@ In this article, you learn how to use Azure Machine Learning studio to deploy th
 
 Mistral AI offers two categories of models in Azure Machine Learning studio. These models are available in the [model catalog](concept-model-catalog.md).
 
-* __Premium models__: Mistral Large (2402), Mistral Large (2407), and Mistral Small. 
+* __Premium models__: Mistral Large (2402), Mistral Large (2407), Mistral Small, and Ministral-3B. 
 * __Open models__: Mistral Nemo, Mixtral-8x7B-Instruct-v01, Mixtral-8x7B-v01, Mistral-7B-Instruct-v01, and Mistral-7B-v01. 
 
 All the premium models and Mistral Nemo (an open model) can be deployed as serverless APIs with pay-as-you-go token-based billing. The other open models can be deployed to managed computes in your own Azure subscription.
@@ -62,6 +62,17 @@ Mistral Small is:
 - **Multi-lingual by design.** Best-in-class performance in French, German, Spanish, Italian, and English. Dozens of other languages are supported.
 - **Responsible AI compliant.** Efficient guardrails baked in the model, and extra safety layer with the `safe_mode` option.
 
+# [Ministral 3B](#tab/ministral-3b)
+
+Ministral 3B is Mistral AI's Small Language Model (SLM) optimized for edge computing and on-device applications. The model is designed for low-latency and compute-efficient inference; therefore, it is perfect for standard GenAI applications that have real-time requirements and high-volume.
+
+* **Input**: text only
+* **Output**: text only
+* **Number of parameters**: 3.6 billion
+
+The following models are available:
+
+* [Ministral-3B](https://aka.ms/azureai/landing/Ministral-3B)
 
 # [Mistral Nemo](#tab/mistral-nemo)
 
@@ -312,7 +323,7 @@ Quota is managed per deployment. Each deployment has a rate limit of 200,000 tok
 
 ## Content filtering
 
-Models deployed as a service with pay-as-you-go are protected by Azure AI content safety. With Azure AI content safety enabled, both the prompt and completion pass through an ensemble of classification models aimed at detecting and preventing the output of harmful content. The content filtering system detects and takes action on specific categories of potentially harmful content in both input prompts and output completions. Learn more about [Azure AI Content Safety](/azure/ai-services/content-safety/overview).
+Models deployed as a service with pay-as-you-go are protected by Azure AI content safety. With Azure AI content safety enabled, both the prompt and completion pass through an ensemble of classification models aimed at detecting and preventing the output of harmful content. The content filtering (preview) system detects and takes action on specific categories of potentially harmful content in both input prompts and output completions. Learn more about [Azure AI Content Safety](/azure/ai-services/content-safety/overview).
 
 ## Related content
 

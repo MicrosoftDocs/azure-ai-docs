@@ -15,7 +15,7 @@ ms.custom: references_regions, build-2024
 
 # Fine-tune Meta Llama models in Azure AI Studio
 
-[!INCLUDE [Feature preview](~/reusable-content/ce-skilling/azure/includes/ai-studio/includes/feature-preview.md)]
+[!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
 Azure AI Studio lets you tailor large language models to your personal datasets by using a process known as *fine-tuning*. 
 
@@ -24,6 +24,8 @@ Fine-tuning provides significant value by enabling customization and optimizatio
 In this article, you learn how to fine-tune Meta Llama models in [Azure AI Studio](https://ai.azure.com).
 
 The [Meta Llama family of large language models (LLMs)](./deploy-models-llama.md) is a collection of pretrained and fine-tuned generative text models ranging in scale from 7 billion to 70 billion parameters. The model family also includes fine-tuned versions optimized for dialogue use cases with Reinforcement Learning from Human Feedback (RLHF), called Llama-Instruct.
+
+[!INCLUDE [models-preview](../includes/models-preview.md)]
 
 ## Models
 # [Meta Llama 3.1](#tab/llama-three)
@@ -269,7 +271,7 @@ For more information on how to track costs, see [monitor costs for models offere
 
 ## Content filtering
 
-Models deployed as a service with pay-as-you-go billing are protected by Azure AI Content Safety. When deployed to real-time endpoints, you can opt out of this capability. With Azure AI content safety enabled, both the prompt and completion pass through an ensemble of classification models aimed at detecting and preventing the output of harmful content. The content filtering system detects and takes action on specific categories of potentially harmful content in both input prompts and output completions. Learn more about [Azure AI Content Safety](../concepts/content-filtering.md).
+Models deployed as a service with pay-as-you-go billing are protected by Azure AI Content Safety. When deployed to real-time endpoints, you can opt out of this capability. With Azure AI content safety enabled, both the prompt and completion pass through an ensemble of classification models aimed at detecting and preventing the output of harmful content. The content filtering (preview) system detects and takes action on specific categories of potentially harmful content in both input prompts and output completions. Learn more about [Azure AI Content Safety](../concepts/content-filtering.md).
 
 
 ## Next steps

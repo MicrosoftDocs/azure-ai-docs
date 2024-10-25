@@ -8,7 +8,7 @@ manager: nitinme
 
 ms.service: azure-ai-vision
 ms.topic: conceptual
-ms.date: 02/14/2024
+ms.date: 10/16/2024
 ms.author: pafarley
 ms.custom: build-2023, build-2023-dataai
 ---

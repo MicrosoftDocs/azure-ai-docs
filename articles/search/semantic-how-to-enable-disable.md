@@ -6,7 +6,7 @@ description: Steps for turning semantic ranker on or off in Azure AI Search.
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: how-to
@@ -15,7 +15,7 @@ ms.date: 09/24/2024
 
 # Enable or disable semantic ranker
 
-Semantic ranker is a premium feature that's billed by usage. By default, semantic ranker is turned off on a new search service, but it can be enabled by anyone with **Contributor** permissions. If you don't want anyone enabling it inadvertently, you can [disable it using the REST API](#disable-semantic-ranker-using-the-rest-api).
+Semantic ranker is a premium feature billed by usage. By default, semantic ranker is turned off on a new search service, but it can be enabled by anyone with **Contributor** permissions. If you don't want anyone enabling it inadvertently, you can [disable it using the REST API](#disable-semantic-ranker-using-the-rest-api).
 
 ## Check availability
 
@@ -31,13 +31,13 @@ Follow these steps to enable [semantic ranker](semantic-search-overview.md) at t
 
 1. Navigate to your search service. On the **Overview** page, make sure the service is a billable tier, Basic or higher.
 
-1. On the left-nav pane, select **Settings** > **Semantic ranking**.
+1. On the left-navigation pane, select **Settings** > **Semantic ranker**.
 
 1. Select either the **Free plan** or the **Standard plan**. You can switch between the free plan and the standard plan at any time.
 
    :::image type="content" source="media/semantic-search-overview/semantic-search-billing.png" alt-text="Screenshot of enabling semantic ranking in the Azure portal." border="true":::
 
-The free plan is capped at 1,000 queries per month. After the first 1,000 queries in the free plan, an error message indicates you've exhausted your quota on the next semantic query. When quota is exhausted, you should upgrade to the standard plan to continue using semantic ranking.
+The free plan is capped at 1,000 queries per month. After the first 1,000 queries in the free plan, an error message indicates you exhausted your quota on the next semantic query. When quota is exhausted, you should upgrade to the standard plan to continue using semantic ranking.
 
 ### [**REST**](#tab/enable-rest)
 

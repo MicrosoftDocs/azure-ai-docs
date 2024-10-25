@@ -4,7 +4,7 @@ titleSuffix: Azure AI Search
 description: Learn about tips and best practices for maximizing performance on a search service.
 author: mattgotteiner
 ms.author: magottei
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.topic: conceptual
 ms.date: 06/06/2024
 ---

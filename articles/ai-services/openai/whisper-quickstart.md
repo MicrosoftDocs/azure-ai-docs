@@ -11,7 +11,7 @@ ms.reviewer: v-baolianzou
 ms.author: eur
 author: eric-urban
 recommendations: false
-zone_pivot_groups: programming-languages-rest-ps-py-js
+zone_pivot_groups: programming-languages-rest-ps-py-js-cs
 ---
 
 # Quickstart: Speech to text with the Azure OpenAI Whisper model
@@ -19,9 +19,6 @@ zone_pivot_groups: programming-languages-rest-ps-py-js
 This quickstart explains how to use the [Azure OpenAI Whisper model](../speech-service/whisper-overview.md) for speech to text conversion. The Whisper model can transcribe human speech in numerous languages, and it can also translate other languages into English.
 
 The file size limit for the Whisper model is 25 MB. If you need to transcribe a file larger than 25 MB, you can use the Azure AI Speech [batch transcription](../speech-service/batch-transcription-create.md#use-a-whisper-model) API.
-
-> [!NOTE]
-> The OpenAI Whisper model is currently in Limited Access Public Preview.
 
 ::: zone pivot="rest-api"
 
@@ -32,6 +29,12 @@ The file size limit for the Whisper model is 25 MB. If you need to transcribe a 
 ::: zone pivot="programming-language-python"
 
 [!INCLUDE [Python SDK quickstart](includes/whisper-python.md)]
+
+::: zone-end
+
+::: zone pivot="programming-language-dotnet"
+
+[!INCLUDE [.NET SDK quickstart](includes/whisper-dotnet.md)]
 
 ::: zone-end
 

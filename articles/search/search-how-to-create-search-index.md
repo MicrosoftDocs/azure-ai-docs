@@ -2,14 +2,12 @@
 title: Create an index
 titleSuffix: Azure AI Search
 description: Create a search index using the Azure portal, REST APIs, or an Azure SDK.
-
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
-
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 07/01/2024
+ms.date: 10/20/2024
 ---
 
 # Create an index in Azure AI Search
@@ -20,7 +18,7 @@ In this article, learn the steps for defining a schema for a [**search index**](
 
 + Write permissions as a [**Search Service Contributor**](search-security-rbac.md) or an [admin API key](search-security-api-keys.md) for key-based authentication.
 
-+ An understanding of the data you want to index. A search index is based on external content that you want to make searchable. Searchable content is stored as fields in an index. You should have a clear idea of which source fields you want to make searchable, retrievable, filterable, facetable, and sortable (see the [schema checklist](#schema-checklist) for guidance).
++ An understanding of the data you want to index. A search index is based on external content that you want to make searchable. Searchable content is stored as fields in an index. You should have a clear idea of which source fields you want to make searchable, retrievable, filterable, facetable, and sortable. See the [schema checklist](#schema-checklist) for guidance.
 
 + You must also have a unique field in source data that can be used as the [document key (or ID)](#document-keys) in the index.
 
@@ -46,7 +44,7 @@ Use this checklist to assist the design decisions for your search index.
 
 1. Review [supported data types](/rest/api/searchservice/supported-data-types). The data type affects how the field is used. For example, numeric content is filterable but not full text searchable. The most common data type is `Edm.String` for searchable text, which is tokenized and queried using the full text search engine. The most common data type for a vector field is `Edm.Single` but you can use other types as well.
 
-1. Identify a [document key](#document-keys). A document key is an index requirement. It's a single string field and it's populated from a source data field that contains unique values. For example, if you're indexing from Blob Storage, the metadata storage path is often used as the document key because it uniquely identifies each blob in the container.
+1. Identify a [document key](#document-keys). A document key is an index requirement. It's a single string field populated from a source data field that contains unique values. For example, if you're indexing from Blob Storage, the metadata storage path is often used as the document key because it uniquely identifies each blob in the container.
 
 1. Identify the fields in your data source that contribute searchable content in the index.
 
@@ -77,7 +75,7 @@ Use this checklist to assist the design decisions for your search index.
    For hyphenated strings or special characters, consider [specialized analyzers](index-add-custom-analyzers.md#built-in-analyzers). One example is [keyword](https://lucene.apache.org/core/6_6_1/analyzers-common/org/apache/lucene/analysis/core/KeywordAnalyzer.html) that treats the entire contents of a field as a single token. This behavior is useful for data like zip codes, IDs, and some product names. For more information, see [Partial term search and patterns with special characters](search-query-partial-matching.md).
 
 > [!NOTE]
-> Full text search is conducted over terms that are tokenized during indexing. If your queries fail to return the results you expect, [test for tokenization](/rest/api/searchservice/indexes/analyze) to verify the string you're searchin for actually exists. You can try different analyzers on strings to see how tokens are produced for various analyzers.
+> Full text search is conducted over terms that are tokenized during indexing. If your queries fail to return the results you expect, [test for tokenization](/rest/api/searchservice/indexes/analyze) to verify the string you're searching for actually exists. You can try different analyzers on strings to see how tokens are produced for various analyzers.
 
 ## Create an index
 
@@ -93,16 +91,18 @@ Index design through the portal enforces requirements and schema rules for speci
 
 1. Check for space. Search services are subject to [maximum number of indexes](search-limits-quotas-capacity.md), varying by service tier. Make sure you have room for a second index.
 
-1. In the search service Overview page, choose either option for creating a search index: 
+1. In the search service **Overview** page, choose either option for creating a search index: 
 
    + **Add index**, an embedded editor for specifying an index schema
    + [**Import wizards**](search-import-data-portal.md)
 
    The wizard is an end-to-end workflow that creates an indexer, a data source, and a finished index. It also loads the data. If this is more than what you want, use **Add index** instead.
 
-The following screenshot highlights where **Add index** and **Import data** appear on the command bar. After an index is created, you can find it again in the **Indexes** tab.
+The following screenshot highlights where **Add index**, **Import data**, and **Import and vectorize data** appear on the command bar. 
 
-  :::image type="content" source="media/search-what-is-an-index/add-index.png" alt-text="Add index command" border="true":::
+:::image type="content" source="media/search-what-is-an-index/add-index.png" alt-text="Screenshot of the options to add an index." border="true":::
+
+After an index is created, you can find it again on the **Indexes** page from the left navigation pane.
 
 > [!TIP]
 > After creating an index in the portal, you can copy the JSON representation and add it to your application code.

@@ -17,7 +17,7 @@ author: Blackmist
 
 # How to add a new connection in Azure AI Studio
 
-[!INCLUDE [Feature preview](~/reusable-content/ce-skilling/azure/includes/ai-studio/includes/feature-preview.md)]
+[!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
 In this article, you learn how to add a new connection in Azure AI Studio.
 
@@ -33,7 +33,7 @@ Here's a table of some of the available connection types in Azure AI Studio. The
 | Azure Blob Storage | ✓ | Azure Blob Storage is a cloud storage solution for storing unstructured data like documents, images, videos, and application installers. |
 | Azure Data Lake Storage Gen 2 | ✓ | Azure Data Lake Storage Gen2 is a set of capabilities dedicated to big data analytics, built on Azure Blob storage. |
 | Azure Content Safety | ✓ | Azure AI Content Safety is a service that detects potentially unsafe content in text, images, and videos. |
-| Azure OpenAI || Azure OpenAI is a service that provides access to the OpenAI GPT-3 model. |
+| Azure OpenAI || Azure OpenAI is a service that provides access to OpenAI's models including the GPT-4o, GPT-4o mini, GPT-4, GPT-4 Turbo with Vision, GPT-3.5-Turbo, DALLE-3 and Embeddings model series with the security and enterprise capabilities of Azure. |
 | Serverless Model | ✓ | Serverless Model connections allow you to [serverless API deployment](deploy-models-serverless.md). |
 | Microsoft OneLake | ✓ | Microsoft OneLake provides open access to all of your Fabric items through Azure Data Lake Storage (ADLS) Gen2 APIs and SDKs.<br/><br/>In Azure AI Studio you can set up a connection to your OneLake data using a OneLake URI. You can find the information that Azure AI Studio requires to construct a __OneLake Artifact URL__ (workspace and item GUIDs) in the URL on the Fabric portal. For information about the URI syntax, see [Connecting to Microsoft OneLake](/fabric/onelake/onelake-access-api). |
 | API key || API Key connections handle authentication to your specified target on an individual basis. For example, you can use this connection with the SerpApi tool in prompt flow.  |

@@ -6,7 +6,7 @@ description: Learn how to extract text from Azure blobs and making the content f
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: conceptual
