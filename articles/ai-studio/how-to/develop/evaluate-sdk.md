@@ -96,7 +96,7 @@ For evaluators that support conversations as input, you can just pass in the con
 relevance_score = relevance_eval(conversation=conversation)
 ```
 
-A conversation is a python dictionary of a list of messages (which include content, role, and optionally context). Below is an example of a two-turn conversation.
+A conversation is a python dictionary of a list of messages (which include content, role, and optionally context). The following is an example of a two-turn conversation.
 
 ```json
 {"conversation":
