@@ -20,7 +20,7 @@ To use the Azure AI Multimodal Intelligence service, you must create your Azure 
 | --- | --- | --- |
 | US | West US | westus |
 | US | East US | eastus |
-| Europe | West Europe | Westeurope |
+| Europe | West Europe | westeurope |
 | Europe | Sweden Central | swedencentral |
 | Asia Pacific | SouthEast Asia | southeastasia |
 | Australia | Australia East | australiaeast |
@@ -31,7 +31,7 @@ Azure AI Multimodal Intelligence enables you to process and integrate multiple d
 
 Some capabilities of MMI service support multiple languages; any capabilities not mentioned are only English supported.
 
-Select a capability from the following tabs to learn more Multimodal Intelligence language support.
+To learn more Multimodal Intelligence language support, select a capability from the following tabs.
 
 # [Audio](#tab/audio)
 
