@@ -46,7 +46,7 @@ items:
       items:
         - name: Extract metadata for media asset management
           displayName: video, audio, voice, recognition, synthesis, speaker, identification, verification, diarization, transcription, translation, language, understanding, sentiment, analysis, emotion, detection, pronunciation, model
-          href: video/how-to/extract-metadata-media-asset-management.md
+          href: video/how-to/extract-metadata.md
 - name: Concepts
   items:
   - name: Content extraction
