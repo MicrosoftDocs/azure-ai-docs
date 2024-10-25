@@ -20,9 +20,9 @@ Evaluation flows are a special type of prompt flows that calculate metrics to as
 
 ## Understand evaluation flows
 
-A prompt flow is a sequence of nodes that process input and generate output. Evaluation flows consume required inputs and produce corresponding outputs that are usually scores or metrics. Evaluation flows differ from standard flows in their authoring experience and usage.
+A prompt flow is a sequence of nodes that process input and generate output. Evaluation flows also consume required inputs and produce corresponding outputs that are usually scores or metrics. Evaluation flows differ from standard flows in their authoring experience and usage.
 
-Evaluation flows usually run after the run they're testing by receiving its outputs and using the outputs to calculate scores and metrics. Evaluation flows log metrics by using the prompt flow SDK `log_metric()` function.
+Evaluation flows usually run following the run they're testing by receiving its outputs and using the outputs to calculate scores and metrics. Evaluation flows log metrics by using the prompt flow SDK `log_metric()` function.
 
 The outputs of the evaluation flow are results that measure the performance of the flow being tested. Evaluation flows can have an aggregation node that calculates the overall performance of the flow being tested over the test dataset.
 
@@ -168,7 +168,7 @@ After you create your own evaluation flow and metrics, you can use the flow to a
    > If your evaluation flow has an LLM node or requires a connection to consume credentials or other keys, you must enter the connection data on this screen to be able to use the evaluation flow.
 
    > [!NOTE]
-   > If your evaluation doesn't require data from the dataset, you don't need to reference any dataset columns in the input mapping section. Dataset selection is an optional configuration that doesn't affect evaluation results.
+   > If your evaluation doesn't require data from the dataset, you don't need to reference any dataset columns in the input mapping section. In this case, dataset selection is an optional configuration that doesn't affect evaluation results.
 
 1. Select **Review + submit** and then select **Submit** to run the evaluation flow.
 
