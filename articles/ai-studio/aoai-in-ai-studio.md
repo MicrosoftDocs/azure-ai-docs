@@ -1,7 +1,7 @@
 ---
-title: Azure OpenAI Studio in Azure AI Studio
+title: Azure OpenAI in Azure AI Studio
 titleSuffix: Azure AI Studio
-description: Learn about using Azure OpenAI resources in Azure AI Studio, including when to use a project and when to use without a project.
+description: Learn about using Azure OpenAI models in Azure AI Studio, including when to use a project and when to use without a project.
 manager: scottpolly
 keywords: Azure AI services, cognitive, Azure OpenAI
 ms.service: azure-ai-studio
