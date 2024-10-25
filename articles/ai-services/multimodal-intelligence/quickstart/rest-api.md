@@ -35,7 +35,7 @@ To use Multimodal Intelligence, you need an Azure AI services multi-service reso
 
     For more information, *see* [Create an Azure AI services multi-services resource](../how-to/create-multi-service-resource.md)
 
-* * curl command line tool installed.
+* curl command line tool installed.
 
   * [Windows](https://curl.haxx.se/windows/)
   * [Mac or Linux](https://learn2torials.com/thread/how-to-install-curl-on-mac-or-linux-(ubuntu)-or-windows)
