@@ -185,7 +185,6 @@ Currently AI-assisted risk and safety metrics are only available in the followin
 |Sweden Central | Supported  | N/A |
 |US North Central | Supported  | N/A |
 |France Central | Supported | N/A |
-|SwitzerlandWest | Supported| N/A |
 
 To learn more about the supported metrics and when to use which metric, see [Evaluation and monitoring metrics for generative AI](../../concepts/evaluation-metrics-built-in.md).
 
