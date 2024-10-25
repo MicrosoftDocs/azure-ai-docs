@@ -405,7 +405,7 @@ Fine-tuning now supports [multi-turn chat training examples](./how-to/fine-tunin
 
 ### GPT-4 (0125) is available for Azure OpenAI On Your Data
 
-You can now use the GPT-4 (0125) model in [available regions](./concepts/models.md#public-cloud-regions) with Azure OpenAI On Your Data.
+You can now use the GPT-4 (0125) model in [available regions](./concepts/models.md#chat-completions-1) with Azure OpenAI On Your Data.
 
 ## March 2024
 

@@ -228,7 +228,7 @@ items:
     - name: Alias an index
       href: search-how-to-alias.md
     - name: Import large data sets
-      href: search-howto-large-index.md
+      href: search-how-to-large-index.md
     - name: Indexers
       items:
       - name: Create an indexer
