@@ -34,34 +34,9 @@ In this article, you learn how to create a post call analytics workflow with a M
 ## Prerequisites
 
 * To get started, you need an active [**Azure account**](https://azure.microsoft.com/free/cognitive-services/). If you don't have one, you can [**create a free 12-month subscription**](https://azure.microsoft.com/free/).
-* Once you have your Azure subscription, you need an [**Azure AI services multi-services resource**](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIServices) created in one of the supported regions. The following regions support Multimodal Intelligence speech capabilities:
+* Once you have your Azure subscription, you need an [**Azure AI services multi-services resource**](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIServices) created in one of the [**supported regions**](../../regionandlanguagesupport.md). 
 
-     * West US
-
-     * East US
-
-     * West Europe
-
-     * Sweden Central
-
-     * SouthEast Asia
-
-     * Australia East
-
-* An audio file (less than 2 hours long and less than 200 MB in size) in one of the formats and codecs supported. Multimodal Intelligence speech capabilities support multiple audio formats and codecs, such as:
-
-* `WAV`
-* `MP3`
-* `OPUS/OGG`
-* `FLAC`
-* `WMA`
-* `AAC`
-* `ALAW` in `WAV` container
-* `MULAW` in `WAV` container
-* `AMR`
-* `WebM`
-* `M4A`
-* `SPEEX`
+* An audio file (less than 2 hours long and less than 200 MB in size) in one of the formats and codecs supported. Multimodal Intelligence speech capabilities support multiple audio formats and codecs, refer to our [**service limits documentation**](../../service-limits.md) for full list.
 
 ## Create an AI Studio hub
 
