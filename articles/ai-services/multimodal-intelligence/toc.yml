@@ -37,7 +37,7 @@ items:
         items:
         - name: Custom document extraction overview
           displayName: document, text, images, video, audio, multi-modal, visual, structured, content, field, extraction
-          href: document/custom/field-extraction.md
+          href: document/custom/overview.md
   - name: Video
     items:
       - name: Media Asset management overview
@@ -45,7 +45,7 @@ items:
         href: video/Media-asset-management.md
       - name: How-to guides
         items:
-        - name: Set up post-call analytics workflow
+        - name: Set up a media asset management workflow
           displayName: video, document, text, images,audio, multi-modal, visual, structured, content, field, extraction
           href: video/how-to/set-up-video-assets-mam.md
 - name: Concepts
