@@ -6,7 +6,7 @@ author: laujan
 ms.author: lajanuar
 manager: nitinme
 ms.service: azure
-ms.topic: overview
+ms.topic: how-to
 ms.date: 10/24/2024
 ---
 

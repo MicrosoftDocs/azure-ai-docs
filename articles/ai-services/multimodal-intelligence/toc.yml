@@ -11,7 +11,7 @@ items:
     displayName: quota, tiers, throttle, max, adjustments, requests, support, ocr
     href: service-limits.md
   - name: Language and region support
-    href: language-region-support.md 
+    href: language-region-support.md
   - name: FAQ
     displayName: storage, security, privacy, help, support, versions, development, migrate, migration, cognitive, applied, form recognizer, form, recognizer
     href: faq.yml
@@ -40,6 +40,13 @@ items:
         - name: Custom extraction overview
           displayName: document, text, images, video, audio, multi-modal, visual, structured, content, field, extraction
           href: document/custom/field-extraction.md
+  - name: Video
+    items:
+    - name: How-to guides
+      items:
+        - name: Extract metadata for media asset management
+          displayName: video, audio, voice, recognition, synthesis, speaker, identification, verification, diarization, transcription, translation, language, understanding, sentiment, analysis, emotion, detection, pronunciation, model
+          href: video/how-to/extract-metadata-media-asset-management.md
 - name: Concepts
   items:
   - name: Content extraction
