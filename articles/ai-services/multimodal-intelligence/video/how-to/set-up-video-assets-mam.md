@@ -14,7 +14,7 @@ ms.date: 10/24/2024
 In this section of this article, you learn how to create a media asset management workflow with Multimodal Intelligence service. You'll call the analyze API with a specific prebuilt model and retrieve the generated metadata and customize the output by defining custom fields.
 
 ## Prerequisites
-* Azure subscription: https://azure.microsoft.com/free/
+* [**Azure subscription**](https://azure.microsoft.com/free/)
 * Azure AI services resource: To access the Video Description API
 * Video file: A video file stored in Azure Blob Storage or accessible via URL
 
@@ -27,26 +27,26 @@ In this section of this article, you learn how to create a media asset managemen
 3. Set up authentication headers:
 * For API calls, you'll need to include the Ocp-Apim-Subscription-Key header with your resource key.
 
-## 1. Analyze a Video
+### 1. Analyze a Video
 To analyze a video and generate metadata, you'll call the analyze API with the prebuilt video-descriptor model.
 
-### Request
-### HTTP Method: POST
+#### Request
+#### HTTP Method: POST
 
-### URL:
+#### URL:
 ```bash
 {Endpoint}/multimodalintelligence/analyzers/prebuilt-video-descriptor:analyze?api-version=2024-12-01-preview
 ```
 
 Replace {Endpoint} with your Azure AI services endpoint.
 
-### Headers:
+#### Headers:
 ```bash
 Ocp-Apim-Subscription-Key: YOUR_RESOURCE_KEY
 Content-Type: application/json
 ```
 
-### Request Body:
+#### Request Body:
 ``` json
 {
   "input": {
@@ -84,33 +84,33 @@ Content-Type: application/json
 
 **Note**: Replace YOUR_VIDEO_URL with the URL of your video file.
 
-### Sample curl Command
+#### Sample curl Command
 ``` bash
 curl -X POST "{Endpoint}/multimodalintelligence/analyzers/prebuilt-video-descriptor:analyze?api-version=2024-12-01-preview" \
   -H "Ocp-Apim-Subscription-Key: YOUR_RESOURCE_KEY" \
   -H "Content-Type: application/json" \
   -d @request_body.json
 ```
-## 2. Retrieve the Analysis Results
+### 2. Retrieve the Analysis Results
 The analyze API is an asynchronous operation. The response will include an operation-location header that you can use to check the status and retrieve the results.
 
-## Check Operation Status
-### HTTP Method: GET
+#### Check Operation Status
+#### HTTP Method: GET
 
-### URL:
+#### URL:
 ``` bash
 {operation-location}
 ```
 Replace {operation-location} with the value from the operation-location header in the response.
 
-### Headers:
+#### Headers:
 
 ``` bash
 Ocp-Apim-Subscription-Key: YOUR_RESOURCE_KEY
 ```
 Repeat this request until the status field in the response is succeeded.
 
-### Sample Response
+#### Sample Response
 ``` json
 {
   "status": "succeeded",
@@ -156,7 +156,7 @@ Repeat this request until the status field in the response is succeeded.
   }
 }
 ```
-## 3. Customize the Metadata Schema
+### 3. Customize the Metadata Schema
 You can customize the metadata fields by modifying the schema in the request body. For example, if you want to extract information about the emotions displayed in the video, you can add a new field:
 ``` json
 "EmotionAnalysis": {
@@ -177,7 +177,7 @@ Include this field in the fields section of the schema:
 }
 ```
 
-## Next steps
+### Next steps
 * **Explore Advanced Features**: Learn how to use additional features like face recognition, object detection, and more.
 * **Integrate into Applications**: Use the API in your applications to automate video metadata generation.
 * **Provide Feedback**: Share your experience and suggestions to improve the Azure AI services.
