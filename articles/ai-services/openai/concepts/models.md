@@ -4,7 +4,7 @@ titleSuffix: Azure OpenAI
 description: Learn about the different model capabilities that are available with Azure OpenAI.
 ms.service: azure-ai-openai
 ms.topic: conceptual
-ms.date: 10/09/2024
+ms.date: 10/25/2024
 ms.custom: references_regions, build-2023, build-2023-dataai, refefences_regions
 manager: nitinme
 author: mrbullwinkle #ChrisHMSFT
@@ -357,16 +357,40 @@ You can also use the OpenAI text to speech voices via Azure AI Speech. To learn 
 
 ## Model summary table and region availability
 
-> [!NOTE]
-> This article primarily covers model/region availability that applies to all Azure OpenAI customers with deployment types of **Standard**. Some select customers have access to model/region combinations that are not listed in the unified table below. For more information on Provisioned deployments, see our [Provisioned guidance](./provisioned-throughput.md).
+### Models by deployment type
+
+Azure OpenAI provides customers with choices on the hosting structure that fits their business and usage patterns. The service offers two main types of deployment: 
+
+- **Standard** is offered with a global deployment option, routing traffic globally to provide higher throughput.
+- **Provisioned** is also offered with a global deployment option, allowing customers to purchase and deploy provisioned throughput units across Azure global infrastructure.
+
+All deployments can perform the exact same inference operations, however the billing, scale, and performance are substantially different. To learn more about Azure OpenAI deployment types see our [deployment types guide](../how-to/deployment-types.md).
+
+# [Global Standard](#tab/global-standard)
+
+### Global standard model availability
+
+[!INCLUDE [Standard Global](../includes/model-matrix/standard-global.md)]
+
+# [Global Provisioned Managed](#tab/global-ptum)
+
+### Global provisioned managed model availability
+
+[!INCLUDE [Provisioned Managed Global](../includes/model-matrix/provisioned-global.md)]
+
+# [Global Batch](#tab/global-batch)
+
+### Global batch model availability
+
+[!INCLUDE [Global batch](../includes/model-matrix/global-batch.md)]
+
+# [Standard](#tab/standard)
 
 ### Standard deployment model availability
 
 [!INCLUDE [Standard Models](../includes/model-matrix/standard-models.md)]
 
-This table doesn't include fine-tuning regional availability information.  Consult the [fine-tuning section](#fine-tuning-models) for this information.
-
-For information on default quota, refer to the [quota and limits article](../quotas-limits.md).
+# [Provisioned Managed](#tab/provisioned)
 
 ### Provisioned deployment model availability
 
@@ -377,23 +401,19 @@ For information on default quota, refer to the [quota and limits article](../quo
 
 For more information on Provisioned deployments, see our [Provisioned guidance](./provisioned-throughput.md).
 
-### Global standard model availability
+---
 
-[!INCLUDE [Standard Global](../includes/model-matrix/standard-global.md)]
+This table doesn't include fine-tuning regional availability information.  Consult the [fine-tuning section](#fine-tuning-models) for this information.
 
-### Global provisioned managed model availability
+### Standard models by endpoint
 
-[!INCLUDE [Provisioned Managed Global](../includes/model-matrix/provisioned-global.md)]
+# [Chat Completions](#tab/standard-chat-completions)
 
-### Global batch model availability
+### Chat completions
 
-[!INCLUDE [Global batch](../includes/model-matrix/global-batch.md)]
+[!INCLUDE [Chat Completions](../includes/model-matrix/standard-chat-completions.md)]
 
 ### GPT-4 and GPT-4 Turbo model availability
-
-#### Public cloud regions
-
-[!INCLUDE [GPT-4](../includes/model-matrix/standard-gpt-4.md)]
 
 #### Select customer access
 
@@ -406,22 +426,13 @@ In addition to the regions above which are available to all Azure OpenAI custome
 
 ### GPT-3.5 models
 
-> [!IMPORTANT]
-> The NEW `gpt-35-turbo (0125)`  model has various improvements, including higher accuracy at responding in requested formats and a fix for a bug which caused a text encoding issue for non-English language function calls.
-
-GPT-3.5 Turbo is used with the Chat Completion API. GPT-3.5 Turbo version 0301 can also be used with the Completions API, though this is not recommended.  GPT-3.5 Turbo versions 0613 and 1106 only support the Chat Completions API.
-
-GPT-3.5 Turbo version 0301 is the first version of the model released.  Version 0613 is the second version of the model and adds function calling support.
-
 See [model versions](../concepts/model-versions.md) to learn about how Azure OpenAI Service handles model version upgrades, and [working with models](../how-to/working-with-models.md) to learn how to view and configure the model version settings of your GPT-3.5 Turbo deployments.
 
-### GPT-3.5-Turbo model availability
-
-#### Public cloud regions
-
-[!INCLUDE [GPT-35-Turbo](../includes/model-matrix/standard-gpt-35-turbo.md)]
+# [Embeddings](#tab/standard-embeddings)
 
 ### Embeddings models
+
+[!INCLUDE [Embeddings](../includes/model-matrix/standard-embeddings.md)]
 
 These models can only be used with Embedding API requests.
 
@@ -438,20 +449,50 @@ These models can only be used with Embedding API requests.
 > [!NOTE]
 > When sending an array of inputs for embedding, the max number of input items in the array per call to the embedding endpoint is 2048.
 
-#### Public cloud regions
+# [Image Generation](#tab/standard-image-generations)
 
-[!INCLUDE [Embeddings](../includes/model-matrix/standard-embeddings.md)]
+### Image generation models
+
+[!INCLUDE [Image Generation](../includes/model-matrix/standard-image-generation.md)]
 
 ### DALL-E models
 
-|  Model ID  | Feature Availability | Max Request (characters) |
-|  --- |  --- | :---: |
-| dalle2 (preview) | East US | 1,000 |
-| dall-e-3 | East US, Australia East, Sweden Central | 4,000 |
+|  Model ID  | Max Request (characters) |
+|  --- | :---: |
+| dalle2 (preview)  | 1,000 |
+| dall-e-3  | 4,000 |
 
-### Fine-tuning models
+# [Audio](#tab/standard-audio)
+
+### Audio models
+
+[!INCLUDE [Audio](../includes/model-matrix/standard-audio.md)]
+
+### Whisper models
+
+|  Model ID  | Max Request (audio file size) |
+|  --- | :---: |
+| `whisper` | 25 MB |
+
+### Text to speech models (Preview)
+
+|  Model ID  | Description |
+|  --- | :--- |
+| `tts` | The latest Azure OpenAI text to speech model, optimized for speed. |
+| `tts-hd` | The latest Azure OpenAI text to speech model, optimized for quality.|
+ |
+
+# [Completions (Legacy)](#tab/standard-completions)
+
+### Completions models
 
 `babbage-002` and `davinci-002` are not trained to follow instructions. Querying these base models should only be done as a point of reference to a fine-tuned version to evaluate the progress of your training.
+
+[!INCLUDE [Completions](../includes/model-matrix/standard-completions.md)]
+
+---
+
+## Fine-tuning models
 
 `gpt-35-turbo` - fine-tuning of this model is limited to a subset of regions, and is not available in every region the base model is available.  
 
@@ -468,20 +509,7 @@ These models can only be used with Embedding API requests.
 
 **<sup>1</sup>** GPT-4 is currently in public preview.
 
-### Whisper models
-
-|  Model ID  | Model Availability | Max Request (audio file size) |
-|  --- |  --- | :---: |
-| `whisper` | East US 2 <br> North Central US <br> Norway East <br> South India <br> Sweden Central <br> West Europe | 25 MB |
-
-### Text to speech models (Preview)
-
-|  Model ID  | Model Availability |
-|  --- |  --- | :---: |
-| `tts-1` | North Central US <br> Sweden Central |
-| `tts-1-hd` | North Central US <br> Sweden Central |
-
-### Assistants (Preview)
+## Assistants (Preview)
 
 For Assistants you need a combination of a supported model, and a supported region. Certain tools and capabilities require the latest models. The following models are available in the Assistants API, SDK, Azure AI Studio and Azure OpenAI Studio. The following table is for pay-as-you-go. For information on Provisioned Throughput Unit (PTU) availability, see [provisioned throughput](./provisioned-throughput.md). The listed models and regions can be used with both Assistants v1 and v2. You can use [global standard models](#global-standard-model-availability) if they are supported in the regions listed below. 
 
