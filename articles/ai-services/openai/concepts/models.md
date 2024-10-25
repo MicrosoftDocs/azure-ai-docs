@@ -4,7 +4,7 @@ titleSuffix: Azure OpenAI
 description: Learn about the different model capabilities that are available with Azure OpenAI.
 ms.service: azure-ai-openai
 ms.topic: conceptual
-ms.date: 10/09/2024
+ms.date: 10/25/2024
 ms.custom: references_regions, build-2023, build-2023-dataai, refefences_regions
 manager: nitinme
 author: mrbullwinkle #ChrisHMSFT
@@ -357,16 +357,31 @@ You can also use the OpenAI text to speech voices via Azure AI Speech. To learn 
 
 ## Model summary table and region availability
 
-> [!NOTE]
-> This article primarily covers model/region availability that applies to all Azure OpenAI customers with deployment types of **Standard**. Some select customers have access to model/region combinations that are not listed in the unified table below. For more information on Provisioned deployments, see our [Provisioned guidance](./provisioned-throughput.md).
+# [Global Standard](#tab/global-standard)
+
+### Global standard model availability
+
+[!INCLUDE [Standard Global](../includes/model-matrix/standard-global.md)]
+
+# [Global Provisioned Managed](#tab/global-ptum)
+
+### Global provisioned managed model availability
+
+[!INCLUDE [Provisioned Managed Global](../includes/model-matrix/provisioned-global.md)]
+
+# [Global Batch](#tab/global-batch)
+
+### Global batch model availability
+
+[!INCLUDE [Global batch](../includes/model-matrix/global-batch.md)]
+
+# [Standard](#tab/standard)
 
 ### Standard deployment model availability
 
 [!INCLUDE [Standard Models](../includes/model-matrix/standard-models.md)]
 
-This table doesn't include fine-tuning regional availability information.  Consult the [fine-tuning section](#fine-tuning-models) for this information.
-
-For information on default quota, refer to the [quota and limits article](../quotas-limits.md).
+# [Provisioned Managed](#tab/provisioned)
 
 ### Provisioned deployment model availability
 
@@ -377,23 +392,17 @@ For information on default quota, refer to the [quota and limits article](../quo
 
 For more information on Provisioned deployments, see our [Provisioned guidance](./provisioned-throughput.md).
 
-### Global standard model availability
+---
 
-[!INCLUDE [Standard Global](../includes/model-matrix/standard-global.md)]
+This table doesn't include fine-tuning regional availability information.  Consult the [fine-tuning section](#fine-tuning-models) for this information.
 
-### Global provisioned managed model availability
+### Standard models by endpoint
 
-[!INCLUDE [Provisioned Managed Global](../includes/model-matrix/provisioned-global.md)]
+# [Chat Completions](#tab/standard-chat-completions)
 
-### Global batch model availability
-
-[!INCLUDE [Global batch](../includes/model-matrix/global-batch.md)]
+[!INCLUDE [Chat Completions](../includes/model-matrix/standard-chat-completions.md)]
 
 ### GPT-4 and GPT-4 Turbo model availability
-
-#### Public cloud regions
-
-[!INCLUDE [GPT-4](../includes/model-matrix/standard-gpt-4.md)]
 
 #### Select customer access
 
@@ -415,11 +424,9 @@ GPT-3.5 Turbo version 0301 is the first version of the model released.  Version 
 
 See [model versions](../concepts/model-versions.md) to learn about how Azure OpenAI Service handles model version upgrades, and [working with models](../how-to/working-with-models.md) to learn how to view and configure the model version settings of your GPT-3.5 Turbo deployments.
 
-### GPT-3.5-Turbo model availability
+# [Embeddings](#tab/standard-embeddings)
 
-#### Public cloud regions
-
-[!INCLUDE [GPT-35-Turbo](../includes/model-matrix/standard-gpt-35-turbo.md)]
+[!INCLUDE [Embeddings](../includes/model-matrix/standard-embeddings.md)]
 
 ### Embeddings models
 
@@ -438,16 +445,34 @@ These models can only be used with Embedding API requests.
 > [!NOTE]
 > When sending an array of inputs for embedding, the max number of input items in the array per call to the embedding endpoint is 2048.
 
-#### Public cloud regions
+# [Image Generation](#tab/standard-image-generations)
 
-[!INCLUDE [Embeddings](../includes/model-matrix/standard-embeddings.md)]
+[!INCLUDE [Image Generation](../includes/model-matrix/standard-image-generation.md)]
 
 ### DALL-E models
 
-|  Model ID  | Feature Availability | Max Request (characters) |
-|  --- |  --- | :---: |
-| dalle2 (preview) | East US | 1,000 |
-| dall-e-3 | East US, Australia East, Sweden Central | 4,000 |
+|  Model ID  | Max Request (characters) |
+|  --- | :---: |
+| dalle2 (preview)  | 1,000 |
+| dall-e-3  | 4,000 |
+
+# [Audio](#tab/standard-audio)
+
+[!INCLUDE [Audio](../includes/model-matrix/standard-audio.md)]
+
+### Whisper models
+
+|  Model ID  | Max Request (audio file size) |
+|  --- | :---: |
+| `whisper` | 25 MB |
+
+### Text to speech models (Preview)
+
+# [Completions (Legacy)](#tab/standard-completions)
+
+[!INCLUDE [Completions](../includes/model-matrix/standard-completions.md)]
+
+---
 
 ### Fine-tuning models
 
@@ -467,19 +492,6 @@ These models can only be used with Embedding API requests.
 | `gpt-4o` <sup>**1**</sup> (2024-08-06) | East US2 <br> North Central US <br> Sweden Central | Input: 128,000 <br> Output: 16,384  <br> Training example context length: 64,536 | Oct 2023 | 
 
 **<sup>1</sup>** GPT-4 is currently in public preview.
-
-### Whisper models
-
-|  Model ID  | Model Availability | Max Request (audio file size) |
-|  --- |  --- | :---: |
-| `whisper` | East US 2 <br> North Central US <br> Norway East <br> South India <br> Sweden Central <br> West Europe | 25 MB |
-
-### Text to speech models (Preview)
-
-|  Model ID  | Model Availability |
-|  --- |  --- | :---: |
-| `tts-1` | North Central US <br> Sweden Central |
-| `tts-1-hd` | North Central US <br> Sweden Central |
 
 ### Assistants (Preview)
 
