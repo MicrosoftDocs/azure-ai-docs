@@ -22,7 +22,7 @@ items:
   - name: What's new
     displayName: changelog, release, updates, previews
     href: whats-new.md
-- name: Azure AI Multimodal Intelligence capabilities
+- name: Capabilities
   items:
   - name: Speech
     items:
@@ -51,11 +51,6 @@ items:
         - name: Set up a media asset management workflow
           displayName: video, document, text, images,audio, multi-modal, visual, structured, content, field, extraction
           href: video/how-to/set-up-video-assets-mam.md
-- name: Concepts
-  items:
-  - name: Content extraction
-    displayName: content, extraction, field, structured, document, text, images, video, audio, multi-modal, visual
-    href: concept/content-extraction.md
 - name: Quickstarts
   items:
   - name: Multimodal Intelligence REST API
