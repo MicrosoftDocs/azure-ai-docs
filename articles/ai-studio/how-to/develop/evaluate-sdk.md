@@ -58,7 +58,7 @@ Built-in quality and safety metrics take in query and response pairs, along with
 Built-in evaluators can accept *either* query and respons pairs or a list of conversations:
 
 - Query and response pairs in `.jsonl` format with the required inputs.
-- list of conversations in `.jsonl` format in the following section
+- List of conversations in `.jsonl` format in the following section.
 
 | Evaluator         | `query`      | `response`      | `context`       | `ground_truth`  | `conversation` |
 |----------------|---------------|---------------|---------------|---------------|-----------|
