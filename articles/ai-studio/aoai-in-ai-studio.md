@@ -19,12 +19,12 @@ ms.custom: ignite-2023, build-2024
 Access the Azure OpenAI service inside Azure AI Studio in two different contexts: within a project and outside of a project.
 
 While Azure **AI** Studio uses a project-based approach, Azure **OpenAI** Studio did not use projects. Now that Azure OpenAI is fully integrated into Azure AI Studio, you have the choice of working:
-* Without a project, with only Azure OpenAI models.
+* Without a project, working only with Azure OpenAI models.
 * In a project, along with other models and resources.
 
 ## Understand project and non-project approaches
 
-This table highlights the differences between working with Azure OpenAI outside of a project or in a project in Azure AI Studio:
+You can use Azure OpenAI models with or without an AI Studio project. When you create a project, you can try other models and tools along with Azure OpenAI. But you can do more with Azure OpenAI models outside of a project. This table highlights the differences between working with Azure OpenAI outside of a project or in a project in Azure AI Studio:
 
 
 |  | **Azure OpenAI without a project** | **AI Studio with a project** |
