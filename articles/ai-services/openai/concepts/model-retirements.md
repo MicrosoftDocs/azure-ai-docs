@@ -4,7 +4,7 @@ titleSuffix: Azure OpenAI
 description: Learn about the model deprecations and retirements in Azure OpenAI.
 ms.service: azure-ai-openai
 ms.topic: conceptual
-ms.date: 10/02/2024
+ms.date: 10/25/2024
 ms.custom: 
 manager: nitinme
 author: mrbullwinkle
@@ -91,6 +91,8 @@ These models are currently available for use in Azure OpenAI Service.
 
 | Model | Version | Retirement date | Suggested replacements |
 | ---- | ---- | ---- | --- |
+| `babbage-002` | 1 | Deprecation Date: November 15, 2024 <br>Retirement Date: January 27, 2025 | |
+| `davinci-002` | 1 | Deprecation Date: November 15, 2024 <br>Retirement Date: January 27, 2025 | |
 | `dall-e-2`| 2 | January 27, 2025 | `dalle-3` |
 | `dall-e-3` | 3 | No earlier than April 30, 2025 | |
 | `gpt-35-turbo` | 0301 | January 27, 2025<br><br> Deployments set to [**Auto-update to default**](/azure/ai-services/openai/how-to/working-with-models?tabs=powershell#auto-update-to-default) will be automatically upgraded to version: `0125`, starting on November 13, 2024.   | `gpt-35-turbo` (0125) <br><br> `gpt-4o-mini`  |
@@ -158,8 +160,11 @@ If you're an existing customer looking for information about these models, see [
 | code-search-babbage-code-001 | July 6, 2023 | June 14, 2024 | text-embedding-3-small |
 | code-search-babbage-text-001 | July 6, 2023 | June 14, 2024 | text-embedding-3-small |
 
-
 ## Retirement and deprecation history
+
+## October 25, 2024
+
+* `babbage-002` & `davinci-002` deprecation date: November 15, 2024  and retirement date: January 27, 2025.
 
 ## September 12, 2024
 
