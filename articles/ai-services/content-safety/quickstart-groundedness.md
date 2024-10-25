@@ -173,7 +173,7 @@ The Groundedness detection API provides the option to include _reasoning_ in the
 > [!TIP]
 > We only support **Azure OpenAI GPT-4 Turbo (1106-preview)** resources and do not support other GPT types. You have the flexibility to deploy your GPT-4 Turbo (1106-preview) resources in any region. However, to minimize potential latency and avoid any geographical boundary data privacy and risk concerns, we recommend situating them in the same region as your content safety resources. For comprehensive details on data privacy, refer to the [Data, privacy and security guidelines for Azure OpenAI Service](/legal/cognitive-services/openai/data-privacy) and [Data, privacy, and security for Azure AI Content Safety](/legal/cognitive-services/content-safety/data-privacy?context=%2Fazure%2Fai-services%2Fcontent-safety%2Fcontext%2Fcontext).
 
-In order to use your Azure OpenAI GPT4-Turbo (1106-preview) resource to enable the reasoning feature, use Managed Identity to allow your Content Safety resource to access the Azure OpenAI resource:
+In order to use your Azure OpenAI GPT4o (0513, 0806 version) resource to enable the reasoning feature, use Managed Identity to allow your Content Safety resource to access the Azure OpenAI resource:
 
 [!INCLUDE [openai-account-access](~/reusable-content/ce-skilling/azure/includes/ai-services/content-safety/includes/openai-account-access.md)]
 
@@ -295,7 +295,7 @@ The parameters in the request body are defined in this table:
 | **text**   | (Required) The LLM output text to be checked. Character limit: 7,500. |  String  |
 | **groundingSources**  | (Required) Uses an array of grounding sources to validate AI-generated text. See [Input requirements](./overview.md#input-requirements) for limits, | String array    |
 | **reasoning**  | (Optional) Set to `true`, the service uses Azure OpenAI resources to provide an explanation. Be careful: using reasoning increases the processing time and incurs extra fees.| Boolean   |
-| **llmResource**  | (Required) If you want to use your own Azure OpenAI GPT4-Turbo (1106-preview) resource to enable reasoning, add this field and include the subfields for the resources used. | String   |
+| **llmResource**  | (Required) If you want to use your own Azure OpenAI GPT4o (0513, 0806 version) resource to enable reasoning, add this field and include the subfields for the resources used. | String   |
 | - `resourceType `| Specifies the type of resource being used. Currently it only allows `AzureOpenAI`. We only support Azure OpenAI GPT-4 Turbo (1106-preview) resources and do not support other GPT types. | Enum|
 | - `azureOpenAIEndpoint `| Your endpoint URL for Azure OpenAI service.  | String |
 | - `azureOpenAIDeploymentName` | The name of the specific GPT deployment to use. | String|
@@ -356,7 +356,7 @@ The groundedness detection API includes a correction feature that automatically 
 > Currently, the correction feature supports only **Azure OpenAI GPT-4 Turbo (1106-preview)** resources. To minimize latency and adhere to data privacy guidelines, it's recommended to deploy your GPT-4 Turbo (1106-preview) resources in the same region as your content safety resources. For more details on data privacy, please refer to the [Data, privacy and security guidelines for Azure OpenAI Service](/legal/cognitive-services/openai/data-privacy?context=/azure/ai-services/openai/context/context)
  and [Data, privacy, and security for Azure AI Content Safety](/legal/cognitive-services/content-safety/data-privacy?context=/azure/ai-services/content-safety/context/context).
 
-To use your Azure OpenAI GPT4-Turbo (1106-preview) resource for enabling the correction feature, use Managed Identity to allow your Content Safety resource to access the Azure OpenAI resource. Follow the steps in the [earlier section](#connect-your-own-gpt-deployment) to set up the Managed Identity.
+To use your Azure OpenAI GPT4o (0513, 0806 version) resource for enabling the correction feature, use Managed Identity to allow your Content Safety resource to access the Azure OpenAI resource. Follow the steps in the [earlier section](#connect-your-own-gpt-deployment) to set up the Managed Identity.
 
 
 ### Make the API request
@@ -449,7 +449,7 @@ The parameters in the request body are defined in this table:
 | **text**   | (Required) The LLM output text to be checked. Character limit: 7,500. |  String  |
 | **groundingSources**  | (Required) Uses an array of grounding sources to validate AI-generated text. See [Input requirements](./overview.md#input-requirements) for limits. | String Array    |
 | **correction**  | (Optional) Set to `true`, the service uses Azure OpenAI resources to provide the corrected text, ensuring consistency with the grounding sources. Be careful: using correction increases the processing time and incurs extra fees.| Boolean   |
-| **llmResource**  | (Required) If you want to use your own Azure OpenAI GPT4-Turbo (1106-preview) resource to enable reasoning, add this field and include the subfields for the resources used. | String   |
+| **llmResource**  | (Required) If you want to use your own Azure OpenAI GPT4o (0513, 0806 version) resource to enable reasoning, add this field and include the subfields for the resources used. | String   |
 | - `resourceType `| Specifies the type of resource being used. Currently it only allows `AzureOpenAI`. We only support Azure OpenAI GPT-4 Turbo (1106-preview) resources and do not support other GPT types. | Enum|
 | - `azureOpenAIEndpoint `| Your endpoint URL for Azure OpenAI service.  | String |
 | - `azureOpenAIDeploymentName` | The name of the specific GPT deployment to use. | String|
