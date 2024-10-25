@@ -383,6 +383,9 @@ The following entities are grouped and listed by country/region:
         To get this entity category, add `BENationalNumberV2` to the `piiCategories` parameter. `BENationalNumberV2` will be returned in the API response if detected.
       
         Also returned with `domain=phi`.
+
+        This entity is deprecated
+
     :::column-end:::
     :::column span="":::
       **Supported languages**
@@ -1174,6 +1177,8 @@ The following entities are grouped and listed by country/region:
     :::column span="2":::
 
         To get this entity category, add `IEPersonalPublicServiceNumberV2` to the `piiCategories` parameter. `IEPersonalPublicServiceNumberV2` will be returned in the API response if detected.
+
+        This entity is deprecated
       
     :::column-end:::
     :::column span="":::
