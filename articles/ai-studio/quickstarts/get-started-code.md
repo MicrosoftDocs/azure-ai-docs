@@ -24,11 +24,10 @@ In this quickstart, we walk you through setting up your local development enviro
 > You must have the necessary permissions to add role assignments for storage accounts in your Azure subscription. Granting permissions (adding role assignment) is only allowed by the **Owner** of the specific Azure resources. You might need to ask your Azure subscription owner (who might be your IT admin) for help to [grant access to call Azure OpenAI Service using your identity](#grant-access-to-call-azure-openai-service-using-your-identity).
 
 Before you can follow this quickstart, create the resources that you need for your application:
-- An [AI Studio hub](../how-to/create-azure-ai-resource.md) for connecting to external resources.
-- A [project](../how-to/create-projects.md) for organizing your project artifacts and sharing traces and evaluation runs.
+
 - A [deployed Azure OpenAI](../how-to/deploy-models-openai.md) chat model (gpt-35-turbo or gpt-4)
 
-Complete the [AI Studio playground quickstart](../quickstarts/get-started-playground.md) to create these resources if you haven't already. You can also create these resources by following the [SDK guide to create a hub and project](../how-to/develop/create-hub-project-sdk.md) article.
+Complete the [AI Studio playground quickstart](../quickstarts/get-started-playground.md) to create this resource if you haven't already.
 
 ## Grant access to call Azure OpenAI Service using your identity
 
@@ -85,6 +84,7 @@ In this section, we use prompt flow to build our application. [Prompt flow](http
 Your AI services endpoint and deployment name are required to call the Azure OpenAI service from your code. In this quickstart, you save these values in a ```.env``` file, which is a file that contains environment variables that your application can read. You can find these values in the AI Studio chat playground. 
 
 1. Create a ```.env``` file, and paste the following code:
+
     ```
     AZURE_OPENAI_ENDPOINT=endpoint_value
     AZURE_OPENAI_CHAT_DEPLOYMENT=chat_deployment_name
