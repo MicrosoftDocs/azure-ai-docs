@@ -82,9 +82,9 @@ items:
       href: search-synapseml-cognitive-services.md
     - name: Index Azure SQL Database
       href: search-indexer-tutorial.md
-    - name: Index Azure JSON blobs
+    - name: Index JSON in Azure blobs
       href: search-semi-structured-data.md
-    - name: Index Azure Markdown blobs
+    - name: Index Markdown in Azure blobs
       href: search-markdown-data.md
     - name: Index multiple Azure data sources 
       href: tutorial-multiple-data-sources.md

@@ -1,7 +1,7 @@
 ---
 title: 'Tutorial: Index Markdown blobs'
 titleSuffix: Azure AI Search
-description: Learn how to index and search Azure Markdown blobs using Azure AI Search REST APIs.
+description: Learn how to index and search Markdown in Azure blobs using Azure AI Search REST APIs.
 
 author: mdonovan
 ms.author: mdonovan
@@ -40,11 +40,7 @@ If you don't have an Azure subscription, create a [free account](https://azure.m
 
 ### Download files
 
-Download a zip file of the sample data repository and extract the contents. [Learn how](https://docs.github.com/get-started/start-your-journey/downloading-files-from-github).
-
-+ (TODO: update this link, need to host this file somewhere) [sample-markdown](https://github.com/Azure-Samples/azure-search-sample-data)
-
-Sample data is a single Markdown file containing various Markdown elements. We chose one Markdown file to stay under the storage limits of the free tier.
+Copy and paste the Markdown below into a file named `sample_markdown.md`. The sample data is a single Markdown file containing various Markdown elements. We chose one Markdown file to stay under the storage limits of the free tier.
 
 ```md
 # Project Documentation
@@ -55,23 +51,35 @@ This document provides a complete overview of the **Markdown Features** used wit
 ---
 
 ## Table of Contents
-1. [Introduction](#introduction)
-2. [Basic Text Formatting](#basic-text-formatting)
-3. [Lists](#lists)
-4. [Blockquotes](#blockquotes)
-5. [Images](#images)
-6. [Links](#links)
-7. [Tables](#tables)
-8. [Horizontal Rules](#horizontal-rules)
-9. [Inline Elements](#inline-elements)
-10. [Escaping Characters](#escaping-characters)
-11. [HTML Elements](#html-elements)
-12. [Emojis](#emojis)
-13. [Footnotes](#footnotes)
-14. [Task Lists](#task-lists)
-15. [Conclusion](#conclusion)
+1. [Headers](#headers)
+2. [Introduction](#introduction)
+3. [Basic Text Formatting](#basic-text-formatting)
+4. [Lists](#lists)
+5. [Blockquotes](#blockquotes)
+6. [Images](#images)
+7. [Links](#links)
+8. [Tables](#tables)
+9. [Code Blocks and Inline Code](#code-blocks-and-inline-code)
+10. [Horizontal Rules](#horizontal-rules)
+11. [Inline Elements](#inline-elements)
+12. [Escaping Characters](#escaping-characters)
+13. [HTML Elements](#html-elements)
+14. [Emojis](#emojis)
+15. [Footnotes](#footnotes)
+16. [Task Lists](#task-lists)
+17. [Conclusion](#conclusion)
 
 ---
+
+## Headers
+Markdown supports six levels of headers. Use `#` to create headers:
+"# Project Documentation" at the top of the document is an example of an h1 header.
+"## Headers" above is an example of an h2 header.
+### h3 example
+#### h4 example
+##### h5 example
+###### h6 example
+This is an example of content underneath a header.
 
 ## Basic Text Formatting
 You can apply various styles to your text:
@@ -113,6 +121,20 @@ You can apply various styles to your text:
 |-------------|-------------|---------------|
 | Header      | Title       | Header Cell   |
 | Paragraph   | Text block  | Row Content   |
+
+## Code Blocks and Inline Code
+
+### Inline Code
+Use backticks to create `inline code`.
+
+### Code Block
+```javascript
+// JavaScript example
+function greet(name) {
+  console.log(`Hello, ${name}!`);
+}
+greet('World');
+```
 
 ## Horizontal Rules
 Use three or more dashes or underscores to create a horizontal rule.
@@ -159,24 +181,17 @@ This is an example of a footnote[^1]. Footnotes allow you to add notes without c
 ## Task Lists
 - [x] Complete the introduction  
 - [ ] Add more examples  
-- [ ] Review the document
-
-### Example of h3
-#### Example of h4
-This section exists to show the functionality of the markdownHeaderDepth.
+- [ ] Review the document 
 
 ## Conclusion
 Markdown is a lightweight yet powerful tool for writing documentation. It supports a variety of formatting options while maintaining simplicity and readability.
 
 Thank you for reviewing this example!
-
----
-Generated with Markdown 📝
 ```
 
 ### Upload sample data to Azure Storage
 
-1. In Azure Storage, create a new container and name it *sample-markdown*.
+1. In Azure Storage, create a new container and name it *markdown-container*.
 
 1. [Upload the sample data files](/azure/storage/blobs/storage-quickstart-blobs-portal).
 
@@ -250,21 +265,21 @@ Send the request. The response should look like:
 HTTP/1.1 201 Created
 Transfer-Encoding: chunked
 Content-Type: application/json; odata.metadata=minimal; odata.streaming=true; charset=utf-8
-ETag: "0x8DC43A5FDB8448F"
+ETag: "0x8DCF52E926A3C76"
 Location: https://<YOUR-SEARCH-SERVICE-NAME>.search.windows.net:443/datasources('sample-markdown-ds')?api-version=2024-11-01
 Server: Microsoft-IIS/10.0
 Strict-Transport-Security: max-age=2592000, max-age=15724800; includeSubDomains
 Preference-Applied: odata.include-annotations="*"
 OData-Version: 4.0
-request-id: 7ca53f73-1054-4959-bc1f-616148a9c74a
-elapsed-time: 111
-Date: Wed, 13 Nov 2024 21:38:58 GMT
+request-id: 0714c187-217e-4d35-928a-5069251e5cba
+elapsed-time: 204
+Date: Fri, 25 Oct 2024 19:52:35 GMT
 Connection: close
 
 {
   "@odata.context": "https://<YOUR-SEARCH-SERVICE-NAME>.search.windows.net/$metadata#datasources/$entity",
-  "@odata.etag": "\"0x8DC43A5FDB8448F\"",
-  "name": "sample-markdownc-ds",
+  "@odata.etag": "\"0x8DCF52E926A3C76\"",
+  "name": "sample-markdown-ds",
   "description": null,
   "type": "azureblob",
   "subtype": null,
@@ -272,12 +287,13 @@ Connection: close
     "connectionString": null
   },
   "container": {
-    "name": "sample-markdown",
+    "name": "markdown-container",
     "query": null
   },
   "dataChangeDetectionPolicy": null,
   "dataDeletionDetectionPolicy": null,
-  "encryptionKey": null
+  "encryptionKey": null,
+  "identity": null
 }
 ```
 
@@ -298,17 +314,18 @@ POST {{baseUrl}}/indexes?api-version=2024-11-01  HTTP/1.1
       "fields": [
         {"name": "section_id", "type": "Edm.String", "key": true, "searchable": true, "retrievable": true, "filterable": true, "facetable": true, "sortable": true},
         {"name": "content", "type": "Edm.String", "key": false, "searchable": true, "retrievable": true, "filterable": true, "facetable": true, "sortable": true},
-        {"name": "h1", "type": "Edm.String", "searchable": true, "retrievable": true, "filterable": true, "facetable": true, "sortable": true},
+        {"name": "title", "type": "Edm.String", "searchable": true, "retrievable": true, "filterable": true, "facetable": true, "sortable": true},
         {"name": "h2_subheader", "type": "Edm.String", "searchable": true, "retrievable": true, "filterable": true, "facetable": true, "sortable": true},
         {"name": "h3_subheader", "type": "Edm.String", "searchable": true, "retrievable": true, "filterable": true, "facetable": true, "sortable": true},
-        {"name": "ordinal_position", "type": "Edm.Int32", "searchable": false, "retrievable": true, "filterable": true, "facetable": true, "sortable": true},
+        {"name": "ordinal_position", "type": "Edm.Int32", "searchable": false, "retrievable": true, "filterable": true, "facetable": true, "sortable": true}
       ]
     }
 ```
 
+
 **Key points**:
 
-+ In the raw content, `Date` and `Time` are strings, so the corresponding data types in the index are also strings. 
++ We will map `/sections/h1` to the `title` field, `/sections/h2` to the `h2_subheader` field, and `sections/h3` to the `h3_subheader` field. See the indexer configuration in the next section.
 
 ## Create and run an indexer
 
@@ -327,7 +344,7 @@ POST {{baseUrl}}/indexers?api-version=2024-11-01  HTTP/1.1
       "parameters" : { 
         "configuration": { 
           "parsingMode": "markdown",
-          "parsingMode": "oneToMany",
+          "markdownParsingSubmode": "oneToMany",
           "markdownHeaderDepth": "h3"
           }
         },
@@ -355,7 +372,7 @@ POST {{baseUrl}}/indexers?api-version=2024-11-01  HTTP/1.1
 
 + The indexer will only parse headers up to `h3`. Any lower-level headers (`h4`,`h5`,`h6`) will be treated as plain text. This is why the index and field mappings only exist up to a depth of `h3`.
 
-+ The `content` field requires no field mappings as it exists in the enriched document.
++ The `content` and `ordinal_position` fields require no field mapping as they exist with those names in the enriched document.
 
 ## Run queries
 
@@ -385,20 +402,19 @@ Server: Microsoft-IIS/10.0
 Strict-Transport-Security: max-age=2592000, max-age=15724800; includeSubDomains
 Preference-Applied: odata.include-annotations="*"
 OData-Version: 4.0
-request-id: ecc8cec3-1e2b-44ed-92db-f88bdf014d4f
-elapsed-time: 13
-Date: Thu, 24 Oct 2024 22:23:23 GMT
+request-id: 6b94e605-55e8-47a5-ae15-834f926ddd14
+elapsed-time: 77
+Date: Fri, 25 Oct 2024 20:22:58 GMT
 Connection: close
 
 {
   "@odata.context": "https://<YOUR-SEARCH-SERVICE-NAME>.search.windows.net/indexes('sample-markdown-index')/$metadata#docs(*)",
-  "@odata.count": 19,
+  "@odata.count": 22,
   "value": [
-    ...
-    <19 search documents here>
-    ...
+    <22 search documents here>
   ]
 }
+
 ```
 
 Add a `search` parameter to search on a string. 
@@ -415,6 +431,9 @@ POST {{baseUrl}}/indexes/sample-markdown-index/docs/search?api-version=2024-11-0
   }
 ```
 
+Send the request. The response should look like:
+
+```json
 HTTP/1.1 200 OK
 Transfer-Encoding: chunked
 Content-Type: application/json; odata.metadata=minimal; odata.streaming=true; charset=utf-8
@@ -424,9 +443,9 @@ Server: Microsoft-IIS/10.0
 Strict-Transport-Security: max-age=2592000, max-age=15724800; includeSubDomains
 Preference-Applied: odata.include-annotations="*"
 OData-Version: 4.0
-request-id: 179f8bce-7ac8-4ebd-b4dd-0fb714e4a439
-elapsed-time: 33
-Date: Thu, 24 Oct 2024 22:27:05 GMT
+request-id: ec5d03f1-e3e7-472f-9396-7ff8e3782105
+elapsed-time: 52
+Date: Fri, 25 Oct 2024 20:26:29 GMT
 Connection: close
 
 {
@@ -434,27 +453,29 @@ Connection: close
   "@odata.count": 1,
   "value": [
     {
-      "@search.score": 0.26286605,
-      "section_id": "aHR0cHM6Ly9hcmphZ2Fubmpma2ZpbGVzLmJsb2IuY29yZS53aW5kb3dzLm5ldC9tYXJrZG93bi10dXRvcmlhbC9zYW1wbGVfbWFya2Rvd24ubWQ7MTg1",
-      "content": "#### Example of h4\r\nThis section exists to show the functionality of the markdownHeaderDepth.\r\n",
+      "@search.score": 0.8744742,
+      "section_id": "aHR0cHM6Ly9hcmphZ2Fubmpma2ZpbGVzLmJsb2IuY29yZS53aW5kb3dzLm5ldC9tYXJrZG93bi10dXRvcmlhbC9zYW1wbGVfbWFya2Rvd24ubWQ7NA2",
+      "content": "#### h4 example\r\n##### h5 example\r\n###### h6 example\r\nThis is an example of content underneath a header.\r\n",
       "title": "Project Documentation",
-      "h2_subheader": "Task Lists",
-      "h3_subheader": "Example of h3",
-      "ordinal_position": 18
+      "h2_subheader": "Headers",
+      "h3_subheader": "h3 example",
+      "ordinal_position": 4
     }
   ]
 }
 
 One document is returned in the response. 
 
+```
 **Key points**:
 
-+ Because the `markdownHeaderDepth` is set to `h3`, `h4` headers are treated as plaintext. That is why it shows up in the `content` field here.
++ Because the `markdownHeaderDepth` is set to `h3`, the `h4`, `h5`, and `h6` headers are treated as plaintext, so they appear in the `content` field.
 
-+ Ordinal position here is 18 and there are 19 total documents, which makes sense because is the 2nd to last content block in the markdown document.
++ Ordinal position here is 4, this content appears as the 4th out of the 22 total content sections.
 
 Add a `select` parameter to limit the results to fewer fields. Add a `filter` to further narrow the search.
 
+```json
 HTTP/1.1 200 OK
 Transfer-Encoding: chunked
 Content-Type: application/json; odata.metadata=minimal; odata.streaming=true; charset=utf-8
@@ -464,9 +485,9 @@ Server: Microsoft-IIS/10.0
 Strict-Transport-Security: max-age=2592000, max-age=15724800; includeSubDomains
 Preference-Applied: odata.include-annotations="*"
 OData-Version: 4.0
-request-id: f4f6fb04-7b69-4dbf-98dc-908a04fa0aaa
-elapsed-time: 53
-Date: Thu, 24 Oct 2024 22:39:52 GMT
+request-id: a6f9bd46-a064-4e28-818f-ea077618014b
+elapsed-time: 35
+Date: Fri, 25 Oct 2024 20:36:10 GMT
 Connection: close
 
 {
@@ -474,13 +495,14 @@ Connection: close
   "@odata.count": 1,
   "value": [
     {
-      "@search.score": 0.7492743,
-      "content": "Markdown is a lightweight yet powerful tool for writing documentation. It supports a variety of formatting options while maintaining simplicity and readability.\r\n\r\nThank you for reviewing this example!\r\n\r\n---\r\nGenerated with Markdown \ud83d\udcdd\r\n",
+      "@search.score": 1.1029507,
+      "content": "Markdown is a lightweight yet powerful tool for writing documentation. It supports a variety of formatting options while maintaining simplicity and readability.\r\n\r\nThank you for reviewing this example!",
       "title": "Project Documentation",
       "h2_subheader": "Conclusion"
     }
   ]
 }
+```
 
 For filters, you can also use Logical operators (and, or, not) and comparison operators (eq, ne, gt, lt, ge, le). String comparisons are case-sensitive. For more information and examples, see [Create a query](search-query-simple-examples.md).
 
