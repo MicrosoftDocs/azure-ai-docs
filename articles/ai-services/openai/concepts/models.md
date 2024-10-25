@@ -398,6 +398,8 @@ This table doesn't include fine-tuning regional availability information.  Consu
 
 ### Standard models by endpoint
 
+### Chat completions
+
 # [Chat Completions](#tab/standard-chat-completions)
 
 [!INCLUDE [Chat Completions](../includes/model-matrix/standard-chat-completions.md)]
@@ -418,17 +420,13 @@ In addition to the regions above which are available to all Azure OpenAI custome
 > [!IMPORTANT]
 > The NEW `gpt-35-turbo (0125)`  model has various improvements, including higher accuracy at responding in requested formats and a fix for a bug which caused a text encoding issue for non-English language function calls.
 
-GPT-3.5 Turbo is used with the Chat Completion API. GPT-3.5 Turbo version 0301 can also be used with the Completions API, though this is not recommended.  GPT-3.5 Turbo versions 0613 and 1106 only support the Chat Completions API.
-
-GPT-3.5 Turbo version 0301 is the first version of the model released.  Version 0613 is the second version of the model and adds function calling support.
-
 See [model versions](../concepts/model-versions.md) to learn about how Azure OpenAI Service handles model version upgrades, and [working with models](../how-to/working-with-models.md) to learn how to view and configure the model version settings of your GPT-3.5 Turbo deployments.
 
 # [Embeddings](#tab/standard-embeddings)
 
-[!INCLUDE [Embeddings](../includes/model-matrix/standard-embeddings.md)]
-
 ### Embeddings models
+
+[!INCLUDE [Embeddings](../includes/model-matrix/standard-embeddings.md)]
 
 These models can only be used with Embedding API requests.
 
@@ -447,9 +445,9 @@ These models can only be used with Embedding API requests.
 
 # [Image Generation](#tab/standard-image-generations)
 
-[!INCLUDE [Image Generation](../includes/model-matrix/standard-image-generation.md)]
-
 ### DALL-E models
+
+[!INCLUDE [Image Generation](../includes/model-matrix/standard-image-generation.md)]
 
 |  Model ID  | Max Request (characters) |
 |  --- | :---: |
@@ -468,13 +466,21 @@ These models can only be used with Embedding API requests.
 
 ### Text to speech models (Preview)
 
+|  Model ID  | Description |
+|  --- | :--- |
+| `tts` | The latest Azure OpenAI text to speech model, optimized for speed. |
+| `tts-hd` | The latest Azure OpenAI text to speech model, optimized for quality.|
+ |
+
 # [Completions (Legacy)](#tab/standard-completions)
+
+### Completions models
 
 [!INCLUDE [Completions](../includes/model-matrix/standard-completions.md)]
 
 ---
 
-### Fine-tuning models
+## Fine-tuning models
 
 `babbage-002` and `davinci-002` are not trained to follow instructions. Querying these base models should only be done as a point of reference to a fine-tuned version to evaluate the progress of your training.
 
@@ -493,7 +499,7 @@ These models can only be used with Embedding API requests.
 
 **<sup>1</sup>** GPT-4 is currently in public preview.
 
-### Assistants (Preview)
+## Assistants (Preview)
 
 For Assistants you need a combination of a supported model, and a supported region. Certain tools and capabilities require the latest models. The following models are available in the Assistants API, SDK, Azure AI Studio and Azure OpenAI Studio. The following table is for pay-as-you-go. For information on Provisioned Throughput Unit (PTU) availability, see [provisioned throughput](./provisioned-throughput.md). The listed models and regions can be used with both Assistants v1 and v2. You can use [global standard models](#global-standard-model-availability) if they are supported in the regions listed below. 
 
