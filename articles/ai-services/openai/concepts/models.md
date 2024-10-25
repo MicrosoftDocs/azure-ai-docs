@@ -446,9 +446,11 @@ These models can only be used with Embedding API requests.
 
 # [Image Generation](#tab/standard-image-generations)
 
-### DALL-E models
+### Image generation models
 
 [!INCLUDE [Image Generation](../includes/model-matrix/standard-image-generation.md)]
+
+### DALL-E models
 
 |  Model ID  | Max Request (characters) |
 |  --- | :---: |
@@ -456,6 +458,8 @@ These models can only be used with Embedding API requests.
 | dall-e-3  | 4,000 |
 
 # [Audio](#tab/standard-audio)
+
+### Audio models
 
 [!INCLUDE [Audio](../includes/model-matrix/standard-audio.md)]
 
