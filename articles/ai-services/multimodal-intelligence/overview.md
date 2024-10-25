@@ -16,11 +16,11 @@ ms.date: 10/09/2024
 
 Azure AI Multimodal Intelligence is a cloud-based solution within [**Azure AI services**](../what-are-ai-services.md), designed to process various data modalities such as documents, images, videos, and audio within a unified workflow. Integrating these diverse modalities enables Multimodal Intelligence to deliver more extensive, efficient, and accurate results compared to single modality processing. Utilizing the Multimodal Intelligence service, provides you with access to the following benefits:
 
-* [**Comprehensive content extraction and analysis**](#features-and-capabilities)
-
 * [**Diverse modality processing**](#features-and-capabilities).
 
 * [**High-level schema extraction**](#features-and-capabilities).
+
+* [**Comprehensive content extraction and analysis**](#features-and-capabilities)
 
 * [**Grounded results for higher accuracy**](#features-and-capabilities)
 
@@ -30,12 +30,11 @@ Azure AI Multimodal Intelligence is a cloud-based solution within [**Azure AI se
 
 
 ## Features and capabilities
-
 |Capability|Description|
 |:---------|:----------|
-|Comprehensive content extraction and analysis|&bullet; **Synchronous**. Process a given document and return the result in the same REST API call.</br></br>&bullet; **Long-running operations (LRO)**. Process larger documents and return an operation location where user can poll for the result.</br></br>&bullet; **Batch**. Process a a set of documents from a blob and write the results to a blob.|
 |Diverse modality processing|Multimodal Intelligence intakes document, image, audio, video, and mixed media input and converts it into a structured format easily analyzed and further processed by other services and applications.|
 |High-level schema extraction|Users can define the structure and the schema of the extracted results or use a predefined schema for specific schema values: </br></br>&bullet; **Extracted (explicit)**. Values like the name of the product in a recording or the brand/logo from a video are examples of extracted values.</br></br>&bullet; **Inferred (implicit)**. Inferred values aren't explicitly present in the content but can be determined based on the content. The sum of all line items in an invoice or the end date of a contract given a start date and duration are examples of inferred values.</br></br>&bullet; **Abstracted (tacit)**. Abstracted values are generated based on the content of the input. Examples include summaries, outlines, recaps are examples of abstracted values.
+|Comprehensive content extraction and analysis|&bullet; **Synchronous**. Process a given document and return the result in the same REST API call.</br></br>&bullet; **Long-running operations (LRO)**. Process larger documents and return an operation location where user can poll for the result.</br></br>&bullet; **Batch**. Process a a set of documents from a blob and write the results to a blob.|
 |Grounded results for higher accuracy|Multimodal Intelligence ensures that responses are anchored to your input files, leading to higher precision in extracted values. The source information is pivotal to assessing groundedness, serving as the foundation for both grounding and accuracy. A grounded response adheres strictly to the provided information, avoiding any speculation or fabrication. |
 |Highly precise confidence scores|The Multimodal Intelligence enhanced data-input alignment framework ensures a high level of certainty and accuracy across various contexts. A confidence score, ranging from 0 to 1, quantifies the likelihood by assessing the statistical certainty that the extracted result is accurate, correct, and reliable. High confidence scores signify precise data extraction. Accurate extraction scores facilitate straight-through processing (STP) in automation workflows.|
 |Precise and efficient extraction of modality-specific details for secondary processing scenarios| Users can extract specific content that is suitable for secondary scenarios like Large Language Model (LLM) processing.|
