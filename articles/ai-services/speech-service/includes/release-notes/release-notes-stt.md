@@ -9,7 +9,10 @@ ms.author: eur
 ### September 2024 release
 
 
-#### [Real-time speech to text](../../how-to-recognize-speech.md) has released new models for follwoing languages with better quality. 
+#### Real-time speech to text 
+
+[Real-time speech to text](../../how-to-recognize-speech.md) has released new models, with better quality, for the following languages. 
+
 fi-FI/id-ID/zh-TW/pl-PL/pt-PT 
 es-SV/es-EC/es-BO/es-PY/es-AR/es-DO/es-UY/es-CR/es-VE/es-NI/es-HN/es-PR/es-CO/es-CL/es-CU/es-PE/es-PA/es-GT/es-GQ
 
