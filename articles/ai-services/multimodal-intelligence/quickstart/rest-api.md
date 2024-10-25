@@ -63,20 +63,101 @@ Before you run the cURL command, make the following changes to the [POST request
 
 1. Using the following table as a reference, replace `{analyzerID}` and `{your-document-url}` with your desired values.
 
-    |Feature|{analyzerID}| {document-url}|
-    |--------|-------|-------|
-    |Audio|||
-    |Video|||
-    |Document|||
-    |Image|||
-
 1. Open a command prompt window.
 
 1. Copy and Past your edited curl command from the text editor into the command prompt window, and then run the command.
 
   ```bash
-  curl -v -i POST "{endpoint}/multimodalintelligence/analyzers/{analyzerId}:analyze?api-version=2024-12-01-preview" -H "Content-Type: application/json" -H "Ocp-Apim-Subscription-Key: {key}" --data-ascii "{'urlSource': '{your-document-url}'}"
+  curl -v -i POST "{endpoint}/multimodalintelligence/analyzers/{analyzerId}:analyze?api-version=2024-12-01-preview" -H "Content-Type: application/json" -H "Ocp-Apim-Subscription-Key: {key}" -H "Content-Type: application/json" -d @request_body.json "
+
   ```
+
+### POST request body
+
+```json
+{
+
+  "input": {
+
+    "kind": "url",
+
+    "url": "YOUR_FILE_URL"
+
+  },
+
+  "properties": {
+
+   "schema": {
+
+    "name": "Defect Detection",
+
+    "description": "Identification of all potential defects in provided images of metal plates.",
+
+    "fields": {
+
+       "defects": {
+
+            "type": "array",
+
+            "kind": "generate",
+
+            "description": "List of all the defect types and their severities in the image.",
+
+            "items": {
+
+                "type": "object",
+
+                "kind": "generate",
+
+                "properties": {
+
+                    "defect_type": {
+
+                        "type": "string",
+
+                        "kind": "classify",
+
+                        "enum": ["scratch", "pit", "crack"],
+
+                        "enumDescriptions": {
+
+                            "scratch": "A superficial, long, thin mark that may be straight or curved, and often is paler than the surrounding metal.",
+
+                            "pit": "A small, round defect that may look like a small hole or depression.",
+
+                            "crack": "A fracture or break in the material, which may look jagged or appear to branch, and penetrates more significantly into the material than a scratch."
+
+                        }
+
+                    },
+
+                    "severity": {
+
+                        "type": "string",
+
+                        "kind": "classify",
+
+                        "enum": ["low", "moderate", "high"],
+
+                        "enumDescriptions": {
+
+                            "low": "Minor defect; may not require repair.",
+
+                            "moderate": "Should be flagged for human review.",
+
+                            "high": "Severe and requires immediate attention."
+                 }
+               }
+             }
+           }
+         }
+       }
+     }
+   }
+ }
+
+```
+
 
 ## Get analyze results (GET Request)
 

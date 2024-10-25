@@ -53,7 +53,7 @@ AI studio enables you to set up, test, and manage Multimodal Intelligence soluti
 
 The following diagram provides a high-level overview of a typical Multimodal Intelligence Speech processing workflow.
 
-  :::image type="content" source="../media/speech/overview/workflow-diagram.png" alt-text="Illustration of Multimodal Intelligence speech workflow.":::
+  :::image type="content" source="../media/audiooverview/workflow-diagram.png" alt-text="Illustration of Multimodal Intelligence speech workflow.":::
 
 A typical Multimodal IntelligenceSpeech workflow consists of the following steps:
 
@@ -77,20 +77,12 @@ A typical Multimodal IntelligenceSpeech workflow consists of the following steps
 
 ## Audio format support and input requirements
 
-**Multimodal Intelligence speech capabilities supports multiple audio formats and codecs, such as**:
+For a complete list of  Multimodal Intelligence supported audio formats, *see* our [Service limits and codecs](../service-limits.md) page.
 
-* `WAV`
-* `MP3`
-* `OPUS/OGG`
-* `FLAC`
-* `WMA`
-* `AAC`
-* `ALAW` in `WAV` container
-* `MULAW` in `WAV` container
-* `AMR`
-* `WebM`
-* `M4A`
-* `SPEEX`
+## Supported regions, languages, and locales
+
+For a complete list of supported regions, languages, and locales, see our [Language and region support](../language-region-support.md)) page.
+
 
 **Multimodal Intelligence speech capability operation limits**
 

@@ -40,13 +40,15 @@ Azure AI Multimodal Intelligence is a cloud-based solution within [**Azure AI se
 |Highly precise confidence scores|The Multimodal Intelligence enhanced data-input alignment framework ensures a high level of certainty and accuracy across various contexts. A confidence score, ranging from 0 to 1, quantifies the likelihood by assessing the statistical certainty that the extracted result is accurate, correct, and reliable. High confidence scores signify precise data extraction. Accurate extraction scores facilitate straight-through processing (STP) in automation workflows.|
 |Precise and efficient extraction of modality-specific details for secondary processing scenarios| Users can extract specific content that is suitable for secondary scenarios likeLarge Language Model (LLM) processing.|
 
-## Use cases
+## Scenarios
 
-|Use|Scenario|
-|--------|-------|
-|Tax processing automation| Tax preparing companies can use the extended capabilities of Multimodal Intelligence to generate a unified view of information from different documents and generate comprehensive tax returns.|
-|Call center post-call analytics| Businesses and call center operators can generate insights from call recordings to track key KPIs to improve product experience, generate business insights, create differentiated customer experiences, and answer queries faster and more accurately.
-|Marketing automation digital asset management| Independent software and media vendors that build media asset management solutions can use Multimodal Intelligence to extract richer, targeted content from images and videos.|
+ommon scenarios for Azure AI multimodal intelligence service include:
+
+|Use|Scenario|Senario Quickstart|
+|--------|-------|--------------|
+|Tax processing automation| Tax preparing companies can use the extended capabilities of Multimodal Intelligence to generate a unified view of information from different documents and generate comprehensive tax returns.||
+|Call center post-call analytics| Businesses and call center operators can generate insights from call recordings to track key KPIs to improve product experience, generate business insights, create differentiated customer experiences, and answer queries faster and more accurately.||
+|Marketing automation digital asset management| Independent software and media vendors that build media asset management solutions can use Multimodal Intelligence to extract richer, targeted content from images and videos.||
 
 ## Pricing
 
