@@ -42,7 +42,7 @@ If you don't have an Azure subscription, create a [free account](https://azure.m
 
 Copy and paste the Markdown below into a file named `sample_markdown.md`. The sample data is a single Markdown file containing various Markdown elements. We chose one Markdown file to stay under the storage limits of the free tier.
 
-```md
+````md
 # Project Documentation
 
 ## Introduction
@@ -187,7 +187,7 @@ This is an example of a footnote[^1]. Footnotes allow you to add notes without c
 Markdown is a lightweight yet powerful tool for writing documentation. It supports a variety of formatting options while maintaining simplicity and readability.
 
 Thank you for reviewing this example!
-```
+````
 
 ### Upload sample data to Azure Storage
 
