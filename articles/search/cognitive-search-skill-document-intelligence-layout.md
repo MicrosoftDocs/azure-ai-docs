@@ -14,9 +14,9 @@ ms.date: 10/10/2024
 ---
 # Document Intelligence Layout skill
 
-The **Document Intelligence Layout** skill analyze a document to extract regions of interest and their inter-relationships to produce a syntactical representation (markdown format). This skill uses the [Document Intelligence layout model](/azure/ai-services/document-intelligence/concept-layout) provided in [Azure AI Document Intelligence](/azure/ai-services/document-intelligence/overview). This article is the reference documentation for the Document Intelligence Layout skill.
+The **Document Intelligence Layout** skill analyzes a document to extract regions of interest and their inter-relationships to produce a syntactical representation (markdown format). This skill uses the [Document Intelligence layout model](/azure/ai-services/document-intelligence/concept-layout) provided in [Azure AI Document Intelligence](/azure/ai-services/document-intelligence/overview). This article is the reference documentation for the Document Intelligence Layout skill.
 
-+ The **Document Intelligence Layout** skill uses [Document Intelligence Public preview version 2024-07-31-preview](https://learn.microsoft.com/en-us/rest/api/aiservices/operation-groups?view=rest-aiservices-v4.0%20(2024-07-31-preview)). It is currently only available in the following Azure regions:
++ The **Document Intelligence Layout** skill uses [Document Intelligence Public preview version 2024-07-31-preview](https://learn.microsoft.com/en-us/rest/api/aiservices/operation-groups?view=rest-aiservices-v4.0%20(2024-07-31-preview)). It's currently only available in the following Azure regions:
     + East US
     + West US2
     + West Europe
@@ -57,7 +57,7 @@ Parameters are case-sensitive.
 | Parameter name     | Allowed Values | Description |
 |--------------------|-------------|-------------|
 | `outputMode`    | `oneToMany` | Controls the cardinality of the output produced by the skill. |
-| `markdownHeaderDepth` |`h1`, `h2`, `h3`, `h4`, `h5`, `h6(default)` | This describes the deepest nesting level that should be considered. For instance, if the markdownHeaderDepth is indicated as “h3”, any markdown section that’s deeper than h3 (i.e., #### and deeper) will simply be considered as “content” that needs to be added to whatever level its parent is at. |
+| `markdownHeaderDepth` |`h1`, `h2`, `h3`, `h4`, `h5`, `h6(default)` | This parameter describes the deepest nesting level that should be considered. For instance, if the markdownHeaderDepth is indicated as “h3” any markdown section that’s deeper than h3 (that is, #### and deeper) is considered as "content" that needs to be added to whatever level its parent is at. |
 
 ## Skill inputs
 
@@ -86,15 +86,15 @@ Alternatively, it can be defined as:
 
 The file reference object can be generated one of following ways:
 
-+ Setting the `allowSkillsetToReadFileData` parameter on your indexer definition to "true".  This creates a path `/document/file_data` that is an object representing the original file data downloaded from your blob data source. This parameter only applies to files in Blob storage.
++ Setting the `allowSkillsetToReadFileData` parameter on your indexer definition to "true." This setting creates a path `/document/file_data` that is an object representing the original file data downloaded from your blob data source. This parameter only applies to files in Blob storage.
 
-+ Having a custom skill return a json object defined EXACTLY as above.  The `$type` parameter must be set to exactly `file` and the `data` parameter must be the base 64 encoded byte array data of the file content, or the `url` parameter must be a correctly formatted URL with access to download the file at that location.
++ Having a custom skill return a json object defined EXACTLY as above. The `$type` parameter must be set to exactly `file` and the `data` parameter must be the base 64 encoded byte array data of the file content, or the `url` parameter must be a correctly formatted URL with access to download the file at that location.
 
 ## Skill outputs
 
 | Output name      | Description                   |
 |---------------|-------------------------------|
-| `markdown_document`    | A collection of “sections” objects, which represent each individual section in the markdown document.|
+| `markdown_document`    | A collection of "sections" objects, which represent each individual section in the markdown document.|
 
 ## Sample definition
 
@@ -153,11 +153,11 @@ The file reference object can be generated one of following ways:
 }
 ```
 
-The number of keys in the “sections” dictionary will be controlled by the value of the “deepestSection” parameter. In the example skill definition, since the deepestSection was specified as “h3”, there will be 3 keys in the “sections” dictionary – h1, h2, h3. 
+The value of the "deepestSection" parameter controls the number of keys in the 'sections' dictionary. In the example skill definition, since the deepestSection was specified as “h3,” there are three keys in the "sections" dictionary – h1, h2, h3. 
 
 ## See also
 
 + [What is document intelligence layout model](/azure/ai-services/document-intelligence/concept-layout)
 + [Built-in skills](cognitive-search-predefined-skills.md)
-+ [How to define a skillset](cognitive-search-defining-skillset.md)
-+ [Create Indexer (REST)](/rest/api/searchservice/indexers/create)
++ [How to define a skill set](cognitive-search-defining-skillset.md)
++ [Create Indexer (REST API)](/rest/api/searchservice/indexers/create)

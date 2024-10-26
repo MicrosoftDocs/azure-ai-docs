@@ -1,7 +1,7 @@
 ---
 title: Semantic Chunking and vectorization
 titleSuffix: Azure AI Search
-description: Use skillset and index projection to do semantic chunking, vectorization and write into a search index in Azure AI Search pipelines.
+description: Use skill set and index projection to do semantic chunking, vectorization, and write into a search index in Azure AI Search pipelines.
 author: rawan
 ms.author: rawan
 ms.service: azure-ai-search
@@ -16,15 +16,18 @@ Text data chunking strategies play a key role in optimizing the RAG response and
 
 The Document Intelligence Layout skill offers a comprehensive solution for advanced content extraction and chunk functionality. With the Layout skill, you can easily extract document layout and content as markdown format and utilize markdown parsing mode to produce a set of document chunks
 
-This article explains how to use document intelligence layout skill to get markdown sections, then generate embeddings for content in markdown sections , Finally, use index projections to compose them and write into a search index.
+This article shows:
++ How to use the document intelligence layout skill to extract markdown sections
++ Generate embeddings for the content within those sections
++ How to use index projections to compile and write them into a search index.
 
 ## Prerequisites
-An [indexer-based indexing pipeline](search-indexer-overview.md).
-An index that accepts the output of the indexer pipeline.
-A [supported data source](search-indexer-overview.md#supported-data-sources) having content that you want to chunk. 
-A [Document Intelligence Layout skill](cognitive-search-skill-document-intelligence-layout.md) that splits documents based on paragraph boundaries.
-An [Azure Open AI Embedding skill](cognitive-search-skill-azure-openai-embedding.md) that generate vector embeddings  
-An [index projection](search-how-to-define-index-projections.md) for one-to-many indexing
++ An [indexer-based indexing pipeline](search-indexer-overview.md).
++ An index that accepts the output of the indexer pipeline.
++ A [supported data source](search-indexer-overview.md#supported-data-sources) having content that you want to chunk. 
++ A [Document Intelligence Layout skill](cognitive-search-skill-document-intelligence-layout.md) that splits documents based on paragraph boundaries.
++ An [Azure OpenAI Embedding skill](cognitive-search-skill-azure-openai-embedding.md) that generates vector embeddings  
++ An [index projection](search-how-to-define-index-projections.md) for one-to-many indexing
 
 ## Prepare data files
 
@@ -40,7 +43,7 @@ Here's an example payload of a single designed around chunks. In this example, p
 
 You can use the Azure portal, REST APIs, or an Azure SDK to [create an index](search-how-to-load-search-index.md).
 
-An index must exist on the search service before you create the skillset or run the indexer
+An index must exist on the search service before you create the skill set or run the indexer
 
 ```json
 {
@@ -91,11 +94,11 @@ An index must exist on the search service before you create the skillset or run 
 }
 ```
 
-## Define skillsets for semantic chunking and vectorization
+## Define skill set for semantic chunking and vectorization
 
-You can use the REST APIs to [create or update a skillset](cognitive-search-defining-skillset.md).
+You can use the REST APIs to [create or update a skill set](cognitive-search-defining-skillset.md).
 
-Here's an example payload for a skillset definition that you might use to project individual markdown sections and its vector output by the [Document Intelligence Layout skill](cognitive-search-skill-document-intelligence-layout.md) and [Azure Open AI Embedding skill](cognitive-search-skill-azure-openai-embedding.md) as their own documents in the search index.
+Here's an example skill set definition payload to project individual markdown sections and their vector outputs as documents in the search index using the [Document Intelligence Layout skill](cognitive-search-skill-document-intelligence-layout.md) and [Azure OpenAI Embedding skill](cognitive-search-skill-azure-openai-embedding.md)
 
 ```json
 {
@@ -168,7 +171,7 @@ Here's an example payload for a skillset definition that you might use to projec
 ```
 
 ## Run the indexer
-Once you have created a data source, indexes, and skillset, you're ready to [create and run the indexer](search-howto-create-indexers.md#run-the-indexer). This step puts the pipeline into execution.
+Once you create a data source, indexes, and skill set, you're ready to [create and run the indexer](search-howto-create-indexers.md#run-the-indexer). This step puts the pipeline into execution.
 
 Here's an example payload
 
@@ -206,7 +209,7 @@ Here's an example payload
 ## Verify results
 You can query your search index after processing concludes to test your solution.
 
-Run a query against the index to check the results. Use [Search Explorer](search-explorer.md) as a search client, or any tool that sends HTTP requests. The following query selects fields that contain the output of markdown section nonvector content and its vector.
+To check the results, run a query against the index. Use [Search Explorer](search-explorer.md) as a search client, or any tool that sends HTTP requests. The following query selects fields that contain the output of markdown section nonvector content and its vector.
 
 ```http
 POST /indexes/[index name]/docs/search?api-version=[api-version]
@@ -217,11 +220,11 @@ POST /indexes/[index name]/docs/search?api-version=[api-version]
 ```
 
 ## See also
-+ [create a data source](search-howto-indexing-azure-blob-storage.md)
++ [Create a data source](search-howto-indexing-azure-blob-storage.md)
 + [Define an index projection](search-how-to-define-index-projections.md)
-+ [How to define a skillset](cognitive-search-defining-skillset.md)
++ [How to define a skill set](cognitive-search-defining-skillset.md)
 + [Document Intelligence Layout skill](cognitive-search-skill-document-intelligence-layout.md)
-+ [Azure Open AI Embedding skill](cognitive-search-skill-azure-openai-embedding.md)
++ [Azure OpenAI Embedding skill](cognitive-search-skill-azure-openai-embedding.md)
 + [Create indexer (REST)](/rest/api/searchservice/indexers/create)
 + [Search Explorer](search-explorer.md)
 
