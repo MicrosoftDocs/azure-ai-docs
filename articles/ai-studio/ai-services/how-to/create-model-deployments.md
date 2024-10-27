@@ -40,7 +40,7 @@ To use it:
 
     :::image type="content" source="../../media/ai-services/add-model-deployments/models-deploy-endpoint-url.png" alt-text="An screenshot showing how to get the URL and key associated with the deployment." lightbox="../../media/ai-services/add-model-deployments/models-deploy-endpoint-url.png":::
 
-2. Use the model inference endpoint URL and the keys from before when constructing your client. The following examples uses the Azure AI Inference package:
+2. Use the model inference endpoint URL and the keys from before when constructing your client. The following example uses the Azure AI Inference package:
 
     [!INCLUDE [code-create-chat-client](../../includes/ai-services/code-create-chat-client.md)]
 

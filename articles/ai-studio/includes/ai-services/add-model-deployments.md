@@ -22,7 +22,7 @@ You can add all the models you need in the endpoint by using [Azure AI Studio fo
 
 4. Select **Deploy**.
 
-5. For models providers that require extra terms of contract, you're asked to accept those terms. For instance, Mistral models asks you to accept other terms. Accept the terms on those cases by selecting **Subscribe and deploy**.
+5. For models providers that require extra terms of contract, you're asked to accept those terms. For instance, Mistral models ask you to accept other terms. Accept the terms on those cases by selecting **Subscribe and deploy**.
    
    :::image type="content" source="../../media/ai-services/add-model-deployments/models-deploy-agree.png" alt-text="An screenshot showing how to agree the terms and conditions of a Mistral-Large model." lightbox="../../media/ai-services/add-model-deployments/models-deploy-agree.png":::
 

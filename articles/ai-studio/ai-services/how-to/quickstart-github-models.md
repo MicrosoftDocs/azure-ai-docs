@@ -14,7 +14,7 @@ recommendations: false
 
 # Upgrade from GitHub Models to the Azure AI model inference service
 
-If you want to develop a generative AI application, you can use [GitHub Models](https://docs.github.com/en/github-models/) to find and experiment with AI models for free. The playground and free API usage are [rate limited](https://docs.github.com/en/github-models/prototyping-with-ai-models#rate-limits) by requests per minute, requests per day, tokens per request, and concurrent requests. If you get rate limited, you will need to wait for the rate limit that you hit to reset before you can make more requests.
+If you want to develop a generative AI application, you can use [GitHub Models](https://docs.github.com/en/github-models/) to find and experiment with AI models for free. The playground and free API usage are [rate limited](https://docs.github.com/en/github-models/prototyping-with-ai-models#rate-limits) by requests per minute, requests per day, tokens per request, and concurrent requests. If you get rate limited, you need to wait for the rate limit that you hit to reset before you can make more requests.
 
 Once you're ready to bring your application to production, you can upgrade your experience by deploying an Azure AI Services resource in an Azure subscription and start using the Azure AI model inference service. You don't need to change anything else in your code.
 
@@ -52,18 +52,18 @@ To obtain the key and endpoint:
 
     :::image type="content" source="../../media/ai-services/add-model-deployments/models-deploy-endpoint-url.png" alt-text="An screenshot showing how to get the URL and key associated with the deployment." lightbox="../../media/ai-services/add-model-deployments/models-deploy-endpoint-url.png":::
 
-At this point, the model you selected will be ready to consume. 
+At this point, the model you selected is ready to consume. 
 
 > [!TIP]
 > Use the parameter `model="<deployment-name>` to route your request to this deployment. *Deployments work as an alias of a given model under certain configurations*. See [Routing](../concepts/endpoints.md#routing) concept page to learn how Azure AI Services route deployments.
 
 ## Upgrade your code to use the new endpoint
 
-Once your Azure AI Services resource is configured, you can start consuming it from your code. You will need the endpoint URL and key for it, which can be found in the **Overview** section:
+Once your Azure AI Services resource is configured, you can start consuming it from your code. You need the endpoint URL and key for it, which can be found in the **Overview** section:
 
 :::image type="content" source="../../media/ai-services/overview/overview-endpoint-and-key.png" alt-text="An screenshot showing how to get the URL and key associated with the resource." lightbox="../../media/ai-services/overview/overview-endpoint-and-key.png":::
 
-You can use any of the supported SDKs to get predictions out from the endpoint. The following SDKs are officially supported:
+You can use any of the supported SDK's to get predictions out from the endpoint. The following SDK's are officially supported:
 
 * OpenAI SDK
 * Azure OpenAI SDK
@@ -77,14 +77,14 @@ Generate your first chat completion:
 
 [!INCLUDE [code-create-chat-completion](../../includes/ai-services/code-create-chat-completion.md)]
 
-## Explore additional features
+## Explore more features
 
-Azure AI model inference supports additional features not available in GitHub Models, including:
+Azure AI model inference supports more features not available in GitHub Models, including:
 
-* [Explore the model catalog](https://ai.azure.com/github/models) to see additional models not available in GitHub Models.
+* [Explore the model catalog](https://ai.azure.com/github/models) to see other models not available in GitHub Models.
 * Configure [content filtering](../../concepts/content-filtering.md).
 * Configure rate limiting (for specific models).
-* Explore additional [deployment SKUs (for specific models)](../concepts/deployment-types.md).
+* Explore more [deployment SKUs (for specific models)](../concepts/deployment-types.md).
 * Configure [private networking](../../../ai-services/cognitive-services-virtual-networks.md?context=/azure/ai-studio/context/context).
 
 ## Got troubles?

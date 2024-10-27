@@ -14,13 +14,13 @@ ms.custom: ignite-2024, github-universe-2024
 
 # Use the Azure AI model inference endpoint
 
-Azure AI inference service in Azure AI services allow customers to consume the most powerful models from flagship model providers using a single endpoint and credentials. This means that you can switch between models and consume them from your application without changing a single line of code.
+Azure AI inference service in Azure AI services allows customers to consume the most powerful models from flagship model providers using a single endpoint and credentials. This means that you can switch between models and consume them from your application without changing a single line of code.
 
 The article explains how models are organized inside of the service and how to use the inference endpoint to invoke them.
 
 ## Deployments
 
-Azure AI model inference service make models available using the **deployment** concept. **Deployments** are a way to give a model a name under certain configurations. Then, you can invoke such model configuration by indicating its name on your requests.
+Azure AI model inference service makes models available using the **deployment** concept. **Deployments** are a way to give a model a name under certain configurations. Then, you can invoke such model configuration by indicating its name on your requests.
 
 Deployments capture:
 
@@ -39,15 +39,15 @@ To learn more about how to create deployments see [Add and configure model deplo
 
 ## Azure AI inference endpoint
 
-The Azure AI inference endpoint allow customers to use a single endpoint with the same authentication and schema to generate inference for the deployed models in the resource. This endpoint follows the [Azure AI model inference API](../../reference/reference-model-inference-api.md) which is supported by all the models in Azure AI model inference service.
+The Azure AI inference endpoint allows customers to use a single endpoint with the same authentication and schema to generate inference for the deployed models in the resource. This endpoint follows the [Azure AI model inference API](../../reference/reference-model-inference-api.md) which is supported by all the models in Azure AI model inference service.
 
-You can see the endpoint URL and credentials in the **Overview** section:
+You can see the endpoint URL and credentials in the **Overview** section. The endpoint usually has the form `https://<resource-name>.services.ai.azure.com/models`:
 
 :::image type="content" source="../../media/ai-services/overview/overview-endpoint-and-key.png" alt-text="An screenshot showing how to get the URL and key associated with the resource." lightbox="../../media/ai-services/overview/overview-endpoint-and-key.png":::
 
 ### Routing
 
-The inference endpoint routes requests to a given deployment by matching the parameter `name` inside of the request to the name of the deployment. This means that *deployments work as an alias of a given model under certain configurations*. This flexibility allow you to deploy a given model multiple times in the service but under different configurations if needed.
+The inference endpoint routes requests to a given deployment by matching the parameter `name` inside of the request to the name of the deployment. This means that *deployments work as an alias of a given model under certain configurations*. This flexibility allows you to deploy a given model multiple times in the service but under different configurations if needed.
 
 :::image type="content" source="../../media/ai-services/endpoint/endpoint-routing.png" alt-text="An illustration showing how routing works for a Meta-llama-3.2-8b-instruct model by indicating such name in the parameter 'model' inside of the payload request." lightbox="../../media/ai-services/endpoint/endpoint-routing.png":::
 
@@ -71,9 +71,9 @@ All models deployed in Azure AI model inference service support the [Azure AI mo
 
 ## Azure OpenAI inference endpoint
 
-Azure OpenAI models also support the Azure OpenAI API. This API exposes the full capabilities of OpenAI models and support additional features like assistants, threads, files, and batch inference.
+Azure OpenAI models also support the Azure OpenAI API. This API exposes the full capabilities of OpenAI models and supports additional features like assistants, threads, files, and batch inference.
 
-Azure OpenAI inference endpoints are used per-deployment and they have they own URL that is associated with only one deployment. However, the same authentication mechanism can be used to consume it. Learn more in the reference page for [Azure OpenAI API](../../../ai-services/openai/reference.md)
+Each OpenAI model deployment has its own URL associated with such deployment under the Azure OpenAI inference endpoint. However, the same authentication mechanism can be used to consume it. URLs are usually in the form of `https://<resource-name>.openai.azure.com/openai/deployments/<model-deployment-name>`. Learn more in the reference page for [Azure OpenAI API](../../../ai-services/openai/reference.md)
 
 :::image type="content" source="../../media/ai-services/endpoint/endpoint-openai.png" alt-text="An illustration showing how Azure OpenAI deployments contain a single URL for each deployment." lightbox="../../media/ai-services/endpoint/endpoint-openai.png":::
 

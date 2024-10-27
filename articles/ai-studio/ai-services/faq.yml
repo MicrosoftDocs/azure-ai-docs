@@ -40,7 +40,7 @@ sections:
       - question: |
           What's the difference between Azure AI model inference service and Serverless API model deployments in Azure AI studio?
         answer: |
-          Both technologies allow you to deploy models without requiring compute resources as they are based on the Models as a Service idea. [Serverless API model deployments](../how-to/deploy-models-serverless.md) allow you to deploy a single models under a unique endpoint and credentials. You need to create a different endpoint for each model you want to deploy. On top of that, they are always created in the context of the project and while they can be shared by creating connections from other projects, they live in the context of a given project.
+          Both technologies allow you to deploy models without requiring compute resources as they are based on the Models as a Service idea. [Serverless API model deployments](../how-to/deploy-models-serverless.md) allow you to deploy a single model under a unique endpoint and credentials. You need to create a different endpoint for each model you want to deploy. On top of that, they are always created in the context of the project and while they can be shared by creating connections from other projects, they live in the context of a given project.
           
           Azure AI model inference service allows you to deploy multiple models under the same endpoint and credentials. You can switch between models without changing your code. They are also in the context of a shared resource, the Azure AI Services resource, which implies you can connect the resource to any project or hub that requires to consume the models you made available. Azure AI model inference service comes with a built-in model routing capability that routes the request to the right model based on the model name you pass in the request.
 
@@ -79,7 +79,7 @@ sections:
       - question: |
           I'm making a request for a model that Azure AI model inference service supports, but I'm getting a 404 error. What should I do?
         answer: |
-          Ensure you created a deployment for the given model and that the deployment name matches **exactly** the value you're passing in `model` parameter. Although routing isn't case sensitive, ensure there's no special punctuation or spaces as they're common mistakes.
+          Ensure you created a deployment for the given model and that the deployment name matches **exactly** the value you're passing in `model` parameter. Although routing isn't case sensitive, ensure there's no special punctuation or spaces typos.
       - question: |
           I'm using the `azure-ai-inference` package for Python and I get a 401 error when I try to authenticate using keys. What should I do?
         answer: |
@@ -115,5 +115,5 @@ sections:
       - question: |
           Do you use my company data to train any of the models? 
         answer: |
-          Azure AI model inference don't use customer data to retrain models. Your data is never shared with model providers.   
+          Azure AI model inference doesn't use customer data to retrain models. Your data is never shared with model providers.   
 additionalContent: |
