@@ -28,7 +28,7 @@ items:
       - name: Audio overview
         displayName: speech, audio, voice, recognition, synthesis, speaker, identification, verification, diarization, transcription, translation, language, understanding, sentiment, analysis, emotion, detection, pronunciation, model
         href: audio/overview.md
-      - name: How-to guides
+      - name: Scenarios
         items:
         - name: Set up post-call analytics workflow
           displayName: audio, voice, recognition, transcription, translation, language, understanding, sentiment, analysis, emotion, detection, pronunciation, model
@@ -42,7 +42,7 @@ items:
           href: document/custom/field-extraction.md
   - name: Video
     items:
-    - name: How-to guides
+    - name: Scenarios
       items:
         - name: Extract metadata for media asset management
           displayName: video, audio, voice, recognition, synthesis, speaker, identification, verification, diarization, transcription, translation, language, understanding, sentiment, analysis, emotion, detection, pronunciation, model
