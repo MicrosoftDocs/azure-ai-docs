@@ -16,7 +16,7 @@ ms.date: 10/10/2024
 
 The **Document Intelligence Layout** skill analyzes a document to extract regions of interest and their inter-relationships to produce a syntactical representation (markdown format). This skill uses the [Document Intelligence layout model](/azure/ai-services/document-intelligence/concept-layout) provided in [Azure AI Document Intelligence](/azure/ai-services/document-intelligence/overview). This article is the reference documentation for the Document Intelligence Layout skill.
 
-+ The **Document Intelligence Layout** skill uses [Document Intelligence Public preview version 2024-07-31-preview](https://learn.microsoft.com/en-us/rest/api/aiservices/operation-groups?view=rest-aiservices-v4.0%20(2024-07-31-preview)). It's currently only available in the following Azure regions:
++ The **Document Intelligence Layout** skill uses [Document Intelligence Public preview version 2024-07-31-preview](/rest/api/aiservices/operation-groups?view=rest-aiservices-v4.0%20(2024-07-31-preview)&preserve-view=true). It's currently only available in the following Azure regions:
     + East US
     + West US2
     + West Europe
@@ -45,7 +45,7 @@ Microsoft.Skills.Util.DocumentIntelligenceLayoutSkill
 
 ## Data limits
 + For PDF and TIFF, up to 2,000 pages can be processed (with a free tier subscription, only the first two pages are processed).
-+ The file size for analyzing documents is 500 MB for [Azure AI Document Intelligence paid (S0) tier]((https://azure.microsoft.com/pricing/details/cognitive-services/)) and 4 MB for [Azure AI Document Intelligence free (F0) tier]((https://azure.microsoft.com/pricing/details/cognitive-services/)).
++ The file size for analyzing documents is 500 MB for [Azure AI Document Intelligence paid (S0) tier](https://azure.microsoft.com/pricing/details/cognitive-services/) and 4 MB for [Azure AI Document Intelligence free (F0) tier](https://azure.microsoft.com/pricing/details/cognitive-services/).
 + Image dimensions must be between 50 pixels x 50 pixels and 10,000 pixels x 10,000 pixels.
 + If your PDFs are password-locked, you must remove the lock before submission.
 
@@ -153,7 +153,7 @@ The file reference object can be generated one of following ways:
 }
 ```
 
-The value of the "deepestSection" parameter controls the number of keys in the 'sections' dictionary. In the example skill definition, since the deepestSection was specified as “h3,” there are three keys in the "sections" dictionary – h1, h2, h3. 
+The value of the "deepestSection" parameter controls the number of keys in the 'sections' dictionary. In the example skill definition, since the deepestSection was specified as “h3”, there are three keys in the "sections" dictionary – h1, h2, h3. 
 
 ## See also
 
