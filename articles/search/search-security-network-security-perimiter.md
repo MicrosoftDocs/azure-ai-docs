@@ -13,7 +13,7 @@ ms.date: 10/23/2024
 # Add a search service to a network security perimeter
 
 > [!IMPORTANT]
-> Azure AI Search support for network security perimeter is in public preview under supplemental terms of use. It's available in [regions providing the feature](/azure/private-link/network-security-perimeter-concepts#regional-limitations).
+> Azure AI Search support for network security perimeter is in public preview under supplemental terms of use. It's available in [regions providing the feature](/azure/private-link/network-security-perimeter-concepts).
 > This preview version is provided without a service level agreement, and it's not recommended for production workloads. Certain features might not be supported or might have constrained capabilities.
 > For more information, see [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
 >
