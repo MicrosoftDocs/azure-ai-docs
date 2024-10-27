@@ -16,7 +16,7 @@ recommendations: false
 
 Azure AI models inference service provides access to the most powerful models available in the **Azure AI model catalog**. Coming from the key model providers in the industry including OpenAI, Microsoft, Meta, Mistral, Cohere, G42, and AI21 Labs; these models can be integrated with software solutions to deliver a wide range of tasks including content generation, summarization, image understanding, semantic search, and code generation.
 
-The Azure AI model inference service in Azure AI Services provides a way to **consume models as APIs without hosting them on your infrastructure**. Models are hosted in a Microsoft-managed infrastructure, which enables API-based access to the model provider's model. API-based access can dramatically reduce the cost of accessing a model and simplify the provisioning experience.
+The Azure AI model inference service provides a way to **consume models as APIs without hosting them on your infrastructure**. Models are hosted in a Microsoft-managed infrastructure, which enables API-based access to the model provider's model. API-based access can dramatically reduce the cost of accessing a model and simplify the provisioning experience.
 
 ## Models
 
@@ -33,7 +33,7 @@ You can get access to the key model providers in the industry including OpenAI, 
 
 You can [decide and configure which models are available for inference](how-to/create-model-deployments.md) in the created resource. When a given model is configured, you can then generate predictions from it by indicating its model name or deployment name on your requests. No further changes are required in your code to use it.
 
-To learn how to add models to the AI Services resource and use them read [Add and configure models to Azure AI Models in Azure AI Services](how-to/create-model-deployments.md).
+To learn how to add models to the Azure AI model inference resource and use them read [Add and configure models to Azure AI Models in Azure AI model inference](how-to/create-model-deployments.md).
 
 ## Pricing
 
@@ -43,4 +43,4 @@ Models that are offered by Microsoft (for example, Phi-3 models and Azure OpenAI
 
 ## Next steps
 
-* [Create your first model deployment in Azure AI Services](how-to/create-model-deployments.md)
+* [Create your first model deployment in Azure AI model inference](how-to/create-model-deployments.md)

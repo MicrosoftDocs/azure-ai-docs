@@ -71,7 +71,7 @@ All models deployed in Azure AI model inference service support the [Azure AI mo
 
 ## Azure OpenAI inference endpoint
 
-Azure OpenAI models deployed to AI services also support the Azure OpenAI API. This API exposes the full capabilities of OpenAI models and support additional features like assistants, threads, files, and batch inference.
+Azure OpenAI models also support the Azure OpenAI API. This API exposes the full capabilities of OpenAI models and support additional features like assistants, threads, files, and batch inference.
 
 Azure OpenAI inference endpoints are used per-deployment and they have they own URL that is associated with only one deployment. However, the same authentication mechanism can be used to consume it. Learn more in the reference page for [Azure OpenAI API](../../../ai-services/openai/reference.md)
 

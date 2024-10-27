@@ -34,15 +34,23 @@ sections:
 
           Learn more about the [Azure OpenAI service](../../ai-services/openai/overview.md).
       - question: |
-          What's the difference between Azure AI services and Azure AI studio?
+          What's the difference between Azure AI model inference and Azure AI studio?
         answer: |
-          Azure AI services are a suite of AI services that provide prebuilt APIs for common AI scenarios. Azure AI studio is a web-based tool that allows you to build, train, and deploy machine learning models. Azure AI services can be used in Azure AI studio to enhance your models with prebuilt AI capabilities.
+          Azure AI services are a suite of AI services that provide prebuilt APIs for common AI scenarios. One of them is Azure AI model inference service which focuses on inference service of different state-of-the-art models. Azure AI studio is a web-based tool that allows you to build, train, and deploy machine learning models. Azure AI services can be used in Azure AI studio to enhance your models with prebuilt AI capabilities.
+      - question: |
+          What's the difference between Azure AI model inference service and Serverless API model deployments in Azure AI studio?
+        answer: |
+          Both technologies allow you to deploy models without requiring compute resources as they are based on the Models as a Service idea. [Serverless API model deployments](../how-to/deploy-models-serverless.md) allow you to deploy a single models under a unique endpoint and credentials. You need to create a different endpoint for each model you want to deploy. On top of that, they are always created in the context of the project and while they can be shared by creating connections from other projects, they live in the context of a given project.
+          
+          Azure AI model inference service allows you to deploy multiple models under the same endpoint and credentials. You can switch between models without changing your code. They are also in the context of a shared resource, the Azure AI Services resource, which implies you can connect the resource to any project or hub that requires to consume the models you made available. Azure AI model inference service comes with a built-in model routing capability that routes the request to the right model based on the model name you pass in the request.
+
+          These two model deployment options have some differences in terms of their capabilities too. You can read about them at [../concepts/deployment-overview.md]
   - name: Models
     questions:
       - question: |
-          Why aren't all the models in the Azure AI model catalog supported in Azure AI services?
+          Why aren't all the models in the Azure AI model catalog supported in Azure AI model inference in Azure AI Services?
         answer: |
-          The Azure AI model inference service in AI services supports all the models in the Azure AI catalog having pay-as-you-go billing. For more information, see [the Models section](model-inference.md#models).
+          The Azure AI model inference service in AI services supports all the models in the Azure AI catalog with pay-as-you-go billing (per-token). For more information, see [the Models section](model-inference.md#models).
 
           The Azure AI model catalog contains a wider list of models, however, those models require compute quota from your subscription. They also need to have a project or AI hub where to host the deployment. For more information, see [deployment options in Azure AI studio](../concepts/deployments-overview.md).
       - question: |
@@ -57,11 +65,11 @@ sections:
           Which are the supported SDKs and programming languages for Azure AI model inference service?
         answer: |
           You can use Azure Inference SDK with any model that is supported by: 
-            * The Azure AI model inference service in Azure AI services
+            * The Azure AI Inference SDK
             * The `AzureOpenAI` class in OpenAI SDK
             * The Azure OpenAI SDK
 
-          Cohere SDK, Mistral SDK, and model provider-specific SDKs are not supported when connected to Azure AI services.
+          Cohere SDK, Mistral SDK, and model provider-specific SDKs are not supported when connected to Azure AI model inference service.
 
           For more information, see [supported SDKs and programming languages](concepts/endpoints.md).
       - question: |
@@ -107,11 +115,5 @@ sections:
       - question: |
           Do you use my company data to train any of the models? 
         answer: |
-          Azure AI services don't use customer data to retrain models. Your data is never shared with model providers.   
-  - name: Customer Copyright Commitment
-    questions:
-      - question: |
-          How do I obtain coverage under the Customer Copyright Commitment? 
-        answer:
-          The Customer Copyright Commitment is a provision to be included in the December 1, 2023, Microsoft Product Terms that describes Microsoft’s obligation to defend customers against certain third-party intellectual property claims relating to Output Content. If the subject of the claim is Output Content generated from the Azure OpenAI Service (or any other Covered Product that allows customers to configure the safety systems), then to receive coverage, customer must have implemented all mitigations required by the Azure OpenAI Service documentation in the offering that delivered the Output Content. The required mitigations are documented [here](/legal/cognitive-services/openai/customer-copyright-commitment?context=/azure/ai-services/openai/context/context) and updated on an ongoing basis. For new services, features, models, or use cases, new CCC requirements will be posted and take effect at or following the launch of such service, feature, model, or use case. Otherwise, customers will have six months from the time of publication to implement new mitigations to maintain coverage under the CCC. If a customer tenders a claim, the customer will be required to demonstrate compliance with the relevant requirements. These mitigations are required for Covered Products that allow customers to configure the safety systems, including Azure OpenAI Service; they do not impact coverage for customers using other Covered Products.
+          Azure AI model inference don't use customer data to retrain models. Your data is never shared with model providers.   
 additionalContent: |

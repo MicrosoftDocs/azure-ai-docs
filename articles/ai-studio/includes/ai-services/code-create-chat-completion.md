@@ -65,7 +65,10 @@ List<ChatRequestMessage> chatMessages = new ArrayList<>();
 chatMessages.add(new ChatRequestSystemMessage("You are a helpful assistant"));
 chatMessages.add(new ChatRequestUserMessage("Explain Riemann's conjecture in 1 paragraph"));
 
-ChatCompletions chatCompletions = client.complete(new ChatCompletionsOptions(chatMessages));
+ChatCompletionsOptions options = new ChatCompletionsOptions(chatMessages);
+options.setModel("Mistral-large");
+
+ChatCompletions response = client.complete(options);
 
 for (ChatChoice choice : chatCompletions.getChoices()) {
     ChatResponseMessage message = choice.getMessage();

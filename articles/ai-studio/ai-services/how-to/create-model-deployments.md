@@ -40,11 +40,16 @@ To use it:
 
     :::image type="content" source="../../media/ai-services/add-model-deployments/models-deploy-endpoint-url.png" alt-text="An screenshot showing how to get the URL and key associated with the deployment." lightbox="../../media/ai-services/add-model-deployments/models-deploy-endpoint-url.png":::
 
-2. When constructing your request, indicate the parameter `model` and insert the model deployment name you created.
+2. Use the model inference endpoint URL and the keys from before when constructing your client. The following examples uses the Azure AI Inference package:
 
+    [!INCLUDE [code-create-chat-client](../../includes/ai-services/code-create-chat-client.md)]
+
+3. When constructing your request, indicate the parameter `model` and insert the model deployment name you created.
+    
     [!INCLUDE [code-create-chat-completion](../../includes/ai-services/code-create-chat-completion.md)]
 
-3. When using the endpoint, you can change the `model` parameter to any available model deployment in your resource.
+> [!TIP]
+> When using the endpoint, you can change the `model` parameter to any available model deployment in your resource.
 
 Additionally, Azure OpenAI models can be consumed using the [Azure OpenAI service endpoint](../../../ai-services/openai/supported-languages.md) in the resource. This endpoint is exclusive for each model deployment and has its own URL.
 
