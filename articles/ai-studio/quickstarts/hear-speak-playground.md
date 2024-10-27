@@ -8,15 +8,13 @@ ms.custom:
   - ignite-2023
   - build-2024
 ms.topic: quickstart
-ms.date: 5/21/2024
+ms.date: 10/27/2024
 ms.reviewer: eur
 ms.author: eur
 author: eric-urban
 ---
 
 # Quickstart: Hear and speak with chat models in the AI Studio chat playground
-
-[!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
 Give your app the ability to hear and speak by pairing Azure OpenAI Service with Azure AI Speech to enable richer interactions.
 
@@ -30,9 +28,8 @@ The speech to text and text to speech features can be used together or separatel
 ## Prerequisites
 
 - An Azure subscription - <a href="https://azure.microsoft.com/free/cognitive-services" target="_blank">Create one for free</a>.
-- An [AI Studio hub](../how-to/create-azure-ai-resource.md) with a chat model deployed. For more information about model deployment, see the [resource deployment guide](../../ai-services/openai/how-to/create-resource.md).
-- An [AI Studio project](../how-to/create-projects.md). 
-
+- An [AI Studio project](../how-to/create-projects.md).
+- A deployed [Azure OpenAI](../how-to/deploy-models-openai.md) chat model. This guide is tested with a `gpt-4` model.
 
 ## Configure the chat playground
 
@@ -40,29 +37,27 @@ Before you can start a chat session, you need to configure the chat playground t
 
 1. Sign in to [Azure AI Studio](https://ai.azure.com).
 1. Go to your project or [create a new project](../how-to/create-projects.md) in Azure AI Studio. 
-1. Select **Playground** > **Chat** from the left pane.
+1. Select **Chat** from the list of playgrounds.
 1. Select your deployed chat model from the **Deployment** dropdown. 
 
     :::image type="content" source="../media/quickstarts/hear-speak/playground-config-deployment.png" alt-text="Screenshot of the chat playground with mode and deployment highlighted." lightbox="../media/quickstarts/hear-speak/playground-config-deployment.png":::
 
-1. Select the **Playground settings** button. 
+1. Select the **Chat capabilities** button. 
 
-    :::image type="content" source="../media/quickstarts/hear-speak/playground-settings-select.png" alt-text="Screenshot of the chat playground with options to get to the playground settings." lightbox="../media/quickstarts/hear-speak/playground-settings-select.png":::
+    :::image type="content" source="../media/quickstarts/hear-speak/playground-settings-select.png" alt-text="Screenshot of the chat playground with options to get to the chat capabilities settings." lightbox="../media/quickstarts/hear-speak/playground-settings-select.png":::
 
     > [!NOTE]
-    > You should also see the options to select the microphone or speaker buttons. If you select either of these buttons, but haven't yet enabled speech to text or text to speech, you are prompted to enable them in **Playground settings**. 
+    > You should also see the options to select the microphone or speaker buttons. If you select either of these buttons, but haven't yet enabled speech to text or text to speech, you are prompted to enable them in **Chat capabilities**. 
 
-1. On the **Playground Settings** page, select the box to acknowledge that usage of the speech feature will incur additional costs. For more information, see [Azure AI Speech pricing](https://azure.microsoft.com/pricing/details/cognitive-services/speech-services/).
+1. On the **Chat capabilities** page, select the box to acknowledge that usage of the speech feature will incur additional costs. For more information, see [Azure AI Speech pricing](https://azure.microsoft.com/pricing/details/cognitive-services/speech-services/).
 
 1. Select **Enable speech to text** and **Enable text to speech**.  
 
-    :::image type="content" source="../media/quickstarts/hear-speak/playground-settings-enable-speech.png" alt-text="Screenshot of the playground settings page." lightbox="../media/quickstarts/hear-speak/playground-settings-enable-speech.png":::
+    :::image type="content" source="../media/quickstarts/hear-speak/playground-settings-enable-speech.png" alt-text="Screenshot of the chat capabilities page." lightbox="../media/quickstarts/hear-speak/playground-settings-enable-speech.png":::
 
 1. Select the language locale and voice you want to use for speaking and hearing. The list of available voices depends on the locale that you select.
 
-    :::image type="content" source="../media/quickstarts/hear-speak/playground-settings-select-language.png" alt-text="Screenshot of the playground settings page with a voice that speaks Japanese selected." lightbox="../media/quickstarts/hear-speak/playground-settings-select-language.png":::
-
-1. Optionally you can enter some sample text and select **Play** to try the voice.
+1. Optionally, you can try the voice before you return to the chat session. Enter some sample text and select **Play** to 
 
 1. Select **Save**.
  
@@ -99,7 +94,7 @@ In this chat session, you use both speech to text and text to speech. You use th
 
 ## View sample code
 
-You can select the **View Code** button to view and copy the sample code, which includes configuration for Azure OpenAI and Speech services. 
+You can select the **View code** button to view and copy the sample code, which includes configuration for Azure OpenAI and Speech services. 
 
 :::image type="content" source="../media/quickstarts/hear-speak/chat-session-view-code-button.png" alt-text="Screenshot of the button to view sample code in the playground." lightbox="../media/quickstarts/hear-speak/chat-session-view-code-button.png":::
 
