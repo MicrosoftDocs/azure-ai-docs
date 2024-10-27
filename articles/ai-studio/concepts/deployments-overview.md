@@ -30,7 +30,7 @@ Azure AI studio offers 4 different deployment options:
 
 |Name                           | Azure OpenAI Service | Azure AI model inference service | Serverless API | Managed compute |
 |-------------------------------|----------------------|-------------------|----------------|-----------------|
-| Which models can be deployed? | [Azure OpenAI models](../ai-services/openai/concepts/models.md)        | [Azure OpenAI models and Models as a Service](../ai-services/model-inference.md#models) | [Models as a Service](../how-to/model-catalog-overview.md#content-safety-for-models-deployed-via-serverless-apis) | [Open and custom models](../how-to/model-catalog-overview.md#availability-of-models-for-deployment-as-managed-compute) |
+| Which models can be deployed? | [Azure OpenAI models](../../ai-services/openai/concepts/models.md)        | [Azure OpenAI models and Models as a Service](../ai-services/model-inference.md#models) | [Models as a Service](../how-to/model-catalog-overview.md#content-safety-for-models-deployed-via-serverless-apis) | [Open and custom models](../how-to/model-catalog-overview.md#availability-of-models-for-deployment-as-managed-compute) |
 | Deployment resource           | Azure OpenAI service | Azure AI services | AI project | AI project |
 | Best suited when              | You are planning to use only OpenAI models | You are planning to take advantage of the flagship models in Azure AI catalog, including OpenAI. | You are planning to use a single model from an specific provider (excluding OpenAI). | If you plan to use open models and you have enough compute quota available in your subscription. |
 | Billing bases                 | Token usage          | Token usage       | Token usage<sup>1</sup>      | Compute core hours<sup>2</sup> |
