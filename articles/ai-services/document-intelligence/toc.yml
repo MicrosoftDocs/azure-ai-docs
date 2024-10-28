@@ -138,9 +138,9 @@ items:
   - name: Custom model lifecycle
     displayName: custom, train, modelId, model ID, expiration, train, build
     href: train/custom-lifecycle.md
-- name: Features
+- name: Add-on features
   items:
-  - name: Add-on capabilities
+  - name: Premium capabilities
     displayName: extract, formula, font, styles, fontStyle, ocr.highResolution, ocr.formula, high resolution, background color, inline, display
     href: concept-add-on-capabilities.md
   - name: Query field extraction
