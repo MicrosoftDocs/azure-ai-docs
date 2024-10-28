@@ -245,10 +245,10 @@ When you create a connection that uses Microsoft Entra ID authentication, you mu
 | Azure AI Search | Search Index Data Contributor | Required for indexing scenarios |
 | Azure AI services / Azure OpenAI | Cognitive Services OpenAI Contributor | Call public ingestion API from Azure AI Studio. |
 | Azure AI services / Azure OpenAI | Cognitive Services User | List API-Keys from Azure AI Studio. |
-| Azure AI services / Azure OpenAI | Contributor | Allows for calls to the control plane. |
+| Azure AI services / Azure OpenAI | Cognitive Services Contributor | Allows for calls to the control plane. |
 | Azure Blob Storage | Storage Blob Data Contributor | Required for reading and writing data to the blob storage. |
 | Azure Data Lake Storage Gen 2 | Storage Blob Data Contributor | Required for reading and writing data to the data lake. |
-| Microsoft OneLake | Special | To give someone acess to Microsoft OneLake, you must [give them access to your Microsoft Fabric workspace](/fabric/get-started/give-access-workspaces). |
+| Microsoft OneLake | Contributor | To give someone acess to Microsoft OneLake, you must [give them access to your Microsoft Fabric workspace](/fabric/get-started/give-access-workspaces). |
 
 > [!IMPORTANT]
 > If you are using Promptflow with Azure Storage (including Azure Data Lake Storage Gen 2), you must also assign the __Storage File Data Privileged Contributor__ role.
