@@ -44,11 +44,11 @@ The flexibility to distribute TPM globally within a subscription and region has 
 
 When you create a model deployment, you have the option to assign Tokens-Per-Minute (TPM) to that deployment. TPM can be modified in increments of 1,000, and will map to the TPM and RPM rate limits enforced on your deployment, as discussed above.
 
-To create a new deployment from within the Azure AI Studio under **Shared Resources** select **Deployments** > **Deploy model** > **Deploy base model** > **Select Model** > **Confirm**.
+To create a new deployment from within the Azure AI Studio select **Deployments** > **Deploy model** > **Deploy base model** > **Select Model** > **Confirm**.
 
 :::image type="content" source="../media/quota/deployment-new.png" alt-text="Screenshot of the deployment UI of Azure AI Studio" lightbox="../media/quota/deployment-new.png":::
 
-Post deployment you can adjust your TPM allocation by selecting **Edit** under **Shared resources** > **Deployments** in Azure OpenAI Studio. You can also modify this selection within the new quota management experience under **Management** > **Quotas**.
+Post deployment you can adjust your TPM allocation by selecting and editing your model from the **Deployments** page in Azure AI Studio. You can also modify this setting from the **Management** > **Model quota** page.
 
 > [!IMPORTANT]
 > Quotas and limits are subject to change, for the most up-date-information consult our [quotas and limits article](../quotas-limits.md).
