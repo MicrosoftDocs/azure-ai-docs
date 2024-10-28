@@ -21,7 +21,8 @@ To complete this section, you need a local copy of product data. The [Azure-Samp
 Follow these steps to add your data in the chat playground to help the assistant answer questions about your products. You're not changing the deployed model itself. Your data is stored separately and securely in your Azure subscription.
 
 1. Go to your project in [Azure AI Studio](https://ai.azure.com). 
-1. Select **Playgrounds** > **Chat** from the left pane.
+1. Select **Playgrounds**.
+1. Select **Try the chat playground**.
 1. Select your deployed chat model from the **Deployment** dropdown. 
 
     :::image type="content" source="../media/tutorials/chat/playground-chat.png" alt-text="Screenshot of the chat playground with the chat mode and model selected." lightbox="../media/tutorials/chat/playground-chat.png":::
@@ -50,14 +51,14 @@ Follow these steps to add your data in the chat playground to help the assistant
 
     :::image type="content" source="../media/tutorials/chat/add-your-data-connect-search-add.png" alt-text="Screenshot of the page to add a search service connection." lightbox="../media/tutorials/chat/add-your-data-connect-search-add.png":::
 
-1. For the **Index name**, enter *product-info* and select **Next**.
+1. For the **Vector index name**, enter *product-info* and select **Next**.
 
 1. On the **Search settings** page under **Vector settings**, deselect the **Add vector search to this search resource** checkbox. This setting helps determine how the model responds to requests. Then select **Next**.
     
     > [!NOTE]
     > If you add vector search, more options would be available here for an additional cost. 
 
-1. Review your settings and select **Create**.
+1. Review your settings and select **Create vector index**.
 
 1. In the playground, you can see that your data ingestion is in progress. This process might take several minutes. Before proceeding, wait until you see the data source and index name in place of the status. 
 
