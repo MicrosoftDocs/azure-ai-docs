@@ -15,14 +15,14 @@ ms.author: lajanuar
 
 :::moniker range="doc-intel-2.1.0 || doc-intel-4.0.0"
 
-Support for containers is currently available with Document Intelligence version `2022-08-31 (GA)` for all models and `2023-07-31 (GA)` for Read, Layout, Invoice, Receipt, and ID Document models:
+Document Intelligence does not support containers for v4.0. Support for containers is currently available with Document Intelligence version `2022-08-31 (GA)` for all models and `2023-07-31 (GA)` for Read, Layout, Invoice, Receipt, and ID Document models:
 
 * [REST API `2022-08-31 (GA)`](/rest/api/aiservices/document-models/analyze-document?view=rest-aiservices-v3.0%20(2022-08-31)&preserve-view=true&tabs=HTTP)
 * [REST API `2023-07-31 (GA)`](/rest/api/aiservices/document-models/analyze-document?view=rest-aiservices-v3.1%20(2023-07-31)&tabs=HTTP&preserve-view=true)
 * [Client libraries targeting `REST API 2022-08-31 (GA)`](../sdk-overview-v3-0.md)
 * [Client libraries targeting `REST API 2023-07-31 (GA)`](../sdk-overview-v3-1.md)
 
-✔️ See [**Document Intelligence v3.0 containers in disconnected environments**](?view=doc-intel-3.0.0&preserve-view=true) for supported container documentation.
+✔️ See [**Document Intelligence v3.0 containers in disconnected environments**](?view=doc-intel-3.0.0&preserve-view=true) or [**Document Intelligence v3.1 containers in disconnected environments**](?view=doc-intel-3.1.0&preserve-view=true) for supported versions of container documentation.
 
 :::moniker-end
 

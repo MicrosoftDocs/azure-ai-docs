@@ -13,8 +13,8 @@ ms.author: lajanuar
 
 # Install and run containers
 
-<!-- markdownlint-disable MD024 -->
-<!-- markdownlint-disable MD051 -->
+<!-- markdownlint-disable MD024 -->
+<!-- markdownlint-disable MD051 -->
 
 :::moniker range=">=doc-intel-2.1.0"
 
@@ -371,7 +371,7 @@ In addition to the [prerequisites](#prerequisites), you need to do the following
 
 * Name this folder **shared**.
 * We reference the file path for this folder as  **{SHARED_MOUNT_PATH}**.
-* Copy the file path in a convenient location, you need to add it to your **.env** file. As an example if the folder is called shared, located in the same folder as the `docker-compose` file, the .env file entry is `SHARED_MOUNT_PATH="./shared"`
+* Copy the file path in a convenient location, you need to add it to your **.env** file. As an example if the folder is called shared, located in the same folder as the `docker-compose` file, the .env file entry is `SHARED_MOUNT_PATH="./share"`
 
 #### Create a folder for the Studio to store project related information
 
@@ -386,7 +386,7 @@ In addition to the [prerequisites](#prerequisites), you need to do the following
   1. Declare the following environment variables:
 
   ```text
-SHARED_MOUNT_PATH="./shared"
+SHARED_MOUNT_PATH="./share"
 OUTPUT_MOUNT_PATH="./output"
 FILE_MOUNT_PATH="./files"
 DB_MOUNT_PATH="./db"
@@ -504,13 +504,16 @@ services:
   nginx:
     image: nginx:alpine
     container_name: reverseproxy
+    depends_on:
+      - layout
+      - custom-template  
     volumes:
       - ${NGINX_CONF_FILE}:/etc/nginx/nginx.conf
     ports:
       - "5000:5000"
   layout:
     container_name: azure-cognitive-service-layout
-    image: mcr.microsoft.com/azure-cognitive-services/form-recognizer/layout-3.0:latest
+    image: mcr.microsoft.com/azure-cognitive-services/form-recognizer/layout-3.1:latest
     environment:
       eula: accept
       apikey: ${FORM_RECOGNIZER_KEY}
@@ -531,7 +534,7 @@ services:
 
   custom-template:
     container_name: azure-cognitive-service-custom-template
-    image: mcr.microsoft.com/azure-cognitive-services/form-recognizer/custom-template-3.0:latest
+    image: mcr.microsoft.com/azure-cognitive-services/form-recognizer/custom-template-3.1:latest
     restart: always
     depends_on:
       - layout

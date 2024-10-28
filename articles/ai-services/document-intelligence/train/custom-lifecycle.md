@@ -28,9 +28,9 @@ With the v3.1 API, custom models introduce a new model expiration property. The 
 
 ## Models trained with preview API version
 
-For build requests, using a preview API version, the expiration date is set to three months from the date the model is built. Models trained with a preview API shouldn't be used in production and should be retrained once the corresponding GA API version is available. Compatibility between preview API versions and GA API versions isn't always maintained. You should expect that models trained with a preview API version aren't useable once the preview API is retired.
+## Models trained with preview API version
 
-Preview APIs are typically retired within three months of the corresponding GA API being available.
+For build requests, using a preview API version, the expiration date is set to two years from the date the model is built. Models trained with a preview API shouldn't be used in production and should be retrained once the corresponding GA API version is available. Compatibility between preview API versions and GA API versions isn't always maintained. You should expect that models trained with a preview API version aren't useable once the preview API is retired when the corresponding GA API is made available.
 
 ## Viewing model expiration date
 
