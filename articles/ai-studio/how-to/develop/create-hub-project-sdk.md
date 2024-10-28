@@ -132,7 +132,7 @@ You can use either an API key or credential-less YAML configuration file. For mo
 You can also create a hub using existing resources such as Azure Storage and Azure Key Vault. In the following examples, replace the example string values with your own values:
 
 > [!TIP]
-> You can retrieve the resource ID of the storage account and key vault from the Azure Portal by going to the resource's overview and selecting __JSON view__. The resource ID is located in the __id__ field. You canm also use the Azure CLI to retrieve the resource ID. For example, `az storage account show --name {my_storage_account_name} --query "id"`.
+> You can retrieve the resource ID of the storage account and key vault from the Azure Portal by going to the resource's overview and selecting __JSON view__. The resource ID is located in the __id__ field. You can also use the Azure CLI to retrieve the resource ID. For example, `az storage account show --name {my_storage_account_name} --query "id"`.
 
 # [Python SDK](#tab/python)
 
@@ -143,8 +143,8 @@ my_hub_name = "myexamplehub"
 my_location = "East US"
 my_display_name = "My Example Hub"
 my_resource_group = "myresourcegroupname"
-my_storage_account_id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myresourcegroupname/providers/Microsoft.Storage/storageAccounts/mystorageaccountname"
-my_key_vault_id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myresourcegroupname/providers/Microsoft.KeyVault/vaults/mykeyvaultname"
+my_storage_account_id = "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/myresourcegroupname/providers/Microsoft.Storage/storageAccounts/mystorageaccountname"
+my_key_vault_id = "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/myresourcegroupname/providers/Microsoft.KeyVault/vaults/mykeyvaultname"
 
 # construct a basic hub
 my_hub = Hub(name=my_hub_name, 
