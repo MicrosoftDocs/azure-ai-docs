@@ -42,7 +42,7 @@ items:
           href: document/custom/overview.md
   - name: Video
     items:
-    - name: Media Asset management overview
+    - name: Video overview
       displayName: video, audio, voice, recognition, synthesis, speaker, identification, verification, diarization, transcription, translation, language, understanding, sentiment, analysis, emotion, detection, pronunciation, model
       href: video/extract-metadata.md
     - name: Scenarios
