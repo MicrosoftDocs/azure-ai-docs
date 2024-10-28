@@ -12,6 +12,7 @@ reviewer: shubhirajMsft
 ms.author: ssalgado
 author: ssalgadodev
 ms.custom: references_regions, build-2024
+ms.collection: ce-skilling-ai-copilot
 
 #This functionality is also available in Azure AI Studio: /azure/ai-studio/how-to/deploy-models-llama.md
 ---
