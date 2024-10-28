@@ -2,7 +2,7 @@
 title: Deploy an Enterprise Chat web app in the Azure AI Studio playground
 titleSuffix: Azure AI Studio
 description: Use this article to deploy an enterprise chat web app in the Azure AI Studio playground.
-manager: nitinme
+manager: scottpolly
 ms.service: azure-ai-studio
 ms.custom:
   - ignite-2023
@@ -10,8 +10,8 @@ ms.custom:
 ms.topic: tutorial
 ms.date: 5/21/2024
 ms.reviewer: sgilley
-ms.author: aahi
-author: aahill
+ms.author: sgilley
+author: sdgilley
 ---
 
 # Tutorial: Deploy an Enterprise Chat web app
@@ -32,7 +32,8 @@ The steps in this tutorial are:
 ## Prerequisites
 
 - An Azure subscription - <a href="https://azure.microsoft.com/free/cognitive-services" target="_blank">Create one for free</a>.
-- An [AI Studio hub](../how-to/create-azure-ai-resource.md), [project](../how-to/create-projects.md), and [deployed Azure OpenAI](../how-to/deploy-models-openai.md) chat model. Complete the [AI Studio playground quickstart](../quickstarts/get-started-playground.md) to create these resources if you haven't already.
+- A [deployed Azure OpenAI](../how-to/deploy-models-openai.md) chat model. Complete the [AI Studio playground quickstart](../quickstarts/get-started-playground.md) to create this resource
+- if you haven't already.
 
 - An [Azure AI Search service connection](../how-to/connections-add.md#create-a-new-connection) to index the sample product data. 
 

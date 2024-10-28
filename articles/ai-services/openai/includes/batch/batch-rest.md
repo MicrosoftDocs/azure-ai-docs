@@ -245,12 +245,14 @@ curl https://YOUR_RESOURCE_NAME.openai.azure.com/openai/batches/{batch_id}/cance
 
 ### List batch
 
-List all existing batch jobs for a given Azure OpenAI resource.
+List existing batch jobs for a given Azure OpenAI resource.
 
 ```http
 curl https://YOUR_RESOURCE_NAME.openai.azure.com/openai/batches?api-version=2024-10-21 \
   -H "api-key: $AZURE_OPENAI_API_KEY" 
 ```
+
+The list API call is paginated. The response contains a boolean `has_more` to indicate when there are more results to iterate through.
 
 <a id="List"></a>
 

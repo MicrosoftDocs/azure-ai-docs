@@ -20,7 +20,7 @@ items:
     href: /ai/ai-studio-experiences-overview?context=/azure/ai-studio/context/context
 - name: Quickstarts
   items:
-  - name: Create a project and use the chat playground
+  - name: Use the chat playground
     href: quickstarts/get-started-playground.md
   - name: Get started building a chat app using the prompt flow SDK
     href: quickstarts/get-started-code.md
@@ -333,6 +333,8 @@ items:
       href: how-to/configure-private-link.md
     - name: Secure playground chat
       href: how-to/secure-data-playground.md
+    - name: Securely access on-premises resources
+      href: how-to/access-on-premises-resources.md
     - name: Troubleshoot secure project connectivity
       href: how-to/troubleshoot-secure-connection-project.md
   - name: Data protection & encryption
@@ -341,6 +343,12 @@ items:
       href: concepts/encryption-keys-portal.md
     - name: Rotate keys
       href: ../ai-services/rotate-keys.md?context=/azure/ai-studio/context/context
+  - name: Azure policies
+    items:
+    - name: Built-in policy to allow specific models
+      href: how-to/built-in-policy-model-deployment.md
+    - name: Custom policy to allow specific models
+      href: how-to/custom-policy-model-deployment.md
   - name: Vulnerability management
     href: concepts/vulnerability-management.md
   - name: Disaster recovery
