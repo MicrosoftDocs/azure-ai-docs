@@ -3,7 +3,7 @@ title: Azure AI model inference quotas and limits
 titleSuffix: Azure AI services
 description: Quick reference, detailed description, and best practices on the quotas and limits for the Azure AI models service in Azure AI services.
 ms.service: azure-ai-studio
-ms.custom: ignite-2024, github-universe-2024
+ms.custom: github-universe-2024
 ms.topic: conceptual
 author: sdgilley
 manager: scottpolly

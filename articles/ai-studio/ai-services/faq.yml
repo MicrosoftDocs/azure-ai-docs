@@ -91,7 +91,7 @@ sections:
       - question: |
           Does Azure AI model inference service support custom API headers? We append other custom headers to our API requests and are seeing HTTP 431 failure errors.
         answer: |
-          Our current APIs allow up to 10 custom headers, which are passed through the pipeline, and returned. We notice some customers now exceed this header count resulting in HTTP 431 errors. There's no solution for this error, other than to reduce header volume. In future API versions we'll no longer pass through custom headers. We recommend customers not depend on custom headers in future system architectures. 
+          Our current APIs allow up to 10 custom headers, which are passed through the pipeline, and returned. We notice some customers now exceed this header count resulting in HTTP 431 errors. There's no solution for this error, other than to reduce header volume. We recommend customers not depend on custom headers in future system architectures. 
   - name: Pricing and Billing
     questions:
       - question: |

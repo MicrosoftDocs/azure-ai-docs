@@ -9,7 +9,7 @@ ms.topic: conceptual
 ms.date: 10/24/2024
 ms.author: fasantia
 ms.reviewer: fasantia
-ms.custom: ignite-2024, github-universe-2024
+ms.custom: github-universe-2024
 ---
 
 # Deployment types in Azure AI model inference

@@ -9,7 +9,7 @@ manager: scottpolly
 ms.date: 10/24/2024
 ms.author: sgilley
 ms.reviewer: fasantia
-ms.custom: ignite-2024, github-universe-2024
+ms.custom: github-universe-2024
 ---
 
 # Use the Azure AI model inference endpoint
@@ -43,7 +43,7 @@ The Azure AI inference endpoint allows customers to use a single endpoint with t
 
 You can see the endpoint URL and credentials in the **Overview** section. The endpoint usually has the form `https://<resource-name>.services.ai.azure.com/models`:
 
-:::image type="content" source="../../media/ai-services/overview/overview-endpoint-and-key.png" alt-text="An screenshot showing how to get the URL and key associated with the resource." lightbox="../../media/ai-services/overview/overview-endpoint-and-key.png":::
+:::image type="content" source="../../media/ai-services/overview/overview-endpoint-and-key.png" alt-text="A screenshot showing how to get the URL and key associated with the resource." lightbox="../../media/ai-services/overview/overview-endpoint-and-key.png":::
 
 ### Routing
 
