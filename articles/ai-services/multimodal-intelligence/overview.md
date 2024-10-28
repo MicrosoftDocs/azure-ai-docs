@@ -16,7 +16,7 @@ ms.date: 10/09/2024
 
 Azure AI Multimodal Intelligence (MMI) is a cloud-based solution within [**Azure AI services**](../what-are-ai-services.md), designed to process/ingest various data modalities such as documents, images, videos, and audio into customizable output formats using LLMs and SLMs within a unified workflow.
 
-Built on the success of Document Intelligence, Azure AI Multimodal Intelligence offers a streamlined process to reason over large amounts of unstructured data, build customizable workflows, ultimately accelerating time-to-value (TTV), while using a variety of AI models.
+Built on the success of Document Intelligence, MMI offers a streamlined process to reason over large amounts of unstructured data, build customizable workflows, ultimately accelerating time-to-value (TTV), while using a variety of AI models.
 
 :::image type="content" source="media/overview/mmi-overview.png" alt-text="Screenshot of accepted media input files.":::
 

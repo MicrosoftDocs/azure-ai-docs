@@ -21,11 +21,11 @@ Each modality covers a set of MIME file types. 
 
 |Modality| Supported File Types | File Size | Resolution | Length |
 |--- | --- | --- | --- | --- |
-|Image | .jpg, .png, .bmp, .heif| ≤ 20 MB (OpenAI-enforced) | Min: 50 x 50Max: 10k x 10k |  |
+|Image | .jpg, .png, .bmp, .heif| ≤ 20 MB (OpenAI-enforced) | Min: 50 x 50 Max: 10k x 10k |  |
 |Document |  pdf, tiff, jpg, png, bmp, heif, txt  | asynchronous: ≤ 200MB |  | asynchronous: ≤ 300 pages |
 |Speech | mp3, wav, wma, aac, ogg, flac, mp4, avi, mov, wmv, mkv  | asynchronous: ≤ 200MB |  | asynchronous: ≤ 2h |
-|Video | MP4 (.mp4, .m4a, .m4v), FLV (with H.264 and AAC codecs) (.flv), ISMV (.isma, .ismv), MXF (.mxf), GXF (.gxf), MPEG2-PS,MPEG2-TS, 3GP (.ts, .ps, .3gp, .3gpp, .mpg), Windows Media Video (WMV)/ASF (.wmv, .asf), AVI (Uncompressed 8bit/10bit) (.avi),Microsoft Digital Video Recording (DVR-MS) (.dvr-ms), Matroska/WebM (.mkv), WAVE/WAV (.wav), QuickTime (.mov)  | asynchronous: ≤??? | Min: 320 x 240Max: 1920 x 1080 | asynchronous: ≤??? |
-| text | ≤ 10 MB |  | ≤ 10M characters |
+|Video | MP4 (.mp4, .m4a, .m4v), FLV (with H.264 and AAC codecs) (.flv), ISMV (.isma, .ismv), MXF (.mxf), GXF (.gxf), MPEG2-PS,MPEG2-TS, 3GP (.ts, .ps, .3gp, .3gpp, .mpg), Windows Media Video (WMV)/ASF (.wmv, .asf), AVI (Uncompressed 8bit/10bit) (.avi),Microsoft Digital Video Recording (DVR-MS) (.dvr-ms), Matroska/WebM (.mkv), WAVE/WAV (.wav), QuickTime (.mov)  | asynchronous: ≤2GB (body) asynchronous: ≤20GB (URL)| Min: 320 x 240 Max: 1920 x 1080 | asynchronous: ≤30m (body) asynchronous: ≤30m (URL) |
+| text | ≤ 1 MB |  | ≤ 1M characters |
 
 ### Supported Codecs
 |Modality| Codecs |
