@@ -15,8 +15,6 @@ You can add all the models you need in the endpoint by using [Azure AI Studio fo
 1. Go to **Model catalog** section in [Azure AI Studio for GitHub](https://ai.azure.com/github).
 
 2. Scroll to the model you're interested in and select it.
-   
-   :::image type="content" source="../../media/ai-services/add-model-deployments/models-search-and-deploy.gif" alt-text="An animation showing how to search models in the model catalog and select one for viewing its details." lightbox="../../media/ai-services/add-model-deployments/models-search-and-deploy.gif":::
 
 3. You can review the details of the model in the model card.
 
