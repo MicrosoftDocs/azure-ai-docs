@@ -10,9 +10,6 @@ items:
   - name: Service quotas and limits
     displayName: quota, tiers, throttle, max, adjustments, requests, support, ocr
     href: service-limits.md
-  - name: Region and Language support
-    displayName: region, quota, language, max, adjustments, requests, support
-    href: regionandlanguagesupport.md
   - name: Language and region support
     href: language-region-support.md
   - name: FAQ
