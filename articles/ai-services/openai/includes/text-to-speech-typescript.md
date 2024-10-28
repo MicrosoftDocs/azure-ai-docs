@@ -14,8 +14,6 @@ recommendations: false
 
 ## Prerequisites
 
-#### [TypeScript](#tab/typescript)
-
 - An Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services?azure-portal=true)
 - [LTS versions of Node.js](https://github.com/nodejs/release#release-schedule)
 - [TypeScript](https://www.typescriptlang.org/download/)
