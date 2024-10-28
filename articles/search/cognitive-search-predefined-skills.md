@@ -43,6 +43,7 @@ Skills that call the Azure AI are billed at the pay-as-you-go rate when you [att
 | [Microsoft.Skills.Vision.ImageAnalysisSkill](cognitive-search-skill-image-analysis.md) | This skill uses an image detection algorithm to identify the content of an image and generate a text description. | Azure AI services ([pricing](https://azure.microsoft.com/pricing/details/cognitive-services/)) | 
 | [Microsoft.Skills.Vision.OcrSkill](cognitive-search-skill-ocr.md) | Optical character recognition. | Azure AI services ([pricing](https://azure.microsoft.com/pricing/details/cognitive-services/)) |
 | [Microsoft.Skills.Vision.VectorizeSkill](cognitive-search-skill-vision-vectorize.md) | Multimodal image and text vectorization. | Azure AI services ([pricing](https://azure.microsoft.com/pricing/details/cognitive-services/)) |
+| [Microsoft.Skills.Util.DocumentIntelligenceLayoutSkill](cognitive-search-skill-document-intelligence-layout.md) | Accelerate information extraction from documents. | Azure AI services ([pricing](https://azure.microsoft.com/pricing/details/cognitive-services/)) |
 
 ## Azure OpenAI skills
 
