@@ -53,8 +53,14 @@ The **Markdown one-to-many parsing mode** parses Markdown files into multiple se
 
 - `content`: A string that contains the raw Markdown found in a specific location, based on the header metadata at that point in the document.
 
-- `sections`: An object that contains the hierarchical representation of the sections within the Markdown document. Contains subfields for the header metadata up to the desired header level. For example, when `markdownHeaderDepth` is set to `h3`, contains string fields `h1`, `h2`, and `h3`. These fields are accessible through field mappings as `/sections/h1`, `sections/h2`, etc. When a header is not present at that point in the document, contains an empty string.
-
+- `sections`: An object that contains subfields for the header metadata up to the desired header level. For example, when `markdownHeaderDepth` is set to `h3`, contains string fields `h1`, `h2`, and `h3`. These fields are can be indexed by mirroring this stucture in the index, or through field mappings in the format `/sections/h1`, `sections/h2`, etc. See indexer request below for an in-context example. The subfields contained are:
+  - `h1` - A string containing the h1 header value. Empty string if not set at this point in the document.
+  - (Optional) `h2 `- A string containing the h2 header value. Empty string if not set at this point in the document.
+  - (Optional )`h3 `- A string containing the h3 header value. Empty string if not set at this point in the document.
+  - (Optional) `h4 `- A string containing the h4 header value. Empty string if not set at this point in the document.
+  - (Optional )`h5 `- A string containing the h5 header value. Empty string if not set at this point in the document.
+  - (Optional )`h6 `- A string containing the h6 header value. Empty string if not set at this point in the document.
+  
 - `ordinal_position`: An integer value indicating the position of the section within the document hierarchy. This field is used for ordering the sections in their original sequence as they appear in the document. The root level sections start with an ordinal position of 1, and the value increments sequentially for each subsection. 
 
 Consider the following Markdown content:
