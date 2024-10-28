@@ -70,12 +70,12 @@ For passwordless authentication, you need to
 > [!CAUTION]
 > To use the recommended keyless authentication with the SDK, make sure that the `AZURE_OPENAI_API_KEY` environment variable isn't set. 
 
-#### [TypeScript keyless (Recommended)](#tab/typescript-keyless)
+#### [Microsoft Entra ID](#tab/typescript-keyless)
 
 [!INCLUDE [assistants-keyless-environment-variables](assistants-env-var-without-key.md)]
 
 
-#### [TypeScript with API key](#tab/typescript-key)
+#### [API key](#tab/typescript-key)
 
 [!INCLUDE [assistants-key-environment-variables](assistants-env-var-key.md)]
 
