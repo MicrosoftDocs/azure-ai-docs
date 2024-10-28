@@ -8,10 +8,10 @@ ms.service: azure-ai-search
 ms.topic: how-to
 ms.date: 10/12/2024
 ms.custom:
-  - ignite-2024
+  - references_regions
 ---
 
-# Semantic Chunking and Vectorization using Document Intelligence Layout skill and index projection
+# Semantic chunking and vectorization using the Document Intelligence Layout skill and index projections
 Text data chunking strategies play a key role in optimizing the RAG response and performance. Semantic chunking is to find semantically coherent fragments of a sentence representation. These fragments can then be processed independently and recombined as semantic representations without loss of information, interpretation, or semantic relevance. The inherent meaning of the text is used as a guide for the chunking process. Markdown is a structured and formatted markup language and a popular input for enabling semantic chunking in RAG (Retrieval-Augmented Generation)
 
 The Document Intelligence Layout skill offers a comprehensive solution for advanced content extraction and chunk functionality. With the Layout skill, you can easily extract document layout and content as markdown format and utilize markdown parsing mode to produce a set of document chunks

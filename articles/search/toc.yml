@@ -321,7 +321,7 @@ items:
         href: cognitive-search-concept-image-scenarios.md
       - name: Cache (incremental) enrichment
         href: search-howto-incremental-index.md
-      - name: Semantic Chunking and vectorization
+      - name: Semantic chunking and vectorization
         href: search-how-to-semantic-chunking.md        
       - name: Design tips
         href: cognitive-search-concept-troubleshooting.md
