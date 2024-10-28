@@ -1,5 +1,5 @@
 ---
-title: Distillation in AI Studio
+title: Distillation in AI Studio (preview)
 titleSuffix: Azure AI Studio
 description: Learn how to do distillation in Azure AI Studio.
 manager: scottpolly
@@ -13,7 +13,9 @@ author: ssalgadodev
 ms.custom: references_regions
 ---
 
-# Distillation in Azure AI Studio
+# Distillation in Azure AI Studio (preview)
+
+[!INCLUDE [Feature preview](~/reusable-content/ce-skilling/azure/includes/ai-studio/includes/feature-preview.md)]
 
 In Azure AI Studio, you can use distillation to efficiently train a student model.
 
