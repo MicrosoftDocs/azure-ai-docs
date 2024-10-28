@@ -14,8 +14,11 @@ recommendations: false
 
 ## Prerequisites
 
+#### [TypeScript](#tab/typescript)
+
 - An Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services?azure-portal=true)
 - [LTS versions of Node.js](https://github.com/nodejs/release#release-schedule)
+- [TypeScript](https://www.typescriptlang.org/download/)
 - [Azure CLI](/cli/azure/install-azure-cli) used for passwordless authentication in a local development environment, create the necessary context by signing in with the Azure CLI.
 - An Azure OpenAI resource created in a supported region (see [Region availability](/azure/ai-services/openai/concepts/models#model-summary-table-and-region-availability)). For more information, see [Create a resource and deploy a model with Azure OpenAI](../how-to/create-resource.md).
 
@@ -94,15 +97,16 @@ Your app's _package.json_ file will be updated with the dependencies.
 
     
 
-#### [Microsoft Entra ID](#tab/javascript-keyless)
+#### [Microsoft Entra ID](#tab/typescript-keyless)
 
-1. Create a new file named _Text-to-speech.js_ and open it in your preferred code editor. Copy the following code into the _Text-to-speech.js_ file:
+1. Create a new file named _Text-to-speech.ts_ and open it in your preferred code editor. Copy the following code into the _Text-to-speech.ts_ file:
 
-    ```javascript
-    const { writeFile } = require("fs/promises");
-    const { AzureOpenAI } = require("openai");
-    const { DefaultAzureCredential, getBearerTokenProvider } = require("@azure/identity");
-    require("openai/shims/node");
+    ```typescript
+    import { writeFile } from "fs/promises";
+    import { AzureOpenAI } from "openai";
+    import { DefaultAzureCredential, getBearerTokenProvider } from "@azure/identity";
+    import type { SpeechCreateParams } from "openai/resources/audio/speech";
+    import "openai/shims/node";
     
     // You will need to set these environment variables or edit the following values
     const endpoint = process.env["AZURE_OPENAI_ENDPOINT"] || "<endpoint>";
@@ -112,13 +116,13 @@ Your app's _package.json_ file will be updated with the dependencies.
     // Required Azure OpenAI deployment name and API version
     const deploymentName = "tts";
     const apiVersion = "2024-08-01-preview";
-    
+
     // keyless authentication    
     const credential = new DefaultAzureCredential();
     const scope = "https://cognitiveservices.azure.com/.default";
     const azureADTokenProvider = getBearerTokenProvider(credential, scope);
 
-    function getClient() {
+    function getClient(): AzureOpenAI {
       return new AzureOpenAI({
         endpoint,
         azureADTokenProvider,
@@ -128,9 +132,9 @@ Your app's _package.json_ file will be updated with the dependencies.
     }
     
     async function generateAudioStream(
-      client,
-      params
-    ) {
+      client: AzureOpenAI,
+      params: SpeechCreateParams
+    ): Promise<NodeJS.ReadableStream> {
       const response = await client.audio.speech.create(params);
       if (response.ok) return response.body;
       throw new Error(`Failed to generate audio stream: ${response.statusText}`);
@@ -155,21 +159,31 @@ Your app's _package.json_ file will be updated with the dependencies.
     });
     
     ```
+    
+   The import of `"openai/shims/node"` is necessary when running the code in a Node.js environment. It ensures that the output type of the `client.audio.speech.create` method is correctly set to `NodeJS.ReadableStream`.
 
-1. Run the script with the following command:
+1. Build the application with the following command:
+
+    ```console
+    tsc
+    ```
+
+1. Run the application with the following command:
 
     ```console
     node Text-to-speech.js
     ```
 
-#### [API key](#tab/javascript-key)
 
-1. Create a new file named _Text-to-speech.js_ and open it in your preferred code editor. Copy the following code into the _Text-to-speech.js_ file:
+#### [API key](#tab/typescript-key)
 
-    ```javascript
-    const { writeFile } = require("fs/promises");
-    const { AzureOpenAI } = require("openai");
-    require("openai/shims/node");
+1. Create a new file named _Text-to-speech.ts_ and open it in your preferred code editor. Copy the following code into the _Text-to-speech.ts_ file:
+
+    ```typescript
+    import { writeFile } from "fs/promises";
+    import { AzureOpenAI } from "openai";
+    import type { SpeechCreateParams } from "openai/resources/audio/speech";
+    import "openai/shims/node";
     
     // You will need to set these environment variables or edit the following values
     const endpoint = process.env["AZURE_OPENAI_ENDPOINT"] || "<endpoint>";
@@ -181,7 +195,7 @@ Your app's _package.json_ file will be updated with the dependencies.
     const deploymentName = "tts";
     const apiVersion = "2024-08-01-preview";
     
-    function getClient() {
+    function getClient(): AzureOpenAI {
       return new AzureOpenAI({
         endpoint,
         apiKey,
@@ -191,9 +205,9 @@ Your app's _package.json_ file will be updated with the dependencies.
     }
     
     async function generateAudioStream(
-      client,
-      params
-    ) {
+      client: AzureOpenAI,
+      params: SpeechCreateParams
+    ): Promise<NodeJS.ReadableStream> {
       const response = await client.audio.speech.create(params);
       if (response.ok) return response.body;
       throw new Error(`Failed to generate audio stream: ${response.statusText}`);
@@ -218,12 +232,19 @@ Your app's _package.json_ file will be updated with the dependencies.
     });
     
     ```
+    
+   The import of `"openai/shims/node"` is necessary when running the code in a Node.js environment. It ensures that the output type of the `client.audio.speech.create` method is correctly set to `NodeJS.ReadableStream`.
 
-1. Run the script with the following command:
+1. Build the application with the following command:
+
+    ```console
+    tsc
+    ```
+
+1. Run the application with the following command:
 
     ```console
     node Text-to-speech.js
     ```
-    
 
 ---

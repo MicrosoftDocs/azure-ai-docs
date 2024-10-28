@@ -3,11 +3,10 @@ ms.topic: include
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: include
-ms.date: 09/12/2024
+ms.date: 10/22/2024
 ms.reviewer: v-baolianzou
 ms.author: eur
 author: eric-urban
-recommendations: false
 ---
 
 [Source code](https://github.com/openai/openai-node) | [Package (npm)](https://www.npmjs.com/package/openai) | [Samples](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/openai/openai/samples)
@@ -16,24 +15,24 @@ recommendations: false
 
 - An Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services?azure-portal=true)
 - [LTS versions of Node.js](https://github.com/nodejs/release#release-schedule)
+- [TypeScript](https://www.typescriptlang.org/download/)
 - [Azure CLI](/cli/azure/install-azure-cli) used for passwordless authentication in a local development environment, create the necessary context by signing in with the Azure CLI.
 - An Azure OpenAI resource created in a supported region (see [Region availability](/azure/ai-services/openai/concepts/models#model-summary-table-and-region-availability)). For more information, see [Create a resource and deploy a model with Azure OpenAI](../how-to/create-resource.md).
-
 
 ## Set up
 
 ### Retrieve key and endpoint
 
-To successfully make a call against Azure OpenAI, you need an **endpoint** and a **key**.
+To successfully make a call against Azure OpenAI, you need an *endpoint* and a *key*.
 
 |Variable name | Value |
 |--------------------------|-------------|
 | `AZURE_OPENAI_ENDPOINT`               | This value can be found in the **Keys & Endpoint** section when examining your resource from the Azure portal. Alternatively, you can find the value in the **Azure OpenAI Studio** > **Playground** > **Code View**. An example endpoint is: `https://aoai-docs.openai.azure.com/`.|
 | `AZURE_OPENAI_API_KEY` | This value can be found in the **Keys & Endpoint** section when examining your resource from the Azure portal. You can use either `KEY1` or `KEY2`.|
 
-Go to your resource in the Azure portal. The **Endpoint and Keys** can be found in the **Resource Management** section. Copy your endpoint and access key as you need both for authenticating your API calls. You can use either `KEY1` or `KEY2`. Always having two keys allows you to securely rotate and regenerate keys without causing a service disruption.
+Go to your resource in the Azure portal. The **Endpoint and Keys** can be found in the **Resource Management** section. Copy your endpoint and access key as you'll need both for authenticating your API calls. You can use either `KEY1` or `KEY2`. Always having two keys allows you to securely rotate and regenerate keys without causing a service disruption.
 
-:::image type="content" source="../media/quickstarts/endpoint.png" alt-text="Screenshot of the overview UI for an Azure OpenAI resource in the Azure portal with the endpoint & access keys location highlighted." lightbox="../media/quickstarts/endpoint.png":::
+:::image type="content" source="../media/quickstarts/endpoint.png" alt-text="Screenshot of the overview UI for an Azure OpenAI resource in the Azure portal with the endpoint & access keys location circled in red." lightbox="../media/quickstarts/endpoint.png":::
 
 ### Environment variables
 
@@ -72,6 +71,14 @@ echo export AZURE_OPENAI_ENDPOINT="REPLACE_WITH_YOUR_ENDPOINT_HERE" >> /etc/envi
 ```
 ---
 
+## Microsoft Entra ID authentication is recommended
+
+For passwordless authentication, you need to 
+
+1. Use the `@azure/identity` package.
+1. Assign the `Cognitive Services User` role to your user account. This can be done in the Azure portal under **Access control (IAM)** > **Add role assignment**.
+1. Sign in with the Azure CLI such as `az login`.
+
 ## Create a Node application
 
 In a console window (such as cmd, PowerShell, or Bash), create a new directory for your app, and navigate to it. Then run the `npm init` command to create a node application with a _package.json_ file.
@@ -88,37 +95,34 @@ Install the client libraries with:
 npm install openai @azure/identity
 ```
 
+---
 Your app's _package.json_ file will be updated with the dependencies.
 
-## Create a speech file
+## Create a sample application
 
+#### [Microsoft Entra ID](#tab/typescript-keyless)
+
+1. Create a new file named _Whisper.js_ and open it in your preferred code editor. Copy the following code into the _Whisper.js_ file:
     
+    ```typescript
+    import { createReadStream } from "fs";
+    import { AzureOpenAI } from "openai";
+    import { DefaultAzureCredential, getBearerTokenProvider } from "@azure/identity";
 
-#### [Microsoft Entra ID](#tab/javascript-keyless)
-
-1. Create a new file named _Text-to-speech.js_ and open it in your preferred code editor. Copy the following code into the _Text-to-speech.js_ file:
-
-    ```javascript
-    const { writeFile } = require("fs/promises");
-    const { AzureOpenAI } = require("openai");
-    const { DefaultAzureCredential, getBearerTokenProvider } = require("@azure/identity");
-    require("openai/shims/node");
-    
     // You will need to set these environment variables or edit the following values
+    const audioFilePath = process.env["AUDIO_FILE_PATH"] || "<audio file path>";
     const endpoint = process.env["AZURE_OPENAI_ENDPOINT"] || "<endpoint>";
-    const speechFilePath =
-      process.env["SPEECH_FILE_PATH"] || "<path to save the speech file>";
     
     // Required Azure OpenAI deployment name and API version
-    const deploymentName = "tts";
     const apiVersion = "2024-08-01-preview";
-    
+    const deploymentName = "whisper";
+
     // keyless authentication    
     const credential = new DefaultAzureCredential();
     const scope = "https://cognitiveservices.azure.com/.default";
     const azureADTokenProvider = getBearerTokenProvider(credential, scope);
-
-    function getClient() {
+    
+    function getClient(): AzureOpenAI {
       return new AzureOpenAI({
         endpoint,
         azureADTokenProvider,
@@ -127,61 +131,53 @@ Your app's _package.json_ file will be updated with the dependencies.
       });
     }
     
-    async function generateAudioStream(
-      client,
-      params
-    ) {
-      const response = await client.audio.speech.create(params);
-      if (response.ok) return response.body;
-      throw new Error(`Failed to generate audio stream: ${response.statusText}`);
-    }
     export async function main() {
-      console.log("== Text to Speech Sample ==");
+      console.log("== Transcribe Audio Sample ==");
     
       const client = getClient();
-      const streamToRead = await generateAudioStream(client, {
-        model: deploymentName,
-        voice: "alloy",
-        input: "the quick brown chicken jumped over the lazy dogs",
+      const result = await client.audio.transcriptions.create({
+        model: "",
+        file: createReadStream(audioFilePath),
       });
     
-      console.log(`Streaming response to ${speechFilePath}`);
-      await writeFile(speechFilePath, streamToRead);
-      console.log("Finished streaming");
+      console.log(`Transcription: ${result.text}`);
     }
     
     main().catch((err) => {
       console.error("The sample encountered an error:", err);
     });
-    
     ```
 
-1. Run the script with the following command:
+1. Build the application with the following command:
 
     ```console
-    node Text-to-speech.js
+    tsc
     ```
 
-#### [API key](#tab/javascript-key)
+1. Run the application with the following command:
 
-1. Create a new file named _Text-to-speech.js_ and open it in your preferred code editor. Copy the following code into the _Text-to-speech.js_ file:
+    ```console
+    node Whisper.js
+    ```
 
-    ```javascript
-    const { writeFile } = require("fs/promises");
-    const { AzureOpenAI } = require("openai");
-    require("openai/shims/node");
+#### [API key](#tab/typescript-key)
+
+1. Create a new file named _Whisper.js_ and open it in your preferred code editor. Copy the following code into the _Whisper.js_ file:
+    
+    ```typescript
+    import { createReadStream } from "fs";
+    import { AzureOpenAI } from "openai";
     
     // You will need to set these environment variables or edit the following values
+    const audioFilePath = process.env["AUDIO_FILE_PATH"] || "<audio file path>";
     const endpoint = process.env["AZURE_OPENAI_ENDPOINT"] || "<endpoint>";
     const apiKey = process.env["AZURE_OPENAI_API_KEY"] || "<api key>";
-    const speechFilePath =
-      process.env["SPEECH_FILE_PATH"] || "<path to save the speech file>";
     
     // Required Azure OpenAI deployment name and API version
-    const deploymentName = "tts";
     const apiVersion = "2024-08-01-preview";
+    const deploymentName = "whisper";
     
-    function getClient() {
+    function getClient(): AzureOpenAI {
       return new AzureOpenAI({
         endpoint,
         apiKey,
@@ -190,40 +186,44 @@ Your app's _package.json_ file will be updated with the dependencies.
       });
     }
     
-    async function generateAudioStream(
-      client,
-      params
-    ) {
-      const response = await client.audio.speech.create(params);
-      if (response.ok) return response.body;
-      throw new Error(`Failed to generate audio stream: ${response.statusText}`);
-    }
     export async function main() {
-      console.log("== Text to Speech Sample ==");
+      console.log("== Transcribe Audio Sample ==");
     
       const client = getClient();
-      const streamToRead = await generateAudioStream(client, {
-        model: deploymentName,
-        voice: "alloy",
-        input: "the quick brown chicken jumped over the lazy dogs",
+      const result = await client.audio.transcriptions.create({
+        model: "",
+        file: createReadStream(audioFilePath),
       });
     
-      console.log(`Streaming response to ${speechFilePath}`);
-      await writeFile(speechFilePath, streamToRead);
-      console.log("Finished streaming");
+      console.log(`Transcription: ${result.text}`);
     }
     
     main().catch((err) => {
       console.error("The sample encountered an error:", err);
     });
-    
     ```
 
-1. Run the script with the following command:
+1. Build the application with the following command:
 
     ```console
-    node Text-to-speech.js
+    tsc
     ```
-    
+
+1. Run the application with the following command:
+
+    ```console
+    node Whisper.js
+    ```
 
 ---
+
+You can get sample audio files, such as *wikipediaOcelot.wav*, from the [Azure AI Speech SDK repository at GitHub](https://github.com/Azure-Samples/cognitive-services-speech-sdk/tree/master/sampledata/audiofiles).
+
+> [!IMPORTANT]
+> For production, store and access your credentials using a secure method, such as [Azure Key Vault](/azure/key-vault/general/overview). For more information about credential security, see [Azure AI services security](../../security-features.md).
+
+## Output
+
+```json
+{"text":"The ocelot, Lepardus paradalis, is a small wild cat native to the southwestern United States, Mexico, and Central and South America. This medium-sized cat is characterized by solid black spots and streaks on its coat, round ears, and white neck and undersides. It weighs between 8 and 15.5 kilograms, 18 and 34 pounds, and reaches 40 to 50 centimeters 16 to 20 inches at the shoulders. It was first described by Carl Linnaeus in 1758. Two subspecies are recognized, L. p. paradalis and L. p. mitis. Typically active during twilight and at night, the ocelot tends to be solitary and territorial. It is efficient at climbing, leaping, and swimming. It preys on small terrestrial mammals such as armadillo, opossum, and lagomorphs."}
+```
