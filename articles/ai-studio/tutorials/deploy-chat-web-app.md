@@ -2,7 +2,7 @@
 title: Deploy an Enterprise Chat web app in the Azure AI Studio playground
 titleSuffix: Azure AI Studio
 description: Use this article to deploy an enterprise chat web app in the Azure AI Studio playground.
-manager: nitinme
+manager: scottpolly
 ms.service: azure-ai-studio
 ms.custom:
   - ignite-2023
@@ -10,8 +10,8 @@ ms.custom:
 ms.topic: tutorial
 ms.date: 5/21/2024
 ms.reviewer: sgilley
-ms.author: aahi
-author: aahill
+ms.author: sgilley
+author: sdgilley
 ---
 
 # Tutorial: Deploy an Enterprise Chat web app

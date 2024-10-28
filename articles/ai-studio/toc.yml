@@ -18,7 +18,7 @@ items:
     href: /ai/ai-studio-experiences-overview?context=/azure/ai-studio/context/context
 - name: Quickstarts
   items:
-  - name: Create a project and use the chat playground
+  - name: Use the chat playground
     href: quickstarts/get-started-playground.md
   - name: Get started building a chat app using the prompt flow SDK
     href: quickstarts/get-started-code.md
