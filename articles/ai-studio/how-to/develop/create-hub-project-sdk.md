@@ -127,7 +127,7 @@ You can use either an API key or credential-less YAML configuration file. For mo
 
 ---
 
-## Create an AI Studio hub using existing resources
+## Create an AI Studio hub using existing dependency resources
 
 You can also create a hub using existing resources such as Azure Storage and Azure Key Vault. In the following examples, replace the example string values with your own values:
 
