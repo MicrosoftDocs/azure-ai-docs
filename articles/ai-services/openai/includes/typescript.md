@@ -27,11 +27,6 @@ ms.date: 10/22/2024
 > [!div class="nextstepaction"]
 > [I ran into an issue with the prerequisites.](https://microsoft.qualtrics.com/jfe/form/SV_0Cl5zkG3CnDjq6O?PLanguage=JAVASCRIPT&Pillar=AOAI&&Product=gpt&Page=quickstart&Section=Prerequisites)
 
-
-> [!div class="nextstepaction"]
-> [I ran into an issue with the prerequisites.](https://microsoft.qualtrics.com/jfe/form/SV_0Cl5zkG3CnDjq6O?PLanguage=JAVASCRIPT&Pillar=AOAI&&Product=gpt&Page=quickstart&Section=Prerequisites)
-
-
 ## Set up
 
 [!INCLUDE [get-key-endpoint](get-key-endpoint.md)]
@@ -55,7 +50,7 @@ Your app's _package.json_ file will be updated with the dependencies.
 
 ## Create a sample application
 
-Open a command prompt where you created the new project, and create a new file named Completion.js. Copy the following code into the Completion.js file.
+Open a command prompt where you created the new project, and create a new file named Completion.ts. Copy the following code into the Completion.ts file.
 
 ## [Microsoft Entra ID](#tab/typescript-keyless)
 
