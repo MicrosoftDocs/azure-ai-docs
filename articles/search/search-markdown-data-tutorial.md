@@ -38,7 +38,7 @@ If you don't have an Azure subscription, create a [free account](https://azure.m
 > [!NOTE]
 > You can use the free service for this tutorial. A free search service limits you to three indexes, three indexers, and three data sources. This tutorial creates one of each. Before starting, make sure you have room on your service to accept the new resources.
 
-### Download files
+### Create a Markdown document
 
 Copy and paste the Markdown below into a file named `sample_markdown.md`. The sample data is a single Markdown file containing various Markdown elements. We chose one Markdown file to stay under the storage limits of the free tier.
 
@@ -217,7 +217,7 @@ For this tutorial, connections to Azure AI Search require an endpoint and an API
 
 ## Set up your REST file
 
-1. Start Visual Studio Code and create a new file
+1. Start Visual Studio Code and create a new file.
 
 1. Provide values for variables used in the request: 
 
@@ -238,7 +238,7 @@ See [Quickstart: Text search using REST](search-get-started-rest.md) if you need
 
 ```http
 ### Create a data source
-POST {{baseUrl}}/datasources?api-version=2024-11-01  HTTP/1.1
+POST {{baseUrl}}/datasources?api-version=2024-11-01-preview  HTTP/1.1
   Content-Type: application/json
   api-key: {{apiKey}}
 
@@ -266,7 +266,7 @@ HTTP/1.1 201 Created
 Transfer-Encoding: chunked
 Content-Type: application/json; odata.metadata=minimal; odata.streaming=true; charset=utf-8
 ETag: "0x8DCF52E926A3C76"
-Location: https://<YOUR-SEARCH-SERVICE-NAME>.search.windows.net:443/datasources('sample-markdown-ds')?api-version=2024-11-01
+Location: https://<YOUR-SEARCH-SERVICE-NAME>.search.windows.net:443/datasources('sample-markdown-ds')?api-version=2024-11-01-preview
 Server: Microsoft-IIS/10.0
 Strict-Transport-Security: max-age=2592000, max-age=15724800; includeSubDomains
 Preference-Applied: odata.include-annotations="*"
@@ -305,7 +305,7 @@ This implementation will leverage [field mappings](search-indexer-field-mappings
 
 ```http
 ### Create an index
-POST {{baseUrl}}/indexes?api-version=2024-11-01  HTTP/1.1
+POST {{baseUrl}}/indexes?api-version=2024-11-01-preview  HTTP/1.1
   Content-Type: application/json
   api-key: {{apiKey}}
 
@@ -333,7 +333,7 @@ POST {{baseUrl}}/indexes?api-version=2024-11-01  HTTP/1.1
 
 ```http
 ### Create and run an indexer
-POST {{baseUrl}}/indexers?api-version=2024-11-01  HTTP/1.1
+POST {{baseUrl}}/indexers?api-version=2024-11-01-preview  HTTP/1.1
   Content-Type: application/json
   api-key: {{apiKey}}
 
@@ -380,7 +380,7 @@ You can start searching as soon as the first document is loaded.
 
 ```http
 ### Query the index
-POST {{baseUrl}}/indexes/sample-markdown-index/docs/search?api-version=2024-11-01  HTTP/1.1
+POST {{baseUrl}}/indexes/sample-markdown-index/docs/search?api-version=2024-11-01-preview  HTTP/1.1
   Content-Type: application/json
   api-key: {{apiKey}}
   
@@ -421,7 +421,7 @@ Add a `search` parameter to search on a string.
 
 ```http
 ### Query the index
-POST {{baseUrl}}/indexes/sample-markdown-index/docs/search?api-version=2024-11-01  HTTP/1.1
+POST {{baseUrl}}/indexes/sample-markdown-index/docs/search?api-version=2024-11-01-preview  HTTP/1.1
   Content-Type: application/json
   api-key: {{apiKey}}
   
@@ -471,9 +471,23 @@ One document is returned in the response.
 
 + Because the `markdownHeaderDepth` is set to `h3`, the `h4`, `h5`, and `h6` headers are treated as plaintext, so they appear in the `content` field.
 
-+ Ordinal position here is 4, this content appears as the 4th out of the 22 total content sections.
++ Ordinal position here is `4`, this content appears as the fourth out of the 22 total content sections.
 
 Add a `select` parameter to limit the results to fewer fields. Add a `filter` to further narrow the search.
+```json
+### Query the index
+POST {{baseUrl}}/indexes/sample-markdown-index/docs/search?api-version=2024-11-01-preview  HTTP/1.1
+  Content-Type: application/json
+  api-key: {{apiKey}}
+  
+  {
+    "search": "Markdown",
+    "count": true,
+    "select": "title, content, h2_subheader",
+    "filter": "h2_subheader eq 'Conclusion'"
+  }
+```
+
 
 ```json
 HTTP/1.1 200 OK
@@ -515,19 +529,19 @@ Indexers can be reset, clearing execution history, which allows a full rerun. Th
 
 ```http
 ### Reset the indexer
-POST {{baseUrl}}/indexers/sample-markdown-indexer/reset?api-version=2024-11-01  HTTP/1.1
+POST {{baseUrl}}/indexers/sample-markdown-indexer/reset?api-version=2024-11-01-preview  HTTP/1.1
   api-key: {{apiKey}}
 ```
 
 ```http
 ### Run the indexer
-POST {{baseUrl}}/indexers/sample-markdown-indexer/run?api-version=2024-11-01  HTTP/1.1
+POST {{baseUrl}}/indexers/sample-markdown-indexer/run?api-version=2024-11-01-preview  HTTP/1.1
   api-key: {{apiKey}}
 ```
 
 ```http
 ### Check indexer status 
-GET {{baseUrl}}/indexers/sample-markdown-indexer/status?api-version=2024-11-01  HTTP/1.1
+GET {{baseUrl}}/indexers/sample-markdown-indexer/status?api-version=2024-11-01-preview  HTTP/1.1
   api-key: {{apiKey}}
 ```
 
