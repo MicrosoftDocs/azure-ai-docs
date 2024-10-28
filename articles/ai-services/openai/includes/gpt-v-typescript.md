@@ -155,7 +155,7 @@ Select an image from the [azure-samples/cognitive-services-sample-data-files](ht
 
 
 
-## [TypeScript API key](#tab/typescript-key)
+## [API key](#tab/typescript-key)
 
 1. Create a _quickstart.ts_ and paste in the following code. 
     
