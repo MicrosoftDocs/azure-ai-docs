@@ -10,6 +10,7 @@ ms.author: ssalgado
 author: ssalgadodev
 ms.reviewer: timanghn
 ms.date: 12/14/2023
+ms.collection: ce-skilling-ai-copilot
 ---
 
 # Regulate deployments in Model Catalog using policies
@@ -67,8 +68,8 @@ You can remove the policy assignment in the Azure portal using the following ste
 ## Limitations 
 
 * Any change in the policy (including updating the policy definition, assignments, exemptions or policy set) takes 10 mins for those changes to become effective in the evaluation process.
-* Compliance is reported for newly created and updated deployments. During public preview, compliance records remain for 24 hours. Model deployments that exist before these policy definitions are assigned won't report compliance. You also can’t trigger the evaluations of deployments that existed before setting up the policy definition and assignment.
-* You can’t allowlist more than one registry in a policy assignment.
+* Compliance is reported for newly created and updated deployments. During public preview, compliance records remain for 24 hours. Model deployments that exist before these policy definitions are assigned won't report compliance. You also can't trigger the evaluations of deployments that existed before setting up the policy definition and assignment.
+* You can't allowlist more than one registry in a policy assignment.
 
 ## Next Steps
 

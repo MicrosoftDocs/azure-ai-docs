@@ -10,6 +10,7 @@ author: lgayhardt
 ms.author: lagayhar
 ms.reviewer: chenlujiao
 ms.date: 09/12/2023
+ms.collection: ce-skilling-ai-copilot 
 ms.custom:
   - prompt-flow
   - ignite-2023

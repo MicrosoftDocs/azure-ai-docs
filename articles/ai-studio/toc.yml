@@ -111,7 +111,7 @@ items:
           href: ../ai-services/speech-service/pronunciation-assessment-tool.md?context=/azure/ai-studio/context/context
         - name: Hear and speak with chat in the playground
           href: quickstarts/hear-speak-playground.md
-  - name: Select and deploy AI models
+  - name: Explore and select AI models
     items:
     - name: Model catalog
       href: how-to/model-catalog-overview.md
@@ -178,24 +178,40 @@ items:
       href: how-to/deploy-models-jamba.md
     - name: TimeGEN-1 model
       href: how-to/deploy-models-timegen-1.md
-    - name: Deploy models
-      items:
-        - name: Deployments overview
-          href: concepts/deployments-overview.md
-          displayName: endpoint
-        - name: Serverless API models
-          items:
-          - name: Deploy models as serverless API
-            href: how-to/deploy-models-serverless.md
-            displayName: maas, paygo, models-as-a-service
-          - name: Consume serverless API models from a different project or hub
-            href: how-to/deploy-models-serverless-connect.md
-            displayName: maas, paygo, models-as-a-service
-          - name: Model and region availability for Serverless API deployments
-            href: how-to/deploy-models-serverless-availability.md
-        - name: Deploy and inference a managed compute deployment with code
-          href: how-to/deploy-models-managed.md
-          displayName: endpoint, online, SDK, CLI
+  - name: Deploy AI models
+    items:
+      - name: Deployments overview
+        href: concepts/deployments-overview.md
+        displayName: endpoint
+      - name: Azure AI model inference
+        items:
+        - name: What is the Azure AI model inference service?
+          href: ai-services/model-inference.md
+        - name: Upgrade from GitHub Models
+          href: ai-services/how-to/quickstart-github-models.md
+        - name: Add and configure models
+          href: ai-services/how-to/create-model-deployments.md
+        - name: Deployment types
+          href: ai-services/concepts/deployment-types.md
+        - name: Use the inference endpoint
+          href: ai-services/concepts/endpoints.md
+        - name: Quotas and limits
+          href: ai-services/concepts/quotas-limits.md
+        - name: Azure AI model inference FAQ
+          href: ai-services/faq.yml
+      - name: Serverless API
+        items:
+        - name: Deploy models as serverless API
+          href: how-to/deploy-models-serverless.md
+          displayName: maas, paygo, models-as-a-service
+        - name: Consume serverless API models from a different project or hub
+          href: how-to/deploy-models-serverless-connect.md
+          displayName: maas, paygo, models-as-a-service
+        - name: Model and region availability for Serverless API deployments
+          href: how-to/deploy-models-serverless-availability.md
+      - name: Managed compute
+        href: how-to/deploy-models-managed.md
+        displayName: endpoint, online, SDK, CLI
   - name: Data for your generative AI app
     items:
     - name: Overview of retrieval augmented generation (RAG)
