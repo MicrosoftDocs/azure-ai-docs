@@ -6,7 +6,7 @@ manager: scottpolly
 keywords: Azure AI services, cognitive, Azure OpenAI
 ms.service: azure-ai-studio
 ms.topic: overview
-ms.date: 10/23/2024
+ms.date: 10/28/2024
 ms.reviewer: shwinne
 ms.author: sgilley
 author: sdgilley
@@ -24,7 +24,9 @@ While Azure **AI** Studio uses a project-based approach, Azure **OpenAI** Studio
 
 ## Understand project and non-project approaches
 
-You can use Azure OpenAI models with or without an AI Studio project. When you create a project, you can try other models and tools along with Azure OpenAI. But you can do more with Azure OpenAI models outside of a project. This table highlights the differences between working with Azure OpenAI outside of a project or in a project in Azure AI Studio:
+You can use Azure OpenAI models with or without an AI Studio project. When you create a project, you can try other models and tools along with Azure OpenAI.
+
+But you can do more with Azure OpenAI models outside of a project. This table highlights the differences between working with Azure OpenAI outside of a project or in a project in Azure AI Studio:
 
 
 |  | **Azure OpenAI without a project** | **AI Studio with a project** |
@@ -60,11 +62,11 @@ Pay attention to the top left corner of the screen to see which context you are 
 
     :::image type="content" source="media/aoai-in-ai-studio/ai-studio-no-project.png" alt-text="Screenshot shows top left corner of screen for AI Studio without a project.":::
 
-* When you are in a project, you see **Azure AI Studio / project name**.
+* When you are in a project, you see **Azure AI Studio / project name**. The project name allows you to switch between projects.
 
     :::image type="content" source="media/aoai-in-ai-studio/ai-studio-project.png" alt-text="Screenshot shows top left corner of screen for AI Studio with a project.":::
 
-* When you are working with Azure OpenAI outside of a project, you see **Azure AI Studio | Azure OpenAI**.
+* When you are working with Azure OpenAI outside of a project, you see **Azure AI Studio | Azure OpenAI / resource name**. The resource name allows you to switch between Azure OpenAI resources.
 
     :::image type="content" source="media/aoai-in-ai-studio/ai-studio-aoai.png" alt-text="Screenshot shows top left corner of screen for AI Studio when using Azure OpenAI without a project.":::
 
