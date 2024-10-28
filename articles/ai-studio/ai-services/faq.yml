@@ -81,7 +81,7 @@ sections:
         answer: |
           Ensure you created a deployment for the given model and that the deployment name matches **exactly** the value you're passing in `model` parameter. Although routing isn't case sensitive, ensure there's no special punctuation or spaces typos.
       - question: |
-          I'm using the `azure-ai-inference` package for Python and I get a 401 error when I try to authenticate using keys. What should I do?
+          I'm using the azure-ai-inference package for Python and I get a 401 error when I try to authenticate using keys. What should I do?
         answer: |
           Azure AI Services resource requires the version `azure-ai-inference>=1.0.0b5` for Python. Ensure you're using that version.
       - question: |
