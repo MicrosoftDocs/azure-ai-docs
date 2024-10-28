@@ -56,7 +56,7 @@ Use this article to get started using Azure OpenAI.
 
 ::: zone pivot="programming-language-typescript"
 
-[!INCLUDE [JavaScript quickstart](includes/chatgpt-typescript.md)]
+[!INCLUDE [TypeScript quickstart](includes/chatgpt-typescript.md)]
 
 ::: zone-end
 
