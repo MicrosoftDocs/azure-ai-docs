@@ -384,17 +384,17 @@
       "ms.collection": {
         "articles/ai-services/**/*.md": "ce-skilling-ai-copilot",
         "articles/ai-services/**/*.yml": "ce-skilling-ai-copilot",
-        "articles/ai-studio/**/*.md": "ce-skilling-ai-copilot",
-        "articles/ai-studio/**/*.yml": "ce-skilling-ai-copilot",
+        "articles/ai-studio/**/*.md": "ce-skilling-fresh-tier0",
+        "articles/ai-studio/**/*.yml": "ce-skilling-fresh-tier0",
         "articles/search/**/*.md": "ce-skilling-ai-copilot",
         "articles/search/**/*.yml": "ce-skilling-ai-copilot",
-        "articles/machine-learning/*.md": "ce-skilling-ai-copilot",
-        "articles/machine-learning/component-reference/*.md": "ce-skilling-ai-copilot",
-        "articles/machine-learning/component-reference/*.yml": "ce-skilling-ai-copilot",
-        "articles/machine-learning/component-reference-v2/*.md": "ce-skilling-ai-copilot",
-        "articles/machine-learning/component-reference-v2/*.yml": "ce-skilling-ai-copilot",
-        "articles/machine-learning/prompt-flow/*.md": "ce-skilling-ai-copilot",
-        "articles/machine-learning/v1/*.md": "ce-skilling-ai-copilot"
+        "articles/machine-learning/*.md": "ce-skilling-fresh-tier2",
+        "articles/machine-learning/component-reference/*.md": "ce-skilling-fresh-tier2",
+        "articles/machine-learning/component-reference/*.yml": "ce-skilling-fresh-tier2",
+        "articles/machine-learning/component-reference-v2/*.md": "ce-skilling-fresh-tier2",
+        "articles/machine-learning/component-reference-v2/*.yml": "ce-skilling-fresh-tier2",
+        "articles/machine-learning/prompt-flow/*.md": "ce-skilling-fresh-tier2",
+        "articles/machine-learning/v1/*.md": "ce-skilling-fresh-tier2"
       },
       "ms.custom": {
         "articles/machine-learning/v1/*.md": "UpdateFrequency5"
