@@ -6,14 +6,14 @@ items:
   items:
   - name: What is Azure AI Studio?
     href: what-is-ai-studio.md
+  - name: Azure OpenAI in AI Studio
+    href: azure-openai-in-ai-studio.md
   - name: Azure AI Studio architecture
     href: concepts/architecture.md
   - name: Region support
     href: reference/region-support.md
   - name: Azure AI FAQ
     href: faq.yml
-  - name: What is Azure OpenAI?
-    href: ../ai-services/openai/overview.md?context=/azure/ai-studio/context/context
   - name: "AI Studio or Azure Machine Learning studio: Which should I choose?"
     href: /ai/ai-studio-experiences-overview?context=/azure/ai-studio/context/context
 - name: Quickstarts
