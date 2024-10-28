@@ -393,7 +393,7 @@
         "articles/machine-learning/component-reference/*.yml": "ce-skilling-fresh-tier2",
         "articles/machine-learning/component-reference-v2/*.md": "ce-skilling-fresh-tier2",
         "articles/machine-learning/component-reference-v2/*.yml": "ce-skilling-fresh-tier2",
-        "articles/machine-learning/prompt-flow/*.md": "ce-skilling-fresh-tier2",
+        "articles/machine-learning/prompt-flow/*.md": "ce-skilling-ai-copilot",
         "articles/machine-learning/v1/*.md": "ce-skilling-fresh-tier2"
       },
       "ms.custom": {

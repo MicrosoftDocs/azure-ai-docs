@@ -10,6 +10,7 @@ ms.service: azure-machine-learning
 ms.subservice: core
 ms.date: 06/20/2024
 ms.topic: how-to
+ms.collection: ce-skilling-ai-copilot 
 ms.custom: prompt
 ---
 
