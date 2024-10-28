@@ -96,7 +96,7 @@ For evaluators that support conversations as input, you can just pass in the con
 relevance_score = relevance_eval(conversation=conversation)
 ```
 
-A conversation is a python dictionary of a list of messages (which include content, role, and optionally context). The following is an example of a two-turn conversation.
+A conversation is a Python dictionary of a list of messages (which include content, role, and optionally context). The following is an example of a two-turn conversation.
 
 ```json
 {"conversation":
@@ -172,7 +172,7 @@ Here's an example of the result:
 
 ### Risk and safety evaluators
 
-When you use AI-assisted risk and safety metrics, a GPT model isn't required. Instead of `model_config`, provide your `azure_ai_project` information. This accesses the Azure AI Studio safety evaluations back-end service, which provisions an GPT model specific to harms evaluation that can generate content risk severity scores and reasoning to enable the safety evaluators.
+When you use AI-assisted risk and safety metrics, a GPT model isn't required. Instead of `model_config`, provide your `azure_ai_project` information. This accesses the Azure AI Studio safety evaluations back-end service, which provisions a GPT model specific to harms evaluation that can generate content risk severity scores and reasoning to enable the safety evaluators.
 
 #### Region support
 
@@ -366,7 +366,7 @@ assistant: {{response}}
 output:
 ```
 
-You can create your own prompty-based evaluator and run it on a row of data:
+You can create your own Prompty-based evaluator and run it on a row of data:
 
 ```python
 with open("apology.prompty") as fin:
@@ -548,7 +548,7 @@ result = evaluate(
 
 If you have a list of queries that you'd like to run then evaluate, the `evaluate()` also supports a `target` parameter, which can send queries to an application to collect answers then run your evaluators on the resulting query and response.
 
-A target can be any callable class in your directory. In this case we have a python script `askwiki.py` with a callable class `askwiki()` that we can set as our target. Given a dataset of queries we can send into our simple `askwiki` app, we can evaluate the relevance of the outputs. Ensure you specify the proper column mapping for your data in `"column_mapping"`. You can use `"default"` to specify column mapping for all evaluators.
+A target can be any callable class in your directory. In this case we have a Python script `askwiki.py` with a callable class `askwiki()` that we can set as our target. Given a dataset of queries we can send into our simple `askwiki` app, we can evaluate the relevance of the outputs. Ensure you specify the proper column mapping for your data in `"column_mapping"`. You can use `"default"` to specify column mapping for all evaluators.
 
 ```python
 from askwiki import askwiki
