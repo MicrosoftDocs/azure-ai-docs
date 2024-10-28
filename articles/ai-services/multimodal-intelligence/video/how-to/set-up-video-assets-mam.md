@@ -9,9 +9,11 @@ ms.service: azure
 ms.topic: overview
 ms.date: 10/24/2024
 ---
-
 # Set up a Video Metadata for Media Asset Management 
-In this section of this article, you learn how to create a media asset management workflow with Multimodal Intelligence service. You'll call the analyze API with a specific prebuilt model and retrieve the generated metadata and customize the output by defining custom fields.
+
+Media asset management (`MAM`) is essential for organizations that handle and process large volumes of video content. Although it can be challenging to implement, `MAM` is an effective tool for organizing and storing digital assets. Multimodal Intelligence enables you to automatically generate specific metadata for your video assets, such as descriptions of each shot, shot types, brands seen, and more. This metadata can be customized to your specific needs by defining the schema. 
+
+In this article, you learn how to create a media asset management workflow with Multimodal Intelligence service. You'll call the analyze API with a specific prebuilt model and retrieve the generated metadata and customize the output by defining custom fields.
 
 ## Prerequisites
 * [**Azure subscription**](https://azure.microsoft.com/free/)

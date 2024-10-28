@@ -1,7 +1,7 @@
 ---
-title: Azure AI Multimodal Intelligence extract metadata for media asset management
+title: Azure AI Multimodal Intelligence Video overview
 titleSuffix: Azure AI services
-description: Learn how to use Azure AI Multimodal Intelligence to extract metadata for media asset management
+description: Learn how to use Azure AI Azure AI Multimodal Intelligence Video solutions
 author: laujan
 ms.author: lajanuar
 manager: nitinme
@@ -10,9 +10,9 @@ ms.topic: how-to
 ms.date: 10/24/2024
 ---
 
-# Use Multimodal Intelligence to extract metadata for media asset management
+# Use Multimodal Intelligence Video solutions overview (preview)
 
-Azure AI Multimodal Intelligence enables you to extract rich metadata from your videos, customize the metadata fields according to your needs, and integrate that data into your existing  systems or workflows. Efficiently managing, categorizing, retrieving, and building workflows for video assets requires detailed video metadata. Media asset management (`MAM`) is essential for organizations that handle and process large volumes of video content. Although it can be challenging to implement, `MAM` is an effective tool for organizing and storing digital assets. Multimodal Intelligence enables you to automatically generate specific metadata for your video assets, such as descriptions of each shot, shot types, brands seen, and more. This metadata can be customized to your specific needs by defining the schema. Multimodal Intelligence can be used to enhance your media asset library, support workflows like highlight generation, categorize content, and facilitate applications like retrieval-augmented generation (`RAG`). The Multimodal Intelligence video content extraction capabilities and enable access to the following benefits:
+Azure AI Multimodal Intelligence lets you extract and customize video metadata for seamless integration into your systems or workflows. This helps efficiently manage, categorize, retrieve, and build workflows for video assets. Multimodal Intelligence can enhance your media asset library, support workflows such as highlight generation, categorize content, and facilitate applications like retrieval-augmented generation (`RAG`). The video content extraction capabilities of Multimodal Intelligence offer the following advantages:
 
 * **Video transcription**. Convert speech within a video into text transcripts that can be searched and analyzed. Transcription data is also used as grounding for generating customizable metadata.
 
@@ -57,4 +57,4 @@ Multimodal Intelligence provides a specific set of capabilities for video includ
 * **Retrieval-augmented generation (`RAG`) applications**. Enable applications that can answer user questions with specific video moments by indexing content at a granular level.
 
 # Next steps
-Follow this [**how to guide**](how-to/set-up-video-assets-mam.md) to get started with using Multimodal Intelligence APIs for this scenario. 
+Follow this [**how to guide**](how-to/set-up-video-assets-mam.md) to get started with using Multimodal Intelligence APIs for a media asset management scenario. 
