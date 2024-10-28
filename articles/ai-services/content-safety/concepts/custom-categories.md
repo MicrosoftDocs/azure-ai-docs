@@ -16,6 +16,38 @@ ms.author: pafarley
 
 Azure AI Content Safety lets you create and manage your own content moderation categories for enhanced moderation and filtering that matches your specific policies or use cases.
 
+## Custom categories Training Pipeline Overview
+![image](https://github.com/user-attachments/assets/2e097136-0e37-4b5e-ba59-cafcfd733d72)
+
+### Pipeline Components
+The training pipeline is designed to leverage a combination of universal data assets, user-provided inputs, and advanced GPT model fine-tuning techniques to produce high-quality models tailored to specific tasks.
+#### Data Assets
+Filtered Universal Data: This component gathers datasets from multiple domains to create a comprehensive and diverse dataset collection. The goal is to have a robust data foundation that provides a variety of contexts for model training.
+User Inputs
+Customer Task Metadata: Metadata provided by customers, which defines the specific requirements and context of the task they wish the model to perform.
+Customer Demonstrations: Sample demonstrations provided by customers that illustrate the expected output or behavior for the model. These demonstrations help optimize the model’s response based on real-world expectations.
+
+#### Optimized Customer Prompt
+Based on the customer metadata and demonstrations, an optimized prompt is generated. This prompt refines the inputs provided to the model, aligning it closely with customer needs and enhancing the model’s task performance.
+
+#### GPTX Synthetic Task-Specific Dataset
+Using the optimized prompt and filtered universal data, a synthetic, task-specific dataset is created. This dataset is tailored to the specific task requirements, enabling the model to understand and learn the desired behaviors and patterns.
+### Model Training and Fine-Tuning
+
+#### Model Options: The pipeline supports multiple language models (LM), including Zcode, SLM, or any other language model (LM) suitable for the task.
+Task-Specific Fine-Tuned Model: The selected language model is fine-tuned on the synthetic task-specific dataset to produce a model that is highly optimized for the specific task.
+User Outputs
+
+#### ONNX Model: The fine-tuned model is converted into an ONNX (Open Neural Network Exchange) model format, ensuring compatibility and efficiency for deployment.
+Deployment: The ONNX model is deployed, enabling users to make inference calls and access the model’s predictions. This deployment step ensures that the model is ready for production use in customer applications.
+Key Features of the Training Pipeline
+
+#### Task Specificity: The pipeline allows for the creation of models finely tuned to specific customer tasks, thanks to the integration of customer metadata and demonstrations.
+- Scalability and Flexibility: The pipeline supports multiple language models, providing flexibility in choosing the model architecture best suited to the task.
+- Efficiency in Deployment: The conversion to ONNX format ensures that the final model is lightweight and efficient, optimized for deployment environments.
+- Continuous Improvement: By using synthetic datasets generated from diverse universal data sources, the pipeline can continuously improve model quality and applicability across various domains.
+
+
 ## Types of customization
 
 There are multiple ways to define and use custom categories, which are detailed and compared in this section.
@@ -49,7 +81,9 @@ This implementation works on text content and image content.
 
 ## How it works
 
-#### [Custom categories (standard) API](#tab/standard)
+### [Custom categories (standard) API](#tab/standard)
+![image](https://github.com/user-attachments/assets/5c377ec4-379b-4b41-884c-13524ca126d0)
+
 
 The Azure AI Content Safety custom categories feature uses a multi-step process for creating, training, and using custom content classification models. Here's a look at the workflow:
 
