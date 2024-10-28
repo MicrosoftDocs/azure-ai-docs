@@ -18,6 +18,7 @@ The Document Intelligence Layout skill offers a comprehensive solution for advan
 
 This article shows:
 + How to use the document intelligence layout skill to extract markdown sections
++ How to apply split skill to constrain chunk size within each markdown section 
 + Generate embeddings for the content within those sections
 + How to use index projections to compile and write them into a search index.
 
@@ -39,7 +40,7 @@ You can use the Azure portal, REST APIs, or an Azure SDK to [create a data sourc
 
 ## Create an index for one-to-many indexing
 
-Here's an example payload of a single designed around chunks. In this example, parent fields are the parent_id. Child fields are the vector and nonvector chunk - the markdown section.
+Here's an example payload of a single designed around chunks. In this example, parent fields are the text_parent_id. Child fields are the vector and nonvector chunk of the markdown section.
 
 You can use the Azure portal, REST APIs, or an Azure SDK to [create an index](search-how-to-load-search-index.md).
 
@@ -52,26 +53,91 @@ An index must exist on the search service before you create the skill set or run
     {
       "name": "chunk_id",
       "type": "Edm.String",
+      "searchable": true,
+      "filterable": false,
+      "retrievable": true,
+      "stored": true,
+      "sortable": true,
+      "facetable": false,
       "key": true,
-      "filterable": true,
       "analyzer": "keyword"
     },
     {
-      "name": "parent_id",
+      "name": "text_parent_id",
       "type": "Edm.String",
-      "filterable": true
+      "searchable": false,
+      "filterable": true,
+      "retrievable": true,
+      "stored": true,
+      "sortable": false,
+      "facetable": false,
+      "key": false
     },
     {
-      "name": "markdown_section",
+      "name": "chunk",
       "type": "Edm.String",
       "searchable": true,
-      "retrievable": true
+      "filterable": false,
+      "retrievable": true,
+      "stored": true,
+      "sortable": false,
+      "facetable": false,
+      "key": false
     },
     {
-      "name": "vector",
+      "name": "title",
+      "type": "Edm.String",
+      "searchable": true,
+      "filterable": false,
+      "retrievable": true,
+      "stored": true,
+      "sortable": false,
+      "facetable": false,
+      "key": false
+    },
+    {
+      "name": "header_1",
+      "type": "Edm.String",
+      "searchable": true,
+      "filterable": false,
+      "retrievable": true,
+      "stored": true,
+      "sortable": false,
+      "facetable": false,
+      "key": false
+    },
+    {
+      "name": "header_2",
+      "type": "Edm.String",
+      "searchable": true,
+      "filterable": false,
+      "retrievable": true,
+      "stored": true,
+      "sortable": false,
+      "facetable": false,
+      "key": false
+    },
+    {
+      "name": "header_3",
+      "type": "Edm.String",
+      "searchable": true,
+      "filterable": false,
+      "retrievable": true,
+      "stored": true,
+      "sortable": false,
+      "facetable": false,
+      "key": false
+    },
+    {
+      "name": "text_vector",
       "type": "Collection(Edm.Single)",
-      "retrievable": false,
       "searchable": true,
+      "filterable": false,
+      "retrievable": true,
+      "stored": true,
+      "sortable": false,
+      "facetable": false,
+      "key": false,
       "dimensions": 1536,
       "stored": false,
       "vectorSearchProfile": "profile"
@@ -98,7 +164,7 @@ An index must exist on the search service before you create the skill set or run
 
 You can use the REST APIs to [create or update a skill set](cognitive-search-defining-skillset.md).
 
-Here's an example skill set definition payload to project individual markdown sections and their vector outputs as documents in the search index using the [Document Intelligence Layout skill](cognitive-search-skill-document-intelligence-layout.md) and [Azure OpenAI Embedding skill](cognitive-search-skill-azure-openai-embedding.md)
+Here's an example skill set definition payload to project individual markdown sections chunks and their vector outputs as documents in the search index using the [Document Intelligence Layout skill](cognitive-search-skill-document-intelligence-layout.md) and [Azure OpenAI Embedding skill](cognitive-search-skill-azure-openai-embedding.md)
 
 ```json
 {
@@ -119,52 +185,99 @@ Here's an example skill set definition payload to project individual markdown se
       "outputs": [
         {
           "name": "markdown_document",
-          "targetName": "markdown_sections"
+          "targetName": "markdownDocument"
         }
       ],
-      "markdownHeaderDepth": "h6"
+      "markdownHeaderDepth": "h3"
+    },
+    {
+      "@odata.type": "#Microsoft.Skills.Text.SplitSkill",
+      "name": "my_markdown_section_split_skill",
+      "description": "A skill that splits text into chunks",
+      "context": "/document/markdownDocument/*",
+      "inputs": [
+        {
+          "name": "text",
+          "source": "/document/markdownDocument/*/content",
+          "inputs": []
+        }
+      ],
+      "outputs": [
+        {
+          "name": "textItems",
+          "targetName": "pages"
+        }
+      ],
+      "defaultLanguageCode": "en",
+      "textSplitMode": "pages",
+      "maximumPageLength": 2000,
+      "pageOverlapLength": 500,
+      "unit": "characters"
     },
     {
       "@odata.type": "#Microsoft.Skills.Text.AzureOpenAIEmbeddingSkill",
       "name": "my_azure_openai_embedding_skill",
-      "description": "Custom Azure OpenAI Embedding Skill",
-      "context": "/document/markdown_sections/*",
-      "resourceUri": "<Azure Open AI resource endpoint>",
-      "deploymentId": "<Azure Open AI Embedding Deployment Id>",
-      "apiKey": "<Azure Open AI Key>",
+      "context": "/document/markdownDocument/*/pages/*",
       "inputs": [
         {
           "name": "text",
-          "source": "/document/markdown_sections/*/content"
+          "source": "/document/markdownDocument/*/pages/*",
+          "inputs": []
         }
       ],
       "outputs": [
         {
           "name": "embedding",
-          "targetName": "embedding"
+          "targetName": "text_vector"
         }
       ],
-      "modelName": "text-embedding-ada-002"
+      "resourceUri": "https://<subdomain>.openai.azure.com",
+      "deploymentId": "text-embedding-3-small",
+      "apiKey": "<Azure OpenAI api key>",
+      "modelName": "text-embedding-3-small"
     }
   ],
+  "cognitiveServices": {
+    "@odata.type": "#Microsoft.Azure.Search.CognitiveServicesByKey",
+    "key": "<Cognitive Services api key>"
+  },
   "indexProjections": {
     "selectors": [
       {
         "targetIndexName": "my_consolidated_index",
-        "parentKeyFieldName": "parent_id",
-        "sourceContext": "/document/markdown_sections/*",
+        "parentKeyFieldName": "text_parent_id",
+        "sourceContext": "/document/markdownDocument/*/pages/*",
         "mappings": [
           {
-            "name": "markdown_section",
-            "source": "/document/markdown_sections/*/content"
+            "name": "text_vector",
+            "source": "/document/markdownDocument/*/pages/*/text_vector"
           },
           {
-            "name": "vector",
-            "source": "/document/markdown_sections/*/embedding"
+            "name": "chunk",
+            "source": "/document/markdownDocument/*/pages/*"
+          },
+          {
+            "name": "title",
+            "source": "/document/title"
+          },
+          {
+            "name": "header_1",
+            "source": "/document/markdownDocument/*/sections/h1"
+          },
+          {
+            "name": "header_2",
+            "source": "/document/markdownDocument/*/sections/h2"
+          },
+          {
+            "name": "header_3",
+            "source": "/document/markdownDocument/*/sections/h3"
           }
         ]
       }
-    ]
+    ],
+    "parameters": {
+      "projectionMode": "skipIndexingParentDocuments"
+    }
   }
 }
 
@@ -172,6 +285,10 @@ Here's an example skill set definition payload to project individual markdown se
 
 ## Run the indexer
 Once you create a data source, indexes, and skill set, you're ready to [create and run the indexer](search-howto-create-indexers.md#run-the-indexer). This step puts the pipeline into execution.
+
+When using the [Document Intelligence Layout skill](cognitive-search-skill-document-intelligence-layout.md), make sure to set the following parameters on the indexer definition:
++ The `allowSkillsetToReadFileData` parameter should be set to "true."
++ the `parsingMode` parameter should be set to "default."
 
 Here's an example payload
 
@@ -184,25 +301,18 @@ Here's an example payload
   "parameters": {
     "batchSize": 1,
     "configuration": {
-      "dataToExtract": "allMetadata",
-      "allowSkillsetToReadFileData": true
+        "dataToExtract": "contentAndMetadata",
+        "parsingMode": "default",
+        "allowSkillsetToReadFileData": true
     }
   },
   "fieldMappings": [
     {
       "sourceFieldName": "metadata_storage_path",
-      "targetFieldName": "id",
-      "mappingFunction": {
-        "name": "base64Encode"
-      }
+      "targetFieldName": "title"
     }
   ],
-  "outputFieldMappings": [
-    {
-      "sourceFieldName": "/document/markdown_section",
-      "targetFieldName": "markdown_section"
-    }
-  ]
+  "outputFieldMappings": []
 }
 ```
 
