@@ -63,7 +63,7 @@ Once you have your Azure blob storage containers, upload your training data to y
 
 ## Azure AI Studio
 
-1. Navigate to the [Azure AI Studio](https://ai.azure.com/?tid=aaaabbbb-0000-cccc-1111-dddd2222eeee). The first time you use the Studio, you need to [initialize your subscription and create a hub](../../../ai-studio/how-to/create-azure-ai-resource.md) before creating a project. Custom generative models are only available in East US and North Central US in preview. Ensure your resource group is set to East US or North Central US during hub creation.
+1. Navigate to the [Azure AI Studio](https://ai.azure.com/?tid=72f988bf-86f1-41af-91ab-2d7cd011db47). The first time you use the Studio, you need to [initialize your subscription and create a hub](../../../ai-studio/how-to/create-azure-ai-resource.md) before creating a project. Custom generative models are only available in East US and North Central US in preview. Ensure your resource group is set to East US or North Central US during hub creation.
 
 1. Select the Vision + Document tile.
 

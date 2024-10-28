@@ -142,7 +142,7 @@ This is only a subset of the available request body parameters. For the full lis
 #### Example request
 
 ```Bash
-curl -X PUT https://management.azure.com/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/resource-group-temp/providers/Microsoft.CognitiveServices/accounts/docs-openai-test-001/deployments/gpt-35-turbo-test-deployment?api-version=2023-05-01 \
+curl -X PUT https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/resource-group-temp/providers/Microsoft.CognitiveServices/accounts/docs-openai-test-001/deployments/gpt-35-turbo-test-deployment?api-version=2023-05-01 \
   -H "Content-Type: application/json" \
   -H 'Authorization: Bearer YOUR_AUTH_TOKEN' \
   -d '{"sku":{"name":"Standard","capacity":10},"properties": {"model": {"format": "OpenAI","name": "gpt-35-turbo","version": "0613"}}}'
@@ -175,7 +175,7 @@ GET https://management.azure.com/subscriptions/{subscriptionId}/providers/Micros
 #### Example request
 
 ```Bash
-curl -X GET https://management.azure.com/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/providers/Microsoft.CognitiveServices/locations/eastus/usages?api-version=2023-05-01 \
+curl -X GET https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.CognitiveServices/locations/eastus/usages?api-version=2023-05-01 \
   -H "Content-Type: application/json" \
   -H 'Authorization: Bearer YOUR_AUTH_TOKEN' 
 ```
