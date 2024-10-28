@@ -18,7 +18,7 @@ Training modules deliver an end-to-end experience that helps you build skills an
 
 Learning paths are a collection of training modules that are organized around specific roles (like developer) or technologies (like Azure AI Search). Azure AI Search is covered in two learning paths.
 
-+ [Microsoft Azure AI Fundamentals: Document Intelligence and Knowledge Mining](https://learn.microsoft.com/en-us/training/paths/document-intelligence-knowledge-mining/) includes two modules: [Fundamentals of Azure AI Search and knowledge mining](/training/modules/intro-to-azure-search/) and [Fundamentals of Azure AI Document Intelligence](/training/modules/analyze-receipts-form-recognizer/). Choose this learning path to broaden your understanding of when to use each technology.
++ [Microsoft Azure AI Fundamentals: Document Intelligence and Knowledge Mining](/training/paths/document-intelligence-knowledge-mining/) includes two modules: [Fundamentals of Azure AI Search and knowledge mining](/training/modules/intro-to-azure-search/) and [Fundamentals of Azure AI Document Intelligence](/training/modules/analyze-receipts-form-recognizer/). Choose this learning path to broaden your understanding of when to use each technology.
 
 + [Implement knowledge mining with Azure AI Search](/training/paths/implement-knowledge-mining-azure-cognitive-search/) includes eight modules that teach important skills. Choose this learning path to gain expertise in Azure AI Search.
 
@@ -26,7 +26,7 @@ Learning paths are a collection of training modules that are organized around sp
 
 | Module | Learning path |
 |--------|---------------|
-[Fundamentals of Knowledge Mining and Azure AI Search](/training/modules/intro-to-azure-search/) | [Microsoft Azure AI Fundamentals:](https://learn.microsoft.com/en-us/training/paths/document-intelligence-knowledge-mining/) |
+[Fundamentals of Knowledge Mining and Azure AI Search](/training/modules/intro-to-azure-search/) | [Microsoft Azure AI Fundamentals:](/training/paths/document-intelligence-knowledge-mining/) |
 | [Create an Azure AI Search solution](/training/modules/create-azure-cognitive-search-solution/) | [Implement knowledge mining](/training/paths/implement-knowledge-mining-azure-cognitive-search/) |
 | [Create a custom skill for Azure AI Search](/training/modules/create-azure-ai-custom-skill/) | [Implement knowledge mining](/training/paths/implement-knowledge-mining-azure-cognitive-search/) |
 | [Build an Azure Machine Learning custom skill for Azure AI Search](/training/modules/build-azure-machine-learn-custom-skill-for-azure-cognitive-search/) | |
