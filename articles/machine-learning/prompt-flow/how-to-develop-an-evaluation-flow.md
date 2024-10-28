@@ -11,7 +11,7 @@ ms.topic: how-to
 author: lgayhardt
 ms.author: lagayhar
 ms.reviewer: ziqiwang
-ms.date: 10/24/2024
+ms.date: 10/25/2024
 ---
 
 # Evaluation flows and metrics
@@ -153,13 +153,13 @@ After you create your own evaluation flow and metrics, you can use the flow to a
     :::image type="content" source="./media/how-to-develop-an-evaluation-flow/evaluate-button.png" alt-text="Screenshot of evaluation button.":::
     
 
-1. In the **Batch run and evaluate** wizard, complete the **Basic settings** and **Batch run settings** to load the dataset for testing and configure the input mapping. For more information, see [Submit batch run and evaluate a flow in prompt flow](how-to-bulk-test-evaluate-flow.md#submit-batch-run-and-evaluate-a-flow).
+1. In the **Batch run & Evaluate** wizard, complete the **Basic settings** and **Batch run settings** to load the dataset for testing and configure the input mapping. For more information, see [Submit batch run and evaluate a flow in prompt flow](how-to-bulk-test-evaluate-flow.md#submit-batch-run-and-evaluate-a-flow).
 
 1. In the **Select evaluation** step, you can select one or more of your customized evaluations or built-in evaluations to run. **Customized evaluation** lists all the evaluation flows that you created, cloned, or customized. Evaluation flows created by others in the same project don't appear in this section.
 
    :::image type="content" source="./media/how-to-develop-an-evaluation-flow/select-customized-evaluation.png" alt-text="Screenshot of selecting customized evaluation." lightbox = "./media/how-to-develop-an-evaluation-flow/select-customized-evaluation.png":::
 
-1. On the **Configure evaluation** screen, specify the sources of any input data needed for the evaluation method. For example, the ground truth column might come from a dataset. If your evaluation method doesn't require data from a dataset, you don't need to select a dataset or reference any dataset columns in the input mapping section, and this step is optional.
+1. On the **Configure evaluation** screen, specify the sources of any input data needed for the evaluation method. For example, the ground truth column might come from a dataset. If your evaluation method doesn't require data from a dataset, you don't need to select a dataset or reference any dataset columns in the input mapping section.
 
    In the **Evaluation input mapping** section, you can indicate the sources of required inputs for the evaluation. If the data source is from your run output, set the source as `${run.outputs.[OutputName]}`. If the data is from your test dataset, set the source as `${data.[ColumnName]}`. Any descriptions you set for the data inputs also appear here. For more information, see [Submit batch run and evaluate a flow in prompt flow](how-to-bulk-test-evaluate-flow.md#submit-batch-run-and-evaluate-a-flow).
 

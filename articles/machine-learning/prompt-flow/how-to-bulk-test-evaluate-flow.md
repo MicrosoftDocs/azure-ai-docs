@@ -1,7 +1,7 @@
 ---
-title: Submit batch run and evaluate a flow in prompt flow
+title: Submit a batch run to evaluate a prompt flow
 titleSuffix: Azure Machine Learning
-description: Learn how to submit batch run and use built-in evaluation methods in prompt flow to evaluate how well your flow performs with a large dataset with Azure Machine Learning studio.
+description: Submit a batch run in Azure Machine Learning studio and use evaluation methods to measure how well your prompt flow performs with a large dataset.
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: prompt-flow
@@ -12,210 +12,181 @@ ms.topic: how-to
 author: lgayhardt
 ms.author: lagayhar
 ms.reviewer: ziqiwang
-ms.date: 11/06/2023
+ms.date: 10/28/2024
 ---
 
-# Submit batch run and evaluate a flow
+# Submit a batch run to evaluate a flow
 
-To evaluate how well your flow performs with a large dataset, you can submit batch run and use built-in evaluation methods in prompt flow.
+A batch run executes your prompt flow with a large dataset and generates outputs for each data row. To evaluate how well the prompt flow performs with a large dataset, you can submit a batch run and use evaluation methods to generate performance scores and metrics. The evaluation methods automatically execute to calculate the metrics after the batch flow completes. You can use the evaluation metrics to compare the output of your flow with certain performance criteria and goals.
 
-In this article you learn to:
-
-- Submit a Batch Run and Use a Built-in Evaluation Method
-- View the evaluation result and metrics
-- Start A New Round of Evaluation
-- Check Batch Run History and Compare Metrics
-- Understand the Built-in Evaluation Metrics
-- Ways to Improve Flow Performance
-- Further reading: Guidance for creating Golden Datasets used for Copilot quality assurance
-
-You can quickly start testing and evaluating your flow by following this video tutorial [submit batch run and evaluate a flow video tutorial](https://www.youtube.com/watch?v=5Khu_zmYMZk).
+This article describes how to submit a batch run and use an evaluation method to measure the quality of your flow output. You learn how to view the evaluation result and metrics, and how to start a new round of evaluation with a different method or subset of variants.
 
 ## Prerequisites
 
-To run a batch run and use an evaluation method, you need to have the following ready:
-- A test dataset for batch run. Your dataset should be in one of these formats: `.csv`, `.tsv`, or `.jsonl`. Your data should also include headers that match the input names of your flow. Further Reading: If you're building your own copilot, we recommend referring to [Guidance for creating Golden Datasets used for Copilot quality assurance](#further-reading-guidance-for-creating-golden-datasets-used-for-copilot-quality-assurance).
+To run a batch flow with an evaluation method, you need the following components:
 
-## Submit a batch run and use a built-in evaluation method
+- A working Azure Machine Learning prompt flow that you want to test performance for.
+- A test dataset to use for the batch run.
 
-A batch run allows you to run your flow with a large dataset and generate outputs for each data row. You can also choose an evaluation method to compare the output of your flow with certain criteria and goals. An evaluation method  **is a special type of flow**  that calculates metrics for your flow output based on different aspects. An evaluation run is executed to calculate the metrics when submitted with the batch run.
+  Your test dataset must be in CSV, TSV, or JSONL format, and should have headers that match the input names of your flow. However, you can map different dataset columns to input columns during the evaluation run setup process.
 
-To start a batch run with evaluation, you can select on the **"Evaluate"** button on the top right corner of your flow page.
+## Create and submit an evaluation batch run
+
+To submit a batch run, you select the dataset to test your flow with. You can also select an evaluation method to calculate metrics for your flow output. If you don't want to use an evaluation method, you can skip the evaluation steps and run the batch run without calculating any metrics. You can also run an evaluation round later.
+
+To start a batch run with evaluation, select **Evaluate** at the top of your prompt flow page.
 
 :::image type="content" source="./media/how-to-bulk-test-evaluate-flow/batch-run-button.png" alt-text="Screenshot of Web Classification with batch run highlighted. " lightbox = "./media/how-to-bulk-test-evaluate-flow/batch-run-button.png":::
 
-To submit batch run, you can select a dataset to test your flow with. You can also select an evaluation method to calculate metrics for your flow output. If you don't want to use an evaluation method, you can skip this step and run the batch run without calculating any metrics. You can also start a new round of evaluation later.
+1. On the **Basic settings** page of the **Batch run & Evaluate** wizard, customize the **Run display name** if desired and optionally provide a **Run description** and **Tags**. Select **Next**.
 
-First, you're asked to give your batch run a descriptive and recognizable name. You can also write a description and add tags (key-value pairs) to your batch run. After you finish the configuration, select **"Next"** to continue.
+   :::image type="content" source="./media/how-to-bulk-test-evaluate-flow/batch-run-name.png" alt-text="Screenshot of batch run settings where you specify run name and description. " lightbox = "./media/how-to-bulk-test-evaluate-flow/batch-run-name.png":::
 
-:::image type="content" source="./media/how-to-bulk-test-evaluate-flow/batch-run-name.png" alt-text="Screenshot of batch run settings where you specify run name and description. " lightbox = "./media/how-to-bulk-test-evaluate-flow/batch-run-name.png":::
+1. On the **Batch run settings** page, select the dataset to use and configure input mapping.
 
-Second, you need to select or upload a dataset that you want to test your flow with. 
-Prompt flow also  supports mapping your flow input to a specific data column in your dataset. This means that you can assign a column to a certain input. You can assign a column to an input by referencing with `${data.XXX}` format. If you want to assign a constant value to an input, you can directly type in that value.
+   Prompt flow supports mapping your flow input to a specific data column in your dataset. You can assign a dataset column to a certain input by using `${data.<column>}`. If you want to assign a constant value to an input, you can enter that value directly. For more information, see [Submit batch run and evaluate a flow in prompt flow](how-to-bulk-test-evaluate-flow.md#submit-batch-run-and-evaluate-a-flow).
 
-:::image type="content" source="./media/how-to-bulk-test-evaluate-flow/batch-run-setting.png" alt-text="Screenshot of batch run settings where you select a test dataset. " lightbox = "./media/how-to-bulk-test-evaluate-flow/batch-run-setting.png":::
+   :::image type="content" source="./media/how-to-bulk-test-evaluate-flow/batch-run-setting.png" alt-text="Screenshot of batch run settings where you select a test dataset. " lightbox = "./media/how-to-bulk-test-evaluate-flow/batch-run-setting.png":::
 
-Then, in the next step, you can decide to use an evaluation method to validate the performance of this run either immediately or later. For a completed batch run, a new round of evaluation can still be added.
+1. You can select **Review + submit** at this point to skip the evaluation steps and run the batch run without using any evaluation method. The batch run then generates individual outputs for each item in your dataset. You can check the outputs manually or export them for further analysis.
 
-You can directly select the **"Next"** button to skip this step and run the batch run without using any evaluation method to calculate metrics. In this way, this batch run only generates outputs for your dataset. You can check the outputs manually or export them for further analysis with other methods.
+   Otherwise, to use an evaluation method to validate the performance of this run, select **Next**. You can also add a new round of evaluation to a completed batch run.
 
-Otherwise, if you want to run batch run with evaluation now, you can select one or more evaluation methods based on the description provided. You can select **"More detail"** button to see more information about the evaluation method, such as the metrics it generates and the connections and inputs it requires.
+1. On the **Select evaluation** page, select one or more customized or built-in evaluations to run. You can select **View details** button to see more information about the evaluation method, such as the metrics it generates and the connections and inputs it requires. For more information about the metrics calculated by the built-in evaluation methods, see [Understand built-in evaluation metrics](#understand-built-in-evaluation-metrics).
 
-:::image type="content" source="./media/how-to-bulk-test-evaluate-flow/batch-run-evaluation-selection.png" alt-text="Screenshot of evaluation settings where you can select built-in evaluation method." lightbox = "./media/how-to-bulk-test-evaluate-flow/batch-run-evaluation-selection.png":::
 
-Go to the next step and configure evaluation settings. In the  **"Evaluation input mapping"**  section, you need to specify the sources of the input data that are needed for the evaluation method. For example, ground truth column might come from a dataset. By default, evaluation uses the same dataset as the test dataset provided to the tested run. However, if the corresponding labels or target ground truth values are in a different dataset, you can easily switch to that one.  
+   :::image type="content" source="./media/how-to-bulk-test-evaluate-flow/batch-run-evaluation-selection.png" alt-text="Screenshot of evaluation settings where you can select built-in evaluation method." lightbox = "./media/how-to-bulk-test-evaluate-flow/batch-run-evaluation-selection.png":::
 
-Therefore, to run an evaluation, you need to indicate the sources of these required inputs. To do so, when submitting an evaluation, you see an  **"Evaluation input mapping"**  section.
+1. On the **Configure evaluation** screen, specify the sources of required inputs for the evaluation. For example, the ground truth column might come from a dataset.
 
-- If the data source is from your run output, the source is indicated as **"${run.output.[OutputName]}"**
-- If the data source is from your test dataset, the source is indicated as **"${data.[ColumnName]}"**
+   By default, evaluation uses the same dataset as the batch run. However, if the corresponding labels or target ground truth values are in a different dataset, you can switch to that one.
 
-:::image type="content" source="./media/how-to-bulk-test-evaluate-flow/batch-run-evaluation-input-mapping.png" alt-text="Screenshot of evaluation input mapping." lightbox = "./media/how-to-bulk-test-evaluate-flow/batch-run-evaluation-input-mapping.png":::
+   > [!NOTE]
+   > If your evaluation method doesn't require data from a dataset, dataset selection is an optional configuration that doesn't affect evaluation results. You don't need to select a dataset or reference any dataset columns in the input mapping section.
 
-> [!NOTE]
-> If your evaluation doesn't require data from the dataset, you do not need to reference any dataset columns in the input mapping section, indicating the dataset selection is an optional configuration. Dataset selection won't affect evaluation result.
+1. In the **Evaluation input mapping** section, you can indicate the sources of required inputs for the evaluation.
 
-If an evaluation method uses Large Language Models (LLMs) to measure the performance of the flow response, you're also required to set connections for the LLM nodes in the evaluation methods.
+   - If the data is from your test dataset, set the source as `${data.[ColumnName]}`.
+   - If the data is from your run output, set the source as `${run.outputs.[OutputName]}`.
 
-:::image type="content" source="./media/how-to-bulk-test-evaluate-flow/batch-run-evaluation-connection.png" alt-text="Screenshot of connection where you can configure the connection for evaluation method. " lightbox = "./media/how-to-bulk-test-evaluate-flow/batch-run-evaluation-connection.png":::
+   :::image type="content" source="./media/how-to-bulk-test-evaluate-flow/batch-run-evaluation-input-mapping.png" alt-text="Screenshot of evaluation input mapping." lightbox = "./media/how-to-bulk-test-evaluate-flow/batch-run-evaluation-input-mapping.png":::
 
-> [!NOTE]
-> Some evaluation methods require GPT-4 or GPT-3 to run. You must provide valid connections for these evaluation methods before using them.
-> Some evaluation process may take up lots of tokens, so it's recommended to use a model which can support >=16k tokens.
+1. Some evaluation methods require Large Language Models (LLMs) like GPT-4 or GPT-3 or other connections to consume credentials or keys. You must enter the connection data in the **Connection** section of this screen to be able to use the evaluation flow. For more information, see [Set up a connection](get-started-prompt-flow.md#set-up-a-connection).
 
-After you finish the input mapping, select on  **"Next"**  to review your settings and select on  **"Submit"**  to start the batch run with evaluation.
+   :::image type="content" source="./media/how-to-bulk-test-evaluate-flow/batch-run-evaluation-connection.png" alt-text="Screenshot of connection where you can configure the connection for evaluation method. " lightbox = "./media/how-to-bulk-test-evaluate-flow/batch-run-evaluation-connection.png":::
+
+1. Select **Review + submit** to review your settings, and then select **Submit** to start the batch run with evaluation.
 
 > [!NOTE]
-> Batch runs have a maximum duration of 10 hours. If a batch run exceeds this limit, it will be terminated and marked as failed. We advise monitoring your Large Language Model (LLM) capacity to avoid throttling. If necessary, consider reducing the size of your data. If you continue to experience issues or need further assistance, don't hesitate to reach out to our product team through the feedback form or support request.
+> - Some evaluation processes take up many tokens, so it's recommended to use a model that can support >=16k tokens.
+> - Batch runs have a maximum duration of 10 hours. If a batch run exceeds this limit, it terminates and shows as failed. Monitor your LLM capacity to avoid throttling. If necessary, consider reducing the size of your data. If you keep having issues, file a feedback form or support request.
 
-## View the evaluation result and metrics
+## View evaluation results and metrics
 
-After submission, you can find the submitted batch run in the run list tab in prompt flow page. 
+You can find the list of submitted batch runs on the **Runs** tab in the studio **Prompt flow** page.
 
-:::image type="content" source="./media/how-to-bulk-test-evaluate-flow/batch-run-list.png" alt-text="Screenshot of prompt flow run list page where you find batch runs. " lightbox = "./media/how-to-bulk-test-evaluate-flow/batch-run-list.png":::
+1. To check the results of a batch run, select the run and then select **Visualize outputs**. You can select more than one run to compare the outputs.
 
-Select a run to navigate to the **Run result** page, to check the results of this batch run. 
+   :::image type="content" source="./media/how-to-bulk-test-evaluate-flow/batch-run-list.png" alt-text="Screenshot of prompt flow run list page where you find batch runs. " lightbox = "./media/how-to-bulk-test-evaluate-flow/batch-run-list.png":::
 
-### Output
+   On the **Visualize outputs** screen, the **Runs & metrics** section shows overall results for the batch run and the evaluation run. The **Outputs** section shows the run inputs and outputs line by line in a results table that also includes line ID, **Run**, **Status**, and **System metrics**.
 
-#### Basic result and trace
+   :::image type="content" source="./media/how-to-bulk-test-evaluate-flow/batch-run-output.png" alt-text="Screenshot of batch run result page on the outputs tab where you check batch run outputs. " lightbox = "./media/how-to-bulk-test-evaluate-flow/batch-run-output.png":::
 
-This will firstly direct you to the **Output tab** to view the inputs and outputs line by line. The output tab page displays a table list of results, including the **line ID**, **input**, **output**, **status**, **system metrics**, and **created time**.
+1. If you enable the **View** icon next to the evaluation run in the **Runs & metrics** section, the **Outputs** table also shows the evaluation score or grade for each line.
 
-For each line, selecting **View trace** allows you to observe and debug that particular test case in its trace detailed page.
+   :::image type="content" source="./media/how-to-bulk-test-evaluate-flow/batch-run-output-append-evaluation.png" alt-text="Screenshot of batch run outputs to append evaluation output. " lightbox = "./media/how-to-bulk-test-evaluate-flow/batch-run-output-append-evaluation.png":::
 
-:::image type="content" source="./media/how-to-bulk-test-evaluate-flow/batch-run-output.png" alt-text="Screenshot of batch run result page on the outputs tab where you check batch run outputs. " lightbox = "./media/how-to-bulk-test-evaluate-flow/batch-run-output.png":::
+1. Select the **View details** icon next to each line in the **Output** table to observe and debug the **Trace view** and **Details** for that test case.
 
-:::image type="content" source="./media/how-to-develop-flow/authoring-trace.png" alt-text=" Screenshot of view output button in two locations." lightbox ="./media/how-to-develop-flow/authoring-trace.png":::
+   :::image type="content" source="./media/how-to-bulk-test-evaluate-flow/authoring-trace.png" alt-text=" Screenshot of view output button in two locations." lightbox ="./media/how-to-bulk-test-evaluate-flow/authoring-trace.png":::
 
-#### Append evaluation result and trace
-
-Selecting **Append evaluation output** allows you to select related evaluation runs and you see appended columns at the end of the table showing the evaluation result for each row of data. Multiple evaluation outputs can be appended for comparison.
-
-:::image type="content" source="./media/how-to-bulk-test-evaluate-flow/batch-run-output-append-evaluation.png" alt-text="Screenshot of batch run outputs to append evaluation output. " lightbox = "./media/how-to-bulk-test-evaluate-flow/batch-run-output-append-evaluation.png":::
-
-You can see the **latest evaluation metrics** in the left **Overview** panel.
-
-#### Essential overview
-
-On the right side, the Overview offers overall information about the run, such as the number of per data point execution, total tokens, and duration of the run. 
-
-The latest evaluation run aggregated metrics are shown here by default, you can select View evaluation run to jump to view the evaluation run itself. 
-
-:::image type="content" source="./media/how-to-bulk-test-evaluate-flow/batch-run-output-overview.png" alt-text="Screenshot of batch run overview information in output page. " lightbox = "./media/how-to-bulk-test-evaluate-flow/batch-run-output-overview.png":::
-
-The overview can be expanded and collapsed here, and you can select View full information, which will direct you to the [Overview tab](#overview) beside the Output tab, where is containing more detailed information of this run.
-
-#### Start a new round of evaluation
-
-If you have already completed a batch run, you can start another round of evaluation to submit a new evaluation run to calculate metrics for the outputs **without running your flow again**. This is helpful and can save your cost to rerun your flow when:
-
-- you didn't select an evaluation method to calculate the metrics when submitting the batch run, and decide to do it now.
-- you have already used evaluation method to calculate a metric. You can start another round of evaluation to calculate another metric.
-- your evaluation run failed but your flow successfully generated outputs. You can submit your evaluation again.
-
-You can select **Evaluate** to start another round of evaluation.
-
-:::image type="content" source="./media/how-to-bulk-test-evaluate-flow/batch-run-output-new-evaluation.png" alt-text="Screenshot of batch run output page on where to start a new round of evaluation." lightbox = "./media/how-to-bulk-test-evaluate-flow/batch-run-output-new-evaluation.png":::
-
-After setting up the configuration, you can select **"Submit"** for this new round of evaluation. After submission, you'll be able to see a new record in the prompt flow run list. After the evaluation run completed, similarly, you can check the result of evaluation in the **"Outputs"** tab of the batch run detail panel. You need to select the new evaluation run to view its result.
-
-To learn more about the metrics calculated by the built-in evaluation methods, navigate to [understand the built-in evaluation metrics](#understand-the-built-in-evaluation-metrics).
-
-### Overview
-
-Selecting the **Overview tab** shows comprehensive information about the run, including run properties, input dataset, output dataset, tags, and description.
-
-### Logs
-
-Selecting the **Logs tab** allows you to view the run logs, which can be useful for detailed debugging of execution errors. You can download the log files to your local machine.
-
-### Snapshot
-
-Selecting the **Snapshot tab** shows you the run snapshot. You can view the DAG of your flow. Additionally, you have the option to **Clone** it to create a new flow. You can also **Deploy** it as an online endpoint.
-
-:::image type="content" source="./media/how-to-bulk-test-evaluate-flow/batch-run-snapshot.png" alt-text="Screenshot of batch run snapshot." lightbox = "./media/how-to-bulk-test-evaluate-flow/batch-run-snapshot.png":::
-
-## Check batch run history and compare metrics
-
-In some scenarios, you modify your flow to improve its performance. You can submit multiple batches runs to compare the performance of your flow with different versions. You can also compare the metrics calculated by different evaluation methods to see which one is more suitable for your flow.
-
-To check the batch run history of your flow, you can select the **"View batch run"** button on the top right corner of your flow page. You see a list of batch runs that you have submitted for this flow.
+You can also view evaluation run results from the page of the flow you tested. Under **View batch runs**, select **View batch runs** to see the list of batch runs for the flow, or select **View latest batch run outputs** to see the outputs for the latest run.
 
 :::image type="content" source="./media/how-to-bulk-test-evaluate-flow/batch-run-history.png" alt-text="Screenshot of Web Classification with the view bulk runs button selected." lightbox = "./media/how-to-bulk-test-evaluate-flow/batch-run-history.png":::
 
-You can select on each batch run to check the detail. You can also select multiple batch runs and select on the **"Visualize outputs"** to compare the metrics and the outputs of this batch runs.
+In the batch run list, select a batch run name to open the flow page for that run.
+
+On the evaluation flow page, select **View outputs** to see details for the flow. You can also **Clone** the flow to create a new flow, or **Deploy** it as an online endpoint.
 
 :::image type="content" source="./media/how-to-bulk-test-evaluate-flow/batch-run-history-list.png" alt-text="Screenshot of batch run runs showing the history." lightbox = "./media/how-to-bulk-test-evaluate-flow/batch-run-history-list.png":::
 
-In the "Visualize output" panel the **Runs & metrics** table shows the information of the selected runs with highlight. Other runs that take the outputs of the selected runs as input are also listed.
+On the **Details** screen:
 
-In the "Outputs" table, you can compare the selected batch runs by each line of sample. By selecting the "eye visualizing" icon in the "Runs & metrics" table, outputs of that run will be appended to the corresponding base run.
+- The **Outputs** tab shows a summary of results at the top of the page, followed by the batch run results table. If you select the evaluation run next to **Append related results**, the table also shows the evaluation run results.
+
+  :::image type="content" source="./media/how-to-bulk-test-evaluate-flow/batch-run-output-overview.png" alt-text="Screenshot of the Outputs tab of the evaluation flow Details screen. " lightbox = "./media/how-to-bulk-test-evaluate-flow/batch-run-output-overview.png":::
+
+- The **Overview** tab shows comprehensive information about the run, including run properties, input dataset, output dataset, tags, and description.
+- The **Logs tab** shows the run logs, which can be useful for detailed debugging of execution errors. You can download the log files.
+- The **Snapshot tab** shows you the files and code from your run. You can see the *flow.dag.yaml* flow definition and download any of the files.
+
+  :::image type="content" source="./media/how-to-bulk-test-evaluate-flow/batch-run-snapshot.png" alt-text="Screenshot of batch run snapshot." lightbox = "./media/how-to-bulk-test-evaluate-flow/batch-run-snapshot.png":::
+
+### Start a new evaluation round on the same run
+
+You can run a new evaluation round to calculate metrics for a completed batch run without running the flow again. This process is helpful and can save the cost of rerunning your flow in the following scenarios:
+
+- You didn't select an evaluation method the first time you submitted the batch run, and now want to evaluate run performance.
+- You used an evaluation method to calculate a certain metric, and now want to calculate a different metric.
+- Your previous evaluation run failed, but the batch run successfully generated outputs and you want to try the evaluation again.
+
+To start another round of evaluation, select **Evaluate** at the top of the batch run flow page. The **New evaluation** wizard opens to the **Select evaluation** screen. Complete the setup and submit the new evaluation run.
+
+The new run appears in the prompt flow **Run** list, and you can select more than one row to compare the outputs and metrics.
+
+### Compare batch run history and metrics
+
+If you modify your flow to improve its performance, you can submit multiple batch runs to compare the performance of the different flow versions. You can also compare the metrics calculated by different evaluation methods to see which method is more suitable for your flow.
+
+To check the batch run history of your flow, select **View batch runs** at the top of your flow page. You can select each batch run to check the detail. You can also select multiple batch runs and select **Visualize outputs** to compare the metrics and the outputs of these batch runs.
 
 :::image type="content" source="./media/how-to-bulk-test-evaluate-flow/batch-run-compare.png" alt-text="Screenshot of metrics compare of multiple batch runs." lightbox = "./media/how-to-bulk-test-evaluate-flow/batch-run-compare.png":::
 
-## Understand the built-in evaluation metrics
+## Understand built-in evaluation metrics
 
-In prompt flow, we provide multiple built-in evaluation methods to help you measure the performance of your flow output. Each evaluation method calculates different metrics. Now we provide nine built-in evaluation methods available. You can check the following table for a quick reference:
+Azure Machine Learning prompt flow provides multiple built-in evaluation methods to help you measure the performance of your flow output. Each evaluation method calculates different metrics. The following table describes the available built-in evaluation methods.
 
-| Evaluation Method | Metrics  | Description | Connection Required | Required Input  | Score Value |
+| Evaluation method | Metrics  | Description | Connection required? | Required input  | Score values |
 |---|---|---|---|---|---|
-| Classification Accuracy Evaluation | Accuracy | Measures the performance of a classification system by comparing its outputs to ground truth. | No | prediction, ground truth | in the range [0, 1]. |
-| QnA Relevance Scores Pairwise Evaluation | Score, win/lose | Assesses the quality of answers generated by a question answering system. It involves assigning relevance scores to each answer based on how well it matches the user question, comparing different answers to a baseline answer, and aggregating the results to produce metrics such as averaged win rates and relevance scores. | Yes | question, answer (no ground truth or context)  | Score: 0-100, win/lose: 1/0 |
-| QnA Groundedness Evaluation | Groundedness | Measures how grounded the model's predicted answers are in the input source. Even if LLM’s responses are true, if not verifiable against source, then is ungrounded.  | Yes | question, answer, context (no ground truth)  | 1 to 5, with 1 being the worst and 5 being the best. |
-| QnA GPT Similarity Evaluation | GPT Similarity | Measures similarity between user-provided ground truth answers and the model predicted answer using GPT Model.  | Yes | question, answer, ground truth (context not needed)  | 1 to 5, with 1 being the worst and 5 being the best. |
-| QnA Relevance Evaluation | Relevance | Measures how relevant the model's predicted answers are to the questions asked.  | Yes | question, answer, context (no ground truth)  | 1 to 5, with 1 being the worst and 5 being the best. |
-| QnA Coherence Evaluation | Coherence  | Measures the quality of all sentences in a model's predicted answer and how they fit together naturally.  | Yes | question, answer (no ground truth or context)  | 1 to 5, with 1 being the worst and 5 being the best. |
-| QnA Fluency Evaluation | Fluency  | Measures how grammatically and linguistically correct the model's predicted answer is.  | Yes | question, answer (no ground truth or context)  | 1 to 5, with 1 being the worst and 5 being the best |
-| QnA f1 scores Evaluation | F1 score   | Measures the ratio of the number of shared words between the model prediction and the ground truth.  | No | question, answer, ground truth (context not needed)  | in the range [0, 1]. |
-| QnA Ada Similarity Evaluation | Ada Similarity  | Computes sentence (document) level embeddings using Ada embeddings API for both ground truth and prediction. Then computes cosine similarity between them (one floating point number)  | Yes | question, answer, ground truth (context not needed)  | in the range [0, 1]. |
+| Classification Accuracy Evaluation | Accuracy | Measures the performance of a classification system by comparing its outputs to ground truth | No | prediction, ground truth | In the range [0, 1] |
+<!--| QnA Relevance Scores Pairwise Evaluation | Score, win/lose | Assesses the quality of answers generated by a question answering system. It involves assigning relevance scores to each answer based on how well it matches the user question, comparing different answers to a baseline answer, and aggregating the results to produce metrics such as averaged win rates and relevance scores. | Yes | question, answer (no ground truth or context)  | Score: 0-100, win/lose: 1/0 |-->
+| QnA Groundedness Evaluation | Groundedness | Measures how grounded the model's predicted answers are in the input source. Even if the LLM responses are accurate, if they aren't verifiable against source, they're ungrounded.  | Yes | question, answer, context (no ground truth)  | 1 to 5, with 1 = worst and 5 = best |
+| QnA GPT Similarity Evaluation | GPT Similarity | Measures similarity between user-provided ground truth answers and the model predicted answer using a GPT model | Yes | question, answer, ground truth (context not needed)  | 1 to 5, with 1 = worst and 5 = best |
+| QnA Relevance Evaluation | Relevance | Measures how relevant the model's predicted answers are to the questions asked | Yes | question, answer, context (no ground truth) | 1 to 5, with 1 = worst and 5 = best |
+| QnA Coherence Evaluation | Coherence  | Measures the quality of all sentences in a model's predicted answer and how they fit together naturally | Yes | question, answer (no ground truth or context) | 1 to 5, with 1 = worst and 5 = best |
+| QnA Fluency Evaluation | Fluency  | Measures the grammatical and linguistic correctness of the model's predicted answer | Yes | question, answer (no ground truth or context)  | 1 to 5, with 1 = worst and 5 = best |
+| QnA F1 Scores Evaluation | F1 score   | Measures the ratio of the number of shared words between the model prediction and the ground truth  | No | question, answer, ground truth (context not needed)  | In the range [0, 1] |
+| QnA Ada Similarity Evaluation | Ada Similarity  | Computes sentence (document) level embeddings using Ada embeddings API for both ground truth and prediction, then computes cosine similarity between them (one floating point number)  | Yes | question, answer, ground truth (context not needed)  | In the range [0, 1] |
 
-## Ways to improve flow performance
+## Improve flow performance
 
-After checking the [built-in metrics](#understand-the-built-in-evaluation-metrics) from the evaluation, you can try to improve your flow performance by:
+If your run fails, check the output data to debug any potential failure of your flow.
 
-- Check the output data to debug any potential failure of your flow.
-- Modify your flow to improve its performance. This includes but not limited to:
-  - Modify the prompt
-  - Modify the system message
-  - Modify parameters of the flow
-  - Modify the flow logic
+To improve flow performance, try modifying the following aspects of your flow:
 
-Prompt construction can be difficult. We provide a [Introduction to prompt engineering](/azure/cognitive-services/openai/concepts/prompt-engineering) to help you learn about the concept of constructing a prompt that can achieve your goal. See [prompt engineering techniques](/azure/cognitive-services/openai/concepts/advanced-prompt-engineering?pivots=programming-language-chat-completions) to learn more about how to construct a prompt that can achieve your goal.
+  - Prompt
+  - System message
+  - Flow parameters
+  - Flow logic
 
-System message, sometimes referred to as a metaprompt or [system prompt](/azure/cognitive-services/openai/concepts/advanced-prompt-engineering?pivots=programming-language-completions#meta-prompts) that can be used to guide an AI system’s behavior and improve system performance. Read this document on [System message framework and template recommendations for Large Language Models(LLMs)](/azure/cognitive-services/openai/concepts/system-message) to learn about how to improve your flow performance with system message.
+### Prompt engineering
 
-## Further reading: Guidance for creating Golden Datasets used for Copilot quality assurance
+Prompt construction can be difficult. To learn about prompt construction concepts, see [Introduction to prompt engineering](/azure/cognitive-services/openai/concepts/prompt-engineering). To learn more about constructing a prompt that can help you achieve your goals, see [Prompt engineering techniques](/azure/cognitive-services/openai/concepts/advanced-prompt-engineering).
 
-The creation of a copilot that uses Large Language Models (LLMs) typically involves grounding the model in reality using source datasets. However, to ensure that the LLMs provide the most accurate and useful responses to customer queries, a "Golden Dataset" is necessary.
+### System message
 
-A Golden Dataset is a collection of realistic customer questions and expertly crafted answers. It serves as a Quality Assurance tool for LLMs used by your copilot. Golden Datasets aren't used to train an LLM or inject context into an LLM prompt. Instead, they're utilized to assess the quality of the answers generated by the LLM.
+You can use the system message, sometimes referred to as a metaprompt or [system prompt](/azure/cognitive-services/openai/concepts/advanced-prompt-engineering#meta-prompts), to guide an AI system's behavior and improve system performance. To learn how to improve your flow performance with system messages, see [System message framework and template recommendations for Large Language Models(LLMs)](/azure/cognitive-services/openai/concepts/system-message).
 
-If your scenario involves a copilot or if you are in the process of building your own copilot, we recommend referring to this specific document: [Producing Golden Datasets: Guidance for creating Golden Datasets used for Copilot quality assurance](https://aka.ms/copilot-golden-dataset-guide) for more detailed guidance and best practices.
+### Golden datasets
 
-## Next steps
+Creating a copilot that uses LLMs typically involves grounding the model in reality using source datasets. A *golden dataset* ensures that the LLMs provide the most accurate and useful responses to customer queries.
 
-In this document, you learned how to submit a batch run and use a built-in evaluation method to measure the quality of your flow output. You also learned how to view the evaluation result and metrics, and how to start a new round of evaluation with a different method or subset of variants. We hope this document helps you improve your flow performance and achieve your goals with Prompt flow.
+A golden dataset is a collection of realistic customer questions and expertly crafted answers that serves as a quality assurance tool for the LLMs your copilot uses. Golden datasets aren't used to train an LLM or inject context into an LLM prompt, but to assess the quality of the answers the LLM generates.
+
+If your scenario involves a copilot, or you're building your own copilot, see [Producing Golden Datasets: Guidance for creating Golden Datasets used for Copilot quality assurance](https://aka.ms/copilot-golden-dataset-guide) for detailed guidance and best practices.
+
+## Related content
 
 - [Develop a customized evaluation flow](how-to-develop-an-evaluation-flow.md)
 - [Tune prompts using variants](how-to-tune-prompts-using-variants.md)
