@@ -41,6 +41,10 @@ You can add a search service to a network security perimeter in the Azure portal
 
 ## Assign a search service to a network security perimeter
 
+Azure Network Security Perimeter allows administrators to define a logical network isolation boundary for PaaS resources (for example, Azure Storage and Azure SQL Database) that are deployed outside virtual networks. It restricts communication to resources within the perimeter, and it allows non-perimeter public traffic through inbound and outbound access rules.
+
+You can add Azure AI Search to a network security perimiter so that all indexing and query requests occur within the security boundary.
+
 1. In the Azure portal, create or find the network security perimeter service for your subscription.
 
 1. Select **Resources** from the left-hand menu.
