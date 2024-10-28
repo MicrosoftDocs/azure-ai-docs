@@ -36,19 +36,21 @@ To obtain the key and endpoint:
 
 1. In the playground for your model, select **Get API key**.
 
-2. Select **Get production key**.
+1. Select **Get production key**.
 
-3. If you don't have an Azure account, select Create my account and follow the steps to create one.
+1. If you don't have an Azure account, select Create my account and follow the steps to create one.
 
-4. If you have an Azure account, select **Sign back in**.
+1. If you have an Azure account, select **Sign back in**.
 
-5. If your existing account is a free account, you first have to upgrade to a Pay as you go plan. Once you upgrade, go back to the playground and select **Get API key** again, then sign in with your upgraded account.
+1. If your existing account is a free account, you first have to upgrade to a Pay as you go plan. Once you upgrade, go back to the playground and select **Get API key** again, then sign in with your upgraded account.
 
-6. Once you've signed in to your Azure account, you're taken to [Azure AI Studio > GitHub](https://ai.azure.com/GitHub). It might take one or two minutes to load your initial model details in AI Studio.
+1. Once you've signed in to your Azure account, you're taken to [Azure AI Studio](https://ai.azure.com). 
 
-7. The page is loaded with your model's details. Select the **Deploy** button to deploy the model to your account.
+1. At the top of the page, select **Go to your GitHub AI resource** to go to Azure AI Studio / Github](https://ai.azure.com/github). It might take one or two minutes to load your initial model details in AI Studio.
 
-8. Once it's deployed, your model's API Key and endpoint are shown in the Overview. Use these values in your code to use the model in your production environment.
+1. The page is loaded with your model's details. Select the **Create a Deployment** button to deploy the model to your account.
+
+1. Once it's deployed, your model's API Key and endpoint are shown in the Overview. Use these values in your code to use the model in your production environment.
 
     :::image type="content" source="../../media/ai-services/add-model-deployments/models-deploy-endpoint-url.png" alt-text="A screenshot showing how to get the URL and key associated with the deployment." lightbox="../../media/ai-services/add-model-deployments/models-deploy-endpoint-url.png":::
 
