@@ -114,7 +114,7 @@ given the conversation history:
 
 ### Specify target callback to simulate against
 
-You can bring any application endpoint to simulate against by specifying a target callback function such as the following given an application that is an LLM with a prompty file: `application.prompty`
+You can bring any application endpoint to simulate against by specifying a target callback function such as the following given an application that is an LLM with a Prompty file: `application.prompty`
 
 ```python
 async def callback(
