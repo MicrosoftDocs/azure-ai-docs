@@ -53,7 +53,7 @@ Your app's _package.json_ file will be updated with the dependencies.
 
 ## Generate images with DALL-E
 
-Create a new file named _ImageGeneration.js_ and open it in your preferred code editor. Copy the following code into the _ImageGeneration.js_ file:
+Create a new file named _ImageGeneration.ts_ and open it in your preferred code editor. Copy the following code into the _ImageGeneration.ts_ file:
 
 #### [Microsoft Entra ID](#tab/typescript-keyless)
 
