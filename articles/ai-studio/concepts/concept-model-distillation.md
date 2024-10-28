@@ -33,7 +33,8 @@ The main steps in knowledge distillation are:
 
 ## Sample notebook
 
-Distillation in AI Studio is currently only available through a notebook experience. You can use the [sample notebook](https://github.com/Azure/azureml-examples/tree/main/sdk/python/foundation-models/system/distillation) to see how to perform distillation. Model distillation is available for Microsoft models and a selection of OSS models available in the model catalog. In this sample notebook, the teacher model uses the Meta Llama 3.1 405B instruction model, and the student model uses the Meta Llama 3.1 8B instruction model.
+Distillation in AI Studio is currently only available through a notebook experience. You can use the [sample notebook](https://github.com/Azure/azureml-examples/tree/main/sdk/python/foundation-models/system/distillation) to see how to perform distillation. Model distillation is available for Microsoft models and a selection of OSS (open-source software) models available in the model catalog. In this sample notebook, the teacher model uses the Meta Llama 3.1 405B instruction model, and the student model uses the Meta Llama 3.1 8B instruction model.
+
 
 
 We used an advanced prompt during synthetic data generation. The advanced prompt incorporates chain-of-thought (CoT) reasoning, which results in higher-accuracy data labels in the synthetic data. This labeling further improves the accuracy of the distilled model.
