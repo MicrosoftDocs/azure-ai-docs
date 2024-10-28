@@ -20,8 +20,10 @@ Use this guide to get started generating images with the Azure OpenAI SDK for Ja
 
 - An Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services?azure-portal=true)
 - [LTS versions of Node.js](https://github.com/nodejs/release#release-schedule)
+- [TypeScript](https://www.typescriptlang.org/download/)
 - [Azure CLI](/cli/azure/install-azure-cli) used for passwordless authentication in a local development environment, create the necessary context by signing in with the Azure CLI.
 - An Azure OpenAI resource created in a supported region (see [Region availability](/azure/ai-services/openai/concepts/models#model-summary-table-and-region-availability)). For more information, see [Create a resource and deploy a model with Azure OpenAI](../how-to/create-resource.md).
+
 
 
 ## Setup
@@ -53,16 +55,14 @@ Your app's _package.json_ file will be updated with the dependencies.
 
 Create a new file named _ImageGeneration.js_ and open it in your preferred code editor. Copy the following code into the _ImageGeneration.js_ file:
 
+#### [Microsoft Entra ID](#tab/typescript-keyless)
 
-
-#### [Microsoft Entra ID](#tab/javascript-keyless)
-
-```javascript
-const { AzureOpenAI } = require("openai");
-const { 
+```typescript
+import { AzureOpenAI } from "openai";
+import { 
     DefaultAzureCredential, 
     getBearerTokenProvider 
-} = require("@azure/identity");
+} from "@azure/identity";
 
 // You will need to set these environment variables or edit the following values
 const endpoint = process.env["AZURE_OPENAI_ENDPOINT"];
@@ -70,10 +70,6 @@ const endpoint = process.env["AZURE_OPENAI_ENDPOINT"];
 // Required Azure OpenAI deployment name and API version
 const apiVersion = "2024-07-01";
 const deploymentName = "dall-e-3";
-
-// The prompt to generate images from
-const prompt = "a monkey eating a banana";
-const numberOfImagesToGenerate = 1;
 
 // keyless authentication    
 const credential = new DefaultAzureCredential();
@@ -111,18 +107,22 @@ main().catch((err) => {
 });
 ```
 
-Run the script with the following command:
+1. Build the application with the following command:
 
-```console
-node ImageGeneration.js
-```
+    ```console
+    tsc
+    ```
 
+1. Run the application with the following command:
 
+    ```console
+    node ImageGeneration.js
+    ```
 
-#### [API key](#tab/javascript-key)
+#### [API key](#tab/typescript-key)
 
-```javascript
-const { AzureOpenAI } = require("openai");
+```typescript
+import { AzureOpenAI } from "openai";
 
 // You will need to set these environment variables or edit the following values
 const endpoint = process.env["AZURE_OPENAI_ENDPOINT"];
@@ -136,7 +136,7 @@ const deploymentName = "dall-e-3";
 const prompt = "a monkey eating a banana";
 const numberOfImagesToGenerate = 1;
 
-function getClient() {
+function getClient(): AzureOpenAI {
   return new AzureOpenAI({
     endpoint,
     apiKey,
@@ -167,11 +167,17 @@ main().catch((err) => {
 });
 ```
 
-Run the script with the following command:
+1. Build the application with the following command:
 
-```console
-node ImageGeneration.js
-```
+    ```console
+    tsc
+    ```
+
+1. Run the application with the following command:
+
+    ```console
+    node ImageGeneration.js
+    ```
 
 ---
 

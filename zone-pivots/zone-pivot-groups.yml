@@ -158,20 +158,22 @@ groups:
   pivots:
   - id: programming-language-studio
     title: Studio 
-  - id: rest-api
-    title: REST 
-  - id: programming-language-python
-    title: Python 
   - id: programming-language-csharp
     title: C#
+  - id: programming-language-go
+    title: Go
   - id: programming-language-java
     title: Java
   - id: programming-language-javascript
     title: JavaScript
-  - id: programming-language-go
-    title: Go
   - id: programming-language-powershell
     title: PowerShell
+  - id: programming-language-python
+    title: Python 
+  - id: rest-api
+    title: REST 
+  - id: programming-language-typescript
+    title: TypeScript    
 # Owner: pafarley
 - id: openai-quickstart-gpt-v
   title: Programming languages
@@ -179,14 +181,16 @@ groups:
   pivots:
   - id: programming-language-studio
     title: Studio
-  - id: programming-language-python
-    title: Python
   - id: programming-language-javascript
     title: JavaScript
   - id: programming-language-dotnet
     title: C#
+  - id: programming-language-python
+    title: Python
   - id: rest-api
     title: REST
+  - id: programming-language-typescript
+    title: TypeScript
 # Owner: mbullwin
 - id: openai-use-your-data
   title: Programming languages
