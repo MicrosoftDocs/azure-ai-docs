@@ -5,7 +5,7 @@ description: Learn how to upgrade your endpoint from GitHub Models to Azure AI M
 ms.service: azure-ai-studio
 ms.topic: how-to
 ms.date: 10/01/2024
-ms.custom: ignite-2024, github-universe-2024
+ms.custom: github-universe-2024
 manager: nitinme
 author: mrbullwinkle
 ms.author: fasantia 
@@ -50,7 +50,7 @@ To obtain the key and endpoint:
 
 8. Once it's deployed, your model's API Key and endpoint are shown in the Overview. Use these values in your code to use the model in your production environment.
 
-    :::image type="content" source="../../media/ai-services/add-model-deployments/models-deploy-endpoint-url.png" alt-text="An screenshot showing how to get the URL and key associated with the deployment." lightbox="../../media/ai-services/add-model-deployments/models-deploy-endpoint-url.png":::
+    :::image type="content" source="../../media/ai-services/add-model-deployments/models-deploy-endpoint-url.png" alt-text="A screenshot showing how to get the URL and key associated with the deployment." lightbox="../../media/ai-services/add-model-deployments/models-deploy-endpoint-url.png":::
 
 At this point, the model you selected is ready to consume. 
 
@@ -61,9 +61,9 @@ At this point, the model you selected is ready to consume.
 
 Once your Azure AI Services resource is configured, you can start consuming it from your code. You need the endpoint URL and key for it, which can be found in the **Overview** section:
 
-:::image type="content" source="../../media/ai-services/overview/overview-endpoint-and-key.png" alt-text="An screenshot showing how to get the URL and key associated with the resource." lightbox="../../media/ai-services/overview/overview-endpoint-and-key.png":::
+:::image type="content" source="../../media/ai-services/overview/overview-endpoint-and-key.png" alt-text="A screenshot showing how to get the URL and key associated with the resource." lightbox="../../media/ai-services/overview/overview-endpoint-and-key.png":::
 
-You can use any of the supported SDK's to get predictions out from the endpoint. The following SDK's are officially supported:
+You can use any of the supported SDKs to get predictions out from the endpoint. The following SDKs are officially supported:
 
 * OpenAI SDK
 * Azure OpenAI SDK

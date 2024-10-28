@@ -8,7 +8,7 @@ ms.author: fasantia
 ms.service: azure-ai-studio
 ms.topic: overview
 ms.date: 08/14/2024
-ms.custom: ignite-2024, github-universe-2024
+ms.custom: github-universe-2024
 recommendations: false
 ---
 
