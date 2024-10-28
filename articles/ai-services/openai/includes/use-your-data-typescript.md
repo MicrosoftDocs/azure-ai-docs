@@ -24,26 +24,28 @@ npm init
 Install the Azure OpenAI client and Azure Identity libraries for JavaScript with npm:
 
 ```console
-npm install @azure/openai @azure/identity
+npm install openai @azure/identity @azure/openai 
 ```
+
+The `@azure/openai/types` dependency is included to extend the Azure OpenAI model for the `data_sources` property. This import is only necessary for TypeScript.
+
 
 Your app's _package.json_ file will be updated with the dependencies.
 
-## Create a new JavaScript application
+#### [Microsoft Entra ID](#tab/typescript-keyless)
 
-#### [Microsoft Entra ID](#tab/javascript-keyless)
-
-1. Open a command prompt where you want the new project, and create a new file named `ChatWithOwnData.js`. Copy the following code into the `ChatWithOwnData.js` file.
+1. Open a command prompt where you want the new project, and create a new file named `ChatWithOwnData.ts`. Copy the following code into the `ChatWithOwnData.ts` file.
     
-    ```javascript
-    const { DefaultAzureCredential, getBearerTokenProvider } = require("@azure/identity");
-    const { AzureOpenAI } = require("openai");
+    ```typescript
+    import { AzureOpenAI } from "openai";
+    import { DefaultAzureCredential, getBearerTokenProvider } from "@azure/identity";
+    import "@azure/openai/types";
     
     // Set the Azure and AI Search values from environment variables
     const endpoint = process.env["AZURE_OPENAI_ENDPOINT"];
     const searchEndpoint = process.env["AZURE_AI_SEARCH_ENDPOINT"];
     const searchIndex = process.env["AZURE_AI_SEARCH_INDEX"];
-
+    
     // keyless authentication    
     const credential = new DefaultAzureCredential();
     const scope = "https://cognitiveservices.azure.com/.default";
@@ -53,7 +55,7 @@ Your app's _package.json_ file will be updated with the dependencies.
     const deploymentName = "gpt-4";
     const apiVersion = "2024-07-01-preview";
     
-    function getClient() {
+    function getClient(): AzureOpenAI {
       return new AzureOpenAI({
         endpoint,
         azureADTokenProvider,
@@ -116,6 +118,12 @@ Your app's _package.json_ file will be updated with the dependencies.
     });
     ```
 
+1. Build the application with the following command:
+
+    ```console
+    tsc
+    ```
+
 1. Run the application with the following command:
 
     ```console
@@ -123,12 +131,13 @@ Your app's _package.json_ file will be updated with the dependencies.
     ```
 
 
-#### [API key](#tab/javascript-key)
+#### [API key](#tab/typescript-key)
 
-1. Open a command prompt where you want the new project, and create a new file named `ChatWithOwnData.js`. Copy the following code into the `ChatWithOwnData.js` file.
+1. Open a command prompt where you want the new project, and create a new file named `ChatWithOwnData.ts`. Copy the following code into the `ChatWithOwnData.ts` file.
     
-    ```javascript
-    const { AzureOpenAI } = require("openai");
+    ```typescript
+    import { AzureOpenAI } from "openai";
+    import "@azure/openai/types";
     
     // Set the Azure and AI Search values from environment variables
     const endpoint = process.env["AZURE_OPENAI_ENDPOINT"];
@@ -141,7 +150,7 @@ Your app's _package.json_ file will be updated with the dependencies.
     const deploymentName = "gpt-4";
     const apiVersion = "2024-07-01-preview";
     
-    function getClient() {
+    function getClient(): AzureOpenAI {
       return new AzureOpenAI({
         endpoint,
         apiKey,
@@ -202,6 +211,12 @@ Your app's _package.json_ file will be updated with the dependencies.
     main().catch((err) => {
       console.error("The sample encountered an error:", err);
     });
+    ```
+
+1. Build the application with the following command:
+
+    ```console
+    tsc
     ```
 
 1. Run the application with the following command:
