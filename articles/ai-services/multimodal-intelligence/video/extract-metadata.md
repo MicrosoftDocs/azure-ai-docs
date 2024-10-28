@@ -56,3 +56,5 @@ Multimodal Intelligence provides a specific set of capabilities for video includ
 
 * **Retrieval-augmented generation (`RAG`) applications**. Enable applications that can answer user questions with specific video moments by indexing content at a granular level.
 
+# Next steps
+Follow this [**how to guide**](how-to/set-up-video-assets-mam.md) to get started with using Multimodal Intelligence APIs for this scenario. 

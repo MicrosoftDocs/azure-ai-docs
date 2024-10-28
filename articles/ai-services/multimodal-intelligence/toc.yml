@@ -46,13 +46,10 @@ items:
   - name: Video
     items:
     - name: Media Asset management overview
-      displayName: video, document, text, images,audio, multi-modal, visual, structured, content, field, extraction
-      href: video/Media-asset-management.md
+      displayName: video, audio, voice, recognition, synthesis, speaker, identification, verification, diarization, transcription, translation, language, understanding, sentiment, analysis, emotion, detection, pronunciation, model
+      href: video/extract-metadata.md
     - name: Scenarios
       items:
-        - name: Extract metadata for media asset management
-          displayName: video, audio, voice, recognition, synthesis, speaker, identification, verification, diarization, transcription, translation, language, understanding, sentiment, analysis, emotion, detection, pronunciation, model
-          href: video/how-to/extract-metadata.md
         - name: Set up a media asset management workflow
           displayName: video, document, text, images,audio, multi-modal, visual, structured, content, field, extraction
           href: video/how-to/set-up-video-assets-mam.md
