@@ -321,6 +321,8 @@ items:
         href: cognitive-search-concept-image-scenarios.md
       - name: Cache (incremental) enrichment
         href: search-howto-incremental-index.md
+      - name: Semantic Chunking and vectorization
+        href: search-how-to-semantic-chunking.md        
       - name: Design tips
         href: cognitive-search-concept-troubleshooting.md
       - name: Custom skills
@@ -642,6 +644,8 @@ items:
         href: cognitive-search-skill-text-translation.md
       - name: AI Vision multimodal embeddings
         href: cognitive-search-skill-vision-vectorize.md
+      - name: Document Intelligence Layout skill
+        href: cognitive-search-skill-document-intelligence-layout.md        
     - name: Azure AI Search utility skills (nonbillable)
       items:
       - name: Conditional
