@@ -6,6 +6,7 @@ manager: scottpolly
 ms.service: azure-ai-studio
 ms.custom:
   - build-2024
+  - code01
 ms.topic: conceptual
 ms.date: 5/29/2024
 ms.reviewer: sgilley
