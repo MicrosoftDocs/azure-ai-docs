@@ -46,8 +46,8 @@ items:
   - name: Video
     items:
     - name: Media Asset management overview
-        displayName: video, document, text, images,audio, multi-modal, visual, structured, content, field, extraction
-        href: video/Media-asset-management.md
+      displayName: video, document, text, images,audio, multi-modal, visual, structured, content, field, extraction
+      href: video/Media-asset-management.md
     - name: Scenarios
       items:
         - name: Extract metadata for media asset management
