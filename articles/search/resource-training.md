@@ -38,12 +38,12 @@ Learning paths are a collection of training modules that are organized around sp
 | [Perform search reranking with semantic ranking in Azure AI Search](/training/modules/use-semantic-search/) | [Implement knowledge mining](/training/paths/implement-knowledge-mining-azure-cognitive-search/) |
 | [Maintain an Azure AI Search solution](/training/modules/maintain-azure-cognitive-search-solution/) | [Implement knowledge mining](/training/paths/implement-knowledge-mining-azure-cognitive-search/) |
 
-## Retrieval Augmented Generation (RAG) modules
+## RAG-centric modules
 
 + [Build a RAG-based copilot solution with your own data using Azure AI Studio](/training/modules/build-copilot-ai-studio/)
 + [Implement Retrieval Augmented Generation (RAG) with Azure OpenAI Service](/training/modules/use-own-data-azure-openai/)
 
-## See also
+## Pluralsight training
 
 + [Add search to apps (Pluralsight)](https://www.pluralsight.com/courses/azure-adding-search-abilities-apps)
 + [Developer course (Pluralsight)](https://www.pluralsight.com/courses/microsoft-azure-textual-content-search-enabling) 
