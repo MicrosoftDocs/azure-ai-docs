@@ -21,7 +21,7 @@ ms.date: 10/24/2024
 
 Multimodal Intelligence speech capabilities can help you transcribe and diarize conversational audio. The feature can also help you generate enhanced outputs like summaries, special industry record formats, captioning data. Multimodal Intelligence speech and audio capabilities enable you to extract valuable information such as key topics, sentiment, and more. To get started, use one of the provided out-of-box prebuilt extraction schemas and start generating results. You can also customize Multimodal Intelligence capabilities to meet your business needs as necessary.
 
-Here are some of the common use cases for Multimodal Intelligence on conversational audio data:
+Here are some of the common scenarios for Multimodal Intelligence extracted conversational audio data:
 
 * Get customer insights through summarization and sentiment.
 
@@ -33,7 +33,7 @@ Here are some of the common use cases for Multimodal Intelligence on conversatio
 
 ## Multimodal Intelligence in AI Studio
 
-AI studio enables you to set up, test, and manage Multimodal Intelligence solutions. You can use prebuilt schemas that can be customized to analyze your audio transcripts to easily generate results matching your specific business needs. A typical use case is to automatically process files uploaded into a blob storage account and write the analytics results back to it. Based on the single file analysis, you can then easily index and add these results to a database or an Azure AI Search Index to easily generate more cross-recording insights and dashboards.
+AI studio enables you to set up, test, and manage Multimodal Intelligence solutions. You can use prebuilt schemas that can be customized to analyze your audio transcripts to easily generate results matching your specific business needs. A typical scenario is to automatically process files uploaded into a blob storage account and write the analytics results back to it. Based on the single file analysis, you can then easily index and add these results to a database or an Azure AI Search Index to easily generate more cross-recording insights and dashboards.
 
 * Get insights from audio recordings of meetings, calls, and conversations. Review insights from summaries, sentiment results, action items, meeting notes, and `PII` redacted transcripts.
 
@@ -53,7 +53,7 @@ AI studio enables you to set up, test, and manage Multimodal Intelligence soluti
 
 The following diagram provides a high-level overview of a typical Multimodal Intelligence Speech processing workflow.
 
-  :::image type="content" source="../media/speech/overview/workflow-diagram.png" alt-text="Illustration of Multimodal Intelligence speech workflow.":::
+  :::image type="content" source="../media/audio/overview/workflow-diagram.png" alt-text="Illustration of Multimodal Intelligence speech workflow.":::
 
 A typical Multimodal IntelligenceSpeech workflow consists of the following steps:
 
@@ -65,10 +65,10 @@ A typical Multimodal IntelligenceSpeech workflow consists of the following steps
 
 1. The Multimodal Intelligence service returns an audio file results containing the conversation transcript including added generated insights in JSON format. The results are either directly returned from the API or can be written into a connected blob storage account.
 
-## Multimodal IntelligenceSpeech prebuilt scenarios
+## Multimodal Intelligence prebuilt audio scenarios
 
-**Multimodal Intelligence provides the following customizable prebuilt scenario templates:
-**
+Multimodal Intelligence provides the following customizable prebuilt scenario templates:
+
 * **Post call analytics**. Analyze call recordings and generate outputs such as conversation transcript, call summary, sentiment assessment and more.
 
 * **Conversation summarization**. Generate transcriptions from conversation audio recordings, generate a summary, and assess sentiment.
@@ -77,20 +77,12 @@ A typical Multimodal IntelligenceSpeech workflow consists of the following steps
 
 ## Audio format support and input requirements
 
-**Multimodal Intelligence speech capabilities supports multiple audio formats and codecs, such as**:
+For a complete list of  Multimodal Intelligence supported audio formats, *see* our [Service limits and codecs](../service-limits.md) page.
 
-* `WAV`
-* `MP3`
-* `OPUS/OGG`
-* `FLAC`
-* `WMA`
-* `AAC`
-* `ALAW` in `WAV` container
-* `MULAW` in `WAV` container
-* `AMR`
-* `WebM`
-* `M4A`
-* `SPEEX`
+## Supported regions, languages, and locales
+
+For a complete list of supported regions, languages, and locales, see our [Language and region support](../language-region-support.md)) page.
+
 
 **Multimodal Intelligence speech capability operation limits**
 

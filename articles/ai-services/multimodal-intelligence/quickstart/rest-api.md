@@ -165,6 +165,93 @@ Before you run the cURL command, make the following changes to the [POST request
 
 ```
 
+### POST request body
+
+```json
+{
+
+  "input": {
+
+    "kind": "url",
+
+    "url": "YOUR_FILE_URL"
+
+  },
+
+  "properties": {
+
+   "schema": {
+
+    "name": "Defect Detection",
+
+    "description": "Identification of all potential defects in provided images of metal plates.",
+
+    "fields": {
+
+       "defects": {
+
+            "type": "array",
+
+            "kind": "generate",
+
+            "description": "List of all the defect types and their severities in the image.",
+
+            "items": {
+
+                "type": "object",
+
+                "kind": "generate",
+
+                "properties": {
+
+                    "defect_type": {
+
+                        "type": "string",
+
+                        "kind": "classify",
+
+                        "enum": ["scratch", "pit", "crack"],
+
+                        "enumDescriptions": {
+
+                            "scratch": "A superficial, long, thin mark that may be straight or curved, and often is paler than the surrounding metal.",
+
+                            "pit": "A small, round defect that may look like a small hole or depression.",
+
+                            "crack": "A fracture or break in the material, which may look jagged or appear to branch, and penetrates more significantly into the material than a scratch."
+
+                        }
+
+                    },
+
+                    "severity": {
+
+                        "type": "string",
+
+                        "kind": "classify",
+
+                        "enum": ["low", "moderate", "high"],
+
+                        "enumDescriptions": {
+
+                            "low": "Minor defect; may not require repair.",
+
+                            "moderate": "Should be flagged for human review.",
+
+                            "high": "Severe and requires immediate attention."
+                 }
+               }
+             }
+           }
+         }
+       }
+     }
+   }
+ }
+
+```
+
+
 ## Get analyze results (GET Request)
 
 Call the Get analyze result API to get the status of the operation and the extracted data.

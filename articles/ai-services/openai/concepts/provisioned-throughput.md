@@ -49,7 +49,7 @@ To help with simplifying the sizing effort, the following table outlines the TPM
 | Input TPM per PTU | 2,500 | 37,000  |
 | Output TPM per PTU | 833  | 12,333 |
 
-\** For a full list see the [AOAI Studio calcualator](https://oai.azure.com/portal/calculator)
+For a full list see the [AOAI Studio calculator](https://oai.azure.com/portal/calculator).
 
 
 ## Key concepts
@@ -114,7 +114,7 @@ In Azure OpenAI Studio, the deployment experience identifies when a region lacks
 
 Details on the new deployment experience can be found in the Azure OpenAI [Provisioned get started guide](../how-to/provisioned-get-started.md).
 
-The new [model capacities API](/rest/api/aiservices/accountmanagement/model-capacities/list?view=rest-aiservices-accountmanagement-2024-04-01-preview&tabs=HTTP&preserve-view=true) can  be used to programmatically identify the maximum sized deployment of a specified model.  The API consideres both the your quota and service capacity in the region.
+The new [model capacities API](/rest/api/aiservices/accountmanagement/model-capacities/list?view=rest-aiservices-accountmanagement-2024-04-01-preview&tabs=HTTP&preserve-view=true) can  be used to programmatically identify the maximum sized deployment of a specified model.  The API considers both your quota and service capacity in the region.
 
 If an acceptable region isn't available to support the desire model, version and/or PTUs, customers can also try the following steps:
 

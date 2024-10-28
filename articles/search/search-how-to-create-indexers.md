@@ -11,7 +11,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: how-to
-ms.date: 10/10/2024
+ms.date: 10/24/2024
 ---
 
 # Create an indexer in Azure AI Search
@@ -177,7 +177,7 @@ When you're ready to create an indexer on a remote search service, you need a se
 
 ### [**REST**](#tab/indexer-rest)
 
-Visual Studio Code with a REST client can send indexer requests. Using the app, you can connect to your search service and send [Create indexer (REST)](/rest/api/searchservice/indexers/create) or [Update indexer](/rest/api/searchservice/indexers/create-or-update) requests. 
+Visual Studio Code with a REST client can send indexer requests. Using the app, you can connect to your search service and send [Create indexer (REST)](/rest/api/searchservice/indexers/create) or [Create or Update indexer](/rest/api/searchservice/indexers/create-or-update) requests. 
 
 ```http
 POST /indexers?api-version=[api-version]
@@ -188,11 +188,16 @@ POST /indexers?api-version=[api-version]
   "parameters": {
     "batchSize": null,
     "maxFailedItems": null,
-    "maxFailedItemsPerBatch": null
+    "maxFailedItemsPerBatch": null,
+    "configuration": {
+        "executionEnvironment": "standard"
+    }
   },
   "fieldMappings": [ optional unless there are field discrepancies that need resolution]
 }
 ```
+
+Parameters are used to set the batch size and how to handle processing failures. The [execution environment](search-howto-run-reset-indexers.md#indexer-execution) determines whether indexer and skillset processing can use the multitenant capabilities provided by Microsoft or the private processing nodes allocated exclusively to your search service. If your search service is Standard2 or higher, you can set `executionEnvironment` to private to pin all indexer processing to just your search service clusters.
 
 There are numerous tutorials and examples that demonstrate REST clients for creating objects. [Quickstart: Text search using REST](search-get-started-rest.md) can get you started.
 

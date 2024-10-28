@@ -7,14 +7,14 @@ author: laujan
 manager: nitinme
 ms.service: azure
 ms.topic: conceptual
-ms.date: 10/09/2024
+ms.date: 10/25/2024
 ms.author: lajanuar
 ---
 
 
 # Service limits and quotas
 
-This article contains both a quick reference and detailed description of Azure AI Multimodal Intelligence service quotas and limits.
+This article is both a quick reference and detailed description of Azure AI Multimodal Intelligence service quotas and limits.
 
 ## File limits
 Each modality covers a set of MIME file types.   
@@ -56,3 +56,27 @@ Analyzers in Multimodal Intelligence (MMI) are specialized components designed t
 | Max training length | 50k pages/images... |
 | Max fields | 1000 |
 
+## Field schema limits
+
+A schema in Multimodal Intelligence (MMI) refers to a defined structure that specifies the types of information to be extracted from various types of unstructured content, such as documents, images, videos, and audio. This structured representation of data is crucial for enabling downstream applications to process and analyze the extracted information effectively.
+
+This section details the limits of the field inputs for schema definition.
+
+| Field Types Supported | Max # of Fields Supported Per Schema |
+| --- | --- |
+| string: Plain Text, date: Date normalized to ISO 8601 (YYYY-MM-DD) format, time: Time normalized to ISO 8601 (hh:mm:ss) format. number: Floating point number normalized to double precision floating point. integer: Integer number, normalized to 64-bit signed integer. boolean: Boolean value, normalized to true or false.array: List of subfields of the same type. object: Named list of subfields of potentially different types. | 10 |
+
+## Analyzer limits per resource
+
+Analyzers in Multimodal Intelligence (MMI) are specialized components designed to process and extract structured data from various types of unstructured content, such as textual documents, audio, images, and video. These analyzers are tailored to handle specific types of data and tasks, ensuring that the extracted information is accurate and useful for downstream applications.
+
+| Quota | Standard (S0) |
+| --- | --- |
+| Max models | 100k |
+| Max analysis/min | 1000 pages/images four, (2) hours of audio, 1 hour of video  |
+| Max analysis/month | 10M pages/images, 100-K hours of audio, 10K hours of video |
+| Max operations/min | 1000 |
+| Free trainings / month | 10 hours |
+| Max training file size | 1 GB |
+| Max training length | 50k pages/images|
+| Max fields | 1000 |
