@@ -95,7 +95,6 @@ Install the client libraries with:
 npm install openai @azure/identity
 ```
 
----
 Your app's _package.json_ file will be updated with the dependencies.
 
 ## Create a sample application
