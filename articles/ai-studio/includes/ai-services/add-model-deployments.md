@@ -31,7 +31,7 @@ You can add all the models you need in the endpoint by using [Azure AI Studio fo
 
 7.  Use the **Customize** option if you need to change settings like [content filter](/azure/ai-studio/concepts/content-filtering) or rate limiting (if available).
    
-   :::image type="content" source="../../media/ai-services/add-model-deployments/models-deploy-customize.png" alt-text="An screenshot showing how to customize the deployment if needed." lightbox="../../media/ai-services/add-model-deployments/models-deploy-customize.png":::
+   :::image type="content" source="../../media/ai-services/add-model-deployments/models-deploy-customize.png" alt-text="A screenshot showing how to customize the deployment if needed." lightbox="../../media/ai-services/add-model-deployments/models-deploy-customize.png":::
 
 8.  Select **Deploy**.
 
