@@ -84,7 +84,7 @@ To create the key vault, see [Create a key vault](/azure/key-vault/general/quick
 
 1. To configure the key vault, select it in the [Azure portal](https://portal.azure.com) and then select __Access polices__ from the left menu.
 1. To create permissions for Azure Cosmos DB, select __+ Create__ at the top of the page. Under __Key permissions__, select __Get__, __Unwrap Key__, and __Wrap key__ permissions.
-1. Under __Principal__, search for __Azure Cosmos DB__ and then select it. The principal ID for this entry is `aaaaaaaa-bbbb-cccc-1111-222222222222` for all regions other than Azure Government. For Azure Government, the principal ID is `bbbbbbbb-cccc-dddd-2222-333333333333`.
+1. Under __Principal__, search for __Azure Cosmos DB__ and then select it. The principal ID for this entry is `a232010e-820c-4083-83bb-3ace5fc29d0b` for all regions other than Azure Government. For Azure Government, the principal ID is `57506a73-e302-42a9-b869-6f12d9ec29e9`.
 1. Select __Review + Create__, and then select __Create__.
 
 ## Create a workspace that uses a customer-managed key
