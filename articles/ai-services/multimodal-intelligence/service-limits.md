@@ -25,7 +25,7 @@ Each modality covers a set of MIME file types. 
 |Document |  pdf, tiff, jpg, png, bmp, heif, txt  | asynchronous: ≤ 200MB |  | asynchronous: ≤ 300 pages |
 |Speech | mp3, wav, wma, aac, ogg, flac, mp4, avi, mov, wmv, mkv  | asynchronous: ≤ 200MB |  | asynchronous: ≤ 2h |
 |Video | MP4 (.mp4, .m4a, .m4v), FLV (with H.264 and AAC codecs) (.flv), ISMV (.isma, .ismv), MXF (.mxf), GXF (.gxf), MPEG2-PS,MPEG2-TS, 3GP (.ts, .ps, .3gp, .3gpp, .mpg), Windows Media Video (WMV)/ASF (.wmv, .asf), AVI (Uncompressed 8bit/10bit) (.avi),Microsoft Digital Video Recording (DVR-MS) (.dvr-ms), Matroska/WebM (.mkv), WAVE/WAV (.wav), QuickTime (.mov)  | asynchronous: ≤2GB (body) asynchronous: ≤20GB (URL)| Min: 320 x 240 Max: 1920 x 1080 | asynchronous: ≤30m (body) asynchronous: ≤30m (URL) |
-| text | ≤ 1 MB |  | ≤ 1M characters |
+| text | | ≤ 1 MB |  | ≤ 1M characters |
 
 ### Supported Codecs
 |Modality| Codecs |
