@@ -14,24 +14,24 @@ ms.date: 10/09/2024
 
 
 
-Azure AI Multimodal Intelligence is a cloud-based solution within [**Azure AI services**](../what-are-ai-services.md), designed to process/ingest various data modalities such as documents, images, videos, and audio into customizable output formats using LLMs and SLMs within a unified workflow.
+Azure AI Multimodal Intelligence (MMI) is a cloud-based solution within [**Azure AI services**](../what-are-ai-services.md), designed to process/ingest various data modalities such as documents, images, videos, and audio into customizable output formats using LLMs and SLMs within a unified workflow.
 
 Built on the success of Document Intelligence, Azure AI Multimodal Intelligence offers a streamlined process to reason over large amounts of unstructured data, build customizable workflows, ultimately accelerating time-to-value (TTV), while using a variety of AI models.
 
 :::image type="content" source="media/overview/mmi-overview.png" alt-text="Screenshot of accepted media input files.":::
 
-MMI can be used by:
-*	**Business leaders and decision makers**: to gain actionable insights from multimodal, unstructured content and reduce costs of GenAI-powered solutions with confidence scores that minimize human review.
-*	**Developers**: to address enterprise-specific use cases by creating customized workflows using various input data types and deploying custom models simultaneously.
-*	**Practitioners**: to provide domain expertise without specializing in GenAI, while domain experts benefit from streamlined output and automation use cases with confidence scores.
-
-Benefits of using MMI 
+**Benefits of using MMI:** 
 *	**Simplified and streamlined workflow**: MMI simplifies data extraction from mixed modality unstructured content, eliminating the need for separate workflows.
 
 :::image type="content" source="media/overview/mmi-workflow.png" alt-text="Screenshot of MMI workflow differences.":::
 
 *	**Efficiency and Cost Reduction**: Automating the ingestion and analysis of large amounts of data from different sources reduces the cost associated with building GenAI automation solutions with multiple modalities simultaneously analyzed.
 *	**Enhanced Accuracy**: By leveraging multiple data modalities, Multimodal Intelligence can cross-validate information, leading to more accurate and reliable results.
+
+**MMI can be used by:**
+*	**Business leaders and decision makers**: to gain actionable insights from multimodal, unstructured content and reduce costs of GenAI-powered solutions with confidence scores that minimize human review.
+*	**Developers**: to address enterprise-specific use cases by creating customized workflows using various input data types and deploying custom models simultaneously.
+*	**Practitioners**: to provide domain expertise without specializing in GenAI, while domain experts benefit from streamlined output and automation use cases with confidence scores.
 
 ## Features and capabilities
 |Capability|Description|
