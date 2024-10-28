@@ -35,19 +35,11 @@ Fine-tuning is an advanced technique that requires expertise to use appropriatel
 
 ### Why do you want to fine-tune a model?
 
-You might be ready for fine-tuning if:
+Finetuning can be useful if you have a specific use case for a pre-trained LLM. For example, if you have a generic pre-trained model but you would like to use the model for more specific topics. Before you begin Finetuning a model you can consider if you've identified shortcomings when using a base model. These shortcomings can include: an inconsistent performance on edge cases, inability to fit enough shot prompts in the context window to steer the model, or high latency. 
 
-- You can clearly articulate a specific use case for fine-tuning and identify the [model](../how-to/model-catalog.md) that you hope to fine-tune.
-
-  Good use cases for fine-tuning include steering the model to output content in a specific and customized style, tone, or format. They also include scenarios where the information needed to steer the model is too long or complex to fit into the prompt window.
-- You have clear examples of how you addressed the challenges in alternate approaches and what you tested as possible resolutions to improve performance.
-- You identified shortcomings by using a base model, such as inconsistent performance on edge cases, inability to fit enough shot prompts in the context window to steer the model, or high latency.
-
-You might not be ready for fine-tuning if:
-
-- There's insufficient knowledge from the model or data source.
-- You can't find the right data to serve the model.
-- You don't have a clear use case for fine-tuning, or you can't articulate more than "I want to make a model better."
+Use cases for fine-tuning a model can be:
+- Steering the model to output content in a specific and customized style, tone, or format.
+- Ddjusting the complexity and length of the output.
 
 If you identify cost as your primary motivator, proceed with caution. Fine-tuning might reduce costs for certain use cases by shortening prompts or allowing you to use a smaller model. But there's a higher upfront cost to training, and you have to pay for hosting your own custom model. For more information on fine-tuning costs in Azure OpenAI Service, refer to the [pricing page](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/).
 
@@ -67,38 +59,29 @@ Fine-tuning is an advanced capability, not the starting point for your generativ
 
 Having a baseline for performance without fine-tuning is essential for knowing whether or not fine-tuning improves model performance. Fine-tuning with bad data makes the base model worse, but without a baseline, it's hard to detect regressions.
 
-You might be ready for fine-tuning if:
+Before you begin fine-tuning a model, you need to ensure:
 
-- You can demonstrate evidence and knowledge of prompt engineering and RAG-based approaches.
+- You can demonstrate evidence and knowledge of using prompt engineering and RAG-based approaches on your LLM.
 - You can share specific experiences and challenges with techniques other than fine-tuning that you tried for your use case.
-- You have quantitative assessments of baseline performance, whenever possible.  
-
-You might not be ready for fine-tuning if:
-
-- You haven't tested any other techniques.
-- You have insufficient knowledge or understanding of how fine-tuning applies specifically to LLMs.
-- You have no benchmark measurements to assess fine-tuning against.
+- You have quantitative assessments of baseline performance, whenever possible.
+- You have a labeled dataset that corresponds with the specific usecase you want to train your LLM. 
 
 ### What data are you going to use for fine-tuning?
 
-Even with a great use case, fine-tuning is only as good as the quality of the data that you can provide. You need to be willing to invest the time and effort to make fine-tuning work. Different models require different data volumes, but you often need to be able to provide fairly large quantities of high-quality curated data.
+Even with a great use case, fine-tuning is only as good as the quality of the data that you can provide. You need to be willing to invest the time and effort to make fine-tuning work. Different models require different data volumes, but you often need to be able to provide fairly large quantities of high-quality curated data. In supervised fine-tuning, a generic moddel is trained on a topic specific labeled dataset. The model with adjust it's parameters to the new data and apply pre-existing knowledge when outputting new content. 
 
 Another important point is that even with high-quality data, if your data isn't in the necessary format for fine-tuning, you'll need to commit engineering resources for the formatting. For more information on how to prepare your data for fine-tuning, refer to the [fine-tuning documentation](../../ai-services/openai/how-to/fine-tuning.md?context=/azure/ai-studio/context/context).
 
 You might be ready for fine-tuning if:
 
 - You identified a dataset for fine-tuning.
-- Your dataset is in the appropriate format for training.
+- Your dataset is in the appropriate format for training on your existing LLM.
 - You employed some level of curation to ensure dataset quality.
-
-You might not be ready for fine-tuning if:
-
-- You haven't identified a dataset yet.
-- The dataset format doesn't match the model that you want to fine-tune.
+- Your training data is in the same format that you want your LLM to output. 
 
 ### How will you measure the quality of your fine-tuned model?
 
-There isn't a single right answer to this question, but you should have clearly defined goals for what success with fine-tuning looks like. Ideally, this effort shouldn't just be qualitative. It should include quantitative measures of success, like using a holdout set of data for validation, in addition to user acceptance testing or A/B testing the fine-tuned model against a base model.
+There isn't a single right answer to this question, but you should have clearly defined goals for what success with fine-tuning looks like. Ideally, this effort shouldn't just be qualitative. It should include quantitative measures of success, like using a holdout set of data for validation, in addition to user acceptance testing or A/B testing the fine-tuned model against a base model. 
 
 ## Supported models for fine-tuning in Azure AI Studio
 
