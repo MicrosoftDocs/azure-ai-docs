@@ -89,7 +89,7 @@ To deploy the web app:
     - **Resource group**: Select a resource group in which to deploy the web app. You can use the same resource group as the hub.
     - **Location**: Select a location in which to deploy the web app. You can use the same location as the hub.
     - **Pricing plan**: Choose a pricing plan for the web app.
-    - **Enable chat history in the web app**: For the tutorial, the chat history box isn't selected. If you enable the feature, your users will have access to their individual previous queries and responses. For more information, see [chat history remarks](#undestand-chat-history).
+    - **Enable chat history in the web app**: For the tutorial, the chat history box isn't selected. If you enable the feature, your users will have access to their individual previous queries and responses. For more information, see [chat history remarks](#understand-chat-history).
 
 1. Select **Deploy**.
 
