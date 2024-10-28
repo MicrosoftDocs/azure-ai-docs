@@ -6,7 +6,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.topic: conceptual
-ms.date: 02/29/2024
+ms.date: 10/28/2024
 ms.author: lajanuar
 monikerRange: '>=doc-intel-3.1.0'
 ---
@@ -28,9 +28,7 @@ With the v3.1 API, custom models introduce a new model expiration property. The 
 
 ## Models trained with preview API version
 
-For build requests, using a preview API version, the expiration date is set to three months from the date the model is built. Models trained with a preview API shouldn't be used in production and should be retrained once the corresponding GA API version is available. Compatibility between preview API versions and GA API versions isn't always maintained. You should expect that models trained with a preview API version aren't useable once the preview API is retired.
-
-Preview APIs are typically retired within three months of the corresponding GA API being available.
+For build requests, using a preview API version, the expiration date is set to two years from the date the model is built. Models trained with a preview API shouldn't be used in production and should be retrained once the corresponding GA API version is available. Compatibility between preview API versions and GA API versions isn't always maintained. Models trained with a preview API version are no longer usable the corresponding GA API is available.
 
 ## Viewing model expiration date
 

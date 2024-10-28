@@ -5,7 +5,7 @@ ms.topic: how-to
 author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
-ms.date: 07/11/2024
+ms.date: 10/28/2024
 ms.author: lajanuar
 ---
 
@@ -16,7 +16,7 @@ ms.author: lajanuar
  [!INCLUDE [applies to v4.0 v3.1 v3.0 v2.1](../includes/applies-to-v40-v31-v30-v21.md)]
 ::: moniker-end
 
-In this article, learn how to create user delegation, shared access signature (SAS) tokens, using the Azure portal or Azure Storage Explorer. User delegation SAS tokens are secured with Microsoft Entra credentials. SAS tokens provide secure, delegated access to resources in your Azure storage account.
+In this article, learn how to create user delegation, shared access signature (SAS) tokens, using either the Azure portal or Azure Storage Explorer. User delegation SAS tokens are secured with Microsoft Entra credentials. SAS tokens provide secure, delegated access to resources in your Azure storage account.
 
   :::image type="content" source="../media/sas-tokens/sas-url-token.png" alt-text="Screenshot of storage URI with SAS token appended.":::
 
@@ -81,7 +81,10 @@ To get started, you need:
    > [!NOTE]
    > By default, the REST API uses documents located at the root of your container. You can also use data organized in subfolders if specified in the API call. For more information, see [Organize your data in subfolders](../how-to-guides/build-a-custom-model.md?view=doc-intel-2.1.0&preserve-view=true#organize-your-data-in-subfolders-optional).
 
-## Use the Azure portal
+## Generating SAS tokens
+Once the prerequisites are met and you upload your documents, you can now generate SAS tokens. There are two paths you can take from here; one using the Azure portal and the other using the Azure storage explorer. Select between the two following tabs for more information.
+
+### [**Azure Portal**](#tab/azure-portal)
 
 The Azure portal is a web-based console that enables you to manage your Azure subscription and resources using a graphical user interface (GUI).
 
@@ -128,17 +131,17 @@ The Azure portal is a web-based console that enables you to manage your Azure su
 
 1. To [construct a SAS URL](#use-your-sas-url-to-grant-access), append the SAS token (URI) to the URL for a storage service.
 
-## Use Azure Storage Explorer
+### [**Azure Storage Explorer**](#tab/azure-storage-explorer)
 
 Azure Storage Explorer is a free standalone app that enables you to easily manage your Azure cloud storage resources from your desktop.
 
-### Get started
+#### Get started
 
 * You need the [**Azure Storage Explorer**](/azure/vs-azure-tools-storage-manage-with-storage-explorer) app installed in your Windows, macOS, or Linux development environment.
 
 * After the Azure Storage Explorer app is installed, [connect it the storage account](/azure/vs-azure-tools-storage-manage-with-storage-explorer?tabs=windows#connect-to-a-storage-account-or-service) you're using for Document Intelligence.
 
-### Create your SAS tokens
+#### Create your SAS tokens
 
 1. Open the Azure Storage Explorer app on your local machine and navigate to your connected **Storage Accounts**.
 1. Expand the Storage Accounts node and select **Blob Containers**.
