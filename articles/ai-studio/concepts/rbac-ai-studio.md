@@ -246,6 +246,12 @@ When you create a connection that uses Microsoft Entra ID authentication, you mu
 | Azure AI services / Azure OpenAI | Cognitive Services OpenAI Contributor | Call public ingestion API from Azure AI Studio. |
 | Azure AI services / Azure OpenAI | Cognitive Services User | List API-Keys from Azure AI Studio. |
 | Azure AI services / Azure OpenAI | Contributor | Allows for calls to the control plane. |
+| Azure Blob Storage | Storage Blob Data Contributor | Required for reading and writing data to the blob storage. |
+| Azure Data Lake Storage Gen 2 | Storage Blob Data Contributor | Required for reading and writing data to the data lake. |
+| Microsoft OneLake | Special | To give someone acess to Microsoft OneLake, you must [give them access to your Microsoft Fabric workspace](/fabric/get-started/give-access-workspaces). |
+
+> [!IMPORTANT]
+> If you are using Promptflow with Azure Storage (including Azure Data Lake Storage Gen 2), you must also assign the __Storage File Data Privileged Contributor__ role.
 
 When using Microsoft Entra ID authenticated connections in the chat playground, the services need to authorize each other to access the required resources. The admin performing the configuration needs to have the __Owner__ role on these resources to add role assignments. The following table lists the required role assignments for each resource. The __Assignee__ column refers to the system-assigned managed identity of the listed resource. The __Resource__ column refers to the resource that the assignee needs to access. For example, Azure OpenAI has a system-assigned managed identity that needs to be assigned the __Search Index Data Reader__ role for the Azure AI Search resource.
 
