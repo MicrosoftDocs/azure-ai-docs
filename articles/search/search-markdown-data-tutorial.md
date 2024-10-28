@@ -40,7 +40,7 @@ If you don't have an Azure subscription, create a [free account](https://azure.m
 
 ### Create a Markdown document
 
-Copy and paste the Markdown below into a file named `sample_markdown.md`. The sample data is a single Markdown file containing various Markdown elements. We chose one Markdown file to stay under the storage limits of the free tier.
+Copy and paste the following Markdown into a file named `sample_markdown.md`. The sample data is a single Markdown file containing various Markdown elements. We chose one Markdown file to stay under the storage limits of the free tier.
 
 ````md
 # Project Documentation
@@ -299,9 +299,21 @@ Connection: close
 
 ## Create an index
 
-[Create Index (REST)](/rest/api/searchservice/indexes/create) creates a search index on your search service. An index specifies all the parameters and their attributes.
+[Create Index (REST)](/rest/api/searchservice/indexes/create) creates a search index on your search service. An index specifies all the fields and their attributes
 
-This implementation will leverage [field mappings](search-indexer-field-mappings.md) in the indexer to map from the fields in the enriched document to the index. See [index markdown blobs](search-how-to-index-markdown-blobs.md) for more information on the parsed one-to-many document structure.
+In one-to-many parsing, the search document defines the 'many' side of the relationship. The fields you specify in the index determine the structure of the search document.
+
+You only need fields for the Markdown elements that the parser supports. These fields are:
+
+- `content`: A string that contains the raw Markdown found in a specific location, based on the header metadata at that point in the document.
+
+- `sections`: An object that contains the hierarchical representation of the sections within the Markdown document. Contains subfields for the header metadata up to the desired header level. For example, when `markdownHeaderDepth` is set to `h3`, contains string fields `h1`, `h2`, and `h3`. These fields are accessible through field mappings as `/sections/h1`, `sections/h2`, etc. When a header is not present at that point in the document, the subfield contains an empty string.
+
+- `ordinal_position`: An integer value indicating the position of the section within the document hierarchy. This field is used for ordering the sections in their original sequence as they appear in the document. The root level sections start with an ordinal position of 1, and the value increments sequentially for each subsection. 
+
+This implementation leverages [field mappings](search-indexer-field-mappings.md) in the indexer to map from the fields in the enriched document to the index. For more information on the parsed one-to-many document structure, see [index markdown blobs](search-how-to-index-markdown-blobs.md).
+
+In this case, we know that `h1` contains the title of the document, so we'll map it to a field named `title`. We'll also be mapping the `h2` and `h3` fields to `h2_subheader` and `h3_subheader` respectively. The `content` and `ordinal_position` fields require no mapping because the names are 
 
 ```http
 ### Create an index
@@ -312,7 +324,7 @@ POST {{baseUrl}}/indexes?api-version=2024-11-01-preview  HTTP/1.1
     {
       "name": "sample-markdown-index",  
       "fields": [
-        {"name": "section_id", "type": "Edm.String", "key": true, "searchable": true, "retrievable": true, "filterable": true, "facetable": true, "sortable": true},
+        {"name": "id", "type": "Edm.String", "key": true, "searchable": true, "retrievable": true, "filterable": true, "facetable": true, "sortable": true},
         {"name": "content", "type": "Edm.String", "key": false, "searchable": true, "retrievable": true, "filterable": true, "facetable": true, "sortable": true},
         {"name": "title", "type": "Edm.String", "searchable": true, "retrievable": true, "filterable": true, "facetable": true, "sortable": true},
         {"name": "h2_subheader", "type": "Edm.String", "searchable": true, "retrievable": true, "filterable": true, "facetable": true, "sortable": true},
@@ -321,11 +333,6 @@ POST {{baseUrl}}/indexes?api-version=2024-11-01-preview  HTTP/1.1
       ]
     }
 ```
-
-
-**Key points**:
-
-+ We will map `/sections/h1` to the `title` field, `/sections/h2` to the `h2_subheader` field, and `sections/h3` to the `h3_subheader` field. See the indexer configuration in the next section.
 
 ## Create and run an indexer
 
@@ -353,16 +360,6 @@ POST {{baseUrl}}/indexers?api-version=2024-11-01-preview  HTTP/1.1
           "sourceFieldName": "/sections/h1",
           "targetFieldName": "title",
           "mappingFunction": null
-        },
-        {
-          "sourceFieldName": "/sections/h2",
-          "targetFieldName": "h2_subheader",
-          "mappingFunction": null
-        },
-        {
-          "sourceFieldName": "/sections/h3",
-          "targetFieldName": "h3_subheader",
-          "mappingFunction": null
         }
       ]
     }
@@ -370,7 +367,7 @@ POST {{baseUrl}}/indexers?api-version=2024-11-01-preview  HTTP/1.1
 
 **Key points**:
 
-+ The indexer will only parse headers up to `h3`. Any lower-level headers (`h4`,`h5`,`h6`) will be treated as plain text. This is why the index and field mappings only exist up to a depth of `h3`.
++ The indexer will only parse headers up to `h3`. Any lower-level headers (`h4`,`h5`,`h6`) will be treated as plain text and show up in the `content` field. This is why the index and field mappings only exist up to a depth of `h3`.
 
 + The `content` and `ordinal_position` fields require no field mapping as they exist with those names in the enriched document.
 
@@ -471,7 +468,7 @@ One document is returned in the response.
 
 + Because the `markdownHeaderDepth` is set to `h3`, the `h4`, `h5`, and `h6` headers are treated as plaintext, so they appear in the `content` field.
 
-+ Ordinal position here is `4`, this content appears as the fourth out of the 22 total content sections.
++ Ordinal position here is `4`. This content appears as the fourth out of the 22 total content sections.
 
 Add a `select` parameter to limit the results to fewer fields. Add a `filter` to further narrow the search.
 ```json

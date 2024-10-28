@@ -53,7 +53,7 @@ The **Markdown one-to-many parsing mode** parses Markdown files into multiple se
 
 - `content`: A string that contains the raw Markdown found in a specific location, based on the header metadata at that point in the document.
 
-- `sections`: An object that contains the hierarchical representation of the sections within the Markdown document. Contains subfields for the header metadata up to the desired header level. For example, when `markdownHeaderDepth` is set to `h3`, contains string fields `h1`, `h2`, and `h3` field. When a header is not present at that point in the document, contains an empty string.
+- `sections`: An object that contains the hierarchical representation of the sections within the Markdown document. Contains subfields for the header metadata up to the desired header level. For example, when `markdownHeaderDepth` is set to `h3`, contains string fields `h1`, `h2`, and `h3`. These fields are accessible through field mappings as `/sections/h1`, `sections/h2`, etc. When a header is not present at that point in the document, contains an empty string.
 
 - `ordinal_position`: An integer value indicating the position of the section within the document hierarchy. This field is used for ordering the sections in their original sequence as they appear in the document. The root level sections start with an ordinal position of 1, and the value increments sequentially for each subsection. 
 
@@ -206,7 +206,7 @@ The Markdown is parsed based on headers into documents which contain the followi
 
 - `document_content`: Contains the full Markdown text as a single string. This field serves as a raw representation of the input document. 
 
-- `sections`: An array of objects that contains the hierarchical representation of the sections within the Markdown document. Each section is represented as an object within this array and captures the structure of the document in a nested manner corresponding to the headers and their respective content. The objects in this array have the following properties: 
+- `sections`: An array of objects that contains the hierarchical representation of the sections within the Markdown document. Each section is represented as an object within this array and captures the structure of the document in a nested manner corresponding to the headers and their respective content. The fields are accessible through field mappings by referencing the path, for example `/sections/content`. The objects in this array have the following properties: 
 
   - `header_level`: A string that indicates the level of the header (`h1`, `h2`, `h3`, etc.) in Markdown syntax. This field helps in understanding the hierarchy and structuring of the content. 
 
@@ -216,7 +216,7 @@ The Markdown is parsed based on headers into documents which contain the followi
 
   - `ordinal_position`: An integer value indicating the position of the section within the document hierarchy. This field is used for ordering the sections in their original sequence as they appear in the document. The root level sections start with an ordinal position of 1, and the value increments sequentially for each subsection. 
 
-  - `sections`: An array that contains objects representing subsections nested under the current section. This array follows the same structure as the top-level `sections` array, allowing for the representation of multiple levels of nested content. Each subsection object also includes header_level, header_name, content, and ordinal_position properties, enabling a recursive structure that accurately represents the depth and organization of the Markdown content. 
+  - `sections`: An array that contains objects representing subsections nested under the current section. This array follows the same structure as the top-level `sections` array, allowing for the representation of multiple levels of nested content. Each subsection object also includes `header_level`, `header_name`, `content`, and `ordinal_position` properties, enabling a recursive structure that represents and hierarchy of the Markdown content. 
 
   Consider the following Markdown content:
 
