@@ -54,7 +54,7 @@ The [Azure portal](https://portal.azure.com/) is the easiest approach for first-
      We recommend Basic for larger data files and more indexes, or Free if your files are less than 50 MB. Basic has more features and storage, but it's billable for the lifetime of the service and it might consume about one third of your available credits if you retain it for the entire trial period.
 
 > [!TIP]
-> Azure AI Search and Azure OpenAI must be in the same region. Currently, these regions provide the most overlap and capacity: **East US**, **East US2**, and **South Central** in the Americas; **France Central** or **Switzerland North** in Europe; **Australia East** in Asia Pacific.
+> Azure AI Search and Azure OpenAI must be in the [same region](search-create-service-portal.md#regions-with-the-most-overlap).
 
 ## Step three: Have a plan for next steps
 
@@ -122,9 +122,9 @@ Try the portal quickstarts for Azure AI Search or quickstarts that use Visual St
 - [Quickstart: Generative search (RAG) using a Python client](search-get-started-rag.md)
 - [Quickstart: Vector search using a REST client](search-get-started-vector.md)
 
-Azure AI Studio and Azure OpenAI Studio support connecting to content in Azure AI Search
+Azure AI Studio supports connecting to content in Azure AI Search.
 
-- [Quickstart: Chat using your own data in Azure OpenAI Studio](/azure/ai-services/openai/use-your-data-quickstart)
+- [Quickstart: Chat using your own data with Azure OpenAI](/azure/ai-services/openai/use-your-data-quickstart)
 - [Tutorial: Build a custom chat app with the prompt flow SDK](/azure/ai-studio/tutorials/copilot-sdk-create-resources)
 
 Developers should review [azure-search-vector-samples](https://github.com/Azure/azure-search-vector-samples) repository or the solution accelerators. You can deploy and run any of these samples using the Azure trial subscription. 
@@ -149,6 +149,9 @@ You can create a search service that doesn't consume credits. Here are some poin
 + You can have up to three indexes, indexers, data sources, and skillset at one time.
 
 Review the [service limits](search-limits-quotas-capacity.md) for other constraints that apply to the free tier.
+
+> [!NOTE]
+> Free services that remain inactive for an extended period of time might be deleted to free up capacity if the region is under capacity constraints.
 
 ## Next steps
 

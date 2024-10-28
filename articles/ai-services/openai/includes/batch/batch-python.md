@@ -55,6 +55,12 @@ Like [fine-tuning](../../how-to/fine-tuning.md), global batch uses files in JSON
 {"custom_id": "request-1", "method": "POST", "url": "/chat/completions", "body": {"model": "REPLACE-WITH-MODEL-DEPLOYMENT-NAME", "messages": [{"role": "system", "content": "You are a helpful assistant."},{"role": "user", "content": [{"type": "text", "text": "What’s in this image?"},{"type": "image_url","image_url": {"url": "https://raw.githubusercontent.com/MicrosoftDocs/azure-docs/main/articles/ai-services/openai/media/how-to/generated-seattle.png"}}]}],"max_tokens": 1000}}
 ```
 
+# [Structured outputs](#tab/structured-outputs)
+
+```json
+{"custom_id": "task-0", "method": "POST", "url": "/chat/completions", "body": {"model": "REPLACE-WITH-MODEL-DEPLOYMENT-NAME", "messages": [{"role": "system", "content": "Extract the event information."}, {"role": "user", "content": "Alice and Bob are going to a science fair on Friday."}], "response_format": {"type": "json_schema", "json_schema": {"name": "CalendarEventResponse", "strict": true, "schema": {"type": "object", "properties": {"name": {"type": "string"}, "date": {"type": "string"}, "participants": {"type": "array", "items": {"type": "string"}}}, "required": ["name", "date", "participants"], "additionalProperties": false}}}}}
+```
+
 ---
 
 The `custom_id` is required to allow you to identify which individual batch request corresponds to a given response. Responses won't be returned in identical order to the order defined in the `.jsonl` batch file.
@@ -74,8 +80,6 @@ For this article we'll create a file named `test.jsonl` and will copy the conten
 
 Once your input file is prepared, you first need to upload the file to then be able to kick off a batch job. File upload can be done both programmatically or via the Studio. This example uses environment variables in place of the key and endpoint values. If you're unfamiliar with using environment variables with Python refer to one of our [quickstarts](../../chatgpt-quickstart.md) where the process of setting up the environment variables in explained step-by-step.
 
-[!INCLUDE [Azure key vault](~/reusable-content/ce-skilling/azure/includes/ai-services/security/azure-key-vault.md)]
-
 # [Python (Microsoft Entra ID)](#tab/python-secure)
 
 ```python
@@ -90,7 +94,7 @@ token_provider = get_bearer_token_provider(
 client = AzureOpenAI(
   azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT"), 
   azure_ad_token_provider=token_provider,
-  api_version="2024-10-01-preview"
+  api_version="2024-10-21"
 )
 
 # Upload a file with a purpose of "batch"
@@ -105,13 +109,15 @@ file_id = file.id
 
 # [Python (API Key)](#tab/python-key)
 
+[!INCLUDE [Azure key vault](~/reusable-content/ce-skilling/azure/includes/ai-services/security/azure-key-vault.md)]
+
 ```python
 import os
 from openai import AzureOpenAI
     
 client = AzureOpenAI(
     api_key=os.getenv("AZURE_OPENAI_API_KEY"),  
-    api_version="2024-10-01-preview",
+    api_version="2024-10-21",
     azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT")
     )
 
@@ -144,7 +150,7 @@ file_id = file.id
 
 ## Create batch job
 
-Once your file has uploaded successfully by reaching a status of `processed` you can submit the file for batch processing.
+Once your file has uploaded successfully you can submit the file for batch processing.
 
 ```python
 # Submit a batch job with the file
@@ -395,17 +401,32 @@ client.batches.cancel("batch_abc123") # set to your batch_id for the job you wan
 
 ### List batch
 
-List all batch jobs for a particular Azure OpenAI resource.
+List batch jobs for a particular Azure OpenAI resource.
 
 ```python
 client.batches.list()
+```
+
+List methods in the Python library are paginated.
+
+To list all jobs:
+
+```python
+all_jobs = []
+# Automatically fetches more pages as needed.
+for job in client.batches.list(
+    limit=20,
+):
+    # Do something with job here
+    all_jobs.append(job)
+print(all_jobs)
 ```
 
 ### List batch (Preview)
 
 Use the REST API to list all batch jobs with additional sorting/filtering options.
 
-In the examples below we are providing the `generate_time_filter` function to make constructing the filter easier. If you don't wish to use this function the format of the filter string would look like `created_at gt 1728773533 and created_at lt 1729032733 and status eq 'Completed'`.
+In the examples below we are providing the `generate_time_filter` function to make constructing the filter easier. If you don't wish to use this function the format of the filter string would look like `created_at gt 1728860560 and status eq 'Completed'`.
 
 # [Python (Microsoft Entra ID)](#tab/python-secure)
 
@@ -441,9 +462,8 @@ def generate_time_filter(time_range, status=None):
         raise ValueError("Invalid time range format. Use 'past X day(s)' or 'past X hour(s)'")
     
     start_timestamp = int(start_time.timestamp())
-    end_timestamp = int(now.timestamp())
     
-    filter_string = f"created_at gt {start_timestamp} and created_at lt {end_timestamp}"
+    filter_string = f"created_at gt {start_timestamp}"
     
     if status:
         filter_string += f" and status eq '{status}'"
@@ -504,9 +524,8 @@ def generate_time_filter(time_range, status=None):
         raise ValueError("Invalid time range format. Use 'past X day(s)' or 'past X hour(s)'")
     
     start_timestamp = int(start_time.timestamp())
-    end_timestamp = int(now.timestamp())
     
-    filter_string = f"created_at gt {start_timestamp} and created_at lt {end_timestamp}"
+    filter_string = f"created_at gt {start_timestamp}"
     
     if status:
         filter_string += f" and status eq '{status}'"

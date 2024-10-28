@@ -31,7 +31,7 @@ The fully qualified container image name is, `mcr.microsoft.com/azure-cognitive-
 | Version | Path |
 |-----------|------------|
 | Latest | `mcr.microsoft.com/azure-cognitive-services/speechservices/speech-to-text:latest`<br/><br/>The `latest` tag pulls the latest image for the `en-US` locale. |
-| 4.9.0 | `mcr.microsoft.com/azure-cognitive-services/speechservices/speech-to-text:4.9.0-amd64-mr-in` |
+| 4.10.0 | `mcr.microsoft.com/azure-cognitive-services/speechservices/speech-to-text:4.10.0-amd64-mr-in` |
 
 All tags, except for `latest`, are in the following format and are case sensitive:
 
@@ -46,18 +46,18 @@ The tags are also available [in JSON format](https://mcr.microsoft.com/v2/azure-
   "name": "azure-cognitive-services/speechservices/speech-to-text",
   "tags": [
     <--redacted for brevity-->    
-    "4.9.0-amd64-sw-tz",
-    "4.9.0-amd64-ta-in",
-    "4.9.0-amd64-th-th",
-    "4.9.0-amd64-tr-tr",
-    "4.9.0-amd64-vi-vn",
-    "4.9.0-amd64-wuu-cn",
-    "4.9.0-amd64-yue-cn",
-    "4.9.0-amd64-zh-cn",
-    "4.9.0-amd64-zh-cn-sichuan",
-    "4.9.0-amd64-zh-hk",
-    "4.9.0-amd64-zh-tw",
-    "4.9.0-amd64-zu-za",
+    "4.10.0-amd64-sw-tz",
+    "4.10.0-amd64-ta-in",
+    "4.10.0-amd64-th-th",
+    "4.10.0-amd64-tr-tr",
+    "4.10.0-amd64-vi-vn",
+    "4.10.0-amd64-wuu-cn",
+    "4.10.0-amd64-yue-cn",
+    "4.10.0-amd64-zh-cn",
+    "4.10.0-amd64-zh-cn-sichuan",
+    "4.10.0-amd64-zh-hk",
+    "4.10.0-amd64-zh-tw",
+    "4.10.0-amd64-zu-za",
     "latest"
   ]
 }

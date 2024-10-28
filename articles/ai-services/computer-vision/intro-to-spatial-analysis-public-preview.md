@@ -18,6 +18,8 @@ Video Analysis includes video-related features like Spatial Analysis and Video R
 
 ## Spatial Analysis
 
+[!INCLUDE [spatial-analysis-deprecation](includes/spatial-analysis-deprecation.md)]
+
 You can use Azure AI Vision Spatial Analysis to detect the presence and movements of people in video. Ingest video streams from cameras, extract insights, and generate events to be used by other systems. The service can do things like count the number of people entering a space or measure compliance with face mask and social distancing guidelines. By processing video streams from physical spaces, you can learn how people use them and maximize the space's value to your organization.
 
 Try out the capabilities of Spatial Analysis quickly and easily in your browser by using Azure AI Vision Studio.

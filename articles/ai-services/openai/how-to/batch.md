@@ -6,14 +6,14 @@ manager: nitinme
 ms.service: azure-ai-openai
 ms.custom: references_regions
 ms.topic: how-to
-ms.date: 10/14/2024
+ms.date: 10/18/2024
 author: mrbullwinkle
 ms.author: mbullwin
 recommendations: false
 zone_pivot_groups: openai-fine-tuning-batch
 ---
 
-# Getting started with Azure OpenAI global batch deployments (preview)
+# Getting started with Azure OpenAI global batch deployments
 
 The Azure OpenAI Batch API is designed to handle large-scale and high-volume processing tasks efficiently. Process asynchronous groups of requests with separate quota, with 24-hour target turnaround, at [50% less cost than global standard](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/). With batch processing, rather than send one request at a time you send a large number of requests in a single file. Global batch requests have a separate enqueued token quota avoiding any disruption of your online workloads.  
 
@@ -61,15 +61,18 @@ The following models support global batch:
 | `gpt-35-turbo` | 1106 | text |
 | `gpt-35-turbo` | 0613 | text |
 
-
-
 Refer to the [models page](../concepts/models.md) for the most up-to-date information on regions/models where global batch is currently supported.
 
 ### API support
 
-API support was first added with `2024-07-01-preview`. Use `2024-10-01-preview` to take advantage of the latest features.
+|   | API Version   |
+|---|---|
+|**Latest GA API release:**| `2024-10-21`|
+|**Latest Preview API release:**| `2024-10-01-preview`|
 
-### Not supported
+Support first added in: `2024-07-01-preview`
+
+### Feature support
 
 The following aren't currently supported:
 
@@ -77,11 +80,7 @@ The following aren't currently supported:
 - Integration with Azure OpenAI On Your Data feature.
 
 > [!NOTE]
-> There is a known issue with Azure OpenAI global batch and [structured outputs](./structured-outputs.md). Currently, lines in your jsonl file with structured output requests will fail with the following error message written to the error file:
->
-> ***response_format value as json_schema is enabled only for api versions 2024-08-01-preview and later***.
->
->This error will occur even when your code targets the latest preview APIs which support structured outputs. Once the issue is resolved, this page will be updated.
+> Structured outputs is now supported with Global Batch.
 
 ### Global batch deployment
 
@@ -158,15 +157,6 @@ Yes. Similar to other deployment types, you can create content filters and assoc
 ### Can I request additional quota?
 
 Yes, from the quota page in the Studio UI. Default quota allocation can be found in the [quota and limits article](../quotas-limits.md#global-batch-quota).
-
-### How do I tell how many tokens my batch request contains, and how many tokens are available as quota?
-
-The `2024-10-01-preview` REST API adds two new response headers:
-
-* `deployment-enqueued-tokens` - A approximate token count for your jsonl file calculated immediately after the batch request is submitted. This value represents an estimate based on the number of characters and is not the true token count.
-* `deployment-maximum-enqueued-tokens` The total available enqueued tokens available for this global batch model deployment.
-
-These response headers are only available when making a POST request to begin batch processing of a file with the REST API. The language specific client libraries do not currently return these new response headers.
 
 ### What happens if the API doesn't complete my request within the 24 hour time frame?
 

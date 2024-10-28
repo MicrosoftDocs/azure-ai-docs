@@ -113,7 +113,7 @@ You should receive a response body in the following format:
 
 ## Resume an endpoint
 
-To suspend an endpoint, use the [Endpoints_Resume](/rest/api/aiservices/speechapi/endpoints/resume) operation of the custom voice API. 
+To resume an endpoint, use the [Endpoints_Resume](/rest/api/aiservices/speechapi/endpoints/resume) operation of the custom voice API. 
 
 Make an HTTP POST request using the URI as shown in the following [Endpoints_Resume](/rest/api/aiservices/speechapi/endpoints/resume) example. 
 - Replace `YourResourceKey` with your Speech resource key.

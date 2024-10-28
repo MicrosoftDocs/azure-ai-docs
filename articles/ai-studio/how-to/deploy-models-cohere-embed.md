@@ -5,7 +5,7 @@ description: Learn how to use Cohere Embed V3 models with Azure AI Studio.
 ms.service: azure-ai-studio
 manager: scottpolly
 ms.topic: how-to
-ms.date: 08/08/2024
+ms.date: 10/23/2024
 ms.reviewer: shubhiraj
 reviewer: shubhirajMsft
 ms.author: mopeakande
@@ -16,12 +16,12 @@ zone_pivot_groups: azure-ai-model-catalog-samples-embeddings
 
 # How to use Cohere Embed V3 models with Azure AI Studio
 
-[!INCLUDE [Feature preview](~/reusable-content/ce-skilling/azure/includes/ai-studio/includes/feature-preview.md)]
+[!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
 In this article, you learn about Cohere Embed V3 models and how to use them with Azure AI Studio.
 The Cohere family of models includes various models optimized for different use cases, including chat completions, embeddings, and rerank. Cohere models are optimized for various use cases that include reasoning, summarization, and question answering.
 
-[!INCLUDE [maas-models-preview](../includes/maas-models-preview.md)]
+[!INCLUDE [models-preview](../includes/models-preview.md)]
 
 ::: zone pivot="programming-language-python"
 
@@ -31,19 +31,24 @@ The Cohere family of models for embeddings includes the following models:
 
 # [Cohere Embed v3 - English](#tab/cohere-embed-v3-english)
 
-Cohere Embed English is a text representation model used for semantic search, retrieval-augmented generation (RAG), classification, and clustering. Embed English performs well on the HuggingFace (massive text embed) MTEB benchmark and on use-cases for various industries, such as Finance, Legal, and General-Purpose Corpora. Embed English also has the following attributes:
+Cohere Embed English is a multimodal (text and image) representation model used for semantic search, retrieval-augmented generation (RAG), classification, and clustering. Embed English performs well on the HuggingFace (massive text embed) MTEB benchmark and on use-cases for various industries, such as Finance, Legal, and General-Purpose Corpora. Embed English also has the following attributes:
 
-* Embed English has 1,024 dimensions.
+* Embed English has 1,024 dimensions
 * Context window of the model is 512 tokens
+* Embed English accepts images as a base64 encoded data url
 
+Image embeddings consume a fixed number of tokens per image—1,000 tokens per image—which translates to a price of $0.0001 per image embedded. The size or resolution of the image doesn't affect the number of tokens consumed, provided the image is within the accepted dimensions, file size, and formats.
+ 
 
 # [Cohere Embed v3 - Multilingual](#tab/cohere-embed-v3-multilingual)
 
-Cohere Embed Multilingual is a text representation model used for semantic search, retrieval-augmented generation (RAG), classification, and clustering. Embed Multilingual supports more than 100 languages and can be used to search within a language (for example, to search with a French query on French documents) and across languages (for example, to search with an English query on Chinese documents). Embed multilingual performs well on multilingual benchmarks such as Miracl. Embed Multilingual also has the following attributes:
+Cohere Embed Multilingual is a multimodal (text and image) representation model used for semantic search, retrieval-augmented generation (RAG), classification, and clustering. Embed Multilingual supports more than 100 languages and can be used to search within a language (for example, to search with a French query on French documents) and across languages (for example, to search with an English query on Chinese documents). Embed multilingual performs well on multilingual benchmarks such as Miracl. Embed Multilingual also has the following attributes:
 
-* Embed Multilingual has 1,024 dimensions.
+* Embed Multilingual has 1,024 dimensions
 * Context window of the model is 512 tokens
+* Embed Multilingual accepts images as a base64 encoded data url
 
+Image embeddings consume a fixed number of tokens per image—1,000 tokens per image—which translates to a price of $0.0001 per image embedded. The size or resolution of the image doesn't affect the number of tokens consumed, provided the image is within the accepted dimensions, file size, and formats.
 
 ---
 
@@ -220,19 +225,23 @@ The Cohere family of models for embeddings includes the following models:
 
 # [Cohere Embed v3 - English](#tab/cohere-embed-v3-english)
 
-Cohere Embed English is a text representation model used for semantic search, retrieval-augmented generation (RAG), classification, and clustering. Embed English performs well on the HuggingFace (massive text embed) MTEB benchmark and on use-cases for various industries, such as Finance, Legal, and General-Purpose Corpora. Embed English also has the following attributes:
+Cohere Embed English is a multimodal (text and image) representation model used for semantic search, retrieval-augmented generation (RAG), classification, and clustering. Embed English performs well on the HuggingFace (massive text embed) MTEB benchmark and on use-cases for various industries, such as Finance, Legal, and General-Purpose Corpora. Embed English also has the following attributes:
 
-* Embed English has 1,024 dimensions.
+* Embed English has 1,024 dimensions
 * Context window of the model is 512 tokens
+* Embed English accepts images as a base64 encoded data url
 
+Image embeddings consume a fixed number of tokens per image—1,000 tokens per image—which translates to a price of $0.0001 per image embedded. The size or resolution of the image doesn't affect the number of tokens consumed, provided the image is within the accepted dimensions, file size, and formats.
 
 # [Cohere Embed v3 - Multilingual](#tab/cohere-embed-v3-multilingual)
 
-Cohere Embed Multilingual is a text representation model used for semantic search, retrieval-augmented generation (RAG), classification, and clustering. Embed Multilingual supports more than 100 languages and can be used to search within a language (for example, to search with a French query on French documents) and across languages (for example, to search with an English query on Chinese documents). Embed multilingual performs well on multilingual benchmarks such as Miracl. Embed Multilingual also has the following attributes:
+Cohere Embed Multilingual is a multimodal (text and image) representation model used for semantic search, retrieval-augmented generation (RAG), classification, and clustering. Embed Multilingual supports more than 100 languages and can be used to search within a language (for example, to search with a French query on French documents) and across languages (for example, to search with an English query on Chinese documents). Embed multilingual performs well on multilingual benchmarks such as Miracl. Embed Multilingual also has the following attributes:
 
-* Embed Multilingual has 1,024 dimensions.
+* Embed Multilingual has 1,024 dimensions
 * Context window of the model is 512 tokens
+* Embed Multilingual accepts images as a base64 encoded data url
 
+Image embeddings consume a fixed number of tokens per image—1,000 tokens per image—which translates to a price of $0.0001 per image embedded. The size or resolution of the image doesn't affect the number of tokens consumed, provided the image is within the accepted dimensions, file size, and formats.
 
 ---
 
@@ -411,19 +420,23 @@ The Cohere family of models for embeddings includes the following models:
 
 # [Cohere Embed v3 - English](#tab/cohere-embed-v3-english)
 
-Cohere Embed English is a text representation model used for semantic search, retrieval-augmented generation (RAG), classification, and clustering. Embed English performs well on the HuggingFace (massive text embed) MTEB benchmark and on use-cases for various industries, such as Finance, Legal, and General-Purpose Corpora. Embed English also has the following attributes:
+Cohere Embed English is a multimodal (text and image) representation model used for semantic search, retrieval-augmented generation (RAG), classification, and clustering. Embed English performs well on the HuggingFace (massive text embed) MTEB benchmark and on use-cases for various industries, such as Finance, Legal, and General-Purpose Corpora. Embed English also has the following attributes:
 
-* Embed English has 1,024 dimensions.
+* Embed English has 1,024 dimensions
 * Context window of the model is 512 tokens
+* Embed English accepts images as a base64 encoded data url
 
+Image embeddings consume a fixed number of tokens per image—1,000 tokens per image—which translates to a price of $0.0001 per image embedded. The size or resolution of the image doesn't affect the number of tokens consumed, provided the image is within the accepted dimensions, file size, and formats.
 
 # [Cohere Embed v3 - Multilingual](#tab/cohere-embed-v3-multilingual)
 
-Cohere Embed Multilingual is a text representation model used for semantic search, retrieval-augmented generation (RAG), classification, and clustering. Embed Multilingual supports more than 100 languages and can be used to search within a language (for example, to search with a French query on French documents) and across languages (for example, to search with an English query on Chinese documents). Embed multilingual performs well on multilingual benchmarks such as Miracl. Embed Multilingual also has the following attributes:
+Cohere Embed Multilingual is a multimodal (text and image) representation model used for semantic search, retrieval-augmented generation (RAG), classification, and clustering. Embed Multilingual supports more than 100 languages and can be used to search within a language (for example, to search with a French query on French documents) and across languages (for example, to search with an English query on Chinese documents). Embed multilingual performs well on multilingual benchmarks such as Miracl. Embed Multilingual also has the following attributes:
 
-* Embed Multilingual has 1,024 dimensions.
+* Embed Multilingual has 1,024 dimensions
 * Context window of the model is 512 tokens
+* Embed Multilingual accepts images as a base64 encoded data url
 
+Image embeddings consume a fixed number of tokens per image—1,000 tokens per image—which translates to a price of $0.0001 per image embedded. The size or resolution of the image doesn't affect the number of tokens consumed, provided the image is within the accepted dimensions, file size, and formats.
 
 ---
 
