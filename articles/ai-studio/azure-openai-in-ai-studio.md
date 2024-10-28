@@ -42,7 +42,7 @@ But you can do more with Azure OpenAI models outside of a project. This table hi
 
 You can access Azure OpenAI models directly from Azure AI Studio without creating a project. Use the **Let's go** button in the **Azure OpenAI** section of the Azure AI Studio home page.
 
-:::image type="content" source="media/aoai-in-ai-studio/home-page.png" alt-text="Screenshot shows Azure AI Studio home page.":::
+:::image type="content" source="media/azure-openai-in-ai-studio/home-page.png" alt-text="Screenshot shows Azure AI Studio home page.":::
 
 You can also use [https://ai.azure.com/resource](https://ai.azure.com/resource) to directly access Azure OpenAI models outside of a project.
 
@@ -60,15 +60,15 @@ Pay attention to the top left corner of the screen to see which context you are 
 
 * When you are in the Azure AI Studio home page, with choices of where to go next, you see **Azure AI Studio**.
 
-    :::image type="content" source="media/aoai-in-ai-studio/ai-studio-no-project.png" alt-text="Screenshot shows top left corner of screen for AI Studio without a project.":::
+    :::image type="content" source="media/azure-openai-in-ai-studio/ai-studio-no-project.png" alt-text="Screenshot shows top left corner of screen for AI Studio without a project.":::
 
 * When you are in a project, you see **Azure AI Studio / project name**. The project name allows you to switch between projects.
 
-    :::image type="content" source="media/aoai-in-ai-studio/ai-studio-project.png" alt-text="Screenshot shows top left corner of screen for AI Studio with a project.":::
+    :::image type="content" source="media/azure-openai-in-ai-studio/ai-studio-project.png" alt-text="Screenshot shows top left corner of screen for AI Studio with a project.":::
 
 * When you are working with Azure OpenAI outside of a project, you see **Azure AI Studio | Azure OpenAI / resource name**. The resource name allows you to switch between Azure OpenAI resources.
 
-    :::image type="content" source="media/aoai-in-ai-studio/ai-studio-aoai.png" alt-text="Screenshot shows top left corner of screen for AI Studio when using Azure OpenAI without a project.":::
+    :::image type="content" source="media/azure-openai-in-ai-studio/ai-studio-azure-openai.png" alt-text="Screenshot shows top left corner of screen for AI Studio when using Azure OpenAI without a project.":::
 
 
 

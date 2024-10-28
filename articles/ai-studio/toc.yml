@@ -7,7 +7,7 @@ items:
   - name: What is Azure AI Studio?
     href: what-is-ai-studio.md
   - name: Azure OpenAI in AI Studio
-    href: aoai-in-ai-studio.md
+    href: azure-openai-in-ai-studio.md
   - name: Azure AI Studio architecture
     href: concepts/architecture.md
   - name: Region support
