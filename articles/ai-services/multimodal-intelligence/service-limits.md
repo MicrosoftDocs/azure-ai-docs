@@ -40,7 +40,7 @@ This section details the limits of the field inputs for schema definition.
 
 | Field Types Supported | Max # of Fields Supported Per Schema |
 | --- | --- |
-| string: Plain Text, date: Date, normalized to ISO 8601 (YYYY-MM-DD) format, time: Time, normalized to ISO 8601 (hh:mm:ss) format. number: Floating point number, normalized to double precision floating point. integer: Integer number, normalized to 64-bit signed integer. boolean: Boolean value, normalized to true or false.array: List of subfields of the same type. object: Named list of subfields of potentially different types. | 10 |
+| string: Plain Text, date: Date, normalized to ISO 8601 (YYYY-MM-DD) format, time: Time, normalized to ISO 8601 (hh:mm:ss) format. number: Floating point number, normalized to double precision floating point. integer: Integer number, normalized to 64-bit signed integer. boolean: Boolean value, normalized to true or false.array: List of subfields of the same type. object: Named list of subfields of potentially different types. | 10 (audio, image, video), 50 (document) |
 
 ## Analyzer limits per resource
 Analyzers in Multimodal Intelligence (MMI) are specialized components designed to process and extract structured data from various types of unstructured content, such as textual documents, audio, images, and video. These analyzers are tailored to handle specific types of data and tasks, ensuring that the extracted information is accurate and useful for downstream applications. 
@@ -48,10 +48,10 @@ Analyzers in Multimodal Intelligence (MMI) are specialized components designed t
 | Quota | Standard (S0) |
 | --- | --- |
 | Max models | 100k |
-| Max analysis/min | 1000 pages/images four, (2) hours of audio, 1 hour of video  |
-| Max analysis/month | 10M pages/images, 100K hours of audio, 10K hours of video |
-| Max operations/min | 1000 |
+| Max analysis/min | 1000 pages/images four, (4) hours of audio, 1 hour of video  |
+| Max operations/min | 3000 |
 | Free trainings / month | 10 hours |
 | Max training file size | 1 GB |
-| Max training length | 50k pages/images... |
-| Max fields | 1000 |
+| Max training length | 50k pages/images |
+| Max fields | 100 (document), 10(image, audio, video) |
+| Max enum values | 300 per schema |
