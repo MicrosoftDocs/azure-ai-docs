@@ -13,6 +13,7 @@ ms.author: mopeakande
 author: msakande
 ms.custom: references_regions, generated
 zone_pivot_groups: azure-ai-model-catalog-samples-chat
+ms.collection: ce-skilling-ai-copilot
 ---
 
 # How to use Cohere Command chat models with Azure Machine Learning studio
