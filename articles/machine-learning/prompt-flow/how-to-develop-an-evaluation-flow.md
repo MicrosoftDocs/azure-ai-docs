@@ -103,7 +103,7 @@ To develop your own evaluation flow, select **Create** on the Azure Machine Lear
 
 ### Calculate scores for each data point
 
-Evaluation flows calculate scores and metrics for flows run on datasets. The first step in evaluation flows is calculating scores for each individual output.
+Evaluation flows calculate scores and metrics for flows that run on datasets. The first step in evaluation flows is calculating scores for each individual data output.
 
 For example, in the built-in Classification Accuracy Evaluation flow, the `grade` that measures the accuracy of each flow-generated output to its corresponding ground truth is calculated in the **grade** Python node.
 
@@ -111,7 +111,7 @@ If you use the evaluation flow template, you calculate this score in the **line_
 
 :::image type="content" source="./media/how-to-develop-an-evaluation-flow/line-process.png" alt-text="Screenshot of line process node in the template." lightbox="./media/how-to-develop-an-evaluation-flow/line-process.png":::
 
-You specify the outputs of this node as the outputs of the evaluation flow, which indicates that the outputs are the scores calculated for each data sample. You can also output reasoning for more information, and it's the same experience as defining outputs in standard flow.
+You specify the outputs of this node as the outputs of the evaluation flow, which indicates that the outputs are the scores calculated for each data sample. You can also output reasoning for more information, and it's the same experience as defining outputs in a standard flow.
 
 ### Calculate and log metrics
 
