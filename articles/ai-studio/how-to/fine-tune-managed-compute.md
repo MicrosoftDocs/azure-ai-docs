@@ -17,7 +17,7 @@ ms.custom: references_regions
 
 # Fine-tune models using user-managed compute
 
-This article explains how to use a user-managed compute fine-tune a machine learning model in Azure AI Studio. Fine-tuning involves adapting a pretrained model to a new, related task or domain. WHen you use a managed compute for fine-tuning, you use your computational resources to adjust training parameters such as learning rate, batch size, and number of training epochs to optimize the model's performance for a specific task. Fine-tuning a pretrained model to use for a related task is more efficient than building a new model, as it builds upon the pretrained model's existing knowledge and reduces the time and data needed for training.
+This article explains how to use a user-managed compute to fine-tune a foundation model in Azure AI Studio. Fine-tuning involves adapting a pretrained model to a new, related task or domain. When you use a managed compute for fine-tuning, you use your computational resources to adjust training parameters such as learning rate, batch size, and number of training epochs to optimize the model's performance for a specific task. Fine-tuning a pretrained model to use for a related task is more efficient than building a new model, as it builds upon the pretrained model's existing knowledge and reduces the time and data needed for training.
 
 To improve model performance, you might consider fine-tuning a foundation model with your training data. You can easily fine-tune foundation models by using either the fine-tune settings in AI Studio or by using code-based samples.
 
@@ -31,54 +31,51 @@ __Todo: link to the code-based samples__
 
 - An [Azure AI Studio project](create-projects.md).
 
-- Azure role-based access controls (Azure RBAC) are used to grant access to operations in Azure AI Studio. To perform the steps in this article, your user account must be assigned the __owner__ or __contributor__ role for the Azure subscription. 
+- Azure role-based access controls (Azure RBAC) are used to grant access to operations in Azure AI Studio. To perform the steps in this article, your user account must be assigned the __owner__ or __contributor__ role for the Azure subscription. For more information on permissions, see [Role-based access control in Azure AI Studio](../concepts/rbac-ai-studio.md).
 
-## Fine-tune using user-managed compute in 
+## Fine-tune a foundation model using managed compute
 
-You can access the fine-tune settings form using one of the following methods:
-1.    Choose the "Fine-Tuning" option from the left menu, and then select any foundation model.
+1. Sign in to [Azure AI Studio](https://ai.azure.com).
+1. Select **Fine-tuning** from the left sidebar and add the foundation model that you want to finetune.
+1. Alternatively, you could select **Model catalog** from the left sidebar and find the model card of the foundation model that you want to finetune.
+1. Select __Fine-tune__ on the model card to see the available fine-tune options. Some foundation models support only the __User-managed compute__ option.
+1. Select the __User-managed compute__ option to use your personal compute resources. This action opens up a window where you can specify the fine-tuning settings.
 
-2.    Choose the "Model Card" option from the left menu for any foundation model, and then click the 'Fine-tune' button on the model card.
-Select the suitable Service method to fine-tune your model. You can choose between 'Hosted fine-tuning' or 'User-managed compute'. If you intend to use your own compute resources, select the 'User-managed compute' option. To learn more about Fine-tuning using Serverless API, refer to the related content articles.
+  :::image type="content" source="../media/how-to/fine-tune-managed-compute/fine-tune-options.png" alt-text="Screenshot showing fine-tuning options for a foundation model in AI Studio." lightbox="../media/how-to/fine-tune-managed-compute/fine-tune-options.png":::
 
+### Configure fine-tune settings
 
-  > [!NOTE]
-  > Some foundation models support only the 'User-managed compute' option.
+In this section, you go through the steps to configure fine-tuning for your model, using a managed compute.
 
-![Fine tune options in AI Studio](../media/how-to/fine-tuning-maap/fine-tune-options.png)
+#### Basic settings
 
-### Fine-tune Settings:
-
-#### Basic Settings
-
-- In the basic settings, provide a name for the fine-tuned model.
+1. Provide a name for the fine-tuned model on the "Basic settings" page.
 
 #### Compute
 
-- Provide the Azure Machine Learning Compute cluster you would like to use for fine-tuning the model. Fine-tuning needs to run on GPU compute. Ensure that you have sufficient compute quota for the compute SKUs you wish to use.
+1. Provide the Azure Machine Learning compute cluster to use for fine-tuning the model. Fine-tuning runs on GPU compute. Ensure that you have sufficient compute quota for the compute SKUs you plan to use.
 
-![Fine tune compute in AI Studio](../media/how-to/fine-tuning-maap/fine-tune-compute.png)
+  :::image type="content" source="../media/how-to/fine-tune-managed-compute/fine-tune-compute.png" alt-text="Screenshot showing settings for the compute to use for fine-tuning." lightbox="../media/how-to/fine-tune-managed-compute/fine-tune-compute.png":::
 
-#### Training Data
+#### Training data
 
-1.    Pass in the training data you would like to use to fine-tune your model. You can choose to either upload a local file (in JSONL, CSV or TSV format) or select an existing registered dataset from your workspace.
+1. Provide the training data to use to fine-tune your model. You can choose to either upload a local file (in JSONL, CSV or TSV format) or select an existing registered dataset from your workspace.
 
-2.    Once you've selected the dataset, you need to map the columns from your input data, based on the schema needed for the task. For example: map the column names that correspond to the 'sentence' and 'label' keys for Text Classification.
+1. Map the columns from your input data, based on the schema needed for the task. For example, map the column names that correspond to the _sentence_ and _label_ keys for text classification.
 
-![Fine tune training data in AI Studio](../media/how-to/fine-tuning-maap/fine-tune-training-data.png)
-
+:::image type="content" source="../media/how-to/fine-tune-managed-compute/fine-tune-training-data.png" alt-text="Screenshot showing settings for the training data to use for fine-tuning." lightbox="../media/how-to/fine-tune-managed-compute/fine-tune-training-data.png":::
 
 #### Validation data
 
-- Pass in the data you would like to use to validate your model. Selecting Automatic split reserves an automatic split of training data for validation. Alternatively, you can provide a different validation dataset.
+1. Provide the data to use to validate your model. Selecting __Automatic split__ reserves an automatic split of training data for validation. Alternatively, you can provide a different validation dataset.
 
-#### Test Parameters 
+#### Task parameters
 
-- Tuning hyperparameter is essential for optimizing large language models (LLMs) in real-world applications. It allows for improved performance and efficient resource usage. You can choose to keep the default settings or customize parameters like epochs or learning rate.
+1. Tuning hyperparameter is essential for optimizing large language models (LLMs) in real-world applications. It allows for improved performance and efficient resource usage. You can choose to keep the default settings or customize parameters like epochs or learning rate.
 
-#### Review 
+#### Review
 
-- Select Finish in the fine-tune form to submit your fine-tuning job. Once the job completes, you can view evaluation metrics for the fine-tuned model. You can then deploy this model to an endpoint for inferencing.
+1. Select __Finish__ in the fine-tune form to submit your fine-tuning job. Once the job completes, you can view evaluation metrics for the fine-tuned model. You can then deploy this model to an endpoint for inferencing.
 
 ## Related Contents
 - [Fine-tuning in Azure AI Studio - Azure AI Studio | Microsoft Learn](../concepts/fine-tuning-overview.md)
