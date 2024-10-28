@@ -82,7 +82,7 @@ To get started, you need:
    > By default, the REST API uses documents located at the root of your container. You can also use data organized in subfolders if specified in the API call. For more information, see [Organize your data in subfolders](../how-to-guides/build-a-custom-model.md?view=doc-intel-2.1.0&preserve-view=true#organize-your-data-in-subfolders-optional).
 
 ## Generating SAS tokens
-Once the prerequisites have been met and you have uploaded your documents, you can now generate SAS tokens. There are two paths you can take from here; one using the Azure portal and the other using the Azure storage explorer. Select between the two tabs below for more information.
+Once the prerequisites are met and you upload your documents, you can now generate SAS tokens. There are two paths you can take from here; one using the Azure portal and the other using the Azure storage explorer. Select between the two following tabs for more information.
 
 ### [**Azure Portal**](#tab/azure-portal)
 
