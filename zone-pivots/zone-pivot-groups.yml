@@ -123,12 +123,14 @@ groups:
     title: AI Studio
   - id: programming-language-csharp
     title: C#
-  - id: programming-language-python
-    title: Python
   - id: programming-language-javascript
     title: JavaScript
+  - id: programming-language-python
+    title: Python
   - id: rest-api
     title: REST
+  - id: programming-language-typescript
+    title: TypeScript
 # Owner: mbullwin
 - id: openai-quickstart-new
   title: Programming languages

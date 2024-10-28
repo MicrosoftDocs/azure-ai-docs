@@ -7,8 +7,8 @@ author: mrbullwinkle
 ms.author: mbullwin
 ms.service: azure-ai-openai
 ms.topic: include
-ms.date: 10/28/2024
-ms.custom: passwordless-ts, devex-track-js
+ms.date: 10/09/2024
+ms.custom: passwordless-js, devex-track-typescript
 ---
 
 <a href="/javascript/api/@azure/openai-assistants" target="_blank">Reference documentation</a> | <a href="https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/openai/openai" target="_blank">Library source code</a> | <a href="https://www.npmjs.com/package/@azure/openai-assistants" target="_blank">Package (npm)</a> |
@@ -17,14 +17,15 @@ ms.custom: passwordless-ts, devex-track-js
 
 - An Azure subscription - <a href="https://azure.microsoft.com/free/cognitive-services" target="_blank">Create one for free</a>
 - <a href="https://nodejs.org/" target="_blank">Node.js LTS or ESM support.</a>
+- [TypeScript](https://www.typescriptlang.org/download/) installed globally
 - [Azure CLI](/cli/azure/install-azure-cli) used for passwordless authentication in a local development environment, create the necessary context by signing in with the Azure CLI. 
 - An Azure OpenAI resource with a [compatible model in a supported region](../concepts/models.md#assistants-preview).
 - We recommend reviewing the [Responsible AI transparency note](/legal/cognitive-services/openai/transparency-note?context=%2Fazure%2Fai-services%2Fopenai%2Fcontext%2Fcontext&tabs=text) and other [Responsible AI resources](/legal/cognitive-services/openai/overview?context=%2Fazure%2Fai-services%2Fopenai%2Fcontext%2Fcontext) to familiarize yourself with the capabilities and limitations of the Azure OpenAI Service.
 - An Azure OpenAI resource with the `gpt-4 (1106-preview)` model deployed was used testing this example. 
 
-## Microsoft Entra ID authentication is recommended
+## Passwordless authentication is recommended
 
-For _keyless_ authentication, you need to 
+For passwordless authentication, you need to 
 
 1. Use the `@azure/identity` package.
 1. Assign the `Cognitive Services User` role to your user account. This can be done in the Azure portal under **Access control (IAM)** > **Add role assignment**.
@@ -69,12 +70,12 @@ For _keyless_ authentication, you need to
 > [!CAUTION]
 > To use the recommended keyless authentication with the SDK, make sure that the `AZURE_OPENAI_API_KEY` environment variable isn't set. 
 
-#### [Microsoft Entra ID](#tab/javascript-keyless)
+#### [TypeScript keyless (Recommended)](#tab/typescript-keyless)
 
 [!INCLUDE [assistants-keyless-environment-variables](assistants-env-var-without-key.md)]
 
 
-#### [API key](#tab/javascript-key)
+#### [TypeScript with API key](#tab/typescript-key)
 
 [!INCLUDE [assistants-key-environment-variables](assistants-env-var-key.md)]
 
@@ -98,41 +99,52 @@ In our code we're going to specify the following values:
 ### Tools
 
 An individual assistant can access up to 128 tools including `code interpreter`, and any custom tools you create via [functions](../how-to/assistant-functions.md).
+
     
 ## Create a new JavaScript application
 
-#### [Microsoft Entra ID](#tab/javascript-keyless)
+#### [Microsoft Entra ID](#tab/typescript-keyless)
 
-1. Create the `index.js` file with the following code:
+1. Create the `index.ts` file with the following code:
 
-    ```javascript
-    const { AzureOpenAI } = require("openai");
-    const {
+    ```typescript
+    import { AzureOpenAI } from "openai";
+    import {
+      Assistant,
+      AssistantCreateParams,
+      AssistantTool,
+    } from "openai/resources/beta/assistants";
+    import { Message, MessagesPage } from "openai/resources/beta/threads/messages";
+    import { Run } from "openai/resources/beta/threads/runs/runs";
+    import { Thread } from "openai/resources/beta/threads/threads";
+    
+    // Add `Cognitive Services User` to identity for Azure OpenAI resource
+    import {
       DefaultAzureCredential,
       getBearerTokenProvider,
-    } = require("@azure/identity");
+    } from "@azure/identity";
     
     // Get environment variables
-    const azureOpenAIEndpoint = process.env.AZURE_OPENAI_ENDPOINT;
-    const azureOpenAIDeployment = process.env.AZURE_OPENAI_DEPLOYMENT_NAME;
-    const azureOpenAIVersion = process.env.OPENAI_API_VERSION;
+    const azureOpenAIEndpoint = process.env.AZURE_OPENAI_ENDPOINT as string;
+    const azureOpenAIDeployment = process.env
+      .AZURE_OPENAI_DEPLOYMENT_NAME as string;
+    const openAIVersion = process.env.OPENAI_API_VERSION as string;
     
     // Check env variables
-    if (!azureOpenAIEndpoint || !azureOpenAIDeployment || !azureOpenAIVersion) {
+    if (!azureOpenAIEndpoint || !azureOpenAIDeployment || !openAIVersion) {
       throw new Error(
         "Please ensure to set AZURE_OPENAI_DEPLOYMENT_NAME and AZURE_OPENAI_ENDPOINT in your environment variables."
       );
     }
     
     // Get Azure SDK client
-    const getClient = () => {
+    const getClient = (): AzureOpenAI => {
       const credential = new DefaultAzureCredential();
       const scope = "https://cognitiveservices.azure.com/.default";
       const azureADTokenProvider = getBearerTokenProvider(credential, scope);
-
       const assistantsClient = new AzureOpenAI({
         endpoint: azureOpenAIEndpoint,
-        apiVersion: azureOpenAIVersion,
+        apiVersion: openAIVersion,
         azureADTokenProvider,
       });
       return assistantsClient;
@@ -140,38 +152,35 @@ An individual assistant can access up to 128 tools including `code interpreter`,
     
     const assistantsClient = getClient();
     
-    const options = {
+    const options: AssistantCreateParams = {
       model: azureOpenAIDeployment, // Deployment name seen in Azure AI Studio
       name: "Math Tutor",
       instructions:
         "You are a personal math tutor. Write and run JavaScript code to answer math questions.",
-      tools: [{ type: "code_interpreter" }],
+      tools: [{ type: "code_interpreter" } as AssistantTool],
     };
     const role = "user";
     const message = "I need to solve the equation `3x + 11 = 14`. Can you help me?";
     
     // Create an assistant
-    const assistantResponse = await assistantsClient.beta.assistants.create(
-      options
-    );
+    const assistantResponse: Assistant =
+      await assistantsClient.beta.assistants.create(options);
     console.log(`Assistant created: ${JSON.stringify(assistantResponse)}`);
     
     // Create a thread
-    const assistantThread = await assistantsClient.beta.threads.create({});
+    const assistantThread: Thread = await assistantsClient.beta.threads.create({});
     console.log(`Thread created: ${JSON.stringify(assistantThread)}`);
     
     // Add a user question to the thread
-    const threadResponse = await assistantsClient.beta.threads.messages.create(
-      assistantThread.id,
-      {
+    const threadResponse: Message =
+      await assistantsClient.beta.threads.messages.create(assistantThread.id, {
         role,
         content: message,
-      }
-    );
+      });
     console.log(`Message created:  ${JSON.stringify(threadResponse)}`);
     
     // Run the thread and poll it until it is in a terminal state
-    const runResponse = await assistantsClient.beta.threads.runs.createAndPoll(
+    const runResponse: Run = await assistantsClient.beta.threads.runs.createAndPoll(
       assistantThread.id,
       {
         assistant_id: assistantResponse.id,
@@ -181,9 +190,8 @@ An individual assistant can access up to 128 tools including `code interpreter`,
     console.log(`Run created:  ${JSON.stringify(runResponse)}`);
     
     // Get the messages
-    const runMessages = await assistantsClient.beta.threads.messages.list(
-      assistantThread.id
-    );
+    const runMessages: MessagesPage =
+      await assistantsClient.beta.threads.messages.list(assistantThread.id);
     for await (const runMessageDatum of runMessages) {
       for (const item of runMessageDatum.content) {
         // types are: "image_file" or "text"
@@ -193,14 +201,37 @@ An individual assistant can access up to 128 tools including `code interpreter`,
       }
     }
     ```
+    
 
+
+1. Create the `tsconfig.json` file to transpile the TypeScript code and copy the following code for ECMAScript.
+
+    ```json
+    {
+        "compilerOptions": {
+          "module": "NodeNext",
+          "target": "ES2022", // Supports top-level await
+          "moduleResolution": "NodeNext",
+          "skipLibCheck": true, // Avoid type errors from node_modules
+          "strict": true // Enable strict type-checking options
+        },
+        "include": ["*.ts"]
+    }
+    ```
+
+1. Transpile from TypeScript to JavaScript.
+
+    ```shell
+    tsc
+    ```
+    
 1. Sign in to Azure with the following command:
 
     ```shell
     az login
     ```
 
-1. Run the JavaScript file.
+1. Run the code with the following command:
 
     ```shell
     node index.js
@@ -208,31 +239,40 @@ An individual assistant can access up to 128 tools including `code interpreter`,
 
 
 
-#### [API key](#tab/javascript-key)
+#### [API key](#tab/typescript-key)
 
-1. Create the `index.js` file with the following code:
+1. Create the `index.ts` file with the following code:
 
-    ```javascript
-    const { AzureOpenAI } = require("openai");
+    ```typescript
+    import { AzureOpenAI } from "openai";
+    import {
+      Assistant,
+      AssistantCreateParams,
+      AssistantTool,
+    } from "openai/resources/beta/assistants";
+    import { Message, MessagesPage } from "openai/resources/beta/threads/messages";
+    import { Run } from "openai/resources/beta/threads/runs/runs";
+    import { Thread } from "openai/resources/beta/threads/threads";
     
     // Get environment variables
-    const azureOpenAIKey = process.env.AZURE_OPENAI_KEY;
-    const azureOpenAIEndpoint = process.env.AZURE_OPENAI_ENDPOINT;
-    const azureOpenAIDeployment = process.env.AZURE_OPENAI_DEPLOYMENT_NAME;
-    const azureOpenAIVersion = process.env.OPENAI_API_VERSION;
+    const azureOpenAIKey = process.env.AZURE_OPENAI_KEY as string;
+    const azureOpenAIEndpoint = process.env.AZURE_OPENAI_ENDPOINT as string;
+    const azureOpenAIDeployment = process.env
+      .AZURE_OPENAI_DEPLOYMENT_NAME as string;
+    const openAIVersion = process.env.OPENAI_API_VERSION as string;
     
     // Check env variables
-    if (!azureOpenAIKey || !azureOpenAIEndpoint || !azureOpenAIDeployment || !azureOpenAIVersion) {
+    if (!azureOpenAIKey || !azureOpenAIEndpoint || !azureOpenAIDeployment || !openAIVersion) {
       throw new Error(
         "Please set AZURE_OPENAI_KEY and AZURE_OPENAI_ENDPOINT and AZURE_OPENAI_DEPLOYMENT_NAME in your environment variables."
       );
     }
     
     // Get Azure SDK client
-    const getClient = () => {
+    const getClient = (): AzureOpenAI => {
       const assistantsClient = new AzureOpenAI({
         endpoint: azureOpenAIEndpoint,
-        apiVersion: azureOpenAIVersion,
+        apiVersion: openAIVersion,
         apiKey: azureOpenAIKey,
       });
       return assistantsClient;
@@ -240,38 +280,35 @@ An individual assistant can access up to 128 tools including `code interpreter`,
     
     const assistantsClient = getClient();
     
-    const options = {
+    const options: AssistantCreateParams = {
       model: azureOpenAIDeployment, // Deployment name seen in Azure AI Studio
       name: "Math Tutor",
       instructions:
         "You are a personal math tutor. Write and run JavaScript code to answer math questions.",
-      tools: [{ type: "code_interpreter" }],
+      tools: [{ type: "code_interpreter" } as AssistantTool],
     };
     const role = "user";
     const message = "I need to solve the equation `3x + 11 = 14`. Can you help me?";
     
     // Create an assistant
-    const assistantResponse = await assistantsClient.beta.assistants.create(
-      options
-    );
+    const assistantResponse: Assistant =
+      await assistantsClient.beta.assistants.create(options);
     console.log(`Assistant created: ${JSON.stringify(assistantResponse)}`);
     
     // Create a thread
-    const assistantThread = await assistantsClient.beta.threads.create({});
+    const assistantThread: Thread = await assistantsClient.beta.threads.create({});
     console.log(`Thread created: ${JSON.stringify(assistantThread)}`);
     
     // Add a user question to the thread
-    const threadResponse = await assistantsClient.beta.threads.messages.create(
-      assistantThread.id,
-      {
+    const threadResponse: Message =
+      await assistantsClient.beta.threads.messages.create(assistantThread.id, {
         role,
         content: message,
-      }
-    );
+      });
     console.log(`Message created:  ${JSON.stringify(threadResponse)}`);
     
     // Run the thread and poll it until it is in a terminal state
-    const runResponse = await assistantsClient.beta.threads.runs.createAndPoll(
+    const runResponse: Run = await assistantsClient.beta.threads.runs.createAndPoll(
       assistantThread.id,
       {
         assistant_id: assistantResponse.id,
@@ -281,9 +318,8 @@ An individual assistant can access up to 128 tools including `code interpreter`,
     console.log(`Run created:  ${JSON.stringify(runResponse)}`);
     
     // Get the messages
-    const runMessages = await assistantsClient.beta.threads.messages.list(
-      assistantThread.id
-    );
+    const runMessages: MessagesPage =
+      await assistantsClient.beta.threads.messages.list(assistantThread.id);
     for await (const runMessageDatum of runMessages) {
       for (const item of runMessageDatum.content) {
         // types are: "image_file" or "text"
@@ -293,14 +329,36 @@ An individual assistant can access up to 128 tools including `code interpreter`,
       }
     }
     ```
+    
 
-1. Run the JavaScript file.
+1. Create the `tsconfig.json` file to transpile the TypeScript code and copy the following code for ECMAScript.
+
+    ```json
+    {
+        "compilerOptions": {
+          "module": "NodeNext",
+          "target": "ES2022", // Supports top-level await
+          "moduleResolution": "NodeNext",
+          "skipLibCheck": true, // Avoid type errors from node_modules
+          "strict": true // Enable strict type-checking options
+        },
+        "include": ["*.ts"]
+    }
+    ```
+
+1. Transpile from TypeScript to JavaScript.
+
+    ```shell
+    tsc
+    ```
+
+1. Run the code with the following command:
 
     ```shell
     node index.js
     ```
 
-```
+---
 
 ## Output
 
@@ -316,8 +374,6 @@ Message content: "I need to solve the equation `3x + 11 = 14`. Can you help me?"
 ```
 
 It's important to remember that while the code interpreter gives the model the capability to respond to more complex queries by converting the questions into code and running that code iteratively in JavaScript until it reaches a solution, you still need to validate the response to confirm that the model correctly translated your question into a valid representation in code.
-
----
 
 ## Clean up resources
 
