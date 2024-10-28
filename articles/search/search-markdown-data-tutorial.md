@@ -309,11 +309,11 @@ You only need fields for the Markdown elements that the parser supports. These f
 
 - `sections`: An object that contains subfields for the header metadata up to the desired header level. For example, when `markdownHeaderDepth` is set to `h3`, contains string fields `h1`, `h2`, and `h3`. These fields are can be indexed by mirroring this stucture in the index, or through field mappings in the format `/sections/h1`, `sections/h2`, etc. See indexer request below for an in-context example. The subfields contained are:
   - `h1` - A string containing the h1 header value. Empty string if not set at this point in the document.
-  - (Optional) `h2 `- A string containing the h2 header value. Empty string if not set at this point in the document.
-  - (Optional )`h3 `- A string containing the h3 header value. Empty string if not set at this point in the document.
-  - (Optional) `h4 `- A string containing the h4 header value. Empty string if not set at this point in the document.
-  - (Optional )`h5 `- A string containing the h5 header value. Empty string if not set at this point in the document.
-  - (Optional )`h6 `- A string containing the h6 header value. Empty string if not set at this point in the document.
+  - (Optional) `h2`- A string containing the h2 header value. Empty string if not set at this point in the document.
+  - (Optional) `h3`- A string containing the h3 header value. Empty string if not set at this point in the document.
+  - (Optional) `h4`- A string containing the h4 header value. Empty string if not set at this point in the document.
+  - (Optional) `h5`- A string containing the h5 header value. Empty string if not set at this point in the document.
+  - (Optional) `h6`- A string containing the h6 header value. Empty string if not set at this point in the document.
 
 - `ordinal_position`: An integer value indicating the position of the section within the document hierarchy. This field is used for ordering the sections in their original sequence as they appear in the document. The root level sections start with an ordinal position of 1, and the value increments sequentially for each subsection. 
 
