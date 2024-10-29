@@ -144,7 +144,7 @@ You can use your own aggregation logic, such as calculating score mean, median, 
 
 Log the metrics by using the `promptflow.log_metric()` function. You can log multiple metrics in a single evaluation flow. Metrics must be numerical (`float`/`int`).
 
-## Use a customized evaluation flow
+## Use evaluation flows
 
 After you create your own evaluation flow and metrics, you can use the flow to assess performance of a standard flow. For example, you can evaluate a QnA flow to test how it performs on a large dataset.
 
