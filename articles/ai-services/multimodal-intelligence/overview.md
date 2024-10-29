@@ -40,7 +40,7 @@ Built on the success of Document Intelligence, MMI offers a streamlined process 
 |High-level schema extraction|Users can define the structure and the schema of the extracted results or use a predefined schema for specific schema values: </br></br>&bullet; **Extracted (explicit)**. Values like the name of the product in a recording or the brand/logo from a video are examples of extracted values.</br></br>&bullet; **Inferred (implicit)**. Inferred values aren't explicitly present in the content but can be determined based on the content. The sum of all line items in an invoice or the end date of a contract given a start date and duration are examples of inferred values.</br></br>&bullet; **Abstracted (tacit)**. Abstracted values are generated based on the content of the input. Examples include summaries, outlines, recaps are examples of abstracted values.
 |Comprehensive content extraction and analysis| Multimodal Intelligence is equipped with the capability to automatically identify and extract pertinent information from a variety of file types. This functionality is available for certain file formats, including documents, audio, and video. The service can analyze data within these files and extract text, key-value pairs, tables, and structure from documents, as well as transcriptions from video and audio files. <br> <br> The primary objective is to transform unstructured data into structured, actionable information that can be readily accessed and utilized. For further details on the comprehensive content extraction capabilities for various file types, please refer to this page.|
 |Grounded results for higher accuracy|Multimodal Intelligence ensures that responses are anchored to your input files, leading to higher precision in extracted values. The source information is pivotal to assessing groundedness, serving as the foundation for both grounding and accuracy. A grounded response adheres strictly to the provided information, avoiding any speculation or fabrication. |
-|Highly precise confidence scores|The Multimodal Intelligence enhanced data-input alignment framework ensures a high level of certainty and accuracy across various contexts. A confidence score, ranging from 0 to 1, quantifies the likelihood by assessing the statistical certainty that the extracted result is accurate, correct, and reliable. High confidence scores signify precise data extraction. Accurate extraction scores facilitate straight-through processing (STP) in automation workflows.|
+|Highly precise confidence scores|Multimodal Intelligence ensures accuracy across contexts for extracted fields. A confidence score from 0 to 100 measures the statistical certainty of the result's reliability. High scores indicate precise data extraction, enabling straight-through processing (STP) in automation workflows.|
 |Precise and efficient extraction of modality-specific details for secondary processing scenarios| Users can extract specific content that is suitable for secondary scenarios like Large Language Model (LLM) processing.|
 
 ## Scenarios
@@ -59,14 +59,6 @@ At Microsoft, we prioritize advancing AI with a people-first approach. Generativ
 ## Data privacy and security
 
 As with all the Azure AI services, developers using the Multimodal Intelligence service should be aware of Microsoft's policies on customer data. See our [**Data, Privacy and Security**]() page to learn more.
-
-## Pricing
-
-Pricing tiers (and the amount you're billed) are based on the number of transactions that you send by using your authentication information. Each pricing tier specifies the:
-
-* Maximum number of allowed transactions per second (TPS).
-* Service features enabled within the pricing tier.
-* Cost for a predefined number of transactions. Going above this number causes an extra charge, as specified in the [pricing details](https://azure.microsoft.com/pricing/details/cognitive-services) for your service.
 
 ## Getting started
 Before you get started using Multimodal Intelligence, you need an [**Azure AI services multi-service resource**](how-to/create-multi-service-resource.md). The multi-service resource enables access to multiple Azure AI services with a single set of credentials.
