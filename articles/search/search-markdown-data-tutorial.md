@@ -315,7 +315,7 @@ You only need fields for the Markdown elements that the parser supports. These f
   - (Optional) `h5`- A string containing the h5 header value. Empty string if not set at this point in the document.
   - (Optional) `h6`- A string containing the h6 header value. Empty string if not set at this point in the document.
 
-- `ordinal_position`: An integer value indicating the position of the section within the document hierarchy. This field is used for ordering the sections in their original sequence as they appear in the document. The root level sections start with an ordinal position of 1, and the value increments sequentially for each subsection. 
+- `ordinal_position`: An integer value indicating the position of the section within the document hierarchy. This field is used for ordering the sections in their original sequence as they appear in the document, beginning with an ordinal position of 1 and incrementing sequentially for each content block. 
 
 This implementation leverages [field mappings](search-indexer-field-mappings.md) in the indexer to map from the enriched content to the index. For more information on the parsed one-to-many document structure, see [index markdown blobs](search-how-to-index-markdown-blobs.md).
 
