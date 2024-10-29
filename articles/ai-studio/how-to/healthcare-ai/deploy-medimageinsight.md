@@ -35,19 +35,18 @@ An embedding model is capable of serving as the basis of many different solution
 
 ## Prerequisites
 
-[!INCLUDE [shared-ai-studio-and-azure-ml-articles](../../includes/shared-ai-studio-and-azure-ml-articles.md)]
-
-To use MedImageInsight models with Azure AI Studio or Azure Machine Learning studio, you need the following prerequisites:
+To use the MedImageInsight model, you need the following prerequisites:
 
 ### A model deployment
 
 **Deployment to a self-hosted managed compute**
 
-MedImageInsight model can be deployed to our self-hosted managed inference solution, which allows you to customize and control all the details about how the model is served. You can deploy the model through the model catalog UI or programmatically.
+MedImageInsight model can be deployed to our self-hosted managed inference solution, which allows you to customize and control all the details about how the model is served. You can deploy the model through the catalog UI (in [AI Studio](https://aka.ms/healthcaremodelstudio) or [Azure Machine Learning studio](https://ml.azure.com/model/catalog)) or deploy programmatically.
 
 To __deploy the model through the UI__:
 
-1. Go to the [model card in the catalog](https://aka.ms/mi2modelcard). 
+1. Go to the catalog.
+1. Search for _MedImageInsight_ and select the model card.
 1. On the model's overview page, select __Deploy__. 
 1. If given the option to choose between serverless API deployment and deployment using a managed compute, select **Managed Compute**.
 1. Fill out the details in the deployment window.
