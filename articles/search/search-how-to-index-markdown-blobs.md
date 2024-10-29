@@ -169,7 +169,7 @@ Field mappings associate a source field with a destination field in situations w
 
 The following example illustrates this scenario. For more information about field mappings in general, see [field mappings](search-indexer-field-mappings.md). 
 
-Assume a search index with the following fields: `raw_content` of type `Edm.String`, `h1_header` of type `Edm.String`, and `h2_header` of type `Edm.String`,`. To map your Markdown into the desired shape, use the following field mappings:
+Assume a search index with the following fields: `raw_content` of type `Edm.String`, `h1_header` of type `Edm.String`, and `h2_header` of type `Edm.String`. To map your Markdown into the desired shape, use the following field mappings:
 
 ```http
 "fieldMappings" : [
