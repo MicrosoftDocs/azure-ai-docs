@@ -100,12 +100,15 @@ curl -v -X PUT -H "Ocp-Apim-Subscription-Key: YourResourceKey" -H "Content-Type:
   "consentId": "JessicaConsentId",
   "audios": {
     "containerUrl": "https://contoso.blob.core.windows.net/voicecontainer?mySasToken",
-    "prefix": "jessica/",
+    "prefix": "jessica/", 
     "extensions": [
       ".wav"
     ]
   }
 } '  "https://YourResourceRegion.api.cognitive.microsoft.com/customvoice/personalvoices/JessicaPersonalVoiceId?api-version=2024-02-01-preview"
+
+# Ensure the `containerUrl` has both read and list permissions. 
+# Ensure the `.wav` files are located in the "jessica" folder within the container. The `prefix` matches all `.wav` files in the "jessica" folder. If there is no such folder, the prefix will match `.wav` files with names starting with "jessica". 
 ```
 
 You should receive a response body in the following format:

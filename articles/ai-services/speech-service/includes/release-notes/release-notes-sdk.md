@@ -5,6 +5,34 @@ ms.topic: include
 ms.date: 08/01/2024
 ms.author: eur
 ---
+### Speech SDK 1.41.1: 2024-October release
+
+#### New Features
+  * Added support for Amazon Linux 2023 and Azure Linux 3.0.
+  * Added public property id SpeechServiceConnection_ProxyHostBypass to specify hosts for which proxy is not used.
+  * Added properties to control new phrase segmentation strategies. 
+
+#### Bug Fixes
+  * Fixed incomplete support for keyword recognition Advanced models produced after August 2024.
+    * https://github.com/Azure-Samples/cognitive-services-speech-sdk/issues/2564
+    * https://github.com/Azure-Samples/cognitive-services-speech-sdk/issues/2571
+    * https://github.com/Azure-Samples/cognitive-services-speech-sdk/issues/2590
+    * Note that with Swift on iOS your project must use either MicrosoftCognitiveServicesSpeech-EmbeddedXCFramework-1.41.1.zip (from https://aka.ms/csspeech/iosbinaryembedded) or the MicrosoftCognitiveServicesSpeechEmbedded-iOS pod that include the Advanced model support.
+  * Fixed a memory leak in C# related to string usage.
+  * Fixed not being able to get SPXAutoDetectSourceLanguageResult from SPXConversationTranscriptionResult in Objective-C and Swift.
+  * Fixed an occasional crash when using the Microsoft Audio Stack in recognition.
+  * Fixed type hints in Python.
+    https://github.com/Azure-Samples/cognitive-services-speech-sdk/issues/2539
+  * Fixed not being able to fetch the list of TTS voices when using a custom endpoint.
+  * Fixed embedded TTS re-initializing for every speak request when the voice is specified by a short name.
+  * Fixed the API reference documentation for the max duration of RecognizeOnce audio.
+  * Fixed error handling arbitary sampling rates in JavaScript
+    * Thanks to [rseanhall](https://github.com/rseanhall) for this contribution.
+  * Fixed error calculating the audio offset in JavaScript
+    * Thanks to [motamed](https://github.com/motamed) for this contribution.
+
+#### Breaking Changes
+  * Keyword recognition support on Windows ARM 32-bit has been removed due to the required ONNX runtime not available for this platform.
 
 ### Speech SDK 1.40: 2024-August release
 

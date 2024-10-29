@@ -322,8 +322,28 @@ items:
       href: /python/api/overview/azure/ai-documentintelligence-readme?view=azure-python-preview&preserve-view=true
   - name: Schema
     items:
+    - name: Bank check
+      href: https://github.com/Azure-Samples/document-intelligence-code-samples/blob/main/schema/2024-07-31-preview/bank-check.md
+    - name: Bank statement
+      href: https://github.com/Azure-Samples/document-intelligence-code-samples/blob/main/schema/2024-07-31-preview/bank-statement.md
+    - name: Business card (2023-07-31 GA)
+      href: https://github.com/Azure-Samples/document-intelligence-code-samples/blob/main/schema/2023-07-31-ga/business-card.md
+    - name: Contract
+      href: https://github.com/Azure-Samples/document-intelligence-code-samples/blob/main/schema/2024-07-31-preview/contract.md
+    - name: Credit card
+      href: https://github.com/Azure-Samples/document-intelligence-code-samples/blob/main/schema/2024-07-31-preview/credit-card.md
+    - name: Health insurance card
+      href: https://github.com/Azure-Samples/document-intelligence-code-samples/blob/main/schema/2024-07-31-preview/health-insurance-card.md
+    - name: ID document
+      href: https://github.com/Azure-Samples/document-intelligence-code-samples/blob/main/schema/2024-07-31-preview/id-document.md
+    - name: Invoice
+      href: https://github.com/Azure-Samples/document-intelligence-code-samples/blob/main/schema/2024-07-31-preview/invoice.md
     - name: Marriage certificate
-      href: https://github.com/Azure-Samples/document-intelligence-code-samples/blob/main/schema/marriage-certificate/2024-07-31-preview.json?context=/azure/ai-services/context/context
+      href: https://github.com/Azure-Samples/document-intelligence-code-samples/blob/main/schema/2024-07-31-preview/marriage-certificate.md
+    - name: Pay stub
+      href: https://github.com/Azure-Samples/document-intelligence-code-samples/blob/main/schema/2024-07-31-preview/pay-stub.md
+    - name: Receipt
+      href: https://github.com/Azure-Samples/document-intelligence-code-samples/blob/main/schema/2024-07-31-preview/receipt.md
 - name: Resources
   items:
   - name: Enterprise readiness

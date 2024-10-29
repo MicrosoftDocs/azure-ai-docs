@@ -2,14 +2,13 @@
 title: 'RAG tutorial: Set up models'
 titleSuffix: Azure AI Search
 description: Set up an embedding model and chat model for generative search (RAG).
-
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: tutorial
 ms.custom: references_regions
-ms.date: 10/04/2024
+ms.date: 10/25/2024
 
 ---
 
@@ -34,7 +33,7 @@ If you don't have an Azure subscription, create a [free account](https://azure.m
 
 - An **Owner** or **User Access Administrator** role on your Azure subscription, necessary for creating role assignments. You use at least three Azure resources in this tutorial. The connections are authenticated using Microsoft Entra ID, which requires the ability to create roles. Role assignments for connecting to models are documented in this article. If you can't create roles, you can use [API keys](search-security-api-keys.md) instead.
 
-- A model provider, such as [Azure OpenAI](/azure/ai-services/openai/how-to/create-resource), Azure AI Vision via an [Azure AI multi-service account](/azure/ai-services/multi-service-resource), or [Azure AI Studio](https://ai.azure.com/).
+- A model provider, such as [Azure OpenAI](/azure/ai-services/openai/how-to/create-resource), Azure AI Vision via an [Azure AI services multi-service resource](/azure/ai-services/multi-service-resource), or [Azure AI Studio](https://ai.azure.com/).
 
   We use Azure OpenAI in this tutorial. Other providers are listed so that you know your options for integrated vectorization.
 
@@ -48,12 +47,10 @@ If you don't have an Azure subscription, create a [free account](https://azure.m
 
   - [Azure AI Studio](/azure/ai-studio/reference/region-support) regions. 
 
-  Azure AI Search is currently facing limited availability in some regions, such as West Europe and West US 2/3. To confirm region status, check the [Azure AI Search region list](search-region-support.md).
+  Azure AI Search is currently facing limited availability in some regions. To confirm region status, check the [Azure AI Search region list](search-region-support.md).
 
 > [!TIP]
-> Currently, the following regions provide the most overlap among the model providers and have the most capacity: **East US2** and **South Central** in the Americas; **France Central** or **Switzerland North** in Europe; **Australia East** in Asia Pacific.
->
-> For Azure AI Vision and AI Search interoperability, choose one of these regions: **France Central**, **Korea Central**, **North Europe**, **South East Asia**, or **West US**. 
+> Check [this article](search-create-service-portal.md#regions-with-the-most-overlap) for a list of overlapping regions.
 
 ## Review models supporting built-in vectorization
 
@@ -105,7 +102,7 @@ This tutorial series uses the following models and model providers:
 
 You must have [**Cognitive Services OpenAI Contributor**]( /azure/ai-services/openai/how-to/role-based-access-control#cognitive-services-openai-contributor) or higher to deploy models in Azure OpenAI.
 
-1. Go to [Azure OpenAI Studio](https://oai.azure.com/).
+1. Go to [Azure AI Studio](https://ai.azure.com/).
 
 1. Select **Deployments** on the left menu.
 

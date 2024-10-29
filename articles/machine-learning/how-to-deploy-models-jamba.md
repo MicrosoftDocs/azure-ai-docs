@@ -10,6 +10,7 @@ ms.author: ssalgado
 ms.reviewer: tgokal
 author: ssalgadodev
 ms.custom: references_regions
+ms.collection: ce-skilling-ai-copilot
 ---
 
 # How to deploy AI21's Jamba family models with Azure Machine Learning studio

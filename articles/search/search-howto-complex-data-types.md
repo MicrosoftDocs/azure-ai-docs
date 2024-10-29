@@ -11,7 +11,7 @@ ms.custom:
   - ignite-2023
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 10/14/2024
+ms.date: 10/21/2024
 ---
 
 # Model complex data types in Azure AI Search
@@ -210,7 +210,7 @@ Queries like this are *uncorrelated* for full-text search, unlike filters. In fi
 
 ## Search complex fields in RAG queries
 
-A RAG pattern passes search results to a chat model for generative AI and conversational search. By default, search results passed to an LLM are a flattened rowset. However, if your index has complex types, your query can provide those fields if you first convert the search results output to JSON, and then pass the JSON to the LLM.
+A RAG pattern passes search results to a chat model for generative AI and conversational search. By default, search results passed to an LLM are a flattened rowset. However, if your index has complex types, your query can provide those fields if you first convert the search results to JSON, and then pass the JSON to the LLM.
 
 A partial example illustrates the technique:
 

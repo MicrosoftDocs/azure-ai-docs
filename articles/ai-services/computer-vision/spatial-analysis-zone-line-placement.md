@@ -11,8 +11,9 @@ ms.date: 01/20/2024
 ms.author: pafarley
 ---
 
-
 # Zone and line placement guide
+
+[!INCLUDE [spatial-analysis-deprecation](includes/spatial-analysis-deprecation.md)]
 
 This article provides guidelines for how to define zones and lines for Spatial Analysis operations to achieve accurate analysis of peoples movements in a space. This applies to all operations. 
 

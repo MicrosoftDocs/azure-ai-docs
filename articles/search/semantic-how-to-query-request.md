@@ -71,21 +71,22 @@ In this step, add parameters to the query request. To be successful, your query 
 
    :::image type="content" source="./media/semantic-search-overview/semantic-portal-json-query.png" alt-text="Screenshot showing JSON query syntax in the Azure portal." border="true":::
 
-   Here's some JSON text that you can paste into the view:
+   Here's a JSON example that you can paste into the view:
 
-   ```json
+    ```json
     {
-        "queryType": "semantic",
-        "search": "historic hotel with good food",
-        "semanticConfiguration": "my-semantic-config",
-        "answers": "extractive|count-3",
-        "captions": "extractive|highlight-true",
-        "highlightPreTag": "<strong>",
-        "highlightPostTag": "</strong>",
-        "select": "HotelId,HotelName,Description,Category",
-        "count": true
+      "search": "historic hotel with good food",
+      "count": true,
+      "queryType": "semantic",
+      "semanticConfiguration": "my-semantic-config",
+      "captions": "extractive|highlight-true",
+      "answers": "extractive|count-3",
+      "queryLanguage": "en-us",
+      "highlightPreTag": "<strong>",
+      "highlightPostTag": "</strong>",
+      "select": "HotelId,HotelName,Description,Category"
     }
-   ```
+    ```
 
 ### [**REST API**](#tab/rest-query)
 
@@ -95,10 +96,10 @@ A response includes an `@search.rerankerScore` automatically. If you want captio
 
 The following example in this section uses the [hotels-sample-index](search-get-started-portal.md) to demonstrate semantic ranking with semantic answers and captions.
 
-1. Paste the following request into a web client as a template. Replace the service name and index name with valid values.
+1. Paste the following request into a web client as a template. Replace `search-service-name` with your search service name and replace `hotels-sample-index` if you have a different index name.
 
     ```http
-    POST https://[service name].search.windows.net/indexes/hotels-sample-index/docs/search?api-version=2024-07-01      
+    POST https://[search-service-name].search.windows.net/indexes/hotels-sample-index/docs/search?api-version=2024-07-01      
     {
         "queryType": "semantic",
         "search": "newer hotel near the water with a great restaurant",

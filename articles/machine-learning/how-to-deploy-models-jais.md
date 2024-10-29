@@ -7,9 +7,10 @@ ms.service: azure-machine-learning
 ms.topic: how-to
 ms.date: 05/02/2024
 ms.reviewer: haelhamm
-ms.author: mopeakande
-author: msakande
+ms.author: ssalgado
+author: ssalgadodev
 ms.custom: references_regions, build-2024
+ms.collection: ce-skilling-ai-copilot
 ---
 
 # How to deploy JAIS with Azure Machine Learning studio

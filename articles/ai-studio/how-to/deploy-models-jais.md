@@ -16,7 +16,7 @@ zone_pivot_groups: azure-ai-model-catalog-samples-chat
 
 # How to use Jais chat models
 
-[!INCLUDE [Feature preview](~/reusable-content/ce-skilling/azure/includes/ai-studio/includes/feature-preview.md)]
+[!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
 In this article, you learn about Jais chat models and how to use them.
 JAIS 30b Chat is an autoregressive bi-lingual LLM for **Arabic** & **English**. The tuned versions use supervised fine-tuning (SFT). The model is fine-tuned with both Arabic and English prompt-response pairs. The fine-tuning datasets included a wide range of instructional data across various domains. The model covers a wide range of common tasks including question answering, code generation, and reasoning over textual content. To enhance performance in Arabic, the Core42 team developed an in-house Arabic dataset and translated some open-source English instructions into Arabic.
@@ -25,7 +25,7 @@ JAIS 30b Chat is an autoregressive bi-lingual LLM for **Arabic** & **English**. 
 * **Input:** Model input is text only.
 * **Output:** Model generates text only.
 
-
+[!INCLUDE [models-preview](../includes/models-preview.md)]
 
 ::: zone pivot="programming-language-python"
 

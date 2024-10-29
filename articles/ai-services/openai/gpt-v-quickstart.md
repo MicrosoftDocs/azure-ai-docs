@@ -46,6 +46,12 @@ Get started using GPT-4 Turbo with images with the Azure OpenAI Service.
 
 ::: zone-end
 
+::: zone pivot="programming-language-typescript"
+
+[!INCLUDE [TypeScript quickstart](includes/gpt-v-typescript.md)]
+
+::: zone-end
+
 ::: zone pivot="programming-language-dotnet"
 
 [!INCLUDE [.NET quickstart](includes/gpt-v-dotnet.md)]

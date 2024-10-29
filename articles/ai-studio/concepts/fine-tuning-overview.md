@@ -2,7 +2,7 @@
 title: Fine-tuning in Azure AI Studio
 titleSuffix: Azure AI Studio
 description: This article introduces fine-tuning of models in Azure AI Studio.
-manager: nitinme
+manager: scottpolly
 ms.service: azure-ai-studio
 ms.custom:
   - build-2024
@@ -15,7 +15,7 @@ author: sdgilley
 
 # Fine-tune models in Azure AI Studio
 
-[!INCLUDE [Feature preview](~/reusable-content/ce-skilling/azure/includes/ai-studio/includes/feature-preview.md)]
+[!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
 Fine-tuning retrains an existing large language model (LLM) by using example data. The result is a new, custom LLM that's optimized for the provided examples.
 
