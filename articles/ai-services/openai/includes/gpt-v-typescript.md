@@ -61,7 +61,6 @@ Select an image from the [azure-samples/cognitive-services-sample-data-files](ht
 1. Create a _quickstart.ts_ and paste in the following code. 
     
     ```typescript
-    import "dotenv/config";
     import { AzureOpenAI } from "openai";
     import { 
         DefaultAzureCredential, 
@@ -160,7 +159,6 @@ Select an image from the [azure-samples/cognitive-services-sample-data-files](ht
 1. Create a _quickstart.ts_ and paste in the following code. 
     
     ```typescript
-    import "dotenv/config";
     import { AzureOpenAI } from "openai";
     import type {
       ChatCompletion,

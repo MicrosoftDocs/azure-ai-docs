@@ -62,7 +62,6 @@ Select an image from the [azure-samples/cognitive-services-sample-data-files](ht
 1. Replace the contents of _quickstart.js_ with the following code. 
     
     ```javascript
-    require('dotenv/config');
     const AzureOpenAI = require('openai').AzureOpenAI;
     const { 
         DefaultAzureCredential, 
@@ -151,7 +150,6 @@ Select an image from the [azure-samples/cognitive-services-sample-data-files](ht
 1. Replace the contents of _quickstart.js_ with the following code. 
     
     ```javascript
-    require("dotenv/config");
     const { AzureOpenAI } = require("openai");
     
     // You will need to set these environment variables or edit the following values
