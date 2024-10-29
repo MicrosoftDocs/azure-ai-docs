@@ -161,6 +161,8 @@ You must add the `/v1/embed` path onto the end of the URL that you copied from y
 
 The URI and key are generated when you deploy the model from the catalog. For more information about these values, see [How to deploy Cohere Embed models with Azure AI Studio](/azure/ai-studio/how-to/deploy-models-cohere-embed).
 
+Note that image URIs are not supported by this integration at this time.
+
 ```json
 {
   "@odata.type": "#Microsoft.Skills.Custom.AmlSkill",
