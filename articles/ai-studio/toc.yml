@@ -14,7 +14,9 @@ items:
     href: reference/region-support.md
   - name: Azure AI FAQ
     href: faq.yml
-  - name: "AI Studio or Azure Machine Learning studio: Which should I choose?"
+  - name: What is Azure OpenAI?
+    href: ../ai-services/openai/overview.md?context=/azure/ai-studio/context/context
+  - name: Which studio should I choose?
     href: /ai/ai-studio-experiences-overview?context=/azure/ai-studio/context/context
 - name: Quickstarts
   items:
@@ -47,70 +49,42 @@ items:
 - name: How-to
   expanded: true
   items:
-  - name: Create hubs and projects
+  - name: Azure OpenAI and AI services
     items:
-    - name: Hubs and projects overview
-      href: concepts/ai-resources.md
-    - name: Create your first hub
-      href: how-to/create-azure-ai-resource.md
-    - name: Create a hub using the Azure Machine Learning SDK and CLI
-      href: how-to/develop/create-hub-project-sdk.md
-    - name: Create a hub with custom security
+    - name: What is Azure OpenAI?
+      href: ../ai-services/openai/overview.md?context=/azure/ai-studio/context/context
+      displayName: cognitive
+    - name: What are AI services?
+      href: ../ai-services/what-are-ai-services.md?context=/azure/ai-studio/context/context
+    - name: Azure OpenAI
       items:
-      - name: Create a hub in the Azure portal
-        href: how-to/create-secure-ai-hub.md
-      - name: Create a hub from template
-        href: how-to/create-azure-ai-hub-template.md
-        displayName: code
-      - name: Create a hub using Terraform
-        href: how-to/create-hub-terraform.md
-    - name: Create a project
-      href: how-to/create-projects.md
-    - name: Create and manage compute
-      href: how-to/create-manage-compute.md
-  - name: Connect to services and resources
-    items:
-    - name: Connections overview
-      href: concepts/connections.md
-    - name: Create a connection
-      href: how-to/connections-add.md
-    - name: Create a connection using the Azure Machine Learning SDK
-      href: how-to/develop/connections-add-sdk.md
-      displayName: code
-    - name: Azure AI services connections
+      - name: Deploy Azure OpenAI models
+        href: how-to/deploy-models-openai.md
+      - name: Fine-tune Azure OpenAI models
+        href: ../ai-services/openai/how-to/fine-tuning.md?context=/azure/ai-studio/context/context
+      - name: Get started with Assistants and code interpreter in the playground
+        href: ../ai-services/openai/assistants-quickstart.md?context=/azure/ai-studio/context/context
+      - name: Analyze images and video with GPT-4 for Vision in the playground
+        href: quickstarts/multimodal-vision.md
+      - name: Use your image data with Azure OpenAI
+        href: how-to/data-image-add.md
+        displayName: vision, gpt, turbo
+    - name: Azure AI Content Safety
       items:
-      - name: What are AI services?
-        href: ../ai-services/what-are-ai-services.md?context=/azure/ai-studio/context/context
-        displayName: cognitive
-      - name: Get started with AI services in AI Studio
-        href: ai-services/get-started.md
-      - name: Connect AI services in AI Studio
-        href: ai-services/connect-ai-services.md
-      - name: Azure OpenAI
-        items:
-        - name: Get started with Assistants and code interpreter in the playground
-          href: ../ai-services/openai/assistants-quickstart.md?context=/azure/ai-studio/context/context
-        - name: Analyze images and video with GPT-4 for Vision in the playground
-          href: quickstarts/multimodal-vision.md
-        - name: Use your image data with Azure OpenAI
-          href: how-to/data-image-add.md
-          displayName: vision, gpt, turbo
-      - name: Azure AI Content Safety
-        items:
-        - name: Content filtering
-          href: concepts/content-filtering.md
-        - name: Prevent input attacks with Prompt Shields
-          href: how-to/prompt-shields.md
-        - name: Detect groundedness in chat responses
-          href: how-to/groundedness.md
-      - name: Speech
-        items:
-        - name: Real-time speech to text
-          href: ../ai-services/speech-service/get-started-speech-to-text.md?context=/azure/ai-studio/context/context
-        - name: Pronunciation assessment
-          href: ../ai-services/speech-service/pronunciation-assessment-tool.md?context=/azure/ai-studio/context/context
-        - name: Hear and speak with chat in the playground
-          href: quickstarts/hear-speak-playground.md
+      - name: Content filtering
+        href: concepts/content-filtering.md
+      - name: Prevent input attacks with Prompt Shields
+        href: how-to/prompt-shields.md
+      - name: Detect groundedness in chat responses
+        href: how-to/groundedness.md
+    - name: Speech
+      items:
+      - name: Real-time speech to text
+        href: ../ai-services/speech-service/get-started-speech-to-text.md?context=/azure/ai-studio/context/context
+      - name: Pronunciation assessment
+        href: ../ai-services/speech-service/pronunciation-assessment-tool.md?context=/azure/ai-studio/context/context
+      - name: Hear and speak with chat in the playground
+        href: quickstarts/hear-speak-playground.md
   - name: Explore and select AI models
     items:
     - name: Model catalog
@@ -125,7 +99,7 @@ items:
       href: concepts/concept-model-distillation.md
     - name: Azure OpenAI models
       items:
-      - name: Azure OpenAI models
+      - name: Deploy Azure OpenAI models
         href: how-to/deploy-models-openai.md
       - name: Fine-tune Azure OpenAI models
         href: ../ai-services/openai/how-to/fine-tuning.md?context=/azure/ai-studio/context/context
@@ -212,6 +186,38 @@ items:
       - name: Managed compute
         href: how-to/deploy-models-managed.md
         displayName: endpoint, online, SDK, CLI
+  - name: Create hubs and projects
+    items:
+    - name: Hubs and projects overview
+      href: concepts/ai-resources.md
+    - name: Create your first hub
+      href: how-to/create-azure-ai-resource.md
+    - name: Create a hub using the Azure Machine Learning SDK and CLI
+      href: how-to/develop/create-hub-project-sdk.md
+    - name: Create a hub with custom security
+      items:
+      - name: Create a hub in the Azure portal
+        href: how-to/create-secure-ai-hub.md
+      - name: Create a hub from template
+        href: how-to/create-azure-ai-hub-template.md
+        displayName: code
+      - name: Create a hub using Terraform
+        href: how-to/create-hub-terraform.md
+    - name: Create a project
+      href: how-to/create-projects.md
+    - name: Create and manage compute
+      href: how-to/create-manage-compute.md
+  - name: Connect to services and resources
+    items:
+    - name: Connections overview
+      href: concepts/connections.md
+    - name: Create a connection
+      href: how-to/connections-add.md
+    - name: Create a connection using the Azure Machine Learning SDK
+      href: how-to/develop/connections-add-sdk.md
+    - name: Connect AI services in AI Studio
+      href: ai-services/connect-ai-services.md
+      displayName: code
   - name: Data for your generative AI app
     items:
     - name: Overview of retrieval augmented generation (RAG)
