@@ -11,6 +11,7 @@ ms.date: 07/03/2024
 ms.author: pafarley
 ---
 
+
 # Quickstart: Custom categories (standard mode) (preview)
 
 Follow this guide to use Azure AI Content Safety Custom categories (standard) REST API to create your own content categories for your use case and train Azure AI Content Safety to detect them in new text content.
@@ -24,6 +25,13 @@ For more information on Custom categories, see the [Custom categories concept pa
 > **Allow enough time for model training**
 >
 > The end-to-end execution of custom category training can take from around five hours to ten hours. Plan your moderation pipeline accordingly.
+
+
+## Custom categories (standard mode) (preview) User Flow
+
+![image](https://github.com/user-attachments/assets/2a510f8c-9f88-461e-9082-64d5e05ce13a)
+
+
 
 ## Prerequisites
 
@@ -59,7 +67,21 @@ In the command below, replace `<your_api_key>`, `<your_endpoint>`, and other nec
 ### Create new category version
 
 ```bash
-curl -X PUT "<your_endpoint>/contentsafety/text/categories/survival-advice?api-version=2024-02-15-preview" \
+curl -X PUT "<your_endpoint>/contentsafety/text/categories/survival-advice?api-version=2024-09-15-preview" \
+     -H "Ocp-Apim-Subscription-Key: <your_api_key>" \
+     -H "Content-Type: application/json" \
+     -d "{
+            \"categoryName\": \"survival-advice\",
+            \"definition\": \"text prompts about survival advice in camping/wilderness situations\",
+            \"sampleBlobUrl\": \"https://<your-azure-storage-url>/example-container/survival-advice.jsonl\"
+        }"
+```
+> [!TIP]
+> Every time you change your category name, definition or samples, a new version will be created. You can use the version number to trace back to previous versions. Please remember this version number, as it will be required in the URL for the next step- training custom categories.
+### Get new category version
+
+```bash
+curl -X PUT "<your_endpoint>/contentsafety/text/categories/survival-advice?api-version=2024-09-15-preview" \
      -H "Ocp-Apim-Subscription-Key: <your_api_key>" \
      -H "Content-Type: application/json" \
      -d "{
@@ -71,10 +93,10 @@ curl -X PUT "<your_endpoint>/contentsafety/text/categories/survival-advice?api-v
 
 ### Start the category build process:
 
-Replace `<your_api_key>` and `<your_endpoint>` with your own values. Allow enough time for model training: the end-to-end execution of custom category training can take from around five hours to ten hours. Plan your moderation pipeline accordingly. After you receive the response, store the operation ID (referred to as `id`) in a temporary location. This ID will be necessary for retrieving the build status using the **Get status** API in the next section.
+Replace <your_api_key> and <your_endpoint> with your own values, and also **append the version number you obtained from the last step.** Allow enough time for model training: the end-to-end execution of custom category training can take from around five hours to ten hours. Plan your moderation pipeline accordingly. After you receive the response, store the operation ID (referred to as `id`) in a temporary location. This ID will be necessary for retrieving the build status using the **Get status** API in the next section.
 
 ```bash
-curl -X POST "<your_endpoint>/contentsafety/text/categories/survival-advice:build?api-version=2024-02-15-preview" \
+curl -X POST "<your_endpoint>/contentsafety/text/categories/survival-advice:build?api-version=2024-09-15-preview**&version={version}**" \
      -H "Ocp-Apim-Subscription-Key: <your_api_key>" \
      -H "Content-Type: application/json"
 ```
@@ -83,7 +105,7 @@ curl -X POST "<your_endpoint>/contentsafety/text/categories/survival-advice:buil
 To retrieve the status, utilize the `id` obtained from the previous API response and place it in the path of the API below.
 
 ```bash
-curl -X GET "<your_endpoint>/contentsafety/text/categories/operations/<id>?api-version=2024-02-15-preview" \
+curl -X GET "<your_endpoint>/contentsafety/text/categories/operations/<id>?api-version=2024-09-15-preview" \
      -H "Ocp-Apim-Subscription-Key: <your_api_key>" \
      -H "Content-Type: application/json"
 ```
@@ -93,7 +115,7 @@ curl -X GET "<your_endpoint>/contentsafety/text/categories/operations/<id>?api-v
 Run the following command to analyze text with your customized category. Replace `<your_api_key>` and `<your_endpoint>` with your own values.
 
 ```bash
-curl -X POST "<your_endpoint>/contentsafety/text:analyzeCustomCategory?api-version=2024-02-15-preview" \
+curl -X POST "<your_endpoint>/contentsafety/text:analyzeCustomCategory?api-version=2024-09-15-preview" \
      -H "Ocp-Apim-Subscription-Key: <your_api_key>" \
      -H "Content-Type: application/json" \
      -d "{
@@ -132,7 +154,7 @@ You can create a new category with *category name*, *definition* and *sample_blo
 
 ```python
 def create_new_category_version(category_name, definition, sample_blob_url):
-    url = f"{ENDPOINT}/contentsafety/text/categories/{category_name}?api-version=2024-02-15-preview"
+    url = f"{ENDPOINT}/contentsafety/text/categories/{category_name}?api-version=2024-09-15-preview"
     data = {
         "categoryName": category_name,
         "definition": definition,
@@ -156,7 +178,7 @@ You can start the category build process with the *category name* and *version n
 
 ```python
 def trigger_category_build_process(category_name, version):
-    url = f"{ENDPOINT}/contentsafety/text/categories/{category_name}:build?api-version=2024-02-15-preview&version={version}"
+    url = f"{ENDPOINT}/contentsafety/text/categories/{category_name}:build?api-version=2024-09-15-preview&version={version}"
     response = requests.post(url, headers=headers)
     return response.status_code
 
@@ -174,7 +196,7 @@ To retrieve the status, utilize the `id` obtained from the previous response.
 
 ```python
 def get_build_status(id):
-    url = f"{ENDPOINT}/contentsafety/text/categories/operations/{id}?api-version=2024-02-15-preview"
+    url = f"{ENDPOINT}/contentsafety/text/categories/operations/{id}?api-version=2024-09-15-preview"
     response = requests.get(url, headers=headers)
     return response.status_code
 
@@ -192,7 +214,7 @@ You need to specify the *category name* and the *version number* (optional; the 
 
 ```python
 def analyze_text_with_customized_category(text, category_name, version):
-    url = f"{ENDPOINT}/contentsafety/text:analyzeCustomCategory?api-version=2024-02-15-preview"
+    url = f"{ENDPOINT}/contentsafety/text:analyzeCustomCategory?api-version=2024-09-15-preview"
     data = {
         "text": text,
         "categoryName": category_name,
