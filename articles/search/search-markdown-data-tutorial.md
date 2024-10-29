@@ -347,7 +347,7 @@ You only need fields for the Markdown elements that the parser supports. These f
 
 This implementation leverages [field mappings](search-indexer-field-mappings.md) in the indexer to map from the enriched content to the index. For more information on the parsed one-to-many document structure, see [index markdown blobs](search-how-to-index-markdown-blobs.md).
 
-This example provides samples of how to index data both with and without field mappings. In this case, we know that `h1` contains the title of the document, so we can map it to a field named `title`. We'll also be mapping the `h2` and `h3` fields to `h2_subheader` and `h3_subheader` respectively. The `content` and `ordinal_position` fields require no mapping because they are extracted from the Markdown directly into fields using those names.
+This example provides samples of how to index data both with and without field mappings. In this case, we know that `h1` contains the title of the document, so we can map it to a field named `title`. We'll also be mapping the `h2` and `h3` fields to `h2_subheader` and `h3_subheader` respectively. The `content` and `ordinal_position` fields require no mapping because they are extracted from the Markdown directly into fields using those names. For an example of a full index schema that doesn't require field mappings, see the end of this section.
 
 ```http
 ### Create an index
@@ -367,6 +367,31 @@ POST {{baseUrl}}/indexes?api-version=2024-11-01-preview  HTTP/1.1
       ]
     }
 ```
+
+###  Index schema in a configuration with no field mappings
+Field mappings allow you to manipulate and filter enriched content to fit into your desired index shape, but you may just want to take the enriched content directly. In that case, the schema would look like:
+```http
+{
+  "name": "sample-markdown-index",
+  "fields": [
+    {"name": "id", "type": "Edm.String", "key": true, "searchable": true, "retrievable": true, "filterable": true, "facetable": true, "sortable": true},
+    {"name": "content", "type": "Edm.String", "key": false, "searchable": true, "retrievable": true, "filterable": true, "facetable": true, "sortable": true},
+    {"name": "sections", 
+      "type": "Edm.ComplexType", 
+      "fields": [
+        {"name": "h1", "type": "Edm.String", "searchable": true, "retrievable": true, "filterable": true, "facetable": true, "sortable": true},
+        {"name": "h2", "type": "Edm.String", "searchable": true, "retrievable": true, "filterable": true, "facetable": true, "sortable": true},
+        {"name": "h3", "type": "Edm.String", "searchable": true, "retrievable": true, "filterable": true, "facetable": true, "sortable": true}
+      ]
+    },
+    {"name": "ordinal_position", "type": "Edm.Int32", "searchable": false, "retrievable": true, "filterable": true, "facetable": true, "sortable": true}
+  ]
+}
+```
+
+To reiterate, we have subfields up to `h3` in the sections object because `markdownHeaderDepth` is set to `h3`. 
+
+If you choose to use this schema, be sure to adjust later requests accordingly. This will require removing the field mappings from the indexer configuration and updating search queries to use the corresponding field names.
 
 ## Create and run an indexer
 
