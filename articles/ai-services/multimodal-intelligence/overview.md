@@ -53,6 +53,14 @@ Common scenarios for Azure AI multimodal intelligence service include:
 |Tax processing automation| Tax preparing companies can use the extended capabilities of Multimodal Intelligence to generate a unified view of information from different documents and generate comprehensive tax returns.| Quick start|
 Chart Understanding| Businesses can significantly enhance chart understanding by automating the analysis and interpretation of various types of charts and diagrams using Multimodal Intelligence. This capability is particularly useful in several downstream use cases.| Quickstart | 
 
+## Responsible AI
+At Microsoft, we prioritize advancing AI with a people-first approach. Generative models in Azure AI Multimodal Intelligence have great potential but can produce incorrect or harmful content without careful design. Please review Microsoft’s [**principles**]() for responsible AI use, adopt a [**Code of Conduct for using the service**](), and follow our [**information and guidance**]() on responsible AI.
+
+
+## Data privacy and security
+
+As with all the Azure AI services, developers using the Multimodal Intelligence service should be aware of Microsoft's policies on customer data. See our [**Data, Privacy and Security**]() page to learn more.
+
 ## Pricing
 
 Pricing tiers (and the amount you're billed) are based on the number of transactions that you send by using your authentication information. Each pricing tier specifies the:
