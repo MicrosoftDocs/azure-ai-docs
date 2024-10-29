@@ -43,7 +43,7 @@ Parameters are case-sensitive.
 This setting can be changed after initial creation of the indexer, however the structure of the resulting search documents might change depending on the Markdown content.
 
 ## Supported Markdown elements
-Markdown parsing will only split content based on valid headers. All other elements such as lists, codeblocks, tables, etc., are treated as plaintext.
+Markdown parsing will only split content based on headers. All other elements such as lists, code blocks, tables, etc., are treated as plaintext.
 
 <a name="parsing-markdown-one-to-many"></a>
 
@@ -53,7 +53,7 @@ The **Markdown one-to-many parsing mode** parses Markdown files into multiple se
 
 - `content`: A string that contains the raw Markdown found in a specific location, based on the header metadata at that point in the document.
 
-- `sections`: An object that contains subfields for the header metadata up to the desired header level. For example, when `markdownHeaderDepth` is set to `h3`, contains string fields `h1`, `h2`, and `h3`. These fields are can be indexed by mirroring this stucture in the index, or through field mappings in the format `/sections/h1`, `sections/h2`, etc. See index and indexer configurations below for in-context examples. The subfields contained are:
+- `sections`: An object that contains subfields for the header metadata up to the desired header level. For example, when `markdownHeaderDepth` is set to `h3`, contains string fields `h1`, `h2`, and `h3`. These fields are indexed by mirroring this structure in the index, or through field mappings in the format `/sections/h1`, `sections/h2`, etc. See index and indexer configurations in the following samples for in-context examples. The subfields contained are:
   - `h1` - A string containing the h1 header value. Empty string if not set at this point in the document.
   - (Optional) `h2`- A string containing the h2 header value. Empty string if not set at this point in the document.
   - (Optional) `h3`- A string containing the h3 header value. Empty string if not set at this point in the document.
