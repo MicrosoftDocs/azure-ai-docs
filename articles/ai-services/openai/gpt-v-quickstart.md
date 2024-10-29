@@ -17,9 +17,10 @@ zone_pivot_groups: openai-quickstart-gpt-v
 
 Get started using GPT-4 Turbo with images with the Azure OpenAI Service.
 
-## GPT-4 Turbo model upgrade
-
-[!INCLUDE [GPT-4 Turbo](./includes/gpt-4-turbo.md)]
+> [!NOTE]
+> **Model choice**
+>
+> The latest vision-capable models are `gpt-4o` and `gpt-4o mini`. These are in public preview. The latest available GA model is `gpt-4` version `turbo-2024-04-09`.
 
 ::: zone pivot="programming-language-studio"
 
