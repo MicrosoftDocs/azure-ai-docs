@@ -20,10 +20,9 @@ This SDK is provided by OpenAI with Azure specific types provided by Azure.
 
 - An Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services?azure-portal=true)
 - [LTS versions of Node.js](https://github.com/nodejs/release#release-schedule)
+- [TypeScript](https://www.typescriptlang.org/download/)
 - [Azure CLI](/cli/azure/install-azure-cli) used for passwordless authentication in a local development environment, create the necessary context by signing in with the Azure CLI.
 - An Azure OpenAI resource created in a supported region (see [Region availability](/azure/ai-services/openai/concepts/models#model-summary-table-and-region-availability)). For more information, see [Create a resource and deploy a model with Azure OpenAI](../how-to/create-resource.md).
-
----
 
 
 > [!NOTE]
@@ -57,17 +56,21 @@ Your app's _package.json_ file will be updated with the dependencies.
 Select an image from the [azure-samples/cognitive-services-sample-data-files](https://github.com/Azure-Samples/cognitive-services-sample-data-files/tree/master/ComputerVision/Images) and set the URL for an image in the environment variables.
 
 
-## [Microsoft Entra ID](#tab/javascript-keyless)
+## [Microsoft Entra ID](#tab/typescript-keyless)
 
-1. Replace the contents of _quickstart.js_ with the following code. 
+1. Create a _quickstart.ts_ and paste in the following code. 
     
-    ```javascript
-    const AzureOpenAI = require('openai').AzureOpenAI;
-    const { 
+    ```typescript
+    import { AzureOpenAI } from "openai";
+    import { 
         DefaultAzureCredential, 
         getBearerTokenProvider 
-    } = require('@azure/identity');
-
+    } from "@azure/identity";
+    import type {
+      ChatCompletion,
+      ChatCompletionCreateParamsNonStreaming,
+    } from "openai/resources/index";
+    
     // You will need to set these environment variables or edit the following values
     const endpoint = process.env["AZURE_OPENAI_ENDPOINT"] || "<endpoint>";
     const imageUrl = process.env["IMAGE_URL"] || "<image url>";
@@ -89,7 +92,7 @@ Select an image from the [azure-samples/cognitive-services-sample-data-files](ht
         deployment: deploymentName,
       });
     }
-    function createMessages() {
+    function createMessages(): ChatCompletionCreateParamsNonStreaming {
       return {
         messages: [
           { role: "system", content: "You are a helpful assistant." },
@@ -113,7 +116,7 @@ Select an image from the [azure-samples/cognitive-services-sample-data-files](ht
         max_tokens: 2000,
       };
     }
-    async function printChoices(completion) {
+    async function printChoices(completion: ChatCompletion): Promise<void> {
       for (const choice of completion.choices) {
         console.log(choice.message);
       }
@@ -131,12 +134,18 @@ Select an image from the [azure-samples/cognitive-services-sample-data-files](ht
       console.error("Error occurred:", err);
     });
     ```
-
 1. Make the following changes:
     1. Enter the name of your GPT-4 Turbo with Vision deployment in the appropriate field.
     1. Change the value of the `"url"` field to the URL of your image.
         > [!TIP]
         > You can also use a base 64 encoded image data instead of a URL. For more information, see the [GPT-4 Turbo with Vision how-to guide](../how-to/gpt-with-vision.md#use-a-local-image).
+
+1. Build the application with the following command:
+
+    ```console
+    tsc
+    ```
+
 1. Run the application with the following command:
 
     ```console
@@ -145,12 +154,16 @@ Select an image from the [azure-samples/cognitive-services-sample-data-files](ht
 
 
 
-## [API key](#tab/javascript-key)
+## [API key](#tab/typescript-key)
 
-1. Replace the contents of _quickstart.js_ with the following code. 
+1. Create a _quickstart.ts_ and paste in the following code. 
     
-    ```javascript
-    const { AzureOpenAI } = require("openai");
+    ```typescript
+    import { AzureOpenAI } from "openai";
+    import type {
+      ChatCompletion,
+      ChatCompletionCreateParamsNonStreaming,
+    } from "openai/resources/index";
     
     // You will need to set these environment variables or edit the following values
     const endpoint = process.env["AZURE_OPENAI_ENDPOINT"] || "<endpoint>";
@@ -161,7 +174,7 @@ Select an image from the [azure-samples/cognitive-services-sample-data-files](ht
     const apiVersion = "2024-07-01-preview";
     const deploymentName = "gpt-4-with-turbo";
     
-    function getClient() {
+    function getClient(): AzureOpenAI {
       return new AzureOpenAI({
         endpoint,
         apiKey,
@@ -169,7 +182,7 @@ Select an image from the [azure-samples/cognitive-services-sample-data-files](ht
         deployment: deploymentName,
       });
     }
-    function createMessages() {
+    function createMessages(): ChatCompletionCreateParamsNonStreaming {
       return {
         messages: [
           { role: "system", content: "You are a helpful assistant." },
@@ -193,7 +206,7 @@ Select an image from the [azure-samples/cognitive-services-sample-data-files](ht
         max_tokens: 2000,
       };
     }
-    async function printChoices(completion) {
+    async function printChoices(completion: ChatCompletion): Promise<void> {
       for (const choice of completion.choices) {
         console.log(choice.message);
       }
@@ -211,17 +224,25 @@ Select an image from the [azure-samples/cognitive-services-sample-data-files](ht
       console.error("Error occurred:", err);
     });
     ```
-
 1. Make the following changes:
     1. Enter the name of your GPT-4 Turbo with Vision deployment in the appropriate field.
     1. Change the value of the `"url"` field to the URL of your image.
         > [!TIP]
         > You can also use a base 64 encoded image data instead of a URL. For more information, see the [GPT-4 Turbo with Vision how-to guide](../how-to/gpt-with-vision.md#use-a-local-image).
+
+1. Build the application with the following command:
+
+    ```console
+    tsc
+    ```
+
 1. Run the application with the following command:
 
     ```console
     node quickstart.js
     ```
+
+
 
 ---
 
