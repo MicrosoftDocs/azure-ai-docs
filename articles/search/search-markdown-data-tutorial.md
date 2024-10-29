@@ -213,7 +213,7 @@ For this tutorial, connections to Azure AI Search require an endpoint and an API
 
 1. Under **Settings** > **Keys**, copy an admin key. Admin keys are used to add, modify, and delete objects. There are two interchangeable admin keys. Copy either one.
 
-   :::image type="content" source="media/search-get-started-rest/get-url-key.png" alt-text="Screenshot of the URL and API keys in the Azure portal.":::
+   :::image type="content" source="media/search-markdown-data-tutorial/get-url-key.png" alt-text="Screenshot of the URL and API keys in the Azure portal.":::
 
 ## Set up your REST file
 
@@ -466,18 +466,15 @@ Connection: close
     }
   ]
 }
-
-One document is returned in the response. 
-
 ```
 **Key points**:
 
 + Because the `markdownHeaderDepth` is set to `h3`, the `h4`, `h5`, and `h6` headers are treated as plaintext, so they appear in the `content` field.
 
-+ Ordinal position here is `4`. This content appears as the fourth out of the 22 total content sections.
++ Ordinal position here is `4`. This content appears fourth out of the 22 total content sections.
 
 Add a `select` parameter to limit the results to fewer fields. Add a `filter` to further narrow the search.
-```json
+```http
 ### Query the index
 POST {{baseUrl}}/indexes/sample-markdown-index/docs/search?api-version=2024-11-01-preview  HTTP/1.1
   Content-Type: application/json

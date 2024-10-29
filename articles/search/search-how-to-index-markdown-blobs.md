@@ -216,7 +216,7 @@ The Markdown is parsed based on headers into documents which contain the followi
 
   - `header_level`: A string that indicates the level of the header (`h1`, `h2`, `h3`, etc.) in Markdown syntax. This field helps in understanding the hierarchy and structuring of the content. 
 
-  - `header_name`: A string contianing the text of the header as it appears in the Markdown document. This field provides a label or title for the section. 
+  - `header_name`: A string containing the text of the header as it appears in the Markdown document. This field provides a label or title for the section. 
 
   - `content`: A string containing text content that immediately follows the header, up to the next header. This field captures the detailed information or description associated with the header. If there is no content directly under a header, this is an empty string. 
 
