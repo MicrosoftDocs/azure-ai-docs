@@ -53,7 +53,7 @@ The **Markdown one-to-many parsing mode** parses Markdown files into multiple se
 
 - `content`: A string that contains the raw Markdown found in a specific location, based on the header metadata at that point in the document.
 
-- `sections`: An object that contains subfields for the header metadata up to the desired header level. For example, when `markdownHeaderDepth` is set to `h3`, contains string fields `h1`, `h2`, and `h3`. These fields are can be indexed by mirroring this stucture in the index, or through field mappings in the format `/sections/h1`, `sections/h2`, etc. See indexer request below for an in-context example. The subfields contained are:
+- `sections`: An object that contains subfields for the header metadata up to the desired header level. For example, when `markdownHeaderDepth` is set to `h3`, contains string fields `h1`, `h2`, and `h3`. These fields are can be indexed by mirroring this stucture in the index, or through field mappings in the format `/sections/h1`, `sections/h2`, etc. See index and indexer configurations below for in-context examples. The subfields contained are:
   - `h1` - A string containing the h1 header value. Empty string if not set at this point in the document.
   - (Optional) `h2`- A string containing the h2 header value. Empty string if not set at this point in the document.
   - (Optional) `h3`- A string containing the h3 header value. Empty string if not set at this point in the document.
