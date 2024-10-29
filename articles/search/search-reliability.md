@@ -100,7 +100,7 @@ Otherwise, availability zones for Azure AI Search are supported in the following
 
 Service redundancy is necessary if your operational requirements include:
 
-+ [Business continuity and disaster recovery (BCDR) requirements](/azure/availability-zones/cross-region-replication-azure). Azure AI Search doesn't provide instant failover if there's an outage.
++ [Business continuity and disaster recovery (BCDR) requirements](/azure/reliability/disaster-recovery-overview). Azure AI Search doesn't provide instant failover if there's an outage.
 
 + Fast performance for a globally distributed application. If query and indexing requests come from all over the world, users who are closest to the host data center experience faster performance. Creating more services in regions with close proximity to these users can equalize performance for all users.
 
