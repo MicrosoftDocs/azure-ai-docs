@@ -21,7 +21,7 @@ This article provides a summary of the latest releases and major documentation u
 ## October 2024
 
 ### NEW Data Zone standard deployment type
-Data Zone standard deployments are available in the same Azure OpenAI resources as non-global deployment types but allow you to leverage Azure's global infrastructure to dynamically route traffic to the data center with best availability for each request. Global provisioned deployments provide reserved model processing capacity for high and predictable throughput using Azure global infrastructure. Global provisioned deployments are supported on `gpt-4o-2024-08-06` and `gpt-4o-mini-2024-07-18` models.
+Data Zone standard deployments are available in the same Azure OpenAI resource as all other Azure OpenAI deployment types but allow you to leverage Azure's global infrastructure to dynamically route traffic to the data center with the best availability for each request within the Microsoft defined data zone. Data Zone standard provides higher default quotas than our Azure geography-based deployment types. Data Zone standard deployments are supported on `gpt-4o-2024-08-06`, `gpt-4o-2024-05-13, and `gpt-4o-mini-2024-07-18` models.
 
 For more information, see the [deployment types guide](https://aka.ms/aoai/docs/deployment-types).
 
