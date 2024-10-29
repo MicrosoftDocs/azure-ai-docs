@@ -115,7 +115,7 @@ An example index configuration might look something like this:
 
 The blob indexer can infer the mapping without a field mapping present in the request, so an indexer configuration corresponding to the provided index configuration might look like this:
 ```http
-POST https://[service name].search.windows.net/indexers?api-version=2024-11-01
+POST https://[service name].search.windows.net/indexers?api-version=2024-11-01-preview
 Content-Type: application/json
 api-key: [admin key]
 
@@ -224,7 +224,7 @@ The Markdown is parsed based on headers into documents which contain the followi
 
   - `sections`: An array that contains objects representing subsections nested under the current section. This array follows the same structure as the top-level `sections` array, allowing for the representation of multiple levels of nested content. Each subsection object also includes `header_level`, `header_name`, `content`, and `ordinal_position` properties, enabling a recursive structure that represents and hierarchy of the Markdown content. 
 
-  Consider the following Markdown content:
+  Consider the following Markdown content. We use this content to explain an index schema that's designed around it, and what the search documents might look like for each parsing mode.
 
 ```md
 # Section 1
@@ -291,7 +291,7 @@ If you are not utilizing field mappings, the shape of the index should reflect t
 }
 ```
 
-Because the Markdown we want to index only goes to a depth of h2 ("##"), we need `sections` fields nested to a depth of 2 to match that. This configuration would result in the following data in index:
+Because the Markdown we want to index only goes to a depth of h2 ("##"), we need `sections` fields nested to a depth of 2 to match that. This configuration would result in the following data in the index:
 
 ```http
   "document_content": "# Section 1\r\nContent for section 1.\r\n## Subsection 1.1\r\nContent for subsection 1.1.\r\n# Section 2\r\nContent for section 2.\r\n",
@@ -343,6 +343,7 @@ api-key: [admin key]
 ## Map Markdown one-to-one fields to search fields
 If you would like to extract fields with custom names from the document, you can use field mappings to do so. Using the same Markdown sample as before, consider the following index configuration:
 
+```http
 {
   "name": "my-markdown-index",
   "fields": [
@@ -364,6 +365,7 @@ If you would like to extract fields with custom names from the document, you can
     }
   ]
 }
+```
 
 Extracting specific fields from the parsed Markdown is handled similar to how the document paths are in (outputFieldMappings)[https://learn.microsoft.com/en-us/azure/search/cognitive-search-output-field-mapping?tabs=rest], except the path begins with `/sections`  instead of  `/document`. So, for example, `/sections/0/content` would map to the content under the item at position 0 in the sections array.
 
@@ -399,4 +401,4 @@ The resulting search document in the index would look as follows:
 + [Define field mappings](search-indexer-field-mappings.md)
 + [Indexers overview](search-indexer-overview.md)
 + [How to index CSV blobs with a blob indexer](search-howto-index-csv-blobs.md)
-+ [Tutorial: Search semi-structured data from Azure Blob Storage](search-semi-structured-data.md)
++ [Tutorial: Search Markdown data from Azure Blob Storage](search-markdown-data-tutorial.md)

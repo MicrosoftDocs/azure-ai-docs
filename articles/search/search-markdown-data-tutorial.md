@@ -299,7 +299,7 @@ Connection: close
 
 ## Create an index
 
-[Create Index (REST)](/rest/api/searchservice/indexes/create) creates a search index on your search service. An index specifies all the fields and their attributes
+[Create Index (REST)](/rest/api/searchservice/indexes/create) creates a search index on your search service. An index specifies all the fields and their attributes.
 
 In one-to-many parsing, the search document defines the 'many' side of the relationship. The fields you specify in the index determine the structure of the search document.
 
@@ -317,9 +317,9 @@ You only need fields for the Markdown elements that the parser supports. These f
 
 - `ordinal_position`: An integer value indicating the position of the section within the document hierarchy. This field is used for ordering the sections in their original sequence as they appear in the document. The root level sections start with an ordinal position of 1, and the value increments sequentially for each subsection. 
 
-This implementation leverages [field mappings](search-indexer-field-mappings.md) in the indexer to map from the fields in the enriched document to the index. For more information on the parsed one-to-many document structure, see [index markdown blobs](search-how-to-index-markdown-blobs.md).
+This implementation leverages [field mappings](search-indexer-field-mappings.md) in the indexer to map from the enriched content to the index. For more information on the parsed one-to-many document structure, see [index markdown blobs](search-how-to-index-markdown-blobs.md).
 
-In this case, we know that `h1` contains the title of the document, so we'll map it to a field named `title`. We'll also be mapping the `h2` and `h3` fields to `h2_subheader` and `h3_subheader` respectively. The `content` and `ordinal_position` fields require no mapping because the names are 
+This example provides samples of how to index data both with and without field mappings. In this case, we know that `h1` contains the title of the document, so we'll map it to a field named `title`. We'll also be mapping the `h2` and `h3` fields to `h2_subheader` and `h3_subheader` respectively. The `content` and `ordinal_position` fields require no mapping because they are extracted from the Markdown directly into fields using those names.
 
 ```http
 ### Create an index
@@ -375,7 +375,7 @@ POST {{baseUrl}}/indexers?api-version=2024-11-01-preview  HTTP/1.1
 
 + The indexer will only parse headers up to `h3`. Any lower-level headers (`h4`,`h5`,`h6`) will be treated as plain text and show up in the `content` field. This is why the index and field mappings only exist up to a depth of `h3`.
 
-+ The `content` and `ordinal_position` fields require no field mapping as they exist with those names in the enriched document.
++ The `content` and `ordinal_position` fields require no field mapping as they exist with those names in the enriched content.
 
 ## Run queries
 
