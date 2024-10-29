@@ -108,8 +108,7 @@ Your app's _package.json_ file will be updated with the dependencies.
     
     // You will need to set these environment variables or edit the following values
     const endpoint = process.env["AZURE_OPENAI_ENDPOINT"] || "<endpoint>";
-    const speechFilePath =
-      process.env["SPEECH_FILE_PATH"] || "<path to save the speech file>";
+    const speechFilePath = "<path to save the speech file>";
     
     // Required Azure OpenAI deployment name and API version
     const deploymentName = "tts";
@@ -184,7 +183,7 @@ Your app's _package.json_ file will be updated with the dependencies.
     import "openai/shims/node";
     
     // You will need to set these environment variables or edit the following values
-    const endpoint = process.env["AZURE_OPENAI_ENDPOINT"] || "<endpoint>";
+    const endpoint = "<endpoint>";
     const apiKey = process.env["AZURE_OPENAI_API_KEY"] || "<api key>";
     const speechFilePath =
       process.env["SPEECH_FILE_PATH"] || "<path to save the speech file>";

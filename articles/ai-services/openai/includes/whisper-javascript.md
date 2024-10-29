@@ -112,7 +112,7 @@ Your app's _package.json_ file will be updated with the dependencies.
     const { DefaultAzureCredential, getBearerTokenProvider } = require("@azure/identity");
     
     // You will need to set these environment variables or edit the following values
-    const audioFilePath = process.env["AUDIO_FILE_PATH"] || "<audio file path>";
+    const audioFilePath = "<audio file path>";
     const endpoint = process.env["AZURE_OPENAI_ENDPOINT"] || "<endpoint>";
     
     // Required Azure OpenAI deployment name and API version
@@ -167,7 +167,7 @@ Your app's _package.json_ file will be updated with the dependencies.
     import { AzureOpenAI } from "openai";
     
     // You will need to set these environment variables or edit the following values
-    const audioFilePath = process.env["AUDIO_FILE_PATH"] || "<audio file path>";
+    const audioFilePath = "<audio file path>";
     const endpoint = process.env["AZURE_OPENAI_ENDPOINT"] || "<endpoint>";
     const apiKey = process.env["AZURE_OPENAI_API_KEY"] || "<api key>";
     
