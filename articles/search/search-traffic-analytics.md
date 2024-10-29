@@ -55,11 +55,17 @@ For Azure AI Search, the Azure [portal](https://portal.azure.com) provides a Sea
 
 ## Step 1: Set up Application Insights
 
-Select an existing Application Insights resource or [create one](/previous-versions/azure/azure-monitor/app/create-new-resource) if you don't have one already.
+Create an object that sends events to Application Insights. You can add instrumentation to your server-side application code or client-side code running in a browser, expressed here as C# and JavaScript variants. For other languages, see [supported platforms and frameworks](/azure/azure-monitor/app/app-insights-overview#supported-languages).
+
+Server-side telemetry captures metrics at the application layer, for example in applications running as a web service on Azure, or as an on-premises app on a corporate network. Server-side telemetry captures search and click events, the position of a document in results, and query information, but your data collection will be scoped to whatever information is available at that layer.
+
+On the client, you might have other code that manipulates query inputs, adds navigation, or includes context (for example, queries initiated from a home page versus a product page). If this describes your solution, you might opt for client-side instrumentation so that your telemetry reflects the extra detail. How this extra detail is collected goes beyond the scope of this pattern, but you can review [Application Insights for web pages](/azure/azure-monitor/app/javascript#explore-browserclient-side-data) for help with that decision.
+
+In this step, provide a [connection string to Application Insights](/azure/azure-monitor/app/migrate-from-instrumentation-keys-to-connection-strings).
+
+### [**Visual Studio**](#tab/visual-studio-telemetry-client)
 
 A shortcut that works for some Visual Studio project types is reflected in the following steps.
-
-For illustration, these steps use the client from [Add search to a static web app](tutorial-csharp-overview.md).
 
 1. Open your solution in Visual Studio.
 
@@ -71,21 +77,7 @@ For illustration, these steps use the client from [Add search to a static web ap
 
 At this point, your application is set up for application monitoring, which means all page loads in your client app are tracked with default metrics.
 
-If this shortcut didn't work for you, see [Enable Application Insights server-side telemetry](/azure/azure-monitor/app/asp-net-core#enable-application-insights-server-side-telemetry-visual-studio).
-
-## Step 2: Add instrumentation
-
-Add instrumentation code to your client application.
-
-### Create a telemetry client
-
-Create an object that sends events to Application Insights. You can add instrumentation to your server-side application code or client-side code running in a browser, expressed here as C# and JavaScript variants. For other languages, see [supported platforms and frameworks](/azure/azure-monitor/app/app-insights-overview#supported-languages).
-
-Server-side telemetry captures metrics at the application layer, for example in applications running as a web service on Azure, or as an on-premises app on a corporate network. Server-side telemetry captures search and click events, the position of a document in results, and query information, but your data collection will be scoped to whatever information is available at that layer.
-
-On the client, you might have other code that manipulates query inputs, adds navigation, or includes context (for example, queries initiated from a home page versus a product page). If this describes your solution, you might opt for client-side instrumentation so that your telemetry reflects the extra detail. How this extra detail is collected goes beyond the scope of this pattern, but you can review [Application Insights for web pages](/azure/azure-monitor/app/javascript#explore-browserclient-side-data) for help with that decision.
-
-Provide a [connection string to Application Insights](/azure/azure-monitor/app/migrate-from-instrumentation-keys-to-connection-strings).
+If this shortcut didn't work for you, see [Enable Application Insights server-side telemetry](/azure/azure-monitor/app/asp-net-core#enable-application-insights-server-side-telemetry-visual-studio) or refer to code snippets in the adjacent tabs.
 
 ### [**.NET**](#tab/dotnet-telemetry-client)
 
@@ -108,6 +100,10 @@ appInsights.loadAppInsights();
 ```
 
 ---
+
+## Step 2: Add instrumentation
+
+Add instrumentation code to your client application.
 
 ### Correlate click events with search results
 
@@ -194,7 +190,7 @@ const properties = {
 
 ### Send the custom event to Application Insights
 
-Add the custom even to the *custom events* table in Application Insights. For more information, see [](/azure/azure-monitor/app/api-custom-events-metrics).
+Add the custom even to the *custom events* table in Application Insights. For more information, see [Application Insights API for custom events and metrics](/azure/azure-monitor/app/api-custom-events-metrics).
 
 ### [**.NET**](#tab/dotnet-custom-events)
 
