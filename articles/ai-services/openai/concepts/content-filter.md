@@ -43,13 +43,15 @@ Text and image models support Drugs as an additional classification. This catego
 | Sexual  | Sexual describes language related to anatomical organs and genitals, romantic relationships and sexual acts, acts portrayed in erotic or affectionate terms, including those portrayed as an assault or a forced sexual violent act against one’s will. <br><br> This includes but is not limited to:<ul><li>Vulgar content</li><li>Prostitution</li><li>Nudity and Pornography</li><li>Abuse</li><li>Child exploitation, child abuse, child grooming</li></ul>   |
 | Violence  | Violence describes language related to physical actions intended to hurt, injure, damage, or kill someone or something; describes weapons, guns and related entities. <br><br>This includes, but isn't limited to:  <ul><li>Weapons</li><li>Bullying and intimidation</li><li>Terrorist and violent extremism</li><li>Stalking</li></ul>  |
 | Self-Harm  | Self-harm describes language related to physical actions intended to purposely hurt, injure, damage one’s body or kill oneself. <br><br> This includes, but isn't limited to: <ul><li>Eating Disorders</li><li>Bullying and intimidation</li></ul>  |
-| Protected Material for Text<sup>*</sup> | Protected material text describes known text content (for example, song lyrics, articles, recipes, and selected web content) that can be outputted by large language models.
+| Protected Material for Text<sup>1</sup> | Protected material text describes known text content (for example, song lyrics, articles, recipes, and selected web content) that can be outputted by large language models.
 | Protected Material for Code | Protected material code describes source code that matches a set of source code from public repositories, which can be outputted by large language models without proper citation of source repositories.
 |User Prompt Attacks |User prompt attacks are User Prompts designed to provoke the Generative AI model into exhibiting behaviors it was trained to avoid or to break the rules set in the System Message. Such attacks can vary from intricate roleplay to subtle subversion of the safety objective. |
 |Indirect Attacks |Indirect Attacks, also referred to as Indirect Prompt Attacks or Cross-Domain Prompt Injection Attacks, are a potential vulnerability where third parties place malicious instructions inside of documents that the Generative AI system can access and process. Requires [document embedding and formatting](#embedding-documents-in-your-prompt). |
+| Groundedness<sup>2</sup> | Groundedness detection flags whether the text responses of large language models (LLMs) are grounded in the source materials provided by the users. Ungrounded material refers to instances where the LLMs produce information that is non-factual or inaccurate from what was present in the source materials. Requires [document embedding and formatting](#embedding-documents-in-your-prompt). |
 
-<sup>*</sup> If you're an owner of text material and want to submit text content for protection, [file a request](https://aka.ms/protectedmaterialsform).
+<sup>1</sup> If you're an owner of text material and want to submit text content for protection, [file a request](https://aka.ms/protectedmaterialsform).
 
+<sup>2</sup> Not available in non-streaming scenarios; only available for streaming scenarios. The following regions support Groundedness Detection: Central US, East US, France Central, and Canada East 
 
 [!INCLUDE [severity-levels text, four-level](../../content-safety/includes/severity-levels-text-four.md)]
 
@@ -328,24 +330,27 @@ When annotations are enabled as shown in the code snippets below, the following 
 |indirect attacks|detected (true or false), </br>filtered (true or false)|
 |protected material text|detected (true or false), </br>filtered (true or false)|
 |protected material code|detected (true or false), </br>filtered (true or false), </br>Example citation of public GitHub repository where code snippet was found, </br>The license of the repository|
+|Groundedness | detected (true or false)</br>filtered (true or false) </br>details (`completion_end_offset`, `completion_start_offset`) |
 
 When displaying code in your application, we strongly recommend that the application also displays the example citation from the annotations. Compliance with the cited license may also be required for Customer Copyright Commitment coverage.
 
 See the following table for the annotation availability in each API version:
 
-|Category |2024-02-01 GA| 2024-04-01-preview | 2023-10-01-preview | 2023-06-01-preview| 
+|Category |2024-10-01-preview|2024-02-01 GA| 2024-04-01-preview | 2023-10-01-preview | 2023-06-01-preview| 
 |--|--|--|--|
-| Hate | ✅ |✅ |✅ |✅ |
-| Violence | ✅ |✅ |✅ |✅ |
-| Sexual |✅ |✅ |✅ |✅ |
-| Self-harm |✅ |✅ |✅ |✅ |
-| Prompt Shield for user prompt attacks|✅ |✅ |✅ |✅ |
-|Prompt Shield for indirect attacks|  | ✅ | | |
-|Protected material text|✅ |✅ |✅ |✅ |
-|Protected material code|✅ |✅ |✅ |✅ |
-|Profanity blocklist|✅ |✅ |✅ |✅ |
-|Custom blocklist| | ✅ |✅ |✅ |
+| Hate | ✅|✅ |✅ |✅ |✅ |
+| Violence | ✅|✅ |✅ |✅ |✅ |
+| Sexual |✅ |✅|✅ |✅ |✅ |
+| Self-harm |✅|✅|✅ |✅ |✅ |
+| Prompt Shield for user prompt attacks|✅|✅|✅ |✅ |✅ |
+|Prompt Shield for indirect attacks|   | | ✅ | | |
+|Protected material text|✅|✅ |✅ |✅ |✅ |
+|Protected material code|✅|✅ |✅ |✅ |✅ |
+|Profanity blocklist|✅|✅ |✅ |✅ |✅ |
+|Custom blocklist|✅| | ✅ |✅ |✅ |
+|Groundedness<sup>1</sup>|✅| |  | |  |
 
+<sup>1</sup> Not available in non-streaming scenarios; only available for streaming scenarios. The following regions support Groundedness Detection: Central US, East US, France Central, and Canada East 
 
 # [OpenAI Python 1.x](#tab/python-new)
 
@@ -709,6 +714,39 @@ violence  : @{filtered=False; severity=safe}
 ---
 
 For details on the inference REST API endpoints for Azure OpenAI and how to create Chat and Completions, follow [Azure OpenAI Service REST API reference guidance](../reference.md). Annotations are returned for all scenarios when using any preview API version starting from `2023-06-01-preview`, as well as the GA API version `2024-02-01`.
+
+### Groundedness
+
+#### Annotate only 
+
+Returns offsets referencing the ungrounded completion content. 
+
+```json
+{ 
+  "ungrounded_material": { 
+    "details": [ 
+       { 
+         "completion_end_offset": 127, 
+         "completion_start_offset": 27 
+       } 
+   ], 
+    "detected": true, 
+    "filtered": false 
+ } 
+} 
+```
+
+#### Annotate and filter 
+
+Blocks completion content when ungrounded completion content was detected. 
+
+```json
+{ "ungrounded_material": { 
+    "detected": true, 
+    "filtered": true 
+  } 
+} 
+```
 
 ### Example scenario: An input prompt containing content that is classified at a filtered category and severity level is sent to the completions API
 
