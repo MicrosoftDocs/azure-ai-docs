@@ -189,31 +189,59 @@ Markdown is a lightweight yet powerful tool for writing documentation. It suppor
 Thank you for reviewing this example!
 ````
 
-### Upload sample data to Azure Storage
+## Configure a system managed identity on your search service
 
-1. In Azure Storage, create a new container and name it *markdown-container*.
+For this tutorial, connections to Azure AI Search require a [system managed identity](search-howto-managed-identities-data-sources.md) be configured.
 
-1. [Upload the sample data files](/azure/storage/blobs/storage-quickstart-blobs-portal).
+1. Sign in to the [Azure portal](https://portal.azure.com) and [find your search service](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices).
 
-1. Get a storage connection string so that you can formulate a connection in Azure AI Search.
+1. Under **Settings**, select **Identity**.
 
-   1. On the left, select **Access keys**.
+1. On the **System assigned** tab, under **Status**, select **On**.
 
-   1. Copy the connection string for either key one or key two. The connection string is similar to the following example:
+1. Select **Save**.
 
-      ```http
-      DefaultEndpointsProtocol=https;AccountName=<your account name>;AccountKey=<your account key>;EndpointSuffix=core.windows.net
-      ```
+   :::image type="content" source="media/search-managed-identities/turn-on-system-assigned-identity.png" alt-text="Screenshot of the Identity page in Azure portal." border="true":::
 
-### Copy a search service URL and API key
+   After you save the settings, the page updates to show an object identifier that's assigned to your search service. 
 
-For this tutorial, connections to Azure AI Search require an endpoint and an API key. You can get these values from the Azure portal.
+   :::image type="content" source="media/search-managed-identities/system-assigned-identity-object-id.png" alt-text="Screenshot of a system identity object identifier." border="true":::
+  
+## Create a role assignment in Azure Storage
 
-1. Sign in to the [Azure portal](https://portal.azure.com), navigate to the search service **Overview** page, and copy the URL. An example endpoint might look like `https://mydemo.search.windows.net`.
+1. Sign in to Azure portal and find your storage account.
 
-1. Under **Settings** > **Keys**, copy an admin key. Admin keys are used to add, modify, and delete objects. There are two interchangeable admin keys. Copy either one.
+1. Select **Access control (IAM)**.
 
-   :::image type="content" source="media/search-markdown-data-tutorial/get-url-key.png" alt-text="Screenshot of the URL and API keys in the Azure portal.":::
+1. Select **Add** and then select **Role assignment**.
+
+1. Select the roles needed for your Blob storage:
+
+   | Task | Role assignment |
+   |------|-----------------|
+   | Blob indexing using an indexer | Add **Storage Blob Data Reader** |
+
+1. Select **Next**.
+
+1. Select **Managed identity** and then select **Members**.
+
+1. Filter by system-assigned managed identities or user-assigned managed identities. You should see the managed identity that you previously created for your search service. If you don't have one, see [Configure search to use a managed identity](search-howto-managed-identities-data-sources.md). If you already set one up but it's not available, give it a few minutes.
+
+1. Select the identity and save the role assignment.
+
+## Prepare the connection string for your blob data source
+
+Once a managed identity is defined for the search service and given a role assignment, outbound connections can be modified to use the unique resource ID of the other Azure resource. Here is how it will look for a blob data source:
+
+An indexer data source includes a "credentials" property that determines how the connection is made to the data source. The following example shows a connection string specifying the unique resource ID of a storage account. 
+
+Microsoft Entra ID authenticates the request using the system managed identity of the search service. Notice that the connection string doesn't include a container. In a data source definition, a container name is specified in the "container" property (not shown), not the connection string.
+
+```http
+ ResourceId=/subscriptions/{subscription-ID}/resourceGroups/{resource-group-name}/providers/Microsoft.Storage/storageAccounts/{storage-account-name}
+```
+
+This connection string will be used in the next step.
 
 ## Set up your REST file
 
@@ -224,7 +252,7 @@ For this tutorial, connections to Azure AI Search require an endpoint and an API
    ```http
    @baseUrl = PUT-YOUR-SEARCH-SERVICE-ENDPOINT-HERE
    @apiKey = PUT-YOUR-ADMIN-API-KEY-HERE
-   @storageConnection = PUT-YOUR-STORAGE-CONNECTION-STRING-HERE
+   @storageConnectionString = PUT-YOUR-STORAGE-CONNECTION-STRING-HERE
    @blobContainer = PUT-YOUR-CONTAINER-NAME-HERE
    ```
 
