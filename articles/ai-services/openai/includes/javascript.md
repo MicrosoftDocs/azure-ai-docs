@@ -41,7 +41,7 @@ In a console window (such as cmd, PowerShell, or Bash), create a new directory f
 Install the required packages for JavaScript with npm from within the context of your new directory:
 
 ```console
-npm install openai dotenv @azure/identity
+npm install openai @azure/identity
 ```
 
 Your app's _package.json_ file will be updated with the dependencies.
