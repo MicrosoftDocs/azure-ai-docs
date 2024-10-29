@@ -80,12 +80,11 @@ Use the following tabs to select the method you plan to use to create a project:
 
 # [Azure AI Studio](#tab/ai-studio)
 
-On the project **Overview** page you can find information about the project, such as the project name, description, and the hub that hosts the project. You can also find the project ID, which is used to identify the project via SDK or API.
+On the project **Overview** page you can find information about the project.
 
 :::image type="content" source="../media/how-to/projects/project-settings.png" alt-text="Screenshot of an AI Studio project settings page." lightbox = "../media/how-to/projects/project-settings.png":::
 
-- Name: The name of the project corresponds to the selected project in the left panel. 
-- Location: The location of the hub that hosts the project. For supported locations, see [Azure AI Studio regions](../reference/region-support.md).
+- Name: The name of the project appears in the top left corner. You can rename the project using the edit tool.
 - Subscription: The subscription that hosts the hub that hosts the project.
 - Resource group: The resource group that hosts the hub that hosts the project.
 
