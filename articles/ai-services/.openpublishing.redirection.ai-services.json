@@ -772,7 +772,7 @@
     },
     {
       "source_path_from_root": "/articles/ai-services/qnamaker/how-to/migrate-to-openai.md",
-      "redirect_url": "/articles/ai-services/qnamaker/overview/overview.md",
+      "redirect_url": "/azure/ai-services/qnamaker/overview/overview.md",
       "redirect_document_id": true
     }
   ]
