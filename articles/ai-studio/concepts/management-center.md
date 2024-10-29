@@ -25,7 +25,7 @@ You can use the management center to create and configure hubs and projects with
 TODO:
 - Screenshot
 
-For more information, see [Hubs and projects overview](ai-resources.md).
+For more information, see the articles on creating a [hub](../how-to/create-azure-ai-resource.md#create-a-hub-in-ai-studio) and [project](../how-to/create-projects.md).
 
 ## Manage resource utilization
 
@@ -43,7 +43,7 @@ Assign roles, manage users, and ensure that all settings comply with organizatio
 TODO:
 - Screenshot
 
-For more information, see [Role-based access control](rbac-ai-studio.md).
+For more information, see [Role-based access control](rbac-ai-studio.md#assigning-roles-in-ai-studio).
 
 ## Related content
 
