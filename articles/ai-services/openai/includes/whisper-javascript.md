@@ -119,7 +119,6 @@ Your app's _package.json_ file will be updated with the dependencies.
 1. Create a new file named _Whisper.js_ and open it in your preferred code editor. Copy the following code into the _Whisper.js_ file:
 
     ```javascript
-    require("dotenv/config");
     const { createReadStream } = require("fs");
     const { AzureOpenAI } = require("openai");
     
@@ -170,7 +169,6 @@ Your app's _package.json_ file will be updated with the dependencies.
 1. Create a new file named _Whisper.js_ and open it in your preferred code editor. Copy the following code into the _Whisper.js_ file:
     
     ```typescript
-    import "dotenv/config";
     import { createReadStream } from "fs";
     import { AzureOpenAI } from "openai";
     
