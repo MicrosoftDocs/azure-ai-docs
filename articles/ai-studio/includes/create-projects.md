@@ -15,11 +15,12 @@ To create a project in [Azure AI Studio](https://ai.azure.com), follow these ste
 1. Go to the **Home** page of [Azure AI Studio](https://ai.azure.com). If you are in a project, select **Azure AI Studio** at the top left of the page to go to the **Home** page.
 1. Select **+ New project**.
 1. Enter a name for the project.
-1. Select a hub if you have one, or select **Create new hub** and supply a name.
+1. If you have a hub, you'll see it selected here.  If you have access to more than one hub, you can select a different hub from the dropdown.
+1. If you don't have a hub, a default one is created for you.  If you want to change the default name, select **Create new hub** and supply a different name.
 
     :::image type="content" source="../media/how-to/projects/projects-create-details.png" alt-text="Screenshot of the project details page within the create project dialog." lightbox="../media/how-to/projects/projects-create-details.png":::
 
-1. Select **Create a project**.  Or, if you want to customize the hub, follow the steps in the next section.
+1. Select **Create a project**.  Or, if you want to customize a new hub, follow the steps in the next section.
 
 ### Customize the hub
 
