@@ -11,9 +11,6 @@ ms.date: 07/03/2024
 ms.author: pafarley
 ---
 
-# Custom categories (standard mode) (preview) User Flow
-
-![image](https://github.com/user-attachments/assets/2a510f8c-9f88-461e-9082-64d5e05ce13a)
 
 # Quickstart: Custom categories (standard mode) (preview)
 
@@ -28,6 +25,13 @@ For more information on Custom categories, see the [Custom categories concept pa
 > **Allow enough time for model training**
 >
 > The end-to-end execution of custom category training can take from around five hours to ten hours. Plan your moderation pipeline accordingly.
+
+
+## Custom categories (standard mode) (preview) User Flow
+
+![image](https://github.com/user-attachments/assets/2a510f8c-9f88-461e-9082-64d5e05ce13a)
+
+
 
 ## Prerequisites
 
