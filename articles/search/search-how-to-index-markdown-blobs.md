@@ -224,7 +224,7 @@ The Markdown is parsed based on headers into documents which contain the followi
 
   - `sections`: An array that contains objects representing subsections nested under the current section. This array follows the same structure as the top-level `sections` array, allowing for the representation of multiple levels of nested content. Each subsection object also includes `header_level`, `header_name`, `content`, and `ordinal_position` properties, enabling a recursive structure that represents and hierarchy of the Markdown content. 
 
-  Consider the following Markdown content. We use this content to explain an index schema that's designed around it, and what the search documents might look like for each parsing mode.
+Consider the following Markdown content. We use this content to explain an index schema that's designed around it, and what the search documents might look like for each parsing mode.
 
 ```md
 # Section 1
@@ -291,7 +291,7 @@ If you are not utilizing field mappings, the shape of the index should reflect t
 }
 ```
 
-Because the Markdown we want to index only goes to a depth of h2 ("##"), we need `sections` fields nested to a depth of 2 to match that. This configuration would result in the following data in the index:
+Because the Markdown we want to index only goes to a depth of `h2` ("##"), we need `sections` fields nested to a depth of 2 to match that. This configuration would result in the following data in the index:
 
 ```http
   "document_content": "# Section 1\r\nContent for section 1.\r\n## Subsection 1.1\r\nContent for subsection 1.1.\r\n# Section 2\r\nContent for section 2.\r\n",
@@ -321,7 +321,7 @@ Because the Markdown we want to index only goes to a depth of h2 ("##"), we need
 
 As you can see, the ordinal position increments based on the location of the content within the document.
 
-It should also be noted that if header levels are skipped in the content, then structure of the resulting document reflects the headers that are present in the Markdown content, not necessarily containing nested sections for `h1` through `h6` consecutively. For example, when the document begins at "h2", then the first element in the top-level sections array is "h2. 
+It should also be noted that if header levels are skipped in the content, then structure of the resulting document reflects the headers that are present in the Markdown content, not necessarily containing nested sections for `h1` through `h6` consecutively. For example, when the document begins at `h2`, then the first element in the top-level sections array is `h2`. 
 
 ```http
 POST https://[service name].search.windows.net/indexers?api-version=2024-07-01
