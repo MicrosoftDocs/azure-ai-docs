@@ -14,6 +14,6 @@ ms.custom: include
 
     * If you are in a project, select **Model catalog** from the left navigation pane.
     * If you have projects but aren't in one, select the project you wish to use, then select **Model catalog** from the left navigation pane. Or, you can select **Model catalog and benchmarks** at the bottom of the screen.
-    * If you've never used Azure AI Studio before, select **Explore models**. 
+    * If you're new to Azure AI Studio, select **Explore models**. 
   
-        :::image type="content" source="../media/tutorials/chat/home-page.png" alt-text="Screenshot of the home page if you have never created a project." lightbox="../media/tutorials/chat/home-page.png":::
+        :::image type="content" source="../media/tutorials/chat/home-page.png" alt-text="Screenshot of the home page if you're new to using Azure AI studio." lightbox="../media/tutorials/chat/home-page.png":::
