@@ -6,7 +6,7 @@ manager: scottpolly
 ms.service: azure-ai-studio
 ms.custom: references_regions, build-2024
 ms.topic: conceptual
-ms.date: 5/21/2024
+ms.date: 10/29/2024
 ms.reviewer: shubhirajMsft
 ms.author: scottpolly
 author: s-polly
@@ -15,6 +15,9 @@ author: s-polly
 # Data, privacy, and security for use of models through the model catalog in AI Studio
 
 This article describes how the data that you provide is processed, used, and stored when you deploy models from the model catalog. Also see the [Microsoft Products and Services Data Protection Addendum](https://aka.ms/DPA), which governs data processing by Azure services.
+
+> [!IMPORTANT]
+> For information about responsible AI in Azure OpenAI and AI services, see [Responsible use of AI](../../ai-services/responsible-use-of-ai-overview.md?context=/azure/ai-studio/context/context).
 
 ## What data is processed for models deployed in Azure AI Studio?
 
