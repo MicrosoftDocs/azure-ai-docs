@@ -17,7 +17,7 @@ To use Multimodal Intelligence, you need an Azure AI services resource. The mult
 
 1. To get started, you need an active [**Azure account**](https://azure.microsoft.com/free/cognitive-services/). If you don't have one, you can [**create a free 12-month subscription**](https://azure.microsoft.com/free/).
 
-1. Sign in to the [Azure portal](https://portal.azure.com) and select **Create a resource** from the Azure portal home page. The Azure AI services multi-service resource is listed under Azure AI services → Azure AI services in the portal as shown here:
+1. Once you have your Azure subscription, create an [**Azure AI services multi-services resource**](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIServices) in the Azure portal. The Azure AI services multi-service resource is listed under Azure AI services → Azure AI services in the portal as shown here:
 
     :::image type="content" source="../media/overview/azure-multi-service-resource.png" alt-text="Screenshot of the multi-service resource page in the Azure portal.":::
 
@@ -26,13 +26,13 @@ To use Multimodal Intelligence, you need an Azure AI services resource. The mult
 
 1. Select the **Create** button.
 
-1. Next, you're going to fill out the **`Create Document Intelligence`** fields with the following values:
+1. Next, you're going to fill out the **`Azure AI Services`** fields with the following values:
 
     * **Subscription**. Select one of your available Azure subscriptions.
     * **Resource group**. The [Azure resource group](/azure/cloud-adoption-framework/govern/resource-consistency/resource-access-management#what-is-an-azure-resource-group) that contains your resource. You can create a new group or add it to an existing group.
-    * **Region**. Select your local region. Different locations may introduce latency, but have no impact on the runtime availability of your resource.
+    * **Region**. To use Multimodal Intelligence, you must create an Azure AI Service resource in a [**supported region**]().
     * **Name**. Enter a name for your resource. We recommend using a descriptive name, for example *YourNameAIServicesResource*.
-    * **Pricing tier**. The cost of your resource depends on the pricing tier and options you choose and your usage. For more information, see [pricing details](https://azure.microsoft.com/pricing/details/cognitive-services/). You can use the free pricing tier (F0) to try the service, and upgrade later to a paid tier for production.
+    * **Pricing tier**. The cost of your resource depends on the pricing tier and options you choose and your usage. For more information, see [pricing details](https://azure.microsoft.com/pricing/details/cognitive-services/). 
 
 1. Configure other settings for your resource as needed, read, and accept the conditions (as applicable), and then select **Review + create**.
 

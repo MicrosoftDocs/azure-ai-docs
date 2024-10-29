@@ -1,5 +1,5 @@
 ---
-title: Azure AI Multimodal Intelligence custom document field extraction (preview)
+title: Azure AI Multimodal Intelligence Custom document extraction overview
 titleSuffix: Azure AI services
 description: Learn about Azure AI Multimodal Intelligence document solutions
 author: laujan
@@ -11,7 +11,7 @@ ms.date: 10/24/2024
 ---
 
 
-# Azure AI Multimodal Intelligence custom document field extraction (preview)
+# Azure AI Multimodal Intelligence custom document data extraction (preview)
 
 > [!IMPORTANT]
 >
@@ -39,7 +39,7 @@ Custom document field extraction currently supports the following fields:
 |-----------|---------------|--------------|---------|---------------|------------------|
 |Supported|Supported|Supported|Unsupported|Unsupported|Supported|
 
-## Common use cassette
+## Common use cases
 
 Custom Document Field Extraction can process complex documents with various formats, templates, and unstructured data:
 
@@ -51,27 +51,13 @@ Custom Document Field Extraction can process complex documents with various form
 
 * **Expense management**. Receipts and invoices from various retailers and businesses need to be parsed to validate expenses. Custom generative AI can extract expenses across different formats and documents with varying templates.
 
-## Supported languages
-
-| Language  Locale code | Default |
-|:----------------------|:---------|
-| English (United States) `en-US`| English (United States) `en-US`|
-
-## Supported regions
-
-During the public preview, custom document field extraction model capabilities are only available in the following Azure regions:
-
-* North Central US
-
-* East US
-
 ## Input requirements
 
 * For best results, provide one clear photo or high-quality scan per document.
 
 * Supported file formats: `PDF`, `TIFF`.
 
-* The file size for analyzing documents is 500 MB for paid (S0) tier and `4` MB for free (F0) tier.
+* The file size for analyzing documents is 500 MB for paid (S0) tier.
 
 * Image dimensions must be between 50 pixels x 50 pixels and 10,000 pixels x 10,000 pixels.
 

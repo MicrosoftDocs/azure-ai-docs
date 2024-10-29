@@ -21,7 +21,7 @@ items:
   - name: What's new
     displayName: changelog, release, updates, previews
     href: whats-new.md
-- name: Azure AI Multimodal Intelligence capabilities
+- name: Capabilities
   items:
   - name: Audio
     items:
@@ -37,21 +37,19 @@ items:
     items:
       - name: Custom
         items:
-        - name: Custom extraction overview
+        - name: Custom document extraction overview
           displayName: document, text, images, video, audio, multi-modal, visual, structured, content, field, extraction
-          href: document/custom/field-extraction.md
+          href: document/custom/overview.md
   - name: Video
     items:
+    - name: Video overview
+      displayName: video, audio, voice, recognition, synthesis, speaker, identification, verification, diarization, transcription, translation, language, understanding, sentiment, analysis, emotion, detection, pronunciation, model
+      href: video/extract-metadata.md
     - name: Scenarios
       items:
-        - name: Extract metadata for media asset management
-          displayName: video, audio, voice, recognition, synthesis, speaker, identification, verification, diarization, transcription, translation, language, understanding, sentiment, analysis, emotion, detection, pronunciation, model
-          href: video/how-to/extract-metadata.md
-- name: Concepts
-  items:
-  - name: Content extraction
-    displayName: content, extraction, field, structured, document, text, images, video, audio, multi-modal, visual
-    href: concept/content-extraction.md
+        - name: Set up a media asset management workflow
+          displayName: video, document, text, images,audio, multi-modal, visual, structured, content, field, extraction
+          href: video/how-to/set-up-video-assets-mam.md
 - name: Quickstarts
   items:
   - name: Multimodal Intelligence REST API

@@ -23,7 +23,6 @@ To use the Azure AI Multimodal Intelligence service, you must create your Azure 
 | US | East US | eastus |
 | Europe | West Europe | westeurope |
 | Europe | Sweden Central | swedencentral |
-| Asia Pacific | SouthEast Asia | southeastasia |
 | Australia | Australia East | australiaeast |
 
 ## Language support
