@@ -140,7 +140,7 @@ items:
     href: train/custom-lifecycle.md
 - name: Add-on features
   items:
-  - name: Premium capabilities
+  - name: Enhanced capabilities
     displayName: extract, formula, font, styles, fontStyle, ocr.highResolution, ocr.formula, high resolution, background color, inline, display
     href: concept-add-on-capabilities.md
   - name: Query field extraction
