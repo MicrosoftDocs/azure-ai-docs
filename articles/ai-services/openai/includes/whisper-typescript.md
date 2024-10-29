@@ -101,7 +101,7 @@ Your app's _package.json_ file will be updated with the dependencies.
 
 #### [Microsoft Entra ID](#tab/typescript-keyless)
 
-1. Create a new file named _Whisper.js_ and open it in your preferred code editor. Copy the following code into the _Whisper.js_ file:
+1. Create a new file named _Whisper.ts_ and open it in your preferred code editor. Copy the following code into the _Whisper.ts_ file:
     
     ```typescript
     import { createReadStream } from "fs";
@@ -161,7 +161,7 @@ Your app's _package.json_ file will be updated with the dependencies.
 
 #### [API key](#tab/typescript-key)
 
-1. Create a new file named _Whisper.js_ and open it in your preferred code editor. Copy the following code into the _Whisper.js_ file:
+1. Create a new file named _Whisper.ts_ and open it in your preferred code editor. Copy the following code into the _Whisper.ts_ file:
     
     ```typescript
     import { createReadStream } from "fs";
