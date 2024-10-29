@@ -99,6 +99,15 @@ Currently, Azure AI Content Safety has an **F0** and **S0** pricing tier. See th
 
 ## Service limits
 
+> [!CAUTION]
+> **Deprecation Notice**
+>
+> As part of Content Safety versioning and lifecycle management, we are announcing the deprecation of certain Public Preview and GA versions of our service APIs. Following our deprecation policy:
+> * **Public Preview versions**: Each new Public Preview version will trigger the deprecation of the previous preview version after a 90-day period, provided no breaking changes are introduced.
+> * **GA versions**: When a new GA version is released, the prior GA version will be deprecated after a 90-day period if compatibility is maintained.
+>
+> See the [What's new](./whats-new.md) page for upcoming deprecations.
+
 ### Input requirements
 
 See the following list for the input requirements for each feature.
