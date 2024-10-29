@@ -24,7 +24,8 @@ Projects are hosted by an Azure AI Studio hub that provides enterprise-grade sec
 ## Prerequisites
 
 - An Azure subscription. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/).
-- An Azure AI Studio hub. If you don't have a hub, see [How to create and manage an Azure AI Studio hub](create-azure-ai-resource.md).
+- For Python SDK or CLI steps, an Azure AI Studio hub. If you don't have a hub, see [How to create and manage an Azure AI Studio hub](create-azure-ai-resource.md). 
+- For Azure AI Studio, a hub is not required, it is created when needed.
 
 ## Create a project
 
@@ -79,17 +80,17 @@ Use the following tabs to select the method you plan to use to create a project:
 
 # [Azure AI Studio](#tab/ai-studio)
 
-On the project **Settings** page you can find information about the project, such as the project name, description, and the hub that hosts the project. You can also find the project ID, which is used to identify the project via SDK or API.
+On the project **Overview** page you can find information about the project, such as the project name, description, and the hub that hosts the project. You can also find the project ID, which is used to identify the project via SDK or API.
 
 :::image type="content" source="../media/how-to/projects/project-settings.png" alt-text="Screenshot of an AI Studio project settings page." lightbox = "../media/how-to/projects/project-settings.png":::
 
 - Name: The name of the project corresponds to the selected project in the left panel. 
-- Hub: The hub that hosts the project. 
 - Location: The location of the hub that hosts the project. For supported locations, see [Azure AI Studio regions](../reference/region-support.md).
 - Subscription: The subscription that hosts the hub that hosts the project.
 - Resource group: The resource group that hosts the hub that hosts the project.
 
-Select **Manage in the Azure portal** to navigate to the project resources in the Azure portal.
+Select **Management center** to navigate to the project resources in Azure AI Studio.
+Select **Manage in Azure portal** to navigate to the project resources in the Azure portal.
 
 # [Python SDK](#tab/python)
 
