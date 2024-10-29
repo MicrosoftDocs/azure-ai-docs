@@ -8,7 +8,7 @@ ms.service: azure-ai-search
 ms.custom:
   - build-2024
 ms.topic: how-to
-ms.date: 05/08/2024
+ms.date: 10/29/2024
 ---
 
 # How to implement integrated vectorization using models from Azure AI Studio
