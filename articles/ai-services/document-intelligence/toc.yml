@@ -9,6 +9,9 @@ items:
     href: overview.md
   - name: Which model should I choose?
     href: concept/choose-model-feature.md
+  - name: Create a Document Intelligence resource
+    displayName: endpoint, key, portal
+    href:  how-to-guides/create-document-intelligence-resource.md  
   - name: Document Intelligence Studio
     displayName: get started
     href: studio-overview.md
@@ -138,9 +141,9 @@ items:
   - name: Custom model lifecycle
     displayName: custom, train, modelId, model ID, expiration, train, build
     href: train/custom-lifecycle.md
-- name: Features
+- name: Add-on features
   items:
-  - name: Add-on capabilities
+  - name: Enhanced capabilities
     displayName: extract, formula, font, styles, fontStyle, ocr.highResolution, ocr.formula, high resolution, background color, inline, display
     href: concept-add-on-capabilities.md
   - name: Query field extraction
@@ -176,9 +179,6 @@ items:
   - name: Use Document Intelligence models
     displayName: documentAnalysisClient, document analysis client, polygon, boundingPolygon, begin_analyze_document,ormRecognizerClient, Document Intelligence client, boundingBox, box, begin_recognize, v2.1
     href: how-to-guides/use-sdk-rest-api.md
-  - name: Create a Document Intelligence resource
-    displayName: endpoint, key, portal
-    href:  how-to-guides/create-document-intelligence-resource.md
   - name: 🆕 Build and train a custom generative model
     displayName: ai studio, neural, template, custom
     href: how-to-guides/build-train-custom-generative-model.md
@@ -327,7 +327,7 @@ items:
     - name: Bank statement
       href: https://github.com/Azure-Samples/document-intelligence-code-samples/blob/main/schema/2024-07-31-preview/bank-statement.md
     - name: Business card (2023-07-31 GA)
-      href: https://github.com/Azure-Samples/document-intelligence-code-samples/blob/main/schema/2023-07-31/business-card.md
+      href: https://github.com/Azure-Samples/document-intelligence-code-samples/blob/main/schema/2023-07-31-ga/business-card.md
     - name: Contract
       href: https://github.com/Azure-Samples/document-intelligence-code-samples/blob/main/schema/2024-07-31-preview/contract.md
     - name: Credit card

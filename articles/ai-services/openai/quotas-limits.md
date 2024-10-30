@@ -10,7 +10,7 @@ ms.custom:
   - ignite-2023
   - references_regions
 ms.topic: conceptual
-ms.date: 10/11/2024
+ms.date: 10/23/2024
 ms.author: mbullwin
 ---
 
@@ -132,14 +132,14 @@ The Usage Limit determines the level of usage above which customers might see la
 
 |Model| Usage Tiers per month |
 |----|----|
-|`gpt-4o` | 8 Billion tokens |
-|`gpt-4o-mini` | 45 Billion tokens |
+|`gpt-4o` | 12 Billion tokens |
+|`gpt-4o-mini` | 85 Billion tokens |
 
 #### GPT-4 standard
 
 |Model| Usage Tiers per month|
 |---|---|
-| `gpt-4` + `gpt-4-32k`  (all versions) | 4 Billion |
+| `gpt-4` + `gpt-4-32k`  (all versions) | 6 Billion |
 
 
 ## Other offer types
@@ -168,7 +168,7 @@ To minimize issues related to rate limits, it's a good idea to use the following
 
 ### How to request increases to the default quotas and limits
 
-Quota increase requests can be submitted from the [Quotas](./how-to/quota.md) page of Azure OpenAI Studio. Note that due to overwhelming demand, quota increase requests are being accepted and will be filled in the order they are received. Priority will be given to customers who generate traffic that consumes the existing quota allocation, and your request might be denied if this condition isn't met.
+Quota increase requests can be submitted from the [Quotas](./how-to/quota.md) page of Azure AI Studio. Note that due to overwhelming demand, quota increase requests are being accepted and will be filled in the order they are received. Priority will be given to customers who generate traffic that consumes the existing quota allocation, and your request might be denied if this condition isn't met.
 
 For other rate limits, [submit a service request](../cognitive-services-support-options.md?context=/azure/ai-services/openai/context/context).
 

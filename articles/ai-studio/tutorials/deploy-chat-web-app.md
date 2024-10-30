@@ -1,20 +1,21 @@
 ---
-title: Deploy an Enterprise Chat web app in the Azure AI Studio playground
+title: "Tutorial: Deploy an enterprise chat web app in the Azure AI Studio playground"
 titleSuffix: Azure AI Studio
 description: Use this article to deploy an enterprise chat web app in the Azure AI Studio playground.
-manager: nitinme
+manager: scottpolly
 ms.service: azure-ai-studio
 ms.custom:
   - ignite-2023
   - build-2024
 ms.topic: tutorial
-ms.date: 5/21/2024
+ms.date: 10/28/2024
 ms.reviewer: sgilley
-ms.author: aahi
-author: aahill
+ms.author: sgilley
+author: sdgilley
+# customer intent: As a developer, I want to deploy an enterprise chat web app in the Azure AI Studio playground so that I can use my own data with a large language model.
 ---
 
-# Tutorial: Deploy an Enterprise Chat web app
+# Tutorial: Deploy an enterprise chat web app
 
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
@@ -32,19 +33,19 @@ The steps in this tutorial are:
 ## Prerequisites
 
 - An Azure subscription - <a href="https://azure.microsoft.com/free/cognitive-services" target="_blank">Create one for free</a>.
-- An [AI Studio hub](../how-to/create-azure-ai-resource.md), [project](../how-to/create-projects.md), and [deployed Azure OpenAI](../how-to/deploy-models-openai.md) chat model. Complete the [AI Studio playground quickstart](../quickstarts/get-started-playground.md) to create these resources if you haven't already.
+- A [deployed Azure OpenAI](../how-to/deploy-models-openai.md) chat model. Complete the [AI Studio playground quickstart](../quickstarts/get-started-playground.md) to create this resource if you haven't already.
 
-- An [Azure AI Search service connection](../how-to/connections-add.md#create-a-new-connection) to index the sample product data. 
+- An [Azure AI Search service connection](../how-to/connections-add.md#create-a-new-connection) to index the sample product data.
 
-- You need a local copy of product data. The [Azure-Samples/rag-data-openai-python-promptflow repository on GitHub](https://github.com/Azure-Samples/rag-data-openai-python-promptflow/) contains sample retail product information that's relevant for this tutorial scenario. Specifically, the `product_info_11.md` file contains product information about the TrailWalker hiking shoes that's relevant for this tutorial example. [Download the example Contoso Trek retail product data in a ZIP file](https://github.com/Azure-Samples/rag-data-openai-python-promptflow/raw/refs/heads/main/tutorial/data/product-info.zip) to your local machine.
+- A local copy of product data. The [Azure-Samples/rag-data-openai-python-promptflow repository on GitHub](https://github.com/Azure-Samples/rag-data-openai-python-promptflow/) contains sample retail product information that's relevant for this tutorial scenario. Specifically, the `product_info_11.md` file contains product information about the TrailWalker hiking shoes that's relevant for this tutorial example. [Download the example Contoso Trek retail product data in a ZIP file](https://github.com/Azure-Samples/rag-data-openai-python-promptflow/raw/refs/heads/main/tutorial/data/product-info.zip) to your local machine.
 
-- You need to have **Microsoft.Web** resource provider registered in the selected subscription, to be able to deploy to a web app.
+- A **Microsoft.Web** resource provider registered in the selected subscription, to be able to deploy to a web app.
 
 ## Add your data and try the chat model again
 
-In the [AI Studio playground quickstart](../quickstarts/get-started-playground.md) (that's a prerequisite for this tutorial), you can observe how your model responds without your data. Now you add your data to the model to help it answer questions about your products.
+In the [AI Studio playground quickstart](../quickstarts/get-started-playground.md) (that's a prerequisite for this tutorial), observe how your model responds without your data. Now you add your data to the model to help it answer questions about your products.
 
-[!INCLUDE [Chat with your data](../includes/chat-with-data.md)]
+[!INCLUDE [Chat with your data](../includes/chat-with-data.md)] 
 
 ## Deploy your web app
 
@@ -71,14 +72,14 @@ Publishing creates an Azure App Service in your subscription. It might incur cos
 To deploy the web app:
 
 > [!NOTE]
-> You need to have **Microsoft.Web** resource provider registered in the selected subscription, to be able to deploy to a web app. 
+> You need to have **Microsoft.Web** resource provider registered in the selected subscription, to be able to deploy to a web app.
 
 1. Complete the steps in the previous section to [add your data](#add-your-data-and-try-the-chat-model-again) to the playground. 
 
     > [!NOTE]
     > You can deploy a web app with or without your own data, but at least you need a deployed model as described in the [AI Studio playground quickstart](../quickstarts/get-started-playground.md).
 
-1. Select **Deploy to a web app**.
+1. Select **Deploy > ...as a web app**.
 
     :::image type="content" source="../media/tutorials/chat/deploy-web-app.png" alt-text="Screenshot of the deploy new web app button." lightbox="../media/tutorials/chat/deploy-web-app.png":::
 
@@ -88,13 +89,11 @@ To deploy the web app:
     - **Resource group**: Select a resource group in which to deploy the web app. You can use the same resource group as the hub.
     - **Location**: Select a location in which to deploy the web app. You can use the same location as the hub.
     - **Pricing plan**: Choose a pricing plan for the web app.
-    - **Enable chat history in the web app**: For the tutorial, the chat history box isn't selected. If you enable the feature, your users will have access to their individual previous queries and responses. For more information, see [chat history remarks](#chat-history).
+    - **Enable chat history in the web app**: For the tutorial, the chat history box isn't selected. If you enable the feature, your users will have access to their individual previous queries and responses. For more information, see [chat history remarks](#understand-chat-history).
 
 1. Select **Deploy**.
 
 1. Wait for the app to be deployed, which might take a few minutes. 
-
-    :::image type="content" source="../media/tutorials/chat/deploy-wait-to-launch.png" alt-text="Screenshot of the web app deployment in progress message and the launch button." lightbox="../media/tutorials/chat/deploy-wait-to-launch.png":::
 
 1. When it's ready, the **Launch** button is enabled on the toolbar. But don't launch the app yet and don't close the chat playground page - you return to it later.
 
@@ -133,13 +132,7 @@ You're almost there! Now you can test the web app.
 
    :::image type="content" source="../media/tutorials/chat/chat-with-data-web-app.png" alt-text="Screenshot of the chat experience via the deployed web app." lightbox="../media/tutorials/chat/chat-with-data-web-app.png":::
 
-## Clean up resources
-
-To avoid incurring unnecessary Azure costs, you should delete the resources you created in this quickstart if they're no longer needed. To manage resources, you can use the [Azure portal](https://portal.azure.com?azure-portal=true).
-
-## Remarks
-
-### Chat history
+## Understand chat history
 
 With the chat history feature, your users will have access to their individual previous queries and responses.
 
@@ -154,6 +147,10 @@ You can enable chat history when you [deploy the web app](#deploy-the-web-app). 
 Once you've enabled chat history, your users will be able to show and hide it in the top right corner of the app. When the history is shown, they can rename, or delete conversations. As they're logged into the app, conversations will be automatically ordered from newest to oldest, and named based on the first query in the conversation.
 
 If you delete the Cosmos DB resource but keep the chat history option enabled on the studio, your users will be notified of a connection error, but can continue to use the web app without access to the chat history.
+
+## Clean up resources
+
+To avoid incurring unnecessary Azure costs, you should delete the resources you created in this quickstart if they're no longer needed. To manage resources, you can use the [Azure portal](https://portal.azure.com?azure-portal=true).
 
 ## Related content
 
