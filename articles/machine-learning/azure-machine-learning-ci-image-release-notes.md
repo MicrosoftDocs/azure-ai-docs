@@ -22,7 +22,7 @@ Main updates provided with each image version are described in the below section
 
 ## October 30, 2024
 
-Image Version: 24.10.24
+Image Version: '24.10.24'
 
 Release Notes:
 
@@ -32,7 +32,7 @@ Python: `3.10.11`
 
 Nvidia Driver:  `535.183.06`
 
-Cuda: `12.2`
+`CUDA`: `12.2`
 
 Jupyter-core: `5.7.2`
 
@@ -40,7 +40,7 @@ zeromq: `4.3.5`
 
 ## September 27, 2024
 
-Image Version : 24.09.23
+Image Version : '24.09.23'
 
 Release Notes:
 
@@ -98,7 +98,7 @@ krb5-admin-server, krb5-kdc, krb5-kdc-ldap, krb5-otp, krb5-pkinit, krb5-user, li
 
 ## August 2, 2024
 
-Image Version: 24.07.01
+Image Version: '24.07.01'
  
 Release Notes:
  
@@ -189,7 +189,7 @@ SDK （azureml-core): `1.56.0`
 
 Python: `3.9`
 
-CUDA: `12.2`
+`CUDA`: `12.2`
 
 CUDnn==`9.1.1`
 
