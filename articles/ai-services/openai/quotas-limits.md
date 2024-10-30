@@ -108,6 +108,18 @@ The following sections provide you with a quick guide to the default quotas and 
 
 M = million | K = thousand
 
+### gpt-4o data zone standard
+
+| Model|Tier| Quota Limit in tokens per minute (TPM) | Requests per minute |
+|---|---|:---:|:---:|
+|`gpt-4o`|Enterprise agreement | 10 M | 60 K |
+|`gpt-4o-mini` | Enterprise agreement | 20 M | 120 K |
+|`gpt-4o` |Default | 300 K | 1.8 K |
+|`gpt-4o-mini` | Default | 1 M | 6 K  |
+
+M = million | K = thousand
+
+
 ### gpt-4o standard
 
 | Model|Tier| Quota Limit in tokens per minute (TPM) | Requests per minute |
