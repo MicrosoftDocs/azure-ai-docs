@@ -23,14 +23,14 @@ Each modality covers a set of MIME file types. 
 |--- | --- | --- | --- | --- |
 |Image | .jpg, .png, .bmp, .heif| ≤ 20 MB (OpenAI-enforced) | Min: 50 x 50 Max: 10k x 10k |  |
 |Document |  pdf, tiff, jpg, png, bmp, heif, txt  | asynchronous: ≤ 200MB |  | asynchronous: ≤ 300 pages |
-|Speech | mp3, wav, wma, aac, ogg, flac, mp4, avi, mov, wmv, mkv  | asynchronous: ≤ 200MB |  | asynchronous: ≤ 2h |
+|Speech | mp3, wav, wma, aac, ogg, flac, mp4, avi, mov, wmv, mkv  | asynchronous: ≤ 200MB |  | asynchronous: ≤ 2h |
 |Video | MP4 (.mp4, .m4a, .m4v), FLV (with H.264 and AAC codecs) (.flv), ISMV (.isma, .ismv), MXF (.mxf), GXF (.gxf), MPEG2-PS,MPEG2-TS, 3GP (.ts, .ps, .3gp, .3gpp, .mpg), Windows Media Video (WMV)/ASF (.wmv, .asf), AVI (Uncompressed 8bit/10bit) (.avi),Microsoft Digital Video Recording (DVR-MS) (.dvr-ms), Matroska/WebM (.mkv), WAVE/WAV (.wav), QuickTime (.mov)  | asynchronous: ≤2GB (body) asynchronous: ≤20GB (URL)| Min: 320 x 240 Max: 1920 x 1080 | asynchronous: ≤30m (body) asynchronous: ≤30m (URL) |
 | text | | ≤ 1 MB |  | ≤ 1M characters |
 
 ### Supported Codecs
 |Modality| Codecs |
 | --- | ---|
-| Video | AVC 8-bit/10-bit, up to 4:2:2, including AVCIntra, 8 bit 4:2:0 and 4:2:2, Sony XAVC / XAVC S (in MXF container), Avid DNxHD (in MXF container), DVCPro/DVCProHD (in MXF container), Digital video (DV) (in AVI files), JPEG 2000, MPEG-2 (up to 422 Profile and High Level; including variants such as Sony XDCAM, Sony XDCAM HD, Sony XDCAM IMX, CableLabs®, and D10), up to 420 profiles, MPEG-1, VC-1/WMV9, MPEG-4 Part 2, Theora, YUV420 uncompressed, or mezzanine, Apple ProRes 422, Apple ProRes 422 LT, Apple ProRes 422 HQ, Apple ProRes 4444, Apple ProRes 4444 XQ, HEVC/H.265 Main Profile |
+| Video | AVC 8-bit/10-bit, up to 4:2:2, including AVCIntra, 8 bit 4:2:0 and 4:2:2, Sony XAVC / XAVC S (in MXF container), Avid DNxHD (in MXF container), DVCPro/DVCProHD (in MXF container), Digital video (DV) (in AVI files), JPEG 2000, MPEG-2 (up to 422 Profile and High Level; including variants such as Sony XDCAM, Sony XDCAM HD, Sony XDCAM IMX, CableLabs&reg;, and D10), up to 420 profiles, MPEG-1, VC-1/WMV9, MPEG-4 Part 2, Theora, YUV420 uncompressed, or mezzanine, Apple ProRes 422, Apple ProRes 422 LT, Apple ProRes 422 HQ, Apple ProRes 4444, Apple ProRes 4444 XQ, HEVC/H.265 Main Profile |
 | Audio | AAC (AAC-LC, AAC-HE, and AAC-HEv2; up to 5.1), MPEG Layer 2, MP3 (MPEG-1 Audio Layer 3), Windows Media Audio, WAV/PCM, FLAC, Opus, Vorbis, AMR (adaptive multi-rate) |
 
 ## Field Schema Limits 

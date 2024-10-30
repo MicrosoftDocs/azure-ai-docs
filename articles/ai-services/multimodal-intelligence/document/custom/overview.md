@@ -1,5 +1,5 @@
 ---
-title: Azure AI Multimodal Intelligence Custom document extraction overview
+title: Azure AI Multimodal Intelligence custom document extraction overview
 titleSuffix: Azure AI services
 description: Learn about Azure AI Multimodal Intelligence document solutions
 author: laujan

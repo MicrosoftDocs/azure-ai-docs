@@ -7,6 +7,12 @@ items:
   - name: What is Azure AI Multimodal Intelligence?
     displayName: document, text, images, video, audio, multi-modal, visual,structured, content, field, extraction,
     href: overview.md
+  - name: Create an Azure AI resource
+    displayName: extract, text, images, OCR, optical character recognition
+    href: how-to/create-multi-service-resource.md
+  - name: Azure AI Studio
+    displayName: studio, portal, web, interface, dashboard, workspace, project, resource, service, cognitive, applied, form recognizer, form, recognizer
+    href: azure-ai-studio-overview.md
   - name: Service quotas and limits
     displayName: quota, tiers, throttle, max, adjustments, requests, support, ocr
     href: service-limits.md
@@ -55,8 +61,4 @@ items:
   - name: Multimodal Intelligence REST API
     displayName: quickstart, extract, text, images, OCR, optical character recognition
     href: quickstart/rest-api.md
-- name: How-to guides
-  items:
-  - name: Create an Azure AI multi-service resource
-    displayName: extract, text, images, OCR, optical character recognition
-    href: how-to/create-multi-service-resource.md
+    
