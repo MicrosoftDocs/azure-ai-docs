@@ -494,7 +494,10 @@ These models can only be used with Embedding API requests.
 
 ## Fine-tuning models
 
-`gpt-35-turbo` - fine-tuning of this model is limited to a subset of regions, and is not available in every region the base model is available.  
+> [!NOTE]
+> The supported regions might vary if you use Azure OpenAI models in an AI Studio project versus outside a project.
+>
+> `gpt-35-turbo` - fine-tuning of this model is limited to a subset of regions, and is not available in every region the base model is available. 
 
 |  Model ID  | Fine-Tuning Regions | Max Request (tokens) | Training Data (up to) |
 |  --- | --- | :---: | :---: |
