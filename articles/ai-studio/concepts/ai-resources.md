@@ -9,7 +9,7 @@ ms.custom:
   - build-2024
   - ai-learning-hub
 ms.topic: conceptual
-ms.date: 06/24/2024
+ms.date: 11/19/2024
 ms.reviewer: deeikele
 ms.author: larryfr
 author: Blackmist
