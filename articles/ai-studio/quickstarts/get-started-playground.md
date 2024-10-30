@@ -8,7 +8,7 @@ ms.custom:
   - build-2024
 ms.topic: quickstart
 ms.date: 10/22/2024
-ms.reviewer: lebaro
+ms.reviewer: zuramir
 ms.author: sgilley
 author: sdgilley
 # customer intent: As a developer, I want use the chat playground in Azure AI Studio so I can work with generative AI.

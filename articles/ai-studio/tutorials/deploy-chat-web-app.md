@@ -9,7 +9,7 @@ ms.custom:
   - build-2024
 ms.topic: tutorial
 ms.date: 10/28/2024
-ms.reviewer: sgilley
+ms.reviewer: tgokal
 ms.author: sgilley
 author: sdgilley
 # customer intent: As a developer, I want to deploy an enterprise chat web app in the Azure AI Studio playground so that I can use my own data with a large language model.
