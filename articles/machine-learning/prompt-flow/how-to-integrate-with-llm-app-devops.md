@@ -1,8 +1,7 @@
 ---
-title: Integrate prompt flow with LLM-based application DevOps
+title: Integrate prompt flow with DevOps for LLM-based applications
 titleSuffix: Azure Machine Learning
-description: Learn about integration of prompt flow with LLM-based application DevOps in Azure Machine Learning
-services: machine-learning
+description: Integrate prompt flow with DevOps to enhance your LLM-based application development workflows in Azure Machine Learning.
 ms.service: azure-machine-learning
 ms.subservice: prompt-flow
 ms.custom:
@@ -12,90 +11,89 @@ ms.topic: how-to
 author: lgayhardt
 ms.author: lagayhar
 ms.reviewer: chenlujiao
-ms.date: 11/02/2023
+ms.date: 10/29/2024
 ---
 
-# Integrate prompt flow with LLM-based application DevOps
+# Integrate prompt flow with DevOps for LLM-based applications
 
-In this article, you learn about the integration of prompt flow with LLM-based application DevOps in Azure Machine Learning. Prompt flow offers a developer-friendly and easy-to-use code-first experience for flow developing and iterating with your entire LLM-based application development workflow.
+Prompt flow is a developer-friendly and easy-to-use code-first experience to develop and iterate flows for large language model (LLM)-based application development. Prompt flow provides an SDK and CLI, a Visual Studio Code extension, and a flow UI. These tools facilitate local flow development, local flow run and evaluation run triggering, and transitioning flows from local to Azure Machine Learning cloud workspace environments.
 
-It provides an **prompt flow SDK and CLI**, an **VS code extension**, and the new UI of **flow folder explorer** to facilitate the local development of flows, local triggering of flow runs and evaluation runs, and transitioning flows from local to cloud (Azure Machine Learning workspace) environments.
+You can combine the prompt flow code capability experience with developer operations (DevOps) to enhance your LLM-based application development workflows. This article focuses on integrating prompt flow with LLM-based application DevOps in Azure Machine Learning.
 
-This documentation focuses on how to effectively combine the capabilities of prompt flow code experience and DevOps to enhance your LLM-based application development workflows.
+:::image type="content" source="./media/how-to-integrate-with-llm-app-devops/devops-process.png" alt-text="Diagram showing the following flow: create flow, develop and test flow, versioning in code repo, submit runs to cloud, and debut and iteration." border="false" lightbox = "./media/how-to-integrate-with-llm-app-devops/devops-process.png":::
 
-:::image type="content" source="./media/how-to-integrate-with-llm-app-devops/devops-process.png" alt-text="Diagram of the showing the following flow: create flow, develop and test flow, versioning in code repo, submit runs to cloud, and debut and iteration. " lightbox = "./media/how-to-integrate-with-llm-app-devops/devops-process.png":::
+## Prerequisites
 
-## Introduction of code-first experience in prompt flow
+- An Azure Machine Learning workspace. To create one, see [Create resources to get started](../quickstart-create-resources.md).
 
-When developing applications using LLM, it's common to have a standardized application engineering process that includes code repositories and CI/CD pipelines. This integration allows for a streamlined development process, version control, and collaboration among team members.
+- A Python environment with the Azure Machine Learning Python SDK v2 installed, created by following the instructions at [](https://github.com/Azure/azureml-examples/tree/sdk-preview/sdk#getting-started).
 
-For developers experienced in code development who seek a more efficient GenAIOps (sometimes called LLMOps) iteration process, the following key features and benefits you can gain from prompt flow code experience:
+  This environment is for defining and controlling your Azure Machine Learning resources and is separate from the environment the compute session uses. For more information about the compute session, see [Manage prompt flow compute session in Azure Machine Learning studio](how-to-manage-compute-session.md).
 
-- **Flow versioning in code repository**. You can define your flow in YAML format, which can stay aligned with the referenced source files in a folder structure. 
-- **Integrate flow run with CI/CD pipeline**. You can trigger flow runs using the prompt flow CLI or SDK, which can be seamlessly integrated into your CI/CD pipeline and delivery process.
-- **Smooth transition from local to cloud**. You can easily export your flow folder to your local or code repository for version control, local development and sharing. Similarly, the flow folder can be effortlessly imported back to the cloud for further authoring, testing, deployment in cloud resources.
+- The prompt flow SDK installed by running `pip install promptflow` and `pip install promptflow-tools` in a command shell.
 
-## Accessing prompt flow code definition
+- Visual Studio Code with the Python and Prompt flow extensions installed.
 
-Each flow each prompt flow is associated with a **flow folder structure** that contains essential files for defining the flow in code **folder structure**. This folder structure organizes your flow, facilitating smoother transitions.
+  :::image type="content" source="./media/how-to-integrate-with-llm-app-devops/vs-code-extension.png" alt-text="Screenshot of the Python and Prompt flow extensions in Visual Studio Code."
 
-Azure Machine Learning offers a shared file system for all workspace users. Upon creating a flow, a corresponding flow folder is automatically generated and stored there, located in the ```Users/<username>/promptflow``` directory.
+## Use a code-first experience in prompt flow
 
-:::image type="content" source="./media/how-to-integrate-with-llm-app-devops/flow-folder-created-in-file-share-storage.png" alt-text="Screenshot of standard flow creation showing the create a new flow. " lightbox = "./media/how-to-integrate-with-llm-app-devops/flow-folder-created-in-file-share-storage.png":::
+When you develop applications that use LLMs, you usually follow a standardized application engineering process that includes code repositories and continuous integration/continuous deployment (CI/CD) pipelines. This integration allows for a streamlined development process, version control, and collaboration among team members.
+
+The prompt flow code experience offers code developers a more efficient GenAIOps or LLMOps iteration process with the following key features and benefits:
+
+- **Flow versioning in the code repository**. You define flows in YAML format, which stays aligned with the referenced source files in a folder structure.
+- **Flow run integration with CI/CD pipelines**. You can seamlessly integrate into your CI/CD pipeline and delivery process by using the prompt flow CLI or SDK to trigger flow runs.
+- **Smooth transition from local to cloud**. You can easily export your flow folder to your local or upstream code repository for version control, local development, and sharing. You can also effortlessly import the flow folder back to Azure Machine Learning for further authoring, testing, and deployment in cloud resources.
+
+## Access prompt flow code
+
+Each prompt flow has a flow folder structure that contains essential files for defining the flow in code. The folder structure organizes your flow, facilitating smoother transitions.
+
+Azure Machine Learning offers a shared file system for all workspace users. Upon flow creation, a corresponding flow folder is automatically generated and stored in the *Users/\<username>/promptflow* directory.
+
+:::image type="content" source="./media/how-to-integrate-with-llm-app-devops/flow-folder-created-in-file-share-storage.png" alt-text="Screenshot of standard flow creation showing a new flow." lightbox = "./media/how-to-integrate-with-llm-app-devops/flow-folder-created-in-file-share-storage.png":::
 
 ### Flow folder structure
 
-Overview of the flow folder structure and the key files it contains:
+Once you create a flow, you can use the **Files** section of the flow authoring page to view, edit, and manage the flow files. Any modifications you make to the files reflect directly in the file share storage.
 
-- **flow.dag.yaml**: This primary flow definition file, in YAML format, includes information about inputs, outputs, nodes, tools, and variants used in the flow. It's integral for authoring and defining the prompt flow.
-- **Source code files (.py, .jinja2)**: The flow folder also includes user-managed source code files, which are referred to by the tools/nodes in the flow.
-    - Files in Python (.py) format can be referenced by the python tool for defining custom python logic.
-    - Files in Jinja 2 (.jinja2) format can be referenced by the prompt tool or LLM tool for defining prompt context.
-- **Non-source files**: The flow folder can also contain nonsource files such as utility files and data files that can be included in the source files.
+:::image type="content" source="./media/how-to-integrate-with-llm-app-devops/flow-file-explorer.png" alt-text="Screenshot of a standard flow authoring page highlighting the Files pane." lightbox = "./media/how-to-integrate-with-llm-app-devops/flow-file-explorer.png":::
 
-Once the flow is created, you can navigate to the Flow Authoring Page to view and operate the flow files in the right file explorer. This allows you to view, edit, and manage your files. Any modifications made to the files are directly reflected in the file share storage.
+The flow folder structure contains the following key files:
 
-:::image type="content" source="./media/how-to-integrate-with-llm-app-devops/flow-file-explorer.png" alt-text="Screenshot of standard flow highlighting the files explorer. " lightbox = "./media/how-to-integrate-with-llm-app-devops/flow-file-explorer.png":::
+- *flow.dag.yaml* is the primary flow definition file, in YAML format. This file is integral to authoring and defining the prompt flow and includes information about inputs, outputs, nodes, tools, and variants the flow uses.
+- User-managed source code files in Python or Jinja 2 format refer to the tools and nodes in the flow. The Python tool uses *.py* files to define custom Python logic. The prompt tool and LLM tool use *.jinja2* files to define prompt context.
+- Nonsource files like utility files and data files can be included in the flow folder with the source files.
 
-With "Raw file mode" switched on, you can view and edit the raw content of the files in the file editor, including the flow definition file `flow.dag.yaml` and the source files.
+Enable **Raw file mode** to view and edit the raw content of the files in the file editor, including the *flow.dag.yaml* flow definition file and the source files.
 
-:::image type="content" source="./media/how-to-integrate-with-llm-app-devops/flow-day-yaml-raw-file.png" alt-text="Screenshot of raw file mode on a standard flow. " lightbox = "./media/how-to-integrate-with-llm-app-devops/flow-day-yaml-raw-file.png":::
+:::image type="content" source="./media/how-to-integrate-with-llm-app-devops/flow-day-yaml-raw-file.png" alt-text="Screenshot of Raw file mode on a standard flow." lightbox = "./media/how-to-integrate-with-llm-app-devops/flow-day-yaml-raw-file.png":::
 
-:::image type="content" source="./media/how-to-integrate-with-llm-app-devops/flow-source-file-raw-file.png" alt-text="Screenshot of flow source file in a standard flow. " lightbox = "./media/how-to-integrate-with-llm-app-devops/flow-source-file-raw-file.png":::
+Alternatively, you can access all your flow folders and files directly from the Azure Machine Learning **Notebooks** page.
 
-Alternatively, you can access all the flow folders directly within the Azure Machine Learning notebook.
+:::image type="content" source="./media/how-to-integrate-with-llm-app-devops/notebook-user-path.png" alt-text="Screenshot of Notebooks in Azure Machine Learning with the prompt flow folder showing the files." lightbox = "./media/how-to-integrate-with-llm-app-devops/notebook-user-path.png":::
 
-:::image type="content" source="./media/how-to-integrate-with-llm-app-devops/notebook-user-path.png" alt-text="Screenshot of notebooks in Azure Machine Learning in the prompt flow folder showing the files. " lightbox = "./media/how-to-integrate-with-llm-app-devops/notebook-user-path.png":::
+## Download and check in prompt flow code
 
-## Versioning prompt flow in code repository
+To check in your flow into your code repository, you can export the flow folder from the flow authoring page to your local system. Select the download icon to download a ZIP package containing all the flow files to your local machine, which you can then check into your code repository or unzip to work with the files locally.
 
-To check in your flow into your code repository, you can easily export the flow folder from the flow authoring page to your local system. This downloads a package containing all the files from the explorer to your local machine, which you can then check into your code repository.
+:::image type="content" source="./media/how-to-integrate-with-llm-app-devops/flow-export.png" alt-text="Screenshot showing the download icon in the Files explorer.":::
 
-:::image type="content" source="./media/how-to-integrate-with-llm-app-devops/flow-export.png" alt-text="Screenshot of showing the download button in the file explorer." lightbox = "./media/how-to-integrate-with-llm-app-devops/flow-export.png":::
+For more information about DevOps integration with Azure Machine Learning, see [Git integration for Azure Machine Learning](../concept-train-model-git-integration.md).
 
-For more information about DevOps integration with Azure Machine Learning, see [Git integration in Azure Machine Learning](../concept-train-model-git-integration.md)
+## Submit runs to the cloud from a local repository
 
-## Submitting runs to the cloud from local repository
+You can complete the following procedure by using Azure CLI or the Python SDK. For more information, see the [pfazure](https://microsoft.github.io/promptflow/reference/pfazure-command-reference.html) prompt flow CLI documentation for Azure.
 
-### Prerequisites
-
-- Complete the [Create resources to get started](../quickstart-create-resources.md) if you don't already have an Azure Machine Learning workspace.
-
-- A Python environment in which you've installed Azure Machine Learning Python SDK v2 - [install instructions](https://github.com/Azure/azureml-examples/tree/sdk-preview/sdk#getting-started). This environment is for defining and controlling your Azure Machine Learning resources and is separate from the environment used at compute session. To learn more, see [how to manage compute session](how-to-manage-compute-session.md) for prompt flow engineering.
-
-### Install prompt flow SDK
-
-```shell
-pip install -r ../../examples/requirements.txt
-```
-
-### Connect to Azure Machine Learning workspace
+### Connect to your Azure Machine Learning workspace
 
 # [Azure CLI](#tab/cli)
 
 ```sh
 az login
 ```
+
 # [Python SDK](#tab/python)
 
 ```python
@@ -124,9 +122,11 @@ pf = PFClient.from_config(
 
 ---
 
+### Upload the flow and create a run
+
 # [Azure CLI](#tab/cli)
 
-Prepare the `run.yml` to define the config for this flow run in cloud.
+Prepare the *run.yml* file to define the configuration for this flow run in the cloud.
 
 ```yaml
 $schema: https://azuremlschemas.azureedge.net/promptflow/latest/Run.schema.json
@@ -156,7 +156,7 @@ connections:
     deployment_name: <deployment_name>
 ```
 
-You can specify the connection and deployment name for each tool in the flow. If you don't specify the connection and deployment name, it uses the one connection and deployment on the `flow.dag.yaml` file. To format of connections:
+You can specify the connection and deployment name for each tool in the flow. If you don't specify the connection and deployment name, the tool uses the one connection and deployment in the *flow.dag.yaml* file. Use the following code to format the connections:
 
 ```yaml
 ...
@@ -168,11 +168,15 @@ connections:
 
 ```
 
+Create the *run.yml* file.
+
 ```sh
 pfazure run create --file run.yml
 ```
 
 # [Python SDK](#tab/python)
+
+Load the flow, define resources and connections, and create the run.
 
 ```python
 # load flow
@@ -222,9 +226,11 @@ base_run = pf.runs.create_or_update(run=run)
 
 ---
 
+### Create an evaluation flow run
+
 # [Azure CLI](#tab/cli)
 
-Prepare the `run_evaluation.yml` to define the config for this evaluation flow run in cloud.
+Prepare the *run_evaluation.yml* to define the configuration for this evaluation flow run in the cloud.
 
 ```yaml
 $schema: https://azuremlschemas.azureedge.net/promptflow/latest/Run.schema.json
@@ -315,9 +321,9 @@ eval_run = pf.runs.create_or_update(run=eval_run)
 
 ### View run results in Azure Machine Learning workspace
 
-Submit flow run to cloud will return the portal url of the run. You can open the uri view the run results in the portal.
+Submit the flow run to the cloud to return the portal URL of the run. You can open the URL to view the run results in the portal.
 
-You can also use following command to view results for runs.
+You can also use following commands to view run results.
 
 #### Stream the logs
 
@@ -352,7 +358,7 @@ details.head(10)
 
 ---
 
-#### View metrics of evaluation run
+#### View evaluation run metrics
 
 # [Azure CLI](#tab/cli)
 
@@ -367,31 +373,26 @@ pf.get_metrics("evaluation_run_name")
 ```
 ---
 
-> [!IMPORTANT]
-> For more information, you can refer to [the prompt flow CLI documentation for Azure](https://microsoft.github.io/promptflow/reference/pfazure-command-reference.html).
+## Develop and test locally
 
-## Iterative development from fine-tuning
+During iterative development, as you refine and fine-tune your flow or prompts, you can carry out multiple iterations locally within your code repository. The VS Code community version, VS Code Prompt flow extension, and prompt flow local SDK and CLI facilitate pure local development and testing without Azure binding.
 
-### Local development and testing
+### VS Code Prompt flow extension
 
-During iterative development, as you refine and fine-tune your flow or prompts, it could be beneficial to carry out multiple iterations locally within your code repository. The community version, **prompt flow VS Code extension** and **prompt flow local SDK & CLI** is provided to facilitate pure local development and testing without Azure binding.
-
-#### Prompt flow VS Code extension
-
-With the prompt flow VS Code extension installed, you can easily author your flow locally from the VS Code editor, providing a similar UI experience as in the cloud.
+With the Prompt flow VS Code extension, you can easily author your flow locally in the VS Code editor with a similar UI experience as in the cloud.
 
 To use the extension:
 
-1. Open a prompt flow folder in VS Code Desktop.
-2. Open the ```flow.dag.yaml`` file in notebook view.
-3. Use the visual editor to make any necessary changes to your flow, such as tune the prompts in variants, or add more tools.
-4. To test your flow, select the **Run Flow** button at the top of the visual editor. This triggers a flow test.
+1. In VS Code with the Prompt flow extension enabled, open a prompt flow folder.
+1. Open the *flow.dag.yaml* file and select the **Visual editor** link at the top of the file.
+1. Use the editor to make any necessary changes to your flow, such as tuning the prompts in variants or adding more tools.
+1. To test your flow, select the **Run** icon at the top of the visual editor to trigger a flow test.
 
 :::image type="content" source="./media/how-to-integrate-with-llm-app-devops/run-flow-visual-editor.png" alt-text="Screenshot of VS Code showing running the flow in the visual editor. " lightbox = "./media/how-to-integrate-with-llm-app-devops/run-flow-visual-editor.png":::
 
-#### Prompt flow local SDK & CLI
+### Use the local prompt flow SDK and CLI
 
-If you prefer to use Jupyter, PyCharm, Visual Studio, or other IDEs, you can directly modify the YAML definition in the ```flow.dag.yaml``` file.
+If you prefer to work directly with code, or use Jupyter, PyCharm, Visual Studio, or other integrated development environments (IDEs), you can directly modify the YAML code in the *flow.dag.yaml* file.
 
 :::image type="content" source="./media/how-to-integrate-with-llm-app-devops/flow-directory-and-yaml.png" alt-text="Screenshot of a yaml file in VS Code highlighting the default input and flow directory. " lightbox = "./media/how-to-integrate-with-llm-app-devops/flow-directory-and-yaml.png":::
 
@@ -399,17 +400,19 @@ You can then trigger a flow single run for testing using either the prompt flow 
 
 # [Azure CLI](#tab/cli)
 
-Assuming you are in working directory `<path-to-the-sample-repo>/examples/flows/standard/`
+To trigger a run from the working directory *\<sample-repo>/examples/flows/standard/\<directory-name>*, run the following code:
 
 ```sh
-pf flow test --flow web-classification  # "web-classification" is the directory name
+pf flow test --flow <directory-name>
 ```
+
+The following screenshot shows the flow test logs and outputs.
 
 :::image type="content" source="./media/how-to-integrate-with-llm-app-devops/flow-test-output-cli.png" alt-text="Screenshot of the flow test output in PowerShell." lightbox = "./media/how-to-integrate-with-llm-app-devops/flow-test-output-cli.png":::
 
 # [Python SDK](#tab/python)
 
-The return value of `test` function is the flow/node outputs.
+The return value of the `test` function is the flow and node outputs.
 
 ```python
 from promptflow import PFClient
@@ -430,21 +433,21 @@ node_result = pf_client.test(flow=flow_path, inputs=node_inputs, node=node_name)
 print(f"Node outputs: {node_result}")
 ```
 
+The following screenshot shows the flow test logs and outputs.
+
 :::image type="content" source="./media/how-to-integrate-with-llm-app-devops/flow-test-output.png" alt-text="Screenshot of the flow test output in Python. " lightbox = "./media/how-to-integrate-with-llm-app-devops/flow-test-output.png":::
 
 ---
 
-This allows you to make and test changes quickly, without needing to update the main code repository each time. Once you're satisfied with the results of your local testing, you can then transfer to [submitting runs to the cloud from local repository](#submitting-runs-to-the-cloud-from-local-repository)  to perform experiment runs in the cloud.
-
-For more details and guidance on using the local versions, you can refer to the [prompt flow GitHub community](https://github.com/microsoft/promptflow).
+Working locally allows you to make and test changes quickly, without needing to update the main code repository each time. For more details and guidance on using the local versions, you can refer to the [Prompt flow](https://github.com/microsoft/promptflow) GitHub community.
 
 ### Go back to studio UI for continuous development
 
-Alternatively, you have the option to go back to the studio UI, using the cloud resources and experience to make changes to your flow in the flow authoring page.
+Once you're satisfied with the results of your local testing, you can repeat the procedure to [submit runs to the cloud from the local repository](#submit-runs-to-the-cloud-from-a-local-repository).
 
-To continue developing and working with the most up-to-date version of the flow files, you can access the terminal in the notebook and pull the latest changes of the flow files from your repository.
+Alternatively, you can go back to the Azure Machine Learning studio UI and use the cloud resources and experience to make changes to your flow in the flow authoring page.
 
-In addition, if you prefer continuing to work in the studio UI, you can directly import a local flow folder as a new draft flow. This allows you to seamlessly transition between local and cloud development.
+To continue developing and working with the most up-to-date versions of the flow files, access a terminal on the **Notebook** page and pull the latest changes of the flow files from your repository. Or, you can directly import a local flow folder as a new draft flow to seamlessly transition between local and cloud development.
 
 :::image type="content" source="./media/how-to-integrate-with-llm-app-devops/flow-import-local-upload.png" alt-text="Screenshot of the create a new flow panel with upload to local highlighted. " lightbox = "./media/how-to-integrate-with-llm-app-devops/flow-import-local-upload.png":::
 
@@ -469,7 +472,7 @@ The last step to go to production is to deploy your flow as an online endpoint i
 
 For more information on how to deploy your flow, see [Deploy flows to Azure Machine Learning managed online endpoint for real-time inference with CLI and SDK](how-to-deploy-to-code.md).
 
-## Collaborating on flow development in production
+## Collaborate on flow development in production
 
 In the context of developing a LLM-based application with prompt flow, collaboration amongst team members is often essential. Team members might be engaged in the same flow authoring and testing, working on diverse facets of the flow or making iterative changes and enhancements concurrently.
 
@@ -477,7 +480,7 @@ Such collaboration necessitates an efficient and streamlined approach to sharing
 
 The introduction of the prompt flow **SDK/CLI** and the **Visual Studio Code Extension** as part of the code experience of prompt flow facilitates easy collaboration on flow development within your code repository. It is advisable to utilize a cloud-based **code repository**, such as GitHub or Azure DevOps, for tracking changes, managing versions, and integrating these modifications into the final project.
 
-### Best practice for collaborative development
+### Best practices for collaborative development
 
 1. Authoring and single testing your flow locally - Code repository and VSC Extension
 
