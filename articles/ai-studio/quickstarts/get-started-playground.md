@@ -53,7 +53,7 @@ Follow these steps to deploy an Azure OpenAI chat model.
 
     :::image type="content" source="../media/tutorials/chat/deploy-model.png" alt-text="Screenshot of the model details page with a button to deploy the model." lightbox="../media/tutorials/chat/deploy-model.png":::
 
-1. If you are already signed into a project, you won't see this step.  Your model is deployed to your existing project.  If you are not in a project, on the **Select or create a project** page: 
+1. Models deploy into a project.  If you are already in a project, the model is deployed there.  If you are not yet in a project, you'll see a form to allow you to **Select or create a project**: 
  
     * If you have a project you want to use, select it.
     * If you don't yet have a project:
@@ -61,8 +61,10 @@ Follow these steps to deploy an Azure OpenAI chat model.
         1. Provide a name for your project.
         1. Select **Create a project**.
 
-1. Change the default name if you want, then select **Connect and deploy**.
+1. Change the default **Deployment name** if you want, then select **Connect and deploy**.
 1. Once the model is deployed, select **Open in playground** to test your model.
+
+You're now in a project, with a deployed model.  You can use the chat playground to interact with your model.
 
 For more information about deploying models, see [how to deploy models](../how-to/deploy-models-openai.md).
 
