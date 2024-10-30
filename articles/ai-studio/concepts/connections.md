@@ -76,6 +76,9 @@ A Uniform Resource Identifier (URI) represents a storage location on your local 
 | Azure Data Lake (gen2) | `abfss://<file_system>@<account_name>.dfs.core.windows.net/<folder>/<file>.csv` |
 | Microsoft OneLake | `abfss://<file_system>@<account_name>.dfs.core.windows.net/<folder>/<file>.csv` `https://<accountname>.dfs.fabric.microsoft.com/<artifactname>` |
 
+> [!NOTE]
+> The Microsoft OneLake connection doesn't support OneLake tables.
+
 ## Key vaults and secrets
 
 Connections allow you to securely store credentials, authenticate access, and consume data and information.  Secrets associated with connections are securely persisted in the corresponding Azure Key Vault, adhering to robust security and compliance standards. As an administrator, you can audit both shared and project-scoped connections on a hub level (link to connection rbac). 
