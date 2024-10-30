@@ -35,7 +35,15 @@ If you don't have an Azure subscription, <a href="https://azure.microsoft.com/fr
 
 Follow these steps to deploy an Azure OpenAI chat model.
 
-[!INCLUDE [open-catalog](../includes/open-catalog.md)]
+1. Sign in to [Azure AI Studio](https://ai.azure.com).
+1. Studio remembers where you were last, so what you do next depends on where you are:
+
+    * If you have never used Azure AI Studio before, select **Explore models**. 
+  
+        :::image type="content" source="../media/tutorials/chat/home-page.png" alt-text="Screenshot of the home page if you have never created a project." lightbox="../media/tutorials/chat/home-page.png":::
+
+    * If you have projects but are not in one, select the project you wish to use, then select **Model catalog** from the left navigation pane. Or, you can select **Model catalog and benchmarks** at the bottom of the screen.
+    * If you are in a project, select **Model catalog** from the left navigation pane.
 
 3. Select the model you want to deploy from the list of models. For example, select **gpt-4o-mini**.
 
