@@ -236,12 +236,14 @@ groups:
   title: Programming languages
   prompt: Choose a programming language
   pivots:
-  - id: programming-language-javascript
-    title: JavaScript
   - id: programming-language-dotnet
     title: C#
+  - id: programming-language-javascript
+    title: JavaScript
   - id: rest-api
     title: REST
+  - id: programming-language-typescript
+    title: TypeScript
 # Owner: diberry
 - id: programming-languages-rest-ps-py-js
   title: Programming languages
@@ -259,17 +261,20 @@ groups:
   title: Programming languages
   prompt: Choose a programming language
   pivots:
+  - id: programming-language-dotnet
+    title: C#    
   - id: programming-language-javascript
     title: JavaScript
   - id: programming-language-python
     title: Python
-  - id: programming-language-dotnet
-    title: C#
+
   - id: programming-language-powershell
     title: PowerShell
   - id: rest-api
     title: REST
-# Owner: diberry
+  - id: programming-language-typescript
+    title: TypeScript
+    # Owner: diberry
 - id: programming-languages-set-six
   title: Programming languages
   prompt: Choose a programming language
