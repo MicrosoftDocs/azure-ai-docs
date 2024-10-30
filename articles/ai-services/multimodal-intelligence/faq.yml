@@ -6,7 +6,7 @@ metadata:
   manager: nitinme
   ms.service: azure
   ms.topic: faq
-  ms.date: 10/09/2024
+  ms.date: 10/29/2024
   ms.author: lajanuar
 title: Frequently asked questions
 summary: |
@@ -21,4 +21,4 @@ sections:
         answer: |
           **Yes.**
 
-          Current users of Document Intelligence can continue using the service during the preview development phase of the Multimodal service. Once Document Intelligence v4.0 becomes generally available (GA), its features will be integrated into the Multimodal Intelligence service. Future enhancements related to document scenarios are then accessible via the Multimodal Intelligence service. Existing customers can transition to Multimodal Intelligence with minimal disruption.
+          Current users of Document Intelligence can continue using the service during the preview development phase of the Multimodal service. whats-new.md Document Intelligence v4.0 becomes generally available (GA), its features are integrated with the Multimodal Intelligence service. Future enhancements related to document scenarios are then accessible via the Multimodal Intelligence service. Existing customers can transition to Multimodal Intelligence with minimal disruption.

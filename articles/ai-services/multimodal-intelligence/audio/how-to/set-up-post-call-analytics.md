@@ -34,34 +34,10 @@ In this article, you learn how to create a post call analytics workflow with a M
 ## Prerequisites
 
 * To get started, you need an active [**Azure account**](https://azure.microsoft.com/free/cognitive-services/). If you don't have one, you can [**create a free 12-month subscription**](https://azure.microsoft.com/free/).
-* Once you have your Azure subscription, you need an [**Azure AI services multi-services resource**](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIServices) created in one of the supported regions. The following regions support Multimodal Intelligence speech capabilities:
 
-     * West US
-
-     * East US
-
-     * West Europe
-
-     * Sweden Central
-
-     * SouthEast Asia
-
-     * Australia East
+* Once you have your Azure subscription, you need an [**Azure AI services multi-services resource**](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIServices) created in one of the [supported regions](../../language-region-support.md). 
 
 * An audio file (less than 2 hours long and less than 200 MB in size) in one of the formats and codecs supported. Multimodal Intelligence speech capabilities support multiple audio formats and codecs, such as:
-
-* `WAV`
-* `MP3`
-* `OPUS/OGG`
-* `FLAC`
-* `WMA`
-* `AAC`
-* `ALAW` in `WAV` container
-* `MULAW` in `WAV` container
-* `AMR`
-* `WebM`
-* `M4A`
-* `SPEEX`
 
 ## Create an AI Studio hub
 
@@ -92,7 +68,7 @@ A speech analytics project is a specialized project in Azure AI Studio that prim
 
 Follow these steps to create a speech analytics project in your hub:
 
-1. gitNavigate to the Home page and select AI Services from the left pane. Then select **Speech analytics** from the list of features.
+1. Navigate to the Home page and select AI Services from the left pane. Then select **Speech analytics** from the list of features.
 
    :::image type="content" source="../../media/ai-studio/speech-analytics/choose-project.png" alt-text="Screenshot of the Speech analytics selection tab.":::
 

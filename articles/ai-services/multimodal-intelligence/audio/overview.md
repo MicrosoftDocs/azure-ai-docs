@@ -1,7 +1,7 @@
 ---
-title: Azure AI Multimodal Intelligence speech overview
+title: Azure AI Multimodal Intelligence audio overview
 titleSuffix: Azure AI services
-description: Learn about Azure AI Multimodal Intelligence speech solutions
+description: Learn about Azure AI Multimodal Intelligence audio solutions
 author: laujan
 ms.author: lajanuar
 manager: nitinme
@@ -11,7 +11,7 @@ ms.date: 10/24/2024
 ---
 
 
-# Azure AI Multimodal Intelligence speech solutions overview (preview)
+# Azure AI Multimodal Intelligence audio solutions overview (preview)
 
 > [!IMPORTANT]
 >
@@ -19,7 +19,7 @@ ms.date: 10/24/2024
 > * Features, approaches, and processes may change or have constrained capabilities, prior to General Availability (GA).
 > * For more information, *see* [**Supplemental Terms of Use for Microsoft Azure Previews**](https://azure.microsoft.com/support/legal/preview-supplemental-terms).
 
-Multimodal Intelligence speech capabilities can help you transcribe and diarize conversational audio. The feature can also help you generate enhanced outputs like summaries, special industry record formats, captioning data. Multimodal Intelligence speech and audio capabilities enable you to extract valuable information such as key topics, sentiment, and more. To get started, use one of the provided out-of-box prebuilt extraction schemas and start generating results. You can also customize Multimodal Intelligence capabilities to meet your business needs as necessary.
+Multimodal Intelligence audio capabilities can help you transcribe and diarize conversational audio. The feature can also help you generate enhanced outputs like summaries, special industry record formats, captioning data. Multimodal Intelligence audio and audio capabilities enable you to extract valuable information such as key topics, sentiment, and more. To get started, use one of the provided out-of-box prebuilt extraction schemas and start generating results. You can also customize Multimodal Intelligence capabilities to meet your business needs as necessary.
 
 Here are some of the common scenarios for Multimodal Intelligence extracted conversational audio data:
 
@@ -43,19 +43,19 @@ AI studio enables you to set up, test, and manage Multimodal Intelligence soluti
 
 * Access and manage your Multimodal Intelligence projects and resources in one place, along with other AI services that you use in AI Studio.
 
- You can use the AI Studio UI to manage speech analytics projects and resources.
+ You can use the AI Studio UI to manage audio analytics projects and resources.
 
 * You might prefer to use AI studio for Multimodal Intelligence because it offers a user-friendly interface and an easy-to-use setup experience to generate insights from audio data. You can also test and deploy different versions of the output schema directly in AI studio.
 
 * Developers can use the SDK and APIs to process data at scale in production and to integrate Multimodal Intelligence into Azure Pipelines as needed.
 
-## Multimodal Intelligence speech workflow
+## Multimodal Intelligence audio workflow
 
-The following diagram provides a high-level overview of a typical Multimodal Intelligence Speech processing workflow.
+The following diagram provides a high-level overview of a typical Multimodal Intelligence Audio processing workflow.
 
-  :::image type="content" source="../media/audio/overview/workflow-diagram.png" alt-text="Illustration of Multimodal Intelligence speech workflow.":::
+  :::image type="content" source="../media/audio/overview/workflow-diagram.png" alt-text="Illustration of Multimodal Intelligence audio workflow.":::
 
-A typical Multimodal IntelligenceSpeech workflow consists of the following steps:
+A typical Multimodal IntelligenceAudio workflow consists of the following steps:
 
 1. You send audio or transcription files to the Multimodal IntelligenceAPI wither as single file or providing settings to process from a connected blob storage account.
 
@@ -84,7 +84,7 @@ For a complete list of  Multimodal Intelligence supported audio formats, *see* o
 For a complete list of supported regions, languages, and locales, see our [Language and region support](../language-region-support.md)) page.
 
 
-**Multimodal Intelligence speech capability operation limits**
+**Multimodal Intelligence audio capability operation limits**
 
 |Attribute|Limit|
 |-----|-----|
