@@ -46,9 +46,9 @@ In your application code, you should correlate these events with the search resu
 
 ## Add search traffic analytics
 
-For Azure AI Search, the Azure [portal](https://portal.azure.com) provides a Search Traffic Analytics page that has C# and JavaScript code snippets for adding a telemetry client, request headers, properties necessary for custom log events, and 
+For Azure AI Search, the Azure [portal](https://portal.azure.com) provides a Search Traffic Analytics page that has C# and JavaScript code snippets for adding a telemetry client, request headers, and properties necessary for custom log events. 
 
-> [!IMPORTANT>]
+> [!IMPORTANT]
 > This page is currently outdated and references an obsolete client libary. The workaround is to use code snippets in the [azure-search-traffic-analytics](https://github.com/Azure-Samples/azure-search-traffic-analytics) GitHub repository. This article includes code snippets from the GitHub repository.
 
 :::image type="content" source="media/search-traffic-analytics/azuresearch-trafficanalytics.png" alt-text="Screenshot of the portal command and page for setting up Application Insights.":::
