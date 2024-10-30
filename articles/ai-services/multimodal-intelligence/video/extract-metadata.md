@@ -1,7 +1,7 @@
 ---
 title: Azure AI Multimodal Intelligence video overview
 titleSuffix: Azure AI services
-description: Learn how to use Azure AI Azure AI Multimodal Intelligence video solutions
+description: Learn how to use Azure AI Multimodal Intelligence video solutions
 author: laujan
 ms.author: lajanuar
 manager: nitinme
@@ -12,7 +12,7 @@ ms.date: 10/24/2024
 
 # Use Multimodal Intelligence video solutions overview (preview)
 
-Azure AI Multimodal Intelligence lets you extract and customize video metadata for seamless integration into your systems or workflows. This helps efficiently manage, categorize, retrieve, and build workflows for video assets. Multimodal Intelligence can enhance your media asset library, support workflows such as highlight generation, categorize content, and facilitate applications like retrieval-augmented generation (`RAG`). The video content extraction capabilities of Multimodal Intelligence offer the following advantages:
+Azure AI Multimodal Intelligence lets you extract and customize video metadata for seamless integration into your systems or workflows. Multimodal Intelligence helps efficiently manage, categorize, retrieve, and build workflows for video assets. Multimodal Intelligence can enhance your media asset library, support workflows such as highlight generation, categorize content, and facilitate applications like retrieval-augmented generation (`RAG`). The video content extraction capabilities of Multimodal Intelligence offer the following advantages:
 
 * **Video transcription**. Convert speech within a video into text transcripts that can be searched and analyzed. Transcription data is also used as grounding for generating customizable metadata.
 
@@ -56,6 +56,6 @@ Multimodal Intelligence provides a specific set of capabilities for video includ
 
 * **Retrieval-augmented generation (`RAG`) applications**. Enable applications that can answer user questions with specific video moments by indexing content at a granular level.
 
-# Next steps
+## Next steps
 
-to get started with using Multimodal Intelligence APIs, *see* our [**video how to guide**](how-to/set-up-video-assets-mam.md)  for a media asset management scenario. 
+Get started using Multimodal Intelligence video APIs with our [**how to guide**](how-to/set-up-manage-video-assets.md) for a managing media assets scenario.

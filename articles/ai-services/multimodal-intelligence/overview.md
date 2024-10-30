@@ -55,7 +55,7 @@ Common scenarios for Azure AI multimodal intelligence service include:
 |Use|Scenario|Scenario Quickstart|
 |--------|-------|-------|
 |Call center post-call analytics| Businesses and call center operators can generate insights from call recordings to track key KPIs to improve product experience, generate business insights, create differentiated customer experiences, and answer queries faster and more accurately.| [**Post call analytics Quickstart**](audio/how-to/set-up-post-call-analytics.md) |
-|Marketing automation digital asset management| Independent software and media vendors that build media asset management solutions can use Multimodal Intelligence to extract richer, targeted content from images and videos.| [**Media asset management Quickstart**](video/how-to/set-up-video-assets-mam.md)|
+|Marketing automation digital asset management| Independent software and media vendors that build media asset management solutions can use Multimodal Intelligence to extract richer, targeted content from images and videos.| [**Media asset management Quickstart**](video/how-to/set-up-manage-video-assets.md)|
 |Tax processing automation| Tax preparing companies can use the extended capabilities of Multimodal Intelligence to generate a unified view of information from different documents and generate comprehensive tax returns.| Quick start|
 Chart Understanding| Businesses can significantly enhance chart understanding by automating the analysis and interpretation of various types of charts and diagrams using Multimodal Intelligence. This capability is useful in several downstream use cases.| Quickstart |
 

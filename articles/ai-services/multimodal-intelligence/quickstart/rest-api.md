@@ -318,6 +318,6 @@ A successful response is 200 with JSON output. The first field, `status`, indica
 ```
 ## Next steps 
 
-In this quickstart, you learned how to call the REST API.  For a user experience, try [**Azure AI Studio**](). 
+In this quickstart, you learned how to call the REST API. For a user experience, try [**Azure AI Studio**](). 
 
 For more scenario-based samples/quickstarts, learn about our [**Scenario Guides**](). 

@@ -10,9 +10,6 @@ items:
   - name: Create an Azure AI resource
     displayName: extract, text, images, OCR, optical character recognition
     href: how-to/create-multi-service-resource.md
-  - name: Azure AI Studio
-    displayName: studio, portal, web, interface, dashboard, workspace, project, resource, service, cognitive, applied, form recognizer, form, recognizer
-    href: azure-ai-studio-overview.md
   - name: Service quotas and limits
     displayName: quota, tiers, throttle, max, adjustments, requests, support, ocr
     href: service-limits.md
@@ -55,7 +52,7 @@ items:
       items:
         - name: Set up a media asset management workflow
           displayName: video, document, text, images,audio, multi-modal, visual, structured, content, field, extraction
-          href: video/how-to/set-up-video-assets-mam.md
+          href: video/how-to/set-up-manage-video-assets.md
 - name: Quickstarts
   items:
   - name: Multimodal Intelligence REST API

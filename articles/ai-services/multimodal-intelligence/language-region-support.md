@@ -29,7 +29,7 @@ To use the Azure AI Multimodal Intelligence service, you must create your Azure 
 
 Azure AI Multimodal Intelligence enables you to process and integrate multiple data modalities simultaneously. Our language support capabilities enable users to communicate with your applications in natural ways and empower global outreach.
 
-Some capabilities of MMI service support multiple languages; any capabilities not mentioned are only English supported.
+Some capabilities of Multimodal Intelligence service support multiple languages; any capabilities not mentioned are only English supported.
 
 To learn more Multimodal Intelligence language support, select a capability from the following tabs.
 
