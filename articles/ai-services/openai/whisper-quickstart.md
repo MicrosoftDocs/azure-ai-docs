@@ -44,6 +44,12 @@ The file size limit for the Whisper model is 25 MB. If you need to transcribe a 
 
 ::: zone-end
 
+::: zone pivot="programming-language-typescript"
+
+[!INCLUDE [JavaScript quickstart](includes/whisper-typescript.md)]
+
+::: zone-end
+
 ::: zone pivot="programming-language-powershell"
 
 [!INCLUDE [PowerShell quickstart](includes/whisper-powershell.md)]
