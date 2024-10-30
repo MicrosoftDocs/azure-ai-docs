@@ -33,34 +33,34 @@ The following regions are supported for Speech service features such as speech t
 | ------------- | -------------------- | --------------------------------------- |
 | Africa        | South Africa North   | `southafricanorth` <sup>6</sup>         |
 | Asia Pacific  | East Asia            | `eastasia` <sup>5</sup>                 |
-| Asia Pacific  | Southeast Asia       | `southeastasia` <sup>1,2,4,5,7,9,10</sup>  |
-| Asia Pacific  | Australia East       | `australiaeast` <sup>1,2,4,7</sup>      |
-| Asia Pacific  | Central India        | `centralindia` <sup>1,2,4,5</sup>       |
-| Asia Pacific  | Japan East           | `japaneast` <sup>2,5</sup>              |
+| Asia Pacific  | Southeast Asia       | `southeastasia` <sup>1,2,4,5,7,9,10,12</sup>  |
+| Asia Pacific  | Australia East       | `australiaeast` <sup>1,2,4,7,12</sup>      |
+| Asia Pacific  | Central India        | `centralindia` <sup>1,2,4,5,12</sup>       |
+| Asia Pacific  | Japan East           | `japaneast` <sup>2,5,12</sup>              |
 | Asia Pacific  | Japan West           | `japanwest` <sup>3</sup>                |
 | Asia Pacific  | Korea Central        | `koreacentral` <sup>2</sup>             |
 | Canada        | Canada Central       | `canadacentral` <sup>1</sup>            |
-| Europe        | North Europe         | `northeurope` <sup>1,2,4,5,7,10</sup>      |
-| Europe        | West Europe          | `westeurope` <sup>1,2,4,5,7,9,10</sup>     |
-| Europe        | France Central       | `francecentral`                         |
+| Europe        | North Europe         | `northeurope` <sup>1,2,4,5,7,10,12</sup>   |
+| Europe        | West Europe          | `westeurope` <sup>1,2,4,5,7,9,10,12</sup>  |
+| Europe        | France Central       | `francecentral` <sup>12</sup>           |
 | Europe        | Germany West Central | `germanywestcentral`                    |
 | Europe        | Norway East          | `norwayeast`                            |
-| Europe        | Sweden Central       | `swedencentral`<sup>8,10</sup>             |
+| Europe        | Sweden Central       | `swedencentral`<sup>8,10,12</sup>       |
 | Europe        | Switzerland North    | `switzerlandnorth` <sup>6</sup>         |
 | Europe        | Switzerland West     | `switzerlandwest` <sup>3</sup>          |
 | Europe        | UK South             | `uksouth` <sup>1,2,4,7</sup>            |
 | Middle East   | UAE North            | `uaenorth` <sup>6</sup>                 |
-| South America | Brazil South         | `brazilsouth` <sup>6</sup>              |
+| South America | Brazil South         | `brazilsouth` <sup>6,12</sup>           |
 | Qatar         | Qatar Central        | `qatarcentral`<sup>3,8</sup>            |
 | US            | Central US           | `centralus`                             |
-| US            | East US              | `eastus` <sup>1,2,4,5,7,9,11</sup>         |
-| US            | East US 2            | `eastus2` <sup>1,2,4,5</sup>            |
-| US            | North Central US     | `northcentralus` <sup>4,6</sup>         |
-| US            | South Central US     | `southcentralus` <sup>1,2,4,5,6,7,10</sup> |
+| US            | East US              | `eastus` <sup>1,2,4,5,7,9,11,12</sup>   |
+| US            | East US 2            | `eastus2` <sup>1,2,4,5,12</sup>         |
+| US            | North Central US     | `northcentralus` <sup>4,6,12</sup>      |
+| US            | South Central US     | `southcentralus` <sup>1,2,4,5,6,7,10,12</sup> |
 | US            | West Central US      | `westcentralus` <sup>3,5</sup>          |
-| US            | West US              | `westus` <sup>2,5</sup>                 |
-| US            | West US 2            | `westus2` <sup>1,2,4,5,7,10</sup>          |
-| US            | West US 3            | `westus3` <sup>3</sup>                  |
+| US            | West US              | `westus` <sup>2,5,12</sup>              |
+| US            | West US 2            | `westus2` <sup>1,2,4,5,7,10,12</sup>    |
+| US            | West US 3            | `westus3` <sup>3,12</sup>               |
 
 <sup>1</sup> The region has dedicated hardware for custom speech training. If you plan to train a custom model with audio data, you must use one of the regions with dedicated hardware. Then you can [copy the trained model](how-to-custom-speech-train-model.md#copy-a-model) to another region.
 
@@ -83,6 +83,8 @@ The following regions are supported for Speech service features such as speech t
 <sup>10</sup> The region supports text to speech avatar.
 
 <sup>11</sup> The region supports video translation.
+
+<sup>12</sup> The region supports fast transcription.
 
 ## Intent recognition
 
