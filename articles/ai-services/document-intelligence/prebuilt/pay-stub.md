@@ -6,7 +6,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.topic: conceptual
-ms.date: 10/03/2024
+ms.date: 11/19/2024
 ms.author: admaheshwari
 monikerRange: '>=doc-intel-4.0.0'
 ---
@@ -19,7 +19,7 @@ The Document Intelligence payStub model combines powerful Optical Character Reco
 
 | Feature   | version| Model ID |
 |----------  |---------|--------|
-|payStub model|&bullet; v4.0:2024-07-31 (preview)|**`prebuilt-payStub.us`**|
+|payStub model|&bullet; v4.0:2024-11-30 (GA)|**`prebuilt-payStub.us`**|
 
 ## Try payStub data extraction
 
@@ -49,7 +49,7 @@ For a complete list of supported languages, *see* our [prebuilt model language s
 
 ## Field extractions
 
-For supported document extraction fields, refer to the [payStub model schema](https://github.com/Azure-Samples/document-intelligence-code-samples/blob/main/schema/2024-07-31-preview/pay-stub.md) page in our GitHub sample repository.
+For supported document extraction fields, refer to the **payStub model schema** page in our GitHub sample repository.
 
 ## Supported locales
 

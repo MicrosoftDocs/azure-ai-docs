@@ -20,8 +20,6 @@ ms.author: lajanuar
 
  ::: moniker range="doc-intel-4.0.0"
 
-[!INCLUDE [preview-version-notice](../includes/preview-notice.md)]
-
 **This content applies to:**![checkmark](../media/yes-icon.png) **v4.0 (preview)** | **Previous versions:** ![blue-checkmark](../media/blue-yes-icon.png) [**v3.1 (GA)**](?view=doc-intel-3.1.0&preserve-view=tru) ![blue-checkmark](../media/blue-yes-icon.png) [**v3.0 (GA)**](?view=doc-intel-3.0.0&preserve-view=tru)
 
 **This content applies to:**![checkmark](../media/yes-icon.png) **v4.0 (preview)** | **Previous versions:** ![blue-checkmark](../media/blue-yes-icon.png) [**v3.1 (GA)**](?view=doc-intel-3.1.0&preserve-view=tru) ![blue-checkmark](../media/blue-yes-icon.png) [**v3.0 (GA)**](?view=doc-intel-3.0.0&preserve-view=tru)
@@ -39,7 +37,8 @@ Optical Character Recognition (OCR) for documents is optimized for large text-he
 
 ## Development options (v4)
 
-Document Intelligence v4.0 (2024-07-31-preview) supports the following tools, applications, and libraries:
+
+Document Intelligence v4.0 (2024-11-30) GA supports the following tools, applications, and libraries:
 
 | Feature | Resources | Model ID |
 |----------|-------------|-----------|

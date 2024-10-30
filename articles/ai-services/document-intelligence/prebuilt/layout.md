@@ -6,7 +6,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.topic: conceptual
-ms.date: 10/07/2024
+ms.date: 11/19/2024
 ms.author: lajanuar
 ---
 
@@ -18,8 +18,6 @@ ms.author: lajanuar
 <!---------------------- v4.0 content ---------------------->
 
 :::moniker range="doc-intel-4.0.0"
-
-[!INCLUDE [preview-version-notice](../includes/preview-notice.md)]
 
 [!INCLUDE [applies to v4.0](../includes/applies-to-v40.md)]
 
@@ -38,7 +36,8 @@ The following illustration shows the typical components in an image of a sample 
 
 ## Development options (v4)
 
-Document Intelligence v4.0 (2024-07-31-preview) supports the following tools, applications, and libraries:
+
+Document Intelligence v4.0 (2024-11-30) GA supports the following tools, applications, and libraries:
 
 | Feature | Resources | Model ID |
 |----------|-------------|-----------|

@@ -12,8 +12,6 @@ monikerRange: '>=doc-intel-4.0.0'
 
 # Document Intelligence batch analysis (preview)
 
-[!INCLUDE [preview-version-notice](../includes/preview-notice.md)]
-
 The batch analysis API allows you to bulk process multiple documents using one asynchronous request. Rather than having to submit documents individually and track multiple request IDs, you can analyze a collection of invoices, a series of loan documents, or a group of custom model training documents simultaneously.
 
 * To utilize batch analysis, you need an Azure Blob storage account with specific containers for both your source documents and the processed outputs.

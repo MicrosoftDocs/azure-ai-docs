@@ -15,8 +15,7 @@ monikerRange: '>=doc-intel-3.0.0'
 
 # Document Intelligence contract model
 
-::: moniker range="doc-intel-4.0.0"
-[!INCLUDE [preview-version-notice](../includes/preview-notice.md)]
+
 
 **This content applies to:**![checkmark](../media/yes-icon.png) **v4.0 (preview)** | **Previous version:** ![blue-checkmark](../media/blue-yes-icon.png) [**v3.1 (GA)**](?view=doc-intel-3.1.0&preserve-view=true)
 :::moniker-end
@@ -35,7 +34,8 @@ Automated contract processing is the process of extracting key contract fields f
 
 ::: moniker range="doc-intel-4.0.0"
 
-Document Intelligence v4.0 (2024-07-31-preview) supports the following tools, applications, and libraries:
+
+Document Intelligence v4.0 (2024-11-30) GA supports the following tools, applications, and libraries:
 
 | Feature | Resources | Model ID |
 |----------|-------------|-----------|
