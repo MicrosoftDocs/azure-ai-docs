@@ -47,6 +47,21 @@ Markdown parsing will only split content based on headers. All other elements su
 
 <a name="parsing-markdown-one-to-many"></a>
 
+## Sample Markdown content
+
+The following Markdown content will be used for the examples on this page:
+
+```md
+# Section 1
+Content for section 1.
+
+## Subsection 1.1
+Content for subsection 1.1.
+
+# Section 2
+Content for section 2.
+```
+
 ## Markdown one-to-many parsing mode (Markdown to Multiple Documents)
 
 The **Markdown one-to-many parsing mode** parses Markdown files into multiple search documents, where each document corresponds to a specific content section of the Markdown file based on the header metadata at that point in the document. The Markdown is parsed based on headers into documents which contain the following content:
@@ -63,20 +78,9 @@ The **Markdown one-to-many parsing mode** parses Markdown files into multiple se
 
 - `ordinal_position`: An integer value indicating the position of the section within the document hierarchy. This field is used for ordering the sections in their original sequence as they appear in the document, beginning with an ordinal position of 1 and incrementing sequentially for each header. 
 
-Consider the following Markdown content:
-
-```md
-# Section 1
-Content for section 1.
-
-## Subsection 1.1
-Content for subsection 1.1.
-
-# Section 2
-Content for section 2.
-```
 
 ### Index schema for one-to-many parsed Markdown files
+
 An example index configuration might look something like this:
 ```http
 {
@@ -90,8 +94,6 @@ An example index configuration might look something like this:
   {
     "name": "content",
     "type": "Edm.String",
-    "retrievable": true,
-    "searchable": true
   },
   {
     "name": "ordinal_position",
