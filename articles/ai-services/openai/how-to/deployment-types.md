@@ -13,7 +13,7 @@ ms.author: mbullwin
 
 # Azure OpenAI deployment types
 
-Azure OpenAI provides customers with choices on the hosting structure that fits their business and usage patterns. The service offers two main types of deployments: **standard** and **provisioned**. For a given deployment type, customers can align their workloads with their data processing requirements by choosing an Azure geography (`Standard` or `Provisioned`), Microsoft specified Data Zone (`DataZone-Standard`), or Global (`Global-Standard` or `Global Provisioned-Managed`) processing options.
+Azure OpenAI provides customers with choices on the hosting structure that fits their business and usage patterns. The service offers two main types of deployments: **standard** and **provisioned**. For a given deployment type, customers can align their workloads with their data processing requirements by choosing an Azure geography (`Standard` or `Provisioned`), Microsoft specified data zone (`DataZone-Standard`), or Global (`Global-Standard` or `Global Provisioned-Managed`) processing options.
 
 All deployments can perform the exact same inference operations, however the billing, scale, and performance are substantially different. As part of your solution design, you will need to make two key decisions:
 
