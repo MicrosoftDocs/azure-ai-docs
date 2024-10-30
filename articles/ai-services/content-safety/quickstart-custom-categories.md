@@ -391,7 +391,3 @@ print(result)
 ---
 
 
-## Related content
-
-* [Custom categories concepts](../concepts/custom-categories.md)
-* [Moderate content with Content Safety](../quickstart-text.md)
