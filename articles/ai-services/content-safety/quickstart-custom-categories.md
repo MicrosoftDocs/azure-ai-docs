@@ -96,7 +96,7 @@ curl -X PUT "<your_endpoint>/contentsafety/text/categories/survival-advice?api-v
 Replace <your_api_key> and <your_endpoint> with your own values, and also **append the version number you obtained from the last step.** Allow enough time for model training: the end-to-end execution of custom category training can take from around five hours to ten hours. Plan your moderation pipeline accordingly. After you receive the response, store the operation ID (referred to as `id`) in a temporary location. This ID will be necessary for retrieving the build status using the **Get status** API in the next section.
 
 ```bash
-curl -X POST "<your_endpoint>/contentsafety/text/categories/survival-advice:build?api-version=2024-09-15-preview**&version={version}**" \
+curl -X POST "<your_endpoint>/contentsafety/text/categories/survival-advice:build?api-version=2024-09-15-preview&version={version}" \
      -H "Ocp-Apim-Subscription-Key: <your_api_key>" \
      -H "Content-Type: application/json"
 ```
