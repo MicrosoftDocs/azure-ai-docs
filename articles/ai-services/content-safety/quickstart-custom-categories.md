@@ -77,7 +77,37 @@ curl -X PUT "<your_endpoint>/contentsafety/text/categories/<your_category_name>?
         }"
 ```
 > [!TIP]
-> Every time you change your category name, definition or samples, a new version will be created. You can use the version number to trace back to previous versions. Please remember this version number, as it will be required in the URL for the next step- training custom categories.
+> Every time you change your category name, definition or samples,a new version will be created. You can use the version number to trace back to previous versions. Please remember this version number, as it will be required in the URL for the next step- training custom categories.
+
+
+
+### API Request
+
+
+| Field            | Description                                                                                      | Example Value                                                                                                                   |
+|------------------|--------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------|
+| `categoryName`   | The name of the category or topic the request relates to.                                        | survival-advice                                                                                                               |
+| `definition`     | A brief description of the content type for the category.                                        | text prompts about survival advice in camping/wilderness situations                                                           |
+| `sampleBlobUrl`  | URL to access a sample JSONL file containing data examples for the category.                     | Link               |
+
+
+
+
+### API Response
+
+| Field                  | Description                                                                                      | Example Value                                                                                                                   |
+|------------------------|--------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------|
+| `categoryName`         | The name of the category or topic the response relates to.                                       | survival-advice                                                                                                               |
+| `definition`           | A brief description of the content type for the category.                                        | text prompts about survival advice in camping/wilderness situations                                                           |
+| `sampleBlobUrl`        | URL to access a sample JSONL file containing data examples for the category.                     | Link                 |
+| `sampleBlobSnapshotUrl`| Snapshot URL of the sample JSONL file, which provides access to a specific version of the data.  | Snapshot URL |
+| `version`              | The version number of the category data.                                                         | 1                                                                                                                             |
+| `createdTime`          | Timestamp when the category data was created.                                                    | 2024-10-28T22:06:59.4626988Z                                                                                                  |
+| `status`               | Current status of the category data processing.                                                  | Succeeded                                                                                                                     |
+
+
+
+
 
 ### Start the category build process:
 
@@ -89,6 +119,13 @@ curl -X POST "<your_endpoint>/contentsafety/text/categories/survival-advice:buil
      -H "Content-Type: application/json"
 ```
 
+### API Response
+
+| Field      | Description                                   | Example Value                                 |
+|------------|-----------------------------------------------|-----------------------------------------------|
+| `operation id`       | Unique identifier for retrieving the build statuse | b6c69dc1-2338-484e-855b-xxxxxxxxxxxx          |
+| `status`   | Current status of the request                 | Succeeded                                     |
+
 
 ### Get the category build status:
 
@@ -99,6 +136,12 @@ curl -X GET "<your_endpoint>/contentsafety/text/categories/operations/<id>?api-v
      -H "Ocp-Apim-Subscription-Key: <your_api_key>" \
      -H "Content-Type: application/json"
 ```
+### API Response
+
+| Field      | Description                                   | Example Value                                 |
+|------------|-----------------------------------------------|-----------------------------------------------|
+| `operation id`       | Unique identifier for retrieving the build statuse | b6c69dc1-2338-484e-855b-xxxxxxxxxxxx          |
+| `status`   | Current status of the request                 | Succeeded                                     |
 
 ## Analyze text with a customized category
 
@@ -114,6 +157,17 @@ curl -X POST "<your_endpoint>/contentsafety/text:analyzeCustomCategory?api-versi
             \"version\": 1
         }"
 ```
+### API Request
+| Field          | Description                                             |
+|----------------|---------------------------------------------------------|
+| `text`         | The text content or message intended for category detection |
+| `categoryName` | The name of the category the text aims to be detected under |
+| `version`      | Version number of the category                         |
+### API Response
+| Field                    | Description                                             | Example Value |
+|--------------------------|---------------------------------------------------------|---------------|
+| `customCategoryAnalysis` | Object containing the analysis result for the category. | —             |
+| `detected`               | Indicates whether the specified category was detected.  | false         |
 
 
 #### [Python](#tab/python)
@@ -341,10 +395,3 @@ print(result)
 
 * [Custom categories concepts](../concepts/custom-categories.md)
 * [Moderate content with Content Safety](../quickstart-text.md)
----
-
-## Related content
-
-* For information on other Custom categories operations, see the [How-to guide](./how-to/custom-categories.md).
-* [Custom categories concepts](./concepts/custom-categories.md)
-* [Moderate content with Content Safety](./quickstart-text.md)
