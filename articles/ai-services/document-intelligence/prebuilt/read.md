@@ -38,7 +38,7 @@ Optical Character Recognition (OCR) for documents is optimized for large text-he
 ## Development options (v4)
 
 
-Document Intelligence v4.0 (2024-11-30) GA supports the following tools, applications, and libraries:
+Document Intelligence v4.0 (`2024-11-30`) GA supports the following tools, applications, and libraries:
 
 | Feature | Resources | Model ID |
 |----------|-------------|-----------|

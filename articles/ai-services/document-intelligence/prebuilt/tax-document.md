@@ -51,7 +51,7 @@ This preview introduces the `Unified US Tax` prebuilt model, which automatically
 ::: moniker range="doc-intel-4.0.0"
 
 
-Document Intelligence v4.0 (2024-11-30) GA supports the following tools, applications, and libraries:
+Document Intelligence v4.0 (`2024-11-30`) GA supports the following tools, applications, and libraries:
 
 | Feature | Resources | Model ID |
 |----------|-------------|-----------|

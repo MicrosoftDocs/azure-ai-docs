@@ -37,7 +37,7 @@ The following illustration shows the typical components in an image of a sample 
 ## Development options (v4)
 
 
-Document Intelligence v4.0 (2024-11-30) GA supports the following tools, applications, and libraries:
+Document Intelligence v4.0 (`2024-11-30`) GA supports the following tools, applications, and libraries:
 
 | Feature | Resources | Model ID |
 |----------|-------------|-----------|

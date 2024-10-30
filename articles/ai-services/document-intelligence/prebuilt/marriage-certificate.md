@@ -31,7 +31,7 @@ Automated marriage certificate processing is the process of extracting key  fiel
 
 ::: moniker range="doc-intel-4.0.0"
 
-Document Intelligence v4.0 (2024-11-30) supports the following tools, applications, and libraries:
+Document Intelligence v4.0 (`2024-11-30`) supports the following tools, applications, and libraries:
 
 | Feature | Resources | Model ID |
 |----------|-------------|-----------|
