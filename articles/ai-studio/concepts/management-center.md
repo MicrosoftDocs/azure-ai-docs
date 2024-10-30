@@ -44,6 +44,6 @@ For more information, see [Role-based access control](rbac-ai-studio.md#assignin
 
 ## Related content
 
-- [Security baseline](/security/benchymark/azure/baselines/azure-ai-studio-security-baseline)
+- [Security baseline](/security/benchmark/azure/baselines/azure-ai-studio-security-baseline)
 - [Built-in policy to allow specific models](../how-to/built-in-policy-model-deployment.md)
 - [Custom policy to allow specific models](../how-to/custom-policy-model-deployment.md)[]
