@@ -100,7 +100,7 @@ items:
       items:
       - name: Model benchmarks
         href: concepts/model-benchmarks.md
-      - name: Model benchmarks
+      - name: How to use model benchmarking
         href: how-to/benchmark-model-in-catalog.md
     - name: Fine-tune models
       href: concepts/fine-tuning-overview.md
