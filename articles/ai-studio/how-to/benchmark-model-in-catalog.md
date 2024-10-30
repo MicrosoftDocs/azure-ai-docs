@@ -33,7 +33,7 @@ Follow these steps to use detailed benchmarking results to compare and select mo
 
 [!INCLUDE [open-catalog](../includes/open-catalog.md)]
 
-3. Select the model you're interested in. For example, select **gpt-4o**. This action opens the model's overview page.
+4. Select the model you're interested in. For example, select **gpt-4o**. This action opens the model's overview page.
 1. Go to the **Benchmarks** tab to check the benchmark results for the model.
   
     <!-- gpt4o-benchmark-tab.png alt-text: benchmarks tab for gpt-4o.  -->
@@ -59,7 +59,9 @@ When you're in the "Benchmarks" tab for a specific model, you can gather extensi
 
     <!-- gpt4o-benchmark-tab.png alt-text: benchmarks tab for gpt-4o -->
 
-By default, AI Studio displays an average index across various metrics and datasets to provide a high-level overview of model performance. To access benchmark results for a specific metric and dataset:
+By default, AI Studio displays an average index across various metrics and datasets to provide a high-level overview of model performance. 
+
+To access benchmark results for a specific metric and dataset:
 
 1. Select the expand button on the chart. The pop-up comparison chart reveals detailed information and offers greater flexibility for comparison.
 
@@ -70,11 +72,11 @@ By default, AI Studio displays an average index across various metrics and datas
     <!-- comparison-chart-per-metric-data.png alt-text: the comparison chart with specific metric and dataset   -->
 
 
-## Evaluate with your data
+## Evaluate benchmark results with your data
 
 The previous sections showed the benchmark results calculated by Microsoft, using public datasets. However, you can try to regenerate the same set of metrics with your data.
 
-1. Go back to the **Benchmarks** tab for the model.
+1. Return to the **Benchmarks** tab in the model card.
 1. Select **Try with your own data** to evaluate the model with your data. Evaluation on your data helps you see how the model performs in your particular scenarios.
 
     <!-- try-with-your-own-data.png alt-text: evaluate with your own data button -->
