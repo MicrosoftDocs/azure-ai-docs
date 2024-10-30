@@ -15,6 +15,9 @@ zone_pivot_groups: usage-custom-language-features
 
 # Quickstart: Custom sentiment analysis (preview)
 
+> [NOTE]
+> Custom sentiment analysis (preview) will be retired on 10 January 2025, please transition to other custom model training services, such as custom text classification in Azure AI Language, by that date. From now to 10 January 2025, you can continue to use custom sentiment analysis (preview) in your existing projects without disruption. You can’t create new projects. On 10 January 2025 – workloads running on custom sentiment analysis (preview) will be deleted and associated project data will be lost. 
+
 Use this article to get started with creating a Custom sentiment analysis project where you can train custom models for detecting the sentiment of text. A model is artificial intelligence software that's trained to do a certain task. For this system, the models classify text, and are trained by learning from tagged data.
 
 ::: zone pivot="language-studio"

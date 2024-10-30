@@ -13,13 +13,11 @@ author: eric-urban
 
 ## Prerequisites
 
-
 - An Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services?azure-portal=true)
 - [LTS versions of Node.js](https://github.com/nodejs/release#release-schedule)
+- [TypeScript](https://www.typescriptlang.org/download/)
 - [Azure CLI](/cli/azure/install-azure-cli) used for passwordless authentication in a local development environment, create the necessary context by signing in with the Azure CLI.
 - An Azure OpenAI resource created in a supported region (see [Region availability](/azure/ai-services/openai/concepts/models#model-summary-table-and-region-availability)). For more information, see [Create a resource and deploy a model with Azure OpenAI](../how-to/create-resource.md).
-
-
 
 ## Set up
 
@@ -29,7 +27,7 @@ To successfully make a call against Azure OpenAI, you need an *endpoint* and a *
 
 |Variable name | Value |
 |--------------------------|-------------|
-| `AZURE_OPENAI_ENDPOINT`               | The service endpoint can be found in the **Keys & Endpoint** section when examining your resource from the Azure portal. Alternatively, you can find the endpoint via the **Deployments** page in Azure AI Studio. An example endpoint is: `https://docs-test-001.openai.azure.com/`.|
+| `AZURE_OPENAI_ENDPOINT`               | This value can be found in the **Keys & Endpoint** section when examining your resource from the Azure portal. Alternatively, you can find the value in the **Azure OpenAI Studio** > **Playground** > **Code View**. An example endpoint is: `https://aoai-docs.openai.azure.com/`.|
 | `AZURE_OPENAI_API_KEY` | This value can be found in the **Keys & Endpoint** section when examining your resource from the Azure portal. You can use either `KEY1` or `KEY2`.|
 
 Go to your resource in the Azure portal. The **Endpoint and Keys** can be found in the **Resource Management** section. Copy your endpoint and access key as you'll need both for authenticating your API calls. You can use either `KEY1` or `KEY2`. Always having two keys allows you to securely rotate and regenerate keys without causing a service disruption.
@@ -97,20 +95,19 @@ Install the client libraries with:
 npm install openai @azure/identity
 ```
 
----
 Your app's _package.json_ file will be updated with the dependencies.
 
 ## Create a sample application
 
-#### [Microsoft Entra ID](#tab/javascript-keyless)
+#### [Microsoft Entra ID](#tab/typescript-keyless)
 
-1. Create a new file named _Whisper.js_ and open it in your preferred code editor. Copy the following code into the _Whisper.js_ file:
-
-    ```javascript
-    const { createReadStream } = require("fs");
-    const { AzureOpenAI } = require("openai");
-    const { DefaultAzureCredential, getBearerTokenProvider } = require("@azure/identity");
+1. Create a new file named _Whisper.ts_ and open it in your preferred code editor. Copy the following code into the _Whisper.ts_ file:
     
+    ```typescript
+    import { createReadStream } from "fs";
+    import { AzureOpenAI } from "openai";
+    import { DefaultAzureCredential, getBearerTokenProvider } from "@azure/identity";
+
     // You will need to set these environment variables or edit the following values
     const audioFilePath = "<audio file path>";
     const endpoint = process.env["AZURE_OPENAI_ENDPOINT"] || "<endpoint>";
@@ -118,13 +115,13 @@ Your app's _package.json_ file will be updated with the dependencies.
     // Required Azure OpenAI deployment name and API version
     const apiVersion = "2024-08-01-preview";
     const deploymentName = "whisper";
-    
+
     // keyless authentication    
     const credential = new DefaultAzureCredential();
     const scope = "https://cognitiveservices.azure.com/.default";
     const azureADTokenProvider = getBearerTokenProvider(credential, scope);
-
-    function getClient() {
+    
+    function getClient(): AzureOpenAI {
       return new AzureOpenAI({
         endpoint,
         azureADTokenProvider,
@@ -150,19 +147,23 @@ Your app's _package.json_ file will be updated with the dependencies.
     });
     ```
 
-1. Run the script with the following command:
+1. Build the application with the following command:
+
+    ```console
+    tsc
+    ```
+
+1. Run the application with the following command:
 
     ```console
     node Whisper.js
     ```
 
-
-
 #### [API key](#tab/typescript-key)
 
-1. Create a new file named _Whisper.js_ and open it in your preferred code editor. Copy the following code into the _Whisper.js_ file:
+1. Create a new file named _Whisper.ts_ and open it in your preferred code editor. Copy the following code into the _Whisper.ts_ file:
     
-    ```javascript
+    ```typescript
     import { createReadStream } from "fs";
     import { AzureOpenAI } from "openai";
     
