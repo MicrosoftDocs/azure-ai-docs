@@ -8,7 +8,7 @@ ms.custom:
   - ignite-2023
   - build-2024
 ms.topic: how-to
-ms.date: 5/21/2024
+ms.date: 10/30/2024
 ms.reviewer: lebaro
 ms.author: sgilley
 author: sdgilley
@@ -26,6 +26,7 @@ Azure AI Studio supports developing in VS Code - Desktop and Web. In each scenar
 1. Go to [Azure AI Studio](https://ai.azure.com).
 1. Open your project in Azure AI Studio.
 1. On the left menu, select **Code**.
+1. Select **VS Code container**.
 1. For **Compute**, select an existing compute instance or create a new one.
     * Select a compute instance to use. If it's stopped, select **Start compute** and wait for it to switch to **Running**. You'll see a **Ready** status when the compute is ready for use.
     * If you don't have a compute instance, enter a name and select **Create compute**. Wait until the compute instance is ready.
