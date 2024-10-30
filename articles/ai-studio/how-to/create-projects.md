@@ -25,7 +25,7 @@ Projects are hosted by an Azure AI Studio hub that provides enterprise-grade sec
 
 - An Azure subscription. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/).
 - For Python SDK or CLI steps, an Azure AI Studio hub. If you don't have a hub, see [How to create and manage an Azure AI Studio hub](create-azure-ai-resource.md). 
-- For Azure AI Studio, a hub is not required, it is created when needed.
+- For Azure AI Studio, a hub isn't required. It is created for you when needed.
 
 ## Create a project
 
