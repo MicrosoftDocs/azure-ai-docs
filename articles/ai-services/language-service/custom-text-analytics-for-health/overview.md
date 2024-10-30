@@ -14,7 +14,7 @@ ms.custom: language-service-custom-ta4h
 
 # What is custom Text Analytics for health?
 
-> [NOTE]
+> [!NOTE]
 > Custom text analytics for health (preview) will be retired on 10 January 2025, please transition to other custom model training services, such as custom named entity recognition in Azure AI Language, by that date. From now to 10 January 2025, you can continue to use custom text analytics for health (preview) in your existing projects without disruption. You can’t create new projects. On 10 January 2025 – workloads running on custom text analytics for health (preview) will be deleted and associated project data will be lost.
 
 Custom Text Analytics for health is one of the custom features offered by [Azure AI Language](../overview.md). It is a cloud-based API service that applies machine-learning intelligence to enable you to build custom models on top of [Text Analytics for health](../text-analytics-for-health/overview.md) for custom healthcare entity recognition tasks.

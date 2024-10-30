@@ -15,7 +15,7 @@ zone_pivot_groups: usage-custom-language-features
 
 # Quickstart: custom Text Analytics for health
 
-> [NOTE]
+> [!NOTE]
 > Custom text analytics for health (preview) will be retired on 10 January 2025, please transition to other custom model training services, such as custom named entity recognition in Azure AI Language, by that date. From now to 10 January 2025, you can continue to use custom text analytics for health (preview) in your existing projects without disruption. You can’t create new projects. On 10 January 2025 – workloads running on custom text analytics for health (preview) will be deleted and associated project data will be lost.
 
 Use this article to get started with creating a custom Text Analytics for health project where you can train custom models on top of Text Analytics for health for custom entity recognition. A model is artificial intelligence software that's trained to do a certain task. For this system, the models extract healthcare related named entities and are trained by learning from labeled data.
