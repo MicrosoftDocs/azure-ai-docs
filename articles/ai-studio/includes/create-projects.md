@@ -33,7 +33,7 @@ When you create a new hub, you must have **Owner** or **Contributor** permission
 
 While you can create a hub as part of the project creation, you have more control and can set more advanced settings for the hub if you create it separately. For example, you can customize network security or the underlying Azure Storage account. For more information, see [How to create and manage an Azure AI Studio hub](../how-to/create-azure-ai-resource.md).
 
-When you create a new hub as part of the project creation, default settings are provided.If you want to customize these settings, do so before you create the project:
+When you create a new hub as part of the project creation, default settings are provided. If you want to customize these settings, do so before you create the project:
 
 1. In the **Create a project** form, select **Customize**.
 
@@ -44,7 +44,7 @@ When you create a new hub as part of the project creation, default settings are 
     > [!TIP]
     > Especially for getting started it's recommended to create a new resource group for your project. This allows you to easily manage the project and all of its resources together. When you create a project, several resources are created in the resource group, including a hub, a container registry, and a storage account.
 
-1. Select a **Location** or use the defailt. The location is the region where the hub is hosted. The location of the hub is also the location of the project. Azure AI services availability differs per region. For example, certain models might not be available in certain regions.
+1. Select a **Location** or use the default. The location is the region where the hub is hosted. The location of the hub is also the location of the project. Azure AI services availability differs per region. For example, certain models might not be available in certain regions.
 1. Select an existing Azure AI services resource (including Azure OpenAI) from the dropdown if you have one, or use the default to create a new resource.
 
     :::image type="content" source="../media/how-to/projects/projects-create-resource.png" alt-text="Screenshot of the create resource page within the create project dialog." lightbox="../media/how-to/projects/projects-create-resource.png":::
