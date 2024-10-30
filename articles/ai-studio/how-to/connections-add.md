@@ -8,7 +8,7 @@ ms.custom:
   - ignite-2023
   - build-2024
 ms.topic: how-to
-ms.date: 09/13/2024
+ms.date: 10/29/2024
 ms.reviewer: larryfr
 ms.author: larryfr
 author: Blackmist
@@ -44,7 +44,8 @@ Here's a table of some of the available connection types in Azure AI Studio. The
 Follow these steps to create a new connection that's only available for the current project.
 
 1. Go to your project in Azure AI Studio. If you don't have a project, [create a new project](./create-projects.md).
-1. Select __Settings__ from the collapsible left menu. 
+1. Select __Management center__ from the bottom left navigation.
+1. Select __Connected resources__ from the __Project__ section.
 1. Select __+ New connection__ from the __Connected resources__ section.
 
     :::image type="content" source="../media/data-connections/connection-add.png" alt-text="Screenshot of the button to add a new connection." lightbox="../media/data-connections/connection-add.png":::
