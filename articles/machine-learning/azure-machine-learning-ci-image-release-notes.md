@@ -20,9 +20,27 @@ Azure Machine Learning checks and validates any machine learning packages that m
 
 Main updates provided with each image version are described in the below sections.
 
+## October 30, 2024
+
+Image Version: '24.10.24'
+
+Release Notes:
+
+SDK Version: `1.57.0`
+
+Python: `3.10.11`
+
+Nvidia Driver:  `535.183.06`
+
+`CUDA`: `12.2`
+
+Jupyter-core: `5.7.2`
+
+zeromq: `4.3.5` 
+
 ## September 27, 2024
 
-Image Version : 24.09.23
+Image Version: `24.09.23`
 
 Release Notes:
 
@@ -40,11 +58,11 @@ python3-jupyter-core: `4.6.3-3`
 
 libzmq5: `4.3.2-2ubuntu1` 
 
-tensorflow: `2.17.0`
+Tensorflow: `2.17.0`
 
-python3.8,python3.8-minimal: `3.8.10-0`
+python3.8, python3.8-minimal: `3.8.10-0`
 
-python3.9,python3.9-minimal: `3.9.5-3`
+python3.9, python3.9-minimal: `3.9.5-3`
 
 linux-image-5.15.0-1048-gkeop: `5.15.0-1048.55`
 
@@ -80,7 +98,7 @@ krb5-admin-server, krb5-kdc, krb5-kdc-ldap, krb5-otp, krb5-pkinit, krb5-user, li
 
 ## August 2, 2024
 
-Image version: 24.07.01
+Image Version: `24.07.01`
  
 Release Notes:
  
@@ -171,7 +189,7 @@ SDK （azureml-core): `1.56.0`
 
 Python: `3.9`
 
-CUDA: `12.2`
+`CUDA`: `12.2`
 
 CUDnn==`9.1.1`
 
