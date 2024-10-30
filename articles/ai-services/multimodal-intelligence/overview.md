@@ -60,7 +60,7 @@ Common scenarios for Azure AI multimodal intelligence service include:
 Chart Understanding| Businesses can significantly enhance chart understanding by automating the analysis and interpretation of various types of charts and diagrams using Multimodal Intelligence. This capability is useful in several downstream use cases.| Quickstart |
 
 ## Responsible AI
-At Microsoft, we prioritize advancing AI with a people-first approach. Generative models in Azure AI Multimodal Intelligence have great potential but can produce incorrect or harmful content without careful design. For more information, *see* [Microsoft Responsible AI dashboard](/azure/machine-learning/concept-responsible-ai-dashboard?view=azureml-api-2), [Adopt responsible and trusted AI principles](/azure/cloud-adoption-framework/strategy/responsible-ai), and follow our [**Empowering responsible AI practices**](https://www.microsoft.com/ai/responsible-ai) guidance.
+At Microsoft, we prioritize advancing AI with a people-first approach. Generative models in Azure AI Multimodal Intelligence have great potential but can produce incorrect or harmful content without careful design. For more information, *see* [Microsoft Responsible AI dashboard](/azure/machine-learning/concept-responsible-ai-dashboard), [Adopt responsible and trusted AI principles](/azure/cloud-adoption-framework/strategy/responsible-ai), and follow our [**Empowering responsible AI practices**](https://www.microsoft.com/ai/responsible-ai) guidance.
 
 ## Data privacy and security
 
