@@ -6,7 +6,7 @@ author: Blackmist
 ms.author: larryfr
 ms.service: azure-ai-studio
 ms.topic: concept-article #Don't change.
-ms.date: 10/17/2024
+ms.date: 11/18/2024
 
 #customer intent: As an admin, I want a central location where I can perform governance and management activities.
 
@@ -44,20 +44,6 @@ For more information, see [Role-based access control](rbac-ai-studio.md#assignin
 
 ## Related content
 
-- [Related article title](link.md)
-- [Related article title](link.md)
-- [Related article title](link.md)
-
-<!-- Optional: Related content - H2
-
-Consider including a "Related content" H2 section that 
-lists links to 1 to 3 articles the user might find helpful.
-
--->
-
-<!--
-
-Remove all comments except the customer intent
-before you sign off or merge to the main branch.
-
--->
+- [Security baseline](/security/benchymark/azure/baselines/azure-ai-studio-security-baseline)
+- [Built-in policy to allow specific models](../how-to/built-in-policy-model-deployment.md)
+- [Custom policy to allow specific models](../how-to/custom-policy-model-deployment.md)[]
