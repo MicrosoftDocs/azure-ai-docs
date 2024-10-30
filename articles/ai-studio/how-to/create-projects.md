@@ -37,7 +37,7 @@ Use the following tabs to select the method you plan to use to create a project:
 
 # [Python SDK](#tab/python)
 
-The code in this section assume you have an existing hub.  If you don't have a hub, see [How to create and manage an Azure AI Studio hub](create-azure-ai-resource.md) to create one.
+The code in this section assumes you have an existing hub.  If you don't have a hub, see [How to create and manage an Azure AI Studio hub](create-azure-ai-resource.md) to create one.
 
 [!INCLUDE [SDK setup](../includes/development-environment-config.md)]
 
@@ -60,7 +60,7 @@ The code in this section assume you have an existing hub.  If you don't have a h
 
 # [Azure CLI](#tab/azurecli)
 
-The code in this section assume you have an existing hub.  If you don't have a hub, see [How to create and manage an Azure AI Studio hub](create-azure-ai-resource.md) to create one.
+The code in this section assumes you have an existing hub.  If you don't have a hub, see [How to create and manage an Azure AI Studio hub](create-azure-ai-resource.md) to create one.
 
 1. If you don't have the Azure CLI and machine learning extension installed, follow the steps in the [Install and set up the machine learning extension](/azure/machine-learning/how-to-configure-cli) article.
 

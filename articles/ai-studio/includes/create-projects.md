@@ -24,7 +24,7 @@ To create a project in [Azure AI Studio](https://ai.azure.com), follow these ste
 
 ### Customize the hub
 
-Projects live inside a hub. A hub allows you to share configurations like data connections with all projects, and centrally manage security settings and spend. If you're part of a team, hubs are shared across other team members in your subscription. For more information about the relationship between hubs and projects, see the [hubs and projects overview](../concepts/ai-resources.md) documentation.
+Projects live inside a hub. A hub allows you to share configurations like data connections with all projects, and to centrally manage security settings and spend. If you're part of a team, hubs are shared across other team members in your subscription. For more information about the relationship between hubs and projects, see the [hubs and projects overview](../concepts/ai-resources.md) documentation.
 
 When you create a new hub, you must have **Owner** or **Contributor** permissions on the selected resource group. If you're part of a team and don't have these permissions, your administrator should create a hub for you.
 
