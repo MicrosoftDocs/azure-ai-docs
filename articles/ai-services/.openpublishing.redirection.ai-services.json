@@ -769,6 +769,16 @@
       "source_path_from_root": "/articles/ai-services/speech-service/video-translation-studio.md",
       "redirect_url": "/azure/ai-services/speech-service/video-translation-get-started",
       "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/qnamaker/how-to/migrate-to-openai.md",
+      "redirect_url": "/azure/ai-services/qnamaker/overview/overview",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/language-service/question-answering/how-to/azure-openai-integration.md",
+      "redirect_url": "/azure/ai-services/language-service/question-answering/overview",
+      "redirect_document_id": true
     }
   ]
 }
