@@ -32,9 +32,9 @@ Python: `3.10.11`
 
 Nvidia Driver:  `535.183.06`
 
-Cuda : `12.2`
+Cuda: `12.2`
 
-Jupyter-core : `5.7.2`
+Jupyter-core: `5.7.2`
 
 zeromq: `4.3.5` 
 
@@ -98,7 +98,7 @@ krb5-admin-server, krb5-kdc, krb5-kdc-ldap, krb5-otp, krb5-pkinit, krb5-user, li
 
 ## August 2, 2024
 
-Image version: 24.07.01
+Image Version: 24.07.01
  
 Release Notes:
  
