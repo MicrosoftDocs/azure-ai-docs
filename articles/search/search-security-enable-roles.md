@@ -8,20 +8,18 @@ author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 06/18/2024
+ms.date: 10/30/2024
 
 ---
 
 # Enable or disable role-based access control in Azure AI Search
 
-Before you can assign roles for authorized access to Azure AI Search, enable role-based access control on your search service.
+Azure AI Search uses [key-based authentication](search-security-api-keys.md) by default, but it fully supports Microsoft Entra ID authentication and authorization for all control plane and data plane operations through role-based access controls.
 
-Role-based access for data plane operations is optional, but recommended as the more secure option. The alternative is [key-based authentication](search-security-api-keys.md), which is the default. 
-
-Roles for service administration (control plane) are built in and can't be enabled or disabled. 
+Before you can assign roles for authorized data plane access to Azure AI Search, you must enable role-based access control on your search service. Roles for service administration (control plane) are built in and can't be enabled or disabled. 
 
 > [!NOTE]
-> *Data plane* refers to operations against the search service endpoint, such as indexing or queries, or any other operation specified in the [Search REST API](/rest/api/searchservice/) or equivalent Azure SDK client libraries.
+> *Data plane* refers to operations against the search service endpoint, such as indexing or queries, or any other operation specified in the [Search Service REST APIs](/rest/api/searchservice/) or equivalent Azure SDK client libraries. *Control plane* refers to Azure resource management, such as creating or configuring a search service.
 
 ## Prerequisites
 
@@ -223,13 +221,11 @@ To re-enable key authentication, set "disableLocalAuth" to false. The search ser
 
 ---
 
-## Limitations
+## Effects of role-based access control
 
-+ Role-based access control can increase the latency of some requests. Each unique combination of service resource (index, indexer, etc.) and service principal triggers an authorization check. These authorization checks can add up to 200 milliseconds of latency per request. 
++ Role-based access control can increase the latency of some requests. Each unique combination of service resource (index, indexer, skillsets and so forth) and service principal triggers an authorization check. These authorization checks can add up to 200 milliseconds of latency per request. 
 
-+ In rare cases where requests originate from a high number of different service principals, all targeting different service resources (indexes, indexers, etc.), it's possible for the authorization checks to result in throttling. Throttling would only happen if hundreds of unique combinations of search service resource and service principal were used within a second.
-
----
++ In rare cases where requests originate from a high number of different service principals, all targeting different service resources (indexes, indexers, and so forth), it's possible for the authorization checks to result in throttling. Throttling would only happen if hundreds of unique combinations of search service resource and service principal were used within a second.
 
 ## Next steps
 
