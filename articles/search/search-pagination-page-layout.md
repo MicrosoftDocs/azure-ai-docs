@@ -38,7 +38,7 @@ Pick fields that offer contrast and differentiation among documents, providing s
 POST /indexes/hotels-sample-index/docs/search?api-version=2024-07-01 
     {  
       "search": "sandy beaches",
-      "select": "HotelId, HotelName, Description, Rating, Address/City"
+      "select": "HotelId, HotelName, Description, Rating, Address/City",
       "count": true
     }
 ```
