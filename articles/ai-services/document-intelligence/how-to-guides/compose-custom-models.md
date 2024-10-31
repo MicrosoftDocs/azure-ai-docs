@@ -6,7 +6,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.topic: how-to
-ms.date: 08/07/2024
+ms.date: 11/19/2024
 ms.author: lajanuar
 ---
 
@@ -36,7 +36,7 @@ ms.author: lajanuar
 ::: moniker range=">=doc-intel-3.0.0"
 
 > [!IMPORTANT]
-> Model compose behavior is changing for api-version=2024-07-31-preview and later, for more info refer to [composed custom models](../train/composed-models.md). The following behavior only applies to v3.1 and previous versions
+> Model compose behavior is changed for api-version=2024-11-30 (GA). for more info refer to [composed custom models](../train/composed-models.md). The following behavior only applies to v3.1 and previous versions
 
 A composed model is created by taking a collection of custom models and assigning them to a single model ID. You can assign up to 200 trained custom models to a single composed model ID. When a document is submitted to a composed model, the service performs a classification step to decide which custom model accurately represents the form presented for analysis. Composed models are useful when you train several models and want to group them to analyze similar form types. For example, your composed model might include custom models trained to analyze your supply, equipment, and furniture purchase orders. Instead of manually trying to select the appropriate model, you can use a composed model to determine the appropriate custom model for each analysis and extraction.
 

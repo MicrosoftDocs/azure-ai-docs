@@ -6,7 +6,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.topic: conceptual
-ms.date: 08/13/2024
+ms.date: 11/19/2024
 ms.author: lajanuar
 ms.custom:
   - references_regions
@@ -22,15 +22,15 @@ monikerRange: '>=doc-intel-3.0.0'
 
 
 
-**This content applies to:**![checkmark](../media/yes-icon.png) **v4.0 (preview)** | **Previous versions:** ![blue-checkmark](../media/blue-yes-icon.png) [**v3.1 (GA)**](?view=doc-intel-3.1.0&preserve-view=tru) ![blue-checkmark](../media/blue-yes-icon.png) [**v3.0 (GA)**](?view=doc-intel-3.0.0&preserve-view=tru)
+**This content applies to:**![checkmark](../media/yes-icon.png) **v4.0 (GA)** | **Previous versions:** ![blue-checkmark](../media/blue-yes-icon.png) [**v3.1 (GA)**](?view=doc-intel-3.1.0&preserve-view=tru) ![blue-checkmark](../media/blue-yes-icon.png) [**v3.0 (GA)**](?view=doc-intel-3.0.0&preserve-view=tru)
 ::: moniker-end
 
 ::: moniker range="doc-intel-3.1.0"
-**This content applies to:** ![checkmark](../media/yes-icon.png) **v3.1 (GA)** | **Latest version:** ![purple-checkmark](../media/purple-yes-icon.png) [**v4.0 (preview)**](?view=doc-intel-4.0.0&preserve-view=true) | **Previous versions:** ![blue-checkmark](../media/blue-yes-icon.png) [**v3.0**](?view=doc-intel-3.0.0&preserve-view=true)
+**This content applies to:** ![checkmark](../media/yes-icon.png) **v3.1 (GA)** | **Latest version:** ![purple-checkmark](../media/purple-yes-icon.png) [**v4.0 (GA)**](?view=doc-intel-4.0.0&preserve-view=true) | **Previous versions:** ![blue-checkmark](../media/blue-yes-icon.png) [**v3.0**](?view=doc-intel-3.0.0&preserve-view=true)
 ::: moniker-end
 
 ::: moniker range="doc-intel-3.0.0"
-**This content applies to:** ![checkmark](../media/yes-icon.png) **v3.0 (GA)** | **Latest versions:** ![purple-checkmark](../media/purple-yes-icon.png) [**v4.0 (preview)**](?view=doc-intel-4.0.0&preserve-view=true) ![purple-checkmark](../media/purple-yes-icon.png) [**v3.1**](?view=doc-intel-3.1.0&preserve-view=true)
+**This content applies to:** ![checkmark](../media/yes-icon.png) **v3.0 (GA)** | **Latest versions:** ![purple-checkmark](../media/purple-yes-icon.png) [**v4.0 (GA)**](?view=doc-intel-4.0.0&preserve-view=true) ![purple-checkmark](../media/purple-yes-icon.png) [**v3.1**](?view=doc-intel-3.1.0&preserve-view=true)
 ::: moniker-end
 
 Custom neural document models or neural models are a deep learned model type that combines layout and language features to accurately extract labeled fields from documents. The base custom neural model is trained on various document types that makes it suitable to be trained for extracting fields from structured and semi-structured documents. Custom neural models are available in the [v3.0 and later models](../v3-1-migration-guide.md) The table below lists common document types for each category:
@@ -45,7 +45,7 @@ Custom neural models share the same labeling format and strategy as [custom temp
 ## Model capabilities
 
  > [!IMPORTANT]
- > Starting with API version ```2024-02-29-preview``` custom neural models add support for overlapping fields and table cell confidence.
+ > Custom neural v4.0 2024-11-30 (GA) model supports overlapping fields and table cell confidence.
 
 Custom neural models currently support key-value pairs and selection marks and structured fields (tables).
 
@@ -54,7 +54,7 @@ Custom neural models currently support key-value pairs and selection marks and s
 | Supported | Supported | Supported | Unsupported | Supported <sup>1</sup> | Supported <sup>2</sup> |
 
 <sup>1</sup> Region labels in custom neural models use the results from the Layout API for specified region. This feature is different from template models where, if no value is present, text is generated at training time.</br>
-<sup>2</sup> Overlapping fields are supported starting with REST API version `2024-02-29-preview`. Overlapping fields have some limits. For more information, *see* [overlapping fields](#overlapping-fields).
+<sup>2</sup> Overlapping fields are supported with REST API version `2024-11-30 (GA)`. Overlapping fields have some limits. For more information, *see* [overlapping fields](#overlapping-fields).
 
 ### Build mode
 
@@ -64,11 +64,7 @@ Neural models support documents that have the same information, but different pa
 
 ### Overlapping fields
 
-With the release of API versions ````2024-02-29-preview```` and later, custom neural models support overlapping fields:
-
-## Overlapping fields
-
-With the release of API versions **2024-07-31-preview** and  later, custom neural models will support overlapping fields:
+Custom neural v4.0 2024-11-30 (GA) model supports overlapping fields:
 
 To use the overlapping fields, your dataset needs to contain at least one sample with the expected overlap. To label an overlap, use **region labeling** to designate each of the spans of content (with the overlap) for each field. Labeling an overlap with field selection (highlighting a value) fails in the Studio as region labeling is the only supported labeling tool for indicating field overlaps. Overlap support includes:
 
@@ -81,11 +77,11 @@ Overlapping fields have some limits:
 * overlapping fields in a table can't span table rows.
 * Overlapping fields can only be recognized if at least one sample in the dataset contains overlapping labels for those fields.
 
-To use overlapping fields, label your dataset with the overlaps and train the model with the API version ```2024-02-29-preview``` or later.
+To use overlapping fields, label your dataset with the overlaps and train the model with the API version ```2024-11-30 (GA)```.
 
 ## Tabular fields
 
-With the release of API versions **2022-06-30-preview** and later, custom neural models support tabular fields (tables) to analyze table, row, and cell data with added confidence:
+Custom neural v4.0 `2024-11-30 (GA)` model supports tabular fields (tables) to analyze table, row, and cell data with added confidence:
 
 * Models trained with API version 2022-06-30-preview, or later will accept tabular field labels.
 * Documents analyzed with custom neural models using API version 2022-06-30-preview or later will produce tabular fields aggregated across the tables.
@@ -98,7 +94,7 @@ Tabular fields support **cross page tables** by default:
 
 Tabular fields are also useful when extracting repeating information within a document that isn't recognized as a table. For example, a repeating section of work experiences in a resume can be labeled and extracted as a tabular field.
 
-Tabular fields provide **table, row and cell confidence** starting with the ```2024-02-29-preview``` API:
+Tabular fields provide **table, row and cell confidence** with the ```2024-11-30 (GA)``` API:
 
 * Fixed or dynamic tables add confidence support for the following elements:
   * Table confidence, a measure of how accurately the entire table is recognized.
@@ -169,7 +165,7 @@ As of October 18, 2022, Document Intelligence custom neural model training will 
     |Model | PDF |Image: </br>jpeg/`jpg`, `png`, `bmp`, `tiff`, `heif` | Microsoft Office: </br> Word (docx), Excel (xlsx), PowerPoint (pptx), and HTML|
     |--------|:----:|:-----:|:---------------:|
     |Read            | ✔    | ✔    | ✔  |
-    |Layout          | ✔  | ✔ | ✔ (2024-02-29-preview, 2023-10-31-preview, or later)  |
+    |Layout          | ✔  | ✔ | ✔|
     |General&nbsp;Document| ✔  | ✔ |   |
     |Prebuilt        |  ✔  | ✔ |   |
     |Custom neural   |  ✔  | ✔ |   |
@@ -280,7 +276,7 @@ https://{endpoint}/formrecognizer/documentModels/{modelId}:copyTo?api-version=20
 
 ## Billing
 
-Starting with version `2024-07-31-preview`, you can train your custom neural model for longer durations than the standard 30 minutes. Previous versions are limited to 30 minutes per training instance, with a total of 20 free training instances per month. Now with `2024-07-31-preview`, you can receive **10 hours** of **free model training**, and train a model for as long as 10 hours.
+With version `v4.0 2024-11-30 (GA)`, you can train your custom neural model for longer durations than the standard 30 minutes. Previous versions are limited to 30 minutes per training instance, with a total of 20 free training instances per month. With version `v4.0 2024-11-30 (GA)`, you can receive **10 hours** of **free model training**, and train a model for as long as 10 hours.
 
 You can choose to spend all of 10 free hours on a single model build with a large set of data, or utilize it across multiple builds by adjusting the maximum duration value for the `build` operation by specifying `maxTrainingHours`:
 
@@ -330,7 +326,7 @@ For Document Intelligence versions `v3.1 (2023-07-31) and v3.0 (2022-08-31)`, yo
 > * When increasing the training limit, note that 2 custom neural model training sessions will be considered as 1 training hour. For more information on the pricing for increasing the number of training sessions, *see** the [pricing page](https://azure.microsoft.com/pricing/details/ai-document-intelligence/).
 > * Azure support ticket for training limit increase can only apply at a **resource-level**, not a subscription level. You can request a training limit increase for a single Document Intelligence resource by specifying your resource ID and region in the support ticket.
 
-If you want to train models for longer durations than 30 minutes, we support **paid training** with our newest version, `v4.0 (2024-07-31-preview)`. Using the latest version, you can train your model for a longer duration to process larger documents. For more information about paid training, *see* [Billing v4.0](../service-limits.md#billing).
+If you want to train models for longer durations than 30 minutes, we support **paid training** with version `v4.0 2024-11-30 (GA)`. Using the latest version, you can train your model for a longer duration to process larger documents. For more information about paid training, *see* [Billing v4.0](../service-limits.md#billing).
 
 :::moniker-end
 

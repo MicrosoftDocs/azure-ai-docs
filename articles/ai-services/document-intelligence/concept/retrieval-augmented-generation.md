@@ -6,7 +6,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.topic: conceptual
-ms.date: 08/13/2024
+ms.date: 11/19/2024
 ms.author: lajanuar
 monikerRange: '>=doc-intel-3.1.0'
 ---
@@ -15,7 +15,7 @@ monikerRange: '>=doc-intel-3.1.0'
 
 <!-- markdownlint-disable MD036 -->
 
-**This content applies to:** ![checkmark](../media/yes-icon.png) **v4.0 (preview)**
+**This content applies to:** ![checkmark](../media/yes-icon.png) **v4.0 (GA)**
 
 ## Introduction
 
@@ -57,7 +57,7 @@ Markdown is a structured and formatted markup language and a popular input for e
 
 ## Get started
 
-The Document Intelligence Layout model **2024-07-31-preview** and **2023-10-31-preview** supports the following development options:
+The Document Intelligence Layout model **2024-11-30 (GA)** supports the following development options:
 
 * [Document Intelligence Studio](https://documentintelligence.ai.azure.com/studio).
 
@@ -119,7 +119,7 @@ If you're looking for a specific section in a document, you can use semantic chu
 
 ```python
 
-# Using SDK targeting 2024-02-29-preview or 2023-10-31-preview, make sure your resource is in one of these regions: East US, West US2, West Europe
+# Using SDK targeting 2024-11-30 (GA), make sure your resource is in one of these regions: East US, West US2, West Europe
 # pip install azure-ai-documentintelligence==1.0.0b1
 # pip install langchain langchain-community azure-ai-documentintelligence
 

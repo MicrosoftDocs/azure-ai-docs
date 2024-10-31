@@ -1,22 +1,22 @@
 ---
-title: "Batch analysis and processing (preview)"
+title: "Batch analysis and processing"
 titleSuffix: Azure AI services
-description: Learn about the Document Intelligence Batch analysis API preview
+description: Learn about the Document Intelligence Batch analysis API 
 author: laujan
 ms.service: azure-ai-document-intelligence
 ms.topic: conceptual
-ms.date: 10/03/2024
+ms.date: 11/19/2024
 ms.author: ginle
 monikerRange: '>=doc-intel-4.0.0'
 ---
 
-# Document Intelligence batch analysis (preview)
+# Document Intelligence batch analysis 
 
 The batch analysis API allows you to bulk process multiple documents using one asynchronous request. Rather than having to submit documents individually and track multiple request IDs, you can analyze a collection of invoices, a series of loan documents, or a group of custom model training documents simultaneously.
 
 * To utilize batch analysis, you need an Azure Blob storage account with specific containers for both your source documents and the processed outputs.
 * Upon completion, the batch operation result lists all of the individual documents processed with their status, such as `succeeded`, `skipped`, or `failed`.
-* The Batch API preview version is available via pay-as-you-go pricing.
+* The Batch API version is available via pay-as-you-go pricing.
 
 The following models support batch analysis:
 

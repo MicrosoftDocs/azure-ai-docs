@@ -7,7 +7,7 @@ manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.custom: devx-track-dotnet, devx-track-extended-java, devx-track-js, devx-track-python, linux-related-content
 ms.topic: how-to
-ms.date: 07/18/2024
+ms.date: 11/19/2024
 ms.author: lajanuar
 zone_pivot_groups: programming-languages-set-formre
 ---
@@ -17,7 +17,7 @@ zone_pivot_groups: programming-languages-set-formre
 # Use Document Intelligence models
 
 ::: moniker range="doc-intel-4.0.0"
-[!INCLUDE [applies to v4.0 (preview)](../includes/applies-to-v40.md)]
+[!INCLUDE [applies to v4.0 (GA)](../includes/applies-to-v40.md)]
 ::: moniker-end
 
 ::: moniker range="doc-intel-3.1.0"

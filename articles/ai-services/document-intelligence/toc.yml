@@ -188,7 +188,7 @@ items:
   - name: Create SAS tokens for storage containers
     displayName: blob, delegation, shared, explorer
     href:  authentication/create-sas-tokens.md
-  - name: "SDK Migration guides: 2023-10-31-preview"
+  - name: "SDK Migration guides"
     items:
     - name: ".NET/C# SDK"
       href: https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/documentintelligence/Azure.AI.DocumentIntelligence/MigrationGuide.md

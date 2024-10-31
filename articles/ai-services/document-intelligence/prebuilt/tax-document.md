@@ -21,7 +21,7 @@ monikerRange: ">=doc-intel-3.0.0"
 :::moniker-end
 
 :::moniker range="doc-intel-3.1.0"
-**This content applies to:** ![checkmark](../media/yes-icon.png) **v3.1 (GA)** | **Latest version:** ![purple-checkmark](../media/purple-yes-icon.png) [**v4.0 (preview)**](?view=doc-intel-4.0.0&preserve-view=true)
+**This content applies to:** ![checkmark](../media/yes-icon.png) **v3.1 (GA)** | **Latest version:** ![purple-checkmark](../media/purple-yes-icon.png) [**v4.0 (GA)**](?view=doc-intel-4.0.0&preserve-view=true)
 :::moniker-end
 
 The Document Intelligence tax model uses powerful Optical Character Recognition (OCR) capabilities to analyze and extract key fields and line items from a select group of tax documents. Tax documents can be of various formats like 1099, 1098, W2, 1040 and quality including phone-captured images, scanned documents, and digital PDFs. The API analyzes document text; extracts key information and returns a structured JSON data representation. The model currently supports certain English tax document formats.
@@ -42,7 +42,7 @@ Automated tax document processing is the process of extracting key fields from t
 
 ## Unified Tax US
 
-This preview introduces the `Unified US Tax` prebuilt model, which automatically detects and extracts data from `W2`, `1098`, `1040`, and `1099`  tax forms in submitted documents. These documents can be composed of many tax or non-tax-related documents. The model only processes the forms it supports.
+The `Unified US Tax` prebuilt model automatically detects and extracts data from `W2`, `1098`, `1040`, and `1099`  tax forms in submitted documents. These documents can be composed of many tax or non-tax-related documents. The model only processes the forms it supports.
 
 :::image type="content" source="../media/us-unified-tax-diagram.png" alt-text="Screenshot of a Unified Tax processing diagram.":::
 

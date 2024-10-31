@@ -6,7 +6,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.topic: overview
-ms.date: 08/21/2024
+ms.date: 11/19/2024
 ms.author: lajanuar
 monikerRange: '>=doc-intel-3.0.0'
 ---
@@ -23,7 +23,7 @@ The studio is an online tool to visually explore, understand, train, and integra
 
 * Learn more about the different capabilities in Document Intelligence.
 * Use your Document Intelligence resource to test models on sample documents or upload your own documents.
-* Experiment with different add-on and preview features to adapt the output to your needs.
+* Experiment with different add-on features to adapt the output to your needs.
 * Train custom classification models to classify documents.
 * Train custom extraction models to extract fields from documents.
 * Get sample code for the language specific `SDKs` to integrate into your applications.
@@ -40,7 +40,7 @@ Document Intelligence Studio is the legacy experience that contains all features
 
 ### When to use [AI Studio](https://ai.azure.com/explore/aiservices/vision)
 
-Start with the new Azure AI Studio and try any of the prebuilt document models from `2024-02-29-preview` version including general extraction models like Read or Layout. If you want to build and test a new [Document Field Extraction](https://ai.azure.com/explore/aiservices/vision/document/extraction) model, try our generative AI model, only available in the new AI Studio.
+Start with the new Azure AI Studio and try a document pretrained document analysis model like read or layout or a scenario specific model like receipt or invoice. If you want to build and test a new [Document Field Extraction](https://ai.azure.com/explore/aiservices/vision/document/extraction) model, try our generative AI model, only available in the new AI Studio.
 
 ## Learn more about Document Intelligence Studio
 

@@ -6,7 +6,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.topic: conceptual
-ms.date: 10/03/2024
+ms.date: 11/19/2024
 ms.author: vikurpad
 ms.custom:
 monikerRange: '>=doc-intel-4.0.0'
@@ -16,7 +16,7 @@ monikerRange: '>=doc-intel-4.0.0'
 
 # Use Document Intelligence incremental classifiers
 
-**This content applies to:** ![checkmark](../media/yes-icon.png) **v4.0 (preview)** ![checkmark](../media/yes-icon.png)
+**This content applies to:** ![checkmark](../media/yes-icon.png) **v4.0 (GA)** ![checkmark](../media/yes-icon.png)
 
 Azure AI Document Intelligence is a cloud-based Azure AI service that enables you to build intelligent document processing solutions. Document Intelligence APIs analyze images, PDFs, and other document files to extract and detect various content, layout, style, and semantic elements.
 
