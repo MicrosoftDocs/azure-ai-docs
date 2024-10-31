@@ -133,7 +133,7 @@ tsc
 Run the script with the following command:
 
 ```cmd
-node.exe Completion.js
+node.exe ChatCompletion.js
 ```
 
 ## [API Key](#tab/typescript-key)
@@ -205,7 +205,7 @@ tsc
 Run the script with the following command:
 
 ```cmd
-node.exe Completion.js
+node.exe ChatCompletion.js
 ```
 
 ---
