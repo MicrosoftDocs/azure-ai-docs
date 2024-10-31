@@ -45,7 +45,7 @@ POST /indexes/hotels-sample-index/docs/search?api-version=2024-07-01
 
 ### Tips for unexpected results
 
-Occasionally, the content of seaarch results are unexpected. For example, you might find that some results appear to be duplicates, or a result that *should* appear near the top is positioned lower in the results. When query outcomes are unexpected, you can try these query modifications to see if results improve:
+Occasionally, query output isn't what you're expecting to see. For example, you might find that some results appear to be duplicates, or a result that *should* appear near the top is positioned lower in the results. When query outcomes are unexpected, you can try these query modifications to see if results improve:
 
 + Change **`searchMode=any`** (default) to **`searchMode=all`** to require matches on all criteria instead of any of the criteria. This is especially true when boolean operators are included the query.
 
@@ -175,9 +175,9 @@ If consistent ordering is an application requirement, you can define an [**`$ord
 
 Fields commonly used in an **`$orderby`** include rating, date, and location. Filtering by location requires that the filter expression calls the [**`geo.distance()` function**](search-query-odata-geo-spatial-functions.md?#order-by-examples), in addition to the field name.
 
-Numeric fields (Edm.Double, Edm.Int32, Edm.Int64) are sorted in numeric order (for example, 1, 2, 10, 11, 20).
+Numeric fields (`Edm.Double`, `Edm.Int32`, `Edm.Int64`) are sorted in numeric order (for example, 1, 2, 10, 11, 20).
 
-String fields (Edm.String, Edm.ComplexType subfields) are sorted in either [ASCII sort order](https://en.wikipedia.org/wiki/ASCII#Printable_characters) or [Unicode sort order](https://en.wikipedia.org/wiki/List_of_Unicode_characters), depending on the language. You can't sort collections of any type.
+String fields (`Edm.String`, `Edm.ComplexType` subfields) are sorted in either [ASCII sort order](https://en.wikipedia.org/wiki/ASCII#Printable_characters) or [Unicode sort order](https://en.wikipedia.org/wiki/List_of_Unicode_characters), depending on the language.
 
 + Numeric content in string fields is sorted alphabetically (1, 10, 11, 2, 20).
 
@@ -293,7 +293,7 @@ POST /indexes/good-books/docs/search?api-version=2024-07-01
     }
 ```
 
-Because the criteria now has both terms, only one match is found in the search index. The response to the above query looks like this:
+Because the criteria now have both terms, only one match is found in the search index. The response to the above query looks like this:
 
 ```json
 {
