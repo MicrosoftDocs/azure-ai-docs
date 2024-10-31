@@ -407,12 +407,9 @@ This table doesn't include fine-tuning regional availability information.  Consu
 
 ### Data zone standard model availability
 
-#### Select customer access
-
-In addition to the regions above which are available to all Azure OpenAI customers, some select pre-existing customers have been granted access to versions of GPT-4 in additional regions:
-
 | Model | US Data zone region | EUR Data zone region |
-|---|:---|  
+|---|:---|:---|
+
 | `gpt-4o`(2024-08-06) <br> `gpt-4o`(2024-05-13) | East US 2 <br> West US 3 <br> | Spain Central <br> West Europe |  
 | `gpt-4o-mini` (2024-07-18) | East US 2 <br> West US 3 <br> | Spain Central <br> West Europe | 
 
