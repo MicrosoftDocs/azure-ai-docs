@@ -45,7 +45,7 @@ landingContent:
     linkLists:
       - linkListType: quickstart
         links:
-          - text: Get started building a chat app using the prompt flow SDK
+          - text: Get started building a chat app using the Azure AI SDK
             url: quickstarts/get-started-code.md
           - text: Use Azure OpenAI Assistants in the playground
             url: ../ai-services/openai/assistants-quickstart.md?context=/azure/ai-studio/context/context
@@ -67,7 +67,7 @@ landingContent:
             url: how-to/develop/sdk-overview.md
           - text: Work with AI Studio projects in VS Code
             url: how-to/develop/vscode.md
-          - text: Build a custom chat app with the prompt flow SDK
+          - text: Build a custom chat app with the Azure AI SDK
             url: tutorials/copilot-sdk-create-resources.md
       - linkListType: concept
         links:
