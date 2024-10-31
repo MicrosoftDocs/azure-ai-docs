@@ -159,4 +159,4 @@ Relation type: FrequencyOfMedication.
 ```
 
 > [!TIP]
-> Fast Healthcare Interoperability Resources (FHIR) structuring is available for preview using the Language REST API. The client libraries are not currently supported. [Learn more](../../how-to/call-api.md) on how to use FHIR structuring in your API call.
+> Fast Healthcare Interoperability Resources (FHIR) structuring is available using the Language REST API. The client libraries are not currently supported. [Learn more](../../how-to/call-api.md) on how to use FHIR structuring in your API call.
