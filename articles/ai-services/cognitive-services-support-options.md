@@ -40,38 +40,38 @@ For quick and reliable answers on your technical product questions from Microsof
 
 If you can't find an answer to your problem using search, submit a new question to Microsoft Q&A. Use one of the following tags when you ask your question:
 
-* [Azure AI services](/answers/tags/441/ai-services)
+* [Azure AI services](/answers/topics/azure-cognitive-services.html)
 
 **Vision**
 
-* [Azure AI Vision](/answers/tags/127/azure-computer-vision)
-* [Azure AI Custom Vision](/answers/tags/195/azure-custom-vision)
-* [Azure Face](/answers/tags/156/azure-face)
-* [Azure AI Document Intelligence](/answers/tags/440/document-intelligence)
-* [Video Indexer](/answers/tags/101/azure-media-services)
+* [Azure AI Vision](/answers/topics/azure-computer-vision.html)
+* [Azure AI Custom Vision](/answers/topics/azure-custom-vision.html)
+* [Azure Face](/answers/topics/azure-face.html)
+* [Azure AI Document Intelligence](/answers/topics/azure-form-recognizer.html)
+* [Video Indexer](/answers/topics/azure-media-services.html)
 
 **Language**
 
-* [Azure AI Immersive Reader](/answers/tags/43/azure-immersive-reader)
-* [Language Understanding (LUIS)](/answers/tags/441/ai-services)
-* [Azure QnA Maker](/answers/tags/441/ai-services)
-* [Azure AI Language](/answers/tags/416/language-service)
-* [Azure Translator](/answers/tags/132/azure-translator)
+* [Azure AI Immersive Reader](/answers/topics/azure-immersive-reader.html)
+* [Language Understanding (LUIS)](/answers/topics/azure-language-understanding.html)
+* [Azure QnA Maker](/answers/topics/azure-qna-maker.html)
+* [Azure AI Language](/answers/topics/azure-text-analytics.html)
+* [Azure Translator](/answers/topics/azure-translator.html)
 
 **Speech**
 
-* [Azure AI Speech](/answers/tags/55/azure-speech)
+* [Azure AI Speech](/answers/topics/azure-speech.html)
 
 **Decision**
 
-* [Azure AI Anomaly Detector](/answers/tags/81/azure-anomaly-detector)
+* [Azure AI Anomaly Detector](/answers/topics/azure-anomaly-detector.html)
 * [Content Moderator](/answers/topics/azure-content-moderator.html)
-* [Azure AI Metrics Advisor](/answers/tags/149/azure-metrics-advisor)
-* [Azure AI Personalizer](/answers/tags/219/azure-personalizer)
+* [Azure AI Metrics Advisor](/answers/topics/148981/azure-metrics-advisor.html)
+* [Azure AI Personalizer](/answers/topics/azure-personalizer.html)
 
 **Azure OpenAI**
 
-* [Azure OpenAI](/answers/tags/387/azure-openai)
+* [Azure OpenAI](/answers/topics/azure-openai.html)
 
 ## Post a question to Stack Overflow
 
