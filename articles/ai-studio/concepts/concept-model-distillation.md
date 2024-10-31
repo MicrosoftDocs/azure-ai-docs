@@ -1,5 +1,5 @@
 ---
-title: Distillation in AI Studio
+title: Distillation in AI Studio (preview)
 titleSuffix: Azure AI Studio
 description: Learn how to do distillation in Azure AI Studio.
 manager: scottpolly
@@ -13,7 +13,9 @@ author: ssalgadodev
 ms.custom: references_regions
 ---
 
-# Distillation in Azure AI Studio
+# Distillation in Azure AI Studio (preview)
+
+[!INCLUDE [Feature preview](~/reusable-content/ce-skilling/azure/includes/ai-studio/includes/feature-preview.md)]
 
 In Azure AI Studio, you can use distillation to efficiently train a student model.
 
@@ -31,7 +33,8 @@ The main steps in knowledge distillation are:
 
 ## Sample notebook
 
-You can use the [sample notebook](https://github.com/Azure/azureml-examples/tree/main/sdk/python/foundation-models/system/distillation) to see how to perform distillation. In this sample notebook, the teacher model uses the Meta Llama 3.1 405B instruction model, and the student model uses the Meta Llama 3.1 8B instruction model.
+Distillation in AI Studio is currently only available through a notebook experience. You can use the [sample notebook](https://github.com/Azure/azureml-examples/tree/main/sdk/python/foundation-models/system/distillation) to see how to perform distillation. Model distillation is available for Microsoft models and a selection of OSS (open-source software) models available in the model catalog. In this sample notebook, the teacher model uses the Meta Llama 3.1 405B instruction model, and the student model uses the Meta Llama 3.1 8B instruction model.
+
 
 
 We used an advanced prompt during synthetic data generation. The advanced prompt incorporates chain-of-thought (CoT) reasoning, which results in higher-accuracy data labels in the synthetic data. This labeling further improves the accuracy of the distilled model.
