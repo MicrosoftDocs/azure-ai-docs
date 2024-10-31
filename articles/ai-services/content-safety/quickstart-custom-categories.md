@@ -116,7 +116,7 @@ curl -X POST "<your_endpoint>/contentsafety/text/categories/survival-advice:buil
 
 | Field      | Description                                   | Example Value                                 |
 |------------|-----------------------------------------------|-----------------------------------------------|
-| `operation id`       | Unique identifier for retrieving the build statuse | b6c69dc1-2338-484e-85a5b-xxxxxxxxxxxx          |
+| `operation id`       | Unique identifier for retrieving the build status | b6c69dc1-2338-484e-85a5b-xxxxxxxxxxxx          |
 | `status`   | Current status of the request                 | Succeeded                                     |
 
 
@@ -133,7 +133,7 @@ curl -X GET "<your_endpoint>/contentsafety/text/categories/operations/<id>?api-v
 
 | Field      | Description                                   | Example Value                                 |
 |------------|-----------------------------------------------|-----------------------------------------------|
-| `operation id`       | Unique identifier for retrieving the build statuse | b6c69dc1-2338-484e-855b-xxxxxxxxxxxx          |
+| `operation id`       | Unique identifier for retrieving the build status | b6c69dc1-2338-484e-855b-xxxxxxxxxxxx          |
 | `status`   | Current status of the request                 | Succeeded                                     |
 
 ## Analyze text with a customized category
