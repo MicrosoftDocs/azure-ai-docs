@@ -21,7 +21,7 @@ monikerRange: '>=doc-intel-4.0.0'
 
 **This content applies to:** ![checkmark](../media/yes-icon.png) **v4.0 (GA)** 
 
-The Document Intelligence Mortgage models use powerful Optical Character Recognition (OCR) capabilities and deep learning models to analyze and extract key fields from mortgage documents. Mortgage documents can be of various formats and quality. The API analyzes mortgage documents and returns a structured JSON data representation. The models currently support English-language documents only. With the latest V4.0, you can now extract signatures across 1003, 1004, 1005 and closing discloure mortgage applications including Borrower's, coborrowers, appraiser, lenders, applicant, coapplicant's signatures. 
+The Document Intelligence Mortgage models use powerful Optical Character Recognition (OCR) capabilities and deep learning models to analyze and extract key fields from mortgage documents. Mortgage documents can be of various formats and quality. The API analyzes mortgage documents and returns a structured JSON data representation. The models currently support English-language documents only. With the latest V4.0, you can now extract signatures from mortgage applications and forms.
 
 **Supported document types:**
 
