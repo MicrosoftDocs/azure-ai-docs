@@ -225,6 +225,7 @@ Your app's _package.json_ file will be updated with the dependencies.
     node ChatWithOwnData.js
     ```
 
+
 ---
 
 > [!IMPORTANT]
@@ -236,5 +237,6 @@ Your app's _package.json_ file will be updated with the dependencies.
 ```output
 Message: What are my available health plans?
 The available health plans in the Contoso Electronics plan and benefit packages are the Northwind Health Plus and Northwind Standard plans.
+
 ```
 
