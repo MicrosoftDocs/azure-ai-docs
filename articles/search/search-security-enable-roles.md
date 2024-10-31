@@ -14,7 +14,7 @@ ms.date: 10/30/2024
 
 # Enable or disable role-based access control in Azure AI Search
 
-Azure AI Search uses [key-based authentication](search-security-api-keys.md) by default, but it fully supports Microsoft Entra ID authentication and authorization for all control plane and data plane operations through role-based access controls.
+Azure AI Search uses [key-based authentication](search-security-api-keys.md) by default, but it fully supports Microsoft Entra ID authentication and authorization for all control plane and data plane operations through Azure role-based access control (RBAC).
 
 Before you can assign roles for authorized data plane access to Azure AI Search, you must enable role-based access control on your search service. Roles for service administration (control plane) are built in and can't be enabled or disabled. 
 

@@ -83,23 +83,25 @@ Combine these roles to get sufficient permissions for your use case.
 |-------------|--------------------------|-------------------------------|----------------------------|-------------------|--------|
 |View the resource in Azure portal |❌|❌|✅|✅|✅|
 |View resource properties/metrics/endpoint |❌|❌|✅|✅|✅|
-|View quotas and service statistics |❌|❌|✅|✅|❌|
 |List all objects on the resource |❌|❌|✅|✅|✅|
+|Access quotas and service statistics |❌|❌|✅|✅|❌|
 |Read/query an index |✅|❌|❌|❌|❌|
 |Upload data for indexing |❌|✅|❌|❌|❌|
 |Create or edit indexes/aliases |❌|❌|✅|✅|❌|
 |Create, edit and run indexers/data sources/skillsets |❌|❌|✅|✅|❌|
 |Create or edit synonym maps |❌|❌|✅|✅|❌|
+|Create or edit debug sessions |❌|❌|✅|✅|❌|
 |Create or manage deployments |❌|❌|✅|✅|❌|
 |Create or configure Azure AI Search resources |❌|❌|✅|✅|❌|
-|View/Copy/Regenerate keys under Keys |❌|❌|✅|❌|❌|
-|Set authentication options |❌|❌|❌|✅|❌|
-|Configure private connections |❌|❌|❌|✅|❌|
-|Configure network security |❌|❌|❌|✅|❌|
+|View/Copy/Regenerate keys under Keys |❌|❌|✅|✅|❌|
+|View roles/policies/definitions |❌|❌|✅|✅|❌|
+|Set authentication options |❌|❌|✅|✅|❌|
+|Configure private connections |❌|❌|✅|✅|❌|
+|Configure network security |❌|❌|✅|✅|❌|
 
 Owners and Contributors grant the same permissions, except that only Owners can assign roles.
 
-Owners and Contributors can also create, read, update, and delete objects in the Azure portal *if API keys are enabled*. The portal uses API keys on internal calls to data plane APIs. In an Azure RBAC-only configuration, Owner and Contributor can't manage objects on the data plane.
+Owners and Contributors can create, read, update, and delete objects in the Azure portal *if API keys are enabled*. The portal uses API keys on internal calls to data plane APIs. In an Azure RBAC-only configuration, Owner and Contributor can't manage objects on the data plane.
 
 ## Assign roles
 
