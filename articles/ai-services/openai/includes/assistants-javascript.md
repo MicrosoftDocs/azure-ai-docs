@@ -297,8 +297,6 @@ An individual assistant can access up to 128 tools including `code interpreter`,
     node index.js
     ```
 
-```
-
 ---
 
 ## Output
