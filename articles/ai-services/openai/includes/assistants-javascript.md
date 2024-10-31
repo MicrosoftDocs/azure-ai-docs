@@ -66,9 +66,6 @@ For _keyless_ authentication, you need to
 
 ## Retrieve resource information
 
-> [!CAUTION]
-> To use the recommended keyless authentication with the SDK, make sure that the `AZURE_OPENAI_API_KEY` environment variable isn't set. 
-
 #### [Microsoft Entra ID](#tab/javascript-keyless)
 
 [!INCLUDE [assistants-keyless-environment-variables](assistants-env-var-without-key.md)]
@@ -81,7 +78,7 @@ For _keyless_ authentication, you need to
 ---
 
 > [!CAUTION]
-> Don't set `AZURE_OPENAI_API_KEY` when using keyless authentication.
+> To use the recommended keyless authentication with the SDK, make sure that the `AZURE_OPENAI_API_KEY` environment variable isn't set. 
 
 
 ## Create an assistant
