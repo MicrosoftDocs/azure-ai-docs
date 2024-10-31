@@ -106,7 +106,7 @@ Use the host, `http://localhost:5000`, for container APIs.
 
 [!INCLUDE [Container's API documentation](../../../includes/cognitive-services-containers-api-documentation.md)]
 
-For information on how to call CLU see [our guide](../how-to-call.md).
+For information on how to call CLU see [our guide](call-api.md).
 
 ## Run the container disconnected from the internet
 
