@@ -178,6 +178,10 @@ items:
       href: how-to/deploy-models-jamba.md
     - name: TimeGEN-1 model
       href: how-to/deploy-models-timegen-1.md
+    - name: NTTDATA model
+      href: how-to/deploy-models-tsuzumi.md
+    - name: Fine-tune NTTDATA model
+      href: how-to/fine-tune-models-tsuzumi.md
     - name: Deploy models
       items:
         - name: Deployments overview
