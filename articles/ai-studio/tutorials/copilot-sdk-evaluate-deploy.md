@@ -54,7 +54,7 @@ Use the following evaluation dataset, which contains example questions and expec
 1. Create a file called **eval_dataset.jsonl** in your **rag-tutorial** folder. See the [application code structure](copilot-sdk-build-rag.md#application-code-structure) for reference.
 1. Paste this dataset into the file:
 
-    :::code language="jsonl" source="~/azure-samples-main/rag-data-openai-python-promptflow/tutorial/eval_dataset.jsonl":::
+    :::code language="jsonl" source="~/rag-data-openai-python-promptflow-main/tutorial/eval_dataset.jsonl":::
 
 ### Evaluate with prompt flow evaluators
 
@@ -74,7 +74,7 @@ The script also logs the evaluation results to the cloud project so that you can
 1. Create a file called **evaluate.py** in your **rag-tutorial** folder.
 1. Add the following code. Update the `dataset_path` and `evaluation_name` to fit your use case.
 
-    :::code language="python" source="~/azure-samples-main/rag-data-openai-python-promptflow/tutorial/evaluate.py":::
+    :::code language="python" source="~/rag-data-openai-python-promptflow-main/tutorial/evaluate.py":::
 
 The main function at the end allows you to view the evaluation result locally, and gives you a link to the evaluation results in AI Studio.
 
@@ -184,7 +184,7 @@ As part of creating the deployment, your **copilot_flow** folder is packaged as 
 
 Create the file **deploy.py** in the **rag-tutorial** folder. Add the following code:
 
-:::code language="python" source="~/azure-samples-main/rag-data-openai-python-promptflow/tutorial/deploy.py" id="deploy":::
+:::code language="python" source="~/rag-data-openai-python-promptflow-main/tutorial/deploy.py" id="deploy":::
 
 > [!IMPORTANT]
 > The endpoint and deployment name must be unique within an Azure region. If you get an error that the endpoint or deployment name already exists, try different names.
@@ -193,7 +193,7 @@ Create the file **deploy.py** in the **rag-tutorial** folder. Add the following 
 
 Add the following lines to the end your deploy script to view the evaluation result locally, and get a link to the studio:
 
-:::code language="python" source="~/azure-samples-main/rag-data-openai-python-promptflow/tutorial/deploy.py" id="status":::
+:::code language="python" source="~/rag-data-openai-python-promptflow-main/tutorial/deploy.py" id="status":::
 
 Now, run the script with:
 
@@ -311,7 +311,7 @@ Define a script that will:
 
 Create an **invoke-local.py** file in your **rag-tutorial** folder, with the following code. Modify the `query` and `endpoint_name` (and other parameters as needed) to fit your use case.
 
-:::code language="python" source="~/azure-samples-main/rag-data-openai-python-promptflow/tutorial/invoke-local.py":::
+:::code language="python" source="~/rag-data-openai-python-promptflow-main/tutorial/invoke-local.py":::
 
 You should see the chat app reply to your query in the console.
 

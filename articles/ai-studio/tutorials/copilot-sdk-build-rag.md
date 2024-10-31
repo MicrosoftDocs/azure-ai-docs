@@ -146,7 +146,7 @@ If you don't have an Azure AI Search index already created, we walk through how 
 1. Create the **build_index.py** file in your **rag-tutorial** folder. 
 1. Copy and paste the following code into your **build_index.py** file.
 
-    :::code language="python" source="~/azure-samples-main/rag-data-openai-python-promptflow/tutorial/build_index.py":::
+    :::code language="python" source="~/rag-data-openai-python-promptflow-main/tutorial/build_index.py":::
 
     - Set the `index_name` variable to the name of the index you want. 
     - As needed, you can update the `path_to_data` variable to the path where your data files are stored.
@@ -192,7 +192,7 @@ The chat app implementation logic is in the **copilot.py** file. This file conta
 1. Then create a file called **copilot.py** in the **copilot_flow** folder.
 1. Add the following code to the **copilot.py** file:
 
-    :::code language="python" source="~/azure-samples-main/rag-data-openai-python-promptflow/tutorial/copilot_flow/copilot.py":::
+    :::code language="python" source="~/rag-data-openai-python-promptflow-main/tutorial/copilot_flow/copilot.py":::
 
 The **copilot.py** file contains two key functions: `get_documents()` and `get_chat_response()`.
 
@@ -220,7 +220,7 @@ The **chat.prompty** file is simple, and similar to the **chat.prompty** in the 
 1. Add the file **chat.prompty** in the **copilot_flow** directory. The file represents the call to the chat completion model, with the system prompt, chat history, and document context provided.
 1. Add this code to the **chat.prompty** file:
 
-    :::code language="yaml" source="~/azure-samples-main/rag-data-openai-python-promptflow/tutorial/copilot_flow/chat.prompty":::
+    :::code language="yaml" source="~/rag-data-openai-python-promptflow-main/tutorial/copilot_flow/chat.prompty":::
 
 ### Prompt template for chat history
 
@@ -233,7 +233,7 @@ Instead of passing only the user's query to be embedded, we need to generate a n
 1. Create the file **queryIntent.prompty** in the **copilot_flow** folder. 
 1. Enter this code for specific details about the prompt format and few-shot examples.
 
-    :::code language="yaml" source="~/azure-samples-main/rag-data-openai-python-promptflow/tutorial/copilot_flow/queryIntent.prompty":::
+    :::code language="yaml" source="~/rag-data-openai-python-promptflow-main/tutorial/copilot_flow/queryIntent.prompty":::
 
 The simple system message in our **queryIntent.prompty** file achieves the minimum required for the RAG solution to work with chat history.
 
@@ -241,7 +241,7 @@ The simple system message in our **queryIntent.prompty** file achieves the minim
 
 Create the file **requirements.txt** in the **copilot_flow** folder. Add this content:
 
-:::code language="txt" source="~/azure-samples-main/rag-data-openai-python-promptflow/tutorial/copilot_flow/requirements.txt":::
+:::code language="txt" source="~/rag-data-openai-python-promptflow-main/tutorial/copilot_flow/requirements.txt":::
 
 These packages are required for the flow to run locally and in a deployed environment.
 
@@ -253,7 +253,7 @@ This yaml specifies the entry function, which is the `get_chat_response` functio
 
 Create the file **flow.flex.yaml** in the **copilot_flow** folder. Add this content:
 
-:::code language="yaml" source="~/azure-samples-main/rag-data-openai-python-promptflow/tutorial/copilot_flow/flow.flex.yaml":::
+:::code language="yaml" source="~/rag-data-openai-python-promptflow-main/tutorial/copilot_flow/flow.flex.yaml":::
 
 ## Use prompt flow to test your chat app
 
@@ -287,7 +287,7 @@ Because our application implements RAG, we had to add [extra logic to handle cha
 
 To test with chat history, create a file called **input_with_chat_history.json** in the **copilot_flow** folder, and paste in this content:
 
-:::code language="json" source="~/azure-samples-main/rag-data-openai-python-promptflow/tutorial/copilot_flow/input_with_chat_history.json":::
+:::code language="json" source="~/rag-data-openai-python-promptflow-main/tutorial/copilot_flow/input_with_chat_history.json":::
 
 To test with this file, run:
 

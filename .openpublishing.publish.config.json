@@ -117,12 +117,6 @@
       "branch_mapping": {}
     },
     {
-      "path_to_root": "azure-samples-main",
-      "url": "https://github.com/Azure-Samples",
-      "branch": "main",
-      "branch_mapping": {}
-    },
-    {
       "path_to_root": "azureml-examples-v2samplesreorg",
       "url": "https://github.com/azure/azureml-examples",
       "branch": "v2samplesreorg",
