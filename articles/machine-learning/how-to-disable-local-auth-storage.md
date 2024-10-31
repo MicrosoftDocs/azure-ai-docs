@@ -315,6 +315,8 @@ Select **Save**. At the next screen, select **Review + Create**, as shown in thi
 
 ---
 
+### Assign roles to users
+
 After updating the workspace, update the storage account to disable shared key access. For more information about disabling shared key access, visit the [Prevent shared key authorization for an Azure Storage account](/azure/storage/common/shared-key-authorization-prevent) article.
 
 You must also identify all the users that need access to the default datastores - for example, Data Scientist. These users must be assigned the __Storage Blob Data Contributor__ and __Storage File Data Privileged Contributor__ roles in Azure role-based access control for the storage account. If these users only need read access, use the __Storage Blob Data Reader__ and __Storage File Data Privileged Reader__ roles instead. For more information, visit the [role assignments](#scenarios-for-role-assignments) resource in this document.

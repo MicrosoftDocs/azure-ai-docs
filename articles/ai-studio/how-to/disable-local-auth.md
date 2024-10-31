@@ -364,7 +364,7 @@ In the following JSON template example, substitute your own values for the follo
                 "name": "Basic",
                 "tier": "Basic"
             },
-            "kind": "Default",
+            "kind": "Hub",
             "identity":
             {
                 "type": "SystemAssigned"
