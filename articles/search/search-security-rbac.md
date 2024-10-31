@@ -14,9 +14,7 @@ ms.custom: subject-rbac-steps, devx-track-azurepowershell
 
 # Connect to Azure AI Search using roles
 
-Azure provides a global authentication and [role-based access control](/azure/role-based-access-control/role-assignments-portal) through Microsoft Entra ID for all services running on the platform. 
-
-This article explains the steps for assigning a role and the builtin roles for various operations.
+Azure provides a global authentication and [role-based access control](/azure/role-based-access-control/role-assignments-portal) through Microsoft Entra ID for all services running on the platform. In this article, learn which roles provide access to search content and administration. 
 
 In Azure AI Search, you can assign Azure roles for:
 
@@ -35,7 +33,7 @@ Role-based access is optional, but recommended. The alternative is [key-based au
 
 + A search service in any region, on any tier, [enabled for role-based access](search-security-enable-roles.md).
 
-+ Owner, User Access Administrator, or a custom role with [Microsoft.Authorization/roleAssignments/write](/azure/templates/microsoft.authorization/roleassignments) permissions.
++ Owner, User Access Administrator, Role-based Access Control Administrator, or a custom role with [Microsoft.Authorization/roleAssignments/write](/azure/templates/microsoft.authorization/roleassignments) permissions.
 
 ## How to assign roles in the portal
 
@@ -59,9 +57,11 @@ The following steps work for all role assignments.
 
 ## Built-in roles used in search
 
-The following roles are built in. If these roles are insufficient, [create a custom role](#create-a-custom-role). 
+*Data plane* refers to operations against the search service endpoint, such as indexing or queries, or any other operation specified in the [Search Service REST APIs](/rest/api/searchservice/) or equivalent Azure SDK client libraries. 
 
-### Data plane roles
+*Control plane* refers to Azure resource management, such as creating or configuring a search service.
+
+The following roles are built in. If these roles are insufficient, [create a custom role](#create-a-custom-role). 
 
 | Role | Plane | Description  |
 | ---- | ------|--------------------- |
@@ -93,13 +93,13 @@ Combine these roles to get sufficient permissions for your use case.
 |Create or manage deployments |❌|❌|✅|✅|❌|
 |Create or configure Azure AI Search resources |❌|❌|✅|✅|❌|
 |View/Copy/Regenerate keys under Keys |❌|❌|✅|❌|❌|
-|Set authentication options |❌|❌|✅|❌|❌|
-|Configure private connections |❌|❌|✅|✅|❌|
-|Configure network security |❌|❌|✅|✅|❌|
+|Set authentication options |❌|❌|❌|✅|❌|
+|Configure private connections |❌|❌|❌|✅|❌|
+|Configure network security |❌|❌|❌|✅|❌|
 
-Owners and Contributors provide the same permissions, except that only Owners can configure authentication options and assign roles.
+Owners and Contributors grant the same permissions, except that only Owners can assign roles.
 
-Owners and Contributors can also create, read, update, and delete objects in the Azure portal *if API keys are enabled*. The portal uses API keys on internal calls to APIs. In an Azure RBAC-only configuration, Owner and Contributor can't manage objects on the data plane.
+Owners and Contributors can also create, read, update, and delete objects in the Azure portal *if API keys are enabled*. The portal uses API keys on internal calls to data plane APIs. In an Azure RBAC-only configuration, Owner and Contributor can't manage objects on the data plane.
 
 ## Assign roles
 
