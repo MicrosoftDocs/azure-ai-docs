@@ -419,6 +419,8 @@ items:
       href: semantic-how-to-configure.md
     - name: Add semantic ranking to queries
       href: semantic-how-to-query-request.md
+    - name: Rewrite queries with semantic ranker
+      href: semantic-how-to-query-rewrite.md
     - name: Add a scoring profile
       href: index-add-scoring-profiles.md
     - name: Configure BM25 ranking
