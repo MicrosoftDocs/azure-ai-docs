@@ -48,7 +48,7 @@ To help with simplifying the sizing effort, the following table outlines the TPM
 | Deployable Increments | 50 | 25|
 | Input TPM per PTU | 2,500 | 37,000  |
 | Output TPM per PTU| 833|12,333|
-| SLA Latency Target Value |*99% > 25 Tokens Per Second* |*99% > 33 Tokens Per Second*|
+| SLA Latency Target Value |25 Tokens Per Second* |33 Tokens Per Second*|
 
 For a full list see the [AOAI Studio calculator](https://oai.azure.com/portal/calculator).
 
