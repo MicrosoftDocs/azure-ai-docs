@@ -24,7 +24,7 @@ In this quickstart, you use the following APIs to extract structured data from f
 
 * The latest version of [Visual Studio Code](https://code.visualstudio.com/) or your preferred IDE.
 
-* The latest LTS version of [Node.js](https://nodejs.org/)
+* The latest `LTS` version of [Node.js](https://nodejs.org/)
 
 * An Azure AI services or Document Intelligence resource. Once you have your Azure subscription, create a [single-service](https://portal.azure.com/#create/Microsoft.CognitiveServicesFormRecognizer) or [multi-service](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIServices) Document Intelligence resource in the Azure portal to get your key and endpoint. You can use the free pricing tier (`F0`) to try the service, and upgrade later to a paid tier for production.
 
@@ -144,7 +144,7 @@ This sample demonstrates how to analyze data from certain types of common docume
 
 ### Choose a prebuilt model
 
-You aren't limited to invoices—there are several prebuilt models to choose from, each of which has its own set of supported fields. The model to use for the analyze operation depends on the type of document to be analyzed. Here are the prebuilt models currently supported by the Document Intelligence service:
+You aren't limited to invoices—there are several prebuilt models to choose from, each of which has its own set of supported fields. The model to use for the `analyze` operation depends on the type of document to be analyzed. Here are the prebuilt models currently supported by the Document Intelligence service:
 
 * [**Invoice**](../../../prebuilt/invoice.md): extracts text, selection marks, tables, fields, and key information from invoices.
 * [**Receipt**](../../../prebuilt/receipt.md): extracts text and key information from receipts.

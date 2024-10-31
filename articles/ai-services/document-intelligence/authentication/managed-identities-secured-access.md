@@ -183,7 +183,7 @@ Next, configure the virtual network to ensure only resources within the virtual 
 
     * Select **Next: Resource**.
 
-    :::image type="content" source="../media/managed-identities/v2-fr-private-end-basics.png" alt-text="Screenshot showing how to set-up a private endpoint.":::
+    :::image type="content" source="../media/managed-identities/v2-fr-private-end-basics.png" alt-text="Screenshot showing how to set up a private endpoint.":::
 
 ### Configure your virtual network
 

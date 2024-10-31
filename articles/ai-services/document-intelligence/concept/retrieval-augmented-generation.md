@@ -63,7 +63,7 @@ The Document Intelligence Layout model **2024-11-30 (GA)** supports the followin
 
 * [REST API](/rest/api/aiservices/document-models/build-model?view=rest-aiservices-2024-02-29-preview&preserve-view=true&branch=docintelligence&tabs=HTTP).
 
-* [.NET &bull; Java &bull; JavaScript &bull; Python programming language client libraries (SDKs).](../sdk-overview-v4-0.md#supported-programming-languages)
+* [.NET &bull; Java &bull; JavaScript &bull; Python programming language client libraries (`SDK`s).](../sdk-overview-v4-0.md#supported-programming-languages)
 
 **Ready to begin?**
 

@@ -1,7 +1,7 @@
 ---
 title: "Get started: Document Intelligence client library for Python v2.1"
 titleSuffix: Azure AI services
-description: Form and document processing, data extraction, and analysis using Document Intelligence Python client library SDKs v2.1
+description: Form and document processing, data extraction, and analysis using Document Intelligence Python client library v2.1
 author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
@@ -191,7 +191,7 @@ This sample demonstrates how to analyze data from certain types of common docume
 
 ### Choose a prebuilt model
 
-You aren't limited to invoices—there are several prebuilt models to choose from, each of which has its own set of supported fields. The model to use for the analyze operation depends on the type of document to be analyzed. Here are the prebuilt models currently supported by the Document Intelligence service:
+You aren't limited to invoices—there are several prebuilt models to choose from, each of which has its own set of supported fields. The model to use for the `analyze` operation depends on the type of document to be analyzed. Here are the prebuilt models currently supported by the Document Intelligence service:
 
 * [**Invoice**](../../../prebuilt/invoice.md): extracts text, selection marks, tables, fields, and key information from invoices.
 * [**Receipt**](../../../prebuilt/receipt.md): extracts text and key information from receipts.

@@ -47,13 +47,13 @@ Document Intelligence supports more sophisticated and modular analysis capabilit
 
 * [`languages`](#language-detection)
 
-* [`Read` model support for searchable PDF](prebuilt/read.md#searchable-pdf)
+* [`Read` model support for searchable PDF](../prebuilt/read.md#searchable-pdf)
 
-* [`Searchable PDF` support](concept-add-on-capabilities.md#searchable-pdf)
+* [`Searchable PDF` support](#searchable-pdf)
 
-* [`queryFields`](concept-add-on-capabilities.md#query-fields)
+* [`queryFields`](#query-fields)
 
-* [`keyValuePairs`](concept-add-on-capabilities.md#key-value-pairs)
+* [`keyValuePairs`](#key-value-pairs)
 
 > [!NOTE]
 >
@@ -64,7 +64,7 @@ Document Intelligence supports more sophisticated and modular analysis capabilit
 
 ## Version availability
 
-|Add-on Capability| Add-On/Free|[2024-11-30 (GA)](/rest/api/aiservices/operation-groups?view=rest-aiservices-v4.0%20(2024-07-31-preview)&preserve-view=true)|[`2023-07-31` (GA)](/rest/api/aiservices/document-models/analyze-document?view=rest-aiservices-2023-07-31&preserve-view=true&tabs=HTTP)|[`2022-08-31` (GA)](/rest/api/aiservices/document-models/analyze-document?view=rest-aiservices-v3.0%20(2022-08-31)&preserve-view=true&tabs=HTTP)|[v2.1 (GA)](/rest/api/aiservices/analyzer?view=rest-aiservices-v2.1&preserve-view=true)|
+|Add-on Capability| Add-On/Free|`2024-11-30 (GA)`|[`2023-07-31` (GA)](/rest/api/aiservices/document-models/analyze-document?view=rest-aiservices-2023-07-31&preserve-view=true&tabs=HTTP)|[`2022-08-31` (GA)](/rest/api/aiservices/document-models/analyze-document?view=rest-aiservices-v3.0%20(2022-08-31)&preserve-view=true&tabs=HTTP)|[v2.1 (GA)](/rest/api/aiservices/analyzer?view=rest-aiservices-v2.1&preserve-view=true)|
 |----------------|-----------|---|--|---|---|
 |Font property extraction|Add-On| ✔️| ✔️| n/a| n/a|
 |Formula extraction|Add-On| ✔️| ✔️| n/a| n/a|

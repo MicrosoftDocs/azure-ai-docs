@@ -85,7 +85,7 @@ You create the following directory structure:
 
 :::image type="content" source="../../../media/quickstarts/java-directories.png" alt-text="Screenshot of the application's Java directory structure.":::
 
-Navigate to the Java directory and create a file called *FormRecognizer.java*.  Open it in your preferred editor or IDE and add the following package declaration and `import` statements:
+Navigate to the Java directory and create a file called *FormRecognizer.java*. Open it in your preferred editor or IDE and add the following package declaration and `import` statements:
 
 ```java
 import com.azure.ai.formrecognizer.*;
@@ -176,7 +176,7 @@ This sample demonstrates how to analyze data from certain types of common docume
 
 ### Choose a prebuilt model
 
-You aren't limited to invoices—there are several prebuilt models to choose from, each of which has its own set of supported fields. The model to use for the analyze operation depends on the type of document to be analyzed. Here are the prebuilt models currently supported by the Document Intelligence service:
+You aren't limited to invoices—there are several prebuilt models to choose from, each of which has its own set of supported fields. The model to use for the `analyze` operation depends on the type of document to be analyzed. Here are the prebuilt models currently supported by the Document Intelligence service:
 
 * [**Invoice**](../../../prebuilt/invoice.md): extracts text, selection marks, tables, fields, and key information from invoices.
 * [**Receipt**](../../../prebuilt/receipt.md): extracts text and key information from receipts.
