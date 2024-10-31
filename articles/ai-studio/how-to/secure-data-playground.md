@@ -186,10 +186,12 @@ For more information on assigning roles, see [Tutorial: Grant a user access to r
 | Azure AI Search | Search Index Data Contributor | Azure AI services/OpenAI | Read-write access to content in indexes. Import, refresh, or query the documents collection of an index. Only used for ingestion and inference scenarios. |
 | Azure AI Search | Search Index Data Reader | Azure AI services/OpenAI | Inference service queries the data from the index. Only used for inference scenarios. |
 | Azure AI Search | Search Service Contributor | Azure AI services/OpenAI | Read-write access to object definitions (indexes, aliases, synonym maps, indexers, data sources, and skillsets). Inference service queries the index schema for auto fields mapping. Data ingestion service creates index, data sources, skill set, indexer, and queries the indexer status. |
-| Azure AI services/OpenAI | Cognitive Services OpenAI Contributor | Azure AI Search | Custom skill |
-| Azure OpenAI Resource for chat model | Cognitive Services OpenAI User | Azure OpenAI resource for embedding model | Required only if using two Azure OpenAI resources to communicate. |
+| Azure AI services/OpenAI | Cognitive Services Contributor | Azure AI Search | Allow Search to create, read, and update AI Services resource. |
+| Azure AI services/OpenAI | Cognitive Services OpenAI Contributor | Azure AI Search | Allow Search the ability to fine-tune, deploy and generate text |
 | Azure Storage Account | Storage Blob Data Contributor | Azure AI Search | Reads blob and writes knowledge store. |
 | Azure Storage Account | Storage Blob Data Contributor | Azure AI services/OpenAI | Reads from the input container, and writes the preprocess result to the output container. |
+| Azure Blob Storage private endpoint | Reader | Azure AI Studio project | For your Azure AI Studio project with managed network enabled to access Blob storage in a network restricted environment |
+| Azure OpenAI Resource for chat model | Cognitive Services OpenAI User | Azure OpenAI resource for embedding model | [Optional] Required only if using two Azure OpenAI resources to communicate. |
 
 > [!NOTE]
 > The Cognitive Services OpenAI User role is only required if you are using two Azure OpenAI resources: one for your chat model and one for your embedding model. If this applies, enable Trusted Services AND ensure the Connection for your embedding model Azure OpenAI resource has EntraID enabled.  
@@ -205,7 +207,7 @@ For more information on assigning roles, see [Tutorial: Grant a user access to r
 | Azure AI Search | Search Services Contributor | Developer's Microsoft Entra ID | List API-Keys to list indexes from Azure OpenAI Studio. |
 | Azure AI Search | Search Index Data Contributor | Developer's Microsoft Entra ID | Required for the indexing scenario. |
 | Azure AI services/OpenAI | Cognitive Services OpenAI Contributor | Developer's Microsoft Entra ID | Call public ingestion API from Azure OpenAI Studio. |
-| Azure AI services/OpenAI | Cognitive Services User | Developer's Microsoft Entra ID | List API-Keys from Azure OpenAI Studio. |
+| Azure AI services/OpenAI | Cognitive Services Contributor | Developer's Microsoft Entra ID | List API-Keys from Azure OpenAI Studio. |
 | Azure AI services/OpenAI | Contributor | Developer's Microsoft Entra ID | Allows for calls to the control plane. |
 | Azure Storage Account | Contributor | Developer's Microsoft Entra ID | List Account SAS to upload files from Azure OpenAI Studio. |
 | Azure Storage Account | Storage Blob Data Contributor | Developer's Microsoft Entra ID | Needed for developers to read and write to blob storage. |
