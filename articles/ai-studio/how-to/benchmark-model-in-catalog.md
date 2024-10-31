@@ -27,17 +27,18 @@ In this article, you learn to compare benchmarks across models and datasets, usi
 
 ## Access model benchmarks through the model catalog
 
-Azure AI supports model benchmarking for select models that are popular and most frequently used. Supported models have a _benchmarks_ icon. From the model catalog, you can also use the filter "Benchmark results" and search functionality to find supported models.
-
-Follow these steps to use detailed benchmarking results to compare and select models directly from the AI Studio model catalog: 
+Azure AI supports model benchmarking for select models that are popular and most frequently used. Follow these steps to use detailed benchmarking results to compare and select models directly from the AI Studio model catalog:
 
 [!INCLUDE [open-catalog](../includes/open-catalog.md)]
 
 4. Select the model you're interested in. For example, select **gpt-4o**. This action opens the model's overview page.
+
+    > [!TIP]
+    > From the model catalog, you can show the models that have benchmarking available by filtering the models on "Benchmark results", using the "Collections" drop-down menu. These models have a _benchmarks_ icon that looks like a histogram.
+
 1. Go to the **Benchmarks** tab to check the benchmark results for the model.
   
     <!-- gpt4o-benchmark-tab.png alt-text: benchmarks tab for gpt-4o.  -->
-
 
 1. Return to the homepage of the model catalog.
 1. Select **Compare models** on the model catalog's homepage to explore models with benchmark support, view their metrics, and analyze the trade-offs among different models. This analysis can inform your selection of the model that best fits your requirements.
