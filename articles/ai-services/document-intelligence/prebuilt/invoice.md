@@ -1,12 +1,12 @@
 ---
-title: Invoice data extraction – Document Intelligence 
+title: Invoice data extraction – Document Intelligence
 titleSuffix: Azure AI services
 description: Automate invoice data extraction with Document Intelligence's invoice model.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.topic: conceptual
-ms.date: 10/16/2024
+ms.date: 11/19/2024
 ms.author: lajanuar
 ms.custom: references_regions
 ---
@@ -14,9 +14,6 @@ ms.custom: references_regions
 <!-- markdownlint-disable MD033 -->
 
 # Document Intelligence invoice model
-
-::: moniker range="doc-intel-4.0.0"
-[!INCLUDE [preview-version-notice](../includes/preview-notice.md)]
 
 [!INCLUDE [applies to v4.0](../includes/applies-to-v40.md)]
 ::: moniker-end
@@ -66,7 +63,7 @@ Automated invoice processing is the process of extracting key `accounts payable`
 
 ::: moniker range="doc-intel-4.0.0"
 
-Document Intelligence v4.0 (2024-07-31-preview) supports the following tools, applications, and libraries:
+Document Intelligence v4.0 (`2024-11-30`) supports the following tools, applications, and libraries:
 
 | Feature | Resources | Model ID |
 |----------|-------------|-----------|
@@ -190,90 +187,17 @@ For a complete list of supported languages, *see* our [prebuilt model language s
 
 :::moniker range=">=doc-intel-3.1.0"
 
-* For supported document extraction fields, refer to the [invoice model schema](https://github.com/Azure-Samples/document-intelligence-code-samples/blob/main/schema/2024-07-31-preview/invoice.md) page in our GitHub sample repository.
+* For supported document extraction fields, refer to the **invoice model schema** page in our GitHub sample repository.
 
 * The invoice key-value pairs and line items extracted are in the `documentResults` section of the JSON output.
 
 
 ### Key-value pairs
 
-The prebuilt invoice **2022-06-30** and later releases support the optional return of key-value pairs. By default, the return of key-value pairs is disabled. Key-value pairs are specific spans within the invoice that identify a label or key and its associated response or value. In an invoice, these pairs could be the label and the value the user entered for that field or telephone number. The AI model is trained to extract identifiable keys and values based on a wide variety of document types, formats, and structures.
+The prebuilt invoice model supports the optional return of key-value pairs. By default, the return of key-value pairs is disabled. Key-value pairs are specific spans within the invoice that identify a label or key and its associated response or value. In an invoice, these pairs could be the label and the value the user entered for that field or telephone number. The AI model is trained to extract identifiable keys and values based on a wide variety of document types, formats, and structures.
 
 Keys can also exist in isolation when the model detects that a key exists, with no associated value or when processing optional fields. For example, a middle name field can be left blank on a form in some instances. Key-value pairs are always spans of text contained in the document. For documents where the same value is described in different ways, for example, customer/user, the associated key is either customer or user (based on context).
 ::: moniker-end
-
-::: moniker range="doc-intel-2.1.0"
-
-## Fields extracted
-
-The Invoice service extracts the text, tables, and 26 invoice fields. Following are the fields extracted from an invoice in the JSON output response (the following output uses this [sample invoice](../media/sample-invoice.jpg)).
-
-|Name| Type | Description | Text | Value (standardized output) |
-|:-----|:----|:----|:----| :----|
-| CustomerName | string | Customer being invoiced | Microsoft Corp |  |
-| CustomerId | string | Reference ID for the customer | CID-12345 |  |
-| PurchaseOrder | string | A purchase order reference number | PO-3333 | |
-| InvoiceId | string | ID for this specific invoice (often "Invoice Number") | INV-100 | |
-| InvoiceDate | date | Date the invoice was issued | 11/15/2019 | 2019-11-15 |
-| DueDate | date | Date payment for this invoice is due | 12/15/2019 | 2019-12-15 |
-| VendorName | string | Vendor that created the invoice | CONTOSO | |
-| VendorAddress | string | Mailing address for the Vendor | 123 456th St New York, NY, 10001 | |
-| VendorAddressRecipient | string | Name associated with the VendorAddress | Contoso Headquarters | |
-| CustomerAddress | string | Mailing address for the Customer | 123 Other Street, Redmond, Washington, 98052 | |
-| CustomerAddressRecipient | string | Name associated with the CustomerAddress | Microsoft Corp | |
-| BillingAddress | string | Explicit billing address for the customer | 123 Bill Street, Redmond, Washington, 98052 | |
-| BillingAddressRecipient | string | Name associated with the BillingAddress | Microsoft Services | |
-| ShippingAddress | string | Explicit shipping address for the customer | 123 Ship Street, Redmond, Washington, 98052 | |
-| ShippingAddressRecipient | string | Name associated with the ShippingAddress | Microsoft Delivery | |
-| Sub&#8203;Total | number | Subtotal field identified on this invoice | $100.00 | 100 |
-| TotalTax | number | Total tax field identified on this invoice | $10.00 | 10 |
-| InvoiceTotal | number | Total new charges associated with this invoice | $110.00 | 110 |
-| AmountDue |  number | Total Amount Due to the vendor | $610.00 | 610 |
-| ServiceAddress | string | Explicit service address or property address for the customer | 123 Service Street, Redmond, Washington, 98052 | |
-| ServiceAddressRecipient | string | Name associated with the ServiceAddress | Microsoft Services | |
-| RemittanceAddress | string | Explicit remittance or payment address for the customer | 123 Remit St New York, NY, 10001 |  |
-| RemittanceAddressRecipient | string | Name associated with the RemittanceAddress | Contoso Billing |  |
-| ServiceStartDate | date | First date for the service period (for example, a utility bill service period) | 10/14/2019 | 2019-10-14 |
-| ServiceEndDate | date | End date for the service period (for example, a utility bill service period) | 11/14/2019 | 2019-11-14 |
-| PreviousUnpaidBalance | number | Explicit previously unpaid balance | $500.00 | 500 |
-
-The following are the line items extracted from an invoice in the JSON output response and uses this [sample invoice](../media/sample-invoice.jpg):
-
-|Name| Type | Description | Text (line item #1) | Value (standardized output) |
-|:-----|:----|:----|:----| :----|
-| Items | string | Full string text line of the line item | 3/4/2021 A123 Consulting Services 2 hours $30.00 10% $60.00 | |
-| Amount | number | The amount of the line item | $60.00 | 100 |
-| Description | string | The text description for the invoice line item | Consulting service | Consulting service |
-| Quantity | number | The quantity for this invoice line item | 2 | 2 |
-| UnitPrice | number | The net or gross price (depending on the gross invoice setting of the invoice) of one unit of this item | $30.00 | 30 |
-| ProductCode | string| Product code, product number, or SKU associated with the specific line item | A123 | |
-| Unit | string| The unit of the line item, e.g,  kg, lb etc. | hours | |
-| Date | date| Date corresponding to each line item. Often it's a date the line item was shipped | 3/4/2021| 2021-03-04 |
-| Tax | number | Tax associated with each line item. Possible values include tax amount, tax %, and tax Y/N | 10% | |
-
-The following are complex fields extracted from an invoice in the JSON output response:
-
-### TaxDetails
-
-Tax details define specific taxes applied to the invoice total.
-
-|Name| Type | Description | Text (line item #1) | Value (standardized output) |
-|:-----|:----|:----|:----| :----|
-| Items | string | Full string text line of the tax item | V.A.T. 15% $60.00 | |
-| Amount | number | The tax amount of the tax item | 60.00 | 60 |
-| Rate | string | The tax rate of the tax item | 15% | |
-
-### PaymentDetails
-
-List all the detected payment options detected on the field. 
-
-|Name| Type | Description | Text (line item #1) | Value (standardized output) |
-|:-----|:----|:----|:----| :----|
-| `IBAN` | string | Internal Bank Account Number | GB33BUKB20201555555555 | |
-| `SWIFT` | string | SWIFT code | BUKBGB22 | |
-| BankAccountNumber | string | Bank account number, a unique identifier for a bank account | 123456 | |
-| BPayBillerCode | string | Australian B-Pay Biller Code | 12345 | |
-| BPayReference | string | Australian B-Pay Reference Code | 98765432100 | |
 
 ### JSON output
 

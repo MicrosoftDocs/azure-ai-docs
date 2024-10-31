@@ -19,7 +19,7 @@ monikerRange: '>=doc-intel-4.0.0'
 
 # Document Intelligence marriage certificate model
 
-**This content applies to:** ![checkmark](../media/yes-icon.png) **v4.0 (preview)** ![checkmark](../media/yes-icon.png)
+**This content applies to:** ![checkmark](../media/yes-icon.png) **v4.0 (GA)** 
 
 The Document Intelligence Marriage Certificate model uses powerful Optical Character Recognition (OCR) capabilities to analyze and extract key fields from Marriage Certificates. Marriage certificates  can be of various formats and quality including phone-captured images, scanned documents, and digital PDFs. The API analyzes document text; extracts key information such as Spouse names, Issue date, and marriage place; and returns a structured JSON data representation. The model currently supports English-language document formats.
 
@@ -31,7 +31,7 @@ Automated marriage certificate processing is the process of extracting key  fiel
 
 ::: moniker range="doc-intel-4.0.0"
 
-Document Intelligence v4.0 (2024-07-31-preview) supports the following tools, applications, and libraries:
+Document Intelligence v4.0 (`2024-11-30`) supports the following tools, applications, and libraries:
 
 | Feature | Resources | Model ID |
 |----------|-------------|-----------|
@@ -72,7 +72,7 @@ For a complete list of supported languages, *see* our [prebuilt model language s
 
 ## Field extraction
 
-* For supported document extraction fields, refer to the [marriage certificate model schema](https://github.com/Azure-Samples/document-intelligence-code-samples/blob/main/schema/2024-07-31-preview/marriage-certificate.md) page in our GitHub sample repository.
+* For supported document extraction fields, refer to the **marriage certificate model schema** page in our GitHub sample repository.
 
 * The marriage certificate key-value pairs and line items extracted are in the `documentResults` section of the JSON output.
 

@@ -6,18 +6,14 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.topic: conceptual
-ms.date: 10/16/2024
+ms.date: 11/19/2024
 ms.author: lajanuar
-ms.custom:
-  - references.regions
+ms.custom: references.regions
 ---
 
 <!-- markdownlint-disable MD033 -->
 
 # Document Intelligence ID document model
-
-::: moniker range="doc-intel-4.0.0"
-[!INCLUDE [preview-version-notice](../includes/preview-notice.md)]
 
 [!INCLUDE [applies to v4.0](../includes/applies-to-v40.md)]
 ::: moniker-end
@@ -36,15 +32,16 @@ ms.custom:
 
 ::: moniker range=">=doc-intel-3.0.0"
 
-Document Intelligence Identity document (ID) model combines Optical Character Recognition (OCR) with deep learning models to analyze and extract key information from identity documents. The API analyzes identity documents (including the following) and returns a structured JSON data representation:
+Document Intelligence Identity document (ID) model combines Optical Character Recognition (OCR) with deep learning models to analyze and extract key information from identity documents. The API analyzes identity documents (including the following) and returns a structured JSON data representation.
 
-* Passport book, passport card worldwide
-* Driver's license from United States, Europe, India, Canada, and Australia
-* United States identification cards, residency permit (green card), social security card, military ID
-* European identification cards, residency permits
-* India PAN card, Aadhaar card
-* Canada identification cards, residency permit (maple card)
-* Australia photo card, key-pass ID (including digital version)
+| Region | Document types |
+|--------|----------------|
+|Worldwide|Passport Book, Passport Card|
+|United States|Driver License, Identification Card, Residency Permit (Green card), Social Security Card, Military ID|
+|Europe|Driver License, Identification Card, Residency Permit|
+|India|Driver License, PAN Card, Aadhaar Card|
+|Canada|Driver License, Identification Card, Residency Permit (Maple Card)|
+|Australia|Driver License, Photo Card, Key-pass ID (including digital version)|
 
 ::: moniker-end
 
@@ -86,7 +83,8 @@ The prebuilt IDs service extracts the key values from worldwide passports and U.
 
 ::: moniker range="doc-intel-4.0.0"
 
-Document Intelligence v4.0 (2024-07-31-preview) supports the following tools, applications, and libraries:
+
+Document Intelligence v4.0 (`2024-11-30`) GA supports the following tools, applications, and libraries:
 
 | Feature | Resources | Model ID |
 |----------|-------------|-----------|
@@ -215,20 +213,9 @@ Extract data, including name, birth date, and expiration date, from ID documents
 
 ::: moniker range=">=doc-intel-3.0.0"
 
-## Supported document types
-
-| Region | Document types |
-|--------|----------------|
-|Worldwide|Passport Book, Passport Card|
-|United States|Driver License, Identification Card, Residency Permit (Green card), Social Security Card, Military ID|
-|Europe|Driver License, Identification Card, Residency Permit|
-|India|Driver License, PAN Card, Aadhaar Card|
-|Canada|Driver License, Identification Card, Residency Permit (Maple Card)|
-|Australia|Driver License, Photo Card, Key-pass ID (including digital version)|
-
 ## Field extractions
 
-For supported document extraction fields, refer to the [ID document model schema](https://github.com/Azure-Samples/document-intelligence-code-samples/blob/main/schema/2024-07-31-preview/id-document.md) page in our GitHub sample repository.
+For supported document extraction fields, refer to the **ID document model schema** page in our GitHub sample repository.
 
 ::: moniker-end
 

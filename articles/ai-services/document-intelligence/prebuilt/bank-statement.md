@@ -6,7 +6,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.topic: conceptual
-ms.date: 10/16/2024
+ms.date: 11/19/2024
 ms.author: lajanuar
 ms.custom: references_regions
 monikerRange: '>=doc-intel-4.0.0'
@@ -16,11 +16,11 @@ monikerRange: '>=doc-intel-4.0.0'
 
 # Document Intelligence bank statement model
 
-The Document Intelligence bank statement model combines powerful Optical Character Recognition (OCR) capabilities with deep learning models to analyze and extract data from US bank statements. The API analyzes printed bank statements; extracts key information such as account number, bank details, statement details, transaction details, and fees;  and returns a structured JSON data representation.
+The Document Intelligence bank statement model combines powerful Optical Character Recognition (OCR) capabilities with deep learning models to analyze and extract data from US bank statements. The API analyzes printed bank statements; extracts key information such as account number, bank details, statement details, transaction details, and fees;  and returns a structured JSON data representation. With V4.0 GA, you can now extract check tables in the US bank statements.
 
 | Feature   | version| Model ID |
 |----------  |---------|--------|
-| Bank statement model|&bullet; v4.0:2024-07-31 (preview)|**`prebuilt-bankStatement.us`**|
+| Bank statement model|&bullet; v4.0:2024-11-30 (GA)|**`prebuilt-bankStatement.us`**|
 
 ## Bank statement data extraction
 
@@ -55,11 +55,11 @@ For a complete list of supported languages, *see* our [prebuilt model language s
 
 ## Field extractions
 
-For supported document extraction fields, refer to the [bank check model schema](https://github.com/Azure-Samples/document-intelligence-code-samples/blob/main/schema/2024-07-31-preview/bank-statement.md) page in our GitHub sample repository.
+For supported document extraction fields, refer to the **bank statement model schema** page in our GitHub sample repository.
 
 ## Supported locales
 
-The **prebuilt-bankStatement.us** version 2027-07-31-preview supports the **en-us** locale.
+The **prebuilt-bankStatement.us** version 2027-11-30 supports the **en-us** locale.
 
 ## Next steps
 
