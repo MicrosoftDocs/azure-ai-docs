@@ -109,7 +109,7 @@ When you create a new hub, the creation process can automatically disable shared
 
 1. From the __Identity__ tab, set the __Storage account access type__ to __identity-based__ and then enable the __Disable shared key access__ option.
 
-    :::image type="content" source="../media/disable-local-auth/ai-hub-identity-based-access.png" alt-text="Screenshot of hub creation using identity-based storage access." lightbox="../media/disable-local-auth/ai-studio-hub-based-access.png":::
+    :::image type="content" source="../media/disable-local-auth/ai-hub-identity-based-access.png" alt-text="Screenshot of hub creation using identity-based storage access." lightbox="../media/disable-local-auth/ai-hub-identity-based-access.png":::
 
 1. Continue the hub creation process. As the hub is created, the managed identity is automatically assigned the permissions it needs to access the storage account.
 
@@ -317,7 +317,7 @@ To revert a hub back to use of shared keys to access the storage account, use th
 
 To update an existing workspace, go to **Properties** and select **Credential-based access**, as shown in this screenshot:
 
-:::image type="content" source="../media/disable-local-auth/update-existing-hub-credential-based-access.png" alt-text="Screenshot showing selection of Credential-based access." lightbox="../media/disable-local-auth/update-an-existing-hub-credential-based-access.png":::
+:::image type="content" source="../media/disable-local-auth/update-existing-hub-credential-based-access.png" alt-text="Screenshot showing selection of Credential-based access." lightbox="../media/disable-local-auth/update-existing-hub-credential-based-access.png":::
 
 Select **Save** to save this choice.
 
