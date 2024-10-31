@@ -451,9 +451,10 @@ pf.get_metrics("evaluation_run_name")
 ```
 ---
 
+<a name="go-back-to-studio-ui-for-continuous-development"></a>
 ## Use the studio UI for continuous development
 
-You can go back to the Azure Machine Learning studio UI and use the cloud resources and experience to make changes to your flow in the flow authoring page.
+You can also go back to the Azure Machine Learning studio UI and use the cloud resources and experience to make changes to your flow in the flow authoring page.
 
 To continue developing and working with the most up-to-date versions of the flow files, you can access a terminal on the **Notebook** page and pull the latest flow files from your repository. Or, you can directly import a local flow folder as a new draft flow to seamlessly transition between local and cloud development.
 
