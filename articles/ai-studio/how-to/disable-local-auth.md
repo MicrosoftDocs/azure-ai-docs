@@ -6,9 +6,8 @@ author: Blackmist
 ms.author: larryfr
 ms.service: azure-ai-studio
 ms.topic: how-to
-ms.reviewer: franksolomon
 ms.date: 08/08/2024
-reviewer: AmarBadal
+ms.reviewer: ambadal
 
 #customer intent: As an admin, I want to disable shared key access to my resources to improve security.
 
@@ -42,8 +41,6 @@ Not applicable.
 1. Install azure-identity: `pip install azure-identity`. If you're working in a notebook cell, use `%pip install azure-identity`.
 
 1. Provide your subscription details:
-
-    [!INCLUDE [sdk v2](../../machine-learning/includes/machine-learning-sdk-v2.md)]
 
     [!notebook-python[](~/azureml-examples-main/sdk/python/resources/workspace/workspace.ipynb?name=subscription_id)]
 
@@ -86,7 +83,7 @@ If you use the [Azure Cloud Shell](https://azure.microsoft.com//features/cloud-s
 
 # [ARM Template](#tab/armtemplate)
 
-Not applicable.
+The ARM template example in this article requires an existing Azure Storage Account and Azure Key Vault resource.
 
 ---
 
@@ -168,9 +165,7 @@ az ml workspace create -g <resource-group-name> --kind hub --file workspace.yml
 
 # [ARM Template](#tab/armtemplate)
 
-For more information about ARM templates, visit [Quickstart: Create and deploy ARM templates by using the Azure portal](/azure/azure-resource-manager/templates/quickstart-create-templates-use-the-portal).
-
-In the JSON code sample shown here, substitute your own values for
+In the following JSON template example, substitute your own values for the following placeholders:
 
 - **[workspace name]**
 - **[workspace friendly name]**
@@ -193,7 +188,7 @@ In the JSON code sample shown here, substitute your own values for
                 "name": "Basic",
                 "tier": "Basic"
             },
-            "kind": "Default",
+            "kind": "Hub",
             "identity":
             {
                 "type": "SystemAssigned"
@@ -215,15 +210,11 @@ In the JSON code sample shown here, substitute your own values for
 }
 ```
 
-Paste that JSON code in the Microsoft Azure (Preview) template editor, as shown in this screenshot:
+For information on deploying an ARM template, use one of the following articles:
+- [Tutorial: Deploy a local ARM template using Azure CLI or Azure PowerShell](/azure/azure-resource-manager/templates/deployment-tutorial-local-template)
+- [Quickstart: Create and deploy ARM templates by using the Azure portal](/azure/azure-resource-manager/templates/quickstart-create-templates-use-the-portal)
 
-:::image type="content" source="../media/disable-local-auth/create-new-workspace-edit-template.png" alt-text="Screenshot showing the JSON code sample in the Microsoft Azure (Preview) template editor, to create a new hub." lightbox="../media/disable-local-auth/create-new-workspace-edit-template.png":::
-
-Select **Save**. At the next screen, select **Review + Create**, as shown in this screenshot:
-
-:::image type="content" source="../media/disable-local-auth/review-and-create-new-workspace.png" alt-text="Screenshot showing review and creation of a new hub in the Microsoft Azure (Preview) template editor." lightbox="../media/disable-local-auth/review-and-create-new-workspace.png":::
-
-After you create the hub, identify all the users that will use it - for example, Data Scientists. These users must be assigned the __Storage Blob Data Contributor__ and __Storage File Data Privileged Contributor__ roles in Azure role-based access control for the storage account. If these users only need read access, use the __Storage Blob Data Reader__ and __Storage File Data Privileged Reader__ roles instead. For more information, visit the [role assignments](#scenarios-for-hub-storage-account-role-assignments) resource in this document.
+After you create the hub, identify all the users that will use it - for example, Data Scientists. These users must be assigned the __Storage Blob Data Contributor__ and __Storage File Data Privileged Contributor__ roles in Azure role-based access control for the storage account. If these users only need read access, use the __Storage Blob Data Reader__ and __Storage File Data Privileged Reader__ roles instead. For more information, visit the [role assignments](#scenarios-for-hub-storage-account-role-assignments) section.
 
 ---
 
@@ -260,7 +251,7 @@ az ml workspace update --name myhub --system-datastores-auth-mode identity
 
 # [ARM Template](#tab/armtemplate)
 
-In the JSON code sample shown here, substitute your own values for
+In the following JSON template example, substitute your own values for the following placeholders:
 
 - **[workspace name]**
 - **[workspace friendly name]**
@@ -283,7 +274,7 @@ In the JSON code sample shown here, substitute your own values for
                 "name": "Basic",
                 "tier": "Basic"
             },
-            "kind": "Default",
+            "kind": "Hub",
             "identity":
             {
                 "type": "SystemAssigned"
@@ -305,13 +296,9 @@ In the JSON code sample shown here, substitute your own values for
 }
 ```
 
-Paste that JSON code in the Microsoft Azure (Preview) template editor, as shown in this screenshot:
-
-:::image type="content" source="../media/disable-local-auth/edit-workspace-edit-template.png" alt-text="Screenshot showing the JSON code sample in the Microsoft Azure (Preview) template editor, to convert an existing hub." lightbox="../media/disable-local-auth/edit-workspace-edit-template.png":::
-
-Select **Save**. At the next screen, select **Review + Create**, as shown in this screenshot:
-
-:::image type="content" source="../media/disable-local-auth/review-and-create-update-workspace.png" alt-text="Screenshot showing review and creation of an updated hub in the Microsoft Azure (Preview) template editor." lightbox="../media/disable-local-auth/review-and-create-update-workspace.png":::
+For information on deploying an ARM template, use one of the following articles:
+- [Tutorial: Deploy a local ARM template using Azure CLI or Azure PowerShell](/azure/azure-resource-manager/templates/deployment-tutorial-local-template)
+- [Quickstart: Create and deploy ARM templates by using the Azure portal](/azure/azure-resource-manager/templates/quickstart-create-templates-use-the-portal)
 
 ---
 
@@ -354,9 +341,7 @@ az ml workspace update --name myhub --system-datastores-auth-mode accesskey
 
 If you have an existing Azure AI Studio hub, use the steps in this section to update the hub to use Microsoft Entra ID, to authorize access to the storage account. Then, disable shared key access on the storage account.
 
-For more information about ARM templates, visit the [Quickstart: Create and deploy ARM templates by using the Azure portal](/azure/azure-resource-manager/templates/quickstart-create-templates-use-the-portal) resource.
-
-In the JSON code sample shown here, substitute your own values for
+In the following JSON template example, substitute your own values for the following placeholders:
 
 - **[workspace name]**
 - **[workspace friendly name]**
@@ -401,19 +386,15 @@ In the JSON code sample shown here, substitute your own values for
 }
 ```
 
-Paste that JSON code in the Microsoft Azure (Preview) template editor, as shown in this screenshot:
-
-:::image type="content" source="../media/disable-local-auth/revert-new-workspace-edit-template.png" alt-text="Screenshot showing the JSON code sample in the Microsoft Azure (Preview) template editor, to revert a new hub." lightbox="../media/disable-local-auth/revert-new-workspace-edit-template.png":::
-
-Select **Save**. At the next screen, select **Review + Create**, as shown in this screenshot:
-
-:::image type="content" source="../media/disable-local-auth/review-and-create-reverted-workspace.png" alt-text="Screenshot showing review and creation of a reverted hub in the Microsoft Azure (Preview) template editor." lightbox="../media/disable-local-auth/review-and-create-reverted-workspace.png":::
+For information on deploying an ARM template, use one of the following articles:
+- [Tutorial: Deploy a local ARM template using Azure CLI or Azure PowerShell](/azure/azure-resource-manager/templates/deployment-tutorial-local-template)
+- [Quickstart: Create and deploy ARM templates by using the Azure portal](/azure/azure-resource-manager/templates/quickstart-create-templates-use-the-portal)
 
 After you create the hub, identify all the users that will use it - for example, Data Scientists. These users must be assigned the __Storage Blob Data Contributor__ and __Storage File Data Privileged Contributor__ roles in Azure role-based access control for the storage account. If these users only need read access, use the __Storage Blob Data Reader__ and __Storage File Data Privileged Reader__ roles instead. For more information, visit the [role assignments](#scenarios-for-hub-storage-account-role-assignments) resource in this document.
 
 ---
 
-After you revert the hub, update the storage account to disable shared key access. For more information about disabling shared key access, visit the [Prevent shared key authorization for an Azure Storage account](/azure/storage/common/shared-key-authorization-prevent) article.
+After you revert the hub, update the storage account to enable shared key access. For more information, visit the [Prevent shared key authorization for an Azure Storage account](/azure/storage/common/shared-key-authorization-prevent) article.
 
 ## Scenarios for hub storage account role assignments
 
