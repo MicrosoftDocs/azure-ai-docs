@@ -14,7 +14,7 @@ ms.custom: subject-rbac-steps, devx-track-azurepowershell
 
 # Connect to Azure AI Search using roles
 
-Azure provides a global authentication and [role-based access control](/azure/role-based-access-control/role-assignments-portal) through Microsoft Entra ID for all services running on the platform. In this article, learn which roles provide access to search content and administration. 
+Azure provides a global authentication and [role-based access control](/azure/role-based-access-control/role-assignments-portal) through Microsoft Entra ID for all services running on the platform. In this article, learn which roles provide access to search content and administration on Azure AI Search.
 
 In Azure AI Search, you can assign Azure roles for:
 
@@ -47,7 +47,9 @@ The following steps work for all role assignments.
 
 1. Select **Access Control (IAM)** in the left navigation pane.
 
-1. Select **+ Add** > **Add role assignment**.
+1. Select **+ Add** > **Add role assignment** to start the **Add role assignment** wizard.
+
+   :::image type="content" source="media/search-security-rbac/portal-access-control.png" alt-text="Screenshot of the access control page in the Azure portal.":::
 
 1. Select a role. You can assign multiple security principals, whether users or managed identities to a role in one pass through the wizard, but you have to repeat these steps for each role you define.
 
