@@ -184,7 +184,9 @@ items:
       - name: Managed compute
         href: how-to/deploy-models-managed.md
         displayName: endpoint, online, SDK, CLI
-  - name: Create hubs and projects
+  - name: Create a project
+    href: how-to/create-projects.md
+  - name: Manage projects and hubs
     items:
     - name: Hubs and projects overview
       href: concepts/ai-resources.md
@@ -201,11 +203,10 @@ items:
         displayName: code
       - name: Create a hub using Terraform
         href: how-to/create-hub-terraform.md
-    - name: Create a project
-      href: how-to/create-projects.md
+
     - name: Create and manage compute
       href: how-to/create-manage-compute.md
-  - name: Connect to services and resources
+  - name: Connections
     items:
     - name: Connections overview
       href: concepts/connections.md
