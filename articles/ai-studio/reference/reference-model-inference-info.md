@@ -16,7 +16,7 @@ ms.custom:
 
 # Reference: Info | Azure AI Studio
 
-[!INCLUDE [Feature preview](~/reusable-content/ce-skilling/azure/includes/ai-studio/includes/feature-preview.md)]
+[!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
 Returns the information about the model deployed under the endpoint.
 
@@ -85,7 +85,7 @@ Status code: 200
 ```json
 {
   "model_name": "phi3-mini",
-  "model_type": "chat_completion",
+  "model_type": "chat-completions",
   "model_provider_name": "Microsoft"
 }
 ```

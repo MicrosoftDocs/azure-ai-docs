@@ -10,6 +10,7 @@ author: ssalgadodev
 ms.author: ssalgado
 ms.reviewer: timanghn
 ms.date: 12/15/2023
+ms.collection: ce-skilling-ai-copilot
 ---
 
 # Use Model Catalog collections with workspace managed virtual network

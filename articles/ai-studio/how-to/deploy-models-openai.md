@@ -7,6 +7,7 @@ ms.service: azure-ai-studio
 ms.custom:
   - ignite-2023
   - build-2024
+  - ai-learning-hub
 ms.topic: how-to
 ms.date: 5/21/2024
 ms.reviewer: fasantia
@@ -16,7 +17,7 @@ author: msakande
 
 # How to deploy Azure OpenAI models with Azure AI Studio
 
-[!INCLUDE [Feature preview](~/reusable-content/ce-skilling/azure/includes/ai-studio/includes/feature-preview.md)]
+[!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
 In this article, you learn to create Azure OpenAI model deployments in Azure AI Studio.
 

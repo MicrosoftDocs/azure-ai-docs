@@ -51,6 +51,7 @@ Whisper Model via Azure OpenAI Service might be best for:
 - Translate audio from other languages into English
 - Provide a prompt to the model to guide the output
 - Supported file formats: mp3, mp4, mpweg, mpga, m4a, wav, and webm
+- Only ASCII character supported for filename
 
 Whisper Model via Azure AI Speech batch transcription might be best for:
 - Transcribing files larger than 25MB (up to 1GB). The file size limit for the Azure OpenAI Whisper model is 25 MB.

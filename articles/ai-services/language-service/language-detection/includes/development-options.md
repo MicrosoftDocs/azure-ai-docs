@@ -8,7 +8,7 @@ ms.date: 12/19/2023
 ms.author: jboback
 ---
 
-To use language detection, you submit raw unstructured text for analysis and handle the API output in your application. Analysis is performed as-is, with no additional customization to the model used on your data. There are two ways to use language detection:
+To use language detection, you submit raw unstructured text for analysis and handle the API output in your application. Analysis is performed as-is, with no additional customization to the model used on your data. There are three ways to use language detection:
 
 
 |Development option  |Description  |

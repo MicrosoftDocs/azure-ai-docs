@@ -17,7 +17,7 @@ This diagram provides a high-level overview of the workflow.
 
 You can use the following REST API operations for video translation:
 
-| Operation                                             | Method | REST API call                                    |
+| Operation                                             | Method | REST API call                                     |
 | ----------------------------------------------------- | ------ | ------------------------------------------------- |
 | [Create a translation](/rest/api/aiservices/videotranslation/translation-operations/create-translation) | `PUT`   | `/translations/{translationId}`                  |
 | [List translations](/rest/api/aiservices/videotranslation/translation-operations/list-translation)   | `GET`   | `/translations`                                  |
@@ -45,10 +45,10 @@ To submit a video translation request, you need to construct an HTTP PUT request
 
 - Replace `[YourResourceKey]` with your Speech resource key and replace `[YourSpeechRegion]` with your Speech resource region.
   
-Creating a translation doesn't initiate the translation process. You can start translating the video by [creating an iteration](#create-an-iteration). The following example is for Windows shell. Ensure to escape `&` with `^&`  if the URL contains `&`. 
+Creating a translation doesn't initiate the translation process. You can start translating the video by [creating an iteration](#create-an-iteration). The following example is for Windows shell. Ensure to escape `&` with `^&`  if the URL contains `&`.  In the following sample code, we’ll use a public video URL, which you’re welcome to use for your own testing.
 
 ```azurecli-interactive
-curl -v -X PUT -H "Ocp-Apim-Subscription-Key: [YourResourceKey]" -H "Operation-Id: [operationId]" -H "Content-Type: application/json" -d "{\"displayName\": \"[YourDisplayName]\",\"description\": \"[OptionalYourDescription]\",\"input\": {\"sourceLocale\": \"[VideoSourceLocale]\",\"targetLocale\": \"[TranslationTargetLocale]\",\"voiceKind\": \"[PlatformVoice/PersonalVoice]\",\"speakerCount\": [OptionalVideoSpeakerCount],\"subtitleMaxCharCountPerSegment\": [OptionalYourPreferredSubtitleMaxCharCountPerSegment],\"exportSubtitleInVideo\": [Optional true/false],\"videoFileUrl\": \"[AzureBlobUrlWithSas]\"}}" "https://[YourSpeechRegion].api.cognitive.microsoft.com/videotranslation/translations/[translationId]?api-version=2024-05-20-preview" 
+curl -v -X PUT -H "Ocp-Apim-Subscription-Key: [YourResourceKey]" -H "Operation-Id: [operationId]" -H "Content-Type: application/json" -d "{\"displayName\": \"[YourDisplayName]\",\"description\": \"[OptionalYourDescription]\",\"input\": {\"sourceLocale\": \"[VideoSourceLocale]\",\"targetLocale\": \"[TranslationTargetLocale]\",\"voiceKind\": \"[PlatformVoice/PersonalVoice]\",\"speakerCount\": [OptionalVideoSpeakerCount],\"subtitleMaxCharCountPerSegment\": [OptionalYourPreferredSubtitleMaxCharCountPerSegment],\"exportSubtitleInVideo\": [Optional true/false],\"videoFileUrl\": \"https://speechstudioprodpublicsa.blob.core.windows.net/ttsvoice/VideoTranslation/PublicDoc/SampleData/es-ES-TryOutOriginal.mp4\"}}" "https://[YourSpeechRegion].api.cognitive.microsoft.com/videotranslation/translations/[translationId]?api-version=2024-05-20-preview" 
 ```
 
 >[!IMPORTANT]
@@ -235,7 +235,7 @@ You should receive a response body in the following format:
 
 ## Delete a translation by translation ID
 
-Remove a specific translation identified by `translationId`. This operation also removes all iterations associated with this translation. Replace `[YourResourceKey]` with your Speech resource key,  `[YourSpeechRegion]` with your Speech resource region, and `[translationId]` with the translation ID you want to delete.
+Remove a specific translation identified by `translationId`. This operation also removes all iterations associated with this translation. Replace `[YourResourceKey]` with your Speech resource key,  `[YourSpeechRegion]` with your Speech resource region, and `[translationId]` with the translation ID you want to delete. If not deleted manually, the service retains the translation history for up to 31 days.
 
 ```azurecli-interactive
 curl -v -X DELETE -H "Ocp-Apim-Subscription-Key: [YourResourceKey]" "https://[YourSpeechRegion].api.cognitive.microsoft.com/videotranslation/translations/[translationId]?api-version=2024-05-20-preview" 
@@ -284,7 +284,7 @@ HTTP 200 OK indicates that the request was successful.
 An HTTP 204 error indicates that the request was successful, but the resource doesn't exist. For example:
 
 - You tried to get or delete a translation that doesn't exist.
-- You successfully deleted a translation.
+- You successfully deleted a translation. 
 
 ### HTTP 400 error
 

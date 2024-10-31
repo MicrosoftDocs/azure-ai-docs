@@ -24,10 +24,8 @@ items:
     href: search-get-started-text.md
   - name: Semantic ranking
     href: search-get-started-semantic.md
-  - name: Azure OpenAI Studio
-    items:
-    - name: Chat with your data 
-      href: /azure/ai-services/openai/use-your-data-quickstart?context=/azure/search/context/context
+  - name: Chat with your data 
+    href: /azure/ai-services/openai/use-your-data-quickstart?context=/azure/search/context/context
   - name: Portal
     items:
     - name: Keyword search wizard
@@ -201,7 +199,7 @@ items:
       href: search-capacity-planning.md
     - name: Plan and manage costs
       href: search-sku-manage-costs.md
-    - name: Availability and recovery
+    - name: Reliability and recovery
       href: search-reliability.md
     - name: Availability migration guidance
       href: /azure/reliability/migrate-search-service
@@ -230,7 +228,7 @@ items:
     - name: Alias an index
       href: search-how-to-alias.md
     - name: Import large data sets
-      href: search-howto-large-index.md
+      href: search-how-to-large-index.md
     - name: Indexers
       items:
       - name: Create an indexer
@@ -254,7 +252,7 @@ items:
         - name: Index plain text
           href: search-howto-index-plaintext-blobs.md
         - name: Index CSV
-          href: search-howto-index-csv-blobs.md
+          href: search-how-to-index-csv-blobs.md
         - name: Index JSON
           href: search-howto-index-json-blobs.md
       - name: Troubleshooting guidance
@@ -307,8 +305,8 @@ items:
         href: cognitive-search-defining-skillset.md
       - name: Attach an Azure AI resource
         href: cognitive-search-attach-cognitive-services.md
-      - name: Create an index projection for a secondary index
-        href: index-projections-concept-intro.md
+      - name: Define an index projection
+        href: search-how-to-define-index-projections.md
       - name: Debug sessions overview
         href: cognitive-search-debug-session.md
       - name: Debug a skillset
@@ -482,7 +480,7 @@ items:
     - name: Upgrade .NET libraries
       href: search-dotnet-sdk-migration-version-11.md
     - name: Develop in .NET
-      href: search-howto-dotnet-sdk.md
+      href: search-how-to-dotnet-sdk.md
     - name: Manage with Azure SDKs
       href: search-dotnet-mgmt-sdk-migration.md
     - name: Handle concurrent updates

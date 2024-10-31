@@ -2,7 +2,7 @@
 title: Create a project and use the chat playground in Azure AI Studio
 titleSuffix: Azure AI Studio
 description: Use this article to learn how to create a project, deploy a chat model, and use it in the chat playground in Azure AI Studio.
-manager: nitinme
+manager: scottpolly
 ms.service: azure-ai-studio
 ms.custom:
   - build-2024
@@ -15,7 +15,7 @@ author: sdgilley
 
 # Quickstart: Create a project and use the chat playground in Azure AI Studio
 
-[!INCLUDE [Feature preview](~/reusable-content/ce-skilling/azure/includes/ai-studio/includes/feature-preview.md)]
+[!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
 In this [Azure AI Studio](https://ai.azure.com) quickstart, you create a project, deploy a chat model, and use it in the chat playground in Azure AI Studio.
 

@@ -4,16 +4,16 @@ titleSuffix: Azure OpenAI
 description: Learn how to use global batch with Azure OpenAI Service
 manager: nitinme
 ms.service: azure-ai-openai
-ms.custom: 
+ms.custom: references_regions
 ms.topic: how-to
-ms.date: 10/11/2024
+ms.date: 10/18/2024
 author: mrbullwinkle
 ms.author: mbullwin
 recommendations: false
 zone_pivot_groups: openai-fine-tuning-batch
 ---
 
-# Getting started with Azure OpenAI global batch deployments (preview)
+# Getting started with Azure OpenAI global batch deployments
 
 The Azure OpenAI Batch API is designed to handle large-scale and high-volume processing tasks efficiently. Process asynchronous groups of requests with separate quota, with 24-hour target turnaround, at [50% less cost than global standard](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/). With batch processing, rather than send one request at a time you send a large number of requests in a single file. Global batch requests have a separate enqueued token quota avoiding any disruption of your online workloads.  
 
@@ -61,31 +61,35 @@ The following models support global batch:
 | `gpt-35-turbo` | 1106 | text |
 | `gpt-35-turbo` | 0613 | text |
 
-
-
 Refer to the [models page](../concepts/models.md) for the most up-to-date information on regions/models where global batch is currently supported.
 
 ### API support
 
-API support was first added with `2024-07-01-preview`. 
+|   | API Version   |
+|---|---|
+|**Latest GA API release:**| `2024-10-21`|
+|**Latest Preview API release:**| `2024-10-01-preview`|
 
-### Not supported
+Support first added in: `2024-07-01-preview`
+
+### Feature support
 
 The following aren't currently supported:
 
 - Integration with the Assistants API.
 - Integration with Azure OpenAI On Your Data feature.
 
+> [!NOTE]
+> Structured outputs is now supported with Global Batch.
+
 ### Global batch deployment
 
 In the Studio UI the deployment type will appear as `Global-Batch`.
 
-:::image type="content" source="../media/how-to/global-batch/global-batch.png" alt-text="Screenshot that shows the model deployment dialog in Azure OpenAI Studio with Global-Batch deployment type highlighted." lightbox="../media/how-to/global-batch/global-batch.png":::
+:::image type="content" source="../media/how-to/global-batch/global-batch.png" alt-text="Screenshot that shows the model deployment dialog in Azure AI Studio with Global-Batch deployment type highlighted." lightbox="../media/how-to/global-batch/global-batch.png":::
 
 > [!TIP]
-> Each line of your input file for batch processing has a `model` attribute that requires a global batch **deployment name**. For a given input file, all names must be the same deployment name. This is different from OpenAI where the concept of model deployments does not exist. 
->
-> For the best performance we recommend submitting large files for batch processing, rather than a large number of small files with only a few lines in each file.
+> We recommend enabling **dynamic quota** for all global batch model deployments to help avoid job failures due to insufficient enqueued token quota. Dynamic quota allows your deployment to opportunistically take advantage of more quota when extra capacity is available. When dynamic quota is set to off, your deployment will only be able to process requests up to the enqueued token limit that was defined when you created the deployment.
 
 ::: zone pivot="programming-language-ai-studio"
 

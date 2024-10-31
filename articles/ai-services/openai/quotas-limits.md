@@ -10,7 +10,7 @@ ms.custom:
   - ignite-2023
   - references_regions
 ms.topic: conceptual
-ms.date: 10/11/2024
+ms.date: 10/23/2024
 ms.author: mbullwin
 ---
 
@@ -108,6 +108,18 @@ The following sections provide you with a quick guide to the default quotas and 
 
 M = million | K = thousand
 
+### gpt-4o data zone standard
+
+| Model|Tier| Quota Limit in tokens per minute (TPM) | Requests per minute |
+|---|---|:---:|:---:|
+|`gpt-4o`|Enterprise agreement | 10 M | 60 K |
+|`gpt-4o-mini` | Enterprise agreement | 20 M | 120 K |
+|`gpt-4o` |Default | 300 K | 1.8 K |
+|`gpt-4o-mini` | Default | 1 M | 6 K  |
+
+M = million | K = thousand
+
+
 ### gpt-4o standard
 
 | Model|Tier| Quota Limit in tokens per minute (TPM) | Requests per minute |
@@ -121,25 +133,25 @@ M = million | K = thousand
 
 #### Usage tiers
 
-Global Standard deployments use Azure's global infrastructure, dynamically routing customer traffic to the data center with best availability for the customer’s inference requests. This enables more consistent latency for customers with low to medium levels of traffic. Customers with high sustained levels of usage might see more variability in response latency.
+Global standard deployments use Azure's global infrastructure, dynamically routing customer traffic to the data center with best availability for the customer’s inference requests. Similarly, Data zone standard deployments allow you to leverage Azure global infrastructure to dynamically route traffic to the data center within the Microsoft defined data zone with the best availability for each request. This enables more consistent latency for customers with low to medium levels of traffic. Customers with high sustained levels of usage might see more variability in response latency.
 
 The Usage Limit determines the level of usage above which customers might see larger variability in response latency. A customer’s usage is defined per model and is the total tokens consumed across all deployments in all subscriptions in all regions for a given tenant.
 
 > [!NOTE]
-> Usage tiers only apply to standard and global standard deployment types. Usage tiers do not apply to global batch and provisioned throughput deployments.
+> Usage tiers only apply to standard, data zone standard, and global standard deployment types. Usage tiers do not apply to global batch and provisioned throughput deployments.
 
-#### GPT-4o global standard & standard
+#### GPT-4o global standard, data zone standard, & standard
 
 |Model| Usage Tiers per month |
 |----|----|
-|`gpt-4o` | 8 Billion tokens |
-|`gpt-4o-mini` | 45 Billion tokens |
+|`gpt-4o` | 12 Billion tokens |
+|`gpt-4o-mini` | 85 Billion tokens |
 
 #### GPT-4 standard
 
 |Model| Usage Tiers per month|
 |---|---|
-| `gpt-4` + `gpt-4-32k`  (all versions) | 4 Billion |
+| `gpt-4` + `gpt-4-32k`  (all versions) | 6 Billion |
 
 
 ## Other offer types
@@ -168,7 +180,7 @@ To minimize issues related to rate limits, it's a good idea to use the following
 
 ### How to request increases to the default quotas and limits
 
-Quota increase requests can be submitted from the [Quotas](./how-to/quota.md) page of Azure OpenAI Studio. Note that due to overwhelming demand, quota increase requests are being accepted and will be filled in the order they are received. Priority will be given to customers who generate traffic that consumes the existing quota allocation, and your request might be denied if this condition isn't met.
+Quota increase requests can be submitted from the [Quotas](./how-to/quota.md) page of Azure AI Studio. Note that due to overwhelming demand, quota increase requests are being accepted and will be filled in the order they are received. Priority will be given to customers who generate traffic that consumes the existing quota allocation, and your request might be denied if this condition isn't met.
 
 For other rate limits, [submit a service request](../cognitive-services-support-options.md?context=/azure/ai-services/openai/context/context).
 
