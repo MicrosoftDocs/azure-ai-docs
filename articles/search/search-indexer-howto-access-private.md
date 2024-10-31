@@ -8,7 +8,7 @@ author: mrcarter8
 ms.author: mcarter
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 10/16/2024
+ms.date: 10/22/2024
 ---
 
 # Make outbound connections through a shared private link
@@ -66,7 +66,11 @@ When evaluating shared private links for your scenario, remember these constrain
 
 ## Prerequisites
 
-+ An Azure AI Search at the Basic tier or higher. If you're using [AI enrichment](cognitive-search-concept-intro.md) and skillsets, the tier must be Standard 2 (S2) or higher. See [Service limits](search-limits-quotas-capacity.md#shared-private-link-resource-limits) for details.
++ For [integrated vectorization](vector-search-integrated-vectorization.md) only, outbound connections through shared private link are supported on all billable tiers, only on services [created after April 3, 2024](vector-search-index-size.md#how-to-check-service-creation-date) located in regions providing [higher capacity](search-limits-quotas-capacity.md#partition-storage-gb). 
+
++ For [AI enrichment](cognitive-search-concept-intro.md), skillset processing that doesn't include an embedding skill and in services [created before April 3, 2024](vector-search-index-size.md#how-to-check-service-creation-date), Azure AI Search must be Standard 2 (S2) or higher.
+
++ For all other use cases, that don't involve skillsets, Azure AI Search can be Basic or higher.
 
 + An Azure PaaS resource from the following list of [supported resource types](#supported-resource-types), configured to run in a virtual network.
 
@@ -273,12 +277,12 @@ A `202 Accepted` response is returned on success. The process of creating an out
 <!-- 
 1. Check the response. The `PUT` call to create the shared private endpoint returns an `Azure-AsyncOperation` header value that looks like the following:
 
-   `"Azure-AsyncOperation": "https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/contoso/providers/Microsoft.Search/searchServices/contoso-search/sharedPrivateLinkResources/blob-pe/operationStatuses/08586060559526078782?api-version=2022-09-01"`
+   `"Azure-AsyncOperation": "https://management.azure.com/subscriptions/ffffffff-eeee-dddd-cccc-bbbbbbbbbbb0/resourceGroups/contoso/providers/Microsoft.Search/searchServices/contoso-search/sharedPrivateLinkResources/blob-pe/operationStatuses/08586060559526078782?api-version=2022-09-01"`
 
    You can poll for the status by manually querying the `Azure-AsyncOperationHeader` value.
 
    ```azurecli
-   az rest --method get --uri https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/contoso/providers/Microsoft.Search/searchServices/contoso-search/sharedPrivateLinkResources/blob-pe/operationStatuses/08586060559526078782?api-version=2022-09-01
+   az rest --method get --uri https://management.azure.com/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/contoso/providers/Microsoft.Search/searchServices/contoso-search/sharedPrivateLinkResources/blob-pe/operationStatuses/08586060559526078782?api-version=2022-09-01
    ```
  -->
 
@@ -321,7 +325,7 @@ On the Azure AI Search side, you can confirm request approval by revisiting the 
 Alternatively, you can also obtain connection state by using the [Shared Private Link Resources - Get](/rest/api/searchmanagement/shared-private-link-resources/get).
 
 ```dotnetcli
-az rest --method get --uri https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/contoso/providers/Microsoft.Search/searchServices/contoso-search/sharedPrivateLinkResources/blob-pe?api-version=2024-07-01
+az rest --method get --uri https://management.azure.com/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/contoso/providers/Microsoft.Search/searchServices/contoso-search/sharedPrivateLinkResources/blob-pe?api-version=2024-07-01
 ```
 
 This would return a JSON, where the connection state shows up as "status" under the "properties" section. Following is an example for a storage account.
@@ -330,7 +334,7 @@ This would return a JSON, where the connection state shows up as "status" under 
 {
       "name": "blob-pe",
       "properties": {
-        "privateLinkResourceId": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/contoso/providers/Microsoft.Storage/storageAccounts/contoso-storage",
+        "privateLinkResourceId": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/contoso/providers/Microsoft.Storage/storageAccounts/contoso-storage",
         "groupId": "blob",
         "requestMessage": "please approve",
         "status": "Approved",

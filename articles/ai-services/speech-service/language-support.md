@@ -40,6 +40,9 @@ More remarks for speech to text locales are included in the [custom speech](#cus
 > [!TIP]
 > Try out the [real-time speech to text tool](https://speech.microsoft.com/portal/speechtotexttool) without having to use any code.
 
+> [!TIP]
+> Try out the [Azure AI Speech Toolkit](https://marketplace.visualstudio.com/items?itemName=ms-azureaispeech.azure-ai-speech-toolkit) to easily build and run samples on Visual Studio Code.
+
 [!INCLUDE [Language support include](includes/language-support/stt.md)]
 
 ### Custom speech
@@ -48,9 +51,6 @@ To improve speech to text recognition accuracy, customization is available for s
 
 These are the locales that support the [display text format feature](./how-to-custom-speech-display-text-format.md): da-DK, de-DE, en-AU, en-CA, en-GB, en-HK, en-IE, en-IN, en-NG, en-NZ, en-PH, en-SG, en-US, es-ES, es-MX, fi-FI, fr-CA, fr-FR, hi-IN, it-IT, ja-JP, ko-KR, nb-NO, nl-NL, pl-PL, pt-BR, pt-PT, sv-SE, tr-TR, zh-CN, zh-HK.
 
-### Fast transcription
-
-The supported locales for the [fast transcription API](fast-transcription-create.md) are: en-US, es-ES, es-MX, fr-FR, hi-IN, it-IT, ja-JP, ko-KR, pt-BR, and zh-CN. You can only specify one locale per transcription request.
 
 # [Text to speech](#tab/tts)
 
@@ -59,7 +59,10 @@ The table in this section summarizes the locales and voices supported for text t
 More remarks for text to speech locales are included in the [voice styles and roles](#voice-styles-and-roles), [prebuilt neural voices](#prebuilt-neural-voices), [Custom neural voice](#custom-neural-voice), and [personal voice](#personal-voice) sections in this article. 
 
 > [!TIP]
-> Check the [Voice Gallery](https://speech.microsoft.com/portal/voicegallery) and determine the right voice for your business needs. 
+> Check the [Voice Gallery](https://speech.microsoft.com/portal/voicegallery) and determine the right voice for your business needs.
+
+> [!TIP]
+> Try out the [Azure AI Speech Toolkit](https://marketplace.visualstudio.com/items?itemName=ms-azureaispeech.azure-ai-speech-toolkit) to easily build and run samples on Visual Studio Code.
 
 [!INCLUDE [Language support include](includes/language-support/tts.md)]
 
@@ -109,7 +112,7 @@ Custom neural voice lets you create synthetic voices that are rich in speaking s
 
 Select the right locale that matches your training data to train a custom neural voice model. For example, if the recording data is spoken in English with a British accent, select `en-GB`. 
 
-With the cross-lingual feature, you can transfer your custom neural voice model to speak a second language. For example, with the `zh-CN` data, you can create a voice that speaks `en-AU` or any of the languages with Cross-lingual support. For the cross-lingual feature, we categorize locales into two tiers: one includes source languages that support the cross-lingual feature, and the other tier comprises locales designated as target languages for cross-lingual transfer. Within the following table, distinguish locales that function as both cross-lingual sources and targets and locales eligible solely as the target locale for cross-lingual transfer. 
+With the cross-lingual feature, you can transfer your custom neural voice model to speak a second language. For example, with the `zh-CN` data, you can create a voice that speaks `en-AU` or any of the languages with cross-lingual support. For the cross-lingual feature, we categorize locales into two tiers: one includes source languages that support the cross-lingual feature, and the other tier comprises locales designated as target languages for cross-lingual transfer. Within the following table, distinguish locales that function as both cross-lingual sources and targets and locales eligible solely as the target locale for cross-lingual transfer. 
 
 [!INCLUDE [Language support include](includes/language-support/tts-cnv.md)]
 
@@ -128,6 +131,9 @@ The table in this section summarizes the 33 locales supported for pronunciation 
 [!INCLUDE [Language support include](includes/language-support/pronunciation-assessment.md)]
 
 # [Speech translation](#tab/speech-translation)
+
+> [!TIP]
+> Try out the [Azure AI Speech Toolkit](https://marketplace.visualstudio.com/items?itemName=ms-azureaispeech.azure-ai-speech-toolkit) to easily build and run samples on Visual Studio Code.
 
 ### Real-time speech translation
 

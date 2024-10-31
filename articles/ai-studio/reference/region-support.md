@@ -49,7 +49,7 @@ Azure AI Studio is currently not available in Azure Government regions or air-ga
 
 ## Azure OpenAI
 
-[!INCLUDE [OpenAI Quotas](../../ai-services/openai/includes/model-matrix/quota.md)]
+For information on the availability of Azure OpenAI models, see [Azure OpenAI Model summary table and region availability](../../ai-services/openai/concepts/models.md#model-summary-table-and-region-availability).
 
 > [!NOTE]
 > Some models might not be available within the AI Studio model catalog.

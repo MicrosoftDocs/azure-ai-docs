@@ -13,7 +13,7 @@ recommendations: false
 zone_pivot_groups: openai-fine-tuning-batch
 ---
 
-# Getting started with Azure OpenAI global batch deployments (preview)
+# Getting started with Azure OpenAI global batch deployments
 
 The Azure OpenAI Batch API is designed to handle large-scale and high-volume processing tasks efficiently. Process asynchronous groups of requests with separate quota, with 24-hour target turnaround, at [50% less cost than global standard](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/). With batch processing, rather than send one request at a time you send a large number of requests in a single file. Global batch requests have a separate enqueued token quota avoiding any disruption of your online workloads.  
 
@@ -65,7 +65,12 @@ Refer to the [models page](../concepts/models.md) for the most up-to-date inform
 
 ### API support
 
-API support was first added with `2024-07-01-preview`. Use `2024-10-01-preview` to take advantage of the latest features.
+|   | API Version   |
+|---|---|
+|**Latest GA API release:**| `2024-10-21`|
+|**Latest Preview API release:**| `2024-10-01-preview`|
+
+Support first added in: `2024-07-01-preview`
 
 ### Feature support
 
@@ -75,13 +80,13 @@ The following aren't currently supported:
 - Integration with Azure OpenAI On Your Data feature.
 
 > [!NOTE]
-> Structured outputs is now supported with Global Batch when used in conjunction with API version `2024-08-01-preview` or later. Use `2024-10-01-preview` for the latest features.
+> Structured outputs is now supported with Global Batch.
 
 ### Global batch deployment
 
 In the Studio UI the deployment type will appear as `Global-Batch`.
 
-:::image type="content" source="../media/how-to/global-batch/global-batch.png" alt-text="Screenshot that shows the model deployment dialog in Azure OpenAI Studio with Global-Batch deployment type highlighted." lightbox="../media/how-to/global-batch/global-batch.png":::
+:::image type="content" source="../media/how-to/global-batch/global-batch.png" alt-text="Screenshot that shows the model deployment dialog in Azure AI Studio with Global-Batch deployment type highlighted." lightbox="../media/how-to/global-batch/global-batch.png":::
 
 > [!TIP]
 > We recommend enabling **dynamic quota** for all global batch model deployments to help avoid job failures due to insufficient enqueued token quota. Dynamic quota allows your deployment to opportunistically take advantage of more quota when extra capacity is available. When dynamic quota is set to off, your deployment will only be able to process requests up to the enqueued token limit that was defined when you created the deployment.

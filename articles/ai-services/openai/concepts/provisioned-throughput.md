@@ -35,6 +35,7 @@ An Azure OpenAI Deployment is a unit of management for a specific OpenAI Model. 
 | Latency | Max latency constrained from the model. Overall latency is a factor of call shape.  |
 | Utilization | Provisioned-managed Utilization V2 measure provided in Azure Monitor. |
 | Estimating size | Provided calculator in the studio & benchmarking script. |
+| Prompt caching | For supported models, we discount up to 100% of cached input tokens. |
 
 
 ## How much throughput per PTU you get for each model
@@ -48,7 +49,7 @@ To help with simplifying the sizing effort, the following table outlines the TPM
 | Input TPM per PTU | 2,500 | 37,000  |
 | Output TPM per PTU | 833  | 12,333 |
 
-\** For a full list see the [AOAI Studio calcualator](https://oai.azure.com/portal/calculator)
+For a full list see the [AOAI Studio calculator](https://oai.azure.com/portal/calculator).
 
 
 ## Key concepts
@@ -113,7 +114,7 @@ In Azure OpenAI Studio, the deployment experience identifies when a region lacks
 
 Details on the new deployment experience can be found in the Azure OpenAI [Provisioned get started guide](../how-to/provisioned-get-started.md).
 
-The new [model capacities API](/rest/api/aiservices/accountmanagement/model-capacities/list?view=rest-aiservices-accountmanagement-2024-04-01-preview&tabs=HTTP&preserve-view=true) can  be used to programmatically identify the maximum sized deployment of a specified model.  The API consideres both the your quota and service capacity in the region.
+The new [model capacities API](/rest/api/aiservices/accountmanagement/model-capacities/list?view=rest-aiservices-accountmanagement-2024-04-01-preview&tabs=HTTP&preserve-view=true) can  be used to programmatically identify the maximum sized deployment of a specified model.  The API considers both your quota and service capacity in the region.
 
 If an acceptable region isn't available to support the desire model, version and/or PTUs, customers can also try the following steps:
 
@@ -153,12 +154,12 @@ In the Provisioned-Managed and Global Provisioned-Managed offerings, each reques
 For Provisioned-Managed and Global Provisioned-Managed, we use a variation of the leaky bucket algorithm to maintain utilization below 100% while allowing some burstiness in the traffic. The high-level logic is as follows:
 
 1.	Each customer has a set amount of capacity they can utilize on a deployment
-2.	When a request is made:
+1. When a request is made:
 
-    a.	When the current utilization is above 100%, the service returns a 429 code with the `retry-after-ms` header set to the time until utilization is below 100%
-     
-    b.	Otherwise, the service estimates the incremental change to utilization required to serve the request by combining prompt tokens and the specified `max_tokens` in the call. If the `max_tokens` parameter is not specified, the service estimates a value. This estimation can lead to lower concurrency than expected when the number of actual generated tokens is small.  For highest concurrency, ensure that the `max_tokens` value is as close as possible to the true generation size. 
+   a.	When the current utilization is above 100%, the service returns a 429 code with the `retry-after-ms` header set to the time until utilization is below 100%
 
+   b.	Otherwise, the service estimates the incremental change to utilization required to serve the request by combining prompt tokens and the specified `max_tokens` in the call. For requests that include at least 1024 cached tokens, the cached tokens are subtracted from the prompt token value. A customer can receive up to a 100% discount on their prompt tokens depending on the size of their cached tokens. If the `max_tokens` parameter is not specified, the service estimates a value. This estimation can lead to lower concurrency than expected when the number of actual generated tokens is small.  For highest concurrency, ensure that the `max_tokens` value is as close as possible to the true generation size. 
+   
 3.	When a request finishes, we now know the actual compute cost for the call. To ensure an accurate accounting, we correct the utilization using the following logic:
 
     a.	If the actual > estimated, then the difference is added to the deployment's utilization
