@@ -407,11 +407,10 @@ This table doesn't include fine-tuning regional availability information.  Consu
 
 ### Data zone standard model availability
 
-| Model | US Data zone region | EUR Data zone region |
-|---|:---|
-
-| `gpt-4o`(2024-08-06) <br> `gpt-4o`(2024-05-13) | East US 2 <br> West US 3 <br> | Spain Central <br> West Europe |  
-| `gpt-4o-mini` (2024-07-18) | East US 2 <br> West US 3 <br> | Spain Central <br> West Europe | 
+|Model|United States Data zone regions|European Union Data zone regions|
+|---|---|---|
+| `gpt-4o` (2024-08-06, 2024-05-13)| East US 2 <br> West US 3 <br> | Spain Central <br> West Europe|
+| `gpt-4o-mini` (2024-07-18) | East US 2 <br> West US 3 <br> | Spain Central <br> West Europe|
 
 ### Standard models by endpoint
 
