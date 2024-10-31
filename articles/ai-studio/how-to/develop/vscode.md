@@ -8,7 +8,7 @@ ms.custom:
   - ignite-2023
   - build-2024
 ms.topic: how-to
-ms.date: 5/21/2024
+ms.date: 10/30/2024
 ms.reviewer: lebaro
 ms.author: sgilley
 author: sdgilley
@@ -21,21 +21,21 @@ author: sdgilley
 
 Azure AI Studio supports developing in VS Code - Desktop and Web. In each scenario, your VS Code instance is remotely connected to a prebuilt custom container running on a virtual machine, also known as a compute instance.
 
-## Launch VS Code from Azure AI Studio 
+## Launch VS Code from Azure AI Studio
 
 1. Go to [Azure AI Studio](https://ai.azure.com).
 1. Open your project in Azure AI Studio.
 1. On the left menu, select **Code**.
+1. Select **VS Code container**.
 1. For **Compute**, select an existing compute instance or create a new one.
     * Select a compute instance to use. If it's stopped, select **Start compute** and wait for it to switch to **Running**. You'll see a **Ready** status when the compute is ready for use.
-    * If you don't have a compute instance, enter a name and select **Create compute**. Wait until the compute instance is ready.
+    * If you don't have a compute instance, select **Create compute**.  Then enter a name, compute details, and select **Create compute**. Wait until the compute instance is ready.
 1. For **VS Code container**, select **Set up container** once the button enables. This configures the container on the compute for you. The container setup might take a few minutes to complete. Once you set up the container for the first time, you can directly launch subsequent times. You might need to authenticate your compute when prompted. When setup is complete, you'll see **Ready**.
 
     > [!WARNING]
      > Even if you [enable idle shutdown on your compute instance](../create-manage-compute.md#configure-idle-shutdown), idle shutdown will not occur for any compute that is set up with this custom VS Code container. This is to ensure the compute doesn't shut down unexpectedly while you're working within a container.
 
-1. Open the project in VS Code:
-
+1. Once your container is ready, launch VS Code:
     * If you want to work in your local VS Code instance, choose **Launch in VS Code (Desktop)**. A new local instance of VS Code opens on your local machine.
     * If you want to work in the browser instead, select the dropdown arrow and choose **Launch in VS Code (Web)**. A new browser tab connected to *vscode.dev* opens.
 

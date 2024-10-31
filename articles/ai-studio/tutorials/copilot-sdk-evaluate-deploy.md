@@ -225,8 +225,9 @@ Previously, you provided your account with a specific role to be able to access 
 
 To grant yourself access to the Azure AI Services resource that you're using:
 
-1. In [AI Studio](https://ai.azure.com), go to your project and select **Settings** from the left pane.
-1. In the **Connected resources** section, select the connection name with type **AIServices**.
+1. In [AI Studio](https://ai.azure.com), go to your project and select **Management center** from the left pane.
+1. Under the **Project** heading, select **Connected resources**.
+1. Select the connection name with type **AIServices**.
 
     :::image type="content" source="../media/quickstarts/promptflow-sdk/project-settings-pick-resource.png" alt-text="Screenshot of the project settings page, highlighting how to select the connected AI services resource to open it." lightbox="../media/quickstarts/promptflow-sdk/project-settings-pick-resource.png":::
 
@@ -260,7 +261,7 @@ You might need to ask your Azure subscription owner (who might be your IT admin)
 
 Similar to how you assigned the **Search Index Data Contributor** [role to your Azure AI Search service](./copilot-sdk-create-resources.md#configure), you need to assign the same role for your endpoint.
 
-1. In Azure AI Studio, select **Settings** and navigate to the connected **Azure AI Search** service. 
+1. In Azure AI Studio, select **Management center** and navigate to the connected **Azure AI Search** service. 
 1. Select the link to open a summary of the resource. Select the link on the summary page to open the resource in the Azure portal.
 
 1. From the left page in the Azure portal, select **Access control (IAM)** > **+ Add** > **Add role assignment**.

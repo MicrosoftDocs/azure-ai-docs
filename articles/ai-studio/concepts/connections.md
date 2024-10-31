@@ -52,6 +52,9 @@ When you create a connection with an existing Azure storage account, you can cho
 - **Credential-based**: Authenticate data access with a service principal, shared access signature (SAS) token, or account key. Users with *Reader* project permissions can access the credentials.
 - **Identity-based**: Use your Microsoft Entra ID or managed identity to authenticate data access.
 
+    > [!TIP]
+    > When using an identity-based connection, Azure role-based access control (Azure RBAC) is used to determine who can access the connection. You must assign the correct Azure RBAC roles to your developers before they can use the connection. For more information, see [Scenario: Connections using Microsoft Entra ID](rbac-ai-studio.md#scenario-connections-using-microsoft-entra-id-authentication).
+
 
 The following table shows the supported Azure cloud-based storage services and authentication methods:
 
@@ -72,6 +75,9 @@ A Uniform Resource Identifier (URI) represents a storage location on your local 
 | Blob storage | `wasbs://<containername>@<accountname>.blob.core.windows.net/<folder>/` |
 | Azure Data Lake (gen2) | `abfss://<file_system>@<account_name>.dfs.core.windows.net/<folder>/<file>.csv` |
 | Microsoft OneLake | `abfss://<file_system>@<account_name>.dfs.core.windows.net/<folder>/<file>.csv` `https://<accountname>.dfs.fabric.microsoft.com/<artifactname>` |
+
+> [!NOTE]
+> The Microsoft OneLake connection doesn't support OneLake tables.
 
 ## Key vaults and secrets
 

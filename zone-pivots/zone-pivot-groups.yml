@@ -158,20 +158,22 @@ groups:
   pivots:
   - id: programming-language-studio
     title: Studio 
-  - id: rest-api
-    title: REST 
-  - id: programming-language-python
-    title: Python 
   - id: programming-language-csharp
     title: C#
+  - id: programming-language-go
+    title: Go
   - id: programming-language-java
     title: Java
   - id: programming-language-javascript
     title: JavaScript
-  - id: programming-language-go
-    title: Go
   - id: programming-language-powershell
     title: PowerShell
+  - id: programming-language-python
+    title: Python 
+  - id: rest-api
+    title: REST 
+  - id: programming-language-typescript
+    title: TypeScript    
 # Owner: pafarley
 - id: openai-quickstart-gpt-v
   title: Programming languages
@@ -179,14 +181,16 @@ groups:
   pivots:
   - id: programming-language-studio
     title: Studio
-  - id: programming-language-python
-    title: Python
   - id: programming-language-javascript
     title: JavaScript
   - id: programming-language-dotnet
     title: C#
+  - id: programming-language-python
+    title: Python
   - id: rest-api
     title: REST
+  - id: programming-language-typescript
+    title: TypeScript
 # Owner: mbullwin
 - id: openai-use-your-data
   title: Programming languages
@@ -232,12 +236,14 @@ groups:
   title: Programming languages
   prompt: Choose a programming language
   pivots:
-  - id: programming-language-javascript
-    title: JavaScript
   - id: programming-language-dotnet
     title: C#
+  - id: programming-language-javascript
+    title: JavaScript
   - id: rest-api
     title: REST
+  - id: programming-language-typescript
+    title: TypeScript
 # Owner: diberry
 - id: programming-languages-rest-ps-py-js
   title: Programming languages
@@ -255,17 +261,20 @@ groups:
   title: Programming languages
   prompt: Choose a programming language
   pivots:
+  - id: programming-language-dotnet
+    title: C#    
   - id: programming-language-javascript
     title: JavaScript
   - id: programming-language-python
     title: Python
-  - id: programming-language-dotnet
-    title: C#
+
   - id: programming-language-powershell
     title: PowerShell
   - id: rest-api
     title: REST
-# Owner: diberry
+  - id: programming-language-typescript
+    title: TypeScript
+    # Owner: diberry
 - id: programming-languages-set-six
   title: Programming languages
   prompt: Choose a programming language

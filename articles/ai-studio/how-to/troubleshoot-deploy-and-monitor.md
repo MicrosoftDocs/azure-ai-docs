@@ -46,8 +46,9 @@ After you deployed a prompt flow, you got the error message: "Tool load failed i
 
 To fix this error, take the following steps to manually assign the ML Data scientist role to your endpoint. It might take several minutes for the new role to take effect.
 
-1. Go to your project in [Azure AI Studio](https://ai.azure.com) and select **Settings** from the left navigation menu to open the settings page.
-1. In the section for "Project properties", select the link to your resource group to open it in the Azure portal. 
+1. Go to your project in [Azure AI Studio](https://ai.azure.com) and select **Management center** from the left navigation menu to open the settings page.
+1. Under the **Project** heading, select **Overview**.
+1. Under **Quick reference**, select the link to your resource group to open it in the Azure portal. 
 1. Select **Access control (IAM)** from the left navigation menu in the Azure portal.
 1. Select **Add role assignment**.
 1. Select **Azure ML Data Scientist**, and select __Next__.
@@ -73,9 +74,9 @@ This error message refers to a situation where the deployment build failed. You 
 
 __Option 1: Find the build log for the Azure default blob storage.__
 
-1. Go to your project in [Azure AI Studio](https://ai.azure.com) and select **Settings** from the left navigation menu to open the settings page.
-1. In the section for "Project properties", select the link to your hub to open the hub overview page.
-1. In the section for "Resource configuration" on the hub overview page, select the link to your storage account name. This name should be the name of the storage account listed in the error message you received. You'll be taken to the storage account page in the [Azure portal](https://portal.azure.com).
+1. Go to your project in [Azure AI Studio](https://ai.azure.com) and select **Management center** from the left navigation menu to open the settings page.
+1. Under the **Hub** heading, select **Overview**.
+1. In the section for **Connected resources**, select the link to your storage account name. This name should be the name of the storage account listed in the error message you received. You'll be taken to the storage account page in the [Azure portal](https://portal.azure.com).
 1. On the storage account page, select **Data Storage** > **Containers** from the left navigation menu.
 1. Select the container name that's listed in the error message you received.
 1. Select through folders to find the build logs.

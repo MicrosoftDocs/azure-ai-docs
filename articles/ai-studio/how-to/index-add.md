@@ -30,7 +30,7 @@ You must have:
 
 1. Sign in to [Azure AI Studio](https://ai.azure.com).
 1. Go to your project or [create a new project](../how-to/create-projects.md) in Azure AI Studio.
-1. From the collapsible menu on the left, select **Indexes** under **Components**.
+1. From the collapsible **My assets** menu on the left, select **Data + indexes**.
 
     :::image type="content" source="../media/index-retrieve/project-left-menu.png" alt-text="Screenshot of Project Left Menu." lightbox="../media/index-retrieve/project-left-menu.png":::
 

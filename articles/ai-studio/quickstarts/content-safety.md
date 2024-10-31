@@ -27,7 +27,7 @@ In this quickstart, you use the [Azure AI Content Safety](/azure/ai-services/con
 
 * An Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services/)
 * Once you have your Azure subscription, <a href="https://aka.ms/acs-create"  title="Create a Content Safety resource"  target="_blank">create a Content Safety resource </a> in the Azure portal to get your key and endpoint. Enter a unique name for your resource, select your subscription, and select a resource group, supported region, and supported pricing tier. Then select **Create**.
-* An [AI Studio hub](../how-to/create-azure-ai-resource.md) in Azure AI Studio. 
+* An [AI Studio hub](../how-to/create-azure-ai-resource.md) in Azure AI Studio.
 
 ## Setting up
 

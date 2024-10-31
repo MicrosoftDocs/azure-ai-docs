@@ -10,6 +10,7 @@ ms.reviewer: None
 author: ssalgadodev
 ms.author: ssalgado
 ms.date: 12/28/2023
+ms.collection: ce-skilling-ai-copilot
 ---
 
 # How to use Open Source foundation models curated by Azure Machine Learning 
