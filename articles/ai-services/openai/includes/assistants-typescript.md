@@ -67,8 +67,6 @@ For passwordless authentication, you need to
 
 ## Retrieve resource information
 
-> [!CAUTION]
-> To use the recommended keyless authentication with the SDK, make sure that the `AZURE_OPENAI_API_KEY` environment variable isn't set. 
 
 #### [Microsoft Entra ID](#tab/typescript-keyless)
 
@@ -82,7 +80,7 @@ For passwordless authentication, you need to
 ---
 
 > [!CAUTION]
-> Don't set `AZURE_OPENAI_API_KEY` when using keyless authentication.
+> To use the recommended keyless authentication with the SDK, make sure that the `AZURE_OPENAI_API_KEY` environment variable isn't set. 
 
 
 ## Create an assistant
@@ -101,7 +99,7 @@ In our code we're going to specify the following values:
 An individual assistant can access up to 128 tools including `code interpreter`, and any custom tools you create via [functions](../how-to/assistant-functions.md).
 
     
-## Create a new JavaScript application
+## Create a new TypeScript application
 
 #### [Microsoft Entra ID](#tab/typescript-keyless)
 

@@ -11,7 +11,8 @@ ms.date: 10/22/2024
 [!INCLUDE [Set up required variables](./use-your-data-common-variables.md)]
 
 
-## Create a Node application
+
+## Initialize a Node.js application
 
 In a console window (such as cmd, PowerShell, or Bash), create a new directory for your app, and navigate to it. Then run the `npm init` command to create a node application with a _package.json_ file.
 
@@ -29,7 +30,7 @@ npm install @azure/openai @azure/identity
 
 Your app's _package.json_ file will be updated with the dependencies.
 
-## Create a new JavaScript application
+## Add the JavaScript code
 
 #### [Microsoft Entra ID](#tab/javascript-keyless)
 
@@ -211,6 +212,7 @@ Your app's _package.json_ file will be updated with the dependencies.
     ```
 
 ---
+
 
 > [!IMPORTANT]
 > For production, use a secure way of storing and accessing your credentials like [Azure Key Vault](/azure/key-vault/general/overview). For more information about credential security, see the Azure AI services [security](../../security-features.md) article.
