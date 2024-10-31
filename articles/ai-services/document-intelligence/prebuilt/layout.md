@@ -76,7 +76,7 @@ See how data, including text, tables, table headers, selection marks, and struct
      > [Try Document Intelligence Studio](https://documentintelligence.ai.azure.com/studio/layout).
      >
 
-## Supported languages and locales
+## Supported languages
 
 *See* our [Language Support—document analysis models](../language-support/ocr.md) page for a complete list of supported languages.
 
