@@ -21,7 +21,7 @@ Fine-tuning retrains an existing large language model (LLM) by using example dat
 
 This article can help you decide whether or not fine-tuning is the right solution for your use case. This article also describes how [Azure AI Studio](https://ai.azure.com) can support your fine-tuning needs.
 
-In this article, fine-tuning refers to *supervised fine-tuning*, not continuous pretraining or reinforcement learning through human feedback (RLHF). Supervised fine-tuning is the process of retraining pretrained models on specific datasets. The purpose is typically to improve model performance on specific tasks or to introduce information that wasn't well represented when you originally trained the base model.
+In this article, fine-tuning refers to *supervised fine-tuning*, not to continuous pretraining or reinforcement learning through human feedback (RLHF). Supervised fine-tuning is the process of retraining pretrained models on specific datasets. The purpose is typically to improve model performance on specific tasks or to introduce information that wasn't well represented when you originally trained the base model.
 
 ## Getting starting with fine-tuning
 
@@ -80,7 +80,7 @@ You might not be ready for fine-tuning if:
 
 Even with a great use case, fine-tuning is only as good as the quality of the data that you can provide. You need to be willing to invest the time and effort to make fine-tuning work. Different models require different data volumes, but you often need to be able to provide fairly large quantities of high-quality curated data.
 
-Another important point is that even with high-quality data, if your data isn't in the necessary format for fine-tuning, you'll need to commit engineering resources for the formatting. 
+Another important point is that even with high-quality data, if your data isn't in the necessary format for fine-tuning, you need to commit engineering resources for the formatting. 
 
 You might be ready for fine-tuning if:
 
@@ -90,10 +90,10 @@ You might be ready for fine-tuning if:
 
 You might not be ready for fine-tuning if:
 
-- You haven't identified a dataset yet.
+- An appropriate dataset hasn't been identified.
 - The dataset format doesn't match the model that you want to fine-tune.
 
-### How will you measure the quality of your fine-tuned model?
+### How can you measure the quality of your fine-tuned model?
 
 There isn't a single right answer to this question, but you should have clearly defined goals for what success with fine-tuning looks like. Ideally, this effort shouldn't just be qualitative. It should include quantitative measures of success, like using a holdout set of data for validation, in addition to user acceptance testing or A/B testing the fine-tuned model against a base model.
 
@@ -103,10 +103,16 @@ Now that you know when to use fine-tuning for your use case, you can go to Azure
 
 | Model family | Model ID | Fine-tuning regions |
 | --- | --- | --- |
-| [Azure OpenAI models](../../ai-services/openai/how-to/fine-tuning.md?context=/azure/ai-studio/context/context) | Azure OpenAI Service models that you can fine-tune include among others `gpt-4` and `gpt-4o-mini`.<br/><br/>For details about Azure OpenAI models that are available for fine-tuning, see the [Azure OpenAI Service models documentation](../../ai-services/openai/concepts/models.md#fine-tuning-models). | Azure OpenAI Service models that you can fine-tune include among others North Central US and Sweden Central.<br/><br/>The supported regions might vary if you use Azure OpenAI models in an AI Studio project versus outside a project.<br/><br/>For details about fine-tuning regions, see the [Azure OpenAI Service models documentation](../../ai-services/openai/concepts/models.md#fine-tuning-models). |
+| [Azure OpenAI models](../../ai-services/openai/how-to/fine-tuning.md?context=/azure/ai-studio/context/context) | Azure OpenAI Service models that you can fine-tune include among others `gpt-4` and `gpt-4o-mini`.<br/><br/>For details about Azure OpenAI models that are available for fine-tuning, see the [Azure OpenAI Service models documentation](../../ai-services/openai/concepts/models.md#fine-tuning-models) or the [Azure OpenAI models table](#fine-tuning-azure-openai-models) later in this guide. | Azure OpenAI Service models that you can fine-tune include among others North Central US and Sweden Central.<br/><br/>The supported regions might vary if you use Azure OpenAI models in an AI Studio project versus outside a project.<br/><br/>For details about fine-tuning regions, see the [Azure OpenAI Service models documentation](../../ai-services/openai/concepts/models.md#fine-tuning-models). |
 | [Phi-3 family models](../how-to/fine-tune-phi-3.md) | `Phi-3-mini-4k-instruct`<br/>`Phi-3-mini-128k-instruct`<br/>`Phi-3-medium-4k-instruct`<br/>`Phi-3-medium-128k-instruct` | East US2 |
 | [Meta Llama 2 family models](../how-to/fine-tune-model-llama.md) | `Meta-Llama-2-70b`<br/>`Meta-Llama-2-7b`<br/>`Meta-Llama-2-13b` | West US3 |
 | [Meta Llama 3.1 family models](../how-to/fine-tune-model-llama.md) | `Meta-Llama-3.1-70b-Instruct`<br/>`Meta-Llama-3.1-8b-Instruct` | West US3 |
+
+This table provides more details about the Azure OpenAI Service models that support fine-tuning and the regions where fine-tuning is available.
+
+### Fine-tuning Azure OpenAI models
+
+[!INCLUDE [Fine-tune models](../includes/fine-tune-models.md)]
 
 ## Related content
 
