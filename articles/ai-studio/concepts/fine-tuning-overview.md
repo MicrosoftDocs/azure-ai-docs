@@ -112,7 +112,7 @@ This table provides more details about the Azure OpenAI Service models that supp
 
 ### Fine-tuning Azure OpenAI models
 
-[!INCLUDE [Fine-tune models](../includes/fine-tune-models.md)]
+[!INCLUDE [Fine-tune models](../../ai-services/openai/includes/fine-tune-models.md)]
 
 ## Related content
 
