@@ -6,13 +6,13 @@ manager: scottpolly
 ms.service: azure-ai-studio
 ms.custom: build-2024, devx-track-azurecli, devx-track-python
 ms.topic: how-to
-ms.date: 8/6/2024
+ms.date: 10/31/2024
 ms.reviewer: dantaylo
 ms.author: sgilley
 author: sdgilley
 ---
 
-# Build a custom chat app in Python using the prompt flow SDK
+# Build a custom chat app in Python using Azure AI SDK
 
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
@@ -23,45 +23,8 @@ In this quickstart, we walk you through setting up your local development enviro
 > [!IMPORTANT]
 > You must have the necessary permissions to add role assignments for storage accounts in your Azure subscription. Granting permissions (adding role assignment) is only allowed by the **Owner** of the specific Azure resources. You might need to ask your Azure subscription owner (who might be your IT admin) for help to [grant access to call Azure OpenAI Service using your identity](#grant-access-to-call-azure-openai-service-using-your-identity).
 
-Before you can follow this quickstart, create the resources that you need for your application:
-
-- A [deployed Azure OpenAI](../how-to/deploy-models-openai.md) chat model (gpt-35-turbo or gpt-4)
-
-Complete the [AI Studio playground quickstart](../quickstarts/get-started-playground.md) to create this resource if you haven't already.
-
-## Grant access to call Azure OpenAI Service using your identity
-
-To use security best practices, instead of API keys we use [Microsoft Entra ID](/entra/fundamentals/whatis) to authenticate with Azure OpenAI using your user identity. 
-
-You or your administrator needs to grant your user identity the **Cognitive Services OpenAI User** role on the Azure AI Services resource that you're using. This role grants you the ability to call the Azure OpenAI service using your user identity.
-
-To grant yourself access to the Azure AI Services resource that you're using:
-
-1. In [AI Studio](https://ai.azure.com), go to your project and select **Management center** from the left pane.
-1. In the **Connected resources** section of the **Project** section, select the connection name with type **AIServices**.
-
-    :::image type="content" source="../media/quickstarts/promptflow-sdk/project-settings-pick-resource.png" alt-text="Screenshot of the project settings page, highlighting how to select the connected AI services resource to open it." lightbox="../media/quickstarts/promptflow-sdk/project-settings-pick-resource.png":::
-
-    > [!NOTE]
-    > If you don't see the **AIServices** connection, use the **Azure OpenAI** connection instead.
-
-1. On the resource details page, select the link under the **Resource** heading to open the AI services resource in the Azure portal.
-
-    :::image type="content" source="../media/quickstarts/promptflow-sdk/project-ai-services-open-in-portal.png" alt-text="Screenshot of the AI Services connection details showing how to open the resource in the Azure portal." lightbox="../media/quickstarts/promptflow-sdk/project-ai-services-open-in-portal.png":::
-
-1. From the left page in the Azure portal, select **Access control (IAM)** > **+ Add** > **Add role assignment**.
-
-1. Search for the **Cognitive Services OpenAI User** role and then select it. Then select **Next**.
-
-    :::image type="content" source="../media/quickstarts/promptflow-sdk/ai-services-add-role-assignment.png" alt-text="Screenshot of the page to select the Cognitive Services OpenAI User role." lightbox="../media/quickstarts/promptflow-sdk/ai-services-add-role-assignment.png":::
-
-1. Select **User, group, or service principal**. Then select **Select members**.
-
-1. In the **Select members** pane that opens, search for the name of the user that you want to add the role assignment for. Select the user and then select **Select**.
-
-    :::image type="content" source="../media/quickstarts/promptflow-sdk/ai-services-resource-role-assignment.png" alt-text="Screenshot of the page with the user being assigned the new role." lightbox="../media/quickstarts/promptflow-sdk/ai-services-resource-role-assignment.png":::
-
-1. Continue through the wizard and select **Review + assign** to add the role assignment. 
+* Before you can follow this quickstart, complete the [AI Studio playground quickstart](../quickstarts/get-started-playground.md) to deploy a **gpt-4o-mini** model into a project.
+* Use the same project and model from the quickstart here.
 
 ## Install the Azure CLI and sign in 
 
@@ -73,11 +36,9 @@ Now we create our app and call the Azure OpenAI Service from code.
 
 [!INCLUDE [Install Python](../includes/install-python.md)]
 
-## Install the prompt flow SDK
+## Install the Azure AI SDK
 
-In this section, we use prompt flow to build our application. [Prompt flow](https://microsoft.github.io/promptflow) is a suite of development tools designed to streamline the end-to-end development cycle of LLM-based AI applications, from ideation, prototyping, testing, evaluation to production deployment and monitoring.
-
-[!INCLUDE [Install prompt flow](../includes/install-promptflow.md)]
+[!INCLUDE [Install the Azure AI SDK](../includes/install-ai-sdk.md)]
 
 ## Configure your environment variables
 
@@ -85,23 +46,13 @@ Your AI services endpoint and deployment name are required to call the Azure Ope
 
 1. Create a `.env` file, and paste the following code:
 
-    `
-    AZURE_OPENAI_ENDPOINT=endpoint_value
-    AZURE_OPENAI_CHAT_DEPLOYMENT=chat_deployment_name
-    AZURE_OPENAI_API_VERSION=api_version
-    `
+    ```text
+    CONNECTION_STRING=<your-connection-string>
+    @@Anything else?  Project name?  
+    ```
 
-1. Navigate to the [chat playground inside of your AI Studio project](./get-started-playground.md#chat-in-the-playground-without-your-data). First validate that chat is working with your model by sending a message to the LLM.
-1. Find the Azure OpenAI deployment name in the chat playground. Select the deployment in the dropdown and hover over the deployment name to view it. In this example, the deployment name is **gpt-40-mini**.
+1. Navigate to the somewhere and get the information you need to fill in the `.env` file.
 
-    :::image type="content" source="../media/quickstarts/promptflow-sdk/playground-deployment-view-code.png" alt-text="Screenshot of the AI Studio chat playground opened, highlighting the deployment name and the view code button." lightbox="../media/quickstarts/promptflow-sdk/playground-deployment-view-code.png":::
-
-1. In the `.env` file, replace `chat_deployment_name` with the name of the deployment from the previous step. In this example, we're using the deployment name `gpt-35-turbo-16k`. 
-1. Select the **<\> View Code** button and copy the endpoint value and API version value.
-
-    :::image type="content" source="../media/quickstarts/promptflow-sdk/playground-copy-endpoint.png" alt-text="Screenshot of the view code popup highlighting the button to copy the endpoint value." lightbox="../media/quickstarts/promptflow-sdk/playground-copy-endpoint.png":::
-
-1. In the `.env` file, replace `endpoint_value` with the endpoint value and replace `api_version` with the API version copied from the dialog in the previous step (such as "2024-02-15-preview"). 
 
 > [!WARNING]
 > Key based authentication is supported but isn't recommended by Microsoft. If you want to use keys you can add your key to the `.env`, but please ensure that your `.env` is in your `.gitignore` file so that you don't accidentally check it into your git repository.
@@ -114,7 +65,7 @@ Create a `chat.prompty` file and copy the following code into it:
 
 ```yaml
 ---
-name: Chat Prompt
+name: Chat Prompt @@OLD CODE REPLACE THIS
 description: A basic prompt that uses the chat API to answer questions
 model:
     api: chat
@@ -151,6 +102,7 @@ user:
 Now let's create a Python file that uses this prompt template. Create a `chat.py` file and paste the following code into it:
 
 ```Python
+# @@OLD CODE REPLACE THIS
 import os
 from dotenv import load_dotenv
 load_dotenv()
@@ -187,6 +139,8 @@ Yes, other Azure AI services also support various capabilities and features. Som
 ```
 
 ## Trace the execution of your chat code
+
+@@DO WE STILL  HAVE THIS? Or remove this section?
 
 Now we take a look at how prompt flow tracing can provide insights into the various LLM calls that are happening in our Python scripts.
 

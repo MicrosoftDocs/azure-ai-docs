@@ -1,11 +1,11 @@
 ---
-title: "Part 3: Evaluate and deploy chat app with the prompt flow SDK"
+title: "Part 2: Evaluate and deploy chat app with the Azure AI SDK"
 titleSuffix: Azure AI Studio
-description: Evaluate and deploy a custom chat app with the prompt flow SDK. This tutorial is part 3 of a 3-part tutorial series.
+description: Evaluate and deploy a custom chat app with the prompt flow SDK. This tutorial is part 2 of a 2-part tutorial series.
 manager: scottpolly
 ms.service: azure-ai-studio
 ms.topic: tutorial
-ms.date: 08/29/2024
+ms.date: 10/31/2024
 ms.reviewer: lebaro
 ms.author: sgilley
 author: sdgilley
@@ -14,18 +14,18 @@ author: sdgilley
 
 # Tutorial: Part 3 - Evaluate and deploy a custom chat application with the prompt flow SDK
 
-In this tutorial, you use the prompt flow SDK (and other libraries) to  evaluate and deploy the chat app you built in [Part 2 of the tutorial series](copilot-sdk-build-rag.md). In this part three, you learn how to:
+In this tutorial, you use the Azure AI SDK (and other libraries) to  evaluate and deploy the chat app you built in [Part 1 of the tutorial series](copilot-sdk-build-rag.md). In this part two, you learn how to:
 
 > [!div class="checklist"]
 > - Evaluate the quality of chat app responses
 > - Deploy the chat app to Azure
 > - Verify the deployment
 
-This tutorial is part three of a three-part tutorial.
+This tutorial is part two of a two-part tutorial.
 
 ## Prerequisites
 
-- Complete [part 2 of the tutorial series](copilot-sdk-build-rag.md) to build the chat application.
+- Complete [part 1 of the tutorial series](copilot-sdk-build-rag.md) to build the chat application.
 
 - You must have the necessary permissions to add role assignments in your Azure subscription. Granting permissions by role assignment is only allowed by the **Owner** of the specific Azure resources. You might need to ask your Azure subscription owner (who might be your IT admin) for help with endpoint access later in the tutorial.
 
@@ -54,7 +54,7 @@ Use the following evaluation dataset, which contains example questions and expec
 1. Create a file called **eval_dataset.jsonl** in your **rag-tutorial** folder. See the [application code structure](copilot-sdk-build-rag.md#application-code-structure) for reference.
 1. Paste this dataset into the file:
 
-    :::code language="jsonl" source="~/rag-data-openai-python-promptflow-main/tutorial/eval_dataset.jsonl":::
+    :::code language="jsonl" source="~/azure-samples-main/rag-data-openai-python-promptflow/tutorial/eval_dataset.jsonl":::
 
 ### Evaluate with prompt flow evaluators
 
@@ -74,7 +74,7 @@ The script also logs the evaluation results to the cloud project so that you can
 1. Create a file called **evaluate.py** in your **rag-tutorial** folder.
 1. Add the following code. Update the `dataset_path` and `evaluation_name` to fit your use case.
 
-    :::code language="python" source="~/rag-data-openai-python-promptflow-main/tutorial/evaluate.py":::
+    :::code language="python" source="~/azure-samples-main/rag-data-openai-python-promptflow/tutorial/evaluate.py":::
 
 The main function at the end allows you to view the evaluation result locally, and gives you a link to the evaluation results in AI Studio.
 
@@ -184,7 +184,7 @@ As part of creating the deployment, your **copilot_flow** folder is packaged as 
 
 Create the file **deploy.py** in the **rag-tutorial** folder. Add the following code:
 
-:::code language="python" source="~/rag-data-openai-python-promptflow-main/tutorial/deploy.py" id="deploy":::
+:::code language="python" source="~/azure-samples-main/rag-data-openai-python-promptflow/tutorial/deploy.py" id="deploy":::
 
 > [!IMPORTANT]
 > The endpoint and deployment name must be unique within an Azure region. If you get an error that the endpoint or deployment name already exists, try different names.
@@ -193,7 +193,7 @@ Create the file **deploy.py** in the **rag-tutorial** folder. Add the following 
 
 Add the following lines to the end your deploy script to view the evaluation result locally, and get a link to the studio:
 
-:::code language="python" source="~/rag-data-openai-python-promptflow-main/tutorial/deploy.py" id="status":::
+:::code language="python" source="~/azure-samples-main/rag-data-openai-python-promptflow/tutorial/deploy.py" id="status":::
 
 Now, run the script with:
 
@@ -311,7 +311,7 @@ Define a script that will:
 
 Create an **invoke-local.py** file in your **rag-tutorial** folder, with the following code. Modify the `query` and `endpoint_name` (and other parameters as needed) to fit your use case.
 
-:::code language="python" source="~/rag-data-openai-python-promptflow-main/tutorial/invoke-local.py":::
+:::code language="python" source="~/azure-samples-main/rag-data-openai-python-promptflow/tutorial/invoke-local.py":::
 
 You should see the chat app reply to your query in the console.
 

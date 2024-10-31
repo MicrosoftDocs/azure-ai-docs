@@ -1,7 +1,7 @@
 ---
-title: "Part 2: Build a custom chat app with the prompt flow SDK"
+title: "Part 1: Build a custom chat app with the prompt flow SDK"
 titleSuffix: Azure AI Studio
-description:  Learn how to build a RAG-based chat app using the prompt flow SDK. This tutorial is part 2 of a 3-part tutorial series.
+description:  Learn how to build a RAG-based chat app using the prompt flow SDK. This tutorial is part 1 of a 2-part tutorial series.
 manager: scottpolly
 ms.service: azure-ai-studio
 ms.topic: tutorial
@@ -13,22 +13,20 @@ ms.custom: [copilot-learning-hub]
 #customer intent: As a developer, I want to learn how to use the prompt flow SDK so that I can build a RAG-based chat app.
 ---
 
-# Tutorial:  Part 2 - Build a custom chat application with the prompt flow SDK
+# Tutorial:  Part 1 - Build a custom chat application with the Azure AI SDK
 
-In this tutorial, you use the prompt flow SDK (and other libraries) to build, configure, evaluate, and deploy a chat app for your retail company called Contoso Trek. Your retail company specializes in outdoor camping gear and clothing. The chat app should answer questions about your products and services. For example, the chat app can answer questions such as "which tent is the most waterproof?" or "what is the best sleeping bag for cold weather?".
+In this tutorial, you use the Azure AI SDK (and other libraries) to build, configure, evaluate, and deploy a chat app for your retail company called Contoso Trek. Your retail company specializes in outdoor camping gear and clothing. The chat app should answer questions about your products and services. For example, the chat app can answer questions such as "which tent is the most waterproof?" or "what is the best sleeping bag for cold weather?".
 
-This part two shows you how to enhance a basic chat application by adding [retrieval augmented generation (RAG)](../concepts/retrieval-augmented-generation.md) to ground the responses in your custom data. Retrieval Augmented Generation (RAG) is a pattern that uses your data with a large language model (LLM) to generate answers specific to your data. In this part two, you learn how to:
+This part one shows you how to enhance a basic chat application by adding [retrieval augmented generation (RAG)](../concepts/retrieval-augmented-generation.md) to ground the responses in your custom data. Retrieval Augmented Generation (RAG) is a pattern that uses your data with a large language model (LLM) to generate answers specific to your data. In this part two, you learn how to:
 
 > [!div class="checklist"]
 > - Deploy AI models in Azure AI Studio to use in your app
 > - Develop custom RAG code
 > - Use prompt flow to test your chat app
 
-This tutorial is part two of a three-part tutorial.
+This tutorial is part one of a two-part tutorial.
 
 ## Prerequisites
-
-* Complete [Tutorial:  Part 1 - Create resources for building a custom chat application with the prompt flow SDK](copilot-sdk-create-resources.md).
 
 * You need a local copy of product data. The [Azure-Samples/rag-data-openai-python-promptflow repository on GitHub](https://github.com/Azure-Samples/rag-data-openai-python-promptflow/) contains sample retail product information that's relevant for this tutorial scenario. [Download the example Contoso Trek retail product data in a ZIP file](https://github.com/Azure-Samples/rag-data-openai-python-promptflow/blob/main/tutorial/data/product-info.zip) to your local machine.
 
@@ -80,6 +78,7 @@ Start with these values. You'll add a few more values as you progress through th
     AZURE_SEARCH_ENDPOINT=<your Azure Search endpoint>
     AZURE_SEARCH_CONNECTION_NAME=<your Azure Search connection name>
     ```
+
 Replace the placeholders with the following values:
 
 * Find the `<your subscription id>`, `<your resource group>`, and `<your project name>` from your project view in AI Studio:
@@ -97,37 +96,13 @@ Replace the placeholders with the following values:
 
 ## Deploy models
 
-You need two models to build a RAG-based chat app: an Azure OpenAI chat model (`gpt-3.5-turbo`) and an Azure OpenAI embedding model (`text-embedding-ada-002`). Deploy these models in your Azure AI Studio project, using this set of steps for each model.
+You need two models to build a RAG-based chat app: an Azure OpenAI chat model (`gpt-40-mini`) and an Azure OpenAI embedding model (`text-embedding-ada-002`). Deploy these models in your Azure AI Studio project, using this set of steps for each model.
 
 These steps deploy a model to a real-time endpoint from the AI Studio [model catalog](../how-to/model-catalog-overview.md):
 
-1. Sign in to [AI Studio](https://ai.azure.com) and go to the **Home** page.
-1. Select **Model catalog** from the left sidebar.
-1. In the **Collections** filter, select **Azure OpenAI**.
+[!INCLUDE [Deploy a model](../includes/deploy-model.md)]
 
-    :::image type="content" source="../media/deploy-monitor/catalog-filter-azure-openai.png" alt-text="A screenshot showing how to filter by Azure OpenAI models in the catalog." lightbox="../media/deploy-monitor/catalog-filter-azure-openai.png"::: 
-
-1. Select the model from the Azure OpenAI collection. The first time through, select the `gpt-3.5-turbo` model.  The second time, select the `text-embedding-ada-002` model.
-1. Select **Deploy** to open the deployment window. 
-1. Select the hub that you want to deploy the model to. Use the same hub as your project.
-1. Specify the deployment name and modify other default settings depending on your requirements.
-1. Select **Deploy**.
-1. You land on the deployment details page. Select **Open in playground**.
-1. Select **View Code** to obtain code samples that can be used to consume the deployed model in your application.
- 
-When you deploy the `gpt-3.5-turbo` model, find the following values in the **View Code** section, and add them to your **.env** file:
-
-```env
-AZURE_OPENAI_ENDPOINT=<endpoint_value>
-AZURE_OPENAI_CHAT_DEPLOYMENT=<chat_model_deployment_name>
-AZURE_OPENAI_API_VERSION=<api_version>
-```
-
-When you deploy the `text-embedding-ada-002` model, add the name to your **.env** file:
-
-```env
-AZURE_OPENAI_EMBEDDING_DEPLOYMENT=<embedding_model_deployment_name>
-```
+After you deploy the **gpt-40-mini**, repeat the steps to deploy the **text-embedding-ada-002** model. The second time, you'll already be in a project, so you can skip the project selection step.
 
 ## Install the Azure CLI and sign in 
 
@@ -147,13 +122,14 @@ To make sure you have the latest version of pip, run the following command:
 python -m pip install --upgrade pip
 ```
 
-## Install the prompt flow SDK
+## Install the Azure AI SDK
 
-[Prompt flow](https://microsoft.github.io/promptflow) is a suite of development tools designed to streamline the end-to-end development cycle of LLM-based AI applications, from ideation, prototyping, testing, evaluation to production deployment and monitoring.
+[!INCLUDE [Install the Azure AI SDK](../includes/install-ai-sdk.md)]
 
-[!INCLUDE [Install prompt flow](../includes/install-promptflow.md)]
 
 ## Create an Azure AI Search index
+
+@@ MODIFY THIS.  DO WE STILL NEED PROMPTFLOW HERE?
 
 The goal with this RAG-based application is to ground the model responses in your custom data. You use an Azure AI Search index that stores vectorized data from the embeddings model. The search index is used to retrieve relevant documents based on the user's question.
 
@@ -170,7 +146,7 @@ If you don't have an Azure AI Search index already created, we walk through how 
 1. Create the **build_index.py** file in your **rag-tutorial** folder. 
 1. Copy and paste the following code into your **build_index.py** file.
 
-    :::code language="python" source="~/rag-data-openai-python-promptflow-main/tutorial/build_index.py":::
+    :::code language="python" source="~/azure-samples-main/rag-data-openai-python-promptflow/tutorial/build_index.py":::
 
     - Set the `index_name` variable to the name of the index you want. 
     - As needed, you can update the `path_to_data` variable to the path where your data files are stored.
@@ -216,7 +192,7 @@ The chat app implementation logic is in the **copilot.py** file. This file conta
 1. Then create a file called **copilot.py** in the **copilot_flow** folder.
 1. Add the following code to the **copilot.py** file:
 
-    :::code language="python" source="~/rag-data-openai-python-promptflow-main/tutorial/copilot_flow/copilot.py":::
+    :::code language="python" source="~/azure-samples-main/rag-data-openai-python-promptflow/tutorial/copilot_flow/copilot.py":::
 
 The **copilot.py** file contains two key functions: `get_documents()` and `get_chat_response()`.
 
@@ -244,7 +220,7 @@ The **chat.prompty** file is simple, and similar to the **chat.prompty** in the 
 1. Add the file **chat.prompty** in the **copilot_flow** directory. The file represents the call to the chat completion model, with the system prompt, chat history, and document context provided.
 1. Add this code to the **chat.prompty** file:
 
-    :::code language="yaml" source="~/rag-data-openai-python-promptflow-main/tutorial/copilot_flow/chat.prompty":::
+    :::code language="yaml" source="~/azure-samples-main/rag-data-openai-python-promptflow/tutorial/copilot_flow/chat.prompty":::
 
 ### Prompt template for chat history
 
@@ -257,7 +233,7 @@ Instead of passing only the user's query to be embedded, we need to generate a n
 1. Create the file **queryIntent.prompty** in the **copilot_flow** folder. 
 1. Enter this code for specific details about the prompt format and few-shot examples.
 
-    :::code language="yaml" source="~/rag-data-openai-python-promptflow-main/tutorial/copilot_flow/queryIntent.prompty":::
+    :::code language="yaml" source="~/azure-samples-main/rag-data-openai-python-promptflow/tutorial/copilot_flow/queryIntent.prompty":::
 
 The simple system message in our **queryIntent.prompty** file achieves the minimum required for the RAG solution to work with chat history.
 
@@ -265,7 +241,7 @@ The simple system message in our **queryIntent.prompty** file achieves the minim
 
 Create the file **requirements.txt** in the **copilot_flow** folder. Add this content:
 
-:::code language="txt" source="~/rag-data-openai-python-promptflow-main/tutorial/copilot_flow/requirements.txt":::
+:::code language="txt" source="~/azure-samples-main/rag-data-openai-python-promptflow/tutorial/copilot_flow/requirements.txt":::
 
 These packages are required for the flow to run locally and in a deployed environment.
 
@@ -277,7 +253,7 @@ This yaml specifies the entry function, which is the `get_chat_response` functio
 
 Create the file **flow.flex.yaml** in the **copilot_flow** folder. Add this content:
 
-:::code language="yaml" source="~/rag-data-openai-python-promptflow-main/tutorial/copilot_flow/flow.flex.yaml":::
+:::code language="yaml" source="~/azure-samples-main/rag-data-openai-python-promptflow/tutorial/copilot_flow/flow.flex.yaml":::
 
 ## Use prompt flow to test your chat app
 
@@ -311,7 +287,7 @@ Because our application implements RAG, we had to add [extra logic to handle cha
 
 To test with chat history, create a file called **input_with_chat_history.json** in the **copilot_flow** folder, and paste in this content:
 
-:::code language="json" source="~/rag-data-openai-python-promptflow-main/tutorial/copilot_flow/input_with_chat_history.json":::
+:::code language="json" source="~/azure-samples-main/rag-data-openai-python-promptflow/tutorial/copilot_flow/input_with_chat_history.json":::
 
 To test with this file, run:
 
@@ -336,4 +312,4 @@ But don't delete them yet, if you want to deploy your chat app to Azure in [the 
 ## Next step
 
 > [!div class="nextstepaction"]
-> [Part 3: Evaluate and deploy your chat app to Azure](copilot-sdk-evaluate-deploy.md)
+> [Part 2: Evaluate and deploy your chat app to Azure](copilot-sdk-evaluate-deploy.md)
