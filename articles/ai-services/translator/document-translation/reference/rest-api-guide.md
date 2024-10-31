@@ -24,7 +24,7 @@ Document Translation is a cloud-based feature of the Azure AI Translator service
 >
 > * The current version is backward compatible with the legacy version.
 >
-> * Starting with this current version, the `get supported storage sources` method is longer supported. The Translator service only supports Azure Blob storage.
+> * Starting with this current version, the `get supported storage sources` method is no longer supported. The Translator service only supports Azure Blob storage.
 
 | Request|Method| Description|API path|
 |---------|:-------:|-------|-----|

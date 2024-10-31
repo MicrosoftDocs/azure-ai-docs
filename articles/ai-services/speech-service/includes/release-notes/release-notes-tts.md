@@ -9,6 +9,10 @@ ms.custom: references_regions
 
 ### October 2024 release
 
+##### Prebuilt neural voice
+
+- Introduce 4 turbo version of Azure OpenAI voices in public preview: `en-US-EchoTurboMultilingualNeural`, `en-US-FableTurboMultilingualNeural`, `en-US-OnyxTurboMultilingualNeural`, and `en-US-ShimmerTurboMultilingualNeural`. Turbo version of Azure OpenAI voices has the similar voice persona as Azure OpenAI voices but supports extra features. Turbo voices support the full set of SSML elements and more features like word boundary, just like other Azure AI Speech voices. See the [full language and voice list](../../language-support.md?tabs=tts) for more information.
+
 #### Prebuilt high definition (HD) neural voice
 
 Azure AI speech high definition (HD) voices are available in public preview. The HD voices can understand the content, automatically detect emotions in the input text, and adjust the speaking tone in real-time to match the sentiment. HD voices maintain a consistent voice persona from their neural (and non HD) counterparts, and deliver even more value through enhanced features. For more information, see [What are Azure AI Speech high definition (HD) voices?](../../high-definition-voices.md).
@@ -51,6 +55,8 @@ Azure AI speech high definition (HD) voices are available in public preview. The
 - Custom neural voice Pro now supports the following new locales:
   - `en-NZ`: English (New Zealand)
   - `es-CL`: Spanish (Chile)
+  - `es-US`: Spanish (United States)
+  - `ta-MY`: Tamil (Malaysia)
   
   See the [language list for Custom neural voice](../../language-support.md?tabs=tts#custom-neural-voice) for the full list of supported locales.  
 
@@ -71,6 +77,7 @@ Azure AI speech high definition (HD) voices are available in public preview. The
   | `pt-PT`               | Portuguese (Portugal)     |
   | `sv-SE`               | Swedish (Sweden)          |
   | `tr-TR`               | Turkish (Türkiye)          |
+  | `ta-IN`               | Tamil (India) |
   | `zh-HK`               | Chinese (Cantonese, Traditional)       |  
 
   See the [language list for Custom neural voice](../../language-support.md?tabs=tts#custom-neural-voice) for the full list of supported locales.  
