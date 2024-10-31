@@ -6,7 +6,7 @@ author: Blackmist
 ms.author: larryfr
 ms.service: azure-ai-studio
 ms.topic: how-to
-ms.date: 08/08/2024
+ms.date: 11/19/2024
 ms.reviewer: ambadal
 
 #customer intent: As an admin, I want to disable shared key access to my resources to improve security.
@@ -25,7 +25,7 @@ Use of your hub with a shared key disabled storage account is currently in previ
 
 ## Prerequisites
 
-- For more information about the process and implications of disabling shared key authorization for your storage account, visit the [Prevent shared key authorization for an Azure Storage account](/azure/storage/common/shared-key-authorization-prevent) resource.
+- An existing Azure Storage account with shared key authorization disabled. For more information about the process and implications of disabling shared key authorization for your storage account, visit the [Prevent shared key authorization for an Azure Storage account](/azure/storage/common/shared-key-authorization-prevent) resource.
 
 # [Azure portal](#tab/portal)
 
@@ -68,7 +68,7 @@ To use the CLI commands in this document, you need the [Azure CLI](/cli/azure/in
 If you use the [Azure Cloud Shell](https://azure.microsoft.com//features/cloud-shell/), the CLI is accessed through the browser, and it lives in the cloud.
 
 > [!IMPORTANT]
-> The steps in this article require the **Azure CLI extension for machine learning, version 2.27.0**. To determine the version of the extension you have installed, use the `az version` command from the Azure CLI. In the extensions collection that's returned, find the `ml` extension. This code sample shows an example return value:
+> The steps in this article require the Azure CLI extension for machine learning, version **2.27.0 or greater**. To determine the version of the extension you have installed, use the `az version` command from the Azure CLI. In the extensions collection that's returned, find the `ml` extension. This code sample shows an example return value:
 >
 > ```json
 > {
@@ -83,7 +83,8 @@ If you use the [Azure Cloud Shell](https://azure.microsoft.com//features/cloud-s
 
 # [ARM Template](#tab/armtemplate)
 
-The ARM template example in this article requires an existing Azure Storage Account and Azure Key Vault resource.
+- An existing Azure Key Vault instance.
+- The Azure Resource Manager ID for both the Azure Storage Account and Azure Key Vault to be used with the hub.
 
 ---
 
@@ -93,23 +94,24 @@ When you create a new hub, the creation process can automatically disable shared
 
 # [Azure portal](#tab/portal)
 
-1. In Azure AI Studio, select **Create with customized networking, encryption, identity, dependent resources or tags** as shown in this screenshot:
+1. In Azure AI Studio, select __Management center__ from the left menu.
+1. Select __All resources__ from the left menu, the dropdown menu next to __+ New project__, and then select __New hub__.
 
-    :::image type="content" source="../media/disable-local-auth/create-new-hub-azure-ai-studio-first-step.png" alt-text="Screenshot showing selection of the Create with customized networking, encryption, identity, dependent resources or tags dropdown option." lightbox="../media/disable-local-auth/create-new-hub-azure-ai-studio-first-step.png":::
+    :::image type="content" source="../media/disable-local-auth/create-new-hub.png" alt-text="Screenshot of the new hub dropdown button.":::
 
-1. Create your hub. In this screenshot, a pre-existing storage account is selected.
+1. From the __Create new hub__ form, select the link to __Go to the Azure Portal__. This link opens the Azure portal to the __Create a hub__ form.
 
-    :::image type="content" source="../media/disable-local-auth/workspace-basics-storage-account.png" alt-text="Screenshot of hub creation using the previously created storage account." lightbox="../media/disable-local-auth/workspace-basics-storage-account.png":::
+    :::image type="content" source="../media/disable-local-auth/create-new-hub-portal.png" alt-text="Screenshot of the link to create a new hub in the Azure portal.":::
 
-1.  __Identity__ tab. In the __Storage account access__ section, set __Storage account access type__ to __identity-based__ as shown in this screenshot:
+1. From the __Basics__ tab, enter the hub details and then select the __Storage__ tab. Select the Azure Storage account that you previously created.
 
-    :::image type="content" source="../media/disable-local-auth/ai-studio-identity-based-access.png" alt-text="Screenshot of hub creation using identity-based storage access." lightbox="../media/disable-local-auth/ai-studio-identity-based-access.png":::
+    :::image type="content" source="../media/disable-local-auth/ai-hub-storage.png" alt-text="Screenshot of hub creation using the previously created storage account." lightbox="../media/disable-local-auth/ai-hub-storage.png":::
 
-1. __Storage__ tab. Select the **Key vault**, as shown in this screenshot:
+1. From the __Identity__ tab, set the __Storage account access type__ to __identity-based__ and then enable the __Disable shared key access__ option.
 
-    :::image type="content" source="../media/disable-local-auth/ai-studio-storage-account.png" alt-text="Screenshot showing selection of a Key vault." lightbox="../media/disable-local-auth/ai-studio-storage-account.png":::
+    :::image type="content" source="../media/disable-local-auth/ai-hub-identity-based-access.png" alt-text="Screenshot of hub creation using identity-based storage access." lightbox="../media/disable-local-auth/ai-studio-hub-based-access.png":::
 
-1. Continue the hub creation process as usual. As the hub is created, the managed identity is automatically assigned the permissions it needs to access the storage account.
+1. Continue the hub creation process. As the hub is created, the managed identity is automatically assigned the permissions it needs to access the storage account.
 
 # [Python SDK](#tab/python)
 
@@ -224,11 +226,12 @@ If you have an existing Azure AI Studio hub, use the steps in this section to up
 
 # [Azure portal](#tab/portal)
 
-To update an existing workspace, go to **Properties** and select **Identity-based access**, as shown in this screenshot:
+1. Go to the Azure portal and select the __AI Studio hub__.
+1. From the left menu, select **Properties**. From the bottom of the page, set __Storage account access type__ to __Identity-based__. Select __Save__ from the top of the page to save the configuration.
 
-:::image type="content" source="../media/disable-local-auth/update-an-existing-hub-identity-based-access.png" alt-text="Screenshot showing selection of Identity-based access." lightbox="../media/disable-local-auth/update-an-existing-hub-identity-based-access.png":::
+    :::image type="content" source="../media/disable-local-auth/update-existing-hub-identity-based-access.png" alt-text="Screenshot showing selection of Identity-based access." lightbox="../media/disable-local-auth/update-existing-hub-identity-based-access.png":::
 
-Select **Save** to save this choice.
+
 
 # [Python SDK](#tab/python)
 
@@ -314,7 +317,7 @@ To revert a hub back to use of shared keys to access the storage account, use th
 
 To update an existing workspace, go to **Properties** and select **Credential-based access**, as shown in this screenshot:
 
-:::image type="content" source="../media/disable-local-auth/update-an-existing-hub-credential-based-access.png" alt-text="Screenshot showing selection of Credential-based access." lightbox="../media/disable-local-auth/update-an-existing-hub-credential-based-access.png":::
+:::image type="content" source="../media/disable-local-auth/update-existing-hub-credential-based-access.png" alt-text="Screenshot showing selection of Credential-based access." lightbox="../media/disable-local-auth/update-an-existing-hub-credential-based-access.png":::
 
 Select **Save** to save this choice.
 
