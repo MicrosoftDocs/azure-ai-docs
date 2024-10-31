@@ -35,7 +35,7 @@ items:
         href: sdk-overview-v3-0.md
       - name:  "SDK targets: REST API v2.1 (GA)"
         displayName: get started, installation, downloads, formRecognizerClientClient, form recognizer client, Azure AD, Azure Active Directory, identity, changelog, package, version,AzureKeyCredential, Azure key credential, key, endpoint
-        href: v21/sdk-overview.md
+        href: v21/sdk-overview-v2-1.md
   - name: Language support
     items:
       - name: Document analysis models
