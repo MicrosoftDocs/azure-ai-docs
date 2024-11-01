@@ -323,7 +323,7 @@ private static void UploadDocuments(SearchClient searchClient)
             new Hotel()
             {
                 HotelId = "1",
-                HotelName = "Secret Point Motel",
+                HotelName = "Stay-Kay City Hotel",
                 ...
                 Address = new Address()
                 {
@@ -353,7 +353,7 @@ private static void UploadDocuments(SearchClient searchClient)
             new Hotel()
             {
                 HotelId = "2",
-                HotelName = "Twin Dome Motel",
+                HotelName = "Old Century Hotel",
                 ...
                 {
                     StreetAddress = "140 University Town Center Dr",
@@ -382,7 +382,7 @@ private static void UploadDocuments(SearchClient searchClient)
             new Hotel()
             {
                 HotelId = "3",
-                HotelName = "Triple Landscape Hotel",
+                HotelName = "Gastronomic Landscape Hotel",
                 ...
                 Address = new Address()
                 {
@@ -580,9 +580,9 @@ WriteDocuments(results);
 In this case, we're searching the entire index for the word *motel* in any searchable field and we only want to retrieve the hotel names, as specified by the `Select` option. Here are the results:
 
 ```output
-Name: Secret Point Motel
+Name: Stay-Kay City Hotel
 
-Name: Twin Dome Motel
+Name: Old Century Hotel
 ```
 
 In the second query, use a filter to select rooms with a nightly rate of less than *$100*. Return only the hotel ID and description in the results:
