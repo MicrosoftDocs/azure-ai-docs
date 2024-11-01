@@ -106,7 +106,7 @@ To edit files locally in VS Code with the Prompt flow extension:
 
 1. Use the editor to make changes to your flow, such as tuning the prompts in variants or adding more nodes.
 
-   :::image type="content" source="./media/how-to-integrate-with-llm-app-devops/cloud-run-compare.png" alt-text="Screenshot of the visual prompt flow editor in VS Code." lightbox = "./media/how-to-integrate-with-llm-app-devops/cloud-run-compare.png":::
+   :::image type="content" source="./media/how-to-integrate-with-llm-app-devops/flow-test-output.png" alt-text="Screenshot of the visual prompt flow editor in VS Code." lightbox = "./media/how-to-integrate-with-llm-app-devops/flow-test-output.png":::
 
 1. To test your flow, select the **Run** icon at the top of the visual editor to trigger a flow test.
 
@@ -153,14 +153,7 @@ print(f"Node outputs: {node_result}")
 
 The return values are the test logs and outputs.
 
-:::image type="content" source="./media/how-to-integrate-with-llm-app-devops/flow-test-output.png" alt-text="Screenshot of the flow test output in Python. " lightbox = "./media/how-to-integrate-with-llm-app-devops/flow-test-output.png":::
-
----
-
-The following screenshot shows example 
-
 :::image type="content" source="./media/how-to-integrate-with-llm-app-devops/flow-test-output-cli.png" alt-text="Screenshot of the flow test output in PowerShell." lightbox = "./media/how-to-integrate-with-llm-app-devops/flow-test-output-cli.png":::
-
 
 <a name="submitting-runs-to-the-cloud-from-local-repository"></a>
 ### Submit runs to the cloud from a local repository
