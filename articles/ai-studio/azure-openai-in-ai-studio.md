@@ -54,7 +54,7 @@ You can also use [https://ai.azure.com/resource](https://ai.azure.com/resource) 
 While the previous sections show how to focus on just the Azure OpenAI Service, you can also incorporate other AI services and models from various providers in Azure AI Studio. You can access the Azure OpenAI Service in two ways: 
 
 * Without a project, focusing only with Azure OpenAI models.
-* As a [connection](./how-to/connections-add) to the service inside a project. 
+* As a [connection](./how-to/connections-add.md) to the service inside a project. 
 
 When you create a project, you can try other models and tools along with Azure OpenAI. You'll notice some of the same sections, such as the **Model catalog**, but you'll see more models now. 
 
