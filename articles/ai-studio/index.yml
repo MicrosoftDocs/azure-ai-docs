@@ -47,7 +47,7 @@ landingContent:
     linkLists:
       - linkListType: quickstart
         links:
-          - text: Get started building a chat app using the Azure AI SDK
+          - text: Build a chat app using the Azure AI SDK
             url: quickstarts/get-started-code.md
           - text: Use Azure OpenAI Assistants in the playground
             url: ../ai-services/openai/assistants-quickstart.md?context=/azure/ai-studio/context/context
