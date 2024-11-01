@@ -15,7 +15,7 @@ ms.author: lajanuar
 # Document Intelligence business card model
 
 > [!IMPORTANT]
-> Starting with Document Intelligence **v4.0 (GA)**, and going forward, the business card model (prebuilt-businessCard) is deprecated. To extract data from business card formats, use the following:
+> Starting with Document Intelligence **v4.0 (preview)**, and going forward, the business card model (prebuilt-businessCard) is deprecated. To extract data from business card formats, use the following:
 >
 >| Feature   | version| Model ID |
 >|----------  |---------|--------|
