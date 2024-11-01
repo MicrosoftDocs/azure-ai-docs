@@ -56,12 +56,12 @@ Queries continue to run, but if you're updating or removing existing fields, you
 Here's a [REST API example](search-get-started-rest.md) demonstrating these tips:
 
 ```rest
-### Get Secret Point Hotel by ID
+### Get Stay-Kay City Hotel by ID
 GET  {{baseUrl}}/indexes/hotels-vector-quickstart/docs('1')?api-version=2024-07-01  HTTP/1.1
     Content-Type: application/json
     api-key: {{apiKey}}
 
-### Change the description, city, and tags for Secret Point Hotel
+### Change the description, city, and tags for Stay-Kay City Hotel
 POST {{baseUrl}}/indexes/hotels-vector-quickstart/docs/search.index?api-version=2024-07-01  HTTP/1.1
   Content-Type: application/json
   api-key: {{apiKey}}
@@ -71,7 +71,7 @@ POST {{baseUrl}}/indexes/hotels-vector-quickstart/docs/search.index?api-version=
             {
             "@search.action": "mergeOrUpload",
             "HotelId": "1",
-            "Description": "I'm overwriting the description for Secret Point Hotel.",
+            "Description": "I'm overwriting the description for Stay-Kay City Hotel.",
             "Tags": ["my old item", "my new item"],
             "Address": {
                 "City": "Gotham City"
