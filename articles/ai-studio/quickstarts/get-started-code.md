@@ -145,7 +145,7 @@ print(response.choices[0].message.content)
 
 The Azure SDK uses `opentelemetry` for instrumentation and logging. Before you can log to Azure AI Studio, attach an Application Insights resource to your project.
 
-1. Navigate to your project in [Azure AI Studio](https://ai.azure.com/)
+1. Navigate to your project in [Azure AI Studio](https://ai.azure.com/).
 1. Select the **Tracing** page on the left hand side.
 1. Select **Create New** to attach a new Application Insights resource to your project.
 1. Supply a name and select **Create**.

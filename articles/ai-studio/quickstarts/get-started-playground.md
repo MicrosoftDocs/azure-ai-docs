@@ -35,7 +35,7 @@ If you don't have an Azure subscription, <a href="https://azure.microsoft.com/fr
 
 [!INCLUDE [deploy-model](../includes/deploy-model.md)]
 
-1. Once the model is deployed, select **Open in playground** to test your model.
+7. Once the model is deployed, select **Open in playground** to test your model.
 
 You're now in a project, with a deployed model.  You can use the chat playground to interact with your model.
 

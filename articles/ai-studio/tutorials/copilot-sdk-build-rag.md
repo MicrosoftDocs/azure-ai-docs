@@ -129,8 +129,6 @@ python -m pip install --upgrade pip
 
 ## Create an Azure AI Search index
 
-@@ MODIFY THIS.  DO WE STILL NEED PROMPTFLOW HERE?
-
 The goal with this RAG-based application is to ground the model responses in your custom data. You use an Azure AI Search index that stores vectorized data from the embeddings model. The search index is used to retrieve relevant documents based on the user's question.
 
 If you don't have an Azure AI Search index already created, we walk through how to create one. If you already have an index to use, you can skip to the [set the search environment variable](#set-search-index) section. The search index is created on the Azure AI Search service that was either created or referenced in the previous step.
