@@ -103,7 +103,7 @@ Combine these roles to get sufficient permissions for your use case.
 
 Owners and Contributors grant the same permissions, except that only Owners can assign roles.
 
-Owners and Contributors can create, read, update, and delete objects in the Azure portal *if API keys are enabled*. The portal uses API keys on internal calls to data plane APIs. In an Azure RBAC-only configuration, Owner and Contributor can't manage objects on the data plane.
+Owners and Contributors can create, read, update, and delete objects in the Azure portal *if API keys are enabled*. The portal uses keys on internal calls to data plane APIs. In you subsequently configure Azure AI Search to use "roles only", then Owner and Contributor won't be able to manage objects in the portal using just those role assignments. The solution is to assign more roles, such as Search Index Data Reader, Search Index Data Contributor, and Search Service Contributor.
 
 ## Assign roles
 
