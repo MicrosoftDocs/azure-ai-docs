@@ -9,7 +9,7 @@ ms.author: heidist
 
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 07/01/2024
+ms.date: 10/31/2024
 ---
 
 # Load data into a search index in Azure AI Search
@@ -66,7 +66,7 @@ In the Azure portal, use the [import wizards](search-import-data-portal.md) to c
         {
         "@search.action": "upload",
         "HotelId": "1111",
-        "HotelName": "Secret Point Motel",
+        "HotelName": "Stay-Kay City Hotel",
         "Description": "The hotel is ideally located on the main commercial artery of the city in the heart of New York. A few minutes away is Time's Square and the historic centre of the city, as well as other places of interest that make New York one of America's most attractive and cosmopolitan cities.",
         "Category": "Boutique",
         "Tags": [ "pool", "air conditioning", "concierge" ]
@@ -74,7 +74,7 @@ In the Azure portal, use the [import wizards](search-import-data-portal.md) to c
         {
         "@search.action": "mergeOrUpload",
         "HotelId": "2",
-        "HotelName": "Twin Dome Motel",
+        "HotelName": "Old Century Hotel",
         "Description": "This is description is replacing the original one for this hotel. New and changed values overwrite the previous ones. In a comma-delimited list like Tags, be sure to provide the full list because there is no merging of values within the field itself.",
         "Category": "Boutique",
         "Tags": [ "pool", "free wifi", "concierge", "my first new tag", "my second new tag" ]
