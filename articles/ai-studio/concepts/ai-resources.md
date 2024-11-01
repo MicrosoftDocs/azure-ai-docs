@@ -123,7 +123,7 @@ In the Azure portal, you can find resources that correspond to your project in A
 1. In [Azure AI Studio](https://ai.azure.com), go to a project and select **Management center** to view your project resources.
 1. From the management center, select the overview for either your hub or project and then select the link to **Manage in Azure portal**.
     
-    :::image type="content" source="../media/concepts/azureai-project-view-ai-studio.png" alt-text="Screenshot of the AI Studio project overview page with links to the Azure portal." lightbox="../media/concepts/azureai-project-view-ai-studio.png":::
+    :::image type="content" source="../media/concepts/azureai-project-view-ai-studio.png" alt-text="Screenshot of the AI Studio project overview page with links to the Azure portal." lightbox="../media/concepts/azureai-project-view-ai-studio.png"::: 
 
 ## Next steps
 
