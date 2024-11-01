@@ -47,7 +47,7 @@ You can see the endpoint URL and credentials in the **Overview** section. The en
 
 You can connect to the endpoint using the Azure AI Inference SDK:
 
-[!INCLUDE [code-create-chat-completion](../../includes/ai-services/code-create-client.md)]
+[!INCLUDE [code-create-chat-client](../../includes/ai-services/code-create-chat-client.md)]
 
 See [Supported languages and SDKs](#supported-languages-and-sdks) for more code examples and resources.
 
