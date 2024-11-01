@@ -6,7 +6,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: how-to
-ms.date: 06/20/2024
+ms.date: 11/19/2024
 ms.author: lajanuar
 ---
 
@@ -20,8 +20,6 @@ ms.author: lajanuar
 # Native document support for Azure AI Language (preview)
 
 > [!IMPORTANT]
->
-> * Native document support is a gated preview. To request access to the native document support feature, complete and submit the [**Apply for access to Language Service previews**](https://aka.ms/gating-native-document) form.
 >
 > * Azure AI Language public preview releases provide early access to features that are in active development.
 > * Features, approaches, and processes may change, prior to General Availability (GA), based on user feedback.
@@ -206,7 +204,7 @@ For this quickstart, you need a **source document** uploaded to your **source co
 1. Here's the preliminary structure of the POST request:
 
    ```bash
-      POST {your-language-endpoint}/language/analyze-documents/jobs?api-version=2023-11-15-preview
+      POST {your-language-endpoint}/language/analyze-documents/jobs?api-version=2024-11-15-preview
    ```
 
 1. Before you run the **POST** request, replace `{your-language-resource-endpoint}` and `{your-key}` with the values from your Azure portal Language service instance.
@@ -217,13 +215,13 @@ For this quickstart, you need a **source document** uploaded to your **source co
     ***PowerShell***
 
     ```powershell
-       cmd /c curl "{your-language-resource-endpoint}/language/analyze-documents/jobs?api-version=2023-11-15-preview" -i -X POST --header "Content-Type: application/json" --header "Ocp-Apim-Subscription-Key: {your-key}" --data "@pii-detection.json"
+       cmd /c curl "{your-language-resource-endpoint}/language/analyze-documents/jobs?api-version=2024-11-15-preview" -i -X POST --header "Content-Type: application/json" --header "Ocp-Apim-Subscription-Key: {your-key}" --data "@pii-detection.json"
     ```
 
     ***command prompt / terminal***
 
      ```bash
-        curl -v -X POST "{your-language-resource-endpoint}/language/analyze-documents/jobs?api-version=2023-11-15-preview" --header "Content-Type: application/json" --header "Ocp-Apim-Subscription-Key: {your-key}" --data "@pii-detection.json"
+        curl -v -X POST "{your-language-resource-endpoint}/language/analyze-documents/jobs?api-version=2024-11-15-preview" --header "Content-Type: application/json" --header "Ocp-Apim-Subscription-Key: {your-key}" --data "@pii-detection.json"
      ```
 
 1. Here's a sample response:
@@ -231,7 +229,7 @@ For this quickstart, you need a **source document** uploaded to your **source co
    ```http
    HTTP/1.1 202 Accepted
    Content-Length: 0
-   operation-location: https://{your-language-resource-endpoint}/language/analyze-documents/jobs/f1cc29ff-9738-42ea-afa5-98d2d3cabf94?api-version=2023-11-15-preview
+   operation-location: https://{your-language-resource-endpoint}/language/analyze-documents/jobs/f1cc29ff-9738-42ea-afa5-98d2d3cabf94?api-version=2024-11-15-preview
    apim-request-id: e7d6fa0c-0efd-416a-8b1e-1cd9287f5f81
    x-ms-region: West US 2
    Date: Thu, 25 Jan 2024 15:12:32 GMT
@@ -250,7 +248,7 @@ You receive a 202 (Success) response that includes a read-only Operation-Locatio
 1. Here's the preliminary structure of the **GET** request:
 
    ```bash
-     GET {your-language-endpoint}/language/analyze-documents/jobs/{jobId}?api-version=2023-11-15-preview
+     GET {your-language-endpoint}/language/analyze-documents/jobs/{jobId}?api-version=2024-11-15-preview
    ```
 
 1. Before you run the command, make these changes:
@@ -262,11 +260,11 @@ You receive a 202 (Success) response that includes a read-only Operation-Locatio
 ### Get request
 
 ```powershell
-    cmd /c curl "{your-language-resource-endpoint}/language/analyze-documents/jobs/{jobId}?api-version=2023-11-15-preview" -i -X GET --header "Content-Type: application/json" --header "Ocp-Apim-Subscription-Key: {your-key}"
+    cmd /c curl "{your-language-resource-endpoint}/language/analyze-documents/jobs/{jobId}?api-version=2024-11-15-preview" -i -X GET --header "Content-Type: application/json" --header "Ocp-Apim-Subscription-Key: {your-key}"
 ```
 
 ```bash
-    curl -v -X GET "{your-language-resource-endpoint}/language/analyze-documents/jobs/{jobId}?api-version=2023-11-15-preview" --header "Content-Type: application/json" --header "Ocp-Apim-Subscription-Key: {your-key}"
+    curl -v -X GET "{your-language-resource-endpoint}/language/analyze-documents/jobs/{jobId}?api-version=2024-11-15-preview" --header "Content-Type: application/json" --header "Ocp-Apim-Subscription-Key: {your-key}"
 ```
 
 #### Examine the response
@@ -373,13 +371,13 @@ Before you run the **POST** request, replace `{your-language-resource-endpoint}`
   ***PowerShell***
 
   ```powershell
-   cmd /c curl "{your-language-resource-endpoint}/language/analyze-documents/jobs?api-version=2023-11-15-preview" -i -X POST --header "Content-Type: application/json" --header "Ocp-Apim-Subscription-Key: {your-key}" --data "@document-summarization.json"
+   cmd /c curl "{your-language-resource-endpoint}/language/analyze-documents/jobs?api-version=2024-11-15-preview" -i -X POST --header "Content-Type: application/json" --header "Ocp-Apim-Subscription-Key: {your-key}" --data "@document-summarization.json"
   ```
 
   ***command prompt / terminal***
 
   ```bash
-  curl -v -X POST "{your-language-resource-endpoint}/language/analyze-documents/jobs?api-version=2023-11-15-preview" --header "Content-Type: application/json" --header "Ocp-Apim-Subscription-Key: {your-key}" --data "@document-summarization.json"
+  curl -v -X POST "{your-language-resource-endpoint}/language/analyze-documents/jobs?api-version=2024-11-15-preview" --header "Content-Type: application/json" --header "Ocp-Apim-Subscription-Key: {your-key}" --data "@document-summarization.json"
   ```
 
 Here's a sample response:
@@ -387,7 +385,7 @@ Here's a sample response:
    ```http
    HTTP/1.1 202 Accepted
    Content-Length: 0
-   operation-location: https://{your-language-resource-endpoint}/language/analyze-documents/jobs/f1cc29ff-9738-42ea-afa5-98d2d3cabf94?api-version=2023-11-15-preview
+   operation-location: https://{your-language-resource-endpoint}/language/analyze-documents/jobs/f1cc29ff-9738-42ea-afa5-98d2d3cabf94?api-version=2024-11-15-preview
    apim-request-id: e7d6fa0c-0efd-416a-8b1e-1cd9287f5f81
    x-ms-region: West US 2
    Date: Thu, 25 Jan 2024 15:12:32 GMT
@@ -405,8 +403,8 @@ You receive a 202 (Success) response that includes a read-only Operation-Locatio
 
 1. Here's the structure of the **GET** request:
 
-   ```http
-   GET {cognitive-service-endpoint}/language/analyze-documents/jobs/{jobId}?api-version=2023-11-15-preview
+   ```bash
+   GET {cognitive-service-endpoint}/language/analyze-documents/jobs/{jobId}?api-version=2024-11-15-preview
    ```
 
 1. Before you run the command, make these changes:
@@ -418,11 +416,11 @@ You receive a 202 (Success) response that includes a read-only Operation-Locatio
 ### Get request
 
 ```powershell
-    cmd /c curl "{your-language-resource-endpoint}/language/analyze-documents/jobs/{jobId}?api-version=2023-11-15-preview" -i -X GET --header "Content-Type: application/json" --header "Ocp-Apim-Subscription-Key: {your-key}"
+    cmd /c curl "{your-language-resource-endpoint}/language/analyze-documents/jobs/{jobId}?api-version=2024-11-15-preview" -i -X GET --header "Content-Type: application/json" --header "Ocp-Apim-Subscription-Key: {your-key}"
 ```
 
 ```bash
-    curl -v -X GET "{your-language-resource-endpoint}/language/analyze-documents/jobs/{jobId}?api-version=2023-11-15-preview" --header "Content-Type: application/json" --header "Ocp-Apim-Subscription-Key: {your-key}"
+    curl -v -X GET "{your-language-resource-endpoint}/language/analyze-documents/jobs/{jobId}?api-version=2024-11-15-preview" --header "Content-Type: application/json" --header "Ocp-Apim-Subscription-Key: {your-key}"
 ```
 
 #### Examine the response
