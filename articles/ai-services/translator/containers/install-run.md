@@ -7,7 +7,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: how-to
-ms.date: 06/27/2024
+ms.date: 11/01/2024
 ms.author: lajanuar
 recommendations: false
 keywords: on-premises, Docker, container, identify
@@ -463,7 +463,7 @@ If you installed Docker Desktop CLI, it includes Docker compose and its prerequi
     services:
       azure-ai-translator:
         container_name: azure-ai-translator
-        image: mcr.microsoft.com/product/azure-cognitive-services/translator/text-translation:latest
+        image: mcr.microsoft.com/azure-cognitive-services/translator/text-translation::latest
         environment:
             - EULA=accept
             - billing={TRANSLATOR_ENDPOINT_URI}
@@ -472,6 +472,8 @@ If you installed Docker Desktop CLI, it includes Docker compose and its prerequi
             - VISIONURL=http://azure-ai-read:5000
         ports:
               - "5000:5000"
+        volumes:
+              - D:\TranslatorContainer:/usr/local/models  
         azure-ai-language:
           container_name: azure-ai-language
           image:  mcr.microsoft.com/azure-cognitive-services/textanalytics/language:latest
@@ -479,6 +481,8 @@ If you installed Docker Desktop CLI, it includes Docker compose and its prerequi
               - EULA=accept
               - billing={LANGUAGE_RESOURCE_ENDPOINT_URI}
               - apiKey={LANGUAGE_RESOURCE_KEY}
+              - Languages=en,es
+              - LADINCLUSTER=true 
         azure-ai-read:
           container_name: azure-ai-read
           image:  mcr.microsoft.com/azure-cognitive-services/vision/read:latest
