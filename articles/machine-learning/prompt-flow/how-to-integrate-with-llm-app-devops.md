@@ -16,11 +16,11 @@ ms.date: 10/31/2024
 
 # Integrate prompt flow with DevOps for LLM-based applications
 
-Prompt flow is a developer-friendly and easy-to-use code-first method to develop and iterate flows for large language model (LLM)-based application development. Prompt flow provides an SDK and CLI, a Visual Studio Code extension, and a flow authoring UI. These tools facilitate local flow development, local flow run and evaluation run triggering, and transitioning flows between local and Azure Machine Learning cloud workspace environments.
+Azure Machine Learning prompt flow is a developer-friendly and easy-to-use code-first method to develop and iterate flows for large language model (LLM)-based application development. Prompt flow provides an SDK and CLI, a Visual Studio Code extension, and a flow authoring UI. These tools facilitate local flow development, local flow run and evaluation run triggering, and transitioning flows between local and cloud workspace environments.
 
 You can combine the prompt flow experience and code capabilities with developer operations (DevOps) to enhance your LLM-based application development workflows. This article focuses on integrating prompt flow and DevOps for Azure Machine Learning LLM-based applications.
 
-The following diagram shows the interaction of local and cloud-based prompt flow development.
+The following diagram shows the interaction of local and cloud-based prompt flow development with DevOps.
 
 :::image type="content" source="./media/how-to-integrate-with-llm-app-devops/devops-process.png" alt-text="Diagram showing the following flow: create flow, develop and test flow, versioning in code repo, submit runs to cloud, and debut and iteration." border="false" lightbox = "./media/how-to-integrate-with-llm-app-devops/devops-process.png":::
 
@@ -30,7 +30,8 @@ The following diagram shows the interaction of local and cloud-based prompt flow
 
 - A local Python environment with the Azure Machine Learning Python SDK v2 installed, created by following the instructions at [Getting started](https://github.com/Azure/azureml-examples/tree/sdk-preview/sdk#getting-started).
 
-  This environment is separate from the environment the compute session uses to run the flow, which you define in the flow. For more information, see [Manage prompt flow compute session in Azure Machine Learning studio](how-to-manage-compute-session.md).
+  >[!NOTE]
+  >This environment is separate from the environment the compute session uses to run the flow, which you define as part of the flow. For more information, see [Manage prompt flow compute session in Azure Machine Learning studio](how-to-manage-compute-session.md).
 
 - Visual Studio Code with the Python and Prompt flow extensions installed.
 
@@ -44,7 +45,7 @@ Integrating DevOps with the prompt flow code experience offers code developers a
 
 - **Flow versioning in the code repository**. You can define flow files in YAML format, and they stay aligned with referenced source files in the same folder structure.
 
-- **Flow run integration with CI/CD pipelines**. You can seamlessly integrate prompt flow into your CI/CD pipelines and delivery process by using the prompt flow CLI or SDK to trigger flow runs.
+- **Flow run integration with CI/CD pipelines**. You can seamlessly integrate prompt flow into your CI/CD pipelines and delivery process by using the prompt flow CLI or SDK to automatically trigger flow runs.
 
 - **Smooth transition between local and cloud**. You can easily export your flow folder to your local or upstream code repository for version control, local development, and sharing. You can also effortlessly import the flow folder back into Azure Machine Learning for further authoring, testing, and deployment using cloud resources.
 
@@ -90,7 +91,7 @@ For more information about DevOps integration with Azure Machine Learning, see [
 
 As you refine and fine-tune your flow or prompts during iterative development, you can carry out multiple iterations locally within your code repository. The VS Code community version, VS Code Prompt flow extension, and prompt flow local SDK and CLI facilitate pure local development and testing without Azure binding.
 
-Working locally allows you to make and test changes quickly, without needing to update the main code repository each time. For more details and guidance on using the local versions, you can consult the [Prompt flow GitHub community](https://github.com/microsoft/promptflow).
+Working locally allows you to make and test changes quickly, without needing to update the main code repository each time. For more details and guidance on using local versions, consult the [Prompt flow GitHub community](https://github.com/microsoft/promptflow).
 
 ### Use the VS Code Prompt flow extension
 
@@ -103,7 +104,7 @@ To edit files locally in VS Code with the Prompt flow extension:
 
    :::image type="content" source="./media/how-to-integrate-with-llm-app-devops/select-visual-editor.png" alt-text="Screenshot of the Visual editor link at the top of a flow definition file in VS Code." lightbox = "./media/how-to-integrate-with-llm-app-devops/select-visual-editor.png":::
 
-1. Use the editor to make changes to your flow, such as tuning the prompts in variants or adding more tools.
+1. Use the editor to make changes to your flow, such as tuning the prompts in variants or adding more nodes.
 
    :::image type="content" source="./media/how-to-integrate-with-llm-app-devops/cloud-run-compare.png" alt-text="Screenshot of the visual prompt flow editor in VS Code." lightbox = "./media/how-to-integrate-with-llm-app-devops/cloud-run-compare.png":::
 
@@ -127,34 +128,32 @@ To trigger a run from the working directory, run the following code:
 pf flow test --flow <directory-name>
 ```
 
-The following screenshot shows the flow test logs and outputs.
+The following screenshot shows example test logs and outputs.
 
 :::image type="content" source="./media/how-to-integrate-with-llm-app-devops/flow-test-output-cli.png" alt-text="Screenshot of the flow test output in PowerShell." lightbox = "./media/how-to-integrate-with-llm-app-devops/flow-test-output-cli.png":::
 
 # [Python SDK](#tab/python)
-
-The return value of the `test` function shows the flow and node outputs.
 
 ```python
 from promptflow import PFClient
 
 pf_client = PFClient()
 
-flow_path = "web-classification"  # "web-classification" is the directory name
+flow_path = "<directory-name>"
 
 # Test flow
-flow_inputs = {"url": "https://www.youtube.com/watch?v=o5ZQyXaAv1g", "answer": "Channel", "evidence": "Url"}  # The inputs of the flow.
+flow_inputs = {"<input-type>": "<input-value>", "<input-type>": "<input-value>"}
 flow_result = pf_client.test(flow=flow_path, inputs=inputs)
 print(f"Flow outputs: {flow_result}")
 
 # Test node in the flow
-node_name = "fetch_text_content_from_url"  # The node name in the flow.
-node_inputs = {"url": "https://www.youtube.com/watch?v=o5ZQyXaAv1g"}  # The inputs of the node.
+node_name = "<node-name>"  # The node name in the flow.
+node_inputs = {"<node-input-type>": "<node-input-value>"}
 node_result = pf_client.test(flow=flow_path, inputs=node_inputs, node=node_name)
 print(f"Node outputs: {node_result}")
 ```
 
-The following screenshot shows the flow test logs and outputs.
+The return values of the test functions are the flow and node outputs.
 
 :::image type="content" source="./media/how-to-integrate-with-llm-app-devops/flow-test-output.png" alt-text="Screenshot of the flow test output in Python. " lightbox = "./media/how-to-integrate-with-llm-app-devops/flow-test-output.png":::
 
@@ -163,7 +162,7 @@ The following screenshot shows the flow test logs and outputs.
 <a name="submitting-runs-to-the-cloud-from-local-repository"></a>
 ### Submit runs to the cloud from a local repository
 
-Once you're satisfied with the results of your local testing, you can use the prompt flow CLI or SDK to submit runs to the cloud from the local repository. The following procedure uses the GitHub [Web Classification demo project](https://github.com/Azure/llmops-gha-demo/tree/main/promptflow/web-classification). You can clone the project repo or download the prompt flow code to your local machine.
+Once you're satisfied with the results of your local testing, you can use the prompt flow CLI or SDK to submit runs to the cloud from the local repository. The following procedure and code are based on the [Web Classification demo project](https://github.com/Azure/llmops-gha-demo/tree/main/promptflow/web-classification) in GitHub. You can clone the project repo or download the prompt flow code to your local machine.
 
 #### Install the prompt flow SDK 
 
@@ -190,7 +189,7 @@ import json
 # Import required libraries
 from azure.identity import DefaultAzureCredential, InteractiveBrowserCredential
 
-# azure version promptflow apis
+# Import azure promptflow apis
 from promptflow.azure import PFClient
 
 # Configure credential
@@ -202,7 +201,7 @@ except Exception as ex:
     # Fall back to InteractiveBrowserCredential if DefaultAzureCredential doesn't work
     credential = InteractiveBrowserCredential()
 
-# Get a handle to the workspace from the config.json in the current and parent directory
+# Get a handle to the workspace from the current credential or config.json in the parent directory
 pf = PFClient.from_config(
     credential=credential,
 )
@@ -218,40 +217,35 @@ Prepare the *run.yml* file to define the configuration for this flow run in the 
 
 ```yaml
 $schema: https://azuremlschemas.azureedge.net/promptflow/latest/Run.schema.json
-flow: <path_to_flow>
-data: <path_to_flow>/data.jsonl
+flow: <path-to-flow>
+data: <path-to-flow>/<data-file>.jsonl
 
 column_mapping:
   url: ${data.url}
 
-# define cloud resource
+# Define cloud compute resource
 
-# if using serverless compute type
-# resources:
-#   instance_type: <instance_type> 
+resources:
+  instance_type: <compute-type>
 
-# if using compute instance compute type
-# resources:
-#   compute: <compute_instance_name> 
+# If using compute instance compute type, also specify instance name
+#  compute: <compute-instance-name> 
 
-# overrides connections 
-connections:
-  classify_with_llm:
-    connection: <connection_name>
-    deployment_name: <deployment_name>
-  summarize_text_content:
-    connection: <connection_name>
-    deployment_name: <deployment_name>
+# Specify connections
+
+  <node-name>:
+    connection: <connection-name>
+    deployment_name: <deployment-name>
 ```
 
-You can specify the connection and deployment name for each tool in the flow. If you don't specify the connection and deployment name, the tool uses the connection and deployment in the *flow.dag.yaml* file. Use the following code to format the connections:
+You can specify the connection and deployment name for each tool in the flow that requires a connection. If you don't specify the connection and deployment name, the tool uses the connection and deployment in the *flow.dag.yaml* file. Use the following code to format connections:
 
 ```yaml
 ...
 connections:
-  <node_name>:
-    connection: <connection_name>
-      deployment_name: <deployment_name>
+  <node-name>:
+    connection: <connection-name>
+      deployment_name: <deployment-name>
 ...
 
 ```
@@ -264,46 +258,45 @@ pfazure run create --file run.yml
 
 # [Python SDK](#tab/python)
 
-Load the flow, define resources and connections, and create the base run.
+Load the flow, define resources and connections, and create the run.
 
 ```python
-# load flow
-flow = "<path_to_flow>"
-data = "<path_to_flow>/data.jsonl"
+flow = "<path-to-flow>"
+data = "<path-to-flow>/<data-file>.jsonl"
 
+# Define compute resource instance type when using serverless compute
 
-# define cloud resource
+# resources = {"instance_type": "serverless"}
 
-# define instance type when using serverless compute type
-# resources = {"instance_type": <instance_type>}
+# Also specify compute instance name when using a compute instance
 
-# specify the compute instance name when using compute instance compute type
-# resources = {"compute": <compute_instance_name>}
+# resources={
+#     "instance_type": "<compute-instance-type>",
+#     "compute": "<compute-instance-name>"
+# }
 
-# overrides connections 
-connections = {"classify_with_llm":
-                  {"connection": <connection_name>,
-                  "deployment_name": <deployment_name>},
-               "summarize_text_content":
-                  {"connection": <connection_name>,
-                  "deployment_name": <deployment_name>}
+# Specify the connection and deployment name for each tool in the flow that requires a connection
+
+connections = {"<node-name>":
+                  {"connection": <connection-name>,
+                  "deployment_name": <deployment-name>},
+               "<node-name>":
+                  {"connection": <connection-name>,
+                  "deployment_name": <deployment-name>}
                 }
-# create run
+
+# Create the run
+
 run = Run(
-    # local flow file
     flow=flow,
-    # remote data
     data=data,
     column_mapping={
         "url": "${data.url}"
     }, 
-    connections=connections, 
-    # to customize runtime instance type and compute instance, you can provide them in resources
-    # resources={
-    #     "instance_type": "STANDARD_DS11_V2",
-    #     "compute": "my_compute_instance"
-    # }
-    # to customize identity, you can provide them in identity
+
+    connections=connections,
+    # To customize identity, you can provide it in identity
+
     # identity={
     #     "type": "managed",
     # }
@@ -318,36 +311,28 @@ base_run = pf.runs.create_or_update(run=run)
 
 # [Azure CLI](#tab/cli)
 
-Prepare the *run_evaluation.yml* to define the configuration for this evaluation flow run in the cloud.
+Prepare the *run_evaluation.yml* file to define the configuration for this evaluation flow run in the cloud.
 
 ```yaml
 $schema: https://azuremlschemas.azureedge.net/promptflow/latest/Run.schema.json
-flow: <path_to_flow>
-data: <path_to_flow>/data.jsonl
-run: <id of web-classification flow run>
+flow: <path-to-flow>
+data: <path-to-flow>/<data-file>.jsonl
+run: <id-of-base-flow-run>
 column_mapping:
-  groundtruth: ${data.answer}
-  prediction: ${run.outputs.category}
+  <input-name>: ${data.<column-from-test-dataset>}
+  <input-name>: ${run.outputs.<column-from-run-output>}
 
-# define cloud resource
+resources:
+  instance_type: <compute-type>
+  compute: <compute_instance_name> 
 
-# if using serverless compute type
-# resources:
-#   instance_type: <instance_type> 
-
-# if using compute instance compute type
-# resources:
-#   compute: <compute_instance_name> 
-
-
-# overrides connections 
 connections:
-  classify_with_llm:
-    connection: <connection_name>
-    deployment_name: <deployment_name>
-  summarize_text_content:
-    connection: <connection_name>
-    deployment_name: <deployment_name>
+  <node-name>:
+    connection: <connection-name>
+    deployment_name: <deployment-name>
+  <node-name>:
+    connection: <connection-name>
+    deployment_name: <deployment-name>
 
 ```
 
@@ -362,48 +347,33 @@ pfazure run create --file run_evaluation.yml
 Load the evaluation flow and create the run.
 
 ```python
-# load flow
-flow = "<path_to_flow>"
-data = "<path_to_flow>/data.jsonl"
+flow = "<path-to-flow>"
+data = "<path-to-flow>/<data-file>.jsonl"
 
-# define cloud resource
+resources={
+    "instance_type": "<compute-instance-type>",
+    "compute": "<compute-instance-name>"
+    }
 
-# define instance type when using serverless compute type
-# resources = {"instance_type": <instance_type>}
-
-# specify the compute instance name when using compute instance compute type
-# resources = {"compute": <compute_instance_name>}
-
-# overrides connections 
-connections = {"classify_with_llm":
-                  {"connection": <connection_name>,
-                  "deployment_name": <deployment_name>},
-               "summarize_text_content":
-                  {"connection": <connection_name>,
-                  "deployment_name": <deployment_name>}
+connections = {"<node-name>":
+                  {"connection": <connection-name>,
+                  "deployment_name": <deployment-name>},
+               "<node-name>":
+                  {"connection": <connection-name>,
+                  "deployment_name": <deployment-name>}
                 }
-
-# create evaluation run
 eval_run = Run(
-    # local flow file
     flow=flow,
-    # remote data
     data=data,
-    run=base_run,
+    run=<base-run-id>,
     column_mapping={
-        "groundtruth": "${data.answer}",
-        "prediction": "${run.outputs.category}",
+        "<input-name>": "${data.<column-from-test-dataset>}",
+        "<input-name>": "${run.outputs.<column-from-run-output>}",
     },
     connections=connections,
-    # to customize runtime instance type and compute instance, you can provide them in resources
-    # resources={
-    #     "instance_type": "STANDARD_DS11_V2",
-    #     "compute": "my_compute_instance"
-    # }
-    # to customize identity, you can provide them in identity
-    # identity={
-    #     "type": "managed",
-    # }
+    identity={
+        "type": "managed",
+    }
 )
 
 eval_run = pf.runs.create_or_update(run=eval_run)
@@ -413,20 +383,20 @@ eval_run = pf.runs.create_or_update(run=eval_run)
 
 ### View run results 
 
-When you submit the flow run to the cloud, the portal URL of the run returns. You can open the link to view the run results in Azure Machine Learning studio. You can also use the following commands to view run results.
+Submiting the flow run to the cloud returns the cloud URL of the run. You can open the URL to view the run results in Azure Machine Learning studio. You can also run the following CLI or SDK commands to view run results.
 
 #### Stream the logs
 
 # [Azure CLI](#tab/cli)
 
 ```sh
-pfazure run stream --name <run_name>
+pfazure run stream --name <run-name>
 ```
 
 # [Python SDK](#tab/python)
 
 ```python
-pf.stream("<run_name>")
+pf.stream("<run-name>")
 ```
 
 ---
@@ -436,13 +406,13 @@ pf.stream("<run_name>")
 # [Azure CLI](#tab/cli)
 
 ```sh
-pfazure run show-details --name <run_name>
+pfazure run show-details --name <run-name>
 ```
 
 # [Python SDK](#tab/python)
 
 ```python
-details = pf.get_details(eval_run)
+details = pf.get_details(run-name)
 details.head(10)
 ```
 
@@ -453,24 +423,15 @@ details.head(10)
 # [Azure CLI](#tab/cli)
 
 ```sh
-pfazure run show-metrics --name <evaluation_run_name>
+pfazure run show-metrics --name <evaluation-run-name>
 ```
 
 # [Python SDK](#tab/python)
 
 ```python
-pf.get_metrics("evaluation_run_name")
+pf.get_metrics("evaluation-run-name")
 ```
 ---
-
-<a name="go-back-to-studio-ui-for-continuous-development"></a>
-## Use the studio UI for continuous development
-
-At any point in flow development, you can go back to the Azure Machine Learning studio UI and use cloud resources and experiences to make changes to your flow.
-
-To continue developing and working with the most up-to-date versions of the flow files, you can access a terminal on the **Notebook** page and pull the latest flow files from your repository. Or, you can directly import a local flow folder as a new draft flow to seamlessly transition between local and cloud development.
-
-:::image type="content" source="./media/how-to-integrate-with-llm-app-devops/flow-import-local-upload.png" alt-text="Screenshot of the Create a new flow screen with Upload to local highlighted." lightbox = "./media/how-to-integrate-with-llm-app-devops/flow-import-local-upload.png":::
 
 ## Integrate with DevOps
 
@@ -479,6 +440,8 @@ A combination of a local development environment and a version control system su
 When you need to share flows across different environments, you can push them to a cloud-based code repository like GitHub or Azure Repos. This strategy lets you access the most recent code version from any location and provides tools for collaboration and code management.
 
 By following these practices, teams can create a seamless, efficient, and productive collaborative environment for prompt flow development.
+
+For example end-to-end LLMOps pipelines that execute web classification flows, see [Set up end to end GenAIOps with prompt Flow and GitHub](how-to-end-to-end-llmops-with-prompt-flow.md) and the GitHub [Web Classification demo project](https://github.com/Azure/llmops-gha-demo/tree/main/promptflow/web-classification).
 
 ### Trigger flow runs in CI pipelines
 
@@ -491,7 +454,14 @@ Throughout the lifecycle of your flow iterations, you can use the CLI to automat
 - Registering prompt flow models
 - Deploying prompt flow models
 
-For end-to-end LLMOps pipelines that execute a web classification flow, see [Set up end to end GenAIOps with prompt Flow and GitHub](how-to-end-to-end-llmops-with-prompt-flow.md) and the GitHub [Web Classification demo project](https://github.com/Azure/llmops-gha-demo/tree/main/promptflow/web-classification).
+<a name="go-back-to-studio-ui-for-continuous-development"></a>
+### Use the studio UI for continuous development
+
+At any point in flow development, you can go back to the Azure Machine Learning studio UI and use cloud resources and experiences to make changes to your flow.
+
+To continue developing and working with the most up-to-date versions of the flow files, you can access a terminal on the **Notebook** page and pull the latest flow files from your repository. Or, you can directly import a local flow folder as a new draft flow to seamlessly transition between local and cloud development.
+
+:::image type="content" source="./media/how-to-integrate-with-llm-app-devops/flow-import-local-upload.png" alt-text="Screenshot of the Create a new flow screen with Upload to local highlighted." lightbox = "./media/how-to-integrate-with-llm-app-devops/flow-import-local-upload.png":::
 
 ### Deploy the flow as an online endpoint
 
@@ -511,13 +481,13 @@ The prompt flow SDK/CLI and the VS Code Prompt flow extension facilitate easy co
 
 1. Author and single test your flow locally in VS Code with the Prompt flow extension.
 
-   Once the repository is set up, team members can use the VS Code Prompt flow extension for local authoring and single input testing of the flow. The standardized integrated development environment promotes collaboration among multiple members working on different aspects of the flow.
+   Once the repository is set up, team members can use VS Code with the Prompt flow extension for local authoring and single input testing of the flow. The standardized integrated development environment promotes collaboration among multiple members working on different aspects of the flow.
 
    :::image type="content" source="media/how-to-integrate-with-llm-app-devops/prompt-flow-local-develop.png" alt-text="Screenshot of local development." lightbox = "media/how-to-integrate-with-llm-app-devops/prompt-flow-local-develop.png":::
 
 1. Use the `pfazure` CLI or SDK to submit batch runs and evaluation runs from local flows to the cloud.
 
-   After local development and testing, team members can use the prompt flow CLI/SDK to submit and evaluate batch and evaluation runs. This process enables cloud compute usage, persistent results storage, endpoint creation for deployments, and efficient management in the studio UI.
+   After local development and testing, team members can use the prompt flow CLI/SDK to submit and evaluate batch and evaluation runs to the cloud. This process enables cloud compute usage, persistent results storage, endpoint creation for deployments, and efficient management in the studio UI.
 
    :::image type="content" source="media/how-to-integrate-with-llm-app-devops/pfazure-run.png" alt-text="Screenshot of pfazure command to submit run to cloud." lightbox = "media/how-to-integrate-with-llm-app-devops/pfazure-run.png":::
 
