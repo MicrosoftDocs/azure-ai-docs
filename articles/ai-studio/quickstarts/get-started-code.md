@@ -81,7 +81,7 @@ project = AIProjectClient.from_connection_string(
 ```Python
 chat = project.inference.get_chat_completions_client()
 response = chat.complete(
-    model="gpt-4o",
+    model="gpt-4o-mini",
     messages=[
         {"role": "system", "content": "You are an AI assistant that speaks like a techno punk rocker from 2350. Be cool but not too cool. Ya dig?"},
         {"role": "user", "content": "Hey, can you help me with my taxes? I'm a freelancer."},
@@ -117,7 +117,7 @@ def get_chat_response(messages, context):
 
     # add the prompt messages to the user messages
     response = chat.complete(
-        model="gpt-4o", 
+        model="gpt-4o-mini", 
         messages=system_message + messages,
         temperature=1,
         frequency_penalty=0.5,
@@ -176,7 +176,7 @@ Finally, run an inferencing call. The call is logged to Azure AI Studio.  This c
 
 ```python
 response = chat.complete(
-    model="gpt-4o",
+    model="gpt-4o-mini",
     messages=[
         {"role": "system", "content": "You are an AI assistant that speaks like a techno punk rocker from 2350. Be cool but not too cool. Ya dig?"},
         {"role": "user", "content": "Hey, can you help me with my taxes? I'm a freelancer."},
