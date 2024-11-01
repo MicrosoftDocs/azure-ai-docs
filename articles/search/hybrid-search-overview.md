@@ -96,7 +96,7 @@ A response from the above query might look like this:
             "@search.score": 0.03333333507180214,
             "@search.rerankerScore": 2.5229012966156006,
             "HotelId": "49",
-            "HotelName": "Old Carrabelle Hotel",
+            "HotelName": "Swirling Currents Hotel",
             "Description": "Spacious rooms, glamorous suites and residences, rooftop pool, walking access to shopping, dining, entertainment and the city center.",
             "Category": "Luxury",
             "Address": {
@@ -108,7 +108,7 @@ A response from the above query might look like this:
             "@search.score": 0.032522473484277725,
             "@search.rerankerScore": 2.111117362976074,
             "HotelId": "48",
-            "HotelName": "Nordick's Motel",
+            "HotelName": "Nordick's Valley Motel",
             "Description": "Only 90 miles (about 2 hours) from the nation's capital and nearby most everything the historic valley has to offer.  Hiking? Wine Tasting? Exploring the caverns?  It's all nearby and we have specially priced packages to help make our B&B your home base for fun while visiting the valley.",
             "Category": "Boutique",
             "Address": {

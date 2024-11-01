@@ -35,7 +35,7 @@ items:
         href: sdk-overview-v3-0.md
       - name:  "SDK targets: REST API v2.1 (GA)"
         displayName: get started, installation, downloads, formRecognizerClientClient, form recognizer client, Azure AD, Azure Active Directory, identity, changelog, package, version,AzureKeyCredential, Azure key credential, key, endpoint
-        href: /v21/sdk-overview.md
+        href: v21/sdk-overview-v2-1.md
   - name: Language support
     items:
       - name: Document analysis models
@@ -173,7 +173,7 @@ items:
       href: quickstarts/get-started-sdks-rest-api.md
     - name: Sample Labeling tool
       displayName: tables, labels, ocr, bounding box
-      href: /v21/try-sample-label-tool.md
+      href: v21/try-sample-label-tool.md
 - name: How-to guides
   items:
   - name: Use Document Intelligence models
@@ -217,13 +217,13 @@ items:
       href: how-to-guides/compose-custom-models.md
     - name: Deploy the sample-labeling tool
       displayName: FOTT, migration, containers, docker
-      href: /v21/deploy-label-tool.md
+      href: v21/deploy-label-tool.md
     - name: Train a custom model with the sample-labeling tool
       displayName: FOTT, migration, containers, docker
-      href: /v21/label-tool.md
+      href: v21/label-tool.md
     - name: Use table tags to train your custom model
       displayName: FOTT, migration, dynamic
-      href: /v21/supervised-table-tags.md
+      href: v21/supervised-table-tags.md
   - name: Back up and recover models
     displayName: disaster, recovery, region, copy, modelId, model ID
     href: disaster-recovery.md
