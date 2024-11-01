@@ -53,7 +53,8 @@ You find your connection string in the Azure AI Studio project you created in th
 
 ## Build your chat app
 
-Run the following code in your Python environment in a Jupyter notebook. @@Do we need to provide instructions for this?  Tell them to use VS Code or Jupyter? Or just provide the code and let them figure it out?@@
+> [!IMPORTANT]
+> The rest of this tutorial shows the cells of Python code for you to run in a Jupyter notebook. Copy/paste the cells below or download the notebook from @@@CAN WE GIVE A LINK?
 
 ## Create a project client
 
