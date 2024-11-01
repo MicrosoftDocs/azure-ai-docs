@@ -143,7 +143,7 @@ Before following the steps in this article, make sure you have the following pre
 * Using FQDN outbound rules increases the cost of the managed virtual network because FQDN rules use Azure Firewall. For more information, see [Pricing](#pricing).
 * FQDN outbound rules only support ports 80 and 443.
 * When using a compute instance with a managed network, use the `az ml compute connect-ssh` command to connect to the compute using SSH.
-* If your managed network is configured to __allow only approved outbound__, you cannot use an FQDN rule to access Azure Storage Accounts. You must use a private endpoint instead.
+* If your managed network is configured to __allow only approved outbound__, you can't use an FQDN rule to access Azure Storage Accounts. You must use a private endpoint instead.
 
 ## Configure a managed virtual network to allow internet outbound
 
@@ -614,22 +614,30 @@ To configure a managed virtual network that allows only approved outbound commun
 
 ---
 
-## Manually provision a managed VNet
+## Manually provision a managed virtual network
 
-The managed VNet is automatically provisioned when you create a compute instance. When you rely on automatic provisioning, it can take around __30 minutes__ to create the first compute instance as it is also provisioning the network. If you configured FQDN outbound rules (only available with allow only approved mode), the first FQDN rule adds around __10 minutes__ to the provisioning time. If you have a large set of outbound rules to be provisioned in the managed network, it can take longer for provisioning to complete. The increased provisioning time can cause your first compute instance creation to time out.
+The managed virtual network is automatically provisioned when you create a compute instance. When you rely on automatic provisioning, it can take around __30 minutes__ to create the first compute instance as it is also provisioning the network. If you configured FQDN outbound rules (only available with allow only approved mode), the first FQDN rule adds around __10 minutes__ to the provisioning time. If you have a large set of outbound rules to be provisioned in the managed network, it can take longer for provisioning to complete. The increased provisioning time can cause your first compute instance creation to time out.
 
 To reduce the wait time and avoid potential timeout errors, we recommend manually provisioning the managed network. Then wait until the provisioning completes before you create a compute instance.
+
+Alternatively, you can use the `provision_network_now` flag to provision the managed network as part of hub creation. This flag is in preview.
 
 > [!NOTE]
 > To create an online deployment, you must manually provision the managed network, or create a compute instance first which will automatically provision it. 
 
 # [Azure portal](#tab/portal)
 
-Use the __Azure CLI__ or __Python SDK__ tabs to learn how to manually provision the managed VNet.
+During hub creation, select __Provision managed network proactively at creation__ to provision the managed network. Charges are incurred from network resources, such as private endpoints, once the virtual network is provisioned. This configuration option is only available during workspace creation, and is in preview.
 
 # [Azure CLI](#tab/azure-cli)
 
-The following example shows how to provision a managed VNet.
+The following example shows how to provision a managed virtual network during hub creation. The `--provision-network-now` flag is in preview.
+    
+```azurecli
+az ml workspace create -n myworkspace -g my_resource_group --kind hub --managed-network AllowInternetOutbound --provision-network-now
+```
+
+The following example shows how to provision a managed virtual network.
 
 ```azurecli
 az ml workspace provision-network -g my_resource_group -n my_ai_hub_name
@@ -643,7 +651,13 @@ az ml workspace show -n my_ai_hub_name -g my_resource_group --query managed_netw
 
 # [Python SDK](#tab/python)
 
-The following example shows how to provision a managed VNet:
+The following example shows how to provision a managed virtual network during hub creation. The `--provision-network-now` flag is in preview.
+    
+```azurecli
+az ml workspace create -n myworkspace -g my_resource_group --managed-network AllowInternetOutbound --provision-network-now
+```
+
+The following example shows how to provision a managed virtual network:
 
 ```python
 # Connect to a workspace named "myworkspace"
@@ -844,7 +858,7 @@ When you create a private endpoint, you provide the _resource type_ and _subreso
 
 When you create a private endpoint for hub dependency resources, such as Azure Storage, Azure Container Registry, and Azure Key Vault, the resource can be in a different Azure subscription. However, the resource must be in the same tenant as the hub.
 
-A private endpoint is automatically created for a connection if the target resource is an Azure resource listed above. A valid target ID is expected for the private endpoint. A valid target ID for the connection can be the Azure Resource Manager ID of a parent resource. The target ID is also expected in the target of the connection or in `metadata.resourceid`. For more on connections, see [How to add a new connection in Azure AI Studio](connections-add.md).
+A private endpoint is automatically created for a connection if the target resource is an Azure resource listed previously. A valid target ID is expected for the private endpoint. A valid target ID for the connection can be the Azure Resource Manager ID of a parent resource. The target ID is also expected in the target of the connection or in `metadata.resourceid`. For more on connections, see [How to add a new connection in Azure AI Studio](connections-add.md).
 
 ## Pricing
 
