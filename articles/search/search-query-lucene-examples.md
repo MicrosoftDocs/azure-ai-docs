@@ -317,7 +317,7 @@ POST /indexes/hotel-samples-index/docs/search?api-version=2024-07-01
 }
 ```
 
-After boosting the term *beach*, the match on Campus Commander Hotel moves down to fifth place.
+After you boost the term *beach*, the match on Campus Commander Hotel moves down to fifth place.
 
 ```json
 {

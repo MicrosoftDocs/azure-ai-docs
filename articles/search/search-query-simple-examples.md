@@ -119,13 +119,13 @@ Uniform scores of *1.0* occur when there's no rank, either because the search wa
 
 ## Example 2: Look up by ID
 
-When returning search results in a query, a logical next step is to provide a details page that includes more fields from the document. This example shows you how to return a single document using [Get Document](/rest/api/searchservice/documents/get) by passing in the document ID.
+After search results are returned, a logical next step is to provide a details page that includes more fields from the document. This example shows you how to return a single document using [Get Document](/rest/api/searchservice/documents/get) by passing in the document ID.
 
 ```http
 GET /indexes/hotels-sample-index/docs/41?api-version=2024-07-01
 ```
 
-All documents have a unique identifier. If you're using the portal, select the index from the **Indexes** tab and then look at the field definitions to determine which field is the key. Using REST, the [Get Index](/rest/api/searchservice/indexes/get) call returns the index definition in the response body.
+All documents have a unique identifier. If you're using the portal, select the index from the **Indexes** tab and then look at the field definitions to determine which field is the key. In the REST API, the [GET Index](/rest/api/searchservice/indexes/get) call returns the index definition in the response body.
 
 The response for the preceding query consists of the document whose key is *41*. Any field that is marked as *retrievable* in the index definition can be returned in search results and rendered in your app.
 
@@ -169,7 +169,7 @@ The response for the preceding query consists of the document whose key is *41*.
 
 ## Example 3: Filter on text
 
-[Filter syntax](search-query-odata-filter.md) is an OData expression that you can use by itself or with `search`. Used together, `filter` is applied first to the entire index, and then the search is performed on the results of the filter. Filters can therefore be a useful technique to improve query performance since they reduce the set of documents that the search query needs to process.
+[Filter syntax](search-query-odata-filter.md) is an OData expression that you can use by itself or with `search`. When used together in the same request, `filter` is applied first to the entire index, and then the `search` is performed on the results of the filter. Filters can therefore be a useful technique to improve query performance since they reduce the set of documents that the search query needs to process.
 
 Filters can be defined on any field marked as `filterable` in the index definition. For hotels-sample-index, filterable fields include *Category*, *Tags*, *ParkingIncluded*, *Rating*, and most *Address* fields.
 
@@ -414,7 +414,7 @@ In a Boolean search, consider adding the `searchMode` parameter as a mechanism f
 
 In the context of a Boolean search, the default `"searchMode": "any"` can be confusing if you're stacking a query with multiple operators and getting broader instead of narrower results. This is particularly true with NOT, where results include all documents *not containing* a specific term or phrase.
 
-The following example provides an illustration. The query looks for matches on *restaurant* that exclude the phrase *air conditioning*. Running the following query with searchMode (any), 43 documents are returned: those containing the term *restaurant*, plus all documents that *don't* have the phrase *air conditioning. 
+The following example provides an illustration. The query looks for matches on *restaurant* that exclude the phrase *air conditioning*. If you run the following query with searchMode (any), 43 documents are returned: those containing the term *restaurant*, plus all documents that *don't* have the phrase *air conditioning. 
 
 Notice that there's no space between the boolean operator (`-`) and the phrase *air conditioning*. The quotation marks are escaped (`\"`).
 
