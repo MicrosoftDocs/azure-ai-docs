@@ -5,6 +5,10 @@ ms.topic: include
 ms.date: 08/01/2024
 ms.author: eur
 ---
+### 2024-November release
+
+Azure AI Speech Toolkit extension is now available for Visual Studio Code users. It contains a list of speech quick-starts and scenario samples that can be easily built and run with simple clicks. For more information, see [Azure AI Speech Toolkit in Visual Studio Code Marketplace](https://aka.ms/speech-toolkit-vscode).
+
 ### Speech SDK 1.41.1: 2024-October release
 
 #### New Features

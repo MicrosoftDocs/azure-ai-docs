@@ -75,7 +75,7 @@ In this step, add parameters to the query request. To be successful, your query 
 
     ```json
     {
-      "search": "historic hotel with good food",
+      "search": "funky or interesting hotel with good food on site",
       "count": true,
       "queryType": "semantic",
       "semanticConfiguration": "my-semantic-config",
@@ -101,15 +101,16 @@ The following example in this section uses the [hotels-sample-index](search-get-
     ```http
     POST https://[search-service-name].search.windows.net/indexes/hotels-sample-index/docs/search?api-version=2024-07-01      
     {
-        "queryType": "semantic",
-        "search": "newer hotel near the water with a great restaurant",
-        "semanticConfiguration": "my-semantic-config",
-        "answers": "extractive|count-3",
-        "captions": "extractive|highlight-true",
-        "highlightPreTag": "<strong>",
-        "highlightPostTag": "</strong>",
-        "select": "HotelId,HotelName,Description,Category",
-        "count": true
+          "search": "interesting hotel with restaurant on site and cozy lobby or shared area",
+          "count": true,
+          "queryType": "semantic",
+          "semanticConfiguration": "semantic-config",
+          "captions": "extractive|highlight-true",
+          "answers": "extractive|count-3",
+          "queryLanguage": "en-us",
+          "highlightPreTag": "<strong>",
+          "highlightPostTag": "</strong>",
+          "select": "HotelId,HotelName,Description,Category"
     }
     ```
 
@@ -141,7 +142,7 @@ Use QueryType or SemanticQuery to invoke semantic ranker on a semantic query. Th
 
 ```csharp
 SearchResults<Hotel> response = await searchClient.SearchAsync<Hotel>(
-    "Is there any hotel located on the main commercial artery of the city in the heart of New York?",
+    "interesting hotel with restaurant on site and cozy lobby or shared area",
     new SearchOptions
     {
         SemanticSearch = new()
@@ -196,27 +197,77 @@ In semantic ranking, the response has more elements: a new [semantically ranked 
 
 In a client app, you can structure the search page to include a caption as the description of the match, rather than the entire contents of a specific field. This approach is useful when individual fields are too dense for the search results page.
 
-The response for the above example query returns the following match as the top pick. Captions are returned because the "captions" property is set, with plain text and highlighted versions. Answers are omitted from the example because one couldn't be determined for this particular query and corpus.
+The response for the above example query (*"interesting hotel with restaurant on site and cozy lobby or shared area"*) returns three answers (`"answers": "extractive|count-e"`). Captions are returned because the "captions" property is set, with plain text and highlighted versions. If an answer can't be determined, it's omitted from the response. For brevity, this example shows just the three answers and the three highest scoring results from the query.
 
 ```json
-"@odata.count": 35,
-"@search.answers": [],
-"value": [
+{
+  "@odata.count": 29,
+  "@search.answers": [
     {
-        "@search.score": 1.8810667,
-        "@search.rerankerScore": 1.1446577133610845,
-        "@search.captions": [
-            {
-                "text": "Oceanside Resort. Luxury. New Luxury Hotel. Be the first to stay. Bay views from every room, location near the pier, rooftop pool, waterfront dining & more.",
-                "highlights": "<strong>Oceanside Resort.</strong> Luxury. New Luxury Hotel. Be the first to stay.<strong> Bay</strong> views from every room, location near the pier, rooftop pool, waterfront dining & more."
-            }
-        ],
-        "HotelName": "Oceanside Resort",
-        "Description": "New Luxury Hotel. Be the first to stay. Bay views from every room, location near the pier, rooftop pool, waterfront dining & more.",
-        "Category": "Luxury"
+      "key": "24",
+      "text": "Chic hotel near the city. High-rise hotel in downtown, within walking distance to theaters, art galleries, restaurants and shops. Visit Seattle Art Museum by day, and then head over to Benaroya Hall to catch the evening's concert performance.",
+      "highlights": "Chic hotel near the city. <strong>High-rise hotel in downtown, </strong>within<strong> walking distance to </strong>theaters, art<strong> galleries, restaurants and shops.</strong> Visit Seattle Art Museum by day, and then head over to Benaroya Hall to catch the evening's concert performance.",
+      "score": 0.9340000152587891
     },
-  ...
-]
+    {
+      "key": "40",
+      "text": "Only 8 miles from Downtown. On-site bar/restaurant, Free hot breakfast buffet, Free wireless internet, All non-smoking hotel. Only 15 miles from airport.",
+      "highlights": "Only 8 miles from Downtown. <strong>On-site bar/restaurant, Free hot breakfast buffet, Free wireless internet, </strong>All non-smoking<strong> hotel.</strong> Only 15 miles from airport.",
+      "score": 0.9210000038146973
+    },
+    {
+      "key": "38",
+      "text": "Nature is Home on the beach. Explore the shore by day, and then come home to our shared living space to relax around a stone fireplace, sip something warm, and explore the library by night. Save up to 30 percent. Valid Now through the end of the year. Restrictions and blackouts may apply.",
+      "highlights": "Nature is Home on the beach. Explore the shore by day, and then come home to our<strong> shared living space </strong>to relax around a stone fireplace, sip something warm, and explore the library by night. Save up to 30 percent. Valid Now through the end of the year. Restrictions and blackouts may apply.",
+      "score": 0.9200000166893005
+    }
+  ],
+  "value": [
+    {
+      "@search.score": 3.2328331,
+      "@search.rerankerScore": 2.575303316116333,
+      "@search.captions": [
+        {
+          "text": "The best of old town hospitality combined with views of the river and cool breezes off the prairie. Our penthouse suites offer views for miles and the rooftop plaza is open to all guests from sunset to 10 p.m. Enjoy a complimentary continental breakfast in the lobby, and free Wi-Fi throughout the hotel.",
+          "highlights": "The best of old town hospitality combined with views of the river and cool breezes off the prairie. Our<strong> penthouse </strong>suites offer views for miles and the rooftop<strong> plaza </strong>is open to all guests from sunset to 10 p.m. Enjoy a<strong> complimentary continental breakfast in the lobby, </strong>and free Wi-Fi<strong> throughout </strong>the hotel."
+        }
+      ],
+      "HotelId": "50",
+      "HotelName": "Head Wind Resort",
+      "Description": "The best of old town hospitality combined with views of the river and cool breezes off the prairie. Our penthouse suites offer views for miles and the rooftop plaza is open to all guests from sunset to 10 p.m. Enjoy a complimentary continental breakfast in the lobby, and free Wi-Fi throughout the hotel.",
+      "Category": "Suite"
+    },
+    {
+      "@search.score": 0.632956,
+      "@search.rerankerScore": 2.5425150394439697,
+      "@search.captions": [
+        {
+          "text": "Every stay starts with a warm cookie. Amenities like the Counting Sheep sleep experience, our Wake-up glorious breakfast buffet and spacious workout facilities await.",
+          "highlights": "Every stay starts with a warm cookie. Amenities like the<strong> Counting Sheep sleep experience, </strong>our<strong> Wake-up glorious breakfast buffet and spacious workout facilities </strong>await."
+        }
+      ],
+      "HotelId": "34",
+      "HotelName": "Lakefront Captain Inn",
+      "Description": "Every stay starts with a warm cookie. Amenities like the Counting Sheep sleep experience, our Wake-up glorious breakfast buffet and spacious workout facilities await.",
+      "Category": "Budget"
+    },
+    {
+      "@search.score": 3.7076726,
+      "@search.rerankerScore": 2.4554927349090576,
+      "@search.captions": [
+        {
+          "text": "Chic hotel near the city. High-rise hotel in downtown, within walking distance to theaters, art galleries, restaurants and shops. Visit Seattle Art Museum by day, and then head over to Benaroya Hall to catch the evening's concert performance.",
+          "highlights": "Chic hotel near the city. <strong>High-rise hotel in downtown, </strong>within<strong> walking distance to </strong>theaters, art<strong> galleries, restaurants and shops.</strong> Visit Seattle Art Museum by day, and then head over to Benaroya Hall to catch the evening's concert performance."
+        }
+      ],
+      "HotelId": "24",
+      "HotelName": "Uptown Chic Hotel",
+      "Description": "Chic hotel near the city. High-rise hotel in downtown, within walking distance to theaters, art galleries, restaurants and shops. Visit Seattle Art Museum by day, and then head over to Benaroya Hall to catch the evening's concert performance.",
+      "Category": "Suite"
+    },
+   . . .
+  ]
+}
 ```
 
 ## Expected workloads
