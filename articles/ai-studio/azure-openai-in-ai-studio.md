@@ -39,7 +39,7 @@ Use the left navigation area to perform your tasks with Azure OpenAI models:
 
 Looking for all your resources and deployments? You can find them in the top right-hand corner under **All resources**.
 
-:::image type="content" source="media/azure-openai-in-ai-studio/all-resources.png" alt-text="Screenshot shows the top right access to all resources in Azure AI Service section of Azure AI Studio.":::
+:::image type="content" source="media/azure-openai-in-ai-studio/all-resources.png" alt-text="Screenshot shows the top right access to all resources in Azure AI Service section of Azure AI Studio." lightbox="media/azure-openai-in-ai-studio/all-resources.png":::
 
 ## Access Azure OpenAI Service in Azure AI Studio
 
