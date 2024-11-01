@@ -6,7 +6,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.topic: how-to
-ms.date: 05/23/2024
+ms.date: 11/19/2024
 ms.author: lajanuar
 monikerRange: '>=doc-intel-3.0.0'
 ---
@@ -15,11 +15,6 @@ monikerRange: '>=doc-intel-3.0.0'
 # Build and train a custom classification model
 
 [!INCLUDE [applies to v4.0 v3.1 v3.0](../includes/applies-to-v40-v31-v30.md)]
-
-> [!IMPORTANT]
->
-> Custom classification model is currently in public preview. Features, approaches, and processes may change, prior to General Availability (GA), based on user feedback.
->
 
 Custom classification models can classify each page in an input file to identify one or more documents within. Classifier models can also identify multiple documents or multiple instances of a single document in the input file. Document Intelligence custom models require as few as five training documents per document class to get started. To get started training a custom classification model, you need at least **five documents** for each class and **two classes** of documents.
 

@@ -20,7 +20,7 @@ monikerRange: '<=doc-intel-4.0.0'
 # What is Azure AI Document Intelligence?
 
  :::moniker range="doc-intel-4.0.0"
-[!INCLUDE [preview-version-notice](includes/preview-notice.md)]
+
 
 [!INCLUDE [applies to v4.0](includes/applies-to-v40.md)]
 
@@ -40,15 +40,6 @@ monikerRange: '<=doc-intel-4.0.0'
 [!INCLUDE [applies to v2.1](includes/applies-to-v21.md)]
 
 :::moniker-end
-
-> [!NOTE]
-> Form Recognizer is now **Azure AI Document Intelligence**!
->
-> * As of July 2023, Azure AI services encompass all of what were previously known as Cognitive Services and Azure Applied AI Services.
-> * There are no changes to pricing.
-> * The names *Cognitive Services* and *Azure Applied AI* continue to be used in Azure billing, cost analysis, price list, and price APIs.
-> * There are no breaking changes to application programming interfaces (APIs) or SDKs prior to and including v3.1. Starting from v4.0, APIs and SDKs are updated to Document Intelligence.
-> * Some platforms are still awaiting the renaming update. All mention of Form Recognizer or Document Intelligence in our documentation refers to the same Azure service.
 
 Azure AI Document Intelligence is a cloud-based [Azure AI service](../../ai-services/index.yml) that enables you to build intelligent document processing solutions. Massive amounts of data, spanning a wide variety of data types, are stored in forms and documents. Document Intelligence enables you to effectively manage the velocity at which data is collected and processed and is key to improved operations, informed data-driven decisions, and enlightened innovation. </br></br>
 
@@ -247,7 +238,7 @@ Custom models are trained using your labeled datasets to extract distinct data f
 
 ## Add-on capabilities
 
-Document Intelligence supports optional features that can be enabled and disabled depending on the document extraction scenario. The following add-on capabilities are available for `2023-07-31 (GA)` and later releases:
+Document Intelligence supports optional features that can be enabled and disabled depending on the document extraction scenario:
 
 * [`ocr.highResolution`](concept-add-on-capabilities.md#high-resolution-extraction)
 
@@ -257,11 +248,9 @@ Document Intelligence supports optional features that can be enabled and disable
 
 * [`ocr.barcode`](concept-add-on-capabilities.md#barcode-property-extraction)
 
- The`2024-07-31-preview` release introduces `read` model support for [searchable PDF](prebuilt/read.md#searchable-pdf) output:
+* [`Read` model support for searchable PDF](prebuilt/read.md#searchable-pdf)
 
 * [`Searchable PDF](concept-add-on-capabilities.md#searchable-pdf)
-
-Document Intelligence supports optional features that can be enabled and disabled depending on the document extraction scenario. The following add-on capabilities are available for `2023-10-31-preview`, and later releases:
 
 * [`queryFields`](concept-add-on-capabilities.md#query-fields)
 

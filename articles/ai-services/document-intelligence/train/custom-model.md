@@ -6,7 +6,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.topic: conceptual
-ms.date: 07/09/2024
+ms.date: 11/19/2024
 ms.author: lajanuar
 monikerRange: '<=doc-intel-4.0.0'
 ---
@@ -47,7 +47,7 @@ To create a custom extraction model, label a dataset of documents with the value
 
 > [!IMPORTANT]
 >
-> Starting with version 4.0 (2024-02-29-preview) API, custom neural models now support **overlapping fields** and **table, row and cell level confidence**.
+> Document Intelligence `v4.0 2024-11-30 (GA)` API supports custom neural model **overlapping fields** and **table, row and cell level confidence**.
 >
 
 The custom neural (custom document) model uses deep learning models and  base model trained on a large collection of documents. This model is then fine-tuned or adapted to your data when you train the model with a labeled dataset. Custom neural models support extracting key data fields from structured, semi-structured, and unstructured documents. When you're choosing between the two model types, start with a neural model to determine if it meets your functional needs. See [neural models](custom-neural.md) to learn more about custom document models.
@@ -75,7 +75,7 @@ If the language of your documents and extraction scenarios supports custom neura
     |Model | PDF |Image: </br>`jpeg/jpg`, `png`, `bmp`, `tiff`, `heif` | Microsoft Office: </br> Word (docx), Excel (xlsx), PowerPoint (pptx)|
     |--------|:----:|:-----:|:---------------:
     |Read            | ✔    | ✔    | ✔  |
-    |Layout          | ✔  | ✔ | ✔ (2024-02-29-preview, 2023-10-31-preview, and later)  |
+    |Layout          | ✔  | ✔ | ✔  |
     |General&nbsp;Document| ✔  | ✔ |   |
     |Prebuilt        |  ✔  | ✔ |   |
     |Custom extraction|  ✔  | ✔ |   |
@@ -157,7 +157,7 @@ The following table compares custom template and custom neural features:
 
  > [!NOTE]
 >
->Starting with the ```2024-02-29-preview``` API version document classification now supports Office document types for classification. This API version also introduces [incremental training](../concept/incremental-classifier.md) for the classification model.
+> The `v4.0 2024-11-30 (GA)` document classification model supports Office document types for classification. This API version also introduces [incremental training](../concept/incremental-classifier.md) for the classification model.
 
 ## Custom model tools
 
@@ -244,7 +244,7 @@ This table compares the supported data extraction areas:
 |Model| Form fields | Selection marks | Structured fields (Tables) | Signature | Region labeling | Overlapping fields |
 |--|:--:|:--:|:--:|:--:|:--:|:--:|
 |Custom template| ✔ | ✔ | ✔ | ✔ | ✔ | **n/a** |
-|Custom neural| ✔| ✔ | ✔ | **n/a** | * | ✔ (2024-02-29-preview) |
+|Custom neural| ✔| ✔ | ✔ | **n/a** | * | ✔|
 
 **Table symbols**:<br>
 ✔—Supported<br>

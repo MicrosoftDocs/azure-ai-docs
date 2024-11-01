@@ -53,7 +53,7 @@ For supported document extraction fields, refer to the **payStub model schema** 
 
 ## Supported locales
 
-The **prebuilt-payStub.us** version 2027-07-31-preview supports the **en-us** locale.
+The **prebuilt-payStub.us** version supports the **en-us** locale.
 
 ## Next steps
 

@@ -6,7 +6,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.topic: how-to
-ms.date: 05/23/2024
+ms.date: 11/19/2024
 ms.author: lajanuar
 monikerRange: '<=doc-intel-3.1.0'
 ---
@@ -22,18 +22,9 @@ monikerRange: '<=doc-intel-3.1.0'
 >
 > Document Intelligence REST API v3.1 introduces breaking changes in the REST API request and analyze response JSON.
 
-## Migrating from v3.1 preview API version
+## Migrating from v3.1 API version
 
-Preview APIs are periodically deprecated. If you're using a preview API version, update your application to target the GA API version. To migrate from the 2023-02-28-preview API version to the `2023-07-31` (GA) API version using the SDK, update to the [current version of the language specific SDK](sdk-overview-v3-1.md).
-
-The `2023-07-31` (GA) API has a few updates and changes from the preview API version:
-
-- The features that are enabled by default are limited to ones essential to the particular model with the benefit of reduced latency and response size. Added features can be enabled via enum values in `features` parameter.
-- Some layout features from prebuilt-read and keyValuePairs beyond prebuilt-{document,invoice} are no longer supported.
-- Disabling barcodes by default for prebuilt-read and prebuilt-layout, languages for prebuilt-read, and keyValuePairs for prebuilt-invoice.
-- Annotation extraction is removed.
-- Query fields and common names of key-value pairs are removed.
-- Office/HTML files are supported in prebuilt-read model, extracting words and paragraphs without bounding boxes. Embedded images are no longer supported. If add-on features are requested for Office/HTML files, an empty array is returned without errors.
+Preview APIs are periodically deprecated. If you're using a preview API version, update your application to target the GA API version. To migrate from a preview API version to the `2023-11-30 (GA)` API version using the SDK, update to the [current version of the language specific SDK](sdk-overview-v3-1.md).
 
 ### Analysis features
 

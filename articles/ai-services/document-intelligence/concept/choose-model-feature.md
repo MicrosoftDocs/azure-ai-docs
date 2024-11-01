@@ -6,16 +6,12 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.topic: overview
-ms.date: 09/26/2024
+ms.date: 11/19/2024
 ms.author: lajanuar
 ---
 
 
 # Which model should I choose?
-
- ::: moniker range="<=doc-intel-3.1.0"
-[!INCLUDE [preview-version-notice](../includes/preview-notice.md)]
-::: moniker-end
 
 Azure AI Document Intelligence supports a wide variety of models that enable you to add intelligent document processing to your applications and optimize your workflows. Selecting the right model is essential to ensure the success of your enterprise. In this article, we explore the available Document Intelligence models and provide guidance for how to choose the best solution for your projects.
 

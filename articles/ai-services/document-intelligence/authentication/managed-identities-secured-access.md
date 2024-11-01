@@ -6,7 +6,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.topic: how-to
-ms.date: 05/23/2024
+ms.date: 11/19/2024
 ms.author: vikurpad
 monikerRange: '<=doc-intel-4.0.0'
 ---
@@ -183,7 +183,7 @@ Next, configure the virtual network to ensure only resources within the virtual 
 
     * Select **Next: Resource**.
 
-    :::image type="content" source="../media/managed-identities/v2-fr-private-end-basics.png" alt-text="Screenshot showing how to set-up a private endpoint.":::
+    :::image type="content" source="../media/managed-identities/v2-fr-private-end-basics.png" alt-text="Screenshot showing how to set up a private endpoint.":::
 
 ### Configure your virtual network
 

@@ -15,11 +15,11 @@ ms.author: lajanuar
 # Document Intelligence business card model
 
 > [!IMPORTANT]
-> Starting with Document Intelligence **v4.0 (preview)**, and going forward, the business card model (prebuilt-businessCard) is deprecated. To extract data from business card formats, use the following:
-
-| Feature   | version| Model ID |
-|----------  |---------|--------|
-| Business card model|&bullet; v3.1:2023-07-31 (GA)</br>&bullet; v3.0:2022-08-31 (GA)</br>&bullet; v2.1 (GA)|**`prebuilt-businessCard`**|
+> Starting with Document Intelligence **v4.0 (GA)**, and going forward, the business card model (prebuilt-businessCard) is deprecated. To extract data from business card formats, use the following:
+>
+>| Feature   | version| Model ID |
+>|----------  |---------|--------|
+>| Business card model|&bullet; v3.1:2023-07-31 (GA)</br>&bullet; v3.0:2022-08-31 (GA)</br>&bullet; v2.1 (GA)|**`prebuilt-businessCard`**|
 
 ::: moniker range=">=doc-intel-3.1.0"
 **This content applies to:** ![checkmark](../media/yes-icon.png) **v3.1 (GA)** | **Previous versions:** ![blue-checkmark](../media/blue-yes-icon.png) [**v3.0**](?view=doc-intel-3.0.0&preserve-view=true) ![blue-checkmark](../media/blue-yes-icon.png) [**v2.1**](?view=doc-intel-2.1.0&preserve-view=true)

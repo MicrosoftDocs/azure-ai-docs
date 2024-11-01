@@ -6,7 +6,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.topic: conceptual
-ms.date: 08/07/2024
+ms.date: 11/19/2024
 ms.author: lajanuar
 ---
 
@@ -29,7 +29,7 @@ ms.author: lajanuar
 
 > [!IMPORTANT]
 >
-> [The `model compose` operation behavior is changing from api-version=2024-07-31-preview](#benefits-of-the-new-model-compose-operation). The `model compose` operation v4.0 and later adds an explicitly trained classifier instead of an implicit classifier for analysis. For the previous composed model version, *see* Composed custom models v3.1.  If you are currently using composed models consider upgrading to the latest implementation.
+> The v4.0 2024-11-30 (GA) [`model compose` ](#benefits-of-the-new-model-compose-operation) operation adds an explicitly trained classifier instead of an implicit classifier for analysis. For the previous composed model version, *see* Composed custom models v3.1.  If you are currently using composed models consider upgrading to the latest implementation.
 
 ## What is a composed model?
 
@@ -37,7 +37,7 @@ With composed models, you can group multiple custom models into a composed model
 
 Some scenarios require classifying the document first and then analyzing the document with the model best suited to extract the fields from the model. Such scenarios can include ones where a user uploads a document but the document type isn't explicitly known. Another scenario can be when multiple documents are scanned together into a single file and the file is submitted for processing. Your application then needs to identify the component documents and select the best model for each document.
 
-In previous versions, the `model compose` operation performed an implicit classification to decide which custom model best represents the submitted document. The `2024-07-31-preview` implementation of the `model compose` operation replaces the implicit classification from the earlier versions with an explicit classification step and adds conditional routing.
+In previous versions, the `model compose` operation performed an implicit classification to decide which custom model best represents the submitted document. The `2024-11-30 (GA)` implementation of the `model compose` operation replaces the implicit classification from the earlier versions with an explicit classification step and adds conditional routing.
 
 ## Benefits of the new model compose operation
 
@@ -119,12 +119,12 @@ Composed models are billed the same as individual custom models. The pricing is 
 
 ### Composed model compatibility
 
-|Custom model type|Models trained with v2.1 and v2.0 | Custom template and neural models v3.1 and v3.0 |Custom template and neural models v4.0 preview|Custom Generative models v4.0 preview|
+|Custom model type|Models trained with v2.1 and v2.0 | Custom template and neural models v3.1 and v3.0 |Custom template and neural models v4.0 2024-11-30 (GA)|Custom Generative models v4.0 2024-11-30 (GA)|
 |--|--|--|--|--|
 |**Models trained with version 2.1 and v2.0** |Not Supported|Not Supported|Not Supported|Not Supported|
 |**Custom template and neural models v3.0 and v3.1** |Not Supported|Supported|Supported|Not Supported|
-|**Custom template and neural models v4.0 preview**|Not Supported|Supported|Supported|Not Supported|
-|**Custom generative models v4.0 preview**|Not Supported|Not Supported|Not Supported|Not Supported|
+|**Custom template and neural models v4.0**|Not Supported|Supported|Supported|Not Supported|
+|**Custom generative models v4.0**|Not Supported|Not Supported|Not Supported|Not Supported|
 
 * To compose a model trained with a prior version of the API (v2.1 or earlier), train a model with the v3.0 API using the same labeled dataset. That addition ensures that the v2.1 model can be composed with other models.
 
@@ -136,7 +136,7 @@ Composed models are billed the same as individual custom models. The pricing is 
 
 :::moniker range="doc-intel-4.0.0"
 
-Document Intelligence **v4.0:2024-07-31-preview** supports the following tools, applications, and libraries:
+Document Intelligence **v4.0:2024-11-30 (GA)** supports the following tools, applications, and libraries:
 
 | Feature | Resources |
 |----------|-------------|
