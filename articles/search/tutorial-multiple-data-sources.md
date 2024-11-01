@@ -6,7 +6,7 @@ description: Learn how to import data from multiple data sources into a single A
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.topic: tutorial
 ms.date: 01/17/2024
 ms.custom:

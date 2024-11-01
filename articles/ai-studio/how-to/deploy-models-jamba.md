@@ -14,14 +14,16 @@ ms.custom: references_regions
 
 # How to deploy AI21's Jamba family models with Azure AI Studio
 
-[!INCLUDE [Feature preview](~/reusable-content/ce-skilling/azure/includes/ai-studio/includes/feature-preview.md)]
+[!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
 In this article, you learn how to use Azure AI Studio to deploy AI21's Jamba family models as a serverless API with pay-as-you-go billing.
 
 The Jamba family models are AI21's production-grade Mamba-based large language model (LLM) which leverages AI21's hybrid Mamba-Transformer architecture. It's an instruction-tuned version of AI21's hybrid structured state space model (SSM) transformer Jamba model. The Jamba family models are built for reliable commercial use with respect to quality and performance.
 
-> [!TIP]
-> See our announcements of AI21's Jamba family models available now on Azure AI Model Catalog through [AI21's blog](https://aka.ms/ai21-jamba-1.5-large-announcement) and [Microsoft Tech Community Blog](https://aka.ms/ai21-jamba-1.5-large-microsoft-annnouncement).
+See our announcements of AI21's Jamba family models available now on Azure AI Model Catalog through [AI21's blog](https://aka.ms/ai21-jamba-1.5-large-announcement) and [Microsoft Tech Community Blog](https://aka.ms/ai21-jamba-1.5-large-microsoft-annnouncement).
+
+[!INCLUDE [models-preview](../includes/models-preview.md)]
+
 
 ## Deploy the Jamba family models as a serverless API
 
@@ -217,7 +219,7 @@ The `document` object has the following fields:
 - `id` (optional; str) - unique identifier. will be linked to in citations. up to 128 characters.
 - `content` (required; str) - the content of the document
 - `metadata` (optional; array of **Metadata)**
-  - `key` (required; str) - type of metadata, like ‘author’, ‘date’, ‘url’, etc. Should be things the model understands.
+  - `key` (required; str) - type of metadata, like 'author', 'date', 'url', etc. Should be things the model understands.
   - `value` (required; str) - value of the metadata
 
 #### Request example
@@ -410,7 +412,7 @@ Quota is managed per deployment. Each deployment has a rate limit of 200,000 tok
 
 ## Content filtering
 
-Models deployed as a serverless API are protected by Azure AI content safety. With Azure AI content safety enabled, both the prompt and completion pass through an ensemble of classification models aimed at detecting and preventing the output of harmful content. The content filtering system detects and takes action on specific categories of potentially harmful content in both input prompts and output completions. Learn more about [Azure AI Content Safety](/azure/ai-services/content-safety/overview).
+Models deployed as a serverless API are protected by Azure AI content safety. With Azure AI content safety enabled, both the prompt and completion pass through an ensemble of classification models aimed at detecting and preventing the output of harmful content. The content filtering (preview) system detects and takes action on specific categories of potentially harmful content in both input prompts and output completions. Learn more about [Azure AI Content Safety](/azure/ai-services/content-safety/overview).
 
 ## Related content
 

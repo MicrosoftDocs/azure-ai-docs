@@ -8,19 +8,16 @@ manager: nitinme
 
 ms.service: azure-ai-custom-vision
 ms.topic: overview
-ms.date: 03/11/2024
+ms.date: 09/25/2024
 ms.author: pafarley
 keywords: image recognition, image identifier, image recognition app, custom vision
+ms.custom: FY25Q1-Linter
 #Customer intent: As a data scientist/developer, I want to understand what the Custom Vision service does so that I can determine if it's suitable for my project.
 ---
 
 # What is Custom Vision?
 
-Azure AI Custom Vision is an image recognition service that lets you build, deploy, and improve your own **image identifier** models. An image identifier applies labels to images, according to their visual characteristics. Each label represents a classification or object. Custom Vision allows you to specify your own labels and train custom models to detect them.
-
-> [!TIP]
-> The Azure AI vision Image Analysis API, based on Florence foundational model, now supports custom models with few-shot learning capability. [Use Image Analysis 4.0](../computer-vision/how-to/model-customization.md) to create custom image identifier models using the latest technology from Azure. To migrate a Custom Vision project to the new Image Analysis 4.0 system, see the [Migration guide](../computer-vision/how-to/migrate-from-custom-vision.md). To compare the two services, see the [Comparison page](./concepts/compare-alternatives.md).
-
+Azure AI Custom Vision is an image recognition service that lets you build, deploy, and improve your own **image identifier** models. An image identifier applies labels to images according to their visual characteristics. Each label represents a classification or object. Custom Vision allows you to specify your own labels and train custom models to detect them.
 
 You can use Custom Vision through a client library SDK, REST API, or through the [Custom Vision web portal](https://customvision.ai/). Follow a quickstart to get started.
 
@@ -32,7 +29,7 @@ You can use Custom Vision through a client library SDK, REST API, or through the
 This documentation contains the following types of articles:
 * The [quickstarts](./getting-started-build-a-classifier.md) are step-by-step instructions that let you make calls to the service and get results in a short period of time.
 * The [how-to guides](./test-your-model.md) contain instructions for using the service in more specific or customized ways.
-* The [tutorials](./iot-visual-alerts-tutorial.md) are longer guides that show you how to use this service as a component in broader business solutions.
+* The [tutorials](./logo-detector-mobile.md) are longer guides that show you how to use this service as a component in broader business solutions.
 <!--* The [conceptual articles](Vision-API-How-to-Topics/call-read-api.md) provide in-depth explanations of the service's functionality and features.-->
 
 For a more structured approach, follow a **Training module** for Custom Vision:
@@ -80,5 +77,5 @@ Custom Vision doesn't replicate data outside of the specified region, except for
 
 ## Next steps
 
-* Follow the [Build a classifier](getting-started-build-a-classifier.md) quickstart to get started using Custom Vision on the web portal.
+* Follow the [Build a classifier](getting-started-build-a-classifier.md) quickstart to get started using Custom Vision in the web portal.
 * Or, complete an [SDK quickstart](quickstarts/image-classification.md) to implement the basic scenarios with code.

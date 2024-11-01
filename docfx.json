@@ -82,6 +82,13 @@
         ],
         "src": "breadcrumb/azure-ai",
         "dest": "breadcrumb/azure-ai"
+      },
+      {
+        "files": [
+          "zone-pivot-groups.yml"
+        ],
+        "src": "zone-pivots",
+        "dest": "zone-pivots/azure-ai/"
       }
     ],
     "resource": [
@@ -260,7 +267,8 @@
         "Certification"
       ],
       "uhfHeaderId": "azure",
-      "ms.suite": "office"
+      "ms.suite": "office",
+      "zone_pivot_group_filename": "zone-pivots/azure-ai/zone-pivot-groups.json"
     },
     "fileMetadata": {
       "author": {
@@ -376,17 +384,17 @@
       "ms.collection": {
         "articles/ai-services/**/*.md": "ce-skilling-ai-copilot",
         "articles/ai-services/**/*.yml": "ce-skilling-ai-copilot",
-        "articles/ai-studio/**/*.md": "ce-skilling-ai-copilot",
-        "articles/ai-studio/**/*.yml": "ce-skilling-ai-copilot",
+        "articles/ai-studio/**/*.md": "ce-skilling-fresh-tier0",
+        "articles/ai-studio/**/*.yml": "ce-skilling-fresh-tier0",
         "articles/search/**/*.md": "ce-skilling-ai-copilot",
         "articles/search/**/*.yml": "ce-skilling-ai-copilot",
-        "articles/machine-learning/*.md": "ce-skilling-ai-copilot",
-        "articles/machine-learning/component-reference/*.md": "ce-skilling-ai-copilot",
-        "articles/machine-learning/component-reference/*.yml": "ce-skilling-ai-copilot",
-        "articles/machine-learning/component-reference-v2/*.md": "ce-skilling-ai-copilot",
-        "articles/machine-learning/component-reference-v2/*.yml": "ce-skilling-ai-copilot",
+        "articles/machine-learning/*.md": "ce-skilling-fresh-tier2, ce-skilling-ai-copilot",
+        "articles/machine-learning/component-reference/*.md": "ce-skilling-fresh-tier2, ce-skilling-ai-copilot",
+        "articles/machine-learning/component-reference/*.yml": "ce-skilling-fresh-tier2, ce-skilling-ai-copilot",
+        "articles/machine-learning/component-reference-v2/*.md": "ce-skilling-fresh-tier2, ce-skilling-ai-copilot",
+        "articles/machine-learning/component-reference-v2/*.yml": "ce-skilling-fresh-tier2, ce-skilling-ai-copilot",
         "articles/machine-learning/prompt-flow/*.md": "ce-skilling-ai-copilot",
-        "articles/machine-learning/v1/*.md": "ce-skilling-ai-copilot"
+        "articles/machine-learning/v1/*.md": "ce-skilling-fresh-tier2, ce-skilling-ai-copilot"
       },
       "ms.custom": {
         "articles/machine-learning/v1/*.md": "UpdateFrequency5"

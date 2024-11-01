@@ -5,11 +5,12 @@ description: With video translation, you can seamlessly integrate multi-language
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: overview
-ms.date: 5/21/2024
+ms.date: 9/24/2024
 ms.reviewer: sally-baolian
 ms.author: eur
 author: eric-urban
 ms.custom: references_regions
+#Customer intent: As a developer, I want to learn about video translation in Azure AI Speech.
 ---
 
 # What is video translation (preview) 
@@ -62,7 +63,7 @@ We support video translation between various languages, enabling you to tailor y
 
 ## Get started 
 
-To get started with video translation, refer to [video translation in the studio](video-translation-studio.md). The video translation API will be available soon.
+To get started with video translation, refer to [How to use video translation](video-translation-get-started.md).
 
 ## Price 
 
@@ -70,5 +71,5 @@ For pricing details on video translation, see [Speech service pricing](https://a
 
 ## Related content
 
-* Try the [video translation in the studio](video-translation-studio.md)
+* Try the [video translation](video-translation-get-started.md)
   

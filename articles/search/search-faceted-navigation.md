@@ -6,9 +6,9 @@ description: Add faceted navigation for self-directed filtering in applications 
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.topic: conceptual
-ms.date: 06/06/2024
+ms.date: 10/31/2024
 ---
 
 # Add faceted navigation to a search app
@@ -144,7 +144,7 @@ The response for the example includes the faceted navigation structure at the to
         {
             "@search.score": 1.0,
             "HotelId": "1",
-            "HotelName": "Secret Point Motel",
+            "HotelName": "Stay-Kay City Hotel",
             "Description": "The hotel is ideally located on the main commercial artery of the city in the heart of New York. A few minutes away is Time's Square and the historic centre of the city, as well as other places of interest that make New York one of America's most attractive and cosmopolitan cities.",
             "Category": "Boutique",
             "Tags": [
@@ -160,7 +160,7 @@ The response for the example includes the faceted navigation structure at the to
 
 ## Facets syntax
 
-A facet query parameter is set to a comma-delimited list of "facetable" fields and depending on the data type, can be further parameterized to set counts, sort orders, and ranges:  `count:<integer>`, `sort:<>`, `interval:<integer>`, and `values:<list>`. For more detail about facet parameters, see ["Query parameters" in the REST API](/rest/api/searchservice/search-documents#query-parameters).
+A facet query parameter is set to a comma-delimited list of "facetable" fields and depending on the data type, can be further parameterized to set counts, sort orders, and ranges:  `count:<integer>`, `sort:<>`, `interval:<integer>`, and `values:<list>`. For more detail about facet parameters, see [query parameters in the REST API](/rest/api/searchservice/documents/search-post#searchrequest).
 
 ```http
 POST https://{{service_name}}.search.windows.net/indexes/hotels/docs/search?api-version={{api_version}}

@@ -2,20 +2,20 @@
 title: How to trace your application with prompt flow SDK
 titleSuffix: Azure AI Studio
 description: This article provides instructions on how to trace your application with prompt flow SDK.
-manager: nitinme
+manager: scottpolly
 ms.service: azure-ai-studio
 ms.custom:
   - build-2024
 ms.topic: how-to
 ms.date: 5/21/2024
 ms.reviewer: chenlujiao
-ms.author: eur
-author: eric-urban
+ms.author: lagayhar  
+author: lgayhardt
 ---
 
 # How to trace your application with prompt flow SDK | Azure AI Studio
 
-[!INCLUDE [Feature preview](~/reusable-content/ce-skilling/azure/includes/ai-studio/includes/feature-preview.md)]
+[!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
 Tracing is a powerful tool that offers developers an in-depth understanding of the execution process of their generative AI applications such as agents, [AutoGen](https://microsoft.github.io/autogen/docs/Use-Cases/agent_chat), and retrieval augmented generation (RAG) use cases. It provides a detailed view of the execution flow, including the inputs and outputs of each node within the application. This essential information proves critical while debugging complex applications or optimizing performance.
 

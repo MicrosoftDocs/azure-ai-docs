@@ -6,7 +6,7 @@ description: Learn about the types of queries supported in Azure AI Search, incl
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.topic: conceptual
 ms.date: 05/23/2024
 ---
@@ -30,7 +30,7 @@ This article brings focus to the last category: queries that work on plain text 
 
 ## Autocomplete and suggested queries
 
-[Autocomplete or suggested results](search-add-autocomplete-suggestions.md) are alternatives to **`search`** that fire successive query requests based on partial string inputs (after each character) in a search-as-you-type experience. You can use **`autocomplete`** and **`suggestions`** parameter together or separately, as described in [this walkthrough](tutorial-csharp-type-ahead-and-suggestions.md), but you can't use them with **`search`**. Both completed terms and suggested queries are derived from index contents. The engine never returns a string or suggestion that is nonexistent in your index. For more information, see [Autocomplete (REST API)](/rest/api/searchservice/autocomplete) and [Suggestions (REST API)](/rest/api/searchservice/suggestions).
+[Autocomplete or suggested results](search-add-autocomplete-suggestions.md) are alternatives to **`search`** that fire successive query requests based on partial string inputs (after each character) in a search-as-you-type experience. You can use **`autocomplete`** and **`suggestions`** parameter together or separately, as described in [this walkthrough](tutorial-csharp-type-ahead-and-suggestions.md), but you can't use them with **`search`**. Both completed terms and suggested queries are derived from index contents. The engine never returns a string or suggestion that is nonexistent in your index. For more information, see [Autocomplete (REST API)](/rest/api/searchservice/documents/autocomplete-post) and [Suggestions (REST API)](/rest/api/searchservice/documents/suggest-post).
 
 ## Filter search
 
@@ -74,7 +74,7 @@ For more information and examples, see [Geospatial search example](search-query-
 
 ## Document look-up
 
-In contrast with the previously described query forms, this one retrieves a single [search document by ID](/rest/api/searchservice/lookup-document), with no corresponding index search or scan. Only the one document is requested and returned. When a user selects an item in search results, retrieving the document and populating a details page with fields is a typical response, and a document look-up is the operation that supports it.
+In contrast with the previously described query forms, this one retrieves a single [search document by ID](/rest/api/searchservice/documents/get), with no corresponding index search or scan. Only the one document is requested and returned. When a user selects an item in search results, retrieving the document and populating a details page with fields is a typical response, and a document look-up is the operation that supports it.
 
 ## Advanced search: fuzzy, wildcard, proximity, regex
 

@@ -1,7 +1,7 @@
 ---
-title: "Quickstart: Custom categories"
+title: "Quickstart: Custom categories (preview)"
 titleSuffix: Azure AI services
-description: Use the custom category API to create your own harmful content categories and train the Content Safety model for your use case.
+description: Use the custom categories API to create your own harmful content categories and train the Content Safety model for your use case.
 #services: cognitive-services
 author: PatrickFarley
 manager: nitinme
@@ -11,9 +11,10 @@ ms.date: 07/03/2024
 ms.author: pafarley
 ---
 
-# Quickstart: Custom categories (standard mode)
 
-Follow this guide to use Azure AI Content Safety Custom category REST API to create your own content categories for your use case and train Azure AI Content Safety to detect them in new text content.
+# Quickstart: Custom categories (standard mode) (preview)
+
+Follow this guide to use Azure AI Content Safety Custom categories (standard) REST API to create your own content categories for your use case and train Azure AI Content Safety to detect them in new text content.
 
 For more information on Custom categories, see the [Custom categories concept page](./concepts/custom-categories.md). For API input limits, see the [Input requirements](./overview.md#input-requirements) section of the Overview. 
 
@@ -59,7 +60,7 @@ In the command below, replace `<your_api_key>`, `<your_endpoint>`, and other nec
 ### Create new category version
 
 ```bash
-curl -X PUT "<your_endpoint>/contentsafety/text/categories/survival-advice?api-version=2024-02-15-preview" \
+curl -X PUT "<your_endpoint>/contentsafety/text/categories/<your_category_name>?api-version=2024-09-15-preview" \
      -H "Ocp-Apim-Subscription-Key: <your_api_key>" \
      -H "Content-Type: application/json" \
      -d "{
@@ -68,32 +69,79 @@ curl -X PUT "<your_endpoint>/contentsafety/text/categories/survival-advice?api-v
             \"sampleBlobUrl\": \"https://<your-azure-storage-url>/example-container/survival-advice.jsonl\"
         }"
 ```
+> [!TIP]
+> Every time you change your category name, definition or samples,a new version will be created. You can use the version number to trace back to previous versions. Please remember this version number, as it will be required in the URL for the next step- training custom categories.
+
+
+
+#### API Request
+
+
+| Field            | Description                                                                                      | Example Value                                                                                                                   |
+|------------------|--------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------|
+| `categoryName`   | The name of the category or topic the request relates to.                                        | survival-advice                                                                                                               |
+| `definition`     | A brief description of the content type for the category.                                        | text prompts about survival advice in camping/wilderness situations                                                           |
+| `sampleBlobUrl`  | URL to access a sample JSONL file containing data examples for the category.                     | Link               |
+
+
+
+
+#### API Response
+
+| Field                  | Description                                                                                      | Example Value                                                                                                                   |
+|------------------------|--------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------|
+| `categoryName`         | The name of the category or topic the response relates to.                                       | survival-advice                                                                                                               |
+| `definition`           | A brief description of the content type for the category.                                        | text prompts about survival advice in camping/wilderness situations                                                           |
+| `sampleBlobUrl`        | URL to access a sample JSONL file containing data examples for the category.                     | Link                 |
+| `sampleBlobSnapshotUrl`| Snapshot URL of the sample JSONL file, which provides access to a specific version of the data.  | Snapshot URL |
+| `version`              | The version number of the category data.                                                         | 1                                                                                                                             |
+| `createdTime`          | Timestamp when the category data was created.                                                    | 2024-10-28T22:06:59.4626988Z                                                                                                  |
+| `status`               | Current status of the category data processing.                                                  | Succeeded                                                                                                                     |
+
+
+
+
 
 ### Start the category build process:
 
-Replace `<your_api_key>` and `<your_endpoint>` with your own values. Allow enough time for model training: the end-to-end execution of custom category training can take from around five hours to ten hours. Plan your moderation pipeline accordingly. After you receive the response, store the operation ID (referred to as `id`) in a temporary location. This ID will be necessary for retrieving the build status using the **Get status** API in the next section.
+Replace <your_api_key> and <your_endpoint> with your own values, and also **append the version number in the url you obtained from the last step.** Allow enough time for model training: the end-to-end execution of custom category training can take from around five hours to ten hours. Plan your moderation pipeline accordingly. After you receive the response, store the operation ID (referred to as `id`) in a temporary location. This ID will be necessary for retrieving the build status using the **Get status** API in the next section.
 
 ```bash
-curl -X POST "<your_endpoint>/contentsafety/text/categories/survival-advice:build?api-version=2024-02-15-preview" \
+curl -X POST "<your_endpoint>/contentsafety/text/categories/survival-advice:build?api-version=2024-09-15-preview&version={version}" \
      -H "Ocp-Apim-Subscription-Key: <your_api_key>" \
      -H "Content-Type: application/json"
 ```
+
+#### API Response
+
+| Field      | Description                                   | Example Value                                 |
+|------------|-----------------------------------------------|-----------------------------------------------|
+| `operation id`       | Unique identifier for retrieving the build status | b6c69dc1-2338-484e-85a5b-xxxxxxxxxxxx          |
+| `status`   | Current status of the request                 | Succeeded                                     |
+
+
 ### Get the category build status:
 
 To retrieve the status, utilize the `id` obtained from the previous API response and place it in the path of the API below.
 
 ```bash
-curl -X GET "<your_endpoint>/contentsafety/text/categories/operations/<id>?api-version=2024-02-15-preview" \
+curl -X GET "<your_endpoint>/contentsafety/text/categories/operations/<id>?api-version=2024-09-15-preview" \
      -H "Ocp-Apim-Subscription-Key: <your_api_key>" \
      -H "Content-Type: application/json"
 ```
+#### API Response
+
+| Field      | Description                                   | Example Value                                 |
+|------------|-----------------------------------------------|-----------------------------------------------|
+| `operation id`       | Unique identifier for retrieving the build status | b6c69dc1-2338-484e-855b-xxxxxxxxxxxx          |
+| `status`   | Current status of the request                 | Succeeded                                     |
 
 ## Analyze text with a customized category
 
 Run the following command to analyze text with your customized category. Replace `<your_api_key>` and `<your_endpoint>` with your own values.
 
 ```bash
-curl -X POST "<your_endpoint>/contentsafety/text:analyzeCustomCategory?api-version=2024-02-15-preview" \
+curl -X POST "<your_endpoint>/contentsafety/text:analyzeCustomCategory?api-version=2024-09-15-preview" \
      -H "Ocp-Apim-Subscription-Key: <your_api_key>" \
      -H "Content-Type: application/json" \
      -d "{
@@ -102,6 +150,17 @@ curl -X POST "<your_endpoint>/contentsafety/text:analyzeCustomCategory?api-versi
             \"version\": 1
         }"
 ```
+#### API Request
+| Field          | Description                                             |
+|----------------|---------------------------------------------------------|
+| `text`         | The text content or message intended for category detection |
+| `categoryName` | The name of the category the text aims to be detected under |
+| `version`      | Version number of the category                         |
+#### API Response
+| Field                    | Description                                             | Example Value |
+|--------------------------|---------------------------------------------------------|---------------|
+| `customCategoryAnalysis` | Object containing the analysis result for the category. | —             |
+| `detected`               | Indicates whether the specified category was detected.  | false         |
 
 
 #### [Python](#tab/python)
@@ -132,7 +191,7 @@ You can create a new category with *category name*, *definition* and *sample_blo
 
 ```python
 def create_new_category_version(category_name, definition, sample_blob_url):
-    url = f"{ENDPOINT}/contentsafety/text/categories/{category_name}?api-version=2024-02-15-preview"
+    url = f"{ENDPOINT}/contentsafety/text/categories/{category_name}?api-version=2024-09-15-preview"
     data = {
         "categoryName": category_name,
         "definition": definition,
@@ -156,7 +215,7 @@ You can start the category build process with the *category name* and *version n
 
 ```python
 def trigger_category_build_process(category_name, version):
-    url = f"{ENDPOINT}/contentsafety/text/categories/{category_name}:build?api-version=2024-02-15-preview&version={version}"
+    url = f"{ENDPOINT}/contentsafety/text/categories/{category_name}:build?api-version=2024-09-15-preview&version={version}"
     response = requests.post(url, headers=headers)
     return response.status_code
 
@@ -174,7 +233,7 @@ To retrieve the status, utilize the `id` obtained from the previous response.
 
 ```python
 def get_build_status(id):
-    url = f"{ENDPOINT}/contentsafety/text/categories/operations/{id}?api-version=2024-02-15-preview"
+    url = f"{ENDPOINT}/contentsafety/text/categories/operations/{id}?api-version=2024-09-15-preview"
     response = requests.get(url, headers=headers)
     return response.status_code
 
@@ -192,7 +251,7 @@ You need to specify the *category name* and the *version number* (optional; the 
 
 ```python
 def analyze_text_with_customized_category(text, category_name, version):
-    url = f"{ENDPOINT}/contentsafety/text:analyzeCustomCategory?api-version=2024-02-15-preview"
+    url = f"{ENDPOINT}/contentsafety/text:analyzeCustomCategory?api-version=2024-09-15-preview"
     data = {
         "text": text,
         "categoryName": category_name,
@@ -209,11 +268,122 @@ version = 1
 result = analyze_text_with_customized_category(text, category_name, version)
 print(result)
 ```
+---
+
+## Other custom categories operations
+
+Remember to replace the placeholders below with your actual values for the API key, endpoint, and specific content (category name, definition, and so on). These examples help you to manage the customized categories in your account.
+
+#### [cURL](#tab/curl)
+
+### Get a customized category or a specific version of it
+
+Replace the placeholders with your own values and run the following command in a terminal window:
+
+```bash
+curl -X GET "<endpoint>/contentsafety/text/categories/<your_category_name>?api-version=2024-09-15-preview&version=1" \
+     -H "Ocp-Apim-Subscription-Key: <your_api_key>" \
+     -H "Content-Type: application/json"
+```
+
+### List categories of their latest versions
+
+Replace the placeholders with your own values and run the following command in a terminal window:
+
+```bash
+curl -X GET "<endpoint>/contentsafety/text/categories?api-version=2024-09-15-preview" \
+     -H "Ocp-Apim-Subscription-Key: <your_api_key>" \
+     -H "Content-Type: application/json"
+```
+
+### Delete a customized category or a specific version of it
+
+Replace the placeholders with your own values and run the following command in a terminal window:
+
+```bash
+curl -X DELETE "<endpoint>/contentsafety/text/categories/<your_category_name>?api-version=2024-09-15-preview&version=1" \
+     -H "Ocp-Apim-Subscription-Key: <your_api_key>" \
+     -H "Content-Type: application/json"
+```
+
+#### [Python](#tab/python)
+
+First, make sure you've installed the required Python library:
+
+```bash
+pip install requests
+```
+
+Then, set up the necessary configurations with your own AI resource details:
+
+```python
+import requests
+
+API_KEY = '<your_api_key>'
+ENDPOINT = '<your_endpoint>'
+
+headers = {
+    'Ocp-Apim-Subscription-Key': API_KEY,
+    'Content-Type': 'application/json'
+}
+```
+
+### Get a customized category or a specific version of it
+
+Replace the placeholders with your own values and run the following code in your Python script:
+
+```python
+def get_customized_category(category_name, version=None):
+    url = f"{ENDPOINT}/contentsafety/text/categories/{category_name}?api-version=2024-09-15-preview"
+    if version:
+        url += f"&version={version}"
+    
+    response = requests.get(url, headers=headers)
+    return response.json()
+
+# Replace the parameters with your own values
+category_name = "DrugAbuse"
+version = 1
+
+result = get_customized_category(category_name, version)
+print(result)
+```
+
+### List categories of their latest versions
+
+```python
+def list_categories_latest_versions():
+    url = f"{ENDPOINT}/contentsafety/text/categories?api-version=2024-09-15-preview"
+    response = requests.get(url, headers=headers)
+    return response.json()
+
+result = list_categories_latest_versions()
+print(result)
+```
+
+### Delete a customized category or a specific version of it
+
+Replace the placeholders with your own values and run the following code in your Python script:
+
+```python
+def delete_customized_category(category_name, version=None):
+    url = f"{ENDPOINT}/contentsafety/text/categories/{category_name}?api-version=2024-09-15-preview"
+    if version:
+        url += f"&version={version}"
+    
+    response = requests.delete(url, headers=headers)
+    return response.status_code
+
+# Replace the parameters with your own values
+category_name = "<your_category_name>"
+version = 1
+
+result = delete_customized_category(category_name, version)
+print(result)
+```
 
 ---
 
 ## Related content
-
-* For information on other Custom category operations, see the [How-to guide](./how-to/custom-categories.md).
 * [Custom categories concepts](./concepts/custom-categories.md)
 * [Moderate content with Content Safety](./quickstart-text.md)

@@ -2,10 +2,177 @@
 author: eric-urban
 ms.service: azure-ai-speech
 ms.topic: include
-ms.date: 2/7/2024
+ms.date: 10/9/2024
 ms.author: eur
 ms.custom: references_regions
 ---
+
+### October 2024 release
+
+##### Prebuilt neural voice
+
+- Introduce 4 turbo version of Azure OpenAI voices in public preview: `en-US-EchoTurboMultilingualNeural`, `en-US-FableTurboMultilingualNeural`, `en-US-OnyxTurboMultilingualNeural`, and `en-US-ShimmerTurboMultilingualNeural`. Turbo version of Azure OpenAI voices has the similar voice persona as Azure OpenAI voices but supports extra features. Turbo voices support the full set of SSML elements and more features like word boundary, just like other Azure AI Speech voices. See the [full language and voice list](../../language-support.md?tabs=tts) for more information.
+
+#### Prebuilt high definition (HD) neural voice
+
+Azure AI speech high definition (HD) voices are available in public preview. The HD voices can understand the content, automatically detect emotions in the input text, and adjust the speaking tone in real-time to match the sentiment. HD voices maintain a consistent voice persona from their neural (and non HD) counterparts, and deliver even more value through enhanced features. For more information, see [What are Azure AI Speech high definition (HD) voices?](../../high-definition-voices.md).
+
+#### Custom neural voice
+
+- Previously, some locales were only supported with V3 for the training recipe. These locales now also support V9, enabling improved training quality and expanded features. For these locales, refer to the following table:
+
+  | **Locale (BCP-47)** | **Language**              |
+  |---------------------|---------------------------|
+  | `ar-EG`               | Arabic (Egypt)            |
+  | `ar-SA`               | Arabic (Saudi Arabia)     |
+  | `ca-ES`               | Catalan           |
+  | `cs-CZ`               | Czech (Czechia)   |
+  | `da-DK`               | Danish (Denmark)          |
+  | `de-AT`               | German (Austria)          |
+  | `de-CH`              | German (Switzerland)      |
+  | `el-GR`               | Greek (Greece)            |
+  | `en-IN`               | English (India)           |
+  | `fi-FI`               | Finnish (Finland)         |
+  | `fr-CH`               | French (Switzerland)      |
+  | `he-IL`               | Hebrew (Israel)           |
+  | `hi-IN`               | Hindi (India)             |
+  | `hu-HU`               | Hungarian (Hungary)       |
+  | `ms-MY`               | Malay (Malaysia)          |
+  | `nb-NO`               | Norwegian Bokmål (Norway) |
+  | `nl-NL`               | Dutch (Netherlands)       |
+  | `pl-PL`               | Polish (Poland)           |
+  | `pt-PT`               | Portuguese (Portugal)     |
+  | `ro-RO`               | Romanian (Romania)        |
+  | `ru-RU`               | Russian (Russia)          |
+  | `sk-SK`               | Slovak (Slovakia)         |
+  | `sv-SE`               | Swedish (Sweden)          |
+  | `th-TH`               | Thai (Thailand)           |
+  | `r-TR`               | Turkish (Türkiye)          |
+  | `vi-VN`               | Vietnamese (Vietnam)      |
+  | `zh-HK`               | Chinese (Cantonese, Traditional)       |
+  | `zh-TW`               | Chinese (Taiwanese Mandarin, Traditional)          |
+
+- Custom neural voice Pro now supports the following new locales:
+  - `en-NZ`: English (New Zealand)
+  - `es-CL`: Spanish (Chile)
+  - `es-US`: Spanish (United States)
+  - `ta-MY`: Tamil (Malaysia)
+  
+  See the [language list for Custom neural voice](../../language-support.md?tabs=tts#custom-neural-voice) for the full list of supported locales.  
+
+- The cross-lingual feature now supports the following new locales as source locales:  
+
+  | **Locale (BCP-47)** | **Language**              |
+  |---------------------|---------------------------|
+  | `da-DK`               | Danish (Denmark)          |
+  | `de-AT`               | German (Austria)          |
+  | `de-CH`               | German (Switzerland)      |
+  | `de-DE`               | German (Germany)          |
+  | `en-CA`               | English (Canada)          |
+  | `fi-FI`               | Finnish (Finland)         |
+  | `fr-CH`               | French (Switzerland)      |
+  | `hu-HU`               | Hungarian (Hungary)       |
+  | `ms-MY`               | Malay (Malaysia)          |
+  | `nb-NO`               | Norwegian Bokmål (Norway) |
+  | `pt-PT`               | Portuguese (Portugal)     |
+  | `sv-SE`               | Swedish (Sweden)          |
+  | `tr-TR`               | Turkish (Türkiye)          |
+  | `ta-IN`               | Tamil (India) |
+  | `zh-HK`               | Chinese (Cantonese, Traditional)       |  
+
+  See the [language list for Custom neural voice](../../language-support.md?tabs=tts#custom-neural-voice) for the full list of supported locales.  
+
+- The multi-style voice feature now supports the following new locales:  
+
+  | **Locale (BCP-47)** | **Language**              |
+  |---------------------|---------------------------|
+  | `ar-EG`             | Arabic (Egypt)            |
+  | `ar-SA`             | Arabic (Saudi Arabia)     |
+  | `ca-ES`             | Catalan         |
+  | `cs-CZ`             | 	Czech (Czechia)   |
+  | `da-DK`             | Danish (Denmark)          |
+  | `de-AT`             | German (Austria)          |
+  | `de-CH`             | German (Switzerland)      |
+  | `de-DE`             | German (Germany)          |
+  | `el-GR`             | Greek (Greece)            |
+  | `en-AU`             | English (Australia)       |
+  | `en-CA`             | English (Canada)          |
+  | `en-GB`             | English (United Kingdom)  |
+  | `en-IN`             | English (India)           |
+  | `es-ES`             | Spanish (Spain)           |
+  | `es-MX`             | Spanish (Mexico)          |
+  | `fi-FI`             | Finnish (Finland)         |
+  | `fr-CA`             | French (Canada)           |
+  | `fr-CH`             | French (Switzerland)      |
+  | `fr-FR`             | French (France)           |
+  | `he-IL`             | Hebrew (Israel)           |
+  | `hi-IN`             | Hindi (India)             |
+  | `hu-HU`             | Hungarian (Hungary)       |
+  | `it-IT`             | Italian (Italy)           |
+  | `ko-KR`             | Korean (Korea)     |
+  | `ms-MY`             | Malay (Malaysia)          |
+  | `nb-NO`             | Norwegian Bokmål (Norway) |
+  | `nl-BE`             | Dutch (Belgium)           |
+  | `nl-NL`             | Dutch (Netherlands)       |
+  | `pl-PL`             | Polish (Poland)           |
+  | `pt-BR`             | Portuguese (Brazil)       |
+  | `pt-PT`             | Portuguese (Portugal)     |
+  | `ro-RO`             | Romanian (Romania)        |
+  | `ru-RU`             | Russian (Russia)          |
+  | `sk-SK`             | Slovak (Slovakia)         |
+  | `sv-SE`             | Swedish (Sweden)          |
+  | `th-TH`             | Thai (Thailand)           |
+  | `tr-TR`             | Turkish (Türkiye)         |
+  | `vi-VN`             | Vietnamese (Vietnam)      |
+  | `zh-HK`             | Chinese (Cantonese, Traditional)      |
+  | `zh-TW`             | Chinese (Taiwanese Mandarin, Traditional)         |
+
+  See the [language list for Custom neural voice](../../language-support.md?tabs=tts#custom-neural-voice) for the full list of supported locales.  
+
+### September 2024 release
+
+#### Prebuilt neural voice
+
+Added support and general availability for new voices in the following locales: 
+
+| Locale (BCP-47) | Language | Text to speech voices |
+| ----- | ----- | ----- |
+| `as-IN` | Assamese (India) | `as-IN-YashicaNeural` (Female)<br/>`as-IN-PriyomNeural` (Male) |
+| `or-IN` | Oriya (India) | `or-IN-SubhasiniNeural` (Female)<br/>`or-IN-SukantNeural` (Male) |
+| `pa-IN` | Punjabi (India) | `pa-IN-OjasNeural` (Male)<br/>`pa-IN-VaaniNeural` (Female) |
+
+The one voice in this table is generally available and supports only the 'en-IN' locale.
+
+| Locale (BCP-47) | Language | Text to speech voices |
+|---------|-------------------|--------|
+| `en-IN`   | English (India)    | `en-IN-AashiNeural` (Female)|
+
+The five voices in this table are generally available and support both "en-IN" and "hi-IN" locales. 
+
+| Locale (BCP-47) | Language | Text to speech voices |
+| ----- | ----- | ----- |
+| `en-IN` | English (India) | `en-IN-AaravNeural` (Male)<br/>`en-IN-AnanyaNeural` (Female)<br/>`en-IN-KavyaNeural` (Female)<br/>`en-IN-KunalNeural` (Male)<br/>`en-IN-RehaanNeural` (Male) |
+| `hi-IN` | Hindi (India) | `hi-IN-AaravNeural` (Male)<br/>`hi-IN-AnanyaNeural` (Female)<br/>`hi-IN-KavyaNeural` (Female)<br/>`hi-IN-KunalNeural` (Male)<br/>`hi-IN-RehaanNeural` (Male) |
+
+#### Voice styles and roles
+
+Added `newscast`, `cheerful`, `empathetic` styles support for the `en-IN-NeerjaNeural` and `hi-IN-SwaraNeural` voices. 
+
+Added new styles for the following voices:
+
+- `es-MX-DaliaNeural`: `whispering`, `sad`, `cheerful`
+- `fr-FR-DeniseNeural`: `whispering`, `sad`, `excited`
+- `it-IT-IsabellaNeural`: `whispering`, `sad`, `excited`, `cheerful`
+- `pt-PT-RaquelNeural`: `whispering`, `sad`
+- `de-DE-ConradNeural`: `sad`, `cheerful`
+- `en-GB-RyanNeural`: `whispering`, `sad`
+- `es-MX-JorgeNeural`: `whispering`, `sad`, `excited`, `cheerful`
+- `fr-FR-HenriNeural`: `whispering`, `sad`, `excited`
+- `it-IT-DiegoNeural`: `sad`, `excited`, `cheerful`
+- `es-ES-AlvaroNeural`: `cheerful`, `sad`
+- `ko-KR-InjoonNeural`: `sad`
+
+See the [Voice styles and roles](../../language-support.md?tabs=tts#voice-styles-and-roles) for more information.
 
 ### August 2024 release
 

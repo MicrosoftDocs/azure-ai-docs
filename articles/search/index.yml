@@ -68,7 +68,7 @@ landingContent:
         links:
           - text: Create a vector index in AI Studio
             url: /azure/ai-studio/how-to/index-add
-          - text: Chat with your data in Azure OpenAI Studio
+          - text: Chat with your data using Azure OpenAI
             url: /azure/ai-services/openai/use-your-data-quickstart
           - text: Build a question and answer copilot
             url: /azure/ai-studio/tutorials/deploy-copilot-ai-studio
@@ -139,4 +139,4 @@ landingContent:
           - text: OData language reference
             url: query-odata-filter-orderby-syntax.md
           - text: Search Documents (REST)
-            url: /rest/api/searchservice/search-documents
+            url: /rest/api/searchservice/documents/search-post

@@ -6,7 +6,7 @@ author: gmndrg
 ms.author: gimondra
 manager: nitinme
 
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: how-to
@@ -90,7 +90,7 @@ api-key: [admin key]
 }
 ```
 
-[Run the indexer](/rest/api/searchservice/run-indexer) or set the indexer to run [on a schedule](search-howto-schedule-indexers.md). When the indexer runs and processes a blob having a soft delete state, the corresponding search document will be removed from the index.
+[Run the indexer](/rest/api/searchservice/indexers/run) or set the indexer to run [on a schedule](search-howto-schedule-indexers.md). When the indexer runs and processes a blob having a soft delete state, the corresponding search document will be removed from the index.
 
 ---
 

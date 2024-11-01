@@ -6,7 +6,7 @@ description: Describes concepts and architecture of query processing and documen
 manager: nitinme
 author: yahnoosh
 ms.author: jlembicz
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: conceptual
@@ -48,7 +48,7 @@ The diagram below illustrates the components used to process a search request.
 
 A search request is a complete specification of what should be returned in a result set. In simplest form, it's an empty query with no criteria of any kind. A more realistic example includes parameters, several query terms, perhaps scoped to certain fields, with possibly a filter expression and ordering rules.  
 
-The following example is a search request you might send to Azure AI Search using the [REST API](/rest/api/searchservice/search-documents).  
+The following example is a search request you might send to Azure AI Search using the [REST API](/rest/api/searchservice/documents/search-post).  
 
 ```
 POST /indexes/hotels/docs/search?api-version=2024-07-01
@@ -72,7 +72,7 @@ For this request, the search engine does the following operations:
 
 3. Orders the resulting set of hotels by proximity to a given geography location, and then returns the results to the calling application. 
 
-Most this article is about processing of the *search query*: `"Spacious, air-condition* +\"Ocean view\""`. Filtering and ordering are out of scope. For more information, see the [Search API reference documentation](/rest/api/searchservice/search-documents).
+Most this article is about processing of the *search query*: `"Spacious, air-condition* +\"Ocean view\""`. Filtering and ordering are out of scope. For more information, see the [Search API reference documentation](/rest/api/searchservice/documents/search-post).
 
 <a name="stage1"></a>
 
@@ -159,7 +159,7 @@ When the default analyzer processes the term, it will lowercase "ocean view" and
 
 ### Testing analyzer behaviors 
 
-The behavior of an analyzer can be tested using the [Analyze API](/rest/api/searchservice/test-analyzer). Provide the text you want to analyze to see what terms given analyzer generates. For example, to see how the standard analyzer would process the text "air-condition", you can issue the following request:
+The behavior of an analyzer can be tested using the [Analyze API](/rest/api/searchservice/indexes/analyze). Provide the text you want to analyze to see what terms given analyzer generates. For example, to see how the standard analyzer would process the text "air-condition", you can issue the following request:
 
 ```json
 {
@@ -393,7 +393,7 @@ This article explored full text search in the context of Azure AI Search. We hop
 
 + Build the sample index, try out different queries and review results. For instructions, see [Build and query an index in the portal](search-get-started-portal.md).
 
-+ Try other query syntax from the [Search Documents](/rest/api/searchservice/search-documents#bkmk_examples) example section or from [Simple query syntax](/rest/api/searchservice/simple-query-syntax-in-azure-search) in Search explorer in the portal.
++ Try other query syntax from the [Search Documents](/rest/api/searchservice/documents/search-post#examples) example section or from [Simple query syntax](/rest/api/searchservice/simple-query-syntax-in-azure-search) in Search explorer in the portal.
 
 + Review [scoring profiles](/rest/api/searchservice/add-scoring-profiles-to-a-search-index) if you want to tune ranking in your search application.
 
@@ -403,7 +403,7 @@ This article explored full text search in the context of Azure AI Search. We hop
 
 ## See also
 
-[Search Documents REST API](/rest/api/searchservice/search-documents) 
+[Search Documents REST API](/rest/api/searchservice/documents/search-post) 
 
 [Simple query syntax](/rest/api/searchservice/simple-query-syntax-in-azure-search) 
 

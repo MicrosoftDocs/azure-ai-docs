@@ -19,6 +19,8 @@ ms.custom:
 
 In this article, you learn how to configure an existing serverless API endpoint in a different project or hub than the one that was used to create the deployment.
 
+[!INCLUDE [models-preview](../includes/models-preview.md)]
+
 [Certain models in the model catalog](deploy-models-serverless-availability.md) can be deployed as serverless APIs. This kind of deployment provides a way to consume models as an API without hosting them on your subscription, while keeping the enterprise security and compliance that organizations need. This deployment option doesn't require quota from your subscription.
 
 The need to consume a serverless API endpoint in a different project or hub than the one that was used to create the deployment might arise in situations such as these:
@@ -202,7 +204,7 @@ Follow these steps to create a connection:
     # [Python SDK](#tab/python)
 
     ```python
-    client.connections.create(ServerlessConnection(
+    client.connections.create_or_update(ServerlessConnection(
         name="meta-llama3-8b-connection",
         endpoint="https://meta-llama3-8b-qwerty-serverless.inference.ai.azure.com",
         api_key="1234567890qwertyuiop"

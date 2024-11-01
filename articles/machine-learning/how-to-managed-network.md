@@ -71,6 +71,16 @@ Part of Azure Machine Learning studio runs locally in the client's web browser, 
 
 For more information on creating a private endpoint or service endpoint, see the [Connect privately to a storage account](/azure/storage/common/storage-private-endpoints) and [Service Endpoints](/azure/virtual-network/virtual-network-service-endpoints-overview) articles.
 
+### Secured associated resources
+
+If you add the following services to the virtual network by using either a service endpoint or a private endpoint (disabling the public access), allow trusted Microsoft services to access these services:
+
+| Service | Endpoint information | Allow trusted information |
+| ----- | ----- | ----- |
+| __Azure Key Vault__| [Service endpoint](/azure/key-vault/general/overview-vnet-service-endpoints)</br>[Private endpoint](/azure/key-vault/general/private-link-service) | [Allow trusted Microsoft services to bypass this firewall](how-to-secure-workspace-vnet.md#secure-azure-key-vault) |
+| __Azure Storage Account__ | [Service and private endpoint](how-to-secure-workspace-vnet.md?tabs=se#secure-azure-storage-accounts)</br>[Private endpoint](how-to-secure-workspace-vnet.md?tabs=pe#secure-azure-storage-accounts) | [Grant access from Azure resource instances](/azure/storage/common/storage-network-security#grant-access-from-azure-resource-instances)</br>__or__</br>[Grant access to trusted Azure services](/azure/storage/common/storage-network-security#grant-access-to-trusted-azure-services) |
+| __Azure Container Registry__ | [Private endpoint](/azure/container-registry/container-registry-private-link) | [Allow trusted services](/azure/container-registry/allow-access-trusted-services) |
+
 ## Prerequisites
 
 Before following the steps in this article, make sure you have the following prerequisites:
@@ -1116,6 +1126,7 @@ The Azure Machine Learning managed VNet feature is free. However, you're charged
 * When using Managed Vnet, you can't deploy compute resources inside your custom Vnet. Compute resources can only be created inside the managed Vnet.
 * Managed network isolation cannot establish a private connection from the managed virtual network to a user's on-premises resources.
 For the list of supported private connections, see [Private Endpoints](/azure/machine-learning/how-to-managed-network?view=azureml-api-2&tabs=azure-cli&preserve-view=true#private-endpoints).
+* If your managed network is configured to __allow only approved outbound__, you cannot use an FQDN rule to access Azure Storage Accounts. You must use a private endpoint instead.
 
 ### Migration of compute resources
 
@@ -1123,7 +1134,6 @@ If you have an existing workspace and want to enable managed VNet for it, there'
 
 * Compute cluster
 * Compute instance
-* Kubernetes clusters
 * Managed online endpoints
 
 ## Next steps

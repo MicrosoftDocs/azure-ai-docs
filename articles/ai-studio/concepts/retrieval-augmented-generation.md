@@ -2,21 +2,19 @@
 title: Retrieval augmented generation in Azure AI Studio
 titleSuffix: Azure AI Studio
 description: This article introduces retrieval augmented generation for use in generative AI applications.
-manager: nitinme
+manager: scottpolly
 ms.service: azure-ai-studio
 ms.custom:
   - ignite-2023
   - build-2024
 ms.topic: conceptual
 ms.date: 5/21/2024
-ms.reviewer: eur
-ms.author: eur
-author: eric-urban
+ms.reviewer: sgilley
+ms.author: sgilley
+author: sdgilley
 ---
 
 # Retrieval augmented generation and indexes
-
-[!INCLUDE [Feature preview](~/reusable-content/ce-skilling/azure/includes/ai-studio/includes/feature-preview.md)]
 
 This article talks about the importance and need for Retrieval Augmented Generation (RAG) and index in generative AI. 
 

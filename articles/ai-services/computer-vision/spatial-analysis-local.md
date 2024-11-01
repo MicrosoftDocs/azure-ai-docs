@@ -13,6 +13,8 @@ ms.author: pafarley
 
 # Run Spatial Analysis on a local video file
 
+[!INCLUDE [spatial-analysis-deprecation](includes/spatial-analysis-deprecation.md)]
+
 You can use Spatial Analysis with either recorded or live video. Use this guide to learn how to run Spatial Analysis on a recorded local video.
 
 ## Prerequisites
@@ -21,7 +23,7 @@ You can use Spatial Analysis with either recorded or live video. Use this guide 
 
 ## Analyze a video file
 
-To use Spatial Analysis for recorded video, record a video file and save it as a .mp4 file. Then take the following steps:
+To use Spatial Analysis for recorded video, record a video file and save it as an .mp4 file. Then take the following steps:
 
 1. Create a blob storage account in Azure, or use an existing one. Then update the following blob storage settings in the Azure portal:
     1. Change **Secure transfer required** to **Disabled**
@@ -55,7 +57,7 @@ The Spatial Analysis module will start consuming video file and will continuousl
 
 ## Next steps
 
-* [Deploy a People Counting web application](spatial-analysis-web-app.md)
+<!--* [Deploy a People Counting web application](spatial-analysis-web-app.md)-->
 * [Configure Spatial Analysis operations](spatial-analysis-operations.md)
 * [Logging and troubleshooting](spatial-analysis-logging.md)
 * [Camera placement guide](spatial-analysis-camera-placement.md)

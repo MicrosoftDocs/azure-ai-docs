@@ -8,22 +8,25 @@ ms.service: azure-ai-openai
 ms.topic: include
 author: mrbullwinkle
 ms.author: mbullwin
-ms.date: 05/20/2024
+ms.date: 10/22/2024
 ---
 
-[Source code](https://github.com/openai/openai-node) | [Package (npm)](https://www.npmjs.com/package/openai)
+[Source code](https://github.com/openai/openai-node) | [Package (npm)](https://www.npmjs.com/package/openai) | [Samples](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/openai/openai/samples)
 
 > [!NOTE]
 > This article has been updated to use the [latest OpenAI npm package](https://www.npmjs.com/package/openai) which now fully supports Azure OpenAI. If you are looking for code examples for the legacy Azure OpenAI JavaScript SDK they are currently still [available in this repo](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/openai/openai/samples/v2-beta/javascript).
 
 ## Prerequisites
 
+
 - An Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services?azure-portal=true)
 - [LTS versions of Node.js](https://github.com/nodejs/release#release-schedule)
+- [Azure CLI](/cli/azure/install-azure-cli) used for passwordless authentication in a local development environment, create the necessary context by signing in with the Azure CLI.
 - An Azure OpenAI Service resource with the `gpt-35-turbo-instruct` model deployed. For more information about model deployment, see the [resource deployment guide](../how-to/create-resource.md).
 
 > [!div class="nextstepaction"]
 > [I ran into an issue with the prerequisites.](https://microsoft.qualtrics.com/jfe/form/SV_0Cl5zkG3CnDjq6O?PLanguage=JAVASCRIPT&Pillar=AOAI&&Product=gpt&Page=quickstart&Section=Prerequisites)
+
 
 ## Set up
 
@@ -38,7 +41,7 @@ In a console window (such as cmd, PowerShell, or Bash), create a new directory f
 Install the required packages for JavaScript with npm from within the context of your new directory:
 
 ```console
-npm install openai dotenv @azure/identity
+npm install openai @azure/identity
 ```
 
 Your app's _package.json_ file will be updated with the dependencies.
@@ -50,12 +53,58 @@ Your app's _package.json_ file will be updated with the dependencies.
 
 Open a command prompt where you created the new project, and create a new file named Completion.js. Copy the following code into the Completion.js file.
 
+
+## [Microsoft Entra ID](#tab/javascript-keyless)
+
 ```javascript
 const { AzureOpenAI } = require("openai");
+const { 
+  DefaultAzureCredential, 
+  getBearerTokenProvider 
+} = require("@azure/identity");
 
-// Load the .env file if it exists
-const dotenv = require("dotenv");
-dotenv.config();
+// You will need to set these environment variables or edit the following values
+const endpoint = process.env["AZURE_OPENAI_ENDPOINT"] || "<endpoint>";
+const apiVersion = "2024-04-01-preview";
+const deployment = "gpt-35-turbo-instruct"; //The deployment name for your completions API model. The instruct model is the only new model that supports the legacy API.
+
+// keyless authentication    
+const credential = new DefaultAzureCredential();
+const scope = "https://cognitiveservices.azure.com/.default";
+const azureADTokenProvider = getBearerTokenProvider(credential, scope);
+
+const prompt = ["When was Microsoft founded?"];
+
+async function main() {
+  console.log("== Get completions Sample ==");
+
+  const client = new AzureOpenAI({ endpoint, azureADTokenProvider, apiVersion, deployment });  
+
+  const result = await client.completions.create({ prompt, model: deployment, max_tokens: 128 });
+
+  for (const choice of result.choices) {
+    console.log(choice.text);
+  }
+}
+
+main().catch((err) => {
+  console.error("Error occurred:", err);
+});
+
+module.exports = { main };
+```
+
+Run the script with the following command:
+
+```cmd
+node.exe Completion.js
+```
+
+
+## [API key](#tab/javascript-key)
+
+```javascript
+const { AzureOpenAI } = require("openai");
 
 // You will need to set these environment variables or edit the following values
 const endpoint = process.env["AZURE_OPENAI_ENDPOINT"] || "<endpoint>";
@@ -90,50 +139,14 @@ Run the script with the following command:
 node.exe Completion.js
 ```
 
+---
+
 ## Output
 
 ```output
 == Get completions Sample ==
 
 Microsoft was founded on April 4, 1975.
-```
-
-## Microsoft Entra ID
-
-> [!IMPORTANT]
-> In the previous example we are demonstrating key-based authentication. Once you have tested with key-based authentication successfully, we recommend using the more secure [Microsoft Entra ID](/entra/fundamentals/whatis) for authentication which is demonstrated in the next code sample. Getting started with [Microsoft Entra ID] will require some additional [prerequisites](https://www.npmjs.com/package/@azure/identity).
-
-```javascript
-const { AzureOpenAI } = require("openai");
-const { DefaultAzureCredential, getBearerTokenProvider } = require("@azure/identity");
-
-// Set AZURE_OPENAI_ENDPOINT to the endpoint of your
-// OpenAI resource. You can find this in the Azure portal.
-// Load the .env file if it exists
-require("dotenv/config");
-
-const prompt = ["When was Microsoft founded?"];
-
-async function main() {
-  console.log("== Get completions Sample ==");
-
-  const scope = "https://cognitiveservices.azure.com/.default";
-  const azureADTokenProvider = getBearerTokenProvider(new DefaultAzureCredential(), scope);
-  const deployment = "gpt-35-turbo-instruct";
-  const apiVersion = "2024-04-01-preview";
-  const client = new AzureOpenAI({ azureADTokenProvider, deployment, apiVersion });
-  const result = await client.completions.create({ prompt, model: deployment, max_tokens: 128 });
-
-  for (const choice of result.choices) {
-    console.log(choice.text);
-  }
-}
-
-main().catch((err) => {
-  console.error("Error occurred:", err);
-});
-
-module.exports = { main };
 ```
 
 > [!NOTE]

@@ -16,7 +16,7 @@ author: lgayhardt
 
 # Evaluation of generative AI applications
 
-[!INCLUDE [Feature preview](~/reusable-content/ce-skilling/azure/includes/ai-studio/includes/feature-preview.md)]
+[!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
 Advancements in language models such as GPT-4 via Azure OpenAI Service offer great promise while coming with challenges related to responsible AI. If not designed carefully, systems built upon these models can perpetuate existing societal biases, promote misinformation, create manipulative content, or lead to a wide range of other negative impacts. Addressing these risks while maximizing benefits to users is possible with an iterative approach through four stages: [identify, measure, and mitigate, operate](https://aka.ms/LLM-RAI-devstages).
 
@@ -101,5 +101,5 @@ After assessing your applications, flows, or data from any of these channels, yo
 
 - [Evaluate your generative AI apps via the playground](../how-to/evaluate-prompts-playground.md)
 - [Evaluate your generative AI apps with the Azure AI Studio or SDK](../how-to/evaluate-generative-ai-app.md)
-- [View the evaluation results](../how-to/evaluate-flow-results.md)
+- [View the evaluation results](../how-to/evaluate-results.md)
 - [Transparency Note for Azure AI Studio safety evaluations](safety-evaluations-transparency-note.md)

@@ -15,8 +15,6 @@ author: Blackmist
 
 # How to configure a private link for Azure AI Studio hubs
 
-[!INCLUDE [Feature preview](~/reusable-content/ce-skilling/azure/includes/ai-studio/includes/feature-preview.md)]
-
 We have two network isolation aspects. One is the network isolation to access an Azure AI Studio hub. Another is the network isolation of computing resources in your hub and projects such as compute instances, serverless, and managed online endpoints. This article explains the former highlighted in the diagram. You can use private link to establish the private connection to your hub and its default resources. This article is for Azure AI Studio (hub and projects). For information on Azure AI services, see the [Azure AI services documentation](/azure/ai-services/cognitive-services-virtual-networks).
 
 :::image type="content" source="../media/how-to/network/azure-ai-network-inbound.svg" alt-text="Diagram of AI Studio hub network isolation." lightbox="../media/how-to/network/azure-ai-network-inbound.png":::
@@ -26,7 +24,6 @@ You get several hub default resources in your resource group. You need to config
 - Disable public network access of hub default resources such as Azure Storage, Azure Key Vault, and Azure Container Registry.
 - Establish private endpoint connection to hub default resources. You need to have both a blob and file private endpoint for the default storage account.
 - [Managed identity configurations](#managed-identity-configuration) to allow hubs access your storage account if it's private.
-- Azure AI Search should be public.
 
 
 ## Prerequisites
@@ -280,8 +277,6 @@ To check AI-PROJECT-GUID, go to the Azure portal, select your project, settings,
 
 ## Limitations
 
-* Private Azure AI Services and Azure AI Search aren't supported.
-* The "Add your data" feature in the Azure AI Studio playground doesn't support private storage account.
 * You might encounter problems trying to access the private endpoint for your hub if you're using Mozilla Firefox. This problem might be related to DNS over HTTPS in Mozilla Firefox. We recommend using Microsoft Edge or Google Chrome.
 
 ## Next steps

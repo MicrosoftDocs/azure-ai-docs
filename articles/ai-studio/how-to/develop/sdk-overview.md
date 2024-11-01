@@ -2,20 +2,20 @@
 title: How to get started with Azure AI SDKs
 titleSuffix: Azure AI Studio
 description: This article provides an overview of available Azure AI SDKs.
-manager: nitinme
+manager: scottpolly
 ms.service: azure-ai-studio
 ms.custom:
   - build-2024
 ms.topic: overview
 ms.date: 8/9/2024
 ms.reviewer: dantaylo
-ms.author: eur
-author: eric-urban
+ms.author: sgilley
+author: sdgilley
 ---
 
 # Overview of the Azure AI SDKs
 
-Microsoft offers a variety of packages that you can use for building generative AI applications in the cloud. In most applications, you need to use a combination of packages to manage and use various Azure services that provide AI functionality. We also offer integrations with open-source libraries like LangChain and mlflow for use with Azure. In this article we'll give an overview of the main services and SDKs you can use with Azure AI Studio.
+Microsoft offers a variety of packages that you can use for building generative AI applications in the cloud. In most applications, you need to use a combination of packages to manage and use various Azure services that provide AI functionality. We also offer integrations with open-source libraries like LangChain and MLflow for use with Azure. In this article we'll give an overview of the main services and SDKs you can use with Azure AI Studio.
 
 For building generative AI applications, we recommend using the following services and SDKs:
  * [Azure Machine Learning](/azure/machine-learning/overview-what-is-azure-machine-learning) for the hub and project infrastructure used in AI Studio to organize your work into projects, manage project artifacts (data, evaluation runs, traces), fine-tune & deploy models, and connect to external services and resources.
@@ -53,6 +53,9 @@ Azure AI services
 
 Prompt flow
  * [Prompt flow SDK](https://microsoft.github.io/promptflow/how-to-guides/quick-start.html)
+
+Agentic frameworks:
+* [LlamaIndex](llama-index.md)
 
 ## Related content
 

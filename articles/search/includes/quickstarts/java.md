@@ -1,18 +1,20 @@
 ---
 author: HeidiSteen
 ms.author: heidist
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: include
-ms.date: 06/09/2023
+ms.date: 10/07/2024
 ---
 
-Build a Java console application using the [**Azure.Search.Documents**](/java/api/overview/azure/search) library to create, load, and query a search index. Alternatively, you can [download the source code](https://github.com/Azure-Samples/azure-search-java-samples/tree/main/quickstart) to start with a finished project or follow these steps to create your own.
+Build a Java console application using the [Azure.Search.Documents](/java/api/overview/azure/search) library to create, load, and query a search index. 
+
+Alternatively, you can [download the source code](https://github.com/Azure-Samples/azure-search-java-samples/tree/main/quickstart) to start with a finished project or follow these steps to create your own.
 
 #### Set up your environment
 
-We used the following tools to create this quickstart.
+Use the following tools to create this quickstart.
 
 + [Visual Studio Code with the Java extension](https://code.visualstudio.com/docs/java/extensions)
 
@@ -22,7 +24,7 @@ We used the following tools to create this quickstart.
 
 1. Start Visual Studio Code.
 
-1. Open the [Command Palette](https://code.visualstudio.com/docs/getstarted/userinterface#_command-palette) **Ctrl+Shift+P**. Search for **Create Java Project**.
+1. Open the [Command Palette](https://code.visualstudio.com/docs/getstarted/userinterface#_command-palette) by using **Ctrl+Shift+P**. Search for **Create Java Project**.
 
    :::image type="content" source="../../media/search-get-started-java/java-quickstart-create-project.png" alt-text="Screenshot of a Java project." border="true":::
 
@@ -56,7 +58,7 @@ We used the following tools to create this quickstart.
 
 #### Specify Maven dependencies
 
-1. Open the pom.xml file and add the following dependencies
+1. Open the *pom.xml* file and add the following dependencies.
 
     ```xml
     <dependencies>
@@ -79,7 +81,7 @@ We used the following tools to create this quickstart.
       </dependencies>
     ```
 
-1. Change the compiler Java version to 11
+1. Change the compiler Java version to 11.
 
     ```xml
     <maven.compiler.source>1.11</maven.compiler.source>
@@ -88,7 +90,7 @@ We used the following tools to create this quickstart.
 
 #### Create a search client
 
-1. Open the `App` class under **src**, **main**, **java**, **azure**, **search**, **sample**. Add the following import directives
+1. Open the `App` class under **src**, **main**, **java**, **azure**, **search**, **sample**. Add the following import directives.
 
     ```java
     import java.util.Arrays;
@@ -141,9 +143,9 @@ This quickstart builds a Hotels index that you'll load with hotel data and execu
 
 In this example, synchronous methods of the azure-search-documents library are used for simplicity and readability. However, for production scenarios, you should use asynchronous methods to keep your app scalable and responsive. For example, you would use [SearchAsyncClient](/java/api/com.azure.search.documents.searchasyncclient) instead of SearchClient.
 
-1. Add an empty class definition to your project: **Hotel.java**
+1. Add an empty class definition to your project: `Hotel.java`
 
-1. Copy the following code into **Hotel.java** to define the structure of a hotel document. Attributes on the field determine how it's used in an application. For example, the IsFilterable annotation must be assigned to every field that supports a filter expression
+1. Copy the following code into `Hotel.java` to define the structure of a hotel document. Attributes on the field determine how it's used in an application. For example, the IsFilterable annotation must be assigned to every field that supports a filter expression
 
     ```java
     // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -256,9 +258,9 @@ In the Azure.Search.Documents client library, you can use [SearchableField](/jav
    * `SimpleField` can be any data type, is always non-searchable (it's ignored for full text search queries), and is retrievable (it's not hidden). Other attributes are off by default, but can be enabled. You might use a SimpleField for document IDs or fields used only in filters, facets, or scoring profiles. If so, be sure to apply any attributes that are necessary for the scenario, such as IsKey = true for a document ID.
    * `SearchableField` must be a string, and is always searchable and retrievable. Other attributes are off by default, but can be enabled. Because this field type is searchable, it supports synonyms and the full complement of analyzer properties.
 
-Whether you use the basic `SearchField` API or either one of the helper models, you must explicitly enable filter, facet, and sort attributes. For example, `isFilterable`, `isSortable`, and `isFacetable` must be explicitly attributed, as shown in the sample above.
+Whether you use the basic `SearchField` API or either one of the helper models, you must explicitly enable filter, facet, and sort attributes. For example, `isFilterable`, `isSortable`, and `isFacetable` must be explicitly attributed, as shown in the previous sample.
 
-1. Add a second empty class definition to your project: **Address.cs**. Copy the following code into the class.
+1. Add a second empty class definition to your project: `Address.java`. Copy the following code into the class.
 
     ```java
     // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -313,7 +315,7 @@ Whether you use the basic `SearchField` API or either one of the helper models, 
     }
     ```
 
-1. In **App.java**, create a `SearchIndex` object in the **main** method, and then call the `createOrUpdateIndex` method to create the index in your search service. The index also includes a `SearchSuggester` to enable autocomplete on the specified fields.
+1. In `App.java`, create a `SearchIndex` object in the `main` method, and then call the `createOrUpdateIndex` method to create the index in your search service. The index also includes a `SearchSuggester` to enable autocomplete on the specified fields.
 
     ```java
     // Create Search Index for Hotel model
@@ -322,7 +324,7 @@ Whether you use the basic `SearchField` API or either one of the helper models, 
         .setSuggesters(new SearchSuggester("sg", Arrays.asList("HotelName"))));
     ```
 
-#### Load Documents
+#### Load documents
 
 Azure AI Search searches over content stored in the service. In this step, you'll load JSON documents that conform to the hotel index you just created.
 
@@ -330,7 +332,7 @@ In Azure AI Search, search documents are data structures that are both inputs to
 
 When uploading documents, you must use an [IndexDocumentsBatch](/java/api/com.azure.search.documents.indexes.models.indexdocumentsbatch) object. An `IndexDocumentsBatch` object contains a collection of [IndexActions](/java/api/com.azure.search.documents.models.indexaction), each of which contains a document and a property telling Azure AI Search what action to perform (upload, merge, delete, and mergeOrUpload).
 
-1. In **App.java**, create documents and index actions, and then pass them to `IndexDocumentsBatch`. The documents below conform to the hotels-quickstart index, as defined by the hotel class.
+1. In `App.java`, create documents and index actions, and then pass them to `IndexDocumentsBatch`. The following documents conform to the hotels-quickstart index, as defined by the hotel class.
 
     ```java
     // Upload documents in a single Upload request.
@@ -340,7 +342,7 @@ When uploading documents, you must use an [IndexDocumentsBatch](/java/api/com.az
 
         var hotel = new Hotel();
         hotel.hotelId = "1";
-        hotel.hotelName = "Secret Point Motel";
+        hotel.hotelName = "Stay-Kay City Hotel";
         hotel.description = "The hotel is ideally located on the main commercial artery of the city in the heart of New York. A few minutes away is Time's Square and the historic centre of the city, as well as other places of interest that make New York one of America's most attractive and cosmopolitan cities.";
         hotel.descriptionFr = "L'hôtel est idéalement situé sur la principale artère commerciale de la ville en plein cœur de New York. A quelques minutes se trouve la place du temps et le centre historique de la ville, ainsi que d'autres lieux d'intérêt qui font de New York l'une des villes les plus attractives et cosmopolites de l'Amérique.";
         hotel.category = "Boutique";
@@ -358,7 +360,7 @@ When uploading documents, you must use an [IndexDocumentsBatch](/java/api/com.az
 
         hotel = new Hotel();
         hotel.hotelId = "2";
-        hotel.hotelName = "Twin Dome Motel";
+        hotel.hotelName = "Old Century Hotel";
         hotel.description = "The hotel is situated in a  nineteenth century plaza, which has been expanded and renovated to the highest architectural standards to create a modern, functional and first-class hotel in which art and unique historical elements coexist with the most modern comforts.";
         hotel.descriptionFr = "L'hôtel est situé dans une place du XIXe siècle, qui a été agrandie et rénovée aux plus hautes normes architecturales pour créer un hôtel moderne, fonctionnel et de première classe dans lequel l'art et les éléments historiques uniques coexistent avec le confort le plus moderne.";
         hotel.category = "Boutique";
@@ -376,7 +378,7 @@ When uploading documents, you must use an [IndexDocumentsBatch](/java/api/com.az
 
         hotel = new Hotel();
         hotel.hotelId = "3";
-        hotel.hotelName = "Triple Landscape Hotel";
+        hotel.hotelName = "Gastronomic Landscape Hotel";
         hotel.description = "The Hotel stands out for its gastronomic excellence under the management of William Dough, who advises on and oversees all of the Hotel’s restaurant services.";
         hotel.descriptionFr = "L'hôtel est situé dans une place du XIXe siècle, qui a été agrandie et rénovée aux plus hautes normes architecturales pour créer un hôtel moderne, fonctionnel et de première classe dans lequel l'art et les éléments historiques uniques coexistent avec le confort le plus moderne.";
         hotel.category = "Resort and Spa";
@@ -394,9 +396,9 @@ When uploading documents, you must use an [IndexDocumentsBatch](/java/api/com.az
 
         hotel = new Hotel();
         hotel.hotelId = "4";
-        hotel.hotelName = "Sublime Cliff Hotel";
-        hotel.description = "Sublime Cliff Hotel is located in the heart of the historic center of Sublime in an extremely vibrant and lively area within short walking distance to the sites and landmarks of the city and is surrounded by the extraordinary beauty of churches, buildings, shops and monuments. Sublime Cliff is part of a lovingly restored 1800 palace.";
-        hotel.descriptionFr = "Le sublime Cliff Hotel est situé au coeur du centre historique de sublime dans un quartier extrêmement animé et vivant, à courte distance de marche des sites et monuments de la ville et est entouré par l'extraordinaire beauté des églises, des bâtiments, des commerces et Monuments. Sublime Cliff fait partie d'un Palace 1800 restauré avec amour.";
+        hotel.hotelName = "Sublime Palace Hotel";
+        hotel.description = "Sublime Palace Hotel is located in the heart of the historic center of Sublime in an extremely vibrant and lively area within short walking distance to the sites and landmarks of the city and is surrounded by the extraordinary beauty of churches, buildings, shops and monuments. Sublime Palace is part of a lovingly restored 1800 palace.";
+        hotel.descriptionFr = "Le Sublime Palace Hotel est situé au coeur du centre historique de sublime dans un quartier extrêmement animé et vivant, à courte distance de marche des sites et monuments de la ville et est entouré par l'extraordinaire beauté des églises, des bâtiments, des commerces et Monuments. Sublime Palace fait partie d'un Palace 1800 restauré avec amour.";
         hotel.category = "Boutique";
         hotel.tags = new String[] { "concierge", "view", "24-hour front desk service" };
         hotel.parkingIncluded = true;
@@ -457,7 +459,7 @@ You can get query results as soon as the first document is indexed, but actual t
 
 This section adds two pieces of functionality: query logic, and results. For queries, use the Search method. This method takes search text (the query string) and other options.
 
-1. In **App.java**, create a WriteDocuments method that prints search results to the console.
+1. In `App.java`, create a `WriteDocuments` method that prints search results to the console.
 
     ```java
     // Write search results to console
@@ -504,7 +506,7 @@ This section adds two pieces of functionality: query logic, and results. For que
     }
     ```
 
-1. In the second query, search on a term, add a filter that selects documents where Rating is greater than 4, and then sort by Rating in descending order. Filter is a boolean expression that is evaluated over `isFilterable` fields in an index. Filter queries either include or exclude values. As such, there's no relevance score associated with a filter query.
+1. In the second query, search on a term, add a filter that selects documents where Rating is greater than 4, and then sort by *Rating* in descending order. Filter is a boolean expression that is evaluated over `isFilterable` fields in an index. Filter queries either include or exclude values. As such, there's no relevance score associated with a filter query.
 
     ```java
     // Query 2
@@ -532,7 +534,7 @@ This section adds two pieces of functionality: query logic, and results. For que
     WriteSearchResults(searchClient.search("pool", options, Context.NONE));
     ```
 
-1. The fourth query demonstrates facets, which can be used to structure a faceted navigation structure.
+1. The fourth query demonstrates `facets`, which can be used to structure a faceted navigation structure.
 
     ```java
     // Query 4
@@ -557,7 +559,7 @@ This section adds two pieces of functionality: query logic, and results. For que
     System.out.println();
     ```
 
-1. The last query shows the syntax for autocomplete, simulating a partial user input of "s" that resolves to two possible matches in the `sourceFields` associated with the suggester you defined in the index.
+1. The last query shows the syntax for autocomplete, simulating a partial user input of *s* that resolves to two possible matches in the `sourceFields` associated with the suggester you defined in the index.
 
     ```java
     // Query 6
@@ -566,7 +568,7 @@ This section adds two pieces of functionality: query logic, and results. For que
     WriteAutocompleteResults(searchClient.autocomplete("s", "sg"));
     ```
 
-1. Add RunQueries to Main().
+1. Add `RunQueries` to `Main()`.
 
     ```java
     // Call the RunQueries method to invoke a series of queries
@@ -585,4 +587,4 @@ Full text search and filters are performed using the [SearchClient.search](/java
 
 Press F5 to rebuild the app and run the program in its entirety.
 
-Output includes messages from System.out.println, with the addition of query information and results.
+Output includes messages from `System.out.println`, with the addition of query information and results.

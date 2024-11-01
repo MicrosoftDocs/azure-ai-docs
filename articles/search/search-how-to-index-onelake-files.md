@@ -5,7 +5,7 @@ description: Set up a OneLake indexer to automate indexing of content and metada
 author: gmndrg
 ms.author: gimondra
 manager: nitinme
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.custom:
   - build-2024
 ms.topic: how-to
@@ -222,7 +222,7 @@ A data source is defined as an independent resource so that it can be used by mu
       "description": "description",  
       "type": "onelake",  
       "credentials": {  
-        "connectionString": "ResourceId=00000000-0000-0000-0000-000000000000"  
+        "connectionString": "ResourceId=a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1"  
       },  
       "container": {  
         "name": "11111111-1111-1111-1111-111111111111",  
@@ -260,7 +260,7 @@ A data source is defined as an independent resource so that it can be used by mu
       "description": "description",  
       "type": "onelake",  
       "credentials": {  
-        "connectionString": "ResourceId=00000000-0000-0000-0000-000000000000"  
+        "connectionString": "ResourceId=a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1"  
       },  
       "container": {  
         "name": "11111111-1111-1111-1111-111111111111",  
@@ -327,7 +327,7 @@ Some key points include:
 
 In a [search index](search-what-is-an-index.md), add fields to accept the content and metadata of your OneLake data lake files.
 
-1. [Create or update an index](/rest/api/searchservice/create-index) to define search fields that store file content and metadata:
+1. [Create or update an index](/rest/api/searchservice/indexes/create) to define search fields that store file content and metadata:
 
     ```http
     {
@@ -360,7 +360,7 @@ In a [search index](search-what-is-an-index.md), add fields to accept the conten
 
 Once the index and data source are created, you're ready to create the indexer. Indexer configuration specifies the inputs, parameters, and properties controlling run time behaviors. You can also specify which parts of a blob to index.
 
-1. [Create or update an indexer](/rest/api/searchservice/create-indexer) by giving it a name and referencing the data source and target index:
+1. [Create or update an indexer](/rest/api/searchservice/indexers/create) by giving it a name and referencing the data source and target index:
 
     ```json
     {
@@ -404,7 +404,7 @@ Once the index and data source are created, you're ready to create the indexer. 
 
    In file indexing, you can often omit field mappings because the indexer has built-in support for mapping the "content" and metadata properties to similarly named and typed fields in an index. For metadata properties, the indexer automatically replaces hyphens `-` with underscores in the search index.
 
-For more information about other properties, [Create an indexer](search-howto-create-indexers.md). For the full list of parameter descriptions, see [Blob configuration parameters](/rest/api/searchservice/create-indexer#blob-configuration-parameters) in the REST API. The parameters are the same for OneLake.
+For more information about other properties, [Create an indexer](search-howto-create-indexers.md). For the full list of parameter descriptions, see [Create Indexer (REST)](/rest/api/searchservice/indexers/create#definitions) in the REST API. The parameters are the same for OneLake.
 
 By default, an indexer runs automatically when you create it. You can change this behavior by setting "disabled" to true. To control indexer execution, [run an indexer on demand](search-howto-run-reset-indexers.md) or [put it on a schedule](search-howto-schedule-indexers.md).
 

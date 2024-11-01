@@ -6,7 +6,7 @@ description: Practice creating and completing a debug session on an Azure AI Sea
 author: HeidiSteen
 ms.author: heidist
 manager: nitinme
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: tutorial

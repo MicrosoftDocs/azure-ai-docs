@@ -5,11 +5,11 @@ description: Use this article to get started using Azure OpenAI to deploy and us
 services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-openai
-ms.custom: devx-track-python
+ms.custom: devx-track-python, devx-track-js, devx-track-ts
 ms.topic: quickstart
 author: PatrickFarley
 ms.author: pafarley
-ms.date: 08/21/2024
+ms.date: 10/03/2024
 zone_pivot_groups: openai-quickstart-gpt-v
 ---
 
@@ -17,9 +17,10 @@ zone_pivot_groups: openai-quickstart-gpt-v
 
 Get started using GPT-4 Turbo with images with the Azure OpenAI Service.
 
-## GPT-4 Turbo model upgrade
-
-[!INCLUDE [GPT-4 Turbo](./includes/gpt-4-turbo.md)]
+> [!NOTE]
+> **Model choice**
+>
+> The latest vision-capable models are `gpt-4o` and `gpt-4o mini`. These are in public preview. The latest available GA model is `gpt-4` version `turbo-2024-04-09`.
 
 ::: zone pivot="programming-language-studio"
 
@@ -36,6 +37,24 @@ Get started using GPT-4 Turbo with images with the Azure OpenAI Service.
 ::: zone pivot="programming-language-python"
 
 [!INCLUDE [Python quickstart](includes/gpt-v-python.md)]
+
+::: zone-end
+
+::: zone pivot="programming-language-javascript"
+
+[!INCLUDE [JavaScript quickstart](includes/gpt-v-javascript.md)]
+
+::: zone-end
+
+::: zone pivot="programming-language-typescript"
+
+[!INCLUDE [TypeScript quickstart](includes/gpt-v-typescript.md)]
+
+::: zone-end
+
+::: zone pivot="programming-language-dotnet"
+
+[!INCLUDE [.NET quickstart](includes/gpt-v-dotnet.md)]
 
 ::: zone-end
 

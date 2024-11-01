@@ -1,10 +1,10 @@
 ---
 title: How to upgrade your Data Science Virtual Machine to Ubuntu 20.04
 titleSuffix: Azure Data Science Virtual Machine
-description: Learn how to upgrade from CentOS and Ubuntu 18.04 to the latest Ubuntu 20.04 Data Science Virtual Machine.
+description: Learn how to upgrade from Ubuntu 18.04 to the latest Ubuntu 20.04 Data Science Virtual Machine.
 keywords: deep learning, AI, data science tools, data science virtual machine, team data science process
 services: machine-learning
-ms.service: data-science-vm
+ms.service: azure-data-science-virtual-machines
 ms.custom: linux-related-content
 author: fbsolo-ms1 
 ms.author: franksolomon 
@@ -15,10 +15,7 @@ ms.date: 05/08/2024
 
 # Upgrade your Data Science Virtual Machine to Ubuntu 20.04
 
-> [!CAUTION]
-> This article references CentOS, a Linux distribution that is End Of Life (EOL) status. Please consider your use and planning accordingly. For more information, see the [CentOS End Of Life guidance](/azure/virtual-machines/workloads/centos/centos-end-of-life).
-
-If you have a Data Science Virtual Machine (DSVM) that runs an older release, such as Ubuntu 18.04 or CentOS, you should migrate your DSVM to Ubuntu 20.04. This migration ensures that you get the latest operating system patches, drivers, preinstalled software, and library versions. This document tells you how to migrate from either older Ubuntu versions or from CentOS.
+If you have a Data Science Virtual Machine (DSVM) that runs an older release, such as Ubuntu 18.04, you should migrate your DSVM to Ubuntu 20.04. This migration ensures that you get the latest operating system patches, drivers, preinstalled software, and library versions. This document tells you how to migrate from older Ubuntu versions.
 
 ## Prerequisites
 
@@ -29,7 +26,7 @@ If you have a Data Science Virtual Machine (DSVM) that runs an older release, su
 You have two migration options:
 
 - In-place migration, also called "same server" migration. This option upgrades the existing VM without creation of a new virtual machine. In-place migration is the easier way to migrate from Ubuntu 18.04 to Ubuntu 20.04.
-- Side-by-side migration, also called "inter-server" migration. This option transfers data from the existing virtual machine to a newly created VM. Side-by-side migration is the way to migrate from Centos to Ubuntu 20.04. You might prefer side-by-side migration for upgrades between Ubuntu versions if you believe that your old install became needlessly cluttered.
+- Side-by-side migration, also called "inter-server" migration. This option transfers data from the existing virtual machine to a newly created VM. You might prefer side-by-side migration for upgrades between Ubuntu versions if you believe that your old install became needlessly cluttered.
 
 ## Snapshot your VM in case you need to roll back
 
@@ -43,7 +40,7 @@ In the Azure portal, use the search bar to find the **Snapshots** functionality.
 
 ## In-place migration
 
-To migrate an older Ubuntu release, you might choose an in-place migration option. This migration doesn't create a new virtual machine and it has fewer steps compared to a side-by-side migration. For more control, or for a migration from a different distribution - for example, CentOS - consider a side-by-side migration. For more information, skip to the [Side-by-side migration](#side-by-side-migration) section of this document.
+To migrate an older Ubuntu release, you might choose an in-place migration option. This migration doesn't create a new virtual machine and it has fewer steps compared to a side-by-side migration. For more control, or for a migration from a different distribution, consider a side-by-side migration. For more information, skip to the [Side-by-side migration](#side-by-side-migration) section of this document.
 
 1. From the Azure portal, launch your DSVM, and sign in with SSH. To do so, select **Connect** and **SSH**, and follow the connection instructions.
 
@@ -53,7 +50,7 @@ To migrate an older Ubuntu release, you might choose an in-place migration optio
     sudo do-release-upgrade
     ```
 
-The upgrade process takes a while to complete. After it finishes, the program will request your permission to restart the virtual machine. Answer **Yes**. You'll be disconnected from the SSH session as the system reboots.
+The upgrade process takes a while to complete. After it finishes, the program will request your permission to restart the virtual machine. Answer **Yes**, to disconnect from the SSH session as the system reboots.
 
 ### If necessary, regenerate SSH keys
 
@@ -76,9 +73,9 @@ You should now be able to connect with SSH. If you still have trouble, follow th
 
 ## Side-by-side migration
 
-To migrate from CentOS, or for a clean OS install, you can do a side-by-side migration. This migration type has more steps, but offers more control over the exact files that carry over.
+For a clean OS install, you can do a side-by-side migration. This migration type has more steps, but offers more control over the exact files that carry over.
 
-Migrations from other systems based on the same set of upstream source packages - for example [FAQ/CentOS3](https://wiki.centos.org/FAQ(2f)CentOS3.html) - should be relatively straightforward.
+Migrations from other systems based on the same set of upstream source packages should be relatively straightforward.
 
 You can upgrade the operating system parts of the filesystem, and leave the user directories, for example `/home`, in place. If you do leave the old user home directories in place, you can expect some problems with the GNOME/KDE menus and other desktop items. It might be easier to create new user accounts, and mount the old directories somewhere else in the filesystem. This is done for purposes of reference, copying, or linking users' material after the migration.
 
@@ -93,7 +90,7 @@ You can upgrade the operating system parts of the filesystem, and leave the user
 
 ### Create a disk from your VM snapshot
 
-Create a VM snapshot as described previously, if you haven't already done so.
+Create a VM snapshot as described previously, if you haven't yet done so.
 
 1. In the Azure portal, search for **Disks** and select **Add**. This opens the **Disk** page
 

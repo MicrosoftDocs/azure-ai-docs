@@ -1,22 +1,16 @@
 ---
 title: include file
 description: include file
-author: eur
-ms.reviewer: eur
-ms.author: eric-urban
+author: sdgilley
+ms.reviewer: sgilley
+ms.author: sgilley
 ms.service: azure-ai-studio
 ms.topic: include
 ms.date: 5/21/2024
 ms.custom: include, build-2024
 ---
 
-To complete this section, you need a local copy of product data. The [Azure-Samples/rag-data-openai-python-promptflow repository on GitHub](https://github.com/Azure-Samples/rag-data-openai-python-promptflow/) contains sample retail product information that's relevant for this tutorial scenario. Specifically, the `product_info_11.md` file contains product information about the TrailWalker hiking shoes that's relevant for this tutorial example. [Download the example Contoso Trek retail product data in a ZIP file](https://github.com/Azure-Samples/rag-data-openai-python-promptflow/raw/main/tutorial/data.zip) to your local machine.
-
-> [!IMPORTANT]
-> The **Add your data** feature in the Azure AI Studio playground doesn't support using a virtual network or private endpoint on the following resources:
-> * Azure AI Search
-> * Azure OpenAI
-> * Storage resource 
+To complete this section, you need a local copy of product data. The [Azure-Samples/rag-data-openai-python-promptflow repository on GitHub](https://github.com/Azure-Samples/rag-data-openai-python-promptflow/) contains sample retail product information that's relevant for this tutorial scenario. Specifically, the `product_info_11.md` file contains product information about the TrailWalker hiking shoes that's relevant for this tutorial example. [Download the example Contoso Trek retail product data in a ZIP file](https://github.com/Azure-Samples/rag-data-openai-python-promptflow/raw/refs/heads/main/tutorial/data/product-info.zip) to your local machine. 
 
 Follow these steps to add your data in the chat playground to help the assistant answer questions about your products. You're not changing the deployed model itself. Your data is stored separately and securely in your Azure subscription.
 
@@ -36,7 +30,7 @@ Follow these steps to add your data in the chat playground to help the assistant
 
 1. Select **Upload** > **Upload files** to browse your local files. 
 
-1. Select the files you want to upload. Select the product information files that you [downloaded](https://github.com/Azure-Samples/rag-data-openai-python-promptflow/raw/main/tutorial/data.zip) or created earlier. Add all of the files now. You won't be able to add more files later in the same playground session. 
+1. Select the files you want to upload. Select the product information files that you [downloaded](https://github.com/Azure-Samples/rag-data-openai-python-promptflow/raw/refs/heads/main/tutorial/data/product-info.zip) or created earlier. Add all of the files now. You won't be able to add more files later in the same playground session. 
 
 1. Select **Upload** to upload the file to your Azure Blob storage account. Then select **Next**.
 

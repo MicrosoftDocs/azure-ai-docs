@@ -35,24 +35,24 @@ Browse to [Azure OpenAI Studio](https://oai.azure.com/) and sign in with the cre
 
 #### [DALL-E 3](#tab/dalle3)
 
-From the Azure OpenAI Studio landing page, select **DALL·E playground (Preview)** to use the image generation APIs. Select **Settings** near the top of the page and confirm that the **Deployment** dropdown has your DALL-E 3 deployment selected.
+From the Azure OpenAI Studio landing page, select **Images playground** to use the image generation APIs. Select **Settings** near the top of the page and confirm that the **Deployment** dropdown has your DALL-E 3 deployment selected.
 
 #### [DALL-E 2 (preview)](#tab/dalle2)
 
-From the Azure OpenAI Studio landing page, select **DALL·E playground (Preview)** to use the image generation APIs. Select **Settings** near the top of the page and confirm that the **Deployment** dropdown has the default **DALL-E 2** choice selected.
+From the Azure OpenAI Studio landing page, select **Images playground** to use the image generation APIs. Select **Settings** near the top of the page and confirm that the **Deployment** dropdown has the default **DALL-E 2** choice selected.
 
 ---
 
 ## Try out image generation
 
-Start exploring Azure OpenAI capabilities with a no-code approach through the **DALL·E playground (Preview)**. Enter your image prompt into the text box and select **Generate**. When the AI-generated image is ready, it appears on the page.
+Start exploring Azure OpenAI capabilities with a no-code approach through the **Images playground**. Enter your image prompt into the text box and select **Generate**. When the AI-generated image is ready, it appears on the page.
 
 > [!NOTE]
 > The image generation APIs come with a content moderation filter. If Azure OpenAI recognizes your prompt as harmful content, it doesn't return a generated image. For more information, see [Content filtering](../concepts/content-filter.md).
 
-:::image type="content" source="../media/quickstarts/dall-e-studio.png" alt-text="Screenshot of the Azure OpenAI Studio landing page showing the DALL-E playground (Preview) with generated images of polar bears." lightbox="../media/quickstarts/dall-e-studio.png":::
+:::image type="content" source="../media/quickstarts/dall-e-studio-new.png" alt-text="Screenshot of the Azure OpenAI Studio landing page showing the DALL-E playground (Preview) with generated images of polar bears." lightbox="../media/quickstarts/dall-e-studio-new.png":::
 
-In the **DALL·E playground (Preview)**, you can also view Python and cURL code samples, which are prefilled according to your settings. Select **View code** near the top of the page. You can use this code to write an application that completes the same task.
+In the **Images playground**, you can also view Python and cURL code samples, which are prefilled according to your settings. Select **View code** near the top of the page. You can use this code to write an application that completes the same task.
 
 ## Clean up resources
 

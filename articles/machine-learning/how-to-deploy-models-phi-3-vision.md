@@ -6,13 +6,14 @@ ms.service: azure-machine-learning
 ms.subservice: inferencing
 manager: scottpolly
 ms.topic: how-to
-ms.date: 08/19/2024
+ms.date: 09/13/2024
 ms.reviewer: kritifaujdar
 reviewer: fkriti
 ms.author: mopeakande
 author: msakande
 ms.custom: references_regions, generated
 zone_pivot_groups: azure-ai-model-catalog-samples-chat
+ms.collection: ce-skilling-ai-copilot
 ---
 
 # How to use Phi-3 chat model with vision with Azure Machine Learning
@@ -226,7 +227,7 @@ response = client.complete(
     stop=["<|endoftext|>"],
     temperature=0,
     top_p=1,
-    response_format=ChatCompletionsResponseFormatText(),
+    response_format={ "type": ChatCompletionsResponseFormatText() },
 )
 ```
 

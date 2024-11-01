@@ -20,6 +20,9 @@ JSON mode allows you to set the models response format to return a valid JSON ob
 > [!NOTE]
 > While JSON mode is still supported, when possible we recommend using [structured outputs](./structured-outputs.md). Like JSON mode structured outputs generates valid JSON, but with the added benefit that you can constrain the model to use a specific JSON schema.
 
+>[!NOTE]
+> Currently Structured outputs is not supported on [bring your own data](../concepts/use-your-data.md) scenario.
+
 ## JSON mode support
 
 JSON mode is only currently supported with the following models:

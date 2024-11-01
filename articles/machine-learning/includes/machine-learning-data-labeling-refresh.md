@@ -2,7 +2,7 @@
 author: sgilley
 ms.service: azure-machine-learning
 ms.topic: include
-ms.date: 12/08/2021
+ms.date: 09/24/2024
 ms.author: sdgilley
 ---
 
@@ -15,7 +15,7 @@ Select **Enable incremental refresh at regular intervals** when you want your pr
 Clear the selection if you don't want new files in the datastore to automatically be added to your project.
 
 > [!IMPORTANT]
-> Don't create a new version for the dataset you want to update. If you do, the updates won't be seen because the data labeling project is pinned to the initial version. Instead, use [Azure Storage Explorer](https://azure.microsoft.com/features/storage-explorer/) to modify your data in the appropriate folder in Blob Storage.
+> When incremental refresh is enabled, don't create a new version for the dataset you want to update. If you do, the updates won't be seen because the data labeling project is pinned to the initial version. Instead, use [Azure Storage Explorer](https://azure.microsoft.com/features/storage-explorer/) to modify your data in the appropriate folder in Blob Storage.
 >
 > Also, don't remove data. Removing data from the dataset your project uses causes an error in the project. 
 

@@ -6,9 +6,9 @@ description: Configure indexer connections to access content from other Azure re
 manager: nitinme
 author: mrcarter8
 ms.author: mcarter
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 08/06/2024
+ms.date: 10/22/2024
 ---
 
 # Make outbound connections through a shared private link
@@ -60,13 +60,17 @@ While both scenarios have a dependency on Azure Private Link, they're independen
 
 When evaluating shared private links for your scenario, remember these constraints.
 
-+ Several of the resource types used in a shared private link are in preview. If you're connecting to a preview resource (Azure Database for MySQL, Azure Functions, or Azure SQL Managed Instance), use a preview version of the Management REST API to create the shared private link. These versions include `2020-08-01-preview`, `2021-04-01-preview`, `2024-03-01-preview`, and `2024-06-01-preview`. We recommend the latest preview API.
++ Several of the resource types used in a shared private link are in preview. If you're connecting to a preview resource (Azure Database for MySQL or Azure SQL Managed Instance), use a preview version of the Management REST API to create the shared private link. These versions include `2020-08-01-preview`, `2021-04-01-preview`, `2024-03-01-preview`, and `2024-06-01-preview`. We recommend the latest preview API.
 
 + Indexer execution must use the private execution environment that's specific to your search service. Private endpoint connections aren't supported from the multitenant environment. The configuration setting for this requirement is covered in this article.
 
 ## Prerequisites
 
-+ An Azure AI Search at the Basic tier or higher. If you're using [AI enrichment](cognitive-search-concept-intro.md) and skillsets, the tier must be Standard 2 (S2) or higher. See [Service limits](search-limits-quotas-capacity.md#shared-private-link-resource-limits) for details.
++ For [integrated vectorization](vector-search-integrated-vectorization.md) only, outbound connections through shared private link are supported on all billable tiers, only on services [created after April 3, 2024](vector-search-index-size.md#how-to-check-service-creation-date) located in regions providing [higher capacity](search-limits-quotas-capacity.md#partition-storage-gb). 
+
++ For [AI enrichment](cognitive-search-concept-intro.md), skillset processing that doesn't include an embedding skill and in services [created before April 3, 2024](vector-search-index-size.md#how-to-check-service-creation-date), Azure AI Search must be Standard 2 (S2) or higher.
+
++ For all other use cases, that don't involve skillsets, Azure AI Search can be Basic or higher.
 
 + An Azure PaaS resource from the following list of [supported resource types](#supported-resource-types), configured to run in a virtual network.
 
@@ -95,7 +99,7 @@ You can create a shared private link for the following resources.
 | Microsoft.DBforMySQL/servers (preview) | `mysqlServer`|
 | Microsoft.Web/sites <sup>4</sup> | `sites` |
 | Microsoft.Sql/managedInstances (preview) <sup>5</sup>| `managedInstance` |
-| Microsoft.CognitiveServices/accounts <sup>6</sup>| `openai_account` |
+| Microsoft.CognitiveServices/accounts <sup>6</sup> <sup>7</sup>| `openai_account` |
 
 <sup>1</sup> If Azure Storage and Azure AI Search are in the same region, the connection to storage is made over the Microsoft backbone network, which means a shared private link is redundant for this configuration. However, if you already set up a private endpoint for Azure Storage, you should also set up a shared private link or the connection is refused on the storage side. Also, if you're using multiple storage formats for various scenarios in search, make sure to create a separate shared private link for each subresource.
 
@@ -108,6 +112,9 @@ You can create a shared private link for the following resources.
 <sup>5</sup> See [Create a shared private link for a SQL Managed Instance](search-indexer-how-to-access-private-sql.md) for instructions.
 
 <sup>6</sup> The `Microsoft.CognitiveServices/accounts` resource type is used for vectorizer and indexer connections to Azure OpenAI when implementing [integrated Vectorization](vector-search-integrated-vectorization.md). There's currently no support for shared private link to embedding models in the Azure AI Studio model catalog or to the Azure AI Vision multimodal API.
+
+<sup>7</sup> Shared Private Link for Azure OpenAI is only supported in public cloud. Other cloud offerings such as [Microsoft Azure Government](https://azure.microsoft.com/explore/global-infrastructure/government/) don't have support for Shared Private Links for `openai_account` Group ID.
+
 
 ## 1 - Create a shared private link
 
@@ -270,12 +277,12 @@ A `202 Accepted` response is returned on success. The process of creating an out
 <!-- 
 1. Check the response. The `PUT` call to create the shared private endpoint returns an `Azure-AsyncOperation` header value that looks like the following:
 
-   `"Azure-AsyncOperation": "https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/contoso/providers/Microsoft.Search/searchServices/contoso-search/sharedPrivateLinkResources/blob-pe/operationStatuses/08586060559526078782?api-version=2022-09-01"`
+   `"Azure-AsyncOperation": "https://management.azure.com/subscriptions/ffffffff-eeee-dddd-cccc-bbbbbbbbbbb0/resourceGroups/contoso/providers/Microsoft.Search/searchServices/contoso-search/sharedPrivateLinkResources/blob-pe/operationStatuses/08586060559526078782?api-version=2022-09-01"`
 
    You can poll for the status by manually querying the `Azure-AsyncOperationHeader` value.
 
    ```azurecli
-   az rest --method get --uri https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/contoso/providers/Microsoft.Search/searchServices/contoso-search/sharedPrivateLinkResources/blob-pe/operationStatuses/08586060559526078782?api-version=2022-09-01
+   az rest --method get --uri https://management.azure.com/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/contoso/providers/Microsoft.Search/searchServices/contoso-search/sharedPrivateLinkResources/blob-pe/operationStatuses/08586060559526078782?api-version=2022-09-01
    ```
  -->
 
@@ -318,7 +325,7 @@ On the Azure AI Search side, you can confirm request approval by revisiting the 
 Alternatively, you can also obtain connection state by using the [Shared Private Link Resources - Get](/rest/api/searchmanagement/shared-private-link-resources/get).
 
 ```dotnetcli
-az rest --method get --uri https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/contoso/providers/Microsoft.Search/searchServices/contoso-search/sharedPrivateLinkResources/blob-pe?api-version=2024-07-01
+az rest --method get --uri https://management.azure.com/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/contoso/providers/Microsoft.Search/searchServices/contoso-search/sharedPrivateLinkResources/blob-pe?api-version=2024-07-01
 ```
 
 This would return a JSON, where the connection state shows up as "status" under the "properties" section. Following is an example for a storage account.
@@ -327,7 +334,7 @@ This would return a JSON, where the connection state shows up as "status" under 
 {
       "name": "blob-pe",
       "properties": {
-        "privateLinkResourceId": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/contoso/providers/Microsoft.Storage/storageAccounts/contoso-storage",
+        "privateLinkResourceId": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/contoso/providers/Microsoft.Storage/storageAccounts/contoso-storage",
         "groupId": "blob",
         "requestMessage": "please approve",
         "status": "Approved",
@@ -352,7 +359,7 @@ This step shows you how to configure the indexer to run in the private environme
 
 1. Create the data source definition, index, and skillset (if you're using one) as you would normally. There are no properties in any of these definitions that vary when using a shared private endpoint.
 
-1. [Create an indexer](/rest/api/searchservice/create-indexer) that points to the data source, index, and skillset that you created in the preceding step. In addition, force the indexer to run in the private execution environment by setting the indexer `executionEnvironment` configuration property to `private`.
+1. [Create an indexer](/rest/api/searchservice/indexers/create) that points to the data source, index, and skillset that you created in the preceding step. In addition, force the indexer to run in the private execution environment by setting the indexer `executionEnvironment` configuration property to `private`.
 
     ```json
     {
@@ -368,10 +375,10 @@ This step shows you how to configure the indexer to run in the private environme
     }
     ```
 
-After the indexer is created successfully, it should connect to the Azure resource over the private endpoint connection. You can monitor the status of the indexer by using the [Indexer Status API](/rest/api/searchservice/get-indexer-status).
+After the indexer is created successfully, it should connect to the Azure resource over the private endpoint connection. You can monitor the status of the indexer by using the [Indexer Status API](/rest/api/searchservice/indexers/get-status).
 
 > [!NOTE]
-> If you already have existing indexers, you can update them via the [PUT API](/rest/api/searchservice/create-indexer) by setting the `executionEnvironment` to `private` or using the JSON editor in the portal.
+> If you already have existing indexers, you can update them via the [PUT API](/rest/api/searchservice/indexers/create) by setting the `executionEnvironment` to `private` or using the JSON editor in the portal.
 
 ## 5 - Test the shared private link
 
@@ -414,7 +421,7 @@ After the indexer is created successfully, it should connect to the Azure resour
 
 + If your indexer creation fails with "Data source credentials are invalid," check the approval status of the shared private link before debugging the connection. If the status is `Approved`, check the `properties.provisioningState` property. If it's `Incomplete`, there might be a problem with underlying dependencies. In this case, reissue the `PUT` request to re-create the shared private link. You might also need to repeat the approval step.
 
-+ If indexers fail consistently or intermittently, check the [`executionEnvironment` property](/rest/api/searchservice/update-indexer) on the indexer. The value should be set to `private`. If you didn't set this property, and indexer runs succeeded in the past, it's because the search service used a private environment of its own accord. A search service moves processing out of the standard environment if the system is under load.
++ If indexers fail consistently or intermittently, check the [`executionEnvironment` property](/rest/api/searchservice/indexers/create-or-update) on the indexer. The value should be set to `private`. If you didn't set this property, and indexer runs succeeded in the past, it's because the search service used a private environment of its own accord. A search service moves processing out of the standard environment if the system is under load.
 
 + If you get an error when creating a shared private link, check [service limits](search-limits-quotas-capacity.md) to verify that you're under the quota for your tier.
 

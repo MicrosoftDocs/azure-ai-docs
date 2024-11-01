@@ -2,21 +2,19 @@
 title: Connections in Azure AI Studio
 titleSuffix: Azure AI Studio
 description: This article introduces connections in Azure AI Studio.
-manager: nitinme
+manager: scottpolly
 ms.service: azure-ai-studio
 ms.custom:
   - ignite-2023
   - build-2024
 ms.topic: conceptual
 ms.date: 5/21/2024
-ms.reviewer: eur
-ms.author: eur
-author: eric-urban
+ms.reviewer: sgilley
+ms.author: sgilley
+author: sdgilley
 ---
 
 # Connections in Azure AI Studio
-
-[!INCLUDE [Feature preview](~/reusable-content/ce-skilling/azure/includes/ai-studio/includes/feature-preview.md)]
 
 Connections in Azure AI Studio are a way to authenticate and consume both Microsoft and non-Microsoft resources within your AI Studio projects. For example, connections can be used for prompt flow, training data, and deployments. [Connections can be created](../how-to/connections-add.md) exclusively for one project or shared with all projects in the same hub. 
 
@@ -53,6 +51,9 @@ When you create a connection with an existing Azure storage account, you can cho
 
 - **Credential-based**: Authenticate data access with a service principal, shared access signature (SAS) token, or account key. Users with *Reader* project permissions can access the credentials.
 - **Identity-based**: Use your Microsoft Entra ID or managed identity to authenticate data access.
+
+    > [!TIP]
+    > When using an identity-based connection, Azure role-based access control (Azure RBAC) is used to determine who can access the connection. You must assign the correct Azure RBAC roles to your developers before they can use the connection. For more information, see [Scenario: Connections using Microsoft Entra ID](rbac-ai-studio.md#scenario-connections-using-microsoft-entra-id-authentication).
 
 
 The following table shows the supported Azure cloud-based storage services and authentication methods:

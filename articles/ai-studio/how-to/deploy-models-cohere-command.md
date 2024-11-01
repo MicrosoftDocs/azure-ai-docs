@@ -5,7 +5,7 @@ description: Learn how to use Cohere Command chat models with Azure AI Studio.
 ms.service: azure-ai-studio
 manager: scottpolly
 ms.topic: how-to
-ms.date: 08/08/2024
+ms.date: 09/23/2024
 ms.reviewer: shubhiraj
 reviewer: shubhirajMsft
 ms.author: mopeakande
@@ -16,12 +16,12 @@ zone_pivot_groups: azure-ai-model-catalog-samples-chat
 
 # How to use Cohere Command chat models
 
-[!INCLUDE [Feature preview](~/reusable-content/ce-skilling/azure/includes/ai-studio/includes/feature-preview.md)]
+[!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
 In this article, you learn about Cohere Command chat models and how to use them.
 The Cohere family of models includes various models optimized for different use cases, including chat completions, embeddings, and rerank. Cohere models are optimized for various use cases that include reasoning, summarization, and question answering.
 
-
+[!INCLUDE [models-preview](../includes/models-preview.md)]
 
 ::: zone pivot="programming-language-python"
 
@@ -29,14 +29,52 @@ The Cohere family of models includes various models optimized for different use 
 
 The Cohere Command chat models include the following models:
 
+# [Cohere Command R+ 08-2024](#tab/cohere-command-r-plus-08-2024)
+
+Command R+ 08-2024 is a generative large language model optimized for various use cases, including reasoning, summarization, and question answering.
+
+* **Model Architecture**: Command R+ 08-2024 is an autoregressive language model that uses an optimized transformer architecture. After pre-training, the model uses supervised fine-tuning (SFT) and preference training to align model behavior to human preferences for helpfulness and safety.
+* **Languages covered**: The mode is optimized to perform well in the following languages: English, French, Spanish, Italian, German, Brazilian Portuguese, Japanese, Korean, simplified Chinese, and Arabic.
+* **Pre-training data also included the following 13 languages:** Russian, Polish, Turkish, Vietnamese, Dutch, Czech, Indonesian, Ukrainian, Romanian, Greek, Hindi, Hebrew, and Persian.
+* **Context length:** Command R+ 08-2024 supports a context length of 128 K.
+* **Input:** Text only.
+* **Output:** Text only.
+
+We recommend using Command R+ 08-2024 for those workflows that lean on complex retrieval augmented generation (RAG) functionality, multi-step tool use (agents), and structured outputs.
+
+
+The following models are available:
+
+* [Cohere-command-r-plus-08-2024](https://aka.ms/azureai/landing/Cohere-command-r-plus-08-2024)
+
+
+# [Cohere Command R 08-2024](#tab/cohere-command-r-08-2024)
+
+Command R 08-2024 is a large language model optimized for various use cases, including reasoning, summarization, and question answering.
+
+* **Model Architecture**: Command R 08-2024 is an autoregressive language model that uses an optimized transformer architecture. After pre-training, the model uses supervised fine-tuning (SFT) and preference training to align model behavior to human preferences for helpfulness and safety.
+* **Languages covered**: The model is optimized to perform well in the following languages: English, French, Spanish, Italian, German, Brazilian Portuguese, Japanese, Korean, simplified Chinese, and Arabic.
+* **Pre-training data also included the following 13 languages:** Russian, Polish, Turkish, Vietnamese, Dutch, Czech, Indonesian, Ukrainian, Romanian, Greek, Hindi, Hebrew, and Persian.
+* **Context length:** Command R 08-2024 supports a context length of 128 K.
+* **Input:** Text only.
+* **Output:** Text only.
+
+
+The following models are available:
+
+* [Cohere-command-r-08-2024](https://aka.ms/azureai/landing/Cohere-command-r-08-2024)
+
+
 # [Cohere Command R+](#tab/cohere-command-r-plus)
 
 Command R+ is a generative large language model optimized for various use cases, including reasoning, summarization, and question answering.
 
-* **Model Architecture**: Both Command R and Command R+ are autoregressive language models that use an optimized transformer architecture. After pre-training, the models use supervised fine-tuning (SFT) and preference training to align model behavior to human preferences for helpfulness and safety.
-* **Languages covered**: The models are optimized to perform well in the following languages: English, French, Spanish, Italian, German, Brazilian Portuguese, Japanese, Korean, simplified Chinese, and Arabic.
+* **Model Architecture**: Command R+ is an autoregressive language model that uses an optimized transformer architecture. After pre-training, the model uses supervised fine-tuning (SFT) and preference training to align model behavior to human preferences for helpfulness and safety.
+* **Languages covered**: The model is optimized to perform well in the following languages: English, French, Spanish, Italian, German, Brazilian Portuguese, Japanese, Korean, simplified Chinese, and Arabic.
 * **Pre-training data also included the following 13 languages:** Russian, Polish, Turkish, Vietnamese, Dutch, Czech, Indonesian, Ukrainian, Romanian, Greek, Hindi, Hebrew, and Persian.
-* **Context length:** Command R and Command R+ support a context length of 128 K.
+* **Context length:** Command R+ supports a context length of 128 K.
+* **Input:** Text only.
+* **Output:** Text only.
 
 We recommend using Command R+ for those workflows that lean on complex retrieval augmented generation (RAG) functionality and multi-step tool use (agents).
 
@@ -50,10 +88,10 @@ The following models are available:
 
 Command R is a large language model optimized for various use cases, including reasoning, summarization, and question answering.
 
-* **Model Architecture**: Both Command R and Command R+ are autoregressive language models that use an optimized transformer architecture. After pre-training, the models use supervised fine-tuning (SFT) and preference training to align model behavior to human preferences for helpfulness and safety.
-* **Languages covered**: The models are optimized to perform well in the following languages: English, French, Spanish, Italian, German, Brazilian Portuguese, Japanese, Korean, simplified Chinese, and Arabic.
+* **Model Architecture**: Command R is an autoregressive language model that uses an optimized transformer architecture. After pre-training, the model uses supervised fine-tuning (SFT) and preference training to align model behavior to human preferences for helpfulness and safety.
+* **Languages covered**: The model is optimized to perform well in the following languages: English, French, Spanish, Italian, German, Brazilian Portuguese, Japanese, Korean, simplified Chinese, and Arabic.
 * **Pre-training data also included the following 13 languages:** Russian, Polish, Turkish, Vietnamese, Dutch, Czech, Indonesian, Ukrainian, Romanian, Greek, Hindi, Hebrew, and Persian.
-* **Context length:** Command R and Command R+ support a context length of 128 K.
+* **Context length:** Command R supports a context length of 128 K.
 
 Command R is great for simpler retrieval augmented generation (RAG) and single-step tool use tasks. It's also great for use in applications where price is a major consideration.
 
@@ -141,7 +179,7 @@ print("Model provider name:", model_info.model_provider_name)
 ```
 
 ```console
-Model name: Cohere-command-r-plus
+Model name: Cohere-command-r-plus-08-2024
 Model type: chat-completions
 Model provider name: Cohere
 ```
@@ -175,7 +213,7 @@ print("\tCompletion tokens:", response.usage.completion_tokens)
 
 ```console
 Response: As of now, it's estimated that there are about 7,000 languages spoken around the world. However, this number can vary as some languages become extinct and new ones develop. It's also important to note that the number of speakers can greatly vary between languages, with some having millions of speakers and others only a few hundred.
-Model: Cohere-command-r-plus
+Model: Cohere-command-r-plus-08-2024
 Usage: 
   Prompt tokens: 19
   Total tokens: 91
@@ -244,7 +282,7 @@ response = client.complete(
     stop=["<|endoftext|>"],
     temperature=0,
     top_p=1,
-    response_format=ChatCompletionsResponseFormatText(),
+    response_format={ "type": ChatCompletionsResponseFormatText() },
 )
 ```
 
@@ -264,7 +302,7 @@ response = client.complete(
                       " the following format: { ""answer"": ""response"" }."),
         UserMessage(content="How many languages are in the world?"),
     ],
-    response_format=ChatCompletionsResponseFormatJSON()
+    response_format={ "type": ChatCompletionsResponseFormatJSON() }
 )
 ```
 
@@ -332,7 +370,7 @@ def get_flight_info(loc_origin: str, loc_destination: str):
 ```
 
 > [!NOTE]
-> Cohere-command-r-plus and Cohere-command-r require a tool's responses to be a valid JSON content formatted as a string. When constructing messages of type *Tool*, ensure the response is a valid JSON string.
+> Cohere-command-r-plus-08-2024, Cohere-command-r-08-2024, Cohere-command-r-plus, and Cohere-command-r require a tool's responses to be a valid JSON content formatted as a string. When constructing messages of type *Tool*, ensure the response is a valid JSON string.
 
 Prompt the model to book flights with the help of this function:
 
@@ -424,7 +462,7 @@ response = client.complete(
 
 ### Apply content safety
 
-The Azure AI model inference API supports [Azure AI content safety](https://aka.ms/azureaicontentsafety). When you use deployments with Azure AI content safety turned on, inputs and outputs pass through an ensemble of classification models aimed at detecting and preventing the output of harmful content. The content filtering system detects and takes action on specific categories of potentially harmful content in both input prompts and output completions.
+The Azure AI model inference API supports [Azure AI content safety](https://aka.ms/azureaicontentsafety). When you use deployments with Azure AI content safety turned on, inputs and outputs pass through an ensemble of classification models aimed at detecting and preventing the output of harmful content. The content filtering (preview) system detects and takes action on specific categories of potentially harmful content in both input prompts and output completions.
 
 The following example shows how to handle events when the model detects harmful content in the input prompt and content safety is enabled.
 
@@ -464,14 +502,52 @@ except HttpResponseError as ex:
 
 The Cohere Command chat models include the following models:
 
+# [Cohere Command R+ 08-2024](#tab/cohere-command-r-plus-08-2024)
+
+Command R+ 08-2024 is a generative large language model optimized for various use cases, including reasoning, summarization, and question answering.
+
+* **Model Architecture**: Command R+ 08-2024 is an autoregressive language model that uses an optimized transformer architecture. After pre-training, the model uses supervised fine-tuning (SFT) and preference training to align model behavior to human preferences for helpfulness and safety.
+* **Languages covered**: The mode is optimized to perform well in the following languages: English, French, Spanish, Italian, German, Brazilian Portuguese, Japanese, Korean, simplified Chinese, and Arabic.
+* **Pre-training data also included the following 13 languages:** Russian, Polish, Turkish, Vietnamese, Dutch, Czech, Indonesian, Ukrainian, Romanian, Greek, Hindi, Hebrew, and Persian.
+* **Context length:** Command R+ 08-2024 supports a context length of 128 K.
+* **Input:** Text only.
+* **Output:** Text only.
+
+We recommend using Command R+ 08-2024 for those workflows that lean on complex retrieval augmented generation (RAG) functionality, multi-step tool use (agents), and structured outputs.
+
+
+The following models are available:
+
+* [Cohere-command-r-plus-08-2024](https://aka.ms/azureai/landing/Cohere-command-r-plus-08-2024)
+
+
+# [Cohere Command R 08-2024](#tab/cohere-command-r-08-2024)
+
+Command R 08-2024 is a large language model optimized for various use cases, including reasoning, summarization, and question answering.
+
+* **Model Architecture**: Command R 08-2024 is an autoregressive language model that uses an optimized transformer architecture. After pre-training, the model uses supervised fine-tuning (SFT) and preference training to align model behavior to human preferences for helpfulness and safety.
+* **Languages covered**: The model is optimized to perform well in the following languages: English, French, Spanish, Italian, German, Brazilian Portuguese, Japanese, Korean, simplified Chinese, and Arabic.
+* **Pre-training data also included the following 13 languages:** Russian, Polish, Turkish, Vietnamese, Dutch, Czech, Indonesian, Ukrainian, Romanian, Greek, Hindi, Hebrew, and Persian.
+* **Context length:** Command R 08-2024 supports a context length of 128 K.
+* **Input:** Text only.
+* **Output:** Text only.
+
+
+The following models are available:
+
+* [Cohere-command-r-08-2024](https://aka.ms/azureai/landing/Cohere-command-r-08-2024)
+
+
 # [Cohere Command R+](#tab/cohere-command-r-plus)
 
 Command R+ is a generative large language model optimized for various use cases, including reasoning, summarization, and question answering.
 
-* **Model Architecture**: Both Command R and Command R+ are autoregressive language models that use an optimized transformer architecture. After pre-training, the models use supervised fine-tuning (SFT) and preference training to align model behavior to human preferences for helpfulness and safety.
-* **Languages covered**: The models are optimized to perform well in the following languages: English, French, Spanish, Italian, German, Brazilian Portuguese, Japanese, Korean, simplified Chinese, and Arabic.
+* **Model Architecture**: Command R+ is an autoregressive language model that uses an optimized transformer architecture. After pre-training, the model uses supervised fine-tuning (SFT) and preference training to align model behavior to human preferences for helpfulness and safety.
+* **Languages covered**: The model is optimized to perform well in the following languages: English, French, Spanish, Italian, German, Brazilian Portuguese, Japanese, Korean, simplified Chinese, and Arabic.
 * **Pre-training data also included the following 13 languages:** Russian, Polish, Turkish, Vietnamese, Dutch, Czech, Indonesian, Ukrainian, Romanian, Greek, Hindi, Hebrew, and Persian.
-* **Context length:** Command R and Command R+ support a context length of 128 K.
+* **Context length:** Command R+ supports a context length of 128 K.
+* **Input:** Text only.
+* **Output:** Text only.
 
 We recommend using Command R+ for those workflows that lean on complex retrieval augmented generation (RAG) functionality and multi-step tool use (agents).
 
@@ -485,10 +561,10 @@ The following models are available:
 
 Command R is a large language model optimized for various use cases, including reasoning, summarization, and question answering.
 
-* **Model Architecture**: Both Command R and Command R+ are autoregressive language models that use an optimized transformer architecture. After pre-training, the models use supervised fine-tuning (SFT) and preference training to align model behavior to human preferences for helpfulness and safety.
-* **Languages covered**: The models are optimized to perform well in the following languages: English, French, Spanish, Italian, German, Brazilian Portuguese, Japanese, Korean, simplified Chinese, and Arabic.
+* **Model Architecture**: Command R is an autoregressive language model that uses an optimized transformer architecture. After pre-training, the model uses supervised fine-tuning (SFT) and preference training to align model behavior to human preferences for helpfulness and safety.
+* **Languages covered**: The model is optimized to perform well in the following languages: English, French, Spanish, Italian, German, Brazilian Portuguese, Japanese, Korean, simplified Chinese, and Arabic.
 * **Pre-training data also included the following 13 languages:** Russian, Polish, Turkish, Vietnamese, Dutch, Czech, Indonesian, Ukrainian, Romanian, Greek, Hindi, Hebrew, and Persian.
-* **Context length:** Command R and Command R+ support a context length of 128 K.
+* **Context length:** Command R supports a context length of 128 K.
 
 Command R is great for simpler retrieval augmented generation (RAG) and single-step tool use tasks. It's also great for use in applications where price is a major consideration.
 
@@ -574,7 +650,7 @@ console.log("Model provider name: ", model_info.body.model_provider_name)
 ```
 
 ```console
-Model name: Cohere-command-r-plus
+Model name: Cohere-command-r-plus-08-2024
 Model type: chat-completions
 Model provider name: Cohere
 ```
@@ -614,7 +690,7 @@ console.log("\tCompletion tokens:", response.body.usage.completion_tokens);
 
 ```console
 Response: As of now, it's estimated that there are about 7,000 languages spoken around the world. However, this number can vary as some languages become extinct and new ones develop. It's also important to note that the number of speakers can greatly vary between languages, with some having millions of speakers and others only a few hundred.
-Model: Cohere-command-r-plus
+Model: Cohere-command-r-plus-08-2024
 Usage: 
   Prompt tokens: 19
   Total tokens: 91
@@ -788,7 +864,7 @@ function get_flight_info(loc_origin, loc_destination) {
 ```
 
 > [!NOTE]
-> Cohere-command-r-plus and Cohere-command-r require a tool's responses to be a valid JSON content formatted as a string. When constructing messages of type *Tool*, ensure the response is a valid JSON string.
+> Cohere-command-r-plus-08-2024, Cohere-command-r-08-2024, Cohere-command-r-plus, and Cohere-command-r require a tool's responses to be a valid JSON content formatted as a string. When constructing messages of type *Tool*, ensure the response is a valid JSON string.
 
 Prompt the model to book flights with the help of this function:
 
@@ -867,7 +943,7 @@ var result = await client.path("/chat/completions").post({
 
 ### Apply content safety
 
-The Azure AI model inference API supports [Azure AI content safety](https://aka.ms/azureaicontentsafety). When you use deployments with Azure AI content safety turned on, inputs and outputs pass through an ensemble of classification models aimed at detecting and preventing the output of harmful content. The content filtering system detects and takes action on specific categories of potentially harmful content in both input prompts and output completions.
+The Azure AI model inference API supports [Azure AI content safety](https://aka.ms/azureaicontentsafety). When you use deployments with Azure AI content safety turned on, inputs and outputs pass through an ensemble of classification models aimed at detecting and preventing the output of harmful content. The content filtering (preview) system detects and takes action on specific categories of potentially harmful content in both input prompts and output completions.
 
 The following example shows how to handle events when the model detects harmful content in the input prompt and content safety is enabled.
 
@@ -913,14 +989,52 @@ catch (error) {
 
 The Cohere Command chat models include the following models:
 
+# [Cohere Command R+ 08-2024](#tab/cohere-command-r-plus-08-2024)
+
+Command R+ 08-2024 is a generative large language model optimized for various use cases, including reasoning, summarization, and question answering.
+
+* **Model Architecture**: Command R+ 08-2024 is an autoregressive language model that uses an optimized transformer architecture. After pre-training, the model uses supervised fine-tuning (SFT) and preference training to align model behavior to human preferences for helpfulness and safety.
+* **Languages covered**: The mode is optimized to perform well in the following languages: English, French, Spanish, Italian, German, Brazilian Portuguese, Japanese, Korean, simplified Chinese, and Arabic.
+* **Pre-training data also included the following 13 languages:** Russian, Polish, Turkish, Vietnamese, Dutch, Czech, Indonesian, Ukrainian, Romanian, Greek, Hindi, Hebrew, and Persian.
+* **Context length:** Command R+ 08-2024 supports a context length of 128 K.
+* **Input:** Text only.
+* **Output:** Text only.
+
+We recommend using Command R+ 08-2024 for those workflows that lean on complex retrieval augmented generation (RAG) functionality, multi-step tool use (agents), and structured outputs.
+
+
+The following models are available:
+
+* [Cohere-command-r-plus-08-2024](https://aka.ms/azureai/landing/Cohere-command-r-plus-08-2024)
+
+
+# [Cohere Command R 08-2024](#tab/cohere-command-r-08-2024)
+
+Command R 08-2024 is a large language model optimized for various use cases, including reasoning, summarization, and question answering.
+
+* **Model Architecture**: Command R 08-2024 is an autoregressive language model that uses an optimized transformer architecture. After pre-training, the model uses supervised fine-tuning (SFT) and preference training to align model behavior to human preferences for helpfulness and safety.
+* **Languages covered**: The model is optimized to perform well in the following languages: English, French, Spanish, Italian, German, Brazilian Portuguese, Japanese, Korean, simplified Chinese, and Arabic.
+* **Pre-training data also included the following 13 languages:** Russian, Polish, Turkish, Vietnamese, Dutch, Czech, Indonesian, Ukrainian, Romanian, Greek, Hindi, Hebrew, and Persian.
+* **Context length:** Command R 08-2024 supports a context length of 128 K.
+* **Input:** Text only.
+* **Output:** Text only.
+
+
+The following models are available:
+
+* [Cohere-command-r-08-2024](https://aka.ms/azureai/landing/Cohere-command-r-08-2024)
+
+
 # [Cohere Command R+](#tab/cohere-command-r-plus)
 
 Command R+ is a generative large language model optimized for various use cases, including reasoning, summarization, and question answering.
 
-* **Model Architecture**: Both Command R and Command R+ are autoregressive language models that use an optimized transformer architecture. After pre-training, the models use supervised fine-tuning (SFT) and preference training to align model behavior to human preferences for helpfulness and safety.
-* **Languages covered**: The models are optimized to perform well in the following languages: English, French, Spanish, Italian, German, Brazilian Portuguese, Japanese, Korean, simplified Chinese, and Arabic.
+* **Model Architecture**: Command R+ is an autoregressive language model that uses an optimized transformer architecture. After pre-training, the model uses supervised fine-tuning (SFT) and preference training to align model behavior to human preferences for helpfulness and safety.
+* **Languages covered**: The model is optimized to perform well in the following languages: English, French, Spanish, Italian, German, Brazilian Portuguese, Japanese, Korean, simplified Chinese, and Arabic.
 * **Pre-training data also included the following 13 languages:** Russian, Polish, Turkish, Vietnamese, Dutch, Czech, Indonesian, Ukrainian, Romanian, Greek, Hindi, Hebrew, and Persian.
-* **Context length:** Command R and Command R+ support a context length of 128 K.
+* **Context length:** Command R+ supports a context length of 128 K.
+* **Input:** Text only.
+* **Output:** Text only.
 
 We recommend using Command R+ for those workflows that lean on complex retrieval augmented generation (RAG) functionality and multi-step tool use (agents).
 
@@ -934,10 +1048,10 @@ The following models are available:
 
 Command R is a large language model optimized for various use cases, including reasoning, summarization, and question answering.
 
-* **Model Architecture**: Both Command R and Command R+ are autoregressive language models that use an optimized transformer architecture. After pre-training, the models use supervised fine-tuning (SFT) and preference training to align model behavior to human preferences for helpfulness and safety.
-* **Languages covered**: The models are optimized to perform well in the following languages: English, French, Spanish, Italian, German, Brazilian Portuguese, Japanese, Korean, simplified Chinese, and Arabic.
+* **Model Architecture**: Command R is an autoregressive language model that uses an optimized transformer architecture. After pre-training, the model uses supervised fine-tuning (SFT) and preference training to align model behavior to human preferences for helpfulness and safety.
+* **Languages covered**: The model is optimized to perform well in the following languages: English, French, Spanish, Italian, German, Brazilian Portuguese, Japanese, Korean, simplified Chinese, and Arabic.
 * **Pre-training data also included the following 13 languages:** Russian, Polish, Turkish, Vietnamese, Dutch, Czech, Indonesian, Ukrainian, Romanian, Greek, Hindi, Hebrew, and Persian.
-* **Context length:** Command R and Command R+ support a context length of 128 K.
+* **Context length:** Command R supports a context length of 128 K.
 
 Command R is great for simpler retrieval augmented generation (RAG) and single-step tool use tasks. It's also great for use in applications where price is a major consideration.
 
@@ -969,7 +1083,7 @@ Deployment to a serverless API endpoint doesn't require quota from your subscrip
 
 ### The inference package installed
 
-You can consume predictions from this model by using the `Azure.AI.Inference` package from [Nuget](https://www.nuget.org/). To install this package, you need the following prerequisites:
+You can consume predictions from this model by using the `Azure.AI.Inference` package from [NuGet](https://www.nuget.org/). To install this package, you need the following prerequisites:
 
 * The endpoint URL. To construct the client library, you need to pass in the endpoint URL. The endpoint URL has the form `https://your-host-name.your-azure-region.inference.ai.azure.com`, where `your-host-name` is your unique model deployment host name and `your-azure-region` is the Azure region where the model is deployed (for example, eastus2).
 * Depending on your model deployment and authentication preference, you need either a key to authenticate against the service, or Microsoft Entra ID credentials. The key is a 32-character string.
@@ -995,7 +1109,7 @@ using Azure.Identity;
 using Azure.AI.Inference;
 ```
 
-This example also use the following namespaces but you may not always need them:
+This example also uses the following namespaces but you may not always need them:
 
 
 ```csharp
@@ -1042,7 +1156,7 @@ Console.WriteLine($"Model provider name: {modelInfo.Value.ModelProviderName}");
 ```
 
 ```console
-Model name: Cohere-command-r-plus
+Model name: Cohere-command-r-plus-08-2024
 Model type: chat-completions
 Model provider name: Cohere
 ```
@@ -1077,7 +1191,7 @@ Console.WriteLine($"\tCompletion tokens: {response.Value.Usage.CompletionTokens}
 
 ```console
 Response: As of now, it's estimated that there are about 7,000 languages spoken around the world. However, this number can vary as some languages become extinct and new ones develop. It's also important to note that the number of speakers can greatly vary between languages, with some having millions of speakers and others only a few hundred.
-Model: Cohere-command-r-plus
+Model: Cohere-command-r-plus-08-2024
 Usage: 
   Prompt tokens: 19
   Total tokens: 91
@@ -1260,7 +1374,7 @@ static string getFlightInfo(string loc_origin, string loc_destination)
 ```
 
 > [!NOTE]
-> Cohere-command-r-plus and Cohere-command-r require a tool's responses to be a valid JSON content formatted as a string. When constructing messages of type *Tool*, ensure the response is a valid JSON string.
+> Cohere-command-r-plus-08-2024, Cohere-command-r-08-2024, Cohere-command-r-plus, and Cohere-command-r require a tool's responses to be a valid JSON content formatted as a string. When constructing messages of type *Tool*, ensure the response is a valid JSON string.
 
 Prompt the model to book flights with the help of this function:
 
@@ -1341,7 +1455,7 @@ response = client.Complete(requestOptions);
 
 ### Apply content safety
 
-The Azure AI model inference API supports [Azure AI content safety](https://aka.ms/azureaicontentsafety). When you use deployments with Azure AI content safety turned on, inputs and outputs pass through an ensemble of classification models aimed at detecting and preventing the output of harmful content. The content filtering system detects and takes action on specific categories of potentially harmful content in both input prompts and output completions.
+The Azure AI model inference API supports [Azure AI content safety](https://aka.ms/azureaicontentsafety). When you use deployments with Azure AI content safety turned on, inputs and outputs pass through an ensemble of classification models aimed at detecting and preventing the output of harmful content. The content filtering (preview) system detects and takes action on specific categories of potentially harmful content in both input prompts and output completions.
 
 The following example shows how to handle events when the model detects harmful content in the input prompt and content safety is enabled.
 
@@ -1387,14 +1501,52 @@ catch (RequestFailedException ex)
 
 The Cohere Command chat models include the following models:
 
+# [Cohere Command R+ 08-2024](#tab/cohere-command-r-plus-08-2024)
+
+Command R+ 08-2024 is a generative large language model optimized for various use cases, including reasoning, summarization, and question answering.
+
+* **Model Architecture**: Command R+ 08-2024 is an autoregressive language model that uses an optimized transformer architecture. After pre-training, the model uses supervised fine-tuning (SFT) and preference training to align model behavior to human preferences for helpfulness and safety.
+* **Languages covered**: The mode is optimized to perform well in the following languages: English, French, Spanish, Italian, German, Brazilian Portuguese, Japanese, Korean, simplified Chinese, and Arabic.
+* **Pre-training data also included the following 13 languages:** Russian, Polish, Turkish, Vietnamese, Dutch, Czech, Indonesian, Ukrainian, Romanian, Greek, Hindi, Hebrew, and Persian.
+* **Context length:** Command R+ 08-2024 supports a context length of 128 K.
+* **Input:** Text only.
+* **Output:** Text only.
+
+We recommend using Command R+ 08-2024 for those workflows that lean on complex retrieval augmented generation (RAG) functionality, multi-step tool use (agents), and structured outputs.
+
+
+The following models are available:
+
+* [Cohere-command-r-plus-08-2024](https://aka.ms/azureai/landing/Cohere-command-r-plus-08-2024)
+
+
+# [Cohere Command R 08-2024](#tab/cohere-command-r-08-2024)
+
+Command R 08-2024 is a large language model optimized for various use cases, including reasoning, summarization, and question answering.
+
+* **Model Architecture**: Command R 08-2024 is an autoregressive language model that uses an optimized transformer architecture. After pre-training, the model uses supervised fine-tuning (SFT) and preference training to align model behavior to human preferences for helpfulness and safety.
+* **Languages covered**: The model is optimized to perform well in the following languages: English, French, Spanish, Italian, German, Brazilian Portuguese, Japanese, Korean, simplified Chinese, and Arabic.
+* **Pre-training data also included the following 13 languages:** Russian, Polish, Turkish, Vietnamese, Dutch, Czech, Indonesian, Ukrainian, Romanian, Greek, Hindi, Hebrew, and Persian.
+* **Context length:** Command R 08-2024 supports a context length of 128 K.
+* **Input:** Text only.
+* **Output:** Text only.
+
+
+The following models are available:
+
+* [Cohere-command-r-08-2024](https://aka.ms/azureai/landing/Cohere-command-r-08-2024)
+
+
 # [Cohere Command R+](#tab/cohere-command-r-plus)
 
 Command R+ is a generative large language model optimized for various use cases, including reasoning, summarization, and question answering.
 
-* **Model Architecture**: Both Command R and Command R+ are autoregressive language models that use an optimized transformer architecture. After pre-training, the models use supervised fine-tuning (SFT) and preference training to align model behavior to human preferences for helpfulness and safety.
-* **Languages covered**: The models are optimized to perform well in the following languages: English, French, Spanish, Italian, German, Brazilian Portuguese, Japanese, Korean, simplified Chinese, and Arabic.
+* **Model Architecture**: Command R+ is an autoregressive language model that uses an optimized transformer architecture. After pre-training, the model uses supervised fine-tuning (SFT) and preference training to align model behavior to human preferences for helpfulness and safety.
+* **Languages covered**: The model is optimized to perform well in the following languages: English, French, Spanish, Italian, German, Brazilian Portuguese, Japanese, Korean, simplified Chinese, and Arabic.
 * **Pre-training data also included the following 13 languages:** Russian, Polish, Turkish, Vietnamese, Dutch, Czech, Indonesian, Ukrainian, Romanian, Greek, Hindi, Hebrew, and Persian.
-* **Context length:** Command R and Command R+ support a context length of 128 K.
+* **Context length:** Command R+ supports a context length of 128 K.
+* **Input:** Text only.
+* **Output:** Text only.
 
 We recommend using Command R+ for those workflows that lean on complex retrieval augmented generation (RAG) functionality and multi-step tool use (agents).
 
@@ -1408,10 +1560,10 @@ The following models are available:
 
 Command R is a large language model optimized for various use cases, including reasoning, summarization, and question answering.
 
-* **Model Architecture**: Both Command R and Command R+ are autoregressive language models that use an optimized transformer architecture. After pre-training, the models use supervised fine-tuning (SFT) and preference training to align model behavior to human preferences for helpfulness and safety.
-* **Languages covered**: The models are optimized to perform well in the following languages: English, French, Spanish, Italian, German, Brazilian Portuguese, Japanese, Korean, simplified Chinese, and Arabic.
+* **Model Architecture**: Command R is an autoregressive language model that uses an optimized transformer architecture. After pre-training, the model uses supervised fine-tuning (SFT) and preference training to align model behavior to human preferences for helpfulness and safety.
+* **Languages covered**: The model is optimized to perform well in the following languages: English, French, Spanish, Italian, German, Brazilian Portuguese, Japanese, Korean, simplified Chinese, and Arabic.
 * **Pre-training data also included the following 13 languages:** Russian, Polish, Turkish, Vietnamese, Dutch, Czech, Indonesian, Ukrainian, Romanian, Greek, Hindi, Hebrew, and Persian.
-* **Context length:** Command R and Command R+ support a context length of 128 K.
+* **Context length:** Command R supports a context length of 128 K.
 
 Command R is great for simpler retrieval augmented generation (RAG) and single-step tool use tasks. It's also great for use in applications where price is a major consideration.
 
@@ -1475,7 +1627,7 @@ The response is as follows:
 
 ```json
 {
-    "model_name": "Cohere-command-r-plus",
+    "model_name": "Cohere-command-r-plus-08-2024",
     "model_type": "chat-completions",
     "model_provider_name": "Cohere"
 }
@@ -1508,7 +1660,7 @@ The response is as follows, where you can see the model's usage statistics:
     "id": "0a1234b5de6789f01gh2i345j6789klm",
     "object": "chat.completion",
     "created": 1718726686,
-    "model": "Cohere-command-r-plus",
+    "model": "Cohere-command-r-plus-08-2024",
     "choices": [
         {
             "index": 0,
@@ -1565,7 +1717,7 @@ You can visualize how streaming generates content:
     "id": "23b54589eba14564ad8a2e6978775a39",
     "object": "chat.completion.chunk",
     "created": 1718726371,
-    "model": "Cohere-command-r-plus",
+    "model": "Cohere-command-r-plus-08-2024",
     "choices": [
         {
             "index": 0,
@@ -1588,7 +1740,7 @@ The last message in the stream has `finish_reason` set, indicating the reason fo
     "id": "23b54589eba14564ad8a2e6978775a39",
     "object": "chat.completion.chunk",
     "created": 1718726371,
-    "model": "Cohere-command-r-plus",
+    "model": "Cohere-command-r-plus-08-2024",
     "choices": [
         {
             "index": 0,
@@ -1639,7 +1791,7 @@ Explore other parameters that you can specify in the inference client. For a ful
     "id": "0a1234b5de6789f01gh2i345j6789klm",
     "object": "chat.completion",
     "created": 1718726686,
-    "model": "Cohere-command-r-plus",
+    "model": "Cohere-command-r-plus-08-2024",
     "choices": [
         {
             "index": 0,
@@ -1689,7 +1841,7 @@ Cohere Command chat models can create JSON outputs. Set `response_format` to `js
     "id": "0a1234b5de6789f01gh2i345j6789klm",
     "object": "chat.completion",
     "created": 1718727522,
-    "model": "Cohere-command-r-plus",
+    "model": "Cohere-command-r-plus-08-2024",
     "choices": [
         {
             "index": 0,
@@ -1778,7 +1930,7 @@ The following code example creates a tool definition that is able to look from f
 In this example, the function's output is that there are no flights available for the selected route, but the user should consider taking a train.
 
 > [!NOTE]
-> Cohere-command-r-plus and Cohere-command-r require a tool's responses to be a valid JSON content formatted as a string. When constructing messages of type *Tool*, ensure the response is a valid JSON string.
+> Cohere-command-r-plus-08-2024, Cohere-command-r-08-2024, Cohere-command-r-plus, and Cohere-command-r require a tool's responses to be a valid JSON content formatted as a string. When constructing messages of type *Tool*, ensure the response is a valid JSON string.
 
 Prompt the model to book flights with the help of this function:
 
@@ -1833,7 +1985,7 @@ You can inspect the response to find out if a tool needs to be called. Inspect t
     "id": "0a1234b5de6789f01gh2i345j6789klm",
     "object": "chat.completion",
     "created": 1718726007,
-    "model": "Cohere-command-r-plus",
+    "model": "Cohere-command-r-plus-08-2024",
     "choices": [
         {
             "index": 0,
@@ -1932,7 +2084,7 @@ View the response from the model:
 
 ### Apply content safety
 
-The Azure AI model inference API supports [Azure AI content safety](https://aka.ms/azureaicontentsafety). When you use deployments with Azure AI content safety turned on, inputs and outputs pass through an ensemble of classification models aimed at detecting and preventing the output of harmful content. The content filtering system detects and takes action on specific categories of potentially harmful content in both input prompts and output completions.
+The Azure AI model inference API supports [Azure AI content safety](https://aka.ms/azureaicontentsafety). When you use deployments with Azure AI content safety turned on, inputs and outputs pass through an ensemble of classification models aimed at detecting and preventing the output of harmful content. The content filtering (preview) system detects and takes action on specific categories of potentially harmful content in both input prompts and output completions.
 
 The following example shows how to handle events when the model detects harmful content in the input prompt and content safety is enabled.
 
@@ -1972,7 +2124,7 @@ The following example shows how to handle events when the model detects harmful 
 
 ## More inference examples
 
-For more examples of how to use Cohere, see the following examples and tutorials:
+For more examples of how to use Cohere models, see the following examples and tutorials:
 
 | Description                               | Language          | Sample                                                          |
 |-------------------------------------------|-------------------|-----------------------------------------------------------------|
@@ -1995,7 +2147,7 @@ For more examples of how to use Cohere, see the following examples and tutorials
 | Command R+ tool/function calling, using LangChain | `cohere`, `langchain`, `langchain_cohere` | [command_tools-langchain.ipynb](https://github.com/Azure/azureml-examples/blob/main/sdk/python/foundation-models/cohere/command_tools-langchain.ipynb) |
 
 
-## Cost and quota considerations for Cohere family of models deployed as serverless API endpoints
+## Cost and quota considerations for Cohere models deployed as serverless API endpoints
 
 Quota is managed per deployment. Each deployment has a rate limit of 200,000 tokens per minute and 1,000 API requests per minute. However, we currently limit one deployment per model per project. Contact Microsoft Azure Support if the current rate limits aren't sufficient for your scenarios.
 

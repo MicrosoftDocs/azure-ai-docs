@@ -22,6 +22,8 @@ author: mrbullwinkle
 
 ## Go to the Azure AI Studio (Preview)
 
+[Azure AI Studio](https://ai.azure.com) lets you use Assistants v2 which provides several upgrades such as the [file search](../how-to/file-search.md) tool which is faster and supports more files.
+
 1. Sign in to [Azure AI Studio](https://ai.azure.com).
 1. Go to your project or [create a new project](../../../ai-studio//how-to/create-projects.md) in Azure AI Studio.
 1. From your project overview, select **Assistants**, located under **Project playground**.

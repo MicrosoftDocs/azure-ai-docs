@@ -5,11 +5,11 @@ description: Explains the concepts behind vector relevance, scoring, including h
 
 author: yahnoosh
 ms.author: jlembicz
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
-ms.topic: conceptual
-ms.date: 08/05/2024
+ms.topic: concept-article
+ms.date: 09/19/2024
 ---
 
 # Relevance in vector search

@@ -5,11 +5,11 @@ description: Describes the Reciprocal Rank Fusion (RRF) algorithm used to unify 
 
 author: yahnoosh
 ms.author: jlembicz
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: conceptual
-ms.date: 06/12/2024
+ms.date: 10/01/2024
 ---
 
 # Relevance scoring in hybrid search using Reciprocal Rank Fusion (RRF)
@@ -17,6 +17,9 @@ ms.date: 06/12/2024
 Reciprocal Rank Fusion (RRF) is an algorithm that evaluates the search scores from multiple, previously ranked results to produce a unified result set. In Azure AI Search, RRF is used whenever there are two or more queries that execute in parallel. Each query produces a ranked result set, and RRF is used to merge and homogenize the rankings into a single result set, returned in the query response. Examples of scenarios where RRF is always used include [*hybrid search*](hybrid-search-overview.md) and multiple vector queries executing concurrently. 
 
 RRF is based on the concept of *reciprocal rank*, which is the inverse of the rank of the first relevant document in a list of search results. The goal of the technique is to take into account the position of the items in the original rankings, and give higher importance to items that are ranked higher in multiple lists. This can help improve the overall quality and reliability of the final ranking, making it more useful for the task of fusing multiple ordered search results.
+
+> [!NOTE]
+> New in [**2024-09-01-preview**](/rest/api/searchservice/documents/search-post?view=rest-searchservice-2024-09-01-preview&preserve-view=true) is the ability to deconstruct an RRF-ranked search score into its component subscores. This gives you transparency into all-up score composition. For more information, see [unpack search scores (preview)](#unpack-a-search-score-into-subscores-preview) in this article.
 
 ## How RRF ranking works
 
@@ -55,11 +58,64 @@ The following chart identifies the scoring property returned on each match, algo
 | hybrid search | `@search.score` | RRF algorithm | Upper limit is bounded by the number of queries being fused, with each query contributing a maximum of approximately 1 to the RRF score. For example, merging three queries would produce higher RRF scores than if only two search results are merged. |
 | semantic ranking | `@search.rerankerScore` | Semantic ranking | 0.00 - 4.00 |
 
-Semantic ranking doesn't participate in RRF. Its score (`@search.rerankerScore`) is always reported separately in the query response. Semantic ranking can rerank full text and hybrid search results, assuming those results include fields having semantically rich content.
+Semantic ranking occurs after RRF merging of results. Its score (`@search.rerankerScore`) is always reported separately in the query response. Semantic ranker can rerank full text and hybrid search results, assuming those results include fields having semantically rich content. It can rerank pure vector queries if the search documents include text fields that contain semantically relevant content.
+
+## Unpack a search score into subscores (preview)
+
+Using [**2024-09-01-preview**](/rest/api/searchservice/documents/search-post?view=rest-searchservice-2024-09-01-preview&preserve-view=true), you can deconstruct a search score to view its subscores.
+
+For vector queries, this information can help you determine an appropriate value for [vector weighting](vector-search-how-to-query.md#vector-weighting) or [setting minimum thresholds](vector-search-how-to-query.md#set-thresholds-to-exclude-low-scoring-results-preview).
+
+To get subscores:
+
++ Use the [latest preview Search Documents REST API](/rest/api/searchservice/documents/search-post?view=rest-searchservice-2024-09-01-preview&preserve-view=true#request-body) or an Azure SDK beta package that provides the feature.
+
++ Modify a query request, adding a new `debug` parameter set to either `vector`, `semantic` if using semantic ranker, or `all`.
+
+Here's an example of hybrid query that returns subscores in debug mode:
+
+```http
+POST https://{{search-service-name}}.search.windows.net/indexes/{{index-name}}/docs/search?api-version=2024-09-01=preview
+
+{
+    "vectorQueries": [
+        {
+            "vector": [
+                -0.009154141,
+                0.018708462,
+                . . . 
+                -0.02178128,
+                -0.00086512347
+            ],
+            "fields": "DescriptionVector",
+            "kind": "vector",
+            "exhaustive": true,
+            "k": 10
+        },
+        {
+            "vector": [
+                -0.009154141,
+                0.018708462,
+                . . . 
+                -0.02178128,
+                -0.00086512347
+            ],
+            "fields": "DescriptionVector",
+            "kind": "vector",
+            "exhaustive": true,
+            "k": 10
+        }
+    ],
+    "search": "historic hotel walk to restaurants and shopping",
+    "select": "HotelName, Description, Address/City",
+    "debug": "vector",
+    "top": 10
+}
+```
 
 ## Weighted scores
 
-Using 2024-07-01 and newer preview API versions, you can [weight vector queries](vector-search-how-to-query.md#vector-weighting) to increase or decrease their importance in a hybrid query.
+Using [**2024-07-01**](/rest/api/searchservice/documents/search-post) and newer preview API versions, you can [weight vector queries](vector-search-how-to-query.md#vector-weighting) to increase or decrease their importance in a hybrid query.
 
 Recall that when computing RRF for a certain document, the search engine looks at the rank of that document for each result set where it shows up. Assume a document shows up in three separate search results, where the results are from two vector queries and one text BM25-ranked query. The position of the document varies in each result.
 
@@ -69,9 +125,9 @@ Recall that when computing RRF for a certain document, the search engine looks a
 | vector results two | position 5 | 0.81514114 | 2.0 | 1.63028228 |
 | BM25 results | position 10  | 0.8577363 | NA | 0.8577363 |
 
-The document's position in each result set corresponds to an initial score, which are added up to create the final RRF score for that document. 
+The document's position in each result set corresponds to an initial score, which is added up to create the final RRF score for that document. 
 
-If you add vector weighting, the initial scores are subect to a weighting multiplier that increases or decreases the score. The default is 1.0, which means no weighting and the initial score is used as-is in RRF scoring. However, if you add a weight of 0.5, the score is reduced and that result becomes less important in the combined ranking. Conversely, if you add a weight of 2.0, the score becomes a larger factor in the overall RRF score.
+If you add vector weighting, the initial scores are subject to a weighting multiplier that increases or decreases the score. The default is 1.0, which means no weighting and the initial score is used as-is in RRF scoring. However, if you add a weight of 0.5, the score is reduced and that result becomes less important in the combined ranking. Conversely, if you add a weight of 2.0, the score becomes a larger factor in the overall RRF score.
 
 In this example, the @search.score (weighted) values are passed to the RRF ranking model.
 
@@ -87,9 +143,9 @@ For more information, see [How to work with search results](search-pagination-pa
 
 ## Diagram of a search scoring workflow
 
-The following diagram illustrates a hybrid query that invokes keyword and vector search, with boosting through scoring profiles, and semantic ranking.
+The following diagram illustrates a hybrid query that invokes keyword and vector search, with [boosting through scoring profiles](index-add-scoring-profiles.md#how-search-scoring-works-in-azure-ai-search), and semantic ranking.
 
-:::image type="content" source="media/hybrid-search/search-scoring-flow.png" alt-text="Diagram of prefilters." border="true" lightbox="media/hybrid-search/search-scoring-flow.png":::
+:::image type="content" source="media/scoring-profiles/scoring-over-ranked-results.png" alt-text="Diagram of prefilters." border="true" lightbox="media/scoring-profiles/scoring-over-ranked-results.png":::
 
 A query that generates the previous workflow might look like this:
 

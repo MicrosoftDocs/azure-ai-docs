@@ -19,6 +19,8 @@ ms.custom: include, build-2024
 - An [Azure AI hub resource](../../../ai-studio/how-to/create-azure-ai-resource.md).
 - An [Azure AI project](../../../ai-studio/how-to/create-projects.md) in Azure AI Studio.
 - An [Azure OpenAI connection](/azure/ai-studio/how-to/connections-add?tabs=azure-openai#connection-details) to a resource in a [region where fine-tuning is supported](/azure/ai-services/openai/concepts/models#fine-tuning-models).
+    > [!NOTE]
+    > The supported regions might vary if you use Azure OpenAI models in an AI Studio project versus outside a project.
 - Fine-tuning access requires **Cognitive Services OpenAI Contributor** role on the Azure OpenAI resource.
 - If you don't already have access to view quota and deploy models in Azure AI Studio you need [more permissions](../how-to/role-based-access-control.md).
 
@@ -32,13 +34,14 @@ The following models support fine-tuning:
 - `gpt-35-turbo` (1106)
 - `gpt-35-turbo` (0125)
 - `gpt-4` (0613)**<sup>*</sup>**
-- `gpt-4o-mini` (2024-07-18)**<sup>*</sup>**
+- `gpt-4o` (2024-08-06)
+- `gpt-4o-mini` (2024-07-18)
 
 **<sup>*</sup>** Fine-tuning for this model is currently in public preview.
 
-Consult the [models page](../concepts/models.md#fine-tuning-models) to check which regions currently support fine-tuning.
+Or you can fine tune a previously fine-tuned model, formatted as base-model.ft-{jobid}.
 
-If you plan to use `gpt-4` for fine-tuning, please refer to the [GPT-4 public preview safety evaluation guidance](#safety-evaluation-gpt-4-fine-tuning---public-preview)
+Consult the [models page](../concepts/models.md#fine-tuning-models) to check which regions currently support fine-tuning.
 
 ## Review the workflow for Azure AI Studio
 
@@ -91,7 +94,7 @@ In addition to the JSONL format, training and validation data files must be enco
 
 ### Create your training and validation datasets
 
-The more training examples you have, the better. Fine tuning jobs will not proceed without at least 10 training examples, but such a small number are not enough to noticeably influence model responses. It is best practice to provide hundreds, if not thousands, of training examples to be successful.
+The more training examples you have, the better. Fine tuning jobs will not proceed without at least 10 training examples, but such a small number is not enough to noticeably influence model responses. It is best practice to provide hundreds, if not thousands, of training examples to be successful.
 
 In general, doubling the dataset size can lead to a linear increase in model quality. But keep in mind, low quality examples can negatively impact performance. If you train the model on a large amount of internal data, without first pruning the dataset for only the highest quality examples you could end up with a model that performs much worse than expected.
 
@@ -253,7 +256,7 @@ When each training epoch completes a checkpoint is generated. A checkpoint is a 
 
 :::image type="content" source="../media/fine-tuning/checkpoints.png" alt-text="Screenshot of checkpoints UI." lightbox="../media/fine-tuning/checkpoints.png":::
 
-## Safety evaluation GPT-4 fine-tuning - public preview
+## Safety evaluation GPT-4, GPT-4o, GPT-4o-mini fine-tuning - public preview
 
 [!INCLUDE [Safety evaluation](../includes/safety-evaluation.md)]
 

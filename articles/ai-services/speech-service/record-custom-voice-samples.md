@@ -6,8 +6,9 @@ author: eric-urban
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: conceptual
-ms.date: 1/21/2024
+ms.date: 9/23/2024
 ms.author: eur
+# Customer intent: As a developer, I want to learn how to record custom voice samples.
 ---
 
 # Recording voice samples for custom neural voice
@@ -49,9 +50,9 @@ Actors with experience in voiceover, voice character work, announcing or news re
 
 Your voice talent must be able to speak with consistent rate, volume level, pitch, and tone with clear dictation. They also need to be able to control their pitch variation, emotional effect, and speech mannerisms. Recording voice samples can be more fatiguing than other kinds of voice work, so most voice talents can only record for two or three hours a day. Limit sessions to three or four days a week, with a day off in-between if possible.
 
-Work with your voice talent to develop a persona that defines the overall sound and emotional tone of the custom neural voice, making sure to pinpoint what "neutral" sounds like for that persona. You define the speaking styles of your persona and ask your voice talent to read the script in a way that resonates with the styles you want.  
+Work with your voice talent to develop a persona that defines the overall sound and emotional tone of the custom neural voice. Define the speaking styles for your persona and ask your voice talent to read the script in a way that aligns with your desired styles. Ensure that the speaking style remains consistent throughout the recordings for a set of training data.
 
-For example, a persona with a naturally upbeat personality would carry a note of optimism even when they speak neutrally. However, this personality trait should be subtle and consistent. Listen to readings by existing voices to get an idea of what you're aiming for.
+For example, a persona with a naturally upbeat personality would carry a note of optimism in their voice. However, this personality should be expressed consistently across all recordings for a set of training data. Listen to existing voices to get a sense of what you're aiming for.
 
 > [!TIP]
 > Usually, you'll want to own the voice recordings you make. Your voice talent should be amenable to a work-for-hire contract for the project.
@@ -335,7 +336,7 @@ Take regular breaks and provide a beverage to help your voice talent keep their 
 
 ### After the session
 
-Modern recording studios run on computers. At the end of the session, you receive one or more audio files, not a tape. These files are probably WAV or AIFF format in CD quality (44.1 KHz 16-bit) or better. 24 KHz 16-bit is common and desirable. The default sampling rate for a custom neural voice is 24 KHz.  It's recommended that you should use a sample rate of 24 KHz for your training data. Higher sampling rates, such as 96 KHz, aren't usually needed.
+Modern recording studios run on computers. At the end of the session, you receive one or more audio files, not a tape. These files are probably WAV or AIFF format in CD quality (44.1 KHz 16-bit) or better. 24 KHz 16-bit is common and desirable. The default sampling rate for a custom neural voice is 24 KHz.  It's recommended that you should use a sample rate of 24 KHz and higher for your training data. Higher sampling rates, such as 96 KHz, aren't usually needed.
 
 Speech Studio requires each provided utterance to be in its own file. Each audio file delivered by the studio contains multiple utterances. So the primary post-production task is to split up the recordings and prepare them for submission. The recording engineer might have placed markers in the file (or provided a separate cue sheet) to indicate where each utterance starts.
 
@@ -343,7 +344,7 @@ Use your notes to find the exact takes you want, and then use a sound editing ut
 
 Listen to each file carefully. At this stage, you can edit out small unwanted sounds that you missed during recording, like a slight lip smack before a line, but be careful not to remove any actual speech. If you can't fix a file, remove it from your dataset and note that you've done so.
 
-Convert each file to 16 bits and a sample rate of 24 KHz before saving and if you recorded the studio chatter, remove the second channel. Save each file in WAV format, naming the files with the utterance number from your script.
+Convert each file to 16 bits and a sample rate of 24 KHz and higher before saving and if you recorded the studio chatter, remove the second channel. Save each file in WAV format, naming the files with the utterance number from your script.
 
 Finally, create the transcript that associates each WAV file with a text version of the corresponding utterance. [Train your voice model](./professional-voice-train-voice.md) includes details of the required format. You can copy the text directly from your script. Then create a Zip file of the WAV files and the text transcript.
 

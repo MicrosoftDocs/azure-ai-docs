@@ -147,7 +147,7 @@ At the top of your `main` method, add the following code. You authenticate two c
 
 ## Analyze layout
 
-You can use Document Intelligence to analyze tables, lines, and words in documents, without needing to train a model. For more information about layout extraction, see the [Document Intelligence layout model](../../../concept-layout.md).
+You can use Document Intelligence to analyze tables, lines, and words in documents, without needing to train a model. For more information about layout extraction, see the [Document Intelligence layout model](../../../prebuilt/layout.md).
 
 To analyze the content of a file at a given URL, use the `beginRecognizeContentFromUrl` method.
 
@@ -181,7 +181,7 @@ Cell has text ET.
 
 ## Analyze receipts
 
-This section demonstrates how to analyze and extract common fields from US receipts by using a pretrained receipt model. For more information about receipt analysis, see the [Document Intelligence receipt model](../../../concept-receipt.md).
+This section demonstrates how to analyze and extract common fields from US receipts by using a pretrained receipt model. For more information about receipt analysis, see the [Document Intelligence receipt model](../../../prebuilt/receipt.md).
 
 To analyze receipts from a URI, use the `beginRecognizeReceiptsFromUrl` method.
 
@@ -232,7 +232,7 @@ The returned value is a collection of `RecognizedForm` objects. There's one obje
 
 ## Analyze invoices
 
-This section demonstrates how to analyze and extract common fields from sales invoices by using a pretrained model. For more information about invoice analysis, see the [Document Intelligence invoice model](../../../concept-invoice.md).
+This section demonstrates how to analyze and extract common fields from sales invoices by using a pretrained model. For more information about invoice analysis, see the [Document Intelligence invoice model](../../../prebuilt/invoice.md).
 
 To analyze invoices from a URL, use the `beginRecognizeInvoicesFromUrl` method.
 
@@ -247,7 +247,7 @@ The returned value is a collection of `RecognizedForm` objects. There's one obje
 
 ## Analyze ID documents
 
-This section demonstrates how to analyze and extract key information from government-issued identification documents—worldwide passports and U.S. driver's licenses by using the Document Intelligence prebuilt ID model. For more information about ID document analysis, see the [Document Intelligence ID document model](../../../concept-id-document.md).
+This section demonstrates how to analyze and extract key information from government-issued identification documents—worldwide passports and U.S. driver's licenses by using the Document Intelligence prebuilt ID model. For more information about ID document analysis, see the [Document Intelligence ID document model](../../../prebuilt/id-document.md).
 
 To analyze ID documents from a URI, use the `beginRecognizeIdentityDocumentsFromUrl` method.
 

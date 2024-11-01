@@ -14,6 +14,8 @@ ms.custom: cogserv-non-critical-vision
 
 # Telemetry and troubleshooting
 
+[!INCLUDE [spatial-analysis-deprecation](includes/spatial-analysis-deprecation.md)]
+
 Spatial Analysis includes a set of features to monitor the health of the system and help with diagnosing issues.
 
 ## Enable visualizations
@@ -448,7 +450,7 @@ Review the details of your support request to ensure everything is accurate and 
 
 ## Next steps
 
-* [Deploy a People Counting web application](spatial-analysis-web-app.md)
+<!--* [Deploy a People Counting web application](spatial-analysis-web-app.md)-->
 * [Configure Spatial Analysis operations](./spatial-analysis-operations.md)
 * [Camera placement guide](spatial-analysis-camera-placement.md)
 * [Zone and line placement guide](spatial-analysis-zone-line-placement.md)

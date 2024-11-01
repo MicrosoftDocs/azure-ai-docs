@@ -5,8 +5,6 @@ description: How to build and train a custom generative AI model with AI Studio 
 author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
-ms.custom:
-  - ignite-2023
 ms.topic: overview
 ms.date: 08/07/2024
 ms.author: lajanuar
@@ -33,7 +31,7 @@ You can choose one of the following options to authorize access to your Document
 
 **✔️ Managed Identity**. A managed identity is a service principal that creates a Microsoft Entra identity and specific permissions for an Azure managed resource. Managed identities enable you to run your Document Intelligence application without having to embed credentials in your code. Managed identities are a safer way to grant access to storage data and replace the requirement for you to include shared access signature tokens (SAS) with your source and result URLs.
 
-To learn more, *see* [Managed identities for Document Intelligence](../managed-identities.md).
+To learn more, *see* [Managed identities for Document Intelligence](../authentication/managed-identities.md).
 
   :::image type="content" source="../media/managed-identities/rbac-flow.png" alt-text="Screenshot of managed identity flow (role-based access control).":::
 
@@ -47,7 +45,7 @@ To learn more, *see* [Managed identities for Document Intelligence](../managed-i
 * Your **source** container or blob must designate **read**, **write**, **list**, and **delete** access.
 * Your **result** container or blob must designate **write**, **list**, **delete** access.
 
-To learn more, *see* [**Create SAS tokens**](../create-sas-tokens.md).
+To learn more, *see* [**Create SAS tokens**](../authentication/create-sas-tokens.md).
 
 ### Training data
 
@@ -65,7 +63,7 @@ Once you have your Azure blob storage containers, upload your training data to y
 
 ## Azure AI Studio
 
-1. Navigate to the [Azure AI Studio](https://ai.azure.com/?tid=72f988bf-86f1-41af-91ab-2d7cd011db47). The first time you use the Studio, you need to [initialize your subscription and create a hub](../../../ai-studio/how-to/create-azure-ai-resource.md) before creating a project. Custom generative models are only available in North Central US in preview. Ensure your resource group is set to North Central US during hub creation.
+1. Navigate to the [Azure AI Studio](https://ai.azure.com/?tid=72f988bf-86f1-41af-91ab-2d7cd011db47). The first time you use the Studio, you need to [initialize your subscription and create a hub](../../../ai-studio/how-to/create-azure-ai-resource.md) before creating a project. Custom generative models are only available in East US and North Central US in preview. Ensure your resource group is set to East US or North Central US during hub creation.
 
 1. Select the Vision + Document tile.
 
@@ -81,7 +79,7 @@ Once you have your Azure blob storage containers, upload your training data to y
 
     :::image type="content" source="../media/custom-generative-model/create-document-extraction-project.png" alt-text="Screenshot of the create document extraction project overview page.":::
 
-1. Next, select the storage account you used to upload your custom model training dataset. 
+1. Next, select the storage account you used to upload your custom model training dataset.
 
     :::image type="content" source="../media/custom-generative-model/create-document-extraction-data-settings.png" alt-text="Screenshot of the document extraction project data settings page.":::
 
@@ -134,6 +132,6 @@ That's it! You learned to train a custom generative model in the Azure AI Studio
 
 ## Next steps
 
-[Learn more about the custom generative model](../concept-custom-generative.md)
+[Learn more about the custom generative model](../train/custom-generative-extraction.md)
 
-[Learn more about custom model accuracy and confidence](../concept-accuracy-confidence.md)
+[Learn more about custom model accuracy and confidence](../concept/accuracy-confidence.md)

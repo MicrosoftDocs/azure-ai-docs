@@ -1,7 +1,7 @@
 ---
-title: How to deploy Meta Llama 3.1 models with Azure Machine Learning studio
+title: How to use the Meta Llama family of models with Azure Machine Learning studio
 titleSuffix: Azure Machine Learning
-description: Learn how to deploy Meta Llama 3.1 models with Azure Machine Learning studio.
+description: How to use the Meta Llama family of models with Azure Machine Learning studio.
 manager: scottpolly
 ms.service: azure-machine-learning
 ms.subservice: inferencing
@@ -12,66 +12,83 @@ reviewer: shubhirajMsft
 ms.author: ssalgado
 author: ssalgadodev
 ms.custom: references_regions, build-2024
+ms.collection: ce-skilling-ai-copilot
 
 #This functionality is also available in Azure AI Studio: /azure/ai-studio/how-to/deploy-models-llama.md
 ---
 
 
-# How to deploy Meta Llama 3.1 models with Azure Machine Learning studio
+# How to use the Meta Llama family of models with Azure Machine Learning studio
 
-In this article, you learn about the Meta Llama models family (LLMs). You also learn how to use Azure Machine Learning studio to deploy models from this set either to serverless APIs with pay-as you go billing or to managed compute.
+In this article, you learn about the Meta Llama models family (LLMs). Meta Llama models and tools are a collection of pretrained and fine-tuned generative AI text and image reasoning models - ranging in scale from SLMs (1B, 3B Base and Instruct models) for on-device and edge inferencing - to mid-size LLMs (7B, 8B and 70B Base and Instruct models) and high performant models like Meta Llama 3.1 405B Instruct for synthetic data generation and distillation use cases.
 
-> [!IMPORTANT]
-> Read more about the announcement of Meta Llama 3.1 405B Instruct and other Llama 3.1 models available now on Azure AI Model Catalog: [Microsoft Tech Community Blog](https://aka.ms/meta-llama-3.1-release-on-azure) and from [Meta Announcement Blog](https://aka.ms/meta-llama-3.1-release-announcement).
-
-Now available on Azure Machine Learning studio Models-as-a-Service:
-- `Meta-Llama-3.1-405B-Instruct`
-- `Meta-Llama-3.1-70B-Instruct`
-- `Meta-Llama-3.1-8B-Instruct`
-
-The Meta Llama 3.1 family of multilingual large language models (LLMs) is a collection of pretrained and instruction tuned generative models in 8B, 70B and 405B sizes (text in/text out). All models support long context length (128k) and are optimized for inference with support for grouped query attention (GQA). The Llama 3.1 instruction tuned text only models (8B, 70B, 405B) are optimized for multilingual dialogue use cases and outperform many of the available open source chat models on common industry benchmarks.
+> [!TIP]
+> See our announcements of Meta's Llama 3.2 family models available now on Azure AI Model Catalog through [Meta's blog](https://aka.ms/llama-3.2-meta-announcement) and [Microsoft Tech Community Blog](https://aka.ms/llama-3.2-microsoft-announcement).
 
 See the following GitHub samples to explore integrations with [LangChain](https://aka.ms/meta-llama-3.1-405B-instruct-langchain), [LiteLLM](https://aka.ms/meta-llama-3.1-405B-instruct-litellm), [OpenAI](https://aka.ms/meta-llama-3.1-405B-instruct-openai) and the [Azure API](https://aka.ms/meta-llama-3.1-405B-instruct-webrequests).
 
 [!INCLUDE [machine-learning-preview-generic-disclaimer](includes/machine-learning-preview-generic-disclaimer.md)]
 
-## Deploy Meta Llama 3.1 405B Instruct as a serverless API
+## Meta Llama family of models
 
-Meta Llama 3.1 models - like `Meta Llama 3.1 405B Instruct` - can be deployed as a serverless API with pay-as-you-go, providing a way to consume them as an API without hosting them on your subscription while keeping the enterprise security and compliance organizations need. This deployment option doesn't require quota from your subscription. Meta Llama 3.1 models are deployed as a serverless API with pay-as-you-go billing through Microsoft Azure Marketplace, and they might add more terms of use and pricing.
+The Meta Llama family of models include the following models:
 
-### Azure Marketplace model offerings
+# [Llama-3.2](#tab/python-llama-3-2)
 
-The following models are available in Azure Marketplace for Llama 3.1 and Llama 3 when deployed as a service with pay-as-you-go:
+The Llama 3.2 collection of SLMs and image reasoning models are now available. Coming soon, Llama 3.2 11B Vision Instruct and Llama 3.2 90B Vision Instruct will be available as a serverless API endpoint via Models-as-a-Service. Starting today, the following models will be available for deployment via managed compute:
+* Llama 3.2 1B
+* Llama 3.2 3B
+* Llama 3.2 1B Instruct
+* Llama 3.2 3B Instruct
+* Llama Guard 3 1B
+* Llama Guard 11B Vision
+* Llama 3.2 11B Vision Instruct
+* Llama 3.2 90B Vision Instruct are available for managed compute deployment.
 
-# [Meta Llama 3.1](#tab/llama-three)
+# [Meta Llama-3.1](#tab/python-meta-llama-3-1)
 
-* [Meta-Llama-3.1-405B-Instruct (preview)](https://aka.ms/aistudio/landing/meta-llama-3-405B-base)
-* [Meta-Llama-3.1-70B-Instruct (preview)](https://aka.ms/aistudio/landing/meta-llama-3-8B-refresh)
-* [Meta Llama-3.1-8B-Instruct (preview)](https://aka.ms/aistudio/landing/meta-llama-3-70B-refresh)
-* [Meta-Llama-3-70B-Instruct (preview)](https://aka.ms/aistudio/landing/meta-llama-3-70b-chat)
-* [Meta-Llama-3-8B-Instruct (preview)](https://aka.ms/aistudio/landing/meta-llama-3-8b-chat)
+The Meta Llama 3.1 collection of multilingual large language models (LLMs) is a collection of pretrained and instruction tuned generative models in 8B, 70B and 405B sizes (text in/text out). The Llama 3.1 instruction tuned text only models (8B, 70B, 405B) are optimized for multilingual dialogue use cases and outperform many of the available open-source and closed models on common industry benchmarks.
 
-If you need to deploy a different model, [deploy it to managed compute](#deploy-meta-llama-models-to-managed-compute) instead.
 
-# [Meta Llama 2](#tab/llama-two)
+The following models are available:
 
-* Meta Llama-2-7B (preview)
-* Meta Llama 2 7B-Chat (preview)
-* Meta Llama-2-13B (preview)
-* Meta Llama 2 13B-Chat (preview)
-* Meta Llama-2-70B (preview)
-* Meta Llama 2 70B-Chat (preview)
+* [Meta-Llama-3.1-405B-Instruct](https://aka.ms/azureai/landing/Meta-Llama-3.1-405B-Instruct)
+* [Meta-Llama-3.1-70B-Instruct](https://ai.azure.com/explore/models/Meta-Llama-3.1-70B-Instruct/version/1/registry/azureml-meta)
+* [Meta-Llama-3.1-8B-Instruct](https://ai.azure.com/explore/models/Meta-Llama-3.1-8B-Instruct/version/1/registry/azureml-meta)
 
-If you need to deploy a different model, [deploy it to managed compute](#deploy-meta-llama-models-to-managed-compute) instead.
+
+# [Meta Llama-3](#tab/python-meta-llama-3)
+
+Meta developed and released the Meta Llama 3 family of large language models (LLMs), a collection of pretrained and instruction tuned generative text models in 8B, and 70B sizes. The Llama 3 instruction tuned models are optimized for dialogue use cases and outperform many of the available open-source models on common industry benchmarks. Further, in developing these models, we took great care to optimize helpfulness and safety.
+
+
+The following models are available:
+
+* [Meta-Llama-3-70B-Instruct](https://ai.azure.com/explore/models/Meta-Llama-3-70B-Instruct/version/6/registry/azureml-meta)
+* [Meta-Llama-3-8B-Instruct](https://ai.azure.com/explore/models/Meta-Llama-3-8B-Instruct/version/6/registry/azureml-meta)
+
+
+# [Meta Llama-2](#tab/python-meta-llama-2)
+
+Meta has developed and publicly released the Llama 2 family of large language models (LLMs), a collection of pretrained and fine-tuned generative text models ranging in scale from 7 billion to 70 billion parameters. Our fine-tuned LLMs, called Llama-2-Chat, are optimized for dialogue use cases. Llama-2-Chat models outperform open-source chat models on most benchmarks we tested, and in our human evaluations for helpfulness and safety, are on par with some popular closed-source models like ChatGPT and PaLM. We provide a detailed description of our approach to fine-tuning and safety improvements of Llama-2-Chat in order to enable the community to build on our work and contribute to the responsible development of LLMs.
+
+
+The following models are available:
+
+* [Llama-2-70b-chat](https://ai.azure.com/explore/models/Llama-2-70b-chat/version/20/registry/azureml-meta)
+* [Llama-2-13b-chat](https://ai.azure.com/explore/models/Llama-2-13b-chat/version/20/registry/azureml-meta)
+* [Llama-2-7b-chat](https://ai.azure.com/explore/models/Llama-2-7b-chat/version/24/registry/azureml-meta)
+
 
 ---
+
 
 ### Prerequisites
 
 # [Meta Llama 3](#tab/llama-three)
 
 - An Azure subscription with a valid payment method. Free or trial Azure subscriptions won't work. If you don't have an Azure subscription, create a [paid Azure account](https://azure.microsoft.com/pricing/purchase-options/pay-as-you-go) to begin.
-- An Azure Machine Learning workspace and a compute instance. If you don't have these, use the steps in the [Quickstart: Create workspace resources](quickstart-create-resources.md) article to create them. The serverless API model deployment offering for Meta Llama 3.1 and Llama 3 is only available with hubs created in these regions:
+- An Azure Machine Learning workspace and a compute instance. If you don't have these, use the steps in the [Quickstart: Create workspace resources](quickstart-create-resources.md) article to create them. The serverless API model deployment offering for Meta Llama 3.1 and Llama 3 is only available with workspaces created in these regions:
 
      * East US
      * East US 2
@@ -600,7 +617,7 @@ For deployment and inferencing of Meta Llama 3.1 models with managed compute, yo
 
 ## Content filtering
 
-Models deployed as a serverless API are protected by Azure AI content safety. When deployed to managed compute, you can opt out of this capability. With Azure AI content safety enabled, both the prompt and completion pass through an ensemble of classification models aimed at detecting and preventing the output of harmful content. The content filtering system detects and takes action on specific categories of potentially harmful content in both input prompts and output completions. Learn more about [Azure AI Content Safety](/azure/ai-services/content-safety/overview).
+Models deployed as a serverless API are protected by Azure AI content safety. When deployed to managed compute, you can opt out of this capability. With Azure AI content safety enabled, both the prompt and completion pass through an ensemble of classification models aimed at detecting and preventing the output of harmful content. The content filtering (preview) system detects and takes action on specific categories of potentially harmful content in both input prompts and output completions. Learn more about [Azure AI Content Safety](/azure/ai-services/content-safety/overview).
 
 ## Related content
 

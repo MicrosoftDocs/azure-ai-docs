@@ -2,14 +2,13 @@
 title: "Quickstart: Vectorize text and images by using the Azure portal"
 titleSuffix: Azure AI Search
 description: Use a wizard to automate data chunking and vectorization in a search index.
-
 author: HeidiSteen
 ms.author: heidist
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.custom:
   - build-2024
 ms.topic: quickstart
-ms.date: 08/13/2024
+ms.date: 10/18/2024
 ---
 
 # Quickstart: Vectorize text and images by using the Azure portal
@@ -18,15 +17,19 @@ This quickstart helps you get started with [integrated vectorization](vector-sea
 
 Key points about the wizard:
 
-+ Source data is either Azure Blob Storage, Azure Data Lake Storage (ADLS) Gen2, or OneLake files and shortcuts.
-+ Document parsing mode is the default (one search document per blob or file).
-+ Index schema is nonconfigurable. It provides vector and nonvector fields for chunked data.
++ Supported data sources are Azure Blob Storage, Azure Data Lake Storage (ADLS) Gen2, or OneLake files and shortcuts.
++ Supported embedding models are hosted on Azure OpenAI, Azure AI Studio model catalog, Azure AI Vision multimodal.
++ Index schema provides vector and nonvector fields for chunked data. 
++ You can add fields, but you can't delete or modify generated fields.
++ Document parsing mode creates chunks (one search document per chunk).
 + Chunking is nonconfigurable. The effective settings are:
 
   ```json
-  textSplitMode: "pages",
-  maximumPageLength: 2000,
-  pageOverlapLength: 500
+   "textSplitMode": "pages",
+   "maximumPageLength": 2000,
+   "pageOverlapLength": 500,
+   "maximumPagesToTake": 0, #unlimited
+   "unit": "characters",
   ```
 
 ## Prerequisites
@@ -39,13 +42,17 @@ Key points about the wizard:
 
   Azure Storage must be a standard performance (general-purpose v2) account. Access tiers can be hot, cool, and cold.
 
-+ An embedding model on an Azure AI platform. [Deployment instructions](#set-up-embedding-models) are in this article.
++ An embedding model on an Azure AI platform in the [same region as Azure AI Search](search-create-service-portal.md#regions-with-the-most-overlap). [Deployment instructions](#set-up-embedding-models) are in this article.
 
   | Provider | Supported models |
   |---|---|
   | [Azure OpenAI Service](https://aka.ms/oai/access) | text-embedding-ada-002, text-embedding-3-large, or text-embedding-3-small. |
   | [Azure AI Studio model catalog](/azure/ai-studio/what-is-ai-studio) |  Azure, Cohere, and Facebook embedding models. |
   | [Azure AI services multiservice account](/azure/ai-services/multi-service-resource) | [Azure AI Vision multimodal](/azure/ai-services/computer-vision/how-to/image-retrieval) for image and text vectorization. Azure AI Vision multimodal is available in selected regions. [Check the documentation](/azure/ai-services/computer-vision/how-to/image-retrieval?tabs=csharp) for an updated list. **To use this resource, the account must be in an available region and in the same region as Azure AI Search**. |
+
+If using the Azure OpenAI Service, it must have an associated [custom subdomain](/azure/ai-services/cognitive-services-custom-subdomains). If the service was created through the Azure portal, this subdomain is automatically generated as part of your service setup. Ensure that your service includes a custom subdomain before using it with the Azure AI Search integration.
+
+Azure OpenAI Service resources (with access to embedding models) that were created in AI Studio aren't supported. Only the Azure OpenAI Service resources created in the Azure portal are compatible with the **Azure OpenAI Embedding** skill integration.
 
 ### Public endpoint requirements
 
@@ -75,17 +82,17 @@ For more secure connections:
 
 ### Check for space
 
-If you're starting with the free service, you're limited to 3 indexes, data sources, skillsets, and indexers. Basic limits you to 15. Make sure you have room for extra items before you begin. This quickstart creates one of each object.
+If you're starting with the free service, you're limited to three indexes, data sources, skillsets, and indexers. Basic limits you to 15. Make sure you have room for extra items before you begin. This quickstart creates one of each object.
 
-### Check for semantic ranking
+### Check for semantic ranker
 
-The wizard supports semantic ranking, but only on the Basic tier and higher, and only if semantic ranking is already [enabled on your search service](semantic-how-to-enable-disable.md). If you're using a billable tier, check whether semantic ranking is enabled.
+The wizard supports semantic ranking, but only on the Basic tier and higher, and only if semantic ranker is already [enabled on your search service](semantic-how-to-enable-disable.md). If you're using a billable tier, check whether semantic ranker is enabled.
 
 ## Prepare sample data
 
 This section points you to data that works for this quickstart.
 
-### [Azure Blob storage](#tab/sample-data-storage)
+### [Azure Blob Storage](#tab/sample-data-storage)
 
 1. Sign in to the [Azure portal](https://portal.azure.com/) with your Azure account, and go to your Azure Storage account.
 
@@ -225,7 +232,7 @@ The wizard supports Azure, Cohere, and Facebook embedding models in the Azure AI
 
 The next step is to connect to a data source to use for the search index.
 
-### [Azure Blob storage](#tab/connect-data-storage)
+### [Azure Blob Storage](#tab/connect-data-storage)
 
 1. On the **Set up your data connection** page, select **Azure Blob Storage**.
 
@@ -348,17 +355,41 @@ Azure AI Search and your Azure AI resource must be in the same region.
 
 1. Select **Next**.
 
-## Choose advanced settings
+## Add semantic ranking
 
-1. On the **Advanced settings** page, you can optionally add [semantic ranking](semantic-search-overview.md) to rerank results at the end of query execution. Reranking promotes the most semantically relevant matches to the top.
+On the **Advanced settings** page, you can optionally add [semantic ranking](semantic-search-overview.md) to rerank results at the end of query execution. Reranking promotes the most semantically relevant matches to the top.
 
-1. Optionally, specify a [run schedule](search-howto-schedule-indexers.md) for the indexer.
+## Map new fields
 
-1. Select **Next**.
+On the **Advanced settings** page, you can optionally add new fields. By default, the wizard generates the following fields with these attributes:
+
+| Field | Applies to | Description |
+|-------|------------|-------------|
+| chunk_id | Text and image vectors | Generated string field. Searchable, retrievable, sortable. This is the document key for the index. |
+| parent_id | Text vectors | Generated string field. Retrievable, filterable. Identifies the parent document from which the chunk originates. |
+| chunk | Text and image vectors | String field. Human readable version of the data chunk. Searchable and retrievable, but not filterable, facetable, or sortable. |
+| title | Text and image vectors | String field. Human readable document title or page title or page number. Searchable and retrievable, but not filterable, facetable, or sortable. |
+| text_vector | Text vectors | Collection(Edm.single). Vector representation of the chunk.  Searchable and retrievable, but not filterable, facetable, or sortable.|
+
+You can't modify the generated fields or their attributes, but you can add new fields if your data source provides them. For example, Azure Blob Storage provides a collection of metadata fields.
+
+1. Select **Add new**.
+
+1. Choose a source field from the list of available fields, provide a field name for the index, and accept the default data type or override as needed.
+
+   Metadata fields are searchable, but not retrievable, filterable, facetable, or sortable. 
+
+1. Select **Reset** if you want to restore the schema to its original version.
+
+## Schedule indexing
+
+On the **Advanced settings** page, you can optionally specify a [run schedule](search-howto-schedule-indexers.md) for the indexer.
+
+1. Select **Next** when you're done with the **Advanced settings** page.
 
 ## Finish the wizard
 
-1. On the **Review your configuration** page, specify a prefix for the objects that the wizard will create. A common prefix helps you stay organized.
+1. On the **Review your configuration** page, specify a prefix for the objects that the wizard creates. A common prefix helps you stay organized.
 
 1. Select **Create**.
 

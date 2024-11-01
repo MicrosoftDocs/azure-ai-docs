@@ -5,7 +5,7 @@ description: Terms of use for partner and third-party data source connectors.
 author: HeidiSteen
 ms.author: heidist
 
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: conceptual

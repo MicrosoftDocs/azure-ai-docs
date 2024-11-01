@@ -7,8 +7,9 @@ author: eric-urban
 ms.author: eur
 ms.service: azure-ai-speech
 ms.topic: release-notes
-ms.date: 6/6/2024
+ms.date: 10/9/2024
 ms.custom: references_regions
+# Customer intent: As a developer, I want to learn about new releases and features for Azure AI Speech.
 ---
 
 # What's new in Azure AI Speech?
@@ -17,8 +18,10 @@ Azure AI Speech is updated on an ongoing basis. To stay up-to-date with recent d
 
 ## Recent highlights
 
+* Azure AI Speech Toolkit extension is now available for Visual Studio Code users. It contains a list of speech quick-starts and scenario samples that can be easily built and run with simple clicks. For more information, see [Azure AI Speech Toolkit in Visual Studio Code Marketplace](https://aka.ms/speech-toolkit-vscode).
+* Azure AI speech high definition (HD) voices are available in public preview. The HD voices can understand the content, automatically detect emotions in the input text, and adjust the speaking tone in real-time to match the sentiment. For more information, see [What are Azure AI Speech high definition (HD) voices?](high-definition-voices.md).
+* Fast transcription is now available in public preview. It can transcribe audio much faster than the actual audio length. For more information, see the [fast transcription API guide](fast-transcription-create.md).
 * Video translation is now available in the Azure AI Speech service. For more information, see [What is video translation?](./video-translation-overview.md).
-* Personal voice is now generally available. For more information, see [What is personal voice?](./personal-voice-overview.md).
 * The Azure AI Speech service supports OpenAI text to speech voices. For more information, see [What are OpenAI text to speech voices?](./openai-voices.md). 
 * The custom voice API is available for creating and managing [professional](./professional-voice-create-project.md) and [personal](./personal-voice-create-project.md) custom neural voice models. 
 

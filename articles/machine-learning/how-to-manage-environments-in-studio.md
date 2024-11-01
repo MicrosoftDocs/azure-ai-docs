@@ -1,16 +1,17 @@
 ---
 title: Manage environments in the studio
 titleSuffix: Azure Machine Learning
-description: Learn how to create and manage environments in the Azure Machine Learning studio.
+description: Learn how to create and manage environments in the Azure Machine Learning studio. Environments are used for training and inference.
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: core
 author: Blackmist
 ms.author: larryfr
 ms.reviewer: osiotugo
-ms.date: 03/05/2024
+ms.date: 09/18/2024
 ms.topic: how-to
 ms.custom:
+# Customer Intent: As a Data Scientist, I want to understand how to manage environments for training and inference in Azure Machine Learning studio.
 ---
 
 # Manage software environments in Azure Machine Learning studio

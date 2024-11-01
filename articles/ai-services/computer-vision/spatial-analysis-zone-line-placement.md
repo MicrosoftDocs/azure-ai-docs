@@ -11,8 +11,9 @@ ms.date: 01/20/2024
 ms.author: pafarley
 ---
 
-
 # Zone and line placement guide
+
+[!INCLUDE [spatial-analysis-deprecation](includes/spatial-analysis-deprecation.md)]
 
 This article provides guidelines for how to define zones and lines for Spatial Analysis operations to achieve accurate analysis of peoples movements in a space. This applies to all operations. 
 
@@ -26,7 +27,7 @@ If you want to see a specific section of your camera view, create the largest zo
 
 ### Example of a well-shaped zone
 
-The zone should be big enough to accommodate three people standing along each edge and focused on the area of interest. Spatial Analysis will identify people whose feet are placed in the zone, so when drawing zones on the 2D image, imagine the zone as a carpet laying on the floor.
+The zone should be large enough to accommodate three people standing along each edge and focused on the area of interest. Spatial Analysis identifies people whose feet are placed in the zone, so when drawing zones on the 2D image, imagine the zone as a carpet laying on the floor.
 
 ![Well-shaped zone](./media/spatial-analysis/zone-good-example.png)
 
@@ -58,9 +59,9 @@ The following examples show poorly shaped zones. In these examples, the area of 
 
 ### Example of a well-shaped line
 
-The line should be long enough to accommodate the entire entrance. Spatial Analysis will identify people whose feet cross the line, so when drawing lines on the 2D image imagine you're drawing them as if they lie on the floor. 
+The line should be long enough to accommodate the entire entrance. Spatial Analysis identifies people whose feet cross the line, so when drawing lines on the 2D image imagine you're drawing them as if they lie on the floor. 
 
-If possible, extend the line wider than the actual entrance. If this will not result in extra crossings (as in the image below when the line is against a wall) then extend it.
+If possible, extend the line wider than the actual entrance. If this won't result in extra crossings (as in the image below when the line is against a wall) then extend it.
 
 ![Well-shaped line](./media/spatial-analysis/zone-line-good-example.png)
 
@@ -78,7 +79,7 @@ The following examples show poorly defined lines.
 
 ## Next steps
 
-* [Deploy a People Counting web application](spatial-analysis-web-app.md)
+<!--* [Deploy a People Counting web application](spatial-analysis-web-app.md)-->
 * [Configure Spatial Analysis operations](./spatial-analysis-operations.md)
 * [Logging and troubleshooting](spatial-analysis-logging.md)
 * [Camera placement guide](spatial-analysis-camera-placement.md)

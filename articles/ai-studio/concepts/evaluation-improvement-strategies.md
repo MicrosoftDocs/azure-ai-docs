@@ -16,7 +16,7 @@ author: lgayhardt
 
 # Content risk mitigation strategies with Azure AI
 
-[!INCLUDE [Feature preview](~/reusable-content/ce-skilling/azure/includes/ai-studio/includes/feature-preview.md)]
+[!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
 Mitigating content risks and poor quality generations presented by large language models (LLMs) such as the Azure OpenAI models requires an iterative, layered approach that includes experimentation and continual measurement. We recommend developing a mitigation plan that encompasses four layers of mitigations for the identified risks in the earlier stages of the process:
 
@@ -139,4 +139,4 @@ We recommend implementing the following user-centered design and user experience
 
 - [Evaluate your generative AI apps via the playground](../how-to/evaluate-prompts-playground.md)
 - [Evaluate your generative AI apps with the Azure AI Studio or SDK](../how-to/evaluate-generative-ai-app.md)
-- [View the evaluation results](../how-to/evaluate-flow-results.md)
+- [View the evaluation results](../how-to/evaluate-results.md)

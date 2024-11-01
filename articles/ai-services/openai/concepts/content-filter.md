@@ -79,32 +79,9 @@ Detecting indirect attacks requires using document delimiters when constructing 
 
 ---
 
-## Configurability (preview)
+## Configurability
 
-The default content filtering configuration for the GPT model series is set to filter at the medium severity threshold for all four content harm categories (hate, violence, sexual, and self-harm) and applies to both prompts (text, multi-modal text/image) and completions (text). This means that content that is detected at severity level medium or high is filtered, while content detected at severity level low isn't filtered by the content filters. For DALL-E, the default severity threshold is set to low for both prompts (text) and completions (images), so content detected at severity levels low, medium, or high is filtered. The configurability feature is available in preview and allows customers to adjust the settings, separately for prompts and completions, to filter content for each content category at different severity levels as described in the table below:
-
-| Severity filtered | Configurable for prompts | Configurable for completions | Descriptions |
-|-------------------|--------------------------|------------------------------|--------------|
-| Low, medium, high | Yes | Yes | Strictest filtering configuration. Content detected at severity levels low, medium, and high is filtered.|
-| Medium, high      | Yes | Yes | Content detected at severity level low isn't filtered, content at medium and high is filtered.|
-| High              | Yes| Yes | Content detected at severity levels low and medium isn't filtered. Only content at severity level high is filtered. Requires approval<sup>1</sup>.|
-| No filters | If approved<sup>1</sup>| If approved<sup>1</sup>| No content is filtered regardless of severity level detected. Requires approval<sup>1</sup>.|
-
-<sup>1</sup> For Azure OpenAI models, only customers who have been approved for modified content filtering have full content filtering control and can turn off content filters. Apply for modified content filters via this form: [Azure OpenAI Limited Access Review: Modified Content Filters](https://ncv.microsoft.com/uEfCgnITdR) For Azure Government customers, please apply for modified content filters via this form: [Azure Government - Request Modified Content Filtering for Azure OpenAI Service](https://aka.ms/AOAIGovModifyContentFilter).
-
-Configurable content filters for inputs (prompts) and outputs (completions) are available for the following Azure OpenAI models:
-
-* GPT model series
-* GPT-4 Turbo Vision GA<sup>*</sup> (turbo-2024-04-09)
-* GPT-4o
-* GPT-4o mini
-* DALL-E 2 and 3
-
-<sup>*</sup>Only available for GPT-4 Turbo Vision GA, does not apply to GPT-4 Turbo Vision preview 
-
-Content filtering configurations are created within a Resource in Azure AI Studio, and can be associated with Deployments. [Learn more about configurability here](../how-to/content-filters.md).  
-
-Customers are responsible for ensuring that applications integrating Azure OpenAI comply with the [Code of Conduct](/legal/cognitive-services/openai/code-of-conduct?context=%2Fazure%2Fai-services%2Fopenai%2Fcontext%2Fcontext). 
+[!INCLUDE [content-filter-configurability](../includes/content-filter-configurability.md)]
 
 ## Scenario details
 
@@ -814,7 +791,7 @@ When you do so, the following options are available for detection on tagged docu
 Here's an example chat completion messages array: 
 
 ```json
-{"role": "system", "content": "Provide some context and/or instructions to the model, including document context. \"\"\" <documents>\n*insert your document content here*\n<\\documents> \"\"\""}, 
+{"role": "system", "content": "Provide some context and/or instructions to the model, including document context. \"\"\" <documents>\n*insert your document content here*\n</documents> \"\"\""}, 
 
 {"role": "user", "content": "First question/message for the model to actually respond to."} 
 ```
@@ -840,7 +817,7 @@ Hello Jos\u00E9,\nI hope this email finds you well today.
 The escaped text in a chat completion context would read: 
 
 ```json
-{"role": "system", "content": "Provide some context and/or instructions to the model, including document context. \"\"\" <documents>\n Hello Jos\\u00E9,\\nI hope this email finds you well today. \n<\\documents> \"\"\""}, 
+{"role": "system", "content": "Provide some context and/or instructions to the model, including document context. \"\"\" <documents>\n Hello Jos\\u00E9,\\nI hope this email finds you well today. \n</documents> \"\"\""}, 
 
 {"role": "user", "content": "First question/message for the model to actually respond to."}
 ```
@@ -865,7 +842,7 @@ Customers must understand that while the feature improves latency, it's a trade-
 
 **Customer Copyright Commitment**: Content that is retroactively flagged as protected material may not be eligible for Customer Copyright Commitment coverage. 
 
-To enable Asynchronous Filter in Azure OpenAI Studio, follow the [Content filter how-to guide](/azure/ai-services/openai/how-to/content-filters) to create a new content filtering configuration, and select **Asynchronous Filter** in the Streaming section.
+To enable Asynchronous Filter in Azure AI Studio, follow the [Content filter how-to guide](/azure/ai-services/openai/how-to/content-filters) to create a new content filtering configuration, and select **Asynchronous Filter** in the Streaming section.
 
 ### Comparison of content filtering modes
 
@@ -873,7 +850,7 @@ To enable Asynchronous Filter in Azure OpenAI Studio, follow the [Content filter
 |---|---|---|
 |Status |GA |Public Preview |
 | Eligibility |All customers |Customers approved for modified content filtering |
-| How to enable | Enabled by default, no action needed |Customers approved for modified content filtering can configure it directly in Azure OpenAI Studio (as part of a content filtering configuration, applied at the deployment level) |
+| How to enable | Enabled by default, no action needed |Customers approved for modified content filtering can configure it directly in Azure AI Studio (as part of a content filtering configuration, applied at the deployment level) |
 |Modality and availability |Text; all GPT models |Text; all GPT models |
 |Streaming experience |Content is buffered and returned in chunks |Zero latency (no buffering, filters run asynchronously) |
 |Content filtering signal |Immediate filtering signal |Delayed filtering signal (in up to ~1,000-character increments) |

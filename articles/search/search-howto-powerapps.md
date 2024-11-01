@@ -4,11 +4,11 @@ titleSuffix: Azure AI Search
 description: Step-by-step guidance on how to build a Power App that connects to an Azure AI Search index, sends queries, and renders results.
 author: HeidiSteen
 ms.author: heidist
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: tutorial
-ms.date: 02/21/2024
+ms.date: 10/31/2024
 ---
 
 # Tutorial: Query an Azure AI Search index from Power Apps
@@ -38,7 +38,7 @@ A connector in Power Apps is a data source connection. In this step, create a cu
 
 1. [Sign in](https://make.powerapps.com) to Power Apps.
 
-1. On the left, expand **... More**. Find, pin, and then select **Custom Connectors**.
+1. On the left, select **Custom Connectors**.
 
     :::image type="content" source="./media/search-howto-powerapps/1-2-custom-connector.png" alt-text="Custom connector menu" border="true":::
 
@@ -118,7 +118,7 @@ A connector in Power Apps is a data source connection. In this step, create a cu
         "value": [
             {
                 "@search.score": 1,
-                "HotelName": "Arcadia Resort & Restaurant",
+                "HotelName": "Happy Lake Resort & Restaurant",
                 "Description": "The largest year-round resort in the area offering more of everything for your vacation – at the best value!  What can you enjoy while at the resort, aside from the mile-long sandy beaches of the lake? Check out our activities sure to excite both young and young-at-heart guests. We have it all, including being named “Property of the Year” and a “Top Ten Resort” by top publications.",
                 "Address": {
                     "City": "Seattle"
@@ -126,7 +126,7 @@ A connector in Power Apps is a data source connection. In this step, create a cu
             },
             {
                 "@search.score": 1,
-                "HotelName": "Travel Resort",
+                "HotelName": "Grand Gaming Resort",
                 "Description": "The Best Gaming Resort in the area.  With elegant rooms & suites, pool, cabanas, spa, brewery & world-class gaming.  This is the best place to play, stay & dine.",
                 "Address": {
                     "City": "Albuquerque"

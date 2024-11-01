@@ -5,7 +5,7 @@ description: Create and configure an Azure AI Search service with the Azure CLI.
 
 author: mattgotteiner
 ms.author: magottei
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.devlang: azurecli
 ms.custom:
   - devx-track-azurecli

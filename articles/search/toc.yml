@@ -1,3 +1,4 @@
+items:
 - name: Azure AI Search Documentation
   href: index.yml
 - name: Overview
@@ -9,6 +10,8 @@
     href: whats-new.md
   - name: Features
     href: search-features-list.md
+  - name: Try search for free
+    href: search-try-for-free.md
   - name: FAQ
     href: search-faq-frequently-asked-questions.yml
 - name: Quickstarts
@@ -21,10 +24,8 @@
     href: search-get-started-text.md
   - name: Semantic ranking
     href: search-get-started-semantic.md
-  - name: Azure OpenAI Studio
-    items:
-    - name: Chat with your data 
-      href: /azure/ai-services/openai/use-your-data-quickstart?context=/azure/search/context/context
+  - name: Chat with your data 
+    href: /azure/ai-services/openai/use-your-data-quickstart?context=/azure/search/context/context
   - name: Portal
     items:
     - name: Keyword search wizard
@@ -89,6 +90,20 @@
       href: search-howto-index-encrypted-blobs.md
     - name: Create a custom analyzer
       href: tutorial-create-custom-analyzer.md
+  - name: RAG tutorials
+    items:
+    - name: Build a RAG solution
+      href: tutorial-rag-build-solution.md
+    - name: Choose models
+      href: tutorial-rag-build-solution-models.md
+    - name: Design an index
+      href: tutorial-rag-build-solution-index-schema.md
+    - name: Build an indexing pipeline
+      href: tutorial-rag-build-solution-pipeline.md
+    - name: Search and generate answers
+      href: tutorial-rag-build-solution-query.md
+    - name: Maximize relevance
+      href: tutorial-rag-build-solution-maximize-relevance.md
   - name: Skills tutorials
     items:
     - name: C#
@@ -184,7 +199,7 @@
       href: search-capacity-planning.md
     - name: Plan and manage costs
       href: search-sku-manage-costs.md
-    - name: Availability and recovery
+    - name: Reliability and recovery
       href: search-reliability.md
     - name: Availability migration guidance
       href: /azure/reliability/migrate-search-service
@@ -213,7 +228,7 @@
     - name: Alias an index
       href: search-how-to-alias.md
     - name: Import large data sets
-      href: search-howto-large-index.md
+      href: search-how-to-large-index.md
     - name: Indexers
       items:
       - name: Create an indexer
@@ -237,7 +252,7 @@
         - name: Index plain text
           href: search-howto-index-plaintext-blobs.md
         - name: Index CSV
-          href: search-howto-index-csv-blobs.md
+          href: search-how-to-index-csv-blobs.md
         - name: Index JSON
           href: search-howto-index-json-blobs.md
       - name: Troubleshooting guidance
@@ -290,8 +305,8 @@
         href: cognitive-search-defining-skillset.md
       - name: Attach an Azure AI resource
         href: cognitive-search-attach-cognitive-services.md
-      - name: Create an index projection for a secondary index
-        href: index-projections-concept-intro.md
+      - name: Define an index projection
+        href: search-how-to-define-index-projections.md
       - name: Debug sessions overview
         href: cognitive-search-debug-session.md
       - name: Debug a skillset
@@ -318,24 +333,26 @@
     items:
     - name: Create a vector index
       href: vector-search-how-to-create-index.md
-    - name: Index binary data for vector search
-      href: vector-search-how-to-index-binary-data.md
-    - name: Query vectors
-      href: vector-search-how-to-query.md
-    - name: Add filters to a vector query
-      href: vector-search-filters.md
-    - name: Vector quotas and limits
-      href: vector-search-index-size.md
-    - name: Reduce vector size
-      href: vector-search-how-to-configure-compression-storage.md
-    - name: Configure a vectorizer for queries
-      href: vector-search-how-to-configure-vectorizer.md
     - name: Chunk documents
       href: vector-search-how-to-chunk-documents.md
     - name: Generate embeddings
       href: vector-search-how-to-generate-embeddings.md
-    - name: Integrated vectorization with Azure AI Studio models
+    - name: Use embedding models from Azure AI Studio
       href: vector-search-integrated-vectorization-ai-studio.md
+    - name: Reduce vector size
+      items:
+      - name: Understand vector quotas and limits
+        href: vector-search-index-size.md
+      - name: Compress vector index size
+        href: vector-search-how-to-configure-compression-storage.md
+      - name: Index binary data for vector search
+        href: vector-search-how-to-index-binary-data.md
+    - name: Query vectors
+      href: vector-search-how-to-query.md
+    - name: Add a vectorizer for text-to-vector queries
+      href: vector-search-how-to-configure-vectorizer.md
+    - name: Filter on vector queries
+      href: vector-search-filters.md
   - name: Keyword search
     items:
     - name: Full text query
@@ -394,16 +411,16 @@
     href: hybrid-search-how-to-query.md
   - name: Ranking and relevance
     items:
-    - name: Enable or disable semantic ranking
+    - name: Enable or disable semantic ranker
       href: semantic-how-to-enable-disable.md      
-    - name: Configure semantic ranking
+    - name: Configure semantic ranker
       href: semantic-how-to-configure.md
-    - name: Configure BM25 ranking
-      href: index-ranking-similarity.md
     - name: Add semantic ranking to queries
       href: semantic-how-to-query-request.md
     - name: Add a scoring profile
       href: index-add-scoring-profiles.md
+    - name: Configure BM25 ranking
+      href: index-ranking-similarity.md
   - name: Security
     items:
     - name: Configure network access
@@ -463,7 +480,7 @@
     - name: Upgrade .NET libraries
       href: search-dotnet-sdk-migration-version-11.md
     - name: Develop in .NET
-      href: search-howto-dotnet-sdk.md
+      href: search-how-to-dotnet-sdk.md
     - name: Manage with Azure SDKs
       href: search-dotnet-mgmt-sdk-migration.md
     - name: Handle concurrent updates

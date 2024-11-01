@@ -6,10 +6,10 @@ zone_pivot_groups: URL-test-interface-rest-apis
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.topic: quickstart
 ms.devlang: rest-api
-ms.date: 06/27/2024
+ms.date: 10/31/2024
 ms.custom:
   - mode-api
   - ignite-2023
@@ -152,7 +152,7 @@ If you're not familiar with the REST client for Visual Studio Code, this section
 
 ## Create an index
 
-Add a second request to your `.rest` file. [Create Index (REST)](/rest/api/searchservice/create-index) creates a search index and sets up the physical data structures on your search service.
+Add a second request to your `.rest` file. [Create Index (REST)](/rest/api/searchservice/indexes/create) creates a search index and sets up the physical data structures on your search service.
 
 1. Paste in the following example to create the `hotels-quickstart` index on your search service.
 
@@ -198,7 +198,7 @@ Add a second request to your `.rest` file. [Create Index (REST)](/rest/api/searc
 
 Within the index schema, the fields collection defines document structure. Each document that you upload must have these fields. Each field must be assigned to an [Entity Data Model (EDM) data type](/rest/api/searchservice/supported-data-types). String fields are used in full text search. If you want numeric data to be searchable, make sure the data type is `Edm.String`. Other data types such as `Edm.Int32` are filterable, sortable, facetable, and retrievable but not full-text searchable.
 
-Attributes on the field determine allowed actions. The REST APIs allow [many actions by default](/rest/api/searchservice/create-index#request-body). For example, all strings are searchable and retrievable by default. For REST APIs, you might only have attributes if you need to turn off a behavior.
+Attributes on the field determine allowed actions. The REST APIs allow [many actions by default](/rest/api/searchservice/indexes/create#request-body). For example, all strings are searchable and retrievable by default. For REST APIs, you might only have attributes if you need to turn off a behavior.
 
 ```json
 {
@@ -244,7 +244,7 @@ The URI is extended to include the `docs` collections and `index` operation.
             {
             "@search.action": "upload",
             "HotelId": "1",
-            "HotelName": "Secret Point Motel",
+            "HotelName": "Stay-Kay City Hotel",
             "Description": "The hotel is ideally located on the main commercial artery of the city in the heart of New York. A few minutes away is Time's Square and the historic centre of the city, as well as other places of interest that make New York one of America's most attractive and cosmopolitan cities.",
             "Category": "Boutique",
             "Tags": [ "pool", "air conditioning", "concierge" ],
@@ -263,7 +263,7 @@ The URI is extended to include the `docs` collections and `index` operation.
             {
             "@search.action": "upload",
             "HotelId": "2",
-            "HotelName": "Twin Dome Motel",
+            "HotelName": "Old Century Hotel",
             "Description": "The hotel is situated in a  nineteenth century plaza, which has been expanded and renovated to the highest architectural standards to create a modern, functional and first-class hotel in which art and unique historical elements coexist with the most modern comforts.",
             "Category": "Boutique",
             "Tags": [ "pool", "free wifi", "concierge" ],
@@ -282,7 +282,7 @@ The URI is extended to include the `docs` collections and `index` operation.
             {
             "@search.action": "upload",
             "HotelId": "3",
-            "HotelName": "Triple Landscape Hotel",
+            "HotelName": "Gastronomic Landscape Hotel",
             "Description": "The Hotel stands out for its gastronomic excellence under the management of William Dough, who advises on and oversees all of the Hotel’s restaurant services.",
             "Category": "Resort and Spa",
             "Tags": [ "air conditioning", "bar", "continental breakfast" ],
@@ -301,8 +301,8 @@ The URI is extended to include the `docs` collections and `index` operation.
             {
             "@search.action": "upload",
             "HotelId": "4",
-            "HotelName": "Sublime Cliff Hotel",
-            "Description": "Sublime Cliff Hotel is located in the heart of the historic center of Sublime in an extremely vibrant and lively area within short walking distance to the sites and landmarks of the city and is surrounded by the extraordinary beauty of churches, buildings, shops and monuments. Sublime Cliff is part of a lovingly restored 1800 palace.",
+            "HotelName": "Sublime Palace Hotel",
+            "Description": "Sublime Palace Hotel is located in the heart of the historic center of Sublime in an extremely vibrant and lively area within short walking distance to the sites and landmarks of the city and is surrounded by the extraordinary beauty of churches, buildings, shops and monuments. Sublime Palace is part of a lovingly restored 1800 palace.",
             "Category": "Boutique",
             "Tags": [ "concierge", "view", "24-hour front desk service" ],
             "ParkingIncluded": true,
@@ -357,8 +357,8 @@ The URI is extended to include a query expression, which is specified by using t
         {
           "@search.score": 0.6189728,
           "HotelId": "4",
-          "HotelName": "Sublime Cliff Hotel",
-          "Description": "Sublime Cliff Hotel is located in the heart of the historic center of Sublime in an extremely vibrant and lively area within short walking distance to the sites and landmarks of the city and is surrounded by the extraordinary beauty of churches, buildings, shops and monuments. Sublime Cliff is part of a lovingly restored 1800 palace.",
+          "HotelName": "Sublime Palace Hotel",
+          "Description": "Sublime Palace Hotel is located in the heart of the historic center of Sublime in an extremely vibrant and lively area within short walking distance to the sites and landmarks of the city and is surrounded by the extraordinary beauty of churches, buildings, shops and monuments. Sublime Palace is part of a lovingly restored 1800 palace.",
           "Tags": [
             "concierge",
             "view",

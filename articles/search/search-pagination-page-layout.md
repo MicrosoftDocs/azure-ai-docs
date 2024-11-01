@@ -6,7 +6,7 @@ description: Define search result composition, get a document count, sort result
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: how-to
@@ -15,7 +15,7 @@ ms.date: 06/12/2024
 
 # How to shape results in Azure AI Search
 
-This article explains how to work with a query response in Azure AI Search. The structure of a response is determined by parameters in the query itself, as described in [Search Documents (REST)](/rest/api/searchservice/Search-Documents) or [SearchResults Class (Azure for .NET)](/dotnet/api/azure.search.documents.models.searchresults-1). 
+This article explains how to work with a query response in Azure AI Search. The structure of a response is determined by parameters in the query itself, as described in [Search Documents (REST)](/rest/api/searchservice/documents/search-post) or [SearchResults Class (Azure for .NET)](/dotnet/api/azure.search.documents.models.searchresults-1). 
 
 Parameters on the query determine:
 
@@ -32,30 +32,30 @@ Results are tabular, composed of fields of either all "retrievable" fields, or l
 
 You can choose which fields are in search results. While a search document might have a large number of fields, typically only a few are needed to represent each document in results. On a query request, append `$select=<field list>` to specify which "retrievable" fields should appear in the response.
 
-Pick fields that offer contrast and differentiation among documents, providing sufficient information to invite a click-through response on the part of the user. On an e-commerce site, it might be a product name, description, brand, color, size, price, and rating. For the built-in hotels-sample index, it might be the "select" fields in the following example:
+Pick fields that offer contrast and differentiation among documents, providing sufficient information to invite a clickthrough response on the part of the user. On an e-commerce site, it might be a product name, description, brand, color, size, price, and rating. For the built-in hotels-sample index, it might be the "select" fields in the following example:
 
 ```http
 POST /indexes/hotels-sample-index/docs/search?api-version=2024-07-01 
     {  
       "search": "sandy beaches",
-      "select": "HotelId, HotelName, Description, Rating, Address/City"
+      "select": "HotelId, HotelName, Description, Rating, Address/City",
       "count": true
     }
 ```
 
 ### Tips for unexpected results
 
-Occasionally, the content of seaarch results are unexpected. For example, you might find that some results appear to be duplicates, or a result that *should* appear near the top is positioned lower in the results. When query outcomes are unexpected, you can try these query modifications to see if results improve:
+Occasionally, query output isn't what you're expecting to see. For example, you might find that some results appear to be duplicates, or a result that *should* appear near the top is positioned lower in the results. When query outcomes are unexpected, you can try these query modifications to see if results improve:
 
 + Change **`searchMode=any`** (default) to **`searchMode=all`** to require matches on all criteria instead of any of the criteria. This is especially true when boolean operators are included the query.
 
-+ Experiment with different lexical analyzers or custom analyzers to see if it changes the query outcome. The default analyzer breakz up hyphenated words and reduces words to root forms, which usually improves the robustness of a query response. However, if you need to preserve hyphens, or if strings include special characters, you might need to configure custom analyzers to ensure the index contains tokens in the right format. For more information, see [Partial term search and patterns with special characters (hyphens, wildcard, regex, patterns)](search-query-partial-matching.md).
++ Experiment with different lexical analyzers or custom analyzers to see if it changes the query outcome. The default analyzer breaks up hyphenated words and reduces words to root forms, which usually improves the robustness of a query response. However, if you need to preserve hyphens, or if strings include special characters, you might need to configure custom analyzers to ensure the index contains tokens in the right format. For more information, see [Partial term search and patterns with special characters (hyphens, wildcard, regex, patterns)](search-query-partial-matching.md).
 
 ## Counting matches
 
 The count parameter returns the number of documents in the index that are considered a match for the query. To return the count, add **`$count=true`** to the query request. There's no maximum value imposed by the search service. Depending on your query and the content of your documents, the count could be as high as every document in the index.
 
-Count is accurate when the index is stable. If the system is actively adding, updating, or deleting documents, the count will be approximate, excluding any documents that aren't fully indexed.
+Count is accurate when the index is stable. If the system is actively adding, updating, or deleting documents, the count is approximate, excluding any documents that aren't fully indexed.
 
 Count won't be affected by routine maintenance or other workloads on the search service. However if you have multiple partitions and a single replica, you could experience short-term fluctuations in document count (several minutes) as the partitions are restarted.
 
@@ -70,7 +70,7 @@ By default, the search engine returns up to the first 50 matches. The top 50 are
 
 The upper limit is 1,000 documents returned per page of search results, so you can set top to return up to 1000 document in the first result. In newer preview APIs, if you're using a hybrid query, you can [specify maxTextRecallSize](hybrid-search-how-to-query.md#set-maxtextrecallsize-and-countandfacetmode-preview) to return up to 10,000 documents.
 
-To control the paging of all documents returned in a result set, add `$top` and `$skip` parameters to the GET query request, or `top` and `skip` to the POST query request. The following list explains the logic.
+To control the paging of all documents returned in a result set, add `$top` and `$skip` parameters to a GET request, or `top` and `skip` to a POST request. The following list explains the logic.
 
 + Return the first set of 15 matching documents plus a count of total matches: `GET /indexes/<INDEX-NAME>/docs?search=<QUERY STRING>&$top=15&$skip=0&$count=true`
 
@@ -120,7 +120,7 @@ In this workaround, sort and filter are applied to a document ID field or anothe
         }
     ```
 
-1. Choose the last result returned by the search query. An example result with only an "id" value is shown here.
+1. Choose the last result returned by the search query. An example result with only an ID value is shown here.
 
     ```json
     {
@@ -128,7 +128,7 @@ In this workaround, sort and filter are applied to a document ID field or anothe
     }
     ```
 
-1. Use that "id" value in a range query to fetch the next page of results. This "id" field should have unique values, otherwise pagination may include duplicate results.
+1. Use that ID value in a range query to fetch the next page of results. This ID field should have unique values, otherwise pagination might include duplicate results.
 
     ```http
     POST /indexes/good-books/docs/search?api-version=2024-07-01
@@ -165,7 +165,7 @@ For either algorithm, a "@search.score" equal to 1.00 indicates an unscored or u
 
 ### Order by the semantic reranker
 
-If you're using [semantic ranking](semantic-search-overview.md), the "@search.rerankerScore" determines the sort order of your results. 
+If you're using [semantic ranker](semantic-search-overview.md), the "@search.rerankerScore" determines the sort order of your results. 
 
 The "@search.rerankerScore" range is 1 to 4.00, where a higher score indicates a stronger semantic match.
 
@@ -175,13 +175,13 @@ If consistent ordering is an application requirement, you can define an [**`$ord
 
 Fields commonly used in an **`$orderby`** include rating, date, and location. Filtering by location requires that the filter expression calls the [**`geo.distance()` function**](search-query-odata-geo-spatial-functions.md?#order-by-examples), in addition to the field name.
 
-Numeric fields (Edm.Double, Edm.Int32, Edm.Int64) are sorted in numeric order (for example, 1, 2, 10, 11, 20).
+Numeric fields (`Edm.Double`, `Edm.Int32`, `Edm.Int64`) are sorted in numeric order (for example, 1, 2, 10, 11, 20).
 
-String fields (Edm.String, Edm.ComplexType subfields) are sorted in either [ASCII sort order](https://en.wikipedia.org/wiki/ASCII#Printable_characters) or [Unicode sort order](https://en.wikipedia.org/wiki/List_of_Unicode_characters), depending on the language. You can't sort collections of any type.
+String fields (`Edm.String`, `Edm.ComplexType` subfields) are sorted in either [ASCII sort order](https://en.wikipedia.org/wiki/ASCII#Printable_characters) or [Unicode sort order](https://en.wikipedia.org/wiki/List_of_Unicode_characters), depending on the language.
 
 + Numeric content in string fields is sorted alphabetically (1, 10, 11, 2, 20).
 
-+ Upper case strings are sorted ahead of lower case (APPLE, Apple, BANANA, Banana, apple, banana). You can assign a [text normalizer](search-normalizers.md) to preprocess the text before sorting to change this behavior. Using the lowercase tokenizer on a field will have no effect on sorting behavior because Azure AI Search sorts on a non-analyzed copy of the field.
++ Upper case strings are sorted ahead of lower case (APPLE, Apple, BANANA, Banana, apple, banana). You can assign a [text normalizer](search-normalizers.md) to preprocess the text before sorting to change this behavior. Using the lowercase tokenizer on a field has no effect on sorting behavior because Azure AI Search sorts on a nonanalyzed copy of the field.
 
 + Strings that lead with diacritics appear last (Äpfel, Öffnen, Üben)
 
@@ -193,9 +193,9 @@ Another approach that promotes order consistency is using a [custom scoring prof
 
 Hit highlighting refers to text formatting (such as bold or yellow highlights) applied to matching terms in a result, making it easy to spot the match. Highlighting is useful for longer content fields, such as a description field, where the match isn't immediately obvious. 
 
-Notice that highlighting is applied to individual terms. There's no highlight capability for the contents of an entire field. If you want to highlight over a phrase, you'll have to provide the matching terms (or phrase) in a quote-enclosed query string. This technique is described further on in this section.
+Notice that highlighting is applied to individual terms. There's no highlight capability for the contents of an entire field. If you want to highlight over a phrase, you have to provide the matching terms (or phrase) in a quote-enclosed query string. This technique is described further on in this section.
 
-Hit highlighting instructions are provided on the [query request](/rest/api/searchservice/search-documents). Queries that trigger query expansion in the engine, such as fuzzy and wildcard search, have limited support for hit highlighting.
+Hit highlighting instructions are provided on the [query request](/rest/api/searchservice/documents/search-post). Queries that trigger query expansion in the engine, such as fuzzy and wildcard search, have limited support for hit highlighting.
 
 ### Requirements for hit highlighting
 
@@ -224,7 +224,7 @@ By default, Azure AI Search returns up to five highlights per field. You can adj
 
 When highlighting is added to the query, the response includes an "@search.highlights" for each result so that your application code can target that structure. The list of fields specified for "highlight" are included in the response.
 
-In a keyword search, each term is scanned for independently. A query for "divine secrets" will return matches on any document containing either term.
+In a keyword search, each term is scanned for independently. A query for "divine secrets" returns matches on any document containing either term.
 
 :::image type="content" source="media/search-pagination-page-layout/highlighting-example.png" alt-text="Screenshot of highlighting over a phrase query." border="true":::
 
@@ -293,7 +293,7 @@ POST /indexes/good-books/docs/search?api-version=2024-07-01
     }
 ```
 
-Because the criteria now has both terms, only one match is found in the search index. The response to the above query looks like this:
+Because the criteria now have both terms, only one match is found in the search index. The response to the above query looks like this:
 
 ```json
 {

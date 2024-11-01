@@ -6,8 +6,9 @@ author: eric-urban
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: conceptual
-ms.date: 8/20/2024
+ms.date: 9/23/2024
 ms.author: eur
+# Customer intent: As a developer, I want to learn how to assign access roles for a Speech resource.
 ---
 
 # Role-based access control for Speech resources

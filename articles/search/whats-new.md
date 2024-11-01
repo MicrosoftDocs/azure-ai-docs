@@ -5,9 +5,9 @@ description: Announcements of new and enhanced features, including a service ren
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.topic: overview
-ms.date: 08/20/2024
+ms.date: 10/01/2024
 ms.custom:
   - references_regions
 ---
@@ -19,21 +19,32 @@ ms.custom:
 > [!NOTE]
 > Preview features are announced here, but we also maintain a [preview features list](search-api-preview.md) so you can find them in one place.
 
+## October 2024
+
+| Item&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Type |  Description |
+|-----------------------------|------|--------------|
+| [**Lower the dimension requirements for MRL-trained text embedding models on Azure OpenAI**](vector-search-how-to-configure-compression-storage.md#use-mrl-compression-and-truncated-dimensions-preview) | Feature | Text-embedding-3-small and Text-embedding-3-large are trained using Matryoshka Representation Learning (MRL). This allows you to truncate the embedding vectors to fewer dimensions, and adjust the balance between vector index size usage and retrieval quality. A new `truncationDimension` in the [2024-09-01-preview](/rest/api/searchservice/indexes/create-or-update?view=rest-searchservice-2024-09-01-preview&preserve-view=true) enables access to MRL compression in text embedding models. This can only be configured for new vector fields. |
+| [**Unpack `@search.score` to view subscores in hybrid search results**](hybrid-search-ranking.md#unpack-a-search-score-into-subscores-preview) | Feature | You can investigate Reciprocal Rank Fusion (RRF) ranked results by viewing the individual query subscores of the final merged and scored result. A new `debug` property unpacks the search score. `QueryResultDocumentSubscores`, `QueryResultDocumentRerankerInput`, and `QueryResultDocumentSemanticField` provide the extra detail. These definitions are available in the [2024-09-01-preview](/rest/api/searchservice/documents/search-post?view=rest-searchservice-2024-09-01-preview&preserve-view=true). |
+| [**Target filters in a hybrid search to just the vector queries**](hybrid-search-how-to-query.md#hybrid-search-with-filters-targeting-vector-subqueries-preview) | Feature | A filter on a hybrid query involves all subqueries on the request, regardless of type. You can override the global filter to scope the filter to a specific subquery. The new `filterOverride` parameter is available on hybrid queries using the [2024-09-01-preview](/rest/api/searchservice/documents/search-post?view=rest-searchservice-2024-09-01-preview&preserve-view=true). |
+| [**Text Split skill (token chunking)**](cognitive-search-skill-textsplit.md) | Applied AI (skills) | This skill has new parameters that improve data chunking for embedding models. A new `unit` parameter lets you specify token chunking. You can now chunk by token length, setting the length to a value that makes sense for your embedding model. You can also specify the tokenizer and any tokens that shouldn't be split during data chunking. The new `unit` parameter and query subscore definitions are found in the [2024-09-01-preview](/rest/api/searchservice/skillsets/create-or-update?view=rest-searchservice-2024-09-01-preview&preserve-view=true). |
+| [**2024-09-01-preview**](/rest/api/searchservice/search-service-api-versions?view=rest-searchservice-2024-09-01-preview&preserve-view=true) | API | Preview release of REST APIs for truncated dimensions in text-embedding-3 models, targeted vector filtering for hybrid queries, RRF subscore details for debugging, and token chunking for Text Split skill.|
+| [**Portal support for customer-managed key encryption (CMK)**](search-security-manage-encryption-keys.md#step-4-encrypt-content) | Feature | When you create new objects in the Azure portal, you can now specify CMK-encryption and select an Azure Key Vault to provide the key. |
+
 ## August 2024
 
 | Item&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Type |  Description |
 |-----------------------------|------|--------------|
-| [**Debug session improvements**](cognitive-search-debug-session.md) | feature | There are two important improvements. First, you can now debug integrated vectorization and data chunking workloads. Second, debug sessions is redesigned for a more streamlined presentation of skills and mappings. You can select an object in the flow, and view or edit its details off to the side. The previous tabbed layout is fully replaced with more context-sensitive information on the page. |
-| [**2024-07-01**](/rest/api/searchservice/search-service-api-versions?view=rest-searchservice-2024-07-01&preserve-view=true) | API | Stable release of REST APIs for generally available vector data types, vector compression, and integrated vectorization during indexing and queries. |
-| [**Integrated vectorization**](vector-search-integrated-vectorization.md) | Feature | Announcing general availability. Skills-driven data chunking and embedding during indexing. |
-| [**Vectorizers**](vector-search-how-to-configure-vectorizer.md) | Feature  | Announcing general availability. Text-to-vector conversion during query execution. Both [Azure OpenAI vectorizer](vector-search-vectorizer-azure-open-ai.md) and [custom Web API vectorizer](vector-search-vectorizer-custom-web-api.md) are generally available. |
-| [**AzureOpenAIEmbedding skill**](cognitive-search-skill-azure-openai-embedding.md) | Feature | Announcing general availability. A skill type that calls an Azure OpenAI embedding model to generate embeddings during indexing.  |
-| [**Index projections**](index-projections-concept-intro.md) | Feature | Announcing general availability. A component of a skillset definition that defines the shape of a secondary index, supporting a one-to-many index pattern, where content from an enrichment pipeline can target multiple indexes. |
-| [**Binary and Scalar quantization**](vector-search-how-to-configure-compression-storage.md#option-1-configure-quantization)  | Feature | Announcing general availability. Compress vector index size in memory and on disk using built-in quantization. |
-| [**Narrow data types**](vector-search-how-to-configure-compression-storage.md#option-2-assign-narrow-data-types-to-vector-fields) | Feature  | Announcing general availability. Assign a smaller data type on vector fields, assuming incoming data is of that data type. |
-| [**Import and vectorize data wizard**](search-get-started-portal-import-vectors.md) | Azure portal | Announcing general availability. A wizard that creates a full indexing pipeline that includes data chunking and vectorization. The wizard creates all necessary objects and configurations. This release adds wizard support for Azure Data Lake in Azure Storage.|
-| [**stored property**](vector-search-how-to-configure-compression-storage.md#option-3-set-the-stored-property-to-remove-retrievable-storage) | Feature  | Announcing general availability. Boolean that reduces storage of vector indexes by *not* storing retrievable vectors. |
-| [**vectorQueries.Weight property**](vector-search-how-to-query.md#vector-weighting) | Feature  | Announcing general availability. Specify the relative weight of each vector query in a search operation. |
+| [Debug Session improvements](cognitive-search-debug-session.md) | feature | There are two important improvements. First, you can now debug integrated vectorization and data chunking workloads. Second, Debug Sessions is redesigned for a more streamlined presentation of skills and mappings. You can select an object in the flow, and view or edit its details in a side panel. The previous tabbed layout is fully replaced with more context-sensitive information on the page. |
+| [2024-07-01](/rest/api/searchservice/search-service-api-versions?view=rest-searchservice-2024-07-01&preserve-view=true) | API | Stable release of REST APIs for generally available vector data types, vector compression, and integrated vectorization during indexing and queries. |
+| [Integrated vectorization](vector-search-integrated-vectorization.md) | Feature | Announcing general availability. Skills-driven data chunking and embedding during indexing. |
+| [Vectorizers](vector-search-how-to-configure-vectorizer.md) | Feature  | Announcing general availability. Text-to-vector conversion during query execution. Both [Azure OpenAI vectorizer](vector-search-vectorizer-azure-open-ai.md) and [custom Web API vectorizer](vector-search-vectorizer-custom-web-api.md) are generally available. |
+| [AzureOpenAIEmbedding skill](cognitive-search-skill-azure-openai-embedding.md) | Feature | Announcing general availability. A skill type that calls an Azure OpenAI embedding model to generate embeddings during indexing.  |
+| [Index projections](index-projections-concept-intro.md) | Feature | Announcing general availability. A component of a skillset definition that defines the shape of a secondary index, supporting a one-to-many index pattern, where content from an enrichment pipeline can target multiple indexes. |
+| [Binary and Scalar quantization](vector-search-how-to-configure-compression-storage.md#option-1-configure-quantization)  | Feature | Announcing general availability. Compress vector index size in memory and on disk using built-in quantization. |
+| [Narrow data types](vector-search-how-to-configure-compression-storage.md#option-2-assign-narrow-data-types-to-vector-fields) | Feature  | Announcing general availability. Assign a smaller data type on vector fields, assuming incoming data is of that data type. |
+| [Import and vectorize data wizard](search-get-started-portal-import-vectors.md) | Azure portal | Announcing general availability. A wizard that creates a full indexing pipeline that includes data chunking and vectorization. The wizard creates all necessary objects and configurations. This release adds wizard support for Azure Data Lake in Azure Storage.|
+| [stored property](vector-search-how-to-configure-compression-storage.md#option-3-set-the-stored-property-to-remove-retrievable-storage) | Feature  | Announcing general availability. Boolean that reduces storage of vector indexes by *not* storing retrievable vectors. |
+| [vectorQueries.Weight property](vector-search-how-to-query.md#vector-weighting) | Feature  | Announcing general availability. Specify the relative weight of each vector query in a search operation. |
 
 ## July 2024
 
@@ -73,7 +84,7 @@ ms.custom:
 |-----------------------------|------|--------------|
 | [Security update addressing information disclosure](https://msrc.microsoft.com/update-guide/vulnerability/CVE-2024-29063) | API | GET responses [no longer return connection strings or keys](search-api-migration.md#breaking-change-for-client-code-that-reads-connection-information). Applies to GET Skillset, GET Index, and GET Indexer. This change helps protect your Azure assets integrated with AI Search from unauthorized access. |
 | [More storage on Basic and Standard tiers](search-limits-quotas-capacity.md#service-limits) | Infrastructure |  Basic now supports up to three partitions and three replicas. Basic and Standard (S1, S2, S3) tiers have significantly more storage per partition, at the same per-partition billing rate. Extra capacity is subject to [regional availability](search-limits-quotas-capacity.md#service-limits) and applies to new search services created after April 3, 2024. Currently, there's no in-place upgrade, so you must create a new search service to get the extra storage. |
-| [More quota for vectors](search-limits-quotas-capacity.md#vector-limits-on-services-created-between-april-3-2024-and-may-17-2024) | Infrastructure | Vector quotas are also higher on new services created after April 3, 2024 in selected regions. |
+| [More quota for vectors](search-limits-quotas-capacity.md#vector-index-size-limits) | Infrastructure | Vector quotas are also higher on new services created after April 3, 2024 in selected regions. |
 | [Vector quantization, narrow vector data types, and a new `stored` property (preview)](vector-search-how-to-configure-compression-storage.md) | Feature | Collectively, these three features add vector compression and smarter storage options. First, *scalar quantization* reduces vector index size in memory and on disk. Second, [narrow data types](/rest/api/searchservice/supported-data-types) reduce per-field storage by storing smaller values. Third, you can use `stored` to opt-out of storing the extra copy of a vector that's used only for search results. If you don't need vectors in a query response, you can set `stored` to false to save on space. |
 | [2024-03-01-preview Search REST API](/rest/api/searchservice/search-service-api-versions#2024-03-01-preview) | API | New preview version of the Search REST APIs for the new data types, vector compression properties, and vector storage options. |
 | [2024-03-01-preview Management REST API](/rest/api/searchmanagement/operation-groups?view=rest-searchmanagement-2024-03-01-preview&preserve-view=true) | API | New preview version of the Management REST APIs for control plane operations.  |
@@ -90,12 +101,12 @@ ms.custom:
 | Month | Type | Announcement |
 |-------|------|-------------|
 | November | Feature | [**Vector search, generally available**](vector-search-overview.md). The previous restriction on customer-managed keys (CMK) is now lifted. [Prefiltering](vector-search-how-to-query.md) and [exhaustive K-nearest neighbor algorithm](vector-search-ranking.md) are also now generally available. |
-| November | Feature | [**Semantic ranking, generally available**](semantic-search-overview.md)|
+| November | Feature | [**Semantic ranker, generally available**](semantic-search-overview.md)|
 | November | Feature | [**Integrated vectorization (preview)**](vector-search-integrated-vectorization.md) adds data chunking and text-to-vector conversions during indexing, and also adds text-to-vector conversions at query time. |
 | November | Feature | [**Import and vectorize data wizard (preview)**](search-get-started-portal-import-vectors.md) automates data chunking and vectorization. It targets the [2023-10-01-Preview](/rest/api/searchservice/skillsets/create-or-update?view=rest-searchservice-2023-10-01-preview&preserve-view=true) REST API. | 
 | November | Feature | [**Index projections (preview)**](index-projections-concept-intro.md) defines the shape of a secondary index, used for a one-to-many index pattern, where content from an enrichment pipeline can target multiple indexes. | 
 | November | API | [**2023-11-01 Search REST API**](/rest/api/searchservice/search-service-api-versions#2023-11-01) is stable version of the Search REST APIs for [vector search](vector-search-overview.md) and [semantic ranking](semantic-how-to-query-request.md). See [Upgrade REST APIs](search-api-migration.md) for migration steps to generally available features.|
-| November | API | [**2023-11-01 Management REST API**](/rest/api/searchmanagement/operation-groups?view=rest-searchmanagement-2023-11-01&preserve-view=true) adds APIs that [enable or disable semantic ranking](/rest/api/searchmanagement/services/create-or-update#searchsemanticsearch). |
+| November | API | [**2023-11-01 Management REST API**](/rest/api/searchmanagement/operation-groups?view=rest-searchmanagement-2023-11-01&preserve-view=true) adds APIs that [enable or disable semantic ranker](/rest/api/searchmanagement/services/create-or-update#searchsemanticsearch). |
 | November | Skill | [**Azure OpenAI Embedding skill (preview)**](cognitive-search-skill-azure-openai-embedding.md) connects to a deployed embedding model on your Azure OpenAI resource to generate embeddings during skillset execution.|
 | November | Skill | [**Text Split skill (preview)**](cognitive-search-skill-textsplit.md) updated in [2023-10-01-Preview](/rest/api/searchservice/skillsets/create-or-update?view=rest-searchservice-2023-10-01-preview&preserve-view=true) to support native data chunking. |
 | November | Video | [**How vector search and semantic ranking improve your GPT prompts**](https://www.youtube.com/watch?v=Xwx1DJ0OqCk) explains how hybrid retrieval gives you optimal grounding data for generating useful AI responses and enables search over both concepts and keywords. |
@@ -139,4 +150,4 @@ This service has had multiple names over the years. Here they are in reverse chr
 
 ## Feature rename
 
-Semantic search was renamed to [semantic ranking](semantic-search-overview.md) in November 2023 to better describe the feature, which provides L2 ranking of an existing result set.
+Semantic search was renamed to [semantic ranker](semantic-search-overview.md) in November 2023 to better describe the feature, which provides L2 ranking of an existing result set.

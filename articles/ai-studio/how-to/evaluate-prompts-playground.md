@@ -16,7 +16,7 @@ author: lgayhardt
 
 # Manually evaluate prompts in Azure AI Studio playground
 
-[!INCLUDE [Feature preview](~/reusable-content/ce-skilling/azure/includes/ai-studio/includes/feature-preview.md)]
+[!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
 When you get started with prompt engineering, you should test different inputs one at a time to evaluate the effectiveness of the prompt can be very time intensive. This is because it's important to check whether the content filters are working appropriately, whether the response is accurate, and more. 
 
@@ -81,6 +81,6 @@ You can also compare the thumbs up and down ratings across your different manual
 
 Learn more about how to evaluate your generative AI applications:
 - [Evaluate your generative AI apps with the Azure AI Studio or SDK](./evaluate-generative-ai-app.md)
-- [View the evaluation results](./evaluate-flow-results.md)
+- [View the evaluation results](./evaluate-results.md)
 
 Learn more about [harm mitigation techniques](../concepts/evaluation-improvement-strategies.md).

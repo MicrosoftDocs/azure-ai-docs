@@ -6,7 +6,7 @@ description: When creating filter expressions in Azure AI Search queries, use "a
 manager: nitinme
 author: bevloh
 ms.author: beloh
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: reference
@@ -94,4 +94,4 @@ For more details on these limitations as well as examples, see [Troubleshooting 
 - [Filters in Azure AI Search](search-filters.md)
 - [OData expression language overview for Azure AI Search](query-odata-filter-orderby-syntax.md)
 - [OData expression syntax reference for Azure AI Search](search-query-odata-syntax-reference.md)
-- [Search Documents &#40;Azure AI Search REST API&#41;](/rest/api/searchservice/Search-Documents)
+- [Search Documents &#40;Azure AI Search REST API&#41;](/rest/api/searchservice/documents/search-post)

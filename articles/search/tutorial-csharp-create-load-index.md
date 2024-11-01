@@ -5,7 +5,7 @@ description: Create index and import CSV data into Search index with .NET.
 manager: nitinme
 author: diberry
 ms.author: diberry
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.topic: tutorial
 ms.date: 08/16/2024
 ms.custom:

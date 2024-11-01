@@ -7,7 +7,7 @@ author: HeidiSteen
 ms.author: heidist
 manager: nitinme
 
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.topic: tutorial
 ms.date: 03/06/2024
 ms.custom:
@@ -630,7 +630,7 @@ Add the following using statement to resolve the disambiguated reference.
 using Index = Azure.Search.Documents.Indexes.Models;
 ```
 
-To learn more about index concepts, see [Create Index (REST API)](/rest/api/searchservice/create-index).
+To learn more about index concepts, see [Create Index (REST API)](/rest/api/searchservice/indexes/create).
 
 ### Step 4: Create and run an indexer
 

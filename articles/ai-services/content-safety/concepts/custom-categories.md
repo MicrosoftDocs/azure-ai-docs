@@ -1,5 +1,5 @@
 ---
-title: "Custom categories in Azure AI Content Safety"
+title: "Custom categories in Azure AI Content Safety (preview)"
 titleSuffix: Azure AI services
 description: Learn about custom content categories and the different ways you can use Azure AI Content Safety to handle them on your platform.
 #services: cognitive-services
@@ -12,7 +12,7 @@ ms.date: 07/05/2024
 ms.author: pafarley
 ---
 
-# Custom categories 
+# Custom categories (preview)
 
 Azure AI Content Safety lets you create and manage your own content moderation categories for enhanced moderation and filtering that matches your specific policies or use cases.
 
@@ -49,9 +49,9 @@ This implementation works on text content and image content.
 
 ## How it works
 
-#### [Custom categories (standard) API](#tab/standard)
+### [Custom categories (standard) API](#tab/standard)
 
-The Azure AI Content Safety custom category feature uses a multi-step process for creating, training, and using custom content classification models. Here's a look at the workflow:
+The Azure AI Content Safety custom categories feature uses a multi-step process for creating, training, and using custom content classification models. Here's a look at the workflow:
 
 ### Step 1: Definition and setup
  
@@ -73,7 +73,7 @@ You use the **analyzeCustomCategory** API to analyze text content and determine 
 
 #### [Custom categories (rapid) API](#tab/rapid)
 
-To use the custom category (rapid) API, you first create an **incident** object with a text description. Then, you upload any number of image or text samples to the incident. The LLM on the backend will then use these to evaluate future input content. No training step is needed.
+To use the custom categories (rapid) API, you first create an **incident** object with a text description. Then, you upload any number of image or text samples to the incident. The LLM on the backend will then use these to evaluate future input content. No training step is needed.
 
 You can include your defined incident in a regular text analysis or image analysis request. The service will indicate whether the submitted content is an instance of your incident. The service can still do other content moderation tasks in the same API call.
 
