@@ -93,7 +93,7 @@ Setting a field as searchable, filterable, sortable, or facetable has an effect 
 
 If a field isn't set to be searchable, filterable, sortable, or facetable, the field can't be referenced in any query expression. This is desirable for fields that aren't used in queries, but are needed in search results.
 
-The REST APIs have default attribution based on data types, which is also used by the [Import wizards](search-import-data-portal.md) in the Azure portal. The Azure SDKs don't have defaults, but they have field subclasses that incorporate properties and behaviors, such as [SearchableField](/dotnet/api/azure.search.documents.indexes.models.searchablefield) for strings and [SimpleField](/dotnet/api/azure.search.documents.indexes.models.simplefield) for primitives.
+The REST APIs have default attribution based on [data types](/rest/api/searchservice/supported-data-types), which is also used by the [Import wizards](search-import-data-portal.md) in the Azure portal. The Azure SDKs don't have defaults, but they have field subclasses that incorporate properties and behaviors, such as [SearchableField](/dotnet/api/azure.search.documents.indexes.models.searchablefield) for strings and [SimpleField](/dotnet/api/azure.search.documents.indexes.models.simplefield) for primitives.
 
 Default field attributions for the REST APIs are summarized in the following table.
 
@@ -106,11 +106,11 @@ Default field attributions for the REST APIs are summarized in the following tab
 | `Edm.DateTimeOffset` | ❌ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | `Edm.GeographyPoint` | ✅| ✅ | ✅ | ❌ | ✅ | ✅ |
 | `Edm.ComplexType` | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| `Collection(Edm.Single)` and all other vector field types | ✅ | ❌ | ❌ | ❌ | ❌ | ✅ |
+| `Collection(Edm.Single)` and all other vector field types | ✅ | ✅ or ❌ | ❌ | ❌ | ❌ | ✅ |
 
 String fields can also be optionally associated with [analyzers](search-analyzers.md) and [synonym maps](search-synonyms.md). Fields of type `Edm.String` that are filterable, sortable, or facetable can be at most 32 kilobytes in length. This is because values of such fields are treated as a single search term, and the maximum length of a term in Azure AI Search is 32 kilobytes. If you need to store more text than this in a single string field, you should explicitly set filterable, sortable, and facetable to `false` in your index definition.
 
-Vector fields must be associated with [dimensions and vector profiles](vector-search-how-to-create-index.md).
+Vector fields must be associated with [dimensions and vector profiles](vector-search-how-to-create-index.md). Retrievable default is true if you add the vector field using the [Import and vectorize wizard](search-get-started-portal-import-vectors.md) in the portal, otherwise it's false if you use the REST API.
 
 Field attributes are described in the following table.
 
@@ -261,9 +261,9 @@ The following properties can be set for CORS:
 
 [**Create Index**](/rest/api/searchservice/indexes/create) creates the physical data structures (files and inverted indexes) on your search service. Once the index is created, your ability to effect changes using [**Create or Update Index**](/rest/api/searchservice/indexes/create-or-update) is contingent upon whether your modifications invalidate those physical structures. Most field attributes can't be changed once the field is created in your index.
 
-Alternatively, you can [create an index alias](search-how-to-alias.md) that serves as a stable reference in your application code. Instead of updating your code, you can update an index alias to point to newer index versions.
+To minimize churn in application code, you can [create an index alias](search-how-to-alias.md) that serves as a stable reference to the search index. Instead of updating your code with index names, you can update an index alias to point to newer index versions.
 
-To minimize churn in the design process, the following table describes which elements are fixed and flexible in the schema. Changing a fixed element requires an index rebuild, whereas flexible elements can be changed at any time without impacting the physical implementation. 
+To minimize churn in the design process, the following table describes which elements are fixed and flexible in the schema. Changing a fixed element requires an index rebuild, whereas flexible elements can be changed at any time without impacting the physical implementation. For more information, see [Update or rebuild an index](search-howto-reindex.md).
 
 | Element | Can be updated? |
 |---------|-----------------|
@@ -278,6 +278,8 @@ To minimize churn in the design process, the following table describes which ele
 | [Suggesters](index-add-suggesters.md) | No |
 | [cross-origin resource sharing (CORS)](#corsoptions) | Yes |
 | [Encryption](search-security-manage-encryption-keys.md) | Yes |
+| [Synonym maps](search-synonyms.md) | Yes |
+| [Semantic configuration](semantic-how-to-configure.md) | Yes |
 
 ## Next steps
 
@@ -286,5 +288,4 @@ Use the following links to become familiar with loading an index with data, or e
 + [Data import overview](search-what-is-data-import.md)
 + [Add vector fields](vector-search-how-to-create-index.md)
 + [Load documents](search-how-to-load-search-index.md)
-+ [Update an index](search-howto-reindex.md)
-+ [Synonym maps](search-synonyms.md)
++ [Update or rebuild an index](search-howto-reindex.md)
