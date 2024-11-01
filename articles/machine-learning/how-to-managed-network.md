@@ -73,7 +73,7 @@ For more information on creating a private endpoint or service endpoint, see the
 
 ### Secured associated resources
 
-If you add the following services to the virtual network by using either a service endpoint or a private endpoint (disabling the public access). Allow trusted Microsoft services to access these services:
+If you add the following services to the virtual network by using either a service endpoint or a private endpoint (disabling the public access), allow trusted Microsoft services to access these services:
 
 | Service | Endpoint information | Allow trusted information |
 | ----- | ----- | ----- |
