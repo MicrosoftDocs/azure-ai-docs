@@ -36,7 +36,6 @@ items:
     displayName: quota, tiers, throttle, max, adjustments, requests, support, ocr
     href: service-limits.md
   - name: Document Intelligence client libraries
-    expanded: true
     items:
       - name: Changelog and migration guide
         displayName: latest, update, beta, package, preview, version
@@ -61,10 +60,10 @@ items:
   - name: Model overview
     displayName: get started, prebuilt, extraction, input
     href: model-overview.md
-  - name: 🆕 Bank check
+  - name: Bank check
     displayName: routing, account, number, amount, payee, issuer, date
     href: prebuilt/bank-check.md
-  - name: 🆕 Bank statement
+  - name: Bank statement
     displayName: transactions, deposits, withdrawals, balance, account, number, date
     href: prebuilt/bank-statement.md
   - name: Business card
@@ -97,7 +96,7 @@ items:
   - name: Mortgage documents (U.S.)
     displayName: 1003, 1008, closing, disclosure
     href: prebuilt/mortgage-documents.md
-  - name: 🆕 Pay stub
+  - name: Pay stub
     displayName: compensation, earnings, deductions, taxes, benefits, employer, employee
     href: prebuilt/pay-stub.md
   - name: Read
@@ -114,13 +113,13 @@ items:
   - name: Custom model overview
     displayName: table, label, ocr, confidence, template, neural
     href: train/custom-model.md
-  - name: 🆕 Composed models
+  - name: Composed models
     displayName: custom, assign, modelId, model ID
     href:  train/composed-models.md
-  - name: 🆕 Incremental classifier
+  - name: Incremental classifier
     displayName: custom, classification, training
     href: concept/incremental-classifier.md
-  - name: 🆕Custom generative model
+  - name: Custom generative model
     displayName: ai studio, neural, template, custom
     href: train/custom-generative-extraction.md
   - name: Custom template model
@@ -157,10 +156,10 @@ items:
   - name: Analyze document API response
     displayName: words, lines, pages, bounding regions, documents
     href: concept/analyze-document-response.md
-  - name: 🆕 Retrieval-Augmented Generation (RAG)
+  - name: Retrieval-Augmented Generation (RAG)
     displayName: RAG, LLM, semantic, chunk, LangChain, language model
     href: concept/retrieval-augmented-generation.md
-  - name: 🆕 Batch documents analysis
+  - name: Batch documents analysis
     displayName: analyze, azureBlobFileListSource, azureBlobSource, azureBlobFileListSource, resultContainerUrl, resultPrefix, overwriteExisting
     href: concept-batch-analysis.md
 - name: Quickstarts
@@ -179,7 +178,7 @@ items:
   - name: Use Document Intelligence models
     displayName: documentAnalysisClient, document analysis client, polygon, boundingPolygon, begin_analyze_document,ormRecognizerClient, Document Intelligence client, boundingBox, box, begin_recognize, v2.1
     href: how-to-guides/use-sdk-rest-api.md
-  - name: 🆕 Build and train a custom generative model
+  - name: Build and train a custom generative model
     displayName: ai studio, neural, template, custom
     href: how-to-guides/build-train-custom-generative-model.md
   - name: Check my usage and estimate the cost
