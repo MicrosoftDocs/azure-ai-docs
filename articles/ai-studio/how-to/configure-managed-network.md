@@ -869,13 +869,13 @@ An Azure Firewall is deployed if an FQDN outbound rule is created while in the _
 
 Use the following tabs to learn how to select the firewall version for your managed virtual network.
 
-# [Azure Portal](#tab/portal)
+# [Azure portal](#tab/portal)
 
 After selecting the allow only approved outbound mode, an option to select the Azure Firewall version (SKU) appears. Select __Standard__ to use the standard version or __Basic__ to use the basic version. Select __Save__ to save your configuration.
 
 # [Azure CLI](#tab/azure-cli)
 
-To configure the firewall verison from the CLI, use a YAML file and specify the `firewall_sku`. The following example demonstrates a YAML file that sets the firewall SKU to `basic`:
+To configure the firewall version from the CLI, use a YAML file and specify the `firewall_sku`. The following example demonstrates a YAML file that sets the firewall SKU to `basic`:
 
 ```yaml
 name: test-ws
