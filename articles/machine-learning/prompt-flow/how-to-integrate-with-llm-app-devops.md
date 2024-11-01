@@ -11,7 +11,7 @@ ms.topic: how-to
 author: lgayhardt
 ms.author: lagayhar
 ms.reviewer: chenlujiao
-ms.date: 10/31/2024
+ms.date: 11/01/2024
 ---
 
 # Integrate prompt flow with DevOps for LLM-based applications
@@ -408,7 +408,7 @@ pfazure run show-details --name <run-name>
 # [Python SDK](#tab/python)
 
 ```python
-details = pf.get_details(run-name)
+details = pf.get_details("<run-name>")
 details.head(10)
 ```
 
@@ -425,7 +425,7 @@ pfazure run show-metrics --name <evaluation-run-name>
 # [Python SDK](#tab/python)
 
 ```python
-pf.get_metrics("evaluation-run-name")
+pf.get_metrics("<evaluation-run-name>")
 ```
 ---
 
