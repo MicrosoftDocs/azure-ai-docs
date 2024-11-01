@@ -22,7 +22,7 @@ ms.custom: ignite-2023, build-2024
 
 - Build generative AI applications on an enterprise-grade platform.
 - Explore, build, test, and deploy using cutting-edge AI tools and ML models, grounded in responsible AI practices.
-- Organize your way. Your [AI Studio project](./how-to/create-projects.md) helps you save state, allowing you to iterate from first idea, to first prototype, and then first production deployment. Also easily invite others to collaborate along this journey.
+- Collaborate with a team for the full life-cycle of application development.
 
 With AI Studio, you can explore a wide variety of models, services and capabilities, and get to building AI applications that best serve your goals. The Azure AI Studio platform facilitates scalability for transforming proof of concepts into full-fledged production with ease. Continuous monitoring and refinement support long-term success.  
 
@@ -31,26 +31,26 @@ With AI Studio, you can explore a wide variety of models, services and capabilit
 When you come to AI Studio, you find that all paths lead to a project. Projects are easy-to-manage containers for your work—and the key to collaboration, organization, and connecting data and other services. Before you create your first project, you can explore models from many providers, and try out AI services and capabilities. When you're ready to move forward with a model or service, AI Studio guides you to create a project. Once you are in a project, all of the Azure AI capabilities come to life.
 
 > [!NOTE]
-> If you want to focus only on Azure OpenAI models and capabilities, we have a place where you can work only with your Azure OpenAI resource instead of a project. For more information, see [What is Azure OpenAI in Azure AI Studio?](azure-openai-in-ai-studio.md). However, for most situations, we recommend an AI Studio Project to build with a wide range of AI models, functionalities and tools as you build, test, and deploy AI solutions.
+> If you want to focus only on Azure OpenAI models and capabilities, we have a place where you can work with your Azure OpenAI resource instead of a project. For more information, see [What is Azure OpenAI in Azure AI Studio?](azure-openai-in-ai-studio.md). However, for most situations, we recommend an AI Studio project to build with a wide range of AI models, functionalities and tools as you build, test, and deploy AI solutions.
 
 ## Work in an Azure AI project
 
 An AI Studio project is where you do most of your development work. You can work with your project in the Azure AI Studio, or using the SDK in your preferred development environment. Once you have a project, you can connect to it from your code. You can explore models and capabilities before creating a project, but once you're ready to build, test, and operationalize, a project is where you'll want to be.
 
-When you choose to deploy a model or work with AI Services, you are prompted to select a project if you aren't already in one.
+When you choose to deploy a model or work with AI Services, you're prompted to select a project if you aren't already in one.
 
-Once you're in a project, you see an overview of what you can do with your project on the Overview page.
+Once you're in a project, you'll see an overview of what you can do with it on the **Overview** page.
 
 :::image type="content" source="media/explore/project-view-current.png" alt-text="Screenshot shows the project overview in Azure AI Studio." lightbox="media/explore/project-view-current.png":::
 
 The studio is organized around your goals. Generally, as you develop with Azure AI, you'll likely go through a few distinct stages of project development:
 
-- **Define and explore**. In this stage you define your project goals, and then explore and test models and services against your use case to find the ones that enable you to achieve your goals.
-- **Build and customize**. In this stage, you're actively building solutions and applications with the models, tools, and capabilities you picked in stage 1. You can also customize models by fine-tuning them, or grounding them in your data, to better fit your use case. Building and customizing might be something you choose to do in the Azure AI Studio, or through code and the Azure AI SDKs. Either way, a project provides you with everything you need.
-  - Once you're actively developing in your project, the Overview page shows the resources you want easy access to, like your endpoints and keys.
-- **Assess and improve**. In this stage, you're looking for where you can improve your application's performance. You might choose to use tools like tracing to debug your application, compare evaluations to hone in on how you want your application to behave, and integrate with safety & security systems so you can be confident when you take your application to production.
+* **Define and explore**. In this stage you define your project goals, and then explore and test models and services against your use case to find the ones that enable you to achieve your goals.
+* **Build and customize**. In this stage, you're actively building solutions and applications with the models, tools, and capabilities you selected. You can also customize models to perform better for your use case by fine-tuning, grounding in your data, and more. Building and customizing might be something you choose to do in the Azure AI Studio, or through code and the Azure AI SDKs. Either way, a project provides you with everything you need.
+  * Once you're actively developing in your project, the Overview page shows the things you want easy access to, like your endpoints and keys.
+* **Assess and improve**. In this stage, you're looking for where you can improve your application's performance. You might choose to use tools like tracing to debug your application or compare evaluations to hone in on how you want your application to behave. You can also integrate with safety & security systems so you can be confident when you take your application to production.
 
-If you're an admin, or leading a development team, and need to manage the team's resources, projects, quota, permissions, and more, you can do that in the Management Center.
+If you're an admin, or leading a development team, and need to manage the team's resources, project access, quota, and more, you can do that in the Management Center.
 
 ## Management center
 
@@ -58,7 +58,9 @@ The management center is a part of the Azure AI Studio that streamlines governan
 
 - Projects and resources
 - Quotas and usage metrics
-- Permissions and roles
+- Govern access and permissions
+
+For more information, see [Management center overview]().
 
 ## Pricing and billing
 
@@ -77,10 +79,11 @@ AI Studio is available in most regions where Azure AI services are available. Fo
 You can [explore AI Studio (including the model catalog)](./how-to/model-catalog.md) without signing in. 
 
 But for full functionality there are some requirements:
+
 - You need an [Azure account](https://azure.microsoft.com/free/). 
 
-## Next steps 
+## Related content
 
 - [Quickstart: Use the chat playground in Azure AI Studio](quickstarts/get-started-playground.md)
+- [Build a custom chat app in Python using the Azure AI SDK](quickstarts/get-started-code.md)
 - [Create a project](./how-to/create-projects.md)
-- [Tutorial: Using AI Studio with a screen reader](tutorials/screen-reader.md)
