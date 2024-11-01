@@ -8,7 +8,7 @@ ms.service: azure-machine-learning
 ms.subservice: core
 ms.topic: how-to
 ms.reviewer: fsolomon
-ms.date: 08/08/2024
+ms.date: 11/19/2024
 reviewer: AmarBadal
 
 #customer intent: As an admin, I want to disable shared key access to my resources to improve security.
@@ -97,15 +97,15 @@ When you create a new workspace, the creation process can automatically disable 
 
 # [Azure portal](#tab/portal)
 
-1. In Azure AI Machine Learning Studio, select **Create with customized networking, encryption identity, dependent resources or tags** as shown in this screenshot:
+1. In Azure Machine Learning studio, select **Create with customized networking, encryption identity, dependent resources or tags**.
 
     :::image type="content" source="./media/how-to-disable-local-auth-storage/create-new-workspace-azure-portal-first-step.png" alt-text="Screenshot showing selection of the Create with customized networking, encryption identity, dependent resources or tags dropdown option." lightbox="./media/how-to-disable-local-auth-storage/create-new-workspace-azure-portal-first-step.png":::
 
-1. Create your Azure Machine Learning workspace. In the following screenshot, a pre-existing storage account is selected.
+1. From the __Basics__ tab, select the __Storage account__ you created previously.
 
     :::image type="content" source="./media/how-to-disable-local-auth-storage/workspace-basics-storage-account.png" alt-text="Screenshot of workspace creation using the previously created storage account." lightbox="./media/how-to-disable-local-auth-storage/workspace-basics-storage-account.png":::
 
-1.  __Identity__ tab. In the __Storage account access__ section, set __Storage account access type__ to __identity-based__.
+1.  From the __Identity__ tab. In the __Storage account access__ section, set __Storage account access type__ to __identity-based__.
 
     :::image type="content" source="./media/how-to-disable-local-auth-storage/workspace-identity-based-access.png" alt-text="Screenshot of workspace creation using identity-based storage access." lightbox="./media/how-to-disable-local-auth-storage/workspace-identity-based-access.png":::
 
@@ -168,7 +168,7 @@ az ml workspace create -g <resource-group-name> --file workspace.yml
 
 # [ARM Template](#tab/armtemplate)
 
-For more information about ARM templates, visit [Quickstart: Create and deploy ARM templates by using the Azure portal](/azure/azure-resource-manager/templates/quickstart-create-templates-use-the-portal).
+In the following JSON template example, substitute your own values for the following placeholders:
 
 In the JSON code sample shown here, substitute your own values for
 
@@ -215,13 +215,9 @@ In the JSON code sample shown here, substitute your own values for
 }
 ```
 
-Paste that JSON code in the Microsoft Azure (Preview) template editor, as shown in this screenshot:
-
-:::image type="content" source="./media/how-to-disable-local-auth-storage/create-new-workspace-edit-template.png" alt-text="Screenshot showing the JSON code sample in the Microsoft Azure (Preview) template editor, to create a new workspace." lightbox="./media/how-to-disable-local-auth-storage/create-new-workspace-edit-template.png":::
-
-Select **Save**. At the next screen, select **Review + Create**, as shown in this screenshot:
-
-:::image type="content" source="./media/how-to-disable-local-auth-storage/review-and-create-new-workspace.png" alt-text="Screenshot showing review and creation of a new workspace in the Microsoft Azure (Preview) template editor." lightbox="./media/how-to-disable-local-auth-storage/review-and-create-new-workspace.png":::
+For information on deploying an ARM template, use one of the following articles:
+- [Tutorial: Deploy a local ARM template using Azure CLI or Azure PowerShell](/azure/azure-resource-manager/templates/deployment-tutorial-local-template)
+- [Quickstart: Create and deploy ARM templates by using the Azure portal](/azure/azure-resource-manager/templates/quickstart-create-templates-use-the-portal)
 
 After you create the workspace, identify all the users that will use it - for example, Data Scientists. These users must be assigned the __Storage Blob Data Contributor__ and __Storage File Data Privileged Contributor__ roles in Azure role-based access control for the storage account. If these users only need read access, use the __Storage Blob Data Reader__ and __Storage File Data Privileged Reader__ roles instead. For more information, visit the [role assignments](#scenarios-for-role-assignments) resource in this document.
 
@@ -233,7 +229,7 @@ If you have an existing Azure Machine Learning workspace, use the steps in this 
 
 # [Azure portal](#tab/portal)
 
-To update an existing workspace, go to **Properties** and select **Identity-based access**, as shown in this screenshot:
+To update an existing workspace, go to **Properties** and select **Identity-based access**.
 
 :::image type="content" source="./media/how-to-disable-local-auth-storage/update-an-existing-workspace-identity-based-access.png" alt-text="Screenshot showing selection of Identity-based access." lightbox="./media/how-to-disable-local-auth-storage/update-an-existing-workspace-identity-based-access.png":::
 
@@ -260,7 +256,7 @@ az ml workspace update --name myworkspace --system-datastores-auth-mode identity
 
 # [ARM Template](#tab/armtemplate)
 
-In the JSON code sample shown here, substitute your own values for
+In the following JSON template example, substitute your own values for the following placeholders:
 
 - **[workspace name]**
 - **[workspace friendly name]**
@@ -305,13 +301,9 @@ In the JSON code sample shown here, substitute your own values for
 }
 ```
 
-Paste that JSON code in the Microsoft Azure (Preview) template editor, as shown in this screenshot:
-
-:::image type="content" source="./media/how-to-disable-local-auth-storage/edit-workspace-edit-template.png" alt-text="Screenshot showing the JSON code sample in the Microsoft Azure (Preview) template editor, to convert an existing workspace." lightbox="./media/how-to-disable-local-auth-storage/edit-workspace-edit-template.png":::
-
-Select **Save**. At the next screen, select **Review + Create**, as shown in this screenshot:
-
-:::image type="content" source="./media/how-to-disable-local-auth-storage/review-and-create-update-workspace.png" alt-text="Screenshot showing review and creation of an updated workspace in the Microsoft Azure (Preview) template editor." lightbox="./media/how-to-disable-local-auth-storage/review-and-create-update-workspace.png":::
+For information on deploying an ARM template, use one of the following articles:
+- [Tutorial: Deploy a local ARM template using Azure CLI or Azure PowerShell](/azure/azure-resource-manager/templates/deployment-tutorial-local-template)
+- [Quickstart: Create and deploy ARM templates by using the Azure portal](/azure/azure-resource-manager/templates/quickstart-create-templates-use-the-portal)
 
 ---
 
@@ -327,7 +319,7 @@ To revert a workspace back to use of shared keys to access the storage account, 
 
 # [Azure portal](#tab/portal)
 
-To update an existing workspace, go to **Properties** and select **Credential-based access**, as shown in this screenshot:
+To update an existing workspace, go to **Properties** and select **Credential-based access**.
 
 :::image type="content" source="./media/how-to-disable-local-auth-storage/update-an-existing-workspace-credential-based-access.png" alt-text="Screenshot showing selection of Credential-based access." lightbox="./media/how-to-disable-local-auth-storage/update-an-existing-workspace-credential-based-access.png":::
 
@@ -356,9 +348,8 @@ az ml workspace update --name myworkspace --system-datastores-auth-mode accesske
 
 If you have an existing Azure Machine Learning workspace, use the steps in this section to update the workspace to use Microsoft Entra ID, to authorize access to the storage account. Then, disable shared key access on the storage account.
 
-For more information about ARM templates, visit the [Quickstart: Create and deploy ARM templates by using the Azure portal](/azure/azure-resource-manager/templates/quickstart-create-templates-use-the-portal) resource.
+In the following JSON template example, substitute your own values for the following placeholders:
 
-In the JSON code sample shown here, substitute your own values for
 
 - **[workspace name]**
 - **[workspace friendly name]**
@@ -403,13 +394,9 @@ In the JSON code sample shown here, substitute your own values for
 }
 ```
 
-Paste that JSON code in the Microsoft Azure (Preview) template editor, as shown in this screenshot:
-
-:::image type="content" source="./media/how-to-disable-local-auth-storage/revert-new-workspace-edit-template.png" alt-text="Screenshot showing the JSON code sample in the Microsoft Azure (Preview) template editor, to revert a new workspace." lightbox="./media/how-to-disable-local-auth-storage/revert-new-workspace-edit-template.png":::
-
-Select **Save**. At the next screen, select **Review + Create**, as shown in this screenshot:
-
-:::image type="content" source="./media/how-to-disable-local-auth-storage/review-and-create-reverted-workspace.png" alt-text="Screenshot showing review and creation of a reverted workspace in the Microsoft Azure (Preview) template editor." lightbox="./media/how-to-disable-local-auth-storage/review-and-create-reverted-workspace.png":::
+For information on deploying an ARM template, use one of the following articles:
+- [Tutorial: Deploy a local ARM template using Azure CLI or Azure PowerShell](/azure/azure-resource-manager/templates/deployment-tutorial-local-template)
+- [Quickstart: Create and deploy ARM templates by using the Azure portal](/azure/azure-resource-manager/templates/quickstart-create-templates-use-the-portal)
 
 After you create the workspace, identify all the users that will use it - for example, Data Scientists. These users must be assigned the __Storage Blob Data Contributor__ and __Storage File Data Privileged Contributor__ roles in Azure role-based access control for the storage account. If these users only need read access, use the __Storage Blob Data Reader__ and __Storage File Data Privileged Reader__ roles instead. For more information, visit the [role assignments](#scenarios-for-role-assignments) resource in this document.
 

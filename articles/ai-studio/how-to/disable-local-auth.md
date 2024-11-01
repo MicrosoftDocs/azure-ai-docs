@@ -305,6 +305,8 @@ For information on deploying an ARM template, use one of the following articles:
 
 ---
 
+### Assign roles to users
+
 After you update the hub, update the storage account to disable shared key access. For more information about disabling shared key access, visit the [Prevent shared key authorization for an Azure Storage account](/azure/storage/common/shared-key-authorization-prevent) article resource.
 
 You must also identify all the users that need access to the default datastores - for example, Data Scientists. These users must be assigned the __Storage Blob Data Contributor__ and __Storage File Data Privileged Contributor__ roles in Azure role-based access control for the storage account. If these users only need read access, use the __Storage Blob Data Reader__ and __Storage File Data Privileged Reader__ roles instead. For more information, visit the [role assignments](#scenarios-for-hub-storage-account-role-assignments) resource in this document.
@@ -315,7 +317,7 @@ To revert a hub back to use of shared keys to access the storage account, use th
 
 # [Azure portal](#tab/portal)
 
-To update an existing workspace, go to **Properties** and select **Credential-based access**, as shown in this screenshot:
+To update an existing workspace, go to **Properties** and select **Credential-based access**.
 
 :::image type="content" source="../media/disable-local-auth/update-existing-hub-credential-based-access.png" alt-text="Screenshot showing selection of Credential-based access." lightbox="../media/disable-local-auth/update-existing-hub-credential-based-access.png":::
 
