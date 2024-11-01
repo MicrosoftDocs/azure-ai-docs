@@ -134,8 +134,8 @@ Now let's simulate passing information from a frontend application to this funct
 response = get_chat_response(
     messages=[{"role": "user", "content": "what city has the best food in the world?"}],
     context = {
-      "first_name": "Dan",
-      "last_name": "Taylor"
+      "first_name": "Jessie",
+      "last_name": "Irwin"
    }
 )
 print(response.choices[0].message.content)
