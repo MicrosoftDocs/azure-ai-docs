@@ -384,7 +384,7 @@ All deployments can perform the exact same inference operations, however the bil
 
 [!INCLUDE [Global batch](../includes/model-matrix/global-batch.md)]
 
-# [Data zone standard](#tab/datazone-standard)
+# [Data Zone Standard](#tab/datazone-standard)
 
 ### Data zone standard model availability
 
