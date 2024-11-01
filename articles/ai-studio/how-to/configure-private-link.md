@@ -223,10 +223,7 @@ To enable public access, use the following steps:
 Use the following Azure CLI command to enable public access:
 
 ```azurecli
-az ml workspace update \
-    --set public_network_access=Enabled \
-    -n <workspace-name> \
-    -g <resource-group-name>
+az ml workspace update --set public_network_access=Enabled -n <workspace-name> -g <resource-group-name>
 ```
 
 If you receive an error that the `ml` command isn't found, use the following commands to install the Azure Machine Learning CLI extension:
@@ -236,6 +233,68 @@ az extension add --name ml
 ```
 
 ---
+
+## Enable Public Access only from internet IP ranges
+
+You can use IP network rules to allow access to your AI Studio hub and projects from specific public internet IP address ranges by creating IP network rules. Each Azure AI Studio hub supports up to 200 rules. These rules grant access to specific internet-based services and on-premises networks and block general internet traffic.
+
+> [!WARNING]
+> * You can only use IPv4 addresses.
+> * To use this feature with Azure Machine Learning managed virtual network, see [Configure managed virtual network](configure-managed-network.md#scenario-enable-access-from-selected-ip-addresses).
+
+# [Portal](#tab/azure-portal)
+
+1. From the [Azure portal](https://portal.azure.com), select your Azure AI Studio hub.
+1. From the left side of the page, select __Networking__ and then select the __Public access__ tab.
+1. Select __Enabled from selected IP addresses__, input address ranges and then select __Save__.
+
+:::image type="content" source="../media/how-to/network/workspace-public-access-ip-ranges.png" alt-text="Screenshot of the UI to enable access from internet IP ranges.":::
+
+# [Azure CLI](#tab/cli)
+
+Use the `az ml workspace network-rule` Azure CLI command to manage public access from an IP address or address range:
+
+> [!TIP]
+> The configurations for the selected IP addresses are stored in the workspace's properties, under `network_acls`:
+> ```yml
+> properties:
+>   # ...
+>   network_acls:
+>     description: "The network ACLS for this workspace, enforced when public_network_access is set to Enabled."
+>     $ref: "3/defintions/networkAcls"
+> ```
+
+- __List IP network rules__: `az ml workspace network-rule list --resource-group "myresourcegroup" --workspace-name "myWS" --query ipRules`
+- __Add a rule for a single IP address__: `az ml workspace network-rule add --resource-group "myresourcegroup" --workspace-name "myWS" --ip-address "16.17.18.19"`
+- __Add a rule for an IP address range__: `az ml workspace network-rule add --resource-group "myresourcegroup" --workspace-name "myWS" --ip-address "16.17.18.0/24"`
+- __Remove a rule for a single IP address__: `az ml workspace network-rule remove --resource-group "myresourcegroup" --workspace-name "myWS" --ip-address "16.17.18.19"`
+- __Remove a rule for an IP address range__: `az ml workspace network-rule remove --resource-group "myresourcegroup" --workspace-name "myWS" --ip-address "16.17.18.0/24"`
+
+---
+
+You can also use the [Workspace](/python/api/azure-ai-ml/azure.ai.ml.entities.workspace) class from the Azure Machine Learning [Python SDK](/python/api/overview/azure/ai-ml-readme) to define which IP addresses are allowed inbound access:
+
+```python
+Workspace( 
+  public_network_access = "Enabled", 
+  network_rule_set = NetworkRuleSet(default_action = "Allow", bypass = "AzureServices", resource_access_rules = None, ip_rules = yourIPAddress,)
+```
+
+### Restrictions for IP network rules
+
+The following restrictions apply to IP address ranges:
+
+- IP network rules are allowed only for _public internet_ IP addresses.
+
+  [Reserved IP address ranges](https://en.wikipedia.org/wiki/Reserved_IP_addresses) aren't allowed in IP rules such as private addresses that start with 10, 172.16 to 172.31, and 192.168.
+
+- You must provide allowed internet address ranges by using [CIDR notation](https://tools.ietf.org/html/rfc4632) in the form 16.17.18.0/24 or as individual IP addresses like 16.17.18.19.
+
+- Only IPv4 addresses are supported for configuration of storage firewall rules.
+
+- When this feature is enabled, you can test public endpoints using any client tool such as Curl, but the Endpoint Test tool in the portal isn't supported.
+
+- You can only set the IP addresses for the workspace after the workspace has been created.
 
 ## Managed identity configuration
 

@@ -803,6 +803,18 @@ pypi.org
 *.pytorch.org
 pytorch.org
 
+### Scenario: Enable access from selected IP Addresses
+
+If you want to enable access from specific IP addresses, use the following actions:
+
+1. Enable public network access to the Azure AI Studio Hub. For more information, see [public network access enabled](configure-private-link.md#enable-public-access).
+1. Add your IP addresses to the firewall for Azure AI Studio. For more information, see [enable access only from IP ranges](configure-private-link.md#enable-public-access-only-from-internet-ip-ranges).
+
+    > [!NOTE]
+    > Only IPv4 addresses are supported.
+
+For more information, see [Configure private link](configure-private-link.md#enable-public-access-only-from-internet-ip-ranges).
+
 ## Private endpoints
 
 Private endpoints are currently supported for the following Azure services:
