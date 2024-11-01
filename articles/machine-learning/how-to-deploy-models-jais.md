@@ -10,6 +10,7 @@ ms.reviewer: haelhamm
 ms.author: ssalgado
 author: ssalgadodev
 ms.custom: references_regions, build-2024
+ms.collection: ce-skilling-ai-copilot
 ---
 
 # How to deploy JAIS with Azure Machine Learning studio

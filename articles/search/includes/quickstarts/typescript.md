@@ -362,7 +362,7 @@ Document inputs might be rows in a database, blobs in Blob storage, or, as in th
     "value": [
         {
             "HotelId": "1",
-            "HotelName": "Secret Point Motel",
+            "HotelName": "Stay-Kay City Hotel",
             "Description": "The hotel is ideally located on the main commercial artery of the city in the heart of New York. A few minutes away is Time's Square and the historic centre of the city, as well as other places of interest that make New York one of America's most attractive and cosmopolitan cities.",
             "Description_fr": "L'hôtel est idéalement situé sur la principale artère commerciale de la ville en plein cœur de New York. A quelques minutes se trouve la place du temps et le centre historique de la ville, ainsi que d'autres lieux d'intérêt qui font de New York l'une des villes les plus attractives et cosmopolites de l'Amérique.",
             "Category": "Boutique",
@@ -379,7 +379,7 @@ Document inputs might be rows in a database, blobs in Blob storage, or, as in th
         },
         {
             "HotelId": "2",
-            "HotelName": "Twin Dome Motel",
+            "HotelName": "Old Century Hotel",
             "Description": "The hotel is situated in a  nineteenth century plaza, which has been expanded and renovated to the highest architectural standards to create a modern, functional and first-class hotel in which art and unique historical elements coexist with the most modern comforts.",
             "Description_fr": "L'hôtel est situé dans une place du XIXe siècle, qui a été agrandie et rénovée aux plus hautes normes architecturales pour créer un hôtel moderne, fonctionnel et de première classe dans lequel l'art et les éléments historiques uniques coexistent avec le confort le plus moderne.",
             "Category": "Boutique",
@@ -396,7 +396,7 @@ Document inputs might be rows in a database, blobs in Blob storage, or, as in th
         },
         {
             "HotelId": "3",
-            "HotelName": "Triple Landscape Hotel",
+            "HotelName": "Gastronomic Landscape Hotel",
             "Description": "The Hotel stands out for its gastronomic excellence under the management of William Dough, who advises on and oversees all of the Hotel’s restaurant services.",
             "Description_fr": "L'hôtel est situé dans une place du XIXe siècle, qui a été agrandie et rénovée aux plus hautes normes architecturales pour créer un hôtel moderne, fonctionnel et de première classe dans lequel l'art et les éléments historiques uniques coexistent avec le confort le plus moderne.",
             "Category": "Resort and Spa",
@@ -413,9 +413,9 @@ Document inputs might be rows in a database, blobs in Blob storage, or, as in th
         },
         {
             "HotelId": "4",
-            "HotelName": "Sublime Cliff Hotel",
-            "Description": "Sublime Cliff Hotel is located in the heart of the historic center of Sublime in an extremely vibrant and lively area within short walking distance to the sites and landmarks of the city and is surrounded by the extraordinary beauty of churches, buildings, shops and monuments. Sublime Cliff is part of a lovingly restored 1800 palace.",
-            "Description_fr": "Le sublime Cliff Hotel est situé au coeur du centre historique de sublime dans un quartier extrêmement animé et vivant, à courte distance de marche des sites et monuments de la ville et est entouré par l'extraordinaire beauté des églises, des bâtiments, des commerces et Monuments. Sublime Cliff fait partie d'un Palace 1800 restauré avec amour.",
+            "HotelName": "Sublime Palace Hotel",
+            "Description": "Sublime Palace Hotel is located in the heart of the historic center of Sublime in an extremely vibrant and lively area within short walking distance to the sites and landmarks of the city and is surrounded by the extraordinary beauty of churches, buildings, shops and monuments. Sublime Palace is part of a lovingly restored 1800 palace.",
+            "Description_fr": "Le Sublime Palace Hotel est situé au coeur du centre historique de sublime dans un quartier extrêmement animé et vivant, à courte distance de marche des sites et monuments de la ville et est entouré par l'extraordinaire beauté des églises, des bâtiments, des commerces et Monuments. Sublime Palace fait partie d'un Palace 1800 restauré avec amour.",
             "Category": "Boutique",
             "Tags": ["concierge", "view", "24-hour front desk service"],
             "ParkingIncluded": true,
@@ -567,7 +567,7 @@ const searchOptions3 = {
     searchFields: ["HotelName"] as const
 };
 
-searchResults = await searchClient.search("sublime cliff", searchOptions3);
+searchResults = await searchClient.search("Sublime Palace", searchOptions3);
 for await (const result of searchResults.results) {
     console.log(`${JSON.stringify(result.document)}`);
 }

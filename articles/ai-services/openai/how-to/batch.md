@@ -44,9 +44,7 @@ Key use cases include:
 
 Global batch is currently supported in the following regions:
 
-- East US
-- West US
-- Sweden Central
+[!INCLUDE [Global batch](../includes/model-matrix/global-batch.md)]
 
 The following models support global batch:
 
@@ -86,7 +84,7 @@ The following aren't currently supported:
 
 In the Studio UI the deployment type will appear as `Global-Batch`.
 
-:::image type="content" source="../media/how-to/global-batch/global-batch.png" alt-text="Screenshot that shows the model deployment dialog in Azure OpenAI Studio with Global-Batch deployment type highlighted." lightbox="../media/how-to/global-batch/global-batch.png":::
+:::image type="content" source="../media/how-to/global-batch/global-batch.png" alt-text="Screenshot that shows the model deployment dialog in Azure AI Studio with Global-Batch deployment type highlighted." lightbox="../media/how-to/global-batch/global-batch.png":::
 
 > [!TIP]
 > We recommend enabling **dynamic quota** for all global batch model deployments to help avoid job failures due to insufficient enqueued token quota. Dynamic quota allows your deployment to opportunistically take advantage of more quota when extra capacity is available. When dynamic quota is set to off, your deployment will only be able to process requests up to the enqueued token limit that was defined when you created the deployment.
