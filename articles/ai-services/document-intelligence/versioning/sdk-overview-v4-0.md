@@ -22,7 +22,7 @@ monikerRange: 'doc-intel-4.0.0'
 <!-- markdownlint-disable MD001 -->
 <!-- markdownlint-disable MD051 -->
 
-# SDK target: REST API 2024-07-31-preview
+# SDK target: REST API v4.0
 
 ![Document Intelligence checkmark](../media/yes-icon.png) **REST API version 2024-07-31-preview**
 
