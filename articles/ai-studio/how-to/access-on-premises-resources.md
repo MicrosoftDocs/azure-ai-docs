@@ -64,7 +64,7 @@ Follow the [Quickstart: Direct web traffic using the portal](/azure/application-
         - Name: Provide a name for your private link configuration
         - Private link subnet: Select a subnet in your virtual network. 
         - Frontend IP Configuration: `appGwPrivateFrontendIpIPv4`
-    - To verify the Private link is set up correctly, navigate to the __Private endpoint connections__ tab and select __+ Private endpoint__. On the __Resource__ tab, the __Target sub-resource__ should be the name of your private Frontend IP configuration, `appGwPrivateFrontendIpIPv4`. If no value appears in the __Target sub-resource__, then the Application Gateway listener wasn't configured correctly. 
+    - To verify the Private link is set up correctly, navigate to the __Private endpoint connections__ tab and select __+ Private endpoint__. On the __Resource__ tab, the __Target sub-resource__ should be the name of your private Frontend IP configuration, `appGwPrivateFrontendIpIPv4`. If no value appears in the __Target sub-resource__, then the Application Gateway listener wasn't configured correctly. For more on setting up Private link in Application Gateway, see [Configure Azure Application Gateway Private Link](https://learn.microsoft.com/en-us/azure/application-gateway/private-link-configure?tabs=portal).
 
 ## Configure private link
 
