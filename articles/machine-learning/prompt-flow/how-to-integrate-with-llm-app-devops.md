@@ -118,7 +118,7 @@ If you prefer to work directly in code, or use Jupyter, PyCharm, Visual Studio, 
 
 :::image type="content" source="./media/how-to-integrate-with-llm-app-devops/flow-directory-and-yaml.png" alt-text="Screenshot of a YAML file in VS Code highlighting the default input and flow directory." lightbox = "./media/how-to-integrate-with-llm-app-devops/flow-directory-and-yaml.png":::
 
-You can then trigger a single flow run for testing by using the prompt flow CLI or SDK as follows.
+You can then trigger a single flow run for testing by using the prompt flow CLI or SDK in the terminal as follows.
 
 # [Azure CLI](#tab/cli)
 
@@ -127,10 +127,6 @@ To trigger a run from the working directory, run the following code:
 ```sh
 pf flow test --flow <directory-name>
 ```
-
-The following screenshot shows example test logs and outputs.
-
-:::image type="content" source="./media/how-to-integrate-with-llm-app-devops/flow-test-output-cli.png" alt-text="Screenshot of the flow test output in PowerShell." lightbox = "./media/how-to-integrate-with-llm-app-devops/flow-test-output-cli.png":::
 
 # [Python SDK](#tab/python)
 
@@ -153,11 +149,18 @@ node_result = pf_client.test(flow=flow_path, inputs=node_inputs, node=node_name)
 print(f"Node outputs: {node_result}")
 ```
 
-The return values of the test functions are the flow and node outputs.
+---
+
+The return values are the test logs and outputs.
 
 :::image type="content" source="./media/how-to-integrate-with-llm-app-devops/flow-test-output.png" alt-text="Screenshot of the flow test output in Python. " lightbox = "./media/how-to-integrate-with-llm-app-devops/flow-test-output.png":::
 
 ---
+
+The following screenshot shows example 
+
+:::image type="content" source="./media/how-to-integrate-with-llm-app-devops/flow-test-output-cli.png" alt-text="Screenshot of the flow test output in PowerShell." lightbox = "./media/how-to-integrate-with-llm-app-devops/flow-test-output-cli.png":::
+
 
 <a name="submitting-runs-to-the-cloud-from-local-repository"></a>
 ### Submit runs to the cloud from a local repository
@@ -503,17 +506,17 @@ The prompt flow SDK/CLI and the VS Code Prompt flow extension facilitate easy co
 
 1. Continue to use local iterative development.
 
-   After they analyze the results of experiments, team members can return to the local environment and code repository for more development and fine-tuning, and iteratively submit subsequent runs to the cloud. This iterative approach ensures consistent enhancement until the team is satisfied with the quality for production.
+   After analyzing the results of experiments, team members can return to the local environment and code repository for more development and fine-tuning, and iteratively submit subsequent runs to the cloud. This iterative approach ensures consistent enhancement until the team is satisfied with the quality for production.
 
 1. Use one-step deployment to production in the studio.
 
-   Once the team is fully confident in the quality of the flow, they can seamlessly deploy it as an online endpoint in a robust cloud environment by using the **Deploy** wizard in Azure Machine Learning studio.
-
-   :::image type="content" source="media/how-to-integrate-with-llm-app-devops/deploy-wizard.png" alt-text="Screenshot of deploy wizard." lightbox = "media/how-to-integrate-with-llm-app-devops/deploy-wizard.png":::
-
-   Deployment as an online endpoint can be based on a run snapshot, allowing stable and secure serving, further resource allocation and usage tracking, and log monitoring in the cloud.
+   Once the team is fully confident in the quality of the flow, they can seamlessly deploy it as an online endpoint in a robust cloud environment. Deployment as an online endpoint can be based on a run snapshot, allowing stable and secure serving, further resource allocation and usage tracking, and log monitoring in the cloud.
 
    :::image type="content" source="media/how-to-integrate-with-llm-app-devops/deploy-from-snapshot.png" alt-text="Screenshot of deploying flow from a run snapshot." lightbox = "media/how-to-integrate-with-llm-app-devops/deploy-from-snapshot.png":::
+
+   The Azure Machine Learning studio **Deploy** wizard helps you easily configure your deployment.
+
+   :::image type="content" source="media/how-to-integrate-with-llm-app-devops/deploy-wizard.png" alt-text="Screenshot of deploy wizard." lightbox = "media/how-to-integrate-with-llm-app-devops/deploy-wizard.png":::
 
 ## Related content
 
