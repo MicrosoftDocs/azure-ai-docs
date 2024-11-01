@@ -16,15 +16,15 @@ ms.custom: ignite-2023, build-2024
 
 # What is Azure OpenAI in Azure AI Studio?
 
-Azure OpenAI Service provides REST API access to OpenAI's powerful language models including o1-preview, o1-mini, GPT-4o, GPT-4o mini, GPT-4 Turbo with Vision, GPT-4, GPT-3.5-Turbo, and Embeddings model series. 
+Azure OpenAI Service provides REST API access to OpenAI's powerful language models. 
 
-Azure OpenAI Studio was previously where you went to access and work with the Azure OpenAI Service.  This studio is now integrated into Azure AI Studio.  If you've used Azure OpenAI Studio in the past, all your work, such as your deployments and fine-tuned models, is now available in Azure AI Studio.
+Azure OpenAI Studio was previously where you went to access and work with the Azure OpenAI Service. This studio is now integrated into Azure AI Studio. If you've used Azure OpenAI Studio in the past, all your work, such as your deployments and fine-tuned models, is now available in Azure AI Studio.
 
 ## Focus on Azure OpenAI Service
 
 If you've been using Azure OpenAI Studio, all your work, such as your deployments, content filters, batch jobs or fine-tuned models, remain saved in Azure OpenAI. No features or functionality are removed, though the look and feel of some features are updated.
 
-:::image type="content" source="media/azure-openai-in-ai-studio/studio-home.png" alt-text="Screenshot shows the new Azure Open AI in Azure AI Studio.":::
+:::image type="content" source="media/azure-openai-in-ai-studio/studio-home.png" alt-text="Screenshot shows the new Azure OpenAI in Azure AI Studio.":::
 
 Use the left navigation area to perform your tasks with Azure OpenAI models:
 
@@ -33,7 +33,7 @@ Use the left navigation area to perform your tasks with Azure OpenAI models:
     :::image type="content" source="media/azure-openai-in-ai-studio/model-catalog.png" alt-text="Screenshot shows the model catalog in Azure OpenAI Service.":::
 
 * **Try models**: Use the various **Resource playgrounds** to decide which model is best for your needs.
-* **Deploy models**: In the **Model catalog** or **Deployments** list in the left navigation, you will see all supported models. You can deploy models from either section.
+* **Deploy models**: In the **Model catalog** or **Deployments** list in the left navigation, you'll see all supported models. You can deploy models from either section.
 * **Fine-tune**: Use **Fine-tuning** to find your fine-tuned/custom models or create new fine-tune jobs.
 * **Batch jobs**: Create and manage jobs for your global batch deployments.
 
@@ -51,12 +51,12 @@ You can also use [https://ai.azure.com/resource](https://ai.azure.com/resource) 
 
 ## Azure OpenAI in an Azure AI Studio project
 
-While the previous sections show how to focus on just the Azure OpenAI Service, you can also also incorporate other AI services and models from various providers in Azure AI Studio.  You can access the Azure OpenAI Service in two ways: 
+While the previous sections show how to focus on just the Azure OpenAI Service, you can also incorporate other AI services and models from various providers in Azure AI Studio. You can access the Azure OpenAI Service in two ways: 
 
 * Without a project, focusing only with Azure OpenAI models.
 * As a [connection](./how-to/connections-add) to the service inside a project. 
 
-When you create a project, you can try other models and tools along with Azure OpenAI. You'll notice some of the same sections, such as the **Model catalog**, but you'll see more models now.  
+When you create a project, you can try other models and tools along with Azure OpenAI. You'll notice some of the same sections, such as the **Model catalog**, but you'll see more models now. 
 
 But you can do more with Azure OpenAI models outside of a project. This table highlights the differences between working with Azure OpenAI outside of a project or in a project in Azure AI Studio:
 
@@ -82,7 +82,7 @@ Pay attention to the top left corner of the screen to see which context you are 
 
     :::image type="content" source="media/azure-openai-in-ai-studio/ai-studio-project.png" alt-text="Screenshot shows top left corner of screen for AI Studio with a project.":::
 
-* When you are working with Azure OpenAI outside of a project, you see **Azure AI Studio | Azure OpenAI / resource name**. The resource name allows you to switch between Azure OpenAI resources.
+* When you're working with Azure OpenAI outside of a project, you see **Azure AI Studio | Azure OpenAI / resource name**. The resource name allows you to switch between Azure OpenAI resources.
 
     :::image type="content" source="media/azure-openai-in-ai-studio/ai-studio-azure-openai.png" alt-text="Screenshot shows top left corner of screen for AI Studio when using Azure OpenAI without a project.":::
 
