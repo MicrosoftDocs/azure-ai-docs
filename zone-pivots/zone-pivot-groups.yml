@@ -123,12 +123,14 @@ groups:
     title: AI Studio
   - id: programming-language-csharp
     title: C#
-  - id: programming-language-python
-    title: Python
   - id: programming-language-javascript
     title: JavaScript
+  - id: programming-language-python
+    title: Python
   - id: rest-api
     title: REST
+  - id: programming-language-typescript
+    title: TypeScript
 # Owner: mbullwin
 - id: openai-quickstart-new
   title: Programming languages
@@ -142,8 +144,6 @@ groups:
     title: Go
   - id: programming-language-java
     title: Java
-  - id: programming-language-spring
-    title: Spring
   - id: programming-language-javascript
     title: JavaScript
   - id: programming-language-python
@@ -152,6 +152,10 @@ groups:
     title: PowerShell
   - id: rest-api
     title: REST
+  - id: programming-language-spring
+    title: Spring
+  - id: programming-language-typescript
+    title: TypeScript
 - id: openai-quickstart-dall-e
   title: Programming languages
   prompt: Choose your preferred usage method
@@ -200,18 +204,21 @@ groups:
     title: Studio
   - id: programming-language-csharp
     title: C#
-  - id: programming-language-spring
-    title: Spring
+  - id: programming-language-go
+    title: Go
   - id: programming-language-javascript
     title: JavaScript
   - id: programming-language-python
     title: Python
-  - id: programming-language-go
-    title: Go
   - id: rest-api
     title: REST
   - id: programming-language-powershell
     title: PowerShell
+  - id: programming-language-spring
+    title: Spring
+  - id: programming-language-typescript
+    title: TypeScript
+
 # Owner: pafarley
 - id: openai-whisper
   title: Programming languages
