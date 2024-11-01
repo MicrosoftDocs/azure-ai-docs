@@ -16,13 +16,11 @@ ms.custom: ignite-2023, build-2024
 
 # What is Azure OpenAI in Azure AI Studio?
 
-Azure OpenAI Service provides REST API access to OpenAI's powerful language models. 
-
-Azure OpenAI Studio was previously where you went to access and work with the Azure OpenAI Service. This studio is now integrated into Azure AI Studio. If you've used Azure OpenAI Studio in the past, all your work, such as your deployments and fine-tuned models, is now available in Azure AI Studio.
+Azure OpenAI Service provides REST API access to OpenAI's powerful language models. Azure OpenAI Studio was previously where you went to access and work with the Azure OpenAI Service. This studio is now integrated into Azure AI Studio. 
 
 ## Focus on Azure OpenAI Service
 
-If you've been using Azure OpenAI Studio, all your work, such as your deployments, content filters, batch jobs or fine-tuned models, remain saved in Azure OpenAI. No features or functionality are removed, though the look and feel of some features are updated.
+If you've been using Azure OpenAI Studio, all your work, such as your deployments, content filters, batch jobs or fine-tuned models, is still available. No features or functionality are removed, though the look and feel of some features are updated.
 
 :::image type="content" source="media/azure-openai-in-ai-studio/studio-home.png" alt-text="Screenshot shows the new Azure OpenAI in Azure AI Studio." lightbox="media/azure-openai-in-ai-studio/studio-home.png":::
 
@@ -33,7 +31,7 @@ Use the left navigation area to perform your tasks with Azure OpenAI models:
     :::image type="content" source="media/azure-openai-in-ai-studio/model-catalog.png" alt-text="Screenshot shows the model catalog in Azure OpenAI Service." lightbox="media/azure-openai-in-ai-studio/model-catalog.png":::
 
 * **Try models**: Use the various **Resource playgrounds** to decide which model is best for your needs.
-* **Deploy models**: In the **Model catalog** or **Deployments** list in the left navigation, you'll see all supported models. You can deploy models from either section.
+* **Deploy models**: In the **Model catalog** or **Deployments** list in the left navigation, you see all supported models. You can deploy models from either section.
 * **Fine-tune**: Use **Fine-tuning** to find your fine-tuned/custom models or create new fine-tune jobs.
 * **Batch jobs**: Create and manage jobs for your global batch deployments.
 
@@ -56,9 +54,9 @@ While the previous sections show how to focus on just the Azure OpenAI Service, 
 * Without a project, focusing only with Azure OpenAI models.
 * As a [connection](./how-to/connections-add.md) to the service inside a project. 
 
-When you create a project, you can try other models and tools along with Azure OpenAI. You'll notice some of the same sections, such as the **Model catalog**, but you'll see more models now. 
+When you create a project, you can try other models and tools along with Azure OpenAI. For example, the **Model catalog** in a project contains many more models than just Azure OpenAI models.
 
-But you can do more with Azure OpenAI models outside of a project. This table highlights the differences between working with Azure OpenAI outside of a project or in a project in Azure AI Studio:
+But while there's access to more services and models in a project, if you're working just with Azure OpenAI, you have more features available outside the project. This table highlights the differences between working with Azure OpenAI outside of a project or in a project in Azure AI Studio:
 
 
 |  | **Azure OpenAI Service without a project** | **Azure AI Studio with a project** |
