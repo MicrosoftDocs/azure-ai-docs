@@ -104,13 +104,13 @@ To edit files locally in VS Code with the Prompt flow extension:
 
    :::image type="content" source="./media/how-to-integrate-with-llm-app-devops/select-visual-editor.png" alt-text="Screenshot of the Visual editor link at the top of a flow definition file in VS Code." lightbox = "./media/how-to-integrate-with-llm-app-devops/select-visual-editor.png":::
 
-1. Use the editor to make changes to your flow, such as tuning the prompts in variants or adding more nodes.
+1. Use the prompt flow visual editor to make changes to your flow, such as tuning the prompts in variants or adding more nodes.
 
    :::image type="content" source="./media/how-to-integrate-with-llm-app-devops/flow-test-output.png" alt-text="Screenshot of the visual prompt flow editor in VS Code." lightbox = "./media/how-to-integrate-with-llm-app-devops/flow-test-output.png":::
 
-1. To test your flow, select the **Run** icon at the top of the visual editor to trigger a flow test.
+1. To test your flow, select the **Run** icon at the top of the visual editor, or to test any node, select the **Run** icon at the top of the node.
 
-   :::image type="content" source="./media/how-to-integrate-with-llm-app-devops/run-flow-visual-editor.png" alt-text="Screenshot of VS Code showing running the flow in the visual editor. " lightbox = "./media/how-to-integrate-with-llm-app-devops/run-flow-visual-editor.png":::
+   :::image type="content" source="./media/how-to-integrate-with-llm-app-devops/run-flow-visual-editor.png" alt-text="Screenshot of VS Code showing running the flow or a node in the visual editor. " lightbox = "./media/how-to-integrate-with-llm-app-devops/run-flow-visual-editor.png":::
 
 ### Use the prompt flow SDK and CLI
 
