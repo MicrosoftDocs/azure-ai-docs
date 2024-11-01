@@ -38,7 +38,7 @@ For more information, see [Manage and increase quotas for resources](../how-to/q
 
 Assign roles, manage users, and ensure that all settings comply with organizational standards.
 
-:::image type="content" source="../media/management-center/user-management.png" alt-text="Screenshot of the user management section of the management center." lightbox="../media/management-center/user-management.png":::
+:::image type="content" source="../media/management-center/user-management.png" alt-text="Screenshot of the user management section of the management center." lightbox="../media/management-center/user-management.png"::: 
 
 For more information, see [Role-based access control](rbac-ai-studio.md#assigning-roles-in-ai-studio).
 
