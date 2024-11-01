@@ -18,15 +18,14 @@ ms.date: 10/22/2024
 
 ## Prerequisites
 
-
 - An Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services?azure-portal=true)
 - [LTS versions of Node.js](https://github.com/nodejs/release#release-schedule)
+- [TypeScript](https://www.typescriptlang.org/download/)
 - [Azure CLI](/cli/azure/install-azure-cli) used for passwordless authentication in a local development environment, create the necessary context by signing in with the Azure CLI.
 - An Azure OpenAI Service resource with the `gpt-35-turbo-instruct` model deployed. For more information about model deployment, see the [resource deployment guide](../how-to/create-resource.md).
 
 > [!div class="nextstepaction"]
 > [I ran into an issue with the prerequisites.](https://microsoft.qualtrics.com/jfe/form/SV_0Cl5zkG3CnDjq6O?PLanguage=JAVASCRIPT&Pillar=AOAI&&Product=gpt&Page=quickstart&Section=Prerequisites)
-
 
 ## Set up
 
@@ -51,47 +50,75 @@ Your app's _package.json_ file will be updated with the dependencies.
 
 ## Create a sample application
 
-Open a command prompt where you created the new project, and create a new file named Completion.js. Copy the following code into the Completion.js file.
+Open a command prompt where you created the new project, and create a new file named Completion.ts. Copy the following code into the Completion.ts file.
 
+## [Microsoft Entra ID](#tab/typescript-keyless)
 
-## [Microsoft Entra ID](#tab/javascript-keyless)
-
-```javascript
-const { AzureOpenAI } = require("openai");
-const { 
+```typescript
+import { 
   DefaultAzureCredential, 
   getBearerTokenProvider 
-} = require("@azure/identity");
+} from "@azure/identity";
+import { AzureOpenAI } from "openai";
+import { type Completion } from "openai/resources/index";
 
 // You will need to set these environment variables or edit the following values
 const endpoint = process.env["AZURE_OPENAI_ENDPOINT"] || "<endpoint>";
-const apiVersion = "2024-04-01-preview";
-const deployment = "gpt-35-turbo-instruct"; //The deployment name for your completions API model. The instruct model is the only new model that supports the legacy API.
+
+// Required Azure OpenAI deployment name and API version
+const apiVersion = "2024-08-01-preview";
+const deploymentName = "gpt-35-turbo-instruct";
 
 // keyless authentication    
 const credential = new DefaultAzureCredential();
 const scope = "https://cognitiveservices.azure.com/.default";
 const azureADTokenProvider = getBearerTokenProvider(credential, scope);
 
+// Chat prompt and max tokens
 const prompt = ["When was Microsoft founded?"];
+const maxTokens = 128;
 
-async function main() {
-  console.log("== Get completions Sample ==");
-
-  const client = new AzureOpenAI({ endpoint, azureADTokenProvider, apiVersion, deployment });  
-
-  const result = await client.completions.create({ prompt, model: deployment, max_tokens: 128 });
-
-  for (const choice of result.choices) {
+function getClient(): AzureOpenAI {
+  return new AzureOpenAI({
+    endpoint,
+    azureADTokenProvider,
+    apiVersion,
+    deployment: deploymentName,
+  });
+}
+async function getCompletion(
+  client: AzureOpenAI,
+  prompt: string[],
+  max_tokens: number
+): Promise<Completion> {
+  return client.completions.create({
+    prompt,
+    model: "",
+    max_tokens,
+  });
+}
+async function printChoices(completion: Completion): Promise<void> {
+  for (const choice of completion.choices) {
     console.log(choice.text);
   }
+}
+export async function main() {
+  console.log("== Get completions Sample ==");
+
+  const client = getClient();
+  const completion = await getCompletion(client, prompt, maxTokens);
+  await printChoices(completion);
 }
 
 main().catch((err) => {
   console.error("Error occurred:", err);
 });
+```
 
-module.exports = { main };
+Build the script with the following command:
+
+```cmd
+tsc
 ```
 
 Run the script with the following command:
@@ -100,37 +127,65 @@ Run the script with the following command:
 node.exe Completion.js
 ```
 
+## [API key](#tab/typescript-key)
 
-## [API key](#tab/javascript-key)
-
-```javascript
-const { AzureOpenAI } = require("openai");
+```typescript
+import { AzureOpenAI } from "openai";
+import { type Completion } from "openai/resources/index";
 
 // You will need to set these environment variables or edit the following values
 const endpoint = process.env["AZURE_OPENAI_ENDPOINT"] || "<endpoint>";
 const apiKey = process.env["AZURE_OPENAI_API_KEY"] || "<api key>";
-const apiVersion = "2024-04-01-preview";
-const deployment = "gpt-35-turbo-instruct"; //The deployment name for your completions API model. The instruct model is the only new model that supports the legacy API.
 
+// Required Azure OpenAI deployment name and API version
+const apiVersion = "2024-08-01-preview";
+const deploymentName = "gpt-35-turbo-instruct";
+
+// Chat prompt and max tokens
 const prompt = ["When was Microsoft founded?"];
+const maxTokens = 128;
 
-async function main() {
-  console.log("== Get completions Sample ==");
-
-  const client = new AzureOpenAI({ endpoint, apiKey, apiVersion, deployment });  
-
-  const result = await client.completions.create({ prompt, model: deployment, max_tokens: 128 });
-
-  for (const choice of result.choices) {
+function getClient(): AzureOpenAI {
+  return new AzureOpenAI({
+    endpoint,
+    apiKey,
+    apiVersion,
+    deployment: deploymentName,
+  });
+}
+async function getCompletion(
+  client: AzureOpenAI,
+  prompt: string[],
+  max_tokens: number
+): Promise<Completion> {
+  return client.completions.create({
+    prompt,
+    model: "",
+    max_tokens,
+  });
+}
+async function printChoices(completion: Completion): Promise<void> {
+  for (const choice of completion.choices) {
     console.log(choice.text);
   }
+}
+export async function main() {
+  console.log("== Get completions Sample ==");
+
+  const client = getClient();
+  const completion = await getCompletion(client, prompt, maxTokens);
+  await printChoices(completion);
 }
 
 main().catch((err) => {
   console.error("Error occurred:", err);
 });
+```
 
-module.exports = { main };
+Build the script with the following command:
+
+```cmd
+tsc
 ```
 
 Run the script with the following command:
