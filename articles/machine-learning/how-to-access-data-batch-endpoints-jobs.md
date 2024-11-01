@@ -28,7 +28,7 @@ This article describes how to specify parameter inputs for batch endpoints and c
 
 To successfully invoke a batch endpoint and create jobs, ensure you complete the following prerequisites:
 
-- A batch endpoint and deployment. If you don't have these resources, see [Deploy models for scoring in batch endpoints](how-to-use-batch-model-deployments.md) to create a deployment.
+- A batch endpoint and deployment. If you don't have these resources, see [Deploy MLflow models in batch deployments in Azure Machine Learning](how-to-mlflow-batch.md) to create a deployment.
 
 - Permissions to run a batch endpoint deployment. **AzureML Data Scientist**, **Contributor**, and **Owner** roles can be used to run a deployment. For custom role definitions, see [Authorization on batch endpoints](how-to-authenticate-batch-endpoint.md) to review the specific required permissions.
 
@@ -47,17 +47,20 @@ To successfully invoke a batch endpoint and create jobs, ensure you complete the
     Use the Azure Machine Learning SDK for Python to sign in:
     
     ```python
-    from azure.ai.ml import MLClient
+    from azure.ai.ml import MLClient, Input
     from azure.identity import DefaultAzureCredential
-    
+    from azure.ai.ml.constants import AssetTypes
+    from azure.ai.ml.entities import Data
+
     ml_client = MLClient.from_config(DefaultAzureCredential())
     ```
     
     If your configuration runs outside an Azure Machine Learning compute, you need to specify the workspace where the endpoint is deployed:
     
     ```python
-    from azure.ai.ml import MLClient
+    from azure.ai.ml import MLClient, Input
     from azure.identity import DefaultAzureCredential
+    from azure.ai.ml.constants import AssetTypes
     
     subscription_id = "<subscription>"
     resource_group = "<resource-group>"
@@ -102,13 +105,13 @@ az ml batch-endpoint invoke --name $ENDPOINT_NAME \
 
 # [Python](#tab/sdk)
 
-Use the `MLClient.batch_endpoints.invoke()` method to specify the name of the experiment:
+Use the `MLClient.batch_endpoints.invoke()` method to invoke a batch endpoint. In the following code, `endpoint` is an endpoint object.
 
 ```python
 job = ml_client.batch_endpoints.invoke(
     endpoint_name=endpoint.name,
     inputs={
-        "heart_dataset": Input("https://azuremlexampledata.blob.core.windows.net/data/heart-disease-uci/data")
+        "heart_dataset": Input(path="https://azuremlexampledata.blob.core.windows.net/data/heart-disease-uci/data")
     }
 )
 ```
@@ -159,14 +162,14 @@ az ml batch-endpoint invoke --name $ENDPOINT_NAME \
 
 # [Python](#tab/sdk)
 
-Use the parameter `deployment_name` to specify the name of the deployment:
+Use the parameter `deployment_name` to specify the name of the deployment. In the following code, `deployment` is a deployment object.
 
 ```python
 job = ml_client.batch_endpoints.invoke(
     endpoint_name=endpoint.name,
     deployment_name=deployment.name,
     inputs={
-        "heart_dataset": Input("https://azuremlexampledata.blob.core.windows.net/data/heart-disease-uci/data")
+        "heart_dataset": Input(path="https://azuremlexampledata.blob.core.windows.net/data/heart-disease-uci/data")
     }
 )
 ```
@@ -232,7 +235,7 @@ job = ml_client.batch_endpoints.invoke(
     endpoint_name=endpoint.name,
     experiment_name="my-batch-job-experiment",
     inputs={
-        "heart_dataset": Input("https://azuremlexampledata.blob.core.windows.net/data/heart-disease-uci/data"),
+        "heart_dataset": Input(path="https://azuremlexampledata.blob.core.windows.net/data/heart-disease-uci/data"),
     }
 )
 ```
@@ -350,7 +353,7 @@ Azure Machine Learning data assets (formerly known as datasets) are supported as
     name: heart-dataset-unlabeled
     description: An unlabeled dataset for heart classification.
     type: uri_folder
-    path: heart-classifier-mlflow/data
+    path: data
     ```
    
     Then, create the data asset:
@@ -398,7 +401,7 @@ Azure Machine Learning data assets (formerly known as datasets) are supported as
     # [Azure CLI](#tab/cli)
     
     ```azurecli
-    DATASET_ID=$(az ml data show -n heart-dataset-unlabeled --label latest | jq -r .id)
+    DATA_ASSET_ID=$(az ml data show -n heart-dataset-unlabeled --label latest | jq -r .id)
     ```
 
     # [Python](#tab/sdk)
@@ -423,24 +426,25 @@ Azure Machine Learning data assets (formerly known as datasets) are supported as
         }
     }
     ```
+    ---
 
-    The data assets ID looks like `/subscriptions/<subscription>/resourcegroups/<resource-group>/providers/Microsoft.MachineLearningServices/workspaces/<workspace>/data/<data-asset>/versions/<version>`. You can also use the `azureml:<datasset_name>@latest` format to specify the input.
+    The data assets ID has the format `/subscriptions/<subscription>/resourcegroups/<resource-group>/providers/Microsoft.MachineLearningServices/workspaces/<workspace>/data/<data-asset>/versions/<version>`. You can also use the `azureml:<datasset_name>@latest` format to specify the input.
 
 1. Run the endpoint:
 
     # [Azure CLI](#tab/cli)
 
-    Use the `--set` argument to specify the input:
+    Use the `--set` argument to specify the input. First replace any hyphens in the data asset name with underscore characters. Keys can contain only alphanumeric characters and underscore characters.
 
     ```azurecli
     az ml batch-endpoint invoke --name $ENDPOINT_NAME \
-        --set inputs.heart_dataset.type="uri_folder" inputs.heart_dataset.path=$DATASET_ID
+        --set inputs.heart_dataset_unlabeled.type="uri_folder" inputs.heart_dataset_unlabeled.path=$DATA_ASSET_ID
     ```
 
     For an endpoint that serves a model deployment, you can use the `--input` argument to specify the data input because a model deployment always requires only one data input.
 
     ```azurecli
-    az ml batch-endpoint invoke --name $ENDPOINT_NAME --input $DATASET_ID
+    az ml batch-endpoint invoke --name $ENDPOINT_NAME --input $DATA_ASSET_ID
     ```
     
     The argument `--set` tends to produce long commands when multiple inputs are specified. In such cases, place your inputs in a `YAML` file and use the `--file` argument to specify the inputs you need for your endpoint invocation.
@@ -449,7 +453,9 @@ Azure Machine Learning data assets (formerly known as datasets) are supported as
     
     ```yml
     inputs:
-      heart_dataset: azureml:/<datasset_name>@latest
+      heart_dataset_unlabeled:
+        type: uri_folder
+        path: /subscriptions/<subscription-ID>/resourceGroups/<resource-group-name>/providers/Microsoft.MachineLearningServices/workspaces/<workspace-name>/data/heart-dataset-unlabeled/versions/1
     ```
     
     Run the following command:
@@ -500,7 +506,7 @@ Azure Machine Learning data assets (formerly known as datasets) are supported as
 
 You can directly reference data from Azure Machine Learning registered data stores with batch deployments jobs. In this example, you first upload some data to the default data store in the Azure Machine Learning workspace and then run a batch deployment on it. Follow these steps to run a batch endpoint job using data stored in a data store.
 
-1. Access the default data store in the Azure Machine Learning workspace. If your data is in a different store, you can use that store instead. You aren't required to use the default data store. 
+1. Get access to the data store that you want to use. The examples in this section use the default blob data store in an Azure Machine Learning workspace. But you can also use data that's in a different store. In any Machine Learning workspace, the name of the default blob data store is **workspaceblobstore**. There's no need to update that name in the following command unless you want to use a different data store.
 
     # [Azure CLI](#tab/cli)
 
@@ -508,7 +514,7 @@ You can directly reference data from Azure Machine Learning registered data stor
     DATASTORE_ID=$(az ml datastore show -n workspaceblobstore | jq -r '.id')
     ```
     
-    The data stores ID looks like `/subscriptions/<subscription>/resourceGroups/<resource-group>/providers/Microsoft.MachineLearningServices/workspaces/<workspace>/datastores/<data-store>`.
+    The data store ID has the format `/subscriptions/<subscription-ID>/resourceGroups/<resource-group-name>/providers/Microsoft.MachineLearningServices/workspaces/<workspace-name>/datastores/<data-store-name>`.
 
     # [Python](#tab/sdk)
 
@@ -521,18 +527,23 @@ You can directly reference data from Azure Machine Learning registered data stor
     Use the Azure Machine Learning CLI, Azure Machine Learning SDK for Python, or the studio to get the data store information.
     
     ---
-    
-    > [!TIP]
-    > The default blob data store in a workspace is named __workspaceblobstore__. You can skip this step if you already know the resource ID of the default data store in your workspace.
 
-1. Upload some sample data to the data store.
-
-   This example assumes you already uploaded the sample data included in the repo in the folder `sdk/python/endpoints/batch/deploy-models/heart-classifier-mlflow/data` in the folder `heart-disease-uci-unlabeled` in the Blob Storage account. Be sure to complete this step before you continue.
+1. Upload some sample data to the data store:
+   1. In the [azureml-examples](https://github.com/Azure/azureml-examples) repository, go to the [sdk/python/endpoints/batch/deploy-models/heart-classifier-mlflow/data](https://github.com/Azure/azureml-examples/tree/main/sdk/python/endpoints/batch/deploy-models/heart-classifier-mlflow/data) folder.
+   1. Download the files.
+   1. Use a tool like Azure Storage Explorer to connect to your Azure Blob Storage account.
+   1. Open to the Blob Storage container that matches the name of your data store's blob container.
+   1. Upload the sample data files to a folder named `heart-disease-uci-unlabeled` in the container.
 
 1. Create the input or request:
 
     # [Azure CLI](#tab/cli)
     
+Update this section, because this path was invalid. The only thing that worked was the tip format:
+You can also use the format azureml://datastores/<data-store>/paths/<data-path> to specify the input.
+
+az ml batch-endpoint invoke --name "heart2kr9c8wma45n1bqoiu" --set inputs.my_heart_blob_ds.type="uri_folder" inputs.my_heart_blob_ds.path=azureml://datastores/workspaceblobstore/paths/heart-disease-uci-unlabeled
+
     Place the file path in the `INPUT_PATH` variable:
 
     ```azurecli
@@ -601,7 +612,7 @@ You can directly reference data from Azure Machine Learning registered data stor
     
     ```yml
     inputs:
-      heart_dataset:
+      heart_dataset_unlabeled:
         type: uri_folder
         path: azureml://datastores/<data-store>/paths/<data-path>
     ```
@@ -665,13 +676,13 @@ To learn more about extra required configuration for reading data from storage a
     Set the `INPUT_DATA` variable:
 
     ```azurecli
-    INPUT_DATA = "https://azuremlexampledata.blob.core.windows.net/data/heart-disease-uci/data"
+    INPUT_DATA="https://azuremlexampledata.blob.core.windows.net/data/heart-disease-uci/data"
     ```
 
     If your data is a file, set the variable with the following format:
 
     ```azurecli
-    INPUT_DATA = "https://azuremlexampledata.blob.core.windows.net/data/heart-disease-uci/data/heart.csv"
+    INPUT_DATA="https://azuremlexampledata.blob.core.windows.net/data/heart-disease-uci/data/heart.csv"
     ```
 
     # [Python](#tab/sdk)
@@ -806,7 +817,9 @@ To learn more about extra required configuration for reading data from storage a
 
 ## Create jobs with literal inputs
 
-Pipeline component deployments can take literal inputs. The following example shows how to specify an input named `score_mode`, of type `string`, with a value of `append`:
+Pipeline component deployments can take literal inputs. For an example of a batch deployment that contains a basic pipeline, see [How to deploy pipelines with batch endpoints](how-to-use-batch-pipeline-deployments.md).
+
+The following example shows how to specify an input named `score_mode`, of type `string`, with a value of `append`:
 
 # [Azure CLI](#tab/cli)
 
@@ -885,7 +898,7 @@ The following example shows how to change the location where an output named `sc
     DATASTORE_ID=$(az ml datastore show -n workspaceblobstore | jq -r '.id')
     ```
     
-    The data stores ID looks like `/subscriptions/<subscription>/resourceGroups/<resource-group>/providers/Microsoft.MachineLearningServices/workspaces/<workspace>/datastores/<data-store>`.
+    The data store ID has the format `/subscriptions/<subscription>/resourceGroups/<resource-group>/providers/Microsoft.MachineLearningServices/workspaces/<workspace>/datastores/<data-store>`.
 
     # [Python](#tab/sdk)
 
@@ -903,17 +916,19 @@ The following example shows how to change the location where an output named `sc
 
     # [Azure CLI](#tab/cli)
     
-    Set the `OUTPUT_PATH` variable:
+   Define the input and output values in a file. Use the data store ID in the output path. For completeness, also define the data input.
 
-    ```azurecli
-    DATA_PATH="batch-jobs/my-unique-path"
-    OUTPUT_PATH="$DATASTORE_ID/paths/$DATA_PATH"
-    ```
-
-    For completeness, also create a data input:
-
-    ```azurecli
-    INPUT_PATH="https://azuremlexampledata.blob.core.windows.net/data/heart-disease-uci/data"
+    **inputs-and-outputs.yml**
+    
+    ```yml
+    inputs:
+      heart_dataset_unlabeled:
+        type: uri_folder
+        path: https://azuremlexampledata.blob.core.windows.net/data/heart-disease-uci/data
+    outputs:
+      score:
+        type: uri_file
+        path: <data-store-ID>/paths/batch-jobs/my-unique-path
     ```
 
     # [Python](#tab/sdk)
@@ -963,12 +978,10 @@ The following example shows how to change the location where an output named `sc
 
     # [Azure CLI](#tab/cli)
    
-    Use the `--set` argument to specify the input:
+    Use the `--file` argument to specify the input and output values:
 
     ```azurecli
-    az ml batch-endpoint invoke --name $ENDPOINT_NAME \
-        --set inputs.heart_dataset.path=$INPUT_PATH \
-        --set outputs.score.path=$OUTPUT_PATH
+    az ml batch-endpoint invoke --name $ENDPOINT_NAME --file inputs-and-outputs.yml
     ```
    
     # [Python](#tab/sdk)
