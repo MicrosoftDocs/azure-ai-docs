@@ -283,9 +283,18 @@ To minimize churn in the design process, the following table describes which ele
 
 ## Next steps
 
-Use the following links to become familiar with loading an index with data, or extending an index with a synonyms map.
+Use the following links to learn about specialized features that can be added to an index:
+
++ [Add vector fields and vector profiles](vector-search-how-to-create-index.md)
++ [Add scoring profiles](index-add-scoring-profiles.md)
++ [Add semantic ranking](semantic-how-to-configure.md)
++ [Add suggesters](index-add-suggesters.md)
++ [Add synonym maps](search-synonyms.md)
++ [Add analyzers](search-analyzers.md)
++ [Add encryption](search-security-manage-encryption-keys.md)
+
+Use these links for loading or updating an index:
 
 + [Data import overview](search-what-is-data-import.md)
-+ [Add vector fields](vector-search-how-to-create-index.md)
 + [Load documents](search-how-to-load-search-index.md)
 + [Update or rebuild an index](search-howto-reindex.md)
