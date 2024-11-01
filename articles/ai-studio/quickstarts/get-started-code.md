@@ -148,6 +148,7 @@ The Azure SDK uses `opentelemetry` for instrumentation and logging. Before you c
 1. Navigate to your project in [Azure AI Studio](https://ai.azure.com/)
 1. Select the **Tracing** page on the left hand side.
 1. Select **Create New** to attach a new Application Insights resource to your project.
+1. Supply a name and select **Create**.
 
 Next, install the `opentelemetry` SDK:
 
