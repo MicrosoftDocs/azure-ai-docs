@@ -379,7 +379,7 @@ eval_run = pf.runs.create_or_update(run=eval_run)
 
 ### View run results 
 
-Submiting the flow run to the cloud returns the cloud URL of the run. You can open the URL to view the run results in Azure Machine Learning studio. You can also run the following CLI or SDK commands to view run results.
+Submitting the flow run to the cloud returns the cloud URL of the run. You can open the URL to view the run results in Azure Machine Learning studio. You can also run the following CLI or SDK commands to view run results.
 
 #### Stream the logs
 
