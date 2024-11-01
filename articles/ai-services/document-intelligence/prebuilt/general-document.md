@@ -18,11 +18,12 @@ ms.author: lajanuar
 
 > [!IMPORTANT]
 > Starting with Document Intelligence versions **v4.0 preview versions** and going forward, the general document model (prebuilt-document) is deprecated. To extract key-value pairs, selection marks, text, tables, and structure from documents, use the following models:
+>
+>| Feature   | version| Model ID |
+>|----------  |---------|--------|
+>|`Layout` model with the optional query string parameter **`features=keyValuePairs`** enabled.|&bullet; v4:2024-02-29-preview</br>&bullet; v3.1:2023-07-31 (GA) |**`prebuilt-layout`**|
+>|General document model|&bullet; v3.1:2023-07-31 (GA)</br>&bullet; v3.0:2022-08-31 (GA)</br>&bullet; v2.1 (GA)|**`prebuilt-document`**|
 
-| Feature   | version| Model ID |
-|----------  |---------|--------|
-|`Layout` model with the optional query string parameter **`features=keyValuePairs`** enabled.|&bullet; v4:2024-02-29-preview</br>&bullet; v3.1:2023-07-31 (GA) |**`prebuilt-layout`**|
-|General document model|&bullet; v3.1:2023-07-31 (GA)</br>&bullet; v3.0:2022-08-31 (GA)</br>&bullet; v2.1 (GA)|**`prebuilt-document`**|
 :::moniker-end
 
 ::: moniker range="doc-intel-3.1.0"

@@ -86,7 +86,7 @@ In the application's `Main` method, add a call to the asynchronous tasks used in
 
 ## Use the Object model
 
-With Document Intelligence, you can create two different client types. The first, `FormRecognizerClient`, queries the service to recognize form fields and content. The second, `FormTrainingClient`, creates, and manages custom models to improve recognition.
+With Document Intelligence, you can create two different client types. The first, `FormRecognizerClient`, queries the service to recognize form fields and content. The second, `FormTrainingClient`, creates and manages custom models to improve recognition.
 
 `FormRecognizerClient` provides the following operations:
 

@@ -40,7 +40,7 @@ Document Intelligence Studio is the legacy experience that contains all features
 
 ### When to use [AI Studio](https://ai.azure.com/explore/aiservices/vision)
 
-Start with the new Azure AI Studio and try a document pretrained document analysis model like read or layout or a scenario specific model like receipt or invoice. If you want to build and test a new [Document Field Extraction](https://ai.azure.com/explore/aiservices/vision/document/extraction) model, try our generative AI model, only available in the new AI Studio.
+Start with the new Azure AI Studio and try a pretrained document analysis model like read or layout or a scenario specific model like receipt or invoice. If you want to build and test a new [Document Field Extraction](https://ai.azure.com/explore/aiservices/vision/document/extraction) model, try our generative AI model, only available in the new AI Studio.
 
 ## Learn more about Document Intelligence Studio
 

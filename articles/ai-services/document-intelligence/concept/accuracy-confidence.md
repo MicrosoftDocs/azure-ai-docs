@@ -21,7 +21,7 @@ A confidence score indicates probability by measuring the degree of statistical 
 > [!NOTE]
 >
 > * Field level confidence includes word confidence scores with **2024-11-30 (GA)** API version for **custom models**.
-> * Confidence scores for tables, table rows and table cells are available starting with the **2024-11-30 (GA)** API version for **custom models**.
+> * Confidence scores for tables, table rows, and table cells are available starting with the **2024-11-30 (GA)** API version for **custom models**.
 
 Document Intelligence analysis results return an estimated confidence for predicted words, key-value pairs, selection marks, regions, and signatures. Currently, not all document fields return a confidence score.
 

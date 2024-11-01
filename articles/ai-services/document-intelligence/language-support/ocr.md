@@ -1443,11 +1443,12 @@ The following table lists layout model language support for extracting and analy
 
 > [!IMPORTANT]
 > With Document Intelligence **v4.0:2024-11-30 (GA)**, the general document model (prebuilt-document) is being added to layout (prebuilt-layout). To extract key-value pairs, selection marks, text, tables, and structure from documents, use the following models:
+>
+> | Key value pairs   | version| Model ID |
+> |----------  |---------|--------|
+> |**Layout model** with query string **`features=keyValuePairs`** specified.|&bullet; v4:2024-11-30 (GA)</br>&bullet; v3.1:2023-07-31 (GA) |**`prebuilt-layout`**|
+> |General document model|&bullet; v3.1:2023-07-31 (GA)</br>&bullet; v3.0:2022-08-31 (GA)|**`prebuilt-document`**|
 
-| Key value pairs   | version| Model ID |
-|----------  |---------|--------|
-|**Layout model** with query string **`features=keyValuePairs`** specified.|&bullet; v4:2024-11-30 (GA)</br>&bullet; v3.1:2023-07-31 (GA) |**`prebuilt-layout`**|
-|General document model|&bullet; v3.1:2023-07-31 (GA)</br>&bullet; v3.0:2022-08-31 (GA)|**`prebuilt-document`**|
 
 :::moniker-end
 

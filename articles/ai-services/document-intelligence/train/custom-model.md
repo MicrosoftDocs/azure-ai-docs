@@ -47,7 +47,7 @@ To create a custom extraction model, label a dataset of documents with the value
 
 > [!IMPORTANT]
 >
-> Document Intelligence `v4.0 2024-11-30 (GA)` API, supports custom neural model **overlapping fields** and **table, row and cell level confidence**.
+> Document Intelligence `v4.0 2024-11-30 (GA)` API supports custom neural model **overlapping fields** and **table, row and cell level confidence**.
 >
 
 The custom neural (custom document) model uses deep learning models and  base model trained on a large collection of documents. This model is then fine-tuned or adapted to your data when you train the model with a labeled dataset. Custom neural models support extracting key data fields from structured, semi-structured, and unstructured documents. When you're choosing between the two model types, start with a neural model to determine if it meets your functional needs. See [neural models](custom-neural.md) to learn more about custom document models.

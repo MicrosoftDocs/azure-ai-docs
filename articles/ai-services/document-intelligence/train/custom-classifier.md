@@ -352,7 +352,7 @@ Analyze an input file with the document classification model.
 https://{endpoint}/documentintelligence/documentClassifiers/{classifier}:analyze?api-version=2024-02-29-preview
 ```
 
-The `v4.0 2024-11-30 (GA)` API, enable you to specify pages to analyze from the input document using the `pages` query parameter in the request.
+The `v4.0 2024-11-30 (GA)` API enables you to specify pages to analyze from the input document using the `pages` query parameter in the request.
 
 :::moniker-end
 
