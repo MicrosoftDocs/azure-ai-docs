@@ -20,223 +20,171 @@ In this quickstart, we walk you through setting up your local development enviro
 
 ## Prerequisites
 
-> [!IMPORTANT]
-> You must have the necessary permissions to add role assignments for storage accounts in your Azure subscription. Granting permissions (adding role assignment) is only allowed by the **Owner** of the specific Azure resources. You might need to ask your Azure subscription owner (who might be your IT admin) for help to [grant access to call Azure OpenAI Service using your identity](#grant-access-to-call-azure-openai-service-using-your-identity).
-
 * Before you can follow this quickstart, complete the [AI Studio playground quickstart](../quickstarts/get-started-playground.md) to deploy a **gpt-4o-mini** model into a project.
-* Use the same project and model from the quickstart here.
 
 ## Install the Azure CLI and sign in 
 
 [!INCLUDE [Install the Azure CLI](../includes/install-cli.md)]
 
-Now we create our app and call the Azure OpenAI Service from code.
-
 ## Create a new Python environment
 
 [!INCLUDE [Install Python](../includes/install-python.md)]
 
-## Install the Azure AI SDK
+## Install packages
 
 [!INCLUDE [Install the Azure AI SDK](../includes/install-ai-sdk.md)]
 
 ## Configure your environment variables
 
-Your AI services endpoint and deployment name are required to call the Azure OpenAI service from your code. In this quickstart, you save these values in a `.env` file, which is a file that contains environment variables that your application can read. You can find these values in the AI Studio chat playground. 
+Your project connection string is required to call the Azure OpenAI service from your code. In this quickstart, you save this value in a `.env` file, which is a file that contains environment variables that your application can read. 
 
 1. Create a `.env` file, and paste the following code:
 
     ```text
-    CONNECTION_STRING=<your-connection-string>
-    @@Anything else?  Project name?  
+    PROJECT_CONNECTION_STRING=<your-connection-string>
     ```
 
-1. Navigate to the somewhere and get the information you need to fill in the `.env` file.
+You find your connection string in the Azure AI Studio project you created in the [AI Studio playground quickstart](../quickstarts/get-started-playground.md).  Open the project, then find the connection string on the **Overview** page.  Copy the connection string and paste it into the `.env` file.
 
+:::image type="content" source="../media/quickstarts/azure-ai-sdk/connection-string.png" alt-text="Screenshot shows the overview page of a project and the location of the connection string.":::
 
 > [!WARNING]
 > Key based authentication is supported but isn't recommended by Microsoft. If you want to use keys you can add your key to the `.env`, but please ensure that your `.env` is in your `.gitignore` file so that you don't accidentally check it into your git repository.
 
-## Create a basic chat prompt and app
+## Build your chat app
 
-First create a **Prompty** file, which is the prompt template format supported by prompt flow.
+Run the following code in your Python environment in a Jupyter notebook. @@Do we need to provide instructions for this?  Tell them to use VS Code or Jupyter? Or just provide the code and let them figure it out?@@
 
-Create a `chat.prompty` file and copy the following code into it:
+## Create a project client
 
-```yaml
----
-name: Chat Prompt @@OLD CODE REPLACE THIS
-description: A basic prompt that uses the chat API to answer questions
-model:
-    api: chat
-    configuration:
-        type: azure_openai
-    parameters:
-        max_tokens: 256
-        temperature: 0.2
-inputs:
-    chat_input:
-        type: string
-    chat_history:
-        type: list
-        is_chat_history: true
-        default: []
-outputs:   
-  response:
-    type: string
-sample:
-    chat_input: What is the meaning of life?
----
-system:
-You are an AI assistant who helps people find information.
+Create a client connected to your AI project.  This client is used to access all the resources in your project.
 
-{% for item in history %}
-{{item.role}}:
-{{item.content}}
-{% endfor %}
-
-user:
-{{chat_input}}
-```
-
-Now let's create a Python file that uses this prompt template. Create a `chat.py` file and paste the following code into it:
-
-```Python
-# @@OLD CODE REPLACE THIS
+```python
 import os
+from azure.ai.projects import AIProjectClient
+from azure.identity import DefaultAzureCredential
 from dotenv import load_dotenv
+
 load_dotenv()
 
-from promptflow.core import Prompty, AzureOpenAIModelConfiguration
+project = AIProjectClient.from_connection_string(
+    conn_str=os.environ['PROJECT_CONNECTION_STRING'],
+    credential=DefaultAzureCredential()
+)
+```
 
-model_config = AzureOpenAIModelConfiguration(
-    azure_deployment=os.getenv("AZURE_OPENAI_CHAT_DEPLOYMENT"),
-    api_version=os.getenv("AZURE_OPENAI_API_VERSION"),
-    azure_endpoint=os.getenv("AZURE_OPENAI_ENDPOINT")
+## Run a chat completions call
+
+ Run a chat completions call and print the response. Feel free to play with the system and user messages.
+
+```Python
+chat = project.inference.get_chat_completions_client()
+response = chat.complete(
+    model="gpt-4o",
+    messages=[
+        {"role": "system", "content": "You are an AI assistant that speaks like a techno punk rocker from 2350. Be cool but not too cool. Ya dig?"},
+        {"role": "user", "content": "Hey, can you help me with my taxes? I'm a freelancer."},
+    ]
 )
 
-prompty = Prompty.load("chat.prompty", model={'configuration': model_config})
-result = prompty(
-    chat_history=[
-        {"role": "user", "content": "Does Azure OpenAI support customer managed keys?"},
-        {"role": "assistant", "content": "Yes, customer managed keys are supported by Azure OpenAI."}
-    ],
-    chat_input="Do other Azure AI services support this too?")
-
-print(result)
+print(response.choices[0].message.content)
 ```
 
-Now from your console, run the Python code:
+## Generate prompt from user input and a prompt template
 
-```bash
-python chat.py
+The previous code uses hardcoded input and output messages. In a real app you'd take input from a client application, generate a system message with internal instructions to the model, and then call the LLM with all of the messages.
+
+First let's define a `get_chat_response` function that takes messages and context, generates a system message using a prompt template, and calls a model.
+
+> [!NOTE]
+> The prompt template uses mustache format.
+
+```python
+from azure.ai.inference.prompts import PromptTemplate
+
+def get_chat_response(messages, context):
+    # create a prompt template from an inline string (using mustache syntax)
+    prompt_template = PromptTemplate.from_message(prompt_template="""
+        system:
+        You are an AI assistant that speaks like a techno punk rocker from 2350. Be cool but not too cool. Ya dig? Refer to the user by their first name, try to work their last name into a pun.
+
+        The user's first name is {{first_name}} and their last name is {{last_name}}.
+        """)
+    
+    # generate system message from the template, passing in the context as variables
+    system_message = prompt_template.render(data=context)
+
+    # add the prompt messages to the user messages
+    response = chat.complete(
+        model="gpt-4o", 
+        messages=system_message + messages,
+        temperature=1,
+        frequency_penalty=0.5,
+        presence_penalty=0.5)
+
+    return response
 ```
 
-You should now see the output from running the prompty:
+The get_chat_response function could be easily added as a route to a FastAPI or Flask app to enable calling this function from a front-end web application.
 
-```terminal
-Yes, other Azure AI services also support various capabilities and features. Some of the Azure AI services include Azure Cognitive Services, Azure Machine Learning, Azure Bot Service, and Azure Databricks. Each of these services offers different AI capabilities and can be used for various use cases. If you have a specific service or capability in mind, feel free to ask for more details.
+Now let's simulate passing information from a frontend application to this function:
+
+```python
+response = get_chat_response(
+    messages=[{"role": "user", "content": "what city has the best food in the world?"}],
+    context = {
+      "first_name": "Dan",
+      "last_name": "Taylor"
+   }
+)
+print(response.choices[0].message.content)
 ```
 
-## Trace the execution of your chat code
+## Enable tracing and log to studio
 
-@@DO WE STILL  HAVE THIS? Or remove this section?
+The Azure SDK uses `opentelemetry` for instrumentation and logging. Before you can log to Azure AI Studio, attach an Application Insights resource to your project.
 
-Now we take a look at how prompt flow tracing can provide insights into the various LLM calls that are happening in our Python scripts.
+1. Navigate to your project in [Azure AI Studio](https://ai.azure.com/)
+1. Select the **Tracing** page on the left hand side.
+1. Select **Create New** to attach a new Application Insights resource to your project.
 
-At the start of your `chat.py` file, add the following code to enable prompt flow tracing:
+Next, install the `opentelemetry` SDK:
 
-```Python
-from promptflow.tracing import start_trace
-start_trace()
+```python
+%pip install azure-monitor-opentelemetry
 ```
 
-Rerun your `chat.py` again:
+Now enable tracing with output to the console:
 
-```bash
-python chat.py
-```
-
-This time you see a link in the output to view a prompt flow trace of the execution:
-
-```terminal
-Starting prompt flow service...
-Start prompt flow service on port 23333, version: 1.10.1.
-You can stop the prompt flow service with the following command:'pf service stop'.
-Alternatively, if no requests are made within 1 hours, it will automatically stop.
-You can view the trace detail from the following URL:
-http://localhost:23333/v1.0/ui/traces/?#collection=aistudio-python-quickstart&uiTraceId=0x59e8b9a3a23e4e8893ec2e53d6e1e521
-```
-
-If you select that link, you'll then see the trace showing the steps of the program execution, what was passed to the LLM and the response output.
-
-:::image type="content" source="../media/quickstarts/promptflow-sdk/promptflow-tracing.png" alt-text="Screenshot of the trace showing the steps of the program execution." lightbox="../media/quickstarts/promptflow-sdk/promptflow-tracing.png":::
-
-Prompt flow tracing also allows you to trace specific function calls and log traces to AI Studio, for more information be sure to check out [How to use tracing in the prompt flow SDK](../how-to/develop/trace-local-sdk.md).
-
-## Evaluate your prompt
-
-Now let's show how we can use prompt flow evaluators to generate metrics that can score the quality of the conversation on a scale from 0 to 5. We run the prompt again but this time we store the results into an array containing the full conversation, and then pass that to a `ChatEvaluator` to score.
-
-First, install the `promptflow-evals package`:
-
-```bash
-pip install promptflow-evals
-```
-
-Now copy the following code to an `evaluate.py` file:
-
-```Python
+```python
 import os
-from dotenv import load_dotenv
-load_dotenv()
+from azure.monitor.opentelemetry import configure_azure_monitor
 
-from promptflow.core import Prompty, AzureOpenAIModelConfiguration
-from promptflow.evals.evaluators import ChatEvaluator
+os.environ['AZURE_TRACING_GEN_AI_CONTENT_RECORDING_ENABLED'] = 'true'
+# Enable Azure Monitor tracing
+application_insights_connection_string = project.telemetry.get_connection_string()
+if not application_insights_connection_string:
+    print("Application Insights was not enabled for this project.")
+    print("Enable it via the 'Tracing' tab in your AI Studio project page.")
+    exit()
+    
+configure_azure_monitor(connection_string=application_insights_connection_string)
+```
 
-model_config = AzureOpenAIModelConfiguration(
-    azure_deployment=os.getenv("AZURE_OPENAI_CHAT_DEPLOYMENT"),
-    api_version=os.getenv("AZURE_OPENAI_API_VERSION"),
-    azure_endpoint=os.getenv("AZURE_OPENAI_ENDPOINT")
+Finally, run an inferencing call. The call is logged to Azure AI Studio.  This code prints a link to the traces.
+
+```python
+response = chat.complete(
+    model="gpt-4o",
+    messages=[
+        {"role": "system", "content": "You are an AI assistant that speaks like a techno punk rocker from 2350. Be cool but not too cool. Ya dig?"},
+        {"role": "user", "content": "Hey, can you help me with my taxes? I'm a freelancer."},
+    ]
 )
 
-chat_history=[
-    {"role": "user", "content": "Does Azure OpenAI support customer managed keys?"},
-    {"role": "assistant", "content": "Yes, customer managed keys are supported by Azure OpenAI."}
-]
-chat_input="Do other Azure AI services support this too?"
-
-prompty = Prompty.load("chat.prompty", model={'configuration': model_config})
-response = prompty(chat_history=chat_history, chat_input=chat_input)
-
-conversation = chat_history
-conversation += [
-    {"role": "user", "content": chat_input},
-    {"role": "assistant", "content": response}
-]
-
-chat_eval = ChatEvaluator(model_config=model_config)
-score = chat_eval(conversation=conversation)
-
-print(score)
+print("View traces at:")
+print(f"https://int.ai.azure.com/project-monitoring?wsid=/subscriptions/{project.scope['subscription_id']}/resourceGroups/{project.scope['resource_group_name']}/providers/Microsoft.MachineLearningServices/workspaces/{project.scope['project_name']}")
 ```
-
-Run the `evaluate.py` script:
-
-```bash
-python evaluate.py
-```
-
-You should see an output that looks like this:
-
-```terminal
-{'gpt_coherence': 5.0, 'gpt_fluency': 5.0, 'evaluation_per_turn': {'gpt_coherence': {'score': [5.0, 5.0]}, 'gpt_fluency': {'score': [5.0, 5.0]}}}
-```
-
-Looks like we scored 5 for coherence and fluency of the LLM responses on this conversation! 
-
-For more information on how to use prompt flow evaluators, including how to make your own custom evaluators and log evaluation results to AI Studio, be sure to check out [Evaluate your app using the prompt flow SDK](../how-to/develop/evaluate-sdk.md).
-
 
 ## Next step
 

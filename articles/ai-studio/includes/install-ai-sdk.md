@@ -10,10 +10,20 @@ ms.date: 10/31/2024
 ms.custom: include
 ---
 
-@@Sentence or two about the SDK and what it does.
-
-Use pip to install the Azure AI SDK into the virtual environment that you created.
+Use pip to install the support for notebooks in the virtual environment that you created.
 
 ```bash
-pip install @@???
+pip install ipython ipykernel
+```
+
+Now install the Azure AI SDK packages you need to use the Azure OpenAI service.
+
+```bash
+pip install azure_ai_projects azure_ai_inference azure-identity --force-reinstall
+```
+
+If you want to run evaluations, install the azure-ai-evaluation package with the remote extra:
+
+```
+pip install azure-ai-evaluation[remote]
 ```
