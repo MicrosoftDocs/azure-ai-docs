@@ -26,7 +26,7 @@ landingContent:
         links:
           - text: What is Azure AI Studio?
             url: what-is-ai-studio.md
-          - text: Azure OpenAI Service in Azure AI Studio?
+          - text: Azure OpenAI Service in Azure AI Studio
             url: azure-openai-in-ai-studio.md
           - text: Select and deploy models from the catalog
             url: how-to/model-catalog.md
