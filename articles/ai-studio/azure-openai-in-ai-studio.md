@@ -24,13 +24,13 @@ Azure OpenAI Studio was previously where you went to access and work with the Az
 
 If you've been using Azure OpenAI Studio, all your work, such as your deployments, content filters, batch jobs or fine-tuned models, remain saved in Azure OpenAI. No features or functionality are removed, though the look and feel of some features are updated.
 
-:::image type="content" source="media/azure-openai-in-ai-studio/studio-home.png" alt-text="Screenshot shows the new Azure OpenAI in Azure AI Studio.":::
+:::image type="content" source="media/azure-openai-in-ai-studio/studio-home.png" alt-text="Screenshot shows the new Azure OpenAI in Azure AI Studio." lightbox="media/azure-openai-in-ai-studio/studio-home.png":::
 
 Use the left navigation area to perform your tasks with Azure OpenAI models:
 
 * **Select models**: The **Model catalog** houses all the available Azure OpenAI models.
 
-    :::image type="content" source="media/azure-openai-in-ai-studio/model-catalog.png" alt-text="Screenshot shows the model catalog in Azure OpenAI Service.":::
+    :::image type="content" source="media/azure-openai-in-ai-studio/model-catalog.png" alt-text="Screenshot shows the model catalog in Azure OpenAI Service." lightbox="media/azure-openai-in-ai-studio/model-catalog.png":::
 
 * **Try models**: Use the various **Resource playgrounds** to decide which model is best for your needs.
 * **Deploy models**: In the **Model catalog** or **Deployments** list in the left navigation, you'll see all supported models. You can deploy models from either section.
