@@ -26,6 +26,8 @@ landingContent:
         links:
           - text: What is Azure AI Studio?
             url: what-is-ai-studio.md
+          - text: Azure OpenAI Service in Azure AI Studio?
+            url: azure-openai-in-ai-studio.md
           - text: Select and deploy models from the catalog
             url: how-to/model-catalog.md
           - text: Retrieval Augmented Generation (RAG)
@@ -67,8 +69,12 @@ landingContent:
             url: how-to/develop/sdk-overview.md
           - text: Work with AI Studio projects in VS Code
             url: how-to/develop/vscode.md
+
+      - linkListType: tutorial
+        links:
           - text: Build a custom chat app with the Azure AI SDK
-            url: tutorials/copilot-sdk-create-resources.md
+            url: tutorials/copilot-sdk-build-rag.md
+
       - linkListType: concept
         links:
           - text: Connections for flows and indexing
