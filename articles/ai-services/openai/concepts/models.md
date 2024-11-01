@@ -384,6 +384,12 @@ All deployments can perform the exact same inference operations, however the bil
 
 [!INCLUDE [Global batch](../includes/model-matrix/global-batch.md)]
 
+# [Data Zone Standard](#tab/datazone-standard)
+
+### Data zone standard model availability
+
+[!INCLUDE [Global batch](../includes/model-matrix/datazone-standard.md)]
+
 # [Standard](#tab/standard)
 
 ### Standard deployment model availability
@@ -404,13 +410,6 @@ For more information on Provisioned deployments, see our [Provisioned guidance](
 ---
 
 This table doesn't include fine-tuning regional availability information.  Consult the [fine-tuning section](#fine-tuning-models) for this information.
-
-### Data zone standard model availability
-
-|Model|United States Data zone regions|European Union Data zone regions|
-|---|---|---|
-| `gpt-4o` (2024-08-06, 2024-05-13)| East US 2 <br> West US 3 <br> | Spain Central <br> West Europe|
-| `gpt-4o-mini` (2024-07-18) | East US 2 <br> West US 3 <br> | Spain Central <br> West Europe|
 
 ### Standard models by endpoint
 

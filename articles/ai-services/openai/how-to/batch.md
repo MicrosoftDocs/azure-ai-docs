@@ -44,9 +44,7 @@ Key use cases include:
 
 Global batch is currently supported in the following regions:
 
-- East US
-- West US
-- Sweden Central
+[!INCLUDE [Global batch](../includes/model-matrix/global-batch.md)]
 
 The following models support global batch:
 

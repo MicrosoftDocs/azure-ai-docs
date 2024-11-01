@@ -37,7 +37,7 @@ The following JSON document is composed of simple fields and complex fields. Com
 ```json
 {
   "HotelId": "1",
-  "HotelName": "Secret Point Motel",
+  "HotelName": "Stay-Kay City Hotel",
   "Description": "Ideally located on the main commercial artery of the city in the heart of New York.",
   "Tags": ["Free wifi", "on-site parking", "indoor pool", "continental breakfast"],
   "Address": {
@@ -180,7 +180,7 @@ namespace AzureSearch.SDKHowTo
 
 ### Complex collection limits
 
-During indexing, you can have a maximum of 3,000 elements across all complex collections within a single document. An element of a complex collection is a member of that collection. For Rooms (the only complex collection in the Hotel example), each room is an element. In the example above, if the "Secret Point Motel" had 500 rooms, the hotel document would have 500 room elements. For nested complex collections, each nested element is also counted, in addition to the outer (parent) element.
+During indexing, you can have a maximum of 3,000 elements across all complex collections within a single document. An element of a complex collection is a member of that collection. For Rooms (the only complex collection in the Hotel example), each room is an element. In the example above, if the "Stay-Kay City Hotel" had 500 rooms, the hotel document would have 500 room elements. For nested complex collections, each nested element is also counted, in addition to the outer (parent) element.
 
 This limit applies only to complex collections, and not complex types (like Address) or string collections (like Tags).
 
