@@ -78,6 +78,10 @@ When `public_network_access` is `disabled`, inbound scoring requests are receive
 
 Alternatively, if you set the `public_network_access` to `enabled`, the endpoint can receive inbound scoring requests from the internet.
 
+### Secure inbound scoring with public network access from specific IP addresses
+
+Azure Machine Learning workspace supports enabling public network access from specific IP addresses or address ranges. This feature has some interactions with the managed online endpoint's `public_network_access` flag that you should be aware of when using it with managed online endpoints. For more information, see [Scenario: Managed online endpoints with access from specific IP addresses](how-to-configure-private-link.md#scenario-managed-online-endpoints-with-access-from-selected-ip-addresses).
+
 ## Secure outbound access with workspace managed virtual network
 
 To secure outbound communication from a deployment to services, you need to enable managed virtual network isolation for your Azure Machine Learning workspace so that Azure Machine Learning can create a managed virtual network for the workspace.

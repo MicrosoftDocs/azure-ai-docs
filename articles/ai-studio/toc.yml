@@ -6,19 +6,19 @@ items:
   items:
   - name: What is Azure AI Studio?
     href: what-is-ai-studio.md
+  - name: Azure OpenAI in AI Studio
+    href: azure-openai-in-ai-studio.md
   - name: Azure AI Studio architecture
     href: concepts/architecture.md
   - name: Region support
     href: reference/region-support.md
   - name: Azure AI FAQ
     href: faq.yml
-  - name: What is Azure OpenAI?
-    href: ../ai-services/openai/overview.md?context=/azure/ai-studio/context/context
   - name: Which studio should I choose?
     href: /ai/ai-studio-experiences-overview?context=/azure/ai-studio/context/context
 - name: Quickstarts
   items:
-  - name: Create a project and use the chat playground
+  - name: Use the chat playground
     href: quickstarts/get-started-playground.md
   - name: Get started building a chat app using the prompt flow SDK
     href: quickstarts/get-started-code.md
@@ -184,7 +184,9 @@ items:
       - name: Managed compute
         href: how-to/deploy-models-managed.md
         displayName: endpoint, online, SDK, CLI
-  - name: Create hubs and projects
+  - name: Create a project
+    href: how-to/create-projects.md
+  - name: Manage projects and hubs
     items:
     - name: Hubs and projects overview
       href: concepts/ai-resources.md
@@ -201,11 +203,10 @@ items:
         displayName: code
       - name: Create a hub using Terraform
         href: how-to/create-hub-terraform.md
-    - name: Create a project
-      href: how-to/create-projects.md
+
     - name: Create and manage compute
       href: how-to/create-manage-compute.md
-  - name: Connect to services and resources
+  - name: Connections
     items:
     - name: Connections overview
       href: concepts/connections.md

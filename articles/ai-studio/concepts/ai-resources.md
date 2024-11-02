@@ -9,7 +9,7 @@ ms.custom:
   - build-2024
   - ai-learning-hub
 ms.topic: conceptual
-ms.date: 06/24/2024
+ms.date: 11/19/2024
 ms.reviewer: deeikele
 ms.author: larryfr
 author: Blackmist
@@ -92,7 +92,7 @@ While projects show up as their own tracking resources in the Azure portal, they
 
 Azure AI offers a set of connectors that allows you to connect to different types of data sources and other Azure tools. You can take advantage of connectors to connect with data such as indexes in Azure AI Search to augment your flows.
 
-Connections can be set up as shared with all projects in the same hub, or created exclusively for one project. To manage project connections via Azure AI Studio, go to your project and then select **Settings** > **Connections**. To manage shared connections for a hub, go to your hub settings. As an administrator, you can audit both shared and project-scoped connections on a hub level to have a single pane of glass of connectivity across projects.
+Connections can be set up as shared with all projects in the same hub, or created exclusively for one project. To manage connections via Azure AI Studio, go to your project and then select **Management center**.  Select **Connected resources** in either the **Hub** or **Project** section to manage shared connections for the project or hub, respectively. As an administrator, you can audit both shared and project-scoped connections on a hub level to have a single pane of glass of connectivity across projects.
 
 ## Azure AI dependencies
 
@@ -120,11 +120,10 @@ In the Azure portal, you can find resources that correspond to your project in A
 
 > [!NOTE]
 > This section assumes that the hub and project are in the same resource group. 
-1. In [Azure AI Studio](https://ai.azure.com), go to a project and select **Settings** to view your project resources such as connections and API keys. There's a link to your hub in Azure AI Studio and links to view the corresponding project resources in the [Azure portal](https://portal.azure.com).
+1. In [Azure AI Studio](https://ai.azure.com), go to a project and select **Management center** to view your project resources.
+1. From the management center, select the overview for either your hub or project and then select the link to **Manage in Azure portal**.
     
-    :::image type="content" source="../media/concepts/azureai-project-view-ai-studio.png" alt-text="Screenshot of the AI Studio project overview page with links to the Azure portal." lightbox="../media/concepts/azureai-project-view-ai-studio.png":::
-
-1. Select **Manage in Azure Portal** to see your hub in the [Azure portal](https://portal.azure.com). 
+    :::image type="content" source="../media/concepts/azureai-project-view-ai-studio.png" alt-text="Screenshot of the AI Studio project overview page with links to the Azure portal." lightbox="../media/concepts/azureai-project-view-ai-studio.png"::: 
 
 ## Next steps
 

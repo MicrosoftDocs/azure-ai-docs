@@ -8,7 +8,7 @@ ms.custom:
   - ignite-2023
   - build-2024
 ms.topic: how-to
-ms.date: 5/21/2024
+ms.date: 10/25/2024
 ms.author: franksolomon
 author: fbsolo-ms1 
 ---
@@ -19,7 +19,7 @@ author: fbsolo-ms1
 
 This article describes how to create and manage data in Azure AI Studio. Data can be used as a source for indexing in Azure AI Studio.
 
-And data can help when you need these capabilities:
+Data can help when you need these capabilities:
 
 > [!div class="checklist"]
 > - **Versioning:** Data versioning is supported.
@@ -32,9 +32,8 @@ And data can help when you need these capabilities:
 
 To create and work with data, you need:
 
-* An Azure subscription. If you don't have one, create a free account before you begin.
-
-* An [AI Studio project](../how-to/create-projects.md).
+- An Azure subscription. If you don't have one, create a [free account](https://azure.microsoft.com/free/).
+- An [AI Studio project](../how-to/create-projects.md).
 
 ## Create data
 
@@ -43,7 +42,7 @@ When you create your data, you need to set the data type. AI Studio supports the
 |Type  |**Canonical Scenarios**|
 |---------|---------|
 |**`file`**<br>Reference a single file | Read a single file on Azure Storage (the file can have any format). |
-|**`folder`**<br> Reference a folder |      Read a folder of parquet/CSV files into Pandas/Spark.<br><br>Read unstructured data (such as images, text, and audio) located in a folder. |
+|**`folder`**<br> Reference a folder |      Read a folder of parquet/CSV files into Pandas/Spark.<br><br>Read unstructured data (for example: images, text, or audio) located in a folder. |
 
 Azure AI Studio shows the supported source paths. You can create a data from a folder or file:
 
@@ -59,26 +58,24 @@ A file (`uri_file`) data resource type points to a *single file* on storage (for
 
 These steps explain how to create a File typed data in Azure AI Studio:
 
-1. Navigate to [Azure AI Studio](https://ai.azure.com/)
+1. Navigate to [Azure AI Studio](https://ai.azure.com/).
 
-1. From the collapsible menu on the left, select **Data** under **Components**. Select **New Data**.
-:::image type="content" source="../media/data-add/add-data.png" alt-text="Screenshot highlights Add Data in the Data tab.":::
+1. Select the project where you want to create the data.
 
-1. Choose your **Data source**. You have three options to choose a data source.
-   - You can select data from **Existing Connections**.
-   - You can select **Get data with Storage URL** if you have a direct URL to a storage account or a public accessible HTTPS server.
+1. From the collapsible **My assets** menu on the left, select **Data + indexes**, then select **New data** as shown in this screenshot:
+
+    :::image type="content" source="../media/data-add/add-data.png" alt-text="Screenshot highlighting New Data in the Data tab.":::
+
+1. Choose your **Data source**. To choose a data source, you have two options.
+   - You can select **Get data with storage URL** if you have a direct URL to a storage account or a public accessible HTTPS server.
    - You can select **Upload files/folders** to upload a folder from your local drive.
-    
-    :::image type="content" source="../media/data-add/select-connection.png" alt-text="This screenshot shows the existing connections.":::
-    
-    - **Existing Connections**: You can select an existing connection, browse into this connection, and choose a file you need. If the existing connections don't work for you, select the **New connection** button at the upper right.
-    :::image type="content" source="../media/data-add/new-connection.png" alt-text="This screenshot shows the creation of a new connection to an external asset.":::
 
-    - **Get data with Storage URL**: You can choose the **Type** as "File", and then provide a URL based on the supported URL formats listed on that page.
-    :::image type="content" source="../media/data-add/file-url.png" alt-text="This screenshot shows provision of a URL that points to a file.":::
+     - **Get data with Storage URL**: You can choose the "File" as the **Type**, and then provide a URL based on the supported URL formats listed on that page, as shown in this screenshot:
+     
+     :::image type="content" source="../media/data-add/file-url.png" alt-text="This screenshot shows the provisioning of a URL that points to a file.":::
 
-    - **Upload files/folders**: You can select **Upload files or folder**, select **Upload files**, and choose the local file to upload. The file uploads into the default "workspaceblobstore" connection.
-    :::image type="content" source="../media/data-add/upload.png" alt-text="This screenshot shows the step to upload files/folders.":::
+     - **Upload files/folders**: You can select **Upload files/folders**, select **Upload files**, and choose the local file to upload. The file uploads into the default "workspaceblobstore" connection.
+     :::image type="content" source="../media/data-add/upload-file.png" alt-text="This screenshot shows how to upload a file.":::
 
     1. Select **Next** after you choose the data source.
 
@@ -92,28 +89,23 @@ A Folder (`uri_folder`) data source type points to a *folder* on a storage resou
 
 1. Navigate to [Azure AI Studio](https://ai.azure.com/)
 
-1. From the collapsible menu on the left, select **Data** under **Components**. Select **New Data**.
+1. Select the project where you want to create the data.
 
-    :::image type="content" source="../media/data-add/add-data.png" alt-text="Screenshot highlights Add Data in the Data tab.":::
+1. From the collapsible **Components** menu on the left, select **Data**.
 
-1.  Choose your **Data source**. You have three data source options:
-    1. Select data from **Existing Connections**
+    :::image type="content" source="../media/data-add/add-data.png" alt-text="Screenshot highlighting New Data in the Data tab.":::
+
+1.  Choose your **Data source**. To choose a data source, you have two options.
     1. Select **Get data with Storage URL** if you have a direct URL to a storage account or a public accessible HTTPS server
     1. Select **Upload files/folders** to upload a folder from your local drive
-
-       :::image type="content" source="../media/data-add/select-connection.png" alt-text="This screenshot shows the existing connections.":::
-
-    - **Existing Connections**: You can select an existing connection and browse into this connection and choose a file you need. If the existing connections don't work for you, you can select the **New connection** button at the right.
-    
-       :::image type="content" source="../media/data-add/choose-folder.png" alt-text="This screenshot shows the step to choose a folder from an existing connection.":::
 
     - **Get data with Storage URL**: You can choose the **Type** as "Folder", and provide a URL based on the supported URL formats listed on that page.
 
        :::image type="content" source="../media/data-add/folder-url.png" alt-text="This screenshot shows the step to provide a URL that points to a folder.":::
 
-    - **Upload files/folders**: You can select **Upload files or folder**, and select **Upload files**, and choose the local file to upload. The file resources upload into the default "workspaceblobstore" connection.
+    - **Upload files/folders**: You can select **Upload files/folders**, select **Upload folder**, and choose the local file to upload. The file resources upload into the default "workspaceblobstore" connection.
 
-       :::image type="content" source="../media/data-add/upload.png" alt-text="This screenshot shows the step to upload files/folders.":::
+       :::image type="content" source="../media/data-add/upload-folder.png" alt-text="This screenshot shows how to upload a folder.":::
 
 1. Select **Next** after you choose the data source.
 
@@ -141,12 +133,12 @@ When a data resource is erroneously created - for example, with an incorrect nam
 |The **name** is incorrect     |  [Archive the data](#archive-data)       |
 |The team **no longer uses** the data | [Archive the data](#archive-data) |
 |It **clutters the data listing** | [Archive the data](#archive-data) |
-|The **path** is incorrect     |  Create a *new version* of the data (same name) with the correct path. For more information, read [Create data](#create-data).       |
+|The **path** is incorrect     |  Create a *new version* of the data (same name) with the correct path. For more information, visit [Create data](#create-data).       |
 |It has an incorrect **type**  |  Currently, Azure AI doesn't allow the creation of a new version with a *different* type compared to the initial version.<br>(1) [Archive the data](#archive-data)<br>(2) [Create a new data](#create-data) under a different name with the correct type.    |
 
 ### Archive data
 
-By default, archiving a data resource hides it from both list queries (for example, in the CLI `az ml data list`) and the data listing in Azure AI Studio. You can still continue to reference and use an archived data resource in your workflows. You can archive either:
+By default, archiving a data resource hides it from both list queries (for example, in the CLI `az ml data list`) and the data listing in Azure AI Studio. You can still continue to reference and use an archived data resource in your workflows. You can either archive:
 
 - *all versions* of the data under a given name
 - a specific data version
@@ -160,6 +152,7 @@ At this time, Azure AI Studio doesn't support archiving *all versions* of the da
 At this time, Azure AI Studio doesn't support archiving a specific version of the data resource.
 
 ### Restore an archived data
+
 You can restore an archived data resource. If all of versions of the data are archived, you can't restore individual versions of the data - you must restore all versions.
 
 #### Restore all versions of a data
@@ -175,7 +168,7 @@ Currently, Azure AI Studio doesn't support restoration of a specific data versio
 
 ### Data tagging
 
-Data tagging is extra metadata applied to the data in the form of a key-value pair. Data tagging provides many benefits:
+Data tagging is extra metadata applied to the data in the form of a key-value pair. Data tagging offers many benefits:
 
 - Data quality description. For example, if your organization uses a *medallion lakehouse architecture*, you can tag assets with `medallion:bronze` (raw), `medallion:silver` (validated) and `medallion:gold` (enriched).
 - Provides efficient data searching and filtering, to help data discovery.
@@ -186,11 +179,10 @@ You can add tags to existing data.
 
 ### Data preview
 
-You can browse the folder structure and preview the file in the Data details page.
-We support data preview for the following types:
-- Data file types will be supported via preview API: ".tsv", ".csv", ".parquet", ".jsonl".
-- Other file types, Studio UI will attempt to preview the file in the browser natively. So the supported file types may depend on the browser itself.
-Normally for images, these are supported: ".png", ".jpg", ".gif". And normally, these are support ".ipynb", ".py", ".yml", ".html".
+You can browse the folder structure and preview the file in the Data details page. We support data preview for the following types:
+- Data file types that are supported via preview API: ".tsv", ".csv", ".parquet", ".jsonl".
+- Other file types, Studio UI attempts to preview the file in the browser natively. The supported file types might depend on the browser itself.
+Normally for images, these file image types are supported: ".png", ".jpg", ".gif". Normally, these file types are supported: ".ipynb", ".py", ".yml", ".html".
 
 ## Next steps
 

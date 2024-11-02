@@ -2,7 +2,7 @@
 title: include file
 description: include file
 author: sdgilley
-ms.reviewer: sgilley
+ms.reviewer: deeikele
 ms.author: sgilley
 ms.service: azure-ai-studio
 ms.topic: include
@@ -12,27 +12,40 @@ ms.custom: include, build-2024
 
 To create a project in [Azure AI Studio](https://ai.azure.com), follow these steps:
 
-1. Go to the **Home** page of [Azure AI Studio](https://ai.azure.com). 
+1. Go to the **Home** page of [Azure AI Studio](https://ai.azure.com). If you are in a project, select **Azure AI Studio** at the top left of the page to go to the **Home** page.
 1. Select **+ New project**.
 1. Enter a name for the project.
-1. Select a hub from the dropdown to host your project. For information about the relationship between hubs and projects, see the [hubs and projects overview](../concepts/ai-resources.md) documentation. If you don't yet have a hub, select **Create a new hub**.
+1. If you have a hub, you'll see the one you most recently used selected.  
+    * If you have access to more than one hub, you can select a different hub from the dropdown.
+    * If you want to create a new one, select **Create new hub** and supply a  name.  If you want to customize the default values, see the next section.
 
-    :::image type="content" source="../media/how-to/projects/projects-create-details.png" alt-text="Screenshot of the project details page within the create project dialog." lightbox="../media/how-to/projects/projects-create-details.png":::
+        :::image type="content" source="../media/how-to/projects/projects-create-details.png" alt-text="Screenshot of the project details page within the create project dialog." lightbox="../media/how-to/projects/projects-create-details.png":::
 
-    > [!NOTE]
-    > To create a hub, you must have **Owner** or **Contributor** permissions on the selected resource group. It's recommended to share a hub with your team. This lets you share configurations like data connections with all projects, and centrally manage security settings and spend. For more options to create a hub, see [how to create and manage an Azure AI Studio hub](../how-to/create-azure-ai-resource.md). A project name must be unique between projects that share the same hub.
+1. If you don't have a hub, a default one is created for you.  If you want to customize the default values, see the next section.
 
-1. If you're creating a new hub, enter a name.
+1. Select **Create a project**.  Or, if you want to customize a new hub, follow the steps in the next section.
 
-1. Select your Azure subscription from the **Subscription** dropdown. Choose a specific Azure subscription for your project for billing, access, or administrative reasons. For example, this grants users and service principals with subscription-level access to your project.
+### Customize the hub
 
-1. Leave the **Resource group** as the default to create a new resource group. Alternatively, you can select an existing resource group from the dropdown.
+Projects live inside a hub. A hub allows you to share configurations like data connections with all projects, and to centrally manage security settings and spend. If you're part of a team, hubs are shared across other team members in your subscription. For more information about the relationship between hubs and projects, see the [hubs and projects overview](../concepts/ai-resources.md) documentation.
+
+When you create a new hub, you must have **Owner** or **Contributor** permissions on the selected resource group. If you're part of a team and don't have these permissions, your administrator should create a hub for you.
+
+While you can create a hub as part of the project creation, you have more control and can set more advanced settings for the hub if you create it separately. For example, you can customize network security or the underlying Azure Storage account. For more information, see [How to create and manage an Azure AI Studio hub](../how-to/create-azure-ai-resource.md).
+
+When you create a new hub as part of the project creation, default settings are provided. If you want to customize these settings, do so before you create the project:
+
+1. In the **Create a project** form, select **Customize**.
+
+    :::image type="content" source="../media/how-to/projects/projects-customize-hub.png" alt-text="Screenshot of the customize button within the create project dialog." lightbox="../media/how-to/projects/projects-customize-hub.png":::
+
+1. Select an existing **Resource group** you want to use, or leave the default to create a new resource group.
 
     > [!TIP]
     > Especially for getting started it's recommended to create a new resource group for your project. This allows you to easily manage the project and all of its resources together. When you create a project, several resources are created in the resource group, including a hub, a container registry, and a storage account.
 
-1. Enter the **Location** for the hub and then select **Next**. The location is the region where the hub is hosted. The location of the hub is also the location of the project. Azure AI services availability differs per region. For example, certain models might not be available in certain regions.
-1. Select an existing Azure AI services resource (including Azure OpenAI) from the dropdown or create a new one. 
+1. Select a **Location** or use the default. The location is the region where the hub is hosted. The location of the hub is also the location of the project. Azure AI services availability differs per region. For example, certain models might not be available in certain regions.
+1. Select an existing Azure AI services resource (including Azure OpenAI) from the dropdown if you have one, or use the default to create a new resource.
 
     :::image type="content" source="../media/how-to/projects/projects-create-resource.png" alt-text="Screenshot of the create resource page within the create project dialog." lightbox="../media/how-to/projects/projects-create-resource.png":::
 
@@ -43,5 +56,3 @@ To create a project in [Azure AI Studio](https://ai.azure.com), follow these ste
 1. Review the project details and then select **Create a project**. You see progress of resource creation and the project is created when the process is complete.
 
     :::image type="content" source="../media/how-to/projects/projects-create-review-finish-progress.png" alt-text="Screenshot of the resource creation progress within the create project dialog." lightbox="../media/how-to/projects/projects-create-review-finish-progress.png":::
-
-Once a project is created, you can access the playground, tools, and other assets in the left navigation panel.

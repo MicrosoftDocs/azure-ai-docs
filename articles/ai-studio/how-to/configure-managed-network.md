@@ -143,7 +143,7 @@ Before following the steps in this article, make sure you have the following pre
 * Using FQDN outbound rules increases the cost of the managed virtual network because FQDN rules use Azure Firewall. For more information, see [Pricing](#pricing).
 * FQDN outbound rules only support ports 80 and 443.
 * When using a compute instance with a managed network, use the `az ml compute connect-ssh` command to connect to the compute using SSH.
-* If your managed network is configured to __allow only approved outbound__, you cannot use an FQDN rule to access Azure Storage Accounts. You must use a private endpoint instead.
+* If your managed network is configured to __allow only approved outbound__, you can't use an FQDN rule to access Azure Storage Accounts. You must use a private endpoint instead.
 
 ## Configure a managed virtual network to allow internet outbound
 
@@ -616,20 +616,28 @@ To configure a managed virtual network that allows only approved outbound commun
 
 ## Manually provision a managed VNet
 
-The managed VNet is automatically provisioned when you create a compute instance. When you rely on automatic provisioning, it can take around __30 minutes__ to create the first compute instance as it is also provisioning the network. If you configured FQDN outbound rules (only available with allow only approved mode), the first FQDN rule adds around __10 minutes__ to the provisioning time. If you have a large set of outbound rules to be provisioned in the managed network, it can take longer for provisioning to complete. The increased provisioning time can cause your first compute instance creation to time out.
+The managed virtual network is automatically provisioned when you create a compute instance. When you rely on automatic provisioning, it can take around __30 minutes__ to create the first compute instance as it is also provisioning the network. If you configured FQDN outbound rules (only available with allow only approved mode), the first FQDN rule adds around __10 minutes__ to the provisioning time. If you have a large set of outbound rules to be provisioned in the managed network, it can take longer for provisioning to complete. The increased provisioning time can cause your first compute instance creation to time out.
 
 To reduce the wait time and avoid potential timeout errors, we recommend manually provisioning the managed network. Then wait until the provisioning completes before you create a compute instance.
+
+Alternatively, you can use the `provision_network_now` flag to provision the managed network as part of hub creation. This flag is in preview.
 
 > [!NOTE]
 > To create an online deployment, you must manually provision the managed network, or create a compute instance first which will automatically provision it. 
 
 # [Azure portal](#tab/portal)
 
-Use the __Azure CLI__ or __Python SDK__ tabs to learn how to manually provision the managed VNet.
+During hub creation, select __Provision managed network proactively at creation__ to provision the managed network. Charges are incurred from network resources, such as private endpoints, once the virtual network is provisioned. This configuration option is only available during workspace creation, and is in preview.
 
 # [Azure CLI](#tab/azure-cli)
 
-The following example shows how to provision a managed VNet.
+The following example shows how to provision a managed virtual network during hub creation. The `--provision-network-now` flag is in preview.
+    
+```azurecli
+az ml workspace create -n myworkspace -g my_resource_group --kind hub --managed-network AllowInternetOutbound --provision-network-now
+```
+
+The following example shows how to provision a managed virtual network.
 
 ```azurecli
 az ml workspace provision-network -g my_resource_group -n my_ai_hub_name
@@ -643,7 +651,13 @@ az ml workspace show -n my_ai_hub_name -g my_resource_group --query managed_netw
 
 # [Python SDK](#tab/python)
 
-The following example shows how to provision a managed VNet:
+The following example shows how to provision a managed virtual network during hub creation. The `--provision-network-now` flag is in preview.
+    
+```azurecli
+az ml workspace create -n myworkspace -g my_resource_group --managed-network AllowInternetOutbound --provision-network-now
+```
+
+The following example shows how to provision a managed virtual network:
 
 ```python
 # Connect to a workspace named "myworkspace"
@@ -803,6 +817,18 @@ pypi.org
 *.pytorch.org
 pytorch.org
 
+### Scenario: Enable access from selected IP Addresses
+
+If you want to enable access from specific IP addresses, use the following actions:
+
+1. Enable public network access to the Azure AI Studio Hub. For more information, see [public network access enabled](configure-private-link.md#enable-public-access).
+1. Add your IP addresses to the firewall for Azure AI Studio. For more information, see [enable access only from IP ranges](configure-private-link.md#enable-public-access-only-from-internet-ip-ranges).
+
+    > [!NOTE]
+    > Only IPv4 addresses are supported.
+
+For more information, see [Configure private link](configure-private-link.md#enable-public-access-only-from-internet-ip-ranges).
+
 ## Private endpoints
 
 Private endpoints are currently supported for the following Azure services:
@@ -832,14 +858,56 @@ When you create a private endpoint, you provide the _resource type_ and _subreso
 
 When you create a private endpoint for hub dependency resources, such as Azure Storage, Azure Container Registry, and Azure Key Vault, the resource can be in a different Azure subscription. However, the resource must be in the same tenant as the hub.
 
-A private endpoint is automatically created for a connection if the target resource is an Azure resource listed above. A valid target ID is expected for the private endpoint. A valid target ID for the connection can be the Azure Resource Manager ID of a parent resource. The target ID is also expected in the target of the connection or in `metadata.resourceid`. For more on connections, see [How to add a new connection in Azure AI Studio](connections-add.md).
+A private endpoint is automatically created for a connection if the target resource is an Azure resource listed previously. A valid target ID is expected for the private endpoint. A valid target ID for the connection can be the Azure Resource Manager ID of a parent resource. The target ID is also expected in the target of the connection or in `metadata.resourceid`. For more on connections, see [How to add a new connection in Azure AI Studio](connections-add.md).
+
+## Select an Azure Firewall version for allowed only approved outbound (Preview)
+
+An Azure Firewall is deployed if an FQDN outbound rule is created while in the _allow only approved outbound_ mode. Charges for the Azure Firewall are included in your billing. By default, a __Standard__ version of AzureFirewall is created. Optionally, you can select to use a __Basic__ version. You can change the firewall version used as needed. To figure out which version is best for you, visit [Choose the right Azure Firewall version](/azure/firewall/choose-firewall-sku).
+
+> [!IMPORTANT]
+> The firewall isn't created until you add an outbound FQDN rule. For more information on pricing, see [Azure Firewall pricing](https://azure.microsoft.com/pricing/details/azure-firewall/) and view prices for the _standard_ version.
+
+Use the following tabs to learn how to select the firewall version for your managed virtual network.
+
+# [Azure portal](#tab/portal)
+
+After selecting the allow only approved outbound mode, an option to select the Azure Firewall version (SKU) appears. Select __Standard__ to use the standard version or __Basic__ to use the basic version. Select __Save__ to save your configuration.
+
+# [Azure CLI](#tab/azure-cli)
+
+To configure the firewall version from the CLI, use a YAML file and specify the `firewall_sku`. The following example demonstrates a YAML file that sets the firewall SKU to `basic`:
+
+```yaml
+name: test-ws
+resource_group: test-rg
+location: eastus2 
+managed_network:
+  isolation_mode: allow_only_approved_outbound
+  outbound_rules:
+  - category: required
+    destination: 'contoso.com'
+    name: contosofqdn
+    type: fqdn
+  firewall_sku: basic
+tags: {}
+```
+
+# [Python SDK](#tab/python)
+
+To configure the firewall version from the Python SDK, set the `firewall_sku` property of the `ManagedNetwork` object. The following example demonstrates how to set the firewall SKU to `basic`:
+
+```python
+network = ManagedNetwork(isolation_mode=IsolationMode.ALLOW_INTERNET_OUTBOUND,
+                         firewall_sku='basic')
+```
+---
 
 ## Pricing
 
 The hub managed virtual network feature is free. However, you're charged for the following resources that are used by the managed virtual network:
 
 * Azure Private Link - Private endpoints used to secure communications between the managed virtual network and Azure resources relies on Azure Private Link. For more information on pricing, see [Azure Private Link pricing](https://azure.microsoft.com/pricing/details/private-link/).
-* FQDN outbound rules - FQDN outbound rules are implemented using Azure Firewall. If you use outbound FQDN rules, charges for Azure Firewall are included in your billing. Azure Firewall SKU is standard. Azure Firewall is provisioned per hub.
+* FQDN outbound rules - FQDN outbound rules are implemented using Azure Firewall. If you use outbound FQDN rules, charges for Azure Firewall are included in your billing. A standard version of Azure Firewall is used by default. For information on selecting the basic version, see [Select an Azure Firewall version](#select-an-azure-firewall-version-for-allowed-only-approved-outbound-preview). Azure Firewall is provisioned per hub.
 
     > [!IMPORTANT]
     > The firewall isn't created until you add an outbound FQDN rule. If you don't use FQDN rules, you will not be charged for Azure Firewall. For more information on pricing, see [Azure Firewall pricing](https://azure.microsoft.com/pricing/details/azure-firewall/).
