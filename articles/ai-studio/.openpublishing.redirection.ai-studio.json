@@ -47,12 +47,17 @@
         },
         {
             "source_path_from_root": "/articles/ai-studio/tutorials/deploy-copilot-sdk.md",
-            "redirect_url": "/azure/ai-studio/tutorials/copilot-sdk-create-resources",
+            "redirect_url": "/azure/ai-studio/tutorials/copilot-sdk-build-rag",
             "redirect_document_id": false
         },
         {
             "source_path_from_root": "/articles/ai-studio/tutorials/deploy-copilot-ai-studio.md",
-            "redirect_url": "/azure/ai-studio/tutorials/copilot-sdk-create-resources",
+            "redirect_url": "/azure/ai-studio/tutorials/copilot-sdk-build-rag",
+            "redirect_document_id": false
+        },
+        {
+            "source_path_from_root": "/articles/ai-studio/tutorials/copilot-sdk-create-resources.md",
+            "redirect_url": "/azure/ai-studio/tutorials/copilot-sdk-build-rag",
             "redirect_document_id": false
         },
         {

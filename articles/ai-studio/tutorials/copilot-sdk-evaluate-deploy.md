@@ -259,7 +259,7 @@ To grant yourself access to the Azure AI Services resource that you're using:
 
 You might need to ask your Azure subscription owner (who might be your IT admin) for help with this section.
 
-Similar to how you assigned the **Search Index Data Contributor** [role to your Azure AI Search service](./copilot-sdk-create-resources.md#configure), you need to assign the same role for your endpoint.
+
 
 1. In Azure AI Studio, select **Management center** and navigate to the connected **Azure AI Search** service. 
 1. Select the link to open a summary of the resource. Select the link on the summary page to open the resource in the Azure portal.

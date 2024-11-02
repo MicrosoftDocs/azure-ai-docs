@@ -20,7 +20,7 @@ items:
   items:
   - name: Use the chat playground
     href: quickstarts/get-started-playground.md
-  - name: Get started building a chat app using the prompt flow SDK
+  - name: Build a chat app using the Azure AI SDK
     href: quickstarts/get-started-code.md
     displayName: code
   - name: Get started with Assistants and code interpreter in the playground
@@ -33,15 +33,12 @@ items:
   items:
   - name: Deploy an enterprise chat web app
     href: tutorials/deploy-chat-web-app.md
-  - name: Build a custom chat app with the prompt flow SDK
+  - name: Build a custom chat app with the Azure AI SDK
     items:
-      - name: "Part 1: Set up resources"
-        href: tutorials/copilot-sdk-create-resources.md
-        displayName: code,sdk
-      - name: "Part 2: Add data retrieval to a chat app"
+      - name: "Part 1: Add data retrieval to a chat app"
         href: tutorials/copilot-sdk-build-rag.md
         displayName: code,sdk
-      - name: "Part 3: Evaluate and deploy a chat app"
+      - name: "Part 2: Evaluate and deploy a chat app"
         href: tutorials/copilot-sdk-evaluate-deploy.md
         displayName: code,sdk
 - name: How-to
