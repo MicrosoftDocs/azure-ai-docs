@@ -191,4 +191,4 @@ print(f"https://int.ai.azure.com/project-monitoring?wsid=/subscriptions/{project
 ## Next step
 
 > [!div class="nextstepaction"]
-> [Add data and use retrieval augmented generation (RAG) to build a custom chat app](../tutorials/copilot-sdk-create-resources.md)
+> [Add data and use retrieval augmented generation (RAG) to build a custom chat app](../tutorials/copilot-sdk-build-rag.md)
