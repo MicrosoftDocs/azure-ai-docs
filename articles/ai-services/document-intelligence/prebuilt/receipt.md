@@ -29,7 +29,7 @@ ms.author: lajanuar
 [!INCLUDE [applies to v2.1](../includes/applies-to-v21.md)]
 ::: moniker-end
 
-The Document Intelligence receipt model combines powerful Optical Character Recognition (OCR) capabilities with deep learning models to analyze and extract key information from sales receipts. Receipts can be of various formats and quality including printed and handwritten receipts. The API extracts key information such as merchant name, merchant phone number, transaction date, tax, and transaction total and returns structured JSON data. Receipt model v4.0 (GA) also supports other fields including `ReceiptType`, `TaxDetails`, `CountryRegion`, `NetAmount` and `Description`.
+The Document Intelligence receipt model combines powerful Optical Character Recognition (OCR) capabilities with deep learning models to analyze and extract key information from sales receipts. Receipts can be of various formats and quality including printed and handwritten receipts. The API extracts key information such as merchant name, merchant phone number, transaction date, tax, and transaction total and returns structured JSON data. Receipt model v4.0 (GA) also supports other fields including `ReceiptType`, `TaxDetails`, `CountryRegion`, `NetAmount`, and `Description`.
 
 **Supported receipt types:**
 
