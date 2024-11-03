@@ -45,7 +45,10 @@ To run this tutorial, you need:
     ```bash
     pip install -U llama-index-llms-azure-inference
     pip install -U llama-index-embeddings-azure-inference
-    ``` 
+    ```
+
+    > [!IMPORTANT]
+    > Using the [Azure AI model inference service](https://aka.ms/aiservices/inference) requires version `0.2.4` for `llama-index-llms-azure-inference` or `llama-index-embeddings-azure-inference`.
 
 ## Configure the environment
 
@@ -67,7 +70,7 @@ export AZURE_INFERENCE_ENDPOINT="<your-model-endpoint-goes-here>"
 export AZURE_INFERENCE_CREDENTIAL="<your-key-goes-here>"
 ```
 
-Once configured, create a client to connect to the endpoint. The parameter `model_name` in the constructor is not required for endpoints serving a single model, like serverless endpoints.
+Once configured, create a client to connect to the endpoint.
 
 ```python
 import os
@@ -80,7 +83,20 @@ llm = AzureAICompletionsModel(
 ```
 
 > [!TIP]
-> If your model is an OpenAI model deployed to Azure OpenAI service or AI services resource, configure the client as indicated at [Azure OpenAI models](#azure-openai-models).
+> If your model is an OpenAI model deployed to Azure OpenAI service or AI services resource, configure the client as indicated at [Azure OpenAI models and Azure AI model infernece service](#azure-openai-models-and-azure-ai-model-infernece-service).
+
+If your endpoint is serving more than one model, like with the [Azure AI model inference service](../../aiservices/model-endpoint.md) or [GitHub Models](https://github.com/marketplace/models), you have to indicate `model_name` parameter:
+
+```python
+import os
+from llama_index.llms.azure_inference import AzureAICompletionsModel
+
+llm = AzureAICompletionsModel(
+    endpoint=os.environ["AZURE_INFERENCE_ENDPOINT"],
+    credential=os.environ["AZURE_INFERENCE_CREDENTIAL"],
+    model_name="mistral-large-2407",
+)
+```
 
 Alternatively, if your endpoint support Microsoft Entra ID, you can use the following code to create the client:
 
@@ -112,22 +128,23 @@ llm = AzureAICompletionsModel(
 )
 ```
 
-### Azure OpenAI models
+### Azure OpenAI models and Azure AI model infernece service
 
-If you are using Azure OpenAI models with key-based authentication, you need to pass the authentication key in the header `api-key`, which is the one expected in the Azure OpenAI service and in Azure AI Services. This configuration is not required if you are using Microsoft Entra ID (formerly known as Azure AD). The following example shows how to configure the client:
+If you are using Azure OpenAI models or [Azure AI model inference service](../../aiservices/model-endpoint.md), ensure you have at least version `0.2.4` of the LlamaIndex integration. Use `api_version` parameter in case you need to select an specific `api_version`. For the [Azure AI model inference service](../../aiservices/model-endpoint.md), you need to pass `model` parameter:
 
 ```python
-import os
 from llama_index.llms.azure_inference import AzureAICompletionsModel
 
 llm = AzureAICompletionsModel(
     endpoint=os.environ["AZURE_INFERENCE_ENDPOINT"],
-    credential="",
-    client_kwargs={"headers" : { "api-key": os.environ["AZURE_INFERENCE_CREDENTIAL"] } }
+    credential=os.environ["AZURE_INFERENCE_CREDENTIAL"],
+    model="gpt-4o",
+    api_version="2024-05-01-preview",
 )
 ```
 
-Notice that `credentials` is still being passed with an empty value since it's a required parameter.
+> [!TIP]
+> Using a wrong `api_version` or one not supported by the model results in a `ResourceNotFound` exception.
 
 ### Inference parameters
 
