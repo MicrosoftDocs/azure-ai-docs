@@ -12,7 +12,7 @@ ms.custom: FY25Q1-Linter
 
 # What is Microsoft Translator Pro (preview)?
 
-Microsoft Translator Pro is a speech-to-speech translation mobile app that enables users to translate conversations. Translator Pro is designed for enterprises seeking to eliminate language barriers within the workplace by delivering a standalone, native experience within the enterprise ecosystem.
+Microsoft Translator Pro is a speech-to-speech translation mobile app that enables users to translate conversations in real-time. Translator Pro is designed for enterprises seeking to eliminate language barriers within the workplace by delivering a standalone, native experience within the enterprise ecosystem.
 
 Microsoft Translator Pro is a paid mobile app available on the commercial cloud platform. To use the app, Enterprise users must establish their identities and translator resources within either of these clouds.
 
