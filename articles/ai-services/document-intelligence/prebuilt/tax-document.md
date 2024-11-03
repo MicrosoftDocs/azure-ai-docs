@@ -24,7 +24,7 @@ monikerRange: ">=doc-intel-3.0.0"
 **This content applies to:** ![checkmark](../media/yes-icon.png) **v3.1 (GA)** | **Latest version:** ![purple-checkmark](../media/purple-yes-icon.png) [**v4.0 (GA)**](?view=doc-intel-4.0.0&preserve-view=true)
 :::moniker-end
 
-The Document Intelligence tax model uses powerful Optical Character Recognition (OCR) capabilities to analyze and extract key fields and line items from a select group of tax documents. Tax documents can be of various formats like 1099, 1098, W2, 1040 and quality including phone-captured images, scanned documents, and digital PDFs. The API analyzes document text; extracts key information such as tax payer details, signature details, creditor details etc ; and returns a structured JSON data representation. The model currently supports certain English tax document formats.
+The Document Intelligence tax model uses powerful Optical Character Recognition (OCR) capabilities to analyze and extract key fields and line items from a select group of tax documents. Tax documents can be of various formats like 1099, 1098, W2, 1040, 1095A, 1095C, W-4, 1099-SSA. Input format can include phone-captured images, scanned documents, and digital PDFs. The API analyzes document text; extracts key information and returns a structured JSON data representation. The model currently supports certain English tax document formats.
 
 **Supported tax form types:**
 
