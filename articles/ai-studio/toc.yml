@@ -23,7 +23,7 @@ items:
   - name: Build a chat app using the Azure AI SDK
     href: quickstarts/get-started-code.md
     displayName: code
-  - name: Get started with Assistants and code interpreter in the playground
+  - name: Get started using Azure OpenAI Assistants
     href: ../ai-services/openai/assistants-quickstart.md?context=/azure/ai-studio/context/context
   - name: Moderate text and images with Content Safety
     href: quickstarts/content-safety.md
@@ -51,22 +51,28 @@ items:
       displayName: cognitive
     - name: What are AI services?
       href: ../ai-services/what-are-ai-services.md?context=/azure/ai-studio/context/context
+    - name: Use your existing models and deployments
+      href: ai-services/connect-ai-services.md
+    - name: Where to use Azure OpenAI and AI services
+      href: ai-services/where-to-use-ai-services.md
     - name: Azure OpenAI
       items:
       - name: Deploy Azure OpenAI models
         href: how-to/deploy-models-openai.md
       - name: Fine-tune Azure OpenAI models
         href: ../ai-services/openai/how-to/fine-tuning.md?context=/azure/ai-studio/context/context
-      - name: Get started with Assistants and code interpreter in the playground
+      - name: Get started using Azure OpenAI Assistants
         href: ../ai-services/openai/assistants-quickstart.md?context=/azure/ai-studio/context/context
+      - name: Use GPT-4o in the real-time audio playground
+        href: ../ai-services/openai/realtime-audio-quickstart.md?context=/azure/ai-studio/context/context
       - name: Analyze images and video with GPT-4 for Vision in the playground
         href: quickstarts/multimodal-vision.md
       - name: Use your image data with Azure OpenAI
         href: how-to/data-image-add.md
         displayName: vision, gpt, turbo
-    - name: Azure AI Content Safety
+    - name: Content Safety
       items:
-      - name: Content filtering
+      - name: Azure AI Content filtering
         href: concepts/content-filtering.md
       - name: Prevent input attacks with Prompt Shields
         href: how-to/prompt-shields.md
@@ -211,8 +217,6 @@ items:
       href: how-to/connections-add.md
     - name: Create a connection using the Azure Machine Learning SDK
       href: how-to/develop/connections-add-sdk.md
-    - name: Connect AI services in AI Studio
-      href: ai-services/connect-ai-services.md
       displayName: code
   - name: Data for your generative AI app
     items:
