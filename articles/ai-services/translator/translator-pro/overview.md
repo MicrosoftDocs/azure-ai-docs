@@ -6,7 +6,7 @@ ms.author: lajanuar
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: overview
-ms.date: 09/24/2024
+ms.date: 11/19/2024
 ms.custom: FY25Q1-Linter
 ---
 
@@ -14,7 +14,7 @@ ms.custom: FY25Q1-Linter
 
 Microsoft Translator Pro is a speech-to-speech translation mobile app that enables users to translate conversations. Translator Pro is designed for enterprises seeking to eliminate language barriers within the workplace by delivering a standalone, native experience within the enterprise ecosystem.
 
-Microsoft Translator Pro is a paid mobile app available on both commercial and government cloud platforms. To use the app, Enterprise users must establish their identities and translator resources within either of these clouds.
+Microsoft Translator Pro is a paid mobile app available on the commercial cloud platform. To use the app, Enterprise users must establish their identities and translator resources within either of these clouds.
 
   > [!IMPORTANT]
   >
@@ -25,9 +25,9 @@ Microsoft Translator Pro is a paid mobile app available on both commercial and g
 
 * The Microsoft Translator Pro app can be accessed on iOS devices and requires iOS 15 or newer versions.
 
-* Enterprise users must set up identities and translator resources within either commercial or government cloud environments; the app doesn't support hybrid use across these environments. For example, an identity created in the commercial cloud can't be used to access an Azure resource in the government cloud via this app.
+* Enterprise users must set up identities and translator resources within commercial cloud environments; the app doesn't support hybrid use across these environments. For example, an identity created in the commercial cloud can't be used to access an Azure resource in the government cloud via this app.
 
-* This app operates as a paid offering, necessitating payment prior to usage.
+* This app operates as a paid offering, necessitating payment before usage.
 
 * The app preview is initially available only to enterprises in the United States that meet certain criteria.
 
@@ -43,7 +43,7 @@ Microsoft Translator Pro is a paid mobile app available on both commercial and g
 
 * **Full administrator control**. Your enterprise IT administrator has extensive control over the app's deployment and usage within your organization. Administrators can fine-tune settings to manage conversation history, audit trails, and diagnostic logs. Additionally, administrators have the ability to disable history or configure the automatic exportation of the history to cloud storage.
 
-* **Enterprise-grade security**. Microsoft Translator Pro ensures exceptional translation quality paired with robust security features. Recognizing that privacy and security are paramount for your organization, administrators can sign in to the app using organizational credentials. Your organization's conversational data remains entirely protected within your Azure tenant. Neither Microsoft nor any third parties can access your data.
+* **Enterprise-grade security**. Microsoft Translator Pro ensures exceptional translation quality paired with robust security features. Recognizing that privacy and security are paramount for your organization, administrators can sign in to the app using organizational credentials. Your organization's conversational data remains entirely protected within your Azure tenant. Not Microsoft or any third parties can access your data.
 
 ## Next steps
 
