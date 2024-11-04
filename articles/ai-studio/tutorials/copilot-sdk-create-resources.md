@@ -63,7 +63,7 @@ Otherwise, you can create an Azure AI Search service using the Azure portal.
 
 ### <a name="connect"></a>Connect the Azure AI Search to your project
 
-If you already have an Azure AI Search connection in your project, you can skip to [configure access for the Azure AI Search service](#configure).
+If you already have an Azure AI Search connection in your project, you can skip to [Install the Azure CLI and sign in](#installs).
 
 In the Azure AI Studio, check for an Azure AI Search connected resource.
 
@@ -78,7 +78,7 @@ In the Azure AI Studio, check for an Azure AI Search connected resource.
 > [!NOTE]
 > You can instead use **Microsoft Entra ID** for **Authentication**. If you do this, you must also configure access control for the Azure AI Search service. Assign yourself the **Cognitive Services OpenAI User** role.
 
-## Install the Azure CLI and sign in 
+## <a name="installs"></a> Install the Azure CLI and sign in 
 
 [!INCLUDE [Install the Azure CLI](../includes/install-cli.md)]
 
@@ -119,8 +119,7 @@ You need two models to build a RAG-based chat app: an Azure OpenAI chat model (`
 These steps deploy a model to a real-time endpoint from the AI Studio [model catalog](../how-to/model-catalog-overview.md):
 
 1. Sign in to [Azure AI Studio](https://ai.azure.com).
-1. Studio remembers where you were last, so if you just completed the [Part 1 tutorial](copilot-sdk-create-resources.md), you're already in a project. If you're not in a project, select the project you created in Part 1.
-1. 
+1. Studio remembers where you were last, so you should now see the project you created at the beginning of this tutorial. If you instead see a list of projects, select the one you created for this tutorial.
 1. Select the **gpt-4o-mini** model from the list of models. You can use the search bar to find it. 
 
     :::image type="content" source="../media/tutorials/chat/select-model.png" alt-text="Screenshot of the model selection page." lightbox="../media/tutorials/chat/select-model.png":::
