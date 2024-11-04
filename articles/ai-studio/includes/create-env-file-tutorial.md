@@ -18,8 +18,8 @@ Create a `.env` file, and paste the following code:
 AIPROJECT_CONNECTION_STRING=<your-connection-string>
 AISEARCH_INDEX_NAME="example-index"
 EMBEDDINGS_MODEL="text-embedding-ada-002"
-INTENT_MAPPING_MODEL="gpt-40-mini"
-CHAT_MODEL="gpt-40-mini"
+INTENT_MAPPING_MODEL="gpt-4o-mini"
+CHAT_MODEL="gpt-4o-mini"
 ```
 
 Find your connection string in the Azure AI Studio project you created in the [AI Studio playground quickstart](../quickstarts/get-started-playground.md).  Open the project, then find the connection string on the **Overview** page.  Copy the connection string and paste it into the `.env` file.
