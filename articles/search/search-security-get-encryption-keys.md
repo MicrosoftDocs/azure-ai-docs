@@ -10,7 +10,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: conceptual
-ms.date: 02/16/2024
+ms.date: 10/30/2024
 ---
 
 # Find encrypted objects and information
