@@ -5,7 +5,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: include
-ms.date: 10/07/2024
+ms.date: 11/01/2024
 ---
 
 Build a Java console application using the [Azure.Search.Documents](/java/api/overview/azure/search) library to create, load, and query a search index. 
@@ -65,12 +65,12 @@ Use the following tools to create this quickstart.
         <dependency>
           <groupId>com.azure</groupId>
           <artifactId>azure-search-documents</artifactId>
-          <version>11.5.2</version>
+          <version>11.7.3</version>
         </dependency>
         <dependency>
           <groupId>com.azure</groupId>
           <artifactId>azure-core</artifactId>
-          <version>1.34.0</version>
+          <version>1.53.0</version>
         </dependency>
         <dependency>
           <groupId>junit</groupId>
