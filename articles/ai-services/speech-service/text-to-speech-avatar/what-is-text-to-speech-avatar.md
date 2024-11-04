@@ -69,11 +69,11 @@ Sample code for text to speech avatar is available on [GitHub](https://github.co
 
 - Throughout an avatar real-time session or batch content creation, the text-to-speech, speech-to-text, Azure OpenAI, or other Azure services are charged separately.
 - Refer to [text to speech avatar pricing note](../text-to-speech.md#text-to-speech-avatar) to learn how billing works for the text-to-speech avatar feature.
-- For the detailed pricing, see [Speech service pricing](https://azure.microsoft.com/pricing/details/cognitive-services/speech-services/). Note that avatar pricing will only be visible for service regions where the feature is available, including Southeast Asia, North Europe, West Europe, Sweden Central, South Central US, and West US 2.
+- For the detailed pricing, see [Speech service pricing](https://azure.microsoft.com/pricing/details/cognitive-services/speech-services/). Note that avatar pricing will only be visible for service regions where the feature is available, including Southeast Asia, North Europe, West Europe, Sweden Central, South Central US, East US 2, and West US 2.
 
 ## Available locations
 
-The text to speech avatar feature is only available in the following service regions: Southeast Asia, North Europe, West Europe, Sweden Central, South Central US, and West US 2.
+The text to speech avatar feature is only available in the following service regions: Southeast Asia, North Europe, West Europe, Sweden Central, South Central US, East US 2, and West US 2.
 
 ### Responsible AI
 
