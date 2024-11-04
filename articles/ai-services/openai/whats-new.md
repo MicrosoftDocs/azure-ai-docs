@@ -20,6 +20,11 @@ This article provides a summary of the latest releases and major documentation u
 
 ## October 2024
 
+### NEW data zone standard deployment type
+Data zone standard deployments are available in the same Azure OpenAI resource as all other Azure OpenAI deployment types but allow you to leverage Azure global infrastructure to dynamically route traffic to the data center within the Microsoft defined data zone with the best availability for each request. Data zone standard provides higher default quotas than our Azure geography-based deployment types.  Data zone standard deployments are supported on `gpt-4o-2024-08-06`, `gpt-4o-2024-05-13`, and `gpt-4o-mini-2024-07-18` models.
+
+For more information, see the [deployment types guide](https://aka.ms/aoai/docs/deployment-types).
+
 ### Global Batch GA
 
 Azure OpenAI global batch is now generally available.
@@ -405,7 +410,7 @@ Fine-tuning now supports [multi-turn chat training examples](./how-to/fine-tunin
 
 ### GPT-4 (0125) is available for Azure OpenAI On Your Data
 
-You can now use the GPT-4 (0125) model in [available regions](./concepts/models.md#public-cloud-regions) with Azure OpenAI On Your Data.
+You can now use the GPT-4 (0125) model in [available regions](./concepts/models.md#chat-completions-1) with Azure OpenAI On Your Data.
 
 ## March 2024
 

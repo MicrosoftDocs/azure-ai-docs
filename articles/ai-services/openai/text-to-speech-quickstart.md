@@ -31,6 +31,12 @@ The available voices are: `alloy`, `echo`, `fable`, `onyx`, `nova`, and `shimmer
 
 ::: zone-end
 
+::: zone pivot="programming-language-typescript"
+
+[!INCLUDE [TypeScript quickstart](includes/text-to-speech-typescript.md)]
+
+::: zone-end
+
 ::: zone pivot="programming-language-dotnet"
 
 [!INCLUDE [.NET quickstart](includes/text-to-speech-dotnet.md)]

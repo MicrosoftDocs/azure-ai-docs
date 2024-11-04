@@ -19,7 +19,10 @@ Independent software vendors (ISVs) can manage the Face API usage of their clien
 
 This guide shows you how to generate the access tokens, if you're an approved ISV, and how to use the tokens if you're a client. 
 
-The limited access token feature is a part of the existing Azure AI Services token service. We have added a new operation for the purpose of bypassing the Limited Access gate for approved scenarios. Only ISVs that pass the gating requirements will be given access to this feature.
+The limited access token feature is a part of the existing Azure AI Services token service. We have added a new operation for the purpose of bypassing the Limited Access gate for approved scenarios. 
+
+> [!IMPORTANT]
+> Only ISVs that pass the gating requirements will be given access to this feature. To request approval, contact [azureface@microsoft.com](mailto:azureface@microsoft.com).
 
 ## Example use case
 
@@ -60,7 +63,7 @@ curl -X POST 'https://<isv-endpoint>/sts/v1.0/issueLimitedAccessToken?expiredTim
 -H 'Ocp-Apim-Subscription-Key: <isv-face-key>' \  
 -H 'Content-Type: application/json' \  
 -d '{  
-    "resourceId": "/subscriptions/<subscription-id>/resourceGroups/<resource-group-name>/providers/Microsoft.CognitiveServices/accounts/<face-resource-name>",  
+    "targetAzureResourceId": "/subscriptions/<subscription-id>/resourceGroups/<resource-group-name>/providers/Microsoft.CognitiveServices/accounts/<face-resource-name>",  
     "featureFlags": ["Face.Identification", "Face.Verification"]  
 }' 
 ```

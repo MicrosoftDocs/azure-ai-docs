@@ -47,12 +47,17 @@
         },
         {
             "source_path_from_root": "/articles/ai-studio/tutorials/deploy-copilot-sdk.md",
-            "redirect_url": "/azure/ai-studio/tutorials/copilot-sdk-create-resources",
+            "redirect_url": "/azure/ai-studio/tutorials/copilot-sdk-build-rag",
             "redirect_document_id": false
         },
         {
             "source_path_from_root": "/articles/ai-studio/tutorials/deploy-copilot-ai-studio.md",
-            "redirect_url": "/azure/ai-studio/tutorials/copilot-sdk-create-resources",
+            "redirect_url": "/azure/ai-studio/tutorials/copilot-sdk-build-rag",
+            "redirect_document_id": false
+        },
+        {
+            "source_path_from_root": "/articles/ai-studio/tutorials/copilot-sdk-create-resources.md",
+            "redirect_url": "/azure/ai-studio/tutorials/copilot-sdk-build-rag",
             "redirect_document_id": false
         },
         {
@@ -134,6 +139,11 @@
             "source_path_from_root": "/articles/ai-studio/how-to/evaluate-flow-results.md",
             "redirect_url": "/azure/ai-studio/how-to/evaluate-results",
             "redirect_document_id": true
+        },
+        {
+            "source_path_from_root": "/articles/ai-studio/ai-services/get-started.md",
+            "redirect_url": "/azure/ai-studio/ai-services/connect-ai-services",
+            "redirect_document_id": false
         }
     ]
 }

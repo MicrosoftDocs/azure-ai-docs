@@ -8,7 +8,7 @@ ms.service: azure-ai-openai
 ms.topic: include
 author: mrbullwinkle
 ms.author: mbullwin
-ms.date: 05/21/2024
+ms.date: 10/22
 ---
 
 [Source code](https://github.com/openai/openai-node) | [Package (npm)](https://www.npmjs.com/package/openai) | [Samples](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/openai/openai/samples)
@@ -18,26 +18,14 @@ ms.date: 05/21/2024
 
 ## Prerequisites
 
-## [**TypeScript**](#tab/typescript)
-
 - An Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services?azure-portal=true)
 - [LTS versions of Node.js](https://github.com/nodejs/release#release-schedule)
-- [TypeScript](https://www.typescriptlang.org/download/)
-- An Azure OpenAI Service resource with a `gpt-35-turbo` or `gpt-4` series models deployed. For more information about model deployment, see the [resource deployment guide](../how-to/create-resource.md).
-
-> [!div class="nextstepaction"]
-> [I ran into an issue with the prerequisites.](https://microsoft.qualtrics.com/jfe/form/SV_0Cl5zkG3CnDjq6O?PLanguage=JAVASCRIPT&Pillar=AOAI&Product=Chatgpt&Page=quickstart&Section=Prerequisites)
-
-## [**JavaScript**](#tab/javascript)
-
-- An Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services?azure-portal=true)
-- [LTS versions of Node.js](https://github.com/nodejs/release#release-schedule)
+- [Azure CLI](/cli/azure/install-azure-cli) used for passwordless authentication in a local development environment, create the necessary context by signing in with the Azure CLI.
 - An Azure OpenAI Service resource with either a `gpt-35-turbo` or `gpt-4` series models deployed. For more information about model deployment, see the [resource deployment guide](../how-to/create-resource.md).
 
 > [!div class="nextstepaction"]
 > [I ran into an issue with the prerequisites.](https://microsoft.qualtrics.com/jfe/form/SV_0Cl5zkG3CnDjq6O?PLanguage=JAVASCRIPT&Pillar=AOAI&Product=Chatgpt&Page=quickstart&Section=Prerequisites)
 
----
 
 ## Set up
 
@@ -54,7 +42,7 @@ In a console window (such as cmd, PowerShell, or Bash), create a new directory f
 Install the required packages for JavaScript with npm from within the context of your new directory:
 
 ```console
-npm install openai dotenv @azure/identity
+npm install openai @azure/identity
 ```
 
 Your app's _package.json_ file will be updated with the dependencies.
@@ -66,94 +54,69 @@ Your app's _package.json_ file will be updated with the dependencies.
 
 Open a command prompt where you want the new project, and create a new file named ChatCompletion.js. Copy the following code into the ChatCompletion.js file.
 
-## [**TypeScript**](#tab/typescript)
 
-```typescript
-import "dotenv/config";
-import { AzureOpenAI } from "openai";
-import type {
-  ChatCompletion,
-  ChatCompletionCreateParamsNonStreaming,
-} from "openai/resources/index";
+## [Microsoft Entra ID](#tab/javascript-keyless)
+
+```javascript
+const { AzureOpenAI } = require("openai");
+const { 
+  DefaultAzureCredential, 
+  getBearerTokenProvider 
+} = require("@azure/identity");
 
 // You will need to set these environment variables or edit the following values
 const endpoint = process.env["AZURE_OPENAI_ENDPOINT"] || "<endpoint>";
-const apiKey = process.env["AZURE_OPENAI_API_KEY"] || "<api key>";
+const apiVersion = "2024-05-01-preview";
+const deployment = "gpt-4o"; //This must match your deployment name.
 
-// Required Azure OpenAI deployment name and API version
-const apiVersion = "2024-08-01-preview";
-const deploymentName = "gpt-4o-mini"; //This must match your deployment name.
 
-function getClient(): AzureOpenAI {
-  return new AzureOpenAI({
-    endpoint,
-    apiKey,
-    apiVersion,
-    deployment: deploymentName,
-  });
-}
+// keyless authentication    
+const credential = new DefaultAzureCredential();
+const scope = "https://cognitiveservices.azure.com/.default";
+const azureADTokenProvider = getBearerTokenProvider(credential, scope);
 
-function createMessages(): ChatCompletionCreateParamsNonStreaming {
-  return {
+async function main() {
+
+  const client = new AzureOpenAI({ endpoint, apiKey, azureADTokenProvider, deployment });
+  const result = await client.chat.completions.create({
     messages: [
-      { role: "system", content: "You are a helpful assistant." },
-      {
-        role: "user",
-        content: "Does Azure OpenAI support customer managed keys?",
-      },
-      {
-        role: "assistant",
-        content: "Yes, customer managed keys are supported by Azure OpenAI?",
-      },
-      { role: "user", content: "Do other Azure AI services support this too?" },
+    { role: "system", content: "You are a helpful assistant." },
+    { role: "user", content: "Does Azure OpenAI support customer managed keys?" },
+    { role: "assistant", content: "Yes, customer managed keys are supported by Azure OpenAI?" },
+    { role: "user", content: "Do other Azure AI services support this too?" },
     ],
     model: "",
-  };
-}
-async function printChoices(completion: ChatCompletion): Promise<void> {
-  for (const choice of completion.choices) {
+  });
+
+  for (const choice of result.choices) {
     console.log(choice.message);
   }
-}
-export async function main() {
-  const client = getClient();
-  const messages = createMessages();
-  const result = await client.chat.completions.create(messages);
-  await printChoices(result);
 }
 
 main().catch((err) => {
   console.error("The sample encountered an error:", err);
 });
-```
 
-Build the script with the following command:
-
-```cmd
-tsc
+module.exports = { main };
 ```
 
 Run the script with the following command:
 
 ```cmd
-node.exe Completion.js
+node.exe ChatCompletion.js
 ```
 
-## [**JavaScript**](#tab/javascript)
+
+## [API key](#tab/javascript-key)
 
 ```javascript
 const { AzureOpenAI } = require("openai");
-
-// Load the .env file if it exists
-const dotenv = require("dotenv");
-dotenv.config();
 
 // You will need to set these environment variables or edit the following values
 const endpoint = process.env["AZURE_OPENAI_ENDPOINT"] || "<endpoint>";
 const apiKey = process.env["AZURE_OPENAI_API_KEY"] || "<api key>";
 const apiVersion = "2024-05-01-preview";
 const deployment = "gpt-4o"; //This must match your deployment name.
-require("dotenv/config");
 
 async function main() {
 
@@ -196,122 +159,6 @@ node.exe ChatCompletion.js
   content: 'Yes, several other Azure AI services also support customer managed keys for enhanced security and control over encryption keys.',
   role: 'assistant'
 }
-```
-
-## Microsoft Entra ID
-
-> [!IMPORTANT]
-> In the previous example we are demonstrating key-based authentication. Once you have tested with key-based authentication successfully, we recommend using the more secure [Microsoft Entra ID](/entra/fundamentals/whatis) for authentication which is demonstrated in the next code sample. Getting started with [Microsoft Entra ID] will require some additional [prerequisites](https://www.npmjs.com/package/@azure/identity).
-
-## [**TypeScript**](#tab/typescript)
-
-```typescript
-import {
-  DefaultAzureCredential,
-  getBearerTokenProvider,
-} from "@azure/identity";
-import "dotenv/config";
-import { AzureOpenAI } from "openai";
-import type {
-  ChatCompletion,
-  ChatCompletionCreateParamsNonStreaming,
-} from "openai/resources/index";
-
-// You will need to set these environment variables or edit the following values
-const endpoint = process.env["AZURE_OPENAI_ENDPOINT"] || "<endpoint>";
-
-// Required Azure OpenAI deployment name and API version
-const apiVersion = "2024-08-01-preview";
-const deploymentName = "gpt-4o-mini"; //This must match your deployment name.
-
-function getClient(): AzureOpenAI {
-  const scope = "https://cognitiveservices.azure.com/.default";
-  const azureADTokenProvider = getBearerTokenProvider(
-    new DefaultAzureCredential(),
-    scope
-  );
-  return new AzureOpenAI({
-    endpoint,
-    azureADTokenProvider,
-    deployment: deploymentName,
-    apiVersion,
-  });
-}
-
-function createMessages(): ChatCompletionCreateParamsNonStreaming {
-  return {
-    messages: [
-      { role: "system", content: "You are a helpful assistant." },
-      {
-        role: "user",
-        content: "Does Azure OpenAI support customer managed keys?",
-      },
-      {
-        role: "assistant",
-        content: "Yes, customer managed keys are supported by Azure OpenAI?",
-      },
-      { role: "user", content: "Do other Azure AI services support this too?" },
-    ],
-    model: "",
-  };
-}
-async function printChoices(completion: ChatCompletion): Promise<void> {
-  for (const choice of completion.choices) {
-    console.log(choice.message);
-  }
-}
-export async function main() {
-  const client = getClient();
-  const messages = createMessages();
-  const result = await client.chat.completions.create(messages);
-  await printChoices(result);
-}
-
-main().catch((err) => {
-  console.error("The sample encountered an error:", err);
-});
-```
-
-
-## [**JavaScript**](#tab/javascript)
-
-```javascript
-const { AzureOpenAI } = require("openai");
-const { DefaultAzureCredential, getBearerTokenProvider } = require("@azure/identity");
-
-// Set AZURE_OPENAI_ENDPOINT to the endpoint of your
-// OpenAI resource. You can find this in the Azure portal.
-// Load the .env file if it exists
-require("dotenv/config");
-
-async function main() {
-  console.log("== Chat Completions Sample ==");
-
-  const scope = "https://cognitiveservices.azure.com/.default";
-  const azureADTokenProvider = getBearerTokenProvider(new DefaultAzureCredential(), scope);
-  const deployment = "gpt-35-turbo";
-  const apiVersion = "2024-04-01-preview";
-  const client = new AzureOpenAI({ azureADTokenProvider, deployment, apiVersion });
-  const result = await client.chat.completions.create({
-    messages: [
-    { role: "system", content: "You are a helpful assistant." },
-    { role: "user", content: "Does Azure OpenAI support customer managed keys?" },
-    { role: "assistant", content: "Yes, customer managed keys are supported by Azure OpenAI?" },
-    { role: "user", content: "Do other Azure AI services support this too?" },
-    ],
-    model: "",
-  });
-
-  for (const choice of result.choices) {
-    console.log(choice.message);
-  }
-}
-
-main().catch((err) => {
-  console.error("The sample encountered an error:", err);
-});
-
-module.exports = { main };
 ```
 
 ---

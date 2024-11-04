@@ -49,7 +49,7 @@ This implementation works on text content and image content.
 
 ## How it works
 
-#### [Custom categories (standard) API](#tab/standard)
+### [Custom categories (standard) API](#tab/standard)
 
 The Azure AI Content Safety custom categories feature uses a multi-step process for creating, training, and using custom content classification models. Here's a look at the workflow:
 

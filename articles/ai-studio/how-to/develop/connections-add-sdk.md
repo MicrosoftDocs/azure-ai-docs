@@ -102,7 +102,7 @@ wps_connection = AzureAIServicesConnection(
 ml_client.connections.create_or_update(wps_connection)
 ```
 
-## Azure AI Search (preview)
+## Azure AI Search
 
 The following example creates an Azure AI Search connection:
 
@@ -127,7 +127,7 @@ wps_connection = AzureAISearchConnection(
 ml_client.connections.create_or_update(wps_connection)
 ```
 
-## Azure AI Content Safety (preview)
+## Azure AI Content Safety
 
 The following example creates an Azure AI Content Safety connection:
 
@@ -169,7 +169,7 @@ wps_connection = ServerlessConnection(
 ml_client.connections.create_or_update(wps_connection)
 ```
 
-## Azure Blob Storage (preview)
+## Azure Blob Storage
 
 The following example creates an Azure Blob Storage connection. This connection is authenticated with an account key or a SAS token:
 
@@ -193,7 +193,7 @@ wps_connection = AzureBlobStoreConnection(
 ml_client.connections.create_or_update(wps_connection)
 ```
 
-## Azure Data Lake Storage Gen 2 (preview)
+## Azure Data Lake Storage Gen 2
 
 The following example creates Azure Data Lake Storage Gen 2 connection. This connection is authenticated with a Service Principal:
 
@@ -221,7 +221,7 @@ wps_connection = WorkspaceConnection(
 ml_client.connections.create_or_update(workspace_connection=wps_connection)
 ```
 
-## Microsoft OneLake (preview)
+## Microsoft OneLake
 
 The following example creates a Microsoft OneLake connection. This connection is authenticated with a Service Principal:
 

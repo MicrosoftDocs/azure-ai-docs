@@ -1,11 +1,11 @@
 ---
-title: "Part 3: Evaluate and deploy chat app with the prompt flow SDK"
+title: "Part 2: Evaluate and deploy chat app with the Azure AI SDK"
 titleSuffix: Azure AI Studio
-description: Evaluate and deploy a custom chat app with the prompt flow SDK. This tutorial is part 3 of a 3-part tutorial series.
+description: Evaluate and deploy a custom chat app with the prompt flow SDK. This tutorial is part 2 of a 2-part tutorial series.
 manager: scottpolly
 ms.service: azure-ai-studio
 ms.topic: tutorial
-ms.date: 08/29/2024
+ms.date: 10/31/2024
 ms.reviewer: lebaro
 ms.author: sgilley
 author: sdgilley
@@ -14,18 +14,18 @@ author: sdgilley
 
 # Tutorial: Part 3 - Evaluate and deploy a custom chat application with the prompt flow SDK
 
-In this tutorial, you use the prompt flow SDK (and other libraries) to  evaluate and deploy the chat app you built in [Part 2 of the tutorial series](copilot-sdk-build-rag.md). In this part three, you learn how to:
+In this tutorial, you use the Azure AI SDK (and other libraries) to  evaluate and deploy the chat app you built in [Part 1 of the tutorial series](copilot-sdk-build-rag.md). In this part two, you learn how to:
 
 > [!div class="checklist"]
 > - Evaluate the quality of chat app responses
 > - Deploy the chat app to Azure
 > - Verify the deployment
 
-This tutorial is part three of a three-part tutorial.
+This tutorial is part two of a two-part tutorial.
 
 ## Prerequisites
 
-- Complete [part 2 of the tutorial series](copilot-sdk-build-rag.md) to build the chat application.
+- Complete [part 1 of the tutorial series](copilot-sdk-build-rag.md) to build the chat application.
 
 - You must have the necessary permissions to add role assignments in your Azure subscription. Granting permissions by role assignment is only allowed by the **Owner** of the specific Azure resources. You might need to ask your Azure subscription owner (who might be your IT admin) for help with endpoint access later in the tutorial.
 
@@ -259,7 +259,7 @@ To grant yourself access to the Azure AI Services resource that you're using:
 
 You might need to ask your Azure subscription owner (who might be your IT admin) for help with this section.
 
-Similar to how you assigned the **Search Index Data Contributor** [role to your Azure AI Search service](./copilot-sdk-create-resources.md#configure), you need to assign the same role for your endpoint.
+
 
 1. In Azure AI Studio, select **Management center** and navigate to the connected **Azure AI Search** service. 
 1. Select the link to open a summary of the resource. Select the link on the summary page to open the resource in the Azure portal.

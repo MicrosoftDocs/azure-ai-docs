@@ -8,7 +8,7 @@ ms.custom:
   - build-2024
 ms.topic: quickstart
 ms.date: 10/22/2024
-ms.reviewer: sgilley
+ms.reviewer: zuramir
 ms.author: sgilley
 author: sdgilley
 # customer intent: As a developer, I want use the chat playground in Azure AI Studio so I can work with generative AI.
@@ -30,28 +30,14 @@ If you don't have an Azure subscription, <a href="https://azure.microsoft.com/fr
 
 - Your subscription needs to be below your [quota limit](../how-to/quota.md) to [deploy a new model in this tutorial](#deploy-a-chat-model). Otherwise you already need to have a [deployed chat model](../how-to/deploy-models-openai.md).
 
+
 ## Deploy a chat model
 
-Follow these steps to deploy an Azure OpenAI chat model.
+[!INCLUDE [deploy-model](../includes/deploy-model.md)]
 
-1. Sign in to [Azure AI Studio](https://ai.azure.com) and go to the **Home** page.
+7. Once the model is deployed, select **Open in playground** to test your model.
 
-1. From the left pane, select **Model catalog**.
-    
-    :::image type="content" source="../media/tutorials/chat/deploy-create.png" alt-text="Screenshot of the deployments page with a button to create a new deployment." lightbox="../media/tutorials/chat/deploy-create.png":::
-
-1. Select the model you want to deploy from the list of models. For example, select **gpt-4o-mini**. Then select **Confirm**.
-
-    :::image type="content" source="../media/tutorials/chat/deploy-gpt-35-turbo-16k.png" alt-text="Screenshot of the model selection page." lightbox="../media/tutorials/chat/deploy-gpt-35-turbo-16k.png":::
-
-1. On the **Deploy model** page, enter a name for your deployment. 
-
-    * If you're signed in to your project, the model is deployed to that project.  
-    * If you aren't in a project, select the project you want to use.  
-    * If you don't yet have a project, create one here by assigning a name.
-
-1. Select **Deploy**.
-1. Once the model is deployed, select **Open in playground** to test your model.
+You're now in a project, with a deployed model.  You can use the chat playground to interact with your model.
 
 For more information about deploying models, see [how to deploy models](../how-to/deploy-models-openai.md).
 
@@ -61,10 +47,8 @@ In the [Azure AI Studio](https://ai.azure.com) playground, you can observe how y
 
 To chat with your deployed model in the chat playground, follow these steps:
 
-1. In the **System message** text box, provide this prompt to guide the assistant: "You're an AI assistant that helps people find information." You can tailor the prompt for your scenario. For more information, see [the prompt catalog](../what-is-ai-studio.md#prompt-catalog).
+1. In the **System message** text box, provide this prompt to guide the assistant: "You're an AI assistant that helps people find information." You can tailor the prompt for your scenario.
 1. Optionally, add a safety system message by selecting the **Add section** button, then **Safety system messages**. Choose from the prebuilt messages, and then edit them to your needs.
-
-   :::image type="content" source="../media/tutorials/chat/safety-system-message.png" alt-text="Screenshot of the Safety system message menu item.":::
 
 1. Select **Apply changes** to save your changes, and when prompted to see if you want to update the system message, select **Continue**. 
 1. In the chat session pane, enter the following question: "How much do the TrailWalker hiking shoes cost?"

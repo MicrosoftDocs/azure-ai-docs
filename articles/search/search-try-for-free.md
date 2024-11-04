@@ -122,9 +122,9 @@ Try the portal quickstarts for Azure AI Search or quickstarts that use Visual St
 - [Quickstart: Generative search (RAG) using a Python client](search-get-started-rag.md)
 - [Quickstart: Vector search using a REST client](search-get-started-vector.md)
 
-Azure AI Studio and Azure OpenAI Studio support connecting to content in Azure AI Search
+Azure AI Studio supports connecting to content in Azure AI Search.
 
-- [Quickstart: Chat using your own data in Azure OpenAI Studio](/azure/ai-services/openai/use-your-data-quickstart)
+- [Quickstart: Chat using your own data with Azure OpenAI](/azure/ai-services/openai/use-your-data-quickstart)
 - [Tutorial: Build a custom chat app with the prompt flow SDK](/azure/ai-studio/tutorials/copilot-sdk-create-resources)
 
 Developers should review [azure-search-vector-samples](https://github.com/Azure/azure-search-vector-samples) repository or the solution accelerators. You can deploy and run any of these samples using the Azure trial subscription. 

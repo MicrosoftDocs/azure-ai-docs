@@ -1,70 +1,73 @@
 ---
-title: Connect AI services to your hub in Azure AI Studio
+title: Use your existing Azure OpenAI and AI services resources
 titleSuffix: Azure AI Studio
-description: Learn how to use AI services connections to do more via Azure AI Studio, SDKs, and APIs.
+description: Learn how to use your existing Azure OpenAI and AI services resources in Azure AI Studio.
 manager: nitinme
 ms.service: azure-ai-studio
 ms.custom:
   - ignite-2023
   - build-2024
+  - ignite-2024
 ms.topic: how-to
-ms.date: 8/20/2024
+ms.date: 11/19/2024
 ms.reviewer: eur
 ms.author: eur
 author: eric-urban
 ---
 
-# Connect AI services to your hub in Azure AI Studio
+# Use your existing Azure OpenAI and AI services resources
 
-You can try out AI services for free in Azure AI Studio as described in the [getting started with AI services](get-started.md) article. This article describes how to use AI services connections to do more via Azure AI Studio, SDKs, and APIs. 
+You might have existing Azure AI services resources (including Azure OpenAI model deployments) that you created using the old studios such as Azure OpenAI Studio or Speech Studio. You can pick up where you left off by using your existing resources in AI Studio.
 
-After you create a hub with AI services, you can use the AI services connection via the AI Studio UI, APIs, and SDKs. For example, you can try out AI services via **Home** > **AI Services** in the AI Studio UI as shown here.
+This article describes how to:
+- Use your existing Azure OpenAI model deployments without a project.
+- Use your existing Azure OpenAI and AI services resources in an AI Studio project.
 
-:::image type="content" source="../media/ai-services/ai-services-home.png" alt-text="Screenshot of the AI Services page in Azure AI Studio." lightbox="../media/ai-services/ai-services-home.png":::
+> [!TIP]
+> Even if you don't yet have any Azure OpenAI model deployments, you can use Azure OpenAI Service in AI Studio without creating a project or a connection. If you're only using Azure OpenAI Service, we recommend working outside of a project. 
 
-## Create a hub
+## Use your Azure OpenAI model deployments without a project
 
-You need a hub to connect to AI services in Azure AI Studio. When you create a hub, a connection to AI services is automatically created.
+You can use your existing Azure OpenAI model deployments in AI Studio without creating a project or a connection. Start here if you previously deployed models using the old Azure OpenAI Studio or via the Azure OpenAI Service SDKs and APIs.
 
-[!INCLUDE [Create Azure AI Studio hub](../includes/create-hub.md)]
+To use your existing Azure OpenAI deployments or to otherwise use Azure OpenAI Service without a project, follow these steps:
+1. Go to the [AI Studio home page](https://ai.azure.com) and make sure you're signed in with the Azure subscription that has your Azure OpenAI Service resource (with or without model deployments.)
+1. Find the tile that says **Focused on Azure OpenAI Service?** and select **Let's go**. 
 
-## Connect to AI services
+    :::image type="content" source="../media/azure-openai-in-ai-studio/home-page.png" alt-text="Screenshot of the home page in Azure AI Studio with the option to select Azure OpenAI Service." lightbox="../media/azure-openai-in-ai-studio/home-page.png":::
 
-Your hub is now created and you can connect to AI services. From the **Hub overview** page, you can see the AI services connection that was created with the hub.
+    If you don't see this tile, you can also go directly to the [Azure OpenAI Service page](https://ai.azure.com/resource/overview) in AI Studio.
 
-:::image type="content" source="../media/how-to/hubs/hub-connected-resources.png" alt-text="Screenshot of the hub's AI services connections." lightbox="../media/how-to/hubs/hub-connected-resources.png":::
+1. You should see your existing Azure OpenAI Service resources (with any existing deployments). In case your subscription has multiple Azure OpenAI Service resources, you can use the selector or go to **All resources** to see all your resources.
 
-You can use the AI services connection via the AI Studio UI, APIs, and SDKs. 
+    :::image type="content" source="../media/ai-services/azure-openai-studio-select-resource.png" alt-text="Screenshot of the Azure OpenAI Service resources page in Azure AI Studio." lightbox="../media/ai-services/azure-openai-studio-select-resource.png":::
 
-### Use the AI services connection in the AI Studio UI
+If you create more Azure OpenAI Service resources later (such as via the Azure portal or APIs), you can also access them from this page.
 
-No further configuration is needed to use the AI services connection in the AI Studio UI. You can try out AI services via **Home** > **AI Services** in the AI Studio UI.
+## Use your Azure OpenAI and AI services resources in a project
 
-Here are examples of more ways to use AI services in the AI Studio UI.
+To use your existing Azure AI services resources (such as Azure OpenAI Service or Azure AI Speech) in an AI Studio project, you need to create a connection to the resource.
 
-- [Get started with assistants and code interpreters in the AI Studio playground](../../ai-services/openai/assistants-quickstart.md?context=/azure/ai-studio/context/context)
-- [Hear and speak with chat models in the AI Studio playground](../quickstarts/hear-speak-playground.md)
-- [Analyze images and videos using GPT-4 Turbo with Vision](../quickstarts/multimodal-vision.md)
-- [Use your image data with Azure OpenAI](../how-to/data-image-add.md)
+1. Create an AI Studio project. For detailed instructions, see [Create an AI Studio project](../how-to/create-projects.md).
+1. Go to your AI Studio project.
+1. Select **Management center** from the left pane.
+1. Select **Connected resources** (under **Project**) from the left pane. 
+1. Select **+ New connection**.
 
-### Use the AI services connection in APIs and SDKs
+    :::image type="content" source="../media/ai-services/connections-add.png" alt-text="Screenshot of the connected resources page with the button to create a new connection." lightbox="../media/ai-services/connections-add.png":::
 
-You can use the AI services connection via the APIs and SDKs for a subset of AI services: Azure OpenAI, Speech, Language, Translator, Vision, Document Intelligence, and Content Safety.
+1. On the **Add a connection to external assets** page, select the kind of AI service that you want to connect to the project. For example, you can select Azure OpenAI Service, Azure AI Content Safety, Azure AI Speech, Azure AI Language, and other AI services.
 
-To use the AI services connection via the APIs and SDKs, you need to get the key and endpoint for the connection.
+    :::image type="content" source="../media/ai-services/connections-add-assets.png" alt-text="Screenshot of the page to select the kind of AI service that you want to connect to the project." lightbox="../media/ai-services/connections-add-assets.png":::
 
-1. From the **Home** page in AI Studio, select **All hubs** from the left pane. Then select [the hub you created](#create-a-hub).
-1. Select the **AI Services** connection from the **Hub overview** page.
-1. You can find the key and endpoint for the AI services connection on the **Connection details** page.
-    
-    :::image type="content" source="../media/how-to/hubs/hub-connected-resource-key.png" alt-text="Screenshot of the AI services connection details." lightbox="../media/how-to/hubs/hub-connected-resource-key.png":::
+1. On the next page in the wizard, browse or search to find the resource you want to connect. Then select **Add connection**.  
 
-The AI services key and endpoint are used to authenticate and connect to AI services via the APIs and SDKs.
+    :::image type="content" source="../media/ai-services/connections-add-speech.png" alt-text="Screenshot of the page to select the Azure AI resource that you want to connect to the project." lightbox="../media/ai-services/connections-add-speech.png":::
 
-For more information about AI services APIs and SDKs, see the [Azure AI services SDK reference documentation](../../ai-services/reference/sdk-package-resources.md?context=/azure/ai-studio/context/context) and [Azure AI services REST API](../../ai-services/reference/rest-api-resources.md?context=/azure/ai-studio/context/context) reference documentation.
+1. After the resource is connected, select **Close** to return to the **Connected resources** page. You should see the new connection listed.
+
 
 ## Related content
 
 - [What are Azure AI services?](../../ai-services/what-are-ai-services.md?context=/azure/ai-studio/context/context)
-- [Azure AI Studio hubs](../concepts/ai-resources.md)
 - [Connections in Azure AI Studio](../concepts/connections.md)
