@@ -20,7 +20,7 @@ Data types are assigned to fields in an index definition. You can use the Azure 
 
 - An embedding model that output small data formats.
 
-## Suppported narrow data types
+## Supported narrow data types
 
 1. Review the [data types used for vector fields](/rest/api/searchservice/supported-data-types#edm-data-types-for-vector-fields) for recommended usage:
 
@@ -49,7 +49,7 @@ Data types are assigned to fields in an index definition. You can use the Azure 
 
 [Define and build the index](vector-search-how-to-create-index.md). You can use the Azure portal, [Create or Update Index (REST API)](/rest/api/searchservice/indexes/create-or-update), or an Azure SDK package for this step.
 
-This field definition uses a narrow data type, `Collection(Edm.Half)`, that can accept a float32 embedding stored as as float16 value. As is true for all vector fields, `dimensions` and `vectorSearchProfile` are set. The specifics of the `vectorSearchProfile` are immaterial to the datatype.
+This field definition uses a narrow data type, `Collection(Edm.Half)`, that can accept a float32 embedding stored as a float16 value. As is true for all vector fields, `dimensions` and `vectorSearchProfile` are set. The specifics of the `vectorSearchProfile` are immaterial to the datatype.
 
 We recommend that you set `retrievable` and `stored` to true if you want to visually check the values of the field. On a subsequent rebuild, you can change these properties to false for reduced storage requirements.
 
