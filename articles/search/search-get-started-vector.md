@@ -8,7 +8,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: quickstart
-ms.date: 08/05/2024
+ms.date: 10/31/2024
 ---
 
 # Quickstart: Vector search by using REST
@@ -313,7 +313,7 @@ Authorization: Bearer {{token}}
         {
             "@search.action": "mergeOrUpload",
             "HotelId": "1",
-            "HotelName": "Secret Point Motel",
+            "HotelName": "Stay-Kay City Hotel",
             "HotelNameVector": [VECTOR ARRAY OMITTED],
             "Description": 
                 "The hotel is ideally located on the main commercial artery of the city 
@@ -329,7 +329,7 @@ Authorization: Bearer {{token}}
         {
             "@search.action": "mergeOrUpload",
             "HotelId": "2",
-            "HotelName": "Twin Dome Hotel",
+            "HotelName": "Old Century Hotel",
             "HotelNameVector": [VECTOR ARRAY OMITTED],
             "Description": 
                 "The hotel is situated in a  nineteenth century plaza, which has been 
@@ -348,7 +348,7 @@ Authorization: Bearer {{token}}
         {
             "@search.action": "mergeOrUpload",
             "HotelId": "3",
-            "HotelName": "Triple Landscape Hotel",
+            "HotelName": "Gastronomic Landscape Hotel",
             "HotelNameVector": [VECTOR ARRAY OMITTED],
             "Description": 
                 "The Hotel stands out for its gastronomic excellence under the management of 
@@ -364,14 +364,14 @@ Authorization: Bearer {{token}}
         {
             "@search.action": "mergeOrUpload",
             "HotelId": "4",
-            "HotelName": "Sublime Cliff Hotel",
+            "HotelName": "Sublime Palace Hotel",
             "HotelNameVector": [VECTOR ARRAY OMITTED],
             "Description": 
-                "Sublime Cliff Hotel is located in the heart of the historic center of 
+                "Sublime Palace Hotel is located in the heart of the historic center of 
                 Sublime in an extremely vibrant and lively area within short walking distance to 
                 the sites and landmarks of the city and is surrounded by the extraordinary beauty 
                 of churches, buildings, shops and monuments. 
-                Sublime Cliff is part of a lovingly restored 1800 palace.",
+                Sublime Palace is part of a lovingly restored 1800 palace.",
             "DescriptionVector": [VECTOR ARRAY OMITTED],
             "Category": "Boutique",
             "Tags": [
@@ -383,7 +383,7 @@ Authorization: Bearer {{token}}
         {
             "@search.action": "mergeOrUpload",
             "HotelId": "13",
-            "HotelName": "Historic Lion Resort",
+            "HotelName": "Luxury Lion Resort",
             "HotelNameVector": [VECTOR ARRAY OMITTED],
             "Description": 
                 "Unmatched Luxury.  Visit our downtown hotel to indulge in luxury 
@@ -399,7 +399,7 @@ Authorization: Bearer {{token}}
         {
             "@search.action": "mergeOrUpload",
             "HotelId": "48",
-            "HotelName": "Nordicks Hotel",
+            "HotelName": "Nordick's Valley Motel",
             "HotelNameVector": [VECTOR ARRAY OMITTED],
             "Description": 
                 "Only 90 miles (about 2 hours) from the nation's capital and nearby 
@@ -417,7 +417,7 @@ Authorization: Bearer {{token}}
         {
             "@search.action": "mergeOrUpload",
             "HotelId": "49",
-            "HotelName": "Old Carrabelle Hotel",
+            "HotelName": "Swirling Currents Hotel",
             "HotelNameVector": [VECTOR ARRAY OMITTED],
             "Description": 
                 "Spacious rooms, glamorous suites and residences, rooftop pool, walking 
@@ -500,37 +500,37 @@ The vector query string is semantically similar to the search string, but it inc
         "value": [
             {
                 "@search.score": 0.857736,
-                "HotelName": "Nordick's Motel",
+                "HotelName": "Nordick's Valley Motel",
                 "Description": "Only 90 miles (about 2 hours) from the nation's capital and nearby most everything the historic valley has to offer.  Hiking? Wine Tasting? Exploring the caverns?  It's all nearby and we have specially priced packages to help make our B&B your home base for fun while visiting the valley."
             },
             {
                 "@search.score": 0.8399129,
-                "HotelName": "Old Carrabelle Hotel",
+                "HotelName": "Swirling Currents Hotel",
                 "Description": "Spacious rooms, glamorous suites and residences, rooftop pool, walking access to shopping, dining, entertainment and the city center."
             },
             {
                 "@search.score": 0.8383954,
-                "HotelName": "Historic Lion Resort",
+                "HotelName": "Luxury Lion Resort",
                 "Description": "Unmatched Luxury.  Visit our downtown hotel to indulge in luxury accommodations. Moments from the stadium, we feature the best in comfort"
             },
             {
                 "@search.score": 0.8254346,
-                "HotelName": "Sublime Cliff Hotel",
-                "Description": "Sublime Cliff Hotel is located in the heart of the historic center of Sublime in an extremely vibrant and lively area within short walking distance to the sites and landmarks of the city and is surrounded by the extraordinary beauty of churches, buildings, shops and monuments. Sublime Cliff is part of a lovingly restored 1800 palace."
+                "HotelName": "Sublime Palace Hotel",
+                "Description": "Sublime Palace Hotel is located in the heart of the historic center of Sublime in an extremely vibrant and lively area within short walking distance to the sites and landmarks of the city and is surrounded by the extraordinary beauty of churches, buildings, shops and monuments. Sublime Palace is part of a lovingly restored 1800 palace."
             },
             {
                 "@search.score": 0.82380056,
-                "HotelName": "Secret Point Hotel",
+                "HotelName": "Stay-Kay City Hotel",
                 "Description": "The hotel is ideally located on the main commercial artery of the city in the heart of New York."
             },
             {
                 "@search.score": 0.81514084,
-                "HotelName": "Twin Dome Hotel",
+                "HotelName": "Old Century Hotel",
                 "Description": "The hotel is situated in a  nineteenth century plaza, which has been expanded and renovated to the highest architectural standards to create a modern, functional and first-class hotel in which art and unique historical elements coexist with the most modern comforts."
             },
             {
                 "@search.score": 0.8133763,
-                "HotelName": "Triple Landscape Hotel",
+                "HotelName": "Gastronomic Landscape Hotel",
                 "Description": "The Hotel stands out for its gastronomic excellence under the management of William Dough, who advises on and oversees all of the Hotel’s restaurant services."
             }
         ]
@@ -575,7 +575,7 @@ You can add filters, but the filters are applied to the nonvector content in you
         "value": [
             {
                 "@search.score": 0.857736,
-                "HotelName": "Nordick's Motel",
+                "HotelName": "Nordick's Valley Motel",
                 "Description": "Only 90 miles (about 2 hours) from the nation's capital and nearby most everything the historic valley has to offer.  Hiking? Wine Tasting? Exploring the caverns?  It's all nearby and we have specially priced packages to help make our B&B your home base for fun while visiting the valley.",
                 "Tags": [
                     "continental breakfast",
@@ -585,7 +585,7 @@ You can add filters, but the filters are applied to the nonvector content in you
             },
             {
                 "@search.score": 0.8383954,
-                "HotelName": "Historic Lion Resort",
+                "HotelName": "Luxury Lion Resort",
                 "Description": "Unmatched Luxury.  Visit our downtown hotel to indulge in luxury accommodations. Moments from the stadium, we feature the best in comfort",
                 "Tags": [
                     "view",
@@ -595,7 +595,7 @@ You can add filters, but the filters are applied to the nonvector content in you
             },
             {
                 "@search.score": 0.81514084,
-                "HotelName": "Twin Dome Hotel",
+                "HotelName": "Old Century Hotel",
                 "Description": "The hotel is situated in a  nineteenth century plaza, which has been expanded and renovated to the highest architectural standards to create a modern, functional and first-class hotel in which art and unique historical elements coexist with the most modern comforts.",
                 "Tags": [
                     "pool",
@@ -649,108 +649,108 @@ Hybrid search consists of keyword queries and vector queries in a single search 
         "value": [
             {
                 "@search.score": 0.03279569745063782,
-                "HotelName": "Historic Lion Resort",
+                "HotelName": "Luxury Lion Resort",
                 "Description": "Unmatched Luxury.  Visit our downtown hotel to indulge in luxury accommodations. Moments from the stadium, we feature the best in comfort"
             },
             {
                 "@search.score": 0.03226646035909653,
-                "HotelName": "Sublime Cliff Hotel",
-                "Description": "Sublime Cliff Hotel is located in the heart of the historic center of Sublime in an extremely vibrant and lively area within short walking distance to the sites and landmarks of the city and is surrounded by the extraordinary beauty of churches, buildings, shops and monuments. Sublime Cliff is part of a lovingly restored 1800 palace."
+                "HotelName": "Sublime Palace Hotel",
+                "Description": "Sublime Palace Hotel is located in the heart of the historic center of Sublime in an extremely vibrant and lively area within short walking distance to the sites and landmarks of the city and is surrounded by the extraordinary beauty of churches, buildings, shops and monuments. Sublime Palace is part of a lovingly restored 1800 palace."
             },
             {
                 "@search.score": 0.03226646035909653,
-                "HotelName": "Old Carrabelle Hotel",
+                "HotelName": "Swirling Currents Hotel",
                 "Description": "Spacious rooms, glamorous suites and residences, rooftop pool, walking access to shopping, dining, entertainment and the city center."
             },
             {
                 "@search.score": 0.03205128386616707,
-                "HotelName": "Nordick's Motel",
+                "HotelName": "Nordick's Valley Motel",
                 "Description": "Only 90 miles (about 2 hours) from the nation's capital and nearby most everything the historic valley has to offer.  Hiking? Wine Tasting? Exploring the caverns?  It's all nearby and we have specially priced packages to help make our B&B your home base for fun while visiting the valley."
             },
             {
                 "@search.score": 0.03128054738044739,
-                "HotelName": "Triple Landscape Hotel",
+                "HotelName": "Gastronomic Landscape Hotel",
                 "Description": "The Hotel stands out for its gastronomic excellence under the management of William Dough, who advises on and oversees all of the Hotel’s restaurant services."
             },
             {
                 "@search.score": 0.03100961446762085,
-                "HotelName": "Twin Dome Hotel",
+                "HotelName": "Old Century Hotel",
                 "Description": "The hotel is situated in a  nineteenth century plaza, which has been expanded and renovated to the highest architectural standards to create a modern, functional and first-class hotel in which art and unique historical elements coexist with the most modern comforts."
             },
             {
                 "@search.score": 0.03077651560306549,
-                "HotelName": "Secret Point Hotel",
+                "HotelName": "Stay-Kay City Hotel",
                 "Description": "The hotel is ideally located on the main commercial artery of the city in the heart of New York."
             }
         ]
     }
     ```
 
-     Because RRF merges results, it helps to review the inputs. The following results are from only the full-text query. The top two results are Sublime Cliff Hotel and History Lion Resort. The Sublime Cliff Hotel has a stronger BM25 relevance score.
+     Because RRF merges results, it helps to review the inputs. The following results are from only the full-text query. The top two results are Sublime Palace Hotel and History Lion Resort. The Sublime Palace Hotel has a stronger BM25 relevance score.
 
     ```json
             {
                 "@search.score": 2.2626662,
-                "HotelName": "Sublime Cliff Hotel",
-                "Description": "Sublime Cliff Hotel is located in the heart of the historic center of Sublime in an extremely vibrant and lively area within short walking distance to the sites and landmarks of the city and is surrounded by the extraordinary beauty of churches, buildings, shops and monuments. Sublime Cliff is part of a lovingly restored 1800 palace."
+                "HotelName": "Sublime Palace Hotel",
+                "Description": "Sublime Palace Hotel is located in the heart of the historic center of Sublime in an extremely vibrant and lively area within short walking distance to the sites and landmarks of the city and is surrounded by the extraordinary beauty of churches, buildings, shops and monuments. Sublime Palace is part of a lovingly restored 1800 palace."
             },
             {
                 "@search.score": 0.86421645,
-                "HotelName": "Historic Lion Resort",
+                "HotelName": "Luxury Lion Resort",
                 "Description": "Unmatched Luxury.  Visit our downtown hotel to indulge in luxury accommodations. Moments from the stadium, we feature the best in comfort"
                 },
     ```
 
-    In the vector-only query, which uses HNSW for finding matches, the Sublime Cliff Hotel drops to fourth position. Historic Lion, which was second in the full-text search and third in the vector search, doesn't experience the same range of fluctuation, so it appears as a top match in a homogenized result set.
+    In the vector-only query, which uses HNSW for finding matches, the Sublime Palace Hotel drops to fourth position. Historic Lion, which was second in the full-text search and third in the vector search, doesn't experience the same range of fluctuation, so it appears as a top match in a homogenized result set.
 
     ```json
         "value": [
             {
                 "@search.score": 0.857736,
                 "HotelId": "48",
-                "HotelName": "Nordick's Motel",
+                "HotelName": "Nordick's Valley Motel",
                 "Description": "Only 90 miles (about 2 hours) from the nation's capital and nearby most everything the historic valley has to offer.  Hiking? Wine Tasting? Exploring the caverns?  It's all nearby and we have specially priced packages to help make our B&B your home base for fun while visiting the valley.",
                 "Category": "Boutique"
             },
             {
                 "@search.score": 0.8399129,
                 "HotelId": "49",
-                "HotelName": "Old Carrabelle Hotel",
+                "HotelName": "Swirling Currents Hotel",
                 "Description": "Spacious rooms, glamorous suites and residences, rooftop pool, walking access to shopping, dining, entertainment and the city center.",
                 "Category": "Luxury"
             },
             {
                 "@search.score": 0.8383954,
                 "HotelId": "13",
-                "HotelName": "Historic Lion Resort",
+                "HotelName": "Luxury Lion Resort",
                 "Description": "Unmatched Luxury.  Visit our downtown hotel to indulge in luxury accommodations. Moments from the stadium, we feature the best in comfort",
                 "Category": "Resort and Spa"
             },
             {
                 "@search.score": 0.8254346,
                 "HotelId": "4",
-                "HotelName": "Sublime Cliff Hotel",
-                "Description": "Sublime Cliff Hotel is located in the heart of the historic center of Sublime in an extremely vibrant and lively area within short walking distance to the sites and landmarks of the city and is surrounded by the extraordinary beauty of churches, buildings, shops and monuments. Sublime Cliff is part of a lovingly restored 1800 palace.",
+                "HotelName": "Sublime Palace Hotel",
+                "Description": "Sublime Palace Hotel is located in the heart of the historic center of Sublime in an extremely vibrant and lively area within short walking distance to the sites and landmarks of the city and is surrounded by the extraordinary beauty of churches, buildings, shops and monuments. Sublime Palace is part of a lovingly restored 1800 palace.",
                 "Category": "Boutique"
             },
             {
                 "@search.score": 0.82380056,
                 "HotelId": "1",
-                "HotelName": "Secret Point Hotel",
+                "HotelName": "Stay-Kay City Hotel",
                 "Description": "The hotel is ideally located on the main commercial artery of the city in the heart of New York.",
                 "Category": "Boutique"
             },
             {
                 "@search.score": 0.81514084,
                 "HotelId": "2",
-                "HotelName": "Twin Dome Hotel",
+                "HotelName": "Old Century Hotel",
                 "Description": "The hotel is situated in a  nineteenth century plaza, which has been expanded and renovated to the highest architectural standards to create a modern, functional and first-class hotel in which art and unique historical elements coexist with the most modern comforts.",
                 "Category": "Boutique"
             },
             {
                 "@search.score": 0.8133763,
                 "HotelId": "3",
-                "HotelName": "Triple Landscape Hotel",
+                "HotelName": "Gastronomic Landscape Hotel",
                 "Description": "The Hotel stands out for its gastronomic excellence under the management of William Dough, who advises on and oversees all of the Hotel’s restaurant services.",
                 "Category": "Resort and Spa"
             }
@@ -795,7 +795,7 @@ Here's the last query in the collection. This hybrid query with semantic ranking
 
 1. Review the response. The response is three hotels, which are filtered by location and faceted by `StateProvince` and semantically reranked to promote results that are closest to the search string query (`historic hotel walk to restaurants and shopping`).
 
-    The Old Carabelle Hotel now moves into the top spot. Without semantic ranking, Nordick's Hotel is number one. With semantic ranking, the machine comprehension models recognize that `historic` applies to "hotel, within walking distance to dining (restaurants) and shopping."
+    The Swirling Currents Hotel now moves into the top spot. Without semantic ranking, Nordick's Valley Motel is number one. With semantic ranking, the machine comprehension models recognize that `historic` applies to "hotel, within walking distance to dining (restaurants) and shopping."
 
     ```json
     {
@@ -818,7 +818,7 @@ Here's the last query in the collection. This hybrid query with semantic ranking
                 "@search.score": 0.03306011110544205,
                 "@search.rerankerScore": 2.5094974040985107,
                 "HotelId": "49",
-                "HotelName": "Old Carrabelle Hotel",
+                "HotelName": "Swirling Currents Hotel",
                 "Description": "Spacious rooms, glamorous suites and residences, rooftop pool, walking access to shopping, dining, entertainment and the city center.",
                 "Category": "Luxury",
                 "Address": {
@@ -830,7 +830,7 @@ Here's the last query in the collection. This hybrid query with semantic ranking
                 "@search.score": 0.03306011110544205,
                 "@search.rerankerScore": 2.0370211601257324,
                 "HotelId": "48",
-                "HotelName": "Nordick's Motel",
+                "HotelName": "Nordick's Valley Motel",
                 "Description": "Only 90 miles (about 2 hours) from the nation's capital and nearby most everything the historic valley has to offer.  Hiking? Wine Tasting? Exploring the caverns?  It's all nearby and we have specially priced packages to help make our B&B your home base for fun while visiting the valley.",
                 "Category": "Boutique",
                 "Address": {
@@ -842,7 +842,7 @@ Here's the last query in the collection. This hybrid query with semantic ranking
                 "@search.score": 0.032258063554763794,
                 "@search.rerankerScore": 1.6706111431121826,
                 "HotelId": "1",
-                "HotelName": "Secret Point Hotel",
+                "HotelName": "Stay-Kay City Hotel",
                 "Description": "The hotel is ideally located on the main commercial artery of the city in the heart of New York.",
                 "Category": "Boutique",
                 "Address": {

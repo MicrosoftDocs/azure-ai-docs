@@ -18,10 +18,12 @@ ms.date: 10/22
 
 ## Prerequisites
 
+
 - An Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services?azure-portal=true)
 - [LTS versions of Node.js](https://github.com/nodejs/release#release-schedule)
+- [TypeScript](https://www.typescriptlang.org/download/)
 - [Azure CLI](/cli/azure/install-azure-cli) used for passwordless authentication in a local development environment, create the necessary context by signing in with the Azure CLI.
-- An Azure OpenAI Service resource with either a `gpt-35-turbo` or `gpt-4` series models deployed. For more information about model deployment, see the [resource deployment guide](../how-to/create-resource.md).
+- An Azure OpenAI Service resource with a `gpt-35-turbo` or `gpt-4` series models deployed. For more information about model deployment, see the [resource deployment guide](../how-to/create-resource.md).
 
 > [!div class="nextstepaction"]
 > [I ran into an issue with the prerequisites.](https://microsoft.qualtrics.com/jfe/form/SV_0Cl5zkG3CnDjq6O?PLanguage=JAVASCRIPT&Pillar=AOAI&Product=Chatgpt&Page=quickstart&Section=Prerequisites)
@@ -52,52 +54,80 @@ Your app's _package.json_ file will be updated with the dependencies.
 
 ## Create a sample application
 
-Open a command prompt where you want the new project, and create a new file named ChatCompletion.js. Copy the following code into the ChatCompletion.js file.
+Open a command prompt where you want the new project, and create a new file named ChatCompletion.ts. Copy the following code into the ChatCompletion.ts file.
 
+## [Microsoft Entra ID](#tab/typescript-keyless)
 
-## [Microsoft Entra ID](#tab/javascript-keyless)
-
-```javascript
-const { AzureOpenAI } = require("openai");
-const { 
+```typescript
+import { AzureOpenAI } from "openai";
+import { 
   DefaultAzureCredential, 
   getBearerTokenProvider 
-} = require("@azure/identity");
+} from "@azure/identity";
+import type {
+  ChatCompletion,
+  ChatCompletionCreateParamsNonStreaming,
+} from "openai/resources/index";
 
 // You will need to set these environment variables or edit the following values
 const endpoint = process.env["AZURE_OPENAI_ENDPOINT"] || "<endpoint>";
-const apiVersion = "2024-05-01-preview";
-const deployment = "gpt-4o"; //This must match your deployment name.
 
+// Required Azure OpenAI deployment name and API version
+const apiVersion = "2024-08-01-preview";
+const deploymentName = "gpt-4o-mini"; //This must match your deployment name.
 
 // keyless authentication    
 const credential = new DefaultAzureCredential();
 const scope = "https://cognitiveservices.azure.com/.default";
 const azureADTokenProvider = getBearerTokenProvider(credential, scope);
 
-async function main() {
+function getClient(): AzureOpenAI {
+  return new AzureOpenAI({
+    endpoint,
+    azureADTokenProvider,
+    apiVersion,
+    deployment: deploymentName,
+  });
+}
 
-  const client = new AzureOpenAI({ endpoint, apiKey, azureADTokenProvider, deployment });
-  const result = await client.chat.completions.create({
+function createMessages(): ChatCompletionCreateParamsNonStreaming {
+  return {
     messages: [
-    { role: "system", content: "You are a helpful assistant." },
-    { role: "user", content: "Does Azure OpenAI support customer managed keys?" },
-    { role: "assistant", content: "Yes, customer managed keys are supported by Azure OpenAI?" },
-    { role: "user", content: "Do other Azure AI services support this too?" },
+      { role: "system", content: "You are a helpful assistant." },
+      {
+        role: "user",
+        content: "Does Azure OpenAI support customer managed keys?",
+      },
+      {
+        role: "assistant",
+        content: "Yes, customer managed keys are supported by Azure OpenAI?",
+      },
+      { role: "user", content: "Do other Azure AI services support this too?" },
     ],
     model: "",
-  });
-
-  for (const choice of result.choices) {
+  };
+}
+async function printChoices(completion: ChatCompletion): Promise<void> {
+  for (const choice of completion.choices) {
     console.log(choice.message);
   }
+}
+export async function main() {
+  const client = getClient();
+  const messages = createMessages();
+  const result = await client.chat.completions.create(messages);
+  await printChoices(result);
 }
 
 main().catch((err) => {
   console.error("The sample encountered an error:", err);
 });
+```
 
-module.exports = { main };
+Build the script with the following command:
+
+```cmd
+tsc
 ```
 
 Run the script with the following command:
@@ -106,41 +136,70 @@ Run the script with the following command:
 node.exe ChatCompletion.js
 ```
 
+## [API Key](#tab/typescript-key)
 
-## [API key](#tab/javascript-key)
-
-```javascript
-const { AzureOpenAI } = require("openai");
+```typescript
+import { AzureOpenAI } from "openai";
+import type {
+  ChatCompletion,
+  ChatCompletionCreateParamsNonStreaming,
+} from "openai/resources/index";
 
 // You will need to set these environment variables or edit the following values
 const endpoint = process.env["AZURE_OPENAI_ENDPOINT"] || "<endpoint>";
 const apiKey = process.env["AZURE_OPENAI_API_KEY"] || "<api key>";
-const apiVersion = "2024-05-01-preview";
-const deployment = "gpt-4o"; //This must match your deployment name.
 
-async function main() {
+// Required Azure OpenAI deployment name and API version
+const apiVersion = "2024-08-01-preview";
+const deploymentName = "gpt-4o-mini"; //This must match your deployment name.
 
-  const client = new AzureOpenAI({ endpoint, apiKey, apiVersion, deployment });
-  const result = await client.chat.completions.create({
+function getClient(): AzureOpenAI {
+  return new AzureOpenAI({
+    endpoint,
+    apiKey,
+    apiVersion,
+    deployment: deploymentName,
+  });
+}
+
+function createMessages(): ChatCompletionCreateParamsNonStreaming {
+  return {
     messages: [
-    { role: "system", content: "You are a helpful assistant." },
-    { role: "user", content: "Does Azure OpenAI support customer managed keys?" },
-    { role: "assistant", content: "Yes, customer managed keys are supported by Azure OpenAI?" },
-    { role: "user", content: "Do other Azure AI services support this too?" },
+      { role: "system", content: "You are a helpful assistant." },
+      {
+        role: "user",
+        content: "Does Azure OpenAI support customer managed keys?",
+      },
+      {
+        role: "assistant",
+        content: "Yes, customer managed keys are supported by Azure OpenAI?",
+      },
+      { role: "user", content: "Do other Azure AI services support this too?" },
     ],
     model: "",
-  });
-
-  for (const choice of result.choices) {
+  };
+}
+async function printChoices(completion: ChatCompletion): Promise<void> {
+  for (const choice of completion.choices) {
     console.log(choice.message);
   }
+}
+export async function main() {
+  const client = getClient();
+  const messages = createMessages();
+  const result = await client.chat.completions.create(messages);
+  await printChoices(result);
 }
 
 main().catch((err) => {
   console.error("The sample encountered an error:", err);
 });
+```
 
-module.exports = { main };
+Build the script with the following command:
+
+```cmd
+tsc
 ```
 
 Run the script with the following command:

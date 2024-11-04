@@ -61,7 +61,7 @@ An example result might look like this:
 ```json
 {
   "HotelId": "1",
-  "HotelName": "Secret Point Motel",
+  "HotelName": "Stay-Kay City Hotel",
   "Rating": 4,
   "Address": {
     "City": "New York"
@@ -79,7 +79,7 @@ An example result might look like this:
 
 ```json
 {
-  "HotelName": "Secret Point Motel",
+  "HotelName": "Stay-Kay City Hotel",
   "Rating": 4,
   "Address": {
     "StreetAddress": "677 5th Ave",
