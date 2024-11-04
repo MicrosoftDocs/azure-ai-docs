@@ -384,8 +384,8 @@
       "ms.collection": {
         "articles/ai-services/**/*.md": "ce-skilling-ai-copilot",
         "articles/ai-services/**/*.yml": "ce-skilling-ai-copilot",
-        "articles/ai-studio/**/*.md": "ce-skilling-fresh-tier0",
-        "articles/ai-studio/**/*.yml": "ce-skilling-fresh-tier0",
+        "articles/ai-studio/**/*.md": "ce-skilling-ai-copilot, ce-skilling-fresh-tier0",
+        "articles/ai-studio/**/*.yml": "ce-skilling-ai-copilot, ce-skilling-fresh-tier0",
         "articles/search/**/*.md": "ce-skilling-ai-copilot",
         "articles/search/**/*.yml": "ce-skilling-ai-copilot",
         "articles/machine-learning/*.md": "ce-skilling-fresh-tier2, ce-skilling-ai-copilot",
