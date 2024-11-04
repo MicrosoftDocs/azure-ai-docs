@@ -6,7 +6,7 @@ ms.reviewer: sgilley
 ms.author: sgilley
 ms.service: azure-ai-studio
 ms.topic: include
-ms.date: 11/04/2024
+ms.date: 11/19/2024
 ms.custom: include, build-2024
 ---
 
@@ -15,9 +15,9 @@ To create a hub in [Azure AI Studio](https://ai.azure.com), follow these steps:
 1. Go to [Azure AI Studio](https://ai.azure.com) and sign in with your Azure account.
 1. Select the **Management center** from the left menu.
 
-    > [!TIP]
-    > If you **View all projects** to switch to the resources view in the **management center**.
-1. Select the down arrow next to **+ New project** and then select **+ New hub**.
+    :::image type="content" source="../media/how-to/hubs/management-center.png" alt-text="Screenshot of the link to the management center." lightbox="../media/how-to/hubs/management-center.png":::
+    
+1. Select **All resources**, the down arrow next to **+ New project** and then select **+ New hub**.
 
     :::image type="content" source="../media/how-to/hubs/hub-new.png" alt-text="Screenshot of the button to create a new hub." lightbox="../media/how-to/hubs/hub-new.png":::
 
