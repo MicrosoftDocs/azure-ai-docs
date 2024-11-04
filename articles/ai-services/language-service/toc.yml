@@ -727,6 +727,8 @@ items:
           href: custom-text-analytics-for-health/concepts/entity-components.md
         - name: Evaluation metrics
           href: custom-text-analytics-for-health/concepts/evaluation-metrics.md
+        - name: Fast Healthcare Interoperability Resources (FHIR) structuring
+          href: custom-text-analytics-for-health/concepts/fhir.md
       - name: Reference
         items:
         - name: Service limits

@@ -59,7 +59,7 @@ A native document refers to the file format used to create the original document
 |Attribute|Input limit|
 |---|---|
 |**Total number of documents per request** |**≤ 20**|
-|**Total content size per request**| **≤ 1 MB**|
+|**Total content size per request**| **≤ 10 MB**|
 
 ## Include native documents with an HTTP request
 
