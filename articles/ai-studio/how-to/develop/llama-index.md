@@ -83,9 +83,9 @@ llm = AzureAICompletionsModel(
 ```
 
 > [!TIP]
-> If your model is an OpenAI model deployed to Azure OpenAI service or AI services resource, configure the client as indicated at [Azure OpenAI models and Azure AI model infernece service](#azure-openai-models-and-azure-ai-model-infernece-service).
+> If your model is an OpenAI model deployed to Azure OpenAI service or AI services resource, configure the client as indicated at [Azure OpenAI models and Azure AI model inference service](#azure-openai-models-and-azure-ai-model-infernece-service).
 
-If your endpoint is serving more than one model, like with the [Azure AI model inference service](../../aiservices/model-endpoint.md) or [GitHub Models](https://github.com/marketplace/models), you have to indicate `model_name` parameter:
+If your endpoint is serving more than one model, like with the [Azure AI model inference service](../../ai-services/model-endpoint.md) or [GitHub Models](https://github.com/marketplace/models), you have to indicate `model_name` parameter:
 
 ```python
 import os
@@ -130,7 +130,7 @@ llm = AzureAICompletionsModel(
 
 ### Azure OpenAI models and Azure AI model infernece service
 
-If you are using Azure OpenAI models or [Azure AI model inference service](../../aiservices/model-endpoint.md), ensure you have at least version `0.2.4` of the LlamaIndex integration. Use `api_version` parameter in case you need to select an specific `api_version`. For the [Azure AI model inference service](../../aiservices/model-endpoint.md), you need to pass `model` parameter:
+If you are using Azure OpenAI models or [Azure AI model inference service](../../ai-services/model-endpoint.md), ensure you have at least version `0.2.4` of the LlamaIndex integration. Use `api_version` parameter in case you need to select a specific `api_version`. For the [Azure AI model inference service](../../ai-services/model-endpoint.md), you need to pass `model` parameter:
 
 ```python
 from llama_index.llms.azure_inference import AzureAICompletionsModel
