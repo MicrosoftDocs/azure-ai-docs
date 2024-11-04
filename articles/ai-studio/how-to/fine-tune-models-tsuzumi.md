@@ -99,7 +99,7 @@ To fine-tune a tsuzumi-7b model:
 
 1. On the model's **Details** page, select **fine-tune**.
 
-1. Select the project in which you want to fine-tune your models. To use the pay-as-you-go model fine-tune offering, your workspace must belong to the **West US 3** region.
+1. Select the project in which you want to fine-tune your models. To use the pay-as-you-go model fine-tune offering, your workspace must belong to the **East US 2** region.
 1. On the fine-tune wizard, select the link to **Azure Marketplace Terms** to learn more about the terms of use. You can also select the **Marketplace offer details** tab to learn about pricing for the selected model.
 1. If this is your first time fine-tuning the model in the project, you have to subscribe your project for the particular offering (for example, `tsuzumi-7b`) from Azure Marketplace. This step requires that your account has the Azure subscription permissions and resource group permissions listed in the prerequisites. Each project has its own subscription to the particular Azure Marketplace offering, which allows you to control and monitor spending. Select **Subscribe and fine-tune**.
 
@@ -118,14 +118,13 @@ To fine-tune a tsuzumi-7b model:
 
     Make sure all your training examples follow the expected format for inference. To fine-tune models effectively, ensure a balanced and diverse dataset. This involves maintaining data balance, including various scenarios, and periodically refining training data to align with real-world expectations, ultimately leading to more accurate and balanced model responses.
     - The batch size to use for training. When set to -1, batch_size is calculated as 0.2% of examples in training set and the max is 256.
-    - The fine-tuning learning rate is the original learning rate used for pretraining multiplied by this multiplier. We recommend experimenting with values between 0.5 and 2. Empirically, we've found that larger learning rates often perform better with larger batch sizes. Must be between 0.0 and 5.0.
     - Number of training epochs. An epoch refers to one full cycle through the data set.
 
 1. Task parameters are an optional step and an advanced option- Tuning hyperparameter is essential for optimizing large language models (LLMs) in real-world applications. It allows for improved performance and efficient resource usage. The default settings can be used or advanced users can customize parameters like epochs or learning rate.
 
 1. Review your selections and proceed to train your model.
 
-Once your model is fine-tuned, you can deploy the model and can use it in your own application, in the playground, or in prompt flow. For more information, see [How to deploy Llama 3.1 family of large language models with Azure AI Studio](./deploy-models-llama.md).
+Once your model is fine-tuned, you can deploy the model and can use it in your own application, in the playground, or in prompt flow. For more information, see [How to deploy Tsuzumi large language models with Azure AI Studio](./deploy-models-tsuzumi.md).
 
 
 ## Cleaning up your fine-tuned models 
@@ -139,7 +138,7 @@ You can delete a fine-tuned model from the fine-tuning model list in [Azure AI S
 
 ### Cost and quota considerations for a tsuzumi-7b fine-tuned as a service
 
-tsuzumi-7b models fine-tuned as a service are offered by NTTDATA through the Azure Marketplace and integrated with Azure AI Studio for use. You can find the Azure Marketplace pricing when [deploying](./deploy-models-llama.md) or fine-tuning the models.
+tsuzumi-7b models fine-tuned as a service are offered by NTTDATA through the Azure Marketplace and integrated with Azure AI Studio for use. You can find the Azure Marketplace pricing when [deploying](./deploy-models-tsuzumi.md) or fine-tuning the models.
 
 Each time a project subscribes to a given offer from the Azure Marketplace, a new resource is created to track the costs associated with its consumption. The same resource is used to track costs associated with inference and fine-tuning; however, multiple meters are available to track each scenario independently.
 
