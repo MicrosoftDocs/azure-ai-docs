@@ -332,7 +332,7 @@ Use the [available script on Github](https://github.com/microsoft/sample-app-aoa
 
 To add your data source, you first need to provide information about your index, and create a connection. This connection includes information such as authentication (username and password), your connection string, and database and colection name. 
 
-:::image type="content" source="../media/use-your-data/mongo-db-atlas-source-index" alt-text="A screenshot showing the field mapping options for Mongo DB Atlas" lightbox="../media/use-your-data/mongo-db-atlas-source-index":::
+:::image type="content" source="../media/use-your-data/mongo-db-atlas-source-index.png" alt-text="A screenshot showing the field mapping options for Mongo DB Atlas" lightbox="../media/use-your-data/mongo-db-atlas-source-index.png":::
 
 To use MongoDB Atlas, you'll need an embedding model. This model will be created for you if you don't already have one, wich will incur [usage](https://go.microsoft.com/fwlink/?linkid=2264246) on your account.
 
