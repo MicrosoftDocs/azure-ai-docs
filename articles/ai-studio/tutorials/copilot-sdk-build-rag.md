@@ -34,37 +34,13 @@ This tutorial is part two of a three-part tutorial.
     * Install the Azure CLI, Python, and required packages
     * Configure your environment variables
 
-* You need a local copy of product data. The [Azure-Samples/rag-data-openai-python-promptflow repository on GitHub](https://github.com/Azure-Samples/rag-data-openai-python-promptflow/) contains sample retail product information that's relevant for this tutorial scenario. [Download the example Contoso Trek retail product data in a ZIP file](https://github.com/Azure-Samples/rag-data-openai-python-promptflow/blob/main/tutorial/data/product-info.zip) to your local machine.
-
-
-## Deploy models
-
-You need two models to build a RAG-based chat app: an Azure OpenAI chat model (`gpt-40-mini`) and an Azure OpenAI embedding model (`text-embedding-ada-002`). Deploy these models in your Azure AI Studio project, using this set of steps for each model.
-
-These steps deploy a model to a real-time endpoint from the AI Studio [model catalog](../how-to/model-catalog-overview.md):
-
-1. Sign in to [Azure AI Studio](https://ai.azure.com).
-1. Studio remembers where you were last, so if you just completed the [Part 1 tutorial](copilot-sdk-create-resources.md), you're already in a project. If you're not in a project, select the project you created in Part 1.
-1. 
-1. Select the **gpt-4o-mini** model from the list of models. You can use the search bar to find it. 
-
-    :::image type="content" source="../media/tutorials/chat/select-model.png" alt-text="Screenshot of the model selection page." lightbox="../media/tutorials/chat/select-model.png":::
-
-1. On the model details page, select **Deploy**.
-
-    :::image type="content" source="../media/tutorials/chat/deploy-model.png" alt-text="Screenshot of the model details page with a button to deploy the model." lightbox="../media/tutorials/chat/deploy-model.png":::
-
-1. Leave the default **Deployment name**. Select **Connect and deploy**.
-
-After you deploy the **gpt-40-mini**, repeat the steps to deploy the **text-embedding-ada-002** model.
-
-## Create an Azure AI Search index
+## Create example data for your chat app
 
 The goal with this RAG-based application is to ground the model responses in your custom data. You use an Azure AI Search index that stores vectorized data from the embeddings model. The search index is used to retrieve relevant documents based on the user's question.
 
 If you don't have an Azure AI Search index already created, we walk through how to create one. If you already have an index to use, you can skip to the [next](#develop-code) section. 
 
-1. Use your own data or [download the example Contoso Trek retail product data in a ZIP file](https://github.com/Azure-Samples/rag-data-openai-python-promptflow/blob/main/tutorial/data/product-info.zip) to your local machine. Unzip the file into your **rag-tutorial/data** folder. This data is a collection of markdown files that represent product information. The data is structured in a way that is easy to ingest into a search index. You build a search index from this data.
+## Create a search index
 
 1. Create the **create_search_index.py** file. 
 1. Copy and paste the following code into your **create_search_index.py** file.
@@ -266,7 +242,7 @@ If you don't have an Azure AI Search index already created, we walk through how 
         )
 
         results = search_client.upload_documents(docs)
-        logger.info(f"➕ Uploaded {len(docs)} documents to '{index_name}' index")
+        logger.info(f"Uploaded {len(docs)} documents to '{index_name}' index")
     ```
 
 1. From your console, run the code to build your index locally and register it to the cloud project:
@@ -352,7 +328,7 @@ You can test out what documents the search index returns from a query. This scri
         )
 
         search_query = intent_mapping_response.choices[0].message.content
-        logger.info(f"🧠 Intent mapping: {search_query}")
+        logger.info(f"Intent mapping: {search_query}")
         
         # generate a vector representation of the search query
         embedding = embeddings.embed(model=os.environ["EMBEDDINGS_MODEL"], input=search_query)
@@ -391,7 +367,7 @@ You can test out what documents the search index returns from a query. This scri
             context["grounding_data"] = []
         context["grounding_data"].append(documents)
 
-        logger.info(f"📄 {len(documents)} documents retrieved: {documents}")
+        logger.info(f"{len(documents)} documents retrieved: {documents}")
         return documents
     
     if __name__ == "__main__":
@@ -420,7 +396,7 @@ You can test out what documents the search index returns from a query. This scri
     python get_product_documents.py --query "I need a new tent for 4 people, what would you recommend?"
     ```
 
-## <a href="develop-code"></a> Develop custom RAG code
+## <a name="develop-code"></a> Develop custom RAG code
 
 Next you create custom code to add retrieval augmented generation (RAG) capabilities to a basic chat application.
 

@@ -68,11 +68,15 @@ If you already have an Azure AI Search connection in your project, you can skip 
 In the Azure AI Studio, check for an Azure AI Search connected resource.
 
 1. In [AI Studio](https://ai.azure.com), go to your project and select **Management center** from the left pane.
-1. In the **Connected resources** section, look to see if you have a connection of type Azure AI Search.
-1. If you have an Azure AI Search connection, you can skip ahead to 
+1. In the **Connected resources** section, look to see if you have a connection of type **Azure AI Search**.
+1. If you have an Azure AI Search connection, you can skip ahead to the next section.
 1. Otherwise, select **New connection** and then **Azure AI Search**.
 1. Find your Azure AI Search service in the options and select **Add connection**.
-1. Continue through the wizard to create the connection. For more information about adding connections, see [this how-to guide](../how-to/connections-add.md#create-a-new-connection).
+1. Use **API key** for **Authentication**.
+1. Select **Add connection**.  
+
+> [!NOTE]
+> You can instead use **Microsoft Entra ID** for **Authentication**. If you do this, you must also configure access control for the Azure AI Search service. Assign yourself the **Cognitive Services OpenAI User** role.
 
 ## Install the Azure CLI and sign in 
 
@@ -108,9 +112,30 @@ In the Azure AI Studio, check for an Azure AI Search connected resource.
     pip install azure-monitor-opentelemetry
     ```
 
-## Configure your environment variables
+## Deploy models
 
-[!INCLUDE [create-env-file](../includes/create-env-file.md)]
+You need two models to build a RAG-based chat app: an Azure OpenAI chat model (`gpt-40-mini`) and an Azure OpenAI embedding model (`text-embedding-ada-002`). Deploy these models in your Azure AI Studio project, using this set of steps for each model.
+
+These steps deploy a model to a real-time endpoint from the AI Studio [model catalog](../how-to/model-catalog-overview.md):
+
+1. Sign in to [Azure AI Studio](https://ai.azure.com).
+1. Studio remembers where you were last, so if you just completed the [Part 1 tutorial](copilot-sdk-create-resources.md), you're already in a project. If you're not in a project, select the project you created in Part 1.
+1. 
+1. Select the **gpt-4o-mini** model from the list of models. You can use the search bar to find it. 
+
+    :::image type="content" source="../media/tutorials/chat/select-model.png" alt-text="Screenshot of the model selection page." lightbox="../media/tutorials/chat/select-model.png":::
+
+1. On the model details page, select **Deploy**.
+
+    :::image type="content" source="../media/tutorials/chat/deploy-model.png" alt-text="Screenshot of the model details page with a button to deploy the model." lightbox="../media/tutorials/chat/deploy-model.png":::
+
+1. Leave the default **Deployment name**. Select **Connect and deploy**.
+
+After you deploy the **gpt-40-mini**, repeat the steps to deploy the **text-embedding-ada-002** model.
+
+## Configure environment variables
+
+[!INCLUDE [create-env-file](../includes/create-env-file-tutorial.md)]
 
 ## Clean up resources
 
