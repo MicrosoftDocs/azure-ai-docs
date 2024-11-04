@@ -38,8 +38,8 @@ This tutorial is part one of a three-part tutorial.
 
 To create a project in [Azure AI Studio](https://ai.azure.com), follow these steps:
 
-1. Go to the **Home** page of [Azure AI Studio](https://ai.azure.com). 
-1. Select **+ New project**.
+1. Go to the **Home** page of [Azure AI Studio](https://ai.azure.com).
+1. Select **+ Create project**.
 1. Enter a name for the project.  Keep all the other settings as default.
 1. Select **Create project**.
 
@@ -54,7 +54,10 @@ You need an Azure AI Search service and connection in order to create a search i
 
 If you already have an Azure AI Search service, you can skip to the [next section](#connect).
 
-Otherwise, you can create an Azure AI Search service using the Azure portal.
+Otherwise, you can create an Azure AI Search service using the Azure portal. 
+
+> [!TIP]
+> This step is the only time you use the Azure portal in this tutorial series.  The rest of your work is done in Azure AI Studio or in your local development environment.
 
 1. [Create an Azure AI Search service](https://portal.azure.com/#create/Microsoft.Search) in the Azure portal.
 1. Select your resource group and instance details. You can see details about pricing and pricing tiers on this page.
@@ -77,7 +80,7 @@ In the Azure AI Studio, check for an Azure AI Search connected resource.
 1. Select **Add connection**.  
 
 > [!NOTE]
-> You can instead use **Microsoft Entra ID** for **Authentication**. If you do this, you must also configure access control for the Azure AI Search service. Assign yourself the **Cognitive Services OpenAI User** role.
+> You can instead use **Microsoft Entra ID** for **Authentication**. If you do this, you must also configure access control for the Azure AI Search service. Assign yourself the **Cognitive Services OpenAI User** role. If you don't know how to do this, or don't have the necessary permissions, use the **API key** for **Authentication**.
 
 ## <a name="installs"></a> Install the Azure CLI and sign in 
 
