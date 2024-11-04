@@ -54,7 +54,7 @@ The following regions are supported for Speech service features such as speech t
 | Qatar         | Qatar Central        | `qatarcentral`<sup>3,8</sup>            |
 | US            | Central US           | `centralus`                             |
 | US            | East US              | `eastus` <sup>1,2,4,5,7,9,11,12</sup>   |
-| US            | East US 2            | `eastus2` <sup>1,2,4,5,12</sup>         |
+| US            | East US 2            | `eastus2` <sup>1,2,4,5,10,12</sup>         |
 | US            | North Central US     | `northcentralus` <sup>4,6,12</sup>      |
 | US            | South Central US     | `southcentralus` <sup>1,2,4,5,6,7,10,12</sup> |
 | US            | West Central US      | `westcentralus` <sup>3,5</sup>          |

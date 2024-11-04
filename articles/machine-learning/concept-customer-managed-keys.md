@@ -124,20 +124,17 @@ Data that previously was stored in Azure Cosmos DB in your subscription, is stor
 
 Pipelines metadata that previously was stored in a storage account in a managed resource group, is now stored on the storage account in your subscription that is associated to the Azure Machine Learning workspace. Since this Azure Storage resource is managed separately in your subscription, you're responsible to configure encryption settings on it.
 
-To opt in for this preview, set the `enableServiceSideCMKEncryption` on a REST API or in your Bicep or Resource Manager template. You can also use Azure portal. Preview availability varies by [workspace kind](concept-workspace.md):
-
-| Kind | Supported |
-| ----- | ----- |
-| Default | Yes |
-| Hub | No |
-| Project | No |
+To opt in for this preview, set the `enableServiceSideCMKEncryption` on a REST API or in your Bicep or Resource Manager template. You can also use Azure portal.
 
 :::image type="content" source="./media/concept-customer-managed-keys/cmk-service-side-encryption.png" alt-text="Screenshot of the encryption tab with the option for server side encryption selected." lightbox="./media/concept-customer-managed-keys/cmk-service-side-encryption.png":::
 
 > [!NOTE]
 > During this preview key rotation and data labeling capabilities are not supported. Server-side encryption is currently not supported in reference to an Azure Key Vault for storing your encryption key that has public network access disabled.
 
-For a template that creates a workspace with service-side encryption of metadata, see [https://github.com/azure/azure-quickstart-templates/tree/master/quickstarts/microsoft.machinelearningservices/machine-learning-workspace-cmk-service-side-encryption](https://github.com/azure/azure-quickstart-templates/tree/master/quickstarts/microsoft.machinelearningservices/machine-learning-workspace-cmk-service-side-encryption).
+For templates that create a workspace with service-side encryption of metadata, see 
+
+- [Bicep template for creating default workspace](https://github.com/azure/azure-quickstart-templates/tree/master/quickstarts/microsoft.machinelearningservices/machine-learning-workspace-cmk-service-side-encryption).
+- [Bicep template for creating hub workspace](https://github.com/Azure/azure-quickstart-templates/tree/master/quickstarts/microsoft.machinelearningservices/aistudio-cmk-service-side-encryption).
   
 ## hbi_workspace flag
 
