@@ -328,6 +328,24 @@ Only public network access is supported. Please make sure the database allows pu
 
 Use the [available script on Github](https://github.com/microsoft/sample-app-aoai-chatGPT/blob/rawan/mongodbdataprep/scripts/mongo_vector_db_data_preparation.py) to prepare your Data for use with Azure OpenAI On Your Data. 
 
+### Source index
+
+To add your data source, you first need to provide information about your index, and create a connection. This connection includes information such as authentication (username and password), your connection string, and database and colection name. 
+
+:::image type="content" source="../media/use-your-data/mongo-db-atlas-source-index" alt-text="A screenshot showing the field mapping options for Mongo DB Atlas" lightbox="../media/use-your-data/mongo-db-atlas-source-index:::
+
+To use MongoDB Atlas, you'll need an embedding model. This model will be created for you if you don't already have one, wich will incur [usage](https://go.microsoft.com/fwlink/?linkid=2264246) on your account.
+
+### Index field mapping
+
+When you add your MongoDB Atlas data source, you can specify data fields to properly map your data for retrieval.
+
+* Content data (required): This is the main text content of each document. For multiple fields, separate the values with commas, with no spaces.
+* * Vector field (required): The field name in your MongoDB Atlas search index that contains the vectors.
+* File name/title/URL: Used to display more information when a document is referenced in the chat.
+
+:::image type="content" source="../media/use-your-data/mongo-db-atlas-field-mapping.png" alt-text="A screenshot showing the field mapping options for Mongo DB Atlas" lightbox="../media/use-your-data/mongo-db-atlas-field-mapping.png":::
+
 ---
 
 ## Deploy to a copilot (preview), Teams app (preview), or web app 
