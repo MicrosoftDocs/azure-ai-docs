@@ -28,7 +28,7 @@ In this example, we are working with the **Azure AI model inference API**.
 To run this tutorial, you need:
 
 1. An [Azure subscription](https://azure.microsoft.com).
-2. An Azure AI hub resource as explained at [How to create and manage an Azure AI Studio hub](../create-azure-ai-resource.md).
+2. An Azure AI project as explained at [Create a project in Azure AI Studio](../create-projects.md).
 3. A model supporting the [Azure AI model inference API](https://aka.ms/azureai/modelinference) deployed. In this example, we use a `Mistral-Large` deployment, but use any model of your preference. For using embeddings capabilities in LlamaIndex, you need an embedding model like `cohere-embed-v3-multilingual`. 
 
     * You can follow the instructions at [Deploy models as serverless APIs](../deploy-models-serverless.md).
@@ -55,8 +55,9 @@ To run this tutorial, you need:
 To use LLMs deployed in Azure AI studio, you need the endpoint and credentials to connect to it. Follow these steps to get the information you need from the model you want to use:
 
 1. Go to the [Azure AI studio](https://ai.azure.com/).
-2. Go to **Models + endpoints** and select the model you deployed as indicated in the prerequisites.
-3. Copy the endpoint URL and the key.
+1. Open the project where the model is deployed, if it isn't already open.
+1. Go to **Models + endpoints** and select the model you deployed as indicated in the prerequisites.
+1. Copy the endpoint URL and the key.
 
     :::image type="content" source="../../media/how-to/inference/serverless-endpoint-url-keys.png" alt-text="Screenshot of the option to copy endpoint URI and keys from an endpoint." lightbox="../../media/how-to/inference/serverless-endpoint-url-keys.png":::
     
