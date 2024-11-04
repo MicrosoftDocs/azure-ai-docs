@@ -21,11 +21,9 @@ This article enumerates all of optimization techniques in Azure AI Search that c
 
 Vector optimization settings are specified in vector field definitions in a search index. Most of the features described in this article are generally available in [2024-07-01 REST API](/rest/api/searchservice/operation-groups?view=rest-searchservice-2024-07-01&preserve-view=true) and in the Azure SDK packages targeting that version. The [latest preview version](/rest/api/searchservice/operation-groups?view=rest-searchservice-2024-09-01-preview&preserve-view=true) adds support for truncated dimensions if you're using text-embedding-3-large or text-embedding-3-small for vectorization.
 
-[An example](#example-vector-compression-techniques) at the end of this article shows the variations in vector size for each of the approaches described in this article.
-
 ## Evaluate the options
 
-Review the approaches in Azure AI Search for reducing the amount of storage used by vector fields. These approaches aren't mutually exclusive and can be combined for [maximum reduction in vector size](#example-vector-compression-techniques).
+Review the approaches in Azure AI Search for reducing the amount of storage used by vector fields. These approaches aren't mutually exclusive and can be combined for [maximum reduction in vector size](vector-search-how-to-quantization.md#example-vector-compression-techniques).
 
 We recommend built-in quantization because it compresses vector size in memory *and* on disk with minimal effort, and that tends to provide the most benefit in most scenarios. In contrast, narrow types (except for float16) require a special effort into making them, and `stored` saves on disk storage, which isn't as expensive as memory.
 
@@ -385,7 +383,7 @@ The following example shows the fields collection of a search index. Set `stored
 
 - Defaults are `stored` set to true and `retrievable` set to false. In a default configuration, a retrievable copy is stored, but it's not automatically returned in results. When `stored` is true, you can toggle `retrievable` between true and false at any time without having to rebuild an index. When `stored` is false, `retrievable` must be false and can't be changed. -->
 
-## Example: vector compression techniques
+<!-- ## Example: vector compression techniques
 
 Here's Python code that demonstrates quantization, narrow data types, and use of the stored property: [Code sample: Vector quantization and storage options using Python](https://github.com/Azure/azure-search-vector-samples/blob/main/demo-python/code/vector-quantization-and-storage/README.md).
 
@@ -420,7 +418,7 @@ Search APIs report storage and vector size at the index level, so indexes and no
 
 Query syntax for a compressed or quantized vector field is the same as for noncompressed vector fields, unless you want to override parameters associated with oversampling or reranking with original vectors.
 
-Recall that the [vector compression definition](#add-compressions-to-a-search-index) in the index has settings for `rerankWithOriginalVectors` and `defaultOversampling` to mitigate the effects of a smaller vector index. You can override the default values to vary the behavior at query time. For example, if `defaultOversampling` is 10.0, you can change it to something else in the query request.
+Recall that the [vector compression definition](vector-search-how-to-quantization.md) in the index has settings for `rerankWithOriginalVectors` and `defaultOversampling` to mitigate the effects of a smaller vector index. You can override the default values to vary the behavior at query time. For example, if `defaultOversampling` is 10.0, you can change it to something else in the query request.
 
 You can set the oversampling parameter even if the index doesn't explicitly have a `rerankWithOriginalVectors` or `defaultOversampling` definition. Providing `oversampling` at query time overrides the index settings for that query and executes the query with an effective `rerankWithOriginalVectors` as true.
 
@@ -446,7 +444,7 @@ POST https://[service-name].search.windows.net/indexes/demo-index/docs/search?ap
 
 - Applies to vector fields that undergo vector compression, per the vector profile assignment.
 
-- Overrides the `defaultOversampling` value or introduces oversampling at query time, even if the index's compression configuration didn't specify oversampling or reranking options.
+- Overrides the `defaultOversampling` value or introduces oversampling at query time, even if the index's compression configuration didn't specify oversampling or reranking options. -->
 
 ## See also
 
