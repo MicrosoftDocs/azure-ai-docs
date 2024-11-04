@@ -5,7 +5,7 @@ description: This article explains how to use LlamaIndex with models deployed in
 manager: scottpolly
 ms.service: azure-ai-studio
 ms.topic: how-to
-ms.date: 9/14/2024
+ms.date: 11/04/2024
 ms.reviewer: fasantia
 ms.author: sgilley
 author: sdgilley
@@ -55,7 +55,7 @@ To run this tutorial, you need:
 To use LLMs deployed in Azure AI studio, you need the endpoint and credentials to connect to it. Follow these steps to get the information you need from the model you want to use:
 
 1. Go to the [Azure AI studio](https://ai.azure.com/).
-2. Go to deployments and select the model you deployed as indicated in the prerequisites.
+2. Go to **Models + endpoints** and select the model you deployed as indicated in the prerequisites.
 3. Copy the endpoint URL and the key.
 
     :::image type="content" source="../../media/how-to/inference/serverless-endpoint-url-keys.png" alt-text="Screenshot of the option to copy endpoint URI and keys from an endpoint." lightbox="../../media/how-to/inference/serverless-endpoint-url-keys.png":::
