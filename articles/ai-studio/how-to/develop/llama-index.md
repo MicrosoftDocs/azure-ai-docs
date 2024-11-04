@@ -130,7 +130,7 @@ llm = AzureAICompletionsModel(
 
 ### Azure OpenAI models and Azure AI model infernece service
 
-If you are using Azure OpenAI models or [Azure AI model inference service](../../ai-services/model-endpoint.md), ensure you have at least version `0.2.4` of the LlamaIndex integration. Use `api_version` parameter in case you need to select a specific `api_version`. For the [Azure AI model inference service](../../ai-services/model-endpoint.md), you need to pass `model` parameter:
+If you are using Azure OpenAI models or [Azure AI model inference service](../../ai-services/model-endpoint.md), ensure you have at least version `0.2.4` of the LlamaIndex integration. Use `api_version` parameter in case you need to select a specific `api_version`. For the [Azure AI model inference service](../../ai-services/model-endpoint.md), you need to pass `model_name` parameter:
 
 ```python
 from llama_index.llms.azure_inference import AzureAICompletionsModel
@@ -138,7 +138,7 @@ from llama_index.llms.azure_inference import AzureAICompletionsModel
 llm = AzureAICompletionsModel(
     endpoint=os.environ["AZURE_INFERENCE_ENDPOINT"],
     credential=os.environ["AZURE_INFERENCE_CREDENTIAL"],
-    model="gpt-4o",
+    model_name="gpt-4o",
     api_version="2024-05-01-preview",
 )
 ```
