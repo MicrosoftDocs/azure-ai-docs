@@ -10,14 +10,14 @@ ms.date: 10/31/2024
 ms.custom: include
 ---
 
-Use pip to install the support for notebooks in the virtual environment that you created.
+* Use pip to install the support for notebooks in the virtual environment that you created.
 
-```bash
-pip install ipython ipykernel
-```
+    ```bash
+    pip install ipython ipykernel
+    ```
 
-Now install the Azure AI SDK packages you need.
+* Install the Azure AI SDK packages you need.
 
-```bash
-pip install azure_ai_projects azure_ai_inference azure-identity --force-reinstall
-```
+    ```bash
+    pip install azure_ai_projects azure_ai_inference azure-identity --force-reinstall
+    ```
