@@ -285,6 +285,15 @@ items:
     - name: Automate text translation (preview)
       displayName: connect, power, automate, flow
       href: connector/text-translator-flow.md
+  - name: Microsoft Translator Pro
+    items:
+    - name: What is Microsoft Translator Pro?
+      displayName: app service, mobile app, ios, speech-to-speech
+      href: translator-pro/overview.md
+    - name: Responsible AI and compliance
+      items:
+      - name: Transparency note
+        href: /legal/cognitive-services/translator/translator-pro-transparency-note?context=/azure/ai-services/translator/context/context
 - name: Responsible AI
   items:
   - name: Transparency note
