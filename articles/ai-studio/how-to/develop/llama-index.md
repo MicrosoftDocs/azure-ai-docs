@@ -27,20 +27,20 @@ In this example, we are working with the **Azure AI model inference API**.
 
 To run this tutorial, you need:
 
-1. An [Azure subscription](https://azure.microsoft.com).
-2. An Azure AI project as explained at [Create a project in Azure AI Studio](../create-projects.md).
-3. A model supporting the [Azure AI model inference API](https://aka.ms/azureai/modelinference) deployed. In this example, we use a `Mistral-Large` deployment, but use any model of your preference. For using embeddings capabilities in LlamaIndex, you need an embedding model like `cohere-embed-v3-multilingual`. 
+* An [Azure subscription](https://azure.microsoft.com).
+* An Azure AI project as explained at [Create a project in Azure AI Studio](../create-projects.md).
+* A model supporting the [Azure AI model inference API](https://aka.ms/azureai/modelinference) deployed. In this example, we use a `Mistral-Large` deployment, but use any model of your preference. For using embeddings capabilities in LlamaIndex, you need an embedding model like `cohere-embed-v3-multilingual`. 
 
     * You can follow the instructions at [Deploy models as serverless APIs](../deploy-models-serverless.md).
 
-4. Python 3.8 or later installed, including pip.
-5. LlamaIndex installed. You can do it with:
+* Python 3.8 or later installed, including pip.
+* LlamaIndex installed. You can do it with:
 
     ```bash
     pip install llama-index
     ```
 
-6. In this example, we are working with the Azure AI model inference API, hence we install the following packages:
+* In this example, we are working with the Azure AI model inference API, hence we install the following packages:
 
     ```bash
     pip install -U llama-index-llms-azure-inference
@@ -129,7 +129,7 @@ llm = AzureAICompletionsModel(
 )
 ```
 
-### Azure OpenAI models and Azure AI model infernece service
+### Azure OpenAI models and Azure AI model inference service
 
 If you are using Azure OpenAI models or [Azure AI model inference service](../../ai-services/model-inference.md), ensure you have at least version `0.2.4` of the LlamaIndex integration. Use `api_version` parameter in case you need to select a specific `api_version`. For the [Azure AI model inference service](../../ai-services/model-inference.md), you need to pass `model_name` parameter:
 
