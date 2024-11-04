@@ -50,16 +50,16 @@ If your organization is using [Azure Policy](/azure/governance/policy/overview),
 
     :::image type="content" source="~/reusable-content/ce-skilling/azure/media/ai-studio/resource-create-networking.png" alt-text="Screenshot of the Create a hub with the option to set network isolation information." lightbox="~/reusable-content/ce-skilling/azure/media/ai-studio/resource-create-networking.png":::  
 
-1. Select the **Encryption** tab to set up data encryption. You can either use **Microsoft-managed keys** or enable **Customer-managed keys**. 
+1. Select the **Encryption** tab to set up data encryption. By default, **Microsoft-managed keys** are used to encrypt data. You can select to **Encrypt data using a customer-managed key**. 
 
     :::image type="content" source="../media/how-to/hubs/resource-create-encryption.png" alt-text="Screenshot of the Create a hub with the option to select your encryption type." lightbox="../media/how-to/hubs/resource-create-encryption.png":::
 
-1. Select the **Identity** tab. By default, **System assigned identity** is enabled, but you can switch to **User assigned identity** if existing storage, key vault, and container registry are selected in **Storage**.
+1. Select the **Identity** tab. By default, **System assigned identity** is enabled, but you can switch to **User assigned identity** if existing storage, key vault, and container registry are selected in **Storage**. You can also select whether to use **Credential-based** or **Identity-based** access to the storage account.
 
     :::image type="content" source="../media/how-to/hubs/resource-create-identity.png" alt-text="Screenshot of the Create a hub with the option to select a managed identity." lightbox="../media/how-to/hubs/resource-create-identity.png":::
 
     > [!NOTE]
-    > If you select **User assigned identity**, your identity needs to have the `Cognitive Services Contributor` role in order to successfully create a new hub.
+    > - If you select **User assigned identity**, your identity needs to have the `Cognitive Services Contributor` role in order to successfully create a new hub.
     
 1. Select the **Tags** tab to add tags.
 
@@ -77,7 +77,7 @@ You can add and remove users from the Azure AI Studio management center. Both th
 
 For custom role assignments, use **Access control (IAM)** within the Azure portal. Learn more about hub [role-based access control](../concepts/rbac-ai-studio.md).
 
-To add grant users permissions: 
+To add grant users permissions from the Azure portal: 
 1. Select **+ Add** to add users to your hub.
 
 1. Select the **Role** you want to assign.
