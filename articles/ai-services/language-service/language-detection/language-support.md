@@ -78,6 +78,7 @@ If you have content expressed in a less frequently used language, you can try La
 | Igbo                | `ig`          | `Latn`                |
 | Indonesian          | `id`          | `Latn`                |
 | Inuktitut           | `iu`          | `Cans`, `Latn`        |
+| Inuinnaqtun         | `ikt`         | `Latn`                |
 | Irish               | `ga`          | `Latn`                |
 | Italian             | `it`          | `Latn`                |
 | Japanese            | `ja`          | `Jpan`                |
