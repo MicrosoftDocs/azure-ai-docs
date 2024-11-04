@@ -153,6 +153,8 @@ You can choose where credentials are stored:
    
 1. **Microsoft-managed credential store (preview)**: In this variant Microsoft manages an Azure Key Vault instance on your behalf per hub. No resource management is needed on your side and the vault does not show in your Azure subscription. Secret data lifecycle follows the resource lifecycle of your hubs and projects. For example, when a project's storage connection is deleted, its stored secret is deleted as well.
 
+After your hub is created, it is not possible to switch between Your Azure Key Vault and using a Microsoft-managed credential store.
+
 ## Delete an Azure AI Studio hub
 
 To delete a hub, use the [Azure portal](https://portal.azure.com). To quickly get to the Azure portal from the Azure AI Studio, go to the **Hub overview** for your hub and then select **Manage in Azure portal**.
