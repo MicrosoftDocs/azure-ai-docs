@@ -42,7 +42,7 @@ If your organization is using [Azure Policy](/azure/governance/policy/overview),
 
 1. Select the **Storage** tab to specify storage account settings. For storing credentials, either provide your Azure Key Vault or use the [Microsoft-managed credential store (preview)](#choose-how-credentials-are-stored).
 
-    :::image type="content" source="~/reusable-content/ce-skilling/azure/media/ai-studio/resource-create-resources.png" alt-text="Screenshot of the Create a hub with the option to set storage resource information." lightbox="~/reusable-content/ce-skilling/azure/media/ai-studio/resource-create-resources.png"::: 
+    :::image type="content" source="../media/how-to/hubs/resource-create-resources.png" alt-text="Screenshot of the Create a hub with the option to set storage resource information." lightbox="../media/how-to/hubs/resource-create-resources.png"::: 
 
 1. Select the **Networking** tab to set up Network isolation. Read more on [network isolation](configure-managed-network.md). For a walkthrough of creating a secure hub, see [Create a secure hub](create-secure-ai-hub.md).
 
@@ -157,18 +157,14 @@ After your hub is created, it is not possible to switch between Your Azure Key V
 
 ## Delete an Azure AI Studio hub
 
-To delete a hub, use the [Azure portal](https://portal.azure.com). To quickly get to the Azure portal from the Azure AI Studio, go to the **Hub overview** for your hub and then select **Manage in Azure portal**.
+To delete a hub from Azure AI Studio, select the hub and then select **Delete hub** from the **Hub properties** section of the page.
 
-:::image type="content" source="../media/how-to/hubs/manage-hub-azure-portal.png" alt-text="Screenshot of the manage in Azure portal link in Azure AI Studio.":::
+:::image type="content" source="../media/how-to/hubs/studio-delete-hub.png" alt-text="Screenshot of the delete hub link in hub properties." lightbox="../media/how-to/hubs/studio-delete-hub.png":::
 
-From the portal page for your hub, select **Overview** along the left side of the page and then select **Delete** from the top of the page.
+> [!NOTE]
+> You can also delete the hub from the Azure portal.
 
-:::image type="content" source="../media/how-to/hubs/delete-hub-button.png" alt-text="Screenshot of the delete button for the Azure AI Studio hub in the Azure portal.":::
-
-You can also find your hub in the Azure portal by entering the hub name in the search field at the top of the Azure portal. Select the hub from the **Resources** list to navigate to the **Overview** page for the hub.
-
-:::image type="content" source="../media/how-to/hubs/search-in-portal.png" alt-text="Screenshot of using the search field in the Azure portal to find a hub.":::
-
+Deleting a hub deletes all associated projects. When a project is deleted, all nested endpoints for the project are also deleted. You can optionally delete connected resources; however, make sure that no other applications are using this connection. For example, another Azure AI Studio deployment might be using it.
 
 
 ## Related content
