@@ -19,7 +19,7 @@ zone_pivot_groups: azure-ai-model-catalog-samples-chat
 [!INCLUDE [Feature preview](~/reusable-content/ce-skilling/azure/includes/ai-studio/includes/feature-preview.md)]
 
 In this article, you learn about tsuzumi-7b models and how to use them.
-Tsuzumi models are ...
+Tsuzumi is a lightweight large language designed to handle both Japanese and English with high efficiency.
 
 
 
@@ -27,7 +27,6 @@ Tsuzumi models are ...
 
 ## tsuzumi-7b models
 
-add model description ...
 
 
 You can learn more about the models in their respective model card:
@@ -110,7 +109,7 @@ print("Model provider name:", model_info.model_provider_name)
 ```console
 Model name: tsuzumi-7b
 Model type: chat-completions
-Model provider name: NTT Data
+Model provider name: NTTDATA
 ```
 
 ### Create a chat completion request
@@ -315,7 +314,6 @@ except HttpResponseError as ex:
 
 ## tsuzumi-7b models
 
-add model description ...
 
 
 You can learn more about the models in their respective model card:
@@ -633,7 +631,6 @@ catch (error) {
 
 ## tsuzumi-7b models
 
-add model description ...
 
 
 You can learn more about the models in their respective model card:
@@ -968,7 +965,6 @@ catch (RequestFailedException ex)
 
 ## tsuzumi-7b models
 
-add model description ...
 
 
 You can learn more about the models in their respective model card:
