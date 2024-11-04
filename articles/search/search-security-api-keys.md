@@ -10,7 +10,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: how-to
-ms.date: 06/28/2024
+ms.date: 10/30/2024
 ---
 
 # Connect to Azure AI Search using keys
@@ -245,7 +245,7 @@ It's not possible to use [customer-managed key encryption](search-security-manag
 
 + Always check code, samples, and training material before publishing to make sure you didn't leave valid API keys behind.
 
-+ For production workloads, switch to [Microsoft Entra ID and role-based access](search-security-rbac.md). Or, if you want to continue using API keys, be sure to always monitor [who has access to your API keys](#secure-api-keys) and [regenerate API keys](#regenerate-admin-keys) on a regular cadence.
++ For production workloads, switch to [Microsoft Entra ID and role-based access](keyless-connections.md). Or, if you want to continue using API keys, be sure to always monitor [who has access to your API keys](#secure-api-keys) and [regenerate API keys](#regenerate-admin-keys) on a regular cadence.
 
 ## See also
 
