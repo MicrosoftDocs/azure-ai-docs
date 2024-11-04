@@ -43,9 +43,20 @@ You need two models to build a RAG-based chat app: an Azure OpenAI chat model (`
 
 These steps deploy a model to a real-time endpoint from the AI Studio [model catalog](../how-to/model-catalog-overview.md):
 
-[!INCLUDE [Deploy a model](../includes/deploy-model.md)]
+1. Sign in to [Azure AI Studio](https://ai.azure.com).
+1. Studio remembers where you were last, so if you just completed the [Part 1 tutorial](copilot-sdk-create-resources.md), you're already in a project. If you're not in a project, select the project you created in Part 1.
+1. 
+1. Select the **gpt-4o-mini** model from the list of models. You can use the search bar to find it. 
 
-After you deploy the **gpt-40-mini**, repeat the steps to deploy the **text-embedding-ada-002** model. The second time, you'll already be in a project, so you can skip the project selection step.
+    :::image type="content" source="../media/tutorials/chat/select-model.png" alt-text="Screenshot of the model selection page." lightbox="../media/tutorials/chat/select-model.png":::
+
+1. On the model details page, select **Deploy**.
+
+    :::image type="content" source="../media/tutorials/chat/deploy-model.png" alt-text="Screenshot of the model details page with a button to deploy the model." lightbox="../media/tutorials/chat/deploy-model.png":::
+
+1. Leave the default **Deployment name**. Select **Connect and deploy**.
+
+After you deploy the **gpt-40-mini**, repeat the steps to deploy the **text-embedding-ada-002** model.
 
 ## Create an Azure AI Search index
 
@@ -59,7 +70,203 @@ If you don't have an Azure AI Search index already created, we walk through how 
 1. Copy and paste the following code into your **create_search_index.py** file.
 
     ```python
-    code here
+    import os
+    import logging
+    from azure.ai.projects import AIProjectClient
+    from azure.ai.projects.models import ConnectionType
+    from azure.identity import DefaultAzureCredential
+    from azure.core.credentials import AzureKeyCredential
+    from azure.search.documents import SearchClient
+    from azure.search.documents.indexes import SearchIndexClient
+
+    # load environment variables from the .env file at the root of this repo
+    from dotenv import load_dotenv
+    load_dotenv()
+
+    # use the app telemetry settings to configure logging for this module
+    from telemetry import LOGGING_HANDLER, LOGGING_LEVEL
+    logger = logging.getLogger(__name__)
+    logger.addHandler(LOGGING_HANDLER)
+    logger.setLevel(LOGGING_LEVEL)
+
+    # create a project client using environment variables loaded from the .env file
+    project = AIProjectClient.from_connection_string(
+        conn_str=os.environ['AIPROJECT_CONNECTION_STRING'],
+        credential=DefaultAzureCredential()
+    )
+
+    # create a vector embeddings client that will be used to generate vector embeddings
+    embeddings = project.inference.get_embeddings_client()
+
+    # use the project client to get the default search connection
+    search_connection = project.connections.get_default(
+        connection_type=ConnectionType.AZURE_AI_SEARCH,
+        with_credentials=True)
+
+    # Create a search index client using the search connection
+    # This client will be used to create and delete search indexes
+    index_client = SearchIndexClient(
+        endpoint=search_connection.endpoint_url,
+        credential=AzureKeyCredential(key=search_connection.key)
+    )
+
+    import pandas as pd
+    from azure.search.documents.indexes.models import SemanticSearch, SearchField, SimpleField, \
+        SearchableField, SearchFieldDataType, SemanticConfiguration, SemanticPrioritizedFields, \
+        SemanticField, VectorSearch, HnswAlgorithmConfiguration, VectorSearchAlgorithmKind, \
+        HnswParameters, VectorSearchAlgorithmMetric, ExhaustiveKnnAlgorithmConfiguration, \
+        ExhaustiveKnnParameters, VectorSearchProfile, SearchIndex
+
+    def create_index_definition(index_name : str, model : str) -> SearchIndex:
+        dimensions = 1536 # text-embedding-ada-002
+        if model == "text-embedding-3-large":
+            dimensions = 3072
+        
+        # The fields we want to index. The "embedding" field is a vector field that will
+        # be used for vector search.
+        fields = [
+            SimpleField(name="id", type=SearchFieldDataType.String, key=True),
+            SearchableField(name="content", type=SearchFieldDataType.String),
+            SimpleField(name="filepath", type=SearchFieldDataType.String),
+            SearchableField(name="title", type=SearchFieldDataType.String),
+            SimpleField(name="url", type=SearchFieldDataType.String),
+            SearchField(
+                name="contentVector",
+                type=SearchFieldDataType.Collection(SearchFieldDataType.Single),
+                searchable=True,
+                # Size of the vector created by the text-embedding-ada-002 model.
+                vector_search_dimensions=dimensions,
+                vector_search_profile_name="myHnswProfile",
+            ),
+        ]
+
+        # The "content" field should be prioritized for semantic ranking.
+        semantic_config = SemanticConfiguration(
+            name="default",
+            prioritized_fields=SemanticPrioritizedFields(
+                title_field=SemanticField(field_name="title"),
+                keywords_fields=[],
+                content_fields=[SemanticField(field_name="content")],
+            ),
+        )
+
+        # For vector search, we want to use the HNSW (Hierarchical Navigable Small World)
+        # algorithm (a type of approximate nearest neighbor search algorithm) with cosine
+        # distance.
+        vector_search = VectorSearch(
+            algorithms=[
+                HnswAlgorithmConfiguration(
+                    name="myHnsw",
+                    kind=VectorSearchAlgorithmKind.HNSW,
+                    parameters=HnswParameters(
+                        m=4,
+                        ef_construction=1000,
+                        ef_search=1000,
+                        metric=VectorSearchAlgorithmMetric.COSINE,
+                    ),
+                ),
+                ExhaustiveKnnAlgorithmConfiguration(
+                    name="myExhaustiveKnn",
+                    kind=VectorSearchAlgorithmKind.EXHAUSTIVE_KNN,
+                    parameters=ExhaustiveKnnParameters(
+                        metric=VectorSearchAlgorithmMetric.COSINE
+                    ),
+                ),
+            ],
+            profiles=[
+                VectorSearchProfile(
+                    name="myHnswProfile",
+                    algorithm_configuration_name="myHnsw",
+                ),
+                VectorSearchProfile(
+                    name="myExhaustiveKnnProfile",
+                    algorithm_configuration_name="myExhaustiveKnn",
+                ),
+            ],
+        )
+
+        # Create the semantic settings with the configuration
+        semantic_search = SemanticSearch(configurations=[semantic_config])
+
+        # Create the search index definition
+        return SearchIndex(
+            name=index_name,
+            fields=fields,
+            semantic_search=semantic_search,
+            vector_search=vector_search,
+        )
+
+    # define a function for indexing a csv file, that adds each row as a document
+    # and generates vector embeddings for the specified content_column
+    def create_docs_from_csv(path: str, content_column : str, model: str) -> list[dict[str, any]]:
+        products = pd.read_csv(path)
+        items = []
+        for product in products.to_dict("records"):
+            content = product[content_column]
+            id = str(product["id"])
+            title = product["name"]
+            url = f"/products/{title.lower().replace(' ', '-')}"
+            emb = embeddings.embed(input=content, model=model)
+            rec = {
+                "id": id,
+                "content": content,
+                "filepath": f"{title.lower().replace(' ', '-')}",
+                "title": title,
+                "url": url,
+                "contentVector": emb.data[0].embedding,
+            }
+            items.append(rec)
+
+        return items
+
+    # todo: add helper function for ingesting markdown/pdf/etc. files
+
+    if __name__ == "__main__":
+        import argparse
+        parser = argparse.ArgumentParser()
+        parser.add_argument(
+            "--index-name", 
+            type=str, 
+            help="index name to use when creating the AI Search index", 
+            default=os.environ["AISEARCH_INDEX_NAME"]
+        )
+        parser.add_argument(
+            "--csv-file",
+            type=str, 
+            help="path to data for creating search index",
+            default="assets/products.csv"
+        )
+        args = parser.parse_args()
+        index_name = args.index_name
+        csv_file = args.csv_file
+
+        # If a search index already exists, delete it:
+        try:
+            index_definition = index_client.get_index(index_name)
+            index_client.delete_index(index_name)
+            logger.info(f"🗑️ Found existing index named '{index_name}', and deleted it")
+        except:
+            pass
+
+        # create an empty search index
+        index_definition = create_index_definition(index_name, model=os.environ["EMBEDDINGS_MODEL"])
+        index = index_client.create_index(index_definition)
+
+        # create documents from the products.csv file, generating vector embeddings for the "description" column
+        docs = create_docs_from_csv(
+            path=csv_file, 
+            content_column="description", 
+            model=os.environ["EMBEDDINGS_MODEL"])
+
+        # Add the documents to the index using the Azure AI Search client   
+        search_client = SearchClient(
+            endpoint=search_connection.endpoint_url,
+            index_name=index_name,
+            credential=AzureKeyCredential(key=search_connection.key),
+        )
+
+        results = search_client.upload_documents(docs)
+        logger.info(f"➕ Uploaded {len(docs)} documents to '{index_name}' index")
     ```
 
 1. From your console, run the code to build your index locally and register it to the cloud project:
@@ -76,12 +283,137 @@ If you don't have an Azure AI Search index already created, we walk through how 
 ## Get product documents
 
 You can test out what documents the search index returns from a query. This script uses the Azure AI SDK to query the search index for documents that match a user's question.
+
 1. Create the **get_product_documents.py** file.
 1. Copy and paste the following code into your **get_product_documents.py** file.
 
     ```python
-    code here
+    import os
+    import logging
+
+    from azure.ai.projects import AIProjectClient
+    from azure.ai.projects.models import ConnectionType
+    from azure.identity import DefaultAzureCredential
+    from azure.core.credentials import AzureKeyCredential
+    from azure.search.documents import SearchClient
+    from azure.search.documents.models import VectorizedQuery
+    from azure.ai.inference.prompts import PromptTemplate
+
+    from azure.core.tracing.decorator import distributed_trace
+
+    # load environment variables from the .env file at the root of this repo
+    from dotenv import load_dotenv
+    load_dotenv()
+
+    # use the app telemetry settings to configure logging for this module
+    from telemetry import LOGGING_HANDLER, LOGGING_LEVEL
+
+    logger = logging.getLogger(__name__)
+    logger.addHandler(LOGGING_HANDLER)
+    logger.setLevel(LOGGING_LEVEL)
+
+    # create a project client using environment variables loaded from the .env file
+    project = AIProjectClient.from_connection_string(
+        conn_str=os.environ['AIPROJECT_CONNECTION_STRING'],
+        credential=DefaultAzureCredential()
+    )
+
+    # create a vector embeddings client that will be used to generate vector embeddings
+    chat = project.inference.get_chat_completions_client()
+    embeddings = project.inference.get_embeddings_client()
+
+    # use the project client to get the default search connection
+    search_connection = project.connections.get_default(
+        connection_type=ConnectionType.AZURE_AI_SEARCH,
+        with_credentials=True)
+
+    # Create a search index client using the search connection
+    # This client will be used to create and delete search indexes
+    search_client = SearchClient(
+        index_name=os.environ['AISEARCH_INDEX_NAME'],
+        endpoint=search_connection.endpoint_url,
+        credential=AzureKeyCredential(key=search_connection.key)
+    )
+
+    @distributed_trace
+    def get_product_documents(messages : list, context : dict = {}) -> dict:
+        overrides = context.get("overrides", {})
+        top = overrides.get("top", 5)
+
+        # generate a search query from the chat messages
+        intent_prompty = PromptTemplate.from_prompty(
+            os.path.abspath("assets/intent_mapping.prompty")
+        )
+
+        intent_mapping_response = chat.complete(
+            model=os.environ["INTENT_MAPPING_MODEL"],
+            messages=intent_prompty.render(conversation=messages),
+            **intent_prompty.parameters,
+        )
+
+        search_query = intent_mapping_response.choices[0].message.content
+        logger.info(f"🧠 Intent mapping: {search_query}")
+        
+        # generate a vector representation of the search query
+        embedding = embeddings.embed(model=os.environ["EMBEDDINGS_MODEL"], input=search_query)
+        search_vector = embedding.data[0].embedding
+
+        # search the index for products matching the search query
+        vector_query = VectorizedQuery(
+            vector=search_vector,
+            k_nearest_neighbors=top,
+            fields="contentVector")
+        
+        search_results = search_client.search(
+            search_text=search_query,
+            vector_queries=[vector_query],
+            select=["id", "content", "filepath", "title", "url"])
+        
+        documents = [{
+            "id": result["id"],
+            "content": result["content"],
+            "filepath": result["filepath"],
+            "title": result["title"],
+            "url": result["url"],
+        } for result in search_results]
+
+        # add results to the provided context
+        if "thoughts" not in context:
+            context["thoughts"] = []
+
+        # add thoughts and documents to the context object so it can be returned to the caller
+        context["thoughts"].append({
+            "title": "Generated search query",
+            "description": search_query,
+        })
+
+        if "grounding_data" not in context:
+            context["grounding_data"] = []
+        context["grounding_data"].append(documents)
+
+        logger.info(f"📄 {len(documents)} documents retrieved: {documents}")
+        return documents
+    
+    if __name__ == "__main__":
+        import argparse
+
+        # load command line arguments
+        parser = argparse.ArgumentParser()
+        parser.add_argument(
+            "--query", 
+            type=str, 
+            help="Query to use to search product", 
+            default="I need a new tent for 4 people, what would you recommend?"
+        )
+
+        args = parser.parse_args()
+        query = args.query
+
+        result = get_product_documents(messages=[
+            {"role": "user", "content": query}
+        ])
     ```
+
 1. From your console, run the code to test out what documents the search index returns from a query:
 
     ```bash
@@ -96,7 +428,82 @@ Next you create custom code to add retrieval augmented generation (RAG) capabili
 1. Copy and paste the following code into your **chat_with_products.py** file.
 
     ```python
-    code here
+    import os
+    import logging
+    from azure.ai.projects import AIProjectClient
+    from azure.identity import DefaultAzureCredential
+    from azure.ai.inference.prompts import PromptTemplate
+    from get_product_documents import get_product_documents
+    from azure.core.tracing.decorator import distributed_trace
+
+    # load environment variables from the .env file at the root of this repo
+    from dotenv import load_dotenv
+    load_dotenv()
+
+    # use the app telemetry settings to configure logging for this module
+    from telemetry import LOGGING_HANDLER, LOGGING_LEVEL, enable_telemetry
+    logger = logging.getLogger(__name__)
+    logger.addHandler(LOGGING_HANDLER)
+    logger.setLevel(LOGGING_LEVEL)
+
+    # create a project client using environment variables loaded from the .env file
+    project = AIProjectClient.from_connection_string(
+        conn_str=os.environ['AIPROJECT_CONNECTION_STRING'],
+        credential=DefaultAzureCredential()
+    )
+
+    # create a chat client we can use for testing
+    chat = project.inference.get_chat_completions_client()
+
+    @distributed_trace
+    def chat_with_products(messages : list, context : dict = {}) -> dict:
+        documents = get_product_documents(messages, context)
+
+        # do a grounded chat call using the search results
+        grounded_chat_prompt = PromptTemplate.from_prompty(
+            os.path.abspath("assets/grounded_chat.prompty")
+        )
+
+        system_message = grounded_chat_prompt.render(documents=documents, context=context)
+        response = chat.complete(
+            model=os.environ["CHAT_MODEL"],
+            messages=system_message + messages,
+            **grounded_chat_prompt.parameters,
+        )
+        logger.info(f"💬 Response: {response.choices[0].message}")
+
+        # Return a chat protocol compliant response
+        response = {
+            "message": response.choices[0].message,
+            "context": context
+        }
+
+        return response
+
+    if __name__ == "__main__":
+        import argparse
+        
+        # load command line arguments
+        parser = argparse.ArgumentParser()
+        parser.add_argument(
+            "--query", type=str, 
+            help="Query to use to search product", 
+            default="I need a new tent for 4 people, what would you recommend?"
+        )
+
+        parser.add_argument(
+            "--enable-telemetry", action="store_true", 
+            help="Enable sending telemetry back to the project", 
+        )
+
+        args = parser.parse_args()
+        if (enable_telemetry):
+            enable_telemetry(True)
+
+        # run chat with products
+        response = chat_with_products(messages=[
+            {"role": "user", "content": args.query}
+        ])
     ```
 
 1. Run the code to test your chat app with RAG capabilities:
