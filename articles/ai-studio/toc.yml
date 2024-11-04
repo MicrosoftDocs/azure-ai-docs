@@ -8,6 +8,8 @@ items:
     href: what-is-ai-studio.md
   - name: Azure OpenAI in AI Studio
     href: azure-openai-in-ai-studio.md
+  - name: Management center
+    href: concepts/management-center.md
   - name: Azure AI Studio architecture
     href: concepts/architecture.md
   - name: Region support
@@ -340,8 +342,6 @@ items:
       href: how-to/autoscale.md
 - name: Security & Governance
   items:
-  - name: Management center overview
-    href: concepts/management-center.md
   - name: Identity & access management
     items:
     - name: Role-based access control in Azure AI Studio
