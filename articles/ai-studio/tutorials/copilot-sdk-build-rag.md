@@ -244,7 +244,7 @@ If you don't have an Azure AI Search index already created, we walk through how 
         try:
             index_definition = index_client.get_index(index_name)
             index_client.delete_index(index_name)
-            logger.info(f"🗑️ Found existing index named '{index_name}', and deleted it")
+            logger.info(f"Found existing index named '{index_name}', and deleted it")
         except:
             pass
 
@@ -527,4 +527,4 @@ But don't delete them yet, if you want to deploy your chat app to Azure in [the 
 ## Next step
 
 > [!div class="nextstepaction"]
-> [Part 2: Evaluate and deploy your chat app to Azure](copilot-sdk-evaluate-deploy.md)
+> [Part 3: Evaluate and deploy your chat app to Azure](copilot-sdk-evaluate-deploy.md)
