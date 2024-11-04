@@ -356,8 +356,10 @@ items:
     - name: Query vectors
       href: vector-search-how-to-query.md
     - name: Add a vectorizer for text-to-vector queries
+      displayName: query
       href: vector-search-how-to-configure-vectorizer.md
     - name: Filter on vector queries
+      displayName: query
       href: vector-search-filters.md
   - name: Keyword search
     items:
@@ -390,6 +392,7 @@ items:
     - name: Filters
       items:
       - name: Filters in text queries
+        displayName: query
         href: search-filters.md
       - name: Add faceted navigation
         href: search-faceted-navigation.md
@@ -422,8 +425,10 @@ items:
     - name: Configure semantic ranker
       href: semantic-how-to-configure.md
     - name: Add semantic ranking to queries
+      displayName: query
       href: semantic-how-to-query-request.md
     - name: Rewrite queries with semantic ranker
+      displayName: query
       href: semantic-how-to-query-rewrite.md
     - name: Add a scoring profile
       href: index-add-scoring-profiles.md
