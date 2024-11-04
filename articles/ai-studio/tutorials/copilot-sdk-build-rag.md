@@ -20,7 +20,7 @@ In this tutorial, you use the Azure AI SDK (and other libraries) to build, confi
 This part two shows you how to enhance a basic chat application by adding [retrieval augmented generation (RAG)](../concepts/retrieval-augmented-generation.md) to ground the responses in your custom data. Retrieval Augmented Generation (RAG) is a pattern that uses your data with a large language model (LLM) to generate answers specific to your data. In this part two, you learn how to:
 
 > [!div class="checklist"]
-> - Create a search index of the data your chat app will use
+> - Create a search index of the data for the chat app to use
 > - Develop custom RAG code
 
 This tutorial is part two of a three-part tutorial.

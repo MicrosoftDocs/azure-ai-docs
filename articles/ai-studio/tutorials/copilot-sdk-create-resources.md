@@ -23,6 +23,7 @@ This tutorial is part one of a three-part tutorial.  This part one shows how an 
 > - Create an Azure AI Search index
 > - Install the Azure CLI and sign in
 > - Install Python and packages
+> - Deploy models into your project
 > - Configure your environment variables
 
 If you've completed other tutorials or quickstarts, you might have already created some of the resources needed for this tutorial. If you have, feel free to skip those steps here.
