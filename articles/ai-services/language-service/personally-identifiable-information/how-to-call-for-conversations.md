@@ -7,7 +7,7 @@ author: jboback
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: how-to
-ms.date: 12/19/2023
+ms.date: 11/04/2024
 ms.author: jboback
 ms.reviewer: bidishac
 ---
@@ -76,6 +76,77 @@ When you get results from PII detection, you can stream the results to an applic
     * [Python](/python/api/azure-ai-language-conversations/azure.ai.language.conversations.aio)
     
 # [REST API](#tab/rest-api)
+
+## Redaction Policy
+
+You're able to define the `redactionPolicy` parameter to reflect the redaction policy to be used when redacting the document in the response. The policy field will support 3 policy types:
+
+- `DoNotRedact` 
+- `MaskWithCharacter` (default) 
+- `MaskWithEntityType` 
+
+The `DoNotRedact` policy allows the user to return the response without the `redactedText` field. 
+
+The `MaskWithRedactionCharacter` policy allows the `redactedText` to be masked with a character, preserving the length and offset of the original text. This is the existing behavior.
+
+There is also an optional field called `redactionCharacter` where you can input the character to be used in redaction if you're using the `MaskWithCharacter` policy 
+
+The `MaskWithEntityType` policy allows you to mask the detected PII entity text with the detected entity type
+
+Use the following example if you want to change the redaction policy.
+
+```bash
+curl -i -X POST https://your-language-endpoint-here/language/analyze-conversations/jobs?api-version=2024-05-01 \
+-H "Content-Type: application/json" \
+-H "Ocp-Apim-Subscription-Key: your-key-here" \
+-d \
+'
+{ 
+    "displayName": "Analyze conversations from xxx", 
+    "analysisInput": { 
+        "conversations": [ 
+            { 
+                "id": "23611680-c4eb-4705-adef-4aa1c17507b5", 
+                "language": "en", 
+                "modality": "text", 
+                "conversationItems": [ 
+                    { 
+                        "participantId": "agent_1", 
+                        "id": "1", 
+                        "text": "Good morning." 
+                    }, 
+                    { 
+                        "participantId": "agent_1", 
+                        "id": "2", 
+                        "text": "Can I have your name?" 
+                    }, 
+                    { 
+                        "participantId": "customer_1", 
+                        "id": "3", 
+                        "text": "Sure that is John Doe." 
+                    } 
+                ] 
+            } 
+        ] 
+    }, 
+    "tasks": [ 
+        { 
+            "taskName": "analyze 1", 
+            "kind": "ConversationalPIITask", 
+            "parameters": { 
+                "modelVersion": "2023-04-15-preview", 
+                “redactionCharacter” 
+                "redactionPolicy": { 
+                    "policyKind": "characterMask", 
+                    //characterMask|entityMask|noMask 
+                    "redactionCharacter": "*" 
+                } 
+            } 
+        } 
+    ] 
+} 
+`
+```
 
 ## Submit transcripts using speech to text
 

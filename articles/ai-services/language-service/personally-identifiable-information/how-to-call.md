@@ -7,7 +7,7 @@ author: jboback
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: how-to
-ms.date: 10/21/2024
+ms.date: 11/04/2024
 ms.author: jboback
 ms.custom: language-service-pii
 ---
@@ -31,6 +31,22 @@ By default, this feature will use the latest available AI model on your text. Yo
 ### Input languages
 
 When you submit documents to be processed, you can specify which of [the supported languages](language-support.md) they're written in. if you don't specify a language, extraction will default to English. The API may return offsets in the response to support different [multilingual and emoji encodings](../concepts/multilingual-emoji-support.md). 
+
+### Redaction Policy
+
+You're able to define the `redactionPolicy` parameter to reflect the redaction policy to be used when redacting the document in the response. The policy field will support 3 policy types:
+
+- `DoNotRedact` 
+- `MaskWithCharacter` (default) 
+- `MaskWithEntityType` 
+
+The `DoNotRedact` policy allows the user to return the response without the `redactedText` field. 
+
+The `MaskWithRedactionCharacter` policy allows the `redactedText` to be masked with a character, preserving the length and offset of the original text. This is the existing behavior.
+
+There is also an optional field called `redactionCharacter` where you can input the character to be used in redaction if you're using the `MaskWithCharacter` policy 
+
+The `MaskWithEntityType` policy allows you to mask the detected PII entity text with the detected entity type. 
 
 ## Submitting data
 
@@ -73,7 +89,13 @@ The API will attempt to detect the [defined entity categories](concepts/entity-c
                 "text": "We went to Contoso foodplace located at downtown Seattle last week for a dinner party, and we adore the spot! They provide marvelous food and they have a great menu. The chief cook happens to be the owner (I think his name is John Doe) and he is super nice, coming out of the kitchen and greeted us all. We enjoyed very much dining in the place! The pasta I ordered was tender and juicy, and the place was impeccably clean. You can even pre-order from their online menu at www.contosofoodplace.com, call 112-555-0176 or send email to order@contosofoodplace.com! The only complaint I have is the food didn't come fast enough. Overall I highly recommend it!"
             }
         ]
-    }
+    },
+    "kind": "PiiEntityRecognition", 
+    "parameters": { 
+        "redactionPolicy": { 
+            "policyKind": "MaskWithCharacter"  
+             //MaskWithCharacter|MaskWithEntityType|DoNotRedact 
+            "redactionCharacter": "*"  
 }
 
 ```

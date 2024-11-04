@@ -9,7 +9,7 @@ ms.custom:
   - ignite-2023
 ms.service: azure-ai-language
 ms.topic: conceptual
-ms.date: 12/19/2023
+ms.date: 11/04/2024
 ms.author: jboback
 ---
 
@@ -24,6 +24,7 @@ Language service provides each container with a common configuration framework, 
 * Summarization
 * Named Entity Recognition (NER)
 * Personally Identifiable (PII) detection
+* Conversational Language Understanding (CLU)
 
 ## Configuration settings
 

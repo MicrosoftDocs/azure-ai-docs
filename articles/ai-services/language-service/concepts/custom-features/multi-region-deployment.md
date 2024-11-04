@@ -7,7 +7,7 @@ author: jboback
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: conceptual
-ms.date: 12/19/2023
+ms.date: 11/04/2024
 ms.author: jboback
 ms.custom: language-service-clu
 ---
@@ -53,13 +53,6 @@ For example, if a project `ContosoSupport` was created by the resource `MyWestUS
 You can only swap deployments that are available in the exact same regions. Otherwise, swapping fails.
 
 If you remove an assigned resource from your project, all of the project deployments to that resource are deleted.
-
-> [!NOTE]
-> Orchestration workflow only:
->
-> You *can't* assign deployment resources to orchestration workflow projects with custom question answering or LUIS connections. Subsequently, you can't add custom question answering or LUIS connections to projects that have assigned resources.
->
-> For multiregion deployment to work as expected, the connected CLU projects *must also be deployed* to the same regional resources to which you deployed the orchestration workflow project. Otherwise, the orchestration workflow project attempts to route a request to a deployment in its region that doesn't exist.
 
 Some regions are only available for deployment and not for authoring projects.
 

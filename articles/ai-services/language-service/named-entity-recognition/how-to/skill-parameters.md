@@ -8,7 +8,7 @@ manager: nitinme
 ms.service: azure-ai-language
 ms.custom:
 ms.topic: how-to
-ms.date: 03/21/2024
+ms.date: 11/04/2024
 ms.author: jboback
 ---
 
@@ -18,17 +18,11 @@ Use this article to get an overview of the different API parameters used to adju
 
 ## InclusionList parameter
 
-The “inclusionList” parameter allows for you to specify which of the NER entity tags, listed here [link to Preview API table], you would like included in the entity list output in your inference JSON listing out all words and categorizations recognized by the NER service. By default, all recognized entities will be listed.
+The “inclusionList” parameter allows for you to specify which of the NER entity tags, you would like included in the entity list output in your inference JSON listing out all words and categorizations recognized by the NER service. By default, all recognized entities will be listed.
 
 ## ExclusionList parameter
 
-The “exclusionList” parameter allows for you to specify which of the NER entity tags, listed here [link to Preview API table], you would like excluded in the entity list output in your inference JSON listing out all words and categorizations recognized by the NER service. By default, all recognized entities will be listed.
-
-<!--
-## Example
-
-To do: work with Bidisha & Mikael to update with a good example
--->
+The “exclusionList” parameter allows for you to specify which of the NER entity tags, you would like excluded in the entity list output in your inference JSON listing out all words and categorizations recognized by the NER service. By default, all recognized entities will be listed.
 
 ## overlapPolicy parameter
 
@@ -39,12 +33,40 @@ By default, the overlapPolicy parameter will be set to “matchLongest”. This 
 The alternative option for this parameter is “allowOverlap”, where all possible entity categories will be listed. 
 Parameters by supported API version
 
-|Parameter                                                   |API versions which support            |
-|------------------------------------------------------------|--------------------------------------|
-|inclusionList                                               |2023-04-15-preview, 2023-11-15-preview|
-|exclusionList                                               |2023-04-15-preview, 2023-11-15-preview|
-|Overlap policy                                              |2023-04-15-preview, 2023-11-15-preview|
-|[Entity resolution](link to archived Entity Resolution page)|2022-10-01-preview                    |
+## inferenceOptions parameter
+
+Defines a selection of options available for adjusting the inference. Currently we have only one property called “excludeNormalizedValues” which excludes the detected entity values to be normalized and included in the metadata. The numeric and temporal entity types support value normalization. 
+
+## Sample
+
+Below is a bit of sample code that explains how to use skill parameters.
+
+```bash
+{ 
+    "analysisInput": { 
+        "documents": [ 
+            { 
+                "id": "1", 
+                "text": "My name is John Doe", 
+                "language": "en" 
+            } 
+        ] 
+    }, 
+    "kind": "EntityRecognition", 
+    "parameters": { 
+        "overlapPolicy": { 
+            "policyKind": "AllowOverlap" //AllowOverlap|MatchLongest(default) 
+        }, 
+        "inferenceOptions": { 
+            "excludeNormalizedValues": true //(Default: false) 
+        }, 
+        "inclusionList": [ 
+            "DateAndTime" // A list of entity tags to be used to allow into the response. 
+        ], 
+        "exclusionList": ["Date"] // A list of entity tags to be used to filter out from the response. 
+    } 
+} 
+```
 
 ## Next steps
 
