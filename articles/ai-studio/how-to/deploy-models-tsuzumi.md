@@ -216,23 +216,6 @@ response = client.complete(
 
 If you want to pass a parameter that isn't in the list of supported parameters, you can pass it to the underlying model using *extra parameters*. See [Pass extra parameters to the model](#pass-extra-parameters-to-the-model).
 
-#### Create JSON outputs
-
-tsuzumi-7b models can create JSON outputs. Set `response_format` to `json_object` to enable JSON mode and guarantee that the message the model generates is valid JSON. You must also instruct the model to produce JSON yourself via a system or user message. Also, the message content might be partially cut off if `finish_reason="length"`, which indicates that the generation exceeded `max_tokens` or that the conversation exceeded the max context length.
-
-
-```python
-from azure.ai.inference.models import ChatCompletionsResponseFormatJSON
-
-response = client.complete(
-    messages=[
-        SystemMessage(content="You are a helpful assistant that always generate responses in JSON format, using."
-                      " the following format: { ""answer"": ""response"" }."),
-        UserMessage(content="How many languages are in the world?"),
-    ],
-    response_format={ "type": ChatCompletionsResponseFormatJSON() }
-)
-```
 
 ### Pass extra parameters to the model
 
@@ -249,27 +232,6 @@ response = client.complete(
     ],
     model_extras={
         "logprobs": True
-    }
-)
-```
-
-### Safe mode
-
-tsuzumi-7b models support the parameter `safe_prompt`. You can toggle the safe prompt to prepend your messages with the following system prompt:
-
-> Always assist with care, respect, and truth. Respond with utmost utility yet securely. Avoid harmful, unethical, prejudiced, or negative content. Ensure replies promote fairness and positivity.
-
-The Azure AI Model Inference API allows you to pass this extra parameter as follows:
-
-
-```python
-response = client.complete(
-    messages=[
-        SystemMessage(content="You are a helpful assistant."),
-        UserMessage(content="How many languages are in the world?"),
-    ],
-    model_extras={
-        "safe_mode": True
     }
 )
 ```
