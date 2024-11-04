@@ -39,9 +39,9 @@ The goal with this RAG-based application is to ground the model responses in you
 
 If you already have a search index with data, you can skip to [Get product documents](#get-documents). Otherwise, you can create a simple example data set to use in your chat app.  
 
-Create an **assets** directory with the following files:
+Create an **assets** directory and add the following files:
 
-* **products.csv**: A CSV file with columns for `id`, `name`, and `description`. This file contains example product data for your chat app. Copy this for example data:
+* **products.csv**: A CSV file with columns for `id`, `name`, and `description`. This file contains example product data for your chat app. Copy this, for example,  data:
 
     ```csv
     id,name,price,category,brand,description
@@ -67,7 +67,7 @@ Create an **assets** directory with the following files:
     20,CompactCook Camping Stove,60.0,Camping Stoves,CompactCook,"Step into the great outdoors with the CompactCook Camping Stove, a convenient, lightweight companion perfect for all your culinary camping needs. Boasting a robust design built for harsh environments, you can whip up meals anytime, anywhere. Its wind-resistant and fuel-versatile features coupled with an efficient cooking performance, ensures you won't have to worry about the elements or helpless taste buds while on adventures. The easy ignition technology and adjustable flame control make cooking as easy as a walk in the park, while its compact, foldable design makes packing a breeze. Whether you're camping with family or hiking solo, this reliable, portable stove is an essential addition to your gear. With its sturdy construction and safety-focused design, the CompactCook Camping Stove is a step above the rest, providing durability, quality, and peace of mind. Be wild, be free, be cooked for with the CompactCook Camping Stove!"
     ```
 
-* **grounded_chat.prompty**: A prompty that helps configure the chat app. Copy this for example data:
+* **grounded_chat.prompty**: A prompty that helps configure the chat app. Copy this for the example app:
     ```prompty
     ---
     name: Chat with documents
@@ -97,7 +97,7 @@ Create an **assets** directory with the following files:
 
     ```
 
-* **intent_mapping.prompty**: A prompty that provides some examples for the chat app to follow. 
+* **intent_mapping.prompty**: A prompty that provides some examples for the chat app to follow. Copy this for the example app:
 
     ```prompty
     ---
@@ -163,7 +163,7 @@ Create an **assets** directory with the following files:
 
 The search index is used to store vectorized data from the embeddings model. The search index is used to retrieve relevant documents based on the user's question. 
 
-1. Create the **create_search_index.py** file.
+1. Create the file **create_search_index.py**. Don't place this file in the **assets** directory.  Create it at the same level as the **assets** directory.
 1. Copy and paste the following code into your **create_search_index.py** file.
 
     ```python
