@@ -28,7 +28,7 @@ This article assumes you're familiar with [creating an index in Azure AI Search]
 Binary data types are generally available starting with API version 2024-07-01 and are assigned to fields using the [Create Index](/rest/api/searchservice/indexes/create) or [Create Or Update Index](/rest/api/searchservice/indexes/create-or-update) APIs.
 
 > [!TIP]
-> If you're investigating binary vector support for its smaller footprint, you might also consider the vector quantization and storage reduction features in Azure AI Search. Inputs are float32 or float16 embeddings. Output is stored data in a much smaller format. For more information, see [Reduce vector size through quantization, narrow data types, and storage options](vector-search-how-to-configure-compression-storage.md).
+> If you're investigating binary vector support for its smaller footprint, you might also consider the vector quantization and storage reduction features in Azure AI Search. Inputs are float32 or float16 embeddings. Output is stored data in a much smaller format. For more information, see [Assign narrow data types](vector-search-how-to-assign-narrow-data-types.md).
 
 ## Prerequisites
 

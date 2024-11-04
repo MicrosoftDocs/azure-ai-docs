@@ -349,10 +349,18 @@ items:
       items:
       - name: Understand vector quotas and limits
         href: vector-search-index-size.md
-      - name: Compress vector index size
+      - name: Choose a vector optimization strategy
         href: vector-search-how-to-configure-compression-storage.md
+      - name: Use binary or scalar quantization
+        href: vector-search-how-to-quantization.md
       - name: Index binary data for vector search
         href: vector-search-how-to-index-binary-data.md
+      - name: Assign narrow data types
+        href: vector-search-how-to-assign-narrow-data-types.md
+      - name: Eliminate redundant storage
+        href: vector-search-how-to-storage-options.md
+      - name: Truncate dimensions (preview)
+        href: vector-search-how-to-truncate-dimensions.md
     - name: Query vectors
       href: vector-search-how-to-query.md
     - name: Add a vectorizer for text-to-vector queries
