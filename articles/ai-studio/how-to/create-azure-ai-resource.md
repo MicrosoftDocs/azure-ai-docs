@@ -8,7 +8,7 @@ ms.custom:
   - ignite-2023
   - build-2024
 ms.topic: how-to
-ms.date: 10/19/2024
+ms.date: 11/19/2024
 ms.reviewer: deeikele
 ms.author: larryfr
 author: Blackmist
@@ -30,7 +30,7 @@ In this article, you learn how to create and manage a hub in AI Studio with the 
 
 To create a new hub, you need either the Owner or Contributor role on the resource group or on an existing hub. If you're unable to create a hub due to permissions, reach out to your administrator. If your organization is using [Azure Policy](/azure/governance/policy/overview), don't create the resource in AI Studio. Create the hub [in the Azure portal](#create-a-secure-hub-in-the-azure-portal) instead.
 
-[!INCLUDE [Create Azure AI Studio hub](../includes/create-hub.md)]
+[!INCLUDE [Create Azure AI Studio hub](../includes/create-hub.md)] 
 
 ## Create a secure hub in the Azure portal
 
