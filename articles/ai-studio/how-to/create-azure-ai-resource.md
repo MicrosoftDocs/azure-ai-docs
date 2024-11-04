@@ -1,7 +1,7 @@
 ---
 title: How to create and manage an Azure AI Studio hub
 titleSuffix: Azure AI Studio
-description: This article describes how to create and manage an Azure AI Studio hub.
+description: Learn how to create and manage an Azure AI Studio hub from the Azure portal or from the AI Studio. Your developers can then create projects from the hub.
 manager: scottpolly
 ms.service: azure-ai-studio
 ms.custom:

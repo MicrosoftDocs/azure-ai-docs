@@ -6,7 +6,7 @@ ms.reviewer: sgilley
 ms.author: sgilley
 ms.service: azure-ai-studio
 ms.topic: include
-ms.date: 5/21/2024
+ms.date: 11/04/2024
 ms.custom: include, build-2024
 ---
 
