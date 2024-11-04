@@ -235,9 +235,9 @@ For more details on `az cognitiveservices account` and `az cognitivesservices us
 
 # [Azure PowerShell](#tab/powershell)
 
-Install the latest version of the [Az PowerShell module](/powershell/azure/install-azure-powershell). If you already have the Az PowerShell installed locally, run `Update-Module -Name Az` to update to the latest version.
+Install the latest version of the [Az PowerShell module](/powershell/azure/install-azure-powershell). If you already have the Az PowerShell module installed locally, run `Update-Module -Name Az` to update to the latest version.
 
-To check which version of the Az PowerShell you are running, use `Get-InstalledModule -Name Az`. Azure Cloud Shell is currently running a version of Azure PowerShell that can take advantage of the latest Azure OpenAI features.
+To check which version of the Az PowerShell module you are running, use `Get-InstalledModule -Name Az`. Azure Cloud Shell is currently running a version of Azure PowerShell that can take advantage of the latest Azure OpenAI features.
 
 ### Deployment
 
