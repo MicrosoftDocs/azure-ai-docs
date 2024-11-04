@@ -20,9 +20,8 @@ In this tutorial, you use the Azure AI SDK (and other libraries) to build, confi
 This part two shows you how to enhance a basic chat application by adding [retrieval augmented generation (RAG)](../concepts/retrieval-augmented-generation.md) to ground the responses in your custom data. Retrieval Augmented Generation (RAG) is a pattern that uses your data with a large language model (LLM) to generate answers specific to your data. In this part two, you learn how to:
 
 > [!div class="checklist"]
-> - Deploy AI models in Azure AI Studio to use in your app
+> - Create a search index of the data your chat app will use
 > - Develop custom RAG code
-> - Use prompt flow to test your chat app
 
 This tutorial is part two of a three-part tutorial.
 
@@ -68,7 +67,7 @@ Create an **assets** directory with the following files:
     20,CompactCook Camping Stove,60.0,Camping Stoves,CompactCook,"Step into the great outdoors with the CompactCook Camping Stove, a convenient, lightweight companion perfect for all your culinary camping needs. Boasting a robust design built for harsh environments, you can whip up meals anytime, anywhere. Its wind-resistant and fuel-versatile features coupled with an efficient cooking performance, ensures you won't have to worry about the elements or helpless taste buds while on adventures. The easy ignition technology and adjustable flame control make cooking as easy as a walk in the park, while its compact, foldable design makes packing a breeze. Whether you're camping with family or hiking solo, this reliable, portable stove is an essential addition to your gear. With its sturdy construction and safety-focused design, the CompactCook Camping Stove is a step above the rest, providing durability, quality, and peace of mind. Be wild, be free, be cooked for with the CompactCook Camping Stove!"
     ```
 
-* grounded_chat.prompty:
+* **grounded_chat.prompty**: A prompty that helps configure the chat app. Copy this for example data:
     ```prompty
     ---
     name: Chat with documents
@@ -98,7 +97,7 @@ Create an **assets** directory with the following files:
 
     ```
 
-* **intent_mapping.prompty:
+* **intent_mapping.prompty**: A prompty that provides some examples for the chat app to follow. 
 
     ```prompty
     ---
@@ -123,11 +122,11 @@ Create an **assets** directory with the following files:
     # Examples
     Example 1:
     With a conversation like below:
-    ```
+    
     - user: are the trailwalker shoes waterproof?
     - assistant: Yes, the TrailWalker Hiking Shoes are waterproof. They are designed with a durable and waterproof construction to withstand various terrains and weather conditions.
     - user: how much do they cost?
-    ```
+    
     Respond with:
     {
         "intent": "The user wants to know how much the Trailwalker Hiking Shoes cost.",
@@ -136,7 +135,7 @@ Create an **assets** directory with the following files:
 
     Example 2:
     With a conversation like below:
-    ```
+    
     - user: are the trailwalker shoes waterproof?
     - assistant: Yes, the TrailWalker Hiking Shoes are waterproof. They are designed with a durable and waterproof construction to withstand various terrains and weather conditions.
     - user: how much do they cost?
@@ -146,7 +145,7 @@ Create an **assets** directory with the following files:
     - user: which is your most waterproof tent?
     - assistant: Our most waterproof tent is the Alpine Explorer Tent. It is designed with a waterproof material and has a rainfly with a waterproof rating of 3000mm. This tent provides reliable protection against rain and moisture.
     - user: how much does it cost?
-    ```
+    
     Respond with:
     {
         "intent": "The user would like to know how much the Alpine Explorer Tent costs.",
