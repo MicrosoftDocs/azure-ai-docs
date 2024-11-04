@@ -14,7 +14,7 @@ ms.custom:
   - devx-track-python
   - ignite-2023
 ms.topic: quickstart
-ms.date: 10/07/2024
+ms.date: 11/01/2024
 ---
 
 # Quickstart: Full text search using the Azure SDKs
