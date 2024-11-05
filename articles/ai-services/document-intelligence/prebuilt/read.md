@@ -26,7 +26,7 @@ ms.author: lajanuar
 
 > [!NOTE]
 >
-> For extracting text from external images like labels, street signs, and posters, use the [Azure AI Image Analysis v4.0 Read](../../Computer-vision/concept-ocr.md) feature optimized for general, non-document images with a performance-enhanced synchronous API that makes it easier to embed OCR in your user experience scenarios.
+> For extracting text from external images like labels, street signs, and posters, use the [Azure AI Image Analysis v4.0 Read](../../Computer-vision/concept-ocr.md) feature optimized for general, non-document images with a performance-enhanced synchronous API that makes it easier to embed OCR in real-time user experience scenarios.
 >
 
 Document Intelligence Read Optical Character Recognition (OCR) model runs at a higher resolution than Azure AI Vision Read and extracts print and handwritten text from PDF documents and scanned images. It also includes support for extracting text from Microsoft Word, Excel, PowerPoint, and HTML documents. It detects paragraphs, text lines, words, locations, and languages. The Read model is the underlying OCR engine for other Document Intelligence prebuilt models like Layout, General Document, Invoice, Receipt, Identity (ID) document, Health insurance card, W2 in addition to custom models.
@@ -98,7 +98,6 @@ The searchable PDF capability enables you to convert an analog PDF, such as scan
   >
   > * Currently, the searchable PDF capability is only supported by Read OCR model `prebuilt-read`. When using this feature, please specify the `modelId` as `prebuilt-read`, as other model types will return an error.
   > * Searchable PDF is included with the 2024-11-30 (GA) `prebuilt-read` model with no additional cost for generating a searchable PDF output.
->   * Searchable PDF currently only supports PDF files as input. Support for other file types, such as image files, will be available later.
 
 ### Use searchable PDFs
 
