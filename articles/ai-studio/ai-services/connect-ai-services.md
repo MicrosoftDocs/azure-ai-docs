@@ -125,12 +125,12 @@ In AI Studio, you can fine-tune some Azure AI services models. For example, you 
 
 1. Go to your AI Studio project. If you need to create a project, see [Create an AI Studio project](../how-to/create-projects.md).
 1. Select **Fine-tuning** from the left pane.
-1. Select **AI Service fine-tuning** > **+ Fine-tune**.
+1. Select **AI Service fine-tuning**.
 
     :::image type="content" source="../media/ai-services/fine-tune-azure-ai-services.png" alt-text="Screenshot of the page to select fine-tuning of Azure AI Services models." lightbox="../media/ai-services/fine-tune-azure-ai-services.png":::
 
-1. Select **+ Fine-tune model**.
-1. Follow the wizard to fine-tune a model for the capabilities that you want. 
+1. Select **+ Fine-tune**.
+1. Follow the wizard to fine-tune a model for the capabilities that you want.
 
 ## Deploy models to production
 
