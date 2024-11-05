@@ -114,8 +114,8 @@ In order to provide users with more insight into an entity's types and provide i
 
 |Name of the attribute|Type        |Definition                               |
 |---------------------|------------|-----------------------------------------|
-|`type`               |String      |The most specific type of detected entity.<br><br>For example, “Seattle” is a `City`, a `GPE` (Geo Political Entity) and a `Location`. The most granular classification for “Seattle” is that it is a `City`. The type would be “City” for the text “Seattle".|
-|`tags`               |List (tags) |A list of tag objects which expresses the affinity of the detected entity to a hierarchy or any other grouping.<br><br>A tag contains two fields:<br>1. `name`: A unique name for the tag.<br>2. `confidenceScore`: The associated confidence score for a tag ranging from  <br><br>This unique tagName is be used to filter in the `inclusionList` and `exclusionList` parameters  
+|`type`               |String      |The most specific type of detected entity.<br><br>For example, “Seattle” is a `City`, a `GPE` (Geo Political Entity) and a `Location`. The most granular classification for “Seattle” is that it is a `City`. The type would be `City` for the text “Seattle".|
+|`tags`               |List (tags) |A list of tag objects which expresses the affinity of the detected entity to a hierarchy or any other grouping.<br><br>A tag contains two fields:<br>1. `name`: A unique name for the tag.<br>2. `confidenceScore`: The associated confidence score for a tag ranging from 0 to 1.<br><br>This unique tagName is be used to filter in the `inclusionList` and `exclusionList` parameters.
 |`metadata`           |Object      |Metadata is an object containing more data about the entity type detected. It changes based on the field `metadataKind`.
 
 ## Sample output
