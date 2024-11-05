@@ -10,4 +10,4 @@ ms.date: 10/09/2024
 ms.custom: include,
 ---
 
-You can always find the endpoint's details, URL, and access keys by navigating to your project's **Management center**. Then, select **Deployments**.
+You can always find the endpoint's details, URL, and access keys by navigating to your project's **Management center** from the left navigation pane. Then, select **Models + endpoints**.
