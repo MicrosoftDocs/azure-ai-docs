@@ -13,7 +13,7 @@ author: sdgilley
 
 # Develop applications with LangChain and Azure AI studio
 
-LangChain is a development ecosystem that makes as easy possible for developers to build applications that reason. The ecosystem is composed by multiple components and most of the them can be used by themselves, allowing you to pick and choose whichever components you like best. Azure AI studio integrates with LangChain in the package `langchain-azure-ai` and `langchain-openai`.
+LangChain is a development ecosystem that makes as easy possible for developers to build applications that reason. The ecosystem is composed by multiple components. Most of the them can be used by themselves, allowing you to pick and choose whichever components you like best. Azure AI studio integrates with LangChain in the package `langchain-azure-ai` and `langchain-openai`.
 
 Models deployed to Azure AI studio can be used with LangChain in two ways:
 
@@ -21,7 +21,7 @@ Models deployed to Azure AI studio can be used with LangChain in two ways:
 
 - **Using the model's provider specific API:** Some models, like OpenAI, Cohere, or Mistral, offer their own set of APIs and extensions for LlamaIndex. Those extensions may include specific functionalities that the model support and hence are suitable if you want to exploit them. When working with LangChain, install the extension specific for the model you want to use, like `langchain-openai` or `langchain-cohere`.
 
-In this tutorial you learn how to use the packages to build intelligent applications with models deployed in Azure AI studio with LangChain with the package `langchain-azure-ai` and the **Azure AI model inference API**.
+In this tutorial, you learn how to use the packages to build intelligent applications with models deployed in Azure AI studio with LangChain with the package `langchain-azure-ai` and the **Azure AI model inference API**.
 
 ## Prerequisites
 
@@ -67,7 +67,7 @@ export AZURE_INFERENCE_ENDPOINT="<your-model-endpoint-goes-here>"
 export AZURE_INFERENCE_CREDENTIAL="<your-key-goes-here>"
 ```
 
-Once configured, create a client to connect to the endpoint. In this case, we are working with a chat completions models hence we import the class `AzureAIChatCompletionsModel`.
+Once configured, create a client to connect to the endpoint. In this case, we are working with a chat completions model hence we import the class `AzureAIChatCompletionsModel`.
 
 ```python
 import os
@@ -127,7 +127,7 @@ model = AzureAIChatCompletionsModel(
 
 ## Use chat completions models
 
-Let's first use the model directly. `ChatModels` are instances of LangChain "Runnables", which means they expose a standard interface for interacting with them. To just simply call the model, we can pass in a list of messages to the `invoke` method.
+Let's first use the model directly. `ChatModels` are instances of LangChain `Runnable`, which means they expose a standard interface for interacting with them. To simply call the model, we can pass in a list of messages to the `invoke` method.
 
 ```python
 from langchain_core.messages import HumanMessage, SystemMessage
@@ -158,7 +158,7 @@ As you can see from the prompt template, this chain has a `language` and `text` 
 parser = StrOutputParser()
 ```
 
-We can now combine this with the model and the output parser from above using the pipe (`|`) operator:
+We can now combine the template, model, and the output parser from above using the pipe (`|`) operator:
 
 ```python
 chain = prompt_template | model | parser
@@ -176,7 +176,7 @@ chain.invoke({"language": "italian", "text": "hi"})
 
 ### Chaining multiple LLMs together
 
-Models deployed to Azure AI studio support the Azure AI model inference API, which is standard across all the models. Chain multiple LLM operations based on the capabilities of each model so you can optimize for the right model based on capabilities. In the following example we create 2 model clients, one is a producer and another one is a verifier. To make the distinction clear, we are using a multi-model endpoint like the [Azure AI model inference service](../../ai-services/model-inference.md) and hence we are passing the parameter `model_name` to use a `Mistral-Large` and a `Mistral-Small` model, quoting the fact that producing content is usually more complex than verifying.
+Models deployed to Azure AI studio support the Azure AI model inference API, which is standard across all the models. Chain multiple LLM operations based on the capabilities of each model so you can optimize for the right model based on capabilities. In the following example, we create 2 model clients, one is a producer and another one is a verifier. To make the distinction clear, we are using a multi-model endpoint like the [Azure AI model inference service](../../ai-services/model-inference.md) and hence we are passing the parameter `model_name` to use a `Mistral-Large` and a `Mistral-Small` model, quoting the fact that producing content is more complex than verifying it.
 
 ```python
 producer = AzureAIChatCompletionsModel(
@@ -192,7 +192,7 @@ verifier = AzureAIChatCompletionsModel(
 )
 ```
 
-The following example will generate a poem written by a urban poet:
+The following example generates a poem written by an urban poet:
 
 ```python
 producer_template = PromptTemplate(
@@ -231,7 +231,7 @@ chain.invoke({"topic": "living in a foreign country"})
 
 ## Use embeddings models
 
-In the same way you create an LLM client, you can connect to an embeddings model. In the following example, we are setting the environment variable to now point to an embeddings model:
+In the same way, you create an LLM client, you can connect to an embeddings model. In the following example, we are setting the environment variable to now point to an embeddings model:
 
 ```bash
 export AZURE_INFERENCE_ENDPOINT="<your-model-endpoint-goes-here>"
@@ -279,7 +279,7 @@ for doc in results:
 
 ## Using Azure OpenAI models
 
-If you are using Azure OpenAI service or Azure AI model inference service with OpenAI models with `langchain-azure-ai` package, you may need to use `api_version` parameter to select an specific API version. The following example shows how to connect to an Azure OpenAI model deployment in Azure OpenAI service:
+If you are using Azure OpenAI service or Azure AI model inference service with OpenAI models with `langchain-azure-ai` package, you may need to use `api_version` parameter to select a specific API version. The following example shows how to connect to an Azure OpenAI model deployment in Azure OpenAI service:
 
 ```python
 from langchain_azure_ai import AzureAIChatCompletionsModel
