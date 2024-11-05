@@ -11,7 +11,7 @@ ms.date: 11/19/2024
 ---
 
 
-# Azure AI Content Understanding custom document data extraction (preview)
+# Content Understanding custom document solutions (preview)
 
 > [!IMPORTANT]
 >

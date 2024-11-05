@@ -10,7 +10,7 @@ ms.topic: how-to
 ms.date: 11/19/2024
 ---
 
-# Use Content Understanding video solutions overview (preview)
+# Content Understanding video solutions (preview)
 
 Azure AI Content Understanding lets you extract and customize video metadata for seamless integration into your systems or workflows. Content Understanding helps efficiently manage, categorize, retrieve, and build workflows for video assets. Content Understanding can enhance your media asset library, support workflows such as highlight generation, categorize content, and facilitate applications like retrieval-augmented generation (`RAG`). The video content extraction capabilities of Content Understanding offer the following advantages:
 
@@ -58,4 +58,4 @@ Content Understanding provides a specific set of capabilities for video includin
 
 ## Next steps
 
-Get started using Content Understanding video APIs with our [**how to guide**](how-to/set-up-manage-video-assets.md) for a managing media assets scenario.
+Get started using Content Understanding video APIs with our [**prebuilt template**](../prebuilt-template/manage-video-assets.md) for a managing media assets scenario.
