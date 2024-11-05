@@ -213,7 +213,7 @@ Custom models are trained using your labeled datasets to extract distinct data f
 
 :::row:::
    :::column:::
-    [**Custom generative**](#custom-generative-document-field-extraction) | Build a custom extraction model using generative AI for documents with unstructured format and varying templates.
+    [**Custom generative (preview)**](#custom-generative-document-field-extraction) | Build a custom extraction model using generative AI for documents with unstructured format and varying templates.
    :::column-end:::
    :::column span="":::
     [**Custom neural**](#custom-neural) | Extract data from mixed-type documents.
@@ -543,7 +543,7 @@ You can use Document Intelligence to automate document processing in application
 > [!div class="nextstepaction"]
 > [Return to custom model types](#custom-models)
 
-#### Custom generative (document field extraction)
+#### Custom generative (preview)
 
 :::image type="content" source="media/overview/analyze-custom-generative.png" alt-text="Screenshot of Custom generative model analysis using Azure AI Studio.":::
 
