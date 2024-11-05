@@ -64,18 +64,7 @@ You can add a user-assigned managed identity when creating an Azure Machine Lear
 1. From the __Basics__ page, select the Azure Storage Account, Azure Container Registry, and Azure Key Vault you want to use with the workspace.
 1. From the __Identity__ page, select __User-assigned identity__ and then select the managed identity to use.
 
-The following [Azure RBAC role assignments](/azure/role-based-access-control/role-assignments) are required on your user-assigned managed identity for your Azure Machine Learning workspace to access data on the workspace-associated resources.
-
-|Resource|Permission|
-|---|---|
-|Azure Machine Learning workspace|Contributor|
-|Azure Storage|Contributor (control plane) + Storage Blob Data Contributor (data plane, optional, to enable data preview in the Azure Machine Learning studio)|
-|Azure Key Vault (when using [RBAC permission model](/azure/key-vault/general/rbac-guide))|Contributor (control plane) + Key Vault Administrator (data plane)|
-|Azure Key Vault (when using [access policies permission model](/azure/key-vault/general/assign-access-policy))|Contributor + any access policy permissions besides **purge** operations|
-|Azure Container Registry|Contributor|
-|Azure Application Insights|Contributor|
-
-For automated creation of role assignments on your user-assigned managed identity, you may use [this ARM template](https://github.com/Azure/azure-quickstart-templates/tree/master/quickstarts/microsoft.machinelearningservices/machine-learning-dependencies-role-assignment).
+The managed identity must be assigned the __Azure AI Administrator__ role on the resource group that contains the workspace and dependent resources. For more information on this role, visit [Azure AI Administrator role](how-to-assign-roles.md#azure-ai-administrator-role).
 
 > [!TIP]
 > For a workspace with [customer-managed keys for encryption](concept-data-encryption.md), you can pass in a user-assigned managed identity to authenticate from storage to Key Vault. Use the `user-assigned-identity-for-cmk-encryption` (CLI) or `user_assigned_identity_for_cmk_encryption` (SDK) parameters to pass in the managed identity. This managed identity can be the same or different as the workspace primary user assigned managed identity.
