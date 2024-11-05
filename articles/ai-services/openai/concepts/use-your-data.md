@@ -312,6 +312,8 @@ Along with using Elasticsearch databases in Azure OpenAI Studio, you can also us
 ### Prerequisites 
 
 * A [MongoDB Atlas account](https://account.mongodb.com/account/register)
+* An Azure OpenAI ada002 [embedding model](./models.md#embeddings)
+    * To achieve good retrieval quality, make sure your vector index is created with Azure OpenAI ada002 embedding model.
 
 We recommend using one of the following models for MongoDB Atlas
 * gpt-4 (0613)
@@ -326,22 +328,28 @@ Only public network access is supported. Please make sure the database allows pu
 
 ### Data preparation
 
-Use the [available script on Github](https://github.com/microsoft/sample-app-aoai-chatGPT/blob/rawan/mongodbdataprep/scripts/mongo_vector_db_data_preparation.py) to prepare your Data for use with Azure OpenAI On Your Data. 
+If you want to create a new vector search index with your documents, you can use the [available script on Github](https://github.com/microsoft/sample-app-aoai-chatGPT/blob/rawan/mongodbdataprep/scripts/mongo_vector_db_data_preparation.py) to prepare your data for use with Azure OpenAI On Your Data. 
+
+### Connection to MongoDB account
+
+To add your data source, you first need to create a connection to MongoDB Atlas. This connection includes information such as authentication (username and password).
+
+:::image type="content" source="../media/use-your-data/mongo-db-atlas-connection.png" alt-text="A screenshot showing the connection screen for Mongo DB" lightbox="../media/use-your-data/mongo-db-atlas-connection.png":::
 
 ### Source index
 
-To add your data source, you first need to provide information about your index, and create a connection. This connection includes information such as authentication (username and password), your connection string, and database and colection name. 
+Once you have created a connection or chosen an existing connection, you can enter the information to connect to a specific vector index within this connected account. You need to input the name of your database, collection and vector index. Make sure you have entered the information correctly to successfully build the connection.
 
 :::image type="content" source="../media/use-your-data/mongo-db-atlas-source-index.png" alt-text="A screenshot showing the field mapping options for Mongo DB Atlas" lightbox="../media/use-your-data/mongo-db-atlas-source-index.png":::
 
-To use MongoDB Atlas, you'll need an embedding model. This model will be created for you if you don't already have one, wich will incur [usage](https://go.microsoft.com/fwlink/?linkid=2264246) on your account.
+To use MongoDB Atlas, you'll need an Azure OpenAI ada002 embedding model. This model will be created for you if you don't already have one, wich will incur [usage](https://go.microsoft.com/fwlink/?linkid=2264246) on your account.
 
 ### Index field mapping
 
 When you add your MongoDB Atlas data source, you can specify data fields to properly map your data for retrieval.
 
 * Content data (required): This is the main text content of each document. For multiple fields, separate the values with commas, with no spaces.
-* * Vector field (required): The field name in your MongoDB Atlas search index that contains the vectors.
+* Vector field (required): The field name in your MongoDB Atlas search index that contains the vectors.
 * File name/title/URL: Used to display more information when a document is referenced in the chat.
 
 :::image type="content" source="../media/use-your-data/mongo-db-atlas-field-mapping.png" alt-text="A screenshot showing the field mapping options for Mongo DB Atlas" lightbox="../media/use-your-data/mongo-db-atlas-field-mapping.png":::
