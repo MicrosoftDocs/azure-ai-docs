@@ -27,15 +27,28 @@ Azure OpenAI Service provides REST API access to OpenAI's powerful language mode
 | Managed Identity| Yes, via Microsoft Entra ID | 
 | UI experience | [Azure portal](https://portal.azure.com) for account & resource management, <br> [Azure AI Studio](https://ai.azure.com) for model exploration and fine-tuning |
 | Model regional availability | [Model availability](./concepts/models.md) |
-| Content filtering | Prompts and completions are evaluated against our content policy with automated systems. High severity content will be filtered. |
+| Content filtering | Prompts and completions are evaluated against our content policy with automated systems. High severity content is filtered. |
 
 ## Responsible AI
 
 At Microsoft, we're committed to the advancement of AI driven by principles that put people first. Generative models such as the ones available in Azure OpenAI have significant potential benefits, but without careful design and thoughtful mitigations, such models have the potential to generate incorrect or even harmful content. Microsoft has made significant investments to help guard against abuse and unintended harm, which includes incorporating Microsoft’s <a href="https://www.microsoft.com/ai/responsible-ai?activetab=pivot1:primaryr6" target="_blank">principles for responsible AI use</a>, adopting a [Code of Conduct](/legal/cognitive-services/openai/code-of-conduct?context=/azure/ai-services/openai/context/context) for use of the service, building [content filters](/azure/ai-services/content-safety/overview) to support customers, and providing responsible AI [information and guidance](/legal/cognitive-services/openai/transparency-note?context=%2Fazure%2Fai-services%2Fopenai%2Fcontext%2Fcontext&tabs=image) that customers should consider when using Azure OpenAI.
 
-## How do I get access to Azure OpenAI?
+## Get started with Azure OpenAI Service
 
-A Limited Access registration form is not required to access most Azure OpenAI models. Learn more on the [Azure OpenAI Limited Access page](/legal/cognitive-services/openai/limited-access?context=/azure/ai-services/openai/context/context).
+To get started with Azure OpenAI Service, you need to create an Azure OpenAI Service resource in your Azure subscription. 
+
+Start with the [Create and deploy an Azure OpenAI Service resource](./how-to/create-resource.md) guide.
+1. You can create a resource via Azure portal, Azure CLI, or Azure PowerShell. 
+1. When you have an Azure OpenAI Service resource, you can deploy a model such as GPT-4o.
+1. When you have a deployed model, you can:
+
+    - Try out the Azure AI Studio playgrounds to explore the capabilities of the models. 
+    - You can also just start making API calls to the service using the REST API or SDKs.
+    
+    For example, you can try [real-time audio](./realtime-audio-quickstart.md) and [assistants](./assistants-quickstart.md) in the playgrounds or via code.
+
+> [!NOTE]
+> A Limited Access registration form is required to access some Azure OpenAI Service models or features. Learn more on the [Azure OpenAI Limited Access page](/legal/cognitive-services/openai/limited-access?context=/azure/ai-services/openai/context/context).
 
 ## Comparing Azure OpenAI and OpenAI
 
@@ -47,7 +60,7 @@ With Azure OpenAI, customers get the security capabilities of Microsoft Azure wh
 
 ### Prompts & completions
 
-The completions endpoint is the core component of the API service. This API provides access to the model's text-in, text-out interface. Users simply need to provide an input  **prompt** containing the English text command, and the model will generate a text **completion**.
+The completions endpoint is the core component of the API service. This API provides access to the model's text-in, text-out interface. Users simply need to provide an input  **prompt** containing the English text command, and the model generates a text **completion**.
 
 Here's an example of a simple prompt and completion:
 
@@ -70,7 +83,7 @@ Here's an example of a simple prompt and completion:
 
 Azure OpenAI processes text by breaking it down into tokens. Tokens can be words or just chunks of characters. For example, the word “hamburger” gets broken up into the tokens “ham”, “bur” and “ger”, while a short and common word like “pear” is a single token. Many tokens start with a whitespace, for example “ hello” and “ bye”.
 
-The total number of tokens processed in a given request depends on the length of your input, output and request parameters. The quantity of tokens being processed will also affect your response latency and throughput for the models.
+The total number of tokens processed in a given request depends on the length of your input, output, and request parameters. The quantity of tokens being processed will also affect your response latency and throughput for the models.
  
 #### Image tokens
 
@@ -106,9 +119,9 @@ Once you create an Azure OpenAI Resource, you must deploy a model before you can
 
 ### Prompt engineering
 
-The GPT-3, GPT-3.5 and GPT-4 models from OpenAI are prompt-based. With prompt-based models, the user interacts with the model by entering a text prompt, to which the model responds with a text completion. This completion is the model’s continuation of the input text.
+The GPT-3, GPT-3.5, and GPT-4 models from OpenAI are prompt-based. With prompt-based models, the user interacts with the model by entering a text prompt, to which the model responds with a text completion. This completion is the model’s continuation of the input text.
 
-While these models are extremely powerful, their behavior is also very sensitive to the prompt. This makes [prompt engineering](./concepts/prompt-engineering.md) an important skill to develop.
+While these models are powerful, their behavior is also sensitive to the prompt. This makes [prompt engineering](./concepts/prompt-engineering.md) an important skill to develop.
 
 Prompt construction can be difficult. In practice, the prompt acts to configure the model weights to complete the desired task, but it's more of an art than a science, often requiring experience and intuition to craft a successful prompt.
 
