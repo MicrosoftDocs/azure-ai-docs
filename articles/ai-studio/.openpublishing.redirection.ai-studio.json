@@ -144,6 +144,11 @@
             "source_path_from_root": "/articles/ai-studio/ai-services/get-started.md",
             "redirect_url": "/azure/ai-studio/ai-services/connect-ai-services",
             "redirect_document_id": false
+        },
+        {
+            "source_path_from_root": "/articles/ai-studio/ai-services/where-to-use-ai-services.md",
+            "redirect_url": "/azure/ai-studio/ai-services/connect-ai-services",
+            "redirect_document_id": false
         }
     ]
 }

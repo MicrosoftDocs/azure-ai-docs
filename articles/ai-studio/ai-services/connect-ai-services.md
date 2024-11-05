@@ -27,7 +27,7 @@ Depending on the AI service and model you want to use, you can use them in AI St
 - The [model catalog](#discover-azure-ai-models-in-the-model-catalog). You don't need a project to browse and discover Azure AI models. Some of the Azure AI services are available for you to try via the model catalog without a project. Some Azure AI services require a project to use in the playgrounds.
 - The [project-level playgrounds](#try-azure-ai-services-in-the-project-level-playgrounds). You need a project to try Azure AI services such as Azure AI Speech and Azure AI Language. 
 - [Azure AI Services demo pages](#try-out-azure-ai-services-demos). You can browse Azure AI services capabilities and step through the demos. You can try some limited demos for free without a project.
-- [Fine-tune](#fine-tune-azure-ai-models) models. You can fine-tune a subset of Azure AI services models in AI Studio.
+- [Fine-tune](#fine-tune-azure-ai-services-models) models. You can fine-tune a subset of Azure AI services models in AI Studio.
 - [Deploy](#deploy-models-to-production) models. You can deploy base models and fine-tuned models to production. Most Azure AI services models are already deployed and ready to use.
 
 ## Use your Azure AI services resources in a project
@@ -133,7 +133,7 @@ Once you have a project, several Azure AI services models are already deployed a
 
 There's no option to deploy Azure AI services models from the **Models + endpoints** page. Azure AI services models are already deployed and ready to use.
 
-However, you can deploy [fine-tuned Azure AI services models](#azure-ai-services-model-fine-tuning). For example, you might want to deploy a custom speech model that you fine-tuned. In this case, you can deploy the model from the corresponding fine-tuning page. 
+However, you can deploy [fine-tuned Azure AI services models](#fine-tune-azure-ai-services-models). For example, you might want to deploy a custom speech model that you fine-tuned. In this case, you can deploy the model from the corresponding fine-tuning page. 
 
 
 ## Related content

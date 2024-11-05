@@ -90,8 +90,8 @@ If you already have a project and you want to connect your existing Azure OpenAI
 
 You can try Azure OpenAI models in the Azure OpenAI Service playgrounds outside of a project.
 
-> [!NOTE]
-> You can also try Azure OpenAI models in the project-level playgrounds. However, if you're only using Azure OpenAI Service, [we recommend working outside of a project](./connect-ai-services.md#use-your-azure-openai-model-deployments-without-a-project).
+> [!TIP]
+> You can also try Azure OpenAI models in the project-level playgrounds. However, while you're only working with the Azure OpenAI Service models, we recommend working outside of a project.
 
 1. Go to the [Azure OpenAI Service page](https://ai.azure.com/resource/overview) in AI Studio.
 1. Select a playground from under **Resource playground** in the left pane.
