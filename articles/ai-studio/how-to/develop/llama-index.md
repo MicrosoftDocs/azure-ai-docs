@@ -5,7 +5,7 @@ description: This article explains how to use LlamaIndex with models deployed in
 manager: scottpolly
 ms.service: azure-ai-studio
 ms.topic: how-to
-ms.date: 9/14/2024
+ms.date: 11/04/2024
 ms.reviewer: fasantia
 ms.author: sgilley
 author: sdgilley
@@ -27,33 +27,37 @@ In this example, we are working with the **Azure AI model inference API**.
 
 To run this tutorial, you need:
 
-1. An [Azure subscription](https://azure.microsoft.com).
-2. An Azure AI hub resource as explained at [How to create and manage an Azure AI Studio hub](../create-azure-ai-resource.md).
-3. A model supporting the [Azure AI model inference API](https://aka.ms/azureai/modelinference) deployed. In this example, we use a `Mistral-Large` deployment, but use any model of your preference. For using embeddings capabilities in LlamaIndex, you need an embedding model like `cohere-embed-v3-multilingual`. 
+* An [Azure subscription](https://azure.microsoft.com).
+* An Azure AI project as explained at [Create a project in Azure AI Studio](../create-projects.md).
+* A model supporting the [Azure AI model inference API](https://aka.ms/azureai/modelinference) deployed. In this example, we use a `Mistral-Large` deployment, but use any model of your preference. For using embeddings capabilities in LlamaIndex, you need an embedding model like `cohere-embed-v3-multilingual`. 
 
     * You can follow the instructions at [Deploy models as serverless APIs](../deploy-models-serverless.md).
 
-4. Python 3.8 or later installed, including pip.
-5. LlamaIndex installed. You can do it with:
+* Python 3.8 or later installed, including pip.
+* LlamaIndex installed. You can do it with:
 
     ```bash
     pip install llama-index
     ```
 
-6. In this example, we are working with the Azure AI model inference API, hence we install the following packages:
+* In this example, we are working with the Azure AI model inference API, hence we install the following packages:
 
     ```bash
     pip install -U llama-index-llms-azure-inference
     pip install -U llama-index-embeddings-azure-inference
-    ``` 
+    ```
+
+    > [!IMPORTANT]
+    > Using the [Azure AI model inference service](https://aka.ms/aiservices/inference) requires version `0.2.4` for `llama-index-llms-azure-inference` or `llama-index-embeddings-azure-inference`.
 
 ## Configure the environment
 
 To use LLMs deployed in Azure AI studio, you need the endpoint and credentials to connect to it. Follow these steps to get the information you need from the model you want to use:
 
 1. Go to the [Azure AI studio](https://ai.azure.com/).
-2. Go to deployments and select the model you deployed as indicated in the prerequisites.
-3. Copy the endpoint URL and the key.
+1. Open the project where the model is deployed, if it isn't already open.
+1. Go to **Models + endpoints** and select the model you deployed as indicated in the prerequisites.
+1. Copy the endpoint URL and the key.
 
     :::image type="content" source="../../media/how-to/inference/serverless-endpoint-url-keys.png" alt-text="Screenshot of the option to copy endpoint URI and keys from an endpoint." lightbox="../../media/how-to/inference/serverless-endpoint-url-keys.png":::
     
@@ -67,7 +71,7 @@ export AZURE_INFERENCE_ENDPOINT="<your-model-endpoint-goes-here>"
 export AZURE_INFERENCE_CREDENTIAL="<your-key-goes-here>"
 ```
 
-Once configured, create a client to connect to the endpoint. The parameter `model_name` in the constructor is not required for endpoints serving a single model, like serverless endpoints.
+Once configured, create a client to connect to the endpoint.
 
 ```python
 import os
@@ -80,7 +84,20 @@ llm = AzureAICompletionsModel(
 ```
 
 > [!TIP]
-> If your model is an OpenAI model deployed to Azure OpenAI service or AI services resource, configure the client as indicated at [Azure OpenAI models](#azure-openai-models).
+> If your model is an OpenAI model deployed to Azure OpenAI service or AI services resource, configure the client as indicated at [Azure OpenAI models and Azure AI model inference service](#azure-openai-models-and-azure-ai-model-inference-service).
+
+If your endpoint is serving more than one model, like with the [Azure AI model inference service](../../ai-services/model-inference.md) or [GitHub Models](https://github.com/marketplace/models), you have to indicate `model_name` parameter:
+
+```python
+import os
+from llama_index.llms.azure_inference import AzureAICompletionsModel
+
+llm = AzureAICompletionsModel(
+    endpoint=os.environ["AZURE_INFERENCE_ENDPOINT"],
+    credential=os.environ["AZURE_INFERENCE_CREDENTIAL"],
+    model_name="mistral-large-2407",
+)
+```
 
 Alternatively, if your endpoint support Microsoft Entra ID, you can use the following code to create the client:
 
@@ -112,22 +129,23 @@ llm = AzureAICompletionsModel(
 )
 ```
 
-### Azure OpenAI models
+### Azure OpenAI models and Azure AI model inference service
 
-If you are using Azure OpenAI models with key-based authentication, you need to pass the authentication key in the header `api-key`, which is the one expected in the Azure OpenAI service and in Azure AI Services. This configuration is not required if you are using Microsoft Entra ID (formerly known as Azure AD). The following example shows how to configure the client:
+If you are using Azure OpenAI models or [Azure AI model inference service](../../ai-services/model-inference.md), ensure you have at least version `0.2.4` of the LlamaIndex integration. Use `api_version` parameter in case you need to select a specific `api_version`. For the [Azure AI model inference service](../../ai-services/model-inference.md), you need to pass `model_name` parameter:
 
 ```python
-import os
 from llama_index.llms.azure_inference import AzureAICompletionsModel
 
 llm = AzureAICompletionsModel(
     endpoint=os.environ["AZURE_INFERENCE_ENDPOINT"],
-    credential="",
-    client_kwargs={"headers" : { "api-key": os.environ["AZURE_INFERENCE_CREDENTIAL"] } }
+    credential=os.environ["AZURE_INFERENCE_CREDENTIAL"],
+    model_name="gpt-4o",
+    api_version="2024-05-01-preview",
 )
 ```
 
-Notice that `credentials` is still being passed with an empty value since it's a required parameter.
+> [!TIP]
+> Using a wrong `api_version` or one not supported by the model results in a `ResourceNotFound` exception.
 
 ### Inference parameters
 

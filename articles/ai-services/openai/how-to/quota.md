@@ -7,7 +7,7 @@ author: mrbullwinkle
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: how-to
-ms.date: 06/18/2024
+ms.date: 11/04/2024
 ms.author: mbullwin
 ---
 
@@ -232,6 +232,73 @@ az cognitiveservices usage list -l eastus
 This command runs in the context of the currently active subscription for Azure CLI. Use `az-account-set --subscription` to [modify the active subscription](/cli/azure/manage-azure-subscriptions-azure-cli#change-the-active-subscription).
 
 For more details on `az cognitiveservices account` and `az cognitivesservices usage` consult the [Azure CLI reference documentation](/cli/azure/cognitiveservices/account/deployment?view=azure-cli-latest&preserve-view=true)
+
+# [Azure PowerShell](#tab/powershell)
+
+Install the latest version of the [Az PowerShell module](/powershell/azure/install-azure-powershell). If you already have the Az PowerShell module installed locally, run `Update-Module -Name Az` to update to the latest version.
+
+To check which version of the Az PowerShell module you are running, use `Get-InstalledModule -Name Az`. Azure Cloud Shell is currently running a version of Azure PowerShell that can take advantage of the latest Azure OpenAI features.
+
+### Deployment
+
+```azurepowershell
+New-AzCognitiveServicesAccountDeployment
+   [-ResourceGroupName] <String>
+   [-AccountName] <String>
+   [-Name] <String>
+   [-Properties] <DeploymentProperties>
+   [-Sku] <Sku>
+   [-DefaultProfile <IAzureContextContainer>]
+   [-WhatIf]
+   [-Confirm]
+   [<CommonParameters>]
+```
+
+To sign into your local installation of Azure PowerShell, run the [Connect-AzAccount](/powershell/module/az.accounts/connect-azaccount) command:
+
+```azurepowershell
+Connect-AzAccount
+```
+
+By setting Sku Capacity to 10 in the command below, this deployment is set to a 10K TPM limit.
+
+```azurepowershell-interactive
+$cognitiveServicesDeploymentParams = @{
+    ResourceGroupName = 'test-resource-group'
+    AccountName = 'test-resource-name'
+    Name = 'test-deployment-name'
+    Properties = @{
+        Model = @{
+            Name = 'gpt-35-turbo'
+            Version = '0613'
+            Format  = 'OpenAI'
+        }
+    }
+    Sku = @{
+        Name = 'Standard'
+        Capacity = '10'
+    }
+}
+New-AzCognitiveServicesAccountDeployment @cognitiveServicesDeploymentParams
+```
+
+### Usage
+
+To [query your quota usage](/powershell/module/az.cognitiveservices/get-azcognitiveservicesusage) in a given region for a specific subscription:
+
+```azurepowershell
+Get-AzCognitiveServicesUsage -Location <location>
+```
+
+### Example
+
+```azurepowershell-interactive
+Get-AzCognitiveServicesUsage -Location eastus
+```
+
+This command runs in the context of the currently active subscription for Azure PowerShell. Use `Set-AzContext` to [modify the active subscription](/powershell/azure/manage-subscriptions-azureps#change-the-active-subscription).
+
+For more details on `New-AzCognitiveServicesAccountDeployment` and `Get-AzCognitiveServicesUsage`, consult the [Azure PowerShell reference documentation](/powershell/module/az.cognitiveservices/).
 
 # [Azure Resource Manager](#tab/arm)
 

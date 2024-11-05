@@ -8,6 +8,8 @@ items:
     href: what-is-ai-studio.md
   - name: Azure OpenAI in AI Studio
     href: azure-openai-in-ai-studio.md
+  - name: Management center
+    href: concepts/management-center.md
   - name: Azure AI Studio architecture
     href: concepts/architecture.md
   - name: Region support
@@ -35,10 +37,12 @@ items:
     href: tutorials/deploy-chat-web-app.md
   - name: Build a custom chat app with the Azure AI SDK
     items:
-      - name: "Part 1: Add data retrieval to a chat app"
+      - name: "Part 1: Set up project and install SDK"
+        href: tutorials/copilot-sdk-create-resources.md
+      - name: "Part 2: Add data retrieval to a chat app"
         href: tutorials/copilot-sdk-build-rag.md
         displayName: code,sdk
-      - name: "Part 2: Evaluate and deploy a chat app"
+      - name: "Part 3: Evaluate and deploy a chat app"
         href: tutorials/copilot-sdk-evaluate-deploy.md
         displayName: code,sdk
 - name: How-to
@@ -51,10 +55,10 @@ items:
       displayName: cognitive
     - name: What are AI services?
       href: ../ai-services/what-are-ai-services.md?context=/azure/ai-studio/context/context
-    - name: Use your existing models and deployments
+    - name: Use Azure OpenAI Service in AI Studio
+      href: ai-services/connect-azure-openai.md
+    - name: Use Azure AI services in AI Studio
       href: ai-services/connect-ai-services.md
-    - name: Where to use Azure OpenAI and AI services
-      href: ai-services/where-to-use-ai-services.md
     - name: Azure OpenAI
       items:
       - name: Deploy Azure OpenAI models
