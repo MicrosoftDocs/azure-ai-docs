@@ -10,6 +10,9 @@ ms.date: 11/19/2024
 ms.custom: include, build-2024
 ---
 
+> [!NOTE]
+> A hub in Azure AI Studio is a one-stop shop where you manage everything your AI project needs, like security and resources, so you can develop and test faster. To learn more about how hubs can help you, see the [Hubs and projects overview](/azure/ai-studio/concepts/ai-resources) article.
+
 To create a hub in [Azure AI Studio](https://ai.azure.com), follow these steps:
 
 1. Go to [Azure AI Studio](https://ai.azure.com) and sign in with your Azure account.

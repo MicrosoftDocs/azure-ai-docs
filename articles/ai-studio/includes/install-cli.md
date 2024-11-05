@@ -38,4 +38,9 @@ You can follow instructions [How to install the Azure CLI](/cli/azure/install-az
 After you install the Azure CLI, sign in using the ``az login`` command and sign-in using the browser:
 ```
 az login
+
+```
+Alternatively, you can log in manually via the browser with a device code.
+```
+az login --use-device-code
 ```
