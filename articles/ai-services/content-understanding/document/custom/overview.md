@@ -1,7 +1,7 @@
 ---
-title: Azure AI Multimodal Intelligence custom document extraction overview
+title: Azure AI Content Understanding custom document extraction overview
 titleSuffix: Azure AI services
-description: Learn about Azure AI Multimodal Intelligence document solutions
+description: Learn about Azure AI Content Understanding document solutions
 author: laujan
 ms.author: lajanuar
 manager: nitinme
@@ -11,17 +11,17 @@ ms.date: 10/24/2024
 ---
 
 
-# Azure AI Multimodal Intelligence custom document data extraction (preview)
+# Azure AI Content Understanding custom document data extraction (preview)
 
 > [!IMPORTANT]
 >
-> * Azure AI Multimodal Intelligence is available in preview. Public preview releases provide early access to features that are in active development.
+> * Azure AI Content Understanding is available in preview. Public preview releases provide early access to features that are in active development.
 > * Features, approaches, and processes may change or have constrained capabilities, prior to General Availability (GA).
 > * For more information, *see* [**Supplemental Terms of Use for Microsoft Azure Previews**](https://azure.microsoft.com/support/legal/preview-supplemental-terms).
 
-Azure AI Multimodal Intelligence custom document field extraction uses generative AI to extract user-specified fields from documents across a wide variety of visual templates. The capability combines the power of document understanding with Large Language Models (`LLM`s) with the rigor and schema of custom extraction capabilities to create models with high accuracy in minutes.
+Azure AI Content Understanding custom document field extraction uses generative AI to extract user-specified fields from documents across a wide variety of visual templates. The capability combines the power of document understanding with Large Language Models (`LLM`s) with the rigor and schema of custom extraction capabilities to create models with high accuracy in minutes.
 
-With this new model type, you can start with a single document and go through the schema addition and model creation process with minimal labeling. Additionally, you can use [Azure AI studio](https://ai.azure.com/) for an interactive experience to train and test your custom model. Custom Document Field Extraction allows you to easily automate your data extraction workflows for any type of document, with greater accuracy and speed. The Multimodal Intelligence document content extraction capabilities enable access to the following benefits:
+With this new model type, you can start with a single document and go through the schema addition and model creation process with minimal labeling. Additionally, you can use [Azure AI studio](https://ai.azure.com/) for an interactive experience to train and test your custom model. Custom Document Field Extraction allows you to easily automate your data extraction workflows for any type of document, with greater accuracy and speed. The Content Understanding document content extraction capabilities enable access to the following benefits:
 
 * **Automatic labeling**. Utilizing the generative AI document model, rather than manual annotation, saves time and effort. You can create models faster by using `LLM`s to extract data from various document types.
 

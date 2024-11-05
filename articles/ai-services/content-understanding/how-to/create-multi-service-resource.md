@@ -1,7 +1,7 @@
 ---
 title: Create an Azure AI services multi-service resource
 titleSuffix: Azure AI services
-description: Create and manage an Azure AI Services multi-services resource for Multimodal Intelligence operations
+description: Create and manage an Azure AI Services multi-services resource for Content Understanding operations
 author: laujan
 manager: nitinme
 ms.service: azure
@@ -13,7 +13,7 @@ ms.author: lajanuar
 # Create an Azure AI services multi-service resource
 
 
-To use Multimodal Intelligence, you need an Azure AI services resource. The multi-service resource enables access to multiple Azure AI services with a single set of credentials.
+To use Content Understanding, you need an Azure AI services resource. The multi-service resource enables access to multiple Azure AI services with a single set of credentials.
 
 1. To get started, you need an active [**Azure account**](https://azure.microsoft.com/free/cognitive-services/). If you don't have one, you can [**create a free 12-month subscription**](https://azure.microsoft.com/free/).
 
@@ -30,7 +30,7 @@ To use Multimodal Intelligence, you need an Azure AI services resource. The mult
 
     * **Subscription**. Select one of your available Azure subscriptions.
     * **Resource group**. The [Azure resource group](/azure/cloud-adoption-framework/govern/resource-consistency/resource-access-management#what-is-an-azure-resource-group) that contains your resource. You can create a new group or add it to an existing group.
-    * **Region**. To use Multimodal Intelligence, you must create an Azure AI Service resource in a [**supported region**](../language-region-support.md).
+    * **Region**. To use Content Understanding, you must create an Azure AI Service resource in a [**supported region**](../language-region-support.md).
     * **Name**. Enter a name for your resource. We recommend using a descriptive name, for example *YourNameAIServicesResource*.
     * **Pricing tier**. The cost of your resource depends on the pricing tier and options you choose and your usage. For more information, see [pricing details](https://azure.microsoft.com/pricing/details/cognitive-services/). You can use the free pricing tier (F0) to try the service, and upgrade later to a paid tier for production.
 

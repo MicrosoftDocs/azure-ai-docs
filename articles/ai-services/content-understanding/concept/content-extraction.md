@@ -1,7 +1,7 @@
 ---
-title: Azure AI Multimodal Intelligence field and content extraction
+title: Azure AI Content Understanding field and content extraction
 titleSuffix: Azure AI services
-description: Learn about Multimodal Intelligence content extraction capabilities
+description: Learn about Content Understanding content extraction capabilities
 author: laujan
 ms.author: lajanuar
 manager: nitinme
@@ -10,13 +10,13 @@ ms.topic: conceptual
 ms.date: 10/09/2024
 ---
 
-# Azure AI Multimodal Intelligence content extraction
+# Azure AI Content Understanding content extraction
 
-The Multimodal Intelligence service can process and integrate multiple data modalities simultaneously Data modalities include mages, audio, video, and text.
+The Content Understanding service can process and integrate multiple data modalities simultaneously Data modalities include mages, audio, video, and text.
 
 ## Field extraction and data types
 
-***Multimodal Intelligence supports the following field data types:***
+***Content Understanding supports the following field data types:***
 
 * **String**. Plain Text
 * **Date**. Normalized to ISO 8601 (YYYY-MM-DD) format.
@@ -27,7 +27,7 @@ The Multimodal Intelligence service can process and integrate multiple data moda
 * **Array**. Data structure storing multiple items of the same type.
 * **Object**. Key-value variable collection potentially of different types.
 
-***Multimodal Intelligence supports the following field operations:***
+***Content Understanding supports the following field operations:***
 
 | Operation | Description | FieldType support |
 | --- | --- | --- |

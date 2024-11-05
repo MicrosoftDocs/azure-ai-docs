@@ -1,10 +1,10 @@
 ### YamlMime:Landing
 
-title: Azure AI Multimodal Intelligence documentation
-summary: Multimodal Intelligence is a data analysis and comprehension solution that transforms diverse media content—such as audio, video, text, and images—into structured, organized, and searchable data.
+title: Azure AI Content Understanding documentation
+summary: Content Understanding is a data analysis and comprehension solution that transforms diverse media content—such as audio, video, text, and images—into structured, organized, and searchable data.
 metadata:
-  title: Azure AI Multimodal Intelligence documentation
-  description: Multimodal Intelligence is a data comprehension solution that transforms diverse media content—such as audio, video, text, and images—into structured, organized, and searchable data.
+  title: Azure AI Content Understanding documentation
+  description: Content Understanding is a data comprehension solution that transforms diverse media content—such as audio, video, text, and images—into structured, organized, and searchable data.
   ms.service: azure
   ms.topic: landing-page
   author: laujan
@@ -13,11 +13,11 @@ metadata:
 
 landingContent:
   # Card 1
-  - title: About Multimodal Intelligence
+  - title: About Content Understanding
     linkLists:
       - linkListType: overview
         links:
-          - text: What is Multimodal Intelligence?
+          - text: What is Content Understanding?
             url: overview.md
           - text: What are Azure AI services?
             url: ../../ai-services/what-are-ai-services.md
@@ -27,7 +27,7 @@ landingContent:
     linkLists:
       - linkListType: quickstart
         links:
-        - text: Use Multimodal Intelligence Rest API
+        - text: Use Content Understanding Rest API
           url: overview.md
 
   # Card 3
@@ -35,9 +35,9 @@ landingContent:
     linkLists:
       - linkListType: how-to-guide
         links:
-        - text: Use Multimodal Intelligence Rest API
+        - text: Use Content Understanding Rest API
           url: overview.md
-        - text: Use Multimodal Intelligence SDK
+        - text: Use Content Understanding SDK
           url: overview.md
 
   # Card 4

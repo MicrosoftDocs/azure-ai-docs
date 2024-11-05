@@ -1,5 +1,5 @@
 ---
-title: Azure AI Multimodal Intelligence set up a post-call analytics workflow
+title: Azure AI Content Understanding set up a post-call analytics workflow
 titleSuffix: Azure AI services
 description: Learn how to set up a post-call analytics workflow
 author: laujan
@@ -14,22 +14,22 @@ ms.date: 10/24/2024
 
 > [!IMPORTANT]
 >
-> * Azure AI Multimodal Intelligence is available in preview. Public preview releases provide early access to features that are in active development.
+> * Azure AI Content Understanding is available in preview. Public preview releases provide early access to features that are in active development.
 > * Features, approaches, and processes may change or have constrained capabilities, prior to General Availability (GA).
 > * For more information, *see* [**Supplemental Terms of Use for Microsoft Azure Previews**](https://azure.microsoft.com/support/legal/preview-supplemental-terms).
 
 
-Azure AI Multimodal Intelligence in [Azure AI Studio](https://ai.azure.com/) is a feature that allows you to extract insights from audio files using customizable extraction schemas. You can use Multimodal Intelligence to generate summaries, detect roles, extract information, and more from the conversation transcripts of your audio files.
+Azure AI Content Understanding in [Azure AI Studio](https://ai.azure.com/) is a feature that allows you to extract insights from audio files using customizable extraction schemas. You can use Content Understanding to generate summaries, detect roles, extract information, and more from the conversation transcripts of your audio files.
 
 Post-call analytics is a process that uses AI, natural language processing (NLP), and speech analytics to review customer-agent interactions after a call ends. It can help you gain insights, measure performance, and improve customer experiences.
 
-In this article, you learn how to create a post call analytics workflow with a Multimodal Intelligence project using the following resources:
+In this article, you learn how to create a post call analytics workflow with a Content Understanding project using the following resources:
 
 * An AI Studio hub and connected Azure Blob Storage account.
 
 * An Azure AI services connection for the hub.
 
-* A Multimodal Intelligence project in the hub.
+* A Content Understanding project in the hub.
 
 ## Prerequisites
 
@@ -37,7 +37,7 @@ In this article, you learn how to create a post call analytics workflow with a M
 
 * Once you have your Azure subscription, you need an [**Azure AI services multi-services resource**](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIServices) created in one of the [supported regions](../../language-region-support.md). 
 
-* An audio file (less than 2 hours long and less than 200 MB in size) in one of the formats and codecs supported. Multimodal Intelligence speech capabilities support multiple audio formats and codecs, such as:
+* An audio file (less than 2 hours long and less than 200 MB in size) in one of the formats and codecs supported. Content Understanding speech capabilities support multiple audio formats and codecs, such as:
 
 ## Create an AI Studio hub
 

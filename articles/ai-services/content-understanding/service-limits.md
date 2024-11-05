@@ -1,7 +1,7 @@
 ---
-title: Service quotas and limits - Multimodal Intelligence
+title: Service quotas and limits - Content Understanding
 titleSuffix: Azure AI services
-description: Quick reference, detailed description, and best practices for working within Azure AI Multimodal Intelligence service Quotas and Limits
+description: Quick reference, detailed description, and best practices for working within Azure AI Content Understanding service Quotas and Limits
 #services: cognitive-services
 author: laujan
 manager: nitinme
@@ -14,7 +14,7 @@ ms.author: lajanuar
 
 # Service limits and quotas
 
-This article is both a quick reference and detailed description of Azure AI Multimodal Intelligence service quotas and limits.
+This article is both a quick reference and detailed description of Azure AI Content Understanding service quotas and limits.
 
 ## File limits
 Each modality covers a set of MIME file types. 
@@ -34,7 +34,7 @@ Each modality covers a set of MIME file types. 
 | Audio | AAC (AAC-LC, AAC-HE, and AAC-HEv2; up to 5.1), MPEG Layer 2, MP3 (MPEG-1 Audio Layer 3), Windows Media Audio, WAV/PCM, FLAC, Opus, Vorbis, AMR (adaptive multi-rate) |
 
 ## Field Schema Limits
-A schema in Multimodal Intelligence refers to a defined structure specifying the types of data to be extracted from various types of unstructured content. Unstructured content types include documents, images, videos, and audio. This structured representation of data is crucial for enabling downstream applications to process and analyze the extracted information effectively.
+A schema in Content Understanding refers to a defined structure specifying the types of data to be extracted from various types of unstructured content. Unstructured content types include documents, images, videos, and audio. This structured representation of data is crucial for enabling downstream applications to process and analyze the extracted information effectively.
 
 This section details the limits of the field inputs for schema definition.
 
@@ -43,7 +43,7 @@ This section details the limits of the field inputs for schema definition.
 | string: Plain Text, date: Date normalized to ISO 8601 (YYYY-MM-DD) format, time: Time normalized to ISO 8601 (hh:mm:ss) format. number: Floating point number normalized to double precision floating point. integer: Integer number, normalized to 64-bit signed integer. boolean: Boolean value, normalized to true or false.array: List of subfields of the same type. object: Named list of subfields of potentially different types. | 10 (audio, image, video), 50 (document) |
 
 ## Analyzer limits per resource
-Analyzers in Multimodal Intelligence are specialized components designed to process and extract structured data from various types of unstructured content, such as textual documents, audio, images, and video. These analyzers are tailored to handle specific types of data and tasks, ensuring that the extracted information is accurate and useful for downstream applications.
+Analyzers in Content Understanding are specialized components designed to process and extract structured data from various types of unstructured content, such as textual documents, audio, images, and video. These analyzers are tailored to handle specific types of data and tasks, ensuring that the extracted information is accurate and useful for downstream applications.
 
 | Quota | Standard (S0) |
 | --- | --- |

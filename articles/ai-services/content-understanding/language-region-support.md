@@ -1,7 +1,7 @@
 ---
-title: Multimodal Intelligence region and language support
+title: Content Understanding region and language support
 titleSuffix: Azure AI services
-description: Azure AI Multimodal Intelligence region and language support
+description: Azure AI Content Understanding region and language support
 author: laujan
 ms.author: lajanuar
 manager: nitinme
@@ -11,11 +11,11 @@ ms.custom: references_regions
 ms.date: 10/09/2024
 ---
 
-# Multimodal Intelligence region and language support
+# Content Understanding region and language support
 
 ## Region support
 
-To use the Azure AI Multimodal Intelligence service, you must create your Azure AI Service resource in a supported region. The Multimodal Intelligence features are available in the following regions:
+To use the Azure AI Content Understanding service, you must create your Azure AI Service resource in a supported region. The Content Understanding features are available in the following regions:
 
 | Geography | Region | Region Identifier |
 | --- | --- | --- |
@@ -27,11 +27,11 @@ To use the Azure AI Multimodal Intelligence service, you must create your Azure 
 
 ## Language support
 
-Azure AI Multimodal Intelligence enables you to process and integrate multiple data modalities simultaneously. Our language support capabilities enable users to communicate with your applications in natural ways and empower global outreach.
+Azure AI Content Understanding enables you to process and integrate multiple data modalities simultaneously. Our language support capabilities enable users to communicate with your applications in natural ways and empower global outreach.
 
-Some capabilities of Multimodal Intelligence service support multiple languages; any capabilities not mentioned are only English supported.
+Some capabilities of Content Understanding service support multiple languages; any capabilities not mentioned are only English supported.
 
-To learn more Multimodal Intelligence language support, select a capability from the following tabs.
+To learn more Content Understanding language support, select a capability from the following tabs.
 
 # [Audio](#tab/audio)
 

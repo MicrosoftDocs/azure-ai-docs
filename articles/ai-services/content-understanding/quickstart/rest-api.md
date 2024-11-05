@@ -1,7 +1,7 @@
 ---
-title: "Quickstart: Azure AI Multimodal Intelligence REST APIs"
+title: "Quickstart: Azure AI Content Understanding REST APIs"
 titleSuffix: Azure AI services
-description: Learn about Multimodal Intelligence REST APIs
+description: Learn about Content Understanding REST APIs
 author: laujan
 ms.author: tonyeiyalla
 manager: nitinme
@@ -10,19 +10,19 @@ ms.topic: quickstart
 ms.date: 10/22/2024
 ---
 
-# Quickstart: Multimodal Intelligence REST APIs
+# Quickstart: Content Understanding REST APIs
 
-* Get started with the Azure AI Multimodal Intelligence latest preview version REST API (2024-12-01-preview).
+* Get started with the Azure AI Content Understanding latest preview version REST API (2024-12-01-preview).
 
-* Azure AI Multimodal Intelligence is a cloud-based solution within [**Azure AI services**](../../what-are-ai-services.md), designed to process varied data modalities such as documents, images, videos, and audio within a unified workflow.
+* Azure AI Content Understanding is a cloud-based solution within [**Azure AI services**](../../what-are-ai-services.md), designed to process varied data modalities such as documents, images, videos, and audio within a unified workflow.
 
-* The Multimodal Intelligence API provides you with AI algorithms for extracting data modalities and returns a structured JSON representation. Follow these steps to install a package to your application and try out the sample code.
+* The Content Understanding API provides you with AI algorithms for extracting data modalities and returns a structured JSON representation. Follow these steps to install a package to your application and try out the sample code.
 
- * In this quickstart, learn to use the Multimodal Intelligence REST API to analyze and extract data and values from  your schema input.
+ * In this quickstart, learn to use the Content Understanding REST API to analyze and extract data and values from  your schema input.
 
 ## Prerequisites
 
-To use Multimodal Intelligence, you need an Azure AI services multi-service resource. The multi-service resource enables access to multiple Azure AI services with a single set of credentials.
+To use Content Understanding, you need an Azure AI services multi-service resource. The multi-service resource enables access to multiple Azure AI services with a single set of credentials.
 
 * To get started, you need an active [**Azure account**](https://azure.microsoft.com/free/cognitive-services/). If you don't have one, you can [**create a free 12-month subscription**](https://azure.microsoft.com/free/).
 
