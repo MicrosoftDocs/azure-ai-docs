@@ -781,9 +781,9 @@
       "redirect_document_id": true
     },
     {
-      "source_path_from_root": "/articles/ai-services/document-intelligence/try-document-intelligence-studio.md",
+      "source_path_from_root": "/articles/ai-services/document-intelligence/quickstarts/try-document-intelligence-studio.md",
       "redirect_url": "/azure/ai-services/document-intelligence/quickstarts/studio-custom-project",
-      "redirect_document_id": false
+      "redirect_document_id": true
     }
   ]
 }
