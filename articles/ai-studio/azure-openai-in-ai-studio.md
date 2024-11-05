@@ -6,7 +6,7 @@ manager: scottpolly
 keywords: Azure AI services, cognitive, Azure OpenAI
 ms.service: azure-ai-studio
 ms.topic: overview
-ms.date: 10/28/2024
+ms.date: 11/04/2024
 ms.reviewer: shwinne
 ms.author: sgilley
 author: sdgilley
@@ -18,9 +18,17 @@ ms.custom: ignite-2023, build-2024
 
 Azure OpenAI Service provides REST API access to OpenAI's powerful language models. Azure OpenAI Studio was previously where you went to access and work with the Azure OpenAI Service. This studio is now integrated into Azure AI Studio. 
 
+## Access Azure OpenAI Service in Azure AI Studio
+
+From the [Azure AI Studio](https://ai.azure.com) landing page, use the **Let's go** button in the **Focused on Azure OpenAI Service?** section.
+
+:::image type="content" source="media/azure-openai-in-ai-studio/home-page.png" alt-text="Screenshot shows Azure AI Studio home page.":::
+
+You can also use [https://ai.azure.com/resource](https://ai.azure.com/resource) to directly access Azure OpenAI models outside of a project.
+
 ## Focus on Azure OpenAI Service
 
-If you've been using Azure OpenAI Studio, all your work, such as your deployments, content filters, batch jobs or fine-tuned models, is still available. No features or functionality are removed, though the look and feel of some features are updated.
+If you've been using Azure OpenAI Studio, all your work, such as your deployments, content filters, batch jobs or fine-tuned models, is still available. All the features and functionality are still here, though the look and feel of some features are updated.
 
 :::image type="content" source="media/azure-openai-in-ai-studio/studio-home.png" alt-text="Screenshot shows the new Azure OpenAI in Azure AI Studio." lightbox="media/azure-openai-in-ai-studio/studio-home.png":::
 
@@ -34,39 +42,32 @@ Use the left navigation area to perform your tasks with Azure OpenAI models:
 * **Deploy models**: In the **Model catalog** or **Deployments** list in the left navigation, you see all supported models. You can deploy models from either section.
 * **Fine-tune**: Use **Fine-tuning** to find your fine-tuned/custom models or create new fine-tune jobs.
 * **Batch jobs**: Create and manage jobs for your global batch deployments.
+* Use the resource name in the top left to switch to another recently used resource.  Or find all your Azure OpenAI Service resources in the top right-hand corner under **All resources**.
 
-Looking for all your resources and deployments? You can find them in the top right-hand corner under **All resources**.
-
-:::image type="content" source="media/azure-openai-in-ai-studio/all-resources.png" alt-text="Screenshot shows the top right access to all resources in Azure AI Service section of Azure AI Studio." lightbox="media/azure-openai-in-ai-studio/all-resources.png":::
-
-## Access Azure OpenAI Service in Azure AI Studio
-
-From the [Azure AI Studio](https://ai.azure.com) landing page, use the **Let's go** button in the **Focused on Azure OpenAI Service?** section.
-
-:::image type="content" source="media/azure-openai-in-ai-studio/home-page.png" alt-text="Screenshot shows Azure AI Studio home page.":::
-
-You can also use [https://ai.azure.com/resource](https://ai.azure.com/resource) to directly access Azure OpenAI models outside of a project.
+    :::image type="content" source="media/azure-openai-in-ai-studio/all-resources.png" alt-text="Screenshot shows the top right access to all resources in Azure AI Service section of Azure AI Studio." lightbox="media/azure-openai-in-ai-studio/all-resources.png":::
 
 ## Azure OpenAI in an Azure AI Studio project
 
-While the previous sections show how to focus on just the Azure OpenAI Service, you can also incorporate other AI services and models from various providers in Azure AI Studio. You can access the Azure OpenAI Service in two ways: 
+While the previous sections show how to focus on just the Azure OpenAI Service, you can also incorporate other AI services and models from various providers in Azure AI Studio. You can access the Azure OpenAI Service in two ways:
 
-* Without a project, focusing only with Azure OpenAI models.
-* As a [connection](./how-to/connections-add.md) to the service inside a project. 
+* When you focus on just the Azure OpenAI Service, as described in the previous sections, you don't use a project.
+* Azure AI Studio uses a project to organize your work and save state while building customized AI apps. When you work in a project, you can [connect](./how-to/connections-add.md) to the service.
 
-When you create a project, you can try other models and tools along with Azure OpenAI. For example, the **Model catalog** in a project contains many more models than just Azure OpenAI models.
+When you create a project, you can try other models and tools along with Azure OpenAI. For example, the **Model catalog** in a project contains many more models than just Azure OpenAI models. Inside a project, you'll have access to features that are common across all AI services and models.
 
-But while there's access to more services and models in a project, if you're working just with Azure OpenAI, you have more features available outside the project. This table highlights the differences between working with Azure OpenAI outside of a project or in a project in Azure AI Studio:
+When you are only working with Azure OpenAI, working outside a project allow you to access the features that are specific to Azure OpenAI.  
+
+This table highlights the differences between working with Azure OpenAI outside of a project or in a project in Azure AI Studio:
 
 
 |  | **Azure OpenAI Service without a project** | **Azure AI Studio with a project** |
 |--|--|--|
-| **Purpose** | Primarily focused on providing access to Azure OpenAI's models and functionalities. Allows users to deploy, fine-tune, and manage Azure OpenAI models. |  A broader platform that integrates multiple AI services and models from various providers, including Azure OpenAI. Designed to support a wide range of AI functionalities and use cases. |
+| **Purpose** | Primarily focused on providing access to Azure OpenAI's models and functionalities. Allows users to deploy, fine-tune, and manage Azure OpenAI models. |  A broader platform that focuses on end-to-end tooling to build generative AI applications.  Integrates multiple AI services and models from various providers, including Azure OpenAI. Designed to support a wide range of AI functionalities and use cases. |
 | **Features** | Includes a model catalog, fine-tuning capabilities, and deployment options. Access all Azure OpenAI models and manage them within this resource. | Offers models from providers like Meta, Microsoft, Cohere, Mistral, and NVIDIA. Provides a comprehensive suite of tools for building, testing, and deploying AI solutions. Powers AI capabilities like translation, summarization, conversation, document generation, facial recognition, and more. |
-| **Usage** | Ideal when you need to work specifically with Azure OpenAI models and use their capabilities for various applications. | Suitable when you want to explore and use a diverse set of AI services and models. Provides a unified interface for managing different AI resources and projects. Create an Azure AI Studio project to use AI services or models from other model providers. |
+| **Usage** | Ideal when you need to work specifically with Azure OpenAI models and use their capabilities for various applications. | Provides enterprise-grade features like access management and private networks.  Suitable when you want to explore and use a diverse set of AI services and models. Includes a unified interface for managing different AI resources and projects. Create an Azure AI Studio project to use AI services or models from other model providers. |
 
 > [!NOTE]
-> Projects currently do not support all Azure OpenAI Service features. These features include batch jobs and vector stores. To use these features, work outside of a project.
+> When you need features specific to Azure OpenAI, such as batch jobs and vector stores, work outside of a project.
 
 ### Navigate to/from projects
 

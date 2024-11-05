@@ -42,9 +42,9 @@ If your organization is using [Azure Policy](/azure/governance/policy/overview),
     
     :::image type="content" source="~/reusable-content/ce-skilling/azure/media/ai-studio/resource-create-basics.png" alt-text="Screenshot of the option to set hub basic information." lightbox="~/reusable-content/ce-skilling/azure/media/ai-studio/resource-create-basics.png":::
 
-1. Select the **Storage** tab to specify storage account settings.
+1. Select the **Storage** tab to specify storage account settings. For storing credentials, either provide your Azure Key Vault or use the [Microsoft-managed credential store (preview)](#choose-how-credentials-are-stored).
 
-    :::image type="content" source="~/reusable-content/ce-skilling/azure/media/ai-studio/resource-create-resources.png" alt-text="Screenshot of the Create a hub with the option to set storage resource information." lightbox="~/reusable-content/ce-skilling/azure/media/ai-studio/resource-create-resources.png"::: 
+    :::image type="content" source="../media/how-to/hubs/resource-create-resources.png" alt-text="Screenshot of the Create a hub with the option to set storage resource information." lightbox="../media/how-to/hubs/resource-create-resources.png"::: 
 
 1. Select the **Networking** tab to set up Network isolation. Read more on [network isolation](configure-managed-network.md). For a walkthrough of creating a secure hub, see [Create a secure hub](create-secure-ai-hub.md).
 
@@ -96,7 +96,7 @@ Hub networking settings can be set during resource creation or changed in the **
 
 At hub creation, select between the networking isolation modes: **Public**, **Private with Internet Outbound**, and **Private with Approved Outbound**. To secure your resource, select either **Private with Internet Outbound** or **Private with Approved Outbound** for your networking needs. For the private isolation modes, a private endpoint should be created for inbound access. For more information on network isolation, see [Managed virtual network isolation](configure-managed-network.md). To create a secure hub, see [Create a secure hub](create-secure-ai-hub.md). 
 
-At hub creation in the Azure portal, creation of associated Azure AI services, Storage account, Key vault, Application insights, and Container registry is given. These resources are found on the Resources tab during creation. 
+At hub creation in the Azure portal, creation of associated Azure AI services, Storage account, Key vault (optional), Application insights (optional), and Container registry (optional) is given. These resources are found on the Resources tab during creation. 
 
 To connect to Azure AI services (Azure OpenAI, Azure AI Search, and Azure AI Content Safety) or storage accounts in Azure AI Studio, create a private endpoint in your virtual network. Ensure the public network access (PNA) flag is disabled when creating the private endpoint connection. For more about Azure AI services connections, follow documentation [here](../../ai-services/cognitive-services-virtual-networks.md). You can optionally bring your own (BYO) search, but this requires a private endpoint connection from your virtual network.
 
@@ -149,22 +149,28 @@ az ml workspace update -n "myexamplehub" -g "{MY_RESOURCE_GROUP}" -a "APPLICATIO
 ```
 ---
 
+### Choose how credentials are stored
+
+Select scenarios in AI Studio store credentials on your behalf. For example when you create a connection in AI Studio to access an Azure Storage account with stored account key, access Azure Container Registry with admin password, or when you create a compute instance with enabled SSH keys. No credentials are stored with connections when you choose EntraID identity-based authentication.
+
+You can choose where credentials are stored:
+
+1. **Your Azure Key Vault**: This requires you to manage your own Azure Key Vault instance and configure it per hub. It gives you additional control over secret lifecycle e.g. to set expiry policies. You can also share stored secrets with other applications in Azure.
+   
+1. **Microsoft-managed credential store (preview)**: In this variant Microsoft manages an Azure Key Vault instance on your behalf per hub. No resource management is needed on your side and the vault does not show in your Azure subscription. Secret data lifecycle follows the resource lifecycle of your hubs and projects. For example, when a project's storage connection is deleted, its stored secret is deleted as well.
+
+After your hub is created, it is not possible to switch between Your Azure Key Vault and using a Microsoft-managed credential store.
+
 ## Delete an Azure AI Studio hub
 
-To delete a hub from Azure AI Studio management center, select the hub **Overview** and then select **Delete**.
+To delete a hub from Azure AI Studio, select the hub and then select **Delete hub** from the **Hub properties** section of the page.
 
-:::image type="content" source="../media/how-to/hubs/studio-delete-hub.png" alt-text="Screenshot of the delete button in the hub overview." lightbox="../media/how-to/hubs/studio-delete-hub.png":::
+:::image type="content" source="../media/how-to/hubs/studio-delete-hub.png" alt-text="Screenshot of the delete hub link in hub properties." lightbox="../media/how-to/hubs/studio-delete-hub.png":::
 
-If you want to use the [Azure portal](https://portal.azure.com) to delete the hub, you can get there quickly by selecting **Manage in Azure portal** from the hub **Overview**.
+> [!NOTE]
+> You can also delete the hub from the Azure portal.
 
-From the Azure portal page for your hub, select **Overview** along the left side of the page and then select **Delete** from the top of the page.
-
-:::image type="content" source="../media/how-to/hubs/delete-hub-button.png" alt-text="Screenshot of the delete button for the Azure AI Studio hub in the Azure portal.":::
-
-You can also find your hub in the Azure portal by entering the hub name in the search field at the top of the Azure portal. Select the hub from the **Resources** list to navigate to the **Overview** page for the hub.
-
-:::image type="content" source="../media/how-to/hubs/search-in-portal.png" alt-text="Screenshot of using the search field in the Azure portal to find a hub.":::
-
+Deleting a hub deletes all associated projects. When a project is deleted, all nested endpoints for the project are also deleted. You can optionally delete connected resources; however, make sure that no other applications are using this connection. For example, another Azure AI Studio deployment might be using it.
 
 ## Related content
 
