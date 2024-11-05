@@ -7,7 +7,7 @@ author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: overview
-ms.date: 10/01/2024
+ms.date: 11/05/2024
 ms.custom:
   - references_regions
 ---
@@ -23,7 +23,14 @@ ms.custom:
 
 | Item&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Type |  Description |
 |-----------------------------|------|--------------|
-| [**Add Azure AI Search to a network security perimeter**](search-security-network-security-perimiter.md) | Feature | Join a search service to a [network security perimeter](/azure/private-link/network-security-perimeter-concepts) to control network access to your search service. The Azure portal and the Management REST APIs in the [2024-06-01-preview](/rest/api/searchmanagement/network-security-perimeter-configurations?view=rest-searchmanagement-2024-06-01-preview&preserve-view=true) can be used to view and reconcile network security perimeter configurations. |
+| [**Add Azure AI Search to a network security perimeter**](search-security-network-security-perimiter.md) | Security | Join a search service to a [network security perimeter](/azure/private-link/network-security-perimeter-concepts) to control network access to your search service. The Azure portal and the Management REST APIs in the [2024-06-01-preview](/rest/api/searchmanagement/network-security-perimeter-configurations?view=rest-searchmanagement-2024-06-01-preview&preserve-view=true) can be used to view and reconcile network security perimeter configurations. |
+| [**Query rewrite in the semantic reranker**](semantic-how-to-query-rewrite.md) | Relevance | [Search Documents (2024-11-01-preview)](/rest/api/searchservice/documents/search-post?view=rest-searchservice-2024-11-01-preview&preserve-view=true), new **QueryRewritesType** property in the request.|
+| [**Document Layout skill**](cognitive-search-document-layout.md) used to analyze a document for structure and provide structure-aware chunking. This skill calls Document Intelligence and uses the Document Intelligence layout model. | Feature | [Create or Update Skillset (2024-11-01-preview)](/rest/api/searchservice/skillsets/create-or-update?view=rest-searchservice-2024-11-01-preview&preserve-view=true)|
+| [**Managed identity for keyless billing to an Azure AI multiservice subdomain**](cognitive-search-attach-cognitive-services.md). | Applied AI (skills) | You can now use a managed identity and roles for a keyless connection to Azure AI services for built-in skills processing. This capability removes restrictions for having both search and AI services in the same region. Availability is in the [Create or Update Skillset (2024-11-01-preview)](/rest/api/searchservice/skillsets/create-or-update?view=rest-searchservice-2024-11-01-preview&preserve-view=true), the Azure portal, and in the Azure SDK beta packages that provide this feature. |
+| [**Markdown parsing mode**](search-how-to-index-markdown-blobs.md), used for indexing Markdown files in Azure Storage.  | Feature | [Create or Update Indexer (2024-11-01-preview)](/rest/api/searchservice/indexers/create-or-update?view=rest-searchservice-2024-11-01-preview&preserve-view=true) |
+| [**Rescoring options for compressed vectors**](vector-search-how-to-quantization.md), used for rescoring with original vectors instead of compressed vectors. Applies to HNSW and exhaustive KNN vector algorithms, using binary and scalar compression. | Feature | [Create or Update Index (2024-11-01-preview)](/rest/api/searchservice/indexes/create-or-update?view=rest-searchservice-2024-09-01-preview&preserve-view=true) |
+| [**2024-11-01-preview**](/rest/api/searchservice/search-service-api-versions?view=rest-searchservice-2024-11-01-preview&preserve-view=true) | API | Preview release of REST APIs for query rewrite, Document Layout skill, keyless billing for skills processing, Markdown parsing mode, and rescoring options for compressed vectors. |
+| [**Portal support for structured data**](search-get-started-portal-import-vectors.md) | Feature | The **Import and vectorize data** wizard now supports Azure SQL, Azure Cosmos DB, and Azure Table Storage.|
 
 ## October 2024
 
