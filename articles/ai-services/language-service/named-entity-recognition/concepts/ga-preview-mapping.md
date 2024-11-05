@@ -34,7 +34,7 @@ Updates to the handling of output formats:
 
 * More granular entity recognition outputs through introducing the tags list where an entity could be tagged by more than one entity tag.
 * Overlapping entities where entities could be recognized as more than one entity type and if so, this entity would be returned twice. If an entity was recognized to belong to two entity tags under the same entity type, both entity tags are returned in the tags list.
-* Filtering entities using entity tags, you can learn more about this by navigating to [this article](../how-to-call.md#select-which-entities-to-be-returned-preview-api-only).
+* Filtering entities using entity tags, you can learn more about this by navigating to [this article](../how-to-call.md#select-which-entities-to-be-returned).
 * Metadata Objects which contain additional information about the entity but currently only act as a wrapper for the existing entity resolution feature. You can learn more about this new feature [here](entity-metadata.md).
 
 ## Versions `2022-05-01` and `2023-04-01` to current version API entity mappings
