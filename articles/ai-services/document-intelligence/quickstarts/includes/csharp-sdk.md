@@ -106,7 +106,7 @@ In this quickstart, use the following features to analyze and extract data and v
 
     :::image type="content" source="../../media/quickstarts/select-doc-intel-nuget-package.png" alt-text="Screenshot of select NuGet prerelease package window in Visual Studio.":::
 
-1. Select the **Browse** tab and type *Azure.AI.FormRecognizer*.
+1. Select the **Browse** tab and type *Azure.AI.DocumentIntelligence*.
 
 1. Select the **`Include prerelease`** checkbox.
 
