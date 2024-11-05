@@ -51,7 +51,7 @@ AZURE_OPENAI_EVALUATION_DEPLOYMENT=<your evaluation model deployment name>
 
 Use the following evaluation dataset, which contains example questions and expected answers (truth). 
 
-1. Create a file called **eval_dataset.jsonl** in your **rag-tutorial** folder. See the [application code structure](copilot-sdk-build-rag.md#application-code-structure) for reference.
+1. Create a file called **eval_dataset.jsonl** in your **rag-tutorial** folder. See the [application code structure](copilot-sdk-build-rag.md) for reference.
 1. Paste this dataset into the file:
 
     :::code language="jsonl" source="~/rag-data-openai-python-promptflow-main/tutorial/eval_dataset.jsonl":::
