@@ -14,9 +14,15 @@ zone_pivot_groups: speech-studio-cli-rest
 
 # Customize a speech model with fine-tuning in AI Studio
 
-Custom speech projects contain models, training and testing datasets, and deployment endpoints. Each project is specific to a [locale](language-support.md?tabs=stt). For example, you might create a project for English in the United States.
+With custom speech, you can enhance speech recognition accuracy for your applications by using a custom model for real-time speech to text, speech translation, and batch transcription. The base model, trained with Microsoft-owned data, handles common spoken language well, but a custom model can improve domain-specific vocabulary and audio conditions by providing text and audio data for training. Additionally, you can train the model with structured text for custom pronunciations, display text formatting, and profanity filtering.
+
+> [!TIP]
+> You can bring your custom speech projects and trained models from Speech Studio to AI Studio. In AI Studio, you can pick up where you left off by connecting to your existing Speech resource. For more information about connecting to an existing Speech resource, see [Connect to an existing Speech resource](../../ai-studio/ai-services/connect-ai-services.md#connect-azure-ai-services-after-you-create-a-project).
+
 
 ## Create a project in AI Studio
+
+Custom speech projects contain models, training and testing datasets, and deployment endpoints. Each project is specific to a [locale](language-support.md?tabs=stt). For example, you might create a project for English in the United States.
 
 To create a custom speech project, follow these steps:
 
@@ -33,4 +39,5 @@ Select the new project by name or select **Go to project**. You'll see these men
 
 
 ## Related content
- 
+
+- [Custom speech overview](./custom-speech-overview.md)
