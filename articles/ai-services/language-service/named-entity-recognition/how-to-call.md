@@ -39,9 +39,9 @@ The API attempts to detect the [defined entity categories](concepts/named-entity
 
 When you get results from NER, you can stream the results to an application or save the output to a file on the local system. The API response will include [recognized entities](concepts/named-entity-categories.md), including their categories and subcategories, and confidence scores. 
 
-## Select which entities to be returned (Preview API only)
+## Select which entities to be returned
 
-Starting with **API version 2023-04-15-preview**, the API attempts to detect the [defined entity types and tags](concepts/named-entity-categories.md) for a given document language. The entity types and tags replace the categories and subcategories structure the older models use to define entities for more flexibility. You can also specify which entities are detected and returned, use the optional `includeList` and `excludeList` parameters with the appropriate entity types. The following example would detect only `Location`. You can specify one or more [entity types](concepts/named-entity-categories.md) to be returned. Given the types and tags hierarchy introduced for this version, you have the flexibility to filter on different granularity levels as so:
+The API attempts to detect the [defined entity types and tags](concepts/named-entity-categories.md) for a given document language. The entity types and tags replace the categories and subcategories structure the older models use to define entities for more flexibility. You can also specify which entities are detected and returned, use the optional `includeList` and `excludeList` parameters with the appropriate entity types. The following example would detect only `Location`. You can specify one or more [entity types](concepts/named-entity-categories.md) to be returned. Given the types and tags hierarchy introduced for this version, you have the flexibility to filter on different granularity levels as so:
 
 **Input:**
 
@@ -107,6 +107,80 @@ This method returns all `Location` entities only falling under the `GPE` tag and
 ```
 
 Using these parameters we can successfully filter on only `Location` entity types, since the `GPE` entity tag included in the `includeList` parameter, falls under the `Location` type. We then filter on only Geopolitical entities and exclude any entities tagged with `Continent` or `CountryRegion` tags.
+
+## Additional output attributes
+
+In order to provide users with more insight into an entity's types and provide increased usability, NER supports these additional attributes in the output:
+
+|Name of the attribute|Type        |Definition                               |
+|---------------------|------------|-----------------------------------------|
+|`type`               |String      |The most specific type of detected entity.<br><br>For example, “Seattle” is a City, a GPE (Geo Political Entity) and a “Location”. The most granular classification for “Seattle” is that it is a “City”. The type would be “City” for the text “Seattle".|
+|`tags`               |List (tags) |A list of tag objects which expresses the affinity of the detected entity to a hierarchy or any other grouping.<br><br>A tag contains two fields:<br>1. `name`: A unique name for the tag.<br>2. `confidenceScore`: The associated confidence score for a tag ranging from  <br><br>This unique tagName will be used to filter in the `inclusionList` and `exclusionList` parameters  
+|`metadata`           |Object      |Metadata is an object containing additional data about the entity type detected. It changes based on the field `metadataKind`.
+
+## Sample output
+
+This sample output includes an example of the additional output attributes.
+
+```bash
+{ 
+    "kind": "EntityRecognitionResults", 
+    "results": { 
+        "documents": [ 
+            { 
+                "id": "1", 
+                "entities": [ 
+                    { 
+                        "text": "Microsoft", 
+                        "category": "Organization", 
+                        "type": "Organization", 
+                        "offset": 0, 
+                        "length": 9, 
+                        "confidenceScore": 0.97, 
+                        "tags": [ 
+                            { 
+                                "name": "Organization", 
+                                "confidenceScore": 0.97 
+                            } 
+                        ] 
+                    }, 
+                    { 
+                        "text": "One", 
+                        "category": "Quantity", 
+                        "type": "Number", 
+                        "subcategory": "Number", 
+                        "offset": 21, 
+                        "length": 3, 
+                        "confidenceScore": 0.9, 
+                        "tags": [ 
+                            { 
+                                "name": "Number", 
+                                "confidenceScore": 0.8 
+                            }, 
+                            { 
+                                "name": "Quantity", 
+                                "confidenceScore": 0.8 
+                            }, 
+                            { 
+                                "name": "Numeric", 
+                                "confidenceScore": 0.8 
+                            } 
+                        ], 
+                        "metadata": { 
+                            "metadataKind": "NumberMetadata", 
+                            "numberKind": "Integer", 
+                            "value": 1.0 
+                        } 
+                    } 
+                ], 
+                "warnings": [] 
+            } 
+        ], 
+        "errors": [], 
+        "modelVersion": "2023-09-01" 
+    } 
+} 
+```
 
 ## Specify the NER model
 

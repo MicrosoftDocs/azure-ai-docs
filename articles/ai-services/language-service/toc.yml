@@ -693,6 +693,8 @@ items:
           href: text-analytics-for-health/concepts/relation-extraction.md
         - name: Assertion detection
           href: text-analytics-for-health/concepts/assertion-detection.md
+        - name: Fast Healthcare Interoperability Resources (FHIR) structuring
+          href: text-analytics-for-health/concepts/fhir.md
     - name: Custom (preview)
       items:
       - name: Custom text analytics for health overview
@@ -727,8 +729,6 @@ items:
           href: custom-text-analytics-for-health/concepts/entity-components.md
         - name: Evaluation metrics
           href: custom-text-analytics-for-health/concepts/evaluation-metrics.md
-        - name: Fast Healthcare Interoperability Resources (FHIR) structuring
-          href: custom-text-analytics-for-health/concepts/fhir.md
       - name: Reference
         items:
         - name: Service limits
@@ -813,13 +813,13 @@ items:
     href: tutorials/power-automate.md
   - name: Use language in prompt flow
     href: tutorials/prompt-flow.md
-  - name: 🆕 Native document support
+  - name: Native document support
     items:
-    - name: 🆕 Use native documents for language processing
+    - name: Use native documents for language processing
       href: native-document-support/use-native-documents.md
-    - name: 🆕 Create SAS tokens for storage containers
+    - name: Create SAS tokens for storage containers
       href: native-document-support/shared-access-signatures.md
-    - name: 🆕 Create a managed identity for storage containers
+    - name: Create a managed identity for storage containers
       href: native-document-support/managed-identities.md  
   - name: Scenario deep-dives
     items:
