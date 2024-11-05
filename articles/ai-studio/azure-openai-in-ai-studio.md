@@ -51,7 +51,7 @@ Use the left navigation area to perform your tasks with Azure OpenAI models:
 While the previous sections show how to focus on just the Azure OpenAI Service, you can also incorporate other AI services and models from various providers in Azure AI Studio. You can access the Azure OpenAI Service in two ways:
 
 * When you focus on just the Azure OpenAI Service, as described in the previous sections, you don't use a project.
-* Azure AI Studio uses a project to organize your work and save state while building customized AI apps. When you work in a project, you can [connect](./how-to/connections-add.md) to the service.
+* Azure AI Studio uses a project to organize your work and save state while building customized AI apps. When you work in a project, you can connect to the service. For more information, see [How to use Azure OpenAI Service in AI Studio](ai-services/connect-azure-openai.md#project).
 
 When you create a project, you can try other models and tools along with Azure OpenAI. For example, the **Model catalog** in a project contains many more models than just Azure OpenAI models. Inside a project, you'll have access to features that are common across all AI services and models.
 

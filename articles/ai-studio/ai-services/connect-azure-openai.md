@@ -46,7 +46,7 @@ To use Azure OpenAI Service outside of a project, follow these steps:
 
 If you create more Azure OpenAI Service resources later (such as via the Azure portal or APIs), you can also access them from this page.
 
-## Use Azure OpenAI Service in a project
+## <a name="project"></a> Use Azure OpenAI Service in a project
 
 You might eventually want to use a project for tasks such as managing connections, permissions, and deploying models to production. You can use your existing Azure OpenAI Service resources in an AI Studio project. 
 
