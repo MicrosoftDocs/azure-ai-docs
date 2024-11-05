@@ -75,9 +75,9 @@ The following table shows the available models for each stable API:
 |Prebuilt models|[Credit card](concept-credit-card.md)   | ✔️| n/a| n/a| n/a|
 |Prebuilt models|[Business card](concept-business-card.md)                | deprecated|✔️|✔️|✔️ |
 |Custom classification model|[Custom classifier](train/custom-classifier.md)        | ✔️| ✔️| n/a| n/a|
-|Custom Generative Model|[Custom Generative Model](train/custom-generative-extraction.md)   | ✔️| n/a| n/a| n/a|
+|Custom Generative Model (preview)|[Custom Generative Model](train/custom-generative-extraction.md) | ✔️| n/a| n/a| n/a|
 |Custom extraction model|[Custom neural](train/custom-neural.md)                | ✔️| ✔️| ✔️| n/a|
-|Customextraction model|[Custom template](train/custom-template.md)            | ✔️| ✔️| ✔️| ✔️|
+|Custom extraction model|[Custom template](train/custom-template.md)            | ✔️| ✔️| ✔️| ✔️|
 |Custom extraction model|[Custom composed](train/composed-models.md)            | ✔️| ✔️| ✔️| ✔️|
 |All models|[Add-on capabilities](concept-add-on-capabilities.md)    | ✔️| ✔️| n/a| n/a|
 
@@ -327,7 +327,7 @@ Version v3.0 and later custom models support signature detection in custom templ
 
 :::image type="icon" source="media/studio/custom-extraction.png":::
 
-Custom extraction model can be one of two types, **custom template** or **custom neural**. To create a custom extraction model, label a dataset of documents with the values you want extracted and train the model on the labeled dataset. You only need five examples of the same form or document type to get started.
+Custom extraction model can be one of three types, **custom template**, **custom neural**, or **custom generative**. To create a custom extraction model, label a dataset of documents with the values you want extracted and train the model on the labeled dataset. You only need five examples of the same form or document type to get started.
 
 ***Sample custom extraction processed using [Document Intelligence Studio](https://formrecognizer.appliedai.azure.com/studio/customform/projects)***:
 

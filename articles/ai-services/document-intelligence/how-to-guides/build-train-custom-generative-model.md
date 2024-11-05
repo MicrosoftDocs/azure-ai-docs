@@ -13,6 +13,14 @@ monikerRange: '>=doc-intel-4.0.0'
 
 # Build and train a custom generative model with AI Studio
 
+
+> [!IMPORTANT]
+>
+> * Document Intelligence public preview releases provide early access to features that are in active development. Features, approaches, and processes may change, prior to General Availability (GA), based on user feedback.
+> * The public preview version of Document Intelligence client libraries default to REST API version [**2024-07-31-preview**](/rest/api/aiservices/operation-groups?view=rest-aiservices-2024-07-31-preview&preserve-view=true) and is currently only available in the following Azure regions.
+>   * **East US**
+>   * **North Central US**
+
 In this article, learn to build and train a custom generative model with Azure AI Studio. Document Intelligence custom models require as few as five training documents to get started. Do you have at least five documents? If so,  let's get started training and testing the custom generative model.
 
 ## Prerequisites
