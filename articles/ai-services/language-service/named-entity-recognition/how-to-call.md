@@ -1,7 +1,7 @@
 ---
 title: How to perform Named Entity Recognition (NER)
 titleSuffix: Azure AI services
-description: This article will show you how to extract named entities from text.
+description: This article shows you how to extract named entities from text.
 #services: cognitive-services
 author: jboback
 manager: nitinme
@@ -37,7 +37,7 @@ The API attempts to detect the [defined entity categories](concepts/named-entity
 
 ## Getting NER results
 
-When you get results from NER, you can stream the results to an application or save the output to a file on the local system. The API response will include [recognized entities](concepts/named-entity-categories.md), including their categories and subcategories, and confidence scores. 
+When you get results from NER, you can stream the results to an application or save the output to a file on the local system. The API response includes [recognized entities](concepts/named-entity-categories.md), including their categories and subcategories, and confidence scores. 
 
 ## Select which entities to be returned
 
@@ -46,7 +46,7 @@ The API attempts to detect the [defined entity types and tags](concepts/named-en
 **Input:**
 
 > [!NOTE]
-> In this example, it returns only the **Location** entity type.
+> In this example, it returns only the **"Location"** entity type.
 
 ```bash
 {
@@ -110,13 +110,13 @@ Using these parameters we can successfully filter on only `Location` entity type
 
 ## Additional output attributes
 
-In order to provide users with more insight into an entity's types and provide increased usability, NER supports these additional attributes in the output:
+In order to provide users with more insight into an entity's types and provide increased usability, NER supports these attributes in the output:
 
 |Name of the attribute|Type        |Definition                               |
 |---------------------|------------|-----------------------------------------|
-|`type`               |String      |The most specific type of detected entity.<br><br>For example, “Seattle” is a City, a GPE (Geo Political Entity) and a “Location”. The most granular classification for “Seattle” is that it is a “City”. The type would be “City” for the text “Seattle".|
-|`tags`               |List (tags) |A list of tag objects which expresses the affinity of the detected entity to a hierarchy or any other grouping.<br><br>A tag contains two fields:<br>1. `name`: A unique name for the tag.<br>2. `confidenceScore`: The associated confidence score for a tag ranging from  <br><br>This unique tagName will be used to filter in the `inclusionList` and `exclusionList` parameters  
-|`metadata`           |Object      |Metadata is an object containing additional data about the entity type detected. It changes based on the field `metadataKind`.
+|`type`               |String      |The most specific type of detected entity.<br><br>For example, “Seattle” is a `City`, a `GPE` (Geo Political Entity) and a `Location`. The most granular classification for “Seattle” is that it is a `City`. The type would be “City” for the text “Seattle".|
+|`tags`               |List (tags) |A list of tag objects which expresses the affinity of the detected entity to a hierarchy or any other grouping.<br><br>A tag contains two fields:<br>1. `name`: A unique name for the tag.<br>2. `confidenceScore`: The associated confidence score for a tag ranging from  <br><br>This unique tagName is be used to filter in the `inclusionList` and `exclusionList` parameters  
+|`metadata`           |Object      |Metadata is an object containing more data about the entity type detected. It changes based on the field `metadataKind`.
 
 ## Sample output
 

@@ -169,32 +169,39 @@ For this quickstart, you need a **source document** uploaded to your **source co
   ***Request sample***
 
 ```json
-{
-    "displayName": "Extracting Location & US Region",
-    "analysisInput": {
-        "documents": [
-            {
-                "language": "en-US",
-                "id": "Output-excel-file",
-                "source": {
-                    "location": "{your-source-blob-with-SAS-URL}"
-                },
-                "target": {
-                    "location": "{your-target-container-with-SAS-URL}"
-                }
+{ 
+    "displayName": "Document PII Redaction example", 
+    "analysisInput": { 
+        "documents": [ 
+            { 
+                "language": "en-US", 
+                "id": "Output-1", 
+                "source": { 
+                    "location": "{your-source-blob-with-SAS-URL}" 
+                }, 
+                "target": { 
+                    "location": "{your-target-container-with-SAS-URL}" 
+                } 
             } 
-        ]
-    },
-    "tasks": [
-        {
-            "kind": "PiiEntityRecognition",
-            "parameters":{
-                "excludePiiCategories" : ["PersonType", "Category2", "Category3"],
-                "redactionPolicy": "UseRedactionCharacterWithRefId" 
-            }
-        }
-    ]
-}
+        ] 
+    }, 
+    "tasks": [ 
+        { 
+            "kind": "PiiEntityRecognition", 
+            "taskName": "Redact PII Task 1", 
+            "parameters": { 
+                "redactionPolicy": { 
+                    "policyKind": "entityMask"  // Optional. Defines redactionPolicy; changes behavior based on value. Options: noMask, characterMask (default), and entityMask. 
+                }, 
+                "piiCategories": [ 
+                    "Person", 
+                    "Organization" 
+                ], 
+                "excludeExtractionData": false  // Default is false. If true, only the redacted document is stored, without extracted entities data. 
+            } 
+        } 
+    ] 
+} 
 ```
 
 * The source `location` value is the SAS URL for the **source document (blob)**, not the source container SAS URL.
