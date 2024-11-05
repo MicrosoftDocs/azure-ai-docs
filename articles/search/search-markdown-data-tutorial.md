@@ -7,13 +7,15 @@ author: mdonovan
 ms.author: mdonovan
 ms.service: azure-ai-search
 ms.custom:
-  - ignite-2023
+  - ignite-2024
 ms.topic: tutorial
-ms.date: 10/24/2024
+ms.date: 11/19/2024
 
 ---
 
 # Tutorial: Index nested Markdown blobs from Azure Storage using REST
+
+[!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 
 Azure AI Search can index Markdown documents and arrays in Azure Blob Storage using an [indexer](search-indexer-overview.md) that knows how to read Markdown data. 
 

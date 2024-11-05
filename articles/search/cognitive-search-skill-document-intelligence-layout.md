@@ -1,5 +1,5 @@
 ---
-title: Document Intelligence Layout skill
+title: Document Layout skill
 titleSuffix: Azure AI Search
 description: Analyze a document to extract regions of interest and their inter-relationships to produce a syntactical representation (markdown format) in an enrichment pipeline in Azure AI Search.
 
@@ -10,17 +10,23 @@ ms.service: azure-ai-search
 ms.custom:
   - references_regions
 ms.topic: reference
-ms.date: 10/10/2024
+ms.date: 11/19/2024
 ---
-# Document Intelligence Layout skill
 
-The **Document Intelligence Layout** skill analyzes a document to extract regions of interest and their inter-relationships to produce a syntactical representation (markdown format). This skill uses the [Document Intelligence layout model](/azure/ai-services/document-intelligence/concept-layout) provided in [Azure AI Document Intelligence](/azure/ai-services/document-intelligence/overview). This article is the reference documentation for the Document Intelligence Layout skill.
+# Document Layout skill
 
-+ The **Document Intelligence Layout** skill uses [Document Intelligence Public preview version 2024-07-31-preview](/rest/api/aiservices/operation-groups?view=rest-aiservices-v4.0%20(2024-07-31-preview)&preserve-view=true). It's currently only available in the following Azure regions:
-    + East US
-    + West US2
-    + West Europe
-    + North Central US
+[!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
+
+The **Document Layout** skill analyzes a document to extract regions of interest and their inter-relationships to produce a syntactical representation (markdown format). This skill uses the [Document Intelligence layout model](/azure/ai-services/document-intelligence/concept-layout) provided in [Azure AI Document Intelligence](/azure/ai-services/document-intelligence/overview). 
+
+This article is the reference documentation for the Document Layout skill.
+
+The **Document Layout** skill calls the [Document Intelligence Public preview version 2024-07-31-preview](/rest/api/aiservices/operation-groups?view=rest-aiservices-v4.0%20(2024-07-31-preview)&preserve-view=true). It's currently only available in the following Azure regions:
+
++ East US
++ West US2
++ West Europe
++ North Central US
 
 Supported file formats include:
 
@@ -44,11 +50,11 @@ Supported file formats include:
 Microsoft.Skills.Util.DocumentIntelligenceLayoutSkill
 
 ## Data limits
+
 + For PDF and TIFF, up to 2,000 pages can be processed (with a free tier subscription, only the first two pages are processed).
 + The file size for analyzing documents is 500 MB for [Azure AI Document Intelligence paid (S0) tier](https://azure.microsoft.com/pricing/details/cognitive-services/) and 4 MB for [Azure AI Document Intelligence free (F0) tier](https://azure.microsoft.com/pricing/details/cognitive-services/).
 + Image dimensions must be between 50 pixels x 50 pixels and 10,000 pixels x 10,000 pixels.
 + If your PDFs are password-locked, you must remove the lock before submission.
-
 
 ## Skill parameters
 

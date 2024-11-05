@@ -10,14 +10,17 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2024
 ms.topic: how-to
-ms.date: 10/22/2024
+ms.date: 11/19/2024
 ---
 
 # Index Markdown blobs and files in Azure AI Search
 
+[!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
+
 **Applies to**: [Blob indexers](search-howto-indexing-azure-blob-storage.md), [OneLake indexers](search-how-to-index-onelake-files.md), [File indexers](search-file-storage-integration.md)
 
-In Azure AI Search, indexers for Azure Blob Storage and Azure Files support a `markdown` parsing mode for Markdown files. Markdown files can be indexed in two ways: 
+In Azure AI Search, indexers for Azure Blob Storage and Azure Files support a `markdown` parsing mode for Markdown files. Markdown files can be indexed in two ways:
+
 + One-to-many parsing mode
 + One-to-one parsing mode
 
