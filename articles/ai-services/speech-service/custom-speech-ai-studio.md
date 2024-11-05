@@ -6,9 +6,8 @@ author: eric-urban
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 9/19/2024
+ms.date: 11/19/2024
 ms.author: eur
-zone_pivot_groups: speech-studio-cli-rest
 #Customer intent: As a developer, I want to learn how to customize a speech model with fine-tuning in AI Studio so that I can deploy a custom model.
 ---
 
@@ -84,7 +83,7 @@ In AI Studio, you can fine-tune some Azure AI services models. For example, you 
     :::image type="content" source="./media/ai-studio/custom-speech/new-fine-tune-test-model-select-type.png" alt-text="Screenshot of the page with an option to add data to the custom speech project." lightbox="./media/ai-studio/custom-speech/new-fine-tune-test-model-select-type.png":::
 
 1. Select the data that you want to use for testing. Then select **Next**.
-1. Select up to two models to evaluate and compare accuracy. In this example, we select the model that we just trained and the base model. Then select **Next**.
+1. Select up to two models to evaluate and compare accuracy. In this example, we select the model that we trained and the base model. Then select **Next**.
 
     :::image type="content" source="./media/ai-studio/custom-speech/new-fine-tune-test-model-select-models.png" alt-text="Screenshot of the page with an option to add data to the custom speech project." lightbox="./media/ai-studio/custom-speech/new-fine-tune-test-model-select-models.png":::
 
@@ -120,8 +119,6 @@ You can access your custom speech models and deployments from the **Fine-tuning*
 1. Select **AI Service fine-tuning**.
 
     :::image type="content" source="./media/ai-studio/custom-speech/fine-tune-succeeded-list.png" alt-text="Screenshot of the page with an option to add data to the custom speech project." lightbox="./media/ai-studio/custom-speech/fine-tune-succeeded-list.png":::
-
-
 
 ## Related content
 
