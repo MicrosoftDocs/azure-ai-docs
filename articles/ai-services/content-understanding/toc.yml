@@ -1,10 +1,10 @@
 items:
-- name: Azure AI Multimodal Intelligence Documentation
+- name: Azure AI Content Understanding Documentation
   href: index.yml
 - name: Overview
   expanded: true
   items:
-  - name: What is Azure AI Multimodal Intelligence?
+  - name: What is Azure AI Content Understanding?
     displayName: document, text, images, video, audio, multi-modal, visual,structured, content, field, extraction,
     href: overview.md
   - name: Create an Azure AI resource
@@ -55,7 +55,7 @@ items:
           href: video/how-to/set-up-manage-video-assets.md
 - name: Quickstarts
   items:
-  - name: Multimodal Intelligence REST API
+  - name: Content Understanding REST API
     displayName: quickstart, extract, text, images, OCR, optical character recognition
     href: quickstart/rest-api.md
     
