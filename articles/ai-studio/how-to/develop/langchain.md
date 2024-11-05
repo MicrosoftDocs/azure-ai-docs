@@ -13,7 +13,7 @@ author: sdgilley
 
 # Develop applications with LangChain and Azure AI studio
 
-LangChain is a development ecosystem that makes as easy possible for developers to build applications that reason. The ecosystem is composed by multiple components. Most of the them can be used by themselves, allowing you to pick and choose whichever components you like best. Azure AI studio integrates with LangChain in the package `langchain-azure-ai` and `langchain-openai`.
+LangChain is a development ecosystem that makes as easy possible for developers to build applications that reason. The ecosystem is composed by multiple components. Most of the them can be used by themselves, allowing you to pick and choose whichever components you like best.
 
 Models deployed to Azure AI studio can be used with LangChain in two ways:
 
@@ -21,7 +21,7 @@ Models deployed to Azure AI studio can be used with LangChain in two ways:
 
 - **Using the model's provider specific API:** Some models, like OpenAI, Cohere, or Mistral, offer their own set of APIs and extensions for LlamaIndex. Those extensions may include specific functionalities that the model support and hence are suitable if you want to exploit them. When working with LangChain, install the extension specific for the model you want to use, like `langchain-openai` or `langchain-cohere`.
 
-In this tutorial, you learn how to use the packages to build intelligent applications with models deployed in Azure AI studio with LangChain with the package `langchain-azure-ai` and the **Azure AI model inference API**.
+In this tutorial, you learn how to use the packages `langchain-azure-ai` to build applications with LangChain.
 
 ## Prerequisites
 
@@ -176,18 +176,20 @@ chain.invoke({"language": "italian", "text": "hi"})
 
 ### Chaining multiple LLMs together
 
-Models deployed to Azure AI studio support the Azure AI model inference API, which is standard across all the models. Chain multiple LLM operations based on the capabilities of each model so you can optimize for the right model based on capabilities. In the following example, we create 2 model clients, one is a producer and another one is a verifier. To make the distinction clear, we are using a multi-model endpoint like the [Azure AI model inference service](../../ai-services/model-inference.md) and hence we are passing the parameter `model_name` to use a `Mistral-Large` and a `Mistral-Small` model, quoting the fact that producing content is more complex than verifying it.
+Models deployed to Azure AI studio support the Azure AI model inference API, which is standard across all the models. Chain multiple LLM operations based on the capabilities of each model so you can optimize for the right model based on capabilities. 
+
+In the following example, we create 2 model clients, one is a producer and another one is a verifier. To make the distinction clear, we are using a multi-model endpoint like the [Azure AI model inference service](../../ai-services/model-inference.md) and hence we are passing the parameter `model_name` to use a `Mistral-Large` and a `Mistral-Small` model, quoting the fact that **producing content is more complex than verifying it**.
 
 ```python
 producer = AzureAIChatCompletionsModel(
     endpoint=os.environ["AZURE_INFERENCE_ENDPOINT"],
-    credential==os.environ["AZURE_INFERENCE_CREDENTIAL"],
+    credential=os.environ["AZURE_INFERENCE_CREDENTIAL"],
     model_name="mistral-large-2407",
 )
 
 verifier = AzureAIChatCompletionsModel(
     endpoint=os.environ["AZURE_INFERENCE_ENDPOINT"],
-    credential==os.environ["AZURE_INFERENCE_CREDENTIAL"],
+    credential=os.environ["AZURE_INFERENCE_CREDENTIAL"],
     model_name="mistral-small",
 )
 ```
@@ -300,7 +302,7 @@ If the deployment is hosted in Azure AI Services, you can use the Azure AI model
 from langchain_azure_ai import AzureAIChatCompletionsModel
 
 llm = AzureAIChatCompletionsModel(
-    endpoint="https://<resource>.services.ai.azure.com",
+    endpoint="https://<resource>.services.ai.azure.com/models",
     credential=os.environ["AZURE_INFERENCE_CREDENTIAL"],
     model_name="<model-name>",
     api_version="2024-05-01-preview",
