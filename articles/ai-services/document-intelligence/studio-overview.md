@@ -1,5 +1,5 @@
 ---
-title: Studio experience for Document Intelligence
+title: Document Intelligence Studio
 titleSuffix: Azure AI services
 description: Learn how to set up and use either Document Intelligence Studio or AI Studio to test features of Azure AI Document Intelligence on the web.
 author: laujan
@@ -15,7 +15,7 @@ monikerRange: '>=doc-intel-3.0.0'
 <!-- markdownlint-disable MD033 -->
 <!-- markdownlint-disable MD051 -->
 
-# Studio experience for Document Intelligence
+# Document Intelligence Studio
 
 [!INCLUDE [applies to v4.0 v3.1 v3.0](includes/applies-to-v40-v31-v30.md)]
 
@@ -30,23 +30,40 @@ The studio is an online tool to visually explore, understand, train, and integra
 
 Currently, we're undergoing the migration of features from the [Document Intelligence Studio](https://documentintelligence.ai.azure.com/studio) to the new [AI Studio](https://ai.azure.com/explore/aiservices/vision). There are some differences in the offerings for the two studios, which determine the correct studio for your use case.
 
+## Choose the correct studio experience
+
+There are currently two studios, the [Azure AI Studio](https://ai.azure.com/explore/aiservices/vision) and the [Document Intelligence Studio](https://documentintelligence.ai.azure.com/studio) for building and validating  Document Intelligence models. As the experiences migrate to the new AI Studio, some experiences are available in both studios, while other experiences/models are only available in only one of the studios. To follow are a few guidelines for choosing the Studio experience for your needs. All of our [prebuilt models](overview.md#prebuilt-models) and [general extraction models](overview.md#general-extraction-models) are available on both studios.
+<!-- markdownlint-disable MD033 -->
+<!-- markdownlint-disable MD051 -->
+
+## Studio experience for Document Intelligence
+
+[!INCLUDE [applies to v4.0 v3.1 v3.0](includes/applies-to-v40-v31-v30.md)]
+
+The studio is an online tool to visually explore, understand, train, and integrate features from the Document Intelligence service into your applications. The studio provides a platform for you to experiment with the different Document Intelligence models and sample returned data in an interactive manner without the need to write code. You can use the studio experience to:
+
+* Learn more about the different capabilities in Document Intelligence.
+* Use your Document Intelligence resource to test models on sample documents or upload your own documents.
+* Experiment with different add-on and preview features to adapt the output to your needs.
+* Train custom classification models to classify documents.
+* Train custom extraction models to extract fields from documents.
+* Get sample code for the language specific `SDKs` to integrate into your applications.
+
+Currently, we're undergoing the migration of features from the [Document Intelligence Studio](https://documentintelligence.ai.azure.com/studio) to the new [AI Studio](https://ai.azure.com/explore/aiservices/vision). There are some differences in the offerings for the two studios, which determine the correct studio for your use case.
+
 ## Choosing the correct studio experience
 
 There are currently two studios, the [Azure AI Studio](https://ai.azure.com/explore/aiservices/vision) and the [Document Intelligence Studio](https://documentintelligence.ai.azure.com/studio) for building and validating  Document Intelligence models. As the experiences migrate to the new AI Studio, some experiences are available in both studios, while other experiences/models are only available in only one of the studios. To follow are a few guidelines for choosing the Studio experience for your needs. All of our [prebuilt models](overview.md#prebuilt-models) and [general extraction models](overview.md#general-extraction-models) are available on both studios.
 
 ### When to use [Document Intelligence Studio](https://documentintelligence.ai.azure.com/studio)
 
-Document Intelligence Studio is the legacy experience that contains all features released on or before July 2024. For any of the v2.1, v3.0, v3.1 features, continue to use the Document Intelligence Studio. Studios provide a visual experience for labeling, training, and validating custom models. For custom document field extraction models, use the Document Intelligence Studio for template and neural models. Custom classification models can only be trained and used on Document Intelligence Studio. Use Document Intelligence Studio if you want to try out GA versions of the models from version 2.1, v3.0 and v3.1.
+Document Intelligence Studio is the legacy experience that contains all features released on or before November 2024. For any of the v2.1, v3.0, v3.1 features, continue to use the Document Intelligence Studio. Studios provide a visual experience for labeling, training, and validating custom models. For custom document field extraction models, use the Document Intelligence Studio for template and neural models. Custom classification models can only be trained and used on Document Intelligence Studio. Use Document Intelligence Studio if you want to try out GA versions of the models from version 2.1, v3.0 and v3.1.
 
 ### When to use [AI Studio](https://ai.azure.com/explore/aiservices/vision)
 
-Start with the new Azure AI Studio and try a pretrained document analysis model like read or layout or a scenario specific model like receipt or invoice. If you want to build and test a new [Document Field Extraction](https://ai.azure.com/explore/aiservices/vision/document/extraction) model, try our generative AI model, only available in the new AI Studio.
+Start with the new Azure AI Studio and try any of the prebuilt document models from `2024-02-29-preview` version including general extraction models like Read or Layout. If you want to build and test a new [Document Field Extraction](https://ai.azure.com/explore/aiservices/vision/document/extraction) model, try our generative AI model, only available in the new AI Studio. Learn how to [connect your AI services hub](../../ai-studio/ai-services/connect-ai-services.md) with AI services and get started using Document Intelligence in AI Studio.
 
-## Learn more about Document Intelligence Studio
-
-Select the studio experience from the following tabs to learn more about each studio and how you can get started.
-
-### [**Document Intelligence Studio**](#tab/di-studio)
+## Prerequisites for using Document Intelligence Studio
 
 > [!IMPORTANT]
 >
@@ -54,15 +71,20 @@ Select the studio experience from the following tabs to learn more about each st
 > * Azure for US Government: [Document Intelligence Studio (Azure Fairfax cloud)](https://formrecognizer.appliedai.azure.us/studio)
 > * Microsoft Azure operated by 21Vianet: [Document Intelligence Studio (Azure in China)](https://formrecognizer.appliedai.azure.cn/studio)
 
-The studio supports Document Intelligence v3.0 and later API versions for model analysis and custom model training. Previously trained v2.1 models with labeled data are supported, but not v2.1 model training. Refer to the [REST API migration guide](v3-1-migration-guide.md) for detailed information about migrating from v2.1 to v3.0.
-
-Use the [Document Intelligence Studio quickstart](quickstarts/try-document-intelligence-studio.md) to get started analyzing documents with document analysis or prebuilt models. Build custom models and reference the models in your applications using one of the [language specific `SDKs`](quickstarts/get-started-sdks-rest-api.md?view=doc-intel-3.0.0&preserve-view=true). To use Document Intelligence Studio, you need to acquire the following assets from the Azure portal:
+The studio supports Document Intelligence v3.0 and later API versions for model analysis and custom model training. Previously trained v2.1 models with labeled data are supported, but not v2.1 model training. Refer to the [REST API migration guide](v3-1-migration-guide.md) for detailed information about migrating from v2.1 to v3.0. To use Document Intelligence Studio, you need to acquire the following assets from the Azure portal:
 
 * **An Azure subscription** - [Create one for free](https://azure.microsoft.com/free/cognitive-services/).
 
 * **An Azure AI services or Document Intelligence resource**. Once you have your Azure subscription, create a [single-service](https://portal.azure.com/#create/Microsoft.CognitiveServicesFormRecognizer) or [multi-service](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIServices) resource, in the Azure portal to get your key and endpoint. Use the free pricing tier (`F0`) to try the service, and upgrade later to a paid tier for production.
 
-#### Authorization policies
+> [!TIP]
+> Create an Azure AI services resource if you plan to access multiple Azure AI services under a single endpoint/key. For Document Intelligence access only, create a Document Intelligence resource. Please note that you'll need a single-service resource if you intend to use [Microsoft Entra authentication](/azure/active-directory/authentication/overview-authentication).
+>
+> Document Intelligence now supports AAD token authentication additional to local (key-based) authentication when accessing the Document Intelligence resources and storage accounts. Be sure to follow below instructions to setup correct access roles, especially if your resources are applied with `DisableLocalAuth` policy.
+
+Note that there are additional prerequisites for using custom models in Document Intelligence Studio. Please refer to the [documentation](quickstarts/studio-custom-project.md) for step by step guidance.
+
+### Authorization policies
 
 Your organization can opt to disable local authentication and enforce Microsoft Entra (formerly Azure Active Directory) authentication for Azure AI Document Intelligence resources and Azure blob storage.
 
@@ -74,16 +96,43 @@ Your organization can opt to disable local authentication and enforce Microsoft 
 
   * [Disable local authentication for Azure AI Services](../disable-local-auth.md).
   * [Prevent Shared Key authorization for an Azure Storage account](/azure/storage/common/shared-key-authorization-prevent)
+ 
+ > [!NOTE]
+ > If local (key-based) authentication is disabled for your Document Intelligence service resource, be sure to obtain **Cognitive Services User** role and your AAD token will be used to authenticate requests on Document Intelligence Studio.  The **Contributor** role only allows you to list keys but does not give you permission to use the resource when key-access is disabled.
 
-* **Designating role assignments**. Document Intelligence Studio basic access requires the [`Cognitive Services User`](/azure/role-based-access-control/built-in-roles/ai-machine-learning#cognitive-services-user) role. For more information, *see* [Document Intelligence role assignments](quickstarts/try-document-intelligence-studio.md#azure-role-assignments).
+* **Designating role assignments**. Document Intelligence Studio basic access requires the [`Cognitive Services User`](/azure/role-based-access-control/built-in-roles/ai-machine-learning#cognitive-services-user) role. For more information, *see* [Document Intelligence role assignments](quickstarts/studio-custom-project.md#azure-role-assignments).
 
 > [!IMPORTANT]
 >
 > * Make sure you have the **Cognitive Services User role**, and not the Cognitive Services Contributor role when setting up Entra authentication.
+> * ✔️ **Cognitive Services User**: you need this role to Document Intelligence or Azure AI services resource to enter the analyze page.
+> * ✔️ **Contributor**: you need this role to create resource group, Document Intelligence service, or Azure AI services resource.
 > * In Azure context, Contributor role can only perform actions to control and manage the resource itself, including listing the access keys.
 > * User accounts with a Contributor are only able to access the Document Intelligence service by calling with access keys. However, when setting up access with Entra ID, key-access will be disabled and **Cognitive Service User** role will be required for an account to use the resources.
 
-#### Document Intelligence model support
+### Authentication in Studio
+
+Navigate to the [Document Intelligence Studio](https://formrecognizer.appliedai.azure.com/). If it's your first time logging in, a popup window appears prompting you to configure your service resource. In accordance with your organization's policy, you have one or two options:
+
+* **Microsoft Entra authentication: access by Resource (recommended)**.
+
+  * Choose your existing subscription.
+  * Select an existing resource group within your subscription or create a new one.
+  * Select your existing Document Intelligence or Azure AI services resource.
+
+    :::image type="content" source="media/studio/configure-service-resource.png" alt-text="Screenshot of configure service resource form from the Document Intelligence Studio.":::
+
+* **Local authentication: access by API endpoint and key**.
+
+  * Retrieve your endpoint and key from the Azure portal.
+  * Go to the overview page for your resource and select **Keys and Endpoint** from the left navigation bar.
+  * Enter the values in the appropriate fields.
+
+      :::image type="content" source="media/studio/keys-and-endpoint.png" alt-text="Screenshot of the keys and endpoint page in the Azure portal.":::
+
+* After validating the scenario in the Document Intelligence Studio, use the [**C#**](quickstarts/get-started-sdks-rest-api.md?view=doc-intel-4.0.0&preserve-view=true), [**Java**](quickstarts/get-started-sdks-rest-api.md?view=doc-intel-4.0.0&preserve-view=true), [**JavaScript**](quickstarts/get-started-sdks-rest-api.md?view=doc-intel-4.0.0&preserve-view=true), or [**Python**](quickstarts/get-started-sdks-rest-api.md?view=doc-intel-4.0.0&preserve-view=true) client libraries or the [**REST API**](quickstarts/get-started-sdks-rest-api.md?view=doc-intel-4.0.0&preserve-view=true) to get started incorporating Document Intelligence models into your own applications.
+
+### Document Intelligence model support
 
 Use the help wizard, labeling interface, training step, and interactive visualizations to understand how each feature works.
 
@@ -109,9 +158,7 @@ Use the help wizard, labeling interface, training step, and interactive visualiz
 
 * After validating the scenario in the Document Intelligence Studio, use the [**C#**](quickstarts/get-started-sdks-rest-api.md?view=doc-intel-3.0.0&preserve-view=true), [**Java**](quickstarts/get-started-sdks-rest-api.md?view=doc-intel-3.0.0&preserve-view=true), [**JavaScript**](quickstarts/get-started-sdks-rest-api.md?view=doc-intel-3.0.0&preserve-view=true), or [**Python**](quickstarts/get-started-sdks-rest-api.md?view=doc-intel-3.0.0&preserve-view=true) client libraries or the [**REST API**](quickstarts/get-started-sdks-rest-api.md?view=doc-intel-3.0.0&preserve-view=true) to get started incorporating Document Intelligence models into your own applications.
 
-To learn more about each model, *see* our concept pages.
-
-##### View resource details
+#### View resource details
 
  To view resource details such as name and pricing tier, select the **Settings** icon in the top-right corner of the Document Intelligence Studio home page and select the **Resource** tab. If you have access to other resources, you can switch resources as well.
 
@@ -129,7 +176,7 @@ With Document Intelligence, you can quickly automate your data processing in app
     > [!NOTE]
     > Font extraction is not visualized in Document Intelligence Studio. However, you can check the styles section of the JSON output for the font detection results.
 
-##### Auto label documents with prebuilt models or one of your own models
+#### Auto label documents with prebuilt models or one of your own models
 
 * In custom extraction model labeling page, you can now auto label your documents using one of Document Intelligent Service prebuilt models or your trained models.
 
@@ -139,13 +186,13 @@ With Document Intelligence, you can quickly automate your data processing in app
 
     :::image type="content" source="media/studio/duplicate-labels.png" alt-text="Screenshot showing duplicate label warning after auto labeling.":::
 
-##### Auto label tables
+#### Auto label tables
 
 * In custom extraction model labeling page, you can now auto label the tables in the document without having to label the tables manually.
 
     :::image type="content" source="media/studio/auto-table-label.gif" alt-text="Animated screenshot showing auto table labeling in Studio.":::
 
-##### Add test files directly to your training dataset
+#### Add test files directly to your training dataset
 
 * Once you train a custom extraction model, make use of the test page to improve your model quality by uploading test documents to training dataset if needed.
 
@@ -153,7 +200,7 @@ With Document Intelligence, you can quickly automate your data processing in app
 
     :::image type="content" source="media/studio/add-from-test.gif" alt-text="Animated screenshot showing how to add test files to training dataset.":::
 
-##### Make use of the document list options and filters in custom projects
+#### Make use of the document list options and filters in custom projects
 
 * Use the custom extraction model labeling page to navigate through your training documents with ease by making use of the search, filter, and sort by feature.
 
@@ -161,20 +208,20 @@ With Document Intelligence, you can quickly automate your data processing in app
 
     :::image type="content" source="media/studio/document-options.png" alt-text="Screenshot of document list view options and filters.":::
 
-##### Project sharing
+#### Project sharing
 
 Share custom extraction projects with ease. For more information, see [Project sharing with custom models](how-to-guides/project-share-custom-models.md).
 
-#### Troubleshooting
+### Troubleshooting
 
 |Scenario     |Cause| Resolution|
 |-------------|------|----------|
 |You receive the error message</br> `Form Recognizer Not Found` when opening a custom project.|Your Document Intelligence resource, bound to the custom project was deleted or moved to another resource group.| There are two ways to resolve this problem: </br>&bullet; Re-create the Document Intelligence resource under the same subscription and resource group with the same name.</br>&bullet; Re-create a custom project with the migrated Document Intelligence resource and specify the same storage account.|
-|You receive the error message</br> `PermissionDenied` when using prebuilt apps or opening a custom project.|The principal doesn't have access to API/Operation" when analyzing against prebuilt models or opening a custom project. It's likely the local (key-based) authentication is disabled for your Document Intelligence resource don't have enough permission to access the resource.|Reference [Azure role assignments](quickstarts/try-document-intelligence-studio.md#azure-role-assignments) to configure your access roles.|
-|You receive the error message</br> `AuthorizationPermissionMismatch` when opening a custom project.|The request isn't authorized to perform the operation using the designated permission. It's likely the local (key-based) authentication is disabled for your storage account and you don't have the granted permission to access the blob data.|Reference [Azure role assignments](quickstarts/try-document-intelligence-studio.md#azure-role-assignments) to configure your access roles.|
+|You receive the error message</br> `PermissionDenied` when using prebuilt apps or opening a custom project.|The principal doesn't have access to API/Operation" when analyzing against prebuilt models or opening a custom project. It's likely the local (key-based) authentication is disabled for your Document Intelligence resource don't have enough permission to access the resource.|Reference [Azure role assignments](quickstarts/studio-custom-project.md#azure-role-assignments) to configure your access roles.|
+|You receive the error message</br> `AuthorizationPermissionMismatch` when opening a custom project.|The request isn't authorized to perform the operation using the designated permission. It's likely the local (key-based) authentication is disabled for your storage account and you don't have the granted permission to access the blob data.|Reference [Azure role assignments](quickstarts/studio-custom-project.md#azure-role-assignments) to configure your access roles.|
 |You can't sign in to Document Intelligence Studio and receive the error message</br> `InteractionRequiredAuthError:login_required:AADSTS50058:A silent sign-request was sent but no user is signed in`|It's likely that your browser is blocking third-party cookies so you can't successfully sign in.|To resolve, see [Manage third-party settings](#manage-third-party-settings-for-studio-access) for your browser.|
 
-##### Manage third-party settings for Studio access
+#### Manage third-party settings for Studio access
 
 **Edge**:
 
@@ -202,14 +249,8 @@ Share custom extraction projects with ease. For more information, see [Project s
 * Select **Privacy**
 * Deselect **Block all cookies**
 
-### [**AI Studio**](#tab/ai-studio)
-
-Document Intelligence is part of the Azure AI services offerings in the Azure AI Studio. Each of the Azure AI services helps developers and organizations rapidly create intelligent, cutting-edge, market-ready, and responsible applications with out-of-the-box and prebuilt and customizable APIs and models.
-
-Learn how to [connect your AI services hub](../../ai-studio/ai-services/connect-ai-services.md) with AI services and get started using Document Intelligence.
 
 ## Next steps
 
 * Visit [Document Intelligence Studio](https://formrecognizer.appliedai.azure.com/studio).
 * Visit [AI Studio](https://ai.azure.com/explore/aiservices/vision).
-* Get started with [Document Intelligence Studio quickstart](quickstarts/try-document-intelligence-studio.md).

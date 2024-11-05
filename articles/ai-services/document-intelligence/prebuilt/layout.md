@@ -1186,7 +1186,7 @@ Layout API also extracts selection marks from documents. Extracted selection mar
 
 :::moniker range="doc-intel-4.0.0 || doc-intel-3.1.0"
 
-* [Learn how to process your own forms and documents](../quickstarts/try-document-intelligence-studio.md) with the [Document Intelligence Studio](https://documentintelligence.ai.azure.com/studio).
+* [Learn how to process your own forms and documents](../studio-overview.md) with the [Document Intelligence Studio](https://documentintelligence.ai.azure.com/studio).
 
 * Complete a [Document Intelligence quickstart](../quickstarts/get-started-sdks-rest-api.md?view=doc-intel-3.1.0&preserve-view=true) and get started creating a document processing app in the development language of your choice.
 

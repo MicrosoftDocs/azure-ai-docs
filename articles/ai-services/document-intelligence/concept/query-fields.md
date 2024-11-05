@@ -63,7 +63,7 @@ Ocp-Apim-Subscription-Key:
 ## Next steps
 
 > [!div class="nextstepaction"]
-> [Try the Document Intelligence Studio quickstart](../quickstarts/try-document-intelligence-studio.md)
+> [Try the Document Intelligence Studio quickstart](../studio-overview.md)
 
 > [!div class="nextstepaction"]
 > [Learn about other add-on capabilities](../concept/add-on-capabilities.md)

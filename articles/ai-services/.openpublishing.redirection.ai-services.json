@@ -779,6 +779,11 @@
       "source_path_from_root": "/articles/ai-services/language-service/question-answering/how-to/azure-openai-integration.md",
       "redirect_url": "/azure/ai-services/language-service/question-answering/overview",
       "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/document-intelligence/quickstarts/try-document-intelligence-studio.md",
+      "redirect_url": "/azure/ai-services/document-intelligence/quickstarts/studio-custom-project",
+      "redirect_document_id": true
     }
   ]
 }

@@ -1,5 +1,5 @@
 ---
-title: "Quickstart: Document Intelligence Studio | v3.0"
+title: Document Intelligence Studio custom project
 titleSuffix: Azure AI services
 description: Form and document processing, data extraction, and analysis using Document Intelligence Studio
 author: laujan
@@ -14,7 +14,7 @@ monikerRange: '>=doc-intel-3.0.0'
 
 <!-- markdownlint-disable MD001 -->
 
-# Get started: Document Intelligence Studio
+# Document Intelligence Studio custom project
 
 [!INCLUDE [applies to v4.0 v3.1 v3.0](../includes/applies-to-v40-v31-v30.md)]
 

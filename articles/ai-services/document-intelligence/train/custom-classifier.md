@@ -54,7 +54,7 @@ Custom classification models can analyze a single- or multi-file documents to id
 
 ✔️ Training a custom classifier requires at least `two` distinct classes and a minimum of `five` document samples per class. The model response contains the page ranges for each of the classes of documents identified.
 
-✔️ The maximum allowed number of classes is `500`. The maximum allowed number of document samples per class is `100`.
+✔️ The maximum allowed number of classes is `1,000`. The maximum allowed number of document samples per class is `100`.
 
 The model classifies each page of the input document, unless specified, to one of the classes in the labeled dataset. You can specify the page numbers to analyze in the input document as well. To set the threshold for your application, use the confidence score from the response.
 
@@ -103,7 +103,7 @@ Supported file formats:
 |General&nbsp;Document| ✔  | ✔ |   |
 |Prebuilt        |  ✔  | ✔ |   |
 |Custom extraction|  ✔  | ✔ |   |
-|Custom classification|  ✔  | ✔ | ✔ |
+|Custom classification|  ✔  | ✔ | ✔ (not supported in the studio)|
 
 * For best results, provide five clear photos or high-quality scans per document type.
 
@@ -121,7 +121,7 @@ Supported file formats:
 
 * For custom extraction model training, the total size of training data is 50 MB for template model and 1G-MB for the neural model.
 
-* For custom classification model training, the total size of training data is 1 GB with a maximum of 10,000 pages.
+* For custom classification model training, the total size of training data is 2 GB with a maximum of 25,000 pages.
 
 ## Document splitting
 

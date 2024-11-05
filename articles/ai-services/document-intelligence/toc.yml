@@ -164,9 +164,9 @@ items:
     href: concept-batch-analysis.md
 - name: Quickstarts
   items:
-    - name: Document Intelligence Studio
+    - name: Document Intelligence Studio custom projects
       displayName: get started, cors, blob, storage, upload, labels, custom, dynamic, fixed, signatures
-      href: quickstarts/try-document-intelligence-studio.md
+      href: studio-overview.md
     - name: "Get started with Document Intelligence"
       displayName: formRecognizerClient, Document Intelligence client, boundingBox, box, begin_recognize
       href: quickstarts/get-started-sdks-rest-api.md
