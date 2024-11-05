@@ -21,7 +21,7 @@ Azure AI Language is updated on an ongoing basis. To stay up-to-date with recent
 
 ## October 2024
 
-* Custom language service features also enable you to deploy your project to multiple [resources within a single region](concepts/custom-features/multi-region-deployment.md), so that you can use your custom model wherever you need.
+* Custom language service features also enable you to deploy your project to multiple [resources within a single region](concepts/custom-features/multi-region-deployment.md) via the API, so that you can use your custom model wherever you need.
 
 ## September 2024
 
