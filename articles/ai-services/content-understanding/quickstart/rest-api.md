@@ -7,7 +7,7 @@ ms.author: tonyeiyalla
 manager: nitinme
 ms.service: azure
 ms.topic: quickstart
-ms.date: 10/22/2024
+ms.date: 11/19/2024
 ---
 
 # Quickstart: Content Understanding REST APIs

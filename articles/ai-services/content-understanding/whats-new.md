@@ -6,7 +6,7 @@ author: laujan
 manager: nitinme
 ms.service: azure
 ms.topic: whats-new
-ms.date: 10/09/2024
+ms.date: 11/19/2024
 ms.author: lajanuar
 ms.custom:
   - references_regions

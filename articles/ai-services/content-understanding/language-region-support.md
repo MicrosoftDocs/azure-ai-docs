@@ -8,7 +8,7 @@ manager: nitinme
 ms.service: azure
 ms.topic: reference
 ms.custom: references_regions
-ms.date: 10/09/2024
+ms.date: 11/19/2024
 ---
 
 # Content Understanding region and language support
