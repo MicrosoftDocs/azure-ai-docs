@@ -9,7 +9,7 @@ ms.custom:
   - build-2024
   - ai-learning-hub
 ms.topic: how-to
-ms.date: 5/21/2024
+ms.date: 11/05/2024
 ms.reviewer: fasantia
 ms.author: mopeakande
 author: msakande
@@ -25,13 +25,19 @@ Azure OpenAI Service offers a diverse set of models with different capabilities 
 
 To modify and interact with an Azure OpenAI model in the [Azure AI Studio](https://ai.azure.com) playground, first you need to deploy a base Azure OpenAI model to your project. Once the model is deployed and available in your project, you can consume its REST API endpoint as-is or customize further with your own data and other components (embeddings, indexes, and more).  
 
+## Prerequisites
+
+- An Azure subscription with a valid payment method. Free or trial Azure subscriptions won't work. If you don't have an Azure subscription, create a [paid Azure account](https://azure.microsoft.com/pricing/purchase-options/pay-as-you-go) to begin.
+
+- An [Azure AI Studio project](create-projects.md).
+
 ## Deploy an Azure OpenAI model from the model catalog
 
 Follow the steps below to deploy an Azure OpenAI model such as `gpt-4` to a real-time endpoint from the AI Studio [model catalog](./model-catalog-overview.md):
 
-1. Sign in to [AI Studio](https://ai.azure.com) and go to the **Home** page.
-1. Select **Model catalog** from the left sidebar.
-1. In the **Collections** filter, select **Azure OpenAI**.
+[!INCLUDE [open-catalog](../includes/open-catalog.md)]
+
+4. In the **Collections** filter, select **Azure OpenAI**.
 
     :::image type="content" source="../media/deploy-monitor/catalog-filter-azure-openai.png" alt-text="A screenshot showing how to filter by Azure OpenAI models in the catalog." lightbox="../media/deploy-monitor/catalog-filter-azure-openai.png":::
 
@@ -48,8 +54,8 @@ Follow the steps below to deploy an Azure OpenAI model such as `gpt-4` to a real
 Alternatively, you can initiate deployment by starting from your project in AI Studio.
 
 1. Go to your project in AI Studio.
-1. Select **Components** > **Deployments**.
-1. Select **+ Deploy model**.
+1. From the left sidebar of your project, go to **My assets** > **Models + endpoints**.
+1. Select **+ Deploy model** > **Deploy base model**.
 1. In the **Collections** filter, select **Azure OpenAI**.
 1. Select a model such as `gpt-4` from the Azure OpenAI collection.
 1. Select **Confirm** to open the deployment window.
@@ -73,7 +79,7 @@ For Azure OpenAI models, the default quota for models varies by model and region
 
 ## Quota for deploying and inferencing a model
 
-For Azure OpenAI models, deploying and inferencing consumes quota that is assigned to your subscription on a per-region, per-model basis in units of Tokens-per-Minute (TPM). When you sign up for Azure AI Studio, you receive default quota for most of the available models. Then, you assign TPM to each deployment as it is created, thus reducing the available quota for that model by the amount you assigned. You can continue to create deployments and assign them TPMs until you reach your quota limit.
+For Azure OpenAI models, deploying and inferencing consume quota that is assigned to your subscription on a per-region, per-model basis in units of Tokens-per-Minute (TPM). When you sign up for Azure AI Studio, you receive default quota for most of the available models. Then, you assign TPM to each deployment as it is created, thus reducing the available quota for that model by the amount you assigned. You can continue to create deployments and assign them TPMs until you reach your quota limit.
 
 Once you reach your quota limit, the only way for you to create new deployments of that model is to:
 
