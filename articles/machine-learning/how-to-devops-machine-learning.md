@@ -161,7 +161,7 @@ trigger:
 - none
 
 variables:
-  subscription_id: '00000000-0000-0000-0000-000000000000' # replace with your subscription id
+  subscription_id: 'aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e' # replace with your subscription id
   service-connection: 'generic-machine-learning-connection' # replace with your generic service connection name
   resource-group: 'machinelearning-rg' # replace with your resource group name
   workspace: 'docs-ws' # replace with your workspace name
