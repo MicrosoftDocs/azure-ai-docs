@@ -28,12 +28,12 @@ Deployment options vary depending on the model type:
 
 Azure AI studio offers four different deployment options:
 
-|Name                           | Azure OpenAI Service | Azure AI model inference service | Serverless API | Managed compute |
+|Name                           | Azure OpenAI service | Azure AI model inference service | Serverless API | Managed compute |
 |-------------------------------|----------------------|-------------------|----------------|-----------------|
 | Which models can be deployed? | [Azure OpenAI models](../../ai-services/openai/concepts/models.md)        | [Azure OpenAI models and Models as a Service](../ai-services/model-inference.md#models) | [Models as a Service](../how-to/model-catalog-overview.md#content-safety-for-models-deployed-via-serverless-apis) | [Open and custom models](../how-to/model-catalog-overview.md#availability-of-models-for-deployment-as-managed-compute) |
-| Deployment resource           | Azure OpenAI service | Azure AI services | AI project | AI project |
+| Deployment resource           | Azure OpenAI resource | Azure AI services resource | AI project resource | AI project resource |
 | Best suited when              | You are planning to use only OpenAI models | You are planning to take advantage of the flagship models in Azure AI catalog, including OpenAI. | You are planning to use a single model from a specific provider (excluding OpenAI). | If you plan to use open models and you have enough compute quota available in your subscription. |
-| Billing bases                 | Token usage          | Token usage       | Token usage<sup>1</sup>      | Compute core hours<sup>2</sup> |
+| Billing bases                 | Token usage & PTU         | Token usage       | Token usage<sup>1</sup> & PTU      | Compute core hours<sup>2</sup> |
 | Deployment instructions       | [Deploy to Azure OpenAI Service](../how-to/deploy-models-openai.md) | [Deploy to Azure AI model inference](../ai-services/how-to/create-model-deployments.md) | [Deploy to Serverless API](../how-to/deploy-models-serverless.md) | [Deploy to Managed compute](../how-to/deploy-models-managed.md) |
 
 <sup>1</sup> A minimal endpoint infrastructure is billed per minute. You aren't billed for the infrastructure that hosts the model in pay-as-you-go. After you delete the endpoint, no further charges accrue.
@@ -51,19 +51,18 @@ Azure AI studio encourages customers to explore the deployment options and pick 
 
 2. When you are looking to use a specific model:
 
-   1. When you are interested in OpenAI models, use the Azure OpenAI Service which offers a wide range of capabilities for them and it's designed for them.
+   1. When you are interested in Azure OpenAI models, use the Azure OpenAI Service which offers a wide range of capabilities for them and it's designed for them.
 
    2. When you are interested in a particular model from Models as a Service, and you don't expect to use any other type of model, use [Serverless API endpoints](../how-to/deploy-models-serverless.md). They allow deployment of a single model under a unique set of endpoint URL and keys.
 
-3. When your model is not available in Models as a Service and you have compute quota available in your subscription, use [Managed Compute](../how-to/deploy-models-managed.md) which support deployment of open and custom models. It also allows high level of customization of the deployment inference server, protocols, and detailed configuration. 
+3. When your model is not available in Models as a Service and you have compute quota available in your subscription, use [Managed Compute](../how-to/deploy-models-managed.md) which support deployment of open and custom models. It also allows high level of customization of the deployment inference server, protocols, and detailed configuration.
 
 > [!TIP]
-> Each deployment option may offer different capabilities in terms of networking, security, and additional features like content safety. Review the documentation for each of them to understand their limitations. 
-
+> Each deployment option may offer different capabilities in terms of networking, security, and additional features like content safety. Review the documentation for each of them to understand their limitations.
 
 ## Related content
 
-- [Add and configure models to the Azure AI model inference service](../ai-services/how-to/create-model-deployments.md)
-- [Deploy Azure OpenAI models with Azure AI Studio](../how-to/deploy-models-openai.md)
-- [Deploy open models with Azure AI Studio](../how-to/deploy-models-open.md)
-- [Model catalog and collections in Azure AI Studio](../how-to/model-catalog-overview.md)
+* [Add and configure models to the Azure AI model inference service](../ai-services/how-to/create-model-deployments.md)
+* [Deploy Azure OpenAI models with Azure AI Studio](../how-to/deploy-models-openai.md)
+* [Deploy open models with Azure AI Studio](../how-to/deploy-models-open.md)
+* [Model catalog and collections in Azure AI Studio](../how-to/model-catalog-overview.md)
