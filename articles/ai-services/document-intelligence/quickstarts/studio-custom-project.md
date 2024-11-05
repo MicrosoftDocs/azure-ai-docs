@@ -1,5 +1,5 @@
 ---
- title: " Document Intelligence Studio custom project
+title: Document Intelligence Studio custom project
 titleSuffix: Azure AI services
 description: Form and document processing, data extraction, and analysis using Document Intelligence Studio
 author: laujan
