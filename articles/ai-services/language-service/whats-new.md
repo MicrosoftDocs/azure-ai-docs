@@ -17,11 +17,11 @@ Azure AI Language is updated on an ongoing basis. To stay up-to-date with recent
 
 ## November 2024
 
-* [Native document support](native-document-support/use-native-documents.md) is now available in public preview `20224-11-15-preview` without gated preview limitations.
+* [Native document support](native-document-support/use-native-documents.md) is now available in public preview `2024-11-15-preview` without gated preview limitations.
 
 ## October 2024
 
-* Custom language service features also enable you to deploy your project to multiple [resources within a single region](concepts/custom-features/multi-region-deployment.md) via the API, so that you can use your custom model wherever you need.
+* Custom language service features enable you to deploy your project to multiple [resources within a single region](concepts/custom-features/multi-region-deployment.md) via the API, so that you can use your custom model wherever you need.
 
 ## September 2024
 
