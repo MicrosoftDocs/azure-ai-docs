@@ -83,7 +83,7 @@ llm = AzureAICompletionsModel(
 ```
 
 > [!TIP]
-> If your model is an OpenAI model deployed to Azure OpenAI service or AI services resource, configure the client as indicated at [Azure OpenAI models and Azure AI model inference service](#azure-openai-models-and-azure-ai-model-infernece-service).
+> If your model deployment is hosted in Azure OpenAI service or Azure AI Services resource, configure the client as indicated at [Azure OpenAI models and Azure AI model inference service](#azure-openai-models-and-azure-ai-model-inference-service).
 
 If your endpoint is serving more than one model, like with the [Azure AI model inference service](../../ai-services/model-inference.md) or [GitHub Models](https://github.com/marketplace/models), you have to indicate `model_name` parameter:
 
@@ -128,23 +128,36 @@ llm = AzureAICompletionsModel(
 )
 ```
 
-### Azure OpenAI models and Azure AI model infernece service
+### Azure OpenAI models and Azure AI model inference service
 
-If you are using Azure OpenAI models or [Azure AI model inference service](../../ai-services/model-inference.md), ensure you have at least version `0.2.4` of the LlamaIndex integration. Use `api_version` parameter in case you need to select a specific `api_version`. For the [Azure AI model inference service](../../ai-services/model-inference.md), you need to pass `model_name` parameter:
+If you are using Azure OpenAI service or [Azure AI model inference service](../../ai-services/model-inference.md), ensure you have at least version `0.2.4` of the LlamaIndex integration. Use `api_version` parameter in case you need to select a specific `api_version`. 
+
+For the [Azure AI model inference service](../../ai-services/model-inference.md), you need to pass `model_name` parameter:
 
 ```python
 from llama_index.llms.azure_inference import AzureAICompletionsModel
 
 llm = AzureAICompletionsModel(
-    endpoint=os.environ["AZURE_INFERENCE_ENDPOINT"],
+    endpoint="https://<resource>.services.ai.azure.com/models",
     credential=os.environ["AZURE_INFERENCE_CREDENTIAL"],
-    model_name="gpt-4o",
+    model_name="mistral-large-2407",
+)
+```
+
+For Azure OpenAI service:
+
+```python
+from llama_index.llms.azure_inference import AzureAICompletionsModel
+
+llm = AzureAICompletionsModel(
+    endpoint="https://<resource>.openai.azure.com/openai/deployments/<deployment-name>",
+    credential=os.environ["AZURE_INFERENCE_CREDENTIAL"],
     api_version="2024-05-01-preview",
 )
 ```
 
 > [!TIP]
-> Using a wrong `api_version` or one not supported by the model results in a `ResourceNotFound` exception.
+> Check which is the API version that your deployment is using. Using a wrong `api_version` or one not supported by the model results in a `ResourceNotFound` exception.
 
 ### Inference parameters
 
