@@ -59,7 +59,7 @@ If your organization is using [Azure Policy](/azure/governance/policy/overview),
     :::image type="content" source="../media/how-to/hubs/resource-create-identity.png" alt-text="Screenshot of the Create a hub with the option to select a managed identity." lightbox="../media/how-to/hubs/resource-create-identity.png":::
 
     > [!NOTE]
-    > - If you select **User assigned identity**, your identity needs to have the `Cognitive Services Contributor` role in order to successfully create a new hub.
+    > If you select **User assigned identity**, your identity needs to have the `Cognitive Services Contributor` role in order to successfully create a new hub.
     
 1. Select the **Tags** tab to add tags.
 
@@ -151,13 +151,13 @@ az ml workspace update -n "myexamplehub" -g "{MY_RESOURCE_GROUP}" -a "APPLICATIO
 
 ### Choose how credentials are stored
 
-Select scenarios in AI Studio store credentials on your behalf. For example when you create a connection in AI Studio to access an Azure Storage account with stored account key, access Azure Container Registry with admin password, or when you create a compute instance with enabled SSH keys. No credentials are stored with connections when you choose EntraID identity-based authentication.
+Select scenarios in AI Studio store credentials on your behalf. For example when you create a connection in AI Studio to access an Azure Storage account with stored account key, access Azure Container Registry with admin password, or when you create a compute instance with enabled SSH keys. No credentials are stored with connections when you choose Microsoft Entra ID identity-based authentication.
 
 You can choose where credentials are stored:
 
-1. **Your Azure Key Vault**: This requires you to manage your own Azure Key Vault instance and configure it per hub. It gives you additional control over secret lifecycle e.g. to set expiry policies. You can also share stored secrets with other applications in Azure.
+- **Your Azure Key Vault**: This requires you to manage your own Azure Key Vault instance and configure it per hub. It gives you additional control over secret lifecycle e.g. to set expiry policies. You can also share stored secrets with other applications in Azure.
    
-1. **Microsoft-managed credential store (preview)**: In this variant Microsoft manages an Azure Key Vault instance on your behalf per hub. No resource management is needed on your side and the vault does not show in your Azure subscription. Secret data lifecycle follows the resource lifecycle of your hubs and projects. For example, when a project's storage connection is deleted, its stored secret is deleted as well.
+- **Microsoft-managed credential store (preview)**: In this variant Microsoft manages an Azure Key Vault instance on your behalf per hub. No resource management is needed on your side and the vault does not show in your Azure subscription. Secret data lifecycle follows the resource lifecycle of your hubs and projects. For example, when a project's storage connection is deleted, its stored secret is deleted as well.
 
 After your hub is created, it is not possible to switch between Your Azure Key Vault and using a Microsoft-managed credential store.
 

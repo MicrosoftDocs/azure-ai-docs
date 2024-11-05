@@ -121,9 +121,9 @@ Common configurations on the hub are shared with your project, including connect
 
 In addition, a number of resources are only accessible by users in your project workspace:
 
-1. Components including datasets, flows, indexes, deployed model API endpoints (open and serverless).
-1. Connections created by you under 'project settings.'
-1. Azure Storage blob containers, and a fileshare for data upload within your project. Access storage using the following connections:
+- Components including datasets, flows, indexes, deployed model API endpoints (open and serverless).
+- Connections created by you under 'project settings.'
+- Azure Storage blob containers, and a fileshare for data upload within your project. Access storage using the following connections:
    
    | Data connection | Storage location | Purpose |
    | --- | --- | --- |
