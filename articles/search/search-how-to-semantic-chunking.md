@@ -11,28 +11,32 @@ ms.custom:
   - references_regions
 ---
 
-# Semantic chunking and vectorization using the Document Intelligence Layout skill and index projections
+# Semantic chunking and vectorization using the Document Layout skill and index projections
+
+[!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
+
 Text data chunking strategies play a key role in optimizing the RAG response and performance. Semantic chunking is to find semantically coherent fragments of a sentence representation. These fragments can then be processed independently and recombined as semantic representations without loss of information, interpretation, or semantic relevance. The inherent meaning of the text is used as a guide for the chunking process. Markdown is a structured and formatted markup language and a popular input for enabling semantic chunking in RAG (Retrieval-Augmented Generation)
 
-The Document Intelligence Layout skill offers a comprehensive solution for advanced content extraction and chunk functionality. With the Layout skill, you can easily extract document layout and content as markdown format and utilize markdown parsing mode to produce a set of document chunks
+The Document Layout skill offers a comprehensive solution for advanced content extraction and chunk functionality. With the Layout skill, you can easily extract document layout and content as markdown format and utilize markdown parsing mode to produce a set of document chunks
 
 This article shows:
-+ How to use the document intelligence layout skill to extract markdown sections
++ How to use the Document Layout skill to extract markdown sections
 + How to apply split skill to constrain chunk size within each markdown section 
 + Generate embeddings for the content within those sections
 + How to use index projections to compile and write them into a search index.
 
 ## Prerequisites
+
 + An [indexer-based indexing pipeline](search-indexer-overview.md).
 + An index that accepts the output of the indexer pipeline.
 + A [supported data source](search-indexer-overview.md#supported-data-sources) having content that you want to chunk. 
-+ A [Document Intelligence Layout skill](cognitive-search-skill-document-intelligence-layout.md) that splits documents based on paragraph boundaries.
++ A [Document Layout skill](cognitive-search-skill-document-intelligence-layout.md) that splits documents based on paragraph boundaries.
 + An [Azure OpenAI Embedding skill](cognitive-search-skill-azure-openai-embedding.md) that generates vector embeddings  
 + An [index projection](search-how-to-define-index-projections.md) for one-to-many indexing
 
 ## Prepare data files
 
-The raw inputs must be in a [supported data source](search-indexer-overview.md#supported-data-sources) and the file needs to be a format which [Document Intelligence Layout skill](cognitive-search-skill-document-intelligence-layout.md) supports.
+The raw inputs must be in a [supported data source](search-indexer-overview.md#supported-data-sources) and the file needs to be a format which [Document Layout skill](cognitive-search-skill-document-intelligence-layout.md) supports.
 
 + Supported file format: PDF, JPEG, JPG, PNG, BMP, TIFF, DOCX, XLSX,PPTX,HTML
 
@@ -164,7 +168,7 @@ An index must exist on the search service before you create the skill set or run
 
 You can use the REST APIs to [create or update a skill set](cognitive-search-defining-skillset.md).
 
-Here's an example skill set definition payload to project individual markdown sections chunks and their vector outputs as documents in the search index using the [Document Intelligence Layout skill](cognitive-search-skill-document-intelligence-layout.md) and [Azure OpenAI Embedding skill](cognitive-search-skill-azure-openai-embedding.md)
+Here's an example skill set definition payload to project individual markdown sections chunks and their vector outputs as documents in the search index using the [Document Layout skill](cognitive-search-skill-document-intelligence-layout.md) and [Azure OpenAI Embedding skill](cognitive-search-skill-azure-openai-embedding.md)
 
 ```json
 {
@@ -286,7 +290,7 @@ Here's an example skill set definition payload to project individual markdown se
 ## Run the indexer
 Once you create a data source, indexes, and skill set, you're ready to [create and run the indexer](search-howto-create-indexers.md#run-the-indexer). This step puts the pipeline into execution.
 
-When using the [Document Intelligence Layout skill](cognitive-search-skill-document-intelligence-layout.md), make sure to set the following parameters on the indexer definition:
+When using the [Document Layout skill](cognitive-search-skill-document-intelligence-layout.md), make sure to set the following parameters on the indexer definition:
 + The `allowSkillsetToReadFileData` parameter should be set to "true."
 + the `parsingMode` parameter should be set to "default."
 
@@ -330,10 +334,11 @@ POST /indexes/[index name]/docs/search?api-version=[api-version]
 ```
 
 ## See also
+
 + [Create a data source](search-howto-indexing-azure-blob-storage.md)
 + [Define an index projection](search-how-to-define-index-projections.md)
 + [How to define a skill set](cognitive-search-defining-skillset.md)
-+ [Document Intelligence Layout skill](cognitive-search-skill-document-intelligence-layout.md)
++ [Document Layout skill](cognitive-search-skill-document-intelligence-layout.md)
 + [Azure OpenAI Embedding skill](cognitive-search-skill-azure-openai-embedding.md)
 + [Create indexer (REST)](/rest/api/searchservice/indexers/create)
 + [Search Explorer](search-explorer.md)
