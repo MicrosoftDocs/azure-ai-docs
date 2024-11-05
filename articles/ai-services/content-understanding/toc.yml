@@ -53,5 +53,5 @@ items:
   items:
   - name: Content Understanding REST API
     displayName: quickstart, extract, text, images, OCR, optical character recognition
-    href: quickstart/rest-api.md
+    href: quickstart/use-rest-api.md
     
