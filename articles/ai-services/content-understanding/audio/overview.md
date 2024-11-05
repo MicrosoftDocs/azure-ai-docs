@@ -53,7 +53,7 @@ AI studio enables you to set up, test, and manage Content Understanding solution
 
 The following diagram provides a high-level overview of a typical Content Understanding Audio processing workflow.
 
-  :::image type="content" source="../media/audio/overview/workflow-diagram.png" alt-text="Illustration of Content Understanding audio workflow.":::
+  :::image type="content" source="../media/audio/overview/workflow-diagram.png" lightbox="../media/audio/overview/workflow-diagram.png" alt-text="Illustration of Content Understanding audio workflow.":::
 
 A typical Content UnderstandingAudio workflow consists of the following steps:
 

@@ -18,7 +18,7 @@ Azure AI Content Understanding (Content Understanding) is a cloud-based solution
 
 Built on the success of Document Intelligence, Content Understanding offers a streamlined process to reason over large amounts of unstructured data, build customizable workflows, ultimately accelerating time-to-value (TTV), while varied AI models.
 
-:::image type="content" source="media/overview/content-understanding-process.png" alt-text="Screenshot of accepted media input files.":::
+:::image type="content" source="media/overview/content-understanding-process.png" lightbox="media/overview/content-understanding-process.png" alt-text="Screenshot of accepted media input files.":::
 
 ### Benefits of using Content Understanding
 
