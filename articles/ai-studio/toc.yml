@@ -37,10 +37,12 @@ items:
     href: tutorials/deploy-chat-web-app.md
   - name: Build a custom chat app with the Azure AI SDK
     items:
-      - name: "Part 1: Add data retrieval to a chat app"
+      - name: "Part 1: Set up project and install SDK"
+        href: tutorials/copilot-sdk-create-resources.md
+      - name: "Part 2: Add data retrieval to a chat app"
         href: tutorials/copilot-sdk-build-rag.md
         displayName: code,sdk
-      - name: "Part 2: Evaluate and deploy a chat app"
+      - name: "Part 3: Evaluate and deploy a chat app"
         href: tutorials/copilot-sdk-evaluate-deploy.md
         displayName: code,sdk
 - name: How-to

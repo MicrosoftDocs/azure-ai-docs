@@ -1,7 +1,7 @@
 ---
-title: "Part 2: Evaluate and deploy chat app with the Azure AI SDK"
+title: "Part 3: Evaluate and deploy chat app with the Azure AI SDK"
 titleSuffix: Azure AI Studio
-description: Evaluate and deploy a custom chat app with the prompt flow SDK. This tutorial is part 2 of a 2-part tutorial series.
+description: Evaluate and deploy a custom chat app with the prompt flow SDK. This tutorial is part 3 of a 3-part tutorial series.
 manager: scottpolly
 ms.service: azure-ai-studio
 ms.topic: tutorial
@@ -14,18 +14,18 @@ author: sdgilley
 
 # Tutorial: Part 3 - Evaluate and deploy a custom chat application with the prompt flow SDK
 
-In this tutorial, you use the Azure AI SDK (and other libraries) to  evaluate and deploy the chat app you built in [Part 1 of the tutorial series](copilot-sdk-build-rag.md). In this part two, you learn how to:
+In this tutorial, you use the Azure AI SDK (and other libraries) to  evaluate and deploy the chat app you built in [Part 1 of the tutorial series](copilot-sdk-build-rag.md). In this part three, you learn how to:
 
 > [!div class="checklist"]
 > - Evaluate the quality of chat app responses
 > - Deploy the chat app to Azure
 > - Verify the deployment
 
-This tutorial is part two of a two-part tutorial.
+This tutorial is part three of a three-part tutorial.
 
 ## Prerequisites
 
-- Complete [part 1 of the tutorial series](copilot-sdk-build-rag.md) to build the chat application.
+- Complete [part 2 of the tutorial series](copilot-sdk-build-rag.md) to build the chat application.
 
 - You must have the necessary permissions to add role assignments in your Azure subscription. Granting permissions by role assignment is only allowed by the **Owner** of the specific Azure resources. You might need to ask your Azure subscription owner (who might be your IT admin) for help with endpoint access later in the tutorial.
 
@@ -51,7 +51,7 @@ AZURE_OPENAI_EVALUATION_DEPLOYMENT=<your evaluation model deployment name>
 
 Use the following evaluation dataset, which contains example questions and expected answers (truth). 
 
-1. Create a file called **eval_dataset.jsonl** in your **rag-tutorial** folder. See the [application code structure](copilot-sdk-build-rag.md#application-code-structure) for reference.
+1. Create a file called **eval_dataset.jsonl** in your **rag-tutorial** folder. See the [application code structure](copilot-sdk-build-rag.md) for reference.
 1. Paste this dataset into the file:
 
     :::code language="jsonl" source="~/rag-data-openai-python-promptflow-main/tutorial/eval_dataset.jsonl":::
