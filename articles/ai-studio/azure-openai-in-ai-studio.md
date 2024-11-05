@@ -38,7 +38,7 @@ Use the left navigation area to perform your tasks with Azure OpenAI models:
 
     :::image type="content" source="media/azure-openai-in-ai-studio/model-catalog.png" alt-text="Screenshot shows the model catalog in Azure OpenAI Service." lightbox="media/azure-openai-in-ai-studio/model-catalog.png":::
 
-* **Try models**: Use the various **Resource playgrounds** to decide which model is best for your needs.
+* **Try models**: Use the various **Playgrounds** to decide which model is best for your needs.
 * **Deploy models**: In the **Model catalog** or **Deployments** list in the left navigation, you see all supported models. You can deploy models from either section.
 * **Fine-tune**: Use **Fine-tuning** to find your fine-tuned/custom models or create new fine-tune jobs.
 * **Batch jobs**: Create and manage jobs for your global batch deployments.
