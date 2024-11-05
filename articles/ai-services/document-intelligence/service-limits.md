@@ -78,7 +78,7 @@ Document Intelligence billing is calculated monthly based on the model type and 
 >
 > * [**Document Intelligence SDKs**](quickstarts/get-started-sdks-rest-api.md)
 > * [**Document Intelligence REST API**](quickstarts/get-started-sdks-rest-api.md)
-> * [**Document Intelligence Studio v3.0**](quickstarts/try-document-intelligence-studio.md)
+> * [**Document Intelligence Studio v3.0**](studio-overview.md)
 ::: moniker-end
 
 ::: moniker range="doc-intel-2.1.0"

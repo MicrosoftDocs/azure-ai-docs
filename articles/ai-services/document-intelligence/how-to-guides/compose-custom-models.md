@@ -272,7 +272,7 @@ Great! You learned the steps to create custom and composed models and use them i
 Try one of our Document Intelligence quickstarts:
 
 > [!div class="nextstepaction"]
-> [Document Intelligence Studio](../quickstarts/try-document-intelligence-studio.md)
+> [Document Intelligence Studio](../studio-overview.md)
 
 > [!div class="nextstepaction"]
 > [REST API](../quickstarts/get-started-sdks-rest-api.md?view=doc-intel-3.0.0&preserve-view=true)

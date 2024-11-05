@@ -105,7 +105,7 @@ sections:
 
             - **Contributor**: You need this role to create a resource group and resources. **Contributor** or **Storage Account Contributor** role doesn't give you access to use your Document Intelligence resource or storage account if local (key-based) authentication is disabled. You still need the basic roles (**Cognitive Services User** and **Storage Data Blob Contributor**) to use the functions on Document Intelligence Studio.
 
-          For more information, see [Microsoft Entra built-in roles](/azure/role-based-access-control/built-in-roles) and the sections about Azure role assignments in the [Document Intelligence Studio quickstart](quickstarts/try-document-intelligence-studio.md).
+          For more information, see [Microsoft Entra built-in roles](/azure/role-based-access-control/built-in-roles) and the sections about Azure role assignments in the [Document Intelligence Studio quickstart](studio-overview.md).
 
       - question: |
           Can I process documents with more than two pages in Document Intelligence Studio?

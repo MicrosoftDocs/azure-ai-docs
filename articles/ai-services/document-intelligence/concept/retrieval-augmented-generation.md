@@ -69,7 +69,7 @@ The Document Intelligence Layout model **2024-11-30 (GA)** supports the followin
 
 ### Document Intelligence Studio
 
-You can follow the [Document Intelligence Studio quickstart](../quickstarts/try-document-intelligence-studio.md) to get started. Next, you can integrate Document Intelligence features with your own application using the sample code provided.
+You can follow the [Document Intelligence Studio quickstart](../studio-overview.md) to get started. Next, you can integrate Document Intelligence features with your own application using the sample code provided.
 
 * Start with the [Layout model](https://documentintelligence.ai.azure.com/studio/layout). You need to select the following **Analyze options** to use RAG in the studio:
 
@@ -155,6 +155,6 @@ splits
 
 * Learn more about [Azure AI Document Intelligence](../overview.md).
 
-* [Learn how to process your own forms and documents](../quickstarts/try-document-intelligence-studio.md) with the [Document Intelligence Studio](https://formrecognizer.appliedai.azure.com/studio).
+* [Learn how to process your own forms and documents](../studio-overview.md) with the [Document Intelligence Studio](https://formrecognizer.appliedai.azure.com/studio).
 
 * Complete a [Document Intelligence quickstart](../quickstarts/get-started-sdks-rest-api.md?view=doc-intel-4.0.0&preserve-view=true) and get started creating a document processing app in the development language of your choice.
