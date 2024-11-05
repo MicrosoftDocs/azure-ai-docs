@@ -21,7 +21,7 @@ Learn what's new in the service. These items might be release notes, videos, blo
 ### Upcoming deprecations
 
 To align with Content Safety versioning and lifecycle management policies, the following versions are scheduled for deprecation:
-* **Effective January 28, 2024**: All versions except `2024-09-01`, `2024-09-15-preview`, and `2024-09-30-preview` will be deprecated and no longer supported. We encourage users to transition to the latest available versions to continue receiving full support and updates. If you have any questions about this process or need assistance with the transition, please reach out to our support team.
+* **Effective October 28, 2024**: All versions except `2024-09-01`, `2024-09-15-preview`, and `2024-09-30-preview` will be deprecated and no longer supported. We encourage users to transition to the latest available versions to continue receiving full support and updates. If you have any questions about this process or need assistance with the transition, please reach out to our support team.
 
 ## September 2024
 
