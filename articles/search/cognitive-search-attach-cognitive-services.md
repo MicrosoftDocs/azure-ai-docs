@@ -33,7 +33,7 @@ You can use a key on the connection, or implement a keyless approach that's curr
 
 [!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 
-Using the Azure portal or newer preview REST APIs and beta SDK packages, you can attach an Azure AI multi-service multi-service resource using a managed identity and permissions. The advantage of this approach is that billing is keyless and has no dependency on regions.
+Using the Azure portal or newer preview REST APIs and beta SDK packages, you can attach an Azure AI multi-service resource using a managed identity and permissions. The advantage of this approach is that billing is keyless and has no dependency on regions.
 
 1. [Configure Azure AI Search to use a managed identity](search-howto-managed-identities-data-sources.md).
 
@@ -42,10 +42,10 @@ Using the Azure portal or newer preview REST APIs and beta SDK packages, you can
 1. Using the Azure portal, or the [Skillset 2024-11-01-preview REST API](/rest/api/searchservice/skillsets/create-or-update?view=rest-searchservice-2024-11-01-preview&preserve-view=true), or an Azure SDK beta package that provides the syntax, configure a skillset to use an identity:
 
    + The managed identity used on the connection belongs to the search service.
-   + The identity can be a system managed or a user assigned.
+   + The identity can be system managed or user assigned.
    + The identity must have **Cognitive Services User** permissions on the Azure AI resource.
    + `@odata.type` is always `#Microsoft.Azure.Search.AIServicesByIdentity`.
-   + `subdomainUrl` is the endpoint of your Azure AI multi-service resoruce. It can be in [any region that's jointly supported](search-region-support.md#azure-public-regions) by Azure AI Search and Azure AI services.
+   + `subdomainUrl` is the endpoint of your Azure AI multi-service resource. It can be in [any region that's jointly supported](search-region-support.md#azure-public-regions) by Azure AI Search and Azure AI services.
 
 As with keys, the details you provide about the Azure AI Services resource are used for billing, not connections.  All API requests made by Azure AI Search to Azure AI services for built-in skills processing continue to be internal and managed by Microsoft.
 
@@ -75,7 +75,7 @@ POST https://[service-name].search.windows.net/skillsets/[skillset-name]?api-ver
 
 Identity is set to the resource ID of the user-assigned managed identity. To find an existing user-assigned managed identity, see [Manage user-assigned managed identities](/entra/identity/managed-identities-azure-resources/how-manage-user-assigned-managed-identities).
 
-For a a user-assigned managed identity, set the `@odata.type` and the `userAssignedIdentity` properties.
+For a user-assigned managed identity, set the `@odata.type` and the `userAssignedIdentity` properties.
 
 ```http
 POST https://[service-name].search.windows.net/skillsets/[skillset-name]?api-version=2024-11-01-Preview  
