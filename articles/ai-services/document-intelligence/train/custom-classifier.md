@@ -103,7 +103,7 @@ Supported file formats:
 |General&nbsp;Document| ✔  | ✔ |   |
 |Prebuilt        |  ✔  | ✔ |   |
 |Custom extraction|  ✔  | ✔ |   |
-|Custom classification|  ✔  | ✔ | ✔ (not supported in the studio) ||
+|Custom classification|  ✔  | ✔ | ✔ (not supported in the studio)|
 
 * For best results, provide five clear photos or high-quality scans per document type.
 
