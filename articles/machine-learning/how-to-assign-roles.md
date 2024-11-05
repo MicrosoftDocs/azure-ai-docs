@@ -116,7 +116,7 @@ The __Azure AI Administrator__ role has the following permissions:
 ### Convert an existing system-managed identity to the Azure AI Administrator role
 
 > [!TIP]
-> We recommend that you convert workspaces created before 11/19/2024 to use the Azure AI Administrator role.
+> We recommend that you convert workspaces created before 11/19/2024 to use the Azure AI Administrator role. The Azure AI Administrator role is more narrowly scoped than the previously used Contributor role and follows the principal of least privilege.
 
 You can convert workspaces created before 11/19/2024 by using one of the following methods:
 
