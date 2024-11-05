@@ -352,7 +352,7 @@ As your deployment is used, the collected data flows to your workspace Blob stor
 ```json
 {"specversion":"1.0",
 "id":"19790b87-a63c-4295-9a67-febb2d8fbce0",
-"source":"/subscriptions/d511f82f-71ba-49a4-8233-d7be8a3650f4/resourceGroups/mire2etesting/providers/Microsoft.MachineLearningServices/workspaces/mirmasterenvws/onlineEndpoints/localdev-endpoint/deployments/localdev",
+"source":"/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/mire2etesting/providers/Microsoft.MachineLearningServices/workspaces/mirmasterenvws/onlineEndpoints/localdev-endpoint/deployments/localdev",
 "type":"azureml.inference.request",
 "datacontenttype":"application/json",
 "time":"2022-05-25T08:59:48Z",
@@ -360,7 +360,7 @@ As your deployment is used, the collected data flows to your workspace Blob stor
 "path":"/score",
 "method":"POST",
 "contentrange":"bytes 0-59/*",
-"correlationid":"f6e806c9-1a9a-446b-baa2-901373162105","xrequestid":"f6e806c9-1a9a-446b-baa2-901373162105"}
+"correlationid":"aaaa0000-bb11-2222-33cc-444444dddddd","xrequestid":"aaaa0000-bb11-2222-33cc-444444dddddd"}
 ```
 
 And the following JSON code is another example of an HTTP _response_ collected:
@@ -368,13 +368,13 @@ And the following JSON code is another example of an HTTP _response_ collected:
 ```json
 {"specversion":"1.0",
 "id":"bbd80e51-8855-455f-a719-970023f41e7d",
-"source":"/subscriptions/d511f82f-71ba-49a4-8233-d7be8a3650f4/resourceGroups/mire2etesting/providers/Microsoft.MachineLearningServices/workspaces/mirmasterenvws/onlineEndpoints/localdev-endpoint/deployments/localdev",
+"source":"/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/mire2etesting/providers/Microsoft.MachineLearningServices/workspaces/mirmasterenvws/onlineEndpoints/localdev-endpoint/deployments/localdev",
 "type":"azureml.inference.response",
 "datacontenttype":"application/json",
 "time":"2022-05-25T08:59:48Z",
 "data":[11055.977245525679, 4503.079536107787],
 "contentrange":"bytes 0-38/39",
-"correlationid":"f6e806c9-1a9a-446b-baa2-901373162105","xrequestid":"f6e806c9-1a9a-446b-baa2-901373162105"}
+"correlationid":"aaaa0000-bb11-2222-33cc-444444dddddd","xrequestid":"aaaa0000-bb11-2222-33cc-444444dddddd"}
 ```
 
 ## Store collected data in blob storage
@@ -398,12 +398,12 @@ The collected data follows the following JSON schema. The collected data is avai
 ```json
 {"specversion":"1.0",
 "id":"725aa8af-0834-415c-aaf5-c76d0c08f694",
-"source":"/subscriptions/636d700c-4412-48fa-84be-452ac03d34a1/resourceGroups/mire2etesting/providers/Microsoft.MachineLearningServices/workspaces/mirmasterws/onlineEndpoints/localdev-endpoint/deployments/localdev",
+"source":"/subscriptions/bbbb1b1b-cc2c-dd3d-ee4e-ffffff5f5f5f/resourceGroups/mire2etesting/providers/Microsoft.MachineLearningServices/workspaces/mirmasterws/onlineEndpoints/localdev-endpoint/deployments/localdev",
 "type":"azureml.inference.inputs",
 "datacontenttype":"application/json",
 "time":"2022-12-01T08:51:30Z",
 "data":[{"label":"DRUG","pattern":"aspirin"},{"label":"DRUG","pattern":"trazodone"},{"label":"DRUG","pattern":"citalopram"}],
-"correlationid":"3711655d-b04c-4aa2-a6c4-6a90cbfcb73f","xrequestid":"3711655d-b04c-4aa2-a6c4-6a90cbfcb73f",
+"correlationid":"bbbb1111-cc22-3333-44dd-555555eeeeee","xrequestid":"bbbb1111-cc22-3333-44dd-555555eeeeee",
 "modelversion":"default",
 "collectdatatype":"pandas.core.frame.DataFrame",
 "agent":"monitoring-sdk/0.1.2",
@@ -446,7 +446,7 @@ Here is an example of two logged requests that are batched together:
 ```json
 {"specversion":"1.0",
 "id":"720b8867-54a2-4876-80eb-1fd6a8975770",
-"source":"/subscriptions/79a1ba0c-35bb-436b-bff2-3074d5ff1f89/resourceGroups/rg-bozhlinmomoignite/providers/Microsoft.MachineLearningServices/workspaces/momo-demo-ws/onlineEndpoints/credit-default-mdc-testing-4/deployments/main2",
+"source":"/subscriptions/cccc2c2c-dd3d-ee4e-ff5f-aaaaaa6a6a6a/resourceGroups/rg-bozhlinmomoignite/providers/Microsoft.MachineLearningServices/workspaces/momo-demo-ws/onlineEndpoints/credit-default-mdc-testing-4/deployments/main2",
 "type":"azureml.inference.model_inputs",
 "datacontenttype":"application/json",
 "time":"2024-03-05T18:16:25Z",
