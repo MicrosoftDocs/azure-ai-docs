@@ -15,6 +15,14 @@ ms.author: jboback
 
 Azure AI Language is updated on an ongoing basis. To stay up-to-date with recent developments, this article provides you with information about new releases and features.
 
+## November 2024
+
+* [Native document support](native-document-support/use-native-documents.md) is now available in public preview `20224-11-15-preview` without gated preview limitations.
+
+## October 2024
+
+* Custom language service features also enable you to deploy your project to multiple [resources within a single region](concepts/custom-features/multi-region-deployment.md), so that you can use your custom model wherever you need.
+
 ## September 2024
 
 * PII detection now has container support. See more details in the Azure Update post: [Announcing Text PII Redaction Container Release](https://techcommunity.microsoft.com/t5/ai-azure-ai-services-blog/announcing-text-pii-redaction-container-release/ba-p/4264655).
