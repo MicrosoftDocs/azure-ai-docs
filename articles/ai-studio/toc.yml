@@ -55,10 +55,10 @@ items:
       displayName: cognitive
     - name: What are AI services?
       href: ../ai-services/what-are-ai-services.md?context=/azure/ai-studio/context/context
-    - name: Use your existing models and deployments
+    - name: Use Azure OpenAI Service in AI Studio
+      href: ai-services/connect-azure-openai.md
+    - name: Use Azure AI services in AI Studio
       href: ai-services/connect-ai-services.md
-    - name: Where to use Azure OpenAI and AI services
-      href: ai-services/where-to-use-ai-services.md
     - name: Azure OpenAI
       items:
       - name: Deploy Azure OpenAI models

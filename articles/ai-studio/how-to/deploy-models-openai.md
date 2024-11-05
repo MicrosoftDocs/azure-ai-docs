@@ -94,4 +94,4 @@ To learn more about quota, see [Azure AI Studio quota](./quota.md) and [Manage A
 ## Related content
 
 - [Azure OpenAI Service models](../../ai-services/openai/concepts/models.md)
-- [Where to use Azure OpenAI Service in AI Studio](../ai-services/where-to-use-ai-services.md)
+- [Where to use Azure OpenAI Service in AI Studio](../ai-services/connect-azure-openai.md)
