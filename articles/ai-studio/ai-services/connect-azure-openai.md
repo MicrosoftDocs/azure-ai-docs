@@ -57,9 +57,7 @@ Let's look at two ways to connect Azure OpenAI Service resources to a project:
 
 ### Connect Azure OpenAI Service when you create a project for the first time
 
-When you create a project for the first time, you also create a hub. When you create a hub, you can connect your existing Azure OpenAI Service resources.
-
-When you create a project and hub together, you can select an existing Azure AI services resource (including Azure OpenAI) from the dropdown if you have one, or use the default to create a new resource.
+When you create a project for the first time, you also create a hub. When you create a hub, you can select an existing Azure AI services resource (including Azure OpenAI) or create a new AI services resource.
 
 :::image type="content" source="../media/how-to/projects/projects-create-resource.png" alt-text="Screenshot of the create resource page within the create project dialog." lightbox="../media/how-to/projects/projects-create-resource.png":::
 

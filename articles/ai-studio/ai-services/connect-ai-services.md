@@ -1,7 +1,7 @@
 ---
-title: Use your existing Azure AI services resources in Azure AI Studio
+title: How to use Azure AI services in AI Studio
 titleSuffix: Azure AI Studio
-description: Learn how to use your existing Azure AI services resources in Azure AI Studio.
+description: Learn how to use Azure AI services in AI Studio. You can use existing Azure AI services resources in AI Studio by creating a connection to the resource.
 manager: nitinme
 ms.service: azure-ai-studio
 ms.custom:
@@ -15,7 +15,7 @@ ms.author: eur
 author: eric-urban
 ---
 
-# How to use your existing Azure AI services resources in Azure AI Studio
+# How to use Azure AI services in AI Studio
 
 You might have existing Azure AI services resources that you created using the old studios such as Azure OpenAI Studio or Speech Studio. You can pick up where you left off by using your existing resources in AI Studio.
 
@@ -24,13 +24,29 @@ This article describes how to use new or existing Azure AI services resources in
 ## Usage scenarios
 
 Depending on the AI service and model you want to use, you can use them in AI Studio via:
+- [Bring your existing Azure AI services resources](#bring-your-existing-azure-ai-services-resources-into-a-project) into a project. You can use your existing Azure AI services resources in an AI Studio project by creating a connection to the resource.
 - The [model catalog](#discover-azure-ai-models-in-the-model-catalog). You don't need a project to browse and discover Azure AI models. Some of the Azure AI services are available for you to try via the model catalog without a project. Some Azure AI services require a project to use in the playgrounds.
 - The [project-level playgrounds](#try-azure-ai-services-in-the-project-level-playgrounds). You need a project to try Azure AI services such as Azure AI Speech and Azure AI Language. 
 - [Azure AI Services demo pages](#try-out-azure-ai-services-demos). You can browse Azure AI services capabilities and step through the demos. You can try some limited demos for free without a project.
 - [Fine-tune](#fine-tune-azure-ai-services-models) models. You can fine-tune a subset of Azure AI services models in AI Studio.
 - [Deploy](#deploy-models-to-production) models. You can deploy base models and fine-tuned models to production. Most Azure AI services models are already deployed and ready to use.
 
-## Use your Azure AI services resources in a project
+## Bring your existing Azure AI services resources into a project
+
+Let's look at two ways to connect Azure AI services resources to a project:
+
+- [When you create a project](#connect-azure-ai-services-when-you-create-a-project-for-the-first-time)
+- [After you create a project](#connect-azure-ai-services-after-you-create-a-project)
+
+### Connect Azure AI services when you create a project for the first time
+
+When you create a project for the first time, you also create a hub. When you create a hub, you can select an existing Azure AI services resource (including Azure OpenAI) or create a new AI services resource.
+
+:::image type="content" source="../media/how-to/projects/projects-create-resource.png" alt-text="Screenshot of the create resource page within the create project dialog." lightbox="../media/how-to/projects/projects-create-resource.png":::
+
+For more details about creating a project, see the [create an AI Studio project](../how-to/create-projects.md) how-to guide or the [create a project and use the chat playground](../quickstarts/get-started-playground.md) quickstart.
+
+### Connect Azure AI services after you create a project
 
 To use your existing Azure AI services resources (such as Azure AI Speech) in an AI Studio project, you need to create a connection to the resource.
 
