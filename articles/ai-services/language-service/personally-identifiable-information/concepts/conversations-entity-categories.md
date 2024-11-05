@@ -154,8 +154,6 @@ This category contains the following entities:
         Any numeric or alphanumeric identifier that could contain any PII information. 
         Examples:   
             * Case Number 
-            * Driver's license
-            * Medicare Beneficiary Identifier (MBI)
             * Member Number 
             * Ticket number 
             * Bank account number 
