@@ -295,6 +295,8 @@ The result:
 
 #### Log your custom code-based evaluator to your AI Studio project
 
+[TODO]: need to add dependencies and update the snippet if necessary.
+
 ```python
 # First we need to save evaluator into separate file in its own directory:
 def answer_len(answer):
@@ -603,13 +605,8 @@ After local evaluations of your generative AI applications, you may want to trig
 
 #### Available evaluators
 - Use the following uri to see a list of available evaluators in your Azure AI Project: https://int.ai.azure.com/build/evaluation?wsid=/subscriptions/fac34303-435d-4486-8c3f-7094d82a0b60/resourceGroups/rg-cliu/providers/Microsoft.MachineLearningServices/workspaces/ignite-eval-project-eastus2&flight=RAIEvalNewListExp&tid=72f988bf-86f1-41af-91ab-2d7cd011db47
-- You can publish a custom evaluator to your Project.
+- You can register a custom evaluator to your Project using Python code, as instructed in [Log your custom prompt-based evaluator to your AI Studio project](#Log-your-custom-prompt-based-evaluator-to-your-AI-Studio-project).
 
-#### Enable access to storage account
-
-Enable access of Azure AI Project to the associated storage account. Follow the following guide:
-https://aka.ms/credentialleshub
-https://aka.ms/credentiallessworkspace
 
 #### Installation Instructions
 
@@ -620,9 +617,6 @@ https://aka.ms/credentiallessworkspace
     ```
 2. Install the required packages by running the following command:
     ```bash
-   # Clearing any old installation
-   pip uninstall azure-ai-project azure-ai-ml azure-ai-evaluation
-
    pip install azure-identity azure-ai-project azure-ai-ml azure-ai-evaluation
     ```
 
@@ -720,6 +714,16 @@ evaluation = client.evaluations.create(
     }
 )
 ```
+
+### Common Issues:
+
+1. Long queuing times or "Serverless Job has failed as there is no cores quota available for VM" in the run log.
+ 
+If you're seeing long queuing times for serverless jobs due to quota, you can 
+
+- Increase core quota for the VM family shown in the error message below; and/or
+- Resubmit serverless job using a VM Size for which there is sufficient quota in the region. Refer to [How to set the VM size for serverless jobs](https://learn.microsoft.com/azure/machine-learning/how-to-use-serverless-compute?view=azureml-api-2&tabs=python#configure-properties-for-command-jobs) for instructions.
+
 
 
 ## Related content
