@@ -94,7 +94,7 @@ You can create an Azure AI Search resource in any of the following Azure public 
 | Australia Southeast​​​ |  | ✅ |  | |
 | East Asia​ | ✅ | ✅ | ✅ |  |
 | Southeast Asia​ ​ ​ | ✅ | ✅ | ✅ |  |
-| Central India | ✅ | ✅ | ✅ | S2, S3, S3HD, L1, L2 |
+| Central India | ✅ | ✅ | ✅ |  |
 | Jio India West​ ​ | ✅ | ✅ |  |
 | South India <sup>1</sup> |  | | ✅ |
 | Japan East  | ✅ | ✅ | ✅ |

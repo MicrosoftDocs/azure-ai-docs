@@ -155,7 +155,7 @@ If the synonym map exists on the search service, it's used on the next query, wi
 Use the [Create or Update Index (REST API)](/rest/api/searchservice/indexes/create-or-update) to modify a field definition.
 
 ```http
-POST /indexes?api-version=2024-07-01
+PUT /indexes?api-version=2024-07-01
 {
     "name":"hotels-sample-index",
     "fields":[

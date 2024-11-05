@@ -10,4 +10,4 @@ ms.author: eur
 
 > [!div class="checklist"]
 > - Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services).
-> - Some AI services features are free to try in AI Studio. For access to all capabilities described in this article, you need to [connect AI services to your hub in AI Studio](../../../ai-studio/ai-services/connect-ai-services.md#connect-to-ai-services). 
+> - Some Azure AI services features are free to try in Azure AI Studio. For access to all capabilities described in this article, you need to [connect AI services in AI Studio](../../../ai-studio/ai-services/connect-ai-services.md). 
