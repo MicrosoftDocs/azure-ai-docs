@@ -58,8 +58,7 @@ Prior to 11/19/2024, the system-assigned managed identity created for the worksp
 
 The __Azure AI Administrator__ role is currently in public preview.
 
-
-[!INCLUDE [feature-preview](./includes/machine-learning-previewew-generic-disclaimer.md)]
+[!INCLUDE [machine-learning-preview-generic-disclaimer](includes/machine-learning-preview-generic-disclaimer.md)]
 
 The __Azure AI Administrator__ role has the following permissions:
 
