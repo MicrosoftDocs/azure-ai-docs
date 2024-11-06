@@ -82,7 +82,7 @@ If you intend to use scalar or binary quantization, we recommend retaining `resc
 
 To set this property:
 
-1. Use [Create Index](/rest/api/searchservice/indexes/create?view=rest-searchservice-2024-11-01-preview&preserve-view=true) or [Create or Update Index 2024-11-01-preview](/rest/api/searchservice/indexes/create-or-upate?view=rest-searchservice-2024-11-01-preview&preserve-view=true) REST APIs, or an Azure SDK beta package providing the feature.
+1. Use [Create Index](/rest/api/searchservice/indexes/create?view=rest-searchservice-2024-11-01-preview&preserve-view=true) or [Create or Update Index 2024-11-01-preview](/rest/api/searchservice/indexes/create-or-update?view=rest-searchservice-2024-11-01-preview&preserve-view=true) REST APIs, or an Azure SDK beta package providing the feature.
 
 1. Add a `vectorSearch` section to your index with profiles, algorithms, and compressions.
 
