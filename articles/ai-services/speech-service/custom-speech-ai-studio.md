@@ -35,7 +35,7 @@ In AI Studio, you can fine-tune some Azure AI services models. For example, you 
 1. In the wizard, select **Speech to text (speech recognition)** for custom speech. Then select **Next**.
 1. Select the connected service resource that you want to use for fine-tuning. Then select **Next**.
 
-    :::image type="content" source="./media/ai-studio/custom-speech/new-fine-tune-select-connection.png" alt-text="Screenshot of the page to select fine-tuning of Azure AI Services models." lightbox="./media/ai-studio/custom-speech/new-fine-tune-select-connection.png":::
+    :::image type="content" source="./media/ai-studio/custom-speech/new-fine-tune-select-connection.png" alt-text="Screenshot of the page to select the connected service resource that you want to use for fine-tuning." lightbox="./media/ai-studio/custom-speech/new-fine-tune-select-connection.png":::
 
     In this example, we can choose from the following options:
     - **AI Service**: The Azure AI Services multi-service resource that [came with the AI Studio project](../../ai-studio/ai-services/connect-ai-services.md#connect-azure-ai-services-when-you-create-a-project-for-the-first-time).
@@ -48,49 +48,49 @@ In AI Studio, you can fine-tune some Azure AI services models. For example, you 
 
 1. In the **Add data** wizard, select the type of training data you want to add. In this example, we select **Audio + human-labeled transcript**. Then select **Next**.
 
-    :::image type="content" source="./media/ai-studio/custom-speech/new-fine-tune-add-data-select-type.png" alt-text="Screenshot of the page with an option to add data to the custom speech project." lightbox="./media/ai-studio/custom-speech/new-fine-tune-add-data-select-type.png":::
+    :::image type="content" source="./media/ai-studio/custom-speech/new-fine-tune-add-data-select-type.png" alt-text="Screenshot of the page with an option to select the type of training data you want to add." lightbox="./media/ai-studio/custom-speech/new-fine-tune-add-data-select-type.png":::
 
 1. On the **Upload your data** page, select local files, Azure Blob Storage, or other shared web locations. Then select **Next**.
 1. Enter a name and description for the data. Then select **Next**.
 1. Review the data and select **Upload**. You're taken back to the **Manage data** page. The status of the data is **Processing**.
 
-    :::image type="content" source="./media/ai-studio/custom-speech/new-fine-tune-add-data-status-processing.png" alt-text="Screenshot of the page with an option to add data to the custom speech project." lightbox="./media/ai-studio/custom-speech/new-fine-tune-add-data-status-processing.png":::
+    :::image type="content" source="./media/ai-studio/custom-speech/new-fine-tune-add-data-status-processing.png" alt-text="Screenshot of the page that shows the status of the data as processing." lightbox="./media/ai-studio/custom-speech/new-fine-tune-add-data-status-processing.png":::
 
 ## Train a custom model from your data
 
 1. After the data is processed, select **Train model** from the left menu. Then select **+ Train model**.
 
-    :::image type="content" source="./media/ai-studio/custom-speech/new-fine-tune-train-model.png" alt-text="Screenshot of the page with an option to add data to the custom speech project." lightbox="./media/ai-studio/custom-speech/new-fine-tune-train-model.png":::
+    :::image type="content" source="./media/ai-studio/custom-speech/new-fine-tune-train-model.png" alt-text="Screenshot of the page with an option to start training for a custom speech model." lightbox="./media/ai-studio/custom-speech/new-fine-tune-train-model.png":::
 
 1. In the **Train a new model** wizard, select the base model that you want to fine-tune. Then select **Next**.
 
-    :::image type="content" source="./media/ai-studio/custom-speech/new-fine-tune-train-model-select-base.png" alt-text="Screenshot of the page with an option to add data to the custom speech project." lightbox="./media/ai-studio/custom-speech/new-fine-tune-train-model-select-base.png":::
+    :::image type="content" source="./media/ai-studio/custom-speech/new-fine-tune-train-model-select-base.png" alt-text="Screenshot of the page with an option to select the base model that you want to fine-tune." lightbox="./media/ai-studio/custom-speech/new-fine-tune-train-model-select-base.png":::
 
 1. Select the data that you want to use for training. Then select **Next**.
 1. Enter a name and description for the model. Then select **Next**.
 1. Review the settings and select **Train a new model**. You're taken back to the **Train model** page. The status of the data is **Processing**.
 
-    :::image type="content" source="./media/ai-studio/custom-speech/new-fine-tune-train-model-status-processing.png" alt-text="Screenshot of the page with an option to add data to the custom speech project." lightbox="./media/ai-studio/custom-speech/new-fine-tune-train-model-status-processing.png":::
+    :::image type="content" source="./media/ai-studio/custom-speech/new-fine-tune-train-model-status-processing.png" alt-text="Screenshot of the page that shows the status of the training as processing." lightbox="./media/ai-studio/custom-speech/new-fine-tune-train-model-status-processing.png":::
 
 ## Test the custom model
 
 1. After the model is trained, select **Test models** from the left menu. Then select **+ Create test**.
 
-    :::image type="content" source="./media/ai-studio/custom-speech/new-fine-tune-test-model.png" alt-text="Screenshot of the page with an option to add data to the custom speech project." lightbox="./media/ai-studio/custom-speech/new-fine-tune-test-model.png":::
+    :::image type="content" source="./media/ai-studio/custom-speech/new-fine-tune-test-model.png" alt-text="Screenshot of the page with an option to test your custom speech model." lightbox="./media/ai-studio/custom-speech/new-fine-tune-test-model.png":::
 
 1. In the **Create a new test** wizard, select the test type. In this example, we select **Evaluate accuracy (Audio + transcript data)**. Then select **Next**.
 
-    :::image type="content" source="./media/ai-studio/custom-speech/new-fine-tune-test-model-select-type.png" alt-text="Screenshot of the page with an option to add data to the custom speech project." lightbox="./media/ai-studio/custom-speech/new-fine-tune-test-model-select-type.png":::
+    :::image type="content" source="./media/ai-studio/custom-speech/new-fine-tune-test-model-select-type.png" alt-text="Screenshot of the page with an option to select the test type." lightbox="./media/ai-studio/custom-speech/new-fine-tune-test-model-select-type.png":::
 
 1. Select the data that you want to use for testing. Then select **Next**.
 1. Select up to two models to evaluate and compare accuracy. In this example, we select the model that we trained and the base model. Then select **Next**.
 
-    :::image type="content" source="./media/ai-studio/custom-speech/new-fine-tune-test-model-select-models.png" alt-text="Screenshot of the page with an option to add data to the custom speech project." lightbox="./media/ai-studio/custom-speech/new-fine-tune-test-model-select-models.png":::
+    :::image type="content" source="./media/ai-studio/custom-speech/new-fine-tune-test-model-select-models.png" alt-text="Screenshot of the page with an option to select up to two models to evaluate and compare accuracy." lightbox="./media/ai-studio/custom-speech/new-fine-tune-test-model-select-models.png":::
 
 1. Enter a name and description for the test. Then select **Next**.
 1. Review the settings and select **Create test**. You're taken back to the **Test models** page. The status of the data is **Processing**.
 
-    :::image type="content" source="./media/ai-studio/custom-speech/new-fine-tune-test-model-status-processing.png" alt-text="Screenshot of the page with an option to add data to the custom speech project." lightbox="./media/ai-studio/custom-speech/new-fine-tune-test-model-status-processing.png":::
+    :::image type="content" source="./media/ai-studio/custom-speech/new-fine-tune-test-model-status-processing.png" alt-text="Screenshot of the page that shows the status of the test as processing." lightbox="./media/ai-studio/custom-speech/new-fine-tune-test-model-status-processing.png":::
 
 1. When the test status is **Succeeded**, you can view the results. Select the test to view the results.
 
@@ -99,17 +99,17 @@ In AI Studio, you can fine-tune some Azure AI services models. For example, you 
 
 1. After you're satisfied with the test results, select **Deploy models** from the left menu. Then select **+ Deploy model**.
 
-    :::image type="content" source="./media/ai-studio/custom-speech/new-fine-tune-deploy-model.png" alt-text="Screenshot of the page with an option to add data to the custom speech project." lightbox="./media/ai-studio/custom-speech/new-fine-tune-deploy-model.png":::
+    :::image type="content" source="./media/ai-studio/custom-speech/new-fine-tune-deploy-model.png" alt-text="Screenshot of the page with an option to deploy the custom speech model." lightbox="./media/ai-studio/custom-speech/new-fine-tune-deploy-model.png":::
 
 1. In the **Deploy a new model** wizard, select the model that you want to deploy. 
 
-    :::image type="content" source="./media/ai-studio/custom-speech/new-fine-tune-deploy-model-select-and-deploy.png" alt-text="Screenshot of the page with an option to add data to the custom speech project." lightbox="./media/ai-studio/custom-speech/new-fine-tune-deploy-model-select-and-deploy.png":::
+    :::image type="content" source="./media/ai-studio/custom-speech/new-fine-tune-deploy-model-select-and-deploy.png" alt-text="Screenshot of the page with an option to select the model that you want to deploy." lightbox="./media/ai-studio/custom-speech/new-fine-tune-deploy-model-select-and-deploy.png":::
 
 1. Enter a name and description for the deployment. Select the box to agree to the terms of use. Then select **Deploy**.
 
 1. After the deployment status is **Succeeded**, you can view the deployment details. Select the deployment to view the details like the endpoint ID. 
 
-    :::image type="content" source="./media/ai-studio/custom-speech/new-fine-tune-deploy-model-status-succeeded.png" alt-text="Screenshot of the page with an option to add data to the custom speech project." lightbox="./media/ai-studio/custom-speech/new-fine-tune-deploy-model-status-succeeded.png":::
+    :::image type="content" source="./media/ai-studio/custom-speech/new-fine-tune-deploy-model-status-succeeded.png" alt-text="Screenshot of the page with an option to select the deployment to view the details like the endpoint ID." lightbox="./media/ai-studio/custom-speech/new-fine-tune-deploy-model-status-succeeded.png":::
 
 ## View fine-tuned models
 
@@ -118,7 +118,7 @@ You can access your custom speech models and deployments from the **Fine-tuning*
 1. Select **Fine-tuning** from the left pane.
 1. Select **AI Service fine-tuning**.
 
-    :::image type="content" source="./media/ai-studio/custom-speech/fine-tune-succeeded-list.png" alt-text="Screenshot of the page with an option to add data to the custom speech project." lightbox="./media/ai-studio/custom-speech/fine-tune-succeeded-list.png":::
+    :::image type="content" source="./media/ai-studio/custom-speech/fine-tune-succeeded-list.png" alt-text="Screenshot of the page where you can view fine-tuned AI services models." lightbox="./media/ai-studio/custom-speech/fine-tune-succeeded-list.png":::
 
 ## Related content
 
