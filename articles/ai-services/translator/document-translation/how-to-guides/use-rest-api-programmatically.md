@@ -210,7 +210,7 @@ The following headers are included with each Document Translation API request:
 }
 ```
 
-### 🆕 Translate text embedded within document images
+### 🆕 Translate text embedded in images within documents
 
 > [!Note]
 >
