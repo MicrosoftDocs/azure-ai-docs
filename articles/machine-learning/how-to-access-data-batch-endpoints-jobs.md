@@ -115,7 +115,7 @@ from azure.identity import DefaultAzureCredential
 job = ml_client.batch_endpoints.invoke(
     endpoint_name=endpoint.name,
     inputs={
-        "heart_data_asset_unlabeled": Input(path="https://azuremlexampledata.blob.core.windows.net/data/heart-disease-uci/data")
+        "heart_data": Input(path="https://azuremlexampledata.blob.core.windows.net/data/heart-disease-uci/data")
     }
 )
 ```
@@ -130,7 +130,7 @@ job = ml_client.batch_endpoints.invoke(
    {
        "properties": {
            "InputData": {
-              "heart_data_asset_unlabeled": {
+              "heart_data": {
                   "JobInputType" : "UriFolder",
                   "Uri": "https://azuremlexampledata.blob.core.windows.net/data/heart-disease-uci/data"
               }
@@ -179,7 +179,7 @@ job = ml_client.batch_endpoints.invoke(
     endpoint_name=endpoint.name,
     deployment_name=deployment.name,
     inputs={
-        "heart_data_asset_unlabeled": Input(path="https://azuremlexampledata.blob.core.windows.net/data/heart-disease-uci/data")
+        "heart_data": Input(path="https://azuremlexampledata.blob.core.windows.net/data/heart-disease-uci/data")
     }
 )
 ```
@@ -192,7 +192,7 @@ job = ml_client.batch_endpoints.invoke(
    {
        "properties": {
            "InputData": {
-              "heart_data_asset_unlabeled": {
+              "heart_data": {
                   "JobInputType" : "UriFolder",
                   "Uri": "https://azuremlexampledata.blob.core.windows.net/data/heart-disease-uci/data"
               }
@@ -249,7 +249,7 @@ job = ml_client.batch_endpoints.invoke(
     endpoint_name=endpoint.name,
     experiment_name="my-batch-job-experiment",
     inputs={
-        "heart_data_asset_unlabeled": Input(path="https://azuremlexampledata.blob.core.windows.net/data/heart-disease-uci/data"),
+        "heart_data": Input(path="https://azuremlexampledata.blob.core.windows.net/data/heart-disease-uci/data"),
     }
 )
 ```
@@ -262,7 +262,7 @@ job = ml_client.batch_endpoints.invoke(
    {
        "properties": {
            "InputData": {
-              "heart_data_asset_unlabeled": {
+              "heart_data": {
                   "JobInputType" : "UriFolder",
                   "Uri": "https://azuremlexampledata.blob.core.windows.net/data/heart-disease-uci/data"
               }
@@ -319,15 +319,15 @@ Data inputs refer to inputs that point to a location where data is placed. Becau
 Batch endpoints can read files that are located in the following types of storage:
 
 - [Machine Learning data assets](#use-input-data-from-a-data-asset), including the folder (`uri_folder`) and file (`uri_file`) types.
-- [Machine Learning data stores](#use-input-data-from-a-data-stores), including Azure Blob Storage, Azure Data Lake Storage Gen1, and Azure Data Lake Storage Gen2.
+- [Machine Learning data stores](#use-input-data-from-a-data-store), including Azure Blob Storage, Azure Data Lake Storage Gen1, and Azure Data Lake Storage Gen2.
 - [Azure Storage accounts](#use-input-data-from-a-storage-account), including Blob Storage, Data Lake Storage Gen1, and Data Lake Storage Gen2.
 - Local data folders and files, when you use the Machine Learning CLI or the Machine Learning SDK for Python to invoke endpoints. But the local data gets uploaded to the default data store of your Machine Learning workspace.
 
 > [!IMPORTANT]
-> **Deprecation notice**: Data assets of type `FileDataset` (V1) are deprecated and will be retired in the future. Existing batch endpoints that rely on this functionality will continue to work. But there's no support for V1 datasets in batch endpoints that are created with versions of:
+> **Deprecation notice**: Data assets of type `FileDataset` (V1) are deprecated and will be retired in the future. Existing batch endpoints that rely on this functionality will continue to work. But there's no support for V1 datasets in batch endpoints that are created with:
 >
-> - The Machine Learning CLI v2 that are generally available (2.4.0 and newer).
-> - The REST API that are generally available (2022-05-01 and newer).
+> - Versions of the Machine Learning CLI v2 that are generally available (2.4.0 and newer).
+> - Versions of the REST API that are generally available (2022-05-01 and newer).
 
 ### Explore literal inputs
 
@@ -362,20 +362,20 @@ Machine Learning data assets (formerly known as datasets) are supported as input
 
    # [Azure CLI](#tab/cli)
    
-   1. Create a data asset definition in a YAML file named heart-data-asset-unlabeled.yml:
+   1. Create a data asset definition in a YAML file named heart-data.yml:
 
-      ```yaml
+      ```yml
       $schema: https://azuremlschemas.azureedge.net/latest/data.schema.json
-      name: heart-data-asset-unlabeled
+      name: heart-data
       description: An unlabeled data asset for heart classification.
       type: uri_folder
       path: data
       ```
-   
-    1. Create the data asset:
+
+   1. Create the data asset:
    
        ```bash
-       az ml data create -f heart-data-asset-unlabeled.yml
+       az ml data create -f heart-data.yml
        ```
    
    # [Python](#tab/sdk)
@@ -389,9 +389,9 @@ Machine Learning data assets (formerly known as datasets) are supported as input
       from azure.ai.ml.entities import Data
 
       data_path = "heart-classifier-mlflow/data"
-      data_asset_name = "heart-data-asset-unlabeled"
+      data_asset_name = "heart-data"
  
-      heart_data_asset_unlabeled = Data(
+      heart_data_object = Data(
           path=data_path,
           type=AssetTypes.URI_FOLDER,
           description="An unlabeled data asset for heart classification",
@@ -402,13 +402,13 @@ Machine Learning data assets (formerly known as datasets) are supported as input
    1. Create the data asset:
     
       ```python
-      ml_client.data.create_or_update(heart_data_asset_unlabeled)
+      ml_client.data.create_or_update(heart_data_object)
       ```
     
       To retrieve the newly created data asset, use the following command:
     
       ```python
-      heart_data_asset_unlabeled = ml_client.data.get(name=data_asset_name, label="latest")
+      heart_data_asset = ml_client.data.get(name=data_asset_name, label="latest")
       ```
 
    # [REST](#tab/rest)
@@ -422,13 +422,13 @@ Machine Learning data assets (formerly known as datasets) are supported as input
    # [Azure CLI](#tab/cli)
     
    ```azurecli
-   DATA_ASSET_ID=$(az ml data show -n heart-data-asset-unlabeled --label latest | jq -r .id)
+   DATA_ASSET_ID=$(az ml data show -n heart-data --label latest | jq -r .id)
    ```
 
    # [Python](#tab/sdk)
 
    ```python
-   input = Input(path=heart_data_asset_unlabeled.id)
+   input = Input(path=heart_data_asset.id)
    ```
 
    # [REST](#tab/rest)
@@ -453,7 +453,7 @@ Machine Learning data assets (formerly known as datasets) are supported as input
 
    ```azurecli
    az ml batch-endpoint invoke --name $ENDPOINT_NAME \
-       --set inputs.heart_data_asset_unlabeled.type="uri_folder" inputs.heart_data_asset_unlabeled.path=$DATA_ASSET_ID
+       --set inputs.heart_data.type="uri_folder" inputs.heart_data.path=$DATA_ASSET_ID
    ```
 
    For an endpoint that serves a model deployment, you can use the `--input` argument to specify the data input, because a model deployment always requires only one data input.
@@ -466,9 +466,9 @@ Machine Learning data assets (formerly known as datasets) are supported as input
     
    ```yml
    inputs:
-     heart_data_asset_unlabeled:
+     heart_data:
        type: uri_folder
-       path: /subscriptions/<subscription-ID>/resourceGroups/<resource-group-name>/providers/Microsoft.MachineLearningServices/workspaces/<workspace-name>/data/heart-data-asset-unlabeled/versions/1
+       path: /subscriptions/<subscription-ID>/resourceGroups/<resource-group-name>/providers/Microsoft.MachineLearningServices/workspaces/<workspace-name>/data/heart-data/versions/1
    ```
     
    Then you can run the following command, which uses the `--file` argument to specify the inputs:
@@ -485,7 +485,7 @@ Machine Learning data assets (formerly known as datasets) are supported as input
    job = ml_client.batch_endpoints.invoke(
        endpoint_name=endpoint.name,
        inputs={
-           "heart_data_asset_unlabeled": input
+           "heart_data": input
        }
    )
    ```
@@ -510,7 +510,7 @@ Machine Learning data assets (formerly known as datasets) are supported as input
       {
           "properties": {
               "InputData": {
-                  "heart_data_asset_unlabeled": {
+                  "heart_data": {
                       "JobInputType" : "UriFolder",
                       "Uri": "<data-asset-ID>"
                   }
@@ -578,7 +578,7 @@ This example uses the default data store, but you can use a different data store
    {
        "properties": {
            "InputData": {
-               "heart_data_asset_unlabeled": {
+               "heart_data": {
                    "JobInputType" : "UriFolder",
                    "Uri": "/subscriptions/<subscription-ID>/resourceGroups/<resource-group-name>/providers/Microsoft.MachineLearningServices/workspaces/<workspace-name>/datastores/workspaceblobstore/paths/<data-path>"
                }
@@ -602,7 +602,7 @@ This example uses the default data store, but you can use a different data store
 
    ```azurecli
    az ml batch-endpoint invoke --name $ENDPOINT_NAME \
-       --set inputs.heart_data_asset_unlabeled.type="uri_folder" inputs.heart_data_asset_unlabeled.path=$INPUT_PATH
+       --set inputs.heart_data.type="uri_folder" inputs.heart_data.path=$INPUT_PATH
    ```
 
    For an endpoint that serves a model deployment, you can use the `--input` argument to specify the data input, because a model deployment always requires only one data input.
@@ -615,7 +615,7 @@ This example uses the default data store, but you can use a different data store
     
    ```yml
    inputs:
-     heart_data_asset_unlabeled:
+     heart_data:
        type: uri_folder
        path: azureml://datastores/workspaceblobstore/paths/<data-path>
    ```
@@ -636,7 +636,7 @@ This example uses the default data store, but you can use a different data store
    job = ml_client.batch_endpoints.invoke(
        endpoint_name=endpoint.name,
        inputs={
-           "heart_data_asset_unlabeled": input
+           "heart_data": input
        }
    )
    ```
@@ -723,7 +723,7 @@ For more information about extra required configurations for reading data from s
    {
       "properties": {
           "InputData": {
-              "heart_data_asset_unlabeled": {
+              "heart_data": {
                   "JobInputType" : "UriFolder",
                   "Uri": "https://azuremlexampledata.blob.core.windows.net/data/heart-disease-uci/data"
               }
@@ -738,7 +738,7 @@ For more information about extra required configurations for reading data from s
    {
       "properties": {
           "InputData": {
-              "heart_data_asset_unlabeled": {
+              "heart_data": {
                   "JobInputType" : "UriFile",
                   "Uri": "https://azuremlexampledata.blob.core.windows.net/data/heart-disease-uci/data/heart.csv"
               }
@@ -757,7 +757,7 @@ For more information about extra required configurations for reading data from s
 
    ```azurecli
    az ml batch-endpoint invoke --name $ENDPOINT_NAME \
-       --set inputs.heart_data_asset_unlabeled.type="uri_folder" inputs.heart_data_asset_unlabeled.path=$INPUT_DATA
+       --set inputs.heart_data.type="uri_folder" inputs.heart_data.path=$INPUT_DATA
    ```
 
    For an endpoint that serves a model deployment, you can use the `--input` argument to specify the data input, because a model deployment always requires only one data input.
@@ -770,7 +770,7 @@ For more information about extra required configurations for reading data from s
     
    ```yml
    inputs:
-     heart_data_asset_unlabeled:
+     heart_data:
        type: uri_folder
        path: https://azuremlexampledata.blob.core.windows.net/data/heart-disease-uci/data
    ```
@@ -791,7 +791,7 @@ For more information about extra required configurations for reading data from s
    job = ml_client.batch_endpoints.invoke(
        endpoint_name=endpoint.name,
        inputs={
-           "heart_data_asset_unlabeled": input
+           "heart_data": input
        }
    )
    ```
@@ -903,7 +903,7 @@ job = ml_client.batch_endpoints.invoke(
 
 ## Create jobs with data outputs
 
-The following example shows how to change the location of an output named `score`. For completeness, these examples also configure an input named `heart_data_asset_unlabeled`.
+The following example shows how to change the location of an output named `score`. For completeness, the example also configures an input named `heart_data`.
 
 This example uses the default data store, **workspaceblobstore**. But you can use any other data store in your workspace as long as it's a Blob Storage account. If you want to use a different data store, replace `workspaceblobstore` in the following steps with the name of your preferred data store.
 
@@ -945,7 +945,7 @@ This example uses the default data store, **workspaceblobstore**. But you can us
 
    ```yml
    inputs:
-     heart_data_asset_unlabeled:
+     heart_data:
        type: uri_folder
        path: https://azuremlexampledata.blob.core.windows.net/data/heart-disease-uci/data
    outputs:
@@ -967,7 +967,7 @@ This example uses the default data store, **workspaceblobstore**. But you can us
 
    ```python
    input = Input(
-       type=AssetTypes.URI_FILE,
+       type=AssetTypes.URI_FOLDER,
        path="https://azuremlexampledata.blob.core.windows.net/data/heart-disease-uci/data"
    )
    ```
@@ -980,7 +980,7 @@ This example uses the default data store, **workspaceblobstore**. But you can us
    {
        "properties": {
            "InputData": {
-              "heart_data_asset_unlabeled": {
+              "heart_data": {
                   "JobInputType" : "UriFolder",
                   "Uri": "https://azuremlexampledata.blob.core.windows.net/data/heart-disease-uci/data"
               }
@@ -1017,7 +1017,7 @@ This example uses the default data store, **workspaceblobstore**. But you can us
    ```python
    job = ml_client.batch_endpoints.invoke(
       endpoint_name=endpoint.name,
-      inputs={ "heart_data_asset_unlabeled": input },
+      inputs={ "heart_data": input },
       outputs={ "score": output }
    )
    ```
