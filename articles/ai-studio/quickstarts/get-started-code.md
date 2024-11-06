@@ -67,7 +67,7 @@ print(response.choices[0].message.content)
 
 ## Insert your connection string
 
-Your project connection string is required to call the Azure OpenAI service from your code. In this quickstart, you save this value in a `.env` file, which is a file that contains environment variables that your application can read. 
+Your project connection string is required to call the Azure OpenAI service from your code. In this quickstart, you save this value in an `.env` file, which is a file that contains environment variables that your application can read. 
 
 You find your connection string in the Azure AI Studio project you created in the [AI Studio playground quickstart](../quickstarts/get-started-playground.md).  Open the project, then find the connection string on the **Overview** page.  
 
