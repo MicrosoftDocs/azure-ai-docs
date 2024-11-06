@@ -44,7 +44,13 @@ Two types of quantization are supported:
 
 The following example shows a partial index definition with a fields collection that includes a vector field, and a `vectorSearch.compressions` section.
 
-This example includes both `scalarQuantization` or `binaryQuantization`. You can specify as many compression configurations as you need, and then assign the ones you want to a vector profile.
+It includes both `scalarQuantization` or `binaryQuantization`. You can specify as many compression configurations as you need, and then assign the ones you want to a vector profile.
+
+Syntax for `vectorSearch.Compressions` varies between stable and preview REST APIs, with the preview adding new options for storage optimization, plus changes to existing syntax. Backwards compatibility is preserved through internal API mappings, but you should adopt the new syntax in code that targets 2024-11-01-preview and future versions.
+
+### [**2024-07-01**](#tab/2024-07-01)
+
+Use the [Create Index](/rest/api/searchservice/indexes/create) or [Create or Update Index](/rest/api/searchservice/indexes/create-or-update) REST API to configure compression settings.
 
 ```http
 POST https://[servicename].search.windows.net/indexes?api-version=2024-07-01
@@ -84,11 +90,77 @@ POST https://[servicename].search.windows.net/indexes?api-version=2024-07-01
 
 - `kind` must be set to `scalarQuantization` or `binaryQuantization`.
 
-- `rerankWithOriginalVectors` uses the original, uncompressed vectors to recalculate similarity and rerank the top results returned by the initial search query. The uncompressed vectors exist in the search index even if `stored` is false. This property is optional. Default is true.
+- `rerankWithOriginalVectors` uses the original uncompressed vectors to recalculate similarity and rerank the top results returned by the initial search query. The uncompressed vectors exist in the search index even if `stored` is false. This property is optional. Default is true.
 
 - `defaultOversampling` considers a broader set of potential results to offset the reduction in information from quantization. The formula for potential results consists of the `k` in the query, with an oversampling multiplier. For example, if the query specifies a `k` of 5, and oversampling is 20, then the query effectively requests 100 documents for use in reranking, using the original uncompressed vector for that purpose. Only the top `k` reranked results are returned. This property is optional. Default is 4.
 
 - `quantizedDataType` is optional and applies to scalar quantization only. If you add it, it must be set to `int8`. This is the only primitive data type supported for scalar quantization at this time. Default is `int8`.
+
+### [**2024-11-01-preview**](#tab/2024-11-01-preview)
+
+Use the [Create Index (preview)](/rest/api/searchservice/indexes/create?view=rest-searchservice-2024-11-01-preview&preserve-view=true) or [Create or Update Index (preview)](/rest/api/searchservice/indexes/create-or-update?view=rest-searchservice-2024-11-01-preview&preserve-view=true) REST API to configure compression settings.
+
+Changes in this version include new `rescoringOptions` that replace `rerankWithOriginalVectors`, and extend the API with more storage options. Notice that `defaultOversampling` is now a property of `rescoringOptions`.
+
+Rescoring options are used to mitigate the effects of lossy comprehension. You can set `rescoringOptions` for scalar or binary quantization.
+
+```http
+POST https://[servicename].search.windows.net/indexes?api-version=2024-11-01-preview
+
+{
+  "name": "my-index",
+  "fields": [
+    { "name": "Id", "type": "Edm.String", "key": true, "retrievable": true, "searchable": true, "filterable": true },
+    { "name": "content", "type": "Edm.String", "retrievable": true, "searchable": true },
+    { "name": "vectorContent", "type": "Collection(Edm.Single)", "retrievable": false, "searchable": true, "dimensions": 1536,"vectorSearchProfile": "vector-profile-1"},
+  ],
+  "vectorSearch": {
+        "profiles": [ ],
+        "algorithms": [ ],
+        "compressions": [
+          {
+            "name": "use-scalar",
+            "kind": "scalarQuantization",
+            "rescoringOptions": {
+                "enableRescoring": true,
+                "defaultOversampling": 10,
+                "rescoreStorageMethod": "preserveOriginals"
+            },
+            "scalarQuantizationParameters": {
+              "quantizedDataType": "int8"
+            },
+            "truncationDimension": 1024
+          },
+          {
+            "name": "use-binary",
+            "kind": "binaryQuantization",
+            "rescoringOptions": {
+                "enableRescoring": true,
+                "defaultOversampling": 10,
+                "rescoreStorageMethod": "preserveOriginals"
+            },
+            "truncationDimension": 1024
+          }
+        ]
+    }
+}
+```
+
+**Key points**:
+
+- `kind` must be set to `scalarQuantization` or `binaryQuantization`.
+
+- `rescoringOptions` are a collection of properties used to offset lossy compression by rescoring query results using the original full-precision vectors that exist prior to quantization. For rescoring to work, you must have the vector instance that provides this content. Setting `rescoreStorageMethod` to `discardOriginals` prevents you from using `enableRescoring` or `defaultOversampling`. For more information about vector storage, see [Eliminate optional vector instances from storage](vector-search-how-to-storage-options.md).
+
+- `"enableRescoring": "preserveOriginals"` is the API equivalent of `"rerankWithOriginalVectors": true`. Rescoring vector search results with the original full-precision vectors can result in adjustments to search score and rankings, promoting the more relevant matches as determined by the rescoring step.
+
+- `defaultOversampling` considers a broader set of potential results to offset the reduction in information from quantization. The formula for potential results consists of the `k` in the query, with an oversampling multiplier. For example, if the query specifies a `k` of 5, and oversampling is 20, then the query effectively requests 100 documents for use in reranking, using the original uncompressed vector for that purpose. Only the top `k` reranked results are returned. This property is optional. Default is 4.
+
+- `quantizedDataType` is optional and applies to scalar quantization only. If you add it, it must be set to `int8`. This is the only primitive data type supported for scalar quantization at this time. Default is `int8`.
+
+- `truncationDimension` is a preview feature that taps inherent capabilities of the text-embedding-3 models to "encode information at different granularities and allows a single embedding to adapt to the computational constraints of downstream tasks" (see [Matryoshka Representation Learning](https://arxiv.org/abs/2205.13147)). You can use truncated dimensions with or without rescoring options. For more information about how this feature is implemented in Azure AI Search, see [Truncate dimensions using MRL compression](vector-search-how-to-truncate-dimensions.md).
+
+---
 
 ## Add the HNSW algorithm
 

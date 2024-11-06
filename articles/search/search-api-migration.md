@@ -11,7 +11,7 @@ ms.custom:
   - ignite-2023
   - build-2024
 ms.topic: conceptual
-ms.date: 11/05/2024
+ms.date: 11/19/2024
 ---
 
 # Upgrade to the latest REST API in Azure AI Search
@@ -77,7 +77,7 @@ See [Migrate from preview version](semantic-how-to-configure.md#migrate-from-pre
 
 [`2024-11-01-preview`](/rest/api/searchservice/search-service-api-versions#2024-11-01-preview) query rewrite, Document Layout skill, keyless billing for skills processing, Markdown parsing mode, and rescoring options for compressed vectors.
 
-If you're upgrading from `2024-09-01-preview`, you can use the new preview APIs with no change to existing code.
+If you're upgrading from `2024-09-01-preview`, you can use the new preview APIs with no change to existing code. However, the new version introduces change to vectorSearch.compressions, replacing `rerankWithOriginalVectors` with `enableRescoring`, and moving `defaultOversampling` to a new `rescoringOptions` property object. For a comparison of the syntax, see [Compress vectors using scalar or binary quantization](vector-search-how-to-quantization.md#add-compressions-to-a-search-index).
 
 ## Upgrade to 2024-09-01-preview
 
