@@ -1,7 +1,7 @@
 ---
 title: Azure AI Content Understanding custom document extraction overview
 titleSuffix: Azure AI services
-description: Learn about Azure AI Content Understanding document solutions
+description: Learn about Azure AI Content Understanding document solutions.
 author: laujan
 ms.author: lajanuar
 manager: nitinme
@@ -41,7 +41,7 @@ Document Extraction can process complex documents with various formats, template
 :::image type="content" source="../media/document/extraction-overview.png" alt-text="Screenshot of document extraction flow.":::
 
 
-## Document Extraction Capabilities
+## Document extraction capabilities
 
 Content extraction enables the extraction of both printed and handwritten text from forms and documents, delivering business-ready content that is immediately actionable, usable, or adaptable for further development within your organization.
 
@@ -57,7 +57,7 @@ Use the add-on features to extend the results to include more features extracted
 
 * Locales: Enabling the 'languages' feature predicts the detected primary language for each text line along with the confidence score.
 
-### Field Extraction
+### Field extraction
 
 Document field extraction allows you to extract distinct data from forms and documents, with a wide variety of visual templates, specific to your use case. For example, you can extract customer name, billing address, due date, and amount due, line items, and other key data from an invoice. You can extract termination date, agreement date, lease terms, and other key data from contracts.
 You can train field extraction model with a single document or can add more sample documents with labeling to improve the field extraction for your document type.
@@ -65,7 +65,7 @@ You can train field extraction model with a single document or can add more samp
 Note: The layout add-on capability must be enabled by default for Field extraction
 
 
-## Benefits of Content Understanding Document Extraction
+## Benefits of Content Understanding document extraction
 
 * **Accuracy and Reliability:** Document extraction AI models are built to deliver accurate data extraction, reducing errors and improving efficiency.
 
@@ -77,7 +77,7 @@ Note: The layout add-on capability must be enabled by default for Field extracti
 
 * **High confidence scores:** Maximize efficiency and minimize costs in automation workflows, using confidence scores.
 
-## Input Requirements
+## Input requirements
 
 For a complete list of Content Understanding supported input formats, see our [Service quotas and limits](../service-limits.md) page.
 
@@ -85,7 +85,7 @@ For a complete list of Content Understanding supported input formats, see our [S
 
 For a complete list of supported languages and regions, see our [Language and region support](../language-region-support.md) page.
 
-## Next Step
+## Next step
 
 Get started using Content Understanding APIs with our [Content Understanding REST API quickstart](../quickstart/use-rest-api.md) and learn how to add more samples with labels to improve field extraction quality (link).
 
