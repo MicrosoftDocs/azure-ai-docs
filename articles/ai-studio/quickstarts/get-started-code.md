@@ -67,9 +67,9 @@ print(response.choices[0].message.content)
 
 ## Insert your connection string
 
-Your project connection string is required to call the Azure OpenAI service from your code. In this quickstart, you save this value in an `.env` file, which is a file that contains environment variables that your application can read. 
+Your project connection string is required to call the Azure OpenAI service from your code. 
 
-You find your connection string in the Azure AI Studio project you created in the [AI Studio playground quickstart](../quickstarts/get-started-playground.md).  Open the project, then find the connection string on the **Overview** page.  
+Find your connection string in the Azure AI Studio project you created in the [AI Studio playground quickstart](../quickstarts/get-started-playground.md).  Open the project, then find the connection string on the **Overview** page.  
 
 :::image type="content" source="../media/quickstarts/azure-ai-sdk/connection-string.png" alt-text="Screenshot shows the overview page of a project and the location of the connection string.":::
 
@@ -124,7 +124,7 @@ Let's change the script to take input from a client application and generate a s
 
     The get_chat_response function could be easily added as a route to a FastAPI or Flask app to enable calling this function from a front-end web application.
 
-1. Now simulate passing information from a frontend application to this function.  Add the following code to the end of your **chat.py** file:
+1. Now simulate passing information from a frontend application to this function.  Add the following code to the end of your **chat.py** file.  Feel free to play with the message and add your own name.
 
 ```python
 response = get_chat_response(
