@@ -72,7 +72,7 @@ Let's change the script to take input from a client application and generate a s
 
 1. Now define a `get_chat_response` function that takes messages and context, generates a system message using a prompt template, and calls a model.  Add this code to your **chat.py** file:
 
-    :::code language="python" source="~/azureai-samples-nov2024/scenarios/inference/chat-app/chattemplate.py" id="chat_function":::
+    :::code language="python" source="~/azureai-samples-nov2024/scenarios/inference/chat-app/chat-template.py" id="chat_function":::
 
     > [!NOTE]
     > The prompt template uses mustache format.
