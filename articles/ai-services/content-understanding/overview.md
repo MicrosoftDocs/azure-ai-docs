@@ -23,7 +23,7 @@ Content Understanding offers a streamlined process to reason over large amounts 
 
 * **Simplified and streamlined workflows**. Content Understanding unifies the process for extracting data from any modality or combination of modalities, creating a unified approach to processing all types of content.
 
-* **Simplified Content Extraction**. Content Understanding's schema definition streamlines the generation of structured output from various content types. This allows users to define schemas where fields can be extracted, inferred, or abstracted without requiring complex prompt engineering.
+* **Simplified Content Extraction**. Content Understanding's schema definition streamlines the generation of structured output from various content types. Users are enabled to define schemas where fields can be extracted, inferred, or abstracted without requiring complex prompt engineering.
 
 * **Efficiency and Cost Reduction**. Automating the ingestion and analysis of large amounts of data from varied sources reduces the cost associated with building Generative AI automation solutions.
 
