@@ -210,14 +210,14 @@ The following headers are included with each Document Translation API request:
 }
 ```
 
-## 🆕 Translate text embedded within document images
+### 🆕 Translate text embedded within document images
 
 > [!Note]
 >
 > * This feature is optional and must be enabled for each translation request.
-> * Enabling this feature will incur additional costs based on usage. See [Azure AI Vision pricing](https://azure.microsoft.com/pricing/details/cognitive-services/computer-vision/)
-> * It is currently only available with the Batch Document Translation API.
-> * Supported file format: .docx only.
+> * Enabling this feature will incur additional costs based on usage. For more information, *see* [Azure AI Vision pricing](https://azure.microsoft.com/pricing/details/cognitive-services/computer-vision/)
+> * This feature is currently available only with the Batch Document Translation API.
+> * The Supported file format is `.docx` only.
 > * An Azure AI Services resource (not the standalone Translator resource) is required to use this feature.
 
 ### Request configuration
