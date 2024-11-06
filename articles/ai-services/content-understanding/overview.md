@@ -15,21 +15,27 @@ ms.custom: ignite-2024-understanding-release
 
 Azure AI Content Understanding is a cloud-based solution within [**Azure AI services**](../what-are-ai-services.md), designed to process/ingest various data modalities such as documents, images, videos, and audio into customizable output formats using Generative AI, Larger Language models (LLM), and Small Language Models (SLM) within a unified workflow.
 
-Built on the success of Document Intelligence, Content Understanding offers a streamlined process to reason over large amounts of unstructured data, build customizable workflows, ultimately accelerating time-to-value (TTV), while varied AI models.
+Content Understanding offers a streamlined process to reason over large amounts of unstructured data, build customizable workflows, ultimately accelerating time-to-value (TTV), while varied AI models.
 
-:::image type="content" source="media/overview/content-understanding-process.png" lightbox="media/overview/content-understanding-process.png" alt-text="Screenshot of accepted media input files.":::
+:::image type="content" source="media/overview/content-understanding-overview.png" lightbox="media/overview/content-understanding-process.png" alt-text="Screenshot of accepted media input files.":::
 
-### Benefits of using Content Understanding
+### Why use Content Understanding?
 
-* **Simplified and streamlined workflows**. Content Understanding simplifies data extraction from mixed modality and unstructured content by eliminating the need for separate workflows.
+* **Simplified and streamlined workflows**. Content Understanding unifies the process for extracting data from any modality or combination of modalities, creating a unified approach to processing all types of content.
 
-   :::image type="content" source="media/overview/content-understanding-workflow.png" alt-text="Screenshot comparing Content Understanding workflows.":::
+* **Simplified Content Extraction**. Content Understanding's schema definition streamlines the generation of structured output from various content types. This allows users to define schemas where fields can be extracted, inferred, or abstracted without requiring complex prompt engineering.
 
 * **Efficiency and Cost Reduction**. Automating the ingestion and analysis of large amounts of data from varied sources reduces the cost associated with building Generative AI automation solutions.
 
 * **Enhanced Accuracy**. Content Understanding uses multiple data modalities to simultaneously analyze and cross-validate information, leading to more accurate and reliable results.
 
 ### Content Understanding use cases
+
+* **Automation**. Content Understanding can significantly enhance automation by transforming unstructured content into structured data, which can then be seamlessly integrated into various downstream workflows and applications. For example, it can automate procurement and payment processes by extracting fields from invoices.
+
+* **Search and Retrieval Augmented Generation**. Content Understanding enhances Search and Retrieval-Augmented Generation (RAG) by processing diverse unstructured content. The output can be added to a search index and RAG applications, enhancing the search experience with more accurate and relevant results.
+
+* **Analytics and Reporting**: Content Understanding's extracted schema outputs enhance analytics and reporting, allowing businesses to gain valuable insights, conduct deeper analysis and make informed decisions from accurate reports.
 
 *    **Business leaders and c-suite executives**. Decision makers gain actionable insights from Content Understanding solutions. Generative
 AI powered results and high confidence scores lead to enlightened data-driven decisions and minimize the need for human review.
@@ -66,7 +72,7 @@ At Microsoft, we prioritize advancing AI with a people-first approach. Generativ
 As with all the Azure AI services, developers using the Content Understanding service should be aware of Microsoft's policies on customer data. See our [**Data, protection and privacy**](https://www.microsoft.com/trust-center/privacy) page to learn more.
 
 > [!IMPORTANT]
-> if you are using Microsoft products or services to process Biometric Data, you are responsible for: (i) providing notice to data subjects, including with respect to retention periods and destruction; (ii) obtaining consent from data subjects; and (iii) deleting the Biometric Data, all as appropriate and required under applicable Data Protection Requirements. "Biometric Data" will have the meaning set forth in Article 4 of the GDPR and, if applicable, equivalent terms in other data protection requirements. For related information, see [Data and Privacy for Face](/legal/cognitive-services/face/data-privacy-security).
+> If you are using Microsoft products or services to process Biometric Data, you are responsible for: (i) providing notice to data subjects, including with respect to retention periods and destruction; (ii) obtaining consent from data subjects; and (iii) deleting the Biometric Data, all as appropriate and required under applicable Data Protection Requirements. "Biometric Data" will have the meaning set forth in Article 4 of the GDPR and, if applicable, equivalent terms in other data protection requirements. For related information, see [Data and Privacy for Face](/legal/cognitive-services/face/data-privacy-security).
 
 ## Getting started
 Before you get started using Content Understanding, you need an [**Azure AI services multi-service resource**](how-to/create-multi-service-resource.md). The multi-service resource enables access to multiple Azure AI services with a single set of credentials.

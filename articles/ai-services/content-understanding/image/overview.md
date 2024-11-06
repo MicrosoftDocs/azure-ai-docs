@@ -65,6 +65,13 @@ Content Understanding supports the following image file formats in preview:
 | **array**| √ List of subfields of the same type||
 | **Object**| √ Named list of subfields of potentially different types. ||
 
+## Data privacy and security
+
+As with all the Azure AI services, developers using the Content Understanding service should be aware of Microsoft's policies on customer data. See our [**Data, protection and privacy**](https://www.microsoft.com/trust-center/privacy) page to learn more.
+
+> [!IMPORTANT]
+> If you are using Microsoft products or services to process Biometric Data, you are responsible for: (i) providing notice to data subjects, including with respect to retention periods and destruction; (ii) obtaining consent from data subjects; and (iii) deleting the Biometric Data, all as appropriate and required under applicable Data Protection Requirements. "Biometric Data" will have the meaning set forth in Article 4 of the GDPR and, if applicable, equivalent terms in other data protection requirements. For related information, see [Data and Privacy for Face](/legal/cognitive-services/face/data-privacy-security).
+
 ## Next steps
 
 Try processing your content and data using Content Understanding in the [Azure AI Studio](https://ai.azure.com/?tid=888d76fa-54b2-4ced-8ee5-aac1585adee7).
