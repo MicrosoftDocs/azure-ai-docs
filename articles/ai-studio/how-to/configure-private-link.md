@@ -241,6 +241,7 @@ You can use IP network rules to allow access to your AI Studio hub and projects 
 > [!WARNING]
 > * You can only use IPv4 addresses.
 > * To use this feature with Azure Machine Learning managed virtual network, see [Configure managed virtual network](configure-managed-network.md#scenario-enable-access-from-selected-ip-addresses).
+> * If you are using serverless endpoints, your public network access is either enabled or disabled depending on the setting of your hub's public network access. For more information, visit [Serverless API endpoints](deploy-models-serverless.md#network-isolation).
 
 # [Portal](#tab/azure-portal)
 
