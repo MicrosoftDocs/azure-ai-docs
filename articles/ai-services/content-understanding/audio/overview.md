@@ -70,7 +70,7 @@ Content Understanding is serves as a cornerstone for Media Asset Management solu
 
    * **Supported languages**. Content Understanding audio capabilities support automatic language detection for [**supported languages**](../language-region-support.md#language-support). The feature is automatically active if no locale or multiple locales are selected.
 
-  * **Supported audio formats**. Content Understanding audio capabilities support a broad variety of [audio file formats and codes](../language-region-support.md#audio).
+  * **Supported audio formats**. Content Understanding audio capabilities support a broad variety of [audio file formats and codes](../language-region-support.md).
 
   * **Audio transcription detailed output**. The complete output from the audio transcription process is returned including, if needed, sentence-level and word-level-timestamps.
 
