@@ -6,7 +6,7 @@ manager: scottpolly
 ms.service: azure-ai-studio
 ms.custom: build-2024, devx-track-azurecli, devx-track-python
 ms.topic: how-to
-ms.date: 10/31/2024
+ms.date: 11/06/2024
 ms.reviewer: dantaylo
 ms.author: sgilley
 author: sdgilley
