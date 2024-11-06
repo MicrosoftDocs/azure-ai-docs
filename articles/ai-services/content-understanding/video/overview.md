@@ -8,9 +8,16 @@ manager: nitinme
 ms.service: azure
 ms.topic: how-to
 ms.date: 11/19/2024
+ms.custom: ignite-2024-understanding-release
 ---
 
-# Use Content Understanding video solutions overview (preview)
+# Content Understanding video solutions (preview)
+
+> [!IMPORTANT]
+>
+> * Azure AI Content Understanding is available in preview. Public preview releases provide early access to features that are in active development.
+> * Features, approaches, and processes may change or have constrained capabilities, prior to General Availability (GA).
+> * For more information, *see* [**Supplemental Terms of Use for Microsoft Azure Previews**](https://azure.microsoft.com/support/legal/preview-supplemental-terms).
 
 Azure AI Content Understanding lets you extract and customize video metadata for seamless integration into your systems or workflows. Content Understanding helps efficiently manage, categorize, retrieve, and build workflows for video assets. Content Understanding can enhance your media asset library, support workflows such as highlight generation, categorize content, and facilitate applications like retrieval-augmented generation (`RAG`). The video content extraction capabilities of Content Understanding offer the following advantages:
 
@@ -56,6 +63,13 @@ Content Understanding provides a specific set of capabilities for video includin
 
 * **Retrieval-augmented generation (`RAG`) applications**. Enable applications that can answer user questions with specific video moments by indexing content at a granular level.
 
+## Data privacy and security
+
+As with all the Azure AI services, developers using the Content Understanding service should be aware of Microsoft's policies on customer data. See our [**Data, protection and privacy**](https://www.microsoft.com/trust-center/privacy) page to learn more.
+
+> [!IMPORTANT]
+> if you are using Microsoft products or services to process Biometric Data, you are responsible for: (i) providing notice to data subjects, including with respect to retention periods and destruction; (ii) obtaining consent from data subjects; and (iii) deleting the Biometric Data, all as appropriate and required under applicable Data Protection Requirements. "Biometric Data" will have the meaning set forth in Article 4 of the GDPR and, if applicable, equivalent terms in other data protection requirements. For related information, see [Data and Privacy for Face](/legal/cognitive-services/face/data-privacy-security).
+
 ## Next steps
 
-Get started using Content Understanding video APIs with our [**how to guide**](how-to/set-up-manage-video-assets.md) for a managing media assets scenario.
+Get started using Content Understanding video APIs with our [**prebuilt template**](../prebuilt-template/manage-video-assets.md) for a managing media assets scenario.

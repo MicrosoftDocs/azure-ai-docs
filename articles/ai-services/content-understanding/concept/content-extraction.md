@@ -8,6 +8,7 @@ manager: nitinme
 ms.service: azure
 ms.topic: conceptual
 ms.date: 11/19/2024
+ms.custom: ignite-2024-understanding-release
 ---
 
 # Azure AI Content Understanding content extraction

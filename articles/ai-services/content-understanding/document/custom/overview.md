@@ -8,10 +8,11 @@ manager: nitinme
 ms.service: azure
 ms.topic: overview
 ms.date: 11/19/2024
+ms.custom: ignite-2024-understanding-release
 ---
 
 
-# Azure AI Content Understanding custom document data extraction (preview)
+# Content Understanding custom document solutions (preview)
 
 > [!IMPORTANT]
 >

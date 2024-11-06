@@ -8,11 +8,10 @@ manager: nitinme
 ms.service: azure
 ms.topic: overview
 ms.date: 11/19/2024
+ms.custom: ignite-2024-understanding-release
 ---
 
 # What is Azure AI Content Understanding?
-
-
 
 Azure AI Content Understanding is a cloud-based solution within [**Azure AI services**](../what-are-ai-services.md), designed to process/ingest various data modalities such as documents, images, videos, and audio into customizable output formats using Generative AI, Larger Language models (LLM), and Small Language Models (SLM) within a unified workflow.
 
@@ -54,8 +53,8 @@ Common scenarios for Azure AI Content Understanding service include:
 
 |Use|Scenario|Scenario Quickstart|
 |--------|-------|-------|
-|Call center post-call analytics| Businesses and call center operators can generate insights from call recordings to track key KPIs to improve product experience, generate business insights, create differentiated customer experiences, and answer queries faster and more accurately.| [**Post call analytics Quickstart**](audio/how-to/set-up-post-call-analytics.md) |
-|Marketing automation digital asset management| Independent software and media vendors that build media asset management solutions can use Content Understanding to extract richer, targeted content from images and videos.| [**Media asset management Quickstart**](video/how-to/set-up-manage-video-assets.md)|
+|Call center post-call analytics| Businesses and call center operators can generate insights from call recordings to track key KPIs to improve product experience, generate business insights, create differentiated customer experiences, and answer queries faster and more accurately.| [**Post call analytics Quickstart**](prebuilt-template/post-call-analytics.md) |
+|Marketing automation digital asset management| Independent software and media vendors that build media asset management solutions can use Content Understanding to extract richer, targeted content from images and videos.| [**Media asset management prebuilt template**](prebuilt-template/manage-video-assets.md)|
 |Tax processing automation| Tax preparing companies can use the extended capabilities of Content Understanding to generate a unified view of information from different documents and generate comprehensive tax returns.| Quick start|
 Chart Understanding| Businesses can significantly enhance chart understanding by automating the analysis and interpretation of various types of charts and diagrams using Content Understanding. This capability is useful in several downstream use cases.| Quickstart |
 
@@ -64,14 +63,17 @@ At Microsoft, we prioritize advancing AI with a people-first approach. Generativ
 
 ## Data privacy and security
 
-As with all the Azure AI services, developers using the Content Understanding service should be aware of Microsoft's policies on customer data. See our **Data, Privacy and Security** page to learn more.
+As with all the Azure AI services, developers using the Content Understanding service should be aware of Microsoft's policies on customer data. See our [**Data, protection and privacy**](https://www.microsoft.com/trust-center/privacy) page to learn more.
+
+> [!IMPORTANT]
+> if you are using Microsoft products or services to process Biometric Data, you are responsible for: (i) providing notice to data subjects, including with respect to retention periods and destruction; (ii) obtaining consent from data subjects; and (iii) deleting the Biometric Data, all as appropriate and required under applicable Data Protection Requirements. "Biometric Data" will have the meaning set forth in Article 4 of the GDPR and, if applicable, equivalent terms in other data protection requirements. For related information, see [Data and Privacy for Face](/legal/cognitive-services/face/data-privacy-security).
 
 ## Getting started
 Before you get started using Content Understanding, you need an [**Azure AI services multi-service resource**](how-to/create-multi-service-resource.md). The multi-service resource enables access to multiple Azure AI services with a single set of credentials.
 
 We provide quickstart guides designed to help you begin utilizing Content Understanding service swiftly:
 
-* **[**Rest API Quickstart**](quickstart/rest-api.md)**
+* **[**Rest API Quickstart**](quickstart/use-rest-api.md)**
 * **Azure AI Studio Quickstart**
 
 
