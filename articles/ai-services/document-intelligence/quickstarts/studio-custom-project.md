@@ -22,7 +22,7 @@ monikerRange: '>=doc-intel-3.0.0'
 
 ## Prerequisites for new users
 
-Please refer to the following [documentation](../studio-overview.md#prerequisites-for-using-document-intelligence-studio) for subscription and resource creation, as well as authentication set up.
+Please refer to the following [documentation](../studio-overview.md#prerequisites-for-using-document-intelligence-studio) for subscription and resource creation, as well as authentication setup.
 
 ## Additional prerequisites for custom projects
 
