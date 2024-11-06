@@ -6,14 +6,14 @@ ms.reviewer: deeikele
 ms.author: sgilley
 ms.service: azure-ai-studio
 ms.topic: include
-ms.date: 5/21/2024
+ms.date: 11/19/2024
 ms.custom: include, build-2024
 ---
 
 To create a project in [Azure AI Studio](https://ai.azure.com), follow these steps:
 
-1. Go to the **Home** page of [Azure AI Studio](https://ai.azure.com). If you are in a project, select **Azure AI Studio** at the top left of the page to go to the **Home** page.
-1. Select **+ New project**.
+1. Go to [Azure AI Studio](https://ai.azure.com). If you are in a project, select **Azure AI Studio** at the top left of the page to go to the **Home** page.
+1. Select **+ Create project**.
 1. Enter a name for the project.
 1. If you have a hub, you'll see the one you most recently used selected.  
     * If you have access to more than one hub, you can select a different hub from the dropdown.
@@ -49,10 +49,6 @@ When you create a new hub as part of the project creation, default settings are 
 
     :::image type="content" source="../media/how-to/projects/projects-create-resource.png" alt-text="Screenshot of the create resource page within the create project dialog." lightbox="../media/how-to/projects/projects-create-resource.png":::
 
-1. On the **Review and finish** page, you see the Azure AI services resource name and other settings to review.
-
-    :::image type="content" source="../media/how-to/projects/projects-create-review-finish.png" alt-text="Screenshot of the review and finish page within the create project dialog." lightbox="../media/how-to/projects/projects-create-review-finish.png":::
-
-1. Review the project details and then select **Create a project**. You see progress of resource creation and the project is created when the process is complete.
+1. Select **Create a project**. You see progress of resource creation and the project is created when the process is complete.
 
     :::image type="content" source="../media/how-to/projects/projects-create-review-finish-progress.png" alt-text="Screenshot of the resource creation progress within the create project dialog." lightbox="../media/how-to/projects/projects-create-review-finish-progress.png":::

@@ -432,8 +432,8 @@ result = evaluate(
     },
     # column mapping
     evaluator_config={
-        "column_mapping": {
-            "relevance": {
+        "relevance": {
+            "column_mapping": {
                 "query": "${data.queries}"
                 "ground_truth": "${data.ground_truth}"
                 "response": "${outputs.response}"
@@ -560,8 +560,8 @@ result = evaluate(
         "relevance": relevance_eval
     },
     evaluator_config={
-        "column_mapping": {
-            "default": {
+        "default": {
+            "column_mapping": {
                 "query": "${data.queries}"
                 "context": "${outputs.context}"
                 "response": "${outputs.response}"
