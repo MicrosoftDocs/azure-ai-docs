@@ -150,9 +150,9 @@ items:
       href: how-to/deploy-models-jamba.md
     - name: TimeGEN-1 model
       href: how-to/deploy-models-timegen-1.md
-    - name: Tsuzumi model
+    - name: NTTDATA tsuzumi model
       href: how-to/deploy-models-tsuzumi.md
-    - name: Fine-tune Tsuzumi model
+    - name: Fine-tune tsuzumi model
       href: how-to/fine-tune-models-tsuzumi.md
   - name: Deploy AI models
     items:

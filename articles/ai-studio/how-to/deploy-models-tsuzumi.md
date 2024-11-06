@@ -19,7 +19,7 @@ zone_pivot_groups: azure-ai-model-catalog-samples-chat
 [!INCLUDE [Feature preview](~/reusable-content/ce-skilling/azure/includes/ai-studio/includes/feature-preview.md)]
 
 In this article, you learn about tsuzumi-7b models and how to use them.
-Tsuzumi is a lightweight large language designed to handle both Japanese and English with high efficiency.
+NTTDATA's tsuzumi model is a lightweight large language model designed to handle both Japanese and English with high efficiency.
 
 
 
@@ -356,7 +356,7 @@ console.log("Model provider name: ", model_info.body.model_provider_name)
 ```console
 Model name: tsuzumi-7b
 Model type: chat-completions
-Model provider name: NTT Data
+Model provider name: NTTDATA
 ```
 
 ### Create a chat completion request
@@ -692,7 +692,7 @@ Console.WriteLine($"Model provider name: {modelInfo.Value.ModelProviderName}");
 ```console
 Model name: tsuzumi-7b
 Model type: chat-completions
-Model provider name: NTT Data
+Model provider name: NTTDATA
 ```
 
 ### Create a chat completion request
@@ -985,7 +985,7 @@ The response is as follows:
 {
     "model_name": "tsuzumi-7b",
     "model_type": "chat-completions",
-    "model_provider_name": "NTT Data"
+    "model_provider_name": "NTTDATA"
 }
 ```
 
@@ -1336,11 +1336,11 @@ For more examples of how to use Tsuzumi models, see the following examples and t
 | LangChain                                 | Python            | [Link](https://aka.ms/meta-llama-3.1-405B-instruct-langchain)      |
 | LiteLLM                                   | Python            | [Link](https://aka.ms/meta-llama-3.1-405B-instruct-litellm)        | 
 
-## Cost and quota considerations for Tsuzumi models deployed as serverless API endpoints
+## Cost and quota considerations for tsuzumi models deployed as serverless API endpoints
 
 Quota is managed per deployment. Each deployment has a rate limit of 200,000 tokens per minute and 1,000 API requests per minute. However, we currently limit one deployment per model per project. Contact Microsoft Azure Support if the current rate limits aren't sufficient for your scenarios.
 
-Tsuzumi models deployed as a serverless API are offered by NTT Data through the Azure Marketplace and integrated with Azure AI Studio for use. You can find the Azure Marketplace pricing when deploying the model.
+tsuzumi models deployed as a serverless API are offered by NTTDATA through the Azure Marketplace and integrated with Azure AI Studio for use. You can find the Azure Marketplace pricing when deploying the model.
 
 Each time a project subscribes to a given offer from the Azure Marketplace, a new resource is created to track the costs associated with its consumption. The same resource is used to track costs associated with inference; however, multiple meters are available to track each scenario independently.
 

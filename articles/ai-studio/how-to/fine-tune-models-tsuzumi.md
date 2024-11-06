@@ -124,7 +124,7 @@ To fine-tune a tsuzumi-7b model:
 
 1. Review your selections and proceed to train your model.
 
-Once your model is fine-tuned, you can deploy the model and can use it in your own application, in the playground, or in prompt flow. For more information, see [How to deploy Tsuzumi large language models with Azure AI Studio](./deploy-models-tsuzumi.md).
+Once your model is fine-tuned, you can deploy the model and can use it in your own application, in the playground, or in prompt flow. For more information, see [How to deploy tsuzumi large language models with Azure AI Studio](./deploy-models-tsuzumi.md).
 
 
 ## Cleaning up your fine-tuned models 
