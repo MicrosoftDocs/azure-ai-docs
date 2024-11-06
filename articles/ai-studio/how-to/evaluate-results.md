@@ -50,7 +50,7 @@ You can choose a specific run, which will take you to the run detail page. Here,
 We break down the aggregate views with different types of your metrics by AI Quality (AI assisted), Risk and safety, AI Quality (NLP), and Custom when applicable. You can view the distribution of scores across the evaluated dataset and see aggregate scores for each metric.  
 
 - For AI Quality (AI assisted), we aggregate by calculating an average across all the scores for each metric. If you calculate Groundedness Pro, the output is binary and so the aggregated score is passing rate, which is calculated by (#trues / #instances) × 100.
-    :::image type="content" source="../media/evaluations/view-results/ai-quality-ai-assisted-chart.png" alt-text="Screenshot of AI Quality (AI assisted) metrics dashboard tab." lightbox="../media/evaluations/view-results/eai-quality-ai-assisted-chart.png":::
+    :::image type="content" source="../media/evaluations/view-results/ai-quality-ai-assisted-chart.png" alt-text="Screenshot of AI Quality (AI assisted) metrics dashboard tab." lightbox="../media/evaluations/view-results/ai-quality-ai-assisted-chart.png":::
 - For risk and safety metrics, we aggregate by calculating a defect rate for each metric.
     - For content harm metrics, the defect rate is defined as the percentage of instances in your test dataset that surpass a threshold on the severity scale over the whole dataset size.  By default, the threshold is “Medium”.
     - For protected material and indirect attack, the defect rate is calculated as the percentage of instances where the output is 'true' (Defect Rate = (#trues / #instances) × 100).
