@@ -32,10 +32,10 @@ In this quickstart, we walk you through setting up your local development enviro
 
 ## Install packages
 
-Install the Azure AI SDK packages you need.
+Install `azure-ai-projects`(preview), `azure-ai-inference` (preview), and azure-identity packages:
 
 ```bash
-pip install azure_ai_projects azure_ai_inference azure-identity 
+pip install azure-ai-projects azure-ai-inference azure-identity 
 ```
 
 ## Build your chat app

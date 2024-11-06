@@ -30,6 +30,8 @@ If you've completed other tutorials or quickstarts, you might have already creat
 
 This tutorial is part one of a three-part tutorial.
 
+[!INCLUDE [feature-preview](../includes/feature-preview.md)]
+
 ## Prerequisites
 
 * An Azure account with an active subscription. If you don't have one, [create an account for free](https://azure.microsoft.com/free/?WT.mc_id=A261C142F).
@@ -92,7 +94,7 @@ In the Azure AI Studio, check for an Azure AI Search connected resource.
 
 ## Install packages
 
-* Install the base packages needed to run the app:
+* Install `azure-ai-projects`(preview) and `azure-ai-inference` (preview), along with other required packages.
 
     ```bash
     pip install azure-ai-projects azure-ai-inference azure-ai-identity azure-search-documents pandas python-dotenv
