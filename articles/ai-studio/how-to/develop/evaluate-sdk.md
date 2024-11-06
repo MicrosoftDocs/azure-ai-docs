@@ -176,8 +176,8 @@ Here's an example of the result:
 
 > [!NOTE]
 > We will phase out th key with "gpt_" prefixes (`groundedness.gpt_groundedness`) in all outputs in the future as we plan to support non-GPT evaluator models. We strongly recommend users to migrate their code to use the key without prefixes (i.e. `groundedness.groundedness`). 
-> All evaluators except for `SimilarityEvaluator` come with a reason field. They employ techniques including chain-of-thought reasoning to generate an explanation for the score. Therefore they will consume more token usage in generation as a result of improved evaluation quality.
-> Both `GroundednessEvaluator` (open-source, prompt-based) and `GroundednessProEvaluator` (Azure Content Safety service-based) support `query` as an optional input in single-turn evaluation. If `query` is provided, their optimal scenario will be RAG QA; and otherwise, the optimal scenario will be RAG summarization. 
+> All evaluators except for `SimilarityEvaluator` come with a reason field. They employ techniques including chain-of-thought reasoning to generate an explanation for the score. Therefore they will consume more token usage in generation as a result of improved evaluation quality. Specifically, `max_token` for evaluator generation has been set to 800 for all AI-assisted evaluators (and 1600 for `RetrievalEvaluator` to accommodate for longer inputs.) 
+> `GroundednessEvaluator` (open-source, prompt-based) supports `query` as an optional input in single-turn evaluation. If `query` is provided, their optimal scenario will be RAG QA; and otherwise, the optimal scenario will be RAG summarization. This is different from `GroundednessProEvaluator` (powered by Azure Content Safety) which requires `query`.
 
 
 ### Risk and safety evaluators
