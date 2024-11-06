@@ -33,7 +33,7 @@ To modify and interact with an Azure OpenAI model in the [Azure AI Studio](https
 
 ## Deploy an Azure OpenAI model from the model catalog
 
-Follow the steps below to deploy an Azure OpenAI model such as `gpt-4` to a real-time endpoint from the AI Studio [model catalog](./model-catalog-overview.md):
+Follow the steps below to deploy an Azure OpenAI model such as `gpt-4o-mini` to a real-time endpoint from the AI Studio [model catalog](./model-catalog-overview.md):
 
 [!INCLUDE [open-catalog](../includes/open-catalog.md)]
 
@@ -41,7 +41,7 @@ Follow the steps below to deploy an Azure OpenAI model such as `gpt-4` to a real
 
     :::image type="content" source="../media/deploy-monitor/catalog-filter-azure-openai.png" alt-text="A screenshot showing how to filter by Azure OpenAI models in the catalog." lightbox="../media/deploy-monitor/catalog-filter-azure-openai.png":::
 
-1. Select a model such as `gpt-4` from the Azure OpenAI collection.
+1. Select a model such as `gpt-4o-mini` from the Azure OpenAI collection.
 1. Select **Deploy** to open the deployment window.
 1. Select the resource that you want to deploy the model to. If you don't have a resource, you can create one.
 1. Specify the deployment name and modify other default settings depending on your requirements.
@@ -57,7 +57,7 @@ Alternatively, you can initiate deployment by starting from your project in AI S
 1. From the left sidebar of your project, go to **My assets** > **Models + endpoints**.
 1. Select **+ Deploy model** > **Deploy base model**.
 1. In the **Collections** filter, select **Azure OpenAI**.
-1. Select a model such as `gpt-4` from the Azure OpenAI collection.
+1. Select a model such as `gpt-4o-mini` from the Azure OpenAI collection.
 1. Select **Confirm** to open the deployment window.
 1. Specify the deployment name and modify other default settings depending on your requirements.
 1. Select **Deploy**.
