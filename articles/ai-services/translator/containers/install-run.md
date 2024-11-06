@@ -473,7 +473,7 @@ If you installed Docker Desktop CLI, it includes Docker compose and its prerequi
         ports:
               - "5000:5000"
         volumes:
-              - D:\TranslatorContainer:/usr/local/models  
+              - {your local folder}:/usr/local/models
         azure-ai-language:
           container_name: azure-ai-language
           image:  mcr.microsoft.com/azure-cognitive-services/textanalytics/language:latest
