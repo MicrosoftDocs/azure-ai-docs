@@ -37,13 +37,13 @@ Each modality covers a set of Multipurpose Internet Mail Extensions (MIME) file 
 
 |Modality| Supported File Types | File Size | Resolution | Length |
 |--- | --- | --- | --- | --- |
-|**Audio** |   √  .wav (PCM, ALAW, MULAW) </br>√  .mp3 </br>√  .opus, .ogg (Opus)</br>√  .flac </br>√  .wma </br>√  .aac </br>√  .amr (AMR-NB, AMR-WB) </br>√  .webm (Opus, Vorbis) </br>√  .m4a (AAC, ALAC)</br>√  .spx | asynchronous:</br>≤ 200 MB |  | asynchronous:</br> ≤ 2 h |
+|**Audio** |   √  .wav (PCM, ALAW, MULAW) </br>√  .mp3 </br>√.opus, .ogg (Opus)</br>√.flac </br>√  .wma </br>√  .aac </br>√  .amr (AMR-NB, AMR-WB) </br>√.webm (Opus, Vorbis) </br>√  .m4a (AAC, ALAC)</br>√.spx | asynchronous:</br>≤ 200 MB |  | asynchronous:</br> ≤ 2 h |
 
 ### Video
 
 |Modality| Supported File Types | File Size | Resolution | Length |
 |--- | --- | --- | --- | --- |
-|**Video** | √  .mp4, .m4v </br>√  .flv (with H.264 and AAC codecs) </br>√  .wmv, .asf </br>√  .avi (Uncompressed 8bit/10bit) </br>√  .mkv </br>√  .mov  | asynchronous:</br>≤2 GB (body)</br></br>asynchronous:</br>≤20 GB (URL)| Min:</br>320 x 240</br></br>Max:</br>1920 x 1080 | asynchronous:</br>≤30 m (body)</br></br> asynchronous:</br>≤30 m (URL) |
+|**Video** | √  .mp4, .m4v </br>√  .flv (with H.264 and AAC codecs) </br>√  .wmv, .asf </br>√  .avi (Uncompressed 8bit/10bit) </br>√  .mkv </br>√  .mov  | asynchronous:</br>≤2 GB (body) asynchronous:</br>≤20 GB (URL)| Min:</br>320 x 240</br></br>Max:</br>1920 x 1080 | asynchronous:</br>≤30 m (body)</br></br> asynchronous:</br>≤30 m (URL) |
 
 
 ## Field Schema Limits
