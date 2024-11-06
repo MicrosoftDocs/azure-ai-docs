@@ -35,8 +35,8 @@ Not applicable.
 
 1. [Install the SDK v2](https://aka.ms/sdk-v2-install).
 
-> [!IMPORTANT]
-> The steps in this article require the **azure-ai-ml Python package, version 1.17.0**. To determine the installed package version, use the `pip list` command from your Python development environment.
+    > [!IMPORTANT]
+    > The steps in this article require the **azure-ai-ml Python package, version 1.17.0**. To determine the installed package version, use the `pip list` command from your Python development environment.
 
 1. Install azure-identity: `pip install azure-identity`. If you're working in a notebook cell, use `%pip install azure-identity`.
 
@@ -115,7 +115,7 @@ When you create a new hub, the creation process can automatically disable shared
 
 # [Python SDK](#tab/python)
 
-When you create your hub with the SDK, set `system_datastores_auth_mode="identity"`. To use a pre-existing storage account, use the `storage_account` parameter to specify the Azure Resource Manager ID of an existing storage account:
+When you create your hub with the SDK, set `system_datastores_auth_mode="identity"`. To use a preexisting storage account, use the `storage_account` parameter to specify the Azure Resource Manager ID of an existing storage account:
 
 ```python
 # Creating a unique hub name with current datetime to avoid conflicts
@@ -407,11 +407,11 @@ To work with a storage account with disabled shared key access, you might need t
 
 | Scenario | Microsoft Entra ID | Required roles | Notes |
 | ----- | ----- | ----- | ----- |
-| AI Speech | Storage Blob Data Contributor</br>Storage File Data Privileged Contributor | |
-| Model-as-a-Service | system-assigned managed identity | Storage Blob Data Contributor | The hub's managed identity.</br>Automatically assigned the role when provisioned.</br>Don't manually change this role assignment. |
-| Azure Search | system-assigned managed identity | Storage Blob Data Contributor | The hub's managed identity.</br>Automatically assigned the role when provisioned.</br>Don't manually change this role assignment. |
+| AI Speech | Storage Blob Data Contributor </br>Storage File Data Privileged Contributor | |
+| Model-as-a-Service | system-assigned managed identity | Storage Blob Data Contributor | The hub's managed identity. </br>Automatically assigned the role when provisioned. </br>Don't manually change this role assignment. |
+| Azure Search | system-assigned managed identity | Storage Blob Data Contributor | The hub's managed identity. </br>Automatically assigned the role when provisioned. </br>Don't manually change this role assignment. |
 | Fine tuning of OSS models | User-assigned managed identity | Storage Blob Data Contributor | |
-| PromptFlow | User's identity | Storage Blob Data Contributor</br>Storage File Data Privileged Contributor | |
+| PromptFlow | User's identity | Storage Blob Data Contributor </br>Storage File Data Privileged Contributor | |
 | Add and manage your own data | User's identity | Storage Blob Data Contributor | |
 
 ## Related content
