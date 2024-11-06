@@ -36,7 +36,7 @@ items:
     href: image/overview.md
   - name: Document
     displayName: document, text, images, video, audio, multi-modal, visual, structured, content, field, extraction
-    href: overview.md
+    href: document/overview.md
   - name: Scenario Templates
     items:
       - name: Post-call analytics workflow
