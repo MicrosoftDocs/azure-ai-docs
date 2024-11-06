@@ -1,5 +1,5 @@
 ---
-title: Omit vectors from search results
+title: Eliminate optional vector instances
 titleSuffix: Azure AI Search
 description: In vector search, configure storage to exclude optional copies of vector fields, reducing the storage requirements of vector data.
 
@@ -7,28 +7,38 @@ author: heidisteen
 ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 11/04/2024
+ms.date: 11/19/2024
 ---
 
-# Omit vectors from search results
+# Eliminate optional vector instances from storage
 
-Azure AI Search stores multiple copies of field content that are used in specific workloads. If you don't need to support a specific behavior, like returning raw vectors in a query response, you can set properties that omit storage for that workload.
+Azure AI Search stores multiple copies of vector fields that are used in specific workloads. If you don't need to support a specific behavior, like returning raw vectors in a query response, you can set properties in the index that omit storage for that workload.
 
 ## Prerequisites
 
-- [Vector fields in a search index](vector-search-how-to-create-index.md).
+- [Compressed vector fields](vector-search-how-to-quantization.md) in a search index.
 
-## Set the stored property
+## How vector fields are stored
 
-The `stored` property is a boolean on a vector field definition that determines whether storage is allocated for retrievable vector field content. The `stored` property is true by default. If you don't need raw vector content in a query response, you can save up to 50 percent storage per field by setting `stored` to false.
+For every vector field, there are three copies of vectors:
+
+- `source` (in JSON) as received from an embedding model or push request to the index, used if you want `retrievable` vectors in search results.
+- original full-precision vectors, used if you want to rescore the query results obtained over compressed vectors.
+- vectors and graph information created by the HNSW library, used for query execution.
+
+The last instance (vectors and graph) is required for vector query execution. The first two instances can be discarded if you don't need them. Compression techniques like scalar or binary quantization are applied to the vectors used during query execution.
+
+## Set the `stored` property
+
+The `stored` property is a boolean on a vector field definition that determines whether storage is allocated for retrievable vector field content (the `source` instance). The `stored` property is true by default. If you don't need raw vector content in a query response, you can save up to 50 percent storage per field by changing `stored` to false.
 
 Considerations for setting `stored` to false:
 
 - Because vectors aren't human readable, you can omit them from results sent to LLMs in RAG scenarios, and from results that are rendered on a search page. Keep them, however, if you're using vectors in a downstream process that consumes vector content.
 
-- However, if your indexing strategy includes [partial document updates](search-howto-reindex.md#update-content), such as "merge" or "mergeOrUpload" on a document, remember that setting `stored=false` bypasses content updates to those fields during the merge. On each "merge" or "mergeOrUpload" operation, you must provide the vector fields in addition to other nonvector fields that you're updating, or the vector will be dropped.
+- However, if your indexing strategy includes [partial document updates](search-howto-reindex.md#update-content), such as "merge" or "mergeOrUpload" on an existing document, setting `stored=false` prevents content updates to those fields during the merge. On each "merge" or "mergeOrUpload" operation to a search document, you must provide the vector fields in its entirety, along with the nonvector fields that you're updating, or the vector is dropped.
 
-Remember that the `stored` attribution is irreversible. It's set during index creation on vector fields when physical data structures are created. If you want retrievable vector content later, you must drop and rebuild the index, or create and load a new field that has the new attribution.
+Setting the `stored=false` attribution is irreversible. It's set during index creation on vector fields when physical data structures are created. If you want retrievable vector content later, you must drop and rebuild the index, or create and load a new field that has the new attribution.
 
 The following example shows the fields collection of a search index. Set `stored` to false to permanently remove retrievable storage for the vector field.
 
@@ -61,3 +71,66 @@ PUT https://[service-name].search.windows.net/indexes/demo-index?api-version=202
 - The `stored` property is set during index creation on vector fields and is irreversible. If you want retrievable content later, you must drop and rebuild the index, or create and load a new field that has the new attribution.
 
 - Defaults are `stored` set to true and `retrievable` set to false. In a default configuration, a retrievable copy is stored, but it's not automatically returned in results. When `stored` is true, you can toggle `retrievable` between true and false at any time without having to rebuild an index. When `stored` is false, `retrievable` must be false and can't be changed.
+
+## Set the `rescoreStorageMethod` property
+
+[!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
+
+The `rescoreStorageMethod` property on a vector field definition that determines whether storage is allocated for original full-precision vectors. The `rescoreStorageMethod` property is set to `preserveOriginals` by default. If you aren't using the [oversampling and rescoring mitigations](vector-search-how-to-quantization.md#add-compressions-to-a-search-index) provided for querying compressed vectors, you can save on vector storage per field by changing `rescoreStorageMethod` to `discardOriginals`.
+
+If you intend to use scalar or binary quantization, we recommend retaining `rescoreStorageMethod` set to `preserveOriginals`.
+
+To set this property:
+
+1. Use [Create Index](/rest/api/searchservice/indexes/create?view=rest-searchservice-2024-11-01-preview&preserve-view=true) or [Create or Update Index 2024-11-01-preview](/rest/api/searchservice/indexes/create-or-upate?view=rest-searchservice-2024-11-01-preview&preserve-view=true) REST APIs, or an Azure SDK beta package providing the feature.
+
+1. Add a `vectorSearch` section to your index with profiles, algorithms, and compressions.
+
+1. Under compressions, add `rescoringOptions` with `enableRescoring` set to true, `defaultOversampling` set to a positive integer, and `rescoreStorageMethod` set to `preserveOriginals`.
+
+    ```http
+    PUT https://[service-name].search.windows.net/indexes/demo-index?api-version=2024-11-01-preview
+    
+    {
+        "name": "demo-index",
+        "fields": [. . . ],
+        . . .
+        "vectorSearch": {
+            "profiles": [
+                {
+                "name": "myVectorProfile",
+                "algorithm": "myHnsw",
+                "compression": "myScalarQuantization"
+                }
+            ],
+            "algorithms": [
+              {
+                "name": "myHnsw",
+                "kind": "hnsw",
+                "hnswParameters": {
+                  "metric": "cosine",
+                  "m": 4,
+                  "efConstruction": 400,
+                  "efSearch": 500
+                },
+                "exhaustiveKnnParameters": null
+              }
+            ],
+            "compressions": [
+                {
+                    "name": "myScalarQuantization",
+                    "kind": "scalarQuantization",
+                    "rescoringOptions": {
+                        "enableRescoring": true,
+                        "defaultOversampling": 10,
+                        "rescoreStorageMethod": "preserveOriginals"
+                    },
+                    "scalarQuantizationParameters": {
+                        "quantizedDataType": "int8"
+                    },
+                    "truncationDimension": null
+                }
+            ]
+        }
+    }
+    ```

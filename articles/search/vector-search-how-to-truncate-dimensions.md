@@ -7,7 +7,7 @@ author: heidisteen
 ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 11/04/2024
+ms.date: 11/19/2024
 ---
 
 # Truncate dimensions using MRL compression (preview)
@@ -25,17 +25,19 @@ This feature is in preview. It's available in `2024-09-01-preview` and in beta S
 
 ## Prerequisites
 
-- Text-embedding-3-small, Text-embedding-3-large (text content only).
+- Text-embedding-3 models such as Text-embedding-3-small or Text-embedding-3-large (text content only).
 
-- New vector fields of type `Edm.Half` or `Edm.Single` (you can't add MRL compression to an existing field).
+- [New vector fields](vector-search-how-to-create-index.md) of type `Edm.Half` or `Edm.Single` (you can't add MRL compression to an existing field).
 
 - [Hierarchical Navigable Small World (HNSW)algorithm](vector-search-ranking.md) (no support for exhaustive KNN in this preview).
 
-- [Configure scalar or binary quantization](vector-search-how-to-quantization.md). We recommend binary quantization.
+- [Scalar or binary quantization](vector-search-how-to-quantization.md). We recommend binary quantization for MRL compression.
 
 ## Supported clients
 
-- [REST API 2024-09-01-preview](/rest/api/searchservice/indexes/create-or-update?view=rest-searchservice-2024-09-01-preview&preserve-view=true)
+You can use the REST APIs or Azure SDK beta packages to implement MRL compression.
+
+- [REST API 2024-09-01-preview](/rest/api/searchservice/indexes/create-or-update?view=rest-searchservice-2024-09-01-preview&preserve-view=true) or [REST API 2024-11-01-preview](/rest/api/searchservice/indexes/create-or-update?view=rest-searchservice-2024-11-01-preview&preserve-view=true)
 
 - Check the change logs for each Azure SDK beta package: [Python](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/search/azure-search-documents/CHANGELOG.md), [.NET](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/search/Azure.Search.Documents/CHANGELOG.md), [Java](https://github.com/Azure/azure-sdk-for-java/blob/azure-search-documents_11.1.3/sdk/search/azure-search-documents/CHANGELOG.md), [JavaScript](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/search/search-documents/CHANGELOG.md).
 
@@ -43,7 +45,7 @@ There's no Azure portal or Azure AI Studio support at this time.
 
 ## How to use MRL-extended text embeddings
 
-MRL is a capability of the text embedding model. To benefit from those capabilities in Azure AI Search, follow these steps.
+MRL is a capability that's built into the text embedding model you're already using. To benefit from those capabilities in Azure AI Search, follow these steps.
 
 1. Use the [Create or Update index (preview)](/rest/api/searchservice/indexes/create-or-update?view=rest-searchservice-2024-09-01-preview&preserve-view=true) or equivalent API to specify the index schema.
 

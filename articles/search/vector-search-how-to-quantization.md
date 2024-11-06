@@ -1,5 +1,5 @@
 ---
-title: Quantize vector fields
+title: Compress vectors using quantization
 titleSuffix: Azure AI Search
 description: Configure built-in scalar or quantization for compressing vectors on disk and in memory.
 
@@ -7,12 +7,30 @@ author: heidisteen
 ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 11/04/2024
+ms.date: 11/19/2024
 ---
 
-# Use scalar or binary quantization to compress vector size
+# Compress vectors using scalar or binary quantization
 
-Quantization is recommended for reducing vector size because it lowers both memory and disk storage requirements for float16 and float32 embeddings. To offset the effects of a smaller index, you can add oversampling and reranking over uncompressed vectors.
+Azure AI Search supports scalar and binary quantization for reducing the size of vectors in a search index. Quantization is recommended for reducing vector size because it lowers both memory and disk storage consumption for float16 and float32 embeddings. To offset the effects of a smaller index, you can add oversampling and reranking over uncompressed vectors.
+
+To use built-in quantization, follow these steps:
+
+> [!div class="checklist"]
+> - Add [vector fields and a `vectorSearch` configuration](vector-search-how-to-create-index.md) to an index
+> - Add `vectorSearch.compressions`
+> - Add a `scalarQuantization` or `binaryQuantization` configuration and give it a name
+> - Set optional properties to mitigate the effects of lossy indexing
+> - Create a new vector profile that uses the named configuration
+> - Create a new vector field having the new vector profile
+> - Load the index with float32 or float16 data that's quantized during indexing with the configuration you defined
+> - Optionally, [query quantized data](#query-a-quantized-vector-field-using-oversampling) using the oversampling parameter if you want to override the default
+
+## Prerequisites
+
+- [Vector fields in a search index](vector-search-how-to-create-index.md) with a `vectorSearch` configuration, using the HNSW algorithm and a new vector profile.
+
+## Supported quantization techniques
 
 Quantization applies to vector fields receiving float-type vectors. In the examples in this article, the field's data type is `Collection(Edm.Single)` for incoming float32 embeddings, but float16 is also supported. When the vectors are received on a field with compression configured, the engine automatically performs quantization to reduce the footprint of the vector data in memory and on disk.
 
@@ -21,18 +39,6 @@ Two types of quantization are supported:
 - Scalar quantization compresses float values into narrower data types. AI Search currently supports int8, which is 8 bits, reducing vector index size fourfold.
 
 - Binary quantization converts floats into binary bits, which takes up 1 bit. This results in up to 28 times reduced vector index size.
-
-To use built-in quantization, follow these steps:
-
-> [!div class="checklist"]
-> - Use [Create Index](/rest/api/searchservice/indexes/create) or [Create Or Update Index](/rest/api/searchservice/indexes/create-or-update) to specify vector compression
-> - Add `vectorSearch.compressions` to a search index
-> - Add a `scalarQuantization` or `binaryQuantization` configuration and give it a name
-> - Set optional properties to mitigate the effects of lossy indexing
-> - Create a new vector profile that uses the named configuration
-> - Create a new vector field having the new vector profile
-> - Load the index with float32 or float16 data that's quantized during indexing with the configuration you defined
-> - Optionally, [query quantized data](#) using the oversampling parameter if you want to override the default
 
 ## Add "compressions" to a search index
 
@@ -76,7 +82,7 @@ POST https://[servicename].search.windows.net/indexes?api-version=2024-07-01
 
 **Key points**:
 
-- `kind` must be set to `scalarQuantization` or `binaryQuantization`
+- `kind` must be set to `scalarQuantization` or `binaryQuantization`.
 
 - `rerankWithOriginalVectors` uses the original, uncompressed vectors to recalculate similarity and rerank the top results returned by the initial search query. The uncompressed vectors exist in the search index even if `stored` is false. This property is optional. Default is true.
 
@@ -227,3 +233,17 @@ POST https://[service-name].search.windows.net/indexes/demo-index/docs/search?ap
 - Applies to vector fields that undergo vector compression, per the vector profile assignment.
 
 - Overrides the `defaultOversampling` value or introduces oversampling at query time, even if the index's compression configuration didn't specify oversampling or reranking options.
+
+<!-- 
+RESCORE WITH ORIGINAL VECTORS -- NEEDS AN H2 or H3
+It's used to rescore search results obtained used compressed vectors.
+
+Rescore with original vectors
+After the initial query, rescore results using uncompressed vectors
+ 
+For "enableRescoring", we provide true or false options. if it's true, the query will first retrieve using compressed vectors, then rescore results using uncompressed vectors.
+
+Step one: Vector query executes using the compressed vectors.
+Step two: Query returns the top oversampling k-matches.
+Step three: Oversampling k-matches are rescored using the uncompressed vectors, adjusting the scores and ranking so that more relevant matches appear first.
+ -->
