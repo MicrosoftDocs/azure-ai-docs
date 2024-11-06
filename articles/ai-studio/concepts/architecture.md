@@ -7,7 +7,7 @@ ms.service: azure-ai-studio
 ms.custom:
   - build-2024
 ms.topic: conceptual
-ms.date: 06/04/2024
+ms.date: 11/19/2024
 ms.reviewer: deeikele
 ms.author: larryfr
 author: Blackmist
