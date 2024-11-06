@@ -19,7 +19,7 @@ Navigate to [Azure AI Studio](https://ai.azure.com/) and sign-in with credential
 
 1. You can either [create an AI studio project](../../../ai-studio/how-to/create-projects.md) by clicking **Create project**, or continue directly by clicking the button on the **Focused on Azure OpenAI Service** tile.  
 
-    :::image type="content" source="../media/use-your-data/ai-studio-homepage.png" alt-text="A screenshot of the Azure AI Studio landing page." lightbox="../media/ai-studio-homepage.png":::
+    :::image type="content" source="../media/use-your-data/ai-studio-homepage.png" alt-text="A screenshot of the Azure AI Studio landing page." lightbox="../media/use-your-data/ai-studio-homepage.png":::
 
 1. Select **Chat** under **Playgrounds** in the left navigation menu, and select your model deployment.
 
