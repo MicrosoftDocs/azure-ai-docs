@@ -151,5 +151,5 @@ Models deployed as a service with pay-as-you-go billing are protected by Azure A
 
 ## Next steps
 - [What is Azure AI Studio?](../what-is-ai-studio.md)
-- [Learn more about deploying an NTTDATA tsuzumi model](./deploy-models-deploy-models-tsuzumi.md)
+- [Learn more about deploying an NTTDATA tsuzumi model](./deploy-models-tsuzumi.md)
 - [Azure AI FAQ article](../faq.yml)
