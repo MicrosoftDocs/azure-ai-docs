@@ -54,3 +54,5 @@ items:
   - name: Content Understanding REST API
     displayName: quickstart, extract, text, images, OCR, optical character recognition
     href: quickstart/use-rest-api.md
+  - name: Content Understanding scenario templates
+    href: quickstart/use-scenario-templates.md
