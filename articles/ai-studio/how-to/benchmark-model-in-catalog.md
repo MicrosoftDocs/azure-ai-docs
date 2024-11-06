@@ -80,7 +80,7 @@ The previous sections showed the benchmark results calculated by Microsoft, usin
 1. Return to the **Benchmarks** tab in the model card.
 1. Select **Try with your own data** to evaluate the model with your data. Evaluation on your data helps you see how the model performs in your particular scenarios.
 
-:::image type="content" source="../media/how-to/model-benchmarks/try-with-your-own-data.png" alt-text="Image showing the button to select for evaluating with your own data." lightbox="../media/how-to/model-benchmarks/try-with-your-own-data.png":::
+    :::image type="content" source="../media/how-to/model-benchmarks/try-with-your-own-data.png" alt-text="Image showing the button to select for evaluating with your own data." lightbox="../media/how-to/model-benchmarks/try-with-your-own-data.png":::
 
 ## Related content
 
