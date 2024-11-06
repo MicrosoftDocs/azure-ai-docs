@@ -300,7 +300,7 @@ For more information on creating custom roles in general, visit the [Azure custo
 
 ## Assigning roles in AI Studio
 
-You can add users and assign roles directly from Azure AI Studio at either the hub or project level. From a hub or project overview page, select **New user** to add a user. 
+You can add users and assign roles directly from Azure AI Studio at either the hub or project level. In the [management center](management-center.md), select **Users** in either the hub or project section, then select **New user** to add a user. 
 
 > [!NOTE]
 > You are limited to selecting built-in roles. If you need to assign custom roles, you must use the [Azure portal](/azure/role-based-access-control/role-assignments-portal), [Azure CLI](/azure/role-based-access-control/role-assignments-cli), or [Azure PowerShell](/azure/role-based-access-control/role-assignments-powershell).
