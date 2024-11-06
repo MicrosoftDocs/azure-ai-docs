@@ -137,7 +137,11 @@ Content Understanding provides a specific set of capabilities for audio includin
 
 * **Scenarios adaptability**. The service can adapt to your needs by generating custom fields to extract the right data.
 
+## Data privacy and security
+
+As with all the Azure AI services, developers using the Content Understanding service should be aware of Microsoft's policies on customer data. See our [**Data, protection and privacy**](https://www.microsoft.com/trust-center/privacy) page to learn more.
+
 ## Next steps
 
-To get started using Content Understanding audio capabilities, try our [post-call analytics prebuilt scenario template](../prebuilt-template/post-call-analytics.md)
+To get started using Content Understanding audio capabilities, try our [post-call analytics prebuilt scenario template](../prebuilt-template/post-call-analytics.md).
 

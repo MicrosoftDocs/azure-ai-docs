@@ -13,8 +13,6 @@ ms.custom: ignite-2024-understanding-release
 
 # What is Azure AI Content Understanding?
 
-
-
 Azure AI Content Understanding is a cloud-based solution within [**Azure AI services**](../what-are-ai-services.md), designed to process/ingest various data modalities such as documents, images, videos, and audio into customizable output formats using Generative AI, Larger Language models (LLM), and Small Language Models (SLM) within a unified workflow.
 
 Built on the success of Document Intelligence, Content Understanding offers a streamlined process to reason over large amounts of unstructured data, build customizable workflows, ultimately accelerating time-to-value (TTV), while varied AI models.
@@ -65,7 +63,10 @@ At Microsoft, we prioritize advancing AI with a people-first approach. Generativ
 
 ## Data privacy and security
 
-As with all the Azure AI services, developers using the Content Understanding service should be aware of Microsoft's policies on customer data. See our **Data, Privacy and Security** page to learn more.
+As with all the Azure AI services, developers using the Content Understanding service should be aware of Microsoft's policies on customer data. See our [**Data, protection and privacy**](https://www.microsoft.com/trust-center/privacy) page to learn more.
+
+> [!IMPORTANT]
+> if you are using Microsoft products or services to process Biometric Data, you are responsible for: (i) providing notice to data subjects, including with respect to retention periods and destruction; (ii) obtaining consent from data subjects; and (iii) deleting the Biometric Data, all as appropriate and required under applicable Data Protection Requirements. "Biometric Data" will have the meaning set forth in Article 4 of the GDPR and, if applicable, equivalent terms in other data protection requirements. For related information, see [Data and Privacy for Face](/legal/cognitive-services/face/data-privacy-security).
 
 ## Getting started
 Before you get started using Content Understanding, you need an [**Azure AI services multi-service resource**](how-to/create-multi-service-resource.md). The multi-service resource enables access to multiple Azure AI services with a single set of credentials.
