@@ -67,7 +67,7 @@ This table highlights the differences between working with Azure OpenAI outside 
 | **Usage** | Ideal when you need to work specifically with Azure OpenAI models and use their capabilities for various applications. | Provides enterprise-grade features like access management and private networks.  Suitable when you want to explore and use a diverse set of AI services and models. Includes a unified interface for managing different AI resources and projects. Create an Azure AI Studio project to use AI services or models from other model providers. |
 
 > [!NOTE]
-> When you need features specific to Azure OpenAI, such as batch jobs and vector stores, work outside of a project.
+> When you need features specific to Azure OpenAI, such as batch jobs, evals, stored-completions, and vector stores, work outside of a project.
 
 ### Navigate to/from projects
 
