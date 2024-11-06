@@ -594,9 +594,9 @@ curl --location 'https://YourServiceRegion.api.cognitive.microsoft.com/speechtot
 
 Construct the form definition according to the following instructions:
 
-- Set the optional (but recommended) `locales` property that should match the expected locale of the audio data to transcribe. In this example, the locale is set to `en-US`. The supported locales that you can specify are: de-DE, en-IN, en-US, es-ES, es-MX, fr-FR, hi-IN, it-IT, ja-JP, ko-KR, pt-BR, and zh-CN.
+1. Set the optional (but recommended) `locales` property that should match the expected locale of the audio data to transcribe. In this example, the locale is set to `en-US`. The supported locales that you can specify are: de-DE, en-IN, en-US, es-ES, es-MX, fr-FR, hi-IN, it-IT, ja-JP, ko-KR, pt-BR, and zh-CN.
 
-- Set the `diarization` property to recognize and separate multiple speakers in one audio channel. For example, specify `"diarization": {"maxSpeakers": 2, "enabled": true}`. Then the transcription file contains `speaker` entries for each transcribed phrase.
+1. Set the `diarization` property to recognize and separate multiple speakers in one audio channel. For example, specify `"diarization": {"maxSpeakers": 2, "enabled": true}`. Then the transcription file contains `speaker` entries for each transcribed phrase.
 
 For more information about `locales`, `diarization`, and other properties for the fast transcription API, see the [request configuration options](#request-configuration-options) section later in this guide.
 
@@ -863,9 +863,9 @@ curl --location 'https://YourServiceRegion.api.cognitive.microsoft.com/speechtot
 
 Construct the form definition according to the following instructions:
 
-- Set the optional (but recommended) `locales` property that should match the expected locale of the audio data to transcribe. In this example, the locale is set to `en-US`. The supported locales that you can specify are: de-DE, en-IN, en-US, es-ES, es-MX, fr-FR, hi-IN, it-IT, ja-JP, ko-KR, pt-BR, and zh-CN.
+1. Set the optional (but recommended) `locales` property that should match the expected locale of the audio data to transcribe. In this example, the locale is set to `en-US`. The supported locales that you can specify are: de-DE, en-IN, en-US, es-ES, es-MX, fr-FR, hi-IN, it-IT, ja-JP, ko-KR, pt-BR, and zh-CN.
 
-- Set the `channels` property to specify the zero-based indices of the channels to be transcribed separately. Up to two channels are supported unless diarization is enabled. In this example, channels 0 and 1 are specified.
+1. Set the `channels` property to specify the zero-based indices of the channels to be transcribed separately. Up to two channels are supported unless diarization is enabled. In this example, channels 0 and 1 are specified.
 
 For more information about `locales`, `channels`, and other properties for the fast transcription API, see the [request configuration options](#request-configuration-options) section later in this guide.
 
