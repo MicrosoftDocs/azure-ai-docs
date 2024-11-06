@@ -12,6 +12,12 @@ ms.date: 11/19/2024
 
 # Content Understanding video solutions (preview)
 
+> [!IMPORTANT]
+>
+> * Azure AI Content Understanding is available in preview. Public preview releases provide early access to features that are in active development.
+> * Features, approaches, and processes may change or have constrained capabilities, prior to General Availability (GA).
+> * For more information, *see* [**Supplemental Terms of Use for Microsoft Azure Previews**](https://azure.microsoft.com/support/legal/preview-supplemental-terms).
+
 Azure AI Content Understanding lets you extract and customize video metadata for seamless integration into your systems or workflows. Content Understanding helps efficiently manage, categorize, retrieve, and build workflows for video assets. Content Understanding can enhance your media asset library, support workflows such as highlight generation, categorize content, and facilitate applications like retrieval-augmented generation (`RAG`). The video content extraction capabilities of Content Understanding offer the following advantages:
 
 * **Video transcription**. Convert speech within a video into text transcripts that can be searched and analyzed. Transcription data is also used as grounding for generating customizable metadata.
