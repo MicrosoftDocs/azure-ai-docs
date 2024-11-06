@@ -68,7 +68,7 @@ The script uses hardcoded input and output messages. In a real app you'd take in
 
 Let's change the script to take input from a client application and generate a system message using a prompt template.
 
-1.  Remove the last line of the script that prints a response.
+1. Remove the last line of the script that prints a response.
 
 1. Now define a `get_chat_response` function that takes messages and context, generates a system message using a prompt template, and calls a model.  Add this code to your **chat.py** file:
 
