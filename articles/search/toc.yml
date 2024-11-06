@@ -349,9 +349,9 @@ items:
       items:
       - name: Understand vector quotas and limits
         href: vector-search-index-size.md
-      - name: Choose a vector optimization strategy
+      - name: Choose an optimization strategy
         href: vector-search-how-to-configure-compression-storage.md
-      - name: Use binary or scalar quantization
+      - name: Compress using binary or scalar quantization
         href: vector-search-how-to-quantization.md
       - name: Index binary data for vector search
         href: vector-search-how-to-index-binary-data.md
