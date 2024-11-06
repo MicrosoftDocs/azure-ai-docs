@@ -1,4 +1,18 @@
+---
+title: Responsible AI for Azure AI Studio
+titleSuffix: Azure AI Studio
+description: Learn how to use AI responsibly with Azure AI Studio.
+manager: nitinme
+keywords: Azure AI services, cognitive
+ms.service: azure-ai-studio
+ms.topic: overview
+ms.date: 11/06/2024
+ms.author: pafarley
+author: PatrickFarley
+ms.custom: ignite-2024
+---
 
+# Responsible AI for Azure AI Studio
 
 This article aims to provide an overview of the resources available to help you use AI responsibly. Our recommended essential development steps are grounded in the [Microsoft Responsible AI Standard](https://aka.ms/RAI), which sets policy requirements that our own engineering teams follow. Much of the content of the Standard follows a pattern, asking teams to Identify, Measure, and Mitigate potential content risks, and plan for how to Operate the AI system as well.  
 
