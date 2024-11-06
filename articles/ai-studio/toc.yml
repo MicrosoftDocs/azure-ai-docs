@@ -75,13 +75,7 @@ items:
         href: how-to/data-image-add.md
         displayName: vision, gpt, turbo
     - name: Content Safety
-      items:
-      - name: Azure AI Content filtering
-        href: concepts/content-filtering.md
-      - name: Prevent input attacks with Prompt Shields
-        href: how-to/prompt-shields.md
-      - name: Detect groundedness in chat responses
-        href: how-to/groundedness.md
+      href: concepts/content-filtering.md
     - name: Speech
       items:
       - name: Real-time speech to text
