@@ -1,7 +1,7 @@
 ---
-title: Service quotas and limits - Multimodal Intelligence
+title: Service quotas and limits - Content Understanding
 titleSuffix: Azure AI services
-description: Quick reference, detailed description, and best practices for working within Azure AI Multimodal Intelligence service Quotas and Limits
+description: Quick reference, detailed description, and best practices for working within Azure AI Content Understanding service Quotas and Limits
 #services: cognitive-services
 author: laujan
 manager: nitinme
@@ -15,7 +15,7 @@ ms.author: lajanuar
 
 # Service limits and quotas
 
-This article provides both a quick reference and detailed description of Azure AI Multimodal Intelligence service quotas and limits.
+This article provides both a quick reference and detailed description of Azure AI Content Understanding service quotas and limits.
 
 ## File limits
 
@@ -38,18 +38,18 @@ Each modality covers a set of Multipurpose Internet Mail Extensions (MIME) file 
 
 |Modality| Supported File Types | File Size | Resolution | Length |
 |--- | --- | --- | --- | --- |
-|**Audio** |   √  .wav (PCM, ALAW, MULAW) </br>√  .mp3 </br>√.opus, .ogg (Opus)</br>√.flac </br>√  .wma </br>√  .aac </br>√  .amr (AMR-NB, AMR-WB) </br>√.webm (Opus, Vorbis) </br>√  .m4a (AAC, ALAC)</br>√.spx | asynchronous:</br>≤ 200 MB |  | asynchronous:</br> ≤ 2 h |
+|**Audio** |   √  .wav (`PCM`, `ALAW`, M`ULAW`) </br>√  .mp3 </br>√.opus, .ogg (Opus)</br>√.flac </br>√  .wma </br>√  .aac </br>√  .amr (AMR-NB, AMR-WB) </br>√.webm (Opus, Vorbis) </br>√  .m4a (`AAC`, `ALAC`)</br>√.spx | asynchronous:</br>≤ 200 MB |  | asynchronous:</br> ≤ 2 h |
 
 ### Video
 
 |Modality| Supported File Types | File Size | Resolution | Length |
 |--- | --- | --- | --- | --- |
-|**Video** | √  .mp4, .m4v </br>√  .flv (with H.264 and AAC codecs) </br>√  .wmv, .asf </br>√  .avi (Uncompressed 8bit/10bit) </br>√  .mkv </br>√  .mov  | asynchronous:</br>≤2 GB (body) asynchronous:</br>≤20 GB (URL)| Min:</br>320 x 240</br></br>Max:</br>1920 x 1080 | asynchronous:</br>≤30 m (body)</br></br> asynchronous:</br>≤30 m (URL) |
+|**Video** | √  .mp4, .m4v </br>√  .flv (with H.264 and `AAC` codecs) </br>√  .wmv, .asf </br>√  .avi (Uncompressed 8bit/10bit) </br>√  .mkv </br>√  .mov  | asynchronous:</br>≤2 GB (body) asynchronous:</br>≤20 GB (URL)| Min: 320 x 240</br></br>Max:</br>1920 x 1080 | asynchronous:</br>≤30 m (body)</br></br> asynchronous:</br>≤30 m (URL) |
 
 
 ## Field Schema Limits
 
-A schema in Multimodal Intelligence refers to a defined structure specifying the types of data to be extracted from various types of unstructured content. Unstructured content types include documents, images, videos, and audio. This structured representation of data is crucial for enabling downstream applications to process and analyze the extracted information effectively.
+A schema in Content Understanding refers to a defined structure specifying the types of data to be extracted from various types of unstructured content. Unstructured content types include documents, images, videos, and audio. This structured representation of data is crucial for enabling downstream applications to process and analyze the extracted information effectively.
 
 This section details the limits of the field inputs for schema definition.
 
@@ -64,17 +64,15 @@ This section details the limits of the field inputs for schema definition.
 | **array**| √ List of subfields of the same type||
 | **Object**| √ Named list of subfields of potentially different types. | 10 (audio, image, video), 50 (document) |
 
-## Analyzer limits per resource
-
-Analyzers in Multimodal Intelligence are specialized components designed to process and extract structured data from various types of unstructured content, such as textual documents, audio, images, and video. These analyzers are tailored to handle specific types of data and tasks, ensuring that the extracted information is accurate and useful for downstream applications.
-
+## Training limits for Custom Document
 | Quota | Standard (S0) |
 | --- | --- |
-| Max models | 100k |
-| Max analysis/min | 1000 pages/images four, (4) hours of audio, 1 hour of video  |
-| Max operations/min | 3000 |
-| Free trainings / month | 10 hours |
 | Max training file size | 1 GB |
 | Max training length | 50k pages/images |
-| Max fields | 100 (document), 10(image, audio, video) |
-| Max enum values | 300 per schema |
+
+## Resource limits
+| Quota | Standard (S0) |
+| --- | --- |
+| Max analyzers | 100k |
+| Max analysis/min | 1000 pages/images four, (4) hours of audio, 1 hour of video  |
+| Max operations/min | 3000 |

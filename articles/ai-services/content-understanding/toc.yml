@@ -32,7 +32,7 @@ items:
   - name: Video
     href: video/overview.md
     displayName: video, audio, voice, recognition, synthesis, speaker, identification, verification, diarization, transcription, translation, language, understanding, sentiment, analysis, emotion, detection, pronunciation, model
-  - name: Images
+  - name: Image
     displayName: image, OCR, optical character recognition, text, extraction, analysis, detection, recognition, model
     href: image/overview.md
   - name: Document
