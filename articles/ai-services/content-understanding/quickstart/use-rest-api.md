@@ -15,7 +15,7 @@ ms.custom: ignite-2024-understanding-release
 
 * Get started with the Azure AI Content Understanding latest preview version REST API (2024-12-01-preview).
 
-* Azure AI Content Understanding is a new Generative AI based [**Azure AI Service**](../what-are-ai-services.md), designed to process/ingest content of any modality - documents, images, videos, and audio into a user-defined output format. 
+* Azure AI Content Understanding is a new Generative AI based Azure AI Service, designed to process/ingest content of any modality - documents, images, videos, and audio into a user-defined output format. 
 
 * You can easily integrate the Content Understanding service into your workflows and applications by calling our REST APIs.
 
@@ -49,7 +49,7 @@ To create custom analyzer, a schema definition input is required. The following 
 
 To utilize any of our prebuilt analyzers(currently available for documents), skip this step and call the POST request to analyze with our prebuilt analyzers.
 
-Before you run the cURL command and call the PUT request to create an analyzer and view the status of the operation, make the following changes to the [HTTP request](#analyze-document-post):
+Before you run the cURL command and call the PUT request to create an analyzer and view the status of the operation, make the following changes to the HTTP request:
 
 1. Replace {endpoint} with the endpoint value from your Azure portal AI service resource instance.
 
