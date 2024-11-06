@@ -5,7 +5,7 @@ keywords: Azure AI services, cognitive solutions, cognitive intelligence, cognit
 author: eric-urban
 ms.service: azure-ai-services
 ms.topic: quickstart
-ms.date: 8/1/2024
+ms.date: 11/06/2024
 ms.author: eur
 ms.custom:
   - subject-armqs
