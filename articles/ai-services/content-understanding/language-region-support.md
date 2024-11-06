@@ -7,7 +7,7 @@ ms.author: lajanuar
 manager: nitinme
 ms.service: azure
 ms.topic: reference
-ms.custom: references_regions
+ms.custom: references_regions, ignite-2024-understanding-release
 ms.date: 11/19/2024
 ---
 

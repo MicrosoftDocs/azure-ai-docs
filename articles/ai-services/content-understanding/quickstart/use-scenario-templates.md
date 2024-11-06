@@ -7,6 +7,7 @@ manager: nitinme
 ms.service: azure
 ms.topic: quickstart
 ms.date: 11/19/2024
+ms.custom: ignite-2024-understanding-release
 ---
 
 # Use Multimodal Intelligence scenario templates in Azure AI Studio

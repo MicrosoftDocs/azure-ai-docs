@@ -9,7 +9,7 @@ ms.topic: whats-new
 ms.date: 11/19/2024
 ms.author: lajanuar
 ms.custom:
-  - references_regions
+  - references_regions, ignite-2024-understanding-release
 ---
 
 # What's new in Azure AI Content Understanding?
