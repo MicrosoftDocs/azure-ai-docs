@@ -674,9 +674,7 @@ print("Versioned evaluator id:", registered_evaluator.id)
 
 After registering your custom evaluator to your AI Studio project, you can view it in your [Evaluator library](../evaluate-generative-ai-app.md#view-and-manage-the-evaluators-in-the-evaluator-library) under Evaluation tab in AI Studio.
 
-- for prompt-based evaluators
-
-#### Register your custom prompt-based evaluator to your AI Studio project
+- For prompt-based custom evaluators, follow these steps to register them:
 
 1. Similar to code-based evaluators, create a script `apology.py` to load `apology.prompty` we built from [Prompt-based evaluators](#Prompt-based-evaluators) in the same directory.
 ```python
