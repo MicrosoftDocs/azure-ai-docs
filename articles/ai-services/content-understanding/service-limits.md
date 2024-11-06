@@ -52,9 +52,16 @@ A schema in Multimodal Intelligence refers to a defined structure specifying the
 
 This section details the limits of the field inputs for schema definition.
 
-| Field Types Supported | Max # of Fields Supported Per Schema |
-| --- | --- |
-| string: Plain Text, date: Date normalized to ISO 8601 (YYYY-MM-DD) format, time: Time normalized to ISO 8601 (hh:mm:ss) format. number: Floating point number normalized to double precision floating point. integer: Integer number, normalized to 64-bit signed integer. boolean: Boolean value, normalized to true or false.array: List of subfields of the same type. object: Named list of subfields of potentially different types. | 10 (audio, image, video), 50 (document) |
+| Data type|Supported format|Schema limits|
+| --- | --- |---|
+| **String**| √ Plain Text||
+|**Date** | √ Normalized to ISO 8601 (YYYY-MM-DD) format||
+| **Time**| √ Normalized to ISO 8601 (hh:mm:ss) format||
+| **number**| √ Float number normalized to double precision floating point||
+| **Integer**| √ Integer number, normalized to 64-bit signed integer||
+| **Boolean**| √ Boolean value, normalized to `true` or `false`||
+| **array**| √ List of subfields of the same type||
+| **Object**| √ Named list of subfields of potentially different types. | 10 (audio, image, video), 50 (document) |
 
 ## Analyzer limits per resource
 
