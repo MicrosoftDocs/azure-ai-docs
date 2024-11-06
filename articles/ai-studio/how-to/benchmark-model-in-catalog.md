@@ -7,7 +7,7 @@ ms.service: azure-ai-studio
 ms.custom:
   - ai-learning-hub
 ms.topic: how-to
-ms.date: 10/29/2024
+ms.date: 11/06/2024
 ms.reviewer: jcioffi
 ms.author: mopeakande
 author: msakande
@@ -43,7 +43,7 @@ Azure AI supports model benchmarking for select models that are popular and most
 1. Return to the homepage of the model catalog.
 1. Select **Compare models** on the model catalog's homepage to explore models with benchmark support, view their metrics, and analyze the trade-offs among different models. This analysis can inform your selection of the model that best fits your requirements.
 
-    :::image type="content" source="../media/how-to/model-benchmarks/compare-models-model-catalog.png" alt-text="Image showing the Compare model button on the model catalog main page." lightbox="../media/how-to/model-benchmarks/compare-models-model-catalog.png":::
+    :::image type="content" source="../media/how-to/model-benchmarks/compare-models-model-catalog.png" alt-text="Image showing the model comparison button on the model catalog main page." lightbox="../media/how-to/model-benchmarks/compare-models-model-catalog.png":::
 
 1. Select your desired tasks and specify the dimensions of interest, such as _AI Quality_ versus _Cost_, to evaluate the trade-offs among different models.
 1. You can switch to the **List view** to access more detailed results for each model.
