@@ -25,7 +25,7 @@ At the top level, AI Studio provides access to the following resources:
 
 - **Azure OpenAI**: Provides access to the latest Open AI models. You can create secure deployments, try playgrounds, fine tune models, content filters, and batch jobs. The Azure OpenAI resource provider is `Microsoft.CognitiveServices/account` and the kind of resource is `OpenAI`. You can also connect to Azure OpenAI by using a kind of `AIServices`, which also includes other [Azure AI services](/azure/ai-services/what-are-ai-services).
 
-    When using Azure AI Studio, you can directly work with Azure OpenAI without an Azuer Studio project or you can use Azure OpenAI through a project.
+    When using Azure AI Studio, you can directly work with Azure OpenAI without an Azure Studio project or you can use Azure OpenAI through a project.
 
     For more information, visit [Azure OpenAI in Azure AI Studio](../azure-openai-in-ai-studio.md).
 
@@ -53,7 +53,7 @@ At the top level, AI Studio provides access to the following resources:
 
 - **Connections**: Azure AI Studio hubs and projects use connections to access resources provided by other services. For example, data in an Azure Storage Account, Azure OpenAI or other Azure AI services.
 
-    For mroe information, visit [Connections](connections.md).
+    For more information, visit [Connections](connections.md).
 
 ## Azure resource types and providers
 
