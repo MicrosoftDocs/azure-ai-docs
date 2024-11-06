@@ -38,6 +38,16 @@ Jupyter-core: `5.7.2`
 
 zeromq: `4.3.5` 
 
+Vulnerabiities fixed:
+- CVE-2024-42472
+- CVE-2024-48957
+- CVE-2024-48958
+- CVE-2024-47175
+- CVE-2024-23984
+- CVE-2024-24968
+- CVE-2024-5742
+- CVE-2024-43802
+
 ## September 27, 2024
 
 Image Version: `24.09.23`
