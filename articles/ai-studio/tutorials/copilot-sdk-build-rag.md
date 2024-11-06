@@ -1,5 +1,5 @@
 ---
-title: "Part 1: Build a custom chat app with the Azure AI SDK"
+title: "Part 2: Build a custom chat app with the Azure AI SDK"
 titleSuffix: Azure AI Studio
 description:  Learn how to build a RAG-based chat app using the Azure AI SDK. This tutorial is part 2 of a 3-part tutorial series.
 manager: scottpolly
@@ -39,7 +39,7 @@ The goal with this RAG-based application is to ground the model responses in you
 
 If you already have a search index with data, you can skip to [Get product documents](#get-documents). Otherwise, you can create a simple example data set to use in your chat app.  
 
-Create an **assets** directory and add the this example data to a **products.csv** file:
+Create an **assets** directory and add this example data to a **products.csv** file:
 
 ```csv
 id,name,price,category,brand,description
@@ -69,7 +69,7 @@ id,name,price,category,brand,description
 
 The search index is used to store vectorized data from the embeddings model. The search index is used to retrieve relevant documents based on the user's question. 
 
-1. Create the file **create_search_index.py** in your main folder (that is, the same directory where you placed your **assets** folder, not in the **assets** folder.)  
+1. Create the file **create_search_index.py** in your main folder (that is, the same directory where you placed your **assets** folder, not inside the **assets** folder).  
 1. Copy and paste the following code into your **create_search_index.py** file.
 
     ```python
