@@ -17,7 +17,7 @@ author: eric-urban
 
 # How to use Azure AI services in AI Studio
 
-You might have existing Azure AI services resources that you created using the old studios such as Azure OpenAI Studio or Speech Studio. You can pick up where you left off by using your existing resources in AI Studio.
+You might have existing resources for Azure AI services that you used in the old studios such as Azure OpenAI Studio or Speech Studio. You can pick up where you left off by using your existing resources in AI Studio.
 
 This article describes how to use new or existing Azure AI services resources in an AI Studio project.
 
