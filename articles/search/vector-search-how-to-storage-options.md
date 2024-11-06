@@ -16,21 +16,23 @@ Azure AI Search stores multiple copies of vector fields that are used in specifi
 
 ## Prerequisites
 
-- [Compressed vector fields](vector-search-how-to-quantization.md) in a search index.
+- [Vvector fields](vector-search-how-to-create-index.md) in a search index.
 
 ## How vector fields are stored
 
 For every vector field, there are three copies of vectors:
 
-- `source` (in JSON) as received from an embedding model or push request to the index, used if you want `retrievable` vectors in search results.
-- original full-precision vectors, used if you want to rescore the query results obtained over compressed vectors.
-- vectors and graph information created by the HNSW library, used for query execution.
+| Instance | Usage |
+|----------|-------|
+| source vectors (in JSON) as received from an embedding model or push request to the index | Used if you want "retrievable" vectors returned in the query response. |
+| original full-precision vectors | Used if you want to rescore the query results obtained over compressed vectors. Applies only to vector fields subject to [scalar or binary quantization](vector-search-how-to-quantization.md). |
+| vectors and graph information created by the HNSW library | Used for query execution. |
 
 The last instance (vectors and graph) is required for vector query execution. The first two instances can be discarded if you don't need them. Compression techniques like scalar or binary quantization are applied to the vectors used during query execution.
 
 ## Set the `stored` property
 
-The `stored` property is a boolean on a vector field definition that determines whether storage is allocated for retrievable vector field content (the `source` instance). The `stored` property is true by default. If you don't need raw vector content in a query response, you can save up to 50 percent storage per field by changing `stored` to false.
+The `stored` property is a boolean on a vector field definition that determines whether storage is allocated for retrievable vector field content (the source instance). The `stored` property is true by default. If you don't need raw vector content in a query response, you can save up to 50 percent storage per field by changing `stored` to false.
 
 Considerations for setting `stored` to false:
 
@@ -76,7 +78,7 @@ PUT https://[service-name].search.windows.net/indexes/demo-index?api-version=202
 
 [!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 
-The `rescoreStorageMethod` property on a vector field definition that determines whether storage is allocated for original full-precision vectors. The `rescoreStorageMethod` property is set to `preserveOriginals` by default. If you aren't using the [oversampling and rescoring mitigations](vector-search-how-to-quantization.md#add-compressions-to-a-search-index) provided for querying compressed vectors, you can save on vector storage per field by changing `rescoreStorageMethod` to `discardOriginals`.
+The `rescoreStorageMethod` property on a vector field definition determines whether storage is allocated for original full-precision vectors. The `rescoreStorageMethod` property is set to `preserveOriginals` by default. If you aren't using the [oversampling and rescoring mitigations](vector-search-how-to-quantization.md#add-compressions-to-a-search-index) provided for querying compressed vectors, you can save on vector storage by changing `rescoreStorageMethod` to `discardOriginals`.
 
 If you intend to use scalar or binary quantization, we recommend retaining `rescoreStorageMethod` set to `preserveOriginals`.
 
