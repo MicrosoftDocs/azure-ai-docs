@@ -20,7 +20,7 @@ ms.custom: ignite-2024-understanding-release
 > * For more information, *see* [**Supplemental Terms of Use for Microsoft Azure Previews**](https://azure.microsoft.com/support/legal/preview-supplemental-terms).
 
 
-Content Understanding is a cloud-based [Azure AI service](articles/ai-services/what-are-ai-services.md) designed to facilitate the efficient extraction of content, structure, and specific fields from documents and forms. It offers a comprehensive suite of APIs combined with an intuitive studio experience for optimal efficiency.
+Content Understanding is a cloud-based [Azure AI service](../../what-are-ai-services.md) designed to facilitate the efficient extraction of content, structure, and specific fields from documents and forms. It offers a comprehensive suite of APIs combined with an intuitive studio experience for optimal efficiency.
 
 By using Content Understanding, organizations can streamline data collection and processing, driving operational efficiency, data-driven decision-making, and innovation. With customizable APIs, Content Understanding allows for easy extraction of fields or content from documents and forms, adaptable to specific business needs.
 
@@ -38,7 +38,7 @@ Document Extraction can process complex documents with various formats, template
 * **Expense management**. Receipts and invoices from various retailers and businesses need to be parsed to validate the expenses. Document field extraction can extract expenses across different formats and documents with varying templates.
 
 
-:::image type="content" source="../../media/document/extraction-overview.png" alt-text="Screenshot of document extraction flow.":::
+:::image type="content" source="../media/document/extraction-overview.png" alt-text="Screenshot of document extraction flow.":::
 
 
 ## Document Extraction Capabilities
@@ -71,23 +71,23 @@ Note: The layout add-on capability must be enabled by default for Field extracti
 
 * **Scalability:** Easily scale your document processing capabilities to meet the growing demands of your business.
 
-* **Customizability:** Tailor document extraction models to your specific requirements, ensuring the perfect fit for your unique workflows.
+* **Customizable:** Tailor document extraction models to your specific requirements, ensuring the perfect fit for your unique workflows.
 
-*    **Grounded results:** Localize the data extracted in the documents, ensuring the response is generated from the content, to enable human review workflows.
+* **Grounded results:** Localize the data extracted in the documents, ensuring the response is generated from the content, to enable human review workflows.
 
-* **Confidence scores:** Maximize efficiency and minimize costs in automation workflows, using confidence scores.
+* **High confidence scores:** Maximize efficiency and minimize costs in automation workflows, using confidence scores.
 
 ## Input Requirements
 
-For a complete list of Content Understanding supported input formats, see our [Service quotas and limits](https://review.learn.microsoft.com/en-us/azure/ai-services/content-understanding/service-limits) page.
+For a complete list of Content Understanding supported input formats, see our [Service quotas and limits](../service-limits.md) page.
 
 ## Supported languages and regions
 
-For a complete list of supported languages and regions, see our [Language and region support](https://review.learn.microsoft.com/en-us/azure/ai-services/content-understanding/language-region-support) page.
+For a complete list of supported languages and regions, see our [Language and region support](../language-region-support.md) page.
 
 ## Next Step
 
-Get started using Content Understanding APIs with our [QuickStart: Content Understanding REST APIs](https://review.learn.microsoft.com/en-us/azure/ai-services/content-understanding/quickstart/rest-api) and learn how to add more samples with labels to improve field extraction quality (link).
+Get started using Content Understanding APIs with our [Content Understanding REST API quickstart](../quickstart/use-rest-api.md) and learn how to add more samples with labels to improve field extraction quality (link).
 
 
 
