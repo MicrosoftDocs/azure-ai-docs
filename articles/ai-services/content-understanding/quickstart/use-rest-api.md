@@ -43,7 +43,7 @@ To use Content Understanding, you need an Azure AI services multi-service resour
   * [Windows](https://curl.haxx.se/windows/)
   * [Mac or Linux](https://learn2torials.com/thread/how-to-install-curl-on-mac-or-linux-(ubuntu)-or-windows)
 
-## Create an analyzer (PUT request)
+## Create an analyzer (PUT)
 
 To create custom analyzer, a schema definition input is required. The following steps show you how to use a sample schema to create a custom analyzer. 
 
@@ -100,7 +100,7 @@ Before you run the cURL command and call the PUT request to create an analyzer a
 > The value is limited to document file format. 
 > If you use `trainingData` replace the `containerUrl` with the SAS URL to your training data storage.
 
-## Analyze a file (POST Request)
+## Analyze a file (POST)
 Call the POST Request to analyze and extract data from a file. 
 
 Before you run the cURL command, make the following changes to the HTTP request:
@@ -133,7 +133,7 @@ Prebuilt Analyzers are available for document files. To use any of these prebuil
 |prebuilt-layout|  Extracts regions of interest including text, tables, table headers, selection marks, and structure information from documents and scanned images.|
 
 
-## Get analyze results (GET Request)
+## Get analyze results (GET)
 
 Call the Get analyze result API to retrieve the extracted data.
 
