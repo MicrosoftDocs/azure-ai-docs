@@ -32,40 +32,27 @@ In this quickstart, we walk you through setting up your local development enviro
 
 ## Install packages
 
-[!INCLUDE [Install the Azure AI SDK](../includes/install-ai-sdk.md)]
+Install the Azure AI SDK packages you need.
 
-## Configure your environment variables
-
-[!INCLUDE [create-env-file](../includes/create-env-file.md)]
+```bash
+pip install azure_ai_projects azure_ai_inference azure-identity 
+```
 
 ## Build your chat app
 
-> [!IMPORTANT]
-> The rest of this tutorial shows the cells of Python code for you to run in a Jupyter notebook. Copy/paste the cells below or download the notebook from @@@CAN WE GIVE A LINK?
-
-## Create a project client
-
-Create a client connected to your AI project.  This client is used to access all the resources in your project.
+Create a file named **chat.py**.  Copy and paste the following code into it.
 
 ```python
-import os
 from azure.ai.projects import AIProjectClient
 from azure.identity import DefaultAzureCredential
-from dotenv import load_dotenv
 
-load_dotenv()
+project_connection_string = "<your-connection-string-goes-here>"
 
 project = AIProjectClient.from_connection_string(
-    conn_str=os.environ['PROJECT_CONNECTION_STRING'],
+    conn_str=project_connection_string,
     credential=DefaultAzureCredential()
 )
-```
 
-## Run a chat completions call
-
- Run a chat completions call and print the response. Feel free to play with the system and user messages.
-
-```Python
 chat = project.inference.get_chat_completions_client()
 response = chat.complete(
     model="gpt-4o-mini",
@@ -78,44 +65,66 @@ response = chat.complete(
 print(response.choices[0].message.content)
 ```
 
-## Generate prompt from user input and a prompt template
+## Insert your connection string
 
-The previous code uses hardcoded input and output messages. In a real app you'd take input from a client application, generate a system message with internal instructions to the model, and then call the LLM with all of the messages.
+Your project connection string is required to call the Azure OpenAI service from your code. 
 
-First let's define a `get_chat_response` function that takes messages and context, generates a system message using a prompt template, and calls a model.
+Find your connection string in the Azure AI Studio project you created in the [AI Studio playground quickstart](../quickstarts/get-started-playground.md).  Open the project, then find the connection string on the **Overview** page.  
 
-> [!NOTE]
-> The prompt template uses mustache format.
+:::image type="content" source="../media/quickstarts/azure-ai-sdk/connection-string.png" alt-text="Screenshot shows the overview page of a project and the location of the connection string.":::
 
-```python
-from azure.ai.inference.prompts import PromptTemplate
+Copy the connection string and replace `<your-connection-string-goes-here>` in the **chat.py** file.
 
-def get_chat_response(messages, context):
-    # create a prompt template from an inline string (using mustache syntax)
-    prompt_template = PromptTemplate.from_message(prompt_template="""
-        system:
-        You are an AI assistant that speaks like a techno punk rocker from 2350. Be cool but not too cool. Ya dig? Refer to the user by their first name, try to work their last name into a pun.
+## Run your chat script
 
-        The user's first name is {{first_name}} and their last name is {{last_name}}.
-        """)
-    
-    # generate system message from the template, passing in the context as variables
-    system_message = prompt_template.render(data=context)
+Run the script to see the response from the model.
 
-    # add the prompt messages to the user messages
-    response = chat.complete(
-        model="gpt-4o-mini", 
-        messages=system_message + messages,
-        temperature=1,
-        frequency_penalty=0.5,
-        presence_penalty=0.5)
-
-    return response
+```bash
+python chat.py
 ```
 
-The get_chat_response function could be easily added as a route to a FastAPI or Flask app to enable calling this function from a front-end web application.
+## Generate prompt from user input and a prompt template
 
-Now let's simulate passing information from a frontend application to this function:
+The script uses hardcoded input and output messages. In a real app you'd take input from a client application, generate a system message with internal instructions to the model, and then call the LLM with all of the messages.
+
+Let's change the script to take input from a client application and generate a system message using a prompt template.
+
+1.  Remove the last line of the script that prints a response.
+
+1. Now define a `get_chat_response` function that takes messages and context, generates a system message using a prompt template, and calls a model.  Add this code to your **chat.py** file:
+
+    ```python
+    from azure.ai.inference.prompts import PromptTemplate
+
+    def get_chat_response(messages, context):
+        # create a prompt template from an inline string (using mustache syntax)
+        prompt_template = PromptTemplate.from_message(prompt_template="""
+            system:
+            You are an AI assistant that speaks like a techno punk rocker from 2350. Be cool but not too cool. Ya dig? Refer to the user by their first name, try to work their last name into a pun.
+
+            The user's first name is {{first_name}} and their last name is {{last_name}}.
+            """)
+        
+        # generate system message from the template, passing in the context as variables
+        system_message = prompt_template.render(data=context)
+
+        # add the prompt messages to the user messages
+        response = chat.complete(
+            model="gpt-4o-mini", 
+            messages=system_message + messages,
+            temperature=1,
+            frequency_penalty=0.5,
+            presence_penalty=0.5)
+
+        return response
+    ```
+
+    > [!NOTE]
+    > The prompt template uses mustache format.
+
+    The get_chat_response function could be easily added as a route to a FastAPI or Flask app to enable calling this function from a front-end web application.
+
+1. Now simulate passing information from a frontend application to this function.  Add the following code to the end of your **chat.py** file.  Feel free to play with the message and add your own name.
 
 ```python
 response = get_chat_response(
@@ -128,52 +137,12 @@ response = get_chat_response(
 print(response.choices[0].message.content)
 ```
 
-## Enable tracing and log to studio
+Run the script to see the response from the model with this new input.
 
-The Azure SDK uses `opentelemetry` for instrumentation and logging. Before you can log to Azure AI Studio, attach an Application Insights resource to your project.
-
-1. Navigate to your project in [Azure AI Studio](https://ai.azure.com/).
-1. Select the **Tracing** page on the left hand side.
-1. Select **Create New** to attach a new Application Insights resource to your project.
-1. Supply a name and select **Create**.
-
-Next, install the `opentelemetry` SDK:
-
-```python
-%pip install azure-monitor-opentelemetry
+```bash
+python chat.py
 ```
 
-Now enable tracing with output to the console:
-
-```python
-import os
-from azure.monitor.opentelemetry import configure_azure_monitor
-
-os.environ['AZURE_TRACING_GEN_AI_CONTENT_RECORDING_ENABLED'] = 'true'
-# Enable Azure Monitor tracing
-application_insights_connection_string = project.telemetry.get_connection_string()
-if not application_insights_connection_string:
-    print("Application Insights was not enabled for this project.")
-    print("Enable it via the 'Tracing' tab in your AI Studio project page.")
-    exit()
-    
-configure_azure_monitor(connection_string=application_insights_connection_string)
-```
-
-Finally, run an inferencing call. The call is logged to Azure AI Studio.  This code prints a link to the traces.
-
-```python
-response = chat.complete(
-    model="gpt-4o-mini",
-    messages=[
-        {"role": "system", "content": "You are an AI assistant that speaks like a techno punk rocker from 2350. Be cool but not too cool. Ya dig?"},
-        {"role": "user", "content": "Hey, can you help me with my taxes? I'm a freelancer."},
-    ]
-)
-
-print("View traces at:")
-print(f"https://int.ai.azure.com/project-monitoring?wsid=/subscriptions/{project.scope['subscription_id']}/resourceGroups/{project.scope['resource_group_name']}/providers/Microsoft.MachineLearningServices/workspaces/{project.scope['project_name']}")
-```
 
 ## Next step
 
