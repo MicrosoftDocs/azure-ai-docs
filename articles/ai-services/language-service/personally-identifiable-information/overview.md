@@ -20,7 +20,7 @@ Customers can now redact transcripts, chats, and other text written in a convers
 PII detection is one of the features offered by [Azure AI Language](../overview.md), a collection of machine learning and AI algorithms in the cloud for developing intelligent applications that involve written language. The PII detection feature can **identify, categorize, and redact** sensitive information in unstructured text. For example: phone numbers, email addresses, and forms of identification. Azure AI Language supports general text PII redaction, as well as [Conversational PII](how-to-call-for-conversations.md), a specialized model for handling speech transcriptions and the more informal, conversational tone of meeting and call transcripts. The service also supports [Native Document PII redaction](#native-document-support), where the input and output are structured document files.
 
 > [!TIP]
-> PII detection is also [available in AI Studio](https://ai.azure.com/explore/language), where you can [utilize a currently existing Language Studio resource or create a new AI Studio resource](../../../ai-studio/ai-services/connect-ai-services.md)
+> Try out PII detection [in AI Studio](https://ai.azure.com/explore/language), where you can [utilize a currently existing Language Studio resource or create a new AI Studio resource](../../../ai-studio/ai-services/connect-ai-services.md)
 
 * [**Quickstarts**](quickstart.md) are getting-started instructions to guide you through making requests to the service.
 * [**How-to guides**](how-to-call.md) contain instructions for using the service in more specific or customized ways.

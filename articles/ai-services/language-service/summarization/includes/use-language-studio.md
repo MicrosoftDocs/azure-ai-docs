@@ -11,4 +11,4 @@ ms.custom: include, build-2024
 ---
 
 > [!TIP]
-> You can use [**Language Studio**](../../language-studio.md) to try text summarization without needing to write code. 
+> You can use [**AI Studio**](../../../../ai-studio/what-is-ai-studio.md) to try summarization without needing to write code. 
