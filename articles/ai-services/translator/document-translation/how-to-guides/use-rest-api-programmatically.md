@@ -40,7 +40,7 @@ To get started, you need:
 
   1. **Subscription**. Select one of your available Azure subscriptions.
 
-  1. **Resource Group**. You can create a new resource group or add your resource to a pre-existing resource group that shares the same lifecycle, permissions, and policies.
+  1. **Resource Group**. You can create a new resource group or add your resource to an existing resource group that shares the same lifecycle, permissions, and policies.
 
   1. **Resource Region**. Choose **Global** unless your business or application requires a specific region. If you're planning on using a [system-assigned managed identity](create-use-managed-identities.md) for authentication, choose a **geographic** region like **West US**.
 
@@ -227,7 +227,7 @@ The following headers are included with each Document Translation API request:
    * Data type: Boolean (`true` or `false`) 
    * Default Boolean setting is `false`. Set the option to `true` to enable image text translation.
 
-* **Response Details**. When the feature is enabled, additional image processing information will be included with the response: 
+* **Response Details**. When the feature is enabled, added image processing information is included with the response: 
 
    * **`totalImageScansSucceeded`**. The number of successfully translated image scans.
 
