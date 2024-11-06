@@ -113,7 +113,7 @@ In AI Studio, you can fine-tune several Azure OpenAI models. The purpose is typi
 
     :::image type="content" source="../media/ai-services/fine-tune-azure-openai.png" alt-text="Screenshot of the page to select fine-tuning of Azure OpenAI Service models." lightbox="../media/ai-services/fine-tune-azure-openai.png":::
 
-1. Select **+ Fine-tune model**.
+1. Select **+ Fine-tune model** in the **Generative AI fine-tuning** tabbed page.
 1. Follow the [detailed how to guide](../../ai-services/openai/how-to/fine-tuning.md?context=/azure/ai-studio/context/context) to fine-tune the model.
 
 For more information about fine-tuning Azure AI models, see:
