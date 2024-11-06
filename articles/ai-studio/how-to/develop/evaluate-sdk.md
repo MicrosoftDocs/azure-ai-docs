@@ -293,41 +293,6 @@ The result:
 {"answer_length":27}
 ```
 
-#### Log your custom code-based evaluator to your AI Studio project
-
-[TODO]: need to add dependencies and update the snippet if necessary.
-
-```python
-# First we need to save evaluator into separate file in its own directory:
-def answer_len(answer):
-    return len(answer)
-
-# Note, we create temporary directory to store our python file
-target_dir_tmp = "flex_flow_tmp"
-os.makedirs(target_dir_tmp, exist_ok=True)
-lines = inspect.getsource(answer_len)
-with open(os.path.join("flex_flow_tmp", "answer.py"), "w") as fp:
-    fp.write(lines)
-
-from flex_flow_tmp.answer import answer_len as answer_length
-# Then we convert it to flex flow
-pf = PFClient()
-flex_flow_path = "flex_flow"
-pf.flows.save(entry=answer_length, path=flex_flow_path)
-# Finally save the evaluator
-eval = Model(
-    path=flex_flow_path,
-    name="answer_len_uploaded",
-    description="Evaluator, calculating answer length using Flex flow.",
-)
-flex_model = ml_client.evaluators.create_or_update(eval)
-# This evaluator can be downloaded and used now
-retrieved_eval = ml_client.evaluators.get("answer_len_uploaded", version=1)
-ml_client.evaluators.download("answer_len_uploaded", version=1, download_path=".")
-evaluator = load_flow(os.path.join("answer_len_uploaded", flex_flow_path))
-```
-
-After logging your custom evaluator to your AI Studio project, you can view it in your [Evaluator library](../evaluate-generative-ai-app.md#view-and-manage-the-evaluators-in-the-evaluator-library) under Evaluation tab in AI Studio.
 
 ### Prompt-based evaluators
 
@@ -359,24 +324,24 @@ system:
 You are an AI tool that determines if, in a chat conversation, the assistant apologized, like say sorry.
 Only provide a response of {"apology": 0} or {"apology": 1} so that the output is valid JSON.
 Give a apology of 1 if apologized in the chat conversation.
-```
 
 Here are some examples of chat conversations and the correct response:
 
-```text
+
 user: Where can I get my car fixed?
 assistant: I'm sorry, I don't know that. Would you like me to look it up for you?
 result:
 {"apology": 1}
-```
+
 
 Here's the actual conversation to be scored:
 
-```text
+
 user: {{query}}
 assistant: {{response}}
 output:
 ```
+
 
 You can create your own Prompty-based evaluator and run it on a row of data:
 
@@ -384,6 +349,14 @@ You can create your own Prompty-based evaluator and run it on a row of data:
 with open("apology.prompty") as fin:
     print(fin.read())
 from promptflow.client import load_flow
+
+model_config = {
+    "azure_endpoint": os.environ.get("AZURE_OPENAI_ENDPOINT"),
+    "api_key": os.environ.get("AZURE_OPENAI_API_KEY"),
+    "azure_deployment": os.environ.get("AZURE_OPENAI_DEPLOYMENT"),
+    "api_version": os.environ.get("AZURE_OPENAI_API_VERSION"),
+}
+
 
 # load apology evaluator from prompty file using promptflow
 apology_eval = load_flow(source="apology.prompty", model={"configuration": model_config})
@@ -398,26 +371,6 @@ Here's the result:
 ```JSON
 {"apology": 0}
 ```
-
-#### Log your custom prompt-based evaluator to your AI Studio project
-
-```python
-# Define the path to prompty file.
-prompty_path = os.path.join("apology-prompty", "apology.prompty")
-# Finally the evaluator
-eval = Model(
-    path=prompty_path,
-    name="prompty_uploaded",
-    description="Evaluator, calculating answer length using Flex flow.",
-)
-flex_model = ml_client.evaluators.create_or_update(eval)
-# This evaluator can be downloaded and used now
-retrieved_eval = ml_client.evaluators.get("prompty_uploaded", version=1)
-ml_client.evaluators.download("prompty_uploaded", version=1, download_path=".")
-evaluator = load_flow(os.path.join("prompty_uploaded", "apology.prompty"))
-```
-
-After logging your custom evaluator to your AI Studio project, you can view it in your [Evaluator library](../evaluate-generative-ai-app.md#view-and-manage-the-evaluators-in-the-evaluator-library) under **Evaluation** tab in AI Studio.
 
 ## Batch evaluation on test datasets using `evaluate()`
 
@@ -600,18 +553,20 @@ After local evaluations of your generative AI applications, you may want to trig
 
 1. Create a **virtual environment of you choice**. To create one using conda, run the following command:
     ```bash
-    conda create -n remote-evaluation python=3.11
+    conda create -n remote-evaluation
     conda activate remote-evaluation
     ```
 2. Install the required packages by running the following command:
     ```bash
-   pip install azure-identity azure-ai-project azure-ai-ml azure-ai-evaluation
+   pip install azure-identity azure-ai-projects azure-ai-ml
     ```
+    Optionally, you can   want to skip the steps to fetch evaluator id for built-in evaluators: `azure-ai-evaluation`
+    
 
 #### Prerequisites
-- Azure AI Project in `EastUS2` region. If you do not have an existing project, please follow the guide [How to create Azure AI project](https://learn.microsoft.com/azure/ai-studio/how-to/create-projects?tabs=ai-studio) to create one. 
+- Azure AI project in `EastUS2` region. If you do not have an existing project, please follow the guide [How to create Azure AI project](https://learn.microsoft.com/azure/ai-studio/how-to/create-projects?tabs=ai-studio) to create one. 
 - Azure OpenAI Deployment with GPT model supporting `chat completion`, for example `gpt-4`.
-- `Connection String` for Azure AI Project to easily create `AIProjectClient` object. You can get the connection string from Project Overview page.
+- `Connection String` for Azure AI project to easily create `AIProjectClient` object. You can get the connection string from Project overview page.
 - Make sure you are first logged into your Azure subscription by running `az login`.
 
 Then you can then define a client and a deployment to run your remote evaluations:
@@ -627,7 +582,7 @@ from azure.ai.evaluation import F1ScoreEvaluator, RelevanceEvaluator, ViolenceEv
 deployment_name = os.environ.get("AZURE_OPENAI_DEPLOYMENT")
 api_version = os.environ.get("AZURE_OPENAI_API_VERSION")
 
-# Create an Azure AI Client from a connection string. Avaiable on Azure AI Project Overview page.
+# Create an Azure AI Client from a connection string. Avaiable on Azure AI project Overview page.
 project_client = AIProjectClient.from_connection_string(
     credential=DefaultAzureCredential(),
     conn_str="<connection_string>"
@@ -635,7 +590,7 @@ project_client = AIProjectClient.from_connection_string(
 ```
 
 #### Evaluation data
-We provide two ways to register your data in Azure AI Project required for remote evaluations: 
+We provide two ways to register your data in Azure AI project required for remote evaluations: 
 1. Upload new data from your local directory to the Project, and fetch the dataset id as a result: 
 ```python
 data_id = project_client.upload_file("./evaluate_test_data.jsonl")
@@ -644,25 +599,145 @@ data_id = project_client.upload_file("./evaluate_test_data.jsonl")
 - Navigate to Azure AI Studio UI;
 - Go to Data tab under Components in your Project;
 - Locate the dataset name;
-- Construct the dataset id: `/subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/Microsoft.MachineLearningServices/workspaces/<project-name>/data/<dataset-name>/versions/1`
+- Construct the dataset id: `/subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/Microsoft.MachineLearningServices/workspaces/<project-name>/data/<dataset-name>/versions/<version-number>`
 
 
 #### Evaluator library
-We provide a list of built-in evaluators in the Evaluator library of your Azure AI Project. We provide two ways to specify evaluators:
-1. Use built-in evaluator `id` property in `azure-ai-evaluation` SDK:
+We provide a list of built-in evaluators in the Evaluator library of your Azure AI project. We provide two ways to specify evaluators:
+
+##### Specifying built-in evaluators
+- **From SDK**: Use built-in evaluator `id` property supported by `azure-ai-evaluation` SDK:
 ```python
 from azure.ai.evaluation import F1ScoreEvaluator, RelevanceEvaluator, ViolenceEvaluator
-print("Your evaluator id:", F1ScoreEvaluator.id)
+print("F1 Score evaluator id:", F1ScoreEvaluator.id)
 ```
-2. Follows these steps to fetch evaluator ids:
+- **From UI**: Follows these steps to fetch evaluator ids:
     - Go to the Azure AI Studio UI;
     - Click on Evaluation under Tools;
     - Select Evaluator library;
-    - Select your evaluator of choice by comparing the descriptions;
+    - Select your evaluator(s) of choice by comparing the descriptions;
     - Copy its "Asset ID" which will be your evaluator id, for example, `azureml://registries/azureml/models/Groundedness-Pro-Evaluator/versions/1`.
 
-To use a custom evaluator, you can register it to your Project as instructed in [Log your custom prompt-based evaluator to your AI Studio project](#Log-your-custom-prompt-based-evaluator-to-your-AI-Studio-project).
 
+##### Specifying custom evaluators 
+
+- For code-based custom evaluators, register it to your AI Studio project and fetch the evaluator id with the following:
+
+```python
+from azure.ai.ml import MLClient
+from azure.ai.ml.entities import Model
+from promptflow.client import PFClient
+
+
+# Define ml_client to register custom evaluator
+ml_client = MLClient(
+       subscription_id=os.environ["AZURE_SUBSCRIPTION_ID"],
+       resource_group_name=os.environ["AZURE_RESOURCE_GROUP"],
+       workspace_name=os.environ["AZURE_PROJECT_NAME"],
+       credential=DefaultAzureCredential()
+)
+
+
+# First we need to save evaluator into separate file in its own directory:
+def answer_len(answer):
+    return len(answer)
+
+# Create a local python file
+lines = inspect.getsource(answer_len)
+local_file = "answer.py"
+with open(local_file, "w") as fp:
+    fp.write(lines)
+
+# Load evaluator from file (note the import name must match local_file) 
+from answer import answer_len as answer_length
+
+# Then we convert it to evaluation flow and save it locally
+pf_client = PFClient()
+local_path = "answer_length"
+pf_client.flows.save(entry=answer_length, path=local_path)
+
+# Specify evaluator name to appear in the Evaluator library
+evaluator_name = "AnswerLenEvaluator"
+
+# Finally register the evaluator to the Evaluator library
+custom_evaluator = Model(
+    path=local_path,
+    name=evaluator_name,
+    description="Evaluator calculating answer length.",
+)
+registered_evaluator = ml_client.evaluators.create_or_update(custom_evaluator)
+print("Registered evaluator id:", registered_evaluator.id)
+# Registered evaluators have versioning. You can always reference any version available.
+versioned_evaluator = ml_client.evaluators.get(evaluator_name, version=1)
+print("Versioned evaluator id:", registered_evaluator.id)
+```
+
+After registering your custom evaluator to your AI Studio project, you can view it in your [Evaluator library](../evaluate-generative-ai-app.md#view-and-manage-the-evaluators-in-the-evaluator-library) under Evaluation tab in AI Studio.
+
+- for prompt-based evaluators
+
+#### Register your custom prompt-based evaluator to your AI Studio project
+
+1. Similar to code-based evaluators, create a script `apology.py` to load `apology.prompty` we built from [Prompt-based evaluators](#Prompt-based-evaluators) in the same directory.
+```python
+import os
+import json
+import sys
+from promptflow.client import load_flow
+
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+
+class ApologyEvaluator:
+    def __init__(self, model_config):
+        current_dir = os.path.dirname(__file__)
+        prompty_path = os.path.join(current_dir, "apology.prompty")
+        self._flow = load_flow(source=prompty_path, model={"configuration": model_config})
+
+    def __call__(self, *, query: str, response: str, **kwargs):
+        llm_response = self._flow(query=query, response=response)
+
+        try:
+            evaluator_response = json.loads(llm_response)
+        except Exception:
+            evaluator_response = llm_response
+        return evaluator_response
+```
+2. Register the prompt-based evaluator to the Evaluator library and fetch the evaluator id with the following:
+
+```python
+# Register your prompt-based custom evaluator
+from apology import ApologyEvaluator
+
+# This is a local file path
+local_path = "apology"
+
+model_config = {
+    "azure_endpoint": os.environ.get("AZURE_OPENAI_ENDPOINT"),
+    "api_key": os.environ.get("AZURE_OPENAI_API_KEY"),
+    "azure_deployment": os.environ.get("AZURE_OPENAI_DEPLOYMENT"),
+    "api_version": os.environ.get("AZURE_OPENAI_API_VERSION"),
+}
+
+apology_evaluator = ApologyEvaluator(model_config)
+pf_client.flows.save(entry=apology_evaluator, path=local_path) 
+
+# Specify evaluator name to appear in the Evaluator library
+evaluator_name = "ApologyEvaluator"
+
+# Register the evaluator to the Evaluator library
+custom_evaluator = Model(
+    path=local_path,
+    name=evaluator_name,
+    description="prompt-based evaluator measuring apology.",
+)
+registered_evaluator = ml_client.evaluators.create_or_update(custom_evaluator)
+print("Registered evaluator id:", registered_evaluator.id)
+# Registered evaluators have versioning. You can always reference any version available.
+versioned_evaluator = ml_client.evaluators.get(evaluator_name, version=1)
+print("Versioned evaluator id:", registered_evaluator.id)
+```
+
+After logging your custom evaluator to your AI Studio project, you can view it in your [Evaluator library](../evaluate-generative-ai-app.md#view-and-manage-the-evaluators-in-the-evaluator-library) under **Evaluation** tab in AI Studio.
 
 
 ### Remote evaluation with Azure AI Project SDK
@@ -680,7 +755,7 @@ from azure.ai.evaluation import F1ScoreEvaluator, RelevanceEvaluator, ViolenceEv
 deployment_name = os.environ.get("AZURE_OPENAI_DEPLOYMENT")
 api_version = os.environ.get("AZURE_OPENAI_API_VERSION")
 
-# Create an Azure AI Client from a connection string. Avaiable on Azure AI Project Overview page.
+# Create an Azure AI Client from a connection string. Avaiable on Project overview page on Azure AI Studio UI.
 project_client = AIProjectClient.from_connection_string(
     credential=DefaultAzureCredential(),
     conn_str="<connection_string>"
