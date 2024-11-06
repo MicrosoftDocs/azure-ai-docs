@@ -41,7 +41,7 @@ If you already have a search index with data, you can skip to [Get product docum
 
 Create an **assets** directory and add this example data to a **products.csv** file:
 
-:::code language="csv" source="~/azureai-samples-nov2024/scenarios/rag/custom-rag-app/assets/projects.csv":::
+:::code language="csv" source="~/azureai-samples-nov2024/scenarios/rag/custom-rag-app/assets/products.csv":::
 
 ## Create a search index
 
@@ -50,7 +50,7 @@ The search index is used to store vectorized data from the embeddings model. The
 1. Create the file **create_search_index.py** in your main folder (that is, the same directory where you placed your **assets** folder, not inside the **assets** folder).  
 1. Copy and paste the following code into your **create_search_index.py** file.
 
-    :::code language="python" source="~/azureai-samples-nov2024/scenarios/rag/custom-rag-app/create-search-index":::
+    :::code language="python" source="~/azureai-samples-nov2024/scenarios/rag/custom-rag-app/create_search_index.py":::
 
 1. From your console, log in to your Azure account and follow instructions for authenticating your account:
 
@@ -79,7 +79,7 @@ When the chat gets a request, it searches through your data to find relevant inf
 
 Create the **get_product_documents.py** file in your main directory. Copy and paste the following code into the file.
 
-:::code language="python" source="~/azureai-samples-nov2024/scenarios/rag/custom-rag-app/create-search-index.py":::
+:::code language="python" source="~/azureai-samples-nov2024/scenarios/rag/custom-rag-app/get_product_documents.py":::
 
 ### Create prompt template for intent mapping
 
