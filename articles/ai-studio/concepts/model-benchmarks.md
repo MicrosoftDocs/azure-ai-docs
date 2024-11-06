@@ -19,7 +19,7 @@ author: msakande
 
 In Azure AI Studio, you can compare benchmarks across models and datasets available in the industry to decide which one meets your business scenario. You can directly access detailed benchmarking results within the model catalog. Whether you already have models in mind or you're exploring models, the benchmarking data in Azure AI empowers you to make informed decisions quickly and efficiently.
 
-Azure AI supports model benchmarking for select models that are popular and most frequently used. Supported models have a _benchmarks_ icon. From the model catalog, you can also use the filter "Benchmark results" and search functionality to find supported models.
+Azure AI supports model benchmarking for select models that are popular and most frequently used. Supported models have a _benchmarks_ icon that looks like a histogram. You can find these models in the model catalog by using the **Collections** filter and selecting **Benchmark results**. You can then use the search functionality to find specific models.
 
 <!-- access-model-catalog-benchmark.png alt-text: Screenshot showing how to access benchmark models in model catalog homepage  .  -->
 

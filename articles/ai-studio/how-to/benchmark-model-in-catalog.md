@@ -34,7 +34,7 @@ Azure AI supports model benchmarking for select models that are popular and most
 4. Select the model you're interested in. For example, select **gpt-4o**. This action opens the model's overview page.
 
     > [!TIP]
-    > From the model catalog, you can show the models that have benchmarking available by filtering the models on "Benchmark results", using the "Collections" drop-down menu. These models have a _benchmarks_ icon that looks like a histogram.
+    > From the model catalog, you can show the models that have benchmarking available by using the **Collections** filter and selecting **Benchmark results**. These models have a _benchmarks_ icon that looks like a histogram.
 
 1. Go to the **Benchmarks** tab to check the benchmark results for the model.
   
@@ -54,11 +54,11 @@ Azure AI supports model benchmarking for select models that are popular and most
 
 When you're in the "Benchmarks" tab for a specific model, you can gather extensive information to better understand and interpret the benchmark results, including:
 
-- **High-level aggregate scores**: These scores for AI quality, cost, and latency provide a quick overview of the model's performance.
+- **High-level aggregate scores**: These scores for AI quality, cost, latency, and throughput provide a quick overview of the model's performance.
 - **Comparative charts**: These charts display the model's relative position compared to related models.
 - **Metric comparison table**: This table presents detailed results for each metric.
 
-    <!-- gpt4o-benchmark-tab.png alt-text: benchmarks tab for gpt-4o -->
+    <!-- gpt4o-benchmark-tab-expand.png alt-text: benchmarks tab for gpt-4o -->
 
 By default, AI Studio displays an average index across various metrics and datasets to provide a high-level overview of model performance. 
 
