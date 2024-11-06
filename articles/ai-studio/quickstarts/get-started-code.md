@@ -6,7 +6,7 @@ manager: scottpolly
 ms.service: azure-ai-studio
 ms.custom: build-2024, devx-track-azurecli, devx-track-python
 ms.topic: how-to
-ms.date: 11/06/2024
+ms.date: 10/31/2024
 ms.reviewer: dantaylo
 ms.author: sgilley
 author: sdgilley
@@ -72,7 +72,7 @@ Let's change the script to take input from a client application and generate a s
 
 1. Now define a `get_chat_response` function that takes messages and context, generates a system message using a prompt template, and calls a model.  Add this code to your **chat.py** file:
 
-    :::code language="python" source="~/azureai-samples-nov2024/scenarios/inference/chat-app/chat-template.py" id="chat-function":::
+    :::code language="python" source="~/azureai-samples-nov2024/scenarios/inference/chat-app/chattemplate.py" id="chat_function":::
 
     > [!NOTE]
     > The prompt template uses mustache format.
@@ -81,7 +81,7 @@ Let's change the script to take input from a client application and generate a s
 
 1. Now simulate passing information from a frontend application to this function.  Add the following code to the end of your **chat.py** file.  Feel free to play with the message and add your own name.
 
-    :::code language="python" source="~/azureai-samples-nov2024/scenarios/inference/chat-app/chat-template.py" id="create-response":::
+    :::code language="python" source="~/azureai-samples-nov2024/scenarios/inference/chat-app/chat-template.py" id="create_response":::
 
 Run the script to see the response from the model with this new input.
 
