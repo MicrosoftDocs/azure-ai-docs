@@ -309,10 +309,12 @@ Along with using Elasticsearch databases in Azure OpenAI Studio, you can also us
 
 # [MongoDB Atlas (preview)](#tab/mongo-db-atlas)
 
+You can connect your MongoDB Atlas vector index with Azure OpenAI On Your Data for inferencing. You can use it through the Azure AI Studio, API and SDK.
+
 ### Prerequisites 
 
 * A [MongoDB Atlas account](https://account.mongodb.com/account/register)
-* An Azure OpenAI ada002 [embedding model](./models.md#embeddings)
+* An [Azure OpenAI ada002 embedding model](./models.md#embeddings)
     * To achieve good retrieval quality, make sure your vector index is created with Azure OpenAI ada002 embedding model.
 
 We recommend using one of the following models for MongoDB Atlas
@@ -332,7 +334,7 @@ If you want to create a new vector search index with your documents, you can use
 
 ### Connection to MongoDB account
 
-To add your data source, you first need to create a connection to MongoDB Atlas. This connection includes information such as authentication (username and password).
+To add your data source, you first need to create a connection to MongoDB Atlas. This connection includes information such as authentication (username and password). Enter the endpoint of your MongoDB Atlas connection string using the following format: `mongodb+srv://{user_name}:{password}@{endpoint}/?appName={application_name}`. See the [MongoDB documentation](https://aka.ms/mongodb-connection-string) for more information about connection string methods.
 
 :::image type="content" source="../media/use-your-data/mongo-db-atlas-connection.png" alt-text="A screenshot showing the connection screen for Mongo DB" lightbox="../media/use-your-data/mongo-db-atlas-connection.png":::
 
@@ -342,7 +344,7 @@ Once you have created a connection or chosen an existing connection, you can ent
 
 :::image type="content" source="../media/use-your-data/mongo-db-atlas-source-index.png" alt-text="A screenshot showing the field mapping options for Mongo DB Atlas" lightbox="../media/use-your-data/mongo-db-atlas-source-index.png":::
 
-To use MongoDB Atlas, you'll need an Azure OpenAI ada002 embedding model. This model will be created for you if you don't already have one, wich will incur [usage](https://go.microsoft.com/fwlink/?linkid=2264246) on your account.
+To use MongoDB Atlas, you'll need an Azure OpenAI ada002 embedding model. This model will be created for you if you don't already have one, which will incur [usage](https://go.microsoft.com/fwlink/?linkid=2264246) on your account.
 
 ### Index field mapping
 
