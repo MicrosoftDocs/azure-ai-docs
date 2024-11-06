@@ -7,7 +7,7 @@ ms.service: azure-ai-studio
 ms.custom:
   - build-2024
 ms.topic: conceptual
-ms.date: 06/04/2024
+ms.date: 11/19/2024
 ms.reviewer: deeikele
 ms.author: larryfr
 author: Blackmist
@@ -17,38 +17,43 @@ author: Blackmist
     
 AI Studio provides a unified experience for AI developers and data scientists to build, evaluate, and deploy AI models through a web portal, SDK, or CLI. AI Studio is built on capabilities and services provided by other Azure services.
 
-The top level AI Studio resources (hub and project) are based on Azure Machine Learning. Connected resources, such as Azure OpenAI, Azure AI services, and Azure AI Search, are used by the hub and project in reference, but follow their own resource management lifecycle.
+:::image type="content" source="../media/concepts/ai-studio-architecture.png" alt-text="Diagram of the high-level architecture of Azure AI Studio." lightbox="../media/concepts/ai-studio-architecture.png":::
 
-- **AI Studio hub**: The hub is the top-level resource in AI Studio. The Azure resource provider for a hub is `Microsoft.MachineLearningServices/workspaces`, and the kind of resource is `Hub`. It provides the following features:
+At the top level, AI Studio provides access to the following resources:
+
+<!-- The top level AI Studio resources (hub and project) are based on Azure Machine Learning. Connected resources, such as Azure OpenAI, Azure AI services, and Azure AI Search, are used by the hub and project in reference, but follow their own resource management lifecycle. -->
+
+- **Azure OpenAI**: Provides access to the latest Open AI models. You can create secure deployments, try playgrounds, fine tune models, content filters, and batch jobs. The Azure OpenAI resource provider is `Microsoft.CognitiveServices/account` and the kind of resource is `OpenAI`. You can also connect to Azure OpenAI by using a kind of `AIServices`, which also includes other [Azure AI services](/azure/ai-services/what-are-ai-services).
+
+    When using Azure AI Studio, you can directly work with Azure OpenAI without an Azure Studio project or you can use Azure OpenAI through a project.
+
+    For more information, visit [Azure OpenAI in Azure AI Studio](../azure-openai-in-ai-studio.md).
+
+- **Management center**: The management center streamlines governance and management of AI Studio resources such as hubs, projects, connected resources, and deployments.
+
+    For more information, visit [Management center](management-center.md).
+- **AI Studio hub**: The hub is the top-level resource in AI Studio, and is based on the Azure Machine Learning service. The Azure resource provider for a hub is `Microsoft.MachineLearningServices/workspaces`, and the kind of resource is `Hub`. It provides the following features:
     - Security configuration including a managed network that spans projects and model endpoints.
     - Compute resources for interactive development, fine-tuning, open source, and serverless model deployments.
     - Connections to other Azure services such as Azure OpenAI, Azure AI services, and Azure AI Search. Hub-scoped connections are shared with projects created from the hub.
     - Project management. A hub can have multiple child projects.
     - An associated Azure storage account for data upload and artifact storage.
+    
+    For more information, visit [Hubs and projects overview](ai-resources.md).
 - **AI Studio project**: A project is a child resource of the hub. The Azure resource provider for a project is `Microsoft.MachineLearningServices/workspaces`, and the kind of resource is `Project`. The project provides the following features:
     - Access to development tools for building and customizing AI applications.   
     - Reusable components including datasets, models, and indexes.
     - An isolated container to upload data to (within the storage inherited from the hub).
     - Project-scoped connections. For example, project members might need private access to data stored in an Azure Storage account without giving that same access to other projects.
     - Open source model deployments from catalog and fine-tuned model endpoints.
- 
-:::image type="content" source="../media/concepts/resource-provider-connected-resources.svg" alt-text="Diagram of the relationship between AI Studio resources." :::
 
-## Centrally set up and govern using hubs
+    :::image type="content" source="../media/concepts/resource-provider-connected-resources.svg" alt-text="Diagram of the relationship between AI Studio resources." :::
 
-Hubs provide a central way for a team to govern security, connectivity, and computing resources across playgrounds and projects. Projects that are created using a hub inherit the same security settings and shared resource access. Teams can create as many projects as needed to organize work, isolate data, and/or restrict access.
+    For more information, visit [Hubs and projects overview](ai-resources.md).
 
-Often, projects in a business domain require access to the same company resources such as vector indices, model endpoints, or repos. As a team lead, you can preconfigure connectivity with these resources within a hub, so developers can access them from any new project workspace without delay on IT.
+- **Connections**: Azure AI Studio hubs and projects use connections to access resources provided by other services. For example, data in an Azure Storage Account, Azure OpenAI or other Azure AI services.
 
-[Connections](connections.md) let you access objects in AI Studio that are managed outside of your hub. For example, uploaded data on an Azure storage account, or model deployments on an existing Azure OpenAI resource. A connection can be shared with every project or made accessible to one specific project. Connections can be configured to use key-based access or Microsoft Entra ID passthrough to authorize access to users on the connected resource. As an administrator, you can  track, audit, and manage connections across the organization from a single view in AI Studio.
-
-:::image type="content" source="../media/concepts/connected-resources-spog.png" alt-text="Screenshot of AI Studio showing an audit view of all connected resources across a hub and its projects." :::
-
-### Organize for your team's needs
-
-The number of hubs and projects you need depends on your way of working. You might create a single hub for a large team with similar data access needs. This configuration maximizes cost efficiency, resource sharing, and minimizes setup overhead. For example, a hub for all projects related to customer support.
-
-If you require isolation between dev, test, and production as part of your LLMOps or MLOps strategy, consider creating a hub for each environment. Depending on the readiness of your solution for production, you might decide to replicate your project workspaces in each environment or just in one.
+    For more information, visit [Connections](connections.md).
 
 ## Azure resource types and providers
 
@@ -79,6 +84,22 @@ While most of the resources used by Azure AI Studio live in your Azure subscript
 Managed compute resources and managed virtual networks exist in the Microsoft subscription, but you manage them. For example, you control which VM sizes are used for compute resources, and which outbound rules are configured for the managed virtual network.
 
 Managed compute resources also require vulnerability management. Vulnerability management is a shared responsibility between you and Microsoft. For more information, see [vulnerability management](vulnerability-management.md).
+
+## Centrally set up and govern using hubs
+
+Hubs provide a central way for a team to govern security, connectivity, and computing resources across playgrounds and projects. Projects that are created using a hub inherit the same security settings and shared resource access. Teams can create as many projects as needed to organize work, isolate data, and/or restrict access.
+
+Often, projects in a business domain require access to the same company resources such as vector indices, model endpoints, or repos. As a team lead, you can preconfigure connectivity with these resources within a hub, so developers can access them from any new project workspace without delay on IT.
+
+[Connections](connections.md) let you access objects in AI Studio that are managed outside of your hub. For example, uploaded data on an Azure storage account, or model deployments on an existing Azure OpenAI resource. A connection can be shared with every project or made accessible to one specific project. Connections can be configured to use key-based access or Microsoft Entra ID passthrough to authorize access to users on the connected resource. As an administrator, you can  track, audit, and manage connections across the organization from a single view in AI Studio.
+
+:::image type="content" source="../media/concepts/connected-resources-spog.png" alt-text="Screenshot of AI Studio showing an audit view of all connected resources across a hub and its projects." :::
+
+### Organize for your team's needs
+
+The number of hubs and projects you need depends on your way of working. You might create a single hub for a large team with similar data access needs. This configuration maximizes cost efficiency, resource sharing, and minimizes setup overhead. For example, a hub for all projects related to customer support.
+
+If you require isolation between dev, test, and production as part of your LLMOps or MLOps strategy, consider creating a hub for each environment. Depending on the readiness of your solution for production, you might decide to replicate your project workspaces in each environment or just in one.
 
 ## Role-based access control and control plane proxy
 
