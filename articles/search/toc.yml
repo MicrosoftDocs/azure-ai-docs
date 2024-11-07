@@ -323,7 +323,7 @@ items:
         href: cognitive-search-concept-image-scenarios.md
       - name: Cache (incremental) enrichment
         href: search-howto-incremental-index.md
-      - name: Semantic chunking and vectorization
+      - name: Structure-aware chunking and vectorization
         href: search-how-to-semantic-chunking.md        
       - name: Design tips
         href: cognitive-search-concept-troubleshooting.md
@@ -642,7 +642,9 @@ items:
     - name: Annotation reference language
       href: cognitive-search-skill-annotation-language.md
     - name: Azure AI resource skills
-      items: 
+      items:
+      - name: Document Layout skill (preview)
+        href: cognitive-search-skill-document-intelligence-layout.md  
       - name: Entity Linking (v3)
         href: cognitive-search-skill-entity-linking-v3.md
       - name: Entity Recognition (v3)
@@ -661,10 +663,8 @@ items:
         href: cognitive-search-skill-sentiment-v3.md
       - name: Text Translation
         href: cognitive-search-skill-text-translation.md
-      - name: AI Vision multimodal embeddings
-        href: cognitive-search-skill-vision-vectorize.md
-      - name: Document Intelligence Layout skill
-        href: cognitive-search-skill-document-intelligence-layout.md        
+      - name: AI Vision multimodal embeddings (preview)
+        href: cognitive-search-skill-vision-vectorize.md      
     - name: Azure AI Search utility skills (nonbillable)
       items:
       - name: Conditional
@@ -679,7 +679,7 @@ items:
         href: cognitive-search-skill-textsplit.md
     - name: Azure OpenAI skills
       items:
-      - name: Azure OpenAI Embedding
+      - name: Azure OpenAI Embedding (preview)
         href: cognitive-search-skill-azure-openai-embedding.md 
     - name: Custom skills
       items:
