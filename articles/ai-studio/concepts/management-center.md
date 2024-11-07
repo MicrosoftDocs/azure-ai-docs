@@ -14,7 +14,7 @@ ms.date: 11/18/2024
 
 # Management center overview
 
-The management center is a part of the Azure AI Studio that streamlines governance and management activities. From the management center, you can manage Azure AI Studio hubs, projects, resources, and settings. To visit the management center, select the __Management center__ link from the left menu of [Azure AI Studio](https://ai.azure.com).
+The management center is a part of the Azure AI Studio that streamlines governance and management activities. From the management center, you can manage Azure AI Studio hubs, projects, resources, and settings. To visit the management center, open the [Azure AI Studio](https://ai.azure.com) and (while in a project) select the __Management center__ link from the left menu.
 
 :::image type="content" source="../media/management-center/management-center.png" alt-text="Screenshot of the left menu of Azure AI Studio with the management center selected." lightbox="../media/management-center/management-center.png":::
 
@@ -38,7 +38,7 @@ For more information, see [Manage and increase quotas for resources](../how-to/q
 
 Assign roles, manage users, and ensure that all settings comply with organizational standards.
 
-:::image type="content" source="../media/management-center/user-management.png" alt-text="Screenshot of the user management section of the management center." lightbox="../media/management-center/user-management.png"::: 
+:::image type="content" source="../media/management-center/user-management.png" alt-text="Screenshot of the user management section of the management center." lightbox="../media/management-center/user-management.png":::
 
 For more information, see [Role-based access control](rbac-ai-studio.md#assigning-roles-in-ai-studio).
 
