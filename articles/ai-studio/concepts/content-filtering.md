@@ -145,4 +145,4 @@ Customers are responsible for ensuring that applications integrating Azure OpenA
 - Learn more about the [underlying models that power Azure OpenAI](../../ai-services/openai/concepts/models.md).
 - Azure AI Studio content filtering is powered by [Azure AI Content Safety](../../ai-services/content-safety/overview.md).
 - Learn more about understanding and mitigating risks associated with your application: [Overview of Responsible AI practices for Azure OpenAI models](/legal/cognitive-services/openai/overview?context=/azure/ai-services/context/context).
-- Learn more about evaluating your generative AI models and AI systems via [Azure AI Evaluation](aka.ms/genaiopsevals). 
+- Learn more about evaluating your generative AI models and AI systems via [Azure AI Evaluation](https://aka.ms/genaiopsevals). 
