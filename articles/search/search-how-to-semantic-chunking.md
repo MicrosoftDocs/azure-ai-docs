@@ -1,54 +1,62 @@
 ---
-title: Semantic Chunking and vectorization
+title: Structure-aware chunking and vectorization
 titleSuffix: Azure AI Search
-description: Use skill set and index projection to do semantic chunking, vectorization, and write into a search index in Azure AI Search pipelines.
+description: Chunk text content by paragraph or semantically coherent fragment. You can then apply integrated vectorization to generate embeddings and send the results to a searchable index.
 author: rawan
 ms.author: rawan
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 10/12/2024
+ms.date: 11/19/2024
 ms.custom:
   - references_regions
 ---
 
-# Semantic chunking and vectorization using the Document Layout skill and index projections
+# Structure-aware chunking and vectorization in Azure AI Search
 
 [!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 
-Text data chunking strategies play a key role in optimizing the RAG response and performance. Semantic chunking is to find semantically coherent fragments of a sentence representation. These fragments can then be processed independently and recombined as semantic representations without loss of information, interpretation, or semantic relevance. The inherent meaning of the text is used as a guide for the chunking process. Markdown is a structured and formatted markup language and a popular input for enabling semantic chunking in RAG (Retrieval-Augmented Generation)
+Text data chunking strategies play a key role in optimizing RAG responses and performance. By using the new Document Layout skill that's currently in preview, you can chunk content based on paragraphs or semantically coherent fragments of a sentence representation. These fragments can then be processed independently and recombined as semantic representations without loss of information, interpretation, or semantic relevance. The inherent meaning of the text is used as a guide for the chunking process. 
 
-The Document Layout skill offers a comprehensive solution for advanced content extraction and chunk functionality. With the Layout skill, you can easily extract document layout and content as markdown format and utilize markdown parsing mode to produce a set of document chunks
+The Document Layout skill uses Markdown syntax (headings and content) to articulate document structure in the search document. The searchable content obtained from your source document is plain text but you can add integrated vectorization to generate embeddings for any field.
 
-This article shows:
-+ How to use the Document Layout skill to extract markdown sections
-+ How to apply split skill to constrain chunk size within each markdown section 
-+ Generate embeddings for the content within those sections
-+ How to use index projections to compile and write them into a search index.
+In this article, learn how to:
+
+> [!div class="checklist"]
+> + Use the Document Layout skill to detect sections and output Markdown content
+> + Use the Text Split skill to constrain chunk size to each markdown section
+> + Generate embeddings for each chunk
+> + Use index projections to map embeddings to fields in a search index
 
 ## Prerequisites
 
-+ An [indexer-based indexing pipeline](search-indexer-overview.md).
-+ An index that accepts the output of the indexer pipeline.
-+ A [supported data source](search-indexer-overview.md#supported-data-sources) having content that you want to chunk. 
-+ A [Document Layout skill](cognitive-search-skill-document-intelligence-layout.md) that splits documents based on paragraph boundaries.
-+ An [Azure OpenAI Embedding skill](cognitive-search-skill-azure-openai-embedding.md) that generates vector embeddings  
-+ An [index projection](search-how-to-define-index-projections.md) for one-to-many indexing
++ [An indexer-based indexing pipeline](search-indexer-overview.md) with an index that accepts the output.
++ [A supported data source](search-indexer-overview.md#supported-data-sources) having text content that you want to chunk.
++ [A skillset with Document Layout skill](cognitive-search-skill-document-intelligence-layout.md) that splits documents based on paragraph boundaries.
++ [An Azure OpenAI Embedding skill](cognitive-search-skill-azure-openai-embedding.md) that generates vector embeddings.
++ [An index projection](search-how-to-define-index-projections.md) for one-to-many indexing.
 
 ## Prepare data files
 
 The raw inputs must be in a [supported data source](search-indexer-overview.md#supported-data-sources) and the file needs to be a format which [Document Layout skill](cognitive-search-skill-document-intelligence-layout.md) supports.
 
-+ Supported file format: PDF, JPEG, JPG, PNG, BMP, TIFF, DOCX, XLSX,PPTX,HTML
+Supported file formats include: PDF, JPEG, JPG, PNG, BMP, TIFF, DOCX, XLSX, PPTX, HTML.
 
-You can use the Azure portal, REST APIs, or an Azure SDK to [create a data source](search-howto-indexing-azure-blob-storage.md).
+Supported indexers can be any indexer that can handle the supported file formats. These include [Blob indexers](search-howto-indexing-azure-blob-storage.md), [OneLake indexers](search-how-to-index-onelake-files.md), [File indexers](search-file-storage-integration.md).
+
+Supported regions for this feature include: East US, West US2, West Europe, North Central US. Be sure to [check this list](search-region-support.md#azure-public-regions) for updates on regional availability.
+
+You can use the Azure portal, REST APIs, or an Azure SDK package to [create a data source](search-howto-indexing-azure-blob-storage.md).
+
+> [!TIP]
+> Use the [health plan PDF](https://github.com/Azure-Samples/azure-search-sample-data/tree/main/health-plan) sample files to try out the Document Layout skill and structure-aware chunking on your own search service.
 
 ## Create an index for one-to-many indexing
 
-Here's an example payload of a single designed around chunks. In this example, parent fields are the text_parent_id. Child fields are the vector and nonvector chunk of the markdown section.
+Here's an example payload of a single search document designed around chunks. In this example, parent fields are the text_parent_id. Child fields are the vector and nonvector chunks of the markdown section.
 
 You can use the Azure portal, REST APIs, or an Azure SDK to [create an index](search-how-to-load-search-index.md).
 
-An index must exist on the search service before you create the skill set or run the indexer
+An index must exist on the search service before you create the skill set or run the indexer.
 
 ```json
 {
@@ -164,16 +172,18 @@ An index must exist on the search service before you create the skill set or run
 }
 ```
 
-## Define skill set for semantic chunking and vectorization
+## Define skill set for structure-aware chunking and vectorization
 
-You can use the REST APIs to [create or update a skill set](cognitive-search-defining-skillset.md).
+Because the Document Layout skill is in preview, you must use the [Create Skillset 2024-11-01-preview](/rest/api/searchservice/skillsets/create?view=rest-searchservice-2024-11-01-preview&preserve-view=true) REST API for this step.
 
 Here's an example skill set definition payload to project individual markdown sections chunks and their vector outputs as documents in the search index using the [Document Layout skill](cognitive-search-skill-document-intelligence-layout.md) and [Azure OpenAI Embedding skill](cognitive-search-skill-azure-openai-embedding.md)
 
-```json
+```https
+POST {endpoint}/skillsets?api-version=2024-11-01-preview
+
 {
   "name": "my_skillset",
-  "description": "A skillset for semantic chunking and vectorization with a indexprojection around markdown section",
+  "description": "A skillset for structure-aware chunking and vectorization with a index projection around markdown section",
   "skills": [
     {
       "@odata.type": "#Microsoft.Skills.Util.DocumentIntelligenceLayoutSkill",
@@ -288,9 +298,11 @@ Here's an example skill set definition payload to project individual markdown se
 ```
 
 ## Run the indexer
-Once you create a data source, indexes, and skill set, you're ready to [create and run the indexer](search-howto-create-indexers.md#run-the-indexer). This step puts the pipeline into execution.
+
+Once you create a data source, index, and skillset, you're ready to [create and run the indexer](search-howto-create-indexers.md#run-the-indexer). This step puts the pipeline into execution.
 
 When using the [Document Layout skill](cognitive-search-skill-document-intelligence-layout.md), make sure to set the following parameters on the indexer definition:
+
 + The `allowSkillsetToReadFileData` parameter should be set to "true."
 + the `parsingMode` parameter should be set to "default."
 
@@ -321,9 +333,12 @@ Here's an example payload
 ```
 
 ## Verify results
+
 You can query your search index after processing concludes to test your solution.
 
 To check the results, run a query against the index. Use [Search Explorer](search-explorer.md) as a search client, or any tool that sends HTTP requests. The following query selects fields that contain the output of markdown section nonvector content and its vector.
+
+For Search Explorer, you can copy just the JSON and paste it into the JSON view for query execution.
 
 ```http
 POST /indexes/[index name]/docs/search?api-version=[api-version]
@@ -335,11 +350,11 @@ POST /indexes/[index name]/docs/search?api-version=[api-version]
 
 ## See also
 
++ [Create or update a skill set](cognitive-search-defining-skillset.md).
 + [Create a data source](search-howto-indexing-azure-blob-storage.md)
 + [Define an index projection](search-how-to-define-index-projections.md)
-+ [How to define a skill set](cognitive-search-defining-skillset.md)
 + [Document Layout skill](cognitive-search-skill-document-intelligence-layout.md)
++ [Text Split skill](cognitive-search-skill-textsplit.md)
 + [Azure OpenAI Embedding skill](cognitive-search-skill-azure-openai-embedding.md)
 + [Create indexer (REST)](/rest/api/searchservice/indexers/create)
 + [Search Explorer](search-explorer.md)
-

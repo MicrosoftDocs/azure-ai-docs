@@ -17,7 +17,7 @@ ms.date: 11/19/2024
 
 [!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 
-The **Document Layout** skill analyzes a document to extract regions of interest and their inter-relationships to produce a syntactical representation (markdown format). This skill uses the [Document Intelligence layout model](/azure/ai-services/document-intelligence/concept-layout) provided in [Azure AI Document Intelligence](/azure/ai-services/document-intelligence/overview). 
+The **Document Layout** skill analyzes a document to extract regions of interest and their inter-relationships to produce a syntactical representation of the document in Markdown format. This skill uses the [Document Intelligence layout model](/azure/ai-services/document-intelligence/concept-layout) provided in [Azure AI Document Intelligence](/azure/ai-services/document-intelligence/overview). 
 
 This article is the reference documentation for the Document Layout skill.
 
@@ -52,9 +52,9 @@ Microsoft.Skills.Util.DocumentIntelligenceLayoutSkill
 ## Data limits
 
 + For PDF and TIFF, up to 2,000 pages can be processed (with a free tier subscription, only the first two pages are processed).
-+ Even if the file size for analyzing documents is 500 MB for [Azure AI Document Intelligence paid (S0) tier](https://azure.microsoft.com/pricing/details/cognitive-services/) and 4 MB for [Azure AI Document Intelligence free (F0) tier](https://azure.microsoft.com/pricing/details/cognitive-services/), to use this functionality you need to take into consideration the file limits allowed by your indexer based on the [indexer limits](search-limits-quotas-capacity.md#indexer-limits) associated to your Azure AI Search service tier. 
-+ Image dimensions must be between 50 pixels x 50 pixels and 10,000 pixels x 10,000 pixels.
-+ If your PDFs are password-locked, you must remove the lock before submission.
++ Even if the file size for analyzing documents is 500 MB for [Azure AI Document Intelligence paid (S0) tier](https://azure.microsoft.com/pricing/details/cognitive-services/) and 4 MB for [Azure AI Document Intelligence free (F0) tier](https://azure.microsoft.com/pricing/details/cognitive-services/), indexing is subject to the [indexer limits](search-limits-quotas-capacity.md#indexer-limits) of your search service tier.
++ Image dimensions must be between 50 pixels x 50 pixels or 10,000 pixels x 10,000 pixels.
++ If your PDFs are password-locked, remove the lock before running the indexer.
 
 ## Skill parameters
 
@@ -63,7 +63,7 @@ Parameters are case-sensitive.
 | Parameter name     | Allowed Values | Description |
 |--------------------|-------------|-------------|
 | `outputMode`    | `oneToMany` | Controls the cardinality of the output produced by the skill. |
-| `markdownHeaderDepth` |`h1`, `h2`, `h3`, `h4`, `h5`, `h6(default)` | This parameter describes the deepest nesting level that should be considered. For instance, if the markdownHeaderDepth is indicated as “h3” any markdown section that’s deeper than h3 (that is, #### and deeper) is considered as "content" that needs to be added to whatever level its parent is at. |
+| `markdownHeaderDepth` |`h1`, `h2`, `h3`, `h4`, `h5`, `h6(default)` | This parameter describes the deepest nesting level that should be considered. For instance, if the markdownHeaderDepth is indicated as "h3" any markdown section that’s deeper than h3 (that is, #### and deeper) is considered as "content" that needs to be added to whatever level its parent is at. |
 
 ## Skill inputs
 
@@ -90,17 +90,17 @@ Alternatively, it can be defined as:
 }
 ```
 
-The file reference object can be generated one of following ways:
+The file reference object can be generated in one of following ways:
 
-+ Setting the `allowSkillsetToReadFileData` parameter on your indexer definition to "true." This setting creates a path `/document/file_data` that is an object representing the original file data downloaded from your blob data source. This parameter only applies to files in Blob storage.
++ Setting the `allowSkillsetToReadFileData` parameter on your indexer definition to true. This setting creates a path `/document/file_data` that's an object representing the original file data downloaded from your blob data source. This parameter only applies to files in Azure Blob storage.
 
-+ Having a custom skill return a json object defined EXACTLY as above. The `$type` parameter must be set to exactly `file` and the `data` parameter must be the base 64 encoded byte array data of the file content, or the `url` parameter must be a correctly formatted URL with access to download the file at that location.
++ Having a custom skill returning a JSON object defined that provides `$type`, `data`, or `url` and `sastoken`. The `$type` parameter must be set to `file`, and  `data` must be the base 64-encoded byte array of the file content. The `url` parameter must be a valid URL with access for downloading the file at that location.
 
 ## Skill outputs
 
 | Output name      | Description                   |
 |---------------|-------------------------------|
-| `markdown_document`    | A collection of "sections" objects, which represent each individual section in the markdown document.|
+| `markdown_document`    | A collection of "sections" objects, which represent each individual section in the Markdown document.|
 
 ## Sample definition
 
@@ -130,8 +130,6 @@ The file reference object can be generated one of following ways:
 }
 ```
 
-<a name="sample-output"></a>
-
 ## Sample output
 
 ```json
@@ -159,7 +157,7 @@ The file reference object can be generated one of following ways:
 }
 ```
 
-The value of the "deepestSection" parameter controls the number of keys in the 'sections' dictionary. In the example skill definition, since the deepestSection was specified as “h3”, there are three keys in the "sections" dictionary – h1, h2, h3. 
+The value of the `markdownHeaderDepth` controls the number of keys in the 'sections' dictionary. In the example skill definition, since the `markdownHeaderDepth` is "h3", there are three keys in the "sections" dictionary: h1, h2, h3.
 
 ## See also
 
