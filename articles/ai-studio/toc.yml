@@ -1,14 +1,14 @@
 items:
-- name: Azure AI Studio documentation
+- name: Azure AI Foundry documentation
   href: index.yml
 - name: Overview
   expanded: true
   items:
-  - name: What is Azure AI Studio?
+  - name: What is Azure AI Foundry?
     href: what-is-ai-studio.md
-  - name: Azure AI Studio architecture
+  - name: Azure AI Foundry architecture
     href: concepts/architecture.md
-  - name: Azure OpenAI in AI Studio
+  - name: Azure OpenAI in AI Foundry
     href: azure-openai-in-ai-studio.md
   - name: Management center
     href: concepts/management-center.md
