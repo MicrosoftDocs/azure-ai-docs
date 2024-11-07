@@ -35,7 +35,7 @@ The configurable options of Mongo DB Atlas when using Azure OpenAI On Your Data.
 | `fields_mapping` | object | True | [Settings](#field-mapping-options) to control how fields are processed when using a configured Mongo DB Atlas resource. |
 | `index_name` | string | True | The name of the Mongo DB Atlas index.|
 | `top_n_documents` | integer | False | The configured top number of documents to feature for the configured query.|
-| `max_search_queries` | integer | False | The max number of rewritten queries should be send to search provider for one user message. If not specified, the system will decide the number of queries to send.|
+| `max_search_queries` | integer | False | The max number of rewritten queries should be sent to search provider for one user message. If not specified, the system will decide the number of queries to send.|
 | `allow_partial_result` | boolean | False | If specified as true, the system will allow partial search results to be used and the request fails if all the queries fail. If not specified, or specified as false, the request will fail if any search query fails.|
 | `in_scope` | boolean | False | Whether queries should be restricted to use indexed data. |
 | `strictness` | integer | False | The configured strictness of the search relevance filtering, from 1 to 5. The higher the  strictness, the higher precision but lower recall of the answer. |
