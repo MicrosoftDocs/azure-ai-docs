@@ -56,11 +56,6 @@
             "redirect_document_id": false
         },
         {
-            "source_path_from_root": "/articles/ai-studio/tutorials/copilot-sdk-create-resources.md",
-            "redirect_url": "/azure/ai-studio/tutorials/copilot-sdk-build-rag",
-            "redirect_document_id": false
-        },
-        {
             "source_path_from_root": "/articles/ai-studio/how-to/sdk-install.md",
             "redirect_url": "/azure/ai-studio/how-to/develop/sdk-overview",
             "redirect_document_id": false
@@ -142,6 +137,11 @@
         },
         {
             "source_path_from_root": "/articles/ai-studio/ai-services/get-started.md",
+            "redirect_url": "/azure/ai-studio/ai-services/connect-ai-services",
+            "redirect_document_id": false
+        },
+        {
+            "source_path_from_root": "/articles/ai-studio/ai-services/where-to-use-ai-services.md",
             "redirect_url": "/azure/ai-studio/ai-services/connect-ai-services",
             "redirect_document_id": false
         }

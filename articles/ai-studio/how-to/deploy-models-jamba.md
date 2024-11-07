@@ -47,7 +47,7 @@ To get started with Jamba 1.5 mini deployed as a serverless API, explore our int
 ### Prerequisites
 
 - An Azure subscription with a valid payment method. Free or trial Azure subscriptions won't work. If you don't have an Azure subscription, create a [paid Azure account](https://azure.microsoft.com/pricing/purchase-options/pay-as-you-go) to begin.
-- An [AI Studio hub](../how-to/create-azure-ai-resource.md). The serverless API model deployment offering for Jamba family models is only available with hubs created in these regions:
+- An [Azure AI Studio project](../how-to/create-projects.md). The serverless API model deployment offering for Jamba family models is only available with projects created in these regions:
 
      * East US
      * East US 2
@@ -58,7 +58,7 @@ To get started with Jamba 1.5 mini deployed as a serverless API, explore our int
      * Sweden Central
        
     For a list of  regions that are available for each of the models supporting serverless API endpoint deployments, see [Region availability for models in serverless API endpoints](deploy-models-serverless-availability.md).
-- An Azure [AI Studio project](../how-to/create-projects.md).
+
 - Azure role-based access controls (Azure RBAC) are used to grant access to operations in Azure AI Studio. To perform the steps in this article, your user account must be assigned the __owner__ or __contributor__ role for the Azure subscription. Alternatively, your account can be assigned a custom role that has the following permissions:
 
     - On the Azure subscription—to subscribe the AI Studio project to the Azure Marketplace offering, once for each project, per offering:
@@ -83,24 +83,20 @@ To get started with Jamba 1.5 mini deployed as a serverless API, explore our int
 
 These steps demonstrate the deployment of `AI21 Jamba 1.5 Large` or `AI21 Jamba 1.5 Mini` models. To create a deployment:
 
-1. Sign in to [Azure AI Studio](https://ai.azure.com).
+[!INCLUDE [open-catalog](../includes/open-catalog.md)]
 
-1. Select **Model catalog** from the left sidebar.
-
-1. Search for and select a AI21 model like `AI21 Jamba 1.5 Large` or `AI21 Jamba 1.5 Mini` or `AI21 Jamba Instruct` to open its Details page.
+4. Search for and select an AI21 model like `AI21 Jamba 1.5 Large` or `AI21 Jamba 1.5 Mini` or `AI21 Jamba Instruct` to open its Details page.
 
 1. Select **Deploy** to open a serverless API deployment window for the model.
 
-1. Alternatively, you can initiate a deployment by starting from your project in AI Studio.
+1. Alternatively, you can initiate a deployment by starting from the **Models + endpoints** page in AI Studio.
 
-    1. From the left sidebar of your project, select **Models + Endpoints**.
-    1. Select **+ Create deployment**.
-
-    1. Search for and select a AI21 model like `AI21 Jamba 1.5 Large` or `AI21 Jamba 1.5 Mini` or `AI21 Jamba Instruct` to open the Model's Details page.
-
+    1. From the left navigation pane of your project, select **My assets** > **Models + endpoints**.
+    1. Select **+ Deploy model** > **Deploy base model**.
+    1. Search for and select an AI21 model like `AI21 Jamba 1.5 Large` or `AI21 Jamba 1.5 Mini` or `AI21 Jamba Instruct` to open the Model's Details page.
     1. Select **Confirm** to open a serverless API deployment window for the model.
 
-1. Select the project in which you want to deploy your model. To deploy the AI21-Jamba family models, your project must be in one of the regions listed in the [Prerequisites](#prerequisites) section.
+1. Your current project is specified for the deployment. To successfully deploy the AI21-Jamba family models, your project must be in one of the regions listed in the [Prerequisites](#prerequisites) section.
 
 1. In the deployment wizard, select the link to **Azure Marketplace Terms**, to learn more about the terms of use.
 
@@ -114,7 +110,7 @@ These steps demonstrate the deployment of `AI21 Jamba 1.5 Large` or `AI21 Jamba 
 
 1. Select **Deploy**. Wait until the deployment is ready and you're redirected to the Deployments page.
 
-1. Return to the Deployments page, select the deployment, and note the endpoint's **Target** URL and the Secret **Key**. For more information on using the APIs, see the [Reference](#reference-for-jamba-family-models-deployed-as-a-serverless-api) section.
+1. Return to the Deployments page, select the deployment, and note the endpoint's **Target** URI and the Secret **Key**. For more information on using the APIs, see the [Reference](#reference-for-jamba-family-models-deployed-as-a-serverless-api) section.
 
 1. [!INCLUDE [Find your deployment details](../includes/find-deployments.md)]
 
@@ -125,11 +121,11 @@ To learn about billing for the AI21-Jamba family models deployed as a serverless
 
 You can consume Jamba family models as follows:
 
-1. From the left sidebar of your project, select **Models + Endpoints**.
+1. From the left navigation pane of your project, select **My assets** > **Models + endpoints**.
 
 1. Find and select the deployment you created.
 
-1. Copy the **Target** URL and the **Key** value.
+1. Copy the **Target** URI and the **Key** value.
 
 1. Make an API request.
 

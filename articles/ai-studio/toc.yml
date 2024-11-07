@@ -6,12 +6,12 @@ items:
   items:
   - name: What is Azure AI Studio?
     href: what-is-ai-studio.md
+  - name: Azure AI Studio architecture
+    href: concepts/architecture.md
   - name: Azure OpenAI in AI Studio
     href: azure-openai-in-ai-studio.md
   - name: Management center
     href: concepts/management-center.md
-  - name: Azure AI Studio architecture
-    href: concepts/architecture.md
   - name: Region support
     href: reference/region-support.md
   - name: Azure AI FAQ
@@ -37,10 +37,12 @@ items:
     href: tutorials/deploy-chat-web-app.md
   - name: Build a custom chat app with the Azure AI SDK
     items:
-      - name: "Part 1: Add data retrieval to a chat app"
+      - name: "Part 1: Set up project and install SDK"
+        href: tutorials/copilot-sdk-create-resources.md
+      - name: "Part 2: Add data retrieval to a chat app"
         href: tutorials/copilot-sdk-build-rag.md
         displayName: code,sdk
-      - name: "Part 2: Evaluate and deploy a chat app"
+      - name: "Part 3: Evaluate and deploy a chat app"
         href: tutorials/copilot-sdk-evaluate-deploy.md
         displayName: code,sdk
 - name: How-to
@@ -53,10 +55,10 @@ items:
       displayName: cognitive
     - name: What are AI services?
       href: ../ai-services/what-are-ai-services.md?context=/azure/ai-studio/context/context
-    - name: Use your existing models and deployments
+    - name: Use Azure OpenAI Service in AI Studio
+      href: ai-services/connect-azure-openai.md
+    - name: Use Azure AI services in AI Studio
       href: ai-services/connect-ai-services.md
-    - name: Where to use Azure OpenAI and AI services
-      href: ai-services/where-to-use-ai-services.md
     - name: Azure OpenAI
       items:
       - name: Deploy Azure OpenAI models
@@ -88,6 +90,8 @@ items:
         href: ../ai-services/speech-service/pronunciation-assessment-tool.md?context=/azure/ai-studio/context/context
       - name: Hear and speak with chat in the playground
         href: quickstarts/hear-speak-playground.md
+      - name: Fine-tune in AI Studio for custom speech
+        href: ../ai-services/speech-service/custom-speech-ai-studio.md?context=/azure/ai-studio/context/context
   - name: Explore and select AI models
     items:
     - name: Model catalog
@@ -286,7 +290,9 @@ items:
         href: how-to/develop/vscode.md
       - name: Start with an AI template
         href: how-to/develop/ai-template-get-started.md
-      - name: Develop with LlamaIndex and Azure AI studio
+      - name: Develop with LangChain
+        href: how-to/develop/langchain.md
+      - name: Develop with LlamaIndex
         href: how-to/develop/llama-index.md
       - name: Trace your application with prompt flow
         href: how-to/develop/trace-local-sdk.md
@@ -365,6 +371,8 @@ items:
       href: concepts/encryption-keys-portal.md
     - name: Rotate keys
       href: ../ai-services/rotate-keys.md?context=/azure/ai-studio/context/context
+    - name: Disable shared key access to storage
+      href: how-to/disable-local-auth.md
   - name: Azure policies
     items:
     - name: Built-in policy to allow specific models
