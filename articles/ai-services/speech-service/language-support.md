@@ -38,9 +38,6 @@ The table in this section summarizes the locales supported for speech to text. F
 More remarks for speech to text locales are included in the [custom speech](#custom-speech) section of this article. 
 
 > [!TIP]
-> Try out the [real-time speech to text tool](https://speech.microsoft.com/portal/speechtotexttool) without having to use any code.
-
-> [!TIP]
 > Try out the [Azure AI Speech Toolkit](https://marketplace.visualstudio.com/items?itemName=ms-azureaispeech.azure-ai-speech-toolkit) to easily build and run samples on Visual Studio Code.
 
 [!INCLUDE [Language support include](includes/language-support/stt.md)]
