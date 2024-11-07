@@ -19,9 +19,9 @@ The Azure AI Foundry SDK is a comprehensive toolchain designed to simplify the d
 
  - Access popular models from various model providers through a single interface
  - Easily combine together models, data, and AI services to build AI-powered applications
- - Evaluate, debug and improve application quality & safety across development, testing, and production environments
+ - Evaluate, debug, and improve application quality & safety across development, testing, and production environments
  
-The AI Foundry SDK is a set of packages and services designed to work well together. You can use the Azure AI Projects client library to easily use multiple services through a single project client and connection string. You can also use services and SDKs on their own and connect directly to your services.
+The AI Foundry SDK is a set of packages and services designed to work together. You can use the Azure AI Projects client library to easily use multiple services through a single project client and connection string. You can also use services and SDKs on their own and connect directly to your services.
 
 If you want to jump right in and start building an app, check out:
  - [Create a chat app](../../quickstarts/get-started-code.md)
@@ -29,11 +29,11 @@ If you want to jump right in and start building an app, check out:
 
 ## Get started with Projects
 
-The best way to get started using the Azure AI Foundry SDK is by using a project. AI projects connects together different data, assets and services you need to build AI applications. The AI project client allows you to easily access these project components from your code by using a single connection string.
+The best way to get started using the Azure AI Foundry SDK is by using a project. AI projects connect together different data, assets, and services you need to build AI applications. The AI project client allows you to easily access these project components from your code by using a single connection string.
 
 First follow steps to [create an AI Project](../create-projects.md) if you don't have one already.
 
-Login with the Azure CLI using the same account that you use to access your AI Project:
+Sign in with the Azure CLI using the same account that you use to access your AI Project:
 
 ```
 az login
@@ -83,7 +83,7 @@ Be sure to check out the [reference](https://aka.ms/azsdk/azure-ai-projects/pyth
 
 ## Azure OpenAI Service
 
-If you have existing code that leverages the OpenAI SDK, you can use the project client to create an ```AzureOpenAI``` client that leverages your project's Azure OpenAI connection.
+If you have existing code that uses the OpenAI SDK, you can use the project client to create an ```AzureOpenAI``` client that uses your project's Azure OpenAI connection.
 ```
 pip install openai
 ```
@@ -135,13 +135,13 @@ response = chat.complete(
 print(response.choices[0].message.content)
 ```
 
-You can change the model name to any model that you have deployed to the inference service or Azure OpenAI service.
+You can change the model name to any model that you deployed to the inference service or Azure OpenAI service.
 
 To learn more about using the Azure AI inferencing client, check out the [Azure AI model inferencing reference](/azure/ai-studio/reference/reference-model-inference-api).
 
 ## Prompt Templates
 
-The inferencing client supports for creating prompt messages from templates, this allows you to dynamically generate prompts using inputs that are available at runtime.
+The inferencing client supports for creating prompt messages from templates.  The template allows you to dynamically generate prompts using inputs that are available at runtime.
 
 To use prompt templates, install the `azure-ai-inferencing` package:
 
@@ -169,7 +169,7 @@ messages = prompt_template.create_messages(first_name="Jane", last_name="Doe")
 print(messages)
 ```
 
-This will output messages that you can then pass to a chat completions call:
+This code outputs messages that you can then pass to a chat completions call:
 
 ```text
 [
@@ -180,7 +180,7 @@ This will output messages that you can then pass to a chat completions call:
 
 NOTE: leading whitespace is automatically trimmed from input strings.
 
-You can also load prompts from a [Prompty](https://prompty.ai) file, enabling you to also load the model name and parameters from the `.prompty` file:
+You can also load prompts from a [`Prompty`](https://prompty.ai) file, enabling you to also load the model name and parameters from the `.prompty` file:
 
 ```Python
 from azure.ai.inference.prompts import PromptTemplate
@@ -236,13 +236,13 @@ To learn more about using Azure AI Search, check out [Azure AI Search documentat
 
 ## Azure AI agents runtime
 
-Azure AI Agent Service is a fully-managed service designed to empower developers to securely build, deploy, and scale high-quality, and extensible AI agents. Leveraging an extensive ecosystem of models, tools and capabilities from OpenAI, Microsoft, and third-party providers, Azure AI Agent Service enables building agents for a wide range of generative AI use cases.
+Azure AI Agent Service is a fully managed service designed to empower developers to securely build, deploy, and scale high-quality, and extensible AI agents. Using an extensive ecosystem of models, tools and capabilities from OpenAI, Microsoft, and third-party providers, Azure AI Agent Service enables building agents for a wide range of generative AI use cases.
 
 To get access to agents, [sign-up for the private preview](TODO).
 
 ## Evaluation
 
-You can leverage the project client to easily connect to the Azure AI evaluation service, and models needed for running your evaluators.
+You can use the project client to easily connect to the Azure AI evaluation service, and models needed for running your evaluators.
 
 Using the ```project.scope``` parameter, we can easily instantiate a ```ViolenceEvaluator```:
 ```Python
@@ -277,7 +277,7 @@ if application_insights_connection_string:
 
 ## Related content
 
-Below are some helpful links to additional services and frameworks that you can use with the Azure AI Foundry SDK.
+Below are some helpful links to other services and frameworks that you can use with the Azure AI Foundry SDK.
 
 ### Azure AI Services
 
