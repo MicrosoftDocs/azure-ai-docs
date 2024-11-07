@@ -41,8 +41,7 @@ From the collapsible left menu, select **Evaluation** > **+ New evaluation**.
 
 From the collapsible left menu, select **Model catalog** > go to specific model > navigate to the benchmark tab > Try with your own data. This opens the model evaluation panel for you to create an evaluation run against your selected model.  
 
-[NEED TO ADD SCREENSHOT]
-:::image type="content" source="../media/evaluations/evaluate" alt-text="Screenshot of. " lightbox="../media/evaluations/evaluate/":::
+:::image type="content" source="../media/evaluations/evaluate/try-with-your-own-data.md" alt-text="Screenshot of the try with your own data button from the model catalog page. " lightbox="../media/evaluations/evaluate/try-with-your-own-data.md":::
 
 ### From the flow page
 
@@ -225,7 +224,7 @@ From the flow page: From the collapsible left menu, select **Prompt flow** > **E
 
 :::image type="content" source="../media/evaluations/evaluate/new-custom-evaluation-flow-page.png" alt-text="Screenshot of how to create a custom evaluation from a prompt flow." lightbox="../media/evaluations/evaluate/new-custom-evaluation-flow-page.png":::
 
-## View and manage the evaluators in the evaluator library 
+## View and manage the evaluators in the evaluator library
 
 The evaluator library is a centralized place that allows you to see the details and status of your evaluators. You can view and manage Microsoft curated evaluators.
 
@@ -234,7 +233,7 @@ The evaluator library is a centralized place that allows you to see the details 
  
 The evaluator library also enables version management. You can compare different versions of your work, restore previous versions if needed, and collaborate with others more easily. 
 
-To use the evaluator library in AI Studio, go to your project's **Evaluation** page and select the **Evaluator library** tab. 
+To use the evaluator library in AI Studio, go to your project's **Evaluation** page and select the **Evaluator library** tab.
 
 :::image type="content" source="../media/evaluations/evaluate/evaluator-library-list.png" alt-text="Screenshot of the page to select evaluators from the evaluator library." lightbox="../media/evaluations/evaluate/evaluator-library-list.png":::
 
