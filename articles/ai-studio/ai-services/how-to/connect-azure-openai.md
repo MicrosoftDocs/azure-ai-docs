@@ -98,11 +98,11 @@ You can try Azure OpenAI models in the Azure OpenAI Service playgrounds outside 
 
 Here are a few guides to help you get started with Azure OpenAI Service playgrounds:
 - [Quickstart: Use the chat playground](../../quickstarts/get-started-playground.md)
-- [Quickstart: Get started using Azure OpenAI Assistants](../../../../ai-services/openai/assistants-quickstart.md?context=/azure/ai-studio/context/context)
-- [Quickstart: Use GPT-4o in the real-time audio playground](../../../../ai-services/openai/realtime-audio-quickstart.md?context=/azure/ai-studio/context/context)
+- [Quickstart: Get started using Azure OpenAI Assistants](../../../ai-services/openai/assistants-quickstart.md?context=/azure/ai-studio/context/context)
+- [Quickstart: Use GPT-4o in the real-time audio playground](../../../ai-services/openai/realtime-audio-quickstart.md?context=/azure/ai-studio/context/context)
 - [Quickstart: Analyze images and video with GPT-4 for Vision in the playground](../../quickstarts/multimodal-vision.md)
 
-Each playground has different model requirements and capabilities. The supported regions will vary depending on the model. For more information about model availability per region, see the [Azure OpenAI Service models documentation](../../../../ai-services/openai/concepts/models.md).
+Each playground has different model requirements and capabilities. The supported regions will vary depending on the model. For more information about model availability per region, see the [Azure OpenAI Service models documentation](../../../ai-services/openai/concepts/models.md).
 
 ## Fine-tune Azure OpenAI models
 
@@ -114,12 +114,12 @@ In AI Studio, you can fine-tune several Azure OpenAI models. The purpose is typi
     :::image type="content" source="../../media/ai-services/fine-tune-azure-openai.png" alt-text="Screenshot of the page to select fine-tuning of Azure OpenAI Service models." lightbox="../../media/ai-services/fine-tune-azure-openai.png":::
 
 1. Select **+ Fine-tune model** in the **Generative AI fine-tuning** tabbed page.
-1. Follow the [detailed how to guide](../../../../ai-services/openai/how-to/fine-tuning.md?context=/azure/ai-studio/context/context) to fine-tune the model.
+1. Follow the [detailed how to guide](../../../ai-services/openai/how-to/fine-tuning.md?context=/azure/ai-studio/context/context) to fine-tune the model.
 
 For more information about fine-tuning Azure AI models, see:
 - [Overview of fine-tuning in AI Studio](../../concepts/fine-tuning-overview.md)
-- [How to fine-tune Azure OpenAI models](../../../../ai-services/openai/how-to/fine-tuning.md?context=/azure/ai-studio/context/context)
-- [Azure OpenAI models that are available for fine-tuning](../../../../ai-services/openai/concepts/models.md?context=/azure/ai-studio/context/context)
+- [How to fine-tune Azure OpenAI models](../../../ai-services/openai/how-to/fine-tuning.md?context=/azure/ai-studio/context/context)
+- [Azure OpenAI models that are available for fine-tuning](../../../ai-services/openai/concepts/models.md?context=/azure/ai-studio/context/context)
 
 
 ## Deploy models to production
@@ -136,11 +136,11 @@ You can create a new deployment or view existing deployments. For more informati
 ## Develop apps with code
 
 At some point, you want to develop apps with code. Here are some developer resources to help you get started with Azure OpenAI Service and Azure AI services:
-- [Azure OpenAI Service and Azure AI services SDKs](../../../../ai-services/reference/sdk-package-resources.md?context=/azure/ai-studio/context/context)
-- [Azure OpenAI Service and Azure AI services REST APIs](../../../../ai-services/reference/rest-api-resources.md?context=/azure/ai-studio/context/context)
+- [Azure OpenAI Service and Azure AI services SDKs](../../../ai-services/reference/sdk-package-resources.md?context=/azure/ai-studio/context/context)
+- [Azure OpenAI Service and Azure AI services REST APIs](../../../ai-services/reference/rest-api-resources.md?context=/azure/ai-studio/context/context)
 - [Quickstart: Get started building a chat app using code](../../quickstarts/get-started-code.md)
-- [Quickstart: Get started using Azure OpenAI Assistants](../../../../ai-services/openai/assistants-quickstart.md?context=/azure/ai-studio/context/context)
-- [Quickstart: Use real-time speech to text](../../../../ai-services/speech-service/get-started-speech-to-text.md?context=/azure/ai-studio/context/context)
+- [Quickstart: Get started using Azure OpenAI Assistants](../../../ai-services/openai/assistants-quickstart.md?context=/azure/ai-studio/context/context)
+- [Quickstart: Use real-time speech to text](../../../ai-services/speech-service/get-started-speech-to-text.md?context=/azure/ai-studio/context/context)
 
 
 ## Related content
