@@ -8,6 +8,7 @@ ms.author: eur
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2024
+  - references_regions
 ms.topic: how-to
 ms.date: 11/19/2024
 ---
@@ -24,6 +25,21 @@ Search with query rewriting works like this:
 - The search service uses the original query and the rewritten queries to retrieve search results.
 
 Query rewriting is an optional feature. Without query rewriting, the search service just uses the original query to retrieve search results. 
+
+> [!NOTE]
+> Query rewriting is currently available in the East US, North Europe, and Southeast Asia regions.
+
+## Why use query rewriting?
+
+When you enable query rewriting in Azure AI Search, you might or might not see higher BM25 scores, which indicate how relevant a document is to a query. Query rewriting uses generative AI to expand the original query, adding more terms and refining search results. 
+
+When query rewriting might be helpful:
+- Correcting typos or spelling errors in user queries.
+- Expanding queries with synonyms to improve search results.
+
+When query rewriting might not be helpful:
+- For highly specific queries that require exact matches.
+- When searching for unique identifiers or product codes.
 
 ## Prerequisites
 
@@ -52,7 +68,7 @@ In this REST API example, we use [Search Documents](/rest/api/searchservice/docu
         "semanticConfiguration":"en-semantic-config",
         "queryType":"semantic",
         "queryRewrites":"generative|count-5",
-        "queryLanguage":"en",
+        "queryLanguage":"en-US",
         "debug":"queryRewrites",
         "top": 1
     }
@@ -64,7 +80,8 @@ In this REST API example, we use [Search Documents](/rest/api/searchservice/docu
     - We set "semanticConfiguration" to a [predefined semantic configuration](semantic-how-to-configure.md) embedded in your index.
     - We set "queryType" to "semantic". We either need to set "queryType" to "semantic" or include a nonempty "semanticQuery" property in the request. [Semantic ranking](semantic-search-overview.md) is required for query rewriting.
     - We set "queryRewrites" to "generative|count-5" to get up to five query rewrites. You can set the count to any value between 1 and 10. 
-    - We set "queryLanguage" to the target language ("en") of the query rewrites. 
+    - We set "queryLanguage" to the target language ("en-US") of the query rewrites. The supported locales are: 
+        `en-AU`, `en-CA`, `en-GB`, `en-IN`, `en-US`, `ar-EG`, `ar-JO`, `ar-KW`, `ar-MA`, `ar-SA`, `bg-BG`, `bn-IN`, `ca-ES`, `cs-CZ`, `da-DK`, `de-DE`, `el-GR`, `es-ES`, `es-MX`, `et-EE`, `eu-ES`, `fa-AE`, `fi-FI`, `fr-CA`, `fr-FR`, `ga-IE`, `gl-ES`, `gu-IN`, `he-IL`, `hi-IN`, `hr-BA`, `hr-HR`, `hu-HU`, `hy-AM`, `id-ID`, `is-IS`, `it-IT`, `ja-JP`, `kn-IN`, `ko-KR`, `lt-LT`, `lv-LV`, `ml-IN`, `mr-IN`, `ms-BN`, `ms-MY`, `nb-NO`, `nl-BE`, `nl-NL`, `no-NO`, `pa-IN`, `pl-PL`, `pt-BR`, `pt-PT`, `ro-RO`, `ru-RU`, `sk-SK`, `sl-SL`, `sr-BA`, `sr-ME`, `sr-RS`, `sv-SE`, `ta-IN`, `te-IN`, `th-TH`, `tr-TR`, `uk-UA`, `ur-PK`, `vi-VN`, `zh-CN`, `zh-TW`.
     - We set "debug" to "queryRewrites" to get the query rewrites in the response. Set the `"debug": "queryRewrites"` property for testing purposes. For better performance, don't use debug in production.
     - We set "top" to 1 to return only the top search result. 
     
@@ -132,9 +149,8 @@ Here are some key points to note:
 - Because we set the "debug" property to "queryRewrites", the response includes a `@search.debug` object with the text input query and query rewrites. 
 - Because we set the "queryRewrites" property to "generative|count-5", the response includes up to five query rewrites.
 - The `"inputQuery"` value is the query sent to the generative model for query rewriting. The input query isn't always the same as the user's `"search"` query.
-- The top search score (58.992092) can be considerably higher than the search score without query rewrites.
 
-Here's an example of a response without query rewrites. If you don't use query rewrites for this specific query and sample data, the top search score (7.774868) is lower than the search score with query rewrites. 
+Here's an example of a response without query rewrites. 
 
 ```json
 "@search.debug": {
@@ -204,7 +220,7 @@ POST https://[search-service-name].search.windows.net/indexes/hotels-sample-inde
     "semanticConfiguration":"en-semantic-config",
     "queryType":"semantic",
     "queryRewrites":"generative|count-5",
-    "queryLanguage":"en",
+    "queryLanguage":"en-US",
     "debug":"queryRewrites",
     "top": 1
 }
