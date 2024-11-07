@@ -15,19 +15,10 @@ Use this quickstart to create a Personally Identifiable Information (PII) detect
 ## Prerequisites
 
 * Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services)
+* Once you have your Azure subscription, [create an AI services resource](../../../../../ai-services/multi-service-resource?pivots=azportal#create-a-new-azure-ai-services-resource).
 * [Node.js](https://nodejs.org/) v14 LTS or later
 
-
 ## Setting up
-
-
-[!INCLUDE [Create an Azure resource](../../../includes/create-resource.md)]
-
-
-
-[!INCLUDE [Get your key and endpoint](../../../includes/get-key-endpoint.md)]
-
-
 
 [!INCLUDE [Create environment variables](../../../includes/environment-variables.md)]
 
