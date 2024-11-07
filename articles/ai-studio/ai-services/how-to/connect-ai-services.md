@@ -154,5 +154,5 @@ However, you can deploy [fine-tuned Azure AI services models](#fine-tune-azure-a
 
 ## Related content
 
-- [What are Azure AI services?](../../../../ai-services/what-are-ai-services.md?context=/azure/ai-studio/context/context)
+- [What are Azure AI services?](../../../ai-services/what-are-ai-services.md?context=/azure/ai-studio/context/context)
 - [Connections in Azure AI Studio](../../concepts/connections.md)
