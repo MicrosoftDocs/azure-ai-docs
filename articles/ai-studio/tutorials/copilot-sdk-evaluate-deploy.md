@@ -5,7 +5,7 @@ description: Evaluate and deploy a custom chat app with the prompt flow SDK. Thi
 manager: scottpolly
 ms.service: azure-ai-studio
 ms.topic: tutorial
-ms.date: 10/31/2024
+ms.date: 11/06/2024
 ms.reviewer: lebaro
 ms.author: sgilley
 author: sdgilley
@@ -14,7 +14,7 @@ author: sdgilley
 
 # Tutorial: Part 3 - Evaluate and deploy a custom chat application with the prompt flow SDK
 
-In this tutorial, you use the Azure AI SDK (and other libraries) to  evaluate and deploy the chat app you built in [Part 1 of the tutorial series](copilot-sdk-build-rag.md). In this part three, you learn how to:
+In this tutorial, you use the Azure AI SDK (and other libraries) to  evaluate and deploy the chat app you built in [Part 2 of the tutorial series](copilot-sdk-build-rag.md). In this part three, you learn how to:
 
 > [!div class="checklist"]
 > - Evaluate the quality of chat app responses
@@ -27,42 +27,31 @@ This tutorial is part three of a three-part tutorial.
 
 - Complete [part 2 of the tutorial series](copilot-sdk-build-rag.md) to build the chat application.
 
-- You must have the necessary permissions to add role assignments in your Azure subscription. Granting permissions by role assignment is only allowed by the **Owner** of the specific Azure resources. You might need to ask your Azure subscription owner (who might be your IT admin) for help with endpoint access later in the tutorial.
 
 ## <a name="evaluate"></a> Evaluate the quality of the chat app responses
 
 Now that you know your chat app responds well to your queries, including with chat history, it's time to evaluate how it does across a few different metrics and more data.
 
-You use the prompt flow evaluator with an evaluation dataset and the `get_chat_response()` target function, then assess the evaluation results.
+You use an evaluator with an evaluation dataset and the `get_chat_response()` target function, then assess the evaluation results.
 
 Once you run an evaluation, you can then make improvements to your logic, like improving your system prompt, and observing how the chat app responses change and improve.
 
-### Set your evaluation model
-
-Choose the evaluation model you want to use. It can be the same as a chat model you used to build the app. If you want a different model for evaluation, you need to deploy it, or specify it if it already exists. For example, you might be using `gpt-35-turbo` for your chat completions, but want to use `gpt-4` for evaluation since it might perform better.
-
-Add your evaluation model name in your **.env** file:
-
-```env
-AZURE_OPENAI_EVALUATION_DEPLOYMENT=<your evaluation model deployment name>
-```
-
 ### Create evaluation dataset
 
-Use the following evaluation dataset, which contains example questions and expected answers (truth). 
+Use the following evaluation dataset, which contains example questions and expected answers (truth).
 
-1. Create a file called **eval_dataset.jsonl** in your **rag-tutorial** folder. See the [application code structure](copilot-sdk-build-rag.md) for reference.
+1. Create a file called **chat_eval_data.jsonl** in your **assets** folder.
 1. Paste this dataset into the file:
 
-    :::code language="jsonl" source="~/rag-data-openai-python-promptflow-main/tutorial/eval_dataset.jsonl":::
+    :::code language="jsonl" source="~/azureai-samples-nov2024/scenarios/rag/custom-rag-app/assets/chat_eval_data.jsonl":::
 
-### Evaluate with prompt flow evaluators
+### Evaluate with Azure AI evaluators
 
 Now define an evaluation script that will:
 
-- Import the `evaluate` function and evaluators from the Prompt flow `evals` package.
-- Load the sample `.jsonl` dataset.
+
 - Generate a target function wrapper around our chat app logic.
+- Load the sample `.jsonl` dataset.
 - Run the evaluation, which takes the target function, and merges the evaluation dataset with the responses from the chat app.
 - Generate a set of GPT-assisted metrics (relevance, groundedness, and coherence) to evaluate the quality of the chat app responses.
 - Output the results locally, and logs the results to the cloud project.
@@ -74,9 +63,15 @@ The script also logs the evaluation results to the cloud project so that you can
 1. Create a file called **evaluate.py** in your **rag-tutorial** folder.
 1. Add the following code. Update the `dataset_path` and `evaluation_name` to fit your use case.
 
-    :::code language="python" source="~/rag-data-openai-python-promptflow-main/tutorial/evaluate.py":::
+    :::code language="python" source="~/azureai-samples-nov2024/scenarios/rag/custom-rag-app/evaluate.py":::
 
 The main function at the end allows you to view the evaluation result locally, and gives you a link to the evaluation results in AI Studio.
+
+### Create helper script
+
+The evaluation script uses a helper script to define the target function and run the evaluation. Create a file called **config.py** in your main folder. Add the following code:
+
+:::code language="python" source="~/azureai-samples-nov2024/scenarios/rag/custom-rag-app/config.py":::
 
 ### Run the evaluation script
 
@@ -89,8 +84,7 @@ The main function at the end allows you to view the evaluation result locally, a
 1. Install the required packages:
 
     ```bash
-    pip install promptflow-evals
-    pip install promptflow-azure
+    pip install azure_ai-evaluation[remote]
     ```
 
 1. Now run the evaluation script:
@@ -98,8 +92,6 @@ The main function at the end allows you to view the evaluation result locally, a
     ```bash
     python evaluate.py
     ```
-
-For more information about using the prompt flow SDK for evaluation, see [Evaluate with the prompt flow SDK](../how-to/develop/evaluate-sdk.md).
 
 ### Interpret the evaluation output
 
@@ -148,6 +140,9 @@ For more information about evaluation results in AI Studio, see [How to view eva
 
 Now that you verified your chat app behaves as expected, you're ready to deploy your application.
 
+> [!NOTE]
+> The rest of this tutorial is the old version, nothing else has been updated yet.  Stop here for now.
+
 ## <a name="deploy"></a>Deploy the chat app to Azure
 
 Now let's go ahead and deploy this chat app to a managed endpoint so that it can be consumed by an external application or website. 
@@ -182,7 +177,7 @@ As part of creating the deployment, your **copilot_flow** folder is packaged as 
 > [!IMPORTANT]
 > Deploying your application to a managed endpoint in Azure has associated compute cost based on the instance type you choose. Make sure you are aware of the associated cost and have quota for the instance type you specify. Learn more about [online endpoints](/azure/machine-learning/reference-managed-online-endpoints-vm-sku-list).
 
-Create the file **deploy.py** in the **rag-tutorial** folder. Add the following code:
+Create the file **deploy.py** in the main folder. Add the following code:
 
 :::code language="python" source="~/rag-data-openai-python-promptflow-main/tutorial/deploy.py" id="deploy":::
 
