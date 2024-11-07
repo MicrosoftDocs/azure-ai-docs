@@ -82,6 +82,8 @@ items:
         href: ai-services/how-to/content-safety.md
       - name: Content filtering
         href: concepts/content-filtering.md
+      - name: Use blocklists
+        href: how-to/use-blocklists.md
 
     - name: Azure Speech
       items:
