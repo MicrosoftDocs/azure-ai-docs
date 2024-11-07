@@ -8,7 +8,7 @@ ms.subservice: inferencing
 ms.topic: how-to
 author: msakande
 ms.author: mopeakande
-ms.date: 11/06/2024
+ms.date: 11/07/2024
 ms.reviewer: cacrest
 ms.custom:
   - devplatv2
@@ -90,10 +90,11 @@ az account get-access-token --resource https://ml.azure.com --query "accessToken
 
 For more information about various types of credentials, see [How to run jobs using different types of credentials](how-to-authenticate-batch-endpoint.md#how-to-run-jobs-using-different-types-of-credentials).
 
-
 ## Create basic jobs
 
-To create a job from a batch endpoint, you invoke the endpoint. Invocation can be done by using the Machine Learning CLI, the Machine Learning SDK for Python, or a REST API call. The following examples show invocation basics for a batch endpoint that receives a single input data folder for processing. For examples that involve various inputs and outputs, see [Understand inputs and outputs](#understand-inputs-and-outputs).
+To create a job from a batch endpoint, you invoke the endpoint. Invocation can be done by using the Machine Learning CLI, the Machine Learning SDK for Python, or a REST API call.
+
+The following examples show invocation basics for a batch endpoint that receives a single input data folder for processing. For examples that involve various inputs and outputs, see [Understand inputs and outputs](#understand-inputs-and-outputs).
 
 # [Azure CLI](#tab/cli)
  
@@ -122,34 +123,34 @@ job = ml_client.batch_endpoints.invoke(
 
 # [REST](#tab/rest)
 
-1. Make a `POST` request to the invocation URL of the endpoint. To get the invocation URL, go to Azure Machine Learning studio and open the details page for the endpoint.
+Make a `POST` request to the invocation URL of the endpoint. To get the invocation URL, go to Azure Machine Learning studio and open the details page for the endpoint.
 
-   Use the following body in your request:
+Use the following body in your request:
  
-   ```json
-   {
-       "properties": {
-           "InputData": {
-              "heart_data": {
-                  "JobInputType" : "UriFolder",
-                  "Uri": "https://azuremlexampledata.blob.core.windows.net/data/heart-disease-uci/data"
-              }
+```json
+{
+    "properties": {
+        "InputData": {
+           "heart_data": {
+               "JobInputType" : "UriFolder",
+               "Uri": "https://azuremlexampledata.blob.core.windows.net/data/heart-disease-uci/data"
            }
-       }
-   }
-   ```
+        }
+    }
+}
+```
 
-1. Use the following values for your request:
+Use the following values for your request:
 
-   | Setting | Value |
-   | --- | --- |
-   | Method | POST |
-   | Protocol | HTTP |
-   | Protocol version | 1.1 |
-   | Endpoint | The URL of your batch endpoint |
-   | Authorization type | Bearer token | 
-   | Token | Your Microsoft Entra token |
-   | `Content-Type` header | application/json |
+| Setting | Value |
+| --- | --- |
+| Method | POST |
+| Protocol | HTTP |
+| Protocol version | 1.1 |
+| Endpoint | The URL of your batch endpoint |
+| Authorization type | Bearer token | 
+| Token | Your Microsoft Entra token |
+| `Content-Type` header | application/json |
 
 ---
 
@@ -186,33 +187,33 @@ job = ml_client.batch_endpoints.invoke(
 
 # [REST](#tab/rest)
 
-1. Use the following body in your request:
+Use the following body in your request:
  
-   ```json
-   {
-       "properties": {
-           "InputData": {
-              "heart_data": {
-                  "JobInputType" : "UriFolder",
-                  "Uri": "https://azuremlexampledata.blob.core.windows.net/data/heart-disease-uci/data"
-              }
+```json
+{
+    "properties": {
+        "InputData": {
+           "heart_data": {
+               "JobInputType" : "UriFolder",
+               "Uri": "https://azuremlexampledata.blob.core.windows.net/data/heart-disease-uci/data"
            }
-       }
-   }
-   ```
+        }
+    }
+}
+```
 
-1. Add the header key `azureml-model-deployment` to your request. For its value, use the name of the deployment that you want to invoke. The following table lists all the values to use for the request:
+Add the header key `azureml-model-deployment` to your request. For its value, use the name of the deployment that you want to invoke. The following table lists all the values to use for the request:
 
-   | Setting | Value |
-   | --- | --- |
-   | Method | POST |
-   | Protocol | HTTP |
-   | Protocol version | 1.1 |
-   | Endpoint | The URL of your batch endpoint |
-   | Authorization type | Bearer token | 
-   | Token | Your Microsoft Entra token |
-   | `Content-Type` header | application/json |
-   | `azureml-model-deployment` header | Your deployment name |
+| Setting | Value |
+| --- | --- |
+| Method | POST |
+| Protocol | HTTP |
+| Protocol version | 1.1 |
+| Endpoint | The URL of your batch endpoint |
+| Authorization type | Bearer token | 
+| Token | Your Microsoft Entra token |
+| `Content-Type` header | application/json |
+| `azureml-model-deployment` header | Your deployment name |
 
 ---
 
@@ -256,36 +257,36 @@ job = ml_client.batch_endpoints.invoke(
 
 # [REST](#tab/rest)
 
-1. Indicate the experiment name by using the `experimentName` key in the `properties` section of the body:
+Indicate the experiment name by using the `experimentName` key in the `properties` section of the body:
  
-   ```json
-   {
-       "properties": {
-           "InputData": {
-              "heart_data": {
-                  "JobInputType" : "UriFolder",
-                  "Uri": "https://azuremlexampledata.blob.core.windows.net/data/heart-disease-uci/data"
-              }
-           },
-           "properties":
-           {
-               "experimentName": "my-batch-job-experiment"
+```json
+{
+    "properties": {
+        "InputData": {
+           "heart_data": {
+               "JobInputType" : "UriFolder",
+               "Uri": "https://azuremlexampledata.blob.core.windows.net/data/heart-disease-uci/data"
            }
-       }
-   }
-   ```
+        },
+        "properties":
+        {
+            "experimentName": "my-batch-job-experiment"
+        }
+    }
+}
+```
 
-1. Use the following values for your request:
+Use the following values for your request:
 
-   | Setting | Value |
-   | --- | --- |
-   | Method | POST |
-   | Protocol | HTTP |
-   | Protocol version | 1.1 |
-   | Endpoint | The URL of your batch endpoint |
-   | Authorization type | Bearer token | 
-   | Token | Your Microsoft Entra token |
-   | `Content-Type` header | application/json |
+| Setting | Value |
+| --- | --- |
+| Method | POST |
+| Protocol | HTTP |
+| Protocol version | 1.1 |
+| Endpoint | The URL of your batch endpoint |
+| Authorization type | Bearer token | 
+| Token | Your Microsoft Entra token |
+| `Content-Type` header | application/json |
 
 ---
 
@@ -360,178 +361,178 @@ Machine Learning data assets (formerly known as datasets) are supported as input
 
 1. Create the data asset. In this example, it consists of a folder that contains multiple CSV files. You use batch endpoints to process the files in parallel. You can skip this step if your data is already registered as a data asset.
 
-   # [Azure CLI](#tab/cli)
+    # [Azure CLI](#tab/cli)
+
+    1. Create a data asset definition in a YAML file named heart-data.yml:
+
+        ```yml
+        $schema: https://azuremlschemas.azureedge.net/latest/data.schema.json
+        name: heart-data
+        description: An unlabeled data asset for heart classification.
+        type: uri_folder
+        path: data
+        ```
+
+    1. Create the data asset:
+  
+        ```bash
+        az ml data create -f heart-data.yml
+        ```
+
+    # [Python](#tab/sdk)
+  
+    1. Create a data asset definition:
+
+        ```python
+        from azure.ai.ml import MLClient, Input
+        from azure.identity import DefaultAzureCredential
+        from azure.ai.ml.constants import AssetTypes
+        from azure.ai.ml.entities import Data
+
+        data_path = "heart-classifier-mlflow/data"
+        data_asset_name = "heart-data"
+
+        heart_data_object = Data(
+            path=data_path,
+            type=AssetTypes.URI_FOLDER,
+            description="An unlabeled data asset for heart classification",
+            name=data_asset_name
+        )
+        ```
+
+    1. Create the data asset:
    
-   1. Create a data asset definition in a YAML file named heart-data.yml:
+        ```python
+        ml_client.data.create_or_update(heart_data_object)
+        ```
 
-      ```yml
-      $schema: https://azuremlschemas.azureedge.net/latest/data.schema.json
-      name: heart-data
-      description: An unlabeled data asset for heart classification.
-      type: uri_folder
-      path: data
-      ```
-
-   1. Create the data asset:
+        To retrieve the newly created data asset, use the following command:
    
-       ```bash
-       az ml data create -f heart-data.yml
-       ```
-   
-   # [Python](#tab/sdk)
-   
-   1. Create a data asset definition:
+        ```python
+        heart_data_asset = ml_client.data.get(name=data_asset_name, label="latest")
+        ```
 
-      ```python
-      from azure.ai.ml import MLClient, Input
-      from azure.identity import DefaultAzureCredential
-      from azure.ai.ml.constants import AssetTypes
-      from azure.ai.ml.entities import Data
+    # [REST](#tab/rest)
 
-      data_path = "heart-classifier-mlflow/data"
-      data_asset_name = "heart-data"
- 
-      heart_data_object = Data(
-          path=data_path,
-          type=AssetTypes.URI_FOLDER,
-          description="An unlabeled data asset for heart classification",
-          name=data_asset_name
-      )
-      ```
-    
-   1. Create the data asset:
-    
-      ```python
-      ml_client.data.create_or_update(heart_data_object)
-      ```
-    
-      To retrieve the newly created data asset, use the following command:
-    
-      ```python
-      heart_data_asset = ml_client.data.get(name=data_asset_name, label="latest")
-      ```
+    Use the Machine Learning CLI or the Machine Learning SDK for Python to create the data asset.
 
-   # [REST](#tab/rest)
-
-   Use the Machine Learning CLI or the Machine Learning SDK for Python to create the data asset.
-
-   ---
+    ---
 
 1. Set up the input:
 
-   # [Azure CLI](#tab/cli)
-    
-   ```azurecli
-   DATA_ASSET_ID=$(az ml data show -n heart-data --label latest | jq -r .id)
-   ```
+    # [Azure CLI](#tab/cli)
+ 
+    ```azurecli
+    DATA_ASSET_ID=$(az ml data show -n heart-data --label latest | jq -r .id)
+    ```
 
-   # [Python](#tab/sdk)
+    # [Python](#tab/sdk)
 
-   ```python
-   input = Input(path=heart_data_asset.id)
-   ```
+    ```python
+    input = Input(path=heart_data_asset.id)
+    ```
 
-   # [REST](#tab/rest)
+    # [REST](#tab/rest)
 
-   Look up the following values, and then construct the data asset ID:
+    Look up the following values, and then construct the data asset ID:
 
-   - Subscription ID
-   - Resource group name
-   - Workspace name
-   - Data asset name
-   - Data asset version
+    - Subscription ID
+    - Resource group name
+    - Workspace name
+    - Data asset name
+    - Data asset version
 
-   ---
+    ---
 
-   The data asset ID has the format `/subscriptions/<subscription-ID>/resourceGroups/<resource-group-name>/providers/Microsoft.MachineLearningServices/workspaces/<workspace-name>/data/<data-asset-name>/versions/<data-asset-version>`.
+    The data asset ID has the format `/subscriptions/<subscription-ID>/resourceGroups/<resource-group-name>/providers/Microsoft.MachineLearningServices/workspaces/<workspace-name>/data/<data-asset-name>/versions/<data-asset-version>`.
 
 1. Run the endpoint:
 
-   # [Azure CLI](#tab/cli)
+    # [Azure CLI](#tab/cli)
 
-   Use the `--set` argument to specify the input. First replace any hyphens in the data asset name with underscore characters. Keys can contain only alphanumeric characters and underscore characters.
+    Use the `--set` argument to specify the input. First replace any hyphens in the data asset name with underscore characters. Keys can contain only alphanumeric characters and underscore characters.
 
-   ```azurecli
-   az ml batch-endpoint invoke --name $ENDPOINT_NAME \
-       --set inputs.heart_data.type="uri_folder" inputs.heart_data.path=$DATA_ASSET_ID
-   ```
+    ```azurecli
+    az ml batch-endpoint invoke --name $ENDPOINT_NAME \
+        --set inputs.heart_data.type="uri_folder" inputs.heart_data.path=$DATA_ASSET_ID
+    ```
 
-   For an endpoint that serves a model deployment, you can use the `--input` argument to specify the data input, because a model deployment always requires only one data input.
+    For an endpoint that serves a model deployment, you can use the `--input` argument to specify the data input, because a model deployment always requires only one data input.
 
-   ```azurecli
-   az ml batch-endpoint invoke --name $ENDPOINT_NAME --input $DATA_ASSET_ID
-   ```
+    ```azurecli
+    az ml batch-endpoint invoke --name $ENDPOINT_NAME --input $DATA_ASSET_ID
+    ```
 
-   The argument `--set` tends to produce long commands when you specify multiple inputs. In such cases, you can list your inputs in a file and then refer to the file when you invoke your endpoint. For instance, you can create a YAML file named inputs.yml that contains the following lines:
-    
-   ```yml
-   inputs:
-     heart_data:
-       type: uri_folder
-       path: /subscriptions/<subscription-ID>/resourceGroups/<resource-group-name>/providers/Microsoft.MachineLearningServices/workspaces/<workspace-name>/data/heart-data/versions/1
-   ```
-    
-   Then you can run the following command, which uses the `--file` argument to specify the inputs:
+    The argument `--set` tends to produce long commands when you specify multiple inputs. In such cases, you can list your inputs in a file and then refer to the file when you invoke your endpoint. For instance, you can create a YAML file named inputs.yml that contains the following lines:
 
-   ```azurecli
-   az ml batch-endpoint invoke --name $ENDPOINT_NAME --file inputs.yml
-   ```
+    ```yml
+    inputs:
+      heart_data:
+        type: uri_folder
+        path: /subscriptions/<subscription-ID>/resourceGroups/<resource-group-name>/providers/Microsoft.MachineLearningServices/workspaces/<workspace-name>/data/heart-data/versions/1
+    ```
 
-   # [Python](#tab/sdk)
+    Then you can run the following command, which uses the `--file` argument to specify the inputs:
 
-   Call the `invoke` method, and use the `inputs` parameter to specify the required inputs:
+    ```azurecli
+    az ml batch-endpoint invoke --name $ENDPOINT_NAME --file inputs.yml
+    ```
 
-   ```python
-   job = ml_client.batch_endpoints.invoke(
+    # [Python](#tab/sdk)
+
+    Call the `invoke` method, and use the `inputs` parameter to specify the required inputs:
+
+    ```python
+    job = ml_client.batch_endpoints.invoke(
+        endpoint_name=endpoint.name,
+        inputs={
+            "heart_data": input
+        }
+    )
+    ```
+
+    To streamline the `invoke` call for a model deployment, use the `input` parameter to specify the location of the input data:
+
+    ```python
+    job = ml_client.batch_endpoints.invoke(
        endpoint_name=endpoint.name,
-       inputs={
-           "heart_data": input
-       }
-   )
-   ```
+       input=input
+    )
+    ```
 
-   To streamline the `invoke` call for a model deployment, use the `input` parameter to specify the location of the input data:
+    > [!TIP]
+    > [!INCLUDE [batch-endpoint-invoke-inputs-sdk](includes/batch-endpoint-invoke-inputs-sdk.md)]
 
-   ```python
-   job = ml_client.batch_endpoints.invoke(
-      endpoint_name=endpoint.name,
-      input=input
-   )
-   ```
+    # [REST](#tab/rest)
 
-   > [!TIP]
-   > [!INCLUDE [batch-endpoint-invoke-inputs-sdk](includes/batch-endpoint-invoke-inputs-sdk.md)]
+    Use the following body in your request:
 
-   # [REST](#tab/rest)
+    ```json
+    {
+        "properties": {
+            "InputData": {
+                "heart_data": {
+                    "JobInputType" : "UriFolder",
+                    "Uri": "<data-asset-ID>"
+                }
+            }
+        }
+    }
+    ```
 
-   1. Use the following body in your request:
+    Use the following values for your request:
 
-      ```json
-      {
-          "properties": {
-              "InputData": {
-                  "heart_data": {
-                      "JobInputType" : "UriFolder",
-                      "Uri": "<data-asset-ID>"
-                  }
-              }
-          }
-      }
-      ```
+    | Setting | Value |
+    | --- | --- |
+    | Method | POST |
+    | Protocol | HTTP |
+    | Protocol version | 1.1 |
+    | Endpoint | The URL of your batch endpoint |
+    | Authorization type | Bearer token | 
+    | Token | Your Microsoft Entra token |
+    | `Content-Type` header | application/json |
 
-   1. Use the following values for your request:
-
-      | Setting | Value |
-      | --- | --- |
-      | Method | POST |
-      | Protocol | HTTP |
-      | Protocol version | 1.1 |
-      | Endpoint | The URL of your batch endpoint |
-      | Authorization type | Bearer token | 
-      | Token | Your Microsoft Entra token |
-      | `Content-Type` header | application/json |
-
-   ---
+    ---
 
 ### Use input data from a data store
 
@@ -541,133 +542,133 @@ This example uses the default data store, but you can use a different data store
 
 1. Upload sample data to the data store. The sample data is available in the [azureml-examples](https://github.com/Azure/azureml-examples) repository. You can find the data in the [sdk/python/endpoints/batch/deploy-models/heart-classifier-mlflow/data](https://github.com/Azure/azureml-examples/tree/main/sdk/python/endpoints/batch/deploy-models/heart-classifier-mlflow/data) folder of that repository.
 
-   1. In Machine Learning studio, open the data assets page for your default blob data store, and then look up the name of its blob container.
-   1. Use a tool like Azure Storage Explorer or AzCopy to upload the sample data to a folder named heart-disease-uci-unlabeled in that container.
+    1. In Machine Learning studio, open the data assets page for your default blob data store, and then look up the name of its blob container.
+    1. Use a tool like Azure Storage Explorer or AzCopy to upload the sample data to a folder named heart-disease-uci-unlabeled in that container.
 
 1. Set up the input information:
 
-   # [Azure CLI](#tab/cli)
+    # [Azure CLI](#tab/cli)
 
-   Place the file path in the `INPUT_PATH` variable:
+    Place the file path in the `INPUT_PATH` variable:
 
-   ```azurecli
-   DATA_PATH="heart-disease-uci-unlabeled"
-   INPUT_PATH="azureml://datastores/workspaceblobstore/paths/$DATA_PATH"
-   ```
+    ```azurecli
+    DATA_PATH="heart-disease-uci-unlabeled"
+    INPUT_PATH="azureml://datastores/workspaceblobstore/paths/$DATA_PATH"
+    ```
 
-   # [Python](#tab/sdk)
+    # [Python](#tab/sdk)
 
-   Place the file path in the `input` variable:
+    Place the file path in the `input` variable:
 
-   ```python
-   from azure.ai.ml import MLClient, Input
-   from azure.identity import DefaultAzureCredential
-   from azure.ai.ml.constants import AssetTypes
+    ```python
+    from azure.ai.ml import MLClient, Input
+    from azure.identity import DefaultAzureCredential
+    from azure.ai.ml.constants import AssetTypes
 
-   data_path = "heart-disease-uci-unlabeled"
-   input = Input(type=AssetTypes.URI_FOLDER, path=f"azureml://datastores/workspaceblobstore/paths/{data_path}")
-   ```
+    data_path = "heart-disease-uci-unlabeled"
+    input = Input(type=AssetTypes.URI_FOLDER, path=f"azureml://datastores/workspaceblobstore/paths/{data_path}")
+    ```
 
-   If your data is in a file, change the input type assignment to `type=AssetTypes.URI_FILE`. 
+    If your data is in a file, change the input type assignment to `type=AssetTypes.URI_FILE`. 
 
-   # [REST](#tab/rest)
+    # [REST](#tab/rest)
 
-   Use the following body in your request. First replace the placeholders with appropriate values. Replace the `<data-path>` placeholder with `heart-disease-uci-unlabeled`.
+    Use the following body in your request. First replace the placeholders with appropriate values. Replace the `<data-path>` placeholder with `heart-disease-uci-unlabeled`.
 
-   ```json
-   {
-       "properties": {
-           "InputData": {
-               "heart_data": {
-                   "JobInputType" : "UriFolder",
-                   "Uri": "/subscriptions/<subscription-ID>/resourceGroups/<resource-group-name>/providers/Microsoft.MachineLearningServices/workspaces/<workspace-name>/datastores/workspaceblobstore/paths/<data-path>"
-               }
-           }
-       }
-   }
+    ```json
+    {
+        "properties": {
+            "InputData": {
+                "heart_data": {
+                    "JobInputType" : "UriFolder",
+                    "Uri": "/subscriptions/<subscription-ID>/resourceGroups/<resource-group-name>/providers/Microsoft.MachineLearningServices/workspaces/<workspace-name>/datastores/workspaceblobstore/paths/<data-path>"
+                }
+            }
+        }
+    }
 
-   ```
+    ```
 
-   If your data is in a file, use the `UriFile` type for the `JobInputType` value. 
+    If your data is in a file, use the `UriFile` type for the `JobInputType` value. 
 
-   ---
+    ---
     
-   Notice how the `paths` folder is part of the input path. This format indicates that the value that follows is a path.
+    Notice how the `paths` folder is part of the input path. This format indicates that the value that follows is a path.
 
 1. Run the endpoint:
 
-   # [Azure CLI](#tab/cli)
+    # [Azure CLI](#tab/cli)
 
-   Use the `--set` argument to specify the input:
+    Use the `--set` argument to specify the input:
 
-   ```azurecli
-   az ml batch-endpoint invoke --name $ENDPOINT_NAME \
-       --set inputs.heart_data.type="uri_folder" inputs.heart_data.path=$INPUT_PATH
-   ```
+    ```azurecli
+    az ml batch-endpoint invoke --name $ENDPOINT_NAME \
+        --set inputs.heart_data.type="uri_folder" inputs.heart_data.path=$INPUT_PATH
+    ```
 
-   For an endpoint that serves a model deployment, you can use the `--input` argument to specify the data input, because a model deployment always requires only one data input.
+    For an endpoint that serves a model deployment, you can use the `--input` argument to specify the data input, because a model deployment always requires only one data input.
 
-   ```azurecli
-   az ml batch-endpoint invoke --name $ENDPOINT_NAME --input $INPUT_PATH --input-type uri_folder
-   ```
+    ```azurecli
+    az ml batch-endpoint invoke --name $ENDPOINT_NAME --input $INPUT_PATH --input-type uri_folder
+    ```
     
-   The argument `--set` tends to produce long commands when you specify multiple inputs. In such cases, you can list your inputs in a file and then refer to the file when you invoke your endpoint. For instance, you can create a YAML file named inputs.yml that contains the following lines:
+    The argument `--set` tends to produce long commands when you specify multiple inputs. In such cases, you can list your inputs in a file and then refer to the file when you invoke your endpoint. For instance, you can create a YAML file named inputs.yml that contains the following lines:
     
-   ```yml
-   inputs:
-     heart_data:
-       type: uri_folder
-       path: azureml://datastores/workspaceblobstore/paths/<data-path>
-   ```
+    ```yml
+    inputs:
+      heart_data:
+        type: uri_folder
+        path: azureml://datastores/workspaceblobstore/paths/<data-path>
+    ```
     
-   If your data is in a file, use the `uri_file` type for the input instead.
+    If your data is in a file, use the `uri_file` type for the input instead.
 
-   Then you can run the following command, which uses the `--file` argument to specify the inputs:
+    Then you can run the following command, which uses the `--file` argument to specify the inputs:
 
-   ```azurecli
-   az ml batch-endpoint invoke --name $ENDPOINT_NAME --file inputs.yml
-   ```
+    ```azurecli
+    az ml batch-endpoint invoke --name $ENDPOINT_NAME --file inputs.yml
+    ```
 
-   # [Python](#tab/sdk)
+    # [Python](#tab/sdk)
 
-   Call the `invoke` method by using the `inputs` parameter to specify the required inputs:
+    Call the `invoke` method by using the `inputs` parameter to specify the required inputs:
 
-   ```python
-   job = ml_client.batch_endpoints.invoke(
+    ```python
+    job = ml_client.batch_endpoints.invoke(
+        endpoint_name=endpoint.name,
+        inputs={
+            "heart_data": input
+        }
+    )
+    ```
+
+    To streamline the `invoke` call for a model deployment, use the `input` parameter to specify the location of the input data:
+
+    ```python
+    job = ml_client.batch_endpoints.invoke(
        endpoint_name=endpoint.name,
-       inputs={
-           "heart_data": input
-       }
-   )
-   ```
+       input=input
+    )
+    ```
 
-   To streamline the `invoke` call for a model deployment, use the `input` parameter to specify the location of the input data:
+    > [!TIP]
+    > [!INCLUDE [batch-endpoint-invoke-inputs-sdk](includes/batch-endpoint-invoke-inputs-sdk.md)]
 
-   ```python
-   job = ml_client.batch_endpoints.invoke(
-      endpoint_name=endpoint.name,
-      input=input
-   )
-   ```
+    # [REST](#tab/rest)
 
-   > [!TIP]
-   > [!INCLUDE [batch-endpoint-invoke-inputs-sdk](includes/batch-endpoint-invoke-inputs-sdk.md)]
+    Use the following values for your request:
 
-   # [REST](#tab/rest)
+    | Setting | Value |
+    | --- | --- |
+    | Method | POST |
+    | Protocol | HTTP |
+    | Protocol version | 1.1 |
+    | Endpoint | The URL of your batch endpoint |
+    | Authorization type | Bearer token | 
+    | Token | Your Microsoft Entra token |
+    | `Content-Type` header | application/json |
 
-   Use the following values for your request:
-
-   | Setting | Value |
-   | --- | --- |
-   | Method | POST |
-   | Protocol | HTTP |
-   | Protocol version | 1.1 |
-   | Endpoint | The URL of your batch endpoint |
-   | Authorization type | Bearer token | 
-   | Token | Your Microsoft Entra token |
-   | `Content-Type` header | application/json |
-
-   ---
+    ---
 
 ### Use input data from a Storage account
 
@@ -677,152 +678,152 @@ For more information about extra required configurations for reading data from s
 
 1. Set up the input:
 
-   # [Azure CLI](#tab/cli)
+    # [Azure CLI](#tab/cli)
 
-   Set the `INPUT_DATA` variable:
+    Set the `INPUT_DATA` variable:
 
-   ```azurecli
-   INPUT_DATA="https://azuremlexampledata.blob.core.windows.net/data/heart-disease-uci/data"
-   ```
+    ```azurecli
+    INPUT_DATA="https://azuremlexampledata.blob.core.windows.net/data/heart-disease-uci/data"
+    ```
 
-   If your data is in a file, use a format similar to the following one to define the input path:
+    If your data is in a file, use a format similar to the following one to define the input path:
 
-   ```azurecli
-   INPUT_DATA="https://azuremlexampledata.blob.core.windows.net/data/heart-disease-uci/data/heart.csv"
-   ```
+    ```azurecli
+    INPUT_DATA="https://azuremlexampledata.blob.core.windows.net/data/heart-disease-uci/data/heart.csv"
+    ```
 
-   # [Python](#tab/sdk)
+    # [Python](#tab/sdk)
 
-   Set the `input` variable:
+    Set the `input` variable:
 
-   ```python
-   from azure.ai.ml import MLClient, Input
-   from azure.identity import DefaultAzureCredential
-   from azure.ai.ml.constants import AssetTypes
+    ```python
+    from azure.ai.ml import MLClient, Input
+    from azure.identity import DefaultAzureCredential
+    from azure.ai.ml.constants import AssetTypes
 
-   input = Input(
-       type=AssetTypes.URI_FOLDER, 
-       path="https://azuremlexampledata.blob.core.windows.net/data/heart-disease-uci/data"
-   )
-   ```
+    input = Input(
+        type=AssetTypes.URI_FOLDER, 
+        path="https://azuremlexampledata.blob.core.windows.net/data/heart-disease-uci/data"
+    )
+    ```
 
-   If your data is in a file, change the input type assignment to `type=AssetTypes.URI_FILE`:
+    If your data is in a file, change the input type assignment to `type=AssetTypes.URI_FILE`:
 
-   ```python
-   input = Input(
-       type=AssetTypes.URI_FILE,
-       path="https://azuremlexampledata.blob.core.windows.net/data/heart-disease-uci/data/heart.csv"
-   )
-   ```
+    ```python
+    input = Input(
+        type=AssetTypes.URI_FILE,
+        path="https://azuremlexampledata.blob.core.windows.net/data/heart-disease-uci/data/heart.csv"
+    )
+    ```
 
-   # [REST](#tab/rest)
+    # [REST](#tab/rest)
 
-   Use the following body in your request:
+    Use the following body in your request:
 
-   ```json
-   {
-      "properties": {
-          "InputData": {
-              "heart_data": {
-                  "JobInputType" : "UriFolder",
-                  "Uri": "https://azuremlexampledata.blob.core.windows.net/data/heart-disease-uci/data"
-              }
-          }
-      }
-   }
-   ```
+    ```json
+    {
+       "properties": {
+           "InputData": {
+               "heart_data": {
+                   "JobInputType" : "UriFolder",
+                   "Uri": "https://azuremlexampledata.blob.core.windows.net/data/heart-disease-uci/data"
+               }
+           }
+       }
+    }
+    ```
 
-   If your data is in a file, change the `JobInputType` value to `UriFile`:
+    If your data is in a file, change the `JobInputType` value to `UriFile`:
 
-   ```json
-   {
-      "properties": {
-          "InputData": {
-              "heart_data": {
-                  "JobInputType" : "UriFile",
-                  "Uri": "https://azuremlexampledata.blob.core.windows.net/data/heart-disease-uci/data/heart.csv"
-              }
-          }
-      }
-   }
-   ```
+    ```json
+    {
+       "properties": {
+           "InputData": {
+               "heart_data": {
+                   "JobInputType" : "UriFile",
+                   "Uri": "https://azuremlexampledata.blob.core.windows.net/data/heart-disease-uci/data/heart.csv"
+               }
+           }
+       }
+    }
+    ```
 
-   ---
+    ---
 
 1. Run the endpoint:
 
-   # [Azure CLI](#tab/cli)
+    # [Azure CLI](#tab/cli)
     
-   Use the `--set` argument to specify the input:
+    Use the `--set` argument to specify the input:
 
-   ```azurecli
-   az ml batch-endpoint invoke --name $ENDPOINT_NAME \
-       --set inputs.heart_data.type="uri_folder" inputs.heart_data.path=$INPUT_DATA
-   ```
+    ```azurecli
+    az ml batch-endpoint invoke --name $ENDPOINT_NAME \
+        --set inputs.heart_data.type="uri_folder" inputs.heart_data.path=$INPUT_DATA
+    ```
 
-   For an endpoint that serves a model deployment, you can use the `--input` argument to specify the data input, because a model deployment always requires only one data input.
+    For an endpoint that serves a model deployment, you can use the `--input` argument to specify the data input, because a model deployment always requires only one data input.
 
-   ```azurecli
-   az ml batch-endpoint invoke --name $ENDPOINT_NAME --input $INPUT_DATA --input-type uri_folder
-   ```
+    ```azurecli
+    az ml batch-endpoint invoke --name $ENDPOINT_NAME --input $INPUT_DATA --input-type uri_folder
+    ```
     
-   The `--set` argument tends to produce long commands when you specify multiple inputs. In such cases, you can list your inputs in a file and then refer to the file when you invoke your endpoint. For instance, you can create a YAML file named inputs.yml that contains the following lines:
+    The `--set` argument tends to produce long commands when you specify multiple inputs. In such cases, you can list your inputs in a file and then refer to the file when you invoke your endpoint. For instance, you can create a YAML file named inputs.yml that contains the following lines:
     
-   ```yml
-   inputs:
-     heart_data:
-       type: uri_folder
-       path: https://azuremlexampledata.blob.core.windows.net/data/heart-disease-uci/data
-   ```
+    ```yml
+    inputs:
+      heart_data:
+        type: uri_folder
+        path: https://azuremlexampledata.blob.core.windows.net/data/heart-disease-uci/data
+    ```
     
-   Then you can run the following command, which uses the `--file` argument to specify the inputs:
+    Then you can run the following command, which uses the `--file` argument to specify the inputs:
 
-   ```azurecli
-   az ml batch-endpoint invoke --name $ENDPOINT_NAME --file inputs.yml
-   ```
+    ```azurecli
+    az ml batch-endpoint invoke --name $ENDPOINT_NAME --file inputs.yml
+    ```
 
-   If your data is in a file, use the `uri_file` type in the inputs.yml file for the data input. 
+    If your data is in a file, use the `uri_file` type in the inputs.yml file for the data input. 
 
-   # [Python](#tab/sdk)
+    # [Python](#tab/sdk)
 
-   Call the `invoke` method by using the `inputs` parameter to specify the required inputs:
+    Call the `invoke` method by using the `inputs` parameter to specify the required inputs:
 
-   ```python
-   job = ml_client.batch_endpoints.invoke(
+    ```python
+    job = ml_client.batch_endpoints.invoke(
+        endpoint_name=endpoint.name,
+        inputs={
+            "heart_data": input
+        }
+    )
+    ```
+
+    To streamline the `invoke` call for a model deployment, use the `input` parameter to specify the location of the input data:
+
+    ```python
+    job = ml_client.batch_endpoints.invoke(
        endpoint_name=endpoint.name,
-       inputs={
-           "heart_data": input
-       }
-   )
-   ```
+       input=input
+    )
+    ```
 
-   To streamline the `invoke` call for a model deployment, use the `input` parameter to specify the location of the input data:
+    > [!TIP]
+    > [!INCLUDE [batch-endpoint-invoke-inputs-sdk](includes/batch-endpoint-invoke-inputs-sdk.md)]
 
-   ```python
-   job = ml_client.batch_endpoints.invoke(
-      endpoint_name=endpoint.name,
-      input=input
-   )
-   ```
+    # [REST](#tab/rest)
 
-   > [!TIP]
-   > [!INCLUDE [batch-endpoint-invoke-inputs-sdk](includes/batch-endpoint-invoke-inputs-sdk.md)]
+    Use the following values for your request:
 
-   # [REST](#tab/rest)
+    | Setting | Value |
+    | --- | --- |
+    | Method | POST |
+    | Protocol | HTTP |
+    | Protocol version | 1.1 |
+    | Endpoint | The URL of your batch endpoint |
+    | Authorization type | Bearer token | 
+    | Token | Your Microsoft Entra token |
+    | `Content-Type` header | application/json |
 
-   Use the following values for your request:
-
-   | Setting | Value |
-   | --- | --- |
-   | Method | POST |
-   | Protocol | HTTP |
-   | Protocol version | 1.1 |
-   | Endpoint | The URL of your batch endpoint |
-   | Authorization type | Bearer token | 
-   | Token | Your Microsoft Entra token |
-   | `Content-Type` header | application/json |
-
-   ---
+    ---
 
 ## Create jobs with literal inputs
 
@@ -872,32 +873,32 @@ job = ml_client.batch_endpoints.invoke(
 
 # [REST](#tab/rest)
 
-1. Use the following body in your request:
+Use the following body in your request:
 
-   ```json
-   {
-       "properties": {
-           "InputData": {
-               "score_mode": {
-                   "JobInputType" : "Literal",
-                   "Value": "append"
-               }
-           }
-       }
-   }
-   ```
+```json
+{
+    "properties": {
+        "InputData": {
+            "score_mode": {
+                "JobInputType" : "Literal",
+                "Value": "append"
+            }
+        }
+    }
+}
+```
 
-1. Use the following values for your request:
+Use the following values for your request:
 
-   | Setting | Value |
-   | --- | --- |
-   | Method | POST |
-   | Protocol | HTTP |
-   | Protocol version | 1.1 |
-   | Endpoint | The URL of your batch endpoint |
-   | Authorization type | Bearer token | 
-   | Token | Your Microsoft Entra token |
-   | `Content-Type` header | application/json |
+| Setting | Value |
+| --- | --- |
+| Method | POST |
+| Protocol | HTTP |
+| Protocol version | 1.1 |
+| Endpoint | The URL of your batch endpoint |
+| Authorization type | Bearer token | 
+| Token | Your Microsoft Entra token |
+| `Content-Type` header | application/json |
 
 ---
 
@@ -909,134 +910,134 @@ This example uses the default data store, **workspaceblobstore**. But you can us
 
 1. Get the ID of the data store.  
 
-   # [Azure CLI](#tab/cli)
+    # [Azure CLI](#tab/cli)
 
-   ```azurecli
-   DATA_STORE_ID=$(az ml datastore show -n workspaceblobstore | jq -r '.id')
-   ```
+    ```azurecli
+    DATA_STORE_ID=$(az ml datastore show -n workspaceblobstore | jq -r '.id')
+    ```
 
-   # [Python](#tab/sdk)
+    # [Python](#tab/sdk)
 
-   ```python
-   from azure.ai.ml import MLClient, Input, Output
-   from azure.identity import DefaultAzureCredential
-   from azure.ai.ml.constants import AssetTypes
+    ```python
+    from azure.ai.ml import MLClient, Input, Output
+    from azure.identity import DefaultAzureCredential
+    from azure.ai.ml.constants import AssetTypes
 
-   default_ds = ml_client.datastores.get_default()
-   ```
+    default_ds = ml_client.datastores.get_default()
+    ```
 
-   # [REST](#tab/rest)
+    # [REST](#tab/rest)
 
-   Look up the following values, and then construct the data store ID:
+    Look up the following values, and then construct the data store ID:
 
-   - Subscription ID
-   - Resource group name
-   - Workspace name
+    - Subscription ID
+    - Resource group name
+    - Workspace name
 
-   ---
+    ---
     
-   The data store ID has the format `/subscriptions/<subscription-ID>/resourceGroups/<resource-group-name>/providers/Microsoft.MachineLearningServices/workspaces/<workspace-name>/datastores/workspaceblobstore`.
+    The data store ID has the format `/subscriptions/<subscription-ID>/resourceGroups/<resource-group-name>/providers/Microsoft.MachineLearningServices/workspaces/<workspace-name>/datastores/workspaceblobstore`.
 
 1. Create a data output:
 
-   # [Azure CLI](#tab/cli)
+    # [Azure CLI](#tab/cli)
     
-   Define the input and output values in a file named inputs-and-outputs.yml. Use the data store ID in the output path. For completeness, also define the data input.
+    Define the input and output values in a file named inputs-and-outputs.yml. Use the data store ID in the output path. For completeness, also define the data input.
 
-   ```yml
-   inputs:
-     heart_data:
-       type: uri_folder
-       path: https://azuremlexampledata.blob.core.windows.net/data/heart-disease-uci/data
-   outputs:
-     score:
-       type: uri_file
-       path: <data-store-ID>/paths/batch-jobs/my-unique-path
-   ```
+    ```yml
+    inputs:
+      heart_data:
+        type: uri_folder
+        path: https://azuremlexampledata.blob.core.windows.net/data/heart-disease-uci/data
+    outputs:
+      score:
+        type: uri_file
+        path: <data-store-ID>/paths/batch-jobs/my-unique-path
+    ```
 
-   # [Python](#tab/sdk)
+    # [Python](#tab/sdk)
 
-   Set the `output` path variable:
+    Set the `output` path variable:
 
-   ```python
-   data_path = "batch-jobs/my-unique-path"
-   output = Output(type=AssetTypes.URI_FILE, path=f"{default_ds.id}/paths/{data_path}")
-   ```
+    ```python
+    data_path = "batch-jobs/my-unique-path"
+    output = Output(type=AssetTypes.URI_FILE, path=f"{default_ds.id}/paths/{data_path}")
+    ```
 
-   For completeness, also create a data input:
+    For completeness, also create a data input:
 
-   ```python
-   input = Input(
-       type=AssetTypes.URI_FOLDER,
-       path="https://azuremlexampledata.blob.core.windows.net/data/heart-disease-uci/data"
-   )
-   ```
+    ```python
+    input = Input(
+        type=AssetTypes.URI_FOLDER,
+        path="https://azuremlexampledata.blob.core.windows.net/data/heart-disease-uci/data"
+    )
+    ```
 
-   # [REST](#tab/rest)
+    # [REST](#tab/rest)
 
-   Use the following body in your request. First replace the `<data-path>` placeholder with a unique path, such as `batch-jobs/my-unique-path`. Also replace the `<data-store-ID>` placeholder with the ID of your data store.
+    Use the following body in your request. First replace the `<data-path>` placeholder with a unique path, such as `batch-jobs/my-unique-path`. Also replace the `<data-store-ID>` placeholder with the ID of your data store.
 
-   ```json
-   {
-       "properties": {
-           "InputData": {
-              "heart_data": {
-                  "JobInputType" : "UriFolder",
-                  "Uri": "https://azuremlexampledata.blob.core.windows.net/data/heart-disease-uci/data"
-              }
-           },
-           "OutputData": {
-               "score": {
-                   "JobOutputType" : "UriFile",
-                   "Uri": "<data-store-ID>/paths/<data-path>"
+    ```json
+    {
+        "properties": {
+            "InputData": {
+               "heart_data": {
+                   "JobInputType" : "UriFolder",
+                   "Uri": "https://azuremlexampledata.blob.core.windows.net/data/heart-disease-uci/data"
                }
-           }
-       }
-   }
-   ```
+            },
+            "OutputData": {
+                "score": {
+                    "JobOutputType" : "UriFile",
+                    "Uri": "<data-store-ID>/paths/<data-path>"
+                }
+            }
+        }
+    }
+    ```
 
-   ---
+    ---
     
-   > [!NOTE]
-   > Notice how the `paths` folder is part of the output path. This format indicates that the value that follows is a path.
+    > [!NOTE]
+    > Notice how the `paths` folder is part of the output path. This format indicates that the value that follows is a path.
 
 1. Run the deployment:
 
-   # [Azure CLI](#tab/cli)
+    # [Azure CLI](#tab/cli)
    
-   Use the `--file` argument to specify the input and output values:
+    Use the `--file` argument to specify the input and output values:
 
-   ```azurecli
-   az ml batch-endpoint invoke --name $ENDPOINT_NAME --file inputs-and-outputs.yml
-   ```
+    ```azurecli
+    az ml batch-endpoint invoke --name $ENDPOINT_NAME --file inputs-and-outputs.yml
+    ```
    
-   # [Python](#tab/sdk)
+    # [Python](#tab/sdk)
 
-   Use the `outputs` parameter to supply information about the output.
+    Use the `outputs` parameter to supply information about the output.
 
-   ```python
-   job = ml_client.batch_endpoints.invoke(
-      endpoint_name=endpoint.name,
-      inputs={ "heart_data": input },
-      outputs={ "score": output }
-   )
-   ```
+    ```python
+    job = ml_client.batch_endpoints.invoke(
+       endpoint_name=endpoint.name,
+       inputs={ "heart_data": input },
+       outputs={ "score": output }
+    )
+    ```
 
-   # [REST](#tab/rest)
+    # [REST](#tab/rest)
 
-   Use the following values for your request:
+    Use the following values for your request:
 
-   | Setting | Value |
-   | --- | --- |
-   | Method | POST |
-   | Protocol | HTTP |
-   | Protocol version | 1.1 |
-   | Endpoint | The URL of your batch endpoint |
-   | Authorization type | Bearer token | 
-   | Token | Your Microsoft Entra token |
-   | `Content-Type` header | application/json |
+    | Setting | Value |
+    | --- | --- |
+    | Method | POST |
+    | Protocol | HTTP |
+    | Protocol version | 1.1 |
+    | Endpoint | The URL of your batch endpoint |
+    | Authorization type | Bearer token | 
+    | Token | Your Microsoft Entra token |
+    | `Content-Type` header | application/json |
 
-   ---
+    ---
 
 ## Related content
 
