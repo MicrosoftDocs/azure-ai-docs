@@ -17,7 +17,7 @@ author: eric-urban
 
 # How to use Azure AI services in AI Studio
 
-You might have existing Azure AI services resources that you created using the old studios such as Azure OpenAI Studio or Speech Studio. You can pick up where you left off by using your existing resources in AI Studio.
+You might have existing resources for Azure AI services that you used in the old studios such as Azure OpenAI Studio or Speech Studio. You can pick up where you left off by using your existing resources in AI Studio.
 
 This article describes how to use new or existing Azure AI services resources in an AI Studio project.
 
@@ -125,12 +125,12 @@ In AI Studio, you can fine-tune some Azure AI services models. For example, you 
 
 1. Go to your AI Studio project. If you need to create a project, see [Create an AI Studio project](../how-to/create-projects.md).
 1. Select **Fine-tuning** from the left pane.
-1. Select **AI Service fine-tuning** > **+ Fine-tune**.
+1. Select **AI Service fine-tuning**.
 
     :::image type="content" source="../media/ai-services/fine-tune-azure-ai-services.png" alt-text="Screenshot of the page to select fine-tuning of Azure AI Services models." lightbox="../media/ai-services/fine-tune-azure-ai-services.png":::
 
-1. Select **+ Fine-tune model**.
-1. Follow the wizard to fine-tune a model for the capabilities that you want. 
+1. Select **+ Fine-tune**.
+1. Follow the wizard to fine-tune a model for the capabilities that you want.
 
 ## Deploy models to production
 

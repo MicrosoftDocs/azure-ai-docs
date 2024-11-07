@@ -30,6 +30,8 @@ If you've completed other tutorials or quickstarts, you might have already creat
 
 This tutorial is part one of a three-part tutorial.
 
+[!INCLUDE [feature-preview](../includes/feature-preview.md)]
+
 ## Prerequisites
 
 * An Azure account with an active subscription. If you don't have one, [create an account for free](https://azure.microsoft.com/free/?WT.mc_id=A261C142F).
@@ -92,33 +94,15 @@ In the Azure AI Studio, check for an Azure AI Search connected resource.
 
 ## Install packages
 
-* Install the Azure AI SDK packages you need.
+* Install `azure-ai-projects`(preview) and `azure-ai-inference` (preview), along with other required packages.
 
     ```bash
-    pip install azure_ai_projects azure_ai_inference azure-identity --force-reinstall
-    ```
-
-* Install additional packages needed to run the sample app
-
-    ```python
-    pip install azure-search-documents pandas
-    ```
-
-* Install packages needed to run evaluation
-
-    ```python
-    pip install azure-ai-evaluation[remote]
-    ```
-
-* Install packages needed for logging traces to AI Studio projects:
-
-    ```python
-    pip install azure-monitor-opentelemetry
+    pip install azure-ai-projects azure-ai-inference azure-ai-identity azure-search-documents pandas python-dotenv
     ```
 
 ## Deploy models
 
-You need two models to build a RAG-based chat app: an Azure OpenAI chat model (`gpt-40-mini`) and an Azure OpenAI embedding model (`text-embedding-ada-002`). Deploy these models in your Azure AI Studio project, using this set of steps for each model.
+You need two models to build a RAG-based chat app: an Azure OpenAI chat model (`gpt-4o-mini`) and an Azure OpenAI embedding model (`text-embedding-ada-002`). Deploy these models in your Azure AI Studio project, using this set of steps for each model.
 
 These steps deploy a model to a real-time endpoint from the AI Studio [model catalog](../how-to/model-catalog-overview.md):
 
@@ -134,7 +118,7 @@ These steps deploy a model to a real-time endpoint from the AI Studio [model cat
 
 1. Leave the default **Deployment name**. Select **Connect and deploy**.
 
-After you deploy the **gpt-40-mini**, repeat the steps to deploy the **text-embedding-ada-002** model.
+After you deploy the **gpt-4o-mini**, repeat the steps to deploy the **text-embedding-ada-002** model.
 
 ## Configure environment variables
 

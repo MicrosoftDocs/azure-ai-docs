@@ -32,44 +32,23 @@ In this quickstart, we walk you through setting up your local development enviro
 
 ## Install packages
 
-Install the Azure AI SDK packages you need.
+Install `azure-ai-projects`(preview), `azure-ai-inference` (preview), and azure-identity packages:
 
 ```bash
-pip install azure_ai_projects azure_ai_inference azure-identity 
+pip install azure-ai-projects azure-ai-inference azure-identity 
 ```
 
 ## Build your chat app
 
 Create a file named **chat.py**.  Copy and paste the following code into it.
 
-```python
-from azure.ai.projects import AIProjectClient
-from azure.identity import DefaultAzureCredential
-
-project_connection_string = "<your-connection-string-goes-here>"
-
-project = AIProjectClient.from_connection_string(
-    conn_str=project_connection_string,
-    credential=DefaultAzureCredential()
-)
-
-chat = project.inference.get_chat_completions_client()
-response = chat.complete(
-    model="gpt-4o-mini",
-    messages=[
-        {"role": "system", "content": "You are an AI assistant that speaks like a techno punk rocker from 2350. Be cool but not too cool. Ya dig?"},
-        {"role": "user", "content": "Hey, can you help me with my taxes? I'm a freelancer."},
-    ]
-)
-
-print(response.choices[0].message.content)
-```
+:::code language="python" source="~/azureai-samples-nov2024/scenarios/inference/chat-app/chat-simple.py":::
 
 ## Insert your connection string
 
-Your project connection string is required to call the Azure OpenAI service from your code. In this quickstart, you save this value in an `.env` file, which is a file that contains environment variables that your application can read. 
+Your project connection string is required to call the Azure OpenAI service from your code. 
 
-You find your connection string in the Azure AI Studio project you created in the [AI Studio playground quickstart](../quickstarts/get-started-playground.md).  Open the project, then find the connection string on the **Overview** page.  
+Find your connection string in the Azure AI Studio project you created in the [AI Studio playground quickstart](../quickstarts/get-started-playground.md).  Open the project, then find the connection string on the **Overview** page.  
 
 :::image type="content" source="../media/quickstarts/azure-ai-sdk/connection-string.png" alt-text="Screenshot shows the overview page of a project and the location of the connection string.":::
 
@@ -89,53 +68,20 @@ The script uses hardcoded input and output messages. In a real app you'd take in
 
 Let's change the script to take input from a client application and generate a system message using a prompt template.
 
-1.  Remove the last line of the script that prints a response.
+1. Remove the last line of the script that prints a response.
 
 1. Now define a `get_chat_response` function that takes messages and context, generates a system message using a prompt template, and calls a model.  Add this code to your **chat.py** file:
 
-    ```python
-    from azure.ai.inference.prompts import PromptTemplate
-
-    def get_chat_response(messages, context):
-        # create a prompt template from an inline string (using mustache syntax)
-        prompt_template = PromptTemplate.from_message(prompt_template="""
-            system:
-            You are an AI assistant that speaks like a techno punk rocker from 2350. Be cool but not too cool. Ya dig? Refer to the user by their first name, try to work their last name into a pun.
-
-            The user's first name is {{first_name}} and their last name is {{last_name}}.
-            """)
-        
-        # generate system message from the template, passing in the context as variables
-        system_message = prompt_template.render(data=context)
-
-        # add the prompt messages to the user messages
-        response = chat.complete(
-            model="gpt-4o-mini", 
-            messages=system_message + messages,
-            temperature=1,
-            frequency_penalty=0.5,
-            presence_penalty=0.5)
-
-        return response
-    ```
+    :::code language="python" source="~/azureai-samples-nov2024/scenarios/inference/chat-app/chat-template.py" id="chat_function":::
 
     > [!NOTE]
     > The prompt template uses mustache format.
 
     The get_chat_response function could be easily added as a route to a FastAPI or Flask app to enable calling this function from a front-end web application.
 
-1. Now simulate passing information from a frontend application to this function.  Add the following code to the end of your **chat.py** file:
+1. Now simulate passing information from a frontend application to this function.  Add the following code to the end of your **chat.py** file.  Feel free to play with the message and add your own name.
 
-```python
-response = get_chat_response(
-    messages=[{"role": "user", "content": "what city has the best food in the world?"}],
-    context = {
-      "first_name": "Jessie",
-      "last_name": "Irwin"
-   }
-)
-print(response.choices[0].message.content)
-```
+    :::code language="python" source="~/azureai-samples-nov2024/scenarios/inference/chat-app/chat-template.py" id="create_response":::
 
 Run the script to see the response from the model with this new input.
 
