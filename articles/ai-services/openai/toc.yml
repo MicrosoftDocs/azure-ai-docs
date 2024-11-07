@@ -286,6 +286,8 @@ items:
           href: ./references/elasticsearch.md
         - name: Data source - Pinecone (preview)
           href: ./references/pinecone.md
+        - name: Data source - Mongo DB (preview)
+          href: ./references/mongo-db.md
         - name: Ingestion API (preview)
           href: /rest/api/azureopenai/ingestion-jobs?context=/azure/ai-services/openai/context/context
     - name: Azure Resource Manager/Bicep/Terraform
