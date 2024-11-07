@@ -50,17 +50,19 @@ items:
   items:
   - name: Azure OpenAI and AI services
     items:
-    - name: What is Azure OpenAI?
-      href: ../ai-services/openai/overview.md?context=/azure/ai-studio/context/context
-      displayName: cognitive
     - name: What are AI services?
       href: ../ai-services/what-are-ai-services.md?context=/azure/ai-studio/context/context
     - name: Use Azure OpenAI Service in AI Studio
       href: ai-services/connect-azure-openai.md
+    - name: Use Azure AI Content Safety in AI Studio
+      href: ai-services/how-to/content-safety.md
     - name: Use Azure AI services in AI Studio
       href: ai-services/connect-ai-services.md
     - name: Azure OpenAI
       items:
+      - name: What is Azure OpenAI?
+        href: ../ai-services/openai/overview.md?context=/azure/ai-studio/context/context
+        displayName: cognitive
       - name: Deploy Azure OpenAI models
         href: how-to/deploy-models-openai.md
       - name: Fine-tune Azure OpenAI models
@@ -74,9 +76,15 @@ items:
       - name: Use your image data with Azure OpenAI
         href: how-to/data-image-add.md
         displayName: vision, gpt, turbo
-    - name: Content Safety
-      href: concepts/content-filtering.md
-    - name: Speech
+    - name: Azure AI Content Safety 
+      items:
+      - name: What is Azure AI Content Safety?
+        href: ai-services/content-safety-overview.md
+      - name: Content filtering
+        href: concepts/content-filtering.md
+      - name: Use Content Safety features
+        href: ai-services/how-to/content-safety.md
+    - name: Azure Speech
       items:
       - name: Real-time speech to text
         href: ../ai-services/speech-service/get-started-speech-to-text.md?context=/azure/ai-studio/context/context
