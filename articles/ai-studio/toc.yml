@@ -6,12 +6,12 @@ items:
   items:
   - name: What is Azure AI Studio?
     href: what-is-ai-studio.md
+  - name: Azure AI Studio architecture
+    href: concepts/architecture.md
   - name: Azure OpenAI in AI Studio
     href: azure-openai-in-ai-studio.md
   - name: Management center
     href: concepts/management-center.md
-  - name: Azure AI Studio architecture
-    href: concepts/architecture.md
   - name: Region support
     href: reference/region-support.md
   - name: Azure AI FAQ
@@ -90,6 +90,8 @@ items:
         href: ../ai-services/speech-service/pronunciation-assessment-tool.md?context=/azure/ai-studio/context/context
       - name: Hear and speak with chat in the playground
         href: quickstarts/hear-speak-playground.md
+      - name: Fine-tune in AI Studio for custom speech
+        href: ../ai-services/speech-service/custom-speech-ai-studio.md?context=/azure/ai-studio/context/context
   - name: Explore and select AI models
     items:
     - name: Model catalog

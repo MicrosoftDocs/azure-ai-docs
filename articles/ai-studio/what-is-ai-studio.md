@@ -52,6 +52,8 @@ The studio is organized around your goals. Generally, as you develop with Azure 
 
 If you're an admin, or leading a development team, and need to manage the team's resources, project access, quota, and more, you can do that in the Management Center.
 
+Using a project also enables connectivity to other services such as Azure AI services and Azure Storage. For more information, see the [Azure AI Studio architecture](./concepts/architecture.md).
+
 ## Management center
 
 The management center is a part of the Azure AI Studio that streamlines governance and management activities. In the management center, you can view and manage:
@@ -60,7 +62,7 @@ The management center is a part of the Azure AI Studio that streamlines governan
 - Quotas and usage metrics
 - Govern access and permissions
 
-For more information, see [Management center overview]().
+For more information, see [Management center overview](./concepts/management-center.md).
 
 ## Pricing and billing
 
