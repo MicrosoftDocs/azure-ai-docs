@@ -4,7 +4,7 @@ titleSuffix: Azure AI Foundry
 description: Azure AI Foundry is a trusted platform that empowers developers to drive innovation and shape the future with AI in a safe, secure, and responsible way.
 manager: scottpolly
 keywords: Azure AI services, cognitive
-ms.service: azure-ai-Foundry
+ms.service: azure-ai-studio
 ms.topic: overview
 ms.date: 10/31/2024
 ms.reviewer: sgilley
@@ -28,7 +28,7 @@ ms.custom: ignite-2023, build-2024
 
 With AI Foundry, you can explore a wide variety of models, services and capabilities, and get to building AI applications that best serve your goals. The Azure AI Foundry platform facilitates scalability for transforming proof of concepts into full-fledged production applications with ease. Continuous monitoring and refinement support long-term success.  
 
-:::image type="content" source="./media/explore/ai-studio-home.png" alt-text="Screenshot of the Azure AI Foundry home page with links to get started." lightbox="./media/explore/ai-Foundry-home.png":::
+:::image type="content" source="./media/explore/ai-studio-home.png" alt-text="Screenshot of the Azure AI Foundry home page with links to get started." lightbox="./media/explore/ai-studio-home.png":::
 
 When you come to the Azure AI Foundry portal, you find that all paths lead to a project. Projects are easy-to-manage containers for your work—and the key to collaboration, organization, and connecting data and other services. Before you create your first project, you can explore models from many providers, and try out AI services and capabilities. When you're ready to move forward with a model or service, AI Foundry guides you to create a project. Once you are in a project, all of the Azure AI capabilities come to life.
 
