@@ -7,7 +7,7 @@ ms.service: azure-ai-studio
 ms.custom:
   - build-2024
 ms.topic: overview
-ms.date: 8/9/2024
+ms.date: 11/07/2024
 ms.reviewer: dantaylo
 ms.author: sgilley
 author: sdgilley
@@ -34,18 +34,21 @@ The best way to get started using the Azure AI Foundry SDK is by using a project
 First follow steps to [create an AI Project](../create-projects.md) if you don't have one already.
 
 Login with the Azure CLI using the same account that you use to access your AI Project:
+
 ```
 az login
 ```
 
 Install the Azure AI projects client library:
+
 ```
 pip install azure-ai-projects azure-identity
 ```
 
 Create a project client in code:
 
-Sync Tab:
+#[Sync](tab/sync)
+
 ```Python
 from azure.identity import DefaultAzureCredential
 from azure.ai.projects import AIProjectClient
@@ -57,7 +60,8 @@ project = AIProjectClient.from_connection_string(
   credential=DefaultAzureCredential())
 ```
 
-Async Tab:
+#[Async](tab/async)
+
 ```Python
 from azure.identity.aio import DefaultAzureCredential
 from azure.ai.projects.aio import AIProjectClient
@@ -69,7 +73,9 @@ project = await AIProjectClient.from_connection_string(
   credential=DefaultAzureCredential())
 ```
 
-Copy the **Project connection string** from the **Overview** page of the project and update the ```project_connection_string``` variable above.
+---
+
+Copy the **Project connection string** from the **Overview** page of the project and update the `project_connection_string` variable above.
 
 Once you have created the project client, you can use the client for the capabilities in the following sections. 
 
@@ -83,6 +89,7 @@ pip install openai
 ```
 
 Now use the project client to return an ```AzureOpenAI``` client with the desired API version and make a chat completions call.
+
 ```Python
 openai = project.inference.get_azure_openai_client(api_version="2024-06-01")
 response = openai.chat.completions.create(
@@ -100,16 +107,18 @@ For more on using the Azure OpenAI client library, including how to use it direc
 
 ## Azure AI model inference service
 
-The [Azure AI model inference service](https://learn.microsoft.com/en-us/azure/ai-studio/ai-services/model-inference) offers access to powerful models from leading providers like OpenAI, Microsoft, Meta, and more. These models support tasks such as content generation, summarization, and code generation. 
+The [Azure AI model inference service](/azure/ai-studio/ai-services/model-inference) offers access to powerful models from leading providers like OpenAI, Microsoft, Meta, and more. These models support tasks such as content generation, summarization, and code generation. 
 
 To use the model inference service, first ensure that your project has an AI Services connection (in the management center).
 
 Install the ```azure-ai-inferencing``` client library:
+
 ```
 pip install azure-ai-inference
 ```
 
 You can use the project client to get a configured and authenticated ```ChatCompletionsClient``` or ```EmbeddingsClient```:
+
 ```Python
 # get an chat inferencing client using the project's default model inferencing endpoint
 chat = project.inference.get_chat_completions_client()
@@ -128,18 +137,20 @@ print(response.choices[0].message.content)
 
 You can change the model name to any model that you have deployed to the inference service or Azure OpenAI service.
 
-To learn more about using the Azure AI inferencing client, check out the [Azure AI model inferencing reference](https://learn.microsoft.com/en-us/azure/ai-studio/reference/reference-model-inference-api?tabs=python).
+To learn more about using the Azure AI inferencing client, check out the [Azure AI model inferencing reference](/azure/ai-studio/reference/reference-model-inference-api).
 
 ## Prompt Templates
 
 The inferencing client supports for creating prompt messages from templates, this allows you to dynamically generate prompts using inputs that are available at runtime.
 
-To use prompt templates, install the ```azure-ai-inferencing``` package:
+To use prompt templates, install the `azure-ai-inferencing` package:
+
 ```
 pip install azure-ai-inference
 ```
 
 You can render a prompt template from an inline string:
+
 ```Python
 from azure.ai.inference.prompts import PromptTemplate
 
@@ -157,16 +168,20 @@ prompt_template = PromptTemplate.from_string(prompt_template="""
 messages = prompt_template.create_messages(first_name="Jane", last_name="Doe")
 print(messages)
 ```
+
 This will output messages that you can then pass to a chat completions call:
-```
+
+```text
 [
   {'role': 'system', 'content': "You are a helpful writing assistant.\nThe user's first name is Jane and their last name is Doe."}
   {'role': 'user', 'content': 'Write me a poem about flowers'}
 ]
 ```
+
 NOTE: leading whitespace is automatically trimmed from input strings.
 
-You can also load prompts from a [Prompty](https://prompty.ai) file, enabling you to also load the model name and parameters from the ```.prompty``` file:
+You can also load prompts from a [Prompty](https://prompty.ai) file, enabling you to also load the model name and parameters from the `.prompty` file:
+
 ```Python
 from azure.ai.inference.prompts import PromptTemplate
 
@@ -185,11 +200,13 @@ response = chat.complete(
 If you have an Azure AI Search resource connected to your project, you can also use the project client to create an Azure AI Search client using the project connection. 
 
 Install the Azure AI Search client library:
+
 ```
 pip install azure-search-documents
 ```
 
 Instantiate the search and/or search index client as desired:
+
 ```Python
 from azure.core.credentials import AzureKeyCredential
 from azure.ai.projects.models import ConnectionType
@@ -215,7 +232,7 @@ search_client = SearchClient(
 )
 ```
 
-To learn more about using Azure AI Search, check out [Azure AI Search documentation](https://learn.microsoft.com/azure/search/).
+To learn more about using Azure AI Search, check out [Azure AI Search documentation](/azure/search/).
 
 ## Azure AI agents runtime
 
@@ -258,33 +275,35 @@ if application_insights_connection_string:
     configure_azure_monitor(connection_string=application_insights_connection_string)
 ```
 
-## Additional AI Services and Frameworks
+## Related content
 
 Below are some helpful links to additional services and frameworks that you can use with the Azure AI Foundry SDK.
 
 ### Azure AI Services
 
 Client libraries:
- * [Azure AI services SDKs](../../../ai-services/reference/sdk-package-resources.md?context=/azure/ai-studio/context/context)
- * [Azure AI services REST APIs](../../../ai-services/reference/rest-api-resources.md?context=/azure/ai-studio/context/context) 
+
+* [Azure AI services SDKs](../../../ai-services/reference/sdk-package-resources.md?context=/azure/ai-studio/context/context)
+* [Azure AI services REST APIs](../../../ai-services/reference/rest-api-resources.md?context=/azure/ai-studio/context/context) 
 
 Azure AI services
- * [Azure AI Services Python Management Library](/python/api/overview/azure/mgmt-cognitiveservices-readme?view=azure-python)
- * [Azure AI Search Python Management Library](/python/api/azure-mgmt-search/azure.mgmt.search?view=azure-python)
+* [Azure AI Services Python Management Library](/python/api/overview/azure/mgmt-cognitiveservices-readme?view=azure-python)
+* [Azure AI Search Python Management Library](/python/api/azure-mgmt-search/azure.mgmt.search?view=azure-python)
 
 ### Frameworks
 
 Azure Machine Learning
- * [Azure Machine Learning Python SDK (v2)](/python/api/overview/azure/ai-ml-readme)
- * [Azure Machine Learning CLI (v2)](/azure/machine-learning/how-to-configure-cli?view=azureml-api-2&tabs=public)
- * [Azure Machine Learning REST API](/rest/api/azureml) 
+
+* [Azure Machine Learning Python SDK (v2)](/python/api/overview/azure/ai-ml-readme)
+* [Azure Machine Learning CLI (v2)](/azure/machine-learning/how-to-configure-cli?view=azureml-api-2&tabs=public)
+* [Azure Machine Learning REST API](/rest/api/azureml) 
 
 Prompt flow
- * [Prompt flow SDK](https://microsoft.github.io/promptflow/how-to-guides/quick-start.html)
- * [pfazure CLI](https://microsoft.github.io/promptflow/reference/pfazure-command-reference.html)
- * [pfazure Python library](https://microsoft.github.io/promptflow/reference/python-library-reference/promptflow-azure/promptflow.azure.html)
 
-Agentic frameworks:
+* [Prompt flow SDK](https://microsoft.github.io/promptflow/how-to-guides/quick-start.html)
+* [pfazure CLI](https://microsoft.github.io/promptflow/reference/pfazure-command-reference.html)
+* [pfazure Python library](https://microsoft.github.io/promptflow/reference/python-library-reference/promptflow-azure/promptflow.azure.html)
+
+Agentic frameworks
+
 * [LlamaIndex](llama-index.md)
-
-
