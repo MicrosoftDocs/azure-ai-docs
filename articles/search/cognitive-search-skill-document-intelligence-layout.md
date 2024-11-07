@@ -157,7 +157,7 @@ The file reference object can be generated in one of following ways:
 }
 ```
 
-The value of the `markdownHeaderDepth` controls the number of keys in the 'sections' dictionary. In the example skill definition, since the `markdownHeaderDepth` is "h3", there are three keys in the "sections" dictionary: h1, h2, h3.
+The value of the `markdownHeaderDepth` controls the number of keys in the "sections" dictionary. In the example skill definition, since the `markdownHeaderDepth` is "h3", there are three keys in the "sections" dictionary: h1, h2, h3.
 
 ## See also
 

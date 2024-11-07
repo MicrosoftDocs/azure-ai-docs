@@ -39,16 +39,16 @@ In this article, learn how to:
 
 The raw inputs must be in a [supported data source](search-indexer-overview.md#supported-data-sources) and the file needs to be a format which [Document Layout skill](cognitive-search-skill-document-intelligence-layout.md) supports.
 
-Supported file formats include: PDF, JPEG, JPG, PNG, BMP, TIFF, DOCX, XLSX, PPTX, HTML.
++ Supported file formats include: PDF, JPEG, JPG, PNG, BMP, TIFF, DOCX, XLSX, PPTX, HTML.
 
-Supported indexers can be any indexer that can handle the supported file formats. These include [Blob indexers](search-howto-indexing-azure-blob-storage.md), [OneLake indexers](search-how-to-index-onelake-files.md), [File indexers](search-file-storage-integration.md).
++ Supported indexers can be any indexer that can handle the supported file formats. These include [Blob indexers](search-howto-indexing-azure-blob-storage.md), [OneLake indexers](search-how-to-index-onelake-files.md), [File indexers](search-file-storage-integration.md).
 
-Supported regions for this feature include: East US, West US2, West Europe, North Central US. Be sure to [check this list](search-region-support.md#azure-public-regions) for updates on regional availability.
++ Supported regions for this feature include: East US, West US2, West Europe, North Central US. Be sure to [check this list](search-region-support.md#azure-public-regions) for updates on regional availability.
 
 You can use the Azure portal, REST APIs, or an Azure SDK package to [create a data source](search-howto-indexing-azure-blob-storage.md).
 
 > [!TIP]
-> Use the [health plan PDF](https://github.com/Azure-Samples/azure-search-sample-data/tree/main/health-plan) sample files to try out the Document Layout skill and structure-aware chunking on your own search service.
+> Upload the [health plan PDF](https://github.com/Azure-Samples/azure-search-sample-data/tree/main/health-plan) sample files to your supported data source to try out the Document Layout skill and structure-aware chunking on your own search service. The [Import and vectorize data](search-get-started-portal-import-vectors.md) wizard is an easy code-free approach for trying out this skill.
 
 ## Create an index for one-to-many indexing
 
