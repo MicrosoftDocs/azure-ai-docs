@@ -342,7 +342,7 @@ To add your data source, you first need to create a connection to MongoDB Atlas.
 
 Once you have created a connection or chosen an existing connection, you can enter the information to connect to a specific vector index within this connected account. You need to input the name of your database, collection and vector index. Make sure you have entered the information correctly to successfully build the connection.
 
-:::image type="content" source="../media/use-your-data/mongo-db-atlas-source-index.png" alt-text="A screenshot showing the field mapping options for Mongo DB Atlas" lightbox="../media/use-your-data/mongo-db-atlas-source-index.png":::
+:::image type="content" source="../media/use-your-data/mongo-db-atlas-source-index.png" alt-text="A screenshot showing the field required information for Mongo DB Atlas" lightbox="../media/use-your-data/mongo-db-atlas-source-index.png":::
 
 To use MongoDB Atlas, you'll need an Azure OpenAI ada002 embedding model. This model will be created for you if you don't already have one, which will incur [usage](https://go.microsoft.com/fwlink/?linkid=2264246) on your account.
 
