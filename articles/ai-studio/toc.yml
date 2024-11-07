@@ -325,6 +325,8 @@ items:
           href: how-to/flow-bulk-test-evaluation.md
         - name: Develop an evaluation flow in Prompt flow
           href: how-to/flow-develop-evaluation.md
+      - name: A/B experimentation 
+        href: concepts/ab-experimentation.md
   - name: Deploy and monitor generative AI apps
     items:
     - name: Deploy a flow for real-time inference
