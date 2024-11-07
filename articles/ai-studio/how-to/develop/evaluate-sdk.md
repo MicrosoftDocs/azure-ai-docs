@@ -568,7 +568,7 @@ result = evaluate(
 After local evaluations of your generative AI applications, you may want to trigger remote evaluations for pre-deployment testing and even continuously evaluate your applications for post-deployment monitoring. Azure AI Project SDK offers such capabilities via a Python API and supports all of the features available in local evaluations.
 
 > [!NOTE]
-> Currently remote evaluations are only supported in the same [regions](#region-support) as AI-assisted risk and safety metrics.
+> Remote evaluations are only supported in the same [regions](#region-support) as AI-assisted risk and safety metrics.
 
 ### Requirements for evaluating remotely
 
