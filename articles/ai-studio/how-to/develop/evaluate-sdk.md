@@ -574,7 +574,8 @@ After local evaluations of your generative AI applications, you may want to trig
 ### Prerequisites
 - Azure AI project in `EastUS2` region. If you do not have an existing project, follow the guide [How to create Azure AI project](../create-projects.md?tabs=ai-studio) to create one. 
 - Azure OpenAI Deployment with GPT model supporting `chat completion`, for example `gpt-4`.
-- `Connection String` for Azure AI project to easily create `AIProjectClient` object. You can get the connection string from project overview page.
+- `Connection String` for Azure AI project to easily create `AIProjectClient` object. You can get the **Project connection string** under **Project details** from the project's **Overview** page.
+![Connection string](image.png)
 - Make sure you are first logged into your Azure subscription by running `az login`.
 
 ### Installation Instructions
@@ -588,7 +589,7 @@ After local evaluations of your generative AI applications, you may want to trig
     ```bash
    pip install azure-identity azure-ai-projects azure-ai-ml
     ```
-    Optionally, you can `pip install azure-ai-evaluation` if you want to fetch evaluator id for built-in evaluators directly from the SDK.
+    Optionally, you can `pip install azure-ai-evaluation` if you want a code-first experience to fetch evaluator id for built-in evaluators in code.
 
 Now you can define a client and a deployment which will be used to run your remote evaluations:
 ```python
@@ -612,15 +613,19 @@ project_client = AIProjectClient.from_connection_string(
 
 ### Uploading evaluation data
 We provide two ways to register your data in Azure AI project required for remote evaluations: 
-1. Upload new data from your local directory to the Project, and fetch the dataset id as a result: 
+1. **From SDK**: Upload new data from your local directory to your Azure AI project in the SDK, and fetch the dataset id as a result: 
 ```python
 data_id = project_client.upload_file("./evaluate_test_data.jsonl")
 ```
-2. Given existing datasets in your Project, create the dataset id string as follows:
-- Navigate to Azure AI Studio UI;
-- Go to Data tab under Components in your Project;
-- Locate the dataset name;
-- Construct the dataset id: `/subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/Microsoft.MachineLearningServices/workspaces/<project-name>/data/<dataset-name>/versions/<version-number>`
+**From UI**: Alternatively, you can upload new data or update existing data versions by following the UI walkthrough under the **Data** tab of your Azure AI project.
+![Upload Dataset](image-2.png)
+
+2. Given existing datasets uploaded to your Project: 
+- **From SDK**: if you already know the dataset name you created, construct the dataset id in this format: `/subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/Microsoft.MachineLearningServices/workspaces/<project-name>/data/<dataset-name>/versions/<version-number>`
+
+- **From UI**: If you don't know the dataset name, locate it under the **Data** tab of your Azure AI project and construct the dataset id as in the format above. 
+
+![Select Dataset](image-1.png)
 
 
 ### Specifying evaluators from Evaluator library
@@ -633,12 +638,12 @@ from azure.ai.evaluation import F1ScoreEvaluator, RelevanceEvaluator, ViolenceEv
 print("F1 Score evaluator id:", F1ScoreEvaluator.id)
 ```
 - **From UI**: Follows these steps to fetch evaluator ids after they are registered to your project:
-    - Go to the Azure AI Studio UI;
-    - Select on Evaluation under Tools;
+    - Select on **Evaluation** of your Azure AI project;
     - Select Evaluator library;
+![Navigate to Evaluator library](image-3.png)
     - Select your evaluator(s) of choice by comparing the descriptions;
     - Copy its "Asset ID" which will be your evaluator id, for example, `azureml://registries/azureml/models/Groundedness-Pro-Evaluator/versions/1`.
-
+![Locate Evaluator ID](image-4.png)
 
 #### Specifying custom evaluators 
 
