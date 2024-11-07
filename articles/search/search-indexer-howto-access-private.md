@@ -65,6 +65,8 @@ When evaluating shared private links for your scenario, remember these constrain
 
 + Indexer execution must use the private execution environment that's specific to your search service. Private endpoint connections aren't supported from the multitenant content processing environment. The configuration setting for this requirement is covered in this article.
 
++ Review shared private link [resource limits for each tier](search-limits-quotas-capacity.md#shared-private-link-resource-limits).
+
 ## Prerequisites
 
 + Azure AI Search tier and region requirements, by workload:
