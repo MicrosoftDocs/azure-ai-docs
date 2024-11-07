@@ -40,8 +40,6 @@ Before following the steps in this article, make sure you have the following pre
 
 - An Azure subscription with a valid payment method. Free or trial Azure subscriptions aren't supported for this scenario. If you don't have an Azure subscription, create a [paid Azure account](https://azure.microsoft.com/pricing/purchase-options/pay-as-you-go) to begin.
 
-- An [Azure AI Studio hub](create-azure-ai-resource.md).
-
 - An [Azure AI Studio project](create-projects.md).
 
 - A prompt flow ready for deployment. If you don't have one, see [Develop a prompt flow](flow-develop.md).
@@ -111,8 +109,8 @@ To set up monitoring for your prompt flow application, you first have to deploy 
 In this section, you learn to deploy your prompt flow with inferencing data collection enabled. For detailed information on deploying your prompt flow, see [Deploy a flow for real-time inference](flow-deploy.md). 
 
 1. Sign in to [Azure AI Studio](https://ai.azure.com).
-1. Go to your Azure AI Studio project.
-1. From the left navigation bar, go to **Tools** > **Prompt flow**.
+1. If you're not already in your project, select it.
+1. Select **Prompt flow** from the left navigation bar.
 1. Select the prompt flow that you created previously.
 
     > [!NOTE]
@@ -151,7 +149,7 @@ In this section, you learn how to configure monitoring for your deployed prompt 
 
 # [Studio](#tab/azure-studio)
 
-1. From the left navigation bar, go to **Components** > **Deployments**.
+1. From the left navigation bar, go to **My assets** > **Models + endpoints**.
 1. Select the prompt flow deployment that you created.
 1. Select **Enable** within the **Enable generation quality monitoring** box. 
 
