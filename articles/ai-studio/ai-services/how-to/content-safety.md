@@ -25,9 +25,9 @@ Azure AI Studio includes a Content Safety **try it out** page that lets you use 
 Follow these steps to use the Content Safety **try it out** page: 
 
 1. Go to [AI Studio](https://ai.azure.com/) and navigate to your project/hub. Then select the **Safety+ Security** tab on the left nav and select the **Try it out** tab.
-    tbd image
 1. On the **Try it out** page, you can experiment with various content safety features such as text and image content, using adjustable thresholds to filter for inappropriate or harmful content.
-    :::image type="content" source="../../media/content-safety/try-it-out.png" alt-text="Screenshot of the try it out page for content safety.":::
+
+:::image type="content" source="../../media/content-safety/try-it-out.png" alt-text="Screenshot of the try it out page for content safety.":::
     
 ## Analyze text
 

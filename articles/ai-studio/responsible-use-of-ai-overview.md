@@ -76,8 +76,6 @@ Mitigating harms presented by large language models such as the Azure OpenAI mod
 
 :::image type="content" source="media/content-safety/mitigation-layers.png" alt-text="Diagram of mitigation layers":::
 
-TBD
-
 ### System message and grounding layer 
 
 System message (otherwise known as metaprompt) design and proper data grounding are at the heart of every generative AI application. They provide an application's unique differentiation and are also a key component in reducing errors and mitigating risks. At Microsoft, we find [retrieval augmented generation (RAG)](/azure/ai-studio/concepts/retrieval-augmented-generation) to be an effective and flexible architecture. With RAG, you enable your application to retrieve relevant knowledge from selected data and incorporate it into your system message to the model. In this pattern, rather than using the model to store information, which can change over time and based on context, the model functions as a reasoning engine over the data provided to it during the query. This improves the freshness, accuracy, and relevancy of inputs and outputs. In other words, RAG can ground your model in relevant data for more relevant results. 
