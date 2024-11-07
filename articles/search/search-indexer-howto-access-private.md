@@ -77,7 +77,7 @@ When evaluating shared private links for your scenario, remember these constrain
   |----------|-------------------|---------------------|---------------------|
   | Indexers without skillsets | Basic and higher | None | None |
   | Skillsets with embedding skills ([integrated vectorization](vector-search-integrated-vectorization.md)) | Basic and higher | [High capacity regions](search-limits-quotas-capacity.md#partition-storage-gb) | [After April 3, 2024](vector-search-index-size.md#how-to-check-service-creation-date) |
-  | Skillsets using [built-in](cognitive-search-predefined-skills.md) or custom skills | Standard 2 (S2) and higher | None | [After April 3, 2024](vector-search-index-size.md#how-to-check-service-creation-date) |
+  | Skillsets using other [built-in](cognitive-search-predefined-skills.md) or custom skills | Standard 2 (S2) and higher | None | [After April 3, 2024](vector-search-index-size.md#how-to-check-service-creation-date) |
 
 + Permissions on both Azure AI Search and the Azure resource:
 
@@ -124,7 +124,7 @@ You can create a shared private link for the following resources.
 
 <sup>7</sup> Shared private link for Azure OpenAI is only supported in public cloud. Other cloud offerings such as [Microsoft Azure Government](https://azure.microsoft.com/explore/global-infrastructure/government/) don't have support for shared private links for `openai_account` Group ID.
 
-<sup>8</sup> Shared private links are now supported (as of November 2024) for connections to Azure AI multiservice accounts. Azure AI Search connects to Azure AI multiservice for [billing purposes](cognitive-search-attach-cognitive-services.md). These connection can now be private through a shared private link.
+<sup>8</sup> Shared private links are now supported (as of November 2024) for connections to Azure AI multiservice accounts. Azure AI Search connects to Azure AI multiservice for [billing purposes](cognitive-search-attach-cognitive-services.md). These connections can now be private through a shared private link. 
 
 ## 1 - Create a shared private link
 

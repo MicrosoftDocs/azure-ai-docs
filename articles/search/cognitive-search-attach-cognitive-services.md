@@ -29,6 +29,13 @@ You can use a key on the connection, or implement a keyless approach that's curr
 > [!TIP]
 > Azure provides infrastructure for you to monitor billing and budgets. For more information about monitoring Azure AI services, see [Plan and manage costs for Azure AI services](/azure/ai-services/plan-manage-costs).
 
+## Prerequisites
+
++ Connectivity over a public endpoint, unless your search service meets the creation date, tier, and region requirements for private connections to an Azure AI multi-service account.
+
+> [!NOTE]
+> If your Azure AI resource is configured to use a private endpoint, Azure AI Search can connect [using a shared private link](search-indexer-howto-access-private.md) if the search service was created after April 3, 2024 and is in a region that provides higher capacity computing power and is on a supported tier. For more information, see the requirements for using shared private links.
+
 ## Bill through a keyless connection
 
 [!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
@@ -262,10 +269,14 @@ Keyless and key-based connections are used for billing, but not for enrichment o
 
 Indexers can be configured to run in a [private execution environment](search-howto-run-reset-indexers.md#indexer-execution) for dedicated processing using just the search nodes of your own search service. Even if you're using private execution environment, Azure AI Search still uses its internally provisioned Azure AI multiservice resource to perform all skill enrichments.
 
-Currently, billing for [built-in skills](cognitive-search-predefined-skills.md) requires a public connection from Azure AI Search to another Azure AI service. Disabling public network access breaks billing. If disabling public networks is a requirement, you can configure a [Custom Web API skill](cognitive-search-custom-skill-interface.md) implemented with an [Azure Function](cognitive-search-create-custom-skill-example.md) that supports [private endpoints](/azure/azure-functions/functions-create-vnet) and add the [Azure AI services resource to the same VNET](/azure/ai-services/cognitive-services-virtual-networks). In this way, you can call Azure AI services resource directly from the custom skill using private endpoints.
-
 > [!NOTE]
 > Some built-in skills are based on non-regional Azure AI services (for example, the [Text Translation Skill](cognitive-search-skill-text-translation.md)). Using a non-regional skill means that your request might be serviced in a region other than the Azure AI Search region. For more information on non-regional services, see the [Azure AI services product by region](https://aka.ms/allinoneregioninfo) page.
+
+### Public connection requirements
+
+Depending on when your search service was created, and its tier and region, billing for [built-in skills](cognitive-search-predefined-skills.md) can require a public connection from Azure AI Search to Azure AI multi-service. Disabling public network access breaks billing in some scenarios. Review the requirements for [connections through a shared private link](search-indexer-howto-access-private.md) to determine whether your search service requires a public connection.
+
+If you can't use the public network, you can configure a [Custom Web API skill](cognitive-search-custom-skill-interface.md) implemented with an [Azure Function](cognitive-search-create-custom-skill-example.md) that supports [private endpoints](/azure/azure-functions/functions-create-vnet) and add the [Azure AI services resource to the same VNET](/azure/ai-services/cognitive-services-virtual-networks). In this way, you can call Azure AI services resource directly from the custom skill using private endpoints.
 
 ### Key requirements special cases
 
