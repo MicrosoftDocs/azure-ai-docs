@@ -40,7 +40,7 @@ Once you run an evaluation, you can then make improvements to your logic, like i
 
 Use the following evaluation dataset, which contains example questions and expected answers (truth).
 
-1. Create a file called **eval_dataset.jsonl** in your **assets** folder.
+1. Create a file called **chat_eval_data.jsonl** in your **assets** folder.
 1. Paste this dataset into the file:
 
     :::code language="jsonl" source="~/azureai-samples-nov2024/scenarios/rag/custom-rag-app/assets/chat_eval_data.jsonl":::
