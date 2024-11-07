@@ -29,7 +29,7 @@ In the  field of AI application development, A/B experimentation has emerged as 
 
 A/B experimentation and offline evaluation are both essential components in the development of AI applications, each serving unique purposes that complement each other.
 
-Offline evaluation involves testing AI models using test datasets to measure their performance on various metrics such as fluency and coherence. After selecting a model in the GitHub Model marketplace, offline preproduction evaluation is crucial for initial model validation during integration testing, allowing you to identify potential issues and make improvements before deploying the model or application to production.
+Offline evaluation involves testing AI models using test datasets to measure their performance on various metrics such as fluency and coherence. After selecting a model in the Azure AI Model Catalog or GitHub Model marketplace, offline preproduction evaluation is crucial for initial model validation during integration testing, allowing you to identify potential issues and make improvements before deploying the model or application to production.
 
 However, offline evaluation has its limitations. It can't fully capture the complex interactions that occur in real-world scenarios. This is where A/B experimentation comes into play. By deploying different versions of the AI model or UX features to live users, A/B experimentation provides insights into how the model and application performs in real-world conditions. This helps you understand user behavior, identify unforeseen issues, and measure the impact of changes on model evaluation metrics, operational metrics (for example, latency) and business metrics (for example, account sign-ups, conversions, etc.).
 
@@ -47,14 +47,16 @@ We're significantly simplifying the evaluation and A/B experimentation process w
 > [!IMPORTANT]
 > Online experimentation is available through a limited access preview. [Request access](https://forms.office.com/pages/responsepage.aspx?id=v4j5cvGGr0GRqy180BHbR7uGybsCdrhBm9mIL2qQ6XNUNE9OREpVOTBIWFpKQ0dGOTRZWTNaWUZXSS4u&route=shorturl) to learn more.
 
-## Additional A/B experimentation solutions available in the Azure Marketplace
+## Azure AI Partners
 
 
 You're also welcome to use your own A/B experimentation provider to run experiments on your AI applications. There are several solutions to choose from available in the Azure Marketplace:
 
 ### Statsig
 
-[Statsig](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/statsiginc1610354169520.statsig?tab=Overview) is an Azure AI partner and an experimentation platform for Product, Engineering, and Data Science teams that connects the features you build to the business metrics you care about. Statsig powers automatic A/B tests and experiments for web and mobile applications, giving teams a comprehensive view of which features are driving impact (and which aren't). To simplify experimentation with Azure AI, Statsig has published a wrapper SDK built on top of the Azure AI SDK that makes it easier for Statsig customers to run experiments.
+[Statsig](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/statsiginc1610354169520.statsig?tab=Overview) is experimentation platform for Product, Engineering, and Data Science teams that connects the features you build to the business metrics you care about. Statsig powers automatic A/B tests and experiments for web and mobile applications, giving teams a comprehensive view of which features are driving impact (and which aren't). To simplify experimentation with Azure AI, Statsig has published SDKs built on top of the Azure AI SDK and Azure AI Inference API that makes it easier for Statsig customers to run experiments.
+
+## Other A/B Experimentation Providers
 
 ### Split.io
 [Split.io](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/splitio1614896174525.split_azure?tab=Overview) enables you to set up feature flags and safely deploy to production, controlling who sees which features and when. You can also connect every flag to contextual data, so you know if your features are making things better or worse, and act without hesitation. With Split's Microsoft integrations, we're helping development teams manage feature flags, monitor release performance, experiment, and surface data to make ongoing, data-driven decisions.
