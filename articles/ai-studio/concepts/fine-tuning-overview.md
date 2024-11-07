@@ -31,15 +31,17 @@ When you're deciding whether or not fine-tuning is the right solution for your u
 - [Prompt engineering](../../ai-services/openai/concepts/prompt-engineering.md) is a technique that involves designing prompts for natural language processing models. This process improves accuracy and relevancy in responses, to optimize the performance of the model.
 - [Retrieval-augmented generation (RAG)](../concepts/retrieval-augmented-generation.md) improves LLM performance by retrieving data from external sources and incorporating it into a prompt. RAG can help businesses achieve customized solutions while maintaining data relevance and optimizing costs.
 
-Fine-tuning is an advanced technique that requires expertise to use appropriately. The following questions can help you evaluate whether you're ready for fine-tuning, and how well you thought through the process. You can use these questions to guide your next steps or to identify other approaches that might be more appropriate.
+Fine-tuning is a great way to get higher quality results while reducing latency. The following questions can help you better understand why fine-tuning and evaluate whether you're ready for fine-tuning through the process. You can use these questions to guide your next steps.
 
 ### Why do you want to fine-tune a model?
 
-Finetuning can be useful if you have a specific use case for a pre-trained LLM. For example, if you have a generic pre-trained model but you would like to use the model for more specific topics. Before you begin Finetuning a model you can consider if you've identified shortcomings when using a base model. These shortcomings can include: an inconsistent performance on edge cases, inability to fit enough shot prompts in the context window to steer the model, or high latency. 
+Fine-tuning can be useful if you have a specific use case for a pre-trained LLM. For example, if you have a generic pre-trained model but you would like to use the model for more specific topics. Before you begin Finetuning a model you can consider if you've identified shortcomings when using a base model. These shortcomings can include: an inconsistent performance on edge cases, inability to fit enough shot prompts in the context window to steer the model, or high latency. 
+
+Before you begin fine-tuning a model you can consider if you've identified shortcomings when using a base model. These shortcomings can include: an inconsistent performance on edge cases, inability to fit enough prompts in the context window to steer the model, or high latency. Base models are already pre-trained on vast amounts of data, but most times you will add instructions and examples to the prompt to get the quality responses that you're looking for. This process of "few-shot learning" can be improved with fine-tuning. Fine-tuning allows you to train a model with many more examples. You can tailor your examples to meet your specific use-case. This can help you reduce the number of tokens in the prompt leading to potential cost savings and requests with lower latency.
 
 Use cases for fine-tuning a model can be:
 - Steering the model to output content in a specific and customized style, tone, or format.
-- Ddjusting the complexity and length of the output.
+- Adjusting the complexity and length of the output.
 
 If you identify cost as your primary motivator, proceed with caution. Fine-tuning might reduce costs for certain use cases by shortening prompts or allowing you to use a smaller model. But there's a higher upfront cost to training, and you have to pay for hosting your own custom model. For more information on fine-tuning costs in Azure OpenAI Service, refer to the [pricing page](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/).
 
