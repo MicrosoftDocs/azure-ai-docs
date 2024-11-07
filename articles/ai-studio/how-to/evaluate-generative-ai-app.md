@@ -41,7 +41,7 @@ From the collapsible left menu, select **Evaluation** > **+ New evaluation**.
 
 From the collapsible left menu, select **Model catalog** > go to specific model > navigate to the benchmark tab > Try with your own data. This opens the model evaluation panel for you to create an evaluation run against your selected model.  
 
-:::image type="content" source="../media/evaluations/evaluate/try-with-your-own-data.md" alt-text="Screenshot of the try with your own data button from the model catalog page. " lightbox="../media/evaluations/evaluate/try-with-your-own-data.md":::
+:::image type="content" source="../media/evaluations/evaluate/try-with-your-own-data.png" alt-text="Screenshot of the try with your own data button from the model catalog page. " lightbox="../media/evaluations/evaluate/try-with-your-own-data.png":::
 
 ### From the flow page
 
