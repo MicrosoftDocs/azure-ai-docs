@@ -60,14 +60,14 @@ When you are only working with Azure OpenAI, working outside a project allow you
 This table highlights the differences between working with Azure OpenAI outside of a project or in a project in Azure AI Studio:
 
 
-|  | **Azure OpenAI Service without a project** | **Azure AI Studio with a project** |
+|  | **Azure OpenAI Service without a project** | **Azure OpenAI Service with a project** |
 |--|--|--|
 | **Purpose** | Primarily focused on providing access to Azure OpenAI's models and functionalities. Allows users to deploy, fine-tune, and manage Azure OpenAI models. |  A broader platform that focuses on end-to-end tooling to build generative AI applications.  Integrates multiple AI services and models from various providers, including Azure OpenAI. Designed to support a wide range of AI functionalities and use cases. |
 | **Features** | Includes a model catalog, fine-tuning capabilities, and deployment options. Access all Azure OpenAI models and manage them within this resource. | Offers models from providers like Meta, Microsoft, Cohere, Mistral, and NVIDIA. Provides a comprehensive suite of tools for building, testing, and deploying AI solutions. Powers AI capabilities like translation, summarization, conversation, document generation, facial recognition, and more. |
 | **Usage** | Ideal when you need to work specifically with Azure OpenAI models and use their capabilities for various applications. | Provides enterprise-grade features like access management and private networks.  Suitable when you want to explore and use a diverse set of AI services and models. Includes a unified interface for managing different AI resources and projects. Create an Azure AI Studio project to use AI services or models from other model providers. |
 
 > [!NOTE]
-> When you need features specific to Azure OpenAI, such as batch jobs and vector stores, work outside of a project.
+> When you need features specific to Azure OpenAI, such as batch jobs, evals, stored-completions, and vector stores, work outside of a project.
 
 ### Navigate to/from projects
 
