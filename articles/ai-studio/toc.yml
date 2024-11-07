@@ -381,8 +381,10 @@ items:
     href: /security/benchmark/azure/baselines/azure-ai-studio-security-baseline
 - name: Responsible AI
   items:
-  - name: Overview
+  - name: Responsible AI overview
     href: responsible-use-of-ai-overview.md
+  - name: Transparency notes for Azure AI Services
+    href: ../ai-services/responsible-use-of-ai-overview.md?context=/azure/ai-studio/context/context
   - name: Limited Access features
     href: ../ai-services/cognitive-services-limited-access.md?context=/azure/ai-studio/context/context
   - name: System message templates
