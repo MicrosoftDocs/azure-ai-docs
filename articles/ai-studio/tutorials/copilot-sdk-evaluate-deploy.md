@@ -43,7 +43,7 @@ Use the following evaluation dataset, which contains example questions and expec
 1. Create a file called **eval_dataset.jsonl** in your **assets** folder.
 1. Paste this dataset into the file:
 
-    :::code language="jsonl" source="~/azureai-samples-nov2024/scenarios/rag/custom-rag-app/assets/echat_eval_data.jsonl":::
+    :::code language="jsonl" source="~/azureai-samples-nov2024/scenarios/rag/custom-rag-app/assets/chat_eval_data.jsonl":::
 
 ### Evaluate with Azure AI evaluators
 
@@ -63,7 +63,7 @@ The script also logs the evaluation results to the cloud project so that you can
 1. Create a file called **evaluate.py** in your **rag-tutorial** folder.
 1. Add the following code. Update the `dataset_path` and `evaluation_name` to fit your use case.
 
-    :::code language="python" source=""~/azureai-samples-nov2024/scenarios/rag/custom-rag-app/evaluate.py":::
+    :::code language="python" source="~/azureai-samples-nov2024/scenarios/rag/custom-rag-app/evaluate.py":::
 
 The main function at the end allows you to view the evaluation result locally, and gives you a link to the evaluation results in AI Studio.
 
@@ -71,7 +71,7 @@ The main function at the end allows you to view the evaluation result locally, a
 
 The evaluation script uses a helper script to define the target function and run the evaluation. Create a file called **config.py** in your main folder. Add the following code:
 
-:::code language="python" source=""~/azureai-samples-nov2024/scenarios/rag/custom-rag-app/config.py":::
+:::code language="python" source="~/azureai-samples-nov2024/scenarios/rag/custom-rag-app/config.py":::
 
 ### Run the evaluation script
 
