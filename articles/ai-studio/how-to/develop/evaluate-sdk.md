@@ -175,9 +175,9 @@ Here's an example of the result:
 ```
 
 > [!NOTE]
-> We will phase out th key with "gpt_" prefixes (`groundedness.gpt_groundedness`) in all outputs in the future as we plan to support non-GPT evaluator models. We strongly recommend users to migrate their code to use the key without prefixes (i.e. `groundedness.groundedness`). 
+> We strongly recommend users to migrate their code to use the key without prefixes (for example, `groundedness.groundedness`) to allow your code to support more evaluator models.. 
 > All evaluators except for `SimilarityEvaluator` come with a reason field. They employ techniques including chain-of-thought reasoning to generate an explanation for the score. Therefore they will consume more token usage in generation as a result of improved evaluation quality. Specifically, `max_token` for evaluator generation has been set to 800 for all AI-assisted evaluators (and 1600 for `RetrievalEvaluator` to accommodate for longer inputs.) 
-> `GroundednessEvaluator` (open-source, prompt-based) supports `query` as an optional input in single-turn evaluation. If `query` is provided, their optimal scenario will be RAG QA; and otherwise, the optimal scenario will be RAG summarization. This is different from `GroundednessProEvaluator` (powered by Azure Content Safety) which requires `query`.
+> `GroundednessEvaluator` (open-source, prompt-based) supports `query` as an optional input. If `query` is provided, their optimal scenario will be Retrieval Augmented Generation Question and Answering (RAG QA); and otherwise, the optimal scenario will be summarization. This is different from `GroundednessProEvaluator` (powered by Azure Content Safety) which requires `query`.
 
 
 ### Risk and safety evaluators
@@ -626,7 +626,7 @@ data_id = project_client.upload_file("./evaluate_test_data.jsonl")
 
 
 #### Evaluator library
-We provide a list of built-in evaluators in the Evaluator library of your Azure AI project. We provide two ways to specify evaluators:
+We provide a list of built-in evaluators registered in the Evaluator library of your Azure AI project. We provide two ways to specify registered evaluators:
 
 ##### Specifying built-in evaluators
 - **From SDK**: Use built-in evaluator `id` property supported by `azure-ai-evaluation` SDK:
@@ -634,15 +634,15 @@ We provide a list of built-in evaluators in the Evaluator library of your Azure 
 from azure.ai.evaluation import F1ScoreEvaluator, RelevanceEvaluator, ViolenceEvaluator
 print("F1 Score evaluator id:", F1ScoreEvaluator.id)
 ```
-- **From UI**: Follows these steps to fetch evaluator ids:
+- **From UI**: Follows these steps to fetch evaluator ids after they are registered to your project:
     - Go to the Azure AI Studio UI;
-    - Click on Evaluation under Tools;
+    - Select on Evaluation under Tools;
     - Select Evaluator library;
     - Select your evaluator(s) of choice by comparing the descriptions;
     - Copy its "Asset ID" which will be your evaluator id, for example, `azureml://registries/azureml/models/Groundedness-Pro-Evaluator/versions/1`.
 
 
-##### Specifying custom evaluators 
+##### Registering custom evaluators 
 
 - For code-based custom evaluators, register it to your AI Studio project and fetch the evaluator id with the following:
 
@@ -822,16 +822,6 @@ evaluation = client.evaluations.create(
     }
 )
 ```
-
-### Common Issues:
-
-1. Long queuing times or "Serverless Job has failed as there is no cores quota available for VM" in the run log.
- 
-If you're seeing long queuing times for serverless jobs due to quota, you can 
-
-- Increase core quota for the VM family shown in the error message below; and/or
-- Resubmit serverless job using a VM Size for which there is sufficient quota in the region. Refer to [How to set the VM size for serverless jobs](https://learn.microsoft.com/azure/machine-learning/how-to-use-serverless-compute?view=azureml-api-2&tabs=python#configure-properties-for-command-jobs) for instructions.
-
 
 
 ## Related content
