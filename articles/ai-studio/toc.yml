@@ -12,6 +12,8 @@ items:
     href: azure-openai-in-ai-studio.md
   - name: Management center
     href: concepts/management-center.md
+  - name: Overview of SDKs
+    href: how-to/develop/sdk-overview.md
   - name: Region support
     href: reference/region-support.md
   - name: Azure AI FAQ
@@ -283,8 +285,6 @@ items:
           href: how-to/prompt-flow-troubleshoot.md
     - name: Develop generative AI apps using code
       items:
-      - name: Overview of SDKs
-        href: how-to/develop/sdk-overview.md
         displayName: code
       - name: Work with AI Studio projects in VS Code
         href: how-to/develop/vscode.md
