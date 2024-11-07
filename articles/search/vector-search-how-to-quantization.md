@@ -28,7 +28,7 @@ To use built-in quantization, follow these steps:
 
 ## Prerequisites
 
-- [Vector fields in a search index](vector-search-how-to-create-index.md) with a `vectorSearch` configuration, using the HNSW algorithm and a new vector profile.
+- [Vector fields in a search index](vector-search-how-to-create-index.md) with a `vectorSearch` configuration, using the Hierarchical Navigable Small Worlds (HNSW) algorithm and a new vector profile.
 
 ## Supported quantization techniques
 
@@ -152,7 +152,7 @@ POST https://[servicename].search.windows.net/indexes?api-version=2024-11-01-pre
 
 - `rescoringOptions` are a collection of properties used to offset lossy compression by rescoring query results using the original full-precision vectors that exist prior to quantization. For rescoring to work, you must have the vector instance that provides this content. Setting `rescoreStorageMethod` to `discardOriginals` prevents you from using `enableRescoring` or `defaultOversampling`. For more information about vector storage, see [Eliminate optional vector instances from storage](vector-search-how-to-storage-options.md).
 
-- `"enableRescoring": "preserveOriginals"` is the API equivalent of `"rerankWithOriginalVectors": true`. Rescoring vector search results with the original full-precision vectors can result in adjustments to search score and rankings, promoting the more relevant matches as determined by the rescoring step.
+- `"rescoreStorageMethod": "preserveOriginals"` is the API equivalent of `"rerankWithOriginalVectors": true`. Rescoring vector search results with the original full-precision vectors can result in adjustments to search score and rankings, promoting the more relevant matches as determined by the rescoring step.
 
 - `defaultOversampling` considers a broader set of potential results to offset the reduction in information from quantization. The formula for potential results consists of the `k` in the query, with an oversampling multiplier. For example, if the query specifies a `k` of 5, and oversampling is 20, then the query effectively requests 100 documents for use in reranking, using the original uncompressed vector for that purpose. Only the top `k` reranked results are returned. This property is optional. Default is 4.
 
@@ -162,9 +162,9 @@ POST https://[servicename].search.windows.net/indexes?api-version=2024-11-01-pre
 
 ---
 
-## Add the HNSW algorithm
+## Add the vector search algorithm
 
-Make sure your index has the Hierarchical Navigable Small Worlds (HNSW) algorithm. Built-in quantization isn't supported with exhaustive KNN.
+You can use HNSW algorithm or exhaustive KNN in the 2024-11-01-preview REST API. For the stable version, use HNSW only.
 
    ```json
    "vectorSearch": {
@@ -243,61 +243,44 @@ It's particularly effective for embeddings with dimensions greater than 1024. Fo
 
 ## Example: vector compression techniques
 
-Here's Python code that demonstrates quantization, [narrow data types](vector-search-how-to-assign-narrow-data-types.md), and use of the [stored property](vector-search-how-to-storage-options.md). 
+[Code sample: Vector quantization and storage options using Python](https://github.com/Azure/azure-search-vector-samples/blob/main/demo-python/code/vector-quantization-and-storage/README.md) provides Python code that demonstrates quantization, [narrow data types](vector-search-how-to-assign-narrow-data-types.md), and use of the [stored property](vector-search-how-to-storage-options.md).
 
-This code is borrowed from [Code sample: Vector quantization and storage options using Python](https://github.com/Azure/azure-search-vector-samples/blob/main/demo-python/code/vector-quantization-and-storage/README.md).
+This code creates and compares storage and vector index size for each vector storage optimization option. From these results, you can see that quantization reduces vector size the most, but the greatest storage savings are achieved if you use multiple options.
 
-This code creates and compares storage and vector index size for each option.
-
-```bash
-****************************************
-Index Name: compressiontest-baseline
-Storage Size: 21.3613MB
-Vector Size: 4.8277MB
-****************************************
-Index Name: compressiontest-compression
-Storage Size: 17.7604MB
-Vector Size: 1.2242MB
-****************************************
-Index Name: compressiontest-narrow
-Storage Size: 16.5567MB
-Vector Size: 2.4254MB
-****************************************
-Index Name: compressiontest-no-stored
-Storage Size: 10.9224MB
-Vector Size: 4.8277MB
-****************************************
-Index Name: compressiontest-all-options
-Storage Size: 4.9192MB
-Vector Size: 1.2242MB
-```
+| Index name | Storage size | Vector size |
+|------------|--------------|-------------|
+| compressiontest-baseline | 21.3613MB | 4.8277MB |
+| compressiontest-scalar-compression | 17.7604MB | 1.2242MB |
+| compressiontest-narrow | 16.5567MB | 2.4254MB |
+| compressiontest-no-stored | 10.9224MB | 4.8277MB  |
+| compressiontest-all-options | 4.9192MB | 1.2242MB |
 
 Search APIs report storage and vector size at the index level, so indexes and not fields must be the basis of comparison. Use the [GET Index Statistics](/rest/api/searchservice/indexes/get-statistics) or an equivalent API in the Azure SDKs to obtain vector size.
 
 ## Query a quantized vector field using oversampling
 
-Query syntax for a compressed or quantized vector field is the same as for noncompressed vector fields, unless you want to override parameters associated with oversampling or reranking with original vectors.
+Query syntax for a compressed or quantized vector field is the same as for noncompressed vector fields, unless you want to override parameters associated with oversampling or rescoring with original vectors.
 
-Recall that the [vector compression definition](vector-search-how-to-quantization.md) in the index has settings for `rerankWithOriginalVectors` and `defaultOversampling` to mitigate the effects of a smaller vector index. You can override the default values to vary the behavior at query time. For example, if `defaultOversampling` is 10.0, you can change it to something else in the query request.
+### [**2024-07-01**](#tab/query-2024-07-01)
+
+Recall that the [vector compression definition](vector-search-how-to-quantization.md) in the index has settings for `rerankWithOriginalVectors` and `defaultOversampling` to mitigate the effects of lossy compression. You can override the default values to vary the behavior at query time. For example, if `defaultOversampling` is 10.0, you can change it to something else in the query request.
 
 You can set the oversampling parameter even if the index doesn't explicitly have a `rerankWithOriginalVectors` or `defaultOversampling` definition. Providing `oversampling` at query time overrides the index settings for that query and executes the query with an effective `rerankWithOriginalVectors` as true.
 
 ```http
-POST https://[service-name].search.windows.net/indexes/demo-index/docs/search?api-version=2024-07-01   
-  Content-Type: application/json   
-  api-key: [admin key]   
+POST https://[service-name].search.windows.net/indexes/demo-index/docs/search?api-version=2024-07-01
 
-    {    
-       "vectorQueries": [
-            {    
-                "kind": "vector",    
-                "vector": [8, 2, 3, 4, 3, 5, 2, 1],    
-                "fields": "myvector",
-                "oversampling": 12.0,
-                "k": 5   
-            }
-      ]    
-    }
+{    
+    "vectorQueries": [
+        {    
+            "kind": "vector",    
+            "vector": [8, 2, 3, 4, 3, 5, 2, 1],    
+            "fields": "myvector",
+            "oversampling": 12.0,
+            "k": 5   
+        }
+  ]    
+}
 ```
 
 **Key points**:
@@ -305,6 +288,36 @@ POST https://[service-name].search.windows.net/indexes/demo-index/docs/search?ap
 - Applies to vector fields that undergo vector compression, per the vector profile assignment.
 
 - Overrides the `defaultOversampling` value or introduces oversampling at query time, even if the index's compression configuration didn't specify oversampling or reranking options.
+
+### [**2024-11-01-preview**](#tab/query-2024-11-01-preview)
+
+Recall that the [vector compression definition](vector-search-how-to-quantization.md) in the index has settings for `enableRescoring`, `rescoreStorageMethod`, and `defaultOversampling` to mitigate the effects of lossy compression. You can override the default values to vary the behavior at query time. For example, if `defaultOversampling` is 10.0, you can change it to something else in the query request.
+
+You can set the oversampling parameter even if the index doesn't explicitly have rescoring options or `defaultOversampling` definition. Providing `oversampling` at query time overrides the index settings for that query and executes the query with an effective `enableRescoring` as true.
+
+```http
+POST https://[service-name].search.windows.net/indexes/demo-index/docs/search?api-version=2024-11-01-preview
+
+{    
+    "vectorQueries": [
+        {    
+            "kind": "vector",    
+            "vector": [8, 2, 3, 4, 3, 5, 2, 1],    
+            "fields": "myvector",
+            "oversampling": 12.0,
+            "k": 5   
+        }
+  ]    
+}
+```
+
+**Key points**:
+
+- Applies to vector fields that undergo vector compression, per the vector profile assignment.
+
+- Overrides the `defaultOversampling` value or introduces oversampling at query time, even if the index's compression configuration didn't specify oversampling or reranking options.
+
+---
 
 <!-- 
 RESCORE WITH ORIGINAL VECTORS -- NEEDS AN H2 or H3

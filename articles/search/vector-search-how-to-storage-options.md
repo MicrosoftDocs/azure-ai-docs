@@ -16,19 +16,19 @@ Azure AI Search stores multiple copies of vector fields that are used in specifi
 
 ## Prerequisites
 
-- [Vvector fields](vector-search-how-to-create-index.md) in a search index.
+- [Vector fields in a search index](vector-search-how-to-create-index.md) with a `vectorSearch` configuration, using the Hierarchical Navigable Small Worlds (HNSW) algorithm and a new vector profile.
 
 ## How vector fields are stored
 
-For every vector field, there are three copies of vectors:
+For every vector field, there are three copies of the vectors:
 
 | Instance | Usage |
 |----------|-------|
-| source vectors (in JSON) as received from an embedding model or push request to the index | Used if you want "retrievable" vectors returned in the query response. |
-| original full-precision vectors | Used if you want to rescore the query results obtained over compressed vectors. Applies only to vector fields subject to [scalar or binary quantization](vector-search-how-to-quantization.md). |
-| vectors and graph information created by the HNSW library | Used for query execution. |
+| Source vectors (in JSON) as received from an embedding model or push request to the index | Used for incremental data refresh, and if you want "retrievable" vectors returned in the query response. |
+| Original full-precision vectors | Used for scoring if vectors are uncompressed, or optional rescoring if query results obtained over compressed vectors. Rescoring applies only if vector fields undergo [scalar or binary quantization](vector-search-how-to-quantization.md). |
+| Vectors in the [HNSW graph for Approximate Nearest Neighbors (ANN) search](vector-search-overview.md) | Used for query execution. |
 
-The last instance (vectors and graph) is required for vector query execution. The first two instances can be discarded if you don't need them. Compression techniques like scalar or binary quantization are applied to the vectors used during query execution.
+The last instance (vectors and graph) is required for ANN vector query execution. The first two instances can be discarded if you don't need them. Compression techniques like scalar or binary quantization are applied to the vectors used during query execution.
 
 ## Set the `stored` property
 
