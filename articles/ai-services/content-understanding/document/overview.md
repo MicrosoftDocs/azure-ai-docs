@@ -25,7 +25,7 @@ Content Understanding is a cloud-based [Azure AI service](../../what-are-ai-serv
 By using Content Understanding, organizations can streamline data collection and processing, driving operational efficiency, data-driven decision-making, and innovation. With customizable APIs, Content Understanding allows for easy extraction of fields or content from documents and forms, adaptable to specific business needs.
 
 
-## Common use cases
+## Business use cases
 
 Document Extraction can process complex documents with various formats, templates, and unstructured data:
 
@@ -38,10 +38,10 @@ Document Extraction can process complex documents with various formats, template
 * **Expense management**. Receipts and invoices from various retailers and businesses need to be parsed to validate the expenses. Document field extraction can extract expenses across different formats and documents with varying templates.
 
 
-:::image type="content" source="../media/document/extraction-overview.png" alt-text="Screenshot of document extraction flow.":::
-
 
 ## Document extraction capabilities
+
+:::image type="content" source="../media/document/extraction-overview.png" alt-text="Screenshot of document extraction flow.":::
 
 Content extraction enables the extraction of both printed and handwritten text from forms and documents, delivering business-ready content that is immediately actionable, usable, or adaptable for further development within your organization.
 
@@ -65,7 +65,7 @@ You can train field extraction model with a single document or can add more samp
 Note: The layout add-on capability must be enabled by default for Field extraction
 
 
-## Benefits of Content Understanding document extraction
+## Key Benefits
 
 * **Accuracy and Reliability:** Document extraction AI models are built to deliver accurate data extraction, reducing errors and improving efficiency.
 
@@ -76,14 +76,18 @@ Note: The layout add-on capability must be enabled by default for Field extracti
 * **Grounded results:** Localize the data extracted in the documents, ensuring the response is generated from the content, to enable human review workflows.
 
 * **High confidence scores:** Maximize efficiency and minimize costs in automation workflows, using confidence scores.
+  
 
 ## Input requirements
 
-For a complete list of Content Understanding supported input formats, see our [Service quotas and limits](../service-limits.md) page.
+For a complete list of supported input formats for documents, see our [Service quotas and limits](../service-limits.md) page.
 
 ## Supported languages and regions
 
 For a complete list of supported languages and regions, see our [Language and region support](../language-region-support.md) page.
+
+## Data privacy and security
+As with all the Azure AI services, developers using the Content Understanding service should be aware of Microsoft's policies on customer data. See our [Data, protection and privacy](https://www.microsoft.com/trust-center/privacy) page to learn more.
 
 ## Next step
 
