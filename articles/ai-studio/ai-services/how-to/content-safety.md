@@ -10,7 +10,7 @@ ms.date: 11/09/2024
 ms.author: pafarley
 ---
 
-# use Content Safety in Azure AI Studio 
+# Use Content Safety in Azure AI Studio 
 
 Azure AI Studio includes a Content Safety **try it out** page that lets you use the core detection models and other content safety features.
 
@@ -68,3 +68,6 @@ The **Prompt Shields** panel lets you try out user input risk detection. Detect 
 
 For more information, see the [Prompt Shields conceptual guide](/azure/ai-services/content-safety/concepts/jailbreak-detection). 
 
+## Next step
+
+To use Azure AI Content Safety features with your Generative AI models, see the [Content filtering](../../concepts/content-filtering.md) guide.
