@@ -258,7 +258,7 @@ The latest [Multimodal embeddings](./concept-image-retrieval.md) model supports 
 | Norwegian             | `no`          | ✅ |  |
 | Nyanja                | `ny`          | ✅ |  |
 | Occitan               | `oc`          | ✅ |  |
-| Oriya                 | `or`          | ✅ |  |
+| Odia                  | `or`          | ✅ |  |
 | Oromo                 | `om`          | ✅ |  |
 | Pashto                | `ps`          | ✅ |  |
 | Persian               | `fa`          | ✅ |  |

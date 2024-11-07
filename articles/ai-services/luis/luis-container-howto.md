@@ -3,13 +3,13 @@ title: Install and run Docker containers for LUIS
 titleSuffix: Azure AI services
 description: Use the LUIS container to load your trained or published app, and gain access to its predictions on-premises.
 #services: cognitive-services
-author: aahill
+author: jboback
 manager: nitinme
 ms.service: azure-ai-language
 ms.subservice: azure-ai-luis
 ms.topic: how-to
-ms.date: 01/19/2024
-ms.author: aahi
+ms.date: 11/06/2024
+ms.author: jboback
 keywords: on-premises, Docker, container
 ---
 
