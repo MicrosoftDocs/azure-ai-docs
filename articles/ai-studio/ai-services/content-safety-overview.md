@@ -23,12 +23,12 @@ You can use Azure AI Content Safety for many scenarios:
 
 **Text content**: 
 - Moderate text content: This feature scans and moderates text content, identifying and categorizing it based on different levels of severity to ensure appropriate responses. 
-- Groundedness detection: This filter determines if the AI's responses are based on trusted, user-provided sources, ensuring that the answers are "grounded" in the intended material. This is helpful for improving the reliability and factual accuracy of responses. 
-- Protected material detection for text: This identifies protected text material, such as known song lyrics, articles, or other content, ensuring that the AI doesn’t output these without permission. 
+- Groundedness detection: This filter determines if the AI's responses are based on trusted, user-provided sources, ensuring that the answers are "grounded" in the intended material. Groundedness detection is helpful for improving the reliability and factual accuracy of responses. 
+- Protected material detection for text: This feature identifies protected text material, such as known song lyrics, articles, or other content, ensuring that the AI doesn’t output this content without permission. 
 - Protected material detection for code: Detects code segments in the model's output that match known code from public repositories, helping to prevent uncredited or unauthorized reproduction of source code. 
-- Prompt shields: These provide a unified API to address "Jailbreak" and "Indirect Attacks": 
-    - Jailbreak Attacks: These are attempts by users to manipulate the AI into bypassing its safety protocols or ethical guidelines. Examples include prompts designed to trick the AI into giving inappropriate responses or performing tasks it was programmed to avoid. 
-    - Indirect Attacks: Also known as Cross-Domain Prompt Injection Attacks, these involve embedding malicious prompts within documents that the AI may process. For example, if a document contains hidden instructions, the AI might inadvertently follow them, leading to unintended or unsafe outputs. 
+- Prompt shields: This feature provides a unified API to address "Jailbreak" and "Indirect Attacks": 
+    - Jailbreak Attacks: Attempts by users to manipulate the AI into bypassing its safety protocols or ethical guidelines. Examples include prompts designed to trick the AI into giving inappropriate responses or performing tasks it was programmed to avoid. 
+    - Indirect Attacks: Also known as Cross-Domain Prompt Injection Attacks, indirect attacks involve embedding malicious prompts within documents that the AI might process. For example, if a document contains hidden instructions, the AI might inadvertently follow them, leading to unintended or unsafe outputs. 
 
 **Image content**: 
 - Moderate image content: Similar to text moderation, this feature filters and assesses image content to detect inappropriate or harmful visuals. 
@@ -43,7 +43,7 @@ You can use Azure AI Content Safety for many scenarios:
 ### Harm categories
 
 | Category  | Description         |API term |
-| --------- | ------------------- | -- |
+| --------- | ------------------- | --- |
 | Hate and Fairness      | Hate and fairness harms refer to any content that attacks or uses discriminatory language with reference to a person or identity group based on certain differentiating attributes of these groups. <br><br>This includes, but is not limited to:<ul><li>Race, ethnicity, nationality</li><li>Gender identity groups and expression</li><li>Sexual orientation</li><li>Religion</li><li>Personal appearance and body size</li><li>Disability status</li><li>Harassment and bullying</li></ul> | `Hate` |
 | Sexual  | Sexual describes language related to anatomical organs and genitals, romantic relationships and sexual acts, acts portrayed in erotic or affectionate terms, including those portrayed as an assault or a forced sexual violent act against one’s will. <br><br> This includes but is not limited to:<ul><li>Vulgar content</li><li>Prostitution</li><li>Nudity and Pornography</li><li>Abuse</li><li>Child exploitation, child abuse, child grooming</li></ul>   | `Sexual` |
 | Violence  | Violence describes language related to physical actions intended to hurt, injure, damage, or kill someone or something; describes weapons, guns, and related entities. <br><br>This includes, but isn't limited to:  <ul><li>Weapons</li><li>Bullying and intimidation</li><li>Terrorist and violent extremism</li><li>Stalking</li></ul>  | `Violence` |
@@ -52,7 +52,7 @@ You can use Azure AI Content Safety for many scenarios:
 ### Severity levels 
 
 | Level | Description |
-| -- | --|
+| --- | ---|
 |
 Safe |Content might be related to violence, self-harm, sexual, or hate categories but the terms are used in general, journalistic, scientific, medical, and similar professional contexts, which are appropriate for most audiences. |
 |Low |Content that expresses prejudiced, judgmental, or opinionated views, includes offensive use of language, stereotyping, use cases exploring a fictional world (for example, gaming, literature) and depictions at low intensity.| 
@@ -62,7 +62,7 @@ Safe |Content might be related to violence, self-harm, sexual, or hate categorie
 ## Other Content Safety features
 
 | Feature    | Functionality    | Concepts guide | 
-| :- | :-- | --|
+|:--- |:--- | ---|
 | [Groundedness detection](/rest/api/contentsafety/text-groundedness-detection-operations/detect-groundedness-options) (preview) | Detects whether the text responses of large language models (LLMs) are grounded in the source materials provided by the users. | [Groundedness detection concepts](/azure/ai-services/content-safety/concepts/groundedness)|
 | [Protected material text detection](/rest/api/contentsafety/text-operations/detect-text-protected-material) | Scans AI-generated text for known text content (for example, song lyrics, articles, recipes, selected web content). | [Protected material concepts](/azure/ai-services/content-safety/concepts/protected-material)|
 | Custom categories (standard) API (preview)    | Lets you create and train your own custom content categories and scan text for matches. | [Custom categories concepts](/azure/ai-services/content-safety/concepts/custom-categories)|
