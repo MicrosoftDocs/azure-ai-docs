@@ -44,7 +44,7 @@ In your web browser, navigate to the [Custom Vision website](https://customvisio
 
 1. Under **Project Types**, select **Object Detection**.
 
-1. Select one of the available domains. Each domain optimizes the detector for specific types of images, as described in the following table. You can change the domain later if you want to.
+1. Select one of the available domains. Each domain optimizes the detector for specific types of images, as described in the following table. You can change the domain later, if you want.
 
     |Domain|Purpose|
     |---|---|

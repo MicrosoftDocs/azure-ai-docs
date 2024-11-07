@@ -12,9 +12,11 @@ ms.author: pafarley
 
 ---
 
-# Learn text moderation concepts
+# Text moderation concepts
 
-Use Content Moderator's text moderation models to analyze text content, such as chat rooms, discussion boards, chatbots, e-commerce catalogs, and documents.
+[!INCLUDE [deprecation notice](includes/tool-deprecation.md)]
+
+You can use Azure Content Moderator's text moderation models to analyze text content, such as chat rooms, discussion boards, chatbots, e-commerce catalogs, and documents.
 
 The service response includes the following information:
 

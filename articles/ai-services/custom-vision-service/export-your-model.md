@@ -37,9 +37,9 @@ Custom Vision Service supports the following exports:
 > [!NOTE]
 > The steps in this section only apply if you have an existing model that isn't set to compact domain.
 
-To convert the domain of an existing model, take the following steps:
+To convert the domain of an existing model, follow these steps:
 
-1. Go to the [Custom Vision website](https://customvision.ai), then isng in to view a list of your projects.
+1. Go to the [Custom Vision website](https://customvision.ai), then sign in to view a list of your projects.
 
     :::image type="content" source="media/export-your-model/projects-list.png" alt-text="Screenshot that shows a list of projects.":::
 
@@ -71,7 +71,7 @@ To export the model after retraining, use the following steps:
 
 ## Related content
 
-Integrate your exported model into an application by exploring one of the following articles or samples:
+To integrate your exported model into an application, explore one of the following articles or samples:
 
 * [Run a TensorFlow model in Python](export-model-python.md)
 * [Use your ONNX model with Windows Machine Learning](custom-vision-onnx-windows-ml.md)
