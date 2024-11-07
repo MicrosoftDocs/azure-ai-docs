@@ -69,7 +69,7 @@ When evaluating shared private links for your scenario, remember these constrain
 
 ## Prerequisites
 
-+ Azure AI Search tier and region requirements, by workload:
++ Azure AI Search service tier and region requirements, by workload:
 
   | Workload | Tier requirements | Region requirements | Service creation requirements |
   |----------|-------------------|---------------------|---------------------|
@@ -79,15 +79,15 @@ When evaluating shared private links for your scenario, remember these constrain
 
 + [A supported Azure resource](#supported-resource-types), configured to run in a virtual network.
 
-+ Permissions on both Azure AI Search and the data source:
++ Permissions on both Azure AI Search and the Azure resource:
 
-  + On the Azure resource, you must have permission to approve private endpoint connections. For instance, if you're using an Azure Storage account as your data source, you need `Microsoft.Storage/storageAccounts/privateEndpointConnectionsApproval/action`.
+  On the Azure resource, you must have permission to approve private endpoint connections. For example, on Azure Storage, you need `Microsoft.Storage/storageAccounts/privateEndpointConnectionsApproval/action`.
 
-  + On the search service, you must have read and write permissions on shared private link resources and read operation statuses:
+  On Azure AI Search, you must have read and write permissions on shared private link resources:
 
-    + `Microsoft.Search/searchServices/sharedPrivateLinkResources/write`
-    + `Microsoft.Search/searchServices/sharedPrivateLinkResources/read`
-    + `Microsoft.Search/searchServices/sharedPrivateLinkResources/operationStatuses/read`
+  + `Microsoft.Search/searchServices/sharedPrivateLinkResources/write`
+  + `Microsoft.Search/searchServices/sharedPrivateLinkResources/read`
+  + `Microsoft.Search/searchServices/sharedPrivateLinkResources/operationStatuses/read`
 
 <!-- + For [integrated vectorization](vector-search-integrated-vectorization.md) only, outbound connections through shared private link are supported on all billable tiers, on services [created after April 3, 2024](vector-search-index-size.md#how-to-check-service-creation-date), in regions providing [higher capacity](search-limits-quotas-capacity.md#partition-storage-gb).  -->
 
