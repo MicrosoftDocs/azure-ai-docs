@@ -430,7 +430,7 @@ result = evaluate(
     },
     # Optionally provide your Azure AI project information to track your evaluation results in your Azure AI project
     azure_ai_project = azure_ai_project,
-    # Optionally provide an output path to dump a json of metric summary, row level data and metric and studio URL
+    # Optionally provide an output path to dump a json of metric summary, row level data and metric and Azure AI project URL
     output_path="./myevalresults.json"
 )
 ```
@@ -769,7 +769,10 @@ evaluation = Evaluation(
     description="Evaluation of dataset",
     data=Dataset(id=data_id),
     evaluators={
-        # Note the evaluator configuration key must follow a naming convention: it must start with a letter and contain only alphanumeric characters and underscores. Take "f1_score" as example: "f1score" or "f1_evaluator" will also be acceptable, but "f1-score-eval" or "1score" will result in errors.
+        # Note the evaluator configuration key must follow a naming convention
+        # the string must start with a letter with only alphanumeric characters 
+        # and underscores. Take "f1_score" as example: "f1score" or "f1_evaluator" 
+        # will also be acceptable, but "f1-score-eval" or "1score" will result in errors.
         "f1_score": EvaluatorConfiguration(
             id=F1ScoreEvaluator.id,
         ),
