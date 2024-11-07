@@ -48,7 +48,7 @@ The raw inputs must be in a [supported data source](search-indexer-overview.md#s
 You can use the Azure portal, REST APIs, or an Azure SDK package to [create a data source](search-howto-indexing-azure-blob-storage.md).
 
 > [!TIP]
-> Upload the [health plan PDF](https://github.com/Azure-Samples/azure-search-sample-data/tree/main/health-plan) sample files to your supported data source to try out the Document Layout skill and structure-aware chunking on your own search service. The [Import and vectorize data](search-get-started-portal-import-vectors.md) wizard is an easy code-free approach for trying out this skill.
+> Upload the [health plan PDF](https://github.com/Azure-Samples/azure-search-sample-data/tree/main/health-plan) sample files to your supported data source to try out the Document Layout skill and structure-aware chunking on your own search service. The [Import and vectorize data](search-get-started-portal-import-vectors.md) wizard is an easy code-free approach for trying out this skill. Be sure to select the **default parsing mode** to use structure-aware chunking. Otherwise, the [Markdown parsing mode](search-how-to-index-markdown-blobs.md) is used instead.
 
 ## Create an index for one-to-many indexing
 
@@ -303,8 +303,8 @@ Once you create a data source, index, and skillset, you're ready to [create and 
 
 When using the [Document Layout skill](cognitive-search-skill-document-intelligence-layout.md), make sure to set the following parameters on the indexer definition:
 
-+ The `allowSkillsetToReadFileData` parameter should be set to "true."
-+ the `parsingMode` parameter should be set to "default."
++ The `allowSkillsetToReadFileData` parameter should be set to `true`.
++ the `parsingMode` parameter should be set to `default`.
 
 Here's an example payload
 
