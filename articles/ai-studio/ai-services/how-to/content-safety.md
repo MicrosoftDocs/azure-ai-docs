@@ -27,9 +27,8 @@ Follow these steps to use the Content Safety **try it out** page:
 1. Go to [AI Studio](https://ai.azure.com/) and navigate to your project/hub. Then select the **Safety+ Security** tab on the left nav and select the **Try it out** tab.
     tbd image
 1. On the **Try it out** page, you can experiment with various content safety features such as text and image content, using adjustable thresholds to filter for inappropriate or harmful content.
-    tbd image
-
-
+    :::image type="content" source="../../media/content-safety/try-it-out.png" alt-text="Screenshot of the try it out page for content safety.":::
+    
 ## Analyze text
 
 1. Select the **Moderate text content** panel.
@@ -39,7 +38,9 @@ Follow these steps to use the Content Safety **try it out** page:
 
 ### Use a blocklist 
 
-The **Use blocklist** tab lets you create, edit, and add a blocklist to the moderation workflow. If you have a blocklist enabled when you run the test, you get a **Blocklist detection** panel under **Results**. It reports any matches with the blocklist. 
+The **Use blocklist** tab lets you create, edit, and add a blocklist to the moderation workflow. If you have a blocklist enabled when you run the test, you get a **Blocklist detection** panel under **Results**. It reports any matches with the blocklist.
+
+:::image type="content" source="../../media/content-safety/blocklist-panel.png" alt-text="Screenshot of the Use blocklist panel.":::
 
 ## Analyze images
 
@@ -53,6 +54,8 @@ The **Moderate image** page provides capability for you to quickly try out image
 ## View and export code 
 
 You can use the **View Code** feature in either the **Analyze text content** or **Analyze image content** pages to view and copy the sample code, which includes configuration for severity filtering, blocklists, and moderation functions. You can then deploy the code on your end.
+
+:::image type="content" source="../../media/content-safety/view-code-option.png" alt-text="Screenshot of the View code button.":::
 
 ## Use Prompt Shields 
 
