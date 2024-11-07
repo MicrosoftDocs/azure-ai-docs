@@ -1,5 +1,5 @@
 ---
-title: Add and configure models to Azure AI services
+title: Add and configure models to Azure AI model inference service
 titleSuffix: Azure AI services
 description: Learn how to add and configure new models to the Azure AI model's inference endpoint in Azure AI services.
 ms.service: azure-ai-studio
@@ -12,9 +12,9 @@ ms.reviewer: fasantia
 recommendations: false
 ---
 
-# Add and configure models to Azure AI services
+# Add and configure models to Azure AI model inference service
 
-You can decide and configure which models are available for inference in the Azure AI services resource model's inference endpoint. When a given model is configured, you can then generate predictions from it by indicating its model name or deployment name on your requests. No further changes are required in your code to use it.
+You can decide and configure which models are available for inference in the resource's model inference endpoint. When a given model is configured, you can then generate predictions from it by indicating its model name or deployment name on your requests. No further changes are required in your code to use it.
 
 In this article, you learn how to add a new model to the Azure AI model inference service in Azure AI services.
 
