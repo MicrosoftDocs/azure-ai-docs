@@ -125,7 +125,7 @@ A conversation is a Python dictionary of a list of messages (which include conte
 }
 ```
 
-Conversations are evaluated per turn and results are aggregated over all turns for a conversation score.
+Our evaluators will understand that the first turn of the conversation provides valid `query` from `user`, `context` from `assistant`,  and `response` from `assistant` for a single-turn evaluation in the query-response format, and that in the second turn, even if `context` is `null` or a missing key, it will be interpreted as an empty string. Conversations are then evaluated per turn and results are aggregated over all turns for a conversation score.
 
 ### Performance and quality evaluators
 
