@@ -1,7 +1,7 @@
 ---
-title: Evaluate your GenAI application with the Azure AI Evaluation SDK
+title: Evaluate your Generative AI application with the Azure AI Evaluation SDK
 titleSuffix: Azure AI Studio
-description: This article provides instructions on how to evaluate a GenAI application with the Azure AI Evaluation SDK.
+description: This article provides instructions on how to evaluate a Generative AI application with the Azure AI Evaluation SDK.
 manager: scottpolly
 ms.service: azure-ai-studio
 ms.custom:
@@ -13,14 +13,14 @@ ms.reviewer: minthigpen
 ms.author: lagayhar
 author: lgayhardt
 ---
-# Evaluate your GenAI application with the Azure AI Evaluation SDK
+# Evaluate your Generative AI application with the Azure AI Evaluation SDK
 
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
 > [!NOTE]
 > Evaluation with the prompt flow SDK has been retired and replaced with Azure AI Evaluation SDK.
 
-To thoroughly assess the performance of your generative AI application when applied to a substantial dataset, you can evaluate a GenAI application in your development environment with the Azure AI evaluation SDK. Given either a test dataset or a target, your generative AI application generations are quantitatively measured with both mathematical based metrics and AI-assisted quality and safety evaluators. Built-in or custom evaluators can provide you with comprehensive insights into the application's capabilities and limitations.
+To thoroughly assess the performance of your generative AI application when applied to a substantial dataset, you can evaluate a Generative AI application in your development environment with the Azure AI evaluation SDK. Given either a test dataset or a target, your generative AI application generations are quantitatively measured with both mathematical based metrics and AI-assisted quality and safety evaluators. Built-in or custom evaluators can provide you with comprehensive insights into the application's capabilities and limitations.
 
 In this article, you learn how to run evaluators on a single row of data, a larger test dataset on an application target with built-in evaluators using the Azure AI evaluation SDK then track the results and evaluation logs in Azure AI Studio.
 
@@ -264,7 +264,7 @@ Built-in evaluators are great out of the box to start evaluating your applicatio
 
 ### Code-based evaluators
 
-Sometimes a large language model isn't needed for certain evaluation metrics. This is when code-based evaluators can give you the flexibility to define metrics based on functions or callable class. Given a simple Python class in an example `answer_length.py` that calculates the length of an answer:
+Sometimes a large language model isn't needed for certain evaluation metrics. This is when code-based evaluators can give you the flexibility to define metrics based on functions or callable class. Given a simple Python class in an example `answer_len/answer_length.py"` that calculates the length of an answer under a directory `answer_len/`:
 
 ```python
 class AnswerLengthEvaluator:
@@ -278,11 +278,12 @@ class AnswerLengthEvaluator:
 You can create your own code-based evaluator and run it on a row of data by importing a callable class:
 
 ```python
-with open("answer_length.py") as fin:
+with open("answer_len/answer_length.py") as fin:
     print(fin.read())
-from answer_length import AnswerLengthEvaluator
 
-answer_length = AnswerLengthEvaluator(answer="What is the speed of light?")
+from answer_len.answer_length import AnswerLengthEvaluator
+
+answer_length = AnswerLengthEvaluator()(answer="What is the speed of light?")
 
 print(answer_length)
 ```
@@ -296,80 +297,102 @@ The result:
 
 ### Prompt-based evaluators
 
-To build your own prompt-based large language model evaluator or AI-assisted annotator, you can create a custom evaluator based on a **Prompty** file. Prompty is a file with `.prompty` extension for developing prompt template. The Prompty asset is a markdown file with a modified front matter. The front matter is in YAML format that contains many metadata fields that define model configuration and expected inputs of the Prompty. Given an example `apology.prompty` file that looks like the following:
+To build your own prompt-based large language model evaluator or AI-assisted annotator, you can create a custom evaluator based on a **Prompty** file. Prompty is a file with `.prompty` extension for developing prompt template. The Prompty asset is a markdown file with a modified front matter. The front matter is in YAML format that contains many metadata fields that define model configuration and expected inputs of the Prompty. Let's create a custom evaluator `FriendlinessEvaluator` to measure friendliness of a response.
+
+1. Create a `friendliness.prompty` file that describes the definition of the friendliness metric and its grading rubrics:
 
 ```markdown
 ---
-name: Apology Evaluator
-description: Apology Evaluator for QA scenario
+name: Friendliness Evaluator
+description: Friendliness Evaluator to measure warmth and approachability of answers.
 model:
   api: chat
-  configuration:
-    type: azure_openai
-    connection: open_ai_connection
-    azure_deployment: gpt-4
   parameters:
-    temperature: 0.2
-    response_format: { "type":"json_object"}
+    temperature: 0.1
+    response_format: { "type": "json" }
 inputs:
-  query:
-    type: string
   response:
     type: string
 outputs:
-  apology:
+  score:
     type: int
+  explanation:
+    type: string
 ---
+
 system:
-You are an AI tool that determines if, in a chat conversation, the assistant apologized, like say sorry.
-Only provide a response of {"apology": 0} or {"apology": 1} so that the output is valid JSON.
-Give a apology of 1 if apologized in the chat conversation.
+Friendliness assesses the warmth and approachability of the answer. Rate the friendliness of the response between one to five stars using the following scale:
 
-Here are some examples of chat conversations and the correct response:
+One star: the answer is unfriendly or hostile
+
+Two stars: the answer is mostly unfriendly
+
+Three stars: the answer is neutral
+
+Four stars: the answer is mostly friendly
+
+Five stars: the answer is very friendly
+
+Please assign a rating between 1 and 5 based on the tone and demeanor of the response.
+
+**Example 1**
+generated_query: I just dont feel like helping you! Your questions are getting very annoying.
+output:
+{"score": 1, "reason": "The response is not warm and is resisting to be providing helpful information."}
+**Example 2**
+generated_query: I'm sorry this watch is not working for you. Very happy to assist you with a replacement.
+output:
+{"score": 5, "reason": "The response is warm and empathetic, offering a resolution with care."}
 
 
-user: Where can I get my car fixed?
-assistant: I'm sorry, I don't know that. Would you like me to look it up for you?
-result:
-{"apology": 1}
-
-
-Here's the actual conversation to be scored:
-
-
-user: {{query}}
-assistant: {{response}}
+**Here the actual conversation to be scored:**
+generated_query: {{response}}
 output:
 ```
 
-
-You can create your own Prompty-based evaluator and run it on a row of data:
+2. Then create a class to load the Prompty file and process the outputs with json format:
 
 ```python
-with open("apology.prompty") as fin:
-    print(fin.read())
+import os
+import json
+import sys
 from promptflow.client import load_flow
 
-model_config = {
-    "azure_endpoint": os.environ.get("AZURE_OPENAI_ENDPOINT"),
-    "api_key": os.environ.get("AZURE_OPENAI_API_KEY"),
-    "azure_deployment": os.environ.get("AZURE_OPENAI_DEPLOYMENT"),
-    "api_version": os.environ.get("AZURE_OPENAI_API_VERSION"),
-}
+
+class FriendlinessEvaluator:
+    def __init__(self, model_config):
+        current_dir = os.path.dirname(__file__)
+        prompty_path = os.path.join(current_dir, "friendliness.prompty")
+        self._flow = load_flow(source=prompty_path, model={"configuration": model_config})
+
+    def __call__(self, *, response: str, **kwargs):
+        llm_response = self._flow(response=response)
+        try:
+            response = json.loads(llm_response)
+        except Exception as ex:
+            response = llm_response
+        return response
+```
+
+3. You can create your own Prompty-based evaluator and run it on a row of data:
+
+```python
+from friendliness.friend import FriendlinessEvaluator
 
 
-# load apology evaluator from prompty file using promptflow
-apology_eval = load_flow(source="apology.prompty", model={"configuration": model_config})
-apology_score = apology_eval(
-    query="What is the capital of France?", response="Paris"
-)
-print(apology_score)
+friendliness_eval = FriendlinessEvaluator(model_config)
+
+friendliness_score = friendliness_eval(response="I will not apologize for my behavior!")
+print(friendliness_score)
 ```
 
 Here's the result:
 
 ```JSON
-{"apology": 0}
+{
+    'score': 1, 
+    'reason': 'The response is hostile and unapologetic, lacking warmth or approachability.'
+}
 ```
 
 ## Batch evaluation on test datasets using `evaluate()`
@@ -560,7 +583,7 @@ After local evaluations of your generative AI applications, you may want to trig
     ```bash
    pip install azure-identity azure-ai-projects azure-ai-ml
     ```
-    Optionally, you can   want to skip the steps to fetch evaluator id for built-in evaluators: `azure-ai-evaluation`
+    Optionally, you can `pip install azure-ai-evaluation` if you want to fetch evaluator id for built-in evaluators directly from the SDK.
     
 
 #### Prerequisites
@@ -638,23 +661,13 @@ ml_client = MLClient(
 )
 
 
-# First we need to save evaluator into separate file in its own directory:
-def answer_len(answer):
-    return len(answer)
-
-# Create a local python file
-lines = inspect.getsource(answer_len)
-local_file = "answer.py"
-with open(local_file, "w") as fp:
-    fp.write(lines)
-
-# Load evaluator from file (note the import name must match local_file) 
-from answer import answer_len as answer_length
+# Load evaluator from module
+from answer_len.answer_length import AnswerLengthEvaluator
 
 # Then we convert it to evaluation flow and save it locally
 pf_client = PFClient()
-local_path = "answer_length"
-pf_client.flows.save(entry=answer_length, path=local_path)
+local_path = "answer_len_local"
+pf_client.flows.save(entry=AnswerLengthEvaluator, path=local_path)
 
 # Specify evaluator name to appear in the Evaluator library
 evaluator_name = "AnswerLenEvaluator"
@@ -674,59 +687,43 @@ print("Versioned evaluator id:", registered_evaluator.id)
 
 After registering your custom evaluator to your AI Studio project, you can view it in your [Evaluator library](../evaluate-generative-ai-app.md#view-and-manage-the-evaluators-in-the-evaluator-library) under Evaluation tab in AI Studio.
 
-- For prompt-based custom evaluators, follow these steps to register them:
+- For prompt-based custom evaluators, use this snippet to register them. For example, let's register our `FriendlinessEvaluator` built as described in [Prompt-based evaluators](#Prompt-based-evaluators):
 
-1. Similar to code-based evaluators, create a script `apology.py` to load `apology.prompty` we built from [Prompt-based evaluators](#Prompt-based-evaluators) in the same directory.
-```python
-import os
-import json
-import sys
-from promptflow.client import load_flow
-
-sys.path.append(os.path.dirname(os.path.abspath(__file__)))
-
-class ApologyEvaluator:
-    def __init__(self, model_config):
-        current_dir = os.path.dirname(__file__)
-        prompty_path = os.path.join(current_dir, "apology.prompty")
-        self._flow = load_flow(source=prompty_path, model={"configuration": model_config})
-
-    def __call__(self, *, query: str, response: str, **kwargs):
-        llm_response = self._flow(query=query, response=response)
-
-        try:
-            evaluator_response = json.loads(llm_response)
-        except Exception:
-            evaluator_response = llm_response
-        return evaluator_response
-```
-2. Register the prompt-based evaluator to the Evaluator library and fetch the evaluator id with the following:
 
 ```python
-# Register your prompt-based custom evaluator
-from apology import ApologyEvaluator
+# Import your prompt-based custom evaluator
+from friendliness.friend import FriendlinessEvaluator
 
-# This is a local file path
-local_path = "apology"
+# Define your deployment 
+model_config = dict(
+    azure_endpoint=os.environ.get("AZURE_ENDPOINT"),
+    azure_deployment=os.environ.get("AZURE_DEPLOYMENT_NAME"),
+    api_version=os.environ.get("AZURE_API_VERSION"),
+    api_key=os.environ.get("AZURE_API_KEY"), 
+    type="azure_openai"
+)
 
-model_config = {
-    "azure_endpoint": os.environ.get("AZURE_OPENAI_ENDPOINT"),
-    "api_key": os.environ.get("AZURE_OPENAI_API_KEY"),
-    "azure_deployment": os.environ.get("AZURE_OPENAI_DEPLOYMENT"),
-    "api_version": os.environ.get("AZURE_OPENAI_API_VERSION"),
-}
+# Define ml_client to register custom evaluator
+ml_client = MLClient(
+       subscription_id=os.environ["AZURE_SUBSCRIPTION_ID"],
+       resource_group_name=os.environ["AZURE_RESOURCE_GROUP"],
+       workspace_name=os.environ["AZURE_PROJECT_NAME"],
+       credential=DefaultAzureCredential()
+)
 
-apology_evaluator = ApologyEvaluator(model_config)
-pf_client.flows.save(entry=apology_evaluator, path=local_path) 
+# # Convert evaluator to evaluation flow and save it locally
+local_path = "friendliness_local"
+pf_client = PFClient()
+pf_client.flows.save(entry=FriendlinessEvaluator, path=local_path) 
 
 # Specify evaluator name to appear in the Evaluator library
-evaluator_name = "ApologyEvaluator"
+evaluator_name = "FriendlinessEvaluator"
 
 # Register the evaluator to the Evaluator library
 custom_evaluator = Model(
     path=local_path,
     name=evaluator_name,
-    description="prompt-based evaluator measuring apology.",
+    description="prompt-based evaluator measuring response friendliness.",
 )
 registered_evaluator = ml_client.evaluators.create_or_update(custom_evaluator)
 print("Registered evaluator id:", registered_evaluator.id)
