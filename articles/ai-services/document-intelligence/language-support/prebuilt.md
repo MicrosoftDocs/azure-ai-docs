@@ -173,7 +173,7 @@ Azure AI Document Intelligence models provide multilingual document processing s
 | &bullet; Korean (`ko`) | Korea (`kr`)|
 | &bullet; Latvian (`lv`) | Latvia (`lv`)|
 | &bullet; Lithuanian (`lt`) | Lithuania (`lt`)|
-| &bullet; Macedonian (`mk`) | Macedonia (`mk`)|
+| &bullet; Macedonian (`mk`) | North Macedonia (`mk`)|
 | &bullet; Malay (`ms`) | Malaysia (`ms`)|
 | &bullet; Norwegian (`nb`) | Norway (`no`)|
 | &bullet; Polish (`pl`) | Poland (`pl`)|
