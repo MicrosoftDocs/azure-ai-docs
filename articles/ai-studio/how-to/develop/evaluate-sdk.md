@@ -1,6 +1,6 @@
 ---
 title: Evaluate your Generative AI application with the Azure AI Evaluation SDK
-titleSuffix: Azure AI Studio
+titleSuffix: Azure AI project
 description: This article provides instructions on how to evaluate a Generative AI application with the Azure AI Evaluation SDK.
 manager: scottpolly
 ms.service: azure-ai-studio
@@ -22,7 +22,7 @@ author: lgayhardt
 
 To thoroughly assess the performance of your generative AI application when applied to a substantial dataset, you can evaluate a Generative AI application in your development environment with the Azure AI evaluation SDK. Given either a test dataset or a target, your generative AI application generations are quantitatively measured with both mathematical based metrics and AI-assisted quality and safety evaluators. Built-in or custom evaluators can provide you with comprehensive insights into the application's capabilities and limitations.
 
-In this article, you learn how to run evaluators on a single row of data, a larger test dataset on an application target with built-in evaluators using the Azure AI evaluation SDK both locally and remotely, then track the results and evaluation logs in Azure AI Studio.
+In this article, you learn how to run evaluators on a single row of data, a larger test dataset on an application target with built-in evaluators using the Azure AI evaluation SDK both locally and remotely, then track the results and evaluation logs in Azure AI project.
 
 ## Getting started
 
@@ -182,7 +182,7 @@ Here's an example of the result:
 
 ### Risk and safety evaluators
 
-When you use AI-assisted risk and safety metrics, a GPT model isn't required. Instead of `model_config`, provide your `azure_ai_project` information. This accesses the Azure AI Studio safety evaluations back-end service, which provisions a GPT model specific to harms evaluation that can generate content risk severity scores and reasoning to enable the safety evaluators.
+When you use AI-assisted risk and safety metrics, a GPT model isn't required. Instead of `model_config`, provide your `azure_ai_project` information. This accesses the Azure AI project safety evaluations back-end service, which provisions a GPT model specific to harms evaluation that can generate content risk severity scores and reasoning to enable the safety evaluators.
 
 #### Region support
 
@@ -428,7 +428,7 @@ result = evaluate(
             } 
         }
     },
-    # Optionally provide your AI Studio project information to track your evaluation results in your Azure AI Studio project
+    # Optionally provide your Azure AI project information to track your evaluation results in your Azure AI project
     azure_ai_project = azure_ai_project,
     # Optionally provide an output path to dump a json of metric summary, row level data and metric and studio URL
     output_path="./myevalresults.json"
@@ -436,7 +436,7 @@ result = evaluate(
 ```
 
 > [!TIP]
-> Get the contents of the `result.studio_url` property for a link to view your logged evaluation results in Azure AI Studio.
+> Get the contents of the `result.studio_url` property for a link to view your logged evaluation results in your Azure AI project.
 
 The evaluator outputs results in a dictionary which contains aggregate `metrics` and row-level data and metrics. An example of an output:
 
@@ -479,7 +479,7 @@ The evaluator outputs results in a dictionary which contains aggregate `metrics`
 
 ### Requirements for `evaluate()`
 
-The `evaluate()` API has a few requirements for the data format that it accepts and how it handles evaluator parameter key names so that the charts in your AI Studio evaluation results show up properly.
+The `evaluate()` API has a few requirements for the data format that it accepts and how it handles evaluator parameter key names so that the charts of the evaluation results in your Azure AI project show up properly.
 
 #### Data format
 
@@ -496,7 +496,7 @@ The `evaluate()` API only accepts data in the JSONLines format. For all built-in
 
 #### Evaluator parameter format
 
-When passing in your built-in evaluators, it's important to specify the right keyword mapping in the `evaluators` parameter list. The following is the keyword mapping required for the results from your built-in evaluators to show up in the UI when logged to Azure AI Studio.
+When passing in your built-in evaluators, it's important to specify the right keyword mapping in the `evaluators` parameter list. The following is the keyword mapping required for the results from your built-in evaluators to show up in the UI when logged to your Azure AI project.
 
 | Evaluator                 | keyword param     |
 |---------------------------|-------------------|
@@ -568,14 +568,13 @@ result = evaluate(
 After local evaluations of your generative AI applications, you may want to trigger remote evaluations for pre-deployment testing and even continuously evaluate your applications for post-deployment monitoring. Azure AI Project SDK offers such capabilities via a Python API and supports all of the features available in local evaluations. Follow the steps below to submit your remote evaluation on your data using built-in or custom evaluators.
 
 > [!NOTE]
-> Remote evaluations are only supported in the same [regions](#region-support) as AI-assisted risk and safety metrics.
+> Remote evaluations are only supported in East US 2 and Sweden Central regions.
 
   
 ### Prerequisites
 - Azure AI project in `EastUS2` region. If you do not have an existing project, follow the guide [How to create Azure AI project](../create-projects.md?tabs=ai-studio) to create one. 
 - Azure OpenAI Deployment with GPT model supporting `chat completion`, for example `gpt-4`.
 - `Connection String` for Azure AI project to easily create `AIProjectClient` object. You can get the **Project connection string** under **Project details** from the project's **Overview** page.
-![Connection string](image.png)
 - Make sure you are first logged into your Azure subscription by running `az login`.
 
 ### Installation Instructions
@@ -618,14 +617,11 @@ We provide two ways to register your data in Azure AI project required for remot
 data_id = project_client.upload_file("./evaluate_test_data.jsonl")
 ```
 **From UI**: Alternatively, you can upload new data or update existing data versions by following the UI walkthrough under the **Data** tab of your Azure AI project.
-![Upload Dataset](image-2.png)
 
 2. Given existing datasets uploaded to your Project: 
 - **From SDK**: if you already know the dataset name you created, construct the dataset id in this format: `/subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/Microsoft.MachineLearningServices/workspaces/<project-name>/data/<dataset-name>/versions/<version-number>`
 
 - **From UI**: If you don't know the dataset name, locate it under the **Data** tab of your Azure AI project and construct the dataset id as in the format above. 
-
-![Select Dataset](image-1.png)
 
 
 ### Specifying evaluators from Evaluator library
@@ -640,14 +636,12 @@ print("F1 Score evaluator id:", F1ScoreEvaluator.id)
 - **From UI**: Follows these steps to fetch evaluator ids after they are registered to your project:
     - Select on **Evaluation** of your Azure AI project;
     - Select Evaluator library;
-![Navigate to Evaluator library](image-3.png)
     - Select your evaluator(s) of choice by comparing the descriptions;
     - Copy its "Asset ID" which will be your evaluator id, for example, `azureml://registries/azureml/models/Groundedness-Pro-Evaluator/versions/1`.
-![Locate Evaluator ID](image-4.png)
 
 #### Specifying custom evaluators 
 
-- For code-based custom evaluators, register them to your AI Studio project and fetch the evaluator ids with the following:
+- For code-based custom evaluators, register them to your Azure AI project and fetch the evaluator ids with the following:
 
 ```python
 from azure.ai.ml import MLClient
@@ -690,7 +684,7 @@ print("Versioned evaluator id:", registered_evaluator.id)
 
 After registering your custom evaluator to your Azure AI project, you can view it in your [Evaluator library](../evaluate-generative-ai-app.md#view-and-manage-the-evaluators-in-the-evaluator-library) under **Evaluation** tab in your Azure AI project.
 
-- For prompt-based custom evaluators, use this snippet to register them. For example, let's register our `FriendlinessEvaluator` built as described in [Prompt-based evaluators](#Prompt-based-evaluators):
+- For prompt-based custom evaluators, use this snippet to register them. For example, let's register our `FriendlinessEvaluator` built as described in [Prompt-based evaluators](#prompt-based-evaluators):
 
 
 ```python
@@ -735,7 +729,9 @@ versioned_evaluator = ml_client.evaluators.get(evaluator_name, version=1)
 print("Versioned evaluator id:", registered_evaluator.id)
 ```
 
-After logging your custom evaluator to your AI Studio project, you can view it in your [Evaluator library](../evaluate-generative-ai-app.md#view-and-manage-the-evaluators-in-the-evaluator-library) under **Evaluation** tab of your Azure AI project.
+
+
+After logging your custom evaluator to your Azure AI project, you can view it in your [Evaluator library](../evaluate-generative-ai-app.md#view-and-manage-the-evaluators-in-the-evaluator-library) under **Evaluation** tab of your Azure AI project.
 
 
 ### Remote evaluation with Azure AI Project SDK
@@ -753,7 +749,7 @@ from azure.ai.evaluation import F1ScoreEvaluator, RelevanceEvaluator, ViolenceEv
 deployment_name = os.environ.get("AZURE_OPENAI_DEPLOYMENT")
 api_version = os.environ.get("AZURE_OPENAI_API_VERSION")
 
-# Create an Azure AI Client from a connection string. Avaiable on project overview page on Azure AI Studio UI.
+# Create an Azure AI Client from a connection string. Avaiable on project overview page on Azure AI project UI.
 project_client = AIProjectClient.from_connection_string(
     credential=DefaultAzureCredential(),
     conn_str="<connection_string>"
@@ -773,6 +769,7 @@ evaluation = Evaluation(
     description="Evaluation of dataset",
     data=Dataset(id=data_id),
     evaluators={
+        # Note the evaluator configuration key must follow a naming convention: it must start with a letter and contain only alphanumeric characters and underscores. Take "f1_score" as example: "f1score" or "f1_evaluator" will also be acceptable, but "f1-score-eval" or "1score" will result in errors.
         "f1_score": EvaluatorConfiguration(
             id=F1ScoreEvaluator.id,
         ),
@@ -808,7 +805,7 @@ get_evaluation_response = project_client.evaluations.get(evaluation_response.id)
 print("----------------------------------------------------------------")
 print("Created evaluation, evaluation ID: ", get_evaluation_response.id)
 print("Evaluation status: ", get_evaluation_response.status)
-print("AI Studio URI: ", get_evaluation_response.properties["AiStudioEvaluationUri"])
+print("AI project URI: ", get_evaluation_response.properties["AiStudioEvaluationUri"])
 print("----------------------------------------------------------------")
 ```
 
@@ -833,6 +830,6 @@ evaluation = client.evaluations.create(
 - [Azure AI Evaluation SDK Troubleshooting guide](https://aka.ms/azureaieval-tsg)
 - [Learn more about the evaluation metrics](../../concepts/evaluation-metrics-built-in.md)
 - [Learn more about simulating test datasets for evaluation](./simulator-interaction-data.md)
-- [View your evaluation results in Azure AI Studio](../../how-to/evaluate-results.md)
+- [View your evaluation results in Azure AI project](../../how-to/evaluate-results.md)
 - [Get started building a chat app using the Azure AI SDK](../../quickstarts/get-started-code.md)
 - [Get started with evaluation samples](https://aka.ms/aistudio/eval-samples)
