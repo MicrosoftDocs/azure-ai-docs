@@ -73,7 +73,7 @@ This approach uses the following default parameters for benchmarking:
 
 | Parameter | Value | Applies to |
 |-----------|-------|----------------|
-| Region | East US/East US2 | Serverless APIs and Azure OpenAI |
+| Region | East US/East US2 | [Serverless APIs](../how-to/model-catalog-overview.md#serverless-apis-with-pay-as-you-go-billing) and [Azure OpenAI](/azure/ai-services/openai/overview) |
 | Tokens per minute (TPM) rate limit | 30k (180 RPM based on Azure OpenAI) <br> N/A (serverless APIs) | For Azure OpenAI models, selection is available for users with rate limit ranges based on deployment type (standard, global, global standard, and so on.) <br> For serverless APIs, this setting is abstracted. |
 | Number of requests | 128 | Serverless APIs, Azure OpenAI |
 | Prompt/Context length | Moderate length | Serverless APIs, Azure OpenAI |
@@ -81,7 +81,7 @@ This approach uses the following default parameters for benchmarking:
 | Number of concurrent requests | 16 | Serverless APIs, Azure OpenAI |
 | Data | Synthetic (input prompts prepared from static text) | Serverless APIs, Azure OpenAI |
 | Deployment type | Standard | Applicable only for Azure OpenAI |
-| Streaming | True | Applies to serverless APIs and Azure OpenAI. For models deployed via managed compute, set max_token = 1 to replicate streaming scenario, which allows for calculating metrics like total time to first token (TTFT) for managed compute. |
+| Streaming | True | Applies to serverless APIs and Azure OpenAI. For models deployed via [managed compute](../how-to/model-catalog-overview.md#managed-compute), set max_token = 1 to replicate streaming scenario, which allows for calculating metrics like total time to first token (TTFT) for managed compute. |
 | Tokenizer | Tiktoken package (Azure OpenAI) <br> Hugging Face model ID (Serverless APIs) | Hugging Face model ID (Azure serverless APIs) |
 
 #### Performance metrics calculated as an aggregate
