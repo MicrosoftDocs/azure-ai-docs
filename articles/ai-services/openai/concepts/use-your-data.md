@@ -26,14 +26,14 @@ Azure OpenAI On Your Data enables you to run advanced AI models such as GPT-35-T
 :::image type="content" source="../media/use-your-data/workflow-diagram.png" alt-text="A diagram showing an example workflow.":::
 
 Typically, the development process you'd use with Azure OpenAI On Your Data is:
-1. **Ingest**: Upload files using either Azure OpenAI Studio or the ingestion API. This enables your data to be cracked, chunked and embedded into an Azure AI Search instance that can be used by Azure Open AI models. If you have an existing [supported data source](#supported-data-sources), you can also connect it directly.
+1. **Ingest**: Upload files using either Azure OpenAI Studio or the ingestion API. This enables your data to be cracked, chunked and embedded into an Azure AI Search instance that can be used by Azure OpenAI models. If you have an existing [supported data source](#supported-data-sources), you can also connect it directly.
 
 1. **Develop**: After trying Azure OpenAI On Your Data, begin developing your application using the available REST API and SDKs, which are available in several languages. It will create prompts and search intents to pass to the Azure OpenAI service.
 
 1. **Inference**: After your application is deployed in your preferred environment, it will send prompts to Azure OpenAI, which will perform several steps before returning a response:
     1. **Intent generation**: The service will determine the intent of the user's prompt to determine a proper response.
 
-    1. **Retrieval**: The service retrieves relevant chunks of available data from the connected data source by querying it. For example by using a semantic or vector search. [Parameters](#runtime-parameters) such as strictness and number of documents to retreive are utilized to influence the retrieval.
+    1. **Retrieval**: The service retrieves relevant chunks of available data from the connected data source by querying it. For example by using a semantic or vector search. [Parameters](#runtime-parameters) such as strictness and number of documents to retrieve are utilized to influence the retrieval.
     
     1. **Filtration and reranking**: Search results from the retrieval step are improved by ranking and filtering data to refine relevance.    
     
@@ -326,23 +326,23 @@ We recommend using one of the following models for MongoDB Atlas
 ### Configuration  
 
 Only public network access is supported. Please make sure the database allows public access 
-:::image type="content" source="../media/use-your-data/mongo-db-network-access.png" alt-text="A screenshot showing the network access screen for Mongo DB":::
+:::image type="content" source="../media/use-your-data/mongo-db-network-access.png" alt-text="A screenshot showing the network access screen for Mongo DB.":::
 
 ### Data preparation
 
-If you want to create a new vector search index with your documents, you can use the [available script on Github](https://github.com/microsoft/sample-app-aoai-chatGPT/blob/rawan/mongodbdataprep/scripts/mongo_vector_db_data_preparation.py) to prepare your data for use with Azure OpenAI On Your Data. 
+If you want to create a new vector search index with your documents, you can use the [available script on GitHub](https://github.com/microsoft/sample-app-aoai-chatGPT/blob/rawan/mongodbdataprep/scripts/mongo_vector_db_data_preparation.py) to prepare your data for use with Azure OpenAI On Your Data. 
 
 ### Connection to MongoDB account
 
 To add your data source, you first need to create a connection to MongoDB Atlas. This connection includes information such as authentication (username and password). Enter the endpoint of your MongoDB Atlas connection string using the following format: `mongodb+srv://{user_name}:{password}@{endpoint}/?appName={application_name}`. See the [MongoDB documentation](https://aka.ms/mongodb-connection-string) for more information about connection string methods.
 
-:::image type="content" source="../media/use-your-data/mongo-db-atlas-connection.png" alt-text="A screenshot showing the connection screen for Mongo DB" lightbox="../media/use-your-data/mongo-db-atlas-connection.png":::
+:::image type="content" source="../media/use-your-data/mongo-db-atlas-connection.png" alt-text="A screenshot showing the connection screen for Mongo DB." lightbox="../media/use-your-data/mongo-db-atlas-connection.png":::
 
 ### Source index
 
 Once you have created a connection or chosen an existing connection, you can enter the information to connect to a specific vector index within this connected account. You need to input the name of your database, collection and vector index. Make sure you have entered the information correctly to successfully build the connection.
 
-:::image type="content" source="../media/use-your-data/mongo-db-atlas-source-index.png" alt-text="A screenshot showing the field required information for Mongo DB Atlas" lightbox="../media/use-your-data/mongo-db-atlas-source-index.png":::
+:::image type="content" source="../media/use-your-data/mongo-db-atlas-source-index.png" alt-text="A screenshot showing the field required information for Mongo DB Atlas." lightbox="../media/use-your-data/mongo-db-atlas-source-index.png":::
 
 To use MongoDB Atlas, you'll need an Azure OpenAI ada002 embedding model. This model will be created for you if you don't already have one, which will incur [usage](https://go.microsoft.com/fwlink/?linkid=2264246) on your account.
 
@@ -354,7 +354,7 @@ When you add your MongoDB Atlas data source, you can specify data fields to prop
 * Vector field (required): The field name in your MongoDB Atlas search index that contains the vectors.
 * File name/title/URL: Used to display more information when a document is referenced in the chat.
 
-:::image type="content" source="../media/use-your-data/mongo-db-atlas-field-mapping.png" alt-text="A screenshot showing the field mapping options for Mongo DB Atlas" lightbox="../media/use-your-data/mongo-db-atlas-field-mapping.png":::
+:::image type="content" source="../media/use-your-data/mongo-db-atlas-field-mapping.png" alt-text="A screenshot showing the field mapping options for Mongo DB Atlas." lightbox="../media/use-your-data/mongo-db-atlas-field-mapping.png":::
 
 ---
 
