@@ -69,15 +69,15 @@ When evaluating shared private links for your scenario, remember these constrain
 
 ## Prerequisites
 
-+ Azure AI Search service tier and region requirements, by workload:
++ [A supported Azure resource](#supported-resource-types), configured to run in a virtual network.
+
++ An Azure AI Search service with tier and region requirements, by workload:
 
   | Workload | Tier requirements | Region requirements | Service creation requirements |
   |----------|-------------------|---------------------|---------------------|
   | Indexers without skillsets | Basic and higher | None | None |
   | Skillsets with embedding skills ([integrated vectorization](vector-search-integrated-vectorization.md)) | Basic and higher | [High capacity regions](search-limits-quotas-capacity.md#partition-storage-gb) | [After April 3, 2024](vector-search-index-size.md#how-to-check-service-creation-date) |
   | Skillsets using [built-in](cognitive-search-predefined-skills.md) or custom skills | Standard 2 (S2) and higher | None | [After April 3, 2024](vector-search-index-size.md#how-to-check-service-creation-date) |
-
-+ [A supported Azure resource](#supported-resource-types), configured to run in a virtual network.
 
 + Permissions on both Azure AI Search and the Azure resource:
 
