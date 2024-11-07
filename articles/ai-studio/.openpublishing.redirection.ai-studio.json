@@ -149,6 +149,26 @@
             "source_path_from_root": "/articles/ai-studio/ai-services/where-to-use-ai-services.md",
             "redirect_url": "/azure/ai-studio/ai-services/connect-ai-services",
             "redirect_document_id": false
+        },
+        {
+            "source_path_from_root": "/articles/ai-studio/ai-services/connect-ai-services.md",
+            "redirect_url": "/azure/ai-studio/ai-services/how-to/connect-ai-services",
+            "redirect_document_id": false
+        },
+        {
+            "source_path_from_root": "/articles/ai-studio/ai-services/connect-azure-openai.md",
+            "redirect_url": "/azure/ai-studio/ai-services/how-to/connect-azure-openai",
+            "redirect_document_id": false
+        },
+        {
+            "source_path_from_root": "/articles/ai-studio/how-to/groundedness.md",
+            "redirect_url": "/azure/ai-studio/concepts/content-filtering",
+            "redirect_document_id": false
+        },
+        {
+            "source_path_from_root": "/articles/ai-studio/how-to/prompt-shields.md",
+            "redirect_url": "/azure/ai-studio/concepts/content-filtering",
+            "redirect_document_id": false
         }
     ]
 }

@@ -72,4 +72,4 @@ The multi-service resource enables access to the following Azure AI services wit
 ## Related content
 
 - Go to the [Azure AI services hub](../ai-services/index.yml).
-- Try AI services in the [Azure AI Studio](../ai-studio/ai-services/connect-ai-services.md).
+- Try AI services in the [Azure AI Studio](../ai-studio/ai-services/how-to/connect-ai-services.md).
