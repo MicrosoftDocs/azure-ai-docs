@@ -8,7 +8,7 @@ ms.service: azure-ai-openai
 ms.topic: quickstart
 author: aahill
 ms.author: aahi
-ms.date: 04/08/2024
+ms.date: 11/07/2024
 recommendations: false
 ms.custom: references_regions 
 ---
@@ -26,14 +26,14 @@ Azure OpenAI On Your Data enables you to run advanced AI models such as GPT-35-T
 :::image type="content" source="../media/use-your-data/workflow-diagram.png" alt-text="A diagram showing an example workflow.":::
 
 Typically, the development process you'd use with Azure OpenAI On Your Data is:
-1. **Ingest**: Upload files using either Azure OpenAI Studio or the ingestion API. This enables your data to be cracked, chunked and embedded into an Azure AI Search instance that can be used by Azure Open AI models. If you have an existing [supported data source](#supported-data-sources), you can also connect it directly.
+1. **Ingest**: Upload files using either Azure OpenAI Studio or the ingestion API. This enables your data to be cracked, chunked and embedded into an Azure AI Search instance that can be used by Azure OpenAI models. If you have an existing [supported data source](#supported-data-sources), you can also connect it directly.
 
 1. **Develop**: After trying Azure OpenAI On Your Data, begin developing your application using the available REST API and SDKs, which are available in several languages. It will create prompts and search intents to pass to the Azure OpenAI service.
 
 1. **Inference**: After your application is deployed in your preferred environment, it will send prompts to Azure OpenAI, which will perform several steps before returning a response:
     1. **Intent generation**: The service will determine the intent of the user's prompt to determine a proper response.
 
-    1. **Retrieval**: The service retrieves relevant chunks of available data from the connected data source by querying it. For example by using a semantic or vector search. [Parameters](#runtime-parameters) such as strictness and number of documents to retreive are utilized to influence the retrieval.
+    1. **Retrieval**: The service retrieves relevant chunks of available data from the connected data source by querying it. For example by using a semantic or vector search. [Parameters](#runtime-parameters) such as strictness and number of documents to retrieve are utilized to influence the retrieval.
     
     1. **Filtration and reranking**: Search results from the retrieval step are improved by ranking and filtering data to refine relevance.    
     
