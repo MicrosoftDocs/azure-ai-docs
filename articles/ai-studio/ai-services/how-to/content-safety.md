@@ -1,36 +1,47 @@
-TBD
+---
+title: Use Content Safety in Azure AI Studio
+titleSuffix: Azure AI services
+description: Learn how to use the Content Safety try it out page in Azure AI Studio to experiment with various content safety features such as text and image content, using adjustable thresholds to filter for inappropriate or harmful content.
+ms.service: azure-ai-studio
+ms.topic: how-to
+author: PatrickFarley
+manager: nitinme
+ms.date: 11/09/2024
+ms.author: pafarley
+---
 
 # use Content Safety in Azure AI Studio 
 
 Azure AI Studio includes a Content Safety **try it out** page that lets you use the core detection models and other content safety features.
 
-
-
-
 ## Prerequisites 
 
-- An Azure account. If you don't have one, you can create one for free. 
-- An  Azure AI resource. 
+- An Azure account. If you don't have one, you can [create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?icid=ai-services). 
+- An [Azure AI resource](https://ms.portal.azure.com/#view/Microsoft_Azure_ProjectOxford/CognitiveServicesHub/~/AIServices). 
 
 
-## use tbd
-Follow these steps to use content safety try out page: 
+## Setup
 
-1. Go to [AI Studio](https://ai.azure.com/) and navigate to your project/ hub. Then select the Safety+ Security tab on the left nav and select the Content Safety Try it out.
+Follow these steps to use the Content Safety **try it out** page: 
+
+1. Go to [AI Studio](https://ai.azure.com/) and navigate to your project/hub. Then select the **Safety+ Security** tab on the left nav and select the **Try it out** tab.
     tbd image
-1. Once you're on the Try it out page, you can experiment with various content safety features such as text and image content, using adjustable thresholds to filter for inappropriate or harmful content. 
+1. On the **Try it out** page, you can experiment with various content safety features such as text and image content, using adjustable thresholds to filter for inappropriate or harmful content.
     tbd image
 
-## Analyze content
 
-### Text
+## Analyze text
 
 1. Select the **Moderate text content** panel.
 1. Add text to the input field, or select sample text from the panels on the page. 
 1. Select **Run test**.
     The service returns all the categories that were detected, with the severity level for each: 0-Safe, 2-Low, 4-Medium, 6-High. It also returns a binary **Accepted**/**Rejected** result, based on the filters you configure. Use the matrix in the **Configure filters** tab to set your allowed/prohibited severity levels for each category. Then you can run the text again to see how the filter works. 
 
-### Images
+### Use a blocklist 
+
+The **Use blocklist** tab lets you create, edit, and add a blocklist to the moderation workflow. If you have a blocklist enabled when you run the test, you get a **Blocklist detection** panel under **Results**. It reports any matches with the blocklist. 
+
+## Analyze images
 
 The **Moderate image** page provides capability for you to quickly try out image moderation.
 
@@ -39,15 +50,9 @@ The **Moderate image** page provides capability for you to quickly try out image
 1. Select **Run test**. 
     The service returns all the categories that were detected, with the severity level for each: 0-Safe, 2-Low, 4-Medium, 6-High. It also returns a binary **Accepted**/**Rejected** result, based on the filters you configure. Use the matrix in the **Configure filters** tab on the right to set your allowed/prohibited severity levels for each category. Then you can run the text again to see how the filter works.
 
-### View and export code 
+## View and export code 
 
 You can use the **View Code** feature in either the **Analyze text content** or **Analyze image content** pages to view and copy the sample code, which includes configuration for severity filtering, blocklists, and moderation functions. You can then deploy the code on your end.
-
-
-
-## Use a blocklist 
-
-The **Use blocklist** tab lets you create, edit, and add a blocklist to the moderation workflow. If you have a blocklist enabled when you run the test, you get a **Blocklist detection** panel under **Results**. It reports any matches with the blocklist. 
 
 ## Use Prompt Shields 
 
