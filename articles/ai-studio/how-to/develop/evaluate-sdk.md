@@ -572,6 +572,13 @@ After local evaluations of your generative AI applications, you may want to trig
 
 ### Requirements for evaluating remotely
 
+  
+#### Prerequisites
+- Azure AI project in `EastUS2` region. If you do not have an existing project, please follow the guide [How to create Azure AI project](https://learn.microsoft.com/azure/ai-studio/how-to/create-projects?tabs=ai-studio) to create one. 
+- Azure OpenAI Deployment with GPT model supporting `chat completion`, for example `gpt-4`.
+- `Connection String` for Azure AI project to easily create `AIProjectClient` object. You can get the connection string from project overview page.
+- Make sure you are first logged into your Azure subscription by running `az login`.
+
 #### Installation Instructions
 
 1. Create a **virtual environment of you choice**. To create one using conda, run the following command:
@@ -584,15 +591,8 @@ After local evaluations of your generative AI applications, you may want to trig
    pip install azure-identity azure-ai-projects azure-ai-ml
     ```
     Optionally, you can `pip install azure-ai-evaluation` if you want to fetch evaluator id for built-in evaluators directly from the SDK.
-    
 
-#### Prerequisites
-- Azure AI project in `EastUS2` region. If you do not have an existing project, please follow the guide [How to create Azure AI project](https://learn.microsoft.com/azure/ai-studio/how-to/create-projects?tabs=ai-studio) to create one. 
-- Azure OpenAI Deployment with GPT model supporting `chat completion`, for example `gpt-4`.
-- `Connection String` for Azure AI project to easily create `AIProjectClient` object. You can get the connection string from Project overview page.
-- Make sure you are first logged into your Azure subscription by running `az login`.
-
-Then you can then define a client and a deployment to run your remote evaluations:
+Now you can define a client and a deployment which will be used to run your remote evaluations:
 ```python
 
 import os, time
@@ -750,7 +750,7 @@ from azure.ai.evaluation import F1ScoreEvaluator, RelevanceEvaluator, ViolenceEv
 deployment_name = os.environ.get("AZURE_OPENAI_DEPLOYMENT")
 api_version = os.environ.get("AZURE_OPENAI_API_VERSION")
 
-# Create an Azure AI Client from a connection string. Avaiable on Project overview page on Azure AI Studio UI.
+# Create an Azure AI Client from a connection string. Avaiable on project overview page on Azure AI Studio UI.
 project_client = AIProjectClient.from_connection_string(
     credential=DefaultAzureCredential(),
     conn_str="<connection_string>"
