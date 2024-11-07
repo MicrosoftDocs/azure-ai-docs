@@ -45,8 +45,12 @@ To train a custom category, you need example text data that represents the categ
 > For tips on creating your own data set, see the [How-to guide](./how-to/custom-categories.md#prepare-your-training-data).
 
 1. Download the [sample text data file](https://github.com/Azure-Samples/cognitive-services-sample-data-files/blob/master/ContentSafety/survival-advice.jsonl) from the GitHub repository.
-1. Upload the _.jsonl_ file to your Azure Storage account blob container. Then copy the blob URL to a temporary location for later use.
+2. Upload the _.jsonl_ file to your Azure Storage account blob container. Then copy the blob URL to a temporary location for later use.
 
+> [!IMPORTANT]
+> **The user's storage account is set up as a hierarchical namespace account, which cannot be supported by Custom Categories. Please try using a regular storage account instead.**
+For example, your blob URL cannot be split into two layers, such as example/example1/, and should only have one layer. For more details, refer to the documentation: [Azure Data Lake Storage hierarchical namespace - Azure Storage.](https://learn.microsoft.com/en-us/azure/storage/blobs/data-lake-storage-namespace)
+>
 ### Grant storage access 
 
 [!INCLUDE [storage-account-access](./includes/storage-account-access.md)]
