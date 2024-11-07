@@ -177,7 +177,7 @@ Here's an example of the result:
 > [!NOTE]
 > We strongly recommend users to migrate their code to use the key without prefixes (for example, `groundedness.groundedness`) to allow your code to support more evaluator models.
 > All evaluators except for `SimilarityEvaluator` come with a reason field. They employ techniques including chain-of-thought reasoning to generate an explanation for the score. Therefore they will consume more token usage in generation as a result of improved evaluation quality. Specifically, `max_token` for evaluator generation has been set to 800 for all AI-assisted evaluators (and 1600 for `RetrievalEvaluator` to accommodate for longer inputs.) 
-> `GroundednessEvaluator` (open-source, prompt-based) supports `query` as an optional input. If `query` is provided, their optimal scenario will be Retrieval Augmented Generation Question and Answering (RAG QA); and otherwise, the optimal scenario will be summarization. This is different from `GroundednessProEvaluator` (powered by Azure Content Safety) which requires `query`.
+> `GroundednessEvaluator` (open-source prompt-based) supports `query` as an optional input. If `query` is provided, their optimal scenario will be Retrieval Augmented Generation Question and Answering (RAG QA); and otherwise, the optimal scenario will be summarization. This is different from `GroundednessProEvaluator` (powered by Azure Content Safety) which requires `query`.
 
 
 ### Risk and safety evaluators
@@ -565,21 +565,19 @@ result = evaluate(
 
 ## Remote evaluation
 
-After local evaluations of your generative AI applications, you may want to trigger remote evaluations for pre-deployment testing and even continuously evaluate your applications for post-deployment monitoring. Azure AI Project SDK offers such capabilities via a Python API and supports all of the features available in local evaluations.
+After local evaluations of your generative AI applications, you may want to trigger remote evaluations for pre-deployment testing and even continuously evaluate your applications for post-deployment monitoring. Azure AI Project SDK offers such capabilities via a Python API and supports all of the features available in local evaluations. Follow the steps below to submit your remote evaluation on your data using built-in or custom evaluators.
 
 > [!NOTE]
 > Currently remote evaluations are only supported in the same [regions](#region-support) as AI-assisted risk and safety metrics.
 
-### Requirements for evaluating remotely
-
   
-#### Prerequisites
-- Azure AI project in `EastUS2` region. If you do not have an existing project, please follow the guide [How to create Azure AI project](https://learn.microsoft.com/azure/ai-studio/how-to/create-projects?tabs=ai-studio) to create one. 
+### Prerequisites
+- Azure AI project in `EastUS2` region. If you do not have an existing project, follow the guide [How to create Azure AI project](../create-projects.md?tabs=ai-studio) to create one. 
 - Azure OpenAI Deployment with GPT model supporting `chat completion`, for example `gpt-4`.
 - `Connection String` for Azure AI project to easily create `AIProjectClient` object. You can get the connection string from project overview page.
 - Make sure you are first logged into your Azure subscription by running `az login`.
 
-#### Installation Instructions
+### Installation Instructions
 
 1. Create a **virtual environment of you choice**. To create one using conda, run the following command:
     ```bash
@@ -612,7 +610,7 @@ project_client = AIProjectClient.from_connection_string(
 )
 ```
 
-#### Evaluation data
+### Uploading evaluation data
 We provide two ways to register your data in Azure AI project required for remote evaluations: 
 1. Upload new data from your local directory to the Project, and fetch the dataset id as a result: 
 ```python
@@ -625,10 +623,10 @@ data_id = project_client.upload_file("./evaluate_test_data.jsonl")
 - Construct the dataset id: `/subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/Microsoft.MachineLearningServices/workspaces/<project-name>/data/<dataset-name>/versions/<version-number>`
 
 
-#### Evaluator library
-We provide a list of built-in evaluators registered in the Evaluator library of your Azure AI project. We provide two ways to specify registered evaluators:
+### Specifying evaluators from Evaluator library
+We provide a list of built-in evaluators registered in the [Evaluator library](../evaluate-generative-ai-app.md#view-and-manage-the-evaluators-in-the-evaluator-library) under **Evaluation** tab of your Azure AI project. You can also register custom evaluators and use them for remote evaluation. We provide two ways to specify registered evaluators:
 
-##### Specifying built-in evaluators
+#### Specifying built-in evaluators
 - **From SDK**: Use built-in evaluator `id` property supported by `azure-ai-evaluation` SDK:
 ```python
 from azure.ai.evaluation import F1ScoreEvaluator, RelevanceEvaluator, ViolenceEvaluator
@@ -642,7 +640,7 @@ print("F1 Score evaluator id:", F1ScoreEvaluator.id)
     - Copy its "Asset ID" which will be your evaluator id, for example, `azureml://registries/azureml/models/Groundedness-Pro-Evaluator/versions/1`.
 
 
-##### Specifying custom evaluators 
+#### Specifying custom evaluators 
 
 - For code-based custom evaluators, register them to your AI Studio project and fetch the evaluator ids with the following:
 
@@ -685,7 +683,7 @@ versioned_evaluator = ml_client.evaluators.get(evaluator_name, version=1)
 print("Versioned evaluator id:", registered_evaluator.id)
 ```
 
-After registering your custom evaluator to your AI Studio project, you can view it in your [Evaluator library](../evaluate-generative-ai-app.md#view-and-manage-the-evaluators-in-the-evaluator-library) under Evaluation tab in AI Studio.
+After registering your custom evaluator to your Azure AI project, you can view it in your [Evaluator library](../evaluate-generative-ai-app.md#view-and-manage-the-evaluators-in-the-evaluator-library) under **Evaluation** tab in your Azure AI project.
 
 - For prompt-based custom evaluators, use this snippet to register them. For example, let's register our `FriendlinessEvaluator` built as described in [Prompt-based evaluators](#Prompt-based-evaluators):
 
@@ -732,7 +730,7 @@ versioned_evaluator = ml_client.evaluators.get(evaluator_name, version=1)
 print("Versioned evaluator id:", registered_evaluator.id)
 ```
 
-After logging your custom evaluator to your AI Studio project, you can view it in your [Evaluator library](../evaluate-generative-ai-app.md#view-and-manage-the-evaluators-in-the-evaluator-library) under **Evaluation** tab in AI Studio.
+After logging your custom evaluator to your AI Studio project, you can view it in your [Evaluator library](../evaluate-generative-ai-app.md#view-and-manage-the-evaluators-in-the-evaluator-library) under **Evaluation** tab of your Azure AI project.
 
 
 ### Remote evaluation with Azure AI Project SDK
