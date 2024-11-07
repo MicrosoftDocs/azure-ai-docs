@@ -7,10 +7,10 @@ author: heidisteen
 ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 11/04/2024
+ms.date: 11/19/2024
 ---
 
-# Assign narrow data types
+# Assign narrow data types to vector fields in Azure AI Search
 
 An easy way to reduce vector size is to store embeddings in a smaller data format. Most embedding models output 32-bit floating point numbers, but if you quantize your vectors, or if your embedding model supports it natively, output might be float16, int16, or int8, which is significantly smaller than float32. You can accommodate these smaller vector sizes by assigning a narrow data type to a vector field. In the vector index, narrow data types consume less storage.
 
@@ -18,7 +18,7 @@ Data types are assigned to fields in an index definition. You can use the Azure 
 
 ## Prerequisites
 
-- An embedding model that output small data formats.
+- An embedding model that output small data formats, such as text-embedding-3 or Cohere V3 embedding models.
 
 ## Supported narrow data types
 
@@ -47,7 +47,7 @@ Data types are assigned to fields in an index definition. You can use the Azure 
 
 ## Assign the data type
 
-[Define and build the index](vector-search-how-to-create-index.md). You can use the Azure portal, [Create or Update Index (REST API)](/rest/api/searchservice/indexes/create-or-update), or an Azure SDK package for this step.
+[Define and build an index](vector-search-how-to-create-index.md). You can use the Azure portal, [Create or Update Index (REST API)](/rest/api/searchservice/indexes/create-or-update), or an Azure SDK package for this step.
 
 This field definition uses a narrow data type, `Collection(Edm.Half)`, that can accept a float32 embedding stored as a float16 value. As is true for all vector fields, `dimensions` and `vectorSearchProfile` are set. The specifics of the `vectorSearchProfile` are immaterial to the datatype.
 
@@ -80,12 +80,9 @@ Data types are assigned on new fields when they're created. You can't change the
 
 ## Check results
 
-1. Verify the field content matches the data type. Assuming the vector field is marked as retrievable, use [Search explorer](search-explorer.md) or [Search - POST](/rest/api/searchservice/documents/search-post?) to return vector field content.
+1. Verify the field content matches the data type. Assuming the vector field is marked as `retrievable`, use [Search explorer](search-explorer.md) or [Search - POST](/rest/api/searchservice/documents/search-post?) to return vector field content.
 
-1. To check vector index size, refer to the vector index size column on the Indexes page in the Azure portal or use the [GET Statistics (REST API)](/rest/api/searchservice/indexes/get-statistics) or equivalent Azure SDK method to get the size.
-
-<!-- 
-   Evidence of choosing the wrong data type, for example choosing `int8` for a `float32` embedding, is a field that's indexed as an array of zeros. If you encounter this problem, start over. -->
+1. To check vector index size, refer to the vector index size column on the **Search management > Indexes** page in the [Azure portal](https://portal.azure.com) or use the [GET Statistics (REST API)](/rest/api/searchservice/indexes/get-statistics) or equivalent Azure SDK method to get the size.
 
 > [!NOTE]
-> The field's data type is used to create the physical data structure. If you want to change a data type later, either drop and rebuild the index, or create a second field with the new definition.
+> The field's data type is used to create the physical data structure. If you want to change a data type later, either [drop and rebuild the index](search-howto-reindex.md), or create a second field with the new definition.
