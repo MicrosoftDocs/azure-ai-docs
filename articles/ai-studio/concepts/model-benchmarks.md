@@ -34,17 +34,15 @@ Model benchmarks assess LLMs and SLMs across the following categories: quality, 
 
 ### Quality
 
-Azure AI assesses the quality of LLMs and SLMs across various metrics that are grouped into two main categories: accuracy, and prompt assisted metrics:
+Azure AI assesses the quality of LLMs and SLMs across various metrics that are grouped into two main categories: accuracy, and prompt-assisted metrics:
 
-
-- Accuracy
+For accuracy metric:
 
 | Metric | Description |
 |--------|-------------|
 | Accuracy | Accuracy scores are available at the dataset and the model levels. At the dataset level, the score is the average value of an accuracy metric computed over all examples in the dataset. The accuracy metric used is `exact-match` in all cases, except for the _HumanEval_ dataset that uses a `pass@1` metric. Exact match compares model generated text with the correct answer according to the dataset, reporting one if the generated text matches the answer exactly and zero otherwise. The `pass@1` metric measures the proportion of model solutions that pass a set of unit tests in a code generation task. At the model level, the accuracy score is the average of the dataset-level accuracies for each model. |
 
-
-- Prompt assisted metrics
+For prompt-assisted metrics:
 
 | Metric | Description |
 |--------|-------------|
@@ -58,7 +56,7 @@ Azure AI also displays the quality index as follows:
 
 | Index | Description |
 |-------|-------------|
-| Quality Index | GPTSimilarity scaled down from zero to one, averaged with our accuracy metrics. A higher quality index value is better. |
+| Quality index | GPTSimilarity scaled down from zero to one, averaged with our accuracy metrics. A higher quality index value is better. |
 
 Azure AI assesses the quality index by using both the measurement of accuracy and GPTSimilarity as the prompt assisted metric. The stability of the GPTSimilarity metric averaging with the accuracy of the model provides an indicator of the overall quality of the model.
 
