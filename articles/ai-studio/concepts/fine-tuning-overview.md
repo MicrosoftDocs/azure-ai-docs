@@ -41,7 +41,6 @@ Before you begin fine-tuning a model you can consider if you've identified short
 
 Use cases for fine-tuning a model can be:
 - Steering the model to output content in a specific and customized style, tone, or format.
-- Adjusting the complexity and length of the output.
 
 If you identify cost as your primary motivator, proceed with caution. Fine-tuning might reduce costs for certain use cases by shortening prompts or allowing you to use a smaller model. But there's a higher upfront cost to training, and you have to pay for hosting your own custom model. For more information on fine-tuning costs in Azure OpenAI Service, refer to the [pricing page](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/).
 
