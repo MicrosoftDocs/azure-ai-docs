@@ -47,7 +47,7 @@ pip install azure-ai-projects azure-identity
 
 Create a project client in code:
 
-#[Sync](#tab/sync)
+# [Sync](#tab/sync)
 
 ```Python
 from azure.identity import DefaultAzureCredential
@@ -60,7 +60,7 @@ project = AIProjectClient.from_connection_string(
   credential=DefaultAzureCredential())
 ```
 
-#[Async](#tab/async)
+# [Async](#tab/async)
 
 ```Python
 from azure.identity.aio import DefaultAzureCredential
