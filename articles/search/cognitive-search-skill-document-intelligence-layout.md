@@ -52,7 +52,7 @@ Microsoft.Skills.Util.DocumentIntelligenceLayoutSkill
 ## Data limits
 
 + For PDF and TIFF, up to 2,000 pages can be processed (with a free tier subscription, only the first two pages are processed).
-+ The file size for analyzing documents is 500 MB for [Azure AI Document Intelligence paid (S0) tier](https://azure.microsoft.com/pricing/details/cognitive-services/) and 4 MB for [Azure AI Document Intelligence free (F0) tier](https://azure.microsoft.com/pricing/details/cognitive-services/).
++ Even if the file size for analyzing documents is 500 MB for [Azure AI Document Intelligence paid (S0) tier](https://azure.microsoft.com/pricing/details/cognitive-services/) and 4 MB for [Azure AI Document Intelligence free (F0) tier](https://azure.microsoft.com/pricing/details/cognitive-services/), to use this functionality you need to take into consideration the file limits allowed by your indexer based on the [indexer limits](search-limits-quotas-capacity.md#indexer-limits) associated to your Azure AI Search service tier. 
 + Image dimensions must be between 50 pixels x 50 pixels and 10,000 pixels x 10,000 pixels.
 + If your PDFs are password-locked, you must remove the lock before submission.
 
