@@ -47,7 +47,7 @@ pip install azure-ai-projects azure-identity
 
 Create a project client in code:
 
-#[Sync](tab/sync)
+#[Sync](#tab/sync)
 
 ```Python
 from azure.identity import DefaultAzureCredential
@@ -60,7 +60,7 @@ project = AIProjectClient.from_connection_string(
   credential=DefaultAzureCredential())
 ```
 
-#[Async](tab/async)
+#[Async](#tab/async)
 
 ```Python
 from azure.identity.aio import DefaultAzureCredential
@@ -259,7 +259,7 @@ violence_score = violence_eval(query="what's the capital of france", response="P
 print(violence_score)
 ```
 
-To learn more, check out [Evaluation using the SDK](evaluate_sdk.md).
+To learn more, check out [Evaluation using the SDK](evaluate-sdk.md).
 
 ## Tracing
 
@@ -287,15 +287,15 @@ Client libraries:
 * [Azure AI services REST APIs](../../../ai-services/reference/rest-api-resources.md?context=/azure/ai-studio/context/context) 
 
 Azure AI services
-* [Azure AI Services Python Management Library](/python/api/overview/azure/mgmt-cognitiveservices-readme?view=azure-python)
-* [Azure AI Search Python Management Library](/python/api/azure-mgmt-search/azure.mgmt.search?view=azure-python)
+* [Azure AI Services Python Management Library](/python/api/overview/azure/mgmt-cognitiveservices-readme)
+* [Azure AI Search Python Management Library](/python/api/azure-mgmt-search/azure.mgmt.search)
 
 ### Frameworks
 
 Azure Machine Learning
 
 * [Azure Machine Learning Python SDK (v2)](/python/api/overview/azure/ai-ml-readme)
-* [Azure Machine Learning CLI (v2)](/azure/machine-learning/how-to-configure-cli?view=azureml-api-2&tabs=public)
+* [Azure Machine Learning CLI (v2)](/azure/machine-learning/how-to-configure-cli)
 * [Azure Machine Learning REST API](/rest/api/azureml) 
 
 Prompt flow
