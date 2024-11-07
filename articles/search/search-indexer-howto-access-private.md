@@ -81,13 +81,10 @@ When evaluating shared private links for your scenario, remember these constrain
 
 + Permissions on both Azure AI Search and the Azure resource:
 
-  On the Azure resource, you must have permission to approve private endpoint connections. For example, on Azure Storage, you need `Microsoft.Storage/storageAccounts/privateEndpointConnectionsApproval/action`.
-
-  On Azure AI Search, you must have read and write permissions on shared private link resources:
-
-  + `Microsoft.Search/searchServices/sharedPrivateLinkResources/write`
-  + `Microsoft.Search/searchServices/sharedPrivateLinkResources/read`
-  + `Microsoft.Search/searchServices/sharedPrivateLinkResources/operationStatuses/read`
+  | Resource | Permissions |
+  |----------|-------------|
+  | Azure AI Search | `Microsoft.Search/searchServices/sharedPrivateLinkResources/write`<br> `Microsoft.Search/searchServices/sharedPrivateLinkResources/read`<br> `Microsoft.Search/searchServices/sharedPrivateLinkResources/operationStatuses/read` |
+  | Other Azure resource | Permission to approve private endpoint connections. For example, on Azure Storage, you need `Microsoft.Storage/storageAccounts/privateEndpointConnectionsApproval/action`. |
 
 <!-- + For [integrated vectorization](vector-search-integrated-vectorization.md) only, outbound connections through shared private link are supported on all billable tiers, on services [created after April 3, 2024](vector-search-index-size.md#how-to-check-service-creation-date), in regions providing [higher capacity](search-limits-quotas-capacity.md#partition-storage-gb).  -->
 
