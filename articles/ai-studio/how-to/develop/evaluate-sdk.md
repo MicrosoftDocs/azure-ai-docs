@@ -175,7 +175,7 @@ Here's an example of the result:
 ```
 
 > [!NOTE]
-> We strongly recommend users to migrate their code to use the key without prefixes (for example, `groundedness.groundedness`) to allow your code to support more evaluator models.. 
+> We strongly recommend users to migrate their code to use the key without prefixes (for example, `groundedness.groundedness`) to allow your code to support more evaluator models.
 > All evaluators except for `SimilarityEvaluator` come with a reason field. They employ techniques including chain-of-thought reasoning to generate an explanation for the score. Therefore they will consume more token usage in generation as a result of improved evaluation quality. Specifically, `max_token` for evaluator generation has been set to 800 for all AI-assisted evaluators (and 1600 for `RetrievalEvaluator` to accommodate for longer inputs.) 
 > `GroundednessEvaluator` (open-source, prompt-based) supports `query` as an optional input. If `query` is provided, their optimal scenario will be Retrieval Augmented Generation Question and Answering (RAG QA); and otherwise, the optimal scenario will be summarization. This is different from `GroundednessProEvaluator` (powered by Azure Content Safety) which requires `query`.
 
@@ -642,9 +642,9 @@ print("F1 Score evaluator id:", F1ScoreEvaluator.id)
     - Copy its "Asset ID" which will be your evaluator id, for example, `azureml://registries/azureml/models/Groundedness-Pro-Evaluator/versions/1`.
 
 
-##### Registering custom evaluators 
+##### Specifying custom evaluators 
 
-- For code-based custom evaluators, register it to your AI Studio project and fetch the evaluator id with the following:
+- For code-based custom evaluators, register them to your AI Studio project and fetch the evaluator ids with the following:
 
 ```python
 from azure.ai.ml import MLClient
