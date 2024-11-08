@@ -8,7 +8,7 @@ ms.custom:
   - ignite-2023
   - build-2024
 ms.topic: how-to
-ms.date: 10/30/2024
+ms.date: 11/07/2024
 ms.reviewer: deeikele
 ms.author: sgilley
 author: sdgilley
@@ -21,6 +21,7 @@ author: sdgilley
 In this article, you learn how to create a compute instance in Azure AI Studio. You can create a compute instance in the Azure AI Studio.
 
 You need a compute instance to:
+
 - Use prompt flow in Azure AI Studio. 
 - Create an index
 - Open Visual Studio Code (Web or Desktop) in Azure AI Studio.
