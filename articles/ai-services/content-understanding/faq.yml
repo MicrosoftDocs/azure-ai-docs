@@ -60,16 +60,6 @@ sections:
         answer: |
          Azure AI Services, including Content Understanding, adheres to strict security and compliance standards to ensure data protection. These measures include data encryption, secure access controls, and compliance with industry regulations such as GDPR and HIPAA. The service also adheres to Microsoft’s responsible use of AI.
       - question: |
-         How do the capabilities of Azure AI Content Understanding compare to Document Intelligence
-        answer: |
-          Azure AI Content Understanding and Document Intelligence are both powerful tools, but they serve different purposes and have distinct capabilities.
-          Azure AI Content Understanding integrates various data types like text, images, videos, and audio, providing comprehensive analysis and insights using Generative AI. The service is ideal for applications needing diverse data integration for automation, Search, and Retrieval-Augmented Generation (RAG), analytics, and reporting.
-          Conversely, Document Intelligence focuses on extracting and processing key data from documents, such as invoices, forms, and contracts, converting unstructured data into structured, usable information.
-      - question: |
-         How can I migrate from Document Intelligence to Azure AI Content Understanding?
-        answer: |
-          Currently, migration from Document Intelligence to Content Understanding is unavailable.
-      - question: |
          What base models does Azure AI Content Understanding use?
         answer: |
           Content Understanding uses various models and capabilities from Azure OpenAI, Azure AI Speech, Vision, and Language to support single- modality and multi-modal scenarios. The service determines the selection of base models appropriate for each scenario.
@@ -77,8 +67,3 @@ sections:
          What are the pricing tier options for Content Understanding
         answer: |
           Content Understanding only supports Standard S0 pricing tier. See more details on the pricing page.
-      - question: |
-         How can I get started with Content Understanding?
-        answer: |
-          To get started with Content Understanding, visit the Azure AI Studio and get started with Content Understanding. Azure AI Studio provides comprehensive guides, tutorials, and customer support to help you set up and utilize Content Understanding effectively.
-

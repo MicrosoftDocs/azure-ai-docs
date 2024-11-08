@@ -13,21 +13,19 @@ ms.custom: ignite-2024-understanding-release
 
 # What is Azure AI Content Understanding?
 
-Azure AI Content Understanding is a cloud-based solution within [**Azure AI services**](../what-are-ai-services.md), designed to process/ingest various data modalities such as documents, images, videos, and audio into customizable output formats using Generative AI, Larger Language models (LLM), and Small Language Models (SLM) within a unified workflow.
+Azure AI Content Understanding is a new Generative AI based [**Azure AI services**](../what-are-ai-services.md), designed to process/ingest content of any types (documents, images, videos, and audio) into a user-defined output format.
 
-Content Understanding offers a streamlined process to reason over large amounts of unstructured data, build customizable workflows, ultimately accelerating time-to-value (TTV), while varied AI models.
+Content Understanding offers a streamlined process to reason over large amounts of unstructured data, accelerating time-to-value (TTV) to seamlessly integrate the output into automation and analytical workflows used by downstream applications.
 
 :::image type="content" source="media/overview/content-understanding-overview.png" lightbox="media/overview/content-understanding-process.png" alt-text="Screenshot of accepted media input files.":::
 
-### Why use Content Understanding?
+### Why process with Content Understanding?
 
-* **Simplified and streamlined workflows**. Content Understanding unifies the process for extracting data from any modality or combination of modalities, creating a unified approach to processing all types of content.
+* **Simplify and streamline workflows**. Content Understanding standardizes the extraction of data from various content types, providing a unified method for processing all types of content.
 
-* **Simplified Content Extraction**. Content Understanding's schema definition streamlines the generation of structured output from various content types. Users are enabled to define schemas where fields can be extracted, inferred, or abstracted without requiring complex prompt engineering.
+* **Simplify field extraction**. Content Understanding's schema definition makes it easier to generate structured output from various content types. Users can define schemas to extract, classify, or generate field values without needing complex prompt engineering.
 
-* **Efficiency and Cost Reduction**. Automating the ingestion and analysis of large amounts of data from varied sources reduces the cost associated with building Generative AI automation solutions.
-
-* **Enhanced Accuracy**. Content Understanding uses multiple data modalities to simultaneously analyze and cross-validate information, leading to more accurate and reliable results.
+* **Enhance accuracy**. Content Understanding employs multiple AI models to analyze and cross-validate information simultaneously, resulting in more accurate and reliable results.
 
 ### Content Understanding use cases
 
@@ -37,50 +35,48 @@ Content Understanding offers a streamlined process to reason over large amounts 
 
 * **Analytics and Reporting**: Content Understanding's extracted schema outputs enhance analytics and reporting, allowing businesses to gain valuable insights, conduct deeper analysis and make informed decisions from accurate reports.
 
-*    **Business leaders and c-suite executives**. Decision makers gain actionable insights from Content Understanding solutions. Generative
-AI powered results and high confidence scores lead to enlightened data-driven decisions and minimize the need for human review.
+## Applications
+Common applications for Content Understanding include:
 
-*    **Developers**. Computer application and system professionals can address enterprise-specific use cases by creating customized workflows using various input data types and deployed custom models.
+|Application|Description|Quickstart|
+|:---------|:----------|:----------|
+|Post-call analytics| Businesses and call centers can generate insights from call recordings to track key KPIs, improve product experience, generate business insights, create differentiated customer experiences, and answer queries faster and more accurately.| **Post-call analytics quickstart**|
+|Media asset management| Software and media vendors can use Content Understanding to extract richer, targeted information from videos for media asset management solutions.| **Media asset management quickstart** |
+|Tax automation| Tax preparation companies can use Content Understanding to generate a unified view of information from various documents and create comprehensive tax returns.| **Tax automation quickstart** | 
+|Chart understanding| Businesses can enhance chart understanding by automating the analysis and interpretation of various types of charts and diagrams using Content Understanding.| **Chart understanding quickstart** |
 
-*    **Subject matter experts**: Domain  and subject matter experts benefit from streamlined output, enhanced automation, and high confidence scores.
+See [Quickstart](quickstart/use-scenario-templates.md) for more examples.
 
-## Features and capabilities
+
+## Capabilities
+
 |Capability|Description|
 |:---------|:----------|
-|Diverse modality processing|Content Understanding intakes document, image, audio, video, and mixed media input and converts it into a structured format easily analyzed and further processed by other services and applications.|
-|High-level schema extraction|Users can define the structure and the schema of the extracted results or use a predefined schema for specific schema values: </br></br>&bullet; **Extracted (explicit)**. Values like the name of the product in a recording or the brand/logo from a video are examples of extracted values.</br></br>&bullet; **Inferred (implicit)**. Inferred values aren't explicitly present in the content but can be determined based on the content. The sum of all line items in an invoice or the end date of a contract given a start date and duration are examples of inferred values.</br></br>&bullet; **Abstracted (tacit)**. Abstracted values are generated based on the content of the input. Examples include summaries, outlines, recaps are examples of abstracted values.
-|Comprehensive content extraction and analysis| Content Understanding is equipped with the capability to automatically identify and extract pertinent information from diverse file types. This functionality is available for certain file formats, including documents, audio, and video. The service can analyze data within these files and extract text, key-value pairs, tables, and structure from documents, as well as transcriptions from video and audio files. <br> <br> The primary objective is to transform unstructured data into structured, actionable information that can be readily accessed and utilized.|
-|Grounded results for higher accuracy|Content Understanding ensures that responses are anchored to your input files, leading to higher precision in extracted values. The source information is pivotal to assessing groundedness, serving as the foundation for both grounding and accuracy. A grounded response adheres strictly to the provided information, avoiding any speculation or fabrication. |
-|Highly precise confidence scores|Content Understanding ensures accuracy across contexts for extracted fields. A confidence score from 0 to 100 measures the statistical certainty of the result's reliability. High scores indicate precise data extraction, enabling straight-through processing (STP) in automation workflows.|
-|Precise and efficient extraction of modality-specific details for secondary processing scenarios| Users can extract specific content that is suitable for secondary scenarios like Large Language Model (LLM) processing.|
+|Content extraction | Content Understanding recognizes content from documents, images, audio, and video for easy analysis and further processing.|
+|Field extraction|Users can define the structure and schema of the desired extracted fields or customize from templates for common scenarios. Fields can be generated via multiple methods:</br></br> &bullet; **Extract**: Directly extract values as they appear in the input content, such as extracting dates from receipts or item details from invoices.</br></br>&bullet; **Classify**: Classify content from a predefined set of categories, such as determining call sentiment or chart type.</br></br>&bullet; **Generate**: Generate values freely from input data, such as summarizing an audio conversation or generating scene descriptions from videos.|
+|Grounding Source| Content Understanding identifies the specific regions in the content where the value was generated from. Source grounding allows users in automation scenarios to quickly verify the correctness of the field values, leading to higher confidence in the extracted data. |
+|Confidence Score | Content Understanding provides confidence scores from 0 to 1 to estimate the reliability of the results. High scores indicate accurate data extraction, enabling straight-through processing in automation workflows.|
+|Add-ons| Content Understanding add-ons enhance content extraction by incorporating added elements like barcodes, tables, and detected faces.|
 
-## Scenarios
-Common scenarios for Azure AI Content Understanding service include:
-
-|Use|Scenario|Scenario Quickstart|
-|--------|-------|-------|
-|Call center post-call analytics| Businesses and call center operators can generate insights from call recordings to track key KPIs to improve product experience, generate business insights, create differentiated customer experiences, and answer queries faster and more accurately.| [**Post call analytics Quickstart**](prebuilt-template/post-call-analytics.md) |
-|Marketing automation digital asset management| Independent software and media vendors that build media asset management solutions can use Content Understanding to extract richer, targeted content from images and videos.| [**Media asset management prebuilt template**](prebuilt-template/manage-video-assets.md)|
-|Tax processing automation| Tax preparing companies can use the extended capabilities of Content Understanding to generate a unified view of information from different documents and generate comprehensive tax returns.| Quick start|
-Chart Understanding| Businesses can significantly enhance chart understanding by automating the analysis and interpretation of various types of charts and diagrams using Content Understanding. This capability is useful in several downstream use cases.| Quickstart |
 
 ## Responsible AI
-At Microsoft, we prioritize advancing AI with a people-first approach. Generative models in Azure AI Content Understanding have great potential but can produce incorrect or harmful content without careful design. For more information, *see* [Microsoft Responsible AI dashboard](/azure/machine-learning/concept-responsible-ai-dashboard), [Adopt responsible and trusted AI principles](/azure/cloud-adoption-framework/strategy/responsible-ai), and follow our [**Empowering responsible AI practices**](https://www.microsoft.com/ai/responsible-ai) guidance.
+
+ Azure AI Content Understanding is designed to guard against processing harmful content. For more information, *see* our **Transparency Note** and  [**Code of Conduct**](https://learn.microsoft.com/legal/cognitive-services/openai/code-of-conduct#see-also).
 
 ## Data privacy and security
 
-As with all the Azure AI services, developers using the Content Understanding service should be aware of Microsoft's policies on customer data. See our [**Data, protection and privacy**](https://www.microsoft.com/trust-center/privacy) page to learn more.
+Developers using the Content Understanding service should review Microsoft's policies on customer data. For more information, visit our [**Data, protection and privacy**](https://www.microsoft.com/trust-center/privacy) page.
 
 > [!IMPORTANT]
 > If you are using Microsoft products or services to process Biometric Data, you are responsible for: (i) providing notice to data subjects, including with respect to retention periods and destruction; (ii) obtaining consent from data subjects; and (iii) deleting the Biometric Data, all as appropriate and required under applicable Data Protection Requirements. "Biometric Data" will have the meaning set forth in Article 4 of the GDPR and, if applicable, equivalent terms in other data protection requirements. For related information, see [Data and Privacy for Face](/legal/cognitive-services/face/data-privacy-security).
 
 ## Getting started
-Before you get started using Content Understanding, you need an [**Azure AI services multi-service resource**](how-to/create-multi-service-resource.md). The multi-service resource enables access to multiple Azure AI services with a single set of credentials.
 
-We provide quickstart guides designed to help you begin utilizing Content Understanding service swiftly:
+Our quickstart guides help you quickly start using the Content Understanding service:
 
-* **[**Rest API Quickstart**](quickstart/use-rest-api.md)**
-* **Azure AI Studio Quickstart**
+* [**Rest API Quickstart**](quickstart/use-rest-api.md)
+* **Azure AI Foundry Quickstart**
+
 
 
 
