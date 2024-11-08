@@ -1,17 +1,20 @@
 items:
-- name: Azure AI Studio documentation
+- name: Azure AI Foundry documentation
   href: index.yml
 - name: Overview
   expanded: true
   items:
-  - name: What is Azure AI Studio?
+  - name: What is Azure AI Foundry?
     href: what-is-ai-studio.md
-  - name: Azure AI Studio architecture
+  - name: Azure AI Foundry architecture
     href: concepts/architecture.md
-  - name: Azure OpenAI in AI Studio
+  - name: Azure OpenAI in AI Foundry
     href: azure-openai-in-ai-studio.md
   - name: Management center
     href: concepts/management-center.md
+  - name: Azure AI Foundry SDK
+    href: how-to/develop/sdk-overview.md
+    displayName: code, sdk
   - name: Region support
     href: reference/region-support.md
   - name: Azure AI FAQ
@@ -294,9 +297,6 @@ items:
           href: how-to/prompt-flow-troubleshoot.md
     - name: Develop generative AI apps using code
       items:
-      - name: Overview of SDKs
-        href: how-to/develop/sdk-overview.md
-        displayName: code
       - name: Work with AI Studio projects in VS Code
         href: how-to/develop/vscode.md
       - name: Start with an AI template
