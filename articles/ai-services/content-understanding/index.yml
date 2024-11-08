@@ -26,7 +26,7 @@ landingContent:
       - linkListType: quickstart
         links:
         - text: Use Content Understanding in Azure AI Foundry
-          url: quickstart/use-aifoundry.md
+          url: quickstart/use-ai-foundry.md
         - text: Use Content Understanding Rest API
           url: quickstart/use-rest-api.md
 

@@ -40,12 +40,12 @@ Common applications for Content Understanding include:
 
 |Application|Description|Quickstart|
 |:---------|:----------|:----------|
-|Post-call analytics| Businesses and call centers can generate insights from call recordings to track key KPIs, improve product experience, generate business insights, create differentiated customer experiences, and answer queries faster and more accurately.| [**Post-call analytics quickstart**](quickstart/use-aifoundry.md) |
-|Media asset management| Software and media vendors can use Content Understanding to extract richer, targeted information from videos for media asset management solutions.| [**Media asset management quickstart**](quickstart/use-aifoundry.md) |
-|Tax automation| Tax preparation companies can use Content Understanding to generate a unified view of information from various documents and create comprehensive tax returns.| [**Tax automation quickstart**](quickstart/use-aifoundry.md) | 
-|Chart understanding| Businesses can enhance chart understanding by automating the analysis and interpretation of various types of charts and diagrams using Content Understanding.| [**Chart understanding quickstart**](quickstart/use-aifoundry.md) |
+|Post-call analytics| Businesses and call centers can generate insights from call recordings to track key KPIs, improve product experience, generate business insights, create differentiated customer experiences, and answer queries faster and more accurately.| [**Post-call analytics quickstart**](quickstart/use-ai-foundry.md) |
+|Media asset management| Software and media vendors can use Content Understanding to extract richer, targeted information from videos for media asset management solutions.| [**Media asset management quickstart**](quickstart/use-ai-foundry.md) |
+|Tax automation| Tax preparation companies can use Content Understanding to generate a unified view of information from various documents and create comprehensive tax returns.| [**Tax automation quickstart**](quickstart/use-ai-foundry.md) | 
+|Chart understanding| Businesses can enhance chart understanding by automating the analysis and interpretation of various types of charts and diagrams using Content Understanding.| [**Chart understanding quickstart**](quickstart/use-ai-foundry.md) |
 
-See [Quickstart](quickstart/use-aifoundry.md) for more examples.
+See [Quickstart](quickstart/use-ai-foundry.md) for more examples.
 
 ## Capabilities
 |Capability|Description|
@@ -70,7 +70,7 @@ Developers using the Content Understanding service should review Microsoft's pol
 Our quickstart guides help you quickly start using the Content Understanding service:
 
 * [**Rest API Quickstart**](quickstart/use-rest-api.md)
-* [**Azure AI Foundry Quickstart**](quickstart/use-aifoundry.md)
+* [**Azure AI Foundry Quickstart**](quickstart/use-ai-foundry.md)
 
 
 

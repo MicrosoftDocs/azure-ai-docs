@@ -44,4 +44,4 @@ items:
     displayName: quickstart, extract, text, images, OCR, optical character recognition
     href: quickstart/use-rest-api.md
   - name: Content Understanding in Azure AI Foundry
-    href: quickstart/use-aifoundry.md
+    href: quickstart/use-ai-foundry.md
