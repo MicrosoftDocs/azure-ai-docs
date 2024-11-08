@@ -51,6 +51,11 @@
             "redirect_document_id": false
         },
         {
+            "source_path_from_root": "/articles/ai-studio/tutorials/copilot-sdk-evaluate-deploy.md",
+            "redirect_url": "/azure/ai-studio/tutorials/copilot-sdk-evaluate",
+            "redirect_document_id": true
+        },
+        {
             "source_path_from_root": "/articles/ai-studio/tutorials/deploy-copilot-ai-studio.md",
             "redirect_url": "/azure/ai-studio/tutorials/copilot-sdk-build-rag",
             "redirect_document_id": false
@@ -101,6 +106,11 @@
             "redirect_document_id": false
         },
         {
+            "source_path_from_root": "/articles/ai-studio/how-to/model-benchmarks.md",
+            "redirect_url": "/azure/ai-studio/concepts/model-benchmarks",
+            "redirect_document_id": true
+        },
+        {
             "source_path_from_root": "/articles/ai-studio/how-to/llmops-azure-devops-prompt-flow.md",
             "redirect_url": "/azure/machine-learning/prompt-flow/how-to-end-to-end-llmops-with-prompt-flow",
             "redirect_document_id": false
@@ -143,6 +153,26 @@
         {
             "source_path_from_root": "/articles/ai-studio/ai-services/where-to-use-ai-services.md",
             "redirect_url": "/azure/ai-studio/ai-services/connect-ai-services",
+            "redirect_document_id": false
+        },
+        {
+            "source_path_from_root": "/articles/ai-studio/ai-services/connect-ai-services.md",
+            "redirect_url": "/azure/ai-studio/ai-services/how-to/connect-ai-services",
+            "redirect_document_id": false
+        },
+        {
+            "source_path_from_root": "/articles/ai-studio/ai-services/connect-azure-openai.md",
+            "redirect_url": "/azure/ai-studio/ai-services/how-to/connect-azure-openai",
+            "redirect_document_id": false
+        },
+        {
+            "source_path_from_root": "/articles/ai-studio/how-to/groundedness.md",
+            "redirect_url": "/azure/ai-studio/concepts/content-filtering",
+            "redirect_document_id": false
+        },
+        {
+            "source_path_from_root": "/articles/ai-studio/how-to/prompt-shields.md",
+            "redirect_url": "/azure/ai-studio/concepts/content-filtering",
             "redirect_document_id": false
         }
     ]

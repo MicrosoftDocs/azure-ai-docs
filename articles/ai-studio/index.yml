@@ -1,6 +1,6 @@
 ### YamlMime:Landing
 
-title: Azure AI Studio documentation # < 60 chars
+title: Azure AI Foundry documentation # < 60 chars
 summary:  Build cutting-edge, market-ready, responsible applications for your organization with AI.
 metadata:
   title: Azure AI Studio documentation
@@ -20,13 +20,13 @@ landingContent:
 # Cards and links should be based on top customer tasks or top subjects
 # Start card title with a verb
   # Card
-  - title: About Azure AI Studio
+  - title: About Azure AI Foundry
     linkLists:
       - linkListType: overview
         links:
-          - text: What is Azure AI Studio?
+          - text: What is Azure AI Foundry?
             url: what-is-ai-studio.md
-          - text: Azure OpenAI Service in Azure AI Studio
+          - text: Azure OpenAI Service in Azure AI Foundry
             url: azure-openai-in-ai-studio.md
           - text: Select and deploy models from the catalog
             url: how-to/model-catalog.md
@@ -36,7 +36,7 @@ landingContent:
             url: concepts/evaluation-metrics-built-in.md
       - linkListType: how-to-guide
         links:
-          - text: Create a project in Azure AI Studio
+          - text: Create a project in Azure AI Foundry portal
             url: how-to/create-projects.md
           - text: Get started with prompt flow
             url: how-to/flow-develop.md

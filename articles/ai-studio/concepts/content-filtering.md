@@ -31,20 +31,57 @@ With Azure OpenAI model deployments, you can use the default content filter or c
 
 The content filtering models have been trained and tested on the following languages: English, German, Japanese, Spanish, French, Italian, Portuguese, and Chinese. However, the service can work in many other languages, but the quality can vary. In all cases, you should do your own testing to ensure that it works for your application.
 
+## Content risk filters (input and output filters)
+
+The following special filters work for both input and output of generative AI models: 
+
+### Categories
+
+|Category|Description|
+|--------|-----------|
+| Hate   |The hate category describes language attacks or uses that include pejorative or discriminatory language with reference to a person or identity group based on certain differentiating attributes of these groups including but not limited to race, ethnicity, nationality, gender identity and expression, sexual orientation, religion, immigration status, ability status, personal appearance, and body size. |
+| Sexual | The sexual category describes language related to anatomical organs and genitals, romantic relationships, acts portrayed in erotic or affectionate terms, physical sexual acts, including those portrayed as an assault or a forced sexual violent act against one's will, prostitution, pornography, and abuse. |
+| Violence | The violence category describes language related to physical actions intended to hurt, injure, damage, or kill someone or something; describes weapons, etc.   |
+| Self-Harm | The self-harm category describes language related to physical actions intended to purposely hurt, injure, or damage one's body, or kill oneself.|
+
+### Severity levels
+
+|Category|Description|
+|--------|-----------|
+|Safe    | Content might be related to violence, self-harm, sexual, or hate categories but the terms are used in general, journalistic, scientific, medical, and similar professional contexts, which are appropriate for most audiences. |
+|Low | Content that expresses prejudiced, judgmental, or opinionated views, includes offensive use of language, stereotyping, use cases exploring a fictional world (for example, gaming, literature) and depictions at low intensity.|
+| Medium | Content that uses offensive, insulting, mocking, intimidating, or demeaning language towards specific identity groups, includes depictions of seeking and executing harmful instructions, fantasies, glorification, promotion of harm at medium intensity. |
+|High | Content that displays explicit and severe harmful instructions, actions, damage, or abuse; includes endorsement, glorification, or promotion of severe harmful acts, extreme or illegal forms of harm, radicalization, or nonconsensual power exchange or abuse.|
+
+
+
+### Other input filters
+
+You can also enable special filters for generative AI scenarios: 
+- Jailbreak attacks: Jailbreak Attacks are User Prompts designed to provoke the Generative AI model into exhibiting behaviors it was trained to avoid or to break the rules set in the System Message.
+- Indirect attacks: Indirect Attacks, also referred to as Indirect Prompt Attacks or Cross-Domain Prompt Injection Attacks, are a potential vulnerability where third parties place malicious instructions inside of documents that the Generative AI system can access and process.
+
+### Other output filters
+
+You can also enable the following special output filters:
+- Protected material for text: Protected material text describes known text content (for example, song lyrics, articles, recipes, and selected web content) that can be outputted by large language models.
+- Protected material for code: Protected material code describes source code that matches a set of source code from public repositories, which can be outputted by large language models without proper citation of source repositories.
+- Groundedness: The groundedness detection filter detects whether the text responses of large language models (LLMs) are grounded in the source materials provided by the users.
+
 ## Create a content filter
 
 For any model deployment in [Azure AI Studio](https://ai.azure.com), you can directly use the default content filter, but you might want to have more control. For example, you could make a filter stricter or more lenient, or enable more advanced capabilities like prompt shields and protected material detection.
 
 Follow these steps to create a content filter:
 
-1. Go to [AI Studio](https://ai.azure.com) and navigate to your hub. Then select the **Content filters** tab on the left nav, and select the **Create content filter** button.
-
+1. Go to AI Studio and navigate to your project/ hub. Then select the Safety+ Security tab on the left nav and select the Content Filters.
     :::image type="content" source="../media/content-safety/content-filter/create-content-filter.png" alt-text="Screenshot of the button to create a new content filter." lightbox="../media/content-safety/content-filter/create-content-filter.png":::
 
 1. On the **Basic information** page, enter a name for your content filter. Select a connection to associate with the content filter. Then select **Next**.
 
     :::image type="content" source="../media/content-safety/content-filter/create-content-filter-basic.png" alt-text="Screenshot of the option to select or enter basic information such as the filter name when creating a content filter." lightbox="../media/content-safety/content-filter/create-content-filter-basic.png":::
 
+1. Select **Create content filter**.
 1. On the **Input filters** page, you can set the filter for the input prompt. Set the action and severity level threshold for each filter type. You configure both the default filters and other filters (like Prompt Shields for jailbreak attacks) on this page. Then select **Next**.
 
     :::image type="content" source="../media/content-safety/content-filter/configure-threshold.png" alt-text="Screenshot of the option to select input filters when creating a content filter." lightbox="../media/content-safety/content-filter/configure-threshold.png":::
@@ -73,8 +110,8 @@ The filter creation process gives you the option to apply the filter to the depl
 
 Follow these steps to apply a content filter to a deployment:
 
-1. Go to [AI Studio](https://ai.azure.com) and select a project.
-1. Select **Deployments** and choose one of your deployments, then select **Edit**.
+1. Go to [AI Studio](https://ai.azure.com) and select a hub and project.
+1. Select **Models + endpoints** on the left pane and choose one of your deployments, then select **Edit**.
 
     :::image type="content" source="../media/content-safety/content-filter/deployment-edit.png" alt-text="Screenshot of the button to edit a deployment." lightbox="../media/content-safety/content-filter/deployment-edit.png":::
 
@@ -84,23 +121,6 @@ Follow these steps to apply a content filter to a deployment:
 
 Now, you can go to the playground to test whether the content filter works as expected.
 
-### Categories
-
-|Category|Description|
-|--------|-----------|
-| Hate   |The hate category describes language attacks or uses that include pejorative or discriminatory language with reference to a person or identity group based on certain differentiating attributes of these groups including but not limited to race, ethnicity, nationality, gender identity and expression, sexual orientation, religion, immigration status, ability status, personal appearance, and body size. |
-| Sexual | The sexual category describes language related to anatomical organs and genitals, romantic relationships, acts portrayed in erotic or affectionate terms, physical sexual acts, including those portrayed as an assault or a forced sexual violent act against one's will, prostitution, pornography, and abuse. |
-| Violence | The violence category describes language related to physical actions intended to hurt, injure, damage, or kill someone or something; describes weapons, etc.   |
-| Self-Harm | The self-harm category describes language related to physical actions intended to purposely hurt, injure, or damage one's body, or kill oneself.|
-
-### Severity levels
-
-|Category|Description|
-|--------|-----------|
-|Safe    | Content might be related to violence, self-harm, sexual, or hate categories but the terms are used in general, journalistic, scientific, medical, and similar professional contexts, which are appropriate for most audiences. |
-|Low | Content that expresses prejudiced, judgmental, or opinionated views, includes offensive use of language, stereotyping, use cases exploring a fictional world (for example, gaming, literature) and depictions at low intensity.|
-| Medium | Content that uses offensive, insulting, mocking, intimidating, or demeaning language towards specific identity groups, includes depictions of seeking and executing harmful instructions, fantasies, glorification, promotion of harm at medium intensity. |
-|High | Content that displays explicit and severe harmful instructions, actions, damage, or abuse; includes endorsement, glorification, or promotion of severe harmful acts, extreme or illegal forms of harm, radicalization, or nonconsensual power exchange or abuse.|
 
 ### Configurability (preview)
 
@@ -120,21 +140,9 @@ The configurability feature allows customers to adjust the settings, separately 
 Customers are responsible for ensuring that applications integrating Azure OpenAI comply with the [Code of Conduct](/legal/cognitive-services/openai/code-of-conduct?context=%2Fazure%2Fai-services%2Fopenai%2Fcontext%2Fcontext). 
 
 
-### Other input filters
-
-You can also enable special filters for generative AI scenarios: 
-- Jailbreak attacks: Jailbreak Attacks are User Prompts designed to provoke the Generative AI model into exhibiting behaviors it was trained to avoid or to break the rules set in the System Message.
-- Indirect attacks: Indirect Attacks, also referred to as Indirect Prompt Attacks or Cross-Domain Prompt Injection Attacks, are a potential vulnerability where third parties place malicious instructions inside of documents that the Generative AI system can access and process.
-
-### Other output filters
-
-You can also enable the following special output filters:
-- Protected material for text: Protected material text describes known text content (for example, song lyrics, articles, recipes, and selected web content) that can be outputted by large language models.
-- Protected material for code: Protected material code describes source code that matches a set of source code from public repositories, which can be outputted by large language models without proper citation of source repositories.
-- Groundedness: The groundedness detection filter detects whether the text responses of large language models (LLMs) are grounded in the source materials provided by the users.
-
 ## Next steps
 
 - Learn more about the [underlying models that power Azure OpenAI](../../ai-services/openai/concepts/models.md).
 - Azure AI Studio content filtering is powered by [Azure AI Content Safety](../../ai-services/content-safety/overview.md).
 - Learn more about understanding and mitigating risks associated with your application: [Overview of Responsible AI practices for Azure OpenAI models](/legal/cognitive-services/openai/overview?context=/azure/ai-services/context/context).
+- Learn more about evaluating your generative AI models and AI systems via [Azure AI Evaluation](https://aka.ms/genaiopsevals). 
