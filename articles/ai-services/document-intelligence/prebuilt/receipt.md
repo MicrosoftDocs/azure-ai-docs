@@ -196,6 +196,11 @@ For a complete list of supported languages, *see* our [prebuilt models language 
 
 ## Field extraction
 
+::: moniker range=">=doc-intel-3.0.0"
+
+For supported document extraction fields, refer to the [receipt model schema](https://github.com/Azure-Samples/document-intelligence-code-samples/blob/main/schema/2024-11-30-ga/receipt.md) page in our GitHub sample repository
+:::moniker-end
+
 ::: moniker range="doc-intel-2.1.0"
 
 |Name| Type | Description | Standardized output |
