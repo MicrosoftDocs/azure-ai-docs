@@ -13,6 +13,10 @@ ms.date: 02/22/2020
 ---
 # Feature Hashing component reference
 
+> [!WARNING]
+> IMPORTANT NOTICE: This component HAS BEEN DEPRECATED because its dependency, the NimbusML project (https://github.com/microsoft/NimbusML), is no longer actively maintained. As a result, this component will not receive future updates or security patches.
+> We plan to remove this component in upcoming releases. Users are recommended to migrate to alternative solutions to ensure continued support and security.
+
 This article describes a component included in Azure Machine Learning designer.
 
 Use the Feature Hashing component to transform a stream of English text into a set of integer features. You can then pass this hashed feature set to a machine learning algorithm to train a text analytics model.
