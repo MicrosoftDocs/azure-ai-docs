@@ -126,12 +126,10 @@ For the whole flow run, after you execute the flow, you can see the run status i
 
 ##### Understand the trace view
 
-Select the Trace tab on the Outputs screen to see a graph that provides information about the duration and associated token cost of the flow. Select flow under node name to see detailed flow overview information in the right pane.
+Select the **Trace** tab on the Outputs screen to see a graph that provides information about the duration and associated token cost of the flow. Select flow under node name to see detailed flow overview information in the right pane.
 
 :::image type="content" source="../media/prompt-flow/authoring-trace.png" alt-text=" Screenshot of trace detail." lightbox="../media/prompt-flow/authoring-trace.png":::
 
-
-You can also select on the **Name** of the run record to view the detailed information in trace view.
 
 ## Develop a chat flow
 
