@@ -16,7 +16,7 @@ Azure AI Search stores multiple copies of vector fields that are used in specifi
 
 ## Prerequisites
 
-- [Vector fields in a search index](vector-search-how-to-create-index.md) with a `vectorSearch` configuration, using the Hierarchical Navigable Small Worlds (HNSW) algorithm and a new vector profile.
+- [Vector fields in a search index](vector-search-how-to-create-index.md) with a `vectorSearch` configuration, using the Hierarchical Navigable Small Worlds (HNSW) or exhaustive K-nearest neighbor (KNN) algorithms and a new vector profile.
 
 ## How vector fields are stored
 
@@ -28,7 +28,9 @@ For every vector field, there are three copies of the vectors:
 | Original full-precision vectors | Used for scoring if vectors are uncompressed, or optional rescoring if query results obtained over compressed vectors. Rescoring applies only if vector fields undergo [scalar or binary quantization](vector-search-how-to-quantization.md). |
 | Vectors in the [HNSW graph for Approximate Nearest Neighbors (ANN) search](vector-search-overview.md) | Used for query execution. |
 
-The last instance (vectors and graph) is required for ANN vector query execution. The first two instances can be discarded if you don't need them. Compression techniques like scalar or binary quantization are applied to the vectors used during query execution.
+You can set properties that permanently discard the first two instances from vector storage.
+
+The last instance (vectors and graph) is required for ANN vector query execution. Lossy compression techniques like [scalar or binary quantization](vector-search-how-to-quantization.md) are applied to this vector instance. If you want to offset lossy compression, you should keep the second instance for rescoring purposes.
 
 ## Set the `stored` property
 

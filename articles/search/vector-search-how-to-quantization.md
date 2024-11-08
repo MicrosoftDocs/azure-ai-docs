@@ -12,12 +12,12 @@ ms.date: 11/19/2024
 
 # Compress vectors using scalar or binary quantization
 
-Azure AI Search supports scalar and binary quantization for reducing the size of vectors in a search index. Quantization is recommended for reducing vector size because it lowers both memory and disk storage consumption for float16 and float32 embeddings. To offset the effects of a smaller index, you can add oversampling and reranking over uncompressed vectors.
+Azure AI Search supports scalar and binary quantization for reducing the size of vectors in a search index. Quantization is recommended for reducing vector size because it lowers both memory and disk storage consumption for float16 and float32 embeddings. To offset the effects of lossy compression, you can add oversampling and rescoring over uncompressed vectors.
 
 To use built-in quantization, follow these steps:
 
 > [!div class="checklist"]
-> - Add [vector fields and a `vectorSearch` configuration](vector-search-how-to-create-index.md) to an index
+> - Start with [vector fields and a `vectorSearch` configuration](vector-search-how-to-create-index.md) to an index
 > - Add `vectorSearch.compressions`
 > - Add a `scalarQuantization` or `binaryQuantization` configuration and give it a name
 > - Set optional properties to mitigate the effects of lossy indexing
@@ -28,7 +28,7 @@ To use built-in quantization, follow these steps:
 
 ## Prerequisites
 
-- [Vector fields in a search index](vector-search-how-to-create-index.md) with a `vectorSearch` configuration, using the Hierarchical Navigable Small Worlds (HNSW) algorithm and a new vector profile.
+- [Vector fields in a search index](vector-search-how-to-create-index.md) with a `vectorSearch` configuration, using the Hierarchical Navigable Small Worlds (HNSW) or exhaustive K-nearest neighbor (eKNN) algorithms and a new vector profile.
 
 ## Supported quantization techniques
 
@@ -240,22 +240,6 @@ Each component of the vector is mapped to the closest representative value withi
 Binary quantization compresses high-dimensional vectors by representing each component as a single bit, either 0 or 1. This method drastically reduces the memory footprint and accelerates vector comparison operations, which are crucial for search and retrieval tasks. Benchmark tests show up to 96% reduction in vector index size.
 
 It's particularly effective for embeddings with dimensions greater than 1024. For smaller dimensions, we recommend testing the quality of binary quantization, or trying scalar instead. Additionally, we’ve found BQ performs very well when embeddings are centered around zero. Most popular embedding models such as OpenAI, Cohere, and Mistral are centered around zero.
-
-## Example: vector compression techniques
-
-[Code sample: Vector quantization and storage options using Python](https://github.com/Azure/azure-search-vector-samples/blob/main/demo-python/code/vector-quantization-and-storage/README.md) provides Python code that demonstrates quantization, [narrow data types](vector-search-how-to-assign-narrow-data-types.md), and use of the [stored property](vector-search-how-to-storage-options.md).
-
-This code creates and compares storage and vector index size for each vector storage optimization option. From these results, you can see that quantization reduces vector size the most, but the greatest storage savings are achieved if you use multiple options.
-
-| Index name | Storage size | Vector size |
-|------------|--------------|-------------|
-| compressiontest-baseline | 21.3613MB | 4.8277MB |
-| compressiontest-scalar-compression | 17.7604MB | 1.2242MB |
-| compressiontest-narrow | 16.5567MB | 2.4254MB |
-| compressiontest-no-stored | 10.9224MB | 4.8277MB  |
-| compressiontest-all-options | 4.9192MB | 1.2242MB |
-
-Search APIs report storage and vector size at the index level, so indexes and not fields must be the basis of comparison. Use the [GET Index Statistics](/rest/api/searchservice/indexes/get-statistics) or an equivalent API in the Azure SDKs to obtain vector size.
 
 ## Query a quantized vector field using oversampling
 

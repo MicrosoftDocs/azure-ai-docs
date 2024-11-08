@@ -13,9 +13,9 @@ ms.date: 11/19/2024
 
 # Attach an Azure AI multi-service resource to a skillset in Azure AI Search
 
-When configuring an optional [AI enrichment pipeline](cognitive-search-concept-intro.md) in Azure AI Search, you can enrich a small number of documents free of charge, limited to 20 transactions daily per index. For larger and more frequent workloads, you should attach a billable [**Azure AI multi-service resource**](/azure/ai-services/multi-service-resource?pivots=azportal). 
+When configuring an optional [AI enrichment pipeline](cognitive-search-concept-intro.md) in Azure AI Search, you can enrich a small number of documents free of charge, limited to 20 transactions daily per index. For larger and more frequent workloads, you should attach a billable [Azure AI multi-service resource](/azure/ai-services/multi-service-resource?pivots=azportal). 
 
-A multi-service account provides a collection of Azure AI services, rather than individual services. Providing an account in an Azure AI Search [**skillset**](/rest/api/searchservice/skillsets/create) allows Microsoft to charge you for using these services:
+A multi-service account provides a collection of Azure AI services, rather than individual services. Providing an account in an Azure AI Search [skillset](/rest/api/searchservice/skillsets/create) allows Microsoft to charge you for using these services:
 
 + [Azure AI Vision](/azure/ai-services/computer-vision/overview) for image analysis, optical character recognition (OCR), and multimodal text and image embedding.
 + [Azure AI Language](/azure/ai-services/language-service/overview) for language detection, entity recognition, sentiment analysis, and key phrase extraction

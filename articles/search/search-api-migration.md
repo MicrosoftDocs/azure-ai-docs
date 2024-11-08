@@ -77,7 +77,14 @@ See [Migrate from preview version](semantic-how-to-configure.md#migrate-from-pre
 
 [`2024-11-01-preview`](/rest/api/searchservice/search-service-api-versions#2024-11-01-preview) query rewrite, Document Layout skill, keyless billing for skills processing, Markdown parsing mode, and rescoring options for compressed vectors.
 
-If you're upgrading from `2024-09-01-preview`, you can use the new preview APIs with no change to existing code. However, the new version introduces changes to `vectorSearch.compressions`, replacing `rerankWithOriginalVectors` with `enableRescoring`, and moving `defaultOversampling` to a new `rescoringOptions` property object. For a comparison of the syntax, see [Compress vectors using scalar or binary quantization](vector-search-how-to-quantization.md#add-compressions-to-a-search-index).
+If you're upgrading from `2024-09-01-preview`, you can use the new preview APIs with no change to existing code. 
+
+However, the new version introduces syntax changes to `vectorSearch.compressions`:
+
++ Replaces `rerankWithOriginalVectors` with `enableRescoring`
++ Moves `defaultOversampling` to a new `rescoringOptions` property object
+
+Backwards compatibility is preserved due to an internal API mapping, but we recommend changing the syntax if you adopt the new preview version. For a comparison of the syntax, see [Compress vectors using scalar or binary quantization](vector-search-how-to-quantization.md#add-compressions-to-a-search-index).
 
 ## Upgrade to 2024-09-01-preview
 
