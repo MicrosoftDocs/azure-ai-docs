@@ -79,7 +79,7 @@ Copy the **Project connection string** from the **Overview** page of the project
 
 Once you have created the project client, you can use the client for the capabilities in the following sections. 
 
-Be sure to check out the [reference](https://aka.ms/azsdk/azure-ai-projects/python/reference) and [samples](https://aka.ms/azsdk/azure-ai-projects/python/samples).
+Be sure to check out the [reference]() and [samples](https://aka.ms/azsdk/azure-ai-projects/python/samples).
 
 ## Azure OpenAI Service
 
@@ -238,7 +238,7 @@ To learn more about using Azure AI Search, check out [Azure AI Search documentat
 
 Azure AI Agent Service is a fully managed service designed to empower developers to securely build, deploy, and scale high-quality, and extensible AI agents. Using an extensive ecosystem of models, tools and capabilities from OpenAI, Microsoft, and third-party providers, Azure AI Agent Service enables building agents for a wide range of generative AI use cases.
 
-To get access to agents, [sign-up for the private preview](TODO).
+To get access to agents, [sign-up for the private preview]().
 
 ## Evaluation
 
