@@ -354,7 +354,7 @@ items:
     - name: US tax 1098 forms and schedules
       href: https://github.com/Azure-Samples/document-intelligence-code-samples/tree/main/schema/2024-11-30-ga/us-tax/1098
     - name: US tax 1099 forms and schedules
-      href: https://github.com/Azure-Samples/document-intelligence-code-samples/tree/main/schema/2024-11-30-ga/us-tax/1099    
+      href: https://github.com/Azure-Samples/document-intelligence-code-samples/tree/main/schema/2024-11-30-ga/us-tax/1099
 
 - name: Resources
   items:
