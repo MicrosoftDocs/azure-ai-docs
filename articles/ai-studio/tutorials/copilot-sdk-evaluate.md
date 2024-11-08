@@ -60,8 +60,8 @@ The script allows you to review the results locally, by outputting the results i
 
 The script also logs the evaluation results to the cloud project so that you can compare evaluation runs in the UI.
 
-1. Create a file called **evaluate.py** in your **rag-tutorial** folder.
-1. Add the following code. Update the `dataset_path` and `evaluation_name` to fit your use case.
+1. Create a file called **evaluate.py** in your main folder.
+1. Add the following code. 
 
     :::code language="python" source="~/azureai-samples-nov2024/scenarios/rag/custom-rag-app/evaluate.py":::
 
@@ -75,12 +75,14 @@ The evaluation script uses a helper script to define the target function and run
 
 ### Configure the evaluation model 
 
-Since the evaluation script calls the evaluation model many times, try to increase the number of tokens per minute that the model will accept.  
+Since the evaluation script calls the model many times, you might want to increase the number of tokens per minute that for the evaluation model.  
+
+In Part 1 of this tutorial series, you created an **.env** file that specifies the name of the evaluation model, `gpt-4o-mini`.  Try to increase the tokens per minute limit for this model, if you have available quota. If you don't have enough quota to increase the value, don't worry.  The script is designed to handle limit errors.
 
 1. In your project in Azure AI Studio, select **Models + endpoints**.
-1. Select **gpt-4o-mini**.
+1. Select **gpt-4o-mini**.  
 1. Select **Edit**.
-1. If you have quota to increase the **Tokens per Minute Rate Limit**, try increasing it to 30. (If you're out of quota, don't worry.  The script is designed to handle limit errors.)
+1. If you have quota to increase the **Tokens per Minute Rate Limit**, try increasing it to 30. 
 1. Select **Save and close**.
 
 ### Run the evaluation script
