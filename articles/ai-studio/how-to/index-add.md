@@ -36,7 +36,7 @@ You must have:
 
     :::image type="content" source="../media/index-retrieve/project-left-menu.png" alt-text="Screenshot of Project Left Menu." lightbox="../media/index-retrieve/project-left-menu.png":::
 
-1. Select a deployed model. If you have not done so already, deploy a model by seleting **Create new deployment**.
+1. Select a deployed model. If you have not done so already, deploy a model by selecting **Create new deployment**.
 
    :::image type="content" source="../media/index-retrieve/create-deployment.png" alt-text="Screenshot of create a deployment button." lightbox="../media/index-retrieve/create-deployment.png":::
    
@@ -56,7 +56,7 @@ You must have:
 
     1. If you don't have an existing resource, choose **Create a new Azure AI Search resource**. Select **Next**.
   
-1. Select Azure Open AI connection you want to use. Select **Next**.
+1. Select the Azure OpenAI connection you want to use. Select **Next**.
     
 1. Enter a name you want to use for your vector index. Select **Next**.
 1. Review the details you entered and select **Create**
