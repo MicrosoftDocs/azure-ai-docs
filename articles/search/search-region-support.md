@@ -9,7 +9,7 @@ ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: conceptual
 ms.custom: references_regions
-ms.date: 10/17/2024
+ms.date: 11/08/2024
 
 ---
 
@@ -57,14 +57,14 @@ You can create an Azure AI Search resource in any of the following Azure public 
 | North Europe​​ | ✅ | ✅ | ✅ |  |
 | West Europe​​ <sup>1</sup>| ✅ | ✅ | ✅ | All Tiers |
 | France Central​​ | ✅ | ✅ | ✅ | |
-| Germany West Central​ ​| ✅ |  | ✅ | |
+| Germany West Central​ <sup>1</sup>​| ✅ |  | ✅ | |
 | Italy North​​ |  |  | ✅ | |
 | Norway East​​ | ✅ |  | ✅ |  |
 | Poland Central​​ |  |  |  |  |
 | Spain Central <sup>1</sup> |  |  | ✅  |  |
 | Sweden Central​​ | ✅ |  | ✅ |  |
 | Switzerland North​ | ✅ | ✅ | ✅ |  |
-| Switzerland West​ | ✅ | ✅ | ✅ |  |
+| Switzerland West​ <sup>1</sup>| ✅ | ✅ | ✅ |  |
 | UK South​ | ✅ | ✅ | ✅ |  |
 | UK West​ ​|  | ✅ | |  |
 
@@ -109,7 +109,7 @@ You can create an Azure AI Search resource in any of the following Azure public 
 | Region | AI integration | Semantic ranker | Availability zones | Capacity constrained |
 |--|--|--|--|--|
 | Arizona | ✅ | ✅  | | |
-| Texas |  |  |  | |
+| Texas |  | ✅ |  | |
 | Virginia | ✅ | ✅  | ✅ | All Tiers |
 
 
