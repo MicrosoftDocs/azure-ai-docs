@@ -17,7 +17,7 @@ author: lgayhardt
 
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
-In this article you will learn how to trace your application with Azure AI Inference SDK with your choice between using Python, JavaScript, or C#. The Azure AI Inference client library provides experimental support for tracing with OpenTelemetry.
+In this article you'll learn how to trace your application with Azure AI Inference SDK with your choice between using Python, JavaScript, or C#. The Azure AI Inference client library provides support for tracing with OpenTelemetry.
 
 ## Enable trace in your application
 
@@ -26,21 +26,8 @@ In this article you will learn how to trace your application with Azure AI Infer
 - An [Azure Subscription](https://azure.microsoft.com/).
 - An Azure AI project, see [Create a project in Azure AI Studio](../create-projects.md).
 - An AI model supporting the [Azure AI model inference API](https://aka.ms/azureai/modelinference) deployed through AI Studio.
-
-# [Python](#tab/python)
-
-- Python 3.8 or later installed, including pip.
-
-# [JavaScript](#tab/javascript)
-
-- Supported Environments: LTS versions of Node.js
-
-# [C#](#tab/csharp)
-
-- To construct the client library, you need to pass in the endpoint URL. The endpoint URL has the form `https://your-host-name.your-azure-region.inference.ai.azure.com`, where your-host-name is your unique model deployment host name and your-azure-region is the Azure region where the model is deployed (for example, eastus2).
-- Depending on your model deployment and authentication preference, you either need a key to authenticate against the service, or Microsoft Entra ID credentials. The key is a 32-character string.
-
----
+- If using Python, you need Python 3.8 or later installed, including pip.
+- If using JavaScript, the supported environments are LTS versions of Node.js.
 
 ### Installation
 
@@ -49,24 +36,20 @@ In this article you will learn how to trace your application with Azure AI Infer
 Install the package `azure-ai-inference` using your package manager, like pip:
 
 ```bash
-  pip install azure-ai-inference
+  pip install azure-ai-inference[opentelemetry] 
 ```
 
 Install the Azure Core OpenTelemetry Tracing plugin, OpenTelemetry, and the OTLP exporter for sending telemetry to your observability backend. To install the necessary packages for Python, use the following pip commands:
 
 ```bash
-pip install azure-core-tracing-opentelemetry 
-
 pip install opentelemetry 
-
-pip install azure-core-tracing-opentelemetry 
 
 pip install opentelemetry-exporter-otlp 
 ```
 
 # [JavaScript](#tab/javascript)
 
-Install the package `@azure-rest/ai-inference` and Azure ModelClient REST client library for JavaScript using npm:
+Install the package `@azure-rest/ai-inference` for JavaScript using npm:
 
 ```bash
     npm install @azure-rest/ai-inference
@@ -74,7 +57,7 @@ Install the package `@azure-rest/ai-inference` and Azure ModelClient REST client
 
 # [C#](#tab/csharp)
 
-Install the Azure AI inference client library for .NET with [NuGet](https://aka.ms/azsdk/azure-ai-inference/csharp/package): 
+Install the Azure AI Inference client library for .NET with [NuGet](https://aka.ms/azsdk/azure-ai-inference/csharp/package): 
 
 ```dotnetcli
     dotnet add package Azure.AI.Inference --prerelease
@@ -91,7 +74,7 @@ To learn more, see the [Inference SDK reference](../../reference/reference-model
 You need to add following configuration settings as per your use case:
 
 - To capture prompt and completion contents, set the `AZURE_TRACING_GEN_AI_CONTENT_RECORDING_ENABLED` environment variable to true (case insensitive). By default, prompts, completions, function names, parameters, or outputs aren't recorded.
-- To enable Azure SDK tracing, set the AZURE_SDK_TRACING_IMPLEMENTATION environment variable to opentelemetry. Alternatively, you can configure it in the code with the following snippet:
+- To enable Azure SDK tracing, set the `AZURE_SDK_TRACING_IMPLEMENTATION` environment variable to opentelemetry. Alternatively, you can configure it in the code with the following snippet:
 
     ```python
     from azure.core.settings import settings 
@@ -100,12 +83,6 @@ You need to add following configuration settings as per your use case:
     ```
 
     To learn more, see [Azure Core Tracing OpenTelemetry client library for Python](/python/api/overview/azure/core-tracing-opentelemetry-readme).
-
-If you want to install Azure AI Inferencing package with support for OpenTelemetry based tracing, use the following command:
-
-```bash
-pip install azure-ai-inference[opentelemetry] 
-```
 
 # [JavaScript](#tab/javascript)
 
@@ -221,120 +198,7 @@ To configure OpenTelemetry and enable Azure AI Inference tracing follow these st
 
 ### Tracing your own functions
 
-# [Python](#tab/python)
-
-The `@tracer.start_as_current_span` decorator can be used to trace your own functions. This traces the function parameters and their values. You can also add further attributes to the span in the function implementation as demonstrated in the following example.
-
-> [!NOTE]
-> You will have to set up the tracer in your code before using the decorator. To learn more. see [OpenTelemetry Python Documentation](https://opentelemetry.io/docs/languages/python/).
-
-```python
-from opentelemetry.trace import get_tracer 
-
-tracer = get_tracer(__name__) 
-
-@tracer.start_as_current_span("get_temperature") # type: ignore 
-
-def get_temperature(city: str) -> str: 
-
- 
-
-    # Adding attributes to the current span 
-
-    span = trace.get_current_span() 
-
-    span.set_attribute("requested_city", city) 
-
- 
-
-    if city == "Seattle": 
-
-        return "75" 
-
-    elif city == "New York City": 
-
-        return "80" 
-
-    else: 
-
-        return "Unavailable" 
-
-```
-
-
-# [JavaScript](#tab/javascript)
-
-OpenTelemetry provides `startActiveSpan` to instrument your own code. Here's an example of how to use it: 
-
-```javascript
-
-import { trace } from "@opentelemetry/api"; 
-
-const tracer = trace.getTracer("sample", "0.1.0"); 
-
-const getWeatherFunc = (location: string, unit: string): string => { 
-
-  return tracer.startActiveSpan("getWeatherFunc", span => { 
-
-    if (unit !== "celsius") { 
-
-      unit = "fahrenheit"; 
-
-    } 
-
-    const result = `The temperature in ${location} is 72 degrees ${unit}`; 
-
-    span.setAttribute("result", result); 
-
-    span.end(); 
-
-    return result; 
-
-  }); 
-
-} 
-```
-
-# [C#](#tab/csharp)
-
-To trace your own functions, use the OpenTelemetry API to start and end spans around the code you want to trace. Here's an example:
-
-```csharp
-using OpenTelemetry.Trace; 
-
-var tracer = Sdk.CreateTracerProviderBuilder() 
-
-    .AddSource("sample") 
-
-    .Build() 
-
-    .GetTracer("sample"); 
-
-using (var span = tracer.StartActiveSpan("getWeatherFunc")) 
-
-{ 
-    var location = "Seattle"; 
-
-    var unit = "celsius"; 
-
-    if (unit != "celsius") 
-
-    { 
-        unit = "fahrenheit"; 
-    } 
-
-    var result = $"The temperature in {location} is 72 degrees {unit}"; 
-
-    span.SetAttribute("result", result); 
-
-    Console.WriteLine(result); 
-
-} 
-```
-
-To learn more, see [OpenTelemetry .NET](https://opentelemetry.io/docs/languages/net/).
-
----
+To trace your own custom functions, you can leverage OpenTelemetry, you'll need to instrument your code with the OpenTelemetry SDK. This involves setting up a tracer provider and creating spans around the code you want to trace. Each span represents a unit of work and can be nested to form a trace tree. You can add attributes to spans to enrich the trace data with additional context. Once instrumented, configure an exporter to send the trace data to a backend for analysis and visualization. For detailed instructions and advanced usage, refer to the [OpenTelemetry documentation](https://opentelemetry.io/docs/). This will help you monitor the performance of your custom functions and gain insights into their execution.
 
 ## Attach User feedback to traces
 
@@ -344,7 +208,7 @@ To attach user feedback to traces and visualize them in AI Studio using OpenTele
 
 # [Python](#tab/python)
 
-- [Python samples]() containing fully runnable Python code for tracing using synchronous and asynchronous clients.
+- [Python samples](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-inference/samples/sample_chat_completions_with_tracing.py) containing fully runnable Python code for tracing using synchronous and asynchronous clients.
 - [Python samples to use Azure AI Project with tracing](https://github.com/Azure/azure-sdk-for-python/tree/feature/azure-ai-projects/sdk/ai/azure-ai-projects/samples/inference)
 
 # [JavaScript](#tab/javascript)
@@ -355,8 +219,3 @@ To attach user feedback to traces and visualize them in AI Studio using OpenTele
 # [C#](#tab/csharp)
 
 [C# Samples](https://github.com/Azure/azure-sdk-for-net/blob/Azure.AI.Inference_1.0.0-beta.2/sdk/ai/Azure.AI.Inference/samples/Sample8_ChatCompletionsWithOpenTelemetry.md) containing fully runnable C# code for doing inference using synchronous and asynchronous methods.
-
----
-
-- [Get started building a chat app using the prompt flow SDK](../../quickstarts/get-started-code.md)
-- [Work with projects in VS Code](vscode.md)
