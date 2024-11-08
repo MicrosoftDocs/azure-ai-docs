@@ -20,35 +20,38 @@ Azure AI Foundry allows you to create a Content Understanding analyzer tailored 
 Follow these steps to create your own analyzer:
 
 1. Upload a sample data file.
-2. Choose an analyzer template or create your own schema from scratch.
-3. Customize the schema to match your specific scenario.
-4. Test the analyzer with your data to ensure its accuracy.
+2. Select an analyzer template or build your own schema from scratch.
+3. Customize the schema to fit your specific scenario.
+4. Test the analyzer on your data to validate its accuracy.
 5. Build the analyzer and integrate it into your applications.
 
 ## Build a schema
-Here's an example of building a schema to extract key data from an invoice document. 
+Here's an example of building an analyzer to extract key data from an invoice document. 
 
-1. Upload a sample video file of a soccer game or any other data relevant to your scenario.
+1. Upload a sample video file of an invoice document or any other data relevant to your scenario.
 ![Image of step 1 in defining schema]()
 
-2. Content Understanding suggests analyzer templates based on your content type. For this example, select "Start from scratch" to build a schema tailored to the soccer game scenario, then click "Create".
-![Image of selecting "start from scratch" in defining schema]()
+:::image type="content" source="../media/analyzertemplate/image_doc_templates.png" alt-text="Screenshot of upload step in user experience.":::
+
+2. Content Understanding suggests analyzer templates based on your content type. For this example, select "Document analysis" to build your own schema tailored to the invoice scenario, then click "Create". When using your own data, select the analyzer template that best fits your needs, or create your own. See Analyzer templates for a full list of available templates.
+
+:::image type="content" source="../media/analyzertemplate/image_doc_templates.png" alt-text="Screenshot of analyzer templates.":::
 
 3. Add fields to your schema:
    - Specify clear and simple field names.  - Example fields: "vendorname," "items," "price." 
    - Indicate the value type for each field (e.g., strings, dates, numbers, lists, groups). Learn more about [supported field types]().
    - *[Optional]* Provide field descriptions to explain the desired behavior, including any exceptions or rules.
    - *[Optional]* Specify the method to generate the value for each field. Learn more about [generation methods]().
-
    
 4. Click "Save".
-![Image of creating the custom schema]()
+:::image type="content" source="../media/analyzertemplate/image_doc_templates.png" alt-text="Screenshot of completed schema.":::
 
 5. Content Understanding generates the output based on your schema. Test the analyzer's accuracy on additional data or make changes to the schema if needed.
-![Image of testing schema]()
+:::image type="content" source="../media/analyzertemplate/image_doc_templates.png" alt-text="Screenshot of schema testing step.":::
 
 6. Once you are satisfied with the quality, click "Build analyzer". This action will create an analyzer that you can integrate into your applications. You will receive an analyzer ID, which you can use to call this analyzer from your code.
-![Image of built analyzer]()
+
+:::image type="content" source="../media/analyzertemplate/image_doc_templates.png" alt-text="Screenshot of built analyzer.":::
 
 ## Analyzer templates 
 Analyzer templates give you a head start by allowing you to build your analyzer without creating schemas from scratch.  They are fully customizable, allowing you to adjust any fields in the schemas to better fit your needs. 

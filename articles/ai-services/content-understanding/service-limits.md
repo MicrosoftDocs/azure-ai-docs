@@ -14,9 +14,9 @@ ms.author: lajanuar
 ---
 
 
-# Service limits and quotas
+# Service quota and limits
 
-This article offers a quick reference of the limits and quotas for the Azure AI Content Understanding service.
+This article offers a quick reference of the quota and limits for the Azure AI Content Understanding service.
 
 ## Resource limits
 | Quota | Standard (S0) |
