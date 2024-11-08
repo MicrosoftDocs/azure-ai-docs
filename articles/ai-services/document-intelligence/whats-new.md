@@ -25,44 +25,48 @@ ms.custom:
 Document Intelligence service is updated on an ongoing basis. Bookmark this page to stay up to date with release notes, feature enhancements, and our newest documentation.
 
 > [!IMPORTANT]
-> Preview API versions are retired once the GA API is released. The 2023-02-28-preview API version is being retired, if you are still using the preview API or the associated SDK versions, please update your code to target the latest API version 2023-07-31 (GA).
+> Preview API versions are retired once the GA API is released. The 2023-02-28-preview API version is being retired, if you are still using the preview API or the associated SDK versions, please update your code to target the latest API version 2023-07-31 (GA). </br>
+> Please note that [🆕 Document field extraction (custom generative) model](train/custom-generative-extraction.md) is under preview  with improvements for runtime latency, table extraction, confidence scores, auto labeling and streamline training.
+
 
 ## November 2024
 
-**Document Intelligence v4.0 (2024-11-30) is now generally available (GA)**!
+**Document Intelligence v4.0 (2024-11-30) is now generally available (GA)**! The API version corresponds to 2024-11-30. The v4.0 API includes cumulative updates from preview releases as listed:
+  * August 2024 (release-ignite-document-intelligence-v4&tabs=csharp#august-2024)
+  * May 2024
+  * Feb 2024 (link to older release notes) 
 
-* [🆕 Document field extraction (custom generative) model](train/custom-generative-extraction.md)
-  * **Generative AI** model is available in preview with improvements for runtime latency, table extraction, confidence scores, auto labeling and streamline training.
-
-* [🆕 US Tax model](prebuilt/tax-document.md)
-  * New tax models added for 1095A, 1095C, 1099SSA, and W4.
-* 🆕 Searchable PDF. The [prebuilt read](prebuilt/read.md) model now supports images formats (JPEG/JPG, PNG, BMP, TIFF, HEIF)  and language expansion to include Chinese, Japanese, and Korean for  [PDF output](prebuilt/read.md#searchable-pdf).
 
 * [🆕 Batch API](concept-batch-analysis.md)
   * Batch API now supports all the prebuilt models.
   * Batch API supports LIST function to allow users to list batch jobs within past seven days.
   * Batch API supports DELETE function to explicitly delete batch job for GDPR and privacy compliance.
-  * GetAnalyzeBatchResult supports resultId in response to LIST all resultIds. 
-
-* [Custom Neural Model](train/custom-neural.md)
-  * Custom Neural model now supports signature detection.
-
+  * GetAnalyzeBatchResult supports resultId in response to LIST all resultIds.
+ 
+* 🆕 Searchable PDF. The [prebuilt read](prebuilt/read.md) model now supports images formats (JPEG/JPG, PNG, BMP, TIFF, HEIF)  and language expansion to include Chinese, Japanese, and Korean for  [PDF output](prebuilt/read.md#searchable-pdf).
+ 
 * [Custom classification model](train/custom-model.md#custom-classification-model)
   * Custom classification model supports incremental training. You can add new samples to exisisting classes or add new classes by referencing an existing classifier. 
   * With v4.0, custom classification model doesn't split documents by default during analysis. You need to explicitly set 'splitMode' property to auto to preserve the older behavior.
   * Custom classification model now supports 25,000 pages as new training page limit.
 
-* [Mortgage documents model](concept-mortgage-documents.md)
-  * Mortgage model now supports signature detection for  forms 1003, 1004, 1005 and closing disclosure.
+* [Custom Neural Model](train/custom-neural.md)
+  * Custom Neural model now supports signature detection.
+
+* [ US Bank statement model](concept-bank-statement.md)
+  * US Bank Statement Model now supports check table extraction.
 
 * [Check model](concept-bank-check.md)
   * Supports Payer's Signature extraction
 
+* [Mortgage documents model](concept-mortgage-documents.md)
+  * Mortgage model now supports signature detection for  forms 1003, 1004, 1005 and closing disclosure.
+
 * [Receipt Model](concept-receipt.md)
   * Receipt Model now supports more fields including ReceiptType, Tax rate, CountryRegion, net amount and description. 
-
-* [ US Bank statement model](concept-bank-statement.md)
-  * US Bank Statement Model now supports check table extraction. 
+ 
+*  [🆕 US Tax model](prebuilt/tax-document.md)
+  * New prebuilt  tax models added for 1095A, 1095C, 1099SSA, and W4.
 
 ## August 2024
 
