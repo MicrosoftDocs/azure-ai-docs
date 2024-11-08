@@ -19,7 +19,7 @@ The Document Intelligence bank check model combines powerful Optical Character R
 
 | Feature   | version| Model ID |
 |----------  |---------|--------|
-| Check model|&bullet; v4.0:2024-11-30 (GA)|**`prebuilt-check.us`**|
+| Check model|v4.0: **2024-11-30** (GA)|**`prebuilt-check.us`**|
 
 ## Check data extraction
 
