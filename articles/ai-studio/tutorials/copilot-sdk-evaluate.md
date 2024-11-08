@@ -65,13 +65,13 @@ The script also logs the evaluation results to the cloud project so that you can
 
     :::code language="python" source="~/azureai-samples-nov2024/scenarios/rag/custom-rag-app/evaluate.py" id="imports_and_config":::
 
-1. Add code to create a wrapper function that implements the evaluation interface for query & response evaluation
+1. Add code to create a wrapper function that implements the evaluation interface for query and response evaluation
 
     :::code language="python" source="~/azureai-samples-nov2024/scenarios/rag/custom-rag-app/evaluate.py" id="evaluate_wrapper":::
 
 1. Finally, add code to run the evaluation:
  
-    :::code language="python" source="~/azureai-samples-nov2024/scenarios/rag/custom-rag-app/evaluate.py" id="evaluate_wrapper":::
+    :::code language="python" source="~/azureai-samples-nov2024/scenarios/rag/custom-rag-app/evaluate.py" id="run_evaluation":::
 
     The main function allows you to view the evaluation result locally, and gives you a link to the evaluation results in AI Studio.
 
