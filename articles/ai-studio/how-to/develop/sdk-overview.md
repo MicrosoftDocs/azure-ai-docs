@@ -1,5 +1,5 @@
 ---
-title: How to get started with Azure AI SDKs
+title: How to get started with Azure AI Foundry SDK
 titleSuffix: Azure AI Studio
 description: This article provides an overview of available Azure AI SDKs.
 manager: scottpolly
@@ -238,7 +238,7 @@ To learn more about using Azure AI Search, check out [Azure AI Search documentat
 
 Azure AI Agent Service is a fully managed service designed to empower developers to securely build, deploy, and scale high-quality, and extensible AI agents. Using an extensive ecosystem of models, tools and capabilities from OpenAI, Microsoft, and third-party providers, Azure AI Agent Service enables building agents for a wide range of generative AI use cases.
 
-To get access to agents, [sign-up for the private preview]().
+To get access to agents, [sign-up for the private preview](https://nam.dcv.ms/nzy5CEG6Br).
 
 ## Evaluation
 
