@@ -85,7 +85,7 @@ To create a prompt flow from the gallery in Azure AI Studio:
 
 Each flow is represented by a folder that contains a `flow.dag.yaml`` file, source code files, and system folders. You can add new files, edit existing files, and delete files. You can also export the files to local, or import files from local. 
 
-In addition to inline editing the node in flatten view, you can also turn on the **Raw file mode** toggle and select the file name to edit the file in the opening file tab.
+In addition to inline editing the node in the default view, you can also turn on the **Raw file mode** toggle and select the file name to edit the file in the opening file tab.
 
 ### Flow input and output
 
@@ -113,7 +113,10 @@ If the condition isn't met, the node is skipped. The node status is shown as "By
 You can test the flow in two ways:
 
 - Run **single node**.
-    - To run a single node, select the **Run icon** on a node in the flatten view. Once running is completed, you can quickly check result in **node output section**.
+    - To run a single node, select the **Run icon** on a node in the default view. Once running is completed, you can quickly check result in **node output section**.
+
+    :::image type="content" source="../media/prompt-flow/node-card-run.png" alt-text="Screenshot shows the run button in the node card.":::
+
 - Run **the whole flow**.
     - To run the whole flow, select the **Run button** at the right top.
 
@@ -123,24 +126,10 @@ For the whole flow run, after you execute the flow, you can see the run status i
 
 ##### Understand the trace view
 
-The trace kind of a prompt flow is designated as **Flow**. Within the trace view, the clear sequence of the tools used for flow orchestration can be observed.
-
-Each level 2 span under the flow root represents a node in the flow, executed in the form of a function call, hence the span kind is identified as **Function**. You can see the duration of each node execution in the span tree.
-
-In the span tree, LLM calls are easily identifiable as the **LLM** span. These provide information about the duration of the LLM call and the associated token cost.
-
-By selecting a span, you can see the detailed information on the right side. This includes input & output, Raw Json, and Exception, all of which are useful for observation and debugging.
+Select the Trace tab on the Outputs screen to see a graph that provides information about the duration and associated token cost of the flow. Select flow under node name to see detailed flow overview information in the right pane.
 
 :::image type="content" source="../media/prompt-flow/authoring-trace.png" alt-text=" Screenshot of trace detail." lightbox="../media/prompt-flow/authoring-trace.png":::
 
-> [!NOTE]
-> In prompt flow SDK, we defined serval span types, including **LLM**, **Function**, **Embedding**, **Retrieval**, and **Flow**. And the system automatically creates spans with execution information in designated attributes and events.
->
-> To learn more about span types, see  [Trace span](https://microsoft.github.io/promptflow/reference/trace-span-spec-reference.html).
-
-After the flow run is completed, for checking the results, you can select the **View test results** button to check all historical run records in a list. By default, the run records created in the last 7 days are displayed. You can select the **Filter** to change the condition.
-
-:::image type="content" source="../media/prompt-flow/authoring-test-result.png" alt-text="Screenshot of flow test result."lightbox="../media/prompt-flow/authoring-test-result.png":::
 
 You can also select on the **Name** of the run record to view the detailed information in trace view.
 
