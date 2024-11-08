@@ -37,9 +37,9 @@ After the index is defined, you can load and index documents as a separate step.
 
 ## Example: vector size by vector compression technique
 
-[Code sample: Vector quantization and storage options using Python](https://github.com/Azure/azure-search-vector-samples/blob/main/demo-python/code/vector-quantization-and-storage/README.md) provides Python code that demonstrates quantization, [narrow data types](vector-search-how-to-assign-narrow-data-types.md), and use of the [stored property](vector-search-how-to-storage-options.md).
+[Code sample: Vector quantization and storage options using Python](https://github.com/Azure/azure-search-vector-samples/blob/main/demo-python/code/vector-quantization-and-storage/README.md) is a Python code sample that creates multiple search indexes that vary by their use of vector storage quantization, [narrow data types](vector-search-how-to-assign-narrow-data-types.md), and [storage properties](vector-search-how-to-storage-options.md).
 
-This code creates and compares storage and vector index size for each vector storage optimization option. From these results, you can see that quantization reduces vector size the most, but the greatest storage savings are achieved if you use multiple options.
+This code creates and compares storage and vector index size for each vector storage optimization option. From these results, you can see that [quantization](vector-search-how-to-quantization.md) reduces vector size the most, but the greatest storage savings are achieved if you use multiple options.
 
 | Index name | Storage size | Vector size |
 |------------|--------------|-------------|
