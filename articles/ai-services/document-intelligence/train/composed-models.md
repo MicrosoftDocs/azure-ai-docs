@@ -37,7 +37,7 @@ With composed models, you can group multiple custom models into a composed model
 
 Some scenarios require classifying the document first and then analyzing the document with the model best suited to extract the fields from the model. Such scenarios can include ones where a user uploads a document but the document type isn't explicitly known. Another scenario can be when multiple documents are scanned together into a single file and the file is submitted for processing. Your application then needs to identify the component documents and select the best model for each document.
 
-In previous versions, the `model compose` operation performed an implicit classification to decide which custom model best represents the submitted document. The `2024-11-30 (GA)` implementation of the `model compose` operation replaces the implicit classification from the earlier versions with an explicit classification step and adds conditional routing.
+In previous versions, the `model compose` operation performed an implicit classification to decide which custom model best represents the submitted document. The **2024-11-30 (GA)** implementation of the `model compose` operation replaces the implicit classification from the earlier versions with an explicit classification step and adds conditional routing.
 
 ## Benefits of the new model compose operation
 

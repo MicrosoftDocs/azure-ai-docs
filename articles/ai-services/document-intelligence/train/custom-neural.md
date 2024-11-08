@@ -54,7 +54,7 @@ Custom neural models currently support key-value pairs and selection marks and s
 | Supported | Supported | Supported | Unsupported | Supported <sup>1</sup> | Supported <sup>2</sup> |
 
 <sup>1</sup> Region labels in custom neural models use the results from the Layout API for specified region. This feature is different from template models where, if no value is present, text is generated at training time.</br>
-<sup>2</sup> Overlapping fields are supported with REST API version `2024-11-30 (GA)`. Overlapping fields have some limits. For more information, *see* [overlapping fields](#overlapping-fields).
+<sup>2</sup> Overlapping fields are supported with REST API version **2024-11-30 (GA)**. Overlapping fields have some limits. For more information, *see* [overlapping fields](#overlapping-fields).
 
 ### Build mode
 
@@ -77,11 +77,11 @@ Overlapping fields have some limits:
 * overlapping fields in a table can't span table rows.
 * Overlapping fields can only be recognized if at least one sample in the dataset contains overlapping labels for those fields.
 
-To use overlapping fields, label your dataset with the overlaps and train the model with the API version ```2024-11-30 (GA)```.
+To use overlapping fields, label your dataset with the overlaps and train the model with the API version ``**2024-11-30 (GA)**``.
 
 ## Tabular fields
 
-Custom neural v4.0 `2024-11-30 (GA)` model supports tabular fields (tables) to analyze table, row, and cell data with added confidence:
+Custom neural v4.0 **2024-11-30 (GA)** model supports tabular fields (tables) to analyze table, row, and cell data with added confidence:
 
 * Models trained with API version 2022-06-30-preview, or later will accept tabular field labels.
 * Documents analyzed with custom neural models using API version 2022-06-30-preview or later will produce tabular fields aggregated across the tables.
@@ -94,7 +94,7 @@ Tabular fields support **cross page tables** by default:
 
 Tabular fields are also useful when extracting repeating information within a document that isn't recognized as a table. For example, a repeating section of work experiences in a resume can be labeled and extracted as a tabular field.
 
-Tabular fields provide **table, row and cell confidence** with the ```2024-11-30 (GA)``` API:
+Tabular fields provide **table, row and cell confidence** with the ``**2024-11-30 (GA)**`` API:
 
 * Fixed or dynamic tables add confidence support for the following elements:
   * Table confidence, a measure of how accurately the entire table is recognized.
