@@ -269,7 +269,7 @@ Built-in evaluators are great out of the box to start evaluating your applicatio
 
 ### Code-based evaluators
 
-Sometimes a large language model isn't needed for certain evaluation metrics. This is when code-based evaluators can give you the flexibility to define metrics based on functions or callable class. You can create your own code-based evaluator, for example, with a simple Python class that calculates the length of an answer in `answer_length.py` under directory `answer_len/`:
+Sometimes a large language model isn't needed for certain evaluation metrics. This is when code-based evaluators can give you the flexibility to define metrics based on functions or callable class. You can build your own code-based evaluator, for example, by creating a simple Python class that calculates the length of an answer in `answer_length.py` under directory `answer_len/`:
 
 ```python
 class AnswerLengthEvaluator:
@@ -279,7 +279,7 @@ class AnswerLengthEvaluator:
     def __call__(self, *, answer: str, **kwargs):
         return {"answer_length": len(answer)}
 ```
-Then run the evalutor on a row of data by importing a callable class:
+Then run the evaluator on a row of data by importing a callable class:
 
 ```python
 with open("answer_len/answer_length.py") as fin:
