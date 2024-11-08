@@ -27,7 +27,7 @@ If you want to jump right in and start building an app, check out:
  - [Create a chat app](../../quickstarts/get-started-code.md)
  - [Create a custom RAG app](../../tutorials/copilot-sdk-create-resources.md)
 
-[!INCLUDE [new-name](includes/new-name.md)]
+[!INCLUDE [new-name](../../includes/new-name.md)]
 
 
 ## Get started with Projects
