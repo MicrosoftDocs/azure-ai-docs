@@ -40,6 +40,15 @@ This error occurs when the Azure identity used to create the managed virtual net
 * Microsoft.MachineLearningServices/workspaces/privateEndpointConnections/read
 * Microsoft.MachineLearningServices/workspaces/privateEndpointConnections/write
 
+## Troubleshoot configurations on connecting to storage
+
+When you create a workspace, required outbound rules to Azure storage are auto-created for data upload scenarios and artifact storage. Ensure your Azure storage is set-up correct by checked with the following steps:
+
+1. In Azure Portal, check the network settings of the storage account that is associated to your hub.
+  * If public network access is set to __Enabled from selected virtual networks and IP addresses__, ensure the correct IP address ranges are added to access your storage account.
+  * If public network access is set to __Disabled__, ensure you have a private endpoint configured from your Azure virtual network to your storage account with Target sub-resource as blob. In addition, you must grant the [Reader](/azure/role-based-access-control/built-in-roles#reader) role for the storage account private endpoint to the managed identity.
+2. In Azure Portal, navigate to your Azure Machine Learning workspace. Ensure the managed virtual network is provisioned and the outbound private endpoint to blob storage is Active.
+
 ## Next steps
 
 For more information, see [Managed virtual networks](how-to-managed-network.md).
