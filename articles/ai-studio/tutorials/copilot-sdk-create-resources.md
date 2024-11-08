@@ -101,6 +101,12 @@ In the Azure AI Studio, check for an Azure AI Search connected resource.
     pip install azure-ai-projects azure-ai-inference azure-ai-identity azure-search-documents pandas python-dotenv
     ```
 
+### Create helper script
+
+Create a folder for your work. Create a file called **config.py** in this folder. This helper script is used in the next two parts of the tutorial series. Add the following code:
+
+:::code language="python" source="~/azureai-samples-nov2024/scenarios/rag/custom-rag-app/config.py":::
+
 ## Deploy models
 
 You need two models to build a RAG-based chat app: an Azure OpenAI chat model (`gpt-4o-mini`) and an Azure OpenAI embedding model (`text-embedding-ada-002`). Deploy these models in your Azure AI Studio project, using this set of steps for each model.

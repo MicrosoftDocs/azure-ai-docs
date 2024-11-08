@@ -45,7 +45,7 @@ Use the following evaluation dataset, which contains example questions and expec
 
     :::code language="jsonl" source="~/azureai-samples-nov2024/scenarios/rag/custom-rag-app/assets/chat_eval_data.jsonl":::
 
-### Evaluate with Azure AI evaluators
+## Evaluate with Azure AI evaluators
 
 Now define an evaluation script that will:
 
@@ -61,17 +61,19 @@ The script allows you to review the results locally, by outputting the results i
 The script also logs the evaluation results to the cloud project so that you can compare evaluation runs in the UI.
 
 1. Create a file called **evaluate.py** in your main folder.
-1. Add the following code. 
+1. Add the following code to import the required libraries, create a project client, and configure some settings: 
 
-    :::code language="python" source="~/azureai-samples-nov2024/scenarios/rag/custom-rag-app/evaluate.py":::
+    :::code language="python" source="~/azureai-samples-nov2024/scenarios/rag/custom-rag-app/evaluate.py" id="imports_and_config":::
 
-The main function at the end allows you to view the evaluation result locally, and gives you a link to the evaluation results in AI Studio.
+1. Add code to create a wrapper function that implements the evaluation interface for query & response evaluation
 
-### Create helper script
+    :::code language="python" source="~/azureai-samples-nov2024/scenarios/rag/custom-rag-app/evaluate.py" id="evaluate_wrapper":::
 
-The evaluation script uses a helper script to define the target function and run the evaluation. Create a file called **config.py** in your main folder. Add the following code:
+1. Finally, add code to run the evaluation:
+ 
+    :::code language="python" source="~/azureai-samples-nov2024/scenarios/rag/custom-rag-app/evaluate.py" id="evaluate_wrapper":::
 
-:::code language="python" source="~/azureai-samples-nov2024/scenarios/rag/custom-rag-app/config.py":::
+    The main function allows you to view the evaluation result locally, and gives you a link to the evaluation results in AI Studio.
 
 ### Configure the evaluation model 
 
