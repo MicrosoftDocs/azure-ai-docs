@@ -61,7 +61,7 @@ See [Quickstart](quickstart/use-scenario-templates.md) for more examples.
 
 ## Responsible AI
 
- Azure AI Content Understanding is designed to guard against processing harmful content. For more information, *see* our **Transparency Note** and  [**Code of Conduct**](https://learn.microsoft.com/legal/cognitive-services/openai/code-of-conduct#see-also).
+ Azure AI Content Understanding is designed to guard against processing harmful content. For more information, *see* our **Transparency Note** and  [**Code of Conduct**](/legal/cognitive-services/openai/code-of-conduct#see-also).
 
 ## Data privacy and security
 
