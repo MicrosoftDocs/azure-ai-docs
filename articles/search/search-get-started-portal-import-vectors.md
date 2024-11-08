@@ -33,7 +33,7 @@ This quickstart helps you get started with [integrated vectorization](vector-sea
 
 + [Azure Cosmos DB](/azure/cosmos-db/nosql/quickstart-portal) for NoSQL, Mongo DB, and Apache Gremlin.
 
-+ [Azure SQL Database](/azure-sql/database/single-database-create-quickstart), [Azure SQL Managed Instance](/azure/azure-sql/managed-instance/instance-create-quickstart), and Azure SQL Server virtual machines.
++ [Azure SQL Database](/azure/azure-sql/database/single-database-create-quickstart), [Azure SQL Managed Instance](/azure/azure-sql/managed-instance/instance-create-quickstart), and Azure SQL Server virtual machines.
 
 + [OneLake lakehouse](search-how-to-index-onelake-files.md).
 
