@@ -12,7 +12,7 @@ items:
     href: azure-openai-in-ai-studio.md
   - name: Management center
     href: concepts/management-center.md
-  - name: Overview of SDKs
+  - name: Azure AI Foundry SDK
     href: how-to/develop/sdk-overview.md
     displayName: code, sdk
   - name: Region support
