@@ -13,7 +13,8 @@ ms.date: 11/22/2024
 
 # A/B Experiments for AI applications
 
-[!INCLUDE [feature-preview](../includes/feature-preview.md)]
+> [!IMPORTANT]
+>Items marked (preview) in this article are currently in public or private preview. This preview is provided without a service-level agreement, and we don't recommend it for production workloads. Certain features might not be supported or might have constrained capabilities. For more information, see Supplemental Terms of Use for Microsoft Azure Previews.
 
 In the  field of AI application development, A/B experimentation has emerged as a critical practice. It allows for continuous evaluation of AI applications, balancing business impact, risk, and cost. While offline and online evaluations provide some insights, they need to be supplemented with A/B experimentation to ensure the use of right metrics for measuring success.  A/B experimentation involves comparing two versions of a feature, prompt, or model using feature flags or dynamic configuration to determine which performs better. This method is essential for several reasons:
 
