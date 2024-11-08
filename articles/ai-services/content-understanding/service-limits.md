@@ -12,67 +12,96 @@ ms.custom: ignite-2024-understanding-release
 ms.author: lajanuar
 ---
 
-
 # Service limits and quotas
 
-This article provides both a quick reference and detailed description of Azure AI Content Understanding service quotas and limits.
+This article is an Azure AI Content Understanding service reference guide for service quotas and limits
 
 ## File limits
 
-Each modality covers a set of Multipurpose Internet Mail Extensions (MIME) file types. 
+### Document and text
+
+| Supported File Types | File Size | Length |
+| --- | --- | ---
+|✓ .pdf<br/>✓  .tiff<br/>✓ .jpg<br/>✓ .png<br/>✓ .bmp<br/>✓ .heif<br/>✓  .txt  | ≤ 200 MB | ≤ 300 pages |
+|✓ .txt  | ≤ 1 MB | ≤ 1M characters |
 
 ### Image
 
-|Modality| Supported File Types | File Size | Resolution | Length |
-|--- | --- | --- | --- | --- |
-|**Image** | √ .jpg</br>√  .png</br>√  .bmp</br>√  .heif| ≤ 20 MB (OpenAI-enforced) | Min: 50 x 50 Max: 10k x 10k |  |
-
-### Document and text
-
-|Modality| Supported File Types | File Size | Resolution | Length |
-|--- | --- | --- | --- | --- |
-|**Document** |√ pdf</br>√  tiff</br>√  jpg</br>√  png</br>√  bmp</br>√  heif</br>√  txt  | asynchronous:</br>≤ 200 MB |  | asynchronous:</br>≤ 300 pages |
-| **Text**|.txt  | ≤ 1 MB | | ≤ 1M characters |
+| Supported File Types | File Size | Resolution |
+| --- | --- | --- |
+| ✓ .jpg<br/>✓  .png<br/>✓  .bmp<br/>✓  .heif| ≤ 200 MB | Min: 50 x 50 <br/> Max: 10k x 10k |
 
 ### Audio
 
-|Modality| Supported File Types | File Size | Resolution | Length |
-|--- | --- | --- | --- | --- |
-|**Audio** |   √  .wav (`PCM`, `ALAW`, M`ULAW`) </br>√  .mp3 </br>√.opus, .ogg (Opus)</br>√.flac </br>√  .wma </br>√  .aac </br>√  .amr (AMR-NB, AMR-WB) </br>√.webm (Opus, Vorbis) </br>√  .m4a (`AAC`, `ALAC`)</br>√.spx | asynchronous:</br>≤ 200 MB |  | asynchronous:</br> ≤ 2 h |
+| Supported File Types | File Size | Length |
+| --- | --- |  --- |
+|   ✓  .wav (`PCM`, A-law, μ-law) <br/>✓  .mp3 <br/>✓ .opus, .ogg (Opus)<br/>✓ .flac <br/>✓  .wma <br/>✓  .aac <br/>✓  .amr (AMR-NB, AMR-WB) <br/>✓ .webm (Opus, Vorbis) <br/>✓  .m4a (`AAC`, `ALAC`)<br/>✓ .spx | ≤ 200 MB | ≤ 2 h |
 
 ### Video
 
-|Modality| Supported File Types | File Size | Resolution | Length |
-|--- | --- | --- | --- | --- |
-|**Video** | √  .mp4, .m4v </br>√  .flv (with H.264 and `AAC` codecs) </br>√  .wmv, .asf </br>√  .avi (Uncompressed 8bit/10bit) </br>√  .mkv </br>√  .mov  | asynchronous:</br>≤2 GB (body) asynchronous:</br>≤20 GB (URL)| Min: 320 x 240</br></br>Max:</br>1920 x 1080 | asynchronous:</br>≤30 m (body)</br></br> asynchronous:</br>≤30 m (URL) |
+| Supported File Types | File Size | Resolution | Length |
+| ---| --- | --- | --- |
+ ✓  .mp4, .m4v <br/>✓  .flv (H.264 and `AAC`) <br/>✓  .wmv, .asf <br/>✓  .avi <br/>✓  .mkv <br/>✓  .mov  | ≤20 GB † | Min: 320 x 240<br/>Max: 1920 x 1080 | ≤2 h †|
 
+† Note: The file size limit is 200 MB and the duration limit is 30 minutes if the video file is included directly in the analysis request.
 
-## Field Schema Limits
+## Field schema limits
 
-A schema in Content Understanding refers to a defined structure specifying the types of data to be extracted from various types of unstructured content. Unstructured content types include documents, images, videos, and audio. This structured representation of data is crucial for enabling downstream applications to process and analyze the extracted information effectively.
+Content Understanding supports both basic field value types and nested structures, including lists, groups, tables, and fixed tables.
 
-This section details the limits of the field inputs for schema definition.
+* **Basic field value types**: *string*, *date*, *time*, *number*, *integer*, and *boolean*.
+* **List field**: A sequence of values of the same type, represented as an array of basic fields in the API.
+* **Group field**: A set of semantically related fields, represented as an object of basic fields in the API.
+* **Table field**: A variable number of items with fixed subfields, represented as an array of objects of basic fields in the API.
+* **Fixed table field**: A group of fields with shared subfields, represented as an object of objects of basic fields in the API.
 
-| Data type|Supported format|Schema limits|
-| --- | --- |---|
-| **String**| √ Plain Text||
-|**Date** | √ Normalized to ISO 8601 (YYYY-MM-DD) format||
-| **Time**| √ Normalized to ISO 8601 (hh:mm:ss) format||
-| **number**| √ Float number normalized to double precision floating point||
-| **Integer**| √ Integer number, normalized to 64-bit signed integer||
-| **Boolean**| √ Boolean value, normalized to `true` or `false`||
-| **array**| √ List of subfields of the same type||
-| **Object**| √ Named list of subfields of potentially different types. | 10 (audio, image, video), 50 (document) |
+The following limits apply as of version 2024-12-01-preview.
 
-## Training limits for Custom Document
-| Quota | Standard (S0) |
-| --- | --- |
-| Max training file size | 1 GB |
-| Max training length | 50k pages/images |
+## Basic limits
+
+| Property | Document | Image | Text | Audio | Video |
+| --- | --- | --- | --- | --- | --- |
+| Max fields | 50 | 10 | 10 | 10 | 10 |
+| Max classify field categories | 300 | 300 | 300 | 300 | 300 |
+| Supported generation methods | extract | generate<br/>classify | generate<br/>classify | generate<br/>classify | generate<br/>classify |
+
+* The *Max fields* limit includes all named fields. For example, a list of strings counts as one field, while a group with string and number subfields counts as three fields.
+* The *Max classify field categories* limit is the total number of categories across all fields using the `classify` generation method.
+* The generation method currently applies only to leaf fields.
+
+## Field structure limits
+
+| Field structure | Document | Image | Text | Audio | Video |
+| --- | --- | --- | --- | --- | --- |
+| Basic | No *boolean* | All | *string* | *string* | All |
+| List | N/A | All | *string* | *string* | All |
+| Group | N/A | All | *string* | *string* | All |
+| Table | No *boolean* | All | *string* | *string* | All
+| Fixed table | No *boolean* | N/A | N/A | N/A | N/A |
+
+* Document analyzers don't support *boolean* leaf fields.
+* Only document analyzers support fixed tables.
+* Image and video analyzers support all field structures except fixed tables.
+* Text and audio analyzers support all nested structures with *string* leaf fields, except fixed tables.
+
+## Classification fields
+
+Classification fields can be defined to return either a single category (single-label classification) or multiple categories (multi-label classification).
+
+* **Single-label classification**: Defined using a string field with the `classify` method. It can be a top-level basic field or a subfield within a group or table.
+* **Multi-label classification**: Represented as a list of string fields with the `classify` method. In the REST API, `method=classify` and `enum` are specified on the inner string field. This classification can only be a top-level field.
+
+   > [!NOTE]
+   > Document analyzers currently don't support classification fields.
+
+## Training limits
+|File type| Max training data |
+| ---| --- |
+|Document | 1 GB total, 50k pages/images |
 
 ## Resource limits
 | Quota | Standard (S0) |
 | --- | --- |
 | Max analyzers | 100k |
-| Max analysis/min | 1000 pages/images four, (4) hours of audio, 1 hour of video  |
+| Max analysis/min | 1000 pages/images <br/> Four hours of audio <br/> One hour of video  |
 | Max operations/min | 3000 |
