@@ -4,7 +4,6 @@ titleSuffix: Azure AI services
 description: Quick reference, detailed description, and best practices for working within Azure AI Content Understanding service Quotas and Limits
 #services: cognitive-services
 author: laujan
-ms.author: tonyeiyalla
 manager: nitinme
 ms.service: azure
 ms.topic: conceptual

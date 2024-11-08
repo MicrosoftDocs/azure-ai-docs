@@ -45,9 +45,7 @@ Common applications for Content Understanding include:
 |Tax automation| Tax preparation companies can use Content Understanding to generate a unified view of information from various documents and create comprehensive tax returns.| [**Tax automation quickstart**](quickstart/use-aifoundry.md) | 
 |Chart understanding| Businesses can enhance chart understanding by automating the analysis and interpretation of various types of charts and diagrams using Content Understanding.| [**Chart understanding quickstart**](quickstart/use-aifoundry.md) |
 
-See [Quickstart](quickstart/use-scenario-templates.md) for more examples.
-
-
+See [Quickstart](quickstart/use-aifoundry.md) for more examples.
 
 ## Capabilities
 |Capability|Description|
@@ -60,7 +58,7 @@ See [Quickstart](quickstart/use-scenario-templates.md) for more examples.
 
 
 ## Responsible AI
- Azure AI Content Understanding is designed to guard against processing harmful content. For more information, *see* our [**Transparency Note**]() and our [**Code of Conduct**](https://learn.microsoft.com/en-us/legal/cognitive-services/openai/code-of-conduct#see-also).
+ Azure AI Content Understanding is designed to guard against processing harmful content. For more information, *see* our [**Transparency Note**]() and our [**Code of Conduct**](/legal/cognitive-services/openai/code-of-conduct).
 
 ## Data privacy and security
 Developers using the Content Understanding service should review Microsoft's policies on customer data. For more information, visit our [**Data, protection and privacy**](https://www.microsoft.com/trust-center/privacy) page.

@@ -4,7 +4,6 @@ titleSuffix: Azure AI services
 description: Quick reference, detailed description on Content Understanding Terms and Definition
 #services: cognitive-services
 author: laujan
-ms.author: tonyeiyalla
 manager: nitinme
 ms.service: azure
 ms.topic: conceptual

@@ -14,7 +14,7 @@ ms.date: 11/19/2024
 
 * Start using the latest preview version of the Azure AI Content Understanding REST API (2024-12-01-preview).
 
-* Azure AI Content Understanding is a new generative AI-based [**Azure AI Service**](../what-are-ai-services.md) that analyzes files of any modality (documents, images, videos, and audio) and extracts structured output in user-defined field formats.
+* Azure AI Content Understanding is a new generative AI-based [**Azure AI Service**](../../what-are-ai-services.md) that analyzes files of any modality (documents, images, videos, and audio) and extracts structured output in user-defined field formats.
 
 * Integrate the Content Understanding service into your workflows and applications easily by calling our REST APIs.
 
@@ -41,6 +41,8 @@ To use Content Understanding, you need an Azure AI Services resource. This resou
 3. Install [cURL](https://curl.se/) command line tool.
 
 ## Create a custom analyzer
+
+# [Document](#tab/document)
 
 To create a custom analyzer, you need to define a field schema that describes the structured data you want to extract. In the following example, we define a schema for extracting basic information from an invoice document.
 
@@ -79,6 +81,8 @@ First, create a JSON file named `request_body.json` with the following content:
 }
 ```
 
+---
+
 Before running the following `cURL` commands, make the following changes to the HTTP request:
 
 1. Replace `{endpoint}` and `{key}` with the endpoint and key values from your Azure portal Azure AI Services instance.
@@ -116,9 +120,13 @@ You can analyze files using the custom analyzer you created to extract the field
 
 Before running the cURL command, make the following changes to the HTTP request:
 
+# [Document](#tab/document)
+
 1. Replace `{endpoint}` and `{key}` with the endpoint and key values from your Azure portal Azure AI Services instance.
 2. Replace `{analyzerId}` with the name of the custom analyzer created earlier.
 3. Replace `{fileUrl}` with a publicly accessible URL of the file to analyze, such as a path to an Azure Storage Blob with a shared access signature (SAS) or the sample URL `https://github.com/Azure-Samples/cognitive-services-REST-api-samples/raw/master/curl/form-recognizer/rest-api/invoice.pdf`.
+
+---
 
 ### POST request
 ```bash
@@ -156,6 +164,8 @@ curl -i -X GET "{endpoint}/contentunderstanding/analyzers/{analyzerId}/results/{
 You will receive a 200 (OK) JSON response with a `status` field indicating the status of the operation. If the operation isn't complete, the value of `status` will be `running` or `notStarted`. In such cases, you should call the API again, either manually or through a script, with an interval of one second or more between calls.
 
 #### Sample response
+
+# [Document](#tab/document)
 
 ```json
 {
@@ -199,6 +209,8 @@ You will receive a 200 (OK) JSON response with a `status` field indicating the s
   }
 }
 ```
+
+---
 
 ## Next steps 
 
