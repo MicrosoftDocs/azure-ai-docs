@@ -51,6 +51,11 @@
             "redirect_document_id": false
         },
         {
+            "source_path_from_root": "/articles/ai-studio/tutorials/copilot-sdk-evaluate-deploy.md",
+            "redirect_url": "/azure/ai-studio/tutorials/copilot-sdk-evaluate",
+            "redirect_document_id": true
+        },
+        {
             "source_path_from_root": "/articles/ai-studio/tutorials/deploy-copilot-ai-studio.md",
             "redirect_url": "/azure/ai-studio/tutorials/copilot-sdk-build-rag",
             "redirect_document_id": false

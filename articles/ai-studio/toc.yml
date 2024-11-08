@@ -38,15 +38,15 @@ items:
   items:
   - name: Deploy an enterprise chat web app
     href: tutorials/deploy-chat-web-app.md
-  - name: Build a custom chat app with the Azure AI SDK
+  - name: Build a custom chat app with the Azure AI Foundry SDK
     items:
       - name: "Part 1: Set up project and install SDK"
         href: tutorials/copilot-sdk-create-resources.md
-      - name: "Part 2: Add data retrieval to a chat app"
+      - name: "Part 2: Build with data retrieval"
         href: tutorials/copilot-sdk-build-rag.md
         displayName: code,sdk
-      - name: "Part 3: Evaluate and deploy a chat app"
-        href: tutorials/copilot-sdk-evaluate-deploy.md
+      - name: "Part 3: Evaluate the chat app"
+        href: tutorials/copilot-sdk-evaluate.md
         displayName: code,sdk
 - name: How-to
   expanded: true
