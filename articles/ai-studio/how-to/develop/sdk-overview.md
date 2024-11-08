@@ -27,6 +27,9 @@ If you want to jump right in and start building an app, check out:
  - [Create a chat app](../../quickstarts/get-started-code.md)
  - [Create a custom RAG app](../../tutorials/copilot-sdk-create-resources.md)
 
+[!INCLUDE [new-name](includes/new-name.md)]
+
+
 ## Get started with Projects
 
 The best way to get started using the Azure AI Foundry SDK is by using a project. AI projects connect together different data, assets, and services you need to build AI applications. The AI project client allows you to easily access these project components from your code by using a single connection string.
