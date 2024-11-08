@@ -75,7 +75,7 @@ The evaluation script uses a helper script to define the target function and run
 
 ### Configure the evaluation model 
 
-Since the evaluation script calls the evaluation model many times, try to increase the amount of tokens per minute that the model will accept.  
+Since the evaluation script calls the evaluation model many times, try to increase the number of tokens per minute that the model will accept.  
 
 1. In your project in Azure AI Studio, select **Models + endpoints**.
 1. Select **gpt-4o-mini**.
