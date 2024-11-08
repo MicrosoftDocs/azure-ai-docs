@@ -347,13 +347,13 @@ items:
       href: https://github.com/Azure-Samples/document-intelligence-code-samples/blob/main/schema/2024-11-30-ga/us-tax/w2.md
     - name: US tax W-4 form
       href: https://github.com/Azure-Samples/document-intelligence-code-samples/blob/main/schema/2024-11-30-ga/us-tax/w4.md
-    - name: US tax 1040 forms and schedules
+    - name: US tax `1040` forms and schedules
       href: https://github.com/Azure-Samples/document-intelligence-code-samples/tree/main/schema/2024-11-30-ga/us-tax/1040
-    - name: US tax 1095 forms and schedules
+    - name: US tax `1095` forms and schedules
       href: https://github.com/Azure-Samples/document-intelligence-code-samples/tree/main/schema/2024-11-30-ga/us-tax/1095
-    - name: US tax 1098 forms and schedules
+    - name: US tax `1098` forms and schedules
       href: https://github.com/Azure-Samples/document-intelligence-code-samples/tree/main/schema/2024-11-30-ga/us-tax/1098
-    - name: US tax 1099 forms and schedules
+    - name: US tax `1099` forms and schedules
       href: https://github.com/Azure-Samples/document-intelligence-code-samples/tree/main/schema/2024-11-30-ga/us-tax/1099    
 
 - name: Resources
