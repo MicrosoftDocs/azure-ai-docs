@@ -72,7 +72,7 @@ For a complete list of supported languages, *see* our [prebuilt model language s
 
 ## Field extraction
 
-* For supported document extraction fields, refer to the **marriage certificate model schema** page in our GitHub sample repository.
+* For supported document extraction fields, *see* the [**marriage certificate model schema**](https://github.com/Azure-Samples/document-intelligence-code-samples/blob/main/schema/2024-11-30-ga/marriage-certificate.md) page in our GitHub sample repository.
 
 * The marriage certificate key-value pairs and line items extracted are in the `documentResults` section of the JSON output.
 

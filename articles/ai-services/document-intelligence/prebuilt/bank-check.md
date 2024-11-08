@@ -57,7 +57,7 @@ A check is a secure way to transfer amount from payee's account to receiver's ac
 
 ## Field extractions
 
-For supported document extraction fields, refer to the **bank check model schema** page in our GitHub sample repository.
+For supported document extraction fields, *see* the [**bank check model schema**](https://github.com/Azure-Samples/document-intelligence-code-samples/blob/main/schema/2024-11-30-ga/bank-check.md) page in our GitHub sample repository.
 
 ## Supported locales
 

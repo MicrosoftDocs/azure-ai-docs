@@ -76,7 +76,7 @@ To see how data extraction works for the mortgage documents service, you need th
 
 ## Field extraction
 
-For supported document extraction fields, refer to the **mortgage document model schema**  page in our GitHub sample repository.
+For supported document extraction fields, *see* the [**mortgage document model schema**](https://github.com/Azure-Samples/document-intelligence-code-samples/tree/main/schema/2024-11-30-ga/us-mortgage)  pages in our GitHub sample repository.
 
 ## Next steps
 

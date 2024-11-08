@@ -215,7 +215,7 @@ Extract data, including name, birth date, and expiration date, from ID documents
 
 ## Field extractions
 
-For supported document extraction fields, refer to the **ID document model schema** page in our GitHub sample repository.
+For supported document extraction fields, *see* the [**ID document model schema**](https://github.com/Azure-Samples/document-intelligence-code-samples/blob/main/schema/2024-11-30-ga/id-document.md) page in our GitHub sample repository.
 
 ::: moniker-end
 
