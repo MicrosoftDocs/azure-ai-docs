@@ -14,7 +14,7 @@ ms.date: 02/22/2020
 # Feature Hashing component reference
 
 > [!WARNING]
-> IMPORTANT NOTICE: This component HAS BEEN DEPRECATED because its dependency, the NimbusML project (https://github.com/microsoft/NimbusML), is no longer actively maintained. As a result, this component will not receive future updates or security patches.
+>  This component HAS BEEN DEPRECATED because its dependency, the [NimbusML](https://github.com/microsoft/NimbusML) project, is no longer actively maintained. As a result, this component will not receive future updates or security patches.
 > We plan to remove this component in upcoming releases. Users are recommended to migrate to alternative solutions to ensure continued support and security.
 
 This article describes a component included in Azure Machine Learning designer.
