@@ -15,26 +15,6 @@ monikerRange: '>=doc-intel-3.0.0'
 <!-- markdownlint-disable MD033 -->
 <!-- markdownlint-disable MD051 -->
 
-# Document Intelligence Studio
-
-[!INCLUDE [applies to v4.0 v3.1 v3.0](includes/applies-to-v40-v31-v30.md)]
-
-The studio is an online tool to visually explore, understand, train, and integrate features from the Document Intelligence service into your applications. The studio provides a platform for you to experiment with the different Document Intelligence models and sample returned data in an interactive manner without the need to write code. You can use the studio experience to:
-
-* Learn more about the different capabilities in Document Intelligence.
-* Use your Document Intelligence resource to test models on sample documents or upload your own documents.
-* Experiment with different add-on features to adapt the output to your needs.
-* Train custom classification models to classify documents.
-* Train custom extraction models to extract fields from documents.
-* Get sample code for the language specific `SDKs` to integrate into your applications.
-
-Currently, we're undergoing the migration of features from the [Document Intelligence Studio](https://documentintelligence.ai.azure.com/studio) to the new [AI Studio](https://ai.azure.com/explore/aiservices/vision). There are some differences in the offerings for the two studios, which determine the correct studio for your use case.
-
-## Choose the correct studio experience
-
-There are currently two studios, the [Azure AI Studio](https://ai.azure.com/explore/aiservices/vision) and the [Document Intelligence Studio](https://documentintelligence.ai.azure.com/studio) for building and validating  Document Intelligence models. As the experiences migrate to the new AI Studio, some experiences are available in both studios, while other experiences/models are only available in only one of the studios. To follow are a few guidelines for choosing the Studio experience for your needs. All of our [prebuilt models](overview.md#prebuilt-models) and [general extraction models](overview.md#general-extraction-models) are available on both studios.
-<!-- markdownlint-disable MD033 -->
-<!-- markdownlint-disable MD051 -->
 
 ## Studio experience for Document Intelligence
 
@@ -57,7 +37,7 @@ There are currently two studios, the [Azure AI Studio](https://ai.azure.com/expl
 
 ### When to use [Document Intelligence Studio](https://documentintelligence.ai.azure.com/studio)
 
-Document Intelligence Studio is the legacy experience that contains all features released on or before November 2024. For any of the v2.1, v3.0, v3.1 features, continue to use the Document Intelligence Studio. Studios provide a visual experience for labeling, training, and validating custom models. For custom document field extraction models, use the Document Intelligence Studio for template and neural models. Custom classification models can only be trained and used on Document Intelligence Studio. Use Document Intelligence Studio if you want to try out GA versions of the models from version 2.1, v3.0 and v3.1.
+Document Intelligence Studio is the legacy experience that contains all features released on or before November 2024. For any of the v2.1, v3.0, v3.1 features, continue to use the Document Intelligence Studio. Studios provide a visual experience for labeling, training, and validating custom models. For custom document field extraction models, use the Document Intelligence Studio for template and neural models. Custom classification models can only be trained and used on Document Intelligence Studio. Use Document Intelligence Studio if you want to try out GA versions of the models from version v3.0, v3.1, and v4.0.
 
 ### When to use [AI Studio](https://ai.azure.com/explore/aiservices/vision)
 
