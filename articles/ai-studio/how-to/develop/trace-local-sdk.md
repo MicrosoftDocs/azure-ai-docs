@@ -37,7 +37,7 @@ Tracing with the Azure AI SDK offers enhanced visibility and simplified troubles
 
 - Supported Environments: LTS versions of Node.js
 
-# [C#](#tab/python)
+# [C#](#tab/csharp)
 
 - To construct the client library, you need to pass in the endpoint URL. The endpoint URL has the form `https://your-host-name.your-azure-region.inference.ai.azure.com`, where your-host-name is your unique model deployment host name and your-azure-region is the Azure region where the model is deployed (for example, eastus2).
 - Depending on your model deployment and authentication preference, you either need a key to authenticate against the service, or Microsoft Entra ID credentials. The key is a 32-character string.
@@ -74,7 +74,7 @@ Install the package `@azure-rest/ai-inference` and Azure ModelClient REST client
     npm install @azure-rest/ai-inference
 ```
 
-# [C#](#tab/python)
+# [C#](#tab/csharp)
 
 Install the Azure AI inference client library for .NET with [NuGet](https://aka.ms/azsdk/azure-ai-inference/csharp/package): 
 
@@ -125,8 +125,7 @@ provider.addSpanProcessor(new SimpleSpanProcessor(new ConsoleSpanExporter()));
 provider.register(); 
 ```
 
-
-# [C#](#tab/python)
+# [C#](#tab/csharp)
 
 Distributed tracing and metrics with OpenTelemetry are supported in Azure AI Inference in experimental mode and could be enabled through either of these steps: 
 
@@ -192,7 +191,7 @@ client.path("/chat/completions").post({
 
 ```
 
-# [C#](#tab/python)
+# [C#](#tab/csharp)
 
 To configure OpenTelemetry and enable Azure AI Inference tracing follow these steps:
 
@@ -222,7 +221,7 @@ To configure OpenTelemetry and enable Azure AI Inference tracing follow these st
 
 ---
 
-### Tracing Your Own Functions:
+### Tracing your own functions
 
 # [Python](#tab/python)
 
@@ -298,7 +297,7 @@ const getWeatherFunc = (location: string, unit: string): string => {
 } 
 ```
 
-# [C#](#tab/python)
+# [C#](#tab/csharp)
 
 To trace your own functions, use the OpenTelemetry API to start and end spans around the code you want to trace. Here's an example:
 
@@ -343,8 +342,6 @@ To learn more, see [OpenTelemetry .NET](https://opentelemetry.io/docs/languages/
 
 To attach user feedback to traces and visualize them in AI Studio using OpenTelemetry's semantic conventions, you can instrument your application enabling tracing and logging user feedback. By correlating feedback traces with their respective chat request traces using the response ID, you can use view and manage these traces in AI studio. OpenTelemetry's specification allows for standardized and enriched trace data, which can be analyzed in AI Studio for performance optimization and user experience insights. This approach helps you use the full power of OpenTelemetry for enhanced observability in your applications.  
 
-
-
 ## Related content
 
 # [Python](#tab/python)
@@ -357,7 +354,7 @@ To attach user feedback to traces and visualize them in AI Studio using OpenTele
 - [JavaScript samples](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/ai/ai-inference-rest/samples/v1-beta/typescript/src/telemetry.ts) containing fully runnable JavaScript code for tracing using synchronous and asynchronous clients.
 - [JavaScript samples to use Azure AI Project with tracing](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/ai/ai-inference-rest/samples/v1-beta/typescript/src/telemetryWithToolCall.ts)
 
-# [C#](#tab/python)
+# [C#](#tab/csharp)
 
 [C# Samples](https://github.com/Azure/azure-sdk-for-net/blob/Azure.AI.Inference_1.0.0-beta.2/sdk/ai/Azure.AI.Inference/samples/Sample8_ChatCompletionsWithOpenTelemetry.md) containing fully runnable C# code for doing inference using synchronous and asynchronous methods.
 
@@ -365,4 +362,3 @@ To attach user feedback to traces and visualize them in AI Studio using OpenTele
 
 - [Get started building a chat app using the prompt flow SDK](../../quickstarts/get-started-code.md)
 - [Work with projects in VS Code](vscode.md)
-
