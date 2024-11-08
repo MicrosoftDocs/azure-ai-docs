@@ -72,23 +72,22 @@ After deployment, the AI application enters the post-production evaluation phase
 
 By [continuously monitoring the AI application’s behavior in production](https://aka.ms/AzureAIMonitoring), you can maintain high-quality user experiences and swiftly address any issues that surface.
 
-
-## Conclusion 
+## Conclusion
 
 GenAIOps is all about establishing a reliable and repeatable process for managing generative AI applications across their lifecycle. Evaluation plays a vital role at each stage, from base model selection, through pre-production testing, to ongoing post-production monitoring. By systematically measuring and addressing risks and refining AI systems at every step, teams can build generative AI solutions that are not only powerful but also trustworthy and safe for real-world use.  
 
-Cheat sheet: 
+Cheat sheet:
 
-| Purpose |  Process | Parameters | 
-| -----| -----| ----| 
+| Purpose |  Process | Parameters |
+| -----| -----| ----|
 | What are you evaluating for? | Identify or build relevant evaluators | - [Quality and performance](./evaluation-metrics-built-in.md?tabs=warning#generation-quality-metrics) ( [Quality and performance sample notebook](https://github.com/Azure-Samples/rag-data-openai-python-promptflow/blob/main/src/evaluation/evaluate.py)) </br> - [Safety and Security](./evaluation-metrics-built-in.md?tabs=warning#risk-and-safety-metrics)) ([Safety and Security sample notebook]((https://github.com/Azure-Samples/rag-data-openai-python-promptflow/blob/main/src/evaluation/evaluatesafetyrisks.py)))  </br> [Custom](../how-to/develop/evaluate-sdk.md#custom-evaluators) ([Custom sample notebook](https://github.com/Azure-Samples/rag-data-openai-python-promptflow/blob/main/src/evaluation/evaluate.py))]  |
 | What data should you use?  | Upload or generate relevant dataset | [Generic simulator for measuring Quality and Performance](./concept-synthetic-data.md) ( Generic simulator sample notebook|(https://github.com/Azure/azureml-examples/blob/main/sdk/python/foundation-models/system/finetune/Llama-notebooks/datagen/synthetic-data-generation.ipynb)] </br> - Adversarial simulator for measuring Safety and Security [[Adversarial simulator Docs](../how-to/develop/simulator-interaction-data.md), [Adversarial simulator sample notebook](https://github.com/Azure-Samples/rag-data-openai-python-promptflow/blob/main/src/evaluation/simulate_and_evaluate_online_endpoint.ipynb)]  |
 | What resources should conduct the evaluation? | Run evaluation | - Local run  <br> </br>  - Remote cloud run |
-| How did my model/app perform? | Analyze results  | [View aggregate scores, view details, score details, compare eval runs](..//how-to/evaluate-results.md)]
+| How did my model/app perform? | Analyze results  | [View aggregate scores, view details, score details, compare eval runs](..//how-to/evaluate-results.md)] |
 
-## Next steps
+## Related content
 
 - [Evaluate your generative AI apps via the playground](../how-to/evaluate-prompts-playground.md)
 - [Evaluate your generative AI apps with the Azure AI Foundry SDK or portal](../how-to/evaluate-generative-ai-app.md)
-- [Evaluation and monitoring metrics for generative AI](..concepts/evaluation-metrics-built-in.md)
+- [Evaluation and monitoring metrics for generative AI](evaluation-metrics-built-in.md)
 - [Transparency Note for Azure AI Foundry safety evaluations](safety-evaluations-transparency-note.md)
