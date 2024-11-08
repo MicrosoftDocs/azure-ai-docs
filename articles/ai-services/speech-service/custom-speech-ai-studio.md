@@ -16,7 +16,7 @@ ms.author: eur
 With custom speech, you can enhance speech recognition accuracy for your applications by using a custom model for real-time speech to text, speech translation, and batch transcription. The base model, trained with Microsoft-owned data, handles common spoken language well, but a custom model can improve domain-specific vocabulary and audio conditions by providing text and audio data for training. Additionally, you can train the model with structured text for custom pronunciations, display text formatting, and profanity filtering.
 
 > [!TIP]
-> You can bring your custom speech models from [Speech Studio](https://speech.microsoft.com) to [AI Studio](https://ai.azure.com). In AI Studio, you can pick up where you left off by connecting to your existing Speech resource. For more information about connecting to an existing Speech resource, see [Connect to an existing Speech resource](../../ai-studio/ai-services/connect-ai-services.md#connect-azure-ai-services-after-you-create-a-project).
+> You can bring your custom speech models from [Speech Studio](https://speech.microsoft.com) to [AI Studio](https://ai.azure.com). In AI Studio, you can pick up where you left off by connecting to your existing Speech resource. For more information about connecting to an existing Speech resource, see [Connect to an existing Speech resource](../../ai-studio/ai-services/how-to/connect-ai-services.md#connect-azure-ai-services-after-you-create-a-project).
 
 In [AI Studio](https://ai.azure.com), you create a custom speech model by fine-tuning an Azure AI Speech base model with your own data. You can upload your data, test and train a custom model, compare accuracy between models, and deploy a model to a custom endpoint.
 
@@ -38,8 +38,8 @@ In AI Studio, you can fine-tune some Azure AI services models. For example, you 
     :::image type="content" source="./media/ai-studio/custom-speech/new-fine-tune-select-connection.png" alt-text="Screenshot of the page to select the connected service resource that you want to use for fine-tuning." lightbox="./media/ai-studio/custom-speech/new-fine-tune-select-connection.png":::
 
     In this example, we can choose from the following options:
-    - **AI Service**: The Azure AI Services multi-service resource that [came with the AI Studio project](../../ai-studio/ai-services/connect-ai-services.md#connect-azure-ai-services-when-you-create-a-project-for-the-first-time).
-    - **Speech Service**: An Azure AI Speech resource that was [connected after the project was created](../../ai-studio/ai-services/connect-ai-services.md#connect-azure-ai-services-after-you-create-a-project). 
+    - **AI Service**: The Azure AI Services multi-service resource that [came with the AI Studio project](../../ai-studio/ai-services/how-to/connect-ai-services.md#connect-azure-ai-services-when-you-create-a-project-for-the-first-time).
+    - **Speech Service**: An Azure AI Speech resource that was [connected after the project was created](../../ai-studio/ai-services/how-to/connect-ai-services.md#connect-azure-ai-services-after-you-create-a-project). 
 
 1. Enter a name and description for the fine-tuning job. Then select **Next**.
 1. From the new left menu in the fine-tuning page, select **Manage data** and then select **Add data**.

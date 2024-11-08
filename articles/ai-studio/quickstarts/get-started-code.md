@@ -1,18 +1,18 @@
 ---
-title: Get started building a chat app using the Azure AI SDK
+title: Get started building a chat app using the Azure AI Foundry SDK
 titleSuffix: Azure AI Studio
 description: This article provides instructions on how to build a custom chat app in Python using the Azure AI SDK.
 manager: scottpolly
 ms.service: azure-ai-studio
 ms.custom: build-2024, devx-track-azurecli, devx-track-python
 ms.topic: how-to
-ms.date: 10/31/2024
+ms.date: 11/07/2024
 ms.reviewer: dantaylo
 ms.author: sgilley
 author: sdgilley
 ---
 
-# Build a custom chat app in Python using Azure AI SDK
+# Build a custom chat app in Python using Azure AI Foundry SDK
 
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
