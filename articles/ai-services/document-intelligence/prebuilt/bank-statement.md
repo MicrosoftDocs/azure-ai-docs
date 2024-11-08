@@ -20,7 +20,7 @@ The Document Intelligence bank statement model combines powerful Optical Charact
 
 | Feature   | version| Model ID |
 |----------  |---------|--------|
-| Bank statement model|v4.0: **2024-11-30** (GA)|**`prebuilt-bankStatement.us`**|
+| Bank statement model|v4.0: [**2024-11-30**](/rest/api/aiservices/operation-groups?view=rest-aiservices-v4.0%20(2024-11-30)&preserve-view=true) (GA)|**`prebuilt-bankStatement.us`**|
 
 ## Bank statement data extraction
 
@@ -55,7 +55,7 @@ For a complete list of supported languages, *see* our [prebuilt model language s
 
 ## Field extractions
 
-For supported document extraction fields, refer to the **bank statement model schema** page in our GitHub sample repository.
+For supported document extraction fields, *see* the [**bank statement model schema**](https://github.com/Azure-Samples/document-intelligence-code-samples/blob/main/schema/2024-11-30-ga/bank-statement.md) page in our GitHub sample repository.
 
 ## Supported locales
 

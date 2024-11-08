@@ -19,7 +19,7 @@ The Document Intelligence payStub model combines powerful Optical Character Reco
 
 | Feature   | version| Model ID |
 |----------  |---------|--------|
-|payStub model|v4.0: **2024-11-30** (GA)|**`prebuilt-payStub.us`**|
+|payStub model|v4.0: [**2024-11-30**](/rest/api/aiservices/operation-groups?view=rest-aiservices-v4.0%20(2024-11-30)&preserve-view=true) (GA)|**`prebuilt-payStub.us`**|
 
 ## Try payStub data extraction
 
@@ -49,7 +49,7 @@ For a complete list of supported languages, *see* our [prebuilt model language s
 
 ## Field extractions
 
-For supported document extraction fields, refer to the **payStub model schema** page in our GitHub sample repository.
+For supported document extraction fields, *see* the [**payStub model schema**](https://github.com/Azure-Samples/document-intelligence-code-samples/blob/main/schema/2024-11-30-ga/pay-stub.md) page in our GitHub sample repository.
 
 ## Supported locales
 

@@ -19,7 +19,7 @@ The Document Intelligence bank check model combines powerful Optical Character R
 
 | Feature   | version| Model ID |
 |----------  |---------|--------|
-| Check model|v4.0: **2024-11-30** (GA)|**`prebuilt-check.us`**|
+| Check model|v4.0: [**2024-11-30**](/rest/api/aiservices/operation-groups?view=rest-aiservices-v4.0%20(2024-11-30)&preserve-view=true) (GA)|**`prebuilt-check.us`**|
 
 ## Check data extraction
 
@@ -57,7 +57,7 @@ A check is a secure way to transfer amount from payee's account to receiver's ac
 
 ## Field extractions
 
-For supported document extraction fields, refer to the **bank check model schema** page in our GitHub sample repository.
+For supported document extraction fields, *see* the [**bank check model schema**](https://github.com/Azure-Samples/document-intelligence-code-samples/blob/main/schema/2024-11-30-ga/bank-check.md) page in our GitHub sample repository.
 
 ## Supported locales
 
