@@ -90,7 +90,6 @@ Optionally you can specify extra packages you needed in `requirements.txt`. You 
 
 :::image type="content" source="../media/prompt-flow/how-to-deploy-for-real-time-inference/flow-environment-image.png" alt-text="Screenshot of specifying base image in raw yaml file of the flow. " lightbox = "../media/prompt-flow/how-to-deploy-for-real-time-inference/flow-environment-image.png":::
 
-:::image type="content" source="../media/prompt-flow/how-to-deploy-for-real-time-inference/requirements-text.png" alt-text="Screenshot of a flow's requirements text file." lightbox = "../media/prompt-flow/how-to-deploy-for-real-time-inference/requirements-text.png":::
 
 
 ### Basic settings
