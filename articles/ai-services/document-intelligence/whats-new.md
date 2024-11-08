@@ -28,14 +28,9 @@ Document Intelligence service is updated on an ongoing basis. Bookmark this page
 > Preview API versions are retired once the GA API is released. The 2023-02-28-preview API version is being retired, if you are still using the preview API or the associated SDK versions, please update your code to target the latest API version 2023-07-31 (GA). </br>
 > Please note that [🆕 Document field extraction (custom generative) model](train/custom-generative-extraction.md) is under preview  with improvements for runtime latency, table extraction, confidence scores, auto labeling and streamline training.
 
-
 ## November 2024
 
 **Document Intelligence v4.0 (2024-11-30) is now generally available (GA)**! The API version corresponds to 2024-11-30. The v4.0 API includes cumulative updates from preview releases as listed:
-  * August 2024 (release-ignite-document-intelligence-v4&tabs=csharp#august-2024)
-  * May 2024
-  * Feb 2024 (link to older release notes) 
-
 
 * [🆕 Batch API](concept-batch-analysis.md)
   * Batch API now supports all the prebuilt models.
@@ -67,6 +62,11 @@ Document Intelligence service is updated on an ongoing basis. Bookmark this page
  
 *  [🆕 US Tax model](prebuilt/tax-document.md)
   * New prebuilt  tax models added for 1095A, 1095C, 1099SSA, and W4.
+
+* The v4.0 API includes cumulative updates from preview releases as listed:
+  * [August 2024](#august-2024)
+  * [May 2024](#may-2024)
+  * [Feb 2024](#february-2024) 
 
 ## August 2024
 
