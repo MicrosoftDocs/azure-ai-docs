@@ -77,21 +77,21 @@ When you get results from PII detection, you can stream the results to an applic
     
 # [REST API](#tab/rest-api)
 
-## Redaction Policy
+## Redaction Policy (version 2024-11-15-preview only)
 
-You're able to define the `redactionPolicy` parameter to reflect the redaction policy to be used when redacting the document in the response. The policy field supports 3 policy types:
+In version 2024-11-15-preview, you're able to define the `redactionPolicy` parameter to reflect the redaction policy to be used when redacting the document in the response. The policy field supports 3 policy types:
 
-- `DoNotRedact` 
-- `MaskWithCharacter` (default) 
-- `MaskWithEntityType` 
+- `noMask` 
+- `characterMask` (default) 
+- `entityMask` 
 
-The `DoNotRedact` policy allows the user to return the response without the `redactedText` field. 
+The `noMask` policy allows the user to return the response without the `redactedText` field. 
 
-The `MaskWithRedactionCharacter` policy allows the `redactedText` to be masked with a character, preserving the length and offset of the original text. This is the existing behavior.
+The `characterMask` policy allows the `redactedText` to be masked with a character, preserving the length and offset of the original text. This is the existing behavior.
 
-There is also an optional field called `redactionCharacter` where you can input the character to be used in redaction if you're using the `MaskWithCharacter` policy 
+There is also an optional field called `redactionCharacter` where you can input the character to be used in redaction if you're using the `characterMask` policy 
 
-The `MaskWithEntityType` policy allows you to mask the detected PII entity text with the detected entity type
+The `entityMask` policy allows you to mask the detected PII entity text with the detected entity type
 
 Use the following example if you want to change the redaction policy.
 

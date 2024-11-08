@@ -32,9 +32,9 @@ By default, this feature uses the latest available AI model on your text. You ca
 
 When you submit documents to be processed, you can specify which of [the supported languages](language-support.md) they're written in. if you don't specify a language, extraction defaults to English. The API may return offsets in the response to support different [multilingual and emoji encodings](../concepts/multilingual-emoji-support.md). 
 
-### Redaction Policy
+### Redaction Policy (version 2024-11-5-preview only)
 
-You're able to define the `redactionPolicy` parameter to reflect the redaction policy to be used when redacting the document in the response. The policy field supports 3 policy types:
+in version 2024-11-5-preview, you're able to define the `redactionPolicy` parameter to reflect the redaction policy to be used when redacting the document in the response. The policy field supports 3 policy types:
 
 - `DoNotRedact` 
 - `MaskWithCharacter` (default) 
