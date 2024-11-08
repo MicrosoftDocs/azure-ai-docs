@@ -319,7 +319,7 @@ items:
       href: /javascript/api/overview/azure/ai-document-intelligence-rest-readme?view=azure-node-preview&preserve-view=true
     - name: Python
       href: /python/api/overview/azure/ai-documentintelligence-readme?view=azure-python-preview&preserve-view=true
-  - name: Schema
+  - name: Schema 2024-11-30 (GA)
     items:
     - name: Bank check
       href: https://github.com/Azure-Samples/document-intelligence-code-samples/blob/main/schema/2024-11-30-ga/bank-check.md
