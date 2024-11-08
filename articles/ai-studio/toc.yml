@@ -45,8 +45,8 @@ items:
       - name: "Part 2: Add data retrieval to a chat app"
         href: tutorials/copilot-sdk-build-rag.md
         displayName: code,sdk
-      - name: "Part 3: Evaluate and deploy a chat app"
-        href: tutorials/copilot-sdk-evaluate-deploy.md
+      - name: "Part 3: Evaluate a chat app"
+        href: tutorials/copilot-sdk-evaluate.md
         displayName: code,sdk
 - name: How-to
   expanded: true
