@@ -112,7 +112,7 @@ See how data, including customer information, vendor details, and line items, is
 
 ## Field extraction
 
-For supported document extraction fields, refer to the **tax document model schema** page in our GitHub sample repository.
+For supported document extraction fields, *see* the [**tax document model schema**](https://github.com/Azure-Samples/document-intelligence-code-samples/tree/main/schema/2024-11-30-ga/us-tax) pages in our GitHub sample repository.
 
 The tax documents key-value pairs and line items extracted are in the `documentResults` section of the JSON output.
 
