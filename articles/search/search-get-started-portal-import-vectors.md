@@ -8,47 +8,44 @@ ms.service: azure-ai-search
 ms.custom:
   - build-2024
 ms.topic: quickstart
-ms.date: 10/18/2024
+ms.date: 11/19/2024
 ---
 
 # Quickstart: Vectorize text and images by using the Azure portal
 
 This quickstart helps you get started with [integrated vectorization](vector-search-integrated-vectorization.md) by using the **Import and vectorize data** wizard in the Azure portal. The wizard chunks your content and calls an embedding model to vectorize content during indexing and for queries.
 
-Key points about the wizard:
-
-+ Supported data sources are Azure Blob Storage, Azure Data Lake Storage (ADLS) Gen2, or OneLake files and shortcuts.
-+ Supported embedding models are hosted on Azure OpenAI, Azure AI Studio model catalog, Azure AI Vision multimodal.
-+ Index schema provides vector and nonvector fields for chunked data. 
-+ You can add fields, but you can't delete or modify generated fields.
-+ Document parsing mode creates chunks (one search document per chunk).
-+ Chunking is nonconfigurable. The effective settings are:
-
-  ```json
-   "textSplitMode": "pages",
-   "maximumPageLength": 2000,
-   "pageOverlapLength": 500,
-   "maximumPagesToTake": 0, #unlimited
-   "unit": "characters",
-  ```
-
 ## Prerequisites
 
 + An Azure subscription. [Create one for free](https://azure.microsoft.com/free/).
 
-+ [Azure AI Search service](search-create-service-portal.md) in the same region as Azure AI. We recommend the Basic tier or higher.
++ [An Azure AI Search service](search-create-service-portal.md) in the same region as Azure AI. We recommend the Basic tier or higher.
 
-+ [Azure Blob Storage](/azure/storage/common/storage-account-create), [Azure Data Lake Storage (ADLS) Gen2](/azure/storage/blobs/create-data-lake-storage-account) (a storage account with a hierarchical namespace), or a [OneLake lakehouse](search-how-to-index-onelake-files.md).
++ [A supported data source](#supported-data-sources).
 
-  Azure Storage must be a standard performance (general-purpose v2) account. Access tiers can be hot, cool, and cold.
++ [A supported embedding model](#supported-embedding-models).
 
-+ An embedding model on an Azure AI platform in the [same region as Azure AI Search](search-create-service-portal.md#regions-with-the-most-overlap). [Deployment instructions](#set-up-embedding-models) are in this article.
+### Supported data sources
 
-  | Provider | Supported models |
-  |---|---|
-  | [Azure OpenAI Service](https://aka.ms/oai/access) | text-embedding-ada-002, text-embedding-3-large, or text-embedding-3-small. |
-  | [Azure AI Studio model catalog](/azure/ai-studio/what-is-ai-studio) |  Azure, Cohere, and Facebook embedding models. |
-  | [Azure AI services multi-service account](/azure/ai-services/multi-service-resource) | [Azure AI Vision multimodal](/azure/ai-services/computer-vision/how-to/image-retrieval) for image and text vectorization. Azure AI Vision multimodal is available in selected regions. [Check the documentation](/azure/ai-services/computer-vision/how-to/image-retrieval?tabs=csharp) for an updated list. **To use this resource, the account must be in an available region and in the same region as Azure AI Search**. |
++ [Azure Data Lake Storage (ADLS) Gen2](/azure/storage/blobs/create-data-lake-storage-account) (a storage account with a hierarchical namespace).
+
++ [Azure Storage](/azure/storage/common/storage-account-create) for blobs, files, and tables. Azure Storage must be a standard performance (general-purpose v2) account. Access tiers can be hot, cool, and cold.
+
++ [Azure Cosmos DB](/azure/cosmos-db/nosql/quickstart-portal) for NoSQL, Mongo DB, and Apache Gremlin.
+
++ [Azure SQL Database](/azure/azure-sql/database/single-database-create-quickstart), [Azure SQL Managed Instance](/azure/azure-sql/managed-instance/instance-create-quickstart), and Azure SQL Server virtual machines.
+
++ [OneLake lakehouse](search-how-to-index-onelake-files.md).
+
+### Supported embedding models
+
+Use an embedding model on an Azure AI platform in the [same region as Azure AI Search](search-create-service-portal.md#regions-with-the-most-overlap). [Deployment instructions](#set-up-embedding-models) are in this article.
+
+| Provider | Supported models |
+|---|---|
+| [Azure OpenAI Service](https://aka.ms/oai/access) | text-embedding-ada-002, text-embedding-3-large, or text-embedding-3-small. |
+| [Azure AI Studio model catalog](/azure/ai-studio/what-is-ai-studio) |  Azure, Cohere, and Facebook embedding models. |
+| [Azure AI services multi-service account](/azure/ai-services/multi-service-resource) | [Azure AI Vision multimodal](/azure/ai-services/computer-vision/how-to/image-retrieval) for image and text vectorization. Azure AI Vision multimodal is available in selected regions. [Check the documentation](/azure/ai-services/computer-vision/how-to/image-retrieval?tabs=csharp) for an updated list. **To use this resource, the account must be in an available region and in the same region as Azure AI Search**. |
 
 If using the Azure OpenAI Service, it must have an associated [custom subdomain](/azure/ai-services/cognitive-services-custom-subdomains). If the service was created through the Azure portal, this subdomain is automatically generated as part of your service setup. Ensure that your service includes a custom subdomain before using it with the Azure AI Search integration.
 
@@ -60,7 +57,7 @@ For the purposes of this quickstart, all of the preceding resources must have pu
 
 If private endpoints are already present and you can't disable them, the alternative option is to run the respective end-to-end flow from a script or program on a virtual machine. The virtual machine must be on the same virtual network as the private endpoint. [Here's a Python code sample](https://github.com/Azure/azure-search-vector-samples/tree/main/demo-python/code/integrated-vectorization) for integrated vectorization. The same [GitHub repo](https://github.com/Azure/azure-search-vector-samples/tree/main) has samples in other programming languages.
 
-### Role-based access control requirements
+### Role requirements
 
 We recommend role assignments for search service connections to other resources.
 
@@ -68,9 +65,9 @@ We recommend role assignments for search service connections to other resources.
 
 1. Configure your search service to [use a managed identity](search-howto-managed-identities-data-sources.md#create-a-system-managed-identity).
 
-1. On your data source platform and embedding model provider, create role assignments that allow search service to access data and models. [Prepare sample data](#prepare-sample-data) provides instructions for setting up roles.
+1. On your data source platform and embedding model provider, create role assignments that allow search service to access data and models. [Prepare sample data](#prepare-sample-data) provides instructions for setting up roles for each supported data source.
 
-A free search service supports RBAC on connections to Azure AI Search, but it doesn't support managed identities on outbound connections to Azure Storage or Azure AI Vision. This level of support means you must use key-based authentication on connections between a free search service and other Azure services. 
+A free search service supports role-based connections to Azure AI Search, but it doesn't support managed identities on outbound connections to Azure Storage or Azure AI Vision. This level of support means you must use key-based authentication on connections between a free search service and other Azure services. 
 
 For more secure connections:
 
@@ -216,7 +213,7 @@ The wizard supports Azure, Cohere, and Facebook embedding models in the Azure AI
 
 1. Deploy a supported embedding model to the model catalog in your project.
 
-1. For RBAC, create two role assignments: one for Azure AI Search, and another for the AI Studio project. Assign the [Cognitive Services OpenAI User](/azure/ai-services/openai/how-to/role-based-access-control) role for embeddings and vectorization.
+1. For role-based connections, create two role assignments: one for Azure AI Search, and another for the AI Studio project. Assign the [Cognitive Services OpenAI User](/azure/ai-services/openai/how-to/role-based-access-control) role for embeddings and vectorization.
 
 ---
 
@@ -307,6 +304,16 @@ Support for OneLake indexing is in preview. For more information about supported
 
 In this step, specify the embedding model for vectorizing chunked data.
 
+Chunking is built-in and nonconfigurable. The effective settings are:
+
+```json
+"textSplitMode": "pages",
+"maximumPageLength": 2000,
+"pageOverlapLength": 500,
+"maximumPagesToTake": 0, #unlimited
+"unit": "characters"
+```
+
 1. On the **Vectorize your text** page, choose the source of the embedding model:
 
    + Azure OpenAI
@@ -360,6 +367,12 @@ Azure AI Search and your Azure AI resource must be in the same region.
 On the **Advanced settings** page, you can optionally add [semantic ranking](semantic-search-overview.md) to rerank results at the end of query execution. Reranking promotes the most semantically relevant matches to the top.
 
 ## Map new fields
+
+Key points about this step:
+
++ Index schema provides vector and nonvector fields for chunked data. 
++ You can add fields, but you can't delete or modify generated fields.
++ Document parsing mode creates chunks (one search document per chunk).
 
 On the **Advanced settings** page, you can optionally add new fields. By default, the wizard generates the following fields with these attributes:
 
