@@ -11,4 +11,4 @@ ms.custom: include
 ---
 
 > [!IMPORTANT]
-> Azure AI Foundry was formerly called Azure AI Studio.  Most of our documentation and screenshots still show the old name.  The name change will be reflected in the documentation soon.
+> Azure AI Studio is now Azure AI Foundry. We're updating the documentation to reflect this change. In the meantime, you might see references to Azure AI Studio.
