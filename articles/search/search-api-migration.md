@@ -81,8 +81,8 @@ If you're upgrading from `2024-09-01-preview`, you can use the new preview APIs 
 
 However, the new version introduces syntax changes to `vectorSearch.compressions`:
 
-+ replaces `rerankWithOriginalVectors` with `enableRescoring`
-+ moves `defaultOversampling` to a new `rescoringOptions` property object
++ Replaces `rerankWithOriginalVectors` with `enableRescoring`
++ Moves `defaultOversampling` to a new `rescoringOptions` property object
 
 Backwards compatibility is preserved due to an internal API mapping, but we recommend changing the syntax if you adopt the new preview version. For a comparison of the syntax, see [Compress vectors using scalar or binary quantization](vector-search-how-to-quantization.md#add-compressions-to-a-search-index).
 
