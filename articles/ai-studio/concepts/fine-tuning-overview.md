@@ -35,9 +35,11 @@ Fine-tuning is a great way to get higher quality results while reducing latency.
 
 ### Why do you want to fine-tune a model?
 
-Fine-tuning can be useful if you have a specific use case for a pre-trained LLM. For example, if you have a generic pre-trained model but you would like to use the model for more specific topics. Before you begin Finetuning a model you can consider if you've identified shortcomings when using a base model. These shortcomings can include: an inconsistent performance on edge cases, inability to fit enough shot prompts in the context window to steer the model, or high latency. 
+Before you begin fine-tuning a model, consider if you've identified shortcomings when using a base model. These shortcomings can include: an inconsistent performance on edge cases, inability to fit enough prompts in the context window to steer the model, or high latency.
 
-Before you begin fine-tuning a model you can consider if you've identified shortcomings when using a base model. These shortcomings can include: an inconsistent performance on edge cases, inability to fit enough prompts in the context window to steer the model, or high latency. Base models are already pre-trained on vast amounts of data, but most times you will add instructions and examples to the prompt to get the quality responses that you're looking for. This process of "few-shot learning" can be improved with fine-tuning. Fine-tuning allows you to train a model with many more examples. You can tailor your examples to meet your specific use-case. This can help you reduce the number of tokens in the prompt leading to potential cost savings and requests with lower latency.
+Base models are already pre-trained on vast amounts of data, but most times you will add instructions and examples to the prompt to get the quality responses that you're looking for. This process of "few-shot learning" can be improved with fine-tuning.
+
+Fine-tuning allows you to train a model with many more examples. You can tailor your examples to meet your specific use-case. This can help you reduce the number of tokens in the prompt leading to potential cost savings and requests with lower latency.
 
 Use cases for fine-tuning a model can be:
 - Steering the model to output content in a specific and customized style, tone, or format.
@@ -76,9 +78,8 @@ Another important point is that even with high-quality data, if your data isn't 
 You might be ready for fine-tuning if:
 
 - You identified a dataset for fine-tuning.
-- Your dataset is in the appropriate format for training on your existing LLM.
+- Your dataset is in the appropriate format for training on your existing model.
 - You employed some level of curation to ensure dataset quality.
-- Your training data is in the same format that you want your LLM to output. 
 
 ### How will you measure the quality of your fine-tuned model?
 
