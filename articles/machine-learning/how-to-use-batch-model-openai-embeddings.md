@@ -296,9 +296,7 @@ For testing our endpoint, we are going to use a sample of the dataset [BillSum: 
    
    # [Python](#tab/python)
    
-   ```python
-   ml_client.jobs.get(job.name)
-   ```
+   [!notebook-python[] (~/azureml-examples-main/sdk/python/endpoints/batch/deploy-models/openai-embeddings/deploy-and-test.ipynb?name=configure_inputs)]
 
 1. Invoke the endpoint:
 
