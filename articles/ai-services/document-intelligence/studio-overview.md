@@ -62,17 +62,17 @@ Use the [Document Intelligence Studio quickstart](quickstarts/try-document-intel
 >
 > Document Intelligence now supports AAD token authentication additional to local (key-based) authentication when accessing the Document Intelligence resources and storage accounts. Be sure to follow below instructions to setup correct access roles, especially if your resources are applied with `DisableLocalAuth` policy.
 
-Note that there are additional prerequisites for using custom models in Document Intelligence Studio. Please refer to the [documentation](quickstarts/try-document-intelligence-studio-custom.md) for step by step guidance.
+There are added prerequisites for using custom models in Document Intelligence Studio. Refer to the [documentation](quickstarts/try-document-intelligence-studio-custom.md) for step by step guidance.
 
 ### Authorization policies
 
 Your organization can opt to disable local authentication and enforce Microsoft Entra (formerly Azure Active Directory) authentication for Azure AI Document Intelligence resources and Azure blob storage.
 
-* Using Microsoft Entra authentication requires that key based authorization is disabled. After key access is disabled, Microsoft Entra ID is the only available authorization method.
+* Microsoft Entra authentication requires that key based authorization is disabled. After key access is disabled, Microsoft Entra ID is the only available authorization method.
 
 * Microsoft Entra allows granting minimum privileges and granular control for Azure resources.
 
-* For more information, *see* the following guidance:
+For more information, *see* the following guidance:
 
   * [Disable local authentication for Azure AI Services](../disable-local-auth.md).
   * [Prevent Shared Key authorization for an Azure Storage account](/azure/storage/common/shared-key-authorization-prevent)
