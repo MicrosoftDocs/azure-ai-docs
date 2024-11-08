@@ -11,6 +11,7 @@ ms.author: mopeakande
 author: msakande
 ms.reviewer: kritifaujdar
 ms.custom: [references_regions]
+ms.collection: ce-skilling-ai-copilot
 ---
 
 # How to deploy a TimeGEN-1 model with Azure Machine Learning

@@ -8,7 +8,7 @@ ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: quickstart
 ms.devlang: rest-api
-ms.date: 03/18/2024
+ms.date: 10/31/2024
 ms.custom:
   - mode-api
   - ignite-2023
@@ -183,7 +183,7 @@ To push documents, use an HTTP POST request to your index's URL endpoint. The RE
         {
         "@search.action": "upload",
         "HotelId": "1",
-        "HotelName": "Secret Point Motel",
+        "HotelName": "Stay-Kay City Hotel",
         "Description": "The hotel is ideally located on the main commercial artery of the city in the heart of New York. A few minutes away is Time's Square and the historic centre of the city, as well as other places of interest that make New York one of America's most attractive and cosmopolitan cities.",
         "Category": "Boutique",
         "Tags": [ "pool", "air conditioning", "concierge" ],
@@ -202,7 +202,7 @@ To push documents, use an HTTP POST request to your index's URL endpoint. The RE
         {
         "@search.action": "upload",
         "HotelId": "2",
-        "HotelName": "Twin Dome Motel",
+        "HotelName": "Old Century Hotel",
         "Description": "The hotel is situated in a  nineteenth century plaza, which has been expanded and renovated to the highest architectural standards to create a modern, functional and first-class hotel in which art and unique historical elements coexist with the most modern comforts.",
         "Category": "Boutique",
         "Tags": [ "pool", "free wifi", "concierge" ],
@@ -221,7 +221,7 @@ To push documents, use an HTTP POST request to your index's URL endpoint. The RE
         {
         "@search.action": "upload",
         "HotelId": "3",
-        "HotelName": "Triple Landscape Hotel",
+        "HotelName": "Gastronomic Landscape Hotel",
         "Description": "The Hotel stands out for its gastronomic excellence under the management of William Dough, who advises on and oversees all of the Hotel’s restaurant services.",
         "Category": "Resort and Spa",
         "Tags": [ "air conditioning", "bar", "continental breakfast" ],
@@ -240,8 +240,8 @@ To push documents, use an HTTP POST request to your index's URL endpoint. The RE
         {
         "@search.action": "upload",
         "HotelId": "4",
-        "HotelName": "Sublime Cliff Hotel",
-        "Description": "Sublime Cliff Hotel is located in the heart of the historic center of Sublime in an extremely vibrant and lively area within short walking distance to the sites and landmarks of the city and is surrounded by the extraordinary beauty of churches, buildings, shops and monuments. Sublime Cliff is part of a lovingly restored 1800 palace.",
+        "HotelName": "Sublime Palace Hotel",
+        "Description": "Sublime Palace Hotel is located in the heart of the historic center of Sublime in an extremely vibrant and lively area within short walking distance to the sites and landmarks of the city and is surrounded by the extraordinary beauty of churches, buildings, shops and monuments. Sublime Palace is part of a lovingly restored 1800 palace.",
         "Category": "Boutique",
         "Tags": [ "concierge", "view", "24-hour front desk service" ],
         "ParkingIncluded": true,
@@ -336,7 +336,7 @@ Be sure to use single quotation marks on search `$urls`. Query strings include `
                   {
                       "@search.score":  0.1547872,
                       "HotelId":  "2",
-                      "HotelName":  "Twin Dome Motel",
+                      "HotelName":  "Old Century Hotel",
                       "Description":  "The hotel is situated in a  nineteenth century plaza, which has been expanded and renovated to the highest architectural standards to create a modern, functional and first-class hotel in which art and unique historical elements coexist with the most modern comforts.",
                       "Category":  "Boutique",
                       "Tags":  "pool free wifi concierge",
@@ -348,7 +348,7 @@ Be sure to use single quotation marks on search `$urls`. Query strings include `
                   {
                       "@search.score":  0.009068266,
                       "HotelId":  "3",
-                      "HotelName":  "Triple Landscape Hotel",
+                      "HotelName":  "Gastronomic Landscape Hotel",
                       "Description":  "The Hotel stands out for its gastronomic excellence under the management of William Dough, who advises on and oversees all of the Hotel\u0027s restaurant services.",
                       "Category":  "Resort and Spa",
                       "Tags":  "air conditioning bar continental breakfast",

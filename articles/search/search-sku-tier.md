@@ -59,7 +59,6 @@ Currently, several regions are at capacity for specific tiers and can't be used 
 
 | Region | Disabled tier (SKU) due to over-capacity | Suggested alternative |
 |--------|------------------------------------------|-----------------------|
-| Central India | S2, S3, S3HD, L1, L2| South India |
 | East US 2| Basic, S1| Central US |
 | South Central US | All tiers | Central US |
 | US Gov Virginia | All tiers | US Gov Arizona |

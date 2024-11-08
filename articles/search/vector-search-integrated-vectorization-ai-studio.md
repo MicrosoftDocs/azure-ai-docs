@@ -8,7 +8,7 @@ ms.service: azure-ai-search
 ms.custom:
   - build-2024
 ms.topic: how-to
-ms.date: 05/08/2024
+ms.date: 10/29/2024
 ---
 
 # How to implement integrated vectorization using models from Azure AI Studio
@@ -160,6 +160,8 @@ It assumes that you're chunking your content using the SplitSkill and therefore 
 You must add the `/v1/embed` path onto the end of the URL that you copied from your AI Studio deployment. You might also change the values for the `input_type`, `truncate` and `embedding_types` inputs to better fit your use case. For more information on the available options, review the [Cohere Embed API reference](/azure/ai-studio/how-to/deploy-models-cohere-embed).
 
 The URI and key are generated when you deploy the model from the catalog. For more information about these values, see [How to deploy Cohere Embed models with Azure AI Studio](/azure/ai-studio/how-to/deploy-models-cohere-embed).
+
+Note that image URIs are not supported by this integration at this time.
 
 ```json
 {

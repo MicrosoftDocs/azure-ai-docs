@@ -108,6 +108,18 @@ The following sections provide you with a quick guide to the default quotas and 
 
 M = million | K = thousand
 
+### gpt-4o data zone standard
+
+| Model|Tier| Quota Limit in tokens per minute (TPM) | Requests per minute |
+|---|---|:---:|:---:|
+|`gpt-4o`|Enterprise agreement | 10 M | 60 K |
+|`gpt-4o-mini` | Enterprise agreement | 20 M | 120 K |
+|`gpt-4o` |Default | 300 K | 1.8 K |
+|`gpt-4o-mini` | Default | 1 M | 6 K  |
+
+M = million | K = thousand
+
+
 ### gpt-4o standard
 
 | Model|Tier| Quota Limit in tokens per minute (TPM) | Requests per minute |
@@ -121,14 +133,14 @@ M = million | K = thousand
 
 #### Usage tiers
 
-Global Standard deployments use Azure's global infrastructure, dynamically routing customer traffic to the data center with best availability for the customer’s inference requests. This enables more consistent latency for customers with low to medium levels of traffic. Customers with high sustained levels of usage might see more variability in response latency.
+Global standard deployments use Azure's global infrastructure, dynamically routing customer traffic to the data center with best availability for the customer’s inference requests. Similarly, Data zone standard deployments allow you to leverage Azure global infrastructure to dynamically route traffic to the data center within the Microsoft defined data zone with the best availability for each request. This enables more consistent latency for customers with low to medium levels of traffic. Customers with high sustained levels of usage might see more variability in response latency.
 
 The Usage Limit determines the level of usage above which customers might see larger variability in response latency. A customer’s usage is defined per model and is the total tokens consumed across all deployments in all subscriptions in all regions for a given tenant.
 
 > [!NOTE]
-> Usage tiers only apply to standard and global standard deployment types. Usage tiers do not apply to global batch and provisioned throughput deployments.
+> Usage tiers only apply to standard, data zone standard, and global standard deployment types. Usage tiers do not apply to global batch and provisioned throughput deployments.
 
-#### GPT-4o global standard & standard
+#### GPT-4o global standard, data zone standard, & standard
 
 |Model| Usage Tiers per month |
 |----|----|

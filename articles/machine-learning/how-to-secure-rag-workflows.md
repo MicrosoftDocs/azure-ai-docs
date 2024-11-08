@@ -10,6 +10,7 @@ ms.service: azure-machine-learning
 ms.subservice: core
 ms.date: 09/12/2023
 ms.topic: how-to
+ms.collection: ce-skilling-ai-copilot 
 ms.custom:
   - prompt-flow
   - ignite-2023

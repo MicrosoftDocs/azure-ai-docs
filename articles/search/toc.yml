@@ -199,7 +199,7 @@ items:
       href: search-capacity-planning.md
     - name: Plan and manage costs
       href: search-sku-manage-costs.md
-    - name: Availability and recovery
+    - name: Reliability and recovery
       href: search-reliability.md
     - name: Availability migration guidance
       href: /azure/reliability/migrate-search-service

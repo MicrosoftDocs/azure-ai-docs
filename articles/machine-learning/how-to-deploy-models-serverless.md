@@ -11,6 +11,7 @@ ms.reviewer: fasantia
 reviewer: santiagxf
 ms.author: mopeakande
 author: msakande
+ms.collection: ce-skilling-ai-copilot 
 ms.custom: build-2024, serverless, devx-track-azurecli
 ---
 

@@ -9,6 +9,9 @@ items:
     href: overview.md
   - name: Which model should I choose?
     href: concept/choose-model-feature.md
+  - name: Create a Document Intelligence resource
+    displayName: endpoint, key, portal
+    href:  how-to-guides/create-document-intelligence-resource.md  
   - name: Document Intelligence Studio
     displayName: get started
     href: studio-overview.md
@@ -32,7 +35,7 @@ items:
         href: sdk-overview-v3-0.md
       - name:  "SDK targets: REST API v2.1 (GA)"
         displayName: get started, installation, downloads, formRecognizerClientClient, form recognizer client, Azure AD, Azure Active Directory, identity, changelog, package, version,AzureKeyCredential, Azure key credential, key, endpoint
-        href: /v21/sdk-overview.md
+        href: v21/sdk-overview-v2-1.md
   - name: Language support
     items:
       - name: Document analysis models
@@ -138,9 +141,9 @@ items:
   - name: Custom model lifecycle
     displayName: custom, train, modelId, model ID, expiration, train, build
     href: train/custom-lifecycle.md
-- name: Features
+- name: Add-on features
   items:
-  - name: Add-on capabilities
+  - name: Enhanced capabilities
     displayName: extract, formula, font, styles, fontStyle, ocr.highResolution, ocr.formula, high resolution, background color, inline, display
     href: concept-add-on-capabilities.md
   - name: Query field extraction
@@ -170,15 +173,12 @@ items:
       href: quickstarts/get-started-sdks-rest-api.md
     - name: Sample Labeling tool
       displayName: tables, labels, ocr, bounding box
-      href: /v21/try-sample-label-tool.md
+      href: v21/try-sample-label-tool.md
 - name: How-to guides
   items:
   - name: Use Document Intelligence models
     displayName: documentAnalysisClient, document analysis client, polygon, boundingPolygon, begin_analyze_document,ormRecognizerClient, Document Intelligence client, boundingBox, box, begin_recognize, v2.1
     href: how-to-guides/use-sdk-rest-api.md
-  - name: Create a Document Intelligence resource
-    displayName: endpoint, key, portal
-    href:  how-to-guides/create-document-intelligence-resource.md
   - name: 🆕 Build and train a custom generative model
     displayName: ai studio, neural, template, custom
     href: how-to-guides/build-train-custom-generative-model.md
@@ -217,13 +217,13 @@ items:
       href: how-to-guides/compose-custom-models.md
     - name: Deploy the sample-labeling tool
       displayName: FOTT, migration, containers, docker
-      href: /v21/deploy-label-tool.md
+      href: v21/deploy-label-tool.md
     - name: Train a custom model with the sample-labeling tool
       displayName: FOTT, migration, containers, docker
-      href: /v21/label-tool.md
+      href: v21/label-tool.md
     - name: Use table tags to train your custom model
       displayName: FOTT, migration, dynamic
-      href: /v21/supervised-table-tags.md
+      href: v21/supervised-table-tags.md
   - name: Back up and recover models
     displayName: disaster, recovery, region, copy, modelId, model ID
     href: disaster-recovery.md

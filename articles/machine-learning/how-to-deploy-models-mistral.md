@@ -11,6 +11,7 @@ ms.author: mopeakande
 author: msakande
 ms.reviewer: kritifaujdar
 ms.custom: [references_regions]
+ms.collection: ce-skilling-ai-copilot
 #This functionality is also available in Azure AI Studio: /azure/ai-studio/how-to/deploy-models-mistral.md
 ---
 # How to deploy Mistral models with Azure Machine Learning studio

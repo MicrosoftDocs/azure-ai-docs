@@ -55,6 +55,8 @@ Azure AI speech high definition (HD) voices are available in public preview. The
 - Custom neural voice Pro now supports the following new locales:
   - `en-NZ`: English (New Zealand)
   - `es-CL`: Spanish (Chile)
+  - `es-US`: Spanish (United States)
+  - `ta-MY`: Tamil (Malaysia)
   
   See the [language list for Custom neural voice](../../language-support.md?tabs=tts#custom-neural-voice) for the full list of supported locales.  
 
@@ -75,6 +77,7 @@ Azure AI speech high definition (HD) voices are available in public preview. The
   | `pt-PT`               | Portuguese (Portugal)     |
   | `sv-SE`               | Swedish (Sweden)          |
   | `tr-TR`               | Turkish (Türkiye)          |
+  | `ta-IN`               | Tamil (India) |
   | `zh-HK`               | Chinese (Cantonese, Traditional)       |  
 
   See the [language list for Custom neural voice](../../language-support.md?tabs=tts#custom-neural-voice) for the full list of supported locales.  

@@ -13,6 +13,7 @@ ms.author: mopeakande
 author: msakande
 ms.custom: references_regions, generated
 zone_pivot_groups: azure-ai-model-catalog-samples-embeddings
+ms.collection: ce-skilling-ai-copilot
 ---
 
 # How to use Cohere Embed V3 models with Azure Machine Learning studio

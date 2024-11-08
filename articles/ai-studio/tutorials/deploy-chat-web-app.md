@@ -44,7 +44,7 @@ The steps in this tutorial are:
 
 In the [AI Studio playground quickstart](../quickstarts/get-started-playground.md) (that's a prerequisite for this tutorial), you can observe how your model responds without your data. Now you add your data to the model to help it answer questions about your products.
 
-[!INCLUDE [Chat with your data](../includes/chat-with-data.md)]
+[!INCLUDE [Chat with your data](../includes/chat-with-data.md)] 
 
 ## Deploy your web app
 

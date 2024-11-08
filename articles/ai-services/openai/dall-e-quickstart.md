@@ -54,6 +54,12 @@ zone_pivot_groups: openai-quickstart-dall-e
 
 ::: zone-end
 
+::: zone pivot="programming-language-typescript"
+
+[!INCLUDE [TypeScript SDK quickstart](includes/dall-e-typescript.md)]
+
+::: zone-end
+
 ::: zone pivot="programming-language-go"
 
 [!INCLUDE [Go SDK quickstart](includes/dall-e-go.md)]

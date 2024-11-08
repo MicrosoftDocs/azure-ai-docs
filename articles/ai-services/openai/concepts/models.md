@@ -384,6 +384,12 @@ All deployments can perform the exact same inference operations, however the bil
 
 [!INCLUDE [Global batch](../includes/model-matrix/global-batch.md)]
 
+# [Data Zone Standard](#tab/datazone-standard)
+
+### Data zone standard model availability
+
+[!INCLUDE [Global batch](../includes/model-matrix/datazone-standard.md)]
+
 # [Standard](#tab/standard)
 
 ### Standard deployment model availability
@@ -494,20 +500,7 @@ These models can only be used with Embedding API requests.
 
 ## Fine-tuning models
 
-`gpt-35-turbo` - fine-tuning of this model is limited to a subset of regions, and is not available in every region the base model is available.  
-
-|  Model ID  | Fine-Tuning Regions | Max Request (tokens) | Training Data (up to) |
-|  --- | --- | :---: | :---: |
-| `babbage-002` | North Central US <br> Sweden Central  <br> Switzerland West | 16,384 | Sep 2021 |
-| `davinci-002` | North Central US <br> Sweden Central  <br> Switzerland West | 16,384 | Sep 2021 |
-| `gpt-35-turbo` (0613) | East US2 <br> North Central US <br> Sweden Central <br> Switzerland West | 4,096 | Sep 2021 |
-| `gpt-35-turbo` (1106) | East US2 <br> North Central US <br> Sweden Central <br> Switzerland West | Input: 16,385<br> Output: 4,096 |  Sep 2021|
-| `gpt-35-turbo` (0125)  | East US2 <br> North Central US <br> Sweden Central <br> Switzerland West | 16,385 | Sep 2021 |
-| `gpt-4` (0613) <sup>**1**</sup> | North Central US <br> Sweden Central | 8192 | Sep 2021 |
-| `gpt-4o-mini` <sup>**1**</sup> (2024-07-18) | North Central US <br> Sweden Central | Input: 128,000 <br> Output: 16,384  <br> Training example context length: 64,536 | Oct 2023 |
-| `gpt-4o` <sup>**1**</sup> (2024-08-06) | East US2 <br> North Central US <br> Sweden Central | Input: 128,000 <br> Output: 16,384  <br> Training example context length: 64,536 | Oct 2023 | 
-
-**<sup>1</sup>** GPT-4 is currently in public preview.
+[!INCLUDE [Fine-tune models](../includes/fine-tune-models.md)]
 
 ## Assistants (Preview)
 

@@ -19,11 +19,13 @@ ms.date: 03/25/2024
 | japaneast        | ✅                              | ✅                              | -                             | ✅                              |
 | northcentralus   | -                             | -                             | -                             | ✅                              |
 | norwayeast       | -                             | ✅                              | -                             | ✅                              |
+| polandcentral    | -                             | ✅                              | -                             | -                             |
 | southafricanorth | -                             | -                             | -                             | ✅                              |
 | southcentralus   | -                             | -                             | ✅                              | ✅                              |
 | southindia       | -                             | ✅                              | -                             | ✅                              |
 | swedencentral    | -                             | ✅                              | -                             | ✅                              |
-| switzerlandnorth | -                             | -                             | -                             | ✅                              |
+| switzerlandnorth | -                             | ✅                              | -                             | ✅                              |
+| uaenorth         | -                             | -                             | -                             | ✅                              |
 | uksouth          | -                             | ✅                              | -                             | ✅                              |
 | westeurope       | -                             | -                             | -                             | ✅                              |
 | westus           | -                             | -                             | -                             | ✅                              |

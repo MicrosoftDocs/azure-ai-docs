@@ -10,6 +10,7 @@ ms.author: ssalgado
 author: ssalgadodev
 ms.reviewer: timanghn
 ms.custom: references_regions, build-2024
+ms.collection: ce-skilling-ai-copilot 
 ms.date: 05/02/2024
 #Customer intent: As a data scientist, I want to learn about models available in the model catalog.
 ---

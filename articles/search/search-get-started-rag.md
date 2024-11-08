@@ -212,8 +212,8 @@ This section uses Visual Studio Code and Python to call the chat completion APIs
    ! pip install azure-search-documents==11.6.0b5 --quiet
    ! pip install azure-identity==1.16.1 --quiet
    ! pip install openai --quiet
-   ! pip intall aiohttp --quiet
-   ! pip intall ipykernel --quiet
+   ! pip install aiohttp --quiet
+   ! pip install ipykernel --quiet
    ```
 
 1. Set the following variables, substituting placeholders with the endpoints you collected in the previous step. 
