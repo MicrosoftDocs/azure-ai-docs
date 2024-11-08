@@ -1,10 +1,10 @@
 ### YamlMime:Landing
 
 title: Azure AI Content Understanding documentation
-summary: Content Understanding is a data analysis and comprehension solution that transforms diverse media content—such as audio, video, text, and images—into structured, organized, and searchable data.
+summary: Content Understanding is a solution that analyzes and comprehends various media content—such as audio, video, text, and images—transforming it into structured, organized, and searchable data.
 metadata:
   title: Azure AI Content Understanding documentation
-  description: Content Understanding is a data comprehension solution that transforms diverse media content—such as audio, video, text, and images—into structured, organized, and searchable data.
+  description: Content Understanding is a solution that analyzes and comprehends various media content—such as audio, video, text, and images—transforming it into structured, organized, and searchable data.
   ms.service: azure
   ms.topic: landing-page
   author: laujan
@@ -12,7 +12,6 @@ metadata:
   ms.date: 11/19/2024
 
 landingContent:
-  # Card 1
   - title: About Content Understanding
     linkLists:
       - linkListType: overview
@@ -22,56 +21,28 @@ landingContent:
           - text: What are Azure AI services?
             url: ../../ai-services/what-are-ai-services.md
 
-  # Card 2
   - title: Get started
     linkLists:
       - linkListType: quickstart
         links:
+        - text: Use Content Understanding in Azure AI Foundry
+          url: quickstart/use-aifoundry.md
         - text: Use Content Understanding Rest API
-          url: overview.md
+          url: quickstart/use-rest-api.md
 
-  # Card 3
-  - title: How-to guides
-    linkLists:
-      - linkListType: how-to-guide
-        links:
-        - text: Use Content Understanding Rest API
-          url: overview.md
-        - text: Use Content Understanding SDK
-          url: overview.md
-
-  # Card 4
-  - title: Solution templates
-    linkLists:
-      - linkListType: reference
-        links:
-        - text: Call center analytics
-          url: overview.md
-        - text: Digital asset management
-          url: overview.md
-        - text: Tax document processing
-          url: overview.md
-        - text: Contract analysis
-          url: overview.md
-        - text: Search and retrieval
-          url: overview.md
-        - text: Copilot integration
-          url: overview.md
-  # Card 5
-  - title: Concepts
+  - title: Capabilities
     linkLists:
       - linkListType: concept
         links:
-        - text: Visual document
-          url: overview.md
-        - text: Conversation
-          url: overview.md
+        - text: Document
+          url: document/overview.md
         - text: Image
-          url: overview.md  
+          url: image/overview.md
+        - text: Audio
+          url: audio/overview.md  
         - text: Video
-          url: overview.md          
-  # Card 6
-
+          url: video/overview.md          
+  
   - title: Responsible use of AI
     linkLists:
       - linkListType: concept

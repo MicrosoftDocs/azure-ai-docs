@@ -10,7 +10,7 @@ ms.date: 11/19/2024
 ms.custom: ignite-2024-understanding-release
 ---
 
-# Use Content Understanding analyzer templates in Azure AI Foundry
+# Use Content Understanding in Azure AI Foundry
 [Azure AI Foundry](https://ai.azure.com/) is a comprehensive platform for developing and deploying generative AI applications and APIs responsibly. This guide will show you how to use Content Understanding to build an analyzer, either by creating your own schema from scratch or by using a suggested analyzer template.
 
 ## Steps to create a Content Understanding analyzer
