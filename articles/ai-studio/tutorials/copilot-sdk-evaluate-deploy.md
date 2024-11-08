@@ -12,7 +12,7 @@ author: sdgilley
 #customer intent: As a developer, I want to learn how to use the prompt flow SDK so that I can evaluate and deploy a chat app.
 ---
 
-# Tutorial: Part 3 - Evaluate and deploy a custom chat application with the prompt flow SDK
+# Tutorial: Part 3 - Evaluate a custom chat application with the Azure AI Foundry SDK
 
 In this tutorial, you use the Azure AI SDK (and other libraries) to  evaluate and deploy the chat app you built in [Part 2 of the tutorial series](copilot-sdk-build-rag.md). In this part three, you learn how to:
 
@@ -73,6 +73,16 @@ The evaluation script uses a helper script to define the target function and run
 
 :::code language="python" source="~/azureai-samples-nov2024/scenarios/rag/custom-rag-app/config.py":::
 
+### Configure the evaluation model 
+
+Since the evaluation script calls the evaluation model many times, try to increase the amount of tokens per minute that the model will accept.  
+
+1. In your project in Azure AI Studio, select **Models + endpoints**.
+1. Select **gpt-4o-mini**.
+1. Select **Edit**.
+1. If you have quota to increase the **Tokens per Minute Rate Limit**, try increasing it to 30. (If you're out of quota, don't worry.  The script is designed to handle limit errors.)
+1. Select **Save and close**.
+
 ### Run the evaluation script
 
 1. From your console, sign in to your Azure account with the Azure CLI:
@@ -95,36 +105,37 @@ The evaluation script uses a helper script to define the target function and run
 
 ### Interpret the evaluation output
 
-In the console output, you see for each question an answer and the summarized metrics in this nice table format. (You might see different columns in your output.)
+In the console output, you see for each question an answer and the summarized metrics. (You might see different columns in your output.)
+
+If you weren't able to increase the tokens per minute limit for your model, you might see some time-out errors, which are expected. The evaluation script is designed to handle these errors and continue running.
 
 ```txt
+====================================================
 '-----Summarized Metrics-----'
-{'coherence.gpt_coherence': 4.3076923076923075,
- 'groundedness.gpt_groundedness': 4.384615384615385,
- 'relevance.gpt_relevance': 4.384615384615385}
-
+{'groundedness.gpt_groundedness': 2.230769230769231,
+ 'groundedness.groundedness': 2.230769230769231}
 '-----Tabular Result-----'
-                                             question  ... gpt_coherence
-0                  Which tent is the most waterproof?  ...             5
-1          Which camping table holds the most weight?  ...             5
-2       How much does TrailWalker Hiking Shoes cost?   ...             5
-3   What is the proper care for trailwalker hiking...  ...             5
-4                What brand is the TrailMaster tent?   ...             1
-5        How do I carry the TrailMaster tent around?   ...             5
-6             What is the floor area for Floor Area?   ...             3
-7    What is the material for TrailBlaze Hiking Pants  ...             5
-8     What color do the TrailBlaze Hiking Pants come   ...             5
-9   Can the warranty for TrailBlaze pants be trans...  ...             3
-10  How long are the TrailBlaze pants under warren...  ...             5
-11  What is the material for PowerBurner Camping S...  ...             5
-12                               Is France in Europe?  ...             1
+                                     outputs.response  ...           outputs.groundedness.groundedness_reason
+0   Could you please specify which tent you are as...  ...  The RESPONSE fails to engage with the specific...
+1   Could you please specify which camping table y...  ...  The RESPONSE does not utilize any of the infor...
+2   Sorry, I only can answer queries related to ou...  ...  The RESPONSE does not relate to the CONTEXT at...
+3   To properly care for your TrailWalker Hiking S...  ...  The RESPONSE provides care instructions for th...
+4   The TrailMaster X4 Tent is from the OutdoorLiv...  ...  The RESPONSE accurately identifies the brand o...
+5   The TrailMaster X4 Tent comes with an included...  ...  The RESPONSE accurately reflects information f...
+6   Sorry, I only can answer queries related to ou...  ...  The RESPONSE does not relate to the CONTEXT at...
+7   The TrailBlaze Hiking Pants are crafted from h...  ...  The RESPONSE accurately reflects part of the i...
+8   The color of the TrailBlaze Hiking Pants is de...  ...  The RESPONSE accurately mentions the color of ...
+9   Sorry, I only can answer queries related to ou...  ...  The RESPONSE is entirely unrelated to the CONT...
+10  Sorry, I only can answer queries related to ou...  ...  The RESPONSE does not reference or relate to a...
+11  The material for the PowerBurner Camping Stove...  ...  The RESPONSE does not contradict the CONTEXT b...
+12  Sorry, I only can answer queries related to ou...  ...  The RESPONSE does not reference or relate to a...
+
+[13 rows x 7 columns]
+'View evaluation results in AI Studio: xxxxxx'
 ```
 
-The script writes the full evaluation results to `./eval_results.jsonl`.
-And there's a link in the console to view evaluation results in your Azure AI Studio project.
-
 > [!NOTE]
-> You may see an `ERROR:asyncio:Unclosed client session` - this can be safely ignored and does not affect the evaluation results.
+> You may see `WARNING:opentelemetry.attributes:` - these can be safely ignored and do not affect the evaluation results.
 
 ### View evaluation results in AI Studio
 
@@ -138,186 +149,10 @@ You can also look at the individual rows and see metric scores per row, and view
 
 For more information about evaluation results in AI Studio, see [How to view evaluation results in AI Studio](../how-to/evaluate-results.md).
 
-Now that you verified your chat app behaves as expected, you're ready to deploy your application.
-
-> [!NOTE]
-> The rest of this tutorial is the old version, nothing else has been updated yet.  Stop here for now.
-
-## <a name="deploy"></a>Deploy the chat app to Azure
-
-Now let's go ahead and deploy this chat app to a managed endpoint so that it can be consumed by an external application or website. 
-
-The deploy script will:
-
-- Create a managed online endpoint
-- Define our flow as a model
-- Deploy our flow to a managed environment on that endpoint that has our environment variables
-- Route all traffic to that deployment
-- Output the link to view and test the deployment in the Azure AI Studio
-
-The deployment defines a build context (Dockerfile) that relies on the `requirement.txt` specified in our flow folder, and also sets our environment variables to the deployed environment, so we can be confident that our chat app runs the same in a production environment as it did locally.
-
-### Build context for the deployment (Dockerfile)
-
-The deployed environment needs a build context, so let's define a Dockerfile for the deployed environment.
-The deploy script creates an environment based on this Dockerfile. Create this **Dockerfile** in the **copilot_flow** folder:
-
-```docker
-FROM mcr.microsoft.com/azureml/promptflow/promptflow-runtime:latest
-COPY ./requirements.txt .
-RUN pip install -r requirements.txt
-```
-
-### Deploy chat app to a managed endpoint
-
-To deploy your application to a managed endpoint in Azure, create an online endpoint, then create a deployment in that endpoint, and then route all traffic to that deployment.
-
-As part of creating the deployment, your **copilot_flow** folder is packaged as a model and a cloud environment is built. The endpoint is set up with Microsoft Entra ID authentication. You can update the auth mode you want in the code, or in the Azure AI Studio on the endpoint details page.
-
-> [!IMPORTANT]
-> Deploying your application to a managed endpoint in Azure has associated compute cost based on the instance type you choose. Make sure you are aware of the associated cost and have quota for the instance type you specify. Learn more about [online endpoints](/azure/machine-learning/reference-managed-online-endpoints-vm-sku-list).
-
-Create the file **deploy.py** in the main folder. Add the following code:
-
-:::code language="python" source="~/rag-data-openai-python-promptflow-main/tutorial/deploy.py" id="deploy":::
-
-> [!IMPORTANT]
-> The endpoint and deployment name must be unique within an Azure region. If you get an error that the endpoint or deployment name already exists, try different names.
-
-### Output deployment details
-
-Add the following lines to the end your deploy script to view the evaluation result locally, and get a link to the studio:
-
-:::code language="python" source="~/rag-data-openai-python-promptflow-main/tutorial/deploy.py" id="status":::
-
-Now, run the script with:
-
-```bash
-python deploy.py
-```
-
-> [!NOTE]
-> Deployment may take over 10 minutes to complete. We suggest you follow the next step to assign access to the endpoint while you wait.
-
-Once the deployment is completed, you get a link to the Azure AI Studio deployment page, where you can test your deployment.
-
-## <a name="verify"></a>Verify the deployment
-
-We recommend you test your application in the Azure AI Studio. If you prefer to test your deployed endpoint locally, you can invoke it with some custom code.
-
-Note your endpoint name, which you need for the next steps.
-
-### Endpoint access for Azure OpenAI resource
-
-You might need to ask your Azure subscription owner (who might be your IT admin) for help with this section.
-
-While you wait for your application to deploy, you or your administrator can assign role-based access to the endpoint. These roles allow the application to run without keys in the deployed environment, just like it did locally.
-
-Previously, you provided your account with a specific role to be able to access the resource using Microsoft Entra ID authentication. Now, assign the endpoint that same **Cognitive Services OpenAI User** role.
-
-> [!NOTE]
-> These steps are similar to how you assigned a role for your user identity to use the Azure OpenAI Service in the [quickstart](../quickstarts/get-started-code.md).
-
-To grant yourself access to the Azure AI Services resource that you're using:
-
-1. In [AI Studio](https://ai.azure.com), go to your project and select **Management center** from the left pane.
-1. Under the **Project** heading, select **Connected resources**.
-1. Select the connection name with type **AIServices**.
-
-    :::image type="content" source="../media/quickstarts/promptflow-sdk/project-settings-pick-resource.png" alt-text="Screenshot of the project settings page, highlighting how to select the connected AI services resource to open it." lightbox="../media/quickstarts/promptflow-sdk/project-settings-pick-resource.png":::
-
-    > [!NOTE]
-    > If you don't see the **AIServices** connection, use the **Azure OpenAI** connection instead.
-
-1. On the resource details page, select the link under the **Resource** heading to open the AI services resource in the Azure portal.
-
-    :::image type="content" source="../media/quickstarts/promptflow-sdk/project-ai-services-open-in-portal.png" alt-text="Screenshot of the AI Services connection details showing how to open the resource in the Azure portal." lightbox="../media/quickstarts/promptflow-sdk/project-ai-services-open-in-portal.png":::
-
-1. From the left page in the Azure portal, select **Access control (IAM)** > **+ Add** > **Add role assignment**.
-
-1. Search for the **Cognitive Services OpenAI User** role and then select it. Then select **Next**.
-
-    :::image type="content" source="../media/quickstarts/promptflow-sdk/ai-services-add-role-assignment.png" alt-text="Screenshot of the page to select the Cognitive Services OpenAI User role." lightbox="../media/quickstarts/promptflow-sdk/ai-services-add-role-assignment.png":::
-
-1. Select **Managed identity**. Then select **Select members**.
-
-1. In the **Select members** pane that opens, select _Machine learning online endpoint_ for the Managed identity, and then search for your endpoint name. Select the endpoint and then select **Select**.
-
-    :::image type="content" source="../media/tutorials/develop-rag-copilot-sdk/managed-identity-role-aoai.png" alt-text="Screenshot shows Selection of members for the online endpoint.":::
-
-1. Continue through the wizard and select **Review + assign** to add the role assignment.
-
-> [!NOTE]
-> It may take a few minutes for the access to propagate. If you get an unauthorized error when testing in the next step, try again after a few minutes.
-
-### Endpoint access for Azure AI Search resource
-
-You might need to ask your Azure subscription owner (who might be your IT admin) for help with this section.
-
-
-
-1. In Azure AI Studio, select **Management center** and navigate to the connected **Azure AI Search** service. 
-1. Select the link to open a summary of the resource. Select the link on the summary page to open the resource in the Azure portal.
-
-1. From the left page in the Azure portal, select **Access control (IAM)** > **+ Add** > **Add role assignment**.
-
-    :::image type="content" source="../media/tutorials/develop-rag-copilot-sdk/add-role-search.png" alt-text="Screenshot shows Access control for search resource.":::
-
-1. Search for the **Search Index Data Contributor** role and then select it. Then select **Next**.
-
-1. Select **Managed identity**. Then select **Select members**.
-
-1. In the **Select members** pane that opens, select _Machine learning online endpoint_ for the Managed identity, and then search for your endpoint name. Select the endpoint and then select **Select**.
-
-    :::image type="content" source="../media/tutorials/develop-rag-copilot-sdk/managed-identity-role-search.png" alt-text="Screenshot shows selecting the endpoint.":::
-
-1. Continue through the wizard and select **Review + assign** to add the role assignment.
-
-> [!NOTE]
-> It may take a few minutes for the access to propagate. If you get an unauthorized error when testing in the next step, try again after a few minutes.
-
-### Test your deployment in AI Studio
-
-Once the deployment is completed, you get a handy link to your deployment. If you don't use the link, navigate to the **Deployments** tab in your project and select your new deployment.
-
-:::image type="content" source="../media/tutorials/develop-rag-copilot-sdk/deployment-overview.png" alt-text="Screenshot shows deployment overview in Azure AI Studio.":::
-
-Select the **Test** tab, and try asking a question in the chat interface.
-
-For example, type "Are the Trailwalker hiking shoes waterproof?" and enter.
-
-:::image type="content" source="../media/tutorials/develop-rag-copilot-sdk/deployment-test.png" alt-text="Screenshot shows deployment response in Azure AI Studio.":::
-
-Seeing the response come back verifies your deployment.
-
-If you get an error, select the **Logs** tab to get more details.
-
-> [!NOTE]
-> If you get an unauthorized error, your endpoint access may not have been applied yet. Try again in a few minutes.
-
-### Invoke the deployed chat app locally
-
-If you prefer to verify your deployment locally, you can invoke it via a Python script.
-
-Define a script that will:
-
-- Construct a well-formed request to our scoring URL.
-- Post the request and handle the response.
-
-Create an **invoke-local.py** file in your **rag-tutorial** folder, with the following code. Modify the `query` and `endpoint_name` (and other parameters as needed) to fit your use case.
-
-:::code language="python" source="~/rag-data-openai-python-promptflow-main/tutorial/invoke-local.py":::
-
-You should see the chat app reply to your query in the console.
-
-> [!NOTE]
-> If you get an unauthorized error, your endpoint access may not have been applied yet. Try again in a few minutes.
-
 ## Clean up resources
 
 To avoid incurring unnecessary Azure costs, you should delete the resources you created in this tutorial if they're no longer needed. To manage resources, you can use the [Azure portal](https://portal.azure.com?azure-portal=true).
 
 ## Related content
 
-- [Learn more about prompt flow](../how-to/prompt-flow.md)
-- For a sample chat app application that implements RAG, see [Azure-Samples/rag-data-openai-python-promptflow](https://github.com/Azure-Samples/rag-data-openai-python-promptflow)
+- [Learn more about the Azure AI Foundry SDK](../how-to/develop/sdk-overview.md)

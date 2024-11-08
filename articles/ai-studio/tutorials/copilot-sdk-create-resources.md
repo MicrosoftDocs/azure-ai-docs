@@ -1,7 +1,7 @@
 ---
 title: "Part 1: Create resources to build a custom chat app"
 titleSuffix: Azure AI Studio
-description:  Build a custom chat app using the prompt flow SDK. Part 1 of a 3-part tutorial series, which shows how to create the resources you'll need for parts 2 and 3.
+description:  Build a custom chat app using the Azure AI Foundry SDK. Part 1 of a 3-part tutorial series, which shows how to create the resources you'll need for parts 2 and 3.
 manager: scottpolly
 ms.service: azure-ai-studio
 ms.topic: tutorial
@@ -12,7 +12,8 @@ author: sdgilley
 #customer intent: As a developer, I want to learn how to use the prompt flow SDK so that I can build a RAG-based chat app.
 ---
 
-# Tutorial:  Part 1 - Create resources for building a custom chat application with the prompt flow SDK
+# Tutorial:  Part 1 - Create resources for building a custom chat application with the Azure AI Foundry SDK
+
 
 In this tutorial, you use the Azure AI SDK (and other libraries) to build, configure, evaluate, and deploy a chat app for your retail company called Contoso Trek. Your retail company specializes in outdoor camping gear and clothing. The chat app should answer questions about your products and services. For example, the chat app can answer questions such as "which tent is the most waterproof?" or "what is the best sleeping bag for cold weather?".
 
