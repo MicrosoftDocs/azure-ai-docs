@@ -13,6 +13,8 @@ author: lgayhardt
 
 # Tracing Overview
 
+[!INCLUDE [feature-preview](../../includes/feature-preview.md)]
+
 Tracing is a powerful tool that offers developers an in-depth understanding of the execution process of their generative AI applications. It provides a detailed view of the execution flow, including the inputs and outputs of each node within the application. This essential information proves critical while debugging complex applications or optimizing performance.
 
 Tracing with the Azure AI Inference SDK offers enhanced visibility and simplified troubleshooting for LLM-based applications, effectively supporting development, iteration, and production monitoring. Tracing follows the OpenTelemetry semantic conventions, capturing and visualizing the internal execution details of any AI application, enhancing the overall development experience.
@@ -64,4 +66,4 @@ Trace visualization refers to the graphical representation of trace data. Azure 
 ## Related content
 
 - [Trace your application with Azure AI Inference SDK](../how-to/develop/trace-local-sdk.md)
-- [Visualize your traces](./visualize-traces.md)
+- [Visualize your traces](../how-to/develop/visualize-traces.md)

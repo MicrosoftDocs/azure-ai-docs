@@ -13,7 +13,7 @@ author: lgayhardt
 
 # Visualize your traces
 
-[!INCLUDE [feature-preview](../includes/feature-preview.md)]
+[!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
 After instrumenting your application to log traces, let's walkthrough how you can view your traces in both local and cloud solutions to debug your application.
 
