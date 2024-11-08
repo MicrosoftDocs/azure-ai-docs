@@ -32,10 +32,6 @@ Document Intelligence service is updated on an ongoing basis. Bookmark this page
 ## November 2024
 
 **Document Intelligence v4.0 (2024-11-30) is now generally available (GA)**! The API version corresponds to 2024-11-30. The v4.0 API includes cumulative updates from preview releases as listed:
-  * August 2024 (release-ignite-document-intelligence-v4&tabs=csharp#august-2024)
-  * May 2024
-  * Feb 2024 (link to older release notes) 
-
 
 * [🆕 Batch API](concept-batch-analysis.md)
   * Batch API now supports all the prebuilt models.
