@@ -13,7 +13,7 @@ author: lgayhardt
 
 # Tracing Overview
 
-[!INCLUDE [feature-preview](../../includes/feature-preview.md)]
+[!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
 Tracing is a powerful tool that offers developers an in-depth understanding of the execution process of their generative AI applications. It provides a detailed view of the execution flow, including the inputs and outputs of each node within the application. This essential information proves critical while debugging complex applications or optimizing performance.
 
