@@ -3,7 +3,7 @@ items:
   tocHref: /azure/
   topicHref: /azure/index
   items:
-  - name: AI Studio
+  - name: AI Foundry
     tocHref: /azure/ai-studio/
     topicHref: /azure/ai-studio/
   - name: AI Services
