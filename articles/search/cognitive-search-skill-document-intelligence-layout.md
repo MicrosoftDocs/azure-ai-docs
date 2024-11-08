@@ -19,7 +19,7 @@ ms.date: 11/19/2024
 
 The **Document Layout** skill analyzes a document to extract regions of interest and their inter-relationships to produce a syntactical representation of the document in Markdown format. This skill uses the [Document Intelligence layout model](/azure/ai-services/document-intelligence/concept-layout) provided in [Azure AI Document Intelligence](/azure/ai-services/document-intelligence/overview). 
 
-This article is the reference documentation for the Document Layout skill.
+This article is the reference documentation for the Document Layout skill. For more information about usage, see [Structure-aware chunking and vectorization ](search-how-to-semantic-chunking.md).
 
 The **Document Layout** skill calls the [Document Intelligence Public preview version 2024-07-31-preview](/rest/api/aiservices/operation-groups?view=rest-aiservices-v4.0%20(2024-07-31-preview)&preserve-view=true). It's currently only available in the following Azure regions:
 
