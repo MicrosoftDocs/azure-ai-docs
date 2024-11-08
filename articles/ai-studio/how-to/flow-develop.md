@@ -8,7 +8,7 @@ ms.custom:
   - ignite-2023
   - build-2024
 ms.topic: how-to
-ms.date: 5/21/2024
+ms.date: 11/08/2024
 ms.reviewer: jinzhong
 ms.author: lagayhar
 author: lgayhardt
@@ -48,7 +48,8 @@ To create a prompt flow from the gallery in Azure AI Studio:
 
     :::image type="content" source="../media/prompt-flow/create-standard-flow.png" alt-text="Screenshot of selecting and creating a standard flow." lightbox="../media/prompt-flow/create-standard-flow.png":::
 
-1. The prompt flow authoring page opens. You can start authoring your flow now. By default you see a sample flow. This example flow has nodes for the LLM and Python tools. 
+1. The prompt flow authoring page opens. Select **Start compute session** to have a compute session running for the flow.
+1. You can start authoring your flow now. By default you see a sample flow. This example flow has nodes for the LLM and Python tools. 
 
     :::image type="content" source="../media/prompt-flow/create-flow-in-out.png" alt-text="Screenshot of flow input and output on the edit prompt flow page." lightbox="../media/prompt-flow/create-flow-in-out.png":::
 
@@ -63,6 +64,7 @@ To create a prompt flow from the gallery in Azure AI Studio:
 
     :::image type="content" source="../media/prompt-flow/create-flow-connection.png" alt-text="Screenshot of the selected connection and deployment in the LLM tool on the edit prompt flow page." lightbox="../media/prompt-flow/create-flow-connection.png":::
 
+1. In the **Inputs** section, add a value for the topic.  For example, "atoms."
 1. Select **Run** to run the flow. 
 
     :::image type="content" source="../media/prompt-flow/create-flow-run.png" alt-text="Screenshot of where to select run on the edit prompt flow page." lightbox="../media/prompt-flow/create-flow-run.png":::
@@ -111,7 +113,7 @@ If the condition isn't met, the node is skipped. The node status is shown as "By
 You can test the flow in two ways:
 
 - Run **single node**.
-    - To run a single node, select the **Run icon** on node in flatten view. Once running is completed, you can quickly check result in **node output section**.
+    - To run a single node, select the **Run icon** on a node in the flatten view. Once running is completed, you can quickly check result in **node output section**.
 - Run **the whole flow**.
     - To run the whole flow, select the **Run button** at the right top.
 
