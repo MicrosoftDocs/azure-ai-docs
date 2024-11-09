@@ -1,17 +1,17 @@
 ---
 title: Azure AI Content Understanding video overview
 titleSuffix: Azure AI services
-description: Learn how to use Azure AI Content Understanding video solutions
+description: Learn about Azure AI Content Understanding video solutions.
 author: laujan
 ms.author: lajanuar
 manager: nitinme
 ms.service: azure
-ms.topic: how-to
+ms.topic: overview
 ms.date: 11/19/2024
 ms.custom: ignite-2024-understanding-release
 ---
 
-# Content Understanding video solutions (preview)
+# Azure AI Content Understanding video solutions (preview)
 
 > [!IMPORTANT]
 >
@@ -19,57 +19,77 @@ ms.custom: ignite-2024-understanding-release
 > * Features, approaches, and processes may change or have constrained capabilities, prior to General Availability (GA).
 > * For more information, *see* [**Supplemental Terms of Use for Microsoft Azure Previews**](https://azure.microsoft.com/support/legal/preview-supplemental-terms).
 
-Azure AI Content Understanding lets you extract and customize video metadata for seamless integration into your systems or workflows. Content Understanding helps efficiently manage, categorize, retrieve, and build workflows for video assets. Content Understanding can enhance your media asset library, support workflows such as highlight generation, categorize content, and facilitate applications like retrieval-augmented generation (`RAG`). The video content extraction capabilities of Content Understanding offer the following advantages:
+Azure AI Content Understanding allows you to extract and customize video metadata. Content Understanding helps efficiently manage, categorize, retrieve, and build workflows for video assets. It enhances your media asset library, supports workflows such as highlight generation, categorizes content, and facilitates applications like retrieval-augmented generation (RAG). 
 
-* **Video transcription**. Convert speech within a video into text transcripts that can be searched and analyzed. Transcription data is also used as grounding for generating customizable metadata.
+Content understanding for video has broad potential uses. For example, you can customize metadata to tag specific scenes in a training video, making it easier for employees to locate and revisit important sections. You could also use metadata customization to identify product placements in promotional videos, which helps marketing teams analyze brand exposure.
 
-* **Shot and Key frame extraction**. Identify different scenes or shots in a video and segment the content for detailed analysis. The detected scenes and shots are available as separate metadata and are also used as grounding data for further metadata customization.
+## Business use cases
 
-* **Face Grouping**. Recognize and group faces appearing in a video, which can be used for indexing or compliance purposes. The grouped face data is available as metadata and is used as grounding for generating customized metadata fields.
+Azure AI Content Understanding provides a range of business use cases, including:
 
-* **Generating fields**. Field generation allows you to define custom metadata fields to extract from your videos by describing them in the schema definition.
+- **Broadcast media and entertainment**: Manage large libraries of shows, movies, and clips by generating detailed metadata for each asset.
+- **Education and e-Learning**: Index and retrieve specific moments in educational videos or lectures.
+- **Corporate training**: Organize training videos by key topics, scenes, or important moments.
+- **Marketing and advertising**: Analyze promotional videos to extract product placements, brand appearances, and key messages.
 
-## Key benefits
+## Video understanding capabilities
 
-Content Understanding provides a specific set of capabilities for video including:
+:::image type="content" source="../media/video/video-overview.png" alt-text="Screenshot of video analyzer flow.":::
 
-* **Customization**. Unlike traditional video analysis services, Content Understanding enables you to customize the metadata you want to generate. By modifying the schema, you can tailor the output to match your specific scenario.
+Content Understanding processes video files through a customizable pipeline that can perform both **content extraction** and **field extraction** tasks. Content Extraction focuses on analyzing the video to generate foundational metadata, while Field Extraction uses that metadata to create more detailed, custom insights tailored to specific use cases. Below is an overview of each capability.
 
-* **Segment-based context aware analysis**. By analyzing video segments rather than video frames Content Understanding is able to identify actions, events, topics, and themes in a way that frame-based tools have difficulty achieving.
+### Content extraction 
 
-* **Generative Models**. By using generative AI models, you can describe in natural language what content you want to extract, and Content Understanding generates that metadata.
+Content extraction for video includes transcription, shot detection, key frame extraction, and face grouping. These operations are performed over sampled frames from the entire video and generate a structured text output representing the video. Content extraction also serves as grounding data for generative capabilities of Field Extraction by providing context on what is contained in the video.
 
-*    **Integrated preprocessing**. Content Understanding performs several preprocessing steps, such as transcription and scene detection, to provide rich context to AI generative models.
+**Specific capabilities of content extraction**:
 
-*    **Scenario adaptability**. Whether you need to generate highlights, categorize content for streaming platforms, or identify key moments in a tutorial, the service can adapt to your needs by generating custom fields to extract the correct grounding data.
+- **Transcription**: Converts speech to structured, searchable text via Azure AI Speech, allowing users to specify recognition languages.
+- **Shot detection**: Identifies segments of the video aligned with shot boundaries where possible, allowing for precise editing and repackaging of content with breaks exactly on shot boundaries.
+- **Key frame extraction**: Extracts key frames from videos to represent each shot completely, ensuring each shot has enough key frames to enable Field Extraction to work effectively.
+- **Face grouping**: Groups faces appearing in a video to extract one representative face image for each person and provides segments where each one is present. The grouped face data is available as metadata and can be used to generate customized metadata fields. Note: This feature is limited access and involves face identification and grouping; customers need to register for access at [Face Registration](https://aka.ms/faceregistration).
 
-## Content Understanding video use case industries
+### Field extraction 
 
-* **Broadcast Media and Entertainment**. Manage large libraries of shows, movies, and clips by generating detailed metadata for each asset.
+Field extraction enables the generation of structured data for each segment of the video, such as tags, categories, or descriptions, using a customizable schema tailored to your specific needs. This structured data makes it easier to organize, search, and automatically process video content efficiently. Field extraction uses a multimodal generative model to extract specific data from the video, leveraging key frames and text output from Content Extraction as input. This enables the generative model to make detailed insights based on the visual content captured from shots, providing very detailed identification.
 
-* **Education and E-Learning**. Index and retrieve specific moments in educational videos or lectures.
+**Examples of fields for different industries**:
 
-* **Corporate Training**. Organize training videos by key topics, scenes, or important moments.
+- **Media asset management**:
 
-* **Marketing and Advertising**. Analyze promotional videos to extract product placements, brand appearances, and key messages.
+  - **Shot type**: Helps editors and producers organize content, simplifying editing, and understanding the visual language of the video. Useful for metadata tagging and quicker scene retrieval.
+  - **Color scheme**: Conveys mood and atmosphere, essential for narrative consistency and viewer engagement. Identifying color themes helps in finding matching clips for accelerated video editing.
 
-## Content Understanding video scenarios
+- **Advertising**:
 
-* **Media Asset Libraries**. Enhance your media library with detailed metadata for better searchability and organization.
+  - **Brand**: Identifies brand presence, critical for analyzing ad impact, brand visibility, and association with products. This allows advertisers to assess brand prominence and ensure compliance with branding guidelines.
+  - **Ad categories**: Categorizes ad types by industry, product type, or audience segment, which supports targeted advertising strategies, categorization, and performance analysis.
 
-* **Highlight Generation**. Automatically create highlights or summaries of videos based on scene descriptions and key moments.
+### Key benefits
 
-* **Content Categorization and Compliance**. Categorize videos for streaming platforms, deciding where specific content airs.
+Content Understanding provides several key benefits when compared to other video analysis solutions:
 
-* **Retrieval-augmented generation (`RAG`) applications**. Enable applications that can answer user questions with specific video moments by indexing content at a granular level.
+- **Segment-based multi-frame analysis**: Identify actions, events, topics, and themes by analyzing multiple frames from each video segment, rather than individual frames.
+- **Customization**: Customize the metadata you generate by modifying the schema to match your specific use case.
+- **Generative models**: Describe in natural language what content you want to extract, and Content Understanding will use generative models to extract that metadata.
+- **Optimized preprocessing**: Perform several content extraction preprocessing steps, such as transcription and scene detection, optimized to provide rich context to AI generative models.
+
+## Input requirements
+For detailed information on supported input document formats, refer to our [Service quotas and limits](../service-limits.md) page.
+
+## Supported languages and regions
+For a detailed list of supported languages and regions, visit our [Language and region support](../language-region-support.md) page.
 
 ## Data privacy and security
 
 As with all the Azure AI services, developers using the Content Understanding service should be aware of Microsoft's policies on customer data. See our [**Data, protection and privacy**](https://www.microsoft.com/trust-center/privacy) page to learn more.
 
 > [!IMPORTANT]
-> If you are using Microsoft products or services to process Biometric Data, you are responsible for: (i) providing notice to data subjects, including with respect to retention periods and destruction; (ii) obtaining consent from data subjects; and (iii) deleting the Biometric Data, all as appropriate and required under applicable Data Protection Requirements. "Biometric Data" will have the meaning set forth in Article 4 of the GDPR and, if applicable, equivalent terms in other data protection requirements. For related information, see [Data and Privacy for Face](/legal/cognitive-services/face/data-privacy-security).
+> Users of Content Understanding can enable features like Face Grouping for videos, which involved processing Biometric Data. If you are using Microsoft products or services to process Biometric Data, you are responsible for: (i) providing notice to data subjects, including with respect to retention periods and destruction; (ii) obtaining consent from data subjects; and (iii) deleting the Biometric Data, all as appropriate and required under applicable Data Protection Requirements. "Biometric Data" will have the meaning set forth in Article 4 of the GDPR and, if applicable, equivalent terms in other data protection requirements. For related information, see [Data and Privacy for Face](/legal/cognitive-services/face/data-privacy-security).
 
 ## Next steps
 
-Get started using Content Understanding video APIs with our [**prebuilt template**](../prebuilt-template/manage-video-assets.md) for a managing media assets scenario.
+Our quickstart guides help you quickly start using the Content Understanding service:
+
+* [**Rest API Quickstart**](../quickstart/use-rest-api.md)
+* [**Azure AI Foundry Quickstart**](../quickstart/use-ai-foundry.md)

@@ -1,5 +1,5 @@
 ---
-title: Azure AI Content Understanding custom document extraction overview
+title: Azure AI Content Understanding document overview
 titleSuffix: Azure AI services
 description: Learn about Azure AI Content Understanding document solutions.
 author: laujan
