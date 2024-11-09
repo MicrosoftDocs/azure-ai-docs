@@ -23,7 +23,7 @@ Azure AI Content Understanding is a new Generative AI based [**Azure AI Service*
 
 Content Understanding offers a streamlined process to reason over large amounts of unstructured data, accelerating time-to-value by generating an output that can be integrated into automation and analytical workflows.
 
-:::image type="content" source="media/overview/cu-overview.png" alt-text="Screenshot of accepted media input files.":::
+:::image type="content" source="media/overview/cu-overview.png" alt-text="Screenshot of Content Understanding overview.":::
 
 ## Why process with Content Understanding?
 
@@ -55,7 +55,7 @@ See [Quickstart](quickstart/use-ai-foundry.md) for more examples.
 
 ## Capabilities
 
-:::image type="content" source="media/overview/component_overview.png" alt-text="Screenshot of accepted media input files.":::
+:::image type="content" source="media/overview/component_overview.png" alt-text="Screenshot of Content Understanding components.":::
 
 |Capability|Description|
 |:---------|:----------|
