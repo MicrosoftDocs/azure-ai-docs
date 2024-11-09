@@ -19,11 +19,18 @@ items:
   - name: Language and region support
     href: language-region-support.md
   - name: Pricing
-    displayName: cost, pricing, subscription, tier, free, paid, trial
+    displayName: cost, pricing, subscription, tier, paid, trial
     href: https://azure.microsoft.com/pricing
   - name: FAQ
     displayName: storage, security, privacy, help, support, versions, development, migrate, migration, cognitive, applied, form recognizer, form, recognizer
     href: faq.yml
+- name: Quickstarts
+  items:
+  - name: Content Understanding REST API
+    displayName: quickstart, extract, text, images, OCR, optical character recognition
+    href: quickstart/use-rest-api.md
+  - name: Content Understanding in Azure AI Foundry
+    href: quickstart/use-ai-foundry.md
 - name: Capabilities
   items:
   - name: Document
@@ -38,10 +45,3 @@ items:
   - name: Video
     href: video/overview.md
     displayName: video, audio, voice, recognition, synthesis, speaker, identification, verification, diarization, transcription, translation, language, understanding, sentiment, analysis, emotion, detection, pronunciation, model
-- name: Quickstarts
-  items:
-  - name: Content Understanding REST API
-    displayName: quickstart, extract, text, images, OCR, optical character recognition
-    href: quickstart/use-rest-api.md
-  - name: Content Understanding in Azure AI Foundry
-    href: quickstart/use-ai-foundry.md
