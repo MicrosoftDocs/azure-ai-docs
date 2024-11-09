@@ -81,6 +81,84 @@ First, create a JSON file named `request_body.json` with the following content:
 }
 ```
 
+# [Image](#tab/image)
+
+To create a custom analyzer, you need to define a field schema that describes the structured data you want to extract. In the following example, we define a schema for identifying detects in images of metal plates.
+
+First, create a JSON file named `request_body.json` with the following content:
+```json
+{
+  "description": "Sample defect detection analyzer",
+  "scenario": "image",
+  "fieldSchema": {
+    "fields": {
+      "Defects": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "DefectType": {
+              "type": "string",
+              "method": "classify",
+              "enum": [ "scratch", "pit" ],
+              "enumDescriptions": {
+                "scratch": "A superficial, long, thin mark that may be straight or curved",
+                "pit": "A small, round defect that may look like a small hole or depression"
+              }
+            },
+            "Severity": {
+              "type": "string",
+              "method": "classify",
+              "enum": [ "low", "moderate", "high" ]
+            }
+          }
+        }
+      }
+    }
+  }
+}
+```
+
+# [Audio](#tab/audio)
+
+To create a custom analyzer, you need to define a field schema that describes the structured data you want to extract. In the following example, we define a schema for extracting basic information from call transcripts.
+
+First, create a JSON file named `request_body.json` with the following content:
+```json
+{
+  "description": "Sample call transcript analyzer",
+  "scenario": "callCenter",
+  "config": {
+    "returnDetails": true,
+    "locales": ["en-US"]
+  },
+  "fieldSchema": {
+    "fields": {
+      "Summary": {
+        "type": "string",
+        "method": "generate"
+      },
+      "Sentiment": {
+        "type": "string",
+        "method": "classify",
+        "enum": [ "Positive", "Neutral", "Negative" ]
+      },
+      "People": {
+        "type": "array",
+        "description": "List of people mentioned",
+        "items": {
+          "type": "object",
+          "properties": {
+            "Name": { "type": "string" },
+            "Role": { "type": "string" }
+          }
+        }
+      }
+    }
+  }
+}
+```
+
 # [Video](#tab/video)
 
 To create a custom analyzer, you need to define a field schema that describes the structured data you want to extract. In the following example, we define a schema for extracting basic information from marketing videos.
@@ -158,6 +236,18 @@ Before running the cURL command, make the following changes to the HTTP request:
 2. Replace `{analyzerId}` with the name of the custom analyzer created earlier.
 3. Replace `{fileUrl}` with a publicly accessible URL of the file to analyze, such as a path to an Azure Storage Blob with a shared access signature (SAS) or the sample URL `https://github.com/Azure-Samples/cognitive-services-REST-api-samples/raw/master/curl/form-recognizer/rest-api/invoice.pdf`.
 
+# [Image](#tab/image)
+
+1. Replace `{endpoint}` and `{key}` with the endpoint and key values from your Azure portal Azure AI Services instance.
+2. Replace `{analyzerId}` with the name of the custom analyzer created earlier.
+3. Replace `{fileUrl}` with a publicly accessible URL of the file to analyze, such as a path to an Azure Storage Blob with a shared access signature (SAS) or the sample URL `TODO`.
+
+# [Audio](#tab/audio)
+
+1. Replace `{endpoint}` and `{key}` with the endpoint and key values from your Azure portal Azure AI Services instance.
+2. Replace `{analyzerId}` with the name of the custom analyzer created earlier.
+3. Replace `{fileUrl}` with a publicly accessible URL of the file to analyze, such as a path to an Azure Storage Blob with a shared access signature (SAS) or the sample URL `TODO`.
+
 # [Video](#tab/video)
 
 1. Replace `{endpoint}` and `{key}` with the endpoint and key values from your Azure portal Azure AI Services instance.
@@ -204,6 +294,96 @@ You will receive a 200 (OK) JSON response with a `status` field indicating the s
 #### Sample response
 
 # [Document](#tab/document)
+
+```json
+{
+  "id": "3b31320d-8bab-4f88-b19c-2322a7f11034",
+  "status": "Succeeded",
+  "result": {
+    "analyzerId": "myInvoice",
+    "apiVersion": "2024-12-01-preview",
+    "createdAt": "2024-10-14T18:46:36Z",
+    "stringEncoding": "codePoint",
+    "contents": [
+      {
+        "kind": "document",
+        "markdown": "# CONTOSO LTD.\n\n...",
+        "startPageNumber": 1,
+        "endPageNumber": 1,
+        "unit": "inch",
+        "pages": [
+          {
+            "pageNumber": 1,
+            "width": 8.5,
+            "height": 11
+          }
+        ],
+        "fields": {
+          "Company": {
+            "type": "string",
+            "valueString": "CONTOSO",
+            "spans": [
+              {
+                "offset": 7,
+                "length": 2
+              }
+            ],
+            "confidence": 0.95,
+            "source": "D(1,5,1,7,1,7,1.5,5,1.5)"
+          }
+        }
+      }
+    ]
+  }
+}
+```
+
+# [Image](#tab/image)
+
+```json
+{
+  "id": "3b31320d-8bab-4f88-b19c-2322a7f11034",
+  "status": "Succeeded",
+  "result": {
+    "analyzerId": "myInvoice",
+    "apiVersion": "2024-12-01-preview",
+    "createdAt": "2024-10-14T18:46:36Z",
+    "stringEncoding": "codePoint",
+    "contents": [
+      {
+        "kind": "document",
+        "markdown": "# CONTOSO LTD.\n\n...",
+        "startPageNumber": 1,
+        "endPageNumber": 1,
+        "unit": "inch",
+        "pages": [
+          {
+            "pageNumber": 1,
+            "width": 8.5,
+            "height": 11
+          }
+        ],
+        "fields": {
+          "Company": {
+            "type": "string",
+            "valueString": "CONTOSO",
+            "spans": [
+              {
+                "offset": 7,
+                "length": 2
+              }
+            ],
+            "confidence": 0.95,
+            "source": "D(1,5,1,7,1,7,1.5,5,1.5)"
+          }
+        }
+      }
+    ]
+  }
+}
+```
+
+# [Audio](#tab/audio)
 
 ```json
 {
