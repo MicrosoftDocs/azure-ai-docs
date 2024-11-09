@@ -83,11 +83,11 @@ Pay attention to the top left corner of the screen to see which context you are 
 
     :::image type="content" source="media/azure-openai-in-ai-studio/ai-studio-project.png" alt-text="Screenshot shows top left corner of screen for AI Studio with a project.":::
 
-* When you're working with Azure OpenAI outside of a project, you see **Azure AI Studio | Azure OpenAI / resource name**. The resource name allows you to switch between Azure OpenAI resources.
+* When you're working with Azure OpenAI outside of a project, you see **Azure AI Foundry | Azure OpenAI / resource name**. The resource name allows you to switch between Azure OpenAI resources.
 
     :::image type="content" source="media/azure-openai-in-ai-studio/ai-studio-azure-openai.png" alt-text="Screenshot shows top left corner of screen for AI Studio when using Azure OpenAI without a project.":::
 
-Use the **Azure AI Foundry** breadcrumb to navigate back to the Azure AI Studio home page. You can also navigate back to the Azure AI Foundry portal home page when you see **View all resources & projects** in the top right corner of the screen.
+Use the **Azure AI Foundry** breadcrumb to navigate back to the Azure AI Foundry portal home page. You can also navigate back to the Azure AI Foundry portal home page when you see **View all resources & projects** in the top right corner of the screen.
 
 ## Related content
 
