@@ -21,23 +21,23 @@ ms.custom: ignite-2024-understanding-release
 
 Azure AI Content Understanding is a new Generative AI based [**Azure AI Service**](../what-are-ai-services.md), designed to process/ingest content of any types (documents, images, videos, and audio) into a user-defined output format.
 
-Content Understanding offers a streamlined process to reason over large amounts of unstructured data, accelerating time-to-value to seamlessly integrate the output into automation and analytical workflows used by downstream applications.
+Content Understanding offers a streamlined process to reason over large amounts of unstructured data, accelerating time-to-value by generating an output that can be integrated into automation and analytical workflows.
 
 :::image type="content" source="media/overview/cu-overview.png" alt-text="Screenshot of accepted media input files.":::
 
 ## Why process with Content Understanding?
 
-* **Simplify and streamline workflows**. Content Understanding standardizes the extraction of data from various content types, providing a unified method for processing all types of content.
+* **Simplify and streamline workflows**. Content Understanding standardizes the extraction of content, structure, and insights from various content types into a unified process.
 
-* **Simplify field extraction**. Content Understanding's schema definition makes it easier to generate structured output from various content types. Users can define schemas to extract, classify, or generate field values without needing complex prompt engineering.
+* **Simplify field extraction**. Content Understanding's field extraction makes it easier to generate structured output from unstructured content. Define a schema to extract, classify, or generate field values with no complex prompt engineering
 
 * **Enhance accuracy**. Content Understanding employs multiple AI models to analyze and cross-validate information simultaneously, resulting in more accurate and reliable results.
 
 ## Content Understanding use cases
 
-* **Automation**. Content Understanding enhances automation by converting unstructured content into structured data, which can be integrated into various workflows and applications. For example, it can automate procurement and payment processes by extracting fields from invoices.
+* **Automation**. Content Understanding supports automation scenarios by converting unstructured content into structured data, which can be integrated into various workflows and applications. Confidence scores minimize human review and lower costs. For example, automate procurement and payment processes by extracting fields from invoices.
 
-* **Search and retrieval augmented generation**. Content Understanding improves Search and Retrieval Augmented Generation (RAG) by ingesting diverse unstructured content. The output can then be added to a search index for RAG applications, enhancing the search experience with more accurate and relevant results.
+* **Search and retrieval augmented generation (RAG)**. Content Understanding enables ingestion of content of any modality into the search index. The structured output representation improves the relevance for RAG scenarios.
 
 * **Analytics and reporting**: Content Understanding's extracted field outputs enhance analytics and reporting, allowing businesses to gain valuable insights, conduct deeper analysis, and make informed decisions based on accurate reports.
 
@@ -61,7 +61,7 @@ See [Quickstart](quickstart/use-ai-foundry.md) for more examples.
 |:---------|:----------|
 |Content extraction | Content Understanding recognizes content from documents, images, audio, and video for easy analysis and further processing.|
 |Add-ons| Content Understanding add-ons enhance content extraction by incorporating additional elements like barcodes, tables, and detected faces.|
-|Field extraction|Users can define the structure and schema of the desired extracted fields or customize from templates for common scenarios. Fields may be generated via multiple methods:</br></br>&bullet; **Extract**: Directly extract values as they appear in the input content, such as extracting dates from receipts or item details from invoices.</br></br>&bullet; **Classify**: Classify content from a predefined set of categories, such as determining call sentiment or chart type.</br></br>&bullet; **Generate**: Generate values freely from input data, such as summarizing an audio conversation or generating scene descriptions from videos.|
+|Field extraction|Choose from a list of supported field types like strings, numbers and tables. See [service limits](service-limits.md) for a complete list of field types supported. Fields can be generated via one of the following methods:</br></br>&bullet; **Extract**: Directly extract values as they appear in the input content, such as extracting dates from receipts or item details from invoices.</br></br>&bullet; **Classify**: Classify content from a predefined set of categories, such as determining call sentiment or chart type.</br></br>&bullet; **Generate**: Generate values freely from input data, such as summarizing an audio conversation or generating scene descriptions from videos.|
 |Grounding Source| Content Understanding identifies the specific regions in the content where the value was generated from. This allows users in automation scenarios to quickly verify the correctness of the field values, leading to higher confidence in the extracted data. |
 |Confidence Score | Content Understanding provides confidence scores from 0 to 1 to estimate the reliability of the results. High scores indicate accurate data extraction, enabling straight-through processing in automation workflows.|
 
@@ -78,8 +78,8 @@ Developers using the Content Understanding service should review Microsoft's pol
 ## Getting started
 Our quickstart guides help you quickly start using the Content Understanding service:
 
-* [**Rest API Quickstart**](quickstart/use-rest-api.md)
 * [**Azure AI Foundry Quickstart**](quickstart/use-ai-foundry.md)
+* [**Rest API Quickstart**](quickstart/use-rest-api.md)
 
 
 
