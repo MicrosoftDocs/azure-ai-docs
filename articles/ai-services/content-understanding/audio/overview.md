@@ -20,127 +20,67 @@ ms.custom: ignite-2024-understanding-release
 > * Features, approaches, and processes may change or have constrained capabilities, prior to General Availability (GA).
 > * For more information, *see* [**Supplemental Terms of Use for Microsoft Azure Previews**](https://azure.microsoft.com/support/legal/preview-supplemental-terms).
 
-Content Understanding audio capabilities enable you to transcribe and diarize conversational audio. It can generate enhanced outputs like summaries, special industry record formats, captioning data. Content Understanding audio and audio capabilities enable you to extract valuable information such as key topics, sentiment, and more. To get started, use one of the provided out-of-box prebuilt extraction schemas and start generating results. You can also customize Content Understanding capabilities to meet your business needs as necessary.
+Content Understanding audio analyzers enable transcription and diarization of conversational audio, extracting structured fields such as summaries, sentiments, and key topics. Customize an audio analyzer template to your business needs using [Azure AI Foundry](https://ai.azure.com/) to start generating results.
 
-Here are some of the common scenarios for Content Understanding extracted conversational audio data:
+Here are common scenarios for using Content Understanding with conversational audio data:
 
-* Get customer insights through summarization and sentiment.
+* Gain customer insights through summarization and sentiment analysis.
+* Assess and verify call quality and compliance in call centers.
+* Create automated summaries and metadata for podcast publishing.
 
-* Generate contact center call analytics results.
+## Audio analyzer capabilities
 
-* Assess and verify contact center call quality and compliance for improved processing coverage.
+:::image type="content" source="../media/audio/overview/workflow-diagram.png" lightbox="../media/audio/overview/workflow-diagram.png" alt-text="Illustration of Content Understanding audio workflow.":::
 
-* Generate automated summaries and metadata for podcast platform publishing.
+Content Understanding serves as a cornerstone for Media Asset Management solutions, enabling the following capabilities for audio files:
+  
+### Content extraction
 
-* Create a redacted version of the transcript with personal data removed.
+  * **Transcription**. Converts conversational audio into searchable and analyzable text-based transcripts in WebVTT format. Customizable fields can be generated from transcription data. Sentence-level and word-level timestamps are available upon request.
 
-* Analyze recordings to find valuable information like most desired topics.
+  * **Diarization**. Distinguishes between speakers in a conversation, attributing parts of the transcript to specific speakers.
 
-* Generate rich outputs based on conversational audio such as dictated documents.
+  * **Speaker role detection**. Identifies agent and customer roles within contact center call data.
 
-## Content Understanding in AI Studio
+### Field extraction
 
-AI studio enables you to set up, test, and manage Content Understanding solutions. You can use prebuilt schemas that can be customized to analyze your audio transcripts to easily generate results matching your specific business needs. A typical scenario is to automatically process files uploaded into a blob storage account and write the analytics results back to it. Based on the single file analysis, you can then easily index and add these results to a database or an Azure AI Search Index to easily generate more cross-recording insights and dashboards.
+Field extraction allows you to extract structured data from audio files, such as summaries, sentiments, and mentioned entities from call logs. You can begin by customizing a suggested analyzer template or creating one from scratch.
 
-* Get insights from audio recordings of meetings, calls, and conversations. Review insights from summaries, sentiment results, action items, meeting notes, and `PII` redacted transcripts.
+## Key Benefits
+Content Understanding offers advanced audio capabilities, including:
 
-* Customize the results according to your specific needs and scenarios to modify the output of the workflow.
+* **Customizable data extraction**. Tailor the output to your specific needs by modifying the field schema, allowing for precise data generation and extraction.
 
-* Test and deploy customized workflows easily and quickly, without having to write any code or use any external tools.
+* **Generative models**. Utilize generative AI models to specify in natural language the content you want to extract, and the service will generate the desired output.
 
-* Access and manage your Content Understanding projects and resources in one place, along with other AI services that you use in AI Studio.
+* **Integrated pre-processing**. Benefit from built-in preprocessing steps like transcription, diarization, and role detection, providing rich context for generative models.
 
-You can use the AI Studio to manage audio analytics projects and resources.
+* **Scenario adaptability**. Adapt the service to your requirements by generating custom fields to extract relevant data.
 
-* Content Understanding in AI studio offers a user-friendly interface and a seamless setup experience to generate insights from audio data. You can also test and deploy different versions of the output schema directly in AI studio.
+## Content Understanding audio analyzer templates
 
-* Developers can use the `SDK`s and `REST API`s to process data at scale in production and integrate Content Understanding into Azure Pipelines as needed.
+Content Understanding offers customizable audio analyzer templates:
 
-## Content Understanding features for audio processing
+* **Post-call analytics**. Analyze call recordings to generate conversation transcripts, call summaries, sentiment assessments, and more.
 
-Content Understanding is serves as a cornerstone for Media Asset Management solutions and enables the following capabilities for audio files:
+* **Conversation summarization**. Generate transcriptions, summaries, and sentiment assessments from conversation audio recordings.
 
-* **Extracting content**:
+Start with a template or create a custom analyzer to meet your specific business needs.
 
-   * **Transcription**. Convert audio within conversational audio files into text-based transcripts that can be searched and analyzed. This transcription data is also used as grounding for generating customizable fields.
+## Input requirements
+For a detailed list of supported audio formats, refer to our [Service limits and codecs](../service-limits.md) page.
 
-   * **Diarization**. Speaker diarization distinguishes between the speakers participating in a conversation. The Content Understanding service provides information about which part of a transcribed conversation is attributed to a particular speaker.
-
-   * **Speaker Role Detection**. Detect and identify agent and customer speaker roles within contact center call data.
-
-   * **Supported languages**. Content Understanding audio capabilities support automatic language detection for [**supported languages**](../language-region-support.md#language-support). The feature is automatically active if no locale or multiple locales are selected.
-
-  * **Supported audio formats**. Content Understanding audio capabilities support a broad variety of [audio file formats and codes](../language-region-support.md).
-
-  * **Audio transcription detailed output**. The complete output from the audio transcription process is returned including, if needed, sentence-level and word-level-timestamps.
-
-* **Generating fields**:
-
-   * **Field generation**. Content Understanding enables you to define custom fields and extract and generate data from your audio by including them in the schema definition.
-
-  * **Multi-language results**. Content Understanding can generate field schema results in multiple languages when you include a field description in the desired output language.
-
-  * **Support for `generate` and `classify` methods for field extraction**. Customize your output formats using user-specified extraction methods.
-
-## Content Understanding audio workflow
-
-The diagram below presents a high-level overview of a standard workflow for processing audio in Content Understanding.
-
-  :::image type="content" source="../media/audio/overview/workflow-diagram.png" lightbox="../media/audio/overview/workflow-diagram.png" alt-text="Illustration of Content Understanding audio workflow.":::
-
-A standard Content Understanding audio workflow includes these steps:
-
-1. You can submit a request for an audio file to the Content Understanding API.
-
-1. The Content Extraction step produces a conversation transcript in webVTT format with speaker separation. It can also optionally identify speaker roles or names, replacing generic labels like "Speaker n" with more specific identifiers.
-
-1. The Field Extraction step then provides additional insights based on the conversation transcript.
-
-1. The Content Understanding service delivers the conversation transcript along with additional insights in JSON format.
-
-## Content Understanding analyzer templates for audio
-
-Content Understanding provides the following customizable analyzer templates:
-
-* **Post call analytics**. Analyze call recordings and generate outputs such as conversation transcript, call summary, sentiment assessment and more.
-
-* **Conversation summarization**. Generate transcriptions from conversation audio recordings, generate a summary, and assess sentiment.
-
-You can start with a provided analyzer template or start from scratch and customize as needed to meet your business needs.
-
-## Audio format support and input requirements
-
-For a complete list of  Content Understanding supported audio formats, *see* our [Service limits and codecs](../service-limits.md) page.
-
-## Supported regions, languages, and locales
+## Supported languages and regions
 
 For a complete list of supported regions, languages, and locales, see our [Language and region support](../language-region-support.md)) page.
 
-
-## Content Understanding audio capability limits
-
-|Attribute|Limit|
-|-----|-----|
-|Time|Maximum of 2 hours in length|
-|Size|Maximum of 200 MB in size|
-|Speakers|Maximum number of 36 speakers|
-
-## Key Benefits
-
-Content Understanding provides a specific set of capabilities for audio including:
-
-* **Highly customizable data extraction**. Unlike traditional audio analysis services, Content Understanding allows you to customize the data you want to generate or extract. By modifying the schema, you can tailor the output to match your specific use cases.
-
-* **Generative Models**. You can use our generative AI models to describe in natural language what content you want to extract, and the service generates that output.
-
-* **Integrated Pre-processing**. The service performs several preprocessing steps, such as transcription, diarization and role detection, to provide rich context to the generative models.
-
-* **Scenarios adaptability**. The service can adapt to your needs by generating custom fields to extract the right data.
-
 ## Data privacy and security
 
-As with all the Azure AI services, developers using the Content Understanding service should be aware of Microsoft's policies on customer data. See our [**Data, protection and privacy**](https://www.microsoft.com/trust-center/privacy) page to learn more.
+Developers using Content Understanding should review Microsoft's policies on customer data. For more information, visit our [Data, protection, and privacy](https://www.microsoft.com/trust-center/privacy) page.
 
 ## Next steps
 
-To get started using Content Understanding audio capabilities, try our [post-call analytics prebuilt scenario template](../prebuilt-template/post-call-analytics.md).
+Our quickstart guides help you quickly start using the Content Understanding service:
+
+* [**Rest API Quickstart**](../quickstart/use-rest-api.md)
+* [**Azure AI Foundry Quickstart**](../quickstart/use-ai-foundry.md)

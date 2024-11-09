@@ -33,11 +33,12 @@ Document analyzers can process complex documents in various formats and template
 * **Expense management**: Parse receipts and invoices from various retailers to validate expenses across different formats and templates.
 
 
-## Document analysis capabilities
+## Document analyzer capabilities
 
 :::image type="content" source="../media/document/extraction-overview.png" alt-text="Screenshot of document extraction flow.":::
 
 Content extraction enables the extraction of both printed and handwritten text from forms and documents, delivering business-ready content that is immediately actionable, usable, or adaptable for further development within your organization.
+
 ### Add-on capabilities
 
 Enhance your document extraction with optional add-on features, which may incur additional costs. These features can be enabled or disabled based on your needs. Currently supported add-ons include:
