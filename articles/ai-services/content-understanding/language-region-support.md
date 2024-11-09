@@ -32,6 +32,18 @@ Some capabilities of Content Understanding service support multiple languages; a
 
 To learn more Content Understanding language support, select a capability from the following tabs.
 
+# [Document](#tab/document)
+
+|Language|Language code and locale|
+|--------|-------------|
+|English|&bullet; `en-AU` (Australia)</br>&bullet; `en-CA` (Canada)</br>&bullet; `en-GB` (United Kingdom)</br>&bullet;  `en-IN` (India)</br>&bullet; `en-US` (United States)|
+
+# [Image](#tab/image)
+
+|Language|Language code and locale|
+|--------|-------------|
+|English|&bullet; `en-AU` (Australia)</br>&bullet; `en-CA` (Canada)</br>&bullet; `en-GB` (United Kingdom)</br>&bullet;  `en-IN` (India)</br>&bullet; `en-US` (United States)|
+
 # [Audio](#tab/audio)
 
 |Language|Language code and locale|
@@ -61,18 +73,6 @@ To learn more Content Understanding language support, select a capability from t
 |Swedish |`sv-SE` (Sweden)|
 |Turkish |`tr-TR` (Türkiye)|
 |Ukrainian |`uk-UA` (Ukraine)|
-
-# [Document](#tab/document)
-
-|Language|Language code and locale|
-|--------|-------------|
-|English|&bullet; `en-AU` (Australia)</br>&bullet; `en-CA` (Canada)</br>&bullet; `en-GB` (United Kingdom)</br>&bullet;  `en-IN` (India)</br>&bullet; `en-US` (United States)|
-
-# [Image](#tab/image)
-
-|Language|Language code and locale|
-|--------|-------------|
-|English|&bullet; `en-AU` (Australia)</br>&bullet; `en-CA` (Canada)</br>&bullet; `en-GB` (United Kingdom)</br>&bullet;  `en-IN` (India)</br>&bullet; `en-US` (United States)|
 
 # [Video](#tab/video)
 

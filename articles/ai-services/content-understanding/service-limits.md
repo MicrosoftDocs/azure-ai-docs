@@ -30,7 +30,7 @@ This article offers a quick reference of the quota and limits for the Azure AI C
 
 | Supported File Types | File Size | Length |
 | --- | --- | --- |
-| ✓ .pdf<br/>✓ .tiff<br/>✓ .jpg<br/>✓ .png<br/>✓ .bmp<br/>✓ .heif<br/>✓ .txt  | ≤ 200 MB | ≤ 300 pages |
+| ✓ .pdf<br/>✓ .tiff<br/>✓ .jpg<br/>✓ .png<br/>✓ .bmp<br/>✓ .heif  | ≤ 200 MB | ≤ 300 pages |
 | ✓ .txt  | ≤ 1 MB | ≤ 1M characters |
 
 ### Image
