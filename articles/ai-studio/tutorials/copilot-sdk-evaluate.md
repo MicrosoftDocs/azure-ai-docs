@@ -65,19 +65,18 @@ The script also logs the evaluation results to the cloud project so that you can
 
     :::code language="python" source="~/azureai-samples-nov2024/scenarios/rag/custom-rag-app/evaluate.py" id="imports_and_config":::
 
-1. Add code to create a wrapper function that implements the evaluation interface for query and response evaluation
+1. Add code to create a wrapper function that implements the evaluation interface for query and response evaluation:
 
     :::code language="python" source="~/azureai-samples-nov2024/scenarios/rag/custom-rag-app/evaluate.py" id="evaluate_wrapper":::
 
-1. Finally, add code to run the evaluation, view the results locally, and gives you a link to the evaluation results in AI Studio.
+1. Finally, add code to run the evaluation, view the results locally, and gives you a link to the evaluation results in AI Studio:
  
     :::code language="python" source="~/azureai-samples-nov2024/scenarios/rag/custom-rag-app/evaluate.py" id="run_evaluation":::
 
-    
 
 ### Configure the evaluation model 
 
-Since the evaluation script calls the model many times, you might want to increase the number of tokens per minute that for the evaluation model.  
+Since the evaluation script calls the model many times, you might want to increase the number of tokens per minute for the evaluation model.  
 
 In Part 1 of this tutorial series, you created an **.env** file that specifies the name of the evaluation model, `gpt-4o-mini`.  Try to increase the tokens per minute limit for this model, if you have available quota. If you don't have enough quota to increase the value, don't worry.  The script is designed to handle limit errors.
 
@@ -95,7 +94,7 @@ In Part 1 of this tutorial series, you created an **.env** file that specifies t
     az login
     ```
 
-1. Install the required packages:
+1. Install the required package:
 
     ```bash
     pip install azure_ai-evaluation[remote]
