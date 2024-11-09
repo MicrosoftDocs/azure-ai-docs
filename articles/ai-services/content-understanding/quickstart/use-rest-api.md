@@ -81,6 +81,38 @@ First, create a JSON file named `request_body.json` with the following content:
 }
 ```
 
+# [Video](#tab/video)
+
+To create a custom analyzer, you need to define a field schema that describes the structured data you want to extract. In the following example, we define a schema for extracting basic information from marketing videos.
+
+First, create a JSON file named `request_body.json` with the following content:
+```json
+{
+  "description": "Sample marketing video analyzer",
+  "scenario": "videoShot",
+  "config": {
+    "returnDetails": true
+  },
+  "fieldSchema": {
+    "fields": {
+      "Description": {
+        "type": "string",
+        "description": "Detailed summary of the video segment, focusing on product characteristics, lighting, and color palette."
+      },
+      "Sentiment": {
+        "type": "string",
+        "method": "classify",
+        "enum": [
+          "Positive",
+          "Neutral",
+          "Negative"
+        ]
+      }
+    }
+  }
+}
+```
+
 ---
 
 Before running the following `cURL` commands, make the following changes to the HTTP request:
@@ -126,6 +158,12 @@ Before running the cURL command, make the following changes to the HTTP request:
 2. Replace `{analyzerId}` with the name of the custom analyzer created earlier.
 3. Replace `{fileUrl}` with a publicly accessible URL of the file to analyze, such as a path to an Azure Storage Blob with a shared access signature (SAS) or the sample URL `https://github.com/Azure-Samples/cognitive-services-REST-api-samples/raw/master/curl/form-recognizer/rest-api/invoice.pdf`.
 
+# [Video](#tab/video)
+
+1. Replace `{endpoint}` and `{key}` with the endpoint and key values from your Azure portal Azure AI Services instance.
+2. Replace `{analyzerId}` with the name of the custom analyzer created earlier.
+3. Replace `{fileUrl}` with a publicly accessible URL of the file to analyze, such as a path to an Azure Storage Blob with a shared access signature (SAS) or the sample URL `TODO`.
+
 ---
 
 ### POST request
@@ -166,6 +204,51 @@ You will receive a 200 (OK) JSON response with a `status` field indicating the s
 #### Sample response
 
 # [Document](#tab/document)
+
+```json
+{
+  "id": "3b31320d-8bab-4f88-b19c-2322a7f11034",
+  "status": "Succeeded",
+  "result": {
+    "analyzerId": "myInvoice",
+    "apiVersion": "2024-12-01-preview",
+    "createdAt": "2024-10-14T18:46:36Z",
+    "stringEncoding": "codePoint",
+    "contents": [
+      {
+        "kind": "document",
+        "markdown": "# CONTOSO LTD.\n\n...",
+        "startPageNumber": 1,
+        "endPageNumber": 1,
+        "unit": "inch",
+        "pages": [
+          {
+            "pageNumber": 1,
+            "width": 8.5,
+            "height": 11
+          }
+        ],
+        "fields": {
+          "Company": {
+            "type": "string",
+            "valueString": "CONTOSO",
+            "spans": [
+              {
+                "offset": 7,
+                "length": 2
+              }
+            ],
+            "confidence": 0.95,
+            "source": "D(1,5,1,7,1,7,1.5,5,1.5)"
+          }
+        }
+      }
+    ]
+  }
+}
+```
+
+# [Video](#tab/video)
 
 ```json
 {
