@@ -19,7 +19,7 @@ ms.custom: ignite-2024-understanding-release
 > * Features, approaches, and processes may change or have constrained capabilities, prior to General Availability (GA).
 > * For more information, *see* [**Supplemental Terms of Use for Microsoft Azure Previews**](https://azure.microsoft.com/support/legal/preview-supplemental-terms).
 
-Content Understanding is a cloud-based [Azure AI Service](../../what-are-ai-services.md) designed to efficiently extract content and structured fields from documents and forms. It provides a comprehensive suite of APIs and an intuitive studio experience for optimal efficiency.
+Content Understanding is a cloud-based [Azure AI Service](../../what-are-ai-services.md) designed to efficiently extract content and structured fields from documents and forms. It provides a comprehensive suite of APIs and an intuitive UX experience for optimal efficiency.
 
 Using Content Understanding, organizations can streamline data collection and processing, enhancing operational efficiency, data-driven decision-making, and innovation. With customizable analyzers, Content Understanding allows for easy extraction of content or fields from documents and forms, tailored to specific business needs.
 
@@ -70,7 +70,5 @@ For a detailed list of supported languages and regions, visit our [Language and 
 Developers using Content Understanding should review Microsoft's policies on customer data. For more information, visit our [Data, protection, and privacy](https://www.microsoft.com/trust-center/privacy) page.
 
 ## Next step
-Our quickstart guides help you quickly start using the Content Understanding service:
-
-* [**Rest API Quickstart**](../quickstart/use-rest-api.md)
-* [**Azure AI Foundry Quickstart**](../quickstart/use-ai-foundry.md)
+* Try processing your document content using Content Understanding in [Azure AI Foundry](https://ai.azure.com/).
+* Learn more about document [**analyzer templates**](../quickstart/use-ai-foundry.md).

@@ -89,7 +89,5 @@ As with all the Azure AI services, developers using the Content Understanding se
 
 ## Next steps
 
-Our quickstart guides help you quickly start using the Content Understanding service:
-
-* [**Rest API Quickstart**](../quickstart/use-rest-api.md)
-* [**Azure AI Foundry Quickstart**](../quickstart/use-ai-foundry.md)
+* Try processing your video content using Content Understanding in [Azure AI Foundry](https://ai.azure.com/).
+* Learn more about video [**analyzer templates**](../quickstart/use-ai-foundry.md).

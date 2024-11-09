@@ -82,7 +82,5 @@ Developers using Content Understanding should review Microsoft's policies on cus
 
 ## Next steps
 
-Our quickstart guides help you quickly start using the Content Understanding service:
-
-* [**Rest API Quickstart**](../quickstart/use-rest-api.md)
-* [**Azure AI Foundry Quickstart**](../quickstart/use-ai-foundry.md)
+* Try processing your audio content using Content Understanding in [Azure AI Foundry](https://ai.azure.com/).
+* Learn more about audio [**analyzer templates**](../quickstart/use-ai-foundry.md).

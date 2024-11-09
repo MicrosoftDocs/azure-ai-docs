@@ -19,11 +19,11 @@ ms.custom: ignite-2024-understanding-release
 > * Features, approaches, and processes may change or have constrained capabilities, prior to General Availability (GA).
 > * For more information, *see* [**Supplemental Terms of Use for Microsoft Azure Previews**](https://azure.microsoft.com/support/legal/preview-supplemental-terms).
 
-Azure AI Content Understanding (Content Understanding) is a new Generative AI based [**Azure AI Service**](../what-are-ai-services.md), designed to process/ingest content of any types (documents, images, videos, and audio) into a user-defined output format. 
+Azure AI Content Understanding is a new Generative AI based [**Azure AI Service**](../what-are-ai-services.md), designed to process/ingest content of any types (documents, images, videos, and audio) into a user-defined output format.
 
 Content Understanding offers a streamlined process to reason over large amounts of unstructured data, accelerating time-to-value to seamlessly integrate the output into automation and analytical workflows used by downstream applications.
 
-:::image type="content" source="media/overview/content-understanding-overview.png" alt-text="Screenshot of accepted media input files.":::
+:::image type="content" source="media/overview/cu-overview.png" alt-text="Screenshot of accepted media input files.":::
 
 ## Why process with Content Understanding?
 
@@ -54,13 +54,16 @@ Common applications for Content Understanding include:
 See [Quickstart](quickstart/use-ai-foundry.md) for more examples.
 
 ## Capabilities
+
+:::image type="content" source="media/overview/component_overview.png" alt-text="Screenshot of accepted media input files.":::
+
 |Capability|Description|
 |:---------|:----------|
 |Content extraction | Content Understanding recognizes content from documents, images, audio, and video for easy analysis and further processing.|
+|Add-ons| Content Understanding add-ons enhance content extraction by incorporating additional elements like barcodes, tables, and detected faces.|
 |Field extraction|Users can define the structure and schema of the desired extracted fields or customize from templates for common scenarios. Fields may be generated via multiple methods:</br></br>&bullet; **Extract**: Directly extract values as they appear in the input content, such as extracting dates from receipts or item details from invoices.</br></br>&bullet; **Classify**: Classify content from a predefined set of categories, such as determining call sentiment or chart type.</br></br>&bullet; **Generate**: Generate values freely from input data, such as summarizing an audio conversation or generating scene descriptions from videos.|
 |Grounding Source| Content Understanding identifies the specific regions in the content where the value was generated from. This allows users in automation scenarios to quickly verify the correctness of the field values, leading to higher confidence in the extracted data. |
 |Confidence Score | Content Understanding provides confidence scores from 0 to 1 to estimate the reliability of the results. High scores indicate accurate data extraction, enabling straight-through processing in automation workflows.|
-|Add-ons| Content Understanding add-ons enhance content extraction by incorporating additional elements like barcodes, tables, and detected faces.|
 
 
 ## Responsible AI

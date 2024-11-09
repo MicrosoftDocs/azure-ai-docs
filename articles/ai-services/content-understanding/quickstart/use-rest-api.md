@@ -464,6 +464,5 @@ You will receive a 200 (OK) JSON response with a `status` field indicating the s
 ## Next steps 
 
 * In this quickstart, you learned how to call the REST API to create a custom analyzer. For a user experience, try [**Azure AI Foundry**](). 
-
 * Explore more analyzer templates in our [GitHub repository]().
-<!-- For more scenario-based samples/quickstarts, learn about our [**Scenario Guides**]().  -->
+
