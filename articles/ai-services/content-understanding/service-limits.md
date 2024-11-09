@@ -74,24 +74,19 @@ The following limits apply as of version 2024-12-01-preview.
 | Max classify field categories | 300 | 300 | 300 | 300 | 300 |
 | Supported generation methods | extract | generate<br/>classify | generate<br/>classify | generate<br/>classify | generate<br/>classify |
 
-* The *Max fields* limit includes all named fields. For example, a list of strings counts as one field, while a group with string and number subfields counts as three fields.
+* The *Max fields* limit includes all named fields. For example, a list of strings counts as one field, while a group with string and number subfields counts as three fields. To extract beyond default limits, please contact us at cu_contact@microsoft.com.
 * The *Max classify field categories* limit is the total number of categories across all fields using the `classify` generation method.
 * The generation method currently applies only to basic fields.
 
-### Field structure limits
+### Field type limits
 
-| Field structure | Document | Image | Text | Audio | Video |
+| Field type | Document | Image | Text | Audio | Video |
 | --- | --- | --- | --- | --- | --- |
 | Basic | No *boolean* | All | *string* | *string* | All |
 | List | N/A | All | *string* | *string* | All |
 | Group | N/A | All | *string* | *string* | All |
 | Table | No *boolean* | All | *string* | *string* | All
 | Fixed table | No *boolean* | N/A | N/A | N/A | N/A |
-
-* Document analyzers do not support *boolean* basic fields.
-* Only document analyzers support fixed tables.
-* Image and video analyzers support all field structures except fixed tables.
-* Text and audio analyzers support all nested structures with *string* basic fields, except fixed tables.
 
 ### Classification fields
 
