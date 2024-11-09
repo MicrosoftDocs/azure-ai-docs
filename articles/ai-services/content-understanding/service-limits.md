@@ -48,7 +48,7 @@ This article offers a quick reference of the quotas and limits for the Azure AI 
 
 | Supported File Types | File Size | Resolution | Length |
 | ---| --- | --- | --- |
-| ✓  .mp4, .m4v <br/>✓ .flv (H.264 and AAC) <br/>✓ .wmv, .asf <br/>✓ .avi <br/>✓ .mkv <br/>✓ .mov | ≤20 GB † | Min: 320 x 240 pixels <br/>Max:1920 x 1080 pixels | ≤2 hours †|
+| ✓  .mp4, .m4v <br/>✓ .flv (H.264 and AAC) <br/>✓ .wmv, .asf <br/>✓ .avi <br/>✓ .mkv <br/>✓ .mov | ≤20 GB † | Min: 320 x 240 pixels <br/>Max: 1920 x 1080 pixels | ≤2 hours †|
 
 † Note: The file size limit is 200 MB and the duration limit is 30 minutes if the video file is included directly in the analysis request.
 
