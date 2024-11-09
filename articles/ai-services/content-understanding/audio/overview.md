@@ -36,11 +36,13 @@ Content Understanding serves as a cornerstone for Media Asset Management solutio
   
 ### Content extraction
 
-  * **Transcription**. Converts conversational audio into searchable and analyzable text-based transcripts in WebVTT format. Customizable fields can be generated from transcription data. Sentence-level and word-level timestamps are available upon request.
+* **Transcription**. Converts conversational audio into searchable and analyzable text-based transcripts in WebVTT format. Customizable fields can be generated from transcription data. Sentence-level and word-level timestamps are available upon request.
 
-  * **Diarization**. Distinguishes between speakers in a conversation, attributing parts of the transcript to specific speakers.
+* **Diarization**. Distinguishes between speakers in a conversation, attributing parts of the transcript to specific speakers.
 
-  * **Speaker role detection**. Identifies agent and customer roles within contact center call data.
+* **Speaker role detection**. Identifies agent and customer roles within contact center call data.
+
+* **Language detection**. Automatically detects the language in the audio or uses specified language/locale hints.
 
 ### Field extraction
 
