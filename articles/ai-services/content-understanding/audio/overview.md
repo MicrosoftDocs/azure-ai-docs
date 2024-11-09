@@ -84,29 +84,29 @@ Content Understanding is serves as a cornerstone for Media Asset Management solu
 
 ## Content Understanding audio workflow
 
-The following diagram provides a high-level overview of a typical Content Understanding Audio processing workflow.
+The diagram below presents a high-level overview of a standard workflow for processing audio in Content Understanding.
 
   :::image type="content" source="../media/audio/overview/workflow-diagram.png" lightbox="../media/audio/overview/workflow-diagram.png" alt-text="Illustration of Content Understanding audio workflow.":::
 
-A typical Content Understanding Audio workflow consists of the following steps:
+A standard Content Understanding audio workflow includes these steps:
 
-1. You send audio or transcription files to the Content UnderstandingAPI wither as single file or providing settings to process from a connected blob storage account.
+1. You can submit a request for an audio file to the Content Understanding API.
 
-1. Content UnderstandingContent Extraction generates a conversation transcript incl. speaker separation in webVTT format and optionally recognizes speaker roles or names to replace generic 'Speaker n' results.
+1. The Content Extraction step produces a conversation transcript in webVTT format with speaker separation. It can also optionally identify speaker roles or names, replacing generic labels like "Speaker n" with more specific identifiers.
 
-1. The Content UnderstandingField Extraction then generates added insights based on the generated conversation transcript.
+1. The Field Extraction step then provides additional insights based on the conversation transcript.
 
-1. The Content Understanding service returns an audio file results containing the conversation transcript including added generated insights in JSON format. The results are either directly returned from the API or can be written into a connected blob storage account.
+1. The Content Understanding service delivers the conversation transcript along with additional insights in JSON format.
 
-## Content Understanding prebuilt audio scenarios
+## Content Understanding analyzer templates for audio
 
-Content Understanding provides the following customizable prebuilt scenario templates:
+Content Understanding provides the following customizable analyzer templates:
 
 * **Post call analytics**. Analyze call recordings and generate outputs such as conversation transcript, call summary, sentiment assessment and more.
 
 * **Conversation summarization**. Generate transcriptions from conversation audio recordings, generate a summary, and assess sentiment.
 
- You can start with any prebuilt scenario or start from scratch to get started and customize as needed to meet your business needs.
+You can start with a provided analyzer template or start from scratch and customize as needed to meet your business needs.
 
 ## Audio format support and input requirements
 
@@ -144,4 +144,3 @@ As with all the Azure AI services, developers using the Content Understanding se
 ## Next steps
 
 To get started using Content Understanding audio capabilities, try our [post-call analytics prebuilt scenario template](../prebuilt-template/post-call-analytics.md).
-

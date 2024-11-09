@@ -71,5 +71,5 @@ Developers using Content Understanding should review Microsoft's policies on cus
 ## Next step
 Our quickstart guides help you quickly start using the Content Understanding service:
 
-* [**Rest API Quickstart**](quickstart/use-rest-api.md)
-* [**Azure AI Foundry Quickstart**](quickstart/use-ai-foundry.md)
+* [**Rest API Quickstart**](../quickstart/use-rest-api.md)
+* [**Azure AI Foundry Quickstart**](../quickstart/use-ai-foundry.md)
