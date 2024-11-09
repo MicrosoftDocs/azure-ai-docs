@@ -206,16 +206,6 @@ To attach user feedback to traces and visualize them in AI Studio using OpenTele
 
 ## Related content
 
-# [Python](#tab/python)
-
 - [Python samples](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-inference/samples/sample_chat_completions_with_tracing.py) containing fully runnable Python code for tracing using synchronous and asynchronous clients.
-- [Python samples to use Azure AI Project with tracing](https://github.com/Azure/azure-sdk-for-python/tree/feature/azure-ai-projects/sdk/ai/azure-ai-projects/samples/inference)
-
-# [JavaScript](#tab/javascript)
-
-- [JavaScript samples](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/ai/ai-inference-rest/samples/v1-beta/typescript/src/telemetry.ts) containing fully runnable JavaScript code for tracing using synchronous and asynchronous clients.
-- [JavaScript samples to use Azure AI Project with tracing](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/ai/ai-inference-rest/samples/v1-beta/typescript/src/telemetryWithToolCall.ts)
-
-# [C#](#tab/csharp)
-
-[C# Samples](https://github.com/Azure/azure-sdk-for-net/blob/Azure.AI.Inference_1.0.0-beta.2/sdk/ai/Azure.AI.Inference/samples/Sample8_ChatCompletionsWithOpenTelemetry.md) containing fully runnable C# code for doing inference using synchronous and asynchronous methods.
+- [JavaScript samples](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/ai/ai-inference-rest/samples/v1-beta/typescript/src) containing fully runnable JavaScript code for tracing using synchronous and asynchronous clients.
+- [C# Samples](https://github.com/Azure/azure-sdk-for-net/blob/Azure.AI.Inference_1.0.0-beta.2/sdk/ai/Azure.AI.Inference/samples/Sample8_ChatCompletionsWithOpenTelemetry.md) containing fully runnable C# code for doing inference using synchronous and asynchronous methods.
