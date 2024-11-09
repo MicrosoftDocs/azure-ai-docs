@@ -26,11 +26,11 @@ Document Intelligence service is updated on an ongoing basis. Bookmark this page
 
 > [!IMPORTANT]
 > Preview API versions are retired once the GA API is released. The 2023-02-28-preview API version is being retired, if you are still using the preview API or the associated SDK versions, please update your code to target the latest API version 2023-07-31 (GA). </br>
-> Please note that [🆕 Document field extraction (custom generative) model](train/custom-generative-extraction.md) is under preview  with improvements for runtime latency, table extraction, confidence scores, auto labeling and streamline training.
+> Please note that [🆕 Document field extraction (custom generative) model](train/custom-generative-extraction.md) is under preview  with added improvements for runtime latency, table extraction, confidence scores, auto labeling and streamline training.
 
 ## November 2024
 
-**Document Intelligence v4.0 (2024-11-30) is now generally available (GA)**! The API version corresponds to 2024-11-30. The v4.0 API includes cumulative updates from preview releases as listed:
+**Document Intelligence v4.0 (2024-11-30) is now generally available (GA)**! The API version corresponds to 2024-11-30. The v4.0 API includes following changes as listed:
 
 * [🆕 Batch API](concept-batch-analysis.md)
   * Batch API now supports all the prebuilt models.
@@ -61,7 +61,7 @@ Document Intelligence service is updated on an ongoing basis. Bookmark this page
   * Receipt Model now supports more fields including ReceiptType, Tax rate, CountryRegion, net amount and description. 
  
 *  [🆕 US Tax model](prebuilt/tax-document.md)
-  * New prebuilt  tax models added for 1095A, 1095C, 1099SSA, and W4.
+   *  New prebuilt  tax models added for 1095A, 1095C, 1099SSA, and W4.
 
 * The v4.0 API includes cumulative updates from preview releases as listed:
   * [August 2024](#august-2024)
