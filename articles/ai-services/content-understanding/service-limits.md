@@ -24,7 +24,7 @@ This article offers a quick reference of the quota and limits for the Azure AI C
 | Max analysis/min | 1000 pages/images <br/> 4 hours of audio <br/> 1 hour of video  |
 | Max operations/min | 3000 |
 
-## File limits
+## Input file limits
 
 ### Document and text
 
