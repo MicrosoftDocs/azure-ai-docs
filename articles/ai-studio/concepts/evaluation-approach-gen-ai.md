@@ -37,7 +37,7 @@ Key considerations at this stage might include:
 - **Bias and ethical considerations**: Does the model produce any outputs that may perpetuate or promote harmful stereotypes?
 - **Risk and safety**: Are there any risks of the model generating unsafe or malicious content?
 
-You can explore [Azure AI Foundry benchmarks]( aka.ms/azureaibenchmarks)to evaluate and compare models on publicly available datasets, while also regenerating benchmark results on your own data. Alternatively, you can evaluate one of many base generative AI models via Azure AI Evaluation SDK as demonstrated, see [Evaluate model endpoints sample](https://github.com/Azure-Samples/azureai-samples/blob/main/scenarios/evaluate/evaluate_endpoints/evaluate_endpoints.ipynb).
+You can explore [Azure AI Foundry benchmarks](../model-benchmarks.md)to evaluate and compare models on publicly available datasets, while also regenerating benchmark results on your own data. Alternatively, you can evaluate one of many base generative AI models via Azure AI Evaluation SDK as demonstrated, see [Evaluate model endpoints sample](https://github.com/Azure-Samples/azureai-samples/blob/main/scenarios/evaluate/evaluate_endpoints/evaluate_endpoints.ipynb).
 
 ## Pre-production evaluation
 
@@ -54,12 +54,12 @@ Pre-production evaluation involves:
 
 The pre-production stage acts as a final quality check, reducing the risk of deploying an AI application that does not meet the desired performance or safety standards.
 
-- Bring your own data: You can evaluate your AI applications in pre-production using your own evaluation data with Azure AI Foundry or [Azure AI Evaluation SDK’s](aka.ms/azureaievalsSDK) supported evaluators, including g[eneration quality, safety,](aka.ms/evaluationmetrics) or [custom evaluators](aka.ms/customevaluators), and [view results via the Azure AI Foundry portal](aka.ms/AzureAIStudioEvaluationUI).
-- Simulators: If you don’t have evaluation data (test data), Azure AI [Evaluation SDK’s simulators](aka.ms/AzureAIStudioSimulator) can help by generating topic-related or adversarial queries. These simulators test the model’s response to situation-appropriate or attack-like queries (edge cases).
-    - The [adversarial simulator](ka.ms/adversarialsimulator) injects queries that mimic potential security threats or attempt jailbreaks, helping identify limitations and preparing the model for unexpected conditions.  
-    - [Context-appropriate simulators](aka.ms/topicrelatedsimulator) generate typical, relevant conversations you’d expect from users to test quality of responses. 
+- Bring your own data: You can evaluate your AI applications in pre-production using your own evaluation data with Azure AI Foundry or [Azure AI Evaluation SDK’s](../how-to/develop/evaluate-sdk) supported evaluators, including [generation quality, safety,](..evaluation-metrics-built-in) or [custom evaluators](../how-to/develop/evaluate-sdk.md#custom-evaluators), and [view results via the Azure AI Foundry portal](../how-to/evaluate-results.md).
+- Simulators: If you don’t have evaluation data (test data), Azure AI [Evaluation SDK’s simulators](..//how-to/develop/simulator-interaction-data.md) can help by generating topic-related or adversarial queries. These simulators test the model’s response to situation-appropriate or attack-like queries (edge cases).
+    - The [adversarial simulator](../how-to/develop/simulator-interaction-data.md#generate-adversarial-simulations-for-safety-evaluation) injects queries that mimic potential security threats or attempt jailbreaks, helping identify limitations and preparing the model for unexpected conditions.  
+    - [Context-appropriate simulators](../how-to/develop/simulator-interaction-data.md#generate-synthetic-data-and-simulate-non-adversarial-tasks) generate typical, relevant conversations you’d expect from users to test quality of responses.
 
-Alternatively, you can also use [Azure AI Foundry’s evaluation widget](aka.ms/azureaievalsUIWidget) for testing your generative AI applications.  
+Alternatively, you can also use [Azure AI Foundry’s evaluation widget](../how-to/evaluate-generative-ai-app.md) for testing your generative AI applications.  
 
 Once satisfactory results are achieved, the AI application can be deployed to production.
 
@@ -84,7 +84,7 @@ Cheat sheet:
 | What data should you use?  | Upload or generate relevant dataset | [Generic simulator for measuring Quality and Performance](./concept-synthetic-data.md) ( [Generic simulator sample notebook|(https://github.com/Azure/azureml-examples/blob/main/sdk/python/foundation-models/system/finetune/Llama-notebooks/datagen/synthetic-data-generation.ipynb)] </br> - Adversarial simulator for measuring Safety and Security [Adversarial simulator Docs](../how-to/develop/simulator-interaction-data.md) (Adversarial simulator sample notebook](https://github.com/Azure-Samples/rag-data-openai-python-promptflow/blob/main/src/evaluation/simulate_and_evaluate_online_endpoint.ipynb)] )  |
 | What resources should conduct the evaluation? | Run evaluation | - Local run  </br>  - Remote cloud run |
 | How did my model/app perform? | Analyze results  | [View aggregate scores, view details, score details, compare eval runs](..//how-to/evaluate-results.md)] |
-| How can I improve? | Make changes to model, app, or evaluators  - If evaluation results did not align to human feedback, adjust your evaluator. </br> - If evaluation results aligned to human feedback but did not meet quality/safety thresholds, apply targeted mitigations. |
+| How can I improve? | Make changes to model, app, or evaluators | - If evaluation results did not align to human feedback, adjust your evaluator. </br> - If evaluation results aligned to human feedback but did not meet quality/safety thresholds, apply targeted mitigations. |
 
 ## Related content
 
