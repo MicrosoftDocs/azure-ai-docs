@@ -79,7 +79,7 @@ Copy the **Project connection string** from the **Overview** page of the project
 
 Once you have created the project client, you can use the client for the capabilities in the following sections. 
 
-Be sure to check out the [reference]() and [samples](https://aka.ms/azsdk/azure-ai-projects/python/samples).
+Be sure to check out the [reference](https://aka.ms/aifoundrysdk/reference) and [samples](https://aka.ms/azsdk/azure-ai-projects/python/samples).
 
 ## Azure OpenAI Service
 
