@@ -88,31 +88,17 @@ To create a custom analyzer, you need to define a field schema that describes th
 First, create a JSON file named `request_body.json` with the following content:
 ```json
 {
-  "description": "Sample defect detection analyzer",
+  "description": "Sample chart analyzer",
   "scenario": "image",
   "fieldSchema": {
     "fields": {
-      "Defects": {
-        "type": "array",
-        "items": {
-          "type": "object",
-          "properties": {
-            "DefectType": {
-              "type": "string",
-              "method": "classify",
-              "enum": [ "scratch", "pit" ],
-              "enumDescriptions": {
-                "scratch": "A superficial, long, thin mark that may be straight or curved",
-                "pit": "A small, round defect that may look like a small hole or depression"
-              }
-            },
-            "Severity": {
-              "type": "string",
-              "method": "classify",
-              "enum": [ "low", "moderate", "high" ]
-            }
-          }
-        }
+      "Title": {
+        "type": "string"
+      },
+      "ChartType": {
+        "type": "string",
+        "method": "classify",
+        "enum": [ "bar", "line", "pie" ]
       }
     }
   }
