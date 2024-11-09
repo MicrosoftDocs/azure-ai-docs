@@ -55,33 +55,33 @@ Built-in quality and safety metrics take in query and response pairs, along with
 
 ### Data requirements for built-in evaluators
 
-Built-in evaluators can accept *either* query and respons pairs or a list of conversations:
+Built-in evaluators can accept *either* query and response pairs or a list of conversations:
 
 - Query and response pairs in `.jsonl` format with the required inputs.
 - List of conversations in `.jsonl` format in the following section.
 
-| Evaluator         | `query`      | `response`      | `context`       | `ground_truth`  | `conversation` |
-|----------------|---------------|---------------|---------------|---------------|-----------|
-| `GroundednessEvaluator`   | Optional: String | Required: String | Required: String | N/A  | Supported |
-| `GroundednessProEvaluator`   | Required: String | Required: String | Required: String | N/A  | Supported |
-| `RetrievalEvaluator`        | Required: String | N/A | Required: String         | N/A           | Supported |
-| `RelevanceEvaluator`      | Required: String | Required: String | N/A | N/A           | Supported |
-| `CoherenceEvaluator`      | Required: String | Required: String | N/A           | N/A           |Supported |
-| `FluencyEvaluator`        | N/A  | Required: String | N/A          | N/A           |Supported |
-| `SimilarityEvaluator` | Required: String | Required: String | N/A           | Required: String |Not supported |
-| `F1ScoreEvaluator` | N/A  | Required: String | N/A           | Required: String |Not supported |
-| `RougeScoreEvaluator` | N/A | Required: String | N/A           | Required: String           | Not supported |
-| `GleuScoreEvaluator` | N/A | Required: String | N/A           | Required: String           |Not supported |
-| `BleuScoreEvaluator` | N/A | Required: String | N/A           | Required: String           |Not supported |
-| `MeteorScoreEvaluator` | N/A | Required: String | N/A           | Required: String           |Not supported |
-| `ViolenceEvaluator`      | Required: String | Required: String | N/A           | N/A           |Supported |
-| `SexualEvaluator`        | Required: String | Required: String | N/A           | N/A           |Supported |
-| `SelfHarmEvaluator`      | Required: String | Required: String | N/A           | N/A           |Supported |
-| `HateUnfairnessEvaluator`        | Required: String | Required: String | N/A           | N/A           |Supported |
-| `IndirectAttackEvaluator`      | Required: String | Required: String | Required: String | N/A           |Supported |
-| `ProtectedMaterialEvaluator`  | Required: String | Required: String | N/A           | N/A           |Supported |
-| `QAEvaluator`      | Required: String | Required: String | Required: String | N/A           | Not supported |
-| `ContentSafetyEvaluator`      | Required: String | Required: String |  N/A  | N/A           | Supported |
+| Evaluator type | Evaluator       | `query`      | `response`      | `context`       | `ground_truth`  | `conversation` |
+|-----|----------------|---------------|---------------|---------------|---------------|-----------|
+|AI-assisted performance and quality evaluators| `GroundednessEvaluator`   | Optional: String | Required: String | Required: String | N/A  | Supported |
+|| `GroundednessProEvaluator`   | Required: String | Required: String | Required: String | N/A  | Supported |
+|| `RetrievalEvaluator`        | Required: String | N/A | Required: String         | N/A           | Supported |
+|| `RelevanceEvaluator`      | Required: String | Required: String | N/A | N/A           | Supported |
+|| `CoherenceEvaluator`      | Required: String | Required: String | N/A           | N/A           |Supported |
+|| `FluencyEvaluator`        | N/A  | Required: String | N/A          | N/A           |Supported |
+|| `SimilarityEvaluator` | Required: String | Required: String | N/A           | Required: String |Not supported |
+|Natural language processing (NLP) evaluators| `F1ScoreEvaluator` | N/A  | Required: String | N/A           | Required: String |Not supported |
+|| `RougeScoreEvaluator` | N/A | Required: String | N/A           | Required: String           | Not supported |
+|| `GleuScoreEvaluator` | N/A | Required: String | N/A           | Required: String           |Not supported |
+|| `BleuScoreEvaluator` | N/A | Required: String | N/A           | Required: String           |Not supported |
+|| `MeteorScoreEvaluator` | N/A | Required: String | N/A           | Required: String           |Not supported |
+|Risk and safety evaluators| `ViolenceEvaluator`      | Required: String | Required: String | N/A           | N/A           |Supported |
+|| `SexualEvaluator`        | Required: String | Required: String | N/A           | N/A           |Supported |
+|| `SelfHarmEvaluator`      | Required: String | Required: String | N/A           | N/A           |Supported |
+|| `HateUnfairnessEvaluator`        | Required: String | Required: String | N/A           | N/A           |Supported |
+|| `IndirectAttackEvaluator`      | Required: String | Required: String | Required: String | N/A           |Supported |
+|| `ProtectedMaterialEvaluator`  | Required: String | Required: String | N/A           | N/A           |Supported |
+|Composite Evaluators| `QAEvaluator`      | Required: String | Required: String | Required: String | N/A           | Not supported |
+|| `ContentSafetyEvaluator`      | Required: String | Required: String |  N/A  | N/A           | Supported |
 
 - Query: the query sent in to the generative AI application
 - Response: the response to the query generated by the generative AI application
@@ -91,17 +91,10 @@ Built-in evaluators can accept *either* query and respons pairs or a list of con
 
 
 > [!NOTE]
-> All evaluators except for `SimilarityEvaluator` come with a reason field. They employ techniques including chain-of-thought reasoning to generate an explanation for the score. Therefore they will consume more token usage in generation as a result of improved evaluation quality. Specifically, `max_token` for evaluator generation has been set to 800 for all AI-assisted evaluators (and 1600 for `RetrievalEvaluator` to accommodate for longer inputs.) 
+> AI-assisted quality evaluators except for `SimilarityEvaluator` come with a reason field. They employ techniques including chain-of-thought reasoning to generate an explanation for the score. Therefore they will consume more token usage in generation as a result of improved evaluation quality. Specifically, `max_token` for evaluator generation has been set to 800 for all AI-assisted evaluators (and 1600 for `RetrievalEvaluator` to accommodate for longer inputs.) 
 
-#### Evaluating multi-turn conversations
-
-For evaluators that support conversations as input, you can just pass in the conversation directly into the evaluator:
-
-```python
-groundedness_score = groundedness_eval(conversation=conversation)
-```
-
-A conversation is a Python dictionary of a list of messages (which include content, role, and optionally context). The following is an example of a two-turn conversation.
+#### Conversation Support
+For evaluators that support conversations, you can provide `conversation` as input, a Python dictionary with a list of `messages` (which include `content`, `role`, and optionally `context`). The following is an example of a two-turn conversation.
 
 ```json
 {"conversation":
@@ -129,15 +122,23 @@ A conversation is a Python dictionary of a list of messages (which include conte
 }
 ```
 
-Our evaluators will understand that the first turn of the conversation provides valid `query` from `user`, `context` from `assistant`,  and `response` from `assistant` for a single-turn evaluation in the query-response format, and that in the second turn, even if `context` is `null` or a missing key, it will be interpreted as an empty string. Conversations are then evaluated per turn and results are aggregated over all turns for a conversation score.
+Our evaluators will understand that the first turn of the conversation provides valid `query` from `user`, `context` from `assistant`,  and `response` from `assistant` in the query-response format. Conversations are then evaluated per turn and results are aggregated over all turns for a conversation score.
+
+> [!NOTE]
+> Note that in the second turn, even if `context` is `null` or a missing key, it will be interpreted as an empty string instead of erroring out, which might lead to misleading results. We strongly recommend that you validate your evaluation data to comply with the data requirements.
 
 ### Performance and quality evaluators
 
-When using AI-assisted performance and quality metrics, you must specify a GPT model for the calculation process.
+When using AI-assisted performance and quality metrics, 
 
 #### Set up
 
-Choose a deployment with either GPT-3.5, GPT-4, GPT-4o or GPT-4-mini model for your calculations and set it as your `model_config`. We support both Azure OpenAI or OpenAI model configuration schema. We recommend using GPT models that do not have the `(preview)` suffix for the best performance and parseable responses with our evaluators.
+1. For AI-assisted performance and quality evaluators, you must specify a GPT model to act as a judge to score the evaluation data. Choose a deployment with either GPT-3.5, GPT-4, GPT-4o or GPT-4-mini model for your calculations and set it as your `model_config`. We support both Azure OpenAI or OpenAI model configuration schema. We recommend using GPT models that do not have the `(preview)` suffix for the best performance and parseable responses with our evaluators.
+
+Make sure the you have at least `Cognitive Services OpenAI User` role for the Azure OpenAI resource to make inference calls with API key. For more permissions, learn more about [permissioning for Azure OpenAI resource](../../../ai-services/openai/how-to/role-based-access-control.md#summary).  
+
+2. For `GroundednessProEvaluator`, instead of a GPT deployment in `model_config`, you must provide your `azure_ai_project` information. This accesses the evaluation service of your Azure AI project. 
+
 
 #### Performance and quality evaluator usage
 
@@ -145,8 +146,16 @@ You can run the built-in evaluators by importing the desired evaluator class. En
 
 ```python
 import os
+from azure.identity import DefaultAzureCredential
+credential = DefaultAzureCredential()
 
-# Initialize Azure OpenAI Connection with your environment variables
+# Initialize Azure AI project and Azure OpenAI conncetion with your environment variables
+azure_ai_project = {
+    "subscription_id": os.environ.get("AZURE_SUBSCRIPTION_ID"),
+    "resource_group_name": os.environ.get("AZURE_RESOURCE_GROUP"),
+    "project_name": os.environ.get("AZURE_PROJECT_NAME"),
+}
+
 model_config = {
     "azure_endpoint": os.environ.get("AZURE_OPENAI_ENDPOINT"),
     "api_key": os.environ.get("AZURE_OPENAI_API_KEY"),
@@ -154,29 +163,74 @@ model_config = {
     "api_version": os.environ.get("AZURE_OPENAI_API_VERSION"),
 }
 
-from azure.ai.evaluation import GroundednessEvaluator
 
-# Initialzing Groundedness Evaluator
+
+from azure.ai.evaluation import GroundednessProEvaluator, GroundednessEvaluator
+
+# Initialzing Groundedness and Groundedness Pro evaluators
 groundedness_eval = GroundednessEvaluator(model_config)
-# Running Groundedness Evaluator on single input row
+groundedness_pro_eval = GroundednessProEvaluator(azure_ai_project=azure_ai_project, credential=credential)
+
+# Running Groundedness Evaluator on a query and response pair
 groundedness_score = groundedness_eval(
     query="Which tent is the most waterproof?",
     context="The Alpine Explorer Tent is the most water-proof of all tents available.",
     response="The Alpine Explorer Tent is the most waterproof."
 )
 print(groundedness_score)
+
+groundedness_pro_score = groundedness_pro_eval(
+    query="Which tent is the most waterproof?",
+    context="The Alpine Explorer Tent is the most water-proof of all tents available.",
+    response="The Alpine Explorer Tent is the most waterproof."
+)
+print(groundedness_pro_score)
+
 ```
-> [!NOTE]
-> `GroundednessEvaluator` (open-source prompt-based) supports `query` as an optional input. If `query` is provided, their optimal scenario will be Retrieval Augmented Generation Question and Answering (RAG QA); and otherwise, the optimal scenario will be summarization. This is different from `GroundednessProEvaluator` (powered by Azure Content Safety) which requires `query`.
 
-Here's an example of the result:
+Here's an example of the result for a query and response pair:
 
-
+For 
 ```python
+
+# GroundednessEvaluator result:
 {
     'groundedness.gpt_groundedness': 5.0, 
     'groundedness.groundedness': 5.0, 
     'groundedness.groundedness_reason': "The response is perfectly relevant to the query, as it directly addresses the aspect the query is seeking."
+}
+# GroundednessProEvaluator result:
+{
+    'groundedness_pro_label': True, 
+    'groundedness_pro_reason': 'All Contents are grounded'
+}
+
+```
+
+Like 6 other AI-assisted evaluators, `GroundednessEvaluator` is open-source prompt-based evaluator that outputs a score on a 5-point scale (the higher the score, the more grounded the result is). On the other hand, `GroundednessProEvaluator` invokes our backend evaluation service powered by Azure AI Content Safety and outputs `True` or `False` for grounded and ungrounded response.  
+
+For conversation mode, here is an example for `GroundednessEvaluator`:
+
+```python
+# Conversation mode
+import json
+
+conversation_str =  """{"messages": [ { "content": "Which tent is the most waterproof?", "role": "user" }, { "content": "The Alpine Explorer Tent is the most waterproof", "role": "assistant", "context": "From the our product list the alpine explorer tent is the most waterproof. The Adventure Dining Table has higher weight." }, { "content": "How much does it cost?", "role": "user" }, { "content": "$120.", "role": "assistant", "context": "The Alpine Explorer Tent is $120."} ] }""" 
+conversation = json.loads(conversation_str)
+
+groundedness_conv_score = groundedness_eval(conversation=conversation)
+print(groundedness_conv_score)
+```
+
+For conversation outputs, per-turn results are stored in a list and the overall conversation score `'groundedness': 4.0` is averaged over the turns:
+
+
+```python
+{   'groundedness': 4.0,
+    'gpt_groundedness': 4.0,
+    'evaluation_per_turn': {'groundedness': [5.0, 3.0],
+    'gpt_groundedness': [5.0, 3.0],
+    'groundedness_reason': ['The response accurately and completely answers the query using the information provided in the context.','The response attempts to answer the query but provides an incorrect price that does not match the context.']}
 }
 ```
 
@@ -193,13 +247,14 @@ When you use AI-assisted risk and safety metrics, a GPT model isn't required. In
 
 Currently AI-assisted risk and safety metrics are only available in the following regions:
 
-| Region | Hate and unfairness, sexual, violent, self-harm, XPIA | Protected material |
+| Region | Hate and unfairness, Sexual, Violent, Self-harm, Indirect attack | Protected material |
 | - | - | - |
 |UK South | Will be deprecated 12/1/24 | N/A |
 |East US 2 | Supported | Supported  |
 |Sweden Central | Supported  | N/A |
 |US North Central | Supported  | N/A |
 |France Central | Supported | N/A |
+|Switzerland West | Supported | N/A |
 
 To learn more about the supported metrics and when to use which metric, see [Evaluation and monitoring metrics for generative AI](../../concepts/evaluation-metrics-built-in.md).
 
@@ -219,24 +274,52 @@ credential = DefaultAzureCredential()
 
 # Initializing Violence Evaluator with project information
 violence_eval = ViolenceEvaluator(credential=credential, azure_ai_project=azure_ai_project)
-# Running Violence Evaluator on single input row
+# Running Violence Evaluator on a query and respnose pair
 violence_score = violence_eval(query="What is the capital of France?", answer="Paris.")
 print(violence_score)
+
+# Conversation mode
+import json
+
+conversation_str =  """{"messages": [ { "content": "Which tent is the most waterproof?", "role": "user" }, { "content": "The Alpine Explorer Tent is the most waterproof", "role": "assistant", "context": "From the our product list the alpine explorer tent is the most waterproof. The Adventure Dining Table has higher weight." }, { "content": "How much does it cost?", "role": "user" }, { "content": "$120.", "role": "assistant", "context": "The Alpine Explorer Tent is $120."} ] }""" 
+conversation = json.loads(conversation_str)
+
+violence_conv_score = violence_eval(conversation=conversation) 
+
+print(violence_conv_score)
+
 ```
 
 ```python
-{'violence': 'Very low',
-'violence_reason': "The system's response is a straightforward factual answer "
+{
+    'violence': 'Very low',
+    'violence_reason': "The system's response is a straightforward factual answer "
                     'to a geography question. There is no violent content or '
                     'language present.',
-'violence_score': 0}
+    'violence_score': 0
+}
+
 ```
 
-The result of the content safety evaluators is a dictionary containing:
+The result of the risk and safety evaluators for a query and response pair is a dictionary containing:
 
 - `{metric_name}` provides a severity label for that content risk ranging from Very low, Low, Medium, and High. You can read more about the descriptions of each content risk and severity scale [here](../../concepts/evaluation-metrics-built-in.md).
 - `{metric_name}_score` has a range between 0 and 7 severity level that maps to a severity label given in `{metric_name}`.
 - `{metric_name}_reason` has a text reasoning for why a certain severity score was given for each data point.
+
+
+For conversation outputs, per-turn results are stored in a list and the overall conversation score `'violence_score': 0.0` is averaged over the turns:
+
+```
+{
+    'violence_score': 0.0,
+    'evaluation_per_turn': {'violence': ['Very low', 'Very low'],
+    'violence_score': [0, 0],
+    'violence_reason': ["The system's response is a straightforward answer to a question about waterproof tents. There is no mention of violence, harm, or any related content. The interaction is purely informational and does not contain any violent content.",
+   "The system's response does not contain any violent content. It simply provides a price in response to the human's question. There is no mention or depiction of violence, harm, or any related themes."]}
+}
+```
+
 
 #### Evaluating direct and indirect attack jailbreak vulnerability
 
@@ -571,12 +654,13 @@ result = evaluate(
 
 After local evaluations of your generative AI applications, you may want to trigger remote evaluations for pre-deployment testing and even continuously evaluate your applications for post-deployment monitoring. Azure AI Project SDK offers such capabilities via a Python API and supports all of the features available in local evaluations. Follow the steps below to submit your remote evaluation on your data using built-in or custom evaluators.
 
-> [!NOTE]
-> Remote evaluations are only supported in East US 2 and Sweden Central regions.
-
   
 ### Prerequisites
-- Azure AI project in `EastUS2` region. If you do not have an existing project, follow the guide [How to create Azure AI project](../create-projects.md?tabs=ai-studio) to create one. 
+- Azure AI project in the same [regions](#region-support) as risk and safety evaluators. If you do not have an existing project, follow the guide [How to create Azure AI project](../create-projects.md?tabs=ai-studio) to create one. 
+
+> [!NOTE]
+> Currently remote evaluations do not yet support  `Groundedness-Pro-Evaluator`.
+
 - Azure OpenAI Deployment with GPT model supporting `chat completion`, for example `gpt-4`.
 - `Connection String` for Azure AI project to easily create `AIProjectClient` object. You can get the **Project connection string** under **Project details** from the project's **Overview** page.
 - Make sure you are first logged into your Azure subscription by running `az login`.
@@ -618,7 +702,7 @@ project_client = AIProjectClient.from_connection_string(
 We provide two ways to register your data in Azure AI project required for remote evaluations: 
 1. **From SDK**: Upload new data from your local directory to your Azure AI project in the SDK, and fetch the dataset id as a result: 
 ```python
-data_id = project_client.upload_file("./evaluate_test_data.jsonl")
+data_id, _ = project_client.upload_file("./evaluate_test_data.jsonl")
 ```
 **From UI**: Alternatively, you can upload new data or update existing data versions by following the UI walkthrough under the **Data** tab of your Azure AI project.
 
@@ -641,7 +725,7 @@ print("F1 Score evaluator id:", F1ScoreEvaluator.id)
     - Select **Evaluation** tab in your Azure AI project;
     - Select Evaluator library;
     - Select your evaluator(s) of choice by comparing the descriptions;
-    - Copy its "Asset ID" which will be your evaluator id, for example, `azureml://registries/azureml/models/Groundedness-Pro-Evaluator/versions/1`.
+    - Copy its "Asset ID" which will be your evaluator id, for example, `azureml://registries/azureml/models/Groundedness-Evaluator/versions/1`.
 
 #### Specifying custom evaluators 
 
