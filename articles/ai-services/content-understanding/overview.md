@@ -53,17 +53,18 @@ Common applications for Content Understanding include:
 
 See [Quickstart](quickstart/use-ai-foundry.md) for more examples.
 
-## Capabilities
+## Components
 
 :::image type="content" source="media/overview/component_overview.png" alt-text="Screenshot of Content Understanding components.":::
 
-|Capability|Description|
+|Component|Description|
 |:---------|:----------|
-|Content extraction | Content Understanding recognizes content from documents, images, audio, and video for easy analysis and further processing.|
+|Analyzer|The analyzer is the core component of Content Understanding. It allows customers to configure content extraction settings and field extraction schema. Once configured, the analyzer consistently applies these settings to process all incoming data.|
+|Content extraction|Content extraction enables users to specify the types of information to be identified and extracted from incoming content. This includes options such as OCR for text, layout analysis, barcodes, tables, and more, allowing users to focus on the most relevant content elements.|
 |Add-ons| Content Understanding add-ons enhance content extraction by incorporating additional elements like barcodes, tables, and detected faces.|
-|Field extraction|Choose from a list of supported field types like strings, numbers and tables. See [service limits](service-limits.md) for a complete list of field types supported. Fields can be generated via one of the following methods:</br></br>&bullet; **Extract**: Directly extract values as they appear in the input content, such as extracting dates from receipts or item details from invoices.</br></br>&bullet; **Classify**: Classify content from a predefined set of categories, such as determining call sentiment or chart type.</br></br>&bullet; **Generate**: Generate values freely from input data, such as summarizing an audio conversation or generating scene descriptions from videos.|
-|Grounding Source| Content Understanding identifies the specific regions in the content where the value was generated from. This allows users in automation scenarios to quickly verify the correctness of the field values, leading to higher confidence in the extracted data. |
-|Confidence Score | Content Understanding provides confidence scores from 0 to 1 to estimate the reliability of the results. High scores indicate accurate data extraction, enabling straight-through processing in automation workflows.|
+|Field extraction|Field extraction allows users to define the structure and schema of the desired fields to extract from input files. See [service limits](service-limits.md) for a complete list of field types supported. Fields can be generated via one of the following methods:</br></br>&bullet; **Extract**: Directly extract values as they appear in the input content, such as dates from receipts or item details from invoices.</br></br>&bullet; **Classify**: Classify content from a predefined set of categories, such as call sentiment or chart type.</br></br>&bullet; **Generate**: Generate values freely from input data, such as summarizing an audio conversation or creating scene descriptions from videos.|
+|Grounding source| Content Understanding identifies the specific regions in the content where the value was generated from. This allows users in automation scenarios to quickly verify the correctness of the field values, leading to higher confidence in the extracted data. |
+|Confidence score | Content Understanding provides confidence scores from 0 to 1 to estimate the reliability of the results. High scores indicate accurate data extraction, enabling straight-through processing in automation workflows.|
 
 
 ## Responsible AI
