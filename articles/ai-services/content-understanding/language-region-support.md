@@ -28,8 +28,6 @@ To use the Azure AI Content Understanding service, you must create your Azure AI
 
 Azure AI Content Understanding enables you to process and integrate multiple data modalities simultaneously. Our language support capabilities enable users to communicate with your applications in natural ways and empower global outreach.
 
-Some capabilities of Content Understanding service support multiple languages; any capabilities not mentioned are only English supported.
-
 To learn more Content Understanding language support, select a capability from the following tabs.
 
 # [Document](#tab/document)
