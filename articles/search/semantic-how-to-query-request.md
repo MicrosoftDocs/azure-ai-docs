@@ -88,7 +88,7 @@ Regardless of the parameter chosen, the index should contain text fields with ri
 
 1. Enter a query, such as "historic hotel with good food", and select **Search**.
 
-1. Alternatively, select **JSON view** and paste definitions into the query editor. The portal doesn't support using `semanticQuery`, so setting `queryType` to `"semantic"` is required:
+1. Alternatively, select **JSON view** and paste definitions into the query editor. The Azure portal doesn't support using `semanticQuery`, so setting `queryType` to `"semantic"` is required:
 
    :::image type="content" source="./media/semantic-search-overview/semantic-portal-json-query.png" alt-text="Screenshot showing JSON query syntax in the Azure portal." border="true":::
 
