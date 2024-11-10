@@ -28,7 +28,6 @@ The following models support batch analysis:
 
 * [**Custom Neural**](../train/custom-neural.md). Train models to extract specified data fields from structured, semi-structured, and unstructured documents.
 
-* **Custom Generative**. Train models to extract specified data from complex objects such as nested tables, abstractive/generative fields, and truly unstructured formats.
 
 ## Batch analysis guidance
 
