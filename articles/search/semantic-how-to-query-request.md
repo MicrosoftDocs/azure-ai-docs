@@ -173,7 +173,7 @@ POST https://[search-service-name].search.windows.net/indexes/hotels-sample-inde
 }
     ```
 
-1. Set `queryType` to the search syntax you're using, either [simple](query-simple-syntax.md) or [full](query-lucene-syntax.md)
+1. Set `queryType` to the search syntax you're using, either [simple](query-simple-syntax.md) or [full](query-lucene-syntax.md).
 
 1. Set `semanticQuery` to the simple plain text query you want to use for semantic ranking. Empty queries aren't supported.
 
