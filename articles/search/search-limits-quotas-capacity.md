@@ -197,9 +197,22 @@ Static rate request limits for operations related to a service:
 
 + Service Statistics (GET /servicestats): 4 per second per search unit
 
-L2 reranking using the semantic reranker has an expected volume:
+### Semantic Ranker Throttling limits
 
-+ Up to 10 concurrent queries per replica. If you anticipate consistent throughput requirements near, at, or higher than this level, please file a support ticket so that we can provision for your workload.
+[Semantic ranker](search-get-started-semantic.md) uses a queuing system to manage concurrent requests. This sytem allows search services get the highest amount of queries per second possible. When the limit of concurrent requests is reached, additional requests are placed in a queue. If the queue is full, further requests are rejected and must be retried.
+
+Total semantic ranker queries per second varies based on the following factors:
++ The SKU of the search service. Both queue capacity and concurrent request limits vary by SKU.
++ The number of search units in the search service. The simplest way to increase the maximum amount of concurrent semantic ranker queries is to [add additional search units to your search service](search-capacity-planning.md#how-to-change-capacity).
++ The total available semantic ranker capacity in the region.
++ The amount of time it takes to serve a query using semantic ranker. This varies based on how busy the search service is.
+
+The following table describes the semantic ranker throttling limits by SKU. These limits may be increased through a support request, subject to available capacity in the region:
+
+| Resource | Basic | S1 | S2 | S3 | S3-HD | L1 | L2 |
+|----------|-------|----|----|----|-------|----|----|
+| Maximum Concurrent Requests (per Search Unit) | 2 | 3 | 4 | 4 | 4 | 4 |
+| Maximum Request Queue Size (per Search Unit) | 4 | 6 | 8 | 8 | 8 | 8 |
 
 ## API request limits
 
