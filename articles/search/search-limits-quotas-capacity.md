@@ -211,8 +211,8 @@ The following table describes the semantic ranker throttling limits by SKU. Thes
 
 | Resource | Basic | S1 | S2 | S3 | S3-HD | L1 | L2 |
 |----------|-------|----|----|----|-------|----|----|
-| Maximum Concurrent Requests (per Search Unit) | 2 | 3 | 4 | 4 | 4 | 4 |
-| Maximum Request Queue Size (per Search Unit) | 4 | 6 | 8 | 8 | 8 | 8 |
+| Maximum Concurrent Requests (per Search Unit) | 2 | 3 | 4 | 4 | 4 | 4 | 4 |
+| Maximum Request Queue Size (per Search Unit) | 4 | 6 | 8 | 8 | 8 | 8 | 8 |
 
 ## API request limits
 
