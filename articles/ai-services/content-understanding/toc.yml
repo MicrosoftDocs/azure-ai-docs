@@ -5,9 +5,9 @@ items:
   expanded: true
   items:
   - name: What is Azure AI Content Understanding?
-    displayName: document, text, images, video, audio, multi-modal, visual,structured, content, field, extraction,
+    displayName: document, text, images, video, audio, multimodal, visual, structured, content, field, extraction
     href: overview.md
-  - name: Create an Azure AI resource
+  - name: Create an Azure AI Services resource
     displayName: extract, text, images, OCR, optical character recognition
     href: how-to/create-multi-service-resource.md
   - name: What's new
@@ -19,37 +19,33 @@ items:
   - name: Language and region support
     href: language-region-support.md
   - name: Pricing
-    displayName: cost, pricing, subscription, tier, free, paid, trial
+    displayName: cost, pricing, subscription, tier, paid, trial
     href: https://azure.microsoft.com/pricing
   - name: FAQ
-    displayName: storage, security, privacy, help, support, versions, development, migrate, migration, cognitive, applied, form recognizer, form, recognizer
+    displayName: FAQ, definition, updates, previews
     href: faq.yml
+  - name: Glossary
+    displayName: glossary, definition, updates, previews
+    href: glossary.md
+- name: Quickstarts
+  items:
+  - name: Content Understanding REST API
+    displayName: quickstart, extract, text, images, OCR, optical character recognition
+    href: quickstart/use-rest-api.md
+  - name: Content Understanding Azure AI Foundry
+    displayName: quickstart, extract, text, images, OCR, optical character recognition
+    href: quickstart/use-ai-foundry.md
 - name: Capabilities
   items:
+  - name: Document
+    displayName: document, text, images, video, audio, visual, structured, content, field, extraction
+    href: document/overview.md
+  - name: Image
+    displayName: image, OCR, optical character recognition, text, extraction, analysis, detection, recognition, model
+    href: image/overview.md
   - name: Audio
     displayName: speech, audio, voice, recognition, synthesis, speaker, identification, verification, diarization, transcription, translation, language, understanding, sentiment, analysis, emotion, detection, pronunciation, model
     href: audio/overview.md
   - name: Video
     href: video/overview.md
     displayName: video, audio, voice, recognition, synthesis, speaker, identification, verification, diarization, transcription, translation, language, understanding, sentiment, analysis, emotion, detection, pronunciation, model
-  - name: Image
-    displayName: image, OCR, optical character recognition, text, extraction, analysis, detection, recognition, model
-    href: image/overview.md
-  - name: Document
-    displayName: document, text, images, video, audio, visual, structured, content, field, extraction
-    href: document/overview.md
-  - name: Scenario Templates
-    items:
-      - name: Post-call analytics workflow
-        displayName: audio, voice, recognition, transcription, translation, language, understanding, sentiment, analysis, emotion, detection, pronunciation, model
-        href: prebuilt-template/post-call-analytics.md
-      - name: Media asset management workflow
-        displayName: video, document, text, images,audio, multi-modal, visual, structured, content, field, extraction
-        href: prebuilt-template/manage-video-assets.md
-- name: Quickstarts
-  items:
-  - name: Content Understanding REST API
-    displayName: quickstart, extract, text, images, OCR, optical character recognition
-    href: quickstart/use-rest-api.md
-  - name: Content Understanding scenario templates
-    href: quickstart/use-scenario-templates.md
