@@ -63,9 +63,11 @@ The following table shows the available models for each stable API:
 |Prebuilt models|[Receipt](prebuilt/receipt.md)                            | ✔️| ✔️| ✔️| ✔️|
 |Prebuilt models|[US Unified Tax*](prebuilt/tax-document.md)                   | ✔️| n/a| n/a| n/a|
 |Prebuilt models|[US 1040 Tax*](prebuilt/tax-document.md)                   | ✔️| ✔️| n/a| n/a|
+|Prebuilt models|[US 1095 Tax*](prebuilt/tax-document.md)                    | ✔️| n/a| n/a| n/a|
 |Prebuilt models|[US 1098 Tax*](prebuilt/tax-document.md)                   | ✔️| n/a| n/a| n/a|
 |Prebuilt models|[US 1099 Tax*](prebuilt/tax-document.md)                 | ✔️| n/a| n/a| n/a|
 |Prebuilt models|[US W2 Tax](prebuilt/tax-document.md)                     | ✔️| ✔️| ✔️| n/a|
+|Prebuilt models|[US W4 Tax](prebuilt/tax-document.md)                      | ✔️| n/a| n/a| n/a|
 |Prebuilt models|[US Mortgage 1003 URLA](concept-mortgage-documents.md)    | ✔️| n/a| n/a| n/a|
 |Prebuilt models|[US Mortgage 1004 URAR](concept-mortgage-documents.md)    | ✔️| n/a| n/a| n/a|
 |Prebuilt models|[US Mortgage 1005](concept-mortgage-documents.md)    | ✔️| n/a| n/a| n/a|
