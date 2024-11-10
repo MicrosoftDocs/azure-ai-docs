@@ -207,7 +207,7 @@ Total semantic ranker queries per second varies based on the following factors:
 + The total available semantic ranker capacity in the region.
 + The amount of time it takes to serve a query using semantic ranker. This varies based on how busy the search service is.
 
-The following table describes the semantic ranker throttling limits by SKU. These limits may be increased through a support request, subject to available capacity in the region:
+The following table describes the semantic ranker throttling limits by SKU. Subject to available capacity in the region, contact support to request a limit increase.
 
 | Resource | Basic | S1 | S2 | S3 | S3-HD | L1 | L2 |
 |----------|-------|----|----|----|-------|----|----|
