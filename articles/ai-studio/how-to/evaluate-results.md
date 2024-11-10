@@ -62,7 +62,7 @@ We break down the aggregate views with different types of your metrics by AI Qua
 
 You can also customize existing charts for built-in metrics by changing the chart type.
 
-:::image type="content" source="../media/evaluations/view-results/custom-chart-pop-up.png" alt-text="Screenshot of changing chart type." lightbox="../media/evaluations/view-results/custom-chart-pop-up.png":::
+:::image type="content" source="../media/evaluations/view-results/change-chart-type.png" alt-text="Screenshot of changing chart type." lightbox="../media/evaluations/view-results/change-chart-type.png":::
 
 ### Detailed metrics result table
 
