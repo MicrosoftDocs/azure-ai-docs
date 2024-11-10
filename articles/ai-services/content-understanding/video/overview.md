@@ -76,10 +76,10 @@ Content Understanding provides several key benefits when compared to other video
 * **Optimized preprocessing**: Perform several content extraction preprocessing steps, such as transcription and scene detection, optimized to provide rich context to AI generative models.
 
 ## Input requirements
-For detailed information on supported input document formats, refer to our [Service quotas and limits](../service*limits.md) page.
+For detailed information on supported input document formats, refer to our [Service quotas and limits](../service-limits.md) page.
 
 ## Supported languages and regions
-For a detailed list of supported languages and regions, visit our [Language and region support](../language*region*support.md) page.
+For a detailed list of supported languages and regions, visit our [Language and region support](../language-region-support.md) page.
 
 ## Data privacy and security
 
