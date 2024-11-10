@@ -244,7 +244,7 @@ This table compares the supported data extraction areas:
 |Model| Form fields | Selection marks | Structured fields (Tables) | Signature | Region labeling | Overlapping fields |
 |--|:--:|:--:|:--:|:--:|:--:|:--:|
 |Custom template| ✔ | ✔ | ✔ | ✔ | ✔ | **n/a** |
-|Custom neural| ✔| ✔ | ✔ | **n/a** | * | ✔|
+|Custom neural| ✔| ✔ | ✔ | ✔ | * | ✔|
 
 **Table symbols**:<br>
 ✔—Supported<br>
