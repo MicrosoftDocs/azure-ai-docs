@@ -61,7 +61,7 @@ Document Intelligence service is updated on an ongoing basis. Bookmark this page
   * Receipt Model now supports more fields including ReceiptType, Tax rate, CountryRegion, net amount and description. 
  
 *  [🆕 US Tax model](prebuilt/tax-document.md)
-   *  New prebuilt  tax models added for 1095A, 1095C, 1099SSA, and W4.
+   *  New prebuilt tax models added for 1095A, 1095C, 1099SSA, and W4.
 
 * The v4.0 API includes cumulative updates from preview releases as listed:
   * [August 2024](#august-2024)
