@@ -327,7 +327,7 @@ Version v3.0 and later custom models support signature detection in custom templ
 
 :::image type="icon" source="media/studio/custom-extraction.png":::
 
-Custom extraction model can be one of three types, **custom template**, **custom neural**, or **custom generative**. To create a custom extraction model, label a dataset of documents with the values you want extracted and train the model on the labeled dataset. You only need five examples of the same form or document type to get started.
+Custom extraction model can be one of three types, **custom template**, **custom neural**. To create a custom extraction model, label a dataset of documents with the values you want extracted and train the model on the labeled dataset. You only need five examples of the same form or document type to get started.
 
 ***Sample custom extraction processed using [Document Intelligence Studio](https://formrecognizer.appliedai.azure.com/studio/customform/projects)***:
 
