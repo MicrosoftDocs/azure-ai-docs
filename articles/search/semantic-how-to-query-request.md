@@ -53,7 +53,7 @@ A few query capabilities bypass relevance scoring, which makes them incompatible
 
 By default, queries don't use semantic ranking. To use semantic ranking, two different parameters may be used. Each parameter supports a different set of scenarios:
 
-1. Specify `queryType` as `"semantic"`:
+1. Set `queryType` to `semantic`:
   + [Text search](search-lucene-query-architecture.md) with a simple plain text query. Empty queries result in no semantic ranking being applied to the results.
   + [Hybrid search](hybrid-search-overview.md).
   + [Simple](query-simple-syntax.md) or [full](query-lucene-syntax.md) syntax can't be used.
@@ -67,10 +67,10 @@ The following table illustrates the supported scenarios depending on which seman
 
 | Semantic Ranker Parameter | Plain text search | [Simple text search syntax](query-simple-syntax.md) | [Full text search syntax](query-lucene-syntax.md) | [Vector search](vector-search-overview.md) | [Hybrid Search](hybrid-search-overview.md) | [Semantic answers](semantic-answers.md) and captions |
 |-|-|-|-|-|-|-|
-| Set "queryType" to "semantic" | ✅ | ❌ | ❌ | ❌ | ✅ | ✅ |
-| Set "semanticQuery"<sup>1</sup> | ✅ | ✅ | ✅ | ✅ |✅ | ✅ |
+| Set `queryType` to `semantic` | ✅ | ❌ | ❌ | ❌ | ✅ | ✅ |
+| Set `semanticQuery`<sup>1</sup> | ✅ | ✅ | ✅ | ✅ |✅ | ✅ |
 
-<sup>1</sup> "semanticQuery" isn't supported in the portal [search explorer](search-explorer.md).
+<sup>1</sup> `semanticQuery` isn't supported in the portal [search explorer](search-explorer.md).
 
 Regardless of the parameter chosen, the index should contain text fields with rich semantic content and a [semantic configuration](semantic-how-to-configure.md).
 
@@ -88,7 +88,7 @@ Regardless of the parameter chosen, the index should contain text fields with ri
 
 1. Enter a query, such as "historic hotel with good food", and select **Search**.
 
-1. Alternatively, select **JSON view** and paste definitions into the query editor. The portal doesn't support using `"semanticQuery"`, so setting `"queryType"` to `"semantic"` is required:
+1. Alternatively, select **JSON view** and paste definitions into the query editor. The portal doesn't support using `semanticQuery`, so setting `queryType` to `"semantic"` is required:
 
    :::image type="content" source="./media/semantic-search-overview/semantic-portal-json-query.png" alt-text="Screenshot showing JSON query syntax in the Azure portal." border="true":::
 
@@ -112,11 +112,11 @@ Regardless of the parameter chosen, the index should contain text fields with ri
 
 Use [Search Documents](/rest/api/searchservice/documents/search-post) to formulate the request.
 
-A response includes an `@search.rerankerScore` automatically. If you want captions or answers in the response, enable semantic ranking by setting `"queryType"` to `"semantic"` or setting ``"semanticQuery"` and adding captions and answers to the request 
+A response includes an `@search.rerankerScore` automatically. If you want captions or answers in the response, enable semantic ranking by setting `queryType` to `semantic` or setting `semanticQuery` and adding captions and answers to the request.
 
 The following example in this section uses the [hotels-sample-index](search-get-started-portal.md) to demonstrate semantic ranking with semantic answers and captions.
 
-If you want to set `"queryType"` to `"semantic"`, paste the following request into a web client as a template. Replace `search-service-name` with your search service name and replace `hotels-sample-index` if you have a different index name.
+If you want to set `queryType` to `semantic`, paste the following request into a web client as a template. Replace `search-service-name` with your search service name and replace `hotels-sample-index` if you have a different index name.
 
 ```http
 POST https://[search-service-name].search.windows.net/indexes/hotels-sample-index/docs/search?api-version=2024-07-01
@@ -133,25 +133,25 @@ POST https://[search-service-name].search.windows.net/indexes/hotels-sample-inde
 }
 ```
 
-1. Set `"queryType"` to `"semantic"`.
+1. Set `queryType` to `semantic`.
 
-1. Set "search" to a simple plain text query. Since the "queryType" is set to semantic,  [simple syntax](query-simple-syntax.md) or [full Lucene syntax](query-lucene-syntax.md) aren't supported. Supplying `*` or an empty string results in no semantic ranking being applied to the query.
+1. Set `search` to a simple plain text query. Since the `queryType` is set to `semantic`,  [simple syntax](query-simple-syntax.md) or [full Lucene syntax](query-lucene-syntax.md) aren't supported. Supplying `*` or an empty string results in no semantic ranking being applied to the query.
 
-1. Set "semanticConfiguration" to a [predefined semantic configuration](semantic-how-to-configure.md) that's embedded in your index.
+1. Set `semanticConfiguration` to a [predefined semantic configuration](semantic-how-to-configure.md) that's embedded in your index.
 
-1. Set "answers" to specify whether [semantic answers](semantic-answers.md) are included in the result. Currently, the only valid value for this parameter is `extractive`. Answers can be configured to return a maximum of 10. The default is one. This example shows a count of three answers: `extractive|count-3`.
+1. Set `answers` to specify whether [semantic answers](semantic-answers.md) are included in the result. Currently, the only valid value for this parameter is `extractive`. Answers can be configured to return a maximum of 10. The default is one. This example shows a count of three answers: `extractive|count-3`.
 
    Answers aren't guaranteed on every request. To get an answer, the query must look like a question and the content must include text that looks like an answer.
 
-1. Set "captions" to specify whether semantic captions are included in the result. Currently, the only valid value for this parameter is `extractive`. Captions can be configured to return results with or without highlights. The default is for highlights to be returned. This example returns captions without highlights: `extractive|highlight-false`.
+1. Set `captions` to specify whether semantic captions are included in the result. Currently, the only valid value for this parameter is `extractive`. Captions can be configured to return results with or without highlights. The default is for highlights to be returned. This example returns captions without highlights: `extractive|highlight-false`.
 
    The basis for captions and answers are the fields referenced in the "semanticConfiguration". These fields are under a combined limit in the range of 2,000 tokens or approximately 20,000 characters. If you anticipate a token count exceeding this limit, consider a [data chunking step](vector-search-how-to-chunk-documents.md) using the [Text split skill](cognitive-search-skill-textsplit.md). This approach introduces a dependency on an [AI enrichment pipeline](cognitive-search-concept-intro.md) and [indexers](search-indexer-overview.md).
 
-1. Set "highlightPreTag" and "highlightPostTag" if you want to override the default highlight formatting that's applied to captions.
+1. Set `highlightPreTag` and `highlightPostTag` if you want to override the default highlight formatting that's applied to captions.
 
    Captions apply highlight formatting over key passages in the document that summarize the response. The default is `<em>`. If you want to specify the type of formatting (for example, yellow background), you can set the highlightPreTag and highlightPostTag.
 
-1. Set ["select"](search-query-odata-select.md) to specify which fields are returned in the response, and "count" to return the number of matches in the index. These parameters improve the quality of the request and readability of the response.
+1. Set [select](search-query-odata-select.md) to specify which fields are returned in the response, and "count" to return the number of matches in the index. These parameters improve the quality of the request and readability of the response.
 
 1. Send the request to execute the query and return results.
 
@@ -173,9 +173,9 @@ POST https://[search-service-name].search.windows.net/indexes/hotels-sample-inde
 }
     ```
 
-1. Set `"queryType"` to the search syntax you're using, either [simple](query-simple-syntax.md) or [full](query-lucene-syntax.md)
+1. Set `queryType` to the search syntax you're using, either [simple](query-simple-syntax.md) or [full](query-lucene-syntax.md)
 
-1. Set `"semanticQuery"` to the simple plain text query you want to use for semantic ranking. Empty queries aren't supported.
+1. Set `semanticQuery` to the simple plain text query you want to use for semantic ranking. Empty queries aren't supported.
 
 
 ### [**.NET SDK**](#tab/dotnet-query)
@@ -228,7 +228,7 @@ await foreach (SearchResult<Hotel> result in response.GetResultsAsync())
 Console.WriteLine($"Total number of search results:{count}");
 ```
 
-To use `"semanticQuery"` instead of setting `"queryType"` to `"semantic"`, the search code snippet can be replaced with the following code snippet:
+To use `semanticQuery` instead of setting `queryType` to `semantic`, the search code snippet can be replaced with the following code snippet:
 
 ```csharp
 SearchResults<Hotel> response = await searchClient.SearchAsync<Hotel>(
