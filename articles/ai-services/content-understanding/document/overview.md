@@ -21,7 +21,7 @@ ms.custom: ignite-2024-understanding-release
 
 Content Understanding is a cloud-based [Azure AI Service](../../what-are-ai-services.md) designed to efficiently extract content and structured fields from documents and forms. It provides a comprehensive suite of APIs and an intuitive UX experience for optimal efficiency.
 
-Using Content Understanding, organizations can streamline data collection and processing, enhancing operational efficiency, data-driven decision-making, and innovation. With customizable analyzers, Content Understanding allows for easy extraction of content or fields from documents and forms, tailored to specific business needs.
+Content Understanding enables organization to streamline data collection and processing, enhance operational efficiency, optimize data-driven decision making, and empower innovation. With customizable analyzers, Content Understanding allows for easy extraction of content or fields from documents and forms, tailored to specific business needs.
 
 ## Business use cases
 
@@ -41,7 +41,7 @@ Content extraction enables the extraction of both printed and handwritten text f
 
 ### Add-on capabilities
 
-Enhance your document extraction with optional add-on features, which may incur additional costs. These features can be enabled or disabled based on your needs. Currently supported add-ons include:
+Enhance your document extraction with optional add-on features, which can incur added costs. These features can be enabled or disabled based on your needs. Currently supported add-ons include:
 
 * **Layout**: Extracts layout information such as paragraphs, sections, tables, and more.
 * **Barcode**: Identifies and decodes all barcodes in the documents.

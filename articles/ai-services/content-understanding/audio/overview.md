@@ -38,7 +38,7 @@ Content Understanding serves as a cornerstone for Media Asset Management solutio
 
 * **Transcription**. Converts conversational audio into searchable and analyzable text-based transcripts in WebVTT format. Customizable fields can be generated from transcription data. Sentence-level and word-level timestamps are available upon request.
 
-* **Diarization**. Distinguishes between speakers in a conversation, attributing parts of the transcript to specific speakers.
+* **`Diarization`**. Distinguishes between speakers in a conversation, attributing parts of the transcript to specific speakers.
 
 * **Speaker role detection**. Identifies agent and customer roles within contact center call data.
 
@@ -53,11 +53,11 @@ Content Understanding offers advanced audio capabilities, including:
 
 * **Customizable data extraction**. Tailor the output to your specific needs by modifying the field schema, allowing for precise data generation and extraction.
 
-* **Generative models**. Utilize generative AI models to specify in natural language the content you want to extract, and the service will generate the desired output.
+* **Generative models**. Utilize generative AI models to specify in natural language the content you want to extract, and the service generates the desired output.
 
 * **Integrated pre-processing**. Benefit from built-in preprocessing steps like transcription, diarization, and role detection, providing rich context for generative models.
 
-* **Scenario adaptability**. Adapt the service to your requirements by generating custom fields to extract relevant data.
+* **Scenario adaptability**. Adapt the service to your requirements by generating custom fields and extract relevant data.
 
 ## Content Understanding audio analyzer templates
 

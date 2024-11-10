@@ -20,7 +20,7 @@ This article offers a quick reference of the quotas and limits for the Azure AI 
 | Quota | Standard (S0) |
 | --- | --- |
 | Max analyzers | 100k |
-| Max analysis/min | 1000 pages/images <br/> 4 hours of audio <br/> 1 hour of video  |
+| Max analysis/min | 1000 pages/images <br> Four hours of audio <br> One hour of video  |
 | Max operations/min | 3000 |
 
 ## Input file limits
@@ -29,35 +29,36 @@ This article offers a quick reference of the quotas and limits for the Azure AI 
 
 | Supported File Types | File Size | Length |
 | --- | --- | --- |
-| ✓ .pdf<br/>✓ .tiff<br/>✓ .jpg<br/>✓ .png<br/>✓ .bmp<br/>✓ .heif | ≤ 200 MB | ≤ 300 pages |
+| ✓ .pdf<br> ✓ .tiff<br> ✓ .jpg<br> ✓ .png<br> ✓ .bmp<br> ✓ .heif | ≤ 200 MB | ≤ 300 pages |
 | ✓ .txt  | ≤ 1 MB | ≤ 1M characters |
 
 ### Image
 
 | Supported File Types | File Size | Resolution |
 | --- | --- | --- |
-| ✓ .jpg<br/>✓ .png<br/>✓ .bmp<br/>✓ .heif| ≤ 200 MB | Min: 50 x 50 pixels <br/> Max: 10k x 10k pixels |
+| ✓ .jpg<br> ✓ .png<br> ✓ .bmp<br> ✓ .heif| ≤ 200 MB | Min: 50 x 50 pixels <br> Max: 10k x 10k pixels |
 
 ### Audio
 
 | Supported File Types | File Size | Length |
 | --- | --- |  --- |
-| ✓ .wav (PCM, A-law, μ-law) <br/>✓ .mp3 <br/>✓ .opus, .ogg (Opus)<br/>✓ .flac <br/>✓ .wma <br/>✓ .aac <br/>✓ .amr (AMR-NB, AMR-WB) <br/>✓ .webm (Opus, Vorbis) <br/>✓ .m4a (AAC, ALAC)<br/>✓ .spx | ≤ 200 MB | ≤ 2 hours |
+| ✓ .wav (`PCM`, A-law, μ-law) <br> ✓ .mp3 <br> ✓ .opus, .ogg (Opus)<br> ✓ .flac <br> ✓ .wma <br> ✓ .aac <br> ✓ .amr (AMR-NB, AMR-WB) <br> ✓ .webm (Opus, Vorbis) <br> ✓ .m4a (`AAC`, `ALAC`)<br> ✓ .spx | ≤ 200 MB | ≤ 2 hours |
 
 ### Video
 
 | Supported File Types | File Size | Resolution | Length |
 | ---| --- | --- | --- |
-| ✓  .mp4, .m4v <br/>✓ .flv (H.264 and AAC) <br/>✓ .wmv, .asf <br/>✓ .avi <br/>✓ .mkv <br/>✓ .mov | ≤20 GB † | Min: 320 x 240 pixels <br/>Max: 1920 x 1080 pixels | ≤2 hours †|
+| ✓  .mp4, .m4v <br> ✓ .flv (H.264 and `AAC`) <br> ✓ .wmv, .asf <br> ✓ .avi <br> ✓ .mkv <br> ✓ .mov | ≤20 GB † | Min: 320 x 240 pixels <br>Max: 1920 x 1,080 pixels | ≤2 hours †|
 
-† Note: The file size limit is 200 MB and the duration limit is 30 minutes if the video file is included directly in the analysis request.
+   > [!NOTE]
+   > The file size limit is 200 MB and the duration limit is 30 minutes if the video file is included directly in the analysis request.
 
 ## Field schema limits
 
 Content Understanding supports both basic field value types and nested structures, including lists, groups, tables, and fixed tables.
 
 * **Basic field value types**: *string*, *date*, *time*, *number*, *integer*, and *boolean*.
-* **List field**: A sequence of 0 or more values of the same type, represented as an array of basic fields in the API.
+* **List field**: A sequence of values of the same type, represented as an array of basic fields in the API.
 * **Group field**: A set of semantically related fields, represented as an object of basic fields in the API.
 * **Table field**: A variable number of items with fixed subfields, represented as an array of objects of basic fields in the API.
 * **Fixed table field**: A group of fields with shared subfields, represented as an object of objects of basic fields in the API.
@@ -70,9 +71,9 @@ The following limits apply as of version 2024-12-01-preview.
 | --- | --- | --- | --- | --- | --- |
 | Max fields | 50 | 10 | 10 | 10 | 10 |
 | Max classify field categories | 300 | 300 | 300 | 300 | 300 |
-| Supported generation methods | extract | generate<br/>classify | generate<br/>classify | generate<br/>classify | generate<br/>classify |
+| Supported generation methods | extract | generate<br>classify | generate<br>classify | generate<br>classify | generate<br>classify |
 
-* The *Max fields* limit includes all named fields. For example, a list of strings counts as one field, while a group with string and number subfields counts as three fields. To extract beyond default limits, please contact us at cu_contact@microsoft.com.
+* The *Max fields* limit includes all named fields. For example, a list of strings counts as one field, while a group with string and number subfields counts as three fields. To extract beyond default limits, contact us at cu_contact@microsoft.com.
 * The *Max classify field categories* limit is the total number of categories across all fields using the `classify` generation method.
 * The generation method currently applies only to basic fields.
 
@@ -91,12 +92,12 @@ The following limits apply as of version 2024-12-01-preview.
 Classification fields can be defined to return either a single category (single-label classification) or multiple categories (multi-label classification).
 
 * **Single-label classification**: Defined using a string field with the `classify` method. It can be a top-level basic field or a subfield within a group or table.
-* **Multi-label classification**: Represented as a list of string fields with the `classify` method. In the REST API, `method=classify` and `enum` are specified on the inner string field. This can only be a top-level field.
- 
-*Note: Document analyzers currently do not support classification fields.*
- 
+* **Multi-label classification**: Represented as a list of string fields with the `classify` method. In the REST API, `method=classify` and `enum` are specified on the inner string field and can only be a top-level field.
+
+*Note: Document analyzers currently don't support classification fields.*
+
 
 ## Training limits
 | File type| Max training data |
 | ---| --- |
-| Document | 1 GB total<br/>50k pages/images |
+| Document | 1 GB total<br>50k pages/images |

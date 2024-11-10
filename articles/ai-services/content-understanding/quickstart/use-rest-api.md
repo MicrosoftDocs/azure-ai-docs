@@ -22,23 +22,21 @@ ms.date: 11/19/2024
 
 ## Prerequisites
 
-To use Content Understanding, you need an Azure AI Services resource. This resource provides access to multiple Azure AI services with a single set of credentials.
+To get started, you need **An active Azure subscription**. If you don't have an Azure account, you can [create a free subscription](https://azure.microsoft.com/free/). 
 
-1. Get an Azure account:
-   - If you don't have an Azure account, you can [create a free subscription](https://azure.microsoft.com/free/).
+* Once you have your Azure subscription, create an [Azure AI Services resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIServices) in the Azure portal. This multi-service resource enables access to multiple Azure AI services with a single set of credentials.
 
-2. Create an Azure AI Services resource:
-   - Once you have an Azure subscription, create an [Azure AI Services resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIServices) in the Azure portal. 
-   - This resource is listed under Azure AI services → Azure AI services in the portal.
-
-    :::image type="content" source="../media/overview/azure-multi-service-resource.png" alt-text="Screenshot of the multi-service resource page in the Azure portal.":::
+   * This resource is listed under Azure AI services → Azure AI services in the portal.
 
     > [!IMPORTANT]
-    > Azure provides more than one resource type named Azure AI services. Ensure you select the one listed under Azure AI services → Azure AI services with the logo shown above.
+    > Azure provides more than one resource type named Azure AI services. Make certain that you select the one listed under Azure AI services → Azure AI services as depicted in the following image. For more information, see [Create an Azure AI Services resource](../how-to/create-multi-service-resource.md).
 
-   For more information, see [Create an Azure AI Services resource](../how-to/create-multi-service-resource.md).
+     :::image type="content" source="../media/overview/azure-multi-service-resource.png" alt-text="Screenshot of the multi-service resource page in the Azure portal.":::
 
-3. Install [cURL](https://curl.se/) command line tool.
+* In this quickstart, we use the cURL command line tool. If it isn't installed, you can download a version for your dev environment:
+
+  * [Windows](https://curl.haxx.se/windows/)
+  * [Mac or Linux](https://learn2torials.com/thread/how-to-install-curl-on-mac-or-linux-(ubuntu)-or-windows)
 
 ## Create a custom analyzer
 
@@ -179,7 +177,7 @@ First, create a JSON file named `request_body.json` with the following content:
 Before running the following `cURL` commands, make the following changes to the HTTP request:
 
 1. Replace `{endpoint}` and `{key}` with the endpoint and key values from your Azure portal Azure AI Services instance.
-2. Replace `{analyzerId}` with the name of the new analyzer to create, such as `myInvoice`.
+1. Replace `{analyzerId}` with the name of the new analyzer and create, such as `myInvoice`.
 
 ### PUT Request
 
@@ -192,14 +190,14 @@ curl -i -X PUT "{endpoint}/contentunderstanding/analyzers/{analyzerId}?api-versi
 
 ### PUT Response
 
-You will receive a 201 (Created) response that includes an `Operation-Location` header containing a URL that you can use to track the status of this asynchronous creation operation.
+The 201 (`Created`) response includes an `Operation-Location` header containing a URL that you can use to track the status of this asynchronous creation operation.
 
 ```
 201 Created
 Operation-Location: {endpoint}/contentunderstanding/analyzers/{analyzerId}/operations/{operationId}?api-version=2024-12-01-preview
 ```
 
-Upon completion, performing an HTTP GET on the URL will return `"status": "succeeded"`.
+Upon completion, performing an HTTP GET on the URL returns `"status": "succeeded"`.
 
 ```bash
 curl -i -X GET "{endpoint}/contentunderstanding/analyzers/{analyzerId}/operations/{operationId}?api-version=2024-12-01-preview" \
@@ -216,26 +214,26 @@ Before running the cURL command, make the following changes to the HTTP request:
 # [Document](#tab/document)
 
 1. Replace `{endpoint}` and `{key}` with the endpoint and key values from your Azure portal Azure AI Services instance.
-2. Replace `{analyzerId}` with the name of the custom analyzer created earlier.
-3. Replace `{fileUrl}` with a publicly accessible URL of the file to analyze, such as a path to an Azure Storage Blob with a shared access signature (SAS) or the sample URL `https://github.com/Azure-Samples/cognitive-services-REST-api-samples/raw/master/curl/form-recognizer/rest-api/invoice.pdf`.
+1. Replace `{analyzerId}` with the name of the custom analyzer created earlier.
+1. Replace `{fileUrl}` with a publicly accessible URL of the file to analyze, such as a path to an Azure Storage Blob with a shared access signature (SAS) or the sample URL `https://github.com/Azure-Samples/cognitive-services-REST-api-samples/raw/master/curl/form-recognizer/rest-api/invoice.pdf`.
 
 # [Image](#tab/image)
 
 1. Replace `{endpoint}` and `{key}` with the endpoint and key values from your Azure portal Azure AI Services instance.
-2. Replace `{analyzerId}` with the name of the custom analyzer created earlier.
-3. Replace `{fileUrl}` with a publicly accessible URL of the file to analyze, such as a path to an Azure Storage Blob with a shared access signature (SAS).
+1. Replace `{analyzerId}` with the name of the custom analyzer created earlier.
+1. Replace `{fileUrl}` with a publicly accessible URL of the file to analyze, such as a path to an Azure Storage Blob with a shared access signature (SAS).
 
 # [Audio](#tab/audio)
 
 1. Replace `{endpoint}` and `{key}` with the endpoint and key values from your Azure portal Azure AI Services instance.
-2. Replace `{analyzerId}` with the name of the custom analyzer created earlier.
-3. Replace `{fileUrl}` with a publicly accessible URL of the file to analyze, such as a path to an Azure Storage Blob with a shared access signature (SAS).
+1. Replace `{analyzerId}` with the name of the custom analyzer created earlier.
+1. Replace `{fileUrl}` with a publicly accessible URL of the file to analyze, such as a path to an Azure Storage Blob with a shared access signature (SAS).
 
 # [Video](#tab/video)
 
 1. Replace `{endpoint}` and `{key}` with the endpoint and key values from your Azure portal Azure AI Services instance.
-2. Replace `{analyzerId}` with the name of the custom analyzer created earlier.
-3. Replace `{fileUrl}` with a publicly accessible URL of the file to analyze, such as a path to an Azure Storage Blob with a shared access signature (SAS).
+1. Replace `{analyzerId}` with the name of the custom analyzer created earlier.
+1. Replace `{fileUrl}` with a publicly accessible URL of the file to analyze, such as a path to an Azure Storage Blob with a shared access signature (SAS).
 
 ---
 
@@ -247,9 +245,9 @@ curl -i -X POST "{endpoint}/contentunderstanding/analyzers/{analyzerId}:analyze?
   -d "{\"url\":\"{fileUrl}\"}"
 ```
 
-### POST response
+### POST responseH
 
-You will receive a 202 (Accepted) response that includes an `Operation-Location` header containing a URL that you can use to track the status of this asynchronous analyze operation.
+The 202 (`Accepted`) response includes an `Operation-Location` header containing a URL that you can use to track the status of this asynchronous analyze operation.
 
 ```
 202 Accepted
@@ -258,11 +256,11 @@ Operation-Location: {endpoint}/contentunderstanding/analyzers/{analyzerId}/resul
 
 ## Get analyze result
 
-Use the `resultId` from the `Operation-Location` header returned by the previous POST response to retrieve the result of the analysis.
+Use the `resultId` from the `Operation-Location` header returned by the previous `POST` response and retrieve the result of the analysis.
 
 1. Replace `{endpoint}` and `{key}` with the endpoint and key values from your Azure portal Azure AI Services instance.
-2. Replace `{analyzerId}` with the name of the custom analyzer created earlier.
-3. Replace `{resultId}` with the `resultId` returned from the POST request.
+1. Replace `{analyzerId}` with the name of the custom analyzer created earlier.
+1. Replace `{resultId}` with the `resultId` returned from the `POST` request.
 
 ### GET request
 ```bash
@@ -272,7 +270,7 @@ curl -i -X GET "{endpoint}/contentunderstanding/analyzers/{analyzerId}/results/{
 
 ### GET response
 
-You will receive a 200 (OK) JSON response with a `status` field indicating the status of the operation. If the operation isn't complete, the value of `status` will be `running` or `notStarted`. In such cases, you should call the API again, either manually or through a script, with an interval of one second or more between calls.
+The 200 (`OK`) JSON response includes a `status` field indicating the status of the operation. If the operation isn't complete, the value of `status` is `running` or `notStarted`. In such cases, you should call the API again, either manually or through a script. Wait an interval of one second or more between calls.
 
 #### Sample response
 
@@ -295,7 +293,7 @@ You will receive a 200 (OK) JSON response with a `status` field indicating the s
             "valueString": "CONTOSO LTD.",
             "spans": [ { "offset": 0, "length": 12 } ],
             "confidence": 0.941,
-            "source": "D(1,0.5729,0.6582,2.3353,0.6582,2.3353,0.8957,0.5729,0.8957)"
+            "source": "D(1,0.5729,0.6582,1.3353,0.6582,1.3353,0.8957,0.5729,0.8957)"
           },
           "Items": {
             "type": "array",
@@ -308,7 +306,7 @@ You will receive a 200 (OK) JSON response with a `status` field indicating the s
                     "valueString": "Consulting Services",
                     "spans": [ { "offset": 909, "length": 19 } ],
                     "confidence": 0.971,
-                    "source": "D(1,2.3264,5.673,3.6413,5.673,3.6413,5.8402,2.3264,5.8402)"
+                    "source": "D(1,1.3264,5.673,1.6413,5.673,1.6413,5.8402,1.3264,5.8402)"
                   },
                   "Amount": {
                     "type": "number",
@@ -451,6 +449,7 @@ You will receive a 200 (OK) JSON response with a `status` field indicating the s
 # [Video](#tab/video)
 
 ```json
+
 {
   "id": "204fb777-e961-4d6d-a6b1-6e02c773d72c",
   "status": "Succeeded",
@@ -466,7 +465,7 @@ You will receive a 200 (OK) JSON response with a `status` field indicating the s
         "endTimeMs": 2800,
         "width": 540,
         "height": 960,
-        "markdown": "# Shot 0:0.0 => 0:2.800\n\n## Transcript\n\n```\n\nWEBVTT\n\n0:0.80 --> 0:10.560\n<v Speaker>When I was planning my trip...",
+        "markdown": "# Shot 0:0.0 => 0:1.800\n\n## Transcript\n\n```\n\nWEBVTT\n\n0:0.80 --> 0:10.560\n<v Speaker>When I was planning my trip...",
         "fields": {
           "sentiment": {
             "type": "string",
@@ -481,12 +480,13 @@ You will receive a 200 (OK) JSON response with a `status` field indicating the s
       ...
     ]
   }
-}```
+}
+```
 
 ---
 
 ## Next steps 
 
-* In this quickstart, you learned how to call the REST API to create a custom analyzer. For a user experience, try [**Azure AI Foundry**](). 
-* Explore more analyzer templates in our [GitHub repository]().
+* In this quickstart, you learned how to call the REST API to create a custom analyzer. For a user experience, try [**Azure AI Foundry**](https://ai.azure.com/). 
+
 

@@ -21,22 +21,22 @@ ms.custom: ignite-2024-understanding-release
 
 Azure AI Content Understanding allows you to extract and customize video metadata. Content Understanding helps efficiently manage, categorize, retrieve, and build workflows for video assets. It enhances your media asset library, supports workflows such as highlight generation, categorizes content, and facilitates applications like retrieval-augmented generation (RAG). 
 
-Content understanding for video has broad potential uses. For example, you can customize metadata to tag specific scenes in a training video, making it easier for employees to locate and revisit important sections. You could also use metadata customization to identify product placements in promotional videos, which helps marketing teams analyze brand exposure.
+Content understanding for video has broad potential uses. For example, you can customize metadata to tag specific scenes in a training video, making it easier for employees to locate and revisit important sections. You can also use metadata customization to identify product placement in promotional videos, which helps marketing teams analyze brand exposure.
 
 ## Business use cases
 
 Azure AI Content Understanding provides a range of business use cases, including:
 
-- **Broadcast media and entertainment**: Manage large libraries of shows, movies, and clips by generating detailed metadata for each asset.
-- **Education and e-Learning**: Index and retrieve specific moments in educational videos or lectures.
-- **Corporate training**: Organize training videos by key topics, scenes, or important moments.
-- **Marketing and advertising**: Analyze promotional videos to extract product placements, brand appearances, and key messages.
+* **Broadcast media and entertainment**: Manage large libraries of shows, movies, and clips by generating detailed metadata for each asset.
+* **Education and e*Learning**: Index and retrieve specific moments in educational videos or lectures.
+* **Corporate training**: Organize training videos by key topics, scenes, or important moments.
+* **Marketing and advertising**: Analyze promotional videos to extract product placements, brand appearances, and key messages.
 
 ## Video understanding capabilities
 
 :::image type="content" source="../media/video/video-overview.png" alt-text="Screenshot of video analyzer flow.":::
 
-Content Understanding processes video files through a customizable pipeline that can perform both **content extraction** and **field extraction** tasks. Content Extraction focuses on analyzing the video to generate foundational metadata, while Field Extraction uses that metadata to create more detailed, custom insights tailored to specific use cases. Below is an overview of each capability.
+Content Understanding processes video files through a customizable pipeline that can perform both **content extraction** and **field extraction** tasks. Content Extraction focuses on analyzing the video to generate foundational metadata, while Field Extraction uses that metadata to create more detailed, custom insights tailored to specific use cases. To follow is an overview of each capability.
 
 ### Content extraction 
 
@@ -44,41 +44,42 @@ Content extraction for video includes transcription, shot detection, key frame e
 
 **Specific capabilities of content extraction**:
 
-- **Transcription**: Converts speech to structured, searchable text via Azure AI Speech, allowing users to specify recognition languages.
-- **Shot detection**: Identifies segments of the video aligned with shot boundaries where possible, allowing for precise editing and repackaging of content with breaks exactly on shot boundaries.
-- **Key frame extraction**: Extracts key frames from videos to represent each shot completely, ensuring each shot has enough key frames to enable Field Extraction to work effectively.
-- **Face grouping**: Groups faces appearing in a video to extract one representative face image for each person and provides segments where each one is present. The grouped face data is available as metadata and can be used to generate customized metadata fields. Note: This feature is limited access and involves face identification and grouping; customers need to register for access at [Face Registration](https://aka.ms/faceregistration).
+* **Transcription**: Converts speech to structured, searchable text via Azure AI Speech, allowing users to specify recognition languages.
+* **Shot detection**: Identifies segments of the video aligned with shot boundaries where possible, allowing for precise editing and repackaging of content with breaks exactly on shot boundaries.
+* **Key frame extraction**: Extracts key frames from videos to represent each shot completely, ensuring each shot has enough key frames to enable Field Extraction to work effectively.
+* **Face grouping**: Grouped faces appearing in a video to extract one representative face image for each person and provides segments where each one is present. The grouped face data is available as metadata and can be used to generate customized metadata fields.
+* This feature is limited access and involves face identification and grouping; customers need to register for access at [Face Registration](https://aka.ms/faceregistration).
 
 ### Field extraction 
 
-Field extraction enables the generation of structured data for each segment of the video, such as tags, categories, or descriptions, using a customizable schema tailored to your specific needs. This structured data makes it easier to organize, search, and automatically process video content efficiently. Field extraction uses a multimodal generative model to extract specific data from the video, leveraging key frames and text output from Content Extraction as input. This enables the generative model to make detailed insights based on the visual content captured from shots, providing very detailed identification.
+Field extraction enables the generation of structured data for each segment of the video, such as tags, categories, or descriptions, using a customizable schema tailored to your specific needs. This structured data makes it easier to organize, search, and automatically process video content efficiently. Field extraction uses a multimodal generative model to extract specific data from the video, using key frames and text output from Content Extraction as input. Field extraction enables the generative model to make detailed insights based on the visual content captured from shots, providing detailed identification.
 
 **Examples of fields for different industries**:
 
-- **Media asset management**:
+* **Media asset management**:
 
-  - **Shot type**: Helps editors and producers organize content, simplifying editing, and understanding the visual language of the video. Useful for metadata tagging and quicker scene retrieval.
-  - **Color scheme**: Conveys mood and atmosphere, essential for narrative consistency and viewer engagement. Identifying color themes helps in finding matching clips for accelerated video editing.
+  * **Shot type**: Helps editors and producers organize content, simplifying editing, and understanding the visual language of the video. Useful for metadata tagging and quicker scene retrieval.
+  * **Color scheme**: Conveys mood and atmosphere, essential for narrative consistency and viewer engagement. Identifying color themes helps in finding matching clips for accelerated video editing.
 
-- **Advertising**:
+* **Advertising**:
 
-  - **Brand**: Identifies brand presence, critical for analyzing ad impact, brand visibility, and association with products. This allows advertisers to assess brand prominence and ensure compliance with branding guidelines.
-  - **Ad categories**: Categorizes ad types by industry, product type, or audience segment, which supports targeted advertising strategies, categorization, and performance analysis.
+  * **Brand**: Identifies brand presence, critical for analyzing ad impact, brand visibility, and association with products. This capability allows advertisers to assess brand prominence and ensure compliance with branding guidelines.
+  * **Ad categories**: Categorizes ad types by industry, product type, or audience segment, which supports targeted advertising strategies, categorization, and performance analysis.
 
 ### Key benefits
 
 Content Understanding provides several key benefits when compared to other video analysis solutions:
 
-- **Segment-based multi-frame analysis**: Identify actions, events, topics, and themes by analyzing multiple frames from each video segment, rather than individual frames.
-- **Customization**: Customize the metadata you generate by modifying the schema to match your specific use case.
-- **Generative models**: Describe in natural language what content you want to extract, and Content Understanding will use generative models to extract that metadata.
-- **Optimized preprocessing**: Perform several content extraction preprocessing steps, such as transcription and scene detection, optimized to provide rich context to AI generative models.
+* **Segment-based multi-frame analysis**: Identify actions, events, topics, and themes by analyzing multiple frames from each video segment, rather than individual frames.
+* **Customization**: Customize the metadata you generate by modifying the schema in accordance with your specific use case.
+* **Generative models**: Describe in natural language what content you want to extract, and Content Understanding uses generative models to extract that metadata.
+* **Optimized preprocessing**: Perform several content extraction preprocessing steps, such as transcription and scene detection, optimized to provide rich context to AI generative models.
 
 ## Input requirements
-For detailed information on supported input document formats, refer to our [Service quotas and limits](../service-limits.md) page.
+For detailed information on supported input document formats, refer to our [Service quotas and limits](../service*limits.md) page.
 
 ## Supported languages and regions
-For a detailed list of supported languages and regions, visit our [Language and region support](../language-region-support.md) page.
+For a detailed list of supported languages and regions, visit our [Language and region support](../language*region*support.md) page.
 
 ## Data privacy and security
 
