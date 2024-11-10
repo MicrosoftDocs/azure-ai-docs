@@ -35,7 +35,7 @@ There are currently two studios, the [Azure AI Studio](https://ai.azure.com/expl
 
 ### When to use [Document Intelligence Studio](https://documentintelligence.ai.azure.com/studio)
 
-Document Intelligence Studio is the legacy experience that contains all features released on or before November 2024. For any of the v2.1, v3.0, v3.1 features, continue to use the Document Intelligence Studio. Studios provide a visual experience for labeling, training, and validating custom models. For custom document field extraction models, use the Document Intelligence Studio for template and neural models. Custom classification models can only be trained and used on Document Intelligence Studio. Use Document Intelligence Studio if you want to try out GA versions of the models from version 2.1, v3.0 and v3.1.
+Document Intelligence Studio is the legacy experience that contains all features released on or before November 2024. For any of the v2.1, v3.0, v3.1 features, continue to use the Document Intelligence Studio. Studios provide a visual experience for labeling, training, and validating custom models. For custom document field extraction models, use the Document Intelligence Studio for template and neural models. Custom classification models can only be trained and used on Document Intelligence Studio. Use Document Intelligence Studio if you want to try out GA versions of the models from version v3.0, v3.1, and v4.0.
 
 ### When to use [AI Studio](https://ai.azure.com/explore/aiservices/vision)
 
