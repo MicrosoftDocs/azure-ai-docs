@@ -88,6 +88,19 @@ The following table shows the available models for each stable API:
 
 Latency is the amount of time it takes for an API server to handle and process an incoming request and deliver the outgoing response to the client. The time to analyze a document depends on the size (for example, number of pages) and associated content on each page. Document Intelligence is a multitenant service where latency for similar documents is comparable but not always identical. Occasional variability in latency and performance is inherent in any microservice-based, stateless, asynchronous service that processes images and large documents at scale. Although we're continuously scaling up the hardware and capacity and scaling capabilities, you might still have latency issues at runtime.
 
+### Add-on Capability
+
+Following are the add-on capability available in document intelligence. For all models, except Business card model, Document Intelligence now supports add-on capabilities to allow for more sophisticated analysis. These optional capabilities can be enabled and disabled depending on the scenario of the document extraction. There are seven add-on capabilities available for the `2023-07-31` (GA) and later API version:
+
+* [`ocrHighResolution`](concept-add-on-capabilities.md#high-resolution-extraction)
+* [`formulas`](concept-add-on-capabilities.md#formula-extraction)
+* [`styleFont`](concept-add-on-capabilities.md#font-property-extraction)
+* [`barcodes`](concept-add-on-capabilities.md#barcode-property-extraction)
+* [`languages`](concept-add-on-capabilities.md#language-detection)
+* [`keyValuePairs`](concept-add-on-capabilities.md#key-value-pairs)
+* [`queryFields`](concept-add-on-capabilities.md#query-fields)  `Not available with the US.Tax models`
+* [`searchablePDF`](prebuilt/read.md#searchable-pdf)  `Only available for Read Model`
+
 |**Add-on Capability**| **Add-On/Free**|&bullet; **2024-11-30 (GA)**|[`2023-07-31` (GA)](/rest/api/aiservices/document-models/analyze-document?view=rest-aiservices-2023-07-31&preserve-view=true&tabs=HTTP)|[`2022-08-31` (GA)](/rest/api/aiservices/document-models/analyze-document?view=rest-aiservices-v3.0%20(2022-08-31)&preserve-view=true&tabs=HTTP)|[v2.1 (GA)](/rest/api/aiservices/analyzer?view=rest-aiservices-v2.1&preserve-view=true)|
 |----------------|-----------|---|--|---|---|
 |Font property extraction|Add-On| ✔️| ✔️| n/a| n/a|
@@ -114,17 +127,6 @@ A bounding box (`polygon` in v3.0 and later versions) is an abstract rectangle t
 * The bounding box specifies position by using an x and y coordinate plane presented in an array of four numerical pairs. Each pair represents a corner of the box in the following order: upper left, upper right, lower right, lower left.
 
 * Image coordinates are presented in pixels. For a PDF, coordinates are presented in inches.
-
-For all models, except Business card model, Document Intelligence now supports add-on capabilities to allow for more sophisticated analysis. These optional capabilities can be enabled and disabled depending on the scenario of the document extraction. There are seven add-on capabilities available for the `2023-07-31` (GA) and later API version:
-
-* [`ocrHighResolution`](concept-add-on-capabilities.md#high-resolution-extraction)
-* [`formulas`](concept-add-on-capabilities.md#formula-extraction)
-* [`styleFont`](concept-add-on-capabilities.md#font-property-extraction)
-* [`barcodes`](concept-add-on-capabilities.md#barcode-property-extraction)
-* [`languages`](concept-add-on-capabilities.md#language-detection)
-* [`keyValuePairs`](concept-add-on-capabilities.md#key-value-pairs)
-* [`queryFields`](concept-add-on-capabilities.md#query-fields)  `Not available with the US.Tax models`
-* [`searchablePDF`](prebuilt/read.md#searchable-pdf)  `Only available for Read Model`
 
 ## Language support
 
@@ -194,7 +196,9 @@ The US tax document models analyze and extract key fields and line items from a 
   |Model|Description|ModelID|
   |---|---|---|
   |US Tax W-2|Extract taxable compensation details.|**prebuilt-tax.us.w2**|
+  |US Tax W-4|Extract taxable compensation details.|**prebuilt-tax.us.w4**|
   |US Tax 1040|Extract mortgage interest details.|**prebuilt-tax.us.1040(variations)**|
+  |US Tax 1095|Extract health insurance details.|**prebuilt-tax.us.1095(variations)**|
   |US Tax 1098|Extract mortgage interest details.|**prebuilt-tax.us.1098(variations)**|
   |US Tax 1099|Extract income received from sources other than employer.|**prebuilt-tax.us.1099(variations)**|
 
@@ -215,10 +219,11 @@ The US mortgage document models analyze and extract key fields including borrowe
   |Model|Description|ModelID|
   |---|---|---|
   |1003 End-User License Agreement (EULA)|Extract loan, borrower, property details.|**prebuilt-mortgage.us.1003**|
+  |1004 Uniform Residential Appraisal Report (URAR))|Extract loan, borrower, property details.|**prebuilt-mortgage.us.1004**|
+  |1005 Verification of Employment|Extract loan, borrower, property details.|**prebuilt-mortgage.us.1005**|
   |1008 Summary document|Extract borrower, seller, property, mortgage, and underwriting details.|**prebuilt-mortgage.us.1008**|
   |Closing disclosure|Extract closing, transaction costs, and loan details.|**prebuilt-mortgage.us.closingDisclosure**|
-  |Marriage certificate|Extract marriage information details for joint loan applicants.|**prebuilt-marriageCertificate**|
-  |US Tax W-2|Extract taxable compensation details for income verification.|**prebuilt-tax.us.w2**|
+ 
 
 ***Sample Closing disclosure document processed using [Document Intelligence Studio](https://formrecognizer.appliedai.azure.com/studio/prebuilt?formType=mortgage.us.closingDisclosure)***:
 
