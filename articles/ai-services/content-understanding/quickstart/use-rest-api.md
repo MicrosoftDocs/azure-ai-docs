@@ -55,22 +55,23 @@ First, create a JSON file named `request_body.json` with the following content:
     "fields": {
       "VendorName": {
         "type": "string",
-        "kind": "extract",
+        "method": "extract",
         "description": "Vendor issuing the invoice"
       },
       "Items": {
         "type": "array",
+        "method": "extract",
         "items": {
           "type": "object",
           "properties": {
             "Description": {
               "type": "string",
-              "kind": "extract",
+              "method": "extract",
               "description": "Description of the item"
             },
             "Amount": {
               "type": "number",
-              "kind": "extract",
+              "method": "extract",
               "description": "Amount of the item"
             }
           }
@@ -166,11 +167,7 @@ First, create a JSON file named `request_body.json` with the following content:
       "Sentiment": {
         "type": "string",
         "method": "classify",
-        "enum": [
-          "Positive",
-          "Neutral",
-          "Negative"
-        ]
+        "enum": [ "Positive", "Neutral", "Negative" ]
       }
     }
   }
@@ -226,19 +223,19 @@ Before running the cURL command, make the following changes to the HTTP request:
 
 1. Replace `{endpoint}` and `{key}` with the endpoint and key values from your Azure portal Azure AI Services instance.
 2. Replace `{analyzerId}` with the name of the custom analyzer created earlier.
-3. Replace `{fileUrl}` with a publicly accessible URL of the file to analyze, such as a path to an Azure Storage Blob with a shared access signature (SAS) or the sample URL `TODO`.
+3. Replace `{fileUrl}` with a publicly accessible URL of the file to analyze, such as a path to an Azure Storage Blob with a shared access signature (SAS).
 
 # [Audio](#tab/audio)
 
 1. Replace `{endpoint}` and `{key}` with the endpoint and key values from your Azure portal Azure AI Services instance.
 2. Replace `{analyzerId}` with the name of the custom analyzer created earlier.
-3. Replace `{fileUrl}` with a publicly accessible URL of the file to analyze, such as a path to an Azure Storage Blob with a shared access signature (SAS) or the sample URL `TODO`.
+3. Replace `{fileUrl}` with a publicly accessible URL of the file to analyze, such as a path to an Azure Storage Blob with a shared access signature (SAS).
 
 # [Video](#tab/video)
 
 1. Replace `{endpoint}` and `{key}` with the endpoint and key values from your Azure portal Azure AI Services instance.
 2. Replace `{analyzerId}` with the name of the custom analyzer created earlier.
-3. Replace `{fileUrl}` with a publicly accessible URL of the file to analyze, such as a path to an Azure Storage Blob with a shared access signature (SAS) or the sample URL `TODO`.
+3. Replace `{fileUrl}` with a publicly accessible URL of the file to analyze, such as a path to an Azure Storage Blob with a shared access signature (SAS).
 
 ---
 
@@ -283,41 +280,61 @@ You will receive a 200 (OK) JSON response with a `status` field indicating the s
 
 ```json
 {
-  "id": "3b31320d-8bab-4f88-b19c-2322a7f11034",
+  "id": "f87e468b-d96b-488c-a646-33cc5823972f",
   "status": "Succeeded",
   "result": {
-    "analyzerId": "myInvoice",
+    "analyzerId": "sample_invoice_analyzer",
     "apiVersion": "2024-12-01-preview",
-    "createdAt": "2024-10-14T18:46:36Z",
-    "stringEncoding": "codePoint",
+    "createdAt": "2024-11-09T08:36:31Z",
     "contents": [
       {
+        "markdown": "CONTOSO LTD.\n\n\n# INVOICE\n\nContoso Headquarters...",
+        "fields": {
+          "VendorName": {
+            "type": "string",
+            "valueString": "CONTOSO LTD.",
+            "spans": [ { "offset": 0, "length": 12 } ],
+            "confidence": 0.941,
+            "source": "D(1,0.5729,0.6582,2.3353,0.6582,2.3353,0.8957,0.5729,0.8957)"
+          },
+          "Items": {
+            "type": "array",
+            "valueArray": [
+              {
+                "type": "object",
+                "valueObject": {
+                  "Description": {
+                    "type": "string",
+                    "valueString": "Consulting Services",
+                    "spans": [ { "offset": 909, "length": 19 } ],
+                    "confidence": 0.971,
+                    "source": "D(1,2.3264,5.673,3.6413,5.673,3.6413,5.8402,2.3264,5.8402)"
+                  },
+                  "Amount": {
+                    "type": "number",
+                    "valueNumber": 60,
+                    "spans": [ { "offset": 995, "length": 6 }
+                    ],
+                    "confidence": 0.988,
+                    "source": "D(1,7.4507,5.6684,7.9245,5.6684,7.9245,5.8323,7.4507,5.8323)"
+                  }
+                }
+              }, ...
+            ]
+          }
+        },
         "kind": "document",
-        "markdown": "# CONTOSO LTD.\n\n...",
         "startPageNumber": 1,
         "endPageNumber": 1,
         "unit": "inch",
         "pages": [
           {
             "pageNumber": 1,
+            "angle": -0.0039,
             "width": 8.5,
             "height": 11
           }
-        ],
-        "fields": {
-          "Company": {
-            "type": "string",
-            "valueString": "CONTOSO",
-            "spans": [
-              {
-                "offset": 7,
-                "length": 2
-              }
-            ],
-            "confidence": 0.95,
-            "source": "D(1,5,1,7,1,7,1.5,5,1.5)"
-          }
-        }
+        ]
       }
     ]
   }
@@ -328,41 +345,36 @@ You will receive a 200 (OK) JSON response with a `status` field indicating the s
 
 ```json
 {
-  "id": "3b31320d-8bab-4f88-b19c-2322a7f11034",
+  "id": "12fd421b-b545-4d63-93a5-01284081bbe1",
   "status": "Succeeded",
   "result": {
-    "analyzerId": "myInvoice",
+    "analyzerId": "sample_chart_analyzer",
     "apiVersion": "2024-12-01-preview",
-    "createdAt": "2024-10-14T18:46:36Z",
-    "stringEncoding": "codePoint",
+    "createdAt": "2024-11-09T08:41:00Z",
     "contents": [
       {
+        "markdown": "![image](image)\n",
+        "fields": {
+          "Title": {
+            "type": "string",
+            "valueString": "Weekly Work Hours Distribution"
+          },
+          "ChartType": {
+            "type": "string",
+            "valueString": "pie"
+          }
+        },
         "kind": "document",
-        "markdown": "# CONTOSO LTD.\n\n...",
         "startPageNumber": 1,
         "endPageNumber": 1,
-        "unit": "inch",
+        "unit": "pixel",
         "pages": [
           {
             "pageNumber": 1,
-            "width": 8.5,
-            "height": 11
+            "width": 1283,
+            "height": 617
           }
-        ],
-        "fields": {
-          "Company": {
-            "type": "string",
-            "valueString": "CONTOSO",
-            "spans": [
-              {
-                "offset": 7,
-                "length": 2
-              }
-            ],
-            "confidence": 0.95,
-            "source": "D(1,5,1,7,1,7,1.5,5,1.5)"
-          }
-        }
+        ]
       }
     ]
   }
@@ -373,41 +385,63 @@ You will receive a 200 (OK) JSON response with a `status` field indicating the s
 
 ```json
 {
-  "id": "3b31320d-8bab-4f88-b19c-2322a7f11034",
+  "id": "247c369c-1aa5-4f92-b033-a8e4318e1c02",
   "status": "Succeeded",
   "result": {
-    "analyzerId": "myInvoice",
+    "analyzerId": "sample_chart_analyzer",
     "apiVersion": "2024-12-01-preview",
-    "createdAt": "2024-10-14T18:46:36Z",
-    "stringEncoding": "codePoint",
+    "createdAt": "2024-11-09T08:42:58Z",
     "contents": [
       {
-        "kind": "document",
-        "markdown": "# CONTOSO LTD.\n\n...",
-        "startPageNumber": 1,
-        "endPageNumber": 1,
-        "unit": "inch",
-        "pages": [
-          {
-            "pageNumber": 1,
-            "width": 8.5,
-            "height": 11
-          }
-        ],
+        "kind": "audioVisual",
+        "startTimeMs": 0,
+        "endTimeMs": 32182,
+        "markdown": "```WEBVTT\n\n00:00.080 --> 00:00.640\n<v Agent>Good day...",
         "fields": {
-          "Company": {
+          "Sentiment": {
             "type": "string",
-            "valueString": "CONTOSO",
-            "spans": [
+            "valueString": "Positive"
+          },
+          "Summary": {
+            "type": "string",
+            "valueString": "Maria Smith contacted Contoso to inquire about her current point balance. Agent John Doe confirmed her identity and informed her that she has 599 points. Maria did not require any further information and the call ended on a positive note."
+          },
+          "People": {
+            "type": "array",
+            "valueArray": [
               {
-                "offset": 7,
-                "length": 2
-              }
-            ],
-            "confidence": 0.95,
-            "source": "D(1,5,1,7,1,7,1.5,5,1.5)"
+                "type": "object",
+                "valueObject": {
+                  "Name": {
+                    "type": "string",
+                    "valueString": "Maria Smith"
+                  },
+                  "Role": {
+                    "type": "string",
+                    "valueString": "Customer"
+                  }
+                }
+              }, ...
+            ]
           }
-        }
+        },
+        "transcriptPhrases": [
+          {
+            "speaker": "Agent 1",
+            "startTimeMs": 80,
+            "endTimeMs": 640,
+            "text": "Good day.",
+            "confidence": 0.932,
+            "words": [
+              {
+                "startTimeMs": 80,
+                "endTimeMs": 280,
+                "text": "Good"
+              }, ...
+            ],
+            "locale": "en-US"
+          }, ...
+        ]
       }
     ]
   }
@@ -418,46 +452,36 @@ You will receive a 200 (OK) JSON response with a `status` field indicating the s
 
 ```json
 {
-  "id": "3b31320d-8bab-4f88-b19c-2322a7f11034",
+  "id": "204fb777-e961-4d6d-a6b1-6e02c773d72c",
   "status": "Succeeded",
   "result": {
-    "analyzerId": "myInvoice",
+    "analyzerId": "sample_marketing_video_analyzer",
     "apiVersion": "2024-12-01-preview",
-    "createdAt": "2024-10-14T18:46:36Z",
-    "stringEncoding": "codePoint",
+    "createdAt": "2024-11-09T08:57:21Z",
+    "warnings": [],
     "contents": [
       {
-        "kind": "document",
-        "markdown": "# CONTOSO LTD.\n\n...",
-        "startPageNumber": 1,
-        "endPageNumber": 1,
-        "unit": "inch",
-        "pages": [
-          {
-            "pageNumber": 1,
-            "width": 8.5,
-            "height": 11
-          }
-        ],
+        "kind": "audioVisual",
+        "startTimeMs": 0,
+        "endTimeMs": 2800,
+        "width": 540,
+        "height": 960,
+        "markdown": "# Shot 0:0.0 => 0:2.800\n\n## Transcript\n\n```\n\nWEBVTT\n\n0:0.80 --> 0:10.560\n<v Speaker>When I was planning my trip...",
         "fields": {
-          "Company": {
+          "sentiment": {
             "type": "string",
-            "valueString": "CONTOSO",
-            "spans": [
-              {
-                "offset": 7,
-                "length": 2
-              }
-            ],
-            "confidence": 0.95,
-            "source": "D(1,5,1,7,1,7,1.5,5,1.5)"
+            "valueString": "Neutral"
+          },
+          "description": {
+            "type": "string",
+            "valueString": "The video begins with a view from a glass floor, showing a person's feet in white sneakers standing on it. The scene captures a downward view of a structure, possibly a tower, with a grid pattern on the floor and a clear view of the ground below. The lighting is bright, suggesting a sunny day, and the colors are dominated by the orange of the structure and the gray of the floor."
           }
         }
-      }
+      },
+      ...
     ]
   }
-}
-```
+}```
 
 ---
 
