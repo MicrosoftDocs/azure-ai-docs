@@ -77,7 +77,6 @@ The following table shows the available models for each stable API:
 |Prebuilt models|[Credit card](concept-credit-card.md)   | ✔️| n/a| n/a| n/a|
 |Prebuilt models|[Business card](concept-business-card.md)                | deprecated|✔️|✔️|✔️ |
 |Custom classification model|[Custom classifier](train/custom-classifier.md)        | ✔️| ✔️| n/a| n/a|
-|Custom Generative Model (preview)|[Custom Generative Model](train/custom-generative-extraction.md) | ✔️| n/a| n/a| n/a|
 |Custom extraction model|[Custom neural](train/custom-neural.md)                | ✔️| ✔️| ✔️| n/a|
 |Custom extraction model|[Custom template](train/custom-template.md)            | ✔️| ✔️| ✔️| ✔️|
 |Custom extraction model|[Custom composed](train/composed-models.md)            | ✔️| ✔️| ✔️| ✔️|
