@@ -26,7 +26,6 @@ Document Intelligence service is updated on an ongoing basis. Bookmark this page
 
 > [!IMPORTANT]
 > Preview API versions are retired once the GA API is released. The 2023-02-28-preview API version is being retired, if you are still using the preview API or the associated SDK versions, please update your code to target the latest API version 2023-07-31 (GA). </br>
-> Please note that [🆕 Document field extraction (custom generative) model](train/custom-generative-extraction.md) is under preview  with added improvements for runtime latency, table extraction, confidence scores, auto labeling and streamline training.
 
 ## November 2024
 
@@ -79,8 +78,6 @@ The Document Intelligence [**2024-07-31-preview**](/rest/api/aiservices/document
 * **West Europe**
 * **North Central US**
 
-* [🆕 Document field extraction (custom generative) model](train/custom-generative-extraction.md)
-  * Use **Generative AI** to extract fields from documents and forms. Document Intelligence now offers a new document field extraction model that utilizes large language models (LLMs) to extract fields from unstructured documents or structured forms with a wide variety of visual templates. With grounded values and confidence scores, the new Generative AI based extraction fits into your existing processes.
 * [🆕 Model compose with custom classifiers](train/composed-models.md)
   * Document Intelligence now adds support for composing model with an explicit custom classification model. [Learn more about the benefits](train/composed-models.md) of using the new compose capability.
 * [Custom classification model](train/custom-model.md#custom-classification-model)

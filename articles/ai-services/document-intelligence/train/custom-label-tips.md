@@ -28,9 +28,6 @@ monikerRange: '>=doc-intel-3.0.0'
 **This content applies to:** ![checkmark](../media/yes-icon.png) **v3.0 (GA)** | **Latest versions:** ![purple-checkmark](../media/purple-yes-icon.png) [**v4.0 (GA)**](?view=doc-intel-4.0.0&preserve-view=true) ![purple-checkmark](../media/purple-yes-icon.png) [**v3.1**](?view=doc-intel-3.1.0&preserve-view=true)
 ::: moniker-end
 
-> [!IMPORTANT]
-> Best practices to generating labelled datasets only applies to custom template and custom neural models, for custom generative, refer to [Custom Generative](custom-generative-extraction.md)
-
 This article highlights the best methods for labeling custom model datasets in the Document Intelligence Studio. Labeling documents can be time consuming when you have a large number of labels, long documents, or documents with varying structure. These tips should help you label documents more efficiently.
 
 ## Video: Custom labels best practices

@@ -116,7 +116,6 @@ Document Intelligence billing is calculated monthly based on the model type and 
 >
 > * [**Custom template model**](train/custom-template.md)
 > * [**Custom neural model**](train/custom-neural.md)
-> * [**Custom generative model**](train/custom-generative-extraction.md)
 > * [**Composed classification models**](train/custom-classifier.md)
 > * [**Composed custom models**](train/composed-models.md)
 
