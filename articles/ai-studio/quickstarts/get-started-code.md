@@ -12,11 +12,11 @@ ms.author: sgilley
 author: sdgilley
 ---
 
-# Build a custom chat app in Python using Azure AI Foundry SDK
+# Build a basic chat app in Python using Azure AI Foundry SDK
 
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
-In this quickstart, we walk you through setting up your local development environment with the prompt flow SDK. We write a prompt, run it as part of your app code, trace the LLM calls being made, and run a basic evaluation on the outputs of the LLM.
+In this quickstart, we walk you through setting up your local development environment with the Azure AI Foundry SDK. We write a prompt, run it as part of your app code, trace the LLM calls being made, and run a basic evaluation on the outputs of the LLM.
 
 ## Prerequisites
 
@@ -93,4 +93,4 @@ python chat.py
 ## Next step
 
 > [!div class="nextstepaction"]
-> [Add data and use retrieval augmented generation (RAG) to build a custom chat app](../tutorials/copilot-sdk-build-rag.md)
+> [Add data and use retrieval augmented generation (RAG) to build a custom chat app](../tutorials/copilot-sdk-create-resources.md)

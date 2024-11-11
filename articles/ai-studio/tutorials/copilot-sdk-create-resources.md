@@ -1,21 +1,21 @@
 ---
-title: "Part 1: Create resources to build a custom chat app"
+title: "Part 1: Set up project and development environment to build a a custom knowledge retrieval (RAG) app"
 titleSuffix: Azure AI Studio
 description:  Build a custom chat app using the Azure AI Foundry SDK. Part 1 of a 3-part tutorial series, which shows how to create the resources you'll need for parts 2 and 3.
 manager: scottpolly
 ms.service: azure-ai-studio
 ms.topic: tutorial
-ms.date: 11/03/2024
+ms.date: 11/11/2024
 ms.reviewer: lebaro
 ms.author: sgilley
 author: sdgilley
 #customer intent: As a developer, I want to learn how to use the prompt flow SDK so that I can build a RAG-based chat app.
 ---
 
-# Tutorial:  Part 1 - Create resources for building a custom chat application with the Azure AI Foundry SDK
+# Tutorial:  Part 1 - Set up project and development environment to build a custom knowledge retrieval (RAG) app with the Azure AI Foundry SDK
 
 
-In this tutorial, you use the Azure AI SDK (and other libraries) to build, configure, evaluate, and deploy a chat app for your retail company called Contoso Trek. Your retail company specializes in outdoor camping gear and clothing. The chat app should answer questions about your products and services. For example, the chat app can answer questions such as "which tent is the most waterproof?" or "what is the best sleeping bag for cold weather?".
+In this tutorial, you use the Azure AI Foundry SDK (and other libraries) to build, configure, evaluate, and deploy a chat app for your retail company called Contoso Trek. Your retail company specializes in outdoor camping gear and clothing. The chat app should answer questions about your products and services. For example, the chat app can answer questions such as "which tent is the most waterproof?" or "what is the best sleeping bag for cold weather?".
 
 This tutorial is part one of a three-part tutorial.  This part one gets you ready to write code in part two and evaluate your chat app in part three. In this part, you:
 
@@ -95,10 +95,16 @@ In the Azure AI Studio, check for an Azure AI Search connected resource.
 
 ## Install packages
 
-* Install `azure-ai-projects`(preview) and `azure-ai-inference` (preview), along with other required packages.
+Install `azure-ai-projects`(preview) and `azure-ai-inference` (preview), along with other required packages.
+
+1. First, create a file named **requirements.txt** in your project folder. Add the following packages to the file:
+
+    :::code language="txt" source="~/azureai-samples-nov2024/scenarios/rag/custom-rag-app/requirements.txt":::
+
+1. Install the required packages:
 
     ```bash
-    pip install azure-ai-projects azure-ai-inference azure-ai-identity azure-search-documents pandas python-dotenv
+    pip install -r requirements.txt
     ```
 
 ### Create helper script
