@@ -253,7 +253,7 @@ The US mortgage document models analyze and extract key fields including borrowe
  
 ***Sample bank check processed using [Document Intelligence Studio](https://documentintelligence.ai.azure.com/studio/prebuilt?formCategory=check.us)***:
 
-:::image type="content" source="media/studio/analyze-bank-check.jpg" alt-text="Screenshot of bank check model extraction using Document Intelligence Studio.":::
+:::image type="content" source="media/studio/analyze-bank-check.png" alt-text="Screenshot of bank check model extraction using Document Intelligence Studio.":::
 
 > [!div class="nextstepaction"]
 > [Learn more: contract model](prebuilt/bank-check.md)
@@ -279,7 +279,7 @@ The US mortgage document models analyze and extract key fields including borrowe
 
 ***Sample paystub processed using [Document Intelligence Studio](https://documentintelligence.ai.azure.com/studio/prebuilt?formCategory=payStub.us)***:
 
-:::image type="content" source="media/studio/analyze-paystub.png" alt-text="Screenshot of paystub model extraction using Document Intelligence Studio.":::
+:::image type="content" source="media/studio/analyze-pay-stub.png" alt-text="Screenshot of pay stub model extraction using Document Intelligence Studio.":::
 
 > [!div class="nextstepaction"]
 > [Learn more: contract model](prebuilt/pay-stub.md)
