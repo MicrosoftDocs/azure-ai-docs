@@ -208,7 +208,7 @@ To find the internal IP addresses for the FQDNs in the VNet, use one of the foll
 1. To get the IP address and FQDN information for the workspace or hub workspace, use the following command. Replace `<resource-id>` with the ID from the previous step:
 
     ```azurecli
-    az network nic show --ids <resource-id> --query 'ipConfigurations[*].{IPAddress: privateIpAddress, FQDNs: privateLinkConnectionProperties.fqdns}'
+    az network nic show --ids <resource-id> --query 'ipConfigurations[*].{IPAddress: privateIPAddress, FQDNs: privateLinkConnectionProperties.fqdns}'
     ```
 
     The output will be similar to the following text:
