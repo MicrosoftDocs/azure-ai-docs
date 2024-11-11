@@ -53,9 +53,7 @@ A few query capabilities bypass relevance scoring, which makes them incompatible
 
 By default, queries don't use semantic ranking. To use semantic ranking, two different parameters can be used. Each parameter supports a different set of scenarios.
 
-Semantic queries, whether specified through `search` plus `queryType`, or through `semanticQuery`, must be plain text.
-
-Semantic queries can't be empty. Empty queries result in no semantic ranking being applied to the results.
+Semantic queries, whether specified through `search` plus `queryType`, or through `semanticQuery`, must be plain text and they can't be empty. Empty queries result in no semantic ranking being applied to the results.
 
 <!-- 
 1. Set `queryType` to `semantic`:
@@ -70,8 +68,8 @@ Semantic queries can't be empty. Empty queries result in no semantic ranking bei
 
 | Semantic ranker parameter | [Plain text search](search-query-create.md) | [Simple text search syntax](query-simple-syntax.md) | [Full text search syntax](query-lucene-syntax.md) | [Vector search](vector-search-how-to-query.md) | [Hybrid Search](hybrid-search-how-to-query.md) | [Semantic answers](semantic-answers.md) and captions |
 |-|-|-|-|-|-|-|
-| `queryType`: `semantic` <sup>1</sup> | ✅ | ❌ | ❌ | ❌ | ✅ | ✅ |
-| `semanticQuery`<sup>2</sup>: "<your plain text query>" | ✅ | ✅ | ✅ | ✅ |✅ | ✅ |
+| `queryType-semantic` <sup>1</sup> | ✅ | ❌ | ❌ | ❌ | ✅ | ✅ |
+| `semanticQuery="<your plain text query>"`<sup>2</sup> | ✅ | ✅ | ✅ | ✅ |✅ | ✅ |
 
 <sup>1</sup> `queryType=semantic` can't support explicit `simple` or `full` values because the `queryType` parameter is being used for `semantic`. The effective query behaviors are the defaults of the simple parser.
 
@@ -119,7 +117,9 @@ Use [Search Documents](/rest/api/searchservice/documents/search-post) to formula
 
 A response includes an `@search.rerankerScore` automatically. If you want captions or answers in the response, enable semantic ranking by setting `queryType` to `semantic` or setting `semanticQuery` and adding captions and answers to the request.
 
-The following example in this section uses the [hotels-sample-index](search-get-started-portal.md) to demonstrate semantic ranking with semantic answers and captions.
+The following examples in this section uses the [hotels-sample-index](search-get-started-portal.md) to demonstrate semantic ranking with semantic answers and captions.
+
+#### Use queryType=semantic
 
 If you want to set `queryType` to `semantic`, paste the following request into a web client as a template. Replace `search-service-name` with your search service name and replace `hotels-sample-index` if you have a different index name.
 
@@ -160,6 +160,8 @@ POST https://[search-service-name].search.windows.net/indexes/hotels-sample-inde
 
 1. Send the request to execute the query and return results.
 
+#### Use semanticQuery
+
 If you want to use "semanticQuery" in order to use [vector search](vector-search-overview.md), [simple text syntax](query-simple-syntax.md), or [full text syntax](query-lucene-syntax.md), adjust your request to the following JSON:
 
 ```http
@@ -176,12 +178,11 @@ POST https://[search-service-name].search.windows.net/indexes/hotels-sample-inde
     "highlightPostTag": "</strong>",
     "select": "HotelId,HotelName,Description,Category"
 }
-    ```
+```
 
 1. Set `queryType` to the search syntax you're using, either [simple](query-simple-syntax.md) or [full](query-lucene-syntax.md).
 
 1. Set `semanticQuery` to the simple plain text query you want to use for semantic ranking. Empty queries aren't supported.
-
 
 ### [**.NET SDK**](#tab/dotnet-query)
 
