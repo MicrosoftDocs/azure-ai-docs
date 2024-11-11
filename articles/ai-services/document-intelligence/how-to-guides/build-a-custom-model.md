@@ -18,7 +18,7 @@ monikerRange: '<=doc-intel-4.0.0'
 
 [!INCLUDE [applies to v4.0 v3.1 v3.0](../includes/applies-to-v40-v31-v30.md)]   ![blue-checkmark](../media/blue-yes-icon.png) [v2.1](?view=doc-intel-2.1.0&preserve-view=true)
 
-Document Intelligence custom models require a handful of training documents to get started. If you have at least five documents, you can get started training a custom model. You can train either a [custom template model (custom form)](../train/custom-template.md) or a [custom neural model (custom document)](../train/custom-neural.md) or [custom template model (custom form)](../train/custom-generative-extraction.md). This document walks you through the process of training the custom models.
+Document Intelligence custom models require a handful of training documents to get started. If you have at least five documents, you can get started training a custom model. You can train either a [custom template model (custom form)](../train/custom-template.md) or a [custom neural model (custom document)](../train/custom-neural.md). This document walks you through the process of training the custom models.
 
 ## Custom model input requirements
 
