@@ -56,30 +56,30 @@ Azure AI also displays the quality index as follows:
 
 | Index | Description |
 |-------|-------------|
-| Quality Index | Quality Index is calculated by scaling down GPTSimilarity between 0-1 followed by averaging with accuracy metrics.  Quality Index is higher, the better. |
+| Quality index | Quality index is calculated by scaling down GPTSimilarity between zero and one, followed by averaging with accuracy metrics. Higher values of quality index are better. |
 
-The quality index represents the average score of applicable primary metric (Accuracy, Rescaled GPTSimilarity) over 15 standard datasets and is provided on a scale of 0 to 1. 
+The quality index represents the average score of the applicable primary metric (accuracy, rescaled GPTSimilarity) over 15 standard datasets and is provided on a scale of zero to one.
 
-Quality Index constitutes 2 categories of metrics: 
+Quality index constitutes two categories of metrics: 
 
-- Accuracy (eg: exact match or pass@k). Ranges from 0-1. 
-- Prompt based metrics (eg: GPT Similarity, Groundedness, Coherence, Fluency, Relevance). Ranges from 1-5 
+- Accuracy (for example, exact match or `pass@k`). Ranges from zero to one.
+- Prompt-based metrics (for example, GPTSimilarity, groundedness, coherence, fluency, and relevance). Ranges from one to five.
 
-The stability of the GPTSimilarity metric averaging with the accuracy of the model provides an indicator of the overall quality of the model.
+The stability of the quality index value provides an indicator of the overall quality of the model.
 
 ### Performance
 
-Performance metrics are calculated as an aggregate over 14 days, based on 24 trails (2 requests per trail) sent daily with a one-hour interval between every trail. The following default parameters are used for each request to the model endpoint: 
+Performance metrics are calculated as an aggregate over 14 days, based on 24 trails (two requests per trail) sent daily with a one-hour interval between every trail. The following default parameters are used for each request to the model endpoint:
 
 | Parameter | Value | Applicable For |
 |-----------|-------|----------------|
 | Region | East US/East US2 | [Serverless APIs](../how-to/model-catalog-overview.md#serverless-api-pay-per-token-billing) and [Azure OpenAI](/azure/ai-services/openai/overview) |
 | Tokens per minute (TPM) rate limit | 30k (180 RPM based on Azure OpenAI) <br> N/A (serverless APIs) | For Azure OpenAI models, selection is available for users with rate limit ranges based on deployment type (standard, global, global standard, and so on.) <br> For serverless APIs, this setting is abstracted. |
-| Number of requests | 2 requests in a trail for every hour (24 trails per day) | Serverless APIs, Azure OpenAI |
+| Number of requests | Two requests in a trail for every hour (24 trails per day) | Serverless APIs, Azure OpenAI |
 | Number of trails/runs | 14 days with 24 trails per day for 336 runs | Serverless APIs, Azure OpenAI |
 | Prompt/Context length | Moderate length | Serverless APIs, Azure OpenAI |
 | Number of tokens processed (moderate) | 80:20 ratio for input to output tokens, that is, 800 input tokens to 200 output tokens. | Serverless APIs, Azure OpenAI |
-| Number of concurrent requests | 1 (requests are sent sequentially one after other) | Serverless APIs, Azure OpenAI |
+| Number of concurrent requests | One (requests are sent sequentially one after other) | Serverless APIs, Azure OpenAI |
 | Data | Synthetic (input prompts prepared from static text) | Serverless APIs, Azure OpenAI |
 | Region | East US/East US2 | Serverless APIs and Azure OpenAI |
 | Deployment type | Standard | Applicable only for Azure OpenAI |
@@ -111,7 +111,7 @@ For performance metrics like latency or throughput, the time to first token and 
 
 ### Cost
 
-Cost calculations are estimates for using an LLM or SLM model endpoint hosted on the Azure AI platform. We support displaying the cost of MaaS and AOAI models. Please be aware that costs are subject to change. To account for this, we refresh our cost calculations on regular cadence.
+Cost calculations are estimates for using an LLM or SLM model endpoint hosted on the Azure AI platform. Azure AI supports displaying the cost of serverless APIs and Azure OpenAI models. Because these costs are subject to change, we refresh our cost calculations on a regular cadence.
 
 The cost of LLMs and SLMs is assessed across the following metrics:
 
