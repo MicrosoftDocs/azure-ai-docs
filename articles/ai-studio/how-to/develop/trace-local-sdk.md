@@ -57,7 +57,7 @@ Install the package `@azure-rest/ai-inference` for JavaScript using npm:
     npm install @azure-rest/ai-inference
 ```
 
-To learn more about Azure AI Inference SDK for Javascript and observability, see [Tracing via Inference SDK for Javascript](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/ai/ai-inference-rest/README.md#instrumentation).
+To learn more about Azure AI Inference SDK for JavaScript and observability, see [Tracing via Inference SDK for JavaScript](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/ai/ai-inference-rest/README.md#instrumentation).
 
 # [C#](#tab/csharp)
 
