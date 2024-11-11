@@ -273,6 +273,7 @@ So far you have already setup each resource work independently. Next you need to
 | `Storage Blob Data Contributor` | Azure OpenAI | Storage Account | Reads from the input container, and writes the preprocessed result to the output container. |
 | `Cognitive Services OpenAI Contributor` | Azure AI Search | Azure OpenAI | Custom skill. |
 | `Storage Blob Data Reader` | Azure AI Search | Storage Account | Reads document blobs and chunk blobs. |
+| `Reader` | Azure AI Studio Project | Azure Storage Private Endpoints (Blob & File) | Read search indexes created in blob storage within an AI Studio Project. |
 | `Cognitive Services OpenAI User` | Web app | Azure OpenAI | Inference. |
 
 

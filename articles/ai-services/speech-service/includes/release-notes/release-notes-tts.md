@@ -2,7 +2,7 @@
 author: eric-urban
 ms.service: azure-ai-speech
 ms.topic: include
-ms.date: 10/9/2024
+ms.date: 11/11/2024
 ms.author: eur
 ms.custom: references_regions
 ---
@@ -11,7 +11,35 @@ ms.custom: references_regions
 
 ##### Prebuilt neural voice
 
-- Introduce 4 turbo version of Azure OpenAI voices in public preview: `en-US-EchoTurboMultilingualNeural`, `en-US-FableTurboMultilingualNeural`, `en-US-OnyxTurboMultilingualNeural`, and `en-US-ShimmerTurboMultilingualNeural`. Turbo version of Azure OpenAI voices has the similar voice persona as Azure OpenAI voices but supports extra features. Turbo voices support the full set of SSML elements and more features like word boundary, just like other Azure AI Speech voices. See the [full language and voice list](../../language-support.md?tabs=tts) for more information.
+Introduced 4 turbo version of Azure OpenAI voices in public preview: `en-US-EchoTurboMultilingualNeural`, `en-US-FableTurboMultilingualNeural`, `en-US-OnyxTurboMultilingualNeural`, and `en-US-ShimmerTurboMultilingualNeural`. Turbo version of Azure OpenAI voices has the similar voice persona as Azure OpenAI voices but supports extra features. Turbo voices support the full set of SSML elements and more features like word boundary, just like other Azure AI Speech voices. See the [full language and voice list](../../language-support.md?tabs=tts) for more information.
+
+These voices are now generally available:
+
+| **Locale (BCP-47)** | **Voice name**              |
+|---------------------|---------------------------|
+| `de-DE` | `SeraphinaMultilingualNeural` |
+| `de-DE` | `FlorianMultilingualNeural` |
+| `en-GB` | `AdaMultilingualNeural` |
+| `en-GB` | `OllieMultilingualNeural` |
+| `en-US` | `LunaNeural` |
+| `en-US` | `KaiNeural` |
+| `en-US` | `CoraMultilingualNeural` |
+| `en-US` | `ChristopherMultilingualNeural` |
+| `en-US` | `BrandonMultilingualNeural` |
+| `es-ES` | `IsidoraMultilingualNeural` |
+| `es-ES` | `ArabellaMultilingualNeural` |
+| `es-ES` | `TristanMultilingualNeural` |
+| `es-ES` | `XimenaMultilingualNeural` |
+| `fr-FR` | `LucienMultilingualNeural` |
+| `fr-FR` | `VivienneMultilingualNeural` |
+| `fr-FR` | `RemyMultilingualNeural` |
+| `it-IT` | `IsabellaMultilingualNeural` |
+| `it-IT` | `MarcelloMultilingualNeural` |
+| `it-IT` | `AlessioMultilingualNeural` |
+| `it-IT` | `GiuseppeMultilingualNeural` |
+| `ko-KR` | `HyunsuMultilingualNeural` |
+| `pt-BR` | `ThalitaMultilingualNeural` |
+| `pt-BR` | `MacerioMultilingualNeural` |
 
 #### Prebuilt high definition (HD) neural voice
 

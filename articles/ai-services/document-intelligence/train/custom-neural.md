@@ -33,7 +33,7 @@ monikerRange: '>=doc-intel-3.0.0'
 **This content applies to:** ![checkmark](../media/yes-icon.png) **v3.0 (GA)** | **Latest versions:** ![purple-checkmark](../media/purple-yes-icon.png) [**v4.0 (GA)**](?view=doc-intel-4.0.0&preserve-view=true) ![purple-checkmark](../media/purple-yes-icon.png) [**v3.1**](?view=doc-intel-3.1.0&preserve-view=true)
 ::: moniker-end
 
-Custom neural document models or neural models are a deep learned model type that combines layout and language features to accurately extract labeled fields from documents. The base custom neural model is trained on various document types that makes it suitable to be trained for extracting fields from structured and semi-structured documents. Custom neural models are available in the [v3.0 and later models](../v3-1-migration-guide.md) The table below lists common document types for each category:
+Custom neural document models or neural models are a deep learned model type that combines layout and language features to accurately extract labeled fields from documents. The base custom neural model is trained on various document types that makes it suitable to be trained for extracting fields from structured and semi-structured documents. Custom neural models are available in the [v3.0 and later models](../v3-1-migration-guide.md) With V4.0, custom neural model now supports signature detection. The table below lists common document types for each category:
 
 | Documents | Examples |
 |---|--|
@@ -51,7 +51,7 @@ Custom neural models currently support key-value pairs and selection marks and s
 
 | Form fields | Selection marks | Tabular fields | Signature | Region labeling | Overlapping fields |
 |:--:|:--:|:--:|:--:|:--:|:--:|
-| Supported | Supported | Supported | Unsupported | Supported <sup>1</sup> | Supported <sup>2</sup> |
+| Supported | Supported | Supported | Supported | Supported <sup>1</sup> | Supported <sup>2</sup> |
 
 <sup>1</sup> Region labels in custom neural models use the results from the Layout API for specified region. This feature is different from template models where, if no value is present, text is generated at training time.</br>
 <sup>2</sup> Overlapping fields are supported with REST API version **2024-11-30 (GA)**. Overlapping fields have some limits. For more information, *see* [overlapping fields](#overlapping-fields).
