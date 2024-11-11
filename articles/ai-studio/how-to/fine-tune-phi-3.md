@@ -75,12 +75,12 @@ Fine-tuning of Phi-3 models is currently supported in projects located in East U
 
 ## [Phi-3.5](#tab/phi-3.5)
 
-The following models are available in Azure AI Studio for Phi 3 when fine-tuning as a service with pay-as-you-go:
+The following models are available in Azure AI Studio for Phi 3.5 when fine-tuning as a service with pay-as-you-go:
 
 - `Phi-3.5-mini-Instruct` (preview)
 - `Phi-3.5-MoE-Instruct` (preview)
 
-Fine-tuning of Phi-3 models is currently supported in projects located in East US 2.
+Fine-tuning of Phi-3.5 models is currently supported in projects located in East US 2.
 
 ---
 
@@ -209,7 +209,7 @@ Once your model is fine-tuned, you can deploy the model and can use it in your o
 
 # [Phi-3.5](#tab/phi-3.5)
 
-To fine-tune a Phi-3 model:
+To fine-tune a Phi-3.5 model:
 
 1. Sign in to [Azure AI Studio](https://ai.azure.com).
 1. Choose the model you want to fine-tune from the Azure AI Studio [model catalog](https://ai.azure.com/explore/models). 
