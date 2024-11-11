@@ -24,7 +24,7 @@ This documentation contains the following types of articles:
 [!INCLUDE [Typical workflow for pre-configured language features](../includes/overview-typical-workflow.md)]
 
 
-## Get started with entity linking
+## Get started with Key phrase extraction
 
 [!INCLUDE [development options](./includes/development-options.md)]
 
