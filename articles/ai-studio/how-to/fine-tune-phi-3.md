@@ -44,6 +44,7 @@ The model underwent a rigorous enhancement process, incorporating both supervise
 
 # [Phi-3.5](#tab/phi-3.5)
 
+
 Phi-3.5-mini-Instruct is a 3.8B parameter model enhances multi-lingual support, reasoning capability, and offers an extended context length of 128K tokens
 
 Phi-3.5-MoE-Instruct. Featuring 16 experts and 6.6B active parameters, this model delivers high performance, reduced latency, multi-lingual support, and robust safety measures, surpassing the capabilities of larger models while maintaining the efficacy of the Phi models.
@@ -52,8 +53,6 @@ Phi-3.5-MoE-Instruct. Featuring 16 experts and 6.6B active parameters, this mode
 - Phi-3.5-MoE-Instruct
 
 The models underwent a rigorous enhancement process, incorporating both supervised fine-tuning and direct preference optimization to ensure precise instruction adherence and robust safety measures. When assessed against benchmarks that test common sense, language understanding, math, code, long context and logical reasoning, Phi-3.5-mini-Instruct and Phi-3.5-MoE-Instruct showcased a robust and state-of-the-art performance among models with less than 13 billion parameters.
-
----
 
 
 ## [Phi-3-mini](#tab/phi-3-mini)
@@ -74,14 +73,6 @@ The following models are available in Azure AI Studio for Phi 3 when fine-tuning
 
 Fine-tuning of Phi-3 models is currently supported in projects located in East US 2.
 
-# [Phi-3.5](#tab/phi-3.5)
-
-The following models are available in Azure AI Studio for Phi 3.5 when fine-tuning as a service with pay-as-you-go:
-
-- `Phi-3.5-mini-Instruct` (preview)
-- `Phi-3.5-MoE-Instruct` (preview)
-
-Fine-tuning of Phi-3.5 models is currently supported in projects located in East US 2.
 
 ---
 
