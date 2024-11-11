@@ -5,7 +5,7 @@ description: Evaluate and deploy a custom chat app with the prompt flow SDK. Thi
 manager: scottpolly
 ms.service: azure-ai-studio
 ms.topic: tutorial
-ms.date: 11/06/2024
+ms.date: 11/11/2024
 ms.reviewer: lebaro
 ms.author: sgilley
 author: sdgilley
