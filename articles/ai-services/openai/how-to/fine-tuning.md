@@ -7,10 +7,10 @@ manager: nitinme
 ms.service: azure-ai-openai
 ms.custom: build-2023, build-2023-dataai, devx-track-python
 ms.topic: how-to
-ms.date: 10/03/2024
+ms.date: 11/11/2024
 author: mrbullwinkle
 ms.author: mbullwin
-zone_pivot_groups: openai-fine-tuning-new
+zone_pivot_groups: openai-fine-tuning-newest
 ---
 
 # Customize a model with fine-tuning
@@ -31,13 +31,7 @@ We use LoRA, or low rank approximation, to fine-tune models in a way that reduce
 
 ::: zone pivot="programming-language-studio"
 
-[!INCLUDE [Azure OpenAI Studio fine-tuning](../includes/fine-tuning-studio.md)]
-
-::: zone-end
-
-::: zone pivot="programming-language-ai-studio"
-
-[!INCLUDE [AI Studio fine-tuning](../includes/fine-tuning-openai-in-ai-studio.md)]
+[!INCLUDE [Azure OpenAI Studio fine-tuning](../includes/fine-tuning-studio-unified.md)]
 
 ::: zone-end
 
