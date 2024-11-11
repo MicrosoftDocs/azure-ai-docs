@@ -292,8 +292,28 @@ For testing our endpoint, we are going to use a sample of the dataset [BillSum: 
 
    # [Azure CLI](#tab/cli)
    
-   :::code language="azurecli" source="~/azureml-examples-main/cli/endpoints/batch/deploy-models/imagenet-classifier/deploy-and-run.sh" ID="show_job_in_studio" :::
-   
+   1. Create a YAML file, bill-summarization.yml:
+
+   ```yml
+   $schema: https://azuremlschemas.azureedge.net/latest/data.schema.json
+   name: bill-summarization
+   description: A sample of a dataset for summarization of US Congressional and California state bills.
+   type: uri_file
+   path: data/billsum-0.csv
+   ```
+
+   1. Create a data asset.
+
+      ```azurecli
+      az ml data create -f bill-summarization.yml
+      ```
+
+   1. Get the ID of the data asset.
+
+      ```azurecli
+      DATA_ASSET_ID=$(az ml data show -n bill-summarization --label latest | jq -r .id)
+      ```
+
    # [Python](#tab/python)
    
    [!notebook-python[] (~/azureml-examples-main/sdk/python/endpoints/batch/deploy-models/openai-embeddings/deploy-and-test.ipynb?name=configure_inputs)]
@@ -302,7 +322,9 @@ For testing our endpoint, we are going to use a sample of the dataset [BillSum: 
 
    # [Azure CLI](#tab/cli)
    
-   :::code language="azurecli" source="~/azureml-examples-main/cli/endpoints/batch/deploy-models/openai-embeddings/deploy-and-run.sh" ID="start_batch_scoring_job" :::
+   ```azurecli
+   JOB_NAME=$(az ml batch-endpoint invoke --name $ENDPOINT_NAME --input $DATA_ASSET_ID --query name -o tsv)
+   ```
    
    # [Python](#tab/python)
 
@@ -331,15 +353,35 @@ For testing our endpoint, we are going to use a sample of the dataset [BillSum: 
 
    # [Python](#tab/python)
 
+   The deployment creates a child job that implements the scoring. Get a reference to that child job:
+
+   ```python
+   scoring_job = list(ml_client.jobs.list(parent_job_name=job.name))[0]
+   ```
+
+   Download the scores:
+
    [!notebook-python[] (~/azureml-examples-main/sdk/python/endpoints/batch/deploy-models/openai-embeddings/deploy-and-test.ipynb?name=download_outputs)]
 
 1. The output predictions look like the following.
 
     ```python
-    import pandas as pd 
-       
-    embeddings = pd.read_json("named-outputs/score/embeddings.jsonl", lines=True)
-    embeddings
+    import pandas as pd
+    from io import StringIO
+
+    # Read the output data into an object.
+    with open('sample-output.jsonl', 'r') as f:
+        json_lines = f.readlines()
+    string_io = StringIO()
+    for line in json_lines:
+        string_io.write(line)
+    string_io.seek(0)
+
+    # Read the data into a data frame.
+    embeddings = pd.read_json(string_io, lines=True)
+
+    # Print the data frame.
+    print(embeddings)
     ```
 
     __embeddings.jsonl__
@@ -349,14 +391,14 @@ For testing our endpoint, we are going to use a sample of the dataset [BillSum: 
         "file": "billsum-0.csv",
         "row": 0,
         "embeddings": [
-            [0, 0, 0 ,0 , 0, 0, 0 ]
+            [0, 0, 0, 0, 0, 0, 0 ]
         ]
     },
     {
         "file": "billsum-0.csv",
         "row": 1,
         "embeddings": [
-            [0, 0, 0 ,0 , 0, 0, 0 ]
+            [0, 0, 0, 0, 0, 0, 0 ]
         ]
     },
     ```
