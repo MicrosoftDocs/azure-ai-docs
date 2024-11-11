@@ -33,7 +33,7 @@ Document Intelligence service is updated on an ongoing basis. Bookmark this page
 **Document Intelligence v4.0 (2024-11-30) is now generally available (GA)**! The API version corresponds to 2024-11-30. The v4.0 API includes the following changes as listed:
 
 * [🆕 Batch API](concept-batch-analysis.md)
-  * Batch API now supports all the prebuilt models.
+  * Batch API now supports all models, including all read, layout, prebuilt verticals, and custom models.
   * Batch API supports LIST function to allow users to list batch jobs within past seven days.
   * Batch API supports DELETE function to explicitly delete batch job for GDPR and privacy compliance.
   * GetAnalyzeBatchResult supports resultId in response to LIST all resultIds.
