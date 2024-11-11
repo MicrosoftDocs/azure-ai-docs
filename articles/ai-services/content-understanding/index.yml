@@ -12,36 +12,40 @@ metadata:
   ms.date: 11/19/2024
 
 landingContent:
-  - title: About Content Understanding
+  - title: About Azure AI Content Understanding
     linkLists:
       - linkListType: overview
         links:
-          - text: What is Content Understanding?
+          - text: What is Azure AI Content Understanding?
             url: overview.md
-          - text: What are Azure AI services?
-            url: ../../ai-services/what-are-ai-services.md
+          - text: Content Understanding FAQ
+            url: faq.yml
+      - linkListType: whats-new
+        links:
+          - text: What's new in Azure AI Content Understanding
+            url: whats-new.md
+
+  - title: Modalities
+    linkLists:
+      - linkListType: concept
+        links:
+        - text: Audio
+          url: audio/overview.md
+        - text: Video
+          url: video/overview.md
+        - text: Image
+          url: image/overview.md
+        - text: Document
+          url: document/overview.md   
 
   - title: Get started
     linkLists:
       - linkListType: quickstart
         links:
-        - text: Use Content Understanding in Azure AI Foundry
-          url: quickstart/use-ai-foundry.md
-        - text: Use Content Understanding Rest API
+        - text: Content Understanding REST API
           url: quickstart/use-rest-api.md
-
-  - title: Capabilities
-    linkLists:
-      - linkListType: concept
-        links:
-        - text: Document
-          url: document/overview.md
-        - text: Image
+        - text: Azure AI Foundry
           url: image/overview.md
-        - text: Audio
-          url: audio/overview.md  
-        - text: Video
-          url: video/overview.md          
   
   - title: Responsible use of AI
     linkLists:
