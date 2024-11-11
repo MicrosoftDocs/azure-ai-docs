@@ -55,7 +55,7 @@ See [Quickstart](quickstart/use-ai-foundry.md) for more examples.
 
 ## Components
 
-:::image type="content" source="media/overview/component_overview.png" alt-text="Screenshot of Content Understanding components.":::
+:::image type="content" source="media/overview/component-overview.png" alt-text="Screenshot of Content Understanding components.":::
 
 |Component|Description|
 |:---------|:----------|

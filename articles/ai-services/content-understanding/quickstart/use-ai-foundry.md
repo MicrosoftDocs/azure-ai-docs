@@ -80,7 +80,7 @@ To follow are several of our document analyzer templates.
 |Document analysis |Analyze documents to extract text, layout, structured fields, and more.|
 |Text analysis |Analyze texts and extract structured fields.|
 
-   :::image type="content" source="../media/analyzer-template/image_doc_templates.png" alt-text="Screenshot of document analyzer template.":::
+   :::image type="content" source="../media/analyzer-template/image-templates.png" alt-text="Screenshot of document analyzer template.":::
 
 ### Image analyzer templates
 
@@ -92,7 +92,7 @@ To follow are several of our image analyzer templates.
 |Retail inventory management |Retail inventory management for monitoring of products on shelves.|
 |Defect detection |Identify potential defects in provided images of metal plates.|
 
-   :::image type="content" source="../media/analyzer-template/image_doc_templates.png" alt-text="Screenshot of image analyzer template.":::
+   :::image type="content" source="../media/analyzer-template/image-templates.png" alt-text="Screenshot of image analyzer template.":::
 
 ### Audio analyzer templates
 
@@ -105,7 +105,7 @@ To follow are several of our audio analyzer templates.
 |Post call analytics |Analyze call center conversations to extract transcripts, summaries, sentiment, and more.|
 
 
-   :::image type="content" source="../media/analyzer-template/audio_templates.png" alt-text="Screenshot of audio analyzer template.":::
+   :::image type="content" source="../media/analyzer-template/audio-templates.png" alt-text="Screenshot of audio analyzer template.":::
 
 ### Video analyzer templates
 
@@ -118,7 +118,7 @@ To follow are several of our video analyzer templates.
 |Advertising |Advertising analysis and moderation.|
 
 
-   :::image type="content" source="../media/analyzer-template/video_templates.png" alt-text="Screenshot of video analyzer template.":::
+   :::image type="content" source="../media/analyzer-template/video-templates.png" alt-text="Screenshot of video analyzer template.":::
 
 ## Next steps
 
