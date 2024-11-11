@@ -26,7 +26,7 @@ Weights & Biases (W&B) is a powerful AI developer platform that enables machine 
 
 ## Enable System Managed Identity
 
-Enable [System Managed Identity](/entra/identity/managed-identities-azure-resources/overview) for your Azure OpenAI resource.
+First you will need to enable [System Managed Identity](/entra/identity/managed-identities-azure-resources/overview) for your Azure OpenAI resource.
 
 :::image type="content" source="../media/how-to/weights-and-biases/system-managed.png" alt-text="Screenshot of the system managed identity enabled user experience." lightbox="../media/how-to/weights-and-biases/system-managed.png":::
 
