@@ -31,7 +31,7 @@ We use LoRA, or low rank approximation, to fine-tune models in a way that reduce
 
 ::: zone pivot="programming-language-studio"
 
-[!INCLUDE [Azure OpenAI Studio fine-tuning](../includes/fine-tuning-studio-unified.md)]
+[!INCLUDE [Azure OpenAI Studio fine-tuning](../includes/fine-tuning-unified.md)]
 
 ::: zone-end
 
