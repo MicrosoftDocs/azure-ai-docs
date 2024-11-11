@@ -16,13 +16,13 @@ ms.custom: ignite-2024
 
 This article aims to provide an overview of the resources available to help you use AI responsibly. Our recommended essential development steps are grounded in the [Microsoft Responsible AI Standard](https://aka.ms/RAI), which sets policy requirements that our own engineering teams follow. Much of the content of the Standard follows a pattern, asking teams to Identify, Measure, and Mitigate potential content risks, and plan for how to Operate the AI system as well.  
 
-At Microsoft, our approach is guided by a governance framework rooted in AI principles, which establish product requirements and serve as our "north star." When we identify abusiness use case for generative AI, we first assess the potential risks of the AI system to pinpoint critical focus areas. 
+At Microsoft, our approach is guided by a governance framework rooted in AI principles, which establish product requirements and serve as our "north star." When we identify a business use case for generative AI, we first assess the potential risks of the AI system to pinpoint critical focus areas. 
 
 Once we identify these risks, we evaluate their prevalence within the AI system through systematic measurement, helping us prioritize areas that need attention. We then apply appropriate mitigations and measure again to assess effectiveness. 
 
 Finally, we examine strategies for managing risks in production, including deployment and operational readiness and setting up monitoring to support ongoing improvement after the application is live. 
 
-:::image type="content" source="media/content-safety/safety-pattern.png" alt-text="Diagram of the contenty safety pattern.":::
+:::image type="content" source="media/content-safety/safety-pattern.png" alt-text="Diagram of the content safety pattern.":::
 
 In alignment with those Microsoft's RAI practices, these recommendations are organized into four stages:
 - **Map**: Identify and prioritize potential content risks that could result from your AI system through iterative red-teaming, stress-testing, and analysis. 
@@ -74,7 +74,7 @@ At the end of this measurement stage, you should have a defined measurement appr
 
 Mitigating harms presented by large language models such as the Azure OpenAI models requires an iterative, layered approach that includes experimentation and continual measurement. We recommend developing a mitigation plan that encompasses four layers of mitigations for the harms identified in the earlier stages of this process: 
 
-:::image type="content" source="media/content-safety/mitigation-layers.png" alt-text="Diagram of mitigation layers":::
+:::image type="content" source="media/content-safety/mitigation-layers.png" alt-text="Diagram of mitigation layers.":::
 
 ### System message and grounding layer 
 
