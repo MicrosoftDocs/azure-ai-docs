@@ -1,13 +1,14 @@
 ---
 title: How to get started with Azure AI Foundry SDK
 titleSuffix: Azure AI Studio
-description: This article provides an overview of available Azure AI SDKs.
+description: This article provides an overview of the Azure AI Foundry SDK and how to get started using it.
 manager: scottpolly
 ms.service: azure-ai-studio
 ms.custom:
   - build-2024
+  - ignite-2024
 ms.topic: overview
-ms.date: 11/07/2024
+ms.date: 11/19/2024
 ms.reviewer: dantaylo
 ms.author: sgilley
 author: sdgilley
@@ -83,7 +84,7 @@ Be sure to check out the [reference](https://aka.ms/aifoundrysdk/reference) and 
 
 ## Azure OpenAI Service
 
-The [Azure OpenAI Service](../../../ai-services/openai/overview.md) allows you to access OpenAI models the same day they launch. It integrates with the rest of Azure and provides enterprise scale and controls.
+The [Azure OpenAI Service](../../../ai-services/openai/overview.md) provides access to OpenAI's models including the GPT-4o, GPT-4o mini, GPT-4, GPT-4 Turbo with Vision, DALLE-3, Whisper, and Embeddings model series with the security and enterprise capabilities of Azure.
 
 If you have code that uses the OpenAI SDK, you can easily target your code to use the Azure OpenAI service. First, install the OpenAI SDK:
 ```
@@ -169,9 +170,11 @@ prompt_template = PromptTemplate.from_string(prompt_template="""
 messages = prompt_template.create_messages(first_name="Jane", last_name="Doe")
 print(messages)
 ```
-NOTE: leading whitespace is automatically trimmed from input strings.
 
-This code outputs messages that you can then pass to a chat completions call:
+> [!NOTE]
+> Leading whitespace is automatically trimmed from input strings.
+
+This code outputs messages that you can then pass to a chat completion call:
 
 ```text
 [
