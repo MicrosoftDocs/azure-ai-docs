@@ -47,6 +47,8 @@ pip install opentelemetry
 pip install opentelemetry-exporter-otlp 
 ```
 
+To learn more about Azure AI Inference SDK for Python and observability, see [Tracing via Inference SDK for Python](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-inference/README.md#observability-with-opentelemetry).
+
 # [JavaScript](#tab/javascript)
 
 Install the package `@azure-rest/ai-inference` for JavaScript using npm:
@@ -54,6 +56,8 @@ Install the package `@azure-rest/ai-inference` for JavaScript using npm:
 ```bash
     npm install @azure-rest/ai-inference
 ```
+
+To learn more about Azure AI Inference SDK for Javascript and observability, see [Tracing via Inference SDK for Javascript](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/ai/ai-inference-rest/README.md#instrumentation).
 
 # [C#](#tab/csharp)
 
@@ -63,9 +67,11 @@ Install the Azure AI Inference client library for .NET with [NuGet](https://ak
     dotnet add package Azure.AI.Inference --prerelease
 ```
 
+To learn more Azure AI Inference SDK for C# and observability, see the [Tracing via Inference SDK for C#](https://github.com/Azure/azure-sdk-for-net/tree/Azure.AI.Inference_1.0.0-beta.2/sdk/ai/Azure.AI.Inference#observability-with-opentelemetry).
+
 ---
 
-To learn more, see the [Inference SDK reference](../../reference/reference-model-inference-api.md).
+To learn more , see the [Inference SDK reference](../../reference/reference-model-inference-api.md).
 
 ### Configuration
 
