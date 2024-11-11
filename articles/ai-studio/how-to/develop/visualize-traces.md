@@ -87,7 +87,7 @@ By selecting a trace, I can step through each span and identify issues while obs
 
  To update the Application Insights resource that is attached to your project, go to **Manage data source** and **Edit** to switch to a new Application Insights resource.
 
-:::image type="content" source="../../mediatrace/visualize/tracing-manage-data-source.png" alt-text="Screenshot of manage data sources pop-up highlighting the edit button." lightbox="../../media/trace/visualize/tracing-manage-data-source.png":::
+:::image type="content" source="../../media/trace/visualize/tracing-manage-data-source.png" alt-text="Screenshot of manage data sources pop-up highlighting the edit button." lightbox="../../media/trace/visualize/tracing-manage-data-source.png":::
 
 ## View your traces in Azure Monitor
 
