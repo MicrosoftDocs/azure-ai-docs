@@ -31,5 +31,8 @@ If you have a search index that you want to use, update the `AISEARCH_INDEX_NAME
 
 If you changed the names of the models when you deployed them, update the values in the `.env` file to match the names you used.
 
+> [!TIP]
+> If you're working in VS Code, close and reopen the terminal window after you've saved changes in the `.env` file.
+
 > [!WARNING]
 > Ensure that your `.env` is in your `.gitignore` file so that you don't accidentally check it into your git repository.
