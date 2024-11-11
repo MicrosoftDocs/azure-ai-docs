@@ -47,7 +47,7 @@ To follow is an example of building an analyzer to extract key data from an invo
 
     * Specify clear and simple field names. Example fields: **vendorName**, **items**, **price**.
 
-    * Indicate the value type for each field (strings, dates, numbers, lists, groups). To learn more, *see* [supported field types](../image/overview.md#supported-field-types).
+    * Indicate the value type for each field (strings, dates, numbers, lists, groups). To learn more, *see* [supported field types](../service-limits.md#field-type-limits).
 
     * *[Optional]* Provide field descriptions to explain the desired behavior, including any exceptions or rules.
 
