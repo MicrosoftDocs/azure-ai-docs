@@ -44,7 +44,7 @@ Using the Azure portal or newer preview REST APIs and beta SDK packages, you can
 
 1. [Configure Azure AI Search to use a managed identity](search-howto-managed-identities-data-sources.md).
 
-1. On your Azure AI multi-service resource, [assign the identity to the **Cognitive Services User** role](/azure/role-based-access-control/role-assignments-portal).
+1. On your Azure AI multi-service resource, [assign the identity](/azure/role-based-access-control/role-assignments-portal) to the **Cognitive Services User** role.
 
 1. Using the Azure portal, or the [Skillset 2024-11-01-preview REST API](/rest/api/searchservice/skillsets/create-or-update?view=rest-searchservice-2024-11-01-preview&preserve-view=true), or an Azure SDK beta package that provides the syntax, configure a skillset to use an identity:
 
