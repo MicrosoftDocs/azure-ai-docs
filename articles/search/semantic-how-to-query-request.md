@@ -10,7 +10,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: how-to
-ms.date: 09/24/2024
+ms.date: 11/19/2024
 ---
 
 # Add semantic ranking to queries in Azure AI Search
@@ -51,8 +51,13 @@ A few query capabilities bypass relevance scoring, which makes them incompatible
 
 ## Set up the query
 
-By default, queries don't use semantic ranking. To use semantic ranking, two different parameters may be used. Each parameter supports a different set of scenarios:
+By default, queries don't use semantic ranking. To use semantic ranking, two different parameters can be used. Each parameter supports a different set of scenarios.
 
+Semantic queries, whether specified through `search` plus `queryType`, or through `semanticQuery`, must be plain text.
+
+Semantic queries can't be empty. Empty queries result in no semantic ranking being applied to the results.
+
+<!-- 
 1. Set `queryType` to `semantic`:
   + [Text search](search-lucene-query-architecture.md) with a simple plain text query. Empty queries result in no semantic ranking being applied to the results.
   + [Hybrid search](hybrid-search-overview.md).
@@ -61,22 +66,22 @@ By default, queries don't use semantic ranking. To use semantic ranking, two dif
   + [Text search](search-lucene-query-architecture.md) using the [simple](query-simple-syntax.md) or [full](query-lucene-syntax.md) syntax.
   + [Vector search](vector-search-overview.md).
   + [Hybrid search](hybrid-search-overview.md).
-  + The query specified for `semanticQuery` must be a plain text query. Empty queries aren't supported.
+  + The query specified for `semanticQuery` must be a plain text query. Empty queries aren't supported. -->
 
-The following table illustrates the supported scenarios depending on which semantic ranking parameter is used:
-
-| Semantic Ranker Parameter | Plain text search | [Simple text search syntax](query-simple-syntax.md) | [Full text search syntax](query-lucene-syntax.md) | [Vector search](vector-search-overview.md) | [Hybrid Search](hybrid-search-overview.md) | [Semantic answers](semantic-answers.md) and captions |
+| Semantic ranker parameter | [Plain text search](search-query-create.md) | [Simple text search syntax](query-simple-syntax.md) | [Full text search syntax](query-lucene-syntax.md) | [Vector search](vector-search-how-to-query.md) | [Hybrid Search](hybrid-search-how-to-query.md) | [Semantic answers](semantic-answers.md) and captions |
 |-|-|-|-|-|-|-|
-| Set `queryType` to `semantic` | ✅ | ❌ | ❌ | ❌ | ✅ | ✅ |
-| Set `semanticQuery`<sup>1</sup> | ✅ | ✅ | ✅ | ✅ |✅ | ✅ |
+| `queryType`: `semantic` <sup>1</sup> | ✅ | ❌ | ❌ | ❌ | ✅ | ✅ |
+| `semanticQuery`<sup>2</sup>: "<your plain text query>" | ✅ | ✅ | ✅ | ✅ |✅ | ✅ |
 
-<sup>1</sup> `semanticQuery` isn't supported in the portal [search explorer](search-explorer.md).
+<sup>1</sup> `queryType=semantic` can't support explicit `simple` or `full` values because the `queryType` parameter is being used for `semantic`. The effective query behaviors are the defaults of the simple parser.
+
+<sup>2</sup> The `semanticQuery` parameter can be used for all query types. However, it isn't supported in the portal [Search Explorer](search-explorer.md).
 
 Regardless of the parameter chosen, the index should contain text fields with rich semantic content and a [semantic configuration](semantic-how-to-configure.md).
 
 ### [**Azure portal**](#tab/portal-query)
 
-[Search explorer](search-explorer.md) includes options for semantic ranking. 
+[Search explorer](search-explorer.md) includes options for semantic ranking. Recall that you can't set the `semanticQuery` parameter in the Azure portal.
 
 1. Sign in to the [Azure portal](https://portal.azure.com).
 
