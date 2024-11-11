@@ -68,6 +68,46 @@ The **Prompt Shields** panel lets you try out user input risk detection. Detect 
 
 For more information, see the [Prompt Shields conceptual guide](/azure/ai-services/content-safety/concepts/jailbreak-detection). 
 
+
+
+## Use Groundedness detection
+
+The Groundedness detection panel lets you detect whether the text responses of large language models (LLMs) are grounded in the source materials provided by the users.
+
+1. Select the **Groundedness detection** panel.
+1. Select a sample content set on the page, or input your own for testing.
+1. Optionally, enable the reasoning feature and select your Azure OpenAI resource from the dropdown.
+1. Select **Run test**. 
+    The service returns the groundedness detection result.
+
+
+For more information, see the [Groundedness detection conceptual guide](/azure/ai-services/content-safety/concepts/groundedness).
+
+
+## Use Protected material detection
+
+This feature scans AI-generated text for known text content (for example, song lyrics, articles, recipes, selected web content).
+
+1. Select the **Protected material detection for text** or **Protected material detection for code** panel.
+1. Select a sample text on the page, or input your own for testing.
+1. Select **Run test**. 
+    The service returns the protected content result.
+
+For more information, see the [Protected material conceptual guide](/azure/ai-services/content-safety/concepts/protected-material).
+
+## Use custom categories
+
+This feature lets you create and train your own custom content categories and scan text for matches. 
+
+1. Select the **Custom categories** panel.
+1. Select **Add a new category** to open a dialog box. Enter your category name and a text description, and connect a blob storage container with text training data. Select **Create and train**. 
+1. Select a category and enter your sample input text, and select **Run test**. 
+    The service returns the custom category result.
+
+
+For more information, see the [Custom categories conceptual guide](/azure/ai-services/content-safety/concepts/custom-categories).
+
+
 ## Next step
 
 To use Azure AI Content Safety features with your Generative AI models, see the [Content filtering](../../concepts/content-filtering.md) guide.

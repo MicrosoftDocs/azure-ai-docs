@@ -75,17 +75,7 @@ items:
       - name: Use your image data with Azure OpenAI
         href: how-to/data-image-add.md
         displayName: vision, gpt, turbo
-    - name: Azure AI Content Safety 
-      items:
-      - name: What is Azure AI Content Safety?
-        href: ai-services/content-safety-overview.md
-      - name: Use Azure AI Content Safety in AI Studio
-        href: ai-services/how-to/content-safety.md
-      - name: Content filtering
-        href: concepts/content-filtering.md
-      - name: Use blocklists
-        href: how-to/use-blocklists.md
-    - name: Azure AI Speech
+    - name: Azure Speech
       items:
       - name: Real-time speech to text
         href: ../ai-services/speech-service/get-started-speech-to-text.md?context=/azure/ai-studio/context/context
@@ -403,6 +393,14 @@ items:
   items:
   - name: Responsible AI overview
     href: responsible-use-of-ai-overview.md
+  - name: What is Azure AI Content Safety?
+    href: ai-services/content-safety-overview.md
+  - name: Use Azure AI Content Safety in AI Studio
+    href: ai-services/how-to/content-safety.md
+  - name: Content filtering
+    href: concepts/content-filtering.md
+  - name: Use blocklists
+    href: how-to/use-blocklists.md
   - name: Transparency notes for Azure AI Services
     href: ../ai-services/responsible-use-of-ai-overview.md?context=/azure/ai-studio/context/context
   - name: Limited Access features

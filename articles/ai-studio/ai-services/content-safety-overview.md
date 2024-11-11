@@ -57,16 +57,10 @@ You can use Azure AI Content Safety for many scenarios:
 |Medium |Content that uses offensive, insulting, mocking, intimidating, or demeaning language towards specific identity groups, includes depictions of seeking and executing harmful instructions, fantasies, glorification, promotion of harm at medium intensity. |
 |High |Content that displays explicit and severe harmful instructions, actions, damage, or abuse; includes endorsement, glorification, or promotion of severe harmful acts, extreme or illegal forms of harm, radicalization, or nonconsensual power exchange or abuse. |
 
-## Other Content Safety features
-
-| Feature    | Functionality    | Concepts guide | 
-|:--- |:--- | ---|
-| [Groundedness detection](/rest/api/contentsafety/text-groundedness-detection-operations/detect-groundedness-options) (preview) | Detects whether the text responses of large language models (LLMs) are grounded in the source materials provided by the users. | [Groundedness detection concepts](/azure/ai-services/content-safety/concepts/groundedness)|
-| [Protected material text detection](/rest/api/contentsafety/text-operations/detect-text-protected-material) | Scans AI-generated text for known text content (for example, song lyrics, articles, recipes, selected web content). | [Protected material concepts](/azure/ai-services/content-safety/concepts/protected-material)|
-| Custom categories (standard) API (preview)    | Lets you create and train your own custom content categories and scan text for matches. | [Custom categories concepts](/azure/ai-services/content-safety/concepts/custom-categories)|
-| Custom categories (rapid) API (preview) | Lets you define emerging harmful content patterns and scan text and images for matches. | [Custom categories concepts](/azure/ai-services/content-safety/concepts/custom-categories)| 
+## Limitations
 
 Refer to the [Content Safety overview](/azure/ai-services/content-safety/overview) for supported regions, rate limits, and input requirements for all features. Refer to the [Language support](/azure/ai-services/content-safety/language-support) page for supported languages. 
+
 
 ## Next step 
 
