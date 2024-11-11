@@ -17,7 +17,7 @@ monikerRange: '>=doc-intel-3.1.0'
 # Document Intelligence custom classification model
 
 
-
+:::moniker range=">=doc-intel-4.0.0"
 **This content applies to:**![checkmark](../media/yes-icon.png) **v4.0 (GA)** | **Previous version:** ![blue-checkmark](../media/blue-yes-icon.png) [**v3.1 (GA)**](?view=doc-intel-3.1.0&preserve-view=tru)
 :::moniker-end
 
