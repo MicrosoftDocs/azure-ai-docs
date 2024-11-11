@@ -33,7 +33,7 @@ Before you can log to Azure AI Foundry portal, attach an Application Insights re
 1. Select **Create New** to attach a new Application Insights resource to your project.
 1. Supply a name and select **Create**.
 
-:::image type="content" source="../../media/how-to/trace/visualize/tracing-setup-overview.gif" alt-text="Animation of going to tracing and creating an Application Insight resource." lightbox="../../media/how-to/trace/visualize/tracing-setup-overview.gif":::
+:::image type="content" source="../../media/trace/visualize/tracing-setup-overview.gif" alt-text="Animation of going to tracing and creating an Application Insight resource." lightbox="../../media/trace/visualize/tracing-setup-overview.gif":::
 
 Next, install the `opentelemetry` SDK:
 
@@ -81,13 +81,13 @@ In your project, you can filter your traces as you see fit.
 
 By selecting a trace, I can step through each span and identify issues while observing how my application is responding.
 
-:::image type="content" source="../../media/how-to/trace/visualize/debug-filter-tracing.gif" alt-text="Animation of filtering traces in the portal." lightbox="../../media/how-to/trace/visualize/debug-filter-tracing.gif":::
+:::image type="content" source="../../media/trace/visualize/debug-filter-tracing.gif" alt-text="Animation of filtering traces in the portal." lightbox="../../media/trace/visualize/debug-filter-tracing.gif":::
 
 ### Update your attached Application Insights resource
 
  To update the Application Insights resource that is attached to your project, go to **Manage data source** and **Edit** to switch to a new Application Insights resource.
 
-:::image type="content" source="../../media/how-to/trace/visualize/tracing-manage-data-source.png" alt-text="Screenshot of manage data sources pop-up highlighting the edit button." lightbox="../../media/how-to/trace/visualize/tracing-manage-data-source.png":::
+:::image type="content" source="../../mediatrace/visualize/tracing-manage-data-source.png" alt-text="Screenshot of manage data sources pop-up highlighting the edit button." lightbox="../../media/trace/visualize/tracing-manage-data-source.png":::
 
 ## View your traces in Azure Monitor
 
@@ -105,4 +105,4 @@ Learn more about using this workbook to monitor your application, see [Azure Wor
 
 ## Related content
 
-- [Trace your application with Azure AI Inference SDK](develop/trace-local-sdk.md)
+- [Trace your application with Azure AI Inference SDK](./trace-local-sdk.md)
