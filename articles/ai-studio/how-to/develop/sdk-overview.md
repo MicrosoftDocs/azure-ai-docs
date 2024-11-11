@@ -315,7 +315,7 @@ Prompt flow
 * [pfazure Python library](https://microsoft.github.io/promptflow/reference/python-library-reference/promptflow-azure/promptflow.azure.html)
 
 Semantic Kernel
- * [Semantic Kernel Overview](https://learn.microsoft.com/semantic-kernel/overview/)
+ * [Semantic Kernel Overview](/semantic-kernel/overview/)
 Agentic frameworks
 
 * [LlamaIndex](llama-index.md)
