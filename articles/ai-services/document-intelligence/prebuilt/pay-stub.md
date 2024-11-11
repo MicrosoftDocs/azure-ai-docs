@@ -19,7 +19,7 @@ The Document Intelligence payStub model combines powerful Optical Character Reco
 
 | Feature   | version| Model ID |
 |----------  |---------|--------|
-|payStub model|v4.0: **2024-11-30** (GA)|**`prebuilt-payStub.us`**|
+|payStub model|v4.0: [**2024-11-30**](/rest/api/aiservices/operation-groups?view=rest-aiservices-v4.0%20(2024-11-30)&preserve-view=true) (GA)|**`prebuilt-payStub.us`**|
 
 ## Try payStub data extraction
 
