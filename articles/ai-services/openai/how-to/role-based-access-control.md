@@ -137,7 +137,7 @@ All the capabilities of Cognitive Services Contributor plus the ability to:
 
 | Permissions | Cognitive Services OpenAI User | Cognitive Services OpenAI Contributor |Cognitive Services Contributor |  Cognitive Services Usages Reader |
 |-------------|--------------------|------------------------|------------------|-------------------------|
-|View the resource in Azure Portal |✅|✅|✅| ➖ |
+|View the resource in Azure portal |✅|✅|✅| ➖ |
 |View the resource endpoint under “Keys and Endpoint” |✅|✅|✅| ➖ |
 |View the resource and associated model deployments in Azure AI Studio |✅|✅|✅| ➖ |
 |View what models are available for deployment in Azure AI Studio|✅|✅|✅| ➖ |
