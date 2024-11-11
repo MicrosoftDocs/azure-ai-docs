@@ -24,21 +24,16 @@ To enable traces locally, you have two options:
 1. Using **Prompty**, you can trace your application with the **Azure AI Inference SDK**, which offers enhanced visibility and simplified troubleshooting for LLM-based applications. This method follows the OpenTelemetry specification, capturing and visualizing the internal execution details of any AI application, thereby enhancing the overall development experience. To learn more, see [Debugging Prompty](https://prompty.ai/docs/getting-started/debugging-prompty).
 2. **Aspire Dashboard** : A free & open-source OpenTelemetry dashboard for deep insights into your apps on your local development machine. To learn more, see [Aspire Dashboard](https://aspiredashboard.com/#start ).
 
-## View your traces in Azure AI Studio
+## View your traces in Azure AI Foundry portal
 
-Before you can log to Azure AI Studio, attach an Application Insights resource to your project.
+Before you can log to Azure AI Foundry portal, attach an Application Insights resource to your project.
 
-1. Navigate to your project in [Azure AI Studio](https://ai.azure.com/).
+1. Navigate to your project in [Azure AI Foundry portal](https://ai.azure.com/).
 1. Select the **Tracing** page on the left hand side.
 1. Select **Create New** to attach a new Application Insights resource to your project.
 1. Supply a name and select **Create**.
 
-(Screenshot or gif placeholder - here)
-
-After creating and connecting your Application Insights resource, grab the connection string from **Manage data source**. You'll need to provide this connection string to log traces here.
-
-(Screenshot or gif placeholder - here)
-:::image type="content" source="../../media/how-to/tracing/" alt-text="Screenshot of [ADD LINK TEXT]." lightbox="../../media/how-to/tracing/":::
+:::image type="content" source="../../media/how-to/trace/visualize/tracing-setup-overview.gif" alt-text="Animation of going to tracing and creating an Application Insight resource." lightbox="../../media/how-to/trace/visualize/tracing-setup-overview.gif":::
 
 Next, install the `opentelemetry` SDK:
 
@@ -84,45 +79,30 @@ Select the link and begin viewing traces in Azure AI Studio!
 
 In your project, you can filter your traces as you see fit.
 
-(Placeholder for gif/pic)
-:::image type="content" source="../../media/how-to/tracing/" alt-text="Screenshot of [ADD LINK TEXT]." lightbox="../../media/how-to/tracing/":::
-
 By selecting a trace, I can step through each span and identify issues while observing how my application is responding.
 
-(Placeholder for gif/pic)
-:::image type="content" source="../../media/how-to/tracing/" alt-text="Screenshot of [ADD LINK TEXT]." lightbox="../../media/how-to/tracing/":::
+:::image type="content" source="../../media/how-to/trace/visualize/debug-filter-tracing.gif" alt-text="Animation of filtering traces in the portal." lightbox="../../media/how-to/trace/visualize/debug-filter-tracing.gif":::
 
 ### Update your attached Application Insights resource
 
  To update the Application Insights resource that is attached to your project, go to **Manage data source** and **Edit** to switch to a new Application Insights resource.
 
- (Placeholder for gif/pic)
-:::image type="content" source="../../media/how-to/tracing/" alt-text="Screenshot of [ADD LINK TEXT]." lightbox="../../media/how-to/tracing/":::
+:::image type="content" source="../../media/how-to/trace/visualize/tracing-manage-data-source.png" alt-text="Screenshot of manage data sources pop-up highlighting the edit button." lightbox="../../media/how-to/trace/visualize/tracing-manage-data-source.png":::
 
 ## View your traces in Azure Monitor
 
-If you logged traces using the previous code snippet, then you're all set to view your traces in Azure Monitor Application Insights. You can open in Application Insights from **Manage data source** and use the **Transaction Search** to further investigate.
+If you logged traces using the previous code snippet, then you're all set to view your traces in Azure Monitor Application Insights. You can open in Application Insights from **Manage data source** and use the **End-to-end transaction details view** to further investigate.
 
-(Placeholder for gif/pic)
-:::image type="content" source="../../media/how-to/tracing/" alt-text="Screenshot of [ADD LINK TEXT]." lightbox="../../media/how-to/tracing/":::
-
-Refer to [Azure Monitor OpenTelemetry documentation](/azure/azure-monitor/app/opentelemetry-enable) for more details on how to send Azure AI Inference traces to Azure Monitor and create Azure Monitor resource.
+For more information on how to send Azure AI Inference traces to Azure Monitor and create Azure Monitor resource, see [Azure Monitor OpenTelemetry documentation](/azure/azure-monitor/app/opentelemetry-enable).
 
 ### View your generative AI spans and traces
 
-From Azure AI studio project, you can also open your custom dashboard that will provide you with insights specifically to help you monitor your generative AI application.
+From Azure AI studio project, you can also open your custom dashboard that provides you with insights specifically to help you monitor your generative AI application.
 
-(Placeholder for gif/pic)
-:::image type="content" source="../../media/how-to/tracing/" alt-text="Screenshot of [ADD LINK TEXT]." lightbox="../../media/how-to/tracing/":::
-
-In this Azure Workbook, you can view your Gen AI spans and jump into the extensive **Transaction search** view to deep dive and investigate.
-
-(Placeholder for gif/pic)
-:::image type="content" source="../../media/how-to/tracing/" alt-text="Screenshot of [ADD LINK TEXT]." lightbox="../../media/how-to/tracing/":::
+In this Azure Workbook, you can view your Gen AI spans and jump into the Azure Monitor **End-to-end transaction details view** view to deep dive and investigate.
 
 Learn more about using this workbook to monitor your application, see [Azure Workbook documentation](/azure/azure-monitor/visualize/workbooks-create-workbook).
 
 ## Related content
 
-- 
-- 
+- [Trace your application with Azure AI Inference SDK](./develop/trace-local-sdk.md)
