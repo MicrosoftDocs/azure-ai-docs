@@ -119,12 +119,11 @@ Composed models are billed the same as individual custom models. The pricing is 
 
 ### Composed model compatibility
 
-|Custom model type|Models trained with v2.1 and v2.0 | Custom template and neural models v3.1 and v3.0 |Custom template and neural models v4.0 2024-11-30 (GA)|Custom Generative models v4.0 2024-11-30 (GA)|
-|--|--|--|--|--|
-|**Models trained with version 2.1 and v2.0** |Not Supported|Not Supported|Not Supported|Not Supported|
-|**Custom template and neural models v3.0 and v3.1** |Not Supported|Supported|Supported|Not Supported|
-|**Custom template and neural models v4.0**|Not Supported|Supported|Supported|Not Supported|
-|**Custom generative models v4.0**|Not Supported|Not Supported|Not Supported|Not Supported|
+|Custom model type|Models trained with v2.1 and v2.0 | Custom template and neural models v3.1 and v3.0 |Custom template and neural models v4.0 2024-11-30 (GA)|
+|--|--|--|--|
+|**Models trained with version 2.1 and v2.0** |Not Supported|Not Supported|Not Supported|
+|**Custom template and neural models v3.0 and v3.1** |Not Supported|Supported|Supported|
+|**Custom template and neural models v4.0**|Not Supported|Supported|Supported|
 
 * To compose a model trained with a prior version of the API (v2.1 or earlier), train a model with the v3.0 API using the same labeled dataset. That addition ensures that the v2.1 model can be composed with other models.
 

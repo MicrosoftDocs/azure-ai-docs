@@ -98,8 +98,8 @@ Azure AI Document Intelligence models provide multilingual document processing s
 
 :::moniker-end
 
-## Custom generative 
-Custom generative only supports English `en`
+
+
 
 ## Custom neural
 
