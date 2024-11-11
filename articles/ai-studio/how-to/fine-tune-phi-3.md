@@ -25,8 +25,8 @@ The Phi-3 family of SLMs is a collection of instruction-tuned generative text mo
 
 Phi-3 Mini is a 3.8B parameters, lightweight, state-of-the-art open model built upon datasets used for Phi-2 - synthetic data and filtered websites - with a focus on high-quality, reasoning dense data. The model belongs to the Phi-3 model family, and the Mini version comes in two variants 4K and 128K which is the context length (in tokens) it can support.
 
-- [Phi-3-mini-4k-Instruct](https://ai.azure.com/explore/models/Phi-3-mini-4k-instruct/version/4/registry/azureml)
-- [Phi-3-mini-128k-Instruct](https://ai.azure.com/explore/models/Phi-3-mini-128k-instruct/version/4/registry/azureml)
+- [Phi-3-mini-4k-Instruct](https://ai.azure.com/explore/models/Phi-3-mini-4k-instruct/version/4/registry/azureml) (preview)
+- [Phi-3-mini-128k-Instruct](https://ai.azure.com/explore/models/Phi-3-mini-128k-instruct/version/4/registry/azureml) (preview)
 
 The model underwent a rigorous enhancement process, incorporating both supervised fine-tuning and direct preference optimization to ensure precise instruction adherence and robust safety measures. When assessed against benchmarks testing common sense, language understanding, math, code, long context and logical reasoning, Phi-3 Mini-4K-Instruct and Phi-3 Mini-128K-Instruct showcased a robust and state-of-the-art performance among models with less than 13 billion parameters.
 
@@ -36,42 +36,23 @@ Phi-3 Medium is a 14B parameters, lightweight, state-of-the-art open model. Phi-
 
 The model belongs to the Phi-3 model family, and the Medium version comes in two variants, 4K and 128K, which denote the context length (in tokens) that each model variant can support.
 
-- Phi-3-medium-4k-Instruct
-- Phi-3-medium-128k-Instruct
+- Phi-3-medium-4k-Instruct (preview)
+- Phi-3-medium-128k-Instruct (preview)
 
 The model underwent a rigorous enhancement process, incorporating both supervised fine-tuning and direct preference optimization to ensure precise instruction adherence and robust safety measures. When assessed against benchmarks that test common sense, language understanding, math, code, long context and logical reasoning, Phi-3-Medium-4k-Instruct and Phi-3-Medium-128k-Instruct showcased a robust and state-of-the-art performance among models with less than 13 billion parameters.
 
 
-# [Phi-3.5](#tab/phi-3.5)
+# [Phi-3.5](#tab/phi-3-5)
 
 
 Phi-3.5-mini-Instruct is a 3.8B parameter model enhances multi-lingual support, reasoning capability, and offers an extended context length of 128K tokens
 
 Phi-3.5-MoE-Instruct. Featuring 16 experts and 6.6B active parameters, this model delivers high performance, reduced latency, multi-lingual support, and robust safety measures, surpassing the capabilities of larger models while maintaining the efficacy of the Phi models.
 
-- Phi-3.5-mini-Instruct
-- Phi-3.5-MoE-Instruct
+- Phi-3.5-mini-Instruct (preview)
+- Phi-3.5-MoE-Instruct (preview)
 
 The models underwent a rigorous enhancement process, incorporating both supervised fine-tuning and direct preference optimization to ensure precise instruction adherence and robust safety measures. When assessed against benchmarks that test common sense, language understanding, math, code, long context and logical reasoning, Phi-3.5-mini-Instruct and Phi-3.5-MoE-Instruct showcased a robust and state-of-the-art performance among models with less than 13 billion parameters.
-
-
-## [Phi-3-mini](#tab/phi-3-mini)
-
-The following models are available in Azure AI Studio for Phi 3 when fine-tuning as a service with pay-as-you-go:
-
-- `Phi-3-mini-4k-instruct` (preview)
-- `Phi-3-mini-128k-instruct` (preview)
-
-Fine-tuning of Phi-3 models is currently supported in projects located in East US 2.
-
-# [Phi-3-medium](#tab/phi-3-medium)
-
-The following models are available in Azure AI Studio for Phi 3 when fine-tuning as a service with pay-as-you-go:
-
-- `Phi-3-medium-4k-instruct` (preview)
-- `Phi-3-medium-128k-instruct` (preview)
-
-Fine-tuning of Phi-3 models is currently supported in projects located in East US 2.
 
 
 ---
@@ -199,7 +180,7 @@ To fine-tune a Phi-3 model:
 Once your model is fine-tuned, you can deploy the model and can use it in your own application, in the playground, or in prompt flow. For more information, see [How to deploy Phi-3 family of large language models with Azure AI Studio](./deploy-models-phi-3.md).
 
 
-# [Phi-3.5](#tab/phi-3.5)
+# [Phi-3.5](#tab/phi-3-5)
 
 To fine-tune a Phi-3.5 model:
 
