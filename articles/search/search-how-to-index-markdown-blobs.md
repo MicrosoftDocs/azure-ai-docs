@@ -345,7 +345,7 @@ api-key: [admin key]
   "parameters": {
     "configuration": {
       "parsingMode": "markdown",
-      "markdownParsingSubmode": "oneToMany",
+      "markdownParsingSubmode": "oneToOne",
     }
   }
 }
