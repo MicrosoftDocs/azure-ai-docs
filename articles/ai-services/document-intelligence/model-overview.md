@@ -246,11 +246,50 @@ The US mortgage document models analyze and extract key fields including borrowe
 > [!div class="nextstepaction"]
 > [Learn more: contract model](prebuilt/contract.md)
 
+### US Bank Check
+
+:::image type="icon" source="media/overview/icon-contract.png":::
+
+ The contract model analyzes and extracts key fields from check including check details, account details, amount, memo, is extracted from US bank checks.
+ 
+***Sample bank check processed using [Document Intelligence Studio](https://documentintelligence.ai.azure.com/studio/prebuilt?formCategory=check.us)***:
+
+:::image type="content" source="media/studio/analyze-bank-check.png" alt-text="Screenshot of bank check model extraction using Document Intelligence Studio.":::
+
+> [!div class="nextstepaction"]
+> [Learn more: contract model](prebuilt/bank-check.md)
+
+### US Bank Statement
+
+:::image type="icon" source="media/overview/icon-contract.png":::
+
+ The bank statement model analyzes and extracts key fields and line items from US bank statements account number, bank details, statement details and transaction details.
+
+***Sample bank statement processed using [Document Intelligence Studio](https://documentintelligence.ai.azure.com/studio/prebuilt?formCategory=bankStatement.us)***:
+
+:::image type="content" source="media/studio/analyze-bank-statement.png" alt-text="Screenshot of bank statement model extraction using Document Intelligence Studio.":::
+
+> [!div class="nextstepaction"]
+> [Learn more: contract model](prebuilt/bank-statement.md)
+
+### PayStub
+
+:::image type="icon" source="media/overview/icon-contract.png":::
+
+ The paystub model analyzes and extracts key fields and line items from documents and files with payroll related information.
+
+***Sample paystub processed using [Document Intelligence Studio](https://documentintelligence.ai.azure.com/studio/prebuilt?formCategory=payStub.us)***:
+
+:::image type="content" source="media/studio/analyze-pay-stub.png" alt-text="Screenshot of pay stub model extraction using Document Intelligence Studio.":::
+
+> [!div class="nextstepaction"]
+> [Learn more: contract model](prebuilt/pay-stub.md)
+
 ### Invoice
 
 :::image type="icon" source="media/studio/invoice.png":::
 
-The invoice model automates processing of invoices to extracts customer name, billing address, due date, and amount due, line items, and other key data. Currently, the model supports English, Spanish, German, French, Italian, Portuguese, and Dutch invoices.
+The invoice model automates processing of invoices to extracts customer name, billing address, due date, and amount due, line items, and other key data. 
 
 ***Sample invoice processed using [Document Intelligence Studio](https://formrecognizer.appliedai.azure.com/studio/prebuilt?formType=invoice)***:
 
