@@ -17,8 +17,6 @@ ms.date: 11/19/2024
 
 [!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 
-**Applies to**: [Blob indexers](search-howto-indexing-azure-blob-storage.md), [OneLake indexers](search-how-to-index-onelake-files.md), [File indexers](search-file-storage-integration.md)
-
 In Azure AI Search, indexers for Azure Blob Storage, Azure Files, and OneLake support a `markdown` parsing mode for Markdown files. Markdown files can be indexed in two ways:
 
 + One-to-many parsing mode, creating multiple search documents per Markdown file
@@ -26,7 +24,11 @@ In Azure AI Search, indexers for Azure Blob Storage, Azure Files, and OneLake su
 
 ## Prerequisites
 
-+ A supported data source. For OneLake, make sure you meet all of the requirements of the [OneLake indexer](search-how-to-index-onelake-files#prerequisites). Azure Storage is a standard performance (general-purpose v2) instance that supports hot, cool, and cold access tiers.
++ A supported data source: Azure Blob storage, Azure File storage, OneLake in Microsoft Fabric.
+
+  For OneLake, make sure you meet all of the requirements of the [OneLake indexer](search-how-to-index-onelake-files.md#prerequisites).
+
+  Azure Storage for [blob indexers](search-howto-indexing-azure-blob-storage.md#prerequisites) and [file indexers](search-file-storage-integration.md#prerequisites) is a standard performance (general-purpose v2) instance that supports hot, cool, and cold access tiers.
 
 ## Markdown parsing mode parameters
 
@@ -109,7 +111,7 @@ The one-to-many parsing mode parses Markdown files into multiple search document
 
 - `ordinal_position`: An integer value indicating the position of the section within the document hierarchy. This field is used for ordering the sections in their original sequence as they appear in the document, beginning with an ordinal position of 1 and incrementing sequentially for each header. 
 
-### Index schema for one-to-many parsed Markdown files
+### Index schema for one-to-many parsing
 
 An example index configuration might look something like this:
 ```http
@@ -145,6 +147,8 @@ An example index configuration might look something like this:
 }
 ```
 
+### Indexer definition for one-to-many parsing
+
 If field names and data types align, the blob indexer can infer the mapping without an explicit field mapping present in the request, so an indexer configuration corresponding to the provided index configuration might look like this:
 
 ```http
@@ -165,7 +169,9 @@ api-key: [admin key]
 > [!NOTE]
 > The `submode` does not need to be set explicitly here because `oneToMany` is the default. 
 
- This Markdown file would result in three search documents after indexing, due to the three content sections. The search document resulting from the first content section of the provided Markdown document would contain the following values for `content`, `sections`, `h1`, and `h2`:
+### Indexer output for one-to-many parsing
+
+This Markdown file would result in three search documents after indexing, due to the three content sections. The search document resulting from the first content section of the provided Markdown document would contain the following values for `content`, `sections`, `h1`, and `h2`:
 
 ```http
 {
@@ -270,7 +276,7 @@ Content for subsection 1.1.
 Content for section 2.
 ```
 
-### Index schema for one-to-one parsed Markdown files
+### Index schema for one-to-one parsing
 
 If you aren't utilizing field mappings, the shape of the index should reflect the shape of the Markdown content. Given the structure of sample Markdown with its two sections and single subsection, the index should look similar to the following example:
 ```http
@@ -325,6 +331,28 @@ If you aren't utilizing field mappings, the shape of the index should reflect th
 }
 ```
 
+### Indexer definition for one-to-one parsing
+
+```http
+POST https://[service name].search.windows.net/indexers?api-version=2024-11-01-preview
+Content-Type: application/json
+api-key: [admin key]
+
+{
+  "name": "my-markdown-indexer",
+  "dataSourceName": "my-blob-datasource",
+  "targetIndexName": "my-target-index",
+  "parameters": {
+    "configuration": {
+      "parsingMode": "markdown",
+      "markdownParsingSubmode": "oneToMany",
+    }
+  }
+}
+```
+
+### Indexer output for one-to-one parsing
+
 Because the Markdown we want to index only goes to a depth of `h2` ("##"), we need `sections` fields nested to a depth of 2 to match that. This configuration would result in the following data in the index:
 
 ```http
@@ -356,24 +384,6 @@ Because the Markdown we want to index only goes to a depth of `h2` ("##"), we ne
 As you can see, the ordinal position increments based on the location of the content within the document.
 
 It should also be noted that if header levels are skipped in the content, then structure of the resulting document reflects the headers that are present in the Markdown content, not necessarily containing nested sections for `h1` through `h6` consecutively. For example, when the document begins at `h2`, then the first element in the top-level sections array is `h2`. 
-
-```http
-POST https://[service name].search.windows.net/indexers?api-version=2024-11-01-preview
-Content-Type: application/json
-api-key: [admin key]
-
-{
-  "name": "my-markdown-indexer",
-  "dataSourceName": "my-blob-datasource",
-  "targetIndexName": "my-target-index",
-  "parameters": {
-    "configuration": {
-      "parsingMode": "markdown",
-      "markdownParsingSubmode": "oneToMany",
-    }
-  }
-}
-```
 
 ## Map one-to-one fields to search fields
 
