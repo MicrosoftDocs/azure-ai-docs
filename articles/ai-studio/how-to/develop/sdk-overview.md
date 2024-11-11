@@ -84,7 +84,7 @@ Be sure to check out the [reference](https://aka.ms/aifoundrysdk/reference) and 
 
 ## Azure OpenAI Service
 
-The [Azure OpenAI Service](../../../ai-services/openai/overview.md) provides access to OpenAI's models including the GPT-4o, GPT-4o mini, GPT-4, GPT-4 Turbo with Vision, DALLE-3, Whisper, and Embeddings model series with the security and enterprise capabilities of Azure.
+The [Azure OpenAI Service](../../../ai-services/openai/overview.md) provides access to OpenAI's models including the GPT-4o, GPT-4o mini, GPT-4, GPT-4 Turbo with Vision, DALLE-3, Whisper, and Embeddings model series with the data residency, scalability, safety, security and enterprise capabilities of Azure.
 
 If you have code that uses the OpenAI SDK, you can easily target your code to use the Azure OpenAI service. First, install the OpenAI SDK:
 ```
