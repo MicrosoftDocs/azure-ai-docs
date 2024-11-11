@@ -129,7 +129,7 @@ Our evaluators will understand that the first turn of the conversation provides 
 
 ### Performance and quality evaluators
 
-When using AI-assisted performance and quality metrics, 
+You can use our built-in AI-assisted and NLP quality evaluators to assess the performance and quality of your generative AI application. 
 
 #### Set up
 
@@ -211,7 +211,7 @@ For
 The result of the AI-assisted quality evaluators for a query and response pair is a dictionary containing:
 - `{metric_name}` provides a numerical score.
 - `{metric_name}_label` provides a binary label.
-- `{metric_name}_reason` has a text reasoning for why a certain score or label was given for each data point.
+- `{metric_name}_reason` explains why a certain score or label was given for each data point.
 
 For NLP evaluators, only a score is given in the `{metric_name}` key.   
 
@@ -314,7 +314,7 @@ The result of the risk and safety evaluators for a query and response pair is a 
 
 - `{metric_name}` provides a severity label for that content risk ranging from Very low, Low, Medium, and High. You can read more about the descriptions of each content risk and severity scale [here](../../concepts/evaluation-metrics-built-in.md).
 - `{metric_name}_score` has a range between 0 and 7 severity level that maps to a severity label given in `{metric_name}`.
-- `{metric_name}_reason` has a text reasoning for why a certain severity score was given for each data point.
+- `{metric_name}_reason` explains why a certain severity score was given for each data point.
 
 
 For conversation outputs, per-turn results are stored in a list and the overall conversation score `'violence_score': 0.0` is averaged over the turns:
