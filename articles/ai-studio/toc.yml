@@ -305,9 +305,15 @@ items:
         href: how-to/develop/langchain.md
       - name: Develop with LlamaIndex
         href: how-to/develop/llama-index.md
-      - name: Trace your application with prompt flow
-        href: how-to/develop/trace-local-sdk.md
         displayName: code,sdk
+    - name: Trace generative AI apps
+      items:
+       - name: Tracing overview
+         href: concepts/trace.md 
+       - name: Trace your application with Azure AI Inference SDK
+         href: how-to/develop/trace-local-sdk.md
+       - name: Visualize your traces
+         href: how-to/develop/visualize-traces.md
   - name: Evaluate generative AI apps
     items:
     - name: Evaluations concepts

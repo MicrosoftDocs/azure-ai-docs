@@ -105,4 +105,4 @@ Learn more about using this workbook to monitor your application, see [Azure Wor
 
 ## Related content
 
-- [Trace your application with Azure AI Inference SDK](./develop/trace-local-sdk.md)
+- [Trace your application with Azure AI Inference SDK](develop/trace-local-sdk.md)
