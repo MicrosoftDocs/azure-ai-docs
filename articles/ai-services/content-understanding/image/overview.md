@@ -41,7 +41,7 @@ Content Understanding offers several key benefits for extracting information fro
 
 
 ## Input requirements
-For detailed information on supported input document formats, refer to our [Service quotas and limits](../service-limits.md) page.
+For detailed information on supported input file formats, refer to our [Service quotas and limits](../service-limits.md) page.
 
 > [!NOTE]
 > For best results, image schema should only be used to process non-document-based images.
@@ -51,31 +51,8 @@ For detailed information on supported input document formats, refer to our [Serv
 ## Supported languages and regions
 For a detailed list of supported languages and regions, visit our [Language and region support](../language-region-support.md) page.
 
-## Supported file formats
-
-> [!NOTE]
-> For best results, image schema should only be used to process non-document-based images.
-> Text heavy images of documents should be processed using a document schema.
-> Use cases that require extraction of text from document images or scanned documents in image formats should be processed using a document field extraction schema.
-
-Content Understanding supports the following image file formats in preview:
-
-|Supported file types| File size| Resolution (pixels)|
-|---|---|---|
-.jpg, .png, .bmp, .heif|≤ 20 MB | Minimum: 50 x 50 px</be>Maximum: 10,000 x 10,000 px|
-
 ## Supported field types
-
-| Data type|Supported format|Schema limits|Example|
-| --- | --- |---|
-| **String**| √ Plain Text||
-|**Date** | √ Normalized to ISO 8601 (YYYY-MM-DD) format|2023-10-31|
-| **Time**| √ Normalized to ISO 8601 (hh:mm:ss) format|14:30:00|
-| **number**| √ Float number normalized to double precision floating point|1.14159|
-| **Integer**| √ Integer number, normalized to 64-bit signed integer|42, 1024|
-| **Boolean**| √ Boolean value, normalized to `true` or `false`||
-| **array**| √ List of subfields of the same type||
-| **Object**| √ Named list of subfields of potentially different types. ||
+For detailed information on supported field types, refer to our [Service quotas and limits](../service-limits.md#field-type-limits) page.
 
 ## Data privacy and security
 
