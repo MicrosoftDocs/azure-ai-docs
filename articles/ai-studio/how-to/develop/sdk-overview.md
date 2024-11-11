@@ -83,13 +83,14 @@ Be sure to check out the [reference](https://aka.ms/aifoundrysdk/reference) and 
 
 ## Azure OpenAI Service
 
-If you have existing code that uses the OpenAI SDK, you can use the project client to create an ```AzureOpenAI``` client that uses your project's Azure OpenAI connection.
+The [Azure OpenAI Service](../../../ai-services/openai/overview.md) allows you to access OpenAI models the same day they launch. It integrates with the rest of Azure and provides enterprise scale and controls.
+
+If you have code that uses the OpenAI SDK, you can easily target your code to use the Azure OpenAI service. First, install the OpenAI SDK:
 ```
 pip install openai
 ```
 
-Now use the project client to return an ```AzureOpenAI``` client with the desired API version and make a chat completions call.
-
+If you have existing code that uses the OpenAI SDK, you can use the project client to create an ```AzureOpenAI``` client that uses your project's Azure OpenAI connection:
 ```Python
 openai = project.inference.get_azure_openai_client(api_version="2024-06-01")
 response = openai.chat.completions.create(
@@ -102,8 +103,8 @@ response = openai.chat.completions.create(
 
 print(response.choices[0].message.content)
 ```
+If you’re already using the [Azure OpenAI SDK](../../../ai-services/openai/chatgpt-quickstart.md) directly against the Azure OpenAI Service, the project provides a convenient way to use Azure OpenAI Service capabilities alongside the rest of the AI Foundry capabilities.
 
-For more on using the Azure OpenAI client library, including how to use it directly against with the Azure OpenAI Service, check out [Azure OpenAI chat quickstart](../../../ai-services/openai/chatgpt-quickstart.md).
 
 ## Azure AI model inference service
 
@@ -168,6 +169,7 @@ prompt_template = PromptTemplate.from_string(prompt_template="""
 messages = prompt_template.create_messages(first_name="Jane", last_name="Doe")
 print(messages)
 ```
+NOTE: leading whitespace is automatically trimmed from input strings.
 
 This code outputs messages that you can then pass to a chat completions call:
 
@@ -177,8 +179,6 @@ This code outputs messages that you can then pass to a chat completions call:
   {'role': 'user', 'content': 'Write me a poem about flowers'}
 ]
 ```
-
-NOTE: leading whitespace is automatically trimmed from input strings.
 
 You can also load prompts from a [`Prompty`](https://prompty.ai) file, enabling you to also load the model name and parameters from the `.prompty` file:
 
@@ -243,8 +243,11 @@ To get access to agents, [sign-up for the private preview](https://nam.dcv.ms/nz
 ## Evaluation
 
 You can use the project client to easily connect to the Azure AI evaluation service, and models needed for running your evaluators.
+```
+pip install azure-ai-evaluation
+```
 
-Using the ```project.scope``` parameter, we can easily instantiate a ```ViolenceEvaluator```:
+Using the ```project.scope``` parameter, we can instantiate a ```ViolenceEvaluator```:
 ```Python
 from azure.ai.evaluation import ViolenceEvaluator
 from azure.identity import DefaultAzureCredential
@@ -258,6 +261,7 @@ violence_eval = ViolenceEvaluator(
 violence_score = violence_eval(query="what's the capital of france", response="Paris")
 print(violence_score)
 ```
+NOTE: to run violence evaluators your project needs to be in East US 2, Sweden Central, US North Central, France Central.
 
 To learn more, check out [Evaluation using the SDK](evaluate-sdk.md).
 
@@ -265,6 +269,12 @@ To learn more, check out [Evaluation using the SDK](evaluate-sdk.md).
 
 To enable tracing, first ensure your project has an attached Application Insights resource. Go to the **Tracing** page of your project and follow instructions to create or attach Application Insights.
 
+Install the Azure Monitor OpenTelemetry package:
+```
+pip install azure-monitor-opentelemetry
+```
+
+Use the following code to enable instrumentation of the Azure AI Inference SDK and logging to your AI project:
 ```Python
 # Enable instrumentation of AI packages (inference, agents, openai, langchain)
 project.telemetry.enable()
@@ -286,7 +296,7 @@ Client libraries:
 * [Azure AI services SDKs](../../../ai-services/reference/sdk-package-resources.md?context=/azure/ai-studio/context/context)
 * [Azure AI services REST APIs](../../../ai-services/reference/rest-api-resources.md?context=/azure/ai-studio/context/context) 
 
-Azure AI services
+Management libraries:
 * [Azure AI Services Python Management Library](/python/api/overview/azure/mgmt-cognitiveservices-readme)
 * [Azure AI Search Python Management Library](/python/api/azure-mgmt-search/azure.mgmt.search)
 
@@ -304,6 +314,8 @@ Prompt flow
 * [pfazure CLI](https://microsoft.github.io/promptflow/reference/pfazure-command-reference.html)
 * [pfazure Python library](https://microsoft.github.io/promptflow/reference/python-library-reference/promptflow-azure/promptflow.azure.html)
 
+Semantic Kernel
+ * [Semantic Kernel Overview](https://learn.microsoft.com/semantic-kernel/overview/)
 Agentic frameworks
 
 * [LlamaIndex](llama-index.md)
