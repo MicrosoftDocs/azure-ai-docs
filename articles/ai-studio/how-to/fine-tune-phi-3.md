@@ -254,7 +254,7 @@ You can delete a fine-tuned model from the fine-tuning model list in [Azure AI S
 
 ## Cost and quotas
 
-### Cost and quota considerations for Phi-3 and Phi-3.5 models fine-tuned as a service
+### Cost and quota considerations for Phi models fine-tuned as a service
 
 Phi models fine-tuned as a service are offered by Microsoft and integrated with Azure AI Studio for use. You can find the pricing when [deploying](./deploy-models-phi-3.md) or fine-tuning the models under the Pricing and terms tab on deployment wizard.
 
