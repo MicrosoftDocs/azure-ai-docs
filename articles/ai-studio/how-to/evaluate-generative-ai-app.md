@@ -33,9 +33,9 @@ An evaluation run allows you to generate metric outputs for each data row in you
 
 ### From the evaluate page
 
-From the collapsible left menu, select **Evaluation** > **+ New evaluation**.
+From the collapsible left menu, select **Evaluation** > **+ Create a new evaluation**.
 
-:::image type="content" source="../media/evaluations/evaluate/evaluation-list-new-evaluation.png" alt-text="Screenshot of the button to create a new evaluation." lightbox="../media/evaluations/evaluate/evaluation-list-new-evaluation.png":::
+:::image type="content" source="../media/evaluations/evaluate/create-new-evaluation.png" alt-text="Screenshot of the button to create a new evaluation." lightbox="../media/evaluations/evaluate/create-new-evaluation.png":::
 
 ### From the model catalog page
 
@@ -45,9 +45,9 @@ From the collapsible left menu, select **Model catalog** > go to specific model 
 
 ### From the flow page
 
-From the collapsible left menu, select **Prompt flow** > **Evaluate** > **Built-in evaluation**.
+From the collapsible left menu, select **Prompt flow** > **Evaluate** > **Automated evaluation**.
 
-:::image type="content" source="../media/evaluations/evaluate/new-evaluation-flow-page.png" alt-text="Screenshot of how to select builtin evaluation." lightbox="../media/evaluations/evaluate/new-evaluation-flow-page.png":::
+:::image type="content" source="../media/evaluations/evaluate/automated-evaluation.png" alt-text="Screenshot of how to select builtin evaluation." lightbox="../media/evaluations/evaluate/automated-evaluation.png":::
 
 #### Evaluation target
 
@@ -97,6 +97,8 @@ We support three types of metrics curated by Microsoft to facilitate a comprehen
 - AI quality (NLP): These NLP metrics are mathematical based, and they also evaluate the overall quality of the generated content. They often require ground truth data, but they don't require model deployment as judge.
 - Risk and safety metrics: These metrics focus on identifying potential content risks and ensuring the safety of the generated content.
 
+:::image type="content" source="../media/evaluations/evaluate/select-metric-category.png" alt-text="Screenshot of the Choose what you'd like to evaluate with AI quality and safety selected." lightbox="../media/evaluations/evaluate/select-metric-category.png":::
+
 You can refer to the table for the complete list of metrics we offer support for in each scenario. For more in-depth information on each metric definition and how it's calculated, see [Evaluation and monitoring metrics](../concepts/evaluation-metrics-built-in.md).
 
 | AI quality (AI assisted) | AI quality (NLP) | Risk and safety metrics |
@@ -105,11 +107,11 @@ You can refer to the table for the complete list of metrics we offer support for
 
 When running AI assisted quality evaluation, you must specify a GPT model for the calculation process. Choose an Azure OpenAI connection and a deployment with either GPT-3.5, GPT-4, or the Davinci model for our calculations.
 
-:::image type="content" source="../media/evaluations/evaluate/select-metrics-ai-quality-nlp.png" alt-text="Screenshot of the AI quality (AI assisted) with groundedness, relevance, and coherence metrics selected when creating a new evaluation." lightbox="../media/evaluations/evaluate/select-metrics-ai-quality-nlp.png":::
+:::image type="content" source="../media/evaluations/evaluate/select-metrics-ai-quality-ai-assisted.png" alt-text="Screenshot of the AI quality (AI assisted) with groundedness, relevance, and coherence metrics selected when creating a new evaluation." lightbox="../media/evaluations/evaluate/select-metrics-ai-quality-ai-assisted.png":::
 
 AI Quality (NLP) metrics are mathematically based measurements that assess your application's performance. They often require ground truth data for calculation. ROUGE is a family of metrics. You can select the ROUGE type to calculate the scores. Various types of ROUGE metrics offer ways to evaluate the quality of text generation. ROUGE-N measures the overlap of n-grams between the candidate and reference texts.  
 
-:::image type="content" source="../media/evaluations/evaluate/select-metrics-ai-quality-ai-assisted.png" alt-text="Screenshot of the AI quality (NLP) with groundedness, relevance, and coherence metrics selected when creating a new evaluation." lightbox="../media/evaluations/evaluate/select-metrics-ai-quality-ai-assisted.png":::
+:::image type="content" source="../media/evaluations/evaluate/select-metrics-ai-quality-nlp.png" alt-text="Screenshot of the AI quality (NLP) with groundedness, relevance, and coherence metrics selected when creating a new evaluation." lightbox="../media/evaluations/evaluate/select-metrics-ai-quality-nlp.png":::
 
 For risk and safety metrics, you don't need to provide a connection and deployment. The Azure AI Studio safety evaluations back-end service provisions a GPT-4 model that can generate content risk severity scores and reasoning to enable you to evaluate your application for content harms.
 
