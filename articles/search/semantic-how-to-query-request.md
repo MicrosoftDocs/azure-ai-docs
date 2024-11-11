@@ -10,7 +10,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: how-to
-ms.date: 09/24/2024
+ms.date: 11/19/2024
 ---
 
 # Add semantic ranking to queries in Azure AI Search
@@ -51,8 +51,11 @@ A few query capabilities bypass relevance scoring, which makes them incompatible
 
 ## Set up the query
 
-By default, queries don't use semantic ranking. To use semantic ranking, two different parameters may be used. Each parameter supports a different set of scenarios:
+By default, queries don't use semantic ranking. To use semantic ranking, two different parameters can be used. Each parameter supports a different set of scenarios.
 
+Semantic queries, whether specified through `search` plus `queryType`, or through `semanticQuery`, must be plain text and they can't be empty. Empty queries result in no semantic ranking being applied to the results.
+
+<!-- 
 1. Set `queryType` to `semantic`:
   + [Text search](search-lucene-query-architecture.md) with a simple plain text query. Empty queries result in no semantic ranking being applied to the results.
   + [Hybrid search](hybrid-search-overview.md).
@@ -61,22 +64,22 @@ By default, queries don't use semantic ranking. To use semantic ranking, two dif
   + [Text search](search-lucene-query-architecture.md) using the [simple](query-simple-syntax.md) or [full](query-lucene-syntax.md) syntax.
   + [Vector search](vector-search-overview.md).
   + [Hybrid search](hybrid-search-overview.md).
-  + The query specified for `semanticQuery` must be a plain text query. Empty queries aren't supported.
+  + The query specified for `semanticQuery` must be a plain text query. Empty queries aren't supported. -->
 
-The following table illustrates the supported scenarios depending on which semantic ranking parameter is used:
-
-| Semantic Ranker Parameter | Plain text search | [Simple text search syntax](query-simple-syntax.md) | [Full text search syntax](query-lucene-syntax.md) | [Vector search](vector-search-overview.md) | [Hybrid Search](hybrid-search-overview.md) | [Semantic answers](semantic-answers.md) and captions |
+| Semantic ranker parameter | [Plain text search](search-query-create.md) | [Simple text search syntax](query-simple-syntax.md) | [Full text search syntax](query-lucene-syntax.md) | [Vector search](vector-search-how-to-query.md) | [Hybrid Search](hybrid-search-how-to-query.md) | [Semantic answers](semantic-answers.md) and captions |
 |-|-|-|-|-|-|-|
-| Set `queryType` to `semantic` | ✅ | ❌ | ❌ | ❌ | ✅ | ✅ |
-| Set `semanticQuery`<sup>1</sup> | ✅ | ✅ | ✅ | ✅ |✅ | ✅ |
+| `queryType-semantic` <sup>1</sup> | ✅ | ❌ | ❌ | ❌ | ✅ | ✅ |
+| `semanticQuery="<your plain text query>"`<sup>2</sup> | ✅ | ✅ | ✅ | ✅ |✅ | ✅ |
 
-<sup>1</sup> `semanticQuery` isn't supported in the portal [search explorer](search-explorer.md).
+<sup>1</sup> `queryType=semantic` can't support explicit `simple` or `full` values because the `queryType` parameter is being used for `semantic`. The effective query behaviors are the defaults of the simple parser.
+
+<sup>2</sup> The `semanticQuery` parameter can be used for all query types. However, it isn't supported in the portal [Search Explorer](search-explorer.md).
 
 Regardless of the parameter chosen, the index should contain text fields with rich semantic content and a [semantic configuration](semantic-how-to-configure.md).
 
 ### [**Azure portal**](#tab/portal-query)
 
-[Search explorer](search-explorer.md) includes options for semantic ranking. 
+[Search explorer](search-explorer.md) includes options for semantic ranking. Recall that you can't set the `semanticQuery` parameter in the Azure portal.
 
 1. Sign in to the [Azure portal](https://portal.azure.com).
 
@@ -114,7 +117,9 @@ Use [Search Documents](/rest/api/searchservice/documents/search-post) to formula
 
 A response includes an `@search.rerankerScore` automatically. If you want captions or answers in the response, enable semantic ranking by setting `queryType` to `semantic` or setting `semanticQuery` and adding captions and answers to the request.
 
-The following example in this section uses the [hotels-sample-index](search-get-started-portal.md) to demonstrate semantic ranking with semantic answers and captions.
+The following examples in this section use the [hotels-sample-index](search-get-started-portal.md) to demonstrate semantic ranking with semantic answers and captions.
+
+#### Use queryType=semantic
 
 If you want to set `queryType` to `semantic`, paste the following request into a web client as a template. Replace `search-service-name` with your search service name and replace `hotels-sample-index` if you have a different index name.
 
@@ -155,7 +160,11 @@ POST https://[search-service-name].search.windows.net/indexes/hotels-sample-inde
 
 1. Send the request to execute the query and return results.
 
-If you want to use "semanticQuery" in order to use [vector search](vector-search-overview.md), [simple text syntax](query-simple-syntax.md), or [full text syntax](query-lucene-syntax.md), adjust your request to the following JSON:
+#### Use semanticQuery
+
+By using `semanticQuery`, you can explicitly apply [simple text syntax](query-simple-syntax.md) or [full text syntax](query-lucene-syntax.md), which means you can now do fielded search, term boosting, and proximity search. You can also specify a [pure vector query](vector-search-how-to-query.md) instead of just hybrid.
+
+Adjust your request to the following JSON to use `semanticQuery`.
 
 ```http
 POST https://[search-service-name].search.windows.net/indexes/hotels-sample-index/docs/search?api-version=2024-07-01
@@ -171,12 +180,11 @@ POST https://[search-service-name].search.windows.net/indexes/hotels-sample-inde
     "highlightPostTag": "</strong>",
     "select": "HotelId,HotelName,Description,Category"
 }
-    ```
+```
 
 1. Set `queryType` to the search syntax you're using, either [simple](query-simple-syntax.md) or [full](query-lucene-syntax.md).
 
-1. Set `semanticQuery` to the simple plain text query you want to use for semantic ranking. Empty queries aren't supported.
-
+1. Set `semanticQuery` to the simple plain text query you want to use for semantic ranking. Empty queries aren't supported. Avoid operators or any query syntax inside the string itself.
 
 ### [**.NET SDK**](#tab/dotnet-query)
 
