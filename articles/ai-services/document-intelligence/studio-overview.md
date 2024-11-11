@@ -143,51 +143,6 @@ Use the help wizard, labeling interface, training step, and interactive visualiz
 
 With Document Intelligence, you can quickly automate your data processing in applications and workflows, easily enhance data-driven strategies, and skillfully enrich document search capabilities.
 
-#### Analyze options
-
-* Document Intelligence supports sophisticated analysis capabilities. The Studio allows one entry point (Analyze options button) for configuring the add-on capabilities with ease.
-* Depending on the document extraction scenario, configure the analysis range, document page range, optional detection, and premium detection features.
-
-    :::image type="content" source="media/studio/analyze-options.png" alt-text="Screenshot of the analyze-options dialog window.":::
-
-    > [!NOTE]
-    > Font extraction is not visualized in Document Intelligence Studio. However, you can check the styles section of the JSON output for the font detection results.
-
-#### Auto label documents with prebuilt models or one of your own models
-
-* In custom extraction model labeling page, you can now auto label your documents using one of Document Intelligent Service prebuilt models or your trained models.
-
-    :::image type="content" source="media/studio/auto-label.gif" alt-text="Animated screenshot showing auto labeling in Studio.":::
-
-* For some documents, duplicate labels after running autolabel are possible. Make sure to modify the labels so that there are no duplicate labels in the labeling page afterwards.
-
-    :::image type="content" source="media/studio/duplicate-labels.png" alt-text="Screenshot showing duplicate label warning after auto labeling.":::
-
-#### Auto label tables
-
-* In custom extraction model labeling page, you can now auto label the tables in the document without having to label the tables manually.
-
-    :::image type="content" source="media/studio/auto-table-label.gif" alt-text="Animated screenshot showing auto table labeling in Studio.":::
-
-#### Add test files directly to your training dataset
-
-* Once you train a custom extraction model, make use of the test page to improve your model quality by uploading test documents to training dataset if needed.
-
-* If a low confidence score is returned for some labels, make sure to correctly label your content. If not, add them to the training dataset and relabel to improve the model quality.
-
-    :::image type="content" source="media/studio/add-from-test.gif" alt-text="Animated screenshot showing how to add test files to training dataset.":::
-
-#### Make use of the document list options and filters in custom projects
-
-* Use the custom extraction model labeling page to navigate through your training documents with ease by making use of the search, filter, and sort by feature.
-
-* Utilize the grid view to preview documents or use the list view to scroll through the documents more easily.
-
-    :::image type="content" source="media/studio/document-options.png" alt-text="Screenshot of document list view options and filters.":::
-
-#### Project sharing
-
-Share custom extraction projects with ease. For more information, see [Project sharing with custom models](how-to-guides/project-share-custom-models.md).
 
 ### Troubleshooting
 
