@@ -10,7 +10,7 @@ ms.custom:
   - ignite-2023
   - references_regions
 ms.topic: conceptual
-ms.date: 10/23/2024
+ms.date: 11/11/2024
 ms.author: mbullwin
 ---
 
@@ -51,9 +51,9 @@ The following sections provide you with a quick guide to the default quotas and 
 | GPT-4o max images per request (# of images in the messages array/conversation history) | 10 |
 | GPT-4 `vision-preview` & GPT-4 `turbo-2024-04-09` default max tokens | 16 <br><br> Increase the `max_tokens` parameter value to avoid truncated responses. GPT-4o max tokens defaults to 4096. |
 | Max number of custom headers in API requests<sup>1</sup> | 10 |
-| Max number requests per minute<br/><br/>Current rate limits for realtime audio (`gpt-4o-realtime-preview`) are defined as the number of new websocket connections per minute. For example, 6 request per minute (RPM) means 6 new connections per minute. At this time, the usage limits for `gpt-4o-realtime-preview` are suitable for test and development. | 6 new connections per minute |
+| Max number requests per minute<br/><br/>Current rate limits for real time audio (`gpt-4o-realtime-preview`) are defined as the number of new websocket connections per minute. For example, 6 request per minute (RPM) means 6 new connections per minute. At this time, the usage limits for `gpt-4o-realtime-preview` are suitable for test and development. | 6 new connections per minute |
 
-<sup>1</sup> Our current APIs allow up to 10 custom headers, which are passed through the pipeline, and returned. We have noticed some customers now exceed this header count resulting in HTTP 431 errors. There is no solution for this error, other than to reduce header volume. **In future API versions we will no longer pass through custom headers**. We recommend customers not depend on custom headers in future system architectures.
+<sup>1</sup> Our current APIs allow up to 10 custom headers, which are passed through the pipeline, and returned. Some customers now exceed this header count resulting in HTTP 431 errors. There's no solution for this error, other than to reduce header volume. **In future API versions we will no longer pass through custom headers**. We recommend customers not depend on custom headers in future system architectures.
 
 ## Regional quota limits
 
@@ -181,7 +181,7 @@ To minimize issues related to rate limits, it's a good idea to use the following
 
 ### How to request increases to the default quotas and limits
 
-Quota increase requests can be submitted from the [Quotas](./how-to/quota.md) page of Azure AI Studio. Note that due to overwhelming demand, quota increase requests are being accepted and will be filled in the order they are received. Priority will be given to customers who generate traffic that consumes the existing quota allocation, and your request might be denied if this condition isn't met.
+Quota increase requests can be submitted from the [Quotas](./how-to/quota.md) page of Azure AI Studio. Due to high demand, quota increase requests are being accepted and will be filled in the order they're received. Priority is given to customers who generate traffic that consumes the existing quota allocation, and your request might be denied if this condition isn't met.
 
 For other rate limits, [submit a service request](../cognitive-services-support-options.md?context=/azure/ai-services/openai/context/context).
 
