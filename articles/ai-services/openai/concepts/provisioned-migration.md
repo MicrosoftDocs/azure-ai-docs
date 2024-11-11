@@ -6,7 +6,7 @@ manager: nitinme
 ms.service: azure-ai-openai
 ms.custom: 
 ms.topic: how-to
-ms.date: 08/23/2024
+ms.date: 11/11/2024
 author: mrbullwinkle
 ms.author: mbullwin
 recommendations: false
@@ -250,7 +250,7 @@ With your commitment plan ready, the next step is to create the commitments. Com
 
 For each new commitment you need to create, follow these steps:
 
-1. Launch the Provisioned Throughput purchase dialog by selecting  **Quotas** > **Provisioned** > **Manage Commitments**.
+1. Launch the Provisioned Throughput purchase dialog by selecting  **Quota** > **Azure OpenAI Provisioned** > **Manage Commitment plans**.
 
 :::image type="content" source="../media/how-to/provisioned-onboarding/quota.png" alt-text="Screenshot of the purchase dialog." lightbox="../media/how-to/provisioned-onboarding/quota.png":::
 
