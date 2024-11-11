@@ -14,7 +14,7 @@ ms.date: 11/22/2024
 # A/B Experiments for AI applications
 
 > [!IMPORTANT]
->Items marked (preview) in this article are currently in public or private preview. This preview is provided without a service-level agreement, and we don't recommend it for production workloads. Certain features might not be supported or might have constrained capabilities. For more information, see Supplemental Terms of Use for Microsoft Azure Previews.
+>Items marked (preview) in this article are currently in public or private preview. This preview is provided without a service-level agreement, and we don't recommend it for production workloads. Certain features might not be supported or might have constrained capabilities. For more information, see [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
 
 In the  field of AI application development, A/B experimentation has emerged as a critical practice. It allows for continuous evaluation of AI applications, balancing business impact, risk, and cost. While offline and online evaluations provide some insights, they need to be supplemented with A/B experimentation to ensure the use of right metrics for measuring success.  A/B experimentation involves comparing two versions of a feature, prompt, or model using feature flags or dynamic configuration to determine which performs better. This method is essential for several reasons:
 
@@ -55,15 +55,15 @@ You're also welcome to use your own A/B experimentation provider to run experime
 
 ### Statsig
 
-[Statsig](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/statsiginc1610354169520.statsig?tab=Overview) is experimentation platform for Product, Engineering, and Data Science teams that connects the features you build to the business metrics you care about. Statsig powers automatic A/B tests and experiments for web and mobile applications, giving teams a comprehensive view of which features are driving impact (and which aren't). To simplify experimentation with Azure AI, Statsig has published SDKs built on top of the Azure AI SDK and Azure AI Inference API that makes it easier for Statsig customers to run experiments.
+[Statsig](https://azuremarketplace.microsoft.com/marketplace/apps/statsiginc1610354169520.statsig?tab=Overview) is experimentation platform for Product, Engineering, and Data Science teams that connects the features you build to the business metrics you care about. Statsig powers automatic A/B tests and experiments for web and mobile applications, giving teams a comprehensive view of which features are driving impact (and which aren't). To simplify experimentation with Azure AI, Statsig has published SDKs built on top of the Azure AI SDK and Azure AI Inference API that makes it easier for Statsig customers to run experiments.
 
 ## Other A/B Experimentation Providers
 
 ### Split.io
-[Split.io](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/splitio1614896174525.split_azure?tab=Overview) enables you to set up feature flags and safely deploy to production, controlling who sees which features and when. You can also connect every flag to contextual data, so you know if your features are making things better or worse, and act without hesitation. With Split's Microsoft integrations, we're helping development teams manage feature flags, monitor release performance, experiment, and surface data to make ongoing, data-driven decisions.
+[Split.io](https://azuremarketplace.microsoft.com/marketplace/apps/splitio1614896174525.split_azure?tab=Overview) enables you to set up feature flags and safely deploy to production, controlling who sees which features and when. You can also connect every flag to contextual data, so you know if your features are making things better or worse, and act without hesitation. With Split's Microsoft integrations, we're helping development teams manage feature flags, monitor release performance, experiment, and surface data to make ongoing, data-driven decisions.
 
 ### LaunchDarkly
-[LaunchDarkly](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/aad.launchdarkly?tab=Overview) is a feature management and experimentation platform built with software developers in mind. It enables you to manage feature flags on a large scale, run A/B tests and experiments, and progressively deliver software to ship with confidence.
+[LaunchDarkly](https://azuremarketplace.microsoft.com/marketplace/apps/aad.launchdarkly?tab=Overview) is a feature management and experimentation platform built with software developers in mind. It enables you to manage feature flags on a large scale, run A/B tests and experiments, and progressively deliver software to ship with confidence.
 
 
 
