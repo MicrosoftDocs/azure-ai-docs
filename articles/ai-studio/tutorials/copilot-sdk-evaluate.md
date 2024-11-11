@@ -1,11 +1,11 @@
 ---
-title: "Part 3: Evaluate chat app with the Azure AI Foundry SDK"
+title: "Part 3: Evaluate and deploy chat app with the Azure AI SDK"
 titleSuffix: Azure AI Studio
 description: Evaluate and deploy a custom chat app with the prompt flow SDK. This tutorial is part 3 of a 3-part tutorial series.
 manager: scottpolly
 ms.service: azure-ai-studio
 ms.topic: tutorial
-ms.date: 11/11/2024
+ms.date: 11/06/2024
 ms.reviewer: lebaro
 ms.author: sgilley
 author: sdgilley
@@ -48,7 +48,6 @@ Use the following evaluation dataset, which contains example questions and expec
 ## Evaluate with Azure AI evaluators
 
 Now define an evaluation script that will:
-
 
 - Generate a target function wrapper around our chat app logic.
 - Load the sample `.jsonl` dataset.
