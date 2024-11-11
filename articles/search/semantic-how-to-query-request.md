@@ -117,7 +117,7 @@ Use [Search Documents](/rest/api/searchservice/documents/search-post) to formula
 
 A response includes an `@search.rerankerScore` automatically. If you want captions or answers in the response, enable semantic ranking by setting `queryType` to `semantic` or setting `semanticQuery` and adding captions and answers to the request.
 
-The following examples in this section uses the [hotels-sample-index](search-get-started-portal.md) to demonstrate semantic ranking with semantic answers and captions.
+The following examples in this section use the [hotels-sample-index](search-get-started-portal.md) to demonstrate semantic ranking with semantic answers and captions.
 
 #### Use queryType=semantic
 
@@ -162,7 +162,9 @@ POST https://[search-service-name].search.windows.net/indexes/hotels-sample-inde
 
 #### Use semanticQuery
 
-If you want to use "semanticQuery" in order to use [vector search](vector-search-overview.md), [simple text syntax](query-simple-syntax.md), or [full text syntax](query-lucene-syntax.md), adjust your request to the following JSON:
+By using `semanticQuery`, you can explicitly apply [simple text syntax](query-simple-syntax.md) or [full text syntax](query-lucene-syntax.md), which means you can now do fielded search, term boosting, and proximity search. You can also specify a [pure vector query](vector-search-how-to-query.md) instead of just hybrid.
+
+Adjust your request to the following JSON to use `semanticQuery`.
 
 ```http
 POST https://[search-service-name].search.windows.net/indexes/hotels-sample-index/docs/search?api-version=2024-07-01
@@ -182,7 +184,7 @@ POST https://[search-service-name].search.windows.net/indexes/hotels-sample-inde
 
 1. Set `queryType` to the search syntax you're using, either [simple](query-simple-syntax.md) or [full](query-lucene-syntax.md).
 
-1. Set `semanticQuery` to the simple plain text query you want to use for semantic ranking. Empty queries aren't supported.
+1. Set `semanticQuery` to the simple plain text query you want to use for semantic ranking. Empty queries aren't supported. Avoid operators or any query syntax inside the string itself.
 
 ### [**.NET SDK**](#tab/dotnet-query)
 
