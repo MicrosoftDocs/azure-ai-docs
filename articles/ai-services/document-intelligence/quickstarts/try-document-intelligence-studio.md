@@ -153,6 +153,43 @@ CORS should now be configured to use the storage account from Document Intellige
 > [!NOTE]
 > By default, the Studio will use documents that are located at the root of your container. However, you can use data organized in folders by specifying the folder path in the Custom form project creation steps. *See* [**Organize your data in subfolders**](../how-to-guides/build-a-custom-model.md?view=doc-intel-2.1.0&preserve-view=true#organize-your-data-in-subfolders-optional)
 
+## Use Document Intelligence Studio features
+
+### Auto label documents with prebuilt models or one of your own models
+
+* In custom extraction model labeling page, you can now auto label your documents using one of Document Intelligent Service prebuilt models or your trained models.
+
+    :::image type="content" source="../media/studio/auto-label.gif" alt-text="Animated screenshot showing auto labeling in Studio.":::
+
+* For some documents, duplicate labels after running autolabel are possible. Make sure to modify the labels so that there are no duplicate labels in the labeling page afterwards.
+
+    :::image type="content" source="../media/studio/duplicate-labels.png" alt-text="Screenshot showing duplicate label warning after auto labeling.":::
+
+### Auto label tables
+
+* In custom extraction model labeling page, you can now auto label the tables in the document without having to label the tables manually.
+
+    :::image type="content" source="../media/studio/auto-table-label.gif" alt-text="Animated screenshot showing auto table labeling in Studio.":::
+
+### Add test files directly to your training dataset
+
+* Once you train a custom extraction model, make use of the test page to improve your model quality by uploading test documents to training dataset if needed.
+
+* If a low confidence score is returned for some labels, make sure to correctly label your content. If not, add them to the training dataset and relabel to improve the model quality.
+
+    :::image type="content" source="../media/studio/add-from-test.gif" alt-text="Animated screenshot showing how to add test files to training dataset.":::
+
+### Make use of the document list options and filters in custom projects
+
+* Use the custom extraction model labeling page to navigate through your training documents with ease by making use of the search, filter, and sort by feature.
+
+* Utilize the grid view to preview documents or use the list view to scroll through the documents more easily.
+
+    :::image type="content" source="../media/studio/document-options.png" alt-text="Screenshot of document list view options and filters.":::
+
+### Project sharing
+
+Share custom extraction projects with ease. For more information, see [Project sharing with custom models](../how-to-guides/project-share-custom-models.md).
 
 ## Next steps
 
