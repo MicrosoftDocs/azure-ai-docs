@@ -7,7 +7,7 @@ ms.service: azure-ai-studio
 ms.custom:
   - ai-learning-hub
 ms.topic: concept-article
-ms.date: 10/29/2024
+ms.date: 11/11/2024
 ms.reviewer: jcioffi
 ms.author: mopeakande
 author: msakande
@@ -56,50 +56,34 @@ Azure AI also displays the quality index as follows:
 
 | Index | Description |
 |-------|-------------|
-| Quality index | GPTSimilarity scaled down from zero to one, averaged with our accuracy metrics. A higher quality index value is better. |
+| Quality index | Quality index is calculated by scaling down GPTSimilarity between zero and one, followed by averaging with accuracy metrics. Higher values of quality index are better. |
 
-Azure AI assesses the quality index by using both the measurement of accuracy and GPTSimilarity as the prompt assisted metric. The stability of the GPTSimilarity metric averaging with the accuracy of the model provides an indicator of the overall quality of the model.
+The quality index represents the average score of the applicable primary metric (accuracy, rescaled GPTSimilarity) over 15 standard datasets and is provided on a scale of zero to one.
+
+Quality index constitutes two categories of metrics: 
+
+- Accuracy (for example, exact match or `pass@k`). Ranges from zero to one.
+- Prompt-based metrics (for example, GPTSimilarity, groundedness, coherence, fluency, and relevance). Ranges from one to five.
+
+The stability of the quality index value provides an indicator of the overall quality of the model.
 
 ### Performance
 
-To assess performance, Azure AI uses two approaches.
+Performance metrics are calculated as an aggregate over 14 days, based on 24 trails (two requests per trail) sent daily with a one-hour interval between every trail. The following default parameters are used for each request to the model endpoint:
 
-- Streaming response returns a chunk of one or more tokens.
-- Performance metrics are calculated as an aggregate.
-
-#### Streaming response returns a chunk of one or more tokens
-
-This approach uses the following default parameters for benchmarking:
-
-| Parameter | Value | Applies to |
+| Parameter | Value | Applicable For |
 |-----------|-------|----------------|
 | Region | East US/East US2 | [Serverless APIs](../how-to/model-catalog-overview.md#serverless-api-pay-per-token-billing) and [Azure OpenAI](/azure/ai-services/openai/overview) |
 | Tokens per minute (TPM) rate limit | 30k (180 RPM based on Azure OpenAI) <br> N/A (serverless APIs) | For Azure OpenAI models, selection is available for users with rate limit ranges based on deployment type (standard, global, global standard, and so on.) <br> For serverless APIs, this setting is abstracted. |
-| Number of requests | 128 | Serverless APIs, Azure OpenAI |
+| Number of requests | Two requests in a trail for every hour (24 trails per day) | Serverless APIs, Azure OpenAI |
+| Number of trails/runs | 14 days with 24 trails per day for 336 runs | Serverless APIs, Azure OpenAI |
 | Prompt/Context length | Moderate length | Serverless APIs, Azure OpenAI |
 | Number of tokens processed (moderate) | 80:20 ratio for input to output tokens, that is, 800 input tokens to 200 output tokens. | Serverless APIs, Azure OpenAI |
-| Number of concurrent requests | 16 | Serverless APIs, Azure OpenAI |
+| Number of concurrent requests | One (requests are sent sequentially one after other) | Serverless APIs, Azure OpenAI |
 | Data | Synthetic (input prompts prepared from static text) | Serverless APIs, Azure OpenAI |
+| Region | East US/East US2 | Serverless APIs and Azure OpenAI |
 | Deployment type | Standard | Applicable only for Azure OpenAI |
 | Streaming | True | Applies to serverless APIs and Azure OpenAI. For models deployed via [managed compute](../how-to/model-catalog-overview.md#managed-compute), set max_token = 1 to replicate streaming scenario, which allows for calculating metrics like total time to first token (TTFT) for managed compute. |
-| Tokenizer | Tiktoken package (Azure OpenAI) <br> Hugging Face model ID (Serverless APIs) | Hugging Face model ID (Azure serverless APIs) |
-
-#### Performance metrics calculated as an aggregate
-
-For this approach, performance metrics are calculated as an aggregate over 14 days, based on 24 trials, with two requests per trial. These requests are sent daily with a one-hour interval between every trial. Each request to the model endpoint uses the following default parameters:
-
-| Parameter | Value | Applies to |
-|-----------|-------|----------------|
-| Region | East US/East US2 | Serverless APIs and Azure OpenAI |
-| Tokens per minute (TPM) rate limit | 30k (180 RPM based on Azure OpenAI) <br> N/A (serverless APIs) | For Azure OpenAI models, selection is available for users with rate limit ranges based on deployment type (standard, global, global standard, and so on.) <br> For serverless APIs, this setting is abstracted. |
-| Number of requests | Two requests in a trial for every hour (24 trials per day) | Serverless APIs and Azure OpenAI |
-| Number of trials/runs | 14 days * 24 trials = 336 | Serverless APIs and Azure OpenAI |
-| Prompt/Context length | Moderate length | Serverless APIs and Azure OpenAI |
-| Number of tokens processed | 80:20 ratio for input to output tokens, that is, 800 input tokens to 200 output tokens. | Serverless APIs and Azure OpenAI |
-| Number of concurrent requests | One (requests are sent sequentially one after another) | Serverless APIs and Azure OpenAI |
-| Data | Synthetic (Input prompts prepared from static text) | Serverless APIs, Azure OpenAI, and managed compute |
-| Deployment type | Standard | Applicable only for Azure OpenAI |
-| Streaming | True | Applicable for serverless APIs and Azure OpenAI. For models deployed via managed compute, set max_token = 1 to replicate streaming scenario, which allows for calculating metrics like total time to first token (TTFT) for managed compute. |
 | Tokenizer | Tiktoken package (Azure OpenAI) <br> Hugging Face model ID (Serverless APIs) | Hugging Face model ID (Azure serverless APIs) |
 
 The performance of LLMs and SLMs is assessed across the following metrics:
@@ -116,32 +100,32 @@ The performance of LLMs and SLMs is assessed across the following metrics:
 | Latency TTFT | Total time to first token (TTFT) is the time taken for the first token in the response to be returned from the endpoint when streaming is enabled. |
 | Time between tokens | This metric is the time between tokens received. |
 
-Azure AI also displays the latency and throughput indexes as follows:
+Azure AI also displays performance indexes for latency and throughput as follows:
 
 | Index | Description |
 |-------|-------------|
-| Latency index | Latency TTFT. Time to first token. Lower values are better. |
-| Throughput index | Throughput GTPS. Generated tokens per second. Higher values are better. |
+| Latency index | Mean time to first token. Lower values are better. |
+| Throughput index | Mean generated tokens per second. Higher values are better. |
 
-Performance metrics like latency and throughput are measured over time. For these indexes, Azure AI uses the TTFT and the GTPS as indexes. These measurements indicate how quick a model performs and how much data it can process.
+For performance metrics like latency or throughput, the time to first token and the generated tokens per second give a better overall sense of the typical performance and behavior of the model. We refresh our performance numbers on regular cadence.
 
 ### Cost
 
-Cost calculations are estimates for using an LLM or SLM model endpoint hosted on the Azure AI platform. Azure AI supports displaying the cost of serverless APIs and Azure OpenAI models. Because these costs are subject to change, we refresh our cost calculations two times a week.
+Cost calculations are estimates for using an LLM or SLM model endpoint hosted on the Azure AI platform. Azure AI supports displaying the cost of serverless APIs and Azure OpenAI models. Because these costs are subject to change, we refresh our cost calculations on a regular cadence.
 
 The cost of LLMs and SLMs is assessed across the following metrics:
 
 | Metric | Description |
 |--------|-------------|
-| Cost per input tokens | Price for serverless API deployment for 1 million input tokens |
-| Cost per output tokens | Price for serverless API deployment for 1 million output tokens |
-| Total price | Price for the sum of cost per input tokens and cost per output tokens, with a ratio of 3:1. |
+| Cost per input tokens | Cost for serverless API deployment for 1 million input tokens |
+| Cost per output tokens | Cost for serverless API deployment for 1 million output tokens |
+| Estimated cost | Cost for the sum of cost per input tokens and cost per output tokens, with a ratio of 3:1. |
 
 Azure AI also displays the cost index as follows:
 
 | Index | Description |
 |-------|-------------|
-| Cost index | Total price. Lower values are better. |
+| Cost index | Estimated cost. Lower values are better. |
 
 ## Benchmarking of embedding models
 
@@ -168,15 +152,6 @@ The quality of embedding models is assessed across the following metrics:
 Benchmark results originate from public datasets that are commonly used for language model evaluation. In most cases, the data is hosted in GitHub repositories maintained by the creators or curators of the data. Azure AI evaluation pipelines download data from their original sources, extract prompts from each example row, generate model responses, and then compute relevant accuracy metrics.
 
 Prompt construction follows best practices for each dataset, as specified by the paper introducing the dataset and industry standards. In most cases, each prompt contains several _shots_, that is, several examples of complete questions and answers to prime the model for the task. The evaluation pipelines create shots by sampling questions and answers from a portion of the data that's held out from evaluation.
-
-#### Indexes
-
-The different indexes are calculated as follows:
-
-- **Quality index:** This index is the average score across our accuracy measurement and our GPTSimilarity measurement (brought to a scale from zero to one, using min-max scaling). The index is provided on a scale from zero to one.
-- **Performance index:** This index is the median latency across all the values that we measure.
-- **Cost index:** This index is the total price for the cost per input tokens and cost per output tokens, with a ratio of 3:1.
-
 
 ## Related content
 
