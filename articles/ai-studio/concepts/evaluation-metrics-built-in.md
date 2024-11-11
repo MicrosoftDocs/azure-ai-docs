@@ -281,15 +281,15 @@ Retrieval refers to measuring how relevant the context chunks are to address a q
 **Ratings:**
 
 - **[Retrieval: 1] (Irrelevant Context, External Knowledge Bias)**
-    **Definition**: The retrieved context chunks aren't relevant to the query despite any conceptual similarities. There's no overlap between the query and the retrieved information, and no useful chunks appear in the results. They introduce external knowledge that isn't part of the retrieval documents.
+  - **Definition**: The retrieved context chunks aren't relevant to the query despite any conceptual similarities. There's no overlap between the query and the retrieved information, and no useful chunks appear in the results. They introduce external knowledge that isn't part of the retrieval documents.
 - **[Retrieval: 2] (Partially Relevant Context, Poor Ranking, External Knowledge Bias)**
-    **Definition**: The context chunks are partially relevant to address the query but are mostly irrelevant, and external knowledge or LLM bias starts influencing the context chunks. The most relevant chunks are either missing or placed at the bottom.
+  - **Definition**: The context chunks are partially relevant to address the query but are mostly irrelevant, and external knowledge or LLM bias starts influencing the context chunks. The most relevant chunks are either missing or placed at the bottom.
 - **[Retrieval: 3] (Relevant Context Ranked Bottom)**
-    **Definition**: The context chunks contain relevant information to address the query, but the most pertinent chunks are located at the bottom of the list.
+  - **Definition**: The context chunks contain relevant information to address the query, but the most pertinent chunks are located at the bottom of the list.
 - **[Retrieval: 4] (Relevant Context Ranked Middle, No External Knowledge Bias and Factual Accuracy Ignored)**
-    **Definition**: The context chunks fully address the query, but the most relevant chunk is ranked in the middle of the list. No external knowledge is used to influence the ranking of the chunks; the system only relies on the provided context. Factual accuracy remains out of scope for evaluation. 
+  - **Definition**: The context chunks fully address the query, but the most relevant chunk is ranked in the middle of the list. No external knowledge is used to influence the ranking of the chunks; the system only relies on the provided context. Factual accuracy remains out of scope for evaluation.
 - **[Retrieval: 5] (Highly Relevant, Well Ranked, No Bias Introduced)**
-    **Definition**: The context chunks not only fully address the query, but also surface the most relevant chunks at the top of the list. The retrieval respects the internal context, avoids relying on any outside knowledge, and focuses solely on pulling the most useful content to the forefront, irrespective of the factual correctness of the information.
+  - **Definition**: The context chunks not only fully address the query, but also surface the most relevant chunks at the top of the list. The retrieval respects the internal context, avoids relying on any outside knowledge, and focuses solely on pulling the most useful content to the forefront, irrespective of the factual correctness of the information.
 
 ### AI-assisted: Relevance
 
@@ -310,15 +310,15 @@ Relevance refers to how effectively a response addresses a question. It assesses
 **Ratings:**
 
 - **[Relevance: 1] (Irrelevant Response)**
-    *Definition*: The response is unrelated to the question. It provides information that is off-topic and doesn't attempt to address the question posed. 
+  - **Definition**: The response is unrelated to the question. It provides information that is off-topic and doesn't attempt to address the question posed.
 - **[Relevance: 2] (Incorrect Response)**
-    **Definition**: The response attempts to address the question but includes incorrect information. It provides a response that is factually wrong based on the provided information.
+  - **Definition**: The response attempts to address the question but includes incorrect information. It provides a response that is factually wrong based on the provided information.
 - **[Relevance: 3] (Incomplete Response)**
-    **Definition**: The response addresses the question but omits key details necessary for a full understanding. It provides a partial response that lacks essential information. 
+  - **Definition**: The response addresses the question but omits key details necessary for a full understanding. It provides a partial response that lacks essential information.
 - **[Relevance: 4] (Complete Response)**
-   **Definition**: The response fully addresses the question with accurate and complete information. It includes all essential details required for a comprehensive understanding, without adding any extraneous information.
+  - **Definition**: The response fully addresses the question with accurate and complete information. It includes all essential details required for a comprehensive understanding, without adding any extraneous information.
 - **[Relevance: 5] (Comprehensive Response with Insights)**
-    **Definition**: The response not only fully and accurately addresses the question but also includes additional relevant insights or elaboration. It might explain the significance, implications, or provide minor inferences that enhance understanding.
+  - **Definition**: The response not only fully and accurately addresses the question but also includes additional relevant insights or elaboration. It might explain the significance, implications, or provide minor inferences that enhance understanding.
 
 ### AI-assisted: Coherence
 
@@ -339,15 +339,15 @@ Coherence refers to the logical and orderly presentation of ideas in a response,
 **Ratings:**
 
 - **[Coherence: 1] (Incoherent Response)**
-    **Definition**: The response lacks coherence entirely. It consists of disjointed words or phrases that don't form complete or meaningful sentences. There's no logical connection to the question, making the response incomprehensible.
+  - **Definition**: The response lacks coherence entirely. It consists of disjointed words or phrases that don't form complete or meaningful sentences. There's no logical connection to the question, making the response incomprehensible.
 - **[Coherence: 2] (Poorly Coherent Response)**
-   **Definition**: The response shows minimal coherence with fragmented sentences and limited connection to the question. It contains some relevant keywords but lacks logical structure and clear relationships between ideas, making the overall message difficult to understand.
+  - **Definition**: The response shows minimal coherence with fragmented sentences and limited connection to the question. It contains some relevant keywords but lacks logical structure and clear relationships between ideas, making the overall message difficult to understand.
 - **[Coherence: 3] (Partially Coherent Response)**
-    **Definition**: The response partially addresses the question with some relevant information but exhibits issues in the logical flow and organization of ideas. Connections between sentences might be unclear or abrupt, requiring the reader to infer the links. The response might lack smooth transitions and might present ideas out of order.
+  - **Definition**: The response partially addresses the question with some relevant information but exhibits issues in the logical flow and organization of ideas. Connections between sentences might be unclear or abrupt, requiring the reader to infer the links. The response might lack smooth transitions and might present ideas out of order.
 - **[Coherence: 4] (Coherent Response)**
-    **Definition**: The response is coherent and effectively addresses the question. Ideas are logically organized with clear connections between sentences and paragraphs. Appropriate transitions are used to guide the reader through the response, which flows smoothly and is easy to follow.
+  - **Definition**: The response is coherent and effectively addresses the question. Ideas are logically organized with clear connections between sentences and paragraphs. Appropriate transitions are used to guide the reader through the response, which flows smoothly and is easy to follow.
 - **[Coherence: 5] (Highly Coherent Response)**
-    **Definition**: The response is exceptionally coherent, demonstrating sophisticated organization and flow. Ideas are presented in a logical and seamless manner, with excellent use of transitional phrases and cohesive devices. The connections between concepts are clear and enhance the reader's understanding. The response thoroughly addresses the question with clarity and precision.
+  - **Definition**: The response is exceptionally coherent, demonstrating sophisticated organization and flow. Ideas are presented in a logical and seamless manner, with excellent use of transitional phrases and cohesive devices. The connections between concepts are clear and enhance the reader's understanding. The response thoroughly addresses the question with clarity and precision.
 
 ### AI-assisted: Fluency
 
@@ -454,9 +454,7 @@ This rating value should always be an integer between 1 and 5. So the rating pro
 | When to use it?   | The recommended scenario is Natural Language Processing (NLP) tasks. It addresses limitations of other metrics like BLEU by considering synonyms, stemming, and paraphrasing. METEOR score considers synonyms and word stems to more accurately capture meaning and language variations. In addition to machine translation and text summarization, paraphrase detection is a recommended use case for the METEOR score.|
 | What does it need as input?  | Response, Ground Truth    |
 
-## Supported data format 
-
-
+## Supported data format
 
 Azure AI Foundry allows you to easily evaluate simple query and response pairs or complex, single/multi-turn conversations where you ground the generative AI model in your specific data (also known as Retrieval Augmented Generation or RAG). Currently, we support the following data formats. 
 
@@ -475,11 +473,11 @@ Users pose single queries or prompts, and a generative AI model is employed to i
 
 Users engage in conversational interactions, either through a series of multiple user and assistant turns or in a single exchange. The generative AI model, equipped with retrieval mechanisms, generates responses and can access and incorporate information from external sources, such as documents. The Retrieval Augmented Generation (RAG) model enhances the quality and relevance of responses by using external documents and knowledge and can be injected into the conversation dataset in the supported format.
 
-A conversation is a Python dictionary of a list of messages (which include content, role, and optionally context). The following is an example of a two-turn conversation. 
+A conversation is a Python dictionary of a list of messages (which include content, role, and optionally context). The following is an example of a two-turn conversation.
 
 The test set format follows this data format:
 ```jsonl
-"conversation": {"messages": [ { "content": "Which tent is the most waterproof?", "role": "user" }, { "content": "The Alpine Explorer Tent is the most waterproof", "role": "assistant", "context": "From the our product list the alpine explorer tent is the most waterproof. The Adventure Dining Table has higher weight." }, { "content": "How much does it cost?", "role": "user" }, { "content": "The Alpine Explorer Tent is $120.", "role": "assistant", "context": null } ] } } 
+"conversation": {"messages": [ { "content": "Which tent is the most waterproof?", "role": "user" }, { "content": "The Alpine Explorer Tent is the most waterproof", "role": "assistant", "context": "From the our product list the alpine explorer tent is the most waterproof. The Adventure Dining Table has higher weight." }, { "content": "How much does it cost?", "role": "user" }, { "content": "The Alpine Explorer Tent is $120.", "role": "assistant", "context": null } ] }
 ```
 
 ### Data requirements for evaluators
