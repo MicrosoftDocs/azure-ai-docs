@@ -20,7 +20,7 @@ ms.custom:
 
 # Create jobs and input data for batch endpoints
 
-When you use batch endpoints in Azure Machine Learning, you can perform long batch operations over large amounts of data. The data can be located in different places, such as across disperse regions. Certain types of batch endpoints can also receive literal parameters as inputs. 
+When you use batch endpoints in Azure Machine Learning, you can perform long batch operations over large amounts of input data. The data can be located in different places, such as across different regions. Certain types of batch endpoints can also receive literal parameters as inputs.
 
 This article describes how to specify parameter inputs for batch endpoints and create deployment jobs. The process supports working with data from various sources, such as data assets, data stores, storage accounts, and local files.
 
@@ -36,7 +36,7 @@ This article describes how to specify parameter inputs for batch endpoints and c
 
 ## Establish authentication
 
-To invoke an endpoint, you need a valid Microsoft Entra token. When you invoke an endpoint, Machine Learning creates a batch deployment job under the identity that's associated with the token.
+To invoke an endpoint, you need a valid Microsoft Entra token. When you invoke an endpoint, Azure Machine Learning creates a batch deployment job under the identity that's associated with the token.
 
 - If you use the Azure Machine Learning CLI (v2) or the Azure Machine Learning SDK for Python (v2) to invoke endpoints, you don't need to get the Microsoft Entra token manually. During sign in, the system authenticates your user identity. It also retrieves and passes the token for you.
 - If you use the REST API to invoke endpoints, you need to get the token manually.
@@ -53,7 +53,7 @@ az login
 
 # [Python](#tab/sdk)
 
-Use the Machine Learning SDK for Python to sign in:
+Use the Azure Machine Learning SDK for Python to sign in:
 
 ```python
 from azure.ai.ml import MLClient
@@ -62,7 +62,7 @@ from azure.identity import DefaultAzureCredential
 ml_client = MLClient.from_config(DefaultAzureCredential())
 ```
 
-If your configuration runs outside a Machine Learning compute instance, you need to specify the workspace where the endpoint is deployed:
+If your configuration runs outside an Azure Machine Learning compute instance, you need to specify the workspace where the endpoint is deployed:
 
 ```python
 from azure.ai.ml import MLClient
@@ -92,7 +92,7 @@ For more information about various types of credentials, see [How to run jobs us
 
 ## Create basic jobs
 
-To create a job from a batch endpoint, you invoke the endpoint. Invocation can be done by using the Machine Learning CLI, the Machine Learning SDK for Python, or a REST API call.
+To create a job from a batch endpoint, you invoke the endpoint. Invocation can be done by using the Azure Machine Learning CLI, the Azure Machine Learning SDK for Python, or a REST API call.
 
 The following examples show invocation basics for a batch endpoint that receives a single input data folder for processing. For examples that involve various inputs and outputs, see [Understand inputs and outputs](#understand-inputs-and-outputs).
 
@@ -298,7 +298,7 @@ Batch endpoints provide a durable API that consumers can use to create batch job
 
 Batch endpoints support two types of inputs:
 
-- [Data inputs](#explore-data-inputs), or pointers to a specific storage location or Machine Learning asset
+- [Data inputs](#explore-data-inputs), or pointers to a specific storage location or Azure Machine Learning asset
 - [Literal inputs](#explore-literal-inputs), or literal values like numbers or strings that you want to pass to the job
 
 The number and type of inputs and outputs depend on the [type of batch deployment](concept-endpoints-batch.md#batch-deployments). Model deployments always require one data input and produce one data output. Literal inputs aren't supported in model deployments. In contrast, pipeline component deployments provide a more general construct for building endpoints. In a pipeline component deployment, you can specify any number of data inputs, literal inputs, and outputs.
@@ -319,15 +319,15 @@ Data inputs refer to inputs that point to a location where data is placed. Becau
 
 Batch endpoints can read files that are located in the following types of storage:
 
-- [Machine Learning data assets](#use-input-data-from-a-data-asset), including the folder (`uri_folder`) and file (`uri_file`) types.
-- [Machine Learning data stores](#use-input-data-from-a-data-store), including Azure Blob Storage, Azure Data Lake Storage Gen1, and Azure Data Lake Storage Gen2.
+- [Azure Machine Learning data assets](#use-input-data-from-a-data-asset), including the folder (`uri_folder`) and file (`uri_file`) types.
+- [Azure Machine Learning data stores](#use-input-data-from-a-data-store), including Azure Blob Storage, Azure Data Lake Storage Gen1, and Azure Data Lake Storage Gen2.
 - [Azure Storage accounts](#use-input-data-from-a-storage-account), including Blob Storage, Data Lake Storage Gen1, and Data Lake Storage Gen2.
-- Local data folders and files, when you use the Machine Learning CLI or the Machine Learning SDK for Python to invoke endpoints. But the local data gets uploaded to the default data store of your Machine Learning workspace.
+- Local data folders and files, when you use the Azure Machine Learning CLI or the Azure Machine Learning SDK for Python to invoke endpoints. But the local data gets uploaded to the default data store of your Azure Machine Learning workspace.
 
 > [!IMPORTANT]
 > **Deprecation notice**: Data assets of type `FileDataset` (V1) are deprecated and will be retired in the future. Existing batch endpoints that rely on this functionality will continue to work. But there's no support for V1 datasets in batch endpoints that are created with:
 >
-> - Versions of the Machine Learning CLI v2 that are generally available (2.4.0 and newer).
+> - Versions of the Azure Machine Learning CLI v2 that are generally available (2.4.0 and newer).
 > - Versions of the REST API that are generally available (2022-05-01 and newer).
 
 ### Explore literal inputs
@@ -343,7 +343,7 @@ Literal inputs are only supported in pipeline component deployments. To see how 
 
 ### Explore data outputs
 
-Data outputs refer to the location where the results of a batch job are placed. Each output has an identifiable name, and Machine Learning automatically assigns a unique path to each named output. You can specify another path if you need to. 
+Data outputs refer to the location where the results of a batch job are placed. Each output has an identifiable name, and Azure Machine Learning automatically assigns a unique path to each named output. You can specify another path if you need to. 
 
 > [!IMPORTANT]
 > Batch endpoints only support writing outputs in Blob Storage data stores. If you need to write to a storage account with hierarchical namespaces enabled, such as Data Lake Storage Gen2, you can register the storage service as a Blob Storage data store, because the services are fully compatible. In this way, you can write outputs from batch endpoints to Data Lake Storage Gen2.
@@ -354,7 +354,7 @@ The following examples show how to create jobs while taking data inputs from [da
 
 ### Use input data from a data asset
 
-Machine Learning data assets (formerly known as datasets) are supported as inputs for jobs. Follow these steps to run a batch endpoint job that uses input data that's stored in a registered data asset in Machine Learning.
+Azure Machine Learning data assets (formerly known as datasets) are supported as inputs for jobs. Follow these steps to run a batch endpoint job that uses input data that's stored in a registered data asset in Azure Machine Learning.
 
 > [!WARNING]
 > Data assets of type table (`MLTable`) aren't currently supported.
@@ -414,7 +414,7 @@ Machine Learning data assets (formerly known as datasets) are supported as input
 
     # [REST](#tab/rest)
 
-    Use the Machine Learning CLI or the Machine Learning SDK for Python to create the data asset.
+    Use the Azure Machine Learning CLI or the Azure Machine Learning SDK for Python to create the data asset.
 
     ---
 
@@ -536,13 +536,13 @@ Machine Learning data assets (formerly known as datasets) are supported as input
 
 ### Use input data from a data store
 
-Your batch deployment jobs can directly reference data that's in Machine Learning registered data stores. In this example, you first upload some data to a data store in your Machine Learning workspace. Then you run a batch deployment on that data.
+Your batch deployment jobs can directly reference data that's in Azure Machine Learning registered data stores. In this example, you first upload some data to a data store in your Azure Machine Learning workspace. Then you run a batch deployment on that data.
 
-This example uses the default data store, but you can use a different data store. In any Machine Learning workspace, the name of the default blob data store is **workspaceblobstore**. If you want to use a different data store in the following steps, replace `workspaceblobstore` with the name of your preferred data store.
+This example uses the default data store, but you can use a different data store. In any Azure Machine Learning workspace, the name of the default blob data store is **workspaceblobstore**. If you want to use a different data store in the following steps, replace `workspaceblobstore` with the name of your preferred data store.
 
 1. Upload sample data to the data store. The sample data is available in the [azureml-examples](https://github.com/Azure/azureml-examples) repository. You can find the data in the [sdk/python/endpoints/batch/deploy-models/heart-classifier-mlflow/data](https://github.com/Azure/azureml-examples/tree/main/sdk/python/endpoints/batch/deploy-models/heart-classifier-mlflow/data) folder of that repository.
 
-    1. In Machine Learning studio, open the data assets page for your default blob data store, and then look up the name of its blob container.
+    1. In Azure Machine Learning studio, open the data assets page for your default blob data store, and then look up the name of its blob container.
     1. Use a tool like Azure Storage Explorer or AzCopy to upload the sample data to a folder named heart-disease-uci-unlabeled in that container.
 
 1. Set up the input information:
@@ -672,7 +672,7 @@ This example uses the default data store, but you can use a different data store
 
 ### Use input data from a Storage account
 
-Machine Learning batch endpoints can read data from cloud locations in Storage accounts, both public and private. Use the following steps to run a batch endpoint job with data in a storage account.
+Azure Machine Learning batch endpoints can read data from cloud locations in Storage accounts, both public and private. Use the following steps to run a batch endpoint job with data in a storage account.
 
 For more information about extra required configurations for reading data from storage accounts, see [Configure compute clusters for data access](how-to-authenticate-batch-endpoint.md#configure-compute-clusters-for-data-access).
 
