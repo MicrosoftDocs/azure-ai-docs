@@ -19,6 +19,6 @@ There are two unique fine-tuning experiences in Azure AI Studio. Both allow you 
 
 # [Hub/Project](#tab/hub)
 
-[!INCLUDE [Azure AI Studio Hub/Project fine-tuning](../includes/fine-tuning-studio-openai-in-ai-studio.md)]
+[!INCLUDE [Azure AI Studio Hub/Project fine-tuning](../includes/fine-tuning-openai-in-ai-studio.md)]
 
 ---
