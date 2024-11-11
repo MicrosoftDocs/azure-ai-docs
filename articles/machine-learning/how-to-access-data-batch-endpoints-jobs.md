@@ -139,17 +139,14 @@ Use the following body in your request:
 }
 ```
 
-Use the following values for your request:
+Create your request:
 
-| Setting | Value |
-| --- | --- |
-| Method | POST |
-| Protocol | HTTP |
-| Protocol version | 1.1 |
-| Endpoint | The URL of your batch endpoint |
-| Authorization type | Bearer token | 
-| Token | Your Microsoft Entra token |
-| `Content-Type` header | application/json |
+```
+POST HTTP/1.1
+Host: <endpoint-URI>
+Authorization: Bearer <token>
+Content-Type: application/json
+```
 
 ---
 
@@ -198,18 +195,15 @@ Use the following body in your request:
 }
 ```
 
-Add the header key `azureml-model-deployment` to your request. For its value, use the name of the deployment that you want to invoke. The following table lists all the values to use for the request:
+Add the header key `azureml-model-deployment` to your request. For its value, use the name of the deployment that you want to invoke. 
 
-| Setting | Value |
-| --- | --- |
-| Method | POST |
-| Protocol | HTTP |
-| Protocol version | 1.1 |
-| Endpoint | The URL of your batch endpoint |
-| Authorization type | Bearer token | 
-| Token | Your Microsoft Entra token |
-| `Content-Type` header | application/json |
-| `azureml-model-deployment` header | Your deployment name |
+```
+POST HTTP/1.1
+Host: <endpoint-URI>
+Authorization: Bearer <token>
+Content-Type: application/json
+azureml-model-deployment: <deployment-name>
+```
 
 ---
 
@@ -269,17 +263,14 @@ Indicate the experiment name by using the `experimentName` key in the `propertie
 }
 ```
 
-Use the following values for your request:
+Create your request:
 
-| Setting | Value |
-| --- | --- |
-| Method | POST |
-| Protocol | HTTP |
-| Protocol version | 1.1 |
-| Endpoint | The URL of your batch endpoint |
-| Authorization type | Bearer token | 
-| Token | Your Microsoft Entra token |
-| `Content-Type` header | application/json |
+```
+POST HTTP/1.1
+Host: <endpoint-URI>
+Authorization: Bearer <token>
+Content-Type: application/json
+```
 
 ---
 
@@ -511,17 +502,14 @@ Azure Machine Learning data assets (formerly known as datasets) are supported as
     }
     ```
 
-    Use the following values for your request:
+    Create your request:
 
-    | Setting | Value |
-    | --- | --- |
-    | Method | POST |
-    | Protocol | HTTP |
-    | Protocol version | 1.1 |
-    | Endpoint | The URL of your batch endpoint |
-    | Authorization type | Bearer token | 
-    | Token | Your Microsoft Entra token |
-    | `Content-Type` header | application/json |
+    ```
+    POST HTTP/1.1
+    Host: <endpoint-URI>
+    Authorization: Bearer <token>
+    Content-Type: application/json
+    ```
 
     ---
 
@@ -643,17 +631,14 @@ This example uses the default data store, but you can use a different data store
 
     # [REST](#tab/rest)
 
-    Use the following values for your request:
+    Create your request:
 
-    | Setting | Value |
-    | --- | --- |
-    | Method | POST |
-    | Protocol | HTTP |
-    | Protocol version | 1.1 |
-    | Endpoint | The URL of your batch endpoint |
-    | Authorization type | Bearer token | 
-    | Token | Your Microsoft Entra token |
-    | `Content-Type` header | application/json |
+    ```
+    POST HTTP/1.1
+    Host: <endpoint-URI>
+    Authorization: Bearer <token>
+    Content-Type: application/json
+    ```
 
     ---
 
@@ -794,17 +779,14 @@ For more information about extra required configurations for reading data from s
 
     # [REST](#tab/rest)
 
-    Use the following values for your request:
+    Create your request:
 
-    | Setting | Value |
-    | --- | --- |
-    | Method | POST |
-    | Protocol | HTTP |
-    | Protocol version | 1.1 |
-    | Endpoint | The URL of your batch endpoint |
-    | Authorization type | Bearer token | 
-    | Token | Your Microsoft Entra token |
-    | `Content-Type` header | application/json |
+    ```
+    POST HTTP/1.1
+    Host: <endpoint-URI>
+    Authorization: Bearer <token>
+    Content-Type: application/json
+    ```
 
     ---
 
@@ -868,17 +850,14 @@ Use the following body in your request:
 }
 ```
 
-Use the following values for your request:
+Create your request:
 
-| Setting | Value |
-| --- | --- |
-| Method | POST |
-| Protocol | HTTP |
-| Protocol version | 1.1 |
-| Endpoint | The URL of your batch endpoint |
-| Authorization type | Bearer token | 
-| Token | Your Microsoft Entra token |
-| `Content-Type` header | application/json |
+```
+POST HTTP/1.1
+Host: <endpoint-URI>
+Authorization: Bearer <token>
+Content-Type: application/json
+```
 
 ---
 
@@ -1003,17 +982,14 @@ This example uses the default data store, **workspaceblobstore**. But you can us
 
     # [REST](#tab/rest)
 
-    Use the following values for your request:
+    Create your request:
 
-    | Setting | Value |
-    | --- | --- |
-    | Method | POST |
-    | Protocol | HTTP |
-    | Protocol version | 1.1 |
-    | Endpoint | The URL of your batch endpoint |
-    | Authorization type | Bearer token | 
-    | Token | Your Microsoft Entra token |
-    | `Content-Type` header | application/json |
+    ```
+    POST HTTP/1.1
+    Host: <endpoint-URI>
+    Authorization: Bearer <token>
+    Content-Type: application/json
+    ```
 
     ---
 
