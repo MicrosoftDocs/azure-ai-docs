@@ -41,7 +41,7 @@ landingContent:
           - text: Get started with prompt flow
             url: how-to/flow-develop.md
           - text: Connect to AI services
-            url: ai-services/connect-ai-services.md
+            url: ai-services/how-to/connect-ai-services.md
   # Card
   - title: 10-minute quickstarts
     linkLists:
@@ -83,8 +83,8 @@ landingContent:
             url: concepts/deployments-overview.md
       - linkListType: reference
         links:
-          - text: Azure SDK for Python
-            url: /python/api/overview/azure/
+          - text: Azure AI Foundry SDK
+            url: how-to\develop\sdk-overview.md
           - text: Azure OpenAI Service Reference
             url: ../ai-services/openai/reference.md
   

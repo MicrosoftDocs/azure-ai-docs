@@ -45,10 +45,9 @@ Use the following evaluation dataset, which contains example questions and expec
 
     :::code language="jsonl" source="~/azureai-samples-nov2024/scenarios/rag/custom-rag-app/assets/chat_eval_data.jsonl":::
 
-### Evaluate with Azure AI evaluators
+## Evaluate with Azure AI evaluators
 
 Now define an evaluation script that will:
-
 
 - Generate a target function wrapper around our chat app logic.
 - Load the sample `.jsonl` dataset.
@@ -61,21 +60,22 @@ The script allows you to review the results locally, by outputting the results i
 The script also logs the evaluation results to the cloud project so that you can compare evaluation runs in the UI.
 
 1. Create a file called **evaluate.py** in your main folder.
-1. Add the following code. 
+1. Add the following code to import the required libraries, create a project client, and configure some settings: 
 
-    :::code language="python" source="~/azureai-samples-nov2024/scenarios/rag/custom-rag-app/evaluate.py":::
+    :::code language="python" source="~/azureai-samples-nov2024/scenarios/rag/custom-rag-app/evaluate.py" id="imports_and_config":::
 
-The main function at the end allows you to view the evaluation result locally, and gives you a link to the evaluation results in AI Studio.
+1. Add code to create a wrapper function that implements the evaluation interface for query and response evaluation:
 
-### Create helper script
+    :::code language="python" source="~/azureai-samples-nov2024/scenarios/rag/custom-rag-app/evaluate.py" id="evaluate_wrapper":::
 
-The evaluation script uses a helper script to define the target function and run the evaluation. Create a file called **config.py** in your main folder. Add the following code:
+1. Finally, add code to run the evaluation, view the results locally, and gives you a link to the evaluation results in AI Studio:
+ 
+    :::code language="python" source="~/azureai-samples-nov2024/scenarios/rag/custom-rag-app/evaluate.py" id="run_evaluation":::
 
-:::code language="python" source="~/azureai-samples-nov2024/scenarios/rag/custom-rag-app/config.py":::
 
 ### Configure the evaluation model 
 
-Since the evaluation script calls the model many times, you might want to increase the number of tokens per minute that for the evaluation model.  
+Since the evaluation script calls the model many times, you might want to increase the number of tokens per minute for the evaluation model.  
 
 In Part 1 of this tutorial series, you created an **.env** file that specifies the name of the evaluation model, `gpt-4o-mini`.  Try to increase the tokens per minute limit for this model, if you have available quota. If you don't have enough quota to increase the value, don't worry.  The script is designed to handle limit errors.
 
@@ -93,7 +93,7 @@ In Part 1 of this tutorial series, you created an **.env** file that specifies t
     az login
     ```
 
-1. Install the required packages:
+1. Install the required package:
 
     ```bash
     pip install azure_ai-evaluation[remote]

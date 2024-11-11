@@ -58,11 +58,11 @@ We break down the aggregate views with different types of your metrics by AI Qua
 - For AI Quality (NLP) metrics, we show histogram of the metric distribution between 0 and 1. We aggregate by calculating an average across all the scores for each metric.
      :::image type="content" source="../media/evaluations/view-results/ai-quality-nlp-chart.png" alt-text="Screenshot of AI Quality (NLP) dashboard tab." lightbox="../media/evaluations/view-results/ai-quality-nlp-chart.png":::
 - For custom metrics, you can select **Add custom chart**, to create a custom chart with your chosen metrics or to view a metric against selected input parameters.
-     :::image type="content" source="../media/evaluations/view-results/custom-chart-pop-up.png" alt-text="Screenshot of create custom chart pop up." lightbox="../media/evaluations/view-results/custom-chart-pop-up.png":::
+     :::image type="content" source="../media/evaluations/view-results/custom-chart-pop-up.png" alt-text="Screenshot of create custom chart pop-up." lightbox="../media/evaluations/view-results/custom-chart-pop-up.png":::
 
 You can also customize existing charts for built-in metrics by changing the chart type.
 
-:::image type="content" source="../media/evaluations/view-results/custom-chart-pop-up.png" alt-text="Screenshot of changing chart type." lightbox="../media/evaluations/view-results/custom-chart-pop-up.png":::
+:::image type="content" source="../media/evaluations/view-results/change-chart-type.png" alt-text="Screenshot of changing chart type." lightbox="../media/evaluations/view-results/change-chart-type.png":::
 
 ### Detailed metrics result table
 

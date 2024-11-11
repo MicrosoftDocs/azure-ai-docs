@@ -1,11 +1,11 @@
 ---
-title: "Part 2: Build a custom chat app with the Azure AI Foundry SDK"
+title: "Part 2: Build a ca custom knowledge retrieval (RAG) app with the Azure AI Foundry SDK"
 titleSuffix: Azure AI Studio
 description:  Learn how to build a RAG-based chat app using the Azure AI Foundry SDK. This tutorial is part 2 of a 3-part tutorial series.
 manager: scottpolly
 ms.service: azure-ai-studio
 ms.topic: tutorial
-ms.date: 11/03/2024
+ms.date: 11/11/2024
 ms.reviewer: lebaro
 ms.author: sgilley
 author: sdgilley
@@ -13,7 +13,7 @@ ms.custom: [copilot-learning-hub]
 #customer intent: As a developer, I want to learn how to use the prompt flow SDK so that I can build a RAG-based chat app.
 ---
 
-# Tutorial:  Part 2 - Build a custom chat application with the Azure AI Foundry SDK
+# Tutorial:  Part 2 - Build a custom knowledge retrieval (RAG) app with the Azure AI Foundry SDK
 
 In this tutorial, you use the Azure AI Foundry SDK (and other libraries) to build, configure, evaluate, and deploy a chat app for your retail company called Contoso Trek. Your retail company specializes in outdoor camping gear and clothing. The chat app should answer questions about your products and services. For example, the chat app can answer questions such as "which tent is the most waterproof?" or "what is the best sleeping bag for cold weather?".
 
@@ -49,8 +49,21 @@ The search index is used to store vectorized data from the embeddings model. The
 
 1. Create the file **create_search_index.py** in your main folder (that is, the same directory where you placed your **assets** folder, not inside the **assets** folder).  
 1. Copy and paste the following code into your **create_search_index.py** file.
+1. Add the code to import the required libraries, create a project client, and configure some settings: 
 
-    :::code language="python" source="~/azureai-samples-nov2024/scenarios/rag/custom-rag-app/create_search_index.py":::
+    :::code language="python" source="~/azureai-samples-nov2024/scenarios/rag/custom-rag-app/create_search_index.py" id="imports_and_config":::
+
+1. Now add the function to define a search index:
+
+    :::code language="python" source="~/azureai-samples-nov2024/scenarios/rag/custom-rag-app/create_search_index.py" id="create_search_index":::
+
+1. Create the function to add a csv file to the index:
+
+    :::code language="python" source="~/azureai-samples-nov2024/scenarios/rag/custom-rag-app/create_search_index.py" id="add_csv_to_index":::
+
+1. Finally, run the functions to build the index and register it to the cloud project:
+
+    :::code language="python" source="~/azureai-samples-nov2024/scenarios/rag/custom-rag-app/create_search_index.py" id="test_create_index":::
 
 1. From your console, log in to your Azure account and follow instructions for authenticating your account:
 
@@ -71,15 +84,25 @@ The search index is used to store vectorized data from the embeddings model. The
 
 ## <a name="get-documents"></a> Get product documents
 
-Next, you create a script to get product documents from the search index. The script uses the Azure AI SDK to query the search index for documents that match a user's question.
+Next, you create a script to get product documents from the search index. The script queries the search index for documents that match a user's question.
 
 ### Create script to get product documents
 
 When the chat gets a request, it searches through your data to find relevant information.  This script uses the Azure AI SDK to query the search index for documents that match a user's question.  It then returns the documents to the chat app.
 
-Create the **get_product_documents.py** file in your main directory. Copy and paste the following code into the file.
+1. Create the **get_product_documents.py** file in your main directory. Copy and paste the following code into the file.
 
-:::code language="python" source="~/azureai-samples-nov2024/scenarios/rag/custom-rag-app/get_product_documents.py":::
+1. Start with code to import the required libraries, create a project client, and configure settings: 
+
+    :::code language="python" source="~/azureai-samples-nov2024/scenarios/rag/custom-rag-app/get_product_documents.py" id="imports_and_config":::
+
+1. Add the function to get product documents:
+
+    :::code language="python" source="~/azureai-samples-nov2024/scenarios/rag/custom-rag-app/get_product_documents.py" id="get_product_documents":::
+
+1. Finally, add code to test the function when you run the script directly:
+
+    :::code language="python" source="~/azureai-samples-nov2024/scenarios/rag/custom-rag-app/get_product_documents.py" id="test_get_documents":::
 
 ### Create prompt template for intent mapping
 
@@ -103,9 +126,18 @@ Next you create custom code to add retrieval augmented generation (RAG) capabili
 
 ### Create a chat script with RAG capabilities
 
-In your main folder, create a new file called **chat_with_products.py**. This script uses the Azure AI SDK to retrieve product documents and generate a response to a user's question.
+1. In your main folder, create a new file called **chat_with_products.py**. This script retrieves product documents and generates a response to a user's question.
+1. Add the code to import the required libraries, create a project client, and configure settings: 
 
-:::code language="python" source="~/azureai-samples-nov2024/scenarios/rag/custom-rag-app/chat_with_products.py":::
+    :::code language="python" source="~/azureai-samples-nov2024/scenarios/rag/custom-rag-app/chat_with_products.py" id="imports_and_config":::
+
+1. Create the chat function that uses the RAG capabilities:
+
+    :::code language="python" source="~/azureai-samples-nov2024/scenarios/rag/custom-rag-app/chat_with_products.py" id="chat_function":::
+
+1. Finally, add the code to run the chat function:
+    
+    :::code language="python" source="~/azureai-samples-nov2024/scenarios/rag/custom-rag-app/chat_with_products.py" id="test_function":::
 
 ### Create a grounded chat prompt template
 

@@ -53,7 +53,7 @@ Use the left navigation area to perform your tasks with Azure OpenAI models:
 While the previous sections show how to focus on just the Azure OpenAI Service, you can also incorporate other AI services and models from various providers in Azure AI Foundry portal. You can access the Azure OpenAI Service in two ways:
 
 * When you focus on just the Azure OpenAI Service, as described in the previous sections, you don't use a project.
-* Azure AI Foundry portal uses a project to organize your work and save state while building customized AI apps. When you work in a project, you can connect to the service. For more information, see [How to use Azure OpenAI Service in AI Studio](ai-services/connect-azure-openai.md#project).
+* Azure AI Foundry portal uses a project to organize your work and save state while building customized AI apps. When you work in a project, you can connect to the service. For more information, see [How to use Azure OpenAI Service in AI Studio](ai-services/how-to/connect-azure-openai.md#project).
 
 When you create a project, you can try other models and tools along with Azure OpenAI. For example, the **Model catalog** in a project contains many more models than just Azure OpenAI models. Inside a project, you'll have access to features that are common across all AI services and models.
 
@@ -83,11 +83,11 @@ Pay attention to the top left corner of the screen to see which context you are 
 
     :::image type="content" source="media/azure-openai-in-ai-studio/ai-studio-project.png" alt-text="Screenshot shows top left corner of screen for AI Studio with a project.":::
 
-* When you're working with Azure OpenAI outside of a project, you see **Azure AI Studio | Azure OpenAI / resource name**. The resource name allows you to switch between Azure OpenAI resources.
+* When you're working with Azure OpenAI outside of a project, you see **Azure AI Foundry | Azure OpenAI / resource name**. The resource name allows you to switch between Azure OpenAI resources.
 
     :::image type="content" source="media/azure-openai-in-ai-studio/ai-studio-azure-openai.png" alt-text="Screenshot shows top left corner of screen for AI Studio when using Azure OpenAI without a project.":::
 
-Use the **Azure AI Foundry** breadcrumb to navigate back to the Azure AI Studio home page. You can also navigate back to the Azure AI Foundry portal home page when you see **View all resources & projects** in the top right corner of the screen.
+Use the **Azure AI Foundry** breadcrumb to navigate back to the Azure AI Foundry portal home page.
 
 ## Related content
 
