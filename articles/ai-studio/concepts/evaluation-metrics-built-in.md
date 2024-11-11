@@ -249,9 +249,13 @@ For groundedness, we provide two versions:
 
 Our definition and grading rubrics to be used by the large language model judge to score this metric:  
 
+**Definition:**
+
 | Groundedness for RAG QA | Groundedness for summarization |
 |---|-----|
 | Groundedness refers to how well an answer is anchored in the provided context, evaluating its relevance, accuracy, and completeness based exclusively on that context. It assesses the extent to which the answer directly and fully addresses the question without introducing unrelated or incorrect information. The scale ranges from 1 to 5, with higher numbers indicating greater groundedness. | Groundedness refers to how faithfully a response adheres to the information provided in the context, ensuring that all content is directly supported by the context without introducing unsupported information or omitting critical details. It evaluates the fidelity and precision of the response in relation to the source material. |
+
+**Ratings:**
 
 | Rating| Groundedness for RAG QA | Groundedness for summarization |
 |--|--|--|
@@ -260,7 +264,6 @@ Our definition and grading rubrics to be used by the large language model judge 
 | Groundedness: 3 | **[Groundedness: 3] (Attempts to Respond but Contains Incorrect Information)** <br></br>  **Definition**: An answer that attempts to respond to the question but includes incorrect information not supported by the context. It might misstate facts misinterpret the context, or provide erroneous details. | **[Groundedness: 3] (Accurate Response with Unsupported Additions)** <br></br> **Definition**: The response accurately includes information from the context but adds details, opinions, or explanations that aren't supported by the provided material. |
 | Groundedness: 4 | **[Groundedness: 4] (Partially Correct Response)** <br></br> **Definition**: An answer that provides a correct response to the question but is incomplete or lacks specific details mentioned in the context. It captures some of the necessary information but omits key elements needed for a full understanding. | **[Groundedness: 4] (Incomplete Response Missing Critical Details)** <br></br> **Definition**: The response contains information from the context but omits essential details that are necessary for a comprehensive understanding of the main point. |
 | Groundedness: 5 | **[Groundedness: 5] (Fully Correct and Complete Response)** <br></br> **Definition**: An answer that thoroughly and accurately responds to the question, including all relevant details from the context. It directly addresses the question with precise information, demonstrating complete understanding without adding extraneous information. | **[Groundedness: 5] (Fully Grounded and Complete Response)** <br></br> **Definition**: The response is entirely based on the context, accurately and thoroughly conveying all essential information without introducing unsupported details or omitting critical points. |
-
 
 ### AI-assisted: Retrieval
 
