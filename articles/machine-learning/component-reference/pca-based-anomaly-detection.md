@@ -15,7 +15,7 @@ ms.date: 02/22/2020
 # PCA-Based Anomaly Detection component
 
 > [!WARNING]
-> This component HAS BEEN DEPRECATED because its dependency, the [NimbusML](https://github.com/microsoft/NimbusML) project, is no longer actively maintained. As a result, this component will not receive future updates or security patches.
+> This component **HAS BEEN DEPRECATED** because its dependency, the [NimbusML](https://github.com/microsoft/NimbusML) project, is no longer actively maintained. As a result, this component will not receive future updates or security patches.
 > We plan to remove this component in upcoming releases. Users are recommended to migrate to alternative solutions to ensure continued support and security.
 
 This article describes how to use the PCA-Based Anomaly Detection component in Azure Machine Learning designer, to create an anomaly detection model based on principal component analysis (PCA).
