@@ -51,7 +51,7 @@ Use the Azure CLI to sign in with **interactive** or **device code** authenticat
 az login
 ```
 
-# [Python](#tab/sdk)
+# [Python SDK](#tab/sdk)
 
 Use the Azure Machine Learning SDK for Python to sign in:
 
@@ -105,13 +105,12 @@ az ml batch-endpoint invoke --name $ENDPOINT_NAME \
                             --input https://azuremlexampledata.blob.core.windows.net/data/heart-disease-uci/data
 ```
 
-# [Python](#tab/sdk)
+# [Python SDK](#tab/sdk)
 
 Use the `MLClient.batch_endpoints.invoke()` method to invoke a batch endpoint. In the following code, `endpoint` is an endpoint object.
 
 ```python
-from azure.ai.ml import MLClient, Input
-from azure.identity import DefaultAzureCredential
+from azure.ai.ml import Input
 
 job = ml_client.batch_endpoints.invoke(
     endpoint_name=endpoint.name,
@@ -168,14 +167,11 @@ az ml batch-endpoint invoke --name $ENDPOINT_NAME \
                             --input https://azuremlexampledata.blob.core.windows.net/data/heart-disease-uci/data
 ```
 
-# [Python](#tab/sdk)
+# [Python SDK](#tab/sdk)
 
 Use the parameter `deployment_name` to specify the name of the deployment. In the following code, `deployment` is a deployment object.
 
 ```python
-from azure.ai.ml import MLClient, Input
-from azure.identity import DefaultAzureCredential
-
 job = ml_client.batch_endpoints.invoke(
     endpoint_name=endpoint.name,
     deployment_name=deployment.name,
@@ -238,14 +234,11 @@ az ml batch-endpoint invoke --name $ENDPOINT_NAME \
                             --input https://azuremlexampledata.blob.core.windows.net/data/heart-disease-uci/data
 ```
 
-# [Python](#tab/sdk)
+# [Python SDK](#tab/sdk)
 
 Use the parameter `experiment_name` to specify the name of the experiment:
 
 ```python
-from azure.ai.ml import MLClient, Input
-from azure.identity import DefaultAzureCredential
-
 job = ml_client.batch_endpoints.invoke(
     endpoint_name=endpoint.name,
     experiment_name="my-batch-job-experiment",
@@ -379,13 +372,11 @@ Azure Machine Learning data assets (formerly known as datasets) are supported as
         az ml data create -f heart-data.yml
         ```
 
-    # [Python](#tab/sdk)
+    # [Python SDK](#tab/sdk)
   
     1. Create a data asset definition:
 
         ```python
-        from azure.ai.ml import MLClient, Input
-        from azure.identity import DefaultAzureCredential
         from azure.ai.ml.constants import AssetTypes
         from azure.ai.ml.entities import Data
 
@@ -426,7 +417,7 @@ Azure Machine Learning data assets (formerly known as datasets) are supported as
     DATA_ASSET_ID=$(az ml data show -n heart-data --label latest | jq -r .id)
     ```
 
-    # [Python](#tab/sdk)
+    # [Python SDK](#tab/sdk)
 
     ```python
     input = Input(path=heart_data_asset.id)
@@ -478,7 +469,7 @@ Azure Machine Learning data assets (formerly known as datasets) are supported as
     az ml batch-endpoint invoke --name $ENDPOINT_NAME --file inputs.yml
     ```
 
-    # [Python](#tab/sdk)
+    # [Python SDK](#tab/sdk)
 
     Call the `invoke` method, and use the `inputs` parameter to specify the required inputs:
 
@@ -556,15 +547,11 @@ This example uses the default data store, but you can use a different data store
     INPUT_PATH="azureml://datastores/workspaceblobstore/paths/$DATA_PATH"
     ```
 
-    # [Python](#tab/sdk)
+    # [Python SDK](#tab/sdk)
 
     Place the file path in the `input` variable:
 
     ```python
-    from azure.ai.ml import MLClient, Input
-    from azure.identity import DefaultAzureCredential
-    from azure.ai.ml.constants import AssetTypes
-
     data_path = "heart-disease-uci-unlabeled"
     input = Input(type=AssetTypes.URI_FOLDER, path=f"azureml://datastores/workspaceblobstore/paths/{data_path}")
     ```
@@ -629,7 +616,7 @@ This example uses the default data store, but you can use a different data store
     az ml batch-endpoint invoke --name $ENDPOINT_NAME --file inputs.yml
     ```
 
-    # [Python](#tab/sdk)
+    # [Python SDK](#tab/sdk)
 
     Call the `invoke` method by using the `inputs` parameter to specify the required inputs:
 
@@ -692,15 +679,11 @@ For more information about extra required configurations for reading data from s
     INPUT_DATA="https://azuremlexampledata.blob.core.windows.net/data/heart-disease-uci/data/heart.csv"
     ```
 
-    # [Python](#tab/sdk)
+    # [Python SDK](#tab/sdk)
 
     Set the `input` variable:
 
     ```python
-    from azure.ai.ml import MLClient, Input
-    from azure.identity import DefaultAzureCredential
-    from azure.ai.ml.constants import AssetTypes
-
     input = Input(
         type=AssetTypes.URI_FOLDER, 
         path="https://azuremlexampledata.blob.core.windows.net/data/heart-disease-uci/data"
@@ -784,7 +767,7 @@ For more information about extra required configurations for reading data from s
 
     If your data is in a file, use the `uri_file` type in the inputs.yml file for the data input. 
 
-    # [Python](#tab/sdk)
+    # [Python SDK](#tab/sdk)
 
     Call the `invoke` method by using the `inputs` parameter to specify the required inputs:
 
@@ -855,14 +838,11 @@ az ml batch-endpoint invoke --name $ENDPOINT_NAME \
     --set inputs.score_mode.type="string" inputs.score_mode.default="append"
 ```
 
-# [Python](#tab/sdk)
+# [Python SDK](#tab/sdk)
 
 Use the `inputs` parameter to supply information about the literal input.
 
 ```python
-from azure.ai.ml import MLClient, Input
-from azure.identity import DefaultAzureCredential
-
 job = ml_client.batch_endpoints.invoke(
     endpoint_name=endpoint.name, 
     inputs = { 
@@ -916,12 +896,10 @@ This example uses the default data store, **workspaceblobstore**. But you can us
     DATA_STORE_ID=$(az ml datastore show -n workspaceblobstore | jq -r '.id')
     ```
 
-    # [Python](#tab/sdk)
+    # [Python SDK](#tab/sdk)
 
     ```python
-    from azure.ai.ml import MLClient, Input, Output
-    from azure.identity import DefaultAzureCredential
-    from azure.ai.ml.constants import AssetTypes
+    from azure.ai.ml import Output
 
     default_ds = ml_client.datastores.get_default()
     ```
@@ -955,7 +933,7 @@ This example uses the default data store, **workspaceblobstore**. But you can us
         path: <data-store-ID>/paths/batch-jobs/my-unique-path
     ```
 
-    # [Python](#tab/sdk)
+    # [Python SDK](#tab/sdk)
 
     Set the `output` path variable:
 
@@ -1011,7 +989,7 @@ This example uses the default data store, **workspaceblobstore**. But you can us
     az ml batch-endpoint invoke --name $ENDPOINT_NAME --file inputs-and-outputs.yml
     ```
    
-    # [Python](#tab/sdk)
+    # [Python SDK](#tab/sdk)
 
     Use the `outputs` parameter to supply information about the output.
 
