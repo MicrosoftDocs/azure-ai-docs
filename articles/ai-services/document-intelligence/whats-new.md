@@ -30,7 +30,7 @@ Document Intelligence service is updated on an ongoing basis. Bookmark this page
 
 ## November 2024
 
-**Document Intelligence v4.0 (2024-11-30) is now generally available (GA)**! The API version corresponds to 2024-11-30. The v4.0 API includes following changes as listed:
+**Document Intelligence v4.0 (2024-11-30) is now generally available (GA)**! The API version corresponds to 2024-11-30. The v4.0 API includes the following changes as listed:
 
 * [🆕 Batch API](concept-batch-analysis.md)
   * Batch API now supports all the prebuilt models.
