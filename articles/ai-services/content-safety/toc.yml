@@ -63,8 +63,6 @@ items:
     href: ./limited-access.md
 - name: How-to guides
   items:
-  - name: Use custom categories (standard) (preview)
-    href: how-to/custom-categories.md
   - name: Use custom categories (rapid) (preview)
     href: how-to/custom-categories-rapid.md
   - name: Use a blocklist
