@@ -1,6 +1,6 @@
 ### YamlMime:Landing
 
-title: Azure AI Studio documentation # < 60 chars
+title: Azure AI Foundry documentation # < 60 chars
 summary:  Build cutting-edge, market-ready, responsible applications for your organization with AI.
 metadata:
   title: Azure AI Studio documentation
@@ -20,13 +20,13 @@ landingContent:
 # Cards and links should be based on top customer tasks or top subjects
 # Start card title with a verb
   # Card
-  - title: About Azure AI Studio
+  - title: About Azure AI Foundry
     linkLists:
       - linkListType: overview
         links:
-          - text: What is Azure AI Studio?
+          - text: What is Azure AI Foundry?
             url: what-is-ai-studio.md
-          - text: Azure OpenAI Service in Azure AI Studio
+          - text: Azure OpenAI Service in Azure AI Foundry
             url: azure-openai-in-ai-studio.md
           - text: Select and deploy models from the catalog
             url: how-to/model-catalog.md
@@ -36,12 +36,12 @@ landingContent:
             url: concepts/evaluation-metrics-built-in.md
       - linkListType: how-to-guide
         links:
-          - text: Create a project in Azure AI Studio
+          - text: Create a project in Azure AI Foundry portal
             url: how-to/create-projects.md
           - text: Get started with prompt flow
             url: how-to/flow-develop.md
           - text: Connect to AI services
-            url: ai-services/connect-ai-services.md
+            url: ai-services/how-to/connect-ai-services.md
   # Card
   - title: 10-minute quickstarts
     linkLists:
@@ -51,8 +51,6 @@ landingContent:
             url: quickstarts/get-started-code.md
           - text: Use Azure OpenAI Assistants in the playground
             url: ../ai-services/openai/assistants-quickstart.md?context=/azure/ai-studio/context/context
-          - text: Moderate text and images
-            url: quickstarts/content-safety.md
           - text: Get started using GPT-4 Turbo with Vision
             url: quickstarts/multimodal-vision.md
       - linkListType: tutorial
@@ -83,8 +81,8 @@ landingContent:
             url: concepts/deployments-overview.md
       - linkListType: reference
         links:
-          - text: Azure SDK for Python
-            url: /python/api/overview/azure/
+          - text: Azure AI Foundry SDK
+            url: how-to\develop\sdk-overview.md
           - text: Azure OpenAI Service Reference
             url: ../ai-services/openai/reference.md
   

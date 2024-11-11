@@ -1,22 +1,22 @@
 ---
-title: Get started building a chat app using the Azure AI SDK
+title: Get started building a chat app using the Azure AI Foundry SDK
 titleSuffix: Azure AI Studio
 description: This article provides instructions on how to build a custom chat app in Python using the Azure AI SDK.
 manager: scottpolly
 ms.service: azure-ai-studio
 ms.custom: build-2024, devx-track-azurecli, devx-track-python
 ms.topic: how-to
-ms.date: 10/31/2024
+ms.date: 11/07/2024
 ms.reviewer: dantaylo
 ms.author: sgilley
 author: sdgilley
 ---
 
-# Build a custom chat app in Python using Azure AI SDK
+# Build a basic chat app in Python using Azure AI Foundry SDK
 
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
-In this quickstart, we walk you through setting up your local development environment with the prompt flow SDK. We write a prompt, run it as part of your app code, trace the LLM calls being made, and run a basic evaluation on the outputs of the LLM.
+In this quickstart, we walk you through setting up your local development environment with the Azure AI Foundry SDK. We write a prompt, run it as part of your app code, trace the LLM calls being made, and run a basic evaluation on the outputs of the LLM.
 
 ## Prerequisites
 
@@ -42,28 +42,7 @@ pip install azure-ai-projects azure-ai-inference azure-identity
 
 Create a file named **chat.py**.  Copy and paste the following code into it.
 
-```python
-from azure.ai.projects import AIProjectClient
-from azure.identity import DefaultAzureCredential
-
-project_connection_string = "<your-connection-string-goes-here>"
-
-project = AIProjectClient.from_connection_string(
-    conn_str=project_connection_string,
-    credential=DefaultAzureCredential()
-)
-
-chat = project.inference.get_chat_completions_client()
-response = chat.complete(
-    model="gpt-4o-mini",
-    messages=[
-        {"role": "system", "content": "You are an AI assistant that speaks like a techno punk rocker from 2350. Be cool but not too cool. Ya dig?"},
-        {"role": "user", "content": "Hey, can you help me with my taxes? I'm a freelancer."},
-    ]
-)
-
-print(response.choices[0].message.content)
-```
+:::code language="python" source="~/azureai-samples-nov2024/scenarios/inference/chat-app/chat-simple.py":::
 
 ## Insert your connection string
 
@@ -89,35 +68,11 @@ The script uses hardcoded input and output messages. In a real app you'd take in
 
 Let's change the script to take input from a client application and generate a system message using a prompt template.
 
-1.  Remove the last line of the script that prints a response.
+1. Remove the last line of the script that prints a response.
 
 1. Now define a `get_chat_response` function that takes messages and context, generates a system message using a prompt template, and calls a model.  Add this code to your **chat.py** file:
 
-    ```python
-    from azure.ai.inference.prompts import PromptTemplate
-
-    def get_chat_response(messages, context):
-        # create a prompt template from an inline string (using mustache syntax)
-        prompt_template = PromptTemplate.from_message(prompt_template="""
-            system:
-            You are an AI assistant that speaks like a techno punk rocker from 2350. Be cool but not too cool. Ya dig? Refer to the user by their first name, try to work their last name into a pun.
-
-            The user's first name is {{first_name}} and their last name is {{last_name}}.
-            """)
-        
-        # generate system message from the template, passing in the context as variables
-        system_message = prompt_template.render(data=context)
-
-        # add the prompt messages to the user messages
-        response = chat.complete(
-            model="gpt-4o-mini", 
-            messages=system_message + messages,
-            temperature=1,
-            frequency_penalty=0.5,
-            presence_penalty=0.5)
-
-        return response
-    ```
+    :::code language="python" source="~/azureai-samples-nov2024/scenarios/inference/chat-app/chat-template.py" id="chat_function":::
 
     > [!NOTE]
     > The prompt template uses mustache format.
@@ -126,16 +81,7 @@ Let's change the script to take input from a client application and generate a s
 
 1. Now simulate passing information from a frontend application to this function.  Add the following code to the end of your **chat.py** file.  Feel free to play with the message and add your own name.
 
-```python
-response = get_chat_response(
-    messages=[{"role": "user", "content": "what city has the best food in the world?"}],
-    context = {
-      "first_name": "Jessie",
-      "last_name": "Irwin"
-   }
-)
-print(response.choices[0].message.content)
-```
+    :::code language="python" source="~/azureai-samples-nov2024/scenarios/inference/chat-app/chat-template.py" id="create_response":::
 
 Run the script to see the response from the model with this new input.
 
@@ -147,4 +93,4 @@ python chat.py
 ## Next step
 
 > [!div class="nextstepaction"]
-> [Add data and use retrieval augmented generation (RAG) to build a custom chat app](../tutorials/copilot-sdk-build-rag.md)
+> [Add data and use retrieval augmented generation (RAG) to build a custom chat app](../tutorials/copilot-sdk-create-resources.md)

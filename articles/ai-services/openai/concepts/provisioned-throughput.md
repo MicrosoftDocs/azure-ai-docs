@@ -41,13 +41,13 @@ An Azure OpenAI Deployment is a unit of management for a specific OpenAI Model. 
 ## How much throughput per PTU you get for each model
 The amount of throughput (tokens per minute or TPM) a deployment gets per PTU is a function of the input and output tokens in the minute. Generating output tokens requires more processing than input tokens and so the more output tokens generated the lower your overall TPM. The service dynamically balances the input & output costs, so users do not have to set specific input and output limits. This approach means your deployment is resilient to fluctuations in the workload shape. 
 
-To help with simplifying the sizing effort, the following table outlines the TPM per PTU for the `gpt-4o` and `gpt-4o-mini` models. The table also shows Service Level Agreement (SLA) Latency Target Values per model.  For more information about the SLA for Azure OpenAI Service, see the [Service Level Agreements (SLA) for Online Services page].(https://www.microsoft.com/licensing/docs/view/Service-Level-Agreements-SLA-for-Online-Services?lang=1)
+To help with simplifying the sizing effort, the following table outlines the TPM per PTU for the `gpt-4o` and `gpt-4o-mini` models which represent the max all the traffic is either input or output. The table also shows Service Level Agreement (SLA) Latency Target Values per model.  For more information about the SLA for Azure OpenAI Service, see the [Service Level Agreements (SLA) for Online Services page].(https://www.microsoft.com/licensing/docs/view/Service-Level-Agreements-SLA-for-Online-Services?lang=1)
 
 |     | **gpt-4o**, **2024-05-13**   & **gpt-4o**, **2024-08-06**   | **gpt-4o-mini**, **2024-07-18**   |
 | --- | --- | --- |
 | Deployable Increments | 50 | 25|
-| Input TPM per PTU | 2,500 | 37,000  |
-| Output TPM per PTU| 833|12,333|
+|Max Input TPM per PTU | 2,500 | 37,000  |
+|Max Output TPM per PTU| 833|12,333|
 | Latency Target Value |25 Tokens Per Second* |33 Tokens Per Second*|
 
 For a full list see the [AOAI Studio calculator](https://oai.azure.com/portal/calculator).
@@ -164,6 +164,7 @@ For Provisioned-Managed and Global Provisioned-Managed, we use a variation of th
 3.	When a request finishes, we now know the actual compute cost for the call. To ensure an accurate accounting, we correct the utilization using the following logic:
 
     a.	If the actual > estimated, then the difference is added to the deployment's utilization
+
     b.	If the actual < estimated, then the difference is subtracted. 
 
 4.	The overall utilization is decremented down at a continuous rate based on the number of PTUs deployed. 
