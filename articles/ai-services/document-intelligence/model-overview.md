@@ -82,7 +82,8 @@ The following table shows the available models for each stable API:
 |Custom extraction model|[Custom composed](train/composed-models.md)            | ✔️| ✔️| ✔️| ✔️|
 |All models|[Add-on capabilities](concept-add-on-capabilities.md)    | ✔️| ✔️| n/a| n/a|
 
-\* - Contains submodels. See the model specific information for supported variations and subtypes.
+\* - Contains submodels. See the model specific information for supported variations and subtypes. </br>
+\**- All the capabilites of General Document model are available in layout model. General model is no longer supported. 
 
 ### Latency
 
