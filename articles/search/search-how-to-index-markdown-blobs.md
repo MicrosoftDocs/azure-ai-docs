@@ -19,23 +19,50 @@ ms.date: 11/19/2024
 
 **Applies to**: [Blob indexers](search-howto-indexing-azure-blob-storage.md), [OneLake indexers](search-how-to-index-onelake-files.md), [File indexers](search-file-storage-integration.md)
 
-In Azure AI Search, indexers for Azure Blob Storage and Azure Files support a `markdown` parsing mode for Markdown files. Markdown files can be indexed in two ways:
+In Azure AI Search, indexers for Azure Blob Storage, Azure Files, and OneLake support a `markdown` parsing mode for Markdown files. Markdown files can be indexed in two ways:
 
-+ One-to-many parsing mode
-+ One-to-one parsing mode
++ One-to-many parsing mode, creating multiple search documents per Markdown file
++ One-to-one parsing mode, creating one search document per Markdown file
+
+## Prerequisites
+
++ A supported data source. For OneLake, make sure you meet all of the requirements of the [OneLake indexer](search-how-to-index-onelake-files#prerequisites). Azure Storage is a standard performance (general-purpose v2) instance that supports hot, cool, and cold access tiers.
+
+## Markdown parsing mode parameters
+
+Parsing mode parameters are specified in an indexer definition when you create or update an indexer.
+
+```http
+POST https://[service name].search.windows.net/indexers?api-version=2024-11-01-preview
+Content-Type: application/json
+api-key: [admin key]
+
+{
+  "name": "my-markdown-indexer",
+  "dataSourceName": "my-blob-datasource",
+  "targetIndexName": "my-target-index",
+  "parameters": {
+    "configuration": {
+      "parsingMode": "markdown",
+      "markdownParsingSubmode": "oneToMany",
+      "markdownHeaderDepth": "h6"
+    }
+  },
+}
+```
 
 The blob indexer provides a `submode` parameter to determine the output of structure of the search documents. Markdown parsing mode provides the following submode options:
 
 | parsingMode | submode | Search document | Description |
 |--------------|-------------|-------------|--------------|
-| **`markdown`** | **`oneToMany`** | Multiple per blob | (default) Breaks the Markdown into multiple search documents, each representing a content (nonheader) section of the Markdown file. |
+| **`markdown`** | **`oneToMany`** | Multiple per blob | (default) Breaks the Markdown into multiple search documents, each representing a content (nonheader) section of the Markdown file. You can omit submode unless you want one-to-one parsing.|
 | **`markdown`** | **`oneToOne`** | One per blob | Parses the Markdown into one search document, with sections mapped to specific headers in the Markdown file.|
 
 For **`oneToMany`** submode, you should review [Indexing one blob to produce many search documents](search-howto-index-one-to-many-blobs.md) to understand how the blob indexer handles disambiguation of the document key for multiple search documents produced from the same blob.
 
 Later sections describe each submode in more detail. If you're unfamiliar with indexer clients and concepts, see [Create a search indexer](search-howto-create-indexers.md). You should also be familiar with the details of [basic blob indexer configuration](search-howto-indexing-azure-blob-storage.md), which isn't repeated here.
 
-## Additional Markdown parsing parameters
+### Optional Markdown parsing parameters
 
 Parameters are case-sensitive.
 
@@ -46,13 +73,14 @@ Parameters are case-sensitive.
 This setting can be changed after initial creation of the indexer, however the structure of the resulting search documents might change depending on the Markdown content.
 
 ## Supported Markdown elements
-Markdown parsing will only split content based on headers. All other elements such as lists, code blocks, tables, etc., are treated as plaintext.
+
+Markdown parsing will only split content based on headers. All other elements such as lists, code blocks, tables, and so forth, are treated as plain text and passed into a content field.
 
 <a name="parsing-markdown-one-to-many"></a>
 
 ## Sample Markdown content
 
-The following Markdown content will be used for the examples on this page:
+The following Markdown content is used for the examples on this page:
 
 ```md
 # Section 1
@@ -65,9 +93,9 @@ Content for subsection 1.1.
 Content for section 2.
 ```
 
-## Markdown one-to-many parsing mode (Markdown to Multiple Documents)
+## Use one-to-many parsing mode
 
-The **Markdown one-to-many parsing mode** parses Markdown files into multiple search documents, where each document corresponds to a specific content section of the Markdown file based on the header metadata at that point in the document. The Markdown is parsed based on headers into documents which contain the following content:
+The one-to-many parsing mode parses Markdown files into multiple search documents, where each document corresponds to a specific content section of the Markdown file based on the header metadata at that point in the document. The Markdown is parsed based on headers into search documents which contain the following content:
 
 - `content`: A string that contains the raw Markdown found in a specific location, based on the header metadata at that point in the document.
 
@@ -80,7 +108,6 @@ The **Markdown one-to-many parsing mode** parses Markdown files into multiple se
   - (Optional) `h6`- A string containing the h6 header value. Empty string if not set at this point in the document.
 
 - `ordinal_position`: An integer value indicating the position of the section within the document hierarchy. This field is used for ordering the sections in their original sequence as they appear in the document, beginning with an ordinal position of 1 and incrementing sequentially for each header. 
-
 
 ### Index schema for one-to-many parsed Markdown files
 
@@ -118,7 +145,8 @@ An example index configuration might look something like this:
 }
 ```
 
-The blob indexer can infer the mapping without a field mapping present in the request, so an indexer configuration corresponding to the provided index configuration might look like this:
+If field names and data types align, the blob indexer can infer the mapping without an explicit field mapping present in the request, so an indexer configuration corresponding to the provided index configuration might look like this:
+
 ```http
 POST https://[service name].search.windows.net/indexers?api-version=2024-11-01-preview
 Content-Type: application/json
@@ -168,7 +196,7 @@ api-key: [admin key]
 }   
 ```
 
-## Map Markdown one-to-many fields to search fields
+## Map one-to-many fields to search fields
 
 Field mappings associate a source field with a destination field in situations where the field names and types aren't identical. But field mappings can also be used to match parts of a Markdown document and "lift" them into top-level fields of the search document.
 
@@ -207,13 +235,13 @@ The resulting search document in the index would look as follows:
 
 <a name="parsing-markdown-one-to-one"></a>
 
-## Markdown one-to-one parsing mode (Markdown to a single document)
+## Use one-to-one parsing mode
 
-In **Markdown one-to-one parsing mode**, the entire Markdown document is indexed as a single search document, preserving the hierarchy and structure of the original content. This mode is most useful when the files to be indexed share a common structure, so that you can leverage this common structure in the index to make the relevant fields searchable.
+In the one-to-one parsing mode, the entire Markdown document is indexed as a single search document, preserving the hierarchy and structure of the original content. This mode is most useful when the files to be indexed share a common structure, so that you can use this common structure in the index to make the relevant fields searchable.
 
-Within the indexer definition, set the `parsingMode` to "Markdown" and use the optional `markdownHeaderDepth` parameter to define the maximum heading depth for chunking. If not specified, it defaults to `h6`, capturing all possible header depths.
+Within the indexer definition, set the `parsingMode` to `"markdown"` and use the optional `markdownHeaderDepth` parameter to define the maximum heading depth for chunking. If not specified, it defaults to `h6`, capturing all possible header depths.
 
-The Markdown is parsed based on headers into documents which contain the following content: 
+The Markdown is parsed based on headers into search documents which contain the following content: 
 
 - `document_content`: Contains the full Markdown text as a single string. This field serves as a raw representation of the input document. 
 
@@ -223,13 +251,13 @@ The Markdown is parsed based on headers into documents which contain the followi
 
   - `header_name`: A string containing the text of the header as it appears in the Markdown document. This field provides a label or title for the section. 
 
-  - `content`: A string containing text content that immediately follows the header, up to the next header. This field captures the detailed information or description associated with the header. If there is no content directly under a header, this is an empty string. 
+  - `content`: A string containing text content that immediately follows the header, up to the next header. This field captures the detailed information or description associated with the header. If there's no content directly under a header, this is an empty string. 
 
   - `ordinal_position`: An integer value indicating the position of the section within the document hierarchy. This field is used for ordering the sections in their original sequence as they appear in the document, beginning with an ordinal position of 1 and incrementing sequentially for each content block. 
 
   - `sections`: An array that contains objects representing subsections nested under the current section. This array follows the same structure as the top-level `sections` array, allowing for the representation of multiple levels of nested content. Each subsection object also includes `header_level`, `header_name`, `content`, and `ordinal_position` properties, enabling a recursive structure that represents and hierarchy of the Markdown content. 
 
-Consider the following Markdown content. We use this content to explain an index schema that's designed around it, and what the search documents might look like for each parsing mode.
+Here's the sample Markdown that we're using to explain an index schema that's designed around each parsing mode.
 
 ```md
 # Section 1
@@ -242,8 +270,9 @@ Content for subsection 1.1.
 Content for section 2.
 ```
 
- ### Index schema for one-to-one parsed Markdown files
-If you are not utilizing field mappings, the shape of the index should reflect the shape of the Markdown content. Based on  the  previous Markdown, the index should look similar to the following example:
+### Index schema for one-to-one parsed Markdown files
+
+If you aren't utilizing field mappings, the shape of the index should reflect the shape of the Markdown content. Given the structure of sample Markdown with its two sections and single subsection, the index should look similar to the following example:
 ```http
 {
   "name": "my-markdown-index",
@@ -329,7 +358,7 @@ As you can see, the ordinal position increments based on the location of the con
 It should also be noted that if header levels are skipped in the content, then structure of the resulting document reflects the headers that are present in the Markdown content, not necessarily containing nested sections for `h1` through `h6` consecutively. For example, when the document begins at `h2`, then the first element in the top-level sections array is `h2`. 
 
 ```http
-POST https://[service name].search.windows.net/indexers?api-version=2024-07-01
+POST https://[service name].search.windows.net/indexers?api-version=2024-11-01-preview
 Content-Type: application/json
 api-key: [admin key]
 
@@ -345,7 +374,9 @@ api-key: [admin key]
   }
 }
 ```
-## Map Markdown one-to-one fields to search fields
+
+## Map one-to-one fields to search fields
+
 If you would like to extract fields with custom names from the document, you can use field mappings to do so. Using the same Markdown sample as before, consider the following index configuration:
 
 ```http
@@ -372,7 +403,7 @@ If you would like to extract fields with custom names from the document, you can
 }
 ```
 
-Extracting specific fields from the parsed Markdown is handled similar to how the document paths are in (outputFieldMappings)[https://learn.microsoft.com/en-us/azure/search/cognitive-search-output-field-mapping?tabs=rest], except the path begins with `/sections`  instead of  `/document`. So, for example, `/sections/0/content` would map to the content under the item at position 0 in the sections array.
+Extracting specific fields from the parsed Markdown is handled similar to how the document paths are in [outputFieldMappings](cognitive-search-output-field-mapping.md), except the path begins with `/sections`  instead of  `/document`. So, for example, `/sections/0/content` would map to the content under the item at position 0 in the sections array.
 
 An example of a strong use case might look something like this: all Markdown files have a document title in the first `h1`, a subsection title in the first `h2`, and a summary in the content of the final paragraph underneath the final `h1`. You could use the following field mappings to index only that content:
 
