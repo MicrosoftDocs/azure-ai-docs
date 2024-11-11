@@ -20,8 +20,7 @@ To use the Azure AI Content Understanding service, you must create your Azure AI
 | Geography | Region | Region Identifier |
 | --- | --- | --- |
 | US | West US | westus |
-| US | East US | eastus |
-| Europe | West Europe | westeurope |
+| US | North Central US | northcentralus |
 | Europe | Sweden Central | swedencentral |
 | Australia | Australia East | australiaeast |
 
@@ -29,9 +28,19 @@ To use the Azure AI Content Understanding service, you must create your Azure AI
 
 Azure AI Content Understanding enables you to process and integrate multiple data modalities simultaneously. Our language support capabilities enable users to communicate with your applications in natural ways and empower global outreach.
 
-Some capabilities of Content Understanding service support multiple languages; any capabilities not mentioned are only English supported.
-
 To learn more Content Understanding language support, select a capability from the following tabs.
+
+# [Document](#tab/document)
+
+|Language|Language code and locale|
+|--------|-------------|
+|English|&bullet; `en-AU` (Australia)</br>&bullet; `en-CA` (Canada)</br>&bullet; `en-GB` (United Kingdom)</br>&bullet;  `en-IN` (India)</br>&bullet; `en-US` (United States)|
+
+# [Image](#tab/image)
+
+|Language|Language code and locale|
+|--------|-------------|
+|English|&bullet; `en-AU` (Australia)</br>&bullet; `en-CA` (Canada)</br>&bullet; `en-GB` (United Kingdom)</br>&bullet;  `en-IN` (India)</br>&bullet; `en-US` (United States)|
 
 # [Audio](#tab/audio)
 
@@ -62,18 +71,6 @@ To learn more Content Understanding language support, select a capability from t
 |Swedish |`sv-SE` (Sweden)|
 |Turkish |`tr-TR` (Türkiye)|
 |Ukrainian |`uk-UA` (Ukraine)|
-
-# [Document](#tab/document)
-
-|Language|Language code and locale|
-|--------|-------------|
-|English|&bullet; `en-AU` (Australia)</br>&bullet; `en-CA` (Canada)</br>&bullet; `en-GB` (United Kingdom)</br>&bullet;  `en-IN` (India)</br>&bullet; `en-US` (United States)|
-
-# [Image](#tab/image)
-
-|Language|Language code and locale|
-|--------|-------------|
-|English|&bullet; `en-AU` (Australia)</br>&bullet; `en-CA` (Canada)</br>&bullet; `en-GB` (United Kingdom)</br>&bullet;  `en-IN` (India)</br>&bullet; `en-US` (United States)|
 
 # [Video](#tab/video)
 
