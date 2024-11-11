@@ -51,6 +51,13 @@ landingContent:
         - text: Create a multi-service resource
           url: how-to/create-multi-service-resource.md
 
+  - title: "What's new?"
+    linkLists:
+      - linkListType: whats-new
+        links:
+        - text: "What's new in Azure AI Content Understanding?"
+          url: whats-new.md         
+
   - title: Reference
     linkLists:
         - linkListType: reference
@@ -62,9 +69,4 @@ landingContent:
           - text: FAQ
             url: faq.yml
 
-  - title: "What's new?"
-    linkLists:
-      - linkListType: whats-new
-        links:
-        - text: "What's new in Azure AI Content Understanding?"
-          url: whats-new.md
+  
