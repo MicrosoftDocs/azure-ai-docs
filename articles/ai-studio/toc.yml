@@ -30,8 +30,6 @@ items:
     displayName: code
   - name: Get started using Azure OpenAI Assistants
     href: ../ai-services/openai/assistants-quickstart.md?context=/azure/ai-studio/context/context
-  - name: Moderate text and images with Content Safety
-    href: quickstarts/content-safety.md
   - name: Use Azure AI Studio with a screen reader
     href: tutorials/screen-reader.md
 - name: Tutorials
@@ -87,8 +85,7 @@ items:
         href: concepts/content-filtering.md
       - name: Use blocklists
         href: how-to/use-blocklists.md
-
-    - name: Azure Speech
+    - name: Azure AI Speech
       items:
       - name: Real-time speech to text
         href: ../ai-services/speech-service/get-started-speech-to-text.md?context=/azure/ai-studio/context/context
