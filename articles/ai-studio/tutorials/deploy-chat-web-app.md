@@ -79,7 +79,7 @@ To deploy the web app:
 
 1. Select **Deploy to a web app**.
 
-    :::image type="content" source="../media/tutorials/chat/deploy-web-app.png" alt-text="Screenshot of the deploy new web app button." lightbox="../media/tutorials/chat/deploy-web-app.png":::
+    :::image type="content" source="../media/tutorials/chat/chat-playground-with-deploy-to-web-app.png" alt-text="Screenshot of the deploy new web app button." lightbox="../media/tutorials/chat/chat-playground-with-deploy-to-web-app.png":::
 
 1. On the **Deploy to a web app** page, enter the following details:
     - **Name**: A unique name for your web app.

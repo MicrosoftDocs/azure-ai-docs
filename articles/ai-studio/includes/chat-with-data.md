@@ -16,13 +16,16 @@ Follow these steps to add your data in the chat playground to help the assistant
 
 1. Go to your project in [Azure AI Studio](https://ai.azure.com). 
 1. Select **Playgrounds** > **Chat** from the left pane.
+    
+    :::image type="content" source="../media/tutorials/chat/playground-homepage.png" alt-text="Screenshot of the chat playground with the chat mode and model selected." lightbox="../media/tutorials/chat/playground-homepage.png":::
+
 1. Select your deployed chat model from the **Deployment** dropdown. 
 
-    :::image type="content" source="../media/tutorials/chat/playground-chat.png" alt-text="Screenshot of the chat playground with the chat mode and model selected." lightbox="../media/tutorials/chat/playground-chat.png":::
+    :::image type="content" source="../media/tutorials/chat/selecting-deployment.png" alt-text="Screenshot of the chat playground with the chat mode and model selected." lightbox="../media/tutorials/chat/selecting-deployment.png":::
  
 1. On the left side of the chat playground, select **Add your data** > **+ Add a new data source**.
 
-    :::image type="content" source="../media/tutorials/chat/add-your-data.png" alt-text="Screenshot of the chat playground with the option to add a data source visible." lightbox="../media/tutorials/chat/add-your-data.png":::
+    :::image type="content" source="../media/tutorials/chat/Add-your-data (2).png" alt-text="Screenshot of the chat playground with the option to add a data source visible." lightbox="../media/tutorials/chat/Add-your-data (2).png":::
 
 1. In the **Data source** dropdown, select **Upload files**. 
 
@@ -55,6 +58,6 @@ Follow these steps to add your data in the chat playground to help the assistant
 
 1. In the playground, you can see that your data ingestion is in progress. This process might take several minutes. Before proceeding, wait until you see the data source and index name in place of the status. 
 
-   :::image type="content" source="../media/tutorials/chat/add-your-data-ingestion-in-progress.png" alt-text="Screenshot of the chat playground with the status of data ingestion in view." lightbox="../media/tutorials/chat/add-your-data-ingestion-in-progress.png":::
+   :::image type="content" source="../media/tutorials/chat/chat-playground-with-add-your-data.png" alt-text="Screenshot of the chat playground with the status of data ingestion in view." lightbox="../media/tutorials/chat/chat-playground-with-add-your-data.png":::
 
 1. You can now chat with the model asking the same question as before ("How much are the TrailWalker hiking shoes"), and this time it uses information from your data to construct the response. You can expand the **references** button to see the data that was used.
