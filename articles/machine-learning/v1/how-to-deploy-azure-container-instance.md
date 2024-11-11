@@ -54,7 +54,7 @@ For information on quota and region availability for ACI, see [Quotas and region
 
 > [!NOTE]
 > * Deploying Azure Container Instances in a virtual network is not supported. Instead, for network isolation, consider using [managed online endpoints](../how-to-secure-online-endpoint.md).
-> * To ensure effective support, it is essential to supply the necessary logs for your ACI containers. Without these logs, technical support cannot be guaranteed. It is recommended to use log analytics tools by specifying [`enable_app_insights=True`](https://learn.microsoft.com/en-us/python/api/azureml-core/azureml.core.webservice.aciwebservice#variables) in your deployment configuration to manage and analyze your ACI container logs efficiently.
+> * To ensure effective support, it is essential to supply the necessary logs for your ACI containers. Without these logs, technical support cannot be guaranteed. It is recommended to use log analytics tools by specifying [`enable_app_insights=True`](/python/api/azureml-core/azureml.core.webservice.aciwebservice#variables) in your deployment configuration to manage and analyze your ACI container logs efficiently.
 
 ## Deploy to ACI
 
