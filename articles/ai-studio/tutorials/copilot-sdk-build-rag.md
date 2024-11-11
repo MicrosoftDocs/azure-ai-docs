@@ -155,11 +155,19 @@ Now that you have both the script and the template, run the script to test your 
 python chat_with_products.py --query "I need a new tent for 4 people, what would you recommend?"
 ```
 
-To enable logging of telemetry to your project, add the `--enable-telemetry` flag:
+To enable logging of telemetry to your project:
 
-```bash
-python chat_with_products.py --query "I need a new tent for 4 people, what would you recommend?" --enable-telemetry
-```
+1. Install `azure-monitor-opentelemetry`:
+
+   ```bash
+   pip install azure-monitor-opentelemetry
+   ```
+   
+1. Add the `--enable-telemetry` flag when you use the `chat_with_products.py` script:
+
+   ```bash
+   python chat_with_products.py --query "I need a new tent for 4 people, what would you recommend?" --enable-telemetry
+   ```
 
 ## Clean up resources
 
