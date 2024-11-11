@@ -107,37 +107,39 @@ In Part 1 of this tutorial series, you created an **.env** file that specifies t
 
 ### Interpret the evaluation output
 
-In the console output, you see for each question an answer and the summarized metrics. (You might see different columns in your output.)
+In the console output, you see an answer for each question, followed by a table with summarized metrics. (You might see different columns in your output.)
 
-If you weren't able to increase the tokens per minute limit for your model, you might see some time-out errors, which are expected. The evaluation script is designed to handle these errors and continue running.
-
-```txt
-====================================================
-'-----Summarized Metrics-----'
-{'groundedness.gpt_groundedness': 2.230769230769231,
- 'groundedness.groundedness': 2.230769230769231}
-'-----Tabular Result-----'
-                                     outputs.response  ...           outputs.groundedness.groundedness_reason
-0   Could you please specify which tent you are as...  ...  The RESPONSE fails to engage with the specific...
-1   Could you please specify which camping table y...  ...  The RESPONSE does not utilize any of the infor...
-2   Sorry, I only can answer queries related to ou...  ...  The RESPONSE does not relate to the CONTEXT at...
-3   To properly care for your TrailWalker Hiking S...  ...  The RESPONSE provides care instructions for th...
-4   The TrailMaster X4 Tent is from the OutdoorLiv...  ...  The RESPONSE accurately identifies the brand o...
-5   The TrailMaster X4 Tent comes with an included...  ...  The RESPONSE accurately reflects information f...
-6   Sorry, I only can answer queries related to ou...  ...  The RESPONSE does not relate to the CONTEXT at...
-7   The TrailBlaze Hiking Pants are crafted from h...  ...  The RESPONSE accurately reflects part of the i...
-8   The color of the TrailBlaze Hiking Pants is de...  ...  The RESPONSE accurately mentions the color of ...
-9   Sorry, I only can answer queries related to ou...  ...  The RESPONSE is entirely unrelated to the CONT...
-10  Sorry, I only can answer queries related to ou...  ...  The RESPONSE does not reference or relate to a...
-11  The material for the PowerBurner Camping Stove...  ...  The RESPONSE does not contradict the CONTEXT b...
-12  Sorry, I only can answer queries related to ou...  ...  The RESPONSE does not reference or relate to a...
-
-[13 rows x 7 columns]
-'View evaluation results in AI Studio: xxxxxx'
-```
+If you weren't able to increase the tokens per minute limit for your model, you might see some time-out errors, which are expected. The evaluation script is designed to handle these errors and continue running.  
 
 > [!NOTE]
-> You may see `WARNING:opentelemetry.attributes:` - these can be safely ignored and do not affect the evaluation results.
+> You may also see many `WARNING:opentelemetry.attributes:` - these can be safely ignored and do not affect the evaluation results.
+
+```Text
+====================================================
+'-----Summarized Metrics-----'
+{'groundedness.gpt_groundedness': 1.6666666666666667,
+ 'groundedness.groundedness': 1.6666666666666667}
+'-----Tabular Result-----'
+                                     outputs.response  ... line_number
+0   Could you specify which tent you are referring...  ...           0
+1   Could you please specify which camping table y...  ...           1
+2   Sorry, I only can answer queries related to ou...  ...           2
+3   Could you please clarify which aspects of care...  ...           3
+4   Sorry, I only can answer queries related to ou...  ...           4
+5   The TrailMaster X4 Tent comes with an included...  ...           5
+6                                            (Failed)  ...           6
+7   The TrailBlaze Hiking Pants are crafted from h...  ...           7
+8   Sorry, I only can answer queries related to ou...  ...           8
+9   Sorry, I only can answer queries related to ou...  ...           9
+10  Sorry, I only can answer queries related to ou...  ...          10
+11  The PowerBurner Camping Stove is designed with...  ...          11
+12  Sorry, I only can answer queries related to ou...  ...          12
+
+[13 rows x 8 columns]
+('View evaluation results in AI Studio: '
+ 'https://xxxxxxxxxxxxxxxxxxxxxxx')
+```
+
 
 ### View evaluation results in AI Studio
 
