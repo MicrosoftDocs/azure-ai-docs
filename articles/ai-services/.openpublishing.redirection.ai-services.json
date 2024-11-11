@@ -788,7 +788,7 @@
     {
       "source_path_from_root": "/articles/ai-services/document-intelligence/train/custom-generative-extraction.md",
       "redirect_url": "/azure/ai-services/document-intelligence/train/custom-model",
-      "redirect_document_id": true
+      "redirect_document_id": false
     },
     {
       "source_path_from_root": "/articles/ai-services/document-intelligence/how-to-guides/build-train-custom-generative-model.md",
