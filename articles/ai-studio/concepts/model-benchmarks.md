@@ -7,7 +7,7 @@ ms.service: azure-ai-studio
 ms.custom:
   - ai-learning-hub
 ms.topic: concept-article
-ms.date: 10/29/2024
+ms.date: 11/11/2024
 ms.reviewer: jcioffi
 ms.author: mopeakande
 author: msakande
