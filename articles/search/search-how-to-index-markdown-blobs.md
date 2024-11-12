@@ -202,7 +202,7 @@ This Markdown file would result in three search documents after indexing, due to
 }   
 ```
 
-## Map one-to-many fields to search fields
+### Map one-to-many fields in a search index
 
 Field mappings associate a source field with a destination field in situations where the field names and types aren't identical. But field mappings can also be used to match parts of a Markdown document and "lift" them into top-level fields of the search document.
 
@@ -385,7 +385,7 @@ As you can see, the ordinal position increments based on the location of the con
 
 It should also be noted that if header levels are skipped in the content, then structure of the resulting document reflects the headers that are present in the Markdown content, not necessarily containing nested sections for `h1` through `h6` consecutively. For example, when the document begins at `h2`, then the first element in the top-level sections array is `h2`. 
 
-## Map one-to-one fields to search fields
+### Map one-to-one fields in a search index
 
 If you would like to extract fields with custom names from the document, you can use field mappings to do so. Using the same Markdown sample as before, consider the following index configuration:
 
@@ -413,7 +413,7 @@ If you would like to extract fields with custom names from the document, you can
 }
 ```
 
-Extracting specific fields from the parsed Markdown is handled similar to how the document paths are in [outputFieldMappings](cognitive-search-output-field-mapping.md), except the path begins with `/sections`  instead of  `/document`. So, for example, `/sections/0/content` would map to the content under the item at position 0 in the sections array.
+Extracting specific fields from the parsed Markdown is handled similar to how the document paths are in [outputFieldMappings](cognitive-search-output-field-mapping.md), except the path begins with `/sections` instead of  `/document`. So, for example, `/sections/0/content` would map to the content under the item at position 0 in the sections array.
 
 An example of a strong use case might look something like this: all Markdown files have a document title in the first `h1`, a subsection title in the first `h2`, and a summary in the content of the final paragraph underneath the final `h1`. You could use the following field mappings to index only that content:
 
