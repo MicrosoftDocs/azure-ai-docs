@@ -6,6 +6,7 @@ manager: scottpolly
 ms.service: azure-ai-studio
 ms.custom:
   - build-2024
+  - code01
 ms.topic: conceptual
 ms.date: 10/31/2024
 ms.reviewer: sgilley
@@ -30,23 +31,18 @@ When you're deciding whether or not fine-tuning is the right solution for your u
 - [Prompt engineering](../../ai-services/openai/concepts/prompt-engineering.md) is a technique that involves designing prompts for natural language processing models. This process improves accuracy and relevancy in responses, to optimize the performance of the model.
 - [Retrieval-augmented generation (RAG)](../concepts/retrieval-augmented-generation.md) improves LLM performance by retrieving data from external sources and incorporating it into a prompt. RAG can help businesses achieve customized solutions while maintaining data relevance and optimizing costs.
 
-Fine-tuning is an advanced technique that requires expertise to use appropriately. The following questions can help you evaluate whether you're ready for fine-tuning, and how well you thought through the process. You can use these questions to guide your next steps or to identify other approaches that might be more appropriate.
+Fine-tuning is a great way to get higher quality results while reducing latency. The following questions can help you better understand why fine-tuning and evaluate whether you're ready for fine-tuning through the process. You can use these questions to guide your next steps.
 
 ### Why do you want to fine-tune a model?
 
-You might be ready for fine-tuning if:
+Before you begin fine-tuning a model, consider if you've identified shortcomings when using a base model. These shortcomings can include: an inconsistent performance on edge cases, inability to fit enough prompts in the context window to steer the model, or high latency.
 
-- You can clearly articulate a specific use case for fine-tuning and identify the [model](../how-to/model-catalog.md) that you hope to fine-tune.
+Base models are already pre-trained on vast amounts of data, but most times you will add instructions and examples to the prompt to get the quality responses that you're looking for. This process of "few-shot learning" can be improved with fine-tuning.
 
-  Good use cases for fine-tuning include steering the model to output content in a specific and customized style, tone, or format. They also include scenarios where the information needed to steer the model is too long or complex to fit into the prompt window.
-- You have clear examples of how you addressed the challenges in alternate approaches and what you tested as possible resolutions to improve performance.
-- You identified shortcomings by using a base model, such as inconsistent performance on edge cases, inability to fit enough shot prompts in the context window to steer the model, or high latency.
+Fine-tuning allows you to train a model with many more examples. You can tailor your examples to meet your specific use-case. This can help you reduce the number of tokens in the prompt leading to potential cost savings and requests with lower latency.
 
-You might not be ready for fine-tuning if:
-
-- There's insufficient knowledge from the model or data source.
-- You can't find the right data to serve the model.
-- You don't have a clear use case for fine-tuning, or you can't articulate more than "I want to make a model better."
+Use cases for fine-tuning a model can be:
+- Steering the model to output content in a specific and customized style, tone, or format.
 
 If you identify cost as your primary motivator, proceed with caution. Fine-tuning might reduce costs for certain use cases by shortening prompts or allowing you to use a smaller model. But typically there's a higher upfront cost to training, and you have to pay for hosting your own custom model. 
 
@@ -64,38 +60,29 @@ Fine-tuning is an advanced capability, not the starting point for your generativ
 
 Having a baseline for performance without fine-tuning is essential for knowing whether or not fine-tuning improves model performance. Fine-tuning with bad data makes the base model worse, but without a baseline, it's hard to detect regressions.
 
-You might be ready for fine-tuning if:
+Before you begin fine-tuning a model, you need to ensure:
 
-- You can demonstrate evidence and knowledge of prompt engineering and RAG-based approaches.
+- You can demonstrate evidence and knowledge of using prompt engineering and RAG-based approaches on your LLM.
 - You can share specific experiences and challenges with techniques other than fine-tuning that you tried for your use case.
-- You have quantitative assessments of baseline performance, whenever possible.  
-
-You might not be ready for fine-tuning if:
-
-- You haven't tested any other techniques.
-- You have insufficient knowledge or understanding of how fine-tuning applies specifically to LLMs.
-- You have no benchmark measurements to assess fine-tuning against.
+- You have quantitative assessments of baseline performance, whenever possible.
+- You have a labeled dataset that corresponds with the specific usecase you want to train your LLM. 
 
 ### What data are you going to use for fine-tuning?
 
-Even with a great use case, fine-tuning is only as good as the quality of the data that you can provide. You need to be willing to invest the time and effort to make fine-tuning work. Different models require different data volumes, but you often need to be able to provide fairly large quantities of high-quality curated data.
+Even with a great use case, fine-tuning is only as good as the quality of the data that you can provide. You need to be willing to invest the time and effort to make fine-tuning work. Different models require different data volumes, but you often need to be able to provide fairly large quantities of high-quality curated data. In supervised fine-tuning, a generic moddel is trained on a topic specific labeled dataset. The model with adjust it's parameters to the new data and apply pre-existing knowledge when outputting new content. 
 
 Another important point is that even with high-quality data, if your data isn't in the necessary format for fine-tuning, you need to commit engineering resources for the formatting. 
 
 You might be ready for fine-tuning if:
 
 - You identified a dataset for fine-tuning.
-- Your dataset is in the appropriate format for training.
+- Your dataset is in the appropriate format for training on your existing model.
 - You employed some level of curation to ensure dataset quality.
 
-You might not be ready for fine-tuning if:
 
-- An appropriate dataset hasn't been identified.
-- The dataset format doesn't match the model that you want to fine-tune.
+### How will you measure the quality of your fine-tuned model?
 
-### How can you measure the quality of your fine-tuned model?
-
-There isn't a single right answer to this question, but you should have clearly defined goals for what success with fine-tuning looks like. Ideally, this effort shouldn't just be qualitative. It should include quantitative measures of success, like using a holdout set of data for validation, in addition to user acceptance testing or A/B testing the fine-tuned model against a base model.
+There isn't a single right answer to this question, but you should have clearly defined goals for what success with fine-tuning looks like. Ideally, this effort shouldn't just be qualitative. It should include quantitative measures of success, like using a holdout set of data for validation, in addition to user acceptance testing or A/B testing the fine-tuned model against a base model. 
 
 ## Supported models for fine-tuning in Azure AI Studio
 
@@ -105,7 +92,7 @@ Now that you know when to use fine-tuning for your use case, you can go to Azure
 | --- | --- | --- |
 | [Azure OpenAI models](../../ai-services/openai/how-to/fine-tuning.md?context=/azure/ai-studio/context/context) | Azure OpenAI Service models that you can fine-tune include among others `gpt-4` and `gpt-4o-mini`.<br/><br/>For details about Azure OpenAI models that are available for fine-tuning, see the [Azure OpenAI Service models documentation](../../ai-services/openai/concepts/models.md#fine-tuning-models) or the [Azure OpenAI models table](#fine-tuning-azure-openai-models) later in this guide. | Azure OpenAI Service models that you can fine-tune include among others North Central US and Sweden Central.<br/><br/>The supported regions might vary if you use Azure OpenAI models in an AI Studio project versus outside a project.<br/><br/>For details about fine-tuning regions, see the [Azure OpenAI Service models documentation](../../ai-services/openai/concepts/models.md#fine-tuning-models). |
 | [Phi-3 family models](../how-to/fine-tune-phi-3.md) | `Phi-3-mini-4k-instruct`<br/>`Phi-3-mini-128k-instruct`<br/>`Phi-3-medium-4k-instruct`<br/>`Phi-3-medium-128k-instruct` | East US2 |
-| [Meta Llama 2 family models](../how-to/fine-tune-model-llama.md) | `Meta-Llama-2-70b`<br/>`Meta-Llama-2-7b`<br/>`Meta-Llama-2-13b` | West US3 |
+| [Meta Llama 2 family models](../how-to/fine-tune-model-llama.md) | `Meta-Llama-2-70b`<br/>`Meta-Llama-2-7b`<br/>`Meta-Llama-2-13b` <br/> `Llama-2-7B-chat` <br> `Llama-2-70B-chat` | West US3 |
 | [Meta Llama 3.1 family models](../how-to/fine-tune-model-llama.md) | `Meta-Llama-3.1-70b-Instruct`<br/>`Meta-Llama-3.1-8b-Instruct` | West US3 |
 
 This table provides more details about the Azure OpenAI Service models that support fine-tuning and the regions where fine-tuning is available.
