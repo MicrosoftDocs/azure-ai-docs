@@ -133,7 +133,7 @@ You can use our built-in AI-assisted and NLP quality evaluators to assess the pe
 
 #### Set up
 
-1. For AI-assisted quality evaluators except for `GroundednessProEvaluator`, you must specify a GPT model to act as a judge to score the evaluation data. Choose a deployment with either GPT-3.5, GPT-4, GPT-4o or GPT-4-mini model for your calculations and set it as your `model_config`. We support both Azure OpenAI or OpenAI model configuration schema. We recommend using GPT models that do not have the `(preview)` suffix for the best performance and parseable responses with our evaluators.
+1. For AI-assisted quality evaluators except for `GroundednessProEvaluator`, you must specify a GPT model to act as a judge to score the evaluation data. Choose a deployment with either GPT-3.5, GPT-4, GPT-4o or GPT-4-mini model for your calculations and set it as your `model_config`. We support both Azure OpenAI or OpenAI model configuration schema. We recommend using GPT models that don't have the `(preview)` suffix for the best performance and parseable responses with our evaluators.
 
 > [!NOTE] 
 >  Make sure the you have at least `Cognitive Services OpenAI User` role for the Azure OpenAI resource to make inference calls with API key. For more permissions, learn more about [permissioning for Azure OpenAI resource](../../../ai-services/openai/how-to/role-based-access-control.md#summary).  
@@ -217,7 +217,7 @@ For NLP evaluators, only a score is given in the `{metric_name}` key.
 
 Like 6 other AI-assisted evaluators, `GroundednessEvaluator` is a prompt-based evaluator that outputs a score on a 5-point scale (the higher the score, the more grounded the result is). On the other hand, `GroundednessProEvaluator` invokes our backend evaluation service powered by Azure AI Content Safety and outputs `True` if all content is grounded, or `False` if any ungrounded content is detected. 
 
-We open-source the prompts of our quality evaluators except for `GroundednessProEvaluator` (powered by Azure AI Content Safety) for transparency. These prompts serve as instructions for a language model to perform their evaluation task, which requires a human-friendly definition of the metric and its associated scoring rubrics (what the 5 levels of quality means for the metric). We highly recommend that users customize the definitions and grading rubrics to their scenario specifics. See details in [Custom Evaluators](#custom-evaluators).
+We open-source the prompts of our quality evaluators except for `GroundednessProEvaluator` (powered by Azure AI Content Safety) for transparency. These prompts serve as instructions for a language model to perform their evaluation task, which requires a human-friendly definition of the metric and its associated scoring rubrics (what the 5 levels of quality mean for the metric). We highly recommend that users customize the definitions and grading rubrics to their scenario specifics. See details in [Custom Evaluators](#custom-evaluators).
 
 For conversation mode, here is an example for `GroundednessEvaluator`:
 
@@ -283,7 +283,7 @@ credential = DefaultAzureCredential()
 
 # Initializing Violence Evaluator with project information
 violence_eval = ViolenceEvaluator(credential=credential, azure_ai_project=azure_ai_project)
-# Running Violence Evaluator on a query and respnose pair
+# Running Violence Evaluator on a query and response pair
 violence_score = violence_eval(query="What is the capital of France?", answer="Paris.")
 print(violence_score)
 
@@ -665,7 +665,7 @@ After local evaluations of your generative AI applications, you may want to trig
 
   
 ### Prerequisites
-- Azure AI project in the same [regions](#region-support) as risk and safety evaluators. If you do not have an existing project, follow the guide [How to create Azure AI project](../create-projects.md?tabs=ai-studio) to create one. 
+- Azure AI project in the same [regions](#region-support) as risk and safety evaluators. If you don't have an existing project, follow the guide [How to create Azure AI project](../create-projects.md?tabs=ai-studio) to create one. 
 
 > [!NOTE]
 > Remote evaluations do not support `Groundedness-Pro-Evaluator`,  `Retrieval-Evaluator`, `Protected-Material-Evaluator`, `Indirect-Attack-Evaluator`, `ContentSafetyEvaluator`, and `QAEvaluator`.
@@ -685,7 +685,7 @@ After local evaluations of your generative AI applications, you may want to trig
     ```bash
    pip install azure-identity azure-ai-projects azure-ai-ml
     ```
-    Optionally, you can `pip install azure-ai-evaluation` if you want a code-first experience to fetch evaluator id for built-in evaluators in code.
+    Optionally you can `pip install azure-ai-evaluation` if you want a code-first experience to fetch evaluator id for built-in evaluators in code.
 
 Now you can define a client and a deployment which will be used to run your remote evaluations:
 ```python
@@ -731,7 +731,7 @@ from azure.ai.evaluation import F1ScoreEvaluator, RelevanceEvaluator, ViolenceEv
 print("F1 Score evaluator id:", F1ScoreEvaluator.id)
 ```
 
-- **From UI**: Follows these steps to fetch evaluator ids after they are registered to your project:
+- **From UI**: Follows these steps to fetch evaluator ids after they're registered to your project:
     - Select **Evaluation** tab in your Azure AI project;
     - Select Evaluator library;
     - Select your evaluator(s) of choice by comparing the descriptions;
