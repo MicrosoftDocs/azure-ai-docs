@@ -7,7 +7,7 @@ ms.custom:
 ms.topic: include
 ---
 
-This guide provides instructions and sample code to help you get started using the Custom Vision client library for Node.js to build an image classification model. You'll create a project, add tags, train the project, and use the project's prediction endpoint URL to programmatically test it. Use this example as a template for building your own image recognition app.
+This guide provides instructions and sample code to help you get started using the Custom Vision client library for Node.js to build an image classification model. You can create a project, add tags, train the project, and use the project's prediction endpoint URL to programmatically test it. Use this example as a template for building your own image recognition app.
 
 > [!NOTE]
 > If you want to build and train a classification model _without_ writing code, see the [browser-based guidance](../../getting-started-build-a-classifier.md).
@@ -50,14 +50,14 @@ npm init
 
 ### Install the client library
 
-To write an image analysis app with Custom Vision for Node.js, you'll need the Custom Vision NPM packages. To install them, run the following command in PowerShell:
+To write an image analysis app with Custom Vision for Node.js, you need the Custom Vision npm packages. To install them, run the following command in PowerShell:
 
 ```shell
 npm install @azure/cognitiveservices-customvision-training
 npm install @azure/cognitiveservices-customvision-prediction
 ```
 
-Your app's `package.json` file will be updated with the dependencies.
+Your app's `package.json` file is updated with the dependencies.
 
 Create a file named `index.js` and import the following libraries:
 
@@ -137,7 +137,7 @@ This code creates the first iteration of the prediction model.
 
 ## Publish the current iteration
 
-This code publishes the trained iteration to the prediction endpoint. The name given to the published iteration can be used to send prediction requests. An iteration is not available in the prediction endpoint until it is published.
+This code publishes the trained iteration to the prediction endpoint. The name given to the published iteration can be used to send prediction requests. An iteration isn't available in the prediction endpoint until it's published.
 
 [!code-javascript[](~/cognitive-services-quickstart-code/javascript/CustomVision/ImageClassification/CustomVisionQuickstart.js?name=snippet_publish)]
 
@@ -183,7 +183,7 @@ You can then verify that the test image (found in *\<sampleDataRoot\>/Test/*) is
 
 ## Related content
 
-Now you've seen how every step of the object detection process can be done in code. This sample executes a single training iteration, but often you'll need to train and test your model multiple times in order to make it more accurate.
+This guide shows how every step of the object detection process can be done in code. This sample executes a single training iteration, but often you'll need to train and test your model multiple times in order to make it more accurate.
 
 > [!div class="nextstepaction"]
 > [Test and retrain a model](../../test-your-model.md)
