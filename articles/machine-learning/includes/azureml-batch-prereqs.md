@@ -6,14 +6,12 @@ author: ccrestana
 ms.author: cacrest
 ---
 
-- An Azure subscription. If you don't have an Azure subscription, create a free account before you begin. Try the [free or paid version of Azure Machine Learning](https://azure.microsoft.com/free/).
+- An Azure subscription. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) before you begin.
 - An Azure Machine Learning workspace. To create a workspace, see [Manage Azure Machine Learning workspaces](../how-to-manage-workspace.md).
-- Ensure that you have the following permissions in the Machine Learning workspace:
-
-  - Create or manage batch endpoints and deployments: Use an Owner, Contributor, or Custom role that allows `Microsoft.MachineLearningServices/workspaces/batchEndpoints/*`.
-  - Create Azure Resource Manager deployments in the workspace resource group: Use an Owner, Contributor, or Custom role that allows `Microsoft.Resources/deployments/write` in the resource group where the workspace is deployed.
-
-- Install the following software to work with Machine Learning:
+- The following permissions in the Azure Machine Learning workspace:
+  - For creating or managing batch endpoints and deployments: Use an Owner, Contributor, or Custom role that has been assigned the `Microsoft.MachineLearningServices/workspaces/batchEndpoints/*` actions.
+  - For creating Azure Resource Manager deployments in the workspace resource group: Use an Owner, Contributor, or Custom role that has been assigned the `Microsoft.Resources/deployments/write` action in the resource group where the workspace is deployed.
+- The following software to work with Azure Machine Learning:
 
   # [Azure CLI](#tab/cli)
 
@@ -23,7 +21,7 @@ ms.author: cacrest
   az extension add -n ml
   ```
 
-  Pipeline component deployments for Batch Endpoints are introduced in version 2.7 of the `ml` extension for the Azure CLI. Use the `az extension update --name ml` command to get the latest version.
+  Pipeline component deployments for batch endpoints are introduced in version 2.7 of the `ml` extension for the Azure CLI. Use the `az extension update --name ml` command to get the latest version.
 
   # [Python](#tab/python)
 
@@ -39,7 +37,7 @@ ms.author: cacrest
 
 ### Connect to your workspace
 
-The workspace is the top-level resource for Machine Learning. It provides a centralized place to work with all artifacts you create when you use Machine Learning. In this section, you connect to the workspace where you perform your deployment tasks.
+The workspace is the top-level resource for Azure Machine Learning. It provides a centralized place to work with all artifacts you create when you use Azure Machine Learning. In this section, you connect to the workspace where you perform your deployment tasks.
 
 # [Azure CLI](#tab/cli)
 
