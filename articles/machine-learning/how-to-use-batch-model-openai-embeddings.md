@@ -296,7 +296,7 @@ For testing our endpoint, we are going to use a sample of the dataset [BillSum: 
 
    ```yml
    $schema: https://azuremlschemas.azureedge.net/latest/data.schema.json
-   name: bill-summarization
+   name: bill_summarization
    description: A sample of a dataset for summarization of US Congressional and California state bills.
    type: uri_file
    path: data/billsum-0.csv
@@ -311,7 +311,7 @@ For testing our endpoint, we are going to use a sample of the dataset [BillSum: 
    1. Get the ID of the data asset.
 
       ```azurecli
-      DATA_ASSET_ID=$(az ml data show -n bill-summarization --label latest | jq -r .id)
+      DATA_ASSET_ID=$(az ml data show -n bill_summarization --label latest | jq -r .id)
       ```
 
    # [Python](#tab/python)
@@ -323,7 +323,7 @@ For testing our endpoint, we are going to use a sample of the dataset [BillSum: 
    # [Azure CLI](#tab/cli)
    
    ```azurecli
-   JOB_NAME=$(az ml batch-endpoint invoke --name $ENDPOINT_NAME --input $DATA_ASSET_ID --query name -o tsv)
+   JOB_NAME=$(az ml batch-endpoint invoke --name $ENDPOINT_NAME --set inputs.bill_summarization.type="uri_file" inputs.bill_summarization.path=$DATASET_ID --query name -o tsv)
    ```
    
    # [Python](#tab/python)
