@@ -47,8 +47,6 @@ Document Intelligence supports more sophisticated and modular analysis capabilit
 
 * [`languages`](#language-detection)
 
-* [`Read` model support for searchable PDF](../prebuilt/read.md#searchable-pdf)
-
 * [`Searchable PDF` support](#searchable-pdf)
 
 * [`queryFields`](#query-fields)
@@ -73,8 +71,10 @@ Document Intelligence supports more sophisticated and modular analysis capabilit
 |Language detection|Free| ✔️| ✔️| n/a| n/a|
 |Key value pairs|Free| ✔️|n/a|n/a| n/a|
 |Query fields|Add-On*| ✔️|n/a|n/a| n/a|
+|Searhable pdf|Add-On**| ✔️|n/a|n/a| n/a|
 
-✱ Add-On - Query fields are priced differently than the other add-on features. See [pricing](https://azure.microsoft.com/pricing/details/ai-document-intelligence/) for details.
+✱ Add-On - Query fields are priced differently than the other add-on features. See [pricing](https://azure.microsoft.com/pricing/details/ai-document-intelligence/) for details. </br>
+** Add-On - Searchable pdf is available only with Read model as an add-on feature. 
 
 ## Supported file formats
 
