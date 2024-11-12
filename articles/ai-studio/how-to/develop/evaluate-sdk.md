@@ -661,14 +661,14 @@ result = evaluate(
 
 ## Remote evaluation
 
-After local evaluations of your generative AI applications, you may want to trigger remote evaluations for pre-deployment testing and even continuously evaluate your applications for post-deployment monitoring. Azure AI Project SDK offers such capabilities via a Python API and supports all of the features available in local evaluations. Follow the steps below to submit your remote evaluation on your data using built-in or custom evaluators.
+After local evaluations of your generative AI applications, you may want to trigger remote evaluations for pre-deployment testing and even [continuously evaluate](https://aka.ms/GenAIMonitoringDoc) your applications for post-deployment monitoring. Azure AI Project SDK offers such capabilities via a Python API and supports all of the features available in local evaluations. Follow the steps below to submit your remote evaluation on your data using built-in or custom evaluators.
 
   
 ### Prerequisites
 - Azure AI project in the same [regions](#region-support) as risk and safety evaluators. If you don't have an existing project, follow the guide [How to create Azure AI project](../create-projects.md?tabs=ai-studio) to create one. 
 
 > [!NOTE]
-> Remote evaluations don't support `Groundedness-Pro-Evaluator`,  `Retrieval-Evaluator`, `Protected-Material-Evaluator`, `Direct-Attack-Evaluator`, and `Indirect-Attack-Evaluator`.
+> Remote evaluations do not support `Groundedness-Pro-Evaluator`,  `Retrieval-Evaluator`, `Protected-Material-Evaluator`, `Indirect-Attack-Evaluator`, `ContentSafetyEvaluator`, and `QAEvaluator`.
 
 - Azure OpenAI Deployment with GPT model supporting `chat completion`, for example `gpt-4`.
 - `Connection String` for Azure AI project to easily create `AIProjectClient` object. You can get the **Project connection string** under **Project details** from the project's **Overview** page.
