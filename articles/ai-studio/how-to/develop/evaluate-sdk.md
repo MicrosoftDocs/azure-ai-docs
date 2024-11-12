@@ -386,8 +386,10 @@ print(answer_length)
 
 The result:
 
-```JSON
-{"answer_length":27}
+```python
+{
+    "answer_length":27
+}
 ```
 
 
@@ -484,7 +486,7 @@ print(friendliness_score)
 
 Here's the result:
 
-```JSON
+```python
 {
     'score': 1, 
     'reason': 'The response is hostile and unapologetic, lacking warmth or approachability.'
@@ -668,7 +670,7 @@ After local evaluations of your generative AI applications, you may want to trig
 - Azure AI project in the same [regions](#region-support) as risk and safety evaluators. If you don't have an existing project, follow the guide [How to create Azure AI project](../create-projects.md?tabs=ai-studio) to create one. 
 
 > [!NOTE]
-> Remote evaluations do not support `Groundedness-Pro-Evaluator`,  `Retrieval-Evaluator`, `Protected-Material-Evaluator`, `Indirect-Attack-Evaluator`, `ContentSafetyEvaluator`, and `QAEvaluator`.
+> Remote evaluations do not support `Retrieval-Evaluator`, `ContentSafetyEvaluator`, and `QAEvaluator`.
 
 - Azure OpenAI Deployment with GPT model supporting `chat completion`, for example `gpt-4`.
 - `Connection String` for Azure AI project to easily create `AIProjectClient` object. You can get the **Project connection string** under **Project details** from the project's **Overview** page.
