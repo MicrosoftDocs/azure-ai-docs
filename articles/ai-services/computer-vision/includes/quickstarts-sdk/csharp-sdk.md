@@ -26,7 +26,6 @@ Use the optical character recognition (OCR) client library to read printed and h
 - The [Visual Studio IDE](https://visualstudio.microsoft.com/vs/) or current version of [.NET Core](https://dotnet.microsoft.com/download/dotnet-core).
 - <a href="https://portal.azure.com/#create/Microsoft.CognitiveServicesComputerVision" title="create a Vision resource" target="_blank">An Azure AI Vision resource</a>. You can use the free pricing tier (`F0`) to try the service, and upgrade later to a paid tier for production.
 - The key and endpoint from the resource you create to connect your application to the Azure AI Vision service.
-
   1. After your Azure Vision resource deploys, select **Go to resource**.
   1. In the left navigation menu, select **Keys and Endpoint**.
   1. Copy one of the keys and the **Endpoint** for use later in the quickstart.

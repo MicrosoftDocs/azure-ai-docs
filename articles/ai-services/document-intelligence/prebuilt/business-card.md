@@ -6,7 +6,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.topic: conceptual
-ms.date: 05/23/2024
+ms.date: 10/16/2024
 ms.author: lajanuar
 ---
 
@@ -176,25 +176,11 @@ See how data, including name, job title, address, email, and company name, is ex
 
 ## Supported languages and locales
 
-*See* our [Language Support](../language-support/prebuilt.md) page for a complete list of supported languages.
+For a complete list of supported languages, *see* our [prebuilt model language support](../language-support/prebuilt.md) page.
 
 ## Field extractions
 
-|Name| Type | Description |Standardized output |
-|:-----|:----|:----|:----:|
-| ContactNames | Array of objects | Contact name |  |
-| FirstName | String | First (given) name of contact |  |
-| LastName | String | Last (family) name of contact |  |
-| CompanyNames | Array of strings | Company name|  |
-| Departments | Array of strings | Department or organization of contact |  |
-| JobTitles | Array of strings | Listed Job title of contact |  |
-| Emails | Array of strings | Contact email address |  |
-| Websites | Array of strings | Company website |  |
-| Addresses | Array of strings | Address extracted from business card | |
-| MobilePhones | Array of phone numbers | Mobile phone number from business card |+1 xxx xxx xxxx |
-| Faxes | Array of phone numbers | Fax phone number from business card | +1 xxx xxx xxxx |
-| WorkPhones | Array of phone numbers | Work phone number from business card | +1 xxx xxx xxxx |
-| OtherPhones     | Array of phone numbers | Other phone number from business card | +1 xxx xxx xxxx |
+For supported document extraction fields, refer to the [business card model schema](https://github.com/Azure-Samples/document-intelligence-code-samples/blob/main/schema/2023-07-31/business-card.md) page in our GitHub sample repository.
 
 ::: moniker-end
 

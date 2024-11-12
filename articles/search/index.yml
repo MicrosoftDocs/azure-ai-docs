@@ -68,7 +68,7 @@ landingContent:
         links:
           - text: Create a vector index in AI Studio
             url: /azure/ai-studio/how-to/index-add
-          - text: Chat with your data in Azure OpenAI Studio
+          - text: Chat with your data using Azure OpenAI
             url: /azure/ai-services/openai/use-your-data-quickstart
           - text: Build a question and answer copilot
             url: /azure/ai-studio/tutorials/deploy-copilot-ai-studio

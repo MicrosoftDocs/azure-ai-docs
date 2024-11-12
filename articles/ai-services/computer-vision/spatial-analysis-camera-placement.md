@@ -14,6 +14,8 @@ ms.author: pafarley
 
 # Spatial Analysis camera placement
 
+[!INCLUDE [spatial-analysis-deprecation](includes/spatial-analysis-deprecation.md)]
+
 This article provides camera placement recommendations for Spatial Analysis (public preview) scenarios. It includes general guidelines as well as specific recommendations for height, angle, and camera-to-focal-point-distance for all the included operations. 
 
 > [!NOTE]
@@ -134,7 +136,7 @@ The following illustration provides simulations for the left and right camera vi
 | ---------------------------------- | ----------------------------------- |  
 | ![Left angle for linear queue](./media/spatial-analysis/camera-angle-linear-left.png) | ![Right angle for linear queue](./media/spatial-analysis/camera-angle-linear-right.png) |  
 
-For zig-zag queues, it's best to avoid placing the camera directly facing the queue line direction, as shown in the following illustration. Note that each of the four example camera positions in the illustration provide the ideal view with an acceptable deviation of +/- 15 degrees in each direction.
+For zig-zag queues, it's best to avoid placing the camera directly facing the queue line direction, as shown in the following illustration. Note that each of the four example camera positions in the illustration provides the ideal view with an acceptable deviation of +/- 15 degrees in each direction.
 
 The following illustrations simulate the view from a camera placed in the ideal locations for a zig-zag queue.
 

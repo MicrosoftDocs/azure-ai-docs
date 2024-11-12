@@ -5,7 +5,7 @@ description: Learn how to use Mistral premium chat models with Azure AI Studio.
 ms.service: azure-ai-studio
 manager: scottpolly
 ms.topic: how-to
-ms.date: 09/13/2024
+ms.date: 10/23/2024
 ms.reviewer: kritifaujdar
 reviewer: fkriti
 ms.author: mopeakande
@@ -16,11 +16,12 @@ zone_pivot_groups: azure-ai-model-catalog-samples-chat
 
 # How to use Mistral premium chat models
 
-[!INCLUDE [Feature preview](~/reusable-content/ce-skilling/azure/includes/ai-studio/includes/feature-preview.md)]
+[!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
 In this article, you learn about Mistral premium chat models and how to use them.
-Mistral AI offers two categories of models. Premium models including [Mistral Large and Mistral Small](deploy-models-mistral.md), available as serverless APIs with pay-as-you-go token-based billing. Open models including [Mistral Nemo](deploy-models-mistral-nemo.md), [Mixtral-8x7B-Instruct-v01, Mixtral-8x7B-v01, Mistral-7B-Instruct-v01, and Mistral-7B-v01](deploy-models-mistral-open.md); available to also download and run on self-hosted managed endpoints.
+Mistral AI offers two categories of models. Premium models including [Mistral Large, Mistral Small, and Ministral 3B](deploy-models-mistral.md), available as serverless APIs with pay-as-you-go token-based billing. Open models including [Mistral Nemo](deploy-models-mistral-nemo.md), [Mixtral-8x7B-Instruct-v01, Mixtral-8x7B-v01, Mistral-7B-Instruct-v01, and Mistral-7B-v01](deploy-models-mistral-open.md); available to also download and run on self-hosted managed endpoints.
 
+[!INCLUDE [models-preview](../includes/models-preview.md)]
 
 ::: zone pivot="programming-language-python"
 
@@ -69,6 +70,20 @@ Mistral Small is:
 The following models are available:
 
 * [Mistral-Small](https://aka.ms/azureai/landing/Mistral-Small)
+
+
+# [Ministral 3B](#tab/ministral-3b)
+
+Ministral 3B is Mistral AI's Small Language Model (SLM) optimized for edge computing and on-device applications. The model is designed for low-latency and compute-efficient inference; therefore, it is perfect for standard GenAI applications that have real-time requirements and high-volume.
+       
+* **Input**: text only
+* **Output**: text only
+* **Number of parameters**: 3.6 billion
+
+
+The following models are available:
+
+* [Ministral-3B](https://aka.ms/azureai/landing/Ministral-3B)
 
 
 ---
@@ -539,6 +554,20 @@ Mistral Small is:
 The following models are available:
 
 * [Mistral-Small](https://aka.ms/azureai/landing/Mistral-Small)
+
+
+# [Ministral 3B](#tab/ministral-3b)
+
+Ministral 3B is Mistral AI's Small Language Model (SLM) optimized for edge computing and on-device applications. The model is designed for low-latency and compute-efficient inference; therefore, it is perfect for standard GenAI applications that have real-time requirements and high-volume.
+       
+* **Input**: text only
+* **Output**: text only
+* **Number of parameters**: 3.6 billion
+
+
+The following models are available:
+
+* [Ministral-3B](https://aka.ms/azureai/landing/Ministral-3B)
 
 
 ---
@@ -1028,6 +1057,20 @@ Mistral Small is:
 The following models are available:
 
 * [Mistral-Small](https://aka.ms/azureai/landing/Mistral-Small)
+
+
+# [Ministral 3B](#tab/ministral-3b)
+
+Ministral 3B is Mistral AI's Small Language Model (SLM) optimized for edge computing and on-device applications. The model is designed for low-latency and compute-efficient inference; therefore, it is perfect for standard GenAI applications that have real-time requirements and high-volume.
+       
+* **Input**: text only
+* **Output**: text only
+* **Number of parameters**: 3.6 billion
+
+
+The following models are available:
+
+* [Ministral-3B](https://aka.ms/azureai/landing/Ministral-3B)
 
 
 ---
@@ -1539,6 +1582,20 @@ Mistral Small is:
 The following models are available:
 
 * [Mistral-Small](https://aka.ms/azureai/landing/Mistral-Small)
+
+
+# [Ministral 3B](#tab/ministral-3b)
+
+Ministral 3B is Mistral AI's Small Language Model (SLM) optimized for edge computing and on-device applications. The model is designed for low-latency and compute-efficient inference; therefore, it is perfect for standard GenAI applications that have real-time requirements and high-volume.
+       
+* **Input**: text only
+* **Output**: text only
+* **Number of parameters**: 3.6 billion
+
+
+The following models are available:
+
+* [Ministral-3B](https://aka.ms/azureai/landing/Ministral-3B)
 
 
 ---
@@ -2090,7 +2147,7 @@ View the response from the model:
 
 ### Apply content safety
 
-The Azure AI model inference API supports [Azure AI content safety](https://aka.ms/azureaicontentsafety). When you use deployments with Azure AI content safety turned on, inputs and outputs pass through an ensemble of classification models aimed at detecting and preventing the output of harmful content. The content filtering (preview) system detects and takes action on specific categories of potentially harmful content in both input prompts and output completions.
+The Azure AI model inference API supports [Azure AI content safety](https://aka.ms/azureaicontentsafety). When you use deployments with Azure AI content safety turned on, inputs and outputs pass through an ensemble of classification models aimed at detecting and preventing the output of harmful content. The content filtering system detects and takes action on specific categories of potentially harmful content in both input prompts and output completions.
 
 The following example shows how to handle events when the model detects harmful content in the input prompt and content safety is enabled.
 

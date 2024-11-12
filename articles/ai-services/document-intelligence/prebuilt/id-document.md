@@ -6,7 +6,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.topic: conceptual
-ms.date: 08/07/2024
+ms.date: 10/16/2024
 ms.author: lajanuar
 ms.custom:
   - references.regions
@@ -228,144 +228,11 @@ Extract data, including name, birth date, and expiration date, from ID documents
 
 ## Field extractions
 
-The following are the fields extracted per document type. The Document Intelligence ID model `prebuilt-idDocument` extracts the following fields in the `documents.*.fields`. The json output includes all the extracted text in the documents, words, lines, and styles.
-
-::: moniker-end
-
-::: moniker range="doc-intel-3.1.0"
-
-> [!div class="nextstepaction"]
-> [View samples on GitHub.](https://github.com/Azure-Samples/document-intelligence-code-samples/blob/v3.1(2023-07-31-GA)/Python(v3.1)/Prebuilt_model/sample_analyze_identity_documents.py)
-
-::: moniker-end
-
-::: moniker range="doc-intel-4.0.0"
-
-> [!div class="nextstepaction"]
-> [View samples on GitHub.](https://github.com/Azure-Samples/document-intelligence-code-samples/blob/main/Python(v4.0)/Prebuilt_model/sample_analyze_identity_documents.py)
+For supported document extraction fields, refer to the [ID document model schema](https://github.com/Azure-Samples/document-intelligence-code-samples/blob/main/schema/2024-07-31-preview/id-document.md) page in our GitHub sample repository.
 
 ::: moniker-end
 
 <!--docutune:disable -->
-
-::: moniker range=">=doc-intel-3.0.0"
-
-### `idDocument.driverLicense`
-
-| Field | Type | Description | Example |
-|:------|:-----|:------------|:--------|
-|`CountryRegion`|`countryRegion`|Country or region code|USA|
-|`Region`|`string`|State or province|Washington|
-|`DocumentNumber`|`string`|Driver license number|WDLABCD456DG|
-|`DocumentDiscriminator`|`string`|Driver license document discriminator|12645646464554646456464544|
-|`FirstName`|`string`|Given name and middle initial if applicable|LIAM R.|
-|`LastName`|`string`|Surname|TALBOT|
-|`Address`|`address`|Address|123 STREET ADDRESS YOUR CITY WA 99999-1234|
-|`DateOfBirth`|`date`|Date of birth|01/06/1958|
-|`DateOfExpiration`|`date`|Date of expiration|08/12/2020|
-|`DateOfIssue`|`date`|Date of issue|08/12/2012|
-|`EyeColor`|`string`|Eye color|BLU|
-|`HairColor`|`string`|Hair color|BRO|
-|`Height`|`string`|Height|5'11"|
-|`Weight`|`string`|Weight|185LB|
-|`Sex`|`string`|Sex|M|
-|`Endorsements`|`string`|Endorsements|L|
-|`Restrictions`|`string`|Restrictions|B|
-|`PersonalNumber`|`string`|Personal Id. No.|A234567893|
-|`PlaceOfBirth`|`string`|Place of birth|MASSACHUSETTS, U.S.A.|
-|`VehicleClassifications`|`string`|Vehicle classification|D|
-
-### `idDocument.passport`
-
-| Field | Type | Description | Example |
-|:------|:-----|:------------|:--------|
-|`DocumentNumber`|`string`|Passport number|340020013|
-|`FirstName`|`string`|Given name and middle initial if applicable|JENNIFER|
-|`MiddleName`|`string`|Name between given name and surname|REYES|
-|`LastName`|`string`|Surname|BROOKS|
-|`Aliases`|`array`|||
-|`Aliases.*`|`string`|Also known as|MAT LIN|
-|`DateOfBirth`|`date`|Date of birth|1980-01-01|
-|`DateOfExpiration`|`date`|Date of expiration|2019-05-05|
-|`DateOfIssue`|`date`|Date of issue|2014-05-06|
-|`Sex`|`string`|Sex|F|
-|`CountryRegion`|`countryRegion`|Issuing country or organization|USA|
-|`DocumentType`|`string`|Document type|P|
-|`Nationality`|`countryRegion`|Nationality|USA|
-|`PlaceOfBirth`|`string`|Place of birth|MASSACHUSETTS, U.S.A.|
-|`PlaceOfIssue`|`string`|Place of issue|LISBON|
-|`IssuingAuthority`|`string`|Issuing authority|United States Department of State|
-|`PersonalNumber`|`string`|Personal ID. No.|A234567893|
-|`MachineReadableZone`|`object`|Machine readable zone (MRZ)|P<USABROOKS<<JENNIFER<<<<<<<<<<<<<<<<<<<<<<< 3400200135USA8001014F1905054710000307<715816|
-|`MachineReadableZone.FirstName`|`string`|Given name and middle initial if applicable|JENNIFER|
-|`MachineReadableZone.LastName`|`string`|Surname|BROOKS|
-|`MachineReadableZone.DocumentNumber`|`string`|Passport number|340020013|
-|`MachineReadableZone.CountryRegion`|`countryRegion`|Issuing country or organization|USA|
-|`MachineReadableZone.Nationality`|`countryRegion`|Nationality|USA|
-|`MachineReadableZone.DateOfBirth`|`date`|Date of birth|1980-01-01|
-|`MachineReadableZone.DateOfExpiration`|`date`|Date of expiration|2019-05-05|
-|`MachineReadableZone.Sex`|`string`|Sex|F|
-
-### `idDocument.nationalIdentityCard`
-
-| Field | Type | Description | Example |
-|:------|:-----|:------------|:--------|
-|`CountryRegion`|`countryRegion`|Country or region code|USA|
-|`Region`|`string`|State or province|Washington|
-|`DocumentNumber`|`string`|National identity card number|WDLABCD456DG|
-|`DocumentDiscriminator`|`string`|National identity card document discriminator|12645646464554646456464544|
-|`FirstName`|`string`|Given name and middle initial if applicable|LIAM R.|
-|`LastName`|`string`|Surname|TALBOT|
-|`Address`|`address`|Address|123 STREET ADDRESS YOUR CITY WA 99999-1234|
-|`DateOfBirth`|`date`|Date of birth|01/06/1958|
-|`DateOfExpiration`|`date`|Date of expiration|08/12/2020|
-|`DateOfIssue`|`date`|Date of issue|08/12/2012|
-|`EyeColor`|`string`|Eye color|BLUE|
-|`HairColor`|`string`|Hair color|BROWN|
-|`Height`|`string`|Height|5'11"|
-|`Weight`|`string`|Weight|185LB|
-|`Sex`|`string`|Sex|M|
-|`PersonalNumber`|`string`|Personal Id. No.|A234567893|
-|`PlaceOfBirth`|`string`|Place of birth|MASSACHUSETTS, U.S.A.|
-
-### `idDocument.residencePermit`
-
-| Field | Type | Description | Example |
-|:------|:-----|:------------|:--------|
-|`CountryRegion`|`countryRegion`|Country or region code|USA|
-|`DocumentNumber`|`string`|Residence permit number|WDLABCD456DG|
-|`FirstName`|`string`|Given name and middle initial if applicable|LIAM R.|
-|`LastName`|`string`|Surname|TALBOT|
-|`DateOfBirth`|`date`|Date of birth|01/06/1958|
-|`DateOfExpiration`|`date`|Date of expiration|08/12/2020|
-|`DateOfIssue`|`date`|Date of issue|08/12/2012|
-|`Sex`|`string`|Sex|M|
-|`PersonalNumber`|`string`|Personal Id. No.|A234567893|
-|`PlaceOfBirth`|`string`|Place of birth|Germany|
-|`Category`|`string`|Permit category|DV2|
-|`Address`|`string`|Address|123 STREET ADDRESS YOUR CITY WA 99999-1234|
-
-### `idDocument.usSocialSecurityCard`
-
-| Field | Type | Description | Example |
-|:------|:-----|:------------|:--------|
-|`DocumentNumber`|`string`|Social security card number|WDLABCD456DG|
-|`FirstName`|`string`|Given name and middle initial if applicable|LIAM R.|
-|`LastName`|`string`|Surname|TALBOT|
-|`DateOfIssue`|`date`|Date of issue|08/12/2012|
-
-### `idDocument`
-
-| Field | Type | Description | Example |
-|:------|:-----|:------------|:--------|
-|`Address`|`address`|Address|123 STREET ADDRESS YOUR CITY WA 99999-1234|
-|`DocumentNumber`|`string`|Driver license number|WDLABCD456DG|
-|`FirstName`|`string`|Given name and middle initial if applicable|LIAM R.|
-|`LastName`|`string`|Surname|TALBOT|
-|`DateOfBirth`|`date`|Date of birth|01/06/1958|
-|`DateOfExpiration`|`date`|Date of expiration|08/12/2020|
-
-::: moniker-end
 
 ::: moniker range="doc-intel-2.1.0"
 
@@ -387,7 +254,7 @@ The following are the fields extracted per document type. The Document Intellige
 |  LastName | string | Extracted surname | "BROOKS" |
 |  Nationality | country | Country code compliant with ISO 3166 standard | "USA" |
 |  Sex | gender | Possible extracted values include "M" "F" "X" | "F" |
-|  MachineReadableZone | object | Extracted Passport MRZ including two lines of 44 characters each | "P<USABROOKS<<JENNIFER<<<<<<<<<<<<<<<<<<<<<<< 3400200135USA8001014F1905054710000307<715816" |
+|  MachineReadableZone | object | Extracted Passport `MRZ` including two lines of 44 characters each | "P<USABROOKS<<JENNIFER<<<<<<<<<<<<<<<<<<<<<<< 3400200135USA8001014F1905054710000307<715816" |
 |  DocumentType | string | Document type, for example, Passport, Driver's License | "passport" |
 |  Address | string | Extracted address (Driver's License only) | "123 STREET ADDRESS YOUR CITY WA 99999-1234"|
 |  Region | string | Extracted region, state, province, etc. (Driver's License only) | "Washington" |

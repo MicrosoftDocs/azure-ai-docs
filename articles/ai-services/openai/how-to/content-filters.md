@@ -43,11 +43,11 @@ You can configure the following filter categories in addition to the default har
 | Protected material - text | GA| On | Completion | Identifies and blocks known text content from being displayed in the model output (for example, song lyrics, recipes, and selected web content).  |
 
 
-## Configure content filters via Azure OpenAI Studio
+## Configure content filters via Azure AI Studio
 
 The following steps show how to set up a customized content filtering configuration for your resource.
 
-1. Go to Azure OpenAI Studio and navigate to the Content Filters tab (in the bottom left navigation, as designated by the red box below).
+1. Go to Azure AI Studio and navigate to the Content Filters tab (in the bottom left navigation, as designated by the red box below).
 
     :::image type="content" source="../media/content-filters/studio.png" alt-text="Screenshot of the AI Studio UI with Content Filters highlighted." lightbox="../media/content-filters/studio.png":::
 

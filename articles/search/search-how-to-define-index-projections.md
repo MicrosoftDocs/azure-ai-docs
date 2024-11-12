@@ -52,7 +52,7 @@ Indexers load indexed data into a predefined index. How you define the schema an
 
 ## Create an index for one-to-many indexing
 
-Whether you create one index that combines parent-child fields, or multiple indexes for separating parent-child fields, the primary index used for searching is designed around data chunks. It must have the following fields:
+Whether you create one index for chunks that repeat parent values, or separate indexes for parent-child field placement, the primary index used for searching is designed around data chunks. It must have the following fields:
 
 - A document key field uniquely identifying each document. It must be defined as type `Edm.String` with the `keyword` analyzer.
 
@@ -60,7 +60,7 @@ Whether you create one index that combines parent-child fields, or multiple inde
 
 - Other fields for content, such as text or vectorized chunk fields.
 
-An index must exist on the search service before you create the skillset or run the indexer
+An index must exist on the search service before you create the skillset or run the indexer.
 
 ### Single index schema inclusive of parent and child fields
 
@@ -140,20 +140,9 @@ This example is similar to the [RAG tutorial](tutorial-rag-build-solution-index-
 
 ## Add index projections to a skillset
 
-Index projections are defined inside a skillset definition and are primarily defined as an array of `selectors`, where each selector corresponds to a different target index on the search service. Each selector requires the following parameters as part of its definition:
+Index projections are defined inside a skillset definition and are primarily defined as an array of `selectors`, where each selector corresponds to a different target index on the search service. This section starts with syntax and examples for context, followed by [parameter reference](#parameter-reference). 
 
-| Parameter | Definition |
-|-----------|------------|
-| `targetIndexName` | The name of the index into which index data is projected. It's either the single chunked index with repeating parent fields, or it's the child index if you're using [separate indexes](#example-of-separate-parent-child-indexes) for parent-child content. |
-| `parentKeyFieldName` | The name of the field providing the key for the parent document.|
-| `sourceContext` | The enrichment annotation that defines the granularity at which to map data into individual search documents. For more information, see [Skill context and input annotation language](cognitive-search-skill-annotation-language.md). |
-| `mappings` | An array of mappings of enriched data to fields in the search index. Each mapping consists of: <br>`name`: The name of the field in the search index that the data should be indexed into. <br>`source`: The enrichment annotation path that the data should be pulled from. <br><br>Each `mapping` can also recursively define data with an optional `sourceContext` and `inputs` field, similar to the [knowledge store](knowledge-store-concept-intro.md) or [Shaper Skill](cognitive-search-skill-shaper.md). Depending on your application, these parameters allow you to shape data into fields of type `Edm.ComplexType` in the search index. Some LLMs don't accept a complex type in search results, so the LLM you're using determines whether a complex type mapping is helpful or not.|
-
-You must explicitly map every field in the child index, except for the ID fields such as document key and the parent ID. 
-
-This requirement is in contrast with other field mapping conventions in Azure AI Search. For some data source types, the indexer can implicitly map fields based on similar names, or known characteristics (for example, blob indexers use the unique metadata storage path as the default document key). However, for indexer projections, you must explicitly specify every field mapping on the "many" side of the relationship.
-
-<!-- Avoid creating a field mapping for the parent key field. Doing so disrupts change tracking and synchronized data refresh. -->
+Choose a tab for the various API syntax. There's currently no portal support for setting up projections, other than editing the skillset JSON definition. Refer to the REST example for JSON.
 
 #### [**REST**](#tab/rest-create-index-projection)
 
@@ -200,6 +189,8 @@ Here's an example payload for an index projections definition that you might use
 
 #### [**Python**](#tab/python-create-index-projection)
 
+We recommend the [latest stable package](https://pypi.org/project/azure-search-documents/) for index projections.
+
 ```python
 index_projections = SearchIndexerIndexProjection(  
     selectors=[  
@@ -226,8 +217,27 @@ For .NET developers, use the [IndexProjections Class](/dotnet/api/azure.search.d
 
 ---
 
-> [!TIP]
-> We recommend setting the `skipIndexingParentDocuments` parameter for the consolidated schema scenario. If you don't set parameters for skipping parent document indexing, you get extra search documents in your index that are null for chunks, but populated with parent fields only. For example, if five documents contribute 100 chunks to the index, then the number of documents in the index is 105. The five documents created or parent fields have nulls for child fields, making them substantially different from the bulk of the documents in the index.
+### Parameter reference
+
+| Index projection parameters | Definition |
+|----------------------------|------------|
+| `selectors` | Parameters for the main search corpus, usually the one designed around chunks. |
+| `projectionMode` | An optional parameter providing instructions to the indexer. The only valid value for this parameter is `skipIndexingParentDocuments`, and it's used when the chunk index is the primary search corpus and you need to specify whether parent fields are indexed as extra search documents within the chunked index. If you don't set `skipIndexingParentDocuments`, you get extra search documents in your index that are null for chunks, but populated with parent fields only. For example, if five documents contribute 100 chunks to the index, then the number of documents in the index is 105. The five documents created or parent fields have nulls for chunk (child) fields, making them substantially different from the bulk of the documents in the index. We recommend `projectionMode` set to `skipIndexingParentDocument`. |
+
+Selectors have the following parameters as part of their definition.
+
+| Selector parameters | Definition |
+|-----------|------------|
+| `targetIndexName` | The name of the index into which index data is projected. It's either the single chunked index with repeating parent fields, or it's the child index if you're using [separate indexes](#example-of-separate-parent-child-indexes) for parent-child content. |
+| `parentKeyFieldName` | The name of the field providing the key for the parent document.|
+| `sourceContext` | The enrichment annotation that defines the granularity at which to map data into individual search documents. For more information, see [Skill context and input annotation language](cognitive-search-skill-annotation-language.md). |
+| `mappings` | An array of mappings of enriched data to fields in the search index. Each mapping consists of: <br>`name`: The name of the field in the search index that the data should be indexed into. <br>`source`: The enrichment annotation path that the data should be pulled from. <br><br>Each `mapping` can also recursively define data with an optional `sourceContext` and `inputs` field, similar to the [knowledge store](knowledge-store-concept-intro.md) or [Shaper Skill](cognitive-search-skill-shaper.md). Depending on your application, these parameters allow you to shape data into fields of type `Edm.ComplexType` in the search index. Some LLMs don't accept a complex type in search results, so the LLM you're using determines whether a complex type mapping is helpful or not.|
+
+The `mappings` parameter is important. You must explicitly map every field in the child index, except for the ID fields such as document key and the parent ID. 
+
+This requirement is in contrast with other field mapping conventions in Azure AI Search. For some data source types, the indexer can implicitly map fields based on similar names, or known characteristics (for example, blob indexers use the unique metadata storage path as the default document key). However, for indexer projections, you must explicitly specify every field mapping on the "many" side of the relationship.
+
+Do not create a field mapping for the parent key field. Doing so disrupts change tracking and synchronized data refresh.
 
 ## Handling parent documents
 

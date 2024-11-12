@@ -431,7 +431,7 @@ In this section, compare the responses between single vector search and simple h
 {
     "@search.score": 0.8399121,
     "HotelId": "49",
-    "HotelName": "Old Carrabelle Hotel",
+    "HotelName": "Swirling Currents Hotel",
     "Description": "Spacious rooms, glamorous suites and residences, rooftop pool, walking access to shopping, dining, entertainment and the city center.",
     "Category": "Luxury",
     "Address": {
@@ -446,7 +446,7 @@ In this section, compare the responses between single vector search and simple h
 {
     "@search.score": 0.032786883413791656,
     "HotelId": "49",
-    "HotelName": "Old Carrabelle Hotel",
+    "HotelName": "Swirling Currents Hotel",
     "Description": "Spacious rooms, glamorous suites and residences, rooftop pool, walking access to shopping, dining, entertainment and the city center.",
     "Category": "Luxury",
     "Address": {

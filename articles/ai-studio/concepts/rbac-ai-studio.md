@@ -245,7 +245,13 @@ When you create a connection that uses Microsoft Entra ID authentication, you mu
 | Azure AI Search | Search Index Data Contributor | Required for indexing scenarios |
 | Azure AI services / Azure OpenAI | Cognitive Services OpenAI Contributor | Call public ingestion API from Azure AI Studio. |
 | Azure AI services / Azure OpenAI | Cognitive Services User | List API-Keys from Azure AI Studio. |
-| Azure AI services / Azure OpenAI | Contributor | Allows for calls to the control plane. |
+| Azure AI services / Azure OpenAI | Cognitive Services Contributor | Allows for calls to the control plane. |
+| Azure Blob Storage | Storage Blob Data Contributor | Required for reading and writing data to the blob storage. |
+| Azure Data Lake Storage Gen 2 | Storage Blob Data Contributor | Required for reading and writing data to the data lake. |
+| Microsoft OneLake | Contributor | To give someone acess to Microsoft OneLake, you must [give them access to your Microsoft Fabric workspace](/fabric/get-started/give-access-workspaces). |
+
+> [!IMPORTANT]
+> If you are using Promptflow with Azure Storage (including Azure Data Lake Storage Gen 2), you must also assign the __Storage File Data Privileged Contributor__ role.
 
 When using Microsoft Entra ID authenticated connections in the chat playground, the services need to authorize each other to access the required resources. The admin performing the configuration needs to have the __Owner__ role on these resources to add role assignments. The following table lists the required role assignments for each resource. The __Assignee__ column refers to the system-assigned managed identity of the listed resource. The __Resource__ column refers to the resource that the assignee needs to access. For example, Azure OpenAI has a system-assigned managed identity that needs to be assigned the __Search Index Data Reader__ role for the Azure AI Search resource.
 
@@ -256,6 +262,8 @@ When using Microsoft Entra ID authenticated connections in the chat playground, 
 | Search Service Contributor | Azure AI services / Azure OpenAI | Azure AI Search | Read-write access to object definitions (indexes, aliases, synonym maps, indexers, data sources, and skillsets). Inference service queries the index schema for auto fields mapping. Data ingestion service creates index, data sources, skill set, indexer, and queries the indexer status. |
 | Cognitive Services OpenAI Contributor | Azure AI Search | Azure AI services / Azure OpenAI | Custom skill |
 | Cognitive Services OpenAI User | Azure OpenAI Resource for chat model | Azure OpenAI resource for embedding model | Required only if using two Azure OpenAI resources to communicate. |
+| Storage Blob Data Contributor | Azure AI Search | Azure Storage Account | Reads blob and writes knowledge store. |
+| Storage Blob Data Contributor | Azure AI services / Azure OpenAI | Azure Storage Account | Reads from the input container and writes the preprocess results to the output container. |
 
 > [!NOTE]
 > The __Cognitive Services OpenAI User__ role is only required if you are using two Azure OpenAI resources: one for your chat model and one for your embedding model. If this applies, enable Trusted Services AND ensure the connection for your embedding model Azure OpenAI resource has Microsoft Entra ID enabled.  
@@ -383,6 +391,29 @@ The following example defines a role for a developer using [Azure OpenAI Assista
     }
 }
 ```
+
+## Troubleshooting
+
+### Error: Principal does not have access to API/Operation
+
+#### Symptoms
+
+When using the Azure AI Studio chat playground, you receive an error message stating "Principal does not have access to API/Operation". The error may also include an "Apim-request-id".
+
+#### Cause
+
+The user or service principal used to authenticate requests to Azure OpenAI or Azure AI Search does not have the required permissions to access the resource.
+
+#### Solution
+
+Assign the following roles to the user or service principal. The role you assign depends on the services you are using and the level of access the user or service principal requires:
+
+| Service being accessed | Role | Description |
+| --- | --- | --- |
+| Azure OpenAI | Cognitive Services OpenAI Contributor | Call public ingestion API from Azure AI Studio. |
+| Azure OpenAI | Cognitive Services User | List API-Keys from Azure AI Studio. |
+| Azure AI Search | Search Index Data Contributor | Required for indexing scenarios. |
+| Azure AI Search| Search Index Data Reader | Inference service queries the data from the index. Only used for inference scenarios. |
 
 ## Next steps
 

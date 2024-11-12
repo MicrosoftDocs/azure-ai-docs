@@ -11,8 +11,8 @@ ms.custom:
   - devx-track-dotnet
   - devx-track-extended-java
   - ignite-2023
-ms.topic: conceptual
-ms.date: 01/25/2024
+ms.topic: concept-article
+ms.date: 10/18/2024
 ---
 
 # Java samples for Azure AI Search
@@ -23,8 +23,9 @@ Learn about the Java code samples that demonstrate the functionality and workflo
 |--------|------|
 | Package download | [search.maven.org/artifact/com.azure/azure-search-documents](https://search.maven.org/artifact/com.azure/azure-search-documents) |
 | API reference | [com.azure.search.documents](/java/api/com.azure.search.documents)  |
-| API test cases | [github.com/Azure/azure-sdk-for-java/tree/azure-search-documents_11.1.3/sdk/search/azure-search-documents/src/test](https://github.com/Azure/azure-sdk-for-java/tree/azure-search-documents_11.1.3/sdk/search/azure-search-documents/src/test) |
-| Source code | [github.com/Azure/azure-sdk-for-java/tree/azure-search-documents_11.1.3/sdk/search/azure-search-documents/src](https://github.com/Azure/azure-sdk-for-java/tree/azure-search-documents_11.1.3/sdk/search/azure-search-documents/src)  |
+| API test cases | [https://github.com/Azure/azure-sdk-for-java/tree/main/sdk/search/azure-search-documents/src/test](https://github.com/Azure/azure-sdk-for-java/tree/main/sdk/search/azure-search-documents/src/test) |
+| Source code | [https://github.com/Azure/azure-sdk-for-java/tree/main/sdk/search/azure-search-documents](https://github.com/Azure/azure-sdk-for-java/tree/main/sdk/search/azure-search-documents)  |
+| Change log | [https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/search/azure-search-documents/CHANGELOG.md](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/search/azure-search-documents/CHANGELOG.md) |
 
 ## SDK samples
 

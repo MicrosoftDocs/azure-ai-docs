@@ -6,7 +6,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.topic: conceptual
-ms.date: 08/07/2024
+ms.date: 10/16/2024
 ms.author: lajanuar
 monikerRange: '>=doc-intel-3.0.0'
 ---
@@ -89,25 +89,13 @@ See how data, including customer information, vendor details, and line items, is
 
 ## Supported languages and locales
 
-*See* our [Language Support—prebuilt models](../language-support/prebuilt.md) page for a complete list of supported languages.
+For a complete list of supported languages, *see* our [Language Support—prebuilt models](../language-support/prebuilt.md) page.
 
 ## Field extraction
 
-The following are the fields extracted from a contract in the JSON output response. 
+* For supported document extraction fields, refer to the [contract model schema](https://github.com/Azure-Samples/document-intelligence-code-samples/blob/main/schema/2024-07-31-preview/contract.md) page in our GitHub sample repository.
 
-|Name| Type | Description | Example output |
-|:-----|:----|:----|:---:|
-| Title | String | Contract title| Service agreement |
-| ContractId | String | Contract title| AB12956 |
-| Parties | Array |List of legal parties| |
-| ExecutionDate | Date |Date when the agreement was fully signed and agreed upon by all parties|`On this twenty-third day of February two thousand and twenty two` |
-| ExpirationDate | Date |Date when the contract ends| One year |
-| EffectiveDate  | Date |Date when the contract is in effect| immediately |
-| RenewalDate | Date |Date when the contract needs to be renewed| `On this twenty-third day of February two thousand and twenty two` |
-| ContractDuration | String | Contract terms | Five (5) years |
-| Jurisdictions | Array | List of jurisdictions| |
-
-The contract key-value pairs and line items extracted are in the `documentResults` section of the JSON output.
+* The contract key-value pairs and line items extracted are in the `documentResults` section of the JSON output.
 
 ## Next steps
 

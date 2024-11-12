@@ -25,7 +25,7 @@ The following sections show model availability by region and deployment type.
 
 |   **Region**  | **gpt-35-turbo**, **1106** | **gpt-35-turbo**, **0125** | **gpt-4**, **1106-Preview** | **gpt-4o**, **2024-05-13** | **text-embedding-ada-002** |
 |:--------------|:--------------------------:|:--------------------------:|:---------------------------:|:--------------------------:|:--------------------------:|
-| usgovarizona  | ✅ | ✅ | ✅ | ✅ | ✅ |
+| usgovarizona  | - | ✅ | ✅ | ✅ | ✅ |
 | usgovvirginia | ✅ | ✅ | ✅ | - | ✅ |
 
 To request quota increases for the pay-as-you-go consumption model, apply at [https://aka.ms/AOAIGovQuota](https://aka.ms/AOAIGovQuota)

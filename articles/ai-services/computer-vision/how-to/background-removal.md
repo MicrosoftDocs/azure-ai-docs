@@ -13,6 +13,8 @@ ms.date: 01/19/2024
 
 # Remove the background in images
 
+[!INCLUDE [segmentation-deprecation](../includes/segmentation-deprecation.md)]
+
 This article demonstrates how to call the Image Analysis 4.0 API to segment an image (separate the foreground from background). It also shows you how to parse the returned information.
 
 > [!IMPORTANT]

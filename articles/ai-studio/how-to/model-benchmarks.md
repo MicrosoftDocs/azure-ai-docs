@@ -16,7 +16,7 @@ author: sdgilley
 
 # Model benchmarks in Azure AI Studio
 
-[!INCLUDE [Feature preview](~/reusable-content/ce-skilling/azure/includes/ai-studio/includes/feature-preview.md)]
+[!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
 In Azure AI Studio, you can compare benchmarks across models and datasets available in the industry to decide which one meets your business scenario. You can find model benchmarks under **Get started** on the left menu in Azure AI Studio.
 

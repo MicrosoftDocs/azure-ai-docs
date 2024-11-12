@@ -192,7 +192,7 @@ The US tax document models analyze and extract key fields and line items from a 
 
   |Model|Description|ModelID|
   |---|---|---|
-  |US Tax W-2|Extract taxable compensation details.|**prebuilt-tax.us.W-2**|
+  |US Tax W-2|Extract taxable compensation details.|**prebuilt-tax.us.w2**|
   |US Tax 1040|Extract mortgage interest details.|**prebuilt-tax.us.1040(variations)**|
   |US Tax 1098|Extract mortgage interest details.|**prebuilt-tax.us.1098(variations)**|
   |US Tax 1099|Extract income received from sources other than employer.|**prebuilt-tax.us.1099(variations)**|
@@ -217,7 +217,7 @@ The US mortgage document models analyze and extract key fields including borrowe
   |1008 Summary document|Extract borrower, seller, property, mortgage, and underwriting details.|**prebuilt-mortgage.us.1008**|
   |Closing disclosure|Extract closing, transaction costs, and loan details.|**prebuilt-mortgage.us.closingDisclosure**|
   |Marriage certificate|Extract marriage information details for joint loan applicants.|**prebuilt-marriageCertificate**|
-  |US Tax W-2|Extract taxable compensation details for income verification.|**prebuilt-tax.us.W-2**|
+  |US Tax W-2|Extract taxable compensation details for income verification.|**prebuilt-tax.us.w2**|
 
 ***Sample Closing disclosure document processed using [Document Intelligence Studio](https://formrecognizer.appliedai.azure.com/studio/prebuilt?formType=mortgage.us.closingDisclosure)***:
 

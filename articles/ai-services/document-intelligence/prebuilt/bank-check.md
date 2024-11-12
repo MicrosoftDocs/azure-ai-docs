@@ -6,7 +6,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.topic: conceptual
-ms.date: 10/03/2024
+ms.date: 10/16/2024
 ms.author: lajanuar
 monikerRange: '>=doc-intel-4.0.0'
 ---
@@ -53,24 +53,11 @@ A check is a secure way to transfer amount from payee's account to receiver's ac
 
 ## Supported languages and locales
 
-*See* our [Language Support](../language-support/prebuilt.md) page for a complete list of supported languages.
+ For a complete list of supported languages, *see* our [prebuilt model language support](../language-support/prebuilt.md) page.
 
 ## Field extractions
 
-| Field | Type | Description | Example |
-|:------|:-----|:------------|:--------|
-|`PayerName`|`string`|Name of the payer (drawer)|Jane Doe|
-|`PayerAddress`|`address`|Address of the payer (drawer)|123 Main St., Redmond, Washington, 98052|
-|`PayTo`|`string`|Name of the payee|John Smith|
-|`CheckDate`|`date`|Date the check was written|2023-04-01|
-|`NumberAmount`|`number`|Amount of the check written in numeric form|150.00|
-|`WordAmount`|`number`|Amount of the check written in letter form|one-hundred-fifty and 00/100|
-|`BankName`|`string`|Name of the bank|Contoso Bank|
-|`Memo`|`string`|Short note describing the payment|April Rent Payment|
-|`MICR`|`object`|Magnetic Ink Character Recognition (MICR) line|⑈0740⑈ ⑆123456789⑆ 1001001234⑈|
-|`MICR.RoutingNumber`|`string`|Routing number of the bank|⑆123456789⑆|
-|`MICR.AccountNumber`|`string`|Account number|1001001234⑈|
-|`MICR.CheckNumber`|`string`|Check number|⑈0740⑈|
+For supported document extraction fields, refer to the [bank check model schema](https://github.com/Azure-Samples/document-intelligence-code-samples/blob/main/schema/2024-07-31-preview/bank-check.md) page in our GitHub sample repository.
 
 ## Supported locales
 

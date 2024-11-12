@@ -19,7 +19,10 @@ Independent software vendors (ISVs) can manage the Face API usage of their clien
 
 This guide shows you how to generate the access tokens, if you're an approved ISV, and how to use the tokens if you're a client. 
 
-The limited access token feature is a part of the existing Azure AI Services token service. We have added a new operation for the purpose of bypassing the Limited Access gate for approved scenarios. Only ISVs that pass the gating requirements will be given access to this feature.
+The limited access token feature is a part of the existing Azure AI Services token service. We have added a new operation for the purpose of bypassing the Limited Access gate for approved scenarios. 
+
+> [!IMPORTANT]
+> Only ISVs that pass the gating requirements will be given access to this feature. To request approval, contact [azureface@microsoft.com](mailto:azureface@microsoft.com).
 
 ## Example use case
 
@@ -57,10 +60,10 @@ To call the **issueLimitedAccessToken** API, copy the following cURL command to 
 
 ```bash
 curl -X POST 'https://<isv-endpoint>/sts/v1.0/issueLimitedAccessToken?expiredTime=3600' \  
--H 'Ocp-Apim-Subscription-Key: <client-face-key>' \  
+-H 'Ocp-Apim-Subscription-Key: <isv-face-key>' \  
 -H 'Content-Type: application/json' \  
 -d '{  
-    "resourceId": "/subscriptions/<subscription-id>/resourceGroups/<resource-group-name>/providers/Microsoft.CognitiveServices/accounts/<face-resource-name>",  
+    "targetAzureResourceId": "/subscriptions/<subscription-id>/resourceGroups/<resource-group-name>/providers/Microsoft.CognitiveServices/accounts/<face-resource-name>",  
     "featureFlags": ["Face.Identification", "Face.Verification"]  
 }' 
 ```
@@ -68,7 +71,7 @@ curl -X POST 'https://<isv-endpoint>/sts/v1.0/issueLimitedAccessToken?expiredTim
 Then, make the following changes:
 1. Replace `<isv-endpoint>` with the endpoint of the ISV's resource. For example, **westus.api.cognitive.microsoft.com**.
 1. Optionally set the `expiredTime` parameter to set the expiration time of the token in seconds. It must be between 60 and 86400. The default value is 3600 (one hour).
-1. Replace `<client-face-key>` with the key of the client's Face resource.
+1. Replace `<isv-face-key>` with the key of the ISV's Face resource.
 1. Replace `<subscription-id>` with the subscription ID of the client's Azure subscription.
 1. Replace `<resource-group-name>` with the name of the client's resource group.
 1. Replace `<face-resource-name>` with the name of the client's Face resource.

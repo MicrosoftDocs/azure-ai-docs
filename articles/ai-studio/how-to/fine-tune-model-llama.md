@@ -15,7 +15,7 @@ ms.custom: references_regions, build-2024
 
 # Fine-tune Meta Llama models in Azure AI Studio
 
-[!INCLUDE [Feature preview](~/reusable-content/ce-skilling/azure/includes/ai-studio/includes/feature-preview.md)]
+[!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
 Azure AI Studio lets you tailor large language models to your personal datasets by using a process known as *fine-tuning*. 
 
@@ -24,6 +24,8 @@ Fine-tuning provides significant value by enabling customization and optimizatio
 In this article, you learn how to fine-tune Meta Llama models in [Azure AI Studio](https://ai.azure.com).
 
 The [Meta Llama family of large language models (LLMs)](./deploy-models-llama.md) is a collection of pretrained and fine-tuned generative text models ranging in scale from 7 billion to 70 billion parameters. The model family also includes fine-tuned versions optimized for dialogue use cases with Reinforcement Learning from Human Feedback (RLHF), called Llama-Instruct.
+
+[!INCLUDE [models-preview](../includes/models-preview.md)]
 
 ## Models
 # [Meta Llama 3.1](#tab/llama-three)
@@ -266,6 +268,10 @@ Meta Llama models fine-tuned as a service are offered by Meta through the Azure 
 Each time a project subscribes to a given offer from the Azure Marketplace, a new resource is created to track the costs associated with its consumption. The same resource is used to track costs associated with inference and fine-tuning; however, multiple meters are available to track each scenario independently.
 
 For more information on how to track costs, see [monitor costs for models offered throughout the Azure Marketplace](./costs-plan-manage.md#monitor-costs-for-models-offered-through-the-azure-marketplace).
+
+## Sample notebook
+
+You can use this [sample notebook](https://github.com/Azure/azureml-examples/blob/main/sdk/python/jobs/finetuning/standalone/chat-completion/chat_completion_with_model_as_service.ipynb)  to create a standalone fine-tuning job to enhance a model's ability to summarize dialogues between two people using the Samsum dataset. The training data utilized is the ultrachat_200k dataset, which is divided into four splits suitable for supervised fine-tuning (sft) and generation ranking (gen). The notebook employs the available Azure AI models for the chat-completion task (If you would like to use a different model than what's used in the notebook, you can replace the model name). The notebook includes setting up prerequisites, selecting a model to fine-tune, creating training and validation datasets, configuring and submitting the fine-tuning job, and finally, creating a serverless deployment using the fine-tuned model for sample inference.
 
 ## Content filtering
 

@@ -337,13 +337,13 @@ Vector fields are characterized by [their data type](/rest/api/searchservice/sup
                 "retrievable": false,
                 "stored": false,
                 "dimensions": 1536,
-                "vectorSearchProfile": "-vector-profile-1"
+                "vectorSearchProfile": "vector-profile-1"
             }
         ],
         "vectorSearch": {
             "algorithms": [
                 {
-                    "name": "hsnw-1",
+                    "name": "hnsw-1",
                     "kind": "hnsw",
                     "hnswParameters": {
                         "m": 4,

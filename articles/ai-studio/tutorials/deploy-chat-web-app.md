@@ -16,7 +16,7 @@ author: aahill
 
 # Tutorial: Deploy an Enterprise Chat web app
 
-[!INCLUDE [Feature preview](~/reusable-content/ce-skilling/azure/includes/ai-studio/includes/feature-preview.md)]
+[!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
 In this article, you deploy an enterprise chat web app that uses your own data with a large language model in AI Studio.
 
@@ -44,7 +44,7 @@ The steps in this tutorial are:
 
 In the [AI Studio playground quickstart](../quickstarts/get-started-playground.md) (that's a prerequisite for this tutorial), you can observe how your model responds without your data. Now you add your data to the model to help it answer questions about your products.
 
-[!INCLUDE [Chat with your data](../includes/chat-with-data.md)]
+[!INCLUDE [Chat with your data](../includes/chat-with-data.md)] 
 
 ## Deploy your web app
 

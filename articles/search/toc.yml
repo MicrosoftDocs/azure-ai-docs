@@ -199,7 +199,7 @@ items:
       href: search-capacity-planning.md
     - name: Plan and manage costs
       href: search-sku-manage-costs.md
-    - name: Availability and recovery
+    - name: Reliability and recovery
       href: search-reliability.md
     - name: Availability migration guidance
       href: /azure/reliability/migrate-search-service
@@ -228,7 +228,7 @@ items:
     - name: Alias an index
       href: search-how-to-alias.md
     - name: Import large data sets
-      href: search-howto-large-index.md
+      href: search-how-to-large-index.md
     - name: Indexers
       items:
       - name: Create an indexer
@@ -252,7 +252,7 @@ items:
         - name: Index plain text
           href: search-howto-index-plaintext-blobs.md
         - name: Index CSV
-          href: search-howto-index-csv-blobs.md
+          href: search-how-to-index-csv-blobs.md
         - name: Index JSON
           href: search-howto-index-json-blobs.md
       - name: Troubleshooting guidance
@@ -480,7 +480,7 @@ items:
     - name: Upgrade .NET libraries
       href: search-dotnet-sdk-migration-version-11.md
     - name: Develop in .NET
-      href: search-howto-dotnet-sdk.md
+      href: search-how-to-dotnet-sdk.md
     - name: Manage with Azure SDKs
       href: search-dotnet-mgmt-sdk-migration.md
     - name: Handle concurrent updates

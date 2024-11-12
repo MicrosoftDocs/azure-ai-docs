@@ -14,6 +14,8 @@ ms.author: pafarley
 
 # Background removal (version 4.0 preview)
 
+[!INCLUDE [segmentation-deprecation](includes/segmentation-deprecation.md)]
+
 The Background removal operation can divide images into multiple segments or regions to help the user identify different objects or parts of the image. Background removal creates an alpha matte that separates the foreground object from the background in an image. This service is currently in preview, and the API may change in the future.
 
 

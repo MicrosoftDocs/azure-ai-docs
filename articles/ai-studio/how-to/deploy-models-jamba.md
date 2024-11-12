@@ -14,14 +14,16 @@ ms.custom: references_regions
 
 # How to deploy AI21's Jamba family models with Azure AI Studio
 
-[!INCLUDE [Feature preview](~/reusable-content/ce-skilling/azure/includes/ai-studio/includes/feature-preview.md)]
+[!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
 In this article, you learn how to use Azure AI Studio to deploy AI21's Jamba family models as a serverless API with pay-as-you-go billing.
 
 The Jamba family models are AI21's production-grade Mamba-based large language model (LLM) which leverages AI21's hybrid Mamba-Transformer architecture. It's an instruction-tuned version of AI21's hybrid structured state space model (SSM) transformer Jamba model. The Jamba family models are built for reliable commercial use with respect to quality and performance.
 
-> [!TIP]
-> See our announcements of AI21's Jamba family models available now on Azure AI Model Catalog through [AI21's blog](https://aka.ms/ai21-jamba-1.5-large-announcement) and [Microsoft Tech Community Blog](https://aka.ms/ai21-jamba-1.5-large-microsoft-annnouncement).
+See our announcements of AI21's Jamba family models available now on Azure AI Model Catalog through [AI21's blog](https://aka.ms/ai21-jamba-1.5-large-announcement) and [Microsoft Tech Community Blog](https://aka.ms/ai21-jamba-1.5-large-microsoft-annnouncement).
+
+[!INCLUDE [models-preview](../includes/models-preview.md)]
+
 
 ## Deploy the Jamba family models as a serverless API
 

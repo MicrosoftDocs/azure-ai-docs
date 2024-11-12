@@ -16,7 +16,7 @@ author: lgayhardt
 
 # Develop a prompt flow
 
-[!INCLUDE [Feature preview](~/reusable-content/ce-skilling/azure/includes/ai-studio/includes/feature-preview.md)]
+[!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
 Prompt flow is a development tool designed to streamline the entire development cycle of AI applications powered by Large Language Models (LLMs). Prompt flow provides a comprehensive solution that simplifies the process of prototyping, experimenting, iterating, and deploying your AI applications.
 
@@ -132,7 +132,7 @@ By selecting a span, you can see the detailed information on the right side. Thi
 :::image type="content" source="../media/prompt-flow/authoring-trace.png" alt-text=" Screenshot of trace detail." lightbox="../media/prompt-flow/authoring-trace.png":::
 
 > [!NOTE]
-> In prompt flow SDK, we defined serval span types, including **LLM**, **Function**, **Embedding**, **Retrieval**, and **Flow**. And the system automatically creates spans with execution information in designated attributes and events.
+> In prompt flow SDK, we defined several span types, including **LLM**, **Function**, **Embedding**, **Retrieval**, and **Flow**. And the system automatically creates spans with execution information in designated attributes and events.
 >
 > To learn more about span types, see  [Trace span](https://microsoft.github.io/promptflow/reference/trace-span-spec-reference.html).
 

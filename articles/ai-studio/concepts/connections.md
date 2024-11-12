@@ -2,7 +2,7 @@
 title: Connections in Azure AI Studio
 titleSuffix: Azure AI Studio
 description: This article introduces connections in Azure AI Studio.
-manager: nitinme
+manager: scottpolly
 ms.service: azure-ai-studio
 ms.custom:
   - ignite-2023
@@ -51,6 +51,9 @@ When you create a connection with an existing Azure storage account, you can cho
 
 - **Credential-based**: Authenticate data access with a service principal, shared access signature (SAS) token, or account key. Users with *Reader* project permissions can access the credentials.
 - **Identity-based**: Use your Microsoft Entra ID or managed identity to authenticate data access.
+
+    > [!TIP]
+    > When using an identity-based connection, Azure role-based access control (Azure RBAC) is used to determine who can access the connection. You must assign the correct Azure RBAC roles to your developers before they can use the connection. For more information, see [Scenario: Connections using Microsoft Entra ID](rbac-ai-studio.md#scenario-connections-using-microsoft-entra-id-authentication).
 
 
 The following table shows the supported Azure cloud-based storage services and authentication methods:

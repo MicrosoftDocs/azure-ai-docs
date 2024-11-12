@@ -7,14 +7,13 @@ author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-content-safety
 ms.topic: conceptual
-ms.date: 03/15/2024
+ms.date: 10/16/2024
 ms.author: pafarley
 ---
 
 #  Groundedness detection
 
 The Groundedness detection API detects whether the text responses of large language models (LLMs) are grounded in the source materials provided by the users. Ungroundedness refers to instances where the LLMs produce information that is non-factual or inaccurate from what was present in the source materials.
-
 
 ## Key terms
 
@@ -49,11 +48,11 @@ Groundedness detection supports text-based Summarization and QnA tasks to ensure
 
 The groundedness detection API includes a correction feature that automatically corrects any detected ungroundedness in the text based on the provided grounding sources. When the correction feature is enabled, the response includes a `corrected Text` field that presents the corrected text aligned with the grounding sources.
 
+###  Use cases
+
 Below, see several common scenarios that illustrate how and when to apply these features to achieve the best outcomes.
 
-
-### Summarization in medical contexts
-**Use case:**
+#### Summarization in medical contexts
 
 You're summarizing medical documents, and it’s critical that the names of patients in the summaries are accurate and consistent with the provided grounding sources.
 
@@ -74,8 +73,7 @@ Example API Request:
 
 The correction feature detects that `Kevin` is ungrounded because it conflicts with the grounding source `Jane`. The API returns the corrected text: `"The patient name is Jane."`
 
-### Question and answer (QnA) task with customer support data
-**Use case:**
+#### Question and answer (QnA) task with customer support data
 
 You're implementing a QnA system for a customer support chatbot. It’s essential that the answers provided by the AI align with the most recent and accurate information available.
 
@@ -99,8 +97,8 @@ Example API Request:
 The API detects that `5%` is ungrounded because it does not match the provided grounding source `4.5%`. The response includes the correction text: `"The interest rate is 4.5%."`
 
 
-### Content creation with historical data
-**Use case**:
+#### Content creation with historical data
+
 You're creating content that involves historical data or events, where accuracy is critical to maintaining credibility and avoiding misinformation.
 
 Example API Request:
@@ -116,11 +114,11 @@ Example API Request:
 }
 ```
 **Expected outcome:**
+
 The API detects the ungrounded date `1065` and corrects it to `1066` based on the grounding source. The response includes the corrected text: `"The Battle of Hastings occurred in 1066."`
 
 
-### Internal documentation summarization
-**Use case:**
+#### Internal documentation summarization
 
 You're summarizing internal documents where product names, version numbers, or other specific data points must remain consistent.
 
@@ -159,7 +157,7 @@ Currently, the Groundedness detection API supports English language content. Whi
 
 See [Input requirements](../overview.md#input-requirements) for maximum text length limitations.
 
-### Regions
+### Region availability
 
 To use this API, you must create your Azure AI Content Safety resource in the supported regions. See [Region availability](/azure/ai-services/content-safety/overview#region-availability).
 

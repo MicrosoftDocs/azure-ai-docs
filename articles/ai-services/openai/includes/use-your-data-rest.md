@@ -28,7 +28,7 @@ curl -i -X POST $AZURE_OPENAI_ENDPOINT/openai/deployments/$AZURE_OPENAI_DEPLOYME
 {
     "data_sources": [
         {
-            "type": "AzureCognitiveSearch",
+            "type": "azure_search",
             "parameters": {
                 "endpoint": "'$AZURE_AI_SEARCH_ENDPOINT'",
                 "key": "'$AZURE_AI_SEARCH_API_KEY'",

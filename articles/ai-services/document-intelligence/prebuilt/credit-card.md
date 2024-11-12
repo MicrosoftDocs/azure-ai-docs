@@ -6,7 +6,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.topic: conceptual
-ms.date: 10/03/2024
+ms.date: 10/16/2024
 ms.author: lajanuar
 monikerRange: '>=doc-intel-4.0.0'
 ---
@@ -68,25 +68,13 @@ To see how data extraction works for the Credit/Debit card service, you need the
 
 ## Supported languages and locales
 
-*See* our [Language Support—prebuilt models](../language-support/prebuilt.md) page for a complete list of supported languages.
+For a complete list of supported languages, *see* our [prebuilt model language support](../language-support/prebuilt.md) page.
 
 ## Field extraction
 
-The following are the fields extracted from a contract in the JSON output response.
+* For supported document extraction fields, refer to the [credit card model schema](https://github.com/Azure-Samples/document-intelligence-code-samples/blob/main/schema/2024-07-31-preview/credit-card.md) page in our GitHub sample repository.
 
-|Name| Type | Description | Example output |
-|:-----|:----|:----|:---:|
-| CardNumber | String | A unique identifier for the card| 4275 0000 0000 0000 |
-| IssuingBank | String | The name of the bank that issued the card| Woodgrove Bank |
-| PaymentNetwork | String |The payment network that processes the card transaction| VISA |
-| CardHolderName | String |The name of the person who owns the card| JOHN SMITH |
-| CardHolderCompanyName | String| The name of the company that the card is associated with | Contoso, Ltd. |
-| ValidDate | Date | Valid from date | 01/16 |
-| ExpirationDate | Date | Expiration date| 01/19 |
-| CardVerificationValue | String | Card verification value (CVV) | 764 |
-| CustomerServicePhoneNumbers | Array | List of support numbers | +1 (555) 123-4567 |
-
-The bank cards key-value pairs and line items extracted are in the `documentResults` section of the JSON output.
+* The bank cards key-value pairs and line items extracted are in the `documentResults` section of the JSON output.
 
 ## Next steps
 

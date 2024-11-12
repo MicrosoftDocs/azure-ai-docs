@@ -318,7 +318,7 @@ The error code is a 6-digit number combining the 3-digit HTTP status code follow
 | 400035| The source language ("From" field) isn't valid.|
 | 400036| The target language ("To" field) is missing or invalid.|
 | 400042| One of the options specified ("Options" field) isn't valid.|
-| 400043| The client trace ID (ClientTraceId field or X-ClientTranceId header) is missing or invalid.|
+| 400043| The client trace ID (ClientTraceId field or X-ClientTraceId header) is missing or invalid.|
 | 400050| The input text is too long. View [request limits](../service-limits.md).|
 | 400064| The "translation" parameter is missing or invalid.|
 | 400070| The number of target scripts (ToScript parameter) doesn't match the number of target languages (To parameter).|

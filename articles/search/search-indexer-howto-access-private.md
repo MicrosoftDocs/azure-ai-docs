@@ -8,7 +8,7 @@ author: mrcarter8
 ms.author: mcarter
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 09/17/2024
+ms.date: 10/22/2024
 ---
 
 # Make outbound connections through a shared private link
@@ -66,7 +66,11 @@ When evaluating shared private links for your scenario, remember these constrain
 
 ## Prerequisites
 
-+ An Azure AI Search at the Basic tier or higher. If you're using [AI enrichment](cognitive-search-concept-intro.md) and skillsets, the tier must be Standard 2 (S2) or higher. See [Service limits](search-limits-quotas-capacity.md#shared-private-link-resource-limits) for details.
++ For [integrated vectorization](vector-search-integrated-vectorization.md) only, outbound connections through shared private link are supported on all billable tiers, only on services [created after April 3, 2024](vector-search-index-size.md#how-to-check-service-creation-date) located in regions providing [higher capacity](search-limits-quotas-capacity.md#partition-storage-gb). 
+
++ For [AI enrichment](cognitive-search-concept-intro.md), skillset processing that doesn't include an embedding skill and in services [created before April 3, 2024](vector-search-index-size.md#how-to-check-service-creation-date), Azure AI Search must be Standard 2 (S2) or higher.
+
++ For all other use cases, that don't involve skillsets, Azure AI Search can be Basic or higher.
 
 + An Azure PaaS resource from the following list of [supported resource types](#supported-resource-types), configured to run in a virtual network.
 
@@ -95,7 +99,7 @@ You can create a shared private link for the following resources.
 | Microsoft.DBforMySQL/servers (preview) | `mysqlServer`|
 | Microsoft.Web/sites <sup>4</sup> | `sites` |
 | Microsoft.Sql/managedInstances (preview) <sup>5</sup>| `managedInstance` |
-| Microsoft.CognitiveServices/accounts <sup>6</sup>| `openai_account` |
+| Microsoft.CognitiveServices/accounts <sup>6</sup> <sup>7</sup>| `openai_account` |
 
 <sup>1</sup> If Azure Storage and Azure AI Search are in the same region, the connection to storage is made over the Microsoft backbone network, which means a shared private link is redundant for this configuration. However, if you already set up a private endpoint for Azure Storage, you should also set up a shared private link or the connection is refused on the storage side. Also, if you're using multiple storage formats for various scenarios in search, make sure to create a separate shared private link for each subresource.
 
@@ -108,6 +112,9 @@ You can create a shared private link for the following resources.
 <sup>5</sup> See [Create a shared private link for a SQL Managed Instance](search-indexer-how-to-access-private-sql.md) for instructions.
 
 <sup>6</sup> The `Microsoft.CognitiveServices/accounts` resource type is used for vectorizer and indexer connections to Azure OpenAI when implementing [integrated Vectorization](vector-search-integrated-vectorization.md). There's currently no support for shared private link to embedding models in the Azure AI Studio model catalog or to the Azure AI Vision multimodal API.
+
+<sup>7</sup> Shared Private Link for Azure OpenAI is only supported in public cloud. Other cloud offerings such as [Microsoft Azure Government](https://azure.microsoft.com/explore/global-infrastructure/government/) don't have support for Shared Private Links for `openai_account` Group ID.
+
 
 ## 1 - Create a shared private link
 
@@ -270,12 +277,12 @@ A `202 Accepted` response is returned on success. The process of creating an out
 <!-- 
 1. Check the response. The `PUT` call to create the shared private endpoint returns an `Azure-AsyncOperation` header value that looks like the following:
 
-   `"Azure-AsyncOperation": "https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/contoso/providers/Microsoft.Search/searchServices/contoso-search/sharedPrivateLinkResources/blob-pe/operationStatuses/08586060559526078782?api-version=2022-09-01"`
+   `"Azure-AsyncOperation": "https://management.azure.com/subscriptions/ffffffff-eeee-dddd-cccc-bbbbbbbbbbb0/resourceGroups/contoso/providers/Microsoft.Search/searchServices/contoso-search/sharedPrivateLinkResources/blob-pe/operationStatuses/08586060559526078782?api-version=2022-09-01"`
 
    You can poll for the status by manually querying the `Azure-AsyncOperationHeader` value.
 
    ```azurecli
-   az rest --method get --uri https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/contoso/providers/Microsoft.Search/searchServices/contoso-search/sharedPrivateLinkResources/blob-pe/operationStatuses/08586060559526078782?api-version=2022-09-01
+   az rest --method get --uri https://management.azure.com/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/contoso/providers/Microsoft.Search/searchServices/contoso-search/sharedPrivateLinkResources/blob-pe/operationStatuses/08586060559526078782?api-version=2022-09-01
    ```
  -->
 
@@ -318,7 +325,7 @@ On the Azure AI Search side, you can confirm request approval by revisiting the 
 Alternatively, you can also obtain connection state by using the [Shared Private Link Resources - Get](/rest/api/searchmanagement/shared-private-link-resources/get).
 
 ```dotnetcli
-az rest --method get --uri https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/contoso/providers/Microsoft.Search/searchServices/contoso-search/sharedPrivateLinkResources/blob-pe?api-version=2024-07-01
+az rest --method get --uri https://management.azure.com/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/contoso/providers/Microsoft.Search/searchServices/contoso-search/sharedPrivateLinkResources/blob-pe?api-version=2024-07-01
 ```
 
 This would return a JSON, where the connection state shows up as "status" under the "properties" section. Following is an example for a storage account.
@@ -327,7 +334,7 @@ This would return a JSON, where the connection state shows up as "status" under 
 {
       "name": "blob-pe",
       "properties": {
-        "privateLinkResourceId": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/contoso/providers/Microsoft.Storage/storageAccounts/contoso-storage",
+        "privateLinkResourceId": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/contoso/providers/Microsoft.Storage/storageAccounts/contoso-storage",
         "groupId": "blob",
         "requestMessage": "please approve",
         "status": "Approved",

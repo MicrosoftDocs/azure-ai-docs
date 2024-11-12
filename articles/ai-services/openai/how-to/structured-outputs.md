@@ -18,8 +18,8 @@ Structured outputs make a model follow a [JSON Schema](https://json-schema.org/o
 
 > [!NOTE]
 > * Currently structured outputs is not supported on [bring your own data](../concepts/use-your-data.md) scenario.
->
-> * There is a known issue blocking structured outputs support for [global batch](batch.md).
+
+
 
 ## Supported models
 

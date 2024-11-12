@@ -12,6 +12,7 @@ ms.author: mopeakande
 author: msakande
 ms.custom: 
  - build-2024
+ms.collection: ce-skilling-ai-copilot
 ---
 
 # Azure AI Model Inference API | Azure Machine Learning

@@ -30,7 +30,7 @@ The fully qualified container image name is, `mcr.microsoft.com/azure-cognitive-
 | Version | Path |
 |-----------|------------|
 | Latest | `mcr.microsoft.com/azure-cognitive-services/speechservices/custom-speech-to-text:latest` |
-| 4.9.0 | `mcr.microsoft.com/azure-cognitive-services/speechservices/custom-speech-to-text:4.9.0-amd64` |
+| 4.10.0 | `mcr.microsoft.com/azure-cognitive-services/speechservices/custom-speech-to-text:4.10.0-amd64` |
 
 All tags, except for `latest`, are in the following format and are case sensitive:
 
@@ -54,6 +54,7 @@ The tags are also available [in JSON format](https://mcr.microsoft.com/v2/azure-
     "4.7.0-amd64",
     "4.8.0-amd64",
     "4.9.0-amd64",
+    "4.10.0-amd64",
     "latest"
   ]
 }

@@ -11,6 +11,7 @@ ms.reviewer: None
 author: ssalgadodev
 ms.author: ssalgado
 ms.date: 12/15/2023
+ms.collection: ce-skilling-ai-copilot
 ---
 
 # Deploy models from HuggingFace hub to Azure Machine Learning online endpoints for real-time inference 
