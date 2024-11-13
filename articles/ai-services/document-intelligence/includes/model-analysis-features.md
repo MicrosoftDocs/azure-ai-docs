@@ -7,6 +7,7 @@ ms.author: lajanuar
 ---
 <!-- markdownlint-disable MD041 -->
 
+|Model ID|Content Extraction|Query fields|Paragraphs|Paragraph Roles|Selection Marks|Tables|Key-Value Pairs|Languages|Barcodes|Document Analysis|Formulas*|Style Font*|High Resolution*|Searchable PDF
 |:----|:----|:----|:----|:----|:----|:----|:----|:----|:----|:----|:----|:----|:----|:----|
 |prebuilt-read|✓| |✓| | | | |O|O| |O|O|O|O|
 |prebuilt-layout|✓|✓|✓|✓|✓|✓|O|O|O| |O|O|O|
