@@ -43,7 +43,7 @@ You can configure the following filter categories in addition to the default har
 | Protected material - text | GA| On | Completion | Identifies and blocks known text content from being displayed in the model output (for example, song lyrics, recipes, and selected web content).  |
 
 
-## Configure content filters via Azure OpenAI Studio
+## Configure content filters with Azure OpenAI Studio
 
 The following steps show how to set up a customized content filtering configuration for your resource.
 
@@ -55,7 +55,11 @@ The following steps show how to set up a customized content filtering configurat
 
    :::image type="content" source="../media/content-filters/create-filter.png" alt-text="Screenshot of the content filtering configuration UI with create selected." lightbox="../media/content-filters/create-filter.png":::
 
-    This leads to the following configuration view, where you can choose a name for the custom content filtering configuration. After entering a name, you can configure the **input filters** (user prompts) and **output filters** (model response). For the first four content categories there are three severity levels that are configurable: Low, medium, and high. You can use the sliders to set the severity threshold if you determine that your application or usage scenario requires different filtering than the default values. Some filters enable you to determine if the model should annotate and/or block. Selecting **Annotate** runs the respective model and return annotations via API response, but it will not filter content. In addition to annotations, you can also choose to filter content by switching the **Filter** toggle to on.
+    This leads to the following configuration view, where you can choose a name for the custom content filtering configuration. After entering a name, you can configure the **input filters** (for user prompts) and **output filters** (for model completion). 
+
+    For the first four content categories there are three severity levels that are configurable: Low, medium, and high. You can use the sliders to set the severity threshold if you determine that your application or usage scenario requires different filtering than the default values. 
+
+    Some filters enable you to determine if the model should annotate and/or block. Selecting **Annotate** runs the respective model and return annotations via API response, but it will not filter content. In addition to annotations, you can also choose to filter content by switching the **Filter** toggle to on.
 
     If your use case was approved for modified content filters as outlined above, you receive full control over content filtering configurations and can choose to turn filtering partially or fully off.
 
