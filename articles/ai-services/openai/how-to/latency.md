@@ -17,18 +17,32 @@ ms.custom:
 This article provides you with background around how latency and throughput works with Azure OpenAI and how to optimize your environment to improve performance.
 
 ## Understanding throughput vs latency
-There are two key concepts to think about when sizing an application: (1) System level throughput and (2) Per-call response times (also known as Latency). 
+There are two key concepts to think about when sizing an application: (1) System level throughput measured in tokens per minute (TPM) and (2) Per-call response times (also known as Latency). 
 
 ### System level throughput
 This looks at the overall capacity of your deployment – how many requests per minute and total tokens that can be processed.
 
 For a standard deployment, the quota assigned to your deployment partially determines the amount of throughput you can achieve. However, quota only determines the admission logic for calls to the deployment and isn't directly enforcing throughput. Due to per-call latency variations, you might not be able to achieve throughput as high as your quota. [Learn more on managing quota](./quota.md).
 
-In a provisioned deployment, A set amount of model processing capacity is allocated to your endpoint. The amount of throughput that you can achieve on the endpoint is a factor of the input size, output size, call rate and cache match rate. The number of concurrent calls and total tokens processed can vary based on these values. The following steps walk through how to assess the throughput you can get a given workload in a provisioned deployment:
+In a provisioned deployment, a set amount of model processing capacity is allocated to your endpoint. The amount of throughput that you can achieve on the endpoint is a factor of the workload shape including input token amount, output amount, call rate and cache match rate. The number of concurrent calls and total tokens processed can vary based on these values. 
 
-1.	Use the Capacity calculator for a sizing estimate. 
+For all deployment types, system level throughput is a key component of performance. The following section explains several approaches that can be used to estimate system level throughput with existing metrics and data from your Azure OpenAI Service environment.
 
-2.	Benchmark the load using real traffic workload. Measure the utilization & tokens processed metrics from Azure Monitor. Run for an extended period. The [Azure OpenAI Benchmarking repository](https://aka.ms/aoai/benchmarking) contains code for running the benchmark. Finally, the most accurate approach is to run a  test with your own data and workload characteristics.
+#### Estimating system level throughput 
+
+Understanding system level throughput for any workload involves multiple factors. At a high level, system level throughput is typically measured in tokens per minute (TPM). TPM data can be collected from Azure Monitor metrics, calculated using request-level token information, or estimated using common workload shapes. 
+
+##### Determining TPM from Azure Monitor metrics
+
+##### Calculating TPM from request data
+
+##### Estimating TPM from common workload shapes
+
+There are two approaches that can be used to estimate the amount of model processing capacity needed to support a given workload:
+
+1. Use the built-in capacity calculator in the Azure OpenAI deployment creation workflow in the Azure AI Studio
+
+1. Use the expanded Azure OpenAI capacity calculator in the Azure AI Studio
 
 Here are a few examples for GPT-4 0613 model:
 
