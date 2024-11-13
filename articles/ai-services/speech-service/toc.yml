@@ -58,6 +58,8 @@ items:
       items:
         - name: Custom speech overview
           href: custom-speech-overview.md
+        - name: Fine-tune in AI Studio for custom speech
+          href: custom-speech-ai-studio.md
         - name: Create a custom speech model 
           items:
           - name: "Part 1: Create a project"

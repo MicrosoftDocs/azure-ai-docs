@@ -8,7 +8,7 @@ ms.custom:
   - ignite-2023
   - build-2024
 ms.topic: quickstart
-ms.date: 10/27/2024
+ms.date: 11/19/2024
 ms.reviewer: eur
 ms.author: eur
 author: eric-urban
@@ -16,7 +16,7 @@ author: eric-urban
 
 # Quickstart: Hear and speak with chat models in the AI Studio chat playground
 
-Give your app the ability to hear and speak by pairing Azure OpenAI Service with Azure AI Speech to enable richer interactions.
+In the chat playground in Azure AI Studio, you can use speech to text and text to speech features to interact with chat models. You can try the same model that you use for text-based chat in a speech-based chat. It's just another way to interact with the model.
 
 In this quickstart, you use Azure OpenAI Service and Azure AI Speech to:
 
@@ -29,15 +29,15 @@ The speech to text and text to speech features can be used together or separatel
 
 - An Azure subscription - <a href="https://azure.microsoft.com/free/cognitive-services" target="_blank">Create one for free</a>.
 - An [AI Studio project](../how-to/create-projects.md).
-- A deployed [Azure OpenAI](../how-to/deploy-models-openai.md) chat model. This guide is tested with a `gpt-4` model.
+- A deployed [Azure OpenAI](../how-to/deploy-models-openai.md) chat model. This guide is tested with a `gpt-4o-mini` model.
 
 ## Configure the chat playground
 
 Before you can start a chat session, you need to configure the chat playground to use the speech to text and text to speech features.
 
 1. Sign in to [Azure AI Studio](https://ai.azure.com).
-1. Go to your project or [create a new project](../how-to/create-projects.md) in Azure AI Studio. 
-1. Select **Chat** from the list of playgrounds.
+1. Go to your AI Studio project. If you need to create a project, see [Create an AI Studio project](../how-to/create-projects.md).
+1. Select **Playgrounds** from the left pane and then select a playground to use. In this example, select **Try the chat playground**.
 1. Select your deployed chat model from the **Deployment** dropdown. 
 
     :::image type="content" source="../media/quickstarts/hear-speak/playground-config-deployment.png" alt-text="Screenshot of the chat playground with mode and deployment highlighted." lightbox="../media/quickstarts/hear-speak/playground-config-deployment.png":::
@@ -74,8 +74,6 @@ In this chat session, you use both speech to text and text to speech. You use th
 
 1. Select the send button (right arrow) to send your message to the assistant. The assistant's response is displayed in the chat session pane.
 
-    :::image type="content" source="../media/quickstarts/hear-speak/chat-session-hear-response.png" alt-text="Screenshot of the chat session with the assistant's response." lightbox="../media/quickstarts/hear-speak/chat-session-hear-response.png":::
-
     > [!NOTE]
     > If the speaker button is turned on, you'll hear the assistant's response. If the speaker button is turned off, you won't hear the assistant's response, but the response will still be displayed in the chat session pane.
 
@@ -87,23 +85,9 @@ In this chat session, you use both speech to text and text to speech. You use th
     "You're an AI assistant that helps people find information. Answers shouldn't be longer than 20 words because you are on a phone. You could use 'um' or 'let me see' to make it more natural and add some disfluency."
     ```
 
-    The response is shown in the chat session pane. Since the speaker button is turned on, you also hear the response.
+    Say again: "Do you know where I can get an Xbox". The response is shown in the chat session pane. Since the speaker button is turned on, you also hear the response.
 
     :::image type="content" source="../media/quickstarts/hear-speak/chat-session-hear-response-natural.png" alt-text="Screenshot of the chat session with the system prompt edited." lightbox="../media/quickstarts/hear-speak/chat-session-hear-response-natural.png":::
-
-
-## View sample code
-
-You can select the **View code** button to view and copy the sample code, which includes configuration for Azure OpenAI and Speech services. 
-
-:::image type="content" source="../media/quickstarts/hear-speak/chat-session-view-code-button.png" alt-text="Screenshot of the button to view sample code in the playground." lightbox="../media/quickstarts/hear-speak/chat-session-view-code-button.png":::
-
-You can use the sample code to enable speech to text and text to speech in your application.
-
-:::image type="content" source="../media/quickstarts/hear-speak/chat-session-view-code.png" alt-text="Screenshot of viewing the code in the playground." lightbox="../media/quickstarts/hear-speak/chat-session-view-code.png":::
-
-> [!TIP]
-> For another example, see the [speech to speech chat code example](https://github.com/Azure-Samples/Cognitive-Speech-TTS/tree/master/SpokenChat).
 
 ## Clean up resources
 
