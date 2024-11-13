@@ -73,7 +73,7 @@ The following steps show how to set up a customized content filtering configurat
     | Prompt shields for indirect attacks* | GA | text   | ✅ | |
     | Protected material for text | GA | text   | | ✅ |
     | Protected material for code | GA | code   | | ✅ |
-    | Groundedness* | Preview | text   | |✅  |`
+    | Groundedness* | Preview | text   | |✅  |
 
     *Requires embedding documents in your prompt. [Learn more](/azure/ai-services/openai/concepts/content-filter?tabs=warning%2Cuser-prompt%2Cpython-new#embedding-documents-in-your-prompt).
 
