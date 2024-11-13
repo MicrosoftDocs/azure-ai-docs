@@ -48,15 +48,21 @@ For steps to deploy and use the `gpt-4o-realtime-preview` model, see [the real-t
 For more information about the API and architecture, see the remaining sections in this guide.
 
 
-## Connection and authentication with the Realtime API
+## Architecture
 
-The `/realtime` API requires an existing Azure OpenAI resource endpoint in a supported region. A full request URI can be constructed by concatenating:
+The Realtime API (via `/realtime`) is built on [the WebSockets API](https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API) to facilitate fully asynchronous streaming communication between the end user and model. Device details like capturing and rendering audio data are outside the scope of the Realtime API. It should be used in the context of a trusted, intermediate service that manages both connections to end users and model endpoint connections. Don't use it directly from untrusted end user devices.
 
-1. The secure WebSocket (`wss://`) protocol
-2. Your Azure OpenAI resource endpoint hostname, e.g. `my-aoai-resource.openai.azure.com`
-3. The `openai/realtime` API path
-4. An `api-version` query string parameter for a supported API version -- initially, `2024-10-01-preview`
-5. A `deployment` query string parameter with the name of your `gpt-4o-realtime-preview` model deployment
+### Connection and authentication with the Realtime API
+
+The Realtime API requires an existing Azure OpenAI resource endpoint in a supported region. The API is accessed via a secure WebSocket connection to the `/realtime` endpoint of your Azure OpenAI resource.
+
+A full request URI can be constructed by concatenating:
+
+- The secure WebSocket (`wss://`) protocol
+- Your Azure OpenAI resource endpoint hostname, e.g. `my-aoai-resource.openai.azure.com`
+- The `openai/realtime` API path
+- An `api-version` query string parameter for a supported API version -- initially, `2024-10-01-preview`
+- A `deployment` query string parameter with the name of your `gpt-4o-realtime-preview` model deployment
 
 Combining into a full example, the following could be a well-constructed `/realtime` request URI:
 
@@ -65,17 +71,13 @@ wss://my-eastus2-openai-resource.openai.azure.com/openai/realtime?api-version=20
 ```
 
 To authenticate:
-- **Using Microsoft Entra**: `/realtime` supports token-based authentication with against an appropriately configured Azure OpenAI Service resource that has managed identity enabled. Use a `Bearer` token with the `Authorization` header to apply a retrieved authentication token.
-- **Using an API key**: An `api-key` can be provided in one of two ways:
-  1. Using an `api-key` connection header on the pre-handshake connection (note: not available in a browser environment)
-  2. Using an `api-key` query string parameter on the request URI (note: query string parameters are encrypted when using https/wss)
+- **Microsoft Entra** (recommended): Use token-based authentication with the `/realtime` API for an Azure OpenAI Service resource that has managed identity enabled. Apply a retrieved authentication token using a `Bearer` token with the `Authorization` header.
+- **API key**: An `api-key` can be provided in one of two ways:
+  1. Using an `api-key` connection header on the pre-handshake connection. This option isn't available in a browser environment.
+  2. Using an `api-key` query string parameter on the request URI. Query string parameters are encrypted when using https/wss.
 
 
-## Architecture
-
-The Realtime API (via`/realtime`) is built on [the WebSockets API](https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API) to facilitate fully asynchronous streaming communication between the end user and model. It should be used in the context of a trusted, intermediate service that manages both connections to end users and model endpoint connections. Don't use it directly from untrusted end user devices, and device details like capturing and rendering audio data are outside the scope of the Realtime API.
-
-## API concepts
+### API concepts
 
 - A caller establishes a connection to `/realtime`, which starts a new `session`.
 - A `session` automatically creates a default `conversation`. Multiple concurrent conversations aren't supported.
@@ -110,7 +112,7 @@ The following table describes commands sent from the caller to the `/realtime` e
 | `type` | Description |
 |---|---|
 | **Session Configuration** | |
-| `session.update` | Configures the connection-wide behavior of the conversation session such as shared audio input handling and common response generation characteristics. This is typically sent immediately after connecting but can also be sent at any point during a session to reconfigure behavior after the current response (if in progress) is complete. |
+| `session.update` | Configures the connection-wide behavior of the conversation session such as shared audio input handling and common response generation characteristics. This is typically sent immediately after connecting, but can also be sent at any point during a session to reconfigure behavior after the current response (if in progress) is complete. |
 | **Input Audio** | |
 | `input_audio_buffer_append` | Appends audio data to the shared user input buffer. This audio won't be processed until an end of speech is detected in the `server_vad` `turn_detection` mode or until a manual `response.create` is sent (in either `turn_detection` configuration). |
 | `input_audio_buffer_clear` | Clears the current audio input buffer. This doesn't affect responses already in progress. |
