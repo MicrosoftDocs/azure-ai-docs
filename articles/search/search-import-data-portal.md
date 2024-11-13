@@ -9,7 +9,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: conceptual
-ms.date: 07/01/2024
+ms.date: 11/19/2024
 ---
 
 # Import wizards in Azure AI Search
@@ -97,7 +97,11 @@ You can use the wizards over restricted public connections, but not all function
 
   The Azure resource must admit network requests from the IP address of the device used on the connection. You should also list Azure AI Search as a trusted service on the resource's network configuration. For example, in Azure Storage, you can list `Microsoft.Search/searchServices` as a trusted service.
 
-+ On connections to an Azure AI multiservice account that you provide, or on connections to embedding models deployed in Azure AI Studio or Azure OpenAI, public internet access must be enabled. These Azure resources are called when you use built-in skills in the **Import data** wizard or integrated vectorization in the **Import and vectorize data** wizard.
++ On connections to an Azure AI multi-service account that you provide, or on connections to embedding models deployed in Azure AI Studio or Azure OpenAI, public internet access must be enabled unless your search service meets the creation date, tier, and region requirements for private connections. For more information about these requirements, see [Make outbound connections through a shared private link](search-indexer-howto-access-private.md).
+
+  Connections to Azure AI multi-service are for [billing purposes](cognitive-search-attach-cognitive-services.md). Billing occurs when API calls exceed the free transaction count (20 per indexer run) for built-in skills called by the **Import data** wizard or integrated vectorization in the **Import and vectorize data** wizard. 
+
+  If Azure AI Search can't connect:
 
   + In the **Import and vectorize data** wizard, the error is `"Access denied due to Virtual Network/Firewall rules."`
 

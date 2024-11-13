@@ -7,7 +7,7 @@ author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: quickstart
-ms.date: 05/30/2024
+ms.date: 11/19/2024
 ms.custom:
   - mode-ui
   - ignite-2023
