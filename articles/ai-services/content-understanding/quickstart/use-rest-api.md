@@ -239,7 +239,7 @@ Before running the cURL command, make the following changes to the HTTP request:
 
 ### POST request
 ```bash
-curl -i -X POST "{endpoint}/contentunderstanding/analyzers/{analyzerId}:analyze?stringEncoding=codePoint&api-version=2024-12-01-preview" \
+curl -i -X POST "{endpoint}/contentunderstanding/analyzers/{analyzerId}:analyze?api-version=2024-12-01-preview" \
   -H "Ocp-Apim-Subscription-Key: {key}" \
   -H "Content-Type: application/json" \
   -d "{\"url\":\"{fileUrl}\"}"
