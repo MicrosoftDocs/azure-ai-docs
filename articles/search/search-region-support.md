@@ -54,7 +54,7 @@ You can create an Azure AI Search resource in any of the following Azure public 
 
 | Region | AI integration | Semantic ranker | Availability zones | Capacity constrained |
 |--|--|--|--|--|
-| North Europe​​ | ✅ | ✅ | ✅ |  |
+| North Europe​​ | ✅ | ✅ | ✅ | S2, S3, S3, S3 HD, L1, L2 |
 | West Europe​​ <sup>1</sup>| ✅ | ✅ | ✅ | All Tiers |
 | France Central​​ | ✅ | ✅ | ✅ | |
 | Germany West Central​ <sup>1</sup>​| ✅ |  | ✅ | |
