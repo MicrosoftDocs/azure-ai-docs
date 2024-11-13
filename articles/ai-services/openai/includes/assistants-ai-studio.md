@@ -26,11 +26,11 @@ author: mrbullwinkle
 
 1. Sign in to [Azure AI Studio](https://ai.azure.com).
 1. Go to your project or [create a new project](../../../ai-studio//how-to/create-projects.md) in Azure AI Studio.
-1. From your project overview, select **Assistants**, located under **Project playground**.
+1. From your project overview, select **Assistants**, located under **playgrounds**.
 
     The Assistants playground allows you to explore, prototype, and test AI Assistants without needing to run any code. From this page, you can quickly iterate and experiment with new ideas.
     
-    The playground provides several options to configure your Assistant. In the following steps, you will use the **Assistant setup** pane to create a new AI assistant.
+    The playground provides several options to configure your Assistant. In the following steps, you will use the **setup** pane to create a new AI assistant.
     
     | **Name** | **Description** |
     |:---|:---|
@@ -46,7 +46,7 @@ author: mrbullwinkle
 ## Create your first Assistant
 
 1. Select your deployment from the **Deployments** dropdown.
-1. From the Assistant setup drop-down, select **New**.
+1. From the Assistant setup drop-down, select **New assistant**.
 1. Give your Assistant a name.
 1. Enter the following instructions "You are an AI assistant that can write code to help answer math questions"
 1. Select a model deployment. We recommend testing with one of the latest gpt-4 models.
