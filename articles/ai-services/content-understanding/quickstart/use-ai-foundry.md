@@ -71,7 +71,7 @@ Content Understanding analyzer templates give you a head start by allowing you t
 
 The following analyzer templates are available for use in the [Azure AI Foundry Content Understanding experience](https://ai.azure.com/).
 
-### Document analyzer templates
+# [Document](#/document)
 
 To follow are several of our document analyzer templates.
 
@@ -82,7 +82,7 @@ To follow are several of our document analyzer templates.
 
    :::image type="content" source="../media/analyzer-template/image-templates.png" alt-text="Screenshot of document analyzer template.":::
 
-### Image analyzer templates
+# [Image](#/image)
 
 To follow are several of our image analyzer templates.
 
@@ -94,7 +94,7 @@ To follow are several of our image analyzer templates.
 
    :::image type="content" source="../media/analyzer-template/image-templates.png" alt-text="Screenshot of image analyzer template.":::
 
-### Audio analyzer templates
+# [Audio](#/audio)
 
 To follow are several of our audio analyzer templates.
 
@@ -107,7 +107,7 @@ To follow are several of our audio analyzer templates.
 
    :::image type="content" source="../media/analyzer-template/audio-templates.png" alt-text="Screenshot of audio analyzer template.":::
 
-### Video analyzer templates
+# [Video](#/video)
 
 To follow are several of our video analyzer templates.
 
@@ -119,6 +119,8 @@ To follow are several of our video analyzer templates.
 
 
    :::image type="content" source="../media/analyzer-template/video-templates.png" alt-text="Screenshot of video analyzer template.":::
+
+---
 
 ## Next steps
 
