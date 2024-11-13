@@ -73,8 +73,6 @@ The following analyzer templates are available for use in the [Azure AI Foundry 
 
 # [Document](#tab/document)
 
-To follow are several of our document analyzer templates.
-
 |Template| Description|
 | ----|----|----|
 |Document analysis |Analyze documents to extract text, layout, structured fields, and more.|
@@ -83,8 +81,6 @@ To follow are several of our document analyzer templates.
    :::image type="content" source="../media/analyzer-template/image-templates.png" alt-text="Screenshot of document analyzer template.":::
 
 # [Image](#tab/image)
-
-To follow are several of our image analyzer templates.
 
 |Template| Description|
 | ----|----|----|
@@ -96,8 +92,6 @@ To follow are several of our image analyzer templates.
 
 # [Audio](#tab/audio)
 
-To follow are several of our audio analyzer templates.
-
 |Template| Description|
 | ----|----|----|
 |Audio transcription |Transcribe audio recordings.|
@@ -108,8 +102,6 @@ To follow are several of our audio analyzer templates.
    :::image type="content" source="../media/analyzer-template/audio-templates.png" alt-text="Screenshot of audio analyzer template.":::
 
 # [Video](#tab/video)
-
-To follow are several of our video analyzer templates.
 
 |Template| Description|
 | ----|----|----|
