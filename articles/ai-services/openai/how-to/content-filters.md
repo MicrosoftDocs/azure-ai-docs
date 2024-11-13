@@ -36,7 +36,7 @@ Content filters can be configured at the resource level. Once a new configuratio
 You can configure the following filter categories in addition to the default harm category filters.
 
 |Filter category  |Status |Default setting  |Applied to prompt or completion?  |Description  |
-|---------|---------|---------|---------|
+|---------|---------|---------|---------|---|
 |Prompt Shields for direct attacks (jailbreak)     |GA|    On     |   User prompt      |   Filters / annotates user prompts that might present a Jailbreak Risk. For more information about annotations, visit [Azure OpenAI Service content filtering](/azure/ai-services/openai/concepts/content-filter?tabs=python#annotations-preview). |
 |Prompt Shields for indirect attacks  | GA| On| User prompt | Filter / annotate Indirect Attacks, also referred to as Indirect Prompt Attacks or Cross-Domain Prompt Injection Attacks, a potential vulnerability where third parties place malicious instructions inside of documents that the generative AI system can access and process. Required: [Document ](/azure/ai-services/openai/concepts/content-filter?tabs=warning%2Cuser-prompt%2Cpython-new#embedding-documents-in-your-prompt)formatting. |
 | Protected material - code |GA| On | Completion | Filters protected code or gets the example citation and license information in annotations for code snippets that match any public code sources, powered by GitHub Copilot. For more information about consuming annotations, see the [content filtering concepts guide](/azure/ai-services/openai/concepts/content-filter#annotations-preview) |
@@ -47,7 +47,7 @@ You can configure the following filter categories in addition to the default har
 
 The following steps show how to set up a customized content filtering configuration for your resource.
 
-1. Go to Azure AI Studio and navigate to the Content Filters tab (in the bottom left navigation, as designated by the red box below).
+1. Go to Azure AI Studio and navigate to the **Content Filters** tab (in the bottom left navigation, as designated by the red box below).
 
     :::image type="content" source="../media/content-filters/studio.png" alt-text="Screenshot of the AI Studio UI with Content Filters highlighted." lightbox="../media/content-filters/studio.png":::
 
@@ -59,9 +59,23 @@ The following steps show how to set up a customized content filtering configurat
 
     For the first four content categories there are three severity levels that are configurable: Low, medium, and high. You can use the sliders to set the severity threshold if you determine that your application or usage scenario requires different filtering than the default values. 
 
-    Some filters enable you to determine if the model should annotate and/or block. Selecting **Annotate** runs the respective model and return annotations via API response, but it will not filter content. In addition to annotations, you can also choose to filter content by switching the **Filter** toggle to on.
+    Some filters, such as Prompt Shields and Protected material detection, enable you to determine if the model should annotate and/or block content. Selecting **Annotate only** runs the respective model and return annotations via API response, but it will not filter content. In addition to annotate, you can also choose to block content.
 
-    If your use case was approved for modified content filters as outlined above, you receive full control over content filtering configurations and can choose to turn filtering partially or fully off.
+    If your use case was approved for modified content filters, you receive full control over content filtering configurations and can choose to turn filtering partially or fully off, or enable annotate only for the content harms categories (violence, hate, sexual and self-harm).
+    
+    | Content filter category | Status | Input type | Filters input| Filters output |
+    |---------|---------|---------|---------|---------|
+    | Violence | GA | text, image   |✅  |✅  |
+    | Hate | GA | text, image   | ✅ |✅  |
+    | Sexual | GA | text, image   |✅  | ✅ |
+    | Self-harm | GA | text, image   | ✅ | ✅ |
+    | Prompt shields for jailbreak attacks | GA | text   |✅  | |
+    | Prompt shields for indirect attacks* | GA | text   | ✅ | |
+    | Protected material for text | GA | text   | | ✅ |
+    | Protected material for code | GA | code   | | ✅ |
+    | Groundedness* | Preview | text   | |✅  |`
+
+    *Requires embedding documents in your prompt. [Learn more](/azure/ai-services/openai/concepts/content-filter?tabs=warning%2Cuser-prompt%2Cpython-new#embedding-documents-in-your-prompt).
 
     :::image type="content" source="../media/content-filters/filter-view.png" alt-text="Screenshot of the content filtering configuration UI." lightbox="../media/content-filters/filter-view.png":::
 
@@ -69,7 +83,7 @@ The following steps show how to set up a customized content filtering configurat
 
     :::image type="content" source="../media/content-filters/multiple.png" alt-text="Screenshot of multiple content configurations in the Azure portal." lightbox="../media/content-filters/multiple.png":::
 
-1. Next, to make a custom content filtering configuration operational, assign a configuration to one or more deployments in your resource. To do this, go to the **Deployments** tab and select your deployment. Then select **Edit**.
+1. Next, to use a custom content filtering configuration, assign it to one or more deployments in your resource. To do this, go to the **Deployments** tab and select your deployment. Then select **Edit**.
 
     :::image type="content" source="../media/content-filters/edit-deployment.png" alt-text="Screenshot of the content filtering configuration with edit deployment highlighted." lightbox="../media/content-filters/edit-deployment.png":::
 
@@ -77,13 +91,20 @@ The following steps show how to set up a customized content filtering configurat
 
     :::image type="content" source="../media/content-filters/select-filter.png" alt-text="Screenshot of edit deployment configuration with content filter selected." lightbox="../media/content-filters/select-filter.png":::
 
-1. You can also edit and delete a content filter configuration if required. To do this, navigate to the content filters tab and select a configuration. Then select the desired action. You can only edit one filtering configuration at a time.  
+1. You can also edit and delete a content filter configuration if required.
 
     :::image type="content" source="../media/content-filters/delete.png" alt-text="Screenshot of content filter configuration with edit and delete highlighted." lightbox="../media/content-filters/delete.png":::
 
-    > [!NOTE]
-    > Before deleting a content filtering configuration, you will need to unassign it from any deployment in the Deployments tab.
+    
+    Before you delete a content filtering configuration, you will need to unassign and replace it from any deployment in the **Deployments** tab.
 
+## Report content filtering feedback
+
+If you are encountering a content filtering issue, select the **Send Feedback** button at the top of the playground. This is enabled in the **Images, Chat, and Completions** playground.  
+
+When the dialog appears, select the appropriate content filtering issue. Include as much detail as possible relating to your content filtering issue, such as the specific prompt and content filtering error you encountered. Do not include any private or sensitive information. 
+
+For support, please [submit a support ticket](https://ms.portal.azure.com/#view/Microsoft_Azure_Support/HelpAndSupportBlade/~/overview).  
 ## Follow best practices
 
 We recommend informing your content filtering configuration decisions through an iterative identification (for example, red team testing, stress-testing, and analysis) and measurement process to address the potential harms that are relevant for a specific model, application, and deployment scenario. After you implement mitigations such as content filtering, repeat measurement to test effectiveness. Recommendations and best practices for Responsible AI for Azure OpenAI, grounded in the [Microsoft Responsible AI Standard](https://aka.ms/RAI) can be found in the [Responsible AI Overview for Azure OpenAI](/legal/cognitive-services/openai/overview?context=/azure/ai-services/openai/context/context).
