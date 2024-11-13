@@ -29,7 +29,7 @@ The core features of speech translation include:
 
 - [Speech to text translation](#speech-to-text-translation)
 - [Speech to speech translation](#speech-to-speech-translation)
-- [Multi-lingual speech translation](#multi-lingual-speech-translation-preview)
+- [Multi-lingual speech translation](#multi-lingual-speech-translation)
 - [Multiple target languages translation](#multiple-target-languages-translation)
 
 ## Speech to text translation

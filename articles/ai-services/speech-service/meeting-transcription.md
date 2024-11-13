@@ -29,7 +29,7 @@ Conversation transcription multichannel diarization (preview) is retiring on Mar
 To continue using speech to text with diarization, use the following features instead:
 
 - [Real-time speech to text with diarization](get-started-stt-diarization.md)
-- [Fast transcription with diarization](fast-transcription-create.md#diarization-on)
+- [Fast transcription with diarization](fast-transcription-create.md)
 - [Batch transcription with diarization](batch-transcription.md)
 
 These speech to text features only support diarization for single-channel audio. Multichannel audio that you used with conversation transcription multichannel diarization isn't supported. 

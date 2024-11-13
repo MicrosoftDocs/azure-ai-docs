@@ -19,7 +19,7 @@ Azure AI Speech service offers advanced speech to text capabilities. This featur
 
 The speech to text service offers the following core features: 
 - [Real-time](#real-time-speech-to-text) transcription: Instant transcription with intermediate results for live audio inputs. 
-- [Fast transcription](#fast-transcription-preview): Fastest synchronous output for situations with predictable latency. 
+- [Fast transcription](#fast-transcription): Fastest synchronous output for situations with predictable latency. 
 - [Batch transcription](#batch-transcription-api): Efficient processing for large volumes of prerecorded audio. 
 - [Custom speech](#custom-speech): Models with enhanced accuracy for specific domains and conditions. 
 
