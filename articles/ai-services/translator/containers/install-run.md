@@ -42,13 +42,13 @@ To get started, you need the following resources, gated access approval, and too
 >
 > * Your Translator instance must be a **Translator** resource (**not** a multi-service Azure AI services resource).
 >
-> * Your Translator instance must be a **regional** resource (**not** a global Azure AI Translator resource) within am available Azure geographic region. For more information on *see* [Azure AI Translator region pricing options](https://azure.microsoft.com/en-us/pricing/details/cognitive-services/translator/#overview).
+> * Your Translator instance must be a **regional** resource (**not** a global Azure AI Translator resource) within am available Azure geographic region. For more information, *see* [Azure AI Translator region pricing options](https://azure.microsoft.com/en-us/pricing/details/cognitive-services/translator/#overview).
 
 * An active [**Azure subscription**](https://portal.azure.com/). If you don't have one, you can [**create a free 12-month account**](https://azure.microsoft.com/free/).
 
 * An approved access request to either a [Translator connected container](https://aka.ms/csgate-translator) or [Translator disconnected container](https://aka.ms/csdisconnectedcontainers).
 
-* An [**Azure AI Translator *regional* resource**](https://portal.azure.com/#create/Microsoft.CognitiveServicesTextTranslation) created under tyour approved subscription ID.
+* An [**Azure AI Translator *regional* resource**](https://portal.azure.com/#create/Microsoft.CognitiveServicesTextTranslation) created under your approved subscription ID.
 
    * You need the API key and endpoint URI associated with your resource.
    * Both values are required to start the container and can be found on the resource overview page in the Azure portal.
