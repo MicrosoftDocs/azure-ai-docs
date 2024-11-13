@@ -42,7 +42,7 @@ To get started, you need the following resources, gated access approval, and too
 >
 > * Your Translator instance must be a **Translator** resource (**not** a multi-service Azure AI services resource).
 >
-> * Your Translator instance must be a **regional** resource (**not** a global Azure AI Translator resource) within am available Azure geographic region. For more information, *see* [Azure AI Translator region pricing options](https://azure.microsoft.com/en-us/pricing/details/cognitive-services/translator/#overview).
+> * Your Translator instance must be a **regional** resource (**not** a global Azure AI Translator resource) within am available Azure geographic region. For more information, *see* [Azure AI Translator region pricing options](https://azure.microsoft.com/pricing/details/cognitive-services/translator/#overview).
 
 * An active [**Azure subscription**](https://portal.azure.com/). If you don't have one, you can [**create a free 12-month account**](https://azure.microsoft.com/free/).
 
