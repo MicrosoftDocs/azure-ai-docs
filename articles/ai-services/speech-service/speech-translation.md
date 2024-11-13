@@ -40,7 +40,7 @@ The standard feature offered by the Speech service is the ability to take in an 
 
 As a supplement to the above feature, the Speech service also offers the option to read aloud the translated text using our large database of pretrained voices, allowing for a natural output of the input speech. 
 
-## Multi-lingual speech translation (Preview)
+## Multi-lingual speech translation
 
 Multi-lingual speech translation implements a new level of speech translation technology that unlocks various capabilities, including having no specified input language, handling language switches within the same session, and supporting live streaming translations into English. These features enable a new level of speech translation powers that can be implemented into your products. 
 
