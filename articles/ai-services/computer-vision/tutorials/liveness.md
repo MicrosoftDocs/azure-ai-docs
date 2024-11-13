@@ -445,7 +445,7 @@ The high-level steps involved in liveness with verification orchestration are il
 
         var sessionClient = new FaceSessionClient(endpoint, credential);
 
-        var createContent = new CreateLivenessSessionContent(LivenessOperationMode.Passive)
+        var createContent = new CreateLivenessWithVerifySessionContent(LivenessOperationMode.Passive)
         {
             DeviceCorrelationId = "723d6d03-ef33-40a8-9682-23a1feb7bccd"
         };
@@ -472,7 +472,7 @@ The high-level steps involved in liveness with verification orchestration are il
             .credential(new AzureKeyCredential(accountKey))
             .buildClient();
 
-        CreateLivenessSessionContent parameters = new CreateLivenessSessionContent(LivenessOperationMode.PASSIVE)
+        CreateLivenessWithVerifySessionContent parameters = new CreateLivenessWithVerifySessionContent(LivenessOperationMode.PASSIVE)
             .setDeviceCorrelationId("723d6d03-ef33-40a8-9682-23a1feb7bccd")
             .setSendResultsToClient(false);
 
@@ -500,7 +500,7 @@ The high-level steps involved in liveness with verification orchestration are il
             reference_image_content = fd.read()
 
         created_session = await face_session_client.create_liveness_with_verify_session(
-            CreateLivenessSessionContent(
+            CreateLivenessWithVerifySessionContent(
                 liveness_operation_mode=LivenessOperationMode.PASSIVE,
                 device_correlation_id="723d6d03-ef33-40a8-9682-23a1feb7bccd",
             ),

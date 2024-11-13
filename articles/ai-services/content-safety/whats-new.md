@@ -45,11 +45,9 @@ The groundedness detection API includes a correction feature that automatically 
 
 ### New features are GA
 
-The Prompt Shields API and groundedness detection API are now generally available (GA). Follow a quickstart to try them out.
+The Prompt Shields API and Protected Material for text API are now generally available (GA). Follow a quickstart to try them out.
 * [Prompt Shields quickstart](/azure/ai-services/content-safety/quickstart-jailbreak)
-* [Groundedness detection quickstart](/azure/ai-services/content-safety/quickstart-groundedness?tabs=curl)
-
-
+* [Protected Material quickstart](/azure/ai-services/content-safety/quickstart-protected-material?tabs=curl)
 ## July 2024
 
 ### Custom categories (standard) API public preview

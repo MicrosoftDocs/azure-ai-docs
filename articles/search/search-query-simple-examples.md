@@ -10,7 +10,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: conceptual
-ms.date: 10/24/2024
+ms.date: 10/31/2024
 ---
 
 # Examples of *simple* search queries in Azure AI Search
@@ -77,47 +77,39 @@ A keyword search that's composed of important terms or phrases tend to work best
 
 The `searchMode` parameter controls precision and recall. If you want more recall, use the default *any* value, which returns a result if any part of the query string is matched. If you favor precision, where all parts of the string must be matched, change `searchMode` to *all*. Try the preceding query both ways to see how searchMode changes the outcome.
 
-The response for the *pool spa +airport* query should look similar to the following example, trimmed for brevity.
+The response for the *pool spa +airport* query should look similar to the following example.
 
 ```json
-"@odata.count": 6,
+"@odata.count": 4,
 "value": [
-    {
-        "@search.score": 7.3617697,
-        "HotelId": "21",
-        "HotelName": "Nova Hotel & Spa",
-        "Description": "1 Mile from the airport.  Free WiFi, Outdoor Pool, Complimentary Airport Shuttle, 6 miles from the beach & 10 miles from downtown.",
-        "Category": "Resort and Spa",
-        "Tags": [
-            "pool",
-            "continental breakfast",
-            "free parking"
-        ]
-    },
-    {
-        "@search.score": 2.5560288,
-        "HotelId": "25",
-        "HotelName": "Scottish Inn",
-        "Description": "Newly Redesigned Rooms & airport shuttle.  Minutes from the airport, enjoy lakeside amenities, a resort-style pool & stylish new guestrooms with Internet TVs.",
-        "Category": "Luxury",
-        "Tags": [
-            "24-hour front desk service",
-            "continental breakfast",
-            "free wifi"
-        ]
-    },
-    {
-        "@search.score": 2.2988036,
-        "HotelId": "35",
-        "HotelName": "Suites At Bellevue Square",
-        "Description": "Luxury at the mall.  Located across the street from the Light Rail to downtown.  Free shuttle to the mall and airport.",
-        "Category": "Resort and Spa",
-        "Tags": [
-            "continental breakfast",
-            "air conditioning",
-            "24-hour front desk service"
-        ]
-    }
+{
+    "@search.score": 6.090657,
+    "HotelId": "12",
+    "HotelName": "Winter Panorama Resort",
+    "Description": "Plenty of great skiing, outdoor ice skating, sleigh rides, tubing and snow biking. Yoga, group exercise classes and outdoor hockey are available year-round, plus numerous options for shopping as well as great spa services. Newly-renovated with large rooms, free 24-hr airport shuttle & a new restaurant. Rooms/suites offer mini-fridges & 49-inch HDTVs.",
+    "Category": "Resort and Spa"
+},
+{
+    "@search.score": 4.314683,
+    "HotelId": "21",
+    "HotelName": "Good Business Hotel",
+    "Description": "1 Mile from the airport. Free WiFi, Outdoor Pool, Complimentary Airport Shuttle, 6 miles from Lake Lanier & 10 miles from downtown. Our business center includes printers, a copy machine, fax, and a work area.",
+    "Category": "Suite"
+},
+{
+    "@search.score": 3.575948,
+    "HotelId": "27",
+    "HotelName": "Starlight Suites",
+    "Description": "Complimentary Airport Shuttle & WiFi. Book Now and save - Spacious All Suite Hotel, Indoor Outdoor Pool, Fitness Center, Florida Green certified, Complimentary Coffee, HDTV",
+    "Category": "Suite"
+},
+{
+    "@search.score": 2.6926985,
+    "HotelId": "25",
+    "HotelName": "Waterfront Scottish Inn",
+    "Description": "Newly Redesigned Rooms & airport shuttle. Minutes from the airport, enjoy lakeside amenities, a resort-style pool & stylish new guestrooms with Internet TVs.",
+    "Category": "Suite"
+}
 ]
 ```
 
@@ -127,57 +119,57 @@ Uniform scores of *1.0* occur when there's no rank, either because the search wa
 
 ## Example 2: Look up by ID
 
-When returning search results in a query, a logical next step is to provide a details page that includes more fields from the document. This example shows you how to return a single document using [Get Document](/rest/api/searchservice/documents/get) by passing in the document ID.
+After search results are returned, a logical next step is to provide a details page that includes more fields from the document. This example shows you how to return a single document using [Get Document](/rest/api/searchservice/documents/get) by passing in the document ID.
 
 ```http
 GET /indexes/hotels-sample-index/docs/41?api-version=2024-07-01
 ```
 
-All documents have a unique identifier. If you're using the portal, select the index from the **Indexes** tab and then look at the field definitions to determine which field is the key. Using REST, the [Get Index](/rest/api/searchservice/indexes/get) call returns the index definition in the response body.
+All documents have a unique identifier. If you're using the portal, select the index from the **Indexes** tab and then look at the field definitions to determine which field is the key. In the REST API, the [GET Index](/rest/api/searchservice/indexes/get) call returns the index definition in the response body.
 
 The response for the preceding query consists of the document whose key is *41*. Any field that is marked as *retrievable* in the index definition can be returned in search results and rendered in your app.
 
 ```json
 {
     "HotelId": "41",
-    "HotelName": "Ocean Air Motel",
-    "Description": "Oceanfront hotel overlooking the beach features rooms with a private balcony and 2 indoor and outdoor pools. Various shops and art entertainment are on the boardwalk, just steps away.",
-    "Description_fr": "L'hôtel front de mer surplombant la plage dispose de chambres avec balcon privé et 2 piscines intérieures et extérieures. Divers commerces et animations artistiques sont sur la promenade, à quelques pas.",
-    "Category": "Budget",
+    "HotelName": "Windy Ocean Motel",
+    "Description": "Oceanfront hotel overlooking the beach features rooms with a private balcony and 2 indoor and outdoor pools. Inspired by the natural beauty of the island, each room includes an original painting of local scenes by the owner. Rooms include a mini fridge, Keurig coffee maker, and flatscreen TV. Various shops and art entertainment are on the boardwalk, just steps away.",
+    "Description_fr": "Cet hôtel en bord de mer donnant sur la plage propose des chambres dotées d'un balcon privé et de 2 piscines intérieure et extérieure. Inspiré par la beauté naturelle de l'île, chaque chambre comprend une peinture originale de scènes locales par le propriétaire. Les chambres comprennent un mini-réfrigérateur, une cafetière Keurig et une télévision à écran plat. Divers magasins et divertissements artistiques se trouvent sur la promenade, à quelques pas.",
+    "Category": "Suite",
     "Tags": [
-        "pool",
-        "air conditioning",
-        "bar"
+    "pool",
+    "air conditioning",
+    "bar"
     ],
     "ParkingIncluded": true,
-    "LastRenovationDate": "1951-05-10T00:00:00Z",
+    "LastRenovationDate": "2021-05-10T00:00:00Z",
     "Rating": 3.5,
     "Location": {
-        "type": "Point",
-        "coordinates": [
-            -157.846817,
-            21.295841
-        ],
-        "crs": {
-            "type": "name",
-            "properties": {
-                "name": "EPSG:4326"
-            }
+    "type": "Point",
+    "coordinates": [
+        -157.846817,
+        21.295841
+    ],
+    "crs": {
+        "type": "name",
+        "properties": {
+        "name": "EPSG:4326"
         }
+    }
     },
     "Address": {
-        "StreetAddress": "1450 Ala Moana Blvd 2238 Ala Moana Ctr",
-        "City": "Honolulu",
-        "StateProvince": "HI",
-        "PostalCode": "96814",
-        "Country": "USA"
+    "StreetAddress": "1450 Ala Moana Blvd 2238 Ala Moana Ctr",
+    "City": "Honolulu",
+    "StateProvince": "HI",
+    "PostalCode": "96814",
+    "Country": "USA"
     }
 }
 ```
 
 ## Example 3: Filter on text
 
-[Filter syntax](search-query-odata-filter.md) is an OData expression that you can use by itself or with `search`. Used together, `filter` is applied first to the entire index, and then the search is performed on the results of the filter. Filters can therefore be a useful technique to improve query performance since they reduce the set of documents that the search query needs to process.
+[Filter syntax](search-query-odata-filter.md) is an OData expression that you can use by itself or with `search`. When used together in the same request, `filter` is applied first to the entire index, and then the `search` is performed on the results of the filter. Filters can therefore be a useful technique to improve query performance since they reduce the set of documents that the search query needs to process.
 
 Filters can be defined on any field marked as `filterable` in the index definition. For hotels-sample-index, filterable fields include *Category*, *Tags*, *ParkingIncluded*, *Rating*, and most *Address* fields.
 
@@ -186,23 +178,25 @@ POST /indexes/hotels-sample-index/docs/search?api-version=2024-07-01
 {
     "search": "art tours",
     "queryType": "simple",
-    "filter": "Category eq 'Resort and Spa'",
+    "filter": "Category eq 'Boutique'",
     "searchFields": "HotelName,Description,Category",
     "select": "HotelId,HotelName,Description,Category",
     "count": true
 }
 ```
 
-The response for the preceding query is scoped to only those hotels categorized as *Report and Spa*, and that include the terms *art* or *tours*. In this case, there's just one match.
+The response for the preceding query is scoped to only those hotels categorized as *Boutique*, and that include the terms *art* or *tours*. In this case, there's just one match.
 
 ```json
+"value": [
 {
-    "@search.score": 2.8576312,
-    "HotelId": "31",
-    "HotelName": "Santa Fe Stay",
-    "Description": "Nestled on six beautifully landscaped acres, located 2 blocks from the Plaza. Unwind at the spa and indulge in art tours on site.",
-    "Category": "Resort and Spa"
+    "@search.score": 1.2814453,
+    "HotelId": "2",
+    "HotelName": "Old Century Hotel",
+    "Description": "The hotel is situated in a nineteenth century plaza, which has been expanded and renovated to the highest architectural standards to create a modern, functional and first-class hotel in which art and unique historical elements coexist with the most modern comforts. The hotel also regularly hosts events like wine tastings, beer dinners, and live music.",
+    "Category": "Boutique"
 }
+]
 ```
 
 ## Example 4: Filter functions
@@ -214,55 +208,47 @@ POST /indexes/hotels-sample-index/docs/search?api-version=2024-07-01
   {
     "search": "",
     "filter": "search.ismatch('free*', 'Tags', 'full', 'any')",
-    "select": "HotelId, HotelName, Category, Description",
+    "select": "HotelName, Tags, Description",
     "count": true
   }
 ```
 
-The response for the preceding query matches on 19 hotels that offer free amenities. Notice that the search score is a uniform *1.0* throughout the results. This is because the search expression is null or empty, resulting in verbatim filter matches, but no full text search. Relevance scores are only returned on full text search. If you're using filters without `search`, make sure you have sufficient sortable fields so that you can control search rank.
+The response for the preceding query matches on 27 hotels that offer free amenities. Notice that the search score is a uniform *1* throughout the results. This is because the search expression is null or empty, resulting in verbatim filter matches, but no full text search. Relevance scores are only returned on full text search. If you're using filters without `search`, make sure you have sufficient sortable fields so that you can control search rank.
 
 ```json
-"@odata.count": 19,
-"value": [
+  "@odata.count": 27,
+  "value": [
     {
-        "@search.score": 1.0,
-        "HotelId": "31",
-        "HotelName": "Santa Fe Stay",
-        "Tags": [
-            "view",
-            "restaurant",
-            "free parking"
-        ]
+      "@search.score": 1,
+      "HotelName": "Country Residence Hotel",
+      "Description": "All of the suites feature full-sized kitchens stocked with cookware, separate living and sleeping areas and sofa beds. Some of the larger rooms have fireplaces and patios or balconies. Experience real country hospitality in the heart of bustling Nashville. The most vibrant music scene in the world is just outside your front door.",
+      "Tags": [
+        "laundry service",
+        "restaurant",
+        "free parking"
+      ]
     },
     {
-        "@search.score": 1.0,
-        "HotelId": "27",
-        "HotelName": "Super Deluxe Inn & Suites",
-        "Tags": [
-            "bar",
-            "free wifi"
-        ]
+      "@search.score": 1,
+      "HotelName": "Downtown Mix Hotel",
+      "Description": "Mix and mingle in the heart of the city. Shop and dine, mix and mingle in the heart of downtown, where fab lake views unite with a cheeky design.",
+      "Tags": [
+        "air conditioning",
+        "laundry service",
+        "free wifi"
+      ]
     },
     {
-        "@search.score": 1.0,
-        "HotelId": "39",
-        "HotelName": "Whitefish Lodge & Suites",
-        "Tags": [
-            "continental breakfast",
-            "free parking",
-            "free wifi"
-        ]
+      "@search.score": 1,
+      "HotelName": "Starlight Suites",
+      "Description": "Complimentary Airport Shuttle & WiFi. Book Now and save - Spacious All Suite Hotel, Indoor Outdoor Pool, Fitness Center, Florida Green certified, Complimentary Coffee, HDTV",
+      "Tags": [
+        "pool",
+        "coffee in lobby",
+        "free wifi"
+      ]
     },
-    {
-        "@search.score": 1.0,
-        "HotelId": "11",
-        "HotelName": "Regal Orb Resort & Spa",
-        "Tags": [
-            "free wifi",
-            "restaurant",
-            "24-hour front desk service"
-        ]
-    },
+. . .
 ```
 
 ## Example 5: Range filters
@@ -287,24 +273,24 @@ The response for this query should look similar to the following example, trimme
 ```json
 "@odata.count": 27,
 "value": [
-    {
-        "@search.score": 1.0,
-        "HotelId": "22",
-        "HotelName": "Stone Lion Inn",
-        "Rating": 3.9
-    },
-    {
-        "@search.score": 1.0,
-        "HotelId": "25",
-        "HotelName": "Scottish Inn",
-        "Rating": 3.8
-    },
-    {
-        "@search.score": 1.0,
-        "HotelId": "2",
-        "HotelName": "Twin Dome Motel",
-        "Rating": 3.6
-    }
+{
+    "@search.score": 1,
+    "HotelId": "22",
+    "HotelName": "Lion's Den Inn",
+    "Rating": 3.9
+},
+{
+    "@search.score": 1,
+    "HotelId": "25",
+    "HotelName": "Waterfront Scottish Inn",
+    "Rating": 3.8
+},
+{
+    "@search.score": 1,
+    "HotelId": "2",
+    "HotelName": "Old Century Hotel",
+    "Rating": 3.6
+},
 ...
 ```
 
@@ -323,33 +309,50 @@ POST /indexes/hotels-sample-index/docs/search?api-version=2024-07-01
 The response for this query should look similar to the following example, trimmed for brevity. In this example, it's not possible to sort by `StateProvince` because the field isn't attributed as *sortable* in the index definition.
 
 ```json
-"@odata.count": 9,
-"value": [
+{
+  "@odata.count": 9,
+  "value": [
     {
-        "@search.score": 1.0,
-        "HotelId": "9",
-        "HotelName": "Smile Hotel",
-        "Address": {
-            "StateProvince": "CA "
-        }
+      "@search.score": 1,
+      "HotelId": "39",
+      "HotelName": "White Mountain Lodge & Suites",
+      "Address": {
+        "StateProvince": "CO"
+      }
     },
     {
-        "@search.score": 1.0,
-        "HotelId": "39",
-        "HotelName": "Whitefish Lodge & Suites",
-        "Address": {
-            "StateProvince": "CO"
-        }
+      "@search.score": 1,
+      "HotelId": "9",
+      "HotelName": "Smile Up Hotel",
+      "Address": {
+        "StateProvince": "CA "
+      }
     },
     {
-        "@search.score": 1.0,
-        "HotelId": "7",
-        "HotelName": "Countryside Resort",
-        "Address": {
-            "StateProvince": "CA "
-        }
+      "@search.score": 1,
+      "HotelId": "7",
+      "HotelName": "Roach Motel",
+      "Address": {
+        "StateProvince": "CA "
+      }
     },
-...
+    {
+      "@search.score": 1,
+      "HotelId": "34",
+      "HotelName": "Lakefront Captain Inn",
+      "Address": {
+        "StateProvince": "CT"
+      }
+    },
+    {
+      "@search.score": 1,
+      "HotelId": "37",
+      "HotelName": "Campus Commander Hotel",
+      "Address": {
+        "StateProvince": "CA "
+      }
+    },
+. . . 
 ```
 
 ## Example 6: Geospatial search
@@ -370,36 +373,36 @@ The response for this query returns all hotels within a 10-kilometer distance of
 
 ```json
 {
-    "@odata.count": 3,
-    "value": [
-        {
-            "@search.score": 1.0,
-            "HotelId": "45",
-            "HotelName": "Arcadia Resort & Restaurant",
-            "Address": {
-                "City": "Seattle",
-                "StateProvince": "WA"
-            }
-        },
-        {
-            "@search.score": 1.0,
-            "HotelId": "24",
-            "HotelName": "Gacc Capital",
-            "Address": {
-                "City": "Seattle",
-                "StateProvince": "WA"
-            }
-        },
-        {
-            "@search.score": 1.0,
-            "HotelId": "16",
-            "HotelName": "Double Sanctuary Resort",
-            "Address": {
-                "City": "Seattle",
-                "StateProvince": "WA"
-            }
-        }
-    ]
+  "@odata.count": 3,
+  "value": [
+    {
+      "@search.score": 1,
+      "HotelId": "45",
+      "HotelName": "Happy Lake Resort & Restaurant",
+      "Address": {
+        "City": "Seattle",
+        "StateProvince": "WA"
+      }
+    },
+    {
+      "@search.score": 1,
+      "HotelId": "24",
+      "HotelName": "Uptown Chic Hotel",
+      "Address": {
+        "City": "Seattle",
+        "StateProvince": "WA"
+      }
+    },
+    {
+      "@search.score": 1,
+      "HotelId": "16",
+      "HotelName": "Double Sanctuary Resort",
+      "Address": {
+        "City": "Seattle",
+        "StateProvince": "WA"
+      }
+    }
+  ]
 }
 ```
 
@@ -407,11 +410,11 @@ The response for this query returns all hotels within a 10-kilometer distance of
 
 Simple syntax supports Boolean operators in the form of characters (`+, -, |`) to support AND, OR, and NOT query logic. Boolean search behaves as you might expect, with a few noteworthy exceptions. 
 
-In previous examples, the `searchMode` parameter was introduced as a mechanism for influencing precision and recall, with `"searchMode": "any"` favoring recall (a document that satisfies any of the criteria is considered a match), and `"searchMode": "all"` favoring precision (all criteria must be matched in a document). 
+In a Boolean search, consider adding the `searchMode` parameter as a mechanism for influencing precision and recall. Valid values include `"searchMode": "any"` favoring recall (a document that satisfies any of the criteria is considered a match), and `"searchMode": "all"` favoring precision (all criteria must be matched in a document). 
 
 In the context of a Boolean search, the default `"searchMode": "any"` can be confusing if you're stacking a query with multiple operators and getting broader instead of narrower results. This is particularly true with NOT, where results include all documents *not containing* a specific term or phrase.
 
-The following example provides an illustration. Running the following query with searchMode (any), 42 documents are returned: those containing the term *restaurant*, plus all documents that don't have the phrase *air conditioning. 
+The following example provides an illustration. The query looks for matches on *restaurant* that exclude the phrase *air conditioning*. If you run the following query with searchMode (any), 43 documents are returned: those containing the term *restaurant*, plus all documents that *don't* have the phrase *air conditioning. 
 
 Notice that there's no space between the boolean operator (`-`) and the phrase *air conditioning*. The quotation marks are escaped (`\"`).
 
@@ -431,27 +434,38 @@ Changing to `"searchMode": "all"` enforces a cumulative effect on criteria and r
 The response for this query would now look similar to the following example, trimmed for brevity.
 
 ```json
-"@odata.count": 7,
-"value": [
+{
+  "@odata.count": 14,
+  "value": [
     {
-        "@search.score": 2.5460577,
-        "HotelId": "11",
-        "HotelName": "Regal Orb Resort & Spa",
-        "Tags": [
-            "free wifi",
-            "restaurant",
-            "24-hour front desk service"
-        ]
+      "@search.score": 3.1383743,
+      "HotelId": "18",
+      "HotelName": "Ocean Water Resort & Spa",
+      "Tags": [
+        "view",
+        "pool",
+        "restaurant"
+      ]
     },
     {
-        "@search.score": 2.166792,
-        "HotelId": "10",
-        "HotelName": "Countryside Hotel",
-        "Tags": [
-            "24-hour front desk service",
-            "coffee in lobby",
-            "restaurant"
-        ]
+      "@search.score": 2.028083,
+      "HotelId": "22",
+      "HotelName": "Lion's Den Inn",
+      "Tags": [
+        "laundry service",
+        "free wifi",
+        "restaurant"
+      ]
+    },
+    {
+      "@search.score": 2.028083,
+      "HotelId": "34",
+      "HotelName": "Lakefront Captain Inn",
+      "Tags": [
+        "restaurant",
+        "laundry service",
+        "coffee in lobby"
+      ]
     },
 ...
 ```
@@ -471,12 +485,12 @@ POST /indexes/hotels-sample-index/docs/search?api-version=2024-07-01
     "filter": "Rating gt 4",
     "select": "HotelName, Rating",
     "orderby": "Rating desc",
-    "top": "5",
+    "top": 5,
     "count": true
 }
 ```
 
-The query finds 21 matching documents, but because you specified `top`, the response returns just the top five matches, with ratings starting at 4.9, and ending at 4.7 with *Lady of the Lake B & B*. 
+The query finds 21 matching documents, but because you specified `top`, the response returns just the top five matches, with ratings starting at 4.9, and ending at 4.7 with *Lakeside B & B*. 
 
 To get the next five, skip the first batch:
 
@@ -487,8 +501,8 @@ POST /indexes/hotels-sample-index/docs/search?api-version=2024-07-01
     "filter": "Rating gt 4",
     "select": "HotelName, Rating",
     "orderby": "Rating desc",
-    "top": "5",
-    "skip": "5",
+    "top": 5,
+    "skip": 5,
     "count": true
 }
 ```
@@ -496,33 +510,36 @@ POST /indexes/hotels-sample-index/docs/search?api-version=2024-07-01
 The response for the second batch skips the first five matches, returning the next five, starting with *Pull'r Inn Motel*. To continue with more batches, you would keep `top` at five, and then increment `skip` by five on each new request (skip=5, skip=10, skip=15, and so forth).
 
 ```json
-"value": [
+{
+  "@odata.count": 21,
+  "value": [
     {
-        "@search.score": 1.0,
-        "HotelName": "Pull'r Inn Motel",
-        "Rating": 4.7
+      "@search.score": 1,
+      "HotelName": "Head Wind Resort",
+      "Rating": 4.7
     },
     {
-        "@search.score": 1.0,
-        "HotelName": "Sublime Cliff Hotel",
-        "Rating": 4.6
+      "@search.score": 1,
+      "HotelName": "Sublime Palace Hotel",
+      "Rating": 4.6
     },
     {
-        "@search.score": 1.0,
-        "HotelName": "Antiquity Hotel",
-        "Rating": 4.5
+      "@search.score": 1,
+      "HotelName": "City Skyline Antiquity Hotel",
+      "Rating": 4.5
     },
     {
-        "@search.score": 1.0,
-        "HotelName": "Nordick's Motel",
-        "Rating": 4.5
+      "@search.score": 1,
+      "HotelName": "Nordick's Valley Motel",
+      "Rating": 4.5
     },
     {
-        "@search.score": 1.0,
-        "HotelName": "Winter Panorama Resort",
-        "Rating": 4.5
+      "@search.score": 1,
+      "HotelName": "Winter Panorama Resort",
+      "Rating": 4.5
     }
-]
+  ]
+}
 ```
 
 ## Related content

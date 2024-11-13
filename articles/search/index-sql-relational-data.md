@@ -34,7 +34,7 @@ Results from this query return all of the Hotel fields, followed by all Room fie
 
    ![Denormalized data, redundant hotel data when room fields are added](media/index-sql-relational-data/denormalize-data-query.png "Denormalized data, redundant hotel data when room fields are added")
 
-While this query succeeds on the surface (providing all of the data in a flat row set), it fails in delivering the right document structure for the expected search experience. During indexing, Azure AI Search creates one search document for each row ingested. If your search documents looked like the above results, you would have perceived duplicates - seven separate documents for the Twin Dome hotel alone. A query on "hotels in Florida" would return seven results for just the Twin Dome hotel, pushing other relevant hotels deep into the search results.
+While this query succeeds on the surface (providing all of the data in a flat row set), it fails in delivering the right document structure for the expected search experience. During indexing, Azure AI Search creates one search document for each row ingested. If your search documents looked like the above results, you would have perceived duplicates - seven separate documents for the Old Century Hotel alone. A query on "hotels in Florida" would return seven results for just the Old Century Hotel, pushing other relevant hotels deep into the search results.
 
 To get the expected experience of one document per hotel, you should provide a rowset at the right granularity, but with complete information. This article explains how.
 

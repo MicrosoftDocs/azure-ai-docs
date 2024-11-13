@@ -5,13 +5,14 @@ author: glharper
 ms.author: glharper
 ms.service: azure-ai-openai
 ms.topic: include
-ms.date: 09/06/2024
+ms.date: 10/22/2024
 ---
 
 [!INCLUDE [Set up required variables](./use-your-data-common-variables.md)]
 
 
-## Create a Node application
+
+## Initialize a Node.js application
 
 In a console window (such as cmd, PowerShell, or Bash), create a new directory for your app, and navigate to it. Then run the `npm init` command to create a node application with a _package.json_ file.
 
@@ -23,50 +24,40 @@ npm init
 
 Install the Azure OpenAI client and Azure Identity libraries for JavaScript with npm:
 
-#### [TypeScript](#tab/typescript)
-
-```console
-npm install openai @azure/identity @azure/openai 
-```
-
-The `@azure/openai/types` dependency is included to extend the Azure OpenAI model for the `data_sources` property. This import is only necessary for TypeScript.
-
-#### [JavaScript](#tab/javascript)
-
 ```console
 npm install @azure/openai @azure/identity
 ```
 
----
-
 Your app's _package.json_ file will be updated with the dependencies.
 
-## Create a sample application
+## Add the JavaScript code
 
-#### [TypeScript](#tab/typescript)
+#### [Microsoft Entra ID](#tab/javascript-keyless)
 
-1. Open a command prompt where you want the new project, and create a new file named `ChatWithOwnData.ts`. Copy the following code into the `ChatWithOwnData.ts` file.
+1. Open a command prompt where you want the new project, and create a new file named `ChatWithOwnData.js`. Copy the following code into the `ChatWithOwnData.js` file.
     
-    ```typescript
-    import "dotenv/config";
-    import { AzureOpenAI } from "openai";
-    import "@azure/openai/types";
+    ```javascript
+    const { DefaultAzureCredential, getBearerTokenProvider } = require("@azure/identity");
+    const { AzureOpenAI } = require("openai");
     
     // Set the Azure and AI Search values from environment variables
     const endpoint = process.env["AZURE_OPENAI_ENDPOINT"];
-    const apiKey = process.env["AZURE_OPENAI_API_KEY"];
     const searchEndpoint = process.env["AZURE_AI_SEARCH_ENDPOINT"];
-    const searchKey = process.env["AZURE_AI_SEARCH_API_KEY"];
     const searchIndex = process.env["AZURE_AI_SEARCH_INDEX"];
-    
+
+    // keyless authentication    
+    const credential = new DefaultAzureCredential();
+    const scope = "https://cognitiveservices.azure.com/.default";
+    const azureADTokenProvider = getBearerTokenProvider(credential, scope);
+
     // Required Azure OpenAI deployment name and API version
     const deploymentName = "gpt-4";
     const apiVersion = "2024-07-01-preview";
     
-    function getClient(): AzureOpenAI {
+    function getClient() {
       return new AzureOpenAI({
         endpoint,
-        apiKey,
+        azureADTokenProvider,
         deployment: deploymentName,
         apiVersion,
       });
@@ -126,24 +117,18 @@ Your app's _package.json_ file will be updated with the dependencies.
     });
     ```
 
-1. Build the application with the following command:
-
-    ```console
-    tsc
-    ```
-
 1. Run the application with the following command:
 
     ```console
     node ChatWithOwnData.js
     ```
 
-#### [JavaScript](#tab/javascript)
+
+#### [API key](#tab/javascript-key)
 
 1. Open a command prompt where you want the new project, and create a new file named `ChatWithOwnData.js`. Copy the following code into the `ChatWithOwnData.js` file.
     
     ```javascript
-    require("dotenv/config");
     const { AzureOpenAI } = require("openai");
     
     // Set the Azure and AI Search values from environment variables
@@ -227,6 +212,7 @@ Your app's _package.json_ file will be updated with the dependencies.
     ```
 
 ---
+
 
 > [!IMPORTANT]
 > For production, use a secure way of storing and accessing your credentials like [Azure Key Vault](/azure/key-vault/general/overview). For more information about credential security, see the Azure AI services [security](../../security-features.md) article.

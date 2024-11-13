@@ -64,7 +64,7 @@ Follow the [Quickstart: Direct web traffic using the portal](/azure/application-
         - Name: Provide a name for your private link configuration
         - Private link subnet: Select a subnet in your virtual network. 
         - Frontend IP Configuration: `appGwPrivateFrontendIpIPv4`
-    - To verify the Private link is set up correctly, navigate to the __Private endpoint connections__ tab and select __+ Private endpoint__. On the __Resource__ tab, the __Target sub-resource__ should be the name of your private Frontend IP configuration, `appGwPrivateFrontendIpIPv4`. If no value appears in the __Target sub-resource__, then the Application Gateway listener wasn't configured correctly. 
+    - To verify the Private link is set up correctly, navigate to the __Private endpoint connections__ tab and select __+ Private endpoint__. On the __Resource__ tab, the __Target sub-resource__ should be the name of your private Frontend IP configuration, `appGwPrivateFrontendIpIPv4`. If no value appears in the __Target sub-resource__, then the Application Gateway listener wasn't configured correctly. For more on setting up Private link in Application Gateway, see [Configure Azure Application Gateway Private Link](/azure/application-gateway/private-link-configure).
 
 ## Configure private link
 
@@ -83,7 +83,7 @@ Follow the [Quickstart: Direct web traffic using the portal](/azure/application-
     > - If you are using HTTPS listener with certificate uploaded, make sure the FQDN alias matches with the certificate's CN (Common Name) or SAN (Subject Alternative Name) otherwise HTTPS call will fail with SNI (Server Name Indication).
     > - The provided FQDNs must have at least three labels in the name to properly create the private DNS zone of thee private endpoint for Application Gateway.
     > - The FQDNs field is editable after the private endpoint creation through SDK or CLI. The field is not editable in the Azure portal.
-    > - Dyname sub-resource naming is not supported for the private Frontend IP configuration. The Frontend IP name must be `appGwPrivateFrontendIpIPv4`.
+    > - Dynamic sub-resource naming is not supported for the private Frontend IP configuration. The Frontend IP name must be `appGwPrivateFrontendIpIPv4`.
 
 ### Configure using Python SDK and Azure CLI
 

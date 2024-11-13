@@ -17,4 +17,5 @@ ms.date: 10/25/2024
 | southindia       | -            | -               | ✅                 |
 | swedencentral    | ✅             | ✅                | ✅                 |
 | switzerlandnorth | -            | -               | ✅                 |
+| uaenorth         | -            | -               | ✅                 |
 | westeurope       | -            | -               | ✅                 |

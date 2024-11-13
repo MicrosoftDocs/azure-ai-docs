@@ -8,7 +8,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: reference
-ms.date: 10/01/2024
+ms.date: 10/29/2024
 ---
 
 # Text split cognitive skill
@@ -67,7 +67,7 @@ Parameters are case-sensitive.
     "textSplitMode": "pages", 
     "unit": "azureOpenAITokens", 
     "azureOpenAITokenizerParameters":{ 
-        "encoderModelName":"cl100k", 
+        "encoderModelName":"cl100k_base", 
         "allowedSpecialTokens": [ 
             "[START]", 
             "[END]" 

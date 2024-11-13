@@ -45,6 +45,12 @@ You can see the endpoint URL and credentials in the **Overview** section. The en
 
 :::image type="content" source="../../media/ai-services/overview/overview-endpoint-and-key.png" alt-text="A screenshot showing how to get the URL and key associated with the resource." lightbox="../../media/ai-services/overview/overview-endpoint-and-key.png":::
 
+You can connect to the endpoint using the Azure AI Inference SDK:
+
+[!INCLUDE [code-create-chat-client](../../includes/ai-services/code-create-chat-client.md)]
+
+See [Supported languages and SDKs](#supported-languages-and-sdks) for more code examples and resources.
+
 ### Routing
 
 The inference endpoint routes requests to a given deployment by matching the parameter `name` inside of the request to the name of the deployment. This means that *deployments work as an alias of a given model under certain configurations*. This flexibility allows you to deploy a given model multiple times in the service but under different configurations if needed.

@@ -39,6 +39,7 @@ ms.author: eur
 | `es-CO` |Spanish (Colombia)| Custom neural voice Pro |
 | `es-ES` | Spanish (Spain) | Custom neural voice Pro<br/><br/>Custom neural voice lite (Preview)<br/><br/>Cross-lingual voice source and target<br/><br/>Multi-style voice |
 | `es-MX` | Spanish (Mexico) | Custom neural voice Pro<br/><br/>Custom neural voice lite (Preview)<br/><br/>Cross-lingual voice source and target<br/><br/>Multi-style voice |
+| `es-US` | Spanish (United States)| Custom neural voice Pro|
 | `fi-FI` | Finnish (Finland) | Custom neural voice Pro<br/><br/>Cross-lingual voice source and target<br/><br/>Multi-style voice |
 | `fr-BE` | French (Belgium) | Custom neural voice Pro<br/><br/>Cross-lingual voice target |
 | `fr-CA` | French (Canada) | Custom neural voice Pro<br/><br/>Cross-lingual voice source and target<br/><br/>Multi-style voice  |
@@ -64,7 +65,8 @@ ms.author: eur
 | `sk-SK` | Slovak (Slovakia) | Custom neural voice Pro<br/><br/>Multi-style voice |
 | `sl-SI` | Slovenian (Slovenia) | Custom neural voice Pro |
 | `sv-SE` | Swedish (Sweden) | Custom neural voice Pro<br/><br/>Cross-lingual voice source and target<br/><br/>Multi-style voice |
-| `ta-IN` | Tamil (India) | Custom neural voice Pro<br/><br/>Cross-lingual voice target |
+| `ta-IN` | Tamil (India) | Custom neural voice Pro<br/><br/>Cross-lingual voice source and target |
+| `ta-MY` |Tamil (Malaysia)| Custom neural voice Pro|
 | `te-IN` | Telugu (India) | Custom neural voice Pro |
 | `th-TH` | Thai (Thailand) | Custom neural voice Pro<br/><br/>Cross-lingual voice source and target<br/><br/>Multi-style voice|
 | `tr-TR` | Turkish (Türkiye) | Custom neural voice Pro<br/><br/>Cross-lingual voice source and target<br/><br/>Multi-style voice |
