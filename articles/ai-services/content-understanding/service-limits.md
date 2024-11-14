@@ -83,7 +83,7 @@ The following limits apply as of version 2024-12-01-preview.
 | --- | --- | --- | --- | --- | --- |
 | Basic | No *boolean* | All | *string* | *string* | All |
 | List | N/A | All | *string* | *string* | All |
-| Group | N/A | All | *string* | *string* | All |
+| Group | N/A | All | N/A | N/A | All |
 | Table | No *boolean* | All | *string* | *string* | All
 | Fixed table | No *boolean* | N/A | N/A | N/A | N/A |
 
