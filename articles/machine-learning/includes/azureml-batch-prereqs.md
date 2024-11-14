@@ -11,7 +11,7 @@ ms.author: cacrest
 - The following permissions in the Azure Machine Learning workspace:
   - For creating or managing batch endpoints and deployments: Use an Owner, Contributor, or Custom role that has been assigned the `Microsoft.MachineLearningServices/workspaces/batchEndpoints/*` actions.
   - For creating Azure Resource Manager deployments in the workspace resource group: Use an Owner, Contributor, or Custom role that has been assigned the `Microsoft.Resources/deployments/write` action in the resource group where the workspace is deployed.
-- The following software to work with Azure Machine Learning:
+- The Azure Machine Learning CLI or the Azure Machine Learning SDK for Python:
 
   # [Azure CLI](#tab/cli)
 
