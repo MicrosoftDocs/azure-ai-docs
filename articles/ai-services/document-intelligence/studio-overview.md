@@ -1,7 +1,7 @@
 ---
 title: Document Intelligence Studio
 titleSuffix: Azure AI services
-description: Learn how to set up and use either Document Intelligence Studio or AI Studio to test features of Azure AI Document Intelligence on the web.
+description: Learn how to set up Document Intelligence Studio to test features of Azure AI Document Intelligence service on the web.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
@@ -185,5 +185,4 @@ With Document Intelligence, you can quickly automate your data processing in app
 ## Next steps
 
 * Visit [Document Intelligence Studio](https://formrecognizer.appliedai.azure.com/studio).
-* Visit [AI Studio](https://ai.azure.com/explore/aiservices/vision).
 * Get started with [Document Intelligence Studio quickstart](quickstarts/try-document-intelligence-studio.md).
