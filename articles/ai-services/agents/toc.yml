@@ -14,5 +14,5 @@ items:
       href: https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/
     - name: FAQ
       href: faq.yml
-- name: Quickstarts
+- name: Quickstart
   href: quickstart.md
