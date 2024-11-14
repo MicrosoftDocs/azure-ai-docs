@@ -58,8 +58,3 @@ sections:
           Does the Agent Runtime API support non-Azure OpenAI models?   
         answer: |
           Agent Runtime API only supports Azure OpenAI models.
-      - question: |
-          Is the Agent Runtime API generally available?
-        answer: |
-          The Agent Runtime API is currently in public preview. Stay informed of our latest product updates by regularly visiting our [What's New](./whats-new.md) page.
-      
