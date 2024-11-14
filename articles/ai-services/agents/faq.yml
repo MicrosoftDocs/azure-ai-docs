@@ -37,7 +37,7 @@ sections:
       - question: | 
           Does Agent Runtime support customer-managed key encryption (CMK)?
         answer: |
-          Today we support CMK for Threads and Files in Agent Runtime. See the [What's new page](./whats-new.md#customer-managed-key-cmk-support-for-Agent Runtime) for available regions for this feature.
+          Today we support CMK for Threads and Files in Agent Runtime.
       - question: |
           Is my data used by Microsoft for training models? 
         answer: |

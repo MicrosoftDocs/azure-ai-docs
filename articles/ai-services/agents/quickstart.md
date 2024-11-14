@@ -1,7 +1,7 @@
 ---
 title: Quickstart - Create a new Azure Agent Runtime project.
 titleSuffix: Azure AI services
-description: Learn about the models you can use with Azure Agent Runtime.
+description: Use this guide to start using Azure Agent Runtime.
 manager: nitinme
 author: aahill
 ms.author: aahi

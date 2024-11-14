@@ -29,7 +29,7 @@ At Microsoft, we're committed to the advancement of AI driven by principles that
 
 To get started with Azure Agent Runtime, you need to create an Azure AI Foundry hub and an Agent project in your Azure subscription. 
 
-Start with the [quickstart](./how-to/create-resource.md) guide if it's your first time using the service.
+Start with the [quickstart](./quickstart.md) guide if it's your first time using the service.
 1. You can create a hub and project with the required resources via Azure portal, or Azure CLI. 
 1. After you create a project, you can deploy a compatible model such as GPT-4o.
 1. When you have a deployed model, you can:
