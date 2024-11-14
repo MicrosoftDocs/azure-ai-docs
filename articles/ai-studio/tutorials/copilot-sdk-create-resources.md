@@ -53,8 +53,6 @@ You need two models to build a RAG-based chat app: an Azure OpenAI chat model (`
 
 These steps deploy a model to a real-time endpoint from the AI Studio [model catalog](../how-to/model-catalog-overview.md):
 
-1. Sign in to [Azure AI Studio](https://ai.azure.com).
-1. Studio remembers where you were last, so you should now see the project you created at the beginning of this tutorial. If you instead see a list of projects, select the one you created for this tutorial.
 1. On the left navigation pane, select **Model catalog**.
 1. Select the **gpt-4o-mini** model from the list of models. You can use the search bar to find it. 
 
