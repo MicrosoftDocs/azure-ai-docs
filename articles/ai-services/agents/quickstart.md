@@ -1,5 +1,5 @@
 ---
-title: Quickstart: Create a new Azure Agent Runtime project.
+title: Quickstart - Create a new Azure Agent Runtime project.
 titleSuffix: Azure AI services
 description: Learn about the models you can use with Azure Agent Runtime.
 manager: nitinme

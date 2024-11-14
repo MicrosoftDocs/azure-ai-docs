@@ -6,7 +6,7 @@ manager: nitinme
 author: aahill
 ms.author: aahi
 ms.service: azure
-ms.topic: concept
+ms.topic: conceptual
 ms.date: 11/13/2024
 recommendations: false
 ---
