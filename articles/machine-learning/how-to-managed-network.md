@@ -787,7 +787,7 @@ To enable the [serverless Spark jobs](how-to-submit-spark-jobs.md) for the manag
 2. Provision the managed VNet.
 
     > [!NOTE]
-    > If your workspace has [public network access enabled](https://learn.microsoft.com/azure/machine-learning/how-to-configure-private-link?view=azureml-api-2#enable-public-access), you must disable it before provisioning the managed VNet. If you don't disable public network access when provisioning the managed VNet, the private endpoints for the workspace may not be created automatically in the managed vnet. Otherwise, you would have to manually configure the private endpoint outbound rule for the workspace after the provisioning.
+    > If your workspace has [public network access enabled](/azure/machine-learning/how-to-configure-private-link?view=azureml-api-2#enable-public-access), you must disable it before provisioning the managed VNet. If you don't disable public network access when provisioning the managed VNet, the private endpoints for the workspace may not be created automatically in the managed VNet. Otherwise, you would have to manually configure the private endpoint outbound rule for the workspace after the provisioning.
 
     # [Azure CLI](#tab/azure-cli)
 
