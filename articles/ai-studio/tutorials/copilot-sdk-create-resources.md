@@ -44,7 +44,29 @@ To create a project in [Azure AI Studio](https://ai.azure.com), follow these ste
 1. Go to the **Home** page of [Azure AI Studio](https://ai.azure.com).
 1. Select **+ Create project**.
 1. Enter a name for the project.  Keep all the other settings as default.
+1. Projects are created in hubs.  If you don't have one, it will be created for you. If you do have one (or more), the project is created in the most recent hub you've used.  If you want to create it in a different place, or you want to create a new hub, select **New hub** and fill out the details.
 1. Select **Create project**.
+
+## Deploy models
+
+You need two models to build a RAG-based chat app: an Azure OpenAI chat model (`gpt-4o-mini`) and an Azure OpenAI embedding model (`text-embedding-ada-002`). Deploy these models in your Azure AI Studio project, using this set of steps for each model.
+
+These steps deploy a model to a real-time endpoint from the AI Studio [model catalog](../how-to/model-catalog-overview.md):
+
+1. Sign in to [Azure AI Studio](https://ai.azure.com).
+1. Studio remembers where you were last, so you should now see the project you created at the beginning of this tutorial. If you instead see a list of projects, select the one you created for this tutorial.
+1. On the left navigation pane, select **Model catalog**.
+1. Select the **gpt-4o-mini** model from the list of models. You can use the search bar to find it. 
+
+    :::image type="content" source="../media/tutorials/chat/select-model.png" alt-text="Screenshot of the model selection page." lightbox="../media/tutorials/chat/select-model.png":::
+
+1. On the model details page, select **Deploy**.
+
+    :::image type="content" source="../media/tutorials/chat/deploy-model.png" alt-text="Screenshot of the model details page with a button to deploy the model." lightbox="../media/tutorials/chat/deploy-model.png":::
+
+1. Leave the default **Deployment name**. select **Deploy**.  Or, if the model isn't available in your region, a different region is selected for you and connected to your project.  In this case, select **Connect and deploy**.
+
+After you deploy the **gpt-4o-mini**, repeat the steps to deploy the **text-embedding-ada-002** model.
 
 ## Create an Azure AI Search service
 
@@ -80,10 +102,13 @@ In the Azure AI Studio, check for an Azure AI Search connected resource.
 1. Otherwise, select **New connection** and then **Azure AI Search**.
 1. Find your Azure AI Search service in the options and select **Add connection**.
 1. Use **API key** for **Authentication**.
+
+    > [!NOTE]
+    > You can instead use **Microsoft Entra ID** for **Authentication**. If you do this, you must also configure access control for the Azure AI Search service. Assign yourself the **Search Index Data Contributor** and **Search Service Contributor** roles. If you don't know how to do this, or don't have the necessary permissions, use the **API key** for **Authentication**.
+
 1. Select **Add connection**.  
 
-> [!NOTE]
-> You can instead use **Microsoft Entra ID** for **Authentication**. If you do this, you must also configure access control for the Azure AI Search service. Assign yourself the **Cognitive Services OpenAI User** role. If you don't know how to do this, or don't have the necessary permissions, use the **API key** for **Authentication**.
+
 
 ## <a name="installs"></a> Install the Azure CLI and sign in 
 
@@ -113,25 +138,6 @@ Create a folder for your work. Create a file called **config.py** in this folder
 
 :::code language="python" source="~/azureai-samples-nov2024/scenarios/rag/custom-rag-app/config.py":::
 
-## Deploy models
-
-You need two models to build a RAG-based chat app: an Azure OpenAI chat model (`gpt-4o-mini`) and an Azure OpenAI embedding model (`text-embedding-ada-002`). Deploy these models in your Azure AI Studio project, using this set of steps for each model.
-
-These steps deploy a model to a real-time endpoint from the AI Studio [model catalog](../how-to/model-catalog-overview.md):
-
-1. Sign in to [Azure AI Studio](https://ai.azure.com).
-1. Studio remembers where you were last, so you should now see the project you created at the beginning of this tutorial. If you instead see a list of projects, select the one you created for this tutorial.
-1. Select the **gpt-4o-mini** model from the list of models. You can use the search bar to find it. 
-
-    :::image type="content" source="../media/tutorials/chat/select-model.png" alt-text="Screenshot of the model selection page." lightbox="../media/tutorials/chat/select-model.png":::
-
-1. On the model details page, select **Deploy**.
-
-    :::image type="content" source="../media/tutorials/chat/deploy-model.png" alt-text="Screenshot of the model details page with a button to deploy the model." lightbox="../media/tutorials/chat/deploy-model.png":::
-
-1. Leave the default **Deployment name**. Select **Connect and deploy**.
-
-After you deploy the **gpt-4o-mini**, repeat the steps to deploy the **text-embedding-ada-002** model.
 
 ## Configure environment variables
 
