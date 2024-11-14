@@ -1,0 +1,18 @@
+items:
+- name: Azure Agent Runtime Documentation
+  href: index.yml
+- name: Overview
+  expanded: true
+  items:
+    - name: What is Azure OpenAI?
+      href: overview.md
+    - name: Quotas and limits
+      href: quotas-limits.md
+    - name: Model and region support
+      href: ./concepts/model-region-support.md
+    - name: Pricing
+      href: https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/
+- name: Quickstarts
+  items:
+    - name: Assistants (preview)
+      href: assistants-quickstart.md
