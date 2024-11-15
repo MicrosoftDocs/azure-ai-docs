@@ -19,8 +19,6 @@ The following section will show you how to set up an [Azure AI hub and project](
 
 If you already have these resources set up, skip to the [configure and run your first agent section below](#configure-and-run-your-first-agent).
 
-### Follow these steps to set up hub and project
-
 1. Install [the Azure CLI](https://learn.microsoft.com/cli/azure/install-azure-cli-windows?tabs=azure-cli). If you have the CLI already installed, make sure it's updated to the latest version.
 
 1. Register providers.
