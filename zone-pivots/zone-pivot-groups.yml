@@ -902,3 +902,13 @@ groups:
     title: AI Studio
   - id: programming-language-javascript
     title: JavaScript
+- id: programming-languages-agents
+  title: Programming languages
+  prompt: Choose a programming language
+  pivots:
+  - id: programming-language-studio
+    title: AI Foundry
+  - id: programming-language-csharp
+    title: C#
+  - id: programming-language-python
+    title: Python

@@ -8,6 +8,7 @@ ms.author: aahi
 ms.service: azure
 ms.topic: quickstart
 ms.date: 11/13/2024
+zone_pivot_groups: programming-languages-agents
 recommendations: false
 ---
 
@@ -29,9 +30,9 @@ Before you can create an agent, you need an Azure AI Foundry hub and project to 
 
 * Connect an Azure OpenAI resource or an Azure AI resource. 
 
-To create a project in Azure AI Studio, follow these steps:
+To create a project in Azure AI Foundry, follow these steps:
 
-1. Go to the Home page of [Azure AI Studio](https://ai.azure.com/).
+1. Go to the Home page of [Azure AI Foundry](https://ai.azure.com/).
 
 1. Select **+ New project**.
 
