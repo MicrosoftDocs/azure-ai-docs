@@ -26,7 +26,7 @@ For a standard deployment, the quota assigned to your deployment partially deter
 
 In a provisioned deployment, a set amount of model processing capacity is allocated to your endpoint. The amount of throughput that you can achieve on the endpoint is a factor of the workload shape including input token amount, output amount, call rate and cache match rate. The number of concurrent calls and total tokens processed can vary based on these values. 
 
-For all deployment types, system level throughput is a key component of performance. The following section explains several approaches that can be used to estimate system level throughput with existing metrics and data from your Azure OpenAI Service environment.
+For all deployment types, understanding system level throughput is a key component of optimizing performance. The following section explains several approaches that can be used to estimate system level throughput with existing metrics and data from your Azure OpenAI Service environment.
 
 #### Estimating system level throughput 
 
