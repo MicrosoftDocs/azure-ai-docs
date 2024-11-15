@@ -13,6 +13,8 @@ ms.date: 11/19/2024
 
 # Content Understanding region and language support
 
+Azure AI Content Understanding schemas provide multilingual multimodal processing support. Our language and regional support capabilities enable users to communicate with Content Understanding applications in natural ways and empower global outreach. The following tables list the avaialbe region, language, and locale support by modality.
+
 ## Region support
 
 To use the Azure AI Content Understanding service, you must create your Azure AI Service resource in a supported region. The Content Understanding features are available in the following regions:
