@@ -17,9 +17,9 @@ author: sdgilley
 In this tutorial, you use the Azure AI SDK (and other libraries) to  evaluate and deploy the chat app you built in [Part 2 of the tutorial series](copilot-sdk-build-rag.md). In this part three, you learn how to:
 
 > [!div class="checklist"]
-> - Evaluate the quality of chat app responses
-> - Deploy the chat app to Azure
-> - Verify the deployment
+> - Create an evaluation dataset
+> - Evaluate the chat app with Azure AI evaluators
+
 
 This tutorial is part three of a three-part tutorial.
 
@@ -71,7 +71,6 @@ The script also logs the evaluation results to the cloud project so that you can
 1. Finally, add code to run the evaluation, view the results locally, and gives you a link to the evaluation results in AI Studio:
  
     :::code language="python" source="~/azureai-samples-nov2024/scenarios/rag/custom-rag-app/evaluate.py" id="run_evaluation":::
-
 
 ### Configure the evaluation model 
 
