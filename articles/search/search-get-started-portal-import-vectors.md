@@ -27,15 +27,15 @@ This quickstart helps you get started with [integrated vectorization](vector-sea
 
 ### Supported data sources
 
-+ [Azure Data Lake Storage (ADLS) Gen2](/azure/storage/blobs/create-data-lake-storage-account) (a storage account with a hierarchical namespace).
-
 + [Azure Storage](/azure/storage/common/storage-account-create) for blobs, files, and tables. Azure Storage must be a standard performance (general-purpose v2) account. Access tiers can be hot, cool, and cold.
 
-+ [Azure Cosmos DB](/azure/cosmos-db/nosql/quickstart-portal) for NoSQL, Mongo DB, and Apache Gremlin.
++ [Azure Data Lake Storage (ADLS) Gen2](/azure/storage/blobs/create-data-lake-storage-account) (an Azure Storage account with a hierarchical namespace enabled).
+
++ [Azure Cosmos DB](/azure/cosmos-db/nosql/quickstart-portal) for NoSQL, Mongo DB, and Apache Gremlin (preview).
 
 + [Azure SQL Database](/azure/azure-sql/database/single-database-create-quickstart), [Azure SQL Managed Instance](/azure/azure-sql/managed-instance/instance-create-quickstart), and Azure SQL Server virtual machines.
 
-+ [OneLake lakehouse](search-how-to-index-onelake-files.md).
++ [OneLake lakehouse (preview)](search-how-to-index-onelake-files.md).
 
 ### Supported embedding models
 
@@ -47,7 +47,7 @@ Use an embedding model on an Azure AI platform in the [same region as Azure AI S
 | [Azure AI Studio model catalog](/azure/ai-studio/what-is-ai-studio) |  Azure, Cohere, and Facebook embedding models. |
 | [Azure AI services multi-service account](/azure/ai-services/multi-service-resource) | [Azure AI Vision multimodal](/azure/ai-services/computer-vision/how-to/image-retrieval) for image and text vectorization. Azure AI Vision multimodal is available in selected regions. [Check the documentation](/azure/ai-services/computer-vision/how-to/image-retrieval?tabs=csharp) for an updated list. **To use this resource, the account must be in an available region and in the same region as Azure AI Search**. |
 
-If using the Azure OpenAI Service, it must have an associated [custom subdomain](/azure/ai-services/cognitive-services-custom-subdomains). If the service was created through the Azure portal, this subdomain is automatically generated as part of your service setup. Ensure that your service includes a custom subdomain before using it with the Azure AI Search integration.
+If you use the Azure OpenAI Service, the endpoint must have an associated [custom subdomain](/azure/ai-services/cognitive-services-custom-subdomains). A custom subdomain is an endpoint that includes a unique name (for example, `https://hereismyuniquename.cognitiveservices.azure.com`). If the service was created through the Azure portal, this subdomain is automatically generated as part of your service setup. Ensure that your service includes a custom subdomain before using it with the Azure AI Search integration.
 
 Azure OpenAI Service resources (with access to embedding models) that were created in AI Studio aren't supported. Only the Azure OpenAI Service resources created in the Azure portal are compatible with the **Azure OpenAI Embedding** skill integration.
 
@@ -154,6 +154,18 @@ This section points you to data that works for this quickstart.
    1. Select **Upload files**, and then upload the [health-plan PDF documents](https://github.com/Azure-Samples/azure-search-sample-data/tree/main/health-plan) used for this quickstart.
 
 1. Before you leave the lakehouse, copy the URL, or get the workspace and lakehouse IDs, so that you can specify the lakehouse in the wizard. The URL is in this format: `https://msit.powerbi.com/groups/00000000-0000-0000-0000-000000000000/lakehouses/11111111-1111-1111-1111-111111111111?experience=data-engineering`.
+
+### [Azure Table Storage](#tab/sample-data-table)
+
+TBD
+
+### [Azure SQL](#tab/sample-data-sql)
+
+TBD
+
+### [Azure Cosmos DB](#tab/sample-data-cosmos)
+
+TBD
 
 ---
 
@@ -281,7 +293,7 @@ The next step is to connect to a data source to use for the search index.
 
 1. Select **Next**.
 
-### [OneLake (preview)](#tab/connect-data-onelake)
+### [OneLake](#tab/connect-data-onelake)
 
 Support for OneLake indexing is in preview. For more information about supported shortcuts and limitations, see ([OneLake indexing](search-how-to-index-onelake-files.md)).
 
@@ -297,6 +309,18 @@ Support for OneLake indexing is in preview. For more information about supported
 1. Specify whether you want your search service to connect to OneLake using its system or user managed identity. You must use a managed identity and roles for search connections to OneLake.
 
 1. Select **Next**.
+
+### [Azure Table Storage](#tab/connect-data-table)
+
+TBD
+
+### [Azure SQL](#tab/connect-data-sql)
+
+TBD
+
+### [Azure Cosmos DB](#tab/connect-data-cosmos)
+
+TBD
 
 ---
 
