@@ -105,10 +105,10 @@ The first step in monitoring your application is to set up tracing. To learn how
 
 ### Query stored trace data in Application Insights
 
-Using the [Kusto Query Language (KQL)](/kusto/query/?view=microsoft-fabric), you can query your generative AI application's trace data from Application Insights to use for continuous Online Evaluation. If you use the [Azure AI Tracing package](./develop/trace-local-sdk.md) to trace your generative AI application, you can use the following Kusto query to view the data in Application Insights:
+Using the [Kusto Query Language (KQL)](/kusto/query/?view=microsoft-fabric&preserve-view=true), you can query your generative AI application's trace data from Application Insights to use for continuous Online Evaluation. If you use the [Azure AI Tracing package](./develop/trace-local-sdk.md) to trace your generative AI application, you can use the following Kusto query to view the data in Application Insights:
 
 > [!IMPORTANT]
-> The KQL query used by the Online Evaluation service must output the following columns: `operation_Id`, `operation_ParentId`, and `gen_ai_response_id`. Additionally, each evaluator has its own input data requirements. The KQL query must output these columns to be used as inputs to the evaluators themselves. For a list of data requirements for evaluators, see [data requirements for built-in evaluators](https://github.com/MicrosoftDocs/azure-ai-docs-pr/blob/dc1ffbbf6aeba4162f4b33b8d2454ff674739be6/articles/ai-studio/how-to/develop/evaluate-sdk.md#data-requirements-for-built-in-evaluators).
+> The KQL query used by the Online Evaluation service must output the following columns: `operation_Id`, `operation_ParentId`, and `gen_ai_response_id`. Additionally, each evaluator has its own input data requirements. The KQL query must output these columns to be used as inputs to the evaluators themselves. For a list of data requirements for evaluators, see [data requirements for built-in evaluators](./develop/evaluate-sdk.md#data-requirements-for-built-in-evaluators).
 
 ```SQL
 let gen_ai_spans = (
@@ -152,7 +152,7 @@ gen_ai_spans
 | project Input, System, Output, operation_Id, operation_ParentId, gen_ai_response_id = response_id
 ```
 
-Optionally, you can use the [sample operator](/kusto/query/sample-operator?view=azure-monitor) or [take operator](/kusto/query/take-operator?view=microsoft-fabric) in your Kusto query such that it only returns a subset of traces. Since AI-assisted evaluations can be costly at scale, this approach can help you control costs by only evaluating a random sample (or `n` traces) of your data.
+Optionally, you can use the [sample operator](/kusto/query/sample-operator?view=azure-monitor&preserve-view=true) or [take operator](/kusto/query/take-operator?view=microsoft-fabric&preserve-view=true) in your Kusto query such that it only returns a subset of traces. Since AI-assisted evaluations can be costly at scale, this approach can help you control costs by only evaluating a random sample (or `n` traces) of your data.
 
 ### Set up Online Evaluation with Azure AI Project SDK
 
