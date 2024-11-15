@@ -20,7 +20,7 @@ ms.custom: how-to, devplatv2, update-code
 
 To run inference over large amounts of data, you can use batch endpoints to deploy models, including OpenAI models. In this article, you see how to create a batch endpoint to deploy an ADA-002 model from OpenAI to compute embeddings at scale. You can use the same approach for completions and chat completions models. 
 
-The example in this article uses Microsoft Entra authentication to grant access to an Azure OpenAI Service resource. The model is registered in MLflow format. It uses the OpenAI flavor, which provides support for calling the OpenAI service at scale.
+The example in this article uses Microsoft Entra authentication to grant access to an Azure OpenAI Service resource, but you can also use an access key. The model is registered in MLflow format. It uses the OpenAI flavor, which provides support for calling the OpenAI service at scale.
 
 To follow along with the example steps, see the Jupyter notebook [Score OpenAI models in batch using Batch Endpoints](https://github.com/Azure/azureml-examples/blob/main/sdk/python/endpoints/batch/deploy-models/openai-embeddings/deploy-and-test.ipynb).
 
@@ -120,7 +120,7 @@ You can configure the identity of the compute cluster to have access to the Azur
     RESOURCE_ID=$(az group show -g $RG --query "id" -o tsv)
     ```
 
-1. Assign the **Cognitive Services User** role to the managed identity:
+1. Assign the Cognitive Services User role to the managed identity:
 
     ```azurecli
     az role assignment create --role "Cognitive Services User" --assignee $PRINCIPAL_ID --scope $RESOURCE_ID
@@ -156,7 +156,7 @@ To deploy the OpenAI model, you need to create an endpoint, an environment, a sc
 
 ### Create an endpoint
 
-An endpoint is needed to host the model. Take the following steps to create an endpoint:
+An endpoint is needed to host the model. To create an endpoint, take the following steps:
 
 1. Set up a variable to store your endpoint name. Replace the name in the following code with one that's unique within the region of your resource group.
 
@@ -293,7 +293,7 @@ To use an access key instead of Microsoft Entra authentication, you use the foll
 
 ## Test the deployment
    
-For testing the endpoint, you use a sample of the dataset [BillSum: A Corpus for Automatic Summarization of US Legislation](https://arxiv.org/abs/1910.00523). This sample is included in the *data* folder of cloned repository.
+For testing the endpoint, you use a sample of the dataset [BillSum: A Corpus for Automatic Summarization of US Legislation](https://arxiv.org/abs/1910.00523). This sample is included in the *data* folder of the cloned repository.
 
 1. Set up the input data:
 

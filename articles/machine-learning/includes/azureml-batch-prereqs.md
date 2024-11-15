@@ -9,8 +9,8 @@ ms.author: cacrest
 - An Azure subscription. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) before you begin.
 - An Azure Machine Learning workspace. To create a workspace, see [Manage Azure Machine Learning workspaces](../how-to-manage-workspace.md).
 - The following permissions in the Azure Machine Learning workspace:
-  - For creating or managing batch endpoints and deployments: Use an Owner, Contributor, or Custom role that has been assigned the `Microsoft.MachineLearningServices/workspaces/batchEndpoints/*` actions.
-  - For creating Azure Resource Manager deployments in the workspace resource group: Use an Owner, Contributor, or Custom role that has been assigned the `Microsoft.Resources/deployments/write` action in the resource group where the workspace is deployed.
+  - For creating or managing batch endpoints and deployments: Use an Owner, Contributor, or custom role that has been assigned the `Microsoft.MachineLearningServices/workspaces/batchEndpoints/*` actions.
+  - For creating Azure Resource Manager deployments in the workspace resource group: Use an Owner, Contributor, or custom role that has been assigned the `Microsoft.Resources/deployments/write` action in the resource group where the workspace is deployed.
 - The Azure Machine Learning CLI or the Azure Machine Learning SDK for Python:
 
   # [Azure CLI](#tab/cli)
@@ -41,7 +41,7 @@ The workspace is the top-level resource for Azure Machine Learning. It provides 
 
 # [Azure CLI](#tab/cli)
 
-In the following command, enter the values for your subscription ID, workspace, location, and resource group:
+In the following command, enter your subscription ID, workspace name, resource group name, and location:
 
 ```azurecli
 az account set --subscription <subscription>
@@ -62,7 +62,7 @@ az configure --defaults workspace=<workspace> group=<resource-group> location=<l
 
 1. Configure the workspace details and get a handle to the workspace:
 
-   In the following command, enter the values for your subscription ID, workspace, and resource group:
+   In the following command, enter your subscription ID, resource group name, and workspace name:
 
    ```python
    subscription_id = "<subscription>"
