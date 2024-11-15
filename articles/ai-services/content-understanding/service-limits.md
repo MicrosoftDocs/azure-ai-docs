@@ -81,10 +81,10 @@ The following limits apply as of version 2024-12-01-preview.
 
 | Field type | Document | Image | Text | Audio | Video |
 | --- | --- | --- | --- | --- | --- |
-| Basic | No *boolean* | All | *string* | *string* | All |
-| List | N/A | All | *string* | *string* | All |
-| Group | N/A | All | N/A | N/A | All |
-| Table | No *boolean* | All | *string* | *string* | All
+| Basic | No *boolean* | No *date*, *time* | *string* | *string* | No *date*, *time* |
+| List | N/A | No *date*, *time* | *string* | *string* | No *date*, *time* |
+| Group | N/A | No *date*, *time* | N/A | N/A | No *date*, *time* |
+| Table | No *boolean* | No *date*, *time* | *string* | *string* | No *date*, *time* |
 | Fixed table | No *boolean* | N/A | N/A | N/A | N/A |
 
 ### Classification fields
