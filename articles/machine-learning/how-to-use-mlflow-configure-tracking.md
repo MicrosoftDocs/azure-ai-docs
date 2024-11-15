@@ -31,10 +31,9 @@ You need the following prerequisites to follow this tutorial:
 
 [!INCLUDE [mlflow-prereqs](includes/machine-learning-mlflow-prereqs.md)]
 
+## Configure the MLflow tracking URI
 
-## Configure MLflow tracking URI
-
-To connect MLflow to an Azure Machine Learning workspace, you need the tracking URI for the workspace. Each workspace has its own tracking URI and it has the protocol `azureml://`.
+To connect MLflow to an Azure Machine Learning workspace, you need the tracking URI of the workspace. Each workspace has its own tracking URI, which starts with the protocol `azureml://`.
 
 [!INCLUDE [mlflow-configure-tracking](includes/machine-learning-mlflow-configure-tracking.md)]
 
