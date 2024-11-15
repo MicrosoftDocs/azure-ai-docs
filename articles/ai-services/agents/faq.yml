@@ -29,7 +29,7 @@ sections:
       - question: |
           How long is this data stored?
         answer: |
-          All used data persists in this system unless you explicitly delete this data. Use the [delete function](./Agent Runtime-reference-threads.md) with the thread ID of the thread you want to delete. Clearing the Run in the Agent Runtime Playground doesn't delete threads, however deleting them using delete function won't list them in the thread page. 
+          All used data persists in this system unless you explicitly delete this data. Use the delete function with the thread ID of the thread you want to delete. Clearing the Run in the Agent Runtime Playground doesn't delete threads, however deleting them using delete function won't list them in the thread page. 
       - question: | 
           Does Agent Runtime support customer-managed key encryption (CMK)?
         answer: |
