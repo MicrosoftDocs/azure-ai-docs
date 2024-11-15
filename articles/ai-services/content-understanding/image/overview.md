@@ -63,4 +63,5 @@ As with all the Azure AI services, developers using the Content Understanding se
 
 ## Next steps
 
-Try processing your content and data using Content Understanding in the [Azure AI Studio](https://ai.azure.com/?tid=888d76fa-54b2-4ced-8ee5-aac1585adee7).
+* Try processing your video content using Content Understanding in [Azure AI Foundry](https://ai.azure.com/).
+* Learn more about video [**analyzer templates**](../quickstart/use-ai-foundry.md).

@@ -7,7 +7,7 @@ manager: nitinme
 ms.service: azure
 ms.topic: how-to
 ms.date: 11/19/2024
-ms.custom: ignite-2024-understanding-release
+ms.custom: ignite-2024-understanding-release, references_regions
 ms.author: lajanuar
 ---
 
@@ -43,7 +43,6 @@ To use the Azure AI Content Understanding service, you must create your Azure AI
 
     * **Subscription**. Select one of your available Azure subscriptions.
     * **Resource group**. The [Azure resource group](/azure/cloud-adoption-framework/govern/resource-consistency/resource-access-management#what-is-an-azure-resource-group) that contains your resource. You can create a new group or add it to an existing group.
-    * **Region**. To use Content Understanding, you must create an Azure AI Service resource in a [**supported region**](../language-region-support.md).
     * **Name**. Enter a name for your resource. We recommend using a descriptive name, for example *YourNameAIServicesResource*.
 
 1. Configure other settings for your resource as needed, read, and accept the conditions (as applicable), and then select **Review + create**.
