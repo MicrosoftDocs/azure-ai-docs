@@ -61,6 +61,15 @@ To learn more Content Understanding language support, select a capability from t
 
 |Language|Language code and locale|
 |--------|-------------|
-|English|&bullet; `en-AU` (Australia)</br>&bullet; `en-CA` (Canada)</br>&bullet; `en-GB` (United Kingdom)</br>&bullet;  `en-IN` (India)</br>&bullet; `en-US` (United States)|
+|Chinese Simplified|&bullet; `zh-cn` (Mandarin, Simplified)|
+|English|&bullet;  `en-IN` (India)</br></br>&bullet; `en-US` (United States)|
+|French|&bullet; `fr-FR` (France)|
+|German|&bullet; `de-DE` (Germany)|
+|Hindi|&bullet; `hi-IN` (India)|
+|Italian|&bullet; `it-IT` (Italy)|
+|Japanese|&bullet; `ja-JP` (Japan)|
+|Korean|&bullet; `ko-KR` (Korea)|
+|Portuguese |&bullet; `pt-PT` (Portugal)|
+|Spanish|&bullet; `es-ES` (Spain)</br></br>&bullet; `es-MX` (Mexico) |
 
 
