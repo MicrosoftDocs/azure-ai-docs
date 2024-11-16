@@ -46,7 +46,7 @@ For finer-grained resource access control, you can [add or remove roles](/azure/
 
 The [roles](#roles-for-speech-resources) define what permissions you have. Authentication is required to use the Speech resource. 
 
-o authenticate with Speech resource keys, all you need is the key and region. To authenticate with a Microsoft Entra token, the Speech resource must have a [custom subdomain](speech-services-private-link.md#create-a-custom-domain-name).
+To authenticate with Speech resource keys, all you need is the key and region. To authenticate with a Microsoft Entra token, the Speech resource must have a [custom subdomain](speech-services-private-link.md#create-a-custom-domain-name).
 
 ### Speech SDK authentication
 
