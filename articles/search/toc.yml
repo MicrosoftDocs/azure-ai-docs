@@ -241,10 +241,8 @@ items:
         href: search-howto-schedule-indexers.md
       - name: Define field mappings
         href: search-indexer-field-mappings.md
-      - name: Portal indexing
-        items:
-        - name: Import data wizard
-          href: search-import-data-portal.md
+      - name: Portal wizards (import data)
+        href: search-import-data-portal.md
       - name: Indexing whole files
         items:
         - name: Content metadata properties

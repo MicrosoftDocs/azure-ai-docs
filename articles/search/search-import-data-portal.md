@@ -1,20 +1,20 @@
 ---
 title: Import wizards in Azure portal
 titleSuffix: Azure AI Search
-description: Learn about the import wizards in the Azure portal used to create and load an index, and optionally invoke applied AI for vectorization, natural language processing, translation, OCR, and image analysis.
+description: Learn about the import wizards in the Azure portal used to create and load an index, and optionally invoke applied AI for vectorization, natural language processing, language translation, OCR, and image analysis.
+customer intent: As a developer, I want to use wizards for index creation so that I can query the content quickly.
 author: HeidiSteen
 manager: nitinme
 ms.author: heidist
 ms.service: azure-ai-search
 ms.custom:
-  - ignite-2023
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 11/19/2024
 ---
 
-# Import wizards in Azure AI Search
+# Import data wizards in the Azure portal
 
-Azure AI Search has two import wizards that automate indexing and object definitions so that you can begin querying immediately. If you're new to Azure AI Search, these wizards are one of the most powerful features at your disposal. With minimal effort, you can create an indexing or enrichment pipeline that exercises most of the functionality of Azure AI Search.
+Azure AI Search has two import wizards that automate indexing and object creation so that you can begin querying immediately. If you're new to Azure AI Search, these wizards are one of the most powerful features at your disposal. With minimal effort, you can create an indexing or enrichment pipeline that exercises most of the functionality of Azure AI Search.
 
 The **Import data wizard** supports nonvector workflows. You can extract alphanumeric text from raw documents. You can also configure applied AI and built-in skills that infer structure and generate text searchable content from image files and unstructured data.
 
@@ -22,58 +22,42 @@ The **Import and vectorize data wizard** supports vectorization. You must specif
 
 If you're using the wizard for proof-of-concept testing, this article explains the internal workings of the wizards so that you can use them more effectively.
 
-This article isn't a step by step. For help with using the wizard with built-in sample data see:
+This article isn't a step by step. For help with using the wizard with sample data see:
 
 + [Quickstart: Create a search index](search-get-started-portal.md)
 + [Quickstart: Create a text translation and entity skillset](cognitive-search-quickstart-blob.md)
 + [Quickstart: Create a vector index](search-get-started-portal-import-vectors.md)
 + [Quickstart: image search (vectors)](search-get-started-portal-image-search.md)
 
-## Starting the wizards
+## What the wizards create
 
-1. In the [Azure portal](https://portal.azure.com), open the search service page from the dashboard or [find your service](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices) in the service list. 
+The import wizards create the objects described in the following table. After the objects are created, you can review their JSON definitions in the portal or call them from code.
 
-1. In the service Overview page at the top, select **Import data** or **Import and vectorize data**.
+To view these objects after the wizard runs, [sign in to the Azure portal](https://portal.azure.com), [find your search service](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices), and select **Search management** on the menu to find pages for indexes, indexers, data sources, and skillsets.
 
-    :::image type="content" source="media/search-what-is-an-index/add-index.png" alt-text="Screenshot of the add index options." border="true"::: 
-
-    The wizards open fully expanded in the browser window so that you have more room to work. 
-
-1. If you selected **Import data**, you can select the **Samples** option to use a prebuilt sample of data from a supported data source.
-
-    :::image type="content" source="media/search-what-is-an-index/add-index-import-samples.png" alt-text="Screenshot of the import data page with the samples option selected." border="true":::
-
-1. Follow the remaining steps in the wizard to create the index and indexer.
-
-You can also launch **Import data** from other Azure services, including Azure Cosmos DB, Azure SQL Database, SQL Managed Instance, and Azure Blob Storage. Look for **Add Azure AI Search** in the left-navigation pane on the service overview page.
-
-## Objects created by the wizard
-
-The wizard outputs the objects in the following table. After the objects are created, you can review their JSON definitions in the portal or call them from code.
-
-| Object | Description | 
+| Object | Description |
 |--------|-------------|
 | [Indexer](/rest/api/searchservice/indexers/create)  | A configuration object specifying a data source, target index, an optional skillset, optional schedule, and optional configuration settings for error handing and base-64 encoding. |
 | [Data Source](/rest/api/searchservice/data-sources/create)  | Persists connection information to a [supported data source](search-indexer-overview.md#supported-data-sources) on Azure. A data source object is used exclusively with indexers. | 
 | [Index](/rest/api/searchservice/indexes/create) | Physical data structure used for full text search and other queries. | 
 | [Skillset](/rest/api/searchservice/skillsets/create) | Optional. A complete set of instructions for manipulating, transforming, and shaping content, including analyzing and extracting information from image files. Skillsets are also used for integrated vectorization. Unless the volume of work fall under the limit of 20 transactions per indexer per day, the skillset must include a reference to an Azure AI multiservice resource that provides enrichment. For integrated vectorization, you can use either Azure AI Vision or an embedding model in the Azure AI Studio model catalog. | 
-| [Knowledge store](knowledge-store-concept-intro.md) | Optional. Stores output from in tables and blobs in Azure Storage for independent analysis or downstream processing in nonsearch scenarios. |
+| [Knowledge store](knowledge-store-concept-intro.md) | Optional. Available only in the **Import data** wizard. Stores enriched skillset output from in tables and blobs in Azure Storage for independent analysis or downstream processing in nonsearch scenarios. |
 
 ## Benefits
 
 Before writing any code, you can use the wizards for prototyping and proof-of-concept testing. The wizards connect to external data sources, sample the data to create an initial index, and then import and optionally vectorize the data as JSON documents into an index on Azure AI Search. 
 
-If you're evaluating skillsets, the wizard handles output field mappings and adds helper functions to create usable objects. Text split is added if you specify a parsing mode. Text merge is added if you chose image analysis so that the wizard can reunite text descriptions with image content. Shaper skills added to support valid projections if you chose the knowledge store option. All of the above tasks come with a learning curve. If you're new to enrichment, the ability to have these steps handled for you allows you to measure the value of a skill without having to invest much time and effort.
+If you're evaluating skillsets, the wizard handles output field mappings and adds helper functions to create usable objects. Text split is added if you specify a parsing mode. Text merge is added if you chose image analysis so that the wizard can reunite text descriptions with image content. Shaper skills are added to support valid projections if you chose the knowledge store option. All of the above tasks come with a learning curve. If you're new to enrichment, the ability to have these steps handled for you allows you to measure the value of a skill without having to invest much time and effort.
 
 Sampling is the process by which an index schema is inferred, and it has some limitations. When the data source is created, the wizard picks a random sample of documents to decide what columns are part of the data source. Not all files are read, as this could potentially take hours for very large data sources. Given a selection of documents, source metadata, such as field name or type, is used to create a fields collection in an index schema. Depending on the complexity of source data, you might need to edit the initial schema for accuracy, or extend it for completeness. You can make your changes inline on the index definition page.
 
-Overall, the advantages of using the wizard are clear: as long as requirements are met, you can create a queryable index within minutes. Some of the complexities of indexing, such as serializing data as JSON documents, are handled by the wizard.
+Overall, the advantages of using the wizard are clear: as long as requirements are met, you can create a queryable index within minutes. Some of the complexities of indexing, such as serializing data as JSON documents, are handled by the wizards.
 
 ## Limitations
 
-The wizard isn't without limitations. Constraints are summarized as follows:
+The import wizards aren't without limitations. Constraints are summarized as follows:
 
-+ The wizard doesn't support iteration or reuse. Each pass through the wizard creates a new index, skillset, and indexer configuration. Only data sources can be persisted and reused within the wizard. To edit or refine other objects, either delete the objects and start over, or use the REST APIs or .NET SDK to modify the structures.
++ The wizards don't support iteration or reuse. Each pass through the wizard creates a new index, skillset, and indexer configuration. Only data sources can be persisted and reused within the wizard. To edit or refine other objects, either delete the objects and start over, or use the REST APIs or .NET SDK to modify the structures.
 
 + Source content must reside in a [supported data source](search-indexer-overview.md#supported-data-sources).
 
@@ -81,7 +65,7 @@ The wizard isn't without limitations. Constraints are summarized as follows:
 
 + AI enrichment, as exposed in the portal, is limited to a subset of built-in skills. 
 
-+ A [knowledge store](knowledge-store-concept-intro.md), which can be created by the wizard, is limited to a few default projections and uses a default naming convention. If you want to customize names or projections, you'll need to create the knowledge store through REST API or the SDKs.
++ A [knowledge store](knowledge-store-concept-intro.md), which can be created by the **Import data** wizard, is limited to a few default projections and uses a default naming convention. If you want to customize names or projections, you'll need to create the knowledge store through REST API or the SDKs.
 
 ## Secure connections
 
@@ -117,11 +101,29 @@ The wizard is organized into four main steps:
 
 1. Create an index schema, inferred by sampling source data.
 
-1. Optionally, add applied AI to extract or generate content and structure. Inputs for creating a knowledge store are collected in this step.
+1. Optionally, add skills to extract or generate content and structure. Inputs for creating a knowledge store are collected in this step.
 
 1. Run the wizard to create objects, optionally vectorize data, load data into an index, set a schedule and other configuration options.
 
 The workflow is a pipeline, so it's one way. You can't use the wizard to edit any of the objects that were created, but you can use other portal tools, such as the index or indexer designer or the JSON editors, for allowed updates.
+
+### Starting the wizards
+
+1. In the [Azure portal](https://portal.azure.com), open the search service page from the dashboard or [find your service](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices) in the service list. 
+
+1. In the service Overview page at the top, select **Import data** or **Import and vectorize data**.
+
+    :::image type="content" source="media/search-what-is-an-index/add-index.png" alt-text="Screenshot of the add index options." border="true"::: 
+
+    The wizards open fully expanded in the browser window so that you have more room to work. 
+
+1. If you selected **Import data**, you can select the **Samples** option to use a prebuilt sample of data from a supported data source.
+
+    :::image type="content" source="media/search-what-is-an-index/add-index-import-samples.png" alt-text="Screenshot of the import data page with the samples option selected." border="true":::
+
+1. Follow the remaining steps in the wizard to create the index and indexer.
+
+You can also launch **Import data** from other Azure services, including Azure Cosmos DB, Azure SQL Database, SQL Managed Instance, and Azure Blob Storage. Look for **Add Azure AI Search** in the left-navigation pane on the service overview page.
 
 <a name="data-source-inputs"></a>
 
@@ -188,9 +190,11 @@ Internally, the wizard also sets up the following definitions, which aren't visi
 + [field mappings](search-indexer-field-mappings.md) between the data source and index
 + [output field mappings](cognitive-search-output-field-mapping.md) between skill output and an index
 
-## Next steps
+## Try the wizards
 
-The best way to understand the benefits and limitations of the wizard is to step through it. Here's a quickstart that explains each step.
+The best way to understand the benefits and limitations of the wizard is to step through it. Here are some quickstarts that are based on the wizard.
 
-> [!div class="nextstepaction"]
-> [Quickstart: Create a search index using the Azure portal](search-get-started-portal.md)
++ [Quickstart: Create a search index](search-get-started-portal.md)
++ [Quickstart: Create a text translation and entity skillset](cognitive-search-quickstart-blob.md)
++ [Quickstart: Create a vector index](search-get-started-portal-import-vectors.md)
++ [Quickstart: image search (vectors)](search-get-started-portal-image-search.md)
