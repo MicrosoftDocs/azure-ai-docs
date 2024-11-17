@@ -16,9 +16,9 @@ ms.date: 11/19/2024
 
 Azure AI Search has two import wizards that automate indexing and object creation so that you can begin querying immediately. If you're new to Azure AI Search, these wizards are one of the most powerful features at your disposal. With minimal effort, you can create an indexing or enrichment pipeline that exercises most of the functionality of Azure AI Search.
 
-The **Import data wizard** supports nonvector workflows. You can extract alphanumeric text from raw documents. You can also configure applied AI and built-in skills that infer structure and generate text searchable content from image files and unstructured data.
++ **Import data wizard** supports nonvector workflows. You can extract alphanumeric text from raw documents. You can also configure applied AI and built-in skills that infer structure and generate text searchable content from image files and unstructured data.
 
-The **Import and vectorize data wizard** supports vectorization. You must specify an existing deployment of an embedding model, but the wizard makes the connection, formulates the request, and handles the response. It generates vector content from text or image content.
++ **Import and vectorize data wizard** adds chunking and vectorization. You must specify an existing deployment of an embedding model, but the wizard makes the connection, formulates the request, and handles the response. It generates vector content from text or image content.
 
 If you're using the wizard for proof-of-concept testing, this article explains the internal workings of the wizards so that you can use them more effectively.
 
@@ -33,7 +33,11 @@ This article isn't a step by step. For help with using the wizard with sample da
 
 The import wizards create the objects described in the following table. After the objects are created, you can review their JSON definitions in the portal or call them from code.
 
-To view these objects after the wizard runs, [sign in to the Azure portal](https://portal.azure.com), [find your search service](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices), and select **Search management** on the menu to find pages for indexes, indexers, data sources, and skillsets.
+To view these objects after the wizard runs:
+
+1. [Sign in to the Azure portal](https://portal.azure.com) and [find your search service](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices).
+
+1. Select **Search management** on the menu to find pages for indexes, indexers, data sources, and skillsets.
 
 | Object | Description |
 |--------|-------------|
@@ -101,7 +105,7 @@ The wizard is organized into four main steps:
 
 1. Create an index schema, inferred by sampling source data.
 
-1. Optionally, add skills to extract or generate content and structure. Inputs for creating a knowledge store are collected in this step.
+1. Optionally, it adds skills to extract or generate content and structure. Inputs for creating a knowledge store are collected in this step.
 
 1. Run the wizard to create objects, optionally vectorize data, load data into an index, set a schedule and other configuration options.
 
@@ -109,15 +113,17 @@ The workflow is a pipeline, so it's one way. You can't use the wizard to edit an
 
 ### Starting the wizards
 
+Here's how you start the wizards.
+
 1. In the [Azure portal](https://portal.azure.com), open the search service page from the dashboard or [find your service](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices) in the service list. 
 
 1. In the service Overview page at the top, select **Import data** or **Import and vectorize data**.
 
-    :::image type="content" source="media/search-what-is-an-index/add-index.png" alt-text="Screenshot of the add index options." border="true"::: 
+    :::image type="content" source="media/search-import-data-portal/import-data-cmd.png" alt-text="Screenshot of the import wizard options." border="true":::
 
-    The wizards open fully expanded in the browser window so that you have more room to work. 
+    The wizards open fully expanded in the browser window so that you have more room to work.
 
-1. If you selected **Import data**, you can select the **Samples** option to use a prebuilt sample of data from a supported data source.
+1. If you selected **Import data**, you can select the **Samples** option to index a Microsoft-hosted dataset from a supported data source.
 
     :::image type="content" source="media/search-what-is-an-index/add-index-import-samples.png" alt-text="Screenshot of the import data page with the samples option selected." border="true":::
 

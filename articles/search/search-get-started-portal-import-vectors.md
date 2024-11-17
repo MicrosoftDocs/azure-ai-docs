@@ -42,7 +42,7 @@ The **Import and vectorize data** wizard supports the following data sources:
 + [Azure SQL Database](/azure/azure-sql/database/single-database-create-quickstart), [Azure SQL Managed Instance](/azure/azure-sql/managed-instance/instance-create-quickstart), and Azure SQL Server virtual machines.
 
 > [!NOTE]
-> This quicktart provides steps for data sources that work with whole files: Azure Blob storage, ADLS Gen2, OneLake.
+> This quicktart provides steps for just those data sources that work with whole files: Azure Blob storage, ADLS Gen2, OneLake. For more information about using this wizard with other data soruces, see [Azure Table indexer](search-howto-indexing-azure-tables.md), [Cosmos DB for NoSQL indexer](search-howto-index-cosmosdb.md), and [Azuer SQL indexer](search-howto-connecting-azure-sql-database-to-azure-search-using-indexers.md).
 
 ### Supported embedding models
 
@@ -335,7 +335,7 @@ Chunking is built-in and nonconfigurable. The effective settings are:
 
    + The identity should have a **Cognitive Services OpenAI User** role on the Azure AI multi-services account.
 
-1. Select the checkbox that acknowledges the billing impact of using these resources.
+1. Select the checkbox that acknowledges the billing effects of using these resources.
 
 1. Select **Next**.
 
@@ -359,7 +359,7 @@ Azure AI Search and your Azure AI resource must be in the same region.
 
 1. Optionally, you can crack binary images (for example, scanned document files) and [use OCR](cognitive-search-skill-ocr.md) to recognize text.
 
-1. Select the checkbox that acknowledges the billing impact of using these resources.
+1. Select the checkbox that acknowledges the billing effects of using these resources.
 
 1. Select **Next**.
 

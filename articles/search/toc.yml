@@ -225,6 +225,8 @@ items:
       href: search-how-to-create-search-index.md
     - name: Load an index
       href: search-how-to-load-search-index.md
+    - name: Portal indexing (import data wizards)
+      href: search-import-data-portal.md
     - name: Update or rebuild an index
       href: search-howto-reindex.md
     - name: Alias an index
@@ -241,8 +243,6 @@ items:
         href: search-howto-schedule-indexers.md
       - name: Define field mappings
         href: search-indexer-field-mappings.md
-      - name: Portal wizards (import data)
-        href: search-import-data-portal.md
       - name: Indexing whole files
         items:
         - name: Content metadata properties
@@ -292,11 +292,11 @@ items:
         - name: Azure SQL
           items:
           - name: Azure SQL Databases
-            href: search-howto-connecting-azure-sql-database-to-azure-search-using-indexers.md
+            href: search-how-to-index-sql-database.md
           - name: Azure SQL Managed Instances
-            href: search-howto-connecting-azure-sql-mi-to-azure-search-using-indexers.md
+            href: search-how-to-index-sql-managed-instance.md
           - name: Azure SQL Server VMs
-            href: search-howto-connecting-azure-sql-iaas-to-azure-search-using-indexers.md
+            href: search-how-to-index-sql-server.md
         - name: OneLake files
           href: search-how-to-index-onelake-files.md
         - name: SharePoint in Microsoft 365
