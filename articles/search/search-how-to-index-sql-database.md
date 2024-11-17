@@ -17,7 +17,7 @@ ms.date: 11/20/2024
 
 In this article, learn how to configure an [**indexer**](search-indexer-overview.md) that imports content from Azure SQL Database or an Azure SQL managed instance and makes it searchable in Azure AI Search. 
 
-This article supplements [**Create an indexer**](search-howto-create-indexers.md) with information that's specific to Azure SQL. It uses the Azure portal and REST APIs to demonstrate a three-part workflow common to all indexers: create a data source, create an index, create an indexer. 
+This article supplements [**Create an indexer**](search-howto-create-indexers.md) with information that's specific to Azure SQL. It uses the Azure portal and REST APIs to demonstrate a three-part workflow common to all indexers: create a data source, create an index, create an indexer. Data extraction occurs when you submit the Create Indexer request.
 
 This article also provides:
 
@@ -42,7 +42,9 @@ To work through the examples in this article, you need the Azure portal or a [RE
 
 ## Try with sample data
 
-[Download hotels-azure-sql.sql](hotels/hotel-sql/hotels-azure-sql.sql) from GitHub to create a table on Azure SQL Database that contains a subset of the sample hotels data set.
+Use these instructions to create a table in Azure SQL that you can use with an indexer on Azure AI Search. The portal approach, using either import data wizard, is the quickest way to create and load an index from a table in a SQL database.
+
+1. [Download hotels-azure-sql.sql](https://github.com/Azure-Samples/azure-search-sample-data/tree/main/hotels/hotel-sql) from GitHub to create a table on Azure SQL Database that contains a subset of the sample hotels data set.
 
 1. Sign in to the Azure portal and [create an Azure SQL database and database server](/azure/azure-sql/database/single-database-create-quickstart). Consider configuring both SQL Server authentication and Microsoft Entra ID authentication. If you don't have permissions to configure roles on Azure, you can use SQL authentication as a workaround.
 
@@ -108,11 +110,13 @@ You can use either the **Import data** wizard or **Import and vectorize data** w
 
 1. Specify the server name, database name, and table or view name.
 
-   The portal validates the connection. If the database is unavailable due to inactivity, navigate to the database server page and make sure database status is *online*.
+   The portal validates the connection. If the database is paused due to inactivity, navigate to the database server page and make sure database status is *online*. You can run a query on any table to activate the database.
+
+   :::image type="content" source="media/search-how-to-index-sql-database/database-online.png" alt-text="Screenshot of the database status page in the Azure portal.":::
 
 1. Specify an authentication method, either a SQL Server login defined during server setup, or a managed identity.
 
-   If you [configure Azure AI Search to use a managed identity](search-howto-managed-identities-data-sources.md), and you create a role assignment on the database server that grants **SQL Server Contributor** or **SQL Server DB Contributor** permissions to the identity, you can connect using Microsoft Entra ID and roles.
+   If you [configure Azure AI Search to use a managed identity](search-howto-managed-identities-data-sources.md), and you create a role assignment on the database server that grants **SQL Server Contributor** or **SQL Server DB Contributor** permissions to the identity, your indexer can connect to Azure SQL using Microsoft Entra ID and roles.
 
 1. For the **Import and vectorize data** wizard, you can specify options for change and deletion tracking.
 
@@ -120,7 +124,11 @@ You can use either the **Import data** wizard or **Import and vectorize data** w
 
    + Change tracking is based on [SQL Server integrated change tracking](#sql-integrated-change-tracking-policy) or [high water mark change tracking](#high-water-mark-change-detection-policy).
 
-1. Continue with the remaining steps to complete the wizard. For more information, see [Quickstart: Import data wizard](search-get-started-portal.md) or [Quickstart: Import and vectorize data wizard](search-get-started-portal-import-vectors.md).
+1. Continue with the remaining steps to complete the wizard:
+
+   + [Quickstart: Import data wizard](search-get-started-portal.md)
+
+   + [Quickstart: Import and vectorize data wizard](search-get-started-portal-import-vectors.md)
 
 ## Use the REST APIs
 
@@ -362,6 +370,7 @@ api-key: admin-key
         "container" : { "name" : "table name" },
         "dataChangeDetectionPolicy" : {
             "@odata.type" : "#Microsoft.Azure.Search.SqlIntegratedChangeTrackingPolicy"
+        }
     }
 ```
 

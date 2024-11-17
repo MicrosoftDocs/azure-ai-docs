@@ -42,7 +42,7 @@ The **Import and vectorize data** wizard supports the following data sources:
 + [Azure SQL Database](/azure/azure-sql/database/single-database-create-quickstart), [Azure SQL Managed Instance](/azure/azure-sql/managed-instance/instance-create-quickstart), and Azure SQL Server virtual machines.
 
 > [!NOTE]
-> This quicktart provides steps for just those data sources that work with whole files: Azure Blob storage, ADLS Gen2, OneLake. For more information about using this wizard with other data soruces, see [Azure Table indexer](search-howto-indexing-azure-tables.md), [Cosmos DB for NoSQL indexer](search-howto-index-cosmosdb.md), and [Azuer SQL indexer](search-howto-connecting-azure-sql-database-to-azure-search-using-indexers.md).
+> This quicktart provides steps for just those data sources that work with whole files: Azure Blob storage, ADLS Gen2, OneLake. For more information about using this wizard with other data soruces, see [Azure Table indexer](search-howto-indexing-azure-tables.md), [Cosmos DB for NoSQL indexer](search-howto-index-cosmosdb.md), and [Azuer SQL indexer](search-how-to-index-sql-database.md).
 
 ### Supported embedding models
 
@@ -230,7 +230,7 @@ The next step is to connect to a data source to use for the search index.
 
 ### [Azure Blob Storage](#tab/connect-data-storage)
 
-1. On the **Set up your data connection** page, select **Azure Blob Storage**.
+1. On **Connect to your data**, select **Azure Blob Storage**.
 
 1. Specify the Azure subscription.
 
@@ -256,7 +256,7 @@ The next step is to connect to a data source to use for the search index.
 
 ### [ADLS Gen2](#tab/connect-data-adlsgen2)
 
-1. On the **Set up your data connection** page, select **Azure Data Lake**.
+1. On **Connect to your data**, select **Azure Data Lake**.
 
 1. Specify the Azure subscription.
 
@@ -284,7 +284,7 @@ The next step is to connect to a data source to use for the search index.
 
 Support for OneLake indexing is in preview. For more information about supported shortcuts and limitations, see ([OneLake indexing](search-how-to-index-onelake-files.md)).
 
-1. On the **Set up your data connection** page, select **OneLake**.
+1. On **Connect to your data**, select **OneLake**.
 
 1. Specify the type of connection:
 
@@ -303,7 +303,7 @@ Support for OneLake indexing is in preview. For more information about supported
 
 In this step, specify the embedding model for vectorizing chunked data.
 
-Chunking is built-in and nonconfigurable. The effective settings are:
+Chunking is built in and nonconfigurable. The effective settings are:
 
 ```json
 "textSplitMode": "pages",
