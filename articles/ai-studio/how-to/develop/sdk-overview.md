@@ -89,6 +89,8 @@ project = await AIProjectClient.from_connection_string(
 dotnet add package Azure.AI.Projects
 ```
 
+Create a project client in code:
+
 # [Sync](#tab/sync)
 
 ```csharp
