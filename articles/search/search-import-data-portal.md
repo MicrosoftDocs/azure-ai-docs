@@ -29,6 +29,13 @@ This article isn't a step by step. For help with using the wizard with sample da
 + [Quickstart: Create a vector index](search-get-started-portal-import-vectors.md)
 + [Quickstart: image search (vectors)](search-get-started-portal-image-search.md)
 
+## Supported data sources and scenarios
+
+| Wizard | Skills | Azure blobs | ADLS Gen2 | Azure tables | Azure files | Cosmos DB | Azure SQL | OneLake | SharePoint | MySQL |
+|--|--|--|--|--|--|--|--|--|--|--|
+|Import data | No embedding skills| ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+|Import and vectorize data | All skills | ✅ | ✅ |✅ | ❌ | ✅| ✅ |  ✅ | ❌ | ❌ |
+
 ## What the wizards create
 
 The import wizards create the objects described in the following table. After the objects are created, you can review their JSON definitions in the portal or call them from code.

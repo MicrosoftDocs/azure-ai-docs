@@ -42,7 +42,7 @@ To work through the examples in this article, you need the Azure portal or a [RE
 
 ## Try with sample data
 
-Use these instructions to create a table in Azure SQL that you can use with an indexer on Azure AI Search. The portal approach, using either import data wizard, is the quickest way to create and load an index from a table in a SQL database.
+Use these instructions to create and load a table in Azure SQL Database.
 
 1. [Download hotels-azure-sql.sql](https://github.com/Azure-Samples/azure-search-sample-data/tree/main/hotels/hotel-sql) from GitHub to create a table on Azure SQL Database that contains a subset of the sample hotels data set.
 
@@ -94,6 +94,8 @@ Use these instructions to create a table in Azure SQL that you can use with an i
     ```
 
 The Description field provides the most verbose content. You should target this field for full text search and optional vector queries.
+
+Now that you have a database table, you can use the Azure portal, REST client, or an Azure SDK to index your data.
 
 > [!TIP]
 > Another resource that provides sample content and code can be found on [Azure-Samples/SQL-AI-samples](https://github.com/Azure-Samples/SQL-AI-samples/tree/main/AzureSQLACSSamples/src).

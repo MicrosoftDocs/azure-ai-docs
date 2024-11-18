@@ -1,8 +1,9 @@
 ---
 title: Azure Cosmos DB NoSQL indexer
 titleSuffix: Azure AI Search
-description: Set up a search indexer to index data stored in Azure Cosmos DB for full text search in Azure AI Search. This article explains how index data using the NoSQL API protocol.
+description: Set up a search indexer to index data stored in Azure Cosmos DB for vector and full text search in Azure AI Search. This article explains how index data using the NoSQL API protocol.
 
+manager: nitinme
 author: mgottein
 ms.author: magottei
 ms.service: azure-ai-search
@@ -29,11 +30,11 @@ Because terminology can be confusing, it's worth noting that [Azure Cosmos DB in
 
 + Read permissions. A "full access" connection string includes a key that grants access to the content, but if you're using identities (Microsoft Entra ID), make sure the [search service managed identity](search-howto-managed-identities-data-sources.md) is assigned both **Cosmos DB Account Reader Role** and [**Cosmos DB Built-in Data Reader Role**](/azure/cosmos-db/how-to-setup-rbac#built-in-role-definitions).
 
-To work through the examples in this article, you need the Azure portal or a [REST client](search-get-started-rest.md). If you're using Azure portal, make sure that access to all public networks is enabled in Cosmos DB and that the client has access via an inbound rule. For a REST client that runs locally, configure the network firewall to allow inbound access from your device IP address. Other approaches for creating a Cosmos DB indexer include Azure SDKs.
+To work through the examples in this article, you need the Azure portal or a [REST client](search-get-started-rest.md). If you're using Azure portal, make sure that access to all public networks is enabled. Other approaches for creating a Cosmos DB indexer include Azure SDKs.
 
 ## Try with sample data
 
-Use these instructions to create a container and database in Cosmos DB that you can use with an indexer on Azure AI Search. The portal approach, using either import data wizard, is the quickest way to create and load an index from a container in Cosmos DB.
+Use these instructions to create a container and database in Cosmos DB.
 
 1. [Download HotelsData_toCosmosDB.JSON](https://github.com/HeidiSteen/azure-search-sample-data/blob/main/hotels/HotelsData_toCosmosDB.JSON) from GitHub to create a container in Cosmos DB that contains a subset of the sample hotels data set.
 
@@ -59,7 +60,7 @@ Use these instructions to create a container and database in Cosmos DB that you 
 
 1. Select **Execute query** to run the query and view results. You should have 50 hotel documents.
 
-You can now use this content for indexing in the Azure portal, REST client, or an Azure SDK.
+Now that you have a container, you can use the Azure portal, REST client, or an Azure SDK to index your data.
 
 ## Use the Azure portal
 
@@ -81,7 +82,7 @@ You can use either the **Import data** wizard or **Import and vectorize data** w
 
    [Change detection](#incremental-indexing-and-custom-queries) is supported by default through a `_ts` field (timestamp). If you upload content using the approach described in [Try with sample data](#try-with-sample-data), the collection is created with a `_ts` field.
 
-   [Deletion detection](#indexing-deleted-documents) requires that you have a pre-existing top-level field in the index that can be used as a soft-delete flag. It should be a Boolean field (you could name it IsDeleted). In the search index, add a corresponding search field called *IsDeleted* set to retrievable and filterable. Specify `true` as the soft-delete value.
+   [Deletion detection](#indexing-deleted-documents) requires that you have a pre-existing top-level field in the collection that can be used as a soft-delete flag. It should be a Boolean field (you could name it IsDeleted). Specify `true` as the soft-delete value. In the search index, add a corresponding search field called *IsDeleted* set to retrievable and filterable. 
 
 1. Continue with the remaining steps to complete the wizard:
 
