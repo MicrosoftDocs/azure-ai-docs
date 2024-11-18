@@ -362,9 +362,10 @@ To get access to agents, [sign-up for the private preview](https://nam.dcv.ms/nz
 
 ## Evaluation
 
+::: zone pivot="programming-language-python"
+
 You can use the project client to easily connect to the Azure AI evaluation service, and models needed for running your evaluators.
 
-::: zone pivot="programming-language-python"
 
 ```
 pip install azure-ai-evaluation
@@ -389,7 +390,8 @@ print(violence_score)
 
 ::: zone pivot="programming-language-csharp"
 
-Evaluation is not yet available in C#.
+An Azure AI evaluation package is not yet available for C#. For a sample on how to use Prompty and Semantic Kernel for evaluation, see the [contoso-chat-csharp-prompty](https://github.com/Azure-Samples/contoso-chat-csharp-prompty/blob/main/src/ContosoChatAPI/ContosoChat.Evaluation.Tests/Evalutate.cs) sample.
+
 
 ::: zone-end
 
@@ -399,9 +401,9 @@ To learn more, check out [Evaluation using the SDK](evaluate-sdk.md).
 
 ## Tracing
 
-To enable tracing, first ensure your project has an attached Application Insights resource. Go to the **Tracing** page of your project and follow instructions to create or attach Application Insights.
-
 ::: zone pivot="programming-language-python"
+
+To enable tracing, first ensure your project has an attached Application Insights resource. Go to the **Tracing** page of your project and follow instructions to create or attach Application Insights.
 
 Install the Azure Monitor OpenTelemetry package:
 
@@ -425,7 +427,7 @@ if application_insights_connection_string:
 
 ::: zone pivot="programming-language-csharp"
 
-Tracing is not yet available in C#.
+Tracing is not yet integrated into the projects package. For instructions on how to instrument and log traces from the Azure AI Inferencing package, see [azure-sdk-for-dotnet](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/ai/Azure.AI.Inference/samples/Sample8_ChatCompletionsWithOpenTelemetry.md.).
 
 ::: zone-end
 
