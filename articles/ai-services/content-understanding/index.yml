@@ -19,6 +19,8 @@ landingContent:
         links:
           - text: What is Azure AI Content Understanding?
             url: overview.md
+          - text: Azure AI Content Understanding REST API
+            url: /rest/api/aiservices/
           - text: FAQ
             url: faq.yml
 
@@ -39,9 +41,9 @@ landingContent:
     linkLists:
       - linkListType: quickstart
         links:
-        - text: REST API
+        - text: Try Content Understanding REST API
           url: quickstart/use-rest-api.md
-        - text: Azure AI Foundry
+        - text: Try Azure AI Foundry
           url: image/overview.md
 
   - title: How-to guides

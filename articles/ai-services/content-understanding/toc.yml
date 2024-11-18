@@ -49,3 +49,9 @@ items:
   - name: Video
     href: video/overview.md
     displayName: video, audio, voice, recognition, synthesis, speaker, identification, verification, diarization, transcription, translation, language, understanding, sentiment, analysis, emotion, detection, pronunciation, model
+- Name: Reference
+  items:
+  - name: REST API
+    displayName: quota, tiers, throttle, max, adjustments, requests, support, ocr
+    href: /rest/api/aiservices/
+  
