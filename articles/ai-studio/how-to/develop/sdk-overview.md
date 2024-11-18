@@ -85,23 +85,20 @@ project = await AIProjectClient.from_connection_string(
 
 ::: zone pivot="programming-language-csharp"
 
-```bash
+```dotnet
 dotnet add package Azure.AI.Projects
+dotnet add package Azure.Identity
 ```
 
 Create a project client in code:
 
 # [Sync](#tab/sync)
 
-```csharp
-
-```
+:::code language="csharp" source="~/azureai-samples-csharp/csharp/scenarios/projects/basic-csharp/Program.cs" id="snippet_get_project":::
 
 # [Async](#tab/async)
 
-```csharp
-
-```
+Not yet available in C#.
 
 ::: zone-end
 
@@ -148,13 +145,17 @@ response = openai.chat.completions.create(
 print(response.choices[0].message.content)
 ```
 
-If you’re already using the [Azure OpenAI SDK](../../../ai-services/openai/chatgpt-quickstart.md) directly against the Azure OpenAI Service, the project provides a convenient way to use Azure OpenAI Service capabilities alongside the rest of the AI Foundry capabilities.
-
 ::: zone-end
 
 ::: zone pivot="programming-language-csharp"
 
+If you have existing code that uses the OpenAI SDK, you can use the project client to create an `AzureOpenAI` client that uses your project's Azure OpenAI connection:
+
+:::code language="csharp" source="~/azureai-samples-csharp/csharp/scenarios/projects/basic-csharp/Program.cs" id="azure_openai":::
+
 ::: zone-end
+
+If you’re already using the [Azure OpenAI SDK](../../../ai-services/openai/chatgpt-quickstart.md) directly against the Azure OpenAI Service, the project provides a convenient way to use Azure OpenAI Service capabilities alongside the rest of the AI Foundry capabilities.
 
 ## Azure AI model inference service
 
@@ -170,7 +171,7 @@ Install the `azure-ai-inferencing` client library:
 pip install azure-ai-inference
 ```
 
-You can use the project client to get a configured and authenticated ```ChatCompletionsClient``` or ```EmbeddingsClient```:
+You can use the project client to get a configured and authenticated `ChatCompletionsClient` or `EmbeddingsClient`:
 
 ```Python
 # get an chat inferencing client using the project's default model inferencing endpoint
@@ -191,6 +192,13 @@ print(response.choices[0].message.content)
 ::: zone-end
 
 ::: zone pivot="programming-language-csharp"
+
+```csharp
+dotnet add package Azure.AI.Inference
+```
+You can use the project client to get a configured and authenticated `ChatCompletionsClient` or `EmbeddingsClient`:
+
+:::code language="csharp" source="~/azureai-samples-csharp/csharp/scenarios/projects/basic-csharp/Program.cs" id="snippet_inference":::
 
 ::: zone-end
 
@@ -275,9 +283,9 @@ response = chat.complete(
 
 If you have an Azure AI Search resource connected to your project, you can also use the project client to create an Azure AI Search client using the project connection.
 
-::: zone pivot="programming-language-python"
-
 Install the Azure AI Search client library:
+
+::: zone pivot="programming-language-python"
 
 ```bash
 pip install azure-search-documents
@@ -313,6 +321,13 @@ search_client = SearchClient(
 ::: zone-end
 
 ::: zone pivot="programming-language-csharp"
+
+```dotnet
+dotnet add package Azure.Search.Documents
+```
+Instantiate the search and/or search index client as desired:
+
+:::code language="csharp" source="~/azureai-samples-csharp/csharp/scenarios/projects/basic-csharp/Program.cs" id="azure_aisearch":::
 
 ::: zone-end
 
