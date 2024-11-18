@@ -12,6 +12,7 @@ ms.date: 11/19/2024
 ms.reviewer: dantaylo
 ms.author: sgilley
 author: sdgilley
+zone_pivot_groups: programming-languages-sdk-overview
 ---
 
 # The Azure AI Foundry SDK
@@ -41,6 +42,8 @@ az login
 ```
 
 Install the Azure AI projects client library:
+
+::: zone pivot="programming-language-python"
 
 ```
 pip install azure-ai-projects azure-identity
@@ -76,22 +79,60 @@ project = await AIProjectClient.from_connection_string(
 
 ---
 
+::: zone-end
+
+::: zone pivot="programming-language-csharp"
+
+Install the Azure AI projects client library:
+
+```bash
+dotnet add package Azure.AI.Projects
+```
+
+# [Sync](#tab/sync)
+
+```csharp
+
+```
+
+# [Async](#tab/async)
+
+```csharp
+
+```
+
+::: zone-end
+
 Copy the **Project connection string** from the **Overview** page of the project and update the `project_connection_string` variable above.
 
-Once you have created the project client, you can use the client for the capabilities in the following sections. 
+Once you have created the project client, you can use the client for the capabilities in the following sections.
+
+::: zone pivot="programming-language-python"
 
 Be sure to check out the [reference](https://aka.ms/aifoundrysdk/reference) and [samples](https://aka.ms/azsdk/azure-ai-projects/python/samples).
+
+::: zone-end
+
+::: zone pivot="programming-language-csharp"
+
+Be sure to check out the [reference](https://aka.ms/aifoundrysdk/reference) and [samples](https://aka.ms/azsdk/azure-ai-projects/csharp/samples).
+
+::: zone-end
 
 ## Azure OpenAI Service
 
 The [Azure OpenAI Service](../../../ai-services/openai/overview.md) provides access to OpenAI's models including the GPT-4o, GPT-4o mini, GPT-4, GPT-4 Turbo with Vision, DALLE-3, Whisper, and Embeddings model series with the data residency, scalability, safety, security and enterprise capabilities of Azure.
 
 If you have code that uses the OpenAI SDK, you can easily target your code to use the Azure OpenAI service. First, install the OpenAI SDK:
+
+::: zone pivot="programming-language-python"
+
 ```
 pip install openai
 ```
 
-If you have existing code that uses the OpenAI SDK, you can use the project client to create an ```AzureOpenAI``` client that uses your project's Azure OpenAI connection:
+If you have existing code that uses the OpenAI SDK, you can use the project client to create an `AzureOpenAI` client that uses your project's Azure OpenAI connection:
+
 ```Python
 openai = project.inference.get_azure_openai_client(api_version="2024-06-01")
 response = openai.chat.completions.create(
@@ -106,12 +147,19 @@ print(response.choices[0].message.content)
 ```
 If you’re already using the [Azure OpenAI SDK](../../../ai-services/openai/chatgpt-quickstart.md) directly against the Azure OpenAI Service, the project provides a convenient way to use Azure OpenAI Service capabilities alongside the rest of the AI Foundry capabilities.
 
+::: zone-end
+
+::: zone pivot="programming-language-csharp"
+
+::: zone-end
 
 ## Azure AI model inference service
 
 The [Azure AI model inference service](/azure/ai-studio/ai-services/model-inference) offers access to powerful models from leading providers like OpenAI, Microsoft, Meta, and more. These models support tasks such as content generation, summarization, and code generation. 
 
 To use the model inference service, first ensure that your project has an AI Services connection (in the management center).
+
+::: zone-pivot="programming-language-python"
 
 Install the ```azure-ai-inferencing``` client library:
 
@@ -136,6 +184,11 @@ response = chat.complete(
 
 print(response.choices[0].message.content)
 ```
+::: zone-end
+
+::: zone pivot="programming-language-csharp"
+
+::: zone-end
 
 You can change the model name to any model that you deployed to the inference service or Azure OpenAI service.
 
@@ -146,6 +199,8 @@ To learn more about using the Azure AI inferencing client, check out the [Azure 
 The inferencing client supports for creating prompt messages from templates.  The template allows you to dynamically generate prompts using inputs that are available at runtime.
 
 To use prompt templates, install the `azure-ai-inferencing` package:
+
+::: zone pivot="programming-language-python"
 
 ```
 pip install azure-ai-inference
@@ -174,6 +229,12 @@ print(messages)
 > [!NOTE]
 > Leading whitespace is automatically trimmed from input strings.
 
+::: zone-end
+
+::: zone pivot="programming-language-csharp"
+
+::: zone-end
+
 This code outputs messages that you can then pass to a chat completion call:
 
 ```text
@@ -184,6 +245,8 @@ This code outputs messages that you can then pass to a chat completion call:
 ```
 
 You can also load prompts from a [`Prompty`](https://prompty.ai) file, enabling you to also load the model name and parameters from the `.prompty` file:
+
+::: zone pivot="programming-language-python"
 
 ```Python
 from azure.ai.inference.prompts import PromptTemplate
@@ -197,10 +260,17 @@ response = chat.complete(
     **prompt_template.parameters,
 )
 ```
+::: zone-end
+
+::: zone pivot="programming-language-csharp"
+
+::: zone-end
 
 ## Azure AI Search
 
-If you have an Azure AI Search resource connected to your project, you can also use the project client to create an Azure AI Search client using the project connection. 
+If you have an Azure AI Search resource connected to your project, you can also use the project client to create an Azure AI Search client using the project connection.
+
+::: zone pivot="programming-language-python"
 
 Install the Azure AI Search client library:
 
@@ -235,6 +305,12 @@ search_client = SearchClient(
 )
 ```
 
+::: zone-end
+
+::: zone pivot="programming-language-csharp"
+
+::: zone-end
+
 To learn more about using Azure AI Search, check out [Azure AI Search documentation](/azure/search/).
 
 ## Azure AI agents runtime
@@ -246,11 +322,15 @@ To get access to agents, [sign-up for the private preview](https://nam.dcv.ms/nz
 ## Evaluation
 
 You can use the project client to easily connect to the Azure AI evaluation service, and models needed for running your evaluators.
+
+::: zone pivot="programming-language-python"
+
 ```
 pip install azure-ai-evaluation
 ```
 
 Using the ```project.scope``` parameter, we can instantiate a ```ViolenceEvaluator```:
+
 ```Python
 from azure.ai.evaluation import ViolenceEvaluator
 from azure.identity import DefaultAzureCredential
@@ -264,6 +344,12 @@ violence_eval = ViolenceEvaluator(
 violence_score = violence_eval(query="what's the capital of france", response="Paris")
 print(violence_score)
 ```
+::: zone-end
+
+::: zone pivot="programming-language-csharp"
+
+::: zone-end
+
 NOTE: to run violence evaluators your project needs to be in East US 2, Sweden Central, US North Central, France Central.
 
 To learn more, check out [Evaluation using the SDK](evaluate-sdk.md).
@@ -272,12 +358,16 @@ To learn more, check out [Evaluation using the SDK](evaluate-sdk.md).
 
 To enable tracing, first ensure your project has an attached Application Insights resource. Go to the **Tracing** page of your project and follow instructions to create or attach Application Insights.
 
+::: zone pivot="programming-language-python"
+
 Install the Azure Monitor OpenTelemetry package:
+
 ```
 pip install azure-monitor-opentelemetry
 ```
 
 Use the following code to enable instrumentation of the Azure AI Inference SDK and logging to your AI project:
+
 ```Python
 # Enable instrumentation of AI packages (inference, agents, openai, langchain)
 project.telemetry.enable()
@@ -287,6 +377,12 @@ application_insights_connection_string = project.telemetry.get_connection_string
 if application_insights_connection_string:
     configure_azure_monitor(connection_string=application_insights_connection_string)
 ```
+
+::: zone-end
+
+::: zone pivot="programming-language-csharp"
+
+::: zone-end
 
 ## Related content
 
