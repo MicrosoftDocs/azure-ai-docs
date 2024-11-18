@@ -193,7 +193,7 @@ print(response.choices[0].message.content)
 
 ::: zone pivot="programming-language-csharp"
 
-```csharp
+```dotnet
 dotnet add package Azure.AI.Inference
 ```
 You can use the project client to get a configured and authenticated `ChatCompletionsClient` or `EmbeddingsClient`:
@@ -241,12 +241,6 @@ print(messages)
 > [!NOTE]
 > Leading whitespace is automatically trimmed from input strings.
 
-::: zone-end
-
-::: zone pivot="programming-language-csharp"
-
-::: zone-end
-
 This code outputs messages that you can then pass to a chat completion call:
 
 ```text
@@ -257,8 +251,6 @@ This code outputs messages that you can then pass to a chat completion call:
 ```
 
 You can also load prompts from a [`Prompty`](https://prompty.ai) file, enabling you to also load the model name and parameters from the `.prompty` file:
-
-::: zone pivot="programming-language-python"
 
 ```Python
 from azure.ai.inference.prompts import PromptTemplate
@@ -277,7 +269,16 @@ response = chat.complete(
 
 ::: zone pivot="programming-language-csharp"
 
+```dotnet
+dotnet add package Azure.AI.Inference 
+```
+
+You can render a prompt template from an inline string:
+
+:::code language="csharp" source="~/azureai-samples-csharp/scenarios/projects/basic-csharp/Program.cs" id="azure_aisearch":::
+
 ::: zone-end
+
 
 ## Azure AI Search
 
