@@ -94,7 +94,7 @@ Create a project client in code:
 
 # [Sync](#tab/sync)
 
-:::code language="csharp" source="~/azureai-samples-csharp/csharp/scenarios/projects/basic-csharp/Program.cs" id="snippet_get_project":::
+:::code language="csharp" source="~/azureai-samples-csharp/scenarios/projects/basic-csharp/Program.cs" id="snippet_get_project":::
 
 # [Async](#tab/async)
 
@@ -114,7 +114,7 @@ Be sure to check out the [reference](https://aka.ms/aifoundrysdk/reference) and 
 
 ::: zone pivot="programming-language-csharp"
 
-Be sure to check out the [reference](https://aka.ms/aifoundrysdk/reference) and [samples](https://aka.ms/azsdk/azure-ai-projects/csharp/samples).
+Be sure to check out the [reference](https://aka.ms/aifoundrysdk/reference) and [samples](https://aka.ms/azsdk/azure-ai-projects/samples).
 
 ::: zone-end
 
@@ -151,7 +151,7 @@ print(response.choices[0].message.content)
 
 If you have existing code that uses the OpenAI SDK, you can use the project client to create an `AzureOpenAI` client that uses your project's Azure OpenAI connection:
 
-:::code language="csharp" source="~/azureai-samples-csharp/csharp/scenarios/projects/basic-csharp/Program.cs" id="azure_openai":::
+:::code language="csharp" source="~/azureai-samples-csharp/scenarios/projects/basic-csharp/Program.cs" id="azure_openai":::
 
 ::: zone-end
 
@@ -198,7 +198,7 @@ dotnet add package Azure.AI.Inference
 ```
 You can use the project client to get a configured and authenticated `ChatCompletionsClient` or `EmbeddingsClient`:
 
-:::code language="csharp" source="~/azureai-samples-csharp/csharp/scenarios/projects/basic-csharp/Program.cs" id="snippet_inference":::
+:::code language="csharp" source="~/azureai-samples-csharp/scenarios/projects/basic-csharp/Program.cs" id="snippet_inference":::
 
 ::: zone-end
 
@@ -327,7 +327,7 @@ dotnet add package Azure.Search.Documents
 ```
 Instantiate the search and/or search index client as desired:
 
-:::code language="csharp" source="~/azureai-samples-csharp/csharp/scenarios/projects/basic-csharp/Program.cs" id="azure_aisearch":::
+:::code language="csharp" source="~/azureai-samples-csharp/scenarios/projects/basic-csharp/Program.cs" id="azure_aisearch":::
 
 ::: zone-end
 
