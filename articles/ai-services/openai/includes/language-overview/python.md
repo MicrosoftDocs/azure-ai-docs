@@ -1,5 +1,5 @@
 ---
-title: Azure OpenAI Pythoin support
+title: Azure OpenAI Python support
 titleSuffix: Azure OpenAI Service
 description: Azure OpenAI Python support
 manager: nitinme
@@ -630,7 +630,7 @@ The following errors are automatically retired twice by default with a brief exp
 - Connection Errors
 - 408 Request Timeout
 - 429 Rate Limit
-- >=500 Internal Errors
+- `>=`500 Internal Errors
 
 Use `max_retries` to set/disable the retry behavior:
 

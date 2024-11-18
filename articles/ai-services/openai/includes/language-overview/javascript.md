@@ -140,7 +140,7 @@ The following errors are automatically retired twice by default with a brief exp
 - Connection Errors
 - 408 Request Timeout
 - 429 Rate Limit
-- >=500 Internal Errors
+- `>=`500 Internal Errors
 
 Use `maxRetries` to set/disable the retry behavior:
 

@@ -17,7 +17,7 @@ Unlike the Azure OpenAI client libraries for Python and JavaScript, the Azure Op
 
 Current Azure OpenAI API version target: `2024-10-01-preview`
 
-This is definied in the [**custom_client.go**](https://github.com/Azure/azure-sdk-for-go/blob/9ebef43f64796118ae206a42821d9f541a231daa/sdk/ai/azopenai/custom_client.go#L37) file.
+This is defined in the [**custom_client.go**](https://github.com/Azure/azure-sdk-for-go/blob/9ebef43f64796118ae206a42821d9f541a231daa/sdk/ai/azopenai/custom_client.go#L37) file.
 
 ## Installation
 
