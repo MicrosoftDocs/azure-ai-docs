@@ -16,8 +16,6 @@ ms.custom:
 
 # Reference: Image Embeddings | Azure AI Studio
 
-[!INCLUDE [feature-preview](../includes/feature-preview.md)]
-
 Creates an embedding vector representing the input image and text pair.
 
 ```http

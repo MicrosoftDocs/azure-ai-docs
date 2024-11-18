@@ -16,8 +16,6 @@ ms.custom:
 
 # Reference: Chat Completions | Azure AI Studio
 
-[!INCLUDE [feature-preview](../includes/feature-preview.md)]
-
 Creates a model response for the given chat conversation.
 
 ```http
