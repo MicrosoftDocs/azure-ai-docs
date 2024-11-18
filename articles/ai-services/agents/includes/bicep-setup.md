@@ -18,7 +18,7 @@ The following section will show you how to set up an [Azure AI hub and project](
 1. Connecting an Azure OpenAI resource or an Azure AI resource
 
 
-1. Install [the Azure CLI](https://learn.microsoft.com/cli/azure/install-azure-cli-windows?tabs=azure-cli). If you have the CLI already installed, make sure it is updated to the latest version.
+1. Install [the Azure CLI](/cli/azure/install-azure-cli-windows?tabs=azure-cli). If you have the CLI already installed, make sure it is updated to the latest version.
 
 1. Register providers.
 

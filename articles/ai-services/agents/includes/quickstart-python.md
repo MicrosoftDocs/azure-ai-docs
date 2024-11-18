@@ -11,7 +11,7 @@ ms.date: 11/13/2024
 
 * An Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services).
 * [Python 3.13 or later](https://www.python.org/)
-* Make sure you have the **Azure AI Developer** [RBAC role](../../../ai-studio/concepts/rbac-ai-studio) assigned at the appropriate level.
+* Make sure you have the **Azure AI Developer** [RBAC role](../../../ai-studio/concepts/rbac-ai-studio.md) assigned at the appropriate level.
 
 [!INCLUDE [bicep-setup](bicep-setup.md)]
 
