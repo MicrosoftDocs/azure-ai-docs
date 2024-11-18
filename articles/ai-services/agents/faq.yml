@@ -57,4 +57,4 @@ sections:
       - question: |
           Does the AI Agent Service API support non-Azure OpenAI models?   
         answer: |
-          AI Agent Service API only supports Azure OpenAI models.
+          yes, the AI Agent Service API supports non-Azure OpenAI models, see the [models](./concepts/model-region-support.md) page for more information.
