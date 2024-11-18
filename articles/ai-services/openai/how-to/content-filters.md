@@ -48,10 +48,10 @@ You can configure the following filter categories in addition to the default har
 
 ## Configure content filters with Azure AI Studio
 
-The following steps show how to set up a customized content filtering configuration for your resource.
+The following steps show how to set up a customized content filtering configuration for your Azure OpenAI resource within AI Studio. For guidance with content filters in your Azure AI Studio project, you can read more at [Azure AI Studio content filtering](/azure/ai-studio/concepts/content-filtering).
 
-1. Go to Azure AI Studio and navigate to the **Safety + security** page on the left menu. Then select the **Content filter** tab.
-1. Create a new customized content filtering configuration.
+1. Go to Azure AI Studio and navigate to the **Safety + security** page on the left menu.
+1. Proceed to the **Content filters** tab and create a new customized content filtering configuration. 
 
     This leads to the following configuration view, where you can choose a name for the custom content filtering configuration. After entering a name, you can configure the **input filters** (for user prompts) and **output filters** (for model completion). 
 
