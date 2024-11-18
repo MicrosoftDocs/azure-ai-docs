@@ -41,7 +41,7 @@ No extra set-up is necessary. Content credentials are automatically applied to a
 
 You can check the content credentials of a text to speech avatar via either of the following methods:
 
-1. **Content Credentials Verify webpage ([contentcredentials.org/verify](https://contentcredentials.org/verify))**: This is a tool that allows users to inspect the Content Credentials of a piece of content. If an uploaded video is created with Azure text to speech avatar, the tool will show that and display the issued date and time of the Content Credential. Below image is an example of a video generated with Azure text to speech avatar which shows a Content Credential issued by Microsoft with a time stamp included.
+1. **Content Credentials Verify webpage ([contentcredentials.org/verify](https://contentcredentials.org/verify))**: This is a tool that allows users to inspect the Content Credentials of content such as a video. If an uploaded video of a text to speech avatar is created with the Speech service, the tool will show that and display the issued date and time of the Content Credentials. This screenshot shows an example avatar video upload result where the Content Credentials were issued by Microsoft.
 
   :::image type="content" source="media/avatar-content-credentials-verify.png" alt-text="Screenshot of the content credential verification website.":::
 
