@@ -102,7 +102,7 @@ Not yet available in C#.
 
 ::: zone-end
 
-Copy the **Project connection string** from the **Overview** page of the project and update the `project_connection_string` variable above.
+Copy the **Project connection string** from the **Overview** page of the project and update the connections string value above.
 
 Once you have created the project client, you can use the client for the capabilities in the following sections.
 
@@ -114,7 +114,7 @@ Be sure to check out the [reference](https://aka.ms/aifoundrysdk/reference) and 
 
 ::: zone pivot="programming-language-csharp"
 
-Be sure to check out the [reference](https://aka.ms/aifoundrysdk/reference) and [samples](https://aka.ms/azsdk/azure-ai-projects/samples).
+Be sure to check out the [reference](https://aka.ms/aifoundrysdk/reference) and [samples](https://aka.ms/azsdk/azure-ai-projects/csharp/samples).
 
 ::: zone-end
 
