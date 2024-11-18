@@ -386,18 +386,19 @@ violence_eval = ViolenceEvaluator(
 violence_score = violence_eval(query="what's the capital of france", response="Paris")
 print(violence_score)
 ```
+
+NOTE: to run violence evaluators your project needs to be in East US 2, Sweden Central, US North Central, France Central.
+
+To learn more, check out [Evaluation using the SDK](evaluate-sdk.md).
+
 ::: zone-end
 
 ::: zone pivot="programming-language-csharp"
 
 An Azure AI evaluation package is not yet available for C#. For a sample on how to use Prompty and Semantic Kernel for evaluation, see the [contoso-chat-csharp-prompty](https://github.com/Azure-Samples/contoso-chat-csharp-prompty/blob/main/src/ContosoChatAPI/ContosoChat.Evaluation.Tests/Evalutate.cs) sample.
 
-
 ::: zone-end
 
-NOTE: to run violence evaluators your project needs to be in East US 2, Sweden Central, US North Central, France Central.
-
-To learn more, check out [Evaluation using the SDK](evaluate-sdk.md).
 
 ## Tracing
 
