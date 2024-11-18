@@ -1,5 +1,5 @@
 ---
-title: Quickstart - Create a new Azure AI Agent Service project.
+title: Quickstart - Create a new Azure AI Agent Service project
 titleSuffix: Azure AI services
 description: Use this guide to start using Azure AI Agent Service.
 manager: nitinme

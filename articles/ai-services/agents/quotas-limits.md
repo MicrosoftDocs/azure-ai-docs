@@ -15,7 +15,7 @@ recommendations: false
 
 This article contains a reference and a detailed description of the quotas and limits for Azure AI Agent Service.
 
-## Quotas and limits for the Azure AI Agent Service service
+## Quotas and limits for the Azure AI Agent Service
 
 The following sections provide you with a guide to the default quotas and limits that apply to Azure AI Agent Service:
 

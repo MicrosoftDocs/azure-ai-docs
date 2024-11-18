@@ -32,7 +32,7 @@ To create a project in Azure AI Foundry, follow these steps:
 
 1. Select a hub from the dropdown to host your project. For information about the relationship between hubs and projects, see the hubs and projects overview documentation. If you don't yet have a hub, select **Create a new hub**.
 
-    :::image type="content" source="../../../ai-studio/media/how-to/projects/projects-create-details.png" alt-text="a screenshot showing project and hub creation." lightbox="../../../ai-studio/media/how-to/projects/projects-create-details.png":::
+    :::image type="content" source="../../../ai-studio/media/how-to/projects/projects-create-details.png" alt-text="A screenshot showing project and hub creation." lightbox="../../../ai-studio/media/how-to/projects/projects-create-details.png":::
 
 1. In the left navigation menu, select **Agents**. Make sure your resource is selected, then click **Let's go**.
 
