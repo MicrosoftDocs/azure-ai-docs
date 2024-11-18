@@ -16,3 +16,7 @@ items:
       href: faq.yml
 - name: Quickstart
   href: quickstart.md
+- name: How-to
+  items:
+    - name: Code interpreter
+      href: how-to/tools/code-interpreter.md
