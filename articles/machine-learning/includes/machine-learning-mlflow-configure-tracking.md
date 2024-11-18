@@ -2,7 +2,7 @@
 author: santiagxf
 ms.service: azure-machine-learning
 ms.topic: include
-ms.date: 01/02/2023
+ms.date: 11/20/2024
 ms.author: fasantia
 ---
 
@@ -15,8 +15,8 @@ ms.author: fasantia
     1. Sign in and configure your workspace:
     
         ```bash
-        az account set --subscription <subscription>
-        az configure --defaults workspace=<workspace> group=<resource-group> location=<location> 
+        az account set --subscription <subscription-ID>
+        az configure --defaults workspace=<workspace-name> group=<resource-group-name> location=<location> 
         ```
     
     1. Get the tracking URI by using the `az ml workspace` command:
@@ -25,7 +25,7 @@ ms.author: fasantia
         az ml workspace show --query mlflow_tracking_uri
         ```
         
-    # [Python](#tab/python)
+    # [Python SDK](#tab/python)
     
     [!INCLUDE [sdk v2](machine-learning-sdk-v2.md)]
     
@@ -97,7 +97,7 @@ ms.author: fasantia
     > If you use a private link-enabled workspace, the MLflow endpoint also uses a private link to communicate with Azure Machine Learning. As a result, the tracking URI uses a format that's different from the one in this article. In this case, you need to use the Azure Machine Learning SDK for Python or the Azure Machine Learning CLI v2 to get the tracking URI.
     
     ```python
-    region = "<region>"
+    region = '<region>'
     subscription_id = '<subscription-ID>'
     resource_group = '<resource-group-name>'
     workspace_name = '<workspace-name>'
@@ -121,7 +121,7 @@ ms.author: fasantia
     
     # [Environment variables](#tab/environ)
     
-    In your compute instance, use the following code to set the [MLFLOW_TRACKING_URI](https://mlflow.org/docs/latest/tracking.html#logging-to-a-tracking-server) MLflow environment variable to the tracking URI of your workspace. This assignment makes all interactions with MLflow in that compute instance point to Azure Machine Learning by default.
+    In your compute instance, use the following code to set the `MLFLOW_TRACKING_URI` MLflow environment variable to the tracking URI of your workspace. This assignment makes all interactions with MLflow in that compute instance point to Azure Machine Learning by default. For more information, see [Logging functions](https://mlflow.org/docs/latest/tracking/tracking-api.html#logging-functions).
     
     ```bash
     MLFLOW_TRACKING_URI=$(az ml workspace show --query mlflow_tracking_uri | sed 's/"//g') 
