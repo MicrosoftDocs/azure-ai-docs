@@ -9,7 +9,7 @@ ms.author: heidist
 ms.service: azure-ai-search
 ms.custom:
 ms.topic: concept-article
-ms.date: 11/19/2024
+ms.date: 11/20/2024
 ---
 
 # Import data wizards in the Azure portal

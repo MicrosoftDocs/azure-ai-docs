@@ -8,7 +8,7 @@ ms.service: azure-ai-search
 ms.custom:
   - build-2024
 ms.topic: quickstart
-ms.date: 11/19/2024
+ms.date: 11/20/2024
 ---
 
 # Quickstart: Vectorize text and images by using the Azure portal
@@ -37,12 +37,12 @@ The **Import and vectorize data** wizard supports the following data sources:
 
 + [OneLake lakehouse (preview)](search-how-to-index-onelake-files.md).
 
-+ [Azure Cosmos DB](/azure/cosmos-db/nosql/quickstart-portal) for NoSQL, Mongo DB, and Apache Gremlin (preview).
++ [Azure Cosmos DB](/azure/cosmos-db/nosql/quickstart-portal) for NoSQL, MongoDB, and Apache Gremlin (preview).
 
 + [Azure SQL Database](/azure/azure-sql/database/single-database-create-quickstart), [Azure SQL Managed Instance](/azure/azure-sql/managed-instance/instance-create-quickstart), and Azure SQL Server virtual machines.
 
 > [!NOTE]
-> This quicktart provides steps for just those data sources that work with whole files: Azure Blob storage, ADLS Gen2, OneLake. For more information about using this wizard with other data soruces, see [Azure Table indexer](search-howto-indexing-azure-tables.md), [Cosmos DB for NoSQL indexer](search-howto-index-cosmosdb.md), and [Azuer SQL indexer](search-how-to-index-sql-database.md).
+> This quicktart provides steps for just those data sources that work with whole files: Azure Blob storage, ADLS Gen2, OneLake. To use the wizard with other data sources, see [Azure Table indexer](search-howto-indexing-azure-tables.md), [Cosmos DB for NoSQL indexer](search-howto-index-cosmosdb.md), and [Azuer SQL indexer](search-how-to-index-sql-database.md).
 
 ### Supported embedding models
 
@@ -471,6 +471,7 @@ Search Explorer accepts text strings as input and then vectorizes the text for v
           }
        ]
    }
+   ```
 
 ## Clean up
 

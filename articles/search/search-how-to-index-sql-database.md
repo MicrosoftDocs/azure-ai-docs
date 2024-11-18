@@ -42,7 +42,7 @@ To work through the examples in this article, you need the Azure portal or a [RE
 
 ## Try with sample data
 
-Use these instructions to create and load a table in Azure SQL Database.
+Use these instructions to create and load a table in Azure SQL Database for testing purposes.
 
 1. [Download hotels-azure-sql.sql](https://github.com/Azure-Samples/azure-search-sample-data/tree/main/hotels/hotel-sql) from GitHub to create a table on Azure SQL Database that contains a subset of the sample hotels data set.
 
@@ -102,7 +102,7 @@ Now that you have a database table, you can use the Azure portal, REST client, o
 
 ## Use the Azure portal
 
-You can use either the **Import data** wizard or **Import and vectorize data** wizard to automate indexing from an SQL database table or view. The data source configuration similar for both wizards.
+You can use either the **Import data** wizard or **Import and vectorize data** wizard to automate indexing from an SQL database table or view. The data source configuration is similar for both wizards.
 
 1. [Start the wizard](search-import-data-portal.md#starting-the-wizards).
 

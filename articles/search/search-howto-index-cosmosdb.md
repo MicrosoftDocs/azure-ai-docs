@@ -24,7 +24,7 @@ Because terminology can be confusing, it's worth noting that [Azure Cosmos DB in
 
 ## Prerequisites
 
-+ An [Azure Cosmos DB account, database, container and items](/azure/cosmos-db/sql/create-cosmosdb-resources-portal). Use the same region for both Azure AI Search and Azure Cosmos DB for lower latency and to avoid bandwidth charges.
++ An [Azure Cosmos DB account, database, container, and items](/azure/cosmos-db/sql/create-cosmosdb-resources-portal). Use the same region for both Azure AI Search and Azure Cosmos DB for lower latency and to avoid bandwidth charges.
 
 + An [automatic indexing policy](/azure/cosmos-db/index-policy) on the Azure Cosmos DB collection, set to [Consistent](/azure/cosmos-db/index-policy#indexing-mode). This is the default configuration. Lazy indexing isn't recommended and can result in missing data.
 
@@ -34,7 +34,7 @@ To work through the examples in this article, you need the Azure portal or a [RE
 
 ## Try with sample data
 
-Use these instructions to create a container and database in Cosmos DB.
+Use these instructions to create a container and database in Cosmos DB for testing purposes.
 
 1. [Download HotelsData_toCosmosDB.JSON](https://github.com/HeidiSteen/azure-search-sample-data/blob/main/hotels/HotelsData_toCosmosDB.JSON) from GitHub to create a container in Cosmos DB that contains a subset of the sample hotels data set.
 
@@ -62,9 +62,11 @@ Use these instructions to create a container and database in Cosmos DB.
 
 Now that you have a container, you can use the Azure portal, REST client, or an Azure SDK to index your data.
 
+The Description field provides the most verbose content. You should target this field for full text search and optional vector queries.
+
 ## Use the Azure portal
 
-You can use either the **Import data** wizard or **Import and vectorize data** wizard to automate indexing from an SQL database table or view. The data source configuration similar for both wizards.
+You can use either the **Import data** wizard or **Import and vectorize data** wizard to automate indexing from an SQL database table or view. The data source configuration is similar for both wizards.
 
 1. [Start the wizard](search-import-data-portal.md#starting-the-wizards).
 
@@ -76,7 +78,7 @@ You can use either the **Import data** wizard or **Import and vectorize data** w
 
 1. Specify an authentication method, either a managed identity or built-in API key. If you don't specify a managed identity connection, the portal uses the key.
 
-   If you [configure Azure AI Search to use a managed identity](search-howto-managed-identities-data-sources.md), and you create a role assignment on Cosmos DB that grants **Cosmos DB Account Reader Role** and [**Cosmos DB Built-in Data Reader Role**](/azure/cosmos-db/how-to-setup-rbac#built-in-role-definitions) permissions to the identity, your indexer can connect to Cosmos DB using Microsoft Entra ID and roles.
+   If you [configure Azure AI Search to use a managed identity](search-howto-managed-identities-data-sources.md), and you create a [role assignment on Cosmos DB](/azure/cosmos-db/how-to-setup-rbac#built-in-role-definitions) that grants **Cosmos DB Account Reader** and **Cosmos DB Built-in Data Reader** permissions to the identity, your indexer can connect to Cosmos DB using Microsoft Entra ID and roles.
 
 1. For the **Import and vectorize data** wizard, you can specify options for change and deletion tracking.
 
@@ -140,7 +142,7 @@ The data source definition specifies the data to index, credentials, and policie
 
 Indexers can connect to a collection using the following connections.
 
-Avoid port numbers in the endpoint URL. If you include the port number, the connection will fail. 
+Avoid port numbers in the endpoint URL. If you include the port number, the connection fails. 
 
 | Full access connection string |
 |-----------------------------------------------|
