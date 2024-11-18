@@ -42,7 +42,7 @@ The Face Identify API uses container data structures to the hold face recognitio
 
 ### Person Directory 
 
-**PersonDirectory** is the newest data structure of this kind. It supports a larger scale and higher accuracy. Each Azure Face resource has a single default **PersonDirectory** data structure. It's a flat list of **PersonDirectoryPerson** objects - it can hold up to 75 million.
+**PersonDirectory** is the newest data structure of this kind. It supports a larger scale and higher accuracy. Each Azure Face resource has a single default **PersonDirectory** data structure. It's a flat list of **PersonDirectoryPerson** objects - it can hold up to 20 million.
 
 **PersonDirectoryPerson** represents a person to be identified. Updated from the **PersonGroupPerson** model, it allows you to add faces from different recognition models to the same person. However, the Identify operation can only match faces obtained with the same recognition model. 
 

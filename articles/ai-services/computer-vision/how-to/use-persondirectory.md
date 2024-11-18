@@ -23,7 +23,7 @@ To perform face recognition operations such as Identify and Find Similar, Face A
 
 ## Advantages of PersonDirectory
 
-Currently, the Face API offers the **LargePersonGroup** structure, which has similar functionality but is limited to 1 million identities. The **PersonDirectory** structure can scale up to 75 million identities.
+Currently, the Face API offers the **LargePersonGroup** structure, which has similar functionality but is limited to 1 million identities. The **PersonDirectory** structure can scale up to 20 million identities.
 
 Another major difference between **PersonDirectory** and previous data structures is that you'll no longer need to make any Train API calls after adding faces to a **Person** object&mdash;the update process happens automatically.
 
