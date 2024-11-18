@@ -31,10 +31,48 @@ This article isn't a step by step. For help with using the wizard with sample da
 
 ## Supported data sources and scenarios
 
-| Wizard | Skills | Azure blobs | ADLS Gen2 | Azure tables | Azure files | Cosmos DB | Azure SQL | OneLake | SharePoint | MySQL |
-|--|--|--|--|--|--|--|--|--|--|--|
-|Import data | No embedding skills| ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-|Import and vectorize data | All skills | ✅ | ✅ |✅ | ❌ | ✅| ✅ |  ✅ | ❌ | ❌ |
+| Data | Import data wizard | Import and vectorize data wizard |
+|------|--------------------|----------------------------------|
+| [Azure blobs](search-howto-indexing-azure-blob-storage.md) | ✅ | ✅ |
+| [ADLS Gen2](search-howto-index-azure-data-lake-storage.md)  | ✅ | ✅ |
+| [Azure tables](search-howto-indexing-azure-tables.md)  | ✅ | ✅ |
+| [Azure files](search-file-storage-integration.md)  | ✅ | ❌ |
+| [Azure SQL](search-how-to-index-sql-database.md)  | ✅ | ✅ |
+| [Cosmos DB](search-howto-index-cosmosdb.md)  | ✅ | ✅ |
+| [MySQL](search-howto-index-mysql.md)  | ✅ | ❌ |
+| [OneLake](search-how-to-index-onelake-files.md)  | ✅ | ✅ |
+| [SharePoint](search-howto-index-sharepoint-online.md)  | ✅ | ❌ |
+
+Microsoft hosts ready-to-use hotels and real estate datasets so that you can omit a data source configuration step on a wizard workflow.
+
+| Sample data | Import data wizard | Import and vectorize data wizard |
+|------|--------------------|----------------------------------|
+| hotels | ✅ | ❌ |
+| real estate  | ✅ | ❌ |
+
+The wizards generate skillset and output field mappings based on options you select. You can modify a skillset's JSON definition to add more skills later. Text Split and Text Merge are added for data chunking if you choose an embedding model, and for other skills if the granularity is set to pages or sentences. Shaper is added if you configure a knowledge store.
+
+| Skills | Import data wizard | Import and vectorize data wizard |
+|------|--------------------|----------------------------------|
+| [AI Vision multimodal](cognitive-search-skill-vision-vectorize.md)  | ❌ | ✅ |
+| [Azure OpenAI embedding](cognitive-search-skill-azure-openai-embedding.md)  | ❌ | ✅ |
+| [Azure Machine Learning (AI Studio model catalog)](cognitive-search-aml-skill.md)  | ❌ | ✅ |
+| [Document layout](cognitive-search-skill-document-intelligence-layout.md)  | ❌ | ✅ |
+| [Entity recognition](cognitive-search-skill-entity-recognition-v3.md)  | ✅ | ❌ |
+| [Keyword extraction](cognitive-search-skill-keyphrases.md)  | ✅ | ❌ |
+| [Language detection](cognitive-search-skill-language-detection.md)  | ✅ | ❌ |
+| [Text translation](cognitive-search-skill-text-translation.md)  | ✅ | ❌ |
+| [PII detection](cognitive-search-skill-pii-detection.md)  | ✅ | ❌ |
+| [Sentiment analysis](cognitive-search-skill-sentiment.md)  | ✅ | ❌ |
+| [Shaper (applies to knowledge store)](cognitive-search-skill-shaper.md)  | ✅ | ❌ |
+| [Text Split](cognitive-search-skill-textsplit.md)  | ✅ | ✅ |
+| [Text Merge](cognitive-search-skill-textmerger.md)  | ✅ | ✅ |
+
+You can [generate a knowledge store](knowledge-store-create-portal.md) for secondary storage of enriched (skills-generated) content. You might want a knowledge store for information retrieval workflows that don't require a search engine.
+
+| Knowledge store | Import data wizard | Import and vectorize data wizard |
+|------|--------------------|----------------------------------|
+| storage | ✅ | ❌ |
 
 ## What the wizards create
 
@@ -176,7 +214,7 @@ Because sampling is an imprecise exercise, review the index for the following co
 
 1. Set attributes to determine how that field is used in an index. 
 
-   Take your time with this step because attributes determine the physical expression of fields in the index. If you want to change attributes later, even programmatically, you'll almost always need to drop and rebuild the index. Core attributes like **Searchable** and **Retrievable** have a [negligible impact on storage](search-what-is-an-index.md#index-size). Enabling filters and using suggesters increase storage requirements. 
+   Take your time with this step because attributes determine the physical expression of fields in the index. If you want to change attributes later, even programmatically, you'll almost always need to drop and rebuild the index. Core attributes like **Searchable** and **Retrievable** have a [negligible effect on storage](search-what-is-an-index.md#index-size). Enabling filters and using suggesters increase storage requirements. 
 
    + **Searchable** enables full-text search. Every field used in free form queries or in query expressions must have this attribute. Inverted indexes are created for each field that you mark as **Searchable**.
 
