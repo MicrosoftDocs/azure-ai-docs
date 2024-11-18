@@ -59,7 +59,9 @@ Microsoft hosts sample data so that you can omit a data source configuration ste
 
 ### Skills
 
-The wizards generate skillset and output field mappings based on options you select. You can modify a skillset's JSON definition to add more skills later. Text Split and Text Merge are added for data chunking if you choose an embedding model, and for other skills if the granularity is set to pages or sentences. Shaper is added if you configure a knowledge store.
+The wizards generate skillset and output field mappings based on options you select. You can modify a skillset's JSON definition to add more skills later.
+
+OCR and image analysis options are available for blobs and whole-file indexing in OneLake, assuming the default parsing mode. Shaper is added if you configure a knowledge store. Text Split and Text Merge are added for data chunking if you choose an embedding model, and for other skills if the granularity is set to pages or sentences.
 
 | Skills | Import data wizard | Import and vectorize data wizard |
 |------|--------------------|----------------------------------|
@@ -68,9 +70,11 @@ The wizards generate skillset and output field mappings based on options you sel
 | [Azure Machine Learning (AI Studio model catalog)](cognitive-search-aml-skill.md)  | ❌ | ✅ |
 | [Document layout](cognitive-search-skill-document-intelligence-layout.md)  | ❌ | ✅ |
 | [Entity recognition](cognitive-search-skill-entity-recognition-v3.md)  | ✅ | ❌ |
+| [Image analysis (applies to blobs, default parsing, whole file indexing](cognitive-search-skill-image-analysis.md)  | ✅ | ❌ |
 | [Keyword extraction](cognitive-search-skill-keyphrases.md)  | ✅ | ❌ |
 | [Language detection](cognitive-search-skill-language-detection.md)  | ✅ | ❌ |
 | [Text translation](cognitive-search-skill-text-translation.md)  | ✅ | ❌ |
+| [OCR (applies to blobs, default parsing, whole file indexing)](cognitive-search-skill-ocr.md)  | ✅ | ✅ |
 | [PII detection](cognitive-search-skill-pii-detection.md)  | ✅ | ❌ |
 | [Sentiment analysis](cognitive-search-skill-sentiment.md)  | ✅ | ❌ |
 | [Shaper (applies to knowledge store)](cognitive-search-skill-shaper.md)  | ✅ | ❌ |

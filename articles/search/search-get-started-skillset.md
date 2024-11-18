@@ -10,7 +10,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: quickstart
-ms.date: 10/15/2024
+ms.date: 11/20/2024
 ---
 
 # Quickstart: Create a skillset in the Azure portal
@@ -83,6 +83,8 @@ If you get *Error detecting index schema from data source*, the indexer that pow
 ### Step 2: Add cognitive skills
 
 Next, configure AI enrichment to invoke OCR, image analysis, and natural language processing. 
+
+OCR and image analysis are available for blobs in Azure Blob Storage and Azure Data Lake Storage (ADLS) Gen2, and for image content in OneLake. Images can be standalone files or embedded images in a PDF or other files.
 
 1. For this quickstart, we're using the **Free** Azure AI services resource. The sample data consists of 14 files, so the free allotment of 20 transactions on Azure AI services is sufficient for this quickstart. 
 

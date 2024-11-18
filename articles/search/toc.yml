@@ -37,7 +37,7 @@ items:
     - name: Create a demo app
       href: search-create-app-portal.md
     - name: Create a skillset
-      href: cognitive-search-quickstart-blob.md
+      href: search-get-started-skillset.md
     - name: Create a knowledge store
       href: knowledge-store-create-portal.md
     - name: Query with Search Explorer

@@ -42,7 +42,7 @@ The **Import and vectorize data** wizard supports the following data sources:
 + [Azure SQL Database](/azure/azure-sql/database/single-database-create-quickstart), [Azure SQL Managed Instance](/azure/azure-sql/managed-instance/instance-create-quickstart), and Azure SQL Server virtual machines.
 
 > [!NOTE]
-> This quicktart provides steps for just those data sources that work with whole files: Azure Blob storage, ADLS Gen2, OneLake. To use the wizard with other data sources, see [Azure Table indexer](search-howto-indexing-azure-tables.md), [Cosmos DB for NoSQL indexer](search-howto-index-cosmosdb.md), and [Azuer SQL indexer](search-how-to-index-sql-database.md).
+> This quicktart provides steps for just those data sources that work with whole files: Azure Blob sSazure-tables.md), [Cosmos DB for NoSQL indexer](search-howto-index-cosmosdb.md), and [Azuer SQL indexer](search-how-to-index-sql-database.md).
 
 ### Supported embedding models
 
