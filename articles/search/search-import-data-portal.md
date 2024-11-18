@@ -31,24 +31,33 @@ This article isn't a step by step. For help with using the wizard with sample da
 
 ## Supported data sources and scenarios
 
+The wizards support most of the data sources supported by indexers.
+
 | Data | Import data wizard | Import and vectorize data wizard |
 |------|--------------------|----------------------------------|
-| [Azure blobs](search-howto-indexing-azure-blob-storage.md) | ✅ | ✅ |
 | [ADLS Gen2](search-howto-index-azure-data-lake-storage.md)  | ✅ | ✅ |
-| [Azure tables](search-howto-indexing-azure-tables.md)  | ✅ | ✅ |
+| [Azure blobs](search-howto-indexing-azure-blob-storage.md) | ✅ | ✅ |
 | [Azure files](search-file-storage-integration.md)  | ✅ | ❌ |
-| [Azure SQL](search-how-to-index-sql-database.md)  | ✅ | ✅ |
-| [Cosmos DB](search-howto-index-cosmosdb.md)  | ✅ | ✅ |
+| [Azure tables](search-howto-indexing-azure-tables.md)  | ✅ | ✅ |
+| [Azure SQL database and managed instance](search-how-to-index-sql-database.md)  | ✅ | ✅ |
+| [Cosmos DB for NoSQL](search-howto-index-cosmosdb.md) | ✅ | ✅ |
+| [Cosmos DB for MongoDB](search-howto-index-cosmosdb-mongodb.md) | ✅ | ❌ |
+| [Cosmos DB for Apache Gremlin](search-howto-index-cosmosdb-gremlin.md) | ✅ | ❌ |
 | [MySQL](search-howto-index-mysql.md)  | ✅ | ❌ |
 | [OneLake](search-how-to-index-onelake-files.md)  | ✅ | ✅ |
-| [SharePoint](search-howto-index-sharepoint-online.md)  | ✅ | ❌ |
+| [SharePoint Online](search-howto-index-sharepoint-online.md)  | ✅ | ❌ |
+| [SQL Server on virtual machines](search-how-to-index-sql-server.md)  | ✅ | ❌ |
 
-Microsoft hosts ready-to-use hotels and real estate datasets so that you can omit a data source configuration step on a wizard workflow.
+### Sample data
+
+Microsoft hosts sample data so that you can omit a data source configuration step on a wizard workflow.
 
 | Sample data | Import data wizard | Import and vectorize data wizard |
 |------|--------------------|----------------------------------|
 | hotels | ✅ | ❌ |
 | real estate  | ✅ | ❌ |
+
+### Skills
 
 The wizards generate skillset and output field mappings based on options you select. You can modify a skillset's JSON definition to add more skills later. Text Split and Text Merge are added for data chunking if you choose an embedding model, and for other skills if the granularity is set to pages or sentences. Shaper is added if you configure a knowledge store.
 
@@ -67,6 +76,8 @@ The wizards generate skillset and output field mappings based on options you sel
 | [Shaper (applies to knowledge store)](cognitive-search-skill-shaper.md)  | ✅ | ❌ |
 | [Text Split](cognitive-search-skill-textsplit.md)  | ✅ | ✅ |
 | [Text Merge](cognitive-search-skill-textmerger.md)  | ✅ | ✅ |
+
+### Knowledge store
 
 You can [generate a knowledge store](knowledge-store-create-portal.md) for secondary storage of enriched (skills-generated) content. You might want a knowledge store for information retrieval workflows that don't require a search engine.
 
