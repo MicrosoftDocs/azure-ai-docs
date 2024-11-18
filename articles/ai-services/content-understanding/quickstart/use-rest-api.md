@@ -12,13 +12,13 @@ ms.date: 11/19/2024
 
 # Quickstart: Azure AI Content Understanding REST APIs
 
-* Start using the latest preview version of the Azure AI Content Understanding REST API (2024-12-01-preview).
+* Start using the latest preview version of the Azure AI Content Understanding [REST API (2024-12-01-preview)](/rest/api/aiservices/).
 
 * Azure AI Content Understanding is a new generative AI-based [**Azure AI Service**](../../what-are-ai-services.md) that analyzes files of any modality (documents, images, videos, and audio) and extracts structured output in user-defined field formats.
 
 * Integrate the Content Understanding service into your workflows and applications easily by calling our REST APIs.
 
-* This quickstart guides you through using the Content Understanding REST API to create a custom analyzer and extract content and fields from your input.
+* This quickstart guides you through using the [Content Understanding REST API](/rest/api/aiservices/) to create a custom analyzer and extract content and fields from your input.
 
 ## Prerequisites
 
@@ -542,6 +542,6 @@ The 200 (`OK`) JSON response includes a `status` field indicating the status of 
 
 ## Next steps 
 
-* In this quickstart, you learned how to call the REST API to create a custom analyzer. For a user experience, try [**Azure AI Foundry**](https://ai.azure.com/). 
+* In this quickstart, you learned how to call the [REST API](/rest/api/aiservices/) to create a custom analyzer. For a user experience, try [**Azure AI Foundry**](https://ai.azure.com/). 
 
 

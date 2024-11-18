@@ -92,7 +92,7 @@ The following limits apply as of version 2024-12-01-preview.
 Classification fields can be defined to return either a single category (single-label classification) or multiple categories (multi-label classification).
 
 * **Single-label classification**: Defined using a string field with the `classify` method. It can be a top-level basic field or a subfield within a group or table.
-* **Multi-label classification**: Represented as a list of string fields with the `classify` method. In the REST API, `method=classify` and `enum` are specified on the inner string field and can only be a top-level field.
+* **Multi-label classification**: Represented as a list of string fields with the `classify` method. In the [REST API](/rest/api/aiservices/), `method=classify` and `enum` are specified on the inner string field and can only be a top-level field.
 
 *Note: Document analyzers currently don't support classification fields.*
 
