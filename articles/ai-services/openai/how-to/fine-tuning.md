@@ -125,7 +125,7 @@ Remove the image. For now, we cannot fine-tune models with images containing the
 
 **How to upload large files**
 
-Your training files might get quite large. You can upload files up to 8 GB in multiple parts using the [Uploads API](/rest/api/azureopenai/upload-file?view=rest-azureopenai-2024-10-21) as opposed to the Files API, which only allows file uploads of up to 512 MB.
+Your training files might get quite large. You can upload files up to 8 GB in multiple parts using the [Uploads API](/rest/api/azureopenai/upload-file?view=rest-azureopenai-2024-10-21&preserve-view=true) as opposed to the Files API, which only allows file uploads of up to 512 MB.
 
 **Reducing training cost**
 
