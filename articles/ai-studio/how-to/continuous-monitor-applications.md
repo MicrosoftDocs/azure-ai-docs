@@ -329,7 +329,7 @@ If you already set up tracing in Azure AI studio, all you need to do is select t
 
 Once you have your data streaming into your Application Insights resource, you automatically can see it get populated in this customized dashboard.
 
-:::image type="content" source="../../media/how-to/online-evaluation/open-generative-ai-workbook.gif" alt-text="Animation of an Azure workbook showing Application Insights." lightbox="../../media/how-to/online-evaluation/open-generative-ai-workbook.gif":::
+:::image type="content" source="../media/how-to/online-evaluation/open-generative-ai-workbook.gif" alt-text="Animation of an Azure workbook showing Application Insights." lightbox="../media/how-to/online-evaluation/open-generative-ai-workbook.gif":::
 
 This view is a great place for you to get started with your monitoring needs.
 
@@ -337,7 +337,7 @@ This view is a great place for you to get started with your monitoring needs.
 - You can view evaluation metrics as trend lines to understand the quality of your app on a daily basis.
 - You can debug when exceptions take place and drill into traces using the **Azure Monitor End-to-end transaction details view** to figure out what went wrong.
 
-:::image type="content" source="../../media/how-to/online-evaluation/custom-generative-ai-workbook.gif" alt-text="Animation of an Azure workbook showing graphs and end to end transaction details." lightbox="../../media/how-to/online-evaluation/custom-generative-ai-workbook.gif":::
+:::image type="content" source="../media/how-to/online-evaluation/custom-generative-ai-workbook.gif" alt-text="Animation of an Azure workbook showing graphs and end to end transaction details." lightbox="../media/how-to/online-evaluation/custom-generative-ai-workbook.gif":::
 
 This is an Azure Workbook that is querying data stored in your Application Insights resource. You can customize this workbook and tailor this to fit your business needs.
 To learn more, see [editing Azure Workbooks](/azure/azure-monitor/visualize/workbooks-create-workbook).
@@ -346,7 +346,7 @@ This allows you to add additional custom evaluators that you might have logged o
 
 You can also share this workbook with your team so they stay informed with the latest!
 
-:::image type="content" source="../../media/how-to/online-evaluation/share-azure-workbook.png" alt-text="Screenshot of an Azure Workbook showing the share button and share tab." lightbox="../../media/how-to/online-evaluation/share-azure-workbook.png":::
+:::image type="content" source="../media/how-to/online-evaluation/share-azure-workbook.png" alt-text="Screenshot of an Azure Workbook showing the share button and share tab." lightbox="../media/how-to/online-evaluation/share-azure-workbook.png":::
 
 ## Related content
 
