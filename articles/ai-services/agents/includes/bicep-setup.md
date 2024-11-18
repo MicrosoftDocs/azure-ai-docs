@@ -9,7 +9,7 @@ ms.date: 11/13/2024
 
 ## Setup your Azure AI Hub and Agent project
 
-The following section will show you how to set up an [Azure AI hub and project](https://learn.microsoft.com/azure/ai-studio/quickstarts/get-started-playground) by:
+The following section will show you how to set up an [Azure AI hub and project](../../../ai-studio/quickstarts/get-started-playground.md) by:
 
 1. Creating an Azure AI Hub to set up your app environment and Azure resources
 
@@ -17,7 +17,6 @@ The following section will show you how to set up an [Azure AI hub and project](
 
 1. Connecting an Azure OpenAI resource or an Azure AI resource
 
-If you already have these resources set up, skip to the [configure and run your first agent section below](#configure-and-run-your-first-agent).
 
 1. Install [the Azure CLI](https://learn.microsoft.com/cli/azure/install-azure-cli-windows?tabs=azure-cli). If you have the CLI already installed, make sure it's updated to the latest version.
 

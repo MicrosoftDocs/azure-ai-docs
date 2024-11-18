@@ -10,7 +10,7 @@ ms.date: 11/13/2024
 ## Prerequisites
 
 * An Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services).
-* Make sure you have the **Azure AI Developer** [RBAC role](https://learn.microsoft.com/azure/ai-studio/concepts/rbac-ai-studio) assigned at the appropriate level.
+* Make sure you have the **Azure AI Developer** [RBAC role](../../../ai-studio/concepts/rbac-ai-studio.md) assigned at the appropriate level.
 
 ## Create an Azure AI Foundry hub, agent project 
 
@@ -61,7 +61,7 @@ The **Agents playground** allows you to explore, prototype, and test agents with
 
 To interact with your agent:
 
-1. Optionally change the **agent name** if you want, and add **instructions**. Instructions guide the personality of the agent and define its goals. Instructions are similar to [system messages](../openai/concepts/advanced-prompt-engineering.md). 
+1. Optionally change the **agent name** if you want, and add **instructions**. Instructions guide the personality of the agent and define its goals. Instructions are similar to [system messages](../../openai/concepts/advanced-prompt-engineering.md). 
 
 1. In the chat area of the playground, enter a message and wait for the agent to respond. 
     

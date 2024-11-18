@@ -12,7 +12,7 @@ ms.date: 11/13/2024
 
 * An Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services).
 * [The latest version of .NET](https://dotnet.microsoft.com/en-us/download)
-* Make sure you have the **Azure AI Developer** [RBAC role](https://learn.microsoft.com/azure/ai-studio/concepts/rbac-ai-studio) assigned at the appropriate level.
+* Make sure you have the **Azure AI Developer** [RBAC role](../../../ai-studio/concepts/rbac-ai-studio.md) assigned at the appropriate level.
 
 [!INCLUDE [bicep-setup](bicep-setup.md)]
 
