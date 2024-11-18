@@ -13,21 +13,23 @@ ms.reviewer: dantaylo
 ms.author: sgilley
 author: sdgilley
 zone_pivot_groups: programming-languages-sdk-overview
+# customer intent: I want to learn how to use the Azure AI Foundry SDK to build AI applications on Azure.
 ---
 
 # The Azure AI Foundry SDK
 
 The Azure AI Foundry SDK is a comprehensive toolchain designed to simplify the development of AI applications on Azure. It enables developers to:
 
- - Access popular models from various model providers through a single interface
- - Easily combine together models, data, and AI services to build AI-powered applications
- - Evaluate, debug, and improve application quality & safety across development, testing, and production environments
+- Access popular models from various model providers through a single interface
+- Easily combine together models, data, and AI services to build AI-powered applications
+- Evaluate, debug, and improve application quality & safety across development, testing, and production environments
  
 The AI Foundry SDK is a set of packages and services designed to work together. You can use the Azure AI Projects client library to easily use multiple services through a single project client and connection string. You can also use services and SDKs on their own and connect directly to your services.
 
 If you want to jump right in and start building an app, check out:
- - [Create a chat app](../../quickstarts/get-started-code.md)
- - [Create a custom RAG app](../../tutorials/copilot-sdk-create-resources.md)
+
+- [Create a chat app](../../quickstarts/get-started-code.md)
+- [Create a custom RAG app](../../tutorials/copilot-sdk-create-resources.md)
 
 ## Get started with Projects
 
@@ -37,7 +39,7 @@ First follow steps to [create an AI Project](../create-projects.md) if you don't
 
 Sign in with the Azure CLI using the same account that you use to access your AI Project:
 
-```
+```bash
 az login
 ```
 
@@ -45,7 +47,7 @@ Install the Azure AI projects client library:
 
 ::: zone pivot="programming-language-python"
 
-```
+```bash
 pip install azure-ai-projects azure-identity
 ```
 
@@ -82,8 +84,6 @@ project = await AIProjectClient.from_connection_string(
 ::: zone-end
 
 ::: zone pivot="programming-language-csharp"
-
-Install the Azure AI projects client library:
 
 ```bash
 dotnet add package Azure.AI.Projects
@@ -127,7 +127,7 @@ If you have code that uses the OpenAI SDK, you can easily target your code to us
 
 ::: zone pivot="programming-language-python"
 
-```
+```bash
 pip install openai
 ```
 
@@ -145,6 +145,7 @@ response = openai.chat.completions.create(
 
 print(response.choices[0].message.content)
 ```
+
 If you’re already using the [Azure OpenAI SDK](../../../ai-services/openai/chatgpt-quickstart.md) directly against the Azure OpenAI Service, the project provides a convenient way to use Azure OpenAI Service capabilities alongside the rest of the AI Foundry capabilities.
 
 ::: zone-end
@@ -159,11 +160,11 @@ The [Azure AI model inference service](/azure/ai-studio/ai-services/model-infere
 
 To use the model inference service, first ensure that your project has an AI Services connection (in the management center).
 
-::: zone-pivot="programming-language-python"
+::: zone pivot="programming-language-python"
 
-Install the ```azure-ai-inferencing``` client library:
+Install the `azure-ai-inferencing` client library:
 
-```
+```bash
 pip install azure-ai-inference
 ```
 
@@ -184,6 +185,7 @@ response = chat.complete(
 
 print(response.choices[0].message.content)
 ```
+
 ::: zone-end
 
 ::: zone pivot="programming-language-csharp"
@@ -202,7 +204,7 @@ To use prompt templates, install the `azure-ai-inferencing` package:
 
 ::: zone pivot="programming-language-python"
 
-```
+```bash
 pip install azure-ai-inference
 ```
 
@@ -260,6 +262,7 @@ response = chat.complete(
     **prompt_template.parameters,
 )
 ```
+
 ::: zone-end
 
 ::: zone pivot="programming-language-csharp"
@@ -274,7 +277,7 @@ If you have an Azure AI Search resource connected to your project, you can also 
 
 Install the Azure AI Search client library:
 
-```
+```bash
 pip install azure-search-documents
 ```
 
