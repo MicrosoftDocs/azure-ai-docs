@@ -44,7 +44,7 @@ OpenAIClient client = new(
     new AzureKeyCredential(Environment.GetEnvironmentVariable("AZURE_OPENAI_API_KEY"));
 ```
 
-# [Azure.AI.OpenAI 2.0](#tab/2.0)
+# [Azure.AI.OpenAI 2.0](#tab/stable)
 
 ```csharp
 // 2.0 - NEW: Get a chat completions client from a top-level Azure client
@@ -88,7 +88,7 @@ var chatCompletionsOptions = new ChatCompletionsOptions()
 };
 ```
 
-# [Azure.AI.OpenAI 2.0](#tab/2.0)
+# [Azure.AI.OpenAI 2.0](#tab/stable)
 
 ```csharp
 // 2.0 - NEW
@@ -119,7 +119,7 @@ ChatResponseMessage responseMessage = response.Value.Choices[0].Message;
 Console.WriteLine($"[{responseMessage.Role.ToString().ToUpperInvariant()}]: {responseMessage.Content}");
 ```
 
-# [Azure.AI.OpenAI 2.0](#tab/2.0)
+# [Azure.AI.OpenAI 2.0](#tab/stable)
 
 ```csharp
 // 2.0 - NEW:
@@ -148,7 +148,7 @@ await foreach (StreamingChatCompletionsUpdate chatUpdate in client.GetChatComple
 }
 ```
 
-# [Azure.AI.OpenAI 2.0](#tab/2.0)
+# [Azure.AI.OpenAI 2.0](#tab/stable)
 
 ```csharp
 // 2.0 - NEW
@@ -208,7 +208,7 @@ var chatCompletionsOptions = new ChatCompletionsOptions()
 Response<ChatCompletions> response = await client.GetChatCompletionsAsync(chatCompletionsOptions);
 ```
 
-# [Azure.AI.OpenAI 2.0](#tab/2.0)
+# [Azure.AI.OpenAI 2.0](#tab/stable)
 
 ```csharp
 // 2.0 - NEW
@@ -262,7 +262,7 @@ var chatCompletionsOptions = new ChatCompletionsOptions()
 Response<ChatCompletions> response = await client.GetChatCompletionsAsync(chatCompletionsOptions);
 ```
 
-# [Azure.AI.OpenAI 2.0](#tab/2.0)
+# [Azure.AI.OpenAI 2.0](#tab/stable)
 
 ```csharp
 // 2.0 - NEW
@@ -316,7 +316,7 @@ ChatCompletionsOptions chatCompletionsOptions = new()
 Response<ChatCompletions> response = await client.GetChatCompletionsAsync(chatCompletionsOptions);
 ```
 
-# [Azure.AI.OpenAI 2.0](#tab/2.0)
+# [Azure.AI.OpenAI 2.0](#tab/stable)
 
 ```csharp
 // 2.0 - NEW
@@ -371,7 +371,7 @@ EmbeddingItem item = response.Value.Data[0];
 ReadOnlyMemory<float> embedding = item.Embedding;
 ```
 
-# [Azure.AI.OpenAI 2.0](#tab/2.0)
+# [Azure.AI.OpenAI 2.0](#tab/stable)
 
 
 ```csharp
@@ -411,7 +411,7 @@ if (!string.IsNullOrEmpty(generatedImage.RevisedPrompt))
 Console.WriteLine($"Generated image available at: {generatedImage.Url.AbsoluteUri}");
 ```
 
-# [Azure.AI.OpenAI 2.0](#tab/2.0)
+# [Azure.AI.OpenAI 2.0](#tab/stable)
 
 ```csharp
 // 2.0 - NEW
@@ -464,7 +464,7 @@ Console.WriteLine($"Transcription ({transcription.Duration.Value.TotalSeconds}s)
 Console.WriteLine(transcription.Text);
 ```
 
-# [Azure.AI.OpenAI 2.0](#tab/2.0)
+# [Azure.AI.OpenAI 2.0](#tab/stable)
 
 ```csharp
 // 2.0 - NEW
