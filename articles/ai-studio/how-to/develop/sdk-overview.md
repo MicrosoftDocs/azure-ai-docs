@@ -334,7 +334,7 @@ You can use the project client to easily connect to the Azure AI evaluation serv
 pip install azure-ai-evaluation
 ```
 
-Using the ```project.scope``` parameter, we can instantiate a ```ViolenceEvaluator```:
+Using the `project.scope` parameter, we can instantiate a `ViolenceEvaluator`:
 
 ```Python
 from azure.ai.evaluation import ViolenceEvaluator
@@ -352,6 +352,8 @@ print(violence_score)
 ::: zone-end
 
 ::: zone pivot="programming-language-csharp"
+
+Evaluation is not yet available in C#.
 
 ::: zone-end
 
@@ -386,6 +388,8 @@ if application_insights_connection_string:
 ::: zone-end
 
 ::: zone pivot="programming-language-csharp"
+
+Tracing is not yet available in C#.
 
 ::: zone-end
 
