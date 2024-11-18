@@ -90,6 +90,13 @@ dotnet add package Azure.AI.Projects
 dotnet add package Azure.Identity
 ```
 
+Add using statements:
+
+```csharp
+using Azure.Identity;
+using Azure.AI.Projects;
+```
+
 Create a project client in code:
 
 # [Sync](#tab/sync)
@@ -149,6 +156,17 @@ print(response.choices[0].message.content)
 
 ::: zone pivot="programming-language-csharp"
 
+```dotnet
+dotnet add package Azure.AI.OpenAI
+```
+
+Add using statements:
+
+```csharp
+using OpenAI.Chat;
+using Azure.AI.OpenAI;
+```
+
 If you have existing code that uses the OpenAI SDK, you can use the project client to create an `AzureOpenAI` client that uses your project's Azure OpenAI connection:
 
 :::code language="csharp" source="~/azureai-samples-csharp/scenarios/projects/basic-csharp/Program.cs" id="azure_openai":::
@@ -196,6 +214,13 @@ print(response.choices[0].message.content)
 ```dotnet
 dotnet add package Azure.AI.Inference
 ```
+
+Add using statements:
+
+```csharp
+using Azure.AI.Inference;
+```
+
 You can use the project client to get a configured and authenticated `ChatCompletionsClient` or `EmbeddingsClient`:
 
 :::code language="csharp" source="~/azureai-samples-csharp/scenarios/projects/basic-csharp/Program.cs" id="snippet_inference":::
@@ -312,6 +337,13 @@ search_client = SearchClient(
 
 ```dotnet
 dotnet add package Azure.Search.Documents
+```
+
+Add using statements:
+
+```csharp
+using Azure.Search.Documents;
+using Azure.Search.Documents.Models;
 ```
 
 Instantiate the search and/or search index client as desired:
