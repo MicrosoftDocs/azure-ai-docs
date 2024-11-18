@@ -1,7 +1,7 @@
 ---
-title: Quickstart - Create a new Azure Agent Runtime project.
+title: Quickstart - Create a new Azure AI Agent Service project.
 titleSuffix: Azure AI services
-description: Use this guide to start using Azure Agent Runtime.
+description: Use this guide to start using Azure AI Agent Service.
 manager: nitinme
 author: aahill
 ms.author: aahi
@@ -14,7 +14,7 @@ recommendations: false
 
 # Quickstart: Create a new agent
 
-Azure Agent Runtime allows you to create AI agents tailored to your needs through custom instructions and augmented by advanced tools like code interpreter, and custom functions.
+Azure AI Agent Service allows you to create AI agents tailored to your needs through custom instructions and augmented by advanced tools like code interpreter, and custom functions.
 
 ::: zone pivot="programming-language-studio"
 

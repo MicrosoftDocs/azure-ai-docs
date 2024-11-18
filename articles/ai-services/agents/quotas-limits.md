@@ -1,7 +1,7 @@
 ---
-title: Quotas and limits for Azure Agent Runtime
+title: Quotas and limits for Azure AI Agent Service
 titleSuffix: Azure AI services
-description: Learn about the quotas and limits for when you use Azure Agent Runtime.
+description: Learn about the quotas and limits for when you use Azure AI Agent Service.
 manager: nitinme
 author: aahill
 ms.author: aahi
@@ -11,13 +11,13 @@ ms.date: 11/13/2024
 recommendations: false
 ---
 
-# Azure Agent Runtime quotas and limits
+# Azure AI Agent Service quotas and limits
 
-This article contains a reference and a detailed description of the quotas and limits for Azure Agent Runtime.
+This article contains a reference and a detailed description of the quotas and limits for Azure AI Agent Service.
 
-## Quotas and limits for the Azure Agent Runtime service
+## Quotas and limits for the Azure AI Agent Service service
 
-The following sections provide you with a guide to the default quotas and limits that apply to Azure Agent Runtime:
+The following sections provide you with a guide to the default quotas and limits that apply to Azure AI Agent Service:
 
 | Limit Name | Limit Value |
 |--|--|
@@ -28,8 +28,8 @@ The following sections provide you with a guide to the default quotas and limits
 
 ## Quotas and limits for Azure OpenAI models
 
-See the [Azure OpenAI](../openai/quotas-limits.md) for current quotas and limits for the Azure OpenAI models that you can use with Azure Agent Runtime. 
+See the [Azure OpenAI](../openai/quotas-limits.md) for current quotas and limits for the Azure OpenAI models that you can use with Azure AI Agent Service. 
 
 ## Next steps
 
-[Learn about the models available for Azure Agent Runtime](./concepts/model-region-support.md)
+[Learn about the models available for Azure AI Agent Service](./concepts/model-region-support.md)

@@ -1,10 +1,10 @@
 ### YamlMime:Landing
 
-title: Azure Agent Runtime documentation # < 60 chars
-summary: Azure Agent Runtime is a fully managed service designed to empower developers to securely build, deploy, and scale high-quality, and extensible AI agents. 
+title: Azure AI Agent Service documentation # < 60 chars
+summary: Azure AI Agent Service is a fully managed service designed to empower developers to securely build, deploy, and scale high-quality, and extensible AI agents. 
   
 metadata:
-  title: Azure Agent Runtime Service documentation - Quickstarts, Tutorials, API Reference - Azure AI services | Microsoft Docs
+  title: Azure AI Agent Service Service documentation - Quickstarts, Tutorials, API Reference - Azure AI services | Microsoft Docs
   description: Learn how to build agents that apply powerful models such as GPT-4o, Llama, and Mistral.
   ms.service: azure-ai-openai
   ms.custom:
