@@ -7,18 +7,18 @@ ms.topic: include
 ms.date: 11/13/2024
 ---
 
-## Setup your Azure AI Hub and Agent project
+## Set up your Azure AI Hub and Agent project
 
 The following section will show you how to set up an [Azure AI hub and project](../../../ai-studio/quickstarts/get-started-playground.md) by:
 
 1. Creating an Azure AI Hub to set up your app environment and Azure resources
 
-1. Creating an Azure AI project under your Hub provisions an endpoint for your app to call, and sets up app services to access to resources in your tenant.
+1. Creating an Azure AI project under your Hub creates an endpoint for your app to call, and sets up app services to access to resources in your tenant.
 
 1. Connecting an Azure OpenAI resource or an Azure AI resource
 
 
-1. Install [the Azure CLI](https://learn.microsoft.com/cli/azure/install-azure-cli-windows?tabs=azure-cli). If you have the CLI already installed, make sure it's updated to the latest version.
+1. Install [the Azure CLI](https://learn.microsoft.com/cli/azure/install-azure-cli-windows?tabs=azure-cli). If you have the CLI already installed, make sure it is updated to the latest version.
 
 1. Register providers.
 
@@ -54,12 +54,12 @@ The following section will show you how to set up an [Azure AI hub and project](
    az group create --name {my_resource_group} --location eastus
    ```
 
-   Make sure you have the role **Azure AI Developer** on the resource group you just created.
+   Make sure you have the role **Azure AI Developer** on the resource group you created.
 
 
 ## Choose Basic or Standard Agent Setup
    
-**Basic Setup**:  Agents use multi-tenant search and storage resources fully managed by Microsoft. You won’t have visibility or control over these underlying Azure resources.
+**Basic Setup**:  Agents use multitenant search and storage resources fully managed by Microsoft. You don't have visibility or control over these underlying Azure resources.
 
 **Standard Setup**: Agents use customer-owned, single-tenant search and storage resources. With this setup, you have full control and visibility over these resources, but you will incur costs based on your usage.
 
@@ -84,7 +84,7 @@ The following section will show you how to set up an [Azure AI hub and project](
         az deployment group create --resource-group {my_resource_group} --template-file standard-agent.bicep
         ```
 
-    - To customize additional parameters, including the OpenAI model deployment, hub name, etc, download and edit the `standard-agent.parameters.json` file, then run:
+    - To customize additional parameters, including the OpenAI model, deployment or hub name, download and edit the `standard-agent.parameters.json` file, then run:
 
         ```console
         az deployment group create --resource-group {my_resource_group} --template-file standard-agent.bicep --parameters @standard-agent.parameters.json
