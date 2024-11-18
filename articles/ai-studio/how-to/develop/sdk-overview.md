@@ -163,9 +163,9 @@ The [Azure AI model inference service](/azure/ai-studio/ai-services/model-infere
 
 To use the model inference service, first ensure that your project has an AI Services connection (in the management center).
 
-::: zone pivot="programming-language-python"
-
 Install the `azure-ai-inferencing` client library:
+
+::: zone pivot="programming-language-python"
 
 ```bash
 pip install azure-ai-inference
@@ -206,13 +206,13 @@ You can change the model name to any model that you deployed to the inference se
 
 To learn more about using the Azure AI inferencing client, check out the [Azure AI model inferencing reference](/azure/ai-studio/reference/reference-model-inference-api).
 
+::: zone pivot="programming-language-python"
+
 ## Prompt Templates
 
 The inferencing client supports for creating prompt messages from templates.  The template allows you to dynamically generate prompts using inputs that are available at runtime.
 
 To use prompt templates, install the `azure-ai-inferencing` package:
-
-::: zone pivot="programming-language-python"
 
 ```bash
 pip install azure-ai-inference
@@ -267,19 +267,6 @@ response = chat.complete(
 
 ::: zone-end
 
-::: zone pivot="programming-language-csharp"
-
-```dotnet
-dotnet add package Azure.AI.Inference 
-```
-
-You can render a prompt template from an inline string:
-
-:::code language="csharp" source="~/azureai-samples-csharp/scenarios/projects/basic-csharp/Program.cs" id="azure_aisearch":::
-
-::: zone-end
-
-
 ## Azure AI Search
 
 If you have an Azure AI Search resource connected to your project, you can also use the project client to create an Azure AI Search client using the project connection.
@@ -326,6 +313,7 @@ search_client = SearchClient(
 ```dotnet
 dotnet add package Azure.Search.Documents
 ```
+
 Instantiate the search and/or search index client as desired:
 
 :::code language="csharp" source="~/azureai-samples-csharp/scenarios/projects/basic-csharp/Program.cs" id="azure_aisearch":::
