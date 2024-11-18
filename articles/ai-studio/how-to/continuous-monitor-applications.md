@@ -346,7 +346,7 @@ This allows you to add additional custom evaluators that you might have logged o
 
 You can also share this workbook with your team so they stay informed with the latest!
 
-:::image type="content" source="../../media/how-to/online-evaluation/share-azure-workbook.png" alt-text="Screenshot of an Azure Workbook showing the share button and share tab." lightbox="../../media/how-to/online-evaluation/share-azure-workbook.png"":::
+:::image type="content" source="../../media/how-to/online-evaluation/share-azure-workbook.png" alt-text="Screenshot of an Azure Workbook showing the share button and share tab." lightbox="../../media/how-to/online-evaluation/share-azure-workbook.png":::
 
 ## Related content
 
