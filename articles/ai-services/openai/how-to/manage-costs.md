@@ -40,9 +40,9 @@ In practice, for this type of completion call, the token input/output wouldn't b
 
 ### Fine-tuned models
 
-Azure OpenAI fine-tuning models is charged based on the [number of tokens in your training file](https://techcommunity.microsoft.com/blog/azure-ai-services-blog/pricing-update-token-based-billing-for-fine-tuning-training-%F0%9F%8E%89/4164465). For the latest prices, see the [official pricing page](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/).
+Azure OpenAI fine-tuning models are charged based on the [number of tokens in your training file](https://techcommunity.microsoft.com/blog/azure-ai-services-blog/pricing-update-token-based-billing-for-fine-tuning-training-%F0%9F%8E%89/4164465). For the latest prices, see the [official pricing page](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/).
 
-Once your fine-tuned model is deployed you are also charged based on:
+Once your fine-tuned model is deployed, you're also charged based on:
 
 - Hosting hours
 - Inference per 1,000 tokens (broken down by input usage and output usage.)
