@@ -122,7 +122,7 @@ For evaluators that support conversations, you can provide `conversation` as inp
 }
 ```
 
-Our evaluators will understand that the first turn of the conversation provides valid `query` from `user`, `context` from `assistant`,  and `response` from `assistant` in the query-response format. Conversations are then evaluated per turn and results are aggregated over all turns for a conversation score.
+Our evaluators understand that the first turn of the conversation provides valid `query` from `user`, `context` from `assistant`,  and `response` from `assistant` in the query-response format. Conversations are then evaluated per turn and results are aggregated over all turns for a conversation score.
 
 > [!NOTE]
 > Note that in the second turn, even if `context` is `null` or a missing key, it will be interpreted as an empty string instead of erroring out, which might lead to misleading results. We strongly recommend that you validate your evaluation data to comply with the data requirements.
@@ -500,7 +500,7 @@ After you spot-check your built-in or custom evaluators on a single row of data,
 
 If you want to enable logging and tracing to your Azure AI project for evaluation results, follow these steps:
 
-1. Make sure you are first logged in by running `az login`.
+1. Make sure you're first logged in by running `az login`.
 2. Install the following sub-package:
 
 ```python
@@ -510,7 +510,7 @@ pip install azure-ai-evaluation[remote]
 
 4. Make sure you have `Storage Blob Data Contributor` role for the storage account.
 
-### Local evaluaton on datasets
+### Local evaluation on datasets
 In order to ensure the `evaluate()` can correctly parse the data, you must specify column mapping to map the column from the dataset to key words that are accepted by the evaluators. In this case, we specify the data mapping for `query`, `response`, and `context`.
 
 ```python
@@ -669,7 +669,7 @@ result = evaluate(
 
 ## Cloud evaluation on test datasets
 
-After local evaluations of your generative AI applications, you may want to run evaluations in the cloud for pre-deployment testing and [continuously evaluate](https://aka.ms/GenAIMonitoringDoc) your applications for post-deployment monitoring. Azure AI Projects SDK offers such capabilities via a Python API and supports almost all of the features available in local evaluations. Follow the steps below to submit your evaluation to the cloud on your data using built-in or custom evaluators.
+After local evaluations of your generative AI applications, you may want to run evaluations in the cloud for pre-deployment testing, and [continuously evaluate](https://aka.ms/GenAIMonitoringDoc) your applications for post-deployment monitoring. Azure AI Projects SDK offers such capabilities via a Python API and supports almost all of the features available in local evaluations. Follow the steps below to submit your evaluation to the cloud on your data using built-in or custom evaluators.
 
   
 ### Prerequisites
@@ -680,7 +680,7 @@ After local evaluations of your generative AI applications, you may want to run 
 
 - Azure OpenAI Deployment with GPT model supporting `chat completion`, for example `gpt-4`.
 - `Connection String` for Azure AI project to easily create `AIProjectClient` object. You can get the **Project connection string** under **Project details** from the project's **Overview** page.
-- Make sure you are first logged into your Azure subscription by running `az login`.
+- Make sure you're first logged into your Azure subscription by running `az login`.
 
 ### Installation Instructions
 
@@ -693,7 +693,7 @@ After local evaluations of your generative AI applications, you may want to run 
     ```bash
    pip install azure-identity azure-ai-projects azure-ai-ml
     ```
-    Optionally you can `pip install azure-ai-evaluation` if you want a code-first experience to fetch evaluator id for built-in evaluators in code.
+    Optionally you can `pip install azure-ai-evaluation` if you want a code-first experience to fetch evaluator ID for built-in evaluators in code.
 
 Now you can define a client and a deployment which will be used to run your evaluations in the cloud:
 ```python
@@ -717,16 +717,16 @@ project_client = AIProjectClient.from_connection_string(
 
 ### Uploading evaluation data
 We provide two ways to register your data in Azure AI project required for evaluations in the cloud: 
-1. **From SDK**: Upload new data from your local directory to your Azure AI project in the SDK, and fetch the dataset id as a result: 
+1. **From SDK**: Upload new data from your local directory to your Azure AI project in the SDK, and fetch the dataset ID as a result: 
 ```python
 data_id, _ = project_client.upload_file("./evaluate_test_data.jsonl")
 ```
 **From UI**: Alternatively, you can upload new data or update existing data versions by following the UI walkthrough under the **Data** tab of your Azure AI project.
 
 2. Given existing datasets uploaded to your Project: 
-- **From SDK**: if you already know the dataset name you created, construct the dataset id in this format: `/subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/Microsoft.MachineLearningServices/workspaces/<project-name>/data/<dataset-name>/versions/<version-number>`
+- **From SDK**: if you already know the dataset name you created, construct the dataset ID in this format: `/subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/Microsoft.MachineLearningServices/workspaces/<project-name>/data/<dataset-name>/versions/<version-number>`
 
-- **From UI**: If you don't know the dataset name, locate it under the **Data** tab of your Azure AI project and construct the dataset id as in the format above. 
+- **From UI**: If you don't know the dataset name, locate it under the **Data** tab of your Azure AI project and construct the dataset ID as in the format above. 
 
 
 ### Specifying evaluators from Evaluator library
@@ -742,7 +742,7 @@ print("F1 Score evaluator id:", F1ScoreEvaluator.id)
 - **From UI**: Follows these steps to fetch evaluator ids after they're registered to your project:
     - Select **Evaluation** tab in your Azure AI project;
     - Select Evaluator library;
-    - Select your evaluator(s) of choice by comparing the descriptions;
+    - Select your evaluators of choice by comparing the descriptions;
     - Copy its "Asset ID" which will be your evaluator id, for example, `azureml://registries/azureml/models/Groundedness-Evaluator/versions/1`.
 
 #### Specifying custom evaluators 
@@ -861,7 +861,7 @@ project_client = AIProjectClient.from_connection_string(
     conn_str="<connection_string>"
 )
 
-# Construct dataset id per the instruction
+# Construct dataset ID per the instruction
 data_id = "<dataset-id>"
 
 default_connection = project_client.connections.get_default(connection_type=ConnectionType.AZURE_OPEN_AI)
