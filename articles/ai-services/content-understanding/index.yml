@@ -20,7 +20,7 @@ landingContent:
           - text: What is Azure AI Content Understanding?
             url: overview.md
           - text: Azure AI Content Understanding REST API
-            url: /rest/api/aiservices/
+            url: /rest/api/contentunderstanding/operation-groups?view=rest-contentunderstanding-2024-12-01-preview&preserve-view=true
           - text: FAQ
             url: faq.yml
 

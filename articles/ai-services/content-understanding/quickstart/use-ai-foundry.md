@@ -122,5 +122,5 @@ To follow are several of our video analyzer templates.
 
 ## Next steps
 
-* In this quickstart, you learned how to create an analyzer in Azure AI Foundry. To use [REST API](/rest/api/aiservices/), *see* the [REST API quickstart](use-rest-api.md).
+* In this quickstart, you learned how to create an analyzer in Azure AI Foundry. To use [REST API](/rest/api/contentunderstanding/operation-groups?view=rest-contentunderstanding-2024-12-01-preview&preserve-view=true), *see* the [REST API quickstart](use-rest-api.md).
 
