@@ -63,9 +63,9 @@ Content Understanding offers advanced audio capabilities, including:
 
 Content Understanding offers customizable audio analyzer templates:
 
-* **Post-call analytics**. Analyze call recordings to generate conversation transcripts, call summaries, sentiment assessments, and more.
+* **Post-call analysis**. Analyze call recordings to generate conversation transcripts, call summaries, sentiment assessments, and more.
 
-* **Conversation summarization**. Generate transcriptions, summaries, and sentiment assessments from conversation audio recordings.
+* **Conversation analysis**. Generate transcriptions, summaries, and sentiment assessments from conversation audio recordings.
 
 Start with a template or create a custom analyzer to meet your specific business needs.
 
