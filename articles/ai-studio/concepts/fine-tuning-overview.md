@@ -14,15 +14,20 @@ ms.author: sgilley
 author: sdgilley
 ---
 
-# Fine-tune models in Azure AI Studio
+# Fine-tune models with Azure AI Foundry
 
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
-Fine-tuning retrains an existing large language model (LLM) by using example data. The result is a new, custom LLM that's optimized for the provided examples.
+Fine-tuning refers to customizing a pre-trained generative AI model with additional training on a specific task or new dataset for enhanced performance, new skills, or improved accuracy. The result is a new, custom GenAI model that's optimized based on the provided examples.
 
-This article can help you decide whether or not fine-tuning is the right solution for your use case. This article also describes how [Azure AI Studio](https://ai.azure.com) can support your fine-tuning needs.
+Consider fine-tuning GenAI models to:
+- Scale and adapt to specific enterprise needs
+- Reduce hallucinations as tailored models are less likely to produce inaccurate or irrelevant responses
+- Enhance the model's accuracy for domain-specific tasks
+- Save time and resources with faster and more precise results
+- Get more relevant and context-aware outcomes as models are fine-tuned for specific use cases
 
-In this article, fine-tuning refers to *supervised fine-tuning*, not to continuous pretraining or reinforcement learning through human feedback (RLHF). Supervised fine-tuning is the process of retraining pretrained models on specific datasets. The purpose is typically to improve model performance on specific tasks or to introduce information that wasn't well represented when you originally trained the base model.
+[Azure AI Foundry](https://ai.azure.com) offers several models across model providers enabling you to get access to the latest and greatest in the market. You can discover supported models for fine-tuning through our model catalog by using the **Fine-tuning tasks** filter and clicking into the model card to learn detailed information about each model. Specific models may be subjected to regional constraints, [view this list for more details](#supported-models-for-fine-tuning). 
 
 ## Getting starting with fine-tuning
 
