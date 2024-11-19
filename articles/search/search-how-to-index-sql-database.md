@@ -30,7 +30,7 @@ This article also provides:
 
 ## Prerequisites
 
-+ An [Azure SQL database](/azure/azure-sql/database/sql-database-paas-overview) with data in a single table or view, or a [SQL Managed Instance with a public endpoint](search-howto-connecting-azure-sql-mi-to-azure-search-using-indexers.md).
++ An [Azure SQL database](/azure/azure-sql/database/sql-database-paas-overview) with data in a single table or view, or a [SQL Managed Instance with a public endpoint](search-how-to-index-sql-managed-instance.md).
 
   Use a table if your data is large or if you need [incremental indexing](#CaptureChangedRows) using SQL's native change detection capabilities.
 
@@ -501,7 +501,7 @@ No, [Always Encrypted](/sql/relational-databases/security/encryption/always-encr
 
 **Q: Can I use Azure SQL indexer with SQL databases running on IaaS VMs in Azure?**
 
-Yes. However, you need to allow your search service to connect to your database. For more information, see [Configure a connection from an Azure AI Search indexer to SQL Server on an Azure VM](search-howto-connecting-azure-sql-iaas-to-azure-search-using-indexers.md).
+Yes. However, you need to allow your search service to connect to your database. For more information, see [Configure a connection from an Azure AI Search indexer to SQL Server on an Azure VM](search-how-to-index-sql-server.md).
 
 **Q: Can I use Azure SQL indexer with SQL databases running on-premises?**
 

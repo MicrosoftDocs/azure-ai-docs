@@ -20,7 +20,7 @@ In this Azure AI Search quickstart, create your first _search index_ by using th
 The wizard creates multiple objects on your search service - [searchable index](search-what-is-an-index.md) - but also an [indexer](search-indexer-overview.md) and data source connection for automated data retrieval. At the end of this quickstart, we review each object. 
 
 > [!NOTE]
-> The **Import data** wizard includes options for OCR, text translation, and other AI enrichments that aren't covered in this quickstart. For a similar walkthrough that focuses on applied AI, see [Quickstart: Create a skillset in the Azure portal](cognitive-search-quickstart-blob.md).
+> The **Import data** wizard includes options for OCR, text translation, and other AI enrichments that aren't covered in this quickstart. For a similar walkthrough that focuses on applied AI, see [Quickstart: Create a skillset in the Azure portal](search-get-started-skillset.md).
 
 ## Prerequisites
 
@@ -73,7 +73,7 @@ The **Import data** wizard supports the creation of a skillset and [AI-enrichmen
    :::image type="content" source="media/search-get-started-portal/skip-cognitive-skills.png" alt-text="Screenshot that shows how to Skip to the Customize target index tab in the Import data wizard.":::
 
 > [!TIP]
-> Interested in AI enrichment? Try this [Quickstart: Create a skillset in the Azure portal](cognitive-search-quickstart-blob.md)
+> Interested in AI enrichment? Try this [Quickstart: Create a skillset in the Azure portal](search-get-started-skillset.md)
 
 ### Configure the index
 

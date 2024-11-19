@@ -25,7 +25,7 @@ If you're using the wizard for proof-of-concept testing, this article explains t
 This article isn't a step by step. For help with using the wizard with sample data see:
 
 + [Quickstart: Create a search index](search-get-started-portal.md)
-+ [Quickstart: Create a text translation and entity skillset](cognitive-search-quickstart-blob.md)
++ [Quickstart: Create a text translation and entity skillset](search-get-started-skillset.md)
 + [Quickstart: Create a vector index](search-get-started-portal-import-vectors.md)
 + [Quickstart: image search (vectors)](search-get-started-portal-image-search.md)
 
@@ -223,7 +223,7 @@ Because sampling is an imprecise exercise, review the index for the following co
 
 1. Is the field list accurate? If your data source contains fields that weren't picked up in sampling, you can manually add any new fields that sampling missed, and remove any that don't add value to a search experience or that won't be used in a [filter expression](search-query-odata-filter.md) or [scoring profile](index-add-scoring-profiles.md).
 
-1. Is the data type appropriate for the incoming data? Azure AI Search supports the [entity data model (EDM) data types](/rest/api/searchservice/supported-data-types). For Azure SQL data, there's [mapping chart](search-howto-connecting-azure-sql-database-to-azure-search-using-indexers.md#TypeMapping) that lays out equivalent values. For more background, see [Field mappings and transformations](search-indexer-field-mappings.md).
+1. Is the data type appropriate for the incoming data? Azure AI Search supports the [entity data model (EDM) data types](/rest/api/searchservice/supported-data-types). For Azure SQL data, there's [mapping chart](search-how-to-index-sql-database.md#TypeMapping) that lays out equivalent values. For more background, see [Field mappings and transformations](search-indexer-field-mappings.md).
 
 1. Do you have one field that can serve as the *key*? This field must be Edm.string and it must uniquely identify a document. For relational data, it might be mapped to a primary key. For blobs, it might be the `metadata-storage-path`. If field values include spaces or dashes, you must set the **Base-64 Encode Key** option in the **Create an Indexer** step, under **Advanced options**, to suppress the validation check for these characters.
 
@@ -261,6 +261,6 @@ Internally, the wizard also sets up the following definitions, which aren't visi
 The best way to understand the benefits and limitations of the wizard is to step through it. Here are some quickstarts that are based on the wizard.
 
 + [Quickstart: Create a search index](search-get-started-portal.md)
-+ [Quickstart: Create a text translation and entity skillset](cognitive-search-quickstart-blob.md)
++ [Quickstart: Create a text translation and entity skillset](search-get-started-skillset.md)
 + [Quickstart: Create a vector index](search-get-started-portal-import-vectors.md)
 + [Quickstart: image search (vectors)](search-get-started-portal-image-search.md)

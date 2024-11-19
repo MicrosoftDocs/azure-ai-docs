@@ -31,7 +31,7 @@ You can add a search service to a network security perimeter in the Azure portal
 
 * For search services within a network security perimeter, indexers must use a [system or user-assigned managed identity](search-howto-managed-identities-data-sources.md) and have a role assignment that permits read-access to data sources.
 
-* Supported indexer data sources are currently limited to [Azure Blob Storage](search-howto-indexing-azure-blob-storage.md), [Azure Cosmos DB for NoSQL](./search-howto-index-cosmosdb.md), and [Azure SQL Database](search-howto-connecting-azure-sql-database-to-azure-search-using-indexers.md).
+* Supported indexer data sources are currently limited to [Azure Blob Storage](search-howto-indexing-azure-blob-storage.md), [Azure Cosmos DB for NoSQL](./search-howto-index-cosmosdb.md), and [Azure SQL Database](search-how-to-index-sql-database.md).
 
 ## Prerequisites
 
