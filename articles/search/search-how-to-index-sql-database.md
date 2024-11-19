@@ -93,7 +93,11 @@ Use these instructions to create and load a table in Azure SQL Database for test
    SELECT Description FROM tbl_hotels;
     ```
 
-The Description field provides the most verbose content. You should target this field for full text search and optional vector queries.
+You should see results similar to the following screenshot.
+
+:::image type="content" source="media/search-how-to-index-sql-database/t-sql-query-results.png" alt-text="Screenshot of query results showing the description field.":::
+
+The Description field provides the most verbose content. You should target this field for full text search and optional vectorization.
 
 Now that you have a database table, you can use the Azure portal, REST client, or an Azure SDK to index your data.
 
