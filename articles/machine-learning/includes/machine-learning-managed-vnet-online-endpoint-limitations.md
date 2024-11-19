@@ -15,7 +15,11 @@ ms.author: mopeakande
     >
     > In the Studio, go to the `Directory + Subscription + Workspace` section (top right of the Studio) and select `View all properties in Azure Portal`. Select the JSON view from the top right of the "Overview" page, then choose the latest API version. From this page, you can check the value of `properties.creationTime`.
     >
-    > Alternatively, use `az ml workspace show` with [CLI](../how-to-manage-workspace-cli.md#get-workspace-information), `my_ml_client.workspace.get("my-workspace-name")` with [SDK](../how-to-manage-workspace.md?tabs=python#find-a-workspace), or `curl` on a workspace with [REST API](../how-to-manage-rest.md#drill-down-into-workspaces-and-their-resources).
+    > Alternatively, use one of the following methods:
+    >
+    > - [Python SDK](/python/api/azureml-core/azureml.core.workspace.workspace): `Workspace.get(name=<workspace-name>, subscription_id=<subscription-ID>, resource_group=<resource-group-name>).get_details()`
+    > - [REST API](../how-to-manage-rest.md#drill-down-into-workspaces-and-their-resources): `curl https://management.azure.com/subscriptions/<subscription-ID>/resourceGroups/<resource-group-name>/providers/Microsoft.MachineLearningServices/workspaces/?api-version=2023-10-01 -H "Authorization:Bearer <access-token>"`
+    > - [PowerShell](/powershell/module/az.machinelearningservices/get-azmlworkspace): `Get-AzMLWorkspace -Name <workspace-name> -ResourceGroupName <resource-group-name>`
 
 - When you use network isolation with online endpoints, you can use workspace-associated resources (Azure Container Registry (ACR), Storage account, Key Vault, and Application Insights) from a different resource group than that of your workspace. However, these resources must belong to the same subscription and tenant as your workspace.
 
