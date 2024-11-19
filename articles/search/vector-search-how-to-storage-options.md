@@ -25,7 +25,7 @@ For every vector field, there are three copies of the vectors:
 | Instance | Usage |
 |----------|-------|
 | Source vectors (in JSON) as received from an embedding model or push request to the index | Used for incremental data refresh, and if you want "retrievable" vectors returned in the query response. |
-| Original full-precision vectors | Used for scoring if vectors are uncompressed, or optional rescoring if query results obtained over compressed vectors. Rescoring applies only if vector fields undergo [scalar or binary quantization](vector-search-how-to-quantization.md). |
+| Original full-precision vectors | Unavailable or unsupported if vectors are uncompressed. Otherwise it's used for optional rescoring if query results obtained over compressed vectors. Rescoring applies only if vector fields undergo [scalar or binary quantization](vector-search-how-to-quantization.md). |
 | Vectors in the [HNSW graph for Approximate Nearest Neighbors (ANN) search](vector-search-overview.md) | Used for query execution. |
 
 You can set properties that permanently discard the first two instances from vector storage.
@@ -42,9 +42,10 @@ Considerations for setting `stored` to false:
 
 - However, if your indexing strategy includes [partial document updates](search-howto-reindex.md#update-content), such as "merge" or "mergeOrUpload" on an existing document, setting `stored=false` prevents content updates to those fields during the merge. On each "merge" or "mergeOrUpload" operation to a search document, you must provide the vector fields in its entirety, along with the nonvector fields that you're updating, or the vector is dropped.
 
-Setting the `stored=false` attribution is irreversible. It's set during index creation on vector fields when physical data structures are created. If you want retrievable vector content later, you must drop and rebuild the index, or create and load a new field that has the new attribution.
+> [!IMPORTANT]
+> Setting the `stored=false` attribution is irreversible. It's set during index creation on vector fields when physical data structures are created. If you want retrievable vector content later, you must drop and rebuild the index, or create and load a new field that has the new attribution.
 
-The following example shows the fields collection of a search index. Set `stored` to false to permanently remove retrievable storage for the vector field.
+For new vector fields in a search index, set `stored` to false to permanently remove retrievable storage for the vector field. The following example shows a vector field definition with the `stored` property.
 
 ```http
 PUT https://[service-name].search.windows.net/indexes/demo-index?api-version=2024-07-01 
