@@ -231,6 +231,8 @@ items:
       href: search-howto-reindex.md
     - name: Alias an index
       href: search-how-to-alias.md
+    - name: Portal indexing (Import wizards)
+      href: search-import-data-portal.md
     - name: Import large data sets
       href: search-how-to-large-index.md
     - name: Indexers
