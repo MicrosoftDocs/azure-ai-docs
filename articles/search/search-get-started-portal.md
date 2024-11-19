@@ -20,13 +20,15 @@ In this Azure AI Search quickstart, create your first _search index_ by using th
 The wizard creates multiple objects on your search service - [searchable index](search-what-is-an-index.md) - but also an [indexer](search-indexer-overview.md) and data source connection for automated data retrieval. At the end of this quickstart, we review each object. 
 
 > [!NOTE]
-> The **Import data** wizard includes options for OCR, text translation, and other AI enrichments that aren't covered in this quickstart. For a similar walkthrough that focuses on applied AI, see [Quickstart: Create a skillset in the Azure portal](cognitive-search-quickstart-blob.md).
+> The **Import data** wizard includes options for OCR, text translation, and other AI enrichments that aren't covered in this quickstart. For a similar walkthrough that focuses on applied AI, see [Quickstart: Create a skillset in the Azure portal](search-get-started-skillset.md).
 
 ## Prerequisites
 
 - An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/free/).
 
-- An Azure AI Search service for any tier and any region. [Create a service](search-create-service-portal.md) or [find an existing service](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices) under your current subscription. You can use a free service for this quickstart. 
+- An Azure AI Search service for any tier and any region. [Create a service](search-create-service-portal.md) or [find an existing service](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices) under your current subscription. You can use a free service for this quickstart.
+
+- Familiarity with the wizard. See [Import data wizards in the Azure portal](search-import-data-portal.md) for details.
 
 For this quickstart, which uses built-in sample data, make sure the search service doesn't have [network access controls](service-configure-firewall.md) in place. The portal controller uses the public endpoint to retrieve data and metadata from the built-in sample data source hosted by Microsoft. For more information, see [Secure connections in the import wizards](search-import-data-portal.md#secure-connections).
 
@@ -73,7 +75,7 @@ The **Import data** wizard supports the creation of a skillset and [AI-enrichmen
    :::image type="content" source="media/search-get-started-portal/skip-cognitive-skills.png" alt-text="Screenshot that shows how to Skip to the Customize target index tab in the Import data wizard.":::
 
 > [!TIP]
-> Interested in AI enrichment? Try this [Quickstart: Create a skillset in the Azure portal](cognitive-search-quickstart-blob.md)
+> Interested in AI enrichment? Try this [Quickstart: Create a skillset in the Azure portal](search-get-started-skillset.md)
 
 ### Configure the index
 

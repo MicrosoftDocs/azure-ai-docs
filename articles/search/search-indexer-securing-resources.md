@@ -99,9 +99,9 @@ When setting the IP rule for the multitenant environment, certain SQL data sourc
 
 You can specify the service tag if your data source is either:
 
-- [SQL Server on Azure virtual machines](./search-howto-connecting-azure-sql-iaas-to-azure-search-using-indexers.md#restrict-network-access-to-azure-ai-search)
+- [SQL Server on Azure virtual machines](./search-how-to-index-sql-server.md#restrict-network-access-to-azure-ai-search)
 
-- [SQL Managed Instances](./search-howto-connecting-azure-sql-mi-to-azure-search-using-indexers.md#verify-nsg-rules)
+- [SQL Managed Instances](./search-how-to-index-sql-managed-instance.md#verify-nsg-rules)
 
 Notice that if you specified the service tag for the multitenant environment IP rule, you'll still need an explicit inbound rule for the private execution environment (meaning the search service itself), as obtained through `nslookup`.
 

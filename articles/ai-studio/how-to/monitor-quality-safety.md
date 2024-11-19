@@ -22,7 +22,7 @@ author: msakande
 Monitoring applications that are deployed to production is an essential part of the generative AI application lifecycle. Changes in data and consumer behavior can influence your application over time, resulting in outdated systems that negatively affect business outcomes and expose organizations to compliance, economic, and reputation risks. 
 
 > [!NOTE]
-> For an improved way to perform continuous monitoring of deployed applications (other than prompt flow), consider using Azure AI online evaluation.
+> For an improved way to perform continuous monitoring of deployed applications (other than prompt flow), consider using [Azure AI online evaluation](./online-evaluation.md).
 
 Azure AI monitoring for generative AI applications enables you to monitor your applications in production for token usage, generation quality, and operational metrics.
 

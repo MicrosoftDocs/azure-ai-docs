@@ -301,6 +301,8 @@ items:
          href: how-to/develop/trace-local-sdk.md
        - name: Visualize your traces
          href: how-to/develop/visualize-traces.md
+       - name: Continuously monitor your applications
+         href: how-to/online-evaluation.md
   - name: Evaluate generative AI apps
     items:
     - name: Evaluations concepts

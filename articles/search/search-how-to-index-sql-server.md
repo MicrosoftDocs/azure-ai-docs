@@ -15,7 +15,7 @@ ms.date: 05/01/2024
 
 # Indexer connections to a SQL Server instance on an Azure virtual machine
 
-When configuring an [Azure SQL indexer](search-howto-connecting-azure-sql-database-to-azure-search-using-indexers.md) to extract content from a database on an Azure virtual machine, extra steps are required for secure connections. 
+When configuring an [Azure SQL indexer](search-how-to-index-sql-database.md) to extract content from a database on an Azure virtual machine, extra steps are required for secure connections. 
 
 A connection from Azure AI Search to SQL Server instance on a virtual machine is a public internet connection. In order for secure connections to succeed, perform the following steps:
 
@@ -104,4 +104,4 @@ If you don't need key-based authentication, we recommend that you disable API ke
 
 ## Next steps
 
-With configuration out of the way, you can now specify a SQL Server on Azure VM as the data source for an Azure AI Search indexer. For more information, see [Index data from Azure SQL](search-howto-connecting-azure-sql-database-to-azure-search-using-indexers.md).
+With configuration out of the way, you can now specify a SQL Server on Azure VM as the data source for an Azure AI Search indexer. For more information, see [Index data from Azure SQL](search-how-to-index-sql-database.md).
