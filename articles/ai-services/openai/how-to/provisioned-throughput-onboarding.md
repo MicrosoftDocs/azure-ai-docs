@@ -16,7 +16,7 @@ This article walks you through the process of onboarding to [Provisioned Through
 
 ## When to use provisioned throughput units (PTU)
 
-You should consider switching from standard deployments to provisioned deployments when you have well-defined, predictable throughput requirements and a need for latency predictability . Typically, this occurs when the application is ready for production or has already been deployed in production and there's an understanding of the expected traffic. This allows users to accurately forecast the required capacity and avoid unexpected billing. 
+You should consider switching from standard deployments to provisioned deployments when you have well-defined, predictable throughput and latency requirements. Typically, this occurs when the application is ready for production or has already been deployed in production and there's an understanding of the expected traffic. This allows users to accurately forecast the required capacity and avoid unexpected billing. 
 
 ### Typical PTU scenarios
 
@@ -29,7 +29,7 @@ You should consider switching from standard deployments to provisioned deploymen
 
 ## Sizing and estimation: provisioned deployments
 
-Determining the right amount of provisioned throughput, or PTUs, you require for your workload is an essential step to optimizing performance and cost. If you are not familiar with the different approaches available to estimate system level throughput, review the system level throughput estimation recommendations in our [performance and latency documentation](./latency.md). This section describes how to use the Azure OpenAI capacity planning tooling to estimate the amount of PTUs required to support a given workload.
+Determining the right amount of provisioned throughput, or PTUs, you require for your workload is an essential step to optimizing performance and cost. If you are not familiar with the different approaches available to estimate system level throughput, review the system level throughput estimation recommendations in our [performance and latency documentation](./latency.md). This section describes how to use the Azure OpenAI capacity planning tooling to estimate the number of PTUs required to support a given workload.
 
 ### Estimate provisioned throughput units and cost
 
