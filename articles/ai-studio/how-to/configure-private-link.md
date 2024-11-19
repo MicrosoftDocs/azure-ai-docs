@@ -23,7 +23,7 @@ You get several hub default resources in your resource group. You need to config
 
 - Disable public network access of hub default resources such as Azure Storage, Azure Key Vault, and Azure Container Registry.
 - Establish private endpoint connection to hub default resources. You need to have both a blob and file private endpoint for the default storage account.
-- [Managed identity configurations](#managed-identity-configuration) to allow hubs access to your storage account if it's private.
+- If your storage account is private, [assign roles](#private-storage-configuration) to allow access.
 
 
 ## Prerequisites
