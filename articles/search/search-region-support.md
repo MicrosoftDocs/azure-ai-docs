@@ -9,7 +9,7 @@ ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: conceptual
 ms.custom: references_regions
-ms.date: 11/08/2024
+ms.date: 11/19/2024
 
 ---
 
@@ -23,7 +23,7 @@ This article identifies the cloud regions in which Azure AI Search is available.
 |---------|--------------|
 | [Extra capacity](search-limits-quotas-capacity.md#service-limits) | Higher capacity partitions became available in selected regions starting in April 2024 with a second wave following in May 2024. If you're using an older search service, create a new search service to benefit from more capacity at the same billing rate. To check existing capacity, [find your search service](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices) and select the **Properties** tab in the middle of the Overview page. To check search service age, follow [these instructions](vector-search-index-size.md#how-to-check-service-creation-date).  Currently, there are just a few regions that *don't* offer higher capacity partitions. Regional support for extra capacity is noted in the footnotes of this article.|
 | [Availability zones](search-reliability.md#availability-zone-support) | Divides a region's data centers into distinct physical location groups, providing high-availability within the same geo. Regional support is noted in this article. |
-| [Azure AI enrichment](cognitive-search-concept-intro.md) | Refers to skills that make internal calls to Azure AI for enrichment and transformation during indexing. Integration requires that Azure AI Search coexists with an [Azure AI multi-service account](/azure/ai-services/multi-service-resource) in the same physical region. Regional support is noted in this article. |
+| [AI service integration](cognitive-search-concept-intro.md) | Refers to skills that make internal calls to Azure AI for enrichment and transformation during indexing. Integration requires that Azure AI Search coexists with an [Azure AI multi-service account](/azure/ai-services/multi-service-resource) in the same physical region. Regional support is noted in this article. |
 | [Azure OpenAI integration](vector-search-integrated-vectorization.md)  | Refers to skills and vectorizers that make internal calls to deployed embedding and chat models on Azure OpenAI. Check [Azure OpenAI model region availability](/azure/ai-services/openai/concepts/models#model-summary-table-and-region-availability) for the most current list of regions for each embedding and chat model. Specific Azure OpenAI models are in fewer regions, so be sure to check for joint regional availability before installing.|
 | [Azure AI Studio integration](vector-search-integrated-vectorization-ai-studio.md) | Refers to skills and vectorizers that make internal calls to the models hosted in the model catalog. Check [Azure AI Studio region availability](/azure/ai-studio/reference/region-support) for the most current list of regions. |
 | [Azure AI Vision 4.0 multimodal APIs for image vectorization](search-get-started-portal-image-search.md) | Refers to skills and vectorizers that call the multimodal embedding API. Check the [Azure AI Vision region list](/azure/ai-services/computer-vision/overview-image-analysis#region-availability) for joint regional availability. |
@@ -33,9 +33,11 @@ This article identifies the cloud regions in which Azure AI Search is available.
 
 You can create an Azure AI Search resource in any of the following Azure public regions. Almost all of these regions support [higher capacity tiers](search-limits-quotas-capacity.md#service-limits). Exceptions are noted where they apply.
 
+AI service integration refers to internal connections to an Azure AI multi-service account and doesn't include Azure OpenAI integration.
+
 ### Americas
 
-| Region | AI integration | Semantic ranker | Availability zones | Capacity constrained |
+| Region | AI service integration | Semantic ranker | Availability zones | Capacity constrained |
 |--|--|--|--|--|
 | Brazil South​​ ​ | ✅ | ✅ | |  |
 | Canada Central​​ | ✅ | ✅ | ✅ |  |
@@ -52,9 +54,9 @@ You can create an Azure AI Search resource in any of the following Azure public 
 
 ### Europe
 
-| Region | AI integration | Semantic ranker | Availability zones | Capacity constrained |
+| Region | AI service integration | Semantic ranker | Availability zones | Capacity constrained |
 |--|--|--|--|--|
-| North Europe​​ | ✅ | ✅ | ✅ |  |
+| North Europe​​ | ✅ | ✅ | ✅ | S2, S3, S3, S3 HD, L1, L2 |
 | West Europe​​ <sup>1</sup>| ✅ | ✅ | ✅ | All Tiers |
 | France Central​​ | ✅ | ✅ | ✅ | |
 | Germany West Central​ <sup>1</sup>​| ✅ |  | ✅ | |
@@ -72,7 +74,7 @@ You can create an Azure AI Search resource in any of the following Azure public 
 
 ### Middle East
 
-| Region | AI integration | Semantic ranker | Availability zones | Capacity constrained |
+| Region | AI service integration | Semantic ranker | Availability zones | Capacity constrained |
 |--|--|--|--|--|
 | Israel Central​ <sup>1</sup> |  |  | ✅  |  |
 | Qatar Central​ <sup>1</sup> |  |  | ✅ | |
@@ -82,13 +84,13 @@ You can create an Azure AI Search resource in any of the following Azure public 
 
 ### Africa
 
-| Region | AI integration | Semantic ranker | Availability zones | Capacity constrained |
+| Region | AI service integration | Semantic ranker | Availability zones | Capacity constrained |
 |--|--|--|--|--|
 | South Africa North​ | ✅ |  | ✅ |   |
 
 ### Asia Pacific
 
-| Region | AI integration | Semantic ranker | Availability zones | Capacity constrained |
+| Region | AI service integration | Semantic ranker | Availability zones | Capacity constrained |
 |--|--|--|--|--|
 | Australia East​ ​ | ✅ | ✅ | ✅ |   |
 | Australia Southeast​​​ |  | ✅ |  | |
@@ -106,16 +108,15 @@ You can create an Azure AI Search resource in any of the following Azure public 
 
 ## Azure Government regions
 
-| Region | AI integration | Semantic ranker | Availability zones | Capacity constrained |
+| Region | AI service integration | Semantic ranker | Availability zones | Capacity constrained |
 |--|--|--|--|--|
 | Arizona | ✅ | ✅  | | |
 | Texas |  | ✅ |  | |
 | Virginia | ✅ | ✅  | ✅ | All Tiers |
 
-
 ## Azure operated by 21Vianet
 
-| Region | AI integration | Semantic ranker | Availability zones | Capacity constrained |
+| Region | AI service integration | Semantic ranker | Availability zones | Capacity constrained |
 |--|--|--|--|--|
 | China East |  |  |  |
 | China East 2 <sup>1</sup> | ✅  | | | |

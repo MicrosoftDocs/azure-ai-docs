@@ -15,7 +15,7 @@ ms.date: 05/23/2024
 
 # Indexer connections to Azure SQL Managed Instance through a public endpoint
 
-Indexers in Azure AI Search connect to external data sources over a public endpoint. If you're setting up an [Azure SQL indexer](search-howto-connecting-azure-sql-database-to-azure-search-using-indexers.md) for a connection to a SQL managed instance, follow the steps in this article to ensure the public endpoint is set up correctly. 
+Indexers in Azure AI Search connect to external data sources over a public endpoint. If you're setting up an [Azure SQL indexer](search-how-to-index-sql-database.md) for a connection to a SQL managed instance, follow the steps in this article to ensure the public endpoint is set up correctly. 
 
 Alternatively, if the managed instance is behind a firewall, [create a shared private link](search-indexer-how-to-access-private-sql.md) instead.
 
@@ -28,17 +28,17 @@ This article highlights just the steps for an indexer connection in Azure AI Sea
 
 1. For a new SQL Managed Instance, create the resource with the **Enable public endpoint** option selected.
 
-   ![Enable public endpoint](media/search-howto-connecting-azure-sql-mi-to-azure-search-using-indexers/enable-public-endpoint.png "Enable public endpoint")
+   ![Enable public endpoint](media/search-how-to-index-sql-managed-instance/enable-public-endpoint.png "Enable public endpoint")
 
 1. Alternatively, if the instance already exists, you can enable public endpoint on an existing SQL Managed Instance under **Security** > **Virtual network** > **Public endpoint** > **Enable**.
 
-   ![Enable public endpoint using managed instance VNET](media/search-howto-connecting-azure-sql-mi-to-azure-search-using-indexers/mi-vnet.png "Enable public endpoint")
+   ![Enable public endpoint using managed instance VNET](media/search-how-to-index-sql-managed-instance/mi-vnet.png "Enable public endpoint")
 
 ## Verify NSG rules
 
 Check the Network Security Group has the correct **Inbound security rules** that allow connections from Azure services.
 
-   ![NSG Inbound security rule](media/search-howto-connecting-azure-sql-mi-to-azure-search-using-indexers/nsg-rule.png "NSG Inbound security rule")
+   ![NSG Inbound security rule](media/search-how-to-index-sql-managed-instance/nsg-rule.png "NSG Inbound security rule")
 
 ## Restrict inbound access to the endpoint
 
@@ -54,8 +54,8 @@ For each rule, set "PORT" = `3342`, "PROTOCOL" = `TCP`, "DESTINATION" = `Any`, "
 
 Copy the connection string to use in the search indexer's data source connection. Be sure to copy the connection string for the **public endpoint** (port 3342, not port 1433).
 
-   ![Public endpoint connection string](media/search-howto-connecting-azure-sql-mi-to-azure-search-using-indexers/mi-connection-string.png "Public endpoint connection string")
+   ![Public endpoint connection string](media/search-how-to-index-sql-managed-instance/mi-connection-string.png "Public endpoint connection string")
 
 ## Next steps
 
-With configuration out of the way, you can now specify a SQL managed instance as an indexer data source using the basic instructions for [setting up an Azure SQL indexer](search-howto-connecting-azure-sql-database-to-azure-search-using-indexers.md).
+With configuration out of the way, you can now specify a SQL managed instance as an indexer data source using the basic instructions for [setting up an Azure SQL indexer](search-how-to-index-sql-database.md).

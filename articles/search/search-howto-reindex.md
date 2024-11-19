@@ -199,7 +199,7 @@ Deleting a document doesn't immediately free up space in the index. Every few mi
 + [Indexer overview](search-indexer-overview.md)
 + [Index large data sets at scale](search-howto-large-index.md)
 + [Indexing in the portal](search-import-data-portal.md)
-+ [Azure SQL Database indexer](search-howto-connecting-azure-sql-database-to-azure-search-using-indexers.md)
++ [Azure SQL Database indexer](search-how-to-index-sql-database.md)
 + [Azure Cosmos DB for NoSQL indexer](search-howto-index-cosmosdb.md)
 + [Azure blob indexer](search-howto-indexing-azure-blob-storage.md)
 + [Azure tables indexer](search-howto-indexing-azure-tables.md)
