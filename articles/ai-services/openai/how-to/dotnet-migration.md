@@ -1,13 +1,13 @@
 ---
 title: How to migrate from Azure.AI.OpenAI 1.0 Beta to 2.0
 titleSuffix: Azure OpenAI Service
-description: Learn about migrating to the latest release of the Azure OpenAI package for C#.
+description: Learn about migrating to the latest release of the Azure OpenAI package for .NET.
 author: mrbullwinkle 
 ms.author: mbullwin 
 ms.service: azure-ai-openai
-ms.custom: devx-track-python
+ms.custom: devx-track-dotnet
 ms.topic: how-to
-ms.date: 11/18/2024
+ms.date: 11/19/2024
 manager: nitinme
 ---
 
@@ -21,13 +21,13 @@ manager: nitinme
 
 Stable releases of `Azure.AI.OpenAI` are associated with a corresponding stable Azure OpenAI Service API version label, for example, `2024-10-21`.
 
-```cmd
+```dotnetcli
 dotnet add package Azure.AI.OpenAI
 ```
 
 Beta releases of `Azure.AI.OpenAI` are associated with a corresponding preview Azure OpenAI Service API version label, for example, `2024-10-01-preview`.
 
-```cmd
+```dotnetcli
 dotnet add package Azure.AI.OpenAI --prerelease
 ```
 
@@ -54,12 +54,12 @@ AzureOpenAIClient azureClient = new(
 ChatClient chatClient = azureClient.GetChatClient("my-gpt-4o-mini-deployment");
 ```
 
-Just like in 1.0, the new `AzureOpenAIClient` supports the use of Microsoft Entra ID Credentials when the `Azure.Identity` package is installed.
+Just like in 1.0, the new `AzureOpenAIClient` supports the use of Microsoft Entra ID credentials when the [Azure.Identity](/dotnet/api/overview/azure/identity-readme?view=azure-dotnet&preserve-view=true) package is installed.
 
 ```csharp
 // 2.0: Microsoft Entra ID via Azure.Identity's DefaultAzureCredential
 string endpoint = "https://myaccount.openai.azure.com/";
-var client = new OpenAIClient(new Uri(endpoint), new DefaultAzureCredential());
+AzureOpenAIClient client = new(new Uri(endpoint), new DefaultAzureCredential());
 ```
 
 ---
