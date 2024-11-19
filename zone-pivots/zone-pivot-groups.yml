@@ -917,3 +917,12 @@ groups:
     title: AI Studio
   - id: programming-language-javascript
     title: JavaScript
+# owner: sgilley
+- id: programming-languages-sdk-overview
+  title: Programming languages
+  prompt: Choose one of the client library languages.
+  pivots:
+  - id: programming-language-python
+    title: Python
+  - id: programming-language-csharp
+    title: C#
