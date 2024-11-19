@@ -168,7 +168,7 @@ items:
       - name: Function calling
         href: ./how-to/fine-tuning-functions.md
         displayName: fine-tuning, finetuning
-      - name: Weights & Biases integration
+      - name: Weights & Biases integration (preview)
         href: ./how-to/weights-and-biases-integration.md
   - name: Use your data
     items:
