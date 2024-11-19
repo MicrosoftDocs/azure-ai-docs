@@ -1,10 +1,10 @@
 items:
-- name: Azure Agent Runtime Documentation
+- name: Azure AI Agent Service Documentation
   href: index.yml
 - name: Overview
   expanded: true
   items:
-    - name: What is Azure Agent Runtime?
+    - name: What is Azure AI Agent Service?
       href: overview.md
     - name: Quotas and limits
       href: quotas-limits.md
@@ -16,3 +16,7 @@ items:
       href: faq.yml
 - name: Quickstart
   href: quickstart.md
+- name: How-to
+  items:
+    - name: Code interpreter
+      href: how-to/tools/code-interpreter.md
