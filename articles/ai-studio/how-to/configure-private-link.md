@@ -255,6 +255,8 @@ If your storage account is private (uses a private endpoint to communicate with 
 
 1. Verify that the project's connection to the storage account uses Microsoft Entra ID for authentication. To view the connection information, go to the __Management center__, select __Connected resources__, and then select the storage account connections. If the credential type isn't Entra ID, select the pencil icon to update the connection and set the __Authentication method__ to __Microsoft Entra ID__.
 
+For information on securing playground chat, see [Securely use playground chat](secure-data-playground.md).
+
 ## Custom DNS configuration
 
 See [Azure Machine Learning custom DNS](/azure/machine-learning/how-to-custom-dns#example-custom-dns-server-hosted-in-vnet) article for the DNS forwarding configurations.
