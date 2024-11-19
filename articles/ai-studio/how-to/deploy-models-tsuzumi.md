@@ -6,8 +6,8 @@ ms.service: azure-ai-studio
 manager: scottpolly
 ms.topic: how-to
 ms.date: 10/24/2024
-ms.reviewer: ssalgado
-reviewer: ssalgadodev
+ms.reviewer: haelhamm
+reviewer: hazemelh
 ms.author: ssalgado
 author: ssalgadodev
 ms.custom: references_regions, generated
@@ -1321,20 +1321,6 @@ The following example shows how to handle events when the model detects harmful 
 > To learn more about how you can configure and control Azure AI content safety settings, check the [Azure AI content safety documentation](https://aka.ms/azureaicontentsafety).
 
 ::: zone-end
-
-## More inference examples
-
-For more examples of how to use Tsuzumi models, see the following examples and tutorials:
-
-| Description                               | Language          | Sample                                                             |
-|-------------------------------------------|-------------------|------------------------------------------------------------------- |
-| CURL request                              | Bash              | [Link](https://aka.ms/meta-llama-3.1-405B-instruct-webrequests)    |
-| Azure AI Inference package for JavaScript | JavaScript        | [Link](https://aka.ms/azsdk/azure-ai-inference/javascript/samples) |
-| Azure AI Inference package for Python     | Python            | [Link](https://aka.ms/azsdk/azure-ai-inference/python/samples)     |
-| Python web requests                       | Python            | [Link](https://aka.ms/meta-llama-3.1-405B-instruct-webrequests)    |
-| OpenAI SDK (experimental)                 | Python            | [Link](https://aka.ms/meta-llama-3.1-405B-instruct-openai)         |
-| LangChain                                 | Python            | [Link](https://aka.ms/meta-llama-3.1-405B-instruct-langchain)      |
-| LiteLLM                                   | Python            | [Link](https://aka.ms/meta-llama-3.1-405B-instruct-litellm)        | 
 
 ## Cost and quota considerations for tsuzumi models deployed as serverless API endpoints
 
