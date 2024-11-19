@@ -45,7 +45,7 @@ Azure OpenAI fine-tuning models are charged based on the [number of tokens in yo
 Once your fine-tuned model is deployed, you're also charged based on:
 
 - Hosting hours
-- Inference per 1,000 tokens (broken down by input usage and output usage.)
+- Inference per 1,000 tokens (broken down by input usage and output usage)
 
 The hosting hours cost is important to be aware of since after a fine-tuned model is deployed, it continues to incur an hourly cost regardless of whether you're actively using it. Monitor deployed fine-tuned model costs closely.
 
