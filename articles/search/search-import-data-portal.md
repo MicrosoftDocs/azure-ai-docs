@@ -42,11 +42,11 @@ The wizards support most of the data sources supported by indexers.
 | [Azure SQL database and managed instance](search-how-to-index-sql-database.md)  | ✅ | ✅ |
 | [Cosmos DB for NoSQL](search-howto-index-cosmosdb.md) | ✅ | ✅ |
 | [Cosmos DB for MongoDB](search-howto-index-cosmosdb-mongodb.md) | ✅ | ✅ |
-| [Cosmos DB for Apache Gremlin](search-howto-index-cosmosdb-gremlin.md) | ✅ | ❌ |
-| [MySQL](search-howto-index-mysql.md)  | ✅ | ❌ |
+| [Cosmos DB for Apache Gremlin](search-howto-index-cosmosdb-gremlin.md) | ✅ | ✅ |
+| [MySQL](search-howto-index-mysql.md)  | ❌ | ❌ |
 | [OneLake](search-how-to-index-onelake-files.md)  | ✅ | ✅ |
 | [SharePoint Online](search-howto-index-sharepoint-online.md)  | ❌ | ❌ |
-| [SQL Server on virtual machines](search-how-to-index-sql-server.md)  | ✅ | ❌ |
+| [SQL Server on virtual machines](search-how-to-index-sql-server.md)  | ✅ | ✅ |
 
 ### Sample data
 
