@@ -41,9 +41,9 @@ This article contains a reference and a detailed description of the quotas and l
 
 ### How to request an increase to the default limits 
 
-To increase rate limits and resource limits, you can submit a support request. However, for other quota limits, you need to switch to a higher pricing tier to increase those quotas. 
+To increase rate limits and resource limits for paid subscription, you can submit a support request.
 
-[Submit a support request](/azure/ai-services/cognitive-services-support-options?context=%2Fazure%2Fai-services%2Fopenai%2Fcontext%2Fcontext) and provide the following information: 
+[Submit a support request](https://azure.microsoft.com/support/create-ticket/) and provide the following information: 
 - A description of your Face use case.
 - The reason for requesting an increase in your current limits. 
 - Which of your subscriptions or resources are affected? 
