@@ -1,5 +1,5 @@
 ---
-title: "Part 1: Set up project and development environment to build a a custom knowledge retrieval (RAG) app"
+title: "Part 1: Set up project and development environment to build a custom knowledge retrieval (RAG) app"
 titleSuffix: Azure AI Studio
 description:  Build a custom chat app using the Azure AI Foundry SDK. Part 1 of a 3-part tutorial series, which shows how to create the resources you'll need for parts 2 and 3.
 manager: scottpolly
