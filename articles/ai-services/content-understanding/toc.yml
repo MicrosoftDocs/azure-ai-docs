@@ -18,9 +18,6 @@ items:
     href: service-limits.md
   - name: Language and region support
     href: language-region-support.md
-  - name: Pricing
-    displayName: cost, pricing, subscription, tier, paid, trial
-    href: https://azure.microsoft.com/pricing
   - name: FAQ
     displayName: FAQ, definition, updates, previews
     href: faq.yml
