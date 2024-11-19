@@ -25,6 +25,8 @@ This quickstart helps you get started with [integrated vectorization](vector-sea
 
 + [A supported embedding model](#supported-embedding-models).
 
++ Familiarity with the wizard. See [Import data wizards in the Azure portal](search-import-data-portal.md) for details.
+
 ### Supported data sources
 
 The **Import and vectorize data** wizard [supports a wide range of Azure data sources](search-import-data-portal.md#supported-data-sources-and-scenarios), but this quickstart provides steps for just those data sources that work with whole files:
