@@ -101,13 +101,14 @@ This article uses a Meta Llama model deployment for illustration. However, you c
 
 ## Find your model and model ID in the model catalog
 
-1. Sign in to [Azure AI Studio](https://ai.azure.com).
+[!INCLUDE [open-catalog](../includes/open-catalog.md)]
 
-1. For models offered through the Azure Marketplace, ensure that your account has the **Azure AI Developer** role permissions on the resource group, or that you meet the [permissions required to subscribe to model offerings](#permissions-required-to-subscribe-to-model-offerings).
+> [!NOTE]
+> For models offered through the Azure Marketplace, ensure that your account has the **Azure AI Developer** role permissions on the resource group, or that you meet the [permissions required to subscribe to model offerings](#permissions-required-to-subscribe-to-model-offerings).
+>
+> Models that are offered by non-Microsoft providers (for example, Llama and Mistral models) are billed through the Azure Marketplace. For such models, you're required to subscribe your project to the particular model offering. Models that are offered by Microsoft (for example, Phi-3 models) don't have this requirement, as billing is done differently. For details about billing for serverless deployment of models in the model catalog, see [Billing for serverless APIs](model-catalog-overview.md#billing).
 
-    Models that are offered by non-Microsoft providers (for example, Llama and Mistral models) are billed through the Azure Marketplace. For such models, you're required to subscribe your project to the particular model offering. Models that are offered by Microsoft (for example, Phi-3 models) don't have this requirement, as billing is done differently. For details about billing for serverless deployment of models in the model catalog, see [Billing for serverless APIs](model-catalog-overview.md#billing).
-
-1. Select **Model catalog** from the left sidebar and find the model card of the model you want to deploy. In this article, you select a **Meta-Llama-3-8B-Instruct** model.
+4. Select the model card of the model you want to deploy. In this article, you select a **Meta-Llama-3-8B-Instruct** model.
     
     1. If you're deploying the model using Azure CLI, Python, or ARM, copy the **Model ID**.
 
@@ -469,7 +470,7 @@ In this section, you create an endpoint with the name **meta-llama3-8b-qwerty**.
 
     1. Go to your project.
 
-    1. Select the section **Deployments**
+    1. In the **My assets** section, select **Models + endpoints**.
 
     1. Serverless API endpoints are displayed.
 
@@ -516,7 +517,7 @@ In this section, you create an endpoint with the name **meta-llama3-8b-qwerty**.
 
     # [AI Studio](#tab/azure-ai-studio)
 
-    You can return to the Deployments page, select the deployment, and note the endpoint's _Target URI_ and _Key_. Use them to call the deployment and generate predictions.
+    You can select the deployment, and note the endpoint's _Target URI_ and _Key_. Use them to call the deployment and generate predictions.
 
     > [!NOTE]
     > When using the [Azure portal](https://portal.azure.com), serverless API endpoints aren't displayed by default on the resource group. Use the **Show hidden types** option to display them on the resource group.
@@ -578,7 +579,9 @@ To delete a serverless API endpoint:
 
 1. Go to the [Azure AI Studio](https://ai.azure.com).
 
-1. Go to **Components** > **Deployments**.
+1. Go to your project.
+
+1. In the **My assets** section, select **Models + endpoints**.
 
 1. Open the deployment you want to delete.
 

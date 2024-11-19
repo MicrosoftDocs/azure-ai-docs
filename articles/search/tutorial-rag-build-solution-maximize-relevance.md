@@ -47,6 +47,8 @@ Let's start with a new query, "Are there any cloud formations specific to oceans
 
 To compare outcomes after adding relevance features, run the query against the existing index schema, before you add semantic ranking or a scoring profile.
 
+For the Azure Government cloud, modify the API endpoint on the token provider to `"https://cognitiveservices.azure.us/.default"`.
+
 ```python
 from azure.search.documents import SearchClient
 from openai import AzureOpenAI
@@ -199,6 +201,8 @@ In a previous tutorial, you [designed an index schema](tutorial-rag-build-soluti
 In a previous tutorial, you [ran queries](tutorial-rag-build-solution-query.md) that execute on the search engine, passing the response and other information to an LLM for chat completion.
 
 This example modifies the query request to include the semantic configuration and scoring profile.
+
+For the Azure Government cloud, modify the API endpoint on the token provider to `"https://cognitiveservices.azure.us/.default"`.
 
 ```python
 # Import libraries

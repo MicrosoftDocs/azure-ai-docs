@@ -226,6 +226,8 @@ This section uses Visual Studio Code and Python to call the chat completion APIs
 
 1. Set up clients, the prompt, query, and response.
 
+   For the Azure Government cloud, modify the API endpoint on the token provider to `"https://cognitiveservices.azure.us/.default"`.
+
    ```python
    # Set up the query for generating responses
     from azure.identity import DefaultAzureCredential

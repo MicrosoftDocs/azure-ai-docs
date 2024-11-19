@@ -45,7 +45,7 @@ landingContent:
           - text: Built-in vectorization
             url: vector-search-integrated-vectorization.md
           - text: Built-in compression
-            url: vector-search-how-to-configure-compression-storage.md
+            url: vector-search-how-to-quantization.md
           - text: Retrieval Augmented Generation (RAG)
             url: retrieval-augmented-generation-overview.md
       - linkListType: quickstart

@@ -56,6 +56,8 @@ AZURE_OPENAI_ACCOUNT: str = "PUR YOUR AZURE OPENAI ENDPOINT HERE"
 
 Here's the Python script that instantiates the clients, defines the prompt, and sets up the query. You can run this script in the notebook to generate a response from your chat model deployment.
 
+For the Azure Government cloud, modify the API endpoint on the token provider to `"https://cognitiveservices.azure.us/.default"`.
+
 ```python
 # Import libraries
 from azure.search.documents import SearchClient

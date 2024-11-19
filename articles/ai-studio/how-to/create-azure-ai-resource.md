@@ -1,14 +1,14 @@
 ---
 title: How to create and manage an Azure AI Studio hub
 titleSuffix: Azure AI Studio
-description: This article describes how to create and manage an Azure AI Studio hub.
+description: Learn how to create and manage an Azure AI Studio hub from the Azure portal or from the AI Studio. Your developers can then create projects from the hub.
 manager: scottpolly
 ms.service: azure-ai-studio
 ms.custom:
   - ignite-2023
   - build-2024
 ms.topic: how-to
-ms.date: 5/21/2024
+ms.date: 11/19/2024
 ms.reviewer: deeikele
 ms.author: larryfr
 author: Blackmist
@@ -17,18 +17,20 @@ author: Blackmist
 
 # How to create and manage an Azure AI Studio hub
 
-In AI Studio, hubs provide the environment for a team to collaborate and organize work, and help you as a team lead or IT admin centrally set up security settings and govern usage and spend. You can create and manage a hub from the Azure portal or from the AI Studio. 
+In AI Studio, hubs provide the environment for a team to collaborate and organize work, and help you as a team lead or IT admin centrally set up security settings and govern usage and spend. You can create and manage a hub from the Azure portal or from the AI Studio, and then your developers can create projects from the hub.
 
 In this article, you learn how to create and manage a hub in AI Studio with the default settings so you can get started quickly. Do you need to customize security or the dependent resources of your hub? Then use [Azure portal](create-secure-ai-hub.md) or [template options](create-azure-ai-hub-template.md). 
 
 > [!TIP]
-> If you'd like to create your Azure AI Studio hub using a template, see the articles on using [Bicep](create-azure-ai-hub-template.md) or [Terraform](create-hub-terraform.md).
+> If you're an individual developer and not an admin, dev lead, or part of a larger effort that requires a hub, you can create a project directly from the AI Studio without creating a hub first. For more information, see [Create a project](create-projects.md).
+> 
+> If you're an admin or dev lead and would like to create your Azure AI Studio hub using a template, see the articles on using [Bicep](create-azure-ai-hub-template.md) or [Terraform](create-hub-terraform.md).
 
 ## Create a hub in AI Studio
 
 To create a new hub, you need either the Owner or Contributor role on the resource group or on an existing hub. If you're unable to create a hub due to permissions, reach out to your administrator. If your organization is using [Azure Policy](/azure/governance/policy/overview), don't create the resource in AI Studio. Create the hub [in the Azure portal](#create-a-secure-hub-in-the-azure-portal) instead.
 
-[!INCLUDE [Create Azure AI Studio hub](../includes/create-hub.md)]
+[!INCLUDE [Create Azure AI Studio hub](../includes/create-hub.md)] 
 
 ## Create a secure hub in the Azure portal
 
@@ -48,13 +50,13 @@ If your organization is using [Azure Policy](/azure/governance/policy/overview),
 
     :::image type="content" source="~/reusable-content/ce-skilling/azure/media/ai-studio/resource-create-networking.png" alt-text="Screenshot of the Create a hub with the option to set network isolation information." lightbox="~/reusable-content/ce-skilling/azure/media/ai-studio/resource-create-networking.png":::  
 
-1. Select the **Encryption** tab to set up data encryption. You can either use **Microsoft-managed keys** or enable **Customer-managed keys**. 
+1. Select the **Encryption** tab to set up data encryption. By default, **Microsoft-managed keys** are used to encrypt data. You can select to **Encrypt data using a customer-managed key**. 
 
-    :::image type="content" source="~/reusable-content/ce-skilling/azure/media/ai-studio/resource-create-encryption.png" alt-text="Screenshot of the Create a hub with the option to select your encryption type." lightbox="~/reusable-content/ce-skilling/azure/media/ai-studio/resource-create-encryption.png":::
+    :::image type="content" source="../media/how-to/hubs/resource-create-encryption.png" alt-text="Screenshot of the Create a hub with the option to select your encryption type." lightbox="../media/how-to/hubs/resource-create-encryption.png":::
 
-1. Select the **Identity** tab. By default, **System assigned identity** is enabled, but you can switch to **User assigned identity** if existing storage, key vault, and container registry are selected in **Storage**.
+1. Select the **Identity** tab. By default, **System assigned identity** is enabled, but you can switch to **User assigned identity** if existing storage, key vault, and container registry are selected in **Storage**. You can also select whether to use **Credential-based** or **Identity-based** access to the storage account.
 
-    :::image type="content" source="~/reusable-content/ce-skilling/azure/media/ai-studio/resource-create-identity.png" alt-text="Screenshot of the Create a hub with the option to select a managed identity." lightbox="~/reusable-content/ce-skilling/azure/media/ai-studio/resource-create-identity.png":::
+    :::image type="content" source="../media/how-to/hubs/resource-create-identity.png" alt-text="Screenshot of the Create a hub with the option to select a managed identity." lightbox="../media/how-to/hubs/resource-create-identity.png":::
 
     > [!NOTE]
     > If you select **User assigned identity**, your identity needs to have the `Cognitive Services Contributor` role in order to successfully create a new hub.
@@ -69,9 +71,13 @@ If your organization is using [Azure Policy](/azure/governance/policy/overview),
 
 ### Manage access control
 
-Manage role assignments from **Access control (IAM)** within the Azure portal. Learn more about hub [role-based access control](../concepts/rbac-ai-studio.md).
+You can add and remove users from the Azure AI Studio management center. Both the hub and projects within the hub have a **Users** entry in the left-menu that allows you to add and remove users. When adding users, you can assign them built-in roles.
 
-To add grant users permissions: 
+:::image type="content" source="../media/how-to/hubs/studio-user-management.png" alt-text="Screenshot of the users area of the management center for a hub." lightbox="../media/how-to/hubs/studio-user-management.png":::
+
+For custom role assignments, use **Access control (IAM)** within the Azure portal. Learn more about hub [role-based access control](../concepts/rbac-ai-studio.md).
+
+To add grant users permissions from the Azure portal: 
 1. Select **+ Add** to add users to your hub.
 
 1. Select the **Role** you want to assign.
@@ -145,13 +151,13 @@ az ml workspace update -n "myexamplehub" -g "{MY_RESOURCE_GROUP}" -a "APPLICATIO
 
 ### Choose how credentials are stored
 
-Select scenarios in AI Studio store credentials on your behalf. For example when you create a connection in AI Studio to access an Azure Storage account with stored account key, access Azure Container Registry with admin password, or when you create a compute instance with enabled SSH keys. No credentials are stored with connections when you choose EntraID identity-based authentication.
+Select scenarios in AI Studio store credentials on your behalf. For example when you create a connection in AI Studio to access an Azure Storage account with stored account key, access Azure Container Registry with admin password, or when you create a compute instance with enabled SSH keys. No credentials are stored with connections when you choose Microsoft Entra ID identity-based authentication.
 
 You can choose where credentials are stored:
 
-1. **Your Azure Key Vault**: This requires you to manage your own Azure Key Vault instance and configure it per hub. It gives you additional control over secret lifecycle e.g. to set expiry policies. You can also share stored secrets with other applications in Azure.
+- **Your Azure Key Vault**: This requires you to manage your own Azure Key Vault instance and configure it per hub. It gives you additional control over secret lifecycle e.g. to set expiry policies. You can also share stored secrets with other applications in Azure.
    
-1. **Microsoft-managed credential store (preview)**: In this variant Microsoft manages an Azure Key Vault instance on your behalf per hub. No resource management is needed on your side and the vault does not show in your Azure subscription. Secret data lifecycle follows the resource lifecycle of your hubs and projects. For example, when a project's storage connection is deleted, its stored secret is deleted as well.
+- **Microsoft-managed credential store (preview)**: In this variant Microsoft manages an Azure Key Vault instance on your behalf per hub. No resource management is needed on your side and the vault does not show in your Azure subscription. Secret data lifecycle follows the resource lifecycle of your hubs and projects. For example, when a project's storage connection is deleted, its stored secret is deleted as well.
 
 After your hub is created, it is not possible to switch between Your Azure Key Vault and using a Microsoft-managed credential store.
 
@@ -165,7 +171,6 @@ To delete a hub from Azure AI Studio, select the hub and then select **Delete hu
 > You can also delete the hub from the Azure portal.
 
 Deleting a hub deletes all associated projects. When a project is deleted, all nested endpoints for the project are also deleted. You can optionally delete connected resources; however, make sure that no other applications are using this connection. For example, another Azure AI Studio deployment might be using it.
-
 
 ## Related content
 
