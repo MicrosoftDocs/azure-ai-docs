@@ -78,18 +78,12 @@ It's important to call out that fine-tuning is heavily dependent on the quality 
 
 ## Supported models for fine-tuning
 
-Now that you know when to use fine-tuning for your use case, you can go to Azure AI Foundry to find models available to fine-tune. The following table describes models that you can fine-tune in Azure AI Foundry, along with the regions where you can fine-tune them.
+Now that you know when to use fine-tuning for your use case, you can go to Azure AI Studio to find models available to fine-tune. Fine-tuning is available in specific Azure regions for some models. To fine-tune such models, a user must have a hub/project in the region where the model is available for fine-tuning. See [Region availability for models in serverless API endpoints | Azure AI Studio](deploy-models-serverless-availability.md) for detailed information.
 
-| Model family | Model ID | Fine-tuning regions |
-| --- | --- | --- |
-| [Azure OpenAI models](../../ai-services/openai/how-to/fine-tuning.md?context=/azure/ai-studio/context/context) | Azure OpenAI Service models that you can fine-tune include among others `gpt-4` and `gpt-4o-mini`.<br/><br/>For details about Azure OpenAI models that are available for fine-tuning, see the [Azure OpenAI Service models documentation](../../ai-services/openai/concepts/models.md#fine-tuning-models) or the [Azure OpenAI models table](#fine-tuning-azure-openai-models) later in this guide. | Azure OpenAI Service models that you can fine-tune include among others North Central US and Sweden Central.<br/><br/>The supported regions might vary if you use Azure OpenAI models in an AI Studio project versus outside a project.<br/><br/>For details about fine-tuning regions, see the [Azure OpenAI Service models documentation](../../ai-services/openai/concepts/models.md#fine-tuning-models). |
-| [Phi-3 family models](../how-to/fine-tune-phi-3.md)<sup>**1**</sup>| `Phi-3-mini-4k-instruct`<br/>`Phi-3-mini-128k-instruct`<br/>`Phi-3-medium-4k-instruct`<br/>`Phi-3-medium-128k-instruct` | East US2 |
-| [Meta Llama 2 family models](../how-to/fine-tune-model-llama.md)<sup>**1**</sup>| `Meta-Llama-2-70b`<br/>`Meta-Llama-2-7b`<br/>`Meta-Llama-2-13b` <br/> `Llama-2-7B-chat` <br> `Llama-2-70B-chat` | West US3 |
-| [Meta Llama 3.1 family models](../how-to/fine-tune-model-llama.md)<sup>**1**</sup>| `Meta-Llama-3.1-70b-Instruct`<br/>`Meta-Llama-3.1-8b-Instruct` | West US3 |
+For details about Azure OpenAI models that are available for fine-tuning, see the [Azure OpenAI Service models documentation](../../ai-services/openai/concepts/models.md#fine-tuning-models) or the [Azure OpenAI models table](#fine-tuning-azure-openai-models) later in this guide.
 
-**<sup>1</sup>** Fine-tuning of these models is currently in public preview.
 
-This table provides more details about the Azure OpenAI Service models that support fine-tuning and the regions where fine-tuning is available.
+For the Azure Open AI  Service models that you can fine tune, supported regions for fine-tuning include North Central US, Sweden Central, and more.
 
 ### Fine-tuning Azure OpenAI models
 
