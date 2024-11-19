@@ -58,9 +58,9 @@ ms.author: fasantia
           from azure.identity import DefaultAzureCredential
     
           # Enter information about your Azure Machine Learning workspace.
-          subscription_id = '<subscription-ID>'
-          resource_group = '<resource-group-name>'
-          workspace_name = '<workspace-name>'
+          subscription_id = "<subscription-ID>"
+          resource_group = "<resource-group-name>"
+          workspace_name = "<workspace-name>"
     
           ml_client = MLClient(credential=DefaultAzureCredential(),
                                   subscription_id=subscription_id, 
@@ -97,10 +97,10 @@ ms.author: fasantia
     > If you use a private link-enabled workspace, the MLflow endpoint also uses a private link to communicate with Azure Machine Learning. As a result, the tracking URI uses a format that's different from the one in this article. In this case, you need to use the Azure Machine Learning SDK for Python or the Azure Machine Learning CLI v2 to get the tracking URI.
     
     ```python
-    region = '<region>'
-    subscription_id = '<subscription-ID>'
-    resource_group = '<resource-group-name>'
-    workspace_name = '<workspace-name>'
+    region = "<region>"
+    subscription_id = "<subscription-ID>"
+    resource_group = "<resource-group-name>"
+    workspace_name = "<workspace-name>"
     
     mlflow_tracking_uri = f"azureml://{region}.api.azureml.ms/mlflow/v1.0/subscriptions/{subscription_id}/resourceGroups/{resource_group}/providers/Microsoft.MachineLearningServices/workspaces/{workspace_name}"
     ```

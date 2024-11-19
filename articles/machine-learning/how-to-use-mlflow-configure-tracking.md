@@ -63,7 +63,7 @@ The authentication process tries the following methods, one after another, until
 
 [!INCLUDE [mlflow-configure-auth](includes/machine-learning-mlflow-configure-auth.md)]
 
-If you'd rather use a certificate instead of a secret, you can configure the following environment variables:
+If you'd rather use a certificate than a secret, you can configure the following environment variables:
 
 - Set `AZURE_CLIENT_CERTIFICATE_PATH` to the path of a file that contains the certificate and private key pair in Privacy Enhanced Mail (PEM) or Public-Key Cryptography Standards 12 (PKCS #12) format.
 - Set `AZURE_CLIENT_CERTIFICATE_PASSWORD` to the password of the certificate file, if it uses a password.
@@ -97,7 +97,7 @@ All MLflow runs are logged to the active experiment. By default, runs are logged
 
 > [!TIP]
 >
-> When you use the Azure Machine Learning CLI v2, to submit jobs, you can set the experiment name by using the `experiment_name` property in the YAML definition of the job. You don't have to configure it in your training script. For more information, see [YAML: display name, experiment name, description, and tags](reference-yaml-job-command.md#yaml-display-name-experiment-name-description-and-tags).
+> When you use the Azure Machine Learning CLI v2 to submit jobs, you can set the experiment name by using the `experiment_name` property in the YAML definition of the job. You don't have to configure it in your training script. For more information, see [YAML: display name, experiment name, description, and tags](reference-yaml-job-command.md#yaml-display-name-experiment-name-description-and-tags).
 
 
 # [MLflow SDK](#tab/mlflow)
@@ -105,7 +105,7 @@ All MLflow runs are logged to the active experiment. By default, runs are logged
 Use the MLflow [`mlflow.set_experiment()`](https://mlflow.org/docs/latest/python_api/mlflow.html#mlflow.set_experiment) command to configure your experiment.
     
 ```python
-experiment_name = 'experiment_with_mlflow'
+experiment_name = "experiment_with_mlflow"
 mlflow.set_experiment(experiment_name)
 ```
 
