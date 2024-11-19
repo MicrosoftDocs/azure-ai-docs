@@ -506,7 +506,7 @@ If you want to enable logging and tracing to your Azure AI project for evaluatio
 ```python
 pip install azure-ai-evaluation[remote]
 ```
-3. Make sure you have the [Identity-based access](../secure-data-playground#prerequisites) setting for the storage account in your Azure AI hub. To find your storage, go to the Overview page of your Azure AI hub and select Storage.
+3. Make sure you have the [Identity-based access](../secure-data-playground.md#prerequisites) setting for the storage account in your Azure AI hub. To find your storage, go to the Overview page of your Azure AI hub and select Storage.
 
 4. Make sure you have `Storage Blob Data Contributor` role for the storage account.
 
