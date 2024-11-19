@@ -76,10 +76,10 @@ Complete the following prerequisite steps to set up your environment and authent
 7. Navigate to the hub page in Azure portal and add Application Insights resource, see [Update Azure Application Insights and Azure Container Registry](./create-azure-ai-resource.md?tabs=portal#update-azure-application-insights-and-azure-container-registry).
 8. Azure OpenAI Deployment with GPT model supporting `chat completion`, for example `gpt-4`.
 9. `Connection String` for Azure AI project to easily create `AIProjectClient` object. You can get the **Project connection string** under **Project details** from the project's **Overview** page.
-10. Make sure you're first logged into your Azure subscription by running `az login`.
-11. Navigate to your Application Insights resource in the Azure portal and use the **Access control (IAM)** tab to add the `Log Analytics Contributor` role to the User-assigned Managed Identity you created previously.
-12. Navigate to your AI Studio Project in the Azure portal and use the **Access control (IAM)** tab to add the `Log Analytics Contributor` role to the User-assigned Managed Identity you created previously.
-13. Navigate to your Azure AI Services in the Azure portal and use the **Access control (IAM)** tab to add the `Cognitive Services OpenAI Contributor` role to the User-assigned Managed Identity you created previously.
+10. Navigate to your Application Insights resource in the Azure portal and use the **Access control (IAM)** tab to add the `Log Analytics Contributor` role to the User-assigned Managed Identity you created previously.
+11. Attach the [User-assigned Managed Identity]((../../machine-learning/how-to-identity-based-service-authentication.md#add-a-user-assigned-managed-identity-to-a-workspace-in-addition-to-a-system-assigned-identity)) to your project.
+12. Navigate to your Azure AI Services in the Azure portal and use the **Access control (IAM)** tab to add the `Cognitive Services OpenAI Contributor` role to the User-assigned Managed Identity you created previously.
+13. Make sure you're first logged into your Azure subscription by running `az login`.
 
 ### Installation Instructions
 
@@ -102,6 +102,18 @@ pip install azure-identity azure-ai-projects azure-ai-ml
 ### Set up tracing for your generative AI application
 
 The first step in monitoring your application is to set up tracing. To learn how to do so such that data is logged to Application Insights, see [set up tracing for your generative AI application](./develop/trace-local-sdk.md).
+
+#### Using service name in trace data
+
+To identify your service via. a unique ID in Application Insights, you can use the service name OpenTelemetry property in your trace data. This is particularly useful if you are logging data from multiple applications to the same Application Insights resource, and you want to differentiate between them. For example, lets say you have two applications: **App-1** and **App-2**, with tracing configured to log data to the same Application Insights resource. Perhaps you'd like to set up **App-1** to be evaluated continuously by **Relevance** and **App-2** to be evaluated continuously by **Groundedness**. You can use the service name to differentiate between the applications in your Online Evaluation configurations.
+
+To set up the service name property, you can do so directly in your application code by following the steps [here](https://opentelemetry.io/docs/languages/python/cookbook/#using-multiple-tracer-providers-with-different-resource). Alternatively, you can set the environment variable `OTEL_SERVICE_NAME` prior to deploying your app. To learn more about working with the service name, see [OTEL Environment Variables](https://opentelemetry.io/docs/specs/otel/configuration/sdk-environment-variables/#general-sdk-configuration) and [Service Resource Semantic Conventions](https://opentelemetry.io/docs/specs/semconv/resource/#service).
+
+To query trace data for a given service name, query for the `cloud_roleName` property. Add the following line to the KQL query you use within your Online Evaluation set-up:
+
+```sql
+| where cloud_RoleName == "service_name"
+```
 
 ### Query stored trace data in Application Insights
 
