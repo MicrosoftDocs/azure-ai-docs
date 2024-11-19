@@ -29,7 +29,7 @@ You should consider switching from standard deployments to provisioned deploymen
 
 ## Sizing and estimation: provisioned and global provisioned
 
-Determining the right amount of provisioned throughput, or PTUs, you require for your workload is an essential step to optimizing performance and cost. If you are not familiar with the different approaches available to estimate system level throughput, review the system level throughput estimation recommendations in our [performance and latency documentation](./latency.md). This section describes how to use the Azure OpenAI capacity planning tooling available. The tool provides you with an estimate of the required PTU to meet the needs of your workload.
+Determining the right amount of provisioned throughput, or PTUs, you require for your workload is an essential step to optimizing performance and cost. If you are not familiar with the different approaches available to estimate system level throughput, review the system level throughput estimation recommendations in our [performance and latency documentation](./latency.md). This section describes how to use the Azure OpenAI capacity planning tooling to estimate the amount of PTUs required to support a given workload.
 
 ### Estimate provisioned throughput units and cost
 
