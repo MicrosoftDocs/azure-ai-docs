@@ -78,7 +78,7 @@ It's important to call out that fine-tuning is heavily dependent on the quality 
 
 ## Supported models for fine-tuning
 
-Now that you know when to use fine-tuning for your use case, you can go to Azure AI Studio to find models available to fine-tune. Fine-tuning is available in specific Azure regions for some models. To fine-tune such models, a user must have a hub/project in the region where the model is available for fine-tuning. See [Region availability for models in serverless API endpoints | Azure AI Studio](deploy-models-serverless-availability.md) for detailed information.
+Now that you know when to use fine-tuning for your use case, you can go to Azure AI Studio to find models available to fine-tune. Fine-tuning is available in specific Azure regions for some models. To fine-tune such models, a user must have a hub/project in the region where the model is available for fine-tuning. See [Region availability for models in serverless API endpoints | Azure AI Studio](../how-to/deploy-models-serverless-availability.md) for detailed information.
 
 For details about Azure OpenAI models that are available for fine-tuning, see the [Azure OpenAI Service models documentation](../../ai-services/openai/concepts/models.md#fine-tuning-models) or the [Azure OpenAI models table](#fine-tuning-azure-openai-models) later in this guide.
 
