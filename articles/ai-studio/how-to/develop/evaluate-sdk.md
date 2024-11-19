@@ -8,7 +8,7 @@ ms.custom:
   - build-2024
   - references_regions
 ms.topic: how-to
-ms.date: 10/24/2024
+ms.date: 11/19/2024
 ms.reviewer: minthigpen
 ms.author: lagayhar
 author: lgayhardt
@@ -22,7 +22,7 @@ author: lgayhardt
 
 To thoroughly assess the performance of your generative AI application when applied to a substantial dataset, you can evaluate a Generative AI application in your development environment with the Azure AI evaluation SDK. Given either a test dataset or a target, your generative AI application generations are quantitatively measured with both mathematical based metrics and AI-assisted quality and safety evaluators. Built-in or custom evaluators can provide you with comprehensive insights into the application's capabilities and limitations.
 
-In this article, you learn how to run evaluators on a single row of data, a larger test dataset on an application target with built-in evaluators using the Azure AI evaluation SDK both locally and remotely, then track the results and evaluation logs in Azure AI project.
+In this article, you learn how to run evaluators on a single row of data, a larger test dataset on an application target with built-in evaluators using the Azure AI evaluation SDK both locally and remotely on the cloud, then track the results and evaluation logs in Azure AI project.
 
 ## Getting started
 
@@ -387,9 +387,7 @@ print(answer_length)
 The result:
 
 ```python
-{
-    "answer_length":27
-}
+{"answer_length":27}
 ```
 
 
@@ -493,18 +491,26 @@ Here's the result:
 }
 ```
 
-## Batch evaluation on test datasets using `evaluate()`
+## Local evaluation on test datasets using `evaluate()`
 
 After you spot-check your built-in or custom evaluators on a single row of data, you can combine multiple evaluators with the `evaluate()` API on an entire test dataset.
 
-Before running `evaluate()`, to ensure that you can enable logging and tracing to your Azure AI project, make sure you are first logged in by running `az login`.
 
-Then install the following sub-package:
+### Prequisites
+
+If you want to enable logging and tracing to your Azure AI project for evaluation results, follow these steps:
+
+1. Make sure you are first logged in by running `az login`.
+2. Install the following sub-package:
 
 ```python
 pip install azure-ai-evaluation[remote]
 ```
+3. Make sure you have the [Identity-based access](../secure-data-playground#prerequisites) setting for the storage account in your Azure AI hub. To find your storage, go to the Overview page of your Azure AI hub and select Storage.
 
+4. Make sure you have `Storage Blob Data Contributor` role for the storage account.
+
+### Local evaluaton on datasets
 In order to ensure the `evaluate()` can correctly parse the data, you must specify column mapping to map the column from the dataset to key words that are accepted by the evaluators. In this case, we specify the data mapping for `query`, `response`, and `context`.
 
 ```python
@@ -661,16 +667,16 @@ result = evaluate(
 
 ```
 
-## Remote evaluation
+## Cloud evaluation
 
-After local evaluations of your generative AI applications, you may want to trigger remote evaluations for pre-deployment testing and even [continuously evaluate](https://aka.ms/GenAIMonitoringDoc) your applications for post-deployment monitoring. Azure AI Project SDK offers such capabilities via a Python API and supports all of the features available in local evaluations. Follow the steps below to submit your remote evaluation on your data using built-in or custom evaluators.
+After local evaluations of your generative AI applications, you may want to run evaluations in the cloud for pre-deployment testing and [continuously evaluate](https://aka.ms/GenAIMonitoringDoc) your applications for post-deployment monitoring. Azure AI Projects SDK offers such capabilities via a Python API and supports almost all of the features available in local evaluations. Follow the steps below to submit your evaluation to the cloud on your data using built-in or custom evaluators.
 
   
 ### Prerequisites
 - Azure AI project in the same [regions](#region-support) as risk and safety evaluators. If you don't have an existing project, follow the guide [How to create Azure AI project](../create-projects.md?tabs=ai-studio) to create one. 
 
 > [!NOTE]
-> Remote evaluations do not support `Retrieval-Evaluator`, `ContentSafetyEvaluator`, and `QAEvaluator`.
+> Cloud evaluations do not support `ContentSafetyEvaluator`, and `QAEvaluator`.
 
 - Azure OpenAI Deployment with GPT model supporting `chat completion`, for example `gpt-4`.
 - `Connection String` for Azure AI project to easily create `AIProjectClient` object. You can get the **Project connection string** under **Project details** from the project's **Overview** page.
@@ -680,8 +686,8 @@ After local evaluations of your generative AI applications, you may want to trig
 
 1. Create a **virtual Python environment of you choice**. To create one using conda, run the following command:
     ```bash
-    conda create -n remote-evaluation
-    conda activate remote-evaluation
+    conda create -n cloud-evaluation
+    conda activate cloud-evaluation
     ```
 2. Install the required packages by running the following command:
     ```bash
@@ -689,13 +695,13 @@ After local evaluations of your generative AI applications, you may want to trig
     ```
     Optionally you can `pip install azure-ai-evaluation` if you want a code-first experience to fetch evaluator id for built-in evaluators in code.
 
-Now you can define a client and a deployment which will be used to run your remote evaluations:
+Now you can define a client and a deployment which will be used to run your evaluations in the cloud:
 ```python
 
 import os, time
-from azure.ai.project import AIProjectClient
+from azure.ai.projects import AIProjectClient
 from azure.identity import DefaultAzureCredential
-from azure.ai.project.models import Evaluation, Dataset, EvaluatorConfiguration, ConnectionType
+from azure.ai.projects.models import Evaluation, Dataset, EvaluatorConfiguration, ConnectionType
 from azure.ai.evaluation import F1ScoreEvaluator, RelevanceEvaluator, ViolenceEvaluator
 
 # Load your Azure OpenAI config
@@ -710,7 +716,7 @@ project_client = AIProjectClient.from_connection_string(
 ```
 
 ### Uploading evaluation data
-We provide two ways to register your data in Azure AI project required for remote evaluations: 
+We provide two ways to register your data in Azure AI project required for evaluations in the cloud: 
 1. **From SDK**: Upload new data from your local directory to your Azure AI project in the SDK, and fetch the dataset id as a result: 
 ```python
 data_id, _ = project_client.upload_file("./evaluate_test_data.jsonl")
@@ -724,7 +730,7 @@ data_id, _ = project_client.upload_file("./evaluate_test_data.jsonl")
 
 
 ### Specifying evaluators from Evaluator library
-We provide a list of built-in evaluators registered in the [Evaluator library](../evaluate-generative-ai-app.md#view-and-manage-the-evaluators-in-the-evaluator-library) under **Evaluation** tab of your Azure AI project. You can also register custom evaluators and use them for remote evaluation. We provide two ways to specify registered evaluators:
+We provide a list of built-in evaluators registered in the [Evaluator library](../evaluate-generative-ai-app.md#view-and-manage-the-evaluators-in-the-evaluator-library) under **Evaluation** tab of your Azure AI project. You can also register custom evaluators and use them for Cloud evaluation. We provide two ways to specify registered evaluators:
 
 #### Specifying built-in evaluators
 - **From SDK**: Use built-in evaluator `id` property supported by `azure-ai-evaluation` SDK:
@@ -834,15 +840,15 @@ print("Versioned evaluator id:", registered_evaluator.id)
 After logging your custom evaluator to your Azure AI project, you can view it in your [Evaluator library](../evaluate-generative-ai-app.md#view-and-manage-the-evaluators-in-the-evaluator-library) under **Evaluation** tab of your Azure AI project.
 
 
-### Remote evaluation with Azure AI Project SDK
+### Cloud evaluation with Azure AI Project SDK
 
-You can submit a remote evaluation with Azure AI Project SDK via a Python API. See the following example to submit a remote evaluation of your dataset using an NLP evaluator (F1 score), an AI-assisted quality evaluator (Relevance), a safety evaluator (Violence) and a custom evaluator. Putting it altogether:
+You can submit a cloud evaluation with Azure AI Projects SDK via a Python API. See the following example to submit a cloud evaluation of your dataset using an NLP evaluator (F1 score), an AI-assisted quality evaluator (Relevance), a safety evaluator (Violence) and a custom evaluator. Putting it altogether:
 
 ```python
 import os, time
-from azure.ai.project import AIProjectClient
+from azure.ai.projects import AIProjectClient
 from azure.identity import DefaultAzureCredential
-from azure.ai.project.models import Evaluation, Dataset, EvaluatorConfiguration, ConnectionType
+from azure.ai.projects.models import Evaluation, Dataset, EvaluatorConfiguration, ConnectionType
 from azure.ai.evaluation import F1ScoreEvaluator, RelevanceEvaluator, ViolenceEvaluator
 
 # Load your Azure OpenAI config
@@ -865,7 +871,7 @@ model_config = default_connection.to_evaluator_model_config(deployment_name=depl
 
 # Create an evaluation
 evaluation = Evaluation(
-    display_name="Remote Evaluation",
+    display_name="Cloud evaluation",
     description="Evaluation of dataset",
     data=Dataset(id=data_id),
     evaluators={
@@ -912,7 +918,7 @@ print("AI project URI: ", get_evaluation_response.properties["AiStudioEvaluation
 print("----------------------------------------------------------------")
 ```
 
-Now we can run the evaluation we just instantiated above remotely.
+Now we can run the cloud evaluation we just instantiated above.
 
 ```python
 evaluation = client.evaluations.create(
