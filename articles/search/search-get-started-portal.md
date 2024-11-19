@@ -77,7 +77,7 @@ The **Import data** wizard supports the creation of a skillset and [AI-enrichmen
 
 ### Configure the index
 
-The wizard infers a schema for the built-in hotels-sample index. Follow these steps to configure the index:
+The wizard infers a schema for the built-in hotels-sample index. To configure the index, follow these steps:
 
 1. Accept the system-generated values for the **Index name** (_hotels-sample-index_) and **Key** field (_HotelId_).
 
@@ -174,7 +174,7 @@ The following examples assume the JSON view and the 2024-05-01-preview REST API 
 
 ### Filter examples
 
-Parking, tags, renovation date, rating and location are filterable.
+Parking, tags, renovation date, rating, and location are filterable.
 
 ```json
 {
@@ -223,7 +223,7 @@ The default syntax is [simple syntax](query-simple-syntax.md), but if you want f
 }
 ```
 
-By default, misspelled query terms like `seatle` for `Seattle` fail to return matches in a typical search. The `queryType=full` parameter invokes the full Lucene query parser, which supports the tilde `~` operand. When these parameters are present, the query performs a fuzzy search for the specified keyword. The query seeks matching results along with results that are similar to but not an exact match to the keyword. 
+By default, misspelled query terms like `seatle` for `Seattle` fail to return matches in a typical search. The `queryType=full` parameter invokes the full Lucene query parser, which supports the tilde `~` operand. When these parameters are present, the query performs a fuzzy search for the specified keyword. The query matches on documents that are similar to but not an exact match to the keyword. 
 
 Take a minute to try a few of these example queries for your index. To learn more about queries, see [Querying in Azure AI Search](search-query-overview.md).
 

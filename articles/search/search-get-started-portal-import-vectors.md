@@ -27,22 +27,15 @@ This quickstart helps you get started with [integrated vectorization](vector-sea
 
 ### Supported data sources
 
-The **Import and vectorize data** wizard supports the following data sources:
+The **Import and vectorize data** wizard [supports a wide range of Azure data sources](search-import-data-portal.md#supported-data-sources-and-scenarios), but this quickstart provides steps for just those data sources that work with whole files:
 
-+ [Azure Storage](/azure/storage/common/storage-account-create) for blobs and tables. Azure Storage must be a standard performance (general-purpose v2) account. Access tiers can be hot, cool, and cold.
++ [Azure Blob Storage](search-howto-indexing-azure-blob-storage.md) for blobs and tables. Azure Storage must be a standard performance (general-purpose v2) account. Access tiers can be hot, cool, and cold.
 
 + [Azure Data Lake Storage (ADLS) Gen2](/azure/storage/blobs/create-data-lake-storage-account) (an Azure Storage account with a hierarchical namespace enabled). You can confirm that you have Data Lake Storage by checking the **Properties** tab on the **Overview** page.
 
    :::image type="content" source="media/search-get-started-portal-import-vectors/data-lake-storage.png" alt-text="Screenshot of the storage account properties page showing Data Lake Storage.":::
 
 + [OneLake lakehouse (preview)](search-how-to-index-onelake-files.md).
-
-+ [Azure Cosmos DB](/azure/cosmos-db/nosql/quickstart-portal) for NoSQL, MongoDB, and Apache Gremlin (preview).
-
-+ [Azure SQL Database](/azure/azure-sql/database/single-database-create-quickstart), [Azure SQL Managed Instance](/azure/azure-sql/managed-instance/instance-create-quickstart), and Azure SQL Server virtual machines.
-
-> [!NOTE]
-> This quicktart provides steps for just those data sources that work with whole files: Azure Blob sSazure-tables.md), [Cosmos DB for NoSQL indexer](search-howto-index-cosmosdb.md), and [Azuer SQL indexer](search-how-to-index-sql-database.md).
 
 ### Supported embedding models
 
