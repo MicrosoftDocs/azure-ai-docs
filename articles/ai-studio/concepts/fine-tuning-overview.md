@@ -29,7 +29,7 @@ Consider fine-tuning GenAI models to:
 
 [Azure AI Foundry](https://ai.azure.com) offers several models across model providers enabling you to get access to the latest and greatest in the market. You can discover supported models for fine-tuning through our model catalog by using the **Fine-tuning tasks** filter and clicking into the model card to learn detailed information about each model. Specific models may be subjected to regional constraints, [view this list for more details](#supported-models-for-fine-tuning). 
 
-:::image type="content" source="../../media/FOLDERPATH/model-catalog-fine-tuning.png" alt-text="Screenshot of Azure AI Foundry model catalog and filtering by Fine-tuning tasks." lightbox="../../media/FOLDERPATH/model-catalog-fine-tuning.png":::
+:::image type="content" source="../media/concepts/model-catalog-fine-tuning.png" alt-text="Screenshot of Azure AI Foundry model catalog and filtering by Fine-tuning tasks." lightbox="../media/concepts/model-catalog-fine-tuning.png":::
 
 This article will walk you through use-cases for fine-tuning and how this can help you in your GenAI journey.
 
