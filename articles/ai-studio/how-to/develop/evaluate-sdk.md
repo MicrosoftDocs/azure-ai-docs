@@ -496,7 +496,7 @@ Here's the result:
 After you spot-check your built-in or custom evaluators on a single row of data, you can combine multiple evaluators with the `evaluate()` API on an entire test dataset.
 
 
-### Prequisites
+### Prerequisites
 
 If you want to enable logging and tracing to your Azure AI project for evaluation results, follow these steps:
 
