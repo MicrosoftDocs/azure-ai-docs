@@ -36,7 +36,7 @@ Query rewriting is an optional feature. Without query rewriting, the search serv
 + A search service, Basic tier or higher.
 
 > [!NOTE]
-> Query rewriting is currently available in the East US, North Europe, and Southeast Asia regions.
+> Query rewriting is currently available in the North Europe, and Southeast Asia regions.
 
 + Your search service must have [semantic ranker enabled](semantic-how-to-enable-disable.md). Review [semantic ranking](semantic-search-overview.md) if you need an introduction to the feature. 
 
