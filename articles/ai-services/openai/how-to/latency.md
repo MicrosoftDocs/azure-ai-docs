@@ -36,7 +36,7 @@ Understanding system level throughput for any workload involves multiple factors
 
 One approach to estimating system level throughput for a given workload is using historical usage data. For Azure OpenAI workloads, all historical usage data can be accessed and visualized with the native Monitoring capabilities offered within Azure OpenAI. Two metrics are needed to estimate system level throughput for Azure OpenAI workloads: (1) **Processed Prompt Tokens** and (2) **Generated Completion Tokens**. 
 
-When combined, the Processed Prompt Tokens (input TPM) and Generated Completion Tokens (output TPM) metrics provide an estimated view of system level throughput based on actual workload traffic. These metrics can be analyzed using minimum, average, and maximum aggregation windows over numerous time periods. It is recommended to analyze this data over a multi-week time horizon to ensure there are enough data points to assess. 
+When combined, the **Processed Prompt Tokens** (input TPM) and **Generated Completion Tokens** (output TPM) metrics provide an estimated view of system level throughput based on actual workload traffic. This approach does not account for benefits from prompt caching, so it will be a conservative system throughput estimate. These metrics can be analyzed using minimum, average, and maximum aggregation over 1 minute windows across a multi-week time horizon. It is recommended to analyze this data over a multi-week time horizon to ensure there are enough data points to assess. The following screenshot shows the Processed Prompt Tokens and Generated Completion Tokens metrics visualized in Azure Monitor, which is available directly through the Azure Portal. 
 
 ##### Calculating TPM from request data
 
