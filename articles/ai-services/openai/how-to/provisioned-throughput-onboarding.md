@@ -16,7 +16,7 @@ This article walks you through the process of onboarding to [Provisioned Through
 
 ## When to use provisioned throughput units (PTU)
 
-You should consider switching from pay-as-you-go to provisioned throughput when you have well-defined, predictable throughput requirements. Typically, this occurs when the application is ready for production or has already been deployed in production and there's an understanding of the expected traffic. This allows users to accurately forecast the required capacity and avoid unexpected billing. 
+You should consider switching from standard deployments to provisioned deployments when you have well-defined, predictable throughput requirements and a need for latency predictability . Typically, this occurs when the application is ready for production or has already been deployed in production and there's an understanding of the expected traffic. This allows users to accurately forecast the required capacity and avoid unexpected billing. 
 
 ### Typical PTU scenarios
 
@@ -29,9 +29,11 @@ You should consider switching from pay-as-you-go to provisioned throughput when 
 
 ## Sizing and estimation: provisioned and global provisioned
 
-Determining the right amount of provisioned throughput, or PTUs, you require for your workload is an essential step to optimizing performance and cost. This section describes how to use the Azure OpenAI capacity planning tool. The tool provides you with an estimate of the required PTU to meet the needs of your workload.
+Determining the right amount of provisioned throughput, or PTUs, you require for your workload is an essential step to optimizing performance and cost. If you are not familiar with the different approaches available to estimate system level throughput, review the system level throughput estimation recommendations in our [performance and latency documentation](./latency.md). This section describes how to use the Azure OpenAI capacity planning tooling available. The tool provides you with an estimate of the required PTU to meet the needs of your workload.
 
-### Estimate provisioned throughput and cost
+### Estimate provisioned throughput units and cost
+
+There are two capacity planning options available to estimate 
 
 To get a quick estimate for your workload, open the capacity planner in the [Azure AI Studio](https://ai.azure.com). The capacity calculator is under **Shared resources** > **Model Quota** > **Azure OpenAI Provisioned**.
 
