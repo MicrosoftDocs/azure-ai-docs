@@ -56,19 +56,16 @@ A second approach to estimated system level throughput involves collecting token
   }
 }
 ```
-Assuming all requests for a given workload are uniform, the prompt tokens and completion tokens can each be multiplied by the estimated RPM to identify the input and output TPM for the given workload. 
+Assuming all requests for a given workload are uniform, the prompt tokens and completion tokens from the API response data can each be multiplied by the estimated RPM to identify the input and output TPM for the given workload. 
 
-##### Estimating TPM from common workload shapes
+##### How to use system level throughput estimates
 
-There are two approaches that can be used to estimate the amount of model processing capacity needed to support a given workload:
 
-1. Use the built-in capacity calculator in the Azure OpenAI deployment creation workflow in the Azure AI Studio
+Once system level throughput has been estimated for a given workload, these estimates can be used to size Standard and Provisioned deployments. 
 
-1. Use the expanded Azure OpenAI capacity calculator in the Azure AI Studio
+Here are a few examples for GPT-4o mini model:
 
-Here are a few examples for GPT-4 0613 model:
-
-| Prompt  Size (tokens) |	Generation size (tokens) |	Calls per minute |	PTUs required |
+| Prompt  Size (tokens) |	Generation size (tokens) |	Requests per minute |	PTUs required |
 |--|--|--|--|
 | 800	 | 150 |	30 |	100 |
 | 1000 |	50 |	300	| 700 |
