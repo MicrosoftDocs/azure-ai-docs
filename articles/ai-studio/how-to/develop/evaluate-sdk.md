@@ -840,7 +840,7 @@ print("Versioned evaluator id:", registered_evaluator.id)
 After logging your custom evaluator to your Azure AI project, you can view it in your [Evaluator library](../evaluate-generative-ai-app.md#view-and-manage-the-evaluators-in-the-evaluator-library) under **Evaluation** tab of your Azure AI project.
 
 
-### Cloud evaluation with Azure AI Project SDK
+### Cloud evaluation with Azure AI Projects SDK
 
 You can submit a cloud evaluation with Azure AI Projects SDK via a Python API. See the following example to submit a cloud evaluation of your dataset using an NLP evaluator (F1 score), an AI-assisted quality evaluator (Relevance), a safety evaluator (Violence) and a custom evaluator. Putting it altogether:
 
