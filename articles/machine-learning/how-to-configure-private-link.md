@@ -300,20 +300,35 @@ You can also enable public network access by using a YAML file. For more informa
 
 ---
 
-## Enable Public Access only from internet IP ranges (preview)
+## Enable Public Access only from internet IP ranges
 
 You can use IP network rules to allow access to your workspace and endpoint from specific public internet IP address ranges by creating IP network rules. Each Azure Machine Learning workspace supports up to 200 rules. These rules grant access to specific internet-based services and on-premises networks and block general internet traffic.
 
 > [!WARNING]
 > * Enable your endpoint's [public network access flag](concept-secure-online-endpoint.md#secure-inbound-scoring-requests) if you want to allow access to your endpoint from specific public internet IP address ranges.
-> * When you enable this feature, this has an impact to all existing public endpoints associated with your workspace. This may limit access to new or existing endpoints. If you access any endpoints from a non-allowed IP, you get a 403 error.
 > * You can only use IPv4 addresses.
 > * To use this feature with Azure Machine Learning managed virtual network, see [Azure Machine Learning managed virtual network](how-to-managed-network.md#scenario-enable-access-from-selected-ip-addresses).
 
 # [Azure CLI](#tab/cli)
 [!INCLUDE [CLI v2](includes/machine-learning-cli-v2.md)]
 
-Azure CLI doesn't support enabling public access from IP ranges.
+Use the `az ml workspace network-rule` Azure CLI command to manage public access from an IP address or address range:
+
+> [!TIP]
+> The configurations for the selected IP addresses are stored in the workspace's properties, under `network_acls`:
+> ```yml
+> properties:
+>   # ...
+>   network_acls:
+>     description: "The network ACLS for this workspace, enforced when public_network_access is set to Enabled."
+>     $ref: "3/defintions/networkAcls"
+> ```
+
+- __List IP network rules__: `az ml workspace network-rule list --resource-group "myresourcegroup" --workspace-name "myWS" --query ipRules`
+- __Add a rule for a single IP address__: `az ml workspace network-rule add --resource-group "myresourcegroup" --workspace-name "myWS" --ip-address "16.17.18.19"`
+- __Add a rule for an IP address range__: `az ml workspace network-rule add --resource-group "myresourcegroup" --workspace-name "myWS" --ip-address "16.17.18.0/24"`
+- __Remove a rule for a single IP address__: `az ml workspace network-rule remove --resource-group "myresourcegroup" --workspace-name "myWS" --ip-address "16.17.18.19"`
+- __Remove a rule for an IP address range__: `az ml workspace network-rule remove --resource-group "myresourcegroup" --workspace-name "myWS" --ip-address "16.17.18.0/24"`
 
 # [Portal](#tab/azure-portal)
 
@@ -324,6 +339,14 @@ Azure CLI doesn't support enabling public access from IP ranges.
 :::image type="content" source="./media/how-to-configure-private-link/workspace-public-access-ip-ranges.png" alt-text="Screenshot of the UI to enable access from internet IP ranges.":::
 
 ---
+
+You can also use the [Workspace](/python/api/azure-ai-ml/azure.ai.ml.entities.workspace) class from the Azure Machine Learning [Python SDK](/python/api/overview/azure/ai-ml-readme) to define which IP addresses are allowed inbound access:
+
+```python
+Workspace( 
+  public_network_access = "Enabled", 
+  network_rule_set = NetworkRuleSet(default_action = "Allow", bypass = "AzureServices", resource_access_rules = None, ip_rules = yourIPAddress,)
+```
 
 ### Restrictions for IP network rules
 
@@ -338,6 +361,8 @@ The following restrictions apply to IP address ranges:
 - Only IPv4 addresses are supported for configuration of storage firewall rules.
 
 - When this feature is enabled, you can test public endpoints using any client tool such as Curl, but the Endpoint Test tool in the portal isn't supported.
+
+- You can only set the IP addresses for the workspace after the workspace has been created.
 
 ## Securely connect to your workspace
 
@@ -393,6 +418,26 @@ If you want to create an isolated Azure Kubernetes Service used by the workspace
 1. Attach the AKS cluster to the Azure Machine Learning workspace. For more information, see [Create and attach an Azure Kubernetes Service cluster](how-to-create-attach-kubernetes.md#attach-an-existing-aks-cluster).
 
 :::image type="content" source="./media/how-to-configure-private-link/multiple-private-endpoint-workspace-aks.png" alt-text="Diagram of isolated AKS VNet":::
+
+### Scenario: Managed online endpoints with access from selected IP addresses
+
+Enabling inbound access from selected IP addresses is affected by the ingress setting on your managed online endpoints. If public ingress is enabled on your managed online endpoint, then you can't enable selected IP addresses on our workspace.
+
+The following table shows the possible configurations for your workspace and managed online endpoint network configurations, and how it affects both. For more information, see [Network isolation with managed online endpoints](concept-secure-online-endpoint.md).
+
+| Workspace</br>public network access | Managed online endpoint</br>public network access | Does the workspace</br>respect the selected IPs? | Does the online endpoint</br>respect the selected IPs? |
+| --- | --- | --- | --- |
+| Disabled | Disabled | No (all public traffic rejected) | No |
+| Disabled | Enabled | No (all public traffic rejected) | Yes |
+| Enabled from selected IPs | Disabled | Yes | No |
+| Enabled from selected IPs | Enabled | Yes | Yes |
+
+> [!NOTE]
+> If the workspace public network access configuration is changed from selected IPs to disabled, the managed online enedpoints will continue to respect the selected IPs. If you do not want thee selected IPs applied to your online endpoints, remove the addresses before selecting __Disabled__ for the workspace in the Azure portal. The Python SDK and Azure CLI support this change after or before.
+
+### Scenario: Batch endpoints with access from selected IP addresses
+
+The selected IP's configuration isn't supported for batch endpoints. There's no public network access flag on batch endpoints. If the Azure Machine Learning workspace is disabled, and private link enabled, the batch endpoint is private as well. If the workspace's public network access is changed from disabled to enabled, the batch endpoints stay private and don't become public. For more information, see [Securing batch endpoints](/azure/machine-learning/how-to-secure-batch-endpoint#securing-batch-endpoints).
 
 ## Related content
 

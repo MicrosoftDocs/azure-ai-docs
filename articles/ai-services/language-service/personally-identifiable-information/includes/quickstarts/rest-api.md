@@ -13,24 +13,14 @@ ms.custom: language-service-pii
 
 Use this quickstart to send Personally Identifiable Information (PII) detection requests using the REST API. In the following example, you will use cURL to identify [recognized sensitive information](../../concepts/entity-categories.md) in text.
 
-
 ## Prerequisites
 
 * Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services)
-
+* Once you have your Azure subscription, [create an AI services resource](../../../../../ai-services/multi-service-resource.md?pivots=azportal#create-a-new-azure-ai-services-resource).
 
 ## Setting up
 
-[!INCLUDE [Create an Azure resource](../../../includes/create-resource.md)]
-
-
-
-[!INCLUDE [Get your key and endpoint](../../../includes/get-key-endpoint.md)]
-
-
-
 [!INCLUDE [Create environment variables](../../../includes/environment-variables.md)]
-
 
 ## Create a JSON file with the example request body
 
