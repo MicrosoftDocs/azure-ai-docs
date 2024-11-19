@@ -121,7 +121,7 @@ Be sure to check out the [reference](https://aka.ms/aifoundrysdk/reference) and 
 
 ::: zone pivot="programming-language-csharp"
 
-Be sure to check out the [reference](https://aka.ms/aifoundrysdk/reference) and [samples](https://aka.ms/azsdk/azure-ai-projects/csharp/samples).
+Be sure to check out the [reference](https://aka.ms/aifoundrysdk/reference) and [samples](https://aka.ms/aifoundrysdk/dotnetsamples).
 
 ::: zone-end
 
