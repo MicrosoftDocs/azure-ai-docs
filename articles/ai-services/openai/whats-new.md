@@ -10,7 +10,7 @@ ms.custom:
   - ignite-2023
   - references_regions
 ms.topic: whats-new
-ms.date: 10/22/2024
+ms.date: 11/12/2024
 recommendations: false
 ---
 
@@ -19,6 +19,14 @@ recommendations: false
 This article provides a summary of the latest releases and major documentation updates for Azure OpenAI.
 
 ## November 2024
+
+### Vision Fine-tuning GA
+
+Vision fine-tuning with GPT-4o (2024-08-06) in now Generally Available (GA).
+
+[Vision fine-tuning](./how-to/fine-tuning.md) allows you to add images to your JSONL training data. Just as you can send one or many image inputs to chat completions, you can include those same message types within your training data. Images can be provided either as URLs or as base64 encoded images.
+
+For fine-tuning model region availability, see the [models page](./concepts/models.md#fine-tuning-models).
 
 ### NEW AI abuse monitoring
 
@@ -29,6 +37,7 @@ Prompts and completions that are flagged through content classification and/or i
 ## October 2024
 
 ### NEW data zone standard deployment type
+
 Data zone standard deployments are available in the same Azure OpenAI resource as all other Azure OpenAI deployment types but allow you to leverage Azure global infrastructure to dynamically route traffic to the data center within the Microsoft defined data zone with the best availability for each request. Data zone standard provides higher default quotas than our Azure geography-based deployment types.  Data zone standard deployments are supported on `gpt-4o-2024-08-06`, `gpt-4o-2024-05-13`, and `gpt-4o-mini-2024-07-18` models.
 
 For more information, see the [deployment types guide](https://aka.ms/aoai/docs/deployment-types).
