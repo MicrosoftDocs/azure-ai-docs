@@ -26,7 +26,7 @@ For a standard deployment, the quota assigned to your deployment partially deter
 
 In a provisioned deployment, a set amount of model processing capacity is allocated to your endpoint. The amount of throughput that you can achieve on the endpoint is a factor of the workload shape including input token amount, output amount, call rate and cache match rate. The number of concurrent calls and total tokens processed can vary based on these values. 
 
-For all deployment types, understanding system level throughput is a key component of optimizing performance. The following section explains several approaches that can be used to estimate system level throughput with existing metrics and data from your Azure OpenAI Service environment.
+For all deployment types, understanding system level throughput is a key component of optimizing performance. It is important to consider system level throughput for a given model, version, and workload combination as the throughput will vary across these factors. The following section explains several approaches that can be used to estimate system level throughput with existing metrics and data from your Azure OpenAI Service environment.
 
 #### Estimating system level throughput 
 
@@ -36,7 +36,7 @@ Understanding system level throughput for any workload involves multiple factors
 
 One approach to estimating system level throughput for a given workload is using historical usage data. For Azure OpenAI workloads, all historical usage data can be accessed and visualized with the native Monitoring capabilities offered within Azure OpenAI. Two metrics are needed to estimate system level throughput for Azure OpenAI workloads: (1) **Processed Prompt Tokens** and (2) **Generated Completion Tokens**. 
 
-When combined, the Processed Prompt Tokens (input TPM) and Generated Completion Tokens (output TPM) provide an aggregated view of system level throughput based on actual traffic in the past. These metrics can be analyzed using minimum, average, and maximum aggregation windows over numerous time periods. It is recommended to analyze this data over a multi-week time horizon to ensure there are enough data points to assess. 
+When combined, the Processed Prompt Tokens (input TPM) and Generated Completion Tokens (output TPM) metrics provide an estimated view of system level throughput based on actual workload traffic. These metrics can be analyzed using minimum, average, and maximum aggregation windows over numerous time periods. It is recommended to analyze this data over a multi-week time horizon to ensure there are enough data points to assess. 
 
 ##### Calculating TPM from request data
 
