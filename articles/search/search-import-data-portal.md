@@ -25,7 +25,7 @@ If you're using the wizard for proof-of-concept testing, this article explains t
 This article isn't a step by step. For help with using the wizard with sample data see:
 
 + [Quickstart: Create a search index](search-get-started-portal.md)
-+ [Quickstart: Create a text translation and entity skillset](cognitive-search-quickstart-blob.md)
++ [Quickstart: Create a text translation and entity skillset](search-get-started-skillset.md)
 + [Quickstart: Create a vector index](search-get-started-portal-import-vectors.md)
 + [Quickstart: image search (vectors)](search-get-started-portal-image-search.md)
 
@@ -261,6 +261,6 @@ Internally, the wizard also sets up the following definitions, which aren't visi
 The best way to understand the benefits and limitations of the wizard is to step through it. Here are some quickstarts that are based on the wizard.
 
 + [Quickstart: Create a search index](search-get-started-portal.md)
-+ [Quickstart: Create a text translation and entity skillset](cognitive-search-quickstart-blob.md)
++ [Quickstart: Create a text translation and entity skillset](search-get-started-skillset.md)
 + [Quickstart: Create a vector index](search-get-started-portal-import-vectors.md)
 + [Quickstart: image search (vectors)](search-get-started-portal-image-search.md)
