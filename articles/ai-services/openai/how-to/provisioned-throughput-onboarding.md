@@ -33,7 +33,7 @@ Determining the right amount of provisioned throughput, or PTUs, you require for
 
 ### Estimate provisioned throughput units and cost
 
-To get a quick estimate for your workload, leverage the built-in capacity planner in the deployment details section of the deployment dialogue screen. 
+To get a quick estimate for your workload using input and output TPM, leverage the built-in capacity planner in the deployment details section of the deployment dialogue screen. The built-in capacity planner is under **Shared resources** > **Deployments** where you can select to deploy a base model, choose your target model, and select any of the Provisioned deployment type options. When configuring your Provisioned deployment, leverage the deployment details section to estimate your PTU capacity using input and output TPM data. For more information on how to identify and estimate TPM data, review the recommendations in our [performance and latency documentation](./latency.md). 
 
 To get a quick estimate for your workload, open the capacity planner in the [Azure AI Studio](https://ai.azure.com). The capacity calculator is under **Shared resources** > **Model Quota** > **Azure OpenAI Provisioned**.
 
