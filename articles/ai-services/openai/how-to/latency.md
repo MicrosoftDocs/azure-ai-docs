@@ -65,11 +65,11 @@ Once system level throughput has been estimated for a given workload, these esti
 
 Here are a few examples for GPT-4o mini model:
 
-| Prompt  Size (tokens) |Generation size (tokens) |Requests per minute |Input TPM|Output TPM|PTUs required |
-|--|--|--| -------- | -------- |--|
-|800	 |150 |30 |24,000|4,500|15|
-|5,000 |50 |1,000|5,000,000|50,000|140|
-|1,000 |300 | 500 |500,000|150,000|30|
+| Prompt  Size (tokens) |Generation size (tokens) |Requests per minute |Input TPM|Output TPM|Total TPM|PTUs required |
+|--|--|--| -------- | -------- | -------- |--|
+|800	 |150 |30 |24,000|4,500|28,500|15|
+|5,000 |50 |1,000|5,000,000|50,000|5,050,000|140|
+|1,000 |300 | 500 |500,000|150,000|650,000|30|
 
 The number of PTUs scales roughly linearly with call rate (might be sublinear) when the workload distribution remains constant.
 
