@@ -61,15 +61,15 @@ Assuming all requests for a given workload are uniform, the prompt tokens and co
 ##### How to use system level throughput estimates
 
 
-Once system level throughput has been estimated for a given workload, these estimates can be used to size Standard and Provisioned deployments. 
+Once system level throughput has been estimated for a given workload, these estimates can be used to size Standard and Provisioned deployments. For Standard deployments, the input and output TPM values can be combined to estimate the total TPM to be assigned to a given deployment. For Provisioned deployments, the request token usage data (for the dedicated capacity calculator experience) or input and output TPM values (for the deployment capacity calculator experience) can be used to estimate the number of PTUs required to support a given workload. 
 
 Here are a few examples for GPT-4o mini model:
 
-| Prompt  Size (tokens) |	Generation size (tokens) |	Requests per minute |	PTUs required |
-|--|--|--|--|
-| 800	 | 150 |	30 |	100 |
-| 1000 |	50 |	300	| 700 |
-| 5000 |	100 | 	50 |	600 |
+| Prompt  Size (tokens) |Generation size (tokens) |Requests per minute |Input TPM|Output TPM|PTUs required |
+|--|--|--| -------- | -------- |--|
+|800	 |150 |30 |24,000|4,500|15|
+|5,000 |50 |1,000|5,000,000|50,000|140|
+|1,000 |300 | 500 |500,000|150,000|30|
 
 The number of PTUs scales roughly linearly with call rate (might be sublinear) when the workload distribution remains constant.
 
