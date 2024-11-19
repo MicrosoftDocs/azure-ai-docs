@@ -64,6 +64,7 @@ Currently, several regions are at capacity for specific tiers and can't be used 
 | US Gov Virginia | All tiers | US Gov Arizona |
 | West Europe | All tiers | Sweden Central/North Europe |
 | West US 3| Basic, S1 | Central US |
+| North Europe | S2, S3, S3 HD, L1, L2 | UK South |
 
 ## Feature availability by tier
 

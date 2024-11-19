@@ -158,6 +158,8 @@ items:
       href: ./how-to/embeddings.md
     - name: Getting started with embeddings
       href: ./tutorials/embeddings.md
+  - name: Evaluation
+    href: ./how-to/evaluations.md
   - name: Fine-tuning
     items:
       - name: Fine-tuning your model
@@ -185,6 +187,8 @@ items:
     href: ./how-to/migration.md
   - name: Migrate to OpenAI JavaScript v4.x
     href: ./how-to/migration-javascript.md
+  - name: Migrate to OpenAI C# 2.0
+    href: ./how-to/dotnet-migration.md
   - name: Models
     items:
       - name: Manage models

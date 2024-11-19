@@ -8,7 +8,7 @@ ms.custom:
   - ignite-2023
   - build-2024
 ms.topic: tutorial
-ms.date: 10/28/2024
+ms.date: 11/14/2024
 ms.reviewer: tgokal
 ms.author: sgilley
 author: sdgilley
