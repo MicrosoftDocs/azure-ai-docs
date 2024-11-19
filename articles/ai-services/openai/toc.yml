@@ -158,6 +158,8 @@ items:
       href: ./how-to/embeddings.md
     - name: Getting started with embeddings
       href: ./tutorials/embeddings.md
+  - name: Evaluation
+    href: ./how-to/evaluations.md
   - name: Fine-tuning
     items:
       - name: Fine-tuning your model
