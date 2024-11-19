@@ -117,7 +117,7 @@ Follow these steps to create a connection:
 
     # [AI Studio](#tab/azure-ai-studio)
 
-    1. From the left sidebar of your project in AI Studio, go to **Components** > **Deployments** to see the list of deployments in the project.
+    1. From the left sidebar of your project in AI Studio, go to **My assets** > **Models + endpoints** to see the list of deployments in the project.
 
     1. Select the deployment you want to connect to.
 
@@ -170,9 +170,11 @@ Follow these steps to create a connection:
 
     # [AI Studio](#tab/azure-ai-studio)
 
-    1. From the left sidebar of your project in AI Studio, select **Settings**.
+    1. From the left sidebar of your project in AI Studio, select **Management center**.
 
-    1. In the **Connected resources** section, select **New connection**.
+    1. From the left sidebar of the management center, select **Connected resources**.
+    
+    1. Select **New connection**.
 
     1. Select **Serverless Model**.
 
@@ -215,7 +217,9 @@ Follow these steps to create a connection:
 
 1. To validate that the connection is working:
 
-    1. From the left sidebar of your project in AI Studio, go to **Tools** > **Prompt flow**.
+    1. Return to your project in AI Studio.
+
+    1. From the left sidebar of your project, go to **Build and customize** > **Prompt flow**.
 
     1. Select **Create** to create a new flow.
 
