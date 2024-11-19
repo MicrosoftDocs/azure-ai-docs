@@ -54,6 +54,8 @@ The following are common use cases for the Face service:
 
 **Face redaction**: Redact or blur detected faces of people recorded in a video to protect their privacy.
 
+See the [customer checkin management](https://github.com/Azure-Samples/azure-ai-vision/tree/main/face/Scenario-CustomerCheckinManagement) and [face photo tagging](https://github.com/Azure-Samples/azure-ai-vision/tree/main/face/Scenario-FacePhotoTagging) scenarios on GitHub for working examples of facial recognition technology.
+
 > [!WARNING]
 > On June 11, 2020, Microsoft announced that it will not sell facial recognition technology to police departments in the United States until strong regulation, grounded in human rights, has been enacted. As such, customers may not use facial recognition features or functionality included in Azure Services, such as Face or Video Indexer, if a customer is, or is allowing use of such services by or for, a police department in the United States. When you create a new Face resource, you must acknowledge and agree in the Azure Portal that you will not use the service by or for a police department in the United States and that you have reviewed the Responsible AI documentation and will use this service in accordance with it.
 
