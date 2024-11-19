@@ -36,11 +36,27 @@ One approach to estimating system level throughput for a given workload is using
 
 When combined, the **Processed Prompt Tokens** (input TPM) and **Generated Completion Tokens** (output TPM) metrics provide an estimated view of system level throughput based on actual workload traffic. This approach does not account for benefits from prompt caching, so it will be a conservative system throughput estimate. These metrics can be analyzed using minimum, average, and maximum aggregation over 1-minute windows across a multi-week time horizon. It is recommended to analyze this data over a multi-week time horizon to ensure there are enough data points to assess. The following screenshot shows an example of the **Processed Prompt Tokens** metric visualized in Azure Monitor, which is available directly through the Azure Portal. 
 
-![User's image](media/latency/image.png)
+![Azure Monitor chart with processed prompt tokens metric line graph.](media/latency/image.png)
 
 ##### Estimating TPM from request data
 
-A second approach to estimated system level throughput involves collecting token usage information from API request data. This method provides a more granular approach to understanding workload shape per request. Combining per request token usage information with request volume, measured in requests per minute (RPM), provides an estimate for system level throughput. It is important to note that any assumptions made for consistency of token usage information across requests and request volume will impact the system throughput estimate. The following 
+A second approach to estimated system level throughput involves collecting token usage information from API request data. This method provides a more granular approach to understanding workload shape per request. Combining per request token usage information with request volume, measured in requests per minute (RPM), provides an estimate for system level throughput. It is important to note that any assumptions made for consistency of token usage information across requests and request volume will impact the system throughput estimate. The token usage output data can be found in the API response details for a given Azure OpenAI Service chat completions request.
+
+```json
+{
+  "body": {
+    "id": "chatcmpl-7R1nGnsXO8n4oi9UPz2f3UHdgAYMn",
+    "created": 1686676106,
+    "choices": [...],
+    "usage": {
+      "completion_tokens": 557,
+      "prompt_tokens": 33,
+      "total_tokens": 590
+    }
+  }
+}
+```
+Assuming all requests for a given workload are uniform, the prompt tokens and completion tokens can each be multiplied by the estimated RPM to identify the input and output TPM for the given workload. 
 
 ##### Estimating TPM from common workload shapes
 
