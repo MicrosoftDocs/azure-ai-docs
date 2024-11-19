@@ -35,7 +35,11 @@ Determining the right amount of provisioned throughput, or PTUs, you require for
 
 To get a quick estimate for your workload using input and output TPM, leverage the built-in capacity planner in the deployment details section of the deployment dialogue screen. The built-in capacity planner is under **Shared resources** > **Deployments** where you can select to deploy a base model, choose your target model, and select any of the Provisioned deployment type options. When configuring your Provisioned deployment, leverage the deployment details section to estimate your PTU capacity using input and output TPM data. For more information on how to identify and estimate TPM data, review the recommendations in our [performance and latency documentation](./latency.md). 
 
-To get a quick estimate for your workload, open the capacity planner in the [Azure AI Studio](https://ai.azure.com). The capacity calculator is under **Shared resources** > **Model Quota** > **Azure OpenAI Provisioned**.
+After filling out the input and output TPM data in the capacity planner, select the **Calculate** button to view your recommended PTU capacity information. 
+
+![User's image](media/provisioned-throughput-onboarding/image.png)
+
+To estimate provisioned capacity using request level data, open the capacity planner in the [Azure AI Studio](https://ai.azure.com). The capacity calculator is under **Shared resources** > **Model Quota** > **Azure OpenAI Provisioned**.
 
 The **Provisioned** option and the capacity planner are only available in certain regions within the Quota pane, if you don't see this option setting the quota region to *Sweden Central* will make this option available. Enter the following parameters based on your workload.
 
@@ -54,7 +58,7 @@ The values in the output column are the estimated value of PTU units required fo
 :::image type="content" source="../media/how-to/provisioned-onboarding/capacity-calculator.png" alt-text="Screenshot of the capacity calculator" lightbox="../media/how-to/provisioned-onboarding/capacity-calculator.png":::
 
 > [!NOTE]
-> The capacity calculator provides an estimate based on simple input criteria. The most accurate way to determine your capacity is to benchmark a deployment with a representational workload for your use case.
+> The capacity calculators provide an estimate based on simple input criteria. The most accurate way to determine your capacity is to benchmark a deployment with a representational workload for your use case.
 
 ## Understanding the Provisioned Throughput Purchase Model 
 
