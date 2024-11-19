@@ -95,7 +95,7 @@ Use these instructions to create and load a table in Azure SQL Database for test
 
 You should see results similar to the following screenshot.
 
-:::image type="content" source="media/search-how-to-index-sql-database/t-sql-query-results.png" alt-text="Screenshot of query results showing the description field.":::
+:::image type="content" source="media/search-how-to-index-sql-database/tsql-query-results.png" alt-text="Screenshot of query results showing the description field.":::
 
 The Description field provides the most verbose content. You should target this field for full text search and optional vectorization.
 
