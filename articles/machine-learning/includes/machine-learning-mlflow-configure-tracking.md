@@ -49,7 +49,7 @@ ms.author: fasantia
           > 1. Go to [Azure Machine Learning studio](https://ml.azure.com).
           > 1. In the upper right corner, select the name of your workspace.
           > 1. In the Directory + Subscription + Workspace window, select __Download config file__.
-          > 3. Save the *config.json* file in the directory that you are working in.
+          > 3. Save the *config.json* file in the directory that you're working in.
     
        - Alternatively, you can use your subscription ID, resource group name, and workspace name to sign in:
     

@@ -53,7 +53,7 @@ After you set up tracking, you also need to configure the authentication method 
 
 By default, the Azure Machine Learning plugin for MLflow performs interactive authentication by opening the default browser to prompt for credentials. But the plugin also supports several other authentication mechanisms. The `azure-identity` package provides this support. This package is installed as a dependency of the `azureml-mlflow` plugin.
 
-The authentication process tries the following methods, one after another, until one of them succeeds:
+The authentication process tries the following methods, one after another, until one succeeds:
 
 1. **Environment**: Account information that's specified via environment variables is read and used for authentication.
 1. **Managed Identity**: If the application is deployed to an Azure host with a managed identity enabled, the managed identity is used for authentication.
