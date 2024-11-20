@@ -1,6 +1,6 @@
 ---
 title: Use the chat playground in Azure AI Studio
-titleSuffix: Azure AI Studio
+titleSuffix: Azure AI Foundry
 description: Use this article to learn how to deploy a chat model and use it in the chat playground in Azure AI Studio.
 manager: scottpolly
 ms.service: azure-ai-studio

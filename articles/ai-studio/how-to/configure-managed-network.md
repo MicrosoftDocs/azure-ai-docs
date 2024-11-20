@@ -1,6 +1,6 @@
 ---
 title: How to configure a managed network for Azure AI Studio hubs
-titleSuffix: Azure AI Studio
+titleSuffix: Azure AI Foundry
 description: Learn how to configure a managed network for Azure AI Studio hubs.
 manager: scottpolly
 ms.service: azure-ai-studio

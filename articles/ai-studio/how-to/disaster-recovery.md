@@ -1,6 +1,6 @@
 ---
 title: Customer enabled disaster recovery
-titleSuffix: Azure AI Studio
+titleSuffix: Azure AI Foundry
 description: Learn how to plan for disaster recovery for Azure AI Studio.
 manager: scottpolly
 ms.service: azure-ai-studio

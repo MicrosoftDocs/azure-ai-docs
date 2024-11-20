@@ -1,6 +1,6 @@
 ---
 title: How to deploy Cohere Rerank models as serverless APIs
-titleSuffix: Azure AI Studio
+titleSuffix: Azure AI Foundry
 description: Learn to deploy and use Cohere Rerank models with Azure AI Studio.
 manager: scottpolly
 ms.service: azure-ai-studio

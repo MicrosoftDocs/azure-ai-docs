@@ -1,6 +1,6 @@
 ---
 title: Azure AI SDK for Go
-titleSuffix: Azure AI Studio
+titleSuffix: Azure AI Foundry
 description: Provides an overview with links to available Azure AI client libraries and packages for Go.
 author: eric-urban
 manager: nitinme

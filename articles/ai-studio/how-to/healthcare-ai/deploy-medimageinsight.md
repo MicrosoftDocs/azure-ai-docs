@@ -1,6 +1,6 @@
 ---
 title: How to deploy and use MedImageInsight healthcare AI model with AI Studio
-titleSuffix: Azure AI Studio
+titleSuffix: Azure AI Foundry
 description: Learn how to use MedImageInsight Healthcare AI Model with Azure AI Studio.
 ms.service: azure-ai-studio
 manager: scottpolly

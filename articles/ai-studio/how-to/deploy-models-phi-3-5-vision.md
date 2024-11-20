@@ -1,6 +1,6 @@
 ---
 title: How to use Phi-3.5 chat model with vision with Azure AI Studio
-titleSuffix: Azure AI Studio
+titleSuffix: Azure AI Foundry
 description: Learn how to use Phi-3.5 chat model with vision with Azure AI Studio.
 ms.service: azure-ai-studio
 manager: scottpolly

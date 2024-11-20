@@ -1,6 +1,6 @@
 ---
 title: Management center overview
-titleSuffix: Azure AI Studio
+titleSuffix: Azure AI Foundry
 description: "The management center in Azure AI Studio provides a centralized hub for governance and management activities."
 author: Blackmist
 ms.author: larryfr

@@ -1,6 +1,6 @@
 ---
 title: How to deploy AI21's Jamba family models with Azure AI Studio
-titleSuffix: Azure AI Studio
+titleSuffix: Azure AI Foundry
 description: How to deploy AI21's Jamba family models with Azure AI Studio
 manager: scottpolly
 ms.service: azure-machine-learning

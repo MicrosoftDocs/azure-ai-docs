@@ -1,6 +1,6 @@
 ---
 title: Get started building a chat app using the Azure AI Foundry SDK
-titleSuffix: Azure AI Studio
+titleSuffix: Azure AI Foundry
 description: This article provides instructions on how to build a custom chat app in Python using the Azure AI SDK.
 manager: scottpolly
 ms.service: azure-ai-studio

@@ -1,6 +1,6 @@
 ---
 title: Use blocklists in AI Studio
-titleSuffix: Azure AI Studio
+titleSuffix: Azure AI Foundry
 description: Learn how to create custom blocklists in Azure AI Studio as part of your content filtering configurations.
 manager: nitinme
 ms.service: azure-ai-studio

@@ -1,6 +1,6 @@
 ---
 title: Azure AI Model Inference Chat Completions
-titleSuffix: Azure AI Studio
+titleSuffix: Azure AI Foundry
 description: Reference for Azure AI Model Inference Chat Completions API
 manager: scottpolly
 ms.service: azure-ai-studio

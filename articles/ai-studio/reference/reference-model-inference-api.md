@@ -1,6 +1,6 @@
 ---
 title: Azure AI Model Inference API
-titleSuffix: Azure AI Studio
+titleSuffix: Azure AI Foundry
 description: Learn about how to use the Azure AI Model Inference API
 manager: scottpolly
 ms.service: azure-ai-studio

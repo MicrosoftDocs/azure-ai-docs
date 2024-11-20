@@ -1,6 +1,6 @@
 ---
 title: Troubleshoot private endpoint connection
-titleSuffix: Azure AI Studio
+titleSuffix: Azure AI Foundry
 description: 'Learn how to troubleshoot connectivity problems to a project that is configured with a private endpoint.'
 manager: scottpolly
 ms.service: azure-ai-studio

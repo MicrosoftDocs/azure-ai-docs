@@ -1,6 +1,6 @@
 ---
 title: Manage and increase quotas for resources with Azure AI Studio
-titleSuffix: Azure AI Studio
+titleSuffix: Azure AI Foundry
 description: This article provides instructions on how to manage and increase quotas for resources with Azure AI Studio.
 manager: scottpolly
 ms.service: azure-ai-studio

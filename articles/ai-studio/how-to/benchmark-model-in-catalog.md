@@ -1,6 +1,6 @@
 ---
 title: How to use model benchmarking in Azure AI Studio
-titleSuffix: Azure AI Studio
+titleSuffix: Azure AI Foundry
 description: In this article, you learn to compare benchmarks across models and datasets, using the model benchmarks tool in Azure AI Studio.
 manager: scottpolly
 ms.service: azure-ai-studio

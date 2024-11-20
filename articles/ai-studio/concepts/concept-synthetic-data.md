@@ -1,6 +1,6 @@
 ---
 title: Synthetic data generation in AI Studio
-titleSuffix: Azure AI Studio
+titleSuffix: Azure AI Foundry
 description: Learn how to generate a synthetic dataset in Azure AI Studio.
 manager: scottpolly
 ms.service: azure-ai-studio

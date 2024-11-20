@@ -1,6 +1,6 @@
 ---
 title: Region availability for models in Serverless API endpoints
-titleSuffix: Azure AI Studio
+titleSuffix: Azure AI Foundry
 description: Learn about the regions where each model is available for deployment in serverless API endpoints via Azure AI Studio.
 manager: scottpolly
 ms.service: azure-ai-studio
