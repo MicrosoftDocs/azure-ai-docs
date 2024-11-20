@@ -11,6 +11,7 @@ ms.subservice: azure-ai-face
 ms.topic: how-to
 ms.date: 03/07/2024
 ms.author: pafarley
+feedback_help_link_url: https://learn.microsoft.com/answers/tags/156/azure-face
 ---
 
 # Use limited access tokens for Face

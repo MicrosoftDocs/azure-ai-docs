@@ -4,10 +4,12 @@ description: In this Tutorial, you learn how to Detect liveness in faces, using 
 author: PatrickFarley
 ms.author: pafarley
 ms.service: azure-ai-vision
+ms.subservice: azure-ai-face
 ms.custom:
   - ignite-2023
 ms.topic: tutorial
 ms.date: 09/25/2024
+feedback_help_link_url: https://learn.microsoft.com/answers/tags/156/azure-face
 ---
 
 # Tutorial: Detect liveness in faces
