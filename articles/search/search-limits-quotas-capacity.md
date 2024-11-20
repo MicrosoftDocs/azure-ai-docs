@@ -12,6 +12,7 @@ ms.date: 10/28/2024
 ms.custom:
   - references_regions
   - build-2024
+  - ignite-2024
 ---
 
 # Service limits in Azure AI Search

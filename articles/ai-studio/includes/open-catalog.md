@@ -7,7 +7,7 @@ ms.author: sgilley
 ms.service: azure-ai-studio
 ms.topic: include
 ms.date: 10/29/2024
-ms.custom: include
+ms.custom: include, ignite-2024
 ---
 1. Sign in to [Azure AI Studio](https://ai.azure.com).
 1. If you’re not already in your project, select it. 

@@ -8,7 +8,7 @@ ms.topic: how-to
 ms.date: 10/3/2024
 author: eric-urban
 ms.author: eur
-ms.custom: references_regions
+ms.custom: references_regions, ignite-2024
 zone_pivot_groups: openai-studio-js
 recommendations: false
 ---

@@ -5,6 +5,8 @@ description: Learn about how to customize a speech model with fine-tuning in Azu
 author: eric-urban
 manager: nitinme
 ms.service: azure-ai-speech
+ms.custom:
+  - ignite-2024
 ms.topic: how-to
 ms.date: 11/19/2024
 ms.author: eur

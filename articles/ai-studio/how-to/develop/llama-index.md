@@ -4,6 +4,8 @@ titleSuffix: Azure AI Foundry
 description: This article explains how to use LlamaIndex with models deployed in Azure AI studio to build advance intelligent applications.
 manager: scottpolly
 ms.service: azure-ai-studio
+ms.custom:
+  - ignite-2024
 ms.topic: how-to
 ms.date: 11/04/2024
 ms.reviewer: fasantia

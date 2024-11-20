@@ -11,6 +11,7 @@ ms.date: 11/19/2024
 ms.custom:
   - mode-ui
   - ignite-2023
+  - ignite-2024
 ---
 
 # Quickstart: Create a search index in the Azure portal

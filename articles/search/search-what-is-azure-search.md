@@ -7,6 +7,8 @@ manager: nitinme
 author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
+ms.custom:
+  - ignite-2024
 ms.topic: overview
 ms.date: 10/27/2024
 ---

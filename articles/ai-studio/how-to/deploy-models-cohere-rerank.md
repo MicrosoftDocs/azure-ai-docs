@@ -9,7 +9,7 @@ ms.date: 07/24/2024
 ms.reviewer: shubhiraj
 ms.author: mopeakande
 author: msakande
-ms.custom: references_regions, build-2024
+ms.custom: references_regions, build-2024, ignite-2024
 ---
 
 # How to deploy Cohere Rerank models with Azure AI Studio

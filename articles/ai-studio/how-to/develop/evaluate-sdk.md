@@ -7,6 +7,7 @@ ms.service: azure-ai-studio
 ms.custom:
   - build-2024
   - references_regions
+  - ignite-2024
 ms.topic: how-to
 ms.date: 11/19/2024
 ms.reviewer: minthigpen

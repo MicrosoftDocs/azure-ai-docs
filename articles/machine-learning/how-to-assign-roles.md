@@ -10,7 +10,7 @@ ms.reviewer: None
 ms.author: larryfr
 author: Blackmist
 ms.date: 09/03/2024
-ms.custom: how-to, devx-track-azurecli, devx-track-arm-template, FY25Q1-Linter
+ms.custom: how-to, devx-track-azurecli, devx-track-arm-template, FY25Q1-Linter, ignite-2024
 monikerRange: 'azureml-api-1 || azureml-api-2'
 # Customer Intent: As an admin, I want to understand what permissions I need to assign resources so my users can accomplish their tasks.
 ---

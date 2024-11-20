@@ -10,7 +10,7 @@ ms.date: 10/31/2024
 ms.reviewer: sgilley
 ms.author: sgilley
 author: sdgilley
-ms.custom: ignite-2023, build-2024
+ms.custom: ignite-2023, build-2024, ignite-2024
 #customer intent: As a developer, I want to understand what Azure AI Foundry is so that I can use it to build AI applications.
 ---
 

@@ -4,7 +4,7 @@ titleSuffix: Azure AI Foundry
 description: Evaluate your generative AI models and applications with Azure AI Studio.
 manager: scottpolly
 ms.service: azure-ai-studio
-ms.custom: ignite-2023, references_regions, build-2024
+ms.custom: ignite-2023, references_regions, build-2024, ignite-2024
 ms.topic: how-to
 ms.date: 11/19/2024
 ms.reviewer: mithigpe

@@ -7,10 +7,11 @@ ms.service: azure-ai-studio
 ms.custom:
   - ignite-2023
   - build-2024
+  - ignite-2024
 ms.topic: how-to
 ms.date: 10/25/2024
 ms.author: franksolomon
-author: fbsolo-ms1 
+author: fbsolo-ms1
 ---
 
 # How to add and manage data in your Azure AI Studio project

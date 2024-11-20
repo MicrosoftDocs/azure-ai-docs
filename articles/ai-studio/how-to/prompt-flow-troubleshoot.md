@@ -4,6 +4,8 @@ titleSuffix: Azure AI Foundry
 description: This article addresses frequent questions about prompt flow usage.
 manager: scottpolly
 ms.service: azure-ai-studio
+ms.custom:
+  - ignite-2024
 ms.topic: reference
 author: lgayhardt
 ms.author: lagayhar

@@ -4,10 +4,12 @@ titleSuffix: Azure AI Foundry
 description: This article provides instructions on how to visualize your traces.
 manager: scottpolly
 ms.service: azure-ai-studio
+ms.custom:
+  - ignite-2024
 ms.topic: how-to
 ms.date: 11/19/2024
 ms.reviewer: amipatel
-ms.author: lagayhar  
+ms.author: lagayhar
 author: lgayhardt
 ---
 

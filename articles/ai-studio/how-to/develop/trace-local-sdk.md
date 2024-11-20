@@ -6,10 +6,11 @@ manager: scottpolly
 ms.service: azure-ai-studio
 ms.custom:
   - build-2024
+  - ignite-2024
 ms.topic: how-to
 ms.date: 11/19/2024
 ms.reviewer: truptiparkar
-ms.author: lagayhar  
+ms.author: lagayhar
 author: lgayhardt
 ---
 

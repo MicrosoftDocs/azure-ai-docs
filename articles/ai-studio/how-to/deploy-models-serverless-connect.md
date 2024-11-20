@@ -6,13 +6,14 @@ manager: scottpolly
 ms.service: azure-ai-studio
 ms.topic: how-to
 ms.date: 5/21/2024
-ms.author: mopeakande 
+ms.author: mopeakande
 author: msakande
 ms.reviewer: fasantia
 reviewer: santiagxf
-ms.custom: 
- - build-2024
- - serverless
+ms.custom:
+  - build-2024
+  - serverless
+  - ignite-2024
 ---
 
 # Consume serverless API endpoints from a different Azure AI Studio project or hub

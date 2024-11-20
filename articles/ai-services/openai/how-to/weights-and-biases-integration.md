@@ -4,7 +4,8 @@ titleSuffix: Azure OpenAI
 description: Learn how to integrate Weights & Biases and Azure OpenAI fine-tuning.
 manager: nitinme
 ms.service: azure-ai-openai
-ms.custom: 
+ms.custom:
+  - ignite-2024
 ms.topic: how-to
 ms.date: 11/10/2024
 author: mrbullwinkle

@@ -7,6 +7,7 @@ ms.service: azure-ai-studio
 ms.custom:
   - ignite-2023
   - build-2024
+  - ignite-2024
 ms.topic: tutorial
 ms.date: 11/14/2024
 ms.reviewer: tgokal

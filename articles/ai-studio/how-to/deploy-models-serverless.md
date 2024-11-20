@@ -6,11 +6,11 @@ manager: scottpolly
 ms.service: azure-ai-studio
 ms.topic: how-to
 ms.date: 07/18/2024
-ms.author: mopeakande 
+ms.author: mopeakande
 author: msakande
 ms.reviewer: fasantia
 reviewer: santiagxf
-ms.custom: build-2024, serverless, devx-track-azurecli
+ms.custom: build-2024, serverless, devx-track-azurecli, ignite-2024
 ---
 
 # Deploy models as serverless APIs
