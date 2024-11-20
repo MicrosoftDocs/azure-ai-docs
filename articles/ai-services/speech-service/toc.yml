@@ -58,7 +58,7 @@ items:
       items:
         - name: Custom speech overview
           href: custom-speech-overview.md
-        - name: Fine-tune in AI Studio for custom speech
+        - name: Fine-tune in the Azure AI Foundry portal
           href: custom-speech-ai-studio.md
         - name: Create a custom speech model 
           items:
@@ -289,7 +289,7 @@ items:
         href: language-learning-overview.md
       - name: Pronunciation Assessment with speech to text
         items:
-        - name: Reading and speaking assessment in AI Studio
+        - name: Reading and speaking assessment in AI Foundry
           href: pronunciation-assessment-tool.md
           displayName: pronounce, learn language, assess pron
         - name: Interactive language learning with pronunciation assessment
