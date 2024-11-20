@@ -71,8 +71,7 @@ Here are a few examples for the GPT-4o mini model:
 |5,000 |50 |1,000|5,000,000|50,000|5,050,000|140|
 |1,000 |300 | 500 |500,000|150,000|650,000|30|
 
-The number of PTUs scales roughly linearly with call rate (might be sublinear) when the workload distribution remains constant.
-
+The number of PTUs scales roughly linearly with call rate when the workload distribution remains constant.
 
 ### Latency: The per-call response times 
 
