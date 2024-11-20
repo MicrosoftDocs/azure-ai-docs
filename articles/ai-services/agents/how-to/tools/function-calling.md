@@ -36,7 +36,7 @@ API versions starting with `2024-02-15-preview`.
 
 # [Python](#tab/python)
 
-When you create a function for an agent to call, you describe it's structure of it with any required parameters. For example, `fetch_weather` simulates the response of a possible weather function.  
+When you create a function for an agent to call, you describe its structure of it with any required parameters. For example, `fetch_weather` simulates the response of a possible weather function.  
 
 ```python
 def fetch_weather(location: str) -> str:
@@ -85,7 +85,7 @@ toolset.add(functions)
 
 # [C#](#tab/csharp)
 
-When you create a function for an agent to call, you describe it's structure of it with any required parameters. For example, the following functions are two examples - one that requires no parameters, and one that requires one parameter.
+When you create a function for an agent to call, you describe its structure of it with any required parameters. For example, the following functions are two examples - one that requires no parameters, and one that requires one parameter.
 
 ```csharp
 // Example of a function that defines no parameters
