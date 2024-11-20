@@ -236,6 +236,9 @@ foreach (ThreadMessage threadMessage in messages)
     }
 }
 ```
+
+---
+
 ## How it works
 
 The file search tool implements several retrieval best practices out of the box to help you extract the right data from your files and augment the model’s responses. The file search tool:
