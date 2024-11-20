@@ -152,6 +152,15 @@ You can also look at the individual rows and see metric scores per row, and view
 
 For more information about evaluation results in AI Studio, see [How to view evaluation results in AI Studio](../how-to/evaluate-results.md).
 
+## Iterate and improve
+
+Notice that the responses are not well grounded. In many cases, the model replies with a question rather than an answer. This is a result of the prompt template instructions. 
+ 
+* In your **assets/grounded_chat.prompty** file, find the sentence "If the question is related to outdoor/camping gear and clothing but vague, ask for clarifying questions instead of referencing documents." * Change the sentence to "If the question is related to outdoor/camping gear and clothing but vague, try to answer based on the reference documents, then ask for clarifying questions."  
+* Save the file and re-run the evaluation script.
+
+Try other modifications to the prompt template, or try different models, to see how the changes affect the evaluation results.
+
 ## Clean up resources
 
 To avoid incurring unnecessary Azure costs, you should delete the resources you created in this tutorial if they're no longer needed. To manage resources, you can use the [Azure portal](https://portal.azure.com?azure-portal=true).
