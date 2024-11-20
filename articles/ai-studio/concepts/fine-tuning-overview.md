@@ -22,7 +22,7 @@ Fine-tuning refers to customizing a pre-trained generative AI model with additio
 
 Consider fine-tuning GenAI models to:
 - Scale and adapt to specific enterprise needs
-- Reduce hallucinations as tailored models are less likely to produce inaccurate or irrelevant responses
+- Reduce false positives as tailored models are less likely to produce inaccurate or irrelevant responses
 - Enhance the model's accuracy for domain-specific tasks
 - Save time and resources with faster and more precise results
 - Get more relevant and context-aware outcomes as models are fine-tuned for specific use cases
@@ -83,7 +83,7 @@ Now that you know when to use fine-tuning for your use case, you can go to Azure
 For details about Azure OpenAI models that are available for fine-tuning, see the [Azure OpenAI Service models documentation](../../ai-services/openai/concepts/models.md#fine-tuning-models) or the [Azure OpenAI models table](#fine-tuning-azure-openai-models) later in this guide.
 
 
-For the Azure Open AI  Service models that you can fine tune, supported regions for fine-tuning include North Central US, Sweden Central, and more.
+For the Azure OpenAI  Service models that you can fine tune, supported regions for fine-tuning include North Central US, Sweden Central, and more.
 
 ### Fine-tuning Azure OpenAI models
 
