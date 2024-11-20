@@ -17,7 +17,7 @@ ms.custom:
 This article provides you with background around how latency and throughput works with Azure OpenAI and how to optimize your environment to improve performance.
 
 ## Understanding throughput vs latency
-There are two key concepts to think about when sizing an application: (1) System level throughput measured in tokens per minute (TPM) and (2) Per-call response times (also known as Latency). 
+There are two key concepts to think about when sizing an application: (1) System level throughput measured in tokens per minute (TPM) and (2) Per-call response times (also known as latency). 
 
 ### System level throughput
 This looks at the overall capacity of your deployment – how many requests per minute and total tokens that can be processed.
