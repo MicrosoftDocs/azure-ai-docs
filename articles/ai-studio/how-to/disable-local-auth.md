@@ -1,6 +1,6 @@
 ---
 title: "Disable shared key access to the hub storage account"
-titleSuffix: Azure AI Studio
+titleSuffix: Azure AI Foundry
 description: "Disable shared key access to the default storage account used by your Azure AI Studio hub and projects."
 author: Blackmist
 ms.author: larryfr

@@ -1,6 +1,6 @@
 ---
 title: Role-based access control in Azure AI Studio
-titleSuffix: Azure AI Studio
+titleSuffix: Azure AI Foundry
 description: This article introduces role-based access control in Azure AI Studio.
 manager: scottpolly
 ms.service: azure-ai-studio

@@ -1,6 +1,6 @@
 ---
 title: How to configure a private link for an Azure AI Studio hub
-titleSuffix: Azure AI Studio
+titleSuffix: Azure AI Foundry
 description: Learn how to configure a private link for Azure AI Studio hubs. A private link is used to secure communication with the Azure AI Studio hub.
 manager: scottpolly
 ms.service: azure-ai-studio

@@ -1,6 +1,6 @@
 ---
 title: "Tutorial: Deploy an enterprise chat web app in the Azure AI Studio playground"
-titleSuffix: Azure AI Studio
+titleSuffix: Azure AI Foundry
 description: Use this article to deploy an enterprise chat web app in the Azure AI Studio playground.
 manager: scottpolly
 ms.service: azure-ai-studio
@@ -155,4 +155,4 @@ To avoid incurring unnecessary Azure costs, you should delete the resources you 
 ## Related content
 
 - [Get started building a chat app using the prompt flow SDK](../quickstarts/get-started-code.md)
-- [Build a custom chat app with the Azure AI SDK.](./copilot-sdk-build-rag.md).
+- [Build a custom chat app with the Azure AI SDK.](./copilot-sdk-create-resources.md).

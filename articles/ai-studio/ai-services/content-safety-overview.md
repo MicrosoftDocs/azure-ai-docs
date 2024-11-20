@@ -1,6 +1,6 @@
 ---
 title: Content Safety in Azure AI Studio overview
-titleSuffix: Azure AI Studio
+titleSuffix: Azure AI Foundry
 description: Learn how to use Azure AI Content Safety in Azure AI Studio to detect harmful user-generated and AI-generated content in applications and services.
 manager: nitinme
 ms.service: azure-ai-studio

@@ -1,6 +1,6 @@
 ---
 title: Control AI model deployment with built-in policies
-titleSuffix: Azure AI Studio
+titleSuffix: Azure AI Foundry
 description: "Learn how to use built-in Azure policies to control what managed AI Services (MaaS) and Model-as-a-Platform (MaaP) AI models can be deployed in Azure AI Studio."
 author: Blackmist
 ms.author: larryfr

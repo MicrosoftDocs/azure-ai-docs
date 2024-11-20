@@ -1,6 +1,6 @@
 ---
 title: Data, privacy, and security for use of models through the model catalog in AI Studio
-titleSuffix: Azure AI Studio
+titleSuffix: Azure AI Foundry
 description: Get details about how data that customers provide is processed, used, and stored when a user deploys a model from the model catalog.
 manager: scottpolly
 ms.service: azure-ai-studio

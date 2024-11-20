@@ -1,6 +1,6 @@
 ---
 title: How to build with prompt flow
-titleSuffix: Azure AI Studio
+titleSuffix: Azure AI Foundry
 description: This article provides instructions on how to build with prompt flow.
 manager: scottpolly
 ms.service: azure-ai-studio

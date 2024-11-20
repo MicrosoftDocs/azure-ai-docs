@@ -1,6 +1,6 @@
 ---
 title: Create and manage prompt flow compute sessions
-titleSuffix: Azure AI Studio
+titleSuffix: Azure AI Foundry
 description: In this article, learn how to create and manage compute sessions to run prompt flows in Azure AI Studio.
 manager: scottpolly
 ms.service: azure-ai-studio

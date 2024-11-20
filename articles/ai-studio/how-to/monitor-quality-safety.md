@@ -1,6 +1,6 @@
 ---
 title: Monitor quality and token usage of deployed prompt flow applications (preview)
-titleSuffix: Azure AI Studio
+titleSuffix: Azure AI Foundry
 description: Learn how to monitor quality and token usage of deployed prompt flow applications with Azure AI Studio.
 manager: scottpolly
 ms.service: azure-ai-studio

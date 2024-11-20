@@ -1,6 +1,6 @@
 ---
 title: Prompt flow in Azure AI Studio
-titleSuffix: Azure AI Studio
+titleSuffix: Azure AI Foundry
 description: This article introduces prompt flow in Azure AI Studio.
 manager: scottpolly
 ms.service: azure-ai-studio

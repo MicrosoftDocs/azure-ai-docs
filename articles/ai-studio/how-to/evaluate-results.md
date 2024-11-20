@@ -1,6 +1,6 @@
 ---
 title: How to view evaluation results in Azure AI Studio
-titleSuffix: Azure AI Studio
+titleSuffix: Azure AI Foundry
 description: This article provides instructions on how to view evaluation results in Azure AI Studio.
 manager: scottpolly
 ms.service: azure-ai-studio

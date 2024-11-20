@@ -1,6 +1,6 @@
 ---
 title: Control AI model deployment with custom policies
-titleSuffix: Azure AI Studio
+titleSuffix: Azure AI Foundry
 description: "Learn how to use custom Azure Policies to control Azure AI services and Azure OpenAI model deployment with Azure AI Studio."
 author: Blackmist
 ms.author: larryfr

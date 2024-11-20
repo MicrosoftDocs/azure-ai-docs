@@ -1,6 +1,6 @@
 ---
 title: Responsible AI for Azure AI Studio
-titleSuffix: Azure AI Studio
+titleSuffix: Azure AI Foundry
 description: Learn how to use AI responsibly with Azure AI Studio.
 manager: nitinme
 keywords: Azure AI services, cognitive

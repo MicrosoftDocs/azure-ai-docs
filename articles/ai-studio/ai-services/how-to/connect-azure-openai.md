@@ -1,6 +1,6 @@
 ---
 title: How to use Azure OpenAI Service in AI Studio
-titleSuffix: Azure AI Studio
+titleSuffix: Azure AI Foundry
 description: Learn how to use Azure OpenAI Service in AI Studio.
 manager: nitinme
 ms.service: azure-ai-studio

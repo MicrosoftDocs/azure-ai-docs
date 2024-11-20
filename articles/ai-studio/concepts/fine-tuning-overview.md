@@ -1,6 +1,6 @@
 ---
 title: Fine-tuning in Azure AI Studio
-titleSuffix: Azure AI Studio
+titleSuffix: Azure AI Foundry
 description: This article introduces fine-tuning of models in Azure AI Studio.
 manager: scottpolly
 ms.service: azure-ai-studio

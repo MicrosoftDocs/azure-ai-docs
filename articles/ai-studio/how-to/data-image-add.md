@@ -1,6 +1,6 @@
 ---
 title: 'Use your image data with Azure OpenAI Service'
-titleSuffix: Azure AI Studio
+titleSuffix: Azure AI Foundry
 description: Use this article to learn about using your image data for image generation in Azure AI Studio.
 manager: nitinme
 ms.service: azure-ai-studio

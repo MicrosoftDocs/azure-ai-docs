@@ -20,7 +20,7 @@ highlightedContent:
     - title: What are Azure AI services?
       itemType: overview # controls the icon image and super-title text
       url: ./what-are-ai-services.md
-    - title: What is Azure AI Studio?
+    - title: What is Azure AI Foundry?
       itemType: overview
       url: ../ai-studio/what-is-ai-studio.md
     - title: Chat with Azure OpenAI models using your own data
@@ -103,10 +103,8 @@ additionalContent:
       items:
         - title: Demo & customization studios
           links:
-            - text: Azure AI Studio
+            - text: Azure AI Foundry portal
               url: https://ai.azure.com/
-            - text: Azure OpenAI Studio
-              url: https://oai.azure.com/
             - text: Content Safety
               url: https://contentsafety.cognitive.azure.com/
             - text: Speech
@@ -123,16 +121,16 @@ additionalContent:
               url: https://language.cognitive.azure.com/
         - title: Explore more AI resources
           links:
-            - text: Azure AI Studio
+            - text: Azure AI Foundry portal
               url: /azure/ai-studio/
             - text: Azure Machine Learning
               url: /azure/machine-learning/
+            - text: The Book of AI
+              url: https://aka.ms/bookofai
             - text: Semantic Kernel
               url: /semantic-kernel/
             - text: AI Builder
               url: /ai-builder/
-            - text: Windows AI
-              url: /windows/ai/
             - text: GitHub Copilot
               url: https://docs.github.com/copilot/getting-started-with-github-copilot
         - title: Training & certification

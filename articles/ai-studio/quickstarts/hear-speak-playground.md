@@ -1,6 +1,6 @@
 ---
 title: Hear and speak with chat models in the Azure AI Studio chat playground
-titleSuffix: Azure AI Studio
+titleSuffix: Azure AI Foundry
 description: Hear and speak with chat models in the Azure AI Studio chat playground.
 manager: nitinme
 ms.service: azure-ai-studio

@@ -1,6 +1,6 @@
 ---
 title: Manage, collaborate, and organize with hubs
-titleSuffix: Azure AI Studio
+titleSuffix: Azure AI Foundry
 description: This article introduces concepts about Azure AI Studio hubs for your AI Studio projects.
 manager: scottpolly
 ms.service: azure-ai-studio

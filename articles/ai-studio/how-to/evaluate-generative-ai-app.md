@@ -1,6 +1,6 @@
 ---
 title: How to evaluate generative AI models and applications with Azure AI Studio
-titleSuffix: Azure AI Studio
+titleSuffix: Azure AI Foundry
 description: Evaluate your generative AI models and applications with Azure AI Studio.
 manager: scottpolly
 ms.service: azure-ai-studio
