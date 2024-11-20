@@ -37,7 +37,7 @@ To get a quick estimate for your workload using input and output TPM, leverage t
 
 After filling out the input and output TPM data in the built-in capacity calculator, select the **Calculate** button to view your PTU allocation recommendation. 
 
-![User's image](media/provisioned-throughput-onboarding/image.png)
+![Screenshot of deployment details built-in capacity calculator.](media/provisioned-throughput-onboarding/deploymentcapacitycalculator.png)
 
 To estimate provisioned capacity using request level data, open the capacity planner in the [Azure AI Studio](https://ai.azure.com). The capacity calculator is under **Shared resources** > **Model Quota** > **Azure OpenAI Provisioned**.
 
