@@ -37,7 +37,7 @@ To get a quick estimate for your workload using input and output TPM, leverage t
 
 After filling out the input and output TPM data in the built-in capacity calculator, select the **Calculate** button to view your PTU allocation recommendation. 
 
-![deployment-ptu-capacity-calculator](media/provisioned-throughput-onboarding/deployment-ptu-capacity-calculator.png)
+![Screenshot of deployment workflow PTU capacity calculator.](media/provisioned-throughput-onboarding/deployment-ptu-capacity-calculator.png)
 
 
 
