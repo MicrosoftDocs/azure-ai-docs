@@ -1,3 +1,18 @@
+---
+title: 'How to use Azure AI Agent service with Bing Grounding resources'
+titleSuffix: Azure OpenAI
+description: Learn how to ground Azure AI Agents using Bing web search.
+services: cognitive-services
+manager: nitinme
+ms.service: azure
+ms.topic: how-to
+ms.date: 11/20/2024
+author: aahill
+ms.author: aahi
+recommendations: false
+
+---
+
 # Grounding with Bing Search 
 
 Grounding with Bing Search allows your Azure AI Agents to incorporate real-time public web data when generating responses. To start with, you need to create a Grounding with Bing Search resource, then connect this resource to your Azure AI Agents. When a user sends a query, Azure AI Agents will decide if Grounding with Bing Search should be leveraged or not. If so, it will leverage Bing to search over public web data and return relevant chunks. Lastly, Azure AI Agents will use returned chunks to generate a response.  
