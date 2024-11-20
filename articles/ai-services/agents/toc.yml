@@ -20,3 +20,5 @@ items:
   items:
     - name: Code interpreter
       href: how-to/tools/code-interpreter.md
+    - name: Grounding with Bing Search
+      href: how-to/tools/bing-grounding.md
