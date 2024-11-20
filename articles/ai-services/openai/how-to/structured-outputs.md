@@ -23,12 +23,12 @@ Structured outputs make a model follow a [JSON Schema](https://json-schema.org/o
 
 ## Supported models
 
--`gpt-4o-mini` version: `2024-07-18`
--`gpt-4o` version: `2024-08-06`
+- `gpt-4o-mini` version: `2024-07-18`
+- `gpt-4o` version: `2024-08-06`
 
 ## API support
 
-Support for structured outputs was first added in API version `2024-08-01-preview`. It is available in the latest preview APIs as well as the latest GA API: `2024-10-21`
+Support for structured outputs was first added in API version `2024-08-01-preview`. It is available in the latest preview APIs as well as the latest GA API: `2024-10-21`.
 
 ## Getting started
 
