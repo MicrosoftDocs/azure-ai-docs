@@ -10,7 +10,7 @@ ms.service: azure-ai-search
 ms.custom:
   - references_regions
 ms.topic: reference
-ms.date: 11/19/2024
+ms.date: 11/20/2024
 ---
 
 # Document Layout skill
@@ -56,6 +56,15 @@ Microsoft.Skills.Util.DocumentIntelligenceLayoutSkill
 + Image dimensions must be between 50 pixels x 50 pixels or 10,000 pixels x 10,000 pixels.
 + If your PDFs are password-locked, remove the lock before running the indexer.
 
+## Limitations
+
+During the public preview, this skill has the following restrictions:
+
++ No Embedded Image Extraction: The skill can't extract images embedded within documents.
++ No Page Number Extraction: Page numbers are not included in the generated output.
++ Processing Time Limit: The skill is not suitable for large documents requiring more than 5 minutes of processing in the AI Document Intelligence layout model. The skill will time out, but charges will still apply to the AI Services multi-services resource if it is attached to the skillset for billing purposes. Ensure documents are optimized to stay within processing limits to avoid unnecessary costs.
+
+  
 ## Skill parameters
 
 Parameters are case-sensitive.
