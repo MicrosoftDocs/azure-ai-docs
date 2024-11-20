@@ -56,13 +56,17 @@ Microsoft.Skills.Util.DocumentIntelligenceLayoutSkill
 + Image dimensions must be between 50 pixels x 50 pixels or 10,000 pixels x 10,000 pixels.
 + If your PDFs are password-locked, remove the lock before running the indexer.
 
+## Supported languages
+
+Refer to [Azure AI Document Intelligence layout model supported languages](/azure/ai-services/document-intelligence/language-support/ocr?view=doc-intel-3.1.0&tabs=read-print%2Clayout-print%2Cgeneral#layout) for printed text.
+
 ## Limitations
 
 During the public preview, this skill has the following restrictions:
 
-+ No Embedded Image Extraction: The skill can't extract images embedded within documents.
-+ No Page Number Extraction: Page numbers are not included in the generated output.
-+ Processing Time Limit: The skill is not suitable for large documents requiring more than 5 minutes of processing in the AI Document Intelligence layout model. The skill will time out, but charges will still apply to the AI Services multi-services resource if it is attached to the skillset for billing purposes. Ensure documents are optimized to stay within processing limits to avoid unnecessary costs.
++ The skill can't extract images embedded within documents.
++ Page numbers are not included in the generated output.
++ The skill is not suitable for large documents requiring more than 5 minutes of processing in the AI Document Intelligence layout model. The skill will time out, but charges will still apply to the AI Services multi-services resource if it is attached to the skillset for billing purposes. Ensure documents are optimized to stay within processing limits to avoid unnecessary costs.
 
   
 ## Skill parameters
