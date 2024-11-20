@@ -38,6 +38,7 @@ Azure AI Studio is currently available in the following Azure regions. You can c
 - South Central US
 - Sweden Central
 - Switzerland North
+- UAE North
 - UK South
 - West Europe
 - West US
