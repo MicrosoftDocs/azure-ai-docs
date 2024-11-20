@@ -39,7 +39,7 @@ When starting out on your generative AI journey, we recommend you begin with pro
 - [Prompt engineering](../../ai-services/openai/concepts/prompt-engineering.md) is a technique that involves designing prompts using tone and style details, example responses, and intent mapping for natural language processing models. This process improves accuracy and relevancy in responses, to optimize the performance of the model.
 - [Retrieval-augmented generation (RAG)](../concepts/retrieval-augmented-generation.md) improves LLM performance by retrieving data from external sources and incorporating it into a prompt. RAG can help businesses achieve customized solutions while maintaining data relevance and optimizing costs.
 
-As you get comfortable and begin building your solution, it is important to understand where prompt engineering falls short and that'll help you realize if you should try fine-tuning. 
+As you get comfortable and begin building your solution, it's important to understand where prompt engineering falls short and that will help you realize if you should try fine-tuning. 
 - Is the base model failing on edge cases or exceptions? 
 - Is the base model not consistently providing output in the right format?
 - Is it difficult to fit enough examples in the context window to steer the model?
@@ -53,7 +53,7 @@ _A customer wants to use GPT-3.5 Turbo to turn natural language questions into q
 
 ### Use cases
 
-Base models are already pre-trained on vast amounts of data and most times you will add instructions and examples to the prompt to get the quality responses that you're looking for - this process is called "few-shot learning". Fine-tuning allows you to train a model with many more examples that you can tailor to meet your specific use-case, thus improving on few-shot learning. This can reduce the number of tokens in the prompt leading to potential cost savings and requests with lower latency. 
+Base models are already pre-trained on vast amounts of data and most times you'll add instructions and examples to the prompt to get the quality responses that you're looking for - this process is called "few-shot learning". Fine-tuning allows you to train a model with many more examples that you can tailor to meet your specific use-case, thus improving on few-shot learning. This can reduce the number of tokens in the prompt leading to potential cost savings and requests with lower latency. 
 
 Turning natural language into a query language is just one use case where you can  _show not tell_ the model how to behave. Here are some additional use cases:
 - Improve the model's handling of retrieved data
@@ -74,7 +74,7 @@ Here are the general steps to fine-tune a model:
 6. Once completed, review metrics and evaluate model. If the results don't meet your benchmark, then go back to step 2.
 7. Use your fine-tuned model
 
-It's important to call out that fine-tuning is heavily dependent on the quality of data that you can provide. It is best practice to provide hundreds, if not thousands, of training examples to be successful and get your desired results.
+It's important to call out that fine-tuning is heavily dependent on the quality of data that you can provide. It's best practice to provide hundreds, if not thousands, of training examples to be successful and get your desired results.
 
 ## Supported models for fine-tuning
 
