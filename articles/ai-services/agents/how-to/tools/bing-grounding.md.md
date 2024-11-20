@@ -27,7 +27,6 @@ Grounding with Bing Search is a free service during private preview and your usa
 ## Setup  
 
 > [!IMPORTANT]
-> 1. Grounding with Bing Search has a separate [Terms of Use agreement](https://www.microsoft.com/en-us/bing/apis/grounding-legal-preview) you need to agree to in order to move forward. Please [use this form](https://forms.office.com/r/2j3Sgu8S9K) to sign the agreement. After you have signed the form, it will take 1-3 days for us to whitelist your subscription.
 > 2. Please make sure your resource is created in `EastUS`.
 > 3. We recommend using the following models: `gpt-3.5-turbo-0125`, `gpt-4-0125-preview`, `gpt-4-turbo-preview`, `gpt-4-turbo`, `gpt-4-turbo-2024-04-09`, `gpt-4o`, `gpt-4o-mini`, `gpt-4o-mini-2024-07-18`
 
@@ -40,7 +39,7 @@ Grounding with Bing Search is a free service during private preview and your usa
        az provider register --namespace 'Microsoft.Bing'
    ```
 
-1. Create a new Grounding with Bing Search resource. You can find the template file [here](./bingsearch_arm.json) and parameter file [here](./bingsearch_para.json). Make sure you have replaced "BING_RESOURCE_NAME" in the parameter file. You can use Azure CLI command: 
+1. Create a new Grounding with Bing Search resource. <!--You can find the template file [here](./bingsearch_arm.json) and parameter file [here](./bingsearch_para.json).--> Make sure you have replaced "BING_RESOURCE_NAME" in the parameter file. You can use Azure CLI command: 
     
     ```console
     az deployment group create
@@ -79,13 +78,13 @@ Grounding with Bing Search is a free service during private preview and your usa
 
 1. Select **API key** in **other resource types**.
 
-    :::image type="content" source="../../media/tools/bing/api-key-connection.png" alt-text="A screenshot of the connections screen for the AI project." lightbox="../../media/tools/bing/api-key-connection.png":::
+    :::image type="content" source="../../media/tools/bing/api-key-connection.png" alt-text="A screenshot of the resource types available for connections." lightbox="../../media/tools/bing/api-key-connection.png":::
 
 1. Enter the following information and then create a new connection to your Grounding with Bing Search resource.
 
-    - Endpoint: https://api.bing.microsoft.com/
-    - Key: YOUR_API_KEY
-    - Connection name: YOUR_CONNECTION_NAME (You will use this connection name in the sample code below.)
+    - Endpoint: `https://api.bing.microsoft.com/`
+    - Key: `YOUR_API_KEY`
+    - Connection name: `YOUR_CONNECTION_NAME` (You will use this connection name in the sample code below.)
     - Access: you can choose either *this project only* or *shared to all projects*. Just make sure in the sample code below, the project you entered connection string for has access to this connection.
     
 
