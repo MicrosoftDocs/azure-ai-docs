@@ -76,7 +76,7 @@ Power Automate is a service in the [Power Platform](/power-platform/) that helps
 
 ## Next steps
 
-* Learn how you can build generative AI applications in the [Azure AI Studio](../ai-studio/what-is-ai-studio.md).
+* Learn how you can build generative AI applications in the [Azure AI Foundry portal](../ai-studio/what-is-ai-studio.md).
 * Get answers to frequently asked questions in the [Azure AI FAQ article](../ai-studio/faq.yml)
 * Create your Azure AI services resource in the [Azure portal](multi-service-resource.md?pivots=azportal) or with [Azure CLI](multi-service-resource.md?pivots=azcli).
 * Keep up to date with [service updates](https://azure.microsoft.com/updates/?product=cognitive-services).
