@@ -21,14 +21,10 @@ Citations show links to websites used to generate response, but don't show links
 
 You can ask questions such as "*what is the weather in Seattle?*" or "*what is the recent update in the retail industry in the US?*" require real-time public data.
 
-> [!IMPORTANT]
-Grounding with Bing Search is a free service during private preview and your usage will start incurring cost since the integration with Azure AI Agent Service releases to public preview.	 
-
 ## Setup  
 
 > [!IMPORTANT]
-> 2. Please make sure your resource is created in `EastUS`.
-> 3. We recommend using the following models: `gpt-3.5-turbo-0125`, `gpt-4-0125-preview`, `gpt-4-turbo-preview`, `gpt-4-turbo`, `gpt-4-turbo-2024-04-09`, `gpt-4o`, `gpt-4o-mini`, `gpt-4o-mini-2024-07-18`
+> We recommend using the following models: `gpt-3.5-turbo-0125`, `gpt-4-0125-preview`, `gpt-4-turbo-preview`, `gpt-4-turbo`, `gpt-4-turbo-2024-04-09`, `gpt-4o`, `gpt-4o-mini`, `gpt-4o-mini-2024-07-18`
 
 1. Ensure you've completed the prerequisites and setup steps in the [quickstart](../../quickstart.md).
 
@@ -156,3 +152,7 @@ with project_client:
     messages = project_client.agents.list_messages(thread_id=thread.id)
     print(f"Messages: {messages}")
 ```
+
+## Next steps
+
+[Learn how to use the code interpreter tool.](./code-interpreter.md)
