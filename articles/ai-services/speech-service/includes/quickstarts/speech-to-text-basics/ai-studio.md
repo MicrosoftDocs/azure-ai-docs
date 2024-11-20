@@ -10,7 +10,7 @@ ms.author: eur
 
 [!INCLUDE [Feature preview](~/reusable-content/ce-skilling/azure/includes/ai-studio/includes/feature-preview.md)]
 
-In this quickstart, you try real-time speech to text in [Azure AI Studio](https://ai.azure.com). 
+In this quickstart, you try real-time speech to text in [Azure AI Foundry](https://ai.azure.com). 
 
 ## Prerequisites
 
@@ -18,7 +18,7 @@ In this quickstart, you try real-time speech to text in [Azure AI Studio](https:
 
 ## Try real-time speech to text
 
-1. Go to your AI Studio project. If you need to create a project, see [Create an AI Studio project](../../../../../ai-studio/how-to/create-projects.md).
+1. Go to your AI Foundry project. If you need to create a project, see [Create an AI Foundry project](../../../../../ai-studio/how-to/create-projects.md).
 1. Select **Playgrounds** from the left pane and then select a playground to use. In this example, select **Try the Speech playground**.
 
     :::image type="content" source="../../../../../ai-studio/media/ai-services/playgrounds/azure-ai-services-playgrounds.png" alt-text="Screenshot of the project level playgrounds that you can use." lightbox="../../../../../ai-studio/media/ai-services/playgrounds/azure-ai-services-playgrounds.png":::
@@ -42,8 +42,8 @@ In this quickstart, you try real-time speech to text in [Azure AI Studio](https:
 
 1. You can view the real-time transcription at the bottom of the page.
 
-    :::image type="content" source="../../../media/ai-studio/real-time-speech-to-text-results.png" alt-text="Screenshot of the real-time transcription results in Azure AI Studio." lightbox="../../../media/ai-studio/real-time-speech-to-text-results.png":::
+    :::image type="content" source="../../../media/ai-studio/real-time-speech-to-text-results.png" alt-text="Screenshot of the real-time transcription results in Azure AI Foundry." lightbox="../../../media/ai-studio/real-time-speech-to-text-results.png":::
 
 1. You can select the **JSON** tab to see the JSON output of the transcription. Properties include `Offset`, `Duration`, `RecognitionStatus`, `Display`, `Lexical`, `ITN`, and more.
 
-    :::image type="content" source="../../../media/ai-studio/real-time-speech-to-text-results-json.png" alt-text="Screenshot of the real-time transcription results in JSON format in Azure AI Studio." lightbox="../../../media/ai-studio/real-time-speech-to-text-results-json.png":::
+    :::image type="content" source="../../../media/ai-studio/real-time-speech-to-text-results-json.png" alt-text="Screenshot of the real-time transcription results in JSON format in Azure AI Foundry." lightbox="../../../media/ai-studio/real-time-speech-to-text-results-json.png":::

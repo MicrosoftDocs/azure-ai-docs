@@ -95,7 +95,7 @@ Speech [pronunciation assessment](../../how-to-pronunciation-assessment.md) now
 Fast transcription is now available in public preview. Fast transcription allows you to transcribe audio file to text accurately and synchronously, with a high speed factor. It can transcribe audio much faster than the actual audio duration. For more information, see the [fast transcription API guide](../../fast-transcription-create.md).
 
 > [!TIP]
-> Try out fast transcription in [Azure AI Studio](https://aka.ms/fasttranscription/studio).
+> Try out fast transcription in the [Azure AI Foundry portal](https://aka.ms/fasttranscription/studio).
 
 ### June 2024 release
 
