@@ -57,7 +57,7 @@ The following models are available:
 
 * [Mistral-Large](https://aka.ms/azureai/landing/Mistral-Large)
 * [Mistral-Large-2407](https://aka.ms/azureai/landing/Mistral-Large-2407)
-* [Mistral-Large-2411](https://aka.ms/azureai/landing/Mistral-Large-2411)
+* [Mistral-Large-2411](https://aka.ms/aistudio/landing/Mistral-Large-2411)
 
 
 # [Mistral Small](#tab/mistral-small)
@@ -547,7 +547,7 @@ The following models are available:
 
 * [Mistral-Large](https://aka.ms/azureai/landing/Mistral-Large)
 * [Mistral-Large-2407](https://aka.ms/azureai/landing/Mistral-Large-2407)
-* [Mistral-Large-2411](https://aka.ms/azureai/landing/Mistral-Large-2411)
+* [Mistral-Large-2411](https://aka.ms/aistudio/landing/Mistral-Large-2411)
 
 
 # [Mistral Small](#tab/mistral-small)
@@ -1056,7 +1056,7 @@ The following models are available:
 
 * [Mistral-Large](https://aka.ms/azureai/landing/Mistral-Large)
 * [Mistral-Large-2407](https://aka.ms/azureai/landing/Mistral-Large-2407)
-* [Mistral-Large-2411](https://aka.ms/azureai/landing/Mistral-Large-2411)
+* [Mistral-Large-2411](https://aka.ms/aistudio/landing/Mistral-Large-2411)
 
 
 # [Mistral Small](#tab/mistral-small)
@@ -1587,7 +1587,7 @@ The following models are available:
 
 * [Mistral-Large](https://aka.ms/azureai/landing/Mistral-Large)
 * [Mistral-Large-2407](https://aka.ms/azureai/landing/Mistral-Large-2407)
-* [Mistral-Large-2411](https://aka.ms/azureai/landing/Mistral-Large-2411)
+* [Mistral-Large-2411](https://aka.ms/aistudio/landing/Mistral-Large-2411)
 
 
 # [Mistral Small](#tab/mistral-small)
