@@ -19,7 +19,7 @@ ms.devlang: azurecli
 
 This article explains how to configure MLflow to connect to an Azure Machine Learning workspace for tracking, registry management, and deployment.
 
-Azure Machine Learning workspaces are MLflow-compatible, which means they can act as MLflow servers without any extra configuration. Each workspace has an MLflow tracking URI that MLflow can use to connect to the workspace. Azure Machine Learning workspaces **are already configured to work with MLflow** so no extra configuration is required.
+Azure Machine Learning workspaces are MLflow-compatible, which means they can act as MLflow servers without any extra configuration. Each workspace has an MLflow tracking URI that MLflow can use to connect to the workspace. Azure Machine Learning workspaces **are already configured to work with MLflow**, so no extra configuration is required.
 
 However, if you work outside Azure Machine Learning, you need to configure MLflow to point to the workspace. Affected environments include your local machine, Azure Synapse Analytics, and Azure Databricks.
 
@@ -56,7 +56,7 @@ By default, the Azure Machine Learning plugin for MLflow performs interactive au
 The authentication process tries the following methods, one after another, until one succeeds:
 
 1. **Environment**: Account information that's specified via environment variables is read and used for authentication.
-1. **Managed Identity**: If the application is deployed to an Azure host with a managed identity enabled, the managed identity is used for authentication.
+1. **Managed identity**: If the application is deployed to an Azure host with a managed identity enabled, the managed identity is used for authentication.
 1. **Azure CLI**: If you use the Azure CLI `az login` command to sign in, your credentials are used for authentication.
 1. **Azure PowerShell**: If you use the Azure PowerShell `Connect-AzAccount` command to sign in, your credentials are used for authentication.
 1. **Interactive browser**: The user is interactively authenticated via the default browser.
