@@ -6,7 +6,7 @@ services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: how-to
-ms.date: 08/28/2024
+ms.date: 11/20/2024
 author: mrbullwinkle
 ms.author: mbullwin
 recommendations: false
@@ -23,11 +23,12 @@ Structured outputs make a model follow a [JSON Schema](https://json-schema.org/o
 
 ## Supported models
 
-Currently only `gpt-4o` version: `2024-08-06` supports structured outputs.
+-`gpt-4o-mini` version: `2024-07-18`
+-`gpt-4o` version: `2024-08-06`
 
 ## API support
 
-Support for structured outputs was first added in API version `2024-08-01-preview`.
+Support for structured outputs was first added in API version `2024-08-01-preview`. It is available in the latest preview APIs as well as the latest GA API: `2024-10-21`
 
 ## Getting started
 
@@ -53,7 +54,7 @@ token_provider = get_bearer_token_provider(
 client = AzureOpenAI(
   azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT"), 
   azure_ad_token_provider=token_provider,
-  api_version="2024-08-01-preview"
+  api_version="2024-10-21"
 )
 
 
@@ -133,7 +134,7 @@ from openai import AzureOpenAI
 client = AzureOpenAI(
   azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT"), 
   api_key=os.getenv("AZURE_OPENAI_API_KEY"),  
-  api_version="2024-08-01-preview"
+  api_version="2024-10-21"
 )
 
 
@@ -203,7 +204,7 @@ name='Science Fair' date='Friday' participants=['Alice', 'Bob']
 `response_format` is set to `json_schema` with `strict: true` set.
 
 ```bash
-curl -X POST  https://YOUR_RESOURCE_NAME.openai.azure.com/openai/deployments/YOUR_MODEL_DEPLOYMENT_NAME/chat/completions?api-version=2024-08-01-preview \
+curl -X POST  https://YOUR_RESOURCE_NAME.openai.azure.com/openai/deployments/YOUR_MODEL_DEPLOYMENT_NAME/chat/completions?api-version=2024-10-21 \
   -H "api-key: $AZURE_OPENAI_API_KEY" \
   -H "Content-Type: application/json" \
     -d '{
@@ -294,7 +295,7 @@ from openai import AzureOpenAI
 client = AzureOpenAI(
   azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT"), 
   api_key=os.getenv("AZURE_OPENAI_API_KEY"),  
-  api_version="2024-08-01-preview"
+  api_version="2024-10-21"
 )
 
 
@@ -329,7 +330,7 @@ from openai import AzureOpenAI
 client = AzureOpenAI(
   azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT"), 
   api_key=os.getenv("AZURE_OPENAI_API_KEY"),  
-  api_version="2024-08-01-preview"
+  api_version="2024-10-21"
 )
 
 class GetDeliveryDate(BaseModel):
@@ -354,7 +355,7 @@ print(response.model_dump_json(indent=2))
 # [REST](#tab/rest)
 
 ```bash
-curl -X POST  https://YOUR_RESOURCE_NAME.openai.azure.com/openai/deployments/YOUR_MODEL_DEPLOYMENT_NAME/chat/completions?api-version=2024-08-01-preview \
+curl -X POST  https://YOUR_RESOURCE_NAME.openai.azure.com/openai/deployments/YOUR_MODEL_DEPLOYMENT_NAME/chat/completions?api-version=2024-10-21 \
   -H "api-key: $AZURE_OPENAI_API_KEY" \
   -H "Content-Type: application/json" \
   -d '{
