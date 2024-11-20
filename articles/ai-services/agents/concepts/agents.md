@@ -37,11 +37,11 @@ Azure AI Agents Service is built on the same capabilities that power Azure OpenA
 
 ## agents playground
 
-We provide a walkthrough of the agents playground in our [quickstart guide](../agents-quickstart.md). This provides a no-code environment to test out the capabilities of agents.
+We provide a walkthrough of the agents playground in our [quickstart guide](../quickstart.md). This provides a no-code environment to test out the capabilities of agents.
 
 ## agents components
 
-:::image type="content" source="../media/agents/agents-overview.png" alt-text="A diagram showing the components of an agent." lightbox="../media/agents/agents-overview.png":::
+<!-- :::image type="content" source="../media/agents/agents-overview.png" alt-text="A diagram showing the components of an agent." lightbox="../media/agents/agents-overview.png"::: -->
 
 | **Component** | **Description** |
 |---|---|
@@ -60,7 +60,7 @@ We strongly recommend the following data access controls:
 - Implement authorization. Before performing reads or writes on agents, threads, messages, and files, ensure that the end-user is authorized to do so.
 - Restrict Azure OpenAI resource and API key access. Carefully consider who has access to Azure OpenAI resources where agents are being used and associated API keys.
 - Routinely audit which accounts/individuals have access to the Azure OpenAI resource. API keys and resource level access enable a wide range of operations including reading and modifying messages and files.
-- Enable [diagnostic settings](../how-to/monitoring.md#configure-diagnostic-settings) to allow long-term tracking of certain aspects of the Azure OpenAI resource's activity log.
+- If you're using Azure OpenAI models, enabling [diagnostic settings](../../openai/how-to/monitor-openai.md#configure-diagnostic-settings) to allow long-term tracking of certain aspects of the Azure OpenAI resource's activity log.
 
 ## Parameters
 
