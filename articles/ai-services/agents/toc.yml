@@ -16,6 +16,10 @@ items:
       href: faq.yml
 - name: Quickstart
   href: quickstart.md
+- name: Concepts
+  items:
+    - name: Agents
+      href: concepts/agents.md
 - name: How-to
   items:
     - name: Code interpreter
@@ -24,3 +28,27 @@ items:
       href: how-to/tools/bing-grounding.md
     - name: Function calling
       href: how-to/tools/function-calling.md
+- name: Responsible AI
+  items:
+    - name: Overview
+      href: /legal/cognitive-services/openai/overview?context=/azure/ai-services/agents/context/context
+    - name : Transparency note
+      href: /legal/cognitive-services/openai/transparency-note?context=/azure/ai-services/agents/context/context
+    - name: Limited access
+      href: /legal/cognitive-services/openai/limited-access?context=/azure/ai-services/agents/context/context
+    - name: Code of conduct
+      href: /legal/cognitive-services/openai/code-of-conduct?context=/azure/ai-services/agents/context/context
+    - name: Data, privacy, and security
+      href: /legal/cognitive-services/openai/data-privacy?context=/azure/ai-services/agents/context/context
+    - name: Customer Copyright Commitment
+      href: /legal/cognitive-services/openai/customer-copyright-commitment?context=/azure/ai-services/agents/context/context
+- name: Resources
+  items: 
+    - name: Support and help options
+      href: ../cognitive-services-support-options.md?context=/azure/ai-services/agents/context/context
+    - name: Region support
+      href: https://azure.microsoft.com/global-infrastructure/services/?products=cognitive-services
+    - name: Terms of use
+      href: https://www.microsoft.com/licensing/terms/productoffering/MicrosoftAzure/MCA#ServiceSpecificTerms
+    - name: Azure compliance offerings
+      href: https://azure.microsoft.com/resources/microsoft-azure-compliance-offerings/
