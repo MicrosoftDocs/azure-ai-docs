@@ -400,26 +400,26 @@ The tables below summarize whether a **PersonDirectory** management call is a lo
 | Person/Face Management | URI | LRO? |
 | --- | --- | --- |
 | [Get Persons](/rest/api/face/person-directory-operations/get-persons) | /persons | |
-| [Create Person](/rest/api/face/person-directory-operations/create-person) | /persons | 🔴 |
+| [Create Person](/rest/api/face/person-directory-operations/create-person) | /persons | ✅ |
 | [Get Person](/rest/api/face/person-directory-operations/get-person) | /persons/{personId} | |
 | [Update Person](/rest/api/face/person-directory-operations/update-person) | /persons/{personId} | |
-| [Delete Person](/rest/api/face/person-directory-operations/delete-person) | /persons/{personId} | 🔴 |
+| [Delete Person](/rest/api/face/person-directory-operations/delete-person) | /persons/{personId} | ✅ |
 | [Get Person Faces](/rest/api/face/person-directory-operations/get-person-faces) | /persons/{personId}/recognitionModels/{model}/persistedfaces | |
-| [Add Person Face](/rest/api/face/person-directory-operations/add-person-face) | /persons/{personId}/recognitionModels/{model}/persistedfaces | 🔴 |
-| [Add Person Face From Url](/rest/api/face/person-directory-operations/add-person-face-from-url) | /persons/{personId}/recognitionModels/{model}/persistedfaces | 🔴 |
+| [Add Person Face](/rest/api/face/person-directory-operations/add-person-face) | /persons/{personId}/recognitionModels/{model}/persistedfaces | ✅ |
+| [Add Person Face From Url](/rest/api/face/person-directory-operations/add-person-face-from-url) | /persons/{personId}/recognitionModels/{model}/persistedfaces | ✅ |
 | [Get Person Face](/rest/api/face/person-directory-operations/get-person-face) | /persons/{personId}/recognitionModels/{model}/persistedfaces/{persistedFaceId} | |
 | [Update Person Face](/rest/api/face/person-directory-operations/update-person-face) | /persons/{personId}/recognitionModels/{model}/persistedfaces/{persistedFaceId} | |
-| [Delete Person Face](/rest/api/face/person-directory-operations/delete-person-face) | /persons/{personId}/recognitionModels/{model}/persistedfaces/{persistedFaceId} | 🔴 |
+| [Delete Person Face](/rest/api/face/person-directory-operations/delete-person-face) | /persons/{personId}/recognitionModels/{model}/persistedfaces/{persistedFaceId} | ✅ |
 
 | Group Management | URI | LRO? |
 | --- | --- | --- |
 | [Get Dynamic Person Groups](/rest/api/face/person-directory-operations/get-dynamic-person-groups) | /dynamicpersongroups | |
 | [Create Dynamic Person Group](/rest/api/face/person-directory-operations/create-dynamic-person-group) | /dynamicpersongroups/{dynamicPersonGroupId}	| |
-| [Create Dynamic Person Group With Person](/rest/api/face/person-directory-operations/create-dynamic-person-group-with-person) | /dynamicpersongroups/{dynamicPersonGroupId}	| 🔴 |
+| [Create Dynamic Person Group With Person](/rest/api/face/person-directory-operations/create-dynamic-person-group-with-person) | /dynamicpersongroups/{dynamicPersonGroupId}	| ✅ |
 | [Get Dynamic Person Group](/rest/api/face/person-directory-operations/get-dynamic-person-group) | /dynamicpersongroups/{dynamicPersonGroupId} | |
 | [Update Dynamic Person Group](/rest/api/face/person-directory-operations/update-dynamic-person-group) | /dynamicpersongroups/{dynamicPersonGroupId} | |
-| [Update Dynamic Person Group With Person Changes](/rest/api/face/person-directory-operations/update-dynamic-person-group-with-person-changes) | /dynamicpersongroups/{dynamicPersonGroupId} | 🔴 |
-| [Delete Dynamic Person Group](/rest/api/face/person-directory-operations/delete-dynamic-person-group) | /dynamicpersongroups/{dynamicPersonGroupId} | 🔴 |
+| [Update Dynamic Person Group With Person Changes](/rest/api/face/person-directory-operations/update-dynamic-person-group-with-person-changes) | /dynamicpersongroups/{dynamicPersonGroupId} | ✅ |
+| [Delete Dynamic Person Group](/rest/api/face/person-directory-operations/delete-dynamic-person-group) | /dynamicpersongroups/{dynamicPersonGroupId} | ✅ |
 | [Get Dynamic Person Group Persons](/rest/api/face/person-directory-operations/get-dynamic-person-group-persons) | /dynamicpersongroups/{dynamicPersonGroupId}/persons | |
 | [Get Dynamic Person Group References](/rest/api/face/person-directory-operations/get-dynamic-person-group-references) | /persons/{personId}/dynamicPersonGroupReferences | |
 
