@@ -1,7 +1,7 @@
 ---
 ms.service: azure-machine-learning
 ms.topic: include
-ms.date: 08/19/2024
+ms.date: 11/20/2024
 author: ccrestana
 ms.author: cacrest
 ---
@@ -9,8 +9,8 @@ ms.author: cacrest
 - An Azure subscription. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) before you begin.
 - An Azure Machine Learning workspace. To create a workspace, see [Manage Azure Machine Learning workspaces](../how-to-manage-workspace.md).
 - The following permissions in the Azure Machine Learning workspace:
-  - For creating or managing batch endpoints and deployments: Use an Owner, Contributor, or custom role that has been assigned the `Microsoft.MachineLearningServices/workspaces/batchEndpoints/*` actions.
-  - For creating Azure Resource Manager deployments in the workspace resource group: Use an Owner, Contributor, or custom role that has been assigned the `Microsoft.Resources/deployments/write` action in the resource group where the workspace is deployed.
+  - For creating or managing batch endpoints and deployments: Use an Owner, Contributor, or custom role that has been assigned the `Microsoft.MachineLearningServices/workspaces/batchEndpoints/*` permissions.
+  - For creating Azure Resource Manager deployments in the workspace resource group: Use an Owner, Contributor, or custom role that has been assigned the `Microsoft.Resources/deployments/write` permission in the resource group where the workspace is deployed.
 - The Azure Machine Learning CLI or the Azure Machine Learning SDK for Python:
 
   # [Azure CLI](#tab/cli)

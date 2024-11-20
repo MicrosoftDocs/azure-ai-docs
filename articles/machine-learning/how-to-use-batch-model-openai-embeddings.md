@@ -220,13 +220,13 @@ The conda YAML file, *conda.yml*, contains the following lines:
 
 This example uses a scoring script that performs the execution. In batch endpoints, MLflow models don't require a scoring script. But this example extends the capabilities of batch endpoints by:
 
-- Allowing the endpoint to read multiple data types, including `csv`, `tsv`, `parquet`, `json`, `jsonl`, `arrow`, and `txt` formats.
+- Allowing the endpoint to read multiple data types, including CSV, TSV, Parquet, JSON, JSON Lines, Arrow, and text formats.
 - Adding some validations to ensure the MLflow model has an OpenAI flavor.
 - Formatting the output in `jsonl` format.
-- Adding an environment variable `AZUREML_BI_TEXT_COLUMN` to optionally control which input field you want to generate embeddings for.
+- Adding the `AZUREML_BI_TEXT_COLUMN` environment variable to optionally control which input field you want to generate embeddings for.
 
 > [!TIP]
-> By default, MLflow generates embeddings from the first text column that's available in the input data. If you want to use a different column, set the environment variable `AZUREML_BI_TEXT_COLUMN` to the name of your preferred column. Leave that variable blank if the default behavior works for you.
+> By default, MLflow generates embeddings from the first text column that's available in the input data. If you want to use a different column, set the `AZUREML_BI_TEXT_COLUMN` environment variable to the name of your preferred column. Leave that variable blank if the default behavior works for you.
 
 The scoring script, *code/batch_driver.py*, contains the following lines:
 
@@ -236,13 +236,13 @@ The scoring script, *code/batch_driver.py*, contains the following lines:
 
 To configure the OpenAI deployment, you use environment variables. Specifically, you use the following keys:
 
+- `OPENAI_API_TYPE` is the type of API and authentication that you want to use.
 - `OPENAI_API_BASE` is the URL of your Azure OpenAI resource.
 - `OPENAI_API_VERSION` is the version of the API that you plan to use.
-- `OPENAI_API_TYPE` is the type of API and authentication that you want to use.
 
 # [Microsoft Entra authentication](#tab/ad)
 
-If you use the environment variable `OPENAI_API_TYPE` with a value of `azure_ad`, OpenAI uses Microsoft Entra authentication. No key is required to invoke the OpenAI deployment. Instead, the identity of the cluster is used.
+If you use the `OPENAI_API_TYPE` environment variable with a value of `azure_ad`, OpenAI uses Microsoft Entra authentication. No key is required to invoke the OpenAI deployment. Instead, the identity of the cluster is used.
 
 # [Access keys](#tab/keys)
 
