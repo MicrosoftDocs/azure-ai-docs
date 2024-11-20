@@ -1,6 +1,6 @@
 ---
 title: Azure OpenAI in Azure AI Studio
-titleSuffix: Azure AI Studio
+titleSuffix: Azure AI Foundry
 description: Learn about using Azure OpenAI models in Azure AI Studio, including when to use a project and when to use without a project.
 manager: scottpolly
 keywords: Azure AI services, cognitive, Azure OpenAI

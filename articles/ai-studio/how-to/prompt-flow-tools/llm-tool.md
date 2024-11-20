@@ -1,6 +1,6 @@
 ---
 title: LLM tool for flows in Azure AI Studio
-titleSuffix: Azure AI Studio
+titleSuffix: Azure AI Foundry
 description: This article introduces you to the large language model (LLM) tool for flows in Azure AI Studio.
 manager: scottpolly
 ms.service: azure-ai-studio

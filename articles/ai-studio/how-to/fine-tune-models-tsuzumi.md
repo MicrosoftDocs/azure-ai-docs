@@ -1,6 +1,6 @@
 ---
 title: Fine-tune tsuzumi-7b model in Azure AI Studio
-titleSuffix: Azure AI Studio
+titleSuffix: Azure AI Foundry
 description: Learn how to fine-tune tsuzumi-7b in Azure AI Studio.
 manager: scottpolly
 ms.service: azure-ai-studio

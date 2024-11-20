@@ -1,6 +1,6 @@
 ---
 title: How to use Azure AI services in AI Studio
-titleSuffix: Azure AI Studio
+titleSuffix: Azure AI Foundry
 description: Learn how to use Azure AI services in AI Studio. You can use existing Azure AI services resources in AI Studio by creating a connection to the resource.
 manager: nitinme
 ms.service: azure-ai-studio

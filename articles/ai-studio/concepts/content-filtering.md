@@ -1,6 +1,6 @@
 ---
 title: Azure AI Studio content filtering
-titleSuffix: Azure AI Studio
+titleSuffix: Azure AI Foundry
 description: Learn about the content filtering capabilities of Azure OpenAI in Azure AI Studio.
 manager: nitinme
 ms.service: azure-ai-studio

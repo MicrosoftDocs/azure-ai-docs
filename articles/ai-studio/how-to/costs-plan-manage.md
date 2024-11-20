@@ -1,6 +1,6 @@
 ---
 title: Plan and manage costs for Azure AI Studio
-titleSuffix: Azure AI Studio
+titleSuffix: Azure AI Foundry
 description: Learn how to plan for and manage costs for Azure AI Studio by using cost analysis in the Azure portal.
 manager: scottpolly
 ms.service: azure-ai-studio

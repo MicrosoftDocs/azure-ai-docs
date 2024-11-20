@@ -1,6 +1,6 @@
 ---
 title: Azure AI Studio architecture
-titleSuffix: Azure AI Studio
+titleSuffix: Azure AI Foundry
 description: Learn about the architecture of Azure AI Studio.
 manager: scottpolly
 ms.service: azure-ai-studio

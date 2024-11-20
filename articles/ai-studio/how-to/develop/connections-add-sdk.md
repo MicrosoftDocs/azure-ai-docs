@@ -1,6 +1,6 @@
 ---
 title: How to add a new connection in AI Studio using the Azure Machine Learning SDK
-titleSuffix: Azure AI Studio
+titleSuffix: Azure AI Foundry
 description: This article provides instructions on how to add connections to other resources using the Azure Machine Learning SDK.
 manager: scottpolly
 ms.service: azure-ai-studio

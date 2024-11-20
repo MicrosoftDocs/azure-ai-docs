@@ -1,6 +1,6 @@
 ---
 title: How to add a new connection in Azure AI Studio
-titleSuffix: Azure AI Studio
+titleSuffix: Azure AI Foundry
 description: Learn how to add a new connection in Azure AI Studio.
 manager: scottpolly
 ms.service: azure-ai-studio

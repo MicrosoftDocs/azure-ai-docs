@@ -1,6 +1,6 @@
 ---
 title: Consume deployed serverless API endpoints from a different project or hub
-titleSuffix: Azure AI Studio
+titleSuffix: Azure AI Foundry
 description: Learn how to consume deployed serverless API endpoints from a different project or hub.
 manager: scottpolly
 ms.service: azure-ai-studio

@@ -1,6 +1,6 @@
 ---
 title: How to deploy TimeGEN-1 model with Azure AI Studio
-titleSuffix: Azure AI Studio
+titleSuffix: Azure AI Foundry
 description: Learn how to deploy TimeGEN-1 with Azure AI Studio.
 manager: scottpolly
 ms.service: azure-ai-studio

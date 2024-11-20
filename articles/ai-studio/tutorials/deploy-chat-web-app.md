@@ -1,6 +1,6 @@
 ---
 title: "Tutorial: Deploy an enterprise chat web app in the Azure AI Studio playground"
-titleSuffix: Azure AI Studio
+titleSuffix: Azure AI Foundry
 description: Use this article to deploy an enterprise chat web app in the Azure AI Studio playground.
 manager: scottpolly
 ms.service: azure-ai-studio

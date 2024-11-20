@@ -1,6 +1,6 @@
 ---
 title: Create an Azure AI Studio project in Azure AI Studio
-titleSuffix: Azure AI Studio
+titleSuffix: Azure AI Foundry
 description: This article describes how to create an Azure AI Studio project so you can work with generative AI in the cloud.
 manager: scottpolly
 ms.service: azure-ai-studio

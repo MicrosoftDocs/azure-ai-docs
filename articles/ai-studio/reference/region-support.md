@@ -1,6 +1,6 @@
 ---
 title: Azure AI Studio feature availability across clouds regions
-titleSuffix: Azure AI Studio
+titleSuffix: Azure AI Foundry
 description: This article lists Azure AI Studio feature availability across clouds regions.
 manager: scottpolly
 ms.service: azure-ai-studio

@@ -1,6 +1,6 @@
 ---
 title: Deploy models as serverless APIs
-titleSuffix: Azure AI Studio
+titleSuffix: Azure AI Foundry
 description: Learn to deploy models as serverless APIs, using Azure AI Studio.
 manager: scottpolly
 ms.service: azure-ai-studio

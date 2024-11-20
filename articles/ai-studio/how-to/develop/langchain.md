@@ -1,6 +1,6 @@
 ---
 title: Develop application with LangChain and Azure AI studio
-titleSuffix: Azure AI Studio
+titleSuffix: Azure AI Foundry
 description: This article explains how to use LangChain with models deployed in Azure AI studio to build advance intelligent applications.
 manager: scottpolly
 ms.service: azure-ai-studio

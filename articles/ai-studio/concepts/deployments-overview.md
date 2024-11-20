@@ -1,6 +1,6 @@
 ---
 title: Deploy models in Azure AI studio
-titleSuffix: Azure AI Studio
+titleSuffix: Azure AI Foundry
 description: Learn about deploying models in Azure AI studio.
 manager: scottpolly
 ms.service: azure-ai-studio

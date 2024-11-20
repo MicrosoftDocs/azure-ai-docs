@@ -1,6 +1,6 @@
 ---
 title: Customer-Managed Keys for Azure AI Studio
-titleSuffix: Azure AI Studio
+titleSuffix: Azure AI Foundry
 description: Learn about using customer-managed keys for encryption to improve data security with Azure AI Studio.
 author: Blackmist
 ms.author: larryfr

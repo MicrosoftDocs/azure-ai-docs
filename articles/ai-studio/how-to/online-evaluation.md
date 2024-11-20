@@ -1,6 +1,6 @@
 ---
 title: Continuously Monitor your Generative AI Applications
-titleSuffix: Azure AI Studio
+titleSuffix: Azure AI Foundry
 description: This article provides instructions on how to use online and remote evaluation to continuously monitor Generative AI Applications.
 manager: scottpolly
 ms.service: azure-ai-studio
