@@ -52,7 +52,7 @@ File Search augments agents with knowledge from outside its model, such as propr
 
 ## Create a project client
 
-Create a client object, which will contain the a connection string for connecting to your AI project and other resource.
+Create a client object, which will contain the connection string for connecting to your AI project and other resource.
 
 # [Python](#tab/python)
 
@@ -349,7 +349,7 @@ vector_store = client.beta.vector_stores.create_and_poll(
 
 Vector stores created using thread helpers (like `tool_resources.file_search.vector_stores` in Threads or `message.attachments` in Messages) have a default expiration policy of seven days after they were last active (defined as the last time the vector store was part of a run).
 
-When a vector store expires, runs on that thread will fail. To fix this, you can recreate a new vector_store with the same files and reattach it to the thread.
+When a vector store expires, the runs on that thread fail. To fix this, you can recreate a new vector_store with the same files and reattach it to the thread.
 
 ```python
 all_files = list(client.beta.vector_stores.files.list("vs_expired"))
