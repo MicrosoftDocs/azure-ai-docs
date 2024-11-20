@@ -9,7 +9,7 @@ ms.topic: how-to
 author: msakande
 ms.author: mopeakande
 ms.reviewer: cacrest
-ms.date: 11/19/2024
+ms.date: 11/20/2024
 ms.custom: how-to, devplatv2, update-code
 # customer intent: As a developer, I want to deploy an OpenAI ADA-002 model to a batch endpoint so I can compute embeddings at scale.
 ---
@@ -100,7 +100,7 @@ Using Microsoft Entra is recommended because it helps you avoid managing secrets
 
 You can configure the identity of the compute cluster to have access to the Azure OpenAI deployment to get predictions. In this way, you don't need to manage permissions for each endpoint user. To give the identity of the compute cluster access to the Azure OpenAI resource, follow these steps:
 
-1. Assign an identity to the compute cluster that your deployment uses. This example uses a compute cluster called **batch-cluster-lp** and a system-assigned managed identity, but you can use other alternatives. If your compute cluster already has an assigned identity, you can skip this step.
+1. Assign an identity to the compute cluster that your deployment uses. This example uses a compute cluster called **batch-cluster-lp** and a system-assigned managed identity, but you can use other options. If your compute cluster already has an assigned identity, you can skip this step.
 
     ```azurecli
     COMPUTE_NAME="batch-cluster-lp"
