@@ -24,10 +24,6 @@ The [models page](../../concepts/model-region-support.md) contains the most up-t
 
 To use all features of function calling including parallel functions, you need to use a model that was released after November 6, 2023.
 
-### API Versions
-
-API versions starting with `2024-02-15-preview`.
-
 ## Example function definition
 
 > [!NOTE]
