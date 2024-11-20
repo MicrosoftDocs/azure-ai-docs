@@ -32,7 +32,42 @@ Agents are powered by a diverse set of models with different capabilities and pr
 
 In addition to the supported Azure OpenAI models, you can also use the following 3rd party models with Azure AI Agent Service. 
 
-* Llama 3.1-405B-instruct
+* Llama 3.1-70B-instruct
+
+To use these models, you can use Azure AI Foundry portal to make a deployment, and then reference it in your agent. 
+
+1. Go to the [Azure AI Foundry portal](https://ai.azure.com/) and select **Model catalog** in the left navigation menu, and scroll down to **Meta-Llama-3-70B-Instruct**. You can also find and use one of the models listed above.  
+
+1. Select **Deploy**. 
+
+1. In the Deployment options screen that appears, select **Serverless API** with Azure AI Content Safety. 
+
+    :::image type="content" source="../media/llama/llama-deployment.png" alt-text="An image of the llama model project selection screen.":::
+ 
+1. Select your project and click **Subscribe and deploy**. 
+
+    :::image type="content" source="../media/llama/llama-deployment-2.png" alt-text="An image of the llama model deployment screen.":::
+
+1. Add the serverless connection to your hub/project. The deployment name you choose will be the one you reference in your code.  
+
+1. When calling agent creation API, set the `models` parameter to your deployment name. For example:
+
+    # [Python](#tab/python)
+
+    ```python
+    agent = project_client.agents.create_agent( model="llama-3", name="my-agent", instructions="You are a helpful agent" ) 
+    ```
+
+    # [C#](#tab/csharp)
+
+    ```csharp
+    Response<Agent> agentResponse = await client.CreateAgentAsync(
+            model: "llama-3",
+            name: "My agent",
+            instructions: "You are a helpful agent"
+    ```
+    ---
+
 
 ## Next steps
 
