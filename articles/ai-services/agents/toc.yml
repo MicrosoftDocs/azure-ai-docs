@@ -16,6 +16,10 @@ items:
       href: faq.yml
 - name: Quickstart
   href: quickstart.md
+- name: Concepts
+  items:
+    - name: Agents
+      href: concepts/agents.md
 - name: How-to
   items:
     - name: Code interpreter

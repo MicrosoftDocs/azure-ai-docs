@@ -33,6 +33,8 @@ Agents are powered by a diverse set of models with different capabilities and pr
 In addition to the supported Azure OpenAI models, you can also use the following 3rd party models with Azure AI Agent Service. 
 
 * Llama 3.1-70B-instruct
+* Mistral-large-2407
+* Cohere command-r+
 
 To use these models, you can use Azure AI Foundry portal to make a deployment, and then reference it in your agent. 
 
