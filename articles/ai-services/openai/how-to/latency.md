@@ -36,7 +36,7 @@ One approach to estimating system level throughput for a given workload is using
 
 When combined, the **Processed Prompt Tokens** (input TPM) and **Generated Completion Tokens** (output TPM) metrics provide an estimated view of system level throughput based on actual workload traffic. This approach does not account for benefits from prompt caching, so it will be a conservative system throughput estimate. These metrics can be analyzed using minimum, average, and maximum aggregation over 1-minute windows across a multi-week time horizon. It is recommended to analyze this data over a multi-week time horizon to ensure there are enough data points to assess. The following screenshot shows an example of the **Processed Prompt Tokens** metric visualized in Azure Monitor, which is available directly through the Azure portal. 
 
-![Screenshot of Azure Monitor graph showcasing the Processed Prompt Tokens metric split by model and version.](media/latency/processedprompttokengraph.png)
+![processed-prompt-token-graph](media/latency/processed-prompt-token-graph.png)
 
 ##### Estimating TPM from request data
 
