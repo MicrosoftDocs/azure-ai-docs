@@ -1,7 +1,7 @@
 ---
 title: Control AI model deployment with built-in policies
 titleSuffix: Azure AI Foundry
-description: "Learn how to use built-in Azure policies to control what managed AI Services (MaaS) and Model-as-a-Platform (MaaP) AI models can be deployed in Azure AI Studio."
+description: "Learn how to use built-in Azure policies to control what managed AI Services (MaaS) and Model-as-a-Platform (MaaP) AI models can be deployed in Azure AI Foundry portal."
 author: Blackmist
 ms.author: larryfr
 ms.service: azure-ai-studio
@@ -12,9 +12,9 @@ ms.date: 10/25/2024
 
 ---
 
-# Control AI model deployment with built-in policies in Azure AI Studio
+# Control AI model deployment with built-in policies in Azure AI Foundry portal
 
-Azure Policy provides built-in policy definitions that help you govern the deployment of AI models in Managed AI Services (MaaS) and Model-as-a-Platform (MaaP). You can use these policies to control what models your developers can deploy in Azure AI Studio.
+Azure Policy provides built-in policy definitions that help you govern the deployment of AI models in Managed AI Services (MaaS) and Model-as-a-Platform (MaaP). You can use these policies to control what models your developers can deploy in Azure AI Foundry portal.
 
 ## Prerequisites
 
@@ -45,7 +45,7 @@ Azure Policy provides built-in policy definitions that help you govern the deplo
 
         To get the model asset ID strings and model publishers' name use the following steps:
 
-        1. Go to the [Azure AI Studio model catalog](model-catalog-overview.md).
+        1. Go to the [Azure AI Foundry model catalog](model-catalog-overview.md).
 
 
         1. For each model you want to allow, select the model to view the details. In the model detail information, copy the **Model ID** value. For example, the value might look like `azureml://registries/azure-openai/models/gpt-35-turbo/versions/3` for GPT-3.5-Turbo model. The provided names are also *Collections* in model catalog. For example, the publisher for "Meta-Llama-3.1-70B-Instruct" model is Meta. 
@@ -85,4 +85,4 @@ To update an existing policy assignment with new models, follow these steps:
 ## Related content
 
 - [Azure Policy overview](/azure/governance/policy/overview)
-- [Azure AI Studio model catalog](model-catalog-overview.md)
+- [Azure AI Foundry model catalog](model-catalog-overview.md)

@@ -1,7 +1,7 @@
 ---
-title: How to view evaluation results in Azure AI Studio
+title: How to view evaluation results in Azure AI Foundry portal
 titleSuffix: Azure AI Foundry
-description: This article provides instructions on how to view evaluation results in Azure AI Studio.
+description: This article provides instructions on how to view evaluation results in Azure AI Foundry portal.
 manager: scottpolly
 ms.service: azure-ai-studio
 ms.custom:
@@ -15,9 +15,9 @@ ms.author: lagayhar
 author: lgayhardt
 ---
 
-# How to view evaluation results in Azure AI Studio
+# How to view evaluation results in Azure AI Foundry portal
 
-The Azure AI Studio evaluation page is a versatile hub that not only allows you to visualize and assess your results but also serves as a control center for optimizing, troubleshooting, and selecting the ideal AI model for your deployment needs. It's a one-stop solution for data-driven decision-making and performance enhancement in your AI Studio projects. You can seamlessly access and interpret the results from various sources, including your flow, the playground quick test session, evaluation submission UI, and SDK. This flexibility ensures that you can interact with your results in a way that best suits your workflow and preferences.
+The Azure AI Foundry portal evaluation page is a versatile hub that not only allows you to visualize and assess your results but also serves as a control center for optimizing, troubleshooting, and selecting the ideal AI model for your deployment needs. It's a one-stop solution for data-driven decision-making and performance enhancement in your AI Foundry projects. You can seamlessly access and interpret the results from various sources, including your flow, the playground quick test session, evaluation submission UI, and SDK. This flexibility ensures that you can interact with your results in a way that best suits your workflow and preferences.
 
 Once you've visualized your evaluation results, you can dive into a thorough examination. This includes the ability to not only view individual results but also to compare these results across multiple evaluation runs. By doing so, you can identify trends, patterns, and discrepancies, gaining invaluable insights into the performance of your AI system under various conditions.
 
@@ -159,6 +159,6 @@ Understanding the built-in metrics is vital for assessing the performance and ef
 
 Learn more about how to evaluate your generative AI applications:
 - [Evaluate your generative AI apps via the playground](../how-to/evaluate-prompts-playground.md)
-- [Evaluate your generative AI apps with the Azure AI Studio or SDK](../how-to/evaluate-generative-ai-app.md)
+- [Evaluate your generative AI apps with the Azure AI Foundry portal or SDK](../how-to/evaluate-generative-ai-app.md)
 
 Learn more about [harm mitigation techniques](../concepts/evaluation-improvement-strategies.md).

@@ -71,7 +71,7 @@ Complete the following prerequisite steps to set up your environment and authent
 2. A [Resource Group](/azure/azure-resource-manager/management/manage-resource-groups-portal) in an Evaluation-supported region.
 3. A new [User-assigned Managed Identity](/entra/identity/managed-identities-azure-resources/how-manage-user-assigned-managed-identities?pivots=identity-mi-methods-azp) in the same resource group and region. Make a note of the `clientId`; you'll need it later.
 4. An [Azure AI Hub](../concepts/ai-resources.md) in the same resource group and region.
-5. An Azure AI project in this hub, see [Create a project in Azure AI Studio](./create-projects.md).
+5. An Azure AI project in this hub, see [Create a project in Azure AI Foundry portal](./create-projects.md).
 6. An [Azure Monitor Application Insights resource](/azure/azure-monitor/app/create-workspace-resource).
 7. Navigate to the hub page in Azure portal and add Application Insights resource, see [Update Azure Application Insights and Azure Container Registry](./create-azure-ai-resource.md?tabs=portal#update-azure-application-insights-and-azure-container-registry).
 8. Azure OpenAI Deployment with GPT model supporting `chat completion`, for example `gpt-4`.
@@ -193,7 +193,7 @@ SAMPLE_NAME = "online_eval_name"
 # Name of your generative AI application (will be available in trace data in Application Insights)
 SERVICE_NAME = "service_name"
 
-# Connection string to your Azure AI Studio project
+# Connection string to your Azure AI Foundry project
 # Currently, it should be in the format "<HostName>;<AzureSubscriptionId>;<ResourceGroup>;<HubName>"
 PROJECT_CONNECTION_STRING = "<HostName>;<AzureSubscriptionId>;<ResourceGroup>;<HubName>"
 
@@ -211,7 +211,7 @@ KUSTO_QUERY = "let gen_ai_spans=(dependencies | where isnotnull(customDimensions
 Next, define a client and an Azure OpenAI GPT deployment (such as `GPT-4`) which will be used to run your Online Evaluation schedule. Also, connect to your Application Insights resource:
 
 ```python
-# Connect to your Azure AI Studio Project
+# Connect to your Azure AI Foundry Project
 project_client = AIProjectClient.from_connection_string(
     credential=DefaultAzureCredential(),
     conn_str=PROJECT_CONNECTION_STRING
@@ -228,7 +228,7 @@ app_insights_config = ApplicationInsightsConfiguration(
 deployment_name = "gpt-4"
 api_version = "2024-08-01-preview"
 
-# This is your AOAI connection name, which can be found in your AI Studio project under the 'Models + Endpoints' tab
+# This is your AOAI connection name, which can be found in your AI Foundry project under the 'Models + Endpoints' tab
 default_connection = project_client.connections._get_connection(
     "aoai_connection_name"
 )
@@ -245,7 +245,7 @@ Next, configure the evaluators you wish to use:
 
 ```python
 # RelevanceEvaluator
-# id for each evaluator can be found in your AI Studio registry - please see documentation for more information
+# id for each evaluator can be found in your AI Foundry registry - please see documentation for more information
 # init_params is the configuration for the model to use to perform the evaluation
 # data_mapping is used to map the output columns of your query to the names required by the evaluator
 relevance_evaluator_config = EvaluatorConfiguration(
@@ -333,11 +333,11 @@ In this section, you'll learn how Azure AI integrates with Azure Monitor Applica
 
 If you haven’t set this up, here are some quick steps:
 
-1. Navigate to your project in [Azure AI Studio](https://ai.azure.com).
+1. Navigate to your project in [Azure AI Foundry](https://ai.azure.com).
 1. Select the Tracing page on the left-hand side.
 1. Connect your Application Insights resource to your project.
 
-If you already set up tracing in Azure AI studio, all you need to do is select the link to **Check out your Insights for Generative AI application dashboard**.
+If you already set up tracing in Azure AI Foundry portal, all you need to do is select the link to **Check out your Insights for Generative AI application dashboard**.
 
 Once you have your data streaming into your Application Insights resource, you automatically can see it get populated in this customized dashboard.
 

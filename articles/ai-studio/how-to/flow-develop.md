@@ -27,21 +27,21 @@ With prompt flow, you're able to:
 - Test, debug, and iterate your flows with ease.
 - Create prompt variants and compare their performance.
 
-In this article, you learn how to create and develop your first prompt flow in Azure AI Studio.
+In this article, you learn how to create and develop your first prompt flow in Azure AI Foundry portal.
 
 ## Prerequisites
 
-- If you don't have an Azure AI Studio project already, first [create a project](create-projects.md).
-- Prompt flow requires a compute session. If you don't have a runtime, you can [create one in Azure AI Studio](./create-manage-compute-session.md).
+- If you don't have an Azure AI Foundry project already, first [create a project](create-projects.md).
+- Prompt flow requires a compute session. If you don't have a runtime, you can [create one in Azure AI Foundry portal](./create-manage-compute-session.md).
 - You need a deployed model.
 
 ## Create and develop your Prompt flow
 
 You can create a flow by either cloning the samples available in the gallery or creating a flow from scratch. If you already have flow files in local or file share, you can also import the files to create a flow.
 
-To create a prompt flow from the gallery in Azure AI Studio:
+To create a prompt flow from the gallery in Azure AI Foundry portal:
 
-1. Sign in to [Azure AI Studio](https://ai.azure.com) and select your project. 
+1. Sign in to [Azure AI Foundry](https://ai.azure.com) and select your project. 
 1. From the collapsible left menu, select **Prompt flow**.
 1. Select **+ Create**.
 1. In the **Standard flow** tile, select **Create**.

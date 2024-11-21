@@ -3,8 +3,8 @@
 title: Azure AI Foundry documentation # < 60 chars
 summary:  Build cutting-edge, market-ready, responsible applications for your organization with AI.
 metadata:
-  title: Azure AI Studio documentation
-  description: Azure AI Studio helps developers and organizations rapidly create intelligent, cutting-edge, market-ready, and responsible applications with out-of-the-box and pre-built and customizable APIs and models. Example applications include generative AI, natural language processing for conversations, search, monitoring, translation, speech, vision, and decision-making.
+  title: Azure AI Foundry documentation
+  description: Azure AI Foundry helps developers and organizations rapidly create intelligent, cutting-edge, market-ready, and responsible applications with out-of-the-box and pre-built and customizable APIs and models. Example applications include generative AI, natural language processing for conversations, search, monitoring, translation, speech, vision, and decision-making.
   ms.service: azure-ai-studio
   ms.custom:
     - build-2024
@@ -66,7 +66,7 @@ landingContent:
         links:
           - text: Get started with the Azure AI SDKs
             url: how-to/develop/sdk-overview.md
-          - text: Work with AI Studio projects in VS Code
+          - text: Work with AI Foundry projects in VS Code
             url: how-to/develop/vscode.md
 
       - linkListType: tutorial
