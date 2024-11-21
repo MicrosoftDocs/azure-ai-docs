@@ -1,7 +1,7 @@
 ---
-title: How to deploy TimeGEN-1 model with Azure AI Studio
+title: How to deploy TimeGEN-1 model with Azure AI Foundry
 titleSuffix: Azure AI Foundry
-description: Learn how to deploy TimeGEN-1 with Azure AI Studio.
+description: Learn how to deploy TimeGEN-1 with Azure AI Foundry.
 manager: scottpolly
 ms.service: azure-ai-studio
 ms.topic: how-to
@@ -13,11 +13,11 @@ author: msakande
 ms.custom: references_regions, build-2024
 ---
 
-# How to deploy a TimeGEN-1 model with Azure AI Studio
+# How to deploy a TimeGEN-1 model with Azure AI Foundry
 
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
-In this article, you learn how to use Azure AI Studio to deploy the TimeGEN-1 model as a serverless API with pay-as-you-go billing.
+In this article, you learn how to use Azure AI Foundry to deploy the TimeGEN-1 model as a serverless API with pay-as-you-go billing.
 You filter on the Nixtla collection to browse the TimeGEN-1 model in the [Model Catalog](model-catalog.md).
 
 The Nixtla TimeGEN-1 is a generative, pretrained forecasting and anomaly detection model for time series data. TimeGEN-1 can produce accurate forecasts for new time series without training, using only historical values and exogenous covariates as inputs.
@@ -33,7 +33,7 @@ You can deploy TimeGEN-1 as a serverless API with pay-as-you-go billing. Nixtla 
 ### Prerequisites
 
 - An Azure subscription with a valid payment method. Free or trial Azure subscriptions don't work. If you don't have an Azure subscription, create a [paid Azure account](https://azure.microsoft.com/pricing/purchase-options/pay-as-you-go) to begin.
-- An [Azure AI Studio project](../how-to/create-projects.md). The serverless API model deployment offering for TimeGEN-1 is only available with projects created in these regions:
+- An [Azure AI Foundry project](../how-to/create-projects.md). The serverless API model deployment offering for TimeGEN-1 is only available with projects created in these regions:
 
     > [!div class="checklist"]
     > * East US
@@ -46,7 +46,7 @@ You can deploy TimeGEN-1 as a serverless API with pay-as-you-go billing. Nixtla 
 
     For a list of  regions that are available for each of the models supporting serverless API endpoint deployments, see [Region availability for models in serverless API endpoints](deploy-models-serverless-availability.md).
 
-- Azure role-based access controls (Azure RBAC) are used to grant access to operations in Azure AI Studio. To perform the steps in this article, your user account must be assigned the __Azure AI Developer role__ on the resource group. For more information on permissions, visit [Role-based access control in Azure AI Studio](../concepts/rbac-ai-studio.md).
+- Azure role-based access controls (Azure RBAC) are used to grant access to operations in Azure AI Foundry portal. To perform the steps in this article, your user account must be assigned the __Azure AI Developer role__ on the resource group. For more information on permissions, visit [Role-based access control in Azure AI Foundry portal](../concepts/rbac-ai-studio.md).
 
 
 #### Estimate the number of tokens needed
@@ -91,7 +91,7 @@ These steps demonstrate the deployment of TimeGEN-1. To create a deployment:
 
 4. Search for and select **TimeGEN-1** to open its Details page.
 1. Select **Deploy** to open a serverless API deployment window for the model.
-1. Alternatively, you can initiate a deployment by starting from the **Models + endpoints** page in AI Studio.
+1. Alternatively, you can initiate a deployment by starting from the **Models + endpoints** page in AI Foundry portal.
     1. From the left navigation pane of your project, select **My assets** > **Models + endpoints**.
     1. Select **+ Deploy model** > **Deploy base model**.
     1. Search for and select **TimeGEN-1**. to open the Model's Details page.
@@ -274,7 +274,7 @@ This JSON sample is an example response:
 
 ### Cost and quota considerations for TimeGEN-1 deployed as a serverless API
 
-Nixtla offers TimeGEN-1 deployed as a serverless API through the Azure Marketplace. TimeGEN-1 is integrated with Azure AI Studio for use. You can find more information about Azure Marketplace pricing when you deploy the model.
+Nixtla offers TimeGEN-1 deployed as a serverless API through the Azure Marketplace. TimeGEN-1 is integrated with Azure AI Foundry for use. You can find more information about Azure Marketplace pricing when you deploy the model.
 
 Each time a project subscribes to a given offer from the Azure Marketplace, a new resource is created to track the costs associated with its consumption. The same resource is used to track costs associated with inference; however, multiple meters are available to track each scenario independently.
 
@@ -284,6 +284,6 @@ Quota is managed per deployment. Each deployment has a rate limit of 200,000 tok
 
 ## Related content
 
-- [What is Azure AI Studio?](../what-is-ai-studio.md)
+- [What is Azure AI Foundry?](../what-is-ai-studio.md)
 - [Azure AI FAQ article](../faq.yml)
 - [Region availability for models in serverless API endpoints](deploy-models-serverless-availability.md)

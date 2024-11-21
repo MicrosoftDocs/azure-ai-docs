@@ -77,7 +77,7 @@ The search index is used to store vectorized data from the embeddings model. The
     python create_search_index.py
     ```
 
-1. Once the script is run, you can view your newly created index in the **Data + indexes** page of your Azure AI Studio project. For more information, see [How to build and consume vector indexes in Azure AI Studio](../how-to/index-add.md).
+1. Once the script is run, you can view your newly created index in the **Data + indexes** page of your Azure AI Foundry project. For more information, see [How to build and consume vector indexes in Azure AI Foundry portal](../how-to/index-add.md).
 
 1. If you run the script again with the same index name, it creates a new version of the same index.
 

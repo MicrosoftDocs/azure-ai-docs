@@ -24,8 +24,8 @@ In this article you'll learn how to trace your application with Azure AI Inferen
 ### Prerequisites
 
 - An [Azure Subscription](https://azure.microsoft.com/).
-- An Azure AI project, see [Create a project in Azure AI Studio](../create-projects.md).
-- An AI model supporting the [Azure AI model inference API](https://aka.ms/azureai/modelinference) deployed through AI Studio.
+- An Azure AI project, see [Create a project in Azure AI Foundry portal](../create-projects.md).
+- An AI model supporting the [Azure AI model inference API](https://aka.ms/azureai/modelinference) deployed through AI Foundry.
 - If using Python, you need Python 3.8 or later installed, including pip.
 - If using JavaScript, the supported environments are LTS versions of Node.js.
 
@@ -208,7 +208,7 @@ To trace your own custom functions, you can leverage OpenTelemetry, you'll need 
 
 ## Attach User feedback to traces
 
-To attach user feedback to traces and visualize them in AI Studio using OpenTelemetry's semantic conventions, you can instrument your application enabling tracing and logging user feedback. By correlating feedback traces with their respective chat request traces using the response ID, you can use view and manage these traces in AI studio. OpenTelemetry's specification allows for standardized and enriched trace data, which can be analyzed in AI Studio for performance optimization and user experience insights. This approach helps you use the full power of OpenTelemetry for enhanced observability in your applications.  
+To attach user feedback to traces and visualize them in AI Foundry portal using OpenTelemetry's semantic conventions, you can instrument your application enabling tracing and logging user feedback. By correlating feedback traces with their respective chat request traces using the response ID, you can use view and manage these traces in AI Foundry portal. OpenTelemetry's specification allows for standardized and enriched trace data, which can be analyzed in AI Foundry portal for performance optimization and user experience insights. This approach helps you use the full power of OpenTelemetry for enhanced observability in your applications.  
 
 ## Related content
 

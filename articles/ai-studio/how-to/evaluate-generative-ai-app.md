@@ -1,7 +1,7 @@
 ---
-title: How to evaluate generative AI models and applications with Azure AI Studio
+title: How to evaluate generative AI models and applications with Azure AI Foundry
 titleSuffix: Azure AI Foundry
-description: Evaluate your generative AI models and applications with Azure AI Studio.
+description: Evaluate your generative AI models and applications with Azure AI Foundry.
 manager: scottpolly
 ms.service: azure-ai-studio
 ms.custom: ignite-2023, references_regions, build-2024
@@ -12,13 +12,13 @@ ms.author: lagayhar
 author: lgayhardt
 ---
 
-# How to evaluate generative AI models and applications with Azure AI Studio
+# How to evaluate generative AI models and applications with Azure AI Foundry
 
 To thoroughly assess the performance of your generative AI models and applications when applied to a substantial dataset, you can initiate an evaluation process. During this evaluation, your model or application is tested with the given dataset, and its performance will be quantitatively measured with both mathematical based metrics and AI-assisted metrics. This evaluation run provides you with comprehensive insights into the application's capabilities and limitations.
 
-To carry out this evaluation, you can utilize the evaluation functionality in Azure AI Studio, a comprehensive platform that offers tools and features for assessing the performance and safety of your generative AI model. In AI Studio, you're able to log, view, and analyze detailed evaluation metrics.
+To carry out this evaluation, you can utilize the evaluation functionality in Azure AI Foundry portal, a comprehensive platform that offers tools and features for assessing the performance and safety of your generative AI model. In AI Foundry portal, you're able to log, view, and analyze detailed evaluation metrics.
 
-In this article, you learn to create an evaluation run against model, a test dataset or a flow with built-in evaluation metrics from Azure AI Studio UI. For greater flexibility, you can establish a custom evaluation flow and employ the  **custom evaluation** feature. Alternatively, if your objective is solely to conduct a batch run without any evaluation, you can also utilize the custom evaluation feature.
+In this article, you learn to create an evaluation run against model, a test dataset or a flow with built-in evaluation metrics from Azure AI Foundry UI. For greater flexibility, you can establish a custom evaluation flow and employ the  **custom evaluation** feature. Alternatively, if your objective is solely to conduct a batch run without any evaluation, you can also utilize the custom evaluation feature.
 
 ## Prerequisites
 
@@ -29,7 +29,7 @@ To run an evaluation with AI-assisted metrics, you need to have the following re
 
 ## Create an evaluation with built-in evaluation metrics
 
-An evaluation run allows you to generate metric outputs for each data row in your test dataset. You can choose one or more evaluation metrics to assess the output from different aspects. You can create an evaluation run from the evaluation, model catalog or prompt flow pages in AI Studio. Then an evaluation creation wizard appears to guide you through the process of setting up an evaluation run.
+An evaluation run allows you to generate metric outputs for each data row in your test dataset. You can choose one or more evaluation metrics to assess the output from different aspects. You can create an evaluation run from the evaluation, model catalog or prompt flow pages in AI Foundry portal. Then an evaluation creation wizard appears to guide you through the process of setting up an evaluation run.
 
 ### From the evaluate page
 
@@ -113,7 +113,7 @@ AI Quality (NLP) metrics are mathematically based measurements that assess your 
 
 :::image type="content" source="../media/evaluations/evaluate/select-metrics-ai-quality-nlp.png" alt-text="Screenshot of the AI quality (NLP) with groundedness, relevance, and coherence metrics selected when creating a new evaluation." lightbox="../media/evaluations/evaluate/select-metrics-ai-quality-nlp.png":::
 
-For risk and safety metrics, you don't need to provide a connection and deployment. The Azure AI Studio safety evaluations back-end service provisions a GPT-4 model that can generate content risk severity scores and reasoning to enable you to evaluate your application for content harms.
+For risk and safety metrics, you don't need to provide a connection and deployment. The Azure AI Foundry portal safety evaluations back-end service provisions a GPT-4 model that can generate content risk severity scores and reasoning to enable you to evaluate your application for content harms.
 
 You can set the threshold to calculate the defect rate for the content harm metrics (self-harm-related content, hateful and unfair content, violent content, sexual content). The defect rate is calculated by taking a percentage of instances with severity levels (Very low, Low, Medium, High) above a threshold. By default, we set the threshold as "Medium".
 
@@ -122,7 +122,7 @@ For protected material and indirect attack, the defect rate is calculated by tak
 :::image type="content" source="../media/evaluations/evaluate/safety-metrics.png" alt-text="Screenshot of risk and safety metrics curated by Microsoft showing self-harm, protected material, and indirect attack selected." lightbox="../media/evaluations/evaluate/safety-metrics.png":::
 
 > [!NOTE]
-> AI-assisted risk and safety metrics are hosted by Azure AI Studio safety evaluations back-end service and is only available in the following regions: East US 2, France Central, UK South, Sweden Central
+> AI-assisted risk and safety metrics are hosted by Azure AI Foundry safety evaluations back-end service and is only available in the following regions: East US 2, France Central, UK South, Sweden Central
 
 **Data mapping for evaluation**: You must specify which data columns in your dataset correspond with inputs needed in the evaluation. Different evaluation metrics demand distinct types of data inputs for accurate calculations.
 
@@ -235,7 +235,7 @@ The evaluator library is a centralized place that allows you to see the details 
  
 The evaluator library also enables version management. You can compare different versions of your work, restore previous versions if needed, and collaborate with others more easily. 
 
-To use the evaluator library in AI Studio, go to your project's **Evaluation** page and select the **Evaluator library** tab.
+To use the evaluator library in AI Foundry portal, go to your project's **Evaluation** page and select the **Evaluator library** tab.
 
 :::image type="content" source="../media/evaluations/evaluate/evaluator-library-list.png" alt-text="Screenshot of the page to select evaluators from the evaluator library." lightbox="../media/evaluations/evaluate/evaluator-library-list.png":::
 
@@ -251,4 +251,4 @@ Learn more about how to evaluate your generative AI applications:
 - [Evaluate your generative AI apps via the playground](./evaluate-prompts-playground.md)
 - [View the evaluation results](./evaluate-results.md)
 - Learn more about [harm mitigation techniques](../concepts/evaluation-improvement-strategies.md).
-- [Transparency Note for Azure AI Studio safety evaluations](../concepts/safety-evaluations-transparency-note.md).
+- [Transparency Note for Azure AI Foundry safety evaluations](../concepts/safety-evaluations-transparency-note.md).

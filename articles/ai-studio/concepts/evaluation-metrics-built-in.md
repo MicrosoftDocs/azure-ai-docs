@@ -529,6 +529,6 @@ Currently certain AI-assisted evaluators are available only in the following reg
 
 - [Evaluate your generative AI apps via the playground](../how-to/evaluate-prompts-playground.md)
 - [Evaluate with the Azure AI evaluate SDK](../how-to/develop/evaluate-sdk.md)
-- [Evaluate your generative AI apps with the Azure AI Studio](../how-to/evaluate-generative-ai-app.md)
+- [Evaluate your generative AI apps with the Azure AI Foundry portal](../how-to/evaluate-generative-ai-app.md)
 - [View the evaluation results](../how-to/evaluate-results.md)
-- [Transparency Note for Azure AI Studio safety evaluations](safety-evaluations-transparency-note.md)
+- [Transparency Note for Azure AI Foundry safety evaluations](safety-evaluations-transparency-note.md)

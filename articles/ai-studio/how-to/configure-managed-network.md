@@ -1,7 +1,7 @@
 ---
-title: How to configure a managed network for Azure AI Studio hubs
+title: How to configure a managed network for Azure AI Foundry hubs
 titleSuffix: Azure AI Foundry
-description: Learn how to configure a managed network for Azure AI Studio hubs.
+description: Learn how to configure a managed network for Azure AI Foundry hubs.
 manager: scottpolly
 ms.service: azure-ai-studio
 ms.custom: ignite-2023, build-2024, devx-track-azurecli
@@ -13,9 +13,9 @@ author: Blackmist
 zone_pivot_groups: azure-ai-studio-sdk-cli
 ---
 
-# How to configure a managed network for Azure AI Studio hubs
+# How to configure a managed network for Azure AI Foundry hubs
 
-We have two network isolation aspects. One is the network isolation to access an Azure AI Studio hub. Another is the network isolation of computing resources for both your hub and project (such as compute instance, serverless and managed online endpoint.) This document explains the latter highlighted in the diagram. You can use hub built-in network isolation to protect your computing resources.
+We have two network isolation aspects. One is the network isolation to access an Azure AI Foundry hub. Another is the network isolation of computing resources for both your hub and project (such as compute instance, serverless and managed online endpoint.) This document explains the latter highlighted in the diagram. You can use hub built-in network isolation to protect your computing resources.
 
 :::image type="content" source="../media/how-to/network/azure-ai-network-outbound.svg" alt-text="Diagram of hub network isolation." lightbox="../media/how-to/network/azure-ai-network-outbound.png":::
 
@@ -135,7 +135,7 @@ Before following the steps in this article, make sure you have the following pre
 
 ## Limitations
 
-* Azure AI Studio currently doesn't support bringing your own virtual network, it only supports managed virtual network isolation.
+* Azure AI Foundry currently doesn't support bringing your own virtual network, it only supports managed virtual network isolation.
 * Once you enable managed virtual network isolation of your Azure AI, you can't disable it.
 * Managed virtual network uses private endpoint connection to access your private resources. You can't have a private endpoint and a service endpoint at the same time for your Azure resources, such as a storage account. We recommend using private endpoints in all scenarios.
 * The managed virtual network is deleted when the Azure AI is deleted. 
@@ -154,7 +154,7 @@ Before following the steps in this article, make sure you have the following pre
 
 * __Create a new hub__:
 
-    1. Sign in to the [Azure portal](https://portal.azure.com), and choose Azure AI Studio from Create a resource menu.
+    1. Sign in to the [Azure portal](https://portal.azure.com), and choose Azure AI Foundry from Create a resource menu.
     1. Select **+ New Azure AI**.
     1. Provide the required information on the __Basics__ tab.
     1. From the __Networking__ tab, select __Private with Internet Outbound__.
@@ -337,7 +337,7 @@ To configure a managed virtual network that allows internet outbound communicati
 
 * __Create a new hub__:
 
-    1. Sign in to the [Azure portal](https://portal.azure.com), and choose Azure AI Studio from Create a resource menu.
+    1. Sign in to the [Azure portal](https://portal.azure.com), and choose Azure AI Foundry from Create a resource menu.
     1. Select **+ New Azure AI**.
     1. Provide the required information on the __Basics__ tab.
     1. From the __Networking__ tab, select __Private with Approved Outbound__.
@@ -821,7 +821,7 @@ pytorch.org
 
 Private endpoints are currently supported for the following Azure services:
 
-* AI Studio hub
+* AI Foundry hub
 * Azure AI Search
 * Azure AI services
 * Azure API Management
@@ -846,7 +846,7 @@ When you create a private endpoint, you provide the _resource type_ and _subreso
 
 When you create a private endpoint for hub dependency resources, such as Azure Storage, Azure Container Registry, and Azure Key Vault, the resource can be in a different Azure subscription. However, the resource must be in the same tenant as the hub.
 
-A private endpoint is automatically created for a connection if the target resource is an Azure resource listed previously. A valid target ID is expected for the private endpoint. A valid target ID for the connection can be the Azure Resource Manager ID of a parent resource. The target ID is also expected in the target of the connection or in `metadata.resourceid`. For more on connections, see [How to add a new connection in Azure AI Studio](connections-add.md).
+A private endpoint is automatically created for a connection if the target resource is an Azure resource listed previously. A valid target ID is expected for the private endpoint. A valid target ID for the connection can be the Azure Resource Manager ID of a parent resource. The target ID is also expected in the target of the connection or in `metadata.resourceid`. For more on connections, see [How to add a new connection in Azure AI Foundry portal](connections-add.md).
 
 ## Select an Azure Firewall version for allowed only approved outbound (Preview)
 
@@ -902,4 +902,4 @@ The hub managed virtual network feature is free. However, you're charged for the
 
 ## Related content
 
-- [Create AI Studio hub and project using the SDK](./develop/create-hub-project-sdk.md)
+- [Create AI Foundry hub and project using the SDK](./develop/create-hub-project-sdk.md)

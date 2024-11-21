@@ -1,7 +1,7 @@
 ---
 title: Control AI model deployment with custom policies
 titleSuffix: Azure AI Foundry
-description: "Learn how to use custom Azure Policies to control Azure AI services and Azure OpenAI model deployment with Azure AI Studio."
+description: "Learn how to use custom Azure Policies to control Azure AI services and Azure OpenAI model deployment with Azure AI Foundry."
 author: Blackmist
 ms.author: larryfr
 ms.service: azure-ai-studio
@@ -12,9 +12,9 @@ ms.date: 10/25/2024
 
 ---
 
-# Control AI model deployment with custom policies in Azure AI Studio
+# Control AI model deployment with custom policies in Azure AI Foundry portal
 
-When using models from Azure AI services and Azure OpenAI with Azure AI Studio, you might need to use custom policies to control what models your developers can deploy. Custom Azure Policies allow you to create policy definitions that meet your organization's unique requirements. This article shows you how to create and assign an example custom policy to control model deployment.
+When using models from Azure AI services and Azure OpenAI with Azure AI Foundry, you might need to use custom policies to control what models your developers can deploy. Custom Azure Policies allow you to create policy definitions that meet your organization's unique requirements. This article shows you how to create and assign an example custom policy to control model deployment.
 
 ## Prerequisites
 
@@ -84,7 +84,7 @@ When using models from Azure AI services and Azure OpenAI with Azure AI Studio, 
 1. From the **Parameters** tab, set **Allowed AI models** to the list of models that you want to allow. The list should be a comma-separated list of model names and approved versions, surrounded by square brackets. For example, `["gpt-4,0613", "gpt-35-turbo,0613"]`.
 
     > [!TIP]
-    > You can find the model names and their versions in the [Azure AI Studio Model Catalog](https://ai.azure.com/explore/models). Select the model to view the details, and then copy the model name and their version in the title.
+    > You can find the model names and their versions in the [Azure AI Foundry Model Catalog](https://ai.azure.com/explore/models). Select the model to view the details, and then copy the model name and their version in the title.
 
 1. Optionally, select the **Non-compliance messages** tab at the top of the page and set a custom message for noncompliance.
 1. Select **Review + create** tab and verify that the policy assignment is correct. When ready, select **Create** to assign the policy.
@@ -112,7 +112,7 @@ To update an existing policy assignment with new models, follow these steps:
 
 ## Best practices
 
-- **Obtaining model names**: Use the [Azure AI Studio Model Catalog](https://ai.azure.com/explore/models), then select the model to view details. Use the model name in the title with the policy.
+- **Obtaining model names**: Use the [Azure AI Foundry Model Catalog](https://ai.azure.com/explore/models), then select the model to view details. Use the model name in the title with the policy.
 - **Granular scoping**: Assign policies at the appropriate scope to balance control and flexibility. For example, apply at the subscription level to control all resources in the subscription, or apply at the resource group level to control resources in a specific group.
 - **Policy naming**: Use a consistent naming convention for policy assignments to make it easier to identify the purpose of the policy. Include information such as the purpose and scope in the name.
 - **Documentation**: Keep records of policy assignments and configurations for auditing purposes. Document any changes made to the policy over time.
@@ -123,6 +123,6 @@ To update an existing policy assignment with new models, follow these steps:
 ## Related content
 
 - [Azure Policy overview](/azure/governance/policy/overview)
-- [Azure AI Studio model catalog](model-catalog-overview.md)
+- [Azure AI Foundry model catalog](model-catalog-overview.md)
 - [Azure AI services documentation](/azure/ai-services)
 

@@ -1,7 +1,7 @@
 ---
-title: Azure AI Studio architecture
+title: Azure AI Foundry architecture
 titleSuffix: Azure AI Foundry
-description: Learn about the architecture of Azure AI Studio.
+description: Learn about the architecture of Azure AI Foundry.
 manager: scottpolly
 ms.service: azure-ai-studio
 ms.custom:
@@ -19,19 +19,19 @@ AI Foundry provides a unified experience for AI developers and data scientists t
 
 [!INCLUDE [new-name](../includes/new-name.md)]
 
-:::image type="content" source="../media/concepts/ai-studio-architecture.png" alt-text="Diagram of the high-level architecture of Azure AI Studio." lightbox="../media/concepts/ai-studio-architecture.png":::
+:::image type="content" source="../media/concepts/ai-studio-architecture.png" alt-text="Diagram of the high-level architecture of Azure AI Foundry." lightbox="../media/concepts/ai-studio-architecture.png":::
 
 At the top level, AI Foundry provides access to the following resources:
 
-<!-- The top level AI Studio resources (hub and project) are based on Azure Machine Learning. Connected resources, such as Azure OpenAI, Azure AI services, and Azure AI Search, are used by the hub and project in reference, but follow their own resource management lifecycle. -->
+<!-- The top level AI Foundry resources (hub and project) are based on Azure Machine Learning. Connected resources, such as Azure OpenAI, Azure AI services, and Azure AI Search, are used by the hub and project in reference, but follow their own resource management lifecycle. -->
 
 - **Azure OpenAI**: Provides access to the latest Open AI models. You can create secure deployments, try playgrounds, fine tune models, content filters, and batch jobs. The Azure OpenAI resource provider is `Microsoft.CognitiveServices/account` and the kind of resource is `OpenAI`. You can also connect to Azure OpenAI by using a kind of `AIServices`, which also includes other [Azure AI services](/azure/ai-services/what-are-ai-services).
 
     When using Azure AI Foundry portal, you can directly work with Azure OpenAI without an Azure Studio project or you can use Azure OpenAI through a project.
 
-    For more information, visit [Azure OpenAI in Azure AI Studio](../azure-openai-in-ai-studio.md).
+    For more information, visit [Azure OpenAI in Azure AI Foundry portal](../azure-openai-in-ai-studio.md).
 
-- **Management center**: The management center streamlines governance and management of AI Studio resources such as hubs, projects, connected resources, and deployments.
+- **Management center**: The management center streamlines governance and management of AI Foundry resources such as hubs, projects, connected resources, and deployments.
 
     For more information, visit [Management center](management-center.md).
 - **AI Foundry hub**: The hub is the top-level resource in AI Foundry portal, and is based on the Azure Machine Learning service. The Azure resource provider for a hub is `Microsoft.MachineLearningServices/workspaces`, and the kind of resource is `Hub`. It provides the following features:
@@ -49,7 +49,7 @@ At the top level, AI Foundry provides access to the following resources:
     - Project-scoped connections. For example, project members might need private access to data stored in an Azure Storage account without giving that same access to other projects.
     - Open source model deployments from catalog and fine-tuned model endpoints.
 
-    :::image type="content" source="../media/concepts/resource-provider-connected-resources.svg" alt-text="Diagram of the relationship between AI Studio resources." :::
+    :::image type="content" source="../media/concepts/resource-provider-connected-resources.svg" alt-text="Diagram of the relationship between AI Foundry resources." :::
 
     For more information, visit [Hubs and projects overview](ai-resources.md).
 
@@ -66,7 +66,7 @@ Azure AI Foundry is built on the Azure Machine Learning resource provider, and t
 When you create a new hub, a set of dependent Azure resources are required to store data, get access to models, and provide compute resources for AI customization. The following table lists the dependent Azure resources and their resource providers:
 
 > [!TIP]
-> If you don't provide a dependent resource when creating a hub, and it's a required dependency, AI Studio creates the resource for you.
+> If you don't provide a dependent resource when creating a hub, and it's a required dependency, AI Foundry creates the resource for you.
 
 [!INCLUDE [Dependent Azure resources](../includes/dependent-resources.md)]
 
@@ -77,7 +77,7 @@ For information on registering resource providers, see [Register an Azure resour
 While most of the resources used by Azure AI Foundry live in your Azure subscription, some resources are in an Azure subscription managed by Microsoft. The cost for these managed resources shows on your Azure bill as a line item under the Azure Machine Learning resource provider. The following resources are in the Microsoft-managed Azure subscription, and don't appear in your Azure subscription:
 
 - **Managed compute resources**: Provided by Azure Batch resources in the Microsoft subscription.
-- **Managed virtual network**: Provided by Azure Virtual Network resources in the Microsoft subscription. If FQDN rules are enabled, an Azure Firewall (standard) is added and charged to your subscription. For more information, see [Configure a managed virtual network for Azure AI Studio](../how-to/configure-managed-network.md).
+- **Managed virtual network**: Provided by Azure Virtual Network resources in the Microsoft subscription. If FQDN rules are enabled, an Azure Firewall (standard) is added and charged to your subscription. For more information, see [Configure a managed virtual network for Azure AI Foundry](../how-to/configure-managed-network.md).
 - **Metadata storage**: Provided by Azure Storage resources in the Microsoft subscription.  
 
     > [!NOTE]
@@ -95,7 +95,7 @@ Often, projects in a business domain require access to the same company resource
 
 [Connections](connections.md) let you access objects in AI Foundry that are managed outside of your hub. For example, uploaded data on an Azure storage account, or model deployments on an existing Azure OpenAI resource. A connection can be shared with every project or made accessible to one specific project. Connections can be configured to use key-based access or Microsoft Entra ID passthrough to authorize access to users on the connected resource. As an administrator, you can  track, audit, and manage connections across the organization from a single view in AI Foundry.
 
-:::image type="content" source="../media/concepts/connected-resources-spog.png" alt-text="Screenshot of AI Studio showing an audit view of all connected resources across a hub and its projects." :::
+:::image type="content" source="../media/concepts/connected-resources-spog.png" alt-text="Screenshot of AI Foundry showing an audit view of all connected resources across a hub and its projects." :::
 
 ### Organize for your team's needs
 
@@ -109,7 +109,7 @@ Azure AI services including Azure OpenAI provide control plane endpoints for ope
 
 To reduce the complexity of Azure RBAC management, AI Foundry provides a *control plane proxy* that allows you to perform operations on connected Azure AI services and Azure OpenAI resources. Performing operations on these resources through the control plane proxy only requires Azure RBAC permissions on the hub. The Azure AI Foundry service then performs the call to the Azure AI services or Azure OpenAI control plane endpoint on your behalf.
 
-For more information, see [Role-based access control in Azure AI Studio](rbac-ai-studio.md).
+For more information, see [Role-based access control in Azure AI Foundry portal](rbac-ai-studio.md).
 
 ## Attribute-based access control
 
@@ -153,7 +153,7 @@ A hub can be configured to use a *managed* virtual network. The managed virtual 
 > [!NOTE]
 > If you want to use a virtual network to secure communications between your clients and the hub or project, you must use an Azure Virtual Network that you create and manage. For example, an Azure Virtual Network that uses a VPN or ExpressRoute connection to your on-premises network.
 
-For more information on how to configure a managed virtual network, see [Configure a managed virtual network for Azure AI Studio](../how-to/configure-managed-network.md).
+For more information on how to configure a managed virtual network, see [Configure a managed virtual network for Azure AI Foundry](../how-to/configure-managed-network.md).
 
 ## Azure Monitor
 
@@ -161,7 +161,7 @@ Azure monitor and Azure Log Analytics provide monitoring and logging for the und
 
 | Resource | Monitoring and logging |
 | --- | --- |
-| Azure AI Studio hub and project | [Monitor Azure Machine Learning](/azure/machine-learning/monitor-azure-machine-learning) |
+| Azure AI Foundry hub and project | [Monitor Azure Machine Learning](/azure/machine-learning/monitor-azure-machine-learning) |
 | Azure OpenAI | [Monitor Azure OpenAI](/azure/ai-services/openai/how-to/monitoring) |
 | Azure AI services | [Monitor Azure AI (training)](/training/modules/monitor-ai-services/) |
 | Azure AI Search | [Monitor Azure AI Search](/azure/search/monitor-azure-cognitive-search) |
@@ -177,6 +177,6 @@ For more information on price and quota, use the following articles:
 
 Create a hub using one of the following methods:
 
-- [Azure AI Foundry portal](../how-to/create-azure-ai-resource.md#create-a-hub-in-ai-studio): Create a hub for getting started.
+- [Azure AI Foundry portal](../how-to/create-azure-ai-resource.md#create-a-hub-in-ai-foundry-portal): Create a hub for getting started.
 - [Azure portal](../how-to/create-secure-ai-hub.md): Create a hub with your own networking.
 - [Bicep template](../how-to/create-azure-ai-hub-template.md).

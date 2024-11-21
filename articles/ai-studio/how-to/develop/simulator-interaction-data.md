@@ -298,13 +298,13 @@ eval_output = evaluate(
 
 ## Generate adversarial simulations for safety evaluation
 
-Augment and accelerate your red-teaming operation by using Azure AI Studio safety evaluations to generate an adversarial dataset against your application. We provide adversarial scenarios along with configured access to a service-side Azure OpenAI GPT-4 model with safety behaviors turned off to enable the adversarial simulation.
+Augment and accelerate your red-teaming operation by using Azure AI Foundry safety evaluations to generate an adversarial dataset against your application. We provide adversarial scenarios along with configured access to a service-side Azure OpenAI GPT-4 model with safety behaviors turned off to enable the adversarial simulation.
 
 ```python
 from azure.ai.evaluation.simulator import AdversarialSimulator
 ```
 
-The adversarial simulator works by setting up a service-hosted GPT large language model to simulate an adversarial user and interact with your application. An AI Studio project is required to run the adversarial simulator:
+The adversarial simulator works by setting up a service-hosted GPT large language model to simulate an adversarial user and interact with your application. An AI Foundry project is required to run the adversarial simulator:
 
 ```python
 from azure.identity import DefaultAzureCredential

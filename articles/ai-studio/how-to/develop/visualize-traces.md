@@ -52,13 +52,13 @@ os.environ['AZURE_TRACING_GEN_AI_CONTENT_RECORDING_ENABLED'] = 'true'
 application_insights_connection_string = project.telemetry.get_connection_string()
 if not application_insights_connection_string:
     print("Application Insights was not enabled for this project.")
-    print("Enable it via the 'Tracing' tab in your AI Studio project page.")
+    print("Enable it via the 'Tracing' tab in your AI Foundry project page.")
     exit()
     
 configure_azure_monitor(connection_string=application_insights_connection_string)
 ```
 
-Finally, run an inferencing call. The call is logged to Azure AI Studio. This code prints a link to the traces.
+Finally, run an inferencing call. The call is logged to Azure AI Foundry. This code prints a link to the traces.
 
 ```python
 response = chat.complete(
@@ -73,7 +73,7 @@ print("View traces at:")
 print(f"https://ai.azure.com/tracing?wsid=/subscriptions/{project.scope['subscription_id']}/resourceGroups/{project.scope['resource_group_name']}/providers/Microsoft.MachineLearningServices/workspaces/{project.scope['project_name']}")
 ```
 
-Select the link and begin viewing traces in Azure AI Studio!
+Select the link and begin viewing traces in Azure AI Foundry portal!
 
 ### Debug and filter traces
 
@@ -97,7 +97,7 @@ For more information on how to send Azure AI Inference traces to Azure Monitor a
 
 ### View your generative AI spans and traces
 
-From Azure AI studio project, you can also open your custom dashboard that provides you with insights specifically to help you monitor your generative AI application.
+From Azure AI Foundry project, you can also open your custom dashboard that provides you with insights specifically to help you monitor your generative AI application.
 
 In this Azure Workbook, you can view your Gen AI spans and jump into the Azure Monitor **End-to-end transaction details view** view to deep dive and investigate.
 

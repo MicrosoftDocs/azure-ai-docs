@@ -1,7 +1,7 @@
 ---
-title: How to use Phi-3.5 chat model with vision with Azure AI Studio
+title: How to use Phi-3.5 chat model with vision with Azure AI Foundry
 titleSuffix: Azure AI Foundry
-description: Learn how to use Phi-3.5 chat model with vision with Azure AI Studio.
+description: Learn how to use Phi-3.5 chat model with vision with Azure AI Foundry.
 ms.service: azure-ai-studio
 manager: scottpolly
 ms.topic: how-to
@@ -37,7 +37,7 @@ You can learn more about the models in their respective model card:
 
 ## Prerequisites
 
-To use Phi-3.5 chat model with vision with Azure AI Studio, you need the following prerequisites:
+To use Phi-3.5 chat model with vision with Azure AI Foundry, you need the following prerequisites:
 
 ### A model deployment
 
@@ -45,7 +45,7 @@ To use Phi-3.5 chat model with vision with Azure AI Studio, you need the followi
 
 Phi-3.5 chat model with vision can be deployed to serverless API endpoints with pay-as-you-go billing. This kind of deployment provides a way to consume models as an API without hosting them on your subscription, while keeping the enterprise security and compliance that organizations need. 
 
-Deployment to a serverless API endpoint doesn't require quota from your subscription. If your model isn't deployed already, use the Azure AI Studio, Azure Machine Learning SDK for Python, the Azure CLI, or ARM templates to [deploy the model as a serverless API](deploy-models-serverless.md).
+Deployment to a serverless API endpoint doesn't require quota from your subscription. If your model isn't deployed already, use the Azure AI Foundry portal, Azure Machine Learning SDK for Python, the Azure CLI, or ARM templates to [deploy the model as a serverless API](deploy-models-serverless.md).
 
 > [!div class="nextstepaction"]
 > [Deploy the model to serverless API endpoints](deploy-models-serverless.md)
@@ -80,7 +80,7 @@ Read more about the [Azure AI inference package and reference](https://aka.ms/az
 In this section, you use the [Azure AI model inference API](https://aka.ms/azureai/modelinference) with a chat completions model for chat.
 
 > [!TIP]
-> The [Azure AI model inference API](https://aka.ms/azureai/modelinference) allows you to talk with most models deployed in Azure AI Studio with the same code and structure, including Phi-3.5 chat model with vision.
+> The [Azure AI model inference API](https://aka.ms/azureai/modelinference) allows you to talk with most models deployed in Azure AI Foundry portal with the same code and structure, including Phi-3.5 chat model with vision.
 
 ### Create a client to consume the model
 
@@ -405,7 +405,7 @@ You can learn more about the models in their respective model card:
 
 ## Prerequisites
 
-To use Phi-3.5 chat model with vision with Azure AI Studio, you need the following prerequisites:
+To use Phi-3.5 chat model with vision with Azure AI Foundry, you need the following prerequisites:
 
 ### A model deployment
 
@@ -413,7 +413,7 @@ To use Phi-3.5 chat model with vision with Azure AI Studio, you need the followi
 
 Phi-3.5 chat model with vision can be deployed to serverless API endpoints with pay-as-you-go billing. This kind of deployment provides a way to consume models as an API without hosting them on your subscription, while keeping the enterprise security and compliance that organizations need. 
 
-Deployment to a serverless API endpoint doesn't require quota from your subscription. If your model isn't deployed already, use the Azure AI Studio, Azure Machine Learning SDK for Python, the Azure CLI, or ARM templates to [deploy the model as a serverless API](deploy-models-serverless.md).
+Deployment to a serverless API endpoint doesn't require quota from your subscription. If your model isn't deployed already, use the Azure AI Foundry portal, Azure Machine Learning SDK for Python, the Azure CLI, or ARM templates to [deploy the model as a serverless API](deploy-models-serverless.md).
 
 > [!div class="nextstepaction"]
 > [Deploy the model to serverless API endpoints](deploy-models-serverless.md)
@@ -446,7 +446,7 @@ npm install @azure-rest/ai-inference
 In this section, you use the [Azure AI model inference API](https://aka.ms/azureai/modelinference) with a chat completions model for chat.
 
 > [!TIP]
-> The [Azure AI model inference API](https://aka.ms/azureai/modelinference) allows you to talk with most models deployed in Azure AI Studio with the same code and structure, including Phi-3.5 chat model with vision.
+> The [Azure AI model inference API](https://aka.ms/azureai/modelinference) allows you to talk with most models deployed in Azure AI Foundry portal with the same code and structure, including Phi-3.5 chat model with vision.
 
 ### Create a client to consume the model
 
@@ -802,7 +802,7 @@ You can learn more about the models in their respective model card:
 
 ## Prerequisites
 
-To use Phi-3.5 chat model with vision with Azure AI Studio, you need the following prerequisites:
+To use Phi-3.5 chat model with vision with Azure AI Foundry, you need the following prerequisites:
 
 ### A model deployment
 
@@ -810,7 +810,7 @@ To use Phi-3.5 chat model with vision with Azure AI Studio, you need the followi
 
 Phi-3.5 chat model with vision can be deployed to serverless API endpoints with pay-as-you-go billing. This kind of deployment provides a way to consume models as an API without hosting them on your subscription, while keeping the enterprise security and compliance that organizations need. 
 
-Deployment to a serverless API endpoint doesn't require quota from your subscription. If your model isn't deployed already, use the Azure AI Studio, Azure Machine Learning SDK for Python, the Azure CLI, or ARM templates to [deploy the model as a serverless API](deploy-models-serverless.md).
+Deployment to a serverless API endpoint doesn't require quota from your subscription. If your model isn't deployed already, use the Azure AI Foundry portal, Azure Machine Learning SDK for Python, the Azure CLI, or ARM templates to [deploy the model as a serverless API](deploy-models-serverless.md).
 
 > [!div class="nextstepaction"]
 > [Deploy the model to serverless API endpoints](deploy-models-serverless.md)
@@ -866,7 +866,7 @@ using System.Reflection;
 In this section, you use the [Azure AI model inference API](https://aka.ms/azureai/modelinference) with a chat completions model for chat.
 
 > [!TIP]
-> The [Azure AI model inference API](https://aka.ms/azureai/modelinference) allows you to talk with most models deployed in Azure AI Studio with the same code and structure, including Phi-3.5 chat model with vision.
+> The [Azure AI model inference API](https://aka.ms/azureai/modelinference) allows you to talk with most models deployed in Azure AI Foundry portal with the same code and structure, including Phi-3.5 chat model with vision.
 
 ### Create a client to consume the model
 
@@ -1196,7 +1196,7 @@ You can learn more about the models in their respective model card:
 
 ## Prerequisites
 
-To use Phi-3.5 chat model with vision with Azure AI Studio, you need the following prerequisites:
+To use Phi-3.5 chat model with vision with Azure AI Foundry, you need the following prerequisites:
 
 ### A model deployment
 
@@ -1204,7 +1204,7 @@ To use Phi-3.5 chat model with vision with Azure AI Studio, you need the followi
 
 Phi-3.5 chat model with vision can be deployed to serverless API endpoints with pay-as-you-go billing. This kind of deployment provides a way to consume models as an API without hosting them on your subscription, while keeping the enterprise security and compliance that organizations need. 
 
-Deployment to a serverless API endpoint doesn't require quota from your subscription. If your model isn't deployed already, use the Azure AI Studio, Azure Machine Learning SDK for Python, the Azure CLI, or ARM templates to [deploy the model as a serverless API](deploy-models-serverless.md).
+Deployment to a serverless API endpoint doesn't require quota from your subscription. If your model isn't deployed already, use the Azure AI Foundry portal, Azure Machine Learning SDK for Python, the Azure CLI, or ARM templates to [deploy the model as a serverless API](deploy-models-serverless.md).
 
 > [!div class="nextstepaction"]
 > [Deploy the model to serverless API endpoints](deploy-models-serverless.md)
@@ -1230,7 +1230,7 @@ Models deployed with the [Azure AI model inference API](https://aka.ms/azureai/m
 In this section, you use the [Azure AI model inference API](https://aka.ms/azureai/modelinference) with a chat completions model for chat.
 
 > [!TIP]
-> The [Azure AI model inference API](https://aka.ms/azureai/modelinference) allows you to talk with most models deployed in Azure AI Studio with the same code and structure, including Phi-3.5 chat model with vision.
+> The [Azure AI model inference API](https://aka.ms/azureai/modelinference) allows you to talk with most models deployed in Azure AI Foundry portal with the same code and structure, including Phi-3.5 chat model with vision.
 
 ### Create a client to consume the model
 
@@ -1637,6 +1637,6 @@ It is a good practice to start with a low number of instances and scale up as ne
 
 * [Azure AI Model Inference API](../reference/reference-model-inference-api.md)
 * [Deploy models as serverless APIs](deploy-models-serverless.md)
-* [Consume serverless API endpoints from a different Azure AI Studio project or hub](deploy-models-serverless-connect.md)
+* [Consume serverless API endpoints from a different Azure AI Foundry project or hub](deploy-models-serverless-connect.md)
 * [Region availability for models in serverless API endpoints](deploy-models-serverless-availability.md)
 * [Plan and manage costs (marketplace)](costs-plan-manage.md#monitor-costs-for-models-offered-through-the-azure-marketplace)

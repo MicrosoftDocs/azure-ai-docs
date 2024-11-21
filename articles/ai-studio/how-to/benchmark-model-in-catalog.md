@@ -1,7 +1,7 @@
 ---
-title: How to use model benchmarking in Azure AI Studio
+title: How to use model benchmarking in Azure AI Foundry portal
 titleSuffix: Azure AI Foundry
-description: In this article, you learn to compare benchmarks across models and datasets, using the model benchmarks tool in Azure AI Studio.
+description: In this article, you learn to compare benchmarks across models and datasets, using the model benchmarks tool in Azure AI Foundry portal.
 manager: scottpolly
 ms.service: azure-ai-studio
 ms.custom:
@@ -13,21 +13,21 @@ ms.author: mopeakande
 author: msakande
 ---
 
-# How to benchmark models in Azure AI Studio
+# How to benchmark models in Azure AI Foundry portal
 
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
-In this article, you learn to compare benchmarks across models and datasets, using the model benchmarks tool in Azure AI Studio. You also learn to analyze benchmarking results and to perform benchmarking with your data. Benchmarking can help you make informed decisions about which models meet the requirements for your particular use case or application.
+In this article, you learn to compare benchmarks across models and datasets, using the model benchmarks tool in Azure AI Foundry portal. You also learn to analyze benchmarking results and to perform benchmarking with your data. Benchmarking can help you make informed decisions about which models meet the requirements for your particular use case or application.
 
 ## Prerequisites
 
 - An Azure subscription with a valid payment method. Free or trial Azure subscriptions won't work. If you don't have an Azure subscription, create a [paid Azure account](https://azure.microsoft.com/pricing/purchase-options/pay-as-you-go) to begin.
 
-- An [Azure AI Studio project](create-projects.md).
+- An [Azure AI Foundry project](create-projects.md).
 
 ## Access model benchmarks through the model catalog
 
-Azure AI supports model benchmarking for select models that are popular and most frequently used. Follow these steps to use detailed benchmarking results to compare and select models directly from the AI Studio model catalog:
+Azure AI supports model benchmarking for select models that are popular and most frequently used. Follow these steps to use detailed benchmarking results to compare and select models directly from the AI Foundry model catalog:
 
 [!INCLUDE [open-catalog](../includes/open-catalog.md)]
 
@@ -60,7 +60,7 @@ When you're in the "Benchmarks" tab for a specific model, you can gather extensi
 
     :::image type="content" source="../media/how-to/model-benchmarks/gpt4o-benchmark-tab-expand.png" alt-text="Screenshot showing benchmarks tab for gpt-4o." lightbox="../media/how-to/model-benchmarks/gpt4o-benchmark-tab-expand.png":::
 
-By default, AI Studio displays an average index across various metrics and datasets to provide a high-level overview of model performance.
+By default, AI Foundry displays an average index across various metrics and datasets to provide a high-level overview of model performance.
 
 To access benchmark results for a specific metric and dataset:
 
@@ -84,6 +84,6 @@ The previous sections showed the benchmark results calculated by Microsoft, usin
 
 ## Related content
 
-- [Model benchmarks in Azure AI Studio](../concepts/model-benchmarks.md)
-- [How to evaluate generative AI apps with Azure AI Studio](evaluate-generative-ai-app.md)
-- [How to view evaluation results in Azure AI Studio](evaluate-results.md)
+- [Model benchmarks in Azure AI Foundry portal](../concepts/model-benchmarks.md)
+- [How to evaluate generative AI apps with Azure AI Foundry](evaluate-generative-ai-app.md)
+- [How to view evaluation results in Azure AI Foundry portal](evaluate-results.md)

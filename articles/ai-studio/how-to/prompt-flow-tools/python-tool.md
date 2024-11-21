@@ -1,7 +1,7 @@
 ---
-title: Python tool for flows in Azure AI Studio
+title: Python tool for flows in Azure AI Foundry portal
 titleSuffix: Azure AI Foundry
-description: This article introduces you to the Python tool for flows in Azure AI Studio.
+description: This article introduces you to the Python tool for flows in Azure AI Foundry portal.
 manager: scottpolly
 ms.service: azure-ai-studio
 ms.custom: ignite-2023, devx-track-python, build-2024
@@ -12,7 +12,7 @@ ms.author: lagayhar
 author: lgayhardt
 ---
 
-# Python tool for flows in Azure AI Studio
+# Python tool for flows in Azure AI Foundry portal
 
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
@@ -20,10 +20,10 @@ The prompt flow Python tool offers customized code snippets as self-contained ex
 
 ## Build with the Python tool
 
-1. Create or open a flow in [Azure AI Studio](https://ai.azure.com). For more information, see [Create a flow](../flow-develop.md).
+1. Create or open a flow in [Azure AI Foundry](https://ai.azure.com). For more information, see [Create a flow](../flow-develop.md).
 1. Select **+ Python** to add the Python tool to your flow.
 
-    :::image type="content" source="../../media/prompt-flow/python-tool.png" alt-text="Screenshot that shows the Python tool added to a flow in Azure AI Studio." lightbox="../../media/prompt-flow/python-tool.png":::
+    :::image type="content" source="../../media/prompt-flow/python-tool.png" alt-text="Screenshot that shows the Python tool added to a flow in Azure AI Foundry portal." lightbox="../../media/prompt-flow/python-tool.png":::
 
 1. Enter values for the Python tool input parameters that are described in the [Inputs table](#inputs). For example, in the **Code** input text box, you can enter the following Python code:
 

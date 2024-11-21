@@ -1,7 +1,7 @@
 ---
-title: Use the chat playground in Azure AI Studio
+title: Use the chat playground in Azure AI Foundry portal
 titleSuffix: Azure AI Foundry
-description: Use this article to learn how to deploy a chat model and use it in the chat playground in Azure AI Studio.
+description: Use this article to learn how to deploy a chat model and use it in the chat playground in Azure AI Foundry portal.
 manager: scottpolly
 ms.service: azure-ai-studio
 ms.custom:
@@ -11,20 +11,20 @@ ms.date: 10/22/2024
 ms.reviewer: zuramir
 ms.author: sgilley
 author: sdgilley
-# customer intent: As a developer, I want use the chat playground in Azure AI Studio so I can work with generative AI.
+# customer intent: As a developer, I want use the chat playground in Azure AI Foundry portal so I can work with generative AI.
 ---
 
-# Quickstart: Use the chat playground in Azure AI Studio
+# Quickstart: Use the chat playground in Azure AI Foundry portal
 
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
-In this quickstart, you use [Azure AI Studio](https://ai.azure.com) to deploy a chat model and use it in the chat playground in Azure AI Studio.
+In this quickstart, you use [Azure AI Foundry](https://ai.azure.com) to deploy a chat model and use it in the chat playground in Azure AI Foundry portal.
 
 If you don't have an Azure subscription, <a href="https://azure.microsoft.com/free/cognitive-services" target="_blank">create one for free</a>.
 
 ## Prerequisites
 
-- You need permissions to create an Azure AI Studio hub or have one created for you.
+- You need permissions to create an Azure AI Foundry hub or have one created for you.
     - If your role is **Contributor** or **Owner**, you can follow the steps in this tutorial.
     - If your role is **Azure AI Developer**, the hub must already be created before you can complete this tutorial. Your user role must be **Azure AI Developer**, **Contributor**, or **Owner** on the hub. For more information, see [hubs](../concepts/ai-resources.md) and [Azure AI roles](../concepts/rbac-ai-studio.md).
 
@@ -43,7 +43,7 @@ For more information about deploying models, see [how to deploy models](../how-t
 
 ## Chat in the playground without your data
 
-In the [Azure AI Studio](https://ai.azure.com) playground, you can observe how your model responds with and without your data. In this quickstart, you test your model without your data.
+In the [Azure AI Foundry](https://ai.azure.com) playground, you can observe how your model responds with and without your data. In this quickstart, you test your model without your data.
 
 To chat with your deployed model in the chat playground, follow these steps:
 

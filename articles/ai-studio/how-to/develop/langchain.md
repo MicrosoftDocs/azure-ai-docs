@@ -1,7 +1,7 @@
 ---
-title: Develop application with LangChain and Azure AI studio
+title: Develop application with LangChain and Azure AI Foundry
 titleSuffix: Azure AI Foundry
-description: This article explains how to use LangChain with models deployed in Azure AI studio to build advance intelligent applications.
+description: This article explains how to use LangChain with models deployed in Azure AI Foundry portal to build advance intelligent applications.
 manager: scottpolly
 ms.service: azure-ai-studio
 ms.topic: how-to
@@ -11,13 +11,13 @@ ms.author: sgilley
 author: sdgilley
 ---
 
-# Develop applications with LangChain and Azure AI studio
+# Develop applications with LangChain and Azure AI Foundry
 
 LangChain is a development ecosystem that makes as easy possible for developers to build applications that reason. The ecosystem is composed by multiple components. Most of the them can be used by themselves, allowing you to pick and choose whichever components you like best.
 
-Models deployed to Azure AI studio can be used with LangChain in two ways:
+Models deployed to Azure AI Foundry can be used with LangChain in two ways:
 
-- **Using the Azure AI model inference API:** All models deployed to Azure AI studio support the [Azure AI model inference API](../../reference/reference-model-inference-api.md), which offers a common set of functionalities that can be used for most of the models in the catalog. The benefit of this API is that, since it's the same for all the models, changing from one to another is as simple as changing the model deployment being use. No further changes are required in the code. When working with LangChain, install the extensions `langchain-azure-ai`.
+- **Using the Azure AI model inference API:** All models deployed to Azure AI Foundry support the [Azure AI model inference API](../../reference/reference-model-inference-api.md), which offers a common set of functionalities that can be used for most of the models in the catalog. The benefit of this API is that, since it's the same for all the models, changing from one to another is as simple as changing the model deployment being use. No further changes are required in the code. When working with LangChain, install the extensions `langchain-azure-ai`.
 
 - **Using the model's provider specific API:** Some models, like OpenAI, Cohere, or Mistral, offer their own set of APIs and extensions for LlamaIndex. Those extensions may include specific functionalities that the model support and hence are suitable if you want to exploit them. When working with LangChain, install the extension specific for the model you want to use, like `langchain-openai` or `langchain-cohere`.
 
@@ -28,7 +28,7 @@ In this tutorial, you learn how to use the packages `langchain-azure-ai` to buil
 To run this tutorial, you need:
 
 * An [Azure subscription](https://azure.microsoft.com).
-* An Azure AI project as explained at [Create a project in Azure AI Studio](../create-projects.md).
+* An Azure AI project as explained at [Create a project in Azure AI Foundry portal](../create-projects.md).
 * A model supporting the [Azure AI model inference API](https://aka.ms/azureai/modelinference) deployed. In this example, we use a `Mistral-Large` deployment, but use any model of your preference. 
 
     * You can follow the instructions at [Deploy models as serverless APIs](../deploy-models-serverless.md).
@@ -48,9 +48,9 @@ To run this tutorial, you need:
 
 ## Configure the environment
 
-To use LLMs deployed in Azure AI studio, you need the endpoint and credentials to connect to it. Follow these steps to get the information you need from the model you want to use:
+To use LLMs deployed in Azure AI Foundry portal, you need the endpoint and credentials to connect to it. Follow these steps to get the information you need from the model you want to use:
 
-1. Go to the [Azure AI studio](https://ai.azure.com/).
+1. Go to the [Azure AI Foundry](https://ai.azure.com/).
 1. Open the project where the model is deployed, if it isn't already open.
 1. Go to **Models + endpoints** and select the model you deployed as indicated in the prerequisites.
 1. Copy the endpoint URL and the key.
@@ -176,7 +176,7 @@ chain.invoke({"language": "italian", "text": "hi"})
 
 ### Chaining multiple LLMs together
 
-Models deployed to Azure AI studio support the Azure AI model inference API, which is standard across all the models. Chain multiple LLM operations based on the capabilities of each model so you can optimize for the right model based on capabilities. 
+Models deployed to Azure AI Foundry support the Azure AI model inference API, which is standard across all the models. Chain multiple LLM operations based on the capabilities of each model so you can optimize for the right model based on capabilities. 
 
 In the following example, we create 2 model clients, one is a producer and another one is a verifier. To make the distinction clear, we are using a multi-model endpoint like the [Azure AI model inference service](../../ai-services/model-inference.md) and hence we are passing the parameter `model_name` to use a `Mistral-Large` and a `Mistral-Small` model, quoting the fact that **producing content is more complex than verifying it**.
 

@@ -1,7 +1,7 @@
 ---
-title: Work with Azure AI Studio projects in VS Code
+title: Work with Azure AI Foundry projects in VS Code
 titleSuffix: Azure AI Foundry
-description: This article provides instructions on how to get started with Azure AI Studio projects in VS Code.
+description: This article provides instructions on how to get started with Azure AI Foundry projects in VS Code.
 manager: scottpolly
 ms.service: azure-ai-studio
 ms.custom:
@@ -12,19 +12,19 @@ ms.date: 10/30/2024
 ms.reviewer: lebaro
 ms.author: sgilley
 author: sdgilley
-# customer intent: As a Developer, I want to use Azure AI Studio projects in VS Code.
+# customer intent: As a Developer, I want to use Azure AI Foundry projects in VS Code.
 ---
 
-# Get started with Azure AI Studio projects in VS Code (Preview)
+# Get started with Azure AI Foundry projects in VS Code (Preview)
 
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
-Azure AI Studio supports developing in VS Code - Desktop and Web. In each scenario, your VS Code instance is remotely connected to a prebuilt custom container running on a virtual machine, also known as a compute instance.
+Azure AI Foundry supports developing in VS Code - Desktop and Web. In each scenario, your VS Code instance is remotely connected to a prebuilt custom container running on a virtual machine, also known as a compute instance.
 
-## Launch VS Code from Azure AI Studio
+## Launch VS Code from Azure AI Foundry
 
-1. Go to [Azure AI Studio](https://ai.azure.com).
-1. Open your project in Azure AI Studio.
+1. Go to [Azure AI Foundry](https://ai.azure.com).
+1. Open your project in Azure AI Foundry portal.
 1. On the left menu, select **Code**.
 1. Select **VS Code container**.
 1. For **Compute**, select an existing compute instance or create a new one.
@@ -45,9 +45,9 @@ Azure AI Studio supports developing in VS Code - Desktop and Web. In each scenar
 
 Our prebuilt development environments are based on a docker container that has Azure AI SDKs, the prompt flow SDK, and other tools. The environment is configured to run VS Code remotely inside of the container. The container is defined in a similar way to [this Dockerfile](https://github.com/Azure-Samples/aistudio-python-quickstart-sample/blob/main/.devcontainer/Dockerfile), and is based on [Microsoft's Python 3.10 Development Container Image](https://mcr.microsoft.com/product/devcontainers/python/about).
 
-Your file explorer is opened to the specific project directory you launched from in AI Studio. 
+Your file explorer is opened to the specific project directory you launched from in AI Foundry portal. 
 
-The container is configured with the Azure AI folder hierarchy (`afh` directory), which is designed to orient you within your current development context, and help you work with your code, data, and shared files most efficiently. This `afh` directory houses your Azure AI Studio projects, and each project has a dedicated project directory that includes `code`, `data`, and `shared` folders. 
+The container is configured with the Azure AI folder hierarchy (`afh` directory), which is designed to orient you within your current development context, and help you work with your code, data, and shared files most efficiently. This `afh` directory houses your Azure AI Foundry projects, and each project has a dedicated project directory that includes `code`, `data`, and `shared` folders. 
 
 This table summarizes the folder structure:
 
@@ -64,9 +64,9 @@ This table summarizes the folder structure:
 
 You can create, reference, and work with prompt flows.
 
-Prompt flows already created in the Azure AI Studio can be found at `shared\Users\{user-name}\promptflow`. You can also create new flows in your `code` or `shared` folder.
+Prompt flows already created in the Azure AI Foundry portal can be found at `shared\Users\{user-name}\promptflow`. You can also create new flows in your `code` or `shared` folder.
 
-Prompt flow automatically uses the Azure AI Studio connections your project has access to.
+Prompt flow automatically uses the Azure AI Foundry connections your project has access to.
 
 You can also work with the prompt flow extension in VS Code, which is preinstalled in this environment. Within this extension, you can set the connection provider to your project. See [consume connections from Azure AI](https://microsoft.github.io/promptflow/cloud/azureai/consume-connections-from-azure-ai.html).
 

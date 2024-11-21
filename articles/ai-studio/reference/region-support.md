@@ -1,7 +1,7 @@
 ---
-title: Azure AI Studio feature availability across clouds regions
+title: Azure AI Foundry feature availability across clouds regions
 titleSuffix: Azure AI Foundry
-description: This article lists Azure AI Studio feature availability across clouds regions.
+description: This article lists Azure AI Foundry feature availability across clouds regions.
 manager: scottpolly
 ms.service: azure-ai-studio
 ms.topic: conceptual
@@ -12,15 +12,15 @@ author: sdgilley
 ms.custom: references_regions, build-2024
 ---
 
-# Azure AI Studio feature availability across clouds regions
+# Azure AI Foundry feature availability across clouds regions
 
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
-Azure AI Studio brings together various Azure AI capabilities that previously were only available as standalone Azure services. While we strive to make all features available in all regions where Azure AI Studio is supported at the same time, feature availability may vary by region. In this article, you'll learn what Azure AI Studio features are available across cloud regions.  
+Azure AI Foundry brings together various Azure AI capabilities that previously were only available as standalone Azure services. While we strive to make all features available in all regions where Azure AI Foundry is supported at the same time, feature availability may vary by region. In this article, you'll learn what Azure AI Foundry features are available across cloud regions.  
 
 ## Azure Public regions
 
-Azure AI Studio is currently available in the following Azure regions. You can create [Azure AI Studio hubs](../how-to/create-azure-ai-resource.md) and Azure AI Studio projects in these regions.
+Azure AI Foundry is currently available in the following Azure regions. You can create [Azure AI Foundry hubs](../how-to/create-azure-ai-resource.md) and Azure AI Foundry projects in these regions.
 
 - Australia East
 - Brazil South
@@ -46,14 +46,14 @@ Azure AI Studio is currently available in the following Azure regions. You can c
 
 ### Azure Government regions
 
-Azure AI Studio is currently not available in Azure Government regions or air-gap regions.
+Azure AI Foundry is currently not available in Azure Government regions or air-gap regions.
 
 ## Azure OpenAI
 
 For information on the availability of Azure OpenAI models, see [Azure OpenAI Model summary table and region availability](../../ai-services/openai/concepts/models.md#model-summary-table-and-region-availability).
 
 > [!NOTE]
-> Some models might not be available within the AI Studio model catalog.
+> Some models might not be available within the AI Foundry model catalog.
 
 For more information, see [Azure OpenAI quotas and limits](/azure/ai-services/openai/quotas-limits).
 
