@@ -132,5 +132,5 @@ AI service integration refers to internal connections to an Azure AI multi-servi
 - [Azure AI Studio region availability](/azure/ai-studio/reference/region-support)
 - [Azure OpenAI model region availability](/azure/ai-services/openai/concepts/models#model-summary-table-and-region-availability)
 - [Azure AI Vision region list](/azure/ai-services/computer-vision/overview-image-analysis#region-availability)
-- [Availability zone region availability](/azure/reliability/availability-zones-service-support#azure-regions-with-availability-zone-support)
+- [Availability zone region availability](/azure/reliability/availability-zones-region-support)
 - [Azure product by region page](https://azure.microsoft.com/explore/global-infrastructure/products-by-region/?products=search)
