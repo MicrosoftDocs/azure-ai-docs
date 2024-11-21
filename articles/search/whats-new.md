@@ -10,6 +10,7 @@ ms.topic: overview
 ms.date: 11/05/2024
 ms.custom:
   - references_regions
+  - ignite-2024
 ---
 
 # What's new in Azure AI Search

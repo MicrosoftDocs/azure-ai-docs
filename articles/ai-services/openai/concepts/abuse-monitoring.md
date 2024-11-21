@@ -5,9 +5,9 @@ description: Learn about the abuse monitoring capabilities of Azure OpenAI Servi
 author: mrbullwinkle
 ms.author: mbullwin
 ms.service: azure-ai-openai
-ms.topic: conceptual 
+ms.topic: conceptual
 ms.date: 09/20/2024
-ms.custom: template-concept
+ms.custom: template-concept, ignite-2024
 manager: nitinme
 ---
 

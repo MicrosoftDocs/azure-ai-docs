@@ -6,7 +6,7 @@ ms.author: eur
 ms.service: azure-ai-speech
 ms.topic: include
 ms.date: 9/20/2024
-ms.custom: include
+ms.custom: include, ignite-2024
 ---
 
 > [!NOTE]

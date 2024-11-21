@@ -4,7 +4,7 @@ titleSuffix: Azure AI Foundry
 description: This article provides instructions on how to build a custom chat app in Python using the Azure AI SDK.
 manager: scottpolly
 ms.service: azure-ai-studio
-ms.custom: build-2024, devx-track-azurecli, devx-track-python
+ms.custom: build-2024, devx-track-azurecli, devx-track-python, ignite-2024
 ms.topic: how-to
 ms.date: 11/07/2024
 ms.reviewer: dantaylo
@@ -20,7 +20,7 @@ In this quickstart, we walk you through setting up your local development enviro
 
 ## Prerequisites
 
-* Before you can follow this quickstart, complete the [AI Studio playground quickstart](../quickstarts/get-started-playground.md) to deploy a **gpt-4o-mini** model into a project.
+* Before you can follow this quickstart, complete the [AI Foundry playground quickstart](../quickstarts/get-started-playground.md) to deploy a **gpt-4o-mini** model into a project.
 
 ## Install the Azure CLI and sign in 
 
@@ -48,7 +48,7 @@ Create a file named **chat.py**.  Copy and paste the following code into it.
 
 Your project connection string is required to call the Azure OpenAI service from your code. 
 
-Find your connection string in the Azure AI Studio project you created in the [AI Studio playground quickstart](../quickstarts/get-started-playground.md).  Open the project, then find the connection string on the **Overview** page.  
+Find your connection string in the Azure AI Foundry project you created in the [AI Foundry playground quickstart](../quickstarts/get-started-playground.md).  Open the project, then find the connection string on the **Overview** page.  
 
 :::image type="content" source="../media/quickstarts/azure-ai-sdk/connection-string.png" alt-text="Screenshot shows the overview page of a project and the location of the connection string.":::
 

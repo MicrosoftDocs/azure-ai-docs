@@ -1,11 +1,12 @@
 ---
-title: Explore model benchmarks in Azure AI Studio
+title: Explore model benchmarks in Azure AI Foundry portal
 titleSuffix: Azure AI Foundry
-description: This article introduces benchmarking capabilities and the model benchmarks experience in Azure AI Studio.
+description: This article introduces benchmarking capabilities and the model benchmarks experience in Azure AI Foundry portal.
 manager: scottpolly
 ms.service: azure-ai-studio
 ms.custom:
   - ai-learning-hub
+  - ignite-2024
 ms.topic: concept-article
 ms.date: 11/11/2024
 ms.reviewer: jcioffi
@@ -13,17 +14,17 @@ ms.author: mopeakande
 author: msakande
 ---
 
-# Model benchmarks in Azure AI Studio
+# Model benchmarks in Azure AI Foundry portal
 
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
-In Azure AI Studio, you can compare benchmarks across models and datasets available in the industry to decide which one meets your business scenario. You can directly access detailed benchmarking results within the model catalog. Whether you already have models in mind or you're exploring models, the benchmarking data in Azure AI empowers you to make informed decisions quickly and efficiently.
+In Azure AI Foundry portal, you can compare benchmarks across models and datasets available in the industry to decide which one meets your business scenario. You can directly access detailed benchmarking results within the model catalog. Whether you already have models in mind or you're exploring models, the benchmarking data in Azure AI empowers you to make informed decisions quickly and efficiently.
 
 Azure AI supports model benchmarking for select models that are popular and most frequently used. Supported models have a _benchmarks_ icon that looks like a histogram. You can find these models in the model catalog by using the **Collections** filter and selecting **Benchmark results**. You can then use the search functionality to find specific models.
 
 :::image type="content" source="../media/how-to/model-benchmarks/access-model-catalog-benchmark.png" alt-text="Screenshot showing how to filter for benchmark models in the model catalog homepage." lightbox="../media/how-to/model-benchmarks/access-model-catalog-benchmark.png":::
 
-Model benchmarks help you make informed decisions about the sustainability of models and datasets before you initiate any job. The benchmarks are a curated list of the best-performing models for a task, based on a comprehensive comparison of benchmarking metrics. Azure AI Studio provides the following benchmarks for models, based on model catalog collections:
+Model benchmarks help you make informed decisions about the sustainability of models and datasets before you initiate any job. The benchmarks are a curated list of the best-performing models for a task, based on a comprehensive comparison of benchmarking metrics. Azure AI Foundry provides the following benchmarks for models, based on model catalog collections:
 
 - Benchmarks across large language models (LLMs) and small language models (SLMs)  
 - Benchmarks across embedding models
@@ -155,5 +156,5 @@ Prompt construction follows best practices for each dataset, as specified by the
 
 ## Related content
 
-- [How to benchmark models in Azure AI Studio](../how-to/benchmark-model-in-catalog.md)
-- [Model catalog and collections in Azure AI Studio](../how-to/model-catalog-overview.md)
+- [How to benchmark models in Azure AI Foundry portal](../how-to/benchmark-model-in-catalog.md)
+- [Model catalog and collections in Azure AI Foundry portal](../how-to/model-catalog-overview.md)

@@ -1,7 +1,7 @@
 ---
-title: Overview of prompt flow tools in Azure AI Studio
+title: Overview of prompt flow tools in Azure AI Foundry portal
 titleSuffix: Azure AI Foundry
-description: Learn about prompt flow tools that are available in Azure AI Studio.
+description: Learn about prompt flow tools that are available in Azure AI Foundry portal.
 manager: scottpolly
 ms.service: azure-ai-studio
 ms.custom:
@@ -13,7 +13,7 @@ ms.author: lagayhar
 author: lgayhardt
 ---
 
-# Overview of prompt flow tools in Azure AI Studio
+# Overview of prompt flow tools in Azure AI Foundry portal
 
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 

@@ -14,7 +14,7 @@ ms.custom:
  - build-2024
 ---
 
-# Reference: Chat Completions | Azure AI Studio
+# Reference: Chat Completions | Azure AI Foundry
 
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
