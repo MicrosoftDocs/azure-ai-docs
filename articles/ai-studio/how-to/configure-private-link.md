@@ -23,7 +23,7 @@ You get several hub default resources in your resource group. You need to config
 
 - Disable public network access of hub default resources such as Azure Storage, Azure Key Vault, and Azure Container Registry.
 - Establish private endpoint connection to hub default resources. You need to have both a blob and file private endpoint for the default storage account.
-- [Managed identity configurations](#managed-identity-configuration) to allow hubs access to your storage account if it's private.
+- If your storage account is private, [assign roles](#private-storage-configuration) to allow access.
 
 
 ## Prerequisites
@@ -234,15 +234,28 @@ az extension add --name ml
 
 ---
 
-## Managed identity configuration
 
-A manged identity configuration is required if you make your storage account private. Our services need to read/write data in your private storage account using [Allow Azure services on the trusted services list to access this storage account](/azure/storage/common/storage-network-security#grant-access-to-trusted-azure-services) with following managed identity configurations. Enable the system assigned managed identity of Azure AI Service and Azure AI Search, then configure role-based access control for each managed identity.
+## Private storage configuration
 
-| Role | Managed Identity | Resource | Purpose | Reference |
-|--|--|--|--|--|
-| `Storage File Data Privileged Contributor` | Azure AI Foundry project | Storage Account | Read/Write prompt flow data. | [Prompt flow doc](/azure/machine-learning/prompt-flow/how-to-secure-prompt-flow#secure-prompt-flow-with-workspace-managed-virtual-network) |
-| `Storage Blob Data Contributor` | Azure AI Service | Storage Account | Read from input container, write to pre-process result to output container. | [Azure OpenAI Doc](../../ai-services/openai/how-to/managed-identity.md) |
-| `Storage Blob Data Contributor` | Azure AI Search | Storage Account | Read blob and write knowledge store | [Search doc](/azure/search/search-howto-managed-identities-data-sources). |
+If your storage account is private (uses a private endpoint to communicate with your project), you perform the following steps:
+
+1. Our services need to read/write data in your private storage account using [Allow Azure services on the trusted services list to access this storage account](/azure/storage/common/storage-network-security#grant-access-to-trusted-azure-services) with following managed identity configurations. Enable the system assigned managed identity of Azure AI Service and Azure AI Search, then configure role-based access control for each managed identity.
+
+    | Role | Managed Identity | Resource | Purpose | Reference |
+    |--|--|--|--|--|
+    | `Reader` | Azure AI Foundry project | Private endpoint of the storage account | Read data from the private storage account. | 
+    | `Storage File Data Privileged Contributor` | Azure AI Foundry project | Storage Account | Read/Write prompt flow data. | [Prompt flow doc](/azure/machine-learning/prompt-flow/how-to-secure-prompt-flow#secure-prompt-flow-with-workspace-managed-virtual-network) |
+    | `Storage Blob Data Contributor` | Azure AI Service | Storage Account | Read from input container, write to preprocess result to output container. | [Azure OpenAI Doc](../../ai-services/openai/how-to/managed-identity.md) |
+    | `Storage Blob Data Contributor` | Azure AI Search | Storage Account | Read blob and write knowledge store | [Search doc](/azure/search/search-howto-managed-identities-data-sources). |
+
+    > [!TIP]
+    > Your storage account may have multiple private endpoints. You need to assign the `Reader` role to each private endpoint.
+
+1. Assign the `Storage Blob Data reader` role to your developers. This role allows them to read data from the storage account.
+
+1. Verify that the project's connection to the storage account uses Microsoft Entra ID for authentication. To view the connection information, go to the __Management center__, select __Connected resources__, and then select the storage account connections. If the credential type isn't Entra ID, select the pencil icon to update the connection and set the __Authentication method__ to __Microsoft Entra ID__.
+
+For information on securing playground chat, see [Securely use playground chat](secure-data-playground.md).
 
 ## Custom DNS configuration
 
@@ -265,7 +278,7 @@ If you need to configure custom DNS server without DNS forwarding, use the follo
     > * Compute instances can be accessed only from within the virtual network.
     > * The IP address for this FQDN is **not** the IP of the compute instance. Instead, use the private IP address of the workspace private endpoint (the IP of the `*.api.azureml.ms` entries.)
 
-* `<instance-name>.<region>.instances.azureml.ms` - Only used by the `az ml compute connect-ssh` command to connect to computers in a managed virtual network. Not needed if you are not using a managed network or SSH connections.
+* `<instance-name>.<region>.instances.azureml.ms` - Only used by the `az ml compute connect-ssh` command to connect to computers in a managed virtual network. Not needed if you aren't using a managed network or SSH connections.
 
 * `<managed online endpoint name>.<region>.inference.ml.azure.com` - Used by managed online endpoints
 
