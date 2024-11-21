@@ -27,11 +27,10 @@ ms.date: 11/13/2024
 | Run       | Activation of an agent to begin running based on the contents of Thread. The agent uses its configuration and Thread’s Messages to perform tasks by calling models and tools. As part of a Run, the agent appends Messages to the Thread. |
 | Run Step  | A detailed list of steps the agent took as part of a Run. An agent can call tools or create Messages during its run. Examining Run Steps allows you to understand how the agent is getting to its results.                                |
 
-Run the following commands to install the .NET package.
+Install the .NET package to your project. For example if you're using the .NET CLI, run the following command.
 
 ```console
-pip install azure_ai_projects-1.0.0b1-py3-none-any.whl --user --force-reinstall
-pip install azure-identity
+dotnet add package Azure.AI.Projects --version 1.0.0-beta.1
 ```
 
 Use the following code to create and run an agent. To run this code, you will need to create a connection string using information from your project. This string is in the format:
