@@ -5,7 +5,7 @@ description: Run the Create demo app wizard to generate HTML pages and script fo
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.topic: quickstart
 ms.date: 01/17/2024
 ms.custom:

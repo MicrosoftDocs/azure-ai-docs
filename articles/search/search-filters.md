@@ -6,7 +6,7 @@ description: Apply filter criteria to include or exclude content before text que
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.topic: concept-article
 ms.date: 09/19/2024
 ms.custom:

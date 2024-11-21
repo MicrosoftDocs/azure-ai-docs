@@ -6,7 +6,7 @@ description: Enable secure data access to Azure Storage from an indexer in Azure
 manager: nitinme
 author: arv100kri
 ms.author: arjagann
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: how-to

@@ -5,7 +5,7 @@ description: Deploy search-enabled website with .NET APIs to Azure Static web ap
 manager: nitinme
 author: diberry
 ms.author: diberry
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.topic: tutorial
 ms.date: 08/16/2024
 ms.custom:

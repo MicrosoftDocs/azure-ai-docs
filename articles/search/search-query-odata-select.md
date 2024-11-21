@@ -6,7 +6,7 @@ description: Syntax and language reference for explicit selection of fields to r
 manager: nitinme
 author: bevloh
 ms.author: beloh
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: reference
@@ -61,7 +61,7 @@ An example result might look like this:
 ```json
 {
   "HotelId": "1",
-  "HotelName": "Secret Point Motel",
+  "HotelName": "Stay-Kay City Hotel",
   "Rating": 4,
   "Address": {
     "City": "New York"
@@ -79,7 +79,7 @@ An example result might look like this:
 
 ```json
 {
-  "HotelName": "Secret Point Motel",
+  "HotelName": "Stay-Kay City Hotel",
   "Rating": 4,
   "Address": {
     "StreetAddress": "677 5th Ave",

@@ -7,7 +7,7 @@ ms.service: azure-ai-document-intelligence
 ms.topic: include
 ms.date: 05/23/2024
 ms.author: lajanuar
-ms.custom: devx-track-csharp, ignite-2023, linux-related-content
+ms.custom: devx-track-csharp, linux-related-content
 monikerRange: 'doc-intel-3.1.0 || doc-intel-3.0.0'
 ---
 
@@ -1210,6 +1210,7 @@ if __name__ == "__main__":
     analyze_identity_documents()
 
 ```
+
 > [!div class="nextstepaction"]
 > [View complete code on GitHub.](https://github.com/Azure-Samples/document-intelligence-code-samples/blob/v3.1(2023-07-31-GA)/Python(v3.1)/Prebuilt_model/sample_analyze_identity_documents.py) [More samples](https://github.com/Azure-Samples/document-intelligence-code-samples/blob/v3.1(2023-07-31-GA)/Python(v3.1)/Prebuilt_model)
 

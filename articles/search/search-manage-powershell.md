@@ -6,7 +6,7 @@ description: Create and configure an Azure AI Search service with PowerShell. Yo
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.devlang: powershell
 ms.topic: how-to
 ms.date: 04/05/2024
@@ -431,7 +431,7 @@ Sku               : Standard
 ReplicaCount      : 6
 PartitionCount    : 6
 HostingMode       : Default
-Id                : /subscriptions/65a1016d-0f67-45d2-b838-b8f373d6d52e/resourceGroups/demo-westus/providers/Microsoft.Search/searchServices/my-demo-searchapp
+Id                : /subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/demo-westus/providers/Microsoft.Search/searchServices/my-demo-searchapp
 ```
 
 ## Create a shared private link resource

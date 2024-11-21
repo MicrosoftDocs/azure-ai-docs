@@ -40,7 +40,7 @@ items:
         href: get-speech-recognition-results.md
       - name: Real-time diarization quickstart
         href: get-started-stt-diarization.md
-    - name: Fast transcription API (Preview)
+    - name: Fast transcription API
       href: fast-transcription-create.md
     - name: Batch transcription API
       items:
@@ -58,6 +58,8 @@ items:
       items:
         - name: Custom speech overview
           href: custom-speech-overview.md
+        - name: Fine-tune in the Azure AI Foundry portal
+          href: custom-speech-ai-studio.md
         - name: Create a custom speech model 
           items:
           - name: "Part 1: Create a project"
@@ -133,6 +135,9 @@ items:
     - name: Get facial position with viseme
       href: how-to-speech-synthesis-viseme.md
       displayName: viseme, phoneme, phonetic
+    - name: Use high definition (HD) voices (preview)
+      href: high-definition-voices.md
+      displayName: hd voice
     - name: Custom neural voice
       items:
         - name: Custom neural voice overview
@@ -229,8 +234,8 @@ items:
       items:
        - name: Video translation overview
          href: video-translation-overview.md
-       - name: Video translation in the studio
-         href: video-translation-studio.md
+       - name: How to use video translation
+         href: video-translation-get-started.md
 - name: Intent recognition
   items:
     - name: Intent recognition overview
@@ -284,7 +289,7 @@ items:
         href: language-learning-overview.md
       - name: Pronunciation Assessment with speech to text
         items:
-        - name: Reading and speaking assessment in AI Studio
+        - name: Reading and speaking assessment in AI Foundry
           href: pronunciation-assessment-tool.md
           displayName: pronounce, learn language, assess pron
         - name: Interactive language learning with pronunciation assessment
@@ -449,6 +454,9 @@ items:
               href: migrate-to-custom-voice-api.md
         - name: Speech to text REST API migration
           items:
+          - name: From Speech to text v3.2 to 2024-11-15
+            href: migrate-2024-11-15.md
+            displayName: migrate,migration,deprecate,retire,sunset
           - name: From Speech to text v3.1 to v3.2
             href: migrate-v3-1-to-v3-2.md
             displayName: migrate,migration,deprecate,retire,sunset
@@ -540,11 +548,6 @@ items:
           href: /rest/api/batchtexttospeech/operation-groups
         - name: Batch avatar REST API
           href: /rest/api/batchavatar/operation-groups
-        - name: Conversation transcription REST APIs
-          href: https://signature.centralus.cts.speech.microsoft.com/UI/index.html 
-          displayName: reference
-        - name: Ingestion service REST API
-          href: https://eastus.ingestion.speech.microsoft.com/swagger/index.html?urls.primaryName=v0.2-preview
 - name: Responsible AI
   items:
     - name: Speech to text

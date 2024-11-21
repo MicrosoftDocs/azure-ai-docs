@@ -6,7 +6,7 @@ description: Create a managed identity for your search service and use Microsoft
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
   - build-2024

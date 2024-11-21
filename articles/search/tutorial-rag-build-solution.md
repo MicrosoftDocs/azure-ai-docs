@@ -6,7 +6,7 @@ description: Learn how to build a generative search (RAG) app using LLMs and you
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.topic: overview
 ms.date: 10/04/2024
 

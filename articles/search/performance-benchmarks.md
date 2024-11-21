@@ -4,7 +4,7 @@ titleSuffix: Azure AI Search
 description: Learn about the performance of Azure AI Search through various performance benchmarks
 author: gmndrg
 ms.author: gimondra
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: conceptual

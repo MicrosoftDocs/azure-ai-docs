@@ -37,6 +37,7 @@ These error codes can be returned by any Face API calls.
 |Bad Request (400)|InvalidImageSize|Image size is too small.|The valid image file size should be larger than or equal to 1 KB.|
 |Bad Request (400)|InvalidImageSize|Image size is too big.|The valid image file size should be no larger than 6 MB.|
 |Unauthorized (401)|401|Access denied due to invalid subscription key or wrong API endpoint. Make sure to provide a valid key for an active subscription and use a correct regional API endpoint for your resource.||
+|Forbidden (403)|UnsupportedFeature|Feature is not supported, missing approval for one or more of the following features: Identification, Verification.|Register for access by submitting a [registration form](https://aka.ms/facerecognition).|
 |Conflict (409)|ConcurrentOperationConflict|There is a conflict operation on resource `<resourceName>`, please try later.||
 |Too Many Requests (429)|429|Rate limit is exceeded.||
 
@@ -50,6 +51,7 @@ These error codes can be returned by Face Detection operation.
 |Bad Request (400)|BadArgument|Invalid argument returnFaceAttributes.||
 |Bad Request (400)|BadArgument|'returnFaceAttributes' is not supported by detection_02.||
 |Bad Request (400)|BadArgument|'returnLandmarks' is not supported by detection_02.||
+|Forbidden (403)|UnsupportedFeature|Return Attributes (emotion, gender, age, smile, facial hair, hair and makeup) have been deprecated and are no longer supported.|Read more about this decision [here](https://azure.microsoft.com/blog/responsible-ai-investments-and-safeguards-for-facial-recognition/).|
 
 ## Face Liveness Session error codes
 

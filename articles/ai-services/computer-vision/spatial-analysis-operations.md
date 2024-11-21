@@ -13,6 +13,8 @@ ms.author: pafarley
 
 # Spatial Analysis operations
 
+[!INCLUDE [spatial-analysis-deprecation](includes/spatial-analysis-deprecation.md)]
+
 Spatial Analysis lets you analyze video streams from camera devices in real time. For each camera device you configure, the Spatial Analysis operations will generate an output stream of JSON messages sent to your instance of Azure IoT Hub.
 
 The Spatial Analysis container implements the following operations. You can configure these operations in the deployment manifest of your container.

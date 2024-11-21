@@ -1,8 +1,8 @@
 ---
-title: Get started using Azure AI Studio with a screen reader
-titleSuffix: Azure AI Studio
-description: This quickstart guides you in how to get oriented and navigate Azure AI Studio with a screen reader.
-manager: nitinme
+title: Get started using Azure AI Foundry with a screen reader
+titleSuffix: Azure AI Foundry
+description: This quickstart guides you in how to get oriented and navigate Azure AI Foundry with a screen reader.
+manager: scottpolly
 ms.service: azure-ai-studio
 ms.custom:
   - ignite-2023
@@ -14,15 +14,15 @@ ms.author: sgilley
 author: sdgilley
 ---
 
-# QuickStart: Get started using AI Studio with a screen reader
+# QuickStart: Get started using AI Foundry with a screen reader
 
-This article is for people who use screen readers such as [Microsoft's Narrator](https://support.microsoft.com/windows/complete-guide-to-narrator-e4397a0d-ef4f-b386-d8ae-c172f109bdb1#WindowsVersion=Windows_11), JAWS, NVDA or Apple's Voiceover. In this quickstart, you'll be introduced to the basic structure of Azure AI Studio and discover how to navigate around efficiently. 
+This article is for people who use screen readers such as [Microsoft's Narrator](https://support.microsoft.com/windows/complete-guide-to-narrator-e4397a0d-ef4f-b386-d8ae-c172f109bdb1#WindowsVersion=Windows_11), JAWS, NVDA or Apple's Voiceover. In this quickstart, you'll be introduced to the basic structure of Azure AI Foundry and discover how to navigate around efficiently. 
 
-## Getting oriented in Azure AI Studio 
+## Getting oriented in Azure AI Foundry portal 
 
-Most Azure AI Studio pages are composed of the following landmark structure: 
+Most Azure AI Foundry pages are composed of the following landmark structure: 
 
-- Banner (contains Azure AI Studio app title, settings, and profile information)
+- Banner (contains Azure AI Foundry app title, settings, and profile information)
     - Might sometimes contain a breadcrumb navigation element 
 - Navigation
     - The contents of the navigation are different depending on whether you have selected a hub or project in the studio
@@ -42,12 +42,12 @@ Once you have created or selected a project, you can access more capabilities su
 
 Once you have created or selected a project, you can also use the **Recent projects picker** button within the navigation to change project at any time.
 
-For more information about the navigation, see [What is Azure AI Studio](../what-is-ai-studio.md).
+For more information about the navigation, see [What is Azure AI Foundry](../what-is-ai-studio.md).
 
 ## Projects 
 
-To work within the Azure AI Studio, you must first [create a project](../how-to/create-projects.md): 
-1. In [Azure AI Studio](https://ai.azure.com), select **Home** from the navigation.
+To work within the Azure AI Foundry portal, you must first [create a project](../how-to/create-projects.md): 
+1. In [Azure AI Foundry](https://ai.azure.com), select **Home** from the navigation.
 1. Press the **Tab** key until you hear *New project* and select this button.  
 1. Enter the information requested in the **Create a project** dialog.  
 
@@ -74,7 +74,7 @@ Prompt flow is a tool to create executable flows, linking LLMs, prompts, and Pyt
 
 Once you have created or selected a project, go to the navigation landmark. Press the down arrow until you hear *Prompt flow* and select this link.
 
-The prompt flow UI in Azure AI Studio is composed of the following main sections: the command toolbar, flow (includes list of the flow nodes), files, and graph view. The flow, files, and graph sections each have their own H2 headings that can be used for navigation.
+The prompt flow UI in Azure AI Foundry portal is composed of the following main sections: the command toolbar, flow (includes list of the flow nodes), files, and graph view. The flow, files, and graph sections each have their own H2 headings that can be used for navigation.
 
 ### Flow 
 
@@ -124,5 +124,5 @@ If you're a government, commercial, or enterprise customer, contact the enterpri
 
 ## Related content
 
-* Learn how you can build generative AI applications in the [Azure AI Studio](../what-is-ai-studio.md).
+* Learn how you can build generative AI applications in the [Azure AI Foundry](../what-is-ai-studio.md).
 * Get answers to frequently asked questions in the [Azure AI FAQ article](../faq.yml).

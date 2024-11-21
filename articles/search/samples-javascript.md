@@ -6,13 +6,13 @@ description: Find Azure AI Search demo JavaScript code samples that use the Azur
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.custom:
   - devx-track-dotnet
   - devx-track-js
   - ignite-2023
-ms.topic: conceptual
-ms.date: 08/16/2024
+ms.topic: concept-article
+ms.date: 10/18/2024
 ---
 
 # JavaScript samples for Azure AI Search
@@ -25,6 +25,7 @@ Learn about the JavaScript code samples that demonstrate the functionality and w
 | API reference | [@azure/search-documents](/javascript/api/@azure/search-documents/) |
 | API test cases | [github.com/Azure/azure-sdk-for-js/tree/main/sdk/search/search-documents/test](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/search/search-documents/test) |
 | Source code | [github.com/Azure/azure-sdk-for-js/tree/main/sdk/search/search-documents](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/search/search-documents) |
+| Change log | [https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/search/search-documents/CHANGELOG.md](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/search/search-documents/CHANGELOG.md) |
 
 ## SDK samples
 

@@ -26,6 +26,9 @@ To set up your environment, install the Speech SDK for JavaScript. Run this comm
 
 ## Recognize speech from a file
 
+> [!TIP]
+> Try out the [Azure AI Speech Toolkit](https://marketplace.visualstudio.com/items?itemName=ms-azureaispeech.azure-ai-speech-toolkit) to easily build and run samples on Visual Studio Code.
+
 Follow these steps to create a Node.js console application for speech recognition.
 
 1. Open a command prompt window where you want the new project, and create a new file named *SpeechRecognition.js*.

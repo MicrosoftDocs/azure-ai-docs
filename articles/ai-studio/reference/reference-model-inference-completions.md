@@ -1,6 +1,6 @@
 ---
 title: Azure AI Model Inference Completions
-titleSuffix: Azure AI Studio
+titleSuffix: Azure AI Foundry
 description: Reference for Azure AI Model Inference Completions API
 manager: scottpolly
 ms.service: azure-ai-studio
@@ -14,9 +14,9 @@ ms.custom:
  - build-2024
 ---
 
-# Reference: Completions | Azure AI Studio
+# Reference: Completions | Azure AI Foundry
 
-[!INCLUDE [Feature preview](~/reusable-content/ce-skilling/azure/includes/ai-studio/includes/feature-preview.md)]
+[!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
 Creates a completion for the provided prompt and parameters.
 

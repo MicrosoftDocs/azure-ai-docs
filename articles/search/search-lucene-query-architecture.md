@@ -6,7 +6,7 @@ description: Describes concepts and architecture of query processing and documen
 manager: nitinme
 author: yahnoosh
 ms.author: jlembicz
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: conceptual

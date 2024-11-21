@@ -3,7 +3,7 @@ title: Experiment tracking and deploying models
 titleSuffix: Azure Data Science Virtual Machine
 description: Learn how to track and log experiments from the Data Science Virtual Machine with Azure Machine Learning and/or MLFlow.
 services: machine-learning
-ms.service: data-science-vm
+ms.service: azure-data-science-virtual-machines
 ms.custom: sdkv1
 author: samkemp
 ms.author: samkemp

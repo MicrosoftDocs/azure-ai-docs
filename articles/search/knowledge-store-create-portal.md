@@ -5,7 +5,7 @@ description: Use the Import data wizard to create a knowledge store used for per
 author: HeidiSteen
 ms.author: heidist
 manager: nitinme
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.topic: quickstart
 ms.date: 03/18/2024
 ms.custom:

@@ -1,11 +1,11 @@
 ---
-title: How to use Cohere Embed V3 models with Azure AI Studio
-titleSuffix: Azure AI Studio
-description: Learn how to use Cohere Embed V3 models with Azure AI Studio.
+title: How to use Cohere Embed V3 models with Azure AI Foundry
+titleSuffix: Azure AI Foundry
+description: Learn how to use Cohere Embed V3 models with Azure AI Foundry.
 ms.service: azure-ai-studio
 manager: scottpolly
 ms.topic: how-to
-ms.date: 08/08/2024
+ms.date: 10/23/2024
 ms.reviewer: shubhiraj
 reviewer: shubhirajMsft
 ms.author: mopeakande
@@ -14,14 +14,14 @@ ms.custom: references_regions, generated
 zone_pivot_groups: azure-ai-model-catalog-samples-embeddings
 ---
 
-# How to use Cohere Embed V3 models with Azure AI Studio
+# How to use Cohere Embed V3 models with Azure AI Foundry
 
-[!INCLUDE [Feature preview](~/reusable-content/ce-skilling/azure/includes/ai-studio/includes/feature-preview.md)]
+[!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
-In this article, you learn about Cohere Embed V3 models and how to use them with Azure AI Studio.
+In this article, you learn about Cohere Embed V3 models and how to use them with Azure AI Foundry.
 The Cohere family of models includes various models optimized for different use cases, including chat completions, embeddings, and rerank. Cohere models are optimized for various use cases that include reasoning, summarization, and question answering.
 
-
+[!INCLUDE [models-preview](../includes/models-preview.md)]
 
 ::: zone pivot="programming-language-python"
 
@@ -31,25 +31,30 @@ The Cohere family of models for embeddings includes the following models:
 
 # [Cohere Embed v3 - English](#tab/cohere-embed-v3-english)
 
-Cohere Embed English is a text representation model used for semantic search, retrieval-augmented generation (RAG), classification, and clustering. Embed English performs well on the HuggingFace (massive text embed) MTEB benchmark and on use-cases for various industries, such as Finance, Legal, and General-Purpose Corpora. Embed English also has the following attributes:
+Cohere Embed English is a multimodal (text and image) representation model used for semantic search, retrieval-augmented generation (RAG), classification, and clustering. Embed English performs well on the HuggingFace (massive text embed) MTEB benchmark and on use-cases for various industries, such as Finance, Legal, and General-Purpose Corpora. Embed English also has the following attributes:
 
-* Embed English has 1,024 dimensions.
+* Embed English has 1,024 dimensions
 * Context window of the model is 512 tokens
+* Embed English accepts images as a base64 encoded data url
 
+Image embeddings consume a fixed number of tokens per image—1,000 tokens per image—which translates to a price of $0.0001 per image embedded. The size or resolution of the image doesn't affect the number of tokens consumed, provided the image is within the accepted dimensions, file size, and formats.
+ 
 
 # [Cohere Embed v3 - Multilingual](#tab/cohere-embed-v3-multilingual)
 
-Cohere Embed Multilingual is a text representation model used for semantic search, retrieval-augmented generation (RAG), classification, and clustering. Embed Multilingual supports more than 100 languages and can be used to search within a language (for example, to search with a French query on French documents) and across languages (for example, to search with an English query on Chinese documents). Embed multilingual performs well on multilingual benchmarks such as Miracl. Embed Multilingual also has the following attributes:
+Cohere Embed Multilingual is a multimodal (text and image) representation model used for semantic search, retrieval-augmented generation (RAG), classification, and clustering. Embed Multilingual supports more than 100 languages and can be used to search within a language (for example, to search with a French query on French documents) and across languages (for example, to search with an English query on Chinese documents). Embed multilingual performs well on multilingual benchmarks such as Miracl. Embed Multilingual also has the following attributes:
 
-* Embed Multilingual has 1,024 dimensions.
+* Embed Multilingual has 1,024 dimensions
 * Context window of the model is 512 tokens
+* Embed Multilingual accepts images as a base64 encoded data url
 
+Image embeddings consume a fixed number of tokens per image—1,000 tokens per image—which translates to a price of $0.0001 per image embedded. The size or resolution of the image doesn't affect the number of tokens consumed, provided the image is within the accepted dimensions, file size, and formats.
 
 ---
 
 ## Prerequisites
 
-To use Cohere Embed V3 models with Azure AI Studio, you need the following prerequisites:
+To use Cohere Embed V3 models with Azure AI Foundry, you need the following prerequisites:
 
 ### A model deployment
 
@@ -57,7 +62,7 @@ To use Cohere Embed V3 models with Azure AI Studio, you need the following prere
 
 Cohere Embed V3 models can be deployed to serverless API endpoints with pay-as-you-go billing. This kind of deployment provides a way to consume models as an API without hosting them on your subscription, while keeping the enterprise security and compliance that organizations need. 
 
-Deployment to a serverless API endpoint doesn't require quota from your subscription. If your model isn't deployed already, use the Azure AI Studio, Azure Machine Learning SDK for Python, the Azure CLI, or ARM templates to [deploy the model as a serverless API](deploy-models-serverless.md).
+Deployment to a serverless API endpoint doesn't require quota from your subscription. If your model isn't deployed already, use the Azure AI Foundry portal, Azure Machine Learning SDK for Python, the Azure CLI, or ARM templates to [deploy the model as a serverless API](deploy-models-serverless.md).
 
 > [!div class="nextstepaction"]
 > [Deploy the model to serverless API endpoints](deploy-models-serverless.md)
@@ -220,25 +225,29 @@ The Cohere family of models for embeddings includes the following models:
 
 # [Cohere Embed v3 - English](#tab/cohere-embed-v3-english)
 
-Cohere Embed English is a text representation model used for semantic search, retrieval-augmented generation (RAG), classification, and clustering. Embed English performs well on the HuggingFace (massive text embed) MTEB benchmark and on use-cases for various industries, such as Finance, Legal, and General-Purpose Corpora. Embed English also has the following attributes:
+Cohere Embed English is a multimodal (text and image) representation model used for semantic search, retrieval-augmented generation (RAG), classification, and clustering. Embed English performs well on the HuggingFace (massive text embed) MTEB benchmark and on use-cases for various industries, such as Finance, Legal, and General-Purpose Corpora. Embed English also has the following attributes:
 
-* Embed English has 1,024 dimensions.
+* Embed English has 1,024 dimensions
 * Context window of the model is 512 tokens
+* Embed English accepts images as a base64 encoded data url
 
+Image embeddings consume a fixed number of tokens per image—1,000 tokens per image—which translates to a price of $0.0001 per image embedded. The size or resolution of the image doesn't affect the number of tokens consumed, provided the image is within the accepted dimensions, file size, and formats.
 
 # [Cohere Embed v3 - Multilingual](#tab/cohere-embed-v3-multilingual)
 
-Cohere Embed Multilingual is a text representation model used for semantic search, retrieval-augmented generation (RAG), classification, and clustering. Embed Multilingual supports more than 100 languages and can be used to search within a language (for example, to search with a French query on French documents) and across languages (for example, to search with an English query on Chinese documents). Embed multilingual performs well on multilingual benchmarks such as Miracl. Embed Multilingual also has the following attributes:
+Cohere Embed Multilingual is a multimodal (text and image) representation model used for semantic search, retrieval-augmented generation (RAG), classification, and clustering. Embed Multilingual supports more than 100 languages and can be used to search within a language (for example, to search with a French query on French documents) and across languages (for example, to search with an English query on Chinese documents). Embed multilingual performs well on multilingual benchmarks such as Miracl. Embed Multilingual also has the following attributes:
 
-* Embed Multilingual has 1,024 dimensions.
+* Embed Multilingual has 1,024 dimensions
 * Context window of the model is 512 tokens
+* Embed Multilingual accepts images as a base64 encoded data url
 
+Image embeddings consume a fixed number of tokens per image—1,000 tokens per image—which translates to a price of $0.0001 per image embedded. The size or resolution of the image doesn't affect the number of tokens consumed, provided the image is within the accepted dimensions, file size, and formats.
 
 ---
 
 ## Prerequisites
 
-To use Cohere Embed V3 models with Azure AI Studio, you need the following prerequisites:
+To use Cohere Embed V3 models with Azure AI Foundry, you need the following prerequisites:
 
 ### A model deployment
 
@@ -246,7 +255,7 @@ To use Cohere Embed V3 models with Azure AI Studio, you need the following prere
 
 Cohere Embed V3 models can be deployed to serverless API endpoints with pay-as-you-go billing. This kind of deployment provides a way to consume models as an API without hosting them on your subscription, while keeping the enterprise security and compliance that organizations need. 
 
-Deployment to a serverless API endpoint doesn't require quota from your subscription. If your model isn't deployed already, use the Azure AI Studio, Azure Machine Learning SDK for Python, the Azure CLI, or ARM templates to [deploy the model as a serverless API](deploy-models-serverless.md).
+Deployment to a serverless API endpoint doesn't require quota from your subscription. If your model isn't deployed already, use the Azure AI Foundry portal, Azure Machine Learning SDK for Python, the Azure CLI, or ARM templates to [deploy the model as a serverless API](deploy-models-serverless.md).
 
 > [!div class="nextstepaction"]
 > [Deploy the model to serverless API endpoints](deploy-models-serverless.md)
@@ -411,25 +420,29 @@ The Cohere family of models for embeddings includes the following models:
 
 # [Cohere Embed v3 - English](#tab/cohere-embed-v3-english)
 
-Cohere Embed English is a text representation model used for semantic search, retrieval-augmented generation (RAG), classification, and clustering. Embed English performs well on the HuggingFace (massive text embed) MTEB benchmark and on use-cases for various industries, such as Finance, Legal, and General-Purpose Corpora. Embed English also has the following attributes:
+Cohere Embed English is a multimodal (text and image) representation model used for semantic search, retrieval-augmented generation (RAG), classification, and clustering. Embed English performs well on the HuggingFace (massive text embed) MTEB benchmark and on use-cases for various industries, such as Finance, Legal, and General-Purpose Corpora. Embed English also has the following attributes:
 
-* Embed English has 1,024 dimensions.
+* Embed English has 1,024 dimensions
 * Context window of the model is 512 tokens
+* Embed English accepts images as a base64 encoded data url
 
+Image embeddings consume a fixed number of tokens per image—1,000 tokens per image—which translates to a price of $0.0001 per image embedded. The size or resolution of the image doesn't affect the number of tokens consumed, provided the image is within the accepted dimensions, file size, and formats.
 
 # [Cohere Embed v3 - Multilingual](#tab/cohere-embed-v3-multilingual)
 
-Cohere Embed Multilingual is a text representation model used for semantic search, retrieval-augmented generation (RAG), classification, and clustering. Embed Multilingual supports more than 100 languages and can be used to search within a language (for example, to search with a French query on French documents) and across languages (for example, to search with an English query on Chinese documents). Embed multilingual performs well on multilingual benchmarks such as Miracl. Embed Multilingual also has the following attributes:
+Cohere Embed Multilingual is a multimodal (text and image) representation model used for semantic search, retrieval-augmented generation (RAG), classification, and clustering. Embed Multilingual supports more than 100 languages and can be used to search within a language (for example, to search with a French query on French documents) and across languages (for example, to search with an English query on Chinese documents). Embed multilingual performs well on multilingual benchmarks such as Miracl. Embed Multilingual also has the following attributes:
 
-* Embed Multilingual has 1,024 dimensions.
+* Embed Multilingual has 1,024 dimensions
 * Context window of the model is 512 tokens
+* Embed Multilingual accepts images as a base64 encoded data url
 
+Image embeddings consume a fixed number of tokens per image—1,000 tokens per image—which translates to a price of $0.0001 per image embedded. The size or resolution of the image doesn't affect the number of tokens consumed, provided the image is within the accepted dimensions, file size, and formats.
 
 ---
 
 ## Prerequisites
 
-To use Cohere Embed V3 models with Azure AI Studio, you need the following prerequisites:
+To use Cohere Embed V3 models with Azure AI Foundry, you need the following prerequisites:
 
 ### A model deployment
 
@@ -437,7 +450,7 @@ To use Cohere Embed V3 models with Azure AI Studio, you need the following prere
 
 Cohere Embed V3 models can be deployed to serverless API endpoints with pay-as-you-go billing. This kind of deployment provides a way to consume models as an API without hosting them on your subscription, while keeping the enterprise security and compliance that organizations need. 
 
-Deployment to a serverless API endpoint doesn't require quota from your subscription. If your model isn't deployed already, use the Azure AI Studio, Azure Machine Learning SDK for Python, the Azure CLI, or ARM templates to [deploy the model as a serverless API](deploy-models-serverless.md).
+Deployment to a serverless API endpoint doesn't require quota from your subscription. If your model isn't deployed already, use the Azure AI Foundry portal, Azure Machine Learning SDK for Python, the Azure CLI, or ARM templates to [deploy the model as a serverless API](deploy-models-serverless.md).
 
 > [!div class="nextstepaction"]
 > [Deploy the model to serverless API endpoints](deploy-models-serverless.md)
@@ -638,7 +651,7 @@ Cohere Embed V3 models can optimize the embeddings based on its use case.
 
 ## Cost and quota considerations for Cohere family of models deployed as serverless API endpoints
 
-Cohere models deployed as a serverless API are offered by Cohere through the Azure Marketplace and integrated with Azure AI Studio for use. You can find the Azure Marketplace pricing when deploying the model.
+Cohere models deployed as a serverless API are offered by Cohere through the Azure Marketplace and integrated with Azure AI Foundry for use. You can find the Azure Marketplace pricing when deploying the model.
 
 Each time a project subscribes to a given offer from the Azure Marketplace, a new resource is created to track the costs associated with its consumption. The same resource is used to track costs associated with inference; however, multiple meters are available to track each scenario independently.
 
@@ -651,6 +664,6 @@ Quota is managed per deployment. Each deployment has a rate limit of 200,000 tok
 
 * [Azure AI Model Inference API](../reference/reference-model-inference-api.md)
 * [Deploy models as serverless APIs](deploy-models-serverless.md)
-* [Consume serverless API endpoints from a different Azure AI Studio project or hub](deploy-models-serverless-connect.md)
+* [Consume serverless API endpoints from a different Azure AI Foundry project or hub](deploy-models-serverless-connect.md)
 * [Region availability for models in serverless API endpoints](deploy-models-serverless-availability.md)
 * [Plan and manage costs (marketplace)](costs-plan-manage.md#monitor-costs-for-models-offered-through-the-azure-marketplace)

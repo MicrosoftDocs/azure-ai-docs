@@ -4,7 +4,7 @@ titleSuffix: Azure AI Search
 description: Learn about the tools, behaviors, and approaches for analyzing query and indexing performance in Azure AI Search.
 author: mattgotteiner
 ms.author: magottei
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.topic: conceptual
 ms.date: 06/06/2024
 ---

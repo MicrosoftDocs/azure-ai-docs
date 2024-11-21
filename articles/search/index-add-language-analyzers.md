@@ -5,7 +5,7 @@ description: Configure multi-lingual lexical analysis for non-English queries an
 author: HeidiSteen
 manager: nitinme
 ms.author: heidist
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: how-to

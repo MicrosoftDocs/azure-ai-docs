@@ -6,7 +6,7 @@ description: Learn how to define table, object, and file projections in a knowle
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: conceptual

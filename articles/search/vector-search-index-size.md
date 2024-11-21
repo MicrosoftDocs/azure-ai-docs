@@ -5,9 +5,10 @@ description: Explanation of the factors affecting the size of a vector index.
 
 author: robertklee
 ms.author: robertlee
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.custom:
   - build-2024
+  - ignite-2024
 ms.topic: conceptual
 ms.date: 09/19/2024
 ---
@@ -20,7 +21,7 @@ For each vector field, Azure AI Search constructs an internal vector index using
 > A note about terminology. Internally, the physical data structures of a search index include raw content (used for retrieval patterns requiring non-tokenized content), inverted indexes (used for searchable text fields), and vector indexes (used for searchable vector fields). This article explains the limits for the internal vector indexes that back each of your vector fields.
 
 > [!TIP]
-> [Vector quantization and storage configuration](vector-search-how-to-configure-compression-storage.md) is now generally available. Use capabilities like narrow data types, scalar quantization, and elimination of redundant storage to stay under vector quota and storage quota.
+> [Vector optimization techniques](vector-search-how-to-configure-compression-storage.md) are now generally available. Use capabilities like narrow data types, scalar and binary quantization, and elimination of redundant storage to stay under vector quota and storage quota.
 
 ## Key points about quota and vector index size
 

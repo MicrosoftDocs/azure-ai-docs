@@ -6,10 +6,11 @@ description: Learn how to use the relevance tuning capabilities to return high q
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
-ms.service: cognitive-search
+ms.service: azure-ai-search
+ms.custom:
+  - ignite-2024
 ms.topic: tutorial
 ms.date: 10/05/2024
-
 ---
 
 # Tutorial: Maximize relevance (RAG in Azure AI Search)
@@ -46,6 +47,8 @@ The [sample notebook](https://github.com/Azure-Samples/azure-search-python-sampl
 Let's start with a new query, "Are there any cloud formations specific to oceans and large bodies of water?".
 
 To compare outcomes after adding relevance features, run the query against the existing index schema, before you add semantic ranking or a scoring profile.
+
+For the Azure Government cloud, modify the API endpoint on the token provider to `"https://cognitiveservices.azure.us/.default"`.
 
 ```python
 from azure.search.documents import SearchClient
@@ -199,6 +202,8 @@ In a previous tutorial, you [designed an index schema](tutorial-rag-build-soluti
 In a previous tutorial, you [ran queries](tutorial-rag-build-solution-query.md) that execute on the search engine, passing the response and other information to an LLM for chat completion.
 
 This example modifies the query request to include the semantic configuration and scoring profile.
+
+For the Azure Government cloud, modify the API endpoint on the token provider to `"https://cognitiveservices.azure.us/.default"`.
 
 ```python
 # Import libraries

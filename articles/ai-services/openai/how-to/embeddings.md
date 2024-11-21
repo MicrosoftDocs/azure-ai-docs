@@ -126,8 +126,9 @@ return $response.data.embedding
 
 ### Verify inputs don't exceed the maximum length
 
-- The maximum length of input text for our latest embedding models is 8192 tokens. You should verify that your inputs don't exceed this limit before making a request.
+- The maximum length of input text for our latest embedding models is 8,192 tokens. You should verify that your inputs don't exceed this limit before making a request.
 - If sending an array of inputs in a single embedding request the max array size is 2048.
+- When sending an array of inputs in a single request, remember that the number of tokens per minute in your requests must remain below the quota limit that was assigned at model deployment. By default, the latest generation 3 embeddings models are subject to a 350 K TPM per region limit.  
 
 
 ## Limitations & risks

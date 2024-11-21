@@ -2,9 +2,9 @@
 title: Azure AI Vision vectorizer
 titleSuffix: Azure AI Search
 description: Connects to an Azure AI Vision resource to generate embeddings at query time.
-author: careyjmac
-ms.author: chalton
-ms.service: cognitive-search
+author: gmndrg
+ms.author: gimondra
+ms.service: azure-ai-search
 ms.custom:
   - build-2024
 ms.topic: reference

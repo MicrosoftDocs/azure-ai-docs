@@ -6,7 +6,7 @@ description: Learn how to move your Azure AI Search resources from one region to
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.topic: how-to
 ms.custom:
   - subject-moving-resources

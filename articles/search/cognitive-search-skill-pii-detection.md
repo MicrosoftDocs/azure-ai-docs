@@ -4,9 +4,9 @@ titleSuffix: Azure AI Search
 description: Extract and mask personal information from text in an enrichment pipeline in Azure AI Search.
 
 manager: nitinme
-author: careyjmac
-ms.author: chalton
-ms.service: cognitive-search
+author: gmndrg
+ms.author: gimondra
+ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: reference

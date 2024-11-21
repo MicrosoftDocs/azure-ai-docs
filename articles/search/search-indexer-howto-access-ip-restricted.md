@@ -6,7 +6,7 @@ description: Configure IP firewall rules to allow data access by an Azure AI Sea
 manager: nitinme
 author: arv100kri
 ms.author: arjagann
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: how-to

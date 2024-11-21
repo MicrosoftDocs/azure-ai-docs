@@ -7,7 +7,7 @@ ms.author: gimondra
 manager: nitinme
 
 ms.devlang: rest-api
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.topic: how-to
 ms.custom:
   - kr2b-contr-experiment

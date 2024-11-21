@@ -9,8 +9,9 @@ ms.service: azure-ai-openai
 ms.custom:
   - ignite-2023
   - references_regions
+  - ignite-2024
 ms.topic: whats-new
-ms.date: 10/01/2024
+ms.date: 11/12/2024
 recommendations: false
 ---
 
@@ -18,7 +19,53 @@ recommendations: false
 
 This article provides a summary of the latest releases and major documentation updates for Azure OpenAI.
 
+## November 2024
+
+### Vision Fine-tuning GA
+
+Vision fine-tuning with GPT-4o (2024-08-06) in now Generally Available (GA).
+
+[Vision fine-tuning](./how-to/fine-tuning.md) allows you to add images to your JSONL training data. Just as you can send one or many image inputs to chat completions, you can include those same message types within your training data. Images can be provided either as URLs or as base64 encoded images.
+
+For fine-tuning model region availability, see the [models page](./concepts/models.md#fine-tuning-models).
+
+### NEW AI abuse monitoring
+
+We are introducing new forms of abuse monitoring that leverage LLMs to improve efficiency of detection of potentially abusive use of the Azure OpenAI service and to enable abuse monitoring without the need for human review of prompts and completions. Learn more, see [Abuse monitoring](/azure/ai-services/openai/concepts/abuse-monitoring).
+
+Prompts and completions that are flagged through content classification and/or identified to be part of a potentially abusive pattern of use are subjected to an additional review process to help confirm the system’s analysis and inform actioning decisions. Our abuse monitoring systems have been expanded to enable review by LLM by default and by humans when necessary and appropriate. 
+
 ## October 2024
+
+### NEW data zone standard deployment type
+
+Data zone standard deployments are available in the same Azure OpenAI resource as all other Azure OpenAI deployment types but allow you to leverage Azure global infrastructure to dynamically route traffic to the data center within the Microsoft defined data zone with the best availability for each request. Data zone standard provides higher default quotas than our Azure geography-based deployment types.  Data zone standard deployments are supported on `gpt-4o-2024-08-06`, `gpt-4o-2024-05-13`, and `gpt-4o-mini-2024-07-18` models.
+
+For more information, see the [deployment types guide](https://aka.ms/aoai/docs/deployment-types).
+
+### Global Batch GA
+
+Azure OpenAI global batch is now generally available.
+
+The Azure OpenAI Batch API is designed to handle large-scale and high-volume processing tasks efficiently. Process asynchronous groups of requests with separate quota, with 24-hour target turnaround, at [50% less cost than global standard](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/). With batch processing, rather than send one request at a time you send a large number of requests in a single file. Global batch requests have a separate enqueued token quota avoiding any disruption of your online workloads.  
+
+Key use cases include:
+
+* **Large-Scale Data Processing:** Quickly analyze extensive datasets in parallel.
+
+* **Content Generation:** Create large volumes of text, such as product descriptions or articles.
+
+* **Document Review and Summarization:** Automate the review and summarization of lengthy documents.
+
+* **Customer Support Automation:** Handle numerous queries simultaneously for faster responses.
+
+* **Data Extraction and Analysis:** Extract and analyze information from vast amounts of unstructured data.
+
+* **Natural Language Processing (NLP) Tasks:** Perform tasks like sentiment analysis or translation on large datasets.
+
+* **Marketing and Personalization:** Generate personalized content and recommendations at scale.
+
+For more information on [getting started with global batch deployments](./how-to/batch.md).
 
 ### o1-preview and o1-mini models limited access
 
@@ -44,7 +91,7 @@ Azure OpenAI GPT-4o audio is part of the GPT-4o model family that supports low-l
 
 The `gpt-4o-realtime-preview` model is available for global deployments in [East US 2 and Sweden Central regions](./concepts/models.md#global-standard-model-availability).
 
-For more information, see the [GPT-4o real-time audio documentation](./how-to/audio-real-time.md).
+For more information, see the [GPT-4o real-time audio documentation](realtime-audio-quickstart.md).
 
 ### Global batch support updates
 
@@ -166,7 +213,7 @@ To test out GPT-4o `2024-08-06`, sign-in to the Azure AI early access playground
 
 ### Global batch deployments are now available
 
-The Azure OpenAI Batch API is designed to handle large-scale and high-volume processing tasks efficiently. Process asynchronous groups of requests with separate quota, with 24-hour target turnaround, at [50% less cost than global standard](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/). With batch processing, rather than send one request at a time you send a large number of requests in a single file. Global batch requests have a separate enqueued token quota avoiding any disruption of your online workloads.  
+The Azure OpenAI Batch API is designed to handle large-scale and high-volume processing tasks efficiently. Process asynchronous groups of requests with separate quota, with 24-hour target turnaround, at [50% less cost than global standard](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/). With batch processing, rather than send one request at a time you send a large number of requests in a single file. Global batch requests have a separate enqueued token quota avoiding any disruption of your online workloads.  
 
 Key use cases include:
 
@@ -381,7 +428,7 @@ Fine-tuning now supports [multi-turn chat training examples](./how-to/fine-tunin
 
 ### GPT-4 (0125) is available for Azure OpenAI On Your Data
 
-You can now use the GPT-4 (0125) model in [available regions](./concepts/models.md#public-cloud-regions) with Azure OpenAI On Your Data.
+You can now use the GPT-4 (0125) model in [available regions](./concepts/models.md#chat-completions-1) with Azure OpenAI On Your Data.
 
 ## March 2024
 

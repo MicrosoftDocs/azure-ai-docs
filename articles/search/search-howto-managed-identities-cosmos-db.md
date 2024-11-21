@@ -5,7 +5,7 @@ description: Learn how to set up an indexer connection to an Azure Cosmos DB acc
 author: gmndrg
 ms.author: gimondra
 
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.topic: how-to
 ms.date: 06/10/2024
 ms.custom:

@@ -5,7 +5,7 @@ description: Set up a SharePoint Online indexer to automate indexing of document
 author: gmndrg
 ms.author: gimondra
 
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: how-to

@@ -4,7 +4,7 @@ titleSuffix: Azure AI Search
 description: Explains the annotation syntax and how to reference inputs and outputs of a skillset in an AI enrichment pipeline in Azure AI Search.
 author: HeidiSteen
 ms.author: heidist
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: how-to

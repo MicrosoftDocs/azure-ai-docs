@@ -4,7 +4,7 @@ titleSuffix: Azure AI Search
 description: Enable caching of enriched content for potential reuse when modifying downstream skills and projections in an AI enrichment pipeline.
 author: HeidiSteen
 ms.author: heidist
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: how-to

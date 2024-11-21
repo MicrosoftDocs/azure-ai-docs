@@ -7,7 +7,7 @@ author: HeidiSteen
 ms.author: heidist
 manager: nitinme
 
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.topic: tutorial
 ms.date: 03/06/2024
 ms.custom:

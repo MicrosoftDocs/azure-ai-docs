@@ -5,7 +5,7 @@ description: Use the REST APIs to create an Azure AI Search knowledge store for 
 author: HeidiSteen
 manager: nitinme
 ms.author: heidist
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: how-to

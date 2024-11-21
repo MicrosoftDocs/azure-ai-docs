@@ -6,7 +6,7 @@ description: Learn about the types of queries supported in Azure AI Search, incl
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.topic: conceptual
 ms.date: 05/23/2024
 ---

@@ -53,6 +53,11 @@ Use this article to get started making your first calls to Azure OpenAI.
 [!INCLUDE [JavaScript quickstart](includes/javascript.md)]
 
 ::: zone-end
+::: zone pivot="programming-language-typescript"
+
+[!INCLUDE [TypeScript quickstart](includes/typescript.md)]
+
+::: zone-end
 
 ::: zone pivot="programming-language-python"
 

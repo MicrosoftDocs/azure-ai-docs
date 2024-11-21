@@ -6,7 +6,7 @@ description: Configure IP control policies to restrict network access to your Az
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: how-to
@@ -133,7 +133,7 @@ The trusted service list for Azure AI Search includes:
 + `Microsoft.CognitiveServices` for Azure OpenAI and Azure AI services
 + `Microsoft.MachineLearningServices` for Azure Machine Learning
 
-Workflows for this network exception are requests originating *from* Azure AI Studio, Azure OpenAI Studio, or other AML features *to* Azure AI Search, typically in [Azure OpenAI On Your Data](/azure/ai-services/openai/concepts/use-your-data) scenarios for retrieval augmented generation (RAG) and playground environments.
+Workflows for this network exception are requests originating from Azure AI Studio or other AML features to Azure AI Search. The trusted services exception is typically for [Azure OpenAI On Your Data](/azure/ai-services/openai/concepts/use-your-data) scenarios for retrieval augmented generation (RAG) and playground environments.
 
 ### Trusted resources must have a managed identity
 

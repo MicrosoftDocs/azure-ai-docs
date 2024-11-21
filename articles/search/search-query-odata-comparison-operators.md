@@ -6,7 +6,7 @@ description: Syntax and reference documentation for using OData comparison opera
 manager: nitinme
 author: bevloh
 ms.author: beloh
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: reference

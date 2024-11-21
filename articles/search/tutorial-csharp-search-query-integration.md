@@ -5,7 +5,7 @@ description: Understand the .NET SDK Search integration queries used in the Sear
 manager: nitinme
 author: diberry
 ms.author: diberry
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.topic: tutorial
 ms.date: 08/16/2024
 ms.custom:

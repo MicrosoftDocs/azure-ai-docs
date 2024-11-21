@@ -1,7 +1,7 @@
 ---
-title: How to use Mistral-7B and Mixtral chat models with Azure AI Studio
-titleSuffix: Azure AI Studio
-description: Learn how to use Mistral-7B and Mixtral chat models with Azure AI Studio.
+title: How to use Mistral-7B and Mixtral chat models with Azure AI Foundry
+titleSuffix: Azure AI Foundry
+description: Learn how to use Mistral-7B and Mixtral chat models with Azure AI Foundry.
 ms.service: azure-ai-studio
 manager: scottpolly
 ms.topic: how-to
@@ -16,11 +16,12 @@ zone_pivot_groups: azure-ai-model-catalog-samples-chat
 
 # How to use Mistral-7B and Mixtral chat models
 
-[!INCLUDE [Feature preview](~/reusable-content/ce-skilling/azure/includes/ai-studio/includes/feature-preview.md)]
+[!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
 In this article, you learn about Mistral-7B and Mixtral chat models and how to use them.
 Mistral AI offers two categories of models. Premium models including [Mistral Large and Mistral Small](deploy-models-mistral.md), available as serverless APIs with pay-as-you-go token-based billing. Open models including [Mistral Nemo](deploy-models-mistral-nemo.md), [Mixtral-8x7B-Instruct-v01, Mixtral-8x7B-v01, Mistral-7B-Instruct-v01, and Mistral-7B-v01](deploy-models-mistral-open.md); available to also download and run on self-hosted managed endpoints.
 
+[!INCLUDE [models-preview](../includes/models-preview.md)]
 
 ::: zone pivot="programming-language-python"
 
@@ -79,7 +80,7 @@ The following models are available:
 
 ## Prerequisites
 
-To use Mistral-7B and Mixtral chat models with Azure AI Studio, you need the following prerequisites:
+To use Mistral-7B and Mixtral chat models with Azure AI Foundry, you need the following prerequisites:
 
 ### A model deployment
 
@@ -113,7 +114,7 @@ Read more about the [Azure AI inference package and reference](https://aka.ms/az
 In this section, you use the [Azure AI model inference API](https://aka.ms/azureai/modelinference) with a chat completions model for chat.
 
 > [!TIP]
-> The [Azure AI model inference API](https://aka.ms/azureai/modelinference) allows you to talk with most models deployed in Azure AI Studio with the same code and structure, including Mistral-7B and Mixtral chat models.
+> The [Azure AI model inference API](https://aka.ms/azureai/modelinference) allows you to talk with most models deployed in Azure AI Foundry portal with the same code and structure, including Mistral-7B and Mixtral chat models.
 
 ### Create a client to consume the model
 
@@ -368,7 +369,7 @@ The following models are available:
 
 ## Prerequisites
 
-To use Mistral-7B and Mixtral chat models with Azure AI Studio, you need the following prerequisites:
+To use Mistral-7B and Mixtral chat models with Azure AI Foundry, you need the following prerequisites:
 
 ### A model deployment
 
@@ -400,7 +401,7 @@ npm install @azure-rest/ai-inference
 In this section, you use the [Azure AI model inference API](https://aka.ms/azureai/modelinference) with a chat completions model for chat.
 
 > [!TIP]
-> The [Azure AI model inference API](https://aka.ms/azureai/modelinference) allows you to talk with most models deployed in Azure AI Studio with the same code and structure, including Mistral-7B and Mixtral chat models.
+> The [Azure AI model inference API](https://aka.ms/azureai/modelinference) allows you to talk with most models deployed in Azure AI Foundry portal with the same code and structure, including Mistral-7B and Mixtral chat models.
 
 ### Create a client to consume the model
 
@@ -674,7 +675,7 @@ The following models are available:
 
 ## Prerequisites
 
-To use Mistral-7B and Mixtral chat models with Azure AI Studio, you need the following prerequisites:
+To use Mistral-7B and Mixtral chat models with Azure AI Foundry, you need the following prerequisites:
 
 ### A model deployment
 
@@ -729,7 +730,7 @@ using System.Reflection;
 In this section, you use the [Azure AI model inference API](https://aka.ms/azureai/modelinference) with a chat completions model for chat.
 
 > [!TIP]
-> The [Azure AI model inference API](https://aka.ms/azureai/modelinference) allows you to talk with most models deployed in Azure AI Studio with the same code and structure, including Mistral-7B and Mixtral chat models.
+> The [Azure AI model inference API](https://aka.ms/azureai/modelinference) allows you to talk with most models deployed in Azure AI Foundry portal with the same code and structure, including Mistral-7B and Mixtral chat models.
 
 ### Create a client to consume the model
 
@@ -992,7 +993,7 @@ The following models are available:
 
 ## Prerequisites
 
-To use Mistral-7B and Mixtral chat models with Azure AI Studio, you need the following prerequisites:
+To use Mistral-7B and Mixtral chat models with Azure AI Foundry, you need the following prerequisites:
 
 ### A model deployment
 
@@ -1017,7 +1018,7 @@ Models deployed with the [Azure AI model inference API](https://aka.ms/azureai/m
 In this section, you use the [Azure AI model inference API](https://aka.ms/azureai/modelinference) with a chat completions model for chat.
 
 > [!TIP]
-> The [Azure AI model inference API](https://aka.ms/azureai/modelinference) allows you to talk with most models deployed in Azure AI Studio with the same code and structure, including Mistral-7B and Mixtral chat models.
+> The [Azure AI model inference API](https://aka.ms/azureai/modelinference) allows you to talk with most models deployed in Azure AI Foundry portal with the same code and structure, including Mistral-7B and Mixtral chat models.
 
 ### Create a client to consume the model
 
@@ -1304,6 +1305,6 @@ It is a good practice to start with a low number of instances and scale up as ne
 
 * [Azure AI Model Inference API](../reference/reference-model-inference-api.md)
 * [Deploy models as serverless APIs](deploy-models-serverless.md)
-* [Consume serverless API endpoints from a different Azure AI Studio project or hub](deploy-models-serverless-connect.md)
+* [Consume serverless API endpoints from a different Azure AI Foundry project or hub](deploy-models-serverless-connect.md)
 * [Region availability for models in serverless API endpoints](deploy-models-serverless-availability.md)
 * [Plan and manage costs (marketplace)](costs-plan-manage.md#monitor-costs-for-models-offered-through-the-azure-marketplace)

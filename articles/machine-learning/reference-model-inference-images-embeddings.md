@@ -10,6 +10,7 @@ ms.date: 05/03/2024
 ms.reviewer: None
 ms.author: mopeakande
 author: msakande
+ms.collection: ce-skilling-ai-copilot
 ms.custom: 
  - build-2024
 ---

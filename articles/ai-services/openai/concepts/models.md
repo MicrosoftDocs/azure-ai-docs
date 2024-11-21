@@ -4,7 +4,7 @@ titleSuffix: Azure OpenAI
 description: Learn about the different model capabilities that are available with Azure OpenAI.
 ms.service: azure-ai-openai
 ms.topic: conceptual
-ms.date: 10/01/2024
+ms.date: 10/25/2024
 ms.custom: references_regions, build-2023, build-2023-dataai, refefences_regions
 manager: nitinme
 author: mrbullwinkle #ChrisHMSFT
@@ -20,7 +20,7 @@ Azure OpenAI Service is powered by a diverse set of models with different capabi
 |--|--|
 | [o1-preview and o1-mini](#o1-preview-and-o1-mini-models-limited-access) | Limited access models, specifically designed to tackle reasoning and problem-solving tasks with increased focus and capability.  |
 | [GPT-4o & GPT-4o mini & GPT-4 Turbo](#gpt-4o-and-gpt-4-turbo) | The latest most capable Azure OpenAI models with multimodal versions, which can accept both text and images as input. |
-| [GPT-4o audio](#gpt-4o-audio) | A GPT-4o model that supports low-latency, "speech in, speech out" conversational interactions. |
+| [GPT-4o-Realtime-Preview](#gpt-4o-realtime-preview) | A GPT-4o model that supports low-latency, "speech in, speech out" conversational interactions. |
 | [GPT-4](#gpt-4) | A set of models that improve on GPT-3.5 and can understand and generate natural language and code. |
 | [GPT-3.5](#gpt-35) | A set of models that improve on GPT-3 and can understand and generate natural language and code. |
 | [Embeddings](#embeddings-models) | A set of models that can convert text into numerical vector form to facilitate text similarity. |
@@ -221,15 +221,15 @@ print(response.model_dump_json(indent=2))
 
 ### Region availability
 
-Available for standard and global standard deployment in East US2 and Sweden Central for approved customers.
+Available for standard and global standard deployment in East US, East US2, North Central US, South Central US, Sweden Central, West US, and West US3 for approved customers.
 
-## GPT-4o audio
+## GPT-4o-Realtime-Preview
 
 The `gpt-4o-realtime-preview` model is part of the GPT-4o model family and supports low-latency, "speech in, speech out" conversational interactions. GPT-4o audio is designed to handle real-time, low-latency conversational interactions, making it a great fit for support agents, assistants, translators, and other use cases that need highly responsive back-and-forth with a user.
 
 GPT-4o audio is available in the East US 2 (`eastus2`) and Sweden Central (`swedencentral`) regions. To use GPT-4o audio, you need to [create](../how-to/create-resource.md) or use an existing resource in one of the supported regions.
 
-When your resource is created, you can [deploy](../how-to/create-resource.md#deploy-a-model) the GPT-4o audio model. If you are performing a programmatic deployment, the **model** name is `gpt-4o-realtime-preview`. For more information on how to use GPT-4o audio, see the [GPT-4o audio documentation](../how-to/audio-real-time.md).
+When your resource is created, you can [deploy](../how-to/create-resource.md#deploy-a-model) the GPT-4o audio model. If you are performing a programmatic deployment, the **model** name is `gpt-4o-realtime-preview`. For more information on how to use GPT-4o audio, see the [GPT-4o audio documentation](../realtime-audio-quickstart.md).
 
 Details about maximum request tokens and training data are available in the following table.
 
@@ -357,16 +357,46 @@ You can also use the OpenAI text to speech voices via Azure AI Speech. To learn 
 
 ## Model summary table and region availability
 
-> [!NOTE]
-> This article primarily covers model/region availability that applies to all Azure OpenAI customers with deployment types of **Standard**. Some select customers have access to model/region combinations that are not listed in the unified table below. For more information on Provisioned deployments, see our [Provisioned guidance](./provisioned-throughput.md).
+### Models by deployment type
+
+Azure OpenAI provides customers with choices on the hosting structure that fits their business and usage patterns. The service offers two main types of deployment: 
+
+- **Standard** is offered with a global deployment option, routing traffic globally to provide higher throughput.
+- **Provisioned** is also offered with a global deployment option, allowing customers to purchase and deploy provisioned throughput units across Azure global infrastructure.
+
+All deployments can perform the exact same inference operations, however the billing, scale, and performance are substantially different. To learn more about Azure OpenAI deployment types see our [deployment types guide](../how-to/deployment-types.md).
+
+# [Global Standard](#tab/global-standard)
+
+### Global standard model availability
+
+[!INCLUDE [Standard Global](../includes/model-matrix/standard-global.md)]
+
+# [Global Provisioned Managed](#tab/global-ptum)
+
+### Global provisioned managed model availability
+
+[!INCLUDE [Provisioned Managed Global](../includes/model-matrix/provisioned-global.md)]
+
+# [Global Batch](#tab/global-batch)
+
+### Global batch model availability
+
+[!INCLUDE [Global batch](../includes/model-matrix/global-batch.md)]
+
+# [Data Zone Standard](#tab/datazone-standard)
+
+### Data zone standard model availability
+
+[!INCLUDE [Global batch](../includes/model-matrix/datazone-standard.md)]
+
+# [Standard](#tab/standard)
 
 ### Standard deployment model availability
 
 [!INCLUDE [Standard Models](../includes/model-matrix/standard-models.md)]
 
-This table doesn't include fine-tuning regional availability information.  Consult the [fine-tuning section](#fine-tuning-models) for this information.
-
-For information on default quota, refer to the [quota and limits article](../quotas-limits.md).
+# [Provisioned Managed](#tab/provisioned)
 
 ### Provisioned deployment model availability
 
@@ -377,23 +407,19 @@ For information on default quota, refer to the [quota and limits article](../quo
 
 For more information on Provisioned deployments, see our [Provisioned guidance](./provisioned-throughput.md).
 
-### Global standard model availability
+---
 
-[!INCLUDE [Standard Global](../includes/model-matrix/standard-global.md)]
+This table doesn't include fine-tuning regional availability information.  Consult the [fine-tuning section](#fine-tuning-models) for this information.
 
-### Global provisioned managed model availability
+### Standard models by endpoint
 
-[!INCLUDE [Provisioned Managed Global](../includes/model-matrix/provisioned-global.md)]
+# [Chat Completions](#tab/standard-chat-completions)
 
-### Global batch model availability
+### Chat completions
 
-[!INCLUDE [Global batch](../includes/model-matrix/global-batch.md)]
+[!INCLUDE [Chat Completions](../includes/model-matrix/standard-chat-completions.md)]
 
 ### GPT-4 and GPT-4 Turbo model availability
-
-#### Public cloud regions
-
-[!INCLUDE [GPT-4](../includes/model-matrix/standard-gpt-4.md)]
 
 #### Select customer access
 
@@ -406,22 +432,13 @@ In addition to the regions above which are available to all Azure OpenAI custome
 
 ### GPT-3.5 models
 
-> [!IMPORTANT]
-> The NEW `gpt-35-turbo (0125)`  model has various improvements, including higher accuracy at responding in requested formats and a fix for a bug which caused a text encoding issue for non-English language function calls.
-
-GPT-3.5 Turbo is used with the Chat Completion API. GPT-3.5 Turbo version 0301 can also be used with the Completions API, though this is not recommended.  GPT-3.5 Turbo versions 0613 and 1106 only support the Chat Completions API.
-
-GPT-3.5 Turbo version 0301 is the first version of the model released.  Version 0613 is the second version of the model and adds function calling support.
-
 See [model versions](../concepts/model-versions.md) to learn about how Azure OpenAI Service handles model version upgrades, and [working with models](../how-to/working-with-models.md) to learn how to view and configure the model version settings of your GPT-3.5 Turbo deployments.
 
-### GPT-3.5-Turbo model availability
-
-#### Public cloud regions
-
-[!INCLUDE [GPT-35-Turbo](../includes/model-matrix/standard-gpt-35-turbo.md)]
+# [Embeddings](#tab/standard-embeddings)
 
 ### Embeddings models
+
+[!INCLUDE [Embeddings](../includes/model-matrix/standard-embeddings.md)]
 
 These models can only be used with Embedding API requests.
 
@@ -430,60 +447,64 @@ These models can only be used with Embedding API requests.
 
 |  Model ID | Max Request (tokens) | Output Dimensions |Training Data (up-to)
 |---|---| :---:|:---:|:---:|
-| `text-embedding-ada-002` (version 2) |8,191 | 1,536 | Sep 2021 |
+| `text-embedding-ada-002` (version 2) |8,192 | 1,536 | Sep 2021 |
 | `text-embedding-ada-002` (version 1) |2,046 | 1,536 | Sep 2021 |
-| `text-embedding-3-large` | 8,191 | 3,072 |Sep 2021 |
-| `text-embedding-3-small` | 8,191|  1,536 | Sep 2021 |
+| `text-embedding-3-large` | 8,192 | 3,072 |Sep 2021 |
+| `text-embedding-3-small` | 8,192|  1,536 | Sep 2021 |
 
 > [!NOTE]
 > When sending an array of inputs for embedding, the max number of input items in the array per call to the embedding endpoint is 2048.
 
-#### Public cloud regions
+# [Image Generation](#tab/standard-image-generations)
 
-[!INCLUDE [Embeddings](../includes/model-matrix/standard-embeddings.md)]
+### Image generation models
+
+[!INCLUDE [Image Generation](../includes/model-matrix/standard-image-generation.md)]
 
 ### DALL-E models
 
-|  Model ID  | Feature Availability | Max Request (characters) |
-|  --- |  --- | :---: |
-| dalle2 (preview) | East US | 1,000 |
-| dall-e-3 | East US, Australia East, Sweden Central | 4,000 |
+|  Model ID  | Max Request (characters) |
+|  --- | :---: |
+| dalle2 (preview)  | 1,000 |
+| dall-e-3  | 4,000 |
 
-### Fine-tuning models
+# [Audio](#tab/standard-audio)
 
-`babbage-002` and `davinci-002` are not trained to follow instructions. Querying these base models should only be done as a point of reference to a fine-tuned version to evaluate the progress of your training.
+### Audio models
 
-`gpt-35-turbo` - fine-tuning of this model is limited to a subset of regions, and is not available in every region the base model is available.  
-
-|  Model ID  | Fine-Tuning Regions | Max Request (tokens) | Training Data (up to) |
-|  --- | --- | :---: | :---: |
-| `babbage-002` | North Central US <br> Sweden Central  <br> Switzerland West | 16,384 | Sep 2021 |
-| `davinci-002` | North Central US <br> Sweden Central  <br> Switzerland West | 16,384 | Sep 2021 |
-| `gpt-35-turbo` (0613) | East US2 <br> North Central US <br> Sweden Central <br> Switzerland West | 4,096 | Sep 2021 |
-| `gpt-35-turbo` (1106) | East US2 <br> North Central US <br> Sweden Central <br> Switzerland West | Input: 16,385<br> Output: 4,096 |  Sep 2021|
-| `gpt-35-turbo` (0125)  | East US2 <br> North Central US <br> Sweden Central <br> Switzerland West | 16,385 | Sep 2021 |
-| `gpt-4` (0613) <sup>**1**</sup> | North Central US <br> Sweden Central | 8192 | Sep 2021 |
-| `gpt-4o-mini` <sup>**1**</sup> (2024-07-18) | North Central US <br> Sweden Central | Input: 128,000 <br> Output: 16,384  <br> Training example context length: 64,536 | Oct 2023 |
-| `gpt-4o` <sup>**1**</sup> (2024-08-06) | East US2 <br> North Central US <br> Sweden Central | Input: 128,000 <br> Output: 16,384  <br> Training example context length: 64,536 | Oct 2023 | 
-
-**<sup>1</sup>** GPT-4, GPT-4o, and GPT-4o mini fine-tuning is currently in public preview. See our [GPT-4, GPT-4o,  & GPT-4o mini fine-tuning safety evaluation guidance](/azure/ai-services/openai/how-to/fine-tuning?tabs=turbo%2Cpython-new&pivots=programming-language-python#safety-evaluation-gpt-4-fine-tuning---public-preview) for more information.
+[!INCLUDE [Audio](../includes/model-matrix/standard-audio.md)]
 
 ### Whisper models
 
-|  Model ID  | Model Availability | Max Request (audio file size) |
-|  --- |  --- | :---: |
-| `whisper` | East US 2 <br> North Central US <br> Norway East <br> South India <br> Sweden Central <br> West Europe | 25 MB |
+|  Model ID  | Max Request (audio file size) |
+|  --- | :---: |
+| `whisper` | 25 MB |
 
 ### Text to speech models (Preview)
 
-|  Model ID  | Model Availability |
-|  --- |  --- | :---: |
-| `tts-1` | North Central US <br> Sweden Central |
-| `tts-1-hd` | North Central US <br> Sweden Central |
+|  Model ID  | Description |
+|  --- | :--- |
+| `tts` | The latest Azure OpenAI text to speech model, optimized for speed. |
+| `tts-hd` | The latest Azure OpenAI text to speech model, optimized for quality.|
+ |
 
-### Assistants (Preview)
+# [Completions (Legacy)](#tab/standard-completions)
 
-For Assistants you need a combination of a supported model, and a supported region. Certain tools and capabilities require the latest models. The following models are available in the Assistants API, SDK, Azure AI Studio and Azure OpenAI Studio. The following table is for pay-as-you-go. For information on Provisioned Throughput Unit (PTU) availability, see [provisioned throughput](./provisioned-throughput.md). The listed models and regions can be used with both Assistants v1 and v2. You can use [global standard models](#global-standard-model-availability) if they are supported in the regions listed below. 
+### Completions models
+
+`babbage-002` and `davinci-002` are not trained to follow instructions. Querying these base models should only be done as a point of reference to a fine-tuned version to evaluate the progress of your training.
+
+[!INCLUDE [Completions](../includes/model-matrix/standard-completions.md)]
+
+---
+
+## Fine-tuning models
+
+[!INCLUDE [Fine-tune models](../includes/fine-tune-models.md)]
+
+## Assistants (Preview)
+
+For Assistants you need a combination of a supported model, and a supported region. Certain tools and capabilities require the latest models. The following models are available in the Assistants API, SDK, and Azure AI Studio. The following table is for pay-as-you-go. For information on Provisioned Throughput Unit (PTU) availability, see [provisioned throughput](./provisioned-throughput.md). The listed models and regions can be used with both Assistants v1 and v2. You can use [global standard models](#global-standard-model-availability) if they are supported in the regions listed below. 
 
 | Region | `gpt-35-turbo (0613)` | `gpt-35-turbo (1106)`| `fine tuned gpt-3.5-turbo-0125` | `gpt-4 (0613)` | `gpt-4 (1106)` | `gpt-4 (0125)` | `gpt-4o (2024-05-13)` | `gpt-4o-mini (2024-07-18)` |
 |-----|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|

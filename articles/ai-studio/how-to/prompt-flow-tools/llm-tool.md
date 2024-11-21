@@ -1,7 +1,7 @@
 ---
-title: LLM tool for flows in Azure AI Studio
-titleSuffix: Azure AI Studio
-description: This article introduces you to the large language model (LLM) tool for flows in Azure AI Studio.
+title: LLM tool for flows in Azure AI Foundry portal
+titleSuffix: Azure AI Foundry
+description: This article introduces you to the large language model (LLM) tool for flows in Azure AI Foundry portal.
 manager: scottpolly
 ms.service: azure-ai-studio
 ms.custom:
@@ -14,9 +14,9 @@ ms.author: lagayhar
 author: lgayhardt
 ---
 
-# LLM tool for flows in Azure AI Studio
+# LLM tool for flows in Azure AI Foundry portal
 
-[!INCLUDE [Feature preview](~/reusable-content/ce-skilling/azure/includes/ai-studio/includes/feature-preview.md)]
+[!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
 To use large language models (LLMs) for natural language processing, you use the prompt flow LLM tool.
 
@@ -29,10 +29,10 @@ Prepare a prompt as described in the [Prompt tool](prompt-tool.md#prerequisites)
 
 ## Build with the LLM tool
 
-1. Create or open a flow in [Azure AI Studio](https://ai.azure.com). For more information, see [Create a flow](../flow-develop.md).
+1. Create or open a flow in [Azure AI Foundry](https://ai.azure.com). For more information, see [Create a flow](../flow-develop.md).
 1. Select **+ LLM** to add the LLM tool to your flow.
 
-    :::image type="content" source="../../media/prompt-flow/llm-tool.png" alt-text="Screenshot that shows the LLM tool added to a flow in Azure AI Studio." lightbox="../../media/prompt-flow/llm-tool.png":::
+    :::image type="content" source="../../media/prompt-flow/llm-tool.png" alt-text="Screenshot that shows the LLM tool added to a flow in Azure AI Foundry portal." lightbox="../../media/prompt-flow/llm-tool.png":::
 
 1. Select the connection to one of your provisioned resources. For example, select **Default_AzureOpenAI**.
 1. From the **Api** dropdown list, select **chat** or **completion**.

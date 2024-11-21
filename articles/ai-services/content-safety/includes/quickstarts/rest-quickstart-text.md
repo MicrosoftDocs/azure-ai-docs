@@ -31,7 +31,7 @@ The following section walks through a sample request with cURL. Paste the comman
     > See [Input requirements](../../overview.md#input-requirements) for maximum text length limitations.
 
 ```shell
-curl --location --request POST '<endpoint>/contentsafety/text:analyze?api-version=2023-10-01' \
+curl --location --request POST '<endpoint>/contentsafety/text:analyze?api-version=2024-09-01' \
 --header 'Ocp-Apim-Subscription-Key: <your_subscription_key>' \
 --header 'Content-Type: application/json' \
 --data-raw '{
@@ -47,7 +47,7 @@ The below fields must be included in the url:
 
 | Name      |Required  |  Description | Type   |
 | :------- |-------- |:--------------- | ------ |
-| **API Version** |Required |This is the API version to be checked. The current version is: api-version=2023-10-01. Example: `<endpoint>/contentsafety/text:analyze?api-version=2023-10-01` | String |
+| **API Version** |Required |This is the API version to be checked. The current version is: api-version=2024-09-01. Example: `<endpoint>/contentsafety/text:analyze?api-version=2024-09-01` | String |
 
 The parameters in the request body are defined in this table:
 

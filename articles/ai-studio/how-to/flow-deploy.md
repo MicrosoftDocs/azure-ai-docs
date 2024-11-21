@@ -1,12 +1,13 @@
 ---
 title: Deploy a flow as a managed online endpoint for real-time inference
-titleSuffix: Azure AI Studio
-description: Learn how to deploy a flow as a managed online endpoint for real-time inference with Azure AI Studio.
+titleSuffix: Azure AI Foundry
+description: Learn how to deploy a flow as a managed online endpoint for real-time inference with Azure AI Foundry.
 manager: scottpolly
 ms.service: azure-ai-studio
 ms.custom:
   - ignite-2023
   - build-2024
+  - ignite-2024
 ms.topic: how-to
 ms.date: 5/21/2024
 ms.reviewer: likebupt
@@ -16,7 +17,7 @@ author: lgayhardt
 
 # Deploy a flow for real-time inference
 
-[!INCLUDE [Feature preview](~/reusable-content/ce-skilling/azure/includes/ai-studio/includes/feature-preview.md)]
+[!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
 After you build a prompt flow and test it properly, you might want to deploy it as an online endpoint. Deployments are hosted within an endpoint, and can receive data from clients and send responses back in real-time.
 
@@ -35,13 +36,13 @@ In this article, you learn how to deploy a flow as a managed online endpoint for
 To deploy a prompt flow as an online endpoint, you need:
 
 * An Azure subscription. If you don't have one, create a free account before you begin.
-* An Azure AI Studio project.
+* An Azure AI Foundry project.
 
 ## Create an online deployment
 
 Now that you have built a flow and tested it properly, it's time to create your online endpoint for real-time inference. 
 
-Follow the steps below to deploy a prompt flow as an online endpoint in Azure AI Studio.
+Follow the steps below to deploy a prompt flow as an online endpoint in Azure AI Foundry portal.
 
 1. Have a prompt flow ready for deployment. If you don't have one, see [how to build a prompt flow](./flow-develop.md).
 1. Optional: Select **Chat** to test if the flow is working correctly. Testing your flow before deployment is recommended best practice.
@@ -58,9 +59,7 @@ Follow the steps below to deploy a prompt flow as an online endpoint in Azure AI
 
 1. Select **Create** to deploy the prompt flow.  
 
-    :::image type="content" source="../media/prompt-flow/how-to-deploy-for-real-time-inference/deploy-review-create.png" alt-text="Screenshot of the review settings page." lightbox = "../media/prompt-flow/how-to-deploy-for-real-time-inference/deploy-review-create.png":::
-
-1. To view the status of your deployment, select **Deployments** from the left navigation. Once the deployment is created successfully, you can select the deployment to view the details.
+1. To view the status of your deployment, select **Models + endpoints** from the left navigation. Once the deployment is created successfully, you can select the deployment to view the details.
 
     :::image type="content" source="../media/prompt-flow/how-to-deploy-for-real-time-inference/deployments-state-updating.png" alt-text="Screenshot of the deployment state in progress." lightbox = "../media/prompt-flow/how-to-deploy-for-real-time-inference/deployments-state-updating.png":::
 
@@ -79,7 +78,7 @@ Follow the steps below to deploy a prompt flow as an online endpoint in Azure AI
 For more information, see the sections below.
 
 > [!TIP]
-> For a guide about how to deploy a base model, see [Deploying models with Azure AI Studio](deploy-models-open.md).
+> For a guide about how to deploy a base model, see [Deploying models with Azure AI Foundry](deploy-models-open.md).
 
 ## Settings and configurations
 
@@ -92,12 +91,11 @@ Optionally you can specify extra packages you needed in `requirements.txt`. You 
 
 :::image type="content" source="../media/prompt-flow/how-to-deploy-for-real-time-inference/flow-environment-image.png" alt-text="Screenshot of specifying base image in raw yaml file of the flow. " lightbox = "../media/prompt-flow/how-to-deploy-for-real-time-inference/flow-environment-image.png":::
 
-:::image type="content" source="../media/prompt-flow/how-to-deploy-for-real-time-inference/requirements-text.png" alt-text="Screenshot of a flow's requirements text file." lightbox = "../media/prompt-flow/how-to-deploy-for-real-time-inference/requirements-text.png":::
 
 
 ### Basic settings
 
-This step allows you to configure the basic settings of the deployment.
+This step allows you to configure the basic settings when you select **Deploy** on the flow editor.
 
 |Property| Description |
 |---|-----|
@@ -125,7 +123,7 @@ The authentication method for the endpoint. Key-based authentication provides a 
 
 #### Identity type
 
-The endpoint needs to access Azure resources such as the Azure Container Registry or your AI Studio hub connections for inferencing. You can allow the endpoint permission to access Azure resources via giving permission to its managed identity.
+The endpoint needs to access Azure resources such as the Azure Container Registry or your AI Foundry hub connections for inferencing. You can allow the endpoint permission to access Azure resources via giving permission to its managed identity.
 
 System-assigned identity will be autocreated after your endpoint is created, while user-assigned identity is created by user. [Learn more about managed identities.](/azure/active-directory/managed-identities-azure-resources/overview)
 
@@ -135,16 +133,16 @@ You notice there's an option whether *Enforce access to connection secrets (prev
 
 ##### User-assigned
 
-When you create the deployment, Azure tries to pull the user container image from the Azure AI Studio hub's Azure Container Registry (ACR) and mounts the user model and code artifacts into the user container from the hub's storage account.
+When you create the deployment, Azure tries to pull the user container image from the Azure AI Foundry hub's Azure Container Registry (ACR) and mounts the user model and code artifacts into the user container from the hub's storage account.
 
 If you created the associated endpoint with **User Assigned Identity**, the user-assigned identity must be granted the following roles before the deployment creation; otherwise, the deployment creation fails. 
 
 |Scope|Role|Why it's needed|
 |---|---|---|
-|AI Studio project|**Azure Machine Learning Workspace Connection Secrets Reader** role **OR** a customized role with `Microsoft.MachineLearningServices/workspaces/connections/listsecrets/action` | Get project connections|
-|AI Studio project container registry |**ACR pull** |Pull container image |
-|AI Studio project default storage| **Storage Blob Data Reader**| Load model from storage |
-|AI Studio project|**Workspace metrics writer**| After you deploy then endpoint, if you want to monitor the endpoint related metrics like CPU/GPU/Disk/Memory utilization, you need to give this permission to the identity.<br/><br/>Optional|
+|AI Foundry project|**Azure Machine Learning Workspace Connection Secrets Reader** role **OR** a customized role with `Microsoft.MachineLearningServices/workspaces/connections/listsecrets/action` | Get project connections|
+|AI Foundry project container registry |**ACR pull** |Pull container image |
+|AI Foundry project default storage| **Storage Blob Data Reader**| Load model from storage |
+|AI Foundry project|**Workspace metrics writer**| After you deploy then endpoint, if you want to monitor the endpoint related metrics like CPU/GPU/Disk/Memory utilization, you need to give this permission to the identity.<br/><br/>Optional|
 
 See detailed guidance about how to grant permissions to the endpoint identity in [Grant permissions to the endpoint](#grant-permissions-to-the-endpoint).
 
@@ -180,7 +178,7 @@ If you enable this, tracing data and system metrics during inference time (such 
 
 You can grant the required permissions in Azure portal UI by following steps.
 
-1. Go to the Azure AI Studio project overview page in [Azure portal](https://ms.portal.azure.com/#home).
+1. Go to the Azure AI Foundry project overview page in [Azure portal](https://ms.portal.azure.com/#home).
 
 1. Select **Access control**, and select **Add role assignment**.
     :::image type="content" source="../media/prompt-flow/how-to-deploy-for-real-time-inference/access-control.png" alt-text="Screenshot of Access control with add role assignment highlighted." lightbox = "../media/prompt-flow/how-to-deploy-for-real-time-inference/access-control.png":::
@@ -249,6 +247,6 @@ If you aren't going use the endpoint after completing this tutorial, you should 
 
 ## Next Steps
 
-- Learn more about what you can do in [Azure AI Studio](../what-is-ai-studio.md)
+- Learn more about what you can do in [Azure AI Foundry](../what-is-ai-studio.md)
 - Get answers to frequently asked questions in the [Azure AI FAQ article](../faq.yml)
 - [Enable trace and collect feedback for your deployment] (./develop/trace-production-sdk.md)

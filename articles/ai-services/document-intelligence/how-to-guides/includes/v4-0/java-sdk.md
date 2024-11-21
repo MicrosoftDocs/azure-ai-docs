@@ -7,7 +7,7 @@ ms.service: azure-ai-document-intelligence
 ms.topic: include
 ms.date: 09/09/2024
 ms.author: lajanuar
-ms.custom: devx-track-csharp, ignite-2023, linux-related-content
+ms.custom: devx-track-csharp, linux-related-content
 ---
 
 <!-- markdownlint-disable MD001 -->
@@ -120,7 +120,6 @@ To interact with the Document Intelligence service, create an instance of the `D
    > [!TIP]
    >
    > You can create a new file by using PowerShell. Open a PowerShell window in your project directory by holding down the **Shift** key and right-clicking the folder, then type the following command: *New-Item DocIntelligence.java*.
-
 
 1. Open the *DocIntelligence.java* file and select one of the following code samples AND copy/paste into your application:
 

@@ -14,6 +14,8 @@ ms.custom: cogserv-non-critical-vision
 
 # Telemetry and troubleshooting
 
+[!INCLUDE [spatial-analysis-deprecation](includes/spatial-analysis-deprecation.md)]
+
 Spatial Analysis includes a set of features to monitor the health of the system and help with diagnosing issues.
 
 ## Enable visualizations

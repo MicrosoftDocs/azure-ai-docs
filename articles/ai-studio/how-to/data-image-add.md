@@ -1,7 +1,7 @@
 ---
 title: 'Use your image data with Azure OpenAI Service'
-titleSuffix: Azure AI Studio
-description: Use this article to learn about using your image data for image generation in Azure AI Studio.
+titleSuffix: Azure AI Foundry
+description: Use this article to learn about using your image data for image generation in Azure AI Foundry portal.
 manager: nitinme
 ms.service: azure-ai-studio
 ms.custom:
@@ -15,7 +15,7 @@ author: PatrickFarley
 
 # Azure OpenAI enterprise chat with images using GPT-4 Turbo with Vision
 
-[!INCLUDE [Feature preview](~/reusable-content/ce-skilling/azure/includes/ai-studio/includes/feature-preview.md)]
+[!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
 Use this article to learn how to provide your own image data for GPT-4 Turbo with Vision, Azure OpenAI's vision model. GPT-4 Turbo with Vision enterprise chat allows the model to generate more customized and targeted answers using retrieval augmented generation based on your own images and image metadata.
 
@@ -28,12 +28,12 @@ Use this article to learn how to provide your own image data for GPT-4 Turbo wit
 - An Azure OpenAI resource with the GPT-4 Turbo with Vision model deployed. For more information about model deployment, see the [resource deployment guide](../../ai-services/openai/how-to/create-resource.md).
 - Be sure that you're assigned at least the [Cognitive Services Contributor role](../../ai-services/openai/how-to/role-based-access-control.md#cognitive-services-contributor) for the Azure OpenAI resource. 
 - An Azure AI Search resource. See [create an Azure AI Search service in the portal](/azure/search/search-create-service-portal). If you don't have an Azure AI Search resource, you're prompted to create one when you add your data source later in this guide.
-- An [AI Studio hub](../how-to/create-azure-ai-resource.md) with your Azure OpenAI resource and Azure AI Search resource added as connections. 
+- An [AI Foundry hub](../how-to/create-azure-ai-resource.md) with your Azure OpenAI resource and Azure AI Search resource added as connections. 
 
 
 ## Deploy a GPT-4 Turbo with Vision model
 
-1. Sign in to [Azure AI Studio](https://ai.azure.com) and select the hub you'd like to work in.
+1. Sign in to [Azure AI Foundry](https://ai.azure.com) and select the hub you'd like to work in.
 1. On the left nav menu, select **AI Services**. Select the **Try out GPT-4 Turbo** panel.
 1. On the gpt-4 page, select **Deploy**. In the window that appears, select your Azure OpenAI resource. Select `vision-preview` as the model version.
 1. Select **Deploy**.
@@ -45,8 +45,8 @@ Use this article to learn how to provide your own image data for GPT-4 Turbo wit
 1. On the left pane, select the **Add your data** tab and select **Add a data source**.
 1. In the window that appears, select a data source option. Each option uses an Azure AI Search index that's trained on your images and can be used for retrieval augmented generation in the chat playground.
    * **Azure AI Search**: If you have an existing [Azure AI Search](/azure/search/search-what-is-azure-search) index, you can use it as a data source.
-   * **Azure Blob Storage**: The Azure Blob storage option is especially useful if you have a large number of image files and don't want to manually upload each one. Azure AI Studio will generate an image search index for you. 
-   * **Upload image files and metadata**: You can upload image files and metadata using the playground. This option is useful if you have a small number of image files. Azure AI Studio will generate an image search index for you. 
+   * **Azure Blob Storage**: The Azure Blob storage option is especially useful if you have a large number of image files and don't want to manually upload each one. Azure AI Foundry will generate an image search index for you. 
+   * **Upload image files and metadata**: You can upload image files and metadata using the playground. This option is useful if you have a small number of image files. Azure AI Foundry will generate an image search index for you. 
 
 ## Add your image data
 
@@ -96,7 +96,7 @@ After you have a blob storage container populated with image files and at least 
     > [!NOTE]
     > Azure OpenAI needs both a storage account resource and a search resource to access and index your data. Your data is stored securely in your Azure subscription. 
     >
-    > When adding data to the selected storage account for the first time in Azure AI Studio, you might be prompted to turn on [cross-origin resource sharing (CORS)](/rest/api/storageservices/cross-origin-resource-sharing--cors--support-for-the-azure-storage-services). Azure AI Studio and Azure OpenAI need access your Azure Blob storage account.
+    > When adding data to the selected storage account for the first time in Azure AI Foundry portal, you might be prompted to turn on [cross-origin resource sharing (CORS)](/rest/api/storageservices/cross-origin-resource-sharing--cors--support-for-the-azure-storage-services). Azure AI Foundry and Azure OpenAI need access your Azure Blob storage account.
 
     :::image type="content" source="../media/data-add/use-your-image-data/add-image-data-blob.png" alt-text="A screenshot showing the Azure storage account and Azure AI Search index selection." lightbox="../media/data-add/use-your-image-data/add-image-data-blob.png":::
 
@@ -117,7 +117,7 @@ After you have a blob storage container populated with image files and at least 
     > [!NOTE]
     > Azure OpenAI needs both a storage account resource and a search resource to access and index your data. Your data is stored securely in your Azure subscription. 
     >
-    > When adding data to the selected storage account for the first time in Azure AI Studio, you might be prompted to turn on [cross-origin resource sharing (CORS)](/rest/api/storageservices/cross-origin-resource-sharing--cors--support-for-the-azure-storage-services). Azure AI Studio and Azure OpenAI need access your Azure Blob storage account.  
+    > When adding data to the selected storage account for the first time in Azure AI Foundry portal, you might be prompted to turn on [cross-origin resource sharing (CORS)](/rest/api/storageservices/cross-origin-resource-sharing--cors--support-for-the-azure-storage-services). Azure AI Foundry and Azure OpenAI need access your Azure Blob storage account.  
     
     :::image type="content" source="../media/data-add/use-your-image-data/add-image-data-upload.png" alt-text="A screenshot showing the storage account and index selection for image file upload." lightbox="../media/data-add/use-your-image-data/add-image-data-upload.png":::
 
@@ -168,5 +168,5 @@ When you remove a data source, you'll see a warning message. Removing a data sou
 
 ## Next steps
 
-- Learn how to [create a project in Azure AI Studio](./create-projects.md).
+- Learn how to [create a project in Azure AI Foundry portal](./create-projects.md).
 - [Deploy an enterprise chat web app](../tutorials/deploy-chat-web-app.md)

@@ -2,9 +2,9 @@
 title: Azure AI Studio model catalog vectorizer
 titleSuffix: Azure AI Search
 description: Connects to a deployed model from the Azure AI Studio model catalog at query time.
-author: careyjmac
-ms.author: chalton
-ms.service: cognitive-search
+author: gmndrg
+ms.author: gimondra
+ms.service: azure-ai-search
 ms.custom:
   - build-2024
 ms.topic: reference
@@ -18,7 +18,7 @@ ms.date: 08/05/2024
 
 The **Azure AI Studio model catalog** vectorizer connects to an embedding model that was deployed via [the Azure AI Studio model catalog](/azure/ai-studio/how-to/model-catalog) to an Azure Machine Learning endpoint. Your data is processed in the [Geo](https://azure.microsoft.com/explore/global-infrastructure/data-residency/) where your model is deployed. 
 
-If you used integrated vectorization to create the vector arrays, the skillset should include an [AML skill pointing to the model catalog in Azure AI Studio (preview)](cognitive-search-aml-skill.md).
+If you used integrated vectorization to create the vector arrays, the skillset should include an [AML skill pointing to the model catalog in Azure AI Studio](cognitive-search-aml-skill.md).
 
 ## Vectorizer parameters
 

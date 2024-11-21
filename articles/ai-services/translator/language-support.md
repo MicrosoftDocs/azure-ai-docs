@@ -114,7 +114,7 @@ ms.author: lajanuar
 |Mongolian (Traditional)|`mn-Mong`|✔|✔| | | |
 |Myanmar|`my`|✔|✔| |✔| |
 |Nepali|`ne`|✔|✔| |✔| |
-|Norwegian|`nb`|✔|✔|✔|✔|✔|
+|Norwegian Bokmål|`nb`|✔|✔|✔|✔|✔|
 |Nyanja|`nya`|✔|✔| | | |
 |Odia|`or`|✔|✔|✔|✔| |
 |Pashto|`ps`|✔|✔| |✔| |
@@ -241,7 +241,7 @@ ms.author: lajanuar
 |Mongolian (Traditional)|`mn-Mong`|Yes|No|
 |Myanmar (Burmese)|`my`|Yes|No|
 |Nepali|`ne`|Yes|Yes|
-|Norwegian|`nb`|Yes|Yes|
+|Norwegian Bokmål|`nb`|Yes|Yes|
 |Odia|`or`|Yes|No|
 |Pashto|`ps`|Yes|No|
 |Persian|`fa`|Yes|No|

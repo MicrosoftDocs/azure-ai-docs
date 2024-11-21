@@ -38,9 +38,9 @@ landingContent:
      - linkListType: learn
        links:
          - text: Read
-           url: concept-read.md
+           url: prebuilt/read.md
          - text: Layout
-           url: concept-layout.md
+           url: prebuilt/layout.md
          - text: Financial Services and Legal
            url: overview.md#financial-services-and-legal
          - text: US Tax
@@ -52,9 +52,9 @@ landingContent:
          - text: Custom classification
            url: overview.md#custom-classification-models
          - text: Add-on capabilities
-           url: concept-add-on-capabilities.md
+           url: concept/add-on-capabilities.md
          - text: Query field extraction
-           url:  concept-query-fields.md
+           url:  concept/query-fields.md
 
   #Card 3
    - title: Document Intelligence Studio
@@ -71,17 +71,17 @@ landingContent:
          - linkListType: concept
            links:
              - text: 🆕 Custom generative model
-               url:  concept-custom-generative.md
+               url:  train/custom-generative-extraction.md
              - text: 🆕 Retrieval-Augmented Generation (RAG)
-               url:  concept-retrieval-augmented-generation.md
+               url:  concept/retrieval-augmented-generation.md
              - text: 🆕 Batch document analysis
                url:  concept-batch-analysis.md
              - text: Accuracy and confidence scores
-               url: concept-accuracy-confidence.md
+               url: concept/accuracy-confidence.md
              - text: Use the analyzeDocument response
-               url: concept-analyze-document-response.md
+               url: concept/analyze-document-response.md
              - text: Custom model overview
-               url: concept-custom.md
+               url: train/custom-model.md
   # Card 5
    - title: Responsible AI
      linkLists:
@@ -102,11 +102,11 @@ landingContent:
       - linkListType: how-to-guide
         links:
           - text: Create a Document Intelligence resource
-            url: create-document-intelligence-resource.md
+            url: how-to-guides/create-document-intelligence-resource.md
           - text: Create SAS tokens for storage containers
-            url: create-sas-tokens.md
+            url: authentication/create-sas-tokens.md
           - text: Create and use managed identities
-            url: managed-identities.md
+            url: authentication/managed-identities.md
           - text: Build a custom extraction model
             url:  how-to-guides/build-a-custom-model.md
           - text: Build a custom classification model

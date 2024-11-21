@@ -5,7 +5,7 @@ description: Learn how to set up an Azure AI Search indexer connection to an Azu
 author: gmndrg
 ms.author: gimondra
 
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: conceptual
@@ -21,7 +21,7 @@ You can use a system-assigned managed identity or a user-assigned managed identi
 Before learning more about this feature, it's recommended that you understand what an indexer is and how to set up an indexer for your data source. More information can be found at the following links:
 
 * [Indexer overview](search-indexer-overview.md)
-* [SQL Managed Instance indexer](search-howto-connecting-azure-sql-database-to-azure-search-using-indexers.md)
+* [SQL Managed Instance indexer](search-how-to-index-sql-database.md)
 
 ## Prerequisites
 
@@ -31,7 +31,7 @@ Before learning more about this feature, it's recommended that you understand wh
 
   To assign read permissions on SQL Managed Instance, you must be an Azure Global Admin with a SQL Managed Instance. See [Configure and manage Microsoft Entra authentication with SQL Managed Instance](/azure/azure-sql/database/authentication-aad-configure) and follow the steps to provision a Microsoft Entra admin (SQL Managed Instance). 
 
-* [Configure a public endpoint and network security group in SQL Managed Instance](search-howto-connecting-azure-sql-mi-to-azure-search-using-indexers.md) to allow connections from Azure AI Search. Connecting through a Shared Private Link when using a managed identity isn't currently supported.
+* [Configure a public endpoint and network security group in SQL Managed Instance](search-how-to-index-sql-managed-instance.md) to allow connections from Azure AI Search. Connecting through a Shared Private Link when using a managed identity isn't currently supported.
 
 ## 1 - Assign permissions to read the database
 
@@ -94,7 +94,7 @@ Create the data source and provide a system-assigned managed identity.
 
 ### System-assigned managed identity
 
-The [REST API](//rest/api/searchservice/data-sources/create), Azure portal, and the [.NET SDK](/dotnet/api/azure.search.documents.indexes.models.searchindexerdatasourceconnection) support system-assigned managed identity. 
+The [REST API](/rest/api/searchservice/data-sources/create), Azure portal, and the [.NET SDK](/dotnet/api/azure.search.documents.indexes.models.searchindexerdatasourceconnection) support system-assigned managed identity. 
 
 When you're connecting with a system-assigned managed identity, the only change to the data source definition is the format of the "credentials" property. You'll provide an Initial Catalog or Database name and a `ResourceId` that has no account key or password. The `ResourceId` must include the subscription ID of SQL Managed Instance, the resource group of SQL Managed instance, and the name of the SQL database. 
 
@@ -163,4 +163,4 @@ You can also rule out any firewall issues by trying the connection with and with
 
 ## See also
 
-* [SQL Managed Instance and Azure SQL Database indexer](search-howto-connecting-azure-sql-database-to-azure-search-using-indexers.md)
+* [SQL Managed Instance and Azure SQL Database indexer](search-how-to-index-sql-database.md)

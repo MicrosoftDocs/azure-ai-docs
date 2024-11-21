@@ -6,7 +6,7 @@ ms.custom: horz-monitor
 ms.topic: reference
 author: HeidiSteen
 ms.author: heidist
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ---
 
 # Azure AI Search monitoring data reference

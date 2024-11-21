@@ -6,10 +6,11 @@ description: Learn how to build queries and engineer prompts for LLM-enabled sea
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
-ms.service: cognitive-search
+ms.service: azure-ai-search
+ms.custom:
+  - ignite-2024
 ms.topic: tutorial
 ms.date: 10/04/2024
-
 ---
 
 # Tutorial: Search your data using a chat model (RAG in Azure AI Search)
@@ -55,6 +56,8 @@ AZURE_OPENAI_ACCOUNT: str = "PUR YOUR AZURE OPENAI ENDPOINT HERE"
 ## Example script for prompt and query
 
 Here's the Python script that instantiates the clients, defines the prompt, and sets up the query. You can run this script in the notebook to generate a response from your chat model deployment.
+
+For the Azure Government cloud, modify the API endpoint on the token provider to `"https://cognitiveservices.azure.us/.default"`.
 
 ```python
 # Import libraries

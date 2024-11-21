@@ -8,7 +8,7 @@ manager: nitinme
 ms.custom:
   - subject-rbac-steps
   - ignite-2023
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.topic: how-to
 ms.date: 02/22/2024
 ---
@@ -25,7 +25,7 @@ You can use a system-assigned managed identity or a user-assigned managed identi
 
 * [Assign an Azure admin role on SQL](/azure/azure-sql/database/authentication-aad-configure). The identity used on the indexer connection needs read permissions. You must be a Microsoft Entra admin with a server in SQL Database or SQL Managed Instance to grant read permissions on a database.
 
-* You should be familiar with [indexer concepts](search-indexer-overview.md) and [configuration](search-howto-connecting-azure-sql-database-to-azure-search-using-indexers.md). 
+* You should be familiar with [indexer concepts](search-indexer-overview.md) and [configuration](search-how-to-index-sql-database.md). 
 
 ## 1 - Assign permissions to read the database
 
@@ -186,4 +186,4 @@ If you get an error when the indexer tries to connect to the data source that sa
 
 ## See also
 
-[Azure SQL indexer](search-howto-connecting-azure-sql-database-to-azure-search-using-indexers.md)
+[Azure SQL indexer](search-how-to-index-sql-database.md)

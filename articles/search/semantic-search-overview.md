@@ -6,7 +6,7 @@ description: Learn how Azure AI Search uses deep learning semantic ranking model
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: concept-article
