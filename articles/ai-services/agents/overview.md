@@ -1,7 +1,7 @@
 ---
 title: What is Azure AI Agent Service?
 titleSuffix: Azure AI services
-description: Learn how to create agents that leverage advanced language models for workflow automation.
+description: Learn how to create agents that apply advanced language models for workflow automation.
 manager: nitinme
 author: aahill
 ms.author: aahi
@@ -13,13 +13,25 @@ recommendations: false
 
 # What is Azure AI Agent Service?
 
-Azure AI Agent Service is a fully managed service designed to empower developers to securely build, deploy, and scale high-quality, and extensible AI agents. Leveraging an extensive ecosystem of models tools and capabilities from OpenAI, Microsoft, and other non-Microsoft providers, Azure AI Agent Service enables you to build agents for a wide range of generative AI use cases. Users can access the service through REST APIs, SDKs, or in the [Azure AI Foundry](https://ai.azure.com).
+Azure AI Agent Service is a fully managed service designed to empower developers to securely build, deploy, and scale high-quality, and extensible AI agents. Using an extensive ecosystem of models, tools, and capabilities from OpenAI, Microsoft, and other non-Microsoft providers, Azure AI Agent Service enables you to build agents for a wide range of generative AI use cases. Users can access the service through REST APIs, SDKs, or in the [Azure AI Foundry](https://ai.azure.com).
 
-### Features overview
 
-**Use OpenAI models and non-OpenAI models** - Create agents that leverage OpenAI models, or others such as Llama 3, Mistral and Cohere. 
+## Comparing Azure agents and Azure OpenAI assistants
 
-**Extensive data integrations** - Ground your AI agents with relevant, secure enterprise knowledge from various data sources, such as Microsoft Bing, Microsoft SharePoint, Microsoft Fabric, Azure AI Search, and third-party APIs. 
+Both agents and assistants enable you to build automated workflows that leverage Large Language Models (LLMs), but Azure AI Agent Service provides all the capabilities of assistants and:
+
+* The ability to use non-Azure OpenAI models Such as Llama 3.
+* An extended toolset that lets you ground the agent with different datasets such as Microsoft Fabric, SharePoint, OpenAPI, and access the web using Bing web searches.
+
+## Features overview
+
+**Flexible model selection** - Create agents that leverage OpenAI models, or others such as Llama 3, Mistral and Cohere. Choose the most suitable model to meet your business needs.
+
+**Extensive data integrations** - Ground your AI agents with relevant, secure enterprise knowledge from various data sources, such as Microsoft Bing, Microsoft SharePoint, Microsoft Fabric, Azure AI Search, and other APIs. 
+
+**Enterprise grade security** - Ensure data privacy and compliance with secure data handling, keyless authentication, and no public egress. 
+
+**Choose your storage solution** - Either bring your own Azure Blob storage for full visibility and control of your storage resources, or use platform-managed storage for secure ease-of-use.  
 
 ## Responsible AI
 
@@ -30,19 +42,13 @@ At Microsoft, we're committed to the advancement of AI driven by principles that
 To get started with Azure AI Agent Service, you need to create an Azure AI Foundry hub and an Agent project in your Azure subscription. 
 
 Start with the [quickstart](./quickstart.md) guide if it's your first time using the service.
-1. You can create a hub and project with the required resources via Azure portal, or Azure CLI. 
+1. You can create a AI hub and project with the required resources via AI Foundry or Azure portal. 
 1. After you create a project, you can deploy a compatible model such as GPT-4o.
 1. When you have a deployed model, you can:
 
     - Try out the Azure AI Foundry agents playground to start exploring agents' capabilities. 
     - You can also start making API calls to the service using the REST API or SDKs.
 
-
-## Comparing Azure agents and Azure OpenAI assistants
-
-Both agents and assistants enable you to build automated workflows that leverage Large Language Models (LLMs), but Azure AI Agent Service provides all the capabilities of assistants and:
-* The ability to use non-Azure OpenAI models Such as Llama 3
-* An extended toolset that lets you ground the agent with different datasets and access the web using Bing web searches.
 
 ## Next steps
 
