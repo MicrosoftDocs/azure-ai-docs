@@ -181,14 +181,6 @@ With Document Intelligence, you can quickly automate your data processing in app
 * Select **Privacy**
 * Deselect **Block all cookies**
 
-<<<<<<< HEAD
-=======
-### [**AI Studio**](#tab/ai-studio)
-
-Document Intelligence is part of the Azure AI services offerings in the Azure AI Studio. Each of the Azure AI services helps developers and organizations rapidly create intelligent, cutting-edge, market-ready, and responsible applications with out-of-the-box and prebuilt and customizable APIs and models.
-
-Learn how to [connect your AI services hub](../../ai-studio/ai-services/how-to/connect-ai-services.md) with AI services and get started using Document Intelligence.
->>>>>>> 46cb645f8cdd89ba252fa94fce782fc163e63330
 
 ## Next steps
 
