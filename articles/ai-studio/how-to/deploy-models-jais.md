@@ -1,6 +1,6 @@
 ---
 title: How to use Jais chat models with Azure AI Studio
-titleSuffix: Azure AI Studio
+titleSuffix: Azure AI Foundry
 description: Learn how to use Jais chat models with Azure AI Studio.
 ms.service: azure-ai-studio
 manager: scottpolly

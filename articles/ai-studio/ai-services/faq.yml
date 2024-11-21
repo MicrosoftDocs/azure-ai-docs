@@ -1,7 +1,7 @@
 ### YamlMime:FAQ
 metadata:
   title: Azure AI model inference service frequently asked questions
-  titleSuffix: Azure AI studio
+  titleSuffix: Azure AI Foundry
   description: Get answers to the most popular questions about Azure AI model service
   #services: cognitive-services
   ms.service: azure-ai-studio

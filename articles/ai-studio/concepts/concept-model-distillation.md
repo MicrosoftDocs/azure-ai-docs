@@ -1,6 +1,6 @@
 ---
 title: Distillation in AI Studio (preview)
-titleSuffix: Azure AI Studio
+titleSuffix: Azure AI Foundry
 description: Learn how to do distillation in Azure AI Studio.
 manager: scottpolly
 ms.service: azure-ai-studio

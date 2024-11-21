@@ -1,6 +1,6 @@
 ---
 title: How to manually evaluate prompts in Azure AI Studio playground
-titleSuffix: Azure AI Studio
+titleSuffix: Azure AI Foundry
 description: Quickly test and evaluate prompts in Azure AI Studio playground.
 manager: scottpolly
 ms.service: azure-ai-studio

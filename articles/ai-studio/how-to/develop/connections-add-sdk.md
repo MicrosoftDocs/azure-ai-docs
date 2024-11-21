@@ -1,11 +1,12 @@
 ---
 title: How to add a new connection in AI Studio using the Azure Machine Learning SDK
-titleSuffix: Azure AI Studio
+titleSuffix: Azure AI Foundry
 description: This article provides instructions on how to add connections to other resources using the Azure Machine Learning SDK.
 manager: scottpolly
 ms.service: azure-ai-studio
 ms.custom:
   - build-2024
+  - ignite-2024
 ms.topic: how-to
 ms.date: 9/12/2024
 ms.reviewer: dantaylo
@@ -76,7 +77,7 @@ ml_client.connections.create_or_update(wps_connection)
 
 ## Azure AI services
 
-The following example creates an Azure AI services connection. This example creates one connection for the AI services documented in the [Connect to Azure AI services](../../ai-services/connect-ai-services.md) article. The same connection also supports the Azure OpenAI service.
+The following example creates an Azure AI services connection. This example creates one connection for the AI services documented in the [Connect to Azure AI services](../../ai-services/how-to/connect-ai-services.md) article. The same connection also supports the Azure OpenAI service.
 
 ```python
 from azure.ai.ml.entities import AzureAIServicesConnection, ApiKeyConfiguration
@@ -102,7 +103,7 @@ wps_connection = AzureAIServicesConnection(
 ml_client.connections.create_or_update(wps_connection)
 ```
 
-## Azure AI Search (preview)
+## Azure AI Search
 
 The following example creates an Azure AI Search connection:
 
@@ -127,7 +128,7 @@ wps_connection = AzureAISearchConnection(
 ml_client.connections.create_or_update(wps_connection)
 ```
 
-## Azure AI Content Safety (preview)
+## Azure AI Content Safety
 
 The following example creates an Azure AI Content Safety connection:
 
@@ -169,7 +170,7 @@ wps_connection = ServerlessConnection(
 ml_client.connections.create_or_update(wps_connection)
 ```
 
-## Azure Blob Storage (preview)
+## Azure Blob Storage
 
 The following example creates an Azure Blob Storage connection. This connection is authenticated with an account key or a SAS token:
 
@@ -193,7 +194,7 @@ wps_connection = AzureBlobStoreConnection(
 ml_client.connections.create_or_update(wps_connection)
 ```
 
-## Azure Data Lake Storage Gen 2 (preview)
+## Azure Data Lake Storage Gen 2
 
 The following example creates Azure Data Lake Storage Gen 2 connection. This connection is authenticated with a Service Principal:
 
@@ -221,7 +222,7 @@ wps_connection = WorkspaceConnection(
 ml_client.connections.create_or_update(workspace_connection=wps_connection)
 ```
 
-## Microsoft OneLake (preview)
+## Microsoft OneLake
 
 The following example creates a Microsoft OneLake connection. This connection is authenticated with a Service Principal:
 

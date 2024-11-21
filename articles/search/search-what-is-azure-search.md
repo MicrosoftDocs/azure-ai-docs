@@ -7,24 +7,26 @@ manager: nitinme
 author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
+ms.custom:
+  - ignite-2024
 ms.topic: overview
 ms.date: 10/27/2024
 ---
 
 # What's Azure AI Search?
 
-Azure AI Search ([formerly known as "Azure Cognitive Search"](whats-new.md#new-service-name)) is an enterprise-ready search and retrieval system, with a comprehensive set of advanced search technology, built for high-performance applications at any scale.  
+Azure AI Search ([formerly known as "Azure Cognitive Search"](whats-new.md#new-service-name)) is an enterprise-ready search and retrieval system, with a comprehensive set of advanced search technologies, built for high-performance applications at any scale.
 
-Azure AI Search is the primary recommended retrieval system when building RAG-based applications on Azure, with native LLM integrations between Azure OpenAI Service and Azure Machine Learning.
+Azure AI Search is the recommended retrieval system for building RAG-based applications on Azure, with native LLM integrations between Azure OpenAI Service and Azure Machine Learning, and multiple strategies for relevance tuning.
 
-Azure AI Search can be used in both traditional and GenAI scenarios. Common use cases include knowledge base insights (catalog or document search), information discovery (data exploration), retrieval-augmented generation (RAG), and automation.  
+Azure AI Search can be used in both traditional and GenAI scenarios. Common use cases include knowledge base insights (catalog or document search), information discovery (data exploration), retrieval-augmented generation (RAG), and indexing automation.  
 
 When you create a search service, you work with the following capabilities:
 
 + A search engine for [vector search](vector-search-overview.md) and [full text](search-lucene-query-architecture.md) and [hybrid search](hybrid-search-overview.md) over a search index 
 + Rich indexing with [integrated data chunking and vectorization](vector-search-integrated-vectorization.md), [lexical analysis](search-analyzers.md) for text, and [optional applied AI](cognitive-search-concept-intro.md) for content extraction and transformation
 + Rich query syntax for [vector queries](vector-search-how-to-query.md), text search, [hybrid queries](hybrid-search-how-to-query.md), fuzzy search, autocomplete, geo-search and others
-+ Relevance and query performance tuning with [semantic ranking](semantic-search-overview.md), [scoring profiles](index-add-scoring-profiles.md), [quantization for vector queries](vector-search-how-to-configure-compression-storage.md), and parameters for controlling query behaviors at runtime 
++ Relevance and query performance tuning with [semantic ranking](semantic-search-overview.md), [scoring profiles](index-add-scoring-profiles.md), [quantization for vector queries](vector-search-how-to-quantization.md), and parameters for controlling query behaviors at runtime 
 + Azure scale, security, and reach
 + Azure integration at the data layer, machine learning layer, Azure AI services and Azure OpenAI
 

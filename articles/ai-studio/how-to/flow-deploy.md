@@ -1,12 +1,13 @@
 ---
 title: Deploy a flow as a managed online endpoint for real-time inference
-titleSuffix: Azure AI Studio
+titleSuffix: Azure AI Foundry
 description: Learn how to deploy a flow as a managed online endpoint for real-time inference with Azure AI Studio.
 manager: scottpolly
 ms.service: azure-ai-studio
 ms.custom:
   - ignite-2023
   - build-2024
+  - ignite-2024
 ms.topic: how-to
 ms.date: 5/21/2024
 ms.reviewer: likebupt
@@ -58,9 +59,7 @@ Follow the steps below to deploy a prompt flow as an online endpoint in Azure AI
 
 1. Select **Create** to deploy the prompt flow.  
 
-    :::image type="content" source="../media/prompt-flow/how-to-deploy-for-real-time-inference/deploy-review-create.png" alt-text="Screenshot of the review settings page." lightbox = "../media/prompt-flow/how-to-deploy-for-real-time-inference/deploy-review-create.png":::
-
-1. To view the status of your deployment, select **Deployments** from the left navigation. Once the deployment is created successfully, you can select the deployment to view the details.
+1. To view the status of your deployment, select **Models + endpoints** from the left navigation. Once the deployment is created successfully, you can select the deployment to view the details.
 
     :::image type="content" source="../media/prompt-flow/how-to-deploy-for-real-time-inference/deployments-state-updating.png" alt-text="Screenshot of the deployment state in progress." lightbox = "../media/prompt-flow/how-to-deploy-for-real-time-inference/deployments-state-updating.png":::
 
@@ -92,12 +91,11 @@ Optionally you can specify extra packages you needed in `requirements.txt`. You 
 
 :::image type="content" source="../media/prompt-flow/how-to-deploy-for-real-time-inference/flow-environment-image.png" alt-text="Screenshot of specifying base image in raw yaml file of the flow. " lightbox = "../media/prompt-flow/how-to-deploy-for-real-time-inference/flow-environment-image.png":::
 
-:::image type="content" source="../media/prompt-flow/how-to-deploy-for-real-time-inference/requirements-text.png" alt-text="Screenshot of a flow's requirements text file." lightbox = "../media/prompt-flow/how-to-deploy-for-real-time-inference/requirements-text.png":::
 
 
 ### Basic settings
 
-This step allows you to configure the basic settings of the deployment.
+This step allows you to configure the basic settings when you select **Deploy** on the flow editor.
 
 |Property| Description |
 |---|-----|

@@ -137,7 +137,7 @@ Indexers require a data source that specifies the type, container, and connectio
 
    + [Azure Blob Storage](search-howto-indexing-azure-blob-storage.md)
    + [Azure Cosmos DB](search-howto-index-cosmosdb.md)
-   + [Azure SQL Database](search-howto-connecting-azure-sql-database-to-azure-search-using-indexers.md)
+   + [Azure SQL Database](search-how-to-index-sql-database.md)
 
 1. If the data source is a database, such as Azure SQL or Cosmos DB, enable change tracking. Azure Storage has built-in change tracking through the `LastModified` property on every blob, file, and table. The links for the various data sources explain which change tracking methods are supported by indexers.
 
@@ -246,7 +246,7 @@ Change detection logic is built into the data platforms. How an indexer supports
 
 + Cloud database technologies provide optional change detection features in their platforms. For these data sources, change detection isn't automatic. You need to specify in the data source definition which policy is used:
 
-  + [Azure SQL (change detection)](search-howto-connecting-azure-sql-database-to-azure-search-using-indexers.md#indexing-new-changed-and-deleted-rows)
+  + [Azure SQL (change detection)](search-how-to-index-sql-database.md#indexing-new-changed-and-deleted-rows)
   + [Azure DB for MySQL (change detection)](search-howto-index-mysql.md#indexing-new-and-changed-rows)
   + [Azure Cosmos DB for NoSQL (change detection)](search-howto-index-cosmosdb.md#indexing-new-and-changed-documents)
   + [Azure Cosmos DB for MongoDB (change detection)](search-howto-index-cosmosdb-mongodb.md#indexing-new-and-changed-documents)
@@ -259,7 +259,7 @@ If you need to clear the high water mark to reindex in full, you can use [Reset 
 ## Related content
 
 + [Index data from Azure Blob Storage](search-howto-indexing-azure-blob-storage.md)
-+ [Index data from Azure SQL database](search-howto-connecting-azure-sql-database-to-azure-search-using-indexers.md)
++ [Index data from Azure SQL database](search-how-to-index-sql-database.md)
 + [Index data from Azure Data Lake Storage Gen2](search-howto-index-azure-data-lake-storage.md)
 + [Index data from Azure Table Storage](search-howto-indexing-azure-tables.md)
 + [Index data from Azure Cosmos DB](search-howto-index-cosmosdb.md)

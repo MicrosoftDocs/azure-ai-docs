@@ -1,6 +1,6 @@
 ---
 title: Get started using GPT-4 Turbo with Vision on your images and videos in Azure AI Studio
-titleSuffix: Azure AI Studio
+titleSuffix: Azure AI Foundry
 description: Get started using GPT-4 Turbo with Vision on your images and videos in Azure AI Studio.
 manager: nitinme
 ms.service: azure-ai-studio

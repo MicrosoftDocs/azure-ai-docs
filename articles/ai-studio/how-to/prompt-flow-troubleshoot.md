@@ -1,9 +1,11 @@
 ---
 title: Troubleshoot guidance for prompt flow
-titleSuffix: Azure AI Studio
+titleSuffix: Azure AI Foundry
 description: This article addresses frequent questions about prompt flow usage.
 manager: scottpolly
 ms.service: azure-ai-studio
+ms.custom:
+  - ignite-2024
 ms.topic: reference
 author: lgayhardt
 ms.author: lagayhar
@@ -167,7 +169,7 @@ Consider optimizing the endpoint with above considerations to improve the perfor
 
 ### Unable to fetch deployment schema
 
-After you deploy the endpoint and want to test it in the **Test** tab in the deployment detail page, if the **Test** tab shows **Unable to fetch deployment schema**, you can try the following two methods to mitigate this issue:
+After you deploy the endpoint and want to test it in the **Test** tab in the deployment detail page. To get to the **Test** tab, go to **Models +endpoints** under *My assets* from the left navigation then select the deployment to view the details. If the **Test** tab shows **Unable to fetch deployment schema**, you can try the following two methods to mitigate this issue:
 
 :::image type="content" source="../media/prompt-flow//unable-to-fetch-deployment-schema.png" alt-text="Screenshot of the error unable to fetch deployment schema in Test tab in deployment detail page. " lightbox = "../media/prompt-flow/unable-to-fetch-deployment-schema.png":::
 

@@ -1,14 +1,15 @@
 ---
 title: Manage and increase quotas for resources with Azure AI Studio
-titleSuffix: Azure AI Studio
+titleSuffix: Azure AI Foundry
 description: This article provides instructions on how to manage and increase quotas for resources with Azure AI Studio.
 manager: scottpolly
 ms.service: azure-ai-studio
 ms.custom:
   - ignite-2023
   - build-2024
+  - ignite-2024
 ms.topic: how-to
-ms.date: 5/21/2024
+ms.date: 11/19/2024
 ms.reviewer: siarora
 ms.author: larryfr
 author: Blackmist
@@ -95,11 +96,15 @@ Use quotas to manage compute target allocation between multiple Azure AI Studi
 
 By default, all hubs share the same quota as the subscription-level quota for VM families. However, you can set a maximum quota for individual VM families for more granular cost control and governance on hubs in a subscription. Quotas for individual VM families let you share capacity and avoid resource contention issues.
 
-1. In Azure AI Studio, go to the **Home** page and select either **Model quota** or **VM quota** from the **Management** section.
+1. In Azure AI Studio, select **Management center** from the left menu.
 
-    :::image type="content" source="../media/cost-management/select-model-vm-quota.png" alt-text="Screenshot of the Model and VM quota entries in the management section." lightbox="../media/cost-management/select-model-vm-quota.png":::
+    :::image type="content" source="../media/management-center/management-center.png" alt-text="Screenshot of the management center link.":::
 
-1. When you select **Model quota**, you can view the quota for the models in the selected Azure region. To request more quota, select the model and then select **Request quota**. 
+1. Select **Quota** from the left menu.
+
+    :::image type="content" source="../media/cost-management/quotas.png" alt-text="Screenshot of the Model and VM quota entries in the management section." lightbox="../media/cost-management/quotas.png":::
+
+1. From the quota view, you can see the quota for the models in the selected Azure region. To request more quota, select the model and then select **Request quota**. 
 
     - Use the **Show all quota** toggle to display all quota or only the currently allocated quota.
     - Use the **Group by** dropdown to group the list by **Quota type, Region & Model**, **Quota type, Model & Region**, or **None**. The **None** grouping displays a list of model deployments.
@@ -109,7 +114,7 @@ By default, all hubs share the same quota as the subscription-level quota for VM
   
     :::image type="content" source="../media/cost-management/model-quota.png" alt-text="Screenshot of the Model quota page in Azure AI Studio." lightbox="../media/cost-management/model-quota.png":::
 
-1. When you select **VM quota**, you can view the quota and usage for the virtual machine families in the selected Azure region. To request more quota, select the VM family and then select **Request quota**. 
+1. When you select the **VM quota** link, you can view the quota and usage for the virtual machine families in the selected Azure region. To request more quota, select the VM family and then select **Request quota**. 
 
     :::image type="content" source="../media/cost-management/vm-quota.png" alt-text="Screenshot of the VM quota page in Azure AI Studio." lightbox="../media/cost-management/vm-quota.png":::
 

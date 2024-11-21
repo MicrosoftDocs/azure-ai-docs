@@ -1,13 +1,13 @@
 ---
 title: How to configure a private link for an Azure AI Studio hub
-titleSuffix: Azure AI Studio
+titleSuffix: Azure AI Foundry
 description: Learn how to configure a private link for Azure AI Studio hubs. A private link is used to secure communication with the Azure AI Studio hub.
 manager: scottpolly
 ms.service: azure-ai-studio
-ms.custom: ignite-2023, devx-track-azurecli, build-2024
+ms.custom: ignite-2023, devx-track-azurecli, build-2024, ignite-2024
 ms.topic: how-to
 ms.date: 5/21/2024
-ms.reviewer: meerakurup 
+ms.reviewer: meerakurup
 ms.author: larryfr
 author: Blackmist
 # Customer intent: As an admin, I want to configure a private link for hub so that I can secure my hubs.
@@ -23,7 +23,7 @@ You get several hub default resources in your resource group. You need to config
 
 - Disable public network access of hub default resources such as Azure Storage, Azure Key Vault, and Azure Container Registry.
 - Establish private endpoint connection to hub default resources. You need to have both a blob and file private endpoint for the default storage account.
-- [Managed identity configurations](#managed-identity-configuration) to allow hubs access your storage account if it's private.
+- [Managed identity configurations](#managed-identity-configuration) to allow hubs access to your storage account if it's private.
 
 
 ## Prerequisites
@@ -223,10 +223,7 @@ To enable public access, use the following steps:
 Use the following Azure CLI command to enable public access:
 
 ```azurecli
-az ml workspace update \
-    --set public_network_access=Enabled \
-    -n <workspace-name> \
-    -g <resource-group-name>
+az ml workspace update --set public_network_access=Enabled -n <workspace-name> -g <resource-group-name>
 ```
 
 If you receive an error that the `ml` command isn't found, use the following commands to install the Azure Machine Learning CLI extension:
@@ -268,7 +265,7 @@ If you need to configure custom DNS server without DNS forwarding, use the follo
     > * Compute instances can be accessed only from within the virtual network.
     > * The IP address for this FQDN is **not** the IP of the compute instance. Instead, use the private IP address of the workspace private endpoint (the IP of the `*.api.azureml.ms` entries.)
 
-* `<instance-name>.<region>.instances.azureml.ms` - Only used by the `az ml compute connect-ssh` command to connect to computes in a managed virtual network. Not needed if you are not using a managed network or SSH connections.
+* `<instance-name>.<region>.instances.azureml.ms` - Only used by the `az ml compute connect-ssh` command to connect to computers in a managed virtual network. Not needed if you are not using a managed network or SSH connections.
 
 * `<managed online endpoint name>.<region>.inference.ml.azure.com` - Used by managed online endpoints
 

@@ -1,6 +1,6 @@
 ---
 title: Create an Azure AI Studio hub using a Bicep template
-titleSuffix: Azure AI Studio
+titleSuffix: Azure AI Foundry
 description: Use a Microsoft Bicep template to create a new Azure AI Studio hub.
 manager: scottpolly
 ms.service: azure-ai-studio

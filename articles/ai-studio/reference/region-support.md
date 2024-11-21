@@ -1,6 +1,6 @@
 ---
 title: Azure AI Studio feature availability across clouds regions
-titleSuffix: Azure AI Studio
+titleSuffix: Azure AI Foundry
 description: This article lists Azure AI Studio feature availability across clouds regions.
 manager: scottpolly
 ms.service: azure-ai-studio
@@ -38,6 +38,7 @@ Azure AI Studio is currently available in the following Azure regions. You can c
 - South Central US
 - Sweden Central
 - Switzerland North
+- UAE North
 - UK South
 - West Europe
 - West US

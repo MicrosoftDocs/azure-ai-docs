@@ -1,6 +1,6 @@
 ---
 title: Foundation models for healthcare in AI Studio
-titleSuffix: Azure AI Studio
+titleSuffix: Azure AI Foundry
 description: Learn about AI models that are applicable to the health and life science industry.
 ms.service: azure-ai-studio
 manager: scottpolly
