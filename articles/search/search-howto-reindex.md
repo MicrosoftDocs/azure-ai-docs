@@ -8,6 +8,8 @@ author: HeidiSteen
 ms.author: heidist
 
 ms.service: azure-ai-search
+ms.custom:
+  - ignite-2024
 ms.topic: how-to
 ms.date: 08/14/2024
 ---
@@ -47,7 +49,7 @@ Queries continue to run, but if you're updating or removing existing fields, you
 
 + The payload must include the keys or identifiers of every document you want to add, update, or delete.
 
-+ If your index includes vector fields and you set the [`stored` property to false](vector-search-how-to-configure-compression-storage.md#option-3-set-the-stored-property-to-remove-retrievable-storage), make sure you provide the vector in your partial document update, even if the value is unchanged. A side effect of setting `stored` to false is that vectors are dropped on a reindexing operation. Providing the vector in the documents payload prevents this from happening.
++ If your index includes vector fields and you set the [`stored` property to false](vector-search-how-to-storage-options.md), make sure you provide the vector in your partial document update, even if the value is unchanged. A side effect of setting `stored` to false is that vectors are dropped on a reindexing operation. Providing the vector in the documents payload prevents this from happening.
 
 + To update the contents of simple fields and subfields in complex types, list only the fields you want to change. For example, if you only need to update a description field, the payload should consist of the document key and the modified description. Omitting other fields retains their existing values.
 
@@ -199,7 +201,7 @@ Deleting a document doesn't immediately free up space in the index. Every few mi
 + [Indexer overview](search-indexer-overview.md)
 + [Index large data sets at scale](search-howto-large-index.md)
 + [Indexing in the portal](search-import-data-portal.md)
-+ [Azure SQL Database indexer](search-howto-connecting-azure-sql-database-to-azure-search-using-indexers.md)
++ [Azure SQL Database indexer](search-how-to-index-sql-database.md)
 + [Azure Cosmos DB for NoSQL indexer](search-howto-index-cosmosdb.md)
 + [Azure blob indexer](search-howto-indexing-azure-blob-storage.md)
 + [Azure tables indexer](search-howto-indexing-azure-tables.md)

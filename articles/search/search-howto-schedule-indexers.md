@@ -28,7 +28,7 @@ Once an indexer is on a schedule, it remains on the schedule until you clear the
 
 + A valid indexer configured with a data source and index.
 
-+ [Change detection](search-howto-create-indexers.md#change-detection-and-internal-state) in the data source. Azure Storage and SharePoint have built-in change detection. Other data sources, such as [Azure SQL](search-howto-connecting-azure-sql-database-to-azure-search-using-indexers.md) and [Azure Cosmos DB](search-howto-index-cosmosdb.md) must be enabled manually.
++ [Change detection](search-howto-create-indexers.md#change-detection-and-internal-state) in the data source. Azure Storage and SharePoint have built-in change detection. Other data sources, such as [Azure SQL](search-how-to-index-sql-database.md) and [Azure Cosmos DB](search-howto-index-cosmosdb.md) must be enabled manually.
 
 ## Schedule definition
 

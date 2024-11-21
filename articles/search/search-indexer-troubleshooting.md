@@ -53,7 +53,7 @@ When an indexer accesses data on a SQL managed instance, or when an Azure VM is 
 
 For external resources residing on a virtual network, [configure inbound NSG rules](/azure/virtual-network/manage-network-security-group#work-with-security-rules) for the `AzureCognitiveSearch` service tag.
 
-For more information about connecting to a virtual machine, see [Configure a connection to SQL Server on an Azure VM](search-howto-connecting-azure-sql-iaas-to-azure-search-using-indexers.md).
+For more information about connecting to a virtual machine, see [Configure a connection to SQL Server on an Azure VM](search-how-to-index-sql-server.md).
 
 ### Network errors
 

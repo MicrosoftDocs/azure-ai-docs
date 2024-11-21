@@ -784,6 +784,21 @@ groups:
   - id: rest-api
     title: REST
 # Owner: mbullwin
+- id: openai-supported-languages
+  title: Programming languages
+  prompt: Choose your preferred language
+  pivots:
+  - id: programming-language-dotnet
+    title: C#
+  - id:  programming-language-go
+    title: Go
+  - id:  programming-language-java
+    title: Java
+  - id:  programming-language-javascript
+    title: JavaScript
+  - id: programming-language-python
+    title: Python
+# Owner: mbullwin
 - id: openai-create-resource
   title: Programming languages
   prompt: Choose your preferred resource creation method
@@ -902,3 +917,12 @@ groups:
     title: AI Studio
   - id: programming-language-javascript
     title: JavaScript
+# owner: sgilley
+- id: programming-languages-sdk-overview
+  title: Programming languages
+  prompt: Choose one of the client library languages.
+  pivots:
+  - id: programming-language-python
+    title: Python
+  - id: programming-language-csharp
+    title: C#

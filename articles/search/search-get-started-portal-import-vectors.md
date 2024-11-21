@@ -7,70 +7,70 @@ ms.author: heidist
 ms.service: azure-ai-search
 ms.custom:
   - build-2024
+  - ignite-2024
 ms.topic: quickstart
-ms.date: 10/18/2024
+ms.date: 11/20/2024
 ---
 
 # Quickstart: Vectorize text and images by using the Azure portal
 
 This quickstart helps you get started with [integrated vectorization](vector-search-integrated-vectorization.md) by using the **Import and vectorize data** wizard in the Azure portal. The wizard chunks your content and calls an embedding model to vectorize content during indexing and for queries.
 
-Key points about the wizard:
-
-+ Supported data sources are Azure Blob Storage, Azure Data Lake Storage (ADLS) Gen2, or OneLake files and shortcuts.
-+ Supported embedding models are hosted on Azure OpenAI, Azure AI Studio model catalog, Azure AI Vision multimodal.
-+ Index schema provides vector and nonvector fields for chunked data. 
-+ You can add fields, but you can't delete or modify generated fields.
-+ Document parsing mode creates chunks (one search document per chunk).
-+ Chunking is nonconfigurable. The effective settings are:
-
-  ```json
-   "textSplitMode": "pages",
-   "maximumPageLength": 2000,
-   "pageOverlapLength": 500,
-   "maximumPagesToTake": 0, #unlimited
-   "unit": "characters",
-  ```
-
 ## Prerequisites
 
 + An Azure subscription. [Create one for free](https://azure.microsoft.com/free/).
 
-+ [Azure AI Search service](search-create-service-portal.md) in the same region as Azure AI. We recommend the Basic tier or higher.
++ [An Azure AI Search service](search-create-service-portal.md) in the same region as Azure AI. We recommend the Basic tier or higher.
 
-+ [Azure Blob Storage](/azure/storage/common/storage-account-create), [Azure Data Lake Storage (ADLS) Gen2](/azure/storage/blobs/create-data-lake-storage-account) (a storage account with a hierarchical namespace), or a [OneLake lakehouse](search-how-to-index-onelake-files.md).
++ [A supported data source](#supported-data-sources).
 
-  Azure Storage must be a standard performance (general-purpose v2) account. Access tiers can be hot, cool, and cold.
++ [A supported embedding model](#supported-embedding-models).
 
-+ An embedding model on an Azure AI platform in the [same region as Azure AI Search](search-create-service-portal.md#regions-with-the-most-overlap). [Deployment instructions](#set-up-embedding-models) are in this article.
++ Familiarity with the wizard. See [Import data wizards in the Azure portal](search-import-data-portal.md) for details.
 
-  | Provider | Supported models |
-  |---|---|
-  | [Azure OpenAI Service](https://aka.ms/oai/access) | text-embedding-ada-002, text-embedding-3-large, or text-embedding-3-small. |
-  | [Azure AI Studio model catalog](/azure/ai-studio/what-is-ai-studio) |  Azure, Cohere, and Facebook embedding models. |
-  | [Azure AI services multiservice account](/azure/ai-services/multi-service-resource) | [Azure AI Vision multimodal](/azure/ai-services/computer-vision/how-to/image-retrieval) for image and text vectorization. Azure AI Vision multimodal is available in selected regions. [Check the documentation](/azure/ai-services/computer-vision/how-to/image-retrieval?tabs=csharp) for an updated list. **To use this resource, the account must be in an available region and in the same region as Azure AI Search**. |
+### Supported data sources
 
-If using the Azure OpenAI Service, it must have an associated [custom subdomain](/azure/ai-services/cognitive-services-custom-subdomains). If the service was created through the Azure portal, this subdomain is automatically generated as part of your service setup. Ensure that your service includes a custom subdomain before using it with the Azure AI Search integration.
+The **Import and vectorize data** wizard [supports a wide range of Azure data sources](search-import-data-portal.md#supported-data-sources-and-scenarios), but this quickstart provides steps for just those data sources that work with whole files:
+
++ [Azure Blob Storage](search-howto-indexing-azure-blob-storage.md) for blobs and tables. Azure Storage must be a standard performance (general-purpose v2) account. Access tiers can be hot, cool, and cold.
+
++ [Azure Data Lake Storage (ADLS) Gen2](/azure/storage/blobs/create-data-lake-storage-account) (an Azure Storage account with a hierarchical namespace enabled). You can confirm that you have Data Lake Storage by checking the **Properties** tab on the **Overview** page.
+
+   :::image type="content" source="media/search-get-started-portal-import-vectors/data-lake-storage.png" alt-text="Screenshot of the storage account properties page showing Data Lake Storage.":::
+
++ [OneLake lakehouse (preview)](search-how-to-index-onelake-files.md).
+
+### Supported embedding models
+
+Use an embedding model on an Azure AI platform in the [same region as Azure AI Search](search-create-service-portal.md#regions-with-the-most-overlap). [Deployment instructions](#set-up-embedding-models) are in this article.
+
+| Provider | Supported models |
+|---|---|
+| [Azure OpenAI Service](https://aka.ms/oai/access) | text-embedding-ada-002, text-embedding-3-large, or text-embedding-3-small. |
+| [Azure AI Studio model catalog](/azure/ai-studio/what-is-ai-studio) |  Azure, Cohere, and Facebook embedding models. |
+| [Azure AI services multi-service account](/azure/ai-services/multi-service-resource) | [Azure AI Vision multimodal](/azure/ai-services/computer-vision/how-to/image-retrieval) for image and text vectorization. Azure AI Vision multimodal is available in selected regions. [Check the documentation](/azure/ai-services/computer-vision/how-to/image-retrieval?tabs=csharp) for an updated list. Depending on how you [attach the multi-service resource](cognitive-search-attach-cognitive-services.md), the account might need to be in the same region as Azure AI Search. |
+
+If you use the Azure OpenAI Service, the endpoint must have an associated [custom subdomain](/azure/ai-services/cognitive-services-custom-subdomains). A custom subdomain is an endpoint that includes a unique name (for example, `https://hereismyuniquename.cognitiveservices.azure.com`). If the service was created through the Azure portal, this subdomain is automatically generated as part of your service setup. Ensure that your service includes a custom subdomain before using it with the Azure AI Search integration.
 
 Azure OpenAI Service resources (with access to embedding models) that were created in AI Studio aren't supported. Only the Azure OpenAI Service resources created in the Azure portal are compatible with the **Azure OpenAI Embedding** skill integration.
 
 ### Public endpoint requirements
 
-All of the preceding resources must have public access enabled so that the portal nodes can access them. Otherwise, the wizard fails. After the wizard runs, you can enable firewalls and private endpoints on the integration components for security. For more information, see [Secure connections in the import wizards](search-import-data-portal.md#secure-connections).
+For the purposes of this quickstart, all of the preceding resources must have public access enabled so that the portal nodes can access them. Otherwise, the wizard fails. After the wizard runs, you can enable firewalls and private endpoints on the integration components for security. For more information, see [Secure connections in the import wizards](search-import-data-portal.md#secure-connections).
 
 If private endpoints are already present and you can't disable them, the alternative option is to run the respective end-to-end flow from a script or program on a virtual machine. The virtual machine must be on the same virtual network as the private endpoint. [Here's a Python code sample](https://github.com/Azure/azure-search-vector-samples/tree/main/demo-python/code/integrated-vectorization) for integrated vectorization. The same [GitHub repo](https://github.com/Azure/azure-search-vector-samples/tree/main) has samples in other programming languages.
 
-### Role-based access control requirements
+### Permissions
 
-We recommend role assignments for search service connections to other resources.
+You can use key authentication and full access connection strings, or Microsoft Entra ID with role assignments. We recommend role assignments for search service connections to other resources.
 
 1. On Azure AI Search, [enable roles](search-security-enable-roles.md).
 
 1. Configure your search service to [use a managed identity](search-howto-managed-identities-data-sources.md#create-a-system-managed-identity).
 
-1. On your data source platform and embedding model provider, create role assignments that allow search service to access data and models. [Prepare sample data](#prepare-sample-data) provides instructions for setting up roles.
+1. On your data source platform and embedding model provider, create role assignments that allow search service to access data and models. [Prepare sample data](#prepare-sample-data) provides instructions for setting up roles for each supported data source.
 
-A free search service supports RBAC on connections to Azure AI Search, but it doesn't support managed identities on outbound connections to Azure Storage or Azure AI Vision. This level of support means you must use key-based authentication on connections between a free search service and other Azure services. 
+A free search service supports role-based connections to Azure AI Search, but it doesn't support managed identities on outbound connections to Azure Storage or Azure AI Vision. This level of support means you must use key-based authentication on connections between a free search service and other Azure services. 
 
 For more secure connections:
 
@@ -84,13 +84,9 @@ For more secure connections:
 
 If you're starting with the free service, you're limited to three indexes, data sources, skillsets, and indexers. Basic limits you to 15. Make sure you have room for extra items before you begin. This quickstart creates one of each object.
 
-### Check for semantic ranker
-
-The wizard supports semantic ranking, but only on the Basic tier and higher, and only if semantic ranker is already [enabled on your search service](semantic-how-to-enable-disable.md). If you're using a billable tier, check whether semantic ranker is enabled.
-
 ## Prepare sample data
 
-This section points you to data that works for this quickstart.
+This section points you to the content that works for this quickstart.
 
 ### [Azure Blob Storage](#tab/sample-data-storage)
 
@@ -113,10 +109,6 @@ This section points you to data that works for this quickstart.
 ### [ADLS Gen2](#tab/sample-data-adlsgen2)
 
 1. Sign in to the [Azure portal](https://portal.azure.com/) with your Azure account, and go to your Azure Storage account.
-
-1. You can confirm that you have Data Lake Storage by checking the **Properties** tab on the **Overview** page.
-
-   :::image type="content" source="media/search-get-started-portal-import-vectors/data-lake-storage.png" alt-text="Screenshot of the storage account properties page showing Data Lake Storage.":::
 
 1. On the left pane, under **Data Storage**, select **Containers**.
 
@@ -216,7 +208,7 @@ The wizard supports Azure, Cohere, and Facebook embedding models in the Azure AI
 
 1. Deploy a supported embedding model to the model catalog in your project.
 
-1. For RBAC, create two role assignments: one for Azure AI Search, and another for the AI Studio project. Assign the [Cognitive Services OpenAI User](/azure/ai-services/openai/how-to/role-based-access-control) role for embeddings and vectorization.
+1. For role-based connections, create two role assignments: one for Azure AI Search, and another for the AI Studio project. Assign the [Cognitive Services OpenAI User](/azure/ai-services/openai/how-to/role-based-access-control) role for embeddings and vectorization.
 
 ---
 
@@ -234,7 +226,7 @@ The next step is to connect to a data source to use for the search index.
 
 ### [Azure Blob Storage](#tab/connect-data-storage)
 
-1. On the **Set up your data connection** page, select **Azure Blob Storage**.
+1. On **Connect to your data**, select **Azure Blob Storage**.
 
 1. Specify the Azure subscription.
 
@@ -260,7 +252,7 @@ The next step is to connect to a data source to use for the search index.
 
 ### [ADLS Gen2](#tab/connect-data-adlsgen2)
 
-1. On the **Set up your data connection** page, select **Azure Data Lake**.
+1. On **Connect to your data**, select **Azure Data Lake**.
 
 1. Specify the Azure subscription.
 
@@ -284,11 +276,11 @@ The next step is to connect to a data source to use for the search index.
 
 1. Select **Next**.
 
-### [OneLake (preview)](#tab/connect-data-onelake)
+### [OneLake](#tab/connect-data-onelake)
 
 Support for OneLake indexing is in preview. For more information about supported shortcuts and limitations, see ([OneLake indexing](search-how-to-index-onelake-files.md)).
 
-1. On the **Set up your data connection** page, select **OneLake**.
+1. On **Connect to your data**, select **OneLake**.
 
 1. Specify the type of connection:
 
@@ -306,6 +298,16 @@ Support for OneLake indexing is in preview. For more information about supported
 ## Vectorize your text
 
 In this step, specify the embedding model for vectorizing chunked data.
+
+Chunking is built in and nonconfigurable. The effective settings are:
+
+```json
+"textSplitMode": "pages",
+"maximumPageLength": 2000,
+"pageOverlapLength": 500,
+"maximumPagesToTake": 0, #unlimited
+"unit": "characters"
+```
 
 1. On the **Vectorize your text** page, choose the source of the embedding model:
 
@@ -329,13 +331,15 @@ In this step, specify the embedding model for vectorizing chunked data.
 
    + The identity should have a **Cognitive Services OpenAI User** role on the Azure AI multi-services account.
 
-1. Select the checkbox that acknowledges the billing impact of using these resources.
+1. Select the checkbox that acknowledges the billing effects of using these resources.
 
 1. Select **Next**.
 
 ## Vectorize and enrich your images
 
-If your content includes images, you can apply AI in two ways:
+The health plan PDFs don't include images, so you can skip this step.
+
+However, if you work with content that includes images, you can apply AI in two ways:
 
 + Use a supported image embedding model from the catalog, or choose the Azure AI Vision multimodal embeddings API to vectorize images.
 
@@ -351,7 +355,7 @@ Azure AI Search and your Azure AI resource must be in the same region.
 
 1. Optionally, you can crack binary images (for example, scanned document files) and [use OCR](cognitive-search-skill-ocr.md) to recognize text.
 
-1. Select the checkbox that acknowledges the billing impact of using these resources.
+1. Select the checkbox that acknowledges the billing effects of using these resources.
 
 1. Select **Next**.
 
@@ -360,6 +364,12 @@ Azure AI Search and your Azure AI resource must be in the same region.
 On the **Advanced settings** page, you can optionally add [semantic ranking](semantic-search-overview.md) to rerank results at the end of query execution. Reranking promotes the most semantically relevant matches to the top.
 
 ## Map new fields
+
+Key points about this step:
+
++ Index schema provides vector and nonvector fields for chunked data. 
++ You can add fields, but you can't delete or modify generated fields.
++ Document parsing mode creates chunks (one search document per chunk).
 
 On the **Advanced settings** page, you can optionally add new fields. By default, the wizard generates the following fields with these attributes:
 
@@ -457,6 +467,7 @@ Search Explorer accepts text strings as input and then vectorizes the text for v
           }
        ]
    }
+   ```
 
 ## Clean up
 
