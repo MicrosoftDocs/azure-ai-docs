@@ -24,7 +24,7 @@ The following section will show you how to set up the required resources for get
 
 **Standard Setup**: Agents use customer-owned, single-tenant search and storage resources. With this setup, you have full control and visibility over these resources, but you will incur costs based on your usage.
 
-| Description   | Auto-deploy |
+| Description   | Autodeploy |
 | -----------------------------------------------| -----------------------|
 | Deploy a basic agent setup that uses API keys for authentication. |  [![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-ai-agents%2Frefs%2Fheads%2Farm-template-updates%2Fbasic-agent-keys.json%3Ftoken%3DGHSAT0AAAAAACZNMQAFGRUUYPILZH2RVUZCZZ6KQ6Q)
 | Deploy a basic agent setup that uses Managed Identity for authentication. | [![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-ai-agents%2Frefs%2Fheads%2Farm-template-updates%2Fbasic-agent-identity.json%3Ftoken%3DGHSAT0AAAAAACZNMQAFGV5RA2GPXABKXFLQZZ6KWGQ)
