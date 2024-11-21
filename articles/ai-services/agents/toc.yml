@@ -28,6 +28,8 @@ items:
       href: how-to/tools/bing-grounding.md
     - name: Function calling
       href: how-to/tools/function-calling.md
+    - name: File search
+      href: how-to/tools/file-search.md
 - name: Responsible AI
   items:
     - name: Overview
