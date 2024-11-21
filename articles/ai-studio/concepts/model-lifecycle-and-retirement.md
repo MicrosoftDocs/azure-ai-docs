@@ -1,12 +1,11 @@
 ---
-title: Azure AI Studio model lifecycle and retirement
-titleSuffix: Azure AI Studio
-description: Learn about the lifecycle stages and retirement for models in Azure AI Studio.
+title: Deprecation and retirement for models in Azure AI model catalog
+titleSuffix: Azure AI Foundry
+description: Learn about the lifecycle stages, deprecation, and retirement for models in the Azure AI model catalog.
 manager: scottpolly
 ms.service: azure-ai-studio
 ms.topic: concept-article
-ms.date: 10/08/2024
-ms.custom: ignite-2024
+ms.date: 11/21/2024
 ms.author: mopeakande
 author: msakande
 ms.reviewer: mabables
@@ -14,98 +13,60 @@ reviewer: ManojBableshwar
 
 ---
 
-# Azure AI Studio model lifecycle and retirement
+# Model deprecation and retirement in Azure AI model catalog 
 
-Models that are available in Azure AI Studio through the model catalog are continually refreshed with newer and more capable models. As part of this process, models can move through stages as we deprecate and retire older models. This document provides information about the models, their stages, and what the models stages mean for you as a customer.
+Models in the model catalog are continually refreshed with newer and more capable models. As part of this process, model providers might deprecate and retire their older models, and you might need to update your applications to use a newer model. This document communicates information about the model lifecycle and deprecation timelines and explains how you're informed of model lifecycle stages.
 
-Every models in the model catalog belongs to one of these stages:
+Models in the model catalog belong to one of these stages:
 
 - Preview
-- General availability
+- Generally available
 - Legacy
 - Deprecated
 - Retired
 
+> [!NOTE]
+> This article describes deprecation and retirement only for models that can be deployed to serverless APIs, not managed compute. To learn more about the differences between deployment to serverless APIs and managed computes, see [Model catalog and collections in Azure AI Foundry portal](../how-to/model-catalog-overview.md).
+>
+> Azure OpenAI models in the model catalog are provided through Azure OpenAI Service. For information about Azure Open AI model deprecation and retirement, see the [Azure OpenAI service product documentation](/azure/ai-services/openai/concepts/model-retirements).
+
+
 ## Preview 
 
-New models are launched in preview stage if model weights, such as quantized or optimized weights, or APIs such as tool support will change in the future. This stage is optional, as new models can be launched in the general availability stage. For a model in the preview stage:
+Models labeled _Preview_ are experimental in nature. A model's weights, runtime, and API schema can change while the model is in preview. Models in preview aren't guaranteed to become generally available. Models in preview have a _Preview_ label next to their name in the model catalog.  
 
-- The model page in AI Studio includes a _Preview_ tag.
-- The model info API returns _Preview_.
+## Generally available
 
-## General availability
-
-General availability (GA) is the default model stage. A model can be launched in the GA stage without going through preview if there are no plans to upgrade its weights or APIs. Once the model is GA, no breaking changes, such as API changes or weight updates are allowed. However, container updates that address security or vulnerability issues are allowed, provided that they don't change model quality or outputs. The only way to improve this model is by providing a new model and deprecating the existing model. For a model in the GA stage:
-
-- The model page in AI Studio doesn't have a preview tag.
-- The model info API returns _GA_.
+This stage is the default model stage. Models that don't include a lifecycle label next to their name are generally available and suitable for use in production environments. In this stage, model weights and APIs are fixed. However, model containers or runtimes with vulnerabilities might get patched, but patches won't affect model outputs.  
  
 ## Legacy
 
-A model in the legacy stage (or soft deprecation stage) is on the path for deprecation because a new is available that provides better quality, performance, or price. We encourage you to start trying the new model, but you can still create new deployments and fine-tuned versions of the legacy model.  For a model in the legacy stage:
-
-- The model page in AI Studio includes a _Legacy_ tag.
-- The model info API returns _Legacy_.
-- Documentation pages for the model and email notifications provide information about suggested new model to use, legacy date, planned deprecation date, and planned retirement date.
+Models labeled _Legacy_ are intended for deprecation. You should plan to move to a different model, such as a new, improved model that might be available in the same model family. While a model is in the legacy stage, existing deployments of the model continue to work, and you can create new deployments of the model until the deprecation date.
 
 ## Deprecated
 
-Once a model is deprecated, you can't create new deployments for the model, you can't submit finetuning jobs, and you can't deploy a finetuned version of the model. However, existing deployments and fine-tuned endpoints will continue to work until the model is retired. For a deprecated model:
-
-- The model page in AI Studio includes a _Deprecated_ tag.
-- The model info API returns _Deprecated_.
-- Documentation pages for the model and email notifications provide information about suggested new model to use, legacy date, deprecation date, and planned retirement date.
+Models labeled _Deprecated_ are no longer available for new deployments. You can't create any new deployments for the model; however, existing deployments continue to work until the retirement date.
 
 ## Retired
 
-Once a model is retired, existing deployments — both the base model and inference — stop working. For a retired model:
-
-- The model page in AI Studio includes a _Retired_ tag.
-- The model info API returns no longer works.
-- Documentation pages for the model and email notifications provide information about suggested new model to use, legacy date, deprecation date, and retirement date.
-
-
------------------------------------
+Models labeled _Retired_ are no longer available for use. You can't create new deployments, and attempts to use existing deployments return `<return code>` errors.
 
 
 ## Notifications
 
+- Models are labeled as _Legacy_ and remain in the legacy state for at least 30 days before being moved to the deprecated state. During this notification period, you may create new deployments as you prepare for deprecation and retirement.
 
-## Model availability
+- Models are labeled _Deprecated_ and remain in the deprecated state for at least 90 days before being moved to the retired state. During this notification period, you can migrate any existing deployments to newer or replacement models.
 
-
-### Considerations for the Azure public cloud
-
-
-### Special considerations for Azure Government clouds
-
-
-### Who is notified of upcoming retirements
-
-
-## How to get ready for model retirements and version upgrades
-
-
-## Current models
-
-for a list of models that are currently available for use in Azure AI Studio, see [Model deployment: Managed compute and serverless API (pay-as-you-go)](../how-to/model-catalog-overview.md#model-deployment-managed-compute-and-serverless-api-pay-as-you-go).
-
-| Model | Version | Retirement date | Suggested replacements |
-| ---- | ---- | ---- | --- |
-| `<model>`| 2 | January 27, 2025 | `<replacement>` |
+- Members of <x, y, and z> roles for each Azure subscription with a serverless API model deployment receive a notification when a model deprecation is announced. The notification contains the dates when the model enters legacy, deprecated, and retired states. The notification might provide information about possible replacement model options, if applicable.
 
 
 
-## Default model versions
+| Model provider | Model | Legacy date | Deprecation date | Retirement date | Suggested replacement model |
+| ---- | ---- | ---- | --- | ---- | --- |
+| Provider |  `<model>` | January 27, 2025 | January 27, 2025 | January 27, 2025 | `<replacement>` |
 
+## Related content
 
-
-## Deprecated models
-
-
-
-## Retirement and deprecation history
-
-
-
-
+- [Model catalog and collections in Azure AI Foundry portal](../how-to/model-catalog-overview.md)
+- [Data, privacy, and security for use of models through the model catalog in AI Foundry portal](../how-to/concept-data-privacy.md)
