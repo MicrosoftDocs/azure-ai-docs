@@ -112,7 +112,10 @@ print(f"Uploaded file, file ID: {file.id}")
 ```
 # [C#](#tab/csharp)
 
-Files can be uploaded and then referenced by agents or messages. First, use the generalized upload API with a `purpose` of `Agents` to make a file ID available:
+Files can be uploaded and then referenced by agents or messages. First, use the generalized upload API with a `purpose` of `Agents` to make a file ID available. Once uploaded, the file ID can then be provided to create a vector store for it. The vector store ID can then be provided to an agent upon creation. 
+
+> [!NOTE]
+> You do not need to provide `toolResources` if you don't create a vector store.
 
 ```csharp
 // Upload a file and wait for it to be processed
@@ -121,24 +124,13 @@ Response<AgentFile> uploadAgentFileResponse = await client.UploadFileAsync(
     purpose: AgentFilePurpose.Agents);
 
 AgentFile uploadedAgentFile = uploadAgentFileResponse.Value;
-```
 
-Once uploaded, the file ID can then be provided to create a vector store for it
-
-```csharp
 // Create a vector store with the file and wait for it to be processed.
 // If you do not specify a vector store, create_message will create a vector store with a default expiration policy of seven days after they were last active
 VectorStore vectorStore = await client.CreateVectorStoreAsync(
     fileIds:  new List<string> { uploadedAgentFile.Id },
     name: "my_vector_store");
-```
 
-The vectorStore ID can then be provided to an agent upon creation. 
-
-> [!NOTE]
-> You do not need to provide `toolResources` if you don't create a vector store.
-
-```csharp
 CodeInterpreterToolResource codeInterpreterToolResource = new CodeInterpreterToolResource();
 CodeInterpreterToolResource.VectorStoreIds.Add(vectorStore.Id);
 ```
