@@ -1,12 +1,13 @@
 ---
 title: Connections in Azure AI Studio
-titleSuffix: Azure AI Studio
+titleSuffix: Azure AI Foundry
 description: This article introduces connections in Azure AI Studio.
 manager: scottpolly
 ms.service: azure-ai-studio
 ms.custom:
   - ignite-2023
   - build-2024
+  - ignite-2024
 ms.topic: conceptual
 ms.date: 5/21/2024
 ms.reviewer: sgilley
@@ -75,6 +76,9 @@ A Uniform Resource Identifier (URI) represents a storage location on your local 
 | Blob storage | `wasbs://<containername>@<accountname>.blob.core.windows.net/<folder>/` |
 | Azure Data Lake (gen2) | `abfss://<file_system>@<account_name>.dfs.core.windows.net/<folder>/<file>.csv` |
 | Microsoft OneLake | `abfss://<file_system>@<account_name>.dfs.core.windows.net/<folder>/<file>.csv` `https://<accountname>.dfs.fabric.microsoft.com/<artifactname>` |
+
+> [!NOTE]
+> The Microsoft OneLake connection doesn't support OneLake tables.
 
 ## Key vaults and secrets
 

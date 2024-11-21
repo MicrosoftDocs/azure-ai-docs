@@ -1,6 +1,6 @@
 ---
 title: Securely use playground chat
-titleSuffix: Azure AI Studio
+titleSuffix: Azure AI Foundry
 description: Learn how to securely use the Azure AI Studio playground chat on your own data. 
 manager: scottpolly
 ms.service: azure-ai-studio

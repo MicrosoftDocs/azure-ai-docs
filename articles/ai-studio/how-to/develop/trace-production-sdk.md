@@ -1,6 +1,6 @@
 ---
 title: How to enable tracing and collect feedback for a flow deployment
-titleSuffix: Azure AI Studio
+titleSuffix: Azure AI Foundry
 description: This article provides instructions on how to enable tracing and collect feedback for a flow deployment in Azure AI Studio.
 manager: scottpolly
 ms.service: azure-ai-studio
@@ -20,6 +20,9 @@ author: lgayhardt
 After deploying a Generative AI APP in production, you might want to enhance your understanding and optimize performance. Trace data for each request, aggregated metrics, and user feedback play critical roles.
 
 In this article, you learn to enable tracing, collect aggregated metrics, and collect user feedback during inference time of your flow deployment.
+
+> [!NOTE]
+> For an improved way to perform continuous monitoring of deployed applications (other than prompt flow), consider using [Azure AI online evaluation](../online-evaluation.md).
 
 ## Prerequisites
 

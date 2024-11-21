@@ -1,6 +1,6 @@
 ---
 title: Customer enabled disaster recovery
-titleSuffix: Azure AI Studio
+titleSuffix: Azure AI Foundry
 description: Learn how to plan for disaster recovery for Azure AI Studio.
 manager: scottpolly
 ms.service: azure-ai-studio
@@ -104,7 +104,7 @@ To enable fast recovery and restart in the secondary region, we recommend the fo
 
 Certain Azure services support availability zones. For regions that support availability zones, if a zone goes down any project pauses and data should be saved. However, the data is unavailable to refresh until the zone is back online.
 
-For more information, see [Availability zone service and regional support](/azure/reliability/availability-zones-service-support).
+For more information, see [Availability zone service support](/azure/reliability/availability-zones-service-support).
 
 ### Deploy critical components to multiple regions
 

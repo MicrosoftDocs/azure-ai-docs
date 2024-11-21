@@ -1,12 +1,14 @@
 ---
 title: Studio experience for Document Intelligence
 titleSuffix: Azure AI services
-description: Learn how to set up and use either Document Intelligence Studio or AI Studio to test features of Azure AI Document Intelligence on the web.
+description: Learn how to set up and use either Document Intelligence Studio or AI Studio to test features of Azure AI Document Intelligence.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
-ms.topic: overview
-ms.date: 08/21/2024
+ms.custom:
+  - ignite-2024
+ms.topic: how-to
+ms.date: 10/29/2024
 ms.author: lajanuar
 monikerRange: '>=doc-intel-3.0.0'
 ---
@@ -206,7 +208,7 @@ Share custom extraction projects with ease. For more information, see [Project s
 
 Document Intelligence is part of the Azure AI services offerings in the Azure AI Studio. Each of the Azure AI services helps developers and organizations rapidly create intelligent, cutting-edge, market-ready, and responsible applications with out-of-the-box and prebuilt and customizable APIs and models.
 
-Learn how to [connect your AI services hub](../../ai-studio/ai-services/connect-ai-services.md) with AI services and get started using Document Intelligence.
+Learn how to [connect your AI services hub](../../ai-studio/ai-services/how-to/connect-ai-services.md) with AI services and get started using Document Intelligence.
 
 ## Next steps
 

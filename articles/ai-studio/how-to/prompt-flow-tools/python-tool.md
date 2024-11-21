@@ -1,10 +1,10 @@
 ---
 title: Python tool for flows in Azure AI Studio
-titleSuffix: Azure AI Studio
+titleSuffix: Azure AI Foundry
 description: This article introduces you to the Python tool for flows in Azure AI Studio.
 manager: scottpolly
 ms.service: azure-ai-studio
-ms.custom: ignite-2023, devx-track-python, build-2024
+ms.custom: ignite-2023, devx-track-python, build-2024, ignite-2024
 ms.topic: how-to
 ms.date: 5/21/2024
 ms.reviewer: keli19
@@ -110,7 +110,9 @@ If you're developing a Python tool that requires calling external services with 
 
 Create a custom connection that stores all your large language model API key or other required credentials.
 
-1. Go to the **Settings** page for your project. Then select **+ New Connection**.
+1. Go to the **Management center** page for your project. 
+1. Under either the **Hub** or **Project** heading, select **Connected resources**.
+1. Select **+ New Connection**.
 1. Select **Custom** service. You can define your connection name. You can add multiple key-value pairs to store your credentials and keys by selecting **Add key-value pairs**.
 
     > [!NOTE]

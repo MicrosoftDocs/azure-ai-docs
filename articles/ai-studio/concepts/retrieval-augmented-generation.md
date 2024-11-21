@@ -1,6 +1,6 @@
 ---
 title: Retrieval augmented generation in Azure AI Studio
-titleSuffix: Azure AI Studio
+titleSuffix: Azure AI Foundry
 description: This article introduces retrieval augmented generation for use in generative AI applications.
 manager: scottpolly
 ms.service: azure-ai-studio

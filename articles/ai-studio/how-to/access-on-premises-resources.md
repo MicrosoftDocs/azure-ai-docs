@@ -1,6 +1,6 @@
 ---
 title: How to access on-premises resources
-titleSuffix: Azure AI Studio
+titleSuffix: Azure AI Foundry
 description: Learn how to configure an Azure AI Studio managed network to securely allow access to your on-premises resources.
 manager: scottpolly
 ms.service: azure-ai-studio
