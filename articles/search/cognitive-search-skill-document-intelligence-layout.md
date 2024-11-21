@@ -9,6 +9,7 @@ ms.author: rawan
 ms.service: azure-ai-search
 ms.custom:
   - references_regions
+  - ignite-2024
 ms.topic: reference
 ms.date: 11/20/2024
 ---

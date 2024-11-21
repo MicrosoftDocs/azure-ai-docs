@@ -7,7 +7,7 @@ ms.author: sgilley
 ms.service: azure-ai-studio
 ms.topic: include
 ms.date: 11/03/2024
-ms.custom: include
+ms.custom: include, ignite-2024
 ---
 
 Your project connection string is required to call the Azure OpenAI service from your code. In this quickstart, you save this value in a `.env` file, which is a file that contains environment variables that your application can read. 

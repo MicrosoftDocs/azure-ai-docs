@@ -9,6 +9,7 @@ ms.topic: how-to
 ms.date: 11/19/2024
 ms.custom:
   - references_regions
+  - ignite-2024
 ---
 
 # Structure-aware chunking and vectorization in Azure AI Search

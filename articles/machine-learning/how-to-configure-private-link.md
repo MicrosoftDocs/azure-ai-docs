@@ -6,7 +6,7 @@ services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: enterprise-readiness
 ms.topic: how-to
-ms.custom: devx-track-azurecli, sdkv2, FY25Q1-Linter
+ms.custom: devx-track-azurecli, sdkv2, FY25Q1-Linter, ignite-2024
 ms.author: larryfr
 author: Blackmist
 ms.reviewer: meerakurup

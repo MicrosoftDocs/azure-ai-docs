@@ -7,7 +7,7 @@ ms.author: sgilley
 ms.service: azure-ai-studio
 ms.topic: include
 ms.date: 11/19/2024
-ms.custom: include, build-2024
+ms.custom: include, build-2024, ignite-2024
 ---
 
 To create a project in [Azure AI Foundry](https://ai.azure.com), follow these steps:

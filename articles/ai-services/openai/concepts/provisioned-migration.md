@@ -4,7 +4,8 @@ titleSuffix: Azure OpenAI
 description: Learn about the improvements to Provisioned Throughput
 manager: nitinme
 ms.service: azure-ai-openai
-ms.custom: 
+ms.custom:
+  - ignite-2024
 ms.topic: how-to
 ms.date: 11/11/2024
 author: mrbullwinkle
@@ -357,5 +358,3 @@ The same approaches apply in moving the commitment and deployment within the reg
 ### View and edit an existing resource
 
 In Azure OpenAI Studio, select **Quota** > **Provisioned** > **Manage commitments** and select a resource with an existing commitment to view/change it. 
-
-

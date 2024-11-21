@@ -9,7 +9,7 @@ ms.date: 11/11/2024
 ms.reviewer: lebaro
 ms.author: sgilley
 author: sdgilley
-ms.custom: [copilot-learning-hub]
+ms.custom: copilot-learning-hub, ignite-2024
 #customer intent: As a developer, I want to learn how to use the prompt flow SDK so that I can build a RAG-based chat app.
 ---
 

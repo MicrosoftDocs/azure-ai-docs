@@ -4,6 +4,8 @@ titleSuffix: Azure AI Foundry
 description: This article explains how to use LangChain with models deployed in Azure AI Foundry portal to build advance intelligent applications.
 manager: scottpolly
 ms.service: azure-ai-studio
+ms.custom:
+  - ignite-2024
 ms.topic: how-to
 ms.date: 11/04/2024
 ms.reviewer: fasantia
@@ -314,15 +316,3 @@ llm = AzureAIChatCompletionsModel(
 * [Develop applications with LlamaIndex](llama-index.md)
 * [Use the Azure AI model inference service](../../ai-services/model-inference.md)
 * [Reference: Azure AI model inference API](../../reference/reference-model-inference-api.md)
-
-
-
-
-
-
-
-
-
-
-
-

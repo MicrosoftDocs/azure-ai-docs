@@ -8,6 +8,7 @@ ms.custom:
   - ignite-2023
   - build-2024
   - ai-learning-hub
+  - ignite-2024
 ms.topic: conceptual
 ms.date: 11/19/2024
 ms.reviewer: deeikele

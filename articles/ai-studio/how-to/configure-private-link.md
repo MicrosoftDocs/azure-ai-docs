@@ -4,10 +4,10 @@ titleSuffix: Azure AI Foundry
 description: Learn how to configure a private link for Azure AI Foundry hubs. A private link is used to secure communication with the Azure AI Foundry hub.
 manager: scottpolly
 ms.service: azure-ai-studio
-ms.custom: ignite-2023, devx-track-azurecli, build-2024
+ms.custom: ignite-2023, devx-track-azurecli, build-2024, ignite-2024
 ms.topic: how-to
 ms.date: 5/21/2024
-ms.reviewer: meerakurup 
+ms.reviewer: meerakurup
 ms.author: larryfr
 author: Blackmist
 # Customer intent: As an admin, I want to configure a private link for hub so that I can secure my hubs.

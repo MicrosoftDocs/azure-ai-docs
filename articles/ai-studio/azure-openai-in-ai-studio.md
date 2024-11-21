@@ -10,7 +10,7 @@ ms.date: 11/04/2024
 ms.reviewer: shwinne
 ms.author: sgilley
 author: sdgilley
-ms.custom: ignite-2023, build-2024
+ms.custom: ignite-2023, build-2024, ignite-2024
 # customer intent: As a developer, I want to understand the different ways I can work with Azure OpenAI models so that I can build and deploy AI models.
 ---
 

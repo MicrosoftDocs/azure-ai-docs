@@ -10,7 +10,7 @@ ms.reviewer: kritifaujdar
 reviewer: fkriti
 ms.author: mopeakande
 author: msakande
-ms.custom: references_regions, build-2024
+ms.custom: references_regions, build-2024, ignite-2024
 ---
 
 # How to deploy a TimeGEN-1 model with Azure AI Foundry

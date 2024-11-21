@@ -6,6 +6,7 @@ manager: scottpolly
 ms.service: azure-ai-studio
 ms.custom:
   - ai-learning-hub
+  - ignite-2024
 ms.topic: how-to
 ms.date: 11/06/2024
 ms.reviewer: jcioffi

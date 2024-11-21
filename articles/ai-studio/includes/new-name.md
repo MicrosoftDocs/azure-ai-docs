@@ -7,8 +7,8 @@ ms.author: sgilley
 ms.service: azure-ai-studio
 ms.topic: include
 ms.date: 11/03/2024
-ms.custom: include
+ms.custom: include, ignite-2024
 ---
 
 > [!IMPORTANT]
-> Azure AI Foundry is now Azure AI Foundry. We're updating the documentation to reflect this change. In the meantime, you might see references to Azure AI Foundry.
+> Azure AI Studio is now Azure AI Foundry. We're updating the documentation to reflect this change. In the meantime, you might see references to Azure AI Studio.

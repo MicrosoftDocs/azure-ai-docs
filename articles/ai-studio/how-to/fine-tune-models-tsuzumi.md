@@ -10,7 +10,7 @@ ms.reviewer: rasavage
 reviewer: shubhirajMsft
 ms.author: ssalgado
 author: ssalgadodev
-ms.custom: references_regions, build-2024
+ms.custom: references_regions, build-2024, ignite-2024
 ---
 
 # Fine-tune tsuzumi-7b model in Azure AI Foundry portal

@@ -4,6 +4,8 @@ titleSuffix: Azure AI Foundry
 description:  Build a custom chat app using the Azure AI Foundry SDK. Part 1 of a 3-part tutorial series, which shows how to create the resources you'll need for parts 2 and 3.
 manager: scottpolly
 ms.service: azure-ai-studio
+ms.custom:
+  - ignite-2024
 ms.topic: tutorial
 ms.date: 11/11/2024
 ms.reviewer: lebaro
