@@ -31,5 +31,3 @@ The following section will show you how to set up the required resources for get
 | Deploy a standard agent setup that uses Managed Identity for authentication. | [![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-ai-agents%2Frefs%2Fheads%2Farm-template-updates%2Fstandard-agent.json%3Ftoken%3DGHSAT0AAAAAACZNMQAEN6NEEEU76OQBPN62ZZ6KYGQ)
 
 Resources for the AI hub, project, storage account, and AI Services that are needed to create agents will be created for you. The AI Services account will be connected to your project/hub and a gpt-4o-mini model will be deployed in the eastus region. A Microsoft-managed key vault will be used by default.
-
----
