@@ -5,11 +5,11 @@ description: "The management center in Azure AI Studio provides a centralized hu
 author: Blackmist
 ms.author: larryfr
 ms.service: azure-ai-studio
+ms.custom:
+  - ignite-2024
 ms.topic: concept-article #Don't change.
 ms.date: 11/18/2024
-
 #customer intent: As an admin, I want a central location where I can perform governance and management activities.
-
 ---
 
 # Management center overview

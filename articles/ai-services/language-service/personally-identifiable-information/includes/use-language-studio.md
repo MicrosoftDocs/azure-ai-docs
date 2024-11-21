@@ -5,7 +5,7 @@ ms.service: azure-ai-language
 ms.topic: include
 ms.date: 12/19/2023
 ms.author: jboback
-ms.custom: include
+ms.custom: include, ignite-2024
 ---
 
 > [!TIP]

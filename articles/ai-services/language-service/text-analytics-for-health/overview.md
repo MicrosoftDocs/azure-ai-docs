@@ -9,7 +9,7 @@ ms.service: azure-ai-language
 ms.topic: overview
 ms.date: 10/21/2024
 ms.author: jboback
-ms.custom: language-service-health
+ms.custom: language-service-health, ignite-2024
 ---
 
 # What is Text Analytics for health?

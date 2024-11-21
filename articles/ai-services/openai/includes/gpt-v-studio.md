@@ -1,12 +1,12 @@
 ---
 title: 'Quickstart: Use GPT-4 Turbo with Vision on your images and videos with the Azure OpenAI Service'
 titleSuffix: Azure OpenAI
-description: Use this article to get started using Azure AI Studio to deploy and use the GPT-4 Turbo with Vision model.  
+description: Use this article to get started using Azure AI Studio to deploy and use the GPT-4 Turbo with Vision model.
 services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: include
-ms.custom: references_regions
+ms.custom: references_regions, ignite-2024
 ms.date: 10/03/2024
 ---
 

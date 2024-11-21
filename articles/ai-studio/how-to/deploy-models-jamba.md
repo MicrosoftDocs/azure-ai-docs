@@ -9,7 +9,7 @@ ms.date: 08/06/2024
 ms.author: ssalgado
 ms.reviewer: tgokal
 reviewer: tgokal
-ms.custom: references_regions
+ms.custom: references_regions, ignite-2024
 ---
 
 # How to deploy AI21's Jamba family models with Azure AI Studio

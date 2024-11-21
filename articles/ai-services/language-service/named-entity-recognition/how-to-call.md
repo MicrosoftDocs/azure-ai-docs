@@ -9,7 +9,7 @@ ms.service: azure-ai-language
 ms.topic: how-to
 ms.date: 12/19/2023
 ms.author: jboback
-ms.custom: language-service-ner
+ms.custom: language-service-ner, ignite-2024
 ---
 
 

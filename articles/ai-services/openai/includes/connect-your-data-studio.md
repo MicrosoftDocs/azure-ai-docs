@@ -3,6 +3,8 @@ titleSuffix: Azure OpenAI
 #services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-openai
+ms.custom:
+  - ignite-2024
 ms.topic: include
 author: aahill
 ms.author: aahi

@@ -5,12 +5,12 @@ description: "Disable shared key access to the default storage account used by y
 author: Blackmist
 ms.author: larryfr
 ms.service: azure-ai-studio
+ms.custom:
+  - ignite-2024
 ms.topic: how-to
 ms.date: 11/19/2024
 ms.reviewer: ambadal
-
 #customer intent: As an admin, I want to disable shared key access to my resources to improve security.
-
 ---
 
 # Disable shared key access for your hub's storage account (preview)

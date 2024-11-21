@@ -9,7 +9,7 @@ ms.service: azure-ai-language
 ms.topic: conceptual
 ms.date: 11/04/2024
 ms.author: jboback
-ms.custom: language-service-ner
+ms.custom: language-service-ner, ignite-2024
 ---
 
 # Preview API changes

@@ -6,6 +6,7 @@ manager: nitinme
 ms.service: azure-ai-studio
 ms.custom:
   - build-2024
+  - ignite-2024
 ms.topic: include
 ms.date: 03/04/2024
 ms.author: mbullwin

@@ -5,6 +5,8 @@ description: Learn how to set up and use either Document Intelligence Studio or 
 author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
+ms.custom:
+  - ignite-2024
 ms.topic: how-to
 ms.date: 10/29/2024
 ms.author: lajanuar

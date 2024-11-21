@@ -3,6 +3,8 @@ title: Use Content Safety in Azure AI Studio
 titleSuffix: Azure AI services
 description: Learn how to use the Content Safety try it out page in Azure AI Studio to experiment with various content safety features such as text and image content, using adjustable thresholds to filter for inappropriate or harmful content.
 ms.service: azure-ai-studio
+ms.custom:
+  - ignite-2024
 ms.topic: how-to
 author: PatrickFarley
 manager: nitinme

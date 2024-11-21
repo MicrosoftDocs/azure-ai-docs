@@ -7,7 +7,7 @@ ms.author: sgilley
 ms.service: azure-ai-studio
 ms.topic: include
 ms.date: 10/29/2024
-ms.custom: include
+ms.custom: include, ignite-2024
 ---
 
 To work with a model, you first deploy it into a project. If you don't yet have a project, you create one as part of the deployment step.
