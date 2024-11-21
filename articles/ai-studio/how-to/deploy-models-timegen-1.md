@@ -134,12 +134,12 @@ For more information about use of the APIs, visit the [reference](#reference-for
 
 #### Forecast API
 
-Use the method `POST` to send the request to the `/forecast_multi_series` route:
+Use the method `POST` to send the request to the `/forecast` route:
 
 __Request__
 
 ```rest
-POST /forecast_multi_series HTTP/1.1
+POST /forecast HTTP/1.1
 Host: <DEPLOYMENT_URI>
 Authorization: Bearer <TOKEN>
 Content-type: application/json
@@ -151,8 +151,7 @@ The Payload JSON formatted string contains these parameters:
 
 | Key | Type | Default | Description |
 |-----|-----|-----|-----|
-| **DataFrame (`df`)**    | `DataFrame`  | No default. This value must be specified.  | The DataFrame on which the function operates. Expected to contain at least these columns:<br><br>`time_col`: Column name in `df` that contains the time indices of the time series. This column is typically a datetime column with regular intervals - for example, hourly, daily, monthly data points.<br><br>`target_col`: Column name in `df` that contains the target variable of the time series, in other words, the variable we wish to predict or analyze.<br><br>Additionally, you can pass multiple time series (stacked in the dataframe) considering another column:<br><br>`id_col`: Column name in `df` that identifies unique time series. Each unique value in this column corresponds to a unique time series.|
-| **Forecast Horizon (`h`)**     | `int` | No default. This value must be specified. | Forecast horizon |
+| **Forecast Horizon (`fh`)**     | `int` | No default. This value must be specified. | Forecast horizon |
 | **Frequency (`freq`)** | `str` | None    |Frequency of the data. By default, the frequency is inferred automatically. For more information, visit [pandas available frequencies](https://pandas.pydata.org/pandas-docs/stable/user_guide/timeseries.html#offset-aliases). |
 | **Identifying Column (`id_col`)**       | `str` | `unique_id`    | Column that identifies each series.|
 |**Time Column (`time_col`)**| `str`  |`ds`    | Column that identifies each timestep; its values can be timestamps or integers.  |
