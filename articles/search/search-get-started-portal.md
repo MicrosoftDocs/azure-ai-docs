@@ -11,6 +11,7 @@ ms.date: 11/19/2024
 ms.custom:
   - mode-ui
   - ignite-2023
+  - ignite-2024
 ---
 
 # Quickstart: Create a search index in the Azure portal
@@ -26,7 +27,9 @@ The wizard creates multiple objects on your search service - [searchable index](
 
 - An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/free/).
 
-- An Azure AI Search service for any tier and any region. [Create a service](search-create-service-portal.md) or [find an existing service](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices) under your current subscription. You can use a free service for this quickstart. 
+- An Azure AI Search service for any tier and any region. [Create a service](search-create-service-portal.md) or [find an existing service](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices) under your current subscription. You can use a free service for this quickstart.
+
+- Familiarity with the wizard. See [Import data wizards in the Azure portal](search-import-data-portal.md) for details.
 
 For this quickstart, which uses built-in sample data, make sure the search service doesn't have [network access controls](service-configure-firewall.md) in place. The portal controller uses the public endpoint to retrieve data and metadata from the built-in sample data source hosted by Microsoft. For more information, see [Secure connections in the import wizards](search-import-data-portal.md#secure-connections).
 

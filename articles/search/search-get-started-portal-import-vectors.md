@@ -7,6 +7,7 @@ ms.author: heidist
 ms.service: azure-ai-search
 ms.custom:
   - build-2024
+  - ignite-2024
 ms.topic: quickstart
 ms.date: 11/20/2024
 ---
@@ -24,6 +25,8 @@ This quickstart helps you get started with [integrated vectorization](vector-sea
 + [A supported data source](#supported-data-sources).
 
 + [A supported embedding model](#supported-embedding-models).
+
++ Familiarity with the wizard. See [Import data wizards in the Azure portal](search-import-data-portal.md) for details.
 
 ### Supported data sources
 

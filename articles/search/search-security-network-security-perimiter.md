@@ -6,6 +6,8 @@ author: MattGotteiner
 ms.author: magottei
 manager: nitinme
 ms.service: azure-ai-search
+ms.custom:
+  - ignite-2024
 ms.topic: how-to
 ms.date: 10/23/2024
 ---

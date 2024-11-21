@@ -1,7 +1,7 @@
 ---
-title: How to manually evaluate prompts in Azure AI Studio playground
-titleSuffix: Azure AI Studio
-description: Quickly test and evaluate prompts in Azure AI Studio playground.
+title: How to manually evaluate prompts in Azure AI Foundry portal playground
+titleSuffix: Azure AI Foundry
+description: Quickly test and evaluate prompts in Azure AI Foundry portal playground.
 manager: scottpolly
 ms.service: azure-ai-studio
 ms.custom:
@@ -14,13 +14,13 @@ ms.author: lagayhar
 author: lgayhardt
 ---
 
-# Manually evaluate prompts in Azure AI Studio playground
+# Manually evaluate prompts in Azure AI Foundry portal playground
 
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
 When you get started with prompt engineering, you should test different inputs one at a time to evaluate the effectiveness of the prompt can be very time intensive. This is because it's important to check whether the content filters are working appropriately, whether the response is accurate, and more. 
 
-To make this process simpler, you can utilize manual evaluation in Azure AI Studio, an evaluation tool enabling you to continuously iterate and evaluate your prompt against your test data in a single interface. You can also manually rate the outputs, the model’s responses, to help you gain confidence in your prompt.  
+To make this process simpler, you can utilize manual evaluation in Azure AI Foundry portal, an evaluation tool enabling you to continuously iterate and evaluate your prompt against your test data in a single interface. You can also manually rate the outputs, the model’s responses, to help you gain confidence in your prompt.  
 
 Manual evaluation can help you get started to understand how well your prompt is performing and iterate on your prompt to ensure you reach your desired level of confidence. 
 
@@ -80,7 +80,7 @@ You can also compare the thumbs up and down ratings across your different manual
 ## Next steps
 
 Learn more about how to evaluate your generative AI applications:
-- [Evaluate your generative AI apps with the Azure AI Studio or SDK](./evaluate-generative-ai-app.md)
+- [Evaluate your generative AI apps with the Azure AI Foundry portal or SDK](./evaluate-generative-ai-app.md)
 - [View the evaluation results](./evaluate-results.md)
 
 Learn more about [harm mitigation techniques](../concepts/evaluation-improvement-strategies.md).

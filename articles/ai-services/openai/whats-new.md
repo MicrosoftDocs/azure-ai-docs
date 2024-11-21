@@ -9,6 +9,7 @@ ms.service: azure-ai-openai
 ms.custom:
   - ignite-2023
   - references_regions
+  - ignite-2024
 ms.topic: whats-new
 ms.date: 11/12/2024
 recommendations: false

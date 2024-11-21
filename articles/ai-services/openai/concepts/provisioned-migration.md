@@ -4,7 +4,8 @@ titleSuffix: Azure OpenAI
 description: Learn about the improvements to Provisioned Throughput
 manager: nitinme
 ms.service: azure-ai-openai
-ms.custom: 
+ms.custom:
+  - ignite-2024
 ms.topic: how-to
 ms.date: 11/11/2024
 author: mrbullwinkle
@@ -79,7 +80,7 @@ We also recommend that customers using commitments now create their deployments 
 See the following links for more information. The guidance for reservations and commitments is the same:
 
 * [Capacity Transparency](#self-service-migration)
-* [Sizing reservations](../how-to/provisioned-throughput-onboarding.md#important-sizing-azure-openai-provisioned--global-provisioned-reservations)
+* [Sizing reservations](../how-to/provisioned-throughput-onboarding.md#important-sizing-azure-openai-provisioned-reservations)
 
 ## New hourly reservation payment model
 
@@ -357,5 +358,3 @@ The same approaches apply in moving the commitment and deployment within the reg
 ### View and edit an existing resource
 
 In Azure OpenAI Studio, select **Quota** > **Provisioned** > **Manage commitments** and select a resource with an existing commitment to view/change it. 
-
-

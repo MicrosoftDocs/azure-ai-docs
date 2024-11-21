@@ -20,7 +20,7 @@ landingContent:
           - text: What is Azure AI Content Understanding?
             url: overview.md
           - text: Azure AI Content Understanding REST API
-            url: /rest/api/aiservices/
+            url: /rest/api/contentunderstanding/operation-groups?view=rest-contentunderstanding-2024-12-01-preview&preserve-view=true
           - text: FAQ
             url: faq.yml
 
@@ -58,7 +58,7 @@ landingContent:
       - linkListType: whats-new
         links:
         - text: "What's new in Azure AI Content Understanding?"
-          url: whats-new.md         
+          url: whats-new.md
 
   - title: Reference
     linkLists:
@@ -68,6 +68,6 @@ landingContent:
             url: service-limits.md
           - text: Language and region support
             url: language-region-support.md
-            
 
-  
+
+

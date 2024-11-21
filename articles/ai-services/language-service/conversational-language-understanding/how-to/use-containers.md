@@ -7,6 +7,7 @@ author: jboback
 manager: nitinme
 ms.service: azure-ai-language
 ms.custom:
+  - ignite-2024
 ms.topic: how-to
 ms.date: 10/07/2024
 ms.author: jboback

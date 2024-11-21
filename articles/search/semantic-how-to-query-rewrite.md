@@ -36,7 +36,7 @@ Query rewriting is an optional feature. Without query rewriting, the search serv
 + A search service, Basic tier or higher.
 
 > [!NOTE]
-> Query rewriting is currently available in the East US, North Europe, and Southeast Asia regions.
+> Query rewriting is currently available in the North Europe, and Southeast Asia regions.
 
 + Your search service must have [semantic ranker enabled](semantic-how-to-enable-disable.md). Review [semantic ranking](semantic-search-overview.md) if you need an introduction to the feature. 
 
@@ -75,7 +75,7 @@ In this REST API example, we use [Search Documents](/rest/api/searchservice/docu
     - We set "semanticConfiguration" to a [predefined semantic configuration](semantic-how-to-configure.md) embedded in your index.
     - We set "queryType" to "semantic". We either need to set "queryType" to "semantic" or include a nonempty "semanticQuery" property in the request. [Semantic ranking](semantic-search-overview.md) is required for query rewriting.
     - We set "queryRewrites" to "generative|count-5" to get up to five query rewrites. You can set the count to any value between 1 and 10. 
-    - We set "queryLanguage" to the target language ("en-US") of the query rewrites. The supported locales are: 
+    - Since we requested query rewrites by setting the "queryRewrites" property, we must set "queryLanguage" to the search text language. The Search service uses the same language for the query rewrites. In this example, we use "en-US". The supported locales are: 
         `en-AU`, `en-CA`, `en-GB`, `en-IN`, `en-US`, `ar-EG`, `ar-JO`, `ar-KW`, `ar-MA`, `ar-SA`, `bg-BG`, `bn-IN`, `ca-ES`, `cs-CZ`, `da-DK`, `de-DE`, `el-GR`, `es-ES`, `es-MX`, `et-EE`, `eu-ES`, `fa-AE`, `fi-FI`, `fr-CA`, `fr-FR`, `ga-IE`, `gl-ES`, `gu-IN`, `he-IL`, `hi-IN`, `hr-BA`, `hr-HR`, `hu-HU`, `hy-AM`, `id-ID`, `is-IS`, `it-IT`, `ja-JP`, `kn-IN`, `ko-KR`, `lt-LT`, `lv-LV`, `ml-IN`, `mr-IN`, `ms-BN`, `ms-MY`, `nb-NO`, `nl-BE`, `nl-NL`, `no-NO`, `pa-IN`, `pl-PL`, `pt-BR`, `pt-PT`, `ro-RO`, `ru-RU`, `sk-SK`, `sl-SL`, `sr-BA`, `sr-ME`, `sr-RS`, `sv-SE`, `ta-IN`, `te-IN`, `th-TH`, `tr-TR`, `uk-UA`, `ur-PK`, `vi-VN`, `zh-CN`, `zh-TW`.
     - We set "debug" to "queryRewrites" to get the query rewrites in the response. 
   

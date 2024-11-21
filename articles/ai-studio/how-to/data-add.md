@@ -1,23 +1,24 @@
 ---
-title: How to add and manage data in your Azure AI Studio project
-titleSuffix: Azure AI Studio
-description: Learn how to add and manage data in your Azure AI Studio project.
+title: How to add and manage data in your Azure AI Foundry project
+titleSuffix: Azure AI Foundry
+description: Learn how to add and manage data in your Azure AI Foundry project.
 manager: scottpolly
 ms.service: azure-ai-studio
 ms.custom:
   - ignite-2023
   - build-2024
+  - ignite-2024
 ms.topic: how-to
 ms.date: 10/25/2024
 ms.author: franksolomon
-author: fbsolo-ms1 
+author: fbsolo-ms1
 ---
 
-# How to add and manage data in your Azure AI Studio project
+# How to add and manage data in your Azure AI Foundry project
 
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
-This article describes how to create and manage data in Azure AI Studio. Data can be used as a source for indexing in Azure AI Studio.
+This article describes how to create and manage data in Azure AI Foundry portal. Data can be used as a source for indexing in Azure AI Foundry portal.
 
 Data can help when you need these capabilities:
 
@@ -26,39 +27,39 @@ Data can help when you need these capabilities:
 > - **Reproducibility:** Once you create a data version, it is *immutable*. It cannot be modified or deleted. Therefore, jobs or prompt flow pipelines that consume the data can be reproduced.
 > - **Auditability:** Because the data version is immutable, you can track the asset versions, who updated a version, and when the version updates occurred.
 > - **Lineage:** For any given data, you can view which jobs or prompt flow pipelines consume the data.
-> - **Ease-of-use:** An Azure AI Studio data resembles web browser bookmarks (favorites). Instead of remembering long storage paths that *reference* your frequently-used data on Azure Storage, you can create a data *version* and then access that version of the asset with a friendly name.
+> - **Ease-of-use:** An Azure AI Foundry data resembles web browser bookmarks (favorites). Instead of remembering long storage paths that *reference* your frequently-used data on Azure Storage, you can create a data *version* and then access that version of the asset with a friendly name.
 
 ## Prerequisites
 
 To create and work with data, you need:
 
 - An Azure subscription. If you don't have one, create a [free account](https://azure.microsoft.com/free/).
-- An [AI Studio project](../how-to/create-projects.md).
+- An [AI Foundry project](../how-to/create-projects.md).
 
 ## Create data
 
-When you create your data, you need to set the data type. AI Studio supports these data types:
+When you create your data, you need to set the data type. AI Foundry supports these data types:
 
 |Type  |**Canonical Scenarios**|
 |---------|---------|
 |**`file`**<br>Reference a single file | Read a single file on Azure Storage (the file can have any format). |
 |**`folder`**<br> Reference a folder |      Read a folder of parquet/CSV files into Pandas/Spark.<br><br>Read unstructured data (for example: images, text, or audio) located in a folder. |
 
-Azure AI Studio shows the supported source paths. You can create a data from a folder or file:
+Azure AI Foundry shows the supported source paths. You can create a data from a folder or file:
 
-- If you select **folder type**, you can choose the folder URL format. Azure AI Studio shows the supported folder URL formats. You can create a data resource as shown:
+- If you select **folder type**, you can choose the folder URL format. Azure AI Foundry shows the supported folder URL formats. You can create a data resource as shown:
     :::image type="content" source="../media/data-add/studio-url-folder.png" alt-text="Screenshot of folder URL format.":::
 
-- If you select **file type**, you can choose the file URL format. The supported file URL formats are shown in Azure AI Studio. You can create a data resource as shown:
+- If you select **file type**, you can choose the file URL format. The supported file URL formats are shown in Azure AI Foundry portal. You can create a data resource as shown:
     :::image type="content" source="../media/data-add/studio-url-file.png" alt-text="Screenshot of file URL format.":::
 
 ### Create data: File type
 
 A file (`uri_file`) data resource type points to a *single file* on storage (for example, a CSV file).
 
-These steps explain how to create a File typed data in Azure AI Studio:
+These steps explain how to create a File typed data in Azure AI Foundry portal:
 
-1. Navigate to [Azure AI Studio](https://ai.azure.com/).
+1. Navigate to [Azure AI Foundry](https://ai.azure.com/).
 
 1. Select the project where you want to create the data.
 
@@ -85,9 +86,9 @@ These steps explain how to create a File typed data in Azure AI Studio:
 
 ### Create data: Folder type
 
-A Folder (`uri_folder`) data source type points to a *folder* on a storage resource (for example, a folder containing several subfolders of images). Use these steps to create a Folder type data resource in Azure AI Studio:
+A Folder (`uri_folder`) data source type points to a *folder* on a storage resource (for example, a folder containing several subfolders of images). Use these steps to create a Folder type data resource in Azure AI Foundry portal:
 
-1. Navigate to [Azure AI Studio](https://ai.azure.com/)
+1. Navigate to [Azure AI Foundry](https://ai.azure.com/)
 
 1. Select the project where you want to create the data.
 
@@ -118,9 +119,9 @@ A Folder (`uri_folder`) data source type points to a *folder* on a storage resou
 ### Delete data
 
 > [!IMPORTANT]
-> Data deletion is not supported. Data is immutable in AI Studio. Once you create a data version, it can't be modified or deleted. This immutability provides a level of protection when working in a team that creates production workloads.
+> Data deletion is not supported. Data is immutable in AI Foundry portal. Once you create a data version, it can't be modified or deleted. This immutability provides a level of protection when working in a team that creates production workloads.
 
-If AI Studio allowed data deletion, it would have the following adverse effects:
+If AI Foundry allowed data deletion, it would have the following adverse effects:
 - Production jobs that consume data that is later deleted would fail.
 - Machine learning experiment reproduction would become more difficult.
 - Job lineage would break, because it would become impossible to view the deleted data version.
@@ -138,18 +139,18 @@ When a data resource is erroneously created - for example, with an incorrect nam
 
 ### Archive data
 
-By default, archiving a data resource hides it from both list queries (for example, in the CLI `az ml data list`) and the data listing in Azure AI Studio. You can still continue to reference and use an archived data resource in your workflows. You can either archive:
+By default, archiving a data resource hides it from both list queries (for example, in the CLI `az ml data list`) and the data listing in Azure AI Foundry portal. You can still continue to reference and use an archived data resource in your workflows. You can either archive:
 
 - *all versions* of the data under a given name
 - a specific data version
 
 #### Archive all versions of a data
 
-At this time, Azure AI Studio doesn't support archiving *all versions* of the data resource under a given name.
+At this time, Azure AI Foundry doesn't support archiving *all versions* of the data resource under a given name.
 
 #### Archive a specific data version
 
-At this time, Azure AI Studio doesn't support archiving a specific version of the data resource.
+At this time, Azure AI Foundry doesn't support archiving a specific version of the data resource.
 
 ### Restore an archived data
 
@@ -157,14 +158,14 @@ You can restore an archived data resource. If all of versions of the data are ar
 
 #### Restore all versions of a data
 
-At this time, Azure AI Studio doesn't support restoration of *all versions* of the data under a given name.
+At this time, Azure AI Foundry doesn't support restoration of *all versions* of the data under a given name.
 
 #### Restore a specific data version
 
 > [!IMPORTANT]
 > If all data versions were archived, you cannot restore individual versions of the data - you must restore all versions.
 
-Currently, Azure AI Studio doesn't support restoration of a specific data version.
+Currently, Azure AI Foundry doesn't support restoration of a specific data version.
 
 ### Data tagging
 
@@ -181,9 +182,9 @@ You can add tags to existing data.
 
 You can browse the folder structure and preview the file in the Data details page. We support data preview for the following types:
 - Data file types that are supported via preview API: ".tsv", ".csv", ".parquet", ".jsonl".
-- Other file types, Studio UI attempts to preview the file in the browser natively. The supported file types might depend on the browser itself.
+- Other file types, AI Foundry portal attempts to preview the file in the browser natively. The supported file types might depend on the browser itself.
 Normally for images, these file image types are supported: ".png", ".jpg", ".gif". Normally, these file types are supported: ".ipynb", ".py", ".yml", ".html".
 
 ## Next steps
 
-- Learn how to [create a project in Azure AI Studio](./create-projects.md).
+- Learn how to [create a project in Azure AI Foundry portal](./create-projects.md).

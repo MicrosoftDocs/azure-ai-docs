@@ -1,23 +1,23 @@
 ---
-title: How to configure a private link for an Azure AI Studio hub
-titleSuffix: Azure AI Studio
-description: Learn how to configure a private link for Azure AI Studio hubs. A private link is used to secure communication with the Azure AI Studio hub.
+title: How to configure a private link for an Azure AI Foundry hub
+titleSuffix: Azure AI Foundry
+description: Learn how to configure a private link for Azure AI Foundry hubs. A private link is used to secure communication with the Azure AI Foundry hub.
 manager: scottpolly
 ms.service: azure-ai-studio
-ms.custom: ignite-2023, devx-track-azurecli, build-2024
+ms.custom: ignite-2023, devx-track-azurecli, build-2024, ignite-2024
 ms.topic: how-to
 ms.date: 5/21/2024
-ms.reviewer: meerakurup 
+ms.reviewer: meerakurup
 ms.author: larryfr
 author: Blackmist
 # Customer intent: As an admin, I want to configure a private link for hub so that I can secure my hubs.
 ---
 
-# How to configure a private link for Azure AI Studio hubs
+# How to configure a private link for Azure AI Foundry hubs
 
-We have two network isolation aspects. One is the network isolation to access an Azure AI Studio hub. Another is the network isolation of computing resources in your hub and projects such as compute instances, serverless, and managed online endpoints. This article explains the former highlighted in the diagram. You can use private link to establish the private connection to your hub and its default resources. This article is for Azure AI Studio (hub and projects). For information on Azure AI services, see the [Azure AI services documentation](/azure/ai-services/cognitive-services-virtual-networks).
+We have two network isolation aspects. One is the network isolation to access an Azure AI Foundry hub. Another is the network isolation of computing resources in your hub and projects such as compute instances, serverless, and managed online endpoints. This article explains the former highlighted in the diagram. You can use private link to establish the private connection to your hub and its default resources. This article is for Azure AI Foundry (hub and projects). For information on Azure AI services, see the [Azure AI services documentation](/azure/ai-services/cognitive-services-virtual-networks).
 
-:::image type="content" source="../media/how-to/network/azure-ai-network-inbound.svg" alt-text="Diagram of AI Studio hub network isolation." lightbox="../media/how-to/network/azure-ai-network-inbound.png":::
+:::image type="content" source="../media/how-to/network/azure-ai-network-inbound.svg" alt-text="Diagram of AI Foundry hub network isolation." lightbox="../media/how-to/network/azure-ai-network-inbound.png":::
 
 You get several hub default resources in your resource group. You need to configure following network isolation configurations.
 
@@ -41,7 +41,7 @@ Use one of the following methods to create a hub with a private endpoint. Each o
 
 # [Azure portal](#tab/azure-portal)
 
-1. From the [Azure portal](https://portal.azure.com), go to Azure AI Studio and choose __+ New Azure AI__.
+1. From the [Azure portal](https://portal.azure.com), go to Azure AI Foundry and choose __+ New Azure AI__.
 1. Choose network isolation mode in __Networking__ tab.
 1. Scroll down to __Workspace Inbound access__ and choose __+ Add__.
 1. Input required fields. When selecting the __Region__, select the same region as your virtual network.
@@ -243,8 +243,8 @@ If your storage account is private (uses a private endpoint to communicate with 
 
     | Role | Managed Identity | Resource | Purpose | Reference |
     |--|--|--|--|--|
-    | `Reader` | Azure AI Studio project | Private endpoint of the storage account | Read data from the private storage account. | 
-    | `Storage File Data Privileged Contributor` | Azure AI Studio project | Storage Account | Read/Write prompt flow data. | [Prompt flow doc](/azure/machine-learning/prompt-flow/how-to-secure-prompt-flow#secure-prompt-flow-with-workspace-managed-virtual-network) |
+    | `Reader` | Azure AI Foundry project | Private endpoint of the storage account | Read data from the private storage account. | 
+    | `Storage File Data Privileged Contributor` | Azure AI Foundry project | Storage Account | Read/Write prompt flow data. | [Prompt flow doc](/azure/machine-learning/prompt-flow/how-to-secure-prompt-flow#secure-prompt-flow-with-workspace-managed-virtual-network) |
     | `Storage Blob Data Contributor` | Azure AI Service | Storage Account | Read from input container, write to preprocess result to output container. | [Azure OpenAI Doc](../../ai-services/openai/how-to/managed-identity.md) |
     | `Storage Blob Data Contributor` | Azure AI Search | Storage Account | Read blob and write knowledge store | [Search doc](/azure/search/search-howto-managed-identities-data-sources). |
 
@@ -291,7 +291,7 @@ To check AI-PROJECT-GUID, go to the Azure portal, select your project, settings,
 
 ## Next steps
 
-- [Create an Azure AI Studio project](create-projects.md)
-- [Learn more about Azure AI Studio](../what-is-ai-studio.md)
-- [Learn more about Azure AI Studio hubs](../concepts/ai-resources.md)
+- [Create an Azure AI Foundry project](create-projects.md)
+- [Learn more about Azure AI Foundry](../what-is-ai-studio.md)
+- [Learn more about Azure AI Foundry hubs](../concepts/ai-resources.md)
 - [Troubleshoot secure connectivity to a project](troubleshoot-secure-connection-project.md)

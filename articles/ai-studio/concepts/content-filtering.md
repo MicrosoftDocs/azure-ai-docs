@@ -1,12 +1,13 @@
 ---
-title: Azure AI Studio content filtering
-titleSuffix: Azure AI Studio
-description: Learn about the content filtering capabilities of Azure OpenAI in Azure AI Studio.
+title: Azure AI Foundry content filtering
+titleSuffix: Azure AI Foundry
+description: Learn about the content filtering capabilities of Azure OpenAI in Azure AI Foundry portal.
 manager: nitinme
 ms.service: azure-ai-studio
 ms.custom:
   - ignite-2023
   - build-2024
+  - ignite-2024
 ms.topic: conceptual
 ms.date: 5/21/2024
 ms.reviewer: eur
@@ -14,9 +15,9 @@ ms.author: pafarley
 author: PatrickFarley
 ---
 
-# Content filtering in Azure AI Studio
+# Content filtering in Azure AI Foundry portal
 
-Azure AI Studio includes a content filtering system that works alongside core models and DALL-E image generation models.
+Azure AI Foundry includes a content filtering system that works alongside core models and DALL-E image generation models.
 
 > [!IMPORTANT]
 > The content filtering system isn't applied to prompts and completions processed by the Whisper model in Azure OpenAI Service. Learn more about the [Whisper model in Azure OpenAI](../../ai-services/openai/concepts/models.md).
@@ -70,11 +71,11 @@ You can also enable the following special output filters:
 
 ## Create a content filter
 
-For any model deployment in [Azure AI Studio](https://ai.azure.com), you can directly use the default content filter, but you might want to have more control. For example, you could make a filter stricter or more lenient, or enable more advanced capabilities like prompt shields and protected material detection.
+For any model deployment in [Azure AI Foundry](https://ai.azure.com), you can directly use the default content filter, but you might want to have more control. For example, you could make a filter stricter or more lenient, or enable more advanced capabilities like prompt shields and protected material detection.
 
 Follow these steps to create a content filter:
 
-1. Go to AI Studio and navigate to your project/ hub. Then select the Safety+ Security tab on the left nav and select the Content Filters.
+1. Go to AI Foundry and navigate to your project/ hub. Then select the Safety+ Security tab on the left nav and select the Content Filters.
     :::image type="content" source="../media/content-safety/content-filter/create-content-filter.png" alt-text="Screenshot of the button to create a new content filter." lightbox="../media/content-safety/content-filter/create-content-filter.png":::
 
 1. On the **Basic information** page, enter a name for your content filter. Select a connection to associate with the content filter. Then select **Next**.
@@ -96,7 +97,7 @@ Follow these steps to create a content filter:
 
     :::image type="content" source="../media/content-safety/content-filter/create-content-filter-deployment.png" alt-text="Screenshot of the option to select a deployment when creating a content filter." lightbox="../media/content-safety/content-filter/create-content-filter-deployment.png":::
 
-    Content filtering configurations are created at the hub level in AI Studio. Learn more about configurability in the [Azure OpenAI docs](/azure/ai-services/openai/how-to/content-filters).
+    Content filtering configurations are created at the hub level in AI Foundry portal. Learn more about configurability in the [Azure OpenAI docs](/azure/ai-services/openai/how-to/content-filters).
 
 1. On the **Review** page, review the settings and then select **Create filter**.
 
@@ -110,7 +111,7 @@ The filter creation process gives you the option to apply the filter to the depl
 
 Follow these steps to apply a content filter to a deployment:
 
-1. Go to [AI Studio](https://ai.azure.com) and select a hub and project.
+1. Go to [AI Foundry](https://ai.azure.com) and select a hub and project.
 1. Select **Models + endpoints** on the left pane and choose one of your deployments, then select **Edit**.
 
     :::image type="content" source="../media/content-safety/content-filter/deployment-edit.png" alt-text="Screenshot of the button to edit a deployment." lightbox="../media/content-safety/content-filter/deployment-edit.png":::
@@ -143,6 +144,6 @@ Customers are responsible for ensuring that applications integrating Azure OpenA
 ## Next steps
 
 - Learn more about the [underlying models that power Azure OpenAI](../../ai-services/openai/concepts/models.md).
-- Azure AI Studio content filtering is powered by [Azure AI Content Safety](../../ai-services/content-safety/overview.md).
+- Azure AI Foundry content filtering is powered by [Azure AI Content Safety](../../ai-services/content-safety/overview.md).
 - Learn more about understanding and mitigating risks associated with your application: [Overview of Responsible AI practices for Azure OpenAI models](/legal/cognitive-services/openai/overview?context=/azure/ai-services/context/context).
 - Learn more about evaluating your generative AI models and AI systems via [Azure AI Evaluation](https://aka.ms/genaiopsevals). 

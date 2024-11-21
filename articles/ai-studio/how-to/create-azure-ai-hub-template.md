@@ -1,7 +1,7 @@
 ---
-title: Create an Azure AI Studio hub using a Bicep template
-titleSuffix: Azure AI Studio
-description: Use a Microsoft Bicep template to create a new Azure AI Studio hub.
+title: Create an Azure AI Foundry hub using a Bicep template
+titleSuffix: Azure AI Foundry
+description: Use a Microsoft Bicep template to create a new Azure AI Foundry hub.
 manager: scottpolly
 ms.service: azure-ai-studio
 ms.custom: devx-track-arm-template, devx-track-bicep, build-2024
@@ -13,16 +13,16 @@ author: Blackmist
 #Customer intent: As a DevOps person, I need to automate or customize the creation of a hub by using templates.
 ---
 
-# Use an Azure Resource Manager template to create an Azure AI Studio hub
+# Use an Azure Resource Manager template to create an Azure AI Foundry hub
 
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
-Use a [Microsoft Bicep](/azure/azure-resource-manager/bicep/overview) template to create a hub for Azure AI Studio. A template makes it easy to create resources as a single, coordinated operation. A Bicep template is a text document that defines the resources that are needed for a deployment. It might also specify deployment parameters. Parameters are used to provide input values when using the template.
+Use a [Microsoft Bicep](/azure/azure-resource-manager/bicep/overview) template to create a hub for Azure AI Foundry. A template makes it easy to create resources as a single, coordinated operation. A Bicep template is a text document that defines the resources that are needed for a deployment. It might also specify deployment parameters. Parameters are used to provide input values when using the template.
 
 The template used in this article can be found at [https://github.com/Azure/azure-quickstart-templates/tree/master/quickstarts/microsoft.machinelearningservices/aistudio-basics](https://github.com/Azure/azure-quickstart-templates/tree/master/quickstarts/microsoft.machinelearningservices/aistudio-basics). Both the source `main.bicep` file and the compiled Azure Resource Manager template (`main.json`) file are available. This template creates the following resources:
 
 - An Azure resource group (if one doesn't already exist)
-- An Azure AI Studio hub
+- An Azure AI Foundry hub
 - Azure Storage Account
 - Azure Key Vault
 - Azure Container Registry
@@ -125,6 +125,6 @@ To run the Bicep template, use the following commands from the `aistudio-basics`
 
 ## Next steps
 
-- [Create an Azure AI Studio project](create-projects.md)
-- [Learn more about Azure AI Studio](../what-is-ai-studio.md)
+- [Create an Azure AI Foundry project](create-projects.md)
+- [Learn more about Azure AI Foundry](../what-is-ai-studio.md)
 - [Learn more about hubs](../concepts/ai-resources.md)

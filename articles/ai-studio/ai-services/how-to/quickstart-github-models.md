@@ -44,9 +44,9 @@ To obtain the key and endpoint:
 
 1. If your existing account is a free account, you first have to upgrade to a Pay as you go plan. Once you upgrade, go back to the playground and select **Get API key** again, then sign in with your upgraded account.
 
-1. Once you've signed in to your Azure account, you're taken to [Azure AI Studio](https://ai.azure.com). 
+1. Once you've signed in to your Azure account, you're taken to [Azure AI Foundry](https://ai.azure.com). 
 
-1. At the top of the page, select **Go to your GitHub AI resource** to go to Azure AI Studio / Github](https://ai.azure.com/github). It might take one or two minutes to load your initial model details in AI Studio.
+1. At the top of the page, select **Go to your GitHub AI resource** to go to Azure AI Foundry / Github](https://ai.azure.com/github). It might take one or two minutes to load your initial model details in AI Foundry portal.
 
 1. The page is loaded with your model's details. Select the **Create a Deployment** button to deploy the model to your account.
 
@@ -96,4 +96,4 @@ See the [FAQ section](../faq.yml) to explore more help.
 ## Next steps
 
 * [Add more models](create-model-deployments.md) to your endpoint.
-* [Explore the model catalog](https://ai.azure.com/github/models) in Azure AI studio.
+* [Explore the model catalog](https://ai.azure.com/github/models) in Azure AI Foundry portal.

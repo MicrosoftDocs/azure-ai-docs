@@ -1,13 +1,15 @@
 ---
 title: Tracing in Azure AI Inference SDK
-titleSuffix: Azure AI Studio
+titleSuffix: Azure AI Foundry
 description: This article provides an overview of tracing with the Azure AI Inference SDK.
 manager: scottpolly
 ms.service: azure-ai-studio
+ms.custom:
+  - ignite-2024
 ms.topic: conceptual
 ms.date: 11/19/2024
 ms.reviewer: truptiparkar
-ms.author: lagayhar  
+ms.author: lagayhar
 author: lgayhardt
 ---
 
@@ -59,7 +61,7 @@ Trace exporters are responsible for sending trace data to a backend system for s
 
 ### Trace visualization
 
-Trace visualization refers to the graphical representation of trace data. Azure AI integrates with visualization tools like Azure AI Studio Tracing, Aspire dashboard, and Prompty Trace viewer  to provide developers with an intuitive way to explore and analyze traces, helping them to quickly identify issues and understand the behavior of their applications.
+Trace visualization refers to the graphical representation of trace data. Azure AI integrates with visualization tools like Azure AI Foundry Tracing, Aspire dashboard, and Prompty Trace viewer  to provide developers with an intuitive way to explore and analyze traces, helping them to quickly identify issues and understand the behavior of their applications.
 
 ## Conclusion
 

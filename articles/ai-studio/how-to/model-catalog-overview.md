@@ -1,13 +1,14 @@
 ---
-title: Explore the model catalog in Azure AI Studio
-titleSuffix: Azure AI Studio
-description: This article introduces foundation model capabilities and the model catalog in Azure AI Studio.
+title: Explore the model catalog in Azure AI Foundry portal
+titleSuffix: Azure AI Foundry
+description: This article introduces foundation model capabilities and the model catalog in Azure AI Foundry portal.
 manager: scottpolly
 ms.service: azure-ai-studio
 ms.custom:
   - ignite-2023
   - build-2024
   - ai-learning-hub
+  - ignite-2024
 ms.topic: how-to
 ms.date: 5/21/2024
 ms.reviewer: jcioffi
@@ -15,24 +16,24 @@ ms.author: ssalgado
 author: ssalgadodev
 ---
 
-# Model catalog and collections in Azure AI Studio
+# Model catalog and collections in Azure AI Foundry portal
 
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
-The model catalog in Azure AI Studio is the hub to discover and use a wide range of models for building generative AI applications. The model catalog features hundreds of models across model providers such as Azure OpenAI Service, Mistral, Meta, Cohere, NVIDIA, and Hugging Face, including models that Microsoft trained. Models from providers other than Microsoft are Non-Microsoft Products as defined in [Microsoft Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage) and are subject to the terms provided with the models.
+The model catalog in Azure AI Foundry portal is the hub to discover and use a wide range of models for building generative AI applications. The model catalog features hundreds of models across model providers such as Azure OpenAI Service, Mistral, Meta, Cohere, NVIDIA, and Hugging Face, including models that Microsoft trained. Models from providers other than Microsoft are Non-Microsoft Products as defined in [Microsoft Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage) and are subject to the terms provided with the models.
 
 ## Model collections
 
 The model catalog organizes models into different collections:
 
 
-* **Curated by Azure AI**: The most popular non-Microsoft open-weight and proprietary models packaged and optimized to work seamlessly on the Azure AI platform. Use of these models is subject to the model providers' license terms. When you deploy these models in Azure AI Studio, their availability is subject to the applicable [Azure service-level agreement (SLA)](https://www.microsoft.com/licensing/docs/view/Service-Level-Agreements-SLA-for-Online-Services), and Microsoft provides support for deployment problems.
+* **Curated by Azure AI**: The most popular non-Microsoft open-weight and proprietary models packaged and optimized to work seamlessly on the Azure AI platform. Use of these models is subject to the model providers' license terms. When you deploy these models in Azure AI Foundry portal, their availability is subject to the applicable [Azure service-level agreement (SLA)](https://www.microsoft.com/licensing/docs/view/Service-Level-Agreements-SLA-for-Online-Services), and Microsoft provides support for deployment problems.
 
   Models from partners such as Meta, NVIDIA, and Mistral AI are examples of models available in this collection on the catalog. You can identify these models by looking for a green checkmark on the model tiles in the catalog. Or you can filter by the **Curated by Azure AI** collection.
 
 * **Azure OpenAI models exclusively available on Azure**: Flagship Azure OpenAI models available through an integration with Azure OpenAI Service. Microsoft supports these models and their use according to the product terms and [SLA for Azure OpenAI Service](https://www.microsoft.com/licensing/docs/view/Service-Level-Agreements-SLA-for-Online-Services).
 
-* **Open models from the Hugging Face hub**: Hundreds of models from the Hugging Face hub for real-time inference with managed compute. Hugging Face creates and maintains models listed in this collection. For help, use the [Hugging Face forum](https://discuss.huggingface.co) or [Hugging Face support](https://huggingface.co/support). Learn more in [Deploy open models with Azure AI Studio](deploy-models-open.md).
+* **Open models from the Hugging Face hub**: Hundreds of models from the Hugging Face hub for real-time inference with managed compute. Hugging Face creates and maintains models listed in this collection. For help, use the [Hugging Face forum](https://discuss.huggingface.co) or [Hugging Face support](https://huggingface.co/support). Learn more in [Deploy open models with Azure AI Foundry](deploy-models-open.md).
 
 You can submit a request to add a model to the model catalog by using [this form](https://forms.office.com/pages/responsepage.aspx?id=v4j5cvGGr0GRqy180BHbR_frVPkg_MhOoQxyrjmm7ZJUM09WNktBMURLSktOWEdDODBDRjg2NExKUy4u).
 
@@ -68,7 +69,7 @@ Features | Managed compute | Serverless API (pay-per-token)
 Deployment experience and billing | Model weights are deployed to dedicated virtual machines with managed compute. A managed compute, which can have one or more deployments, makes available a REST API for inference. You're billed for the virtual machine core hours that the deployments use. | Access to models is through a deployment that provisions an API to access the model. The API provides access to the model that Microsoft hosts and manages, for inference. You're billed for inputs and outputs to the APIs, typically in tokens. Pricing information is provided before you deploy.
 API authentication | Keys and Microsoft Entra authentication. | Keys only.
 Content safety | Use Azure AI Content Safety service APIs. | Azure AI Content Safety filters are available integrated with inference APIs. Azure AI Content Safety filters are billed separately.
-Network isolation | [Configure managed networks for Azure AI Studio hubs](configure-managed-network.md).  | Managed compute follow your hub's public network access (PNA) flag setting. For more information, see the [Network isolation for models deployed via Serverless APIs](#network-isolation-for-models-deployed-via-serverless-apis) section later in this article.
+Network isolation | [Configure managed networks for Azure AI Foundry hubs](configure-managed-network.md).  | Managed compute follow your hub's public network access (PNA) flag setting. For more information, see the [Network isolation for models deployed via Serverless APIs](#network-isolation-for-models-deployed-via-serverless-apis) section later in this article.
 
 ### Available models for supported deployment options
 
@@ -112,7 +113,7 @@ Models available for deployment to managed compute can be deployed to Azure Mach
 Learn more about deploying models:
 
 * [Deploy Meta Llama models](deploy-models-llama.md)
-* [Deploy Azure AI Studio open models](deploy-models-open.md)
+* [Deploy Azure AI Foundry open models](deploy-models-open.md)
 
 ### Building generative AI apps with managed compute
 
@@ -140,7 +141,7 @@ Learn more about data processing for MaaS in the [article about data privacy](co
 
 ### Billing
 
-The discovery, subscription, and consumption experience for models deployed via MaaS is in Azure AI Studio and Azure Machine Learning studio. Users accept license terms for use of the models. Pricing information for consumption is provided during deployment.
+The discovery, subscription, and consumption experience for models deployed via MaaS is in Azure AI Foundry portal and Azure Machine Learning studio. Users accept license terms for use of the models. Pricing information for consumption is provided during deployment.
 
 Models from non-Microsoft providers are billed through Azure Marketplace, in accordance with the [Microsoft Commercial Marketplace Terms of Use](/legal/marketplace/marketplace-terms).
 
@@ -152,11 +153,11 @@ Certain models support also serverless fine-tuning. For these models, you can ta
 
 ### RAG with models deployed as serverless APIs
 
-In Azure AI Studio, you can use vector indexes and retrieval-augmented generation (RAG). You can use models that can be deployed via serverless APIs to generate embeddings and inferencing based on custom data. These embeddings and inferencing can then generate answers specific to your use case. For more information, see [Build and consume vector indexes in Azure AI Studio](index-add.md).
+In Azure AI Foundry portal, you can use vector indexes and retrieval-augmented generation (RAG). You can use models that can be deployed via serverless APIs to generate embeddings and inferencing based on custom data. These embeddings and inferencing can then generate answers specific to your use case. For more information, see [Build and consume vector indexes in Azure AI Foundry portal](index-add.md).
 
 ### Regional availability of offers and models
 
-Pay-per-token billing is available only to users whose Azure subscription belongs to a billing account in a country where the model provider has made the offer available. If the offer is available in the relevant region, the user then must have a project resource in the Azure region where the model is available for deployment or fine-tuning, as applicable. See [Region availability for models in serverless API endpoints | Azure AI Studio](deploy-models-serverless-availability.md) for detailed information.
+Pay-per-token billing is available only to users whose Azure subscription belongs to a billing account in a country where the model provider has made the offer available. If the offer is available in the relevant region, the user then must have a project resource in the Azure region where the model is available for deployment or fine-tuning, as applicable. See [Region availability for models in serverless API endpoints | Azure AI Foundry](deploy-models-serverless-availability.md) for detailed information.
 
 ### Content safety for models deployed via serverless APIs
 
@@ -164,21 +165,21 @@ Pay-per-token billing is available only to users whose Azure subscription belong
 
 ### Network isolation for models deployed via serverless APIs
 
-Managed computes for models deployed as serverless APIs follow the public network access flag setting of the AI Studio hub that has the project in which the deployment exists. To help secure your managed compute, disable the public network access flag on your AI Studio hub. You can help secure inbound communication from a client to your managed compute by using a private endpoint for the hub.
+Managed computes for models deployed as serverless APIs follow the public network access flag setting of the AI Foundry hub that has the project in which the deployment exists. To help secure your managed compute, disable the public network access flag on your AI Foundry hub. You can help secure inbound communication from a client to your managed compute by using a private endpoint for the hub.
 
-To set the public network access flag for the AI Studio hub:
+To set the public network access flag for the AI Foundry hub:
 
 * Go to the [Azure portal](https://ms.portal.azure.com/).
-* Search for the resource group to which the hub belongs, and select your AI Studio hub from the resources listed for this resource group.
+* Search for the resource group to which the hub belongs, and select your AI Foundry hub from the resources listed for this resource group.
 * On the hub overview page, on the left pane, go to **Settings** > **Networking**.
 * On the **Public access** tab, you can configure settings for the public network access flag.
 * Save your changes. Your changes might take up to five minutes to propagate.
 
 #### Limitations
 
-* If you have an AI Studio hub with a managed compute created before July 11, 2024, managed computes added to projects in this hub won't follow the networking configuration of the hub. Instead, you need to create a new managed compute for the hub and create new serverless API deployments in the project so that the new deployments can follow the hub's networking configuration.
+* If you have an AI Foundry hub with a managed compute created before July 11, 2024, managed computes added to projects in this hub won't follow the networking configuration of the hub. Instead, you need to create a new managed compute for the hub and create new serverless API deployments in the project so that the new deployments can follow the hub's networking configuration.
 
-* If you have an AI Studio hub with MaaS deployments created before July 11, 2024, and you enable a managed compute on this hub, the existing MaaS deployments won't follow the hub's networking configuration. For serverless API deployments in the hub to follow the hub's networking configuration, you need to create the deployments again.
+* If you have an AI Foundry hub with MaaS deployments created before July 11, 2024, and you enable a managed compute on this hub, the existing MaaS deployments won't follow the hub's networking configuration. For serverless API deployments in the hub to follow the hub's networking configuration, you need to create the deployments again.
 
 * Currently, [Azure OpenAI On Your Data](/azure/ai-services/openai/concepts/use-your-data) support isn't available for MaaS deployments in private hubs, because private hubs have the public network access flag disabled.
 
@@ -186,4 +187,4 @@ To set the public network access flag for the AI Studio hub:
 
 ## Related content
 
-* [Explore foundation models in Azure AI Studio](models-foundation-azure-ai.md)
+* [Explore foundation models in Azure AI Foundry portal](models-foundation-azure-ai.md)
