@@ -33,20 +33,19 @@ By default, this feature uses the latest available AI model on your text. You ca
 When you submit documents to be processed, you can specify which of [the supported languages](language-support.md) they're written in. if you don't specify a language, extraction defaults to English. The API may return offsets in the response to support different [multilingual and emoji encodings](../concepts/multilingual-emoji-support.md). 
 
 ### Redaction Policy (version 2024-11-5-preview only)
-
-in version 2024-11-5-preview, you're able to define the `redactionPolicy` parameter to reflect the redaction policy to be used when redacting the document in the response. The policy field supports 3 policy types:
+In version 2024-11-5-preview, you're able to define the `redactionPolicy` parameter to reflect the redaction policy to be used when redacting text. The policy field supports 3 policy types:
 
 - `DoNotRedact` 
 - `MaskWithCharacter` (default) 
 - `MaskWithEntityType` 
 
-The `DoNotRedact` policy allows the user to return the response without the `redactedText` field. 
+The `DoNotRedact` policy allows the user to return the response without the `redactedText` field, i.e. “John Doe received a call from 424-878-9192”,. 
 
-The `MaskWithRedactionCharacter` policy allows the `redactedText` to be masked with a character, preserving the length and offset of the original text. This is the existing behavior.
+The `MaskWithRedactionCharacter` policy allows the `redactedText` to be masked with a character (such as "*"), preserving the length and offset of the original text, i.e. “******** received a call from ************”. This is the existing behavior.
 
 There is also an optional field called `redactionCharacter` where you can input the character to be used in redaction if you're using the `MaskWithCharacter` policy 
 
-The `MaskWithEntityType` policy allows you to mask the detected PII entity text with the detected entity type. 
+The `MaskWithEntityType` policy allows you to mask the detected PII entity text with the detected entity type, i.e. “[PERSON_1] received a call from [PHONENUMBER_1]”. 
 
 ## Submitting data
 
