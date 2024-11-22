@@ -5,7 +5,7 @@ description: Learn how to securely use the Azure AI Foundry portal playground ch
 manager: scottpolly
 ms.service: azure-ai-studio
 ms.topic: how-to
-ms.date: 09/13/2024
+ms.date: 11/21/2024
 ms.reviewer: meerakurup 
 ms.author: larryfr
 author: Blackmist
