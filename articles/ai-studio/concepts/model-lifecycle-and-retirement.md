@@ -25,9 +25,10 @@ Models in the model catalog belong to one of these stages:
 - Deprecated
 - Retired
 
+> [!IMPORTANT]
+> This article describes deprecation and retirement only for models that can be deployed to __serverless APIs__, not managed compute. To learn more about the differences between deployment to serverless APIs and managed computes, see [Model catalog and collections in Azure AI Foundry portal](../how-to/model-catalog-overview.md).
+
 > [!NOTE]
-> This article describes deprecation and retirement only for models that can be deployed to serverless APIs, not managed compute. To learn more about the differences between deployment to serverless APIs and managed computes, see [Model catalog and collections in Azure AI Foundry portal](../how-to/model-catalog-overview.md).
->
 > Azure OpenAI models in the model catalog are provided through Azure OpenAI Service. For information about Azure Open AI model deprecation and retirement, see the [Azure OpenAI service product documentation](/azure/ai-services/openai/concepts/model-retirements).
 
 
