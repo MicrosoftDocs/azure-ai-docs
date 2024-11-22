@@ -88,6 +88,6 @@ But for full functionality there are some requirements:
 
 ## Related content
 
-- [Quickstart: Use the chat playground in Azure AI Studio](quickstarts/get-started-playground.md)
+- [Quickstart: Use the chat playground in Azure AI Foundry portal](quickstarts/get-started-playground.md)
 - [Build a custom chat app in Python using the Azure AI SDK](quickstarts/get-started-code.md)
 - [Create a project](./how-to/create-projects.md)

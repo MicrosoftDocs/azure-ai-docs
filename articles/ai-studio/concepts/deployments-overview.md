@@ -1,7 +1,7 @@
 ---
-title: Deploy models in Azure AI studio
+title: Deploy models in Azure AI Foundry portal
 titleSuffix: Azure AI Foundry
-description: Learn about deploying models in Azure AI studio.
+description: Learn about deploying models in Azure AI Foundry portal.
 manager: scottpolly
 ms.service: azure-ai-studio
 ms.custom:
@@ -15,9 +15,9 @@ ms.author: mopeakande
 author: msakande
 ---
 
-# Overview: Deploy AI models in Azure AI Studio
+# Overview: Deploy AI models in Azure AI Foundry portal
 
-The model catalog in Azure AI studio is the hub to discover and use a wide range of models for building generative AI applications. Models need to be deployed to make them available for receiving inference requests. The process of interacting with a deployed model is called *inferencing*. Azure AI Studio offer a comprehensive suite of deployment options for those models depending on your needs and model requirements.
+The model catalog in Azure AI Foundry portal is the hub to discover and use a wide range of models for building generative AI applications. Models need to be deployed to make them available for receiving inference requests. The process of interacting with a deployed model is called *inferencing*. Azure AI Foundry offer a comprehensive suite of deployment options for those models depending on your needs and model requirements.
 
 ## Deploying models
 
@@ -27,7 +27,7 @@ Deployment options vary depending on the model type:
 * **Models as a Service models:** These models don't require compute quota from your subscription. This option allows you to deploy your Model as a Service (MaaS). You use a serverless API deployment and are billed per token in a pay-as-you-go fashion.
 * **Open and custom models:** The model catalog offers access to a large variety of models across modalities that are of open access. You can host open models in your own subscription with a managed infrastructure, virtual machines, and the number of instances for capacity management. There's a wide range of models from Azure OpenAI, Hugging Face, and NVIDIA.
 
-Azure AI studio offers four different deployment options:
+Azure AI Foundry offers four different deployment options:
 
 |Name                           | Azure OpenAI service | Azure AI model inference service | Serverless API | Managed compute |
 |-------------------------------|----------------------|-------------------|----------------|-----------------|
@@ -46,7 +46,7 @@ Azure AI studio offers four different deployment options:
 
 ### How should I think about deployment options?
 
-Azure AI studio encourages customers to explore the deployment options and pick the one that best suites their business and technical needs. In general you can use the following thinking process:
+Azure AI Foundry encourages customers to explore the deployment options and pick the one that best suites their business and technical needs. In general you can use the following thinking process:
 
 1. Start with the deployment options that have the bigger scopes. This allows you to iterate and prototype faster in your application without having to rebuild your architecture each time you decide to change something. [Azure AI model inference service](../ai-services/model-inference.md) is a deployment target that supports all the flagship models in the Azure AI catalog, including latest innovation from Azure OpenAI.
 
@@ -64,6 +64,6 @@ Azure AI studio encourages customers to explore the deployment options and pick 
 ## Related content
 
 * [Add and configure models to the Azure AI model inference service](../ai-services/how-to/create-model-deployments.md)
-* [Deploy Azure OpenAI models with Azure AI Studio](../how-to/deploy-models-openai.md)
-* [Deploy open models with Azure AI Studio](../how-to/deploy-models-open.md)
-* [Model catalog and collections in Azure AI Studio](../how-to/model-catalog-overview.md)
+* [Deploy Azure OpenAI models with Azure AI Foundry](../how-to/deploy-models-openai.md)
+* [Deploy open models with Azure AI Foundry](../how-to/deploy-models-open.md)
+* [Model catalog and collections in Azure AI Foundry portal](../how-to/model-catalog-overview.md)

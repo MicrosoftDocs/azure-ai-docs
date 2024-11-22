@@ -10,9 +10,9 @@ ms.date: 11/19/2024
 ms.custom: include, build-2024, ignite-2024
 ---
 
-To create a project in [Azure AI Studio](https://ai.azure.com), follow these steps:
+To create a project in [Azure AI Foundry](https://ai.azure.com), follow these steps:
 
-1. Go to [Azure AI Studio](https://ai.azure.com). If you are in a project, select **Azure AI Studio** at the top left of the page to go to the **Home** page.
+1. Go to [Azure AI Foundry](https://ai.azure.com). If you are in a project, select **Azure AI Foundry** at the top left of the page to go to the **Home** page.
 1. Select **+ Create project**.
 1. Enter a name for the project.
 1. If you have a hub, you'll see the one you most recently used selected.  
@@ -31,7 +31,7 @@ Projects live inside a hub. A hub allows you to share configurations like data c
 
 When you create a new hub, you must have **Owner** or **Contributor** permissions on the selected resource group. If you're part of a team and don't have these permissions, your administrator should create a hub for you.
 
-While you can create a hub as part of the project creation, you have more control and can set more advanced settings for the hub if you create it separately. For example, you can customize network security or the underlying Azure Storage account. For more information, see [How to create and manage an Azure AI Studio hub](../how-to/create-azure-ai-resource.md).
+While you can create a hub as part of the project creation, you have more control and can set more advanced settings for the hub if you create it separately. For example, you can customize network security or the underlying Azure Storage account. For more information, see [How to create and manage an Azure AI Foundry hub](../how-to/create-azure-ai-resource.md).
 
 When you create a new hub as part of the project creation, default settings are provided. If you want to customize these settings, do so before you create the project:
 

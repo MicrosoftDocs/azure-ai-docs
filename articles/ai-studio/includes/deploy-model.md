@@ -12,10 +12,10 @@ ms.custom: include, ignite-2024
 
 To work with a model, you first deploy it into a project. If you don't yet have a project, you create one as part of the deployment step.
 
-1. Sign in to [Azure AI Studio](https://ai.azure.com).
+1. Sign in to [Azure AI Foundry](https://ai.azure.com).
 1. Studio remembers where you were last, so what you do next depends on where you are:
 
-    * If you're new to Azure AI Studio, select **Explore models**. 
+    * If you're new to Azure AI Foundry, select **Explore models**. 
   
         :::image type="content" source="../media/tutorials/chat/home-page.png" alt-text="Screenshot of the home page if with no projects." lightbox="../media/tutorials/chat/home-page.png":::
 
