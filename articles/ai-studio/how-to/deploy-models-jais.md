@@ -5,7 +5,7 @@ description: Learn how to use Jais chat models with Azure AI Foundry.
 ms.service: azure-ai-studio
 manager: scottpolly
 ms.topic: how-to
-ms.date: 08/08/2024
+ms.date: 11/21/2024
 ms.reviewer: haelhamm
 reviewer: hazemelh 
 ms.author: ssalgado

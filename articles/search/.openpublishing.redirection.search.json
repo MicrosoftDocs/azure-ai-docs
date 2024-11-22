@@ -1,6 +1,11 @@
 {
     "redirections": [
         {
+            "source_path_from_root": "/articles/search/search-security-network-security-perimiter.md",
+            "redirect_url": "/azure/search/search-security-network-security-perimeter",
+            "redirect_document_id": true
+        },
+        {
             "source_path_from_root": "/articles/search/cognitive-search-quickstart-blob.md",
             "redirect_url": "/azure/search/search-get-started-skillset",
             "redirect_document_id": true
