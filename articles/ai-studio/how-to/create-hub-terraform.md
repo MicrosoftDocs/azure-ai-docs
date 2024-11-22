@@ -2,7 +2,7 @@
 title: 'Use Terraform to create an Azure AI Foundry hub'
 description: In this article, you create an Azure AI Foundry hub, an Azure AI Foundry project, an AI services resource, and more resources.
 ms.topic: how-to
-ms.date: 07/12/2024
+ms.date: 11/21/2024
 titleSuffix: Azure AI Foundry 
 ms.service: azure-ai-studio 
 manager: scottpolly 

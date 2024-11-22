@@ -7,7 +7,7 @@ ms.service: azure-ai-studio
 ms.custom:
   - build-2024
 ms.topic: how-to
-ms.date: 5/21/2024
+ms.date: 11/21/2024
 ms.reviewer: dantaylo
 ms.author: sgilley
 author: sdgilley
