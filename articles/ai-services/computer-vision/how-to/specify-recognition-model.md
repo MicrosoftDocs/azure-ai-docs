@@ -6,11 +6,13 @@ description: This article shows you how to choose which recognition model to use
 author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-vision
+ms.subservice: azure-ai-face
 ms.topic: how-to
 ms.date: 01/19/2024
 ms.author: pafarley
 ms.devlang: csharp
 ms.custom: devx-track-csharp
+feedback_help_link_url: https://learn.microsoft.com/answers/tags/156/azure-face
 ---
 
 # Specify a face recognition model

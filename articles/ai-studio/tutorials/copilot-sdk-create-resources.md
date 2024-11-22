@@ -107,7 +107,7 @@ In the Azure AI Foundry portal, check for an Azure AI Search connected resource.
 1. Use **API key** for **Authentication**.
 
     > [!NOTE]
-    > You can instead use **Microsoft Entra ID** for **Authentication**. If you do this, you must also configure access control for the Azure AI Search service. Assign yourself the **Search Index Data Contributor** and **Search Service Contributor** roles. If you don't know how to do this, or don't have the necessary permissions, use the **API key** for **Authentication**.
+    > You can instead use **Microsoft Entra ID** for **Authentication**. If you do this, you must also configure access control for the Azure AI Search service. Assign the **Search Index Data Contributor** and **Search Service Contributor** roles to your user account. If you don't know how to do this, or don't have the necessary permissions, use the **API key** for **Authentication**.
 
 1. Select **Add connection**.  
 
