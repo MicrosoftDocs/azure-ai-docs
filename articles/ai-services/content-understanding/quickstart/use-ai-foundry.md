@@ -4,7 +4,7 @@ titleSuffix: Azure AI services
 description: Learn how to use Content Understanding Analyzer templates in Azure AI Foundry
 author: laujan
 manager: nitinme
-ms.service: azure
+ms.service: azure-ai-content-understanding
 ms.topic: quickstart
 ms.date: 11/19/2024
 ms.custom: ignite-2024-understanding-release

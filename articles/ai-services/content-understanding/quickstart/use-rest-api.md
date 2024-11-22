@@ -5,7 +5,7 @@ description: Learn about Content Understanding REST APIs
 author: laujan
 ms.author: tonyeiyalla
 manager: nitinme
-ms.service: azure
+ms.service: azure-ai-content-understanding
 ms.topic: quickstart
 ms.date: 11/19/2024
 ---

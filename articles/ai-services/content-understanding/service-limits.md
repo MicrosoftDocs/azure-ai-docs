@@ -4,7 +4,7 @@ titleSuffix: Azure AI services
 description: Quick reference, detailed description, and best practices for working within Azure AI Content Understanding service Quotas and Limits
 author: laujan
 manager: nitinme
-ms.service: azure
+ms.service: azure-ai-content-understanding
 ms.topic: conceptual
 ms.date: 11/19/2024
 ms.custom: ignite-2024-understanding-release

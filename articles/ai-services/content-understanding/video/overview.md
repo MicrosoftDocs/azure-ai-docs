@@ -5,7 +5,7 @@ description: Learn about Azure AI Content Understanding video solutions.
 author: laujan
 ms.author: lajanuar
 manager: nitinme
-ms.service: azure
+ms.service: azure-ai-content-understanding
 ms.topic: overview
 ms.date: 11/19/2024
 ms.custom: ignite-2024-understanding-release
