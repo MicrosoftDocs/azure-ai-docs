@@ -14,7 +14,7 @@ ms.date: 11/22/2024
 #Customer intent: As a data scientist, I want to learn about the lifecycle of models that are available in the model catalog.
 ---
 
-# Model deprecation and retirement in Azure AI model catalog
+# Deprecation and retirement of models in Azure AI model catalog
 
 Models in the model catalog are continually refreshed with newer and more capable models. As part of this process, model providers might deprecate and retire their older models, and you might need to update your applications to use a newer model. This document communicates information about the model lifecycle and deprecation timelines and explains how you're informed of model lifecycle stages.
 
