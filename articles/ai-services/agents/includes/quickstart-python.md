@@ -29,7 +29,7 @@ ms.date: 11/13/2024
 Run the following commands to install the python packages.
 
 ```console
-pip install azure_ai_projects-1.0.0b1-py3-none-any.whl --user --force-reinstall
+pip install azure-ai-projects
 pip install azure-identity
 ```
 
