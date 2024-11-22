@@ -386,9 +386,11 @@ POST /indexes/[index name]/docs/search?api-version=[api-version]
 
 If you used the health plan PDFs to test this skill, Search Explorer results for the example query should look similar to the results in the following screenshot. 
 
++ The query is a [hybrid query](hybrid-search-how-to-query.md) over text and vectors, so you see a `@search.rerankerScore` and results are ranked by that score. `searchMode=all` means that *all* query terms must be considered for a match (the default is *any*).
+
 + The query uses semantic ranking, so you see `captions` (it also has `answers`, but those aren't shown in the screenshot). The results are the most semantically relevant to the query input, as determined by the [semantic ranker](semantic-search-overview.md).
-+ The query is a [hybrid query](hybrid-search-how-to-query.md) over text and vectors, so you see a `@search.rerankerScore` and results are ranked by that score.
-+ The `select` statement specifies the header fields that the Document Layout skill detected and populated. You can add more fields to inspect the content of chunks, title, or any other human readable field.
+
++ The `select` statement (not shown in the screenshot) specifies the header fields that the Document Layout skill detects and populates. You can add more fields to the select clause to inspect the content of chunks, title, or any other human readable field.
 
 :::image type="content" source="media/search-how-to-semantic-chunking/query-results-doc-layout.png" lightbox="media/search-how-to-semantic-chunking/query-results-doc-layout.png" alt-text="Screenshot of hybrid query results that include doc layout skill output fields.":::
 
