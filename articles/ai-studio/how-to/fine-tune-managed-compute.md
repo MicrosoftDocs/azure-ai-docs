@@ -23,9 +23,8 @@ This article explains how to use a managed compute to fine-tune a foundation mod
 
 Fine-tuning a pretrained model to use for a related task is more efficient than building a new model, as fine-tuning builds upon the pretrained model's existing knowledge and reduces the time and data needed for training.
 
-To improve model performance, you might consider fine-tuning a foundation model with your training data. You can easily fine-tune foundation models by using either the fine-tune settings in Azure AI Foundry portal or by using code-based samples.
+To improve model performance, you might consider fine-tuning a foundation model with your training data. You can easily fine-tune foundation models by using the fine-tune settings in the Azure AI Foundry portal.
 
-__Todo: link to the code-based samples__
 
 ## Prerequisites
 
@@ -49,7 +48,7 @@ __Todo: link to the code-based samples__
 
     1. Select __Fine-tune__ on the model card to see the available fine-tune options. Some foundation models support only the __Managed compute__ option.
 
-  :::image type="content" source="../media/how-to/fine-tune-managed-compute/fine-tune-options.png" alt-text="Screenshot showing fine-tuning options for a foundation model in Azure AI Foundry." lightbox="../media/how-to/fine-tune-managed-compute/fine-tune-options.png":::
+    :::image type="content" source="../media/how-to/fine-tune-managed-compute/fine-tune-options.png" alt-text="Screenshot showing fine-tuning options for a foundation model in Azure AI Foundry." lightbox="../media/how-to/fine-tune-managed-compute/fine-tune-options.png":::
 
 1. Select __Managed compute__ to use your personal compute resources. This action opens up the "Basic settings" page of a window for specifying the fine-tuning settings.
 
@@ -61,7 +60,7 @@ In this section, you go through the steps to configure fine-tuning for your mode
 
 1. Select the Azure Machine Learning compute cluster to use for fine-tuning the model. Fine-tuning runs on GPU compute. Ensure that you have sufficient compute quota for the compute SKUs you plan to use.
 
-  :::image type="content" source="../media/how-to/fine-tune-managed-compute/fine-tune-compute.png" alt-text="Screenshot showing settings for the compute to use for fine-tuning." lightbox="../media/how-to/fine-tune-managed-compute/fine-tune-compute.png":::
+    :::image type="content" source="../media/how-to/fine-tune-managed-compute/fine-tune-compute.png" alt-text="Screenshot showing settings for the compute to use for fine-tuning." lightbox="../media/how-to/fine-tune-managed-compute/fine-tune-compute.png":::
 
 1. Select **Next** to go to the "Training data" page. On this page, the "Task type" is preselected as **Chat completion**.
 
