@@ -9,7 +9,7 @@ ms.custom:
   - build-2024
   - ignite-2024
 ms.topic: quickstart
-ms.date: 11/20/2024
+ms.date: 11/22/2024
 ---
 
 # Quickstart: Vectorize text and images by using the Azure portal
@@ -22,7 +22,7 @@ This quickstart helps you get started with [integrated vectorization](vector-sea
 
 + [An Azure AI Search service](search-create-service-portal.md) in the same region as Azure AI. We recommend the Basic tier or higher.
 
-+ [A supported data source](#supported-data-sources).
++ [A supported data source](#supported-data-sources) with the [Health Plan PDF](https://github.com/Azure-Samples/azure-search-sample-data/tree/main/health-plan) sample documents.
 
 + [A supported embedding model](#supported-embedding-models).
 
@@ -333,19 +333,21 @@ Chunking is built in and nonconfigurable. The effective settings are:
 
 1. Select the checkbox that acknowledges the billing effects of using these resources.
 
+   :::image type="content" source="media/search-get-started-portal-import-vectors/vectorize-text.png" alt-text="Screenshot of the vectorize text page in the wizard.":::
+
 1. Select **Next**.
 
 ## Vectorize and enrich your images
 
-The health plan PDFs don't include images, so you can skip this step.
+The health plan PDFs include a corporate logo, but otherwise there are no images. You can skip this step if you're using the sample documents.
 
-However, if you work with content that includes images, you can apply AI in two ways:
+However, if you work with content that includes useful images, you can apply AI in two ways:
 
 + Use a supported image embedding model from the catalog, or choose the Azure AI Vision multimodal embeddings API to vectorize images.
 
 + Use optical character recognition (OCR) to recognize text in images. This option invokes the [OCR skill](cognitive-search-skill-ocr.md) to read text from images.
 
-Azure AI Search and your Azure AI resource must be in the same region.
+Azure AI Search and your Azure AI resource must be in the same region or configured for [keyless billing connections](cognitive-search-attach-cognitive-services.md).
 
 1. On the **Vectorize your images** page, specify the kind of connection the wizard should make. For image vectorization, the wizard can connect to embedding models in Azure AI Studio or Azure AI Vision.
 
@@ -356,6 +358,8 @@ Azure AI Search and your Azure AI resource must be in the same region.
 1. Optionally, you can crack binary images (for example, scanned document files) and [use OCR](cognitive-search-skill-ocr.md) to recognize text.
 
 1. Select the checkbox that acknowledges the billing effects of using these resources.
+
+   :::image type="content" source="media/search-get-started-portal-import-vectors/vectorize-images.png" alt-text="Screenshot of the vectorize images page in the wizard.":::
 
 1. Select **Next**.
 
@@ -371,12 +375,12 @@ Key points about this step:
 + You can add fields, but you can't delete or modify generated fields.
 + Document parsing mode creates chunks (one search document per chunk).
 
-On the **Advanced settings** page, you can optionally add new fields. By default, the wizard generates the following fields with these attributes:
+On the **Advanced settings** page, you can optionally add new fields assuming the data source provides metadata or fields that aren't picked up on the first pass. By default, the wizard generates the following fields with these attributes:
 
 | Field | Applies to | Description |
 |-------|------------|-------------|
 | chunk_id | Text and image vectors | Generated string field. Searchable, retrievable, sortable. This is the document key for the index. |
-| parent_id | Text vectors | Generated string field. Retrievable, filterable. Identifies the parent document from which the chunk originates. |
+| text_parent_id | Text vectors | Generated string field. Retrievable, filterable. Identifies the parent document from which the chunk originates. |
 | chunk | Text and image vectors | String field. Human readable version of the data chunk. Searchable and retrievable, but not filterable, facetable, or sortable. |
 | title | Text and image vectors | String field. Human readable document title or page title or page number. Searchable and retrievable, but not filterable, facetable, or sortable. |
 | text_vector | Text vectors | Collection(Edm.single). Vector representation of the chunk.  Searchable and retrievable, but not filterable, facetable, or sortable.|
@@ -419,7 +423,7 @@ Search Explorer accepts text strings as input and then vectorizes the text for v
 
 1. In the Azure portal, go to **Search Management** > **Indexes**, and then select the index that you created.
 
-1. Optionally, select **Query options** and hide vector values in search results. This step makes your search results easier to read.
+1. Select **Query options** and hide vector values in search results. This step makes your search results easier to read.
 
    :::image type="content" source="media/search-get-started-portal-import-vectors/query-options.png" alt-text="Screenshot of the button for query options.":::
 
@@ -427,43 +431,69 @@ Search Explorer accepts text strings as input and then vectorizes the text for v
 
    :::image type="content" source="media/search-get-started-portal-import-vectors/select-json-view.png" alt-text="Screenshot of the menu command for opening the JSON view.":::
 
-   The wizard offers a default query that issues a vector query on the `vector` field and returns the five nearest neighbors. If you opted to hide vector values, your default query includes a `select` statement that excludes the `vector` field from search results.
+   The default query is an empty search (`"*"`), but includes parameters for returning the number matches. It's a hybrid query that runs text and vector queries in parallel. It includes semantic ranking. It specifies which fields to return in the results through the `select` statement.
 
    ```json
-   {
-      "select": "chunk_id,parent_id,chunk,title",
+    {
+      "search": "*",
+      "count": true,
       "vectorQueries": [
-          {
-             "kind": "text",
-             "text": "*",
-             "k": 5,
-             "fields": "vector"
-          }
-       ]
-   }
+        {
+          "kind": "text",
+          "text": "*",
+          "fields": "text_vector,image_vector"
+        }
+      ],
+      "queryType": "semantic",
+      "semanticConfiguration": "my-demo-semantic-configuration",
+      "captions": "extractive",
+      "answers": "extractive|count-3",
+      "queryLanguage": "en-us",
+      "select": "chunk_id,text_parent_id,chunk,title,image_parent_id"
+    }
    ```
 
-1. For the `text` value, replace the asterisk (`*`) with a question related to health plans, such as `Which plan has the lowest deductible?`.
+1. Replace both asterisk (`*`) placeholders with a question related to health plans, such as `Which plan has the lowest deductible?`.
+
+   ```json
+    {
+      "search": "Which plan has the lowest deductible?",
+      "count": true,
+      "vectorQueries": [
+        {
+          "kind": "text",
+          "text": "Which plan has the lowest deductible?",
+          "fields": "text_vector,image_vector"
+        }
+      ],
+      "queryType": "semantic",
+      "semanticConfiguration": "my-demo-semantic-configuration",
+      "captions": "extractive",
+      "answers": "extractive|count-3",
+      "queryLanguage": "en-us",
+      "select": "chunk_id,text_parent_id,chunk,title"
+    }
+   ```
 
 1. Select **Search** to run the query.
 
    :::image type="content" source="media/search-get-started-portal-import-vectors/search-results.png" alt-text="Screenshot of search results.":::
 
-   Five matches should appear. Each document is a chunk of the original PDF. The `title` field shows which PDF the chunk comes from.
+   Each document is a chunk of the original PDF. The `title` field shows which PDF the chunk comes from. Each `chunk` is quite long. You can copy and paste one into a text editor to read the entire value.
 
-1. To see all of the chunks from a specific document, add a filter for the `title` field for a specific PDF:
+1. To see all of the chunks from a specific document, add a filter for the `title_parent_id` field for a specific PDF. You can check the **Fields** tab of your index to confirm this field is filterable.
 
    ```json
    {
-      "select": "chunk_id,parent_id,chunk,title",
-      "filter": "title eq 'Benefit_Options.pdf'",
+      "select": "chunk_id,text_parent_id,chunk,title",
+      "filter": "text_parent_id eq 'aHR0cHM6Ly9oZWlkaXN0c3RvcmFnZWRlbW9lYXN0dXMuYmxvYi5jb3JlLndpbmRvd3MubmV0L2hlYWx0aC1wbGFuLXBkZnMvTm9ydGh3aW5kX1N0YW5kYXJkX0JlbmVmaXRzX0RldGFpbHMucGRm0'",
       "count": true,
       "vectorQueries": [
           {
              "kind": "text",
              "text": "*",
              "k": 5,
-             "fields": "vector"
+             "fields": "text_vector"
           }
        ]
    }
