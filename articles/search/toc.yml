@@ -321,8 +321,6 @@ items:
         href: cognitive-search-concept-image-scenarios.md
       - name: Cache (incremental) enrichment
         href: search-howto-incremental-index.md
-      - name: Structure-aware chunking and vectorization
-        href: search-how-to-semantic-chunking.md        
       - name: Design tips
         href: cognitive-search-concept-troubleshooting.md
       - name: Custom skills
@@ -339,6 +337,8 @@ items:
       href: vector-search-how-to-create-index.md
     - name: Chunk documents
       href: vector-search-how-to-chunk-documents.md
+    - name: Chunk and vectorize by document layout
+      href: search-how-to-semantic-chunking.md   
     - name: Generate embeddings
       href: vector-search-how-to-generate-embeddings.md
     - name: Use embedding models from Azure AI Studio
