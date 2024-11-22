@@ -5,12 +5,13 @@ description: Learn about the lifecycle stages, deprecation, and retirement for m
 manager: scottpolly
 ms.service: azure-ai-studio
 ms.topic: concept-article
-ms.date: 11/21/2024
+ms.date: 11/22/2024
 ms.author: mopeakande
 author: msakande
-ms.reviewer: mabables
-reviewer: ManojBableshwar
+ms.reviewer: kritifaujdar
+reviewer: fkriti
 
+#Customer intent: As a data scientist, I want to learn about the lifecycle of models that are available in the model catalog.
 ---
 
 # Model deprecation and retirement in Azure AI model catalog
