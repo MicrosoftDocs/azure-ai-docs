@@ -1,16 +1,15 @@
 ---
-title: Studio experience for Document Intelligence
+title: Document Intelligence Studio
 titleSuffix: Azure AI services
-description: Learn how to set up and use either Document Intelligence Studio or AI Studio to test features of Azure AI Document Intelligence on the web.
+description: Learn how to set up Document Intelligence Studio to test Azure AI Document Intelligence features.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.topic: overview
-ms.date: 08/21/2024
+ms.date: 11/19/2024
 ms.author: lajanuar
 monikerRange: '>=doc-intel-3.0.0'
 ---
-
 
 <!-- markdownlint-disable MD033 -->
 <!-- markdownlint-disable MD051 -->

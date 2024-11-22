@@ -10,7 +10,7 @@ author: aahill
 ms.author: aahi
 ms.date: 10/25/2024
 recommendations: false
-ms.custom: references_regions 
+ms.custom: references_regions, ignite-2024
 ---
 
 # Azure OpenAI On Your Data 

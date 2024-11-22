@@ -1,9 +1,11 @@
 ---
-title: "Part 1: Set up project and development environment to build a a custom knowledge retrieval (RAG) app"
-titleSuffix: Azure AI Studio
+title: "Part 1: Set up project and development environment to build a custom knowledge retrieval (RAG) app"
+titleSuffix: Azure AI Foundry
 description:  Build a custom chat app using the Azure AI Foundry SDK. Part 1 of a 3-part tutorial series, which shows how to create the resources you'll need for parts 2 and 3.
 manager: scottpolly
 ms.service: azure-ai-studio
+ms.custom:
+  - ignite-2024
 ms.topic: tutorial
 ms.date: 11/11/2024
 ms.reviewer: lebaro
@@ -39,12 +41,35 @@ This tutorial is part one of a three-part tutorial.
 
 ## Create a project
 
-To create a project in [Azure AI Studio](https://ai.azure.com), follow these steps:
+To create a project in [Azure AI Foundry](https://ai.azure.com), follow these steps:
 
-1. Go to the **Home** page of [Azure AI Studio](https://ai.azure.com).
+1. Go to the **Home** page of [Azure AI Foundry](https://ai.azure.com).
 1. Select **+ Create project**.
 1. Enter a name for the project.  Keep all the other settings as default.
+1. Projects are created in hubs.  For this tutorial, create a new hub. If you see **Create a new hub** select it and specify a name.  Then select **Next**. (If you don't see **Create new hub**, it's because a new one is being created for you.) 
+1. Select **Customize** to specify properties of the hub.
+1. Use any values you want, except for **Region**.  We recommend you use either **East US2** or **Sweden Central** for the region for this tutorial series.
+1. Select **Next**.
 1. Select **Create project**.
+
+## Deploy models
+
+You need two models to build a RAG-based chat app: an Azure OpenAI chat model (`gpt-4o-mini`) and an Azure OpenAI embedding model (`text-embedding-ada-002`). Deploy these models in your Azure AI Foundry project, using this set of steps for each model.
+
+These steps deploy a model to a real-time endpoint from the AI Foundry portal [model catalog](../how-to/model-catalog-overview.md):
+
+1. On the left navigation pane, select **Model catalog**.
+1. Select the **gpt-4o-mini** model from the list of models. You can use the search bar to find it. 
+
+    :::image type="content" source="../media/tutorials/chat/select-model.png" alt-text="Screenshot of the model selection page." lightbox="../media/tutorials/chat/select-model.png":::
+
+1. On the model details page, select **Deploy**.
+
+    :::image type="content" source="../media/tutorials/chat/deploy-model.png" alt-text="Screenshot of the model details page with a button to deploy the model." lightbox="../media/tutorials/chat/deploy-model.png":::
+
+1. Leave the default **Deployment name**. select **Deploy**.  Or, if the model isn't available in your region, a different region is selected for you and connected to your project.  In this case, select **Connect and deploy**.
+
+After you deploy the **gpt-4o-mini**, repeat the steps to deploy the **text-embedding-ada-002** model.
 
 ## Create an Azure AI Search service
 
@@ -60,7 +85,7 @@ If you already have an Azure AI Search service, you can skip to the [next sectio
 Otherwise, you can create an Azure AI Search service using the Azure portal. 
 
 > [!TIP]
-> This step is the only time you use the Azure portal in this tutorial series.  The rest of your work is done in Azure AI Studio or in your local development environment.
+> This step is the only time you use the Azure portal in this tutorial series.  The rest of your work is done in Azure AI Foundry portal or in your local development environment.
 
 1. [Create an Azure AI Search service](https://portal.azure.com/#create/Microsoft.Search) in the Azure portal.
 1. Select your resource group and instance details. You can see details about pricing and pricing tiers on this page.
@@ -72,18 +97,21 @@ Otherwise, you can create an Azure AI Search service using the Azure portal.
 
 If you already have an Azure AI Search connection in your project, you can skip to [Install the Azure CLI and sign in](#installs).
 
-In the Azure AI Studio, check for an Azure AI Search connected resource.
+In the Azure AI Foundry portal, check for an Azure AI Search connected resource.
 
-1. In [AI Studio](https://ai.azure.com), go to your project and select **Management center** from the left pane.
+1. In [AI Foundry](https://ai.azure.com), go to your project and select **Management center** from the left pane.
 1. In the **Connected resources** section, look to see if you have a connection of type **Azure AI Search**.
 1. If you have an Azure AI Search connection, you can skip ahead to the next section.
 1. Otherwise, select **New connection** and then **Azure AI Search**.
 1. Find your Azure AI Search service in the options and select **Add connection**.
 1. Use **API key** for **Authentication**.
+
+    > [!NOTE]
+    > You can instead use **Microsoft Entra ID** for **Authentication**. If you do this, you must also configure access control for the Azure AI Search service. Assign the **Search Index Data Contributor** and **Search Service Contributor** roles to your user account. If you don't know how to do this, or don't have the necessary permissions, use the **API key** for **Authentication**.
+
 1. Select **Add connection**.  
 
-> [!NOTE]
-> You can instead use **Microsoft Entra ID** for **Authentication**. If you do this, you must also configure access control for the Azure AI Search service. Assign yourself the **Cognitive Services OpenAI User** role. If you don't know how to do this, or don't have the necessary permissions, use the **API key** for **Authentication**.
+
 
 ## <a name="installs"></a> Install the Azure CLI and sign in 
 
@@ -113,25 +141,6 @@ Create a folder for your work. Create a file called **config.py** in this folder
 
 :::code language="python" source="~/azureai-samples-nov2024/scenarios/rag/custom-rag-app/config.py":::
 
-## Deploy models
-
-You need two models to build a RAG-based chat app: an Azure OpenAI chat model (`gpt-4o-mini`) and an Azure OpenAI embedding model (`text-embedding-ada-002`). Deploy these models in your Azure AI Studio project, using this set of steps for each model.
-
-These steps deploy a model to a real-time endpoint from the AI Studio [model catalog](../how-to/model-catalog-overview.md):
-
-1. Sign in to [Azure AI Studio](https://ai.azure.com).
-1. Studio remembers where you were last, so you should now see the project you created at the beginning of this tutorial. If you instead see a list of projects, select the one you created for this tutorial.
-1. Select the **gpt-4o-mini** model from the list of models. You can use the search bar to find it. 
-
-    :::image type="content" source="../media/tutorials/chat/select-model.png" alt-text="Screenshot of the model selection page." lightbox="../media/tutorials/chat/select-model.png":::
-
-1. On the model details page, select **Deploy**.
-
-    :::image type="content" source="../media/tutorials/chat/deploy-model.png" alt-text="Screenshot of the model details page with a button to deploy the model." lightbox="../media/tutorials/chat/deploy-model.png":::
-
-1. Leave the default **Deployment name**. Select **Connect and deploy**.
-
-After you deploy the **gpt-4o-mini**, repeat the steps to deploy the **text-embedding-ada-002** model.
 
 ## Configure environment variables
 

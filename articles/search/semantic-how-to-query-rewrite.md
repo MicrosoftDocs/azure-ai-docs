@@ -17,7 +17,9 @@ ms.date: 11/19/2024
 
 [!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 
-Query rewriting is the process of transforming a user's query into a more effective one. The search service sends the search query (or a variation of it) to a generative model that generates alternative queries.
+Query rewriting is the process of transforming a user's query into a more effective one, adding more terms and refining search results. The search service sends the search query (or a variation of it) to a generative model that generates alternative queries. 
+
+Query rewriting improves results from [semantic ranking](search-get-started-semantic.md) by correcting typos or spelling errors in user queries, and expanding queries with synonyms.
 
 Search with query rewriting works like this: 
 - The user query is sent via the `search` property in the request.
@@ -27,23 +29,16 @@ Search with query rewriting works like this:
 Query rewriting is an optional feature. Without query rewriting, the search service just uses the original query to retrieve search results. 
 
 > [!NOTE]
-> Query rewriting is currently available in the East US, North Europe, and Southeast Asia regions.
-
-## Why use query rewriting?
-
-When you enable query rewriting in Azure AI Search, you might or might not see higher BM25 scores, which indicate how relevant a document is to a query. Query rewriting uses generative AI to expand the original query, adding more terms and refining search results. 
-
-When query rewriting might be helpful:
-- Correcting typos or spelling errors in user queries.
-- Expanding queries with synonyms to improve search results.
-
-When query rewriting might not be helpful:
-- For highly specific queries that require exact matches.
-- When searching for unique identifiers or product codes.
+> The rewritten queries might not contain all of the exact terms the original query had. This might impact search results if the query was highly specific and required exact matches for unique identifiers or product codes.
 
 ## Prerequisites
 
-+ A search service, Basic tier or higher, with [semantic ranker enabled](semantic-how-to-enable-disable.md). Review [semantic ranking](semantic-search-overview.md) if you need an introduction to the feature. 
++ A search service, Basic tier or higher.
+
+> [!NOTE]
+> Query rewriting is currently available in the North Europe, and Southeast Asia regions.
+
++ Your search service must have [semantic ranker enabled](semantic-how-to-enable-disable.md). Review [semantic ranking](semantic-search-overview.md) if you need an introduction to the feature. 
 
 > [!IMPORTANT]
 > Semantic ranker is currently required for query rewriting.
@@ -80,9 +75,13 @@ In this REST API example, we use [Search Documents](/rest/api/searchservice/docu
     - We set "semanticConfiguration" to a [predefined semantic configuration](semantic-how-to-configure.md) embedded in your index.
     - We set "queryType" to "semantic". We either need to set "queryType" to "semantic" or include a nonempty "semanticQuery" property in the request. [Semantic ranking](semantic-search-overview.md) is required for query rewriting.
     - We set "queryRewrites" to "generative|count-5" to get up to five query rewrites. You can set the count to any value between 1 and 10. 
-    - We set "queryLanguage" to the target language ("en-US") of the query rewrites. The supported locales are: 
+    - Since we requested query rewrites by setting the "queryRewrites" property, we must set "queryLanguage" to the search text language. The Search service uses the same language for the query rewrites. In this example, we use "en-US". The supported locales are: 
         `en-AU`, `en-CA`, `en-GB`, `en-IN`, `en-US`, `ar-EG`, `ar-JO`, `ar-KW`, `ar-MA`, `ar-SA`, `bg-BG`, `bn-IN`, `ca-ES`, `cs-CZ`, `da-DK`, `de-DE`, `el-GR`, `es-ES`, `es-MX`, `et-EE`, `eu-ES`, `fa-AE`, `fi-FI`, `fr-CA`, `fr-FR`, `ga-IE`, `gl-ES`, `gu-IN`, `he-IL`, `hi-IN`, `hr-BA`, `hr-HR`, `hu-HU`, `hy-AM`, `id-ID`, `is-IS`, `it-IT`, `ja-JP`, `kn-IN`, `ko-KR`, `lt-LT`, `lv-LV`, `ml-IN`, `mr-IN`, `ms-BN`, `ms-MY`, `nb-NO`, `nl-BE`, `nl-NL`, `no-NO`, `pa-IN`, `pl-PL`, `pt-BR`, `pt-PT`, `ro-RO`, `ru-RU`, `sk-SK`, `sl-SL`, `sr-BA`, `sr-ME`, `sr-RS`, `sv-SE`, `ta-IN`, `te-IN`, `th-TH`, `tr-TR`, `uk-UA`, `ur-PK`, `vi-VN`, `zh-CN`, `zh-TW`.
-    - We set "debug" to "queryRewrites" to get the query rewrites in the response. Set the `"debug": "queryRewrites"` property for testing purposes. For better performance, don't use debug in production.
+    - We set "debug" to "queryRewrites" to get the query rewrites in the response. 
+  
+      > [!TIP]
+      > Only set `"debug": "queryRewrites"` for testing purposes. For better performance, don't use debug in production.
+
     - We set "top" to 1 to return only the top search result. 
     
 1. Send the request to execute the query and return results.
@@ -146,7 +145,7 @@ Here's an example of a response that includes query rewrites:
 ```
 
 Here are some key points to note:
-- Because we set the "debug" property to "queryRewrites", the response includes a `@search.debug` object with the text input query and query rewrites. 
+- Because we set the "debug" property to "queryRewrites" for testing, the response includes a `@search.debug` object with the text input query and query rewrites. 
 - Because we set the "queryRewrites" property to "generative|count-5", the response includes up to five query rewrites.
 - The `"inputQuery"` value is the query sent to the generative model for query rewriting. The input query isn't always the same as the user's `"search"` query.
 
@@ -202,7 +201,10 @@ Here's an example of a response without query rewrites.
 
 You can include vector queries in your search request to combine keyword search and vector search into a single request and a unified response.
 
-Here's an example of a query that includes a vector query with query rewrites. We modified a [previous example](#make-a-search-request-with-query-rewrites) to include a vector query.
+Here's an example of a query that includes a vector query with query rewrites. We modify a [previous example](#make-a-search-request-with-query-rewrites) to include a vector query.
+
+- We add a "vectorQueries" object to the request. This object includes a vector query with the "kind" set to "text". 
+- The "text" value is the same as the "search" value. These values must be identical for query rewriting to work.
 
 ```http
 POST https://[search-service-name].search.windows.net/indexes/hotels-sample-index/docs/search?api-version=2024-11-01-preview
@@ -221,22 +223,19 @@ POST https://[search-service-name].search.windows.net/indexes/hotels-sample-inde
     "queryType":"semantic",
     "queryRewrites":"generative|count-5",
     "queryLanguage":"en-US",
-    "debug":"queryRewrites",
     "top": 1
 }
 ```
 
-Here are some key points to note:
-- We added a "vectorQueries" object to the request. This object includes a vector query with the "kind" set to "text". 
-- The "text" value is the same as the "search" value. These values must be identical for query rewriting to work.
-    
 The response includes query rewrites for both the text query and the vector query. 
 
-## Debugging query rewrites
+## Test query rewrites with debug
 
 You should test your query rewrites to ensure that they're working as expected. Set the `"debug": "queryRewrites"` property in your query request to get the query rewrites in the response. Setting `"debug"` is optional for testing purposes. For better performance, don't set this property in production.
 
-You might observe that the response includes an empty array for the `text.rewrites` and `vectors` properties.
+### Partial response reasons
+
+You might observe that the debug (test) response includes an empty array for the `text.rewrites` and `vectors` properties.
 
 ```json
 {
@@ -256,7 +255,9 @@ You might observe that the response includes an empty array for the `text.rewrit
 }
 ```
 
-In the preceding example, the response includes a `@search.semanticPartialResponseReason` property with a value of "Transient". This message means that at least one of the queries failed to complete. The response also includes a `@search.semanticQueryRewriteResultType` property with a value of "OriginalQueryOnly". This message means that the query rewrites are unavailable. Only the original query is used to retrieve search results.
+In the preceding example:
+- The response includes a `@search.semanticPartialResponseReason` property with a value of "Transient". This message means that at least one of the queries failed to complete. 
+- The response also includes a `@search.semanticQueryRewriteResultType` property with a value of "OriginalQueryOnly". This message means that the query rewrites are unavailable. Only the original query is used to retrieve search results.
 
 ## Next steps
 

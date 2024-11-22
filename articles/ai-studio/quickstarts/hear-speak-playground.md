@@ -1,12 +1,13 @@
 ---
-title: Hear and speak with chat models in the Azure AI Studio chat playground
-titleSuffix: Azure AI Studio
-description: Hear and speak with chat models in the Azure AI Studio chat playground.
+title: Hear and speak with chat models in the Azure AI Foundry portal chat playground
+titleSuffix: Azure AI Foundry
+description: Hear and speak with chat models in the Azure AI Foundry portal chat playground.
 manager: nitinme
 ms.service: azure-ai-studio
 ms.custom:
   - ignite-2023
   - build-2024
+  - ignite-2024
 ms.topic: quickstart
 ms.date: 11/19/2024
 ms.reviewer: eur
@@ -14,29 +15,29 @@ ms.author: eur
 author: eric-urban
 ---
 
-# Quickstart: Hear and speak with chat models in the AI Studio chat playground
+# Quickstart: Hear and speak with chat models in the AI Foundry portal chat playground
 
-In the chat playground in Azure AI Studio, you can use speech to text and text to speech features to interact with chat models. You can try the same model that you use for text-based chat in a speech-based chat. It's just another way to interact with the model.
+In the chat playground in Azure AI Foundry portal, you can use speech to text and text to speech features to interact with chat models. You can try the same model that you use for text-based chat in a speech-based chat. It's just another way to interact with the model.
 
 In this quickstart, you use Azure OpenAI Service and Azure AI Speech to:
 
 - Speak to the assistant via speech to text.
 - Hear the assistant's response via text to speech.
 
-The speech to text and text to speech features can be used together or separately in the AI Studio chat playground. You can use the playground to test your chat model before deploying it. 
+The speech to text and text to speech features can be used together or separately in the AI Foundry portal chat playground. You can use the playground to test your chat model before deploying it. 
 
 ## Prerequisites
 
 - An Azure subscription - <a href="https://azure.microsoft.com/free/cognitive-services" target="_blank">Create one for free</a>.
-- An [AI Studio project](../how-to/create-projects.md).
+- An [AI Foundry project](../how-to/create-projects.md).
 - A deployed [Azure OpenAI](../how-to/deploy-models-openai.md) chat model. This guide is tested with a `gpt-4o-mini` model.
 
 ## Configure the chat playground
 
 Before you can start a chat session, you need to configure the chat playground to use the speech to text and text to speech features.
 
-1. Sign in to [Azure AI Studio](https://ai.azure.com).
-1. Go to your AI Studio project. If you need to create a project, see [Create an AI Studio project](../how-to/create-projects.md).
+1. Sign in to [Azure AI Foundry](https://ai.azure.com).
+1. Go to your AI Foundry project. If you need to create a project, see [Create an AI Foundry project](../how-to/create-projects.md).
 1. Select **Playgrounds** from the left pane and then select a playground to use. In this example, select **Try the chat playground**.
 1. Select your deployed chat model from the **Deployment** dropdown. 
 
@@ -95,6 +96,6 @@ To avoid incurring unnecessary Azure costs, you should delete the resources you 
 
 ## Next steps
 
-- [Create a project in Azure AI Studio](../how-to/create-projects.md)
+- [Create a project in Azure AI Foundry portal](../how-to/create-projects.md)
 - [Deploy an enterprise chat web app](../tutorials/deploy-chat-web-app.md)
 - [Learn more about Azure AI Speech](../../ai-services/speech-service/overview.md)

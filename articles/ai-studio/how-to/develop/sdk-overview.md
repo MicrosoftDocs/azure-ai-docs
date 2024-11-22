@@ -1,6 +1,6 @@
 ---
 title: How to get started with Azure AI Foundry SDK
-titleSuffix: Azure AI Studio
+titleSuffix: Azure AI Foundry
 description: This article provides an overview of the Azure AI Foundry SDK and how to get started using it.
 manager: scottpolly
 ms.service: azure-ai-studio
@@ -12,21 +12,24 @@ ms.date: 11/19/2024
 ms.reviewer: dantaylo
 ms.author: sgilley
 author: sdgilley
+zone_pivot_groups: programming-languages-sdk-overview
+# customer intent: I want to learn how to use the Azure AI Foundry SDK to build AI applications on Azure.
 ---
 
 # The Azure AI Foundry SDK
 
 The Azure AI Foundry SDK is a comprehensive toolchain designed to simplify the development of AI applications on Azure. It enables developers to:
 
- - Access popular models from various model providers through a single interface
- - Easily combine together models, data, and AI services to build AI-powered applications
- - Evaluate, debug, and improve application quality & safety across development, testing, and production environments
+- Access popular models from various model providers through a single interface
+- Easily combine together models, data, and AI services to build AI-powered applications
+- Evaluate, debug, and improve application quality & safety across development, testing, and production environments
  
 The AI Foundry SDK is a set of packages and services designed to work together. You can use the Azure AI Projects client library to easily use multiple services through a single project client and connection string. You can also use services and SDKs on their own and connect directly to your services.
 
 If you want to jump right in and start building an app, check out:
- - [Create a chat app](../../quickstarts/get-started-code.md)
- - [Create a custom RAG app](../../tutorials/copilot-sdk-create-resources.md)
+
+- [Create a chat app](../../quickstarts/get-started-code.md)
+- [Create a custom RAG app](../../tutorials/copilot-sdk-create-resources.md)
 
 ## Get started with Projects
 
@@ -36,13 +39,15 @@ First follow steps to [create an AI Project](../create-projects.md) if you don't
 
 Sign in with the Azure CLI using the same account that you use to access your AI Project:
 
-```
+```bash
 az login
 ```
 
 Install the Azure AI projects client library:
 
-```
+::: zone pivot="programming-language-python"
+
+```bash
 pip install azure-ai-projects azure-identity
 ```
 
@@ -76,22 +81,64 @@ project = await AIProjectClient.from_connection_string(
 
 ---
 
-Copy the **Project connection string** from the **Overview** page of the project and update the `project_connection_string` variable above.
+::: zone-end
 
-Once you have created the project client, you can use the client for the capabilities in the following sections. 
+::: zone pivot="programming-language-csharp"
+
+```dotnet
+dotnet add package Azure.AI.Projects
+dotnet add package Azure.Identity
+```
+
+Add using statements:
+
+```csharp
+using Azure.Identity;
+using Azure.AI.Projects;
+```
+
+Create a project client in code:
+
+# [Sync](#tab/sync)
+
+:::code language="csharp" source="~/azureai-samples-csharp/scenarios/projects/basic-csharp/Program.cs" id="snippet_get_project":::
+
+# [Async](#tab/async)
+
+Not yet available in C#.
+
+::: zone-end
+
+Copy the **Project connection string** from the **Overview** page of the project and update the connections string value above.
+
+Once you have created the project client, you can use the client for the capabilities in the following sections.
+
+::: zone pivot="programming-language-python"
 
 Be sure to check out the [reference](https://aka.ms/aifoundrysdk/reference) and [samples](https://aka.ms/azsdk/azure-ai-projects/python/samples).
+
+::: zone-end
+
+::: zone pivot="programming-language-csharp"
+
+Be sure to check out the [reference](https://aka.ms/aifoundrysdk/reference) and [samples](https://aka.ms/aifoundrysdk/dotnetsamples).
+
+::: zone-end
 
 ## Azure OpenAI Service
 
 The [Azure OpenAI Service](../../../ai-services/openai/overview.md) provides access to OpenAI's models including the GPT-4o, GPT-4o mini, GPT-4, GPT-4 Turbo with Vision, DALLE-3, Whisper, and Embeddings model series with the data residency, scalability, safety, security and enterprise capabilities of Azure.
 
 If you have code that uses the OpenAI SDK, you can easily target your code to use the Azure OpenAI service. First, install the OpenAI SDK:
-```
+
+::: zone pivot="programming-language-python"
+
+```bash
 pip install openai
 ```
 
-If you have existing code that uses the OpenAI SDK, you can use the project client to create an ```AzureOpenAI``` client that uses your project's Azure OpenAI connection:
+If you have existing code that uses the OpenAI SDK, you can use the project client to create an `AzureOpenAI` client that uses your project's Azure OpenAI connection:
+
 ```Python
 openai = project.inference.get_azure_openai_client(api_version="2024-06-01")
 response = openai.chat.completions.create(
@@ -104,8 +151,29 @@ response = openai.chat.completions.create(
 
 print(response.choices[0].message.content)
 ```
-If you’re already using the [Azure OpenAI SDK](../../../ai-services/openai/chatgpt-quickstart.md) directly against the Azure OpenAI Service, the project provides a convenient way to use Azure OpenAI Service capabilities alongside the rest of the AI Foundry capabilities.
 
+::: zone-end
+
+::: zone pivot="programming-language-csharp"
+
+```dotnet
+dotnet add package Azure.AI.OpenAI
+```
+
+Add using statements:
+
+```csharp
+using OpenAI.Chat;
+using Azure.AI.OpenAI;
+```
+
+If you have existing code that uses the OpenAI SDK, you can use the project client to create an `AzureOpenAI` client that uses your project's Azure OpenAI connection:
+
+:::code language="csharp" source="~/azureai-samples-csharp/scenarios/projects/basic-csharp/Program.cs" id="azure_openai":::
+
+::: zone-end
+
+If you’re already using the [Azure OpenAI SDK](../../../ai-services/openai/chatgpt-quickstart.md) directly against the Azure OpenAI Service, the project provides a convenient way to use Azure OpenAI Service capabilities alongside the rest of the AI Foundry capabilities.
 
 ## Azure AI model inference service
 
@@ -113,13 +181,15 @@ The [Azure AI model inference service](/azure/ai-studio/ai-services/model-infere
 
 To use the model inference service, first ensure that your project has an AI Services connection (in the management center).
 
-Install the ```azure-ai-inferencing``` client library:
+Install the `azure-ai-inferencing` client library:
 
-```
+::: zone pivot="programming-language-python"
+
+```bash
 pip install azure-ai-inference
 ```
 
-You can use the project client to get a configured and authenticated ```ChatCompletionsClient``` or ```EmbeddingsClient```:
+You can use the project client to get a configured and authenticated `ChatCompletionsClient` or `EmbeddingsClient`:
 
 ```Python
 # get an chat inferencing client using the project's default model inferencing endpoint
@@ -137,9 +207,31 @@ response = chat.complete(
 print(response.choices[0].message.content)
 ```
 
+::: zone-end
+
+::: zone pivot="programming-language-csharp"
+
+```dotnet
+dotnet add package Azure.AI.Inference
+```
+
+Add using statements:
+
+```csharp
+using Azure.AI.Inference;
+```
+
+You can use the project client to get a configured and authenticated `ChatCompletionsClient` or `EmbeddingsClient`:
+
+:::code language="csharp" source="~/azureai-samples-csharp/scenarios/projects/basic-csharp/Program.cs" id="snippet_inference":::
+
+::: zone-end
+
 You can change the model name to any model that you deployed to the inference service or Azure OpenAI service.
 
 To learn more about using the Azure AI inferencing client, check out the [Azure AI model inferencing reference](/azure/ai-studio/reference/reference-model-inference-api).
+
+::: zone pivot="programming-language-python"
 
 ## Prompt Templates
 
@@ -147,7 +239,7 @@ The inferencing client supports for creating prompt messages from templates.  Th
 
 To use prompt templates, install the `azure-ai-inferencing` package:
 
-```
+```bash
 pip install azure-ai-inference
 ```
 
@@ -198,13 +290,17 @@ response = chat.complete(
 )
 ```
 
+::: zone-end
+
 ## Azure AI Search
 
-If you have an Azure AI Search resource connected to your project, you can also use the project client to create an Azure AI Search client using the project connection. 
+If you have an Azure AI Search resource connected to your project, you can also use the project client to create an Azure AI Search client using the project connection.
 
 Install the Azure AI Search client library:
 
-```
+::: zone pivot="programming-language-python"
+
+```bash
 pip install azure-search-documents
 ```
 
@@ -235,22 +331,48 @@ search_client = SearchClient(
 )
 ```
 
+::: zone-end
+
+::: zone pivot="programming-language-csharp"
+
+```dotnet
+dotnet add package Azure.Search.Documents
+```
+
+Add using statements:
+
+```csharp
+using Azure.Search.Documents;
+using Azure.Search.Documents.Models;
+```
+
+Instantiate the search and/or search index client as desired:
+
+:::code language="csharp" source="~/azureai-samples-csharp/scenarios/projects/basic-csharp/Program.cs" id="azure_aisearch":::
+
+::: zone-end
+
 To learn more about using Azure AI Search, check out [Azure AI Search documentation](/azure/search/).
 
-## Azure AI agents runtime
+## Azure AI Agent Service
 
 Azure AI Agent Service is a fully managed service designed to empower developers to securely build, deploy, and scale high-quality, and extensible AI agents. Using an extensive ecosystem of models, tools and capabilities from OpenAI, Microsoft, and third-party providers, Azure AI Agent Service enables building agents for a wide range of generative AI use cases.
 
-To get access to agents, [sign-up for the private preview](https://nam.dcv.ms/nzy5CEG6Br).
+To get access to agents, [sign-up for the preview](https://nam.dcv.ms/nzy5CEG6Br).
 
 ## Evaluation
 
+::: zone pivot="programming-language-python"
+
 You can use the project client to easily connect to the Azure AI evaluation service, and models needed for running your evaluators.
+
+
 ```
 pip install azure-ai-evaluation
 ```
 
-Using the ```project.scope``` parameter, we can instantiate a ```ViolenceEvaluator```:
+Using the `project.scope` parameter, we can instantiate a `ViolenceEvaluator`:
+
 ```Python
 from azure.ai.evaluation import ViolenceEvaluator
 from azure.identity import DefaultAzureCredential
@@ -264,20 +386,34 @@ violence_eval = ViolenceEvaluator(
 violence_score = violence_eval(query="what's the capital of france", response="Paris")
 print(violence_score)
 ```
+
 NOTE: to run violence evaluators your project needs to be in East US 2, Sweden Central, US North Central, France Central.
 
 To learn more, check out [Evaluation using the SDK](evaluate-sdk.md).
 
+::: zone-end
+
+::: zone pivot="programming-language-csharp"
+
+An Azure AI evaluation package is not yet available for C#. For a sample on how to use Prompty and Semantic Kernel for evaluation, see the [contoso-chat-csharp-prompty](https://github.com/Azure-Samples/contoso-chat-csharp-prompty/blob/main/src/ContosoChatAPI/ContosoChat.Evaluation.Tests/Evalutate.cs) sample.
+
+::: zone-end
+
+
 ## Tracing
+
+::: zone pivot="programming-language-python"
 
 To enable tracing, first ensure your project has an attached Application Insights resource. Go to the **Tracing** page of your project and follow instructions to create or attach Application Insights.
 
 Install the Azure Monitor OpenTelemetry package:
+
 ```
 pip install azure-monitor-opentelemetry
 ```
 
 Use the following code to enable instrumentation of the Azure AI Inference SDK and logging to your AI project:
+
 ```Python
 # Enable instrumentation of AI packages (inference, agents, openai, langchain)
 project.telemetry.enable()
@@ -287,6 +423,14 @@ application_insights_connection_string = project.telemetry.get_connection_string
 if application_insights_connection_string:
     configure_azure_monitor(connection_string=application_insights_connection_string)
 ```
+
+::: zone-end
+
+::: zone pivot="programming-language-csharp"
+
+Tracing is not yet integrated into the projects package. For instructions on how to instrument and log traces from the Azure AI Inferencing package, see [azure-sdk-for-dotnet](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/ai/Azure.AI.Inference/samples/Sample8_ChatCompletionsWithOpenTelemetry.md.).
+
+::: zone-end
 
 ## Related content
 

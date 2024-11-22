@@ -10,7 +10,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2024
 ms.topic: how-to
-ms.date: 11/19/2024
+ms.date: 11/20/2024
 ---
 
 # Index Markdown blobs and files in Azure AI Search
@@ -22,13 +22,16 @@ In Azure AI Search, indexers for Azure Blob Storage, Azure Files, and OneLake su
 + One-to-many parsing mode, creating multiple search documents per Markdown file
 + One-to-one parsing mode, creating one search document per Markdown file
 
+> [!TIP]
+> Continue on to the [Tutorial: Search Markdown data from Azure Blob Storage](search-markdown-data-tutorial.md) after reviewing this article.
+
 ## Prerequisites
 
 + A supported data source: Azure Blob storage, Azure File storage, OneLake in Microsoft Fabric.
 
   For OneLake, make sure you meet all of the requirements of the [OneLake indexer](search-how-to-index-onelake-files.md#prerequisites).
 
-  Azure Storage for [blob indexers](search-howto-indexing-azure-blob-storage.md#prerequisites) and [file indexers](search-file-storage-integration.md#prerequisites) is a standard performance (general-purpose v2) instance that supports hot, cool, and cold access tiers.
+  Azure Storage for [blob indexers](search-howto-indexing-azure-blob-storage.md#prerequisites) and [file indexers](search-file-storage-integration.md#prerequisites) is a standard performance (general-purpose v2) instance that supports hot and cool access tiers.
 
 ## Markdown parsing mode parameters
 

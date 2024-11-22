@@ -1,7 +1,7 @@
 ---
-title: Use blocklists in AI Studio
-titleSuffix: Azure AI Studio
-description: Learn how to create custom blocklists in Azure AI Studio as part of your content filtering configurations.
+title: Use blocklists in AI Foundry portal
+titleSuffix: Azure AI Foundry
+description: Learn how to create custom blocklists in Azure AI Foundry portal as part of your content filtering configurations.
 manager: nitinme
 ms.service: azure-ai-studio
 ms.custom:
@@ -13,13 +13,13 @@ author: PatrickFarley
 ---
 
 
-# Use blocklists in Azure AI Studio 
+# Use blocklists in Azure AI Foundry portal 
 
-You can create custom blocklists in the Azure AI Studio as part of your content filtering configurations. The following steps show how to create custom blocklists as part of your content filters in Azure AI Studio.
+You can create custom blocklists in the Azure AI Foundry portal as part of your content filtering configurations. The following steps show how to create custom blocklists as part of your content filters in Azure AI Foundry portal.
 
 ## Create a blocklist
 
-1. Go to [AI Studio](https://ai.azure.com/) and navigate to your project/hub. Then select the **Safety+ Security** page on the left nav and select the **Blocklists** tab.
+1. Go to [AI Foundry](https://ai.azure.com/) and navigate to your project/hub. Then select the **Safety+ Security** page on the left nav and select the **Blocklists** tab.
     :::image type="content" source="../media/content-safety/content-filter/select-blocklists.png" lightbox="../media/content-safety/content-filter/select-blocklists.png" alt-text="Screenshot of the Blocklists page tab.":::
 1. Select **Create a blocklist**. Enter a name for your blocklist, add a description, and select an Azure OpenAI resource to connect it to. Then select **Create Blocklist**.
 1. Select your new blocklist once it's created. On the blocklist's page, select **Add new term**.

@@ -8,6 +8,7 @@ metadata:
   ms.service: service
   ms.custom:
     - ignite-2023
+    - ignite-2024
   ms.topic: landing-page
   author: HeidiSteen
   ms.author: heidist
@@ -89,7 +90,7 @@ landingContent:
           - text: Index from Azure Blob Storage
             url: search-blob-storage-integration.md
           - text: Index from Azure SQL Database
-            url: search-howto-connecting-azure-sql-database-to-azure-search-using-indexers.md
+            url: search-how-to-index-sql-database.md
           - text: Index from Azure Cosmos DB
             url: search-howto-index-cosmosdb.md
           - text: Index any data

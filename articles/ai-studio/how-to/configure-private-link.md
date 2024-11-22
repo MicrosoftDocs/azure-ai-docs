@@ -1,29 +1,29 @@
 ---
-title: How to configure a private link for an Azure AI Studio hub
-titleSuffix: Azure AI Studio
-description: Learn how to configure a private link for Azure AI Studio hubs. A private link is used to secure communication with the Azure AI Studio hub.
+title: How to configure a private link for an Azure AI Foundry hub
+titleSuffix: Azure AI Foundry
+description: Learn how to configure a private link for Azure AI Foundry hubs. A private link is used to secure communication with the Azure AI Foundry hub.
 manager: scottpolly
 ms.service: azure-ai-studio
-ms.custom: ignite-2023, devx-track-azurecli, build-2024
+ms.custom: ignite-2023, devx-track-azurecli, build-2024, ignite-2024
 ms.topic: how-to
 ms.date: 5/21/2024
-ms.reviewer: meerakurup 
+ms.reviewer: meerakurup
 ms.author: larryfr
 author: Blackmist
 # Customer intent: As an admin, I want to configure a private link for hub so that I can secure my hubs.
 ---
 
-# How to configure a private link for Azure AI Studio hubs
+# How to configure a private link for Azure AI Foundry hubs
 
-We have two network isolation aspects. One is the network isolation to access an Azure AI Studio hub. Another is the network isolation of computing resources in your hub and projects such as compute instances, serverless, and managed online endpoints. This article explains the former highlighted in the diagram. You can use private link to establish the private connection to your hub and its default resources. This article is for Azure AI Studio (hub and projects). For information on Azure AI services, see the [Azure AI services documentation](/azure/ai-services/cognitive-services-virtual-networks).
+We have two network isolation aspects. One is the network isolation to access an Azure AI Foundry hub. Another is the network isolation of computing resources in your hub and projects such as compute instances, serverless, and managed online endpoints. This article explains the former highlighted in the diagram. You can use private link to establish the private connection to your hub and its default resources. This article is for Azure AI Foundry (hub and projects). For information on Azure AI services, see the [Azure AI services documentation](/azure/ai-services/cognitive-services-virtual-networks).
 
-:::image type="content" source="../media/how-to/network/azure-ai-network-inbound.svg" alt-text="Diagram of AI Studio hub network isolation." lightbox="../media/how-to/network/azure-ai-network-inbound.png":::
+:::image type="content" source="../media/how-to/network/azure-ai-network-inbound.svg" alt-text="Diagram of AI Foundry hub network isolation." lightbox="../media/how-to/network/azure-ai-network-inbound.png":::
 
 You get several hub default resources in your resource group. You need to configure following network isolation configurations.
 
 - Disable public network access of hub default resources such as Azure Storage, Azure Key Vault, and Azure Container Registry.
 - Establish private endpoint connection to hub default resources. You need to have both a blob and file private endpoint for the default storage account.
-- [Managed identity configurations](#managed-identity-configuration) to allow hubs access to your storage account if it's private.
+- If your storage account is private, [assign roles](#private-storage-configuration) to allow access.
 
 
 ## Prerequisites
@@ -41,7 +41,7 @@ Use one of the following methods to create a hub with a private endpoint. Each o
 
 # [Azure portal](#tab/azure-portal)
 
-1. From the [Azure portal](https://portal.azure.com), go to Azure AI Studio and choose __+ New Azure AI__.
+1. From the [Azure portal](https://portal.azure.com), go to Azure AI Foundry and choose __+ New Azure AI__.
 1. Choose network isolation mode in __Networking__ tab.
 1. Scroll down to __Workspace Inbound access__ and choose __+ Add__.
 1. Input required fields. When selecting the __Region__, select the same region as your virtual network.
@@ -234,78 +234,28 @@ az extension add --name ml
 
 ---
 
-## Enable Public Access only from internet IP ranges
 
-You can use IP network rules to allow access to your AI Studio hub and projects from specific public internet IP address ranges by creating IP network rules. Each Azure AI Studio hub supports up to 200 rules. These rules grant access to specific internet-based services and on-premises networks and block general internet traffic.
+## Private storage configuration
 
-> [!WARNING]
-> * You can only use IPv4 addresses.
-> * To use this feature with Azure Machine Learning managed virtual network, see [Configure managed virtual network](configure-managed-network.md#scenario-enable-access-from-selected-ip-addresses).
-> * If you are using serverless endpoints, your public network access is either enabled or disabled depending on the setting of your hub's public network access. For more information, visit [Serverless API endpoints](deploy-models-serverless.md#network-isolation).
+If your storage account is private (uses a private endpoint to communicate with your project), you perform the following steps:
 
-# [Portal](#tab/azure-portal)
+1. Our services need to read/write data in your private storage account using [Allow Azure services on the trusted services list to access this storage account](/azure/storage/common/storage-network-security#grant-access-to-trusted-azure-services) with following managed identity configurations. Enable the system assigned managed identity of Azure AI Service and Azure AI Search, then configure role-based access control for each managed identity.
 
-1. From the [Azure portal](https://portal.azure.com), select your Azure AI Studio hub.
-1. From the left side of the page, select __Networking__ and then select the __Public access__ tab.
-1. Select __Enabled from selected IP addresses__, input address ranges and then select __Save__.
+    | Role | Managed Identity | Resource | Purpose | Reference |
+    |--|--|--|--|--|
+    | `Reader` | Azure AI Foundry project | Private endpoint of the storage account | Read data from the private storage account. | 
+    | `Storage File Data Privileged Contributor` | Azure AI Foundry project | Storage Account | Read/Write prompt flow data. | [Prompt flow doc](/azure/machine-learning/prompt-flow/how-to-secure-prompt-flow#secure-prompt-flow-with-workspace-managed-virtual-network) |
+    | `Storage Blob Data Contributor` | Azure AI Service | Storage Account | Read from input container, write to preprocess result to output container. | [Azure OpenAI Doc](../../ai-services/openai/how-to/managed-identity.md) |
+    | `Storage Blob Data Contributor` | Azure AI Search | Storage Account | Read blob and write knowledge store | [Search doc](/azure/search/search-howto-managed-identities-data-sources). |
 
-:::image type="content" source="../media/how-to/network/workspace-public-access-ip-ranges.png" alt-text="Screenshot of the UI to enable access from internet IP ranges.":::
+    > [!TIP]
+    > Your storage account may have multiple private endpoints. You need to assign the `Reader` role to each private endpoint.
 
-# [Azure CLI](#tab/cli)
+1. Assign the `Storage Blob Data reader` role to your developers. This role allows them to read data from the storage account.
 
-Use the `az ml workspace network-rule` Azure CLI command to manage public access from an IP address or address range:
+1. Verify that the project's connection to the storage account uses Microsoft Entra ID for authentication. To view the connection information, go to the __Management center__, select __Connected resources__, and then select the storage account connections. If the credential type isn't Entra ID, select the pencil icon to update the connection and set the __Authentication method__ to __Microsoft Entra ID__.
 
-> [!TIP]
-> The configurations for the selected IP addresses are stored in the workspace's properties, under `network_acls`:
-> ```yml
-> properties:
->   # ...
->   network_acls:
->     description: "The network ACLS for this workspace, enforced when public_network_access is set to Enabled."
->     $ref: "3/defintions/networkAcls"
-> ```
-
-- __List IP network rules__: `az ml workspace network-rule list --resource-group "myresourcegroup" --workspace-name "myWS" --query ipRules`
-- __Add a rule for a single IP address__: `az ml workspace network-rule add --resource-group "myresourcegroup" --workspace-name "myWS" --ip-address "16.17.18.19"`
-- __Add a rule for an IP address range__: `az ml workspace network-rule add --resource-group "myresourcegroup" --workspace-name "myWS" --ip-address "16.17.18.0/24"`
-- __Remove a rule for a single IP address__: `az ml workspace network-rule remove --resource-group "myresourcegroup" --workspace-name "myWS" --ip-address "16.17.18.19"`
-- __Remove a rule for an IP address range__: `az ml workspace network-rule remove --resource-group "myresourcegroup" --workspace-name "myWS" --ip-address "16.17.18.0/24"`
-
----
-
-You can also use the [Workspace](/python/api/azure-ai-ml/azure.ai.ml.entities.workspace) class from the Azure Machine Learning [Python SDK](/python/api/overview/azure/ai-ml-readme) to define which IP addresses are allowed inbound access:
-
-```python
-Workspace( 
-  public_network_access = "Enabled", 
-  network_rule_set = NetworkRuleSet(default_action = "Allow", bypass = "AzureServices", resource_access_rules = None, ip_rules = yourIPAddress,)
-```
-
-### Restrictions for IP network rules
-
-The following restrictions apply to IP address ranges:
-
-- IP network rules are allowed only for _public internet_ IP addresses.
-
-  [Reserved IP address ranges](https://en.wikipedia.org/wiki/Reserved_IP_addresses) aren't allowed in IP rules such as private addresses that start with 10, 172.16 to 172.31, and 192.168.
-
-- You must provide allowed internet address ranges by using [CIDR notation](https://tools.ietf.org/html/rfc4632) in the form 16.17.18.0/24 or as individual IP addresses like 16.17.18.19.
-
-- Only IPv4 addresses are supported for configuration of storage firewall rules.
-
-- When this feature is enabled, you can test public endpoints using any client tool such as Curl, but the Endpoint Test tool in the portal isn't supported.
-
-- You can only set the IP addresses for the workspace after the workspace has been created.
-
-## Managed identity configuration
-
-A manged identity configuration is required if you make your storage account private. Our services need to read/write data in your private storage account using [Allow Azure services on the trusted services list to access this storage account](/azure/storage/common/storage-network-security#grant-access-to-trusted-azure-services) with following managed identity configurations. Enable the system assigned managed identity of Azure AI Service and Azure AI Search, then configure role-based access control for each managed identity.
-
-| Role | Managed Identity | Resource | Purpose | Reference |
-|--|--|--|--|--|
-| `Storage File Data Privileged Contributor` | Azure AI Studio project | Storage Account | Read/Write prompt flow data. | [Prompt flow doc](/azure/machine-learning/prompt-flow/how-to-secure-prompt-flow#secure-prompt-flow-with-workspace-managed-virtual-network) |
-| `Storage Blob Data Contributor` | Azure AI Service | Storage Account | Read from input container, write to pre-process result to output container. | [Azure OpenAI Doc](../../ai-services/openai/how-to/managed-identity.md) |
-| `Storage Blob Data Contributor` | Azure AI Search | Storage Account | Read blob and write knowledge store | [Search doc](/azure/search/search-howto-managed-identities-data-sources). |
+For information on securing playground chat, see [Securely use playground chat](secure-data-playground.md).
 
 ## Custom DNS configuration
 
@@ -328,7 +278,7 @@ If you need to configure custom DNS server without DNS forwarding, use the follo
     > * Compute instances can be accessed only from within the virtual network.
     > * The IP address for this FQDN is **not** the IP of the compute instance. Instead, use the private IP address of the workspace private endpoint (the IP of the `*.api.azureml.ms` entries.)
 
-* `<instance-name>.<region>.instances.azureml.ms` - Only used by the `az ml compute connect-ssh` command to connect to computers in a managed virtual network. Not needed if you are not using a managed network or SSH connections.
+* `<instance-name>.<region>.instances.azureml.ms` - Only used by the `az ml compute connect-ssh` command to connect to computers in a managed virtual network. Not needed if you aren't using a managed network or SSH connections.
 
 * `<managed online endpoint name>.<region>.inference.ml.azure.com` - Used by managed online endpoints
 
@@ -341,7 +291,7 @@ To check AI-PROJECT-GUID, go to the Azure portal, select your project, settings,
 
 ## Next steps
 
-- [Create an Azure AI Studio project](create-projects.md)
-- [Learn more about Azure AI Studio](../what-is-ai-studio.md)
-- [Learn more about Azure AI Studio hubs](../concepts/ai-resources.md)
+- [Create an Azure AI Foundry project](create-projects.md)
+- [Learn more about Azure AI Foundry](../what-is-ai-studio.md)
+- [Learn more about Azure AI Foundry hubs](../concepts/ai-resources.md)
 - [Troubleshoot secure connectivity to a project](troubleshoot-secure-connection-project.md)

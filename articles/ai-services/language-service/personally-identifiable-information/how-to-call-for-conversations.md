@@ -6,6 +6,8 @@ description: This article shows you how to extract PII from chat and spoken tran
 author: jboback
 manager: nitinme
 ms.service: azure-ai-language
+ms.custom:
+  - ignite-2024
 ms.topic: how-to
 ms.date: 11/04/2024
 ms.author: jboback
@@ -352,4 +354,3 @@ curl -X GET    https://your-language-endpoint/language/analyze-conversations/job
 ## Service and data limits
 
 [!INCLUDE [service limits article](../includes/service-limits-link.md)]
-

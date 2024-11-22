@@ -10,6 +10,7 @@ ms.topic: overview
 ms.date: 11/05/2024
 ms.custom:
   - references_regions
+  - ignite-2024
 ---
 
 # What's new in Azure AI Search
@@ -25,7 +26,7 @@ ms.custom:
 |-----------------------------|------|--------------|
 | [**Network security perimeter**](search-security-network-security-perimiter.md) | Security | Join a search service to a [network security perimeter](/azure/private-link/network-security-perimeter-concepts) to control network access to your search service. The Azure portal and the Management REST APIs in the [2024-06-01-preview](/rest/api/searchmanagement/network-security-perimeter-configurations?view=rest-searchmanagement-2024-06-01-preview&preserve-view=true) can be used to view and reconcile network security perimeter configurations. |
 | [**Shared private link support for Azure AI service connections**](search-indexer-howto-access-private.md) | Security  | Connections to Azure AI for built-in skills processing can now be private using a shared private link on the connection. |
-| [**Rescoring options for compressed vectors**](vector-search-how-to-quantization.md) | Relevance | You can set options to rescore with original vectors instead of compressed vectors. Applies to HNSW and exhaustive KNN vector algorithms, using binary and scalar compression. Available in the [Create or Update Index (2024-11-01-preview)](/rest/api/searchservice/indexes/create-or-update?view=rest-searchservice-2024-09-01-preview&preserve-view=true), the Azure portal, and in the Azure SDK beta packages that provide this feature. |
+| [**Rescoring options for compressed vectors**](/azure/search/vector-search-how-to-quantization?tabs=2024-11-01-preview%2Cquery-2024-07-01#add-compressions-to-a-search-index) | Relevance | You can set options to rescore with original vectors instead of compressed vectors. Applies to HNSW and exhaustive KNN vector algorithms, using binary and scalar compression. Available in the [Create or Update Index (2024-11-01-preview)](/rest/api/searchservice/indexes/create-or-update?view=rest-searchservice-2024-09-01-preview&preserve-view=true), the Azure portal, and in the Azure SDK beta packages that provide this feature. |
 | [**Store fewer vector instances**](vector-search-how-to-storage-options.md) | vector search | In vector compression scenarios, you can omit storage of full precision vectors if you don't need them for rescoring. Available in the [Create or Update Index (2024-11-01-preview)](/rest/api/searchservice/indexes/create-or-update?view=rest-searchservice-2024-09-01-preview&preserve-view=true), the Azure portal, and in the Azure SDK beta packages that provide this feature. |
 | [**Query rewrite in the semantic reranker**](semantic-how-to-query-rewrite.md) | Relevance | You can set options on a semantic query to rewrite the query input into a revised or expanded query that generates more relevant results from the L2 ranker. Available in the [Search Documents (2024-11-01-preview)](/rest/api/searchservice/documents/search-post?view=rest-searchservice-2024-11-01-preview&preserve-view=true), the Azure portal, and in the Azure SDK beta packages that provide this feature.|
 | [**New semantic ranker models**](semantic-search-overview.md) | Relevance | Semantic ranker runs with improved models in all supported regions. There is no change to APIs or the portal experience. |

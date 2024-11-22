@@ -7,6 +7,7 @@ ms.subservice: azure-ai-face
 ms.topic: reference
 ms.author: shaoli
 ms.date: 05/24/2024
+feedback_help_link_url: https://learn.microsoft.com/answers/tags/156/azure-face
 ---
 
 # Azure AI Face API error codes

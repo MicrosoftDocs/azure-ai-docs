@@ -37,7 +37,7 @@ items:
     - name: Create a demo app
       href: search-create-app-portal.md
     - name: Create a skillset
-      href: cognitive-search-quickstart-blob.md
+      href: search-get-started-skillset.md
     - name: Create a knowledge store
       href: knowledge-store-create-portal.md
     - name: Query with Search Explorer
@@ -203,7 +203,7 @@ items:
       href: search-sku-manage-costs.md
     - name: Reliability and recovery
       href: search-reliability.md
-    - name: Availability migration guidance
+    - name: Availability zone migration guidance
       href: /azure/reliability/migrate-search-service
     - name: Multi-tenancy
       href: search-modeling-multitenant-saas-applications.md
@@ -225,6 +225,8 @@ items:
       href: search-how-to-create-search-index.md
     - name: Load an index
       href: search-how-to-load-search-index.md
+    - name: Portal indexing (import data wizards)
+      href: search-import-data-portal.md
     - name: Update or rebuild an index
       href: search-howto-reindex.md
     - name: Alias an index
@@ -241,10 +243,6 @@ items:
         href: search-howto-schedule-indexers.md
       - name: Define field mappings
         href: search-indexer-field-mappings.md
-      - name: Portal indexing
-        items:
-        - name: Import data wizard
-          href: search-import-data-portal.md
       - name: Indexing whole files
         items:
         - name: Content metadata properties
@@ -294,11 +292,11 @@ items:
         - name: Azure SQL
           items:
           - name: Azure SQL Databases
-            href: search-howto-connecting-azure-sql-database-to-azure-search-using-indexers.md
+            href: search-how-to-index-sql-database.md
           - name: Azure SQL Managed Instances
-            href: search-howto-connecting-azure-sql-mi-to-azure-search-using-indexers.md
+            href: search-how-to-index-sql-managed-instance.md
           - name: Azure SQL Server VMs
-            href: search-howto-connecting-azure-sql-iaas-to-azure-search-using-indexers.md
+            href: search-how-to-index-sql-server.md
         - name: OneLake files
           href: search-how-to-index-onelake-files.md
         - name: SharePoint in Microsoft 365
@@ -323,8 +321,6 @@ items:
         href: cognitive-search-concept-image-scenarios.md
       - name: Cache (incremental) enrichment
         href: search-howto-incremental-index.md
-      - name: Structure-aware chunking and vectorization
-        href: search-how-to-semantic-chunking.md        
       - name: Design tips
         href: cognitive-search-concept-troubleshooting.md
       - name: Custom skills
@@ -341,6 +337,8 @@ items:
       href: vector-search-how-to-create-index.md
     - name: Chunk documents
       href: vector-search-how-to-chunk-documents.md
+    - name: Chunk and vectorize by document layout
+      href: search-how-to-semantic-chunking.md   
     - name: Generate embeddings
       href: vector-search-how-to-generate-embeddings.md
     - name: Use embedding models from Azure AI Studio

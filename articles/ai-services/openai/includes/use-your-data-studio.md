@@ -5,6 +5,8 @@ description: Use this article to import and use your data in Azure OpenAI.
 #services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-openai
+ms.custom:
+  - ignite-2024
 ms.topic: quickstart
 author: aahill
 ms.author: aahi
@@ -39,4 +41,3 @@ Queries that require data analysis would probably fail, such as "*Which health p
 Chats are constrained by the number of documents (chunks) returned in the response (limited to 3-20 in Azure OpenAI Studio playground). As you can imagine, posing a question about "all of the titles" requires a full scan of the entire vector store.
 
 [!INCLUDE [deploy-web-app](deploy-web-app.md)]
-
