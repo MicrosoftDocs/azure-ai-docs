@@ -13,7 +13,7 @@ reviewer: ManojBableshwar
 
 ---
 
-# Model deprecation and retirement in Azure AI model catalog 
+# Model deprecation and retirement in Azure AI model catalog
 
 Models in the model catalog are continually refreshed with newer and more capable models. As part of this process, model providers might deprecate and retire their older models, and you might need to update your applications to use a newer model. This document communicates information about the model lifecycle and deprecation timelines and explains how you're informed of model lifecycle stages.
 
@@ -64,7 +64,7 @@ Models labeled _Retired_ are no longer available for use. You can't create new d
 
 | Model provider | Model | Legacy date | Deprecation date | Retirement date | Suggested replacement model |
 | ---- | ---- | ---- | --- | ---- | --- |
-| Provider |  `<model>` | January 27, 2025 | January 27, 2025 | January 27, 2025 | `<replacement>` |
+| Mistral AI | [Mistral-large](https://aka.ms/azureai/landing/Mistral-Large) | December 1, 2024 | January 1, 2025 | March 31, 2025 | [Mistral-large-2407](https://aka.ms/azureai/landing/Mistral-Large-2407) |
 
 ## Related content
 
