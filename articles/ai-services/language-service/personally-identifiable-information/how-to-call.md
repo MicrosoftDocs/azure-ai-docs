@@ -15,7 +15,7 @@ ms.custom: language-service-pii, ignite-2024
 
 # How to detect and redact Personally Identifying Information (PII)
 
-The PII feature can evaluate unstructured text, extract and redact sensitive information (PII) and health information (PHI) in text across several [pre-defined categories](concepts/entity-categories.md).
+The PII feature can evaluate unstructured text, extract, and redact sensitive information (PII) and health information (PHI) in text across several [predefined categories](concepts/entity-categories.md).
 
 
 ## Development options
@@ -30,22 +30,22 @@ By default, this feature uses the latest available AI model on your text. You ca
 
 ### Input languages
 
-When you submit documents to be processed, you can specify which of [the supported languages](language-support.md) they're written in. if you don't specify a language, extraction defaults to English. The API may return offsets in the response to support different [multilingual and emoji encodings](../concepts/multilingual-emoji-support.md). 
+When you submit documents to be processed, you can specify which of [the supported languages](language-support.md) they're written in. If you don't specify a language, extraction defaults to English. The API may return offsets in the response to support different [multilingual and emoji encodings](../concepts/multilingual-emoji-support.md). 
 
 ### Redaction Policy (version 2024-11-5-preview only)
-In version 2024-11-5-preview, you're able to define the `redactionPolicy` parameter to reflect the redaction policy to be used when redacting text. The policy field supports 3 policy types:
+In version 2024-11-5-preview, you're able to define the `redactionPolicy` parameter to reflect the redaction policy to be used when redacting text. The policy field supports three policy types:
 
 - `DoNotRedact` 
 - `MaskWithCharacter` (default) 
 - `MaskWithEntityType` 
 
-The `DoNotRedact` policy allows the user to return the response without the `redactedText` field, i.e. “John Doe received a call from 424-878-9192”,. 
+The `DoNotRedact` policy allows the user to return the response without the `redactedText` field, that is, “John Doe received a call from 424-878-9192”. 
 
-The `MaskWithRedactionCharacter` policy allows the `redactedText` to be masked with a character (such as "*"), preserving the length and offset of the original text, i.e. “******** received a call from ************”. This is the existing behavior.
+The `MaskWithRedactionCharacter` policy allows the `redactedText` to be masked with a character (such as "*"), preserving the length and offset of the original text, that is, “******** received a call from ************”. This is the existing behavior.
 
-There is also an optional field called `redactionCharacter` where you can input the character to be used in redaction if you're using the `MaskWithCharacter` policy 
+There's also an optional field called `redactionCharacter` where you can input the character to be used in redaction if you're using the `MaskWithCharacter` policy 
 
-The `MaskWithEntityType` policy allows you to mask the detected PII entity text with the detected entity type, i.e. “[PERSON_1] received a call from [PHONENUMBER_1]”. 
+The `MaskWithEntityType` policy allows you to mask the detected PII entity text with the detected entity type, that is, “[PERSON_1] received a call from [PHONENUMBER_1]”. 
 
 ## Submitting data
 
