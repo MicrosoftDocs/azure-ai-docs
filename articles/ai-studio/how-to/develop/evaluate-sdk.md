@@ -81,7 +81,7 @@ Built-in evaluators can accept *either* query and response pairs or a list of co
 | `HateUnfairnessEvaluator`        | Required: String | Required: String | N/A           | N/A           |Supported |
 | `IndirectAttackEvaluator`      | Required: String | Required: String | Required: String | N/A           |Supported |
 | `ProtectedMaterialEvaluator`  | Required: String | Required: String | N/A           | N/A           |Supported |
-| `QAEvaluator`      | Required: String | Required: String | Required: String | N/A           | Not supported |
+| `QAEvaluator`      | Required: String | Required: String | Required: String | Required: String           | Not supported |
 | `ContentSafetyEvaluator`      | Required: String | Required: String |  N/A  | N/A           | Supported |
 
 - Query: the query sent in to the generative AI application
