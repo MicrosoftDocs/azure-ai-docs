@@ -4,7 +4,7 @@ titleSuffix: Azure AI services
 description: Quick reference, detailed description on Content Understanding Terms and Definition
 author: laujan
 manager: nitinme
-ms.service: azure
+ms.service: azure-ai-content-understanding
 ms.topic: conceptual
 ms.date: 11/19/2024
 ms.author: lajanuar

@@ -321,8 +321,6 @@ items:
         href: cognitive-search-concept-image-scenarios.md
       - name: Cache (incremental) enrichment
         href: search-howto-incremental-index.md
-      - name: Structure-aware chunking and vectorization
-        href: search-how-to-semantic-chunking.md        
       - name: Design tips
         href: cognitive-search-concept-troubleshooting.md
       - name: Custom skills
@@ -339,6 +337,8 @@ items:
       href: vector-search-how-to-create-index.md
     - name: Chunk documents
       href: vector-search-how-to-chunk-documents.md
+    - name: Chunk and vectorize by document layout
+      href: search-how-to-semantic-chunking.md   
     - name: Generate embeddings
       href: vector-search-how-to-generate-embeddings.md
     - name: Use embedding models from Azure AI Studio
@@ -469,7 +469,7 @@ items:
       - name: Connect through a firewall
         href: search-indexer-howto-access-ip-restricted.md
       - name: Connect using Network Security Perimeter
-        href: search-security-network-security-perimiter.md
+        href: search-security-network-security-perimeter.md
       - name: Connect as a trusted service
         href: search-indexer-howto-access-trusted-service-exception.md
       - name: Connect through a shared private link
