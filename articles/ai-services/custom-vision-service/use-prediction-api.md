@@ -41,6 +41,8 @@ Once your model is published, you can retrieve the required information by selec
 
 :::image type="content" source="media/use-prediction-api/prediction-api-info.png" alt-text="Screenshot of the performance tab, with a red rectangle surrounding the Prediction URL value for using an image file and the Prediction-Key value.":::
 
+You must be assigned at least the **[Cognitive Services User](https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles/ai-machine-learning#cognitive-services-user)** role to view the keys.
+
 ## Submit data to the service
 
 This guide assumes that you already constructed a **[CustomVisionPredictionClient](/dotnet/api/microsoft.azure.cognitiveservices.vision.customvision.prediction.customvisionpredictionclient)** object, named `predictionClient`, with your Custom Vision prediction key and endpoint URL. For instructions on how to set up this feature, follow one of the [quickstarts](quickstarts/image-classification.md).
