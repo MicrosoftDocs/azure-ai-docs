@@ -13,6 +13,7 @@ ms.custom:
 ms.topic: conceptual
 ms.date: 11/04/2023
 ms.author: pafarley
+feedback_help_link_url: https://learn.microsoft.com/answers/tags/156/azure-face
 ---
 
 # Face recognition data structures

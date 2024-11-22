@@ -13,6 +13,7 @@ ms.date: 02/27/2024
 ms.author: pafarley
 ms.devlang: csharp
 ms.custom: [devx-track-csharp, cogserv-non-critical-vision]
+feedback_help_link_url: https://learn.microsoft.com/answers/tags/156/azure-face
 ---
 
 # Use the PersonDirectory data structure (preview)
