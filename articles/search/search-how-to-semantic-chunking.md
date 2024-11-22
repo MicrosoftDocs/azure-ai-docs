@@ -29,14 +29,18 @@ In this article, learn how to:
 > + Generate embeddings for each chunk
 > + Use index projections to map embeddings to fields in a search index
 
-This article uses the [sample health plan PDFs](https://github.com/Azure-Samples/azure-search-sample-data/tree/main/health-plan) uploaded to Azure Blob Storage and then indexed using the **Import and vectorize data** wizard.
+For illustration purposes, this article uses the [sample health plan PDFs](https://github.com/Azure-Samples/azure-search-sample-data/tree/main/health-plan) uploaded to Azure Blob Storage and then indexed using the **Import and vectorize data wizard**.
 
 ## Prerequisites
 
 + [An indexer-based indexing pipeline](search-indexer-overview.md) with an index that accepts the output. The index must have fields for receiving headings and content.
+
 + [A supported data source](search-indexer-overview.md#supported-data-sources) having text content that you want to chunk.
+
 + [A skillset with Document Layout skill](cognitive-search-skill-document-intelligence-layout.md) that splits documents based on paragraph boundaries.
+
 + [An Azure OpenAI Embedding skill](cognitive-search-skill-azure-openai-embedding.md) that generates vector embeddings.
+
 + [An index projection](search-how-to-define-index-projections.md) for one-to-many indexing.
 
 ## Prepare data files
@@ -380,13 +384,13 @@ POST /indexes/[index name]/docs/search?api-version=[api-version]
 }
 ```
 
-If you used the health plan PDFs to test this skill, search results for the example query should look similar to this example. 
+If you used the health plan PDFs to test this skill, Search Explorer results for the example query should look similar to the results in the following screenshot. 
 
-+ It uses semantic ranking, so you see `captions` (it also has answers, but those aren't shown in the screenshot). The first result is also semantically relevant to the query string.
-+ It's a [hybrid query](hybrid-search-how-to-query.md) over text and vectors, so you see a `@search.rerankerScore` and results are ranked by that score.
-+ The `select` statement specifies the header fields that the Document Layout skill detected and populated.
++ The query uses semantic ranking, so you see `captions` (it also has `answers`, but those aren't shown in the screenshot). The results are the most semantically relevant to the query input, as determined by the [semantic ranker](semantic-search-overview.md).
++ The query is a [hybrid query](hybrid-search-how-to-query.md) over text and vectors, so you see a `@search.rerankerScore` and results are ranked by that score.
++ The `select` statement specifies the header fields that the Document Layout skill detected and populated. You can add more fields to inspect the content of chunks, title, or any other human readable field.
 
-:::image type="content" source="media/search-how-to-semantic-chunking/query-results-doc-layout.png" alt-text="Screenshot of query results that include doc layout skill output fields.":::
+:::image type="content" source="media/search-how-to-semantic-chunking/query-results-doc-layout.png" lightbox="media/search-how-to-semantic-chunking/query-results-doc-layout.png" alt-text="Screenshot of hybrid query results that include doc layout skill output fields.":::
 
 ## See also
 
