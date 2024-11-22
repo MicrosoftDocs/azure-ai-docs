@@ -329,6 +329,7 @@ Models deployed as a service with pay-as-you-go are protected by Azure AI conten
 ## Related content
 
 - [Model Catalog and Collections](concept-model-catalog.md)
+- [Model deprecation and retirement in Azure AI model catalog](concept-model-lifecycle-and-retirement.md)
 - [Region availability for models in serverless API endpoints](concept-endpoint-serverless-availability.md)
 - [Deploy and score a machine learning model by using an online endpoint](how-to-deploy-online-endpoints.md)
 - [Plan and manage costs for Azure AI Studio](concept-plan-manage-cost.md)
