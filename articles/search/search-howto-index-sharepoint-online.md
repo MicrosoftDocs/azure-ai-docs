@@ -1,7 +1,7 @@
 ---
-title: SharePoint Online indexer (preview)
+title: SharePoint and OneDrive indexer (preview)
 titleSuffix: Azure AI Search
-description: Set up a SharePoint Online indexer to automate indexing of document library content in Azure AI Search.
+description: Set up a SharePoint and OneDrive indexer to automate indexing of document library content in Azure AI Search.
 author: gmndrg
 ms.author: gimondra
 
@@ -15,7 +15,7 @@ ms.date: 08/20/2024
 # Index data from SharePoint document libraries
 
 > [!IMPORTANT]
-> SharePoint Online indexer support is in public preview. It's offered "as-is", under [Supplemental Terms of Use](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) and supported on best effort only. Preview features aren't recommended for production workloads and aren't guaranteed to become generally available.
+> SharePoint and OneDrive indexer support is in public preview. It's offered "as-is", under [Supplemental Terms of Use](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) and supported on best effort only. Preview features aren't recommended for production workloads and aren't guaranteed to become generally available.
 >
 > Be sure to visit the [known limitations](#limitations-and-considerations) section before you start.
 >
@@ -25,7 +25,7 @@ This article explains how to configure a [search indexer](search-indexer-overvie
 
 ## Functionality
 
-An indexer in Azure AI Search is a crawler that extracts searchable data and metadata from a data source. The SharePoint Online indexer connects to your SharePoint site and indexes documents from one or more document libraries. The indexer provides the following functionality:
+An indexer in Azure AI Search is a crawler that extracts searchable data and metadata from a data source. The SharePoint and OneDrive indexer connects to your SharePoint site and indexes documents from one or more document libraries. The indexer provides the following functionality:
 
 + Index files and metadata from one or more document libraries.
 + Index incrementally, picking up just the new and changed files and metadata. 
@@ -34,13 +34,13 @@ An indexer in Azure AI Search is a crawler that extracts searchable data and met
 
 ## Prerequisites
 
-+ [SharePoint in Microsoft 365](/sharepoint/introduction) cloud service
++ [SharePoint and OneDrive](/sharepoint/introduction) cloud service
 
 + Files in a [document library](https://support.microsoft.com/office/what-is-a-document-library-3b5976dd-65cf-4c9e-bf5a-713c10ca2872)
 
 ## Supported document formats
 
-The SharePoint Online indexer can extract text from the following document formats:
+The SharePoint and OneDrive indexer can extract text from the following document formats:
 
 [!INCLUDE [search-document-data-sources](./includes/search-blob-data-sources.md)]
 
@@ -64,7 +64,7 @@ Here are the limitations of this feature:
 
 + Indexing sub-sites recursively from a specific site provided isn't supported.
 
-+ SharePoint Online indexer isn't supported when [Microsoft ENTRA ID Conditional Access](/entra/identity/conditional-access/overview) is enabled.
++ SharePoint and OneDrive indexer isn't supported when [Microsoft ENTRA ID Conditional Access](/entra/identity/conditional-access/overview) is enabled.
 
 Here are the considerations when using this feature:
 
@@ -72,16 +72,13 @@ Here are the considerations when using this feature:
 
 + If you need a SharePoint content indexing solution in a production environment, consider creating a custom connector with [SharePoint Webhooks](/sharepoint/dev/apis/webhooks/overview-sharepoint-webhooks), calling [Microsoft Graph API](/graph/use-the-api) to export the data to an Azure Blob container, and then use the [Azure blob indexer](search-howto-indexing-azure-blob-storage.md) for incremental indexing.
 
-<!-- + There could be Microsoft 365 processes that update SharePoint file system-metadata (based on different configurations in SharePoint) and will cause the SharePoint Online indexer to trigger. Make sure that you test your setup and understand the document processing count prior to using any AI enrichment. Since this is a third-party connector to Azure (SharePoint is located in Microsoft 365), SharePoint configuration is not checked by the indexer. -->
+<!-- + There could be Microsoft 365 processes that update SharePoint file system-metadata (based on different configurations in SharePoint) and will cause the SharePoint and OneDrive indexer to trigger. Make sure that you test your setup and understand the document processing count prior to using any AI enrichment. Since this is a third-party connector to Azure (SharePoint is located in Microsoft 365), SharePoint configuration is not checked by the indexer. -->
 
-+ If your SharePoint configuration allows Microsoft 365 processes to update SharePoint file system metadata, be aware that these updates can trigger the SharePoint Online indexer, causing the indexer to ingest documents multiple times. Because the SharePoint Online indexer is a third-party connector to Azure, the indexer can't read the configuration or vary its behavior. It responds to changes in new and changed content, regardless of how those updates are made. For this reason, make sure that you test your setup and understand the document processing count prior to using the indexer and any AI enrichment.
++ If your SharePoint configuration allows Microsoft 365 processes to update SharePoint file system metadata, be aware that these updates can trigger the SharePoint and OneDrive indexer, causing the indexer to ingest documents multiple times. Because the SharePoint and OneDrive indexer is a third-party connector to Azure, the indexer can't read the configuration or vary its behavior. It responds to changes in new and changed content, regardless of how those updates are made. For this reason, make sure that you test your setup and understand the document processing count prior to using the indexer and any AI enrichment.
 
+## Configure the SharePoint and OneDrive indexer
 
-
-
-## Configure the SharePoint Online indexer
-
-To set up the SharePoint Online indexer, use both the Azure portal and a preview REST API. You can use 2020-06-30-preview or later. We recommend the latest preview API.
+To set up the SharePoint and OneDrive indexer, use both the Azure portal and a preview REST API. You can use 2020-06-30-preview or later. We recommend the latest preview API.
 
 This section provides the steps. You can also watch the following video.
  
@@ -101,7 +98,7 @@ After selecting **Save**, you get an Object ID that has been assigned to your se
 
 ### Step 2: Decide which permissions the indexer requires
 
-The SharePoint Online indexer supports both [delegated and application](/graph/auth/auth-concepts#delegated-and-application-permissions) permissions. Choose which permissions you want to use based on your scenario.
+The SharePoint and OneDrive indexer supports both [delegated and application](/graph/auth/auth-concepts#delegated-and-application-permissions) permissions. Choose which permissions you want to use based on your scenario.
 
 We recommend app-based permissions. See [limitations](#limitations-and-considerations) for known issues related to delegated permissions.
 
@@ -114,7 +111,7 @@ We recommend app-based permissions. See [limitations](#limitations-and-considera
 
 ### Step 3: Create a Microsoft Entra application registration
 
-The SharePoint Online indexer uses this Microsoft Entra application for authentication.
+The SharePoint and OneDrive indexer uses this Microsoft Entra application for authentication.
 
 1. Sign in to the [Azure portal](https://portal.azure.com).
 
@@ -247,7 +244,7 @@ api-key: [admin key]
 ```
 
 > [!IMPORTANT]
-> Only [`metadata_spo_site_library_item_id`](#metadata) may be used as the key field in an index populated by the SharePoint Online indexer. If a key field doesn't exist in the data source, `metadata_spo_site_library_item_id` is automatically mapped to the key field.
+> Only [`metadata_spo_site_library_item_id`](#metadata) may be used as the key field in an index populated by the SharePoint  and OneDriveindexer. If a key field doesn't exist in the data source, `metadata_spo_site_library_item_id` is automatically mapped to the key field.
 
 ### Step 6: Create an indexer
 
@@ -319,7 +316,7 @@ There are a few steps to creating the indexer:
 
     :::image type="content" source="media/search-howto-index-sharepoint-online/enter-device-code.png" alt-text="Screenshot showing how to enter a device code.":::
 
-1. The SharePoint Online indexer will access the SharePoint content as the signed-in user. The user that logs in during this step will be that signed-in user. So, if you sign in with a user account that doesn’t have access to a document in the Document Library that you want to index, the indexer won’t have access to that document.
+1. The SharePoint and OneDrive indexer will access the SharePoint content as the signed-in user. The user that logs in during this step will be that signed-in user. So, if you sign in with a user account that doesn’t have access to a document in the Document Library that you want to index, the indexer won’t have access to that document.
 
     If possible, we recommend creating a new user account and giving that new user the exact permissions that you want the indexer to have.
 
@@ -393,7 +390,7 @@ If you're indexing document metadata (`"dataToExtract": "contentAndMetadata"`), 
 | metadata_spo_item_weburi | Edm.String | The URI of the item. |
 | metadata_spo_item_path | Edm.String | The combination of the parent path and item name. | 
 
-The SharePoint Online indexer also supports metadata specific to each document type. More information can be found in [Content metadata properties used in Azure AI Search](search-blob-metadata-properties.md).
+The SharePoint and OneDrive indexer also supports metadata specific to each document type. More information can be found in [Content metadata properties used in Azure AI Search](search-blob-metadata-properties.md).
 
 > [!NOTE]
 > To index custom metadata, "additionalColumns" must be specified in the [query parameter of the data source](#query).
@@ -420,7 +417,7 @@ PUT /indexers/[indexer name]?api-version=2024-05-01-preview
 
 ## Controlling which documents are indexed
 
-A single SharePoint Online indexer can index content from one or more document libraries. Use the "container" parameter on the data source definition to indicate which sites and document libraries to index from.
+A single SharePoint and OneDrive indexer can index content from one or more document libraries. Use the "container" parameter on the data source definition to indicate which sites and document libraries to index from.
 
 The [data source "container" section](#create-data-source) has two properties for this task: "name" and "query".
 
@@ -453,7 +450,7 @@ The "query" parameter of the data source is made up of keyword/value pairs. The 
 
 ## Handling errors
 
-By default, the SharePoint Online indexer stops as soon as it encounters a document with an unsupported content type (for example, an image). You can use the `excludedFileNameExtensions` parameter to skip certain content types. However, you might need to index documents without knowing all the possible content types in advance. To continue indexing when an unsupported content type is encountered, set the `failOnUnsupportedContentType` configuration parameter to false:
+By default, the SharePoint and OneDrive indexer stops as soon as it encounters a document with an unsupported content type (for example, an image). You can use the `excludedFileNameExtensions` parameter to skip certain content types. However, you might need to index documents without knowing all the possible content types in advance. To continue indexing when an unsupported content type is encountered, set the `failOnUnsupportedContentType` configuration parameter to false:
 
 ```http
 PUT https://[service name].search.windows.net/indexers/[indexer name]?api-version=2024-05-01-preview
