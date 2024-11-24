@@ -6,7 +6,7 @@ ms.service: azure-ai-language
 author: PatrickFarley
 ms.author: pafarley
 ms.topic: how-to
-ms.date: 12/19/2023
+ms.date: 11/21/2024
 ---
 
 # Use smart URL refresh with a project
