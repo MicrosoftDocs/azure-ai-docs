@@ -1484,5 +1484,5 @@ It is a good practice to start with a low number of instances and scale up as ne
 - [Azure AI Model Inference API](reference-model-inference-api.md)
 - [Model Catalog and Collections](concept-model-catalog.md)
 - [Deploy models as serverless API endpoints](how-to-deploy-models-serverless.md)
-- [Plan and manage costs for Azure AI Foundry](concept-plan-manage-cost.md)
+- [Plan and manage costs for Azure AI Foundry](/azure/ai-studio/how-to/costs-plan-manage)
 - [Region availability for models in serverless API endpoints](concept-endpoint-serverless-availability.md)
