@@ -47,12 +47,12 @@ Use an embedding model on an Azure AI platform in the [same region as Azure AI S
 | Provider | Supported models |
 |---|---|
 | [Azure OpenAI Service](https://aka.ms/oai/access) | text-embedding-ada-002, text-embedding-3-large, or text-embedding-3-small. |
-| [Azure AI Studio model catalog](/azure/ai-studio/what-is-ai-studio) |  Azure, Cohere, and Facebook embedding models. |
+| [Azure AI Foundry model catalog](/azure/ai-studio/what-is-ai-studio) |  Azure, Cohere, and Facebook embedding models. |
 | [Azure AI services multi-service account](/azure/ai-services/multi-service-resource) | [Azure AI Vision multimodal](/azure/ai-services/computer-vision/how-to/image-retrieval) for image and text vectorization. Azure AI Vision multimodal is available in selected regions. [Check the documentation](/azure/ai-services/computer-vision/how-to/image-retrieval?tabs=csharp) for an updated list. Depending on how you [attach the multi-service resource](cognitive-search-attach-cognitive-services.md), the account might need to be in the same region as Azure AI Search. |
 
 If you use the Azure OpenAI Service, the endpoint must have an associated [custom subdomain](/azure/ai-services/cognitive-services-custom-subdomains). A custom subdomain is an endpoint that includes a unique name (for example, `https://hereismyuniquename.cognitiveservices.azure.com`). If the service was created through the Azure portal, this subdomain is automatically generated as part of your service setup. Ensure that your service includes a custom subdomain before using it with the Azure AI Search integration.
 
-Azure OpenAI Service resources (with access to embedding models) that were created in AI Studio aren't supported. Only the Azure OpenAI Service resources created in the Azure portal are compatible with the **Azure OpenAI Embedding** skill integration.
+Azure OpenAI Service resources (with access to embedding models) that were created in AI Foundry portal aren't supported. Only the Azure OpenAI Service resources created in the Azure portal are compatible with the **Azure OpenAI Embedding** skill integration.
 
 ### Public endpoint requirements
 
@@ -157,7 +157,7 @@ This section points you to the content that works for this quickstart.
 
 ## Set up embedding models
 
-The wizard can use embedding models deployed from Azure OpenAI, Azure AI Vision, or from the model catalog in Azure AI Studio.
+The wizard can use embedding models deployed from Azure OpenAI, Azure AI Vision, or from the model catalog in Azure AI Foundry portal.
 
 ### [Azure OpenAI](#tab/model-aoai)
 
@@ -181,7 +181,7 @@ The wizard supports text-embedding-ada-002, text-embedding-3-large, and text-emb
 
 1. On the **Overview** page, select **Click here to view endpoints** or **Click here to manage keys** if you need to copy an endpoint or API key. You can paste these values into the wizard if you're using an Azure OpenAI resource with key-based authentication.
 
-1. Under **Resource Management** and **Model deployments**, select **Manage Deployments** to open Azure AI Studio.
+1. Under **Resource Management** and **Model deployments**, select **Manage Deployments** to open Azure AI Foundry.
 
 1. Copy the deployment name of `text-embedding-ada-002` or another supported embedding model. If you don't have an embedding model, deploy one now.
 
@@ -200,15 +200,15 @@ After you finish these steps, you should be able to select the Azure AI Vision v
 > [!NOTE]
 > If you can't select an Azure AI Vision vectorizer, make sure you have an Azure AI Vision resource in a supported region. Also make sure that your search service's managed identity has **Cognitive Services OpenAI User** permissions.
 
-### [Azure AI Studio model catalog](#tab/model-catalog)
+### [Azure AI Foundry model catalog](#tab/model-catalog)
 
-The wizard supports Azure, Cohere, and Facebook embedding models in the Azure AI Studio model catalog, but it doesn't currently support the OpenAI CLIP model. Internally, the wizard calls the [AML skill](cognitive-search-aml-skill.md) to connect to the catalog.
+The wizard supports Azure, Cohere, and Facebook embedding models in the Azure AI Foundry model catalog, but it doesn't currently support the OpenAI CLIP model. Internally, the wizard calls the [AML skill](cognitive-search-aml-skill.md) to connect to the catalog.
 
-1. For the model catalog, you should have an [Azure OpenAI resource](/azure/ai-services/openai/how-to/create-resource), a [hub in Azure AI Studio](/azure/ai-studio/how-to/create-projects), and a [project](/azure/ai-studio/how-to/create-projects). Hubs and projects having the same name can share connection information and permissions.
+1. For the model catalog, you should have an [Azure OpenAI resource](/azure/ai-services/openai/how-to/create-resource), a [hub in Azure AI Foundry portal](/azure/ai-studio/how-to/create-projects), and a [project](/azure/ai-studio/how-to/create-projects). Hubs and projects having the same name can share connection information and permissions.
 
 1. Deploy a supported embedding model to the model catalog in your project.
 
-1. For role-based connections, create two role assignments: one for Azure AI Search, and another for the AI Studio project. Assign the [Cognitive Services OpenAI User](/azure/ai-services/openai/how-to/role-based-access-control) role for embeddings and vectorization.
+1. For role-based connections, create two role assignments: one for Azure AI Search, and another for the AI Foundry project. Assign the [Cognitive Services OpenAI User](/azure/ai-services/openai/how-to/role-based-access-control) role for embeddings and vectorization.
 
 ---
 
@@ -312,7 +312,7 @@ Chunking is built in and nonconfigurable. The effective settings are:
 1. On the **Vectorize your text** page, choose the source of the embedding model:
 
    + Azure OpenAI
-   + Azure AI Studio model catalog
+   + Azure AI Foundry model catalog
    + An existing Azure AI Vision multimodal resource in the same region as Azure AI Search. If there's no [Azure AI Services multi-service account](/azure/ai-services/multi-service-resource) in the same region, this option isn't available.
 
 1. Choose the Azure subscription.
@@ -321,7 +321,7 @@ Chunking is built in and nonconfigurable. The effective settings are:
 
    + For Azure OpenAI, choose an existing deployment of text-embedding-ada-002, text-embedding-3-large, or text-embedding-3-small.
 
-   + For AI Studio catalog, choose an existing deployment of an Azure, Cohere, and Facebook embedding model.
+   + For AI Foundry catalog, choose an existing deployment of an Azure, Cohere, and Facebook embedding model.
 
    + For AI Vision multimodal embeddings, select the account.
 
@@ -349,11 +349,11 @@ However, if you work with content that includes useful images, you can apply AI 
 
 Azure AI Search and your Azure AI resource must be in the same region or configured for [keyless billing connections](cognitive-search-attach-cognitive-services.md).
 
-1. On the **Vectorize your images** page, specify the kind of connection the wizard should make. For image vectorization, the wizard can connect to embedding models in Azure AI Studio or Azure AI Vision.
+1. On the **Vectorize your images** page, specify the kind of connection the wizard should make. For image vectorization, the wizard can connect to embedding models in Azure AI Foundry portal or Azure AI Vision.
 
 1. Specify the subscription.
 
-1. For the Azure AI Studio model catalog, specify the project and deployment. For more information, see [Set up embedding models](#set-up-embedding-models) earlier in this article.
+1. For the Azure AI Foundry model catalog, specify the project and deployment. For more information, see [Set up embedding models](#set-up-embedding-models) earlier in this article.
 
 1. Optionally, you can crack binary images (for example, scanned document files) and [use OCR](cognitive-search-skill-ocr.md) to recognize text.
 
@@ -413,7 +413,7 @@ When the wizard completes the configuration, it creates the following objects:
 
 + Index with vector fields, vectorizers, vector profiles, and vector algorithms. You can't design or modify the default index during the wizard workflow. Indexes conform to the [2024-05-01-preview REST API](/rest/api/searchservice/indexes/create-or-update?view=rest-searchservice-2024-05-01-preview&preserve-view=true).
 
-+ Skillset with the [Text Split skill](cognitive-search-skill-textsplit.md) for chunking and an embedding skill for vectorization. The embedding skill is either the [AzureOpenAIEmbeddingModel skill](cognitive-search-skill-azure-openai-embedding.md) for Azure OpenAI or the [AML skill](cognitive-search-aml-skill.md) for the Azure AI Studio model catalog. The skillset also has the [index projections](index-projections-concept-intro.md) configuration that allows data to be mapped from one document in the data source to its corresponding chunks in a "child" index.
++ Skillset with the [Text Split skill](cognitive-search-skill-textsplit.md) for chunking and an embedding skill for vectorization. The embedding skill is either the [AzureOpenAIEmbeddingModel skill](cognitive-search-skill-azure-openai-embedding.md) for Azure OpenAI or the [AML skill](cognitive-search-aml-skill.md) for the Azure AI Foundry model catalog. The skillset also has the [index projections](index-projections-concept-intro.md) configuration that allows data to be mapped from one document in the data source to its corresponding chunks in a "child" index.
 
 + Indexer with field mappings and output field mappings (if applicable).
 
