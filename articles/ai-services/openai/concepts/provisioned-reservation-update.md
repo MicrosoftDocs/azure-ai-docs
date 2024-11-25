@@ -23,12 +23,10 @@ For more information, see the [deployment types guide](https://aka.ms/aoai/docs/
 In August 2024, Microsoft announced that Provisioned deployments would move to a new [hourly payment model](./provisioned-migration.md) with the option to purchase Azure Reservations to support additional discounts. In December's provisioned update, we will be introducing differentiated hourly pricing across Global provisioned, Data zone provisioned, and provisioned deployment types. For more information on the hourly price for each Provisioned deployment type, see the [Pricing details page](https://azure.microsoft.com/en-us/pricing/details/cognitive-services/openai-service/). 
 
 ### New Azure Reservations for Globl and Data zone provisioned deployments
+In addition to the updates for the hourly payment model, new Azure Reservations will be introduced specifically for 
 
 ## Migrating existing deployments to Global or Data zone provisioned
 
-Existing customers can choose to migrate their existing resources from the Commitment to the Hourly/Reservation payment model to benefit from the ability to deploy the latest models, or to consolidate discounting for diverse deployments under a single reservation.
-
-Two approaches are available for customers to migrate resources using the Commitment model to the Hourly/Reservation model.
 
 ### Zero downtime migration 
 
@@ -37,27 +35,4 @@ Two approaches are available for customers to migrate resources using the Commit
 
 ### Migration with downtime 
 
-The managed migration approach involves the customer partnering with Microsoft to bulk-migrate all the PTU commitments in a subscription/region at the same time. It works like this:
 
-1. The customer will engage their account team and request a managed migration. A migration owner from the Microsoft team will be assigned to assist the customer with migration.
-2. A date will be selected when all resources within each of the customers' subscriptions and regions containing current PTU commitments will be migrated from committed to hourly/reservation billing model. Multiple subscriptions and regions can be migrated on the same date.
-3. On the agreed-upon date:
-    * The customer will purchase regional reservations to cover the committed PTUs that will be converted and pass the reservation information to their Microsoft migration contact.
-    * Within 2-3 business days, all commitments will be proactively canceled and deployments previously under commitments will begin using the hourly/reservation payment model.
-    * In the billing period after the one with the reservation purchase, the customer will receive a credit for the reservation purchase covering the portions of the commitments that were canceled, starting from the time of the reservation purchase.
-
-Customers must reach out to their account teams to schedule a managed migration.
-
-**Managed migration advantages:**
-
-- Bulk migration of all commitments in an subscription/region is beneficial for customers with many commitments.
-- Seamless cost migration: No possibility of double-billing or extra hourly charges.
-
-**Managed migration disadvantages:**
-
-- All commitments in a subscription/region must be migrated at the same time.
-- Needing to coordinate a time for migration with the Microsoft team.
-
-
-
-In Azure OpenAI Studio, select **Quota** > **Provisioned** > **Manage commitments** and select a resource with an existing commitment to view/change it. 
