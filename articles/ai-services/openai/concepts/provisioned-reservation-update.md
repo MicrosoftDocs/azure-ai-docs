@@ -33,10 +33,19 @@ Data zone provisioned deployments are available in the same Azure OpenAI resourc
 For more information, see the [deployment types guide](https://aka.ms/aoai/docs/deployment-types).
 
 ### New hourly pricing for Global and Data Zone provisioned deployments
-In August 2024, Microsoft announced that Provisioned deployments would move to a new [hourly payment model](./provisioned-migration.md) with the option to purchase Azure Reservations to support additional discounts. In December's provisioned update, we will be introducing differentiated hourly pricing across Global provisioned, Data zone provisioned, and provisioned deployment types. For more information on the hourly price for each Provisioned deployment type, see the [Pricing details page](https://azure.microsoft.com/en-us/pricing/details/cognitive-services/openai-service/). 
+In August 2024, Microsoft announced that Provisioned deployments would move to a new [hourly payment model](./provisioned-migration.md) with the option to purchase Azure Reservations to support additional discounts. In December's provisioned update, we will be introducing differentiated hourly pricing across Global provisioned, Data zone provisioned, and provisioned deployment types. For more information on the hourly price for each Provisioned deployment type, see the [Pricing details page](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/). 
 
 ### New Azure Reservations for Globl and Data zone provisioned deployments
-In addition to the updates for the hourly payment model, new Azure Reservations will be introduced specifically for 
+In addition to the updates for the hourly payment model, new Azure Reservations will be introduced specifically for Global and Data zone provisioned deployment types. With these new Azure Reservations, every Provisioned deployment type will have a separate Azure Reservation that can be purchased to support additional discounts. The mapping between each provisioned deployment type and the associated Azure Reservation are as the following:
+
+| Provisioned deployment type | Sku name in code  | Azure Reservation product name |
+|---|---|---|
+| Global provisioned | `GlobalProvisionedManaged`  | Provisioned Managed Global  |
+| Data zone provisioned | `DataZoneProvisionedManaged`  | Provisioned Managed Data Zone  |
+| Provisioned | `ProvisionedManaged`  | Provisioned Managed Regional |
+
+> [!IMPORTANT]
+> Azure Reservations for Azure OpenAI Provisioned offers are not interchangeable across deployment types. The Azure Reservation purchased must match the provisioned deployment type. If the Azure Reservation purchased does not match the provisioned deployment type, the provisioned deployment will default to the hourly payment model until a matching Azure Reservation product is purchased. For more information, see the [Azure Reservations for Azure OpenAI Service Provisioned guidance](https://learn.microsoft.com/azure/cost-management-billing/reservations/azure-openai).
 
 ## Migrating existing deployments to Global or Data zone provisioned
 
