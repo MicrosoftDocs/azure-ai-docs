@@ -14,7 +14,7 @@ author: ssalgadodev
 ms.custom: references_regions, build-2024
 ms.collection: ce-skilling-ai-copilot
 
-#This functionality is also available in Azure AI Studio: /azure/ai-studio/how-to/deploy-models-llama.md
+#This functionality is also available in Azure AI Foundry portal: /azure/ai-studio/how-to/deploy-models-llama.md
 ---
 
 
@@ -613,7 +613,7 @@ Quota is managed per deployment. Each deployment has a rate limit of 200,000 tok
 
 ### Cost and quota considerations for Meta Llama 3.1 models deployed managed compute
 
-For deployment and inferencing of Meta Llama 3.1 models with managed compute, you consume virtual machine (VM) core quota that is assigned to your subscription on a per-region basis. When you sign up for Azure AI Studio, you receive a default VM quota for several VM families available in the region. You can continue to create deployments until you reach your quota limit. Once you reach this limit, you can request a quota increase.  
+For deployment and inferencing of Meta Llama 3.1 models with managed compute, you consume virtual machine (VM) core quota that is assigned to your subscription on a per-region basis. When you sign up for Azure AI Foundry, you receive a default VM quota for several VM families available in the region. You can continue to create deployments until you reach your quota limit. Once you reach this limit, you can request a quota increase.  
 
 ## Content filtering
 
@@ -623,5 +623,5 @@ Models deployed as a serverless API are protected by Azure AI content safety. Wh
 
 - [Model Catalog and Collections](concept-model-catalog.md)
 - [Deploy and score a machine learning model by using an online endpoint](how-to-deploy-online-endpoints.md)
-- [Plan and manage costs for Azure AI Studio](/azure/ai-studio/how-to/costs-plan-manage)
+- [Plan and manage costs for Azure AI Foundry](/azure/ai-studio/how-to/costs-plan-manage)
 - [Region availability for models in serverless API endpoints](concept-endpoint-serverless-availability.md)
