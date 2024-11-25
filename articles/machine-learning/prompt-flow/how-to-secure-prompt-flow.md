@@ -117,7 +117,7 @@ Workspace managed virtual network is the recommended way to support network isol
 
 ## Known limitations
 
-- AI studio don't support bring your own virtual network, it only support workspace managed virtual network.
+- AI Foundry don't support bring your own virtual network, it only support workspace managed virtual network.
 - Managed online endpoint with selected egress only supports workspace with managed virtual network. If you want to use your own virtual network, you might need one workspace for prompt flow authoring with your virtual network and another workspace for prompt flow deployment using managed online endpoint with workspace managed virtual network.
 
 ## Next steps

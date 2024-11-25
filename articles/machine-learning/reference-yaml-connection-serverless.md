@@ -38,7 +38,7 @@ ms.reviewer: ambadal
 
 The schema described in this article is used to create a serverless connection.
 
-While the `az ml connection` commands can be used to manage both Azure Machine Learning and Azure AI Studio connections, the Azure AI Speech Services connection is specific to Azure AI Studio.
+While the `az ml connection` commands can be used to manage both Azure Machine Learning and Azure AI Foundry connections, the Azure AI Speech Services connection is specific to Azure AI Foundry.
 
 ## Examples
 
