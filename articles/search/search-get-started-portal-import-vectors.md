@@ -481,7 +481,7 @@ Search Explorer accepts text strings as input and then vectorizes the text for v
 
    Each document is a chunk of the original PDF. The `title` field shows which PDF the chunk comes from. Each `chunk` is quite long. You can copy and paste one into a text editor to read the entire value.
 
-1. To see all of the chunks from a specific document, add a filter for the `text_parent_id` field for a specific PDF. You can check the **Fields** tab of your index to confirm this field is filterable.
+1. To see all of the chunks from a specific document, add a filter for the `title_parent_id` field for a specific PDF. You can check the **Fields** tab of your index to confirm this field is filterable.
 
    ```json
    {
