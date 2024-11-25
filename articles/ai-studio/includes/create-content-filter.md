@@ -46,9 +46,7 @@ Follow these steps to create a content filter:
 
     Content filtering configurations are created at the hub level in AI Foundry portal. Learn more about configurability in the [Azure OpenAI docs](/azure/ai-services/openai/how-to/content-filters).
 
-    You can create multiple content filtering configurations as per your requirements.
 
-    :::image type="content" source="../media/content-safety/content-filter/multiple.png" alt-text="Screenshot of multiple content configurations in the Azure portal." lightbox="../media/content-filters/multiple.png":::
 1. On the **Review** page, review the settings and then select **Create filter**.
 
 ### Use a blocklist as a filter
