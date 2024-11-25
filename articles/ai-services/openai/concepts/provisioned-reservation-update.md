@@ -1,3 +1,16 @@
+---
+title: 'Azure OpenAI Provisioned December 2024 Update'
+titleSuffix: Azure OpenAI
+description: Learn about new Provisioned skus and commercial changes for Provisioned offers
+manager: chrhoder
+ms.service: azure-ai-openai
+ms.custom:
+ms.topic: how-to
+ms.date: 11/25/2024
+author: sydneemayers
+ms.author: sydneemayers
+recommendations: false
+---
 # Azure OpenAI provisioned December 2024 update 
 
 In early-December, 2024, Microsoft launched several changes to the Provisioned offering. These changes include:
