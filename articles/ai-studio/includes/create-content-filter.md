@@ -11,7 +11,7 @@ ms.custom: include
 ---
 
 
-## Create a content filter
+## Create a content filter in Azure AI Foundry
 
 For any model deployment in [Azure AI Foundry](https://ai.azure.com), you can directly use the default content filter, but you might want to have more control. For example, you could make a filter stricter or more lenient, or enable more advanced capabilities like prompt shields and protected material detection.
 
