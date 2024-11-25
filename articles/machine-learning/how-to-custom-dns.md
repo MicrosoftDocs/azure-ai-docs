@@ -25,7 +25,7 @@ When using an Azure Machine Learning workspace (including Azure AI hubs) with a 
 - An Azure Virtual Network that uses [your own DNS server](/azure/virtual-network/virtual-networks-name-resolution-for-vms-and-role-instances#name-resolution-that-uses-your-own-dns-server).
 
 :::moniker range="azureml-api-2"
-- An Azure Machine Learning workspace with a private endpoint, including hub workspaces such as those used by Azure AI Studio. For more information, see [Create an Azure Machine Learning workspace](how-to-manage-workspace.md).
+- An Azure Machine Learning workspace with a private endpoint, including hub workspaces such as those used by Azure AI Foundry. For more information, see [Create an Azure Machine Learning workspace](how-to-manage-workspace.md).
 
 - If your workspace dependency resources are secured with an __Azure Virtual network__, familiarity with the [Network isolation during training & inference](./how-to-network-security-overview.md) article.
 :::moniker-end
@@ -57,7 +57,7 @@ Another option is to modify the `hosts` file on the client that is connecting to
 Access to a given Azure Machine Learning workspace via Private Link is done by communicating with the following Fully Qualified Domains (called the workspace FQDNs) listed below:
 
 > [!IMPORTANT]
-> If you are using a hub workspace (including Azure AI Studio hub), then you will have addtional entries for each project workspace created from the hub.
+> If you are using a hub workspace (including Azure AI Foundry hub), then you will have additional entries for each project workspace created from the hub.
 
 **Azure Public regions**:
 - ```<per-workspace globally-unique identifier>.workspace.<region the workspace was created in>.api.azureml.ms```

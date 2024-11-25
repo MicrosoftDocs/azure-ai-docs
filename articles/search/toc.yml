@@ -299,7 +299,7 @@ items:
             href: search-how-to-index-sql-server.md
         - name: OneLake files
           href: search-how-to-index-onelake-files.md
-        - name: SharePoint in Microsoft 365
+        - name: SharePoint and OneDrive
           href: search-howto-index-sharepoint-online.md
     - name: Skillsets
       items:
@@ -341,7 +341,7 @@ items:
       href: search-how-to-semantic-chunking.md   
     - name: Generate embeddings
       href: vector-search-how-to-generate-embeddings.md
-    - name: Use embedding models from Azure AI Studio
+    - name: Use embedding models from Azure AI Foundry
       href: vector-search-integrated-vectorization-ai-studio.md
     - name: Reduce vector size
       items:
@@ -357,7 +357,7 @@ items:
         href: vector-search-how-to-assign-narrow-data-types.md
       - name: Eliminate redundant storage
         href: vector-search-how-to-storage-options.md
-      - name: Truncate dimensions (preview)
+      - name: Truncate dimensions
         href: vector-search-how-to-truncate-dimensions.md
     - name: Query vectors
       href: vector-search-how-to-query.md
@@ -592,7 +592,7 @@ items:
       href: query-simple-syntax.md
     - name: Full Lucene query syntax
       href: query-lucene-syntax.md
-    - name: moreLikeThis (preview)
+    - name: moreLikeThis
       href: search-more-like-this.md
     - name: OData language reference
       items:
@@ -641,7 +641,7 @@ items:
       href: cognitive-search-skill-annotation-language.md
     - name: Azure AI resource skills
       items:
-      - name: Document Layout skill (preview)
+      - name: Document Layout skill
         href: cognitive-search-skill-document-intelligence-layout.md  
       - name: Entity Linking (v3)
         href: cognitive-search-skill-entity-linking-v3.md
@@ -661,7 +661,7 @@ items:
         href: cognitive-search-skill-sentiment-v3.md
       - name: Text Translation
         href: cognitive-search-skill-text-translation.md
-      - name: AI Vision multimodal embeddings (preview)
+      - name: AI Vision multimodal embeddings
         href: cognitive-search-skill-vision-vectorize.md      
     - name: Azure AI Search utility skills (nonbillable)
       items:
@@ -677,7 +677,7 @@ items:
         href: cognitive-search-skill-textsplit.md
     - name: Azure OpenAI skills
       items:
-      - name: Azure OpenAI Embedding (preview)
+      - name: Azure OpenAI Embedding
         href: cognitive-search-skill-azure-openai-embedding.md 
     - name: Custom skills
       items:
@@ -702,7 +702,7 @@ items:
       href: vector-search-vectorizer-azure-open-ai.md
     - name: Azure AI Vision
       href: vector-search-vectorizer-ai-services-vision.md
-    - name: Azure AI Studio model catalog
+    - name: Azure AI Foundry model catalog
       href: vector-search-vectorizer-azure-machine-learning-ai-studio-catalog.md
     - name: Custom Web API
       href: vector-search-vectorizer-custom-web-api.md
