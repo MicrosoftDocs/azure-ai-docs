@@ -28,18 +28,18 @@ If you prefer to use the legacy method for network isolation, see the following 
 
 ## Prerequisites
 
-* To use Azure Machine Learning, you must have an Azure subscription. If you don't have an Azure subscription, create a free account before you begin. Try the [free or paid version of Azure Machine Learning](https://azure.microsoft.com/free/) today.
+* An Azure subscription. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) before you begin.
 
-* Install and configure the [Azure CLI](/cli/azure/) and the `ml` extension to the Azure CLI. For more information, see [Install, set up, and use the CLI (v2)](how-to-configure-cli.md).
+* The [Azure CLI](/cli/azure/) and the Azure CLI `ml` extension, installed and configured. For more information, see [Install, set up, and use the CLI (v2)](how-to-configure-cli.md).
 
-    >[!TIP]
-    > Azure Machine Learning managed virtual network was introduced on May 23rd, 2023. If you have an older version of the ml extension, you might need to update it for the examples in this article to work. To update the extension, use the following Azure CLI command:
-    >
-    > ```azurecli
-    > az extension update -n ml
-    > ```
+  >[!TIP]
+  > The Azure Machine Learning managed virtual network feature was introduced on May 23, 2023. If you have an older version of the `ml` extension, you might need to update it for the examples in this article to work. To update the extension, use the following Azure CLI command:
+  >
+  > ```azurecli
+  > az extension update -n ml
+  > ```
 
-* The CLI examples in this article assume that you're using the Bash (or compatible) shell. For example, from a Linux system or [Windows Subsystem for Linux](/windows/wsl/about).
+* A Bash (or compatible) shell, for example, from a Linux system or [Windows Subsystem for Linux](/windows/wsl/about). The CLI examples in this article assume this type of shell.
 
 * You must have an Azure Resource Group, in which you (or the service principal you use) need to have `Contributor` access. You'll have such a resource group if you've configured your `ml` extension.
 

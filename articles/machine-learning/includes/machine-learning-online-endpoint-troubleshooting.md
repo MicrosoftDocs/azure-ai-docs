@@ -14,7 +14,7 @@ Managed online endpoints are a feature of the v2 API platform. If your Azure Mac
 To see how to turn off v1 legacy mode, see [Network isolation with v2](../how-to-configure-network-isolation-with-v2.md).
 
 > [!IMPORTANT]
-> Check with your network security team before you set `v1_legacy_mode` to `false`, because it might be turned on for a reason.
+> Check with your network security team before you set `v1_legacy_mode` to `false`, because v1 legacy mode might be turned on for a reason.
 
 ### Online endpoint creation with key-based authentication fails
 
@@ -49,7 +49,7 @@ If the value of `bypass` isn't `AzureServices`, use the guidance in [Configure k
    az acr private-endpoint-connection list -r <registry-name> --query "[?privateLinkServiceConnectionState.description=='Egress for Microsoft.MachineLearningServices/workspaces/onlineEndpoints'].{Name:name, status:privateLinkServiceConnectionState.status}"
    ```
 
-   In the response code, verify that the `status` field is set to `Approved`. If not, use the following command to approve it. Replace `<private-endpoint-name>` with the name returned from the preceding command.
+   In the response code, verify that the `status` field is set to `Approved`. If the value isn't `Approved`, use the following command to approve the connection. Replace `<private-endpoint-name>` with the name returned from the preceding command.
 
    ```azurecli
    az network private-endpoint-connection approve -n <private-endpoint-name>
@@ -93,9 +93,9 @@ If the value of `bypass` isn't `AzureServices`, use the guidance in [Configure k
 
 1. If the workspace with a private endpoint [uses a custom DNS server](../how-to-custom-dns.md), run the following command to verify that the resolution from the custom DNS server works correctly:
 
-```bash
-dig <endpoint-name>.<endpoint-region>.inference.ml.azure.com
-```
+   ```bash
+   dig <endpoint-name>.<endpoint-region>.inference.ml.azure.com
+   ```
 
 #### Kubernetes online endpoints
 
@@ -133,13 +133,13 @@ dig <endpoint-name>.<endpoint-region>.inference.ml.azure.com
 
 ### Online deployments can't be scored
 
-1. Run the following command to see whether the deployment was successful:
+1. Run the following command to see the status of the deployment:
 
    ```azurecli
    az ml online-deployment show -e <endpoint-name> -n <deployment-name> --query '{name:name,state:provisioning_state}' 
    ```
 
-   If the deployment completed successfully, the value of `state` is `Succeeded`.
+   For a successful deployment, the value of `state` is `Succeeded`.
 
 1. If the deployment was successful, use the following command to check that traffic is assigned to the deployment:
 
