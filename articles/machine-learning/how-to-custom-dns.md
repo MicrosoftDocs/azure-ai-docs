@@ -57,7 +57,7 @@ Another option is to modify the `hosts` file on the client that is connecting to
 Access to a given Azure Machine Learning workspace via Private Link is done by communicating with the following Fully Qualified Domains (called the workspace FQDNs) listed below:
 
 > [!IMPORTANT]
-> If you are using a hub workspace (including Azure AI Foundry hub), then you will have addtional entries for each project workspace created from the hub.
+> If you are using a hub workspace (including Azure AI Foundry hub), then you will have additional entries for each project workspace created from the hub.
 
 **Azure Public regions**:
 - ```<per-workspace globally-unique identifier>.workspace.<region the workspace was created in>.api.azureml.ms```

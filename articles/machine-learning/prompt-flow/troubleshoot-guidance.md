@@ -271,7 +271,7 @@ If you encounter an error like "Access denied to list workspace secret", check w
 
 ### How do I use credential-less datastore in prompt flow?
 
-To use credential-less storage in Azure AI Foundry portal. You need basically do following things:
+To use credential-less storage in Azure AI Foundry portal, you need to basically do the following things:
 - Change the data store auth type to None.
 - Grant project MSI and user blob/file data contributor permission on storage.
 

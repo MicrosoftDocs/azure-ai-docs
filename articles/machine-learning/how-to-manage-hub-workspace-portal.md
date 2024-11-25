@@ -41,7 +41,7 @@ As your needs change or your automation requirements increase, you can manage wo
 
 Use the following steps to create a hub from the Azure portal:
 
-1. From the Azure portal, search for `Azure AI Foundry` and create a new resource by selecting **+ New Azure AI**
+1. From the Azure portal, search for `Azure AI Foundry` and create a new resource by selecting **+ New Azure AI**.
 1. Enter your AI hub name, subscription, resource group, and location details.
 1. For advanced settings, select **Next: Resources** to specify resources, networking, encryption, identity, and tags. 
 
@@ -50,7 +50,7 @@ Use the following steps to create a hub from the Azure portal:
 1. Select an existing **Azure AI services** resource or create a new one. New Azure AI services include multiple API endpoints for Speech, Content Safety and Azure OpenAI. You can also bring an existing Azure OpenAI resource. Optionally, choose an existing **Storage account**, **Key vault**, **Container Registry**, and **Application insights** to host artifacts generated when you use AI Foundry.
 
     > [!TIP]
-    > You can skip selecting Azure AI Services if you plan to only work in Azure Machine Learning studio. Azure AI Services is required for Azure AI Foundry, and provide access to pre-built AI models for use in prompt flow.
+    > You can skip selecting Azure AI Services if you plan to only work in Azure Machine Learning studio. Azure AI Services is required for Azure AI Foundry, and provides access to pre-built AI models for use in prompt flow.
 
     :::image type="content" source="~/reusable-content/ce-skilling/azure/media/ai-studio/resource-create-resources.png" alt-text="Screenshot of the Create an Azure AI hub with the option to set resource information." lightbox="~/reusable-content/ce-skilling/azure/media/ai-studio/resource-create-resources.png"::: 
 
