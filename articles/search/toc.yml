@@ -341,7 +341,7 @@ items:
       href: search-how-to-semantic-chunking.md   
     - name: Generate embeddings
       href: vector-search-how-to-generate-embeddings.md
-    - name: Use embedding models from Azure AI Studio
+    - name: Use embedding models from Azure AI Foundry
       href: vector-search-integrated-vectorization-ai-studio.md
     - name: Reduce vector size
       items:
@@ -702,7 +702,7 @@ items:
       href: vector-search-vectorizer-azure-open-ai.md
     - name: Azure AI Vision
       href: vector-search-vectorizer-ai-services-vision.md
-    - name: Azure AI Studio model catalog
+    - name: Azure AI Foundry model catalog
       href: vector-search-vectorizer-azure-machine-learning-ai-studio-catalog.md
     - name: Custom Web API
       href: vector-search-vectorizer-custom-web-api.md
