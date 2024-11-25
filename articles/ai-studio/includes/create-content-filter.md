@@ -1,4 +1,14 @@
-
+---
+title: include file
+description: include file
+author: PatrickFarley
+ms.reviewer: pafarley
+ms.author: pafarley
+ms.service: azure-ai-studio
+ms.topic: include
+ms.date: 11/25/2024
+ms.custom: include
+---
 
 
 ## Create a content filter
