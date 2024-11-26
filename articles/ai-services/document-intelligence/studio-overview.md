@@ -39,7 +39,7 @@ Document Intelligence Studio contains all features released on or before Novembe
 
 ### When to use [AI Foundry](https://ai.azure.com/explore/aiservices/vision)
 
-Start with the new Azure AI Foundry and try any of the prebuilt document models from `2024-02-29-preview` version including general extraction models like Read or Layout. If you want to build and test a new [Document Field Extraction](https://ai.azure.com/explore/aiservices/vision/document/extraction) model, try our generative AI model, only available in the new AI Foundry.
+Start with the new Azure AI Foundry and try any of the prebuilt document models from `2024-02-29-preview` version including general extraction models like Read or Layout.
 
 ## Learn more about Document Intelligence Studio
 
@@ -55,7 +55,11 @@ Select the studio experience from the following tabs to learn more about each st
 
 The studio supports Document Intelligence v3.0 and later API versions for model analysis and custom model training. Previously trained v2.1 models with labeled data are supported, but not v2.1 model training. Refer to the [REST API migration guide](v3-1-migration-guide.md) for detailed information about migrating from v2.1 to v3.0.
 
-Use the [Document Intelligence Studio quickstart](quickstarts/try-document-intelligence-studio.md) to get started analyzing documents with document analysis or prebuilt models. Build custom models and reference the models in your applications using one of the [language specific `SDKs`](quickstarts/get-started-sdks-rest-api.md?view=doc-intel-3.0.0&preserve-view=true). To use Document Intelligence Studio, you need to acquire the following assets from the Azure portal:
+Use the [Document Intelligence Studio quickstart](quickstarts/try-document-intelligence-studio.md) to get started analyzing documents with document analysis or prebuilt models. Build custom models and reference the models in your applications using one of the [language specific `SDKs`](quickstarts/get-started-sdks-rest-api.md?view=doc-intel-3.0.0&preserve-view=true). 
+
+## Prerequisites
+
+To use Document Intelligence Studio, you need to acquire the following assets from the Azure portal:
 
 * **An Azure subscription** - [Create one for free](https://azure.microsoft.com/free/cognitive-services/).
 
