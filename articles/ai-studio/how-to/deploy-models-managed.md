@@ -26,7 +26,7 @@ In this article, you learn how to deploy models using the Azure Machine Learning
 
 You can deploy managed compute models using the Azure Machine Learning SDK, but first, let's browse the model catalog and get the model ID you need for deployment.
 
-1. Sign in to [AI Foundry](https://ai.azure.com) and go to the **Home** page.
+1. Sign in to [Azure AI Foundry](https://ai.azure.com) and go to the **Home** page.
 1. Select **Model catalog** from the left sidebar.
 1. In the **Deployment options** filter, select **Managed compute**.
 
@@ -161,5 +161,5 @@ To deploy and perform inferencing with real-time endpoints, you consume Virtual 
 
 ## Next steps
 
-- Learn more about what you can do in [AI Foundry](../what-is-ai-studio.md)
+- Learn more about what you can do in [Azure AI Foundry](../what-is-ai-studio.md)
 - Get answers to frequently asked questions in the [Azure AI FAQ article](../faq.yml)

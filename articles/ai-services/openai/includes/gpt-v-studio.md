@@ -1,7 +1,7 @@
 ---
 title: 'Quickstart: Use GPT-4 Turbo with Vision on your images and videos with the Azure OpenAI Service'
 titleSuffix: Azure OpenAI
-description: Use this article to get started using Azure AI Studio to deploy and use the GPT-4 Turbo with Vision model.
+description: Use this article to get started using Azure AI Foundry to deploy and use the GPT-4 Turbo with Vision model.
 services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-openai
@@ -10,7 +10,7 @@ ms.custom: references_regions, ignite-2024
 ms.date: 10/03/2024
 ---
 
-Start exploring GPT-4 Turbo with Vision capabilities with a no-code approach through Azure AI Studio.
+Start exploring GPT-4 Turbo with Vision capabilities with a no-code approach through Azure AI Foundry.
 
 ## Prerequisites
 
@@ -20,9 +20,9 @@ Start exploring GPT-4 Turbo with Vision capabilities with a no-code approach thr
 > [!NOTE]
 > It is currently not supported to turn off content filtering for the GPT-4 Turbo with Vision model.
 
-## Go to Azure AI Studio
+## Go to Azure AI Foundry
 
-Browse to [Azure AI Studio](https://ai.azure.com/) and sign in with the credentials associated with your Azure OpenAI resource. During or after the sign-in workflow, select the appropriate directory, Azure subscription, and Azure OpenAI resource.
+Browse to [Azure AI Foundry](https://ai.azure.com/) and sign in with the credentials associated with your Azure OpenAI resource. During or after the sign-in workflow, select the appropriate directory, Azure subscription, and Azure OpenAI resource.
 
 Under **Management** select **Deployments** and **Create** a GPT-4 Turbo with Vision deployment by selecting model name: **"gpt-4"** and model version **"vision-preview"**. For more information about model deployment, see the [resource deployment guide](/azure/ai-services/openai/how-to/create-resource).  
 
@@ -50,7 +50,7 @@ In this chat session, you're instructing the assistant to aid in understanding i
 1. In the **Chat session** pane, enter a text prompt like "Describe this image," and upload an image with the attachment button. You can use a different text prompt for your use case. Then select **Send**. 
 1. Observe the output provided. Consider asking follow-up questions related to the analysis of your image to learn more.
 
-:::image type="content" source="../media/quickstarts/studio-vision.png" lightbox="../media/quickstarts/studio-vision.png" alt-text="Screenshot of AI studio chat playground.":::
+:::image type="content" source="../media/quickstarts/studio-vision.png" lightbox="../media/quickstarts/studio-vision.png" alt-text="Screenshot of AI Foundry chat playground.":::
 
 
 ## Clean up resources
