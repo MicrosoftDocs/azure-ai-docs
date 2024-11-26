@@ -45,7 +45,7 @@ In addition to the updates for the hourly payment model, new Azure Reservations 
 | Provisioned | `ProvisionedManaged`  | Provisioned Managed Regional |
 
 > [!IMPORTANT]
-> Azure Reservations for Azure OpenAI Provisioned offers are not interchangeable across deployment types. The Azure Reservation purchased must match the provisioned deployment type. If the Azure Reservation purchased does not match the provisioned deployment type, the provisioned deployment will default to the hourly payment model until a matching Azure Reservation product is purchased. For more information, see the [Azure Reservations for Azure OpenAI Service Provisioned guidance](articles/cost-management-billing/reservations/azure-openai.md).
+> Azure Reservations for Azure OpenAI Provisioned offers are not interchangeable across deployment types. The Azure Reservation purchased must match the provisioned deployment type. If the Azure Reservation purchased does not match the provisioned deployment type, the provisioned deployment will default to the hourly payment model until a matching Azure Reservation product is purchased. For more information, see the [Azure Reservations for Azure OpenAI Service Provisioned guidance](/azure-docs/articles/cost-management-billing/reservations/azure-openai.md).
 
 ## Migrating existing deployments to Global or Data zone provisioned
 
