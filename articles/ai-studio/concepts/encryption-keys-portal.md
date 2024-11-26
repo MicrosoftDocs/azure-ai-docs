@@ -1,25 +1,25 @@
 ---
-title: Customer-Managed Keys for Azure AI Studio
-titleSuffix: Azure AI Studio
-description: Learn about using customer-managed keys for encryption to improve data security with Azure AI Studio.
+title: Customer-Managed Keys for Azure AI Foundry
+titleSuffix: Azure AI Foundry
+description: Learn about using customer-managed keys for encryption to improve data security with Azure AI Foundry.
 author: Blackmist
 ms.author: larryfr
 ms.service: azure-ai-services
 ms.custom:
   - ignite-2023
 ms.topic: concept-article
-ms.date: 10/7/2024
+ms.date: 11/21/2024
 ms.reviewer: deeikele
-# Customer intent: As an admin, I want to understand how I can use my own encryption keys with Azure AI Studio.
+# Customer intent: As an admin, I want to understand how I can use my own encryption keys with Azure AI Foundry.
 ---
 
-# Customer-managed keys for encryption with Azure AI Studio
+# Customer-managed keys for encryption with Azure AI Foundry
 
-Customer-managed keys (CMKs) in Azure AI Studio provide enhanced control over the encryption of your data. By using CMKs, you can manage your own encryption keys to add an extra layer of protection and meet compliance requirements more effectively.
+Customer-managed keys (CMKs) in Azure AI Foundry portal provide enhanced control over the encryption of your data. By using CMKs, you can manage your own encryption keys to add an extra layer of protection and meet compliance requirements more effectively.
 
-## About encryption in Azure AI Studio
+## About encryption in Azure AI Foundry portal
 
-Azure AI Studio layers on top of Azure Machine Learning and Azure AI services. By default, these services use Microsoft-managed encryption keys. 
+Azure AI Foundry layers on top of Azure Machine Learning and Azure AI services. By default, these services use Microsoft-managed encryption keys. 
 
 Hub and project resources are implementations of the Azure Machine Learning workspace and encrypt data in transit and at rest. For details, see [Data encryption with Azure Machine Learning](../../machine-learning/concept-data-encryption.md).
 
@@ -39,11 +39,11 @@ The following data is stored on the managed resources.
 |Service|What it's used for|Example|
 |-----|-----|-----|
 |Azure Cosmos DB|Stores metadata for your Azure AI projects and tools|Index names, tags; Flow creation timestamps; deployment tags; evaluation metrics|
-|Azure AI Search|Stores indices that are used to help query your AI studio content.|An index based off your model deployment names|
-|Azure Storage Account|Stores instructions for how customization tasks are orchestrated|JSON representation of flows you create in AI Studio|
+|Azure AI Search|Stores indices that are used to help query your AI Foundry content.|An index based off your model deployment names|
+|Azure Storage Account|Stores instructions for how customization tasks are orchestrated|JSON representation of flows you create in AI Foundry portal|
 
 >[!IMPORTANT]
-> Azure AI Studio uses Azure compute that is managed in the Microsoft subscription, for example when you fine-tune models or or build flows. Its disks are encrypted with Microsoft-managed keys. Compute is ephemeral, meaning after a task is completed the virtual machine is deprovisioned, and the OS disk is deleted. Compute instance machines used for 'Code' experiences are persistant. Azure Disk Encryption isn't supported for the OS disk. 
+> Azure AI Foundry uses Azure compute that is managed in the Microsoft subscription, for example when you fine-tune models or or build flows. Its disks are encrypted with Microsoft-managed keys. Compute is ephemeral, meaning after a task is completed the virtual machine is deprovisioned, and the OS disk is deleted. Compute instance machines used for 'Code' experiences are persistant. Azure Disk Encryption isn't supported for the OS disk. 
 
 ## (Preview) Service-side storage of encrypted data when using customer-managed keys
 
@@ -77,7 +77,7 @@ If connecting with Azure AI Services, or variants of Azure AI Services such as A
 
 ## Enable customer-managed keys
 
-Azure AI studio builds on hub as implementation of Azure Machine Learning workspace, Azure AI Services, and lets you connect with other resources in Azure. You must set encryption specifically on each resource.
+Azure AI Foundry builds on hub as implementation of Azure Machine Learning workspace, Azure AI Services, and lets you connect with other resources in Azure. You must set encryption specifically on each resource.
 
 Customer-managed key encryption is configured via Azure portal in a similar way for each Azure resource:
 1. Create a new Azure resource in Azure portal.
@@ -85,7 +85,7 @@ Customer-managed key encryption is configured via Azure portal in a similar way 
 
 :::image type="content" source="../../machine-learning/media/concept-customer-managed-keys/cmk-service-side-encryption.png" alt-text="Screenshot of the encryption tab with the option for service side encryption selected." lightbox="../../machine-learning/media/concept-customer-managed-keys/cmk-service-side-encryption.png":::
 
-Alternatively, use infrastructure-as-code options for automation. Example Bicep templates for Azure AI Studio are available on the Azure Quickstart repo:
+Alternatively, use infrastructure-as-code options for automation. Example Bicep templates for Azure AI Foundry are available on the Azure Quickstart repo:
 1. [CMK encryption for hub](https://github.com/Azure/azure-quickstart-templates/tree/master/quickstarts/microsoft.machinelearningservices/aistudio-cmk).
 1. [Service-side CMK encryption preview for hub](https://github.com/azure/azure-quickstart-templates/tree/master/quickstarts/microsoft.machinelearningservices/aistudio-cmk-service-side-encryption).
 

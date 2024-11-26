@@ -12,7 +12,7 @@ author: msakande
 ms.reviewer: kritifaujdar
 ms.custom: [references_regions]
 ms.collection: ce-skilling-ai-copilot
-#This functionality is also available in Azure AI Studio: /azure/ai-studio/how-to/deploy-models-mistral.md
+#This functionality is also available in Azure AI Foundry portal: /azure/ai-studio/how-to/deploy-models-mistral.md
 ---
 # How to deploy Mistral models with Azure Machine Learning studio
 
@@ -331,4 +331,4 @@ Models deployed as a service with pay-as-you-go are protected by Azure AI conten
 - [Model Catalog and Collections](concept-model-catalog.md)
 - [Region availability for models in serverless API endpoints](concept-endpoint-serverless-availability.md)
 - [Deploy and score a machine learning model by using an online endpoint](how-to-deploy-online-endpoints.md)
-- [Plan and manage costs for Azure AI Studio](concept-plan-manage-cost.md)
+- [Plan and manage costs for Azure AI Foundry](/azure/ai-studio/how-to/costs-plan-manage)

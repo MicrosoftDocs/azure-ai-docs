@@ -1,31 +1,32 @@
 ---
 title: Create and manage prompt flow compute sessions
-titleSuffix: Azure AI Studio
-description: In this article, learn how to create and manage compute sessions to run prompt flows in Azure AI Studio.
+titleSuffix: Azure AI Foundry
+description: In this article, learn how to create and manage compute sessions to run prompt flows in Azure AI Foundry portal.
 manager: scottpolly
 ms.service: azure-ai-studio
 ms.custom:
   - ignite-2023
   - build-2024
+  - ignite-2024
 ms.topic: how-to
-ms.date: 5/21/2024
+ms.date: 11/07/2024
 ms.reviewer: lochen
 ms.author: sgilley
 author: sdgilley
-# customer intent: Learn how to create and manage prompt flow compute sessions in Azure AI Studio.
+# customer intent: Learn how to create and manage prompt flow compute sessions in Azure AI Foundry portal.
 ---
 
-# Create and manage prompt flow compute sessions in Azure AI Studio
+# Create and manage prompt flow compute sessions in Azure AI Foundry portal
 
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
-You need a compute session to run [prompt flows](prompt-flow.md). Use Azure AI Studio to create and manage prompt flow compute sessions.
+You need a compute session to run [prompt flows](prompt-flow.md). Use Azure AI Foundry to create and manage prompt flow compute sessions.
 
-A prompt flow compute session has computing resources that are required for the application to run, including a Docker image that contains all necessary dependency packages. In addition to flow execution, Azure AI Studio uses the compute session to ensure the accuracy and functionality of the tools incorporated within the flow when you make updates to the prompt or code content.
+A prompt flow compute session has computing resources that are required for the application to run, including a Docker image that contains all necessary dependency packages. In addition to flow execution, Azure AI Foundry uses the compute session to ensure the accuracy and functionality of the tools incorporated within the flow when you make updates to the prompt or code content.
 
 ## Prerequisites
 
-Sign in to [Azure AI Studio](https://ai.azure.com) and select your prompt flow.
+Sign in to [Azure AI Foundry](https://ai.azure.com) and select your project.
 
 ## Create a compute session
 
@@ -35,16 +36,16 @@ When you start a compute session, you can use the default settings or customize 
 
 By default, the compute session uses the environment defined in `flow.dag.yaml` in the [flow folder](flow-develop.md#authoring-the-flow). It runs on a serverless compute with a virtual machine (VM) size for which you have sufficient quota in your workspace.
 
-1. Go to your project in Azure AI Studio.
-1. From the left pane, select **Flows** and then select the flow you want to run.
+1. Go to your project in Azure AI Foundry portal.
+1. From the left pane, select **Prompt flow** and then select the flow you want to run.
 1. From the top toolbar of your prompt flow, select **Start compute session**.
 
 ### Start a compute session with advanced settings
 
 In the advanced settings, you can select the compute type. You can choose between serverless compute and compute instance.
 
-1. Go to your project in Azure AI Studio.
-1. From the left pane, select **Flows** and then select the flow you want to run.
+1. Go to your project in Azure AI Foundry portal.
+1. From the left pane, select **Prompt flow** and then select the flow you want to run.
 1. From the top toolbar of your prompt flow, select the dropdown arrow on the right side of the **Start compute session** button. Select **Start with advanced settings** to customize the compute session.
 
     :::image type="content" source="../media/prompt-flow/how-to-create-manage-compute-session/compute-session-create-automatic-init.png" alt-text="Screenshot of prompt flow with default settings for starting a compute session on a flow page." lightbox = "../media/prompt-flow/how-to-create-manage-compute-session/compute-session-create-automatic-init.png":::

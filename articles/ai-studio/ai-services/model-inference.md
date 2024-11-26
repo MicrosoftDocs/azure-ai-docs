@@ -1,6 +1,6 @@
 ---
 title: What is Azure AI model inference service?
-titleSuffix: Azure AI Studio
+titleSuffix: Azure AI Foundry
 description: Apply advanced language models to variety of use cases with Azure AI model inference
 manager: nitinme
 author: mrbullwinkle

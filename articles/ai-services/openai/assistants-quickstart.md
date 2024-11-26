@@ -20,7 +20,7 @@ Azure OpenAI Assistants (Preview) allows you to create AI assistants tailored to
 
 ::: zone pivot="programming-language-ai-studio"
 
-[!INCLUDE [AI Studio](includes/assistants-ai-studio.md)]
+[!INCLUDE [AI Foundry](includes/assistants-ai-studio.md)]
 
 ::: zone-end
 

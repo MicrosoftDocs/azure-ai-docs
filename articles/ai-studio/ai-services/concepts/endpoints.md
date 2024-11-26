@@ -1,6 +1,6 @@
 ---
 title: Use the Azure AI model inference endpoint
-titleSuffix: Azure AI studio
+titleSuffix: Azure AI Foundry
 description: Learn about to use the Azure AI model inference endpoint and how to configure it.
 ms.service: azure-ai-studio
 ms.topic: conceptual

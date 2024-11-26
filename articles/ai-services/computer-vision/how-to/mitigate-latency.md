@@ -6,6 +6,7 @@ description: Learn how to mitigate network latency and improve service performan
 author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-vision
+ms.subservice: azure-ai-face
 ms.topic: how-to
 ms.date: 11/06/2023
 ms.author: pafarley
@@ -13,6 +14,7 @@ ms.devlang: csharp
 ms.custom:
   - cogserv-non-critical-vision
   - ignite-2023
+feedback_help_link_url: https://learn.microsoft.com/answers/tags/156/azure-face
 ---
 
 # Mitigate latency and improve performance

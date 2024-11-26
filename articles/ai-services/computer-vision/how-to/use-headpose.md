@@ -14,6 +14,7 @@ ms.devlang: csharp
 ms.custom:
   - devx-track-csharp
   - ignite-2023
+feedback_help_link_url: https://learn.microsoft.com/answers/tags/156/azure-face
 ---
 
 # Use the HeadPose attribute

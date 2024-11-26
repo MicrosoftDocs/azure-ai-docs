@@ -158,6 +158,8 @@ items:
       href: ./how-to/embeddings.md
     - name: Getting started with embeddings
       href: ./tutorials/embeddings.md
+  - name: Evaluation
+    href: ./how-to/evaluations.md
   - name: Fine-tuning
     items:
       - name: Fine-tuning your model
@@ -166,6 +168,8 @@ items:
       - name: Function calling
         href: ./how-to/fine-tuning-functions.md
         displayName: fine-tuning, finetuning
+      - name: Weights & Biases integration (preview)
+        href: ./how-to/weights-and-biases-integration.md
   - name: Use your data
     items:
       - name: Text data
@@ -183,6 +187,8 @@ items:
     href: ./how-to/migration.md
   - name: Migrate to OpenAI JavaScript v4.x
     href: ./how-to/migration-javascript.md
+  - name: Migrate to Azure OpenAI .NET v2.0
+    href: ./how-to/dotnet-migration.md
   - name: Models
     items:
       - name: Manage models
@@ -286,6 +292,8 @@ items:
           href: ./references/elasticsearch.md
         - name: Data source - Pinecone (preview)
           href: ./references/pinecone.md
+        - name: Data source - Mongo DB (preview)
+          href: ./references/mongo-db.md
         - name: Ingestion API (preview)
           href: /rest/api/azureopenai/ingestion-jobs?context=/azure/ai-services/openai/context/context
     - name: Azure Resource Manager/Bicep/Terraform

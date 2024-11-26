@@ -11,6 +11,7 @@ ms.subservice: azure-ai-face
 ms.topic: reference
 ms.date: 02/17/2021
 ms.author: nitinme
+feedback_help_link_url: https://learn.microsoft.com/answers/tags/156/azure-face
 ---
 
 # Face API reference list

@@ -186,7 +186,7 @@ environment: azureml://registries/azureml/environments/sklearn-1.1/versions/4
 inputs:
   input_data:
     mode: ro_mount
-    path: azureml:wasbs://data@azuremlexampledata.blob.core.windows.net/titanic.csv
+    path: wasbs://data@azuremlexampledata.blob.core.windows.net/titanic.csv
     type: uri_file
 ```
 
@@ -321,7 +321,7 @@ environment: azureml://registries/azureml/environments/sklearn-1.1/versions/4
 inputs:
   input_data:
     mode: ro_mount
-    path: azureml:wasbs://data@azuremlexampledata.blob.core.windows.net/titanic.csv
+    path: wasbs://data@azuremlexampledata.blob.core.windows.net/titanic.csv
     type: uri_file
 outputs:
   output_data:
@@ -967,7 +967,7 @@ Files are usually read in *blocks* of 1-4 MB in size. Files smaller than a block
 
 For small files, the latency interval mostly involves handling the requests to storage, instead of data transfers. Therefore, we offer these recommendations to increase the file size:
 
-- For unstructured data (images, text, video, etc.), archive (zip/tar) small files together, to store them as a larger file that can be read in multiple chunks. These larger archived files can be opened in the compute resource, and [PyTorch Archive DataPipes](https://pytorch.org/data/main/torchdata.datapipes.iter.html#archive-datapipes) can extract the smaller files.
+- For unstructured data (images, text, video, etc.), archive (zip/tar) small files together, to store them as a larger file that can be read in multiple chunks. These larger archived files can be opened in the compute resource, and [PyTorch Archive DataPipes](https://pytorch.org/data/0.9/dp_tutorial.html) can extract the smaller files.
 - For structured data (CSV, parquet, etc.), examine your ETL process, to make sure that it coalesces files to increase size. Spark has `repartition()` and `coalesce()` methods to help increase file sizes.
 
 If you can't increase your file sizes, explore your [Azure Storage options](#azure-storage-options).

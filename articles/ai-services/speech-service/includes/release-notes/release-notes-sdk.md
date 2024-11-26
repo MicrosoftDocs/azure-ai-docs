@@ -7,7 +7,13 @@ ms.author: eur
 ---
 ### 2024-November release
 
+#### Azure AI Speech Toolkit extension for Visual Studio Code
+
 Azure AI Speech Toolkit extension is now available for Visual Studio Code users. It contains a list of speech quick-starts and scenario samples that can be easily built and run with simple clicks. For more information, see [Azure AI Speech Toolkit in Visual Studio Code Marketplace](https://aka.ms/speech-toolkit-vscode).
+
+#### Text to speech avatar code samples
+
+We added text to speech avatar code samples for [Android](https://github.com/Azure-Samples/cognitive-services-speech-sdk/tree/master/samples/java/android/avatar) and [iOS](https://github.com/Azure-Samples/cognitive-services-speech-sdk/tree/master/samples/swift/ios/avatar). These samples demonstrate how to use real-time text to speech avatars in your mobile applications.
 
 ### Speech SDK 1.41.1: 2024-October release
 
