@@ -26,6 +26,8 @@ items:
     href: search-get-started-semantic.md
   - name: Chat with your data 
     href: /azure/ai-services/openai/use-your-data-quickstart?context=/azure/search/context/context
+  - name: Keyless authentication
+    href: search-get-started-rbac.md
   - name: Portal
     items:
     - name: Keyword search wizard
@@ -56,8 +58,6 @@ items:
       href: search-get-started-bicep.md
     - name: Terraform
       href: search-get-started-terraform.md
-  - name: Keyless authentication
-    href: search-get-started-rbac.md
 - name: Tutorials
   items:
   - name: Dev tutorials
