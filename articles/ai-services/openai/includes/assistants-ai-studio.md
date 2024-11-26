@@ -1,7 +1,7 @@
 ---
-title: Quickstart - getting started with Azure OpenAI assistants (preview) in AI Studio
+title: Quickstart - getting started with Azure OpenAI assistants (preview) in AI Foundry portal
 titleSuffix: Azure OpenAI
-description: Walkthrough on how to get started with Azure OpenAI assistants with new features like code interpreter in AI Studio (Preview).
+description: Walkthrough on how to get started with Azure OpenAI assistants with new features like code interpreter in AI Foundry portal (Preview).
 manager: nitinme
 ms.service: azure-ai-studio
 ms.custom:
@@ -19,14 +19,14 @@ author: mrbullwinkle
 
 - An Azure subscription - <a href="https://azure.microsoft.com/free/cognitive-services" target="_blank">Create one for free</a>.
 - An [Azure AI hub resource](../../../ai-studio/how-to/create-azure-ai-resource.md) with a model deployed. For more information about model deployment, see the [resource deployment guide](../how-to/create-resource.md).
-- An [Azure AI project](../../../ai-studio/how-to/create-projects.md) in Azure AI Studio.
+- An [Azure AI project](../../../ai-studio/how-to/create-projects.md) in Azure AI Foundry portal.
 
-## Go to the Azure AI Studio (Preview)
+## Go to the Azure AI Foundry portal (Preview)
 
-[Azure AI Studio](https://ai.azure.com) lets you use Assistants v2 which provides several upgrades such as the [file search](../how-to/file-search.md) tool which is faster and supports more files.
+[Azure AI Foundry](https://ai.azure.com) lets you use Assistants v2 which provides several upgrades such as the [file search](../how-to/file-search.md) tool which is faster and supports more files.
 
-1. Sign in to [Azure AI Studio](https://ai.azure.com).
-1. Go to your project or [create a new project](../../../ai-studio//how-to/create-projects.md) in Azure AI Studio.
+1. Sign in to [Azure AI Foundry](https://ai.azure.com).
+1. Go to your project or [create a new project](../../../ai-studio//how-to/create-projects.md) in Azure AI Foundry portal.
 1. From your project overview, select **Assistants**, located under **playgrounds**.
 
     The Assistants playground allows you to explore, prototype, and test AI Assistants without needing to run any code. From this page, you can quickly iterate and experiment with new ideas.
