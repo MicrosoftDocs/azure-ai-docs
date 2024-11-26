@@ -122,7 +122,7 @@ You can use either the **Import data** wizard or **Import and vectorize data** w
 
 1. Specify an authentication method, either a SQL Server login defined during server setup, or a managed identity.
 
-   If you [configure Azure AI Search to use a managed identity](search-howto-managed-identities-data-sources.md), and you create a role assignment on the database server that grants **SQL Server Contributor** or **SQL Server DB Contributor** permissions to the identity, your indexer can connect to Azure SQL using Microsoft Entra ID and roles.
+   If you [configure Azure AI Search to use a managed identity](search-howto-managed-identities-data-sources.md), and you create a role assignment on the database server that grants **SQL Server Contributor** or **SQL DB Contributor** permissions to the identity, your indexer can connect to Azure SQL using Microsoft Entra ID and roles.
 
 1. For the **Import and vectorize data** wizard, you can specify options for change and deletion tracking.
 
@@ -280,7 +280,7 @@ An indexer runs automatically when it's created. You can prevent this by setting
 
 ## Check indexer status
 
-To monitor the indexer status and execution history, check the indexer execution history in the Azure portal, or send a [Get Indexer Status](/rest/api/searchservice/indexers/get-status) REST APIrequest
+To monitor the indexer status and execution history, check the indexer execution history in the Azure portal, or send a [Get Indexer Status](/rest/api/searchservice/indexers/get-status) REST API request
 
 ### [**Portal**](#tab/portal-check-indexer)
 
