@@ -47,14 +47,17 @@ To help with simplifying the sizing effort, the following table outlines the TPM
 | --- | --- | --- |
 |Global provisioned minimum deployment|15|15|
 |Global provisioned scale increment|5|5|
-| Regional provisioned minimum deployment | 50 | 25|
+|Regional provisioned minimum deployment | 50 | 25|
 |Regional provisioned scale increment|50|25|
 |Max Input TPM per PTU | 2,500 | 37,000  |
 |Max Output TPM per PTU| 833|12,333|
-| Latency Target Value |25 Tokens Per Second|33 Tokens Per Second|
+|Latency Target Value |25 Tokens Per Second|33 Tokens Per Second|
 
 For a full list see the [AOAI Studio calculator](https://oai.azure.com/portal/calculator).
 
+
+> [!NOTE]
+> Global provisioned deployments are only supported for gpt-4o, 2024-08-06 and gpt-4o-mini, 2024-07-18 models at this time. For more information on model availability, review the [models documentation](./models.md).
 
 ## Key concepts
 
