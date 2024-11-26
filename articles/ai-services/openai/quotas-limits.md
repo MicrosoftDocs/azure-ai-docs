@@ -44,7 +44,7 @@ The following sections provide you with a quick guide to the default quotas and 
 | Max number of `/chat/completions` functions | 128 |
 | Max number of `/chat completions` tools | 128 |
 | Maximum number of Provisioned throughput units per deployment | 100,000 |
-| Max files per Assistant/thread | 10,000 when using the API or AI Studio. 20 when using Azure OpenAI Studio.|
+| Max files per Assistant/thread | 10,000 when using the API or AI Foundry. 20 when using Azure OpenAI Studio.|
 | Max file size for Assistants & fine-tuning | 512 MB |
 | Max size for all uploaded files for Assistants |100 GB |
 | Assistants token limit | 2,000,000 token limit |
@@ -181,7 +181,7 @@ To minimize issues related to rate limits, it's a good idea to use the following
 
 ### How to request increases to the default quotas and limits
 
-Quota increase requests can be submitted from the [Quotas](./how-to/quota.md) page of Azure AI Studio. Due to high demand, quota increase requests are being accepted and will be filled in the order they're received. Priority is given to customers who generate traffic that consumes the existing quota allocation, and your request might be denied if this condition isn't met.
+Quota increase requests can be submitted from the [Quotas](./how-to/quota.md) page of Azure AI Foundry. Due to high demand, quota increase requests are being accepted and will be filled in the order they're received. Priority is given to customers who generate traffic that consumes the existing quota allocation, and your request might be denied if this condition isn't met.
 
 For other rate limits, [submit a service request](../cognitive-services-support-options.md?context=/azure/ai-services/openai/context/context).
 

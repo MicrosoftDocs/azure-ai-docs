@@ -134,7 +134,7 @@ You can use the following policy to disable access to Azure OpenAI global standa
 
 ## Deploy models
 
-:::image type="content" source="../media/deployment-types/deploy-models-new.png" alt-text="Screenshot that shows the model deployment dialog in Azure AI Studio with three deployment types highlighted." lightbox="../media/deployment-types/deploy-models-new.png":::
+:::image type="content" source="../media/deployment-types/deploy-models-new.png" alt-text="Screenshot that shows the model deployment dialog in Azure AI Foundry portal with three deployment types highlighted." lightbox="../media/deployment-types/deploy-models-new.png":::
 
 To learn about creating resources and deploying models refer to the [resource creation guide](./create-resource.md).
 
