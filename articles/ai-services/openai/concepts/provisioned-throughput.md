@@ -57,7 +57,7 @@ For a full list see the [AOAI Studio calculator](https://oai.azure.com/portal/ca
 
 
 > [!NOTE]
-> Global provisioned deployments are only supported for gpt-4o, 2024-08-06 and gpt-4o-mini, 2024-07-18 models at this time. For more information on model availability, review the [models documentation](articles/ai-services/openai/concepts/models.md).
+> Global provisioned deployments are only supported for gpt-4o, 2024-08-06 and gpt-4o-mini, 2024-07-18 models at this time. For more information on model availability, review the [models documentation](./models.md).
 
 ## Key concepts
 
