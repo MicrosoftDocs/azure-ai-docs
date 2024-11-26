@@ -19,7 +19,7 @@ You can create custom blocklists in the Azure AI Foundry portal as part of your 
 
 ## Create a blocklist
 
-1. Go to [AI Foundry](https://ai.azure.com/) and navigate to your project/hub. Then select the **Safety+ Security** page on the left nav and select the **Blocklists** tab.
+1. Go to [Azure AI Foundry](https://ai.azure.com/) and navigate to your project/hub. Then select the **Safety+ Security** page on the left nav and select the **Blocklists** tab.
     :::image type="content" source="../media/content-safety/content-filter/select-blocklists.png" lightbox="../media/content-safety/content-filter/select-blocklists.png" alt-text="Screenshot of the Blocklists page tab.":::
 1. Select **Create a blocklist**. Enter a name for your blocklist, add a description, and select an Azure OpenAI resource to connect it to. Then select **Create Blocklist**.
 1. Select your new blocklist once it's created. On the blocklist's page, select **Add new term**.
