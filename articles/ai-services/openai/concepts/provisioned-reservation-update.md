@@ -35,7 +35,7 @@ For more information, see the [deployment types guide](https://aka.ms/aoai/docs/
 ### New hourly pricing for Global and Data Zone provisioned deployments
 In August 2024, Microsoft announced that Provisioned deployments would move to a new [hourly payment model](./provisioned-migration.md) with the option to purchase Azure Reservations to support additional discounts. In December's provisioned update, we will be introducing differentiated hourly pricing across Global provisioned, Data zone provisioned, and provisioned deployment types. For more information on the hourly price for each Provisioned deployment type, see the [Pricing details page](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/). 
 
-### New Azure Reservations for Globl and Data zone provisioned deployments
+### New Azure Reservations for Global and Data zone provisioned deployments
 In addition to the updates for the hourly payment model, new Azure Reservations will be introduced specifically for Global and Data zone provisioned deployment types. With these new Azure Reservations, every Provisioned deployment type will have a separate Azure Reservation that can be purchased to support additional discounts. The mapping between each provisioned deployment type and the associated Azure Reservation are as the following:
 
 | Provisioned deployment type | Sku name in code  | Azure Reservation product name |
@@ -60,7 +60,7 @@ The zero downtime migration approach allows customers to migrate their existing 
 - Once you confirm that no inference calls have been made, delete the regional provisioned deployment.
 
 ### Migration with downtime 
-The migration with downtime approach involves migrating existing provisioned deployments to global or data zone provisioned deployments while stopping any exisitng inference traffic on the original provisioned deployment. This migration approach does not require coexistence of multiple deployments to support but does require workload interruption to complete. The process to migrate a provisioned deployment using the migration with downtime approach is as follows:
+The migration with downtime approach involves migrating existing provisioned deployments to global or data zone provisioned deployments while stopping any existing inference traffic on the original provisioned deployment. This migration approach does not require coexistence of multiple deployments to support but does require workload interruption to complete. The process to migrate a provisioned deployment using the migration with downtime approach is as follows:
 - Validate that there are no inference requests being processed on the previous provisioned deployment by ensuring the Azure OpenAI Requests metric does not show any API calls made within the last 5-10 minutes. For more information on this metric, [see the Monitor Azure OpenAI documentation](https://aka.ms/aoai/docs/monitor-azure-openai).
 - Once you confirm that no inference calls have been made, delete the regional provisioned deployment.
 - Create a new deployment using the global or data zone deployment types in the target Azure OpenAI resource.
