@@ -99,7 +99,7 @@ If you already have an Azure AI Search connection in your project, you can skip 
 
 In the Azure AI Foundry portal, check for an Azure AI Search connected resource.
 
-1. In [AI Foundry](https://ai.azure.com), go to your project and select **Management center** from the left pane.
+1. In [Azure AI Foundry](https://ai.azure.com), go to your project and select **Management center** from the left pane.
 1. In the **Connected resources** section, look to see if you have a connection of type **Azure AI Search**.
 1. If you have an Azure AI Search connection, you can skip ahead to the next section.
 1. Otherwise, select **New connection** and then **Azure AI Search**.
