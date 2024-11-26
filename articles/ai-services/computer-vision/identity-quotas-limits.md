@@ -25,7 +25,7 @@ This article contains a reference and a detailed description of the quotas and l
 | **Pricing tier** | **Limit value** |
 | --- | --- |
 | Free (F0) | 20 transactions per minute |
-| Standard (S0),</br>Enterprise (E0) | 10 transactions per second, and 200 TPS across all resources in a single region.</br>See the next section if you want to increase this limit. |
+| Standard (S0), </br>Enterprise (E0) | 10 transactions per second, and 200 TPS across all resources in a single region. </br>See the next section if you want to increase this limit. |
 
 > [!NOTE]
 > If you exceed the default rate limit, you'll receive a `429` error. To address this issue, refer to the [Performance guide](/azure/ai-services/computer-vision/how-to/mitigate-latency#handle-errors-effectively).
@@ -69,39 +69,39 @@ We evaluate TPS increase requests on a case-by-case basis, and our decision is b
 | **Pricing tier** | **Limit value** |
 | --- | --- |
 | Free (F0) |<ul><li>1 PersonDirectory</li><li>1,000 persons</li><li>Each holds up to 248 faces.</li><li>1,000,000 DynamicPersonGroups</li></ul>|
-| Standard (S0),</br>Enterprise (E0) | <ul><li>1 PersonDirectory</li><li>20,000,000 persons<ul><li>Contact support if you want to increase this limit.</li></ul></li><li>Each holds up to 248 faces.</li><li>1,000,000 DynamicPersonGroups</li></ul> |
+| Standard (S0), </br>Enterprise (E0) | <ul><li>1 PersonDirectory</li><li>20,000,000 persons<ul><li>Contact support if you want to increase this limit.</li></ul></li><li>Each holds up to 248 faces.</li><li>1,000,000 DynamicPersonGroups</li></ul> |
 
 
 **Quota of FaceList**
 
 | **Pricing tier** | **Limit value** |
 | --- | --- |
-| Free (F0),</br>Standard (S0),</br>Enterprise (E0) |<ul><li>64 FaceLists.</li><li>Each holds up to 1,000 faces.</li></ul>|
+| Free (F0), </br>Standard (S0), </br>Enterprise (E0) |<ul><li>64 FaceLists.</li><li>Each holds up to 1,000 faces.</li></ul>|
 
 **Quota of LargeFaceList**
 
 | **Pricing tier** | **Limit value** |
 | --- | --- |
 | Free (F0) | <ul><li>64 LargeFaceLists.</li><li>Each holds up to 1,000 faces.</li></ul>|
-| Standard (S0),</br>Enterprise (E0)  | <ul><li>1,000,000 LargeFaceLists.</li><li>Each holds up to 1,000,000 faces.</li></ul> |
+| Standard (S0), </br>Enterprise (E0)  | <ul><li>1,000,000 LargeFaceLists.</li><li>Each holds up to 1,000,000 faces.</li></ul> |
 
 **Quota of PersonGroup** 
 
 | **Pricing tier** | **Limit value** |
 | --- | --- |
 | Free (F0) |<ul><li>1,000 PersonGroups. </li><li>Each holds up to 1,000 Persons.</li><li>Each Person can hold up to 248 faces.</li></ul>|
-| Standard (S0),</br>Enterprise (E0)  |<ul><li>1,000,000 PersonGroups.</li> <li>Each holds up to 10,000 Persons.</li><li>Each Person can hold up to 248 faces.</li></ul>|
+| Standard (S0), </br>Enterprise (E0)  |<ul><li>1,000,000 PersonGroups.</li> <li>Each holds up to 10,000 Persons.</li><li>Each Person can hold up to 248 faces.</li></ul>|
 
 **Quota of LargePersonGroup** 
 
 | **Pricing tier** | **Limit value** |
 | --- | --- |
 | Free (F0) | <ul><li>1,000 LargePersonGroups</li><li> Each holds up to 1,000 Persons.</li><li>Each Person can hold up to 248 faces.</li></ul> |
-| Standard (S0),</br>Enterprise (E0) | <ul><li>1,000,000 LargePersonGroups</li><li> Each holds up to 1,000,000 Persons.</li><li>Each Person can hold up to 248 faces.</li><li>The total Persons in all LargePersonGroups shouldn't exceed 1,000,000,000.</li></ul> |
+| Standard (S0), </br>Enterprise (E0) | <ul><li>1,000,000 LargePersonGroups</li><li> Each holds up to 1,000,000 Persons.</li><li>Each Person can hold up to 248 faces.</li><li>The total Persons in all LargePersonGroups shouldn't exceed 1,000,000,000.</li></ul> |
 
 **[Customer-managed keys (CMK)](/azure/ai-services/computer-vision/identity-encrypt-data-at-rest)**
 
 | **Pricing tier** | **Limit value** |
 | --- | --- |
-| Free (F0),</br>Standard (S0)  | Not supported |
+| Free (F0), </br>Standard (S0)  | Not supported |
 | Enterprise (E0) | Supported |
