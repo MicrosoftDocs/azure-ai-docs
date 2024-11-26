@@ -56,6 +56,8 @@ items:
       href: search-get-started-bicep.md
     - name: Terraform
       href: search-get-started-terraform.md
+  - name: Keyless authentication
+    href: search-get-started-rbac.md
 - name: Tutorials
   items:
   - name: Dev tutorials
