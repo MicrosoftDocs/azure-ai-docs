@@ -75,7 +75,7 @@ The script also logs the evaluation results to the cloud project so that you can
  
     :::code language="python" source="~/azureai-samples-nov2024/scenarios/rag/custom-rag-app/evaluate.py" id="run_evaluation":::
 
-### Configure the evaluation model 
+### Configure the evaluation model
 
 Since the evaluation script calls the model many times, you might want to increase the number of tokens per minute for the evaluation model.  
 

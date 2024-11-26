@@ -20,7 +20,7 @@ ms.custom: ignite-2023, build-2024, ignite-2024
 
 [!INCLUDE [new-name](includes/new-name.md)]
 
-[AI Foundry](https://ai.azure.com) is designed for developers to:
+[Azure AI Foundry](https://ai.azure.com) is designed for developers to:
 
 - Build generative AI applications on an enterprise-grade platform.
 - Explore, build, test, and deploy using cutting-edge AI tools and ML models, grounded in responsible AI practices.
