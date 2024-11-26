@@ -45,16 +45,18 @@ In addition to the updates for the hourly payment model, new Azure Reservations 
 | Provisioned | `ProvisionedManaged`  | Provisioned Managed Regional |
 
 > [!IMPORTANT]
-> Azure Reservations for Azure OpenAI Provisioned offers are not interchangeable across deployment types. The Azure Reservation purchased must match the provisioned deployment type. If the Azure Reservation purchased does not match the provisioned deployment type, the provisioned deployment will default to the hourly payment model until a matching Azure Reservation product is purchased. For more information, see the [Azure Reservations for Azure OpenAI Service Provisioned guidance](/azure-docs/articles/cost-management-billing/reservations/azure-openai.md).
+> Azure Reservations for Azure OpenAI Provisioned offers are not interchangeable across deployment types. The Azure Reservation purchased must match the provisioned deployment type. If the Azure Reservation purchased does not match the provisioned deployment type, the provisioned deployment will default to the hourly payment model until a matching Azure Reservation product is purchased. For more information, see the [Azure Reservations for Azure OpenAI Service Provisioned guidance](https://aka.ms/oai/docs/ptum-reservations).
 
 ## Migrating existing deployments to Global or Data zone provisioned
+Existing customers of provisioned deployments can choose to migrate to Global or Data zone provisioned deployments to benefit from the lower deployment minimums, granular scale increments, or differentiated pricing available for these deployment types. To learn more about how Global and Data zone provisioned deployments handle data processing across Azure geographies, see the Azure OpenAI deployment [data processing documentation](https://aka.ms/aoai/docs/data-processing-locations).
 
+Two approaches are available for customers to migrate from provisioned deployments to Global or Data zone provisioned deployments. 
 
 ### Zero downtime migration 
-
-> [!IMPORTANT]
-> Both self-service approaches generate some additional charges as the payment mode is switched from Committed to Hourly/Reservation.  These are characteristics of the migration approaches and customers aren't credited for these charges.  Customers may choose to use the managed migration approach described below to avoid them.
+The zero downtime migration approach allows customers to migrate their existing provisioned deployments to Global or Data zone provisioned deployments without interrupting the existing inference traffic on their deployment. This migration approach minimizes workload interruptions but does require a customer to coexist multiple deployments to shift traffic over. The process to migrate a provisioned deployment using the zero downtime migration approach is as follows:
+    - Create a new
 
 ### Migration with downtime 
-
+The migration with downtime approach involves migrating existing provisioned deployments to Global or Data zone provisioned deployments while stopping any exisitng inference traffic on the original provisioned deployment. This migration approach does not require coexistence of multiple deployments to support but does require workload interruption to complete. The process to migration a provisioned deployment using the migration with downtime approach is as follows:
+    - 
 
