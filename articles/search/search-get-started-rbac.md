@@ -36,7 +36,7 @@ This step is necessary if you have more than one subscription or tenant.
 
    1. Select the subscription name to view the parent management group (tenant ID).
 
-      :::image type="content" source="media/search-security-rbac/select-subscription-name.png" lightbox="media/search-security-rbac/select-subscription-name.png" alt-text="Screenshot of the portal page providing the subscription name":::
+      :::image type="content" source="media/search-get-started-rbac/select-subscription-name.png" lightbox="media/search-get-started-rbac/select-subscription-name.png" alt-text="Screenshot of the portal page providing the subscription name":::
 
 1. Identify the active Azure subscription and tenant on your local device:
 
