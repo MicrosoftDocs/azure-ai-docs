@@ -63,9 +63,9 @@ The custom text to speech avatar doesn't support customization of clothes or loo
 You need four types of basic video clips:
 
 **Consent Video:**
-   - The consent video must represent the same avatar talent speaking, following the requirement of the consent statement. Make sure the statement is correctly recorded, and each word is clearly spoken. [Get consent file from the avatar talent](https://learn.microsoft.com/en-us/azure/ai-services/speech-service/text-to-speech-avatar/custom-avatar-create#get-consent-file-from-the-avatar-talent). You can select any one of the languages supported. 
+   - The consent video must represent the same avatar talent speaking, following the requirement of the consent statement. Make sure the statement is correctly recorded, and each word is clearly spoken. [Get consent file from the avatar talent](custom-avatar-create.md#get-consent-file-from-the-avatar-talent). You can select any one of the languages supported. 
    - The avatar talent should always face the front of the camera, without large movements. 
-   - The video should be taken in a quiet environment, and the voice should be recorded at a reasonable volume. Try to keep the signal-to-noise ratio higher than 20. Check this document for some voice recording guidance. [Recording custom voice samples - Speech service - Azure AI services](https://learn.microsoft.com/en-us/azure/ai-services/speech-service/record-custom-voice-samples#recording-your-script).
+   - The video should be taken in a quiet environment, and the voice should be recorded at a reasonable volume. Try to keep the signal-to-noise ratio higher than 20. Check this document for some voice recording guidance. [Recording custom voice samples - Speech service - Azure AI services](../record-custom-voice-samples.md#recording-your-script).
    - Ensure that the head part will not be occluded in each frame of the video. 
    - Make sure no other objects appear in the camera, including filming equipment, mobile phone, etc. 
 
