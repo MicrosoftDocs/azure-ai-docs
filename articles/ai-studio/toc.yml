@@ -419,6 +419,8 @@ items:
     href: ./concepts/safety-evaluations-transparency-note.md
 - name: Reference
   items:
+  - name: Azure AI Projects SDK
+    href: /python/api/overview/azure/ai-projects-readme
   - name: Azure Machine Learning Python SDK
     href: /python/api/overview/azure/ai-ml-readme
   - name: Azure Machine Learning REST API

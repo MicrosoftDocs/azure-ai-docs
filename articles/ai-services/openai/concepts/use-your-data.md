@@ -309,7 +309,7 @@ Along with using Elasticsearch databases in Azure OpenAI Studio, you can also us
 
 # [MongoDB Atlas (preview)](#tab/mongo-db-atlas)
 
-You can connect your MongoDB Atlas vector index with Azure OpenAI On Your Data for inferencing. You can use it through the Azure AI Studio, API and SDK.
+You can connect your MongoDB Atlas vector index with Azure OpenAI On Your Data for inferencing. You can use it through the Azure AI Foundry portal, API and SDK.
 
 ### Prerequisites 
 

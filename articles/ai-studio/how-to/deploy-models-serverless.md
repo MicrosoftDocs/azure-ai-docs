@@ -35,7 +35,7 @@ This article uses a Meta Llama model deployment for illustration. However, you c
 
 - You need to install the following software to work with Azure AI Foundry:
 
-    # [AI Foundry](#tab/azure-ai-studio)
+    # [AI Foundry portal](#tab/azure-ai-studio)
 
     You can use any compatible web browser to navigate [Azure AI Foundry](https://ai.azure.com).
 
@@ -132,7 +132,7 @@ Serverless API endpoints can deploy both Microsoft and non-Microsoft offered mod
 
 1. Create the model's marketplace subscription. When you create a subscription, you accept the terms and conditions associated with the model offer.
 
-    # [AI Foundry](#tab/azure-ai-studio)
+    # [AI Foundry portal](#tab/azure-ai-studio)
 
     1. On the model's **Details** page, select **Deploy**. A **Deployment options** window opens up, giving you the choice between serverless API deployment and deployment using a managed compute.
 
@@ -259,7 +259,7 @@ Serverless API endpoints can deploy both Microsoft and non-Microsoft offered mod
 
 1. At any point, you can see the model offers to which your project is currently subscribed:
 
-    # [AI Foundry](#tab/azure-ai-studio)
+    # [AI Foundry portal](#tab/azure-ai-studio)
 
     1. Go to the [Azure portal](https://portal.azure.com).
 
@@ -314,7 +314,7 @@ In this section, you create an endpoint with the name **meta-llama3-8b-qwerty**.
 
 1. Create the serverless endpoint
 
-    # [AI Foundry](#tab/azure-ai-studio)
+    # [AI Foundry portal](#tab/azure-ai-studio)
 
     1. To deploy a Microsoft model that doesn't require subscribing to a model offering:
         1. Select **Deploy** and then select **Serverless API with Azure AI Content Safety (preview)** to open the deployment wizard.
@@ -466,7 +466,7 @@ In this section, you create an endpoint with the name **meta-llama3-8b-qwerty**.
 
 1. At any point, you can see the endpoints deployed to your project:
 
-    # [AI Foundry](#tab/azure-ai-studio)
+    # [AI Foundry portal](#tab/azure-ai-studio)
 
     1. Go to your project.
 
@@ -515,7 +515,7 @@ In this section, you create an endpoint with the name **meta-llama3-8b-qwerty**.
 
 1. The created endpoint uses key authentication for authorization. Use the following steps to get the keys associated with a given endpoint.
 
-    # [AI Foundry](#tab/azure-ai-studio)
+    # [AI Foundry portal](#tab/azure-ai-studio)
 
     You can select the deployment, and note the endpoint's _Target URI_ and _Key_. Use them to call the deployment and generate predictions.
 
@@ -573,7 +573,7 @@ To set the PNA flag for the Azure AI Foundry hub:
 
 You can delete model subscriptions and endpoints. Deleting a model subscription makes any associated endpoint become *Unhealthy* and unusable.
 
-# [AI Foundry](#tab/azure-ai-studio)
+# [AI Foundry portal](#tab/azure-ai-studio)
 
 To delete a serverless API endpoint:
 

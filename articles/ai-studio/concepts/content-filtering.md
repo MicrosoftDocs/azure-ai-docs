@@ -111,7 +111,7 @@ The filter creation process gives you the option to apply the filter to the depl
 
 Follow these steps to apply a content filter to a deployment:
 
-1. Go to [AI Foundry](https://ai.azure.com) and select a hub and project.
+1. Go to [Azure AI Foundry](https://ai.azure.com) and select a hub and project.
 1. Select **Models + endpoints** on the left pane and choose one of your deployments, then select **Edit**.
 
     :::image type="content" source="../media/content-safety/content-filter/deployment-edit.png" alt-text="Screenshot of the button to edit a deployment." lightbox="../media/content-safety/content-filter/deployment-edit.png":::

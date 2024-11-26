@@ -101,7 +101,7 @@ Global batch now supports GPT-4o (2024-08-06). See the [global batch getting sta
 
 ### Azure OpenAI Studio UX updates
 
-On September 19, when you access the [Azure OpenAI Studio](https://oai.azure.com/) you'll begin to no longer see the legacy studio UI by default. If needed you'll still be able to go back to the previous experience by using the **Switch to the old look** toggle in the top bar of the UI for the next couple of weeks. If you switch back to legacy Studio UI, it helps if you fill out the feedback form to let us know why. We're actively monitoring this feedback to improve the new experience.
+On September 19, when you access the [Azure OpenAI Studio](https://oai.azure.com/) you'll begin to no longer see the legacy AI Foundry portal by default. If needed you'll still be able to go back to the previous experience by using the **Switch to the old look** toggle in the top bar of the UI for the next couple of weeks. If you switch back to legacy AI Foundry portal, it helps if you fill out the feedback form to let us know why. We're actively monitoring this feedback to improve the new experience.
 
 
 ### GPT-4o 2024-08-06 provisioned deployments
@@ -144,7 +144,7 @@ OpenAI has incorporated additional safety measures into the `o1` models, includi
 
 ### Availability
 
-The `o1-preview` and `o1-mini` are available in the East US2 region for limited access through the [AI Studio](https://ai.azure.com) early access playground. Data processing for the `o1` models might occur in a different region than where they are available for use.
+The `o1-preview` and `o1-mini` are available in the East US2 region for limited access through the [AI Foundry](https://ai.azure.com) early access playground. Data processing for the `o1` models might occur in a different region than where they are available for use.
 
 To try the `o1-preview` and `o1-mini` models in the early access playground **registration is required, and access will be granted based on Microsoft’s eligibility criteria.**
 
@@ -200,9 +200,9 @@ On August 6, 2024, OpenAI [announced](https://openai.com/index/introducing-struc
 * An enhanced ability to support complex structured outputs.
 * Max output tokens have been increased from 4,096 to 16,384.
 
-Azure customers can test out GPT-4o `2024-08-06` today in the new AI Studio early access playground (preview).
+Azure customers can test out GPT-4o `2024-08-06` today in the new AI Foundry early access playground (preview).
 
-Unlike the previous early access playground, the AI Studio early access playground (preview) doesn't require you to have a resource in a specific region.
+Unlike the previous early access playground, the AI Foundry portal early access playground (preview) doesn't require you to have a resource in a specific region.
 
 > [!NOTE]
 > Prompts and completions made through the early access playground (preview) might be processed in any Azure OpenAI region, and are currently subject to a 10 request per minute per Azure subscription limit. This limit might change in the future.

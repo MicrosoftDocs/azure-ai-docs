@@ -42,7 +42,7 @@ After filling out the input and output TPM data in the built-in capacity calcula
 
 
 
-To estimate provisioned capacity using request level data, open the capacity planner in the [Azure AI Studio](https://ai.azure.com). The capacity calculator is under **Shared resources** > **Model Quota** > **Azure OpenAI Provisioned**.
+To estimate provisioned capacity using request level data, open the capacity planner in the [Azure AI Foundry](https://ai.azure.com). The capacity calculator is under **Shared resources** > **Model Quota** > **Azure OpenAI Provisioned**.
 
 The **Provisioned** option and the capacity planner are only available in certain regions within the Quota pane, if you don't see this option setting the quota region to *Sweden Central* will make this option available. Enter the following parameters based on your workload.
 
@@ -95,7 +95,7 @@ Customers that require long-term usage of provisioned and global provisioned dep
 
 Discounts on top of the hourly usage price can be obtained by purchasing an Azure Reservation for Azure OpenAI Provisioned and Global Provisioned. An Azure Reservation is a term-discounting mechanism shared by many Azure products. For example, Compute and Cosmos DB. For Azure OpenAI Provisioned and Global Provisioned, the reservation provides a discount for committing to payment for fixed number of PTUs for a one-month or one-year period.  
 
-* Azure Reservations are purchased via the Azure portal, not the Azure AI Studio Link to Azure reservation portal.
+* Azure Reservations are purchased via the Azure portal, not the Azure AI Foundry portal Link to Azure reservation portal.
 
 * Reservations are purchased regionally and can be flexibly scoped to cover usage from a group of deployments. Reservation scopes include: 
 
@@ -124,7 +124,7 @@ The PTU amounts in reservation purchases are independent of PTUs allocated in qu
  
 The best practice is to always purchase a reservation after deployments have been created.  This prevents purchasing a reservation and then finding out that the required capacity is not available for the desired region or model. 
  
-To assist customers with purchasing the correct reservation amounts. The total number of PTUs in a subscription and region that can be covered by a reservation are listed on the Quotas page of Azure AI Studio. See the message "PTUs Available for reservation." 
+To assist customers with purchasing the correct reservation amounts. The total number of PTUs in a subscription and region that can be covered by a reservation are listed on the Quotas page of Azure AI Foundry. See the message "PTUs Available for reservation." 
 
 :::image type="content" source="../media/provisioned/available-quota.png" alt-text="A screenshot showing available PTU quota." lightbox="../media/provisioned/available-quota.png":::
 

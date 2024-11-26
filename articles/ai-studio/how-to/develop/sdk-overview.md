@@ -24,7 +24,7 @@ The Azure AI Foundry SDK is a comprehensive toolchain designed to simplify the d
 - Easily combine together models, data, and AI services to build AI-powered applications
 - Evaluate, debug, and improve application quality & safety across development, testing, and production environments
  
-The AI Foundry SDK is a set of packages and services designed to work together. You can use the Azure AI Projects client library to easily use multiple services through a single project client and connection string. You can also use services and SDKs on their own and connect directly to your services.
+The AI Foundry SDK is a set of packages and services designed to work together. You can use the [Azure AI Projects client library](/python/api/overview/azure/ai-projects-readme) to easily use multiple services through a single project client and connection string. You can also use services and SDKs on their own and connect directly to your services.
 
 If you want to jump right in and start building an app, check out:
 
