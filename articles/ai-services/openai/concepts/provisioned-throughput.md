@@ -53,7 +53,7 @@ To help with simplifying the sizing effort, the following table outlines the TPM
 |Max Output TPM per PTU| 833|12,333|
 |Latency Target Value |25 Tokens Per Second|33 Tokens Per Second|
 
-For a full list see the [AOAI Studio calculator](https://oai.azure.com/portal/calculator).
+For a full list see the [AOAI Foundry calculator](https://oai.azure.com/portal/calculator).
 
 
 > [!NOTE]
