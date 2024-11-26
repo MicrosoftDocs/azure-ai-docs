@@ -1,5 +1,5 @@
 ---
-title: Quickstart RBAC
+title: Quickstart keyless connection
 titleSuffix: Azure AI Search
 description: In this quickstart, learn how to switch from API keys to Microsoft Entra identities and role-based access control (RBAC).
 author: HeidiSteen
@@ -12,9 +12,9 @@ ms.date: 11/26/2024
 
 # Quickstart: Connect without keys
 
-Configure Azure AI Search to use Microsoft Entra ID authentication and roles, including steps for connecting from your local system, running Jupyter notebooks, or using a REST client.
+Configure Azure AI Search to use Microsoft Entra ID authentication and roles. Connect from your local system, running Jupyter notebooks, or using a REST client.
 
-If you step through other quickstarts that connect using API keys, these steps show you how to switch to identity-based authentication and avoid hard-coded API keys in your example code.
+If you stepped through other quickstarts that connect using API keys, this quickstart shows you how to switch to identity-based authentication so that you can avoid hard-coded API keys in your example code.
 
 ## Prerequisites
 
@@ -35,6 +35,8 @@ This step is necessary if you have more than one subscription or tenant.
    1. Notice the subscription name and ID in **Overview** > **Essentials**.
 
    1. Select the subscription name to view the parent management group (tenant ID).
+
+      :::image type="content" source="media/search-security-rbac/select-subscription-name.png" lightbox="media/search-security-rbac/select-subscription-name.png" alt-text="Screenshot of the portal page providing the subscription name":::
 
 1. Identify the active Azure subscription and tenant on your local device:
 
@@ -68,7 +70,7 @@ This step is necessary if you have more than one subscription or tenant.
 
    1. Select **+ Add** > **Add role assignment**.
 
-   1. Choose a role (Search Service Contributor, Search Index Data Contributor, Search Index Data Reader) and assign it to your Microsoft Entra user or group identity. These three roles provide the full set of permissions for creating, loading, and querying objects on Azure AI Search.
+   1. Choose a role (Search Service Contributor, Search Index Data Contributor, Search Index Data Reader) and assign it to your Microsoft Entra user or group identity. These three roles provide the full set of permissions for creating, loading, and querying objects on Azure AI Search. For more information, see [Connect using roles](search-security-rbac.md).
 
 ## Step 3: Connect from your local system
 
@@ -133,9 +135,9 @@ Several quickstarts and tutorials use a REST client, such as Visual Studio Code 
 
 Configure a managed identity for outbound connections:
 
-- Assign a system-assigned or user-assigned managed identity to your search service.
-- Use role assignments to authorize access to other Azure resources.
+- [Configure a system-assigned or user-assigned managed identity](search-howto-managed-identities-data-sources.md) for your search service.
+- [Use role assignments](keyless-connections.md) to authorize access to other Azure resources.
 
 Network access configuration:
 
-- Set up inbound rules to accept or reject requests to Azure AI Search based on IP address.
+- [Set inbound rules](service-configure-firewall.md) to accept or reject requests to Azure AI Search based on IP address.
