@@ -10,7 +10,7 @@ ms.topic: how-to
 ms.date: 11/11/2024
 author: mrbullwinkle
 ms.author: mbullwin
-zone_pivot_groups: openai-fine-tuning-newest
+zone_pivot_groups: openai-fine-tuning
 ---
 
 # Customize a model with fine-tuning
