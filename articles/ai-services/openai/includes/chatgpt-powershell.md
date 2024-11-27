@@ -17,9 +17,6 @@ ms.date: 08/28/2023
 - An Azure OpenAI Service resource with a model deployed. For more information about model deployment, see the [resource deployment guide](../how-to/create-resource.md).
 - An Azure OpenAI Service resource with either the `gpt-35-turbo` or the `gpt-4` models deployed. For more information about model deployment, see the [resource deployment guide](../how-to/create-resource.md).
 
-> [!div class="nextstepaction"]
-> [I ran into an issue with the prerequisites.](https://microsoft.qualtrics.com/jfe/form/SV_0Cl5zkG3CnDjq6O?PLanguage=POWERSHELL&Pillar=AOAI&Product=Chatgpt&Page=quickstart&Section=Prerequisites)
-
 ### Retrieve key and endpoint
 
 To successfully make a call against Azure OpenAI, you'll need an **endpoint** and a **key**.
@@ -62,8 +59,6 @@ echo export AZURE_OPENAI_ENDPOINT="REPLACE_WITH_YOUR_ENDPOINT_HERE" >> /etc/envi
 
 ---
 
-> [!div class="nextstepaction"]
-> [I ran into an issue with the setup.](https://microsoft.qualtrics.com/jfe/form/SV_0Cl5zkG3CnDjq6O?PLanguage=POWERSHELL&Pillar=AOAI&Product=Chatgpt&Page=quickstart&Section=Set-up)
 
 ## Create a new PowerShell script
 
@@ -144,8 +139,6 @@ $reponse = ./quickstart.ps1
 $response.choices.message.content
 ```
 
-> [!div class="nextstepaction"]
-> [I ran into an issue when running the code sample.](https://microsoft.qualtrics.com/jfe/form/SV_0Cl5zkG3CnDjq6O?PLanguage=POWERSHELL&Pillar=AOAI&Product=Chatgpt&Page=quickstart&Section=Create-powershell-script)
 
 ### Understanding the message structure
 
