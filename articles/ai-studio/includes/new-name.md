@@ -11,4 +11,4 @@ ms.custom: include, ignite-2024
 ---
 
 > [!IMPORTANT]
-> Azure AI Studio is now Azure AI Foundry. We're updating the documentation to reflect this change. In the meantime, you might see references to Azure AI Studio.
+> Azure AI Studio is now Azure AI Foundry portal. We're updating the documentation to reflect this change. In the meantime, you might see references to Azure AI Studio.

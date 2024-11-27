@@ -22,7 +22,7 @@ Pronunciation assessment uses the speech to text capability to provide subjectiv
 > [!NOTE]
 > For information about availability of pronunciation assessment, see [supported languages](language-support.md?tabs=pronunciation-assessment) and [available regions](regions.md#speech-service).
 
-This article describes how to use the pronunciation assessment tool without writing any code through the [AI Foundry](https://ai.azure.com/explore/aiservices/speech/pronunciationassessment). For information about how to integrate pronunciation assessment in your speech applications, see [How to use pronunciation assessment](how-to-pronunciation-assessment.md).
+This article describes how to use the pronunciation assessment tool without writing any code through the [AI Foundry portal](https://ai.azure.com/explore/aiservices/speech/pronunciationassessment). For information about how to integrate pronunciation assessment in your speech applications, see [How to use pronunciation assessment](how-to-pronunciation-assessment.md).
 
 
 ## Reading and speaking scenarios
@@ -35,7 +35,7 @@ For pronunciation assessment, there are two scenarios: Reading and Speaking.
 
 Follow these steps to assess your pronunciation of the reference text:
 
-1. Go to **Pronunciation assessment** in the [AI Foundry](https://ai.azure.com/explore/aiservices/speech).
+1. Go to **Pronunciation assessment** in the [AI Foundry portal](https://ai.azure.com/explore/aiservices/speech).
 
    :::image type="content" source="media/pronunciation-assessment/pronunciation-assessment-select.png" alt-text="Screenshot of how to go to Pronunciation assessment in AI Foundry.":::
 
@@ -57,7 +57,7 @@ Follow these steps to assess your pronunciation of the reference text:
 
 If you want to conduct an unscripted assessment, select the Speaking tab. This feature allows you to conduct unscripted assessment without providing reference text in advance. Here's how to proceed:
 
-1. Go to **Pronunciation assessment** in the [AI Foundry](https://ai.azure.com/explore/aiservices/speech).
+1. Go to **Pronunciation assessment** in the [AI Foundry portal](https://ai.azure.com/explore/aiservices/speech).
 
 1. On the Speaking tab, choose a supported [language](language-support.md?tabs=pronunciation-assessment) that you want to evaluate the pronunciation.
    
