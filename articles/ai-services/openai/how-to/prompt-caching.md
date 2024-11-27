@@ -14,7 +14,9 @@ recommendations: false
 
 # Prompt caching
 
-Prompt caching allows you to reduce overall request latency and cost for longer prompts that have identical content at the beginning of the prompt. *"Prompt"* in this context is referring to the input you send to the model as part of your chat completions request. Rather than reprocess the same input tokens over and over again, the model is able to retain a temporary cache of processed input data to improve overall performance. Prompt caching has no impact on the output content returned in the model response beyond a reduction in latency and cost. For supported models, cached tokens are billed at a [50% discount on input token pricing](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/).
+Prompt caching allows you to reduce overall request latency and cost for longer prompts that have identical content at the beginning of the prompt. *"Prompt"* in this context is referring to the input you send to the model as part of your chat completions request. Rather than reprocess the same input tokens over and over again, the service is able to retain a temporary cache of processed input token computations to improve overall performance. Prompt caching has no impact on the output content returned in the model response beyond a reduction in latency and cost. For supported models, cached tokens are billed at a [50% discount on input token pricing](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/) for Standard deployment types and up to [100% discount on input tokens](/azure/ai-services/openai/concepts/provisioned-throughput) for Provisioned deployment types. 
+
+Caches are typically cleared within 5-10 minutes of inactivity and are always removed within one hour of the cache's last use. Prompt caches are not shared between Azure subscriptions. 
 
 ## Supported models
 
@@ -28,7 +30,7 @@ Currently only the following models support prompt caching with Azure OpenAI:
 
 ## API support
 
-Official support for prompt caching was first added in API version `2024-10-01-preview`. At this time, only `o1-preview-2024-09-12` and `o1-mini-2024-09-12` models support the `cached_tokens` API response parameter.
+Official support for prompt caching was first added in API version `2024-10-01-preview`. At this time, only the o1 model family supports the `cached_tokens` API response parameter.
 
 ## Getting started
 
@@ -37,7 +39,7 @@ For a request to take advantage of prompt caching the request must be both:
 - A minimum of 1,024 tokens in length.
 - The first 1,024 tokens in the prompt must be identical.
 
-When a match is found between a prompt and the current content of the prompt cache, it's referred to as a cache hit. Cache hits will show up as [`cached_tokens`](/azure/ai-services/openai/reference-preview#cached_tokens) under [`prompt_token_details`](/azure/ai-services/openai/reference-preview#properties-for-prompt_tokens_details) in the chat completions response.
+When a match is found between the token computations in a prompt and the current content of the prompt cache, it's referred to as a cache hit. Cache hits will show up as [`cached_tokens`](/azure/ai-services/openai/reference-preview#cached_tokens) under [`prompt_token_details`](/azure/ai-services/openai/reference-preview#properties-for-prompt_tokens_details) in the chat completions response.
 
 ```json
 {
@@ -83,8 +85,4 @@ To improve the likelihood of cache hits occurring, you should structure your req
 
 ## Can I disable prompt caching?
 
-Prompt caching is enabled by default. There is no opt-out option.
-
-## How does prompt caching work for Provisioned deployments?
-
-For supported models on provisioned deployments, we discount up to 100% of cached input tokens. For more information, see our [Provisioned Throughput documentation](/azure/ai-services/openai/concepts/provisioned-throughput). 
+Prompt caching is enabled by default for all supported models. There is no opt-out support for prompt caching. 
