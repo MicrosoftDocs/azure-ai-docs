@@ -44,6 +44,12 @@ items:
       href: /legal/cognitive-services/openai/data-privacy?context=/azure/ai-services/agents/context/context
     - name: Customer Copyright Commitment
       href: /legal/cognitive-services/openai/customer-copyright-commitment?context=/azure/ai-services/agents/context/context
+- name: Reference
+  items:
+    - name: C#
+      href: /dotnet/api/overview/azure/ai.projects-readme?context=/azure/ai-services/agents/context/context
+    - name: Python
+      href: /python/api/overview/azure/ai-projects-readme?context=/azure/ai-services/agents/context/context
 - name: Resources
   items: 
     - name: Support and help options
