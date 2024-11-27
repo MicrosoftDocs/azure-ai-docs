@@ -27,7 +27,7 @@ The studio is an online tool to visually explore, understand, train, and integra
 * Train custom extraction models to extract fields from documents.
 * Get sample code for the language specific `SDKs` to integrate into your applications.
 
-Currently, we're undergoing the migration of features from the [Document Intelligence Studio](https://documentintelligence.ai.azure.com/studio) to the new [AI Foundry](https://ai.azure.com/explore/aiservices/vision). There are some differences in the offerings for the two studios, which determine the correct studio for your use case.
+Currently, we're undergoing the migration of features from the [Document Intelligence Studio](https://documentintelligence.ai.azure.com/studio) to the new [AI Foundry portal](https://ai.azure.com/explore/aiservices/vision). There are some differences in the offerings for the two studios, which determine the correct studio for your use case.
 
 ## Choosing the correct studio experience
 
@@ -37,7 +37,7 @@ There are currently two studios, the [Azure AI Foundry](https://ai.azure.com/exp
 
 Document Intelligence Studio is the legacy experience that contains all features released on or before July 2024. For any of the v2.1, v3.0, v3.1 features, continue to use the Document Intelligence Studio. Studios provide a visual experience for labeling, training, and validating custom models. For custom document field extraction models, use the Document Intelligence Studio for template and neural models. Custom classification models can only be trained and used on Document Intelligence Studio. Use Document Intelligence Studio if you want to try out GA versions of the models from version 2.1, v3.0 and v3.1.
 
-### When to use [AI Foundry](https://ai.azure.com/explore/aiservices/vision)
+### When to use [AI Foundry portal](https://ai.azure.com/explore/aiservices/vision)
 
 Start with the new Azure AI Foundry and try any of the prebuilt document models from `2024-02-29-preview` version including general extraction models like Read or Layout. If you want to build and test a new [Document Field Extraction](https://ai.azure.com/explore/aiservices/vision/document/extraction) model, try our generative AI model, only available in the new AI Foundry.
 
@@ -210,5 +210,5 @@ Learn how to [connect your AI services hub](../../ai-studio/ai-services/how-to/c
 ## Next steps
 
 * Visit [Document Intelligence Studio](https://formrecognizer.appliedai.azure.com/studio).
-* Visit [AI Foundry](https://ai.azure.com/explore/aiservices/vision).
+* Visit [AI Foundry portal](https://ai.azure.com/explore/aiservices/vision).
 * Get started with [Document Intelligence Studio quickstart](quickstarts/try-document-intelligence-studio.md).

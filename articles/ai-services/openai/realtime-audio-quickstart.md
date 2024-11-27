@@ -9,7 +9,7 @@ ms.date: 10/3/2024
 author: eric-urban
 ms.author: eur
 ms.custom: references_regions, ignite-2024
-zone_pivot_groups: openai-studio-js
+zone_pivot_groups: openai-portal-js
 recommendations: false
 ---
 
@@ -58,7 +58,7 @@ Now that you have a deployment of the `gpt-4o-realtime-preview` model, you can i
 > [!TIP]
 > Right now, the fastest way to get started development with the GPT-4o Realtime API is to download the sample code from the [Azure OpenAI GPT-4o real-time audio repository on GitHub](https://github.com/azure-samples/aoai-realtime-audio-sdk).
 
-::: zone pivot="programming-language-ai-studio"
+::: zone pivot="ai-foundry-portal"
 
 To chat with your deployed `gpt-4o-realtime-preview` model in the [Azure AI Foundry](https://ai.azure.com) **Real-time audio** playground, follow these steps:
 
