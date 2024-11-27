@@ -98,7 +98,7 @@ In Part 1 of this tutorial series, you created an **.env** file that specifies t
 1. Install the required package:
 
     ```bash
-    pip install azure_ai-evaluation[prompts]
+    pip install azure-ai-evaluation[remote]
     ```
 
 1. Now run the evaluation script:
