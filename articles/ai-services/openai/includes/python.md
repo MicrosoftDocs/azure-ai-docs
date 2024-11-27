@@ -18,8 +18,6 @@ ms.date: 01/03/2024
 - The following Python libraries: os, requests, json
 - An Azure OpenAI Service resource with a `gpt-35-turbo-instruct` model deployed. For more information about model deployment, see the [resource deployment guide](../how-to/create-resource.md).
 
-> [!div class="nextstepaction"]
-> [I ran into an issue with the prerequisites.](https://microsoft.qualtrics.com/jfe/form/SV_0Cl5zkG3CnDjq6O?PLanguage=PYTHON&Pillar=AOAI&Product=gpt&Page=quickstart&Section=Prerequisites)
 
 ## Set up
 
@@ -60,8 +58,6 @@ Go to your resource in the Azure portal. The **Keys and Endpoint** can be found 
 
 [!INCLUDE [environment-variables](environment-variables.md)]
 
-> [!div class="nextstepaction"]
-> [I ran into an issue with the setup.](https://microsoft.qualtrics.com/jfe/form/SV_0Cl5zkG3CnDjq6O?PLanguage=PYTHON&Pillar=AOAI&Product=gpt&Page=quickstart&Section=Set-up)
 
 ## Create a new Python application
 
@@ -133,8 +129,6 @@ Write a tagline for an ice cream shop. The coldest ice cream in town!
 
 Run the code a few more times to see what other types of responses you get as the response won't always be the same.
 
-> [!div class="nextstepaction"]
-> [I ran into an issue when running the code sample.](https://microsoft.qualtrics.com/jfe/form/SV_0Cl5zkG3CnDjq6O?PLanguage=PYTHON&Pillar=AOAI&Product=gpt&Page=quickstart&Section=Create-python-application)
 
 ### Understanding your results
 

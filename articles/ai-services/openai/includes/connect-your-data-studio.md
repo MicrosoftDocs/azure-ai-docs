@@ -54,5 +54,4 @@ Navigate to [Azure AI Foundry](https://ai.azure.com/) and sign-in with credentia
     
 1. Review the details you entered, and select **Save and close**. You can now chat with the model and it will use information from your data to construct the response.
 
-> [!div class="nextstepaction"]
-> [I ran into an issue adding my data.](https://microsoft.qualtrics.com/jfe/form/SV_0Cl5zkG3CnDjq6O?PLanguage=STUDIO&Pillar=AOAI&Product=ownData&Page=quickstart&Section=Adding-data)
+
