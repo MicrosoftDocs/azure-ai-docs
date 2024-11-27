@@ -38,6 +38,3 @@ export SPRING_AI_AZURE_COGNITIVE_SEARCH_API_KEY=REPLACE_WITH_YOUR_AZURE_SEARCH_R
 export SPRING_AI_AZURE_COGNITIVE_SEARCH_INDEX=REPLACE_WITH_YOUR_INDEX_NAME_HERE
 export SPRING_AI_AZURE_OPENAI_MODEL=REPLACE_WITH_YOUR_MODEL_NAME_HERE
 ```
-
-> [!div class="nextstepaction"]
-> [I ran into an issue with the setup.](https://microsoft.qualtrics.com/jfe/form/SV_0Cl5zkG3CnDjq6O?PLanguage=SPRING&Pillar=AOAI&Product=ownData&Page=quickstart&Section=Set-up)

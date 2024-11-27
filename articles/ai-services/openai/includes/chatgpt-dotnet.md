@@ -19,9 +19,6 @@ ms.date: 11/15/2023
 - An Azure OpenAI Service resource with either the `gpt-35-turbo` or the `gpt-4` models deployed. For more information about model deployment, see the [resource deployment guide](../how-to/create-resource.md).
 
 
-> [!div class="nextstepaction"]
-> [I ran into an issue with the prerequisites.](https://microsoft.qualtrics.com/jfe/form/SV_0Cl5zkG3CnDjq6O?PLanguage=DOTNET&Pillar=AOAI&Product=Chatgpt&Page=quickstart&Section=Prerequisites)
-
 ## Set up
 
 [!INCLUDE [Create a new .NET application](./dotnet-new-application.md)]
@@ -30,9 +27,6 @@ ms.date: 11/15/2023
 
 [!INCLUDE [environment-variables](environment-variables.md)]
 
-
-> [!div class="nextstepaction"]
-> [I ran into an issue with the setup.](https://microsoft.qualtrics.com/jfe/form/SV_0Cl5zkG3CnDjq6O?PLanguage=DOTNET&Pillar=AOAI&Product=Chatgpt&Page=quickstart&Section=Set-up)
 
 ## Create a sample application
 
@@ -121,8 +115,6 @@ await foreach(var chatUpdate in chatUpdates)
 }
 ```
 
-> [!div class="nextstepaction"]
-> [I ran into an issue when running the code samples.](https://microsoft.qualtrics.com/jfe/form/SV_0Cl5zkG3CnDjq6O?PLanguage=DOTNET&Pillar=AOAI&Product=Chatgpt&Page=quickstart&Section=Create-dotnet-application)
 
 ## Clean up resources
 

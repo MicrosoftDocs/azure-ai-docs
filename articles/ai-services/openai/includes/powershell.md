@@ -15,9 +15,6 @@ ms.date: 08/28/2023
 - <a href="https://aka.ms/installpowershell" target="_blank">You can use either the latest version, PowerShell 7, or Windows PowerShell 5.1.</a>
 - An Azure OpenAI Service resource with a model deployed. For more information about model deployment, see the [resource deployment guide](../how-to/create-resource.md).
 
-> [!div class="nextstepaction"]
-> [I ran into an issue with the prerequisites.](https://microsoft.qualtrics.com/jfe/form/SV_0Cl5zkG3CnDjq6O?PLanguage=POWERSHELL&Pillar=AOAI&Product=gpt&Page=quickstart&Section=Prerequisites)
-
 ## Retrieve key and endpoint
 
 To successfully make a call against the Azure OpenAI service, you'll need the following:
@@ -70,8 +67,6 @@ echo export AZURE_OPENAI_ENDPOINT="REPLACE_WITH_YOUR_ENDPOINT_HERE" >> /etc/envi
 
 ---
 
-> [!div class="nextstepaction"]
-> [I ran into an issue with the setup.](https://microsoft.qualtrics.com/jfe/form/SV_0Cl5zkG3CnDjq6O?PLanguage=POWERSHELL&Pillar=AOAI&Product=gpt&Page=quickstart&Section=Set-up)
 
 ## Create a new PowerShell script
 
@@ -131,8 +126,6 @@ Once upon a time...
 
 Run the code a few more times to see what other types of responses you get as the response won't always be the same.
 
-> [!div class="nextstepaction"]
-> [I ran into an issue when running the code sample.](https://microsoft.qualtrics.com/jfe/form/SV_0Cl5zkG3CnDjq6O?PLanguage=POWERSHELL&Pillar=AOAI&Product=gpt&Page=quickstart&Section=Create-PowerShell-script)
 
 ### Understanding your results
 
