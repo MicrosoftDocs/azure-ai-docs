@@ -7,6 +7,7 @@ ms.topic: include
 ms.date: 11/13/2024
 ---
 
+| [Reference documentation](/dotnet/api/overview/azure/ai.projects-readme) | [Samples](https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/ai/Azure.AI.Projects/tests/Samples) | [Library source code](https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/ai/Azure.AI.Projects) | [Package (NuGet)](https://www.nuget.org/packages/Azure.AI.Projects/) |
 
 ## Prerequisites
 
