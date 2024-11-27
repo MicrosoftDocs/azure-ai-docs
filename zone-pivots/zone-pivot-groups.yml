@@ -120,7 +120,7 @@ groups:
   prompt: Choose your preferred usage method
   pivots:
   - id: programming-language-ai-studio
-    title: AI Studio
+    title: AI Foundry portal
   - id: programming-language-csharp
     title: C#
   - id: programming-language-javascript
@@ -388,7 +388,7 @@ groups:
   prompt: Choose a programming language or tool
   pivots:
   - id: ai-studio
-    title: AI Studio
+    title: AI Foundry portal
   - id: programming-language-csharp
     title: C#
   - id: programming-language-cpp
@@ -778,7 +778,7 @@ groups:
   prompt: Choose your preferred usage method
   pivots:
   - id: programming-language-ai-studio
-    title: AI Studio
+    title: AI Foundry portal
   - id: programming-language-python
     title: Python
   - id: rest-api
@@ -817,7 +817,7 @@ groups:
   - id: programming-language-studio
     title: Studio
   - id: programming-language-ai-studio
-    title: AI Studio
+    title: AI Foundry portal
   - id: programming-language-python
     title: Python
   - id: rest-api
@@ -828,7 +828,7 @@ groups:
   prompt: Choose your preferred fine-tuning method
   pivots:
   - id: programming-language-studio
-    title: AI Studio
+    title: AI Foundry portal
   - id: programming-language-python
     title: Python
   - id: rest-api
@@ -914,7 +914,7 @@ groups:
   prompt: Choose your preferred usage method
   pivots:
   - id: programming-language-ai-studio
-    title: AI Studio
+    title: AI Foundry portal
   - id: programming-language-javascript
     title: JavaScript
 # owner: sgilley
