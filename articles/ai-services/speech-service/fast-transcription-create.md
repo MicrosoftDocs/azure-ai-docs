@@ -1102,6 +1102,6 @@ Here are some property options to configure a transcription when you call the [T
 
 ## Related content
 
-- [Fast transcription REST API reference](/rest/api/speechtotext/operation-groups?view=rest-speechtotext-2024-11-15&preserve-view=true)
+- [Fast transcription REST API reference](https://go.microsoft.com/fwlink/?linkid=2296107)
 - [Speech to text supported languages](./language-support.md?tabs=stt)
 - [Batch transcription](./batch-transcription.md)
