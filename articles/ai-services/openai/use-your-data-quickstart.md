@@ -2,7 +2,6 @@
 title: 'Use your own data with Azure OpenAI Service'
 titleSuffix: Azure OpenAI
 description: Use this article to import and use your data in Azure OpenAI.
-#services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-openai
 ms.custom: devx-track-dotnet, devx-track-extended-java, devx-track-js, devx-track-ts, devx-track-go, devx-track-python
@@ -18,8 +17,7 @@ zone_pivot_groups: openai-use-your-data
 
 In this quickstart, you can use your own data with Azure OpenAI models. Using Azure OpenAI's models on your data can provide you with a powerful conversational AI platform that enables faster and more accurate communication.
 
-::: zone pivot="programming-language-studio"
-
+::: zone pivot="ai-foundry-portal"
 
 ## Prerequisites
 

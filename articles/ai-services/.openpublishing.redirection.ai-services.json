@@ -776,6 +776,11 @@
       "redirect_document_id": true
     },
     {
+      "source_path_from_root": "/articles/ai-services/speech-service/custom-speech-ai-studio.md",
+      "redirect_url": "/azure/ai-services/speech-service/custom-speech-ai-foundry-portal",
+      "redirect_document_id": true
+    },
+    {
       "source_path_from_root": "/articles/ai-services/qnamaker/how-to/migrate-to-openai.md",
       "redirect_url": "/azure/ai-services/qnamaker/overview/overview",
       "redirect_document_id": true
