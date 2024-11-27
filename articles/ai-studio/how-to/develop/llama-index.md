@@ -1,23 +1,25 @@
 ---
-title: Develop application with LlamaIndex and Azure AI studio
-titleSuffix: Azure AI Studio
-description: This article explains how to use LlamaIndex with models deployed in Azure AI studio to build advance intelligent applications.
+title: Develop application with LlamaIndex and Azure AI Foundry
+titleSuffix: Azure AI Foundry
+description: This article explains how to use LlamaIndex with models deployed in Azure AI Foundry portal to build advance intelligent applications.
 manager: scottpolly
 ms.service: azure-ai-studio
+ms.custom:
+  - ignite-2024
 ms.topic: how-to
-ms.date: 9/14/2024
+ms.date: 11/04/2024
 ms.reviewer: fasantia
 ms.author: sgilley
 author: sdgilley
 ---
 
-# Develop applications with LlamaIndex and Azure AI studio
+# Develop applications with LlamaIndex and Azure AI Foundry
 
-In this article, you learn how to use [LlamaIndex](https://github.com/run-llama/llama_index) with models deployed from the Azure AI model catalog in Azure AI studio.
+In this article, you learn how to use [LlamaIndex](https://github.com/run-llama/llama_index) with models deployed from the Azure AI model catalog in Azure AI Foundry portal.
 
-Models deployed to Azure AI studio can be used with LlamaIndex in two ways:
+Models deployed to Azure AI Foundry can be used with LlamaIndex in two ways:
 
-- **Using the Azure AI model inference API:** All models deployed to Azure AI studio support the [Azure AI model inference API](../../reference/reference-model-inference-api.md), which offers a common set of functionalities that can be used for most of the models in the catalog. The benefit of this API is that, since it's the same for all the models, changing from one to another is as simple as changing the model deployment being use. No further changes are required in the code. When working with LlamaIndex, install the extensions `llama-index-llms-azure-inference` and `llama-index-embeddings-azure-inference`.
+- **Using the Azure AI model inference API:** All models deployed to Azure AI Foundry support the [Azure AI model inference API](../../reference/reference-model-inference-api.md), which offers a common set of functionalities that can be used for most of the models in the catalog. The benefit of this API is that, since it's the same for all the models, changing from one to another is as simple as changing the model deployment being use. No further changes are required in the code. When working with LlamaIndex, install the extensions `llama-index-llms-azure-inference` and `llama-index-embeddings-azure-inference`.
 
 - **Using the model's provider specific API:** Some models, like OpenAI, Cohere, or Mistral, offer their own set of APIs and extensions for LlamaIndex. Those extensions may include specific functionalities that the model support and hence are suitable if you want to exploit them. When working with `llama-index`, install the extension specific for the model you want to use, like `llama-index-llms-openai` or `llama-index-llms-cohere`.
 
@@ -27,20 +29,20 @@ In this example, we are working with the **Azure AI model inference API**.
 
 To run this tutorial, you need:
 
-1. An [Azure subscription](https://azure.microsoft.com).
-2. An Azure AI hub resource as explained at [How to create and manage an Azure AI Studio hub](../create-azure-ai-resource.md).
-3. A model supporting the [Azure AI model inference API](https://aka.ms/azureai/modelinference) deployed. In this example, we use a `Mistral-Large` deployment, but use any model of your preference. For using embeddings capabilities in LlamaIndex, you need an embedding model like `cohere-embed-v3-multilingual`. 
+* An [Azure subscription](https://azure.microsoft.com).
+* An Azure AI project as explained at [Create a project in Azure AI Foundry portal](../create-projects.md).
+* A model supporting the [Azure AI model inference API](https://aka.ms/azureai/modelinference) deployed. In this example, we use a `Mistral-Large` deployment, but use any model of your preference. For using embeddings capabilities in LlamaIndex, you need an embedding model like `cohere-embed-v3-multilingual`. 
 
     * You can follow the instructions at [Deploy models as serverless APIs](../deploy-models-serverless.md).
 
-4. Python 3.8 or later installed, including pip.
-5. LlamaIndex installed. You can do it with:
+* Python 3.8 or later installed, including pip.
+* LlamaIndex installed. You can do it with:
 
     ```bash
     pip install llama-index
     ```
 
-6. In this example, we are working with the Azure AI model inference API, hence we install the following packages:
+* In this example, we are working with the Azure AI model inference API, hence we install the following packages:
 
     ```bash
     pip install -U llama-index-llms-azure-inference
@@ -52,11 +54,12 @@ To run this tutorial, you need:
 
 ## Configure the environment
 
-To use LLMs deployed in Azure AI studio, you need the endpoint and credentials to connect to it. Follow these steps to get the information you need from the model you want to use:
+To use LLMs deployed in Azure AI Foundry portal, you need the endpoint and credentials to connect to it. Follow these steps to get the information you need from the model you want to use:
 
-1. Go to the [Azure AI studio](https://ai.azure.com/).
-2. Go to deployments and select the model you deployed as indicated in the prerequisites.
-3. Copy the endpoint URL and the key.
+1. Go to the [Azure AI Foundry](https://ai.azure.com/).
+1. Open the project where the model is deployed, if it isn't already open.
+1. Go to **Models + endpoints** and select the model you deployed as indicated in the prerequisites.
+1. Copy the endpoint URL and the key.
 
     :::image type="content" source="../../media/how-to/inference/serverless-endpoint-url-keys.png" alt-text="Screenshot of the option to copy endpoint URI and keys from an endpoint." lightbox="../../media/how-to/inference/serverless-endpoint-url-keys.png":::
     

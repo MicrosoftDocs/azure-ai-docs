@@ -27,10 +27,10 @@ ms.date: 10/25/2024
 | southafricanorth   | ✅                       | ✅                            |
 | southcentralus     | ✅                       | ✅                            |
 | southindia         | ✅                       | ✅                            |
-| spaincentral       | ✅                       | ✅                            |
 | swedencentral      | ✅                       | ✅                            |
 | switzerlandnorth   | ✅                       | ✅                            |
 | switzerlandwest    | ✅                       | ✅                            |
+| uaenorth           | ✅                       | ✅                            |
 | uksouth            | ✅                       | ✅                            |
 | westeurope         | ✅                       | ✅                            |
 | westus             | ✅                       | ✅                            |

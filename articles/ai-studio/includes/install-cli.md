@@ -7,7 +7,7 @@ ms.author: sgilley
 ms.service: azure-ai-studio
 ms.topic: include
 ms.date: 08/29/2024
-ms.custom: include
+ms.custom: include, ignite-2024
 ---
 
 You install the Azure CLI and sign in from your local development environment, so that you can use your user credentials to call the Azure OpenAI service.
@@ -38,7 +38,6 @@ You can follow instructions [How to install the Azure CLI](/cli/azure/install-az
 After you install the Azure CLI, sign in using the ``az login`` command and sign-in using the browser:
 ```
 az login
-
 ```
 Alternatively, you can log in manually via the browser with a device code.
 ```

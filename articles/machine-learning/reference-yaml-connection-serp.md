@@ -35,7 +35,7 @@ ms.reviewer: ambadal
 
 ## Remarks
 
-While the `az ml connection` commands can be used to manage both Azure Machine Learning and Azure AI Studio connections, the Serp connection is specific to Azure AI Studio.
+While the `az ml connection` commands can be used to manage both Azure Machine Learning and Azure AI Foundry connections, the Serp connection is specific to Azure AI Foundry.
 
 ## Examples
 
