@@ -22,9 +22,9 @@ Get started using GPT-4 Turbo with images with the Azure OpenAI Service.
 >
 > The latest vision-capable models are `gpt-4o` and `gpt-4o mini`. These are in public preview. The latest available GA model is `gpt-4` version `turbo-2024-04-09`.
 
-::: zone pivot="programming-language-studio"
+::: zone pivot="ai-foundry-portal"
 
-[!INCLUDE [Studio quickstart](includes/gpt-v-studio.md)]
+[!INCLUDE [AI Foundry portal quickstart](includes/gpt-v-studio.md)]
 
 ::: zone-end
 

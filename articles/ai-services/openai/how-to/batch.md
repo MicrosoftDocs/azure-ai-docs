@@ -89,9 +89,9 @@ In the AI Foundry portal the deployment type will appear as `Global-Batch`.
 > [!TIP]
 > We recommend enabling **dynamic quota** for all global batch model deployments to help avoid job failures due to insufficient enqueued token quota. Dynamic quota allows your deployment to opportunistically take advantage of more quota when extra capacity is available. When dynamic quota is set to off, your deployment will only be able to process requests up to the enqueued token limit that was defined when you created the deployment.
 
-::: zone pivot="programming-language-ai-studio"
+::: zone pivot="ai-foundry-portal"
 
-[!INCLUDE [Studio](../includes/batch/batch-studio.md)]
+[!INCLUDE [AI Foundry portal](../includes/batch/batch-studio.md)]
 
 ::: zone-end
 
