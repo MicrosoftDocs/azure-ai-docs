@@ -34,9 +34,6 @@ Go to your resource in the Azure portal. The **Endpoint and Keys** can be found 
 
 [!INCLUDE [environment-variables](environment-variables.md)]
 
-> [!div class="nextstepaction"]
-> [I ran into an issue with the setup.](https://microsoft.qualtrics.com/jfe/form/SV_0Cl5zkG3CnDjq6O?PLanguage=REST&Pillar=AOAI&Product=gpt&Page=quickstart&Section=Set-up)
-
 
 ## REST API
 
@@ -82,8 +79,6 @@ The output from the completions API will look as follows.
 }
 ```
 
-> [!div class="nextstepaction"]
-> [I ran into an issue when running the code sample.](https://microsoft.qualtrics.com/jfe/form/SV_0Cl5zkG3CnDjq6O?PLanguage=REST&Pillar=AOAI&Product=gpt&Page=quickstart&Section=Create-sample-code)
 
 The Azure OpenAI Service also performs content moderation on the prompt inputs and generated outputs. The prompts or responses may be filtered if harmful content is detected. For more information, see the [content filter](../concepts/content-filter.md) article.
 
