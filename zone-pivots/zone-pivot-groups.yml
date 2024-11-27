@@ -183,8 +183,8 @@ groups:
   title: Programming languages
   prompt: Choose your preferred usage method
   pivots:
-  - id: programming-language-studio
-    title: Studio
+  - id: ai-foundry-portal
+    title: AI Foundry portal
   - id: programming-language-javascript
     title: JavaScript
   - id: programming-language-dotnet
@@ -200,8 +200,8 @@ groups:
   title: Programming languages
   prompt: Choose your preferred usage method
   pivots:
-  - id: programming-language-studio
-    title: Studio
+  - id: ai-foundry-portal
+    title: AI Foundry portal
   - id: programming-language-csharp
     title: C#
   - id: programming-language-go
