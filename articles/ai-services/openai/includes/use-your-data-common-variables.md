@@ -98,5 +98,3 @@ export AZURE_AI_SEARCH_INDEX=REPLACE_WITH_YOUR_INDEX_NAME_HERE
 
 ---
 
-> [!div class="nextstepaction"]
-> [I ran into an issue with the setup.](https://microsoft.qualtrics.com/jfe/form/SV_0Cl5zkG3CnDjq6O?PLanguage=REST&Pillar=AOAI&Product=ownData&Page=quickstart&Section=Set-up)
