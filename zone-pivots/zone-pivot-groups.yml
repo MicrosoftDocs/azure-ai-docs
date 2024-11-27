@@ -119,7 +119,7 @@ groups:
   title: Programming languages
   prompt: Choose your preferred usage method
   pivots:
-  - id: programming-language-ai-studio
+  - id: ai-foundry-portal
     title: AI Foundry portal
   - id: programming-language-csharp
     title: C#
@@ -777,7 +777,7 @@ groups:
   title: Programming languages
   prompt: Choose your preferred usage method
   pivots:
-  - id: programming-language-ai-studio
+  - id: ai-foundry-portal
     title: AI Foundry portal
   - id: programming-language-python
     title: Python
@@ -810,20 +810,7 @@ groups:
   - id: ps
     title: PowerShell
 # Owner: mbullwin
-- id: openai-fine-tuning-new
-  title: Programming languages
-  prompt: Choose your preferred fine-tuning method
-  pivots:
-  - id: programming-language-studio
-    title: Studio
-  - id: programming-language-ai-studio
-    title: AI Foundry portal
-  - id: programming-language-python
-    title: Python
-  - id: rest-api
-    title: REST
-# Owner: mbullwin
-- id: openai-fine-tuning-newest
+- id: openai-fine-tuning
   title: Programming languages
   prompt: Choose your preferred fine-tuning method
   pivots:
@@ -909,11 +896,11 @@ groups:
     title: Python
   - id: programming-language-powershell
     title: PowerShell
-- id: openai-studio-js
+- id: openai-portal-js
   title: Programming languages
   prompt: Choose your preferred usage method
   pivots:
-  - id: programming-language-ai-studio
+  - id: ai-foundry-portal
     title: AI Foundry portal
   - id: programming-language-javascript
     title: JavaScript
