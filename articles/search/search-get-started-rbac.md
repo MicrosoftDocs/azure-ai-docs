@@ -34,23 +34,29 @@ This step is necessary if you have more than one subscription or tenant.
 
    1. Notice the subscription name and ID in **Overview** > **Essentials**.
 
-   1. Select the subscription name to confirm the parent management group (tenant ID).
+   1. Now select the subscription name to confirm the parent management group (tenant ID) on the next page.
 
       :::image type="content" source="media/search-get-started-rbac/select-subscription-name.png" lightbox="media/search-get-started-rbac/select-subscription-name.png" alt-text="Screenshot of the portal page providing the subscription name":::
 
-1. Identify the active Azure subscription and tenant on your local device:
+1. Switching to your local device and a command prompt, identify the active Azure subscription and tenant:
 
-   `az account show`
+   ```azurecli
+   az account show
+   ```
 
-1. If the active subscription is different from the one used by Azure AI Search, change the subscription ID. Next, sign in to Azure using the same tenant ID as Azure AI Search. 
+1. If the active subscription is different from the information obtained in the previous step, change the subscription ID. Next, sign in to Azure using the tenant ID also found in the previous step:
 
-   `az account set --subscription <your-subscription-id>`
+   ```azurecli
+    az account set --subscription <your-subscription-id>
 
-   `az login --tenant <your-tenant-id>`
+    az login --tenant <your-tenant-id>
+   ```
 
-1. Verify your tenant ID.
+1. Verify your tenant ID:
 
-   `az account show --query tenantId --output tsv`
+   ```azurecli
+   az account show --query tenantId --output tsv
+   ```
 
 ## Step 2: Configure Azure AI Search for RBAC
 
@@ -62,7 +68,7 @@ This step is necessary if you have more than one subscription or tenant.
 
    1. Choose **Role-based control** or **Both** if you need time to transition clients to role-based access control.
 
-      If you choose **Role-based control**, make sure that you assign yourself all roles named in the next instruction or you won't be able to complete tasks in the portal or through a  local client.
+      If you choose **Role-based control**, make sure that you assign yourself *all* roles named in the next instruction or you won't be able to complete tasks in the portal or through a  local client.
 
 1. Assign roles in the Azure portal:
 
@@ -83,7 +89,11 @@ This step is necessary if you have more than one subscription or tenant.
 
 ## Step 3: Connect from your local system
 
-If you haven't yet signed in to Azure, do so now with an `az login` command.
+If you haven't yet signed in to Azure:
+
+```azurecli
+az login
+```
 
 ### Using Python and Jupyter notebooks
 
