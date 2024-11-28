@@ -12,9 +12,9 @@ ms.date: 11/28/2024
 
 # Quickstart: Connect without keys
 
-Configure Azure AI Search to use Microsoft Entra ID authentication and roles. Connect from your local system, running Jupyter notebooks, or using a REST client.
+Configure Azure AI Search to use Microsoft Entra ID authentication and role-based access control (RBAC). Connect from your local system using your personal identity, using Jupyter notebooks or a REST client to interact with your search service.
 
-If you stepped through other quickstarts that connect using API keys, this quickstart shows you how to switch to identity-based authentication so that you can avoid hard-coded API keys in your example code.
+If you stepped through other quickstarts that connect using API keys, this quickstart shows you how to switch to identity-based authentication so that you can avoid hard-coded keys in your example code.
 
 ## Prerequisites
 
@@ -34,7 +34,7 @@ This step is necessary if you have more than one subscription or tenant.
 
    1. Notice the subscription name and ID in **Overview** > **Essentials**.
 
-   1. Select the subscription name to view the parent management group (tenant ID).
+   1. Select the subscription name to confirm the parent management group (tenant ID).
 
       :::image type="content" source="media/search-get-started-rbac/select-subscription-name.png" lightbox="media/search-get-started-rbac/select-subscription-name.png" alt-text="Screenshot of the portal page providing the subscription name":::
 
@@ -42,17 +42,17 @@ This step is necessary if you have more than one subscription or tenant.
 
    `az account show`
 
-1. Set your Azure subscription to the subscription and tenant, and sign in to Azure.
+1. If the active subscription is different from the one used by Azure AI Search, change the subscription ID. Next, sign in to Azure using the same tenant ID as Azure AI Search. 
 
    `az account set --subscription <your-subscription-id>`
 
    `az login --tenant <your-tenant-id>`
 
-1. Check your tenant ID:
+1. Verify your tenant ID.
 
    `az account show --query tenantId --output tsv`
 
-## Step 2: Configure Azure AI Search for Microsoft Entra ID authentication
+## Step 2: Configure Azure AI Search for RBAC
 
 1. Sign in to the [Azure portal](https://portal.azure.com) and navigate to your Azure AI Search service.
 
@@ -72,14 +72,18 @@ This step is necessary if you have more than one subscription or tenant.
 
    1. Select **+ Add** > **Add role assignment**.
 
-   1. Choose a role (Search Service Contributor, Search Index Data Contributor, Search Index Data Reader) and assign it to your Microsoft Entra user or group identity. These three roles provide the full set of permissions for creating, loading, and querying objects on Azure AI Search. For more information, see [Connect using roles](search-security-rbac.md).
+   1. Choose a role (Search Service Contributor, Search Index Data Contributor, Search Index Data Reader) and assign it to your Microsoft Entra user or group identity.
+
+      Repeat for each role.
+
+      You need all three roles for creating, loading, and querying objects on Azure AI Search. For more information, see [Connect using roles](search-security-rbac.md).
 
 > [!TIP]
-> Later, if you get authentication failure errors, recheck the settings in this section. There could be policies set at the subcription or resource group level that enforce specific security settings.
+> Later, if you get authentication failure errors, recheck the settings in this section. There could be policies at the subscription or resource group level that override any API settings you specify.
 
 ## Step 3: Connect from your local system
 
-If you didn't sign in to Azure with an `az login` command, do so now.
+If you haven't yet signed in to Azure, do so now with an `az login` command.
 
 ### Using Python and Jupyter notebooks
 
