@@ -7,7 +7,7 @@ ms.author: heidist
 ms.service: azure-ai-search
 
 ms.topic: quickstart
-ms.date: 11/26/2024
+ms.date: 11/28/2024
 ---
 
 # Quickstart: Connect without keys
@@ -24,13 +24,13 @@ If you stepped through other quickstarts that connect using API keys, this quick
 
 - A command line tool, such as the [Azure CLI](/cli/azure/install-azure-cli).
 
-## Step 1: Set up your Azure subscription and tenant
+## Step 1: Get your Azure subscription and tenant IDs
 
 This step is necessary if you have more than one subscription or tenant.
 
 1. Get the Azure subscription and tenant for your search service:
 
-   1. Sign into the Azure portal and navigate to your search service.
+   1. Sign into the [Azure portal](https://portal.azure.com) and navigate to your search service.
 
    1. Notice the subscription name and ID in **Overview** > **Essentials**.
 
@@ -42,7 +42,7 @@ This step is necessary if you have more than one subscription or tenant.
 
    `az account show`
 
-1. Set your Azure subscription to the subscription and tenant:
+1. Set your Azure subscription to the subscription and tenant, and sign in to Azure.
 
    `az account set --subscription <your-subscription-id>`
 
@@ -54,13 +54,15 @@ This step is necessary if you have more than one subscription or tenant.
 
 ## Step 2: Configure Azure AI Search for Microsoft Entra ID authentication
 
-1. Sign in to the Azure portal and navigate to your Azure AI Search service.
+1. Sign in to the [Azure portal](https://portal.azure.com) and navigate to your Azure AI Search service.
 
 1. Enable role-based access control (RBAC):
 
    1. Go to **Settings** > **Keys**.
 
-   1. Choose **Role-based control** or **Both** if you need time to transition clients to role-based access control1.
+   1. Choose **Role-based control** or **Both** if you need time to transition clients to role-based access control.
+
+      If you choose **Role-based control**, make sure that you assign yourself all roles named in the next instruction or you won't be able to complete tasks in the portal or through a  local client.
 
 1. Assign roles in the Azure portal:
 
@@ -72,7 +74,12 @@ This step is necessary if you have more than one subscription or tenant.
 
    1. Choose a role (Search Service Contributor, Search Index Data Contributor, Search Index Data Reader) and assign it to your Microsoft Entra user or group identity. These three roles provide the full set of permissions for creating, loading, and querying objects on Azure AI Search. For more information, see [Connect using roles](search-security-rbac.md).
 
+> [!TIP]
+> Later, if you get authentication failure errors, recheck the settings in this section. There could be policies set at the subcription or resource group level that enforce specific security settings.
+
 ## Step 3: Connect from your local system
+
+If you didn't sign in to Azure with an `az login` command, do so now.
 
 ### Using Python and Jupyter notebooks
 
@@ -105,7 +112,7 @@ Several quickstarts and tutorials use a REST client, such as Visual Studio Code 
 
 1. Get a personal identity token:
 
-   `az account get-access-token --resource https://<your-search-service-name>.search.windows.net`
+   `az account get-access-token --scope https://search.azure.com/.default`
 
 1. Extract the token from the output:
 
@@ -130,6 +137,9 @@ Several quickstarts and tutorials use a REST client, such as Visual Studio Code 
              "count": true
          }
    ```
+
+> [!TIP]
+> If the exercise fails at step one, try connecting through a VPN and then retry the step.
 
 ## Additional configuration
 
