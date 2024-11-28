@@ -138,9 +138,6 @@ Several quickstarts and tutorials use a REST client, such as Visual Studio Code 
          }
    ```
 
-> [!TIP]
-> If the exercise fails at step one, try connecting through a VPN and then retry the step.
-
 ## Additional configuration
 
 Configure a managed identity for outbound connections:
