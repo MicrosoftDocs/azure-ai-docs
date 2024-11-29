@@ -71,8 +71,43 @@ Let's change the script to take input from a client application and generate a s
 1. Remove the last line of the script that prints a response.
 
 1. Now define a `get_chat_response` function that takes messages and context, generates a system message using a prompt template, and calls a model.  Add this code to your **chat.py** file:
+    ```python
+    from azure.ai.projects import AIProjectClient
+    from azure.identity import DefaultAzureCredential
+    from azure.ai.inference.prompts import PromptTemplate
+    
+    
+    def get_chat_response(messages, context):
+        project_connection_string = "<your-connection-string-goes-here>"
 
-    :::code language="python" source="~/azureai-samples-nov2024/scenarios/inference/chat-app/chat-template.py" id="chat_function":::
+        project = AIProjectClient.from_connection_string(
+            conn_str=project_connection_string, credential=DefaultAzureCredential()
+        )
+    
+        # create a prompt template from an inline string (using mustache syntax)
+        prompt_template = PromptTemplate.from_string(
+            prompt_template="""
+            system:
+            You are an AI assistant that speaks like a techno punk rocker from 2350. Be cool but not too cool. Ya dig? Refer to the user by their first name, try to work their last name into a pun.
+
+            The user's first name is {{first_name}} and their last name is {{last_name}}.
+            """
+        )
+    
+        # generate system message from the template, passing in the context as variables
+        system_message = prompt_template.create_messages(data=context)
+        
+        chat = project.inference.get_chat_completions_client()
+    
+        # add the prompt messages to the user messages
+        return chat.complete(
+            model="gpt-4o-mini",
+            messages=system_message + messages,
+            temperature=1,
+            frequency_penalty=0.5,
+            presence_penalty=0.5,
+        )
+    ```
 
     > [!NOTE]
     > The prompt template uses mustache format.
