@@ -22,7 +22,7 @@ This article is intended for existing users of the provisioned throughput offeri
 
 ## What's changing?
 
-The changes below apply to the Global provisioned, Data Zone provisioned, and Provisioned deployment types.
+The changes below apply to the global provisioned, data zone provisioned, and provisioned deployment types.
 
 > [!IMPORTANT]
 > The changes in this article do not apply to the older *"Provisioned Classic (PTU-C)"* offering. They only affect the Provisioned (also known as the Provisioned Managed) offering.
