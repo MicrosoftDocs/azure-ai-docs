@@ -556,15 +556,15 @@ You can use Document Intelligence to automate document processing in application
 
 #### Custom generative (document field extraction)
 
-:::image type="content" source="media/overview/analyze-custom-generative.png" alt-text="Screenshot of Custom generative model analysis using Azure AI Studio.":::
+:::image type="content" source="media/overview/analyze-custom-generative.png" alt-text="Screenshot of Custom generative model analysis using Azure AI Foundry.":::
 
   > [!NOTE]
-  > Custom generative model is only available in Azure AI Studio.
-  > To try out custom generative model in AI Studio, *visit* [Document field extraction (custom generative)](https://aka.ms/custom-generative)
+  > Custom generative model is only available in Azure AI Foundry portal.
+  > To try out custom generative model in AI Foundry portal, *visit* [Document field extraction (custom generative)](https://aka.ms/custom-generative)
 
 | About | Description |Automation use cases | Development options |
 |----------|--------------|-------------------------|-----------|
-|[**Custom generative model**](train/custom-generative-extraction.md)| The custom generative model is used to extract fields from unstructured documents or structured forms with a wide variety of visual templates.|The model uses Generative AI to extract fields, improve quality with only a few labeled samples and can be integrated into your processes with grounding and confidence scores.​|[**Azure AI Studio**](https://aka.ms/custom-generative)</br>&#9679; [**REST API**](/rest/api/aiservices/document-models/build-model?view=rest-aiservices-2023-07-31&preserve-view=true&tabs=HTTP)</br>&#9679; [**C# SDK**](quickstarts/get-started-sdks-rest-api.md?view=doc-intel-4.0.0&preserve-view=true)</br>&#9679; [**Java SDK**](quickstarts/get-started-sdks-rest-api.md?view=doc-intel-4.0.0&preserve-view=true)</br>&#9679; [**JavaScript SDK**](quickstarts/get-started-sdks-rest-api.md?view=doc-intel-4.0.0&preserve-view=true)</br>&#9679; [**Python SDK**](quickstarts/get-started-sdks-rest-api.md?view=doc-intel-4.0.0&preserve-view=true)|
+|[**Custom generative model**](train/custom-generative-extraction.md)| The custom generative model is used to extract fields from unstructured documents or structured forms with a wide variety of visual templates.|The model uses Generative AI to extract fields, improve quality with only a few labeled samples and can be integrated into your processes with grounding and confidence scores.​|[**Azure AI Foundry**](https://aka.ms/custom-generative)</br>&#9679; [**REST API**](/rest/api/aiservices/document-models/build-model?view=rest-aiservices-2023-07-31&preserve-view=true&tabs=HTTP)</br>&#9679; [**C# SDK**](quickstarts/get-started-sdks-rest-api.md?view=doc-intel-4.0.0&preserve-view=true)</br>&#9679; [**Java SDK**](quickstarts/get-started-sdks-rest-api.md?view=doc-intel-4.0.0&preserve-view=true)</br>&#9679; [**JavaScript SDK**](quickstarts/get-started-sdks-rest-api.md?view=doc-intel-4.0.0&preserve-view=true)</br>&#9679; [**Python SDK**](quickstarts/get-started-sdks-rest-api.md?view=doc-intel-4.0.0&preserve-view=true)|
 
 > [!div class="nextstepaction"]
 > [Return to custom model types](#custom-models)

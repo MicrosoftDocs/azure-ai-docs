@@ -34,7 +34,7 @@ For more information about the projects and hubs model, see [Azure AI Foundry hu
 
 Use the following tabs to select the method you plan to use to create a project:
 
-# [Azure AI Foundry](#tab/ai-studio)
+# [AI Foundry portal](#tab/ai-studio)
 
 [!INCLUDE [Create Azure AI Foundry project](../includes/create-projects.md)]
 
@@ -85,7 +85,7 @@ The code in this section assumes you have an existing hub.  If you don't have a 
 
 ## View project settings
 
-# [Azure AI Foundry](#tab/ai-studio)
+# [AI Foundry portal](#tab/ai-studio)
 
 On the project **Overview** page you can find information about the project.
 

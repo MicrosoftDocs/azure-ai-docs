@@ -59,7 +59,7 @@ items:
         - name: Custom speech overview
           href: custom-speech-overview.md
         - name: Fine-tune in the Azure AI Foundry portal
-          href: custom-speech-ai-studio.md
+          href: custom-speech-ai-foundry-portal.md
         - name: Create a custom speech model 
           items:
           - name: "Part 1: Create a project"

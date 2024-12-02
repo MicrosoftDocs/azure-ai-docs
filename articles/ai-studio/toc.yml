@@ -84,13 +84,17 @@ items:
       - name: Hear and speak with chat in the playground
         href: quickstarts/hear-speak-playground.md
       - name: Fine-tune in AI Foundry portal for custom speech
-        href: ../ai-services/speech-service/custom-speech-ai-studio.md?context=/azure/ai-studio/context/context
+        href: ../ai-services/speech-service/custom-speech-ai-foundry-portal.md?context=/azure/ai-studio/context/context
   - name: Explore and select AI models
     items:
     - name: Model catalog
       href: how-to/model-catalog-overview.md
     - name: Data, privacy, and security for Model Catalog
       href: how-to/concept-data-privacy.md
+    - name: Model lifecycle and retirement
+      href: concepts/model-lifecycle-retirement.md
+    - name: Model benchmarks
+      href: how-to/model-benchmarks.md
     - name: Model benchmarking
       items:
       - name: Model benchmarks
@@ -419,6 +423,8 @@ items:
     href: ./concepts/safety-evaluations-transparency-note.md
 - name: Reference
   items:
+  - name: Azure AI Projects SDK
+    href: /python/api/overview/azure/ai-projects-readme
   - name: Azure Machine Learning Python SDK
     href: /python/api/overview/azure/ai-ml-readme
   - name: Azure Machine Learning REST API

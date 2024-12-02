@@ -1,5 +1,5 @@
 ---
-title: Use keyless connections with Azure AI Search
+title: Use keyless connections in search apps
 description: Use keyless connections with an Azure Identity library for Microsoft Entra ID authentication and authorization with Azure AI Search.
 ms.topic: how-to
 ms.date: 10/30/2024
@@ -9,7 +9,7 @@ ms.custom: devx-track-dotnet, devx-track-extended-java, devx-track-js, devx-trac
 #customer intent: As a developer, I want to use keyless connections so that I don't leak secrets.
 ---
 
-# Use Azure AI Search without keys 
+# Connect your app to Azure AI Search using identities
 
 In your application code, you can set up a keyless connection to Azure AI Search that uses Microsoft Entra ID and roles for authentication and authorization. Application requests to most Azure services must be authenticated with keys or keyless connections. Developers must be diligent to never expose the keys in an unsecure location. Anyone who gains access to the key is able to authenticate to the service. Keyless authentication offers improved management and security benefits over the account key because there's no key (or connection string) to store.
 

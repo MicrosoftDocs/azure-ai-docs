@@ -52,7 +52,7 @@ These error codes can be returned by Face Detection operation.
 |Bad Request (400)|BadArgument|Invalid argument returnFaceAttributes.||
 |Bad Request (400)|BadArgument|'returnFaceAttributes' is not supported by detection_02.||
 |Bad Request (400)|BadArgument|'returnLandmarks' is not supported by detection_02.||
-|Forbidden (403)|UnsupportedFeature|Return Attributes (emotion, gender, age, smile, facial hair, hair and makeup) have been deprecated and are no longer supported.|Read more about this decision [here](https://azure.microsoft.com/blog/responsible-ai-investments-and-safeguards-for-facial-recognition/).|
+|Forbidden (403)|UnsupportedFeature|Return Attributes (emotion, gender, age, smile, facial hair, hair and makeup) have been deprecated and are no longer supported.|Email [Azure Face team](mailto:azureface@microsoft.com) if you have a responsible use case that would benefit from the use of any of the limited capabilities.|
 
 ## Face Liveness Session error codes
 
