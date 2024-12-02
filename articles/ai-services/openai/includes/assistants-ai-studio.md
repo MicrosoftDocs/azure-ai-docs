@@ -9,8 +9,8 @@ ms.custom:
   - ignite-2024
 ms.topic: include
 ms.date: 03/04/2024
-ms.author: mbullwin
-author: mrbullwinkle
+author: aahill
+ms.author: aahi
 ---
 
 [!INCLUDE [Feature preview](~/reusable-content/ce-skilling/azure/includes/ai-studio/includes/feature-preview.md)]
