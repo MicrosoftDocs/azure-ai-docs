@@ -3,7 +3,7 @@ author: larryfr
 ms.service: azure-machine-learning
 ms.custom: devx-track-azurecli
 ms.topic: include
-ms.date: 11/26/2024
+ms.date: 12/02/2024
 ms.author: larryfr
 ---
 

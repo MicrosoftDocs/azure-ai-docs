@@ -3,7 +3,7 @@ author: larryfr
 ms.service: azure-machine-learning
 ms.custom: devx-track-azurecli
 ms.topic: include
-ms.date: 09/17/2024
+ms.date: 12/02/2024
 ms.author: larryfr
 ---
 
@@ -73,7 +73,7 @@ ms.author: larryfr
       "Swagger not found"
       ```
 
-1. If the curl HTTPs command fails or times out but the HTTP command works, check whether the certificate is valid.
+1. If the curl HTTPS command fails or times out but the HTTP command works, check whether the certificate is valid.
 
 1. If the preceding process fails to resolve to the A record, use the following command to verify whether the resolution works from the Azure DNS virtual public IP address, 168.63.129.16:
 

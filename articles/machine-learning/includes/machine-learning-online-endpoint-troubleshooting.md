@@ -3,13 +3,13 @@ author: larryfr
 ms.service: azure-machine-learning
 ms.custom: devx-track-azurecli
 ms.topic: include
-ms.date: 09/17/2024
+ms.date: 12/02/2024
 ms.author: larryfr
 ---
 
 ### Online endpoint creation fails with a message about v1 legacy mode
 
-Managed online endpoints are a feature of the v2 API platform. If your Azure Machine Learning workspace is configured for v1 legacy mode, the managed online endpoints don't work. Specifically, if the `v1_legacy_mode` workspace setting is set to `true`, v1 legacy mode is turned on, and there's no support for v2 APIs.
+Managed online endpoints are a feature of the Azure Machine Learning v2 API platform. If your Azure Machine Learning workspace is configured for v1 legacy mode, the managed online endpoints don't work. Specifically, if the `v1_legacy_mode` workspace setting is set to `true`, v1 legacy mode is turned on, and there's no support for v2 APIs.
 
 To see how to turn off v1 legacy mode, see [Network isolation with v2](../how-to-configure-network-isolation-with-v2.md).
 
@@ -52,7 +52,7 @@ If the value of `bypass` isn't `AzureServices`, use the guidance in [Configure k
    In the response code, verify that the `status` field is set to `Approved`. If the value isn't `Approved`, use the following command to approve the connection. Replace `<private-endpoint-name>` with the name returned from the preceding command.
 
    ```azurecli
-   az network private-endpoint-connection approve -n <private-endpoint-name>
+   az network private-endpoint-connection approve --id <private-endpoint-connection-ID> --description "Approved"
    ```
 
 ### Online deployments can't be scored
