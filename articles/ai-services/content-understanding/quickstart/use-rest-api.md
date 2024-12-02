@@ -245,7 +245,7 @@ curl -i -X POST "{endpoint}/contentunderstanding/analyzers/{analyzerId}:analyze?
   -d "{\"url\":\"{fileUrl}\"}"
 ```
 
-### POST responseH
+### POST response
 
 The 202 (`Accepted`) response includes an `Operation-Location` header containing a URL that you can use to track the status of this asynchronous analyze operation.
 
