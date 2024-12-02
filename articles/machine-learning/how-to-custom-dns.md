@@ -290,8 +290,8 @@ The following table shows example IPs from Azure US Government regions:
 
 | FQDN | IP Address |
 | ----- | ----- |
-| `52882c08-ead2-44aa-af65-08a75cf094bd.workspace.chinaeast2.api.ml.azure.us` | `10.1.0.5` |
-| `52882c08-ead2-44aa-af65-08a75cf094bd.workspace.chinaeast2.cert.api.ml.azure.us` | `10.1.0.5` |
+| `52882c08-ead2-44aa-af65-08a75cf094bd.workspace.usgovvirginia.api.ml.azure.us` | `10.1.0.5` |
+| `52882c08-ead2-44aa-af65-08a75cf094bd.workspace.usgovvirginia.cert.api.ml.azure.us` | `10.1.0.5` |
 | `ml-mype-plt-usgovvirginia-52882c08-ead2-44aa-af65-08a75cf094bd.usgovvirginia.notebooks.usgovcloudapi.net` | `10.1.0.6` |
 | `*.usgovvirginia.inference.ml.azure.us` | `10.1.0.7` |
 
