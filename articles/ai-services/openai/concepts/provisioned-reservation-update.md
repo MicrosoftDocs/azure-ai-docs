@@ -15,7 +15,7 @@ recommendations: false
 
 In early-December, 2024, Microsoft launched several changes to the Provisioned offering. These changes include:
 - A new deployment type, Data zone provisioned
-- Updated hourly pricing for Global and Data zone provisioned deployment types
+- Updated hourly pricing for global and data zone provisioned deployment types
 - New Azure Reservations for Global and Data zone provisioned deployment types
 
 This article is intended for existing users of the provisioned throughput offering. New customers should refer to the [Azure OpenAI provisioned onboarding guide](../how-to/provisioned-throughput-onboarding.md).
