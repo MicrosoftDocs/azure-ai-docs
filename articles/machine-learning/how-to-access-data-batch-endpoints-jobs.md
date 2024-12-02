@@ -8,7 +8,7 @@ ms.subservice: inferencing
 ms.topic: how-to
 author: msakande
 ms.author: mopeakande
-ms.date: 11/07/2024
+ms.date: 12/02/2024
 ms.reviewer: cacrest
 ms.custom:
   - devplatv2
