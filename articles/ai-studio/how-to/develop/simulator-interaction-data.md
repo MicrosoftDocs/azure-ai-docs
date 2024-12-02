@@ -512,6 +512,8 @@ The language options can be passed in as an optional parameter to the `Adversari
 Usage example below:
 
 ```python
+from azure.ai.evaluation.simulator import SupportedLanguages
+
 outputs = await simulator(
         scenario=scenario, # required, adversarial scenario to simulate
         target=callback, # required, callback function to simulate against
