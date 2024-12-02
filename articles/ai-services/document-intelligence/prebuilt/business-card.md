@@ -180,7 +180,7 @@ For a complete list of supported languages, *see* our [prebuilt model language s
 
 ## Field extractions
 
-For supported document extraction fields, refer to the [business card model schema](https://github.com/Azure-Samples/document-intelligence-code-samples/blob/main/schema/2023-07-31/business-card.md) page in our GitHub sample repository.
+For supported document extraction fields, refer to the [business card model schema](https://github.com/Azure-Samples/document-intelligence-code-samples/blob/main/schema/2023-07-31-ga/business-card.md) page in our GitHub sample repository.
 
 ::: moniker-end
 
