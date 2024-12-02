@@ -43,40 +43,7 @@ You can configure the following filter categories in addition to the default har
 | Protected material - text | GA| On | Completion | Identifies and blocks known text content from being displayed in the model output (for example, song lyrics, recipes, and selected web content).  |
 | Groundedness* | Preview |Off | Completion |Detects whether the text responses of large language models (LLMs) are grounded in the source materials provided by the users. Ungroundedness refers to instances where the LLMs produce information that is non-factual or inaccurate from what was present in the source materials. Requires: [Document embedding and formatting](/azure/ai-services/openai/concepts/content-filter?tabs=warning%2Cuser-prompt%2Cpython-new#embedding-documents-in-your-prompt).|
 
-
-
-## Configure content filters with Azure AI Foundry
-
-The following steps show how to set up a customized content filtering configuration for your Azure OpenAI resource within AI Foundry portal. For guidance with content filters in your Azure AI Foundry project, you can read more at [Azure AI Foundry content filtering](/azure/ai-studio/concepts/content-filtering).
-
-1. Go to Azure AI Foundry and navigate to the **Safety + security** page on the left menu.
-1. Proceed to the **Content filters** tab and create a new customized content filtering configuration. 
-
-    This leads to the following configuration view, where you can choose a name for the custom content filtering configuration. After entering a name, you can configure the **input filters** (for user prompts) and **output filters** (for model completion). 
-
-    :::image type="content" source="../media/content-filters/input-filter.png" alt-text="Screenshot of input filter screen.":::
-
-    :::image type="content" source="../media/content-filters/output-filter.png" alt-text="Screenshot of output filter screen.":::
-
-    For the first four content categories there are three severity levels that are configurable: Low, medium, and high. You can use the sliders to set the severity threshold if you determine that your application or usage scenario requires different filtering than the default values. 
-
-    Some filters, such as Prompt Shields and Protected material detection, enable you to determine if the model should annotate and/or block content. Selecting **Annotate only** runs the respective model and return annotations via API response, but it will not filter content. In addition to annotate, you can also choose to block content.
-
-    If your use case was approved for modified content filters, you receive full control over content filtering configurations and can choose to turn filtering partially or fully off, or enable annotate only for the content harms categories (violence, hate, sexual and self-harm).
-
-
-1. You can create multiple content filtering configurations as per your requirements.
-
-    :::image type="content" source="../media/content-filters/multiple.png" alt-text="Screenshot of multiple content configurations in the Azure portal." lightbox="../media/content-filters/multiple.png":::
-
-1. Next, to use a custom content filtering configuration, assign it to one or more deployments in your resource. To do this, go to the **Deployments** tab and select your deployment. Then select **Edit**.
-1. In the **Update deployment** window that appears, select your custom filter from the **Content filter** dropdown menu. Then select **Save and close** to apply the selected configuration to the deployment.
-
-    :::image type="content" source="../media/content-filters/select-filter.png" alt-text="Screenshot of edit deployment configuration with content filter selected." lightbox="../media/content-filters/select-filter.png":::
-
-    You can also edit and delete a content filter configuration if required.
-    
-    Before you delete a content filtering configuration, you will need to unassign and replace it from any deployment in the **Deployments** tab.
+[!INCLUDE [create-content-filter](../../../ai-studio/includes/create-content-filter.md)]
 
 ## Report content filtering feedback
 
