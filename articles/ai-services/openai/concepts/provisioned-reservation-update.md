@@ -47,7 +47,7 @@ In addition to the updates for the hourly payment model, new Azure Reservations 
 > [!IMPORTANT]
 > Azure Reservations for Azure OpenAI provisioned offers are not interchangeable across deployment types. The Azure Reservation purchased must match the provisioned deployment type. If the Azure Reservation purchased does not match the provisioned deployment type, the provisioned deployment will default to the hourly payment model until a matching Azure Reservation product is purchased. For more information, see the [Azure Reservations for Azure OpenAI Service provisioned guidance](https://aka.ms/oai/docs/ptum-reservations).
 
-## Migrating existing deployments to Global or Data zone provisioned
+## Migrating existing deployments to global or data zone provisioned
 Existing customers of provisioned deployments can choose to migrate to global or data zone provisioned deployments to benefit from the lower deployment minimums, granular scale increments, or differentiated pricing available for these deployment types. To learn more about how global and data zone provisioned deployments handle data processing across Azure geographies, see the Azure OpenAI deployment [data processing documentation](https://aka.ms/aoai/docs/data-processing-locations).
 
 Two approaches are available for customers to migrate from provisioned deployments to global or data zone provisioned deployments. 
