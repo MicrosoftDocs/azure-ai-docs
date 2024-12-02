@@ -164,7 +164,7 @@ If you're an existing customer looking for information about these models, see [
 
 ## December 2, 2024
 
-| `gpt-3.5-turbo-instruct` updated to no earlier than February 1, 2025.
+`gpt-3.5-turbo-instruct` updated to no earlier than February 1, 2025.
 
 ## November 22, 2024
 
