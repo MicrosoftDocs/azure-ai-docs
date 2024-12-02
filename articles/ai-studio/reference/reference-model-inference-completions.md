@@ -16,6 +16,8 @@ ms.custom:
 
 # Reference: Completions | Azure AI Studio
 
+[!INCLUDE [feature-preview](../includes/feature-preview.md)]
+
 Creates a completion for the provided prompt and parameters.
 
 ```http

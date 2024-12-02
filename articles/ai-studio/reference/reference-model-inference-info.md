@@ -16,6 +16,8 @@ ms.custom:
 
 # Reference: Info | Azure AI Studio
 
+[!INCLUDE [feature-preview](../includes/feature-preview.md)]
+
 Returns the information about the model deployed under the endpoint.
 
 ```http

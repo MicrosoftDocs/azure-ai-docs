@@ -16,6 +16,8 @@ ms.custom:
 
 # Reference: Embeddings | Azure AI Studio
 
+[!INCLUDE [feature-preview](../includes/feature-preview.md)]
+
 Creates an embedding vector representing the input text.
 
 ```http
