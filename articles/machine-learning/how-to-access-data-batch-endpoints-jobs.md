@@ -305,7 +305,7 @@ Batch endpoints can read files that are located in the following types of storag
 
 - [Azure Machine Learning data assets](#use-input-data-from-a-data-asset), including the folder (`uri_folder`) and file (`uri_file`) types.
 - [Azure Machine Learning data stores](#use-input-data-from-a-data-store), including Azure Blob Storage, Azure Data Lake Storage Gen1, and Azure Data Lake Storage Gen2.
-- [Azure Storage accounts](#use-input-data-from-a-storage-account), including Blob Storage, Data Lake Storage Gen1, and Data Lake Storage Gen2.
+- [Azure Storage accounts](#use-input-data-from-an-azure-storage-account), including Blob Storage, Data Lake Storage Gen1, and Data Lake Storage Gen2.
 - Local data folders and files, when you use the Azure Machine Learning CLI or the Azure Machine Learning SDK for Python to invoke endpoints. But the local data gets uploaded to the default data store of your Azure Machine Learning workspace.
 
 > [!IMPORTANT]
@@ -334,7 +334,7 @@ Data outputs refer to the location where the results of a batch job are placed. 
 
 ## Create jobs with data inputs
 
-The following examples show how to create jobs while taking data inputs from [data assets](#use-input-data-from-a-data-asset), [data stores](#use-input-data-from-a-data-store), and [Storage accounts](#use-input-data-from-a-storage-account).
+The following examples show how to create jobs while taking data inputs from [data assets](#use-input-data-from-a-data-asset), [data stores](#use-input-data-from-a-data-store), and [Azure Storage accounts](#use-input-data-from-an-azure-storage-account).
 
 ### Use input data from a data asset
 
