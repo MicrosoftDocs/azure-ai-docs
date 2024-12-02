@@ -642,9 +642,9 @@ This example uses the default data store, but you can use a different data store
 
     ---
 
-### Use input data from a Storage account
+### Use input data from an Azure Storage account
 
-Azure Machine Learning batch endpoints can read data from cloud locations in Storage accounts, both public and private. Use the following steps to run a batch endpoint job with data in a storage account.
+Azure Machine Learning batch endpoints can read data from cloud locations in Azure Storage accounts, both public and private. Use the following steps to run a batch endpoint job with data in a storage account.
 
 For more information about extra required configurations for reading data from storage accounts, see [Configure compute clusters for data access](how-to-authenticate-batch-endpoint.md#configure-compute-clusters-for-data-access).
 
