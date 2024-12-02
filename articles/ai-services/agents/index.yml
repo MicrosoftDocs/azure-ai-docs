@@ -1,0 +1,35 @@
+### YamlMime:Landing
+
+title: Azure AI Agent Service documentation # < 60 chars
+summary: Azure AI Agent Service is a fully managed service designed to empower developers to securely build, deploy, and scale high-quality, and extensible AI agents. 
+  
+metadata:
+  title: Azure AI Agent Service documentation - Quickstarts, Tutorials, API Reference - Azure AI services | Microsoft Docs
+  description: Learn how to build agents that apply powerful models such as GPT-4o, Llama, and Mistral.
+  ms.service: azure-ai-openai
+  ms.custom:
+  ms.topic: landing-page
+  author: aahill
+  ms.author: aahi
+  ms.date: 11/13/2024
+
+# linkListType: architecture | concept | deploy | download | get-started | how-to-guide | learn | overview | quickstart | reference | tutorial | video | whats-new
+# Limits: https://review.learn.microsoft.com/help/contribute/contribute-how-to-write-landing-page?branch=main#limits
+
+landingContent:
+# Cards and links should be based on top customer tasks or top subjects
+# Start card title with a verb
+# Card 1
+   - title: Azure AI Agent OpenAI Service
+     linkLists:
+      - linkListType: overview
+        links:
+          - text: What is Azure OpenAI?
+            url: overview.md
+          - text: Models and region support
+            url: ./concepts/model-region-support.md
+      - linkListType: quickstart
+        links:
+           - text: Create an agent
+             url: quickstart.md
+          

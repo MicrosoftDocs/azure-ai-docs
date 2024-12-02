@@ -904,6 +904,16 @@ groups:
     title: AI Foundry portal
   - id: programming-language-javascript
     title: JavaScript
+- id: programming-languages-agents
+  title: Programming languages
+  prompt: Choose a programming language
+  pivots:
+  - id: programming-language-studio
+    title: AI Foundry
+  - id: programming-language-csharp
+    title: C#
+  - id: programming-language-python
+    title: Python
 # owner: sgilley
 - id: programming-languages-sdk-overview
   title: Programming languages
