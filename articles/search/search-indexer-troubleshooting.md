@@ -38,7 +38,7 @@ There are two options for allowing indexers to access these resources in such an
 * Configure an inbound rule for the IP address of your search service and the IP address range of `AzureCognitiveSearch` [service tag](/azure/virtual-network/service-tags-overview#available-service-tags). Details for configuring IP address range restrictions for each data source type can be found from the following links:
 
   * [Azure Storage](/azure/storage/common/storage-network-security#grant-access-from-an-internet-ip-range)
-  * [Azure Cosmos DB](/azure/storage/common/storage-network-security#grant-access-from-an-internet-ip-range)
+  * [Azure Cosmos DB](/azure/cosmos-db/how-to-configure-firewall)
   * [Azure SQL](/azure/azure-sql/database/firewall-configure#create-and-manage-ip-firewall-rules)
 
 * As a last resort or as a temporary measure, disable the firewall by allowing access from **All Networks**.
