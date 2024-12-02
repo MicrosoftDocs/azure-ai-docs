@@ -1,7 +1,7 @@
 ---
-title: Get started using GPT-4 Turbo with Vision on your images and videos in Azure AI Studio
-titleSuffix: Azure AI Studio
-description: Get started using GPT-4 Turbo with Vision on your images and videos in Azure AI Studio.
+title: Get started using GPT-4 Turbo with Vision on your images and videos in Azure AI Foundry portal
+titleSuffix: Azure AI Foundry
+description: Get started using GPT-4 Turbo with Vision on your images and videos in Azure AI Foundry portal.
 manager: nitinme
 ms.service: azure-ai-studio
 ms.custom:
@@ -13,11 +13,11 @@ ms.author: pafarley
 author: PatrickFarley
 ---
 
-# Quickstart: Get started using GPT-4 Turbo with Vision on your images and videos in Azure AI Studio
+# Quickstart: Get started using GPT-4 Turbo with Vision on your images and videos in Azure AI Foundry portal
 
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
-Use this article to get started using [Azure AI Studio](https://ai.azure.com) to deploy and test the GPT-4 Turbo with Vision model. 
+Use this article to get started using [Azure AI Foundry](https://ai.azure.com) to deploy and test the GPT-4 Turbo with Vision model. 
 
 GPT-4 Turbo with Vision and [Azure AI Vision](../../ai-services/computer-vision/overview.md) offer advanced functionality including:
 
@@ -31,7 +31,7 @@ Extra usage fees might apply when using GPT-4 Turbo with Vision and Azure AI Vis
 
 - An Azure subscription - <a href="https://azure.microsoft.com/free/cognitive-services" target="_blank">Create one for free</a>.
 - Once you have your Azure subscription, <a href="/azure/ai-services/openai/how-to/create-resource?pivots=web-portal"  title="Create an Azure OpenAI resource."  target="_blank">create an Azure OpenAI resource </a>.
-- An [AI Studio hub](../how-to/create-azure-ai-resource.md) with your Azure OpenAI resource added as a connection. 
+- An [AI Foundry hub](../how-to/create-azure-ai-resource.md) with your Azure OpenAI resource added as a connection. 
 
 ## Prepare your media
 
@@ -43,7 +43,7 @@ For video prompts, you need a video that's under three minutes in length.
 
 ## Deploy a GPT-4 Turbo with Vision model
 
-1. Sign in to [Azure AI Studio](https://ai.azure.com) and select the hub you'd like to work in.
+1. Sign in to [Azure AI Foundry](https://ai.azure.com) and select the hub you'd like to work in.
 1. On the left nav menu, select **AI Services**. Select the **Try out GPT-4 Turbo** panel.
 1. On the gpt-4 page, select **Deploy**. In the window that appears, select your Azure OpenAI resource. Select `vision-preview` as the model version.
 1. Select **Deploy**.
@@ -129,7 +129,7 @@ In this chat session, you are instructing the assistant to aid in understanding 
 Below are the known limitations of the video prompt enhancements.
 
 - **Low resolution:** The frames are analyzed using GPT-4 Turbo with Vision's "low resolution" setting, which may affect the accuracy of small object and text recognition in the video.
-- **Video file limits:** Both MP4 and MOV file types are supported. In the Azure AI Studio Playground, videos must be less than 3 minutes long. When you use the API there is no such limitation.
+- **Video file limits:** Both MP4 and MOV file types are supported. In the Azure AI Foundry portal Playground, videos must be less than 3 minutes long. When you use the API there is no such limitation.
 - **Prompt limits:** Video prompts only contain one video and no images. In Playground, you can clear the session to try with another video or images.
 - **Limited frame selection:** Currently the system selects 20 frames from the entire video, which might not capture all critical moments or details. Frame selection can either be evenly spread through the video or focused by a specific Video Retrieval query, depending on the prompt.
 - **Language support:** Currently, the system primarily supports English for grounding with transcripts. Transcripts don't provide accurate information on lyrics from songs.

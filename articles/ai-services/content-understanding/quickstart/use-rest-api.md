@@ -5,20 +5,20 @@ description: Learn about Content Understanding REST APIs
 author: laujan
 ms.author: tonyeiyalla
 manager: nitinme
-ms.service: azure
+ms.service: azure-ai-content-understanding
 ms.topic: quickstart
 ms.date: 11/19/2024
 ---
 
 # Quickstart: Azure AI Content Understanding REST APIs
 
-* Start using the latest preview version of the Azure AI Content Understanding REST API (2024-12-01-preview).
+* Start using the latest preview version of the Azure AI Content Understanding [REST API (2024-12-01-preview)](/rest/api/contentunderstanding/operation-groups?view=rest-contentunderstanding-2024-12-01-preview&preserve-view=true).
 
 * Azure AI Content Understanding is a new generative AI-based [**Azure AI Service**](../../what-are-ai-services.md) that analyzes files of any modality (documents, images, videos, and audio) and extracts structured output in user-defined field formats.
 
 * Integrate the Content Understanding service into your workflows and applications easily by calling our REST APIs.
 
-* This quickstart guides you through using the Content Understanding REST API to create a custom analyzer and extract content and fields from your input.
+* This quickstart guides you through using the [Content Understanding REST API](/rest/api/contentunderstanding/operation-groups?view=rest-contentunderstanding-2024-12-01-preview&preserve-view=true) to create a custom analyzer and extract content and fields from your input.
 
 ## Prerequisites
 
@@ -49,6 +49,9 @@ First, create a JSON file named `request_body.json` with the following content:
 {
   "description": "Sample invoice analyzer",
   "scenario": "document",
+  "config": {
+    "returnDetails": true
+  },
   "fieldSchema": {
     "fields": {
       "VendorName": {
@@ -153,9 +156,6 @@ First, create a JSON file named `request_body.json` with the following content:
 {
   "description": "Sample marketing video analyzer",
   "scenario": "videoShot",
-  "config": {
-    "returnDetails": true
-  },
   "fieldSchema": {
     "fields": {
       "Description": {
@@ -278,12 +278,13 @@ The 200 (`OK`) JSON response includes a `status` field indicating the status of 
 
 ```json
 {
-  "id": "f87e468b-d96b-488c-a646-33cc5823972f",
+  "id": "bcf8c7c7-03ab-4204-b22c-2b34203ef5db",
   "status": "Succeeded",
   "result": {
     "analyzerId": "sample_invoice_analyzer",
     "apiVersion": "2024-12-01-preview",
-    "createdAt": "2024-11-09T08:36:31Z",
+    "createdAt": "2024-11-13T07:15:46Z",
+    "warnings": [],
     "contents": [
       {
         "markdown": "CONTOSO LTD.\n\n\n# INVOICE\n\nContoso Headquarters...",
@@ -293,7 +294,7 @@ The 200 (`OK`) JSON response includes a `status` field indicating the status of 
             "valueString": "CONTOSO LTD.",
             "spans": [ { "offset": 0, "length": 12 } ],
             "confidence": 0.941,
-            "source": "D(1,0.5729,0.6582,1.3353,0.6582,1.3353,0.8957,0.5729,0.8957)"
+            "source": "D(1,0.5729,0.6582,2.3353,0.6582,2.3353,0.8957,0.5729,0.8957)"
           },
           "Items": {
             "type": "array",
@@ -306,14 +307,13 @@ The 200 (`OK`) JSON response includes a `status` field indicating the status of 
                     "valueString": "Consulting Services",
                     "spans": [ { "offset": 909, "length": 19 } ],
                     "confidence": 0.971,
-                    "source": "D(1,1.3264,5.673,1.6413,5.673,1.6413,5.8402,1.3264,5.8402)"
+                    "source": "D(1,2.3264,5.673,3.6413,5.673,3.6413,5.8402,2.3264,5.8402)"
                   },
                   "Amount": {
                     "type": "number",
                     "valueNumber": 60,
-                    "spans": [ { "offset": 995, "length": 6 }
-                    ],
-                    "confidence": 0.988,
+                    "spans": [ { "offset": 995, "length": 6 } ],
+                    "confidence": 0.989,
                     "source": "D(1,7.4507,5.6684,7.9245,5.6684,7.9245,5.8323,7.4507,5.8323)"
                   }
                 }
@@ -330,8 +330,62 @@ The 200 (`OK`) JSON response includes a `status` field indicating the status of 
             "pageNumber": 1,
             "angle": -0.0039,
             "width": 8.5,
-            "height": 11
+            "height": 11,
+            "spans": [ { "offset": 0, "length": 1650 } ],
+            "words": [
+              {
+                "content": "CONTOSO",
+                "span": { "offset": 0, "length": 7 },
+                "confidence": 0.997,
+                "source": "D(1,0.5739,0.6582,1.7446,0.6595,1.7434,0.8952,0.5729,0.8915)"
+              }, ...
+            ],
+            "lines": [
+              {
+                "content": "CONTOSO LTD.",
+                "source": "D(1,0.5734,0.6563,2.335,0.6601,2.3345,0.8933,0.5729,0.8895)",
+                "span": { "offset": 0, "length": 12 }
+              }, ...
+            ]
           }
+        ],
+        "paragraphs": [
+          {
+            "content": "CONTOSO LTD.",
+            "source": "D(1,0.5734,0.6563,2.335,0.6601,2.3345,0.8933,0.5729,0.8895)",
+            "span": { "offset": 0, "length": 12 }
+          }, ...
+        ],
+        "sections": [
+          {
+            "span": { "offset": 0, "length": 1649 },
+            "elements": [ "/sections/1", "/sections/2" ]
+          },
+          {
+            "span": { "offset": 0, "length": 12 },
+            "elements": [ "/paragraphs/0" ]
+          }, ...
+        ],
+        "tables": [
+          {
+            "rowCount": 2,
+            "columnCount": 6,
+            "cells": [
+              {
+                "kind": "columnHeader",
+                "rowIndex": 0,
+                "columnIndex": 0,
+                "rowSpan": 1,
+                "columnSpan": 1,
+                "content": "SALESPERSON",
+                "source": "D(1,0.5389,4.5514,1.7505,4.5514,1.7505,4.8364,0.5389,4.8364)",
+                "span": { "offset": 512, "length": 11 },
+                "elements": [ "/paragraphs/19" ]
+              }, ...
+            ],
+            "source": "D(1,0.4885,4.5543,8.0163,4.5539,8.015,5.1207,0.4879,5.1209)",
+            "span": { "offset": 495, "length": 228 }
+          }, ...
         ]
       }
     ]
@@ -349,6 +403,7 @@ The 200 (`OK`) JSON response includes a `status` field indicating the status of 
     "analyzerId": "sample_chart_analyzer",
     "apiVersion": "2024-12-01-preview",
     "createdAt": "2024-11-09T08:41:00Z",
+    "warnings": [],
     "contents": [
       {
         "markdown": "![image](image)\n",
@@ -389,6 +444,7 @@ The 200 (`OK`) JSON response includes a `status` field indicating the status of 
     "analyzerId": "sample_chart_analyzer",
     "apiVersion": "2024-12-01-preview",
     "createdAt": "2024-11-09T08:42:58Z",
+    "warnings": [],
     "contents": [
       {
         "kind": "audioVisual",
@@ -449,7 +505,6 @@ The 200 (`OK`) JSON response includes a `status` field indicating the status of 
 # [Video](#tab/video)
 
 ```json
-
 {
   "id": "204fb777-e961-4d6d-a6b1-6e02c773d72c",
   "status": "Succeeded",
@@ -487,6 +542,6 @@ The 200 (`OK`) JSON response includes a `status` field indicating the status of 
 
 ## Next steps 
 
-* In this quickstart, you learned how to call the REST API to create a custom analyzer. For a user experience, try [**Azure AI Foundry**](https://ai.azure.com/). 
+* In this quickstart, you learned how to call the [REST API](/rest/api/contentunderstanding/operation-groups?view=rest-contentunderstanding-2024-12-01-preview&preserve-view=true) to create a custom analyzer. For a user experience, try [**Azure AI Foundry**](https://ai.azure.com/). 
 
 

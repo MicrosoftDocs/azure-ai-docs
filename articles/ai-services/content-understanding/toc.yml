@@ -18,9 +18,6 @@ items:
     href: service-limits.md
   - name: Language and region support
     href: language-region-support.md
-  - name: Pricing
-    displayName: cost, pricing, subscription, tier, paid, trial
-    href: https://azure.microsoft.com/pricing
   - name: FAQ
     displayName: FAQ, definition, updates, previews
     href: faq.yml
@@ -49,3 +46,15 @@ items:
   - name: Video
     href: video/overview.md
     displayName: video, audio, voice, recognition, synthesis, speaker, identification, verification, diarization, transcription, translation, language, understanding, sentiment, analysis, emotion, detection, pronunciation, model
+- name: Responsible AI
+  items:
+    - name: Transparency note
+      href: /legal/cognitive-services/content-understanding/transparency-note?toc=/azure/ai-services/content-understanding/toc.json&bc=/azure/ai-services/content-understanding/breadcrumb/toc.json
+    - name: Data, privacy, and security
+      href: /legal/cognitive-services/content-understanding/data-privacy?toc=/azure/ai-services/content-understanding/toc.json&bc=/azure/ai-services/content-understanding/breadcrumb/toc.json
+- name: Reference
+  items:
+  - name: REST API
+    displayName: quota, tiers, throttle, max, adjustments, requests, support, ocr
+    href: /rest/api/contentunderstanding/operation-groups?view=rest-contentunderstanding-2024-12-01-preview&preserve-view=true
+  

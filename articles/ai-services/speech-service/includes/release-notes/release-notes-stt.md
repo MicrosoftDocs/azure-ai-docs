@@ -2,10 +2,9 @@
 author: eric-urban
 ms.service: azure-ai-speech
 ms.topic: include
-ms.date: 11/12/2024
+ms.date: 11/19/2024
 ms.author: eur
 ---
-
 
 ### November 2024 release
 
@@ -21,6 +20,10 @@ The speech to text REST API version 2024-11-15 is released for general availabil
 Fast transcription is now generally available via [speech to text REST API version 2024-11-15](https://go.microsoft.com/fwlink/?linkid=2296107). Fast transcription allows you to transcribe audio file to text accurately and synchronously, with a high speed factor. It can transcribe audio much faster than the actual audio duration. For more information, see the [fast transcription API guide](../../fast-transcription-create.md).
 
 ### October 2024 release
+
+#### Real-time speech to text (bilingual)
+
+Significant improvements have been made the recognition quality of short Spanish terms via the `es-US` bilingual models. The model is bilingual and also supports English. The quality of English recognition is also improved.
 
 #### Video translation (Preview)
 
@@ -92,7 +95,7 @@ Speech [pronunciation assessment](../../how-to-pronunciation-assessment.md) now
 Fast transcription is now available in public preview. Fast transcription allows you to transcribe audio file to text accurately and synchronously, with a high speed factor. It can transcribe audio much faster than the actual audio duration. For more information, see the [fast transcription API guide](../../fast-transcription-create.md).
 
 > [!TIP]
-> Try out fast transcription in [Azure AI Studio](https://aka.ms/fasttranscription/studio).
+> Try out fast transcription in the [Azure AI Foundry portal](https://aka.ms/fasttranscription/studio).
 
 ### June 2024 release
 

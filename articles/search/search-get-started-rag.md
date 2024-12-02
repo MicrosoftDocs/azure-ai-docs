@@ -5,6 +5,8 @@ description: In this quickstart, learn how to use grounding data from Azure AI S
 author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
+ms.custom:
+  - ignite-2024
 ms.topic: quickstart
 ms.date: 10/14/2024
 ---
@@ -225,6 +227,8 @@ This section uses Visual Studio Code and Python to call the chat completion APIs
    ```
 
 1. Set up clients, the prompt, query, and response.
+
+   For the Azure Government cloud, modify the API endpoint on the token provider to `"https://cognitiveservices.azure.us/.default"`.
 
    ```python
    # Set up the query for generating responses

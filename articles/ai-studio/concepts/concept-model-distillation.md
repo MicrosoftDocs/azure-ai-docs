@@ -1,7 +1,7 @@
 ---
-title: Distillation in AI Studio (preview)
-titleSuffix: Azure AI Studio
-description: Learn how to do distillation in Azure AI Studio.
+title: Distillation in AI Foundry portal (preview)
+titleSuffix: Azure AI Foundry
+description: Learn how to do distillation in Azure AI Foundry portal.
 manager: scottpolly
 ms.service: azure-ai-studio
 ms.topic: how-to
@@ -13,11 +13,11 @@ author: ssalgadodev
 ms.custom: references_regions
 ---
 
-# Distillation in Azure AI Studio (preview)
+# Distillation in Azure AI Foundry portal (preview)
 
 [!INCLUDE [Feature preview](~/reusable-content/ce-skilling/azure/includes/ai-studio/includes/feature-preview.md)]
 
-In Azure AI Studio, you can use distillation to efficiently train a student model.
+In Azure AI Foundry portal, you can use distillation to efficiently train a student model.
 
 ## What is distillation?
 
@@ -33,7 +33,7 @@ The main steps in knowledge distillation are:
 
 ## Sample notebook
 
-Distillation in AI Studio is currently only available through a notebook experience. You can use the [sample notebook](https://github.com/Azure/azureml-examples/tree/main/sdk/python/foundation-models/system/distillation) to see how to perform distillation. Model distillation is available for Microsoft models and a selection of OSS (open-source software) models available in the model catalog. In this sample notebook, the teacher model uses the Meta Llama 3.1 405B instruction model, and the student model uses the Meta Llama 3.1 8B instruction model.
+Distillation in AI Foundry portal is currently only available through a notebook experience. You can use the [sample notebook](https://github.com/Azure/azureml-examples/tree/main/sdk/python/foundation-models/system/distillation) to see how to perform distillation. Model distillation is available for Microsoft models and a selection of OSS (open-source software) models available in the model catalog. In this sample notebook, the teacher model uses the Meta Llama 3.1 405B instruction model, and the student model uses the Meta Llama 3.1 8B instruction model.
 
 
 
@@ -41,6 +41,6 @@ We used an advanced prompt during synthetic data generation. The advanced prompt
 
 ## Related content
 
-- [What is Azure AI Studio?](../what-is-ai-studio.md)
-- [Deploy Meta Llama 3.1 models with Azure AI Studio](../how-to/deploy-models-llama.md)
-- [Azure AI Studio FAQ](../faq.yml)
+- [What is Azure AI Foundry?](../what-is-ai-studio.md)
+- [Deploy Meta Llama 3.1 models with Azure AI Foundry](../how-to/deploy-models-llama.md)
+- [Azure AI Foundry FAQ](../faq.yml)

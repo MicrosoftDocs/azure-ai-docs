@@ -1,12 +1,12 @@
 ---
 title: How to create a hub using the Azure Machine Learning SDK/CLI
-titleSuffix: Azure AI Studio
-description: This article provides instructions on how to create an AI Studio hub using the Azure Machine Learning SDK and Azure CLI extension.
+titleSuffix: Azure AI Foundry
+description: This article provides instructions on how to create an AI Foundry hub using the Azure Machine Learning SDK and Azure CLI extension.
 manager: scottpolly
 ms.service: azure-ai-studio
 ms.custom: build-2024, devx-track-azurecli
 ms.topic: how-to
-ms.date: 5/21/2024
+ms.date: 11/21/2024
 ms.reviewer: dantaylo
 ms.author: sgilley
 author: sdgilley
@@ -16,13 +16,13 @@ author: sdgilley
 
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
-In this article, you learn how to create the following AI Studio resources using the Azure Machine Learning SDK and Azure CLI (with machine learning extension):
-- An Azure AI Studio hub
+In this article, you learn how to create the following AI Foundry resources using the Azure Machine Learning SDK and Azure CLI (with machine learning extension):
+- An Azure AI Foundry hub
 - An Azure AI Services connection
 
 ## Prerequisites
 
-- An Azure subscription. If you don't have an Azure subscription, create a free account before you begin. Try the [free or paid version of Azure AI Studio](https://azure.microsoft.com/free/) today.
+- An Azure subscription. If you don't have an Azure subscription, create a free account before you begin. Try the [free or paid version of Azure AI Foundry](https://azure.microsoft.com/free/) today.
 
 ## Set up your environment
 
@@ -46,7 +46,7 @@ Use the following tabs to select whether you're using the Python SDK or Azure CL
 
 ---
 
-## Create the AI Studio hub and AI Services connection
+## Create the AI Foundry hub and AI Services connection
 
 Use the following examples to create a new hub. Replace example string values with your own values:
 
@@ -127,7 +127,7 @@ You can use either an API key or credential-less YAML configuration file. For mo
 
 ---
 
-## Create an AI Studio hub using existing dependency resources
+## Create an AI Foundry hub using existing dependency resources
 
 You can also create a hub using existing resources such as Azure Storage and Azure Key Vault. In the following examples, replace the example string values with your own values:
 

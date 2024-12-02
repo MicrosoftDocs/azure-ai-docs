@@ -5,7 +5,7 @@ description: Learn about Azure AI Content Understanding audio solutions
 author: laujan
 ms.author: lajanuar
 manager: nitinme
-ms.service: azure
+ms.service: azure-ai-content-understanding
 ms.topic: overview
 ms.date: 11/19/2024
 ms.custom: ignite-2024-understanding-release
@@ -63,9 +63,9 @@ Content Understanding offers advanced audio capabilities, including:
 
 Content Understanding offers customizable audio analyzer templates:
 
-* **Post-call analytics**. Analyze call recordings to generate conversation transcripts, call summaries, sentiment assessments, and more.
+* **Post-call analysis**. Analyze call recordings to generate conversation transcripts, call summaries, sentiment assessments, and more.
 
-* **Conversation summarization**. Generate transcriptions, summaries, and sentiment assessments from conversation audio recordings.
+* **Conversation analysis**. Generate transcriptions, summaries, and sentiment assessments from conversation audio recordings.
 
 Start with a template or create a custom analyzer to meet your specific business needs.
 

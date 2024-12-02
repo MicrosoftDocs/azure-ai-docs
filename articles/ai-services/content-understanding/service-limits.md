@@ -4,7 +4,7 @@ titleSuffix: Azure AI services
 description: Quick reference, detailed description, and best practices for working within Azure AI Content Understanding service Quotas and Limits
 author: laujan
 manager: nitinme
-ms.service: azure
+ms.service: azure-ai-content-understanding
 ms.topic: conceptual
 ms.date: 11/19/2024
 ms.custom: ignite-2024-understanding-release
@@ -81,10 +81,10 @@ The following limits apply as of version 2024-12-01-preview.
 
 | Field type | Document | Image | Text | Audio | Video |
 | --- | --- | --- | --- | --- | --- |
-| Basic | No *boolean* | All | *string* | *string* | All |
-| List | N/A | All | *string* | *string* | All |
-| Group | N/A | All | *string* | *string* | All |
-| Table | No *boolean* | All | *string* | *string* | All
+| Basic | No *boolean* | No *date*, *time* | *string* | *string* | No *date*, *time* |
+| List | N/A | No *date*, *time* | *string* | *string* | No *date*, *time* |
+| Group | N/A | No *date*, *time* | N/A | N/A | No *date*, *time* |
+| Table | No *boolean* | No *date*, *time* | *string* | *string* | No *date*, *time* |
 | Fixed table | No *boolean* | N/A | N/A | N/A | N/A |
 
 ### Classification fields
@@ -92,7 +92,7 @@ The following limits apply as of version 2024-12-01-preview.
 Classification fields can be defined to return either a single category (single-label classification) or multiple categories (multi-label classification).
 
 * **Single-label classification**: Defined using a string field with the `classify` method. It can be a top-level basic field or a subfield within a group or table.
-* **Multi-label classification**: Represented as a list of string fields with the `classify` method. In the REST API, `method=classify` and `enum` are specified on the inner string field and can only be a top-level field.
+* **Multi-label classification**: Represented as a list of string fields with the `classify` method. In the [REST API](/rest/api/contentunderstanding/operation-groups?view=rest-contentunderstanding-2024-12-01-preview&preserve-view=true), `method=classify` and `enum` are specified on the inner string field and can only be a top-level field.
 
 *Note: Document analyzers currently don't support classification fields.*
 

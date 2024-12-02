@@ -4,7 +4,7 @@ titleSuffix: Azure AI services
 description: Learn how to use Content Understanding Analyzer templates in Azure AI Foundry
 author: laujan
 manager: nitinme
-ms.service: azure
+ms.service: azure-ai-content-understanding
 ms.topic: quickstart
 ms.date: 11/19/2024
 ms.custom: ignite-2024-understanding-release
@@ -35,7 +35,7 @@ To follow is an example of building an analyzer to extract key data from an invo
 
 1. Upload a sample file of an invoice document or any other data relevant to your scenario.
 
-  :::image type="content" source="../media/analyzer-template/define-schema-upload.png" alt-text="Screenshot of upload step in user experience.":::
+   :::image type="content" source="../media/analyzer-template/define-schema-upload.png" alt-text="Screenshot of upload step in user experience.":::
 
 1. Content Understanding suggests analyzer templates based on your content type. For this example, select **Document analysis** and build your own schema tailored to the invoice scenario. When using your own data, select the analyzer template that best fits your needs, or create your own. See Analyzer templates for a full list of available templates.
 
@@ -116,5 +116,5 @@ The following analyzer templates are available for use in the [Azure AI Foundry 
 
 ## Next steps
 
-* In this quickstart, you learned how to create an analyzer in Azure AI Foundry. To use REST APIs, *see8 the [REST API quickstart](use-rest-api.md).
+* In this quickstart, you learned how to create an analyzer in Azure AI Foundry. To use [REST API](/rest/api/contentunderstanding/operation-groups?view=rest-contentunderstanding-2024-12-01-preview&preserve-view=true), *see* the [REST API quickstart](use-rest-api.md).
 

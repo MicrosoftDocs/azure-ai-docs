@@ -29,7 +29,7 @@ Unlike the batch transcription API, fast transcription API only produces transcr
 ## Use the fast transcription API
 
 > [!TIP]
-> Try out fast transcription in [Azure AI Studio](https://aka.ms/fasttranscription/studio).
+> Try out fast transcription in the [Azure AI Foundry portal](https://aka.ms/fasttranscription/studio).
 
 We learn how to use the fast transcription API (via [Transcriptions - Transcribe](https://go.microsoft.com/fwlink/?linkid=2296107)) with the following scenarios:
 - [Known locale specified](?tabs=locale-specified): Transcribe an audio file with a specified locale. If you know the locale of the audio file, you can specify it to improve transcription accuracy and minimize the latency.

@@ -3,7 +3,7 @@ items:
   tocHref: /azure/
   topicHref: /azure/index
   items:
-  - name: AI Studio
+  - name: AI Foundry
     tocHref: /azure/ai-studio/
     topicHref: /azure/ai-studio/
   - name: AI Services
@@ -55,6 +55,9 @@ items:
     - name: Azure AI Search
       tocHref: /azure/search/
       topicHref: /azure/search/
+    - name: Content Understanding
+      tocHref: /azure/ai-services/content-understanding/
+      topicHref: /azure/ai-services/content-understanding/
   - name: Genomics
     tocHref: /azure/genomics/
     topicHref: /azure/genomics/
