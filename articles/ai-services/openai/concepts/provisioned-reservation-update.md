@@ -32,7 +32,7 @@ Data zone provisioned deployments are available in the same Azure OpenAI resourc
 
 For more information, see the [deployment types guide](https://aka.ms/aoai/docs/deployment-types).
 
-### New hourly pricing for Global and Data Zone provisioned deployments
+### New hourly pricing for global and data zone provisioned deployments
 In August 2024, Microsoft announced that Provisioned deployments would move to a new [hourly payment model](./provisioned-migration.md) with the option to purchase Azure Reservations to support additional discounts. In December's provisioned update, we will be introducing differentiated hourly pricing across global provisioned, data zone provisioned, and provisioned deployment types. For more information on the hourly price for each provisioned deployment type, see the [Pricing details page](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/). 
 
 ### New Azure Reservations for global and data zone provisioned deployments
