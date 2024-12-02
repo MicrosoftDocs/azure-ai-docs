@@ -147,7 +147,7 @@ az cloud list
 
 The current cloud has the value `IsActive` set to `True`.
 
-## Next steps
+## Related content
 
 Now that your environment is connected to your workspace in Azure Machine Learning, you can start to work with it.
 
