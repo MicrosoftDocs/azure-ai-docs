@@ -36,7 +36,7 @@ For more information, see the [deployment types guide](https://aka.ms/aoai/docs/
 In August 2024, Microsoft announced that Provisioned deployments would move to a new [hourly payment model](./provisioned-migration.md) with the option to purchase Azure Reservations to support additional discounts. In December's provisioned update, we will be introducing differentiated hourly pricing across global provisioned, data zone provisioned, and provisioned deployment types. For more information on the hourly price for each provisioned deployment type, see the [Pricing details page](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/). 
 
 ### New Azure Reservations for global and data zone provisioned deployments
-In addition to the updates for the hourly payment model, new Azure Reservations will be introduced specifically for Global and Data zone provisioned deployment types. With these new Azure Reservations, every Provisioned deployment type will have a separate Azure Reservation that can be purchased to support additional discounts. The mapping between each provisioned deployment type and the associated Azure Reservation are as the following:
+In addition to the updates for the hourly payment model, new Azure Reservations will be introduced specifically for global and data zone provisioned deployment types. With these new Azure Reservations, every provisioned deployment type will have a separate Azure Reservation that can be purchased to support additional discounts. The mapping between each provisioned deployment type and the associated Azure Reservation are as follows:
 
 | Provisioned deployment type | Sku name in code  | Azure Reservation product name |
 |---|---|---|
