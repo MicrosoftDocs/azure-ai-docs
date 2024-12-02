@@ -507,13 +507,15 @@ Using the [ISO standard](https://www.andiamo.co.uk/resources/iso-language-codes/
 | Simplified Chinese | zh-cn             |
 | German             | de                |
 
+The language options can be passed in as an optional parameter to the `AdversarialSimulator` class using the [`SupportedLanguages` class](https://learn.microsoft.com/python/api/azure-ai-evaluation/azure.ai.evaluation.simulator.supportedlanguages?view=azure-python-preview).
+
 Usage example below:
 
 ```python
 outputs = await simulator(
         scenario=scenario, # required, adversarial scenario to simulate
         target=callback, # required, callback function to simulate against
-        language=es # optional, default english
+        language=SupportedLanguages.Spanish # optional, default english
     )
 ```
 
