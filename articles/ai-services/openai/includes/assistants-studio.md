@@ -3,8 +3,8 @@ title: 'Quickstart: Use Azure OpenAI Assistants (Preview) via the Azure OpenAI S
 titleSuffix: Azure OpenAI
 description: Walkthrough on how to get started with Azure OpenAI and make your first completions call with Azure OpenAI Studio. 
 manager: nitinme
-author: mrbullwinkle
-ms.author: mbullwin
+author: aahill
+ms.author: aahi
 ms.service: azure-ai-openai
 ms.topic: include
 ms.date: 05/31/2024

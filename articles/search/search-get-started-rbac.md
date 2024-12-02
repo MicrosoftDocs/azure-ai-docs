@@ -12,7 +12,7 @@ ms.date: 11/29/2024
 
 # Quickstart: Connect without keys
 
-Configure Azure AI Search to use Microsoft Entra ID authentication and role-based access control (RBAC). Connect from your local system with your personal identity, using Jupyter notebooks or a REST client to interact with your search service.
+Configure Azure AI Search to use Microsoft Entra ID authentication and role-based access control (RBAC) so that you can connect from your local system with your personal identity, using Jupyter notebooks or a REST client to interact with your search service.
 
 If you stepped through other quickstarts that connect using API keys, this quickstart shows you how to switch to identity-based authentication so that you can avoid hard-coded keys in your example code.
 
@@ -22,7 +22,7 @@ If you stepped through other quickstarts that connect using API keys, this quick
 
 - [Azure AI Search](search-create-service-portal.md), any region or tier, but you need Basic or higher to configure a managed identity for Azure AI Search.
 
-- A command line tool, such as the [Azure CLI](/cli/azure/install-azure-cli).
+- A command line tool, such as PowerShell or Bash, and the [Azure CLI](/cli/azure/install-azure-cli).
 
 ## Step 1: Get your Azure subscription and tenant IDs
 
@@ -38,13 +38,13 @@ You need this step if you have more than one subscription or tenant.
 
       :::image type="content" source="media/search-get-started-rbac/select-subscription-name.png" lightbox="media/search-get-started-rbac/select-subscription-name.png" alt-text="Screenshot of the portal page providing the subscription name":::
 
-1. You now know which subscription and tenant Azure AI Search is under. Switching to your local device and a command prompt, identify the active Azure subscription and tenant on your device:
+1. You now know which subscription and tenant Azure AI Search is under. Switch to your local device and a command prompt, and identify the active Azure subscription and tenant on your device:
 
    ```azurecli
    az account show
    ```
 
-1. If the active subscription and tenant differ from the information obtained in the previous step, change the subscription ID. Next, sign in to Azure using the tenant ID also found in the previous step:
+1. If the active subscription and tenant differ from the information obtained in the previous step, change the subscription ID. Next, sign in to Azure using the tenant ID that you found in the previous step:
 
    ```azurecli
     az account set --subscription <your-subscription-id>
@@ -110,12 +110,12 @@ az login
     from azure.search.documents import SearchClient
     
     service_endpoint = "https://<your-search-service-name>.search.windows.net"
-    index_name = "<your-index-name>"
+    index_name = "hotels-sample-index"
     
     credential = DefaultAzureCredential()
     client = SearchClient(endpoint=service_endpoint, index_name=index_name, credential=credential)
     
-    results = client.search("search text")
+    results = client.search("beach access")
     for result in results:
         print(result)
     ```
@@ -127,23 +127,15 @@ az login
 1. Get a personal identity token:
 
    ```azurecli
-   az account get-access-token --scope https://search.azure.com/.default
+   az account get-access-token --scope https://search.azure.com/.default --query accessToken --output tsv
    ```
 
-1. Set variables used for the connection, pasting the full search service endpoint and the token you got in the previous step.
+1. Set variables used for the connection, pasting the full search service endpoint and the token you got in the previous step. Make sure neither value is quote-enclosed.
 
-    ```http
+    ```REST
     @baseUrl = PUT-YOUR-SEARCH-SERVICE-URL-HERE
     @token = PUT-YOUR-PERSONAL-IDENTITY-TOKEN-HERE
     ```
-
-<!-- 1. Extract the token from the output:
-
-   `TOKEN=$(az account get-access-token --resource https://<your-search-service-name>.search.windows.net --query accessToken --output tsv)`
-
-1. Provide the token in a request header:
-
-   `az rest --method get --url "https://<your-search-service-name>.search.windows.net/indexes/<your-index-name>/docs?api-version=2021-04-30-Preview&search=*" --headers "Authorization=Bearer $TOKEN"` -->
 
 1. Specify the authorization bearer token in a REST call:
 
@@ -154,7 +146,7 @@ az login
     
         {
              "queryType": "simple",
-             "search": "motel",
+             "search": "beach access",
              "filter": "",
              "select": "HotelName,Description,Category,Tags",
              "count": true
