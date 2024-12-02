@@ -136,7 +136,7 @@ You can configure the batch deployment to use the access key of your Azure OpenA
 
 Model deployments in batch endpoints can deploy only registered models. You can use MLflow models with the flavor OpenAI to create a model in your workspace that references a deployment in Azure OpenAI.
 
-In the cloned repository, the *model* folder contains an MLflow model that generates embeddings based on the ADA-002 model.
+In the cloned repository, the model folder contains an MLflow model that generates embeddings based on the ADA-002 model.
 
 Register the model in the workspace:
    
@@ -174,7 +174,7 @@ An endpoint is needed to host the model. To create an endpoint, take the followi
 
     # [Azure CLI](#tab/cli)
 
-    Create a YAML file called *endpoint.yml* that contains the following lines. Replace the `name` value with your endpoint name. 
+    Create a YAML file called endpoint.yml that contains the following lines. Replace the `name` value with your endpoint name. 
     
     :::code language="yaml" source="~/azureml-examples-main/cli/endpoints/batch/deploy-models/openai-embeddings/endpoint.yml":::
 
@@ -212,7 +212,7 @@ The environment definition consists of the following lines, which are included i
 
 ---
 
-The conda YAML file, *conda.yml*, contains the following lines:
+The conda YAML file, conda.yml, contains the following lines:
 
 :::code language="yaml" source="~/azureml-examples-main/cli/endpoints/batch/deploy-models/openai-embeddings/environment/conda.yaml":::
 
@@ -228,7 +228,7 @@ This example uses a scoring script that performs the execution. In batch endpoin
 > [!TIP]
 > By default, MLflow generates embeddings from the first text column that's available in the input data. If you want to use a different column, set the `AZUREML_BI_TEXT_COLUMN` environment variable to the name of your preferred column. Leave that variable blank if the default behavior works for you.
 
-The scoring script, *code/batch_driver.py*, contains the following lines:
+The scoring script, code/batch_driver.py, contains the following lines:
 
 :::code language="python" source="~/azureml-examples-main/cli/endpoints/batch/deploy-models/openai-embeddings/code/batch_driver.py" :::
 
@@ -257,7 +257,7 @@ To use an access key instead of Microsoft Entra authentication, you use the foll
 
     # [Azure CLI](#tab/cli)
 
-    The *deployment.yml* file configures the deployment:
+    The deployment.yml file configures the deployment:
 
     :::code language="yaml" source="~/azureml-examples-main/cli/endpoints/batch/deploy-models/openai-embeddings/deployment.yml" highlight="26-28":::
 
@@ -293,13 +293,13 @@ To use an access key instead of Microsoft Entra authentication, you use the foll
 
 ## Test the deployment
    
-For testing the endpoint, you use a sample of the dataset [BillSum: A Corpus for Automatic Summarization of US Legislation](https://arxiv.org/abs/1910.00523). This sample is included in the *data* folder of the cloned repository.
+For testing the endpoint, you use a sample of the dataset [BillSum: A Corpus for Automatic Summarization of US Legislation](https://arxiv.org/abs/1910.00523). This sample is included in the data folder of the cloned repository.
 
 1. Set up the input data:
 
     # [Azure CLI](#tab/cli)
 
-    In the commands in this section, use *data* as the name of the folder that contains the input data.
+    In the commands in this section, use **data** as the name of the folder that contains the input data.
 
     # [Python SDK](#tab/python)
    
@@ -375,13 +375,13 @@ For testing the endpoint, you use a sample of the dataset [BillSum: A Corpus for
     print(embeddings)
     ```
 
-    You can also open the output file, *embeddings.jsonl*, to see the predictions:
+    You can also open the output file, embeddings.jsonl, to see the predictions:
     
     ```jsonl
     {"file": "billsum-0.csv", "row": 0, "embeddings": [[0, 0, 0, 0, 0, 0, 0]]}
     {"file": "billsum-0.csv", "row": 1, "embeddings": [[0, 0, 0, 0, 0, 0, 0]]}
     ```
 
-## Next steps
+## Related content
 
 - [Create jobs and input data for batch endpoints](how-to-access-data-batch-endpoints-jobs.md)
