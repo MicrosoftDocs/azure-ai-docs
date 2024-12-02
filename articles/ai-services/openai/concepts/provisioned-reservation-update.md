@@ -13,7 +13,7 @@ recommendations: false
 ---
 # Azure OpenAI provisioned December 2024 update 
 
-In early-December, 2024, Microsoft launched several changes to the Provisioned offering. These changes include:
+In early December, 2024, Microsoft launched several changes to the provisioned offering. These changes include:
 - A new deployment type, Data zone provisioned
 - Updated hourly pricing for global and data zone provisioned deployment types
 - New Azure Reservations for Global and Data zone provisioned deployment types
