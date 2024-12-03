@@ -89,21 +89,27 @@ Here are the steps to create a new Logic Apps workflow for function calling.
 
 Here are the steps to import your Logic Apps workflows as function in the Agents playground in Azure AI Foundry:
 
-1. In Azure AI Foundry, select **Agents**. Select an existing Agent or create a new one. After you have configured the Agent with a name and instructions, you are ready to add a function. Select **+ Add function**. 
+1. In Azure AI Foundry, select **Agents**. Select an existing Agent or create a new one. After you have configured the Agent with a name and instructions, you are ready to add a function. In the menu to the right, scroll down and select **+ Add** next to **Knowledge**. 
 
-    :::image type="content" source="..\..\..\openai\media\how-to\assistants\logic-apps\assistants-playground-add-function.png" alt-text="A screenshot showing the Agent playground with the add function button." lightbox="..\..\..\openai\media\how-to\assistants\logic-apps\assistants-playground-add-function.png":::
+    :::image type="content" source="../../media/tools/logic-apps/create-debug-agents-screen.png" alt-text="A screenshot showing the Agent playground with the add function button." lightbox="../../media/tools/logic-apps/create-debug-agents-screen.png":::
 
-1. The **Add function** option opens a screen with two tabs. Navigate to the tab for Logic Apps to browse your workflows with a request trigger. Select the workflow from list and select **Save**.  
+1. In the screen that appears, select **Azure Logic Apps**.
+
+    :::image type="content" source="../../media/tools/logic-apps/add-action.png" alt-text="A screenshot showing the add function options." lightbox="../../media/tools/logic-apps/add-action.png":::
+
+1. Navigate to the tab for Logic Apps to browse your workflows with a request trigger. Select the workflow from list and select **Save**.  
 
     > [!NOTE]
     > This list only shows the consumption SKU workflows and with a request trigger.
 
 
-    :::image type="content" source="..\..\..\openai\media\how-to\assistants\logic-apps\import-logic-apps.png" alt-text="A screenshot showing the menu for adding functions." lightbox="..\..\..\openai\media\how-to\assistants\logic-apps\import-logic-apps.png":::
+    :::image type="content" source="../../media/tools/logic-apps/add-logic-app.png" alt-text="A screenshot showing the menu for adding a Logic App." lightbox="..\..\..\openai\media\how-to\assistants\logic-apps\add-logic-app.png":::
 
 You have now successfully imported your workflow and it is ready to be invoked. The function specification is generated based on the logic apps workflow swagger and includes the schema and description based on what you configured in the request trigger action.
 
-:::image type="content" source="..\..\..\openai\media\how-to\assistants\logic-apps\edit-function.png" alt-text="A screenshot showing the imported workflow." lightbox="..\..\..\openai\media\how-to\assistants\logic-apps\edit-function.png":::
+:::image type="content" source="../../media/tools/logic-apps/edit-function.png" alt-text="A screenshot showing the imported workflow." lightbox="../../media/tools/logic-apps/edit-function.png":::
+
+
 
 The workflow now will be invoked by the Azure AI Agents based on the user prompt. Below is an example where the workflow is invoked automatically based on user prompt to get the weather.
 
