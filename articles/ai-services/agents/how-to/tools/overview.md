@@ -22,7 +22,7 @@ When you create AI agents, you can specify different tools in order to help grou
 Agents can access multiple tools in parallel. These can be both Azure OpenAI-hosted tools like code interpreter and file search, or tools you build, host, and access through function calling.
 
 > [!TIP]
-> You can use the `tool_choice` parameter which can be used to force the use of a specific tool (like file search, code interpreter, or a function) in a particular run.
+> You can use the `tool_choice` parameter to force the use of a specific tool (like file search, code interpreter, or a function) in a particular run.
 
 ## Knowledge tools
 

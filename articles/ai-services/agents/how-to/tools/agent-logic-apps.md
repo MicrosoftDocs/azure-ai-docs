@@ -91,7 +91,7 @@ Here are the steps to import your Logic Apps workflows as function in the Agents
 
 1. In Azure AI Foundry, select **Agents**. Select an existing Agent or create a new one. After you have configured the Agent with a name and instructions, you are ready to add a function. Select **+ Add function**. 
 
-    :::image type="content" source="..\..\..\openai\media\how-to\assistants\logic-apps\Agents-playground-add-function.png" alt-text="A screenshot showing the Agent playground with the add function button." lightbox="..\..\..\openai\media\how-to\assistants\logic-apps\Agents-playground-add-function.png":::
+    :::image type="content" source="..\..\..\openai\media\how-to\assistants\logic-apps\assistants-playground-add-function.png" alt-text="A screenshot showing the Agent playground with the add function button." lightbox="..\..\..\openai\media\how-to\assistants\logic-apps\assistants-playground-add-function.png":::
 
 1. The **Add function** option opens a screen with two tabs. Navigate to the tab for Logic Apps to browse your workflows with a request trigger. Select the workflow from list and select **Save**.  
 
@@ -140,4 +140,4 @@ When Agents require invoking a Logic App as part of function calling, Azure AI F
 
 ## See also
 
-* [Learn more about Agents](../concepts/agents.md)
+* [Learn more about Agents](../../concepts/agents.md)
