@@ -7,7 +7,7 @@ author: jboback
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: quickstart
-ms.date: 01/25/2024
+ms.date: 11/21/2024
 ms.author: jboback
 ms.custom: language-service-sentiment-opinion-mining
 zone_pivot_groups: usage-custom-language-features

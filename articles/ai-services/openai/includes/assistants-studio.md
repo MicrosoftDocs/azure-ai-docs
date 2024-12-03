@@ -3,8 +3,8 @@ title: 'Quickstart: Use Azure OpenAI Assistants (Preview) via the Azure OpenAI S
 titleSuffix: Azure OpenAI
 description: Walkthrough on how to get started with Azure OpenAI and make your first completions call with Azure OpenAI Studio. 
 manager: nitinme
-author: mrbullwinkle
-ms.author: mbullwin
+author: aahill
+ms.author: aahi
 ms.service: azure-ai-openai
 ms.topic: include
 ms.date: 05/31/2024
@@ -41,7 +41,7 @@ Use the **Assistant setup** pane to create a new AI assistant or to select an ex
 | **Deployment** | This is where you set which model deployment to use with your assistant. |
 | **Functions**| Create custom function definitions for the models to formulate API calls and structure data outputs based on your specifications |
 | **Code interpreter** | Code interpreter provides access to a sandboxed Python environment that can be used to allow the model to test and execute code. |
-| **Files** | You can upload up to 20 files, with a max file size of 512 MB to use with tools. You can upload up to 10,000 files using [AI Studio](../assistants-quickstart.md?pivots=programming-language-ai-studio). |
+| **Files** | You can upload up to 20 files, with a max file size of 512 MB to use with tools. You can upload up to 10,000 files using [AI Foundry portal](../assistants-quickstart.md?pivots=ai-foundry-portal). |
 
 ### Tools
 

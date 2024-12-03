@@ -6,7 +6,7 @@ author: mrbullwinkle #dereklegenzoff
 ms.author: mbullwin #delegenz
 ms.service: azure-ai-openai
 ms.topic: how-to
-ms.date: 04/05/2024
+ms.date: 12/02/2024
 manager: nitinme
 keywords: ChatGPT
 ---

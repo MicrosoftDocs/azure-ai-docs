@@ -1,5 +1,5 @@
 ---
-title: Version-based API mapping
+title: Version-based API mapping for entity types and tags
 titleSuffix: Azure AI services
 description: Learn about the differences between NER API versions.
 #services: cognitive-services
@@ -9,12 +9,14 @@ ms.service: azure-ai-language
 ms.topic: conceptual
 ms.date: 11/04/2024
 ms.author: jboback
-ms.custom: language-service-ner
+ms.custom: language-service-ner, ignite-2024
 ---
 
-# Preview API changes
+# Entity types and tags
 
-Use this article to get an overview of the new API changes starting from version `2024-11-01`. This API change mainly introduces two new concepts (`entity types` and `entity tags`) replacing the `category` and `subcategory` fields in the current Generally Available API. A detailed overview of each API parameter and the supported API versions it corresponds to can be found on the [Skill Parameters][../how-to/skill-parameters.md] page
+Use this article to get an overview of the new API changes starting from version `2024-11-01`. This API change mainly introduces two new concepts (`entity types` and `entity tags`) replacing the `category` and `subcategory` fields in the current Generally Available API. A detailed overview of each API parameter and the supported API versions it corresponds to can be found on the [Skill Parameters][../how-to/skill-parameters.md] page.
+
+Since an entity like “Seattle” could be classified as a City, GPE (Geo Political Entity), and a Location, the `type` attribute is used to define the most granular classification, in this case City. The `tags` attribute in the service output is a list all possible classifications (City, GPE, and Location) and their respective confidence score. A full mapping of possible tags for each type can be found below. The `metadata` attributes in the service output contains additional information about the entity, such as the integer value associated with the entity. 
 
 ## Entity types
 Entity types represent the lowest (or finest) granularity at which the entity has been detected and can be considered to be the base class that has been detected.

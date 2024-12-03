@@ -6,7 +6,7 @@ ms.service: azure-ai-language
 ms.topic: include
 ms.date: 12/19/2023
 ms.author: jboback
-ms.custom: language-service-pii
+ms.custom: language-service-pii, ignite-2024
 ---
 
 [Reference documentation](https://go.microsoft.com/fwlink/?linkid=2239169)

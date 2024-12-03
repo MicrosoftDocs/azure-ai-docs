@@ -1,22 +1,22 @@
 ---
 title: Management center overview
 titleSuffix: Azure AI Foundry
-description: "The management center in Azure AI Studio provides a centralized hub for governance and management activities."
+description: "The management center in Azure AI Foundry portal provides a centralized hub for governance and management activities."
 author: Blackmist
 ms.author: larryfr
 ms.service: azure-ai-studio
+ms.custom:
+  - ignite-2024
 ms.topic: concept-article #Don't change.
 ms.date: 11/18/2024
-
 #customer intent: As an admin, I want a central location where I can perform governance and management activities.
-
 ---
 
 # Management center overview
 
-The management center is a part of the Azure AI Studio that streamlines governance and management activities. From the management center, you can manage Azure AI Studio hubs, projects, resources, and settings. To visit the management center, open the [Azure AI Studio](https://ai.azure.com) and (while in a project) select the __Management center__ link from the left menu.
+The management center is a part of the Azure AI Foundry portal that streamlines governance and management activities. From the management center, you can manage Azure AI Foundry hubs, projects, resources, and settings. To visit the management center, open the [Azure AI Foundry](https://ai.azure.com) and (while in a project) select the __Management center__ link from the left menu.
 
-:::image type="content" source="../media/management-center/management-center.png" alt-text="Screenshot of the left menu of Azure AI Studio with the management center selected." lightbox="../media/management-center/management-center.png":::
+:::image type="content" source="../media/management-center/management-center.png" alt-text="Screenshot of the left menu of Azure AI Foundry with the management center selected." lightbox="../media/management-center/management-center.png":::
 
 ## Manage hubs and projects
 
@@ -24,7 +24,7 @@ You can use the management center to create and configure hubs and projects with
 
 :::image type="content" source="../media/management-center/manage-hub-project.png" alt-text="Screenshot of the all resources, hub, and project sections of the management studio selected." lightbox="../media/management-center/manage-hub-project.png":::
 
-For more information, see the articles on creating a [hub](../how-to/create-azure-ai-resource.md#create-a-hub-in-ai-studio) and [project](../how-to/create-projects.md).
+For more information, see the articles on creating a [hub](../how-to/create-azure-ai-resource.md#create-a-hub-in-ai-foundry-portal) and [project](../how-to/create-projects.md).
 
 ## Manage resource utilization
 
@@ -40,7 +40,7 @@ Assign roles, manage users, and ensure that all settings comply with organizatio
 
 :::image type="content" source="../media/management-center/user-management.png" alt-text="Screenshot of the user management section of the management center." lightbox="../media/management-center/user-management.png":::
 
-For more information, see [Role-based access control](rbac-ai-studio.md#assigning-roles-in-ai-studio).
+For more information, see [Role-based access control](rbac-ai-studio.md#assigning-roles-in-ai-foundry-portal).
 
 ## Related content
 

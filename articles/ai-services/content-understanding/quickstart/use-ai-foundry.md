@@ -4,7 +4,7 @@ titleSuffix: Azure AI services
 description: Learn how to use Content Understanding Analyzer templates in Azure AI Foundry
 author: laujan
 manager: nitinme
-ms.service: azure
+ms.service: azure-ai-content-understanding
 ms.topic: quickstart
 ms.date: 11/19/2024
 ms.custom: ignite-2024-understanding-release
@@ -71,9 +71,7 @@ Content Understanding analyzer templates give you a head start by allowing you t
 
 The following analyzer templates are available for use in the [Azure AI Foundry Content Understanding experience](https://ai.azure.com/).
 
-### Document analyzer templates
-
-To follow are several of our document analyzer templates.
+# [Document](#tab/document)
 
 |Template| Description|
 | ----|----|----|
@@ -82,9 +80,7 @@ To follow are several of our document analyzer templates.
 
    :::image type="content" source="../media/analyzer-template/image-templates.png" alt-text="Screenshot of document analyzer template.":::
 
-### Image analyzer templates
-
-To follow are several of our image analyzer templates.
+# [Image](#tab/image)
 
 |Template| Description|
 | ----|----|----|
@@ -94,9 +90,7 @@ To follow are several of our image analyzer templates.
 
    :::image type="content" source="../media/analyzer-template/image-templates.png" alt-text="Screenshot of image analyzer template.":::
 
-### Audio analyzer templates
-
-To follow are several of our audio analyzer templates.
+# [Audio](#tab/audio)
 
 |Template| Description|
 | ----|----|----|
@@ -107,9 +101,7 @@ To follow are several of our audio analyzer templates.
 
    :::image type="content" source="../media/analyzer-template/audio-templates.png" alt-text="Screenshot of audio analyzer template.":::
 
-### Video analyzer templates
-
-To follow are several of our video analyzer templates.
+# [Video](#tab/video)
 
 |Template| Description|
 | ----|----|----|
@@ -119,6 +111,8 @@ To follow are several of our video analyzer templates.
 
 
    :::image type="content" source="../media/analyzer-template/video-templates.png" alt-text="Screenshot of video analyzer template.":::
+
+---
 
 ## Next steps
 

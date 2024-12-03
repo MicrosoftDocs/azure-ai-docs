@@ -15,6 +15,7 @@ ms.devlang: csharp
 ms.custom:
   - devx-track-csharp
   - ignite-2023
+feedback_help_link_url: https://learn.microsoft.com/answers/tags/156/azure-face
 ---
 
 # Scale to handle more enrolled users
@@ -24,7 +25,7 @@ ms.custom:
 This guide shows you how to scale up from existing **PersonGroup** and **FaceList** objects to **LargePersonGroup** and **LargeFaceList** objects, respectively. **PersonGroups** can hold up to 1000 persons in the free tier and 10,000 in the paid tier, while **LargePersonGroups** can hold up to one million persons in the paid tier.
 
 > [!IMPORTANT]
-> The newer data structure **PersonDirectory** is recommended for new development. It can hold up to 75 million identities and does not require manual training. For more information, see the [PersonDirectory guide](./use-persondirectory.md).
+> The newer data structure **PersonDirectory** is recommended for new development. It can hold up to 20 million identities and does not require manual training. For more information, see the [PersonDirectory guide](./use-persondirectory.md).
 
 This guide demonstrates the migration process. It assumes a basic familiarity with **PersonGroup** and **FaceList** objects, the **Train** operation, and the face recognition functions. To learn more about these subjects, see the [face recognition](../concept-face-recognition.md) conceptual guide.
 

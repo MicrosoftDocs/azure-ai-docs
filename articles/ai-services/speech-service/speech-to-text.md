@@ -34,7 +34,7 @@ Real-time speech to text transcribes audio as it's recognized from a microphone 
 - **Voice agents**: Enabling interactive voice response systems to transcribe user queries and commands. 
 
 Real-time speech to text can be accessed via the Speech SDK, Speech CLI, and REST API, allowing integration into various applications and workflows. 
-Real-time speech to text is available via the [Speech SDK](speech-sdk.md), the [Speech CLI](spx-overview.md), and REST APIs such as the [Fast transcription API](fast-transcription-create.md). 
+Real-time speech to text is available via the [Speech SDK](speech-sdk.md), the [Speech CLI](spx-overview.md), and [Speech to text REST API for short audio](rest-speech-to-text-short.md). 
 
 ## Fast transcription
 

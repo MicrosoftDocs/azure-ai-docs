@@ -14,7 +14,7 @@ ms.custom:
  - build-2024
 ---
 
-# Reference: Info | Azure AI Studio
+# Reference: Info | Azure AI Foundry
 
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 

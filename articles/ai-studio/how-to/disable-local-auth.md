@@ -1,21 +1,21 @@
 ---
 title: "Disable shared key access to the hub storage account"
 titleSuffix: Azure AI Foundry
-description: "Disable shared key access to the default storage account used by your Azure AI Studio hub and projects."
+description: "Disable shared key access to the default storage account used by your Azure AI Foundry hub and projects."
 author: Blackmist
 ms.author: larryfr
 ms.service: azure-ai-studio
+ms.custom:
+  - ignite-2024
 ms.topic: how-to
 ms.date: 11/19/2024
 ms.reviewer: ambadal
-
 #customer intent: As an admin, I want to disable shared key access to my resources to improve security.
-
 ---
 
 # Disable shared key access for your hub's storage account (preview)
 
-An Azure AI Studio hub defaults to use of a shared key to access its default Azure Storage account. With key-based authorization, anyone who has the key and access to the storage account can access data.
+An Azure AI Foundry hub defaults to use of a shared key to access its default Azure Storage account. With key-based authorization, anyone who has the key and access to the storage account can access data.
 
 To reduce the risk of unauthorized access, you can disable key-based authorization, and instead use Microsoft Entra ID for authorization. This configuration uses a Microsoft Entra ID value to authorize access to the storage account. The identity used to access storage is either the user's identity or a managed identity. The user's identity is used to view data in the Azure Machine Learning studio, or to run a notebook while authenticated with the user's identity. The Azure Machine Learning service uses a managed identity to access the storage account - for example, when running a training job as the managed identity.
 
@@ -94,7 +94,7 @@ When you create a new hub, the creation process can automatically disable shared
 
 # [Azure portal](#tab/portal)
 
-1. In Azure AI Studio, select __Management center__ from the left menu.
+1. In Azure AI Foundry portal, select __Management center__ from the left menu.
 1. Select __All resources__ from the left menu, the dropdown menu next to __+ New project__, and then select __New hub__.
 
     :::image type="content" source="../media/disable-local-auth/create-new-hub.png" alt-text="Screenshot of the new hub dropdown button.":::
@@ -222,11 +222,11 @@ After you create the hub, identify all the users that will use it - for example,
 
 ## Update an existing hub
 
-If you have an existing Azure AI Studio hub, use the steps in this section to update the hub to use Microsoft Entra ID, to authorize access to the storage account. Then, disable shared key access on the storage account.
+If you have an existing Azure AI Foundry hub, use the steps in this section to update the hub to use Microsoft Entra ID, to authorize access to the storage account. Then, disable shared key access on the storage account.
 
 # [Azure portal](#tab/portal)
 
-1. Go to the Azure portal and select the __AI Studio hub__.
+1. Go to the Azure portal and select the __AI Foundry hub__.
 1. From the left menu, select **Properties**. From the bottom of the page, set __Storage account access type__ to __Identity-based__. Select __Save__ from the top of the page to save the configuration.
 
     :::image type="content" source="../media/disable-local-auth/update-existing-hub-identity-based-access.png" alt-text="Screenshot showing selection of Identity-based access." lightbox="../media/disable-local-auth/update-existing-hub-identity-based-access.png":::
@@ -344,7 +344,7 @@ az ml workspace update --name myhub --system-datastores-auth-mode accesskey
 
 # [ARM Template](#tab/armtemplate)
 
-If you have an existing Azure AI Studio hub, use the steps in this section to update the hub to use Microsoft Entra ID, to authorize access to the storage account. Then, disable shared key access on the storage account.
+If you have an existing Azure AI Foundry hub, use the steps in this section to update the hub to use Microsoft Entra ID, to authorize access to the storage account. Then, disable shared key access on the storage account.
 
 In the following JSON template example, substitute your own values for the following placeholders:
 
@@ -417,4 +417,4 @@ To work with a storage account with disabled shared key access, you might need t
 ## Related content
 
 - [Prevent shared key authorization for an Azure Storage account](/azure/storage/common/shared-key-authorization-prevent)
-- [Create an Azure AI Studio hub](develop/create-hub-project-sdk.md)
+- [Create an Azure AI Foundry hub](develop/create-hub-project-sdk.md)

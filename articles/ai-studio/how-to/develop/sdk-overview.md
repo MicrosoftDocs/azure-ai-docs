@@ -8,7 +8,7 @@ ms.custom:
   - build-2024
   - ignite-2024
 ms.topic: overview
-ms.date: 11/19/2024
+ms.date: 11/25/2024
 ms.reviewer: dantaylo
 ms.author: sgilley
 author: sdgilley
@@ -24,7 +24,7 @@ The Azure AI Foundry SDK is a comprehensive toolchain designed to simplify the d
 - Easily combine together models, data, and AI services to build AI-powered applications
 - Evaluate, debug, and improve application quality & safety across development, testing, and production environments
  
-The AI Foundry SDK is a set of packages and services designed to work together. You can use the Azure AI Projects client library to easily use multiple services through a single project client and connection string. You can also use services and SDKs on their own and connect directly to your services.
+The AI Foundry SDK is a set of packages and services designed to work together. You can use the [Azure AI Projects client library](/python/api/overview/azure/ai-projects-readme) to easily use multiple services through a single project client and connection string. You can also use services and SDKs on their own and connect directly to your services.
 
 If you want to jump right in and start building an app, check out:
 
@@ -181,7 +181,7 @@ The [Azure AI model inference service](/azure/ai-studio/ai-services/model-infere
 
 To use the model inference service, first ensure that your project has an AI Services connection (in the management center).
 
-Install the `azure-ai-inferencing` client library:
+Install the `azure-ai-inference` client library:
 
 ::: zone pivot="programming-language-python"
 
@@ -237,7 +237,7 @@ To learn more about using the Azure AI inferencing client, check out the [Azure 
 
 The inferencing client supports for creating prompt messages from templates.  The template allows you to dynamically generate prompts using inputs that are available at runtime.
 
-To use prompt templates, install the `azure-ai-inferencing` package:
+To use prompt templates, install the `azure-ai-inference` package:
 
 ```bash
 pip install azure-ai-inference

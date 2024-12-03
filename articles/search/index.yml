@@ -8,6 +8,7 @@ metadata:
   ms.service: service
   ms.custom:
     - ignite-2023
+    - ignite-2024
   ms.topic: landing-page
   author: HeidiSteen
   ms.author: heidist
@@ -62,11 +63,11 @@ landingContent:
             url: https://github.com/Azure/azure-search-vector-samples/blob/main/README.md
 
   # Card
-  - title: Azure AI Studio
+  - title: Azure AI Foundry
     linkLists:
       - linkListType: how-to-guide
         links:
-          - text: Create a vector index in AI Studio
+          - text: Create a vector index in AI Foundry portal
             url: /azure/ai-studio/how-to/index-add
           - text: Chat with your data using Azure OpenAI
             url: /azure/ai-services/openai/use-your-data-quickstart

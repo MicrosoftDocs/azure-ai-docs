@@ -7,9 +7,9 @@ author: jboback
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: conceptual
-ms.date: 12/19/2023
+ms.date: 11/21/2024
 ms.author: jboback
-ms.custom: language-service-language-detection
+ms.custom: language-service-language-detection, ignite-2024
 ---
 
 # Language support for Language Detection
