@@ -10,7 +10,7 @@ ms.date: 11/18/2024
 author: aahill
 ms.author: aahi
 recommendations: false
-
+zone_pivot_groups: selection-code-interpreter
 ---
 
 # Azure AI Agent service Code Interpreter
