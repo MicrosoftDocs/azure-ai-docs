@@ -18,33 +18,63 @@ recommendations: false
 Azure OpenAI is available in multiple regions. When you create an Azure OpenAI resource, you specify a region. From then on, your resource and all its operations stay associated with that Azure server region.  
 
 It's rare, but not impossible, to encounter a network issue that hits an entire region. If your service needs to always be available, then you should design it to either failover into another region or split the workload between two or more regions. Both approaches require at least two Azure OpenAI resources in different regions. This article provides general recommendations for how to implement Business Continuity and Disaster Recovery (BCDR) for your Azure OpenAI applications.
+By default, the Azure OpenAI service provides a [default SLA](https://www.microsoft.com/licensing/docs/view/Service-Level-Agreements-SLA-for-Online-Services?lang=1). While the default resiliency may be sufficient for many applications, applications requiring high degrees of resiliency and business continuity should take additional steps to further strengthen their model infrastructure.
 
-## BCDR requires custom code
+## Standard Deployments
 
-Today customers will call the endpoint provided during deployment for inferencing. Inferencing operations are stateless, so no data is lost if a region becomes unavailable.
+1. For Standard Deployments (PayGo) default to Data Zone deployment (US/EU options).
+    - If you can use Global Standard deployments, you should. Data Zone deployments are the next best option for organizations requiring data processing to happen entirely within a geographic boundary. 
+1. You should deploy two Azure OpenAI Service resources in the Azure Subscription. One resource should be deployed in your preferred region and the other should be deployed in your secondary/failover region. The Azure OpenAI service allocates quota at the subscription + region level, so they can live in the same subscription with no impact on quota.
+1. You should have one deployment for each model you plan to use deployed to the Azure OpenAI Service resource in your preferred Azure region and you should duplicate these model deployments in the secondary/failover region. Allocate the full quota available in your Standard deployment to each of these endpoints. This will provide the highest throughput rate when compared to splitting quota across multiple deployments.
+1. Select the deployment region based on your network topology. Note that you can deploy an Azure OpenAI Service resource to any supported region and then create a Private Endpoint for that resource in your preferred region.
+    - Once within the Azure OpenAI Service boundary, the Azure OpenAI Service will optimize routing and processing across available compute in the data zone. 
+    - Using data zones is more efficient and simpler than self-managed load balancing across multiple regional deployments.
+1. In case of a regional outage where the deployment is in an unusable state, you can use the other deployment in the secondary/passive region within the same subscription.   
+    - Because both the primary and secondary deployments are Zone deployments, they draw from the same Zone capacity pool which draws from all available regions in the Zone. The secondary deployment is protecting against the primary Azure OpenAI endpoint being unreachable.     
+    - Use a Generative AI Gateway that supports load balancing and circuit breaker pattern such as API Management in front of the Azure OpenAI Service endpoints so disruption during a regional outage is minimized to consuming applications.
+    - If the quota within a given subscription is exhausted, a new subscription can be deployed in the same manner as above and its endpoint deployed behind the Generative AI Gateway.
 
-If a region is nonoperational customers must take steps to ensure service continuity.
+## Provisioned Deployments
 
-## BCDR for base model & customized model
+### Create an Enterprise PTU Pool
 
-If you're using the base models, you should configure your client code to monitor errors, and if the errors persist, be prepared to redirect to another region of your choice where you have an Azure OpenAI subscription.
+1. For provisioned deployments, we recommend having a single Data Zone PTU deployment (available 12/04/2024) that serves as an enterprise pool of PTU. You can use API Management to manage traffic from multiple applications to set throughput limits, logging, priority, and failover logic.     
+    - Think of this Enterprise PTU Pool as a “Private Paygo  ” resource that protects against the noisy-neighbors problem that can occur on Standard deployments when service demand is high. Your organization will have guaranteed, dedicated access to a pool of capacity that is only available to you and therefore independent of demand spikes from other customers. 
+    - This gives you control over which applications experience increases in latency first, allowing you to prioritize traffic to your mission critical applications.
+    - Provisioned Deployments are backed by latency SLA’s that make them preferable to Standard  (paygo) deployments for latency sensitive workloads.
+    - Enterprise PTU Deployment also enables higher utilization rates as traffic is smoothed out across application workloads, whereas individual workloads tend to be spikier.
+1. Your primary Enterprise PTU  deployment should be in a different region than your primary Standard Zone deployment. This is so that in case of a regional outage, you do not lose access to both your PTU deployment and Standard Zone deployment at the same time.
 
-Follow these steps to configure your client to monitor errors:
+### Workload Dedicated PTU Deployment
 
-1. Use the [models](/azure/ai-services/openai/concepts/models#model-summary-table-and-region-availability) page to choose the datacenters and regions that are right for you.
+1. Certain workloads may desire to have their own dedicated provisioned deployment. If this is the case, you can create a dedicated PTU deployment for that application.
+1. The workload and enterprise PTU pool deployments should protect against regional failures. You could do this by placing the workload PTU pool in Region A and the enterprise PTU pool in Region B.    
+1. This deployment should failover first to the Enterprise PTU Pool and then to the Standard deployment. This implies that when utilization of the workload PTU deployment exceeds 100%, requests would still be serviced by PTU endpoints, enabling a higher latency SLA for that application.
 
-2. Select a primary and one (or more) secondary/backup regions from the list.
+{bcdr_diagram_one}
 
-3. Create Azure OpenAI resources for each region(s) selected.
+The additional benefit of this architecture is that it allows you to stack Standard deployments with Provisioned Deployments so that you can dial in your preferred level of performance and resiliency. This allows you to use PTU for your baseline demand across workloads and leverage paygo for spikes in traffic.
 
-4. For the primary region and any backup regions your code will need to know:
+{bcdr_diagram_two}
 
-    - Base URI for the resource
-    - Regional access key or Microsoft Entra ID access
+## Supporting Infrastructure
 
-5. Configure your code so that you monitor connectivity errors (typically connection timeouts and service unavailability errors).
+The infrastructure that supports the Azure OpenAI architecture needs to be considered in designs. The infrastructure components involved in the architecture vary depending on if the applications consume the Azure OpenAI service over the Internet or over a private network. The architecture discussed in this article assumes the organization has implemented a [Generative AI Gateway](https://learn.microsoft.com/en-us/ai/playbook/technology-guidance/generative-ai/dev-starters/genai-gateway/). Organizations with a mature Azure footprint and hybrid connectivity should consume the service through a private network while organizations without hybrid connectivity, or with applications in another cloud such as GCP or AWS, will consume the service through the Microsoft public backbone.
 
-    - Given that networks yield transient errors, for single connectivity issue occurrences, the suggestion is to retry.
-    - For persistent connectivity issues, redirect traffic to the backup resource in the region(s) you've created.
+### Designing for consumption through the Microsoft public backbone
 
-If you have fine-tuned a model in your primary region, you will need to retrain the base model in the secondary region(s) using the same training data. And then follow the above steps.
+Organizations consuming the service through the Microsoft public backbone should consider the following design elements:
+
+1. The Generative AI Gateway should be deployed in manner that ensures it will be available in the event of an Azure regional outage. If using APIM (Azure API Management), this can be done by deploying separate APIM instances in multiple regions or using the [multi-region gateway feature of APIM](https://learn.microsoft.com/en-us/azure/api-management/api-management-howto-deploy-multi-region).
+1. A public global server load balancer should be used to load balance across the multiple Generative AI Gateway instances in either an active/active or active/passive manner. [Azure FrontDoor](https://learn.microsoft.com/en-us/azure/architecture/web-apps/app-service/architectures/multi-region) or [Azure Traffic Manager](https://learn.microsoft.com/en-us/azure/traffic-manager/traffic-manager-routing-methods) can be used to fulfill this role depending on the organization’s requirements.
+
+{bcdr_diagram_three}
+
+### Designing for consumption through the private networking
+
+Organizations consuming the service through a private network should consider the following design elements:
+
+1. Hybrid connectivity should be deployed in a way that it protects against the failure of an Azure region. The underlining components supporting hybrid connectivity consist of the organization’s on-premises network infrastructure and Microsoft ExpressRoute (https://learn.microsoft.com/en-us/azure/expressroute/designing-for-high-availability-with-expressroute) or VPN (https://learn.microsoft.com/en-us/azure/vpn-gateway/vpn-gateway-highlyavailable). 
+1. The Generative AI Gateway should be deployed in manner that ensures it will be available in the event of an Azure regional outage. If using APIM (Azure API Management), this can be done by deploying separate APIM instances in multiple regions or using the multi-region gateway feature of APIM (https://learn.microsoft.com/en-us/azure/api-management/api-management-howto-deploy-multi-region).
+1. Azure Private Link Private Endpoints should be deployed for each Azure OpenAI Service instance in each Azure region. For Azure Private DNS, a split-brain DNS approach can be used if all application access to the Azure OpenAI Service is done through the Generative AI Gateway to provide for additional protection against a regional failure. If this is not the case, Private DNS records will need to manually modified in the event of a loss of an Azure region (https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/overview#what-location-should-i-use-for-my-resource-group),
+1. A private global server load balancer should be used to load balance across the multiple Generative AI Gateway instances in either an active/active or active/passive manner. Azure does not have a native service for global server load balancer for workloads that require private DNS resolution (https://github.com/adstuart/azure-crossregion-private-lb). In lieu of a global server load balancer, organizations can use achieve an active/passive pattern through toggling the DNS record for the Generative AI Gateway.
