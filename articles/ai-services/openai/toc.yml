@@ -173,7 +173,7 @@ items:
       - name: Text data
         href: ./concepts/use-your-data.md
         displayName: use your data, on your data
-      - name: Azure OpenAI On Your Data network and access configuration
+      - name: Network and access configuration
         href: ./how-to/on-your-data-configuration.md
       - name: Deploy and use web apps
         href: ./how-to/use-web-app.md
