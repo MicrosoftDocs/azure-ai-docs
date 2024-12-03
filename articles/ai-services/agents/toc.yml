@@ -22,14 +22,16 @@ items:
       href: concepts/agents.md
 - name: How-to
   items:
-    - name: Code interpreter
-      href: how-to/tools/code-interpreter.md
-    - name: Grounding with Bing Search
-      href: how-to/tools/bing-grounding.md
-    - name: Function calling
-      href: how-to/tools/function-calling.md
-    - name: File search
-      href: how-to/tools/file-search.md
+    - name: Tools
+      items:
+      - name: Code interpreter
+        href: how-to/tools/code-interpreter.md
+      - name: Grounding with Bing Search
+        href: how-to/tools/bing-grounding.md
+      - name: Function calling
+        href: how-to/tools/function-calling.md
+      - name: File search
+        href: how-to/tools/file-search.md
 - name: Responsible AI
   items:
     - name: Overview
