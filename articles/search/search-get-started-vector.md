@@ -8,14 +8,14 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: quickstart
-ms.date: 10/31/2024
+ms.date: 12/03/2024
 ---
 
 # Quickstart: Vector search by using REST
 
 Learn how to use the [Search REST APIs](/rest/api/searchservice) to create, load, and query vectors in Azure AI Search.
 
-In Azure AI Search, a [vector store](vector-store.md) has an index schema that defines vector and nonvector fields, a vector configuration for algorithms that create the embedding space, and settings on vector field definitions that are used in query requests. The [Create Index](/rest/api/searchservice/indexes/create-or-update) API creates the vector store.
+In Azure AI Search, a [vector store](vector-store.md) has an index schema that defines vector and nonvector fields, a vector search configuration for algorithms that create the embedding space, and settings on vector field definitions that are evaluated at query time. The [Create Index](/rest/api/searchservice/indexes/create-or-update) REST API creates the vector store.
 
 If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) before you begin.
 
@@ -24,7 +24,7 @@ If you don't have an Azure subscription, create a [free account](https://azure.m
 
 ## Prerequisites
 
-- [Visual Studio Code](https://code.visualstudio.com/download) with a [REST client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client). If you need help with getting started, see [Quickstart: Text search using REST](search-get-started-rest.md).
+- [Visual Studio Code](https://code.visualstudio.com/download) with a [REST client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client).
 
 - [Azure AI Search](search-what-is-azure-search.md), in any region and on any tier. You can use the Free tier for this quickstart, but Basic or higher is recommended for larger data files. [Create](search-create-service-portal.md) or [find an existing Azure AI Search resource](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices) under your current subscription.
 
@@ -32,17 +32,17 @@ If you don't have an Azure subscription, create a [free account](https://azure.m
 
 - Optionally, to run the query example that invokes [semantic reranking](semantic-search-overview.md), your search service must be the Basic tier or higher, with [semantic ranker enabled](semantic-how-to-enable-disable.md).
 
-- Optionally, an [Azure OpenAI](https://aka.ms/oai/access) resource with a deployment of `text-embedding-ada-002`. The source `.rest` file includes an optional step for generating new text embeddings, but we provide pregenerated embeddings so that you can omit this dependency.
-
 ## Download files
 
 [Download a REST sample](https://github.com/Azure-Samples/azure-search-rest-samples/tree/main/Quickstart-vectors) from GitHub to send the requests in this quickstart. For more information, see [Downloading files from GitHub](https://docs.github.com/get-started/start-your-journey/downloading-files-from-github).
 
 You can also start a new file on your local system and create requests manually by using the instructions in this article.
 
-## Get a search service endpoint
+## Get a search endpoint and an API key
 
-You can find the search service endpoint in the Azure portal.
+You can find the search service endpoint and API keys in the Azure portal.
+
+Requests to the search endpoint must be authenticated and authorized. You can use API keys or roles for this task. Keys are easier to start with, but roles are more secure. Although we use API keys for this quickstart, we recommend [switching to a keyless connection](search-get-started-rbac.md).
 
 1. Sign in to the [Azure portal](https://portal.azure.com) and [find your search service](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices).
 
@@ -50,66 +50,11 @@ You can find the search service endpoint in the Azure portal.
 
    :::image type="content" source="media/search-get-started-rest/get-endpoint.png" lightbox="media/search-get-started-rest/get-endpoint.png" alt-text="Screenshot of the URL property on the overview page.":::
 
-You're pasting this endpoint into the `.rest` or `.http` file in a later step.
+1. Select **Settings** > **Keys** and then copy an admin key. [Admin API keys](search-security-api-keys.md) are used to add, modify, and delete objects. There are two interchangeable admin keys. Copy either one.
 
-## Configure access
+   :::image type="content" source="media/search-get-started-rest/get-api-key.png" lightbox="media/search-get-started-rest/get-api-key.png" alt-text="Screenshot that shows the API keys in the Azure portal.":::
 
-Requests to the search endpoint must be authenticated and authorized. You can use API keys or roles for this task. Keys are easier to start with, but roles are more secure.
-
-For a role-based connection, the following instructions have you connecting to Azure AI Search under your identity, not the identity of a client app.
-
-### Option 1: Use keys
-
-Select **Settings** > **Keys** and then copy an admin key. Admin keys are used to add, modify, and delete objects. There are two interchangeable admin keys. Copy either one. For more information, see [Connect to Azure AI Search using key authentication](search-security-api-keys.md).
-
-:::image type="content" source="media/search-get-started-rest/get-api-key.png" lightbox="media/search-get-started-rest/get-api-key.png" alt-text="Screenshot that shows the API keys in the Azure portal.":::
-
-You're pasting this key into the `.rest` or `.http` file in a later step.
-
-### Option 2: Use roles
-
-Make sure your search service is [configured for role-based access](search-security-enable-roles.md). You must have preconfigured [role-assignments for developer access](search-security-rbac.md#assign-roles-for-development). Your role assignments must grant permission to create, load, and query a search index. 
-
-In this section, obtain your personal identity token using either the Azure CLI, Azure PowerShell, or the Azure portal. 
-
-#### [Azure CLI](#tab/azure-cli)
-
-1. Sign in to Azure CLI.
-
-    ```azurecli
-    az login
-    ```
-
-1. Get your personal identity token.
-
-    ```azurecli
-    az account get-access-token --scope https://search.azure.com/.default
-    ```
-
-#### [Azure PowerShell](#tab/azure-powershell)
-
-1. Sign in with PowerShell.
-
-    ```azurepowershell
-    Connect-AzAccount
-    ```
-
-1. Get your personal identity token.
-
-    ```azurepowershell
-    Get-AzAccessToken -ResourceUrl https://search.azure.com
-    ```
-
-#### [Azure portal](#tab/portal)
-
-Use the steps found here: [find the user object ID](/partner-center/find-ids-and-domain-names#find-the-user-object-id) in the Azure portal.
-
----
-
-You're pasting your personal identity token into the `.rest` or `.http` file in a later step.
-
-> [!NOTE]
-> This section assumes you're using a local client that connects to Azure AI Search on your behalf. An alternative approach is [getting a token for the client app](/entra/identity-platform/v2-oauth2-client-creds-grant-flow), assuming your application is [registered](/entra/identity-platform/quickstart-register-app) with Microsoft Entra ID.
+You're pasting these values into a `.rest` or `.http` file in the next step.
 
 ## Create a vector index
 
@@ -117,13 +62,13 @@ You're pasting your personal identity token into the `.rest` or `.http` file in 
 
 The index schema is organized around hotel content. Sample data consists of vector and nonvector names and descriptions of seven fictitious hotels. This schema includes configurations for vector indexing and queries, and for semantic ranking.
 
-1. Open a new text file in Visual Studio Code.
+1. Create a new text file in Visual Studio Code.
 
-1. Set variables to the values you collected earlier. This example uses a personal identity token.
+1. At the top of the file, add variables for the values you collected earlier.
 
    ```http
    @baseUrl = PUT-YOUR-SEARCH-SERVICE-URL-HERE
-   @token = PUT-YOUR-PERSONAL-IDENTITY-TOKEN-HERE
+   @apiKey = PUT-YOUR-ADMIN-KEY-HERE
    ```
 
 1. Save the file with a `.rest` or `.http` file extension.
@@ -134,7 +79,7 @@ The index schema is organized around hotel content. Sample data consists of vect
     ### Create a new index
     POST {{baseUrl}}/indexes?api-version=2023-11-01  HTTP/1.1
         Content-Type: application/json
-        Authorization: Bearer {{token}}
+        api-key: {{apiKey}}
     
     {
         "name": "hotels-vector-quickstart",
@@ -237,23 +182,6 @@ The index schema is organized around hotel content. Sample data consists of vect
                         "efSearch": 500,
                         "metric": "cosine"
                     }
-                },
-                {
-                    "name": "my-hnsw-vector-config-2",
-                    "kind": "hnsw",
-                    "hnswParameters": 
-                    {
-                        "m": 4,
-                        "metric": "euclidean"
-                    }
-                },
-                {
-                    "name": "my-eknn-vector-config",
-                    "kind": "exhaustiveKnn",
-                    "exhaustiveKnnParameters": 
-                    {
-                        "metric": "cosine"
-                    }
                 }
             ],
             "profiles": [      
@@ -284,9 +212,9 @@ The index schema is organized around hotel content. Sample data consists of vect
     }
     ```
 
-1. Select **Send request**. Recall that you need the REST client to send requests. You should have an `HTTP/1.1 201 Created` response. The response body should include the JSON representation of the index schema.
+1. Save the file, and then select **Send request**. You should have an `HTTP/1.1 201 Created` response. The response body should include the JSON representation of the index schema.
 
-    Key points:
+    Key takeaways about this REST API:
 
     - The `fields` collection includes a required key field and text and vector fields (such as `Description` and `DescriptionVector`) for text and vector search. Colocating vector and nonvector fields in the same index enables hybrid queries. For instance, you can combine filters, text search with semantic ranking, and vectors into a single query operation.
     - Vector fields must be `type: Collection(Edm.Single)` with `dimensions` and `vectorSearchProfile` properties.
@@ -302,11 +230,15 @@ The URI is extended to include the `docs` collection and the `index` operation.
 > [!IMPORTANT]
 > The following example isn't runnable code. For readability, we excluded vector values because each one contains 1,536 embeddings, which is too long for this article. If you want to try this step, copy runnable code from the [sample on GitHub](https://github.com/Azure-Samples/azure-search-rest-samples/tree/main/Quickstart-vectors).
 
+1. Paste in a valid request that uploads documents, similar to the example below.
+
+1. Save the file, and then select **Send request**. You should have an `HTTP/1.1 201 Created` response. The response body should include the JSON representation of the search documents.
+
 ```http
 ### Upload documents
 POST {{baseUrl}}/indexes/hotels-quickstart-vectors/docs/index?api-version=2023-11-01  HTTP/1.1
 Content-Type: application/json
-Authorization: Bearer {{token}}
+api-key: {{apiKey}}
 
 {
     "value": [
@@ -434,7 +366,7 @@ Authorization: Bearer {{token}}
 }
 ```
 
-Key points:
+Key takeaways about this REST API:
 
 - Documents in the payload consist of fields defined in the index schema.
 - Vector fields contain floating point values. The dimensions attribute has a minimum of 2 and a maximum of 3,072 floating point values each. This quickstart sets the dimensions attribute to 1,536 because that's the size of embeddings generated by the Azure OpenAI **text-embedding-ada-002** model.
@@ -462,13 +394,13 @@ The vector query string is semantically similar to the search string, but it inc
 
 ### Single vector search
 
-1. Paste in a POST request to query the search index. Then select **Send request**. The URI is extended to include the `/docs/search` operator.
+1. Paste in a POST request to query the search index. Save the file. Then select **Send request**. The URI is extended to include the `/docs/search` operator.
 
     ```http
     ### Run a query
     POST {{baseUrl}}/indexes/hotels-vector-quickstart/docs/search?api-version=2023-11-01  HTTP/1.1
         Content-Type: application/json
-        Authorization: Bearer {{token}}
+        api-key: {{apiKey}}
         
         {
             "count": true,
@@ -547,7 +479,7 @@ You can add filters, but the filters are applied to the nonvector content in you
     ### Run a vector query with a filter
     POST {{baseUrl}}/indexes/hotels-vector-quickstart/docs/search?api-version=2023-11-01  HTTP/1.1
         Content-Type: application/json
-        Authorization: Bearer {{token}}
+        api-key: {{apiKey}}
     
         {
             "count": true,
@@ -620,7 +552,7 @@ Hybrid search consists of keyword queries and vector queries in a single search 
     ### Run a hybrid query
     POST {{baseUrl}}/indexes/hotels-vector-quickstart/docs/search?api-version=2023-11-01  HTTP/1.1
         Content-Type: application/json
-        Authorization: Bearer {{token}}
+        api-key: {{apiKey}}
         
     {
         "count": true,
@@ -767,7 +699,7 @@ Here's the last query in the collection. This hybrid query with semantic ranking
     ### Run a hybrid query
     POST {{baseUrl}}/indexes/hotels-vector-quickstart/docs/search?api-version=2023-11-01  HTTP/1.1
         Content-Type: application/json
-        Authorization: Bearer {{token}}
+        api-key: {{apiKey}}
 
     {
         "count": true,
@@ -854,7 +786,7 @@ Here's the last query in the collection. This hybrid query with semantic ranking
     }
     ```
 
-    Key points:
+    Key points about this REST API:
 
     - Vector search is specified through the `vectors.value` property. Keyword search is specified through the `search` property.
     - In a hybrid search, you can integrate vector search with full-text search over keywords. Filters, spell check, and semantic ranking apply to textual content only, and not vectors. In this final query, there's no semantic `answer` because the system didn't produce one that was sufficiently strong.
@@ -872,9 +804,11 @@ You can also try this `DELETE` command:
 ### Delete an index
 DELETE  {{baseUrl}}/indexes/hotels-vector-quickstart?api-version=2023-11-01 HTTP/1.1
     Content-Type: application/json
-    Authorization: Bearer {{token}}
+    api-key: {{apiKey}}
 ```
 
 ## Next steps
 
-As a next step, we recommend that you review the demo code for [Python](https://github.com/Azure/azure-search-vector-samples/tree/main/demo-python), [C#](https://github.com/Azure/azure-search-vector-samples/tree/main/demo-dotnet), or [JavaScript](https://github.com/Azure/azure-search-vector-samples/tree/main/demo-javascript).
+As a next step, we recommend learning how to invoke REST API calls [without API keys](search-get-started-rbac.md).
+
+You might also want to review the demo code for [Python](https://github.com/Azure/azure-search-vector-samples/tree/main/demo-python), [C#](https://github.com/Azure/azure-search-vector-samples/tree/main/demo-dotnet), or [JavaScript](https://github.com/Azure/azure-search-vector-samples/tree/main/demo-javascript).
