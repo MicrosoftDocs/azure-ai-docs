@@ -11,14 +11,14 @@ ms.author: larryfr
 
 Managed online endpoints are a feature of the Azure Machine Learning v2 API platform. If your Azure Machine Learning workspace is configured for v1 legacy mode, the managed online endpoints don't work. Specifically, if the `v1_legacy_mode` workspace setting is set to `true`, v1 legacy mode is turned on, and there's no support for v2 APIs.
 
-To see how to turn off v1 legacy mode, see [Network isolation with v2](../how-to-configure-network-isolation-with-v2.md).
+To see how to turn off v1 legacy mode, see [Network isolation change with our new API platform on Azure Resource Manager](../how-to-configure-network-isolation-with-v2.md).
 
 > [!IMPORTANT]
 > Check with your network security team before you set `v1_legacy_mode` to `false`, because v1 legacy mode might be turned on for a reason.
 
 ### Online endpoint creation with key-based authentication fails
 
-Use the following command to list the network rules of the Azure key vault for your workspace. Replace <key-vault-name> with the name of your key vault.
+Use the following command to list the network rules of the Azure key vault for your workspace. Replace `<key-vault-name>` with the name of your key vault.
 
 ```azurecli
 az keyvault network-rule list -n <key-vault-name>
@@ -35,7 +35,7 @@ The response for this command is similar to the following JSON code:
 }
 ```
 
-If the value of `bypass` isn't `AzureServices`, use the guidance in [Configure key vault network settings](/azure/key-vault/general/how-to-azure-key-vault-network-security?tabs=azure-cli) to set it to `AzureServices`.
+If the value of `bypass` isn't `AzureServices`, use the guidance in [Configure Azure Key Vault networking settings](/azure/key-vault/general/how-to-azure-key-vault-network-security?tabs=azure-cli) to set it to `AzureServices`.
 
 ### Online deployments fail with an image download error
 
@@ -46,10 +46,10 @@ If the value of `bypass` isn't `AzureServices`, use the guidance in [Configure k
 1. Use the following command to check the status of the private endpoint connection. Replace `<registry-name>` with the name of the Azure container registry for your workspace:
 
    ```azurecli
-   az acr private-endpoint-connection list -r <registry-name> --query "[?privateLinkServiceConnectionState.description=='Egress for Microsoft.MachineLearningServices/workspaces/onlineEndpoints'].{Name:name, status:privateLinkServiceConnectionState.status}"
+   az acr private-endpoint-connection list -r <registry-name> --query "[?privateLinkServiceConnectionState.description=='Egress for Microsoft.MachineLearningServices/workspaces/onlineEndpoints'].{ID:id, status:privateLinkServiceConnectionState.status}"
    ```
 
-   In the response code, verify that the `status` field is set to `Approved`. If the value isn't `Approved`, use the following command to approve the connection. Replace `<private-endpoint-name>` with the name returned from the preceding command.
+   In the response code, verify that the `status` field is set to `Approved`. If the value isn't `Approved`, use the following command to approve the connection. Replace `<private-endpoint-connection-ID>` with the ID that the preceding command returns.
 
    ```azurecli
    az network private-endpoint-connection approve --id <private-endpoint-connection-ID> --description "Approved"
@@ -57,15 +57,15 @@ If the value of `bypass` isn't `AzureServices`, use the guidance in [Configure k
 
 ### Online deployments can't be scored
 
-1. Run the following command to see the status of the deployment:
+1. Run the following command to see the status of a deployment that can't be scored:
 
    ```azurecli
    az ml online-deployment show -e <endpoint-name> -n <deployment-name> --query '{name:name,state:provisioning_state}' 
    ```
 
-   For a successful deployment, the value of `state` is `Succeeded`.
+   A value of `Succeeded` for the `state` field indicates a successful deployment.
 
-1. If the deployment was successful, use the following command to check that traffic is assigned to the deployment:
+1. For a successful deployment, use the following command to check that traffic is assigned to the deployment:
 
    ```azurecli
    az ml online-endpoint show -n <endpoint-name>  --query traffic

@@ -18,7 +18,7 @@ ms.custom: devx-track-azurecli, moe-wsvnet, update-code6
 
 [!INCLUDE [machine-learning-dev-v2](includes/machine-learning-dev-v2.md)]
 
-This article shows you how to use network isolation to improve the security of a managed online endpoint. Network isolation helps secure the inbound and outbound communication to and from your endpoint.
+This article shows you how to use network isolation to improve the security of an Azure Machine Learning managed online endpoint. Network isolation helps secure the inbound and outbound communication to and from your endpoint.
 
 To help secure inbound communication, you can create a managed online endpoint that uses the private endpoint of an Azure Machine Learning workspace. To allow only approved outbound communication for deployments, you can configure the workspace with a managed virtual network. This article shows you how to take these steps to improve endpoint security. It also shows you how to create a deployment that uses the private endpoints of the workspace's managed virtual network for outbound communication.
 
@@ -31,7 +31,7 @@ If you prefer to use the legacy method for network isolation, see the following 
 
 * An Azure subscription. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) before you begin.
 
-* The [Azure CLI](/cli/azure/) and the Azure CLI `ml` extension, installed and configured. For more information, see [Install, set up, and use the CLI (v2)](how-to-configure-cli.md).
+* The [Azure CLI](/cli/azure/) and the Azure CLI `ml` extension, installed and configured. For more information, see [Install and set up the CLI (v2)](how-to-configure-cli.md).
 
   >[!TIP]
   > The Azure Machine Learning managed virtual network feature was introduced on May 23, 2023. If you have an older version of the `ml` extension, you might need to update it for the examples in this article to work. To update the extension, use the following Azure CLI command:
@@ -44,14 +44,14 @@ If you prefer to use the legacy method for network isolation, see the following 
 
 * An Azure resource group in which you or the service principal that you use have Contributor access. For instructions for creating a resource group, see [Set up](how-to-configure-cli.md?#set-up).
 
-* A [user-assigned managed identity](/azure/active-directory/managed-identities-azure-resources/how-manage-user-assigned-managed-identities?pivots=identity-mi-methods-azp) with appropriate permissions, if you want to use a managed identity to create and manage online endpoints and online deployments. For detailed information about the required permissions, see [Set up service authentication](./how-to-identity-based-service-authentication.md#workspace). For example, you need to grant the identity specific Azure role-based access control (Azure RBAC) permissions for Azure Key Vault.
+* A [user-assigned managed identity](/azure/active-directory/managed-identities-azure-resources/how-manage-user-assigned-managed-identities?pivots=identity-mi-methods-azp) with appropriate permissions, if you want to use a managed identity to create and manage online endpoints and online deployments. For detailed information about required permissions, see [Set up authentication between Azure Machine Learning and other services](./how-to-identity-based-service-authentication.md#workspace). For example, you need to grant your managed identity specific Azure role-based access control (Azure RBAC) permissions for Azure Key Vault.
 
 ### Migrate from the legacy network isolation method to a workspace managed virtual network
 
 If you use the [legacy method](concept-secure-online-endpoint.md#secure-outbound-access-with-legacy-network-isolation-method) for network isolation of managed online endpoints and you want to migrate to a managed virtual network to secure your endpoints, follow these steps:
 
 1. Create a new workspace and enable a managed virtual network. For more information about how to configure a managed network for your workspace, see [Workspace managed virtual network isolation](how-to-managed-network.md).
-1. (Optional) If your deployments access private resources other than Azure Storage, Key Vault, and Azure Container Registry, add outbound rules to the network settings of your workspace. Specifically, the network is configured with rules for Storage, Key Vault, and Container Registry by default. Add rules with private endpoints for any other private resources that you use. 
+1. (Optional) If your deployments access private resources other than Azure Storage, Key Vault, and Azure Container Registry, add outbound rules to the network settings of your workspace. Specifically, the network is configured with rules for Azure Storage, Key Vault, and Container Registry by default. Add rules with private endpoints for any other private resources that you use. 
 1. (Optional) If you intend to use an Azure Machine Learning registry, configure private endpoints for outbound communication to your registry, its storage account, and its instance of Container Registry.
 1. Create online endpoints and deployments in the new workspace. If you use Azure Machine Learning registries, you can directly deploy components from them. For more information, see [Deploy model from registry to online endpoint in workspace](how-to-share-models-pipelines-across-workspaces-with-registries.md#deploy-model-from-registry-to-online-endpoint-in-workspace).
 1. Update applications that invoke endpoints so that the applications use the scoring URIs of the new online endpoints.
@@ -97,14 +97,14 @@ If you don't need to avoid downtime during migration, you can take a more straig
    az configure --defaults workspace=$WORKSPACE_NAME group=$RESOURCEGROUP_NAME
    ```
 
-1. Clone the examples repository to get the example files for the endpoint and deployment, and then go to the repository's *cli* directory.
+1. Clone the examples repository to get the example files for the endpoint and deployment, and then go to the repository's cli directory.
 
    ```azurecli
    git clone --depth 1 https://github.com/Azure/azureml-examples
    cd azureml-examples/cli
    ```
 
-The commands in this article are in the *deploy-managed-online-endpoint-workspacevnet.sh* file in the *cli* directory. The YAML configuration files are in the *endpoints/online/managed/sample/* subdirectory.
+The commands in this article are in the deploy-managed-online-endpoint-workspacevnet.sh file in the cli directory. The YAML configuration files are in the endpoints/online/managed/sample/ subdirectory.
 
 ## Create a secured managed online endpoint
 
@@ -168,4 +168,4 @@ Because the workspace is configured to have a managed virtual network, any endpo
 
 - [Network isolation with managed online endpoints](concept-secure-online-endpoint.md)
 - [Workspace managed network isolation](how-to-managed-network.md)
-- [Troubleshoot online endpoints deployment](how-to-troubleshoot-online-endpoints.md)
+- [Troubleshoot online endpoint deployment and scoring](how-to-troubleshoot-online-endpoints.md)

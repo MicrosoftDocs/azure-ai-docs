@@ -6,9 +6,9 @@ ms.date: 12/02/2024
 ms.author: mopeakande
 ---
 
-- The `v1_legacy_mode` flag must be set to `false` to turn off v1 legacy mode on your Azure Machine Learning workspace. If this setting is turned on, you can't create a managed online endpoint. For more information, see [Network isolation with v2 API](../how-to-configure-network-isolation-with-v2.md).
+- The `v1_legacy_mode` flag must be set to `false` to turn off v1 legacy mode on your Azure Machine Learning workspace. If this setting is turned on, you can't create a managed online endpoint. For more information, see [Network isolation change with our new API platform on Azure Resource Manager](../how-to-configure-network-isolation-with-v2.md).
 
-- If your Azure Machine Learning workspace has a private endpoint that was created before May 24, 2022, you must re-create that private endpoint before you configure your online endpoints to use private endpoints. For more information about creating a private endpoint for your workspace, see [How to configure a private endpoint for Azure Machine Learning workspace](../how-to-configure-private-link.md).
+- If your Azure Machine Learning workspace has a private endpoint that was created before May 24, 2022, you must re-create that private endpoint before you configure your online endpoints to use private endpoints. For more information about creating a private endpoint for your workspace, see [Configure a private endpoint for an Azure Machine Learning workspace](../how-to-configure-private-link.md).
 
   > [!TIP]
   > To see the creation date of a workspace, you can check the workspace properties.
