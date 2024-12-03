@@ -24,14 +24,24 @@ items:
   items:
     - name: Tools
       items:
-      - name: Code interpreter
-        href: how-to/tools/code-interpreter.md
-      - name: Grounding with Bing Search
-        href: how-to/tools/bing-grounding.md
-      - name: Function calling
-        href: how-to/tools/function-calling.md
-      - name: File search
+      - name: Overview
+        href: how-to/tools/overview.md
+      - name: Knowledge tools
+        items:
+        - name: Code interpreter
+          href: how-to/tools/code-interpreter.md
+        - name: Grounding with Bing Search
+          href: how-to/tools/bing-grounding.md
+        - name: File search
         href: how-to/tools/file-search.md
+      - name: Action tools
+        items:
+        - name: Function calling
+          items:
+          - name: Agent function calling
+            href: how-to/tools/function-calling.md
+          - name: Logic app function calling
+            href: how-to/tools/agent-logic-apps.md
 - name: Responsible AI
   items:
     - name: Overview
