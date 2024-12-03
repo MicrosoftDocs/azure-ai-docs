@@ -7,12 +7,12 @@ ms.author: heidist
 ms.service: azure-ai-search
 
 ms.topic: quickstart
-ms.date: 11/29/2024
+ms.date: 12/03/2024
 ---
 
 # Quickstart: Connect without keys
 
-Configure Azure AI Search to use Microsoft Entra ID authentication and role-based access control (RBAC) so that you can connect from your local system with your personal identity, using Jupyter notebooks or a REST client to interact with your search service.
+Configure Azure AI Search to use Microsoft Entra ID authentication and role-based access control (RBAC) so that you can connect from your local system without API keys, using Jupyter notebooks or a REST client to interact with your search service.
 
 If you stepped through other quickstarts that connect using API keys, this quickstart shows you how to switch to identity-based authentication so that you can avoid hard-coded keys in your example code.
 
@@ -34,7 +34,7 @@ You need this step if you have more than one subscription or tenant.
 
    1. Notice the subscription name and ID in **Overview** > **Essentials**.
 
-   1. Now select the subscription name to confirm the parent management group (tenant ID) on the next page.
+   1. Now select the subscription name to show the parent management group (tenant ID) on the next page.
 
       :::image type="content" source="media/search-get-started-rbac/select-subscription-name.png" lightbox="media/search-get-started-rbac/select-subscription-name.png" alt-text="Screenshot of the portal page providing the subscription name":::
 
@@ -50,12 +50,6 @@ You need this step if you have more than one subscription or tenant.
     az account set --subscription <your-subscription-id>
 
     az login --tenant <your-tenant-id>
-   ```
-
-1. Verify your tenant ID:
-
-   ```azurecli
-   az account show --query tenantId --output tsv
    ```
 
 ## Step 2: Configure Azure AI Search for RBAC
@@ -122,19 +116,21 @@ az login
 
 ### Using a REST client
 
-[Several quickstarts](search-get-started-vector.md) and tutorials use a REST client, such as Visual Studio Code with the REST extension. Here's how you connect to Azure AI Search from Visual Studio Code.
+Several quickstarts and tutorials use a REST client, such as Visual Studio Code with the REST extension. Here's how you connect to Azure AI Search from Visual Studio Code.
 
-1. Get a personal identity token:
+You should have a `.rest` or `.http` file, similar to the one described in [Quickstart: Vector search](search-get-started-vector.md).
+
+1. Get an access token:
 
    ```azurecli
    az account get-access-token --scope https://search.azure.com/.default --query accessToken --output tsv
    ```
 
-1. Set variables used for the connection, pasting the full search service endpoint and the token you got in the previous step. Make sure neither value is quote-enclosed.
+1. At the top of your file, set variables used for the connection, pasting the full search service endpoint and the access token you got in the previous step. Your variables should look similar to the following example. Notice the values aren't quote-enclosed.
 
     ```REST
-    @baseUrl = PUT-YOUR-SEARCH-SERVICE-URL-HERE
-    @token = PUT-YOUR-PERSONAL-IDENTITY-TOKEN-HERE
+    @baseUrl = https://contoso.search.search.windows.net
+    @token = <a long GUID>
     ```
 
 1. Specify the authorization bearer token in a REST call:
@@ -152,6 +148,8 @@ az login
              "count": true
          }
    ```
+
+If the call fails, revisit the previous steps to make sure you didn't skip any. You might also want to restart your device.
 
 ## Additional configuration
 
