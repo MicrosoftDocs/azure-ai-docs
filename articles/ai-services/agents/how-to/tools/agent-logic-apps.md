@@ -48,7 +48,7 @@ Here are the steps to create a new Logic Apps workflow for function calling.
 1. Open the Logic Apps workflow in designer. Select Development Tools + Logic app designer. This opens your empty workflow in designer. Or you select Blank Logic App from templates
 1. Now you're ready to add one more step in the workflow. A workflow always starts with a single trigger, which specifies the condition to meet before running any subsequent actions in the workflow.
 1. Your workflow is required to have a Request trigger to generate a REST endpoint, and a response action to return the response to Azure AI Foundry  when this workflow is invoked.
-1. Add a trigger [(Request)](/azure/connectors/connectors-native-reqres?tabs=consumption)
+1. Add a trigger [request](/azure/connectors/connectors-native-reqres?tabs=consumption).
 
     Select **Add a trigger** and then search for request trigger. Select the **When a HTTP request is received** operation.
 
@@ -126,7 +126,7 @@ You can confirm the invocation by looking at the logs as well as your [workflow 
 
 Azure Logic Apps has connectors to hundreds of line-of-business (LOB) applications and databases including but not limited to: SAP, Salesforce, Oracle, SQL, and more. You can also connect to SaaS applications or your in-house applications hosted in virtual networks. These out of box connectors provide operations to send and receive data in multiple formats. Leveraging these capabilities with Azure AI Agents, you should be able to quickly bring your data for intelligent insights.
 
-**What happens when a Logic App is imported in Azure AI Foundry  and invoked**
+**What happens when a Logic App is imported in Azure AI Foundry and invoked?**
 
 The Logic Apps swagger file is used to populate function definitions. Azure Logic App publishes an OpenAPI 2.0 definition (swagger) for workflows with a request trigger based on [annotations on the workflow](/rest/api/logic/workflows/list-swagger). Users are able to modify the content of this swagger by updating their workflow. Azure AI Foundry uses this to generate the function definitions that the Agent requires.  
 
