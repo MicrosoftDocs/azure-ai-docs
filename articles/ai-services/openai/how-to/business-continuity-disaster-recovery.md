@@ -23,8 +23,11 @@ By default, the Azure OpenAI service provides a [default SLA](https://www.micros
 
 ## Standard Deployments
 
+> [!NOTE]
+> If you can use Global Standard deployments, you should use these instead. Data Zone deployments are the next best option for organizations requiring data processing to happen entirely within a geographic boundary.
+
 1. For Standard Deployments default to Data Zone deployment (US/EU options).
-    - If you can use Global Standard deployments, you should. Data Zone deployments are the next best option for organizations requiring data processing to happen entirely within a geographic boundary.
+
 1. You should deploy two Azure OpenAI Service resources in the Azure Subscription. One resource should be deployed in your preferred region and the other should be deployed in your secondary/failover region. The Azure OpenAI service allocates quota at the subscription + region level, so they can live in the same subscription with no impact on quota.
 1. You should have one deployment for each model you plan to use deployed to the Azure OpenAI Service resource in your preferred Azure region and you should duplicate these model deployments in the secondary/failover region. Allocate the full quota available in your Standard deployment to each of these endpoints. This provides the highest throughput rate when compared to splitting quota across multiple deployments.
 1. Select the deployment region based on your network topology. You can deploy an Azure OpenAI Service resource to any supported region and then create a Private Endpoint for that resource in your preferred region.
