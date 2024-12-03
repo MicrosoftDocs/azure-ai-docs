@@ -33,7 +33,7 @@ items:
         - name: Grounding with Bing Search
           href: how-to/tools/bing-grounding.md
         - name: File search
-        href: how-to/tools/file-search.md
+          href: how-to/tools/file-search.md
       - name: Action tools
         items:
         - name: Function calling
