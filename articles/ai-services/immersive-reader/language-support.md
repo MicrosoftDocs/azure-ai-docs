@@ -711,6 +711,7 @@ Immersive Reader supports the following human languages.
 | German (Germany)                              | de-DE          | 1031       |
 | Greek (Greece)                                | el-GR          | 1032       |
 | English (United Kingdom)                      | en-GB          | 2057       |
+| English (United States)                       | en-US          | 1033       |
 | Spanish (Spain)                               | es-ES          | 3082       |
 | Spanish (Mexico)                              | es-MX          | 2058       |
 | Estonian (Estonia)                            | et-EE          | 1061       |
