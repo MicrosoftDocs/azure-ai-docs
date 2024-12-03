@@ -44,7 +44,7 @@ You can follow along this sample in the following notebooks. In the cloned repos
 
 The example shows how to run OpenAI models hosted in Azure OpenAI Service. To begin, you need an OpenAI resource correctly deployed in Azure and a deployment for the model you want to use. To deploy an OpenAI model in Azure OpenAI Service, see [Focus on Azure OpenAI Service](../ai-studio/azure-openai-in-ai-studio.md#focus-on-azure-openai-service).
 
-:::image type="content" source="./media/how-to-use-batch-model-openai-embeddings/aoai-deployments.png" alt-text="A screenshot of the Azure OpenAI studio within Azure AI Foundry, showing the model deployments available in a particular Azure OpenAI Service resource.":::
+:::image type="content" source="./media/how-to-use-batch-model-openai-embeddings/aoai-deployments.png" alt-text="A screenshot of the Azure OpenAI studio within Azure AI Foundry, showing the model deployments available in a particular Azure OpenAI Service resource." lightbox="media/how-to-use-batch-model-openai-embeddings/aoai-deployments.png":::
 
 The previous image shows the Azure OpenAI Service resource to which the model is deployed. Note the name of this resource, as you later use it to construct the URL of the resource. Save the URL for later use in the tutorial.
 
