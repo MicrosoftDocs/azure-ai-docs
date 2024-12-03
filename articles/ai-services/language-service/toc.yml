@@ -99,6 +99,16 @@ items:
       href: conversational-language-understanding/faq.md
     - name: How-to guides
       items:
+        - name: Use containers
+          items:
+          - name: Use Docker Containers
+            href: conversational-language-understanding/how-to/use-containers.md
+          - name: Configure containers
+            href: concepts/configure-containers.md
+          - name: Use container instances
+            href: ../containers/azure-container-instance-recipe.md?context=/azure/ai-services/language-service/context/context
+          - name: Azure AI containers overview
+            href: ../cognitive-services-container-support.md
         - name: Create projects
           href: conversational-language-understanding/how-to/create-project.md
         - name: Build a schema
@@ -286,7 +296,7 @@ items:
           href: named-entity-recognition/concepts/named-entity-categories.md
         - name: Entity Metadata
           href: named-entity-recognition/concepts/entity-metadata.md
-        - name: Preview API overview
+        - name: API version mapping
           href: named-entity-recognition/concepts/ga-preview-mapping.md
       - name: Tutorials
         items:
@@ -683,6 +693,8 @@ items:
           href: text-analytics-for-health/concepts/relation-extraction.md
         - name: Assertion detection
           href: text-analytics-for-health/concepts/assertion-detection.md
+        - name: Fast Healthcare Interoperability Resources (FHIR) structuring
+          href: text-analytics-for-health/concepts/fhir.md
     - name: Custom (preview)
       items:
       - name: Custom text analytics for health overview
@@ -801,13 +813,13 @@ items:
     href: tutorials/power-automate.md
   - name: Use language in prompt flow
     href: tutorials/prompt-flow.md
-  - name: 🆕 Native document support
+  - name: Native document support
     items:
-    - name: 🆕 Use native documents for language processing
+    - name: Use native documents for language processing
       href: native-document-support/use-native-documents.md
-    - name: 🆕 Create SAS tokens for storage containers
+    - name: Create SAS tokens for storage containers
       href: native-document-support/shared-access-signatures.md
-    - name: 🆕 Create a managed identity for storage containers
+    - name: Create a managed identity for storage containers
       href: native-document-support/managed-identities.md  
   - name: Scenario deep-dives
     items:

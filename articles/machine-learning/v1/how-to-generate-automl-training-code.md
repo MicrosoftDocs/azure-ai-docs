@@ -396,7 +396,7 @@ command_job = command(
 )
  
 returned_job = ml_client.create_or_update(command_job)
-print(returned_job.studio_url) # link to naviagate to submitted run in Azure Machine Learning Studio
+print(returned_job.studio_url) # link to naviagate to submitted run in Azure Machine Learning studio
 ```
 
 ## Next steps

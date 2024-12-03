@@ -17,7 +17,9 @@ ms.collection: ce-skilling-ai-copilot
 
 # Azure AI Model Inference API | Azure Machine Learning
 
-The Azure AI Model Inference is an API that exposes a common set of capabilities for foundational models and that can be used by developers to consume predictions from a diverse set of models in a uniform and consistent way. Developers can talk with different models deployed in Azure AI Studio without changing the underlying code they are using.
+The Azure AI Model Inference is an API that exposes a common set of capabilities for foundational models and that can be used by developers to consume predictions from a diverse set of models in a uniform and consistent way. Developers can talk with different models deployed in Azure AI Foundry portal without changing the underlying code they are using.
+
+[!INCLUDE [machine-learning-preview-items-disclaimer](includes/machine-learning-preview-items-disclaimer.md)]
 
 ## Benefits
 
@@ -590,25 +592,25 @@ The Azure AI Model Inference API is currently supported in certain models deploy
 
 # [Python](#tab/python)
 
-The client library `azure-ai-inference` does inference, including chat completions, for AI models deployed by Azure AI Studio and Azure Machine Learning Studio. It supports Serverless API endpoints and Managed Compute endpoints (formerly known as Managed Online Endpoints).
+The client library `azure-ai-inference` does inference, including chat completions, for AI models deployed by Azure AI Foundry and Azure Machine Learning studio. It supports Serverless API endpoints and Managed Compute endpoints (formerly known as Managed Online Endpoints).
 
 Explore our [samples](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-inference/samples) and read the [API reference documentation](https://aka.ms/azsdk/azure-ai-inference/python/reference) to get yourself started.
 
 # [JavaScript](#tab/javascript)
 
-The client library `@azure-rest/ai-inference` does inference, including chat completions, for AI models deployed by Azure AI Studio and Azure Machine Learning Studio. It supports Serverless API endpoints and Managed Compute endpoints (formerly known as Managed Online Endpoints).
+The client library `@azure-rest/ai-inference` does inference, including chat completions, for AI models deployed by Azure AI Foundry and Azure Machine Learning studio. It supports Serverless API endpoints and Managed Compute endpoints (formerly known as Managed Online Endpoints).
 
 Explore our [samples](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/ai/ai-inference-rest/samples) and read the [API reference documentation](https://aka.ms/azsdk/azure-ai-inference/js/reference) to get yourself started.
 
 # [C#](#tab/csharp)
 
-The client library `Azure.Ai.Inference` does inference, including chat completions, for AI models deployed by Azure AI Studio and Azure Machine Learning Studio. It supports Serverless API endpoints and Managed Compute endpoints (formerly known as Managed Online Endpoints).
+The client library `Azure.Ai.Inference` does inference, including chat completions, for AI models deployed by Azure AI Foundry and Azure Machine Learning studio. It supports Serverless API endpoints and Managed Compute endpoints (formerly known as Managed Online Endpoints).
 
 Explore our [samples](https://aka.ms/azsdk/azure-ai-inference/csharp/samples) and read the [API reference documentation](https://aka.ms/azsdk/azure-ai-inference/csharp/reference) to get yourself started.
 
 # [REST](#tab/rest)
 
-Explore the reference section of the Azure AI model inference API to see parameters and options to consume models, including chat completions models, deployed by Azure AI Studio and Azure Machine Learning Studio. It supports Serverless API endpoints and Managed Compute endpoints (formerly known as Managed Online Endpoints).
+Explore the reference section of the Azure AI model inference API to see parameters and options to consume models, including chat completions models, deployed by Azure AI Foundry and Azure Machine Learning studio. It supports Serverless API endpoints and Managed Compute endpoints (formerly known as Managed Online Endpoints).
 
 * [Get info](reference-model-inference-info.md): Returns the information about the model deployed under the endpoint.
 * [Text embeddings](reference-model-inference-embeddings.md): Creates an embedding vector representing the input text.

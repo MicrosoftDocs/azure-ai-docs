@@ -1,7 +1,7 @@
 ---
-title: Fine-tune Phi-3 models in Azure AI Studio
-titleSuffix: Azure AI Studio
-description: This article introduces fine-tuning Phi-3 models in Azure AI Studio.
+title: Fine-tune Phi-3 models in Azure AI Foundry portal
+titleSuffix: Azure AI Foundry
+description: This article introduces fine-tuning Phi-3 models in Azure AI Foundry portal.
 manager: scottpolly
 ms.service: azure-ai-studio
 ms.custom:
@@ -9,13 +9,13 @@ ms.topic: how-to
 ms.date: 7/16/2024
 ---
 
-# Fine-tune Phi-3 models in Azure AI Studio
+# Fine-tune Phi-3 models in Azure AI Foundry portal
 
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
-Azure AI Studio lets you tailor large language models to your personal datasets by using a process known as fine-tuning. Fine-tuning provides significant value by enabling customization and optimization for specific tasks and applications. It leads to improved performance, cost efficiency, reduced latency, and tailored outputs.
+Azure AI Foundry lets you tailor large language models to your personal datasets by using a process known as fine-tuning. Fine-tuning provides significant value by enabling customization and optimization for specific tasks and applications. It leads to improved performance, cost efficiency, reduced latency, and tailored outputs.
 
-In this article, you learn how to fine-tune Phi-3 family of small language models (SLMs) in Azure AI Studio as a service with pay-as you go billing.
+In this article, you learn how to fine-tune Phi-3 family of small language models (SLMs) in Azure AI Foundry portal as a service with pay-as you go billing.
 
 The Phi-3 family of SLMs is a collection of instruction-tuned generative text models.  Phi-3 models are the most capable and cost-effective small language models (SLMs) available, outperforming models of the same size and next size up across various language, reasoning, coding, and math benchmarks.
 
@@ -60,15 +60,15 @@ The models underwent a rigorous enhancement process, incorporating both supervis
 ### Prerequisites
 
 - An Azure subscription. If you don't have an Azure subscription, create a [paid Azure account](https://azure.microsoft.com/pricing/purchase-options/pay-as-you-go) to begin.
-- An [AI Studio hub](../how-to/create-azure-ai-resource.md).
+- An [AI Foundry hub](../how-to/create-azure-ai-resource.md).
 
     > [!IMPORTANT]
     > For Phi-3 family models, the pay-as-you-go model fine-tune offering is only available with hubs created in **East US 2** regions.
 
-- An [AI Studio project](../how-to/create-projects.md).
-- Azure role-based access controls (Azure RBAC) are used to grant access to operations in Azure AI Studio. To perform the steps in this article, your user account must be assigned the __Azure AI Developer role__ on the resource group.
+- An [AI Foundry project](../how-to/create-projects.md).
+- Azure role-based access controls (Azure RBAC) are used to grant access to operations in Azure AI Foundry portal. To perform the steps in this article, your user account must be assigned the __Azure AI Developer role__ on the resource group.
 
-    For more information on permissions, see [Role-based access control in Azure AI Studio](../concepts/rbac-ai-studio.md).
+    For more information on permissions, see [Role-based access control in Azure AI Foundry portal](../concepts/rbac-ai-studio.md).
 
 ### Subscription provider registration
 
@@ -109,19 +109,19 @@ The supported file type is JSON Lines. Files are uploaded to the default datasto
 
 To fine-tune a Phi-3 model:
 
-1. Sign in to [Azure AI Studio](https://ai.azure.com).
-1. Choose the model you want to fine-tune from the Azure AI Studio [model catalog](https://ai.azure.com/explore/models). 
+1. Sign in to [Azure AI Foundry](https://ai.azure.com).
+1. Choose the model you want to fine-tune from the Azure AI Foundry portal [model catalog](https://ai.azure.com/explore/models). 
 
 1. On the model's **Details** page, select **fine-tune**.
 
 1. Select the project in which you want to fine-tune your models. To use the pay-as-you-go model fine-tune offering, your workspace must belong to the **East US 2** region.
-1. On the fine-tune wizard, select the link to **Azure AI Studio Terms** to learn more about the terms of use. You can also select the **Azure AI Studio offer details** tab to learn about pricing for the selected model.
-1. If this is your first time fine-tuning the model in the project, you have to subscribe your project for the particular offering (for example, Phi-3-mini-128k-instruct) from Azure AI Studio. This step requires that your account has the Azure subscription permissions and resource group permissions listed in the prerequisites. Each project has its own subscription to the particular Azure AI Studio offering, which allows you to control and monitor spending. Select **Subscribe and fine-tune**.
+1. On the fine-tune wizard, select the link to **Azure AI Foundry Terms** to learn more about the terms of use. You can also select the **Azure AI Foundry offer details** tab to learn about pricing for the selected model.
+1. If this is your first time fine-tuning the model in the project, you have to subscribe your project for the particular offering (for example, Phi-3-mini-128k-instruct) from Azure AI Foundry. This step requires that your account has the Azure subscription permissions and resource group permissions listed in the prerequisites. Each project has its own subscription to the particular Azure AI Foundry offering, which allows you to control and monitor spending. Select **Subscribe and fine-tune**.
 
     > [!NOTE]
-    > Subscribing a project to a particular Azure AI Studio offering (in this case, Phi-3-mini-128k-instruct) requires that your account has **Contributor** or **Owner** access at the subscription level where the project is created. Alternatively, your user account can be assigned a custom role that has the Azure subscription permissions and resource group permissions listed in the [prerequisites](#prerequisites).
+    > Subscribing a project to a particular Azure AI Foundry offering (in this case, Phi-3-mini-128k-instruct) requires that your account has **Contributor** or **Owner** access at the subscription level where the project is created. Alternatively, your user account can be assigned a custom role that has the Azure subscription permissions and resource group permissions listed in the [prerequisites](#prerequisites).
 
-1. Once you sign up the project for the particular Azure AI Studio offering, subsequent fine-tuning of the _same_ offering in the _same_ project don't require subscribing again. Therefore, you don't need to have the subscription-level permissions for subsequent fine-tune jobs. If this scenario applies to you, select **Continue to fine-tune**.
+1. Once you sign up the project for the particular Azure AI Foundry offering, subsequent fine-tuning of the _same_ offering in the _same_ project don't require subscribing again. Therefore, you don't need to have the subscription-level permissions for subsequent fine-tune jobs. If this scenario applies to you, select **Continue to fine-tune**.
 
 1. Enter a name for your fine-tuned model and the optional tags and description.
 1. Select training data to fine-tune your model. See [data preparation](#data-preparation) for more information.
@@ -129,7 +129,7 @@ To fine-tune a Phi-3 model:
     > [!NOTE]
     > If the you have your training/validation files in a credential less datastore, you will need to allow workspace managed identity access to your datastore in order to proceed with MaaS fine-tuning with a credential less storage. On the "Datastore" page, after clicking "Update authentication" > Select the following option: 
     
-    ![Use workspace managed identity for data preview and profiling in Azure Machine Learning Studio.](../media/how-to/fine-tune/phi-3/credentials.png)
+    ![Use workspace managed identity for data preview and profiling in Azure Machine Learning studio.](../media/how-to/fine-tune/phi-3/credentials.png)
 
     Make sure all your training examples follow the expected format for inference. To fine-tune models effectively, ensure a balanced and diverse dataset. This involves maintaining data balance, including various scenarios, and periodically refining training data to align with real-world expectations, ultimately leading to more accurate and balanced model responses.
     - The batch size to use for training. When set to -1, batch_size is calculated as 0.2% of examples in training set and the max is 256.
@@ -140,25 +140,25 @@ To fine-tune a Phi-3 model:
 
 1. Review your selections and proceed to train your model.
 
-Once your model is fine-tuned, you can deploy the model and can use it in your own application, in the playground, or in prompt flow. For more information, see [How to deploy Phi-3 family of large language models with Azure AI Studio](./deploy-models-phi-3.md).
+Once your model is fine-tuned, you can deploy the model and can use it in your own application, in the playground, or in prompt flow. For more information, see [How to deploy Phi-3 family of large language models with Azure AI Foundry](./deploy-models-phi-3.md).
 
 # [Phi-3-medium](#tab/phi-3-medium)
 
 To fine-tune a Phi-3 model:
 
-1. Sign in to [Azure AI Studio](https://ai.azure.com).
-1. Choose the model you want to fine-tune from the Azure AI Studio [model catalog](https://ai.azure.com/explore/models). 
+1. Sign in to [Azure AI Foundry](https://ai.azure.com).
+1. Choose the model you want to fine-tune from the Azure AI Foundry portal [model catalog](https://ai.azure.com/explore/models). 
 
 1. On the model's **Details** page, select **fine-tune**.
 
 1. Select the project in which you want to fine-tune your models. To use the pay-as-you-go model fine-tune offering, your workspace must belong to the **East US 2** region.
-1. On the fine-tune wizard, select the link to **Azure AI Studio Terms** to learn more about the terms of use. You can also select the **Azure AI Studio offer details** tab to learn about pricing for the selected model.
-1. If this is your first time fine-tuning the model in the project, you have to subscribe your project for the particular offering (for example, Phi-3-medium-128k-instruct) from Azure AI Studio. This step requires that your account has the Azure subscription permissions and resource group permissions listed in the prerequisites. Each project has its own subscription to the particular Azure AI Studio offering, which allows you to control and monitor spending. Select **Subscribe and fine-tune**.
+1. On the fine-tune wizard, select the link to **Azure AI Foundry Terms** to learn more about the terms of use. You can also select the **Azure AI Foundry offer details** tab to learn about pricing for the selected model.
+1. If this is your first time fine-tuning the model in the project, you have to subscribe your project for the particular offering (for example, Phi-3-medium-128k-instruct) from Azure AI Foundry. This step requires that your account has the Azure subscription permissions and resource group permissions listed in the prerequisites. Each project has its own subscription to the particular Azure AI Foundry offering, which allows you to control and monitor spending. Select **Subscribe and fine-tune**.
 
     > [!NOTE]
-    > Subscribing a project to a particular Azure AI Studio offering (in this case, Phi-3-medium-128k-instruct) requires that your account has **Contributor** or **Owner** access at the subscription level where the project is created. Alternatively, your user account can be assigned a custom role that has the Azure subscription permissions and resource group permissions listed in the [prerequisites](#prerequisites).
+    > Subscribing a project to a particular Azure AI Foundry offering (in this case, Phi-3-medium-128k-instruct) requires that your account has **Contributor** or **Owner** access at the subscription level where the project is created. Alternatively, your user account can be assigned a custom role that has the Azure subscription permissions and resource group permissions listed in the [prerequisites](#prerequisites).
 
-1. Once you sign up the project for the particular Azure AI Studio offering, subsequent fine-tuning of the _same_ offering in the _same_ project don't require subscribing again. Therefore, you don't need to have the subscription-level permissions for subsequent fine-tune jobs. If this scenario applies to you, select **Continue to fine-tune**.
+1. Once you sign up the project for the particular Azure AI Foundry offering, subsequent fine-tuning of the _same_ offering in the _same_ project don't require subscribing again. Therefore, you don't need to have the subscription-level permissions for subsequent fine-tune jobs. If this scenario applies to you, select **Continue to fine-tune**.
 
 1. Enter a name for your fine-tuned model and the optional tags and description.
 1. Select training data to fine-tune your model. See [data preparation](#data-preparation) for more information.
@@ -166,7 +166,7 @@ To fine-tune a Phi-3 model:
     > [!NOTE]
     > If you have your training/validation files in a credential less datastore, you will need to allow workspace managed identity access to your datastore in order to proceed with MaaS finetuning with a credential less storage. On the "Datastore" page, after clicking "Update authentication" > Select the following option: 
     
-    ![Use workspace managed identity for data preview and profiling in Azure Machine Learning Studio.](../media/how-to/fine-tune/phi-3/credentials.png)
+    ![Use workspace managed identity for data preview and profiling in Azure Machine Learning studio.](../media/how-to/fine-tune/phi-3/credentials.png)
 
     Make sure all your training examples follow the expected format for inference. To fine-tune models effectively, ensure a balanced and diverse dataset. This involves maintaining data balance, including various scenarios, and periodically refining training data to align with real-world expectations, ultimately leading to more accurate and balanced model responses.
     - The batch size to use for training. When set to -1, batch_size is calculated as 0.2% of examples in training set and the max is 256.
@@ -177,26 +177,26 @@ To fine-tune a Phi-3 model:
 
 1. Review your selections and proceed to train your model.
 
-Once your model is fine-tuned, you can deploy the model and can use it in your own application, in the playground, or in prompt flow. For more information, see [How to deploy Phi-3 family of large language models with Azure AI Studio](./deploy-models-phi-3.md).
+Once your model is fine-tuned, you can deploy the model and can use it in your own application, in the playground, or in prompt flow. For more information, see [How to deploy Phi-3 family of large language models with Azure AI Foundry](./deploy-models-phi-3.md).
 
 
 # [Phi-3.5](#tab/phi-3-5)
 
 To fine-tune a Phi-3.5 model:
 
-1. Sign in to [Azure AI Studio](https://ai.azure.com).
-1. Choose the model you want to fine-tune from the Azure AI Studio [model catalog](https://ai.azure.com/explore/models). 
+1. Sign in to [Azure AI Foundry](https://ai.azure.com).
+1. Choose the model you want to fine-tune from the Azure AI Foundry portal [model catalog](https://ai.azure.com/explore/models). 
 
 1. On the model's **Details** page, select **fine-tune**.
 
 1. Select the project in which you want to fine-tune your models. To use the pay-as-you-go model fine-tune offering, your workspace must belong to the **East US 2** region.
-1. On the fine-tune wizard, select the link to **Azure AI Studio Terms** to learn more about the terms of use. You can also select the **Azure AI Studio offer details** tab to learn about pricing for the selected model.
-1. If this is your first time fine-tuning the model in the project, you have to subscribe your project for the particular offering (for example, Phi-3.5-mini-instruct) from Azure AI Studio. This step requires that your account has the Azure subscription permissions and resource group permissions listed in the prerequisites. Each project has its own subscription to the particular Azure AI Studio offering, which allows you to control and monitor spending. Select **Subscribe and fine-tune**.
+1. On the fine-tune wizard, select the link to **Azure AI Foundry Terms** to learn more about the terms of use. You can also select the **Azure AI Foundry offer details** tab to learn about pricing for the selected model.
+1. If this is your first time fine-tuning the model in the project, you have to subscribe your project for the particular offering (for example, Phi-3.5-mini-instruct) from Azure AI Foundry. This step requires that your account has the Azure subscription permissions and resource group permissions listed in the prerequisites. Each project has its own subscription to the particular Azure AI Foundry offering, which allows you to control and monitor spending. Select **Subscribe and fine-tune**.
 
     > [!NOTE]
-    > Subscribing a project to a particular Azure AI Studio offering (in this case, Phi-3.5-mini-instruct) requires that your account has **Contributor** or **Owner** access at the subscription level where the project is created. Alternatively, your user account can be assigned a custom role that has the Azure subscription permissions and resource group permissions listed in the [prerequisites](#prerequisites).
+    > Subscribing a project to a particular Azure AI Foundry offering (in this case, Phi-3.5-mini-instruct) requires that your account has **Contributor** or **Owner** access at the subscription level where the project is created. Alternatively, your user account can be assigned a custom role that has the Azure subscription permissions and resource group permissions listed in the [prerequisites](#prerequisites).
 
-1. Once you sign up the project for the particular Azure AI Studio offering, subsequent fine-tuning of the _same_ offering in the _same_ project don't require subscribing again. Therefore, you don't need to have the subscription-level permissions for subsequent fine-tune jobs. If this scenario applies to you, select **Continue to fine-tune**.
+1. Once you sign up the project for the particular Azure AI Foundry offering, subsequent fine-tuning of the _same_ offering in the _same_ project don't require subscribing again. Therefore, you don't need to have the subscription-level permissions for subsequent fine-tune jobs. If this scenario applies to you, select **Continue to fine-tune**.
 
 1. Enter a name for your fine-tuned model and the optional tags and description.
 1. Select training data to fine-tune your model. See [data preparation](#data-preparation) for more information.
@@ -204,7 +204,7 @@ To fine-tune a Phi-3.5 model:
     > [!NOTE]
     > If you have your training/validation files in a credential less datastore, you will need to allow workspace managed identity access to your datastore in order to proceed with MaaS finetuning with a credential less storage. On the "Datastore" page, after clicking "Update authentication" > Select the following option: 
     
-    ![Use workspace managed identity for data preview and profiling in Azure Machine Learning Studio.](../media/how-to/fine-tune/phi-3/credentials.png)
+    ![Use workspace managed identity for data preview and profiling in Azure Machine Learning studio.](../media/how-to/fine-tune/phi-3/credentials.png)
 
     Make sure all your training examples follow the expected format for inference. To fine-tune models effectively, ensure a balanced and diverse dataset. This involves maintaining data balance, including various scenarios, and periodically refining training data to align with real-world expectations, ultimately leading to more accurate and balanced model responses.
     - The batch size to use for training. When set to -1, batch_size is calculated as 0.2% of examples in training set and the max is 256.
@@ -215,13 +215,13 @@ To fine-tune a Phi-3.5 model:
 
 1. Review your selections and proceed to train your model.
 
-Once your model is fine-tuned, you can deploy the model and can use it in your own application, in the playground, or in prompt flow. For more information, see [How to deploy Phi-3 family of large language models with Azure AI Studio](./deploy-models-phi-3.md).
+Once your model is fine-tuned, you can deploy the model and can use it in your own application, in the playground, or in prompt flow. For more information, see [How to deploy Phi-3 family of large language models with Azure AI Foundry](./deploy-models-phi-3.md).
 
 ---
 
 ## Cleaning up your fine-tuned models 
 
-You can delete a fine-tuned model from the fine-tuning model list in [Azure AI Studio](https://ai.azure.com) or from the model details page. Select the fine-tuned model to delete from the Fine-tuning page, and then select the Delete button to delete the fine-tuned model.
+You can delete a fine-tuned model from the fine-tuning model list in [Azure AI Foundry](https://ai.azure.com) or from the model details page. Select the fine-tuned model to delete from the Fine-tuning page, and then select the Delete button to delete the fine-tuned model.
 
 >[!NOTE]
 > You can't delete a custom model if it has an existing deployment. You must first delete your model deployment before you can delete your custom model.
@@ -230,7 +230,7 @@ You can delete a fine-tuned model from the fine-tuning model list in [Azure AI S
 
 ### Cost and quota considerations for Phi models fine-tuned as a service
 
-Phi models fine-tuned as a service are offered by Microsoft and integrated with Azure AI Studio for use. You can find the pricing when [deploying](./deploy-models-phi-3.md) or fine-tuning the models under the Pricing and terms tab on deployment wizard.
+Phi models fine-tuned as a service are offered by Microsoft and integrated with Azure AI Foundry for use. You can find the pricing when [deploying](./deploy-models-phi-3.md) or fine-tuning the models under the Pricing and terms tab on deployment wizard.
 
 ## Sample notebook
 
@@ -242,6 +242,6 @@ Models deployed as a service with pay-as-you-go are protected by Azure AI Conten
 
 
 ## Next steps
-- [What is Azure AI Studio?](../what-is-ai-studio.md)
+- [What is Azure AI Foundry?](../what-is-ai-studio.md)
 - [Learn more about deploying Phi-3 models](./deploy-models-phi-3.md)
 - [Azure AI FAQ article](../faq.yml)

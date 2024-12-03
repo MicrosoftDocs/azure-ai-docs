@@ -9,8 +9,9 @@ ms.service: azure-ai-openai
 ms.custom:
   - ignite-2023
   - references_regions
+  - ignite-2024
 ms.topic: whats-new
-ms.date: 10/22/2024
+ms.date: 11/12/2024
 recommendations: false
 ---
 
@@ -18,9 +19,26 @@ recommendations: false
 
 This article provides a summary of the latest releases and major documentation updates for Azure OpenAI.
 
+## November 2024
+
+### Vision Fine-tuning GA
+
+Vision fine-tuning with GPT-4o (2024-08-06) in now Generally Available (GA).
+
+[Vision fine-tuning](./how-to/fine-tuning.md) allows you to add images to your JSONL training data. Just as you can send one or many image inputs to chat completions, you can include those same message types within your training data. Images can be provided either as URLs or as base64 encoded images.
+
+For fine-tuning model region availability, see the [models page](./concepts/models.md#fine-tuning-models).
+
+### NEW AI abuse monitoring
+
+We are introducing new forms of abuse monitoring that leverage LLMs to improve efficiency of detection of potentially abusive use of the Azure OpenAI service and to enable abuse monitoring without the need for human review of prompts and completions. Learn more, see [Abuse monitoring](/azure/ai-services/openai/concepts/abuse-monitoring).
+
+Prompts and completions that are flagged through content classification and/or identified to be part of a potentially abusive pattern of use are subjected to an additional review process to help confirm the system’s analysis and inform actioning decisions. Our abuse monitoring systems have been expanded to enable review by LLM by default and by humans when necessary and appropriate. 
+
 ## October 2024
 
 ### NEW data zone standard deployment type
+
 Data zone standard deployments are available in the same Azure OpenAI resource as all other Azure OpenAI deployment types but allow you to leverage Azure global infrastructure to dynamically route traffic to the data center within the Microsoft defined data zone with the best availability for each request. Data zone standard provides higher default quotas than our Azure geography-based deployment types.  Data zone standard deployments are supported on `gpt-4o-2024-08-06`, `gpt-4o-2024-05-13`, and `gpt-4o-mini-2024-07-18` models.
 
 For more information, see the [deployment types guide](https://aka.ms/aoai/docs/deployment-types).
@@ -29,7 +47,7 @@ For more information, see the [deployment types guide](https://aka.ms/aoai/docs/
 
 Azure OpenAI global batch is now generally available.
 
-The Azure OpenAI Batch API is designed to handle large-scale and high-volume processing tasks efficiently. Process asynchronous groups of requests with separate quota, with 24-hour target turnaround, at [50% less cost than global standard](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/). With batch processing, rather than send one request at a time you send a large number of requests in a single file. Global batch requests have a separate enqueued token quota avoiding any disruption of your online workloads.  
+The Azure OpenAI Batch API is designed to handle large-scale and high-volume processing tasks efficiently. Process asynchronous groups of requests with separate quota, with 24-hour target turnaround, at [50% less cost than global standard](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/). With batch processing, rather than send one request at a time you send a large number of requests in a single file. Global batch requests have a separate enqueued token quota avoiding any disruption of your online workloads.  
 
 Key use cases include:
 
@@ -83,7 +101,7 @@ Global batch now supports GPT-4o (2024-08-06). See the [global batch getting sta
 
 ### Azure OpenAI Studio UX updates
 
-On September 19, when you access the [Azure OpenAI Studio](https://oai.azure.com/) you'll begin to no longer see the legacy studio UI by default. If needed you'll still be able to go back to the previous experience by using the **Switch to the old look** toggle in the top bar of the UI for the next couple of weeks. If you switch back to legacy Studio UI, it helps if you fill out the feedback form to let us know why. We're actively monitoring this feedback to improve the new experience.
+On September 19, when you access the [Azure OpenAI Studio](https://oai.azure.com/) you'll begin to no longer see the legacy AI Foundry portal by default. If needed you'll still be able to go back to the previous experience by using the **Switch to the old look** toggle in the top bar of the UI for the next couple of weeks. If you switch back to legacy AI Foundry portal, it helps if you fill out the feedback form to let us know why. We're actively monitoring this feedback to improve the new experience.
 
 
 ### GPT-4o 2024-08-06 provisioned deployments
@@ -126,7 +144,7 @@ OpenAI has incorporated additional safety measures into the `o1` models, includi
 
 ### Availability
 
-The `o1-preview` and `o1-mini` are available in the East US2 region for limited access through the [AI Studio](https://ai.azure.com) early access playground. Data processing for the `o1` models might occur in a different region than where they are available for use.
+The `o1-preview` and `o1-mini` are available in the East US2 region for limited access through the [AI Foundry portal](https://ai.azure.com) early access playground. Data processing for the `o1` models might occur in a different region than where they are available for use.
 
 To try the `o1-preview` and `o1-mini` models in the early access playground **registration is required, and access will be granted based on Microsoft’s eligibility criteria.**
 
@@ -182,9 +200,9 @@ On August 6, 2024, OpenAI [announced](https://openai.com/index/introducing-struc
 * An enhanced ability to support complex structured outputs.
 * Max output tokens have been increased from 4,096 to 16,384.
 
-Azure customers can test out GPT-4o `2024-08-06` today in the new AI Studio early access playground (preview).
+Azure customers can test out GPT-4o `2024-08-06` today in the new AI Foundry early access playground (preview).
 
-Unlike the previous early access playground, the AI Studio early access playground (preview) doesn't require you to have a resource in a specific region.
+Unlike the previous early access playground, the AI Foundry portal early access playground (preview) doesn't require you to have a resource in a specific region.
 
 > [!NOTE]
 > Prompts and completions made through the early access playground (preview) might be processed in any Azure OpenAI region, and are currently subject to a 10 request per minute per Azure subscription limit. This limit might change in the future.
@@ -195,7 +213,7 @@ To test out GPT-4o `2024-08-06`, sign-in to the Azure AI early access playground
 
 ### Global batch deployments are now available
 
-The Azure OpenAI Batch API is designed to handle large-scale and high-volume processing tasks efficiently. Process asynchronous groups of requests with separate quota, with 24-hour target turnaround, at [50% less cost than global standard](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/). With batch processing, rather than send one request at a time you send a large number of requests in a single file. Global batch requests have a separate enqueued token quota avoiding any disruption of your online workloads.  
+The Azure OpenAI Batch API is designed to handle large-scale and high-volume processing tasks efficiently. Process asynchronous groups of requests with separate quota, with 24-hour target turnaround, at [50% less cost than global standard](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/). With batch processing, rather than send one request at a time you send a large number of requests in a single file. Global batch requests have a separate enqueued token quota avoiding any disruption of your online workloads.  
 
 Key use cases include:
 
