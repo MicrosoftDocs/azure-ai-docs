@@ -65,8 +65,6 @@ In order to help you manage the costs associated with these vector_store objects
 
 ::: zone-end
 
-### Supported file types
-
 ::: zone pivot="csharp-example"
 
 ```csharp
@@ -238,6 +236,8 @@ with project_client:
 ::: zone-end
 
 ::: zone pivot="supported-filetypes"
+
+### Supported file types
 
 > [!NOTE]
 > For text/ MIME types, the encoding must be either utf-8, utf-16, or ASCII.

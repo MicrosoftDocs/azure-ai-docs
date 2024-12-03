@@ -9,14 +9,18 @@ ms.topic: how-to
 ms.date: 11/20/2024
 author: aahill
 ms.author: aahi
+zone_pivot_groups: selection-bing-grounding
 recommendations: false
 ---
 
 # Azure AI Agents function calling
 
+::: zone pivot="overview"
+
 Azure AI Agents supports function calling, which allows you to describe the structure of functions to an Assistant and then return the functions that need to be called along with their arguments.
 
-## Function calling support
+> [!NOTE]
+> Runs expire ten minutes after creation. Be sure to submit your tool outputs before the expiration.
 
 ### Supported models
 
@@ -24,134 +28,222 @@ The [models page](../../concepts/model-region-support.md) contains the most up-t
 
 To use all features of function calling including parallel functions, you need to use a model that was released after November 6, 2023.
 
-## Example function definition
+::: zone-end
 
-> [!NOTE]
-> Runs expire ten minutes after creation. Be sure to submit your tool outputs before the expiration.
-<!-- > * You can also perform function calling [with Azure Logic apps](./assistants-logic-apps.md) -->
+::: zone pivot="csharp-example"
 
-# [Python](#tab/python)
+```csharp
+using System;
+using System.Collections.Generic;
+using System.Text.Json;
+using System.Threading.Tasks;
+using Azure.Core.TestFramework;
+using NUnit.Framework;
 
-When you create a function for an agent to call, you describe its structure of it with any required parameters. For example, `fetch_weather` simulates the response of a possible weather function.  
+namespace Azure.AI.Projects.Tests;
 
-```python
-def fetch_weather(location: str) -> str:
-    """
-    Fetches the weather information for the specified location.
+public partial class Sample_Agent_Functions : SamplesBase<AIProjectsTestEnvironment>
+{
+    [Test]
+    public async Task FunctionCallingExample()
+    {
+        var connectionString = TestEnvironment.AzureAICONNECTIONSTRING;
+        AgentsClient client = new AgentsClient(connectionString, new DefaultAzureCredential());
 
-    :param location (str): The location to fetch weather for.
-    :return: Weather information as a JSON string.
-    :rtype: str
-    """
-    # In a real-world scenario, you'd integrate with a weather API.
-    # Here, we'll mock the response.
-    mock_weather_data = {"New York": "Sunny, 25°C", "London": "Cloudy, 18°C", "Tokyo": "Rainy, 22°C"}
-    weather = mock_weather_data.get(location, "Weather data not available for this location.")
-    weather_json = json.dumps({"weather": weather})
-    return weather_json
+        #region Snippet:FunctionsDefineFunctionTools
+        // Example of a function that defines no parameters
+        string GetUserFavoriteCity() => "Seattle, WA";
+        FunctionToolDefinition getUserFavoriteCityTool = new("getUserFavoriteCity", "Gets the user's favorite city.");
+        // Example of a function with a single required parameter
+        string GetCityNickname(string location) => location switch
+        {
+            "Seattle, WA" => "The Emerald City",
+            _ => throw new NotImplementedException(),
+        };
+        FunctionToolDefinition getCityNicknameTool = new(
+            name: "getCityNickname",
+            description: "Gets the nickname of a city, e.g. 'LA' for 'Los Angeles, CA'.",
+            parameters: BinaryData.FromObjectAsJson(
+                new
+                {
+                    Type = "object",
+                    Properties = new
+                    {
+                        Location = new
+                        {
+                            Type = "string",
+                            Description = "The city and state, e.g. San Francisco, CA",
+                        },
+                    },
+                    Required = new[] { "location" },
+                },
+                new JsonSerializerOptions() { PropertyNamingPolicy = JsonNamingPolicy.CamelCase }));
+        // Example of a function with one required and one optional, enum parameter
+        string GetWeatherAtLocation(string location, string temperatureUnit = "f") => location switch
+        {
+            "Seattle, WA" => temperatureUnit == "f" ? "70f" : "21c",
+            _ => throw new NotImplementedException()
+        };
+        FunctionToolDefinition getCurrentWeatherAtLocationTool = new(
+            name: "getCurrentWeatherAtLocation",
+            description: "Gets the current weather at a provided location.",
+            parameters: BinaryData.FromObjectAsJson(
+                new
+                {
+                    Type = "object",
+                    Properties = new
+                    {
+                        Location = new
+                        {
+                            Type = "string",
+                            Description = "The city and state, e.g. San Francisco, CA",
+                        },
+                        Unit = new
+                        {
+                            Type = "string",
+                            Enum = new[] { "c", "f" },
+                        },
+                    },
+                    Required = new[] { "location" },
+                },
+                new JsonSerializerOptions() { PropertyNamingPolicy = JsonNamingPolicy.CamelCase }));
+        #endregion
+
+        #region Snippet:FunctionsHandleFunctionCalls
+        ToolOutput GetResolvedToolOutput(RequiredToolCall toolCall)
+        {
+            if (toolCall is RequiredFunctionToolCall functionToolCall)
+            {
+                if (functionToolCall.Name == getUserFavoriteCityTool.Name)
+                {
+                    return new ToolOutput(toolCall, GetUserFavoriteCity());
+                }
+                using JsonDocument argumentsJson = JsonDocument.Parse(functionToolCall.Arguments);
+                if (functionToolCall.Name == getCityNicknameTool.Name)
+                {
+                    string locationArgument = argumentsJson.RootElement.GetProperty("location").GetString();
+                    return new ToolOutput(toolCall, GetCityNickname(locationArgument));
+                }
+                if (functionToolCall.Name == getCurrentWeatherAtLocationTool.Name)
+                {
+                    string locationArgument = argumentsJson.RootElement.GetProperty("location").GetString();
+                    if (argumentsJson.RootElement.TryGetProperty("unit", out JsonElement unitElement))
+                    {
+                        string unitArgument = unitElement.GetString();
+                        return new ToolOutput(toolCall, GetWeatherAtLocation(locationArgument, unitArgument));
+                    }
+                    return new ToolOutput(toolCall, GetWeatherAtLocation(locationArgument));
+                }
+            }
+            return null;
+        }
+        #endregion
+
+        #region Snippet:FunctionsCreateAgentWithFunctionTools
+        // note: parallel function calling is only supported with newer models like gpt-4-1106-preview
+        Response<Agent> agentResponse = await client.CreateAgentAsync(
+            model: "gpt-4-1106-preview",
+            name: "SDK Test Agent - Functions",
+                instructions: "You are a weather bot. Use the provided functions to help answer questions. "
+                    + "Customize your responses to the user's preferences as much as possible and use friendly "
+                    + "nicknames for cities whenever possible.",
+            tools: new List<ToolDefinition> { getUserFavoriteCityTool, getCityNicknameTool, getCurrentWeatherAtLocationTool }
+            );
+        Agent agent = agentResponse.Value;
+        #endregion
+
+        Response<AgentThread> threadResponse = await client.CreateThreadAsync();
+        AgentThread thread = threadResponse.Value;
+
+        Response<ThreadMessage> messageResponse = await client.CreateMessageAsync(
+            thread.Id,
+            MessageRole.User,
+            "What's the weather like in my favorite city?");
+        ThreadMessage message = messageResponse.Value;
+
+        Response<ThreadRun> runResponse = await client.CreateRunAsync(thread, agent);
+
+        #region Snippet:FunctionsHandlePollingWithRequiredAction
+        do
+        {
+            await Task.Delay(TimeSpan.FromMilliseconds(500));
+            runResponse = await client.GetRunAsync(thread.Id, runResponse.Value.Id);
+
+            if (runResponse.Value.Status == RunStatus.RequiresAction
+                && runResponse.Value.RequiredAction is SubmitToolOutputsAction submitToolOutputsAction)
+            {
+                List<ToolOutput> toolOutputs = new();
+                foreach (RequiredToolCall toolCall in submitToolOutputsAction.ToolCalls)
+                {
+                    toolOutputs.Add(GetResolvedToolOutput(toolCall));
+                }
+                runResponse = await client.SubmitToolOutputsToRunAsync(runResponse.Value, toolOutputs);
+            }
+        }
+        while (runResponse.Value.Status == RunStatus.Queued
+            || runResponse.Value.Status == RunStatus.InProgress);
+        #endregion
+
+        Response<PageableList<ThreadMessage>> afterRunMessagesResponse
+            = await client.GetMessagesAsync(thread.Id);
+        IReadOnlyList<ThreadMessage> messages = afterRunMessagesResponse.Value.Data;
+
+        // Note: messages iterate from newest to oldest, with the messages[0] being the most recent
+        foreach (ThreadMessage threadMessage in messages)
+        {
+            Console.Write($"{threadMessage.CreatedAt:yyyy-MM-dd HH:mm:ss} - {threadMessage.Role,10}: ");
+            foreach (MessageContent contentItem in threadMessage.ContentItems)
+            {
+                if (contentItem is MessageTextContent textItem)
+                {
+                    Console.Write(textItem.Text);
+                }
+                else if (contentItem is MessageImageFileContent imageFileItem)
+                {
+                    Console.Write($"<image from ID: {imageFileItem.FileId}");
+                }
+                Console.WriteLine();
+            }
+        }
+    }
+}
 ```
 
+::: zone-end
 
-See the [python file on GitHub](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/agents/user_functions.py) for an example of a full series of function definitions. This file is referred to as `user_functions.py` in the following example below. 
-
-
-In the sample below we create a client and define a `toolset` which will be used to process the functions defined in `user_functions`.
+::: zone pivot="python-example"
 
 ```python
+# This sample demonstrates how to use agent operations with toolset from the Azure Agents service using a synchronous client. It's purpose is to showcase automatic tool calling using ToolSet in non-streaming scenario
+
 import os
 from azure.ai.projects import AIProjectClient
 from azure.identity import DefaultAzureCredential
-from azure.ai.projects.models import FunctionTool, ToolSet
-from user_functions import user_functions # found in the user_functions.py file.
+from azure.ai.projects.models import FunctionTool, ToolSet, CodeInterpreterTool
+from user_functions import user_functions
+
 
 # Create an Azure AI Client from a connection string, copied from your AI Studio project.
-# It should be in the format "<HostName>;<AzureSubscriptionId>;<ResourceGroup>;<HubName>"
-# Customers need to login to Azure subscription via Azure CLI and set the environment variables
+# At the moment, it should be in the format "<HostName>;<AzureSubscriptionId>;<ResourceGroup>;<HubName>"
+# Customer needs to login to Azure subscription via Azure CLI and set the environment variables
 
 project_client = AIProjectClient.from_connection_string(
     credential=DefaultAzureCredential(),
     conn_str=os.environ["PROJECT_CONNECTION_STRING"],
 )
 
-# Initialize agent toolset with user functions
+# Initialize agent toolset with user functions and code interpreter
 functions = FunctionTool(user_functions)
+code_interpreter = CodeInterpreterTool()
+
 toolset = ToolSet()
 toolset.add(functions)
-```
+toolset.add(code_interpreter)
 
-# [C#](#tab/csharp)
-
-When you create a function for an agent to call, you describe its structure of it with any required parameters. For example, the following functions are two examples - one that requires no parameters, and one that requires one parameter.
-
-```csharp
-// Example of a function that defines no parameters
-string GetUserFavoriteCity() => "Seattle, WA";
-FunctionToolDefinition getUserFavoriteCityTool = new("getUserFavoriteCity", "Gets the user's favorite city.");
-// Example of a function with a single required parameter
-string GetCityNickname(string location) => location switch
-{
-    "Seattle, WA" => "The Emerald City",
-    _ => throw new NotImplementedException(),
-};
-FunctionToolDefinition getCityNicknameTool = new(
-    name: "getCityNickname",
-    description: "Gets the nickname of a city, e.g. 'LA' for 'Los Angeles, CA'.",
-    parameters: BinaryData.FromObjectAsJson(
-        new
-        {
-            Type = "object",
-            Properties = new
-            {
-                Location = new
-                {
-                    Type = "string",
-                    Description = "The city and state, e.g. San Francisco, CA",
-                },
-            },
-            Required = new[] { "location" },
-        },
-        new JsonSerializerOptions() { PropertyNamingPolicy = JsonNamingPolicy.CamelCase }));
-```
-
-<!--See the [C# file on GitHub](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/agents/user_functions.py) for an additional function definition examples. -->
-
-In the following sample, we create a helper function to get and parse the resolved tools' outputs, and return it. 
-
-```csharp
-ToolOutput GetResolvedToolOutput(RequiredToolCall toolCall)
-{
-    if (toolCall is RequiredFunctionToolCall functionToolCall)
-    {
-        if (functionToolCall.Name == getUserFavoriteCityTool.Name)
-                {
-                    return new ToolOutput(toolCall, GetUserFavoriteCity());
-                }
-                using JsonDocument argumentsJson = JsonDocument.Parse(functionToolCall.Arguments);
-        if (functionToolCall.Name == getCityNicknameTool.Name)
-        {
-            string locationArgument = argumentsJson.RootElement.GetProperty("location").GetString();
-            return new ToolOutput(toolCall, GetCityNickname(locationArgument));
-        }
-    }
-    return null;
-}
-```
-
----
-
-
-## Submitting function outputs
-
-You can then create an agent, then create a thread and message object that will trigger a call to the function. The helper function defined earlier will help. Complete the **Run** by submitting the tool output from the functions you call.
-
-# [Python](#tab/python)
-
-```python
-
-# Create agent with toolset and process a run
+# Create agent with toolset and process assistant run
 with project_client:
     agent = project_client.agents.create_agent(
-        model="gpt-4o-mini", name="my-agent", instructions="You are a helpful agent", toolset=toolset
+        model="gpt-4o-mini", name="my-assistant", instructions="You are a helpful assistant", toolset=toolset
     )
     print(f"Created agent, ID: {agent.id}")
 
@@ -174,7 +266,7 @@ with project_client:
     if run.status == "failed":
         print(f"Run failed: {run.last_error}")
 
-    # Delete the agent when done
+    # Delete the assistant when done
     project_client.agents.delete_agent(agent.id)
     print("Deleted agent")
 
@@ -183,81 +275,8 @@ with project_client:
     print(f"Messages: {messages}")
 ```
 
-# [C#](#tab/csharp)
 
-You can then create an agent with the `toolbox` object defined earlier, then create a thread and message object that will trigger a call to the function. Complete the **Run** by submitting the tool output from the functions you call.
-
-```csharp
-// note: parallel function calling is only supported with newer models like gpt-4-1106-preview
-Response<Agent> agentResponse = await client.CreateAgentAsync(
-    model: "gpt-4-1106-preview",
-    name: "SDK Test Agent - Functions",
-        instructions: "You are a weather bot. Use the provided functions to help answer questions. "
-            + "Customize your responses to the user's preferences as much as possible and use friendly "
-            + "nicknames for cities whenever possible.",
-    tools: new List<ToolDefinition> { getUserFavoriteCityTool, getCityNicknameTool, getCurrentWeatherAtLocationTool }
-    );
-Agent agent = agentResponse.Value;
-#endregion
-
-Response<AgentThread> threadResponse = await client.CreateThreadAsync();
-AgentThread thread = threadResponse.Value;
-
-Response<ThreadMessage> messageResponse = await client.CreateMessageAsync(
-    thread.Id,
-    MessageRole.User,
-    "What's the weather like in my favorite city?");
-ThreadMessage message = messageResponse.Value;
-
-Response<ThreadRun> runResponse = await client.CreateRunAsync(thread, agent);
-
-#region Snippet:FunctionsHandlePollingWithRequiredAction
-do
-{
-    await Task.Delay(TimeSpan.FromMilliseconds(500));
-    runResponse = await client.GetRunAsync(thread.Id, runResponse.Value.Id);
-
-    if (runResponse.Value.Status == RunStatus.RequiresAction
-        && runResponse.Value.RequiredAction is SubmitToolOutputsAction submitToolOutputsAction)
-    {
-        List<ToolOutput> toolOutputs = new();
-        foreach (RequiredToolCall toolCall in submitToolOutputsAction.ToolCalls)
-        {
-            toolOutputs.Add(GetResolvedToolOutput(toolCall));
-        }
-        runResponse = await client.SubmitToolOutputsToRunAsync(runResponse.Value, toolOutputs);
-    }
-}
-while (runResponse.Value.Status == RunStatus.Queued
-    || runResponse.Value.Status == RunStatus.InProgress);
-#endregion
-
-Response<PageableList<ThreadMessage>> afterRunMessagesResponse
-    = await client.GetMessagesAsync(thread.Id);
-IReadOnlyList<ThreadMessage> messages = afterRunMessagesResponse.Value.Data;
-
-// Note: messages iterate from newest to oldest, with the messages[0] being the most recent
-foreach (ThreadMessage threadMessage in messages)
-{
-    Console.Write($"{threadMessage.CreatedAt:yyyy-MM-dd HH:mm:ss} - {threadMessage.Role,10}: ");
-    foreach (MessageContent contentItem in threadMessage.ContentItems)
-    {
-        if (contentItem is MessageTextContent textItem)
-        {
-            Console.Write(textItem.Text);
-        }
-        else if (contentItem is MessageImageFileContent imageFileItem)
-        {
-            Console.Write($"<image from ID: {imageFileItem.FileId}");
-        }
-        Console.WriteLine();
-    }
-}
-```
-
----
-
-After you submit tool outputs, the **Run** will enter the `queued` state before it continues execution.
+::: zone-end
 
 ## See also
 
